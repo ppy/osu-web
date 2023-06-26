@@ -4,24 +4,23 @@
 import { BeatmapsContext } from 'beatmap-discussions/beatmaps-context';
 import { BeatmapsetsContext } from 'beatmap-discussions/beatmapsets-context';
 import { DiscussionsContext } from 'beatmap-discussions/discussions-context';
-import { ReviewEditorConfigContext } from 'beatmap-discussions/review-editor-config-context';
 import HeaderV4 from 'components/header-v4';
-import { NotificationBanner } from 'components/notification-banner';
 import ProfilePageExtraTab from 'components/profile-page-extra-tab';
 import ProfileTournamentBanner from 'components/profile-tournament-banner';
 import UserProfileContainer from 'components/user-profile-container';
-import BeatmapJson from 'interfaces/beatmap-json';
-import BeatmapsetDiscussionJson, { BeatmapsetDiscussionJsonForBundle } from 'interfaces/beatmapset-discussion-json';
-import BeatmapsetDiscussionPostJson, { BeatmapsetDiscussionMessagePostJson } from 'interfaces/beatmapset-discussion-post-json';
+import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
+import { BeatmapsetDiscussionJsonForBundle } from 'interfaces/beatmapset-discussion-json';
+import { BeatmapsetDiscussionMessagePostJson } from 'interfaces/beatmapset-discussion-post-json';
 import BeatmapsetEventJson from 'interfaces/beatmapset-event-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
-import BeatmapsetJson from 'interfaces/beatmapset-json';
 import KudosuHistoryJson from 'interfaces/kudosu-history-json';
-import UserExtendedJson from 'interfaces/user-extended-json';
 import UserJson from 'interfaces/user-json';
-import _, { isEmpty, keyBy, throttle } from 'lodash';
-import Kudosu from 'modding-profile/kudosu'
-import { deletedUser } from 'models/user'
+import UserModdingProfileJson from 'interfaces/user-modding-profile-json';
+import _, { first, isEmpty, keyBy, last, throttle } from 'lodash';
+import { action, makeObservable, observable } from 'mobx';
+import { observer } from 'mobx-react';
+import Kudosu from 'modding-profile/kudosu';
+import { deletedUser } from 'models/user';
 import core from 'osu-core-singleton';
 import Badges from 'profile-page/badges';
 import Cover from 'profile-page/cover';
@@ -31,23 +30,18 @@ import * as React from 'react';
 import { bottomPage } from 'utils/html';
 import { pageChange } from 'utils/page-change';
 import { nextVal } from 'utils/seq';
-import { switchNever } from 'utils/switch-never'
-import { currentUrl, currentUrlRelative } from 'utils/turbolinks'
-import { updateQueryString } from 'utils/url'
-import Discussions from './discussions'
-import Events from './events'
-import { Posts } from './posts'
-import Stats from './stats'
-import Votes, { Direction, VoteSummary } from './votes'
-import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
-import UserModdingProfileJson from 'interfaces/user-modding-profile-json';
+import { switchNever } from 'utils/switch-never';
+import { currentUrl } from 'utils/turbolinks';
+import Discussions from './discussions';
+import Events from './events';
+import { Posts } from './posts';
+import Stats from './stats';
+import Votes, { Direction, VoteSummary } from './votes';
 
+// in display order.
 const moddingExtraPages = ['events', 'discussions', 'posts', 'votes', 'kudosu'] as const;
 type ModdingExtraPage = (typeof moddingExtraPages)[number];
 
-// FIXME: these can probably be removed like the profile page
-const pages = document.getElementsByClassName('js-switchable-mode-page--scrollspy');
-const pagesOffset = document.getElementsByClassName('js-switchable-mode-page--scrollspy-offset');
 
 interface Props {
   beatmaps: BeatmapExtendedJson[];
@@ -67,25 +61,12 @@ interface Props {
   votes: Record<Direction, VoteSummary[]>;
 }
 
-interface State {
-  beatmaps: BeatmapExtendedJson[];
-  beatmapsets: BeatmapsetExtendedJson[];
-  currentPage: Page;
-  discussions: BeatmapsetDiscussionJsonForBundle[];
-  events: BeatmapsetEventJson[];
-  posts: BeatmapsetDiscussionMessagePostJson[];
-  profileOrder: ModdingExtraPage[];
-  user: UserExtendedJson;
-  users: UserJson[];
-  votes: Record<Direction, VoteSummary[]>;
-}
-
 interface Cache {
   beatmaps: Partial<Record<number, BeatmapExtendedJson>>;
   beatmapsets: Partial<Record<number, BeatmapsetExtendedJson>>;
   discussions: Partial<Record<number, BeatmapsetDiscussionJsonForBundle>>;
   userDiscussions: BeatmapsetDiscussionJsonForBundle[];
-  users: Partial<Record<number, UserJson>>;
+  users: Partial<Record<number | string, UserJson>>;
 }
 
 type Page = ModdingExtraPage | 'main';
@@ -98,30 +79,31 @@ function validPage(page: unknown) {
   return null;
 }
 
-
-export class Main extends React.PureComponent<Props, State> {
+@observer
+export class Main extends React.PureComponent<Props> {
   private cache: Partial<Cache> = {};
+  @observable private currentPage: Page = 'main';
   private readonly disposers = new Set<(() => void) | undefined>();
   private readonly eventId = `users-modding-history-index-${nextVal()}`;
-  private initialPage: Page = 'main';
   private modeScrollTimeout: number | undefined;
-  private modeScrollUrl: string;
-  private readonly pageRefs: Record<ModdingExtraPage, React.RefObject<HTMLDivElement>> = {
+  private pageJumpingTo: Page | null = null;
+  private readonly pageRefs: Record<Page, React.RefObject<HTMLDivElement>> = {
     discussions: React.createRef(),
     events: React.createRef(),
     kudosu: React.createRef(),
+    main: React.createRef(),
     posts: React.createRef(),
     votes: React.createRef(),
   };
   private readonly pages = React.createRef<HTMLDivElement>();
-  private restoredState = false;
+  private readonly pagesOffsetRef = React.createRef<HTMLDivElement>();
   private readonly tabs = React.createRef<HTMLDivElement>();
 
   private get discussions() {
     // skipped discussions
     // - not privileged (deleted discussion)
     // - deleted beatmap
-    this.cache.discussions ??= _(this.state.discussions)
+    this.cache.discussions ??= _(this.props.discussions)
       .filter((d) => !isEmpty(d))
       .keyBy('id')
       .value();
@@ -132,22 +114,7 @@ export class Main extends React.PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
 
-    const page = validPage(currentUrl().hash.slice(1));
-    if (page != null) {
-      this.initialPage = page;
-    }
-
-    this.state = {
-      beatmaps: props.beatmaps,
-      beatmapsets: props.beatmapsets,
-      currentPage: this.initialPage,
-      discussions: props.discussions,
-      events: props.events,
-      posts: props.posts,
-      user: props.user,
-      users: props.users,
-      votes: props.votes,
-    };
+    makeObservable(this);
   }
 
   componentDidMount() {
@@ -158,12 +125,15 @@ export class Main extends React.PureComponent<Props, State> {
 
     pageChange();
 
-    this.modeScrollUrl = currentUrlRelative();
+    const page = validPage(currentUrl().hash.slice(1)) ?? 'main';
 
-    this.disposers.add(core.reactTurbolinks.runAfterPageLoad(() =>
-      // The scroll is a bit off on Firefox if not using timeout.
-      window.setTimeout(() => this.pageJump(null, this.currentPage), 0),
-    ));
+    this.disposers.add(core.reactTurbolinks.runAfterPageLoad(() => {
+      if (page != null) {
+        window.setTimeout(() => {
+          this.pageScrollIntoView(page);
+        }, 0);
+      }
+    }));
   }
 
   componentWillUnmount() {
@@ -176,18 +146,27 @@ export class Main extends React.PureComponent<Props, State> {
   }
 
   private get beatmaps() {
-    this.cache.beatmaps ??= keyBy(this.state.beatmaps, 'id');
+    this.cache.beatmaps ??= keyBy(this.props.beatmaps, 'id');
     return this.cache.beatmaps;
   }
 
   private get beatmapsets() {
-    this.cache.beatmapsets ??= keyBy(this.state.beatmapsets, 'id');
+    this.cache.beatmapsets ??= keyBy(this.props.beatmapsets, 'id');
     return this.cache.beatmapsets;
+  }
+
+  private get pagesOffset() {
+    return this.pagesOffsetRef.current;
+  }
+
+  private get stickyHeaderOffset() {
+    return core.stickyHeader.headerHeight + (this.pagesOffset?.getBoundingClientRect().height ?? 0);
   }
 
   private get users() {
     if (this.cache.users == null) {
-      this.cache.users = keyBy(this.state.users, 'id');
+      this.cache.users = keyBy(this.props.users, 'id');
+      // eslint-disable-next-line id-blacklist
       this.cache.users.null = this.cache.users.undefined = deletedUser.toJson();
     }
 
@@ -195,18 +174,16 @@ export class Main extends React.PureComponent<Props, State> {
   }
 
   private get userDiscussions() {
-    this.cache.userDiscussions ??= this.state.discussions.filter((d) => d.user_id === this.state.user.id);
+    this.cache.userDiscussions ??= this.props.discussions.filter((d) => d.user_id === this.props.user.id);
     return this.cache.userDiscussions;
   }
 
   render() {
-    const profileOrder = this.state.profileOrder;
-
     return (
       <DiscussionsContext.Provider value={this.discussions}>
         <BeatmapsetsContext.Provider value={this.beatmapsets}>
           <BeatmapsContext.Provider value={this.beatmaps}>
-            <UserProfileContainer user={this.state.user}>
+            <UserProfileContainer user={this.props.user}>
               <HeaderV4
                 backgroundImage={this.props.user.cover.url}
                 links={headerLinks(this.props.user, 'modding')}
@@ -217,10 +194,7 @@ export class Main extends React.PureComponent<Props, State> {
                 theme='users'
               />
               <div className='osu-page osu-page--generic-compact'>
-                <div
-                  className='js-switchable-mode-page--scrollspy js-switchable-mode-page--page'
-                  data-page-id='main'
-                >
+                <div ref={this.pageRefs.main} data-page-id='main'>
                   <Cover
                     coverUrl={this.props.user.cover.url}
                     currentMode={this.props.user.playmode}
@@ -228,9 +202,9 @@ export class Main extends React.PureComponent<Props, State> {
                   />
                   {!this.props.user.is_bot && (
                     <>
-                      <ProfileTournamentBanner banner={this.state.user.active_tournament_banner} />
+                      <ProfileTournamentBanner banner={this.props.user.active_tournament_banner} />
                       <div className='profile-detail'>
-                        <Badges badges={this.state.user.badges} />
+                        <Badges badges={this.props.user.badges} />
                         <Stats user={this.props.user} />
                       </div>
                     </>
@@ -238,12 +212,14 @@ export class Main extends React.PureComponent<Props, State> {
                   <DetailBar user={this.props.user} />
                 </div>
                 <div
-                  className='hidden-xs page-extra-tabs page-extra-tabs--profile-page js-switchable-mode-page--scrollspy-offset'>
+                  ref={this.pagesOffsetRef}
+                  className='hidden-xs page-extra-tabs page-extra-tabs--profile-page'
+                >
                   <div
                     ref={this.tabs}
                     className='page-mode page-mode--profile-page-extra'
                   >
-                    {profileOrder.map((m) => (
+                    {moddingExtraPages.map((m) => (
                       <a
                         key={m}
                         className='page-mode__item'
@@ -252,22 +228,18 @@ export class Main extends React.PureComponent<Props, State> {
                         onClick={this.tabClick}
                       >
                         <ProfilePageExtraTab
-                          currentPage={this.state.currentPage}
+                          currentPage={this.currentPage}
                           page={m}
                         />
                       </a>
                     ))}
                   </div>
                 </div>
-                <div
-                  ref={this.pages}
-                  className='user-profile-pages'
-                >
-                  {profileOrder.map((name) => (
+                <div ref={this.pages} className='user-profile-pages'>
+                  {moddingExtraPages.map((name) => (
                     <div
                       key={name}
                       ref={this.pageRefs[name]}
-                      className='js-switchable-mode-page--scrollspy js-switchable-mode-page--page'
                       data-page-id={name}
                     >
                       {this.extraPage(name)}
@@ -285,112 +257,106 @@ export class Main extends React.PureComponent<Props, State> {
   private extraPage = (name: ModdingExtraPage) => {
     switch (name) {
       case 'discussions':
-        return <Discussions discussions={this.userDiscussions} user={this.state.user} users={this.users} />;
+        return <Discussions discussions={this.userDiscussions} user={this.props.user} users={this.users} />;
       case 'events':
-        return <Events events={this.state.events} user={this.state.user} users={this.users} />;
+        return <Events events={this.props.events} user={this.props.user} users={this.users} />;
       case 'kudosu':
         return (
           <Kudosu
             expectedInitialCount={this.props.perPage.recentlyReceivedKudosu}
             initialKudosu={this.props.extras.recentlyReceivedKudosu}
             name={name}
-            total={this.state.user.kudosu.total}
-            userId={this.state.user.id}
+            total={this.props.user.kudosu.total}
+            userId={this.props.user.id}
           />
         );
       case 'posts':
-        return <Posts posts={this.state.posts} user={this.state.user} users={this.users} />;
+        return <Posts posts={this.props.posts} user={this.props.user} users={this.users} />;
       case 'votes':
-        return <Votes users={this.users} votes={this.state.votes} />;
+        return <Votes users={this.users} votes={this.props.votes} />;
       default:
         switchNever(name);
         throw new Error('unsupported extra page');
     }
   };
 
+  @action
+  private readonly pageJump = (page: Page | null) => {
+    if (page === null || this.pagesOffset == null) return;
+
+    this.pageJumpingTo = page;
+
+    this.pageScrollIntoView(page, true);
+  };
+
+  @action
   private readonly pageScan = () => {
-    // TODO: check if we can just apply the main user profile version
-    // return if this.modeScrollUrl != currentUrlRelative()
+    if (this.pagesOffset == null) return;
 
-    // return if this.scrolling
-    // return if pages.length == 0
+    const matching = new Set<Page>();
 
-    // anchorHeight = pagesOffset[0].getBoundingClientRect().height
+    for (const key of moddingExtraPages) {
+      const page = this.pageRefs[key].current;
+      if (page == null) continue;
 
-    // if bottomPage()
-    //   this.setCurrentPage null, _.last(pages).dataset.pageId
-    //   return
+      const pageId = page.dataset.pageId as Page;
+      const pageDims = page.getBoundingClientRect();
 
-    // for page in pages
-    //   pageDims = page.getBoundingClientRect()
-    //   pageBottom = pageDims.bottom - Math.min(pageDims.height * 0.75, 200)
-    //   continue unless pageBottom > anchorHeight
+      const pageBottom = pageDims.bottom - Math.min(pageDims.height * 0.75, 200);
+      const match = pageId === 'main'
+        ? pageBottom > 0
+        : pageBottom > this.stickyHeaderOffset && pageDims.top < window.innerHeight;
 
-    //   this.setCurrentPage null, page.dataset.pageId
-    //   return
-
-    // this.setCurrentPage null, page.dataset.pageId
-  };
-
-  private readonly pageJump = (_e: unknown, page: Page | null) => {
-    if (page == null) return;
-
-    // if page == 'main'
-    //   this.setCurrentPage null, page
-    //   return
-
-    // target = $(this.extraPages[page])
-
-    // # if invalid page is specified, scan current position
-    // if target.length == 0
-    //   this.pageScan()
-    //   return
-
-    // # Don't bother scanning the current position.
-    // # The result will be wrong when target page is too short anyway.
-    // this.scrolling = true
-    // Timeout.clear this.modeScrollTimeout
-
-    // # count for the tabs height; assume pageJump always causes the header to be pinned
-    // # otherwise the calculation needs another phase and gets a bit messy.
-    // offsetTop = target.offset().top - pagesOffset[0].getBoundingClientRect().height
-
-    // $(window).stop().scrollTo core.stickyHeader.scrollOffset(offsetTop), 500,
-    //   onAfter: =>
-    //     # Manually set the mode to avoid confusion (wrong highlight).
-    //     # Scrolling will obviously break it but that's unfortunate result
-    //     # from having the scrollspy marker at middle of page.
-    //     this.setCurrentPage null, page, =>
-    //       # Doesn't work:
-    //       # - part of state (callback, part of mode setting)
-    //       # - simple variable in callback
-    //       # Both still change the switch too soon.
-    //       this.modeScrollTimeout = Timeout.set 100, => this.scrolling = false
-  };
-
-  private setCurrentPage = (_e: null, page: ModdingExtraPage, extraCallback?: () => void) => {
-    const callback = () => extraCallback?.();
-
-    if (this.state.currentPage === page) {
-      return callback();
+      if (match) {
+        matching.add(pageId);
+      }
     }
 
-    this.setState({ currentPage: page }, callback);
+    let preferred: Page | undefined;
+    const pageIds = [...matching.values()];
+    // special case for bottom of page if there are multiple pages visible.
+    if (bottomPage()) {
+      preferred = last(pageIds);
+    } else {
+      // prefer using the page being navigated to if its element is in view.
+      preferred = this.pageJumpingTo != null && matching.has(this.pageJumpingTo) ? this.pageJumpingTo : first(pageIds);
+    }
+
+    if (preferred != null) {
+      this.currentPage = preferred;
+    }
+  };
+
+  @action
+  private readonly pageScrollIntoView = (page: Page, smooth = false) => {
+    const target = page === 'main' ? document.body : this.pageRefs[page].current;
+    if (target == null) return;
+
+    const pageId = target.dataset.pageId as Page;
+    // fine for the current scroll containers.
+    let maxScrollY = document.body.scrollHeight - window.innerHeight;
+    if (pageId !== last(moddingExtraPages)) {
+      maxScrollY -= 1;
+    }
+
+    const top = Math.floor(Math.min(maxScrollY, window.scrollY + target.getBoundingClientRect().top - this.stickyHeaderOffset));
+    // smooth scroll when using navigation bar.
+    window.scrollTo({ behavior: smooth ? 'smooth' : undefined, top });
   };
 
   private tabClick = (e: React.SyntheticEvent<HTMLAnchorElement>) => {
     e.preventDefault();
 
-    this.pageJump(null, validPage(e.currentTarget.dataset.pageId));
+    this.pageJump(validPage(e.currentTarget.dataset.pageId));
   };
 
 
   private userUpdate = (_e: unknown, user: UserJson) => {
-    if (user?.id !== this.state.user.id) {
+    if (user?.id !== this.props.user.id) {
       return this.forceUpdate();
     }
 
     // this component needs full user object but sometimes this event only sends part of it
-    this.setState({ user: Object.assign({}, this.state.user, user) });
+    this.setState({ user: Object.assign({}, this.props.user, user) });
   };
 }
