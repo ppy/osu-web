@@ -16,7 +16,7 @@ import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import KudosuHistoryJson from 'interfaces/kudosu-history-json';
 import UserJson from 'interfaces/user-json';
 import UserModdingProfileJson from 'interfaces/user-modding-profile-json';
-import _, { first, isEmpty, keyBy, last, throttle } from 'lodash';
+import { first, isEmpty, keyBy, last, throttle } from 'lodash';
 import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import Kudosu from 'modding-profile/kudosu';
@@ -102,10 +102,7 @@ export default class Main extends React.PureComponent<Props> {
     // skipped discussions
     // - not privileged (deleted discussion)
     // - deleted beatmap
-    return _(this.props.discussions)
-      .filter((d) => !isEmpty(d))
-      .keyBy('id')
-      .value();
+    return keyBy(this.props.discussions.filter((d) => !isEmpty(d)), 'id');
   }
 
   private get pagesOffset() {
