@@ -70,7 +70,7 @@ function validPage(page: unknown) {
 }
 
 @observer
-export class Main extends React.PureComponent<Props> {
+export default class Main extends React.PureComponent<Props> {
   @observable private currentPage: Page = 'main';
   private readonly disposers = new Set<(() => void) | undefined>();
   private readonly eventId = `users-modding-history-index-${nextVal()}`;
