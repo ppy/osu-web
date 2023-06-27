@@ -4,20 +4,20 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'confirm_new' => '',
-    'new' => '',
-    'none' => '',
+    'confirm_new' => '新しいIRCパスワードを作成しますか？',
+    'new' => '新しいレガシーIRCパスワード',
+    'none' => 'IRCパスワードが設定されていません',
 
     'form' => [
-        'server_host' => '',
-        'server_port' => '',
-        'token' => '',
-        'username' => '',
+        'server_host' => 'サーバー',
+        'server_port' => 'ポート',
+        'token' => 'サーバーパスワード',
+        'username' => 'ユーザー名',
     ],
 
     'view' => [
-        'hide' => '',
-        'show' => '',
-        'delete' => '',
+        'hide' => 'パスワードを隠す',
+        'show' => 'パスワードを表示する',
+        'delete' => '削除',
     ],
 ];

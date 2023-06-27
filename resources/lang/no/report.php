@@ -6,7 +6,7 @@
 return [
     'beatmapset' => [
         'button' => 'Rapporter',
-        'title' => '',
+        'title' => 'Rapporter :username sitt beatmap?',
     ],
 
     'beatmapset_discussion_post' => [
@@ -21,7 +21,7 @@ return [
 
     'forum_post' => [
         'button' => 'Rapporter',
-        'title' => '',
+        'title' => 'Rapporter :username sitt innlegg?',
     ],
 
     'scores' => [

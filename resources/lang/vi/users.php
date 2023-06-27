@@ -49,6 +49,7 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => '',
         'loading' => 'Đang tải...',
         'send_message' => 'Gửi tin nhắn',
     ],
