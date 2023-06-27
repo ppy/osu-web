@@ -15,7 +15,7 @@ return [
         'closing' => 'Med vennlig hilsen,',
         'hello' => 'Hei :user,',
         'report' => 'Vennligst svar på denne emailen UMIDDELBART om du ikke ønsket denne handlingen.',
-        'ignore' => '',
+        'ignore' => 'Dersom du ikke ba om dette kan du ignorere denne emailen.',
     ],
 
     'donation_thanks' => [
@@ -68,7 +68,7 @@ return [
         'duration' => 'Takk til de, så har du nå tilgang til osu!direct og andre supporter fordeler for de neste :duration.',
         'features' => 'Du kan finne ut mere detaljer på disse fordelene her:',
         'gifted' => 'Noen har gitt deg en osu!supporter tag!',
-        'gift_message' => '',
+        'gift_message' => 'Personen som ga deg denne taggen etterlot seg en melding:',
         'subject' => 'Du har fått en osu!supporter tag i gave!',
     ],
 

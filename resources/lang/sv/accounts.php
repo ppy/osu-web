@@ -21,9 +21,9 @@ return [
         ],
 
         'legacy_api' => [
-            'api' => '',
-            'irc' => '',
-            'title' => '',
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'Legacy API',
         ],
 
         'password' => [

@@ -113,9 +113,9 @@ return [
         'exists' => 'Endast en API-nyckel tillhandahålls per användare för tillfället.',
 
         'attributes' => [
-            'api_key' => '',
-            'app_name' => '',
-            'app_url' => '',
+            'api_key' => 'api-nyckel',
+            'app_name' => 'applikationsnamn',
+            'app_url' => 'applikationsurl',
         ],
     ],
 
@@ -175,7 +175,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => 'Rankade beatmaps kan inte rapporteras',
-        'not_in_channel' => '',
+        'not_in_channel' => 'Du är inte i den här kanalen.',
         'reason_not_valid' => ':reason är inte giltigt för denna anmälningstyp.',
         'self' => "Du kan inte anmäla dig själv!",
     ],

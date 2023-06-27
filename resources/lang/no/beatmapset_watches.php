@@ -9,8 +9,8 @@ return [
         'title_compact' => 'modding overvåkningsliste',
 
         'counts' => [
-            'total' => '',
-            'unread' => '',
+            'total' => 'Lagrede beatmap',
+            'unread' => 'Beatmaps med ny aktivitet',
         ],
 
         'table' => [
