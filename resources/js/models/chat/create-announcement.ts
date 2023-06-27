@@ -10,7 +10,7 @@ import core from 'osu-core-singleton';
 import { onError } from 'utils/ajax';
 import { uuid } from 'utils/seq';
 import { presence, present } from 'utils/string';
-import { maxLength } from './message';
+import { maxMessageLength } from './channel';
 
 interface LocalStorageProps extends Record<InputKey, string> {
   validUsers: number[];
@@ -23,7 +23,7 @@ const localStorageKey = 'createAnnouncement';
 
 export const maxLengths = Object.freeze({
   description: 255,
-  message: maxLength,
+  message: maxMessageLength,
   name: 50,
 });
 

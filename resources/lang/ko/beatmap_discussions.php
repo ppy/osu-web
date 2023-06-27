@@ -32,10 +32,10 @@ return [
             'beatmapset_status' => [
                 '_' => '비트맵 상태',
                 'all' => '전체',
-                'disqualified' => 'Disqualified',
-                'never_qualified' => 'Qualified 된 적 없음',
-                'qualified' => 'Qualified',
-                'ranked' => 'Ranked',
+                'disqualified' => '디스퀄리파이 됨',
+                'never_qualified' => '퀄리파이 된 적 없음',
+                'qualified' => '퀄리파이',
+                'ranked' => '랭크됨',
             ],
 
             'user' => [
@@ -74,7 +74,7 @@ return [
 
     'review' => [
         'block_count' => ':used / :max 블록 사용됨',
-        'go_to_parent' => '평가 글 보기',
+        'go_to_parent' => '리뷰 글 보기',
         'go_to_child' => '토론 글 보기',
         'validation' => [
             'block_too_large' => '각 문단은 최대 :limit자까지 입력할 수 있습니다.',
@@ -90,7 +90,7 @@ return [
 
     'system' => [
         'resolved' => [
-            'true' => ':user 님이 해결함으로 표시함.',
+            'true' => ':user님이 토론을 끝마쳤습니다',
             'false' => ':user님이 토론을 재개했습니다',
         ],
     ],

@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\UserRelation;
 use App\Transformers\UserCompactTransformer;
 use Auth;
+use Exception;
 
 class FriendsController extends Controller
 {
@@ -73,22 +74,36 @@ class FriendsController extends Controller
             abort(422);
         }
 
-        $existingRelation = $currentUser->relations()->where('zebra_id', $targetId)->first();
-        $updateCount = false;
+        while (true) {
+            $existingRelation = $currentUser->relations()->where('zebra_id', $targetId)->first();
+            $updateCount = false;
 
-        if ($existingRelation === null) {
-            UserRelation::create([
-                'user_id' => $currentUser->user_id,
-                'zebra_id' => $targetId,
-                'friend' => true,
-            ]);
-            $updateCount = true;
-        } elseif (!$existingRelation->friend) {
-            $existingRelation->update([
-                'friend' => true,
-                'foe' => false,
-            ]);
-            $updateCount = true;
+            if ($existingRelation === null) {
+                try {
+                    UserRelation::create([
+                        'user_id' => $currentUser->user_id,
+                        'zebra_id' => $targetId,
+                        'friend' => true,
+                    ]);
+                    $updateCount = true;
+                } catch (Exception $e) {
+                    if (is_sql_unique_exception($e)) {
+                        // redo the loop with what should be a non-null
+                        // $existingRelation on the next one
+                        continue;
+                    }
+
+                    throw $e;
+                }
+            } elseif (!$existingRelation->friend) {
+                $existingRelation->update([
+                    'friend' => true,
+                    'foe' => false,
+                ]);
+                $updateCount = true;
+            }
+
+            break;
         }
 
         if ($updateCount) {

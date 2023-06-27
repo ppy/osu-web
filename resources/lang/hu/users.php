@@ -49,6 +49,7 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => '',
         'loading' => 'Betöltés...',
         'send_message' => 'üzenet küldése',
     ],

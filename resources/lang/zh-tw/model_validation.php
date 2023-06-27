@@ -114,8 +114,8 @@ return [
 
         'attributes' => [
             'api_key' => '',
-            'app_name' => '',
-            'app_url' => '',
+            'app_name' => '應用程式名稱',
+            'app_url' => '應用程式網址',
         ],
     ],
 

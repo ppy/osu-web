@@ -25,9 +25,9 @@ return [
 
     'editor' => [
         'textarea_hint' => [
-            '_' => 'enter를 눌러 :action. shift+enter를 눌러 줄 바꿈.',
+            '_' => 'Enter를 눌러 :action, Shift+Enter로 줄을 바꿀 수 있습니다.',
             'edit' => '저장',
-            'new' => '게시',
+            'new' => '게시하기',
             'reply' => '답변하기',
         ],
     ],

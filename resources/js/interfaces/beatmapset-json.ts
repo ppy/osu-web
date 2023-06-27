@@ -11,6 +11,11 @@ import GenreJson from './genre-json';
 import LanguageJson from './language-json';
 import UserJson, { UserJsonDeleted } from './user-json';
 
+export interface Availability {
+  download_disabled: boolean;
+  more_information: string | null;
+}
+
 interface BeatmapsetCovers {
   card: string;
   cover: string;
@@ -67,6 +72,7 @@ export interface CurrentUserAttributes {
 }
 
 interface BeatmapsetJsonAvailableIncludes {
+  availability: Availability;
   beatmaps: BeatmapJson[];
   converts: BeatmapExtendedJson[];
   current_nominations: BeatmapsetNominationJson[];

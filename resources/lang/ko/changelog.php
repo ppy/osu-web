@@ -7,7 +7,7 @@ return [
     'generic' => '버그 수정 및 소소한 사항 개선.',
 
     'build' => [
-        'title' => ':version 에서 바뀐 것들',
+        'title' => ':version에서 바뀐 것들',
     ],
 
     'builds' => [
@@ -15,19 +15,19 @@ return [
     ],
 
     'entry' => [
-        'by' => ':user 님이 구현',
+        'by' => 'by :user',
     ],
 
     'index' => [
         'page_title' => [
             '_' => '변경 목록',
-            '_from' => ':from 부터 바뀐 것들',
-            '_from_to' => ':from 과 :to 사이에 바뀐 것들',
-            '_stream' => ':stream 에서 바뀐 것들',
-            '_stream_from' => ':from 부터 :stream 에서 바뀐 것들',
-            '_stream_from_to' => ':stream 에서 :from 과 :to 사이에 바뀐 것들',
-            '_stream_to' => ':stream 의 :to 까지 바뀐 것들',
-            '_to' => ':to 까지 바뀐 것들',
+            '_from' => ':from에 바뀐 것들',
+            '_from_to' => ':from부터 :to 사이에 바뀐 것들',
+            '_stream' => ':stream에서 바뀐 것들',
+            '_stream_from' => ':from에 :stream에서 바뀐 것들',
+            '_stream_from_to' => ':stream에서 :from부터 :to 사이에 바뀐 것들',
+            '_stream_to' => ':stream에서 :to까지 바뀐 것들',
+            '_to' => ':to까지 바뀐 것들',
         ],
     ],
 

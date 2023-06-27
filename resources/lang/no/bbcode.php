@@ -6,9 +6,9 @@
 return [
     'bold' => 'Fet',
     'heading' => 'Overskrift',
-    'help' => '',
+    'help' => 'Hjelp',
     'image' => 'Bilde',
-    'imagemap' => '',
+    'imagemap' => 'Bildekart',
     'italic' => 'Kursiv',
     'link' => 'Lenke',
     'list' => 'Liste',

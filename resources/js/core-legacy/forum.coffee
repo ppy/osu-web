@@ -3,6 +3,7 @@
 
 import core from 'osu-core-singleton'
 import { onError } from 'utils/ajax'
+import { blackoutVisible } from 'utils/blackout'
 import { bottomPage, formatNumber, isInputElement } from 'utils/html'
 import { hideLoadingOverlay } from 'utils/loading-overlay'
 import { pageChange } from 'utils/page-change'
@@ -202,7 +203,7 @@ export default class Forum
     true
 
   keyboardNavigation: (e) =>
-    return if isInputElement(e.target) or not @_postsCounter.length
+    return if isInputElement(e.target) || e.target.closest('[role=dialog]')? || blackoutVisible() || @_postsCounter.length == 0
 
     e.preventDefault()
 
