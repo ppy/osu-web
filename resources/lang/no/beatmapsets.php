@@ -8,11 +8,11 @@ return [
         'disabled' => 'Dette beatmappet er for øyeblikket ikke tilgjengelig for nedlastning.',
         'parts-removed' => 'Deler av dette beatmappet har blitt fjernet etter forespørsel av skaperen eller en tredjepart rettighetshaver.',
         'more-info' => 'Klikk her for mer informasjon.',
-        'rule_violation' => '',
+        'rule_violation' => 'Enkelte ressurser i dette kartet har blitt fjernet, etter som at det ikke kan brukes i osu!.',
     ],
 
     'cover' => [
-        'deleted' => '',
+        'deleted' => 'Slettet beatmap',
     ],
 
     'download' => [
@@ -46,9 +46,9 @@ return [
         'too_many' => 'Nominasjonskravet er allerede oppfylt.',
 
         'dialog' => [
-            'confirmation' => '',
-            'header' => '',
-            'hybrid_warning' => '',
+            'confirmation' => 'Er du sikker på at du vil nominere dette beatmappet?',
+            'header' => 'Nominer Beatmap',
+            'hybrid_warning' => 'merk: du kan kun nominere èn gang. Vær så snill å forsikre deg om at du nominerer for alle spill-modusene du har tenkt å nominere på',
             'which_modes' => 'Nominer for hvilke moduser?',
         ],
     ],
@@ -61,17 +61,17 @@ return [
         'discussion' => 'Diskusjon',
 
         'deleted_banner' => [
-            'title' => '',
-            'message' => '',
+            'title' => 'Dette beatmappet har blitt slettet.',
+            'message' => '(kun moderatorer kan se dette)',
         ],
 
         'details' => [
             'by_artist' => 'av :artist',
             'favourite' => 'Marker dette beatmapsettet som en favoritt',
-            'favourite_login' => '',
+            'favourite_login' => 'logg inn for å legge dette beatmappet til i favoritter',
             'logged-out' => 'Du må logge inn før du kan laste ned beatmaps!',
             'mapped_by' => 'mappet av :mapper',
-            'mapped_by_guest' => '',
+            'mapped_by_guest' => 'gjeste-kart av :mapper',
             'unfavourite' => 'Fjern dette beatmapsettet som en favoritt',
             'updated_timeago' => 'sist oppdatert :timeago',
 
@@ -130,32 +130,32 @@ return [
             'genre' => 'Sjanger',
             'language' => 'Språk',
             'no_scores' => 'Data blir fortsatt kalkulert...',
-            'nominators' => '',
+            'nominators' => 'Nominerende',
             'nsfw' => 'Eksplisitt innhold',
-            'offset' => '',
+            'offset' => 'Globalt offset',
             'points-of-failure' => 'Feilpunkter',
             'source' => 'Kilde',
-            'storyboard' => '',
+            'storyboard' => 'Dette beatmappet inneholder storyboard',
             'success-rate' => 'Suksessrate',
             'tags' => 'Stikkord',
-            'video' => '',
+            'video' => 'Dette beatmappet inneholder video',
         ],
 
         'nsfw_warning' => [
-            'details' => '',
-            'title' => '',
+            'details' => 'Dette beatmappet inneholder grovt, støtende eller forstyrrende innhold. Vil du fortsette uansett?',
+            'title' => 'Grovt Innhold',
 
             'buttons' => [
-                'disable' => '',
-                'listing' => '',
-                'show' => '',
+                'disable' => 'Skru av advarsel',
+                'listing' => 'Beatmapliste',
+                'show' => 'Vis',
             ],
         ],
 
         'scoreboard' => [
             'achieved' => 'oppnådd :when',
             'country' => 'Landsrangering',
-            'error' => '',
+            'error' => 'Kunne ikke laste rangering',
             'friend' => 'Vennerangering',
             'global' => 'Global Rangering',
             'supporter-link' => 'Klikk <a href=":link">her</a> for å se alle de fancy funskjonene du får tildelt!',
@@ -167,7 +167,7 @@ return [
                 'combo' => 'Maks Kombo',
                 'miss' => 'Bom',
                 'mods' => 'Modifikasjoner',
-                'pin' => '',
+                'pin' => 'Fest',
                 'player' => 'Spiller',
                 'pp' => '',
                 'rank' => 'Rang',
@@ -188,8 +188,8 @@ return [
                 'own' => 'Ditt beste',
             ],
             'supporter_link' => [
-                '_' => '',
-                'here' => '',
+                '_' => 'Klikk :here for å se alle de stilige funksjonene du får!',
+                'here' => 'her',
             ],
         ],
 
@@ -204,7 +204,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Antall Sirkler',
             'count_sliders' => 'Antall Glidere',
-            'offset' => '',
+            'offset' => 'Globalt offset :offset',
             'user-rating' => 'Brukervurderinger',
             'rating-spread' => 'Vurderingsskjema',
             'nominations' => 'Nominasjoner',
@@ -223,6 +223,6 @@ return [
     ],
 
     'spotlight_badge' => [
-        'label' => '',
+        'label' => 'Spotlight',
     ],
 ];

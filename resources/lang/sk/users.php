@@ -49,6 +49,7 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => '',
         'loading' => 'Načitávanie...',
         'send_message' => 'poslať správu',
     ],
