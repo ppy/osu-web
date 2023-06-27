@@ -79,7 +79,7 @@ return [
         'post' => ':count_delimited개의 게시글',
         'second_short_unit' => '초',
         'star_priority' => '별 우선 순위 :count_delimited',
-        'update' => ':count_delimited 업데이트',
+        'update' => ':count_delimited회 업데이트',
         'view' => ':count_delimited회 조회',
         'years' => ':count년',
     ],

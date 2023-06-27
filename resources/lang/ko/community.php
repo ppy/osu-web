@@ -121,15 +121,15 @@ return [
 
             'more_favourites' => [
                 'title' => '최대 즐겨찾기 수 증가',
-                'description' => '즐겨 찾을 수 있는 비트맵의 수가 :normally &rarr; :supporter 으로 늘어납니다.',
+                'description' => '즐겨 찾을 수 있는 비트맵의 수가 :normally &rarr; :supporter(으)로 늘어납니다.',
             ],
             'more_friends' => [
                 'title' => '최대 친구 수 증가',
-                'description' => '사귈 수 있는 친구의 숫자가 :normally &rarr; :supporter 으로 늘어납니다.',
+                'description' => '사귈 수 있는 친구의 숫자가 :normally &rarr; :supporter(으)로 늘어납니다.',
             ],
             'more_beatmaps' => [
                 'title' => '더 많은 비트맵 업로드',
-                'description' => '한 번에 가질 수 있는 Ranked 되지 않은 비트맵의 수는 기본 값 + 현재 소유하고 있는 각 Ranked 된 비트맵 (한계치까지) 의 추가적 보너스로 계산됩니다. <br/><br/>일반적으로 이 값은 Ranked 된 비트맵 당 4 + 1입니다 (최대 2). 서포터가 있으면, 이 값이 Ranked 된 비트맵 당 8 + 1로 증가합니다 (최대 12).',
+                'description' => '한 번에 가질 수 있는 랭크되지 않은 비트맵의 수는 기본 값 + 현재 소유하고 있는 각 랭크된 비트맵(한계치까지)의 추가적 보너스로 계산됩니다. <br/><br/>일반적으로 이 값은 랭크된 비트맵 당 :base + :bonus입니다 (최대 :bonus_max). 서포터가 있으면, 이 값이 랭크된 비트맵 당 :supporter_base + :supporter_bonus로 증가합니다 (최대 :supporter_bonus_max).',
             ],
             'friend_filtering' => [
                 'title' => '친구 리더보드',

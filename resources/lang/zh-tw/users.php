@@ -49,6 +49,7 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => '',
         'loading' => '載入中...',
         'send_message' => '傳送訊息',
     ],
@@ -435,7 +436,7 @@ return [
             'country_simple' => '國內排名',
             'global' => ':mode 模式的全球排名',
             'global_simple' => '全球排名',
-            'highest' => '',
+            'highest' => '最高排名:rank於:date',
         ],
         'stats' => [
             'hit_accuracy' => '準確率',
@@ -470,7 +471,7 @@ return [
     ],
     'store' => [
         'from_client' => '請透過遊戲客戶端註冊!',
-        'from_web' => '',
+        'from_web' => '請於osu!網站完成註冊',
         'saved' => '帳號已註冊',
     ],
     'verify' => [

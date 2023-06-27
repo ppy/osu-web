@@ -16,7 +16,7 @@ return [
     'voting' => [
         'login_required' => 'Vennligst logg inn for å stemme.',
         'over' => 'Avstemmingen for denne konkurransen har avsluttet',
-        'show_voted_only' => '',
+        'show_voted_only' => 'Vis stemte',
 
         'best_of' => [
             'none_played' => "Det ser ikke ut som du har spilt noen av beatmappene som kvaliseres for denne konkurransen!",
@@ -29,12 +29,12 @@ return [
         ],
 
         'progress' => [
-            '_' => '',
+            '_' => ':used / :max stemmer brukt',
         ],
 
         'requirement' => [
             'playlist_beatmapsets' => [
-                'incomplete_play' => '',
+                'incomplete_play' => 'Må spille alle beatmaps i angitte spilleliste før du stemmer',
             ],
         ],
     ],
@@ -50,7 +50,7 @@ return [
             'beatmap' => 'Bare .osu filer er akseptert for denne konkurransen.',
             'music' => 'Bare .mp3 filer er akseptert for denne konkurransen.',
         ],
-        'wrong_dimensions' => '',
+        'wrong_dimensions' => 'Innsendinger for denne konkurransen må være :widthx:height',
         'too_big' => 'Bidrag til denne konkurransen kan maks være :limit.',
     ],
     'beatmaps' => [

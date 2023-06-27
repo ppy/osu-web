@@ -175,7 +175,7 @@ return [
     ],
 
     'nominations' => [
-        'already_nominated' => '',
+        'already_nominated' => 'Už jsi tuto beatmapu nominoval.',
         'cannot_nominate' => '',
         'delete' => 'Vymazat',
         'delete_own_confirm' => 'Jste si jistý? Tahle beatmapa bude smazána a pošleme vás zpátky na váš profil.',

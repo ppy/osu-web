@@ -458,6 +458,8 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
         Route::get('changelog/{stream}/{build}', 'ChangelogController@build')->name('changelog.build');
         Route::resource('changelog', 'ChangelogController', ['only' => ['index', 'show']]);
 
+        Route::apiResource('events', 'EventsController', ['only' => ['index']]);
+
         Route::group(['as' => 'forum.', 'namespace' => 'Forum'], function () {
             Route::group(['prefix' => 'forums'], function () {
                 Route::post('topics/{topic}/reply', 'TopicsController@reply')->name('topics.reply');
