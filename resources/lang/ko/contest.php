@@ -62,11 +62,11 @@ return [
         'points' => ':count포인트',
     ],
     'dates' => [
-        'ended' => ':date 에 끝났습니다',
+        'ended' => ':date에 끝났습니다',
         'ended_no_date' => '종료됨',
 
         'starts' => [
-            '_' => ':date 에 시작합니다',
+            '_' => ':date에 시작합니다',
             'soon' => '곧...™',
         ],
     ],

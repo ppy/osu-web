@@ -49,6 +49,7 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => '',
         'loading' => 'טוען...',
         'send_message' => 'שלח הודעה',
     ],

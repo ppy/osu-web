@@ -23,8 +23,8 @@ return [
     ],
 
     'warning' => [
-        'line1' => '',
-        'line2' => "",
-        'line3' => '',
+        'line1' => 'Nie udostępniaj tego innym użytkownikom.',
+        'line2' => "Jest to równoznaczne z upublicznieniem swojego hasła.",
+        'line3' => 'Twoje konto może zostać przejęte.',
     ],
 ];

@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'new' => 'Nova chave API Legada',
+    'new' => 'Nova Chave API Legada',
     'none' => 'Sem chave.',
 
     'docs' => [

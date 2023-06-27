@@ -5,7 +5,7 @@
 
 return [
     'bold' => '굵게',
-    'heading' => '제목',
+    'heading' => '헤더',
     'help' => '도움말',
     'image' => '이미지',
     'imagemap' => '이미지 맵',
@@ -20,6 +20,6 @@ return [
         'normal' => '보통',
         'large' => '크게',
     ],
-    'spoilerbox' => '숨김 박스',
+    'spoilerbox' => '스포일러 박스',
     'strikethrough' => '취소선',
 ];

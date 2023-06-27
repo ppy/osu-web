@@ -4,27 +4,27 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'new' => '',
-    'none' => '',
+    'new' => 'Nový Legacy API Klíč',
+    'none' => 'Žádný klíč.',
 
     'docs' => [
-        '_' => '',
-        'github' => '',
+        '_' => 'Dokumentace je dostupná na :github.',
+        'github' => 'GitHub',
     ],
 
     'form' => [
-        'create' => '',
+        'create' => 'Vytvořit Klíč',
     ],
 
     'view' => [
-        'hide' => '',
-        'show' => '',
-        'delete' => '',
+        'hide' => 'Skrýt Klíč',
+        'show' => 'Zobrazit Klíč',
+        'delete' => 'Smazat',
     ],
 
     'warning' => [
-        'line1' => '',
-        'line2' => "",
-        'line3' => '',
+        'line1' => 'Klíč s nikým nesdílejte.',
+        'line2' => "Je to stejné jako sdílení vašeho hesla.",
+        'line3' => 'Váš účet by mohl být kompromitován.',
     ],
 ];

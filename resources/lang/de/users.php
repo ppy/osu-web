@@ -49,6 +49,7 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => '',
         'loading' => 'Lädt...',
         'send_message' => 'Nachricht senden',
     ],

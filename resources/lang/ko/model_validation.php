@@ -134,7 +134,7 @@ return [
     'user' => [
         'contains_username' => '비밀번호는 유저 이름을 포함할 수 없습니다.',
         'email_already_used' => '이미 사용중인 이메일 주소입니다.',
-        'email_not_allowed' => '이메일 주소가 허용되지 않습니다.',
+        'email_not_allowed' => '허용되지 않은 이메일 주소입니다.',
         'invalid_country' => '해당하는 국가가 데이터베이스에 존재하지 않습니다.',
         'invalid_discord' => 'Discord 유저 이름이 올바르지 않습니다.',
         'invalid_email' => "이메일 주소가 잘못되었습니다.",

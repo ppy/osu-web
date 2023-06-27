@@ -6,7 +6,7 @@
 return [
     'confirm_new' => 'Thiết lập mật khẩu IRC mới?',
     'new' => '',
-    'none' => '',
+    'none' => 'Chưa thiết lập mật khẩu IRC.',
 
     'form' => [
         'server_host' => 'server',

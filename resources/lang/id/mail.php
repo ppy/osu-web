@@ -64,7 +64,7 @@ return [
     'supporter_gift' => [
         'anonymous_gift' => 'Pengguna yang menghadiahkanmu tag supporter ini memilih untuk tetap anonim, sehingga nama mereka tidak disebutkan pada email ini.',
         'anonymous_gift_maybe_not' => 'Tetapi kamu mungkin sudah tahu siapa itu ;).',
-        'duration' => 'Berkat mereka, kamu kini dapat menikmati akses osu!direct dan berbagai fitur khusus osu!supporter lainnya selama :duration.',
+        'duration' => 'Berkat mereka, kamu kini dapat mengakses osu!direct dan berbagai fitur khusus osu!supporter lainnya selama :duration.',
         'features' => 'Kamu dapat membaca rincian lebih lanjut mengenai berbagai fitur ini di sini:',
         'gifted' => 'Seseorang baru saja menghadiahkanmu osu!supporter tag!',
         'gift_message' => 'Pengguna yang menghadiahkan tag ini menitipkan pesan berikut untukmu:',

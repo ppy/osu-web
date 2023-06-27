@@ -4,27 +4,27 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'new' => '',
-    'none' => '',
+    'new' => 'Нов наследен API ключ',
+    'none' => 'Няма ключове.',
 
     'docs' => [
-        '_' => '',
-        'github' => '',
+        '_' => 'Документацията е налична в :github.',
+        'github' => 'GitHub',
     ],
 
     'form' => [
-        'create' => '',
+        'create' => 'Създаване на ключ',
     ],
 
     'view' => [
-        'hide' => '',
-        'show' => '',
-        'delete' => '',
+        'hide' => 'Скриване на ключ',
+        'show' => 'Показване на ключ',
+        'delete' => 'Изтриване',
     ],
 
     'warning' => [
-        'line1' => '',
-        'line2' => "",
-        'line3' => '',
+        'line1' => 'Не давайте това на други.',
+        'line2' => "Все едно давате вашата парола.",
+        'line3' => 'Профилът ви може да бъде изложен на риск.',
     ],
 ];
