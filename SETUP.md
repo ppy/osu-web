@@ -238,7 +238,7 @@ Note that if you use the bundled docker compose setup, yarn/webpack will be alre
 php artisan migrate:fresh --seed
 ```
 
-Run the above command to rebuild the database and seed with sample data. In order for the seeder to seed beatmaps, you must enter a valid osu! API key as the value of the `OSU_API_KEY` property in the `.env` configuration file, as the seeder obtains beatmap data from the osu! API. The key can be obtained from [the "Legacy API" section of your account settings page](https://osu.ppy.sh/home/account/edit#legacy-api).
+Run the above command to rebuild the database and populate it with sample data. In order for the seeder to seed beatmaps, you must enter a valid osu! API key as the value of the `OSU_API_KEY` property in the `.env` configuration file, as the seeder obtains beatmap data from the osu! API. The key can be obtained from [the "Legacy API" section of your account settings page](https://osu.ppy.sh/home/account/edit#legacy-api).
 
 ## Continuous asset generation while developing
 
