@@ -26,7 +26,7 @@
         {!! json_encode($set) !!}
     </script>
 
-    <script id="json-comments-beatmapset-{{ $beatmapset->getKey() }}" type="application/json">
+    <script id="json-comments" type="application/json">
         {!! json_encode($commentBundle->toArray()) !!}
     </script>
 
