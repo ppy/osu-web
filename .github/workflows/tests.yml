@@ -13,6 +13,7 @@ env:
   DB_HOST: 127.0.0.1
   ES_SOLO_SCORES_HOST: http://localhost:9200
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  SCHEMA: 1
   NOTIFICATION_ENDPOINT: ws://127.0.0.1:2345
   OSU_INSTALL_DEV: 1
   OSU_USE_SYSTEM_COMPOSER: 1
@@ -142,7 +143,7 @@ jobs:
 
       - name: Setup indices
         run: |
-          php artisan es:index-scores:set-schema --schema=1
+          php artisan es:index-scores:set-schema --schema=${SCHEMA}
           php artisan es:create-search-blacklist
           php artisan es:index-documents --yes
           php artisan es:index-wiki --create-only --yes
