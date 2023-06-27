@@ -487,6 +487,9 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         switch ($type) {
             case 'username':
                 $searchUsername = (string) $usernameOrId;
+                if ($searchUsername[0] === '@') {
+                    $searchUsername = substr($searchUsername, 1);
+                }
                 $searchUsernames = [
                     $searchUsername,
                     strtr($searchUsername, ' ', '_'),
@@ -503,11 +506,9 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
                 break;
 
             default:
-                if (ctype_digit((string) $usernameOrId)) {
-                    $user = static::lookup($usernameOrId, 'id', $findAll);
-                }
-
-                return $user ?? static::lookup($usernameOrId, 'username', $findAll);
+                return ctype_digit((string) $usernameOrId)
+                    ? static::lookup($usernameOrId, 'id', $findAll)
+                    : static::lookup($usernameOrId, 'username', $findAll);
         }
 
         if (!$findAll) {
