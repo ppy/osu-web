@@ -37,7 +37,9 @@
                 <div class="grid-cell grid-cell--1of3">
                     <h4 class="store-text store-text--title store-text--title-small">Sent Via:</h4>
 
-                    @include('store.objects.address', ['data' => $sentViaAddress, 'grid' => ''])
+                    <div class='address'>
+                        osu!store
+                    </div>
                 </div>
 
                 <div class="grid-cell grid-cell--1of3">
@@ -46,7 +48,7 @@
                 <div class="grid-cell grid-cell--1of3">
                     <h4 class="store-text store-text--title store-text--title-small">Shipping To:</h4>
 
-                    @include('store.objects.address', ['data' => $order->address, 'grid' => ''])
+                    @include('store.objects.address', ['data' => $order->address])
                 </div>
             </div>
         @endif
@@ -77,7 +79,7 @@
                 $showTrackingCode = ($order->isShipped() || $order->isDelivered() || Auth::user()->isAdmin()) && $order->tracking_code;
 
                 $transactionDetails = [
-                    'Salesperson' => "{$sentViaAddress->first_name} {$sentViaAddress->last_name}",
+                    'Salesperson' => 'osu!store',
                     'Order #' => "#{$order->order_id}",
                     'Shipping Method' => $showTrackingCode ? 'EMS ('.trim($order->tracking_code).')' : 'N/A',
                     'Shipping Terms' => 'FOB Japan',
