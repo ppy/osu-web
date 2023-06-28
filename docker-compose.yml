@@ -52,6 +52,8 @@ services:
     depends_on:
       db:
         condition: service_healthy
+      elasticsearch:
+        condition: service_healthy
 
   beatmap-difficulty-lookup-cache:
     image: pppy/osu-beatmap-difficulty-lookup-cache
