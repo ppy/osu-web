@@ -20,21 +20,16 @@ class StoreController extends Controller
     {
         $this->middleware('auth', ['only' => [
             'getInvoice',
-            'postNewAddress',
-            'postUpdateAddress',
         ]]);
 
         if (!$this->isAllowRestrictedUsers()) {
             $this->middleware('check-user-restricted', ['only' => [
                 'getInvoice',
-                'postNewAddress',
-                'postUpdateAddress',
             ]]);
         }
 
         $this->middleware('verify-user', ['only' => [
             'getInvoice',
-            'postUpdateAddress',
         ]]);
 
         parent::__construct();
@@ -68,86 +63,5 @@ class StoreController extends Controller
     public function missingMethod($parameters = [])
     {
         abort(404);
-    }
-
-    public function postUpdateAddress()
-    {
-        $address_id = (int) Request::input('id');
-        $address = Store\Address::find($address_id);
-        $order = $this->userCart();
-
-        if (!$address || $address->user_id !== Auth::user()->user_id) {
-            return error_popup('invalid address');
-        }
-
-        switch (Request::input('action')) {
-            default:
-            case 'use':
-                $order->address()->associate($address);
-                $order->save();
-
-                return ext_view('layout.ujs-reload', [], 'js');
-                break;
-            case 'remove':
-                if ($order->address_id === $address_id) {
-                    return error_popup('Address is being used for this order!');
-                }
-
-                if ($otherOrders = Store\Order::where('address_id', '=', $address_id)->first()) {
-                    return error_popup('Address was used in a previous order!');
-                }
-
-                Store\Address::destroy($address_id);
-
-                return ext_view('store.address-destroy', ['address_id' => $address_id], 'js');
-                break;
-        }
-    }
-
-    public function postNewAddress()
-    {
-        \Log::info(json_encode([
-            'tag' => 'NEW_ADDRESS',
-            'user_id' => Auth::user()->user_id,
-            'address' => Request::input('address'),
-        ]));
-
-        $addressInput = get_params(request()->all(), 'address', [
-            'first_name',
-            'last_name',
-            'street',
-            'city',
-            'state',
-            'zip',
-            'country_code',
-            'phone',
-        ]);
-
-        $validator = Validator::make($addressInput, [
-            'first_name' => ['required'],
-            'last_name' => ['required'],
-            'street' => ['required', 'mixture'],
-            'city' => ['required'],
-            'state' => ['required'],
-            'zip' => ['required', 'required'],
-            'country_code' => ['required'],
-            'phone' => ['required'],
-        ]);
-
-        $addressInput['user_id'] = Auth::user()->user_id;
-
-        if ($validator->fails()) {
-            return error_popup($validator->errors()->first());
-        }
-
-        $address = Store\Address::create($addressInput);
-        $address->user()->associate(Auth::user());
-        $address->save();
-
-        $order = $this->userCart();
-        $order->address()->associate($address);
-        $order->save();
-
-        return ext_view('layout.ujs-reload', [], 'js');
     }
 }

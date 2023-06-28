@@ -72,8 +72,6 @@
                         @endforeach
                     </div>
                 @endif
-
-                @include('store.objects.new_address')
             </div>
         @endif
 

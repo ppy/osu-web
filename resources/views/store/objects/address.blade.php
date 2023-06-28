@@ -24,27 +24,11 @@
         $mainClasses .= ' clickable-row';
     }
 @endphp
-{!! Form::open([
-    'action' => 'StoreController@postUpdateAddress',
-    'class' => $mainClasses,
-    'data-remote' => true,
-    'id' => "address-{$data->address_id}",
-]) !!}
+
+<div class='address'>
     <div>{{ $data->first_name }} {{ $data->last_name }}</div>
     <div>{{ $data->street }}</div>
-    <div>{{ $data->city }}, {{ $data->state }}, {{ $data->zip }}</div>
+    <div>{{ implode(', ', array_filter([$data->city, $data->state, $data->zip])) }}</div>
     <div>{{ $data->countryName() }}</div>
     <div>{{ $data->phone }}</div>
-
-    @if ($withButtons)
-        {!! Form::hidden('id', $data->address_id) !!}
-
-        <button type="submit" class="address__button-delete" name="action" value="remove">
-            <i class="fas fa-trash"></i>
-        </button>
-
-        <button type="submit" class="clickable-row-link address__button-select" name="action" value="use">
-            <i class="fas fa-check"></i> Use
-        </button>
-    @endif
-{!! Form::close() !!}
+</div>
