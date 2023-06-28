@@ -5,6 +5,7 @@
 
 namespace App\Console\Commands;
 
+use App\Libraries\Search\ScoreSearch;
 use Illuminate\Database\Console\Migrations\FreshCommand;
 use Symfony\Component\Console\Input\InputOption;
 
@@ -58,6 +59,14 @@ class MigrateFreshAllCommand extends FreshCommand
 
         $this->call('es:create-search-blacklist');
 
+        $schema = presence(env('SCHEMA'));
+
+        if ($schema !== null) {
+            $this->waitForActiveSchemaAndSet($schema);
+        } else {
+            $this->info('No score index schema set, skipping.');
+        }
+
         if ($this->needsSeeding()) {
             $this->runSeeder(null);
         }
@@ -79,5 +88,27 @@ class MigrateFreshAllCommand extends FreshCommand
             ['seeder', null, InputOption::VALUE_OPTIONAL, 'The class name of the root seeder.'],
             ['yes', null, InputOption::VALUE_NONE, 'Skip the confirmation prompt.'],
         ];
+    }
+
+    // Wait for score indexer to start and set active schema
+    private function waitForActiveSchemaAndSet(string $schema, float $maxWaitSeconds = 10): void
+    {
+        $loopWait = 500000; // 0.5s in microsecond
+        $loops = (int) ceil($maxWaitSeconds * 1000000.0 / $loopWait);
+        $this->warn("waiting for score indexer schema \"{$schema}\"");
+
+        for ($i = 0; $i < $loops; $i++) {
+            usleep($loopWait);
+            $activeSchemas = (new ScoreSearch())->getActiveSchemas();
+            if (in_array($schema, $activeSchemas, true)) {
+                $this->call('es:index-scores:set-schema', [
+                    '--schema' => $schema,
+                ]);
+
+                return;
+            }
+        }
+
+        $this->error("Could not find active schema \"{$schema}\" after {$maxWaitSeconds} seconds, not setting schema.");
     }
 }
