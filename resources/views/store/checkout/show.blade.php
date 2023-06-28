@@ -49,39 +49,13 @@
                 <div class="store-cart-footer__total-box store-cart-footer__total-box--full">
                     <p class="store-cart-footer__text">total</p>
                     <p class="store-cart-footer__text store-cart-footer__text--amount">{{{ currency($order->getTotal()) }}}</p>
-
-                    @if($order->requiresShipping() && !$order->shipping)
-                        <p class="store-cart-footer__text store-cart-footer__text--shipping">+ shipping fees</p>
-                    @endif
                 </div>
             </div>
         </div>
 
-        @if ($order->requiresShipping())
-            <div class="store-page">
-                <h2 class="store-text store-text--title">Shipping Address</h2>
-
-                @if (count($addresses))
-                    <div class="address-list">
-                        @foreach($addresses as $a)
-                            @include('store.objects.address', [
-                                'data' => $a,
-                                'selected' => (isset($order->address) && $order->address->address_id === $a->address_id),
-                                'modifiable' => true,
-                            ])
-                        @endforeach
-                    </div>
-                @endif
-            </div>
-        @endif
-
-        @if(!$order->requiresShipping() || $order->shipping)
+        @if (!$order->requiresShipping() || $order->shipping > 0)
             <div class="store-page store-page--footer">
                 <h1 class="store-text store-text--title">Select Payment Method</h1>
-
-                @if ($order->address !== null && $order->address->country_code === 'DE')
-                    @include('store._shipping_germany_warning')
-                @endif
 
                 @if ($hasErrors)
                     {{-- Remove checkout options if there are cart errors --}}
