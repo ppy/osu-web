@@ -53,24 +53,22 @@
             </div>
         </div>
 
-        @if (!$order->requiresShipping() || $order->shipping > 0)
-            <div class="store-page store-page--footer">
-                <h1 class="store-text store-text--title">Select Payment Method</h1>
+        <div class="store-page store-page--footer">
+            <h1 class="store-text store-text--title">Select Payment Method</h1>
 
-                @if ($hasErrors)
-                    {{-- Remove checkout options if there are cart errors --}}
-                    <div class="store-checkout-text--error">
-                        <p>{{ osu_trans('store.checkout.cart_problems') }}</p>
-                        <p>
-                            <a href="{{ route('store.cart.show') }}">{{ osu_trans('store.checkout.cart_problems_edit') }}</a>
-                        </p>
-                    </div>
-                @else
-                    @foreach ($checkout->allowedCheckoutProviders() as $provider)
-                        @include("store.checkout._{$provider}")
-                    @endforeach
-                @endif
-            </div>
-        @endif
+            @if ($hasErrors)
+                {{-- Remove checkout options if there are cart errors --}}
+                <div class="store-checkout-text--error">
+                    <p>{{ osu_trans('store.checkout.cart_problems') }}</p>
+                    <p>
+                        <a href="{{ route('store.cart.show') }}">{{ osu_trans('store.checkout.cart_problems_edit') }}</a>
+                    </p>
+                </div>
+            @else
+                @foreach ($checkout->allowedCheckoutProviders() as $provider)
+                    @include("store.checkout._{$provider}")
+                @endforeach
+            @endif
+        </div>
     </div>
 @endsection
