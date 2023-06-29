@@ -57,9 +57,4 @@ class StoreController extends Controller
 
         return ext_view('store.invoice', compact('order', 'forShipping', 'copies'));
     }
-
-    public function missingMethod($parameters = [])
-    {
-        abort(404);
-    }
 }
