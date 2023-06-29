@@ -52,11 +52,10 @@ class StoreController extends Controller
             abort(403);
         }
 
-        $sentViaAddress = Store\Address::sender();
         $forShipping = Auth::user()->isAdmin() && get_bool(Request::input('for_shipping'));
         $copies = clamp(get_int(request('copies')), 1, config('store.invoice.max_copies'));
 
-        return ext_view('store.invoice', compact('order', 'forShipping', 'copies', 'sentViaAddress'));
+        return ext_view('store.invoice', compact('order', 'forShipping', 'copies'));
     }
 
     public function missingMethod($parameters = [])
