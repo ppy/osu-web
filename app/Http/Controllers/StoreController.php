@@ -9,7 +9,6 @@ use App\Http\Controllers\Store\Controller as Controller;
 use App\Models\Store;
 use Auth;
 use Request;
-use Validator;
 
 class StoreController extends Controller
 {

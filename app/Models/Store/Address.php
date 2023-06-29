@@ -7,7 +7,6 @@ namespace App\Models\Store;
 
 use App\Models\Country;
 use App\Models\User;
-use Auth;
 
 /**
  * @property int $address_id

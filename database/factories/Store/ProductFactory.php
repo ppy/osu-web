@@ -105,5 +105,4 @@ EOF,
             'weight' => null,
         ]);
     }
-
 }
