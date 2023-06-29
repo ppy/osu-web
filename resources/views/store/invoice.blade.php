@@ -9,13 +9,11 @@
 
     <div class="osu-page osu-page--store">
         @if (Request::has('thanks'))
-            <div class="grid grid--gutters no-print store-page">
-                <div class="grid-cell grid-cell--fill">
-                    <h1 class="store-text store-text--title">Thanks for your order!</h1>
-                    <p>
-                        You will receive a confirmation email soon. If you have any enquiries, please <a href='mailto:osustore@ppy.sh'>contact us</a>!
-                    </p>
-                </div>
+            <div class="no-print store-page">
+                <h1 class="store-text store-text--title">Thanks for your order!</h1>
+                <p>
+                    You will receive a confirmation email soon. If you have any enquiries, please <a href='mailto:osustore@ppy.sh'>contact us</a>!
+                </p>
             </div>
         @endif
 
