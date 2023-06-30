@@ -26,7 +26,9 @@
                     <div>
                         <div class="gallery-previews">
                             @foreach($product->images() as $i => $image)
-                                <?php $imageSize = fast_imagesize($image[1]); ?>
+                                @php
+                                    $imageSize = fast_imagesize($image[1]);
+                                @endphp
                                 <a
                                     class="gallery-previews__item js-gallery"
                                     data-width="{{ $imageSize[0] ?? null }}"
