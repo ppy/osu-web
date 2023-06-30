@@ -5,11 +5,11 @@
 @if(!Auth::user())
     {!! require_login('store.username_change.require_login._', 'store.username_change.require_login.link_text') !!}
 @else
-<div class="js-username-change grid grid--gutters">
-    <div class="grid-cell grid-cell--squash">
+<div class="js-username-change username-change">
+    <div class="username-change__avatar">
         <div style="background-image: url('{{ Auth::user()->user_avatar }}');" class="avatar avatar--centered"></div>
     </div>
-    <div class="grid-cell">
+    <div>
         <div>
             <input type="hidden" name="item[product_id]" value="{{ $product->product_id }}" />
             <input type="hidden" name="item[quantity]" class="js-store-item-quantity" value="1" />
@@ -27,8 +27,6 @@
         </em>
         <div>Your current username is "{{ Auth::user()->username }}".</div>
     </div>
-    <div class="grid-cell">
-        <p class="store-text store-text--price" id="username-check-price"></p>
-    </div>
+    <p class="store-text store-text--price" id="username-check-price"></p>
 </div>
 @endif
