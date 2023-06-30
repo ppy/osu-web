@@ -16,6 +16,7 @@ play_count      | number                              | |
 preview_url     | string                              | |
 source          | string                              | |
 status          | string                              | |
+spotlight       | boolean                             | |
 title           | string                              | |
 title_unicode   | string                              | |
 user_id         | number                              | |
