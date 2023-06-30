@@ -41,6 +41,7 @@ ratings                 |                       | |
 recent_favourites       |                       | |
 related_users           |                       | |
 user                    |                       | |
+track_id                | number                | |
 
 <div id="beatmapsetcompact-covers" data-unique="beatmapsetcompact-covers"></div>
 
