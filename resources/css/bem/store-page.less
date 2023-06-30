@@ -48,4 +48,13 @@
     display: flex;
     gap: 10px;
   }
+
+  &__product {
+    @media @desktop {
+      display: grid;
+      grid-auto-columns: minmax(0, 1fr);
+      grid-auto-flow: column;
+      gap: 40px;
+    }
+  }
 }

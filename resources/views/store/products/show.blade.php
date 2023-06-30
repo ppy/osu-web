@@ -19,18 +19,11 @@
             <h1 class="store-text store-text--title">{{ $product->name }}</h1>
 
             @if($product->custom_class && View::exists("store.products.{$product->custom_class}"))
-
-                <div class="grid">
-                    <div class="grid-cell grid-cell--fill">
-                        {!! markdown($product->description, 'store') !!}
-                    </div>
-                </div>
-
+                {!! markdown($product->description, 'store') !!}
                 @include("store.products.{$product->custom_class}")
-
             @else
-            <div class="grid grid--gutters">
-                <div class="grid-cell grid-cell--1of2">
+            <div class="store-page__product">
+                <div>
                     <div class="gallery-previews">
                         @foreach($product->images() as $i => $image)
                             <?php $imageSize = fast_imagesize($image[1]); ?>
@@ -62,20 +55,13 @@
                         @endforeach
                     </div>
                 </div>
-                <div class="grid-cell grid-cell--1of2">
-                    <div class="grid">
-                        <div class="grid-cell grid-cell--fill">
-                            {!! markdown($product->description, 'store') !!}
-                        </div>
-                    </div>
-                    <div class="grid">
-                        <div class="grid-cell grid-cell--fill">
-                            <p class="store-text store-text--price">{{ currency($product->cost) }}</p>
-                            @if($product->requiresShipping())
-                                <p class="store-text store-text--price-note">excluding shipping fees</p>
-                            @endif
-                        </div>
-                    </div>
+                <div>
+                    {!! markdown($product->description, 'store') !!}
+
+                    <p class="store-text store-text--price">{{ currency($product->cost) }}</p>
+                    @if($product->requiresShipping())
+                        <p class="store-text store-text--price-note">excluding shipping fees</p>
+                    @endif
 
                     @if($product->types())
                         @foreach($product->types() as $type => $values)
@@ -120,17 +106,10 @@
                                 ) !!}
                             </div>
                         </div>
-                    @elseif($product->inStock(1, true))
-                    <div class="grid">
-                        <div class="grid-cell grid-cell--fill">
-                            {{ osu_trans('store.product.stock.out_with_alternative') }}
-                        </div>
-                    </div>
+                    @elseif ($product->inStock(1, true))
+                        {{ osu_trans('store.product.stock.out_with_alternative') }}
                     @else
-                    <div class="grid">
-                        <div class="grid-cell grid-cell--fill">
-                            {{ osu_trans('store.product.stock.out') }}
-                        </div>
+                        {{ osu_trans('store.product.stock.out') }}
                     </div>
                     @endif
                 </div>
