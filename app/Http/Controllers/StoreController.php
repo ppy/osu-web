@@ -52,8 +52,6 @@ class StoreController extends Controller
             abort(403);
         }
 
-        $forShipping = Auth::user()->isAdmin() && get_bool(Request::input('for_shipping'));
-
-        return ext_view('store.invoice', compact('order', 'forShipping'));
+        return ext_view('store.invoice', compact('order'));
     }
 }

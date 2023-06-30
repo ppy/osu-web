@@ -65,7 +65,6 @@
                     'order' => $order,
                     'weight' => true,
                     'checkout' => false,
-                    'forShipping' => $forShipping,
                 ])
 
                 @if ($order->isHideSupporterFromActivity())
