@@ -8,7 +8,6 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Store\Controller as Controller;
 use App\Models\Store;
 use Auth;
-use Request;
 
 class StoreController extends Controller
 {
