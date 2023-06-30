@@ -11,6 +11,7 @@ creator         | string                              | |
 favourite_count | number                              | |
 id              | number                              | |
 nsfw            | boolean                             | |
+offset          | number                              | |
 play_count      | number                              | |
 preview_url     | string                              | |
 source          | string                              | |
