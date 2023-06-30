@@ -17,8 +17,8 @@ hype.required                  | integer                  | |
 is_scoreable                   | boolean                  | |
 last_updated                   | [Timestamp](#timestamp)  | |
 legacy_thread_url              | string?                  | |
-nominations.current            | integer                  | |
-nominations.required           | integer                  | |
+nominations_summary.current    | integer                  | |
+nominations_summary.required   | integer                  | |
 ranked                         | integer                  | See [Rank status](#beatmapset-rank-status) for list of possible values.
 ranked_date                    | [Timestamp](#timestamp)? | |
 source                         | string                   | |
