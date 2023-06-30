@@ -40,6 +40,7 @@ Optional attributes:
 Field                   | Type                                             | Description
 ----------------------- | ------------------------------------------------ | ------------------
 current_user_attributes | [CurrentUserAttributes](#currentuserattributes)? | only present on some responses
+first_message_id        | number?                                          |
 last_read_id            | number?                                          | Deprecated; use `current_user_attributes.last_read_id`.
 last_message_id         | number?                                          | `message_id` of last known message (only returned in presence responses)
 recent_messages         | ChatMessage[]?                                   | Deprecated; up to 50 most recent messages
