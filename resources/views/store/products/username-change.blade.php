@@ -3,11 +3,7 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @if(!Auth::user())
-<div class="grid grid--gutters">
-    <div class="grid-cell grid-cell--1of2">
-        {!! require_login('store.username_change.require_login._', 'store.username_change.require_login.link_text') !!}
-    </div>
-</div>
+    {!! require_login('store.username_change.require_login._', 'store.username_change.require_login.link_text') !!}
 @else
 <div class="js-username-change grid grid--gutters">
     <div class="grid-cell grid-cell--squash">
