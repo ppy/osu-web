@@ -28,11 +28,13 @@ user_id                 | number                                                
 
 ### MessageType
 
-Name        | Description
------------ | -----------
-hype        | |
-mapper_note | |
-praise      | |
-problem     | |
-review      | |
-suggestion  | |
+Name             | Description
+---------------- | -----------
+disqualify       | |
+hype             | |
+mapper_note      | |
+nomination_reset | |
+praise           | |
+problem          | |
+review           | |
+suggestion       | |
