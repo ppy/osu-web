@@ -31,6 +31,7 @@ name                    | string                        | |
 description             | string?                       | |
 icon                    | string?                       | display icon for the channel
 type                    | [ChannelType](#channeltype)   | type of channel
+message_length_limit    | number                        | |
 moderated               | boolean                       | user can't send message when the value is `true`
 uuid                    | string?                       | value from requests that is relayed back to the sender.
 
