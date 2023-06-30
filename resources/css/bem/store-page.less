@@ -16,11 +16,11 @@
   }
 
   &__address {
-    @media @desktop {
+    @media @narrow-up {
       display: grid;
       grid-auto-columns: minmax(0, 1fr);
       grid-auto-flow: column;
-      gap: 33%;
+      gap: 33%; // preserve the weird 3 "column" appearance
     }
   }
 
@@ -47,6 +47,7 @@
   &__invoice-header {
     display: flex;
     gap: 10px;
+    justify-content: space-between;
   }
 
   &__product {

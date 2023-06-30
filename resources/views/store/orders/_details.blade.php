@@ -4,7 +4,7 @@
 --}}
 <div class="store-page">
     <div class="store-page__invoice-header">
-        <div class="grid-cell">
+        <div>
             <h1 class="store-text store-text--title">Invoice</h1>
             <div>
                 Date:
@@ -17,7 +17,7 @@
                 @endif
             </div>
         </div>
-        <div class="grid-cell grid-cell--minimum">
+        <div>
             <p>
                 <em class="store-text store-text--emphasis">ppy Pty Ltd</em><br />
                 ACN 163 593 413 a.t.f. Dean Herbert Family Trust
