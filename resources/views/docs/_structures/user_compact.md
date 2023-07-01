@@ -48,12 +48,15 @@ blocks                     | |
 country                    | |
 cover                      | |
 favourite_beatmapset_count | number
+follow_user_mapping        | number[]
 follower_count             | number
 friends                    | |
 graveyard_beatmapset_count | number
 groups                     | [UserGroup](#usergroup)[]
+guest_beatmapset_count     | number
 is_restricted              | boolean?
 loved_beatmapset_count     | number
+mapping_follower_count     | number
 monthly_playcounts         | [UserMonthlyPlaycount](#usermonthlyplaycount)[]
 page                       | |
 pending_beatmapset_count   | |
