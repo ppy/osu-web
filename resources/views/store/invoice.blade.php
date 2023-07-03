@@ -19,7 +19,6 @@
             </div>
         @endif
 
-
         @include('store.orders._details')
 
         @include('store.orders._status')
