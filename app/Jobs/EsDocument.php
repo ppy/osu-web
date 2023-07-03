@@ -59,7 +59,7 @@ class EsDocument implements ShouldQueue
 
         if ($model !== null) {
             $model->esIndexDocument();
-            static::incrementStat('index', $this->modelMeta['class']);
+            static::incrementStat('index');
 
             return;
         }
@@ -68,17 +68,17 @@ class EsDocument implements ShouldQueue
         $keyName = $model->getKeyName();
         $model->setAttribute($keyName, $id);
         $model->esDeleteDocument();
-        static::incrementStat('delete', get_class($model));
+        static::incrementStat('delete');
     }
 
-    private static function incrementStat(string $action, string $class)
+    private function incrementStat(string $action): void
     {
         Datadog::increment(
             config('datadog-helper.prefix_web').'.es_document',
             1,
             [
                 'action' => $action,
-                'class' => $class,
+                'class' => $this->modelMeta['class'],
             ],
         );
     }
