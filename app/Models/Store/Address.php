@@ -7,7 +7,6 @@ namespace App\Models\Store;
 
 use App\Models\Country;
 use App\Models\User;
-use Auth;
 
 /**
  * @property int $address_id
@@ -53,36 +52,6 @@ class Address extends Model
     {
         if ($this->country !== null) {
             return $this->country->name;
-        }
-    }
-
-    public static function sender()
-    {
-        //todo: move to database
-        switch (Auth::user()->user_id) {
-            default:
-            case 4916903:
-                return new self([
-                    'first_name' => 'osu!store',
-                    'last_name' => '',
-                    'street' => 'Room 304, Build 700 Nishijin 7-7-1',
-                    'city' => 'Sawara',
-                    'state' => 'Fukuoka',
-                    'zip' => '814-0002',
-                    'country' => Country::find('JP'),
-                    'phone' => '+819064201305',
-                ]);
-            case 2:
-                return new self([
-                    'first_name' => 'osu!store',
-                    'last_name' => '',
-                    'street' => 'Nishi-Ooi 4-21-3 Birdie House A',
-                    'city' => 'Shinagawa',
-                    'state' => 'Tokyo',
-                    'zip' => '140-0015',
-                    'country' => Country::find('JP'),
-                    'phone' => '+818013811430',
-                ]);
         }
     }
 }
