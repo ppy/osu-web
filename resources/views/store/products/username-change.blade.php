@@ -6,9 +6,7 @@
     {!! require_login('store.username_change.require_login._', 'store.username_change.require_login.link_text') !!}
 @else
 <div class="js-username-change username-change">
-    <div class="username-change__avatar">
-        <div style="background-image: url('{{ Auth::user()->user_avatar }}');" class="avatar avatar--centered"></div>
-    </div>
+    <div style="background-image: url('{{ Auth::user()->user_avatar }}');" class="avatar avatar--centered"></div>
     <div>
         <div>
             <input type="hidden" name="item[product_id]" value="{{ $product->product_id }}" />
