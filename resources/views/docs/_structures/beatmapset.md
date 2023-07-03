@@ -10,7 +10,7 @@ bpm                            | float                        | |
 can_be_hyped                   | boolean                      | |
 current_nominations            | [Nomination](#nomination)[]? | |
 deleted_at                     | string?                      | |
-discussion_enabled             | boolean                      | |
+discussion_enabled             | boolean                      | Deprecated, all beatmapsets now have discussion enabled. |
 discussion_locked              | boolean                      | |
 hype.current                   | integer                      | |
 hype.required                  | integer                      | |
