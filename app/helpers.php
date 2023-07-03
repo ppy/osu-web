@@ -76,9 +76,9 @@ function beatmap_timestamp_format($ms)
 /**
  * Allows using both html-safe and non-safe text inside `{{ }}` directive.
  */
-function blade_safe($html)
+function blade_safe($html): HtmlString
 {
-    return new Illuminate\Support\HtmlString($html);
+    return new HtmlString($html);
 }
 
 /**
@@ -270,16 +270,16 @@ function css_group_colour($group)
     return '--group-colour: '.(optional($group)->colour ?? 'initial');
 }
 
-function css_var_2x(string $key, string $url)
+function css_var_2x(string $key, ?string $url): ?HtmlString
 {
     if (!present($url)) {
-        return;
+        return null;
     }
 
     $url = e($url);
     $url2x = retinaify($url);
 
-    return blade_safe("{$key}: url('{$url}'); {$key}-2x: url('{$url2x}')");
+    return blade_safe("{$key}: url('{$url}'); {$key}-2x: url('{$url2x}');");
 }
 
 function current_locale_meta(): LocaleMeta
