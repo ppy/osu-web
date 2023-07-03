@@ -59,7 +59,7 @@ class EsDocument implements ShouldQueue
 
         if ($model !== null) {
             $model->esIndexDocument();
-            static::incrementStat('index');
+            $this->incrementStat('index');
 
             return;
         }
@@ -68,7 +68,7 @@ class EsDocument implements ShouldQueue
         $keyName = $model->getKeyName();
         $model->setAttribute($keyName, $id);
         $model->esDeleteDocument();
-        static::incrementStat('delete');
+        $this->incrementStat('delete');
     }
 
     private function incrementStat(string $action): void
