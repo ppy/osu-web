@@ -174,21 +174,27 @@ class OrderCheckout
                 $messages[] = $item->validationErrors()->allMessages();
             }
 
+            $product = $item->product;
+
             // Checkout process level validations, should not be part of OrderItem validation.
-            if ($item->product === null || !$item->product->isAvailable()) {
+            if ($product === null || !$product->isAvailable()) {
                 $messages[] = osu_trans('model_validation/store/product.not_available');
             }
 
-            if (!$item->product->inStock($item->quantity)) {
+            if (!$product->inStock($item->quantity)) {
                 $messages[] = osu_trans('model_validation/store/product.insufficient_stock');
             }
 
-            if ($item->quantity > $item->product->max_quantity) {
-                $messages[] = osu_trans('model_validation/store/product.too_many', ['count' => $item->product->max_quantity]);
+            if ($item->quantity > $product->max_quantity) {
+                $messages[] = osu_trans('model_validation/store/product.too_many', ['count' => $product->max_quantity]);
             }
 
-            if ($shouldShopify && !$item->product->isShopify()) {
+            if ($shouldShopify && !$product->isShopify()) {
                 $messages[] = osu_trans('model_validation/store/product.must_separate');
+            }
+
+            if ($product->requiresShipping() && !$product->isShopify()) {
+                $messages[] = osu_trans('model_validation/store/product.not_available');
             }
 
             $customClass = $item->getCustomClassInstance();
