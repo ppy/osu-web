@@ -84,6 +84,16 @@ interface UserJsonDefaultAttributes {
   username: string;
 }
 
+export type ProfileHeaderIncludes =
+  'active_tournament_banner'
+  | 'badges'
+  | 'comments_count'
+  | 'follower_count'
+  | 'groups'
+  | 'mapping_follower_count'
+  | 'previous_usernames'
+  | 'support_level';
+
 type UserJson = UserJsonDefaultAttributes & Partial<UserJsonAvailableIncludes>;
 
 export default UserJson;
