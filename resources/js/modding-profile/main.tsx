@@ -165,10 +165,6 @@ export default class Main extends React.PureComponent<Props> {
               <HeaderV4
                 backgroundImage={this.props.user.cover.url}
                 links={headerLinks(this.props.user, 'modding')}
-                // add space for warning banner when user is blocked
-                modifiers={{
-                  restricted: core.currentUserModel.blocks.has(this.props.user.id) || this.props.user.is_restricted,
-                }}
                 theme='users'
               />
               <div className='osu-page osu-page--generic-compact'>
