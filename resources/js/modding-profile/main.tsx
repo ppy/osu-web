@@ -187,7 +187,7 @@ export default class Main extends React.PureComponent<Props> {
                 </div>
                 <div
                   ref={this.pagesOffsetRef}
-                  className='hidden-xs page-extra-tabs page-extra-tabs--profile-page'
+                  className='page-extra-tabs page-extra-tabs--profile-page'
                 >
                   <div
                     ref={this.tabs}
