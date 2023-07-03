@@ -54,11 +54,4 @@ class Address extends Model
             return $this->country->name;
         }
     }
-
-    public static function sender()
-    {
-        return new static([
-            'first_name' => 'osu!store',
-        ]);
-    }
 }

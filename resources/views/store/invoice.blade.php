@@ -17,13 +17,7 @@
             </div>
         @endif
 
-        @for ($i = 0; $i < $copies; $i++)
-            @if ($i > 0)
-                <div class='print-page-break'></div>
-            @endif
-
-            @include('store.orders._details')
-        @endfor
+        @include('store.orders._details')
 
         @include('store.orders._status')
 
@@ -33,19 +27,4 @@
             @endforeach
         @endif
     </div>
-
-    @if ($copies > 1)
-        <script>
-            (() => {
-                const close = () => window.close();
-                const printAndClose = () => {
-                    window.print();
-                    setTimeout(close, 2000);
-                };
-                const onLoad = () => setTimeout(printAndClose, 2000);
-
-                window.addEventListener('load', onLoad);
-            })();
-        </script>
-    @endif
 @endsection
