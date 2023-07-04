@@ -290,7 +290,7 @@ export class Discussion extends React.Component<Props> {
 
   private renderTimestamp() {
     return (
-      <div className='beatmap-discussion-timestamp'>
+      <div className={classWithModifiers('beatmap-discussion-timestamp', { sticky: this.props.isTimelineVisible })}>
         {this.props.discussion.timestamp != null && this.props.isTimelineVisible && <div className="beatmap-discussion-timestamp__point" />}
         <div className="beatmap-discussion-timestamp__icons-container">
           <div className="beatmap-discussion-timestamp__icons">

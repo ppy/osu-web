@@ -96,4 +96,13 @@ EOF,
             'weight' => 100,
         ]);
     }
+
+    public function virtual(): static
+    {
+        return $this->state([
+            'base_shipping' => 0.00,
+            'next_shipping' => 0.00,
+            'weight' => null,
+        ]);
+    }
 }
