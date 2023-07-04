@@ -5,7 +5,6 @@ import 'app-deps';
 
 import 'jquery-pubsub.coffee';
 
-import '_classes/store-cart.coffee';
 import '_classes/store-supporter-tag-price.coffee';
 import '_classes/timeout.coffee';
 
