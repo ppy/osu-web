@@ -108,7 +108,7 @@ return [
                 '_' => '이 맵은 현재 :status 상태입니다.',
 
                 'status' => [
-                    'pending' => '보류',
+                    'pending' => '대기',
                     'qualified' => '퀄리파이',
                     'wip' => '제작 중',
                 ],
@@ -217,7 +217,7 @@ return [
             'loved' => '러브드',
             'qualified' => '퀄리파이 됨',
             'wip' => '제작 중',
-            'pending' => '보류 중',
+            'pending' => '대기 중',
             'graveyard' => '무덤에 감',
         ],
     ],
