@@ -85,7 +85,7 @@ return [
 
         'entry' => [
             'limit_reached' => 'Has alcanzado el límite de entradas para este concurso',
-            'over' => '¡Gracias por su participación! Los envíos se han cerrado para este concurso y la votación se abrirá pronto.',
+            'over' => '¡Gracias por tu participación! Los envíos se han cerrado para este concurso y la votación se abrirá pronto.',
         ],
     ],
 
@@ -107,7 +107,7 @@ return [
                 'locked' => 'La edición de la publicación está bloqueada.',
                 'no_forum_access' => 'Se requiere acceso al foro solicitado.',
                 'not_owner' => 'Solo el creador puede editar la publicación.',
-                'topic_locked' => 'No puedes editar una publicación en un hilo cerrado.',
+                'topic_locked' => 'No puedes editar una publicación de un tema cerrado.',
             ],
 
             'store' => [

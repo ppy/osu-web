@@ -4,20 +4,20 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'confirm_new' => '',
-    'new' => '',
-    'none' => '',
+    'confirm_new' => 'Crear nova contrasenya IRC?',
+    'new' => 'Nova contrasenya de l\'IRC heretada',
+    'none' => 'Contrasenya de l\'IRC no establerta.',
 
     'form' => [
-        'server_host' => '',
-        'server_port' => '',
-        'token' => '',
-        'username' => '',
+        'server_host' => 'servidor',
+        'server_port' => 'port',
+        'token' => 'contrasenya del servidor',
+        'username' => 'nom d\'usuari',
     ],
 
     'view' => [
-        'hide' => '',
-        'show' => '',
-        'delete' => '',
+        'hide' => 'Amagar contrasenya',
+        'show' => 'Mostrar contrasenya',
+        'delete' => 'Eliminar',
     ],
 ];

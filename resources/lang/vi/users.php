@@ -49,7 +49,7 @@ return [
     ],
 
     'card' => [
-        'gift_supporter' => '',
+        'gift_supporter' => 'Tặng osu!supporter',
         'loading' => 'Đang tải...',
         'send_message' => 'Gửi tin nhắn',
     ],
