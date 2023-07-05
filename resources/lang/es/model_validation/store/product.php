@@ -4,8 +4,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'insufficient_stock' => '¡No queda suficiente de este producto!',
-    'must_separate' => 'Este producto se tiene que pagar por separado',
-    'not_available' => 'Este producto no está disponible.',
-    'too_many' => 'Solo puedes ordenar :count de este producto por orden.',
+    'insufficient_stock' => '¡No queda suficiente de este artículo!',
+    'must_separate' => 'Este artículo se tiene que pagar por separado',
+    'not_available' => 'Este artículo no está disponible.',
+    'too_many' => 'Solo puedes ordenar :count de este artículo por orden.',
 ];

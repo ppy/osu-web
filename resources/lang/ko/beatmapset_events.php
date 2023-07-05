@@ -33,7 +33,7 @@ return [
         'offset_edit' => '온라인 오프셋이 :old에서 :new(으)로 변경되었습니다.',
         'qualify' => '이 비트맵이 충분한 수의 추천을 받아 퀄리파이 상태로 전환되었습니다.',
         'rank' => 'Ranked.',
-        'remove_from_loved' => ':user님에 의해 Loved에서 제거되었습니다. (:text)',
+        'remove_from_loved' => ':user님에 의해 러브드 상태에서 제거되었습니다. (:text)',
         'tags_edit' => '태그가 ":old"에서 ":new"(으)로 변경되었습니다.',
 
         'nsfw_toggle' => [
