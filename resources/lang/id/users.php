@@ -49,7 +49,7 @@ return [
     ],
 
     'card' => [
-        'gift_supporter' => '',
+        'gift_supporter' => 'Hadiahkan supporter tag',
         'loading' => 'Memuat...',
         'send_message' => 'Kirim pesan',
     ],

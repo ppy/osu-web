@@ -200,7 +200,7 @@ return [
         'unresolved_issues' => '请先解决谱面内未解决的问题。',
 
         'rank_estimate' => [
-            '_' => '谱面正位于 :queue 中第 :position 位。如果没有问题，谱面将在 :date 上架 (Ranked)。',
+            '_' => '谱面正位于 :queue 中第 :position 位。如果没有问题，谱面将 :date 上架 (Ranked)。',
             'on' => '在 :date',
             'queue' => '谱面上架队列',
             'soon' => '不久后',

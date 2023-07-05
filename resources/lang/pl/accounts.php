@@ -23,7 +23,7 @@ return [
         'legacy_api' => [
             'api' => 'api',
             'irc' => 'irc',
-            'title' => '',
+            'title' => 'Starsze API',
         ],
 
         'password' => [
