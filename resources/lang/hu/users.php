@@ -49,7 +49,7 @@ return [
     ],
 
     'card' => [
-        'gift_supporter' => '',
+        'gift_supporter' => 'Supporter címke ajándékozása',
         'loading' => 'Betöltés...',
         'send_message' => 'üzenet küldése',
     ],

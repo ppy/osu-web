@@ -113,9 +113,9 @@ return [
         'exists' => 'Ara per ara, només s\'ofereix una clau de l\'API per usuari.',
 
         'attributes' => [
-            'api_key' => '',
-            'app_name' => '',
-            'app_url' => '',
+            'api_key' => 'clau de l\'api',
+            'app_name' => 'nom de l\'aplicació',
+            'app_url' => 'url de l\'aplicació',
         ],
     ],
 
@@ -175,7 +175,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => 'Els beatmaps classificatoris no es poden denunciar',
-        'not_in_channel' => '',
+        'not_in_channel' => 'No ets en aquest canal.',
         'reason_not_valid' => ':reason no és vàlida per aquest tipus d\'informe.',
         'self' => "No et pots denunciar a tu mateix!",
     ],

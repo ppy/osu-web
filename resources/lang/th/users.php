@@ -49,7 +49,7 @@ return [
     ],
 
     'card' => [
-        'gift_supporter' => '',
+        'gift_supporter' => 'แท็กผู้สนับสนุนของขวัญ',
         'loading' => 'กำลังโหลด....',
         'send_message' => 'ส่งข้อความ',
     ],

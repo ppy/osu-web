@@ -22,9 +22,9 @@ return [
 
         'translation' => [
             'legal' => 'Cette traduction est fournie uniquement pour des raisons de commodité. L\'original :default sera la seule version juridiquement contraignante de ce texte.',
-            'outdated' => 'Cette page est une traduction ancienne de son contenu original. Merci de vérifier :default pour l\'information la plus à jour (vous pouvez aussi mettre à jour la traduction si vous souhaitez aider) !',
+            'outdated' => 'Cette page est une ancienne traduction de son contenu original. Veuillez consulter la :default pour obtenir les informations les plus récentes (vous pouvez aussi mettre à jour la traduction si vous souhaitez aider) !',
 
-            'default' => 'Version anglaise',
+            'default' => 'version anglaise',
         ],
     ],
 ];
