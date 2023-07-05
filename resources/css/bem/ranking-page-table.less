@@ -9,6 +9,11 @@
   text-align: center;
   border-spacing: 0px 3px;
   border-collapse: separate;
+  --grade-min-width: 0px;
+
+  &--kudosu {
+    --grade-min-width: 120px;
+  }
 
   &__heading {
     font-weight: normal;
@@ -26,6 +31,10 @@
 
     &--grade {
       padding: 5px 20px;
+
+      @media @desktop {
+        min-width: var(--grade-min-width);
+      }
     }
   }
 

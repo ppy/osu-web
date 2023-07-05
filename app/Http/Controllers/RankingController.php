@@ -9,6 +9,7 @@ use App\Models\Beatmap;
 use App\Models\Country;
 use App\Models\CountryStatistics;
 use App\Models\Spotlight;
+use App\Models\User;
 use App\Models\UserStatistics;
 use App\Transformers\SelectOptionTransformer;
 use DB;
@@ -95,7 +96,7 @@ class RankingController extends Controller
             }
 
             return $next($request);
-        });
+        }, ['except' => ['kudosu']]);
     }
 
     /**
@@ -218,6 +219,13 @@ class RankingController extends Controller
         );
 
         return ext_view("rankings.{$type}", array_merge($this->defaultViewVars, compact('scores')));
+    }
+
+    public function kudosu()
+    {
+        $users = User::orderBy('osu_kudostotal', 'desc')->limit(50)->with('country')->get();
+
+        return ext_view('rankings.kudosu', ['users' => $users]);
     }
 
     public function spotlight($mode)
