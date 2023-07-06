@@ -65,7 +65,7 @@ At this point you should be able to access the site via whatever webserver you c
 - Clone this repository.
 - Set `GITHUB_TOKEN` environment variable (usually by `export GITHUB_TOKEN=ghs_...`).
   - It'll be recorded to composer and app config so it doesn't need to be set again next time.
-- Run `bin/docker_dev.sh`. Make sure the repository folder is owned by the user executing this command (must be non-root).
+- Run `bin/docker_dev.sh`. Make sure the repository folder is owned by the user executing this command (must be non-root). The site will be hosted at http://localhost:8080/.
 - Due to the nature of Docker (a container is killed when the command running in it finishes), the Yarn container will be run in watch mode.
 - Do note that the supplied Elasticsearch container uses a high (1+ GB) amount of RAM. Ensure that your system (or virtual machine, if running on Windows/macOS) has a necessary amount of memory allocated (at least 2 GB). If you can't (or don't want to), you can comment out the relevant elasticsearch lines in `docker-compose.yml`.
 - To run any of the below commands, make sure you are using the docker container: `docker compose run --rm php`.
