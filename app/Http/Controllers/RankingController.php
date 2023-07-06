@@ -223,7 +223,7 @@ class RankingController extends Controller
 
     public function kudosu()
     {
-        $users = User::orderBy('osu_kudostotal', 'desc')->limit(50)->with('country')->get();
+        $users = User::default()->orderBy('osu_kudostotal', 'desc')->limit(50)->with('country')->get();
 
         return ext_view('rankings.kudosu', ['users' => $users]);
     }
