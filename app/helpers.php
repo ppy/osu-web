@@ -1001,7 +1001,7 @@ function wiki_image_url(string $path, bool $fullUrl = true)
 
 function wiki_url($path = null, $locale = null, $api = null, $fullUrl = true)
 {
-    $path = $path === null ? 'Main_Page' : str_replace(['%2F', '%23'], ['/', '#'], rawurlencode($path));
+    $path = $path === null ? 'Main_page' : str_replace(['%2F', '%23'], ['/', '#'], rawurlencode($path));
 
     $params = [
         'path' => 'WIKI_PATH',
@@ -1121,11 +1121,11 @@ function nav_links()
         'layout.header.store.orders' => route('store.orders.index'),
     ];
     $links['help'] = [
-        'page_title.main.wiki_controller._' => wiki_url('Main_Page'),
+        'page_title.main.wiki_controller._' => wiki_url('Main_page'),
         'layout.menu.help.getFaq' => wiki_url('FAQ'),
         'layout.menu.help.getRules' => wiki_url('Rules'),
-        'layout.menu.help.getAbuse' => wiki_url('Reporting_Bad_Behaviour/Abuse'),
-        'layout.menu.help.getSupport' => wiki_url('Help_Centre'),
+        'layout.menu.help.getAbuse' => wiki_url('Reporting_bad_behaviour/Abuse'),
+        'layout.menu.help.getSupport' => wiki_url('Help_centre'),
     ];
 
     return $links;
@@ -1144,7 +1144,7 @@ function footer_landing_links()
             'faq' => wiki_url('FAQ'),
             'forum' => route('forum.forums.index'),
             'livestreams' => route('livestreams.index'),
-            'wiki' => wiki_url('Main_Page'),
+            'wiki' => wiki_url('Main_page'),
         ],
         'legal' => footer_legal_links(),
     ];

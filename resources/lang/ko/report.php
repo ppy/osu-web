@@ -6,31 +6,31 @@
 return [
     'beatmapset' => [
         'button' => '신고',
-        'title' => ':username 님의 비트맵을 신고하실 건가요?',
+        'title' => ':username님의 비트맵을 신고하겠습니까?',
     ],
 
     'beatmapset_discussion_post' => [
         'button' => '신고',
-        'title' => ':username 님의 글을 신고하실 건가요?',
+        'title' => ':username님의 글을 신고하겠습니까?',
     ],
 
     'comment' => [
         'button' => '신고',
-        'title' => ':username 님의 댓글을 신고하실 건가요?',
+        'title' => ':username님의 댓글을 신고하겠습니까?',
     ],
 
     'forum_post' => [
         'button' => '신고',
-        'title' => ':username 님의 글을 신고하실 건가요?',
+        'title' => ':username님의 글을 신고하겠습니까?',
     ],
 
     'scores' => [
         'button' => '기록 신고',
-        'title' => ':username 님의 기록을 신고하실 건가요?',
+        'title' => ':username님의 기록을 신고하겠습니까?',
     ],
 
     'user' => [
         'button' => '신고',
-        'title' => ':username 님을 신고할까요?',
+        'title' => ':username님을 신고하겠습니까?',
     ],
 ];

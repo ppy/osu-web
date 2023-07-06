@@ -13,9 +13,9 @@ import { clamp, maxBy } from 'lodash';
 import { action, autorun, computed, makeObservable, observable, observe, runInAction } from 'mobx';
 import Channel from 'models/chat/channel';
 import CreateAnnouncement from 'models/chat/create-announcement';
+import core from 'osu-core-singleton';
 import ChannelStore from 'stores/channel-store';
 import { onError } from 'utils/ajax';
-import { setBrowserTitle } from 'utils/html';
 import { trans } from 'utils/lang';
 import { updateQueryString } from 'utils/url';
 import ChannelJoinEvent from './channel-join-event';
@@ -184,7 +184,7 @@ export default class ChatStateStore implements DispatchListener {
 
       Turbolinks.controller[mode](updateQueryString(null, params, ''));
     }
-    setBrowserTitle(`${channel.name} · ${trans('page_title.main.chat_controller._')}`);
+    core.browserTitleWithNotificationCount.title = `${channel.name} · ${trans('page_title.main.chat_controller._')}`;
   }
 
   @action

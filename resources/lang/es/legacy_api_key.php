@@ -23,8 +23,8 @@ return [
     ],
 
     'warning' => [
-        'line1' => 'No le dé esto a otros.',
-        'line2' => "Es equivalente a dar su contraseña.",
-        'line3' => 'Su cuenta puede verse comprometida.',
+        'line1' => 'No le des esto a otros.',
+        'line2' => "Es equivalente a dar tu contraseña.",
+        'line3' => 'Tu cuenta puede verse comprometida.',
     ],
 ];
