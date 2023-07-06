@@ -383,7 +383,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeScoresRecentCount(User $user)
     {
-        return $this->primitive($user->scores($this->mode, true)->includeFails(false)->count());
+        return $this->primitive($user->recentScoreCount($this->mode));
     }
 
     public function includeStatistics(User $user)

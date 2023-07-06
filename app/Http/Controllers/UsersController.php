@@ -19,6 +19,8 @@ use App\Models\BeatmapDiscussion;
 use App\Models\Country;
 use App\Models\IpBan;
 use App\Models\Log;
+use App\Models\Solo\Score as SoloScore;
+use App\Models\Solo\ScoreLegacyIdMap;
 use App\Models\User;
 use App\Models\UserAccountHistory;
 use App\Models\UserNotFound;
@@ -176,7 +178,7 @@ class UsersController extends Controller
                     'monthly_playcounts' => json_collection($this->user->monthlyPlaycounts, new UserMonthlyPlaycountTransformer()),
                     'recent' => $this->getExtraSection(
                         'scoresRecent',
-                        $this->user->scores($this->mode, true)->includeFails(false)->count()
+                        $this->user->recentScoreCount($this->mode)
                     ),
                     'replays_watched_counts' => json_collection($this->user->replaysWatchedCounts, new UserReplaysWatchedCountTransformer()),
                 ];
@@ -784,9 +786,16 @@ class UsersController extends Controller
             case 'scoresFirsts':
                 $transformer = new ScoreTransformer();
                 $includes = ScoreTransformer::USER_PROFILE_INCLUDES;
-                $query = $this->user->scoresFirst($this->mode, true)
-                    ->visibleUsers()
-                    ->reorderBy('score_id', 'desc')
+                $scoreQuery = $this->user->scoresFirst($this->mode, true)->unorder();
+                $userFirstsQuery = $scoreQuery->select($scoreQuery->qualifyColumn('score_id'));
+                $soloMappingQuery = ScoreLegacyIdMap
+                    ::where('ruleset_id', Beatmap::MODES[$this->mode])
+                    ->whereIn('old_score_id', $userFirstsQuery)
+                    ->select('score_id');
+                $query = SoloScore
+                    ::whereIn('id', $soloMappingQuery)
+                    ->default()
+                    ->reorderBy('id', 'desc')
                     ->with(ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD);
                 $userRelationColumn = 'user';
                 break;
@@ -805,9 +814,12 @@ class UsersController extends Controller
             case 'scoresRecent':
                 $transformer = new ScoreTransformer();
                 $includes = ScoreTransformer::USER_PROFILE_INCLUDES;
-                $query = $this->user->scores($this->mode, true)
+                $query = $this->user->soloScores()
+                    ->default()
+                    ->forRuleset($this->mode)
                     ->includeFails($options['includeFails'] ?? false)
-                    ->with([...ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD, 'best']);
+                    ->reorderBy('id', 'desc')
+                    ->with(ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD);
                 $userRelationColumn = 'user';
                 break;
         }
