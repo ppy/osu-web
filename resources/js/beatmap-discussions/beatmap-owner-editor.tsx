@@ -245,8 +245,8 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
       data: { beatmap: { user_id: userId } },
       method: 'PUT',
     });
-    this.xhr.updateOwner.done((data) => runInAction(() => {
-      $.publish('beatmapsetDiscussions:update', { beatmapset: data });
+    this.xhr.updateOwner.done((beatmapset) => runInAction(() => {
+      $.publish('beatmapsetDiscussions:update', { beatmapset });
       this.editing = false;
     })).fail(onErrorWithCallback(() => {
       this.updateOwner(userId);
