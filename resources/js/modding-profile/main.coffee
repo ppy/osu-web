@@ -20,7 +20,6 @@ import headerLinks from 'profile-page/header-links'
 import * as React from 'react'
 import { a, button, div, i, span } from 'react-dom-factories'
 import { bottomPage } from 'utils/html'
-import { pageChange } from 'utils/page-change'
 import { nextVal } from 'utils/seq'
 import { currentUrl, currentUrlRelative } from 'utils/turbolinks'
 import { updateQueryString } from 'utils/url'
@@ -67,8 +66,6 @@ export class Main extends React.PureComponent
     $.subscribe "user:update.#{@eventId}", @userUpdate
     $.subscribe "profile:page:jump.#{@eventId}", @pageJump
     $(window).on "scroll.#{@eventId}", @pageScan
-
-    pageChange()
 
     @modeScrollUrl = currentUrlRelative()
 
