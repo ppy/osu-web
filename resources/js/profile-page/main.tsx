@@ -386,7 +386,7 @@ export default class Main extends React.Component<Props> {
     }
 
     let preferred: Page | undefined;
-    const pageIds = [...matching.values()];
+    const pageIds = [...matching];
     // special case for bottom of page if there are multiple pages visible.
     if (bottomPage()) {
       preferred = last(pageIds);
