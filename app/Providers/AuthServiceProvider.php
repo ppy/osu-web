@@ -8,7 +8,9 @@ namespace App\Providers;
 use App\Http\Controllers\Passport\AuthorizationController;
 use App\Models\OAuth\Client;
 use App\Models\OAuth\Token;
+use Auth;
 use Carbon\Carbon;
+use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Laravel\Passport\Http\Controllers\ApproveAuthorizationController;
 use Laravel\Passport\Http\Controllers\DenyAuthorizationController;
@@ -25,6 +27,13 @@ class AuthServiceProvider extends ServiceProvider
     public function register()
     {
         Passport::ignoreMigrations();
+        Passport::ignoreRoutes();
+
+        // Copied from PassportServiceProvider with the correct
+        // AuthorizationController class.
+        $this->app->when(AuthorizationController::class)
+            ->needs(StatefulGuard::class)
+            ->give(fn () => Auth::guard(config('passport.guard', null)));
     }
 
     public function boot()

@@ -23,6 +23,6 @@ return [
         'approved' => 'godkjent',
         'loved' => 'elsket',
         'qualified' => 'kvalifisert',
-        'ranked' => '',
+        'ranked' => 'rangert',
     ],
 ];

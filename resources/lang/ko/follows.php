@@ -11,7 +11,7 @@ return [
 
         'table' => [
             'latest_comment_empty' => '댓글 없음',
-            'latest_comment_value' => ':username 님이 :time 에 작성함',
+            'latest_comment_value' => ':username님이 :time에 작성함',
         ],
     ],
 

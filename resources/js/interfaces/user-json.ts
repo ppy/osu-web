@@ -71,7 +71,7 @@ interface UserJsonAvailableIncludes {
 interface UserJsonDefaultAttributes {
   avatar_url: string;
   country_code: string; // TODO: country object?
-  default_group: string;
+  default_group: string | null;
   id: number;
   is_active: boolean;
   is_bot: boolean;

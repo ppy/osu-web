@@ -134,9 +134,9 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => '새로 Ranked된 비트맵',
+            'new' => '새로 랭크된 비트맵',
             'popular' => '인기 비트맵',
-            'by_user' => ':user 님이 만듦',
+            'by_user' => ':user님이 만듦',
         ],
         'buttons' => [
             'download' => 'osu! 다운로드',

@@ -325,9 +325,6 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('listing', 'StoreController@getListing')->name('products.index');
         Route::get('invoice/{invoice}', 'StoreController@getInvoice')->name('invoice.show');
 
-        Route::post('update-address', 'StoreController@postUpdateAddress');
-        Route::post('new-address', 'StoreController@postNewAddress');
-
         Route::group(['namespace' => 'Store'], function () {
             Route::post('products/{product}/notification-request', 'NotificationRequestsController@store')->name('notification-request');
             Route::delete('products/{product}/notification-request', 'NotificationRequestsController@destroy');

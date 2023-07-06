@@ -4,7 +4,6 @@
 import * as d3 from 'd3';
 import { isValid as isBeatmapExtendedJson } from 'interfaces/beatmap-extended-json';
 import BeatmapJson from 'interfaces/beatmap-json';
-import BeatmapsetJson from 'interfaces/beatmapset-json';
 import GameMode, { gameModes } from 'interfaces/game-mode';
 import * as _ from 'lodash';
 import core from 'osu-core-singleton';
@@ -83,23 +82,6 @@ export function getDiffColour(rating: number) {
   if (rating < 0.1) return '#AAAAAA';
   if (rating >= 9) return '#000000';
   return difficultyColourSpectrum(rating);
-}
-
-// TODO: should make a Beatmapset proxy object or something
-export function getArtist(beatmapset: BeatmapsetJson) {
-  if (core.userPreferences.get('beatmapset_title_show_original')) {
-    return beatmapset.artist_unicode;
-  }
-
-  return beatmapset.artist;
-}
-
-export function getTitle(beatmapset: BeatmapsetJson) {
-  if (core.userPreferences.get('beatmapset_title_show_original')) {
-    return beatmapset.title_unicode;
-  }
-
-  return beatmapset.title;
 }
 
 export function group<T extends BeatmapJson>(beatmaps?: T[] | null): Map<GameMode, T[]> {

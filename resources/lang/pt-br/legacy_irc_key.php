@@ -5,7 +5,7 @@
 
 return [
     'confirm_new' => 'Criar uma nova senha IRC?',
-    'new' => 'Nova senha IRC Legada',
+    'new' => 'Nova Senha IRC Legada',
     'none' => 'Senha IRC não configurada.',
 
     'form' => [
@@ -16,8 +16,8 @@ return [
     ],
 
     'view' => [
-        'hide' => 'Esconder senha',
-        'show' => 'Mostrar senha',
+        'hide' => 'Esconder Senha',
+        'show' => 'Mostrar Senha',
         'delete' => 'Deletar',
     ],
 ];

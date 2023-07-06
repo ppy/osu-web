@@ -11,7 +11,7 @@ return [
     ],
 
     'room' => [
-        'hosted_by' => ':user 님이 주최함',
+        'hosted_by' => ':user님이 주최함',
         'invalid_password' => '잘못된 방 비밀번호',
         'map_count' => ':count_delimited개의 맵',
         'player_count' => ':count_delimited명의 플레이어',

@@ -11,7 +11,7 @@
     if (!($legal ?? false)) {
         $links[] = [
             'title' => osu_trans('layout.header.help.index'),
-            'url' => wiki_url('Main_Page', $page->requestedLocale),
+            'url' => wiki_url('Main_page', $page->requestedLocale),
         ];
     }
 

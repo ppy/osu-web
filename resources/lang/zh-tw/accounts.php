@@ -23,7 +23,7 @@ return [
         'legacy_api' => [
             'api' => '',
             'irc' => '',
-            'title' => '',
+            'title' => '舊版API',
         ],
 
         'password' => [
