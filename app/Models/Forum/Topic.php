@@ -793,7 +793,7 @@ class Topic extends Model implements AfterCommit
             $this->topic_title = "[{$tag}] {$this->topic_title}";
         }
 
-        $this->save();
+        $this->saveOrExplode();
     }
 
     public function unsetIssueTag($tag)
@@ -806,7 +806,7 @@ class Topic extends Model implements AfterCommit
             trim(str_replace("[{$tag}]", '', $this->topic_title))
         );
 
-        $this->save();
+        $this->saveOrExplode();
     }
 
     public function hasIssueTag($tag)
