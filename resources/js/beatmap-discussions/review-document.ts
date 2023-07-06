@@ -30,7 +30,7 @@ function isText(node: UnistNode): node is TextNode {
   return node.type === 'text';
 }
 
-export function parseFromJson(json: string, discussions: Partial<Record<number, BeatmapsetDiscussionJsonForBundle | BeatmapsetDiscussionJsonForShow>>) {
+export function parseFromJson(json: string, discussions: Map<number | null | undefined, BeatmapsetDiscussionJsonForBundle | BeatmapsetDiscussionJsonForShow>) {
   let srcDoc: BeatmapDiscussionReview;
 
   try {
@@ -87,7 +87,7 @@ export function parseFromJson(json: string, discussions: Partial<Record<number, 
       case 'embed': {
         // embed
         const existingEmbedBlock = block as PersistedDocumentIssueEmbed;
-        const discussion = discussions[existingEmbedBlock.discussion_id];
+        const discussion = discussions.get(existingEmbedBlock.discussion_id);
         if (discussion == null) {
           console.error('unknown/external discussion referenced', existingEmbedBlock.discussion_id);
           break;
