@@ -49,6 +49,7 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => '',
         'loading' => 'Įkeliama...',
         'send_message' => 'Siųsti žinutę',
     ],

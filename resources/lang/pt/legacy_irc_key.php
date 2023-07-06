@@ -9,15 +9,15 @@ return [
     'none' => '',
 
     'form' => [
-        'server_host' => '',
-        'server_port' => '',
-        'token' => '',
-        'username' => '',
+        'server_host' => 'servidor',
+        'server_port' => 'porta',
+        'token' => 'palavra-passe do servidor',
+        'username' => 'nome de utilizador',
     ],
 
     'view' => [
-        'hide' => '',
-        'show' => '',
-        'delete' => '',
+        'hide' => 'Esconder palavra-passe',
+        'show' => 'Mostrar palavra-passe',
+        'delete' => 'Apagar',
     ],
 ];

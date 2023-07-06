@@ -301,6 +301,15 @@ class UsersControllerTest extends TestCase
             ->assertRedirect(route('users.show', ['user' => $user->getKey()]));
     }
 
+    public function testUsernameAtPrefixedRedirectToId()
+    {
+        $user = User::factory()->create();
+
+        $this
+            ->get(route('users.show', ['user' => "@{$user->username}"]))
+            ->assertRedirect(route('users.show', ['user' => $user->getKey()]));
+    }
+
     public function testUsernameRedirectToIdForApi()
     {
         $user = User::factory()->create();
@@ -309,6 +318,17 @@ class UsersControllerTest extends TestCase
 
         $this
             ->get(route('api.users.show', ['user' => $user->username]))
+            ->assertSuccessful();
+    }
+
+    public function testUsernameAtPrefixedRedirectToIdForApi()
+    {
+        $user = User::factory()->create();
+
+        $this->actAsScopedUser($user, ['public']);
+
+        $this
+            ->get(route('api.users.show', ['user' => "@{$user->username}"]))
             ->assertSuccessful();
     }
 

@@ -16,15 +16,15 @@ There are a few different options to get started:
 ### Clone the git repository
 
 ```
-$ git clone https://github.com/ppy/osu-web.git
+git clone https://github.com/ppy/osu-web.git
 ```
 
 ### Configure .env file
 
 ```bash
 # copy the example file and edit the settings, the important ones are APP_* and DB_*
-$ cp .env.example .env
-$ vi .env
+cp .env.example .env
+vi .env
 ```
 
 ### URL rewriting
@@ -41,14 +41,14 @@ Consult the [laravel documentation](https://laravel.com/docs/6.x/installation#we
 ### Initialize database
 
 ```bash
-$ php artisan db:create
+php artisan db:create
 ```
 
 ### Install packages and build assets
 
 ```bash
 # will also install composer and yarn
-$ ./build.sh
+./build.sh
 ```
 
 At this point you should be able to access the site via whatever webserver you configured.
@@ -65,7 +65,7 @@ At this point you should be able to access the site via whatever webserver you c
 - Clone this repository.
 - Set `GITHUB_TOKEN` environment variable (usually by `export GITHUB_TOKEN=ghs_...`).
   - It'll be recorded to composer and app config so it doesn't need to be set again next time.
-- Run `bin/docker_dev.sh`. Make sure the repository folder is owned by the user executing this command (must be non-root).
+- Run `bin/docker_dev.sh`. Make sure the repository folder is owned by the user executing this command (must be non-root). The site will be hosted at http://localhost:8080/.
 - Due to the nature of Docker (a container is killed when the command running in it finishes), the Yarn container will be run in watch mode.
 - Do note that the supplied Elasticsearch container uses a high (1+ GB) amount of RAM. Ensure that your system (or virtual machine, if running on Windows/macOS) has a necessary amount of memory allocated (at least 2 GB). If you can't (or don't want to), you can comment out the relevant elasticsearch lines in `docker-compose.yml`.
 - To run any of the below commands, make sure you are using the docker container: `docker compose run --rm php`.
@@ -217,7 +217,7 @@ p artisan tinker
 In the repository directory:
 
 ```php
-$ php artisan tinker
+php artisan tinker
 >>> (new App\Libraries\UserRegistration(["username" => "yourusername", "user_email" => "your@email.com", "password" => "yourpassword"]))->save();
 ```
 
@@ -227,7 +227,7 @@ Using Laravel's [Mix](https://laravel.com/docs/6.x/mix).
 
 ```bash
 # build assets (should be done automatically if using docker)
-$ yarn run development
+yarn run development
 ```
 
 Note that if you use the bundled docker compose setup, yarn/webpack will be already run in watch mode.
@@ -235,17 +235,17 @@ Note that if you use the bundled docker compose setup, yarn/webpack will be alre
 ## Reset the database + seeding sample data
 
 ```
-$ php artisan migrate:fresh --seed
+php artisan migrate:fresh --seed
 ```
 
-Run the above command to rebuild the database and seed with sample data. In order for the seeder to seed beatmaps, you must enter a valid osu! API key as the value of the `OSU_API_KEY` property in the `.env` configuration file, as the seeder obtains beatmap data from the osu! API. The key can be obtained from [the "Legacy API" section of your account settings page](https://osu.ppy.sh/home/account/edit#legacy-api).
+Run the above command to rebuild the database and populate it with sample data. In order for the seeder to seed beatmaps, you must enter a valid osu! API key as the value of the `OSU_API_KEY` property in the `.env` configuration file, as the seeder obtains beatmap data from the osu! API. The key can be obtained from [the "Legacy API" section of your account settings page](https://osu.ppy.sh/home/account/edit#legacy-api).
 
 ## Continuous asset generation while developing
 
 To continuously generate assets as you make changes to files (less, coffeescript) you can run `webpack` in `watch` mode.
 
 ```
-$ yarn run watch
+yarn run watch
 ```
 
 ## Email
@@ -349,7 +349,7 @@ docker compose run --rm php test js
 # Documentation
 
 ```bash
-$ php artisan scribe:generate
+php artisan scribe:generate
 ```
 
 Documentation will be generated in the `docs` folder in both html and markdown formats.

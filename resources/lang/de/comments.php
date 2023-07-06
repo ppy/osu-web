@@ -8,7 +8,7 @@ return [
     'deleted_by' => 'vor :timeago von :user entfernt',
     'deleted_by_system' => 'System',
     'deleted_count' => ':count_delimited gelöschter Kommentar|:count_delimited gelöschte Kommentare',
-    'edited' => 'vor :timeago von :user bearbeitet',
+    'edited' => ':timeago von :user bearbeitet',
     'pinned' => 'angeheftet',
     'empty' => 'Noch keine Kommentare vorhanden.',
     'empty_other' => 'Keine anderen Kommentare bisher.',

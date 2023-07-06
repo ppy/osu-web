@@ -9,15 +9,15 @@ return [
     'none' => '',
 
     'form' => [
-        'server_host' => '',
-        'server_port' => '',
+        'server_host' => '伺服器',
+        'server_port' => '埠號',
         'token' => '',
-        'username' => '',
+        'username' => '使用者名稱',
     ],
 
     'view' => [
-        'hide' => '',
-        'show' => '',
-        'delete' => '',
+        'hide' => '隱藏密碼',
+        'show' => '顯示密碼',
+        'delete' => '刪除',
     ],
 ];

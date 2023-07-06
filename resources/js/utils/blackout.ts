@@ -19,3 +19,9 @@ export function blackoutToggle(state: boolean, opacity?: number) {
     fadeToggle(el, state);
   }
 }
+
+export function blackoutVisible() {
+  const el = document.querySelector('.js-blackout');
+
+  return el instanceof HTMLElement && el.style.opacity !== '';
+}

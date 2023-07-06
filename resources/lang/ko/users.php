@@ -49,6 +49,7 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => '서포터 선물하기',
         'loading' => '로딩 중...',
         'send_message' => '메시지 보내기',
     ],
@@ -83,7 +84,7 @@ return [
             'opening' => '계정 비활성화가 될 수 있는 이유는 다음과 같습니다:',
 
             'tos' => [
-                '_' => '해당 계정은 :community_rules 또는 :tos 를 위반했습니다.',
+                '_' => '해당 계정은 :community_rules 또는 :tos를 위반했습니다.',
                 'community_rules' => '커뮤니티 규칙',
                 'tos' => '이용 약관',
             ],

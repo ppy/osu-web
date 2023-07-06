@@ -49,6 +49,7 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => 'Geef supporter tag cadeau',
         'loading' => 'Bezig met laden...',
         'send_message' => 'Bericht sturen',
     ],
