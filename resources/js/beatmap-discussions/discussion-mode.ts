@@ -5,6 +5,12 @@
 export const discussionPages = ['reviews', 'generalAll', 'general', 'timeline', 'events'] as const;
 export type DiscussionPage = (typeof discussionPages)[number];
 
+const discussionPageSet = new Set<unknown>(discussionPages);
+
+export function isDiscussionPage(value: unknown): value is DiscussionPage{
+  return discussionPageSet.has(value);
+}
+
 type DiscussionMode = Exclude<DiscussionPage, 'events'>;
 
 export default DiscussionMode;

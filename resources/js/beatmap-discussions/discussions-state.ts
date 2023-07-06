@@ -95,7 +95,7 @@ export default class DiscussionsState {
 
   @computed
   get currentDiscussions() {
-    const discussions = this.currentDiscussionsGroupedByFilter[this.currentFilter];)
+    const discussions = this.currentDiscussionsGroupedByFilter[this.currentFilter];
 
     return {
       general: filterDiscusionsByMode(discussions, 'general', this.currentBeatmapId),
