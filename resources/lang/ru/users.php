@@ -49,7 +49,7 @@ return [
     ],
 
     'card' => [
-        'gift_supporter' => '',
+        'gift_supporter' => 'Подарить тег osu!supporter',
         'loading' => 'Загрузка...',
         'send_message' => 'Отправить сообщение',
     ],

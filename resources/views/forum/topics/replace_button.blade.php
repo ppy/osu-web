@@ -15,7 +15,7 @@
         }
     }
 @endphp
-Timeout.set(0, function() {
+window.setTimeout(function() {
     $('.js-forum-topic-{{ $type }}--extra[data-topic-id={{ $topic->topic_id }}]').remove();
     $('.js-forum-topic-{{ $type }}--state[data-topic-id={{ $topic->topic_id }}]')
         .attr('data-topic-{{ $type }}', '{{ $stateText }}');
