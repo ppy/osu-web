@@ -38,6 +38,7 @@
         <div class="forum-topic-feature-vote__button">
             <button
                 class="btn-osu-big btn-osu-big--forum-primary"
+                data-confirm="{{ osu_trans('common.confirmation') }}"
                 data-url="{{ route('forum.topics.vote-feature', $topic->getKey()) }}"
                 data-method="POST"
                 data-remote=1
