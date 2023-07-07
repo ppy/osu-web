@@ -8,14 +8,14 @@ import * as React from 'react';
 import { formatTimestamp, makeUrl, startingPost } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
-import { BeatmapsContext } from './beatmaps-context';
 import DiscussionMessage from './discussion-message';
-import { DiscussionsContext } from './discussions-context';
+import DiscussionsState from './discussions-state';
 
 interface Props {
   data: {
     discussion_id: number;
   };
+  discussionsState: DiscussionsState;
 }
 
 export function postEmbedModifiers(discussion: BeatmapsetDiscussionJson) {
@@ -27,13 +27,13 @@ export function postEmbedModifiers(discussion: BeatmapsetDiscussionJson) {
   };
 }
 
-export const ReviewPostEmbed = ({ data }: Props) => {
-  const bn = 'beatmap-discussion-review-post-embed-preview';
-  const discussions = React.useContext(DiscussionsContext);
-  const beatmaps = React.useContext(BeatmapsContext);
-  const discussion = discussions[data.discussion_id];
+const bn = 'beatmap-discussion-review-post-embed-preview';
 
-  if (!discussion) {
+export const ReviewPostEmbed = ({ data, discussionsState }: Props) => {
+  const beatmaps = discussionsState.beatmaps;
+  const discussion = discussionsState.discussions.get(data.discussion_id);
+
+  if (discussion == null) {
     // if a discussion has been deleted or is otherwise missing
     return (
       <div className={classWithModifiers(bn, ['deleted', 'lighter'])}>
