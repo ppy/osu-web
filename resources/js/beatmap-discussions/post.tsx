@@ -1,8 +1,6 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { BeatmapsContext } from 'beatmap-discussions/beatmaps-context';
-import { DiscussionsContext } from 'beatmap-discussions/discussions-context';
 import Editor from 'beatmap-discussions/editor';
 import { ReviewPost } from 'beatmap-discussions/review-post';
 import BigButton from 'components/big-button';
@@ -11,11 +9,8 @@ import { ReportReportable } from 'components/report-reportable';
 import StringWithComponent from 'components/string-with-component';
 import TimeWithTooltip from 'components/time-with-tooltip';
 import UserLink from 'components/user-link';
-import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import { BeatmapsetDiscussionMessagePostJson } from 'interfaces/beatmapset-discussion-post-json';
-import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
-import BeatmapsetJson from 'interfaces/beatmapset-json';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
@@ -34,21 +29,20 @@ import { InputEventType, makeTextAreaHandler } from 'utils/input-handler';
 import { trans } from 'utils/lang';
 import DiscussionMessage from './discussion-message';
 import DiscussionMessageLengthCounter from './discussion-message-length-counter';
+import DiscussionsState from './discussions-state';
 import { UserCard } from './user-card';
 
 const bn = 'beatmap-discussion-post';
 
 interface Props {
-  beatmap: BeatmapExtendedJson | null;
-  beatmapset: BeatmapsetJson | BeatmapsetExtendedJson;
   discussion: BeatmapsetDiscussionJson;
+  discussionsState: DiscussionsState;
   post: BeatmapsetDiscussionMessagePostJson;
   read: boolean;
   readonly: boolean;
   resolvedSystemPostId: number;
   type: string;
   user: UserJson;
-  users: Partial<Record<number, UserJson>>;
 }
 
 @observer
@@ -63,18 +57,30 @@ export default class Post extends React.Component<Props> {
   private readonly textareaRef = React.createRef<HTMLTextAreaElement>();
   @observable private xhr: JQuery.jqXHR<BeatmapsetWithDiscussionsJson> | null = null;
 
+  private get beatmap() {
+    return this.props.discussionsState.currentBeatmap;
+  }
+
+  private get beatmapset() {
+    return this.props.discussionsState.beatmapset;
+  }
+
+  private get users() {
+    return this.props.discussionsState.users;
+  }
+
   @computed
   private get canEdit() {
     // no information available (non-discussion pages), return false.
-    if (!('discussion_locked' in this.props.beatmapset)) {
+    if (!('discussion_locked' in this.beatmapset)) {
       return false;
     }
 
     return this.isAdmin
-      || (!downloadLimited(this.props.beatmapset)
+      || (!downloadLimited(this.beatmapset)
         && this.isOwn
         && this.props.post.id > this.props.resolvedSystemPostId
-        && !this.props.beatmapset.discussion_locked
+        && !this.beatmapset.discussion_locked
       );
   }
 
@@ -157,8 +163,8 @@ export default class Post extends React.Component<Props> {
           {this.props.type === 'reply' && (
             <UserCard
               group={badgeGroup({
-                beatmapset: this.props.beatmapset,
-                currentBeatmap: this.props.beatmap,
+                beatmapset: this.beatmapset,
+                currentBeatmap: this.beatmap,
                 discussion: this.props.discussion,
                 user: this.props.user,
               })}
@@ -200,7 +206,7 @@ export default class Post extends React.Component<Props> {
   };
 
   private readonly handleMarkRead = () => {
-    $.publish('beatmapDiscussionPost:markRead', { id: this.props.post.id });
+    this.props.discussionsState.markAsRead(this.props.post.id);
   };
 
   @action
@@ -219,7 +225,7 @@ export default class Post extends React.Component<Props> {
     if (this.deleteModel.deleted_at == null) return null;
     const user = (
       this.deleteModel.deleted_by_id != null
-        ? this.props.users[this.deleteModel.deleted_by_id]
+        ? this.users[this.deleteModel.deleted_by_id]
         : null
     ) ?? deletedUser;
 
@@ -247,7 +253,7 @@ export default class Post extends React.Component<Props> {
       return null;
     }
 
-    const lastEditor = this.props.users[this.props.post.last_editor_id] ?? deletedUserJson;
+    const lastEditor = this.users[this.props.post.last_editor_id] ?? deletedUserJson;
 
     return (
       <span className={`${bn}__info`}>
@@ -285,25 +291,14 @@ export default class Post extends React.Component<Props> {
     return (
       <div className={`${bn}__message-container`}>
         {this.isReview ? (
-          <DiscussionsContext.Consumer>
-            {(discussions) => (
-              <BeatmapsContext.Consumer>
-                {(beatmaps) => (
-                  <Editor
-                    ref={this.reviewEditorRef}
-                    beatmaps={beatmaps}
-                    beatmapset={this.props.beatmapset}
-                    currentBeatmap={this.props.beatmap}
-                    discussion={this.props.discussion}
-                    discussions={discussions}
-                    document={document}
-                    editing={this.editing}
-                    onChange={this.handleEditorChange}
-                  />
-                )}
-              </BeatmapsContext.Consumer>
-            )}
-          </DiscussionsContext.Consumer>
+          <Editor
+            ref={this.reviewEditorRef}
+            discussion={this.props.discussion}
+            discussionsState={this.props.discussionsState}
+            document={document}
+            editing={this.editing}
+            onChange={this.handleEditorChange}
+          />
         ) : (
           <>
             <TextareaAutosize
@@ -347,7 +342,7 @@ export default class Post extends React.Component<Props> {
       <div className={`${bn}__message-container`}>
         {this.isReview ? (
           <div className={`${bn}__message`}>
-            <ReviewPost post={this.props.post} />
+            <ReviewPost discussionsState={this.props.discussionsState} post={this.props.post} />
           </div>
         ) : (
           <div ref={this.messageBodyRef} className={`${bn}__message`}>
@@ -481,7 +476,7 @@ export default class Post extends React.Component<Props> {
 
     this.xhr.done((beatmapset) => runInAction(() => {
       this.editing = false;
-      $.publish('beatmapsetDiscussions:update', { beatmapset });
+      this.props.discussionsState.update({ beatmapset });
     }))
       .fail(onError)
       .always(action(() => this.xhr = null));
