@@ -4,10 +4,13 @@
 import mapperGroup from 'beatmap-discussions/mapper-group';
 import SelectOptions, { OptionRenderProps } from 'components/select-options';
 import UserJson from 'interfaces/user-json';
+import { action } from 'mobx';
+import { observer } from 'mobx-react';
 import * as React from 'react';
 import { makeUrl, parseUrl } from 'utils/beatmapset-discussion-helper';
 import { groupColour } from 'utils/css';
 import { trans } from 'utils/lang';
+import DiscussionsState from './discussions-state';
 
 const allUsers = Object.freeze({
   id: null,
@@ -26,9 +29,7 @@ interface Option {
 }
 
 interface Props {
-  ownerId: number;
-  selectedUser?: UserJson | null;
-  users: UserJson[];
+  discussionsState: DiscussionsState;
 }
 
 function mapUserProperties(user: UserJson): Option {
@@ -39,15 +40,20 @@ function mapUserProperties(user: UserJson): Option {
   };
 }
 
+@observer
 export class UserFilter extends React.Component<Props> {
+  private get ownerId() {
+    return this.props.discussionsState.beatmapset.user_id;
+  }
+
   private get selected() {
-    return this.props.selectedUser != null
-      ? mapUserProperties(this.props.selectedUser)
+    return this.props.discussionsState.selectedUser != null
+      ? mapUserProperties(this.props.discussionsState.selectedUser)
       : noSelection;
   }
 
   private get options() {
-    return [allUsers, ...this.props.users.map(mapUserProperties)];
+    return [allUsers, ...Object.values(this.props.discussionsState.users).map(mapUserProperties)];
   }
 
   render() {
@@ -62,15 +68,19 @@ export class UserFilter extends React.Component<Props> {
     );
   }
 
+  @action
   private readonly handleChange = (option: Option) => {
-    $.publish('beatmapsetDiscussions:update', { selectedUserId: option.id });
+    this.props.discussionsState.selectedUserId = option.id;
   };
 
   private isOwner(user?: Option) {
-    return user != null && user.id === this.props.ownerId;
+    return user != null && user.id === this.ownerId;
   }
 
   private readonly renderOption = ({ cssClasses, children, onClick, option }: OptionRenderProps<Option>) => {
+    // TODO: exclude null/undefined user from discussionsState
+    if (option.id < 0) return;
+
     const group = this.isOwner(option) ? mapperGroup : option.groups?.[0];
     const style = groupColour(group);
 
@@ -82,7 +92,7 @@ export class UserFilter extends React.Component<Props> {
 
     return (
       <a
-        key={option?.id}
+        key={option.id}
         className={cssClasses}
         href={makeUrl(urlOptions)}
         onClick={onClick}
