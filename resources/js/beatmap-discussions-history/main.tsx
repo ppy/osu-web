@@ -1,104 +1,103 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-import { Discussion } from 'beatmap-discussions/discussion'
-import { BeatmapsContext } from 'beatmap-discussions/beatmaps-context'
-import { BeatmapsetsContext } from 'beatmap-discussions/beatmapsets-context'
-import { DiscussionsContext } from 'beatmap-discussions/discussions-context'
-import { ReviewEditorConfigContext } from 'beatmap-discussions/review-editor-config-context'
-import BeatmapsetCover from 'components/beatmapset-cover'
-import { deletedUser } from 'models/user'
-import * as React from 'react'
-import { a, div, img } from 'react-dom-factories'
-import { makeUrl } from 'utils/beatmapset-discussion-helper'
-import { trans } from 'utils/lang'
-import { nextVal } from 'utils/seq'
-el = React.createElement
+import { BeatmapsContext } from 'beatmap-discussions/beatmaps-context';
+import { BeatmapsetsContext } from 'beatmap-discussions/beatmapsets-context';
+import { Discussion } from 'beatmap-discussions/discussion';
+import { DiscussionsContext } from 'beatmap-discussions/discussions-context';
+import BeatmapsetCover from 'components/beatmapset-cover';
+import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
+import { BeatmapsetDiscussionJsonForBundle } from 'interfaces/beatmapset-discussion-json';
+import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
+import UserJson from 'interfaces/user-json';
+import { isEmpty, keyBy } from 'lodash';
+import { computed, makeObservable } from 'mobx';
+import { observer } from 'mobx-react';
+import { deletedUser } from 'models/user';
+import * as React from 'react';
+import { makeUrl } from 'utils/beatmapset-discussion-helper';
+import { trans } from 'utils/lang';
 
-export class Main extends React.PureComponent
-  constructor: (props) ->
-    super props
+interface Props {
+  beatmapsets: BeatmapsetExtendedJson[];
+  discussions: BeatmapsetDiscussionJsonForBundle[];
+  relatedBeatmaps: BeatmapExtendedJson[];
+  relatedDiscussions: BeatmapsetDiscussionJsonForBundle[];
+  users: UserJson[];
+}
 
-    @eventId = "beatmapset-discussions-history-#{nextVal()}"
-    @cache = {}
-    @state = JSON.parse(props.container.dataset.discussionsState ? null)
-    @restoredState = @state?
+@observer
+export class Main extends React.Component<Props> {
+  @computed
+  private get beatmaps() {
+    return keyBy(this.props.relatedBeatmaps, 'id');
+  }
 
-    if !@restoredState
-      @state =
-        beatmapsets: props.beatmapsets
-        discussions: props.discussions
-        users: props.users
-        relatedBeatmaps: props.relatedBeatmaps
-        relatedDiscussions: props.relatedDiscussions
+  @computed
+  private get beatmapsets() {
+    return keyBy(this.props.beatmapsets, 'id');
+  }
 
+  @computed
+  private get discussions() {
+    // skipped discussions
+    // - not privileged (deleted discussion)
+    // - deleted beatmap
+    return keyBy(this.props.relatedDiscussions.filter((d) => !isEmpty(d)), 'id');
+  }
 
-  componentWillUnmount: =>
-    $(window).stop()
+  @computed
+  private get users() {
+    const values = keyBy(this.props.users, 'id');
+    // eslint-disable-next-line id-blacklist
+    values.null = values.undefined = deletedUser.toJson();
 
+    return values;
+  }
 
-  discussions: =>
-    # skipped discussions
-    # - not privileged (deleted discussion)
-    # - deleted beatmap
-    @cache.discussions ?= _ @state.relatedDiscussions
-                            .filter (d) -> !_.isEmpty(d)
-                            .keyBy 'id'
-                            .value()
+  constructor(props: Props) {
+    super(props);
 
+    makeObservable(this);
+  }
 
-  beatmaps: =>
-    @cache.beatmaps ?= _.keyBy(this.props.relatedBeatmaps, 'id')
-
-
-  beatmapsets: =>
-    @cache.beatmapsets ?= _.keyBy(this.props.beatmapsets, 'id')
-
-
-  saveStateToContainer: =>
-    @props.container.dataset.discussionsState = JSON.stringify(@state)
-
-
-  render: =>
-    beatmaps = @beatmaps()
-    beatmapsets = @beatmapsets()
-
-    el ReviewEditorConfigContext.Provider, value: @props.reviewsConfig,
-      el DiscussionsContext.Provider, value: @discussions(),
-        el BeatmapsetsContext.Provider, value: beatmapsets,
-          el BeatmapsContext.Provider, value: beatmaps,
-            div className: 'modding-profile-list modding-profile-list--index',
-              if @props.discussions.length == 0
-                div className: 'modding-profile-list__empty', trans('beatmap_discussions.index.none_found')
-              else
-                for discussion in @props.discussions when discussion?
-                  div
-                    className: 'modding-profile-list__row'
-                    key: discussion.id,
-
-                    a
-                      className: 'modding-profile-list__thumbnail'
-                      href: makeUrl(discussion: discussion),
-
-                      el BeatmapsetCover,
-                        beatmapset: beatmapsets[discussion.beatmapset_id]
-                        size: 'list'
-
-                    el Discussion,
-                      discussion: discussion
-                      users: @users()
-                      currentBeatmap: beatmaps[discussion.beatmap_id]
-                      currentUser: currentUser
-                      beatmapset: beatmapsets[discussion.beatmapset_id]
-                      isTimelineVisible: false
-                      readonly: true
-                      showDeleted: true
-                      preview: true
-
-
-  users: =>
-    if !@cache.users?
-      @cache.users = _.keyBy @state.users, 'id'
-      @cache.users[null] = @cache.users[undefined] = deletedUser.toJson()
-
-    @cache.users
+  render() {
+    return (
+      <DiscussionsContext.Provider value={this.discussions}>
+        <BeatmapsetsContext.Provider value={this.beatmapsets}>
+          <BeatmapsContext.Provider value={this.beatmaps}>
+            <div className='modding-profile-list modding-profile-list--index'>
+              {this.props.discussions.length === 0 ? (
+                <div className='modding-profile-list__empty'>
+                  {trans('beatmap_discussions.index.none_found')}
+                </div>
+              ) : (this.props.discussions.map((discussion) => (
+                <div key={discussion.id} className='modding-profile-list__row'>
+                  <a
+                    className='modding-profile-list__thumbnail'
+                    href={makeUrl({ discussion })}
+                  >
+                    <BeatmapsetCover
+                      beatmapset={this.beatmapsets[discussion.beatmapset_id]}
+                      size='list'
+                    />
+                  </a>
+                  <Discussion
+                    beatmapset={this.beatmapsets[discussion.beatmapset_id]}
+                    currentBeatmap={discussion.beatmap_id != null ? this.beatmaps[discussion.beatmap_id] : null}
+                    discussion={discussion}
+                    isTimelineVisible={false}
+                    preview
+                    readonly
+                    showDeleted
+                    users={this.users}
+                  />
+                </div>
+              )))}
+            </div>
+          </BeatmapsContext.Provider>
+        </BeatmapsetsContext.Provider>
+      </DiscussionsContext.Provider>
+    );
+  }
+}
