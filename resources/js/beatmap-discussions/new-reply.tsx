@@ -3,10 +3,8 @@
 
 import BigButton from 'components/big-button';
 import UserAvatar from 'components/user-avatar';
-import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import { BeatmapsetDiscussionPostStoreResponseJson } from 'interfaces/beatmapset-discussion-post-responses';
-import BeatmapsetJson from 'interfaces/beatmapset-json';
 import { route } from 'laroute';
 import { action, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
@@ -20,13 +18,13 @@ import { trans } from 'utils/lang';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
 import { present } from 'utils/string';
 import DiscussionMessageLengthCounter from './discussion-message-length-counter';
+import DiscussionsState from './discussions-state';
 
 const bn = 'beatmap-discussion-post';
 
 interface Props {
-  beatmapset: BeatmapsetJson;
-  currentBeatmap: BeatmapJson | null;
   discussion: BeatmapsetDiscussionJson;
+  discussionsState: DiscussionsState;
 }
 
 const actionIcons = {
@@ -161,8 +159,8 @@ export class NewReply extends React.Component<Props> {
       .done((json) => runInAction(() => {
         this.editing = false;
         this.setMessage('');
-        $.publish('beatmapDiscussionPost:markRead', { id: json.beatmap_discussion_post_ids });
-        $.publish('beatmapsetDiscussions:update', { beatmapset: json.beatmapset });
+        this.props.discussionsState.markAsRead(json.beatmap_discussion_post_ids);
+        this.props.discussionsState.update({ beatmapset: json.beatmapset });
       }))
       .fail(onError)
       .always(action(() => {
