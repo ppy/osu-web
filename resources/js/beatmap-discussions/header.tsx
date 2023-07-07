@@ -13,13 +13,11 @@ import StringWithComponent from 'components/string-with-component';
 import UserLink from 'components/user-link';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import BeatmapJson from 'interfaces/beatmap-json';
-import { BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
-import BeatmapsetEventJson from 'interfaces/beatmapset-event-json';
-import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import GameMode, { gameModes } from 'interfaces/game-mode';
-import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
-import { kebabCase, size, snakeCase } from 'lodash';
+import { kebabCase, snakeCase } from 'lodash';
+import { action, computed, makeObservable, observable } from 'mobx';
+import { observer } from 'mobx-react';
 import { deletedUser } from 'models/user';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -29,40 +27,71 @@ import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 import BeatmapList from './beatmap-list';
 import Chart from './chart';
-import CurrentDiscussions, { Filter } from './current-discussions';
-import { DiscussionPage } from './discussion-mode';
+import { Filter } from './current-discussions';
+import DiscussionsState from './discussions-state';
 import { Nominations } from './nominations';
 import { Subscribe } from './subscribe';
 import { UserFilter } from './user-filter';
 
 interface Props {
-  beatmaps: Map<GameMode, BeatmapExtendedJson[]>;
-  beatmapset: BeatmapsetWithDiscussionsJson;
-  currentBeatmap: BeatmapExtendedJson;
-  currentDiscussions: CurrentDiscussions;
-  currentFilter: Filter;
-  discussions: Partial<Record<number, BeatmapsetDiscussionJsonForShow>>;
-  discussionStarters: UserJson[];
-  events: BeatmapsetEventJson[];
-  mode: DiscussionPage;
-  selectedUserId: number | null;
-  users: Partial<Record<number, UserJson>>;
+  discussionsState: DiscussionsState;
 }
 
 const statTypes: Filter[] = ['mine', 'mapperNotes', 'resolved', 'pending', 'praises', 'deleted', 'total'];
 
-export class Header extends React.PureComponent<Props> {
+@observer
+export class Header extends React.Component<Props> {
+  private get beatmaps() {
+    return this.discussionsState.groupedBeatmaps;
+  }
+
+  private get beatmapset() {
+    return this.discussionsState.beatmapset;
+  }
+
+  private get currentBeatmap() {
+    return this.discussionsState.currentBeatmap;
+  }
+
+  @computed
+  private get discussionCounts() {
+    const counts: Partial<Record<Filter, number>> = observable({});
+    for (const type of statTypes) {
+      counts[type] = this.discussionsState.currentDiscussionsGroupedByFilter[type].length;
+    }
+
+    return counts;
+  }
+
+  private get discussionsState() {
+    return this.props.discussionsState;
+  }
+
+  @computed
+  private get timelineDiscussions() {
+    return this.discussionsState.currentDiscussions.timeline;
+  }
+
+  private get users() {
+    return this.discussionsState.users;
+  }
+
+  constructor(props: Props) {
+    super(props);
+    makeObservable(this);
+  }
+
   render() {
     return (
       <>
         <HeaderV4
-          links={headerLinks('discussions', this.props.beatmapset)}
+          links={headerLinks('discussions', this.beatmapset)}
           linksAppend={(
             <PlaymodeTabs
-              currentMode={this.props.currentBeatmap.mode}
+              currentMode={this.currentBeatmap.mode}
               entries={gameModes.map((mode) => ({
-                count: this.props.currentDiscussions.countsByPlaymode[mode],
-                disabled: (this.props.beatmaps.get(mode)?.length ?? 0) === 0,
+                count: this.discussionsState.discussionsCountByPlaymode[mode],
+                disabled: (this.discussionsState.groupedBeatmaps.get(mode)?.length ?? 0) === 0,
                 mode,
               }))}
               modifiers='beatmapset'
@@ -79,21 +108,19 @@ export class Header extends React.PureComponent<Props> {
 
   private readonly createLink = (beatmap: BeatmapJson) => makeUrl({ beatmap });
 
-  private readonly getCount = (beatmap: BeatmapExtendedJson) =>
-    beatmap.deleted_at == null
-      ? this.props.currentDiscussions.countsByBeatmap[beatmap.id]
-      : undefined;
+  // TODO: does it need to be computed?
+  private readonly getCount = (beatmap: BeatmapExtendedJson) => beatmap.deleted_at == null ? this.discussionsState.discussionsByBeatmap(beatmap.id).length : undefined;
 
-  private readonly onClickMode = (event: React.MouseEvent<HTMLAnchorElement>, mode: GameMode) => {
+  @action
+  private onClickMode = (event: React.MouseEvent<HTMLAnchorElement>, mode: GameMode) => {
     event.preventDefault();
-    $.publish('playmode:set', [{ mode }]);
+    this.discussionsState.changeGameMode(mode);
   };
 
-  private readonly onSelectBeatmap = (beatmapId: number) => {
-    $.publish('beatmapsetDiscussions:update', {
-      beatmapId,
-      mode: 'timeline',
-    });
+  @action
+  private onSelectBeatmap = (beatmapId: number) => {
+    this.discussionsState.currentBeatmapId = beatmapId;
+    this.discussionsState.changeDiscussionPage('timeline');
   };
 
   private renderHeaderBottom() {
@@ -104,16 +131,16 @@ export class Header extends React.PureComponent<Props> {
         <div className={`${bn}__content ${bn}__content--details`}>
           <div className={`${bn}__details ${bn}__details--full`}>
             <BeatmapsetMapping
-              beatmapset={this.props.beatmapset}
-              user={this.props.users[this.props.beatmapset.user_id]}
+              beatmapset={this.beatmapset}
+              user={this.discussionsState.users[this.beatmapset.user_id]}
             />
           </div>
           <div className={`${bn}__details`}>
-            <Subscribe beatmapset={this.props.beatmapset} />
+            <Subscribe beatmapset={this.beatmapset} />
           </div>
           <div className={`${bn}__details`}>
             <BigButton
-              href={route('beatmapsets.show', { beatmapset: this.props.beatmapset.id })}
+              href={route('beatmapsets.show', { beatmapset: this.beatmapset.id })}
               icon='fas fa-info'
               modifiers='full'
               text={trans('beatmaps.discussions.beatmap_information')}
@@ -122,11 +149,7 @@ export class Header extends React.PureComponent<Props> {
         </div>
         <div className={`${bn}__content ${bn}__content--nomination`}>
           <Nominations
-            beatmapset={this.props.beatmapset}
-            currentDiscussions={this.props.currentDiscussions}
-            discussions={this.props.discussions}
-            events={this.props.events}
-            users={this.props.users}
+            discussionsState={this.discussionsState}
           />
         </div>
       </div>
@@ -142,7 +165,7 @@ export class Header extends React.PureComponent<Props> {
         <div className={`${bn}__content`}>
           <div className={`${bn}__cover`}>
             <BeatmapsetCover
-              beatmapset={this.props.beatmapset}
+              beatmapset={this.beatmapset}
               modifiers='full'
               size='cover'
             />
@@ -151,35 +174,33 @@ export class Header extends React.PureComponent<Props> {
             <h1 className={`${bn}__title`}>
               <a
                 className='link link--white link--no-underline'
-                href={route('beatmapsets.show', { beatmapset: this.props.beatmapset.id })}
+                href={route('beatmapsets.show', { beatmapset: this.beatmapset.id })}
               >
-                {getTitle(this.props.beatmapset)}
+                {getTitle(this.beatmapset)}
               </a>
-              <BeatmapsetBadge beatmapset={this.props.beatmapset} type='nsfw' />
-              <BeatmapsetBadge beatmapset={this.props.beatmapset} type='spotlight' />
+              <BeatmapsetBadge beatmapset={this.beatmapset} type='nsfw' />
+              <BeatmapsetBadge beatmapset={this.beatmapset} type='spotlight' />
             </h1>
             <h2 className={`${bn}__title ${bn}__title--artist`}>
-              {getArtist(this.props.beatmapset)}
-              <BeatmapsetBadge beatmapset={this.props.beatmapset} type='featured_artist' />
+              {getArtist(this.beatmapset)}
+              <BeatmapsetBadge beatmapset={this.beatmapset} type='featured_artist' />
             </h2>
           </div>
           <div className={`${bn}__filters`}>
             <div className={`${bn}__filter-group`}>
               <BeatmapList
-                beatmaps={this.props.beatmaps.get(this.props.currentBeatmap.mode) ?? []}
-                beatmapset={this.props.beatmapset}
+                beatmaps={this.beatmaps.get(this.currentBeatmap.mode) ?? []}
+                beatmapset={this.beatmapset}
                 createLink={this.createLink}
-                currentBeatmap={this.props.currentBeatmap}
+                currentBeatmap={this.currentBeatmap}
                 getCount={this.getCount}
                 onSelectBeatmap={this.onSelectBeatmap}
-                users={this.props.users}
+                users={this.users}
               />
             </div>
             <div className={`${bn}__filter-group ${bn}__filter-group--stats`}>
               <UserFilter
-                ownerId={this.props.beatmapset.user_id}
-                selectedUser={this.props.selectedUserId != null ? this.props.users[this.props.selectedUserId] : null}
-                users={this.props.discussionStarters}
+                discussionsState={this.discussionsState}
               />
               <div className={`${bn}__stats`}>
                 {statTypes.map(this.renderType)}
@@ -188,23 +209,23 @@ export class Header extends React.PureComponent<Props> {
           </div>
           <div className='u-relative'>
             <Chart
-              discussions={this.props.currentDiscussions.byFilter[this.props.currentFilter].timeline}
-              duration={this.props.currentBeatmap.total_length * 1000}
+              discussions={this.timelineDiscussions}
+              duration={this.currentBeatmap.total_length * 1000}
             />
             <div className={`${bn}__beatmap-stats`}>
               <div className={`${bn}__guest`}>
-                {this.props.currentBeatmap.user_id !== this.props.beatmapset.user_id && (
+                {this.currentBeatmap.user_id !== this.beatmapset.user_id && (
                   <span>
                     <StringWithComponent
                       mappings={{
-                        user: <UserLink user={this.props.users[this.props.currentBeatmap.user_id] ?? deletedUser} />,
+                        user: <UserLink user={this.users[this.currentBeatmap.user_id] ?? deletedUser} />,
                       }}
                       pattern={trans('beatmaps.discussions.guest')}
                     />
                   </span>
                 )}
               </div>
-              <BeatmapBasicStats beatmap={this.props.currentBeatmap} beatmapset={this.props.beatmapset} />
+              <BeatmapBasicStats beatmap={this.currentBeatmap} beatmapset={this.beatmapset} />
             </div>
           </div>
         </div>
@@ -220,12 +241,9 @@ export class Header extends React.PureComponent<Props> {
     const bn = 'counter-box';
 
     let topClasses = classWithModifiers(bn, 'beatmap-discussions', kebabCase(type));
-    if (this.props.mode !== 'events' && this.props.currentFilter === type) {
+    if (this.discussionsState.currentMode !== 'events' && this.discussionsState.currentFilter === type) {
       topClasses += ' js-active';
     }
-
-    const discussionsByFilter = this.props.currentDiscussions.byFilter[type];
-    const total = Object.values(discussionsByFilter).reduce((acc, discussions) => acc + size(discussions), 0);
 
     return (
       <a
@@ -233,10 +251,10 @@ export class Header extends React.PureComponent<Props> {
         className={topClasses}
         data-type={type}
         href={makeUrl({
-          beatmapId: this.props.currentBeatmap.id,
-          beatmapsetId: this.props.beatmapset.id,
+          beatmapId: this.currentBeatmap.id,
+          beatmapsetId: this.beatmapset.id,
           filter: type,
-          mode: this.props.mode,
+          mode: this.discussionsState.currentMode,
         })}
         onClick={this.setFilter}
       >
@@ -245,7 +263,7 @@ export class Header extends React.PureComponent<Props> {
             {trans(`beatmaps.discussions.stats.${snakeCase(type)}`)}
           </div>
           <div className={`${bn}__count`}>
-            {total}
+            {this.discussionCounts[type]}
           </div>
         </div>
         <div className={`${bn}__line`} />
@@ -255,6 +273,6 @@ export class Header extends React.PureComponent<Props> {
 
   private readonly setFilter = (event: React.SyntheticEvent<HTMLElement>) => {
     event.preventDefault();
-    $.publish('beatmapsetDiscussions:update', { filter: event.currentTarget.dataset.type });
+    this.discussionsState.changeFilter(event.currentTarget.dataset.type);
   };
 }
