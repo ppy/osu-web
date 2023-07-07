@@ -6,10 +6,7 @@ import { BeatmapsetsContext } from 'beatmap-discussions/beatmapsets-context';
 import { Discussion } from 'beatmap-discussions/discussion';
 import { DiscussionsContext } from 'beatmap-discussions/discussions-context';
 import BeatmapsetCover from 'components/beatmapset-cover';
-import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
-import { BeatmapsetDiscussionJsonForBundle } from 'interfaces/beatmapset-discussion-json';
-import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
-import UserJson from 'interfaces/user-json';
+import BeatmapsetDiscussionsBundleJson from 'interfaces/beatmapset-discussions-bundle-json';
 import { isEmpty, keyBy } from 'lodash';
 import { computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
@@ -19,23 +16,19 @@ import { makeUrl } from 'utils/beatmapset-discussion-helper';
 import { trans } from 'utils/lang';
 
 interface Props {
-  beatmapsets: BeatmapsetExtendedJson[];
-  discussions: BeatmapsetDiscussionJsonForBundle[];
-  relatedBeatmaps: BeatmapExtendedJson[];
-  relatedDiscussions: BeatmapsetDiscussionJsonForBundle[];
-  users: UserJson[];
+  bundle: BeatmapsetDiscussionsBundleJson;
 }
 
 @observer
 export class Main extends React.Component<Props> {
   @computed
   private get beatmaps() {
-    return keyBy(this.props.relatedBeatmaps, 'id');
+    return keyBy(this.props.bundle.beatmaps, 'id');
   }
 
   @computed
   private get beatmapsets() {
-    return keyBy(this.props.beatmapsets, 'id');
+    return keyBy(this.props.bundle.beatmapsets, 'id');
   }
 
   @computed
@@ -43,12 +36,12 @@ export class Main extends React.Component<Props> {
     // skipped discussions
     // - not privileged (deleted discussion)
     // - deleted beatmap
-    return keyBy(this.props.relatedDiscussions.filter((d) => !isEmpty(d)), 'id');
+    return keyBy(this.props.bundle.included_discussions.filter((d) => !isEmpty(d)), 'id');
   }
 
   @computed
   private get users() {
-    const values = keyBy(this.props.users, 'id');
+    const values = keyBy(this.props.bundle.users, 'id');
     // eslint-disable-next-line id-blacklist
     values.null = values.undefined = deletedUser.toJson();
 
@@ -67,11 +60,11 @@ export class Main extends React.Component<Props> {
         <BeatmapsetsContext.Provider value={this.beatmapsets}>
           <BeatmapsContext.Provider value={this.beatmaps}>
             <div className='modding-profile-list modding-profile-list--index'>
-              {this.props.discussions.length === 0 ? (
+              {this.props.bundle.discussions.length === 0 ? (
                 <div className='modding-profile-list__empty'>
                   {trans('beatmap_discussions.index.none_found')}
                 </div>
-              ) : (this.props.discussions.map((discussion) => (
+              ) : (this.props.bundle.discussions.map((discussion) => (
                 <div key={discussion.id} className='modding-profile-list__row'>
                   <a
                     className='modding-profile-list__thumbnail'
