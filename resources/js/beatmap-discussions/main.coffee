@@ -515,7 +515,7 @@ export class Main extends React.PureComponent
   users: =>
     if !@cache.users?
       @cache.users = _.keyBy @state.beatmapset.related_users, 'id'
-      @cache.users[null] = @cache.users[undefined] = deletedUser.toJson()
+      @cache.users[null] = @cache.users[undefined] = deletedUserJson
 
     @cache.users
 

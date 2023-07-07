@@ -5,7 +5,7 @@ import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import UserJson from 'interfaces/user-json';
 import { makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
-import { deletedUser, normaliseUsername } from 'models/user';
+import { deletedUserJson, normaliseUsername } from 'models/user';
 import * as React from 'react';
 import { group as groupBeatmaps } from 'utils/beatmap-helper';
 import { trans } from 'utils/lang';
@@ -16,8 +16,6 @@ interface Props {
   onClose: () => void;
   users: Partial<Record<number, UserJson>>;
 }
-
-const deletedUserJson = deletedUser.toJson();
 
 @observer
 export default class BeatmapsOwnerEditor extends React.Component<Props> {

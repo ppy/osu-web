@@ -10,7 +10,7 @@ import BeatmapsetDiscussionsBundleJson from 'interfaces/beatmapset-discussions-b
 import { isEmpty, keyBy } from 'lodash';
 import { computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
-import { deletedUser } from 'models/user';
+import { deletedUserJson } from 'models/user';
 import * as React from 'react';
 import { makeUrl } from 'utils/beatmapset-discussion-helper';
 import { trans } from 'utils/lang';
@@ -43,7 +43,7 @@ export default class Main extends React.Component<Props> {
   private get users() {
     const values = keyBy(this.props.bundle.users, 'id');
     // eslint-disable-next-line id-blacklist
-    values.null = values.undefined = deletedUser.toJson();
+    values.null = values.undefined = deletedUserJson;
 
     return values;
   }
