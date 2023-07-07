@@ -2,23 +2,16 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import IconExpand from 'components/icon-expand';
-import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import BeatmapsetDiscussionJson, { BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
-import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
-import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
-import UserJson from 'interfaces/user-json';
-import { size } from 'lodash';
 import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { canModeratePosts } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
-import CurrentDiscussions, { Filter } from './current-discussions';
 import { Discussion } from './discussion';
 import DiscussionMode from './discussion-mode';
 import DiscussionsState from './discussions-state';
-import DiscussionsStateContext from './discussions-state-context';
 
 const bn = 'beatmap-discussions';
 
@@ -58,20 +51,11 @@ const sortPresets = {
 type Sort = 'created_at' | 'updated_at' | 'timeline';
 
 interface Props {
-  // TODO: most of these can move to context/store after main is converted to typescript.
-  beatmapset: BeatmapsetExtendedJson & BeatmapsetWithDiscussionsJson;
-  currentBeatmap: BeatmapExtendedJson;
-  currentDiscussions: CurrentDiscussions;
-  currentFilter: Filter;
-  mode: DiscussionMode;
-  readPostIds: Set<number>;
-  showDeleted: boolean;
-  users: Record<number, UserJson>;
+  discussionsState: DiscussionsState;
 }
 
 @observer
 export class Discussions extends React.Component<Props> {
-  @observable private discussionsState = new DiscussionsState();
   @observable private sort: Record<DiscussionMode, Sort> = {
     general: 'updated_at',
     generalAll: 'updated_at',
@@ -79,19 +63,24 @@ export class Discussions extends React.Component<Props> {
     timeline: 'timeline',
   };
 
+  private get discussionsState() {
+    return this.props.discussionsState;
+  }
+
   @computed
   private get currentSort() {
-    return this.sort[this.props.mode];
+    if (this.discussionsState.currentMode === 'events') return 'timeline'; // just return any valid mode.
+    return this.sort[this.discussionsState.currentMode];
   }
 
   @computed
   private get isTimelineVisible() {
-    return this.props.mode === 'timeline' && this.currentSort === 'timeline';
+    return this.discussionsState.currentMode === 'timeline' && this.currentSort === 'timeline';
   }
 
   @computed
   private get sortedDiscussions() {
-    return this.props.currentDiscussions[this.props.mode].slice().sort((a: BeatmapsetDiscussionJson, b: BeatmapsetDiscussionJson) => {
+    return this.discussionsState.currentBeatmapDiscussionsCurrentModeWithFilter.slice().sort((a: BeatmapsetDiscussionJson, b: BeatmapsetDiscussionJson) => {
       const mapperNoteCompare =
         // no sticky for timeline sort
         this.currentSort !== 'timeline'
@@ -141,7 +130,8 @@ export class Discussions extends React.Component<Props> {
 
   @action
   private readonly handleChangeSort = (e: React.SyntheticEvent<HTMLButtonElement>) => {
-    this.sort[this.props.mode] = e.currentTarget.dataset.sortPreset as Sort;
+    if (this.discussionsState.currentMode === 'events') return;
+    this.sort[this.discussionsState.currentMode] = e.currentTarget.dataset.sortPreset as Sort;
   };
 
   @action
@@ -151,11 +141,7 @@ export class Discussions extends React.Component<Props> {
   };
 
   private readonly renderDiscussionPage = (discussion: BeatmapsetDiscussionJsonForShow) => {
-    const visible = this.props.currentDiscussions.byFilter[this.props.currentFilter][this.props.mode][discussion.id] != null;
-
-    if (!visible) return null;
-
-    const parentDiscussion = discussion.parent_id != null ? this.props.currentDiscussions.byFilter.total.reviews[discussion.parent_id] : null;
+    const parentDiscussion = this.discussionsState.discussions.get(discussion.parent_id);
 
     return (
       <div
@@ -163,31 +149,30 @@ export class Discussions extends React.Component<Props> {
         className={`${bn}__discussion`}
       >
         <Discussion
-          beatmapset={this.props.beatmapset}
-          currentBeatmap={this.props.currentBeatmap}
           discussion={discussion}
+          discussionsState={this.discussionsState}
           isTimelineVisible={this.isTimelineVisible}
-          parentDiscussion={parentDiscussion}
-          readPostIds={this.props.readPostIds}
-          showDeleted={this.props.showDeleted}
-          users={this.props.users}
+          parentDiscussion={parentDiscussion?.message_type === 'review' ? parentDiscussion : null}
         />
       </div>
     );
   };
 
   private renderDiscussions() {
-    const discussions = this.props.currentDiscussions[this.props.mode];
+    const count = this.discussionsState.currentBeatmapDiscussionsCurrentModeWithFilter.length;
 
-    if (discussions.length === 0) {
+    if (count === 0) {
       return (
         <div className={`${bn}__discussions ${bn}__discussions--empty`}>
-          {trans('beatmaps.discussions.empty.empty')}
+          {this.discussionsState.currentDiscussionsGroupedByFilter.total.length > count
+            ? trans('beatmaps.discussions.empty.hidden')
+            : trans('beatmaps.discussions.empty.empty')
+          }
         </div>
       );
     }
 
-    if (size(this.props.currentDiscussions.byFilter[this.props.currentFilter][this.props.mode]) === 0) {
+    if (this.discussionsState.currentBeatmapDiscussionsCurrentModeWithFilter.length === 0) {
       return (
         <div className={`${bn}__discussions ${bn}__discussions--empty`}>
           {trans('beatmaps.discussions.empty.hidden')}
@@ -201,9 +186,7 @@ export class Discussions extends React.Component<Props> {
 
         {this.isTimelineVisible && <div className={`${bn}__timeline-line hidden-xs`} />}
 
-        <DiscussionsStateContext.Provider value={this.discussionsState}>
-          {this.sortedDiscussions.map(this.renderDiscussionPage)}
-        </DiscussionsStateContext.Provider>
+        {this.sortedDiscussions.map(this.renderDiscussionPage)}
 
         {this.renderTimelineCircle()}
       </div>
@@ -236,7 +219,7 @@ export class Discussions extends React.Component<Props> {
         type='button'
       >
         <span className={`${bn}__toolbar-link-content`}>
-          <span className={this.props.showDeleted ? 'fas fa-check-square' : 'far fa-square'} />
+          <span className={this.discussionsState.showDeleted ? 'fas fa-check-square' : 'far fa-square'} />
         </span>
         <span className={`${bn}__toolbar-link-content`}>
           {trans('beatmaps.discussions.show_deleted')}
@@ -246,7 +229,7 @@ export class Discussions extends React.Component<Props> {
   }
 
   private renderSortOptions() {
-    const presets: Sort[] = this.props.mode === 'timeline'
+    const presets: Sort[] = this.discussionsState.currentMode === 'timeline'
       ? ['timeline', 'updated_at']
       : ['created_at', 'updated_at'];
 
@@ -279,7 +262,8 @@ export class Discussions extends React.Component<Props> {
     );
   }
 
+  @action
   private readonly toggleShowDeleted = () => {
-    $.publish('beatmapDiscussionPost:toggleShowDeleted');
+    this.discussionsState.showDeleted = !this.discussionsState.showDeleted;
   };
 }
