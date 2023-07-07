@@ -27,7 +27,7 @@ function simpleKebab(str: string | number | undefined) {
 export type EventViewMode = 'discussions' | 'profile' | 'list';
 
 interface Props {
-  discussions?: Partial<Record<string, BeatmapsetDiscussionJson>>;
+  discussions?: Map<number | null | undefined, BeatmapsetDiscussionJson>;
   event: BeatmapsetEventJson;
   mode: EventViewMode;
   time?: string;
@@ -48,7 +48,7 @@ export default class BeatmapsetEvent extends React.PureComponent<Props> {
 
   // discussion page doesn't include the discussion as part of the event.
   private get discussion() {
-    return this.props.event.discussion ?? this.props.discussions?.[this.discussionId ?? ''];
+    return this.props.event.discussion ?? this.props.discussions?.get(this.discussionId);
   }
 
   private get firstPost() {
