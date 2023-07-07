@@ -20,7 +20,7 @@ interface Props {
 }
 
 @observer
-export class Main extends React.Component<Props> {
+export default class Main extends React.Component<Props> {
   @computed
   private get beatmaps() {
     return keyBy(this.props.bundle.beatmaps, 'id');
