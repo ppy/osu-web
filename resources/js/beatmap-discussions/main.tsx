@@ -1,13 +1,10 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { BeatmapsContext } from 'beatmap-discussions/beatmaps-context';
-import { DiscussionsContext } from 'beatmap-discussions/discussions-context';
 import NewReview from 'beatmap-discussions/new-review';
 import { ReviewEditorConfigContext } from 'beatmap-discussions/review-editor-config-context';
 import BackToTop from 'components/back-to-top';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
-import GameMode from 'interfaces/game-mode';
 import { route } from 'laroute';
 import { action, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
@@ -26,7 +23,7 @@ import { NewDiscussion } from './new-discussion';
 const checkNewTimeoutDefault = 10000;
 const checkNewTimeoutMax = 60000;
 
-interface InitialData {
+export interface InitialData {
   beatmapset: BeatmapsetWithDiscussionsJson;
   reviews_config: {
     max_blocks: number;
@@ -61,11 +58,8 @@ export default class Main extends React.Component<Props> {
   }
 
   componentDidMount() {
-    $.subscribe(`playmode:set.${this.eventId}`, this.setCurrentPlaymode);
-
     $.subscribe(`beatmapsetDiscussions:update.${this.eventId}`, this.update);
     $.subscribe(`beatmapDiscussion:jump.${this.eventId}`, this.jumpTo);
-    $.subscribe(`beatmapDiscussionPost:markRead.${this.eventId}`, this.markPostRead);
     $.subscribe(`beatmapDiscussionPost:toggleShowDeleted.${this.eventId}`, this.toggleShowDeleted);
 
     $(document).on(`ajax:success.${this.eventId}`, '.js-beatmapset-discussion-update', this.ujsDiscussionUpdate);
@@ -78,28 +72,6 @@ export default class Main extends React.Component<Props> {
 
     this.timeouts.checkNew = window.setTimeout(this.checkNew, checkNewTimeoutDefault);
   }
-
-  componentDidUpdate(_prevProps, prevState) {
-    // TODO: autorun
-    // if (prevState.currentBeatmapId == this.discussionsState.currentBeatmapId
-    //   && prevState.currentFilter == this.discussionsState.currentFilter
-    //   && prevState.currentMode == this.discussionsState.currentMode
-    //   && prevState.selectedUserId == this.discussionsState.selectedUserId
-    //   && prevState.showDeleted == this.discussionsState.showDeleted) {
-    //   return;
-    // }
-
-    // Turbolinks.controller.advanceHistory(this.urlFromState());
-  }
-
-  // private get urlFromState() {
-  //   return makeUrl({
-  //     beatmap: this.currentBeatmap ?? undefined,
-  //     filter: this.currentFilter ?? undefined,
-  //     mode: this.currentMode,
-  //     user: this.selectedUserId ?? undefined,
-  //   });
-  // }
 
   componentWillUnmount() {
     $.unsubscribe(`.${this.eventId}`);
@@ -115,26 +87,11 @@ export default class Main extends React.Component<Props> {
     return (
       <>
         <Header
-          beatmaps={this.discussionsState.groupedBeatmaps}
-          beatmapset={this.discussionsState.beatmapset}
-          currentBeatmap={this.discussionsState.currentBeatmap}
-          currentDiscussions={this.discussionsState.currentDiscussions}
-          currentFilter={this.discussionsState.currentFilter}
-          currentUser={core.currentUser} // TODO: remove after component converted
-          discussionStarters={this.discussionsState.discussionStarters}
-          discussions={this.discussionsState.discussions}
-          events={this.discussionsState.beatmapset.events}
-          mode={this.discussionsState.currentMode}
-          selectedUserId={this.discussionsState.selectedUserId}
-          users={this.discussionsState.users}
+          discussionsState={this.discussionsState}
         />
         <ModeSwitcher
-          beatmapset={this.discussionsState.beatmapset}
-          currentBeatmap={this.discussionsState.currentBeatmap}
-          currentDiscussions={this.discussionsState.currentDiscussions}
-          currentFilter={this.discussionsState.currentFilter}
+          discussionsState={this.discussionsState}
           innerRef={this.modeSwitcherRef}
-          mode={this.discussionsState.currentMode}
         />
         {this.discussionsState.currentMode === 'events' ? (
           <Events
@@ -143,46 +100,26 @@ export default class Main extends React.Component<Props> {
             users={this.discussionsState.users}
           />
         ) : (
-          <DiscussionsContext.Provider value={this.discussionsState.discussions}>
-            <BeatmapsContext.Provider value={this.discussionsState.beatmaps}>
-              <ReviewEditorConfigContext.Provider value={this.reviewsConfig}>
-                {this.discussionsState.currentMode === 'reviews' ? (
-                  <NewReview
-                    beatmaps={this.discussionsState.beatmaps}
-                    beatmapset={this.discussionsState.beatmapset}
-                    currentBeatmap={this.discussionsState.currentBeatmap}
-                    innerRef={this.newDiscussionRef}
-                    pinned={this.discussionsState.pinnedNewDiscussion}
-                    setPinned={this.setPinnedNewDiscussion}
-                    stickTo={this.modeSwitcherRef}
-                  />
-                ) : (
-                  <NewDiscussion
-                    autoFocus={this.focusNewDiscussion}
-                    beatmapset={this.discussionsState.beatmapset}
-                    currentBeatmap={this.discussionsState.currentBeatmap}
-                    currentDiscussions={this.discussionsState.currentDiscussions}
-                    innerRef={this.newDiscussionRef}
-                    mode={this.discussionsState.currentMode}
-                    pinned={this.discussionsState.pinnedNewDiscussion}
-                    setPinned={this.setPinnedNewDiscussion}
-                    stickTo={this.modeSwitcherRef}
+          <ReviewEditorConfigContext.Provider value={this.reviewsConfig}>
+            {this.discussionsState.currentMode === 'reviews' ? (
+              <NewReview
+                discussionsState={this.discussionsState}
+                innerRef={this.newDiscussionRef}
+                stickTo={this.modeSwitcherRef}
+              />
+            ) : (
+              <NewDiscussion
+                autoFocus={this.focusNewDiscussion}
+                discussionsState={this.discussionsState}
+                innerRef={this.newDiscussionRef}
+                stickTo={this.modeSwitcherRef}
 
-                  />
-                )}
-                <Discussions
-                  beatmapset={this.discussionsState.beatmapset}
-                  currentBeatmap={this.discussionsState.currentBeatmap}
-                  currentDiscussions={this.discussionsState.currentDiscussions}
-                  currentFilter={this.discussionsState.currentFilter}
-                  mode={this.discussionsState.currentMode}
-                  readPostIds={this.discussionsState.readPostIds}
-                  showDeleted={this.discussionsState.showDeleted}
-                  users={this.discussionsState.users}
-                />
-              </ReviewEditorConfigContext.Provider>
-            </BeatmapsContext.Provider>
-          </DiscussionsContext.Provider>
+              />
+            )}
+            <Discussions
+              discussionsState={this.discussionsState}
+            />
+          </ReviewEditorConfigContext.Provider>
         )}
         <BackToTop />
       </>
@@ -216,7 +153,7 @@ export default class Main extends React.Component<Props> {
 
   @action
   private readonly jumpTo = (_event: unknown, { id, postId }: { id: number; postId?: number }) => {
-    const discussion = this.discussionsState.discussions[id];
+    const discussion = this.discussionsState.discussions.get(id);
 
     if (discussion == null) return;
 
@@ -225,7 +162,8 @@ export default class Main extends React.Component<Props> {
     } = stateFromDiscussion(discussion);
 
     // unset filter
-    if (this.discussionsState.discussionsByFilter(this.discussionsState.currentFilter, mode, this.discussionsState.currentBeatmapId).find((d) => d.id === discussion.id) == null) {
+    const currentDiscussionsByMode = this.discussionsState.currentDiscussions[mode];
+    if (currentDiscussionsByMode.find((d) => d.id === discussion.id) == null) {
       this.discussionsState.currentFilter = defaultFilter;
     }
 
@@ -276,28 +214,8 @@ export default class Main extends React.Component<Props> {
     }
   };
 
-  @action
-  private readonly markPostRead = (_event: unknown, { id }: { id: number | number[] }) => {
-    if (Array.isArray(id)) {
-      id.forEach((i) => this.discussionsState.readPostIds.add(i));
-    } else {
-      this.discussionsState.readPostIds.add(id);
-    }
-
-    // setState
-  };
-
   private readonly saveStateToContainer = () => {
     this.props.container.dataset.beatmapsetDiscussionState = this.discussionsState.toJsonString();
-  };
-
-  private readonly setCurrentPlaymode = (_event: unknown, { mode }: { mode: GameMode }) => {
-    this.discussionsState.update({ playmode: mode });
-  };
-
-  @action
-  private readonly setPinnedNewDiscussion = (pinned: boolean) => {
-    this.discussionsState.pinnedNewDiscussion = pinned;
   };
 
   @action
