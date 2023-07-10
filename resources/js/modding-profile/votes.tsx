@@ -12,14 +12,14 @@ import { trans, transChoice } from 'utils/lang';
 
 const bn = 'modding-profile-vote-card';
 const directions = ['received', 'given'] as const;
-type Direction = (typeof directions)[number];
+export type Direction = (typeof directions)[number];
 
 interface Props {
   users: Partial<Record<number, UserJson>>;
   votes: Record<Direction, VoteSummary[]>;
 }
 
-interface VoteSummary {
+export interface VoteSummary {
   count: number;
   score: number;
   user_id: number;

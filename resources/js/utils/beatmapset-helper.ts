@@ -18,6 +18,23 @@ export function downloadLimited(beatmapset: BeatmapsetJson) {
     || beatmapset.availability.more_information != null;
 }
 
+// TODO: should make a Beatmapset proxy object or something
+export function getArtist(beatmapset: BeatmapsetJson) {
+  if (core.userPreferences.get('beatmapset_title_show_original')) {
+    return beatmapset.artist_unicode;
+  }
+
+  return beatmapset.artist;
+}
+
+export function getTitle(beatmapset: BeatmapsetJson) {
+  if (core.userPreferences.get('beatmapset_title_show_original')) {
+    return beatmapset.title_unicode;
+  }
+
+  return beatmapset.title;
+}
+
 export function nominationsCount(nominations: BeatmapsetNominationsInterface, type: 'current' | 'required'): number {
   if (nominations.legacy_mode) {
     return nominations[type];

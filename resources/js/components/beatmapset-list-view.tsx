@@ -4,7 +4,7 @@
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import { route } from 'laroute';
 import * as React from 'react';
-import { getArtist, getTitle } from 'utils/beatmap-helper';
+import { getArtist, getTitle } from 'utils/beatmapset-helper';
 import { trans } from 'utils/lang';
 import BeatmapsetCover from './beatmapset-cover';
 
