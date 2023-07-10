@@ -1901,6 +1901,10 @@ class OsuAuthorize
             return $prefix.'not_owner';
         }
 
+        if ($score instanceof Solo\Score && config('osu.user.hide_pinned_solo_scores')) {
+            return $prefix.'disabled_type';
+        }
+
         $pinned = $user->scorePins()->forRuleset($score->getMode())->withVisibleScore()->count();
 
         if ($pinned >= $user->maxScorePins()) {
