@@ -226,9 +226,6 @@ return [
             'restriction' => presence(env('OSU_URL_USER_RESTRICTION')) ?? '/wiki/Help_centre/Account_restrictions',
             'rules' => '/wiki/Osu!:Rules',
         ],
-        'rankings' => [
-            'kudosu' => '/p/kudosu',
-        ],
         'testflight' => [
             'public' => env('TESTFLIGHT_LINK'),
             'supporter' => env('TESTFLIGHT_LINK_SUPPORTER'),

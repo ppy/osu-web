@@ -1105,7 +1105,7 @@ function nav_links()
         'rankings.type.country' => route('rankings', ['mode' => $defaultMode, 'type' => 'country']),
         'rankings.type.multiplayer' => route('multiplayer.rooms.show', ['room' => 'latest']),
         'rankings.type.seasons' => route('seasons.show', ['season' => 'latest']),
-        'layout.menu.rankings.kudosu' => osu_url('rankings.kudosu'),
+        'layout.menu.rankings.kudosu' => route('rankings.kudosu'),
     ];
     $links['community'] = [
         'page_title.forum._' => route('forum.forums.index'),
