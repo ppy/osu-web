@@ -8,14 +8,7 @@ import HeaderV4 from 'components/header-v4';
 import ProfilePageExtraTab from 'components/profile-page-extra-tab';
 import ProfileTournamentBanner from 'components/profile-tournament-banner';
 import UserProfileContainer from 'components/user-profile-container';
-import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
-import { BeatmapsetDiscussionJsonForBundle } from 'interfaces/beatmapset-discussion-json';
-import { BeatmapsetDiscussionMessagePostJson } from 'interfaces/beatmapset-discussion-post-json';
-import BeatmapsetEventJson from 'interfaces/beatmapset-event-json';
-import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
-import KudosuHistoryJson from 'interfaces/kudosu-history-json';
-import UserJson from 'interfaces/user-json';
-import UserModdingProfileJson from 'interfaces/user-modding-profile-json';
+import { BeatmapsetDiscussionsBundleJsonForModdingProfile } from 'interfaces/beatmapset-discussions-bundle-json';
 import { first, isEmpty, keyBy, last, throttle } from 'lodash';
 import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
@@ -35,29 +28,11 @@ import Discussions from './discussions';
 import Events from './events';
 import { Posts } from './posts';
 import Stats from './stats';
-import Votes, { Direction, VoteSummary } from './votes';
+import Votes, {  } from './votes';
 
 // in display order.
 const moddingExtraPages = ['events', 'discussions', 'posts', 'votes', 'kudosu'] as const;
 type ModdingExtraPage = (typeof moddingExtraPages)[number];
-
-interface Props {
-  beatmaps: BeatmapExtendedJson[];
-  beatmapsets: BeatmapsetExtendedJson[];
-  discussions: BeatmapsetDiscussionJsonForBundle[];
-  events: BeatmapsetEventJson[];
-  extras: {
-    recentlyReceivedKudosu: KudosuHistoryJson[];
-  };
-  perPage: {
-    recentlyReceivedKudosu: number;
-  };
-  posts: BeatmapsetDiscussionMessagePostJson[];
-  user: UserModdingProfileJson;
-  users: UserJson[];
-  votes: Record<Direction, VoteSummary[]>;
-}
-
 type Page = ModdingExtraPage | 'main';
 
 function validPage(page: unknown) {
@@ -69,7 +44,7 @@ function validPage(page: unknown) {
 }
 
 @observer
-export default class Main extends React.Component<Props> {
+export default class Main extends React.Component<BeatmapsetDiscussionsBundleJsonForModdingProfile> {
   @observable private currentPage: Page = 'main';
   private readonly disposers = new Set<(() => void) | undefined>();
   private readonly eventId = `users-modding-history-index-${nextVal()}`;
@@ -126,7 +101,7 @@ export default class Main extends React.Component<Props> {
     return values;
   }
 
-  constructor(props: Props) {
+  constructor(props: BeatmapsetDiscussionsBundleJsonForModdingProfile) {
     super(props);
 
     makeObservable(this);
