@@ -183,10 +183,10 @@ class CommentBundle
 
             $queryLimit++;
 
-            if ($this->params->afterId === null) {
+            if ($this->params->after === null) {
                 $cursor = $this->params->cursor;
             } else {
-                $lastComment = Comment::findOrFail($this->params->afterId);
+                $lastComment = Comment::findOrFail($this->params->after);
                 $cursor = $cursorHelper->next([$lastComment]);
             }
 

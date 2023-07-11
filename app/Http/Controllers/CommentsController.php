@@ -67,7 +67,7 @@ class CommentsController extends Controller
      *
      * `pinned_comments` is only included when `commentable_type` and `commentable_id` are specified.
      *
-     * @queryParam after_id Return comments which come after the specified comment id as per sort option. No-example
+     * @queryParam after Return comments which come after the specified comment id as per sort option. No-example
      * @queryParam commentable_type The type of resource to get comments for. Example: beatmapset
      * @queryParam commentable_id The id of the resource to get comments for. Example: 1
      * @queryParam cursor Pagination option. See [CommentSort](#commentsort) for detail. The format follows [Cursor](#cursor) except it's not currently included in the response. No-example
