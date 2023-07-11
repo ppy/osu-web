@@ -229,7 +229,7 @@ module.exports = {
     'new-parens': 'error',
     'no-bitwise': 'error',
     'no-caller': 'error',
-    'no-console': 'warn',
+    'no-console': ['error', { allow: ['debug', 'error', 'warn'] }],
     'no-empty-function': 'error',
     'no-eval': 'error',
     'no-invalid-this': 'error',
