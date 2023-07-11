@@ -1,7 +1,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
+import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
+import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import GameMode from 'interfaces/game-mode';
 import { isEmpty, keyBy, maxBy } from 'lodash';
@@ -15,17 +16,15 @@ import { switchNever } from 'utils/switch-never';
 import { Filter, filters } from './current-discussions';
 import DiscussionMode, { DiscussionPage, isDiscussionPage } from './discussion-mode';
 
-type DiscussionsAlias = BeatmapsetWithDiscussionsJson['discussions'];
-
 export interface UpdateOptions {
   beatmapset: BeatmapsetWithDiscussionsJson;
   watching: boolean;
 }
 
 // FIXME this doesn't make it so the modes with optional beatmapId can pass a beatmapId that gets ignored.
-function filterDiscusionsByMode(discussions: DiscussionsAlias, mode: 'general' | 'timeline', beatmapId: number): DiscussionsAlias;
-function filterDiscusionsByMode(discussions: DiscussionsAlias, mode: 'generalAll' | 'reviews'): DiscussionsAlias;
-function filterDiscusionsByMode(discussions: DiscussionsAlias, mode: DiscussionMode, beatmapId?: number) {
+function filterDiscusionsByMode(discussions: BeatmapsetDiscussionJson[], mode: 'general' | 'timeline', beatmapId: number): BeatmapsetDiscussionJson[];
+function filterDiscusionsByMode(discussions: BeatmapsetDiscussionJson[], mode: 'generalAll' | 'reviews'): BeatmapsetDiscussionJson[];
+function filterDiscusionsByMode(discussions: BeatmapsetDiscussionJson[], mode: DiscussionMode, beatmapId?: number) {
   switch (mode) {
     case 'general':
       return discussions.filter((discussion) => discussion.beatmap_id === beatmapId);
@@ -46,6 +45,7 @@ function isFilter(value: unknown): value is Filter {
 }
 
 export default class DiscussionsState {
+  @observable beatmapsets = new Map<number, BeatmapsetExtendedJson>();
   @observable currentBeatmapId: number;
   @observable currentFilter: Filter = 'total'; // TODO: filter should always be total when page is events (also no highlight)
   @observable currentMode: DiscussionPage = 'general';
@@ -107,7 +107,7 @@ export default class DiscussionsState {
 
   @computed
   get currentDiscussionsGroupedByFilter() {
-    const groups: Record<Filter, DiscussionsAlias> = {
+    const groups: Record<Filter, BeatmapsetDiscussionJson[]> = {
       deleted: [],
       hype: [],
       mapperNotes: [],
@@ -133,7 +133,7 @@ export default class DiscussionsState {
 
     // TODO need some typing to handle the not for show variant
     // null part of the key so we can use .get(null)
-    const map = new Map<number | null | undefined, BeatmapsetDiscussionJsonForShow>();
+    const map = new Map<number | null | undefined, BeatmapsetDiscussionJson>();
 
     for (const discussion of this.beatmapset.discussions) {
       if (!isEmpty(discussion)) {
@@ -217,12 +217,12 @@ export default class DiscussionsState {
 
   @computed
   get nonNullDiscussions() {
-    return [...this.discussions.values()].filter((discussion) => discussion != null) as DiscussionsAlias;
+    return [...this.discussions.values()].filter((discussion) => discussion != null);
   }
 
   @computed
   get presentDiscussions() {
-    return this.nonNullDiscussions.filter((discussion) => discussion.deleted_at == null) as DiscussionsAlias;
+    return this.nonNullDiscussions.filter((discussion) => discussion.deleted_at == null);
   }
 
   @computed
@@ -283,6 +283,8 @@ export default class DiscussionsState {
         }
       }
     }
+
+    this.beatmapsets.set(beatmapset.id, beatmapset);
 
     this.currentBeatmapId = (findDefault({ group: this.groupedBeatmaps }) ?? this.beatmaps[0]).id;
 
@@ -346,7 +348,7 @@ export default class DiscussionsState {
   }
 
   discussionsByBeatmap(beatmapId: number) {
-    return this.presentDiscussions.filter((discussion) => (discussion.beatmap_id == null || discussion.beatmap_id === beatmapId)) as DiscussionsAlias;
+    return this.presentDiscussions.filter((discussion) => (discussion.beatmap_id == null || discussion.beatmap_id === beatmapId));
   }
 
   @action
@@ -386,7 +388,7 @@ export default class DiscussionsState {
     }
   }
 
-  private filterDiscussionsByFilter(discussions: DiscussionsAlias, filter: Filter) {
+  private filterDiscussionsByFilter(discussions: BeatmapsetDiscussionJson[], filter: Filter) {
     switch (filter) {
       case 'deleted':
         return discussions.filter((discussion) => discussion.deleted_at != null);
@@ -399,7 +401,7 @@ export default class DiscussionsState {
         return discussions.filter((discussion) => discussion.user_id === userId);
       }
       case 'pending': {
-        const reviewsWithPending = new Set<BeatmapsetDiscussionJsonForShow>();
+        const reviewsWithPending = new Set<BeatmapsetDiscussionJson>();
 
         const filteredDiscussions = discussions.filter((discussion) => {
           if (!discussion.can_be_resolved || discussion.resolved) return false;

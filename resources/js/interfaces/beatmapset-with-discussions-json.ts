@@ -5,6 +5,13 @@ import { BeatmapsetDiscussionJsonForShow } from './beatmapset-discussion-json';
 import BeatmapsetExtendedJson from './beatmapset-extended-json';
 
 type DiscussionsRequiredAttributes = 'beatmaps' | 'current_user_attributes' | 'events' | 'nominations' | 'related_users';
-type BeatmapsetWithDiscussionsJson = BeatmapsetExtendedJson & Required<Pick<BeatmapsetExtendedJson, DiscussionsRequiredAttributes>> & Omit<BeatmapsetExtendedJson, 'discussions'> & { discussions: BeatmapsetDiscussionJsonForShow[] };
+type BeatmapsetWithDiscussionsJson =
+  Omit<BeatmapsetExtendedJson, keyof OverrideIncludes>
+  & OverrideIncludes
+  & Required<Pick<BeatmapsetExtendedJson, DiscussionsRequiredAttributes>>;
+
+interface OverrideIncludes {
+  discussions: BeatmapsetDiscussionJsonForShow[];
+}
 
 export default BeatmapsetWithDiscussionsJson;
