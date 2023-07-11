@@ -43,8 +43,8 @@ export const ReviewPostEmbed = ({ data, discussionsState }: Props) => {
   }
 
   const post = startingPost(discussion);
-  if (post.system) {
-    console.error('embed should not have system starting post', discussion.id);
+  if (post == null || post.system) {
+    console.error('embed starting post is missing or is system post', discussion.id);
     return null;
   }
 

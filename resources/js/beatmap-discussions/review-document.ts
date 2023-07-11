@@ -99,8 +99,8 @@ export function parseFromJson(json: string, discussions: Map<number | null | und
         }
 
         const post = startingPost(discussion);
-        if (post.system) {
-          console.error('embed should not have system starting post', existingEmbedBlock.discussion_id);
+        if (post == null || post.system) {
+          console.error('embed starting post is missing or is system post', existingEmbedBlock.discussion_id);
           break;
         }
 

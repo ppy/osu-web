@@ -24,7 +24,7 @@ import moment from 'moment';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { onError } from 'utils/ajax';
-import { canModeratePosts, makeUrl } from 'utils/beatmapset-discussion-helper';
+import { canModeratePosts, makeUrl, startingPost } from 'utils/beatmapset-discussion-helper';
 import { nominationsCount } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
@@ -258,7 +258,7 @@ export class Nominations extends React.Component<Props> {
     const user = event.user_id != null ? this.users[event.user_id] : null;
     const discussionId = discussionIdFromEvent(event);
     const discussion = this.discussions.get(discussionId);
-    const post = discussion?.posts[0];
+    const post = discussion != null ? startingPost(discussion) : null;
 
     let link: React.ReactNode;
     let message: React.ReactNode;
