@@ -1831,11 +1831,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->fresh();
     }
 
-    public function notificationCount()
-    {
-        return $this->user_unread_privmsg;
-    }
-
     public function supportLength()
     {
         return $this->memoize(__FUNCTION__, function () {
