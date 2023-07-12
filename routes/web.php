@@ -271,6 +271,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::post('clients/{client}/reset-secret', 'ClientsController@resetSecret')->name('clients.reset-secret');
     });
 
+    Route::get('rankings/kudosu', 'RankingController@kudosu')->name('rankings.kudosu');
     Route::get('rankings/{mode?}/{type?}', 'RankingController@index')->name('rankings');
 
     Route::resource('reports', 'ReportsController', ['only' => ['store']]);

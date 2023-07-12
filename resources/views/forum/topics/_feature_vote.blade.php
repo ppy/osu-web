@@ -2,6 +2,9 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
+@php
+    $currentUser = Auth::user();
+@endphp
 <div class="forum-topic-feature-vote">
     <div class="forum-topic-feature-vote__info">
         {!! osu_trans('forum.topics.show.feature_vote.info._', [
@@ -31,15 +34,16 @@
         ]) }}
     </div>
 
-    @if (Auth::check())
+    @if ($currentUser !== null)
         <div class="forum-topic-feature-vote__button">
             <button
                 class="btn-osu-big btn-osu-big--forum-primary"
+                data-confirm="{{ osu_trans('common.confirmation') }}"
                 data-url="{{ route('forum.topics.vote-feature', $topic->getKey()) }}"
                 data-method="POST"
                 data-remote=1
                 data-disable-with="{{ osu_trans('common.buttons.saving') }}"
-                @if (Auth::user()->osu_featurevotes < App\Models\Forum\FeatureVote::COST)
+                @if ($currentUser->osu_featurevotes < App\Models\Forum\FeatureVote::COST)
                     disabled
                 @endif
             >
@@ -49,7 +53,7 @@
 
         <div class="forum-topic-feature-vote__remaining">
             {!! osu_trans('forum.topics.show.feature_vote.user.current', [
-                'votes' => '<strong>'.osu_trans_choice('forum.topics.show.feature_vote.user.count', Auth::user()->osu_featurevotes).'</strong>',
+                'votes' => '<strong>'.osu_trans_choice('forum.topics.show.feature_vote.user.count', $currentUser->osu_featurevotes).'</strong>',
             ]) !!}
         </div>
     @endif
