@@ -28,7 +28,6 @@ import DetailBar from 'profile-page/detail-bar';
 import headerLinks from 'profile-page/header-links';
 import * as React from 'react';
 import { bottomPage } from 'utils/html';
-import { pageChange } from 'utils/page-change';
 import { nextVal } from 'utils/seq';
 import { switchNever } from 'utils/switch-never';
 import { currentUrl } from 'utils/turbolinks';
@@ -136,8 +135,6 @@ export default class Main extends React.Component<Props> {
   componentDidMount() {
     // pageScan does not need to run at 144 fps...
     $(window).on(`scroll.${this.eventId}`, throttle(() => this.pageScan(), 20));
-
-    pageChange();
 
     const page = validPage(currentUrl().hash.slice(1)) ?? 'main';
 
