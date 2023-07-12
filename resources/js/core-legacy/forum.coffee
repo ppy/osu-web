@@ -6,7 +6,6 @@ import { onError } from 'utils/ajax'
 import { blackoutVisible } from 'utils/blackout'
 import { bottomPage, formatNumber, isInputElement } from 'utils/html'
 import { hideLoadingOverlay } from 'utils/loading-overlay'
-import { pageChange } from 'utils/page-change'
 import { present } from 'utils/string'
 import { currentUrl } from 'utils/turbolinks'
 
@@ -37,7 +36,6 @@ export default class Forum
     @maxPosts = 250
 
     $(document).on 'turbolinks:load', @throttledBoot
-    $.subscribe 'osu:page:change', @throttledBoot
 
     $(window).on 'scroll', @refreshCounter
     $(document).on 'click', '.js-forum-posts-show-more', @showMore
@@ -333,7 +331,6 @@ export default class Forum
       targetDocumentScrollTop = currentDocumentScrollTop + currentScrollReferenceTop - scrollReferenceTop
       window.scrollTo x, targetDocumentScrollTop
 
-      pageChange()
       link.dataset.failed = '0'
 
     .always ->

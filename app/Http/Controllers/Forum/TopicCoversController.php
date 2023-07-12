@@ -6,6 +6,7 @@
 namespace App\Http\Controllers\Forum;
 
 use App\Exceptions\ImageProcessorException;
+use App\Models\Forum\Forum;
 use App\Models\Forum\Topic;
 use App\Models\Forum\TopicCover;
 use App\Transformers\Forum\TopicCoverTransformer;
@@ -27,26 +28,41 @@ class TopicCoversController extends Controller
 
     public function store()
     {
-        if (Request::hasFile('cover_file') !== true) {
+        $params = get_params(Request::all(), null, [
+            'cover_file:file',
+            'forum_id:int',
+            'topic_id:int',
+        ], ['null_missing' => true]);
+
+        if ($params['cover_file'] === null) {
             abort(422);
         }
 
-        $topic = null;
+        if ($params['topic_id'] === null) {
+            if ($params['forum_id'] !== null) {
+                $forum = Forum::findOrFail($params['forum_id']);
+            }
+        } else {
+            $topic = Topic::with('forum')->findOrFail($params['topic_id']);
 
-        if (presence(Request::input('topic_id')) !== null) {
-            $topic = Topic::with('forum')->findOrFail(Request::input('topic_id'));
-
-            priv_check('ForumTopicCoverStore', $topic->forum)->ensureCan();
             if ($topic->cover !== null) {
                 abort(422);
             }
+
+            $forum = $topic->forum;
         }
+
+        if (!isset($forum)) {
+            abort(422, 'no forum specified');
+        }
+
+        priv_check('ForumTopicCoverStore', $forum)->ensureCan();
 
         try {
             $cover = TopicCover::upload(
-                Request::file('cover_file')->getRealPath(),
+                $params['cover_file'],
                 Auth::user(),
-                $topic
+                $topic ?? null,
             );
         } catch (ImageProcessorException $e) {
             return error_popup($e->getMessage());
