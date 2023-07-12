@@ -10,11 +10,9 @@ export default class CurrentUserObserver
   constructor: ->
     @covers = document.getElementsByClassName('js-current-user-cover')
     @avatars = document.getElementsByClassName('js-current-user-avatar')
-    @throttledReinit = _.throttle @reinit, 100
 
     $.subscribe 'user:update', @setData
     $(document).on 'turbolinks:load', @reinit
-    $.subscribe 'osu:page:change', @throttledReinit
     $.subscribe 'user:followUserMapping:update', @updateFollowUserMapping
 
     # one time setup to monitor cover url variable. No disposer because nothing destroys this object.
