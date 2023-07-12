@@ -13,7 +13,6 @@ import { error } from 'utils/ajax';
 import { classWithModifiers } from 'utils/css';
 import { bottomPage } from 'utils/html';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
-import { pageChange } from 'utils/page-change';
 import { nextVal } from 'utils/seq';
 import { present } from 'utils/string';
 import { switchNever } from 'utils/switch-never';
@@ -152,8 +151,6 @@ export default class Main extends React.Component<Props> {
         update: this.updateOrder,
       });
     }
-
-    pageChange();
 
     // preserve scroll if existing saved state but force position to reset
     // on refresh to avoid browser setting scroll position at the bottom on reload.

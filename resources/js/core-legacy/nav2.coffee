@@ -3,7 +3,6 @@
 
 import { blackoutHide, blackoutShow } from 'utils/blackout'
 import { fadeToggle } from 'utils/fade'
-import { pageChangeImmediate } from 'utils/page-change'
 
 export default class Nav2
   constructor: (@clickMenu) ->
@@ -38,7 +37,6 @@ export default class Nav2
       @centerPopup currentPopup, link
 
     $(window).on 'resize.nav2-center-popup', doCenter
-    pageChangeImmediate() if @loginBoxVisible()
     doCenter()
     currentPopup.querySelector('.js-nav2--autofocus')?.focus()
 
