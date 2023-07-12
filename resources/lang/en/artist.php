@@ -43,7 +43,7 @@ return [
 
     'tracks' => [
         'index' => [
-            '_' => 'tracks search',
+            '_' => 'track search',
 
             'form' => [
                 'advanced' => 'Advanced Search',
