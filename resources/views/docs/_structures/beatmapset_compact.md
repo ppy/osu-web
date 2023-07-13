@@ -28,7 +28,7 @@ Field                   | Type                         | Description
 ----------------------- | ---------------------------- | -----------
 beatmaps                | [Beatmap](#beatmap)[]        | |
 converts                |                              | |
-current_nominations     | [Nomination](#nomination)[]? | |
+current_nominations     | [Nomination](#nomination)[]  | |
 current_user_attributes |                              | |
 description             |                              | |
 discussions             |                              | |
