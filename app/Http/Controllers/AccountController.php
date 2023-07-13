@@ -267,9 +267,7 @@ class AccountController extends Controller
                 Mail::to($user)->send(new UserPasswordUpdated($user));
             }
 
-            $user->resetSessions();
-            $this->login($user);
-            UserVerification::fromCurrentRequest()->markVerified();
+            $user->resetSessions(session()->getKey());
 
             return response([], 204);
         } else {
