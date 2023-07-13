@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import UserPreferences from 'core/user/user-preferences';
-import { action, autorun, makeObservable, runInAction } from 'mobx';
+import { action, autorun, makeObservable } from 'mobx';
 import { trans } from 'utils/lang';
 import { presence } from 'utils/string';
 import Slider from './slider';
