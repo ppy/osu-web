@@ -269,7 +269,7 @@ class BBCodeFromDB
 
         foreach ($users as $user) {
             $username = html_entity_decode_better($user['name']);
-            $userId = presence($user['id']) ?? $username;
+            $userId = presence($user['id']) ?? "@{$username}";
             $userLink = link_to_user($userId, $username, null);
             $text = str_replace($user[0], $userLink, $text);
         }

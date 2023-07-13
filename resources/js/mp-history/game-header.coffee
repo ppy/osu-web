@@ -7,7 +7,7 @@ import TimeWithTooltip from 'components/time-with-tooltip'
 import { route } from 'laroute'
 import * as React from 'react'
 import { div, a, span, h1, h2 } from 'react-dom-factories'
-import { getArtist, getTitle } from 'utils/beatmap-helper'
+import { getArtist, getTitle } from 'utils/beatmapset-helper'
 import { trans } from 'utils/lang'
 
 el = React.createElement

@@ -70,13 +70,12 @@ class ChangelogEntry extends Model
         static $ignored = [
             'high priority',
             'resolves issue',
-            'size/xs',
-            'size/s',
-            'size/m',
-            'size/l',
-            'size/xl',
-            'size/xxl',
             'update',
+        ];
+
+        static $ignoredPrefixes = [
+            'priority:',
+            'size/',
         ];
 
         if ($data['repository']['full_name'] === OsuWiki::user().'/'.OsuWiki::repository()) {
@@ -86,7 +85,12 @@ class ChangelogEntry extends Model
         foreach ($data['pull_request']['labels'] as $label) {
             $name = $label['name'];
 
-            if (in_array(strtolower($name), $ignored, true)) {
+            $lowerName = strtolower($name);
+            if (in_array($lowerName, $ignored, true)) {
+                continue;
+            }
+
+            if (starts_with($lowerName, $ignoredPrefixes)) {
                 continue;
             }
 

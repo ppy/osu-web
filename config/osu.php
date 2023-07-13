@@ -38,7 +38,7 @@ return [
         'max_scores' => 100,
 
         'difficulty_cache' => [
-            'server_url' => presence(env('BEATMAPS_DIFFICULTY_CACHE_SERVER_URL')) ?? 'http://localhost:5000',
+            'server_url' => presence(env('BEATMAPS_DIFFICULTY_CACHE_SERVER_URL')) ?? 'http://localhost:5001',
         ],
     ],
     'beatmap_processor' => [
@@ -225,9 +225,6 @@ return [
             'recover' => '/wiki/Help_centre/Account#sign-in',
             'restriction' => presence(env('OSU_URL_USER_RESTRICTION')) ?? '/wiki/Help_centre/Account_restrictions',
             'rules' => '/wiki/Osu!:Rules',
-        ],
-        'rankings' => [
-            'kudosu' => '/p/kudosu',
         ],
         'testflight' => [
             'public' => env('TESTFLIGHT_LINK'),

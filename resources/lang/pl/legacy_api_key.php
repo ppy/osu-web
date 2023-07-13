@@ -4,8 +4,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'new' => '',
-    'none' => '',
+    'new' => 'Nowy klucz starszego API',
+    'none' => 'Brak klucza.',
 
     'docs' => [
         '_' => 'Dokumentacja jest dostępna na :github.',
@@ -23,8 +23,8 @@ return [
     ],
 
     'warning' => [
-        'line1' => '',
-        'line2' => "",
-        'line3' => '',
+        'line1' => 'Nie udostępniaj tego innym użytkownikom.',
+        'line2' => "Jest to równoznaczne z upublicznieniem swojego hasła.",
+        'line3' => 'Twoje konto może zostać przejęte.',
     ],
 ];

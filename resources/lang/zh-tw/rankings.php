@@ -23,7 +23,7 @@ return [
         'multiplayer' => '多人遊戲',
         'performance' => '成績',
         'score' => '總分',
-        'seasons' => '',
+        'seasons' => '季',
     ],
 
     'seasons' => [

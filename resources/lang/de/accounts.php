@@ -42,7 +42,7 @@ return [
                 'user_interests' => 'Interessen',
                 'user_occ' => 'Beschäftigung',
                 'user_twitter' => '',
-                'user_website' => 'webseite',
+                'user_website' => 'Webseite',
             ],
         ],
 

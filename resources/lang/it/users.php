@@ -49,6 +49,7 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => 'Regala osu!supporter',
         'loading' => 'Caricamento...',
         'send_message' => 'Invia messaggio',
     ],

@@ -487,6 +487,9 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         switch ($type) {
             case 'username':
                 $searchUsername = (string) $usernameOrId;
+                if ($searchUsername[0] === '@') {
+                    $searchUsername = substr($searchUsername, 1);
+                }
                 $searchUsernames = [
                     $searchUsername,
                     strtr($searchUsername, ' ', '_'),
@@ -503,11 +506,9 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
                 break;
 
             default:
-                if (ctype_digit((string) $usernameOrId)) {
-                    $user = static::lookup($usernameOrId, 'id', $findAll);
-                }
-
-                return $user ?? static::lookup($usernameOrId, 'username', $findAll);
+                return ctype_digit((string) $usernameOrId)
+                    ? static::lookup($usernameOrId, 'id', $findAll)
+                    : static::lookup($usernameOrId, 'username', $findAll);
         }
 
         if (!$findAll) {
@@ -1219,7 +1220,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function beatmaps()
     {
-        return $this->hasManyThrough(Beatmap::class, Beatmapset::class);
+        return $this->hasMany(Beatmap::class);
     }
 
     public function clients()
@@ -1768,9 +1769,9 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return hash('sha256', $this->user_email).':'.hash('sha256', $this->user_password);
     }
 
-    public function resetSessions(): void
+    public function resetSessions(?string $excludedSessionId = null): void
     {
-        SessionStore::destroy($this->getKey());
+        SessionStore::destroy($this->getKey(), $excludedSessionId);
         $this
             ->tokens()
             ->with('refreshToken')
@@ -1828,11 +1829,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         }
 
         return $this->fresh();
-    }
-
-    public function notificationCount()
-    {
-        return $this->user_unread_privmsg;
     }
 
     public function supportLength()

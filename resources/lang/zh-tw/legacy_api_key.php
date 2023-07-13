@@ -9,7 +9,7 @@ return [
 
     'docs' => [
         '_' => '',
-        'github' => '',
+        'github' => 'GitHub',
     ],
 
     'form' => [
@@ -19,7 +19,7 @@ return [
     'view' => [
         'hide' => '',
         'show' => '',
-        'delete' => '',
+        'delete' => '刪除',
     ],
 
     'warning' => [

@@ -402,6 +402,13 @@ class Channel extends Model
         return $this->validationErrors()->isEmpty();
     }
 
+    public function messageLengthLimit(): int
+    {
+        return $this->isAnnouncement()
+            ? static::ANNOUNCE_MESSAGE_LENGTH_LIMIT
+            : config('osu.chat.message_length_limit');
+    }
+
     public function multiplayerMatch()
     {
         return $this->belongsTo(LegacyMatch::class, 'match_id');
@@ -430,7 +437,7 @@ class Channel extends Model
             throw new API\ChatMessageEmptyException(osu_trans('api.error.chat.empty'));
         }
 
-        $maxLength = $this->isAnnouncement() ? static::ANNOUNCE_MESSAGE_LENGTH_LIMIT : config('osu.chat.message_length_limit');
+        $maxLength = $this->messageLengthLimit();
         if (mb_strlen($content, 'UTF-8') > $maxLength) {
             throw new API\ChatMessageTooLongException(osu_trans('api.error.chat.too_long'));
         }

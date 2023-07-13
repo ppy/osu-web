@@ -49,6 +49,7 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => '',
         'loading' => 'Notiek ielāde...',
         'send_message' => 'nosūtīt ziņu',
     ],

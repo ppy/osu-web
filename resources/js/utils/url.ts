@@ -61,6 +61,10 @@ export function changelogBuild(build: ChangelogBuild): string {
   return route('changelog.build', { build: build.version, stream: build.update_stream.name });
 }
 
+export function giftSupporterTagUrl(user: { username: string }) {
+  return route('store.products.show', { product: 'supporter-tag', target: user.username });
+}
+
 export function isHTML(location: TurbolinksLocation): boolean {
   // Some changelog builds have `.` in their version, failing turbolinks' check.
   return location.isHTML() || startsWith(location.getPath(), '/home/changelog/');

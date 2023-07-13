@@ -4,20 +4,20 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'confirm_new' => '',
-    'new' => '',
-    'none' => '',
+    'confirm_new' => 'Opprett nytt IRC passord?',
+    'new' => 'Nytt passford for gammel IRC',
+    'none' => 'IRC passord ikke satt.',
 
     'form' => [
-        'server_host' => '',
-        'server_port' => '',
-        'token' => '',
-        'username' => '',
+        'server_host' => 'server',
+        'server_port' => 'port',
+        'token' => 'server passord',
+        'username' => 'brukernavn',
     ],
 
     'view' => [
-        'hide' => '',
-        'show' => '',
-        'delete' => '',
+        'hide' => 'Skjul Passord',
+        'show' => 'Vis Passord',
+        'delete' => 'Slett',
     ],
 ];

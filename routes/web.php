@@ -271,6 +271,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::post('clients/{client}/reset-secret', 'ClientsController@resetSecret')->name('clients.reset-secret');
     });
 
+    Route::get('rankings/kudosu', 'RankingController@kudosu')->name('rankings.kudosu');
     Route::get('rankings/{mode?}/{type?}', 'RankingController@index')->name('rankings');
 
     Route::resource('reports', 'ReportsController', ['only' => ['store']]);
@@ -324,9 +325,6 @@ Route::group(['middleware' => ['web']], function () {
 
         Route::get('listing', 'StoreController@getListing')->name('products.index');
         Route::get('invoice/{invoice}', 'StoreController@getInvoice')->name('invoice.show');
-
-        Route::post('update-address', 'StoreController@postUpdateAddress');
-        Route::post('new-address', 'StoreController@postNewAddress');
 
         Route::group(['namespace' => 'Store'], function () {
             Route::post('products/{product}/notification-request', 'NotificationRequestsController@store')->name('notification-request');
@@ -457,6 +455,8 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
 
         Route::get('changelog/{stream}/{build}', 'ChangelogController@build')->name('changelog.build');
         Route::resource('changelog', 'ChangelogController', ['only' => ['index', 'show']]);
+
+        Route::apiResource('events', 'EventsController', ['only' => ['index']]);
 
         Route::group(['as' => 'forum.', 'namespace' => 'Forum'], function () {
             Route::group(['prefix' => 'forums'], function () {
