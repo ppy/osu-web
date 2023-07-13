@@ -30,10 +30,8 @@ user_id                 | number                                                
 
 Name             | Description
 ---------------- | -----------
-disqualify       | |
 hype             | |
 mapper_note      | |
-nomination_reset | |
 praise           | |
 problem          | |
 review           | |
