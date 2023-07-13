@@ -118,7 +118,7 @@ export default class Main {
     $(document).on('click', '.js-audio--toggle-mute', this.toggleMute);
     $(document).on('click', '.js-audio--toggle-autoplay', this.toggleAutoplay);
     $(document).on('click', '.js-audio--nav', this.nav);
-    $(document).on('turbolinks:load', this.onDocumentReady);
+    document.addEventListener('turbolinks:load', this.onDocumentReady);
   }
 
   private readonly checkVolumeSettings = () => {
