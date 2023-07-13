@@ -7,7 +7,6 @@ import { computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import { Name, typeNames } from 'models/notification-type';
 import { NotificationContext } from 'notifications-context';
-import LegacyPm from 'notifications/legacy-pm';
 import NotificationController from 'notifications/notification-controller';
 import NotificationReadButton from 'notifications/notification-read-button';
 import core from 'osu-core-singleton';
@@ -78,7 +77,6 @@ export default class Main extends React.Component<Props, State> {
                 {this.renderMarkAsReadButton()}
               </div>
             </div>
-            {this.renderLegacyPm()}
             <div className='notification-stacks'>
               {this.renderStacks()}
               {this.renderShowMore()}
@@ -142,12 +140,6 @@ export default class Main extends React.Component<Props, State> {
         {trans(`notifications.see_${this.props.only ?? 'all'}`)}
       </a>
     );
-  }
-
-  private renderLegacyPm() {
-    if (this.controller.currentFilter != null) return;
-
-    return <LegacyPm />;
   }
 
   private renderMarkAsReadButton() {

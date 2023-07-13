@@ -169,7 +169,7 @@ export default class Main {
     // old api returns undefined
     promise?.catch((error: { name: string }) => {
       if (Main.ignoredErrors.includes(error.name)) {
-        console.debug('playback failed:', error.name);
+        console.error('playback failed:', error.name);
         this.stop();
         return;
       }
@@ -246,7 +246,7 @@ export default class Main {
       const mainPlayerPlaceholder = document.querySelector('.js-audio--main');
 
       if (mainPlayerPlaceholder == null) {
-        console.debug('page is missing main player placeholder');
+        console.error('page is missing main player placeholder');
         return;
       }
 

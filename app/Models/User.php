@@ -1769,9 +1769,9 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return hash('sha256', $this->user_email).':'.hash('sha256', $this->user_password);
     }
 
-    public function resetSessions(): void
+    public function resetSessions(?string $excludedSessionId = null): void
     {
-        SessionStore::destroy($this->getKey());
+        SessionStore::destroy($this->getKey(), $excludedSessionId);
         $this
             ->tokens()
             ->with('refreshToken')
@@ -1829,11 +1829,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         }
 
         return $this->fresh();
-    }
-
-    public function notificationCount()
-    {
-        return $this->user_unread_privmsg;
     }
 
     public function supportLength()
