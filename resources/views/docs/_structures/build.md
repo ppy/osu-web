@@ -33,7 +33,7 @@ Field             | Type                                | Notes
 ------------------|-------------------------------------|------
 changelog_entries | [ChangelogEntry](#changelogentry)[] | If the build has no changelog entries, a placeholder is generated.
 versions          | [Versions](#build-versions)         | |
-youtube_id        | string                              | |
+youtube_id        | string?                             | |
 
 <div id="build-versions" data-unique="build-versions"></div>
 
