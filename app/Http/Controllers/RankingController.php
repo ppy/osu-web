@@ -223,10 +223,15 @@ class RankingController extends Controller
 
     public function kudosu()
     {
+        static $maxResults = 1000;
+
+        $maxPage = $maxResults / static::PAGE_SIZE;
+        $page = min(get_int(request('page')) ?? 1, $maxPage);
+
         $scores = User::default()
             ->with('country')
             ->orderBy('osu_kudostotal', 'desc')
-            ->paginate(static::PAGE_SIZE, ['*'], 'page', null, 1000);
+            ->paginate(static::PAGE_SIZE, ['*'], 'page', $page, $maxResults);
 
         return ext_view('rankings.kudosu', compact('scores'));
     }
