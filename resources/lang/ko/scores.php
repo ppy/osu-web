@@ -5,7 +5,7 @@
 
 return [
     'show' => [
-        'title' => ':title 에서의 :username 님 [:version]',
+        'title' => ':title에서의 :username님 [:version]',
 
         'beatmap' => [
             'by' => 'by :artist',

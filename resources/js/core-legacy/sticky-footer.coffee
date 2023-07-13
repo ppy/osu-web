@@ -17,7 +17,6 @@ export default class StickyFooter
     $(window).on 'scroll resize', @stickOrUnstick
     $.subscribe 'stickyFooter:check', @throttledStickOrUnstick
     $(document).on 'turbolinks:load', @throttledStickOrUnstick
-    $.subscribe 'osu:page:change', @throttledStickOrUnstick
 
 
   stickOrUnstick: =>

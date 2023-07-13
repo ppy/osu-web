@@ -1,7 +1,6 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { pageChange } from 'utils/page-change'
 import { currentUrl, navigate } from 'utils/turbolinks'
 
 export default class ForumTopicReply
@@ -113,7 +112,6 @@ export default class ForumTopicReply
     else
       @forum.setTotalPosts(@forum.totalPosts() + 1)
       @forum.endPost().insertAdjacentHTML 'afterend', data
-      pageChange()
 
       @forum.endPost().scrollIntoView()
 
@@ -169,4 +167,3 @@ export default class ForumTopicReply
     target.insertBefore(box, target.firstChild)
 
     $input.focus() if inputFocused
-    pageChange() # sync reply box height

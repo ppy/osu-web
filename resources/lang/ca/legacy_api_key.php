@@ -4,27 +4,27 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'new' => '',
-    'none' => '',
+    'new' => 'Nova clau de l\'API heretada',
+    'none' => 'Sense clau.',
 
     'docs' => [
-        '_' => '',
-        'github' => '',
+        '_' => 'La documentació està disponible a :github.',
+        'github' => 'GitHub',
     ],
 
     'form' => [
-        'create' => '',
+        'create' => 'Crear clau',
     ],
 
     'view' => [
-        'hide' => '',
-        'show' => '',
-        'delete' => '',
+        'hide' => 'Amagar clau',
+        'show' => 'Mostrar clau',
+        'delete' => 'Eliminar',
     ],
 
     'warning' => [
-        'line1' => '',
-        'line2' => "",
-        'line3' => '',
+        'line1' => 'No donis això a altres.',
+        'line2' => "És equivalent a donar la teva contrasenya.",
+        'line3' => 'És possible que el teu compte estigui compromès.',
     ],
 ];

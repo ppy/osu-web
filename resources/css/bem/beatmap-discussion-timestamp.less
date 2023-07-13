@@ -11,14 +11,15 @@
 
   // avatar + paddings + margins
   height: (@beatmap-discussion--avatar-size + 20px + 10px);
-
   align-items: center;
-
   display: flex;
-  position: sticky;
-  // 36px is page-extra-tabs height on desktop.
-  // This doesn't work when the new discussion box is visible.
-  top: calc(var(--navbar-height) + 36px);
+
+  &--sticky {
+    position: sticky;
+    // 36px is page-extra-tabs height on desktop.
+    // This doesn't work when the new discussion box is visible.
+    top: calc(var(--navbar-height) + 36px);
+  }
 
   &__icons {
     display: flex;
