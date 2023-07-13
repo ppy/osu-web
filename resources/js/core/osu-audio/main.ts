@@ -111,13 +111,14 @@ export default class Main {
     this.audio.addEventListener('timeupdate', this.onTimeupdate);
     this.audio.addEventListener('volumechange', this.syncVolumeDisplay);
 
-    $(document).on('click', '.js-audio--play', this.onClickPlay);
-    $(document).on('click', '.js-audio--main-play', this.togglePlay);
-    $(document).on(Slider.startEvents, '.js-audio--seek', this.onSeekStart);
-    $(document).on(Slider.startEvents, '.js-audio--volume', this.onVolumeChangeStart);
-    $(document).on('click', '.js-audio--toggle-mute', this.toggleMute);
-    $(document).on('click', '.js-audio--toggle-autoplay', this.toggleAutoplay);
-    $(document).on('click', '.js-audio--nav', this.nav);
+    $(document)
+      .on('click', '.js-audio--play', this.onClickPlay)
+      .on('click', '.js-audio--main-play', this.togglePlay)
+      .on(Slider.startEvents, '.js-audio--seek', this.onSeekStart)
+      .on(Slider.startEvents, '.js-audio--volume', this.onVolumeChangeStart)
+      .on('click', '.js-audio--toggle-mute', this.toggleMute)
+      .on('click', '.js-audio--toggle-autoplay', this.toggleAutoplay)
+      .on('click', '.js-audio--nav', this.nav);
     document.addEventListener('turbolinks:load', this.onDocumentReady);
   }
 
