@@ -21,10 +21,6 @@ export default class MainNotificationIcon extends React.Component<Props> {
     return types.reduce((acc, current) => acc + core.dataStore.notificationStore.unreadStacks.getOrCreateType({ objectType: current }).total, 0);
   }
 
-  private get unreadLegacyPmCount() {
-    return core.currentUser?.unread_pm_count ?? 0;
-  }
-
   constructor(props: Props) {
     super(props);
 
@@ -33,7 +29,7 @@ export default class MainNotificationIcon extends React.Component<Props> {
 
   render() {
     return (<NotificationIcon
-      count={this.unreadCount + this.unreadLegacyPmCount}
+      count={this.unreadCount}
       iconClassName='fas fa-bell'
       ready={core.notificationsWorker.hasData}
       type={this.props.type}

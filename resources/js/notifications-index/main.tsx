@@ -10,7 +10,6 @@ import { observer } from 'mobx-react';
 import { Name as NotificationTypeName, typeNames } from 'models/notification-type';
 import Stack from 'notification-widget/stack';
 import { NotificationContext, NotificationContextData } from 'notifications-context';
-import LegacyPm from 'notifications/legacy-pm';
 import NotificationController from 'notifications/notification-controller';
 import NotificationDeleteButton from 'notifications/notification-delete-button';
 import NotificationReadButton from 'notifications/notification-read-button';
@@ -65,8 +64,6 @@ export class Main extends React.Component {
               </div>
             }
 
-            {this.renderLegacyPm()}
-
             {this.type.isEmpty
               ? this.type.isLoading
                 ? null
@@ -79,12 +76,6 @@ export class Main extends React.Component {
         </div>
       </div>
     );
-  }
-
-  renderLegacyPm() {
-    if (this.controller.currentFilter != null) return;
-
-    return <LegacyPm />;
   }
 
   renderShowMore() {
