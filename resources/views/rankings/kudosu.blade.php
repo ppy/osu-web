@@ -2,10 +2,13 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
+@php
+    $firstScoreRank = $scores->firstItem();
+@endphp
 @extends('rankings.index', [
     'hasFilter' => false,
     'hasMode' => false,
-    'hasPager' => false,
+    'hasPager' => true,
     'type' => 'kudosu',
 ])
 
@@ -27,10 +30,10 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($users as $index => $user)
+            @foreach ($scores as $index => $user)
                 <tr class="{{ class_with_modifiers('ranking-page-table__row', ['inactive' => !$user->isActive()]) }}">
                     <td class="ranking-page-table__column ranking-page-table__column--rank">
-                        #{{ i18n_number_format($index + 1) }}
+                        #{{ i18n_number_format($index + $firstScoreRank) }}
                     </td>
                     <td class="ranking-page-table__column">
                         <div class="ranking-page-table__user-link">
