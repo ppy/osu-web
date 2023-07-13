@@ -24,24 +24,25 @@ video           | boolean                             | |
 
 Those fields are optional.
 
-Field                   | Type                  | Description
------------------------ | --------------------- | -----------
-beatmaps                | [Beatmap](#beatmap)[] | |
-converts                |                       | |
-current_user_attributes |                       | |
-description             |                       | |
-discussions             |                       | |
-events                  |                       | |
-genre                   |                       | |
-has_favourited          | boolean               | |
-language                |                       | |
-nominations             |                       | |
-pack_tags               | string[]              | |
-ratings                 |                       | |
-recent_favourites       |                       | |
-related_users           |                       | |
-user                    |                       | |
-track_id                | number                | |
+Field                   | Type                         | Description
+----------------------- | ---------------------------- | -----------
+beatmaps                | [Beatmap](#beatmap)[]        | |
+converts                |                              | |
+current_nominations     | [Nomination](#nomination)[]? | |
+current_user_attributes |                              | |
+description             |                              | |
+discussions             |                              | |
+events                  |                              | |
+genre                   |                              | |
+has_favourited          | boolean                      | |
+language                |                              | |
+nominations             |                              | |
+pack_tags               | string[]                     | |
+ratings                 |                              | |
+recent_favourites       |                              | |
+related_users           |                              | |
+user                    |                              | |
+track_id                | number                       | |
 
 <div id="beatmapsetcompact-covers" data-unique="beatmapsetcompact-covers"></div>
 
