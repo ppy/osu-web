@@ -4,6 +4,7 @@ return [
     'centili' => [
         'api_key' => env('CENTILI_API_KEY'),
         'secret_key' => env('CENTILI_SECRET_KEY'),
+        'enabled' => get_bool(env('CENTILI_ENABLED')) ?? false,
         'conversion_rate' => (float) presence(env('CENTILI_CONVERSION_RATE'), 100),
         'widget_url' => env('CENTILI_WIDGET_URL'),
     ],
