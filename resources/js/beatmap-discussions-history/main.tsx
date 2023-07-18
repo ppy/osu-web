@@ -7,7 +7,7 @@ import { Discussion } from 'beatmap-discussions/discussion';
 import { DiscussionsContext } from 'beatmap-discussions/discussions-context';
 import BeatmapsetCover from 'components/beatmapset-cover';
 import BeatmapsetDiscussionsBundleJson from 'interfaces/beatmapset-discussions-bundle-json';
-import { isEmpty, keyBy } from 'lodash';
+import { keyBy } from 'lodash';
 import { computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import { deletedUserJson } from 'models/user';
@@ -36,7 +36,7 @@ export default class Main extends React.Component<Props> {
     // skipped discussions
     // - not privileged (deleted discussion)
     // - deleted beatmap
-    return keyBy(this.props.bundle.included_discussions.filter((d) => !isEmpty(d)), 'id');
+    return keyBy(this.props.bundle.included_discussions, 'id');
   }
 
   @computed
