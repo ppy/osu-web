@@ -21,6 +21,24 @@ export interface UpdateOptions {
   watching: boolean;
 }
 
+function parseState(state: string) {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+  return JSON.parse(state, (key, value) => {
+    if (Array.isArray(value)) {
+      if (key === 'discussionCollapsed') {
+        return new Map(value);
+      }
+
+      if (key === 'readPostIds') {
+        return new Set(value);
+      }
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+    return value;
+  });
+}
+
 // FIXME this doesn't make it so the modes with optional beatmapId can pass a beatmapId that gets ignored.
 function filterDiscusionsByMode(discussions: BeatmapsetDiscussionJson[], mode: 'general' | 'timeline', beatmapId: number): BeatmapsetDiscussionJson[];
 function filterDiscusionsByMode(discussions: BeatmapsetDiscussionJson[], mode: 'generalAll' | 'reviews'): BeatmapsetDiscussionJson[];
@@ -256,23 +274,10 @@ export default class DiscussionsState {
 
   constructor(public beatmapset: BeatmapsetWithDiscussionsJson, state?: string) {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const existingState = state == null ? null : JSON.parse(state, (key, value) => {
-      if (Array.isArray(value)) {
-        if (key === 'discussionCollapsed') {
-          return new Map(value);
-        }
-
-        if (key === 'readPostIds') {
-          return new Set(value);
-        }
-      }
-
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-      return value;
-    });
+    const existingState = state == null ? null : parseState(state);
 
     if (existingState != null) {
-      Object.apply(state, existingState);
+      Object.apply(this, existingState);
       this.jumpToDiscussion = true;
     } else {
       for (const discussion of this.beatmapset.discussions) {
