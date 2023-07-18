@@ -22,7 +22,7 @@ import { route } from 'laroute';
 import { isEqual } from 'lodash';
 import { action, autorun, computed, makeObservable, observable, runInAction } from 'mobx';
 import { disposeOnUnmount, observer } from 'mobx-react';
-import { deletedUser } from 'models/user';
+import { deletedUser, deletedUserJson } from 'models/user';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import TextareaAutosize from 'react-autosize-textarea';
@@ -247,7 +247,7 @@ export default class Post extends React.Component<Props> {
       return null;
     }
 
-    const lastEditor = this.props.users[this.props.post.last_editor_id] ?? deletedUser.toJson();
+    const lastEditor = this.props.users[this.props.post.last_editor_id] ?? deletedUserJson;
 
     return (
       <span className={`${bn}__info`}>
