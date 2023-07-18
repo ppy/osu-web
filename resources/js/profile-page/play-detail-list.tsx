@@ -122,8 +122,8 @@ export default class PlayDetailList extends React.Component<Props> {
           titleKey={`users.show.extra.${this.sectionMap.translationKey}.title`}
         />
 
-        <ContainerContext.Provider value={this.containerContextValue}>
-          <div ref={this.listRef} className={`${classWithModifiers('play-detail-list', { 'menu-active': this.activeKey != null })} u-relative`}>
+        <div ref={this.listRef} className={`${classWithModifiers('play-detail-list', { 'menu-active': this.activeKey != null })} u-relative`}>
+          <ContainerContext.Provider value={this.containerContextValue}>
             {(this.uniqueItems).map((score) => (
               <KeyContext.Provider key={score.id} value={score.id}>
                 <PlayDetail
@@ -135,15 +135,15 @@ export default class PlayDetailList extends React.Component<Props> {
                 />
               </KeyContext.Provider>
             ))}
-          </div>
-        </ContainerContext.Provider>
+          </ContainerContext.Provider>
 
-        <ShowMoreLink
-          {...this.scores.pagination}
-          callback={this.onShowMore}
-          data={this.props.section}
-          modifiers='profile-page'
-        />
+          <ShowMoreLink
+            {...this.scores.pagination}
+            callback={this.onShowMore}
+            data={this.props.section}
+            modifiers='profile-page'
+          />
+        </div>
       </>
     );
   }

@@ -88,14 +88,12 @@ export default class Beatmapsets extends React.Component<ExtraPageProps> {
               </div>
             ))}
 
-            <div className='osu-layout__col'>
-              <ShowMoreLink
-                {...state.pagination}
-                callback={this.onShowMore}
-                data={section.urlType}
-                modifiers='profile-page'
-              />
-            </div>
+            <ShowMoreLink
+              {...state.pagination}
+              callback={this.onShowMore}
+              data={section.urlType}
+              modifiers='profile-page'
+            />
           </div>
         )}
       </React.Fragment>

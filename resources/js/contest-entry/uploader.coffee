@@ -73,7 +73,7 @@ export class Uploader extends React.Component
         file = data.files[0]
         extension = /(\.[^.]+)$/.exec(file.name)[1]
 
-        if !_.includes(allowedExtensions, extension)
+        if !_.includes(allowedExtensions, extension.toLowerCase())
           popup trans("contest.entry.wrong_type.#{@props.contest.type}"), 'danger'
           return
 
