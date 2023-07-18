@@ -64,29 +64,34 @@ export default class Main extends React.Component<Props> {
                 <div className='modding-profile-list__empty'>
                   {trans('beatmap_discussions.index.none_found')}
                 </div>
-              ) : (this.props.bundle.discussions.map((discussion) => (
-                <div key={discussion.id} className='modding-profile-list__row'>
-                  <a
-                    className='modding-profile-list__thumbnail'
-                    href={makeUrl({ discussion })}
-                  >
-                    <BeatmapsetCover
-                      beatmapset={this.beatmapsets[discussion.beatmapset_id]}
-                      size='list'
+              ) : (this.props.bundle.discussions.map((discussion) => {
+                // TODO: handle in child component? Refactored state might not have beatmapset here (and uses Map)
+                const beatmapset = this.beatmapsets[discussion.beatmapset_id];
+
+                return beatmapset != null && (
+                  <div key={discussion.id} className='modding-profile-list__row'>
+                    <a
+                      className='modding-profile-list__thumbnail'
+                      href={makeUrl({ discussion })}
+                    >
+                      <BeatmapsetCover
+                        beatmapset={beatmapset}
+                        size='list'
+                      />
+                    </a>
+                    <Discussion
+                      beatmapset={beatmapset}
+                      currentBeatmap={discussion.beatmap_id != null ? this.beatmaps[discussion.beatmap_id] : null}
+                      discussion={discussion}
+                      isTimelineVisible={false}
+                      preview
+                      readonly
+                      showDeleted
+                      users={this.users}
                     />
-                  </a>
-                  <Discussion
-                    beatmapset={this.beatmapsets[discussion.beatmapset_id]}
-                    currentBeatmap={discussion.beatmap_id != null ? this.beatmaps[discussion.beatmap_id] : null}
-                    discussion={discussion}
-                    isTimelineVisible={false}
-                    preview
-                    readonly
-                    showDeleted
-                    users={this.users}
-                  />
-                </div>
-              )))}
+                  </div>
+                );
+              }))}
             </div>
           </BeatmapsContext.Provider>
         </BeatmapsetsContext.Provider>
