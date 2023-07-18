@@ -9,7 +9,7 @@ import UserJson from 'interfaces/user-json';
 import { findLast } from 'lodash';
 import { action, computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
-import { deletedUser } from 'models/user';
+import { deletedUserJson } from 'models/user';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { badgeGroup, canModeratePosts, formatTimestamp, makeUrl, startingPost } from 'utils/beatmapset-discussion-helper';
@@ -114,7 +114,7 @@ export class Discussion extends React.Component<Props> {
 
     this.lastResolvedState = false;
 
-    const user = this.props.users[this.props.discussion.user_id] ?? deletedUser.toJson();
+    const user = this.props.users[this.props.discussion.user_id] ?? deletedUserJson;
     const group = badgeGroup({
       beatmapset: this.props.beatmapset,
       currentBeatmap: this.props.currentBeatmap,
@@ -213,7 +213,7 @@ export class Discussion extends React.Component<Props> {
   }
 
   private renderPost(post: BeatmapsetDiscussionPostJson, type: 'discussion' | 'reply') {
-    const user = this.props.users[post.user_id] ?? deletedUser.toJson();
+    const user = this.props.users[post.user_id] ?? deletedUserJson;
 
     if (post.system) {
       return (

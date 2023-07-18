@@ -20,7 +20,7 @@ import { first, isEmpty, keyBy, last, throttle } from 'lodash';
 import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import Kudosu from 'modding-profile/kudosu';
-import { deletedUser } from 'models/user';
+import { deletedUserJson } from 'models/user';
 import core from 'osu-core-singleton';
 import Badges from 'profile-page/badges';
 import Cover from 'profile-page/cover';
@@ -121,7 +121,7 @@ export default class Main extends React.Component<Props> {
   private get users() {
     const values = keyBy(this.props.users, 'id');
     // eslint-disable-next-line id-blacklist
-    values.null = values.undefined = deletedUser.toJson();
+    values.null = values.undefined = deletedUserJson;
 
     return values;
   }
