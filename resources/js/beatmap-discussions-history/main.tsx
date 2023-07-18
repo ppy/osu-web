@@ -33,9 +33,6 @@ export default class Main extends React.Component<Props> {
 
   @computed
   private get discussions() {
-    // skipped discussions
-    // - not privileged (deleted discussion)
-    // - deleted beatmap
     return keyBy(this.props.bundle.included_discussions, 'id');
   }
 
