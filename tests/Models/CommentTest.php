@@ -69,9 +69,12 @@ class CommentTest extends TestCase
         $this->assertArrayHasKey('parent_id', $comment->validationErrors()->all());
     }
 
-    public function testSetCommentableInvalidType()
+    /**
+     * @dataProvider dataProviderForSetCommentableInvalid
+     */
+    public function testSetCommentableInvalid($type, $id)
     {
-        $comment = new Comment(['commentable_type' => '_invalid', 'commentable_id' => 10]);
+        $comment = new Comment(['commentable_type' => $type, 'commentable_id' => $id]);
         $comment->setCommentable();
 
         $this->assertNull($comment->commentable);
@@ -91,6 +94,16 @@ class CommentTest extends TestCase
             [null, true],
             [false, false],
             [true, true],
+        ];
+    }
+
+    public function dataProviderForSetCommentableInvalid()
+    {
+        return [
+            [null, null],
+            [null, 10],
+            ['beatmapset', null],
+            ['beatmapset', 0],
         ];
     }
 }
