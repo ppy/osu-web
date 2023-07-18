@@ -69,6 +69,14 @@ class CommentTest extends TestCase
         $this->assertArrayHasKey('parent_id', $comment->validationErrors()->all());
     }
 
+    public function testSetCommentableInvalidType()
+    {
+        $comment = new Comment(['commentable_type' => '_invalid', 'commentable_id' => 10]);
+        $comment->setCommentable();
+
+        $this->assertNull($comment->commentable);
+    }
+
     public function testUnpinOnDelete()
     {
         $comment = Comment::factory(['pinned' => true])->create();
