@@ -7,7 +7,7 @@ import NewReview from 'beatmap-discussions/new-review'
 import { ReviewEditorConfigContext } from 'beatmap-discussions/review-editor-config-context'
 import BackToTop from 'components/back-to-top'
 import { route } from 'laroute'
-import { deletedUser } from 'models/user'
+import { deletedUserJson } from 'models/user'
 import core from 'osu-core-singleton'
 import * as React from 'react'
 import { div } from 'react-dom-factories'
@@ -515,7 +515,7 @@ export class Main extends React.PureComponent
   users: =>
     if !@cache.users?
       @cache.users = _.keyBy @state.beatmapset.related_users, 'id'
-      @cache.users[null] = @cache.users[undefined] = deletedUser.toJson()
+      @cache.users[null] = @cache.users[undefined] = deletedUserJson
 
     @cache.users
 
