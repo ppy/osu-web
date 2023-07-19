@@ -64,8 +64,9 @@ export class Discussion extends React.Component<Props> {
 
   private lastResolvedState = false;
 
+  @computed
   private get beatmapset() {
-    return this.props.discussionsState.beatmapset;
+    return this.store.beatmapsets.get(this.props.discussion.beatmapset_id);
   }
 
   private get currentBeatmap() {
@@ -74,23 +75,20 @@ export class Discussion extends React.Component<Props> {
 
   @computed
   private get canBeRepliedTo() {
-    return !downloadLimited(this.beatmapset)
+    return this.beatmapset != null
+      && !downloadLimited(this.beatmapset)
       && (!this.beatmapset.discussion_locked || canModeratePosts())
       && (this.props.discussion.beatmap_id == null || this.currentBeatmap?.deleted_at == null);
   }
 
   @computed
   private get collapsed() {
-    return this.discussionsState.discussionCollapsed.get(this.props.discussion.id) ?? this.discussionsState.discussionDefaultCollapsed;
-  }
-
-  private get discussionsState() {
-    return this.props.discussionsState;
+    return this.uiState.discussionCollapsed.get(this.props.discussion.id) ?? this.uiState.discussionDefaultCollapsed;
   }
 
   @computed
   private get highlighted() {
-    return this.discussionsState.highlightedDiscussionId === this.props.discussion.id;
+    return this.uiState.highlightedDiscussionId === this.props.discussion.id;
   }
 
   private get readPostIds() {
@@ -110,8 +108,16 @@ export class Discussion extends React.Component<Props> {
     return this.props.discussionsState.showDeleted;
   }
 
+  private get store() {
+    return this.props.discussionsState.store;
+  }
+
+  private get uiState() {
+    return this.props.discussionsState;
+  }
+
   private get users() {
-    return this.discussionsState.users;
+    return this.store.users;
   }
 
   constructor(props: Props) {
@@ -129,7 +135,7 @@ export class Discussion extends React.Component<Props> {
 
     this.lastResolvedState = false;
 
-    const user = this.users[this.props.discussion.user_id] ?? deletedUserJson;
+    const user = this.users.get(this.props.discussion.user_id) ?? deletedUserJson;
     const group = badgeGroup({
       beatmapset: this.beatmapset,
       currentBeatmap: this.currentBeatmap,
@@ -182,13 +188,13 @@ export class Discussion extends React.Component<Props> {
 
   @action
   private readonly handleCollapseClick = () => {
-    this.discussionsState.discussionCollapsed.set(this.props.discussion.id, !this.collapsed);
+    this.uiState.discussionCollapsed.set(this.props.discussion.id, !this.collapsed);
   };
 
   @action
   private readonly handleSetHighlight = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.defaultPrevented) return;
-    this.discussionsState.highlightedDiscussionId = this.props.discussion.id;
+    this.uiState.highlightedDiscussionId = this.props.discussion.id;
   };
 
   private isOwner(object: { user_id: number }) {
@@ -227,7 +233,7 @@ export class Discussion extends React.Component<Props> {
   }
 
   private renderPost(post: BeatmapsetDiscussionPostJson, type: 'discussion' | 'reply') {
-    const user = this.users[post.user_id] ?? deletedUserJson;
+    const user = this.users.get(post.user_id) ?? deletedUserJson;
 
     if (post.system) {
       return (
@@ -253,7 +259,7 @@ export class Discussion extends React.Component<Props> {
   private renderPostButtons() {
     if (this.props.preview) return null;
 
-    const user = this.users[this.props.discussion.user_id];
+    const user = this.store.users.get(this.props.discussion.user_id);
 
     return (
       <div className={`${bn}__top-actions`}>
