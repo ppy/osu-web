@@ -2,12 +2,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
-import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import GameMode from 'interfaces/game-mode';
-import { isEmpty, keyBy, maxBy } from 'lodash';
+import { maxBy } from 'lodash';
 import { action, computed, makeObservable, observable, toJS } from 'mobx';
-import { deletedUser } from 'models/user';
+import BeatmapsetDiscussions from 'models/beatmapset-discussions';
+import BeatmapsetDiscussionsStore from 'models/beatmapset-discussions-store';
 import moment from 'moment';
 import core from 'osu-core-singleton';
 import { findDefault, group, sortWithMode } from 'utils/beatmap-helper';
@@ -63,7 +63,6 @@ function isFilter(value: unknown): value is Filter {
 }
 
 export default class DiscussionsState {
-  @observable beatmapsets = new Map<number, BeatmapsetExtendedJson>();
   @observable currentBeatmapId: number;
   @observable currentFilter: Filter = 'total'; // TODO: filter should always be total when page is events (also no highlight)
   @observable currentMode: DiscussionPage = 'general';
@@ -77,27 +76,14 @@ export default class DiscussionsState {
   @observable selectedUserId: number | null = null;
   @observable showDeleted = true;
 
+  @observable store: BeatmapsetDiscussions;
+
   private previousFilter: Filter = 'total';
   private previousPage: DiscussionPage = 'general';
 
   @computed
-  get beatmaps() {
-    const hasDiscussion = new Set<number>();
-    for (const discussion of this.beatmapset.discussions) {
-      if (discussion?.beatmap_id != null) {
-        hasDiscussion.add(discussion.beatmap_id);
-      }
-    }
-
-    return keyBy(
-      this.beatmapset.beatmaps.filter((beatmap) => !isEmpty(beatmap) && (beatmap.deleted_at == null || hasDiscussion.has(beatmap.id))),
-      'id',
-    );
-  }
-
-  @computed
   get currentBeatmap() {
-    return this.beatmaps[this.currentBeatmapId];
+    return this.store.beatmaps.get(this.currentBeatmapId);
   }
 
   @computed
@@ -144,25 +130,6 @@ export default class DiscussionsState {
   }
 
   @computed
-  get discussions() {
-    // skipped discussions
-    // - not privileged (deleted discussion)
-    // - deleted beatmap
-
-    // TODO need some typing to handle the not for show variant
-    // null part of the key so we can use .get(null)
-    const map = new Map<number | null | undefined, BeatmapsetDiscussionJson>();
-
-    for (const discussion of this.beatmapset.discussions) {
-      if (!isEmpty(discussion)) {
-        map.set(discussion.id, discussion);
-      }
-    }
-
-    return map;
-  }
-
-  @computed
   get discussionsCountByPlaymode() {
     const counts: Record<GameMode, number> = {
       fruits: 0,
@@ -183,16 +150,22 @@ export default class DiscussionsState {
 
   @computed
   get discussionStarters() {
-    const userIds = new Set(Object.values(this.nonNullDiscussions)
+    const userIds = new Set(this.nonNullDiscussions
       .filter((discussion) => discussion.message_type !== 'hype')
       .map((discussion) => discussion.user_id));
 
     // TODO: sort user.username.toLocaleLowerCase()
-    return [...userIds.values()].map((userId) => this.users[userId]).sort();
+    return [...userIds].map((userId) => this.store.users.get(userId)).sort();
   }
 
+  @computed
+  get firstBeatmap() {
+    return [...this.store.beatmaps.values()][0];
+  }
+
+  @computed
   get groupedBeatmaps() {
-    return group(Object.values(this.beatmaps));
+    return group([...this.store.beatmaps.values()]);
   }
 
   @computed
@@ -214,28 +187,20 @@ export default class DiscussionsState {
   }
 
   get selectedUser() {
-    return this.selectedUserId != null ? this.users[this.selectedUserId] : null;
+    return this.selectedUserId != null ? this.store.users.get(this.selectedUserId) : null;
   }
 
   get sortedBeatmaps() {
     // TODO
     // filter to only include beatmaps from the current discussion's beatmapset (for the modding profile page)
     // const beatmaps = filter(this.props.beatmaps, this.isCurrentBeatmap);
-    return sortWithMode(Object.values(this.beatmaps));
-  }
-
-  @computed
-  get users() {
-    const value = keyBy(this.beatmapset.related_users, 'id');
-    // eslint-disable-next-line id-blacklist
-    value.null = value.undefined = deletedUser.toJson();
-
-    return value;
+    return sortWithMode([...this.store.beatmaps.values()]);
   }
 
   @computed
   get nonNullDiscussions() {
-    return [...this.discussions.values()].filter((discussion) => discussion != null);
+    // TODO: they're already non-null
+    return [...this.store.discussions.values()].filter((discussion) => discussion != null);
   }
 
   @computed
@@ -259,7 +224,7 @@ export default class DiscussionsState {
         if (discussion.can_be_resolved && !discussion.resolved) {
           if (discussion.beatmap_id == null) return sum++;
 
-          const beatmap = this.beatmaps[discussion.beatmap_id];
+          const beatmap = this.store.beatmaps.get(discussion.beatmap_id);
           if (beatmap != null && beatmap.deleted_at == null) return sum++;
         }
 
@@ -272,7 +237,7 @@ export default class DiscussionsState {
     return this.presentDiscussions.filter((discussion) => discussion.can_be_resolved && !discussion.resolved);
   }
 
-  constructor(public beatmapset: BeatmapsetWithDiscussionsJson, state?: string) {
+  constructor(beatmapset: BeatmapsetWithDiscussionsJson, state?: string) {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const existingState = state == null ? null : parseState(state);
 
@@ -280,7 +245,7 @@ export default class DiscussionsState {
       Object.apply(this, existingState);
       this.jumpToDiscussion = true;
     } else {
-      for (const discussion of this.beatmapset.discussions) {
+      for (const discussion of beatmapset.discussions) {
         if (discussion.posts != null) {
           for (const post of discussion.posts) {
             this.readPostIds.add(post.id);
@@ -289,9 +254,9 @@ export default class DiscussionsState {
       }
     }
 
-    this.beatmapsets.set(beatmapset.id, beatmapset);
+    this.store = new BeatmapsetDiscussionsStore(beatmapset);
 
-    this.currentBeatmapId = (findDefault({ group: this.groupedBeatmaps }) ?? this.beatmaps[0]).id;
+    this.currentBeatmapId = (findDefault({ group: this.groupedBeatmaps }) ?? this.firstBeatmap).id;
 
     // Current url takes priority over saved state.
     const query = parseUrl(null, beatmapset.discussions);
@@ -412,7 +377,7 @@ export default class DiscussionsState {
           if (!discussion.can_be_resolved || discussion.resolved) return false;
 
           if (discussion.parent_id != null) {
-            const parentDiscussion = this.discussions.get(discussion.parent_id);
+            const parentDiscussion = this.store.discussions.get(discussion.parent_id);
             if (parentDiscussion != null && parentDiscussion.message_type === 'review') {
               reviewsWithPending.add(parentDiscussion);
             }
