@@ -122,7 +122,11 @@ class Game extends Model
 
     private function getRulesetId(): int
     {
-        $gameRulesetId = $this->getRawAttribute('play_mode') ?? Beatmap::MODES['osu'];
+        $gameRulesetId = $this->getRawAttribute('play_mode');
+        // There are some entries with invalid ruleset id.
+        if ($gameRulesetId === null || Beatmap::modeStr($gameRulesetId) === null) {
+            $gameRulesetId = Beatmap::MODES['osu'];
+        }
         $beatmapRulesetId = $this->beatmap?->playmode;
 
         // ruleset set at this model is incorrect when playing ruleset
