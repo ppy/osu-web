@@ -6,6 +6,7 @@ import BeatmapsetDiscussionPostJson from 'interfaces/beatmapset-discussion-post-
 import { findLast } from 'lodash';
 import { action, computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
+import BeatmapsetDiscussions from 'models/beatmapset-discussions';
 import { deletedUserJson } from 'models/user';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -28,6 +29,7 @@ interface PropsBase {
   isTimelineVisible: boolean;
   parentDiscussion?: BeatmapsetDiscussionJson | null;
   readonly: boolean;
+  store: BeatmapsetDiscussions;
 }
 
 // preview version is used on pages other than the main discussions page.
@@ -66,7 +68,7 @@ export class Discussion extends React.Component<Props> {
 
   @computed
   private get beatmapset() {
-    return this.store.beatmapsets.get(this.props.discussion.beatmapset_id);
+    return this.props.store.beatmapsets.get(this.props.discussion.beatmapset_id);
   }
 
   private get currentBeatmap() {
@@ -108,16 +110,12 @@ export class Discussion extends React.Component<Props> {
     return this.props.discussionsState.showDeleted;
   }
 
-  private get store() {
-    return this.props.discussionsState.store;
-  }
-
   private get uiState() {
     return this.props.discussionsState;
   }
 
   private get users() {
-    return this.store.users;
+    return this.props.store.users;
   }
 
   constructor(props: Props) {
@@ -259,7 +257,7 @@ export class Discussion extends React.Component<Props> {
   private renderPostButtons() {
     if (this.props.preview) return null;
 
-    const user = this.store.users.get(this.props.discussion.user_id);
+    const user = this.props.store.users.get(this.props.discussion.user_id);
 
     return (
       <div className={`${bn}__top-actions`}>
