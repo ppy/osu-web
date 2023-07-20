@@ -7,11 +7,14 @@ declare(strict_types=1);
 
 namespace Tests\Controllers;
 
+use App\Libraries\User\CountryChangeTarget;
 use App\Mail\UserEmailUpdated;
 use App\Mail\UserPasswordUpdated;
+use App\Models\Country;
 use App\Models\User;
 use App\Models\UserProfileCustomization;
 use App\Models\WeakPassword;
+use Database\Factories\UserFactory;
 use Hash;
 use Mail;
 use Tests\TestCase;
@@ -62,6 +65,26 @@ class AccountControllerTest extends TestCase
                 'order' => $newOrderWithInvalid,
             ])
             ->assertJsonFragment(['profile_order' => $newOrder]);
+    }
+
+    /**
+     * @dataProvider dataProviderForUpdateCountry
+     *
+     * More complete tests are done through CountryChange and CountryChangeTarget.
+     */
+    public function testUpdateCountry(int $months, bool $success): void
+    {
+        $user = $this->user();
+        $targetCountry = Country::factory()->create()->getKey();
+        UserFactory::createRecentCountryHistory($user, $targetCountry, $months);
+
+        $resultCountry = $success ? $targetCountry : $user->country_acronym;
+
+        $this->actingAsVerified($user)
+            ->json('PUT', route('account.country', ['country_acronym' => $targetCountry]))
+            ->assertStatus($success ? 200 : 403);
+
+        $this->assertSame($user->fresh()->country_acronym, $resultCountry);
     }
 
     public function testUpdateEmail()
@@ -188,6 +211,14 @@ class AccountControllerTest extends TestCase
                 ],
             ])
             ->assertStatus(422);
+    }
+
+    public function dataProviderForUpdateCountry(): array
+    {
+        return [
+            [CountryChangeTarget::minMonths(), true],
+            [CountryChangeTarget::minMonths() - 1, false],
+        ];
     }
 
     protected function setUp(): void

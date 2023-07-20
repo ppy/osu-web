@@ -17,6 +17,7 @@ use App\Models\Forum;
 use App\Models\LegacyMatch;
 use App\Models\UserAchievement;
 use App\Models\UserClient;
+use App\Models\UserCountryHistory;
 use App\Models\UserDonation;
 use App\Models\UserGroup;
 use App\Models\UserRelation;
@@ -211,6 +212,16 @@ class ModelCompositePrimaryKeysTest extends TestCase
                 ],
                 [],
                 ['user_id', [0, 1], 2],
+            ],
+            [
+                UserCountryHistory::class,
+                [
+                    'user_id' => 0,
+                    'year_month' => '2301',
+                    'country_acronym' => 'JP',
+                ],
+                ['user_id' => 1],
+                ['count', [1, 2], 3],
             ],
             [
                 UserDonation::class,
