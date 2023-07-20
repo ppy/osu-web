@@ -6,7 +6,7 @@ import { ReviewEditorConfigContext } from 'beatmap-discussions/review-editor-con
 import BackToTop from 'components/back-to-top';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import { route } from 'laroute';
-import { action, makeObservable, observable } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -49,6 +49,11 @@ export default class Main extends React.Component<Props> {
   private readonly timeouts: Record<string, number> = {};
   private xhrCheckNew?: JQuery.jqXHR<InitialData>;
 
+  @computed
+  get discussions() {
+    return [...this.discussionsState.store.discussions.values()];
+  }
+
   constructor(props: Props) {
     super(props);
 
@@ -88,16 +93,18 @@ export default class Main extends React.Component<Props> {
       <>
         <Header
           discussionsState={this.discussionsState}
+          store={this.discussionsState.store}
         />
         <ModeSwitcher
           discussionsState={this.discussionsState}
           innerRef={this.modeSwitcherRef}
+          store={this.discussionsState.store}
         />
         {this.discussionsState.currentMode === 'events' ? (
           <Events
-            discussions={this.discussionsState.discussions}
+            discussions={this.discussionsState.store.discussions}
             events={this.discussionsState.beatmapset.events}
-            users={this.discussionsState.users}
+            users={this.discussionsState.store.users}
           />
         ) : (
           <ReviewEditorConfigContext.Provider value={this.reviewsConfig}>
@@ -118,6 +125,7 @@ export default class Main extends React.Component<Props> {
             )}
             <Discussions
               discussionsState={this.discussionsState}
+              store={this.discussionsState.store}
             />
           </ReviewEditorConfigContext.Provider>
         )}
@@ -153,7 +161,7 @@ export default class Main extends React.Component<Props> {
 
   @action
   private readonly jumpTo = (_event: unknown, { id, postId }: { id: number; postId?: number }) => {
-    const discussion = this.discussionsState.discussions.get(id);
+    const discussion = this.discussionsState.store.discussions.get(id);
 
     if (discussion == null) return;
 
@@ -194,7 +202,7 @@ export default class Main extends React.Component<Props> {
     if (!(e.currentTarget instanceof HTMLLinkElement)) return;
 
     const url = e.currentTarget.href;
-    const parsedUrl = parseUrl(url, this.discussionsState.beatmapset.discussions);
+    const parsedUrl = parseUrl(url, this.discussions);
 
     if (parsedUrl == null) return;
 
@@ -207,7 +215,7 @@ export default class Main extends React.Component<Props> {
   };
 
   private readonly jumpToDiscussionByHash = () => {
-    const target = parseUrl(null, this.discussionsState.beatmapset.discussions);
+    const target = parseUrl(null, this.discussions);
 
     if (target?.discussionId != null) {
       this.jumpTo(null, { id: target.discussionId, postId: target.postId });

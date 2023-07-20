@@ -17,7 +17,8 @@ import { route } from 'laroute';
 import { isEqual } from 'lodash';
 import { action, autorun, computed, makeObservable, observable, runInAction } from 'mobx';
 import { disposeOnUnmount, observer } from 'mobx-react';
-import { deletedUser, deletedUserJson } from 'models/user';
+import BeatmapsetDiscussions from 'models/beatmapset-discussions';
+import { deletedUserJson } from 'models/user';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import TextareaAutosize from 'react-autosize-textarea';
@@ -41,6 +42,7 @@ interface Props {
   read: boolean;
   readonly: boolean;
   resolvedSystemPostId: number;
+  store: BeatmapsetDiscussions;
   type: string;
   user: UserJson;
 }
@@ -66,7 +68,7 @@ export default class Post extends React.Component<Props> {
   }
 
   private get users() {
-    return this.props.discussionsState.users;
+    return this.props.store.users;
   }
 
   @computed
@@ -223,11 +225,7 @@ export default class Post extends React.Component<Props> {
 
   private renderDeletedBy() {
     if (this.deleteModel.deleted_at == null) return null;
-    const user = (
-      this.deleteModel.deleted_by_id != null
-        ? this.users[this.deleteModel.deleted_by_id]
-        : null
-    ) ?? deletedUser;
+    const user = this.users.get(this.deleteModel.deleted_by_id) ?? deletedUserJson;
 
     return (
       <span className={`${bn}__info`}>
@@ -253,7 +251,7 @@ export default class Post extends React.Component<Props> {
       return null;
     }
 
-    const lastEditor = this.users[this.props.post.last_editor_id] ?? deletedUserJson;
+    const lastEditor = this.users.get(this.props.post.last_editor_id) ?? deletedUserJson;
 
     return (
       <span className={`${bn}__info`}>

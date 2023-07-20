@@ -18,6 +18,7 @@ import { route } from 'laroute';
 import { kebabCase, snakeCase } from 'lodash';
 import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
+import BeatmapsetDiscussions from 'models/beatmapset-discussions';
 import { deletedUser } from 'models/user';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -35,6 +36,7 @@ import { UserFilter } from './user-filter';
 
 interface Props {
   discussionsState: DiscussionsState;
+  store: BeatmapsetDiscussions;
 }
 
 const statTypes: Filter[] = ['mine', 'mapperNotes', 'resolved', 'pending', 'praises', 'deleted', 'total'];
@@ -73,7 +75,7 @@ export class Header extends React.Component<Props> {
   }
 
   private get users() {
-    return this.discussionsState.users;
+    return this.props.store.users;
   }
 
   constructor(props: Props) {

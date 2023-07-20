@@ -21,7 +21,7 @@ type VoteType = typeof voteTypes[number];
 interface Props {
   cannotVote: boolean;
   discussion: BeatmapsetDiscussionJsonForShow;
-  users: Partial<Record<number | string, UserJson>>;
+  users: Map<number | null | undefined, UserJson>;
 }
 
 @observer
@@ -68,7 +68,7 @@ export default class DiscussionVoteButtons extends React.Component<Props> {
       ? trans(`beatmaps.discussions.votes.none.${type}`)
       : `${trans(`beatmaps.discussions.votes.latest.${type}`)}:`;
 
-    const users = this.props.discussion.votes.voters[type].map((id) => this.props.users[id] ?? { id });
+    const users = this.props.discussion.votes.voters[type].map((id) => this.props.users.get(id) ?? { id });
 
     return renderToStaticMarkup(<UserListPopup count={count} title={title} users={users} />);
   }

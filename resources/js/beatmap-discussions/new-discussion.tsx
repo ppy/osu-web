@@ -450,7 +450,7 @@ export class NewDiscussion extends React.Component<Props> {
 
   @action
   private readonly setSticky = (sticky: boolean) => {
-    this.props.discussionsState.pinnedNewDiscussion = sticky
+    this.props.discussionsState.pinnedNewDiscussion = sticky;
     this.updateStickToHeight();
   };
 

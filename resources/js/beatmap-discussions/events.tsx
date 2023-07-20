@@ -12,7 +12,7 @@ import { trans } from 'utils/lang';
 interface Props {
   discussions: Map<number | null | undefined, BeatmapsetDiscussionJson>;
   events: BeatmapsetEventJson[];
-  users: Partial<Record<string, UserJson>>;
+  users: Map<number | null | undefined, UserJson>;
 }
 
 export class Events extends React.PureComponent<Props> {

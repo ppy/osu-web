@@ -1,15 +1,31 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
-import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
-import UserJson from 'interfaces/user-json';
 import { isEmpty } from 'lodash';
 import { computed, makeObservable } from 'mobx';
 import BeatmapsetDiscussions from './beatmapset-discussions';
-import { deletedUserJson } from './user';
+
+function mapBy<T, K extends keyof T>(array: T[], key: K) {
+  const map = new Map<T[K], T>();
+
+  for (const value of array) {
+    map.set(value[key], value);
+  }
+
+  return map;
+}
+
+function mapByWithNulls<T, K extends keyof T>(array: T[], key: K) {
+  const map = new Map<T[K] | null | undefined, T>();
+
+  for (const value of array) {
+    map.set(value[key], value);
+  }
+
+  return map;
+}
 
 export default class BeatmapsetDiscussionsStore implements BeatmapsetDiscussions {
   @computed
@@ -21,15 +37,10 @@ export default class BeatmapsetDiscussionsStore implements BeatmapsetDiscussions
       }
     }
 
-    const map = new Map<number, BeatmapExtendedJson>();
-
-    for (const beatmap of this.beatmapset.beatmaps) {
-      if (!isEmpty(beatmap) && (beatmap.deleted_at == null || hasDiscussion.has(beatmap.id))) {
-        map.set(beatmap.id, beatmap);
-      }
-    }
-
-    return map;
+    return mapBy(
+      this.beatmapset.beatmaps.filter((beatmap) => !isEmpty(beatmap) && (beatmap.deleted_at == null || hasDiscussion.has(beatmap.id))),
+      'id',
+    );
   }
 
   @computed
@@ -43,29 +54,13 @@ export default class BeatmapsetDiscussionsStore implements BeatmapsetDiscussions
     // - not privileged (deleted discussion)
     // - deleted beatmap
 
-    // null part of the key so we can use .get(null)
-    const map = new Map<number | null | undefined, BeatmapsetDiscussionJson>();
-
-    for (const discussion of this.beatmapset.discussions) {
-      if (!isEmpty(discussion)) {
-        map.set(discussion.id, discussion);
-      }
-    }
-
-    return map;
+    // allow null for the key so we can use .get(null)
+    return mapByWithNulls(this.beatmapset.discussions.filter((discussion) => !isEmpty(discussion)), 'id');
   }
 
   @computed
   get users() {
-    const map = new Map<number | null | undefined, UserJson>();
-    map.set(null, deletedUserJson);
-    map.set(undefined, deletedUserJson);
-
-    for (const user of this.beatmapset.related_users) {
-      map.set(user.id, user);
-    }
-
-    return map;
+    return mapByWithNulls(this.beatmapset.related_users, 'id');
   }
 
   constructor(private beatmapset: BeatmapsetWithDiscussionsJson) {

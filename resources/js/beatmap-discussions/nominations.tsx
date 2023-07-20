@@ -19,7 +19,8 @@ import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { action, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
-import { deletedUser } from 'models/user';
+import BeatmapsetDiscussions from 'models/beatmapset-discussions';
+import { deletedUser, deletedUserJson } from 'models/user';
 import moment from 'moment';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -40,6 +41,7 @@ const nominatorsVisibleBeatmapStatuses = Object.freeze(new Set(['wip', 'pending'
 
 interface Props {
   discussionsState: DiscussionsState;
+  store: BeatmapsetDiscussions;
 }
 
 type XhrType = 'delete' | 'discussionLock' | 'removeFromLoved';
@@ -68,7 +70,7 @@ export class Nominations extends React.Component<Props> {
   }
 
   private get discussions() {
-    return this.props.discussionsState.discussions;
+    return this.props.store.discussions;
   }
 
   private get events() {
@@ -88,7 +90,7 @@ export class Nominations extends React.Component<Props> {
   }
 
   private get users() {
-    return this.props.discussionsState.users;
+    return this.props.store.users;
   }
 
   constructor(props: Props) {
@@ -255,7 +257,7 @@ export class Nominations extends React.Component<Props> {
   };
 
   private parseEventData(event: BeatmapsetEventJson) {
-    const user = event.user_id != null ? this.users[event.user_id] : null;
+    const user = this.users.get(event.user_id) ?? deletedUserJson;
     const discussionId = discussionIdFromEvent(event);
     const discussion = this.discussions.get(discussionId);
     const post = discussion != null ? startingPost(discussion) : null;

@@ -12,6 +12,7 @@ import { trans } from 'utils/lang';
 import { Discussion } from './discussion';
 import DiscussionMode from './discussion-mode';
 import DiscussionsState from './discussions-state';
+import BeatmapsetDiscussions from 'models/beatmapset-discussions';
 
 const bn = 'beatmap-discussions';
 
@@ -52,6 +53,7 @@ type Sort = 'created_at' | 'updated_at' | 'timeline';
 
 interface Props {
   discussionsState: DiscussionsState;
+  store: BeatmapsetDiscussions;
 }
 
 @observer
@@ -63,19 +65,23 @@ export class Discussions extends React.Component<Props> {
     timeline: 'timeline',
   };
 
-  private get discussionsState() {
-    return this.props.discussionsState;
-  }
-
   @computed
   private get currentSort() {
     if (this.discussionsState.currentMode === 'events') return 'timeline'; // just return any valid mode.
     return this.sort[this.discussionsState.currentMode];
   }
 
+  private get discussionsState() {
+    return this.props.discussionsState;
+  }
+
   @computed
   private get isTimelineVisible() {
     return this.discussionsState.currentMode === 'timeline' && this.currentSort === 'timeline';
+  }
+
+  private get store() {
+    return this.props.store;
   }
 
   @computed
@@ -141,7 +147,7 @@ export class Discussions extends React.Component<Props> {
   };
 
   private readonly renderDiscussionPage = (discussion: BeatmapsetDiscussionJsonForShow) => {
-    const parentDiscussion = this.discussionsState.discussions.get(discussion.parent_id);
+    const parentDiscussion = this.store.discussions.get(discussion.parent_id);
 
     return (
       <div
@@ -153,6 +159,7 @@ export class Discussions extends React.Component<Props> {
           discussionsState={this.discussionsState}
           isTimelineVisible={this.isTimelineVisible}
           parentDiscussion={parentDiscussion?.message_type === 'review' ? parentDiscussion : null}
+          store={this.store}
         />
       </div>
     );

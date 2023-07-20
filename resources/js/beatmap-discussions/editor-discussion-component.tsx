@@ -4,6 +4,7 @@
 import { EmbedElement } from 'editor';
 import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import { Observer } from 'mobx-react';
+import BeatmapsetDiscussions from 'models/beatmapset-discussions';
 import * as React from 'react';
 import { Transforms } from 'slate';
 import { RenderElementProps } from 'slate-react';
@@ -34,6 +35,7 @@ interface Props extends RenderElementProps {
   editMode?: boolean;
   element: EmbedElement;
   readOnly?: boolean;
+  store: BeatmapsetDiscussions;
 }
 
 export default class EditorDiscussionComponent extends React.Component<Props> {
@@ -45,7 +47,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
   tooltipEl?: HTMLElement;
 
   get discussions() {
-    return this.props.discussionsState.discussions;
+    return this.props.store.discussions;
   }
 
   componentDidMount = () => {

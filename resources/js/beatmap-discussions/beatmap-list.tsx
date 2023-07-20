@@ -5,7 +5,7 @@ import BeatmapListItem from 'components/beatmap-list-item';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import UserJson from 'interfaces/user-json';
-import { deletedUser } from 'models/user';
+import { deletedUserJson } from 'models/user';
 import * as React from 'react';
 import { blackoutToggle } from 'utils/blackout';
 import { classWithModifiers } from 'utils/css';
@@ -19,7 +19,7 @@ interface Props {
   currentBeatmap: BeatmapExtendedJson;
   getCount: (beatmap: BeatmapExtendedJson) => number | undefined;
   onSelectBeatmap: (beatmapId: number) => void;
-  users: Partial<Record<number, UserJson>>;
+  users: Map<number | null | undefined, UserJson>;
 }
 
 interface State {
@@ -86,7 +86,7 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
           beatmap={beatmap}
           beatmapUrl={this.props.createLink(beatmap)}
           beatmapset={this.props.beatmapset}
-          mapper={this.props.users[beatmap.user_id] ?? deletedUser}
+          mapper={this.props.users.get(beatmap.user_id) ?? deletedUserJson}
           showNonGuestMapper={false}
         />
         {count != null &&

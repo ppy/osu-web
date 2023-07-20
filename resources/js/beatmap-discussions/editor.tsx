@@ -9,6 +9,7 @@ import BeatmapsetDiscussionJson, { BeatmapsetDiscussionJsonForShow } from 'inter
 import isHotkey from 'is-hotkey';
 import { route } from 'laroute';
 import { observer } from 'mobx-react';
+import BeatmapsetDiscussions from 'models/beatmapset-discussions';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { createEditor, Editor as SlateEditor, Element as SlateElement, Node as SlateNode, NodeEntry, Range, Text, Transforms } from 'slate';
@@ -50,6 +51,7 @@ interface Props {
   editing: boolean;
   onChange?: () => void;
   onFocus?: () => void;
+  store: BeatmapsetDiscussions;
 }
 
 interface State {
@@ -88,7 +90,7 @@ export default class Editor extends React.Component<Props, State> {
   private xhr: JQuery.jqXHR<BeatmapsetDiscussionJsonForShow> | null = null;
 
   private get beatmaps() {
-    return this.props.discussionsState.beatmaps;
+    return this.props.store.beatmaps;
   }
 
   private get beatmapset() {
@@ -96,7 +98,7 @@ export default class Editor extends React.Component<Props, State> {
   }
 
   private get discussions() {
-    return this.props.discussionsState.discussions;
+    return this.props.store.discussions;
   }
 
   private get editMode() {
@@ -374,6 +376,7 @@ export default class Editor extends React.Component<Props, State> {
             editMode={this.editMode}
             element={element}
             readOnly={this.state.posting}
+            store={this.props.store}
             {...otherProps}
           />
         );
@@ -489,7 +492,7 @@ export default class Editor extends React.Component<Props, State> {
           }
 
           if (node.beatmapId != null) {
-            const beatmap = this.beatmaps[node.beatmapId];
+            const beatmap = this.beatmaps.get(node.beatmapId);
             if (beatmap == null || beatmap.deleted_at != null) {
               Transforms.setNodes(editor, { beatmapId: undefined }, { at: path });
             }

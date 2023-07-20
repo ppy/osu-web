@@ -20,8 +20,8 @@ import { linkHtml, openBeatmapEditor } from 'utils/url';
 import { getInt } from './math';
 
 interface BadgeGroupParams {
-  beatmapset: BeatmapsetJson;
-  currentBeatmap: BeatmapJson | null;
+  beatmapset?: BeatmapsetJson;
+  currentBeatmap?: BeatmapJson | null;
   discussion: BeatmapsetDiscussionJson;
   user?: UserJson;
 }

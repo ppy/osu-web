@@ -6,6 +6,7 @@ import SelectOptions, { OptionRenderProps } from 'components/select-options';
 import UserJson from 'interfaces/user-json';
 import { action } from 'mobx';
 import { observer } from 'mobx-react';
+import BeatmapsetDiscussions from 'models/beatmapset-discussions';
 import * as React from 'react';
 import { makeUrl, parseUrl } from 'utils/beatmapset-discussion-helper';
 import { groupColour } from 'utils/css';
@@ -30,6 +31,7 @@ interface Option {
 
 interface Props {
   discussionsState: DiscussionsState;
+  store: BeatmapsetDiscussions;
 }
 
 function mapUserProperties(user: UserJson): Option {
@@ -53,7 +55,7 @@ export class UserFilter extends React.Component<Props> {
   }
 
   private get options() {
-    return [allUsers, ...Object.values(this.props.discussionsState.users).map(mapUserProperties)];
+    return [allUsers, ...[...this.props.store.users.values()].map(mapUserProperties)];
   }
 
   render() {

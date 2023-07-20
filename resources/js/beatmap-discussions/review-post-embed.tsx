@@ -30,8 +30,9 @@ export function postEmbedModifiers(discussion: BeatmapsetDiscussionJson) {
 const bn = 'beatmap-discussion-review-post-embed-preview';
 
 export const ReviewPostEmbed = ({ data, discussionsState }: Props) => {
-  const beatmaps = discussionsState.beatmaps;
-  const discussion = discussionsState.discussions.get(data.discussion_id);
+  const store = discussionsState.store;
+  const beatmaps = store.beatmaps;
+  const discussion = store.discussions.get(data.discussion_id);
 
   if (discussion == null) {
     // if a discussion has been deleted or is otherwise missing
@@ -48,7 +49,7 @@ export const ReviewPostEmbed = ({ data, discussionsState }: Props) => {
     return null;
   }
 
-  const beatmap = discussion.beatmap_id == null ? undefined : beatmaps[discussion.beatmap_id];
+  const beatmap = discussion.beatmap_id == null ? undefined : beatmaps.get(discussion.beatmap_id);
 
   const messageTypeIcon = () => {
     const type = discussion.message_type;

@@ -83,7 +83,12 @@ export default class DiscussionsState {
 
   @computed
   get currentBeatmap() {
-    return this.store.beatmaps.get(this.currentBeatmapId);
+    const beatmap = this.store.beatmaps.get(this.currentBeatmapId);
+    if (beatmap == null) {
+      throw new Error('missing beatmap');
+    }
+
+    return beatmap;
   }
 
   @computed
@@ -187,7 +192,7 @@ export default class DiscussionsState {
   }
 
   get selectedUser() {
-    return this.selectedUserId != null ? this.store.users.get(this.selectedUserId) : null;
+    return this.store.users.get(this.selectedUserId);
   }
 
   get sortedBeatmaps() {

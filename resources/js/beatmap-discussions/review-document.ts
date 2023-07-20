@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { BeatmapsetDiscussionJsonForBundle, BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
+import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import remarkParse from 'remark-parse';
 import disableConstructs from 'remark-plugins/disable-constructs';
 import { Element, Text } from 'slate';
@@ -30,7 +30,7 @@ function isText(node: UnistNode): node is TextNode {
   return node.type === 'text';
 }
 
-export function parseFromJson(json: string, discussions: Map<number | null | undefined, BeatmapsetDiscussionJsonForBundle | BeatmapsetDiscussionJsonForShow>) {
+export function parseFromJson(json: string, discussions: Map<number | null | undefined, BeatmapsetDiscussionJson>) {
   let srcDoc: BeatmapDiscussionReview;
 
   try {
