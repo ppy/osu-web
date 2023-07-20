@@ -15,7 +15,7 @@ import { ProfileExtraPage, profileExtraPages } from 'interfaces/user-extended-js
 import UserMonthlyPlaycountJson from 'interfaces/user-monthly-playcount-json';
 import UserReplaysWatchedCountJson from 'interfaces/user-replays-watched-count-json';
 import { route } from 'laroute';
-import { debounce, keyBy, pullAt } from 'lodash';
+import { debounce, pullAt } from 'lodash';
 import { action, makeObservable, observable, runInAction } from 'mobx';
 import core from 'osu-core-singleton';
 import { error, onErrorWithCallback } from 'utils/ajax';
@@ -94,7 +94,7 @@ interface State {
 }
 
 export default class Controller {
-  readonly achievements: Partial<Record<string, AchievementJson>>;
+  readonly achievements: Map<number, AchievementJson>;
   readonly currentMode: GameMode;
   @observable currentPage: Page = 'main';
   readonly debouncedSetDisplayCoverUrl = debounce((url: string | null) => this.setDisplayCoverUrl(url), 300);
@@ -130,7 +130,10 @@ export default class Controller {
       this.state = JSON.parse(savedStateJson) as State;
     }
 
-    this.achievements = keyBy(initialData.achievements, 'id');
+    this.achievements = new Map();
+    for (const achievement of initialData.achievements) {
+      this.achievements.set(achievement.id, achievement);
+    }
     this.currentMode = initialData.current_mode;
     this.scoresNotice = initialData.scores_notice;
     this.displayCoverUrl = this.state.user.cover.url;
