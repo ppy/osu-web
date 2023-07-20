@@ -3,6 +3,7 @@
 
 import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
+import BeatmapsetDiscussions from 'models/beatmapset-discussions';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { downloadLimited } from 'utils/beatmapset-helper';
@@ -15,6 +16,7 @@ interface Props {
   discussionsState: DiscussionsState;
   innerRef: React.RefObject<HTMLDivElement>;
   stickTo?: React.RefObject<HTMLDivElement>;
+  store: BeatmapsetDiscussions;
 }
 
 @observer
@@ -94,6 +96,7 @@ export default class NewReview extends React.Component<Props> {
                   <Editor
                     discussionsState={this.props.discussionsState}
                     onFocus={this.handleFocus}
+                    store={this.props.store}
                   />
                 ) : <div className='beatmap-discussion-new__login-required'>{placeholder}</div>}
               </div>

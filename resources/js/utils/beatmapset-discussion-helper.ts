@@ -89,7 +89,7 @@ export function badgeGroup({ beatmapset, currentBeatmap, discussion, user }: Bad
     return null;
   }
 
-  if (user.id === beatmapset.user_id) {
+  if (user.id === beatmapset?.user_id) {
     return mapperGroup;
   }
 

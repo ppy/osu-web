@@ -1,19 +1,16 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { BeatmapsContext } from 'beatmap-discussions/beatmaps-context';
-import { BeatmapsetsContext } from 'beatmap-discussions/beatmapsets-context';
-import { DiscussionsContext } from 'beatmap-discussions/discussions-context';
 import HeaderV4 from 'components/header-v4';
 import ProfilePageExtraTab from 'components/profile-page-extra-tab';
 import ProfileTournamentBanner from 'components/profile-tournament-banner';
 import UserProfileContainer from 'components/user-profile-container';
 import { BeatmapsetDiscussionsBundleJsonForModdingProfile } from 'interfaces/beatmapset-discussions-bundle-json';
-import { first, isEmpty, keyBy, last, throttle } from 'lodash';
+import { first, last, throttle } from 'lodash';
 import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import Kudosu from 'modding-profile/kudosu';
-import { deletedUserJson } from 'models/user';
+import BeatmapsetDiscussionsBundleForModdingProfileStore from 'models/beatmapset-discussions-for-modding-profile-store';
 import core from 'osu-core-singleton';
 import Badges from 'profile-page/badges';
 import Cover from 'profile-page/cover';
@@ -43,8 +40,12 @@ function validPage(page: unknown) {
   return null;
 }
 
+interface Props {
+  bundle: BeatmapsetDiscussionsBundleJsonForModdingProfile;
+}
+
 @observer
-export default class Main extends React.Component<BeatmapsetDiscussionsBundleJsonForModdingProfile> {
+export default class Main extends React.Component<Props> {
   @observable private currentPage: Page = 'main';
   private readonly disposers = new Set<(() => void) | undefined>();
   private readonly eventId = `users-modding-history-index-${nextVal()}`;
@@ -59,25 +60,8 @@ export default class Main extends React.Component<BeatmapsetDiscussionsBundleJso
   };
   private readonly pages = React.createRef<HTMLDivElement>();
   private readonly pagesOffsetRef = React.createRef<HTMLDivElement>();
+  @observable private readonly store = new BeatmapsetDiscussionsBundleForModdingProfileStore(this.props.bundle);
   private readonly tabs = React.createRef<HTMLDivElement>();
-
-  @computed
-  private get beatmaps() {
-    return keyBy(this.props.beatmaps, 'id');
-  }
-
-  @computed
-  private get beatmapsets() {
-    return keyBy(this.props.beatmapsets, 'id');
-  }
-
-  @computed
-  private get discussions() {
-    // skipped discussions
-    // - not privileged (deleted discussion)
-    // - deleted beatmap
-    return keyBy(this.props.discussions.filter((d) => !isEmpty(d)), 'id');
-  }
 
   private get pagesOffset() {
     return this.pagesOffsetRef.current;
@@ -87,21 +71,16 @@ export default class Main extends React.Component<BeatmapsetDiscussionsBundleJso
     return core.stickyHeader.headerHeight + (this.pagesOffset?.getBoundingClientRect().height ?? 0);
   }
 
+  private get user() {
+    return this.props.bundle.user;
+  }
+
   @computed
   private get userDiscussions() {
-    return this.props.discussions.filter((d) => d.user_id === this.props.user.id);
+    return [...this.store.discussions.values()].filter((d) => d.user_id === this.props.bundle.user.id);
   }
 
-  @computed
-  private get users() {
-    const values = keyBy(this.props.users, 'id');
-    // eslint-disable-next-line id-blacklist
-    values.null = values.undefined = deletedUserJson;
-
-    return values;
-  }
-
-  constructor(props: BeatmapsetDiscussionsBundleJsonForModdingProfile) {
+  constructor(props: Props) {
     super(props);
 
     makeObservable(this);
@@ -130,96 +109,90 @@ export default class Main extends React.Component<BeatmapsetDiscussionsBundleJso
 
   render() {
     return (
-      <DiscussionsContext.Provider value={this.discussions}>
-        <BeatmapsetsContext.Provider value={this.beatmapsets}>
-          <BeatmapsContext.Provider value={this.beatmaps}>
-            <UserProfileContainer user={this.props.user}>
-              <HeaderV4
-                backgroundImage={this.props.user.cover.url}
-                links={headerLinks(this.props.user, 'modding')}
-                theme='users'
-              />
-              <div className='osu-page osu-page--generic-compact'>
-                <div ref={this.pageRefs.main} data-page-id='main'>
-                  <Cover
-                    coverUrl={this.props.user.cover.url}
-                    currentMode={this.props.user.playmode}
-                    user={this.props.user}
-                  />
-                  {!this.props.user.is_bot && (
-                    <>
-                      <ProfileTournamentBanner banner={this.props.user.active_tournament_banner} />
-                      <div className='profile-detail'>
-                        <Badges badges={this.props.user.badges} />
-                        <Stats user={this.props.user} />
-                      </div>
-                    </>
-                  )}
-                  <DetailBar user={this.props.user} />
+      <UserProfileContainer user={this.user}>
+        <HeaderV4
+          backgroundImage={this.user.cover.url}
+          links={headerLinks(this.user, 'modding')}
+          theme='users'
+        />
+        <div className='osu-page osu-page--generic-compact'>
+          <div ref={this.pageRefs.main} data-page-id='main'>
+            <Cover
+              coverUrl={this.user.cover.url}
+              currentMode={this.user.playmode}
+              user={this.user}
+            />
+            {!this.user.is_bot && (
+              <>
+                <ProfileTournamentBanner banner={this.user.active_tournament_banner} />
+                <div className='profile-detail'>
+                  <Badges badges={this.user.badges} />
+                  <Stats user={this.user} />
                 </div>
-                <div
-                  ref={this.pagesOffsetRef}
-                  className='page-extra-tabs page-extra-tabs--profile-page'
+              </>
+            )}
+            <DetailBar user={this.user} />
+          </div>
+          <div
+            ref={this.pagesOffsetRef}
+            className='page-extra-tabs page-extra-tabs--profile-page'
+          >
+            <div
+              ref={this.tabs}
+              className='page-mode page-mode--profile-page-extra'
+            >
+              {moddingExtraPages.map((page) => (
+                <a
+                  key={page}
+                  className='page-mode__item'
+                  data-page-id={page}
+                  href={`#${page}`}
+                  onClick={this.tabClick}
                 >
-                  <div
-                    ref={this.tabs}
-                    className='page-mode page-mode--profile-page-extra'
-                  >
-                    {moddingExtraPages.map((page) => (
-                      <a
-                        key={page}
-                        className='page-mode__item'
-                        data-page-id={page}
-                        href={`#${page}`}
-                        onClick={this.tabClick}
-                      >
-                        <ProfilePageExtraTab
-                          currentPage={this.currentPage}
-                          page={page}
-                        />
-                      </a>
-                    ))}
-                  </div>
-                </div>
-                <div ref={this.pages} className='user-profile-pages'>
-                  {moddingExtraPages.map((name) => (
-                    <div
-                      key={name}
-                      ref={this.pageRefs[name]}
-                      data-page-id={name}
-                    >
-                      {this.extraPage(name)}
-                    </div>
-                  ))}
-                </div>
+                  <ProfilePageExtraTab
+                    currentPage={this.currentPage}
+                    page={page}
+                  />
+                </a>
+              ))}
+            </div>
+          </div>
+          <div ref={this.pages} className='user-profile-pages'>
+            {moddingExtraPages.map((name) => (
+              <div
+                key={name}
+                ref={this.pageRefs[name]}
+                data-page-id={name}
+              >
+                {this.extraPage(name)}
               </div>
-            </UserProfileContainer>
-          </BeatmapsContext.Provider>
-        </BeatmapsetsContext.Provider>
-      </DiscussionsContext.Provider>
+            ))}
+          </div>
+        </div>
+      </UserProfileContainer>
     );
   }
 
   private extraPage = (name: ModdingExtraPage) => {
     switch (name) {
       case 'discussions':
-        return <Discussions discussions={this.userDiscussions} user={this.props.user} users={this.users} />;
+        return <Discussions discussions={this.userDiscussions} store={this.store} user={this.user} />;
       case 'events':
-        return <Events events={this.props.events} user={this.props.user} users={this.users} />;
+        return <Events events={this.props.bundle.events} user={this.user} users={this.store.users} />;
       case 'kudosu':
         return (
           <Kudosu
-            expectedInitialCount={this.props.perPage.recentlyReceivedKudosu}
-            initialKudosu={this.props.extras.recentlyReceivedKudosu}
+            expectedInitialCount={this.props.bundle.perPage.recentlyReceivedKudosu}
+            initialKudosu={this.props.bundle.extras.recentlyReceivedKudosu}
             name={name}
-            total={this.props.user.kudosu.total}
-            userId={this.props.user.id}
+            total={this.user.kudosu.total}
+            userId={this.user.id}
           />
         );
       case 'posts':
-        return <Posts posts={this.props.posts} user={this.props.user} users={this.users} />;
+        return <Posts posts={this.props.bundle.posts} store={this.store} user={this.user} />;
       case 'votes':
-        return <Votes users={this.users} votes={this.props.votes} />;
+        return <Votes users={this.props.bundle.users} votes={this.props.bundle.votes} />;
       default:
         switchNever(name);
         throw new Error('unsupported extra page');

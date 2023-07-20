@@ -308,7 +308,7 @@ export class Nominations extends React.Component<Props> {
         <BeatmapsOwnerEditor
           beatmapset={this.beatmapset}
           onClose={this.handleToggleBeatmapsOwnerEditor}
-          users={this.users}
+          users={this.props.store.users}
         />
       </Modal>
     );
@@ -551,7 +551,7 @@ export class Nominations extends React.Component<Props> {
       }
 
       if (event.type === 'nominate' && event.user_id != null) {
-        const user = this.users[event.user_id]; // for typing
+        const user = this.users.get(event.user_id);
         if (user != null) {
           nominators.unshift(user);
         }

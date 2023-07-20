@@ -16,11 +16,9 @@
 @section ("script")
     @parent
 
-    @foreach ($jsonChunks as $name => $data)
-        <script id="json-{{$name}}" type="application/json">
-            {!! json_encode($data) !!}
-        </script>
-    @endforeach
+    <script id="json-bundle" type="application/json">
+        {!! json_encode($jsonChunks) !!}
+    </script>
 
     @include('layout._react_js', ['src' => 'js/modding-profile.js'])
 @endsection

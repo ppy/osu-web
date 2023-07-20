@@ -76,7 +76,7 @@ export class Nominator extends React.Component<Props> {
   }
 
   private get users() {
-    return this.props.discussionsState.users;
+    return this.props.discussionsState.store.users;
   }
 
   private get userCanNominate() {
@@ -132,7 +132,7 @@ export class Nominator extends React.Component<Props> {
 
   private hasFullNomination(mode: GameMode) {
     return this.nominationEvents.some((event) => {
-      const user = event.user_id != null ? this.users[event.user_id] : null;
+      const user = this.users.get(event.user_id);
 
       return event.type === 'nominate' && event.comment != null
         ? event.comment.modes.includes(mode) && isUserFullNominator(user, mode)

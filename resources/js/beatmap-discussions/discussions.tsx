@@ -5,6 +5,7 @@ import IconExpand from 'components/icon-expand';
 import BeatmapsetDiscussionJson, { BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
 import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
+import BeatmapsetDiscussions from 'models/beatmapset-discussions';
 import * as React from 'react';
 import { canModeratePosts } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers } from 'utils/css';
@@ -12,7 +13,6 @@ import { trans } from 'utils/lang';
 import { Discussion } from './discussion';
 import DiscussionMode from './discussion-mode';
 import DiscussionsState from './discussions-state';
-import BeatmapsetDiscussions from 'models/beatmapset-discussions';
 
 const bn = 'beatmap-discussions';
 

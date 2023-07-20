@@ -242,7 +242,7 @@ export default class DiscussionsState {
     return this.presentDiscussions.filter((discussion) => discussion.can_be_resolved && !discussion.resolved);
   }
 
-  constructor(beatmapset: BeatmapsetWithDiscussionsJson, state?: string) {
+  constructor(public beatmapset: BeatmapsetWithDiscussionsJson, state?: string) {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const existingState = state == null ? null : parseState(state);
 

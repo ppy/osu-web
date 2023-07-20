@@ -9,7 +9,7 @@ import BeatmapsetEventJson from 'interfaces/beatmapset-event-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { kebabCase } from 'lodash';
-import { deletedUser } from 'models/user';
+import { deletedUser, deletedUserJson } from 'models/user';
 import * as React from 'react';
 import { makeUrl } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers } from 'utils/css';
@@ -31,7 +31,7 @@ interface Props {
   event: BeatmapsetEventJson;
   mode: EventViewMode;
   time?: string;
-  users: Partial<Record<string, UserJson>>;
+  users: Map<number | null | undefined, UserJson>;
 }
 
 export default class BeatmapsetEvent extends React.PureComponent<Props> {
@@ -129,11 +129,10 @@ export default class BeatmapsetEvent extends React.PureComponent<Props> {
         url = makeUrl({ discussion: this.discussion });
         text = firstPostMessage != null ? <PlainTextPreview markdown={firstPostMessage} /> : '[no preview]';
 
-        const discussionUser = this.props.users[this.discussion.user_id];
+        const discussionUser = this.props.users.get(this.discussion.user_id) ?? deletedUserJson;
 
-        if (discussionUser != null) {
-          discussionUserLink = <UserLink user={discussionUser} />;
-        }
+        // TODO: remove link for deleted user?
+        discussionUserLink = <UserLink user={discussionUser} />;
       }
 
       discussionLink = <a className='js-beatmap-discussion--jump' href={url}>{`#${this.discussionId}`}</a>;
@@ -148,7 +147,7 @@ export default class BeatmapsetEvent extends React.PureComponent<Props> {
     }
 
     if (this.props.event.user_id != null) {
-      const userData = this.props.users[this.props.event.user_id];
+      const userData = this.props.users.get(this.props.event.user_id);
       user = userData != null ? <UserLink user={userData} /> : deletedUser.username;
     }
 

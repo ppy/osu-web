@@ -3,14 +3,14 @@
 
 import { PersistedBeatmapDiscussionReview } from 'interfaces/beatmap-discussion-review';
 import { BeatmapsetDiscussionMessagePostJson } from 'interfaces/beatmapset-discussion-post-json';
+import BeatmapsetDiscussions from 'models/beatmapset-discussions';
 import * as React from 'react';
 import DiscussionMessage from './discussion-message';
-import DiscussionsState from './discussions-state';
 import { ReviewPostEmbed } from './review-post-embed';
 
 interface Props {
-  discussionsState: DiscussionsState;
   post: BeatmapsetDiscussionMessagePostJson;
+  store: BeatmapsetDiscussions;
 }
 
 export class ReviewPost extends React.Component<Props> {
@@ -29,7 +29,7 @@ export class ReviewPost extends React.Component<Props> {
           }
           case 'embed':
             if (block.discussion_id) {
-              docBlocks.push(<ReviewPostEmbed key={index} data={{ discussion_id: block.discussion_id }} discussionsState={this.props.discussionsState} />);
+              docBlocks.push(<ReviewPostEmbed key={index} data={{ discussion_id: block.discussion_id }} store={this.props.store} />);
             }
             break;
         }

@@ -113,6 +113,7 @@ export default class Main extends React.Component<Props> {
                 discussionsState={this.discussionsState}
                 innerRef={this.newDiscussionRef}
                 stickTo={this.modeSwitcherRef}
+                store={this.discussionsState.store}
               />
             ) : (
               <NewDiscussion

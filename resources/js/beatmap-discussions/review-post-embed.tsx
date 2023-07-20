@@ -4,18 +4,18 @@
 import { discussionTypeIcons } from 'beatmap-discussions/discussion-type';
 import { BeatmapIcon } from 'components/beatmap-icon';
 import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
+import BeatmapsetDiscussions from 'models/beatmapset-discussions';
 import * as React from 'react';
 import { formatTimestamp, makeUrl, startingPost } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 import DiscussionMessage from './discussion-message';
-import DiscussionsState from './discussions-state';
 
 interface Props {
   data: {
     discussion_id: number;
   };
-  discussionsState: DiscussionsState;
+  store: BeatmapsetDiscussions;
 }
 
 export function postEmbedModifiers(discussion: BeatmapsetDiscussionJson) {
@@ -29,8 +29,7 @@ export function postEmbedModifiers(discussion: BeatmapsetDiscussionJson) {
 
 const bn = 'beatmap-discussion-review-post-embed-preview';
 
-export const ReviewPostEmbed = ({ data, discussionsState }: Props) => {
-  const store = discussionsState.store;
+export const ReviewPostEmbed = ({ data, store }: Props) => {
   const beatmaps = store.beatmaps;
   const discussion = store.discussions.get(data.discussion_id);
 

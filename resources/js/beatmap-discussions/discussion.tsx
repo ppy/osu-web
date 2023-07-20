@@ -25,7 +25,7 @@ import { UserCard } from './user-card';
 const bn = 'beatmap-discussion';
 
 interface PropsBase {
-  discussionsState: DiscussionsState;
+  discussionsState: DiscussionsState | null; // TODO: make optional?
   isTimelineVisible: boolean;
   parentDiscussion?: BeatmapsetDiscussionJson | null;
   readonly: boolean;
@@ -68,11 +68,11 @@ export class Discussion extends React.Component<Props> {
 
   @computed
   private get beatmapset() {
-    return this.props.store.beatmapsets.get(this.props.discussion.beatmapset_id);
+    return this.props.discussionsState?.beatmapset;
   }
 
   private get currentBeatmap() {
-    return this.props.discussionsState.currentBeatmap;
+    return this.props.discussionsState?.currentBeatmap;
   }
 
   @computed
@@ -85,16 +85,16 @@ export class Discussion extends React.Component<Props> {
 
   @computed
   private get collapsed() {
-    return this.uiState.discussionCollapsed.get(this.props.discussion.id) ?? this.uiState.discussionDefaultCollapsed;
+    return this.props.discussionsState?.discussionCollapsed.get(this.props.discussion.id) ?? this.props.discussionsState?.discussionDefaultCollapsed ?? false;
   }
 
   @computed
   private get highlighted() {
-    return this.uiState.highlightedDiscussionId === this.props.discussion.id;
+    return this.props.discussionsState?.highlightedDiscussionId === this.props.discussion.id;
   }
 
   private get readPostIds() {
-    return this.props.discussionsState.readPostIds;
+    return this.props.discussionsState?.readPostIds;
   }
 
   @computed
@@ -107,11 +107,7 @@ export class Discussion extends React.Component<Props> {
   }
 
   private get showDeleted() {
-    return this.props.discussionsState.showDeleted;
-  }
-
-  private get uiState() {
-    return this.props.discussionsState;
+    return this.props.discussionsState?.showDeleted ?? true;
   }
 
   private get users() {
@@ -186,13 +182,13 @@ export class Discussion extends React.Component<Props> {
 
   @action
   private readonly handleCollapseClick = () => {
-    this.uiState.discussionCollapsed.set(this.props.discussion.id, !this.collapsed);
+    this.props.discussionsState?.discussionCollapsed.set(this.props.discussion.id, !this.collapsed);
   };
 
   @action
   private readonly handleSetHighlight = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (e.defaultPrevented) return;
-    this.uiState.highlightedDiscussionId = this.props.discussion.id;
+    if (e.defaultPrevented || this.props.discussionsState == null) return;
+    this.props.discussionsState.highlightedDiscussionId = this.props.discussion.id;
   };
 
   private isOwner(object: { user_id: number }) {
@@ -220,7 +216,7 @@ export class Discussion extends React.Component<Props> {
         <div className={`${bn}__replies`}>
           {this.props.discussion.posts.slice(1).map(this.renderReply)}
         </div>
-        {this.canBeRepliedTo && (
+        {this.props.discussionsState != null && this.canBeRepliedTo && (
           <NewReply
             discussion={this.props.discussion}
             discussionsState={this.props.discussionsState}
@@ -248,6 +244,7 @@ export class Discussion extends React.Component<Props> {
         read={this.isRead(post)}
         readonly={this.props.readonly}
         resolvedSystemPostId={this.resolvedSystemPostId}
+        store={this.props.store}
         type={type}
         user={user}
       />

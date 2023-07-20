@@ -19,7 +19,7 @@ import { kebabCase, snakeCase } from 'lodash';
 import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import BeatmapsetDiscussions from 'models/beatmapset-discussions';
-import { deletedUser } from 'models/user';
+import { deletedUserJson } from 'models/user';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { makeUrl } from 'utils/beatmapset-discussion-helper';
@@ -134,7 +134,7 @@ export class Header extends React.Component<Props> {
           <div className={`${bn}__details ${bn}__details--full`}>
             <BeatmapsetMapping
               beatmapset={this.beatmapset}
-              user={this.discussionsState.users[this.beatmapset.user_id]}
+              user={this.users.get(this.beatmapset.user_id)}
             />
           </div>
           <div className={`${bn}__details`}>
@@ -152,6 +152,7 @@ export class Header extends React.Component<Props> {
         <div className={`${bn}__content ${bn}__content--nomination`}>
           <Nominations
             discussionsState={this.discussionsState}
+            store={this.props.store}
           />
         </div>
       </div>
@@ -203,6 +204,7 @@ export class Header extends React.Component<Props> {
             <div className={`${bn}__filter-group ${bn}__filter-group--stats`}>
               <UserFilter
                 discussionsState={this.discussionsState}
+                store={this.props.store}
               />
               <div className={`${bn}__stats`}>
                 {statTypes.map(this.renderType)}
@@ -220,7 +222,7 @@ export class Header extends React.Component<Props> {
                   <span>
                     <StringWithComponent
                       mappings={{
-                        user: <UserLink user={this.users[this.currentBeatmap.user_id] ?? deletedUser} />,
+                        user: <UserLink user={this.users.get(this.currentBeatmap.user_id) ?? deletedUserJson} />,
                       }}
                       pattern={trans('beatmaps.discussions.guest')}
                     />

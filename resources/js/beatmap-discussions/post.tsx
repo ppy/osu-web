@@ -37,7 +37,7 @@ const bn = 'beatmap-discussion-post';
 
 interface Props {
   discussion: BeatmapsetDiscussionJson;
-  discussionsState: DiscussionsState;
+  discussionsState: DiscussionsState | null; // TODO: make optional
   post: BeatmapsetDiscussionMessagePostJson;
   read: boolean;
   readonly: boolean;
@@ -60,11 +60,11 @@ export default class Post extends React.Component<Props> {
   @observable private xhr: JQuery.jqXHR<BeatmapsetWithDiscussionsJson> | null = null;
 
   private get beatmap() {
-    return this.props.discussionsState.currentBeatmap;
+    return this.props.discussionsState?.currentBeatmap;
   }
 
   private get beatmapset() {
-    return this.props.discussionsState.beatmapset;
+    return this.props.discussionsState?.beatmapset;
   }
 
   private get users() {
@@ -74,7 +74,7 @@ export default class Post extends React.Component<Props> {
   @computed
   private get canEdit() {
     // no information available (non-discussion pages), return false.
-    if (!('discussion_locked' in this.beatmapset)) {
+    if (this.beatmapset == null) {
       return false;
     }
 
@@ -208,7 +208,7 @@ export default class Post extends React.Component<Props> {
   };
 
   private readonly handleMarkRead = () => {
-    this.props.discussionsState.markAsRead(this.props.post.id);
+    this.props.discussionsState?.markAsRead(this.props.post.id);
   };
 
   @action
@@ -281,7 +281,7 @@ export default class Post extends React.Component<Props> {
   }
 
   private renderMessageEditor() {
-    if (!this.canEdit) return;
+    if (this.props.discussionsState == null || !this.canEdit) return;
     const canPost = !this.isPosting && this.canSave;
 
     const document = this.props.post.message;
@@ -296,6 +296,7 @@ export default class Post extends React.Component<Props> {
             document={document}
             editing={this.editing}
             onChange={this.handleEditorChange}
+            store={this.props.store}
           />
         ) : (
           <>
@@ -340,7 +341,7 @@ export default class Post extends React.Component<Props> {
       <div className={`${bn}__message-container`}>
         {this.isReview ? (
           <div className={`${bn}__message`}>
-            <ReviewPost discussionsState={this.props.discussionsState} post={this.props.post} />
+            <ReviewPost post={this.props.post} store={this.props.store} />
           </div>
         ) : (
           <div ref={this.messageBodyRef} className={`${bn}__message`}>
@@ -474,7 +475,7 @@ export default class Post extends React.Component<Props> {
 
     this.xhr.done((beatmapset) => runInAction(() => {
       this.editing = false;
-      this.props.discussionsState.update({ beatmapset });
+      this.props.discussionsState?.update({ beatmapset });
     }))
       .fail(onError)
       .always(action(() => this.xhr = null));

@@ -5,27 +5,8 @@ import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import { isEmpty } from 'lodash';
 import { computed, makeObservable } from 'mobx';
+import { mapBy, mapByWithNulls } from 'utils/map';
 import BeatmapsetDiscussions from './beatmapset-discussions';
-
-function mapBy<T, K extends keyof T>(array: T[], key: K) {
-  const map = new Map<T[K], T>();
-
-  for (const value of array) {
-    map.set(value[key], value);
-  }
-
-  return map;
-}
-
-function mapByWithNulls<T, K extends keyof T>(array: T[], key: K) {
-  const map = new Map<T[K] | null | undefined, T>();
-
-  for (const value of array) {
-    map.set(value[key], value);
-  }
-
-  return map;
-}
 
 export default class BeatmapsetDiscussionsStore implements BeatmapsetDiscussions {
   @computed
