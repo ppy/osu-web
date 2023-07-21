@@ -108,7 +108,7 @@ class BeatmapsetQueryParser
             $startTime = Carbon::create($m['year'], $m['month'], $m['day'], 0, 0, 0, 'UTC');
             $endTimeFunction = 'addDays';
         } else {
-            $startTime = parse_time_to_carbon($value);
+            $startTime = parse_time_to_carbon($value)?->utc();
             $endTimeFunction = 'addSeconds';
         }
 
