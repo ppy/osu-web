@@ -40,12 +40,8 @@ function validPage(page: unknown) {
   return null;
 }
 
-interface Props {
-  bundle: BeatmapsetDiscussionsBundleJsonForModdingProfile;
-}
-
 @observer
-export default class Main extends React.Component<Props> {
+export default class Main extends React.Component<BeatmapsetDiscussionsBundleJsonForModdingProfile> {
   @observable private currentPage: Page = 'main';
   private readonly disposers = new Set<(() => void) | undefined>();
   private readonly eventId = `users-modding-history-index-${nextVal()}`;
@@ -60,7 +56,7 @@ export default class Main extends React.Component<Props> {
   };
   private readonly pages = React.createRef<HTMLDivElement>();
   private readonly pagesOffsetRef = React.createRef<HTMLDivElement>();
-  @observable private readonly store = new BeatmapsetDiscussionsBundleForModdingProfileStore(this.props.bundle);
+  @observable private readonly store = new BeatmapsetDiscussionsBundleForModdingProfileStore(this.props);
   private readonly tabs = React.createRef<HTMLDivElement>();
 
   private get pagesOffset() {
@@ -72,15 +68,15 @@ export default class Main extends React.Component<Props> {
   }
 
   private get user() {
-    return this.props.bundle.user;
+    return this.props.user;
   }
 
   @computed
   private get userDiscussions() {
-    return [...this.store.discussions.values()].filter((d) => d.user_id === this.props.bundle.user.id);
+    return [...this.store.discussions.values()].filter((d) => d.user_id === this.props.user.id);
   }
 
-  constructor(props: Props) {
+  constructor(props: BeatmapsetDiscussionsBundleJsonForModdingProfile) {
     super(props);
 
     makeObservable(this);
@@ -178,21 +174,21 @@ export default class Main extends React.Component<Props> {
       case 'discussions':
         return <Discussions discussions={this.userDiscussions} store={this.store} user={this.user} />;
       case 'events':
-        return <Events events={this.props.bundle.events} user={this.user} users={this.store.users} />;
+        return <Events events={this.props.events} user={this.user} users={this.store.users} />;
       case 'kudosu':
         return (
           <Kudosu
-            expectedInitialCount={this.props.bundle.perPage.recentlyReceivedKudosu}
-            initialKudosu={this.props.bundle.extras.recentlyReceivedKudosu}
+            expectedInitialCount={this.props.perPage.recentlyReceivedKudosu}
+            initialKudosu={this.props.extras.recentlyReceivedKudosu}
             name={name}
             total={this.user.kudosu.total}
             userId={this.user.id}
           />
         );
       case 'posts':
-        return <Posts posts={this.props.bundle.posts} store={this.store} user={this.user} />;
+        return <Posts posts={this.props.posts} store={this.store} user={this.user} />;
       case 'votes':
-        return <Votes users={this.props.bundle.users} votes={this.props.bundle.votes} />;
+        return <Votes users={this.props.users} votes={this.props.votes} />;
       default:
         switchNever(name);
         throw new Error('unsupported extra page');
