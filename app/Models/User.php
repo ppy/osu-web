@@ -948,7 +948,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             return $isGroup;
         }
 
-        $groupModes = $this->findUserGroup($group, true)->playmodes;
+        $groupModes = $this->findUserGroup($group, true)->actualRulesets();
 
         return in_array($playmode, $groupModes ?? [], true);
     }
@@ -1690,21 +1690,21 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             $modes = [];
 
             if ($this->isLimitedBN()) {
-                $playmodes = $this->findUserGroup(app('groups')->byIdentifier('bng_limited'), true)->playmodes ?? [];
+                $playmodes = $this->findUserGroup(app('groups')->byIdentifier('bng_limited'), true)->actualRulesets();
                 foreach ($playmodes as $playmode) {
                     $modes[$playmode] = 'limited';
                 }
             }
 
             if ($this->isFullBN()) {
-                $playmodes = $this->findUserGroup(app('groups')->byIdentifier('bng'), true)->playmodes ?? [];
+                $playmodes = $this->findUserGroup(app('groups')->byIdentifier('bng'), true)->actualRulesets();
                 foreach ($playmodes as $playmode) {
                     $modes[$playmode] = 'full';
                 }
             }
 
             if ($this->isNAT()) {
-                $playmodes = $this->findUserGroup(app('groups')->byIdentifier('nat'), true)->playmodes ?? [];
+                $playmodes = $this->findUserGroup(app('groups')->byIdentifier('nat'), true)->actualRulesets();
                 foreach ($playmodes as $playmode) {
                     $modes[$playmode] = 'full';
                 }
