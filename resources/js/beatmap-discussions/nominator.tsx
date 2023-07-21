@@ -10,6 +10,7 @@ import { route } from 'laroute';
 import { forEachRight, map, uniq } from 'lodash';
 import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
+import BeatmapsetDiscussions from 'models/beatmapset-discussions';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { onError } from 'utils/ajax';
@@ -20,6 +21,7 @@ import DiscussionsState from './discussions-state';
 
 interface Props {
   discussionsState: DiscussionsState;
+  store: BeatmapsetDiscussions;
 }
 
 const bn = 'nomination-dialog';
@@ -76,7 +78,7 @@ export class Nominator extends React.Component<Props> {
   }
 
   private get users() {
-    return this.props.discussionsState.store.users;
+    return this.props.store.users;
   }
 
   private get userCanNominate() {

@@ -7,7 +7,6 @@ import GameMode from 'interfaces/game-mode';
 import { maxBy } from 'lodash';
 import { action, computed, makeObservable, observable, toJS } from 'mobx';
 import BeatmapsetDiscussions from 'models/beatmapset-discussions';
-import BeatmapsetDiscussionsStore from 'models/beatmapset-discussions-store';
 import moment from 'moment';
 import core from 'osu-core-singleton';
 import { findDefault, group, sortWithMode } from 'utils/beatmap-helper';
@@ -75,8 +74,6 @@ export default class DiscussionsState {
   @observable readPostIds = new Set<number>();
   @observable selectedUserId: number | null = null;
   @observable showDeleted = true;
-
-  @observable store: BeatmapsetDiscussions;
 
   private previousFilter: Filter = 'total';
   private previousPage: DiscussionPage = 'general';
@@ -242,7 +239,7 @@ export default class DiscussionsState {
     return this.presentDiscussions.filter((discussion) => discussion.can_be_resolved && !discussion.resolved);
   }
 
-  constructor(public beatmapset: BeatmapsetWithDiscussionsJson, state?: string) {
+  constructor(public beatmapset: BeatmapsetWithDiscussionsJson, private store: BeatmapsetDiscussions, state?: string) {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const existingState = state == null ? null : parseState(state);
 
@@ -258,8 +255,6 @@ export default class DiscussionsState {
         }
       }
     }
-
-    this.store = new BeatmapsetDiscussionsStore(beatmapset);
 
     this.currentBeatmapId = (findDefault({ group: this.groupedBeatmaps }) ?? this.firstBeatmap).id;
 
@@ -336,7 +331,12 @@ export default class DiscussionsState {
   }
 
   toJsonString() {
-    return JSON.stringify(toJS(this), (_key, value) => {
+    return JSON.stringify(toJS(this), (key, value) => {
+      // don't serialize constructor dependencies, they'll be handled separately.
+      if (key === 'beatmapset' || key === 'store') {
+        return undefined;
+      }
+
       if (value instanceof Set || value instanceof Map) {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-return
         return Array.from(value);

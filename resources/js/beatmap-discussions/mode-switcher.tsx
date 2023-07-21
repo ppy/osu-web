@@ -5,7 +5,6 @@ import StringWithComponent from 'components/string-with-component';
 import { snakeCase } from 'lodash';
 import { action } from 'mobx';
 import { observer } from 'mobx-react';
-import BeatmapsetDiscussions from 'models/beatmapset-discussions';
 import * as React from 'react';
 import { makeUrl } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers } from 'utils/css';
@@ -16,7 +15,6 @@ import DiscussionsState from './discussions-state';
 interface Props {
   discussionsState: DiscussionsState;
   innerRef: React.RefObject<HTMLDivElement>;
-  store: BeatmapsetDiscussions;
 }
 
 const selectedClassName = 'page-mode-link--is-active';

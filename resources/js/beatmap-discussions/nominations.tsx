@@ -126,6 +126,7 @@ export class Nominations extends React.Component<Props> {
             <div className={`${bn}__item`}>
               <Nominator
                 discussionsState={this.props.discussionsState}
+                store={this.props.store}
               />
             </div>
           </div>

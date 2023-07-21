@@ -8,6 +8,7 @@ import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussion
 import { route } from 'laroute';
 import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
+import BeatmapsetDiscussionsStore from 'models/beatmapset-discussions-store';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { defaultFilter, parseUrl, stateFromDiscussion } from 'utils/beatmapset-discussion-helper';
@@ -35,6 +36,11 @@ interface Props {
   initial: InitialData;
 }
 
+function parseJson<T>(json?: string) {
+  if (json == null) return;
+  return JSON.parse(json) as T;
+}
+
 @observer
 export default class Main extends React.Component<Props> {
   @observable private readonly discussionsState: DiscussionsState;
@@ -46,18 +52,26 @@ export default class Main extends React.Component<Props> {
   private readonly newDiscussionRef = React.createRef<HTMLDivElement>();
   private nextTimeout = checkNewTimeoutDefault;
   private reviewsConfig = this.props.initial.reviews_config;
+  @observable private store;
   private readonly timeouts: Record<string, number> = {};
   private xhrCheckNew?: JQuery.jqXHR<InitialData>;
 
   @computed
   get discussions() {
-    return [...this.discussionsState.store.discussions.values()];
+    return [...this.store.discussions.values()];
   }
 
   constructor(props: Props) {
     super(props);
 
-    this.discussionsState = new DiscussionsState(props.initial.beatmapset, props.container.dataset.beatmapsetDiscussionState);
+    if (this.props.container.dataset.beatmapset != null) {
+      JSON.parse(this.props.container.dataset.beatmapset);
+    }
+
+    // using DiscussionsState['beatmapset'] as type cast to force errors if it doesn't match with props since the beatmapset is from discussionsState.
+    const existingBeatmapset = parseJson<DiscussionsState['beatmapset']>(props.container.dataset.beatmapset);
+    this.store = new BeatmapsetDiscussionsStore(existingBeatmapset ?? this.props.initial.beatmapset);
+    this.discussionsState = new DiscussionsState(props.initial.beatmapset, this.store, props.container.dataset.discussionsState);
 
     makeObservable(this);
   }
@@ -93,18 +107,17 @@ export default class Main extends React.Component<Props> {
       <>
         <Header
           discussionsState={this.discussionsState}
-          store={this.discussionsState.store}
+          store={this.store}
         />
         <ModeSwitcher
           discussionsState={this.discussionsState}
           innerRef={this.modeSwitcherRef}
-          store={this.discussionsState.store}
         />
         {this.discussionsState.currentMode === 'events' ? (
           <Events
-            discussions={this.discussionsState.store.discussions}
+            discussions={this.store.discussions}
             events={this.discussionsState.beatmapset.events}
-            users={this.discussionsState.store.users}
+            users={this.store.users}
           />
         ) : (
           <ReviewEditorConfigContext.Provider value={this.reviewsConfig}>
@@ -113,7 +126,7 @@ export default class Main extends React.Component<Props> {
                 discussionsState={this.discussionsState}
                 innerRef={this.newDiscussionRef}
                 stickTo={this.modeSwitcherRef}
-                store={this.discussionsState.store}
+                store={this.store}
               />
             ) : (
               <NewDiscussion
@@ -126,7 +139,7 @@ export default class Main extends React.Component<Props> {
             )}
             <Discussions
               discussionsState={this.discussionsState}
-              store={this.discussionsState.store}
+              store={this.store}
             />
           </ReviewEditorConfigContext.Provider>
         )}
@@ -162,7 +175,7 @@ export default class Main extends React.Component<Props> {
 
   @action
   private readonly jumpTo = (_event: unknown, { id, postId }: { id: number; postId?: number }) => {
-    const discussion = this.discussionsState.store.discussions.get(id);
+    const discussion = this.store.discussions.get(id);
 
     if (discussion == null) return;
 
@@ -224,7 +237,8 @@ export default class Main extends React.Component<Props> {
   };
 
   private readonly saveStateToContainer = () => {
-    this.props.container.dataset.beatmapsetDiscussionState = this.discussionsState.toJsonString();
+    this.props.container.dataset.beatmapset = JSON.stringify(this.discussionsState.beatmapset);
+    this.props.container.dataset.discussionsState = this.discussionsState.toJsonString();
   };
 
   @action
