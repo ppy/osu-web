@@ -25,16 +25,6 @@ class CountryChangeTarget
         return $now->startOfMonth()->subMonths($subMonths);
     }
 
-    public static function maxMixedMonths(): int
-    {
-        return config('osu.user.country_change.max_mixed_months');
-    }
-
-    public static function minMonths(): int
-    {
-        return config('osu.user.country_change.min_months');
-    }
-
     public static function get(User $user): ?string
     {
         $minMonths = static::minMonths();
@@ -89,6 +79,16 @@ class CountryChangeTarget
         }
 
         return null;
+    }
+
+    public static function maxMixedMonths(): int
+    {
+        return config('osu.user.country_change.max_mixed_months');
+    }
+
+    public static function minMonths(): int
+    {
+        return config('osu.user.country_change.min_months');
     }
 
     private static function isUserInTournament(User $user): bool
