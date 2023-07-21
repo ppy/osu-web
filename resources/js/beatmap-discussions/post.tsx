@@ -371,7 +371,6 @@ export default class Post extends React.Component<Props> {
     );
   }
 
-
   private renderMessageViewerActions() {
     return (
       <div className={`${bn}__actions`}>
@@ -384,48 +383,7 @@ export default class Post extends React.Component<Props> {
             />
           </span>
 
-          {!this.props.readonly && (
-            <>
-              {this.canEdit && (
-                <button
-                  className={`${bn}__action ${bn}__action--button`}
-                  onClick={this.editStart}
-                >
-                  {trans('beatmaps.discussions.edit')}
-                </button>
-              )}
-
-              {this.deleteModel.deleted_at == null && this.canDelete && (
-                <a
-                  className={`js-beatmapset-discussion-update ${bn}__action ${bn}__action--button`}
-                  data-confirm={trans('common.confirmation')}
-                  data-method='DELETE'
-                  data-remote
-                  href={this.deleteHref('destroy')}
-                >
-                  {trans('beatmaps.discussions.delete')}
-                </a>
-              )}
-
-              {this.deleteModel.deleted_at != null && this.canModerate && (
-                <a
-                  className={`js-beatmapset-discussion-update ${bn}__action ${bn}__action--button`}
-                  data-confirm={trans('common.confirmation')}
-                  data-method='POST'
-                  data-remote
-                  href={this.deleteHref('restore')}
-                >
-                  {trans('beatmaps.discussions.restore')}
-                </a>
-              )}
-
-              {this.props.type === 'discussion' && this.props.discussion.current_user_attributes?.can_moderate_kudosu && (
-                this.props.discussion.can_grant_kudosu
-                  ? this.renderKudosuAction('deny')
-                  : this.props.discussion.kudosu_denied && this.renderKudosuAction('allow')
-              )}
-            </>
-          )}
+          {this.renderMessageViewerEditingActions()}
 
           {this.canReport && (
             <ReportReportable
@@ -440,6 +398,52 @@ export default class Post extends React.Component<Props> {
     );
   }
 
+  private renderMessageViewerEditingActions() {
+    if (this.props.readonly || this.props.discussionsState == null) return;
+
+    return (
+      <>
+        {this.canEdit && (
+          <button
+            className={`${bn}__action ${bn}__action--button`}
+            onClick={this.editStart}
+          >
+            {trans('beatmaps.discussions.edit')}
+          </button>
+        )}
+
+        {this.deleteModel.deleted_at == null && this.canDelete && (
+          <a
+            className={`js-beatmapset-discussion-update ${bn}__action ${bn}__action--button`}
+            data-confirm={trans('common.confirmation')}
+            data-method='DELETE'
+            data-remote
+            href={this.deleteHref('destroy')}
+          >
+            {trans('beatmaps.discussions.delete')}
+          </a>
+        )}
+
+        {this.deleteModel.deleted_at != null && this.canModerate && (
+          <a
+            className={`js-beatmapset-discussion-update ${bn}__action ${bn}__action--button`}
+            data-confirm={trans('common.confirmation')}
+            data-method='POST'
+            data-remote
+            href={this.deleteHref('restore')}
+          >
+            {trans('beatmaps.discussions.restore')}
+          </a>
+        )}
+
+        {this.props.type === 'discussion' && this.props.discussion.current_user_attributes?.can_moderate_kudosu && (
+          this.props.discussion.can_grant_kudosu
+            ? this.renderKudosuAction('deny')
+            : this.props.discussion.kudosu_denied && this.renderKudosuAction('allow')
+        )}
+      </>
+    );
+  }
 
   @action
   private readonly updatePost = () => {
