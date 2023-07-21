@@ -48,7 +48,7 @@ class UserGroup extends Model
             'nat' => array_keys(Beatmap::MODES),
         ];
 
-        $visibleRulesets = $this->playmodes;
+        $visibleRulesets = $this->playmodes ?? [];
 
         return $visibleRulesets === []
             ? ($defaultRulesets[$this->group->identifier] ?? [])
