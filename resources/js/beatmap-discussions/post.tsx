@@ -41,7 +41,7 @@ interface Props {
   post: BeatmapsetDiscussionMessagePostJson;
   read: boolean;
   readonly: boolean;
-  resolvedSystemPostId: number;
+  resolved: boolean;
   store: BeatmapsetDiscussions;
   type: string;
   user: UserJson;
@@ -49,6 +49,10 @@ interface Props {
 
 @observer
 export default class Post extends React.Component<Props> {
+  static defaultProps = {
+    resolved: false,
+  };
+
   @observable private canSave = true; // this isn't computed because Editor's onChange doesn't provide anything to react to.
   @observable private editing = false;
   private readonly handleTextareaKeyDown;
@@ -81,7 +85,7 @@ export default class Post extends React.Component<Props> {
     return this.isAdmin
       || (!downloadLimited(this.beatmapset)
         && this.isOwn
-        && this.props.post.id > this.props.resolvedSystemPostId
+        && !this.props.resolved
         && !this.beatmapset.discussion_locked
       );
   }

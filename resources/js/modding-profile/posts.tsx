@@ -76,7 +76,6 @@ export class Posts extends React.Component<Props> {
               post={post}
               read
               readonly
-              resolvedSystemPostId={-1} // TODO: Can probably move to context after refactoring state?
               store={this.props.store}
               type='reply'
               user={this.props.store.users.get(post.user_id) ?? deletedUserJson}

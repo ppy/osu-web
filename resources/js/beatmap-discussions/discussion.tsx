@@ -102,7 +102,7 @@ export class Discussion extends React.Component<Props> {
     // TODO: handling resolved status in bundles....?
     if (this.props.preview) return -1;
 
-    const systemPost = findLast(this.props.discussion.posts, (post) => post != null && post.system && post.message.type === 'resolved');
+    const systemPost = findLast(this.props.discussion.posts, (post) => post.system && post.message.type === 'resolved');
     return systemPost?.id ?? -1;
   }
 
@@ -122,7 +122,7 @@ export class Discussion extends React.Component<Props> {
   render() {
     if (!this.isVisible(this.props.discussion)) return null;
     const firstPost = startingPost(this.props.discussion);
-    // TODO: check if possible to have null post...
+    // no first post means this disucussion is empty.
     if (firstPost == null) return null;
 
     const lineClasses = classWithModifiers(`${bn}__line`, { resolved: this.props.discussion.resolved });
@@ -243,7 +243,7 @@ export class Discussion extends React.Component<Props> {
         post={post}
         read={this.isRead(post)}
         readonly={this.props.readonly}
-        resolvedSystemPostId={this.resolvedSystemPostId}
+        resolved={post.id > this.resolvedSystemPostId}
         store={this.props.store}
         type={type}
         user={user}
