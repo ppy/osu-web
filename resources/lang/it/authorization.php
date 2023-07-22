@@ -171,6 +171,7 @@ return [
 
     'score' => [
         'pin' => [
+            'disabled_type' => "",
             'not_owner' => 'Solo il proprietario del punteggio può fissarlo.',
             'too_many' => 'Hai già fissato troppi punteggi.',
         ],

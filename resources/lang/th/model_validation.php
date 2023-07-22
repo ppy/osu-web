@@ -13,10 +13,10 @@ return [
 
     'beatmapset_discussion' => [
         'beatmap_missing' => 'ช่วงเวลาได้ถูกกำหนดไว้แต่ไม่พบ Beatmap',
-        'beatmapset_no_hype' => "บีตแม็ปนี้ไม่สามารถ Hype ได้",
+        'beatmapset_no_hype' => "บีทแมพนี้ไม่สามารถ hype ได้",
         'hype_requires_null_beatmap' => 'การ Hype ต้องทำในส่วนของทั่วไปเท่านั้น (ความยากทั้งหมด)',
         'invalid_beatmap_id' => 'ระดับความยากไม่ได้เลือกอย่างถูกต้อง',
-        'invalid_beatmapset_id' => 'บีตแม็ปไม่ได้เลือกอย่างถูกต้อง',
+        'invalid_beatmapset_id' => 'บีทแมพไม่ได้เลือกอย่างถูกต้อง',
         'locked' => 'การสนทนาได้ถูกล็อกไว้',
 
         'attributes' => [
@@ -25,16 +25,16 @@ return [
         ],
 
         'hype' => [
-            'discussion_locked' => "ขณะนี้บีตแม็ปนี้ถูกล็อกไว้สำหรับการสนทนาและไม่สามารถ Hype ได้",
+            'discussion_locked' => "บีทแมพนี้ถูกจำกัดสิทธิในการสนทนา และ สิทธิในการ Hype",
             'guest' => 'ต้องเข้าสู่ระบบก่อนถึงจะ Hype ได้',
-            'hyped' => 'คุณได้ Hype บีตแม็ปนี้แล้ว',
+            'hyped' => 'คุณได้ Hype บีทแมพนี้แล้ว',
             'limit_exceeded' => 'คุณใช้ Hpye ทั้งหมดของคุณแล้ว',
-            'not_hypeable' => 'บีตแม็ปนี้ไม่สามารถ Hype ได้',
-            'owner' => 'ห้าม Hype ในบีตแม็ปของคุณเอง',
+            'not_hypeable' => 'บีทแมพนี้ไม่สามารถ Hype ได้',
+            'owner' => 'ห้าม Hype ในบีทแมปของคุณเอง',
         ],
 
         'timestamp' => [
-            'exceeds_beatmapset_length' => 'เวลาประทับที่ระบุเกินความยาวของบีตแม็ป',
+            'exceeds_beatmapset_length' => 'เวลาประทับที่ระบุเกินความยาวของบีทแมพ',
             'negative' => "เวลาประทับต้องไม่เป็นค่าลบ",
         ],
     ],
@@ -72,8 +72,8 @@ return [
         ],
 
         'post' => [
-            'beatmapset_post_no_delete' => 'ไม่อนุญาตให้ลบโพสต์ Metadata ของบีตแม็ป',
-            'beatmapset_post_no_edit' => 'ไม่อนุญาตให้ดัดแปลงโพสต์ Metadata ของบีตแม็ป',
+            'beatmapset_post_no_delete' => 'ไม่อนุญาตให้ลบโพสต์ Metadata ของบีทแมพ',
+            'beatmapset_post_no_edit' => 'ไม่อนุญาตให้ดัดแปลงโพสต์ Metadata ของบีทแมพ',
             'first_post_no_delete' => 'ไม่สามารถลบโพสต์ที่เริ่มต้นได้',
             'missing_topic' => 'โพสต์ไม่มีหัวข้อ',
             'only_quote' => 'การตอบกลับของคุณมีแค่คำพูด',
@@ -174,7 +174,7 @@ return [
     ],
 
     'user_report' => [
-        'no_ranked_beatmapset' => 'ไม่สามารถรายงานบีตแม็ปที่จัดอันดับแล้วได้',
+        'no_ranked_beatmapset' => 'ไม่สามารถรายงานบีทแมพที่จัดอันดับแล้วได้',
         'not_in_channel' => 'คุณไม่ได้อยู่ในช่องนี้',
         'reason_not_valid' => ':reason ไม่สามารถใช้ได้กับการรายงานประเภทนี้',
         'self' => "เดี๋ยว คุณรายงานตัวเองไม่ได้",

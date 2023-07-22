@@ -153,15 +153,6 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => 'PM vechi forum',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => 'un mesaj necitit|:count_delimited mesaje necitite|:count_delimited de mesaje necitite',
-            ],
-        ],
-
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Beatmap nou',

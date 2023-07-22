@@ -102,7 +102,7 @@ return [
             'preview' => 'Náhled',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
-            'preview_hide' => 'Psát',
+            'preview_hide' => 'Editovat',
             'submit' => 'Odeslat',
 
             'necropost' => [

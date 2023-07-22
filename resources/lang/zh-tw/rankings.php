@@ -17,9 +17,16 @@ return [
         ],
     ],
 
+    'kudosu' => [
+        'total' => '',
+        'available' => '',
+        'used' => '',
+    ],
+
     'type' => [
         'charts' => '月賽',
         'country' => '國家',
+        'kudosu' => '',
         'multiplayer' => '多人遊戲',
         'performance' => '成績',
         'score' => '總分',

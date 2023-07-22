@@ -17,9 +17,16 @@ return [
         ],
     ],
 
+    'kudosu' => [
+        'total' => '',
+        'available' => '',
+        'used' => '',
+    ],
+
     'type' => [
         'charts' => 'i rampljuset',
         'country' => 'land',
+        'kudosu' => '',
         'multiplayer' => 'flerspelarläge',
         'performance' => 'prestation',
         'score' => 'poäng',

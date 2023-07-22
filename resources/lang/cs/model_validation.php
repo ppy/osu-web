@@ -122,7 +122,7 @@ return [
     'oauth' => [
         'client' => [
             'too_many' => 'Byl překročen limit povolených možností.',
-            'url' => 'Zadejte prosím platnou adresu URL.',
+            'url' => 'Zadejte prosím platné adresy URL.',
 
             'attributes' => [
                 'name' => 'Název aplikace',

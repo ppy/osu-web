@@ -17,9 +17,16 @@ return [
         ],
     ],
 
+    'kudosu' => [
+        'total' => '',
+        'available' => '',
+        'used' => '',
+    ],
+
     'type' => [
         'charts' => 'Uzmanības centrā',
         'country' => 'Valsts',
+        'kudosu' => '',
         'multiplayer' => 'Daudzspēlētāju režīms',
         'performance' => 'Veiktspēja',
         'score' => 'Punktu skaits',

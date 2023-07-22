@@ -171,6 +171,7 @@ return [
 
     'score' => [
         'pin' => [
+            'disabled_type' => "",
             'not_owner' => 'Nie możesz przypiąć czyjegoś wyniku.',
             'too_many' => 'Przypięto zbyt wiele wyników.',
         ],

@@ -171,6 +171,7 @@ return [
 
     'score' => [
         'pin' => [
+            'disabled_type' => "",
             'not_owner' => 'Vain tuloksen omistaja voi kiinnittää tuloksen.',
             'too_many' => 'Kiinnitit liian monta tulosta.',
         ],

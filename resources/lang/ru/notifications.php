@@ -153,15 +153,6 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => 'Старая система ЛС',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited непрочитанное сообщение|:count_delimited непрочитанных сообщения|:count_delimited непрочитанных сообщений',
-            ],
-        ],
-
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Новая карта',

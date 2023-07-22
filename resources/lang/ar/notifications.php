@@ -153,15 +153,6 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => 'نظام الرسائل القديم',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited رسالة غير مقروءة|:count_delimited رسائل غير مقروءة',
-            ],
-        ],
-
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'خريطة جديدة',
