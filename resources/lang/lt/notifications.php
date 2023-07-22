@@ -153,15 +153,6 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => 'Senojo Forumo Pranešimas',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited neperskaityta žinutė|:count_delimited neperskaitytų žinučių',
-            ],
-        ],
-
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Naujas bitmapas',

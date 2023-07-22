@@ -17,9 +17,16 @@ return [
         ],
     ],
 
+    'kudosu' => [
+        'total' => '',
+        'available' => '',
+        'used' => '',
+    ],
+
     'type' => [
         'charts' => 'колекције',
         'country' => 'држава',
+        'kudosu' => '',
         'multiplayer' => 'мултиплејер',
         'performance' => 'перформансе',
         'score' => 'резултат',

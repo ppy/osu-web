@@ -17,9 +17,16 @@ return [
         ],
     ],
 
+    'kudosu' => [
+        'total' => '',
+        'available' => '',
+        'used' => '',
+    ],
+
     'type' => [
         'charts' => 'sorotan',
         'country' => 'negara',
+        'kudosu' => '',
         'multiplayer' => 'pemainan beramai',
         'performance' => 'pencapaian',
         'score' => 'markah',
