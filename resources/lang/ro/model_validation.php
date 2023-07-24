@@ -13,8 +13,8 @@ return [
 
     'beatmapset_discussion' => [
         'beatmap_missing' => 'Marcajul de timp este specificat dar beatmap-ul lipsește.',
-        'beatmapset_no_hype' => "Acest beatmap nu poate fi hyped.",
-        'hype_requires_null_beatmap' => 'Hype trebuie să fie făcut în secțiunea General (toate dificultățile).',
+        'beatmapset_no_hype' => "Nu poți acorda hype acestui beatmap.",
+        'hype_requires_null_beatmap' => 'Hype-ul trebuie să fie acordat în secțiunea General (toate dificultățile).',
         'invalid_beatmap_id' => 'Dificultatea specificată nu este validă.',
         'invalid_beatmapset_id' => 'Beatmap-ul specificat nu este valid.',
         'locked' => 'Discuția este închisă.',
@@ -25,11 +25,11 @@ return [
         ],
 
         'hype' => [
-            'discussion_locked' => "Acest beatmap este momentan blocat pentru discuții și nu poate fi hyped",
+            'discussion_locked' => "Acest beatmap este momentan blocat pentru discuții și hype-ul nu poate fi acordat",
             'guest' => 'Trebuie să fii autentificat pentru a acorda un hype.',
             'hyped' => 'Deja ai acordat un hype acestui beatmap.',
             'limit_exceeded' => 'Ți-ai folosit deja tot hype-ul.',
-            'not_hypeable' => 'Acest beatmap nu poate fi hyped',
+            'not_hypeable' => 'Nu poți acorda hype acestui beatmap',
             'owner' => 'Nu ii poți acorda un hype propriului tău beatmap.',
         ],
 

@@ -153,15 +153,6 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => '舊論壇私訊',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited 則未讀訊息',
-            ],
-        ],
-
         'user' => [
             'user_beatmapset_new' => [
                 '_' => '新圖譜',

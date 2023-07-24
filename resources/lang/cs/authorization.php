@@ -171,6 +171,7 @@ return [
 
     'score' => [
         'pin' => [
+            'disabled_type' => "",
             'not_owner' => 'Pouze vlastník skóre může připnout skóre.',
             'too_many' => 'Připnuto příliš mnoho skóre.',
         ],

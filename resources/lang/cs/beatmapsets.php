@@ -67,12 +67,12 @@ return [
 
         'details' => [
             'by_artist' => 'od :artist',
-            'favourite' => 'Přidat do mých oblíbených',
-            'favourite_login' => 'Pro přidání beatmapy do oblíbených se přihlas',
-            'logged-out' => 'Pro stahování beatmap musíš být přihlášen!',
+            'favourite' => 'přidat do mých oblíbených',
+            'favourite_login' => 'pro přidání beatmapy do oblíbených se přihlas',
+            'logged-out' => 'před stahováním beatmap se musíš nejprve přihlásit!',
             'mapped_by' => 'beatmapu vytvořil :mapper',
             'mapped_by_guest' => 'obtížnost hosta od :mapper',
-            'unfavourite' => 'Odebrat z mých oblíbených',
+            'unfavourite' => 'odebrat z mých oblíbených',
             'updated_timeago' => 'naposledy aktualizováno :timeago',
 
             'download' => [

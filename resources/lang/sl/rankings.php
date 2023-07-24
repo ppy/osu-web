@@ -17,9 +17,16 @@ return [
         ],
     ],
 
+    'kudosu' => [
+        'total' => '',
+        'available' => '',
+        'used' => '',
+    ],
+
     'type' => [
         'charts' => 'spotlights',
         'country' => 'država',
+        'kudosu' => '',
         'multiplayer' => 'večigralski način',
         'performance' => 'uspešnost',
         'score' => 'rezultat',

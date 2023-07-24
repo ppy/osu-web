@@ -171,6 +171,7 @@ return [
 
     'score' => [
         'pin' => [
+            'disabled_type' => "",
             'not_owner' => 'Nur der Spieler, der den Score eingereicht hat, kann ihn anpinnen.',
             'too_many' => 'Zu viele Scores angepinnt.',
         ],

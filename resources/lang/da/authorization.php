@@ -171,6 +171,7 @@ return [
 
     'score' => [
         'pin' => [
+            'disabled_type' => "",
             'not_owner' => 'Kun score ejer kan pin score.',
             'too_many' => 'Fastgjort for mange score.',
         ],

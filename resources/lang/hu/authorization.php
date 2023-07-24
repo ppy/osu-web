@@ -171,6 +171,7 @@ return [
 
     'score' => [
         'pin' => [
+            'disabled_type' => "",
             'not_owner' => 'Csak eredménnyel rendelkezők tűzhetnek ki eredményeket.',
             'too_many' => 'Túl sok kitűzött eredmény.',
         ],
