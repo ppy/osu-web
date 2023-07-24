@@ -153,15 +153,6 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => 'MP del fòrum antic',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited missatge no llegit|:count_delimited missatges no llegits',
-            ],
-        ],
-
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Nou beatmap',

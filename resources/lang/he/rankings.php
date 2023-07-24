@@ -17,9 +17,16 @@ return [
         ],
     ],
 
+    'kudosu' => [
+        'total' => '',
+        'available' => '',
+        'used' => '',
+    ],
+
     'type' => [
         'charts' => 'זרקורים',
         'country' => 'מדינה',
+        'kudosu' => '',
         'multiplayer' => 'רב משתתפים',
         'performance' => 'ביצועים',
         'score' => 'תוצאה',

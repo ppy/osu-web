@@ -17,9 +17,16 @@ return [
         ],
     ],
 
+    'kudosu' => [
+        'total' => '',
+        'available' => '',
+        'used' => '',
+    ],
+
     'type' => [
         'charts' => 'スポットライト',
         'country' => '国別',
+        'kudosu' => '',
         'multiplayer' => 'マルチプレイ',
         'performance' => 'パフォーマンス',
         'score' => 'スコア',
