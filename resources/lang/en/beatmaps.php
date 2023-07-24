@@ -79,15 +79,15 @@ return [
         ],
 
         'message_type_title' => [
-            'disqualify_title' => 'Post Disqualification',
-            'hype_title' => 'Post Hype!',
-            'mapper_note_title' => 'Post Note',
-            'nomination_reset_title' => 'Remove all Nominations',
-            'praise_title' => 'Post Praise',
-            'problem_title' => 'Post Problem',
-            'problem_warning_title' => 'Post Problem',
-            'review_title' => 'Post Review',
-            'suggestion_title' => 'Post Suggestion',
+            'disqualify' => 'Post Disqualification',
+            'hype' => 'Post Hype!',
+            'mapper_note' => 'Post Note',
+            'nomination_reset' => 'Remove all Nominations',
+            'praise' => 'Post Praise',
+            'problem' => 'Post Problem',
+            'problem_warning' => 'Post Problem',
+            'review' => 'Post Review',
+            'suggestion' => 'Post Suggestion',
         ],
 
         'mode' => [
