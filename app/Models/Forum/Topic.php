@@ -485,7 +485,7 @@ class Topic extends Model implements AfterCommit
     public function isOld()
     {
         // pinned and announce posts should never be considered old
-        if($this->topic_type != 0){
+        if ($this->topic_type != 0){
             return false;
         }
         return $this->topic_last_post_time < Carbon::now()->subMonths(config('osu.forum.old_months'));
