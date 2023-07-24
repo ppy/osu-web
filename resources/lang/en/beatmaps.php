@@ -68,22 +68,25 @@ return [
 
         'message_type' => [
             'disqualify' => 'Disqualify',
-            'disqualify_title' => 'Post Disqualification',
             'hype' => 'Hype!',
-            'hype_title' => 'Post Hype!',
             'mapper_note' => 'Note',
-            'mapper_note_title' => 'Post Note',
             'nomination_reset' => 'Reset Nomination',
-            'nomination_reset_title' => 'Remove all Nominations',
             'praise' => 'Praise',
-            'praise_title' => 'Post Praise',
             'problem' => 'Problem',
-            'problem_title' => 'Post Problem',
             'problem_warning' => 'Report Problem',
-            'problem_warning_title' => 'Post Problem',
             'review' => 'Review',
-            'review_title' => 'Post Review',
             'suggestion' => 'Suggestion',
+        ],
+
+        'message_type_title' => [
+            'disqualify_title' => 'Post Disqualification',
+            'hype_title' => 'Post Hype!',
+            'mapper_note_title' => 'Post Note',
+            'nomination_reset_title' => 'Remove all Nominations',
+            'praise_title' => 'Post Praise',
+            'problem_title' => 'Post Problem',
+            'problem_warning_title' => 'Post Problem',
+            'review_title' => 'Post Review',
             'suggestion_title' => 'Post Suggestion',
         ],
 
