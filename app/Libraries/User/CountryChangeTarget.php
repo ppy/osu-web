@@ -53,7 +53,7 @@ class CountryChangeTarget
 
         // For each year_month, summarise each countries
         $byCountry = [];
-        foreach ($byMonth as $month => $countries) {
+        foreach ($byMonth as $countries) {
             $mixed = count($countries) > 1;
             foreach ($countries as $country) {
                 $byCountry[$country] ??= [
