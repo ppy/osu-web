@@ -58,7 +58,7 @@ export const ReviewPostEmbed = ({ data }: Props) => {
         <span
           className={discussionTypeIcons[type]}
           style={{ color: `var(--beatmapset-discussion-colour--${type})` }}
-          title={trans(`beatmaps.discussions.message_type.${type}.text`)}
+          title={trans(`beatmaps.discussions.message_type.${type}`)}
         />
       </div>
     );
