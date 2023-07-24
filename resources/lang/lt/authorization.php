@@ -171,6 +171,7 @@ return [
 
     'score' => [
         'pin' => [
+            'disabled_type' => "",
             'not_owner' => 'Tik rezultato savininkas gali prisegti rezultatą.',
             'too_many' => 'Prisegta perdaug rezultatų.',
         ],

@@ -171,6 +171,7 @@ return [
 
     'score' => [
         'pin' => [
+            'disabled_type' => "",
             'not_owner' => 'Numai creatorul scorului poate fixa acest scor.',
             'too_many' => 'Ai fixat prea multe scoruri.',
         ],

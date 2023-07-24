@@ -171,6 +171,7 @@ return [
 
     'score' => [
         'pin' => [
+            'disabled_type' => "",
             'not_owner' => '점수 소유자만 점수를 고정할 수 있습니다.',
             'too_many' => '너무 많은 점수를 고정했습니다.',
         ],

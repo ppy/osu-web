@@ -153,15 +153,6 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => '이전 포럼 PM',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited개의 미확인 메시지',
-            ],
-        ],
-
         'user' => [
             'user_beatmapset_new' => [
                 '_' => '새 비트맵',

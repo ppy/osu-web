@@ -41,18 +41,18 @@ return [
             '_' => 'การสนทนาเกี่ยวกับ Beatmap',
         ],
         'beatmap_packs_controller' => [
-            '_' => 'แพ็คบีตแม็ป',
+            '_' => 'แพ็คบีทแมพ',
         ],
         'beatmapset_discussion_votes_controller' => [
-            '_' => 'โหวตการสนทนาบีตแม็ป',
+            '_' => 'โหวตการสนทนาบีทแมพ',
         ],
         'beatmapset_events_controller' => [
-            '_' => 'ประวัติบีตแม็ป',
+            '_' => 'ประวัติบีทแมพ',
         ],
         'beatmapsets_controller' => [
-            'discussion' => 'การสนทนาเกี่ยวกับบีตแม็ป',
-            'index' => 'รายการบีตแม็ป',
-            'show' => 'ข้อมูลบีตแม็ป',
+            'discussion' => 'การสนทนาเกี่ยวกับบีทแมพ',
+            'index' => 'รายการบีทแมพ',
+            'show' => 'ข้อมูลบีทแมพ',
         ],
         'changelog_controller' => [
             '_' => 'การเปลี่ยนแปลง',

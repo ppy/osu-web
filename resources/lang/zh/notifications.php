@@ -155,15 +155,6 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => '旧论坛私信',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited 条未读消息',
-            ],
-        ],
-
         'user' => [
             'user_beatmapset_new' => [
                 '_' => '新谱面',

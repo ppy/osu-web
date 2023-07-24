@@ -17,9 +17,16 @@ return [
         ],
     ],
 
+    'kudosu' => [
+        'total' => '',
+        'available' => '',
+        'used' => '',
+    ],
+
     'type' => [
         'charts' => 'Reflektorfény',
         'country' => 'Ország',
+        'kudosu' => '',
         'multiplayer' => 'többjátékos',
         'performance' => 'Teljesítmény',
         'score' => 'Pontszám',

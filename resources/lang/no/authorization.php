@@ -171,6 +171,7 @@ return [
 
     'score' => [
         'pin' => [
+            'disabled_type' => "",
             'not_owner' => 'Kun resultateieren kan festeresultat.',
             'too_many' => 'Festet for mange resultater.',
         ],

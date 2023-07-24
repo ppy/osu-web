@@ -171,6 +171,7 @@ return [
 
     'score' => [
         'pin' => [
+            'disabled_type' => "",
             'not_owner' => 'Hanya pemilik skor yang dapat menyematkan skor.',
             'too_many' => 'Skor yang disematkan sudah terlalu banyak.',
         ],
