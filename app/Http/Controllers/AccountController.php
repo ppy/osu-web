@@ -168,7 +168,7 @@ class AccountController extends Controller
             abort(403, 'specified country_acronym is not allowed');
         }
 
-        CountryChange::do($user, $newCountry, 'account settings');
+        CountryChange::handle($user, $newCountry, 'account settings');
         \Session::flash('popup', osu_trans('common.saved'));
 
         return ext_view('layout.ujs-reload', [], 'js');

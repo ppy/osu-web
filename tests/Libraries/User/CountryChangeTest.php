@@ -34,7 +34,7 @@ class CountryChangeTest extends TestCase
         $targetCountry = Country::factory()->create()->getKey();
 
         $this->expectCountChange(fn () => $user->accountHistories()->count(), 1);
-        CountryChange::do($user, $targetCountry, 'test');
+        CountryChange::handle($user, $targetCountry, 'test');
 
         $user->refresh();
         $this->assertSame($user->country_acronym, $targetCountry);
@@ -53,6 +53,6 @@ class CountryChangeTest extends TestCase
         $oldCountry = $user->country_acronym;
 
         $this->expectException(InvariantException::class);
-        CountryChange::do($user, '__', 'test');
+        CountryChange::handle($user, '__', 'test');
     }
 }

@@ -15,7 +15,7 @@ use App\Models\UserAccountHistory;
 
 class CountryChange
 {
-    public static function do(User $user, string $newCountry, string $reason): void
+    public static function handle(User $user, string $newCountry, string $reason): void
     {
         // Assert valid country acronym
         $country = Country::find($newCountry);
