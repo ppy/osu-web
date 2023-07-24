@@ -271,6 +271,7 @@ class UsersController extends Controller
      * |------------ | -----
      * | favourite   | |
      * | graveyard   | |
+     * | guest       | |
      * | loved       | |
      * | most_played | |
      * | pending     | Previously `unranked`
