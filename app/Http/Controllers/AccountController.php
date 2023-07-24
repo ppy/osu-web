@@ -161,7 +161,7 @@ class AccountController extends Controller
 
     public function updateCountry()
     {
-        $newCountry = get_string(Request('country_acronym'));
+        $newCountry = get_string(Request::input('country_acronym'));
         $user = Auth::user();
 
         if (CountryChangeTarget::get($user) !== $newCountry) {
