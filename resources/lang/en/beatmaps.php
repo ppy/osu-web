@@ -67,42 +67,24 @@ return [
         ],
 
         'message_type' => [
-            'disqualify' => [
-                'text' => 'Disqualify',
-                'action_title' => 'Post Disqualification',
-            ],
-            'hype' => [
-                'text' => 'Hype!',
-                'action_title' => 'Post Hype!',
-            ],
-            'mapper_note' => [
-                'text' => 'Note',
-                'action_title' => 'Post Note',
-            ],
-            'nomination_reset' => [
-                'text' => 'Reset Nomination',
-                'action_title' => 'Remove all Nominations',
-            ],
-            'praise' => [
-                'text' => 'Praise',
-                'action_title' => 'Post Praise',
-            ],
-            'problem' => [
-                'text' => 'Problem',
-                'action_title' => 'Post Problem',
-            ],
-            'problem_warning' => [
-                'text' => 'Report Problem',
-                'action_title' => 'Post Problem',
-            ],
-            'review' => [
-                'text' => 'Review',
-                'action_title' => 'Post Review',
-            ],
-            'suggestion' => [
-                'text' => 'Suggestion',
-                'action_title' => 'Post Suggestion',
-            ],
+            'disqualify' => 'Disqualify',
+            'disqualify_title' => 'Post Disqualification',
+            'hype' => 'Hype!',
+            'hype_title' => 'Post Hype!',
+            'mapper_note' => 'Note',
+            'mapper_note_title' => 'Post Note',
+            'nomination_reset' => 'Reset Nomination',
+            'nomination_reset_title' => 'Remove all Nominations',
+            'praise' => 'Praise',
+            'praise_title' => 'Post Praise',
+            'problem' => 'Problem',
+            'problem_title' => 'Post Problem',
+            'problem_warning' => 'Report Problem',
+            'problem_warning_title' => 'Post Problem',
+            'review' => 'Review',
+            'review_title' => 'Post Review',
+            'suggestion' => 'Suggestion',
+            'suggestion_title' => 'Post Suggestion',
         ],
 
         'mode' => [
