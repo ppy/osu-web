@@ -9,17 +9,9 @@
   position: relative;
 
   &__icon {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-
-    .stop-1 {
-      stop-color: var(--level-tier-stop-1, black);
-    }
-
-    .stop-2 {
-      stop-color: var(--level-tier-stop-2, black);
-    }
+    .full-size();
+    clip-path: url('~@images/backgrounds/level-hexagon.svg#clip');
+    background: linear-gradient(var(--bg));
   }
 
   &__level {
@@ -28,43 +20,35 @@
 
   &--tier {
     &-iron {
-      --level-tier-stop-1: extract(@level-tier-iron, 1);
-      --level-tier-stop-2: extract(@level-tier-iron, 2);
+      --bg: @level-tier-iron;
     }
   
     &-bronze {
-      --level-tier-stop-1: extract(@level-tier-bronze, 1);
-      --level-tier-stop-2: extract(@level-tier-bronze, 2);
+      --bg: @level-tier-bronze;
     }
   
     &-silver {
-      --level-tier-stop-1: extract(@level-tier-silver, 1);
-      --level-tier-stop-2: extract(@level-tier-silver, 2);
+      --bg: @level-tier-silver;
     }
   
     &-gold {
-      --level-tier-stop-1: extract(@level-tier-gold, 1);
-      --level-tier-stop-2: extract(@level-tier-gold, 2);
+      --bg: @level-tier-gold;
     }
   
     &-platinum {
-      --level-tier-stop-1: extract(@level-tier-platinum, 1);
-      --level-tier-stop-2: extract(@level-tier-platinum, 2);
+      --bg: @level-tier-platinum;
     }
   
     &-rhodium {
-      --level-tier-stop-1: extract(@level-tier-rhodium, 1);
-      --level-tier-stop-2: extract(@level-tier-rhodium, 2);
+      --bg: @level-tier-rhodium;
     }
   
     &-radiant {
-      --level-tier-stop-1: extract(@level-tier-radiant, 1);
-      --level-tier-stop-2: extract(@level-tier-radiant, 2);
+      --bg: @level-tier-radiant;
     }
   
     &-lustrous {
-      --level-tier-stop-1: extract(@level-tier-lustrous, 1);
-      --level-tier-stop-2: extract(@level-tier-lustrous, 2);
+      --bg: @level-tier-lustrous;
     }
   }
 }
