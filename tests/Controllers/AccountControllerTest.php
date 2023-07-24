@@ -7,7 +7,6 @@ declare(strict_types=1);
 
 namespace Tests\Controllers;
 
-use App\Libraries\User\CountryChangeTarget;
 use App\Mail\UserEmailUpdated;
 use App\Mail\UserPasswordUpdated;
 use App\Models\Country;
