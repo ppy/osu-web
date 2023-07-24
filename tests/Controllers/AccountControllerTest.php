@@ -72,11 +72,13 @@ class AccountControllerTest extends TestCase
      *
      * More complete tests are done through CountryChange and CountryChangeTarget.
      */
-    public function testUpdateCountry(int $months, bool $success): void
+    public function testUpdateCountry(string $historyCountry, string $targetCountry, bool $success): void
     {
         $user = $this->user();
-        $targetCountry = Country::factory()->create()->getKey();
-        UserFactory::createRecentCountryHistory($user, $targetCountry, $months);
+        foreach (array_unique([$historyCountry, $targetCountry]) as $country) {
+            Country::factory()->create(['acronym' => $country]);
+        }
+        UserFactory::createRecentCountryHistory($user, $historyCountry, null);
 
         $resultCountry = $success ? $targetCountry : $user->country_acronym;
 
@@ -216,8 +218,8 @@ class AccountControllerTest extends TestCase
     public function dataProviderForUpdateCountry(): array
     {
         return [
-            [CountryChangeTarget::minMonths(), true],
-            [CountryChangeTarget::minMonths() - 1, false],
+            ['_A', '_A', true],
+            ['_B', '_A', false],
         ];
     }
 
