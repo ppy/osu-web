@@ -23,7 +23,7 @@ import { switchNever } from 'utils/switch-never';
 import { currentUrl } from 'utils/turbolinks';
 import Discussions from './discussions';
 import Events from './events';
-import { Posts } from './posts';
+import Posts from './posts';
 import Stats from './stats';
 import Votes from './votes';
 

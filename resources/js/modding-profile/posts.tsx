@@ -19,7 +19,7 @@ interface Props {
   user: UserJson;
 }
 
-export class Posts extends React.Component<Props> {
+export default class Posts extends React.Component<Props> {
   render() {
     return (
       <div className='page-extra'>
