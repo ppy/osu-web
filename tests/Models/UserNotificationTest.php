@@ -32,7 +32,7 @@ class UserNotificationTest extends TestCase
 
         $initialUserNotificationCount = UserNotification::count();
 
-        UserNotification::batchDestroy($user, BatchIdentities::fromParams([
+        UserNotification::batchDestroy($user->getKey(), BatchIdentities::fromParams([
             'notifications' => [
                 ['id' => $notificationA->getKey()],
             ],
@@ -80,7 +80,7 @@ class UserNotificationTest extends TestCase
 
         $initialUserNotificationCount = UserNotification::count();
 
-        UserNotification::batchDestroy($user, BatchIdentities::fromParams([
+        UserNotification::batchDestroy($user->getKey(), BatchIdentities::fromParams([
             'identities' => [
                 [
                     'category' => $notificationA->category,
@@ -130,7 +130,7 @@ class UserNotificationTest extends TestCase
 
         $initialUserNotificationCount = UserNotification::count();
 
-        UserNotification::batchDestroy($user, BatchIdentities::fromParams([
+        UserNotification::batchDestroy($user->getKey(), BatchIdentities::fromParams([
             'identities' => [
                 ['object_type' => $notificationA->notifiable_type],
             ],

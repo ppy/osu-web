@@ -153,15 +153,6 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => 'Forum PM',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited pesan yang belum dibaca.|:count_delimited pesan yang belum dibaca.',
-            ],
-        ],
-
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Beatmap baru',

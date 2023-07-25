@@ -17,9 +17,16 @@ return [
         ],
     ],
 
+    'kudosu' => [
+        'total' => '',
+        'available' => '',
+        'used' => '',
+    ],
+
     'type' => [
         'charts' => 'spotlights',
         'country' => 'negara',
+        'kudosu' => '',
         'multiplayer' => 'multiplayer',
         'performance' => 'performa',
         'score' => 'skor',

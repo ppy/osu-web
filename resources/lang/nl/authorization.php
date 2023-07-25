@@ -171,6 +171,7 @@ return [
 
     'score' => [
         'pin' => [
+            'disabled_type' => "",
             'not_owner' => 'Enkel de eigenaar van de score kan deze vastzetten.',
             'too_many' => 'Te veel scores vastgezet.',
         ],

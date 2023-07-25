@@ -154,15 +154,6 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => 'Diễn đàn kế thừa PM',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited tin nhắn chưa đọc|:count_delimited tin nhắn chưa đọc',
-            ],
-        ],
-
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Beatmap mới',

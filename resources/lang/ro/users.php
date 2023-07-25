@@ -49,7 +49,7 @@ return [
     ],
 
     'card' => [
-        'gift_supporter' => '',
+        'gift_supporter' => 'Oferă status de suporter osu! cadou',
         'loading' => 'Se încarcă...',
         'send_message' => 'trimite mesaj',
     ],

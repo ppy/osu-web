@@ -17,9 +17,16 @@ return [
         ],
     ],
 
+    'kudosu' => [
+        'total' => '',
+        'available' => '',
+        'used' => '',
+    ],
+
     'type' => [
         'charts' => 'па чартам',
         'country' => 'па краінам',
+        'kudosu' => '',
         'multiplayer' => 'мультыплэер',
         'performance' => 'па прадукцыйнасці',
         'score' => 'па ачках',
