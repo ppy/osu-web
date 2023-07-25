@@ -146,6 +146,8 @@ class Store extends \Illuminate\Session\Store
 
         $userId = Auth::user()->user_id;
 
+        // prevent the following save from clearing up current flash data
+        $this->reflash();
         // flush the current session data to redis early, otherwise we will get stale metadata for the current session
         $this->save();
 
