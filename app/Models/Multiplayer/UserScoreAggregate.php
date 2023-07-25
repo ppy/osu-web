@@ -43,8 +43,6 @@ class UserScoreAggregate extends Model
     ];
     protected $table = 'multiplayer_rooms_high';
 
-    public $isNew = false;
-
     public static function getPlaylistItemUserHighScore(Score $score)
     {
         return PlaylistItemUserHighScore::firstOrNew([
@@ -87,7 +85,6 @@ class UserScoreAggregate extends Model
         $obj = static::lookupOrDefault($user, $room);
 
         if (!$obj->exists) {
-            $obj->isNew = true;
             $obj->save(); // force a save now to avoid being trolled later.
             $obj->recalculate();
         }
