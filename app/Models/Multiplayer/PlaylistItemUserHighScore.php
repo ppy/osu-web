@@ -17,9 +17,8 @@ use App\Models\Traits\WithDbCursorHelper;
  * @property int $id
  * @property int $playlist_item_id
  * @property float|null $pp
- * @property int $score_id
- * @property Score $score
- * @property int $total_score
+ * @property int $score_link_id
+ * @property ScoreLink $scoreLink
  * @property \Carbon\Carbon $updated_at
  * @property int $user_id
  */
@@ -30,11 +29,11 @@ class PlaylistItemUserHighScore extends Model
     const SORTS = [
         'score_desc' => [
             ['column' => 'total_score', 'order' => 'DESC'],
-            ['column' => 'score_id', 'order' => 'ASC'],
+            ['column' => 'score_link_id', 'order' => 'ASC'],
         ],
         'score_asc' => [
             ['column' => 'total_score', 'order' => 'ASC'],
-            ['column' => 'score_id', 'order' => 'DESC'],
+            ['column' => 'score_link_id', 'order' => 'DESC'],
         ],
     ];
 
@@ -42,11 +41,11 @@ class PlaylistItemUserHighScore extends Model
 
     protected $table = 'multiplayer_scores_high';
 
-    public static function lookupOrDefault(Score $score): static
+    public static function lookupOrDefault(ScoreLink $scoreLink): static
     {
         return static::firstOrNew([
-            'playlist_item_id' => $score->playlist_item_id,
-            'user_id' => $score->user_id,
+            'playlist_item_id' => $scoreLink->playlist_item_id,
+            'user_id' => $scoreLink->user_id,
         ], [
             'accuracy' => 0,
             'pp' => 0,
@@ -54,18 +53,21 @@ class PlaylistItemUserHighScore extends Model
         ]);
     }
 
-    public function score()
+    public function scoreLink()
     {
-        return $this->belongsTo(Score::class);
+        return $this->belongsTo(ScoreLink::class);
     }
 
-    public function updateWithScore(Score $score): void
+    public function updateWithScoreLink(ScoreLink $scoreLink): void
     {
+        $score = $scoreLink->score;
+
         $this->fill([
-            'accuracy' => $score->accuracy,
+            'accuracy' => $score->data->accuracy,
             'pp' => $score->pp,
-            'score_id' => $score->getKey(),
-            'total_score' => $score->total_score,
+            'score_id' => 0, // TODO: remove after migrated
+            'score_link_id' => $scoreLink->getKey(),
+            'total_score' => $score->data->totalScore,
         ])->save();
     }
 }

@@ -10,11 +10,12 @@ namespace App\Transformers\Score;
 use App\Models\LegacyMatch;
 use App\Models\Score\Model as ScoreModel;
 use App\Models\Solo\Score as SoloScore;
+use App\Models\Traits\SoloScoreInterface;
 use App\Transformers\TransformerAbstract;
 
 class CurrentUserAttributesTransformer extends TransformerAbstract
 {
-    public function transform(LegacyMatch\Score|ScoreModel|SoloScore $score): array
+    public function transform(LegacyMatch\Score|ScoreModel|SoloScoreInterface $score): array
     {
         $pinnable = $score instanceof ScoreModel
             ? $score->best

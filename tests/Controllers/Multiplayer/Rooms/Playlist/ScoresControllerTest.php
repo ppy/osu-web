@@ -7,7 +7,7 @@ namespace Tests\Controllers\Multiplayer\Rooms\Playlist;
 
 use App\Models\Build;
 use App\Models\Multiplayer\PlaylistItem;
-use App\Models\Multiplayer\Score;
+use App\Models\Multiplayer\ScoreLink;
 use App\Models\User;
 use Tests\TestCase;
 
@@ -15,15 +15,15 @@ class ScoresControllerTest extends TestCase
 {
     public function testShow()
     {
-        $score = Score::factory()->create();
+        $scoreLink = ScoreLink::factory()->create();
         $user = User::factory()->create();
 
         $this->actAsScopedUser($user, ['*']);
 
         $this->json('GET', route('api.rooms.playlist.scores.show', [
-            'room' => $score->room_id,
-            'playlist' => $score->playlist_item_id,
-            'score' => $score->getKey(),
+            'room' => $scoreLink->room_id,
+            'playlist' => $scoreLink->playlist_item_id,
+            'score' => $scoreLink->getKey(),
         ]))->assertSuccessful();
     }
 
@@ -35,7 +35,6 @@ class ScoresControllerTest extends TestCase
         $user = User::factory()->create();
         $playlistItem = PlaylistItem::factory()->create();
         $build = Build::factory()->create(['allow_ranking' => $allowRanking]);
-        $initialScoresCount = Score::count();
 
         $this->actAsScopedUser($user, ['*']);
 
@@ -44,14 +43,13 @@ class ScoresControllerTest extends TestCase
             $params['version_hash'] = $hashParam ? bin2hex($build->hash) : md5('invalid_');
         }
 
+        $countDiff = ((string) $status)[0] === '2' ? 1 : 0;
+        $this->expectCountChange(fn () => ScoreLink::count(), $countDiff);
+
         $this->json('POST', route('api.rooms.playlist.scores.store', [
             'room' => $playlistItem->room_id,
             'playlist' => $playlistItem->getKey(),
         ]), $params)->assertStatus($status);
-
-        $countDiff = ((string) $status)[0] === '2' ? 1 : 0;
-
-        $this->assertSame($initialScoresCount + $countDiff, Score::count());
     }
 
     /**
@@ -63,14 +61,14 @@ class ScoresControllerTest extends TestCase
         $playlistItem = PlaylistItem::factory()->create();
         $room = $playlistItem->room;
         $build = Build::factory()->create(['allow_ranking' => true]);
-        $score = $room->startPlay($user, $playlistItem);
+        $scoreLink = $room->startPlay($user, $playlistItem, 0);
 
         $this->actAsScopedUser($user, ['*']);
 
         $url = route('api.rooms.playlist.scores.update', [
             'room' => $room,
             'playlist' => $playlistItem,
-            'score' => $score,
+            'score' => $scoreLink,
         ]);
 
         $this->json('PUT', $url, $bodyParams)->assertStatus($status);
