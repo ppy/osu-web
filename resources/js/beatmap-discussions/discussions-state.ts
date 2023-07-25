@@ -136,9 +136,11 @@ export default class DiscussionsState {
     };
 
     for (const discussion of this.nonNullDiscussions) {
-      const mode = discussion.beatmap?.mode;
-      if (mode != null) {
-        counts[mode]++;
+      if (discussion.beatmap_id != null) {
+        const mode = this.store.beatmaps.get(discussion.beatmap_id)?.mode;
+        if (mode != null) {
+          counts[mode]++;
+        }
       }
     }
 
