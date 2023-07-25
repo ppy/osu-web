@@ -59,7 +59,7 @@ export class Header extends React.Component<Props> {
   private get discussionCounts() {
     const counts: Partial<Record<Filter, number>> = observable({});
     for (const type of statTypes) {
-      counts[type] = this.discussionsState.currentDiscussionsGroupedByFilter[type].length;
+      counts[type] = this.discussionsState.discussionsByFilter[type].length;
     }
 
     return counts;
@@ -71,7 +71,7 @@ export class Header extends React.Component<Props> {
 
   @computed
   private get timelineDiscussions() {
-    return this.discussionsState.currentDiscussions.timeline;
+    return this.discussionsState.discussionsByMode.timeline;
   }
 
   private get users() {

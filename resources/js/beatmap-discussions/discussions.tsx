@@ -86,7 +86,11 @@ export class Discussions extends React.Component<Props> {
 
   @computed
   private get sortedDiscussions() {
-    return this.discussionsState.currentBeatmapDiscussionsCurrentModeWithFilter.slice().sort((a: BeatmapsetDiscussionJson, b: BeatmapsetDiscussionJson) => {
+    if (this.discussionsState.currentMode === 'events') return [];
+
+    const discussions = this.discussionsState.discussionsForSelectedUserByMode[this.discussionsState.currentMode];
+
+    return discussions.slice().sort((a: BeatmapsetDiscussionJson, b: BeatmapsetDiscussionJson) => {
       const mapperNoteCompare =
         // no sticky for timeline sort
         this.currentSort !== 'timeline'
@@ -166,23 +170,15 @@ export class Discussions extends React.Component<Props> {
   };
 
   private renderDiscussions() {
-    const count = this.discussionsState.currentBeatmapDiscussionsCurrentModeWithFilter.length;
+    const count = this.sortedDiscussions.length;
 
     if (count === 0) {
       return (
         <div className={`${bn}__discussions ${bn}__discussions--empty`}>
-          {this.discussionsState.currentDiscussionsGroupedByFilter.total.length > count
+          {this.discussionsState.discussionsByFilter.total.length > count
             ? trans('beatmaps.discussions.empty.hidden')
             : trans('beatmaps.discussions.empty.empty')
           }
-        </div>
-      );
-    }
-
-    if (this.discussionsState.currentBeatmapDiscussionsCurrentModeWithFilter.length === 0) {
-      return (
-        <div className={`${bn}__discussions ${bn}__discussions--empty`}>
-          {trans('beatmaps.discussions.empty.hidden')}
         </div>
       );
     }

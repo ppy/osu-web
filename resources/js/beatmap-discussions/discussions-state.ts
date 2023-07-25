@@ -13,7 +13,7 @@ import { findDefault, group, sortWithMode } from 'utils/beatmap-helper';
 import { makeUrl, parseUrl } from 'utils/beatmapset-discussion-helper';
 import { switchNever } from 'utils/switch-never';
 import { Filter, filters } from './current-discussions';
-import DiscussionMode, { DiscussionPage, isDiscussionPage } from './discussion-mode';
+import DiscussionMode, { DiscussionPage, discussionModes, isDiscussionPage } from './discussion-mode';
 
 export interface UpdateOptions {
   beatmapset: BeatmapsetWithDiscussionsJson;
@@ -88,22 +88,11 @@ export default class DiscussionsState {
     return beatmap;
   }
 
-  @computed
-  get currentBeatmapDiscussions() {
-    return this.discussionsByBeatmap(this.currentBeatmapId);
-  }
-
-  @computed
-  get currentBeatmapDiscussionsCurrentModeWithFilter() {
-    if (this.currentMode === 'events') return [];
-    return this.currentDiscussions[this.currentMode];
-  }
-
   /**
    * Discussions for the current beatmap grouped by filters
    */
   @computed
-  get currentDiscussionsGroupedByFilter() {
+  get discussionsByFilter() {
     const groups: Record<Filter, BeatmapsetDiscussionJson[]> = {
       deleted: [],
       hype: [],
@@ -116,7 +105,7 @@ export default class DiscussionsState {
     };
 
     for (const filter of filters) {
-      groups[filter] = this.filterDiscussionsByFilter(this.currentBeatmapDiscussions, filter);
+      groups[filter] = this.filterDiscussionsByFilter(this.discussionForSelectedBeatmap, filter);
     }
 
     return groups;
@@ -126,8 +115,8 @@ export default class DiscussionsState {
    * Discussions for the currently selected beatmap and filter grouped by mode.
    */
   @computed
-  get currentDiscussionsGroupedByMode() {
-    const discussions = this.currentDiscussionsGroupedByFilter[this.currentFilter];
+  get discussionsByMode() {
+    const discussions = this.discussionsByFilter[this.currentFilter];
 
     return {
       general: filterDiscusionsByMode(discussions, 'general', this.currentBeatmapId),
@@ -157,6 +146,11 @@ export default class DiscussionsState {
   }
 
   @computed
+  get discussionForSelectedBeatmap() {
+    return this.discussionsByBeatmap(this.currentBeatmapId);
+  }
+
+  @computed
   get discussionStarters() {
     const userIds = new Set(this.nonNullDiscussions
       .filter((discussion) => discussion.message_type !== 'hype')
@@ -164,6 +158,26 @@ export default class DiscussionsState {
 
     // TODO: sort user.username.toLocaleLowerCase()
     return [...userIds].map((userId) => this.store.users.get(userId)).sort();
+  }
+
+
+  get discussionsForSelectedUserByMode() {
+    if (this.selectedUser == null) {
+      return this.discussionsByMode;
+    }
+
+    const value: Record<DiscussionMode, BeatmapsetDiscussionJson[]> = {
+      general: [],
+      generalAll: [],
+      reviews: [],
+      timeline: [],
+    };
+
+    for (const mode of discussionModes) {
+      value[mode] = this.discussionsByMode[mode].filter((discussion) => discussion.user_id === this.selectedUserId);
+    }
+
+    return value;
   }
 
   @computed
@@ -179,7 +193,7 @@ export default class DiscussionsState {
   @computed
   get hasCurrentUserHyped() {
     const currentUser = core.currentUser; // core.currentUser check below doesn't make the inferrence that it's not nullable after the check.
-    const discussions = filterDiscusionsByMode(this.currentDiscussionsGroupedByFilter.hype, 'generalAll');
+    const discussions = filterDiscusionsByMode(this.discussionsByFilter.hype, 'generalAll');
     return currentUser != null && discussions.some((discussion) => discussion?.user_id === currentUser.id);
   }
 

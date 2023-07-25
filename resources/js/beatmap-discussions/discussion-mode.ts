@@ -12,5 +12,6 @@ export function isDiscussionPage(value: unknown): value is DiscussionPage{
 }
 
 type DiscussionMode = Exclude<DiscussionPage, 'events'>;
+export const discussionModes: Readonly<DiscussionMode[]> = ['reviews', 'generalAll', 'general', 'timeline'] as const;
 
 export default DiscussionMode;

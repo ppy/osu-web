@@ -74,7 +74,7 @@ export class ModeSwitcher extends React.Component<Props> {
           {this.renderModeText(mode)}
           {mode !== 'events' && (
             <span className='page-mode-link__badge'>
-              {this.props.discussionsState.currentDiscussions[mode].length}
+              {this.props.discussionsState.discussionsForSelectedUserByMode[mode].length}
             </span>
           )}
           <span className='page-mode-link__stripe' />

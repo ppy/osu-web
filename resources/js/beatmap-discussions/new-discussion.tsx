@@ -94,7 +94,7 @@ export class NewDiscussion extends React.Component<Props> {
     if (this.nearbyDiscussionsCache == null || (this.nearbyDiscussionsCache.beatmap !== this.currentBeatmap || this.nearbyDiscussionsCache.timestamp !== this.timestamp)) {
       this.nearbyDiscussionsCache = {
         beatmap: this.currentBeatmap,
-        discussions: nearbyDiscussions(this.props.discussionsState.currentBeatmapDiscussions, timestamp),
+        discussions: nearbyDiscussions(this.props.discussionsState.discussionForSelectedBeatmap, timestamp),
         timestamp: this.timestamp,
       };
     }
