@@ -25,7 +25,7 @@ import Discussions from './discussions';
 import Events from './events';
 import { Posts } from './posts';
 import Stats from './stats';
-import Votes, {  } from './votes';
+import Votes from './votes';
 
 // in display order.
 const moddingExtraPages = ['events', 'discussions', 'posts', 'votes', 'kudosu'] as const;
