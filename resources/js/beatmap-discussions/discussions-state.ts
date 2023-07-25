@@ -188,10 +188,12 @@ export default class DiscussionsState {
     return maxLastUpdate != null ? moment(maxLastUpdate).unix() : null;
   }
 
+  @computed
   get selectedUser() {
     return this.store.users.get(this.selectedUserId);
   }
 
+  @computed
   get sortedBeatmaps() {
     // TODO
     // filter to only include beatmaps from the current discussion's beatmapset (for the modding profile page)
