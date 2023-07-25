@@ -153,15 +153,6 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => 'Προσωπικά Μηνύματα του Παλαιότερου Forum',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited αδιάβαστο μήνυμα.|:count_delimited αδιάβαστα μηνύματα.',
-            ],
-        ],
-
         'user' => [
             'user_beatmapset_new' => [
                 '_' => '',

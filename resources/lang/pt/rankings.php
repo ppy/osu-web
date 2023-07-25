@@ -18,9 +18,16 @@ return [
         ],
     ],
 
+    'kudosu' => [
+        'total' => '',
+        'available' => '',
+        'used' => '',
+    ],
+
     'type' => [
         'charts' => 'Em destaque',
         'country' => 'País',
+        'kudosu' => '',
         'multiplayer' => 'multijogador',
         'performance' => 'Desempenho',
         'score' => 'Pontuação',

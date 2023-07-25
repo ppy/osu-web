@@ -27,7 +27,7 @@ return [
     'client' => [
         'id' => 'ID klienta',
         'name' => 'Název aplikace',
-        'redirect' => 'URL zpětného volání aplikace',
+        'redirect' => 'URL adresy zpětného volání aplikace',
         'reset' => 'Resetovat tajný klíč klienta',
         'reset_failed' => 'Obnovení tajného klíče klienta se nezdařilo',
         'secret' => 'Tajný klíč klienta',

@@ -5,7 +5,7 @@
 
 return [
     'match' => [
-        'beatmap-deleted' => 'beatmap ที่ถูกลบ',
+        'beatmap-deleted' => 'บีทแมพที่ถูกลบ',
         'failed' => 'ล้มเหลว',
         'header' => 'แข่งขันแบบหลายคน',
         'in-progress' => '(การแข่งขันกำลังดำเนินการ)',

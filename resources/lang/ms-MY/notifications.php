@@ -153,15 +153,6 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => '',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => '',
-            ],
-        ],
-
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Beatmap baharu',

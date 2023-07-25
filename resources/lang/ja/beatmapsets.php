@@ -61,7 +61,7 @@ return [
         'discussion' => 'ディスカッション',
 
         'deleted_banner' => [
-            'title' => '',
+            'title' => 'このビートマップは削除されました。',
             'message' => '',
         ],
 

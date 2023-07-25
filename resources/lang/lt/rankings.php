@@ -17,9 +17,16 @@ return [
         ],
     ],
 
+    'kudosu' => [
+        'total' => '',
+        'available' => '',
+        'used' => '',
+    ],
+
     'type' => [
         'charts' => 'pasižymėje',
         'country' => 'Šalimis',
+        'kudosu' => '',
         'multiplayer' => 'žaidimas tinkle',
         'performance' => 'pp',
         'score' => 'Taškai',

@@ -41,6 +41,20 @@ class UserGroup extends Model
         $this->attributes['playmodes'] = $this->group->has_playmodes ? json_encode($value ?? []) : null;
     }
 
+    public function actualRulesets(): array
+    {
+        static $defaultRulesets;
+        $defaultRulesets ??= [
+            'nat' => array_keys(Beatmap::MODES),
+        ];
+
+        $visibleRulesets = $this->playmodes ?? [];
+
+        return $visibleRulesets === []
+            ? ($defaultRulesets[$this->group->identifier] ?? [])
+            : $visibleRulesets;
+    }
+
     public function getAttribute($key)
     {
         return match ($key) {

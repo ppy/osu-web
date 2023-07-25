@@ -17,9 +17,16 @@ return [
         ],
     ],
 
+    'kudosu' => [
+        'total' => '',
+        'available' => '',
+        'used' => '',
+    ],
+
     'type' => [
         'charts' => 'โดดเด่น',
         'country' => 'ประเทศ',
+        'kudosu' => '',
         'multiplayer' => 'โหมดผู้เล่นหลายคน',
         'performance' => 'ประสิทธิภาพ',
         'score' => 'คะแนน',

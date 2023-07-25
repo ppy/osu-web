@@ -67,7 +67,7 @@ return [
 
     'reply' => [
         'open' => [
-            'guest' => 'Conectează-te pentru a răspunde',
+            'guest' => 'Autentifică-te pentru a răspunde',
             'user' => 'Răspunde',
         ],
     ],
