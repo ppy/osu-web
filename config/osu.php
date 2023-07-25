@@ -264,6 +264,11 @@ return [
         'registration_mode' => presence(env('REGISTRATION_MODE')) ?? 'client',
         'super_friendly' => array_map('intval', explode(' ', env('SUPER_FRIENDLY', '3'))),
         'ban_persist_days' => get_int(env('BAN_PERSIST_DAYS')) ?? 28,
+
+        'country_change' => [
+            'max_mixed_months' => get_int(env('USER_COUNTRY_CHANGE_MAX_MIXED_MONTHS')) ?? 2,
+            'min_months' => get_int(env('USER_COUNTRY_CHANGE_MIN_MONTHS')) ?? 6,
+        ],
     ],
     'user_report_notification' => [
         'endpoint_cheating' => presence(env('USER_REPORT_NOTIFICATION_ENDPOINT_CHEATING')),
