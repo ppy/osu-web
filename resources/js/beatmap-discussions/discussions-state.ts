@@ -99,18 +99,9 @@ export default class DiscussionsState {
     return this.currentDiscussions[this.currentMode];
   }
 
-  @computed
-  get currentDiscussions() {
-    const discussions = this.currentDiscussionsGroupedByFilter[this.currentFilter];
-
-    return {
-      general: filterDiscusionsByMode(discussions, 'general', this.currentBeatmapId),
-      generalAll: filterDiscusionsByMode(discussions, 'generalAll'),
-      reviews: filterDiscusionsByMode(discussions, 'reviews'),
-      timeline: filterDiscusionsByMode(discussions, 'timeline', this.currentBeatmapId),
-    };
-  }
-
+  /**
+   * Discussions for the current beatmap grouped by filters
+   */
   @computed
   get currentDiscussionsGroupedByFilter() {
     const groups: Record<Filter, BeatmapsetDiscussionJson[]> = {
@@ -129,6 +120,21 @@ export default class DiscussionsState {
     }
 
     return groups;
+  }
+
+  /**
+   * Discussions for the currently selected beatmap and filter grouped by mode.
+   */
+  @computed
+  get currentDiscussionsGroupedByMode() {
+    const discussions = this.currentDiscussionsGroupedByFilter[this.currentFilter];
+
+    return {
+      general: filterDiscusionsByMode(discussions, 'general', this.currentBeatmapId),
+      generalAll: filterDiscusionsByMode(discussions, 'generalAll'),
+      reviews: filterDiscusionsByMode(discussions, 'reviews'),
+      timeline: filterDiscusionsByMode(discussions, 'timeline', this.currentBeatmapId),
+    };
   }
 
   @computed
