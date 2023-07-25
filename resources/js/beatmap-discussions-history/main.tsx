@@ -11,15 +11,11 @@ import * as React from 'react';
 import { makeUrl } from 'utils/beatmapset-discussion-helper';
 import { trans } from 'utils/lang';
 
-interface Props {
-  bundle: BeatmapsetDiscussionsBundleJson;
-}
-
 @observer
-export default class Main extends React.Component<Props> {
-  @observable store = new BeatmapsetDiscussionsBundleStore(this.props.bundle);
+export default class Main extends React.Component<BeatmapsetDiscussionsBundleJson> {
+  @observable store = new BeatmapsetDiscussionsBundleStore(this.props);
 
-  constructor(props: Props) {
+  constructor(props: BeatmapsetDiscussionsBundleJson) {
     super(props);
 
     makeObservable(this);
@@ -28,11 +24,11 @@ export default class Main extends React.Component<Props> {
   render() {
     return (
       <div className='modding-profile-list modding-profile-list--index'>
-        {this.props.bundle.discussions.length === 0 ? (
+        {this.props.discussions.length === 0 ? (
           <div className='modding-profile-list__empty'>
             {trans('beatmap_discussions.index.none_found')}
           </div>
-        ) : (this.props.bundle.discussions.map((discussion) => {
+        ) : (this.props.discussions.map((discussion) => {
           // TODO: handle in child component? Refactored state might not have beatmapset here (and uses Map)
           const beatmapset = this.store.beatmapsets.get(discussion.beatmapset_id);
 
