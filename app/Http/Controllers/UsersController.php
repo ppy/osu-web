@@ -274,6 +274,7 @@ class UsersController extends Controller
      * | guest       | |
      * | loved       | |
      * | most_played | |
+     * | nominated   | |
      * | pending     | Previously `unranked`
      * | ranked      | Previously `ranked_and_approved`
      *
