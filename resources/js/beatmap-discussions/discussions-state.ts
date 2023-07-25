@@ -135,7 +135,7 @@ export default class DiscussionsState {
       taiko: 0,
     };
 
-    for (const discussion of this.nonNullDiscussions) {
+    for (const discussion of this.discussionsArray) {
       if (discussion.beatmap_id != null) {
         const mode = this.store.beatmaps.get(discussion.beatmap_id)?.mode;
         if (mode != null) {
@@ -153,15 +153,19 @@ export default class DiscussionsState {
   }
 
   @computed
+  get discussionsArray() {
+    return [...this.store.discussions.values()];
+  }
+
+  @computed
   get discussionStarters() {
-    const userIds = new Set(this.nonNullDiscussions
+    const userIds = new Set(this.discussionsArray
       .filter((discussion) => discussion.message_type !== 'hype')
       .map((discussion) => discussion.user_id));
 
     // TODO: sort user.username.toLocaleLowerCase()
     return [...userIds].map((userId) => this.store.users.get(userId)).sort();
   }
-
 
   get discussionsForSelectedUserByMode() {
     if (this.selectedUser == null) {
@@ -224,14 +228,8 @@ export default class DiscussionsState {
   }
 
   @computed
-  get nonNullDiscussions() {
-    // TODO: they're already non-null
-    return [...this.store.discussions.values()].filter((discussion) => discussion != null);
-  }
-
-  @computed
   get presentDiscussions() {
-    return this.nonNullDiscussions.filter((discussion) => discussion.deleted_at == null);
+    return this.discussionsArray.filter((discussion) => discussion.deleted_at == null);
   }
 
   @computed
