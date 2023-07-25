@@ -5,7 +5,9 @@
 
 namespace App\Models;
 
-use Exception;
+use App\Libraries\Search\ScoreSearch;
+use App\Libraries\Search\ScoreSearchParams;
+use Ds\Set;
 
 /**
  * @property string $author
@@ -86,65 +88,55 @@ class BeatmapPack extends Model
     {
         if ($user !== null) {
             $userId = $user->getKey();
-            $beatmapsetIds = $this->items()->pluck('beatmapset_id')->all();
-            $query = Beatmap::select('beatmapset_id')->distinct()->whereIn('beatmapset_id', $beatmapsetIds);
 
-            if ($this->playmode === null) {
-                static $scoreRelations;
-
-                // generate list of beatmap->score relation names for each modes
-                // store int mode as well as it'll be used for filtering the scores
-                if (!isset($scoreRelations)) {
-                    $scoreRelations = [];
-                    foreach (Beatmap::MODES as $modeStr => $modeInt) {
-                        $scoreRelations[] = [
-                            'playmode' => $modeInt,
-                            'relation' => camel_case("scores_best_{$modeStr}"),
-                        ];
-                    }
-                }
-
-                // outer where function
-                // The idea is SELECT ... WHERE ... AND (<has osu scores> OR <has taiko scores> OR ...).
-                $query->where(function ($q) use ($scoreRelations, $userId) {
-                    foreach ($scoreRelations as $scoreRelation) {
-                        // The <has <mode> scores> mentioned above is generated here.
-                        // As it's "playmode = <mode> AND EXISTS (<<mode> score for user>)",
-                        // wrap them so it's not flat "playmode = <mode> AND EXISTS ... OR playmode = <mode> AND EXISTS ...".
-                        $q->orWhere(function ($qq) use ($scoreRelation, $userId) {
-                            $qq
-                                // this playmode filter ensures the scores are limited to non-convert maps
-                                ->where('playmode', '=', $scoreRelation['playmode'])
-                                ->whereHas($scoreRelation['relation'], function ($scoreQuery) use ($userId) {
-                                    $scoreQuery->where('user_id', '=', $userId);
-
-                                    if ($this->no_diff_reduction) {
-                                        $scoreQuery->withoutMods(app('mods')->difficultyReductionIds->toArray());
-                                    }
-                                });
-                        });
-                    }
-                });
-            } else {
-                $modeStr = Beatmap::modeStr($this->playmode);
-
-                if ($modeStr === null) {
-                    throw new Exception("beatmapset pack {$this->getKey()} has invalid playmode: {$this->playmode}");
-                }
-
-                $scoreRelation = camel_case("scores_best_{$modeStr}");
-
-                $query->whereHas($scoreRelation, function ($query) use ($userId) {
-                    $query->where('user_id', '=', $userId);
-
-                    if ($this->no_diff_reduction) {
-                        $query->withoutMods(app('mods')->difficultyReductionIds->toArray());
-                    }
-                });
+            $beatmaps = Beatmap
+                ::whereIn('beatmapset_id', $this->items()->select('beatmapset_id'))
+                ->select(['beatmap_id', 'beatmapset_id', 'playmode'])
+                ->get();
+            $beatmapsetIdsByBeatmapId = [];
+            foreach ($beatmaps as $beatmap) {
+                $beatmapsetIdsByBeatmapId[$beatmap->beatmap_id] = $beatmap->beatmapset_id;
+            }
+            $params = [
+                'beatmap_ids' => array_keys($beatmapsetIdsByBeatmapId),
+                'exclude_converts' => $this->playmode === null,
+                'is_legacy' => true,
+                'limit' => 0,
+                'ruleset_id' => $this->playmode,
+                'user_id' => $userId,
+            ];
+            if ($this->no_diff_reduction) {
+                $params['exclude_mods'] = app('mods')->difficultyReductionIds->toArray();
             }
 
-            $completedBeatmapsetIds = $query->pluck('beatmapset_id')->all();
-            $completed = count($completedBeatmapsetIds) === count($beatmapsetIds);
+            static $aggName = 'by_beatmap';
+
+            $search = new ScoreSearch(ScoreSearchParams::fromArray($params));
+            $search->size(0);
+            $search->setAggregations([$aggName => [
+                'terms' => [
+                    'field' => 'beatmap_id',
+                    'size' => max(1, count($params['beatmap_ids'])),
+                ],
+                'aggs' => [
+                    'scores' => [
+                        'top_hits' => [
+                            'size' => 1,
+                        ],
+                    ],
+                ],
+            ]]);
+            $response = $search->response();
+            $search->assertNoError();
+            $completedBeatmapIds = array_map(
+                fn (array $hit): int => (int) $hit['key'],
+                $response->aggregations($aggName)['buckets'],
+            );
+            $completedBeatmapsetIds = (new Set(array_map(
+                fn (int $beatmapId): int => $beatmapsetIdsByBeatmapId[$beatmapId],
+                $completedBeatmapIds,
+            )))->toArray();
+            $completed = count($completedBeatmapsetIds) === count(array_unique($beatmapsetIdsByBeatmapId));
         }
 
         return [
