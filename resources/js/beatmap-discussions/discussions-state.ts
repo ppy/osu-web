@@ -394,8 +394,8 @@ export default class DiscussionsState {
       case 'mapperNotes':
         return discussions.filter((discussion) => discussion.message_type === 'mapper_note');
       case 'mine': {
-        const userId = core.currentUserOrFail.id;
-        return discussions.filter((discussion) => discussion.user_id === userId);
+        const currentUser = core.currentUser;
+        return currentUser != null ? discussions.filter((discussion) => discussion.user_id === currentUser.id) : [];
       }
       case 'pending': {
         const reviewsWithPending = new Set<BeatmapsetDiscussionJson>();
