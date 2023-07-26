@@ -163,7 +163,7 @@ export class Nominator extends React.Component<Props> {
 
     this.xhr = $.ajax(url, params);
     this.xhr.done((beatmapset) => runInAction(() => {
-      this.props.discussionsState.beatmapset = beatmapset;
+      this.props.discussionsState.update({ beatmapset });
       this.hideNominationModal();
     }))
       .fail(onError)

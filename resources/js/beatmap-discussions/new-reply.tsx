@@ -159,8 +159,8 @@ export class NewReply extends React.Component<Props> {
       .done((json) => runInAction(() => {
         this.editing = false;
         this.setMessage('');
-        this.props.discussionsState.markAsRead(json.beatmap_discussion_post_ids);
         this.props.discussionsState.update({ beatmapset: json.beatmapset });
+        this.props.discussionsState.markAsRead(json.beatmap_discussion_post_ids);
       }))
       .fail(onError)
       .always(action(() => {

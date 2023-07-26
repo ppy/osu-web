@@ -6,7 +6,6 @@ import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussion
 import GameMode from 'interfaces/game-mode';
 import { maxBy } from 'lodash';
 import { action, computed, makeObservable, observable, toJS } from 'mobx';
-import BeatmapsetDiscussions from 'models/beatmapset-discussions';
 import moment from 'moment';
 import core from 'osu-core-singleton';
 import { findDefault, group, sortWithMode } from 'utils/beatmap-helper';
@@ -14,6 +13,7 @@ import { makeUrl, parseUrl } from 'utils/beatmapset-discussion-helper';
 import { switchNever } from 'utils/switch-never';
 import { Filter, filters } from './current-discussions';
 import DiscussionMode, { DiscussionPage, discussionModes, isDiscussionPage } from './discussion-mode';
+import BeatmapsetDiscussionsStore from 'models/beatmapset-discussions-store';
 
 export interface UpdateOptions {
   beatmapset: BeatmapsetWithDiscussionsJson;
@@ -77,6 +77,10 @@ export default class DiscussionsState {
 
   private previousFilter: Filter = 'total';
   private previousPage: DiscussionPage = 'general';
+
+  get beatmapset() {
+    return this.store.beatmapset;
+  }
 
   @computed
   get currentBeatmap() {
@@ -264,7 +268,7 @@ export default class DiscussionsState {
     return this.presentDiscussions.filter((discussion) => discussion.can_be_resolved && !discussion.resolved);
   }
 
-  constructor(public beatmapset: BeatmapsetWithDiscussionsJson, private store: BeatmapsetDiscussions, state?: string) {
+  constructor(private store: BeatmapsetDiscussionsStore, state?: string) {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const existingState = state == null ? null : parseState(state);
 
@@ -272,7 +276,7 @@ export default class DiscussionsState {
       Object.apply(this, existingState);
     } else {
       this.jumpToDiscussion = true;
-      for (const discussion of beatmapset.discussions) {
+      for (const discussion of store.beatmapset.discussions) {
         if (discussion.posts != null) {
           for (const post of discussion.posts) {
             this.readPostIds.add(post.id);
@@ -284,7 +288,7 @@ export default class DiscussionsState {
     this.currentBeatmapId = (findDefault({ group: this.groupedBeatmaps }) ?? this.firstBeatmap).id;
 
     // Current url takes priority over saved state.
-    const query = parseUrl(null, beatmapset.discussions);
+    const query = parseUrl(null, store.beatmapset.discussions);
     if (query != null) {
       // TODO: maybe die instead?
       this.currentMode = query.mode;
@@ -380,7 +384,7 @@ export default class DiscussionsState {
     } = options;
 
     if (beatmapset != null) {
-      this.beatmapset = beatmapset;
+      this.store.beatmapset = beatmapset;
     }
 
     if (watching != null) {

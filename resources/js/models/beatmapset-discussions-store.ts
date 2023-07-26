@@ -4,11 +4,13 @@
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import { isEmpty } from 'lodash';
-import { computed, makeObservable } from 'mobx';
+import { computed, makeObservable, observable } from 'mobx';
 import { mapBy, mapByWithNulls } from 'utils/map';
 import BeatmapsetDiscussions from './beatmapset-discussions';
 
 export default class BeatmapsetDiscussionsStore implements BeatmapsetDiscussions {
+  @observable beatmapset: BeatmapsetWithDiscussionsJson;
+
   @computed
   get beatmaps() {
     const hasDiscussion = new Set<number>();
@@ -44,7 +46,8 @@ export default class BeatmapsetDiscussionsStore implements BeatmapsetDiscussions
     return mapByWithNulls(this.beatmapset.related_users, 'id');
   }
 
-  constructor(private beatmapset: BeatmapsetWithDiscussionsJson) {
+  constructor(beatmapset: BeatmapsetWithDiscussionsJson) {
+    this.beatmapset = beatmapset;
     makeObservable(this);
   }
 }

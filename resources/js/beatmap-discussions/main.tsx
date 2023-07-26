@@ -66,7 +66,7 @@ export default class Main extends React.Component<Props> {
     // using DiscussionsState['beatmapset'] as type cast to force errors if it doesn't match with props since the beatmapset is from discussionsState.
     const existingBeatmapset = parseJson<DiscussionsState['beatmapset']>(props.container.dataset.beatmapset);
     this.store = new BeatmapsetDiscussionsStore(existingBeatmapset ?? this.props.initial.beatmapset);
-    this.discussionsState = new DiscussionsState(props.initial.beatmapset, this.store, props.container.dataset.discussionsState);
+    this.discussionsState = new DiscussionsState(this.store, props.container.dataset.discussionsState);
 
     makeObservable(this);
   }
@@ -223,7 +223,7 @@ export default class Main extends React.Component<Props> {
   };
 
   private readonly jumpToDiscussionByHash = () => {
-    const target = parseUrl(null,  this.discussionsState.discussionsArray);
+    const target = parseUrl(null, this.discussionsState.discussionsArray);
 
     if (target?.discussionId != null) {
       this.jumpTo(null, { id: target.discussionId, postId: target.postId });

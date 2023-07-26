@@ -246,7 +246,7 @@ export class NewDiscussion extends React.Component<Props> {
         for (const postId of json.beatmap_discussion_post_ids) {
           this.props.discussionsState.readPostIds.add(postId);
         }
-        this.props.discussionsState.beatmapset = json.beatmapset;
+        this.props.discussionsState.update({ beatmapset: json.beatmapset });
       }))
       .fail(onError)
       .always(action(() => {

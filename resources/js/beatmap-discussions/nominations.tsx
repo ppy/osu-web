@@ -178,7 +178,7 @@ export class Nominations extends React.Component<Props> {
 
     this.xhr.discussionLock
       .done((beatmapset) => runInAction(() => {
-        this.props.discussionsState.beatmapset = beatmapset;
+        this.props.discussionsState.update({ beatmapset });
       }))
       .fail(onError)
       .always(action(() => {
@@ -199,7 +199,7 @@ export class Nominations extends React.Component<Props> {
 
     this.xhr.discussionLock
       .done((beatmapset) => runInAction(() => {
-        this.props.discussionsState.beatmapset = beatmapset;
+        this.props.discussionsState.update({ beatmapset });
       }))
       .fail(onError)
       .always(action(() => {
@@ -293,7 +293,7 @@ export class Nominations extends React.Component<Props> {
 
     this.xhr.removeFromLoved
       .done((beatmapset) => runInAction(() => {
-        this.props.discussionsState.beatmapset = beatmapset;
+        this.props.discussionsState.update({ beatmapset });
       }))
       .fail(onError)
       .always(action(() => {
