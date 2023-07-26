@@ -15,7 +15,7 @@ use Tests\DuskTestCase;
 
 class BeatmapDiscussionPostsTest extends DuskTestCase
 {
-    private const NEW_REPLY_SELECTOR = '.beatmap-discussion-new-reply';
+    private const NEW_REPLY_SELECTOR = '.beatmap-discussion-post--new-reply';
     private const RESOLVE_BUTTON_SELECTOR = '.btn-osu-big[data-action=reply_resolve]';
 
     private Beatmap $beatmap;
