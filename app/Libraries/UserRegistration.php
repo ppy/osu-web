@@ -63,7 +63,7 @@ class UserRegistration
 
                 $this->user->setDefaultGroup($this->group);
 
-                Count::totalUsers()->increment('count');
+                Count::totalUsers()->incrementInstance('count');
                 Datadog::increment('osu.new_account_registrations', 1, ['source' => 'osu-web']);
             });
         } catch (Exception $e) {
