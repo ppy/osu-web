@@ -6,6 +6,7 @@ import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussion
 import GameMode from 'interfaces/game-mode';
 import { maxBy } from 'lodash';
 import { action, computed, makeObservable, observable, toJS } from 'mobx';
+import BeatmapsetDiscussionsStore from 'models/beatmapset-discussions-store';
 import moment from 'moment';
 import core from 'osu-core-singleton';
 import { findDefault, group, sortWithMode } from 'utils/beatmap-helper';
@@ -13,9 +14,9 @@ import { makeUrl, parseUrl } from 'utils/beatmapset-discussion-helper';
 import { switchNever } from 'utils/switch-never';
 import { Filter, filters } from './current-discussions';
 import DiscussionMode, { DiscussionPage, discussionModes, isDiscussionPage } from './discussion-mode';
-import BeatmapsetDiscussionsStore from 'models/beatmapset-discussions-store';
 
 export interface UpdateOptions {
+  beatmap_discussion_post_ids: number[];
   beatmapset: BeatmapsetWithDiscussionsJson;
   watching: boolean;
 }
@@ -379,9 +380,14 @@ export default class DiscussionsState {
   @action
   update(options: Partial<UpdateOptions>) {
     const {
+      beatmap_discussion_post_ids,
       beatmapset,
       watching,
     } = options;
+
+    if (beatmap_discussion_post_ids != null) {
+      this.markAsRead(beatmap_discussion_post_ids);
+    }
 
     if (beatmapset != null) {
       this.store.beatmapset = beatmapset;
