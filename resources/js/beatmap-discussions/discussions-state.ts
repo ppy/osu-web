@@ -267,8 +267,8 @@ export default class DiscussionsState {
 
     if (existingState != null) {
       Object.apply(this, existingState);
-      this.jumpToDiscussion = true;
     } else {
+      this.jumpToDiscussion = true;
       for (const discussion of beatmapset.discussions) {
         if (discussion.posts != null) {
           for (const post of discussion.posts) {
