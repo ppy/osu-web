@@ -205,13 +205,16 @@ export default class DiscussionsState {
 
   @computed
   get lastUpdate() {
+    const maxDiscussions = maxBy(this.beatmapset.discussions, 'updated_at')?.updated_at;
+    const maxEvents = maxBy(this.beatmapset.events, 'created_at')?.created_at;
+
     const maxLastUpdate = Math.max(
-      +this.beatmapset.last_updated,
-      +(maxBy(this.beatmapset.discussions, 'updated_at')?.updated_at ?? 0),
-      +(maxBy(this.beatmapset.events, 'created_at')?.created_at ?? 0),
+      Date.parse(this.beatmapset.last_updated),
+      maxDiscussions != null ? Date.parse(maxDiscussions) : 0,
+      maxEvents != null ? Date.parse(maxEvents) : 0,
     );
 
-    return maxLastUpdate != null ? moment(maxLastUpdate).unix() : null;
+    return moment(maxLastUpdate).unix();
   }
 
   @computed
