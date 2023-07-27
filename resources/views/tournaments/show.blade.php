@@ -18,13 +18,14 @@
 @extends('master', ['titlePrepend' => $tournament->name])
 
 @section('content')
-    @include('objects.css-override', ['mapping' => ['.tournament__banner' => $tournament->header_banner]])
-
     @include('layout._page_header_v4', ['params' => [
         'links' => $links,
         'linksBreadcrumb' => true,
         'theme' => 'tournaments',
     ]])
+    <style>
+        :root { {{ css_var_2x('--tournament-header-banner', $tournament->header_banner) }} }
+    </style>
 
     <div class="osu-page osu-page--info-bar">
         <div class="grid-items">

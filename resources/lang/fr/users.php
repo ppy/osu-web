@@ -49,6 +49,7 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => 'Offrir un tag supporter',
         'loading' => 'Chargement...',
         'send_message' => 'envoyer un message',
     ],
@@ -328,7 +329,7 @@ return [
                 'title' => 'moi !',
             ],
             'medals' => [
-                'empty' => "Cet utilisateur n'en a encore jamais reçue. ;_;",
+                'empty' => "Cet utilisateur n'en a encore jamais reçu. ;_;",
                 'recent' => 'Les plus récentes',
                 'title' => 'Médailles',
             ],

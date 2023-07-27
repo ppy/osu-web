@@ -36,6 +36,7 @@ return [
         'artist' => 'アーティスト/アルバム',
         'chart' => 'スポットライト',
         'featured' => '注目アーティスト',
+        'loved' => '',
         'standard' => 'スタンダードパック',
         'theme' => 'テーマ',
         'tournament' => '',

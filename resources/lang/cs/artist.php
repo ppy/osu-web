@@ -13,8 +13,8 @@ return [
 
     'beatmaps' => [
         '_' => 'Beatmapy',
-        'download' => 'Stáhnout šablonu beatmapy',
-        'download-na' => 'Šablona beatmapy zatím není dostupná',
+        'download' => 'stáhnout šablonu beatmapy',
+        'download-na' => 'šablona beatmapy zatím není dostupná',
     ],
 
     'index' => [

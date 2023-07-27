@@ -37,7 +37,7 @@ return [
         'blocked_count' => 'užblokuoti vartotojai (:count)',
         'hide_profile' => 'Slėpti profilį',
         'hide_comment' => 'slėpti',
-        'forum_post_text' => '',
+        'forum_post_text' => 'Šis skelbimas yra paslėptas.',
         'not_blocked' => 'Šis vartotojas nėra užblokuotas.',
         'show_profile' => 'Rodyti profilį',
         'show_comment' => 'rodyti',
@@ -49,6 +49,7 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => '',
         'loading' => 'Įkeliama...',
         'send_message' => 'Siųsti žinutę',
     ],
@@ -159,7 +160,7 @@ return [
     'restricted_banner' => [
         'title' => 'Tavo vartotojo prieiga buvo apribota!',
         'message' => 'Kol ribotas, negalėsite sąveikauti su kitais žaidėjais ir jūsų rezultatai bus matomi tik jums. Įprastai šis apribojimas įvyksta dėl automatizuoto proceso ir yra atšaukiamas per 24 valandas. Jei norite apeliuoti šį apribojimą, prašome <a href="mailto:accounts@ppy.sh">susisiekti su pagalba</a>.',
-        'message_link' => '',
+        'message_link' => 'Peržiurėkite šį puslapį, kad sužinotumėte daugiau.',
     ],
     'show' => [
         'age' => ':age metų',
@@ -169,7 +170,7 @@ return [
         'is_supporter' => 'osu!rėmėjas',
         'joined_at' => 'Prisijungė :date',
         'lastvisit' => 'Paskutinį kart matytas :date',
-        'lastvisit_online' => 'Prisijungę žaidėjai',
+        'lastvisit_online' => 'Prisijunges',
         'missingtext' => 'Turbūt padarei klaidą! (arba vartotojas buvo užblokuotas)',
         'origin_country' => 'Iš :country',
         'previous_usernames' => 'buvo žinomas kaip',
@@ -227,7 +228,7 @@ return [
                     'title' => 'Mėgstami Bitmapai',
                 ],
                 'graveyard' => [
-                    'title' => 'Palaidoti Bitmapai',
+                    'title' => 'Apleisti Bitmapai',
                 ],
                 'guest' => [
                     'title' => 'Bitmapai sukurti kaip svečio',
@@ -452,7 +453,7 @@ return [
             'total_hits' => 'Visi Pataikymai',
             'total_score' => 'Visi taškai',
             // modding stats
-            'graveyard_beatmapset_count' => 'Palaidoti Bitmapai',
+            'graveyard_beatmapset_count' => 'Apleisti Bitmapai',
             'loved_beatmapset_count' => 'Mylimi Bitmapai',
             'pending_beatmapset_count' => 'Laukiantis Bitmapai',
             'ranked_beatmapset_count' => 'Reitinguoti Bitmapai',

@@ -49,6 +49,7 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => 'Regalar etiqueta de supporter',
         'loading' => 'Cargando...',
         'send_message' => 'Enviar mensaje',
     ],
@@ -75,7 +76,7 @@ return [
 
         'if_mistake' => [
             '_' => 'Si cree que se trata de un error, puede ponerse en contacto con nosotros (por :email o haciendo clic en el "?" en la esquina inferior derecha de esta página). Tenga en cuenta que siempre confiamos plenamente en nuestras acciones, ya que se basan en datos muy sólidos. Nos reservamos el derecho de ignorar su petición si consideramos que está siendo intencionadamente deshonesto.',
-            'email' => 'correo',
+            'email' => 'correo electrónico',
         ],
 
         'reasons' => [
@@ -135,7 +136,7 @@ return [
     'logout_confirm' => '¿Seguro que desea cerrar la sesión? :(',
     'report' => [
         'button_text' => 'Reportar',
-        'comments' => 'Comentarios adicionales',
+        'comments' => 'Comentarios',
         'placeholder' => 'Por favor, proporcione cualquier información que crea que pueda ser útil.',
         'reason' => 'Motivo',
         'thanks' => '¡Gracias por reportar!',

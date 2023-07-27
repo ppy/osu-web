@@ -174,11 +174,35 @@ abstract class Model extends BaseModel
         $query->whereNotNull($column)->where($column, '<>', '');
     }
 
+    /**
+     * Just like decrement but only works on saved instance instead of falling back to entire model
+     */
+    public function decrementInstance()
+    {
+        if (!$this->exists) {
+            return false;
+        }
+
+        return $this->decrement(...func_get_args());
+    }
+
     public function delete()
     {
         return $this->runAfterCommitWrapper(function () {
             return parent::delete();
         });
+    }
+
+    /**
+     * Just like increment but only works on saved instance instead of falling back to entire model
+     */
+    public function incrementInstance()
+    {
+        if (!$this->exists) {
+            return false;
+        }
+
+        return $this->increment(...func_get_args());
     }
 
     public function save(array $options = [])

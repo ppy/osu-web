@@ -11,6 +11,7 @@ import * as React from 'react';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 import { present } from 'utils/string';
+import { giftSupporterTagUrl } from 'utils/url';
 import FlagCountry from './flag-country';
 import FollowUserMappingButton from './follow-user-mapping-button';
 import { PopupMenuPersistent } from './popup-menu-persistent';
@@ -287,6 +288,15 @@ export class UserCard extends React.PureComponent<Props, State> {
             {` ${trans('users.card.send_message')}`}
           </a>
         )}
+
+        <a
+          className='simple-menu__item'
+          href={giftSupporterTagUrl(this.user)}
+          onClick={dismiss}
+        >
+          <span className='fas fa-gift' />
+          {` ${trans('users.card.gift_supporter')}`}
+        </a>
 
         <BlockButton modifiers='inline' onClick={dismiss} userId={this.user.id} wrapperClass='simple-menu__item' />
 

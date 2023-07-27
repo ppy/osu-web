@@ -61,6 +61,7 @@ count_100                 | number                      | |
 count_300                 | number                      | |
 count_50                  | number                      | |
 count_miss                | number                      | |
+country_rank              | number?                     | Current country rank according to pp. |
 grade_counts.a            | number                      | Number of A ranked scores.
 grade_counts.s            | number                      | Number of S ranked scores.
 grade_counts.sh           | number                      | Number of Silver S ranked scores.
@@ -74,7 +75,9 @@ maximum_combo             | number                      | Highest maximum combo.
 play_count                | number                      | Number of maps played.
 play_time                 | number                      | Cumulative time played.
 pp                        | number                      | Performance points
+pp_exp                    | number                      | Experimental (lazer) performance points
 global_rank               | number?                     | Current rank according to pp.
+global_rank_exp           | number?                     | Current rank according to experimental (lazer) pp.
 ranked_score              | number                      | Current ranked score.
 replays_watched_by_others | number                      | Number of replays watched by other users.
 total_hits                | number                      | Total number of hits.

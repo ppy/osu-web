@@ -371,7 +371,7 @@ return [
             'to_not_watching' => 'Kein Lesezeichen gesetzt',
             'to_watching' => 'Lesezeichen setzen',
             'to_watching_mail' => 'Lesezeichen mit Benachrichtigung',
-            'tooltip_mail_disable' => 'Benachrichtigungen sind aktiviert. Klicken zum Deaktivieren',
+            'tooltip_mail_disable' => 'Benachrichtigungen sind aktiviert. Zum Deaktivieren klicken',
             'tooltip_mail_enable' => 'Benachrichtigungen sind deaktiviert. Zum Aktivieren klicken',
         ],
     ],

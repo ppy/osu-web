@@ -175,6 +175,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => 'Jūs jau nominavote šį taktalapį.',
+        'cannot_nominate' => 'Jūs negalite nominuoti šio taktalapio žaidimo režimo.',
         'delete' => 'Ištrinti',
         'delete_own_confirm' => 'Ar jūs užtikrintas? Bitmapas bus pašalintas ir būsite nukreiptas į savo profilį.',
         'delete_other_confirm' => 'Ar jūs užtikrintas? Bitmapas bus pašalintas ir būsite nukreiptas į vartotojo profilį.',
@@ -199,7 +201,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'Numatoma, kad šis bitmapas bus reitinguotas :date, jei nebus rasta problemų. Jis yra #:position tarp :queue.',
-            'on' => '',
+            'on' => ':date',
             'queue' => 'reitingavimo eilės',
             'soon' => 'greitai',
         ],
@@ -272,7 +274,7 @@ return [
         'any' => 'Bet kokie',
         'approved' => 'Patvirtintas',
         'favourites' => 'Mėgstami',
-        'graveyard' => 'Kapinės',
+        'graveyard' => 'Apleisti',
         'leaderboard' => 'Turi Rezultatų lentą',
         'loved' => 'Mylimi',
         'mine' => 'Mano Bitmapai',

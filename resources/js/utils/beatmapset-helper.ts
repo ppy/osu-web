@@ -1,7 +1,6 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import BeatmapsetJson, { BeatmapsetNominationsInterface } from 'interfaces/beatmapset-json';
 import { route } from 'laroute';
 import { sum } from 'lodash';
@@ -13,8 +12,27 @@ interface FavouriteResponse {
   favourite_count: number;
 }
 
-export function downloadLimited(beatmapset: BeatmapsetExtendedJson) {
-  return beatmapset.availability.download_disabled || beatmapset.availability.more_information != null;
+export function downloadLimited(beatmapset: BeatmapsetJson) {
+  return beatmapset.availability == null
+    || beatmapset.availability.download_disabled
+    || beatmapset.availability.more_information != null;
+}
+
+// TODO: should make a Beatmapset proxy object or something
+export function getArtist(beatmapset: BeatmapsetJson) {
+  if (core.userPreferences.get('beatmapset_title_show_original')) {
+    return beatmapset.artist_unicode;
+  }
+
+  return beatmapset.artist;
+}
+
+export function getTitle(beatmapset: BeatmapsetJson) {
+  if (core.userPreferences.get('beatmapset_title_show_original')) {
+    return beatmapset.title_unicode;
+  }
+
+  return beatmapset.title;
 }
 
 export function nominationsCount(nominations: BeatmapsetNominationsInterface, type: 'current' | 'required'): number {

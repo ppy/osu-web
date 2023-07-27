@@ -49,6 +49,7 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => '',
         'loading' => 'Φόρτωση...',
         'send_message' => 'αποστολή μηνύματος',
     ],

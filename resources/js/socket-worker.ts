@@ -145,9 +145,9 @@ export default class SocketWorker {
         return json;
       }
 
-      console.debug('message missing event type.');
+      console.error('message missing event type.');
     } catch {
-      console.debug('Failed parsing data:', event.data);
+      console.error('Failed parsing data:', event.data);
     }
   }
 

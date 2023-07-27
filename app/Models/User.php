@@ -25,8 +25,6 @@ use Cache;
 use Carbon\Carbon;
 use DB;
 use Ds\Set;
-use Egulias\EmailValidator\EmailValidator;
-use Egulias\EmailValidator\Validation\NoRFCWarningsValidation;
 use Exception;
 use Hash;
 use Illuminate\Auth\Authenticatable;
@@ -141,6 +139,7 @@ use Request;
  * @property int $user_avatar_width
  * @property string $user_birthday
  * @property string|null $user_colour
+ * @property-read Collection<UserCountryHistory> $userCountryHistory
  * @property string $user_dateformat
  * @property string|null $user_discord
  * @property int $user_dst
@@ -273,6 +272,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     private $validateEmailConfirmation = false;
 
     private $isSessionVerified;
+
+    public function userCountryHistory(): HasMany
+    {
+        return $this->hasMany(UserCountryHistory::class);
+    }
 
     public function getAuthPassword()
     {
@@ -489,6 +493,9 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         switch ($type) {
             case 'username':
                 $searchUsername = (string) $usernameOrId;
+                if ($searchUsername[0] === '@') {
+                    $searchUsername = substr($searchUsername, 1);
+                }
                 $searchUsernames = [
                     $searchUsername,
                     strtr($searchUsername, ' ', '_'),
@@ -505,11 +512,9 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
                 break;
 
             default:
-                if (ctype_digit((string) $usernameOrId)) {
-                    $user = static::lookup($usernameOrId, 'id', $findAll);
-                }
-
-                return $user ?? static::lookup($usernameOrId, 'username', $findAll);
+                return ctype_digit((string) $usernameOrId)
+                    ? static::lookup($usernameOrId, 'id', $findAll)
+                    : static::lookup($usernameOrId, 'username', $findAll);
         }
 
         if (!$findAll) {
@@ -921,6 +926,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'tokens',
             'topicWatches',
             'userAchievements',
+            'userCountryHistory',
             'userGroups',
             'userNotifications',
             'userPage',
@@ -949,7 +955,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             return $isGroup;
         }
 
-        $groupModes = $this->findUserGroup($group, true)->playmodes;
+        $groupModes = $this->findUserGroup($group, true)->actualRulesets();
 
         return in_array($playmode, $groupModes ?? [], true);
     }
@@ -1221,7 +1227,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function beatmaps()
     {
-        return $this->hasManyThrough(Beatmap::class, Beatmapset::class);
+        return $this->hasMany(Beatmap::class);
     }
 
     public function clients()
@@ -1691,21 +1697,21 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             $modes = [];
 
             if ($this->isLimitedBN()) {
-                $playmodes = $this->findUserGroup(app('groups')->byIdentifier('bng_limited'), true)->playmodes ?? [];
+                $playmodes = $this->findUserGroup(app('groups')->byIdentifier('bng_limited'), true)->actualRulesets();
                 foreach ($playmodes as $playmode) {
                     $modes[$playmode] = 'limited';
                 }
             }
 
             if ($this->isFullBN()) {
-                $playmodes = $this->findUserGroup(app('groups')->byIdentifier('bng'), true)->playmodes ?? [];
+                $playmodes = $this->findUserGroup(app('groups')->byIdentifier('bng'), true)->actualRulesets();
                 foreach ($playmodes as $playmode) {
                     $modes[$playmode] = 'full';
                 }
             }
 
             if ($this->isNAT()) {
-                $playmodes = $this->findUserGroup(app('groups')->byIdentifier('nat'), true)->playmodes ?? [];
+                $playmodes = $this->findUserGroup(app('groups')->byIdentifier('nat'), true)->actualRulesets();
                 foreach ($playmodes as $playmode) {
                     $modes[$playmode] = 'full';
                 }
@@ -1770,9 +1776,9 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return hash('sha256', $this->user_email).':'.hash('sha256', $this->user_password);
     }
 
-    public function resetSessions(): void
+    public function resetSessions(?string $excludedSessionId = null): void
     {
-        SessionStore::destroy($this->getKey());
+        SessionStore::destroy($this->getKey(), $excludedSessionId);
         $this
             ->tokens()
             ->with('refreshToken')
@@ -1830,11 +1836,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         }
 
         return $this->fresh();
-    }
-
-    public function notificationCount()
-    {
-        return $this->user_unread_privmsg;
     }
 
     public function supportLength()
@@ -2000,6 +2001,9 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         $this->currentPassword = $value;
     }
 
+    /**
+     * Enables email presence and confirmation field equality check.
+     */
     public function validateEmailConfirmation()
     {
         $this->validateEmailConfirmation = true;
@@ -2246,6 +2250,10 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         }
 
         if ($this->validateEmailConfirmation) {
+            if ($this->user_email === null) {
+                $this->validationErrors()->add('user_email', '.required');
+            }
+
             if ($this->user_email !== $this->emailConfirmation) {
                 $this->validationErrors()->add('user_email_confirmation', '.wrong_email_confirmation');
             }
@@ -2271,9 +2279,9 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         // user_discord is an accessor for user_jabber
         if ($this->isDirty('user_jabber') && present($this->user_discord)) {
             // This is a basic check and not 100% compliant to Discord's spec, only validates that input:
-            // - is a 2-32 char username (excluding chars @#:)
-            // - ends with a # and 4-digit discriminator
-            if (!preg_match('/^[^@#:]{2,32}#\d{4}$/i', $this->user_discord)) {
+            // - is a 2-32 char username (excluding chars @#:) and 4-digit discriminator for old-style usernames; or,
+            // - 2-32 char alphanumeric + period username for new-style usernames; consecutive periods are not validated.
+            if (!preg_match('/^([^@#:]{2,32}#\d{4}|[\w.]{2,32})$/i', $this->user_discord)) {
                 $this->validationErrors()->add('user_discord', '.invalid_discord');
             }
         }
@@ -2296,8 +2304,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function isValidEmail()
     {
-        $emailValidator = new EmailValidator();
-        if (!$emailValidator->isValid($this->user_email, new NoRFCWarningsValidation())) {
+        if (!is_valid_email_format($this->user_email)) {
             $this->validationErrors()->add('user_email', '.invalid_email');
 
             // no point validating further if address isn't valid.

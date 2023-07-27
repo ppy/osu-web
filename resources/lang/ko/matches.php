@@ -12,7 +12,7 @@ return [
         'in_progress_spinner_label' => '게임이 진행중입니다',
         'loading-events' => '기록 불러오는 중...',
         'winner' => ':team 승리',
-        'winner_by' => '',
+        'winner_by' => ':difference 차로 :winner',
 
         'events' => [
             'player-left' => ':user님이 게임을 떠났습니다.',

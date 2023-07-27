@@ -67,7 +67,7 @@ export default class User {
   updateWithJson(json: UserJson) {
     this.avatarUrl = json.avatar_url;
     this.countryCode = json.country_code;
-    this.defaultGroup = json.default_group;
+    this.defaultGroup = json.default_group ?? '';
     this.isActive = json.is_active;
     this.isBot = json.is_bot;
     this.isOnline = json.is_online;
@@ -86,6 +86,9 @@ const deletedUser = new User(-1);
 deletedUser.isDeleted = true;
 deletedUser.username = trans('users.deleted');
 
+const deletedUserJson = deletedUser.toJson();
+
 export {
   deletedUser,
+  deletedUserJson,
 };

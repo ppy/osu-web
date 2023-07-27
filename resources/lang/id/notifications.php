@@ -11,7 +11,7 @@ return [
     'none' => 'Tidak ada notifikasi',
     'see_all' => 'Lihat riwayat notifikasi',
     'see_channel' => 'Buka jendela chat',
-    'verifying' => 'Harap verifikasi sesi untuk melihat notifikasi',
+    'verifying' => 'Silakan verifikasi sesi untuk melihat notifikasi',
 
     'action_type' => [
         '_' => 'semua',
@@ -150,15 +150,6 @@ return [
                 '_' => 'Balasan baru pada topik forum',
                 'forum_topic_reply' => ':username membalas postinganmu pada utas forum ":title"',
                 'forum_topic_reply_compact' => ':username membalas postinganmu',
-            ],
-        ],
-
-        'legacy_pm' => [
-            '_' => 'Forum PM',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited pesan yang belum dibaca.|:count_delimited pesan yang belum dibaca.',
             ],
         ],
 

@@ -175,6 +175,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => '',
+        'cannot_nominate' => '',
         'delete' => 'מחק',
         'delete_own_confirm' => 'אתה בטוח? Beatmap זו תימחק ואתה תועבר חזרה לפרופיל שלך.',
         'delete_other_confirm' => 'אתה בטוח? Beatmap זו תימחק ואתה תועבר חזרה לפרופיל של המשתמש.',

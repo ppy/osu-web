@@ -17,9 +17,16 @@ return [
         ],
     ],
 
+    'kudosu' => [
+        'total' => '',
+        'available' => '',
+        'used' => '',
+    ],
+
     'type' => [
         'charts' => 'promovări',
         'country' => 'pe țară',
+        'kudosu' => '',
         'multiplayer' => 'multiplayer',
         'performance' => 'performanță',
         'score' => 'scor',

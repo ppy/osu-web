@@ -13,21 +13,21 @@ return [
     ],
 
     'scopes' => [
-        'bot' => 'Toimi chat-bottina.',
-        'identify' => 'Tunnista itsesi ja lue julkista profiiliasi.',
+        'bot' => 'Toimia viestibottina.',
+        'identify' => 'Tunnistaa sinut ja lukea julkista profiiliasi.',
 
         'chat' => [
-            'write' => 'Lähetä viestejä puolestasi.',
+            'write' => 'Lähettää viestejä puolestasi.',
         ],
 
         'forum' => [
-            'write' => 'Luo ja muokkaa foorumin aiheita ja viestejä puolestasi.',
+            'write' => 'Luoda ja muokata foorumiaiheita ja -viestejä puolestasi.',
         ],
 
         'friends' => [
-            'read' => 'Näe ketä seuraat.',
+            'read' => 'Nähdä keitä seuraat.',
         ],
 
-        'public' => 'Lue julkisia tietoja puolestasi.',
+        'public' => 'Lukea julkisia tietoja puolestasi.',
     ],
 ];

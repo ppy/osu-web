@@ -24,6 +24,7 @@ id              | number
 update_stream   | [UpdateStream](#updatestream)?
 users           | number
 version         | string?
+youtube_id      | string?
 
 ### Optional Attributes
 

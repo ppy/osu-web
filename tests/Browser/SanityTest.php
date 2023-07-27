@@ -360,8 +360,6 @@ class SanityTest extends DuskTestCase
 
         // TODO: add additional logic for certain routes to re-run tests per game mode, per user score type, etc
         $this->browse(function (Browser $browser) use ($route, $type, $url) {
-            static::resetSession($browser);
-
             try {
                 if ($type === 'user') {
                     $browser->loginAs(self::$scaffolding['user']);

@@ -12,7 +12,7 @@ return [
         'in_progress_spinner_label' => 'meci în desfășurare',
         'loading-events' => 'Se încarcă evenimentele...',
         'winner' => ':team câștigă',
-        'winner_by' => '',
+        'winner_by' => ':winner cu :difference puncte',
 
         'events' => [
             'player-left' => ':user a părăsit meciul',

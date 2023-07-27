@@ -7,7 +7,8 @@ import BigButton from 'components/big-button';
 import { trim } from 'lodash';
 import { action, autorun, computed, makeObservable, reaction } from 'mobx';
 import { disposeOnUnmount, observer } from 'mobx-react';
-import Message, { maxLength } from 'models/chat/message';
+import { maxMessageLength } from 'models/chat/channel';
+import Message from 'models/chat/message';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import TextareaAutosize from 'react-autosize-textarea';
@@ -112,7 +113,7 @@ export default class InputBox extends React.Component<Props> {
           autoComplete='off'
           className={classWithModifiers('chat-input__box', { disabled: this.inputDisabled })}
           disabled={this.inputDisabled}
-          maxLength={maxLength}
+          maxLength={channel?.messageLengthLimit ?? maxMessageLength}
           maxRows={channel?.type === 'ANNOUNCE' ? 10 : 3}
           name='textbox'
           onChange={this.handleChange}

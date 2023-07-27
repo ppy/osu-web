@@ -150,7 +150,7 @@ export default class ProfilePageKudosu extends React.Component<Props> {
       <ul className='profile-extra-entries profile-extra-entries--kudosu'>
         {this.kudosu.items.map((kudosu) => <Entry key={kudosu.id} kudosu={kudosu} />)}
 
-        <li className='profile-extra-entries__item'>
+        <li className='profile-extra-entries__item u-contents'>
           <ShowMoreLink
             {...this.kudosu.pagination}
             callback={this.handleShowMore}

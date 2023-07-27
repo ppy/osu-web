@@ -12,7 +12,7 @@ return [
         'in_progress_spinner_label' => 'probíhá zápas',
         'loading-events' => 'Načítání událostí...',
         'winner' => ':team vyhrává',
-        'winner_by' => '',
+        'winner_by' => ':winner o :difference',
 
         'events' => [
             'player-left' => ':user opustil zápas',

@@ -175,6 +175,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => '',
+        'cannot_nominate' => '',
         'delete' => 'Odstrániť',
         'delete_own_confirm' => 'Ste si istý? Beatmapa bude odstránená a budete presmerovaný späť na svoj profil.',
         'delete_other_confirm' => 'Ste si istý? Beatmapa bude odstránená a budete presmerovaný späť na profil používateľa.',

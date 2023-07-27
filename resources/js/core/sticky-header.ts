@@ -67,7 +67,6 @@ export default class StickyHeader {
   constructor() {
     $(window).on('scroll', this.onScroll);
     $(document).on('turbolinks:load', this.debouncedOnScroll);
-    $.subscribe('osu:page:change', this.debouncedOnScroll);
     $(window).on('resize', this.stickOrUnstick);
   }
 

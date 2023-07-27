@@ -11,6 +11,7 @@ return [
     'edited' => 'נערך :timeago על-ידי :user',
     'pinned' => 'נעוץ',
     'empty' => 'אין תגובות עדיין.',
+    'empty_other' => '',
     'load_replies' => 'טען תגובות',
     'replies_count' => ':count_delimited תגובה :count_delimited תגובות',
     'title' => 'תגובות',

@@ -29,16 +29,14 @@ export default class ForumAutoClick
 
 
   onLoad: =>
-    $.unsubscribe 'scroll', @throttledOnScroll
-    $(window).off 'osu:page:change', @throttledOnScroll
+    window.removeEventListener 'scroll', @throttledOnScroll
 
     @nextLink = document.querySelector('.js-forum__posts-show-more--next')
     @previousLink = document.querySelector('.js-forum__posts-show-more--previous')
 
     if @nextLink? && @previousLink?
       @throttledOnScroll()
-      $(window).on 'scroll', @throttledOnScroll
-      $.subscribe 'osu:page:change', @throttledOnScroll
+      window.addEventListener 'scroll', @throttledOnScroll
 
 
   onScroll: =>

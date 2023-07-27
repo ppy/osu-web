@@ -6,7 +6,6 @@ import DispatchListener from './dispatch-listener';
 
 export default class Dispatcher {
   private listeners = new Set<DispatchListener>();
-  private trace = false;
 
   get size() {
     return this.listeners.size;
@@ -17,9 +16,6 @@ export default class Dispatcher {
   }
 
   dispatch = (action: DispatcherAction) => {
-    if (this.trace) {
-      console.debug('Dispatcher::dispatch', action);
-    }
     this.listeners.forEach((listener) => {
       listener.handleDispatchAction(action);
     });

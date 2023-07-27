@@ -127,7 +127,7 @@ export default class Comment extends React.Component<Props> {
 
   @computed
   private get user() {
-    return this.getUser(this.props.comment.userId);
+    return this.getCommentUser(this.props.comment);
   }
 
   constructor(props: Props) {
@@ -168,14 +168,16 @@ export default class Comment extends React.Component<Props> {
     );
   }
 
-  private getUser(id: number | null | undefined): UserJson | { username: string } {
-    const user = id == null ? null : userStore.get(id)?.toJson();
-
-    return user == null
-      ? this.props.comment.legacyName == null
+  private getCommentUser(comment: CommentModel): UserJson | { username: string } {
+    return this.getUser(comment.userId) ?? (
+      comment.legacyName == null
         ? deletedUser
-        : { username: this.props.comment.legacyName }
-      : user;
+        : { username: comment.legacyName }
+    );
+  }
+
+  private getUser(id: number | null | undefined) {
+    return id == null ? undefined : userStore.get(id)?.toJson();
   }
 
   @action
@@ -437,7 +439,7 @@ export default class Comment extends React.Component<Props> {
         <StringWithComponent
           mappings={{
             timeago: <TimeWithTooltip dateTime={this.props.comment.editedAt} relative />,
-            user: <UserLink user={this.getUser(this.props.comment.editedById)} />,
+            user: <UserLink user={this.getUser(this.props.comment.editedById) ?? deletedUser} />,
           }}
           pattern={trans('comments.edited')}
         />
@@ -598,7 +600,7 @@ export default class Comment extends React.Component<Props> {
   private renderOwnerBadge() {
     const meta = this.meta;
 
-    if (meta == null || !('owner_id' in meta) || meta.owner_id == null || this.props.comment.userId === meta.owner_id) {
+    if (meta == null || !('owner_id' in meta) || meta.owner_id == null || this.props.comment.userId !== meta.owner_id) {
       return;
     }
 
@@ -614,7 +616,7 @@ export default class Comment extends React.Component<Props> {
 
     if (parent == null) return;
 
-    const parentUser = this.getUser(parent.userId);
+    const parentUser = this.getCommentUser(parent);
 
     const content = (
       <>

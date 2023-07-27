@@ -194,6 +194,10 @@ class CommentsController extends Controller
         $comment = new Comment($params);
         $comment->setCommentable();
 
+        if ($comment->commentable === null) {
+            abort(422, 'invalid commentable specified');
+        }
+
         priv_check('CommentStore', $comment->commentable)->ensureCan();
 
         try {

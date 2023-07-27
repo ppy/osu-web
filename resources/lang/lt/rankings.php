@@ -17,19 +17,26 @@ return [
         ],
     ],
 
+    'kudosu' => [
+        'total' => '',
+        'available' => '',
+        'used' => '',
+    ],
+
     'type' => [
         'charts' => 'pasižymėje',
         'country' => 'Šalimis',
+        'kudosu' => '',
         'multiplayer' => 'žaidimas tinkle',
-        'performance' => 'našumo',
+        'performance' => 'pp',
         'score' => 'Taškai',
-        'seasons' => '',
+        'seasons' => 'sezonai',
     ],
 
     'seasons' => [
         'empty' => '',
         'ongoing' => '',
-        'room_count' => '',
+        'room_count' => 'Grojaraščių skaičius',
         'url' => '',
     ],
 
@@ -45,11 +52,11 @@ return [
         'active_users' => 'Aktyvūs Vartotojai',
         'country' => 'Šalis',
         'play_count' => 'Sužaidimų Skaičius',
-        'performance' => 'Našumas',
+        'performance' => 'pp',
         'total_score' => 'Iš viso taškų',
         'ranked_score' => 'Reitinguoti taškai',
         'average_score' => 'Vid. Taškų',
-        'average_performance' => 'Vid. Našumas.',
+        'average_performance' => 'Vid. pp.',
         'ss' => '',
         's' => '',
         'a' => '',

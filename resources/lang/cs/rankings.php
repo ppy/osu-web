@@ -17,9 +17,16 @@ return [
         ],
     ],
 
+    'kudosu' => [
+        'total' => '',
+        'available' => '',
+        'used' => '',
+    ],
+
     'type' => [
         'charts' => 'výběry',
         'country' => 'stát',
+        'kudosu' => '',
         'multiplayer' => 'hra pro více hráčů',
         'performance' => 'výkon',
         'score' => 'skóre',

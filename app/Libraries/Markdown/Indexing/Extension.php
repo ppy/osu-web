@@ -39,7 +39,7 @@ class Extension extends OsuExtension
             CustomContainerInline::class => new Renderers\InlineRenderer(),
             ExtensionBlock\BlockQuote::class => new Renderers\BlockRenderer(),
             ExtensionBlock\FencedCode::class => new Renderers\NoopRenderer(),
-            ExtensionBlock\Heading::class => new Renderers\NoopRenderer(),
+            ExtensionBlock\Heading::class => new Renderers\BlockRenderer(),
             ExtensionBlock\HtmlBlock::class => new Renderers\NoopRenderer(),
             ExtensionBlock\IndentedCode::class => new Renderers\BlockRenderer(),
             ExtensionBlock\ListBlock::class => new Renderers\ListBlockRenderer(),

@@ -23,7 +23,7 @@ return [
 
         'form' => [
             '_' => 'Cerca',
-            'deleted' => 'Inclou discussions eliminades',
+            'deleted' => 'Incloure discussions eliminades',
             'mode' => 'Mode del beatmap',
             'only_unresolved' => 'Mostra només discussions no resoltes',
             'types' => 'Tipus de missatges',

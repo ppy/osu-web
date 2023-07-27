@@ -49,6 +49,7 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => 'Hadiahkan supporter tag',
         'loading' => 'Memuat...',
         'send_message' => 'Kirim pesan',
     ],
@@ -109,7 +110,7 @@ return [
         'forgot' => 'Lupa kata sandi?',
         'info' => 'Silakan masuk untuk melanjutkan',
         'invalid_captcha' => 'Kamu telah berulang kali gagal memasukkan kredensial pengguna yang valid. Harap selesaikan captcha yang muncul dan coba lagi. (Muat ulang laman ini apabila captcha tidak terlihat)',
-        'locked_ip' => 'Alamat IP Anda dikunci. Mohon tunggu beberapa menit.',
+        'locked_ip' => 'Alamat IP-mu dikunci. Silakan tunggu beberapa menit.',
         'password' => 'Kata Sandi',
         'register' => "Belum memiliki akun osu!? Buat sekarang",
         'remember' => 'Ingat perangkat ini',
@@ -157,13 +158,13 @@ return [
         ],
     ],
     'restricted_banner' => [
-        'title' => 'Akun Anda telah di-restrict!',
+        'title' => 'Akunmu telah di-restrict!',
         'message' => 'Selama di-restrict, kamu tidak dapat berinteraksi dengan pengguna lain dan skormu hanya akan dapat dilihat oleh dirimu sendiri. Hal ini biasanya terproses secara otomatis dan akan diangkat dalam 24 jam. :link',
         'message_link' => 'Kunjungi laman ini untuk keterangan lebih lanjut.',
     ],
     'show' => [
         'age' => ':age tahun',
-        'change_avatar' => 'ubah avatar Anda!',
+        'change_avatar' => 'ubah avatarmu!',
         'first_members' => 'Di sini sejak awal',
         'is_developer' => 'osu!developer',
         'is_supporter' => 'osu!supporter',
@@ -328,7 +329,7 @@ return [
                 'title' => 'saya!',
             ],
             'medals' => [
-                'empty' => "Pengguna ini belum membuka medali apapun. ;_;",
+                'empty' => "Pengguna ini belum membuka medali apa pun. ;_;",
                 'recent' => 'Terbaru',
                 'title' => 'Medali',
             ],
@@ -469,7 +470,7 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
-        'from_client' => 'mohon untuk mendaftarkan diri melalui klien permainan!',
+        'from_client' => 'silakan mendaftarkan diri melalui klien permainan!',
         'from_web' => 'mohon selesaikan pendaftaran melalui situs web osu!',
         'saved' => 'Pengguna dibuat',
     ],
