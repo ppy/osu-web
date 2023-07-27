@@ -26,17 +26,15 @@ class UserGroupEventTransformer extends TransformerAbstract
 
     public function transform(UserGroupEvent $event): array
     {
-        $json = array_merge(
-            [
-                'created_at' => $event->created_at_json,
-                'group_id' => $event->group_id,
-                'hidden' => $event->isHidden(),
-                'id' => $event->id,
-                'type' => $event->type,
-                'user_id' => $event->user_id,
-            ],
-            $event->details,
-        );
+        $json = [
+            'created_at' => $event->created_at_json,
+            'group_id' => $event->group_id,
+            'hidden' => $event->isHidden(),
+            'id' => $event->id,
+            'type' => $event->type,
+            'user_id' => $event->user_id,
+            ...$event->details,
+        ];
 
         unset($json['actor_name']);
 

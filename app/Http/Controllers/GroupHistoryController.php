@@ -21,19 +21,19 @@ class GroupHistoryController extends Controller
             'before:time',
             'group:string',
             'user:string',
-        ]);
+        ], ['null_missing' => true]);
         $query = UserGroupEvent::visibleForUser(auth()->user());
         $skipQuery = false;
 
-        if (isset($params['after'])) {
+        if ($params['after'] !== null) {
             $query->where('created_at', '>', $params['after']);
         }
 
-        if (isset($params['before'])) {
+        if ($params['before'] !== null) {
             $query->where('created_at', '<', $params['before']);
         }
 
-        if (isset($params['group'])) {
+        if ($params['group'] !== null) {
             // Not `app('groups')->byIdentifier(...)` because that would create the group if not found
             $groupId = app('groups')->allByIdentifier()->get($params['group'])?->getKey();
 
@@ -44,7 +44,7 @@ class GroupHistoryController extends Controller
             }
         }
 
-        if (isset($params['user'])) {
+        if ($params['user'] !== null) {
             $userId = User::lookupWithHistory($params['user'], null, true)?->getKey();
 
             if ($userId !== null) {
@@ -68,14 +68,11 @@ class GroupHistoryController extends Controller
         $groups = app('groups')->all()->filter(
             fn (Group $group) => priv_check('GroupShow', $group)->can(),
         );
-        $json = array_merge(
-            cursor_for_response($hasMore ? $cursorHelper->next($events) : null),
-            [
-                'events' => json_collection($events, 'UserGroupEvent'),
-                'groups' => json_collection($groups, 'Group'),
-            ],
-        );
 
-        return $json;
+        return [
+            'events' => json_collection($events, 'UserGroupEvent'),
+            'groups' => json_collection($groups, 'Group'),
+            ...cursor_for_response($cursorHelper->next($events, $hasMore)),
+        ];
     }
 }
