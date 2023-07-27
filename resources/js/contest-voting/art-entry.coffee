@@ -22,7 +22,7 @@ export class ArtEntry extends React.Component
     showUserLink = @props.entry.user?.id?
     thumbnailShape = @props.contest.thumbnail_shape
     galleryId = "contest-#{@props.contest.id}"
-    buttonId = "#{galleryId}:#{@props.index}"
+    buttonId = "#{galleryId}:#{@props.entry.id}"
     hideVoteButton = (@props.selected.length >= @props.contest.max_votes || votingOver) && !isSelected
 
     if showVotes
