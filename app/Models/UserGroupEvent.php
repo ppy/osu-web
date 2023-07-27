@@ -43,6 +43,9 @@ class UserGroupEvent extends Model
 
     protected const DEFAULT_SORT = 'id_desc';
     protected const SORTS = [
+        'id_asc' => [
+            ['column' => 'id', 'order' => 'ASC'],
+        ],
         'id_desc' => [
             ['column' => 'id', 'order' => 'DESC'],
         ],

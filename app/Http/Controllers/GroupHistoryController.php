@@ -20,6 +20,7 @@ class GroupHistoryController extends Controller
             'after:time',
             'before:time',
             'group:string',
+            'sort:string',
             'user:string',
         ], ['null_missing' => true]);
         $query = UserGroupEvent::visibleForUser(auth()->user());
@@ -58,7 +59,7 @@ class GroupHistoryController extends Controller
             $events = [];
             $hasMore = false;
         } else {
-            $cursorHelper = UserGroupEvent::makeDbCursorHelper();
+            $cursorHelper = UserGroupEvent::makeDbCursorHelper($params['sort']);
             [$events, $hasMore] = $query
                 ->cursorSort($cursorHelper, cursor_from_params($rawParams))
                 ->limit(50)
