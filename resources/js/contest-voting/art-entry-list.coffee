@@ -33,7 +33,7 @@ export class ArtEntryList extends BaseEntryList
 
     if @state.contest.show_votes
       partitions = _.partition entries, (i) ->
-        i != null && i.props.displayIndex < 3
+        i != null && i.props.index < 3
 
     div className: 'contest__art-list',
       div className: 'contest__vote-summary--art',
