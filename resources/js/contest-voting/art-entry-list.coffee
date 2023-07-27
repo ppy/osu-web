@@ -14,8 +14,8 @@ export class ArtEntryList extends BaseEntryList
 
     selected = new Set(@state.selected)
 
-    displayIndex = -1
-    entries = @state.contest.entries.map (entry) =>
+    galleryIndex = -1
+    entries = @state.contest.entries.map (entry, index) =>
       isSelected = selected.has(entry.id)
 
       return null if @state.showVotedOnly && !isSelected
@@ -23,7 +23,8 @@ export class ArtEntryList extends BaseEntryList
       el ArtEntry,
         key: entry.id,
         contest: @state.contest,
-        displayIndex: ++displayIndex,
+        galleryIndex: ++galleryIndex,
+        index: index
         entry: entry,
         isSelected: isSelected
         options: @state.options,
