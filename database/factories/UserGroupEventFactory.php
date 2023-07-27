@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace Database\Factories;
 
 use App\Models\Beatmap;
+use App\Models\Group;
 use App\Models\User;
 use App\Models\UserGroupEvent;
 
@@ -47,8 +48,7 @@ class UserGroupEventFactory extends Factory
         return [
             'actor_id' => User::factory(),
             'details' => [],
-            // TODO: Should be `Group::factory()`, but that factory needs some updates...
-            'group_id' => fn () => app('groups')->byIdentifier('test'),
+            'group_id' => Group::factory(),
             'hidden' => false,
             'type' => fn () => $this->faker->randomElement([
                 UserGroupEvent::GROUP_ADD,
