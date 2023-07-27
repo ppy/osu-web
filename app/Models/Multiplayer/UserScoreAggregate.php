@@ -175,7 +175,7 @@ class UserScoreAggregate extends Model
 
     public function updateUserAttempts()
     {
-        $this->increment('attempts');
+        $this->incrementInstance('attempts');
     }
 
     public function user()
