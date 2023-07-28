@@ -139,6 +139,7 @@ use Request;
  * @property int $user_avatar_width
  * @property string $user_birthday
  * @property string|null $user_colour
+ * @property-read Collection<UserCountryHistory> $userCountryHistory
  * @property string $user_dateformat
  * @property string|null $user_discord
  * @property int $user_dst
@@ -271,6 +272,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     private $validateEmailConfirmation = false;
 
     private $isSessionVerified;
+
+    public function userCountryHistory(): HasMany
+    {
+        return $this->hasMany(UserCountryHistory::class);
+    }
 
     public function getAuthPassword()
     {
@@ -920,6 +926,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'tokens',
             'topicWatches',
             'userAchievements',
+            'userCountryHistory',
             'userGroups',
             'userNotifications',
             'userPage',
