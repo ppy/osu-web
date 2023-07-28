@@ -86,6 +86,9 @@ const deletedUser = new User(-1);
 deletedUser.isDeleted = true;
 deletedUser.username = trans('users.deleted');
 
+const deletedUserJson = deletedUser.toJson();
+
 export {
   deletedUser,
+  deletedUserJson,
 };

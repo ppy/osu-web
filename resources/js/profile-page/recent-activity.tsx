@@ -66,7 +66,7 @@ export default class RecentActivity extends React.Component<ExtraPageProps> {
     return (
       <ul className='profile-extra-entries'>
         {this.data.items.map(this.renderEntry)}
-        <li className='profile-extra-entries__item'>
+        <li className='profile-extra-entries__item u-contents'>
           <ShowMoreLink
             {...this.data.pagination}
             callback={this.onShowMore}

@@ -71,7 +71,7 @@ jobs:
         run: |
           export TITLE="Pending osu-web $PRODUCTION_TRACK Deployment: $GITHUB_REF_NAME"
           export URL="https://github.com/ppy/osu-web/actions/runs/$GITHUB_RUN_ID"
-          export DESCRIPTION="Docker image was built for tag $GITHUB_REF_NAME and awaiting approval for production deployment:  
+          export DESCRIPTION="Docker image was built for tag $GITHUB_REF_NAME and awaiting approval for $PRODUCTION_TRACK deployment:  
           [View Workflow Run]($URL)"
           export ACTOR_ICON="https://avatars.githubusercontent.com/u/$GITHUB_ACTOR_ID"
 

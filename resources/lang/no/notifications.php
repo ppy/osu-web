@@ -154,15 +154,6 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => 'Eldre Forum PM',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited ulest melding.|:count_delimited uleste meldinger.',
-            ],
-        ],
-
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Nytt beatmap',

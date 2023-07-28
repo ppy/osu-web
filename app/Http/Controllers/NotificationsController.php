@@ -26,7 +26,7 @@ class NotificationsController extends Controller
     public function batchDestroy()
     {
         UserNotification::batchDestroy(
-            auth()->user(),
+            auth()->id(),
             BatchIdentities::fromParams(request()->all())
         );
 

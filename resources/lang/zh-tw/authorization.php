@@ -171,6 +171,7 @@ return [
 
     'score' => [
         'pin' => [
+            'disabled_type' => "",
             'not_owner' => '只有擁有者才可置頂成績。',
             'too_many' => '置頂過多成績。',
         ],

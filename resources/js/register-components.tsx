@@ -21,7 +21,7 @@ import { UserCards } from 'components/user-cards';
 import { WikiSearch } from 'components/wiki-search';
 import { keyBy } from 'lodash';
 import { observable } from 'mobx';
-import { deletedUser } from 'models/user';
+import { deletedUserJson } from 'models/user';
 import NotificationWidget from 'notification-widget/main';
 import core from 'osu-core-singleton';
 import QuickSearch from 'quick-search/main';
@@ -59,7 +59,7 @@ core.reactTurbolinks.register('beatmap-discussion-events', () => {
 
   // TODO: move to store?
   // eslint-disable-next-line id-blacklist
-  props.users.null = props.users.undefined = deletedUser.toJson();
+  props.users.null = props.users.undefined = deletedUserJson;
 
   return <BeatmapsetEvents {...props} />;
 });

@@ -7,6 +7,8 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\ImageProcessorException;
 use App\Exceptions\ModelNotSavedException;
+use App\Libraries\User\CountryChange;
+use App\Libraries\User\CountryChangeTarget;
 use App\Libraries\UserVerification;
 use App\Libraries\UserVerificationState;
 use App\Mail\UserEmailUpdated;
@@ -40,6 +42,7 @@ class AccountController extends Controller
             'except' => [
                 'edit',
                 'reissueCode',
+                'updateCountry',
                 'updateEmail',
                 'updateNotificationOptions',
                 'updateOptions',
@@ -156,6 +159,21 @@ class AccountController extends Controller
         return json_item($user, new CurrentUserTransformer());
     }
 
+    public function updateCountry()
+    {
+        $newCountry = get_string(Request::input('country_acronym'));
+        $user = Auth::user();
+
+        if (CountryChangeTarget::get($user) !== $newCountry) {
+            abort(403, 'specified country_acronym is not allowed');
+        }
+
+        CountryChange::handle($user, $newCountry, 'account settings');
+        \Session::flash('popup', osu_trans('common.saved'));
+
+        return ext_view('layout.ujs-reload', [], 'js');
+    }
+
     public function updateEmail()
     {
         $params = get_params(request()->all(), 'user', ['current_password', 'user_email', 'user_email_confirmation']);
@@ -267,9 +285,7 @@ class AccountController extends Controller
                 Mail::to($user)->send(new UserPasswordUpdated($user));
             }
 
-            $user->resetSessions();
-            $this->login($user);
-            UserVerification::fromCurrentRequest()->markVerified();
+            $user->resetSessions(session()->getKey());
 
             return response([], 204);
         } else {

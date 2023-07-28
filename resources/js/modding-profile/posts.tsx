@@ -6,7 +6,7 @@ import BeatmapsetCover from 'components/beatmapset-cover';
 import { BeatmapsetDiscussionMessagePostJson } from 'interfaces/beatmapset-discussion-post-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
-import { deletedUser } from 'models/user';
+import { deletedUserJson } from 'models/user';
 import * as React from 'react';
 import { makeUrl } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers } from 'utils/css';
@@ -84,7 +84,7 @@ export class Posts extends React.Component<Props> {
               readonly
               resolvedSystemPostId={-1} // TODO: Can probably move to context after refactoring state?
               type='reply'
-              user={this.props.users[post.user_id] ?? deletedUser.toJson()}
+              user={this.props.users[post.user_id] ?? deletedUserJson}
               users={this.props.users}
             />
           </div>

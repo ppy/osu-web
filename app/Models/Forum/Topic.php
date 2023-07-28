@@ -532,7 +532,7 @@ class Topic extends Model implements AfterCommit
                 throw $ex;
             }
 
-            $this->increment('topic_views');
+            $this->incrementInstance('topic_views');
         } elseif ($status->mark_time < $markTime) {
             $status->update(['mark_time' => $markTime]);
         }

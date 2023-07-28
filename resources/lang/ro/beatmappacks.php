@@ -44,6 +44,6 @@ return [
 
     'require_login' => [
         '_' => 'Trebuie să fii :link pentru a descărca',
-        'link_text' => 'conectat',
+        'link_text' => 'autentificat',
     ],
 ];

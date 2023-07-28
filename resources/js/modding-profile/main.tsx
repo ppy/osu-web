@@ -20,7 +20,7 @@ import { first, isEmpty, keyBy, last, throttle } from 'lodash';
 import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import Kudosu from 'modding-profile/kudosu';
-import { deletedUser } from 'models/user';
+import { deletedUserJson } from 'models/user';
 import core from 'osu-core-singleton';
 import Badges from 'profile-page/badges';
 import Cover from 'profile-page/cover';
@@ -28,7 +28,6 @@ import DetailBar from 'profile-page/detail-bar';
 import headerLinks from 'profile-page/header-links';
 import * as React from 'react';
 import { bottomPage } from 'utils/html';
-import { pageChange } from 'utils/page-change';
 import { nextVal } from 'utils/seq';
 import { switchNever } from 'utils/switch-never';
 import { currentUrl } from 'utils/turbolinks';
@@ -122,7 +121,7 @@ export default class Main extends React.Component<Props> {
   private get users() {
     const values = keyBy(this.props.users, 'id');
     // eslint-disable-next-line id-blacklist
-    values.null = values.undefined = deletedUser.toJson();
+    values.null = values.undefined = deletedUserJson;
 
     return values;
   }
@@ -136,8 +135,6 @@ export default class Main extends React.Component<Props> {
   componentDidMount() {
     // pageScan does not need to run at 144 fps...
     $(window).on(`scroll.${this.eventId}`, throttle(() => this.pageScan(), 20));
-
-    pageChange();
 
     const page = validPage(currentUrl().hash.slice(1)) ?? 'main';
 

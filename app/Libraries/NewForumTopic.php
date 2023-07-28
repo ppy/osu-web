@@ -7,7 +7,9 @@ namespace App\Libraries;
 
 use App\Models\Forum\Forum;
 use App\Models\Forum\Post;
+use App\Models\Forum\TopicCover;
 use App\Models\User;
+use App\Transformers\Forum\TopicCoverTransformer;
 use Carbon\Carbon;
 
 class NewForumTopic
@@ -18,7 +20,10 @@ class NewForumTopic
 
     public function cover()
     {
-        return json_item(null, 'Forum/TopicCover');
+        $cover = new TopicCover();
+        $cover->newForumId = $this->forum->getKey();
+
+        return json_item($cover, new TopicCoverTransformer());
     }
 
     public function post()
