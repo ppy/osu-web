@@ -597,7 +597,7 @@ class Room extends Model
 
         return $this->getConnection()->transaction(function () use ($user, $playlistItem) {
             $agg = UserScoreAggregate::new($user, $this);
-            if ($agg->isNew) {
+            if ($agg->wasRecentlyCreated) {
                 $this->incrementInstance('participant_count');
             }
 
