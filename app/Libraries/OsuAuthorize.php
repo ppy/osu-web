@@ -21,7 +21,6 @@ use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
 use App\Models\Forum\TopicCover;
 use App\Models\Genre;
-use App\Models\Group;
 use App\Models\Language;
 use App\Models\LegacyMatch\LegacyMatch;
 use App\Models\Multiplayer\Room;
