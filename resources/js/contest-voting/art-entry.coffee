@@ -22,11 +22,11 @@ export class ArtEntry extends React.Component
     showUserLink = @props.entry.user?.id?
     thumbnailShape = @props.contest.thumbnail_shape
     galleryId = "contest-#{@props.contest.id}"
-    buttonId = "#{galleryId}:#{@props.displayIndex}"
+    buttonId = "#{galleryId}:#{@props.entry.id}"
     hideVoteButton = (@props.selected.length >= @props.contest.max_votes || votingOver) && !isSelected
 
     if showVotes
-      place = @props.displayIndex + 1
+      place = @props.index + 1
       top3 = place <= 3
       usersVotedPercentage = _.round((@props.entry.results.votes / @props.contest.users_voted_count)*100, 2)
 
@@ -39,7 +39,7 @@ export class ArtEntry extends React.Component
       entryLinkProps['data-width'] = @props.entry.artMeta.width
       entryLinkProps['data-height'] = @props.entry.artMeta.height
       entryLinkProps['data-gallery-id'] = galleryId
-      entryLinkProps['data-index'] = @props.displayIndex
+      entryLinkProps['data-index'] = @props.galleryIndex
       entryLinkProps['data-button-id'] = buttonId
     else
       entryLinkProps.rel = 'nofollow noreferrer'
