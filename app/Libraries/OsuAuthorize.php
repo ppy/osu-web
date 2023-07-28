@@ -1769,15 +1769,6 @@ class OsuAuthorize
         return 'ok';
     }
 
-    public function checkGroupShow(?User $user, Group $group): string
-    {
-        if ($group->hasListing() || $user?->isGroup($group)) {
-            return 'ok';
-        }
-
-        return 'unauthorized';
-    }
-
     public function checkIsOwnClient(?User $user, Client $client): string
     {
         if ($user === null || $user->getKey() !== $client->user_id) {
