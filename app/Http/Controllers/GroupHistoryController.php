@@ -56,14 +56,15 @@ class GroupHistoryController extends Controller
         }
 
         if ($skipQuery) {
+            $cursor = null;
             $events = [];
-            $hasMore = false;
         } else {
             $cursorHelper = UserGroupEvent::makeDbCursorHelper($params['sort']);
             [$events, $hasMore] = $query
                 ->cursorSort($cursorHelper, cursor_from_params($rawParams))
                 ->limit(50)
                 ->getWithHasMore();
+            $cursor = $cursorHelper->next($events, $hasMore);
         }
 
         $groups = app('groups')->all()->filter(
@@ -73,7 +74,7 @@ class GroupHistoryController extends Controller
         return [
             'events' => json_collection($events, 'UserGroupEvent'),
             'groups' => json_collection($groups, 'Group'),
-            ...cursor_for_response($cursorHelper->next($events, $hasMore)),
+            ...cursor_for_response($cursor),
         ];
     }
 }
