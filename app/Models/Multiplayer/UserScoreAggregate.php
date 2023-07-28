@@ -43,8 +43,6 @@ class UserScoreAggregate extends Model
     ];
     protected $table = 'multiplayer_rooms_high';
 
-    public $isNew = false;
-
     public static function getPlaylistItemUserHighScore(Score $score)
     {
         return PlaylistItemUserHighScore::firstOrNew([
@@ -53,19 +51,18 @@ class UserScoreAggregate extends Model
         ]);
     }
 
-    public static function lookupOrDefault(User $user, Room $room): self
+    public static function lookupOrDefault(User $user, Room $room): static
     {
-        $obj = static::firstOrNew([
-            'user_id' => $user->getKey(),
+        return static::firstOrNew([
             'room_id' => $room->getKey(),
+            'user_id' => $user->getKey(),
+        ], [
+            'accuracy' => 0,
+            'attempts' => 0,
+            'completed' => 0,
+            'pp' => 0,
+            'total_score' => 0,
         ]);
-
-        foreach (['total_score', 'accuracy', 'pp', 'attempts', 'completed'] as $key) {
-            // init if required
-            $obj->$key = $obj->$key ?? 0;
-        }
-
-        return $obj;
     }
 
     public static function updatePlaylistItemUserHighScore(PlaylistItemUserHighScore $highScore, Score $score)
@@ -87,7 +84,6 @@ class UserScoreAggregate extends Model
         $obj = static::lookupOrDefault($user, $room);
 
         if (!$obj->exists) {
-            $obj->isNew = true;
             $obj->save(); // force a save now to avoid being trolled later.
             $obj->recalculate();
         }
