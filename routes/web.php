@@ -204,6 +204,7 @@ Route::group(['middleware' => ['web']], function () {
             // Reference: https://bugs.php.net/bug.php?id=55815
             // Note that hhvm behaves differently (the same as POST).
             Route::post('avatar', 'AccountController@avatar')->name('avatar');
+            Route::put('country', 'AccountController@updateCountry')->name('country');
             Route::post('cover', 'AccountController@cover')->name('cover');
             Route::put('email', 'AccountController@updateEmail')->name('email');
             Route::put('notification-options', 'AccountController@updateNotificationOptions')->name('notification-options');

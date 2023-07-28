@@ -51,19 +51,18 @@ class UserScoreAggregate extends Model
         ]);
     }
 
-    public static function lookupOrDefault(User $user, Room $room): self
+    public static function lookupOrDefault(User $user, Room $room): static
     {
-        $obj = static::firstOrNew([
-            'user_id' => $user->getKey(),
+        return static::firstOrNew([
             'room_id' => $room->getKey(),
+            'user_id' => $user->getKey(),
+        ], [
+            'accuracy' => 0,
+            'attempts' => 0,
+            'completed' => 0,
+            'pp' => 0,
+            'total_score' => 0,
         ]);
-
-        foreach (['total_score', 'accuracy', 'pp', 'attempts', 'completed'] as $key) {
-            // init if required
-            $obj->$key = $obj->$key ?? 0;
-        }
-
-        return $obj;
     }
 
     public static function updatePlaylistItemUserHighScore(PlaylistItemUserHighScore $highScore, Score $score)
@@ -172,7 +171,7 @@ class UserScoreAggregate extends Model
 
     public function updateUserAttempts()
     {
-        $this->increment('attempts');
+        $this->incrementInstance('attempts');
     }
 
     public function user()
