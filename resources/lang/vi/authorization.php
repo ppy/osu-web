@@ -171,6 +171,7 @@ return [
 
     'score' => [
         'pin' => [
+            'disabled_type' => "",
             'not_owner' => 'Chỉ có người sở hữu có thể ghim điểm.',
             'too_many' => 'Ghim quá nhiều điểm.',
         ],

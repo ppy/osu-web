@@ -34,8 +34,6 @@
           "SD",
           "PF",
           "AC",
-          "AT",
-          "CN",
           "RX",
           "AP"
         ],
@@ -125,8 +123,6 @@
           "NF",
           "PF",
           "TP",
-          "AT",
-          "CN",
           "RX",
           "AP"
         ],
@@ -150,8 +146,6 @@
           "NF",
           "SD",
           "AC",
-          "AT",
-          "CN",
           "RX",
           "AP"
         ],
@@ -298,6 +292,10 @@
             "Type": "number"
           },
           {
+            "Name": "accuracy_judge_mode",
+            "Type": "string"
+          },
+          {
             "Name": "restart",
             "Type": "boolean"
           }
@@ -306,8 +304,6 @@
           "EZ",
           "NF",
           "PF",
-          "AT",
-          "CN",
           "RX",
           "AP"
         ],
@@ -498,10 +494,6 @@
         "Type": "Automation",
         "Settings": [],
         "IncompatibleMods": [
-          "NF",
-          "SD",
-          "PF",
-          "AC",
           "AL",
           "SG",
           "CN",
@@ -524,10 +516,6 @@
         "Type": "Automation",
         "Settings": [],
         "IncompatibleMods": [
-          "NF",
-          "SD",
-          "PF",
-          "AC",
           "AL",
           "SG",
           "AT",
@@ -999,9 +987,33 @@
         "ValidForMultiplayerAsFreeMod": true
       },
       {
+        "Acronym": "SY",
+        "Name": "Synesthesia",
+        "Description": "Colours hit objects based on the rhythm.",
+        "Type": "Fun",
+        "Settings": [],
+        "IncompatibleMods": [],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
         "Acronym": "TD",
         "Name": "Touch Device",
         "Description": "Automatically applied to plays on devices with a touchscreen.",
+        "Type": "System",
+        "Settings": [],
+        "IncompatibleMods": [],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "SV2",
+        "Name": "Score V2",
+        "Description": "Score set on earlier osu! versions with the V2 scoring algorithm active.",
         "Type": "System",
         "Settings": [],
         "IncompatibleMods": [],
@@ -1041,8 +1053,6 @@
           "SD",
           "PF",
           "AC",
-          "AT",
-          "CN",
           "RX"
         ],
         "RequiresConfiguration": false,
@@ -1129,8 +1139,6 @@
         "IncompatibleMods": [
           "NF",
           "PF",
-          "AT",
-          "CN",
           "RX"
         ],
         "RequiresConfiguration": false,
@@ -1153,8 +1161,6 @@
           "NF",
           "SD",
           "AC",
-          "AT",
-          "CN",
           "RX"
         ],
         "RequiresConfiguration": false,
@@ -1256,6 +1262,10 @@
             "Type": "number"
           },
           {
+            "Name": "accuracy_judge_mode",
+            "Type": "string"
+          },
+          {
             "Name": "restart",
             "Type": "boolean"
           }
@@ -1263,8 +1273,6 @@
         "IncompatibleMods": [
           "NF",
           "PF",
-          "AT",
-          "CN",
           "RX"
         ],
         "RequiresConfiguration": false,
@@ -1372,10 +1380,6 @@
         "Type": "Automation",
         "Settings": [],
         "IncompatibleMods": [
-          "NF",
-          "SD",
-          "PF",
-          "AC",
           "SG",
           "CN",
           "RX",
@@ -1393,10 +1397,6 @@
         "Type": "Automation",
         "Settings": [],
         "IncompatibleMods": [
-          "NF",
-          "SD",
-          "PF",
-          "AC",
           "SG",
           "AT",
           "CN",
@@ -1550,6 +1550,18 @@
         "UserPlayable": true,
         "ValidForMultiplayer": false,
         "ValidForMultiplayerAsFreeMod": false
+      },
+      {
+        "Acronym": "SV2",
+        "Name": "Score V2",
+        "Description": "Score set on earlier osu! versions with the V2 scoring algorithm active.",
+        "Type": "System",
+        "Settings": [],
+        "IncompatibleMods": [],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
       }
     ]
   },
@@ -1588,8 +1600,6 @@
           "SD",
           "PF",
           "AC",
-          "AT",
-          "CN",
           "RX"
         ],
         "RequiresConfiguration": false,
@@ -1674,8 +1684,6 @@
         "IncompatibleMods": [
           "NF",
           "PF",
-          "AT",
-          "CN",
           "RX"
         ],
         "RequiresConfiguration": false,
@@ -1698,8 +1706,6 @@
           "NF",
           "SD",
           "AC",
-          "AT",
-          "CN",
           "RX"
         ],
         "RequiresConfiguration": false,
@@ -1799,6 +1805,10 @@
             "Type": "number"
           },
           {
+            "Name": "accuracy_judge_mode",
+            "Type": "string"
+          },
+          {
             "Name": "restart",
             "Type": "boolean"
           }
@@ -1807,8 +1817,6 @@
           "EZ",
           "NF",
           "PF",
-          "AT",
-          "CN",
           "RX"
         ],
         "RequiresConfiguration": false,
@@ -1887,10 +1895,6 @@
         "Type": "Automation",
         "Settings": [],
         "IncompatibleMods": [
-          "NF",
-          "SD",
-          "PF",
-          "AC",
           "CN",
           "RX"
         ],
@@ -1906,10 +1910,6 @@
         "Type": "Automation",
         "Settings": [],
         "IncompatibleMods": [
-          "NF",
-          "SD",
-          "PF",
-          "AC",
           "AT",
           "CN",
           "RX"
@@ -2057,6 +2057,18 @@
         "UserPlayable": true,
         "ValidForMultiplayer": true,
         "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "SV2",
+        "Name": "Score V2",
+        "Description": "Score set on earlier osu! versions with the V2 scoring algorithm active.",
+        "Type": "System",
+        "Settings": [],
+        "IncompatibleMods": [],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
       }
     ]
   },
@@ -2094,9 +2106,7 @@
         "IncompatibleMods": [
           "SD",
           "PF",
-          "AC",
-          "AT",
-          "CN"
+          "AC"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -2181,9 +2191,7 @@
         ],
         "IncompatibleMods": [
           "NF",
-          "PF",
-          "AT",
-          "CN"
+          "PF"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -2204,9 +2212,7 @@
         "IncompatibleMods": [
           "NF",
           "SD",
-          "AC",
-          "AT",
-          "CN"
+          "AC"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -2338,6 +2344,10 @@
             "Type": "number"
           },
           {
+            "Name": "accuracy_judge_mode",
+            "Type": "string"
+          },
+          {
             "Name": "restart",
             "Type": "boolean"
           }
@@ -2345,9 +2355,7 @@
         "IncompatibleMods": [
           "EZ",
           "NF",
-          "PF",
-          "AT",
-          "CN"
+          "PF"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -2702,10 +2710,6 @@
         "Type": "Automation",
         "Settings": [],
         "IncompatibleMods": [
-          "NF",
-          "SD",
-          "PF",
-          "AC",
           "CN",
           "AS"
         ],
@@ -2721,10 +2725,6 @@
         "Type": "Automation",
         "Settings": [],
         "IncompatibleMods": [
-          "NF",
-          "SD",
-          "PF",
-          "AC",
           "AT",
           "CN",
           "AS"
@@ -2856,6 +2856,18 @@
         "UserPlayable": true,
         "ValidForMultiplayer": false,
         "ValidForMultiplayerAsFreeMod": false
+      },
+      {
+        "Acronym": "SV2",
+        "Name": "Score V2",
+        "Description": "Score set on earlier osu! versions with the V2 scoring algorithm active.",
+        "Type": "System",
+        "Settings": [],
+        "IncompatibleMods": [],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
       }
     ]
   }

@@ -176,6 +176,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => 'Já nomeaste este beatmap.',
+        'cannot_nominate' => 'Não podes nomear este modo de jogo de beatmap.',
         'delete' => 'Apagar',
         'delete_own_confirm' => 'Tens a certeza? O beatmap será apagado e serás redirecionado de volta para o teu perfil.',
         'delete_other_confirm' => 'Tens a certeza? O beatmap será apagado e serás redirecionado de volta para o perfil de utilizador.',

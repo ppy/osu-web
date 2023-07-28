@@ -20,6 +20,12 @@ return [
             'title' => 'Имејл',
         ],
 
+        'legacy_api' => [
+            'api' => '',
+            'irc' => '',
+            'title' => '',
+        ],
+
         'password' => [
             'current' => 'тренутна лозинка',
             'new' => 'нова лозинка',

@@ -8,6 +8,7 @@ import UserJson from 'interfaces/user-json';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { trans } from 'utils/lang';
+import { giftSupporterTagUrl } from 'utils/url';
 
 interface Props {
   user: UserJson;
@@ -26,6 +27,15 @@ export default function ExtraMenu(props: Props) {
       <PopupMenu>
         {(dismiss) => (
           <div className='simple-menu'>
+            <a
+              className='simple-menu__item'
+              href={giftSupporterTagUrl(props.user)}
+              onClick={dismiss}
+            >
+              <span className='fas fa-gift' />
+              {` ${trans('users.card.gift_supporter')}`}
+            </a>
+
             <BlockButton
               modifiers='inline'
               onClick={dismiss}

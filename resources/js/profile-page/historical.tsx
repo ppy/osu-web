@@ -132,7 +132,7 @@ export default class Historical extends React.Component<ExtraPageProps> {
         />
 
         {this.data.beatmap_playcounts.count > 0 &&
-          <>
+          <div>
             {this.data.beatmap_playcounts.items.map((playcount) => (
               <BeatmapPlaycount
                 key={playcount.beatmap_id}
@@ -146,7 +146,7 @@ export default class Historical extends React.Component<ExtraPageProps> {
               data={'beatmapPlaycounts' as const}
               modifiers='profile-page'
             />
-          </>
+          </div>
         }
 
         <PlayDetailList controller={this.props.controller} section='scoresRecent' />

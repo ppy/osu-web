@@ -50,7 +50,7 @@ return [
         ],
 
         'users' => [
-            'modding' => 'การวิจารณ์บีทแมพ',
+            'modding' => 'การดัดแปลง',
             'playlists' => 'รายการเพลง',
             'realtime' => 'ผู้เล่นหลายคน',
             'show' => 'ข้อมูล',
@@ -114,7 +114,7 @@ return [
             'copyright' => 'ลิขสิทธิ์ (DMCA)',
             'privacy' => 'ความเป็นส่วนตัว',
             'server_status' => 'สถานะของเซิร์ฟเวอร์',
-            'source_code' => 'ซอร์ซโค้ด',
+            'source_code' => 'ซอร์สโค้ด',
             'terms' => 'เงื่อนไข',
         ],
     ],

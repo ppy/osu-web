@@ -25,11 +25,11 @@ return [
 
     'filters' => [
         '_' => 'alle',
-        'user' => 'profil',
-        'beatmapset' => 'beatmaps',
+        'user' => 'Profil',
+        'beatmapset' => 'Beatmaps',
         'forum_topic' => 'Forum',
-        'news_post' => 'neuigkeiten',
-        'build' => 'versionen',
+        'news_post' => 'Neuigkeiten',
+        'build' => 'Versionen',
         'channel' => 'chat',
     ],
 
@@ -150,15 +150,6 @@ return [
                 '_' => 'Neue Foren-Antwort',
                 'forum_topic_reply' => ':username antwortete auf ":title"',
                 'forum_topic_reply_compact' => ':username antwortete',
-            ],
-        ],
-
-        'legacy_pm' => [
-            '_' => 'Alt-Forum PN',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited ungelesene Nachricht|:count_delimited ungelesene Nachrichten',
             ],
         ],
 

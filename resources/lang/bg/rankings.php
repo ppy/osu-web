@@ -17,9 +17,16 @@ return [
         ],
     ],
 
+    'kudosu' => [
+        'total' => '',
+        'available' => '',
+        'used' => '',
+    ],
+
     'type' => [
         'charts' => 'под прожекторите',
         'country' => 'държава',
+        'kudosu' => '',
         'multiplayer' => 'мултиплейър',
         'performance' => 'представяне',
         'score' => 'резултат',

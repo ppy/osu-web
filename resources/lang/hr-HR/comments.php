@@ -11,6 +11,7 @@ return [
     'edited' => 'uređeno :timeago od :user',
     'pinned' => 'prikvačeno',
     'empty' => 'Još nema komentara.',
+    'empty_other' => '',
     'load_replies' => 'učitaj odgovore',
     'replies_count' => ':count_delimited odgovor|:count_delimited odgovora',
     'title' => 'Komentari',

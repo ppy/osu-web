@@ -11,6 +11,7 @@ return [
     'edited' => '',
     'pinned' => '',
     'empty' => '',
+    'empty_other' => '',
     'load_replies' => '',
     'replies_count' => '',
     'title' => '',

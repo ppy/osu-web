@@ -171,6 +171,7 @@ return [
 
     'score' => [
         'pin' => [
+            'disabled_type' => "",
             'not_owner' => 'Samo vlasnik rezultata može prikvačiti rezultat.',
             'too_many' => 'Prikvačeno previše rezultata.',
         ],

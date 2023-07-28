@@ -32,8 +32,7 @@ export default class FriendButton extends React.Component<Props> {
   };
 
   @observable private followersWithoutSelf: number;
-  @observable private loading = false;
-  private xhr?: JQuery.jqXHR<UserRelationJson[]>;
+  @observable private xhr?: JQuery.jqXHR<UserRelationJson[]>;
 
   @computed
   private get followers() {
@@ -59,6 +58,10 @@ export default class FriendButton extends React.Component<Props> {
       Number.isFinite(this.props.userId) &&
       this.props.userId !== core.currentUser.id &&
       !core.currentUser.blocks.some((b) => b.target_id === this.props.userId);
+  }
+
+  private get loading() {
+    return this.xhr != null;
   }
 
   private get showFollowerCounter() {
@@ -128,20 +131,18 @@ export default class FriendButton extends React.Component<Props> {
 
   @action
   private readonly clicked = () => {
-    this.loading = true;
+    if (this.xhr != null) return;
 
-    if (this.friend == null) {
+    this.xhr = this.friend == null
       // friending
-      this.xhr = $.ajax(route('friends.store', { target: this.props.userId }), { type: 'POST' });
-    } else {
+      ? $.ajax(route('friends.store', { target: this.props.userId }), { type: 'POST' })
       // un-friending
-      this.xhr = $.ajax(route('friends.destroy', { friend: this.props.userId }), { type: 'DELETE' });
-    }
+      : $.ajax(route('friends.destroy', { friend: this.props.userId }), { type: 'DELETE' });
 
     this.xhr
       .done(this.updateFriends)
       .fail(onErrorWithCallback(this.clicked))
-      .always(action(() => this.loading = false));
+      .always(action(() => this.xhr = undefined));
   };
 
   private renderCounter() {

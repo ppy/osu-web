@@ -36,7 +36,7 @@ export class Main extends React.PureComponent
             className: 'builds__group',
             div
               className: 'builds__item'
-              el Build, build: @props.build, showDate: true, modifiers: ['build']
+              el Build, build: @props.build, showDate: true, showVideo: true, modifiers: ['build']
 
             div className: 'page-nav',
               div className: 'page-nav__item page-nav__item--left',

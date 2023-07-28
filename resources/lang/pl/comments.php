@@ -11,6 +11,7 @@ return [
     'edited' => 'ostatnio edytowane :timeago przez :user',
     'pinned' => 'przypięty',
     'empty' => 'Brak komentarzy.',
+    'empty_other' => '',
     'load_replies' => 'wczytaj odpowiedzi',
     'replies_count' => ':count_delimited odpowiedź|:count_delimited odpowiedzi|:count_delimited odpowiedzi',
     'title' => 'Komentarze',

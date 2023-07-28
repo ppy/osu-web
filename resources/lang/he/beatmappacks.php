@@ -36,6 +36,7 @@ return [
         'artist' => 'אמן\אלבום',
         'chart' => 'Spotlights',
         'featured' => '',
+        'loved' => '',
         'standard' => 'רגיל',
         'theme' => 'ערכת נושא',
         'tournament' => '',

@@ -76,9 +76,9 @@ function beatmap_timestamp_format($ms)
 /**
  * Allows using both html-safe and non-safe text inside `{{ }}` directive.
  */
-function blade_safe($html)
+function blade_safe($html): HtmlString
 {
-    return new Illuminate\Support\HtmlString($html);
+    return new HtmlString($html);
 }
 
 /**
@@ -270,16 +270,16 @@ function css_group_colour($group)
     return '--group-colour: '.(optional($group)->colour ?? 'initial');
 }
 
-function css_var_2x(string $key, string $url)
+function css_var_2x(string $key, ?string $url): ?HtmlString
 {
     if (!present($url)) {
-        return;
+        return null;
     }
 
     $url = e($url);
     $url2x = retinaify($url);
 
-    return blade_safe("{$key}: url('{$url}'); {$key}-2x: url('{$url2x}')");
+    return blade_safe("{$key}: url('{$url}'); {$key}-2x: url('{$url2x}');");
 }
 
 function current_locale_meta(): LocaleMeta
@@ -1001,7 +1001,7 @@ function wiki_image_url(string $path, bool $fullUrl = true)
 
 function wiki_url($path = null, $locale = null, $api = null, $fullUrl = true)
 {
-    $path = $path === null ? 'Main_Page' : str_replace(['%2F', '%23'], ['/', '#'], rawurlencode($path));
+    $path = $path === null ? 'Main_page' : str_replace(['%2F', '%23'], ['/', '#'], rawurlencode($path));
 
     $params = [
         'path' => 'WIKI_PATH',
@@ -1105,7 +1105,7 @@ function nav_links()
         'rankings.type.country' => route('rankings', ['mode' => $defaultMode, 'type' => 'country']),
         'rankings.type.multiplayer' => route('multiplayer.rooms.show', ['room' => 'latest']),
         'rankings.type.seasons' => route('seasons.show', ['season' => 'latest']),
-        'layout.menu.rankings.kudosu' => osu_url('rankings.kudosu'),
+        'layout.menu.rankings.kudosu' => route('rankings.kudosu'),
     ];
     $links['community'] = [
         'page_title.forum._' => route('forum.forums.index'),
@@ -1121,11 +1121,11 @@ function nav_links()
         'layout.header.store.orders' => route('store.orders.index'),
     ];
     $links['help'] = [
-        'page_title.main.wiki_controller._' => wiki_url('Main_Page'),
+        'page_title.main.wiki_controller._' => wiki_url('Main_page'),
         'layout.menu.help.getFaq' => wiki_url('FAQ'),
         'layout.menu.help.getRules' => wiki_url('Rules'),
-        'layout.menu.help.getAbuse' => wiki_url('Reporting_Bad_Behaviour/Abuse'),
-        'layout.menu.help.getSupport' => wiki_url('Help_Centre'),
+        'layout.menu.help.getAbuse' => wiki_url('Reporting_bad_behaviour/Abuse'),
+        'layout.menu.help.getSupport' => wiki_url('Help_centre'),
     ];
 
     return $links;
@@ -1144,7 +1144,7 @@ function footer_landing_links()
             'faq' => wiki_url('FAQ'),
             'forum' => route('forum.forums.index'),
             'livestreams' => route('livestreams.index'),
-            'wiki' => wiki_url('Main_Page'),
+            'wiki' => wiki_url('Main_page'),
         ],
         'legal' => footer_legal_links(),
     ];
@@ -1331,6 +1331,7 @@ function fast_imagesize($url)
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_MAXREDIRS => 5,
+            CURLOPT_TIMEOUT => 10,
         ]);
         $data = curl_exec($curl);
 

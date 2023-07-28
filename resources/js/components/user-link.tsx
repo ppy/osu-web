@@ -21,7 +21,7 @@ export default class UserLink extends React.PureComponent<Props> {
       className += ` ${this.props.className}`;
     }
 
-    const href = this.props.user.id
+    const href = (this.props.user.id ?? -1) > 0
       ? route('users.show', { mode: this.props.mode, user: this.props.user.id })
       : undefined;
 

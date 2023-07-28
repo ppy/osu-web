@@ -6,9 +6,9 @@
 return [
     'bold' => '粗体',
     'heading' => '标题',
-    'help' => '',
+    'help' => '帮助',
     'image' => '图片',
-    'imagemap' => '',
+    'imagemap' => '图像映射',
     'italic' => '斜体',
     'link' => '超链接',
     'list' => '无序列表',

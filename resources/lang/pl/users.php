@@ -49,6 +49,7 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => 'Podaruj status donatora',
         'loading' => 'Ładowanie...',
         'send_message' => 'Wyślij wiadomość',
     ],

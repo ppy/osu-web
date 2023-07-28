@@ -153,15 +153,6 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => 'レガシーフォーラムPM',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited個の未読メッセージ',
-            ],
-        ],
-
         'user' => [
             'user_beatmapset_new' => [
                 '_' => '新しいビートマップ',

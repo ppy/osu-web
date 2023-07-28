@@ -11,6 +11,7 @@ return [
     'edited' => 'redigerad :timeago av :user',
     'pinned' => 'fäst',
     'empty' => 'Inga kommentarer ännu.',
+    'empty_other' => 'Inga kommentarer ännu.',
     'load_replies' => 'ladda svar ',
     'replies_count' => ':count_delimited svara|:count_delimited svar',
     'title' => 'Kommentarer',

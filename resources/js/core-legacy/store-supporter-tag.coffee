@@ -3,6 +3,7 @@
 
 import { route } from 'laroute'
 import { fadeToggle } from 'utils/fade'
+import { toggleCart } from 'utils/store-cart'
 
 export default class StoreSupporterTag
   RESOLUTION: 8
@@ -43,6 +44,8 @@ export default class StoreSupporterTag
 
     # force initial values for consistency.
     @updateSearchResult()
+
+    $(@usernameInput).trigger('input') if @usernameInput.value != ''
 
 
   initializeSlider: =>
@@ -146,7 +149,7 @@ export default class StoreSupporterTag
     messageInputVisible = enabled && @user?.id != window.currentUser.id
     fadeToggle(@messageInput, messageInputVisible)
 
-    StoreCart.setEnabled(enabled)
+    toggleCart(enabled)
     # TODO: need to elevate this element when switching over to new store design.
     $(@el).toggleClass('js-store--disabled', !enabled)
     $('.js-slider').slider('disabled': !enabled)

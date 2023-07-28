@@ -36,6 +36,7 @@ return [
         'artist' => 'Artista/Album',
         'chart' => 'Spotlights',
         'featured' => 'Mga Tampok na Artista',
+        'loved' => '',
         'standard' => 'Standard',
         'theme' => 'Tema',
         'tournament' => '',

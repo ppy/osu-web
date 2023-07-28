@@ -2,7 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import * as React from 'react'
-import { a, div, i, span } from 'react-dom-factories'
+import { a, div, i, iframe, span } from 'react-dom-factories'
 import { classWithModifiers } from 'utils/css'
 import { changelogBuild } from 'utils/url'
 import { ChangelogEntry } from './changelog-entry'
@@ -31,6 +31,12 @@ export class Build extends React.PureComponent
       if @props.showDate ? false
         div className: 'build__date', moment(@props.build.created_at).format('LL')
 
+      if @props.build.youtube_id? && (@props.showVideo ? false)
+        div className: 'build__video',
+          div className: 'u-embed-wide',
+            iframe
+              allowFullScreen: true
+              src: "https://www.youtube.com/embed/#{@props.build.youtube_id}?rel=0"
       for category in categories
         div
           key: category

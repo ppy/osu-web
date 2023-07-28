@@ -6,9 +6,9 @@
 return [
     'bold' => 'Gras',
     'heading' => 'Titre',
-    'help' => '',
+    'help' => 'Aide',
     'image' => 'Image',
-    'imagemap' => '',
+    'imagemap' => 'Image Mappée',
     'italic' => 'Italique',
     'link' => 'Lien',
     'list' => 'Liste',

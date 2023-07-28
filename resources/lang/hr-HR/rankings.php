@@ -19,9 +19,16 @@ return [
         ],
     ],
 
+    'kudosu' => [
+        'total' => '',
+        'available' => '',
+        'used' => '',
+    ],
+
     'type' => [
         'charts' => 'istaknuto',
         'country' => 'države',
+        'kudosu' => '',
         'multiplayer' => 'multiplayer',
         'performance' => 'izvedba',
         'score' => 'bodovi',

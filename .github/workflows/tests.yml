@@ -13,7 +13,7 @@ env:
   DB_HOST: 127.0.0.1
   ES_SOLO_SCORES_HOST: http://localhost:9200
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  NOTIFICATION_ENDPOINT: ws://127.0.0.1:2345
+  NOTIFICATION_ENDPOINT: ws://localhost:2345
   OSU_INSTALL_DEV: 1
   OSU_USE_SYSTEM_COMPOSER: 1
   OSU_DB_CREATE: 1
@@ -125,6 +125,7 @@ jobs:
           extensions: redis, swoole
           tools: composer:v2
           php-version: ${{ matrix.php }}
+          coverage: none
 
       - name: Get composer cache directory
         id: composercache

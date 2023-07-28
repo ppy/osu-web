@@ -53,7 +53,7 @@ return [
     ],
 
     'beatmapset' => [
-        'discussion_locked' => '',
+        'discussion_locked' => 'Ši taktalapio diskusija užrakinta.',
 
         'metadata' => [
             'nominated' => 'Jūs negalite pakeisti nominuoto bitmapo metaduomenų. Susisiekite su BN arba NAT nariu jeigu jūs manote, kad jie buvo nustatyti neteisingai.',
@@ -171,6 +171,7 @@ return [
 
     'score' => [
         'pin' => [
+            'disabled_type' => "",
             'not_owner' => 'Tik rezultato savininkas gali prisegti rezultatą.',
             'too_many' => 'Prisegta perdaug rezultatų.',
         ],

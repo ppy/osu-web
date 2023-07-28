@@ -68,17 +68,17 @@ return [
             'beatmapset_state' => [
                 '_' => 'สถานะของบีทแมพถูกเปลี่ยน',
                 'beatmapset_disqualify' => '":title" ถูกตัดสิทธิ์',
-                'beatmapset_disqualify_compact' => 'บีทแมปถูกตัดสิทธิ์',
-                'beatmapset_love' => '":title" ได้รับการเลื่อนระดับเป็นรักเลย',
-                'beatmapset_love_compact' => 'บีทแมปได้รับการเลื่อนตำแหน่งเป็นรักเลย',
+                'beatmapset_disqualify_compact' => 'บีทแมพถูกตัดสิทธิ์',
+                'beatmapset_love' => '":title" ได้รับการเลื่อนระดับเป็นชื่นชอบ',
+                'beatmapset_love_compact' => 'บีทแมพได้รับการเลื่อนตำแหน่งเป็น Loved',
                 'beatmapset_nominate' => '":title" ได้รับการเสนอชื่อ',
-                'beatmapset_nominate_compact' => 'บีทแมปได้รับการเสนอชื่อเข้าชิง',
+                'beatmapset_nominate_compact' => 'บีทแมพได้รับการเสนอชื่อ',
                 'beatmapset_qualify' => '":title" ได้รับการเสนอชื่อเพียงพอที่จะเข้าคิวจัดอันดับ',
-                'beatmapset_qualify_compact' => 'บีทแมปเข้าสู่คิวการจัดอันดับ',
+                'beatmapset_qualify_compact' => 'บีทแมพได้เข้าการคิวจัดอันดับ',
                 'beatmapset_rank' => '":title" ได้รับการจัดอันดับ',
-                'beatmapset_rank_compact' => 'บีทแมปได้รับการจัดอันดับ',
+                'beatmapset_rank_compact' => 'บีทแมพได้รับการจัดอันดับ',
                 'beatmapset_remove_from_loved' => '":title" ได้ถูกนำออกจากรักเลย',
-                'beatmapset_remove_from_loved_compact' => 'บีทแมพได้ถูกนำออกจากรักเลย',
+                'beatmapset_remove_from_loved_compact' => 'บีทแมพได้ถูกนำออกจาก Loved',
                 'beatmapset_reset_nominations' => 'การเสนอชื่อ ":title" ถูกรีเซ็ต',
                 'beatmapset_reset_nominations_compact' => 'การเสนอชื่อถูกรีเซ็ท',
             ],
@@ -153,15 +153,6 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => 'ฟอรั่ม PM',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited ข้อความที่ยังไม่ได้อ่าน |:count_delimited ข้อความทั้งหมดที่ยังไม่ได้อ่าน',
-            ],
-        ],
-
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'บีทแมพใหม่',
@@ -170,8 +161,8 @@ return [
                 'user_beatmapset_new_compact' => 'บีทแมพใหม่ ":title"',
                 'user_beatmapset_new_group' => 'บีทแมพใหม่โดย :username',
 
-                'user_beatmapset_revive' => 'บีทแมป ":title" ถูกกู้คืนแล้วโดย :username',
-                'user_beatmapset_revive_compact' => 'บีทแมป ":title" ถูกกู้คืนแล้ว',
+                'user_beatmapset_revive' => 'บีทแมพ ":title" ถูกกู้คืนแล้วโดย :username',
+                'user_beatmapset_revive_compact' => 'บีทแมพ ":title" ถูกกู้คืนแล้ว',
             ],
         ],
 
@@ -204,12 +195,12 @@ return [
             ],
 
             'beatmapset_state' => [
-                'beatmapset_disqualify' => '":title" ได้ถูกยกเลิกสถานะ ผ่านการรับรอง',
-                'beatmapset_love' => '":title" ได้ถูกเปลี่ยนเป็น loved',
+                'beatmapset_disqualify' => '":title" ได้ถูกยกเลิกสถานะผ่านการรับรอง',
+                'beatmapset_love' => '":title" ได้ถูกเปลี่ยนเป็นชื่นชอบ',
                 'beatmapset_nominate' => '":title" ได้ถูกเสนอชื่อ',
                 'beatmapset_qualify' => '":title" ได้รับการเสนอชื่อเพียงพอที่จะเข้าคิวจัดอันดับ',
-                'beatmapset_rank' => '":title" ได้ถูก ranked แล้ว',
-                'beatmapset_remove_from_loved' => '":title" ได้ถูกนำออกจาก Loved',
+                'beatmapset_rank' => '":title" ได้ถูกจัดอันดับแล้ว',
+                'beatmapset_remove_from_loved' => '":title" ได้ถูกนำออกจากชื่นชอบ',
                 'beatmapset_reset_nominations' => 'การเสนอชื่อของ ":title" ได้ถูกรีเซ็ทแล้ว',
             ],
 
@@ -254,7 +245,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username ได้สร้างบีทแมพใหม่',
-                'user_beatmapset_revive' => ':username ได้กู้คืนบีทแมปแล้ว',
+                'user_beatmapset_revive' => ':username ได้กู้คืนบีทแมพแล้ว',
             ],
         ],
     ],

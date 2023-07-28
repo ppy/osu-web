@@ -269,7 +269,7 @@ class BBCodeFromDB
 
         foreach ($users as $user) {
             $username = html_entity_decode_better($user['name']);
-            $userId = presence($user['id']) ?? $username;
+            $userId = presence($user['id']) ?? "@{$username}";
             $userLink = link_to_user($userId, $username, null);
             $text = str_replace($user[0], $userLink, $text);
         }
@@ -341,8 +341,8 @@ class BBCodeFromDB
 
     public function parseYoutube($text)
     {
-        $text = str_replace("[youtube:{$this->uid}]", "<div class='bbcode__video-box'><div class='bbcode__video'><iframe src='https://www.youtube.com/embed/", $text);
-        $text = str_replace("[/youtube:{$this->uid}]", "?rel=0' frameborder='0' allowfullscreen></iframe></div></div>", $text);
+        $text = str_replace("[youtube:{$this->uid}]", "<div class='bbcode__video-box'><div class='u-embed-wide'><iframe src='https://www.youtube.com/embed/", $text);
+        $text = str_replace("[/youtube:{$this->uid}]", "?rel=0' allowfullscreen></iframe></div></div>", $text);
 
         return $text;
     }

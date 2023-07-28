@@ -102,7 +102,7 @@ return [
             'preview' => 'Попередній перегляд',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
-            'preview_hide' => 'Написати',
+            'preview_hide' => 'Редагувати',
             'submit' => 'Опублікувати',
 
             'necropost' => [

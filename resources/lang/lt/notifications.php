@@ -14,13 +14,13 @@ return [
     'verifying' => 'Prašom patvirtinti sesiją, kad matyti pranešimus',
 
     'action_type' => [
-        '_' => '',
-        'beatmapset' => '',
-        'build' => '',
-        'channel' => '',
-        'forum_topic' => '',
-        'news_post' => '',
-        'user' => '',
+        '_' => 'visi',
+        'beatmapset' => 'taktalapiai',
+        'build' => 'versijos',
+        'channel' => 'pokalbiai',
+        'forum_topic' => 'forumas',
+        'news_post' => 'naujienos',
+        'user' => 'profilis',
     ],
 
     'filters' => [
@@ -150,15 +150,6 @@ return [
                 '_' => 'Naujas forumo atsakymas',
                 'forum_topic_reply' => ':username atsakė į ":title"',
                 'forum_topic_reply_compact' => ':username atsakė',
-            ],
-        ],
-
-        'legacy_pm' => [
-            '_' => 'Senojo Forumo Pranešimas',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited neperskaityta žinutė|:count_delimited neperskaitytų žinučių',
             ],
         ],
 

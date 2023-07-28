@@ -20,6 +20,12 @@ return [
             'title' => 'E-Mail',
         ],
 
+        'legacy_api' => [
+            'api' => 'API',
+            'irc' => 'IRC',
+            'title' => 'Legacy-API',
+        ],
+
         'password' => [
             'current' => 'Aktuelles Passwort',
             'new' => 'neues passwort',
@@ -36,7 +42,7 @@ return [
                 'user_interests' => 'Interessen',
                 'user_occ' => 'Beschäftigung',
                 'user_twitter' => '',
-                'user_website' => 'webseite',
+                'user_website' => 'Webseite',
             ],
         ],
 

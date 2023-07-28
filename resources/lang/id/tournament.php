@@ -24,7 +24,7 @@ return [
 
     'show' => [
         'banner' => 'Dukung Tim Anda',
-        'entered' => 'Kamu telah mendaftarkan diri pada turnamen ini.<br><br>Harap dicatat bahwa hal ini <b>tidak</b> berarti bahwa kamu telah ditempatkan ke dalam tim tertentu. <br><br>Kami akan mengirimkanmu instruksi lebih lanjut melalui email sebelum turnamen dimulai, jadi pastikan alamat email yang terhubung dengan akun osu! milikmu aktif dan valid!',
+        'entered' => 'Kamu telah terdaftar pada turnamen ini.<br><br>Mohon diperhatikan bahwa hal ini <b>tidak</b> berarti bahwa kamu telah ditempatkan ke dalam tim tertentu. <br><br>Kami akan mengirimkanmu instruksi lebih lanjut melalui email sebelum turnamen dimulai, jadi pastikan alamat email yang terhubung dengan akun osu! milikmu dapat dihubungi!',
         'info_page' => 'Laman Informasi',
         'login_to_register' => 'Harap :login untuk melihat rincian pendaftaran!',
         'not_yet_entered' => 'Kamu tidak terdaftar pada turnamen ini.',

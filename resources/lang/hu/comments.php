@@ -11,6 +11,7 @@ return [
     'edited' => ':user által szerkesztve :timeago',
     'pinned' => 'rögzített',
     'empty' => 'Még nincsenek hozzászólások.',
+    'empty_other' => 'Még nincsenek hozzászólások.',
     'load_replies' => 'válaszok betöltése',
     'replies_count' => ':count_delimited válasz|:count_delimited válaszok',
     'title' => 'Hozzászólások',

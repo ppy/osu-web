@@ -100,8 +100,8 @@ export function badgeGroup({ beatmapset, currentBeatmap, discussion, user }: Bad
   return user.groups?.[0];
 }
 
-export function canModeratePosts(user?: UserJson) {
-  user ??= core.currentUser;
+export function canModeratePosts() {
+  const user = core.currentUser;
   if (user == null) return false;
 
   return (user.is_admin || user.is_moderator) ?? false;

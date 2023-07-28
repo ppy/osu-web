@@ -53,7 +53,7 @@ return [
     ],
 
     'beatmapset' => [
-        'discussion_locked' => '',
+        'discussion_locked' => 'Questa beatmap è bloccata per la discussione.',
 
         'metadata' => [
             'nominated' => 'Non puoi modificare i metadata di una mappa nominata. Contatta un membro di BN o NAT se pensi che siano stati impostati in modo errato.',
@@ -171,6 +171,7 @@ return [
 
     'score' => [
         'pin' => [
+            'disabled_type' => "",
             'not_owner' => 'Solo il proprietario del punteggio può fissarlo.',
             'too_many' => 'Hai già fissato troppi punteggi.',
         ],
