@@ -18,15 +18,15 @@ return [
     ],
 
     'kudosu' => [
-        'total' => '',
-        'available' => '',
-        'used' => '',
+        'total' => '獲得',
+        'available' => '利用可能',
+        'used' => '使用済み',
     ],
 
     'type' => [
         'charts' => 'スポットライト',
         'country' => '国別',
-        'kudosu' => '',
+        'kudosu' => 'kudosu',
         'multiplayer' => 'マルチプレイ',
         'performance' => 'パフォーマンス',
         'score' => 'スコア',

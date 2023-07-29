@@ -257,7 +257,7 @@ return [
     ],
     'general' => [
         'converts' => 'Zahrň překonvertované beatmapy',
-        'featured_artists' => 'Featured artists',
+        'featured_artists' => 'Featured Artists',
         'follows' => 'Odebíraní autoři map',
         'recommended' => 'Doporučená obtížnost',
         'spotlights' => 'Zvýrazněné beatmapy',
@@ -307,7 +307,7 @@ return [
         'german' => 'Německé',
         'italian' => 'Italské',
         'japanese' => 'Japonské',
-        'korean' => 'Korejské',
+        'korean' => 'Korejština',
         'spanish' => 'Španělské',
         'swedish' => 'Švédské',
         'russian' => 'Ruština',

@@ -18,15 +18,15 @@ return [
     ],
 
     'kudosu' => [
-        'total' => '',
-        'available' => '',
-        'used' => '',
+        'total' => 'Szerzett',
+        'available' => 'Elérhető',
+        'used' => 'Elköltve',
     ],
 
     'type' => [
         'charts' => 'Reflektorfény',
         'country' => 'Ország',
-        'kudosu' => '',
+        'kudosu' => 'kudosu',
         'multiplayer' => 'többjátékos',
         'performance' => 'Teljesítmény',
         'score' => 'Pontszám',

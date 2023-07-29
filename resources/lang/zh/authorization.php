@@ -171,7 +171,7 @@ return [
 
     'score' => [
         'pin' => [
-            'disabled_type' => "",
+            'disabled_type' => "无法置顶这类分数",
             'not_owner' => '只有获得此成绩的玩家才可以置顶它。',
             'too_many' => '已置顶的成绩过多',
         ],

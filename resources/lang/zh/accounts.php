@@ -34,7 +34,13 @@ return [
         ],
 
         'profile' => [
+            'country' => '',
             'title' => '个人资料',
+
+            'country_change' => [
+                '_' => "",
+                'update_link' => '',
+            ],
 
             'user' => [
                 'user_discord' => '',

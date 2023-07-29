@@ -18,15 +18,15 @@ return [
     ],
 
     'kudosu' => [
-        'total' => '',
-        'available' => '',
-        'used' => '',
+        'total' => 'Нараховано',
+        'available' => 'В наявності',
+        'used' => 'Витрачено',
     ],
 
     'type' => [
         'charts' => 'чарти',
         'country' => 'країни',
-        'kudosu' => '',
+        'kudosu' => 'кудосу',
         'multiplayer' => 'мультиплеєр',
         'performance' => 'продуктивність',
         'score' => 'очки',

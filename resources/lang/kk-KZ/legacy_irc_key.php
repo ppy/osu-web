@@ -4,20 +4,20 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'confirm_new' => '',
+    'confirm_new' => 'Жаңа IRC құпиясөзді құру?',
     'new' => '',
-    'none' => '',
+    'none' => 'IRC құпиясөзі орнатылмаған.',
 
     'form' => [
-        'server_host' => '',
-        'server_port' => '',
-        'token' => '',
-        'username' => '',
+        'server_host' => 'сервер',
+        'server_port' => 'порт',
+        'token' => 'сервер құпиясөзі',
+        'username' => 'пайдаланушы аты',
     ],
 
     'view' => [
-        'hide' => '',
-        'show' => '',
-        'delete' => '',
+        'hide' => 'Құпиясөзді жасыру',
+        'show' => 'Құпия сөзді көрсету',
+        'delete' => 'Жою',
     ],
 ];

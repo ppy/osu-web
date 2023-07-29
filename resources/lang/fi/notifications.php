@@ -30,7 +30,7 @@ return [
         'forum_topic' => 'foorumi',
         'news_post' => 'uutiset',
         'build' => '',
-        'channel' => 'chat',
+        'channel' => 'chatti',
     ],
 
     'item' => [
@@ -94,7 +94,7 @@ return [
         ],
 
         'channel' => [
-            '_' => 'Chat',
+            '_' => 'Chatti',
 
             'announcement' => [
                 '_' => '',
