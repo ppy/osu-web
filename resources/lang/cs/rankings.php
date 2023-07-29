@@ -18,15 +18,15 @@ return [
     ],
 
     'kudosu' => [
-        'total' => '',
-        'available' => '',
-        'used' => '',
+        'total' => 'Získáno',
+        'available' => 'Dostupné',
+        'used' => 'Použito',
     ],
 
     'type' => [
         'charts' => 'výběry',
         'country' => 'stát',
-        'kudosu' => '',
+        'kudosu' => 'kudosu',
         'multiplayer' => 'hra pro více hráčů',
         'performance' => 'výkon',
         'score' => 'skóre',

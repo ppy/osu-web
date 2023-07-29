@@ -4,14 +4,14 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'confirm_new' => '',
-    'new' => '',
-    'none' => '',
+    'confirm_new' => '要新增 IRC 密碼？',
+    'new' => '新增舊版 IRC 密碼',
+    'none' => 'IRC 密碼未設定。',
 
     'form' => [
         'server_host' => '伺服器',
         'server_port' => '埠號',
-        'token' => '',
+        'token' => '伺服器密碼',
         'username' => '使用者名稱',
     ],
 

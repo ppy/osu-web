@@ -21,8 +21,8 @@ return [
         ],
 
         'legacy_api' => [
-            'api' => '',
-            'irc' => '',
+            'api' => 'api',
+            'irc' => 'irc',
             'title' => '舊版API',
         ],
 
@@ -34,7 +34,13 @@ return [
         ],
 
         'profile' => [
+            'country' => '',
             'title' => '個人資料',
+
+            'country_change' => [
+                '_' => "",
+                'update_link' => '',
+            ],
 
             'user' => [
                 'user_discord' => '',
