@@ -25,6 +25,7 @@ Below is a list of some language-specific wrappers maintained by the community. 
 - [ossapi](https://github.com/circleguard/ossapi) (python)
 - [aiosu](https://github.com/NiceAesth/aiosu) (python)
 - [rosu-v2](https://github.com/MaxOhn/rosu-v2) (rust)
+- [osu.js](https://github.com/L-Mario564/osu.js) (javascript/typescript)
 
 # Changelog
 
