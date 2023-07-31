@@ -67,12 +67,7 @@ export default class CommentShowMore extends React.Component<Props> {
 
     const lastComment = last(this.props.comments);
     if (lastComment != null) {
-      // TODO: convert to plain after_id params of some sort instead of cursor
-      params.cursor = {
-        created_at: lastComment.createdAt,
-        id: lastComment.id,
-        votes_count: lastComment.votesCount,
-      };
+      params.after = lastComment.id;
     }
 
     this.xhr = $.ajax(route('comments.index'), { data: params, dataType: 'json' });

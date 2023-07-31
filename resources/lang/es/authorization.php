@@ -171,7 +171,7 @@ return [
 
     'score' => [
         'pin' => [
-            'disabled_type' => "",
+            'disabled_type' => "No se puede anclar este tipo de puntuación",
             'not_owner' => 'Solo el propietario puede anclar la puntuación.',
             'too_many' => 'Se han anclado demasiadas puntuaciones.',
         ],

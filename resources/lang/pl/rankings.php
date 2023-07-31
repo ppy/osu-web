@@ -18,15 +18,15 @@ return [
     ],
 
     'kudosu' => [
-        'total' => '',
-        'available' => '',
-        'used' => '',
+        'total' => 'Przyznane',
+        'available' => 'Dostępne',
+        'used' => 'Wykorzystane',
     ],
 
     'type' => [
         'charts' => 'wyróżnionych',
         'country' => 'krajowy',
-        'kudosu' => '',
+        'kudosu' => 'kudosu',
         'multiplayer' => 'wieloosobowy',
         'performance' => 'globalny',
         'score' => 'punktowy',

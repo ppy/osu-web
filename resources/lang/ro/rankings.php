@@ -18,15 +18,15 @@ return [
     ],
 
     'kudosu' => [
-        'total' => '',
-        'available' => '',
-        'used' => '',
+        'total' => 'Obținut',
+        'available' => 'Disponibil',
+        'used' => 'Folosit',
     ],
 
     'type' => [
         'charts' => 'promovări',
         'country' => 'pe țară',
-        'kudosu' => '',
+        'kudosu' => 'kudosu',
         'multiplayer' => 'multiplayer',
         'performance' => 'performanță',
         'score' => 'scor',

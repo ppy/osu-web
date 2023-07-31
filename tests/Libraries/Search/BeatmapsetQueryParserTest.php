@@ -98,6 +98,8 @@ class BeatmapsetQueryParserTest extends TestCase
             ['bpm=bad', ['keywords' => 'bpm=bad', 'options' => []]],
             ['divisor<nah', ['keywords' => 'divisor<nah', 'options' => []]],
             ['status=noidea', ['keywords' => 'status=noidea', 'options' => []]],
+            ['status=l', ['keywords' => null, 'options' => ['status' => ['gte' => Beatmapset::STATES['loved'], 'lte' => Beatmapset::STATES['loved']]]]],
+            ['status=lo', ['keywords' => null, 'options' => ['status' => ['gte' => Beatmapset::STATES['loved'], 'lte' => Beatmapset::STATES['loved']]]]],
         ];
     }
 }

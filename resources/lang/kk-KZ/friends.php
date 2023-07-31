@@ -4,12 +4,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'title_compact' => '',
-    'too_many' => '',
+    'title_compact' => 'достар',
+    'too_many' => 'Достар саны шегіне жетті',
 
     'buttons' => [
-        'add' => '',
-        'disabled' => '',
-        'remove' => '',
+        'add' => 'достарға қосу',
+        'disabled' => 'жазылушылар',
+        'remove' => 'достардан алып тастау',
     ],
 ];

@@ -10,7 +10,7 @@ return [
         'missing' => 'Pyydettyä sivua ":keyword" ei löytynyt.',
         'missing_title' => 'Ei löytynyt',
         'missing_translation' => 'Pyydettyä sivua ei löytynyt valitulle kielelle.',
-        'needs_cleanup_or_rewrite' => 'Tämä sivu ei vastaa laadultaan osu! wikin vaatimuksia ja on selkeytettävä tai uudelleenkirjoitettava. Jos sinulla on mahdollisuus auttaa, harkitse artikkelin päivittämistä!',
+        'needs_cleanup_or_rewrite' => 'Tämä sivu ei vastaa laadultaan osu!-wikin vaatimuksia ja on selkeytettävä tai uudelleenkirjoitettava. Jos sinulla on mahdollisuus auttaa, harkitse artikkelin päivittämistä!',
         'search' => 'Etsi olemassa olevilta sivuilta :link.',
         'stub' => 'Tämä artikkeli on puutteellinen ja odottaa, että joku laajentaa sitä.',
         'toc' => 'Sisältö',
@@ -24,7 +24,7 @@ return [
             'legal' => 'Tämä käännös on tuotu ainoastaan yksinkertaisuutta varten. Alkuperäinen :default saa olla ainoa laillisesti sitova versio tästä tekstistä.',
             'outdated' => 'Tämä sivu sisältää vanhentuneen käännöksen alkuperäisestä sisällöstä. Tarkista :default tarkimman tiedon saamiseksi (ja harkitse käännöksen päivittämistä, jos voit auttaa)!',
 
-            'default' => 'Englanninkielinen versio',
+            'default' => 'englanninkielinen versio',
         ],
     ],
 ];
