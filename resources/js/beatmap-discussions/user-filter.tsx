@@ -75,6 +75,12 @@ export class UserFilter extends React.Component<Props> {
     );
   }
 
+  private getGroup(option: Option) {
+    if (this.isOwner(option)) return mapperGroup;
+    if (option.groups == null || option.groups.length === 0) return null;
+    return option.groups[0];
+  }
+
   @action
   private readonly handleChange = (option: Option) => {
     this.props.discussionsState.selectedUserId = option.id;
@@ -88,7 +94,7 @@ export class UserFilter extends React.Component<Props> {
     // TODO: exclude null/undefined user from discussionsState
     if (option.id < 0) return;
 
-    const group = this.isOwner(option) ? mapperGroup : option.groups?.[0];
+    const group = this.getGroup(option);
     const style = groupColour(group);
 
     const urlOptions = parseUrl();
