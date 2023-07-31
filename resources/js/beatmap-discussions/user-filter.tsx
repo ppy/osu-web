@@ -4,7 +4,7 @@
 import mapperGroup from 'beatmap-discussions/mapper-group';
 import SelectOptions, { OptionRenderProps } from 'components/select-options';
 import UserJson from 'interfaces/user-json';
-import { action } from 'mobx';
+import { action, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import BeatmapsetDiscussions from 'models/beatmapset-discussions';
 import * as React from 'react';
@@ -56,6 +56,11 @@ export class UserFilter extends React.Component<Props> {
 
   private get options() {
     return [allUsers, ...[...this.props.store.users.values()].map(mapUserProperties)];
+  }
+
+  constructor(props: Props) {
+    super(props);
+    makeObservable(this);
   }
 
   render() {
