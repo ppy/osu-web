@@ -25,7 +25,7 @@ const noSelection = Object.freeze({
 
 interface Option {
   groups: UserJson['groups'];
-  id: UserJson['id'];
+  id: UserJson['id'] | null;
   text: UserJson['username'];
 }
 
@@ -91,9 +91,6 @@ export class UserFilter extends React.Component<Props> {
   }
 
   private readonly renderOption = ({ cssClasses, children, onClick, option }: OptionRenderProps<Option>) => {
-    // TODO: exclude null/undefined user from discussionsState
-    if (option.id < 0) return;
-
     const group = this.getGroup(option);
     const style = groupColour(group);
 
@@ -101,7 +98,7 @@ export class UserFilter extends React.Component<Props> {
     // means it doesn't work on non-beatmapset discussion paths
     if (urlOptions == null) return null;
 
-    urlOptions.user = option?.id;
+    urlOptions.user = option.id ?? undefined;
 
     return (
       <a
