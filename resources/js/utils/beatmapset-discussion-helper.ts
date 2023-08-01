@@ -97,7 +97,11 @@ export function badgeGroup({ beatmapset, currentBeatmap, discussion, user }: Bad
     return guestGroup;
   }
 
-  return user.groups?.[0];
+  if (user.groups == null || user.groups.length === 0) {
+    return null;
+  }
+
+  return user.groups[0];
 }
 
 export function canModeratePosts() {
