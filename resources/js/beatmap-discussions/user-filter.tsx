@@ -7,13 +7,13 @@ import UserJson from 'interfaces/user-json';
 import { action, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import BeatmapsetDiscussions from 'models/beatmapset-discussions';
+import { usernameSortAscending } from 'models/user';
 import * as React from 'react';
 import { makeUrl, parseUrl } from 'utils/beatmapset-discussion-helper';
 import { groupColour } from 'utils/css';
 import { trans } from 'utils/lang';
-import DiscussionsState from './discussions-state';
 import { mapBy } from 'utils/map';
-import { usernameSortAscending } from 'models/user';
+import DiscussionsState from './discussions-state';
 
 const allUsers = Object.freeze({
   id: null,
