@@ -100,18 +100,14 @@ For a full list of changes, see the
 
 # Endpoint
 
-## Base URL
-
-The base URL is: `{{ config('app.url') }}/api/[version]/`
-
-## API Versions
+## Base URL and API Versions
 
 This is combined with the base endpoint to determine where requests should be sent.
 
-Version | Status
-------- | ---------------------------------------------------------------
-v2      | current
-v1      | _legacy api provided by the old site, will be deprecated soon_
+URL                             | Status
+------------------------------- | ---------------------------------------------------------------
+{{ config('app.url') }}/api/v2/      | current
+{{ config('app.url') }}/api/         | _legacy api provided by the old site, will be deprecated soon_
 
 ## Language
 
