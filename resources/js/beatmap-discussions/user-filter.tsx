@@ -12,6 +12,8 @@ import { makeUrl, parseUrl } from 'utils/beatmapset-discussion-helper';
 import { groupColour } from 'utils/css';
 import { trans } from 'utils/lang';
 import DiscussionsState from './discussions-state';
+import { mapBy } from 'utils/map';
+import { usernameSortAscending } from 'models/user';
 
 const allUsers = Object.freeze({
   id: null,
@@ -55,7 +57,12 @@ export class UserFilter extends React.Component<Props> {
   }
 
   private get options() {
-    return [allUsers, ...[...this.props.store.users.values()].map(mapUserProperties)];
+    const userIdsWithDiscussions = mapBy([...this.props.store.discussions.values()], 'user_id');
+    const usersWithDiscussions = [...this.props.store.users.values()]
+      .filter((user) => userIdsWithDiscussions.has(user.id))
+      .sort(usernameSortAscending);
+
+    return [allUsers, ...[...usersWithDiscussions].map(mapUserProperties)];
   }
 
   constructor(props: Props) {
