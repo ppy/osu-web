@@ -61,11 +61,11 @@ class PlaylistItemUserHighScore extends Model
 
     public function updateWithScore(Score $score): void
     {
-        $this->update([
+        $this->fill([
             'accuracy' => $score->accuracy,
             'pp' => $score->pp,
             'score_id' => $score->getKey(),
             'total_score' => $score->total_score,
-        ]);
+        ])->save();
     }
 }
