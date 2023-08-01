@@ -49,7 +49,7 @@ jobs:
       - name: Install js dependencies
         run: yarn --frozen-lockfile
 
-      - run: 'yarn lint --max-warnings 102 > /dev/null'
+      - run: 'yarn lint --max-warnings 101 > /dev/null'
 
       - run: ./bin/update_licence.sh -nf
 
