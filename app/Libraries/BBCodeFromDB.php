@@ -134,7 +134,8 @@ class BBCodeFromDB
         return preg_replace_callback(
             '#(\[imagemap\].+?\[/imagemap\]\n?)#',
             function ($m) {
-                return preg_replace_callback(
+                $unescaped = html_entity_decode_better(BBCodeForDB::extraUnescape($m[1]));
+                $parsed = preg_replace_callback(
                     '#\[imagemap\]\n(?<imageUrl>https?://.+)\n(?<links>(?:(?:[0-9.]+ ){4}(?:\#|https?://[^\s]+|mailto:[^\s]+)(?: .*)?\n)+)\[/imagemap\]\n?#',
                     function ($map) {
                         $links = array_map(
@@ -173,8 +174,10 @@ class BBCodeFromDB
 
                         return tag('div', ['class' => 'imagemap'], $imageHtml.$linksHtml);
                     },
-                    html_entity_decode_better(BBCodeForDB::extraUnescape($m[1])),
+                    $unescaped,
                 );
+
+                return $parsed === $unescaped ? $m[1] : $parsed;
             },
             $text,
         );
