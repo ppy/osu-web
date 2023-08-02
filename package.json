@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@discordapp/twemoji": "^14.0.2",
-    "@fortawesome/fontawesome-free": "^5.6.3",
+    "@fortawesome/fontawesome-free": "^5.15.4",
     "@types/bootstrap": "^3.3.0",
     "@types/d3": "^7.1.0",
     "@types/grecaptcha": "^3.0.1",
