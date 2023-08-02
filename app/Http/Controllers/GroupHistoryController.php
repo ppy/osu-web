@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Models\Group;
 use App\Models\User;
 use App\Models\UserGroupEvent;
 
@@ -56,7 +57,7 @@ class GroupHistoryController extends Controller
 
         if ($skipQuery) {
             $cursor = null;
-            $events = [];
+            $events = collect();
         } else {
             $cursorHelper = UserGroupEvent::makeDbCursorHelper($params['sort']);
             [$events, $hasMore] = $query
@@ -66,9 +67,20 @@ class GroupHistoryController extends Controller
             $cursor = $cursorHelper->next($events, $hasMore);
         }
 
-        return [
+        $eventGroupIds = $events->pluck('group_id');
+        $groups = app('groups')->all()->filter(
+            fn (Group $group) =>
+                $eventGroupIds->contains($group->getKey()) ||
+                priv_check('GroupShow', $group)->can(),
+        );
+        $json = [
             'events' => json_collection($events, 'UserGroupEvent'),
+            'groups' => json_collection($groups, 'Group'),
             ...cursor_for_response($cursor),
         ];
+
+        return is_json_request()
+            ? $json
+            : ext_view('group_history.index', compact('json'));
     }
 }
