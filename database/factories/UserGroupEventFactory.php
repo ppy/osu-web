@@ -11,6 +11,7 @@ use App\Models\Beatmap;
 use App\Models\Group;
 use App\Models\User;
 use App\Models\UserGroupEvent;
+use Illuminate\Support\ItemNotFoundException;
 
 class UserGroupEventFactory extends Factory
 {
@@ -70,5 +71,23 @@ class UserGroupEventFactory extends Factory
                 default => User::factory(),
             },
         ];
+    }
+
+    public function withRandomExistingModels(): static
+    {
+        return $this->state([
+            'actor_id' => User::inRandomOrder()->first(),
+            'group_id' => function () {
+                return app('groups')->all()->random()
+                    ?? throw new ItemNotFoundException();
+            },
+            'user_id' => fn (array $attr) => match ($attr['type']) {
+                UserGroupEvent::GROUP_ADD,
+                UserGroupEvent::GROUP_REMOVE,
+                UserGroupEvent::GROUP_RENAME => null,
+
+                default => User::inRandomOrder()->firstOrFail(),
+            },
+        ]);
     }
 }
