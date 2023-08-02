@@ -60,7 +60,15 @@ class UserGroupEventFactory extends Factory
                 UserGroupEvent::USER_REMOVE_PLAYMODES,
                 UserGroupEvent::USER_SET_DEFAULT,
             ]),
-            'user_id' => User::factory(),
+
+            // depends on type
+            'user_id' => fn (array $attr) => match ($attr['type']) {
+                UserGroupEvent::GROUP_ADD,
+                UserGroupEvent::GROUP_REMOVE,
+                UserGroupEvent::GROUP_RENAME => null,
+
+                default => User::factory(),
+            },
         ];
     }
 }
