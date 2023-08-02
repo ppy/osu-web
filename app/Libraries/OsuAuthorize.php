@@ -1927,6 +1927,10 @@ class OsuAuthorize
 
     public function checkUserGroupEventShowActor(?User $user, UserGroupEvent $event): string
     {
+        if ($event->group->identifier === 'default') {
+            return $user?->isPrivileged() ? 'ok' : 'unauthorized';
+        }
+
         if ($user?->isGroup($event->group)) {
             return 'ok';
         }
