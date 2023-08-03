@@ -83,8 +83,8 @@ Field         | Type        | Description
 --------------|-------------|------------
 id            | number      | |
 tournament_id | number      | |
-image         | string      | |
-image@2x      | string      | |
+image         | string?     | |
+image@2x      | string?     | |
 
 <div id="usercompact-rankhighest" data-unique="usercompact-rankhighest"></div>
 
