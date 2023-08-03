@@ -90,7 +90,7 @@
                 @stack('notification_banners')
             </div>
         @endif
-        <div class="osu-layout__section osu-layout__section--full js-content {{ $currentSection }}_{{ $currentAction }}">
+        <div class="osu-layout__section osu-layout__section--full {{ $currentSection }}_{{ $currentAction }}">
             @yield('content')
         </div>
         @if (!isset($blank))
