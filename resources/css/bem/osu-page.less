@@ -243,10 +243,10 @@
 
     flex: 1 0 auto;
     display: flex;
-    height: calc((var(--vh, 1vh) * 100) - (@nav2-height + 70px + 50px)); // viewport height - compact header+footer
+    height: calc((var(--vh, 1vh) * 100) - (@header-container-min-height + 50px)); // viewport height - (header + footer)
 
     @media @mobile {
-      height: calc((var(--vh, 1vh) * 100) - 90px);
+      height: calc((var(--vh, 1vh) * 100) - var(--navbar-height));
     }
   }
 }
