@@ -3,9 +3,9 @@
 
 import IconExpand from 'components/icon-expand';
 import BeatmapsetDiscussionJson, { BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
+import BeatmapsetDiscussions from 'interfaces/beatmapset-discussions';
 import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
-import BeatmapsetDiscussions from 'models/beatmapset-discussions';
 import * as React from 'react';
 import { canModeratePosts } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers } from 'utils/css';

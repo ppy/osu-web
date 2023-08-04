@@ -3,10 +3,10 @@
 
 import BeatmapsetDiscussionJson, { BeatmapsetDiscussionJsonForBundle, BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
 import BeatmapsetDiscussionPostJson from 'interfaces/beatmapset-discussion-post-json';
+import BeatmapsetDiscussions from 'interfaces/beatmapset-discussions';
 import { findLast } from 'lodash';
 import { action, computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
-import BeatmapsetDiscussions from 'models/beatmapset-discussions';
 import { deletedUserJson } from 'models/user';
 import core from 'osu-core-singleton';
 import * as React from 'react';

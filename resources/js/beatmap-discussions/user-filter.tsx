@@ -3,10 +3,10 @@
 
 import mapperGroup from 'beatmap-discussions/mapper-group';
 import SelectOptions, { OptionRenderProps } from 'components/select-options';
+import BeatmapsetDiscussions from 'interfaces/beatmapset-discussions';
 import UserJson from 'interfaces/user-json';
 import { action, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
-import BeatmapsetDiscussions from 'models/beatmapset-discussions';
 import { usernameSortAscending } from 'models/user';
 import * as React from 'react';
 import { makeUrl, parseUrl } from 'utils/beatmapset-discussion-helper';

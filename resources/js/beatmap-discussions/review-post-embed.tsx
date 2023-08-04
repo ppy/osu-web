@@ -4,7 +4,7 @@
 import { discussionTypeIcons } from 'beatmap-discussions/discussion-type';
 import { BeatmapIcon } from 'components/beatmap-icon';
 import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
-import BeatmapsetDiscussions from 'models/beatmapset-discussions';
+import BeatmapsetDiscussions from 'interfaces/beatmapset-discussions';
 import * as React from 'react';
 import { formatTimestamp, makeUrl, startingPost } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers } from 'utils/css';

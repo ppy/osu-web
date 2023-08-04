@@ -3,9 +3,9 @@
 
 import BeatmapsetCover from 'components/beatmapset-cover';
 import { BeatmapsetDiscussionMessagePostJson } from 'interfaces/beatmapset-discussion-post-json';
+import BeatmapsetDiscussions from 'interfaces/beatmapset-discussions';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
-import BeatmapsetDiscussions from 'models/beatmapset-discussions';
 import { deletedUserJson } from 'models/user';
 import * as React from 'react';
 import { makeUrl } from 'utils/beatmapset-discussion-helper';

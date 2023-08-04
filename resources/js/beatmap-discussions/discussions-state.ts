@@ -6,9 +6,9 @@ import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussion
 import GameMode from 'interfaces/game-mode';
 import { maxBy } from 'lodash';
 import { action, computed, makeObservable, observable, toJS } from 'mobx';
-import BeatmapsetDiscussionsStore from 'models/beatmapset-discussions-store';
 import moment from 'moment';
 import core from 'osu-core-singleton';
+import BeatmapsetDiscussionsStore from 'stores/beatmapset-discussions-store';
 import { findDefault, group, sortWithMode } from 'utils/beatmap-helper';
 import { makeUrl, parseUrl } from 'utils/beatmapset-discussion-helper';
 import { switchNever } from 'utils/switch-never';

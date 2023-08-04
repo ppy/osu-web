@@ -1,9 +1,9 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import BeatmapsetDiscussions from 'interfaces/beatmapset-discussions';
 import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
-import BeatmapsetDiscussions from 'models/beatmapset-discussions';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { downloadLimited } from 'utils/beatmapset-helper';

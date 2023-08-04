@@ -1,12 +1,12 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import BeatmapsetDiscussions from 'interfaces/beatmapset-discussions';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import { isEmpty } from 'lodash';
 import { computed, makeObservable, observable } from 'mobx';
 import { mapBy, mapByWithNulls } from 'utils/map';
-import BeatmapsetDiscussions from './beatmapset-discussions';
 
 export default class BeatmapsetDiscussionsStore implements BeatmapsetDiscussions {
   @observable beatmapset: BeatmapsetWithDiscussionsJson;

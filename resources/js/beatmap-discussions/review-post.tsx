@@ -3,7 +3,7 @@
 
 import { PersistedBeatmapDiscussionReview } from 'interfaces/beatmap-discussion-review';
 import { BeatmapsetDiscussionMessagePostJson } from 'interfaces/beatmapset-discussion-post-json';
-import BeatmapsetDiscussions from 'models/beatmapset-discussions';
+import BeatmapsetDiscussions from 'interfaces/beatmapset-discussions';
 import * as React from 'react';
 import DiscussionMessage from './discussion-message';
 import { ReviewPostEmbed } from './review-post-embed';

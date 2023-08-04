@@ -4,9 +4,9 @@
 import { Discussion } from 'beatmap-discussions/discussion';
 import BeatmapsetCover from 'components/beatmapset-cover';
 import { BeatmapsetDiscussionJsonForBundle } from 'interfaces/beatmapset-discussion-json';
+import BeatmapsetDiscussions from 'interfaces/beatmapset-discussions';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
-import BeatmapsetDiscussions from 'models/beatmapset-discussions';
 import React from 'react';
 import { makeUrl } from 'utils/beatmapset-discussion-helper';
 import { trans } from 'utils/lang';

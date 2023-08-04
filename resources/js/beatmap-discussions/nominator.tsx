@@ -3,6 +3,7 @@
 
 import BigButton from 'components/big-button';
 import Modal from 'components/modal';
+import BeatmapsetDiscussions from 'interfaces/beatmapset-discussions';
 import BeatmapsetEventJson from 'interfaces/beatmapset-event-json';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import GameMode from 'interfaces/game-mode';
@@ -10,7 +11,6 @@ import { route } from 'laroute';
 import { forEachRight, map, uniq } from 'lodash';
 import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
-import BeatmapsetDiscussions from 'models/beatmapset-discussions';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { onError } from 'utils/ajax';

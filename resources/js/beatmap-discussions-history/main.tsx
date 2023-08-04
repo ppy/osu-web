@@ -6,8 +6,8 @@ import BeatmapsetCover from 'components/beatmapset-cover';
 import BeatmapsetDiscussionsBundleJson from 'interfaces/beatmapset-discussions-bundle-json';
 import { makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
-import BeatmapsetDiscussionsBundleStore from 'models/beatmapset-discussions-bundle-store';
 import * as React from 'react';
+import BeatmapsetDiscussionsBundleStore from 'stores/beatmapset-discussions-bundle-store';
 import { makeUrl } from 'utils/beatmapset-discussion-helper';
 import { trans } from 'utils/lang';
 

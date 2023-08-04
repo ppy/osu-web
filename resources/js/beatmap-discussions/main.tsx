@@ -8,9 +8,9 @@ import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussion
 import { route } from 'laroute';
 import { action, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
-import BeatmapsetDiscussionsStore from 'models/beatmapset-discussions-store';
 import core from 'osu-core-singleton';
 import * as React from 'react';
+import BeatmapsetDiscussionsStore from 'stores/beatmapset-discussions-store';
 import { defaultFilter, parseUrl, stateFromDiscussion } from 'utils/beatmapset-discussion-helper';
 import { nextVal } from 'utils/seq';
 import { currentUrl } from 'utils/turbolinks';

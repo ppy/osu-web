@@ -3,8 +3,8 @@
 
 import { EmbedElement } from 'editor';
 import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
+import BeatmapsetDiscussions from 'interfaces/beatmapset-discussions';
 import { Observer } from 'mobx-react';
-import BeatmapsetDiscussions from 'models/beatmapset-discussions';
 import * as React from 'react';
 import { Transforms } from 'slate';
 import { RenderElementProps } from 'slate-react';
