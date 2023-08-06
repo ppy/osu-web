@@ -6,6 +6,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Contest;
+use App\Models\ContestJudgeVote;
 use App\Models\DeletedUser;
 use App\Models\UserContestEntry;
 use GuzzleHttp;
@@ -22,7 +23,11 @@ class ContestsController extends Controller
 
     public function show($id)
     {
-        $contest = Contest::findOrFail($id);
+        $contest = Contest::with('judges')
+            ->with('judges.contestJudgeVotes')
+            ->withCount('entries')
+            ->findOrFail($id);
+
         $entries = UserContestEntry::withTrashed()
             ->where('contest_id', $id)
             ->with('user')

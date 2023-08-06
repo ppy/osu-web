@@ -1334,6 +1334,23 @@ class OsuAuthorize
      * @return string
      * @throws AuthorizationCheckException
      */
+    public function checkContestJudge(?User $user, Contest $contest): string
+    {
+        $this->ensureLoggedIn($user);
+
+        if ($contest->judges->find($user->getKey()) == null) {
+            return 'unauthorized';
+        }
+
+        return 'ok';
+    }
+
+    /**
+     * @param User|null $user
+     * @param Contest $contest
+     * @return string
+     * @throws AuthorizationCheckException
+     */
     public function checkContestVote(?User $user, Contest $contest): string
     {
         $this->ensureLoggedIn($user);

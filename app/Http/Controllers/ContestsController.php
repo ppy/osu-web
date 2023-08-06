@@ -24,6 +24,29 @@ class ContestsController extends Controller
         ]);
     }
 
+    public function judge($id)
+    {
+        $contest = Contest::with('entries')
+            ->with('entries.judgeVotes')
+            ->with('entries.judgeVotes.categoryVotes')
+            ->with('judgeCategories')
+            ->findOrFail($id);
+
+        abort_if(!$contest->isJudgingActive(), 404);
+
+        priv_check('ContestJudge', $contest)->ensureCan();
+
+        $contestJson = json_item($contest, 'Contest', ['judge_categories']);
+        $entriesJson = json_collection($contest->entries, 'ContestEntry', [
+            'current_user_judge_vote.category_votes',
+        ]);
+
+        return ext_view('contests.judge', [
+            'contestJson' => $contestJson,
+            'entriesJson' => $entriesJson,
+        ]);
+    }
+
     public function show($id)
     {
         $contest = Contest::findOrFail($id);

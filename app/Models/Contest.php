@@ -12,6 +12,8 @@ use App\Transformers\ContestTransformer;
 use App\Transformers\UserContestEntryTransformer;
 use Cache;
 use Exception;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @property \Carbon\Carbon|null $created_at
@@ -54,6 +56,16 @@ class Contest extends Model
     public function entries()
     {
         return $this->hasMany(ContestEntry::class);
+    }
+
+    public function judges(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, ContestJudge::class);
+    }
+
+    public function judgeCategories(): HasMany
+    {
+        return $this->hasMany(ContestJudgeCategory::class);
     }
 
     public function userContestEntries()
@@ -107,6 +119,16 @@ class Contest extends Model
     public function isBestOf(): bool
     {
         return isset($this->getExtraOptions()['best_of']);
+    }
+
+    public function isJudged(): bool
+    {
+        return $this->getExtraOptions()['judged'] ?? false;
+    }
+
+    public function isJudgingActive(): bool
+    {
+        return $this->isJudged() && $this->isVotingStarted() && !$this->show_votes;
     }
 
     public function isSubmittedBeatmaps(): bool
@@ -245,17 +267,21 @@ class Contest extends Model
         if ($this->show_votes) {
             return Cache::remember("contest_entries_with_votes_{$this->id}", 300, function () use ($entries) {
                 $entries = $entries->with('user');
+                $orderValue = 'votes_count';
 
                 if ($this->isBestOf()) {
                     $entries = $entries
                         ->selectRaw('*')
                         ->selectRaw('(SELECT FLOOR(SUM(`weight`)) FROM `contest_votes` WHERE `contest_entries`.`id` = `contest_votes`.`contest_entry_id`) AS votes_count')
                         ->limit(50); // best of contests tend to have a _lot_ of entries...
+                } else if ($this->isJudged()) {
+                    $entries = $entries->withSum('categoryVotes', 'value');
+                    $orderValue = 'category_votes_sum_value';
                 } else {
                     $entries = $entries->withCount('votes');
                 }
 
-                return $entries->orderBy('votes_count', 'desc')->get();
+                return $entries->orderBy($orderValue, 'desc')->get();
             });
         } else {
             if ($this->isBestOf()) {

@@ -5,11 +5,15 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+
 /**
  * @property Contest $contest
  * @property int $contest_id
  * @property \Carbon\Carbon|null $created_at
  * @property string|null $entry_url
+ * @property string|null $judge_score
  * @property string|null $thumbnail_url
  * @property int $id
  * @property string $masked_name
@@ -21,9 +25,19 @@ namespace App\Models;
  */
 class ContestEntry extends Model
 {
+    public function categoryVotes(): HasManyThrough
+    {
+        return $this->hasManyThrough(ContestJudgeCategoryVote::class, ContestJudgeVote::class);
+    }
+
     public function contest()
     {
         return $this->belongsTo(Contest::class);
+    }
+
+    public function judgeVotes(): HasMany
+    {
+        return $this->hasMany(ContestJudgeVote::class);
     }
 
     public function user()

@@ -5,19 +5,141 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\InvariantException;
 use App\Models\Contest;
 use App\Models\ContestEntry;
+use App\Models\ContestJudgeCategoryVote;
+use App\Models\ContestJudgeVote;
 use App\Models\UserContestEntry;
 use Auth;
+use Illuminate\Support\Facades\DB;
 use Request;
 
 class ContestEntriesController extends Controller
 {
+    public function judgeResults($id)
+    {
+        $entry = ContestEntry::with('contest')
+            ->with('contest.entries')
+            ->with('contest.judgeCategories')
+            ->with('judgeVotes')
+            ->with('judgeVotes.categoryVotes')
+            ->with('judgeVotes.user')
+            ->with('judgeVotes.categoryVotes.category')
+            ->with('user')
+            ->withSum('categoryVotes', 'value')
+            ->findOrFail($id);
+
+        abort_if(!$entry->contest->isJudged() || !$entry->contest->show_votes, 404);
+
+        $contestJson = json_item(
+            $entry->contest->loadSum('judgeCategories', 'max_value'),
+            'Contest',
+            ['max_judging_score']
+        );
+
+        $entryJson = json_item($entry, 'ContestEntry', [
+            'judge_votes.user',
+            'judge_votes.score',
+            'judge_votes.category_votes.category',
+            'results',
+            'user',
+        ]);
+
+        $entriesJson = json_collection($entry->contest->entries, 'ContestEntry');
+
+        return ext_view('contest_entries.judge-results', [
+            'contestJson' => $contestJson,
+            'entryJson' => $entryJson,
+            'entriesJson' => $entriesJson,
+        ]);
+    }
+
+    public function judgeVote($id)
+    {
+        $entry = ContestEntry::with('contest')
+            ->with('contest.judgeCategories')
+            ->with('judgeVotes')
+            ->findOrFail($id);
+
+        if (!$entry->contest->isJudgingActive()) {
+            throw new InvariantException(osu_trans('contest.judge.validation.judging_not_active'));
+        }
+
+        priv_check('ContestJudge', $entry->contest)->ensureCan();
+
+        $params = get_params(request()->all(), null, [
+            'category_votes:array',
+            'comment',
+        ]);
+
+        $categoryVotes = collect($params['category_votes']);
+        $comment = $params['comment'];
+
+        DB::osu_transaction(function () use ($categoryVotes, $comment, $entry) {
+            $vote = $entry->judgeVotes->where('user_id', auth()->user()->getKey())->first();
+
+            if ($vote !== null) {
+                if ($comment !== $vote->comment) {
+                    $vote->update(['comment' => $comment]);
+                }
+            } else {
+                $vote = ContestJudgeVote::create([
+                    'comment' => $comment,
+                    'contest_entry_id' => $entry->getKey(),
+                    'user_id' => auth()->user()->getKey(),
+                ]);
+            }
+
+            foreach ($entry->contest->judgeCategories as $category) {
+                $categoryVote = $categoryVotes
+                    ->where('contest_judge_category_id', $category->getKey())
+                    ->first();
+
+                if ($categoryVote == null) {
+                    throw new InvariantException(osu_trans('contest.judge.validation.missing_category_vote'));
+                }
+
+                $currentCategoryVote = ContestJudgeCategoryVote::where('contest_judge_vote_id', $vote->getKey())
+                    ->where('contest_judge_category_id', $category->getKey())
+                    ->first();
+
+                $value = clamp($categoryVote['value'], 0, $category->max_value);
+
+                if ($currentCategoryVote !== null) {
+                    $currentValue = $currentCategoryVote->value;
+
+                    if ($currentValue !== $value) {
+                        $currentCategoryVote->update(['value' => $value]);
+                    }
+                } else {
+                    ContestJudgeCategoryVote::create([
+                        'contest_judge_category_id' => $category->getKey(),
+                        'contest_judge_vote_id' => $vote->getKey(),
+                        'value' => $value,
+                    ]);
+                }
+            }
+        });
+
+        $updatedEntry = ContestEntry::with('judgeVotes')
+            ->with('judgeVotes.categoryVotes')
+            ->findOrFail($entry->getKey());
+
+        $updatedEntryJson = json_item($updatedEntry, 'ContestEntry', ['current_user_judge_vote.category_votes']);
+
+        return $updatedEntryJson;
+    }
+
     public function vote($id)
     {
         $user = Auth::user();
         $entry = ContestEntry::findOrFail($id);
         $contest = Contest::with('entries')->with('entries.contest')->findOrFail($entry->contest_id);
+
+        if ($contest->isJudged()) {
+            throw new InvariantException(osu_trans('contest.judge.validation.contest_vote_judged'));
+        }
 
         priv_check('ContestVote', $contest)->ensureCan();
 
