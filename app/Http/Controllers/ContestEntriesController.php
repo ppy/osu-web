@@ -96,7 +96,7 @@ class ContestEntriesController extends Controller
                     ->where('contest_judge_category_id', $category->getKey())
                     ->first();
 
-                if ($categoryVote == null) {
+                if ($categoryVote === null) {
                     throw new InvariantException(osu_trans('contest.judge.validation.missing_category_vote'));
                 }
 

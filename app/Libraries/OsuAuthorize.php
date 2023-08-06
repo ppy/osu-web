@@ -1338,7 +1338,7 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
 
-        if ($contest->judges->find($user->getKey()) == null) {
+        if ($contest->judges->find($user->getKey()) === null) {
             return 'unauthorized';
         }
 

@@ -6,7 +6,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Contest;
-use App\Models\ContestJudgeVote;
 use App\Models\DeletedUser;
 use App\Models\UserContestEntry;
 use GuzzleHttp;

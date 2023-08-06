@@ -55,7 +55,7 @@ class ContestEntryTransformer extends TransformerAbstract
 
     public function includeJudgeVotes(ContestEntry $entry)
     {
-        return $this->collection($entry->judgeVotes, new ContestJudgeVoteTransformer);
+        return $this->collection($entry->judgeVotes, new ContestJudgeVoteTransformer());
     }
 
     public function includeResults(ContestEntry $entry)
