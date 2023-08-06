@@ -254,7 +254,7 @@ class Comment extends Model implements Traits\ReportableInterface
         return $this->getConnection()->transaction(function () use ($options) {
             if (!$this->exists && $this->parent_id !== null && $this->parent !== null) {
                 // skips validation and everything
-                $this->parent->increment('replies_count_cache');
+                $this->parent->incrementInstance('replies_count_cache');
             }
 
             if ($this->isDirty('deleted_at')) {

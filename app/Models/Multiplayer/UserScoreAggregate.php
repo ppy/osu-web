@@ -43,43 +43,18 @@ class UserScoreAggregate extends Model
     ];
     protected $table = 'multiplayer_rooms_high';
 
-    public $isNew = false;
-
-    public static function getPlaylistItemUserHighScore(Score $score)
+    public static function lookupOrDefault(User $user, Room $room): static
     {
-        return PlaylistItemUserHighScore::firstOrNew([
-            'playlist_item_id' => $score->playlist_item_id,
-            'user_id' => $score->user_id,
-        ]);
-    }
-
-    public static function lookupOrDefault(User $user, Room $room): self
-    {
-        $obj = static::firstOrNew([
-            'user_id' => $user->getKey(),
+        return static::firstOrNew([
             'room_id' => $room->getKey(),
+            'user_id' => $user->getKey(),
+        ], [
+            'accuracy' => 0,
+            'attempts' => 0,
+            'completed' => 0,
+            'pp' => 0,
+            'total_score' => 0,
         ]);
-
-        foreach (['total_score', 'accuracy', 'pp', 'attempts', 'completed'] as $key) {
-            // init if required
-            $obj->$key = $obj->$key ?? 0;
-        }
-
-        return $obj;
-    }
-
-    public static function updatePlaylistItemUserHighScore(PlaylistItemUserHighScore $highScore, Score $score)
-    {
-        if (!$score->passed) {
-            return;
-        }
-
-        $highScore->total_score = $score->total_score;
-        $highScore->accuracy = $score->accuracy;
-        $highScore->pp = $score->pp;
-        $highScore->score_id = $score->getKey();
-
-        $highScore->save();
     }
 
     public static function new(User $user, Room $room): self
@@ -87,7 +62,6 @@ class UserScoreAggregate extends Model
         $obj = static::lookupOrDefault($user, $room);
 
         if (!$obj->exists) {
-            $obj->isNew = true;
             $obj->save(); // force a save now to avoid being trolled later.
             $obj->recalculate();
         }
@@ -102,11 +76,11 @@ class UserScoreAggregate extends Model
                 return false;
             }
 
-            $highestScore = static::getPlaylistItemUserHighScore($score);
+            $highestScore = PlaylistItemUserHighScore::lookupOrDefault($score);
 
-            if ($score->total_score > $highestScore->total_score) {
+            if ($score->passed && $score->total_score > $highestScore->total_score) {
                 $this->updateUserTotal($score, $highestScore);
-                static::updatePlaylistItemUserHighScore($highestScore, $score);
+                $highestScore->updateWithScore($score);
             }
 
             return true;
@@ -175,7 +149,7 @@ class UserScoreAggregate extends Model
 
     public function updateUserAttempts()
     {
-        $this->increment('attempts');
+        $this->incrementInstance('attempts');
     }
 
     public function user()
@@ -197,20 +171,18 @@ class UserScoreAggregate extends Model
 
     private function updateUserTotal(Score $current, PlaylistItemUserHighScore $prev)
     {
-        if ($current->passed) {
-            if ($prev->exists) {
-                $this->total_score -= $prev->total_score;
-                $this->accuracy -= $prev->accuracy;
-                $this->pp -= $prev->pp;
-                $this->completed--;
-            }
-
-            $this->total_score += $current->total_score;
-            $this->accuracy += $current->accuracy;
-            $this->pp += $current->pp;
-            $this->completed++;
-            $this->last_score_id = $current->getKey();
+        if ($prev->exists) {
+            $this->total_score -= $prev->total_score;
+            $this->accuracy -= $prev->accuracy;
+            $this->pp -= $prev->pp;
+            $this->completed--;
         }
+
+        $this->total_score += $current->total_score;
+        $this->accuracy += $current->accuracy;
+        $this->pp += $current->pp;
+        $this->completed++;
+        $this->last_score_id = $current->getKey();
 
         $this->save();
     }

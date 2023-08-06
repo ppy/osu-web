@@ -17,9 +17,16 @@ return [
         ],
     ],
 
+    'kudosu' => [
+        'total' => '',
+        'available' => '',
+        'used' => '',
+    ],
+
     'type' => [
         'charts' => 'Valokeilassa',
         'country' => 'Maa',
+        'kudosu' => '',
         'multiplayer' => 'moninpeli',
         'performance' => 'Suorituskyky',
         'score' => 'Piste',

@@ -3,7 +3,7 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @php
-    $popup = Session::get('popup');
+    $popup = Session('popup');
 @endphp
 <div id="popup-container">
     <div class="alert alert-dismissable popup-clone col-md-6 col-md-offset-3 text-center" style="display: none">

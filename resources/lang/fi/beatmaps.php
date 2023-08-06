@@ -118,7 +118,7 @@ return [
         ],
 
         'show' => [
-            'title' => ':title, luonut :mapper',
+            'title' => ':title, kartoittanut :mapper',
         ],
 
         'sort' => [
@@ -175,8 +175,8 @@ return [
     ],
 
     'nominations' => [
-        'already_nominated' => '',
-        'cannot_nominate' => '',
+        'already_nominated' => 'Olet jo pannut ehdolle tämän rytmikartan.',
+        'cannot_nominate' => 'Et voi panna ehdolle tähän pelimuotoon kuuluvia rytmikarttoja.',
         'delete' => 'Poista',
         'delete_own_confirm' => 'Oletko varma? Tämä beatmap poistetaan ja sinut uudelleenohjataan takaisin profiiliisi.',
         'delete_other_confirm' => 'Oletko varma? Tämä beatmap poistetaan ja sinut uudelleenohjataan käyttäjän profiiliin.',

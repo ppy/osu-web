@@ -49,7 +49,7 @@ return [
     ],
 
     'card' => [
-        'gift_supporter' => '',
+        'gift_supporter' => '贈送 osu! 贊助者標籤',
         'loading' => '載入中...',
         'send_message' => '傳送訊息',
     ],
@@ -237,7 +237,7 @@ return [
                     'title' => '喜歡的圖譜',
                 ],
                 'nominated' => [
-                    'title' => '',
+                    'title' => '已提名 & 進榜的圖譜',
                 ],
                 'pending' => [
                     'title' => '待處理的圖譜',

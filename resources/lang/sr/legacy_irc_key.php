@@ -4,20 +4,20 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'confirm_new' => '',
-    'new' => '',
-    'none' => '',
+    'confirm_new' => 'Креирај нови IRC лозинку?',
+    'new' => 'Нова застарела IRC лозинка',
+    'none' => 'IRC Лозинка није постављена.',
 
     'form' => [
-        'server_host' => '',
-        'server_port' => '',
-        'token' => '',
-        'username' => '',
+        'server_host' => 'сервер',
+        'server_port' => 'порт',
+        'token' => 'лозинка сервера',
+        'username' => 'корисничко име',
     ],
 
     'view' => [
-        'hide' => '',
-        'show' => '',
-        'delete' => '',
+        'hide' => 'Сакриј Лозинку',
+        'show' => 'Прикажи Лозинку',
+        'delete' => 'Обриши',
     ],
 ];

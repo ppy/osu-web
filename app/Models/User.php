@@ -139,6 +139,7 @@ use Request;
  * @property int $user_avatar_width
  * @property string $user_birthday
  * @property string|null $user_colour
+ * @property-read Collection<UserCountryHistory> $userCountryHistory
  * @property string $user_dateformat
  * @property string|null $user_discord
  * @property int $user_dst
@@ -271,6 +272,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     private $validateEmailConfirmation = false;
 
     private $isSessionVerified;
+
+    public function userCountryHistory(): HasMany
+    {
+        return $this->hasMany(UserCountryHistory::class);
+    }
 
     public function getAuthPassword()
     {
@@ -921,6 +927,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'tokens',
             'topicWatches',
             'userAchievements',
+            'userCountryHistory',
             'userGroups',
             'userNotifications',
             'userPage',
@@ -949,7 +956,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             return $isGroup;
         }
 
-        $groupModes = $this->findUserGroup($group, true)->playmodes;
+        $groupModes = $this->findUserGroup($group, true)->actualRulesets();
 
         return in_array($playmode, $groupModes ?? [], true);
     }
@@ -1703,21 +1710,21 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             $modes = [];
 
             if ($this->isLimitedBN()) {
-                $playmodes = $this->findUserGroup(app('groups')->byIdentifier('bng_limited'), true)->playmodes ?? [];
+                $playmodes = $this->findUserGroup(app('groups')->byIdentifier('bng_limited'), true)->actualRulesets();
                 foreach ($playmodes as $playmode) {
                     $modes[$playmode] = 'limited';
                 }
             }
 
             if ($this->isFullBN()) {
-                $playmodes = $this->findUserGroup(app('groups')->byIdentifier('bng'), true)->playmodes ?? [];
+                $playmodes = $this->findUserGroup(app('groups')->byIdentifier('bng'), true)->actualRulesets();
                 foreach ($playmodes as $playmode) {
                     $modes[$playmode] = 'full';
                 }
             }
 
             if ($this->isNAT()) {
-                $playmodes = $this->findUserGroup(app('groups')->byIdentifier('nat'), true)->playmodes ?? [];
+                $playmodes = $this->findUserGroup(app('groups')->byIdentifier('nat'), true)->actualRulesets();
                 foreach ($playmodes as $playmode) {
                     $modes[$playmode] = 'full';
                 }

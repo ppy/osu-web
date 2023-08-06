@@ -30,7 +30,7 @@ return [
         'forum_topic' => 'foorumi',
         'news_post' => 'uutiset',
         'build' => '',
-        'channel' => 'chat',
+        'channel' => 'chatti',
     ],
 
     'item' => [
@@ -94,7 +94,7 @@ return [
         ],
 
         'channel' => [
-            '_' => 'Chat',
+            '_' => 'Chatti',
 
             'announcement' => [
                 '_' => '',
@@ -150,15 +150,6 @@ return [
                 '_' => 'Uusi foorumi vastaus',
                 'forum_topic_reply' => ':username vastasi foorumi aiheeseen ":title".',
                 'forum_topic_reply_compact' => ':username vastasi',
-            ],
-        ],
-
-        'legacy_pm' => [
-            '_' => '',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited lukematon viesti.|:count_delimited lukemattomia viestejä.',
             ],
         ],
 

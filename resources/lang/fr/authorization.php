@@ -171,6 +171,7 @@ return [
 
     'score' => [
         'pin' => [
+            'disabled_type' => "Impossible d'épingler ce type de score",
             'not_owner' => 'Seul le propriétaire du score peut épingler le score.',
             'too_many' => 'Trop de scores épinglés.',
         ],

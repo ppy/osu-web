@@ -154,15 +154,6 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => 'Hivatalos PM fórum',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited olvasatlan üzenet.|:count_delimited olvasatlan üzenet.',
-            ],
-        ],
-
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Új beatmap',

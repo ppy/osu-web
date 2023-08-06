@@ -17,9 +17,16 @@ return [
         ],
     ],
 
+    'kudosu' => [
+        'total' => '',
+        'available' => '',
+        'used' => '',
+    ],
+
     'type' => [
         'charts' => 'منطقة ألأضواء',
         'country' => 'الدولة',
+        'kudosu' => '',
         'multiplayer' => 'متعدد اللاعبين',
         'performance' => 'الأداء',
         'score' => 'النقاط',

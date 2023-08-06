@@ -13,6 +13,7 @@ class CommentBundleParams
     const DEFAULT_PAGE = 1;
     const DEFAULT_LIMIT = 50;
 
+    public ?int $after = null;
     public $userId;
     public $commentableId;
     public $commentableType;
@@ -64,6 +65,7 @@ class CommentBundleParams
         $this->cursorHelper = Comment::makeDbCursorHelper($params['sort'] ?? $this->sort);
         $this->cursor = get_arr($params['cursor'] ?? null);
         $this->sort = $this->cursorHelper->getSortName();
+        $this->after = get_int($params['after'] ?? null);
     }
 
     public function filterByParentId()

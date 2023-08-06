@@ -17,9 +17,16 @@ return [
         ],
     ],
 
+    'kudosu' => [
+        'total' => '획득',
+        'available' => '잔여',
+        'used' => '사용',
+    ],
+
     'type' => [
         'charts' => '스포트라이트',
         'country' => '국가별',
+        'kudosu' => 'Kudosu',
         'multiplayer' => '멀티플레이어',
         'performance' => '퍼포먼스',
         'score' => '점수',

@@ -15,7 +15,7 @@ return [
 
     'action_type' => [
         '_' => 'ทั้งหมด',
-        'beatmapset' => 'บีตแม็ป',
+        'beatmapset' => 'บีทแมพ',
         'build' => 'เวอร์ชั่น',
         'channel' => 'แชท',
         'forum_topic' => 'ฟอรั่ม',
@@ -26,7 +26,7 @@ return [
     'filters' => [
         '_' => 'ทั้งหมด',
         'user' => 'โปรไฟล์',
-        'beatmapset' => 'บีตแม็ป',
+        'beatmapset' => 'บีทแมพ',
         'forum_topic' => 'บอร์ดข่าวสาร',
         'news_post' => 'ข่าวสาร',
         'build' => 'เวอร์ชั่น',
@@ -35,17 +35,17 @@ return [
 
     'item' => [
         'beatmapset' => [
-            '_' => 'บีตแม็ป',
+            '_' => 'บีทแมพ',
 
             'beatmap_owner_change' => [
                 '_' => 'ระดับความยากของแขก',
-                'beatmap_owner_change' => 'ตอนนี้คุณเป็นเจ้าของระดับความยาก ":beatmap" สําหรับบีตแม็ป ":title"',
+                'beatmap_owner_change' => 'ตอนนี้คุณเป็นเจ้าของระดับความยาก ":beatmap" สําหรับบีทแมพ ":title"',
                 'beatmap_owner_change_compact' => 'ตอนนี้คุณเป็นเจ้าของระดับความยาก ":beatmap"',
             ],
 
             'beatmapset_discussion' => [
-                '_' => 'การสนทนาบีตแม็ป',
-                'beatmapset_discussion_lock' => 'บีตแม็ป ":title" ได้ถูกปิดการใช้งานการสนทนา',
+                '_' => 'การสนทนาบีทแมพ',
+                'beatmapset_discussion_lock' => 'บีทแมพ ":title" ได้ถูกปิดการใช้งานการสนทนา',
                 'beatmapset_discussion_lock_compact' => 'การสนทนาได้ถูกล็อกไว้',
                 'beatmapset_discussion_post_new' => ':username ได้เขียนข้อความใหม่ใน ":title" การสนทนาของ beatmap',
                 'beatmapset_discussion_post_new_empty' => 'โพสใหม่ บน :title โดย :username',
@@ -53,12 +53,12 @@ return [
                 'beatmapset_discussion_post_new_compact_empty' => 'โพสใหม่โดย :username',
                 'beatmapset_discussion_review_new' => 'บทวิจารณ์ใหม่บน ":title" โดย :username มีปัญหาอยู่ :problems ปัญหา, คำแนะนำอยู่ :suggestions คำแนะนำ, คำชม :praises คำชม  ',
                 'beatmapset_discussion_review_new_compact' => 'บทวิจารณ์โดย :username มีปัญหาอยู่ :problems ปัญหา, คำแนะนำอยู่ :suggestions คำแนะนำ, คำชม :praises คำชม  ',
-                'beatmapset_discussion_unlock' => 'บีตแม็ป ":title" ได้ถูกเปิดการใช้งานในการสนทนาแล้ว',
+                'beatmapset_discussion_unlock' => 'บีทแมพ ":title" ได้ถูกเปิดการใช้งานในการสนทนาแล้ว',
                 'beatmapset_discussion_unlock_compact' => 'การสนทนาได้ถูกปลดล๊อค',
             ],
 
             'beatmapset_problem' => [
-                '_' => 'ปัญหาของบีตแม็ปที่ผ่านการรับรอง',
+                '_' => 'ปัญหาของบีทแมพที่ผ่านการรับรอง',
                 'beatmapset_discussion_qualified_problem' => 'รายงานโดย :username บน :title :content',
                 'beatmapset_discussion_qualified_problem_empty' => 'รายงานโดย :username บน :title ',
                 'beatmapset_discussion_qualified_problem_compact' => 'รายงานโดย :username บน :content ',
@@ -66,19 +66,19 @@ return [
             ],
 
             'beatmapset_state' => [
-                '_' => 'สถานะของบีตแม็ปถูกเปลี่ยน',
+                '_' => 'สถานะของบีทแมพถูกเปลี่ยน',
                 'beatmapset_disqualify' => '":title" ถูกตัดสิทธิ์',
-                'beatmapset_disqualify_compact' => 'บีตแม็ปถูกตัดสิทธิ์',
+                'beatmapset_disqualify_compact' => 'บีทแมพถูกตัดสิทธิ์',
                 'beatmapset_love' => '":title" ได้รับการเลื่อนระดับเป็นชื่นชอบ',
-                'beatmapset_love_compact' => 'บีตแม็ปได้รับการเลื่อนตำแหน่งเป็นรักเลย',
+                'beatmapset_love_compact' => 'บีทแมพได้รับการเลื่อนตำแหน่งเป็น Loved',
                 'beatmapset_nominate' => '":title" ได้รับการเสนอชื่อ',
-                'beatmapset_nominate_compact' => 'บีตแม็ปได้รับการเสนอชื่อเข้าชิง',
+                'beatmapset_nominate_compact' => 'บีทแมพได้รับการเสนอชื่อ',
                 'beatmapset_qualify' => '":title" ได้รับการเสนอชื่อเพียงพอที่จะเข้าคิวจัดอันดับ',
-                'beatmapset_qualify_compact' => 'บีตแม็ปเข้าสู่คิวการจัดอันดับ',
+                'beatmapset_qualify_compact' => 'บีทแมพได้เข้าการคิวจัดอันดับ',
                 'beatmapset_rank' => '":title" ได้รับการจัดอันดับ',
-                'beatmapset_rank_compact' => 'บีตแม็ปได้รับการจัดอันดับ',
+                'beatmapset_rank_compact' => 'บีทแมพได้รับการจัดอันดับ',
                 'beatmapset_remove_from_loved' => '":title" ได้ถูกนำออกจากรักเลย',
-                'beatmapset_remove_from_loved_compact' => 'บีตแม็ปได้ถูกนำออกจากชื่นชอบ',
+                'beatmapset_remove_from_loved_compact' => 'บีทแมพได้ถูกนำออกจาก Loved',
                 'beatmapset_reset_nominations' => 'การเสนอชื่อ ":title" ถูกรีเซ็ต',
                 'beatmapset_reset_nominations_compact' => 'การเสนอชื่อถูกรีเซ็ท',
             ],
@@ -153,25 +153,16 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => 'ฟอรั่ม PM',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited ข้อความที่ยังไม่ได้อ่าน |:count_delimited ข้อความทั้งหมดที่ยังไม่ได้อ่าน',
-            ],
-        ],
-
         'user' => [
             'user_beatmapset_new' => [
-                '_' => 'บีตแม็ปใหม่',
+                '_' => 'บีทแมพใหม่',
 
-                'user_beatmapset_new' => 'บีตแม็ปใหม่ ":title" โดย :username',
-                'user_beatmapset_new_compact' => 'บีตแม็ปใหม่ ":title"',
-                'user_beatmapset_new_group' => 'บีตแม็ปใหม่โดย :username',
+                'user_beatmapset_new' => 'บีทแมพใหม่ ":title" โดย :username',
+                'user_beatmapset_new_compact' => 'บีทแมพใหม่ ":title"',
+                'user_beatmapset_new_group' => 'บีทแมพใหม่โดย :username',
 
-                'user_beatmapset_revive' => 'บีตแม็ป ":title" ถูกกู้คืนแล้วโดย :username',
-                'user_beatmapset_revive_compact' => 'บีตแม็ป ":title" ถูกกู้คืนแล้ว',
+                'user_beatmapset_revive' => 'บีทแมพ ":title" ถูกกู้คืนแล้วโดย :username',
+                'user_beatmapset_revive_compact' => 'บีทแมพ ":title" ถูกกู้คืนแล้ว',
             ],
         ],
 
@@ -190,7 +181,7 @@ return [
     'mail' => [
         'beatmapset' => [
             'beatmap_owner_change' => [
-                'beatmap_owner_change' => 'ตอนนี้คุณเป็นแขกของบีตแม็ป ":title"',
+                'beatmap_owner_change' => 'ตอนนี้คุณเป็นแขกของบีทแมพ ":title"',
             ],
 
             'beatmapset_discussion' => [
@@ -214,7 +205,7 @@ return [
             ],
 
             'comment' => [
-                'comment_new' => 'บีตแม็ป ":title" มีความคิดเห็นใหม่',
+                'comment_new' => ' บีทแมพ ":title" มีความคิดเห็นใหม่',
             ],
         ],
 
@@ -253,8 +244,8 @@ return [
             ],
 
             'user_beatmapset_new' => [
-                'user_beatmapset_new' => ':username ได้สร้างบีตแม็ปใหม่',
-                'user_beatmapset_revive' => ':username ได้กู้คืนบีตแม็ปแล้ว',
+                'user_beatmapset_new' => ':username ได้สร้างบีทแมพใหม่',
+                'user_beatmapset_revive' => ':username ได้กู้คืนบีทแมพแล้ว',
             ],
         ],
     ],
