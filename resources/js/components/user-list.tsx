@@ -4,6 +4,7 @@
 import GameMode from 'interfaces/game-mode';
 import GroupJson from 'interfaces/group-json';
 import UserJson from 'interfaces/user-json';
+import { route } from 'laroute';
 import { usernameSortAscending } from 'models/user';
 import * as moment from 'moment';
 import core from 'osu-core-singleton';
@@ -12,6 +13,7 @@ import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 import { currentUrlParams } from 'utils/turbolinks';
 import { updateQueryString } from 'utils/url';
+import BigButton from './big-button';
 import { Sort } from './sort';
 import { ViewMode, viewModes } from './user-card';
 import { UserCards } from './user-cards';
@@ -151,7 +153,15 @@ export class UserList extends React.PureComponent<Props> {
 
         <div className='user-list'>
           {this.props.group != null && (
-            <h1 className='user-list__title'>{this.props.group.name}</h1>
+            <h1 className='user-list__title'>
+              {this.props.group.name}
+              <BigButton
+                href={route('group-history.index', { group: this.props.group.identifier })}
+                icon='fas fa-history'
+                modifiers='user-list-title'
+                text={trans('group_history.view')}
+              />
+            </h1>
           )}
 
           {this.props.group?.description != null && (
