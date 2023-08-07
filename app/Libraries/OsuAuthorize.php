@@ -21,6 +21,7 @@ use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
 use App\Models\Forum\TopicCover;
 use App\Models\Genre;
+use App\Models\Group;
 use App\Models\Language;
 use App\Models\LegacyMatch\LegacyMatch;
 use App\Models\Multiplayer\Room;
@@ -30,6 +31,7 @@ use App\Models\Solo;
 use App\Models\Traits\ReportableInterface;
 use App\Models\User;
 use App\Models\UserContestEntry;
+use App\Models\UserGroupEvent;
 use Carbon\Carbon;
 use Ds;
 
@@ -1767,6 +1769,15 @@ class OsuAuthorize
         return 'ok';
     }
 
+    public function checkGroupShow(?User $user, Group $group): string
+    {
+        if ($group->hasListing() || $user?->isGroup($group)) {
+            return 'ok';
+        }
+
+        return 'unauthorized';
+    }
+
     public function checkIsOwnClient(?User $user, Client $client): string
     {
         if ($user === null || $user->getKey() !== $client->user_id) {
@@ -1912,6 +1923,24 @@ class OsuAuthorize
         }
 
         return 'ok';
+    }
+
+    public function checkUserGroupEventShowActor(?User $user, UserGroupEvent $event): string
+    {
+        if ($event->group->identifier === 'default') {
+            return $user?->isPrivileged() ? 'ok' : 'unauthorized';
+        }
+
+        if ($user?->isGroup($event->group)) {
+            return 'ok';
+        }
+
+        return 'unauthorized';
+    }
+
+    public function checkUserGroupEventShowAll(?User $user): string
+    {
+        return 'unauthorized';
     }
 
     /**
