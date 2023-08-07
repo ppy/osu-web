@@ -50,13 +50,11 @@ return [
             'resolved' => 'Você não pode editar a publicação de uma discussão resolvida.',
             'system_generated' => 'Publicações geradas automaticamente não podem ser editadas.',
         ],
-
-        'store' => [
-            'beatmapset_locked' => 'Este beatmap está bloqueado para discussão.',
-        ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => 'Este beatmap está trancado para discussão.',
+
         'metadata' => [
             'nominated' => 'Você não pode alterar os metadados de um mapa nomeado. Entre em contato com um membro do BN ou NAT se você acha que ele está definido incorretamente.',
         ],
@@ -173,6 +171,7 @@ return [
 
     'score' => [
         'pin' => [
+            'disabled_type' => "Não é possível fixar este tipo de pontuação",
             'not_owner' => 'Somente o proprietário da pontuação pode fixar sua pontuação.',
             'too_many' => 'Muitas pontuações fixadas.',
         ],

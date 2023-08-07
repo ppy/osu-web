@@ -20,6 +20,12 @@ return [
             'title' => 'メールアドレス',
         ],
 
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'レガシーAPI',
+        ],
+
         'password' => [
             'current' => '現在のパスワード',
             'new' => '新しいパスワード',
@@ -28,7 +34,13 @@ return [
         ],
 
         'profile' => [
+            'country' => '',
             'title' => 'プロフィール',
+
+            'country_change' => [
+                '_' => "",
+                'update_link' => '',
+            ],
 
             'user' => [
                 'user_discord' => '',

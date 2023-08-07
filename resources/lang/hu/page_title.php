@@ -100,11 +100,15 @@ return [
         'scores_controller' => [
             '_' => 'teljesítmény',
         ],
+        'seasons_controller' => [
+            '_' => 'rangsorok',
+        ],
         'tournaments_controller' => [
             '_' => 'bajnokságok',
         ],
         'users_controller' => [
             '_' => 'játékos információi',
+            'create' => 'fiók létrehozása',
             'disabled' => 'értesítés',
         ],
         'wiki_controller' => [

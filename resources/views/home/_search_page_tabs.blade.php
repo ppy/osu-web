@@ -29,7 +29,7 @@
                     </span>
                 @endif
 
-                <span class="page-mode-link__stripe u-forum--bg">
+                <span class="page-mode-link__stripe">
                 </span>
             </a>
         </div>

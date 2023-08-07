@@ -175,6 +175,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => '',
+        'cannot_nominate' => '',
         'delete' => '削除',
         'delete_own_confirm' => '本当によろしいですか？ビートマップは削除され、プロフィール画面にリダイレクトされます。',
         'delete_other_confirm' => '本当によろしいですか？ビートマップは削除され、ユーザーのプロフィール画面にリダイレクトされます。',
@@ -199,6 +201,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'このマップは、問題が見つからなければ :date にrankedされると推定されます。:queue 内の #:position ',
+            'on' => '',
             'queue' => 'ランキングキュー',
             'soon' => '間もなく',
         ],

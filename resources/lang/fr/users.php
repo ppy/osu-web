@@ -37,6 +37,7 @@ return [
         'blocked_count' => 'utilisateurs bloqués (:count)',
         'hide_profile' => 'Masquer le profil',
         'hide_comment' => 'masquer',
+        'forum_post_text' => 'Ce post est masqué.',
         'not_blocked' => 'Cet utilisateur n’est pas bloqué.',
         'show_profile' => 'Afficher le profil',
         'show_comment' => 'afficher',
@@ -48,8 +49,25 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => 'Offrir un tag supporter',
         'loading' => 'Chargement...',
         'send_message' => 'envoyer un message',
+    ],
+
+    'create' => [
+        'form' => [
+            'password' => 'mot de passe',
+            'password_confirmation' => 'confirmation du mot de passe',
+            'submit' => 'créer un compte',
+            'user_email' => 'mail',
+            'user_email_confirmation' => 'confirmation de l\'adresse mail',
+            'username' => 'nom d\'utilisateur',
+
+            'tos_notice' => [
+                '_' => 'en créant un compte, vous acceptez les :link',
+                'link' => 'conditions générales d\'utilisation',
+            ],
+        ],
     ],
 
     'disabled' => [
@@ -142,6 +160,7 @@ return [
     'restricted_banner' => [
         'title' => 'Votre compte a été restreint !',
         'message' => 'Quand vous êtes restreint, vous ne pouvez pas interagir avec les autres joueurs et vos scores ne seront visibles que par vous. Cette restriction est souvent le résultat d\'un processus automatique et sera en général levée dans les 24 heures. Si vous souhaitez faire appel de votre restriction, merci de <a href="mailto:accounts@ppy.sh">contacter le support</a>.',
+        'message_link' => 'Consultez cette page pour en savoir plus.',
     ],
     'show' => [
         'age' => ':age ans',
@@ -218,7 +237,7 @@ return [
                     'title' => 'Beatmaps loved',
                 ],
                 'nominated' => [
-                    'title' => '',
+                    'title' => 'Beatmaps classées nominées',
                 ],
                 'pending' => [
                     'title' => 'Beatmaps en attente',
@@ -310,7 +329,7 @@ return [
                 'title' => 'moi !',
             ],
             'medals' => [
-                'empty' => "Cet utilisateur n'en a encore jamais reçue. ;_;",
+                'empty' => "Cet utilisateur n'en a encore jamais reçu. ;_;",
                 'recent' => 'Les plus récentes',
                 'title' => 'Médailles',
             ],
@@ -360,7 +379,7 @@ return [
             ],
             'account_standing' => [
                 'title' => 'Statut du compte',
-                'bad_standing' => "Le compte de <strong>:username</strong> n'est pas dans un bon statut :(",
+                'bad_standing' => "Le compte de :username ne se tient pas bien :(",
                 'remaining_silence' => '<strong>:username</strong> pourra de nouveau parler dans :duration.',
 
                 'recent_infringements' => [
@@ -451,6 +470,8 @@ return [
         'offline' => 'Hors-ligne',
     ],
     'store' => [
+        'from_client' => 'veuillez vous inscrire via le client du jeu à la place !',
+        'from_web' => 'veuillez compléter votre inscription en utilisant le site Web d\'osu!',
         'saved' => 'Utilisateur créé',
     ],
     'verify' => [

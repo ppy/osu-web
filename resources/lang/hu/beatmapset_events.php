@@ -34,6 +34,7 @@ return [
         'qualify' => 'Ez a beatmap elérte az elegendő számú nominálást és kvalifikálva lett.',
         'rank' => 'Rangsorolt.',
         'remove_from_loved' => 'Eltávolítva szeretettek közül :user felhasználó által. (:text)',
+        'tags_edit' => 'Műfaj megváltoztatva erről ":old" erre ":new".',
 
         'nsfw_toggle' => [
             'to_0' => 'Felnőtt tartalom törlése',

@@ -107,6 +107,15 @@ class RankHistory extends Model
 
     public $timestamps = false;
 
+    public function __construct(array $attributes = [])
+    {
+        if (config('osu.scores.experimental_rank_as_default')) {
+            $this->table = 'osu_user_performance_rank_exp';
+        }
+
+        parent::__construct($attributes);
+    }
+
     public function getDataAttribute()
     {
         $data = [];
@@ -114,10 +123,9 @@ class RankHistory extends Model
         $startOffset = Count::currentRankStart($this->mode)->count;
         $end = $startOffset + 90;
 
+        $attributes = $this->attributes;
         for ($i = $startOffset; $i < $end; $i++) {
-            $column = 'r'.strval($i % 90);
-
-            $data[] = intval($this->$column);
+            $data[] = $attributes['r'.strval($i % 90)] ?? 0;
         }
 
         $diffHead = $data[0] - $data[1];

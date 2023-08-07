@@ -6,7 +6,7 @@
 return [
     'event' => [
         'approve' => 'อนุมัติ',
-        'beatmap_owner_change' => 'เจ้าของระดับความยาก:beatmapเปลี่ยนเป็น:new_user',
+        'beatmap_owner_change' => 'เจ้าของระดับความยาก :beatmap เปลี่ยนเป็น :new_user',
         'discussion_delete' => 'ผู้ดูแลลบการสนทนา :discussion',
         'discussion_lock' => 'การสนทนาสำหรับบีทแมพนี้ถูกปิดใช้งาน (:text)',
         'discussion_post_delete' => 'ผู้ดูแลลบโพสต์จากการสนทนา:discussion',
@@ -29,11 +29,12 @@ return [
         'nominate_modes' => 'เสนอชื่อโดย :user (:modes)',
         'nomination_reset' => 'ปัญหาใหม่ :discussion (:text) ทำให้เกิดการรีเซทการเสนอชื่อ',
         'nomination_reset_received' => 'การ nominate โดย :user ถูกรีเซ็ตโดย :source_user (:text)',
-        'nomination_reset_received_profile' => 'การ nominate ถูกรีเซ็ตโดย :user (:text)',
-        'offset_edit' => '',
+        'nomination_reset_received_profile' => 'การเสนอชื่อถูกรีเซ็ตโดย :user (:text)',
+        'offset_edit' => 'ออฟเซ็ตออนไลน์เปลี่ยนจาก :old เป็น :new.',
         'qualify' => 'บีทแมพนี้ได้รับจำนวนการเสนอชื่อครบแล้ว และได้ถูก Qualified',
         'rank' => 'จัดอันดับ',
         'remove_from_loved' => 'ถูกนำออกจาก Loved โดย :user (:text)',
+        'tags_edit' => 'แท็กเปลี่ยนจาก ":old" เป็น ":new".',
 
         'nsfw_toggle' => [
             'to_0' => 'นำเครื่องหมายเนื้อหาล่อแหลมออก',
@@ -42,7 +43,7 @@ return [
     ],
 
     'index' => [
-        'title' => 'กิจกรรมของ Beatmapset',
+        'title' => 'กิจกรรมของเซ็ทบีทแมพ',
 
         'form' => [
             'period' => 'ระยะเวลา',
@@ -78,9 +79,9 @@ return [
         'nomination_reset' => 'กำลังตั้งค่าการเสนอชื่อใหม่',
         'nomination_reset_received' => 'ได้รับการรีเซ็ต nomination แล้ว',
         'nsfw_toggle' => 'เครื่องหมายเนื้อหาล่อแหลม',
-        'offset_edit' => '',
+        'offset_edit' => 'การแก้ไขออฟเซ็ต',
         'qualify' => 'คุณสมบัติ',
         'rank' => 'อันดับ',
-        'remove_from_loved' => 'ถูกนำออกจาก Loved',
+        'remove_from_loved' => 'ถูกนำออกจาก "ชื่นชอบ"',
     ],
 ];

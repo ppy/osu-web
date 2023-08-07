@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'load_failed' => 'Tải dữ liệu thất bại.',
     'missing_route' => 'Url không hợp lệ hoặc phương pháp yêu cầu không chính xác.',
     'no_restricted_access' => 'Không thể thực hiện hành động do tài khoản của bạn đang bị hạn chế.',
     'supporter_only' => 'Bạn phải là một osu!supporter để sử dụng tính năng này.',

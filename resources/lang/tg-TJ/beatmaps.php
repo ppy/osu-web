@@ -175,6 +175,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => '',
+        'cannot_nominate' => '',
         'delete' => '',
         'delete_own_confirm' => '',
         'delete_other_confirm' => '',
@@ -199,6 +201,7 @@ return [
 
         'rank_estimate' => [
             '_' => '',
+            'on' => '',
             'queue' => '',
             'soon' => '',
         ],

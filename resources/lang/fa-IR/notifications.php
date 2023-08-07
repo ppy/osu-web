@@ -13,6 +13,16 @@ return [
     'see_channel' => 'رفتن به چت',
     'verifying' => 'لطفا برای دیدن اعلانات نشست خود را تصدیق کنید',
 
+    'action_type' => [
+        '_' => '',
+        'beatmapset' => '',
+        'build' => '',
+        'channel' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'user' => '',
+    ],
+
     'filters' => [
         '_' => 'همه',
         'user' => 'پروفایل',
@@ -143,15 +153,6 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => '',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => '',
-            ],
-        ],
-
         'user' => [
             'user_beatmapset_new' => [
                 '_' => '',
@@ -209,6 +210,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => '',
+            ],
+
             'channel' => [
                 'pm' => '',
             ],

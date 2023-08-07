@@ -6,9 +6,9 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Ir jāparakstās lai rediģētu.',
-            'system_generated' => 'Automātiski ģenerēts ziņojums nevar tikt izmainīts.',
-            'wrong_user' => 'Ir jābūt īpašniekam lai rediģēt ziņu.',
+            'null_user' => 'Lai rediģētu, ir jāpierakstās.',
+            'system_generated' => 'Sistēmas ģenerēto rakstu nevar rediģēt.',
+            'wrong_user' => 'Lai rediģētu, ir jābūt raksta īpašniekam.',
         ],
     ],
 
@@ -18,51 +18,51 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'izdzēsts',
-        'none_found' => '',
-        'title' => 'Diskusija par bītkarti',
+        'none_found' => 'Netika atrastas diskusijas šim meklēšanas kritērijam.',
+        'title' => 'Bītmapes Diskusijas',
 
         'form' => [
             '_' => 'Meklēt',
             'deleted' => 'Iekļaut dzēstās diskusijas',
-            'mode' => '',
+            'mode' => 'Bītmapes mods',
             'only_unresolved' => 'Rādīt tikai neatrisinātās diskusijas',
-            'types' => 'Ziņojumu veidi',
+            'types' => 'Ziņu tipi',
             'username' => 'Lietotājvārds',
 
             'beatmapset_status' => [
-                '_' => 'Bītmapes Stāvoklis',
-                'all' => 'Visi',
-                'disqualified' => 'Diskvalificēts',
-                'never_qualified' => 'Nav Kvalificēts',
-                'qualified' => 'Kvalificēts',
-                'ranked' => 'Rankots',
+                '_' => 'Bītmapes Statuss',
+                'all' => 'Viss',
+                'disqualified' => 'Diskvalificēta',
+                'never_qualified' => 'Nekad Kvalificēta',
+                'qualified' => 'Kvalificēta',
+                'ranked' => 'Ierindota',
             ],
 
             'user' => [
                 'label' => 'Lietotājs',
-                'overview' => 'Aktivitātes pārskats',
+                'overview' => 'Aktivitāšu pārskats',
             ],
         ],
     ],
 
     'item' => [
-        'created_at' => 'Ziņas datums',
+        'created_at' => 'Raksta datums',
         'deleted_at' => 'Dzēšanas datums',
         'message_type' => 'Tips',
         'permalink' => 'Pastāvīgā saite',
     ],
 
     'nearby_posts' => [
-        'confirm' => 'Neviens no ziņojumiem neadresē manu problēmu',
-        'notice' => 'Šeit ir ziņojums ap :timestamp (:existing_timestamps). Lūzu pārbaudiet tos pirms ziņojat.',
-        'unsaved' => '',
+        'confirm' => 'Neviens no šiem rakstiem neattiecas uz manu problēmu',
+        'notice' => 'Ir raksti ap :timestamp (:existing_timestamps). Lūdzu, pārbaudiet tos pirms publicēšanas.',
+        'unsaved' => ':count šajā atsauksmē',
     ],
 
     'owner_editor' => [
-        'button' => '',
-        'reset_confirm' => '',
-        'user' => '',
-        'version' => '',
+        'button' => 'Grūtības Īpašnieks',
+        'reset_confirm' => 'Atiestatīt īpašnieku šai grūtībai?',
+        'user' => 'Īpašnieks',
+        'version' => 'Grūtība',
     ],
 
     'reply' => [
@@ -73,35 +73,35 @@ return [
     ],
 
     'review' => [
-        'block_count' => '',
-        'go_to_parent' => '',
-        'go_to_child' => '',
+        'block_count' => ':used / :max bloki izmantoti',
+        'go_to_parent' => 'Skatīt Atsauksmes Rakstu',
+        'go_to_child' => 'Skatīt Diskusiju',
         'validation' => [
-            'block_too_large' => '',
-            'external_references' => '',
-            'invalid_block_type' => '',
-            'invalid_document' => '',
-            'invalid_discussion_type' => '',
-            'minimum_issues' => '',
-            'missing_text' => '',
-            'too_many_blocks' => '',
+            'block_too_large' => 'katrā blokā drīkst būt ne vairāk kā :limit rakstzīmes',
+            'external_references' => 'atsauksmē ir atsauces uz problēmām, kas neietilpst šajā atsauksmē',
+            'invalid_block_type' => 'nederīgs bloka tips',
+            'invalid_document' => 'nederīga atsauksme',
+            'invalid_discussion_type' => 'nederīgs diskusijas tips',
+            'minimum_issues' => 'atsauksmē jābūt vismaz :count problēma|atsauksmē jābūt vismaz :count problēmas',
+            'missing_text' => 'blokā trūkst teksta',
+            'too_many_blocks' => 'atsauksmēs var būt tikai :count rindkopa/problēma|atsauksmēs var būt tikai līdz :count rindkopām/problēmām',
         ],
     ],
 
     'system' => [
         'resolved' => [
-            'true' => 'Atzīmēts, kā atrisināts no :user',
-            'false' => 'Atkārtoti atvērts: :user',
+            'true' => ':user ir atzīmējis kā atrisinātu',
+            'false' => ':user ir atkārtoti atvēris',
         ],
     ],
 
     'timestamp_display' => [
-        'general' => '',
-        'general_all' => '',
+        'general' => 'visparīgī',
+        'general_all' => 'vispārīgi (viss)',
     ],
 
     'user_filter' => [
         'everyone' => 'Visi',
-        'label' => 'Filtrēts pēc lietotāja izvēles',
+        'label' => 'Filtrēt pēc lietotāja',
     ],
 ];

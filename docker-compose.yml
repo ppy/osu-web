@@ -1,7 +1,8 @@
 version: '3.4'
 
 x-env: &x-env
-  BEATMAPS_DIFFICULTY_CACHE_SERVER_URL: http://beatmap-difficulty-lookup-cache:5000
+  APP_KEY: "${APP_KEY}"
+  BEATMAPS_DIFFICULTY_CACHE_SERVER_URL: http://beatmap-difficulty-lookup-cache
   BROADCAST_DRIVER: redis
   CACHE_DRIVER: redis
   DB_CONNECTION_STRING: Server=db;Database=osu;Uid=osuweb;
@@ -11,6 +12,7 @@ x-env: &x-env
   ES_SOLO_SCORES_HOST: http://elasticsearch:9200
   GITHUB_TOKEN: "${GITHUB_TOKEN}"
   NOTIFICATION_REDIS_HOST: redis
+  PASSPORT_PUBLIC_KEY: "${PASSPORT_PUBLIC_KEY:-}"
   REDIS_HOST: redis
   SESSION_DRIVER: redis
 
@@ -26,11 +28,11 @@ x-web: &x-web
 services:
   php:
     <<: *x-web
+    command: ['octane', '--watch']
+    deploy:
+      restart_policy:
+        condition: on-failure
     shm_size: '2gb' # for chromium
-    # For running sandboxed chromium (default) with minimal privileges.
-    # reference: https://ndportmann.com/chrome-in-docker/
-    security_opt:
-      - seccomp=docker/development/chromium-seccomp.json
 
   assets:
     <<: *x-web
@@ -53,6 +55,8 @@ services:
 
   beatmap-difficulty-lookup-cache:
     image: pppy/osu-beatmap-difficulty-lookup-cache
+    ports:
+      - "${BEATMAPS_DIFFICULTY_CACHE_EXTERNAL_PORT:-5001}:80"
 
   notification-server:
     image: pppy/osu-notification-server
@@ -66,6 +70,8 @@ services:
       - ./storage/oauth-public.key:/app/oauth-public.key
     environment:
       <<: *x-env
+    ports:
+      - "${NOTIFICATION_EXTERNAL_PORT:-2345}:2345"
 
   notification-server-dusk:
     image: pppy/osu-notification-server
@@ -118,9 +124,10 @@ services:
     volumes:
       - elasticsearch:/usr/share/elasticsearch/data
     environment:
-      action.auto_create_index: "false"
+      action.auto_create_index: false
       discovery.type: single-node
       ES_JAVA_OPTS: "-Xms512m -Xmx512m" # less OOM on default settings.
+      ingest.geoip.downloader.enabled: false
     healthcheck:
       test: curl -s http://localhost:9200/_cluster/health?wait_for_status=yellow >/dev/null || exit 1
       interval: 1s
@@ -141,7 +148,7 @@ services:
 
   score-indexer:
     image: pppy/osu-elastic-indexer
-    command: ["queue", "--force-version"]
+    command: ["queue", "watch", "--force-version"]
     depends_on:
       redis:
         condition: service_healthy
@@ -152,6 +159,23 @@ services:
     environment:
       <<: *x-env
       SCHEMA: "${SCHEMA:-1}"
+
+  score-indexer-test:
+    image: pppy/osu-elastic-indexer
+    command: ["queue", "watch", "--force-version"]
+    depends_on:
+      redis:
+        condition: service_healthy
+      db:
+        condition: service_healthy
+      elasticsearch:
+        condition: service_healthy
+    environment:
+      <<: *x-env
+      # match with .env.testing.example
+      DB_CONNECTION_STRING: Server=db;Database=osu_test;Uid=osuweb;
+      ES_INDEX_PREFIX: test_
+      SCHEMA: test
 
 volumes:
   database:

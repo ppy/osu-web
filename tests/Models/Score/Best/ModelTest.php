@@ -22,11 +22,9 @@ class ModelTest extends TestCase
         $class = Model::getClass(static::getRandomRuleset());
         $score = $class::factory()->create();
 
-        $initialCount = $class::count();
+        $this->expectCountChange(fn () => $class::count(), -1);
 
         $score->delete();
-
-        $this->assertSame($initialCount - 1, $class::count());
     }
 
     public function testDeleteAlsoDecrementUserRankCount()
@@ -34,17 +32,14 @@ class ModelTest extends TestCase
         $ruleset = static::getRandomRuleset();
         $class = Model::getClass($ruleset);
         $score = $class::factory()->create(['rank' => 'X']);
-        $statsClass = UserStatistics\Model::getClass($ruleset);
-        $stats = factory($statsClass)->create([
+        $stats = UserStatistics\Model::getClass($ruleset)::factory()->create([
             'user_id' => $score->user_id,
             'x_rank_count' => 10,
         ]);
 
-        $initialRankCount = $stats->x_rank_count;
+        $this->expectCountChange(fn () => $stats->fresh()->x_rank_count, -1);
 
         $score->delete();
-
-        $this->assertSame($initialRankCount - 1, $stats->fresh()->x_rank_count);
     }
 
     public function testDeleteNonPersonalBestKeepUserRankCount()
@@ -58,20 +53,16 @@ class ModelTest extends TestCase
             'score' => $bestScore->score - 10,
             'user_id' => $bestScore->user_id,
         ]);
-        $statsClass = UserStatistics\Model::getClass($ruleset);
-        $stats = factory($statsClass)->create([
+        $stats = UserStatistics\Model::getClass($ruleset)::factory()->create([
             'a_rank_count' => 10,
             'user_id' => $score->user_id,
             'x_rank_count' => 10,
         ]);
 
-        $initialXRankCount = $stats->x_rank_count;
-        $initialARankCount = $stats->a_rank_count;
+        $this->expectCountChange(fn () => $stats->fresh()->a_rank_count, 0);
+        $this->expectCountChange(fn () => $stats->fresh()->x_rank_count, 0);
 
         $score->delete();
-
-        $this->assertSame($initialARankCount, $stats->fresh()->a_rank_count);
-        $this->assertSame($initialXRankCount, $stats->fresh()->x_rank_count);
     }
 
     public function testDeletePersonalBestUpdateUserRankCountWhenThereIsOtherScore()
@@ -85,19 +76,15 @@ class ModelTest extends TestCase
             'score' => $bestScore->score - 10,
             'user_id' => $bestScore->user_id,
         ]);
-        $statsClass = UserStatistics\Model::getClass($ruleset);
-        $stats = factory($statsClass)->create([
+        $stats = UserStatistics\Model::getClass($ruleset)::factory()->create([
             'a_rank_count' => 10,
             'user_id' => $score->user_id,
             'x_rank_count' => 10,
         ]);
 
-        $initialXRankCount = $stats->x_rank_count;
-        $initialARankCount = $stats->a_rank_count;
+        $this->expectCountChange(fn () => $stats->fresh()->a_rank_count, 1);
+        $this->expectCountChange(fn () => $stats->fresh()->x_rank_count, -1);
 
         $bestScore->delete();
-
-        $this->assertSame($initialARankCount + 1, $stats->fresh()->a_rank_count);
-        $this->assertSame($initialXRankCount - 1, $stats->fresh()->x_rank_count);
     }
 }

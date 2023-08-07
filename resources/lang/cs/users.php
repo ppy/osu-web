@@ -37,6 +37,7 @@ return [
         'blocked_count' => 'blokovaných uživatelů (:count)',
         'hide_profile' => 'Skrýt profil',
         'hide_comment' => 'skrýt',
+        'forum_post_text' => 'Tento příspěvek je skrytý.',
         'not_blocked' => 'Tento uživatel není blokován.',
         'show_profile' => 'Zobrazit profil',
         'show_comment' => 'zobrazit',
@@ -48,8 +49,25 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => 'Darovat supporter tag',
         'loading' => 'Načítání...',
         'send_message' => 'Odeslat zprávu',
+    ],
+
+    'create' => [
+        'form' => [
+            'password' => 'heslo',
+            'password_confirmation' => 'potvrzení hesla',
+            'submit' => 'vytvořit účet',
+            'user_email' => 'email',
+            'user_email_confirmation' => 'ověření e-mailu',
+            'username' => 'uživatelské jméno',
+
+            'tos_notice' => [
+                '_' => 'vytvořením účtu souhlasíte s :link',
+                'link' => 'smluvní podmínky',
+            ],
+        ],
     ],
 
     'disabled' => [
@@ -141,7 +159,8 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'Tvůj účet byl omezen!',
-        'message' => 'Zatímco jsi omezený, nebudeš moci komunikovat s ostatními hráči a tvá skóre budou viditelná pouze pro tebe. Toto je obvykle výsledkem automatického procesu, který by se měl sám vyřešit nejpozději do 24 hodin. Pokud si přeješ odvolat své omezení, prosím <a href="mailto:accounts@ppy.sh">kontaktuj podporu</a>.',
+        'message' => 'Zatímco jsi omezený, nebudeš moci komunikovat s ostatními hráči a tvá skóre budou viditelná pouze pro tebe. Toto je obvykle výsledkem automatického procesu a většinou jsou tato omezení zrušena do 24 hodin. :link',
+        'message_link' => 'Na této stránce se dozvíte více.',
     ],
     'show' => [
         'age' => ':age let',
@@ -218,7 +237,7 @@ return [
                     'title' => 'Oblíbené Beatmapy',
                 ],
                 'nominated' => [
-                    'title' => '',
+                    'title' => 'Nominované Hodnocené Beatmapy',
                 ],
                 'pending' => [
                     'title' => 'Čekající Beatmapy',
@@ -398,7 +417,7 @@ return [
             'title' => 'Uživatel nebyl nalezen! ;_;',
         ],
         'page' => [
-            'button' => 'Upravit stránku profilu',
+            'button' => 'upravit stránku profilu',
             'description' => '<strong>já!</strong> je osobní přizpůsobitelná plocha na vašem profilu.',
             'edit_big' => 'Uprav mě!',
             'placeholder' => 'Zde napiš obsah stánky',
@@ -417,12 +436,12 @@ return [
             'country_simple' => 'Místní hodnocení',
             'global' => 'Globální pozice pro :mode',
             'global_simple' => 'Světové hodnocení',
-            'highest' => '',
+            'highest' => 'Nejvyšší rank :rank v :date',
         ],
         'stats' => [
             'hit_accuracy' => 'Přesnost zásahů',
             'level' => 'Úroveň :level',
-            'level_progress' => 'Postup do dalšího levelu',
+            'level_progress' => 'postup do dalšího levelu',
             'maximum_combo' => 'Maximální Combo',
             'medals' => 'Medaile',
             'play_count' => 'Počet zahrání',
@@ -451,6 +470,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
+        'from_client' => 'prosím, zaregistrujte se přes herního klienta!',
+        'from_web' => 'prosím dokončete registraci na webové stránce osu!',
         'saved' => 'Uživatelem vytvořen',
     ],
     'verify' => [

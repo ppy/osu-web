@@ -31,6 +31,7 @@ return [
         'cart_problems_edit' => 'Pre editovanie klikni sem.',
         'declined' => 'Tvoja platba bola zamietnutá.',
         'delayed_shipping' => 'Momentálne sme zaplavení objednávkami! Svoju objednávku môžeš zadať, ale prosím počítaj s **dodatočným 1-2 tyždennym oneskorením** zatial čo dokončíme existujúce objednávky.',
+        'hide_from_activity' => '',
         'old_cart' => 'Obsah tvojho košíka sa zdá byť zastaralý a preto bol znovu načítaný, skus to prosím znovu.',
         'pay' => 'Platba cez PayPal',
         'title_compact' => '',
@@ -50,6 +51,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => '',
+        'hide_from_activity' => '',
         'title_compact' => '',
 
         'status' => [
@@ -75,10 +77,15 @@ return [
         'shopify_expired' => '',
 
         'item' => [
+            'quantity' => 'Množstvo',
+
             'display_name' => [
                 'supporter_tag' => ':name pre :username (:duration)',
             ],
-            'quantity' => 'Množstvo',
+
+            'subtext' => [
+                'supporter_tag' => '',
+            ],
         ],
 
         'not_modifiable_exception' => [
@@ -120,6 +127,8 @@ return [
 
     'supporter_tag' => [
         'gift' => 'darovať hráčovi',
+        'gift_message' => '',
+
         'require_login' => [
             '_' => 'Musíš byť :link aby si dostal osu!supporter tag!',
             'link_text' => 'prihlásený',

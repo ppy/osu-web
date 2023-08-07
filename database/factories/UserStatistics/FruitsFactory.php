@@ -7,12 +7,9 @@ declare(strict_types=1);
 
 namespace Database\Factories\UserStatistics;
 
-use App\Models\UserStatistics\Osu;
+use App\Models\UserStatistics\Fruits;
 
 class FruitsFactory extends ModelFactory
 {
-    protected $model = Osu::class;
-
-    // TODO: remove following line after removing legacy-factories
-    // fooling legacy-factories' "isLegacyFactory" check: class Hello extends Factory
+    protected $model = Fruits::class;
 }

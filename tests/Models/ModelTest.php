@@ -8,14 +8,50 @@ declare(strict_types=1);
 namespace Tests\Models;
 
 use App\Models\Artist;
+use App\Models\Country;
 use Exception;
 use Tests\TestCase;
 
 class ModelTest extends TestCase
 {
+    /**
+     * @dataProvider dataProviderForDecrementInstance
+     */
+    public function testDecrementInstance(callable $countryFn, bool $isChanged): void
+    {
+        $country = $countryFn();
+        $anotherCountry = Country::factory()->create();
+        $column = 'playcount';
+
+        $this->expectCountChange(fn () => $country->$column, $isChanged ? -1 : 0);
+        $this->expectCountChange(fn () => $anotherCountry->$column, 0);
+
+        $country->decrementInstance($column);
+        $country->refresh();
+        $anotherCountry->refresh();
+    }
+
+    /**
+     * @dataProvider dataProviderForDecrementInstance
+     */
+    public function testDecrementInstanceSpecifyCount(callable $countryFn, bool $isChanged): void
+    {
+        $country = $countryFn();
+        $anotherCountry = Country::factory()->create();
+        $column = 'playcount';
+        $change = 10;
+
+        $this->expectCountChange(fn () => $country->$column, $isChanged ? -$change : 0);
+        $this->expectCountChange(fn () => $anotherCountry->$column, 0);
+
+        $country->decrementInstance($column, $change);
+        $country->refresh();
+        $anotherCountry->refresh();
+    }
+
     public function testGetWithHasMore()
     {
-        factory(Artist::class, 5)->create();
+        Artist::factory()->count(5)->create();
         $count = Artist::count();
 
         $limit = $count - 1;
@@ -57,5 +93,48 @@ class ModelTest extends TestCase
         $this->expectException(Exception::class);
 
         Artist::select()->getWithHasMore();
+    }
+
+    /**
+     * @dataProvider dataProviderForDecrementInstance
+     */
+    public function testIncrementInstance(callable $countryFn, bool $isChanged): void
+    {
+        $country = $countryFn();
+        $anotherCountry = Country::factory()->create();
+        $column = 'playcount';
+
+        $this->expectCountChange(fn () => $country->playcount, $isChanged ? 1 : 0);
+        $this->expectCountChange(fn () => $anotherCountry->$column, 0);
+
+        $country->incrementInstance($column);
+        $country->refresh();
+        $anotherCountry->refresh();
+    }
+
+    /**
+     * @dataProvider dataProviderForDecrementInstance
+     */
+    public function testIncrementInstanceSpecifyCount(callable $countryFn, bool $isChanged): void
+    {
+        $country = $countryFn();
+        $anotherCountry = Country::factory()->create();
+        $column = 'playcount';
+        $change = 10;
+
+        $this->expectCountChange(fn () => $country->$column, $isChanged ? $change : 0);
+        $this->expectCountChange(fn () => $anotherCountry->$column, 0);
+
+        $country->incrementInstance($column, $change);
+        $country->refresh();
+        $anotherCountry->refresh();
+    }
+
+    public function dataProviderForDecrementInstance(): array
+    {
+        return [
+            [fn () => Country::factory()->create(), true],
+            [fn () => new Country(['playcount' => 0]), false],
+        ];
     }
 }

@@ -25,6 +25,7 @@ return [
     ],
 
     'forums' => [
+        'forums' => 'Forums',
         'latest_post' => 'Laatste bericht',
 
         'index' => [
@@ -47,7 +48,7 @@ return [
         'confirm_restore' => 'Will je deze post echt terugzetten?',
         'edited' => 'Laatst bewerkt door :user op :when. :count keer bewerkt in totaal.',
         'posted_at' => 'gepost op :when',
-        'posted_by' => 'geplaatst door :username',
+        'posted_by_in' => 'gepost door :username in :forum',
 
         'actions' => [
             'destroy' => 'Verwijder bericht',
@@ -85,7 +86,7 @@ return [
         'latest_reply_by' => 'laatste bericht door :user',
         'new_topic' => 'Nieuw onderwerp',
         'new_topic_login' => 'Log in om een nieuwe topic te maken',
-        'post_reply' => 'Post',
+        'post_reply' => 'Plaatsen',
         'reply_box_placeholder' => 'Typ hier om te antwoorden',
         'reply_title_prefix' => 'Re',
         'started_by' => 'door :user',
@@ -102,7 +103,7 @@ return [
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
             'preview_hide' => 'Schrijf',
-            'submit' => 'Post',
+            'submit' => 'Plaatsen',
 
             'necropost' => [
                 'default' => 'Dit onderwerp is al een tijdje inactief. Maak alleen een post hier als je een specifieke reden daarvoor hebt.',

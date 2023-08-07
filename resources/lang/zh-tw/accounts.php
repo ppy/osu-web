@@ -20,6 +20,12 @@ return [
             'title' => '電子郵件',
         ],
 
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => '舊版API',
+        ],
+
         'password' => [
             'current' => '目前密碼',
             'new' => '新密碼',
@@ -28,7 +34,13 @@ return [
         ],
 
         'profile' => [
+            'country' => '',
             'title' => '個人資料',
+
+            'country_change' => [
+                '_' => "",
+                'update_link' => '',
+            ],
 
             'user' => [
                 'user_discord' => '',

@@ -20,6 +20,12 @@ return [
             'title' => 'Email',
         ],
 
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'API Legada',
+        ],
+
         'password' => [
             'current' => 'senha atual',
             'new' => 'nova senha',
@@ -28,7 +34,13 @@ return [
         ],
 
         'profile' => [
+            'country' => '',
             'title' => 'Perfil',
+
+            'country_change' => [
+                '_' => "",
+                'update_link' => '',
+            ],
 
             'user' => [
                 'user_discord' => '',

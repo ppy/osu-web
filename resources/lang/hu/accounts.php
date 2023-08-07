@@ -20,6 +20,12 @@ return [
             'title' => 'E-Mail',
         ],
 
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'Legacy API',
+        ],
+
         'password' => [
             'current' => 'jelenlegi jelszó',
             'new' => 'új jelszó',
@@ -28,7 +34,13 @@ return [
         ],
 
         'profile' => [
+            'country' => '',
             'title' => 'Profil',
+
+            'country_change' => [
+                '_' => "",
+                'update_link' => '',
+            ],
 
             'user' => [
                 'user_discord' => '',

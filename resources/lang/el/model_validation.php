@@ -8,6 +8,7 @@ return [
     'not_negative' => 'το :attribute δε μπορεί να δοθεί.',
     'required' => 'το :attribute απαιτείται.',
     'too_long' => 'το :attribute υπερβαίνει το μέγιστο όριο χαρακτήρων - μπορεί να είναι μέχρι :limit χαρακτήρες.',
+    'url' => '',
     'wrong_confirmation' => 'Η βεβαίωση δεν ταιριάζει.',
 
     'beatmapset_discussion' => [
@@ -108,6 +109,16 @@ return [
         ],
     ],
 
+    'legacy_api_key' => [
+        'exists' => '',
+
+        'attributes' => [
+            'api_key' => '',
+            'app_name' => '',
+            'app_url' => '',
+        ],
+    ],
+
     'oauth' => [
         'client' => [
             'too_many' => '',
@@ -164,6 +175,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => '',
+        'not_in_channel' => '',
         'reason_not_valid' => '',
         'self' => "Δεν μπορείτε να αποκλέισετε τον εαυτό σας!",
     ],

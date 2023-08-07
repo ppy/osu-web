@@ -105,9 +105,9 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
 
     public function macroForListing()
     {
-        return function ($query) {
-            $limit = config('osu.beatmaps.max-scores');
-            $newQuery = (clone $query)->with('user')->limit($limit * 3);
+        return function ($query, $limit) {
+            $limit = clamp($limit ?? 50, 1, config('osu.beatmaps.max_scores'));
+            $newQuery = (clone $query)->with('user')->limit($limit + 100);
 
             $result = [];
             $offset = 0;
@@ -351,7 +351,7 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
                 $userStats = $this->user?->statistics($this->getMode());
 
                 if ($userStats !== null) {
-                    $userStats->decrement($statsColumn);
+                    $userStats->decrementInstance($statsColumn);
 
                     $nextBest = static::where([
                         'beatmap_id' => $this->beatmap_id,
@@ -365,7 +365,7 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
                         $nextBestStatsColumn = static::RANK_TO_STATS_COLUMN_MAPPING[$nextBest->rank] ?? null;
 
                         if ($nextBestStatsColumn !== null) {
-                            $userStats->increment($nextBestStatsColumn);
+                            $userStats->incrementInstance($nextBestStatsColumn);
                         }
                     }
                 }

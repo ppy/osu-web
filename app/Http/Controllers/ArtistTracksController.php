@@ -8,6 +8,7 @@ namespace App\Http\Controllers;
 use App\Libraries\Search\ArtistTrackSearch;
 use App\Libraries\Search\ArtistTrackSearchParamsFromRequest;
 use App\Models\ArtistTrack;
+use App\Transformers\ArtistTrackTransformer;
 
 class ArtistTracksController extends Controller
 {
@@ -16,14 +17,15 @@ class ArtistTracksController extends Controller
         $params = ArtistTrackSearchParamsFromRequest::fromArray(request()->all());
         $search = new ArtistTrackSearch($params);
 
-        $data = [
-            'artist_tracks' => json_collection($search->records(), 'ArtistTrack', ['artist', 'album']),
+        $tracks = $search->records();
+        $index = [
+            'artist_tracks' => json_collection($tracks, new ArtistTrackTransformer(), ['artist', 'album']),
             'search' => ArtistTrackSearchParamsFromRequest::toArray($params),
-            'cursor' => $search->getSortCursor(),
+            ...cursor_for_response($search->getSortCursor()),
         ];
 
         if (is_json_request()) {
-            return $data;
+            return $index;
         }
 
         $availableGenres = cache_remember_mutexed(
@@ -33,7 +35,7 @@ class ArtistTracksController extends Controller
             fn () => ArtistTrack::distinct()->pluck('genre')->sort()->values(),
         );
 
-        return ext_view('artist_tracks.index', compact('availableGenres', 'data'));
+        return ext_view('artist_tracks.index', compact('availableGenres', 'index'));
     }
 
     public function show($id)

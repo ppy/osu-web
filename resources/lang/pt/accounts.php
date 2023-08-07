@@ -10,7 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
-            'rules' => 'Por favor assegura-te de que o teu avatar respeita :link.<br/>Isto significa que deve ser <strong>adequado para todas as idades</strong>, ou seja, sem nudez, profanidade ou conteúdo estimulante.',
+            'rules' => 'Por favor, assegura-te de que o teu avatar respeita :link.<br/>Isto significa que deve ser <strong>adequado para todas as idades</strong>, ou seja, sem nudez, profanidade ou conteúdo estimulante.',
             'rules_link' => 'as regras da comunidade',
         ],
 
@@ -18,6 +18,12 @@ return [
             'new' => 'novo email',
             'new_confirmation' => 'confirmação do email',
             'title' => 'Email',
+        ],
+
+        'legacy_api' => [
+            'api' => 'API',
+            'irc' => 'IRC',
+            'title' => 'API legada',
         ],
 
         'password' => [
@@ -28,7 +34,13 @@ return [
         ],
 
         'profile' => [
+            'country' => '',
             'title' => 'Perfil',
+
+            'country_change' => [
+                '_' => "",
+                'update_link' => '',
+            ],
 
             'user' => [
                 'user_discord' => '',

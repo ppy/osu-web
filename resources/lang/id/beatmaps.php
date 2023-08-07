@@ -6,7 +6,7 @@
 return [
     'discussion-votes' => [
         'update' => [
-            'error' => 'Gagal memperbarui suara',
+            'error' => 'Pilihan gagal diperbarui',
         ],
     ],
 
@@ -22,10 +22,10 @@ return [
         'kudosu_denied' => 'Perolehan kudosu ditolak.',
         'message_placeholder_deleted_beatmap' => 'Tingkat kesulitan ini telah dihapus sehingga diskusi lebih lanjut tidak lagi diperkenankan.',
         'message_placeholder_locked' => 'Laman diskusi pada beatmap ini telah ditutup.',
-        'message_placeholder_silenced' => "Anda tidak dapat membuka topik diskusi baru ketika akun Anda sedang di-silence.",
+        'message_placeholder_silenced' => "Kamu tidak dapat membuka topik diskusi baru ketika akunmu sedang di-silence.",
         'message_type_select' => 'Pilih Jenis Komentar',
         'reply_notice' => 'Tekan enter untuk membalas.',
-        'reply_placeholder' => 'Ketik balasan Anda di sini',
+        'reply_placeholder' => 'Ketik balasanmu di sini',
         'require-login' => 'Silakan masuk untuk membuka topik bahasan baru atau mengirimkan balasan',
         'resolved' => 'Terjawab',
         'restore' => 'pulihkan',
@@ -50,7 +50,7 @@ return [
 
             'prompt' => [
                 'lock' => 'Alasan penguncian',
-                'unlock' => 'Apakah Anda yakin untuk membuka kembali topik diskusi ini?',
+                'unlock' => 'Apakah kamu yakin untuk membuka kunci topik diskusi ini?',
             ],
         ],
 
@@ -92,7 +92,7 @@ return [
         'new' => [
             'pin' => 'Sematkan',
             'timestamp' => 'Keterangan Waktu',
-            'timestamp_missing' => 'salin (ctrl+c) objek-objek yang Anda kehendaki di editor dan tempelkan (ctrl+v) pada boks di atas untuk membubuhkan keterangan waktu!',
+            'timestamp_missing' => 'salin (ctrl+c) objek di editor dan tempelkan (ctrl+v) pada boks di atas untuk membubuhkan keterangan waktu!',
             'title' => 'Topik Diskusi Baru',
             'unpin' => 'Lepas sematan',
         ],
@@ -105,7 +105,7 @@ return [
                 'unlink' => 'Hapus Tautan',
                 'unsaved' => 'Belum Tersimpan',
                 'timestamp' => [
-                    'all-diff' => 'Anda tidak dapat membubuhkan keterangan waktu pada topik diskusi yang tertuju pada "Umum (Seluruh tingkat kesulitan)".',
+                    'all-diff' => 'Kamu tidak dapat membubuhkan keterangan waktu pada topik diskusi yang tertuju pada "Umum (Seluruh tingkat kesulitan)".',
                     'diff' => 'Apabila terdapat keterangan waktu pada :type ini, topik diskusi yang bersangkutan akan muncul pada Linimasa.',
                 ],
             ],
@@ -160,11 +160,11 @@ return [
     'hype' => [
         'button' => 'Berikan Hype!',
         'button_done' => 'Telah di-Hype!',
-        'confirm' => "Apakah Anda yakin? Dengan ini, Anda akan memberikan 1 hype kepada beatmap ini dari :n hype yang Anda miliki saat ini. Tindakan ini tidak dapat diurungkan.",
-        'explanation' => 'Berikanlah hype Anda untuk membawa beatmap ini lebih dekat menuju Ranked!',
+        'confirm' => "Apakah kamu yakin? Dengan ini, kamu akan memberikan 1 hype kepada beatmap ini dari :n hype yang kamu miliki saat ini. Tindakan ini tidak dapat diurungkan.",
+        'explanation' => 'Berikan hype-mu untuk membawa beatmap ini lebih dekat menuju Ranked!',
         'explanation_guest' => 'Masuk dan berikan hype kepada beatmap ini agar beatmap ini dapat segera dinominasikan dan di-rank!',
-        'new_time' => "Anda akan mendapatkan hype tambahan :new_time.",
-        'remaining' => 'Anda memiliki :remaining hype tersisa.',
+        'new_time' => "Kamu akan memperoleh lebih banyak hype :new_time.",
+        'remaining' => 'Kamu memiliki :remaining hype tersisa.',
         'required_text' => 'Hype: :current/:required',
         'section_title' => 'Hype Train',
         'title' => 'Hype',
@@ -175,9 +175,11 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => 'Kamu telah menominasikan beatmap ini.',
+        'cannot_nominate' => 'Kamu tidak dapat memberikan nominasi untuk mode permainan ini.',
         'delete' => 'Hapus',
-        'delete_own_confirm' => 'Apa Anda yakin? Beatmap yang dipilih akan dihapus dan Anda akan dialihkan kembali ke profil Anda.',
-        'delete_other_confirm' => 'Apa Anda yakin? Beatmap yang dipilih akan dihapus dan Anda akan dialihkan kembali ke profil pengguna.',
+        'delete_own_confirm' => 'Apakah kamu yakin? Beatmap yang dipilih akan dihapus dan kamu akan dialihkan kembali ke laman profilmu.',
+        'delete_other_confirm' => 'Apakah kamu yakin? Beatmap yang dipilih akan dihapus dan kamu akan dialihkan kembali ke laman profil pengguna yang bersangkutan.',
         'disqualification_prompt' => 'Alasan diskualifikasi?',
         'disqualified_at' => 'Didiskualifikasi pada :time_ago (:reason).',
         'disqualified_no_reason' => 'tidak ada alasan yang diberikan',
@@ -199,6 +201,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'Map ini akan berstatus Ranked pada :date apabila tidak terdapat masalah baru yang ditemukan. Map ini berada pada urutan ke-:position dalam :queue yang ada.',
+            'on' => 'pada :date',
             'queue' => 'antrian ranking',
             'soon' => 'segera',
         ],
@@ -209,9 +212,9 @@ return [
         ],
 
         'reset_confirm' => [
-            'disqualify' => 'Apakah Anda yakin? Tindakan ini akan melepas beatmap ini dari kategori Qualified dan mengulang proses nominasi dari awal.',
-            'nomination_reset' => 'Apakah Anda yakin? Memposting masalah baru akan mengulang proses nominasi.',
-            'problem_warning' => 'Apakah Anda yakin untuk melaporkan masalah yang terdapat pada beatmap ini? Tindakan ini akan memperingatkan seluruh anggota Beatmap Nominator.',
+            'disqualify' => 'Apakah kamu yakin? Tindakan ini akan melepas beatmap ini dari kategori Qualified dan mengulang proses nominasi dari awal.',
+            'nomination_reset' => 'Apakah kamu yakin? Memposting masalah baru akan mengulang proses nominasi.',
+            'problem_warning' => 'Apakah kamu yakin untuk melaporkan masalah yang terdapat pada beatmap ini? Tindakan ini akan memperingatkan seluruh anggota Beatmap Nominator.',
         ],
     ],
 
@@ -222,14 +225,14 @@ return [
             'options' => 'Pilihan Pencarian Lebih Lanjut',
             'supporter_filter' => 'Penyaringan berdasarkan :filters memerlukan osu!supporter tag yang aktif',
             'not-found' => 'tidak ada hasil',
-            'not-found-quote' => '... tidak, tidak apa hasil apapun yang ditemukan.',
+            'not-found-quote' => '… enggak, tidak ada yang ditemukan.',
             'filters' => [
                 'extra' => 'Konten Tambahan',
                 'general' => 'Umum',
                 'genre' => 'Aliran',
                 'language' => 'Bahasa',
                 'mode' => 'Mode',
-                'nsfw' => 'Beatmap Berkonten Eksplisit',
+                'nsfw' => 'Konten Eksplisit',
                 'played' => 'Riwayat Permainan',
                 'rank' => 'Torehan Peringkat',
                 'status' => 'Status',

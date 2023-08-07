@@ -153,7 +153,7 @@ return [
     ],
 
     'title' => [
-        'notice' => 'Notificare',
+        'notice' => 'Observație',
     ],
 
     'wrong_user' => [

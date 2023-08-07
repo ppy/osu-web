@@ -15,7 +15,7 @@ return [
     'rank' => '<strong><em>:user</em></strong> získal pozici #:rank na mapě <em>:beatmap</em> (:mode)',
     'rank_lost' => '<strong><em>:user</em></strong> ztratil první místo na mapě <em>:beatmap</em> (:mode)',
     'user_support_again' => '<strong>:user</strong> se opět rozhodl podpořit osu! - díky za tvou štědrost!',
-    'user_support_first' => '<strong>:user</strong> se stal osu! supporterem - díky za tvou štědrost!',
+    'user_support_first' => '<strong>:user</strong> podpořil osu! - díky za tvou štědrost!',
     'user_support_gift' => '<strong>:user</strong> obdržel dar osu! supporteru!',
     'username_change' => '<strong>:previousUsername</strong> se přejmenoval na <strong><em>:user</strong></em>!',
 

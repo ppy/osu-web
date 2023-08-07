@@ -8,6 +8,9 @@ on:
     tags:
       - '*'
 
+env:
+  PRODUCTION_TRACK: ${{ (github.ref_type == 'tag' && ((endsWith(github.ref_name, '-private-staging') && 'private-staging') || (!contains(github.ref_name, '-') && 'production'))) || (github.ref_type == 'branch' && github.ref_name == 'master' && 'staging') || '' }}
+
 jobs:
   push_to_registry:
     runs-on: ubuntu-latest
@@ -28,7 +31,7 @@ jobs:
           # on push event: tag using git sha, branch name and as latest-dev
           tags: |
             type=raw,value=latest,enable=${{ github.ref_type == 'tag' && !contains(github.ref_name, '-') }}
-            type=raw,value=latest-dev,enable=${{ github.ref_type == 'branch' }}
+            type=raw,value=latest-dev,enable=${{ github.ref_type == 'branch' && github.ref_name == 'master' }}
             type=raw,value=${{ github.ref_name }}
             type=raw,value=${{ github.sha }},enable=${{ github.ref_type == 'branch' }}
           flavor: |
@@ -57,39 +60,47 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
-  push_to_production:
-    if: ${{ github.ref_type == 'tag' }}
+  notify_pending_deploy:
+    if: ${{ github.ref_type == 'tag' && (!contains(github.ref_name, '-') || endsWith(github.ref_name, '-private-staging')) }}
     runs-on: ubuntu-latest
     needs:
       - push_to_registry
     steps:
       -
-        name: Checkout
-        uses: actions/checkout@v2
-      -
-        name: Repository Dispatch
-        uses: peter-evans/repository-dispatch@v2
-        with:
-          token: ${{ secrets.KUBERNETES_CONFIG_REPO_ACCESS_TOKEN }}
-          repository: ppy/osu-kubernetes-config
-          event-type: osu-web-deploy
-      -
-        name: Create Sentry release
-        uses: getsentry/action-release@v1
-        env:
-          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-          SENTRY_ORG: ppy
-          SENTRY_PROJECT: osu-web
-          SENTRY_URL: https://sentry.ppy.sh/
-        with:
-          environment: production
-          version: osu-web@${{ github.ref_name }}
+        name: Submit pending deployment notification
+        run: |
+          export TITLE="Pending osu-web $PRODUCTION_TRACK Deployment: $GITHUB_REF_NAME"
+          export URL="https://github.com/ppy/osu-web/actions/runs/$GITHUB_RUN_ID"
+          export DESCRIPTION="Docker image was built for tag $GITHUB_REF_NAME and awaiting approval for $PRODUCTION_TRACK deployment:  
+          [View Workflow Run]($URL)"
+          export ACTOR_ICON="https://avatars.githubusercontent.com/u/$GITHUB_ACTOR_ID"
 
-  push_to_staging:
-    if: ${{ github.ref_type == 'branch' && github.ref_name == 'master' }}
+          BODY="$(jq --null-input '{
+            "embeds": [
+              {
+                "title": env.TITLE,
+                "color": 15098112,
+                "description": env.DESCRIPTION,
+                "url": env.URL,
+                "author": {
+                  "name": env.GITHUB_ACTOR,
+                  "icon_url": env.ACTOR_ICON
+                }
+              }
+            ]
+          }')"
+
+          curl \
+            -H "Content-Type: application/json" \
+            -d "$BODY" \
+            "${{ secrets.DISCORD_INFRA_WEBHOOK_URL }}"
+
+  trigger_deploy:
+    if: ${{ (github.ref_type == 'tag' && (!contains(github.ref_name, '-') || endsWith(github.ref_name, '-private-staging'))) || (github.ref_type == 'branch' && github.ref_name == 'master') }}
     runs-on: ubuntu-latest
     needs:
       - push_to_registry
+    environment: ${{ (github.ref_type == 'tag' && ((endsWith(github.ref_name, '-private-staging') && 'private-staging') || (!contains(github.ref_name, '-') && 'production'))) || 'staging' }}
     steps:
       -
         name: Checkout
@@ -100,8 +111,9 @@ jobs:
         with:
           token: ${{ secrets.KUBERNETES_CONFIG_REPO_ACCESS_TOKEN }}
           repository: ppy/osu-kubernetes-config
-          event-type: dev-ppy-sh-deploy
-          client-payload: '{ "values": { "image": { "tag": "${{ github.sha }}" } } }'
+          event-type: ${{ env.PRODUCTION_TRACK == 'staging' && 'dev-ppy-sh-deploy' || 'osu-web-deploy' }}
+          client-payload: |-
+            ${{ env.PRODUCTION_TRACK == 'staging' && format('{{ "values": {{ "image": {{ "tag": "{0}" }} }} }}', github.sha) || format('{{ "dockerTag": "{0}", "productionTrack": "{1}" }}', github.ref_name, env.PRODUCTION_TRACK) }}
       -
         name: Create Sentry release
         uses: getsentry/action-release@v1
@@ -111,5 +123,5 @@ jobs:
           SENTRY_PROJECT: osu-web
           SENTRY_URL: https://sentry.ppy.sh/
         with:
-          environment: staging
-          version: osu-web@${{ github.sha }}
+          environment: ${{ env.PRODUCTION_TRACK }}
+          version: osu-web@${{ github.ref_type == 'branch' && github.sha || github.ref_type == 'tag' && github.ref_name }}

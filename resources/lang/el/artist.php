@@ -43,17 +43,17 @@ return [
 
     'tracks' => [
         'index' => [
-            '_' => '',
+            '_' => 'αναζήτηση κομματιών',
 
             'form' => [
                 'advanced' => '',
-                'album' => '',
-                'artist' => '',
-                'bpm_gte' => '',
-                'bpm_lte' => '',
+                'album' => 'Άλμπουμ',
+                'artist' => 'Καλλιτέχνης',
+                'bpm_gte' => 'Ελάχιστο BPM',
+                'bpm_lte' => 'Μέγιστο BPM',
                 'empty' => '',
-                'genre' => '',
-                'genre_all' => '',
+                'genre' => 'Είδος',
+                'genre_all' => 'Όλα',
                 'length_gte' => '',
                 'length_lte' => '',
             ],

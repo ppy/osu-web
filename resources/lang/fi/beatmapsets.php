@@ -8,11 +8,11 @@ return [
         'disabled' => 'Beatmap ei ole tällä hetkellä saatavilla.',
         'parts-removed' => 'Joitain osia tästä beatmapista on poistettu joko sen tekijän tai kolmannen osapuolen oikeuksien omaavan pyynnöstä.',
         'more-info' => 'Klikkaa nähdäksesi lisätietoja.',
-        'rule_violation' => '',
+        'rule_violation' => 'Osa tämän rytmikartan resursseista on poistettu, koska on katsottu, että niiden käyttö ei sovi osu!un.',
     ],
 
     'cover' => [
-        'deleted' => '',
+        'deleted' => 'Poistettu rytmikartta',
     ],
 
     'download' => [
@@ -20,7 +20,7 @@ return [
     ],
 
     'featured_artist_badge' => [
-        'label' => '',
+        'label' => 'Suositeltu esittäjä',
     ],
 
     'index' => [
@@ -29,7 +29,7 @@ return [
     ],
 
     'panel' => [
-        'empty' => '',
+        'empty' => 'ei rytmikarttoja',
 
         'download' => [
             'all' => 'lataa',
@@ -40,32 +40,38 @@ return [
     ],
 
     'nominate' => [
-        'hybrid_requires_modes' => '',
-        'incorrect_mode' => '',
-        'full_bn_required' => '',
-        'too_many' => '',
+        'hybrid_requires_modes' => 'Usean pelimuodon rytmikartta edellyttää, että valitset vähintään yhden pelimuodon, jota panet ehdolle.',
+        'incorrect_mode' => 'Sinulla ei ole käyttöoikeutta panna ehdolle pelimuotoa: :mode',
+        'full_bn_required' => 'Sinun on oltava täysivaltainen ehdollepanija, jotta voit tehdä tämän kelpuuttavan ehdollepanon.',
+        'too_many' => 'Ehdollepanovaatimus on jo täyttynyt.',
 
         'dialog' => [
-            'confirmation' => '',
-            'header' => '',
-            'hybrid_warning' => '',
-            'which_modes' => '',
+            'confirmation' => 'Oletko varma, että haluat ehdollepanna tämän rytmikartan?',
+            'header' => 'Ehdollepane rytmikartta',
+            'hybrid_warning' => 'huomaa: voit tehdä ehdollepanon vain kerran, joten varmista, että olet valinnut kaikki pelimuodot, jotka aiot panna ehdolle',
+            'which_modes' => 'Mitkä pelimuodot ehdollepannaan?',
         ],
     ],
 
     'nsfw_badge' => [
-        'label' => '',
+        'label' => 'Sopimaton',
     ],
 
     'show' => [
         'discussion' => 'Keskustelu',
+
+        'deleted_banner' => [
+            'title' => 'Tämä rytmikartta on poistettu.',
+            'message' => '(tämä näkyy vain moderaattoreille)',
+        ],
 
         'details' => [
             'by_artist' => '',
             'favourite' => 'Lisää tämä beatmap-setti suosikkeihin',
             'favourite_login' => '',
             'logged-out' => 'Sinun täytyy kirjautua sisään ladataksesi beatmappeja!',
-            'mapped_by' => 'luonut: :mapper',
+            'mapped_by' => 'kartoittanut :mapper',
+            'mapped_by_guest' => 'vieraileva vaikeustaso, kartoittanut :mapper',
             'unfavourite' => 'Poista tämä beatmapkokoelma suosikeista',
             'updated_timeago' => 'päivitetty viimeksi :timeago',
 

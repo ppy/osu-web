@@ -175,6 +175,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => 'Je hebt deze beatmap al genomineerd.',
+        'cannot_nominate' => 'Je kunt deze beatmap spelmodus niet nomineren.',
         'delete' => 'Verwijder',
         'delete_own_confirm' => 'Weet je het zeker? De beatmap zal worden verwijderd en je zult worden terug gestuurd naar je profiel.',
         'delete_other_confirm' => 'Weet je het zeker? De beatmap zal worden verwijderd en je zult worden terug gestuurd naar het profiel van de gebruiker.',
@@ -199,6 +201,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'Deze map staat gepland om ranked te worden op :date als er geen problemen worden gevonden. Het is #:position in de :queue.',
+            'on' => 'op :date',
             'queue' => 'ranking wachtlijst',
             'soon' => 'binnenkort',
         ],
@@ -254,7 +257,7 @@ return [
     ],
     'general' => [
         'converts' => 'Tel geconverteerde beatmaps mee',
-        'featured_artists' => 'Aanbevolen artiesten',
+        'featured_artists' => 'Uitgelichte artiesten',
         'follows' => 'Geabonneerde mappers',
         'recommended' => 'Aanbevolen moeilijkheid',
         'spotlights' => 'Uitgelichte beatmaps',

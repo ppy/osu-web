@@ -1,0 +1,53 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.grid-items {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  gap: 20px;
+
+  &--2 {
+    gap: 2px;
+  }
+
+  &--fade-out {
+    opacity: 0.5;
+  }
+
+  &--notification-banner-buttons {
+    gap: 10px;
+    justify-content: center;
+  }
+
+  &--ranking-filter {
+    gap: 10px 20px;
+    flex-direction: column;
+
+    @media @desktop {
+      align-items: center;
+      flex-direction: row;
+      justify-content: flex-end;
+    }
+  }
+
+  &--ranking-info-bar {
+    width: 100%;
+    gap: 20px;
+
+    @media @desktop {
+      align-items: flex-end;
+    }
+  }
+
+  &__item {
+    &--spotlight-user-filter {
+      width: 100%;
+
+      @media @desktop {
+        width: auto;
+        margin-left: auto;
+      }
+    }
+  }
+}

@@ -6,7 +6,9 @@
 return [
     'bold' => 'ضخیم',
     'heading' => 'سربرگ',
+    'help' => '',
     'image' => 'تصویر',
+    'imagemap' => '',
     'italic' => 'حروف کج',
     'link' => 'پیوند',
     'list' => 'فهرست',

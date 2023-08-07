@@ -34,7 +34,7 @@ return [
 
         'requirement' => [
             'playlist_beatmapsets' => [
-                'incomplete_play' => '',
+                'incomplete_play' => 'يجب لعب جميع الخرائط في قوائم التشغيل المحددة قبل التصويت',
             ],
         ],
     ],
@@ -50,7 +50,7 @@ return [
             'beatmap' => 'تُقبل ملفات .osu فقط لهذه المسابقة.',
             'music' => 'تُقبل ملفات .mp3 فقط لهذه المسابقة.',
         ],
-        'wrong_dimensions' => '',
+        'wrong_dimensions' => 'مشاركات هذه المسابقة يجب ان تكون :widthx:height',
         'too_big' => 'مشاركات هذه المسابقة يمكن ان تصل الى :limit.',
     ],
     'beatmaps' => [

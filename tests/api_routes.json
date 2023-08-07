@@ -723,7 +723,6 @@
         "middlewares": [
             "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
             "App\\Http\\Middleware\\RequireScopes",
-            "Illuminate\\Auth\\Middleware\\Authenticate",
             "App\\Http\\Middleware\\RequireScopes:public"
         ],
         "scopes": [
@@ -1192,5 +1191,21 @@
             "App\\Http\\Middleware\\RequireScopes"
         ],
         "scopes": []
+    },
+    {
+        "uri": "api/v2/events",
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "controller": "App\\Http\\Controllers\\EventsController@index",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "App\\Http\\Middleware\\RequireScopes:public"
+        ],
+        "scopes": [
+            "public"
+        ]
     }
 ]

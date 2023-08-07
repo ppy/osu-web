@@ -13,6 +13,16 @@ return [
     'see_channel' => 'ir para o chat',
     'verifying' => 'Por favor verifique a sessão para ver as notificações',
 
+    'action_type' => [
+        '_' => 'todas',
+        'beatmapset' => 'beatmaps',
+        'build' => 'versões',
+        'channel' => 'chat',
+        'forum_topic' => 'fórum',
+        'news_post' => 'notícias',
+        'user' => 'perfil',
+    ],
+
     'filters' => [
         '_' => 'tudo',
         'user' => 'perfil',
@@ -143,15 +153,6 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => 'Mensagens Privadas do Fórum Legado',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited mensagem não lida|:count_delimited mensagens não lidas',
-            ],
-        ],
-
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Novo beatmap',
@@ -209,6 +210,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => 'Há um novo anúncio em ":name"',
+            ],
+
             'channel' => [
                 'pm' => 'Você recebeu uma nova mensagem de :username',
             ],
@@ -240,7 +245,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username criou novos beatmaps',
-                'user_beatmapset_revive' => ':username reativou beatmaps',
+                'user_beatmapset_revive' => ':username reviveu beatmaps',
             ],
         ],
     ],

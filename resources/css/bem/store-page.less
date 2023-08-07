@@ -1,0 +1,61 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.store-page {
+  .default-gutter-v2();
+  padding-top: 20px;
+  padding-bottom: $padding-top;
+  font-size: @font-size--title-small;
+
+  & + & {
+    .inner-shadow-top();
+  }
+
+  &--footer {
+    background-color: @osu-colour-b4;
+  }
+
+  &__address {
+    @media @narrow-up {
+      display: grid;
+      grid-auto-columns: minmax(0, 1fr);
+      grid-auto-flow: column;
+      gap: 33%; // preserve the weird 3 "column" appearance
+    }
+  }
+
+  &__option {
+    text-transform: inherit;
+    margin: 0;
+  }
+
+  &__alert {
+    border-radius: @border-radius-large;
+    background-color: hsla(var(--hsl-red-2), 30%);
+    color: @osu-colour-c1;
+    padding: 10px;
+    margin: 0;
+    list-style: none;
+    display: grid;
+    grid-gap: 5px;
+
+    &--with-margin-bottom {
+      margin-bottom: 20px;
+    }
+  }
+
+  &__invoice-header {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+  }
+
+  &__product {
+    @media @desktop {
+      display: grid;
+      grid-auto-columns: minmax(0, 1fr);
+      grid-auto-flow: column;
+      gap: 40px;
+    }
+  }
+}

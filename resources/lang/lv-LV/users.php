@@ -37,6 +37,7 @@ return [
         'blocked_count' => 'bloķētie lietotāji (:count)',
         'hide_profile' => 'Slēpt profilu',
         'hide_comment' => '',
+        'forum_post_text' => '',
         'not_blocked' => 'Šis lietotājs nav bloķēts.',
         'show_profile' => 'Rādīt profilu',
         'show_comment' => '',
@@ -48,8 +49,25 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => '',
         'loading' => 'Notiek ielāde...',
         'send_message' => 'nosūtīt ziņu',
+    ],
+
+    'create' => [
+        'form' => [
+            'password' => '',
+            'password_confirmation' => '',
+            'submit' => '',
+            'user_email' => '',
+            'user_email_confirmation' => '',
+            'username' => '',
+
+            'tos_notice' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
     ],
 
     'disabled' => [
@@ -142,6 +160,7 @@ return [
     'restricted_banner' => [
         'title' => 'Jūsu konts tika ierobežots!',
         'message' => 'Kamēr esiet ierobežots, jūs nevarēsiet sazināties ar citiem spēlētājiem un jūsu rezultāts būs pieejams tikai jums. Šis parasti mēdz būt rezultāts pateicoties automātiskam procesam un kas visticamāk tiks nolaists 24 stundu laikā. Ja vēlaties iesniegt apelāciju par jūsu ierobežojumu, lūgums <a href="mailto:accounts@ppy.sh">sazināties ar atbalsta komandu</a>.',
+        'message_link' => '',
     ],
     'show' => [
         'age' => ':age gadus vecs',
@@ -434,7 +453,7 @@ return [
             'total_score' => '',
             // modding stats
             'graveyard_beatmapset_count' => '',
-            'loved_beatmapset_count' => '',
+            'loved_beatmapset_count' => 'Loved Bītmapes',
             'pending_beatmapset_count' => '',
             'ranked_beatmapset_count' => '',
         ],
@@ -451,6 +470,8 @@ return [
         'offline' => '',
     ],
     'store' => [
+        'from_client' => '',
+        'from_web' => '',
         'saved' => '',
     ],
     'verify' => [

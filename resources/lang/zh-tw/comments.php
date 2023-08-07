@@ -11,6 +11,7 @@ return [
     'edited' => '由 :user 在 :timeago 前編輯',
     'pinned' => '已置頂',
     'empty' => '還沒有評論',
+    'empty_other' => '',
     'load_replies' => '載入回覆',
     'replies_count' => ':count_delimited 個回覆',
     'title' => '評論',

@@ -4,32 +4,33 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'missing_route' => 'Ungültige URL oder falsche Anforderungsmethode.',
-    'no_restricted_access' => 'Diese Aktion steht nicht zur Verfügung, während der Account eingeschränkt ist.',
+    'load_failed' => 'Daten konnten nicht geladen werden.',
+    'missing_route' => 'Ungültige URL oder falsches Anfrageverfahren.',
+    'no_restricted_access' => 'Diese Aktion steht nicht zur Verfügung, während der Account restricted ist.',
     'supporter_only' => 'Du musst ein osu!supporter sein, um dieses Feature zu nutzen.',
     'unknown' => 'Unbekannter Fehler aufgetreten.',
 
     'codes' => [
-        'http-401' => 'Zum Fortfahren bitte einloggen.',
+        'http-401' => 'Bitte einloggen, um fortzufahren.',
         'http-403' => 'Zugriff verweigert.',
         'http-404' => 'Nicht gefunden.',
-        'http-429' => 'Zu viele Anfragen. Versuche es später noch mal.',
+        'http-429' => 'Zu viele Anfragen. Versuche es später erneut.',
     ],
     'account' => [
         'profile-order' => [
-            'generic' => 'Ein Fehler ist aufgetreten. Bitte Seite neu laden',
+            'generic' => 'Ein Fehler ist aufgetreten. Versuche die Seite neuzuladen.',
         ],
     ],
     'beatmaps' => [
-        'invalid_mode' => 'Ungültiger Modus gewählt.',
-        'standard_converts_only' => 'Es gibt keine Ranglisten für den angeforderten Modus auf dieser Schwierigkeitsstufe',
+        'invalid_mode' => 'Ungültigen Modus gewählt.',
+        'standard_converts_only' => 'Es gibt keine Ranglisten für den angeforderten Modus auf dieser Beatmap-Difficulty',
     ],
     'checkout' => [
-        'generic' => 'Bei der Vorbereitung Ihrer Bestellung ist ein Fehler aufgetreten.',
+        'generic' => 'Bei der Vorbereitung deiner Bestellung ist ein Fehler aufgetreten.',
     ],
     'search' => [
         'default' => 'Keine Ergebnisse gefunden, versuche es später erneut.',
-        'invalid_cursor_exception' => 'Ungültiger Cursorparameter angegeben.',
+        'invalid_cursor_exception' => 'Ungültiger Cursor-Parameter angegeben.',
         'operation_timeout_exception' => 'Die Suche ist derzeit höher ausgelastet als normal, versuche es später erneut.',
     ],
 ];

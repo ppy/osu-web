@@ -5,13 +5,14 @@
 
 return [
     'index' => [
-        'description' => 'Valmiiksi kasattuja beatmap kokoelmia, joissa yhdistyy tietty teema.',
+        'description' => 'Valmiiksi kasattuja rytmikarttakokoelmia, joissa yhdistyy tietty teema.',
+        'empty' => 'Tulossa pian!',
         'nav_title' => 'listaus',
-        'title' => 'Beatmap-Kokoelmat',
+        'title' => 'Rytmikarttapaketit',
 
         'blurb' => [
             'important' => 'LUE TÄMÄ ENNEN LATAAMISTA',
-            'install_instruction' => 'Asennus: Kun paketti on latautunut, pura sen sisältö osu! Songs kansioon ja osu! hoitaa loput.',
+            'install_instruction' => 'Asennus: Kun paketti on latautunut, pura sen sisältö osu!n "Songs"-tiedostohakemistoon ja osu! hoitaa loput.',
             'note' => [
                 '_' => 'Huomaa myös, että on erittäin suositeltavaa :scary, koska vanhemmat mapit ovat paljon huonompia kuin uudet.',
                 'scary' => 'ladata uusimpia kokoelmia vanhojen sijaan',
@@ -34,8 +35,11 @@ return [
     'mode' => [
         'artist' => 'Esittäjä/Albumi',
         'chart' => 'Valokeilassa',
+        'featured' => 'Suositeltu esittäjä',
+        'loved' => 'Project Loved',
         'standard' => 'Tavallinen',
         'theme' => 'Teema',
+        'tournament' => 'Turnaus',
     ],
 
     'require_login' => [

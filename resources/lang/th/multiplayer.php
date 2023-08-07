@@ -5,7 +5,7 @@
 
 return [
     'empty' => [
-        '_' => '',
+        '_' => 'ยังไม่มีการเล่นเกม osu!(lazer) ใน :type_group ที่เล่นแล้วเลย!',
         'playlists' => 'รายการเพลง',
         'realtime' => 'โหมดผู้เล่นหลายคน',
     ],
@@ -13,7 +13,7 @@ return [
     'room' => [
         'hosted_by' => 'เป็นเจ้าภาพโดย :user',
         'invalid_password' => 'รหัสผ่านห้องผิด',
-        'map_count' => ':count_delimited แมป|:count_delimited แมป',
+        'map_count' => ':count_delimited แมพ|:count_delimited แมพ',
         'player_count' => ':count_delimited ผู้เล่น|:count_delimited ผู้เล่น',
         'time_left' => 'เหลืออีก :time',
 

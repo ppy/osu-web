@@ -50,13 +50,11 @@ return [
             'resolved' => 'Non puoi modificare un post di una discussione risolta.',
             'system_generated' => 'I post generati automaticamente non possono essere modificati.',
         ],
-
-        'store' => [
-            'beatmapset_locked' => 'Questa beatmap è bloccata per la discussione.',
-        ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => 'Questa beatmap è bloccata per la discussione.',
+
         'metadata' => [
             'nominated' => 'Non puoi modificare i metadata di una mappa nominata. Contatta un membro di BN o NAT se pensi che siano stati impostati in modo errato.',
         ],
@@ -173,6 +171,7 @@ return [
 
     'score' => [
         'pin' => [
+            'disabled_type' => "Impossibile fissare questo tipo di punteggio",
             'not_owner' => 'Solo il proprietario del punteggio può fissarlo.',
             'too_many' => 'Hai già fissato troppi punteggi.',
         ],

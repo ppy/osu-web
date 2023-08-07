@@ -9,12 +9,12 @@ use App\Models\BeatmapPlaycount;
 
 class BeatmapPlaycountTransformer extends TransformerAbstract
 {
-    protected $defaultIncludes = [
+    protected array $defaultIncludes = [
         'beatmap',
         'beatmapset',
     ];
 
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'beatmap',
         'beatmapset',
     ];

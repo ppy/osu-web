@@ -46,9 +46,11 @@ class Comment extends Model implements Traits\ReportableInterface
         MorphMap::MAP[NewsPost::class],
     ];
 
-    // FIXME: decide on good number.
-    // some people seem to put song lyrics in comment which inflated the size.
-    const MESSAGE_LIMIT = 10000;
+    const MAX_FIELD_LENGTHS = [
+        // FIXME: decide on good number.
+        // some people seem to put song lyrics in comment which inflated the size.
+        'message' => 10000,
+    ];
 
     const SORTS = [
         'new' => [
@@ -68,14 +70,14 @@ class Comment extends Model implements Traits\ReportableInterface
 
     const DEFAULT_SORT = 'new';
 
-    protected $dates = ['deleted_at', 'edited_at'];
+    public $allowEmptyCommentable = false;
 
     protected $casts = [
+        'deleted_at' => 'datetime',
         'disqus_user_data' => 'array',
+        'edited_at' => 'datetime',
         'pinned' => 'boolean',
     ];
-
-    public $allowEmptyCommentable = false;
 
     public static function isValidType($type)
     {
@@ -119,7 +121,7 @@ class Comment extends Model implements Traits\ReportableInterface
 
     public function setMessageAttribute($value)
     {
-        return $this->attributes['message'] = unzalgo($value);
+        return $this->attributes['message'] = trim(unzalgo($value));
     }
 
     public function votes()
@@ -180,11 +182,21 @@ class Comment extends Model implements Traits\ReportableInterface
     public function setCommentable()
     {
         if ($this->parent_id === null || $this->parent === null) {
-            return;
+            if ($this->commentable_type !== null) {
+                return;
+            }
+            // Reset the id if type is null otherwise Laravel will try to
+            // "eager load" the commentable (whatever tha means in this context).
+            // Note that setting type to random string doesn't work because
+            // Laravel will happily try to create the random string class.
+            //
+            // Reference: https://github.com/laravel/framework/blob/53b02b3c1d926c095cccca06883a35a5c6729773/src/Illuminate/Database/Eloquent/Concerns/HasRelationships.php#L279-L281
+            $this->commentable_id = null;
+        } else {
+            $this->commentable_id = $this->parent->commentable_id;
+            $this->commentable_type = $this->parent->commentable_type;
         }
 
-        $this->commentable_id = $this->parent->commentable_id;
-        $this->commentable_type = $this->parent->commentable_type;
         $this->unsetRelation('commentable');
     }
 
@@ -192,19 +204,15 @@ class Comment extends Model implements Traits\ReportableInterface
     {
         $this->validationErrors()->reset();
 
-        $messageLength = mb_strlen(trim($this->message));
-
         if ($this->isDirty('pinned') && $this->pinned && $this->parent_id !== null) {
             $this->validationErrors()->add('pinned', '.top_only');
         }
 
-        if ($messageLength === 0) {
+        if (!present($this->message)) {
             $this->validationErrors()->add('message', 'required');
         }
 
-        if ($messageLength > static::MESSAGE_LIMIT) {
-            $this->validationErrors()->add('message', 'too_long', ['limit' => static::MESSAGE_LIMIT]);
-        }
+        $this->validateDbFieldLengths();
 
         if ($this->isDirty('parent_id') && $this->parent_id !== null) {
             if ($this->parent === null) {
@@ -232,7 +240,7 @@ class Comment extends Model implements Traits\ReportableInterface
         return route('comments.show', ['comment' => $this->getKey()]);
     }
 
-    public function validationErrorsTranslationPrefix()
+    public function validationErrorsTranslationPrefix(): string
     {
         return 'comment';
     }
@@ -246,7 +254,7 @@ class Comment extends Model implements Traits\ReportableInterface
         return $this->getConnection()->transaction(function () use ($options) {
             if (!$this->exists && $this->parent_id !== null && $this->parent !== null) {
                 // skips validation and everything
-                $this->parent->increment('replies_count_cache');
+                $this->parent->incrementInstance('replies_count_cache');
             }
 
             if ($this->isDirty('deleted_at')) {

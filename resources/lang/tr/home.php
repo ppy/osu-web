@@ -43,6 +43,7 @@ return [
             'label' => [
                 'forum' => 'forumlarda ara',
                 'forum_children' => 'alt forumları dahil et',
+                'include_deleted' => 'silinmiş gönderileri dahil et',
                 'topic_id' => 'konu #',
                 'username' => 'yazar',
             ],
@@ -72,8 +73,22 @@ return [
     ],
 
     'download' => [
-        'tagline' => "haydi seni<br>oyuna hazırlayalım!",
         'action' => 'osu!\'yu indir',
+        'action_lazer' => 'osu!(lazer) indir',
+        'action_lazer_description' => 'osu!\'ya gelecek olan büyük güncelleme',
+        'action_lazer_info' => 'daha fazla bilgi için bu sayfaya göz atın',
+        'action_lazer_title' => 'osu!(lazer)\'i dene',
+        'action_title' => 'osu! indir',
+        'for_os' => ':os için',
+        'lazer_note' => 'not: lider tablosu sıfırlanabilir',
+        'macos-fallback' => 'macOS kullanıcıları',
+        'mirror' => 'alternatif',
+        'or' => 'ya da',
+        'os_version_or_later' => ':os_version ve üzeri',
+        'other_os' => 'diğer platformlar',
+        'quick_start_guide' => 'hızlı başlangıç kılavuzu',
+        'tagline' => "haydi seni<br>oyuna hazırlayalım!",
+        'video-guide' => 'video kılavuzu',
 
         'help' => [
             '_' => 'oyunu çalıştırırken ya da hesap oluştururken herhangi bir sorun yaşıyorsanız, :help_forum_link veya :support_button.',
@@ -86,8 +101,6 @@ return [
             'macos' => 'macOS için',
             'linux' => 'Linux için',
         ],
-        'mirror' => 'alternatif',
-        'macos-fallback' => 'macOS kullanıcıları',
         'steps' => [
             'register' => [
                 'title' => 'bir hesap oluştur',
@@ -105,7 +118,6 @@ return [
                 ],
             ],
         ],
-        'video-guide' => 'video kılavuzu',
     ],
 
     'user' => [

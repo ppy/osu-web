@@ -19,7 +19,7 @@ class BeatmapModeStats extends Model
     public $incrementing = false;
     public $timestamps = false;
 
-    protected $dates = ['last_update'];
+    protected $casts = ['last_update' => 'datetime'];
     protected $primaryKey = ':composite';
     protected $primaryKeys = ['beatmap_id', 'mode'];
     protected $table = 'osu_beatmap_mode_stats';

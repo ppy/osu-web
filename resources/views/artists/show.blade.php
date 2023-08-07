@@ -29,11 +29,13 @@
 ])
 
 @section('content')
-    @include('objects.css-override', ['mapping' => [
-        '.header-v4__bg' => $images['header_url'],
-        '.artist__portrait' => $images['cover_url'],
-        '.artist__label-overlay' => $artist->label ? $artist->label->icon_url : '',
-    ]])
+    <style>
+        :root {
+            {{ css_var_2x('--header-bg', $images['header_url']) }}
+            {{ css_var_2x('--artist-portrait', $images['cover_url']) }}
+            {{ css_var_2x('--artist-label-overlay', $artist->label?->icon_url) }}
+        }
+    </style>
 
     @include('layout._page_header_v4', ['params' => [
         'links' => $headerLinks,

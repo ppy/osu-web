@@ -13,6 +13,16 @@ return [
     'see_channel' => 'gå til chat',
     'verifying' => 'Bekræft venligst session for at se notifikationer',
 
+    'action_type' => [
+        '_' => '',
+        'beatmapset' => '',
+        'build' => '',
+        'channel' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'user' => '',
+    ],
+
     'filters' => [
         '_' => 'alle',
         'user' => 'profil',
@@ -143,15 +153,6 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => 'Legacy Forum PM',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited ulæst besked|:count_delimited ulæste beskeder',
-            ],
-        ],
-
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Nyt beatmap',
@@ -209,6 +210,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => '',
+            ],
+
             'channel' => [
                 'pm' => 'Du har modtaget en ny besked fra :username',
             ],

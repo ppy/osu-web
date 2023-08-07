@@ -20,7 +20,9 @@ class RoomsController extends BaseController
 
     public function index()
     {
-        $compactReturn = api_version() >= 20220217;
+        $apiVersion = api_version();
+        $compactReturn = $apiVersion >= 20220217;
+        $objectReturn = $apiVersion >= 99999999;
         $params = request()->all();
         $params['user'] = auth()->user();
 
@@ -41,13 +43,21 @@ class RoomsController extends BaseController
             $rooms->each->findAndSetCurrentPlaylistItem();
             $rooms->loadMissing('currentPlaylistItem.beatmap.beatmapset');
 
-            return json_collection($rooms, new RoomTransformer(), [
+            $roomsJson = json_collection($rooms, new RoomTransformer(), [
                 'current_playlist_item.beatmap.beatmapset',
                 'difficulty_range',
                 'host.country',
                 'playlist_item_stats',
                 'recent_participants',
             ]);
+
+            if ($objectReturn) {
+                return array_merge([
+                    'rooms' => $roomsJson,
+                ], cursor_for_response($search['cursorHelper']->next($rooms)));
+            } else {
+                return $roomsJson;
+            }
         } else {
             return json_collection($rooms, new RoomTransformer(), [
                 'host.country',

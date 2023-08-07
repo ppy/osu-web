@@ -175,6 +175,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => 'Du har redan nominerat denna beatmap.',
+        'cannot_nominate' => 'Du kan inte nominera detta beatmap spelläge.',
         'delete' => 'Radera',
         'delete_own_confirm' => 'Är du säker? Beatmapen kommer att raderas och du kommer att omdirigeras tillbaka till din profil.',
         'delete_other_confirm' => 'Är du säker? Beatmapen kommer att raderas och du kommer att omdirigeras tillbaka till användarens profil.',
@@ -199,6 +201,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'Denna beatmap uppskattas vara rankad :date, så länge inga fel uppstår. Den är #:position i :queue.',
+            'on' => 'den :date',
             'queue' => 'rankkö',
             'soon' => 'snart',
         ],

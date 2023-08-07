@@ -20,6 +20,12 @@ return [
             'title' => 'E-posta',
         ],
 
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'Eski API',
+        ],
+
         'password' => [
             'current' => 'mevcut şifre',
             'new' => 'yeni şifre',
@@ -28,7 +34,13 @@ return [
         ],
 
         'profile' => [
+            'country' => '',
             'title' => 'Profil',
+
+            'country_change' => [
+                '_' => "",
+                'update_link' => '',
+            ],
 
             'user' => [
                 'user_discord' => '',

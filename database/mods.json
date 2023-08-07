@@ -16,6 +16,7 @@
         ],
         "IncompatibleMods": [
           "HR",
+          "AC",
           "DA"
         ],
         "RequiresConfiguration": false,
@@ -32,8 +33,7 @@
         "IncompatibleMods": [
           "SD",
           "PF",
-          "AT",
-          "CN",
+          "AC",
           "RX",
           "AP"
         ],
@@ -123,8 +123,6 @@
           "NF",
           "PF",
           "TP",
-          "AT",
-          "CN",
           "RX",
           "AP"
         ],
@@ -147,8 +145,7 @@
         "IncompatibleMods": [
           "NF",
           "SD",
-          "AT",
-          "CN",
+          "AC",
           "RX",
           "AP"
         ],
@@ -285,8 +282,39 @@
         "ValidForMultiplayerAsFreeMod": true
       },
       {
+        "Acronym": "AC",
+        "Name": "Accuracy Challenge",
+        "Description": "Fail if your accuracy drops too low!",
+        "Type": "DifficultyIncrease",
+        "Settings": [
+          {
+            "Name": "minimum_accuracy",
+            "Type": "number"
+          },
+          {
+            "Name": "accuracy_judge_mode",
+            "Type": "string"
+          },
+          {
+            "Name": "restart",
+            "Type": "boolean"
+          }
+        ],
+        "IncompatibleMods": [
+          "EZ",
+          "NF",
+          "PF",
+          "RX",
+          "AP"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
         "Acronym": "TP",
-        "Name": "Target",
+        "Name": "Target Practice",
         "Description": "Practice keeping up with the beat of the song.",
         "Type": "Conversion",
         "Settings": [
@@ -368,6 +396,10 @@
           },
           {
             "Name": "always_play_tail_sample",
+            "Type": "boolean"
+          },
+          {
+            "Name": "fade_hit_circle_early",
             "Type": "boolean"
           }
         ],
@@ -462,9 +494,6 @@
         "Type": "Automation",
         "Settings": [],
         "IncompatibleMods": [
-          "NF",
-          "SD",
-          "PF",
           "AL",
           "SG",
           "CN",
@@ -487,9 +516,6 @@
         "Type": "Automation",
         "Settings": [],
         "IncompatibleMods": [
-          "NF",
-          "SD",
-          "PF",
           "AL",
           "SG",
           "AT",
@@ -516,6 +542,7 @@
           "NF",
           "SD",
           "PF",
+          "AC",
           "AL",
           "SG",
           "AT",
@@ -538,6 +565,7 @@
           "NF",
           "SD",
           "PF",
+          "AC",
           "AT",
           "CN",
           "RX",
@@ -765,7 +793,9 @@
             "Type": "string"
           }
         ],
-        "IncompatibleMods": [],
+        "IncompatibleMods": [
+          "BU"
+        ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
@@ -806,16 +836,16 @@
         "Type": "Fun",
         "Settings": [
           {
+            "Name": "inverse_muting",
+            "Type": "boolean"
+          },
+          {
             "Name": "enable_metronome",
             "Type": "boolean"
           },
           {
             "Name": "mute_combo_count",
             "Type": "number"
-          },
-          {
-            "Name": "inverse_muting",
-            "Type": "boolean"
           },
           {
             "Name": "affects_hit_sounds",
@@ -863,7 +893,8 @@
           "AP",
           "TR",
           "WG",
-          "RP"
+          "RP",
+          "BU"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -887,7 +918,8 @@
           "AP",
           "TR",
           "WG",
-          "MG"
+          "MG",
+          "BU"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -939,9 +971,49 @@
         "ValidForMultiplayerAsFreeMod": true
       },
       {
+        "Acronym": "BU",
+        "Name": "Bubbles",
+        "Description": "Don't let their popping distract you!",
+        "Type": "Fun",
+        "Settings": [],
+        "IncompatibleMods": [
+          "BR",
+          "MG",
+          "RP"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "SY",
+        "Name": "Synesthesia",
+        "Description": "Colours hit objects based on the rhythm.",
+        "Type": "Fun",
+        "Settings": [],
+        "IncompatibleMods": [],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
         "Acronym": "TD",
         "Name": "Touch Device",
         "Description": "Automatically applied to plays on devices with a touchscreen.",
+        "Type": "System",
+        "Settings": [],
+        "IncompatibleMods": [],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "SV2",
+        "Name": "Score V2",
+        "Description": "Score set on earlier osu! versions with the V2 scoring algorithm active.",
         "Type": "System",
         "Settings": [],
         "IncompatibleMods": [],
@@ -980,8 +1052,7 @@
         "IncompatibleMods": [
           "SD",
           "PF",
-          "AT",
-          "CN",
+          "AC",
           "RX"
         ],
         "RequiresConfiguration": false,
@@ -1068,8 +1139,6 @@
         "IncompatibleMods": [
           "NF",
           "PF",
-          "AT",
-          "CN",
           "RX"
         ],
         "RequiresConfiguration": false,
@@ -1091,8 +1160,7 @@
         "IncompatibleMods": [
           "NF",
           "SD",
-          "AT",
-          "CN",
+          "AC",
           "RX"
         ],
         "RequiresConfiguration": false,
@@ -1184,6 +1252,35 @@
         "ValidForMultiplayerAsFreeMod": true
       },
       {
+        "Acronym": "AC",
+        "Name": "Accuracy Challenge",
+        "Description": "Fail if your accuracy drops too low!",
+        "Type": "DifficultyIncrease",
+        "Settings": [
+          {
+            "Name": "minimum_accuracy",
+            "Type": "number"
+          },
+          {
+            "Name": "accuracy_judge_mode",
+            "Type": "string"
+          },
+          {
+            "Name": "restart",
+            "Type": "boolean"
+          }
+        ],
+        "IncompatibleMods": [
+          "NF",
+          "PF",
+          "RX"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
         "Acronym": "RD",
         "Name": "Random",
         "Description": "Shuffle around the colours!",
@@ -1261,15 +1358,29 @@
         "ValidForMultiplayerAsFreeMod": true
       },
       {
+        "Acronym": "SG",
+        "Name": "Single Tap",
+        "Description": "One key for dons, one key for kats.",
+        "Type": "Conversion",
+        "Settings": [],
+        "IncompatibleMods": [
+          "AT",
+          "CN",
+          "RX"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
         "Acronym": "AT",
         "Name": "Autoplay",
         "Description": "Watch a perfect automated play through the song.",
         "Type": "Automation",
         "Settings": [],
         "IncompatibleMods": [
-          "NF",
-          "SD",
-          "PF",
+          "SG",
           "CN",
           "RX",
           "AS"
@@ -1286,9 +1397,7 @@
         "Type": "Automation",
         "Settings": [],
         "IncompatibleMods": [
-          "NF",
-          "SD",
-          "PF",
+          "SG",
           "AT",
           "CN",
           "RX",
@@ -1302,13 +1411,15 @@
       {
         "Acronym": "RX",
         "Name": "Relax",
-        "Description": "No ninja-like spinners, demanding drumrolls or unexpected katu's.",
+        "Description": "No ninja-like spinners, demanding drumrolls or unexpected katus.",
         "Type": "Automation",
         "Settings": [],
         "IncompatibleMods": [
           "NF",
           "SD",
           "PF",
+          "AC",
+          "SG",
           "AT",
           "CN"
         ],
@@ -1388,16 +1499,16 @@
         "Type": "Fun",
         "Settings": [
           {
+            "Name": "inverse_muting",
+            "Type": "boolean"
+          },
+          {
             "Name": "enable_metronome",
             "Type": "boolean"
           },
           {
             "Name": "mute_combo_count",
             "Type": "number"
-          },
-          {
-            "Name": "inverse_muting",
-            "Type": "boolean"
           },
           {
             "Name": "affects_hit_sounds",
@@ -1439,6 +1550,18 @@
         "UserPlayable": true,
         "ValidForMultiplayer": false,
         "ValidForMultiplayerAsFreeMod": false
+      },
+      {
+        "Acronym": "SV2",
+        "Name": "Score V2",
+        "Description": "Score set on earlier osu! versions with the V2 scoring algorithm active.",
+        "Type": "System",
+        "Settings": [],
+        "IncompatibleMods": [],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
       }
     ]
   },
@@ -1459,6 +1582,7 @@
         ],
         "IncompatibleMods": [
           "HR",
+          "AC",
           "DA"
         ],
         "RequiresConfiguration": false,
@@ -1475,8 +1599,7 @@
         "IncompatibleMods": [
           "SD",
           "PF",
-          "AT",
-          "CN",
+          "AC",
           "RX"
         ],
         "RequiresConfiguration": false,
@@ -1561,8 +1684,6 @@
         "IncompatibleMods": [
           "NF",
           "PF",
-          "AT",
-          "CN",
           "RX"
         ],
         "RequiresConfiguration": false,
@@ -1584,8 +1705,7 @@
         "IncompatibleMods": [
           "NF",
           "SD",
-          "AT",
-          "CN",
+          "AC",
           "RX"
         ],
         "RequiresConfiguration": false,
@@ -1675,6 +1795,36 @@
         "ValidForMultiplayerAsFreeMod": true
       },
       {
+        "Acronym": "AC",
+        "Name": "Accuracy Challenge",
+        "Description": "Fail if your accuracy drops too low!",
+        "Type": "DifficultyIncrease",
+        "Settings": [
+          {
+            "Name": "minimum_accuracy",
+            "Type": "number"
+          },
+          {
+            "Name": "accuracy_judge_mode",
+            "Type": "string"
+          },
+          {
+            "Name": "restart",
+            "Type": "boolean"
+          }
+        ],
+        "IncompatibleMods": [
+          "EZ",
+          "NF",
+          "PF",
+          "RX"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
         "Acronym": "DA",
         "Name": "Difficulty Adjust",
         "Description": "Override a beatmap's difficulty settings.",
@@ -1745,9 +1895,6 @@
         "Type": "Automation",
         "Settings": [],
         "IncompatibleMods": [
-          "NF",
-          "SD",
-          "PF",
           "CN",
           "RX"
         ],
@@ -1763,9 +1910,6 @@
         "Type": "Automation",
         "Settings": [],
         "IncompatibleMods": [
-          "NF",
-          "SD",
-          "PF",
           "AT",
           "CN",
           "RX"
@@ -1785,6 +1929,7 @@
           "NF",
           "SD",
           "PF",
+          "AC",
           "AT",
           "CN"
         ],
@@ -1874,16 +2019,16 @@
         "Type": "Fun",
         "Settings": [
           {
+            "Name": "inverse_muting",
+            "Type": "boolean"
+          },
+          {
             "Name": "enable_metronome",
             "Type": "boolean"
           },
           {
             "Name": "mute_combo_count",
             "Type": "number"
-          },
-          {
-            "Name": "inverse_muting",
-            "Type": "boolean"
           },
           {
             "Name": "affects_hit_sounds",
@@ -1912,6 +2057,18 @@
         "UserPlayable": true,
         "ValidForMultiplayer": true,
         "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "SV2",
+        "Name": "Score V2",
+        "Description": "Score set on earlier osu! versions with the V2 scoring algorithm active.",
+        "Type": "System",
+        "Settings": [],
+        "IncompatibleMods": [],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
       }
     ]
   },
@@ -1932,6 +2089,7 @@
         ],
         "IncompatibleMods": [
           "HR",
+          "AC",
           "DA"
         ],
         "RequiresConfiguration": false,
@@ -1948,8 +2106,7 @@
         "IncompatibleMods": [
           "SD",
           "PF",
-          "AT",
-          "CN"
+          "AC"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -2034,9 +2191,7 @@
         ],
         "IncompatibleMods": [
           "NF",
-          "PF",
-          "AT",
-          "CN"
+          "PF"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -2057,8 +2212,7 @@
         "IncompatibleMods": [
           "NF",
           "SD",
-          "AT",
-          "CN"
+          "AC"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -2120,7 +2274,12 @@
         "Name": "Fade In",
         "Description": "Keys appear out of nowhere!",
         "Type": "DifficultyIncrease",
-        "Settings": [],
+        "Settings": [
+          {
+            "Name": "coverage",
+            "Type": "number"
+          }
+        ],
         "IncompatibleMods": [
           "HD",
           "FL"
@@ -2135,7 +2294,12 @@
         "Name": "Hidden",
         "Description": "Keys fade out before you hit them!",
         "Type": "DifficultyIncrease",
-        "Settings": [],
+        "Settings": [
+          {
+            "Name": "coverage",
+            "Type": "number"
+          }
+        ],
         "IncompatibleMods": [
           "FI",
           "FL"
@@ -2163,6 +2327,35 @@
         "IncompatibleMods": [
           "FI",
           "HD"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "AC",
+        "Name": "Accuracy Challenge",
+        "Description": "Fail if your accuracy drops too low!",
+        "Type": "DifficultyIncrease",
+        "Settings": [
+          {
+            "Name": "minimum_accuracy",
+            "Type": "number"
+          },
+          {
+            "Name": "accuracy_judge_mode",
+            "Type": "string"
+          },
+          {
+            "Name": "restart",
+            "Type": "boolean"
+          }
+        ],
+        "IncompatibleMods": [
+          "EZ",
+          "NF",
+          "PF"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -2517,9 +2710,6 @@
         "Type": "Automation",
         "Settings": [],
         "IncompatibleMods": [
-          "NF",
-          "SD",
-          "PF",
           "CN",
           "AS"
         ],
@@ -2535,9 +2725,6 @@
         "Type": "Automation",
         "Settings": [],
         "IncompatibleMods": [
-          "NF",
-          "SD",
-          "PF",
           "AT",
           "CN",
           "AS"
@@ -2618,16 +2805,16 @@
         "Type": "Fun",
         "Settings": [
           {
+            "Name": "inverse_muting",
+            "Type": "boolean"
+          },
+          {
             "Name": "enable_metronome",
             "Type": "boolean"
           },
           {
             "Name": "mute_combo_count",
             "Type": "number"
-          },
-          {
-            "Name": "inverse_muting",
-            "Type": "boolean"
           },
           {
             "Name": "affects_hit_sounds",
@@ -2669,6 +2856,18 @@
         "UserPlayable": true,
         "ValidForMultiplayer": false,
         "ValidForMultiplayerAsFreeMod": false
+      },
+      {
+        "Acronym": "SV2",
+        "Name": "Score V2",
+        "Description": "Score set on earlier osu! versions with the V2 scoring algorithm active.",
+        "Type": "System",
+        "Settings": [],
+        "IncompatibleMods": [],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
       }
     ]
   }

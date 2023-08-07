@@ -7,7 +7,7 @@ return [
     'pinned_topics' => '고정된 주제',
     'slogan' => "혼자서 놀기엔 너무 위험하지요.",
     'subforums' => '서브포럼',
-    'title' => 'osu! 포럼',
+    'title' => '포럼',
 
     'covers' => [
         'edit' => '커버 수정',
@@ -25,6 +25,7 @@ return [
     ],
 
     'forums' => [
+        'forums' => '포럼',
         'latest_post' => '최근 게시글',
 
         'index' => [
@@ -45,9 +46,9 @@ return [
     'post' => [
         'confirm_destroy' => '정말 이 글을 삭제할까요?',
         'confirm_restore' => '정말 이 글을 복원할까요?',
-        'edited' => ':user 님이 마지막으로 :when에 수정하여 총 :count_delimited회 수정되었습니다.',
+        'edited' => ':user님이 마지막으로 :when에 수정하여 총 :count_delimited회 수정되었습니다.',
         'posted_at' => ':when에 게시됨',
-        'posted_by' => ':username 님이 게시함',
+        'posted_by_in' => ':username님이 :forum에 게시함',
 
         'actions' => [
             'destroy' => '삭제',
@@ -80,7 +81,7 @@ return [
         'deleted' => '삭제된 주제',
         'go_to_latest' => '최근에 올라온 글 보기',
         'has_replied' => '이 주제에 답글을 달았습니다.',
-        'in_forum' => ':forum 에서',
+        'in_forum' => ':forum에서',
         'latest_post' => ':when by :user',
         'latest_reply_by' => ':user님이 마지막 답변 작성',
         'new_topic' => '새 주제글 작성',
@@ -89,7 +90,7 @@ return [
         'reply_box_placeholder' => '답글 내용을 입력하세요.',
         'reply_title_prefix' => '답글',
         'started_by' => 'by :user',
-        'started_by_verbose' => ':user 님이 시작함',
+        'started_by_verbose' => ':user님이 시작함',
 
         'actions' => [
             'destroy' => '주제 삭제',
@@ -143,7 +144,7 @@ return [
                 'edit_topic' => ':title(으)로',
                 'fork' => ':topic에서',
                 'pin' => '주제를 고정함',
-                'post_operation' => ':username 님이 게시함',
+                'post_operation' => ':username님이 게시함',
                 'remove_tag' => '":tag" 태그 삭제함',
                 'source_forum_operation' => ':forum에서',
                 'unpin' => '주제 고정을 해제함',
@@ -184,7 +185,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title_compact' => '구독',
+            'title_compact' => '살펴볼 포럼 주제글',
 
             'box' => [
                 'total' => '구독한 주제글',

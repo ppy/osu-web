@@ -6,8 +6,9 @@
 return [
     'invalid' => '',
     'not_negative' => '',
-    'required' => '',
+    'required' => ':attribute je potreban.',
     'too_long' => '',
+    'url' => '',
     'wrong_confirmation' => '',
 
     'beatmapset_discussion' => [
@@ -20,7 +21,7 @@ return [
 
         'attributes' => [
             'message_type' => '',
-            'timestamp' => '',
+            'timestamp' => 'Vremenska oznaka',
         ],
 
         'hype' => [
@@ -43,7 +44,7 @@ return [
         'first_post' => '',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Poruka',
         ],
     ],
 
@@ -52,7 +53,7 @@ return [
         'top_only' => '',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Poruka',
         ],
     ],
 
@@ -105,6 +106,16 @@ return [
         'topic_vote' => [
             'required' => '',
             'too_many' => '',
+        ],
+    ],
+
+    'legacy_api_key' => [
+        'exists' => '',
+
+        'attributes' => [
+            'api_key' => '',
+            'app_name' => '',
+            'app_url' => '',
         ],
     ],
 
@@ -164,6 +175,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => '',
+        'not_in_channel' => '',
         'reason_not_valid' => '',
         'self' => "",
     ],

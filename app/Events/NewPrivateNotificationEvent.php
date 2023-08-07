@@ -13,17 +13,14 @@ class NewPrivateNotificationEvent extends NotificationEventBase
 {
     use SerializesModels;
 
-    public $notification;
-    private $receiverIds;
-
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Notification $notification, array $receiverIds)
+    public function __construct(public Notification $notification, private array $receiverIds)
     {
-        parent::__construct($notification);
+        parent::__construct();
 
         $this->notification = $notification;
         $this->receiverIds = $receiverIds;

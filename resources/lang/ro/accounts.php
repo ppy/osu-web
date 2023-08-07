@@ -20,6 +20,12 @@ return [
             'title' => 'E-mail',
         ],
 
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'API Vechi',
+        ],
+
         'password' => [
             'current' => 'parola actuală',
             'new' => 'parolă nouă',
@@ -28,7 +34,13 @@ return [
         ],
 
         'profile' => [
+            'country' => '',
             'title' => 'Profil',
+
+            'country_change' => [
+                '_' => "",
+                'update_link' => '',
+            ],
 
             'user' => [
                 'user_discord' => '',

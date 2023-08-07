@@ -6,20 +6,30 @@
 return [
     'all_read' => 'Alle Benachrichtigungen gelesen!',
     'delete' => ':type löschen',
-    'loading' => 'Ungelesene Benachrichtigungen werden geladen...',
+    'loading' => 'Ungelesene Benachrichtigungen werden geladen ...',
     'mark_read' => ':type als gelesen markieren',
     'none' => 'Keine Benachrichtigungen',
-    'see_all' => 'alle benachrichtigungen ansehen',
+    'see_all' => 'alle Benachrichtigungen ansehen',
     'see_channel' => 'zum chat gehen',
     'verifying' => 'Bitte verifiziere deine Sitzung, um Benachrichtigungen anzuzeigen',
 
+    'action_type' => [
+        '_' => 'Alle',
+        'beatmapset' => 'Beatmaps',
+        'build' => 'Versionen',
+        'channel' => 'Chat',
+        'forum_topic' => 'Forum',
+        'news_post' => 'Neuigkeiten',
+        'user' => 'Profil',
+    ],
+
     'filters' => [
         '_' => 'alle',
-        'user' => 'profil',
-        'beatmapset' => 'beatmaps',
-        'forum_topic' => 'forum',
-        'news_post' => 'neuigkeiten',
-        'build' => 'versionen',
+        'user' => 'Profil',
+        'beatmapset' => 'Beatmaps',
+        'forum_topic' => 'Forum',
+        'news_post' => 'Neuigkeiten',
+        'build' => 'Versionen',
         'channel' => 'chat',
     ],
 
@@ -143,15 +153,6 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => 'Alt-Forum PN',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited ungelesene Nachricht|:count_delimited ungelesene Nachrichten',
-            ],
-        ],
-
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Neue Beatmap',
@@ -209,6 +210,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => 'Es gibt eine neue Ankündigung in ":name"',
+            ],
+
             'channel' => [
                 'pm' => 'Du hast eine neue Nachricht von :username erhalten',
             ],

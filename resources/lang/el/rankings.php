@@ -17,12 +17,27 @@ return [
         ],
     ],
 
+    'kudosu' => [
+        'total' => '',
+        'available' => '',
+        'used' => '',
+    ],
+
     'type' => [
         'charts' => 'Spotlights',
         'country' => 'Χώρας',
+        'kudosu' => '',
         'multiplayer' => '',
         'performance' => 'Επίδοσης',
         'score' => 'Σκορ',
+        'seasons' => '',
+    ],
+
+    'seasons' => [
+        'empty' => '',
+        'ongoing' => '',
+        'room_count' => '',
+        'url' => '',
     ],
 
     'spotlight' => [

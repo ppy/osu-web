@@ -214,31 +214,29 @@ class ChannelsController extends Controller
     /**
      * Create Channel
      *
-     * TODO: description needs fixing.
-     *
-     * This endpoint creates a new channel if doesn't exist and joins it.
-     * Currently only for rejoining existing PM channels which the user has left.
+     * Creates a new PM or announcement channel.
+     * Rejoins the PM channel if it already exists.
      *
      * ---
      *
      * ### Response Format
      *
-     * Returns [ChatChannel](#chatchannel) with `recent_messages` attribute.
-     * Note that in the case of `PM`s, if there's no existing PM channel, most of the fields will be blank.
-     * In that case, [send a message](#create-new-pm) instead to create the channel.
+     * Returns [ChatChannel](#chatchannel) with `recent_messages` attribute; `recent_messages` is deprecated and should not be used.
      *
      * @bodyParam channel object channel details; required if `type` is `ANNOUNCE`. No-example
      * @bodyParam channel.name string the channel name; required if `type` is `ANNOUNCE`. No-example
      * @bodyParam channel.description string the channel description; required if `type` is `ANNOUNCE`. No-example
      * @bodyParam message string message to send with the announcement; required if `type` is `ANNOUNCE`. No-example
      * @bodyParam target_id integer target user id; required if `type` is `PM`; ignored, otherwise. Example: 2
-     * @bodyParam target_ids integer[] target user ids; required if `type` is `PM`; ignored, otherwise. No-example
+     * @bodyParam target_ids integer[] target user ids; required if `type` is `ANNOUNCE`; ignored, otherwise. No-example
      * @bodyParam type string required channel type (currently only supports `PM` and `ANNOUNCE`) Example: PM
      *
      * @response {
      *   "channel_id": 1,
+     *   "description": "best channel",
+     *   "icon": "https://a.ppy.sh/2?1519081077.png",
+     *   "moderated": false,
      *   "name": "#pm_1-2",
-     *   "description": "",
      *   "type": "PM",
      *   "recent_messages": [
      *     {
@@ -247,7 +245,18 @@ class ChannelsController extends Controller
      *       "channel_id": 1,
      *       "timestamp": "2020-01-01T00:00:00+00:00",
      *       "content": "Happy new year",
-     *       "is_action": false
+     *       "is_action": false,
+     *       "sender": {
+     *         "id": 2,
+     *         "username": "peppy",
+     *         "profile_colour": "#3366FF",
+     *         "avatar_url": "https://a.ppy.sh/2?1519081077.png",
+     *         "country_code": "AU",
+     *         "is_active": true,
+     *         "is_bot": false,
+     *         "is_online": true,
+     *         "is_supporter": true
+     *       }
      *     }
      *   ]
      * }

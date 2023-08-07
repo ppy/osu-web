@@ -2,7 +2,9 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
-
+@php
+    $publishedAt = $post->published_at;
+@endphp
 <div class="news-post-preview{{$collapsed ? ' news-post-preview--collapsed' : ''}}">
     <a
         class="news-post-preview__image"
@@ -10,15 +12,16 @@
         {!! background_image($post->firstImage()) !!}
     ></a>
     <div class="news-post-preview__body">
-        <div class="news-post-preview__post-date js-tooltip-time" title="{{ json_time($post->published_at) }}">
+        <div class="news-post-preview__post-date js-tooltip-time" title="{{ json_time($publishedAt) }}">
             <div class="news-post-preview__date">
-                {{$post->published_at->formatLocalized('%d')}}
+                {{ i18n_date_auto($publishedAt, 'd') }}
             </div>
+
             <div class="news-post-preview__month-year">
                 @if ($collapsed)
-                    &nbsp;{{$post->published_at->formatLocalized('%b')}}
+                    &nbsp;{{ i18n_date_auto($publishedAt, 'MMM') }}
                 @else
-                    {{$post->published_at->formatLocalized('%b %Y')}}
+                    {{ i18n_date_auto($publishedAt, 'yMMM') }}
                 @endif
             </div>
         </div>

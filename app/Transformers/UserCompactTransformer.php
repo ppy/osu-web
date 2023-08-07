@@ -44,7 +44,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     protected string $mode;
 
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'account_history',
         'active_tournament_banner',
         'badges',
@@ -405,7 +405,8 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeUnreadPmCount(User $user)
     {
-        return $this->primitive($user->notificationCount());
+        // legacy pm has been turned off
+        return $this->primitive(0);
     }
 
     public function includeUserAchievements(User $user)

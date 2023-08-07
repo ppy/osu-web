@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'load_failed' => 'Не вдалось завантажити дані.',
     'missing_route' => 'Некоректна адреса або некоректний метод запиту.',
     'no_restricted_access' => 'Ви не можете виконати цю дію, поки ваш обліковий запис знаходиться в обмеженому режимі.',
     'supporter_only' => 'Ви повинні мати osu!прихильника для використання цієї можливості.',

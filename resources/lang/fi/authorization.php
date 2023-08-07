@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'play_more' => 'Mitä jos pelaisit vähän osu! sen sijaan?',
+    'play_more' => 'Mitä jos pelaisit vähän osu!a sen sijaan?',
     'require_login' => 'Kirjaudu sisään jatkaaksesi.',
     'require_verification' => 'Vahvista jatkaaksesi.',
     'restricted' => "Et voi tehdä tätä rajoitettuna.",
@@ -18,7 +18,7 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Olet saavuttanut suosittelurajan tälle päivälle, yritä huomenna uudelleen.',
-            'incorrect_state' => 'Virhe toimintoa suorittaessa, kokeile sivun päivittämistä.',
+            'incorrect_state' => 'Virhe toiminnon suorittamisessa, kokeile päivittää sivu.',
             'owner' => "Omaa beatmappia ei voi suositella.",
             'set_metadata' => 'Sinun täytyy määrittää tyylilaji ja kieli ennen ehdolle asettamista.',
         ],
@@ -50,13 +50,11 @@ return [
             'resolved' => 'Et voi muokata ratkaistun keskustelun viestiä.',
             'system_generated' => 'Automaattisesti luotua viestiä ei voi muokata.',
         ],
-
-        'store' => [
-            'beatmapset_locked' => 'Tämä beatmap on lukittu keskustelulta.',
-        ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => 'Tämän rytmikartan keskustelu on lukittu.',
+
         'metadata' => [
             'nominated' => 'Et voi muuttaa ehdolle asetetun kartan metatietoja. Ota yhteyttä BN- tai NAT-jäseneen, jos luulet sen olevan virheellinen.',
         ],
@@ -133,7 +131,7 @@ return [
             ],
 
             'store' => [
-                'no_forum_access' => 'Pääsy kyseiselle foorumille vaaditaan.',
+                'no_forum_access' => 'Tarvitset pääsyn tälle foorumille.',
                 'no_permission' => 'Oikeudet uuden aiheen luomiseen puuttuvat.',
                 'forum_closed' => 'Foorumi on suljettu, eikä siihen voi lähettää viestejä.',
             ],
@@ -173,6 +171,7 @@ return [
 
     'score' => [
         'pin' => [
+            'disabled_type' => "Ei voida kiinnittää tämäntyyppistä pisteytystä",
             'not_owner' => 'Vain tuloksen omistaja voi kiinnittää tuloksen.',
             'too_many' => 'Kiinnitit liian monta tulosta.',
         ],

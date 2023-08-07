@@ -37,6 +37,7 @@ return [
         'blocked_count' => '차단된 유저 (:count)',
         'hide_profile' => '프로필 숨기기',
         'hide_comment' => '숨기기',
+        'forum_post_text' => '이 게시글은 숨겨져 있습니다.',
         'not_blocked' => '해당 유저는 차단되어있지 않습니다.',
         'show_profile' => '프로필 표시',
         'show_comment' => '보기',
@@ -48,8 +49,25 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => '서포터 선물하기',
         'loading' => '로딩 중...',
         'send_message' => '메시지 보내기',
+    ],
+
+    'create' => [
+        'form' => [
+            'password' => '비밀번호',
+            'password_confirmation' => '비밀번호 확인',
+            'submit' => '계정 만들기',
+            'user_email' => '이메일',
+            'user_email_confirmation' => '이메일 확인',
+            'username' => '사용자 이름',
+
+            'tos_notice' => [
+                '_' => '계정을 만듦으로써 :link에 동의하는 것으로 간주됩니다.',
+                'link' => '이용 약관',
+            ],
+        ],
     ],
 
     'disabled' => [
@@ -66,7 +84,7 @@ return [
             'opening' => '계정 비활성화가 될 수 있는 이유는 다음과 같습니다:',
 
             'tos' => [
-                '_' => '해당 계정은 :community_rules 또는 :tos 를 위반했습니다.',
+                '_' => '해당 계정은 :community_rules 또는 :tos를 위반했습니다.',
                 'community_rules' => '커뮤니티 규칙',
                 'tos' => '이용 약관',
             ],
@@ -142,6 +160,7 @@ return [
     'restricted_banner' => [
         'title' => '계정이 제한되어 있습니다!',
         'message' => '계정이 제한되어있으면 다른 플레이어와 소통할 수 없으며 점수가 본인에게만 표시됩니다. 계정 제한은 보통 자동적으로 처리되며, 24시간 이내에 철회될 수 있습니다. 제한에 대한 항소를 원하시면 <a href="mailto:accounts@ppy.sh">지원팀에 연락</a>해주시기 바랍니다.',
+        'message_link' => '이 페이지에서 자세히 알아보세요.',
     ],
     'show' => [
         'age' => '만 :age세',
@@ -218,7 +237,7 @@ return [
                     'title' => 'Loved 비트맵',
                 ],
                 'nominated' => [
-                    'title' => '',
+                    'title' => '추천된 Ranked 비트맵',
                 ],
                 'pending' => [
                     'title' => '대기 중인 비트맵',
@@ -451,6 +470,8 @@ return [
         'offline' => '오프라인',
     ],
     'store' => [
+        'from_client' => '게임 클라이언트에서 가입해주세요!',
+        'from_web' => 'osu! 웹사이트를 통해 가입해주세요!',
         'saved' => '사용자 계정 생성됨',
     ],
     'verify' => [

@@ -11,6 +11,7 @@ use App\Libraries\Transactions\AfterCommit;
 use App\Libraries\Transactions\AfterRollback;
 use App\Libraries\TransactionStateManager;
 use App\Scopes\MacroableModelScope;
+use App\Traits\Validatable;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Database\ClassMorphViolationException;
@@ -19,7 +20,9 @@ use Illuminate\Database\Eloquent\Model as BaseModel;
 
 abstract class Model extends BaseModel
 {
-    use HasFactory;
+    use HasFactory, Validatable;
+
+    const MAX_FIELD_LENGTHS = [];
 
     protected $connection = 'mysql';
     protected $guarded = [];
@@ -171,11 +174,35 @@ abstract class Model extends BaseModel
         $query->whereNotNull($column)->where($column, '<>', '');
     }
 
+    /**
+     * Just like decrement but only works on saved instance instead of falling back to entire model
+     */
+    public function decrementInstance()
+    {
+        if (!$this->exists) {
+            return false;
+        }
+
+        return $this->decrement(...func_get_args());
+    }
+
     public function delete()
     {
         return $this->runAfterCommitWrapper(function () {
             return parent::delete();
         });
+    }
+
+    /**
+     * Just like increment but only works on saved instance instead of falling back to entire model
+     */
+    public function incrementInstance()
+    {
+        if (!$this->exists) {
+            return false;
+        }
+
+        return $this->increment(...func_get_args());
     }
 
     public function save(array $options = [])
@@ -191,9 +218,8 @@ abstract class Model extends BaseModel
             $result = $this->save($options);
 
             if ($result === false) {
-                $message = method_exists($this, 'validationErrors') ?
-                    $this->validationErrors()->toSentence() :
-                    'failed saving model';
+                $errors = $this->validationErrors();
+                $message = $errors->isEmpty() ? 'failed saving model' : $errors->toSentence();
 
                 throw new ModelNotSavedException($message);
             }
@@ -269,6 +295,25 @@ abstract class Model extends BaseModel
     protected function setKeysForSelectQuery($query)
     {
         return $this->setKeysForSaveQuery($query);
+    }
+
+    protected function validateDbFieldLength(int $limit, string $dbField, ?string $checkField = null): void
+    {
+        if ($this->isDirty($dbField)) {
+            $this->validateFieldLength($limit, $dbField, $checkField);
+        }
+    }
+
+    protected function validateDbFieldLengths(): void
+    {
+        foreach (static::MAX_FIELD_LENGTHS as $field => $limit) {
+            $this->validateDbFieldLength($limit, $field, $field);
+        }
+    }
+
+    protected function validationErrorsTranslationPrefix(): string
+    {
+        return '';
     }
 
     private function enlistCallbacks($model, $connection)

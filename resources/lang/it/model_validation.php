@@ -8,6 +8,7 @@ return [
     'not_negative' => ':attribute non può essere negativo.',
     'required' => ':attribute è richiesto.',
     'too_long' => ':attribute ha superato la lunghezza massima - può essere solo fino a :limit caratteri.',
+    'url' => 'Inserisci un URL valido.',
     'wrong_confirmation' => 'La conferma non corrisponde.',
 
     'beatmapset_discussion' => [
@@ -108,6 +109,16 @@ return [
         ],
     ],
 
+    'legacy_api_key' => [
+        'exists' => 'Per il momento viene fornita una sola chiave API per utente.',
+
+        'attributes' => [
+            'api_key' => 'chiave api',
+            'app_name' => 'nome applicazione',
+            'app_url' => 'url applicazione',
+        ],
+    ],
+
     'oauth' => [
         'client' => [
             'too_many' => 'Superato il numero massimo di applicazioni OAuth consentite.',
@@ -164,6 +175,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => 'Le beatmap classificate non possono essere segnalate',
+        'not_in_channel' => 'Non sei in questo canale.',
         'reason_not_valid' => ':reason non è valido per questo tipo di segnalazione.',
         'self' => "Non puoi segnalare te stesso!",
     ],

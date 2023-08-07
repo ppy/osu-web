@@ -6,6 +6,7 @@
 return [
     'index' => [
         'description' => '',
+        'empty' => '',
         'nav_title' => '',
         'title' => '',
 
@@ -34,8 +35,11 @@ return [
     'mode' => [
         'artist' => '',
         'chart' => '',
+        'featured' => '',
+        'loved' => '',
         'standard' => '',
         'theme' => '',
+        'tournament' => '',
     ],
 
     'require_login' => [

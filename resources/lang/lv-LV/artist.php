@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'page_description' => 'Iekļautie mākslinieki iekš osu!',
+    'page_description' => 'osu! Attēlotie mākslinieki',
     'title' => 'Attēlotie Mākslinieki',
 
     'admin' => [
@@ -13,29 +13,29 @@ return [
 
     'beatmaps' => [
         '_' => 'Bītmapes',
-        'download' => 'Lejupielādēt Bītkartes Veidni',
-        'download-na' => 'Bītkartes Veidne vēl nav pieejama',
+        'download' => 'Lejupielādēt Bītmapes Veidni',
+        'download-na' => 'Bītmapes Veidne vēl nav pieejama',
     ],
 
     'index' => [
-        'description' => 'Attēlotie mākslineki ir mākslinieki, ar kuriem mēs strādājam kopā, lai sniegtu jums jaunu un oriģinālu mūziku iekš osu!. Šie mākslinieki un viņu izvēlēto albumu atlase tika veikta, pateicoties osu! komandai, kas darbojās lieliski un atbilstoši bītmapju izveidē. Daži no šiem attēlotajiem māksliniekiem ir arī izveidojuši jaunus, ekskluzīvus skaņdarbus tieši priekš osu!.<br><br> Visi skaņdarbi šajā izvelnē tiek piedāvāti kā pirmatnēji .osz faili un ir oficiāli licensēti pielietošanai osu! un osu! saistītam saturam.',
+        'description' => 'Attēlotie mākslinieki ir mākslinieki, ar kuriem mēs sadarbojamies, lai osu! piedāvātu jaunu un oriģinālu mūziku. Šos māksliniekus un viņu dziesmu izlasi ir atlasījusi osu! komanda, jo tās ir lieliskas un piemērotas bītmapju veidošanai. Daži no šiem māksliniekiem ir radījuši arī ekskluzīvas jaunas dziesmas izmantošanai osu!.<br><br>Visas šajā sadaļā iekļautās dziesmas ir nodrošinātas kā pirmatnēji .osz faili un ir oficiāli licencētas izmantošanai osu! un ar osu! saistītā saturā.',
     ],
 
     'links' => [
-        'beatmaps' => '',
+        'beatmaps' => 'osu! Bītmapes',
         'osu' => 'osu! profils',
         'site' => 'Oficiālā tīmekļa vietne',
     ],
 
     'songs' => [
         '_' => 'Dziesmas',
-        'count' => ': dziesmu skaits |: skaitīt dziesmas',
-        'original' => '',
-        'original_badge' => '',
+        'count' => ':count_delimited dziesma|:count_delimited dziesmas',
+        'original' => 'osu! oriģināli',
+        'original_badge' => 'ORIGINAL',
     ],
 
     'tracklist' => [
-        'title' => 'Nosaukums',
+        'title' => 'nosaukums',
         'length' => 'garums',
         'bpm' => 'bpm',
         'genre' => 'žanrs',
@@ -43,19 +43,19 @@ return [
 
     'tracks' => [
         'index' => [
-            '_' => '',
+            '_' => 'dziesmu meklēšana',
 
             'form' => [
-                'advanced' => '',
-                'album' => '',
-                'artist' => '',
-                'bpm_gte' => '',
-                'bpm_lte' => '',
-                'empty' => '',
-                'genre' => '',
-                'genre_all' => '',
-                'length_gte' => '',
-                'length_lte' => '',
+                'advanced' => 'Paplašināta Meklēšana',
+                'album' => 'Albums',
+                'artist' => 'Mākslinieks',
+                'bpm_gte' => 'BPM Minimums',
+                'bpm_lte' => 'BPM Maksimums',
+                'empty' => 'Netika atrasta neviena dziesma, kas atbilstu meklēšanas kritērijiem.',
+                'genre' => 'Žanrs',
+                'genre_all' => 'Viss',
+                'length_gte' => 'Minimālais Garums',
+                'length_lte' => 'Maksimālais Garums',
             ],
         ],
     ],

@@ -25,7 +25,8 @@ return [
     ],
 
     'forums' => [
-        'latest_post' => 'Последнее сообщение',
+        'forums' => 'Форумы',
+        'latest_post' => 'Последний пост',
 
         'index' => [
             'title' => 'Заглавная страница Форума',
@@ -46,8 +47,8 @@ return [
         'confirm_destroy' => 'Удалить ответ?',
         'confirm_restore' => 'Восстановить ответ?',
         'edited' => 'Последний раз редактировал :user :when, всего правок: :count_delimited.',
-        'posted_at' => 'написано :when',
-        'posted_by' => 'опубликовано :username',
+        'posted_at' => 'создана :when',
+        'posted_by_in' => 'опубликовано :username в :forum',
 
         'actions' => [
             'destroy' => 'Удалить ответ',
@@ -87,9 +88,9 @@ return [
         'new_topic_login' => 'Войдите, чтобы создать новую тему',
         'post_reply' => 'Ответить',
         'reply_box_placeholder' => 'Напишите ответ',
-        'reply_title_prefix' => 'Ответ',
+        'reply_title_prefix' => 'Ответ в',
         'started_by' => 'от :user',
-        'started_by_verbose' => 'начато :user',
+        'started_by_verbose' => 'создал :user',
 
         'actions' => [
             'destroy' => 'Удалить тему',
@@ -101,14 +102,14 @@ return [
             'preview' => 'Предпросмотр',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
-            'preview_hide' => 'Редактирование',
+            'preview_hide' => 'Продолжить редактировать',
             'submit' => 'Опубликовать',
 
             'necropost' => [
-                'default' => 'Данная тема была долгое время неактивна. Добавляйте сюда записи, только если у вас есть на то веская причина.',
+                'default' => 'В этой теме нет активности уже долгое время. Отвечайте здесь, только если у вас есть на то причина.',
 
                 'new_topic' => [
-                    '_' => "Данная тема была долгое время неактивна. Если у вас нет причин добавлять сюда комментарии, пожалуйста :create.",
+                    '_' => "В этой теме нет активности уже долгое время. Если у Вас нет особой причины отвечать тут на что-либо, пожалуйста :create.",
                     'create' => 'создайте новую тему',
                 ],
             ],
@@ -142,7 +143,7 @@ return [
                 'announcement' => 'закрепить тему и пометить как анонс',
                 'edit_topic' => 'к :title',
                 'fork' => 'от :topic',
-                'pin' => 'закрепленная тема',
+                'pin' => 'закреплённая тема',
                 'post_operation' => 'опубликовано :username',
                 'remove_tag' => 'убран ":tag" тег',
                 'source_forum_operation' => 'от :forum',

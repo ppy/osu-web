@@ -8,6 +8,7 @@ return [
     'talking_in' => 'pratar i :channel',
     'talking_with' => 'pratar med :name',
     'title_compact' => 'chatt',
+    'unread_messages' => 'olästa meddelanden',
 
     'cannot_send' => [
         'channel' => 'Du kan inte skicka ett meddelande i denna kanal just nu. Detta kan bero på någon av följande skäl:',
@@ -35,6 +36,7 @@ return [
 
         'labels' => [
             'description' => 'beskrivning',
+            'message' => 'meddelande',
             'name' => 'rumsnamn',
             'users' => 'spelare att lägga till',
         ],

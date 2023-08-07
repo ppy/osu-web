@@ -5,34 +5,34 @@
 
 return [
     'comment' => [
-        'empty' => '',
-        'page_title' => '',
-        'title' => '',
+        'empty' => 'Ingen følgte kommentarer.',
+        'page_title' => 'følgte kommentarer',
+        'title' => 'kommentar',
 
         'table' => [
-            'latest_comment_empty' => '',
-            'latest_comment_value' => '',
+            'latest_comment_empty' => 'ingen kommentarer',
+            'latest_comment_value' => ':time av :username',
         ],
     ],
 
     'forum_topic' => [
-        'title' => '',
+        'title' => 'forum emne',
     ],
 
     'index' => [
-        'title_compact' => '',
+        'title_compact' => 'overvåkningslister',
     ],
 
     'mapping' => [
-        'empty' => '',
-        'followers' => '',
-        'page_title' => '',
-        'title' => '',
-        'to_0' => '',
-        'to_1' => '',
+        'empty' => 'Ingen følgte mappere.',
+        'followers' => 'mapping følgere',
+        'page_title' => 'følgte mappere',
+        'title' => 'mapper',
+        'to_0' => 'slutt å varsle meg når denne brukeren laster opp et nytt beatmap',
+        'to_1' => 'varsle meg når denne brukeren laster opp et nytt beatmap',
     ],
 
     'modding' => [
-        'title' => '',
+        'title' => 'beatmapsdiskusjon',
     ],
 ];

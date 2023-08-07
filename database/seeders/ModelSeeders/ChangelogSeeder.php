@@ -37,19 +37,19 @@ class ChangelogSeeder extends Seeder
             ->merge(Build::factory()->count(5)->create(['stream_id' => $fallback->stream_id]));
 
         foreach ($builds as $build) {
-            factory(Changelog::class, 5)->create([
+            Changelog::factory()->count(5)->create([
                 'build' => $build->version,
                 'stream_id' => $build->stream_id,
             ]);
         }
 
         // create some buildless changes
-        factory(Changelog::class, 15)->create([
+        Changelog::factory()->count(15)->create([
             'build' => null,
             'stream_id' => 5,
         ]);
 
-        factory(Changelog::class, 5)->create([
+        Changelog::factory()->count(5)->create([
             'build' => null,
             'stream_id' => 1,
         ]);

@@ -60,12 +60,18 @@ return [
     'show' => [
         'discussion' => 'Discussion',
 
+        'deleted_banner' => [
+            'title' => 'Cette beatmap a été supprimée.',
+            'message' => '(seuls les modérateurs peuvent voir ceci)',
+        ],
+
         'details' => [
             'by_artist' => 'par :artist',
             'favourite' => 'Ajouter ce beatmapset aux favoris',
             'favourite_login' => 'Connectez-vous pour ajouter cette beatmap aux favoris',
             'logged-out' => 'Vous devez vous connecter pour pouvoir télécharger des beatmaps !',
             'mapped_by' => 'mappée par :mapper',
+            'mapped_by_guest' => 'guest difficulty par :mapper',
             'unfavourite' => 'Retirer cette beatmapset des favoris',
             'updated_timeago' => 'dernière mise à jour le :timeago',
 
@@ -124,7 +130,7 @@ return [
             'genre' => 'Genre',
             'language' => 'Langue',
             'no_scores' => 'Les données sont encore en cours de calcul...',
-            'nominators' => '',
+            'nominators' => 'Nominateurs',
             'nsfw' => 'Contenu explicite',
             'offset' => 'Décalage en ligne',
             'points-of-failure' => 'Répartition des échecs',

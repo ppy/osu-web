@@ -8,6 +8,7 @@ return [
     'not_negative' => ':attributeに負の数は使用できません',
     'required' => ':attributeが必須です',
     'too_long' => ':attributeの使用文字数の制限を超えています。上限は:limit文字です。',
+    'url' => '',
     'wrong_confirmation' => '認証が一致しません。',
 
     'beatmapset_discussion' => [
@@ -109,6 +110,16 @@ return [
         ],
     ],
 
+    'legacy_api_key' => [
+        'exists' => '',
+
+        'attributes' => [
+            'api_key' => '',
+            'app_name' => '',
+            'app_url' => '',
+        ],
+    ],
+
     'oauth' => [
         'client' => [
             'too_many' => '許可されるOAuthアプリケーションの最大数を超えました。',
@@ -165,6 +176,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => 'ランク付けされたビートマップは報告できません。',
+        'not_in_channel' => '',
         'reason_not_valid' => ':reason はこの報告タイプでは無効です。',
         'self' => "自分自身を報告することはできません！",
     ],

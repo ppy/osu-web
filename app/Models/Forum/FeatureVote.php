@@ -22,11 +22,11 @@ class FeatureVote extends Model
 {
     use Validatable;
 
+    public $timestamps = false;
+
+    protected $casts = ['date' => 'datetime'];
     protected $table = 'phpbb_topics_stars';
     protected $primaryKey = 'star_id';
-
-    public $timestamps = false;
-    protected $dates = ['date'];
 
     const COST = 1;
 
@@ -123,7 +123,7 @@ class FeatureVote extends Model
         return $star;
     }
 
-    public function validationErrorsTranslationPrefix()
+    public function validationErrorsTranslationPrefix(): string
     {
         return 'forum.feature_vote';
     }

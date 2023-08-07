@@ -60,6 +60,18 @@ class BeatmapsetTest extends TestCase
         $this->assertTrue($beatmapset->fresh()->isPending());
     }
 
+    public function testNominateNATAnyRuleset(): void
+    {
+        $beatmapset = $this->createBeatmapset();
+        $user = User::factory()->withGroup('nat', [])->create();
+
+        $this->expectCountChange(fn () => $beatmapset->nominations, 1);
+        $this->expectCountChange(fn () => $beatmapset->beatmapsetNominations()->current()->count(), 1);
+
+        $beatmapset->nominate($user, $beatmapset->playmodesStr());
+        $beatmapset->refresh();
+    }
+
     public function testQualify()
     {
         $beatmapset = $this->createBeatmapset();
@@ -443,7 +455,7 @@ class BeatmapsetTest extends TestCase
 
         $beatmapset = Beatmapset::factory()->create(array_merge($defaultParams, $params));
         $beatmapset->beatmaps()->save(Beatmap::factory()->make());
-        factory(BeatmapMirror::class)->states('default')->create();
+        BeatmapMirror::factory()->default()->create();
 
         return $beatmapset;
     }
@@ -464,7 +476,7 @@ class BeatmapsetTest extends TestCase
         foreach ($playmodes as $playmode) {
             $beatmapset->beatmaps()->save(Beatmap::factory()->make(['playmode' => Beatmap::modeInt($playmode)]));
         }
-        factory(BeatmapMirror::class)->states('default')->create();
+        BeatmapMirror::factory()->default()->create();
 
         return $beatmapset;
     }

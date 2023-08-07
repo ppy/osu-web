@@ -8,6 +8,7 @@ return [
     'not_negative' => ':attribute 不能為負數。',
     'required' => '需要 :attribute 。',
     'too_long' => ':attribute 超出最大長度——最多允許 :limit 個字符。',
+    'url' => '',
     'wrong_confirmation' => '確認信息不匹配。',
 
     'beatmapset_discussion' => [
@@ -108,6 +109,16 @@ return [
         ],
     ],
 
+    'legacy_api_key' => [
+        'exists' => '',
+
+        'attributes' => [
+            'api_key' => '',
+            'app_name' => '應用程式名稱',
+            'app_url' => '應用程式網址',
+        ],
+    ],
+
     'oauth' => [
         'client' => [
             'too_many' => 'OAuth 應用程式數量超出限制。',
@@ -164,6 +175,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => '無法檢舉已進榜的圖譜',
+        'not_in_channel' => '',
         'reason_not_valid' => ':reason 不符合此報告類型。',
         'self' => "您不能檢舉你自己！",
     ],

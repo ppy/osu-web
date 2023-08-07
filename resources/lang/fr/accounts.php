@@ -10,14 +10,20 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
-            'rules' => 'Veuillez vous assurer que votre avatar correspond aux :link.<br/>Cela signifie qu\'il doit être <strong>adapté à tous les âges</strong>. c\'est-à-dire pas de nudité, de profanation ou de contenu suggestif.',
+            'rules' => 'Veuillez vous assurer que votre avatar correspond aux :link.<br/>Cela signifie qu\'il doit être <strong>adapté à tous les âges</strong>. C\'est-à-dire pas de nudité, de profanation ou de contenu suggestif.',
             'rules_link' => 'règles de la communauté',
         ],
 
         'email' => [
-            'new' => 'nouvel email',
-            'new_confirmation' => 'confirmation de l\'email',
-            'title' => 'Email',
+            'new' => 'nouvel e-mail',
+            'new_confirmation' => 'confirmation de l\'e-mail',
+            'title' => 'E-mail',
+        ],
+
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'Ancienne API',
         ],
 
         'password' => [
@@ -28,13 +34,19 @@ return [
         ],
 
         'profile' => [
+            'country' => '',
             'title' => 'Profil',
+
+            'country_change' => [
+                '_' => "",
+                'update_link' => '',
+            ],
 
             'user' => [
                 'user_discord' => '',
                 'user_from' => 'localisation actuelle',
                 'user_interests' => 'centres d\'intérêt',
-                'user_occ' => 'occupation',
+                'user_occ' => 'profession',
                 'user_twitter' => '',
                 'user_website' => 'site web',
             ],
@@ -60,7 +72,7 @@ return [
             'channel_message' => 'messages privés',
             'comment_new' => 'nouveaux commentaires',
             'forum_topic_reply' => 'réponse à un sujet',
-            'mail' => 'email',
+            'mail' => 'mail',
             'mapping' => 'créateur de beatmap',
             'push' => 'push',
             'user_achievement_unlock' => 'médaille utilisateur déverrouillée',
@@ -74,8 +86,8 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => 'masquer les avertissements pour contenu explicite dans les beatmaps',
-        'beatmapset_title_show_original' => 'afficher les métadonnées de la beatmap dans la langue d\'origine',
+        'beatmapset_show_nsfw' => 'masquer les avertissements de contenu explicite dans les beatmaps',
+        'beatmapset_title_show_original' => 'afficher les métadonnées des beatmaps dans la langue d\'origine',
         'title' => 'Options',
 
         'beatmapset_download' => [
@@ -90,18 +102,18 @@ return [
         'keyboard' => 'clavier',
         'mouse' => 'souris',
         'tablet' => 'tablette',
-        'title' => 'Styles de jeu',
+        'title' => 'Périphériques de jeu',
         'touch' => 'écran tactile',
     ],
 
     'privacy' => [
-        'friends_only' => 'bloquer les messages privés des personnes qui ne sont pas dans votre liste d’amis',
+        'friends_only' => 'bloquer les messages privés des utilisateurs qui ne sont pas dans votre liste d’amis',
         'hide_online' => 'masquer votre présence en ligne',
         'title' => 'Confidentialité',
     ],
 
     'security' => [
-        'current_session' => 'actuel',
+        'current_session' => 'actuelle',
         'end_session' => 'Mettre fin à la session',
         'end_session_confirmation' => 'Ceci va immédiatement mettre fin à votre session sur cet appareil. Êtes-vous sûr ?',
         'last_active' => 'Dernière activité :',

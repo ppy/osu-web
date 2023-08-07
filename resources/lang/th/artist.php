@@ -13,8 +13,8 @@ return [
 
     'beatmaps' => [
         '_' => 'บีทแมพ',
-        'download' => 'ดาวน์โหลดตัวอย่าง Beatmap',
-        'download-na' => 'ตัวอย่าง Beatmap นี้ยังไม่สามารถให้ใช้งานได้',
+        'download' => 'ดาวน์โหลดตัวอย่างบีตแม็ป',
+        'download-na' => 'ตัวอย่างบีทแมพนี้ยังไม่สามารถให้ใช้งานได้',
     ],
 
     'index' => [
@@ -30,8 +30,8 @@ return [
     'songs' => [
         '_' => 'เพลง',
         'count' => ':count_delimited เพลง|:count_delimited เพลง',
-        'original' => 'osu! ออริจินัล',
-        'original_badge' => 'ออริจินัล',
+        'original' => 'osu! ต้นฉบับ',
+        'original_badge' => 'ต้นฉบับ',
     ],
 
     'tracklist' => [

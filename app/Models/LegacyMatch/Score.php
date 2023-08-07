@@ -40,6 +40,7 @@ class Score extends Model
         2 => 'red',
     ];
 
+    public $incrementing = false;
     public $timestamps = false;
 
     protected $casts = [

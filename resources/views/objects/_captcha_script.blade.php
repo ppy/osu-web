@@ -8,5 +8,5 @@
 --}}
 <script>
     osuCore.turbolinksReload.load('https://www.recaptcha.net/recaptcha/api.js?render=explicit&onload=initCaptcha&hl={{Lang::getLocale()}}');
-    function initCaptcha() { osuCore.captcha.init('{{config('captcha.sitekey')}}', {{captcha_triggered() ? 'true' : 'false'}}); }
+    function initCaptcha() { osuCore.captcha.init('{{config('captcha.sitekey')}}'); }
 </script>

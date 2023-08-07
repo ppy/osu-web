@@ -10,40 +10,81 @@ env:
   APP_KEY: base64:q7U5qyAkedR1F6UhN0SQlUxBpAMDyfHy3NNFkqmiMqA=
   APP_URL: http://localhost:8000
   CACHE_DRIVER: redis
-  CACHE_DRIVER_LOCAL: array
   DB_HOST: 127.0.0.1
-  DB_USERNAME: root
   ES_SOLO_SCORES_HOST: http://localhost:9200
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  NOTIFICATION_ENDPOINT: ws://127.0.0.1:2345
-  NOTIFICATION_REDIS_HOST: 127.0.0.1
+  NOTIFICATION_ENDPOINT: ws://localhost:2345
   OSU_INSTALL_DEV: 1
   OSU_USE_SYSTEM_COMPOSER: 1
   OSU_DB_CREATE: 1
   PAYMENT_SANDBOX: true
   PASSPORT_PRIVATE_KEY: |+
     -----BEGIN PRIVATE KEY-----
-    MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBAMevwZweM2xj5GFv
-    FY0lzE4b/IQEIBO0NkMBcv1E2zQD7l4cGEft//ksZrP2l5y0l+FCL/2178bt+gZg
-    oXalVTrjQYhtP1B3yngpu+N7O75JT+xabMLEsCEnsuFyInfTl+kUGciqX8fIdELx
-    9Tgx5nwFkNqhE5Yo3fkhRjnjMaHhAgMBAAECgYEAsIrFvFXDFwAVyMKiJiEVyLTb
-    gof3KBR6qLDeTeaTeiBDnPZvzSAw38YOourPzd6oLKIMtd0lORXqp7rE5ZV0jEOo
-    QhDuahbMwfTeDOihhTTyc0ZxtY4WlVuV3lbNLZYSKXwpNU/Dud9mWyqSnS5+QcrF
-    c/Z6mxpVS6cxBFxrAaUCQQD0LHfl9R3aZbRPpDRX61eOi2wT96dZVi0IV+Yq4qqJ
-    L/ZDxCpTBx5xMvVqmET7Q69KULzUfajHOgkW3h+JA8vTAkEA0VuwDMcF6N4TGrpE
-    7rwLdFrXVopDCf1IT+y0spf52RUe7dGsUPz+Ed1oQ55S+ZPjAiHIF/EDGhtGkhbc
-    h5fO+wJATVe0ltOgpCgpCD0UE3FJZ66ECoMcsDCazRTCpHzt1cyqbea6HViY7PRe
-    Rmh7GTfkU17loU04Y/rfHC45wPXB3wJARE7dHx4kwHkM1LCn4xj5x8oH7pWIEA9S
-    87jwsEDD5V9tyvyZc4dIQn3yEfXrbsEg1UY+aglaEL+LhAjvhVIz1wJBANGE8xeu
-    qLUIE7/3nfacXiK/v02qKlW6++LrvSzgAOLsYyqfYpfmKffSdkTxFIZ8wUjufuOT
-    DPxkn/u5C+BuAqQ=
+    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
+    qkWREaw6Mt2MfHwSFoJooagIuAIHMGw=
     -----END PRIVATE KEY-----
   PASSPORT_PUBLIC_KEY: |+
     -----BEGIN PUBLIC KEY-----
-    MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDHr8GcHjNsY+RhbxWNJcxOG/yE
-    BCATtDZDAXL9RNs0A+5eHBhH7f/5LGaz9pectJfhQi/9te/G7foGYKF2pVU640GI
-    bT9Qd8p4Kbvjezu+SU/sWmzCxLAhJ7LhciJ305fpFBnIql/HyHRC8fU4MeZ8BZDa
-    oROWKN35IUY54zGh4QIDAQAB
+    MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAphHR98Mmw37UoQ5ADxwP
+    +N5gHpTo9d+aoahFlLzN789oIFTE/Vk/QPn2YhWc2XNCvRgsypaZ0kZW+ccnMLaF
+    AlC/7zsbbNnKT7vzlU4sg6xfPuELY7lQDE7oBXXGrVE7kF28WsGzRgWs5DN/gRnd
+    Z0gLjTMBGOqHepBBNThkv3j5BnLWcX4f1jphXk/RrUC8jEmm+O/MIz0uPrwMo4Bx
+    7gTmKmbBW7v1lFEZgGuqk2BqGe8dtUdNLz+345x2oc3s4nQ8AHurPV19DYnoeXxs
+    qbIDkEqcIhV4hDUzmy/EUioRbDeK1mL+ybRqTsBerk3/IqI//YkNhtlmtM3oHcy2
+    qaymcSwTANF6kDhtpVs0bo1vM77461g6NVsQM+SbyszjXB1NKO724A9O7hbItUCQ
+    ifLExc6vxhqigNY3PkXoQ234Nol5vN1fIqLrZqXfQqd8JsKmbL/OLArVZ5R+gxNP
+    eI/aegNuaIvvsK9zNlyMbOdQqIU7LTFGHZ5bHcSz3haftL+dI1NVn6jOXpBRMWWL
+    jyPrpFMb6yffQYTgLtFjJUET6SNasXiJJh90y1ySKwv+5M2J8qpFGynolz2XJq+V
+    guz1jhIlRmg6O+thTZc71fg0vcUjcLuPy2z7VNX4YcPpkmev68NPCWpCAqi0zjMy
+    HQZdh/ScL40oDGb6HRdKan0CAwEAAQ==
     -----END PUBLIC KEY-----
   REDIS_HOST: 127.0.0.1
   SESSION_DRIVER: redis
@@ -55,65 +96,22 @@ jobs:
   tests:
     strategy:
       matrix:
-        php: ['8.0']
+        php: ['8.1']
     name: Tests
     runs-on: ubuntu-latest
-    services:
-      db:
-        image: mysql:8.0
-        ports:
-          - 3306:3306
-        options: >-
-          --health-cmd="mysqladmin ping"
-          --health-interval=10s
-          --health-timeout=5s
-          --health-retries=5
-          -e MYSQL_ALLOW_EMPTY_PASSWORD=1
-          --entrypoint sh mysql:8.0 -c "exec docker-entrypoint.sh mysqld --default-authentication-plugin=mysql_native_password"
-
-      elasticsearch:
-        env:
-          action.auto_create_index: "false"
-          discovery.type: single-node
-        image: elasticsearch:7.17.6
-        ports:
-          - 9200:9200
-
-      redis:
-        image: redis
-        ports:
-          - 6379:6379
-
-      osu-beatmap-difficulty-lookup-cache:
-        image: pppy/osu-beatmap-difficulty-lookup-cache
-        ports:
-          - 5000:80
-
-      osu-elastic-indexer:
-        image: pppy/osu-elastic-indexer
-        options: >-
-          -e DB_CONNECTION_STRING=Server=db;Database=osu;Uid=root
-          -e ES_HOST=http://elasticsearch:9200
-          -e REDIS_HOST=redis
-          -e SCHEMA=test
-          --entrypoint sh pppy/osu-elastic-indexer -c "exec dotnet osu.ElasticIndexer.dll queue --force-version --wait"
-
-      osu-notification-server:
-        env:
-          APP_KEY: ${{ env.APP_KEY }}
-          DB_HOST: db
-          DB_USERNAME: ${{ env.DB_USERNAME }}
-          NOTIFICATION_REDIS_HOST: redis
-          NOTIFICATION_SERVER_LISTEN_HOST: 0.0.0.0
-          PASSPORT_PUBLIC_KEY: ${{ env.PASSPORT_PUBLIC_KEY }}
-          REDIS_HOST: redis
-        image: pppy/osu-notification-server
-        ports:
-          - 2345:2345
-
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
+      - name: Services
+        run: 'docker compose up --quiet-pull --wait
+          beatmap-difficulty-lookup-cache
+          db
+          elasticsearch
+          notification-server
+          redis
+          score-indexer
+        '
 
       - name: Setup node.js
         uses: actions/setup-node@v3
@@ -124,9 +122,10 @@ jobs:
       - name: Set php version
         uses: shivammathur/setup-php@v2
         with:
-          extensions: redis
+          extensions: redis, swoole
           tools: composer:v2
           php-version: ${{ matrix.php }}
+          coverage: none
 
       - name: Get composer cache directory
         id: composercache
@@ -150,14 +149,22 @@ jobs:
       - name: Generate docs
         run: php artisan scribe:generate
 
-      - name: Run karma
-        run: yarn karma start --single-run --browsers ChromeHeadless
-
       - name: Run PHPUnit
         run: ./bin/phpunit.sh
 
+      # TODO: workaround things (beatmaps) being indexed during test above and not cleaned up.
+      # This used to cause beatmap listing returning cursor with Long.MIN_VALUE for null timetamp
+      # and errors out when trying to get the next page (es can't parse such value for timestamp)
+      # but has since been fixed.
+      # Something should still be done regarding es index between tests though.
+      - name: Clean indexes
+        run: php artisan es:index-documents --yes
+
       - name: Run Dusk
         run: ./bin/run_dusk.sh
+
+      - name: Run karma
+        run: yarn karma start --single-run --browsers ChromeHeadless
 
       # this only tests that the rollback functions are valid and doesn't check
       # if they actually do what they're expected to do.

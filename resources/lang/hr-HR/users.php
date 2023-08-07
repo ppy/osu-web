@@ -37,6 +37,7 @@ return [
         'blocked_count' => 'blokirani korisnici (:count)',
         'hide_profile' => 'Sakrij profil',
         'hide_comment' => 'sakrij',
+        'forum_post_text' => 'Ovaj objava je skrivena.',
         'not_blocked' => 'Taj korisnik nije blokiran.',
         'show_profile' => 'Prikaži profil',
         'show_comment' => 'prikaži',
@@ -48,8 +49,25 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => 'Daruj osu!supporter oznaku',
         'loading' => 'Učitavanje...',
         'send_message' => 'Pošalji poruku',
+    ],
+
+    'create' => [
+        'form' => [
+            'password' => 'lozinka',
+            'password_confirmation' => 'potvrda lozinke',
+            'submit' => 'stvori račun',
+            'user_email' => 'e-pošta',
+            'user_email_confirmation' => 'potvrda adrese e-pošte',
+            'username' => 'korisničko ime',
+
+            'tos_notice' => [
+                '_' => 'izradom računa prihvaćaš :link',
+                'link' => 'uvjeti korištenja',
+            ],
+        ],
     ],
 
     'disabled' => [
@@ -142,6 +160,7 @@ return [
     'restricted_banner' => [
         'title' => 'Vaš račun je organičen!',
         'message' => 'Dok ste ograničeni, nećete moći komunicirati s drugim igračima i vaši rezultati će biti vidljivi samo Vama. To je obični rezultat automatskog procesa i obično će se ukloniti u roku od 24 sata. Ako se želite apelovati na Vaše ograničenje, molimo <a href="mailto:accounts@ppy.sh">kontaktirajte podršku</a>.',
+        'message_link' => '',
     ],
     'show' => [
         'age' => ':age godina',
@@ -218,7 +237,7 @@ return [
                     'title' => 'Voljene beatmape',
                 ],
                 'nominated' => [
-                    'title' => '',
+                    'title' => 'Nove Rangirane Beatmape',
                 ],
                 'pending' => [
                     'title' => 'Beatmape na čekanju',
@@ -417,7 +436,7 @@ return [
             'country_simple' => 'Rang u državi',
             'global' => 'Globalni rang za :mode',
             'global_simple' => 'Globalni rang',
-            'highest' => '',
+            'highest' => 'Najviši položaj: :rank na :date',
         ],
         'stats' => [
             'hit_accuracy' => 'Preciznost pogodaka',
@@ -451,6 +470,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
+        'from_client' => '',
+        'from_web' => '',
         'saved' => 'Stvoreno od strane korisnika',
     ],
     'verify' => [

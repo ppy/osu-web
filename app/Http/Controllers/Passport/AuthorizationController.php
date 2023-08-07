@@ -62,7 +62,7 @@ class AuthorizationController extends PassportAuthorizationController
     {
         $params = $request->getQueryParams();
         $scopes = $this->normalizeScopes(
-            explode(' ', $params['scope'] ?? null)
+            explode(' ', $params['scope'] ?? '')
         );
 
         // temporary non-persisted token to validate with.

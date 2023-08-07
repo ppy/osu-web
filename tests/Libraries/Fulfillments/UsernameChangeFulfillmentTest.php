@@ -20,8 +20,8 @@ class UsernameChangeFulfillmentTest extends TestCase
     {
         $oldUsername = $this->user->username;
         $newUsername = 'new_username';
-        $orderItem = factory(OrderItem::class)->states('username_change')->create([
-            'order_id' => $this->order->order_id,
+        $orderItem = OrderItem::factory()->usernameChange()->create([
+            'order_id' => $this->order,
             'extra_info' => $newUsername,
         ]);
 
@@ -40,8 +40,8 @@ class UsernameChangeFulfillmentTest extends TestCase
 
         $oldUsername = $this->user->username_previous;
         $newUsername = $this->user->username;
-        $orderItem = factory(OrderItem::class)->states('username_change')->create([
-            'order_id' => $this->order->order_id,
+        $orderItem = OrderItem::factory()->usernameChange()->create([
+            'order_id' => $this->order,
             'extra_info' => $newUsername,
         ]);
 
@@ -55,8 +55,8 @@ class UsernameChangeFulfillmentTest extends TestCase
 
     public function testRevokeWhenNameDoesNotMatch()
     {
-        $orderItem = factory(OrderItem::class)->states('username_change')->create([
-            'order_id' => $this->order->order_id,
+        $orderItem = OrderItem::factory()->usernameChange()->create([
+            'order_id' => $this->order,
             'extra_info' => 'herpderp',
         ]);
 
@@ -68,8 +68,8 @@ class UsernameChangeFulfillmentTest extends TestCase
 
     public function testRevokeWhenPreviousUsernameIsNull()
     {
-        $orderItem = factory(OrderItem::class)->states('username_change')->create([
-            'order_id' => $this->order->order_id,
+        $orderItem = OrderItem::factory()->usernameChange()->create([
+            'order_id' => $this->order,
             'extra_info' => $this->user->username,
         ]);
 
@@ -81,8 +81,8 @@ class UsernameChangeFulfillmentTest extends TestCase
 
     public function testRunWhenInsuffientPaid()
     {
-        $orderItem = factory(OrderItem::class)->states('username_change')->create([
-            'order_id' => $this->order->order_id,
+        $orderItem = OrderItem::factory()->usernameChange()->create([
+            'order_id' => $this->order,
             'cost' => 1,
             'extra_info' => 'new_username',
         ]);
@@ -107,8 +107,8 @@ class UsernameChangeFulfillmentTest extends TestCase
             'user_lastvisit' => time(),
         ]);
 
-        $orderItem = factory(OrderItem::class)->states('username_change')->create([
-            'order_id' => $this->order->order_id,
+        $orderItem = OrderItem::factory()->usernameChange()->create([
+            'order_id' => $this->order,
             'extra_info' => 'new_username',
         ]);
 
@@ -123,6 +123,6 @@ class UsernameChangeFulfillmentTest extends TestCase
         parent::setUp();
 
         $this->user = User::factory()->create(['osu_subscriptionexpiry' => now()]);
-        $this->order = factory(Order::class)->states('paid')->create(['user_id' => $this->user->user_id]);
+        $this->order = Order::factory()->paid()->create(['user_id' => $this->user]);
     }
 }

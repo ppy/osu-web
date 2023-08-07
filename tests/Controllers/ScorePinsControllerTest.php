@@ -70,7 +70,7 @@ class ScorePinsControllerTest extends TestCase
 
         $this->actAsUser($user, true);
         $this
-            ->put(route('score-pins.reorder'), array_merge($this->makeParams($pins[0]->score), ['order1_score_id' => $pins[1]->score_id]))
+            ->put(route('score-pins.reorder'), array_merge($this->makeParams($pins[0]->score), ['order1' => $this->makeParams($pins[1]->score)]))
             ->assertSuccessful();
 
         $pins->map->refresh();
@@ -88,7 +88,7 @@ class ScorePinsControllerTest extends TestCase
 
         $this->actAsUser($user, true);
         $this
-            ->put(route('score-pins.reorder'), array_merge($this->makeParams($pins[0]->score), ['order1_score_id' => $pins[1]->score_id]))
+            ->put(route('score-pins.reorder'), array_merge($this->makeParams($pins[0]->score), ['order1' => $this->makeParams($pins[1]->score)]))
             ->assertSuccessful();
 
         $pins->map->refresh();
@@ -107,7 +107,7 @@ class ScorePinsControllerTest extends TestCase
 
         $this->actAsUser($user, true);
         $this
-            ->put(route('score-pins.reorder'), array_merge($this->makeParams($pins[1]->score), ['order3_score_id' => $pins[0]->score_id]))
+            ->put(route('score-pins.reorder'), array_merge($this->makeParams($pins[1]->score), ['order3' => $this->makeParams($pins[0]->score)]))
             ->assertSuccessful();
 
         $pins->map->refresh();
@@ -125,7 +125,7 @@ class ScorePinsControllerTest extends TestCase
 
         $this->actAsUser($user, true);
         $this
-            ->put(route('score-pins.reorder'), array_merge($this->makeParams($pins[2]->score), ['order1_score_id' => $pins[0]->score_id]))
+            ->put(route('score-pins.reorder'), array_merge($this->makeParams($pins[2]->score), ['order1' => $this->makeParams($pins[0]->score)]))
             ->assertSuccessful();
 
         $pins->map->refresh();

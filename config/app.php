@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Facade;
+
 return [
 
     /*
@@ -81,9 +83,15 @@ return [
 
     /*
      * Make sure to check locale name mapping for other components.
-     * Carbon is in Http\Middleware\SetLocale (no helper... yet?).
+     * carbon is in Http\Middleware\SetLocale (no helper... yet?).
      * html, momentjs, and laravel are in LocaleMeta.
+     * php (IntlDateFormatter etc) isn't mapped at the moment.
      * Check respective packages for supported list of languages.
+     *
+     * carbon: list in vendor/nesbot/carbon/src/Carbon/Lang/
+     * html: lang attribute in html tag. Mainly for uppercasing country code if used.
+     * laravel: list in vendor/laravel/framework/src/Illuminate/Translation/MessageSelector.php
+     * momentjs: list in node_modules/moment/locale/
      */
     'available_locales' => [
         // separate the default
@@ -93,18 +101,22 @@ return [
         'ar',
         'be',
         'bg',
+        'ca',
         'cs',
         'da',
         'de',
         'el',
         'es',
         'fi',
+        'fil',
         'fr',
+        'he',
         'hu',
         'id',
         'it',
         'ja',
         'ko',
+        'lt',
         'nl',
         'no',
         'pl',
@@ -113,6 +125,8 @@ return [
         'ro',
         'ru',
         'sk',
+        'sl',
+        'sr',
         'sv',
         'th',
         'tr',
@@ -235,41 +249,9 @@ return [
     |
     */
 
-    'aliases' => [
-
-        'App' => Illuminate\Support\Facades\App::class,
-        'Artisan' => Illuminate\Support\Facades\Artisan::class,
-        'Auth' => Illuminate\Support\Facades\Auth::class,
-        'Blade' => Illuminate\Support\Facades\Blade::class,
-        'Bus' => Illuminate\Support\Facades\Bus::class,
-        'Cache' => Illuminate\Support\Facades\Cache::class,
-        'Config' => Illuminate\Support\Facades\Config::class,
-        'Cookie' => Illuminate\Support\Facades\Cookie::class,
-        'Crypt' => Illuminate\Support\Facades\Crypt::class,
-        'DB' => Illuminate\Support\Facades\DB::class,
-        'Eloquent' => Illuminate\Database\Eloquent\Model::class,
-        'Event' => Illuminate\Support\Facades\Event::class,
-        'File' => Illuminate\Support\Facades\File::class,
-        'Gate' => Illuminate\Support\Facades\Gate::class,
-        'Hash' => Illuminate\Support\Facades\Hash::class,
-        'Lang' => Illuminate\Support\Facades\Lang::class,
-        'Log' => Illuminate\Support\Facades\Log::class,
-        'Mail' => Illuminate\Support\Facades\Mail::class,
-        'Notification' => Illuminate\Support\Facades\Notification::class,
-        'Password' => Illuminate\Support\Facades\Password::class,
-        'Queue' => Illuminate\Support\Facades\Queue::class,
-        'Redirect' => Illuminate\Support\Facades\Redirect::class,
+    'aliases' => Facade::defaultAliases()->merge([
         // renamed to avoid conflict with PhpRedis
         'LaravelRedis' => Illuminate\Support\Facades\Redis::class,
-        'Request' => Illuminate\Support\Facades\Request::class,
-        'Response' => Illuminate\Support\Facades\Response::class,
-        'Route' => Illuminate\Support\Facades\Route::class,
-        'Schema' => Illuminate\Support\Facades\Schema::class,
-        'Session' => Illuminate\Support\Facades\Session::class,
-        'Storage' => Illuminate\Support\Facades\Storage::class,
-        'URL' => Illuminate\Support\Facades\URL::class,
-        'Validator' => Illuminate\Support\Facades\Validator::class,
-        'View' => Illuminate\Support\Facades\View::class,
 
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
@@ -277,6 +259,6 @@ return [
         'GitHub' => GrahamCampbell\GitHub\Facades\GitHub::class,
 
         'Datadog' => ChaseConey\LaravelDatadogHelper\Datadog::class,
-    ],
+    ])->toArray(),
 
 ];

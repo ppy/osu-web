@@ -67,11 +67,12 @@ class CommentsController extends Controller
      *
      * `pinned_comments` is only included when `commentable_type` and `commentable_id` are specified.
      *
-     * @queryParam commentable_type The type of resource to get comments for.
-     * @queryParam commentable_id The id of the resource to get comments for.
-     * @queryParam cursor Pagination option. See [CommentSort](#commentsort) for detail. The format follows [Cursor](#cursor) except it's not currently included in the response.
-     * @queryParam parent_id Limit to comments which are reply to the specified id. Specify 0 to get top level comments.
-     * @queryParam sort Sort option as defined in [CommentSort](#commentsort). Defaults to `new` for guests and user-specified default when authenticated.
+     * @queryParam after Return comments which come after the specified comment id as per sort option. No-example
+     * @queryParam commentable_type The type of resource to get comments for. Example: beatmapset
+     * @queryParam commentable_id The id of the resource to get comments for. Example: 1
+     * @queryParam cursor Pagination option. See [CommentSort](#commentsort) for detail. The format follows [Cursor](#cursor) except it's not currently included in the response. No-example
+     * @queryParam parent_id Limit to comments which are reply to the specified id. Specify 0 to get top level comments. Example: 1
+     * @queryParam sort Sort option as defined in [CommentSort](#commentsort). Defaults to `new` for guests and user-specified default when authenticated. Example: new
      */
     public function index()
     {
@@ -193,6 +194,10 @@ class CommentsController extends Controller
 
         $comment = new Comment($params);
         $comment->setCommentable();
+
+        if ($comment->commentable === null) {
+            abort(422, 'invalid commentable specified');
+        }
 
         priv_check('CommentStore', $comment->commentable)->ensureCan();
 

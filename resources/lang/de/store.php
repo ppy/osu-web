@@ -14,7 +14,7 @@ return [
 
         'errors_no_checkout' => [
             'line_1' => 'Ups, irgendetwas im Warenkorb verhindert die Buchung!',
-            'line_2' => 'Entfernen oder aktualisieren Sie Ihre Artikel, bevor Sie fortfahren.',
+            'line_2' => 'Entferne oder aktualisiere deine Artikel, bevor du fortfährst.',
         ],
 
         'empty' => [
@@ -27,12 +27,13 @@ return [
     ],
 
     'checkout' => [
-        'cart_problems' => 'Es gibt Probleme in deinem Warenkorb!',
+        'cart_problems' => 'Es gibt Probleme mit deinem Warenkorb!',
         'cart_problems_edit' => 'Klick hier, um ihn zu bearbeiten.',
         'declined' => 'Der Bezahlvorgang wurde abgebrochen.',
         'delayed_shipping' => 'Wir sind momentan etwas mit Bestellungen überfordert! Wir nehmen weiterhin Bestellungen an, allerdings muss mit **zusätzlichen 1-2 Wochen Verzögerung** gerechnet werden, während die aktuellen Bestellungen aufgearbeitet werden.',
+        'hide_from_activity' => 'Alle osu!supporter-Tags in dieser Bestellung aus meiner Aktivität ausblenden',
         'old_cart' => 'Dein Warenkorb war nicht aktuell und wurde erneut geladen, bitte versuche es erneut.',
-        'pay' => 'Mit Paypal bezahlen',
+        'pay' => 'Mit PayPal bezahlen',
         'title_compact' => 'zur Kasse',
 
         'has_pending' => [
@@ -50,6 +51,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Da es sich bei deiner Zahlung um einen eCheck handelt, kannst du bis zu 10 zusätzliche Tage einplanen, um die Zahlung über PayPal abzuwickeln!',
+        'hide_from_activity' => 'osu!supporter-Tags in dieser Bestellung werden nicht in deinen letzten Aktivitäten angezeigt.',
         'title_compact' => 'rechnung',
 
         'status' => [
@@ -69,16 +71,21 @@ return [
         'cancel_confirm' => 'Diese Bestellung wird storniert und die Zahlung dafür nicht akzeptiert. Der Zahlungsanbieter gibt eventuell reservierte Gelder nicht sofort frei. Bist du sicher?',
         'cancel_not_allowed' => 'Diese Bestellung kann zu diesem Zeitpunkt nicht storniert werden.',
         'invoice' => 'Rechnung anzeigen',
-        'no_orders' => 'Keine Bestellungen zum anzeigen.',
-        'paid_on' => 'Bestellung aufgegeben am :date',
+        'no_orders' => 'Keine Bestellungen zum Anzeigen.',
+        'paid_on' => 'Bestellung :date aufgegeben',
         'resume' => 'Bezahlung fortsetzen',
         'shopify_expired' => 'Der Zahlungslink für diese Bestellung ist abgelaufen.',
 
         'item' => [
+            'quantity' => 'Menge',
+
             'display_name' => [
                 'supporter_tag' => ':name für :username (:duration)',
             ],
-            'quantity' => 'Menge',
+
+            'subtext' => [
+                'supporter_tag' => 'Nachricht: :message',
+            ],
         ],
 
         'not_modifiable_exception' => [
@@ -120,6 +127,8 @@ return [
 
     'supporter_tag' => [
         'gift' => 'an jemanden verschenken',
+        'gift_message' => 'füge eine optionale Nachricht zu deinem Geschenk hinzu! (bis zu :length Zeichen)',
+
         'require_login' => [
             '_' => 'Du musst :link sein, um ein osu!supporter-Tag zu erhalten!',
             'link_text' => 'eingeloggt',

@@ -5,34 +5,34 @@
 
 return [
     'comment' => [
-        'empty' => '',
-        'page_title' => '',
-        'title' => '',
+        'empty' => 'Nav vērotu komentāru.',
+        'page_title' => 'komentāru vērošanas saraksts',
+        'title' => 'komentārs',
 
         'table' => [
-            'latest_comment_empty' => '',
-            'latest_comment_value' => '',
+            'latest_comment_empty' => 'nav komentāru',
+            'latest_comment_value' => ':time priekš :username',
         ],
     ],
 
     'forum_topic' => [
-        'title' => '',
+        'title' => 'foruma tēma',
     ],
 
     'index' => [
-        'title_compact' => '',
+        'title_compact' => 'vērošanas saraksts',
     ],
 
     'mapping' => [
-        'empty' => '',
-        'followers' => '',
-        'page_title' => '',
-        'title' => '',
-        'to_0' => '',
-        'to_1' => '',
+        'empty' => 'Nav vērotu kartētāju.',
+        'followers' => 'kartētāju abonenti',
+        'page_title' => 'kartētāju vērošanas saraksts',
+        'title' => 'kartētājs',
+        'to_0' => 'pārtraukt paziņot man, kad šis lietotājs augšupielādē jaunu bītmapi',
+        'to_1' => 'paziņot man, kad šis lietotājs augšupielādē jaunu bītmapi',
     ],
 
     'modding' => [
-        'title' => '',
+        'title' => 'bītmapes diskusija',
     ],
 ];

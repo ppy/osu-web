@@ -13,6 +13,16 @@ return [
     'see_channel' => 'siirry keskusteluun',
     'verifying' => 'Vahvista istuntosi nähdäksesi ilmoitukset',
 
+    'action_type' => [
+        '_' => '',
+        'beatmapset' => '',
+        'build' => '',
+        'channel' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'user' => '',
+    ],
+
     'filters' => [
         '_' => 'kaikki',
         'user' => 'profiili',
@@ -20,7 +30,7 @@ return [
         'forum_topic' => 'foorumi',
         'news_post' => 'uutiset',
         'build' => '',
-        'channel' => 'chat',
+        'channel' => 'chatti',
     ],
 
     'item' => [
@@ -84,7 +94,7 @@ return [
         ],
 
         'channel' => [
-            '_' => 'Chat',
+            '_' => 'Chatti',
 
             'announcement' => [
                 '_' => '',
@@ -140,15 +150,6 @@ return [
                 '_' => 'Uusi foorumi vastaus',
                 'forum_topic_reply' => ':username vastasi foorumi aiheeseen ":title".',
                 'forum_topic_reply_compact' => ':username vastasi',
-            ],
-        ],
-
-        'legacy_pm' => [
-            '_' => '',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited lukematon viesti.|:count_delimited lukemattomia viestejä.',
             ],
         ],
 
@@ -209,6 +210,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => '',
+            ],
+
             'channel' => [
                 'pm' => 'Olet saanut uuden viestin käyttäjältä :username',
             ],

@@ -13,6 +13,16 @@ return [
     'see_channel' => '',
     'verifying' => '',
 
+    'action_type' => [
+        '_' => '',
+        'beatmapset' => '',
+        'build' => '',
+        'channel' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'user' => '',
+    ],
+
     'filters' => [
         '_' => '',
         'user' => '',
@@ -143,15 +153,6 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => 'Προσωπικά Μηνύματα του Παλαιότερου Forum',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited αδιάβαστο μήνυμα.|:count_delimited αδιάβαστα μηνύματα.',
-            ],
-        ],
-
         'user' => [
             'user_beatmapset_new' => [
                 '_' => '',
@@ -209,6 +210,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => '',
+            ],
+
             'channel' => [
                 'pm' => '',
             ],

@@ -16,30 +16,30 @@ return [
 
             'team' => [
                 'title' => 'Podpor tím',
-                'description' => '',
+                'description' => 'Malý tým vývojárov vyvíja osu!. Vaša podpora im pomáha... vieš... žiť.',
             ],
             'infra' => [
                 'title' => 'Infraštruktúra Servera',
-                'description' => '',
+                'description' => 'Príspevky idú na servery, na ktorých beží webová stránka, multiplayer, online rebríčky atď.',
             ],
             'featured-artists' => [
-                'title' => '',
-                'description' => '',
-                'link_text' => '',
+                'title' => 'Významní umelci',
+                'description' => 'S vašou podporou sa môžeme priblížiť k ešte viac úžasným umelcom a licencovať ešte viac skvelé hudby pre použitie v osu!',
+                'link_text' => 'Zobraziť aktuálny zoznam &raquo;',
             ],
             'ads' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Pomôž osu!, aby zostalo sebestačné',
+                'description' => 'Vaša pomoc pomáha udržiavať túto hru nezávislú, kompletne bez reklám a bez externých sponzorov.',
             ],
             'tournaments' => [
                 'title' => 'Oficiálne turnaje',
-                'description' => '',
-                'link_text' => '',
+                'description' => 'Pomôž financovať prevádzkovanie (a zaisťovanie cien) oficiálnych osu! World Cup turnajov.',
+                'link_text' => 'Prechádzať turnaje &raquo;',
             ],
             'bounty-program' => [
-                'title' => '',
-                'description' => '',
-                'link_text' => '',
+                'title' => 'Podpora komunitných vývojárov ',
+                'description' => 'Podpor komunitnych vývojárov, ktorí venovali svoj voľný čas a úsilie, aby urobili osu! lepšie.',
+                'link_text' => 'Zistiť viac o &raquo;',
             ],
         ],
         'perks' => [
@@ -51,7 +51,7 @@ return [
 
             'friend_ranking' => [
                 'title' => 'Rebríček priateľov',
-                'description' => "",
+                'description' => "Pozri sa jak moc dobrý si oproti tvojim priateľom na rebríčku beatmapy, a to jak v hre, tak i na webu.",
             ],
 
             'country_ranking' => [

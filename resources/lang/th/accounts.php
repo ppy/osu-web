@@ -20,6 +20,12 @@ return [
             'title' => 'อีเมล',
         ],
 
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'API เดิม',
+        ],
+
         'password' => [
             'current' => 'รหัสผ่านปัจจุบัน',
             'new' => 'รหัสผ่านใหม่',
@@ -28,7 +34,13 @@ return [
         ],
 
         'profile' => [
+            'country' => '',
             'title' => 'โปรไฟล์',
+
+            'country_change' => [
+                '_' => "",
+                'update_link' => '',
+            ],
 
             'user' => [
                 'user_discord' => '',
@@ -47,7 +59,7 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_qualified_problem' => 'ได้รับการแจ้งเตือนเกียวกับปัญหาของ Qualified beatmaps กับโหมดต่อไปนี้',
+        'beatmapset_discussion_qualified_problem' => 'ได้รับการแจ้งเตือนเกียวกับปัญหาของบีทแมพที่ผ่านการรับรองกับโหมดต่อไปนี้',
         'beatmapset_disqualify' => 'ได้รับการแจ้งเตือนเมื่อบีทแมพในโหมดที่ท่านเลือกถูกตัดสิทธิ์',
         'comment_reply' => 'รับการแจ้งเตือนสำหรับการตอบกลับความคิดเห็นของคุณ',
         'title' => 'การแจ้งเตือน',
@@ -68,8 +80,8 @@ return [
     ],
 
     'oauth' => [
-        'authorized_clients' => 'client ที่ได้รับการยืนยัน',
-        'own_clients' => 'client ของตนเอง',
+        'authorized_clients' => 'ไคลเอนต์ที่ได้รับการยืนยัน',
+        'own_clients' => 'ไคลเอนต์ของตนเอง',
         'title' => 'OAuth',
     ],
 

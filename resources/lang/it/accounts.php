@@ -20,6 +20,12 @@ return [
             'title' => 'Email',
         ],
 
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'API Legacy',
+        ],
+
         'password' => [
             'current' => 'password attuale',
             'new' => 'nuova password',
@@ -28,7 +34,13 @@ return [
         ],
 
         'profile' => [
+            'country' => '',
             'title' => 'Profilo',
+
+            'country_change' => [
+                '_' => "",
+                'update_link' => '',
+            ],
 
             'user' => [
                 'user_discord' => '',
@@ -55,7 +67,7 @@ return [
 
         'options' => [
             '_' => 'opzioni di notifica',
-            'beatmap_owner_change' => 'guest difficulty',
+            'beatmap_owner_change' => 'difficoltà guest',
             'beatmapset:modding' => 'modding delle beatmap',
             'channel_message' => 'messaggi privati',
             'comment_new' => 'nuovi commenti',

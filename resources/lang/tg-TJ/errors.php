@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'load_failed' => '',
     'missing_route' => '',
     'no_restricted_access' => '',
     'supporter_only' => '',

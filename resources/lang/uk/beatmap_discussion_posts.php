@@ -10,6 +10,6 @@ return [
 
     'item' => [
         'content' => 'Контент',
-        'modding_history_link' => 'Переглянути історію модерування',
+        'modding_history_link' => 'Переглянути історію змін',
     ],
 ];

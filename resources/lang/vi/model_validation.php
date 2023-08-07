@@ -8,6 +8,7 @@ return [
     'not_negative' => ':attribute không thể âm.',
     'required' => 'Yêu cầu :attribute.',
     'too_long' => ':attribute vượt quá độ dài cho phép - chỉ có thể lên đến :limit kí tự.',
+    'url' => 'Xin vui lòng nhập một URL hợp lệ.',
     'wrong_confirmation' => 'Xác nhận không phù hợp.',
 
     'beatmapset_discussion' => [
@@ -108,6 +109,16 @@ return [
         ],
     ],
 
+    'legacy_api_key' => [
+        'exists' => 'Mỗi người dùng chỉ được cung cấp một API.',
+
+        'attributes' => [
+            'api_key' => 'khoá api',
+            'app_name' => 'tên ứng dụng',
+            'app_url' => 'url ứng dụng',
+        ],
+    ],
+
     'oauth' => [
         'client' => [
             'too_many' => 'Vượt quá số lượng ứng dụng OAuth được cho phép.',
@@ -164,6 +175,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => 'Beatmap đã Được Xếp hạng không thể bị báo cáo',
+        'not_in_channel' => 'Bạn không ở trong kênh này.',
         'reason_not_valid' => ':reason không phù hợp cho kiểu báo cáo này.',
         'self' => "Bạn không thể báo cáo chính mình!",
     ],

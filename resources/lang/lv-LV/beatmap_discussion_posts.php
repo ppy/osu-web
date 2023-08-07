@@ -5,11 +5,11 @@
 
 return [
     'index' => [
-        'title' => 'Bītmapes Diskusijas ziņojumi',
+        'title' => 'Bītmapes Diskusijas Raksti',
     ],
 
     'item' => [
         'content' => 'Saturs',
-        'modding_history_link' => 'Skatīt izmaiņu vēsturi',
+        'modding_history_link' => 'Skatīt modifikāciju vēsturi',
     ],
 ];

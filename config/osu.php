@@ -35,10 +35,10 @@ return [
     ],
     'beatmaps' => [
         'max' => 50,
-        'max-scores' => 50,
+        'max_scores' => 100,
 
         'difficulty_cache' => [
-            'server_url' => presence(env('BEATMAPS_DIFFICULTY_CACHE_SERVER_URL')) ?? 'http://localhost:5000',
+            'server_url' => presence(env('BEATMAPS_DIFFICULTY_CACHE_SERVER_URL')) ?? 'http://localhost:5001',
         ],
     ],
     'beatmap_processor' => [
@@ -203,21 +203,28 @@ return [
         'experimental_host' => presence(env('OSU_EXPERIMENTAL_HOST')),
         'installer' => 'https://m1.ppy.sh/r/osu!install.exe',
         'installer-mirror' => 'https://m2.ppy.sh/r/osu!install.exe',
+        'lazer_dl_other' => presence(env('OSU_URL_LAZER_OTHER')) ?? 'https://github.com/ppy/osu/#running-osu',
+        'lazer_info' => presence(env('OSU_URL_LAZER_INFO')),
         'osx' => 'https://osx.ppy.sh',
         'server_status' => 'https://status.ppy.sh',
         'smilies' => '/forum/images/smilies',
         'source_code' => 'https://github.com/ppy',
         'youtube-tutorial-playlist' => 'PLmWVQsxi34bMYwAawZtzuptfMmszUa_tl',
 
+        'lazer_dl' => [
+            'android' => presence(env('OSU_URL_LAZER_ANDROID')) ?? 'https://github.com/ppy/osu/releases/latest/download/sh.ppy.osulazer.apk',
+            'ios' => presence(env('OSU_URL_LAZER_IOS')) ?? '/home/testflight',
+            'linux_x64' => presence(env('OSU_URL_LAZER_LINUX_X64')) ?? 'https://github.com/ppy/osu/releases/latest/download/osu.AppImage',
+            'macos_as' => presence(env('OSU_URL_LAZER_MACOS_AS')) ?? 'https://github.com/ppy/osu/releases/latest/download/osu.app.Apple.Silicon.zip',
+            'windows_x64' => presence(env('OSU_URL_LAZER_WINDOWS_X64')) ?? 'https://github.com/ppy/osu/releases/latest/download/install.exe',
+        ],
         'social' => [
             'twitter' => '/wiki/Twitter',
         ],
         'user' => [
             'recover' => '/wiki/Help_centre/Account#sign-in',
+            'restriction' => presence(env('OSU_URL_USER_RESTRICTION')) ?? '/wiki/Help_centre/Account_restrictions',
             'rules' => '/wiki/Osu!:Rules',
-        ],
-        'rankings' => [
-            'kudosu' => '/p/kudosu',
         ],
         'testflight' => [
             'public' => env('TESTFLIGHT_LINK'),
@@ -229,6 +236,7 @@ return [
         'allow_registration' => get_bool(env('ALLOW_REGISTRATION')) ?? true,
         'allowed_rename_groups' => explode(' ', env('USER_ALLOWED_RENAME_GROUPS', 'default')),
         'bypass_verification' => get_bool(env('USER_BYPASS_VERIFICATION')) ?? false,
+        'hide_pinned_solo_scores' => get_bool(env('USER_HIDE_PINNED_SOLO_SCORES')) ?? true,
         'inactive_days_verification' => get_int(env('USER_INACTIVE_DAYS_VERIFICATION')) ?? 180,
         'min_plays_for_posting' => get_int(env('USER_MIN_PLAYS_FOR_POSTING')) ?? 10,
         'min_plays_allow_verified_bypass' => get_bool(env('USER_MIN_PLAYS_ALLOW_VERIFIED_BYPASS')) ?? true,
@@ -253,12 +261,27 @@ return [
             'key_length' => 8,
             'tries' => 8,
         ],
+        'registration_mode' => presence(env('REGISTRATION_MODE')) ?? 'client',
         'super_friendly' => array_map('intval', explode(' ', env('SUPER_FRIENDLY', '3'))),
         'ban_persist_days' => get_int(env('BAN_PERSIST_DAYS')) ?? 28,
+
+        'country_change' => [
+            'max_mixed_months' => get_int(env('USER_COUNTRY_CHANGE_MAX_MIXED_MONTHS')) ?? 2,
+            'min_months' => get_int(env('USER_COUNTRY_CHANGE_MIN_MONTHS')) ?? 6,
+        ],
     ],
     'user_report_notification' => [
-        'endpoint_moderation' => presence(env('USER_REPORT_NOTIFICATION_ENDPOINT_MODERATION')),
         'endpoint_cheating' => presence(env('USER_REPORT_NOTIFICATION_ENDPOINT_CHEATING')),
+        'endpoint_moderation' => presence(env('USER_REPORT_NOTIFICATION_ENDPOINT_MODERATION')),
+
+        'endpoint' => [
+            'beatmapset_discussion' => presence(env('USER_REPORT_NOTIFICATION_ENDPOINT_BEATMAPSET_DISCUSSION')),
+            'beatmapset' => presence(env('USER_REPORT_NOTIFICATION_ENDPOINT_BEATMAPSET')),
+            'chat' => presence(env('USER_REPORT_NOTIFICATION_ENDPOINT_CHAT')),
+            'comment' => presence(env('USER_REPORT_NOTIFICATION_ENDPOINT_COMMENT')),
+            'forum' => presence(env('USER_REPORT_NOTIFICATION_ENDPOINT_FORUM')),
+            'user' => presence(env('USER_REPORT_NOTIFICATION_ENDPOINT_USER')),
+        ],
     ],
     'wiki' => [
         'branch' => presence(env('WIKI_BRANCH'), 'master'),

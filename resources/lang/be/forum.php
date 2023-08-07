@@ -25,6 +25,7 @@ return [
     ],
 
     'forums' => [
+        'forums' => 'Форумы',
         'latest_post' => 'Апошні допіс',
 
         'index' => [
@@ -47,7 +48,7 @@ return [
         'confirm_restore' => 'Аднавіць допіс?',
         'edited' => 'Апошняе рэдагаванне :user а :when, адрэдагавана :count раз.',
         'posted_at' => 'апублікаваны :when',
-        'posted_by' => 'аўтар паста :username',
+        'posted_by_in' => 'апублікавана :username у :forum',
 
         'actions' => [
             'destroy' => 'Выдаліць допіс',

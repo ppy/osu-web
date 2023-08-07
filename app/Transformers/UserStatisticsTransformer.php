@@ -10,7 +10,7 @@ use App\Models\UserStatistics;
 
 class UserStatisticsTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'country_rank',
         'rank',
         'user',
@@ -23,23 +23,21 @@ class UserStatisticsTransformer extends TransformerAbstract
             $stats = new UserStatistics\Osu();
         }
 
-        if (config('osu.scores.experimental_rank_as_default')) {
-            $globalRank = $stats->globalRankExp();
-        } else {
-            $globalRank = $stats->globalRank();
-            if (config('osu.scores.experimental_rank_as_extra')) {
-                $globalRankExp = $stats->globalRankExp();
-                $ppExp = $stats->rank_score_exp;
-            }
+        if (!config('osu.scores.experimental_rank_as_default') && config('osu.scores.experimental_rank_as_extra')) {
+            $globalRankExp = $stats->globalRankExp();
+            $ppExp = $stats->rank_score_exp;
         }
 
         return [
+            'count_100' => $stats->count100,
+            'count_300' => $stats->count300,
+            'count_50' => $stats->count50,
+            'count_miss' => $stats->countMiss,
             'level' => [
                 'current' => $stats->currentLevel(),
                 'progress' => $stats->currentLevelProgressPercent(),
             ],
-
-            'global_rank' => $globalRank,
+            'global_rank' => $stats->globalRank(),
             'global_rank_exp' => $globalRankExp ?? null,
             'pp' => $stats->pp(),
             'pp_exp' => $ppExp ?? 0,
@@ -76,11 +74,7 @@ class UserStatisticsTransformer extends TransformerAbstract
             $stats = new UserStatistics\Osu();
         }
 
-        return $this->item($stats, function ($stats) {
-            return [
-                'country' => $stats->countryRank(),
-            ];
-        });
+        return $this->primitive(['country' => $stats->countryRank()]);
     }
 
     public function includeUser(UserStatistics\Model $stats = null)

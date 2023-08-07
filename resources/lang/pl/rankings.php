@@ -17,12 +17,27 @@ return [
         ],
     ],
 
+    'kudosu' => [
+        'total' => 'Przyznane',
+        'available' => 'Dostępne',
+        'used' => 'Wykorzystane',
+    ],
+
     'type' => [
         'charts' => 'wyróżnionych',
         'country' => 'krajowy',
+        'kudosu' => 'kudosu',
         'multiplayer' => 'wieloosobowy',
         'performance' => 'globalny',
         'score' => 'punktowy',
+        'seasons' => 'sezony',
+    ],
+
+    'seasons' => [
+        'empty' => 'Brak gier w tym sezonie.',
+        'ongoing' => 'Ten sezon nadal trwa - w przyszłości zostanie dodanych więcej gier.',
+        'room_count' => 'Liczba gier',
+        'url' => 'Dowiedz się więcej o tym sezonie.',
     ],
 
     'spotlight' => [

@@ -20,6 +20,12 @@ return [
             'title' => 'Email',
         ],
 
+        'legacy_api' => [
+            'api' => '',
+            'irc' => '',
+            'title' => '',
+        ],
+
         'password' => [
             'current' => 'τρέχων κωδικός',
             'new' => 'νέος κωδικός',
@@ -28,7 +34,13 @@ return [
         ],
 
         'profile' => [
+            'country' => '',
             'title' => 'Προφίλ',
+
+            'country_change' => [
+                '_' => "",
+                'update_link' => '',
+            ],
 
             'user' => [
                 'user_discord' => '',

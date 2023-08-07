@@ -8,6 +8,7 @@ return [
     'not_negative' => ':attribute não pode ser negativo.',
     'required' => ':attribute é necessário.',
     'too_long' => ':attribute ultrapassou tamanho máximo - deve ser até :limit caracteres.',
+    'url' => 'Por favor, insira uma URL válida.',
     'wrong_confirmation' => 'Confirmação não confere.',
 
     'beatmapset_discussion' => [
@@ -108,6 +109,16 @@ return [
         ],
     ],
 
+    'legacy_api_key' => [
+        'exists' => 'Apenas uma chave de API é fornecida por usuário no momento.',
+
+        'attributes' => [
+            'api_key' => 'chave de api',
+            'app_name' => 'nome da aplicação ',
+            'app_url' => 'url da aplicação ',
+        ],
+    ],
+
     'oauth' => [
         'client' => [
             'too_many' => 'Número máximo de aplicações OAuth excedido.',
@@ -164,6 +175,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => 'Beatmaps ranqueados não podem ser reportados',
+        'not_in_channel' => 'Você não está nesse canal.',
         'reason_not_valid' => ':reason não é valido para este tipo de denúncia.',
         'self' => "Você não pode se denunciar!",
     ],

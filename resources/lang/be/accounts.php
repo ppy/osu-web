@@ -20,6 +20,12 @@ return [
             'title' => 'Эл. пошта',
         ],
 
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'Стары API',
+        ],
+
         'password' => [
             'current' => 'бягучы пароль',
             'new' => 'новы пароль',
@@ -28,7 +34,13 @@ return [
         ],
 
         'profile' => [
+            'country' => '',
             'title' => 'Профіль',
+
+            'country_change' => [
+                '_' => "",
+                'update_link' => '',
+            ],
 
             'user' => [
                 'user_discord' => '',

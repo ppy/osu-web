@@ -20,6 +20,12 @@ return [
             'title' => 'Email',
         ],
 
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'API cũ',
+        ],
+
         'password' => [
             'current' => 'mật khẩu hiện tại',
             'new' => 'mật khẩu mới',
@@ -28,7 +34,13 @@ return [
         ],
 
         'profile' => [
+            'country' => '',
             'title' => 'Trang cá nhân',
+
+            'country_change' => [
+                '_' => "",
+                'update_link' => '',
+            ],
 
             'user' => [
                 'user_discord' => '',
