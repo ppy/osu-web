@@ -90,11 +90,7 @@ export default class Main extends React.Component<Props> {
   }
 
   private clearAutoRotateTimer = () => {
-    if (this.autoRotateTimerId != null) {
-      window.clearInterval(this.autoRotateTimerId);
-
-      this.autoRotateTimerId = undefined;
-    }
+    window.clearInterval(this.autoRotateTimerId);
   };
 
   private handleButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
