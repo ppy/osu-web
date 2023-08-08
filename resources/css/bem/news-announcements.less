@@ -35,10 +35,12 @@
   }
 
   &__container {
-    display: flex;
     height: 250px;
     transform: translateX(calc(-100% * var(--index, 0)));
-    transition: transform 300ms ease-in-out;
+
+    &--transition {
+      transition: transform 300ms ease-in-out;
+    }
   }
 
   &__indicator {

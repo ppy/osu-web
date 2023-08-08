@@ -2,9 +2,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .news-announcement {
-  flex-shrink: 0;
+  height: 100%;
+  left: calc(100% * var(--index, 0));
   overflow-x: hidden;
-  position: relative;
+  position: absolute;
   width: 100%;
 
   &__content {
