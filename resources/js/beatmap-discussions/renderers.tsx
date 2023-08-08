@@ -21,7 +21,7 @@ export function linkRenderer(astProps: JSX.IntrinsicElements['a'], overrideShort
   const override = overrideShortenedUrls
     || astProps.children instanceof Array
       && astProps.children.length > 0
-      && astProps.children[0] !== astProps.href;
+      && astProps.children[0] === astProps.href;
 
   const content = override
     ? props.children ?? astProps.children
