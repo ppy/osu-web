@@ -14,7 +14,7 @@ class NewsAnnouncementTransformer extends TransformerAbstract
     public function transform(NewsAnnouncement $newsAnnouncement): array
     {
         return [
-            'content' => [
+            'content' => $newsAnnouncement->content_markdown === null ? null : [
                 'html' => $newsAnnouncement->content_html,
                 'markdown' => $newsAnnouncement->content_markdown,
             ],

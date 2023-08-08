@@ -84,7 +84,7 @@ export default class Main extends React.Component<Props> {
       <a className={`${itemBn}__link`} href={announcement.url}>
         <Img2x className={`${itemBn}__image`} src={announcement.image_url} />
       </a>
-      {announcement.content.html != null && (
+      {announcement.content != null && (
         <div
           className={`${itemBn}__content`}
           dangerouslySetInnerHTML={{ __html: announcement.content.html }}

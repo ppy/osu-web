@@ -3,9 +3,9 @@
 
 export default interface NewsAnnouncementJson {
   content: {
-    html: string | null;
-    markdown: string | null;
-  };
+    html: string;
+    markdown: string;
+  } | null;
   ended_at: string | null;
   id: number;
   image_url: string;
