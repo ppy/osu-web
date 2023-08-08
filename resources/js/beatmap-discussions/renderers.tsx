@@ -14,11 +14,11 @@ export function createRenderer(ElementType: React.ElementType) {
   };
 }
 
-export function linkRenderer(astProps: JSX.IntrinsicElements['a'], overrideShortenedUrls = true) {
+export function linkRenderer(astProps: JSX.IntrinsicElements['a'], alwaysShortenUrls = true) {
   const props = propsFromHref(astProps.href);
   const href = safeReactMarkdownUrl(props.href);
 
-  const override = overrideShortenedUrls
+  const override = alwaysShortenUrls
     || astProps.children instanceof Array
       && astProps.children.length > 0
       && astProps.children[0] === astProps.href;
