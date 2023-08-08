@@ -14,16 +14,27 @@ export function createRenderer(ElementType: React.ElementType) {
   };
 }
 
-export function linkRenderer(astProps: JSX.IntrinsicElements['a']) {
+export function linkRenderer(astProps: JSX.IntrinsicElements['a'], overrideShortenedUrls = true) {
   const props = propsFromHref(astProps.href);
   const href = safeReactMarkdownUrl(props.href);
 
+  const override = overrideShortenedUrls
+    || astProps.children instanceof Array
+      && astProps.children.length > 0
+      && astProps.children[0] !== astProps.href;
+
+  const content = override
+    ? props.children ?? astProps.children
+    : astProps.children;
+
   return (
-    <>
-      <LinkContext.Provider value={{ inLink: true }}>
-        <a {...props} href={href}>{props.children ?? astProps.children}</a>
-      </LinkContext.Provider>
-    </>
+    <LinkContext.Consumer>
+      {({ inLink }) => (
+        <LinkContext.Provider value={{ inLink: true }}>
+          {inLink ? content : <a {...props} href={href}>{content}</a>}
+        </LinkContext.Provider>
+      )}
+    </LinkContext.Consumer>
   );
 }
 

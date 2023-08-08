@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { linkRenderer } from 'beatmap-discussions/renderers';
 import { Spinner } from 'components/spinner';
 import { observer } from 'mobx-react';
 import Message from 'models/chat/message';
@@ -12,22 +13,14 @@ import legacyLink from 'remark-plugins/legacy-link';
 import oldLink from 'remark-plugins/old-link';
 import wikiLink, { RemarkWikiLinkPlugin } from 'remark-wiki-link';
 import { classWithModifiers } from 'utils/css';
-import { safeReactMarkdownUrl, wikiUrl } from 'utils/url';
+import { wikiUrl } from 'utils/url';
 
 interface Props {
   message: Message;
 }
 
-function linkRenderer(astProps: JSX.IntrinsicElements['a']) {
-  return (
-    <a href={safeReactMarkdownUrl(astProps.href)} rel='nofollow noreferrer' target='_blank'>
-      {astProps.children}
-    </a>
-  );
-}
-
 const components = Object.freeze({
-  a: linkRenderer,
+  a: (props: JSX.IntrinsicElements['a']) => linkRenderer(props, false),
 });
 
 @observer
