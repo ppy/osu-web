@@ -42,12 +42,20 @@
   }
 
   &__indicator {
-    background: @osu-colour-h1;
-    border-radius: 10000px;
-    height: 2px;
-    width: 30px;
+    align-items: center;
+    display: flex;
+    height: 6px;
 
-    &--active {
+    &::before {
+      background: @osu-colour-h1;
+      border-radius: 10000px;
+      content: '';
+      height: 2px;
+      transition: height 100ms ease-out;
+      width: 30px;
+    }
+
+    &--active::before {
       height: 6px;
     }
   }
