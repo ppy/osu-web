@@ -3,11 +3,12 @@
 
 import Img2x from 'components/img2x';
 import NewsAnnouncementJson from 'interfaces/news-announcement-json';
-import { action, autorun, IReactionDisposer, makeObservable, observable } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 
+const autoRotateIntervalMs = 6000;
 const bn = 'news-announcements';
 const itemBn = 'news-announcement';
 
@@ -17,13 +18,8 @@ interface Props {
 
 @observer
 export default class Main extends React.Component<Props> {
-  @observable private announcementWidth = 0;
-  @observable private readonly containerRef = React.createRef<HTMLDivElement>();
+  private autoRotateTimerId?: number;
   @observable private index = 0;
-  private registerResizeObserverDisposer?: IReactionDisposer;
-  private resizeObserver?: ResizeObserver;
-  private rotateAnnouncementTimer?: NodeJS.Timer;
-  @observable private readonly topRef = React.createRef<HTMLDivElement>();
 
   private get length() {
     return this.props.announcements.length;
@@ -36,31 +32,11 @@ export default class Main extends React.Component<Props> {
   }
 
   componentDidMount() {
-    this.setRotateAnnouncementTimer();
-
-    this.registerResizeObserverDisposer = autorun(() => {
-      if (this.topRef.current != null) {
-        this.resizeObserver?.disconnect();
-        this.resizeObserver?.observe(this.topRef.current);
-      }
-    });
-    this.resizeObserver = new ResizeObserver(action((entries) => {
-      if (entries.length > 0) {
-        this.announcementWidth = entries[0].contentRect.width;
-
-        setImmediate(() => {
-          if (this.containerRef.current != null) {
-            this.containerRef.current.scrollLeft = this.announcementWidth * this.index;
-          }
-        });
-      }
-    }));
+    this.setAutoRotateTimer();
   }
 
   componentWillUnmount() {
-    this.clearRotateAnnouncementTimer();
-    this.registerResizeObserverDisposer?.();
-    this.resizeObserver?.disconnect();
+    this.clearAutoRotateTimer();
   }
 
   render() {
@@ -71,106 +47,96 @@ export default class Main extends React.Component<Props> {
     return (
       <>
         <div
-          ref={this.topRef}
           className={bn}
-          onMouseEnter={this.clearRotateAnnouncementTimer}
-          onMouseLeave={this.setRotateAnnouncementTimer}
+          onMouseEnter={this.clearAutoRotateTimer}
+          onMouseLeave={this.setAutoRotateTimer}
         >
           <div
-            ref={this.containerRef}
-            className={`${bn}__announcements-container`}
+            className={`${bn}__container`}
+            style={{ '--index': this.index } as React.CSSProperties}
           >
-            {this.props.announcements.map((announcement) => (
-              <div
-                key={announcement.id}
-                className={itemBn}
-                style={{ width: this.announcementWidth }}
-              >
-                <a className={`${itemBn}__link`} href={announcement.url}>
-                  <Img2x className={`${itemBn}__image`} src={announcement.image_url} />
-                </a>
-                {announcement.content.html != null && (
-                  <div
-                    className={`${itemBn}__content`}
-                    dangerouslySetInnerHTML={{ __html: announcement.content.html }}
-                  />
-                )}
-              </div>
-            ))}
+            {this.props.announcements.map(this.renderAnnouncement)}
           </div>
-          {this.renderButtons()}
+          {this.length > 1 && this.renderButtons()}
         </div>
-        {this.renderIndicators()}
+        {this.length > 1 && this.renderIndicators()}
       </>
     );
   }
 
-  private clearRotateAnnouncementTimer = () => {
-    if (this.rotateAnnouncementTimer != null) {
-      clearInterval(this.rotateAnnouncementTimer);
+  private clearAutoRotateTimer = () => {
+    if (this.autoRotateTimerId != null) {
+      window.clearInterval(this.autoRotateTimerId);
 
-      this.rotateAnnouncementTimer = undefined;
+      this.autoRotateTimerId = undefined;
     }
   };
 
   private handleButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    this.setIndex(parseInt(event.currentTarget.dataset.index ?? '', 10));
+    this.setIndex(this.index + parseInt(event.currentTarget.dataset.increment ?? '', 10));
   };
 
+  private renderAnnouncement = (announcement: NewsAnnouncementJson) => (
+    <div
+      key={announcement.id}
+      className={itemBn}
+    >
+      <a className={`${itemBn}__link`} href={announcement.url}>
+        <Img2x className={`${itemBn}__image`} src={announcement.image_url} />
+      </a>
+      {announcement.content.html != null && (
+        <div
+          className={`${itemBn}__content`}
+          dangerouslySetInnerHTML={{ __html: announcement.content.html }}
+        />
+      )}
+    </div>
+  );
+
   private renderButtons() {
-    if (this.length > 1) {
-      return (
-        <>
-          <button
-            className={`${bn}__button ${bn}__button--left`}
-            data-index={this.index - 1}
-            onClick={this.handleButtonClick}
-          />
-          <button
-            className={`${bn}__button ${bn}__button--right`}
-            data-index={this.index + 1}
-            onClick={this.handleButtonClick}
-          />
-        </>
-      );
-    }
+    return (
+      <>
+        <button
+          className={`${bn}__button ${bn}__button--left`}
+          data-increment={-1}
+          onClick={this.handleButtonClick}
+        />
+        <button
+          className={`${bn}__button ${bn}__button--right`}
+          data-increment={1}
+          onClick={this.handleButtonClick}
+        />
+      </>
+    );
   }
 
   private renderIndicators() {
-    if (this.length > 1) {
-      return (
-        <div className={`${bn}__indicators`}>
-          {this.props.announcements.map((_, index) => (
-            <div
-              key={index}
-              className={classWithModifiers(
-                `${bn}__indicator`,
-                { active: index === this.index },
-              )}
-            />
-          ))}
-        </div>
-      );
-    }
+    return (
+      <div className={`${bn}__indicators`}>
+        {this.props.announcements.map((_, index) => (
+          <div
+            key={index}
+            className={classWithModifiers(
+              `${bn}__indicator`,
+              { active: index === this.index },
+            )}
+          />
+        ))}
+      </div>
+    );
   }
+
+  private setAutoRotateTimer = () => {
+    this.clearAutoRotateTimer();
+
+    this.autoRotateTimerId = window.setInterval(
+      () => this.setIndex(this.index + 1),
+      autoRotateIntervalMs,
+    );
+  };
 
   @action
   private setIndex(index: number) {
     this.index = (index + this.length) % this.length;
-    this.containerRef.current?.scrollTo({
-      axis: 'x',
-      behavior: 'smooth',
-      left: this.announcementWidth * this.index,
-    });
   }
-
-  private setRotateAnnouncementTimer = () => {
-    this.clearRotateAnnouncementTimer();
-
-    if (this.length > 1) {
-      this.rotateAnnouncementTimer = setInterval(() => {
-        this.setIndex(this.index + 1);
-      }, 6000);
-    }
-  };
 }
