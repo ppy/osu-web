@@ -20,158 +20,160 @@
 
     @include('home._user_header_default', ['themeOverride' => 'settings'])
 
-    <div class="osu-page">
-        <div class="account-edit account-edit--first">
-            <div class="account-edit__section">
-                <h2 class="account-edit__section-title">
-                    {{ osu_trans('accounts.edit.profile.title') }}
-                </h2>
-            </div>
+    <div class="osu-page osu-page--account-edit">
+        <div>
+            <div class="account-edit account-edit--first">
+                <div class="account-edit__section">
+                    <h2 class="account-edit__section-title">
+                        {{ osu_trans('accounts.edit.profile.title') }}
+                    </h2>
+                </div>
 
-            <div class="account-edit__input-groups">
-                <div class="account-edit__input-group">
-                    <div class="account-edit-entry account-edit-entry--read-only">
-                        <div class="account-edit-entry__label">
-                            {{ osu_trans('accounts.edit.username') }}
-                        </div>
-                        <div class="account-edit-entry__input">
-                            {{ $user->username }}
-                        </div>
+                <div class="account-edit__input-groups">
+                    <div class="account-edit__input-group">
+                        <div class="account-edit-entry account-edit-entry--read-only">
+                            <div class="account-edit-entry__label">
+                                {{ osu_trans('accounts.edit.username') }}
+                            </div>
+                            <div class="account-edit-entry__input">
+                                {{ $user->username }}
+                            </div>
 
-                        <div class="account-edit-entry__button">
-                            <a class="btn-osu-big btn-osu-big--account-edit" href="{{route('store.products.show', 'username-change')}}">
-                                <div class="btn-osu-big__content">
-                                    <div class="btn-osu-big__left">
-                                        {{ osu_trans('common.buttons.change') }}
+                            <div class="account-edit-entry__button">
+                                <a class="btn-osu-big btn-osu-big--account-edit" href="{{route('store.products.show', 'username-change')}}">
+                                    <div class="btn-osu-big__content">
+                                        <div class="btn-osu-big__left">
+                                            {{ osu_trans('common.buttons.change') }}
+                                        </div>
+
+                                        <div class="btn-osu-big__icon">
+                                            <i class="fas fa-pencil-alt"></i>
+                                        </div>
                                     </div>
-
-                                    <div class="btn-osu-big__icon">
-                                        <i class="fas fa-pencil-alt"></i>
-                                    </div>
-                                </div>
-                            </a>
+                                </a>
+                            </div>
                         </div>
+                        @include('accounts._edit_country')
                     </div>
-                    @include('accounts._edit_country')
-                </div>
-                <div class="account-edit__input-group">
-                    @include('accounts._edit_entry_simple', ['field' => 'user_from'])
-                    @include('accounts._edit_entry_simple', ['field' => 'user_interests'])
-                    @include('accounts._edit_entry_simple', ['field' => 'user_occ'])
-                </div>
-                <div class="account-edit__input-group">
-                    @include('accounts._edit_entry_simple', ['field' => 'user_twitter'])
-                    @include('accounts._edit_entry_simple', ['field' => 'user_discord'])
-                    @include('accounts._edit_entry_simple', ['field' => 'user_website'])
+                    <div class="account-edit__input-group">
+                        @include('accounts._edit_entry_simple', ['field' => 'user_from'])
+                        @include('accounts._edit_entry_simple', ['field' => 'user_interests'])
+                        @include('accounts._edit_entry_simple', ['field' => 'user_occ'])
+                    </div>
+                    <div class="account-edit__input-group">
+                        @include('accounts._edit_entry_simple', ['field' => 'user_twitter'])
+                        @include('accounts._edit_entry_simple', ['field' => 'user_discord'])
+                        @include('accounts._edit_entry_simple', ['field' => 'user_website'])
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="osu-page" id="avatar">
-        <div class="account-edit">
-            <div class="account-edit__section">
-                <h2 class="account-edit__section-title">
-                    {{ osu_trans('accounts.edit.avatar.title') }}
-                </h2>
-            </div>
+        <div id="avatar">
+            <div class="account-edit">
+                <div class="account-edit__section">
+                    <h2 class="account-edit__section-title">
+                        {{ osu_trans('accounts.edit.avatar.title') }}
+                    </h2>
+                </div>
 
-            <div class="account-edit__input-groups">
-                <div class="account-edit__input-group">
-                    <div class="account-edit-entry account-edit-entry--avatar js-account-edit-avatar">
-                        <div class="account-edit-entry__avatar">
-                            <div class="avatar avatar--full-rounded js-current-user-avatar"></div>
+                <div class="account-edit__input-groups">
+                    <div class="account-edit__input-group">
+                        <div class="account-edit-entry account-edit-entry--avatar js-account-edit-avatar">
+                            <div class="account-edit-entry__avatar">
+                                <div class="avatar avatar--full-rounded js-current-user-avatar"></div>
 
-                            <div class="account-edit-entry__drop-overlay">
-                                <span>
-                                {{ osu_trans('common.dropzone.target') }}
-                                </span>
-                            </div>
-
-                            <div class="account-edit-entry__overlay-spinner">
-                                @include('objects._spinner')
-                            </div>
-                        </div>
-
-                        <label
-                            class="btn-osu-big btn-osu-big--account-edit"
-                            @if ($isSilenced)
-                                disabled
-                            @endif
-                        >
-                            <div class="btn-osu-big__content">
-                                <div class="btn-osu-big__left">
-                                    {{ osu_trans('common.buttons.upload_image') }}
+                                <div class="account-edit-entry__drop-overlay">
+                                    <span>
+                                    {{ osu_trans('common.dropzone.target') }}
+                                    </span>
                                 </div>
 
-                                <div class="btn-osu-big__icon">
-                                    <i class="far fa-arrow-alt-circle-up"></i>
+                                <div class="account-edit-entry__overlay-spinner">
+                                    @include('objects._spinner')
                                 </div>
                             </div>
 
-                            <input
-                                class="js-account-edit-avatar__button fileupload"
-                                type="file"
-                                name="avatar_file"
-                                data-url="{{ route('account.avatar') }}"
+                            <label
+                                class="btn-osu-big btn-osu-big--account-edit"
                                 @if ($isSilenced)
                                     disabled
                                 @endif
                             >
-                        </label>
+                                <div class="btn-osu-big__content">
+                                    <div class="btn-osu-big__left">
+                                        {{ osu_trans('common.buttons.upload_image') }}
+                                    </div>
 
-                        <div class="account-edit-entry__rules">
-                            {!! osu_trans('accounts.edit.avatar.rules', [
-                                'link' => link_to(
-                                    wiki_url('Rules'),
-                                    osu_trans('accounts.edit.avatar.rules_link')
-                                )
-                            ]) !!}
+                                    <div class="btn-osu-big__icon">
+                                        <i class="far fa-arrow-alt-circle-up"></i>
+                                    </div>
+                                </div>
+
+                                <input
+                                    class="js-account-edit-avatar__button fileupload"
+                                    type="file"
+                                    name="avatar_file"
+                                    data-url="{{ route('account.avatar') }}"
+                                    @if ($isSilenced)
+                                        disabled
+                                    @endif
+                                >
+                            </label>
+
+                            <div class="account-edit-entry__rules">
+                                {!! osu_trans('accounts.edit.avatar.rules', [
+                                    'link' => link_to(
+                                        wiki_url('Rules'),
+                                        osu_trans('accounts.edit.avatar.rules_link')
+                                    )
+                                ]) !!}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="osu-page">
-        @include('accounts._edit_signature')
-    </div>
+        <div>
+            @include('accounts._edit_signature')
+        </div>
 
-    <div class="osu-page">
-        @include('accounts._edit_playstyles')
-    </div>
+        <div>
+            @include('accounts._edit_playstyles')
+        </div>
 
-    <div class="osu-page">
-        @include('accounts._edit_privacy')
-    </div>
+        <div>
+            @include('accounts._edit_privacy')
+        </div>
 
-    <div class="osu-page" id="notifications">
-        @include('accounts._edit_notifications')
-    </div>
+        <div id="notifications">
+            @include('accounts._edit_notifications')
+        </div>
 
-    <div class="osu-page">
-        @include('accounts._edit_options')
-    </div>
+        <div>
+            @include('accounts._edit_options')
+        </div>
 
-    <div class="osu-page">
-        @include('accounts._edit_password')
-    </div>
+        <div>
+            @include('accounts._edit_password')
+        </div>
 
-    <div class="osu-page">
-        @include('accounts._edit_email')
-    </div>
+        <div>
+            @include('accounts._edit_email')
+        </div>
 
-    <div class="osu-page">
-        @include('accounts._edit_sessions')
-    </div>
+        <div>
+            @include('accounts._edit_sessions')
+        </div>
 
-    <div class="osu-page" id="oauth">
-        @include('accounts._edit_oauth')
-    </div>
+        <div id="oauth">
+            @include('accounts._edit_oauth')
+        </div>
 
-    <div class="osu-page" id="legacy-api">
-        @include('accounts._edit_legacy_api')
+        <div id="legacy-api">
+            @include('accounts._edit_legacy_api')
+        </div>
     </div>
 @endsection
 
