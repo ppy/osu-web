@@ -39,25 +39,6 @@ function parseState(state: string) {
   });
 }
 
-// FIXME this doesn't make it so the modes with optional beatmapId can pass a beatmapId that gets ignored.
-function filterDiscusionsByMode(discussions: BeatmapsetDiscussionJson[], mode: 'general' | 'timeline', beatmapId: number): BeatmapsetDiscussionJson[];
-function filterDiscusionsByMode(discussions: BeatmapsetDiscussionJson[], mode: 'generalAll' | 'reviews'): BeatmapsetDiscussionJson[];
-function filterDiscusionsByMode(discussions: BeatmapsetDiscussionJson[], mode: DiscussionMode, beatmapId?: number) {
-  switch (mode) {
-    case 'general':
-      return discussions.filter((discussion) => discussion.beatmap_id === beatmapId);
-    case 'generalAll':
-      return discussions.filter((discussion) => discussion.beatmap_id == null && discussion.message_type !== 'review');
-    case 'reviews':
-      return discussions.filter((discussion) => discussion.message_type === 'review');
-    case 'timeline':
-      return discussions.filter((discussion) => discussion.beatmap_id === beatmapId && discussion.timestamp != null);
-    default:
-      switchNever(mode);
-      throw new Error('missing valid mode');
-  }
-}
-
 function isFilter(value: unknown): value is Filter {
   return (filters as readonly unknown[]).includes(value);
 }
@@ -123,12 +104,28 @@ export default class DiscussionsState {
   get discussionsByMode() {
     const discussions = this.discussionsByFilter[this.currentFilter];
 
-    return {
-      general: filterDiscusionsByMode(discussions, 'general', this.currentBeatmapId),
-      generalAll: filterDiscusionsByMode(discussions, 'generalAll'),
-      reviews: filterDiscusionsByMode(discussions, 'reviews'),
-      timeline: filterDiscusionsByMode(discussions, 'timeline', this.currentBeatmapId),
+    const value: Record<DiscussionMode, BeatmapsetDiscussionJson[]> = {
+      general: [],
+      generalAll: [],
+      reviews: [],
+      timeline: [],
     };
+
+    for (const discussion of discussions) {
+      if (discussion.message_type === 'review') {
+        value.reviews.push(discussion);
+      } else if (discussion.beatmap_id == null) {
+        value.generalAll.push(discussion);
+      } else if (discussion.beatmap_id === this.currentBeatmapId) {
+        value.general.push(discussion);
+
+        if (discussion.timestamp != null) {
+          value.timeline.push(discussion);
+        }
+      }
+    }
+
+    return value;
   }
 
   @computed
@@ -204,8 +201,8 @@ export default class DiscussionsState {
   @computed
   get hasCurrentUserHyped() {
     const currentUser = core.currentUser; // core.currentUser check below doesn't make the inferrence that it's not nullable after the check.
-    const discussions = filterDiscusionsByMode(this.discussionsByFilter.hype, 'generalAll');
-    return currentUser != null && discussions.some((discussion) => discussion?.user_id === currentUser.id);
+    return currentUser != null
+      && this.discussionsByFilter.hype.some((discussion) => discussion.beatmap_id == null && discussion?.user_id === currentUser.id);
   }
 
   @computed
