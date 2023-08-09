@@ -53,12 +53,15 @@
       border-radius: 10000px;
       content: '';
       height: 2px;
-      transition: height 100ms ease-out;
+      opacity: 0.5;
+      transition: 100ms ease-out;
+      transition-property: height, opacity;
       width: 30px;
     }
 
     &--active::before {
       height: 6px;
+      opacity: 1;
     }
   }
 
