@@ -20,7 +20,7 @@ interface Props {
 }
 
 const components = Object.freeze({
-  a: (props: JSX.IntrinsicElements['a']) => linkRenderer(props, false),
+  a: linkRenderer,
 });
 
 @observer
