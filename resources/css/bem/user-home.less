@@ -45,6 +45,22 @@
     }
   }
 
+  &__news-announcements-placeholder {
+    align-items: center;
+    display: flex;
+    height: 250px; // news-announcements__container height
+    justify-content: center;
+    margin-top: 20px; // news-announcements margin
+
+    &--with-indicators {
+      // This part won't be identical to the real component if the indicators
+      // wrap onto more than one line, but it's good enough for a placeholder
+      margin-bottom:
+        10px /* news-announcements__indicators margin */ +
+        6px /* news-announcements__indicator height */;
+    }
+  }
+
   &__news-posts-group {
     .default-box-shadow();
     display: block;

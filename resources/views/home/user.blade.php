@@ -15,7 +15,18 @@
     <div class="osu-page">
         <div class="user-home">
             <div class="user-home__news">
-                <div class="js-react--news-announcements"></div>
+                <div class="js-react--news-announcements">
+                    @if (count($newsAnnouncements) > 0)
+                        <div
+                            class="{{ class_with_modifiers(
+                                'user-home__news-announcements-placeholder',
+                                ['with-indicators' => count($newsAnnouncements) > 1],
+                            ) }}"
+                        >
+                            {!! spinner() !!}
+                        </div>
+                    @endif
+                </div>
 
                 <h2 class="user-home__news-title">{{ osu_trans('home.user.news.title') }}</h2>
 
