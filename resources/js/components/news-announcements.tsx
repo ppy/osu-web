@@ -22,7 +22,7 @@ interface Props {
 }
 
 @observer
-export default class Main extends React.Component<Props> {
+export default class NewsAnnouncements extends React.Component<Props> {
   private autoRotateTimerId?: number;
   @observable private index = 0;
   @observable private maxIndex = this.length - 1;
