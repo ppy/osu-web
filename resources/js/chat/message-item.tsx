@@ -1,8 +1,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { linkRenderer } from 'beatmap-discussions/renderers';
 import { Spinner } from 'components/spinner';
+import { linkRenderer } from 'markdown/renderers';
 import { observer } from 'mobx-react';
 import Message from 'models/chat/message';
 import * as React from 'react';
