@@ -11,7 +11,6 @@ import core from 'osu-core-singleton';
 import BeatmapsetDiscussionsStore from 'stores/beatmapset-discussions-store';
 import { findDefault, group, sortWithMode } from 'utils/beatmap-helper';
 import { makeUrl, parseUrl } from 'utils/beatmapset-discussion-helper';
-import { switchNever } from 'utils/switch-never';
 import { Filter, filters } from './current-discussions';
 import DiscussionMode, { DiscussionPage, discussionModes, isDiscussionPage } from './discussion-mode';
 
@@ -87,12 +86,47 @@ export default class DiscussionsState {
       pending: [],
       praises: [],
       resolved: [],
-      total: [],
+      total: this.discussionForSelectedBeatmap,
     };
 
-    for (const filter of filters) {
-      groups[filter] = this.filterDiscussionsByFilter(this.discussionForSelectedBeatmap, filter);
+    const currentUser = core.currentUser;
+    const reviewsWithPending = new Set<BeatmapsetDiscussionJson>();
+
+    for (const discussion of this.discussionForSelectedBeatmap) {
+      if (currentUser != null && discussion.user_id === currentUser.id) {
+        groups.mine.push(discussion);
+      }
+
+      if (discussion.deleted_at != null) {
+        groups.deleted.push(discussion);
+      }
+
+      if (discussion.message_type === 'hype') {
+        groups.hype.push(discussion);
+        groups.praises.push(discussion);
+      } else if (discussion.message_type === 'mapper_note') {
+        groups.mapperNotes.push(discussion);
+      } else if (discussion.message_type === 'praise') {
+        groups.praises.push(discussion);
+      }
+
+      if (discussion.can_be_resolved) {
+        if (discussion.resolved) {
+          groups.resolved.push(discussion);
+        } else {
+          groups.pending.push(discussion);
+          // only reviews with unresolved discussions get added.
+          if (discussion.parent_id != null) {
+            const parentDiscussion = this.store.discussions.get(discussion.parent_id);
+            if (parentDiscussion != null && parentDiscussion.message_type === 'review') {
+              reviewsWithPending.add(parentDiscussion);
+            }
+          }
+        }
+      }
     }
+
+    groups.pending.push(...reviewsWithPending);
 
     return groups;
   }
@@ -392,48 +426,6 @@ export default class DiscussionsState {
 
     if (watching != null) {
       this.beatmapset.current_user_attributes.is_watching = watching;
-    }
-  }
-
-  private filterDiscussionsByFilter(discussions: BeatmapsetDiscussionJson[], filter: Filter) {
-    switch (filter) {
-      case 'deleted':
-        return discussions.filter((discussion) => discussion.deleted_at != null);
-      case 'hype':
-        return discussions.filter((discussion) => discussion.message_type === 'hype');
-      case 'mapperNotes':
-        return discussions.filter((discussion) => discussion.message_type === 'mapper_note');
-      case 'mine': {
-        const currentUser = core.currentUser;
-        return currentUser != null ? discussions.filter((discussion) => discussion.user_id === currentUser.id) : [];
-      }
-      case 'pending': {
-        const reviewsWithPending = new Set<BeatmapsetDiscussionJson>();
-
-        const filteredDiscussions = discussions.filter((discussion) => {
-          if (!discussion.can_be_resolved || discussion.resolved) return false;
-
-          if (discussion.parent_id != null) {
-            const parentDiscussion = this.store.discussions.get(discussion.parent_id);
-            if (parentDiscussion != null && parentDiscussion.message_type === 'review') {
-              reviewsWithPending.add(parentDiscussion);
-            }
-          }
-
-          return true;
-        });
-
-        return [...filteredDiscussions, ...reviewsWithPending.values()];
-      }
-      case 'praises':
-        return discussions.filter((discussion) => discussion.message_type === 'praise' || discussion.message_type === 'hype');
-      case 'resolved':
-        return discussions.filter((discussion) => discussion.can_be_resolved && discussion.resolved);
-      case 'total':
-        return discussions;
-      default:
-        switchNever(filter);
-        throw new Error('missing valid filter');
     }
   }
 }
