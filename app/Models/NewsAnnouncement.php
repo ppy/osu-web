@@ -36,7 +36,7 @@ class NewsAnnouncement extends Model
 
         $query
             ->where('started_at', '<=', $now)
-            ->where(function ($query) use ($now) {
+            ->where(function (Builder $query) use ($now) {
                 $query
                     ->where('ended_at', '>', $now)
                     ->orWhereNull('ended_at');
