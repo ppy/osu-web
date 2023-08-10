@@ -11,11 +11,6 @@ use App\Models\ContestJudgeCategory;
 
 class ContestJudgeCategoryTransformer extends TransformerAbstract
 {
-    protected array $availableIncludes = [
-        'entries',
-        'users_voted_count',
-    ];
-
     public function transform(ContestJudgeCategory $judgeCategory): array
     {
         return [

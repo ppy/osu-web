@@ -76,7 +76,7 @@ class ContestEntriesController extends Controller
         $categoryVotes = collect($params['category_votes']);
         $comment = $params['comment'];
 
-        DB::osu_transaction(function () use ($categoryVotes, $comment, $entry) {
+        DB::transaction(function () use ($categoryVotes, $comment, $entry) {
             $vote = $entry->judgeVotes->where('user_id', auth()->user()->getKey())->first();
 
             if ($vote !== null) {
