@@ -112,7 +112,6 @@
                             {{ osu_trans('store.product.stock.out_with_alternative') }}
                         @else
                             {{ osu_trans('store.product.stock.out') }}
-                        </div>
                         @endif
                     </div>
                 </div>
