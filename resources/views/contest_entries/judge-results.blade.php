@@ -24,15 +24,15 @@
 @section('script')
     @parent
 
-    <script id="json-contest">
+    <script id="json-contest" type="application/json">
         {!! json_encode($contestJson) !!}
     </script>
 
-    <script id="json-entry">
+    <script id="json-entry" type="application/json">
         {!! json_encode($entryJson) !!}
     </script>
 
-    <script id="json-entries">
+    <script id="json-entries" type="application/json">
         {!! json_encode($entriesJson) !!}
     </script>
 
