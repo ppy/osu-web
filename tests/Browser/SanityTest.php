@@ -19,6 +19,8 @@ use App\Models\Chat\Channel;
 use App\Models\Chat\UserChannel;
 use App\Models\Comment;
 use App\Models\Contest;
+use App\Models\ContestEntry;
+use App\Models\ContestJudge;
 use App\Models\Count;
 use App\Models\Country;
 use App\Models\Forum\AuthOption;
@@ -156,7 +158,18 @@ class SanityTest extends DuskTestCase
         self::$scaffolding['pack'] = BeatmapPack::factory()->create();
 
         // factories for /community/contests/*
-        self::$scaffolding['contest'] = Contest::factory()->entry()->create();
+        self::$scaffolding['contest'] = Contest::factory()->voting()->judged()->create();
+
+        // user needs to be a judge in order to access contest judge panel
+        ContestJudge::factory()->create([
+            'contest_id' => self::$scaffolding['contest']->getKey(),
+            'user_id' => self::$scaffolding['user']->getKey(),
+        ]);
+
+        self::$scaffolding['contest_entry'] = ContestEntry::factory()->create([
+            // need to use separate contest for judge results route since it has to be completed
+            'contest_id' => Contest::factory()->completed()->judged()->create()->getKey(),
+        ]);
 
         // factories for /community/tournaments/*
         self::$scaffolding['tournament'] = Tournament::factory()->create();
