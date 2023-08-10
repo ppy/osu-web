@@ -7,6 +7,7 @@ namespace App\Transformers;
 
 use App\Models\ContestEntry;
 use App\Models\DeletedUser;
+use League\Fractal\Resource\Collection;
 use League\Fractal\Resource\Item;
 use Sentry\State\Scope;
 
@@ -53,7 +54,7 @@ class ContestEntryTransformer extends TransformerAbstract
         return $this->item($judgeVote, new ContestJudgeVoteTransformer());
     }
 
-    public function includeJudgeVotes(ContestEntry $entry)
+    public function includeJudgeVotes(ContestEntry $entry): Collection
     {
         return $this->collection($entry->judgeVotes, new ContestJudgeVoteTransformer());
     }

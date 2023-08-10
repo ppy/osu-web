@@ -15,6 +15,7 @@ class ContestJudgeFactory extends Factory
 
     public function definition(): array
     {
+        // pivot table...
         return [];
     }
 }
