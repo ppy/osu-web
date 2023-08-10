@@ -189,11 +189,7 @@ class ChangelogEntry extends Model
         static $separator = "\n\n---\n";
         // prepended with \n\n just in case the message starts with ---\n (blank first part).
         $message = "\n\n".trim(str_replace("\r\n", "\n", $message));
-        $splitPos = strpos($message, $separator);
-
-        if ($splitPos === false) {
-            $splitPos = strlen($message);
-        }
+        $splitPos = null_if_false(strpos($message, $separator)) ?? strlen($message);
 
         return [
             presence(trim(substr($message, 0, $splitPos))),
