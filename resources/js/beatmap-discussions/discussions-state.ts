@@ -10,7 +10,7 @@ import moment from 'moment';
 import core from 'osu-core-singleton';
 import BeatmapsetDiscussionsStore from 'stores/beatmapset-discussions-store';
 import { findDefault, group, sortWithMode } from 'utils/beatmap-helper';
-import { makeUrl, parseUrl } from 'utils/beatmapset-discussion-helper';
+import { canModeratePosts, makeUrl, parseUrl } from 'utils/beatmapset-discussion-helper';
 import { Filter, filters } from './current-discussions';
 import DiscussionMode, { DiscussionPage, discussionModes, isDiscussionPage } from './discussion-mode';
 
@@ -268,7 +268,9 @@ export default class DiscussionsState {
 
   @computed
   get presentDiscussions() {
-    return this.discussionsArray.filter((discussion) => discussion.deleted_at == null);
+    return canModeratePosts()
+      ? this.discussionsArray
+      : this.discussionsArray.filter((discussion) => discussion.deleted_at == null);
   }
 
   @computed

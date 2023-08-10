@@ -122,7 +122,8 @@ export class Discussion extends React.Component<Props> {
   render() {
     if (!this.isVisible(this.props.discussion)) return null;
     const firstPost = startingPost(this.props.discussion);
-    // no first post means this disucussion is empty.
+    // firstPost shouldn't be null anymore;
+    // just simpler to allow startingPost to return undefined and adding a null check in render.
     if (firstPost == null) return null;
 
     const lineClasses = classWithModifiers(`${bn}__line`, { resolved: this.props.discussion.resolved });
