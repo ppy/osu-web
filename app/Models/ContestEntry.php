@@ -13,7 +13,6 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
  * @property int $contest_id
  * @property \Carbon\Carbon|null $created_at
  * @property string|null $entry_url
- * @property string|null $judge_score
  * @property string|null $thumbnail_url
  * @property int $id
  * @property string $masked_name
