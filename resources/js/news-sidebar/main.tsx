@@ -23,8 +23,8 @@ interface Props {
 }
 
 export default function Main(props: Props) {
-  const groupedPosts: GroupedPosts = {};
-  const dateMap: DateMap = {};
+  const groupedPosts: Partial<GroupedPosts> = {};
+  const dateMap: Partial<DateMap> = {};
   const postDates = new Set<string>();
 
   for (const post of props.data.news_posts) {
@@ -60,11 +60,13 @@ export default function Main(props: Props) {
         <Years currentYear={props.data.current_year} years={props.data.years} />
 
         {orderedPostDates.map((key) => {
-          if (groupedPosts[key] == null || dateMap[key] == null) {
+          const date = dateMap[key];
+          const posts = groupedPosts[key];
+
+          if (posts == null || date == null) {
             return;
           }
 
-          const date = dateMap[key];
           const initialExpand = first;
           first = false;
 
@@ -73,7 +75,7 @@ export default function Main(props: Props) {
             currentPost={props.currentPost}
             date={date}
             initialExpand={initialExpand}
-            posts={groupedPosts[key]}
+            posts={posts}
           />);
         })}
       </div>

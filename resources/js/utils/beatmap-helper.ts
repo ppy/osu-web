@@ -85,7 +85,8 @@ export function getDiffColour(rating: number) {
 }
 
 export function group<T extends BeatmapJson>(beatmaps?: T[] | null): Map<GameMode, T[]> {
-  const grouped = _.groupBy(beatmaps ?? [], 'mode');
+  // TODO: replace with mapBy
+  const grouped: Partial<Record<GameMode, T[]>> = _.groupBy(beatmaps ?? [], 'mode');
   const ret = new Map<GameMode, T[]>();
 
   gameModes.forEach((mode) => {

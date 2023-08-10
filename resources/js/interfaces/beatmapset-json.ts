@@ -67,7 +67,7 @@ export interface CurrentUserAttributes {
   can_remove_from_loved: boolean;
   is_watching: boolean;
   new_hype_time: string | null;
-  nomination_modes: Partial<Record<GameMode, 'full' | 'limited'>>;
+  nomination_modes: Partial<Record<GameMode, 'full' | 'limited'>> | null;
   remaining_hype: number;
 }
 
