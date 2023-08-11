@@ -107,6 +107,11 @@ class UsernameValidationTest extends TestCase
         $this->assertTrue(UsernameValidation::validateUsersOfUsername('user1')->isAny());
     }
 
+    /**
+     * Data in order:
+     * - Username
+     * - Whether the username should be valid
+     */
     public function usernameValidationDataProvider(): array
     {
         return [
