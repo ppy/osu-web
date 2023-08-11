@@ -3,6 +3,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
 namespace Tests\Libraries;
 
 use App\Libraries\UsernameValidation;
@@ -14,7 +16,7 @@ use Tests\TestCase;
 // FIXME: need more tests
 class UsernameValidationTest extends TestCase
 {
-    public function testusersOfUsernameIncludesCurrentUsernameOwner()
+    public function testUsersOfUsernameIncludesCurrentUsernameOwner(): void
     {
         $existing = User::factory()->create([
             'username' => 'user1',
@@ -27,7 +29,7 @@ class UsernameValidationTest extends TestCase
         $this->assertTrue($existing->is($users->first()));
     }
 
-    public function testValidateUsersOfUsernameInactive()
+    public function testValidateUsersOfUsernameInactive(): void
     {
         $existing = User::factory()->create([
             'username' => 'user1',
@@ -38,7 +40,7 @@ class UsernameValidationTest extends TestCase
         $this->assertFalse(UsernameValidation::validateUsersOfUsername('user1')->isAny());
     }
 
-    public function testValidateUsersOfUsernameInactiveFormerTopRank()
+    public function testValidateUsersOfUsernameInactiveFormerTopRank(): void
     {
         $existing = User::factory()->create([
             'username' => 'user1',
@@ -53,7 +55,7 @@ class UsernameValidationTest extends TestCase
         $this->assertTrue(UsernameValidation::validateUsersOfUsername('user1')->isAny());
     }
 
-    public function testValidateUsersOfUsernameRenamedTopRank()
+    public function testValidateUsersOfUsernameRenamedTopRank(): void
     {
         $existing = User::factory()->create([
             'username' => 'user2',
