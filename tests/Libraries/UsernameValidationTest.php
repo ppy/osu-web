@@ -66,85 +66,84 @@ class UsernameValidationTest extends TestCase
     }
 
     /**
-     * @dataProvider usersOfUsernameDataProvider
+     * @dataProvider usersOfUsernameLookupDataProvider
      */
-    public function testValidateUsersOfUsername(): void
-    {
-        [, $username] = $this->createUsersOfUsernameDataProviderModels(...func_get_args());
-
-        $this->assertTrue(UsernameValidation::validateUsersOfUsername($username)->isEmpty());
-    }
-
-    /**
-     * @dataProvider usersOfUsernameDataProvider
-     */
-    public function testValidateUsersOfUsernameFormerlyAlmostTopRanked(): void
-    {
-        [$user, $username] = $this->createUsersOfUsernameDataProviderModels(...func_get_args());
-
-        RankHighest::factory()->create([
-            'rank' => 101,
-            'user_id' => $user,
+    public function testValidateUsersOfUsername(
+        bool $throughUsernameHistory,
+        bool $underscoresReplaced,
+        bool $expectLookupSuccess,
+    ): void {
+        $username = 'username_1';
+        $user = User::factory()->create([
+            'username' => $username,
+            'username_clean' => $username,
         ]);
 
-        $this->assertTrue(UsernameValidation::validateUsersOfUsername($username)->isEmpty());
-    }
+        if ($throughUsernameHistory) {
+            $username = "Old_{$username}";
+            $user->usernameChangeHistory()->create([
+                'username' => $user->username,
+                'username_last' => $username,
+            ]);
+        }
 
-    /**
-     * @dataProvider usersOfUsernameDataProvider
-     */
-    public function testValidateUsersOfUsernameFormerlyTopRanked(): void
-    {
-        [$user, $username, $expectLookupSuccess]
-            = $this->createUsersOfUsernameDataProviderModels(...func_get_args());
+        if ($underscoresReplaced) {
+            $username = str_replace('_', ' ', $username);
+        }
 
+        // Make the user fail at least one of the checks
         RankHighest::factory()->create([
             'rank' => 100,
             'user_id' => $user,
         ]);
 
+        // The validation should succeed only if the lookup does not
         $this->assertNotSame(
             $expectLookupSuccess,
             UsernameValidation::validateUsersOfUsername($username)->isEmpty(),
         );
     }
 
-    /**
-     * @dataProvider usersOfUsernameDataProvider
-     */
+    public function testValidateUsersOfUsernameFormerlyAlmostTopRanked(): void
+    {
+        $user = User
+            ::factory()
+            ->has(RankHighest::factory()->state(['rank' => 101]))
+            ->create();
+
+        $this->assertTrue(UsernameValidation::validateUsersOfUsername($user->username)->isEmpty());
+    }
+
+    public function testValidateUsersOfUsernameFormerlyTopRanked(): void
+    {
+        $user = User
+            ::factory()
+            ->has(RankHighest::factory()->state(['rank' => 100]))
+            ->create();
+
+        $this->assertFalse(UsernameValidation::validateUsersOfUsername($user->username)->isEmpty());
+    }
+
     public function testValidateUsersOfUsernameHasBadges(): void
     {
-        [$user, $username, $expectLookupSuccess]
-            = $this->createUsersOfUsernameDataProviderModels(...func_get_args());
+        $user = User::factory()->create();
 
         $user->badges()->create([
             'description' => '',
             'image' => '',
         ]);
 
-        $this->assertNotSame(
-            $expectLookupSuccess,
-            UsernameValidation::validateUsersOfUsername($username)->isEmpty(),
-        );
+        $this->assertFalse(UsernameValidation::validateUsersOfUsername($user->username)->isEmpty());
     }
 
-    /**
-     * @dataProvider usersOfUsernameDataProvider
-     */
     public function testValidateUsersOfUsernameHasRankedBeatmapsets(): void
     {
-        [$user, $username, $expectLookupSuccess]
-            = $this->createUsersOfUsernameDataProviderModels(...func_get_args());
+        $user = User
+            ::factory()
+            ->has(Beatmapset::factory()->state(['approved' => Beatmapset::STATES['ranked']]))
+            ->create();
 
-        Beatmapset::factory()->create([
-            'approved' => Beatmapset::STATES['ranked'],
-            'user_id' => $user,
-        ]);
-
-        $this->assertNotSame(
-            $expectLookupSuccess,
-            UsernameValidation::validateUsersOfUsername($username)->isEmpty(),
-        );
+        $this->assertFalse(UsernameValidation::validateUsersOfUsername($user->username)->isEmpty());
     }
 
     /**
@@ -178,7 +177,7 @@ class UsernameValidationTest extends TestCase
      * - Whether the user lookup should have its underscores replaced with spaces
      * - Whether the user lookup should return the user
      */
-    public function usersOfUsernameDataProvider(): array
+    public function usersOfUsernameLookupDataProvider(): array
     {
         return [
             [true,  true,  false],
@@ -186,35 +185,5 @@ class UsernameValidationTest extends TestCase
             [false, true,  true],
             [false, false, true],
         ];
-    }
-
-    /**
-     * Create a user and username for lookup based on input from
-     * `usersOfUsernameDataProvider()`.
-     */
-    private function createUsersOfUsernameDataProviderModels(
-        bool $throughUsernameHistory,
-        bool $underscoresReplaced,
-        bool $lookupShouldSucceed,
-    ): array {
-        $username = 'username_1';
-        $user = User::factory()->create([
-            'username' => $username,
-            'username_clean' => $username,
-        ]);
-
-        if ($throughUsernameHistory) {
-            $username = "Old_{$username}";
-            $user->usernameChangeHistory()->create([
-                'username' => $user->username,
-                'username_last' => $username,
-            ]);
-        }
-
-        if ($underscoresReplaced) {
-            $username = str_replace('_', ' ', $username);
-        }
-
-        return [$user, $username, $lookupShouldSucceed];
     }
 }
