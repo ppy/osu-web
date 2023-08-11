@@ -5,11 +5,13 @@
 
 namespace App\Libraries;
 
+use App\Models\Beatmapset;
 use App\Models\RankHighest;
 use App\Models\User;
 use App\Models\UsernameChangeHistory;
 use Carbon\Carbon;
 use DB;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 
 class UsernameValidation
@@ -84,11 +86,12 @@ class UsernameValidation
         $errors = new ValidationErrors('user');
 
         $users = static::usersOfUsername($username);
+        $userIds = $users->pluck('user_id');
 
         // top 100
         // Queried directly on model because User::rankHighests is disabled
         // when experimental rank is set as default.
-        $highestRank = RankHighest::whereIn('user_id', $users->pluck('user_id'))->min('rank');
+        $highestRank = RankHighest::whereIn('user_id', $userIds)->min('rank');
         if ($highestRank !== null && $highestRank <= 100) {
             return $errors->add('username', '.username_locked');
         }
@@ -98,11 +101,25 @@ class UsernameValidation
             if ($user->badges()->exists()) {
                 return $errors->add('username', '.username_locked');
             }
+        }
 
-            // ranked beatmaps
-            if ($user->profileBeatmapsetsRanked()->exists()) {
-                return $errors->add('username', '.username_locked');
-            }
+        // Check if any of the users are a host or guest of any Ranked,
+        // Approved, Qualified, or Loved beatmapsets
+        if (
+            Beatmapset
+                ::active()
+                ->withStates(['approved', 'loved', 'qualified', 'ranked'])
+                ->where(function (Builder $query) use ($userIds) {
+                    $query
+                        ->whereIn('user_id', $userIds)
+                        ->orWhereHas(
+                            'beatmaps',
+                            fn (Builder $query) => $query->whereIn('user_id', $userIds),
+                        );
+                })
+                ->exists()
+        ) {
+            return $errors->add('username', '.username_locked');
         }
 
         return $errors;
