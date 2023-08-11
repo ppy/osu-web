@@ -48,8 +48,8 @@ class UpdateAchievementsTable extends Migration
             $table->string('image', 50)->change();
         });
 
-        Schema::table('osu_achievements', function ($table) {
-            $table->mediumIncrements('achievement_id')->unsigned()->change();
-        });
+        // Laravel mediumIncrements() always specifies primary key, causing conflicts.
+
+        DB::statement('ALTER TABLE osu_achievements MODIFY achievement_id MEDIUMINT UNSIGNED NOT NULL AUTO_INCREMENT');
     }
 }
