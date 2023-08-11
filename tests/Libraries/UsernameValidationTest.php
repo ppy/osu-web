@@ -29,6 +29,44 @@ class UsernameValidationTest extends TestCase
         $this->assertTrue($existing->is($users->first()));
     }
 
+    public function testValidateAvailabilityWhenNotInUse(): void
+    {
+        $this->assertTrue(UsernameValidation::validateAvailability('Free username')->isEmpty());
+    }
+
+    public function testValidateAvailabilityWithActiveUser(): void
+    {
+        $user = User::factory()->create(['user_lastvisit' => Carbon::now()]);
+
+        $this->assertFalse(UsernameValidation::validateAvailability($user->username)->isEmpty());
+    }
+
+    public function testValidateAvailabilityWithInactiveUser(): void
+    {
+        $user = User::factory()->create(['user_lastvisit' => Carbon::now()->subDecade()]);
+
+        $this->assertTrue(UsernameValidation::validateAvailability($user->username)->isEmpty());
+    }
+
+    public function testValidateAvailabilityWithRecentlyUsedUsername(): void
+    {
+        User
+            ::factory()
+            ->create([
+                'user_lastvisit' => Carbon::now(),
+                'username' => 'New username',
+                'username_clean' => 'new username',
+            ])
+            ->usernameChangeHistory()
+            ->create([
+                'timestamp' => Carbon::now(),
+                'username' => 'New username',
+                'username_last' => 'Old username',
+            ]);
+
+        $this->assertFalse(UsernameValidation::validateAvailability('Old username')->isEmpty());
+    }
+
     /**
      * @dataProvider usernameValidationDataProvider
      */
