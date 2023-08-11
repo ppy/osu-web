@@ -34,7 +34,7 @@ class NullableCoverJsonOnUserProfileCustomizations extends Migration
             ->update(['cover_json' => '']);
 
         Schema::table('user_profile_customizations', function ($table) {
-            $table->text('cover_json')->nullable(false)->default()->change();
+            $table->text('cover_json')->nullable(false)->default('')->change();
         });
     }
 }
