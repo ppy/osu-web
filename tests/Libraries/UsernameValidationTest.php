@@ -21,7 +21,6 @@ class UsernameValidationTest extends TestCase
         $existing = User::factory()->create([
             'username' => 'user1',
             'username_clean' => 'user1',
-            'user_lastvisit' => Carbon::now()->subYears(),
         ]);
 
         $users = UsernameValidation::usersOfUsername('user1');
@@ -78,23 +77,21 @@ class UsernameValidationTest extends TestCase
         );
     }
 
-    public function testValidateUsersOfUsernameInactive(): void
+    public function testValidateUsersOfUsername(): void
     {
         $existing = User::factory()->create([
             'username' => 'user1',
             'username_clean' => 'user1',
-            'user_lastvisit' => Carbon::now()->subYears(20),
         ]);
 
         $this->assertFalse(UsernameValidation::validateUsersOfUsername('user1')->isAny());
     }
 
-    public function testValidateUsersOfUsernameInactiveFormerTopRank(): void
+    public function testValidateUsersOfUsernameFormerTopRank(): void
     {
         $existing = User::factory()->create([
             'username' => 'user1',
             'username_clean' => 'user1',
-            'user_lastvisit' => Carbon::now()->subYears(20),
         ]);
         RankHighest::factory()->create([
             'user_id' => $existing,
@@ -109,10 +106,8 @@ class UsernameValidationTest extends TestCase
         $existing = User::factory()->create([
             'username' => 'user2',
             'username_clean' => 'user2',
-            'user_lastvisit' => Carbon::now(),
         ]);
         $existing->usernameChangeHistory()->make([
-            'timestamp' => Carbon::now()->subYears(20),
             'username' => 'user2',
             'username_last' => 'user1',
         ])->saveOrExplode();
