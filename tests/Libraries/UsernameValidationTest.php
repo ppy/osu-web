@@ -29,6 +29,17 @@ class UsernameValidationTest extends TestCase
         $this->assertTrue($existing->is($users->first()));
     }
 
+    /**
+     * @dataProvider usernameValidationDataProvider
+     */
+    public function testValidateUsername(string $username, bool $expectValid): void
+    {
+        $this->assertSame(
+            $expectValid,
+            UsernameValidation::validateUsername($username)->isEmpty(),
+        );
+    }
+
     public function testValidateUsersOfUsernameInactive(): void
     {
         $existing = User::factory()->create([
@@ -73,5 +84,25 @@ class UsernameValidationTest extends TestCase
         ]);
 
         $this->assertTrue(UsernameValidation::validateUsersOfUsername('user1')->isAny());
+    }
+
+    public function usernameValidationDataProvider(): array
+    {
+        return [
+            'alphabetic'                   => ['Username',         true],
+            'alphanumeric'                 => ['Username1000',     true],
+            'numeric'                      => ['1000',             true],
+            'space at beginning'           => [' Username',        false],
+            'space at end'                 => ['Username ',        false],
+            'space in middle'              => ['Username 1000',    true],
+            'too short'                    => ['aa',               false],
+            'shortest'                     => ['aaa',              true],
+            'too long'                     => ['aaaaaaaaaaaaaaaa', false],
+            'longest'                      => ['aaaaaaaaaaaaaaa',  true],
+            'two spaces in middle'         => ['Username  1000',   false],
+            'invalid special characters'   => ['Usern@me',         false],
+            'all valid special characters' => ['-[]_',             true],
+            'mixed space and underscore'   => ['Username_1 2',     false],
+        ];
     }
 }
