@@ -8,6 +8,7 @@ namespace App\Libraries;
 use App\Models\Beatmapset;
 use App\Models\RankHighest;
 use App\Models\User;
+use App\Models\UserBadge;
 use App\Models\UsernameChangeHistory;
 use Carbon\Carbon;
 use DB;
@@ -84,9 +85,7 @@ class UsernameValidation
     public static function validateUsersOfUsername(string $username): ValidationErrors
     {
         $errors = new ValidationErrors('user');
-
-        $users = static::usersOfUsername($username);
-        $userIds = $users->pluck('user_id');
+        $userIds = static::usersOfUsername($username)->pluck('user_id');
 
         // top 100
         // Queried directly on model because User::rankHighests is disabled
@@ -96,11 +95,9 @@ class UsernameValidation
             return $errors->add('username', '.username_locked');
         }
 
-        foreach ($users as $user) {
-            // has badges
-            if ($user->badges()->exists()) {
-                return $errors->add('username', '.username_locked');
-            }
+        // Check if any of the users have badges
+        if (UserBadge::whereIn('user_id', $userIds)->exists()) {
+            return $errors->add('username', '.username_locked');
         }
 
         // Check if any of the users are a host or guest of any Ranked,
