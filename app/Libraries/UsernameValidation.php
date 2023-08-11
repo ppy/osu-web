@@ -108,7 +108,7 @@ class UsernameValidation
         return $errors;
     }
 
-    public static function usersOfUsername(string $username): Collection
+    private static function usersOfUsername(string $username): Collection
     {
         $userIds = UsernameChangeHistory::where('username_last', $username)->pluck('user_id');
         $users = User::whereIn('user_id', $userIds)->get();

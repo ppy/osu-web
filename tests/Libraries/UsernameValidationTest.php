@@ -16,18 +16,6 @@ use Tests\TestCase;
 // FIXME: need more tests
 class UsernameValidationTest extends TestCase
 {
-    public function testUsersOfUsernameIncludesCurrentUsernameOwner(): void
-    {
-        $existing = User::factory()->create([
-            'username' => 'user1',
-            'username_clean' => 'user1',
-        ]);
-
-        $users = UsernameValidation::usersOfUsername('user1');
-        $this->assertCount(1, $users);
-        $this->assertTrue($existing->is($users->first()));
-    }
-
     public function testValidateAvailabilityWhenNotInUse(): void
     {
         $this->assertTrue(UsernameValidation::validateAvailability('Free username')->isEmpty());
