@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace Tests\Libraries;
 
 use App\Libraries\UsernameValidation;
+use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\RankHighest;
 use App\Models\User;
@@ -136,14 +137,63 @@ class UsernameValidationTest extends TestCase
         $this->assertFalse(UsernameValidation::validateUsersOfUsername($user->username)->isEmpty());
     }
 
-    public function testValidateUsersOfUsernameHasRankedBeatmapsets(): void
+    /**
+     * @dataProvider usernameAvailabilityWithBeatmapsetStateDataProvider
+     */
+    public function testValidateUsersOfUsernameHasBeatmapsets(string $state, bool $expectValid): void
     {
         $user = User
             ::factory()
-            ->has(Beatmapset::factory()->state(['approved' => Beatmapset::STATES['ranked']]))
+            ->has(Beatmapset::factory()->state(['approved' => Beatmapset::STATES[$state]]))
             ->create();
 
-        $this->assertFalse(UsernameValidation::validateUsersOfUsername($user->username)->isEmpty());
+        $this->assertSame(
+            $expectValid,
+            UsernameValidation::validateUsersOfUsername($user->username)->isEmpty(),
+        );
+    }
+
+    /**
+     * @dataProvider usernameAvailabilityWithBeatmapsetStateDataProvider
+     */
+    public function testValidateUsersOfUsernameHasGuestBeatmaps(string $state, bool $expectValid): void
+    {
+        $user = User::factory()->create();
+
+        Beatmapset
+            ::factory()
+            ->has(Beatmap::factory()->state(['user_id' => $user]))
+            ->create(['approved' => Beatmapset::STATES[$state]]);
+
+        $this->assertSame(
+            $expectValid,
+            UsernameValidation::validateUsersOfUsername($user->username)->isEmpty(),
+        );
+    }
+
+    /**
+     * Data in order:
+     * - Beatmapset state
+     * - Whether the username should be available
+     */
+    public function usernameAvailabilityWithBeatmapsetStateDataProvider(): array
+    {
+        return [
+            ['graveyard', true],
+            ['graveyard', true],
+            ['wip',       true],
+            ['wip',       true],
+            ['pending',   true],
+            ['pending',   true],
+            ['ranked',    false],
+            ['ranked',    false],
+            ['approved',  false],
+            ['approved',  false],
+            ['qualified', false],
+            ['qualified', false],
+            ['loved',     false],
+            ['loved',     false],
+        ];
     }
 
     /**
