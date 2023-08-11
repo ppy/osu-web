@@ -87,9 +87,7 @@ class UsernameValidation
         $errors = new ValidationErrors('user');
         $userIds = static::usersOfUsername($username)->pluck('user_id');
 
-        // top 100
-        // Queried directly on model because User::rankHighests is disabled
-        // when experimental rank is set as default.
+        // Check if any of the users have been ranked in the top 100
         $highestRank = RankHighest::whereIn('user_id', $userIds)->min('rank');
         if ($highestRank !== null && $highestRank <= 100) {
             return $errors->add('username', '.username_locked');
