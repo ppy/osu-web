@@ -8,12 +8,12 @@ declare(strict_types=1);
 namespace Tests\Libraries;
 
 use App\Libraries\UsernameValidation;
+use App\Models\Beatmapset;
 use App\Models\RankHighest;
 use App\Models\User;
 use Carbon\Carbon;
 use Tests\TestCase;
 
-// FIXME: need more tests
 class UsernameValidationTest extends TestCase
 {
     public function testValidateAvailabilityWhenNotInUse(): void
@@ -65,46 +65,86 @@ class UsernameValidationTest extends TestCase
         );
     }
 
+    /**
+     * @dataProvider usersOfUsernameDataProvider
+     */
     public function testValidateUsersOfUsername(): void
     {
-        $existing = User::factory()->create([
-            'username' => 'user1',
-            'username_clean' => 'user1',
-        ]);
+        [, $username] = $this->createUsersOfUsernameDataProviderModels(...func_get_args());
 
-        $this->assertFalse(UsernameValidation::validateUsersOfUsername('user1')->isAny());
+        $this->assertTrue(UsernameValidation::validateUsersOfUsername($username)->isEmpty());
     }
 
-    public function testValidateUsersOfUsernameFormerTopRank(): void
+    /**
+     * @dataProvider usersOfUsernameDataProvider
+     */
+    public function testValidateUsersOfUsernameFormerlyAlmostTopRanked(): void
     {
-        $existing = User::factory()->create([
-            'username' => 'user1',
-            'username_clean' => 'user1',
-        ]);
+        [$user, $username] = $this->createUsersOfUsernameDataProviderModels(...func_get_args());
+
         RankHighest::factory()->create([
-            'user_id' => $existing,
-            'rank' => 100,
+            'rank' => 101,
+            'user_id' => $user,
         ]);
 
-        $this->assertTrue(UsernameValidation::validateUsersOfUsername('user1')->isAny());
+        $this->assertTrue(UsernameValidation::validateUsersOfUsername($username)->isEmpty());
     }
 
-    public function testValidateUsersOfUsernameRenamedTopRank(): void
+    /**
+     * @dataProvider usersOfUsernameDataProvider
+     */
+    public function testValidateUsersOfUsernameFormerlyTopRanked(): void
     {
-        $existing = User::factory()->create([
-            'username' => 'user2',
-            'username_clean' => 'user2',
-        ]);
-        $existing->usernameChangeHistory()->make([
-            'username' => 'user2',
-            'username_last' => 'user1',
-        ])->saveOrExplode();
+        [$user, $username, $expectLookupSuccess]
+            = $this->createUsersOfUsernameDataProviderModels(...func_get_args());
+
         RankHighest::factory()->create([
-            'user_id' => $existing,
             'rank' => 100,
+            'user_id' => $user,
         ]);
 
-        $this->assertTrue(UsernameValidation::validateUsersOfUsername('user1')->isAny());
+        $this->assertNotSame(
+            $expectLookupSuccess,
+            UsernameValidation::validateUsersOfUsername($username)->isEmpty(),
+        );
+    }
+
+    /**
+     * @dataProvider usersOfUsernameDataProvider
+     */
+    public function testValidateUsersOfUsernameHasBadges(): void
+    {
+        [$user, $username, $expectLookupSuccess]
+            = $this->createUsersOfUsernameDataProviderModels(...func_get_args());
+
+        $user->badges()->create([
+            'description' => '',
+            'image' => '',
+        ]);
+
+        $this->assertNotSame(
+            $expectLookupSuccess,
+            UsernameValidation::validateUsersOfUsername($username)->isEmpty(),
+        );
+    }
+
+    /**
+     * @dataProvider usersOfUsernameDataProvider
+     */
+    public function testValidateUsersOfUsernameHasRankedBeatmapsets(): void
+    {
+        [$user, $username, $expectLookupSuccess]
+            = $this->createUsersOfUsernameDataProviderModels(...func_get_args());
+
+        Beatmapset::factory()->create([
+            'approved' => Beatmapset::STATES['ranked'],
+            'user_id' => $user,
+        ]);
+
+        $this->assertNotSame(
+            $expectLookupSuccess,
+            UsernameValidation::validateUsersOfUsername($username)->isEmpty(),
+        );
     }
 
     /**
@@ -130,5 +170,51 @@ class UsernameValidationTest extends TestCase
             'all valid special characters' => ['-[]_',             true],
             'mixed space and underscore'   => ['Username_1 2',     false],
         ];
+    }
+
+    /**
+     * Data in order:
+     * - Whether the user lookup should be done through username change history
+     * - Whether the user lookup should have its underscores replaced with spaces
+     * - Whether the user lookup should return the user
+     */
+    public function usersOfUsernameDataProvider(): array
+    {
+        return [
+            [true,  true,  false],
+            [true,  false, true],
+            [false, true,  true],
+            [false, false, true],
+        ];
+    }
+
+    /**
+     * Create a user and username for lookup based on input from
+     * `usersOfUsernameDataProvider()`.
+     */
+    private function createUsersOfUsernameDataProviderModels(
+        bool $throughUsernameHistory,
+        bool $underscoresReplaced,
+        bool $lookupShouldSucceed,
+    ): array {
+        $username = 'username_1';
+        $user = User::factory()->create([
+            'username' => $username,
+            'username_clean' => $username,
+        ]);
+
+        if ($throughUsernameHistory) {
+            $username = "Old_{$username}";
+            $user->usernameChangeHistory()->create([
+                'username' => $user->username,
+                'username_last' => $username,
+            ]);
+        }
+
+        if ($underscoresReplaced) {
+            $username = str_replace('_', ' ', $username);
+        }
+
+        return [$user, $username, $lookupShouldSucceed];
     }
 }
