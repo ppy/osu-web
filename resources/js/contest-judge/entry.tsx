@@ -54,7 +54,7 @@ export default class Entry extends React.Component<Props> {
 
               {this.renderRangeInput(category)}
 
-              <div className='contest-judge-entry__range-value'>
+              <div className='contest-judge-entry__value'>
                 {
                   currentVote != null
                     ? `${currentVote.value}/${category.max_value}`
