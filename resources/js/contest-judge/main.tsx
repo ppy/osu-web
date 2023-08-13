@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import ContestJson from 'interfaces/contest-json';
-import { action, makeObservable, observable } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import ContestEntryStore from 'stores/contest-entry-store';
@@ -19,6 +19,7 @@ interface Props {
 export default class Main extends React.Component<Props> {
   @observable private hideJudged = false;
 
+  @computed
   private get filteredEntries() {
     const entries = [...this.props.store.entries.values()];
 
