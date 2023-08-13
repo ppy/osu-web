@@ -64,7 +64,7 @@ return [
             '_' => 'comments',
         ],
         'contest_entries_controller' => [
-            'judge_results' => 'contest judge results'
+            'judge_results' => 'contest judge results',
         ],
         'contests_controller' => [
             '_' => 'contests',
