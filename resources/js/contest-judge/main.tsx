@@ -19,6 +19,16 @@ interface Props {
 export default class Main extends React.Component<Props> {
   @observable private hideJudged = false;
 
+  private get filteredEntries() {
+    const entries = [...this.props.store.entries.values()];
+
+    const filteredEntries = this.hideJudged
+      ? entries.filter((x) => x.current_user_judge_vote == null)
+      : entries;
+
+    return filteredEntries;
+  }
+
   constructor(props: Props) {
     super(props);
 
@@ -26,14 +36,7 @@ export default class Main extends React.Component<Props> {
   }
 
   render() {
-    const entries = [...this.props.store.entries.values()];
     const judgeCategories = this.props.contest?.judge_categories;
-
-    if (entries == null || judgeCategories == null) return;
-
-    const filteredEntries = this.hideJudged
-      ? entries.filter((x) => x.current_user_judge_vote == null)
-      : entries;
 
     return (
       <>
@@ -42,7 +45,7 @@ export default class Main extends React.Component<Props> {
         </div>
 
         <div className='contest-judge__items'>
-          {filteredEntries.map((entry) => (
+          {judgeCategories && this.filteredEntries.map((entry) => (
             <Entry
               key={entry.id}
               entry={entry}
