@@ -13,6 +13,7 @@ import * as React from 'react';
 import ContestEntryStore from 'stores/contest-entry-store';
 import { onError } from 'utils/ajax';
 import { trans } from 'utils/lang';
+import RangeInput from './range-input';
 
 interface Props {
   entry: ContestEntry;
@@ -52,7 +53,11 @@ export default class Entry extends React.Component<Props> {
                 {category.name}
               </div>
 
-              {this.renderRangeInput(category)}
+              <RangeInput
+                category={category}
+                currentValue={currentVote?.value}
+                updateValue={this.updateValue}
+              />
 
               <div className='contest-judge-entry__value'>
                 {
@@ -105,38 +110,6 @@ export default class Entry extends React.Component<Props> {
   };
 
   @action
-  private readonly handleRangeInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const categoryId = Number(e.currentTarget.getAttribute('data-category-id'));
-    const value = Number(e.currentTarget.value);
-
-    const vote = { contest_judge_category_id: categoryId, value };
-    const { categoryVotes } = this;
-
-    if (this.categoryVote(categoryId) == null) {
-      categoryVotes?.push(vote);
-    } else {
-      const index = categoryVotes?.findIndex((x) => x.contest_judge_category_id === categoryId);
-      if (index == null) return;
-
-      categoryVotes?.splice(index, 1, vote);
-    }
-  };
-
-  private renderRangeInput(category: ContestJudgeCategory) {
-    return (
-      <div className='contest-judge-entry__range'>
-        <input
-          data-category-id={category.id}
-          max={category.max_value}
-          onChange={this.handleRangeInputChange}
-          type='range'
-          value={this.categoryVote(category.id)?.value}
-        />
-      </div>
-    );
-  }
-
-  @action
   private readonly submitVote = () => {
     if (this.xhr != null) return;
 
@@ -158,5 +131,21 @@ export default class Entry extends React.Component<Props> {
         this.posting = false;
         this.xhr = undefined;
       }));
+  };
+
+  @action
+  private readonly updateValue = (id: number, value: number) => {
+    const vote = { contest_judge_category_id: id, value };
+    const { categoryVotes } = this;
+
+    if (this.categoryVote(id) == null) {
+      categoryVotes?.push(vote);
+    } else {
+      const index = categoryVotes?.findIndex((x) => x.contest_judge_category_id === id);
+      // that should never happen
+      if (index == null) return;
+
+      categoryVotes?.splice(index, 1, vote);
+    }
   };
 }
