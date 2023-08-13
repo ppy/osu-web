@@ -16,7 +16,7 @@
         'theme' => 'contests',
     ]])
 
-    <div class="osu-page osu-page--contests">
+    <div class="osu-page">
         <div class="js-react--contest-judge-results"></div>
     </div>
 @endsection
