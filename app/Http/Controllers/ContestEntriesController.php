@@ -124,7 +124,7 @@ class ContestEntriesController extends Controller
 
         $updatedEntry = ContestEntry::with('judgeVotes')
             ->with('judgeVotes.categoryVotes')
-            ->findOrFail($entry->getKey());
+            ->findOrFail($id);
 
         $updatedEntryJson = json_item($updatedEntry, 'ContestEntry', ['current_user_judge_vote.category_votes']);
 
