@@ -27,7 +27,9 @@ return [
 
     'judge_results' => [
         '_' => 'Judging results',
+        'creator' => 'creator',
         'score' => 'Score',
+        'total_score' => 'total score',
     ],
 
     'voting' => [

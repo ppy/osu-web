@@ -8,6 +8,7 @@ import ContestEntryJson from 'interfaces/contest-entry-json';
 import ContestJson from 'interfaces/contest-json';
 import SelectOptionJson from 'interfaces/select-option-json';
 import * as React from 'react';
+import { trans } from 'utils/lang';
 
 interface Props {
   contest: ContestJson;
@@ -52,13 +53,13 @@ export default class Header extends React.PureComponent<Props> {
 
         <div className='contest-judge-results-header__values'>
           {score != null && <ValueDisplay
-            label='total score'
+            label={trans('contest.judge_results.total_score')}
             modifiers={['judge-results']}
             value={totalScore}
           />}
 
           {userLink != null && <ValueDisplay
-            label='creator'
+            label={trans('contest.judge_results.creator')}
             modifiers={['judge-results']}
             value={userLink}
           />}
