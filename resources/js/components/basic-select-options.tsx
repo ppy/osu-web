@@ -10,10 +10,10 @@ import { navigate } from 'utils/turbolinks';
 interface Props {
   currentItem: SelectOptionJson;
   items: SelectOptionJson[];
-  type: 'multiplayer' | 'seasons';
+  type: 'judge_results' | 'multiplayer' | 'seasons';
 }
 
-export default class RankingSelectOptions extends React.PureComponent<Props> {
+export default class BasicSelectOptions extends React.PureComponent<Props> {
   render() {
     return (
       <SelectOptions
@@ -32,6 +32,8 @@ export default class RankingSelectOptions extends React.PureComponent<Props> {
 
   private href(id: number | null) {
     switch (this.props.type) {
+      case 'judge_results':
+        return route('contest-entries.judge-results', { contest_entry: id });
       case 'multiplayer':
         return route('multiplayer.rooms.show', { room: id ?? 'latest' });
       case 'seasons':

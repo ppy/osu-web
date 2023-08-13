@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapsetPanel, { Props as BeatmapsetPanelProps } from 'beatmapset-panel';
+import BasicSelectOptions from 'components/basic-select-options';
 import BeatmapsetEvents, { Props as BeatmapsetEventsProps } from 'components/beatmapset-events';
 import BlockButton from 'components/block-button';
 import ChatIcon from 'components/chat-icon';
@@ -10,7 +11,6 @@ import { LandingNews } from 'components/landing-news';
 import MainNotificationIcon from 'components/main-notification-icon';
 import QuickSearchButton from 'components/quick-search-button';
 import RankingCountryFilter from 'components/ranking-country-filter';
-import RankingSelectOptions from 'components/ranking-select-options';
 import RankingUserFilter from 'components/ranking-user-filter';
 import RankingVariantFilter from 'components/ranking-variant-filter';
 import SpotlightSelectOptions from 'components/spotlight-select-options';
@@ -70,8 +70,8 @@ core.reactTurbolinks.register('beatmapset-panel', (container) => {
   return <BeatmapsetPanel {...observable(props)} />;
 });
 
-core.reactTurbolinks.register('ranking-select-options', () => (
-  <RankingSelectOptions {...parseJson('json-ranking-select-options')} />
+core.reactTurbolinks.register('basic-select-options', () => (
+  <BasicSelectOptions {...parseJson('json-basic-select-options')} />
 ));
 
 core.reactTurbolinks.register('spotlight-select-options', () => (
