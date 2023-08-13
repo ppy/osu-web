@@ -41,11 +41,11 @@ export default class Main extends React.Component<Props> {
 
     return (
       <>
-        <div className='contest-judge__toolbar'>
+        <div className='contest-judge contest-judge--header'>
           {this.renderShowJudgedToggle()}
         </div>
 
-        <div className='contest-judge__items'>
+        <div className='contest-judge contest-judge--items'>
           {judgeCategories && this.filteredEntries.map((entry) => (
             <Entry
               key={entry.id}
