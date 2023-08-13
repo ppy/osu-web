@@ -79,7 +79,7 @@ export default class Main extends React.Component<Props> {
   }
 
   @action
-  private toggleShowJudged = () => {
+  private readonly toggleShowJudged = () => {
     this.hideJudged = this.hideJudged ? false : true;
   };
 }

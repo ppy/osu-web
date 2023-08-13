@@ -36,18 +36,6 @@ export default class Entry extends React.Component<Props> {
     makeObservable(this);
   }
 
-  categoryVote(categoryId: number) {
-    return this.categoryVotes.find((x) => x.contest_judge_category_id === categoryId);
-  }
-
-  disabled() {
-    for (const x of this.props.judgeCategories) {
-      if (this.categoryVote(x.id) == null) return true;
-    }
-
-    return false;
-  }
-
   render() {
     return (
       <div className='contest-judge-entry'>
@@ -99,27 +87,25 @@ export default class Entry extends React.Component<Props> {
     );
   }
 
-  renderRangeInput(category: ContestJudgeCategory) {
-    return (
-      <div className='contest-judge-entry__range'>
-        <input
-          data-category-id={category.id}
-          max={category.max_value}
-          onChange={this.handleRangeInputChange}
-          type='range'
-          value={this.categoryVote(category.id)?.value}
-        />
-      </div>
-    );
+  private categoryVote(categoryId: number) {
+    return this.categoryVotes.find((x) => x.contest_judge_category_id === categoryId);
+  }
+
+  private disabled() {
+    for (const x of this.props.judgeCategories) {
+      if (this.categoryVote(x.id) == null) return true;
+    }
+
+    return false;
   }
 
   @action
-  private handleCommentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  private readonly handleCommentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     this.comment = e.currentTarget.value;
   };
 
   @action
-  private handleRangeInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  private readonly handleRangeInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const categoryId = Number(e.currentTarget.getAttribute('data-category-id'));
     const value = Number(e.currentTarget.value);
 
@@ -136,8 +122,22 @@ export default class Entry extends React.Component<Props> {
     }
   };
 
+  private renderRangeInput(category: ContestJudgeCategory) {
+    return (
+      <div className='contest-judge-entry__range'>
+        <input
+          data-category-id={category.id}
+          max={category.max_value}
+          onChange={this.handleRangeInputChange}
+          type='range'
+          value={this.categoryVote(category.id)?.value}
+        />
+      </div>
+    );
+  }
+
   @action
-  private submitVote = () => {
+  private readonly submitVote = () => {
     if (this.xhr != null) return;
 
     this.posting = true;

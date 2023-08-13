@@ -17,7 +17,7 @@ interface Props {
 }
 
 export default class Header extends React.PureComponent<Props> {
-  get selectOptions(): SelectOptionJson[] {
+  private get selectOptions(): SelectOptionJson[] {
     const ret = [];
 
     for (const entry of this.props.entries) {
@@ -25,13 +25,6 @@ export default class Header extends React.PureComponent<Props> {
     }
 
     return ret;
-  }
-
-  entryToSelectOption(entry: ContestEntryJson): SelectOptionJson {
-    return {
-      id: entry.id,
-      text: entry.title,
-    };
   }
 
   render() {
@@ -68,7 +61,14 @@ export default class Header extends React.PureComponent<Props> {
     );
   }
 
-  renderUserLink() {
+  private entryToSelectOption(entry: ContestEntryJson): SelectOptionJson {
+    return {
+      id: entry.id,
+      text: entry.title,
+    };
+  }
+
+  private renderUserLink() {
     const { user } = this.props.entry;
     if (user == null) return;
 
