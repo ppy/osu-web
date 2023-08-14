@@ -15,7 +15,7 @@ class JsonNewsPostPage extends Migration
     public function up()
     {
         Schema::table('news_posts', function ($table) {
-            $table->json('page')->change();
+            $table->json('page')->nullable()->change();
         });
     }
 
@@ -27,7 +27,7 @@ class JsonNewsPostPage extends Migration
     public function down()
     {
         Schema::table('news_posts', function ($table) {
-            $table->text('page')->change();
+            $table->text('page')->nullable()->change();
         });
     }
 }

@@ -76,10 +76,10 @@ class SyncStructure extends Migration
             $table->integer('user_id')->unsigned()->nullable(false)->default(0)->change();
         });
         Schema::table('beatmap_discussions', function (Blueprint $table) {
-            $table->integer('user_id')->unsigned()->change();
-            $table->integer('resolver_id')->unsigned()->change();
-            $table->integer('deleted_by_id')->unsigned()->change();
-            $table->integer('kudosu_denied_by_id')->unsigned()->change();
+            $table->integer('user_id')->unsigned()->nullable()->change();
+            $table->integer('resolver_id')->unsigned()->nullable()->change();
+            $table->integer('deleted_by_id')->unsigned()->nullable()->change();
+            $table->integer('kudosu_denied_by_id')->unsigned()->nullable()->change();
         });
         DB::statement('ALTER TABLE beatmapset_events CHANGE user_id user_id int unsigned DEFAULT NULL');
         Schema::table('beatmapset_events', function (Blueprint $table) {
