@@ -18,7 +18,7 @@ return [
     ],
 
     'kudosu' => [
-        'total' => 'Ganado',
+        'total' => 'Obtenido',
         'available' => 'Disponible',
         'used' => 'Gastado',
     ],

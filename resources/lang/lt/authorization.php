@@ -13,28 +13,28 @@ return [
 
     'beatmap_discussion' => [
         'destroy' => [
-            'is_hype' => 'Iškėlimo nuėmimas negalimas.',
+            'is_hype' => 'Skatinimo atšaukimas negalimas.',
             'has_reply' => 'Diskusijų su atsakymais ištrinti negalima',
         ],
         'nominate' => [
             'exhausted' => 'Jau pasiekei dienos nominacijų limitą, pamėgink rytoj.',
             'incorrect_state' => 'Įvyko klaida atliekant šį veiksmą, pamėgink atnaujinti puslapį.',
-            'owner' => " Savo bitmapo nominuoti negali.",
+            'owner' => " Savo beatmap'o nominuoti negali.",
             'set_metadata' => 'Jūs turite nustatyti žanrą ir kalbą prieš nominuojant.',
         ],
         'resolve' => [
-            'not_owner' => 'Uždaryti diskusiją gali tik pokalbio ir bitmapo kūrėjai.',
+            'not_owner' => 'Uždaryti diskusiją gali tik pokalbio ir beatmap\'o kūrėjai.',
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => 'Tik bitmapo savininkas ar nominatorius/NAT grupės narys gali rašyti į kūrėjo užrašus.',
+            'mapper_note_wrong_user' => 'Tik beatmap\'o savininkas ar nominatorius/NAT grupės narys gali rašyti į kūrėjo užrašus.',
         ],
 
         'vote' => [
             'bot' => "Negalima balsuoti diskusijoje sukurtoje boto",
             'limit_exceeded' => 'Palaukite kurį laiką prieš balsuojant daugiau',
             'owner' => "Negali balsuoti už savo diskusiją.",
-            'wrong_beatmapset_state' => 'Gali balsuoti tik nepabaigtų bitmapų diskusijose.',
+            'wrong_beatmapset_state' => 'Gali balsuoti tik laukiančių beatmap\'ų diskusijose.',
         ],
     ],
 
@@ -53,10 +53,10 @@ return [
     ],
 
     'beatmapset' => [
-        'discussion_locked' => 'Ši taktalapio diskusija užrakinta.',
+        'discussion_locked' => 'Ši beatmap\'o diskusija užrakinta.',
 
         'metadata' => [
-            'nominated' => 'Jūs negalite pakeisti nominuoto bitmapo metaduomenų. Susisiekite su BN arba NAT nariu jeigu jūs manote, kad jie buvo nustatyti neteisingai.',
+            'nominated' => 'Jūs negalite pakeisti nominuoto beatmap\'o metaduomenų. Susisiekite su BN arba NAT nariu jeigu jūs manote, kad jie buvo nustatyti neteisingai.',
         ],
     ],
 
@@ -171,7 +171,7 @@ return [
 
     'score' => [
         'pin' => [
-            'disabled_type' => "",
+            'disabled_type' => "Negalima prisegti šio tipo rezultato",
             'not_owner' => 'Tik rezultato savininkas gali prisegti rezultatą.',
             'too_many' => 'Prisegta perdaug rezultatų.',
         ],

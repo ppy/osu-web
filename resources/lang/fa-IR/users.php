@@ -387,7 +387,7 @@ return [
                     'date' => 'تاریخ',
                     'action' => 'اقدام انجام شده',
                     'length' => 'مدت',
-                    'length_permanent' => 'دائمی',
+                    'length_indefinite' => '',
                     'description' => 'توضیحات',
                     'actor' => 'توسط :username',
 

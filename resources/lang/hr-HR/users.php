@@ -387,7 +387,7 @@ return [
                     'date' => 'datum',
                     'action' => 'akcija',
                     'length' => 'dužina',
-                    'length_permanent' => 'Trajno',
+                    'length_indefinite' => '',
                     'description' => 'opis',
                     'actor' => 'od :username',
 

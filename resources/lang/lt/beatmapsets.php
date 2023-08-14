@@ -5,14 +5,14 @@
 
 return [
     'availability' => [
-        'disabled' => 'Atsiųsti bitmapą šiuo metu nėra galimybės.',
-        'parts-removed' => 'Dalys šio bitmapo buvo pašalintos, kūrėjo ar trečiosios šalies laikančios teises prašymu.',
+        'disabled' => 'Atsiųsti beatmap\'ą šiuo metu nėra galimybės.',
+        'parts-removed' => 'Dalys šio beatmap\'o buvo pašalintos, kūrėjo ar trečiosios šalies laikančios teises prašymu.',
         'more-info' => 'Žiūrėk čia dėl papildomos informacijos.',
         'rule_violation' => 'Kai kurie elementai buvo pašalinti iš šio bitmapo, įvertinus juos kaip netinkamus naudojimui tarp osu!.',
     ],
 
     'cover' => [
-        'deleted' => 'Ištrintas bitmapas',
+        'deleted' => 'Ištrintas beatmap\'as',
     ],
 
     'download' => [
@@ -24,12 +24,12 @@ return [
     ],
 
     'index' => [
-        'title' => 'Bitmapų sąrašas',
-        'guest_title' => 'Bitmapai',
+        'title' => 'Beatmap\'ų sąrašas',
+        'guest_title' => 'Beatmap\'ai',
     ],
 
     'panel' => [
-        'empty' => 'nėra bitmapų',
+        'empty' => 'nėra beatmap\'ų',
 
         'download' => [
             'all' => 'atsisiųsti',
@@ -40,14 +40,14 @@ return [
     ],
 
     'nominate' => [
-        'hybrid_requires_modes' => 'Mišriame bitmape reikia pasirinkti bent vieną rėžimą nominavimui.',
+        'hybrid_requires_modes' => 'Mišriame beatmap\'e reikia pasirinkti bent vieną rėžimą nominavimui.',
         'incorrect_mode' => 'Jūs neturite leidimo nominuoti šiam rėžimui: :mode',
         'full_bn_required' => 'Turi būti pilnai įgaliotas nominatorius, kad galėtum atlikti kvalifikavimo nominacija.',
         'too_many' => 'Nominavimo reikalavimai jau patenkinti.',
 
         'dialog' => [
-            'confirmation' => 'Ar tikrai norite nominuoti šį bitmapą?',
-            'header' => 'Nominuoti Bitmapą',
+            'confirmation' => 'Ar tikrai norite nominuoti šį beatmap\'ą?',
+            'header' => 'Nominuoti Beatmap\'ą',
             'hybrid_warning' => 'pastaba: jūs galite nominuoti tik kartą, tai prašom užtikrinti, kad nominuojate visus rėžimus, kuriuos ketinote',
             'which_modes' => 'Kokiems rėžimams nominuoti?',
         ],
@@ -61,18 +61,18 @@ return [
         'discussion' => 'Diskusija',
 
         'deleted_banner' => [
-            'title' => 'Šis taktalapis buvo ištrintas.',
+            'title' => 'Šis beatmap\'as buvo ištrintas.',
             'message' => '(tik moderatoriai gali matyti tai)',
         ],
 
         'details' => [
             'by_artist' => ':artist',
-            'favourite' => 'Pridėti bitmapą į mėgstamus',
-            'favourite_login' => 'Prisijunk, kad mėgti šį bitmapą',
-            'logged-out' => 'Reikia prisijungti bitmapų atsisiuntimui!',
+            'favourite' => 'pridėti beatmap\'ą į mėgstamus',
+            'favourite_login' => 'prisijunk, kad mėgti šį beatmap\'ą',
+            'logged-out' => 'reikia prisijungti beatmap\'ų atsisiuntimui!',
             'mapped_by' => 'sukūrė :mapper',
             'mapped_by_guest' => 'svečio sunkumas iš :mapper',
-            'unfavourite' => 'Pašalinti bitmapą iš mėgstamų',
+            'unfavourite' => 'pašalinti beatmap\'ą iš mėgstamų',
             'updated_timeago' => 'paskutinį kartą atnaujinta :timeago',
 
             'download' => [
@@ -98,7 +98,7 @@ return [
         ],
 
         'favourites' => [
-            'limit_reached' => 'Per daug mėgstamų bitmapų! Pašalink keletą iš mėgstamų prieš bandydamas vėl.',
+            'limit_reached' => 'Per daug mėgstamų beatmap\'ų! Pašalink keletą iš mėgstamų prieš bandydamas vėl.',
         ],
 
         'hype' => [
@@ -115,11 +115,11 @@ return [
             ],
 
             'disqualify' => [
-                '_' => 'Jei randate problemą šiame bitmape, prašome diskvalifikuoti :link.',
+                '_' => 'Jei randote problemą šiame beatmap\'e, prašome diskvalifikuoti :link.',
             ],
 
             'report' => [
-                '_' => 'Jei radote problemą su šiuo bitmapu, prašome pranešti :link, kad mūsų komanda sužinotu.',
+                '_' => 'Jei radote problemą su šiuo beatmap\'u, prašome pranešti :link, kad mūsų komanda sužinotu.',
                 'button' => 'Pranešti Problemą',
                 'link' => 'čia',
             ],
@@ -135,19 +135,19 @@ return [
             'offset' => 'Tinklo poslinkis',
             'points-of-failure' => 'Pralaimėjimų Vietos',
             'source' => 'Šaltinis',
-            'storyboard' => 'Šis bitmapas turi foninę animaciją',
+            'storyboard' => 'Šis beatmap\'as turi foninę animaciją',
             'success-rate' => 'Įveikimų Rodiklis',
             'tags' => 'Žymos',
-            'video' => 'Šis bitmapas turi vaizdo įrašą',
+            'video' => 'Šis beatmap\'as turi vaizdo įrašą',
         ],
 
         'nsfw_warning' => [
-            'details' => 'Šiame bitmape yra eksplicitinio, įžeidžiančio ar nerimą keliančio turinio. Vis tiek rodyti?',
+            'details' => 'Šiame beatmap\'e yra eksplicitinio, įžeidžiančio ar nerimą keliančio turinio. Vis tiek rodyti?',
             'title' => 'Eksplicitinis Turinys',
 
             'buttons' => [
                 'disable' => 'Išjungti įspėjimą',
-                'listing' => 'Bitmapų sąrašas',
+                'listing' => 'Beatmap\'ų sąrašas',
                 'show' => 'Rodyti',
             ],
         ],
@@ -181,7 +181,7 @@ return [
                 'friend' => 'Niekas iš jūsų draugų dar nenustatė rezultato šiam bitmapui!',
                 'global' => 'Jokiu rezultatų. Galbūt norėtum pabandyti nustatyti koki?',
                 'loading' => 'Įkeliami rezultatai...',
-                'unranked' => 'Nereitinguotas bitmapas.',
+                'unranked' => 'Nereitinguotas beatmap\'as.',
             ],
             'score' => [
                 'first' => 'Pirmauja',

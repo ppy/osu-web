@@ -5,7 +5,7 @@
 
 return [
     'bold' => 'Gras',
-    'heading' => 'Titre',
+    'heading' => 'En-tête',
     'help' => 'Aide',
     'image' => 'Image',
     'imagemap' => 'Image Mappée',
@@ -18,7 +18,7 @@ return [
         'tiny' => 'Très petite',
         'small' => 'Petite',
         'normal' => 'Normale',
-        'large' => 'Large',
+        'large' => 'Grande',
     ],
     'spoilerbox' => 'Spoiler déroulant',
     'strikethrough' => 'Barré',

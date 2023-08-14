@@ -12,7 +12,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'leisti kudosu',
-        'beatmap_information' => 'Bitmapo Puslapis',
+        'beatmap_information' => 'Beatmap\'o Puslapis',
         'delete' => 'ištrinti',
         'deleted' => 'Ištrinė :editor :delete_time.',
         'deny_kudosu' => 'atmesti kudosu',
@@ -21,7 +21,7 @@ return [
         'guest' => 'Svečio sunkumas iš :user',
         'kudosu_denied' => 'Uždrausta gauti kudosu.',
         'message_placeholder_deleted_beatmap' => 'Šis sudėtingumas buvo ištrintas, todėl jo diskusijos nebegalimos.',
-        'message_placeholder_locked' => 'Šio bitmapo diskusijos buvo išjungtos.',
+        'message_placeholder_locked' => 'Šio beatmap\'o diskusijos buvo išjungtos.',
         'message_placeholder_silenced' => "Negali rašyti diskusijose, kol esi užtildytas.",
         'message_type_select' => 'Pasirink Komentaro Tipą',
         'reply_notice' => 'Spausk Enter norint atsakyti.',
@@ -55,7 +55,7 @@ return [
         ],
 
         'message_hint' => [
-            'in_general' => 'Šis įrašas bus perkeltas į bendrą bitmapo diskusiją. Sunkumo kritikavimui, pradėk žinutę su laiko žyma (pvz.: 00:12:345).',
+            'in_general' => 'Šis įrašas bus perkeltas į bendrą beatmap\'o diskusiją. Sunkumo kritikavimui, pradėk žinutę su laiko žyma (pvz. 00:12:345).',
             'in_timeline' => 'Kad kritikuoti kelias laiko žymas, publikuok kelis kartus (vieną publikacija per laiko žymę).',
         ],
 
@@ -138,11 +138,11 @@ return [
         ],
 
         'status-messages' => [
-            'approved' => 'Šis bitmapas buvo patvirtintas :date!',
-            'graveyard' => "Šis bitmapas jau nebeatnaujinamas nuo :date ir greičiausiai buvo apleistas kūrėjo...",
-            'loved' => 'Šis bitmapas buvo pridėtas kaip mylimas nuo :date!',
-            'ranked' => 'Šis bitmapas buvo reitinguotas nuo :date!',
-            'wip' => 'Pastaba: Šis bitmapas yra kūrėjo pažymėtas kaip vis dar kuriamas.',
+            'approved' => 'Šis beatmap\'as buvo patvirtintas :date!',
+            'graveyard' => "Šis beatmap'as jau nebeatnaujinamas nuo :date ir greičiausiai buvo apleistas kūrėjo...",
+            'loved' => 'Šis beatmap\'as buvo pridėtas kaip mylimas nuo :date!',
+            'ranked' => 'Šis beatmap\'as buvo reitinguotas nuo :date!',
+            'wip' => 'Pastaba: Šis beatmap\'as yra kūrėjo pažymėtas kaip vis dar kuriamas.',
         ],
 
         'votes' => [
@@ -158,11 +158,11 @@ return [
     ],
 
     'hype' => [
-        'button' => 'Skatinti Bitmapą!',
+        'button' => 'Skatinti Beatmap\'ą!',
         'button_done' => 'Jau Paskatintas!',
         'confirm' => "Ar jūs užtikrintas? Tai išnaudos vieną iš tavo likusių :n skatinimų, ir šio veiksmo nebus galima grąžinti.",
-        'explanation' => 'Skatink šį bitmapą, kad jis būtų labiau matomas nominacijai ir reitingavimui!',
-        'explanation_guest' => 'Prisijunk ir skatink šį bitmapą, kad jis taptu labiau matomas nominavimui ir reitingavimui!',
+        'explanation' => 'Skatink šį beatmap\'ą, kad jis būtų labiau matomas nominacijai ir reitingavimui!',
+        'explanation_guest' => 'Prisijunk ir skatink šį beatmap\'ą, kad jis taptu labiau matomas nominavimui ir reitingavimui!',
         'new_time' => "Jūs gausite dar vieną skatinimą :new_time.",
         'remaining' => 'Jums liko :remaining skatinimai(-ų).',
         'required_text' => 'Skatinimai: :current/:required',
@@ -175,11 +175,11 @@ return [
     ],
 
     'nominations' => [
-        'already_nominated' => 'Jūs jau nominavote šį taktalapį.',
-        'cannot_nominate' => 'Jūs negalite nominuoti šio taktalapio žaidimo režimo.',
+        'already_nominated' => 'Jūs jau nominavote šį beatmap\'ą.',
+        'cannot_nominate' => 'Jūs negalite nominuoti šio beatmap\'o žaidimo režimo.',
         'delete' => 'Ištrinti',
-        'delete_own_confirm' => 'Ar jūs užtikrintas? Bitmapas bus pašalintas ir būsite nukreiptas į savo profilį.',
-        'delete_other_confirm' => 'Ar jūs užtikrintas? Bitmapas bus pašalintas ir būsite nukreiptas į vartotojo profilį.',
+        'delete_own_confirm' => 'Ar jūs užtikrintas? Beatmap\'as bus pašalintas ir būsite nukreiptas į savo profilį.',
+        'delete_other_confirm' => 'Ar jūs užtikrintas? Beatmap\'as bus pašalintas ir būsite nukreiptas į vartotojo profilį.',
         'disqualification_prompt' => 'Kodėl diskvalifikuoji?',
         'disqualified_at' => 'Diskvalifikuotas prieš :time_ago (:reason).',
         'disqualified_no_reason' => 'nėra nurodytos priežasties',
@@ -187,9 +187,9 @@ return [
         'incorrect_state' => 'Įvyko klaida atliekant šį veiksmą, pamėgink atnaujinti puslapį.',
         'love' => 'Mylimas',
         'love_choose' => 'Pasirink sunkumą mylimam',
-        'love_confirm' => 'Bitmapą į mylimus?',
+        'love_confirm' => 'Beatmap\'ą į mylimus?',
         'nominate' => 'Nominuoti',
-        'nominate_confirm' => 'Nominuoti šį bitmapą?',
+        'nominate_confirm' => 'Nominuoti šį beatmap\'ą?',
         'nominated_by' => 'nominavo :users',
         'not_enough_hype' => "Nepakanka skatinimų.",
         'remove_from_loved' => 'Pašalinti iš Mylimų',
@@ -212,9 +212,9 @@ return [
         ],
 
         'reset_confirm' => [
-            'disqualify' => 'Ar jūs užtikrintas? Tai pašalins bitmapą iš kvalifikuotų ir atstatis nominavimo procesą.',
+            'disqualify' => 'Ar jūs užtikrintas? Tai pašalins beatmap\'ą iš kvalifikuotų ir atstatis nominavimo procesą.',
             'nomination_reset' => 'Ar jūs užtikrintas? Naujos problemos publikavimas atstatys nominavimo procesą.',
-            'problem_warning' => 'Ar tiktai norite pranešti problemą šiame bitmape? Bitmapo nominuotojai bus informuoti apie problemą.',
+            'problem_warning' => 'Ar tiktai norite pranešti problemą šiame beatmap\'e? Beatmap\'o nominuotojai bus informuoti apie problemą.',
         ],
     ],
 
@@ -256,11 +256,11 @@ return [
         ],
     ],
     'general' => [
-        'converts' => 'Įtraukti konvertuotus bitmapus',
+        'converts' => 'Įtraukti konvertuotus beatmap\'us',
         'featured_artists' => 'Rekomenduojami atlikėjai',
         'follows' => 'Sekami kūrėjai',
         'recommended' => 'Rekomenduojamas sunkumas',
-        'spotlights' => 'Pasižymėję bitmapai',
+        'spotlights' => 'Pasižymėję beatmap\'ai',
     ],
     'mode' => [
         'all' => 'Visi',
