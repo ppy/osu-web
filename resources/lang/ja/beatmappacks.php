@@ -39,7 +39,7 @@ return [
         'loved' => '',
         'standard' => 'スタンダードパック',
         'theme' => 'テーマ',
-        'tournament' => '',
+        'tournament' => 'トーナメント',
     ],
 
     'require_login' => [

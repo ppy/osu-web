@@ -19,7 +19,7 @@ return [
         'show_voted_only' => 'Rodyti balsus',
 
         'best_of' => [
-            'none_played' => "Nepanašu, kad žaidėte bitmapų, kurie butu kvalifikuoti šiam konkursui!",
+            'none_played' => "Nepanašu, kad žaidėte beatmap'ų, kurie butu kvalifikuoti šiam konkursui!",
         ],
 
         'button' => [
@@ -34,7 +34,7 @@ return [
 
         'requirement' => [
             'playlist_beatmapsets' => [
-                'incomplete_play' => 'Privaloma sužaisti visus bitmapus nurodytuose grojaraščiuose prieš balsuojant',
+                'incomplete_play' => 'Privaloma sužaisti visus beatmap\'us nurodytuose grojaraščiuose prieš balsuojant',
             ],
         ],
     ],

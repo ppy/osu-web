@@ -18,15 +18,15 @@ return [
     ],
 
     'kudosu' => [
-        'total' => '',
-        'available' => '',
-        'used' => '',
+        'total' => 'Gauta',
+        'available' => 'Turi',
+        'used' => 'Panaudota',
     ],
 
     'type' => [
         'charts' => 'pasižymėje',
         'country' => 'Šalimis',
-        'kudosu' => '',
+        'kudosu' => 'kudosu',
         'multiplayer' => 'žaidimas tinkle',
         'performance' => 'pp',
         'score' => 'Taškai',
@@ -34,10 +34,10 @@ return [
     ],
 
     'seasons' => [
-        'empty' => '',
-        'ongoing' => '',
+        'empty' => 'Dar nėra kambariu šiame sezone.',
+        'ongoing' => 'Šis sezonas dar tęsiasi (bus pridėta daugiau grojaraščių).',
         'room_count' => 'Grojaraščių skaičius',
-        'url' => '',
+        'url' => 'Rodyti daugiau informacijos apie šį sezoną.',
     ],
 
     'spotlight' => [

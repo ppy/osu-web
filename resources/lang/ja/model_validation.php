@@ -114,8 +114,8 @@ return [
         'exists' => '',
 
         'attributes' => [
-            'api_key' => '',
-            'app_name' => '',
+            'api_key' => 'apiキー',
+            'app_name' => 'アプリケーション名',
             'app_url' => '',
         ],
     ],

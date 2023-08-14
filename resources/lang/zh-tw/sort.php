@@ -32,7 +32,7 @@ return [
     ],
 
     'forum_topics' => [
-        'created' => '',
+        'created' => '已創建',
         'feature_votes' => '星級優先',
         'new' => '最新回覆',
     ],

@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'load_failed' => '',
+    'load_failed' => 'Tietojen lataus epäonnistui.',
     'missing_route' => 'Virheellinen URL-osoite tai virheellinen pyyntötapa.',
     'no_restricted_access' => 'Et voi suorittaa tätä toimintoa tilisi ollessa rajoitetussa tilassa.',
     'supporter_only' => 'Sinun täytyy olla Tukija käyttääksesi tätä ominaisuutta.',
@@ -30,7 +30,7 @@ return [
     ],
     'search' => [
         'default' => 'Tuloksia ei saatu, yritä myöhemmin uudelleen.',
-        'invalid_cursor_exception' => '',
+        'invalid_cursor_exception' => 'Virheellinen kohdistimen parametri määritetty.',
         'operation_timeout_exception' => 'Haku on tavallista aktiivisempi. Yritä uudelleen myöhemmin.',
     ],
 ];

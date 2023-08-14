@@ -4,20 +4,20 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'confirm_new' => '',
-    'new' => '',
-    'none' => '',
+    'confirm_new' => 'Δημιουργία νέου κωδικού πρόσβασης IRC;',
+    'new' => 'Νέος Παλαιού Τύπου Κωδικός Πρόσβασης IRC',
+    'none' => 'Δεν ορίστηκε IRC Password.',
 
     'form' => [
-        'server_host' => '',
-        'server_port' => '',
-        'token' => '',
-        'username' => '',
+        'server_host' => 'εξυπηρετητής',
+        'server_port' => 'θύρα',
+        'token' => 'κωδικός πρόσβασης διακομιστή',
+        'username' => 'όνομα χρήστη',
     ],
 
     'view' => [
-        'hide' => '',
-        'show' => '',
-        'delete' => '',
+        'hide' => 'Απόκρυψη Κωδικού Πρόσβασης',
+        'show' => 'Εμφάνιση Κωδικού Πρόσβασης',
+        'delete' => 'Διαγραφή',
     ],
 ];

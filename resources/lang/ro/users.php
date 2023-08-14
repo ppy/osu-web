@@ -387,7 +387,7 @@ return [
                     'date' => 'data',
                     'action' => 'acțiune',
                     'length' => 'durată',
-                    'length_permanent' => 'Permanent',
+                    'length_indefinite' => '',
                     'description' => 'descriere',
                     'actor' => 'de :username',
 
