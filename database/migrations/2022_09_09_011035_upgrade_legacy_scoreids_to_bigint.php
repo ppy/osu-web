@@ -67,11 +67,11 @@ class UpgradeLegacyScoreidsToBigint extends Migration
 
         // osu_scores remains as BIGINT
 
-        DB::statement("ALTER TABLE `osu_scores_fruits` MODIFY `score_id` INT UNSIGNED NOT NULL AUTO_INCREMENT");
+        DB::statement('ALTER TABLE `osu_scores_fruits` MODIFY `score_id` INT UNSIGNED NOT NULL AUTO_INCREMENT');
 
-        DB::statement("ALTER TABLE `osu_scores_taiko` MODIFY `score_id` INT UNSIGNED NOT NULL AUTO_INCREMENT");
+        DB::statement('ALTER TABLE `osu_scores_taiko` MODIFY `score_id` INT UNSIGNED NOT NULL AUTO_INCREMENT');
 
-        DB::statement("ALTER TABLE `osu_scores_mania` MODIFY `score_id` INT UNSIGNED NOT NULL AUTO_INCREMENT");
+        DB::statement('ALTER TABLE `osu_scores_mania` MODIFY `score_id` INT UNSIGNED NOT NULL AUTO_INCREMENT');
 
         Schema::table('osu_user_reports', function (Blueprint $table) {
             $table->integer('score_id')->unsigned()->default(0)->change();
