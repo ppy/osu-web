@@ -5,6 +5,7 @@
 
 namespace App\Libraries;
 
+use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\RankHighest;
 use App\Models\User;
@@ -12,7 +13,6 @@ use App\Models\UserBadge;
 use App\Models\UsernameChangeHistory;
 use Carbon\Carbon;
 use DB;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 
 class UsernameValidation
@@ -98,21 +98,11 @@ class UsernameValidation
             return $errors->add('username', '.username_locked');
         }
 
-        // Check if any of the users are a host or guest of any Ranked,
-        // Approved, Qualified, or Loved beatmapsets
+        // Check if any of the users have beatmaps or beatmapsets with
+        // leaderboards enabled
         if (
-            Beatmapset
-                ::active()
-                ->withStates(['approved', 'loved', 'qualified', 'ranked'])
-                ->where(function (Builder $query) use ($userIds) {
-                    $query
-                        ->whereIn('user_id', $userIds)
-                        ->orWhereHas(
-                            'beatmaps',
-                            fn (Builder $query) => $query->whereIn('user_id', $userIds),
-                        );
-                })
-                ->exists()
+            Beatmap::scoreable()->whereIn('user_id', $userIds)->exists() ||
+            Beatmapset::scoreable()->whereIn('user_id', $userIds)->exists()
         ) {
             return $errors->add('username', '.username_locked');
         }

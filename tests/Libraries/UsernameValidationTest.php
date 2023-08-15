@@ -138,7 +138,7 @@ class UsernameValidationTest extends TestCase
     }
 
     /**
-     * @dataProvider usernameAvailabilityWithBeatmapsetStateDataProvider
+     * @dataProvider usernameAvailabilityWithBeatmapStateDataProvider
      */
     public function testValidateUsersOfUsernameHasBeatmapsets(string $state, bool $expectValid): void
     {
@@ -154,7 +154,7 @@ class UsernameValidationTest extends TestCase
     }
 
     /**
-     * @dataProvider usernameAvailabilityWithBeatmapsetStateDataProvider
+     * @dataProvider usernameAvailabilityWithBeatmapStateDataProvider
      */
     public function testValidateUsersOfUsernameHasGuestBeatmaps(string $state, bool $expectValid): void
     {
@@ -162,8 +162,11 @@ class UsernameValidationTest extends TestCase
 
         Beatmapset
             ::factory()
-            ->has(Beatmap::factory()->state(['user_id' => $user]))
-            ->create(['approved' => Beatmapset::STATES[$state]]);
+            ->has(Beatmap::factory()->state([
+                'approved' => Beatmapset::STATES[$state],
+                'user_id' => $user,
+            ]))
+            ->create(['approved' => Beatmapset::STATES['ranked']]);
 
         $this->assertSame(
             $expectValid,
@@ -173,25 +176,18 @@ class UsernameValidationTest extends TestCase
 
     /**
      * Data in order:
-     * - Beatmapset state
+     * - Beatmap or beatmapset state
      * - Whether the username should be available
      */
-    public function usernameAvailabilityWithBeatmapsetStateDataProvider(): array
+    public function usernameAvailabilityWithBeatmapStateDataProvider(): array
     {
         return [
             ['graveyard', true],
-            ['graveyard', true],
-            ['wip',       true],
             ['wip',       true],
             ['pending',   true],
-            ['pending',   true],
-            ['ranked',    false],
             ['ranked',    false],
             ['approved',  false],
-            ['approved',  false],
             ['qualified', false],
-            ['qualified', false],
-            ['loved',     false],
             ['loved',     false],
         ];
     }
