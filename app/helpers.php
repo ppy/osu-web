@@ -7,6 +7,7 @@ use App\Libraries\LocaleMeta;
 use App\Models\LoginAttempt;
 use Egulias\EmailValidator\EmailValidator;
 use Egulias\EmailValidator\Validation\NoRFCWarningsValidation;
+use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Arr;
 use Illuminate\Support\HtmlString;
 
@@ -1846,4 +1847,12 @@ function search_error_message(?Exception $e): ?string
 function unmix(string $resource): HtmlString
 {
     return app('assets-manifest')->src($resource);
+}
+
+/**
+ * Get an instance of the named migration.
+ */
+function migration(string $name): Migration
+{
+    return require database_path("migrations/{$name}.php");
 }

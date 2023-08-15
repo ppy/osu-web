@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * This file is part of OAuth 2.0 Laravel.
  *
  * (c) Luca Degasperi <packages@lucadegasperi.com>
@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Schema;
  *
  * @author Luca Degasperi <packages@lucadegasperi.com>
  */
-class CreateOauthAccessTokensTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -55,4 +55,4 @@ class CreateOauthAccessTokensTable extends Migration
         });
         Schema::drop('oauth_access_tokens');
     }
-}
+};
