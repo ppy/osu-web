@@ -34,7 +34,7 @@ return [
         'qualify' => '這張圖譜已經達到所需的提名數量，並已經 qualified。',
         'rank' => '進榜',
         'remove_from_loved' => '由 :user 從 Loved 中移除。(:text)',
-        'tags_edit' => '',
+        'tags_edit' => '標籤由 :old 變更為 :new。',
 
         'nsfw_toggle' => [
             'to_0' => '移除成人內容標記',

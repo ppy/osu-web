@@ -22,7 +22,7 @@ return [
         'advanced_link' => 'Σύνθετη αναζήτηση',
         'button' => 'Αναζήτηση',
         'empty_result' => 'Δεν βρέθηκε τίποτα!',
-        'keyword_required' => '',
+        'keyword_required' => 'Απαιτείται μια λέξη-κλειδί αναζήτησης',
         'placeholder' => 'πληκτρολογήστε για αναζήτηση',
         'title' => 'Αναζήτηση',
 
@@ -36,14 +36,14 @@ return [
         'forum_post' => [
             'all' => 'Όλα τα Φόρουμ',
             'link' => 'Αναζήτηση στο φόρουμ',
-            'login_required' => '',
+            'login_required' => 'Συνδεθείτε για να αναζητήσετε στο φόρουμ',
             'more_simple' => 'Δείτε περισσότερα αποτελέσματα αναζήτησης φόρουμ',
             'title' => 'Φόρουμ',
 
             'label' => [
                 'forum' => 'αναζήτηση στο φόρουμ',
                 'forum_children' => 'συμπεριλάμβανε υπο-φόρουμ',
-                'include_deleted' => '',
+                'include_deleted' => 'περιλαμβάνει διαγραμμένες δημοσιεύσεις',
                 'topic_id' => 'θέμα #',
                 'username' => 'συντάκτης',
             ],
@@ -80,20 +80,20 @@ return [
         'action_lazer_title' => 'δοκίμασε το osu!(lazer)',
         'action_title' => 'κατέβασε το osu!',
         'for_os' => 'για :os',
-        'lazer_note' => '',
+        'lazer_note' => 'σημείωση: ισχύουν επαναλήψεις leaderboard',
         'macos-fallback' => 'χρήστες macOS',
         'mirror' => 'mirror',
         'or' => 'ή',
-        'os_version_or_later' => '',
+        'os_version_or_later' => ':os_version ή μεγαλύτερο',
         'other_os' => 'άλλες πλατφόρμες',
-        'quick_start_guide' => '',
+        'quick_start_guide' => 'οδηγός γρήγορης εκκίνησης',
         'tagline' => "ας<br>αρχίσουμε!",
         'video-guide' => 'οδηγός βίντεο',
 
         'help' => [
-            '_' => '',
-            'help_forum_link' => '',
-            'support_button' => '',
+            '_' => 'αν έχετε πρόβλημα με την εκκίνηση του παιχνιδιού ή με την εγγραφή ενός λογαριασμού, :help_forum_link ή :support_button.',
+            'help_forum_link' => 'ελέγξτε το φόρουμ βοήθειας',
+            'support_button' => 'επικοινωνήστε με την υποστήριξη',
         ],
 
         'os' => [
