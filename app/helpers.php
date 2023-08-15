@@ -1852,17 +1852,7 @@ function unmix(string $resource): HtmlString
 /**
  * Get an instance of the named migration.
  */
-function migration(string $name): object
+function migration(string $name): Migration
 {
-    $instance = app('files')->getRequire(
-        database_path('migrations').DIRECTORY_SEPARATOR."{$name}.php",
-    );
-
-    if (!$instance instanceof Migration) {
-        throw new Exception(
-            "\"{$name}\" does not return an instance of ".Migration::class.'.',
-        );
-    }
-
-    return $instance;
+    return require database_path("migrations/{$name}.php");
 }
