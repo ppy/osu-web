@@ -6,7 +6,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateOsuSlackUsersTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -33,4 +33,4 @@ class CreateOsuSlackUsersTable extends Migration
     {
         Schema::drop('osu_slack_users');
     }
-}
+};

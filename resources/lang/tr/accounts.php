@@ -39,7 +39,7 @@ return [
 
             'country_change' => [
                 '_' => "",
-                'update_link' => '',
+                'update_link' => ':country olarak güncelle',
             ],
 
             'user' => [

@@ -12,7 +12,7 @@ return [
         'in_progress_spinner_label' => 'ματς σε εξέλιξη',
         'loading-events' => 'Φόρτωση events...',
         'winner' => 'Η :team νίκησε',
-        'winner_by' => '',
+        'winner_by' => ':winner από :difference',
 
         'events' => [
             'player-left' => 'Ο :user έφυγε από το ματς',

@@ -387,7 +387,7 @@ return [
                     'date' => 'Datum',
                     'action' => 'Maßnahme',
                     'length' => 'Dauer',
-                    'length_permanent' => 'Permanent',
+                    'length_indefinite' => '',
                     'description' => 'Beschreibung',
                     'actor' => 'von :username',
 

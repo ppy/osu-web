@@ -12,7 +12,7 @@ return [
 
         'info' => [
             'check_spam' => "Veuillez vérifier votre dossier spam si vous ne voyez pas le mail.",
-            'recover' => "Si vous ne pouvez pas accéder à votre boîte mail ou si vous ne savez plus laquelle vous avez utilisée, cliquez sur ce lien :link.",
+            'recover' => "Si vous ne pouvez pas accéder à votre boîte mail ou si vous ne savez plus laquelle vous avez utilisée, cliquez sur ce lien : :link.",
             'recover_link' => 'processus de récupération de mail ici',
             'reissue' => 'Vous pouvez :reissue_link ou :logout_link.',
             'reissue_link' => 'demander un autre code',
@@ -21,10 +21,10 @@ return [
     ],
 
     'errors' => [
-        'expired' => 'Le code de vérification a expiré, un nouvel email de vérification a été envoyé.',
+        'expired' => 'Le code de vérification a expiré, un nouvel e-mail de vérification a été envoyé.',
         'incorrect_key' => 'Code de vérification incorrect.',
-        'retries_exceeded' => 'Code de vérification incorrect. Limite de tentatives dépassées, envoi d\'un nouvel email de vérification.',
+        'retries_exceeded' => 'Code de vérification incorrect. Limite de tentatives dépassées, envoi d\'un nouvel e-mail de vérification.',
         'reissued' => 'Un nouveau code de vérification a été généré et envoyé, merci de vérifier votre boîte mail.',
-        'unknown' => 'Un problème inconnu est survenu, nouvel email de vérification envoyé.',
+        'unknown' => 'Un problème inconnu est survenu, nouvel e-mail de vérification envoyé.',
     ],
 ];

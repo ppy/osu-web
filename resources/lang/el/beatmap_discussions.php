@@ -18,24 +18,24 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'διαγραμμένο',
-        'none_found' => '',
+        'none_found' => 'Δεν βρέθηκαν συζητήσεις που να ταιριάζουν με τα κριτήρια αναζήτησης.',
         'title' => 'Συζητήσεις περί Beatmap',
 
         'form' => [
             '_' => 'Αναζήτηση',
             'deleted' => 'Συμπεριλάμβανε διαγραμμένες συζητήσεις',
-            'mode' => '',
-            'only_unresolved' => '',
+            'mode' => 'Λειτουργία Beatmap',
+            'only_unresolved' => 'Εμφάνιση μόνο ανεπίλυτων συζητήσεων',
             'types' => 'Τύποι μηνυμάτων',
             'username' => 'Όνομα χρήστη',
 
             'beatmapset_status' => [
-                '_' => '',
+                '_' => 'Beatmap Status',
                 'all' => 'Όλα',
-                'disqualified' => '',
-                'never_qualified' => '',
-                'qualified' => '',
-                'ranked' => '',
+                'disqualified' => 'Αποκλεισμένος',
+                'never_qualified' => 'Ποτέ Μη Κατάλληλο',
+                'qualified' => 'Πιστοποιημένα',
+                'ranked' => 'Κατάταξη',
             ],
 
             'user' => [
@@ -55,14 +55,14 @@ return [
     'nearby_posts' => [
         'confirm' => 'Καμία δημοσίευση δεν απαντάει στο ερώτημά μου',
         'notice' => 'Υπάρχουν αναρτήσεις περίπου :timestamp (:existing_timestamps). Παρακαλώ να τις ελέγξετε πριν αναρτήσετε.',
-        'unsaved' => '',
+        'unsaved' => ':count σε αυτή την κριτική',
     ],
 
     'owner_editor' => [
-        'button' => '',
-        'reset_confirm' => '',
-        'user' => '',
-        'version' => '',
+        'button' => 'Δυσκολία Ιδιοκτήτη',
+        'reset_confirm' => 'Επαναφορά ιδιοκτήτη για αυτή τη δυσκολία;',
+        'user' => 'Ιδιοκτήτης',
+        'version' => 'Δυσκολία',
     ],
 
     'reply' => [
@@ -73,18 +73,18 @@ return [
     ],
 
     'review' => [
-        'block_count' => '',
-        'go_to_parent' => '',
+        'block_count' => ':used / :max σε χρήση μπλοκ',
+        'go_to_parent' => 'Προβολή Ανάρτησης Κριτικής',
         'go_to_child' => 'Προβολή Συζήτησης',
         'validation' => [
             'block_too_large' => 'κάθε block μπορεί να περιέχει μόνο έως :limit χαρακτήρες',
-            'external_references' => '',
-            'invalid_block_type' => '',
-            'invalid_document' => '',
-            'invalid_discussion_type' => '',
-            'minimum_issues' => '',
-            'missing_text' => '',
-            'too_many_blocks' => '',
+            'external_references' => 'ανασκόπηση περιέχει αναφορές σε ζητήματα που δεν ανήκουν σε αυτή την ανασκόπηση',
+            'invalid_block_type' => 'μη έγκυρος τύπος μπλοκ',
+            'invalid_document' => 'μη έγκυρη κριτική',
+            'invalid_discussion_type' => 'μη έγκυρος τύπος συζήτησης',
+            'minimum_issues' => 'η κριτική πρέπει να περιέχει τουλάχιστον θέμα :count : η κριτική πρέπει να περιέχει τουλάχιστον ζητήματα :count',
+            'missing_text' => 'το μπλοκ λείπει κείμενο',
+            'too_many_blocks' => 'οι κριτικές μπορεί να περιέχουν μόνο :count παράγραφο/ζήτημα/σχόλια μπορεί να περιέχουν μόνο έως και :count παραγράφους/ζητήματα',
         ],
     ],
 

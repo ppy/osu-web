@@ -34,7 +34,7 @@ return [
         ],
 
         'profile' => [
-            'country' => '',
+            'country' => 'valsts',
             'title' => 'Profils',
 
             'country_change' => [
