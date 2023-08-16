@@ -13,6 +13,13 @@
     --gutter: @gutter-v2-desktop;
   }
 
+  // This is intentionally deviating from the design to visually separate the
+  // badges from the profile info above it. It should not be necessary if the
+  // multiplayer page gets a detail section like the other profile pages
+  &--multiplayer {
+    background-color: hsl(var(--hsl-b5));
+  }
+
   &__badge {
     width: 86px;
     height: 40px;
