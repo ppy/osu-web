@@ -9,22 +9,14 @@ import { trans } from 'utils/lang';
 import MonthListing from './month-listing';
 import Years from './years';
 
-interface GroupedPosts {
-  [date: string]: NewsPostJson[];
-}
-
-interface DateMap {
-  [date: string]: moment.Moment;
-}
-
 interface Props {
   currentPost?: NewsPostJson;
   data: NewsSidebarMetaJson;
 }
 
 export default function Main(props: Props) {
-  const groupedPosts: Partial<GroupedPosts> = {};
-  const dateMap: Partial<DateMap> = {};
+  const groupedPosts: Partial<Record<string, NewsPostJson[]>> = {};
+  const dateMap: Partial<Record<string, moment.Moment>> = {};
   const postDates = new Set<string>();
 
   for (const post of props.data.news_posts) {
