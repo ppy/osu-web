@@ -4,11 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid' => '',
+    'invalid' => 'Άκυρο :attribute καθορίστηκε.',
     'not_negative' => 'το :attribute δε μπορεί να δοθεί.',
     'required' => 'το :attribute απαιτείται.',
     'too_long' => 'το :attribute υπερβαίνει το μέγιστο όριο χαρακτήρων - μπορεί να είναι μέχρι :limit χαρακτήρες.',
-    'url' => '',
+    'url' => 'Παρακαλώ εισάγετε μια έγκυρη διεύθυνση URL.',
     'wrong_confirmation' => 'Η βεβαίωση δεν ταιριάζει.',
 
     'beatmapset_discussion' => [
@@ -20,12 +20,12 @@ return [
         'locked' => 'Η συζήτηση είναι κλειδωμένη.',
 
         'attributes' => [
-            'message_type' => '',
-            'timestamp' => '',
+            'message_type' => 'Τύπος μηνύματος',
+            'timestamp' => 'Χρονοσήμανση',
         ],
 
         'hype' => [
-            'discussion_locked' => "",
+            'discussion_locked' => "Αυτό το beatmap είναι κλειδωμένο για συζήτηση και δεν μπορεί να εξαχθεί",
             'guest' => 'Πρέπει να είστε συνδεδεμένοι για να κάνετε hype.',
             'hyped' => 'Έχετε κάνει ήδη hype αυτό το beatmap.',
             'limit_exceeded' => 'Έχετε χρησιμοποιήσει όλο το hype σας.',
@@ -44,21 +44,21 @@ return [
         'first_post' => 'Το αρχικό post δε μπορεί να διαγραφεί.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Το μήνυμα',
         ],
     ],
 
     'comment' => [
         'deleted_parent' => 'Δεν επιτρέπεται η απάντηση σε διαγραμμένο σχόλιο.',
-        'top_only' => '',
+        'top_only' => 'Pinning η απάντηση σχολίου δεν επιτρέπεται.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Το μήνυμα',
         ],
     ],
 
     'follow' => [
-        'invalid' => '',
+        'invalid' => 'Άκυρο :attribute καθορίστηκε.',
     ],
 
     'forum' => [
@@ -74,12 +74,12 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Η διαγραφή του post για τα μεταδεδομένα το beatmap δεν είναι επιτρεπτή.',
             'beatmapset_post_no_edit' => 'Η επεξεργασία του post για τα μεταδεδομένα το beatmap δεν είναι επιτρεπτή.',
-            'first_post_no_delete' => '',
-            'missing_topic' => '',
+            'first_post_no_delete' => 'Αδυναμία διαγραφής εναρκτήριας δημοσίευσης',
+            'missing_topic' => 'Το άρθρο λείπει θέμα',
             'only_quote' => 'Η απάντησή σας περιέχει μόνο μία αναφορά.',
 
             'attributes' => [
-                'post_text' => '',
+                'post_text' => 'Ταχυδρομικός οργανισμός',
             ],
         ],
 
@@ -99,7 +99,7 @@ return [
             'too_many_options' => 'Υπερβήκατε το μέγιστο αριθμό επιλογών που επιτρέπεται.',
 
             'attributes' => [
-                'title' => '',
+                'title' => 'Τίτλος δημοσκόπησης',
             ],
         ],
 
@@ -110,23 +110,23 @@ return [
     ],
 
     'legacy_api_key' => [
-        'exists' => '',
+        'exists' => 'Προς το παρόν παρέχεται μόνο ένα κλειδί API ανά χρήστη.',
 
         'attributes' => [
-            'api_key' => '',
-            'app_name' => '',
-            'app_url' => '',
+            'api_key' => 'κλειδί api',
+            'app_name' => 'όνομα εφαρμογής',
+            'app_url' => 'url εφαρμογής',
         ],
     ],
 
     'oauth' => [
         'client' => [
-            'too_many' => '',
-            'url' => '',
+            'too_many' => 'Υπέρβαση μέγιστου αριθμού επιτρεπόμενων εφαρμογών OAuth.',
+            'url' => 'Παρακαλώ εισάγετε έγκυρα URLs.',
 
             'attributes' => [
-                'name' => '',
-                'redirect' => '',
+                'name' => 'Όνομα Εφαρμογής',
+                'redirect' => 'Url Επανάκλησης Εφαρμογής',
             ],
         ],
     ],
@@ -134,11 +134,11 @@ return [
     'user' => [
         'contains_username' => 'Ο κωδικός δεν πρέπει να περιέχει το όνομα χρήστη.',
         'email_already_used' => 'Το email είναι ήδη σε χρήση.',
-        'email_not_allowed' => '',
+        'email_not_allowed' => 'Η διεύθυνση ηλεκτρονικού ταχυδρομείου δεν επιτρέπεται.',
         'invalid_country' => 'Η χώρα δεν υπάρχει στη βάση δεδομένων.',
         'invalid_discord' => 'Το όνομα χρήστη στο Discord δεν είναι έγκυρο.',
         'invalid_email' => "Δε φαίνεται να είναι ένα έγκυρο email.",
-        'invalid_twitter' => '',
+        'invalid_twitter' => 'Twitter όνομα χρήστη μη έγκυρο.',
         'too_short' => 'Ο καινούργιος κωδικός είναι πολύ μικρός.',
         'unknown_duplicate' => 'Το όνομα χρήστη ή το email είναι ήδη σε χρήση.',
         'username_available_in' => 'Αυτό το όνομα χρήστη θα είναι διαθέσιμο σε :duration μέρες.',
@@ -158,9 +158,9 @@ return [
         'too_long' => 'Έχετε υπερβεί το μέγιστο όριο - μπορεί να είναι μέχρι :limit χαρακτήρες.',
 
         'attributes' => [
-            'username' => '',
-            'user_email' => '',
-            'password' => '',
+            'username' => 'Όνομα Χρήστη',
+            'user_email' => 'Διεύθυνση ηλεκτρονικού ταχυδρομείου',
+            'password' => 'Κωδικός',
         ],
 
         'change_username' => [
@@ -174,17 +174,17 @@ return [
     ],
 
     'user_report' => [
-        'no_ranked_beatmapset' => '',
-        'not_in_channel' => '',
-        'reason_not_valid' => '',
+        'no_ranked_beatmapset' => 'Δεν μπορούν να αναφερθούν βαθμολογικοί beatmaps',
+        'not_in_channel' => 'Δεν βρίσκεστε σε αυτό το κανάλι.',
+        'reason_not_valid' => 'Το:reason δεν είναι έγκυρο για αυτόν τον τύπο αναφοράς.',
         'self' => "Δεν μπορείτε να αποκλέισετε τον εαυτό σας!",
     ],
 
     'store' => [
         'order_item' => [
             'attributes' => [
-                'quantity' => '',
-                'cost' => '',
+                'quantity' => 'Ποσότητα',
+                'cost' => 'Κόστος',
             ],
         ],
     ],

@@ -12,13 +12,13 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'επίτρεψε kudosu',
-        'beatmap_information' => '',
+        'beatmap_information' => 'Beatmap Page',
         'delete' => 'διαγραφή',
         'deleted' => 'Διαγράφηκε από :editor :delete_time.',
         'deny_kudosu' => 'αρνήσου kudosu',
         'edit' => 'επεξεργασία',
         'edited' => 'Τελευταία επεξεργασία από: :editor :update_time.',
-        'guest' => '',
+        'guest' => 'Δυσκολία επισκέπτη από :user',
         'kudosu_denied' => 'Αδύνατη η απόκτηση kudosu.',
         'message_placeholder_deleted_beatmap' => 'Η δυσκολία αυτή έχει διαγραφεί για αυτό δεν συζητιέται πλέον.',
         'message_placeholder_locked' => 'Η συζήτηση για αυτό το beatmap έχει απενεργοποιηθεί.',
@@ -62,7 +62,7 @@ return [
         'message_placeholder' => [
             'general' => 'Πληκτρολογήστε εδώ για να δημοσιεύσετε στο General (:version)',
             'generalAll' => 'Πληκτρολογήστε εδώ για να δημοσιεύσετε στο General (όλες τις δυσκολίες)',
-            'review' => '',
+            'review' => 'Πληκτρολογήστε εδώ για να δημοσιεύσετε μια κριτική',
             'timeline' => 'Πληκτρολογήστε εδώ για να δημοσιεύσετε στο Χρονολόγιο (:version)',
         ],
 
@@ -73,15 +73,15 @@ return [
             'nomination_reset' => 'Αλλαγή Υποψηφιότητας',
             'praise' => 'Έπαινος',
             'problem' => 'Πρόβλημα',
-            'problem_warning' => '',
-            'review' => '',
+            'problem_warning' => 'Αναφορά Προβλήματος',
+            'review' => 'Κριτική',
             'suggestion' => 'Πρόταση',
         ],
 
         'mode' => [
             'events' => 'Ιστορικό',
             'general' => 'Γενικά :scope',
-            'reviews' => '',
+            'reviews' => 'Κριτικές',
             'timeline' => 'Χρονολόγιο',
             'scopes' => [
                 'general' => 'Αυτή η δυσκολία',
@@ -98,22 +98,22 @@ return [
         ],
 
         'review' => [
-            'new' => '',
+            'new' => 'Νέα κριτική',
             'embed' => [
                 'delete' => 'Διαγραφή',
-                'missing' => '',
-                'unlink' => '',
-                'unsaved' => '',
+                'missing' => '[Η ΣΥΖΗΤΗΣΗ ΔΙΑΓΡΑΦΗΚΕ]',
+                'unlink' => 'Αποσύνδεση',
+                'unsaved' => 'Μη Αποθηκευμένα',
                 'timestamp' => [
-                    'all-diff' => '',
-                    'diff' => '',
+                    'all-diff' => 'Οι δημοσιεύσεις στο "Όλες οι δυσκολίες" δεν μπορούν να επισημανθούν με χρονοσήμανση.',
+                    'diff' => 'Αν αυτή η ανάρτηση ξεκινήσει με ετικέτα χρόνου, θα εμφανίζεται κάτω από το Χρονοδιάγραμμα.',
                 ],
             ],
             'insert-block' => [
-                'paragraph' => '',
-                'praise' => '',
-                'problem' => '',
-                'suggestion' => '',
+                'paragraph' => 'εισαγωγή παραγράφου',
+                'praise' => 'insert praise',
+                'problem' => 'πρόβλημα εισαγωγής',
+                'suggestion' => 'εισαγωγή πρότασης',
             ],
         ],
 
@@ -175,8 +175,8 @@ return [
     ],
 
     'nominations' => [
-        'already_nominated' => '',
-        'cannot_nominate' => '',
+        'already_nominated' => 'Έχετε ήδη ορίσει αυτό το beatmap.',
+        'cannot_nominate' => 'Δεν μπορείτε να ορίσετε αυτή τη λειτουργία beatmap.',
         'delete' => 'Διαγραφή',
         'delete_own_confirm' => 'Είστε σίγουρος; Το beatmap θα διαγραφεί και θα ανακατευθυνθείτε πίσω στο προφίλ σας.',
         'delete_other_confirm' => 'Είστε σίγουρος; Το beatmap θα διαγραφεί και θα ανακατευθυνθείτε πίσω στο προφίλ του χρήστη.',
@@ -186,7 +186,7 @@ return [
         'disqualify' => 'Απόκλεισε',
         'incorrect_state' => 'Σφάλμα κατά την εκτέλεση αυτής της ενέργειας, δοκιμάστε να ανανεώσετε τη σελίδα.',
         'love' => 'Love',
-        'love_choose' => '',
+        'love_choose' => 'Επιλέξτε δυσκολία για τους αγαπημένους',
         'love_confirm' => 'Αγαπάτε αυτό το beatmap;',
         'nominate' => 'Nominate',
         'nominate_confirm' => 'Κάντε nominate αυτό το beatmap;',
@@ -200,9 +200,9 @@ return [
         'unresolved_issues' => 'Εξακολουθούν να υπάρχουν άλυτα ζητήματα που πρέπει να αντιμετωπιστούν πρώτα.',
 
         'rank_estimate' => [
-            '_' => '',
-            'on' => '',
-            'queue' => '',
+            '_' => 'Ο χάρτης υπολογίζεται σε κατάταξη :date εάν δεν βρεθούν προβλήματα. Είναι #:position στο :queue.',
+            'on' => 'στο :date',
+            'queue' => 'ουρά κατάταξης',
             'soon' => 'σύντομα',
         ],
 
@@ -214,7 +214,7 @@ return [
         'reset_confirm' => [
             'disqualify' => 'Είστε σίγουρος; Αυτό θα αφαιρέσει το beatmap απο τα προκριματικά και θα επαναφέρει την διαδικασία πιστοποίησης.',
             'nomination_reset' => 'Είστε σίγουροι; Η δημοσίευση ενός νέου προβλήματος θα επανεκκινήσει την διαδικασία υποψηφιότητας.',
-            'problem_warning' => '',
+            'problem_warning' => 'Είστε βέβαιοι να αναφέρετε το ζήτημα σε αυτό το beatmap? Αυτό θα ειδοποιήσει Beatmap Nominators.',
         ],
     ],
 
@@ -232,7 +232,7 @@ return [
                 'genre' => 'Είδος',
                 'language' => 'Γλώσσα',
                 'mode' => 'Mode',
-                'nsfw' => '',
+                'nsfw' => 'Explicit Content',
                 'played' => 'Που έχετε παίξει',
                 'rank' => 'Κατάκτηση Κατάταξης',
                 'status' => 'Κατηγορίες',
@@ -257,10 +257,10 @@ return [
     ],
     'general' => [
         'converts' => 'Συμπεριλάμβανε beatmaps που έχουν μετατραπεί',
-        'featured_artists' => '',
-        'follows' => '',
+        'featured_artists' => 'Προτεινόμενοι Καλλιτέχνες',
+        'follows' => 'Εγγεγραμμένοι χάρτες',
         'recommended' => 'Προτεινόμενη δυσκολία',
-        'spotlights' => '',
+        'spotlights' => 'Spotlighted beatmaps',
     ],
     'mode' => [
         'all' => 'Όλα',
@@ -279,7 +279,7 @@ return [
         'loved' => 'Loved',
         'mine' => 'Τα Maps Μου',
         'pending' => 'Pending & WIP',
-        'wip' => '',
+        'wip' => 'WIP',
         'qualified' => 'Qualified',
         'ranked' => 'Ranked',
     ],
@@ -294,9 +294,9 @@ return [
         'novelty' => 'Σύγχρονο',
         'hip-hop' => 'Hip Hop',
         'electronic' => 'Ηλεκτρονική Μουσική',
-        'metal' => '',
-        'classical' => '',
-        'folk' => '',
+        'metal' => 'Μέταλλο',
+        'classical' => 'Κλασική',
+        'folk' => 'Λαϊκή',
         'jazz' => 'Τζάζ',
     ],
     'language' => [
@@ -314,12 +314,12 @@ return [
         'polish' => 'Πολωνικά',
         'instrumental' => 'Ορχηστρικό',
         'other' => 'Άλλο',
-        'unspecified' => '',
+        'unspecified' => 'Απροσδιόριστο',
     ],
 
     'nsfw' => [
-        'exclude' => '',
-        'include' => '',
+        'exclude' => 'Απόκρυψη',
+        'include' => 'Εμφάνιση',
     ],
 
     'played' => [

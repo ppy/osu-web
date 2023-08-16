@@ -84,7 +84,7 @@ return [
         'macos-fallback' => 'macOSユーザー',
         'mirror' => 'ミラー',
         'or' => 'または',
-        'os_version_or_later' => '',
+        'os_version_or_later' => ':os_version 以降',
         'other_os' => '他のプラットフォーム',
         'quick_start_guide' => 'クイックスタートガイド',
         'tagline' => "さぁ、<br>始めよう！",

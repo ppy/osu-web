@@ -5,17 +5,17 @@
 
 return [
     'mode' => [
-        'beatmapset' => '',
-        'forum_post' => '',
-        'other' => '',
-        'user' => '',
-        'wiki_page' => '',
+        'beatmapset' => 'Beatmap',
+        'forum_post' => 'Φόρουμ',
+        'other' => 'Άλλο',
+        'user' => 'Παίκτης',
+        'wiki_page' => 'Wiki',
     ],
 
     'result' => [
-        'empty' => '',
-        'empty_for' => '',
-        'more' => '',
-        'title' => '',
+        'empty' => 'Κανένα αποτέλεσμα',
+        'empty_for' => 'Δεν υπάρχουν αποτελέσματα για :modes',
+        'more' => 'Περισσότερα Αποτελέσματα Αναζήτησης :mode',
+        'title' => 'Αποτελέσματα Αναζήτησης:mode',
     ],
 ];

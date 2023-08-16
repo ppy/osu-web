@@ -13,21 +13,21 @@ return [
     ],
 
     'authorized_clients' => [
-        'confirm_revoke' => '',
+        'confirm_revoke' => 'Oletko varma, että haluat peruuttaa tämän käyttäjän valtuudet?',
         'scopes_title' => 'Tämä sovellus voi:',
         'owned_by' => 'Omistaa :user',
         'none' => '',
 
         'revoked' => [
             'false' => 'Kumoa käyttöoikeudet',
-            'true' => '',
+            'true' => 'Pääsy Peruutettu',
         ],
     ],
 
     'client' => [
         'id' => '',
-        'name' => '',
-        'redirect' => '',
+        'name' => 'Sovelluksen Nimi',
+        'redirect' => 'Sovelluksen Takaisinsoitto URL:t',
         'reset' => '',
         'reset_failed' => '',
         'secret' => '',
@@ -40,9 +40,9 @@ return [
 
     'new_client' => [
         'header' => 'Rekisteröi uusi OAuth-sovellus',
-        'register' => '',
+        'register' => 'Rekisteröi uusi sovellus',
         'terms_of_use' => [
-            '_' => '',
+            '_' => 'Käyttämällä rajapintaa hyväksyt :link.',
             'link' => 'Käyttöehdot',
         ],
     ],
@@ -50,7 +50,7 @@ return [
     'own_clients' => [
         'confirm_delete' => '',
         'confirm_reset' => '',
-        'new' => '',
+        'new' => 'Uusi OAuth-Sovellus',
         'none' => '',
 
         'revoked' => [
