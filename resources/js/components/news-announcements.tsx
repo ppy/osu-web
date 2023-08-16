@@ -82,7 +82,7 @@ export default class NewsAnnouncements extends React.Component<Props> {
               (index) => this.renderAnnouncement(this.props.announcements[modulo(index, this.length)], index),
             )}
           </div>
-          {this.renderButtons()}
+          {this.renderArrows()}
         </div>
         {this.renderIndicators()}
       </>
@@ -93,7 +93,7 @@ export default class NewsAnnouncements extends React.Component<Props> {
     window.clearInterval(this.autoRotateTimerId);
   };
 
-  private handleButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  private handleArrowClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     this.setIndex(this.index + parseInt(event.currentTarget.dataset.increment ?? '', 10));
   };
 
@@ -134,18 +134,18 @@ export default class NewsAnnouncements extends React.Component<Props> {
     </div>
   );
 
-  private renderButtons() {
+  private renderArrows() {
     return (
       <>
         <button
-          className={`${bn}__button ${bn}__button--left`}
+          className={`${bn}__arrow ${bn}__arrow--left`}
           data-increment={-1}
-          onClick={this.handleButtonClick}
+          onClick={this.handleArrowClick}
         />
         <button
-          className={`${bn}__button ${bn}__button--right`}
+          className={`${bn}__arrow ${bn}__arrow--right`}
           data-increment={1}
-          onClick={this.handleButtonClick}
+          onClick={this.handleArrowClick}
         />
       </>
     );
