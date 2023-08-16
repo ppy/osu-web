@@ -103,13 +103,9 @@ export default class NewsAnnouncements extends React.Component<Props> {
       return;
     }
 
-    const index = modulo(this.index, this.length);
-
     // Reset the index to be within normal bounds, if it went outside. Don't
     // show the transition so that nothing changes visually
-    if (this.index !== index) {
-      this.setIndex(index, false);
-    }
+    this.setIndex(modulo(this.index, this.length), false);
 
     // Reset the max and min indices to delete all of the cloned announcements
     this.maxIndex = this.length - 1;
@@ -178,6 +174,10 @@ export default class NewsAnnouncements extends React.Component<Props> {
 
   @action
   private setIndex(index: number, transition = true) {
+    if (this.index === index) {
+      return;
+    }
+
     this.index = index;
     this.maxIndex = Math.max(this.maxIndex, index);
     this.minIndex = Math.min(this.minIndex, index);
