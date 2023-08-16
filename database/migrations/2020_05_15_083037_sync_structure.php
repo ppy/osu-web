@@ -93,7 +93,7 @@ class SyncStructure extends Migration
             $table->integer('user_id')->unsigned()->default(0)->change();
         });
         Schema::table('changelog_entries', function (Blueprint $table) {
-            $table->integer('github_user_id')->unsigned()->change();
+            $table->integer('github_user_id')->unsigned()->nullable()->change();
         });
         Schema::table('comment_votes', function (Blueprint $table) {
             $table->integer('user_id')->unsigned()->default(0)->change();
@@ -102,7 +102,7 @@ class SyncStructure extends Migration
         DB::statement('ALTER TABLE comments CHANGE edited_by_id edited_by_id int unsigned DEFAULT NULL');
         DB::statement('ALTER TABLE comments CHANGE deleted_by_id deleted_by_id int unsigned DEFAULT NULL');
         Schema::table('contest_entries', function (Blueprint $table) {
-            $table->integer('user_id')->unsigned()->change();
+            $table->integer('user_id')->unsigned()->nullable()->change();
             $table->dropForeign('contest_entries_contest_id_foreign');
             $table->foreign('contest_id')
                 ->references('id')
