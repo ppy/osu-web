@@ -28,8 +28,7 @@ export default function Main(props: Props) {
     postDates.add(key);
   }
 
-  const orderedPostDates = [...postDates];
-  orderedPostDates.sort().reverse();
+  const orderedPostDates = [...postDates].sort().reverse();
   let first = true;
 
   return (
