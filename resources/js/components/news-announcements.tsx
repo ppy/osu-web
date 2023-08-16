@@ -63,29 +63,30 @@ export default class NewsAnnouncements extends React.Component<Props> {
     }
 
     return (
-      <>
+      <div
+        className={bn}
+        onMouseEnter={this.clearAutoRotateTimer}
+        onMouseLeave={this.setAutoRotateTimer}
+      >
         <div
-          className={bn}
-          onMouseEnter={this.clearAutoRotateTimer}
-          onMouseLeave={this.setAutoRotateTimer}
+          className={classWithModifiers(`${bn}__container`, { transition: this.transition })}
+          onTransitionEnd={this.handleTransitionEnd}
+          style={{ '--index': this.index } as React.CSSProperties}
         >
-          <div
-            className={classWithModifiers(`${bn}__container`, { transition: this.transition })}
-            onTransitionEnd={this.handleTransitionEnd}
-            style={{ '--index': this.index } as React.CSSProperties}
-          >
-            {/*
-              Render the announcements, including clones before and after to
-              help create the illusion of an infinitely scrolling container
-            */}
-            {range(this.minIndex, this.maxIndex + 1).map(
-              (index) => this.renderAnnouncement(this.props.announcements[modulo(index, this.length)], index),
-            )}
-          </div>
-          {this.renderArrows()}
+          {/*
+            Render the announcements, including clones before and after to help
+            create the illusion of an infinitely scrolling container
+          */}
+          {range(this.minIndex, this.maxIndex + 1).map(
+            (index) => this.renderAnnouncement(
+              this.props.announcements[modulo(index, this.length)],
+              index,
+            ),
+          )}
         </div>
+        {this.renderArrows()}
         {this.renderIndicators()}
-      </>
+      </div>
     );
   }
 
