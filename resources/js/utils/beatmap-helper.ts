@@ -31,18 +31,18 @@ interface FindDefaultParams<T> {
 
 export function findDefault<T extends BeatmapJson>(params: FindDefaultParams<T>): T | null {
   if (params.items != null) {
-    let currentDiffDelta: number;
+    let currentDiffDelta: number | null = null;
     let currentItem: T | null = null;
     const targetDiff = userRecommendedDifficulty(params.mode ?? gameModes[0]);
 
-    params.items.forEach((item) => {
+    for (const item of params.items) {
       const diffDelta = Math.abs(item.difficulty_rating - targetDiff);
 
       if (isVisibleBeatmap(item) && (currentDiffDelta == null || diffDelta < currentDiffDelta)) {
         currentDiffDelta = diffDelta;
         currentItem = item;
       }
-    });
+    }
 
     return currentItem ?? _.last(params.items) ?? null;
   }
@@ -85,7 +85,8 @@ export function getDiffColour(rating: number) {
 }
 
 export function group<T extends BeatmapJson>(beatmaps?: T[] | null): Map<GameMode, T[]> {
-  const grouped = _.groupBy(beatmaps ?? [], 'mode');
+  // TODO: replace with mapBy
+  const grouped: Partial<Record<GameMode, T[]>> = _.groupBy(beatmaps ?? [], 'mode');
   const ret = new Map<GameMode, T[]>();
 
   gameModes.forEach((mode) => {

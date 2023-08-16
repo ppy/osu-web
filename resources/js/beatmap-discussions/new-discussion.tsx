@@ -95,7 +95,7 @@ export class NewDiscussion extends React.Component<Props> {
       };
     }
 
-    return this.nearbyDiscussionsCache?.discussions ?? [];
+    return this.nearbyDiscussionsCache.discussions;
   }
 
   private get storageKey() {

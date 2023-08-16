@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { CommentBundleJson } from 'interfaces/comment-json';
-import { Dictionary, orderBy } from 'lodash';
+import { orderBy } from 'lodash';
 import { action, makeObservable, observable } from 'mobx';
 import { Comment, CommentSort } from 'models/comment';
 import { OwnClient } from 'models/oauth/own-client';
@@ -16,7 +16,7 @@ interface AccountUIState {
 
 interface CommentsUIState {
   currentSort: CommentSort;
-  hasMoreComments: Dictionary<boolean>;
+  hasMoreComments: Partial<Record<number, boolean>>;
   loadingFollow: boolean | null;
   loadingSort: CommentSort | null;
   pinnedCommentIds: number[];
@@ -48,7 +48,7 @@ export default class UIStateStore {
   // only for the currently visible page
   @observable comments = Object.assign({}, defaultCommentsUIState);
 
-  private orderedCommentsByParentId: Dictionary<Comment[]> = {};
+  private orderedCommentsByParentId: Partial<Record<number, Comment[]>> = {};
 
   constructor(protected commentStore: CommentStore) {
     makeObservable(this);
@@ -107,7 +107,7 @@ export default class UIStateStore {
         this.comments.topLevelCommentIds.push(comment.id);
       } else {
         this.populateOrderedCommentsForParentId(parentId);
-        this.orderedCommentsByParentId[parentId].push(comment);
+        this.orderedCommentsByParentId[parentId]?.push(comment);
       }
     }
   }
@@ -125,7 +125,7 @@ export default class UIStateStore {
       this.comments.topLevelCommentIds.unshift(comment.id);
     } else {
       this.populateOrderedCommentsForParentId(parentId);
-      this.orderedCommentsByParentId[parentId].unshift(comment);
+      this.orderedCommentsByParentId[parentId]?.unshift(comment);
     }
   }
 

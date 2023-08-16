@@ -54,6 +54,7 @@ export function timestampDecorator(reactNode: React.ReactNode): React.ReactNode 
 
         // decorate the timestamp as a link
         const [,,, m, s, ms, range] = match;
+        // TODO: look at noUncheckedIndexedAccess
         const timestamp = `${m}:${s}:${ms}${range ?? ''}`;
 
         nodes.push((
