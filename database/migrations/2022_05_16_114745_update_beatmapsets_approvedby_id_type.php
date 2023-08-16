@@ -28,7 +28,8 @@ return new class extends Migration
      */
     public function down()
     {
-        // DBAL, which is used to execute `change()`, doesn't support `mediumInteger`.
-        DB::statement('ALTER TABLE osu_beatmapsets MODIFY approvedby_id MEDIUMINT UNSIGNED DEFAULT NULL');
+        Schema::table('osu_beatmapsets', function (Blueprint $table) {
+            $table->mediumInteger('approvedby_id')->unsigned()->nullable()->change();
+        });
     }
 };

@@ -17,7 +17,7 @@ class NullableEntryUrlOnContestEntries extends Migration
     public function up()
     {
         Schema::table('contest_entries', function (Blueprint $table) {
-            $table->string('entry_url')->nullable()->default('NULL')->change();
+            $table->string('entry_url')->nullable()->change();
         });
     }
 
