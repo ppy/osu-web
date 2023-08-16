@@ -44,6 +44,7 @@
   }
 
   &__indicator {
+    .reset-input();
     align-items: center;
     display: flex;
     height: 6px;
@@ -57,6 +58,10 @@
       transition: 100ms ease-out;
       transition-property: height, opacity;
       width: 30px;
+    }
+
+    &:hover::before {
+      height: 6px;
     }
 
     &--active::before {

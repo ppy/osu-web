@@ -98,6 +98,16 @@ export default class NewsAnnouncements extends React.Component<Props> {
     this.setIndex(this.index + parseInt(event.currentTarget.dataset.increment ?? '', 10));
   };
 
+  private handleIndicatorClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    // Increment the index by the visible difference between the selected and
+    // active indicator
+    this.setIndex(
+      this.index
+        + parseInt(event.currentTarget.dataset.index ?? '', 10)
+        - modulo(this.index, this.length),
+    );
+  };
+
   @action
   private handleTransitionEnd = (event: React.TransitionEvent<HTMLDivElement>) => {
     if (event.propertyName !== 'transform' || event.currentTarget !== event.target) {
@@ -152,12 +162,14 @@ export default class NewsAnnouncements extends React.Component<Props> {
     return (
       <div className={`${bn}__indicators`}>
         {this.props.announcements.map((_, index) => (
-          <div
+          <button
             key={index}
             className={classWithModifiers(
               `${bn}__indicator`,
               { active: index === modulo(this.index, this.length) },
             )}
+            data-index={index}
+            onClick={this.handleIndicatorClick}
           />
         ))}
       </div>
