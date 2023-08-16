@@ -5,15 +5,15 @@
 
 return [
     'empty' => [
-        '_' => '',
-        'playlists' => '',
-        'realtime' => '',
+        '_' => 'Κανένα osu!(lazer) :type_group παιχνίδια παίχτηκαν ακόμα!',
+        'playlists' => 'λίστες αναπαραγωγής',
+        'realtime' => 'multiplayer',
     ],
 
     'room' => [
-        'hosted_by' => '',
+        'hosted_by' => 'φιλοξενείται από :user',
         'invalid_password' => 'Μη έγκυρος κωδικός δωματίου',
-        'map_count' => '',
+        'map_count' => ':count_delimited χάρτες:count_delimited',
         'player_count' => ':count_delimited παίκτης|:count_delimited παίκτες',
         'time_left' => 'απέμειναν :time',
 

@@ -25,7 +25,7 @@ return [
     ],
 
     'forums' => [
-        'forums' => '',
+        'forums' => 'Foorumit',
         'latest_post' => 'Viimeisin viesti',
 
         'index' => [
@@ -150,19 +150,19 @@ return [
                 'unpin' => '',
             ],
 
-            'no_results' => '',
+            'no_results' => 'lokeja ei löytynyt...',
 
             'operations' => [
-                'delete_post' => '',
-                'delete_topic' => '',
+                'delete_post' => 'Poistettu viesti',
+                'delete_topic' => 'Poistettu aihe',
                 'edit_topic' => '',
                 'edit_poll' => '',
                 'fork' => '',
                 'issue_tag' => '',
-                'lock' => '',
+                'lock' => 'Lukittu aihe',
                 'merge' => '',
                 'move' => '',
-                'pin' => '',
+                'pin' => 'Kiinnitetty aihe',
                 'post_edited' => '',
                 'restore_post' => '',
                 'restore_topic' => '',

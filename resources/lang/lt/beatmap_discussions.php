@@ -19,18 +19,18 @@ return [
     'index' => [
         'deleted_beatmap' => 'ištrintas',
         'none_found' => 'Jokių diskusijų atitinkančių šių paieškos kriterijų nebuvo rasta.',
-        'title' => 'Bitmapo Diskusijos',
+        'title' => 'Beatmap\'o Diskusijos',
 
         'form' => [
             '_' => 'Ieškoti',
             'deleted' => 'Įtraukti ištrintas diskusijas',
-            'mode' => 'Bitmapo režimas',
+            'mode' => 'Beatmap\'o režimas',
             'only_unresolved' => 'Rodyti tiktais neišspręstas diskusijas',
             'types' => 'Žinučių tipai',
             'username' => 'Vartotojo vardas',
 
             'beatmapset_status' => [
-                '_' => 'Bitmapo Būsena',
+                '_' => 'Beatmap\'o Būsena',
                 'all' => 'Visi',
                 'disqualified' => 'Diskvalifikuotas',
                 'never_qualified' => 'Niekada nebuvo kvalifikuotas',

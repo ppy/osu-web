@@ -8,7 +8,7 @@ return [
     'heading' => 'Antraštė',
     'help' => 'Pagalba',
     'image' => 'Paveikslėlis',
-    'imagemap' => '',
+    'imagemap' => 'Paveikslėlio Planas',
     'italic' => 'Pasviręs',
     'link' => 'Nuoroda',
     'list' => 'Sąrašas',

@@ -34,12 +34,12 @@ return [
         ],
 
         'profile' => [
-            'country' => '',
+            'country' => 'país',
             'title' => 'Perfil',
 
             'country_change' => [
                 '_' => "",
-                'update_link' => '',
+                'update_link' => 'Actualitza a :country',
             ],
 
             'user' => [

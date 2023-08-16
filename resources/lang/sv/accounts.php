@@ -34,12 +34,12 @@ return [
         ],
 
         'profile' => [
-            'country' => '',
+            'country' => 'land',
             'title' => 'Profil',
 
             'country_change' => [
-                '_' => "",
-                'update_link' => '',
+                '_' => "Det verkar som om att ditt kontos land inte matchar landet du befinner dig i. :update_link.",
+                'update_link' => 'Uppdatera till :country',
             ],
 
             'user' => [
