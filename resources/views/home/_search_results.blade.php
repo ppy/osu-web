@@ -25,7 +25,7 @@
 
             <a
                 class="search-result__more-button {{ $showMore ? '' : 'search-result__more-button--hidden' }}"
-                href="{{ route('search', ['mode' => $mode, 'query' => $allSearch->getQuery()]) }}"
+                href="{{ route('search', ['mode' => $mode, 'query' => $allSearch->getRawQuery()]) }}"
             >
                 <span class="fas fa-angle-right"></span>
             </a>
@@ -34,7 +34,7 @@
         @if ($showMore)
             <a
                 class="search-result__row search-result__row--more"
-                href="{{ route('search', ['mode' => $mode, 'query' => $allSearch->getQuery()]) }}"
+                href="{{ route('search', ['mode' => $mode, 'query' => $allSearch->getRawQuery()]) }}"
             >
                 {{ osu_trans("home.search.{$mode}.more_simple") }}
             </a>

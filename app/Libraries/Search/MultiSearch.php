@@ -41,12 +41,12 @@ class MultiSearch
             $this->request['mode'] = presence(get_string($this->request['mode']));
         }
         if (isset($this->request['query'])) {
-            $this->request['query'] = trim(get_string($this->request['query']) ?? '');
+            $this->request['query'] = get_string($this->request['query']);
         }
         if (isset($this->request['username'])) {
             $this->request['username'] = presence(get_string($this->request['username']));
         }
-        $this->query = $this->request['query'] ?? '';
+        $this->query = trim($this->request['query'] ?? '');
         $this->options = $options;
     }
 
@@ -55,9 +55,9 @@ class MultiSearch
         return $this->request['mode'] ?? 'all';
     }
 
-    public function getQuery(): ?string
+    public function getRawQuery(): ?string
     {
-        return $this->query;
+        return $this->request['query'];
     }
 
     public function hasQuery()

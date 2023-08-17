@@ -25,13 +25,13 @@
                 <input
                     autofocus
                     class="search-header__input js-search--input"
-                    data-search-current="{{ $allSearch->getQuery() }}"
+                    data-search-current="{{ $allSearch->getRawQuery() }}"
                     data-turbolinks-permanent
                     id="search-input"
                     name="query"
                     placeholder="{{ osu_trans('home.search.placeholder') }}"
                     type="search"
-                    value="{{ $allSearch->getQuery() }}"
+                    value="{{ $allSearch->getRawQuery() }}"
                 />
 
                 <button class="search-header__icon search-header__icon--normal">
