@@ -47,7 +47,7 @@ export default class CommentShowMore extends React.Component<Props> {
         <ShowMoreLink
           callback={this.load}
           hasMore
-          loading={this.props.controller.isLoading(this.props.parent)}
+          loading={this.loading}
           modifiers='comments'
           remaining={this.props.total - this.props.comments.length}
         />
