@@ -18,20 +18,20 @@
         class="js-search osu-page"
         autocomplete="off"
     >
-        <input type="hidden" name="mode" value="{{ request('mode') }}">
+        <input type="hidden" name="mode" value="{{ $allSearch->getMode() }}">
 
         <div class="search-header js-search--header">
             <div class="search-header__box">
                 <input
                     autofocus
                     class="search-header__input js-search--input"
-                    data-search-current="{{ request('query') }}"
+                    data-search-current="{{ $allSearch->getRawQuery() }}"
                     data-turbolinks-permanent
                     id="search-input"
                     name="query"
                     placeholder="{{ osu_trans('home.search.placeholder') }}"
                     type="search"
-                    value="{{ request('query') }}"
+                    value="{{ $allSearch->getRawQuery() }}"
                 />
 
                 <button class="search-header__icon search-header__icon--normal">
