@@ -110,64 +110,51 @@ class UserScoreAggregateTest extends TestCase
         $playlistItem2 = $this->playlistItem();
 
         $agg = UserScoreAggregate::new($user, $this->room);
-        $agg->addScoreLink(tap(
-            ScoreLink::factory()
-                ->state([
-                    'room_id' => $this->room,
-                    'playlist_item_id' => $playlistItem,
-                    'user_id' => $user,
-                ])->completed([], [
-                    'total_score' => 1,
-                    'passed' => false,
-                ])->create(),
-            fn ($l) => $l->score->performance()->create(['pp' => 0.2]),
-        ));
+        $agg->addScoreLink(ScoreLink::factory()
+            ->state([
+                'room_id' => $this->room,
+                'playlist_item_id' => $playlistItem,
+                'user_id' => $user,
+            ])->completed([], [
+                'total_score' => 1,
+                'passed' => false,
+            ])->create());
 
-        $agg->addScoreLink(tap(
-            ScoreLink::factory()
-                ->state([
-                    'room_id' => $this->room,
-                    'playlist_item_id' => $playlistItem,
-                    'user_id' => $user,
-                ])->completed([], [
-                    'total_score' => 1,
-                    'accuracy' => 0.3,
-                    'passed' => false,
-                ])->create(),
-            fn ($l) => $l->score->performance()->create(['pp' => 0.3]),
-        ));
+        $agg->addScoreLink(ScoreLink::factory()
+            ->state([
+                'room_id' => $this->room,
+                'playlist_item_id' => $playlistItem,
+                'user_id' => $user,
+            ])->completed([], [
+                'total_score' => 1,
+                'accuracy' => 0.3,
+                'passed' => false,
+            ])->create());
 
-        $agg->addScoreLink(tap(
-            ScoreLink::factory()
-                ->state([
-                    'room_id' => $this->room,
-                    'playlist_item_id' => $playlistItem,
-                    'user_id' => $user,
-                ])->completed([], [
-                    'total_score' => 1,
-                    'accuracy' => 0.5,
-                    'passed' => true,
-                ])->create(),
-            fn ($l) => $l->score->performance()->create(['pp' => 0.5]),
-        ));
+        $agg->addScoreLink(ScoreLink::factory()
+            ->state([
+                'room_id' => $this->room,
+                'playlist_item_id' => $playlistItem,
+                'user_id' => $user,
+            ])->completed([], [
+                'total_score' => 1,
+                'accuracy' => 0.5,
+                'passed' => true,
+            ])->create());
 
-        $agg->addScoreLink(tap(
-            ScoreLink::factory()
-                ->state([
-                    'room_id' => $this->room,
-                    'playlist_item_id' => $playlistItem2,
-                    'user_id' => $user,
-                ])->completed([], [
-                    'total_score' => 1,
-                    'accuracy' => 0.8,
-                    'passed' => true,
-                ])->create(),
-            fn ($l) => $l->score->performance()->create(['pp' => 0.8]),
-        ));
+        $agg->addScoreLink(ScoreLink::factory()
+            ->state([
+                'room_id' => $this->room,
+                'playlist_item_id' => $playlistItem2,
+                'user_id' => $user,
+            ])->completed([], [
+                'total_score' => 1,
+                'accuracy' => 0.8,
+                'passed' => true,
+            ])->create());
 
         $result = json_item($agg, 'Multiplayer\UserScoreAggregate');
 
-        $this->assertSame(0.65, $result['pp']);
         $this->assertSame(0.65, $result['accuracy']);
     }
 
