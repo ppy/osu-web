@@ -30,8 +30,7 @@ export default class CommentShowMore extends React.Component<Props> {
 
   private get hasMoreComments() {
     return this.props.parent == null
-      ? true
-      : (this.props.controller.state.hasMore[this.props.parent.id] ?? true);
+      || (this.props.controller.state.hasMore[this.props.parent.id] ?? true);
   }
 
   render() {
