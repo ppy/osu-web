@@ -96,7 +96,7 @@ jobs:
   tests:
     strategy:
       matrix:
-        php: ['8.1']
+        php: ['8.2']
     name: Tests
     runs-on: ubuntu-latest
     steps:
