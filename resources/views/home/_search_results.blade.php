@@ -25,7 +25,7 @@
 
             <a
                 class="search-result__more-button {{ $showMore ? '' : 'search-result__more-button--hidden' }}"
-                href="{{ route('search', ['mode' => $mode, 'query' => request('query')]) }}"
+                href="{{ route('search', ['mode' => $mode, 'query' => $allSearch->getRawQuery()]) }}"
             >
                 <span class="fas fa-angle-right"></span>
             </a>
@@ -34,12 +34,12 @@
         @if ($showMore)
             <a
                 class="search-result__row search-result__row--more"
-                href="{{ route('search', ['mode' => $mode, 'query' => request('query')]) }}"
+                href="{{ route('search', ['mode' => $mode, 'query' => $allSearch->getRawQuery()]) }}"
             >
                 {{ osu_trans("home.search.{$mode}.more_simple") }}
             </a>
         @else
-            @if (request('mode') === 'user' && $search->overLimit())
+            @if ($allSearch->getMode() === 'user' && $search->overLimit())
                 <div class="search-result__row search-result__row--notice">
                     {{ osu_trans("home.search.user.more_hidden", ['max' => config("osu.search.max.user")]) }}
                 </div>
