@@ -57,7 +57,7 @@ class MultiSearch
 
     public function getRawQuery(): ?string
     {
-        return $this->request['query'];
+        return $this->request['query'] ?? null;
     }
 
     public function hasQuery()
