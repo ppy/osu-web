@@ -27,14 +27,14 @@ class CountryChangeTarget
 
     public static function get(User $user): ?string
     {
+        if (static::isUserInTournament($user)) {
+            return null;
+        }
+
         $minMonths = static::minMonths();
         $now = CarbonImmutable::now();
         $until = static::currentMonth();
         $since = $until->subMonths($minMonths - 1);
-
-        if (static::isUserInTournament($user)) {
-            return null;
-        }
 
         $history = $user
             ->userCountryHistory()
