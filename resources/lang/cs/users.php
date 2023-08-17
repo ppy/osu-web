@@ -387,7 +387,7 @@ return [
                     'date' => 'datum',
                     'action' => 'trest',
                     'length' => 'délka',
-                    'length_permanent' => 'Permanentní',
+                    'length_indefinite' => '',
                     'description' => 'popis',
                     'actor' => 'od :username',
 

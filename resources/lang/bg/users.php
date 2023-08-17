@@ -387,7 +387,7 @@ return [
                     'date' => 'дата',
                     'action' => 'действие',
                     'length' => 'продължителност',
-                    'length_permanent' => 'Завинаги',
+                    'length_indefinite' => '',
                     'description' => 'описание',
                     'actor' => 'от :username',
 

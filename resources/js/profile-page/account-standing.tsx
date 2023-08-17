@@ -56,7 +56,7 @@ const ColumnLength = ({ history }: ColumnProps) => {
   if (history.type === 'restriction' || history.permanent) {
     return (
       <div className={`${bn}__action ${bn}__action--restriction`}>
-        {trans('users.show.extra.account_standing.recent_infringements.length_permanent')}
+        {trans('users.show.extra.account_standing.recent_infringements.length_indefinite')}
       </div>
     );
   }

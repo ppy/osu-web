@@ -77,10 +77,6 @@
     &--with-gutter {
       margin: -5px;
     }
-
-    &--landing-sitemap {
-      width: 100%;
-    }
   }
 
   &__no-scroll {
@@ -116,14 +112,12 @@
     }
 
     &--page {
-      ._page;
+      ._page();
       padding: 20px;
-      margin-bottom: 10px;
     }
 
     &--page-compact {
-      ._page;
-      margin-bottom: 10px;
+      ._page();
     }
 
     &--landing-sitemap {
@@ -136,6 +130,7 @@
   &__section {
     display: flex;
     flex-direction: column;
+    margin-bottom: 10px;
 
     &--full {
       flex: 1 0 auto;
@@ -143,6 +138,7 @@
 
     &--landing-footer {
       margin-top: auto;
+      margin-bottom: 0;
       flex: none;
       .at2x("~@images/backgrounds/page-000.png", 500px, 500px);
     }

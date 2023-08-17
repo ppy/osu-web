@@ -37,7 +37,7 @@ return [
         'blocked_count' => 'Estetyt käyttäjät (:count)',
         'hide_profile' => 'piilota profiili',
         'hide_comment' => 'piilota',
-        'forum_post_text' => '',
+        'forum_post_text' => 'Tämä viesti on piilotettu.',
         'not_blocked' => 'Tämä käyttäjä ei ole estetty.',
         'show_profile' => 'näytä profiili',
         'show_comment' => 'näytä',
@@ -182,8 +182,8 @@ return [
             'count' => ':count_delimited kommentti|:count_delimited kommenttia',
         ],
         'cover' => [
-            'to_0' => '',
-            'to_1' => '',
+            'to_0' => 'Piilota kansikuva',
+            'to_1' => 'Näytä kansikuva',
         ],
         'edit' => [
             'cover' => [
@@ -231,13 +231,13 @@ return [
                     'title' => 'Kuopatut',
                 ],
                 'guest' => [
-                    'title' => '',
+                    'title' => 'Vierasyhteisön beatmapit',
                 ],
                 'loved' => [
                     'title' => 'Rakastetut beatmapit',
                 ],
                 'nominated' => [
-                    'title' => '',
+                    'title' => 'Nimitetyt Hyväksytyt Beatmapit',
                 ],
                 'pending' => [
                     'title' => 'Vireillä olevat Beatmapit',
@@ -362,7 +362,7 @@ return [
                 ],
                 'pin' => [
                     'to_0' => 'Poista kiinnitys',
-                    'to_0_done' => '',
+                    'to_0_done' => 'Poistettiin kiinnitetyistä',
                     'to_1' => 'Kiinnitä',
                     'to_1_done' => 'Kiinnitetty tulos',
                 ],
@@ -387,7 +387,7 @@ return [
                     'date' => 'päivä',
                     'action' => 'toiminto',
                     'length' => 'pituus',
-                    'length_permanent' => 'Ikuinen',
+                    'length_indefinite' => '',
                     'description' => 'kuvaus',
                     'actor' => 'käyttäjältä :username',
 

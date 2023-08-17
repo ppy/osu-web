@@ -5,7 +5,7 @@
 
 return [
     'match' => [
-        'beatmap-deleted' => 'bitmapas ištrintas',
+        'beatmap-deleted' => 'beatmap\'as ištrintas',
         'failed' => 'NEPRAĖJO',
         'header' => 'Keli Mačai',
         'in-progress' => '(vyksta mačas)',

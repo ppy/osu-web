@@ -10,7 +10,7 @@ return [
     'title' => 'osu! φόρουμ',
 
     'covers' => [
-        'edit' => '',
+        'edit' => 'Επεξεργασία εξωφύλλου',
 
         'create' => [
             '_' => 'Επιλογή εικόνας εξωφύλλου',
@@ -25,11 +25,11 @@ return [
     ],
 
     'forums' => [
-        'forums' => '',
-        'latest_post' => '',
+        'forums' => 'Φόρουμ',
+        'latest_post' => 'Τελευταία Δημοσίευση',
 
         'index' => [
-            'title' => '',
+            'title' => 'Ευρετήριο Φόρουμ',
         ],
 
         'topics' => [
@@ -48,18 +48,18 @@ return [
         'confirm_restore' => 'Σίγουρα επαναφορά της δημοσίευσης;',
         'edited' => 'Τελευταία τροποποίηση από τον χρήστη :user :when, τροποποιήθηκε :count φορές συνολικά.',
         'posted_at' => 'δημοσιεύτηκε :when',
-        'posted_by_in' => '',
+        'posted_by_in' => 'δημοσιεύτηκε από :username στο :forum',
 
         'actions' => [
             'destroy' => 'Διαγραφή δημοσίευσης',
             'edit' => 'Επεξεργασία δημοσίευσης',
-            'report' => '',
+            'report' => 'Αναφορά δημοσίευσης',
             'restore' => 'Επαναφορά δημοσίευσης',
         ],
 
         'create' => [
             'title' => [
-                'reply' => '',
+                'reply' => 'Νέα απάντηση',
             ],
         ],
 
@@ -76,12 +76,12 @@ return [
     ],
 
     'topic' => [
-        'confirm_destroy' => '',
-        'confirm_restore' => '',
+        'confirm_destroy' => 'Πραγματικά διαγραφή θέματος;',
+        'confirm_restore' => 'Πραγματικά επαναφορά θέματος;',
         'deleted' => 'διαγραμμένο θέμα',
         'go_to_latest' => 'δείτε την πιο πρόσφατη δημοσίευση',
-        'has_replied' => '',
-        'in_forum' => '',
+        'has_replied' => 'Έχετε απαντήσει σε αυτό το θέμα',
+        'in_forum' => 'στο :forum',
         'latest_post' => ':when από τον :user',
         'latest_reply_by' => 'τελευταία απάντηση από τον :user',
         'new_topic' => 'Δημοσιεύστε νέο θέμα',
@@ -93,12 +93,12 @@ return [
         'started_by_verbose' => 'ξεκίνησε από :user',
 
         'actions' => [
-            'destroy' => '',
-            'restore' => '',
+            'destroy' => 'Διαγραφή θέματος',
+            'restore' => 'Επαναφορά θέματος',
         ],
 
         'create' => [
-            'close' => '',
+            'close' => 'Κλείσιμο',
             'preview' => 'Προεπισκόπηση',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -129,51 +129,51 @@ return [
         ],
 
         'logs' => [
-            '_' => '',
-            'button' => '',
+            '_' => 'Αρχεία καταγραφής θεμάτων',
+            'button' => 'Περιήγηση στα αρχεία καταγραφής θεμάτων',
 
             'columns' => [
-                'action' => '',
-                'date' => '',
-                'user' => '',
+                'action' => 'Ενέργεια',
+                'date' => 'Ημερομηνία',
+                'user' => 'Χρήστης',
             ],
 
             'data' => [
-                'add_tag' => '',
-                'announcement' => '',
-                'edit_topic' => '',
-                'fork' => '',
-                'pin' => '',
-                'post_operation' => '',
-                'remove_tag' => '',
-                'source_forum_operation' => '',
-                'unpin' => '',
+                'add_tag' => 'προστέθηκε ετικέτα ":tag"',
+                'announcement' => 'καρφιτσωμένο θέμα και σημειωμένο ως ανακοίνωση',
+                'edit_topic' => 'στο :title',
+                'fork' => 'από :topic',
+                'pin' => 'καρφιτσωμένο θέμα',
+                'post_operation' => 'δημοσιεύτηκε από :username',
+                'remove_tag' => 'αφαιρέθηκε ετικέτα ":tag"',
+                'source_forum_operation' => 'από :forum',
+                'unpin' => 'μη καρφιτσωμένο θέμα',
             ],
 
-            'no_results' => '',
+            'no_results' => 'δεν βρέθηκαν αρχεία καταγραφής...',
 
             'operations' => [
-                'delete_post' => '',
-                'delete_topic' => '',
-                'edit_topic' => '',
-                'edit_poll' => '',
-                'fork' => '',
-                'issue_tag' => '',
-                'lock' => '',
-                'merge' => '',
-                'move' => '',
-                'pin' => '',
-                'post_edited' => '',
-                'restore_post' => '',
-                'restore_topic' => '',
-                'split_destination' => '',
-                'split_source' => '',
-                'topic_type' => '',
-                'topic_type_changed' => '',
-                'unlock' => '',
-                'unpin' => '',
-                'user_lock' => '',
-                'user_unlock' => '',
+                'delete_post' => 'Διαγραμμένη δημοσίευση',
+                'delete_topic' => 'Διαγραμμένο θέμα',
+                'edit_topic' => 'Αλλαγή τίτλου θέματος',
+                'edit_poll' => 'Επεξεργασία δημοσκόπησης θέματος',
+                'fork' => 'Αντιγραφή θέματος',
+                'issue_tag' => 'Ετικέτα έκδοσης',
+                'lock' => 'Κλειδωμένο θέμα',
+                'merge' => 'Συγχωνευμένες δημοσιεύσεις σε αυτό το θέμα',
+                'move' => 'Μετακινήθηκε θέμα',
+                'pin' => 'Καρφιτσωμένο θέμα',
+                'post_edited' => 'Επεξεργασία δημοσίευσης',
+                'restore_post' => 'Επαναφορά δημοσίευσης',
+                'restore_topic' => 'Θέμα επαναφοράς',
+                'split_destination' => 'Μετακινήθηκε διαχωρισμός άρθρων',
+                'split_source' => 'Διαχωρισμός δημοσιεύσεων',
+                'topic_type' => 'Ορισμός τύπου θέματος',
+                'topic_type_changed' => 'Αλλαγμένος τύπος θέματος',
+                'unlock' => 'Ξεκλείδωτο θέμα',
+                'unpin' => 'Ξεκαρφιτσωμένο θέμα',
+                'user_lock' => 'Κλειδωμένο δικό θέμα',
+                'user_unlock' => 'Ξεκλείδωτο δικό του θέμα',
             ],
         ],
 
@@ -297,10 +297,10 @@ return [
         'lock' => [
             'is_locked' => 'Η συζήτηση κλειδώθηκε και δεν δέχεται άλλες απαντήσεις',
             'to_0' => 'Ξεκλειδώστε το θέμα',
-            'to_0_confirm' => '',
+            'to_0_confirm' => 'Ξεκλείδωμα θέματος;',
             'to_0_done' => 'Το θέμα ξεκλειδώθηκε',
             'to_1' => 'Κλειδώστε το θέμα',
-            'to_1_confirm' => '',
+            'to_1_confirm' => 'Κλείδωμα θέματος;',
             'to_1_done' => 'Το θέμα κλειδώθηκε',
         ],
 
@@ -310,19 +310,19 @@ return [
 
         'moderate_pin' => [
             'to_0' => 'Ξεκαρφίτσωμα θέματος',
-            'to_0_confirm' => '',
+            'to_0_confirm' => 'Ξεκαρφιτσώστε το θέμα;',
             'to_0_done' => 'Το θέμα ξεκαρφιτσώθηκε',
             'to_1' => 'Καρφίτσωμα θέματος',
-            'to_1_confirm' => '',
+            'to_1_confirm' => 'Καρφίτσωμα θέματος;',
             'to_1_done' => 'Το θέμα καρφιτσώθηκε',
             'to_2' => 'Καρφίτσωμα θέματος και σήμανση ως ανακοίνωση',
-            'to_2_confirm' => '',
+            'to_2_confirm' => 'Καρφίτσωμα θέματος και σήμα ως ανακοίνωση;',
             'to_2_done' => 'Το θέμα καρφιτσώθηκε και σημάνθηκε ως ανακοίνωση',
         ],
 
         'moderate_toggle_deleted' => [
-            'show' => '',
-            'hide' => '',
+            'show' => 'Εμφάνιση διαγραμμένων άρθρων',
+            'hide' => 'Απόκρυψη διαγραμμένων άρθρων',
         ],
 
         'show' => [
@@ -347,15 +347,15 @@ return [
             ],
 
             'poll' => [
-                'edit' => '',
-                'edit_warning' => '',
+                'edit' => 'Επεξεργασία Δημοσκόπησης',
+                'edit_warning' => 'Η επεξεργασία μιας δημοσκόπησης θα καταργήσει τα τρέχοντα αποτελέσματα!',
                 'vote' => 'Ψηφίστε',
 
                 'button' => [
-                    'change_vote' => '',
-                    'edit' => '',
-                    'view_results' => '',
-                    'vote' => '',
+                    'change_vote' => 'Αλλαγή ψήφου',
+                    'edit' => 'Επεξεργασία δημοσκόπησης',
+                    'view_results' => 'Μετάβαση στα αποτελέσματα',
+                    'vote' => 'Ψηφοφορίες',
                 ],
 
                 'detail' => [

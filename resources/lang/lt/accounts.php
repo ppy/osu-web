@@ -34,12 +34,12 @@ return [
         ],
 
         'profile' => [
-            'country' => '',
+            'country' => 'šalis',
             'title' => 'Profilis',
 
             'country_change' => [
-                '_' => "",
-                'update_link' => '',
+                '_' => "Panašu, kad tavo šalis, nesutampa su šalimi, kurioje gyveni. :update_link.",
+                'update_link' => 'Pakeisti į :country',
             ],
 
             'user' => [
@@ -59,8 +59,8 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_qualified_problem' => 'gauti pranešimus dėl naujų problemų kvalifikuotuose bitmapuose šiuose režimuose ',
-        'beatmapset_disqualify' => 'gauti pranešimus, kai šių režimų bitmapai diskvalifikuojami',
+        'beatmapset_discussion_qualified_problem' => 'gauti pranešimus dėl naujų problemų kvalifikuotuose beatmap\'uose šiuose režimuose ',
+        'beatmapset_disqualify' => 'gauti pranešimus, kai šių režimų beatmap\'ai diskvalifikuojami',
         'comment_reply' => 'gauti pranešimus apie atsakymus ant jūsų komentarų',
         'title' => 'Pranešimai',
         'topic_auto_subscribe' => 'automatiškai įjungti pranešimus naujuose forumo temose kurias tu sukūrei',
@@ -68,12 +68,12 @@ return [
         'options' => [
             '_' => 'pristatymo būdai',
             'beatmap_owner_change' => 'svečio sunkumas',
-            'beatmapset:modding' => 'bitmapų modifikacijos',
+            'beatmapset:modding' => 'beatmap\'ų modifikacijos',
             'channel_message' => 'privatūs susirašinėjimai',
             'comment_new' => 'nauji komentarai',
             'forum_topic_reply' => 'temos atsakymas',
             'mail' => 'paštas',
-            'mapping' => 'bitmapo kūrėjas',
+            'mapping' => 'beatmap\'o kūrėjas',
             'push' => 'push',
             'user_achievement_unlock' => 'žaidėjo medalis atrakintas',
         ],
@@ -86,12 +86,12 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => 'slėpti perspėjimus dėl eksplicitinio turinio bitmapuose',
-        'beatmapset_title_show_original' => 'rodyti bitmapo metaduomenys orginaliaja kalba',
+        'beatmapset_show_nsfw' => 'slėpti perspėjimus dėl eksplicitinio turinio beatmap\'uose',
+        'beatmapset_title_show_original' => 'rodyti beatmap\'o metaduomenys orginaliaja kalba',
         'title' => 'Parinktys',
 
         'beatmapset_download' => [
-            '_' => 'numatytasis bitmapų siuntimosi tipas
+            '_' => 'numatytasis beatmap\'ų siuntimosi tipas
 ',
             'all' => 'su vaizdo įrašų, jei yra',
             'direct' => 'atidaryti per osu!direct',

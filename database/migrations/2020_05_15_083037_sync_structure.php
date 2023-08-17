@@ -76,10 +76,10 @@ class SyncStructure extends Migration
             $table->integer('user_id')->unsigned()->nullable(false)->default(0)->change();
         });
         Schema::table('beatmap_discussions', function (Blueprint $table) {
-            $table->integer('user_id')->unsigned()->change();
-            $table->integer('resolver_id')->unsigned()->change();
-            $table->integer('deleted_by_id')->unsigned()->change();
-            $table->integer('kudosu_denied_by_id')->unsigned()->change();
+            $table->integer('user_id')->unsigned()->nullable()->change();
+            $table->integer('resolver_id')->unsigned()->nullable()->change();
+            $table->integer('deleted_by_id')->unsigned()->nullable()->change();
+            $table->integer('kudosu_denied_by_id')->unsigned()->nullable()->change();
         });
         DB::statement('ALTER TABLE beatmapset_events CHANGE user_id user_id int unsigned DEFAULT NULL');
         Schema::table('beatmapset_events', function (Blueprint $table) {
@@ -93,7 +93,7 @@ class SyncStructure extends Migration
             $table->integer('user_id')->unsigned()->default(0)->change();
         });
         Schema::table('changelog_entries', function (Blueprint $table) {
-            $table->integer('github_user_id')->unsigned()->change();
+            $table->integer('github_user_id')->unsigned()->nullable()->change();
         });
         Schema::table('comment_votes', function (Blueprint $table) {
             $table->integer('user_id')->unsigned()->default(0)->change();
@@ -102,7 +102,7 @@ class SyncStructure extends Migration
         DB::statement('ALTER TABLE comments CHANGE edited_by_id edited_by_id int unsigned DEFAULT NULL');
         DB::statement('ALTER TABLE comments CHANGE deleted_by_id deleted_by_id int unsigned DEFAULT NULL');
         Schema::table('contest_entries', function (Blueprint $table) {
-            $table->integer('user_id')->unsigned()->change();
+            $table->integer('user_id')->unsigned()->nullable()->change();
             $table->dropForeign('contest_entries_contest_id_foreign');
             $table->foreign('contest_id')
                 ->references('id')
@@ -153,7 +153,7 @@ class SyncStructure extends Migration
             $table->integer('user_id')->unsigned()->nullable(false)->default(0)->change();
         });
         Schema::table('github_users', function (Blueprint $table) {
-            $table->integer('user_id')->unsigned()->default(null)->change();
+            $table->integer('user_id')->unsigned()->nullable()->default(null)->change();
         });
         Schema::table('multiplayer_rooms', function (Blueprint $table) {
             $table->integer('user_id')->unsigned()->nullable(false)->default(0)->change();
@@ -171,7 +171,7 @@ class SyncStructure extends Migration
         });
         DB::statement('ALTER TABLE notifications CHANGE source_user_id source_user_id int unsigned DEFAULT NULL');
         Schema::table('oauth_access_tokens', function (Blueprint $table) {
-            $table->integer('user_id')->unsigned()->default(null)->change();
+            $table->integer('user_id')->unsigned()->nullable()->default(null)->change();
             $table->dropIndex('oauth_access_tokens_expires_at_index');
             $table->index('expires_at');
         });
@@ -179,7 +179,7 @@ class SyncStructure extends Migration
             $table->integer('user_id')->unsigned()->nullable(false)->default(0)->change();
         });
         Schema::table('oauth_clients', function (Blueprint $table) {
-            $table->integer('user_id')->unsigned()->default(null)->change();
+            $table->integer('user_id')->unsigned()->nullable()->default(null)->change();
         });
         Schema::table('osu_apikeys', function (Blueprint $table) {
             $table->string('app_url', 512)->nullable(false)->default('')->change();
@@ -212,7 +212,7 @@ class SyncStructure extends Migration
             $table->integer('user_id')->unsigned()->nullable(false)->default(0)->change();
             $table->integer('playcount')->unsigned()->nullable(false)->default(0)->change();
             $table->integer('passcount')->unsigned()->nullable(false)->default(0)->change();
-            $table->tinyInteger('score_version')->nullablee(false)->default(1)->after('youtube_preview');
+            $table->tinyInteger('score_version')->nullable(false)->default(1)->after('youtube_preview');
         });
         DB::statement('ALTER TABLE osu_beatmapsets CHANGE bpm bpm float NOT NULL DEFAULT 0');
         DB::statement('ALTER TABLE osu_beatmapsets CHANGE rating rating float unsigned NOT NULL DEFAULT 0');
@@ -221,7 +221,7 @@ class SyncStructure extends Migration
         Schema::table('osu_beatmapsets', function (Blueprint $table) {
             $table->integer('user_id')->unsigned()->nullable(false)->default(0)->change();
             $table->integer('play_count')->unsigned()->nullable(false)->default(0)->change();
-            $table->string('difficulty_names', 2048)->default(null)->change();
+            $table->string('difficulty_names', 2048)->nullable()->default(null)->change();
             $table->string('storyboard_hash', 32)->nullable();
         });
         DB::statement('ALTER TABLE osu_builds CHANGE hash hash binary(16) DEFAULT NULL AFTER version');
@@ -405,7 +405,7 @@ class SyncStructure extends Migration
         });
         Schema::table('user_contest_entries', function (Blueprint $table) {
             $table->integer('user_id')->unsigned()->nullable(false)->default(0)->change();
-            $table->boolean('show_in_client')->nullable(true)->default(0)->change();
+            $table->boolean('show_in_client')->nullable()->default(0)->change();
         });
         Schema::table('user_notifications', function (Blueprint $table) {
             $table->integer('user_id')->unsigned()->nullable(false)->default(0)->change();

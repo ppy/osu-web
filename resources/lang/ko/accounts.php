@@ -34,12 +34,12 @@ return [
         ],
 
         'profile' => [
-            'country' => '',
+            'country' => '국가',
             'title' => '프로필',
 
             'country_change' => [
-                '_' => "",
-                'update_link' => '',
+                '_' => " 계정에 등록된 국가와 실제 거주 국가가 다른 것 같습니다. :update_link",
+                'update_link' => ':country(으)로 변경',
             ],
 
             'user' => [

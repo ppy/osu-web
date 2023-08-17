@@ -8,7 +8,7 @@ return [
         'chat' => [
             'empty' => 'Ei voida lähettää tyhjää viestiä.',
             'limit_exceeded' => 'Lähetät viestejä liian nopeasti, odota hetki ennen kuin yrität uudelleen.',
-            'too_long' => 'Viesti jota yrität lähettää on liian pitkä.',
+            'too_long' => 'Viesti, jota yrität lähettää, on liian pitkä.',
         ],
     ],
 
@@ -25,7 +25,7 @@ return [
         ],
 
         'friends' => [
-            'read' => 'Nähdä keitä seuraat.',
+            'read' => 'Nähdä, keitä seuraat.',
         ],
 
         'public' => 'Lukea julkisia tietoja puolestasi.',

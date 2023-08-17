@@ -7,6 +7,7 @@ use App\Libraries\LocaleMeta;
 use App\Models\LoginAttempt;
 use Egulias\EmailValidator\EmailValidator;
 use Egulias\EmailValidator\Validation\NoRFCWarningsValidation;
+use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Arr;
 use Illuminate\Support\HtmlString;
 
@@ -40,11 +41,7 @@ function array_reject_null(iterable $array): array
  */
 function array_search_null($value, $array)
 {
-    $key = array_search($value, $array, true);
-
-    if ($key !== false) {
-        return $key;
-    }
+    return null_if_false(array_search($value, $array, true));
 }
 
 function atom_id(string $namespace, $id = null): string
@@ -621,26 +618,18 @@ function product_quantity_options($product, $selected = null)
 function read_image_properties($path)
 {
     try {
-        $data = getimagesize($path);
+        return null_if_false(getimagesize($path));
     } catch (Exception $_e) {
-        return;
-    }
-
-    if ($data !== false) {
-        return $data;
+        return null;
     }
 }
 
 function read_image_properties_from_string($string)
 {
     try {
-        $data = getimagesizefromstring($string);
+        return null_if_false(getimagesizefromstring($string));
     } catch (Exception $_e) {
-        return;
-    }
-
-    if ($data !== false) {
-        return $data;
+        return null;
     }
 }
 
@@ -1287,9 +1276,7 @@ function open_image($path, $dimensions = null)
                 break;
         }
 
-        if ($image !== false) {
-            return $image;
-        }
+        return null_if_false($image);
     } catch (ErrorException $_e) {
         // do nothing
     }
@@ -1335,18 +1322,11 @@ function fast_imagesize($url)
         ]);
         $data = curl_exec($curl);
 
-        $result = read_image_properties_from_string($data);
-
-        if ($result === null) {
-            return false;
-        } else {
-            return $result;
-        }
+        // null isn't cached
+        return read_image_properties_from_string($data) ?? false;
     });
 
-    if ($result !== false) {
-        return $result;
-    }
+    return null_if_false($result);
 }
 
 function get_arr($input, $callback = null)
@@ -1633,6 +1613,11 @@ function get_timestamp_or_zero(DateTime $time = null): int
     return $time === null ? 0 : $time->getTimestamp();
 }
 
+function null_if_false($value)
+{
+    return $value === false ? null : $value;
+}
+
 function parse_time_to_carbon($value)
 {
     if (!present($value)) {
@@ -1862,4 +1847,12 @@ function search_error_message(?Exception $e): ?string
 function unmix(string $resource): HtmlString
 {
     return app('assets-manifest')->src($resource);
+}
+
+/**
+ * Get an instance of the named migration.
+ */
+function migration(string $name): Migration
+{
+    return require database_path("migrations/{$name}.php");
 }
