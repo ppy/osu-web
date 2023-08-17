@@ -32,7 +32,6 @@ class CountryChangeTarget
         }
 
         $minMonths = static::minMonths();
-        $now = CarbonImmutable::now();
         $until = static::currentMonth();
         $since = $until->subMonths($minMonths - 1);
 
