@@ -11,6 +11,7 @@ use App\Libraries\User\CountryChangeTarget;
 use App\Models\Country;
 use App\Models\Tournament;
 use App\Models\User;
+use App\Models\UserCountryHistory;
 use Carbon\CarbonImmutable;
 use Database\Factories\UserFactory;
 use Tests\TestCase;
@@ -113,7 +114,7 @@ class CountryChangeTargetTest extends TestCase
 
         $user
             ->userCountryHistory()
-            ->where('year_month', '>', CountryChangeTarget::currentMonth()->subMonths($minMonths))
+            ->where('year_month', '>', UserCountryHistory::formatDate(CountryChangeTarget::currentMonth()->subMonths($minMonths)))
             ->inRandomOrder()
             ->limit(1)
             ->delete();
@@ -130,7 +131,7 @@ class CountryChangeTargetTest extends TestCase
 
         $user
             ->userCountryHistory()
-            ->where('year_month', '>', CountryChangeTarget::currentMonth()->subMonths($minMonths))
+            ->where('year_month', '>', UserCountryHistory::formatDate(CountryChangeTarget::currentMonth()->subMonths($minMonths)))
             ->inRandomOrder()
             ->limit(2)
             ->delete();
