@@ -387,7 +387,7 @@ return [
                     'date' => 'ngày',
                     'action' => 'hành động',
                     'length' => 'thời lượng',
-                    'length_permanent' => 'vĩnh viễn',
+                    'length_indefinite' => '',
                     'description' => 'mô tả',
                     'actor' => 'bởi :username',
 

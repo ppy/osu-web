@@ -70,7 +70,7 @@ export default class Info extends React.Component<Props> {
   }
 
   private get withEditMetadata() {
-    return this.controller.beatmapset.current_user_attributes?.can_edit_metadata ?? false;
+    return this.controller.beatmapset.current_user_attributes.can_edit_metadata;
   }
 
   constructor(props: Props) {

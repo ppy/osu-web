@@ -339,6 +339,11 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         });
     }
 
+    public function scopeScoreable(Builder $query): void
+    {
+        $query->where('approved', '>', 0);
+    }
+
     public function scopeWithModesForRanking($query, $modeInts)
     {
         if (!is_array($modeInts)) {

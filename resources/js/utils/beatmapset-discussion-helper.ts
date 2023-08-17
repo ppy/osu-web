@@ -104,7 +104,7 @@ export function canModeratePosts() {
   const user = core.currentUser;
   if (user == null) return false;
 
-  return (user.is_admin || user.is_moderator) ?? false;
+  return user.is_admin || user.is_moderator;
 }
 
 export function defaultMode(beatmapId?: number | string | null) {

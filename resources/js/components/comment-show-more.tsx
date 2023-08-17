@@ -33,7 +33,9 @@ export default class CommentShowMore extends React.Component<Props> {
   private xhr?: JQuery.jqXHR<void>;
 
   private get hasMoreComments() {
-    return uiState.comments.hasMoreComments[this.props.parent?.id ?? 'null'] ?? true;
+    return this.props.parent != null
+      ? uiState.comments.hasMoreComments[this.props.parent.id] ?? true
+      : true;
   }
 
   constructor(props: Props) {
