@@ -12,6 +12,7 @@ use App\Models\Spotlight;
 use App\Models\User;
 use App\Models\UserStatistics;
 use App\Transformers\SelectOptionTransformer;
+use App\Transformers\UserCompactTransformer;
 use DB;
 use Illuminate\Pagination\LengthAwarePaginator;
 
@@ -221,6 +222,19 @@ class RankingController extends Controller
         return ext_view("rankings.{$type}", array_merge($this->defaultViewVars, compact('scores')));
     }
 
+    /**
+     * Get Kudosu Ranking
+     *
+     * Gets the kudosu ranking.
+     *
+     * ---
+     *
+     * ### Response format
+     *
+     * Returns an array of [UserCompact](#usercompact) with `kudosu` included.
+     *
+     * @queryParam page Ranking page. Example: 1
+     */
     public function kudosu()
     {
         static $maxResults = 1000;
@@ -229,9 +243,18 @@ class RankingController extends Controller
         $page = min(get_int(request('page')) ?? 1, $maxPage);
 
         $scores = User::default()
-            ->with('country')
             ->orderBy('osu_kudostotal', 'desc')
             ->paginate(static::PAGE_SIZE, ['*'], 'page', $page, $maxResults);
+
+        if (is_json_request()) {
+            return json_collection(
+                $scores,
+                new UserCompactTransformer(),
+                'kudosu',
+            );
+        }
+
+        $scores->loadMissing('country');
 
         return ext_view('rankings.kudosu', compact('scores'));
     }
