@@ -34,6 +34,7 @@ class MigrateFreshAllCommand extends FreshCommand
             $this->warn($database);
             $this->call('db:wipe', [
                 '--database' => $database,
+                '--drop-views' => true,
             ]);
         }
 
