@@ -426,6 +426,13 @@ export default class CommentsController {
     return this.xhr[`vote-${comment.id}`] != null;
   }
 
+  private addComment(commentJson: CommentJson) {
+    const id = commentJson.id;
+    if (this.state.comments[id]?.updatedAt !== commentJson.updated_at) {
+      this.state.comments[id] = new Comment(commentJson, this);
+    }
+  }
+
   private addCommentId(comment: CommentJson, append: boolean) {
     const parentId = comment.parent_id ?? 0;
     this.state.commentIdsByParentId[parentId] ??= [];
@@ -449,16 +456,30 @@ export default class CommentsController {
   @action
   private loadBundle(bundle: CommentBundleJson, append = true, initial = false) {
     if (initial) {
-      this.state.commentIdsByParentId[0] = bundle.comments.map((comment) => comment.id);
+      this.state.commentIdsByParentId[0] = [];
+      const comments = this.state.commentIdsByParentId[0];
+      bundle.comments.forEach((comment) => {
+        comments.push(comment.id);
+        this.addComment(comment);
+      });
       this.state.sort = bundle.sort;
     } else {
-      bundle.comments.forEach((comment) => this.addCommentId(comment, append));
+      bundle.comments.forEach((comment) => {
+        this.addCommentId(comment, append);
+        this.addComment(comment);
+      });
     }
 
-    bundle.included_comments.forEach((comment) => this.addCommentId(comment, true));
-    if (bundle.pinned_comments != null) {
-      this.state.pinnedCommentIds = bundle.pinned_comments.map((comment) => comment.id);
-    }
+    bundle.included_comments.forEach((comment) => {
+      this.addCommentId(comment, true);
+      this.addComment(comment);
+    });
+    this.state.pinnedCommentIds = [];
+    (bundle.pinned_comments ?? []).forEach((comment) => {
+      this.state.pinnedCommentIds.push(comment.id);
+      this.addComment(comment);
+    });
+
     bundle.user_votes.forEach((v) => this.state.votedCommentIds.add(v));
 
     this.state.isFollowing = bundle.user_follow;
@@ -468,12 +489,6 @@ export default class CommentsController {
       this.state.total = bundle.total;
     }
 
-    for (const comment of [...bundle.comments, ...bundle.included_comments, ...bundle.pinned_comments]) {
-      const id = comment.id;
-      if (this.state.comments[id]?.updatedAt !== comment.updated_at) {
-        this.state.comments[id] = new Comment(comment, this);
-      }
-    }
     for (const user of bundle.users) {
       const id = user.id;
       if (!isEqual(this.state.users[id], user)) {
