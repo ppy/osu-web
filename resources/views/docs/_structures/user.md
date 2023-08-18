@@ -170,8 +170,6 @@ discord          | string?                            | |
 has_supported    | boolean                            | whether or not ever being a supporter in the past
 interests        | string?                            | |
 join_date        | Timestamp                          | |
-kudosu.available | number                             | |
-kudosu.total     | number                             | |
 location         | string?                            | |
 max_blocks       | number                             | maximum number of users allowed to be blocked
 max_friends      | number                             | maximum number of friends allowed to be added
@@ -190,6 +188,7 @@ In addition, the following [optional attributes on UserCompact](#usercompact-opt
 - country
 - cover
 - is_restricted (present only if this is the currently authenticated user)
+- kudosu
 
 <div id="user-profilepage" data-unique="user-profilepage"></div>
 

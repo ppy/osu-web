@@ -55,6 +55,7 @@ graveyard_beatmapset_count | number
 groups                     | [UserGroup](#usergroup)[]
 guest_beatmapset_count     | number
 is_restricted              | boolean?
+kudosu                     | [UserCompact.Kudosu](#usercompact-kudosu)
 loved_beatmapset_count     | number
 mapping_follower_count     | number
 monthly_playcounts         | [UserMonthlyPlaycount](#usermonthlyplaycount)[]
@@ -118,3 +119,12 @@ awarded_at  | Timestamp | |
 description | string    | |
 image_url   | string    | |
 url         | string    | |
+
+<div id="usercompact-kudosu" data-unique="usercompact-kudosu"></div>
+
+### Kudosu
+
+Field     | Type
+----------|-----
+available | number
+total     | number
