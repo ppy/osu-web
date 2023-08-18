@@ -46,7 +46,7 @@ interface StateJson {
   commentIdsByParentId: Partial<Record<number, number[]>>;
   comments: CommentJson[];
   hasMore: Partial<Record<number, boolean>>;
-  isFollowing: boolean; // only for the first commentableMetaItem
+  isFollowing: boolean;
   pinnedCommentIds: number[];
   sort: string;
   topLevelCount: number;
