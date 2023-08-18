@@ -169,6 +169,6 @@ class EsIndexDocuments extends Command
             $confirmMessage = 'This will create new indices';
         }
 
-        return $this->yes || $this->confirm("{$confirmMessage}, begin indexing?");
+        return $this->yes || $this->confirm("{$confirmMessage}, begin indexing?", true);
     }
 }
