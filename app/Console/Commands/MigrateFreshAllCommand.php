@@ -24,7 +24,7 @@ class MigrateFreshAllCommand extends FreshCommand
             $this->warn("{$name} => {$config['database']}");
         }
 
-        $continue = $this->option('yes') || $this->confirm('continue?');
+        $continue = $this->option('yes') || $this->confirm('continue?', true);
         if (!$continue) {
             $this->error('User aborted!');
             return 1;
@@ -47,13 +47,13 @@ class MigrateFreshAllCommand extends FreshCommand
 
         $this->call('es:index-documents', [
             '--cleanup' => true,
-            '--yes' => $this->option('yes'),
+            '--no-interaction' => $this->option('no-interaction'),
         ]);
 
         $this->call('es:index-wiki', [
             '--cleanup' => true,
             '--create-only' => true,
-            '--yes' => $this->option('yes'),
+            '--no-interaction' => $this->option('no-interaction'),
         ]);
 
         $this->call('es:create-search-blacklist');
