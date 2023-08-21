@@ -143,8 +143,8 @@ jobs:
       - name: Setup indices
         run: |
           php artisan es:create-search-blacklist
-          php artisan es:index-documents --yes
-          php artisan es:index-wiki --create-only --yes
+          php artisan es:index-documents --no-interaction
+          php artisan es:index-wiki --create-only --no-interaction
 
       - name: Generate docs
         run: php artisan scribe:generate
@@ -158,7 +158,7 @@ jobs:
       # but has since been fixed.
       # Something should still be done regarding es index between tests though.
       - name: Clean indexes
-        run: php artisan es:index-documents --yes
+        run: php artisan es:index-documents --no-interaction
 
       - name: Run Dusk
         run: ./bin/run_dusk.sh

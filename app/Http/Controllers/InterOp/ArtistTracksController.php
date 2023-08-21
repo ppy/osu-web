@@ -21,7 +21,7 @@ class ArtistTracksController extends Controller
             '--cleanup' => $params['cleanup'] ?? true,
             '--inplace' => $params['inplace'] ?? true,
             '--types' => 'artist_tracks',
-            '--yes' => true,
+            '--no-interaction' => true,
         ]);
 
         return response()->noContent();
