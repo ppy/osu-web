@@ -1,13 +1,14 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { CommentJson } from 'interfaces/comment-json';
+import CommentsController from 'components/comments-controller';
+import CommentJson from 'interfaces/comment-json';
 import { computed, makeObservable } from 'mobx';
 import core from 'osu-core-singleton';
 
 export type CommentSort = 'new' | 'old' | 'top';
 
-export class Comment {
+export default class Comment {
   commentableId: number;
   commentableType: string; // TODO: type?
   createdAt: string;
@@ -26,7 +27,7 @@ export class Comment {
   userId: number | null;
   votesCount: number;
 
-  constructor(json: CommentJson) {
+  constructor(json: CommentJson, private readonly controller: CommentsController) {
     this.commentableId = json.commentable_id;
     this.commentableType = json.commentable_type;
     this.createdAt = json.created_at;
@@ -80,7 +81,7 @@ export class Comment {
 
     if (
       this.commentableType !== 'beatmapset' ||
-      (!this.pinned && core.dataStore.uiState.comments.pinnedCommentIds.length > 0)
+      (!this.pinned && this.controller.state.pinnedCommentIds.length > 0)
     ) {
       return false;
     }
@@ -93,7 +94,7 @@ export class Comment {
       return false;
     }
 
-    const meta = core.dataStore.commentableMetaStore.get(this.commentableType, this.commentableId);
+    const meta = this.controller.getCommentableMeta(this);
 
     return meta != null && 'owner_id' in meta && meta.owner_id === core.currentUser.id;
   }
@@ -126,5 +127,27 @@ export class Comment {
   @computed
   get isOwner() {
     return core.currentUser != null && this.userId === core.currentUser.id;
+  }
+
+  toJson(): CommentJson {
+    return {
+      commentable_id: this.commentableId,
+      commentable_type: this.commentableType,
+      created_at: this.createdAt,
+      deleted_at: this.deletedAt,
+      deleted_by_id: this.deletedById,
+      edited_at: this.editedAt,
+      edited_by_id: this.editedById,
+      id: this.id,
+      legacy_name: this.legacyName,
+      message: this.message,
+      message_html: this.messageHtml,
+      parent_id: this.parentId,
+      pinned: this.pinned,
+      replies_count: this.repliesCount,
+      updated_at: this.updatedAt,
+      user_id: this.userId,
+      votes_count: this.votesCount,
+    };
   }
 }
