@@ -303,6 +303,7 @@ export default class CommentsController {
         this.nextState = {};
         this.xhr = {};
         this.loadBundle(bundle, false, true);
+        core.userPreferences.set('comments_sort', this.state.sort);
       }));
   }
 
