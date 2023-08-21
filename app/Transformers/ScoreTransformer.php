@@ -245,7 +245,7 @@ class ScoreTransformer extends TransformerAbstract
                 ->getWithHasMore();
 
             $ret[$type] = [
-                'scores' => json_collection($highScores->pluck('scoreLink.score'), new static(), static::MULTIPLAYER_BASE_INCLUDES),
+                'scores' => json_collection($highScores->pluck('scoreLink'), new static(), static::MULTIPLAYER_BASE_INCLUDES),
                 'params' => ['limit' => $limit, 'sort' => $cursorHelper->getSortName()],
                 ...cursor_for_response($cursorHelper->next($highScores, $hasMore)),
             ];

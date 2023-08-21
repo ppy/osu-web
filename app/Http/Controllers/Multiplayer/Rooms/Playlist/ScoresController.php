@@ -58,7 +58,7 @@ class ScoresController extends BaseController
 
         $transformer = ScoreTransformer::newSolo();
         $scoresJson = json_collection(
-            $highScores->pluck('score'),
+            $highScores->pluck('scoreLink'),
             $transformer,
             ScoreTransformer::MULTIPLAYER_BASE_INCLUDES
         );
