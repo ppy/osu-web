@@ -27,7 +27,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           tools: composer:v2
-          php-version: '8.1'
+          php-version: '8.2'
           coverage: none
 
       - name: Get composer cache directory

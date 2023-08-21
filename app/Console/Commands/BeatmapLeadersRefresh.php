@@ -35,7 +35,7 @@ class BeatmapLeadersRefresh extends Command
      */
     public function handle()
     {
-        $continue = $this->option('yes') || $this->confirm('This will recalculate beatmap leaders, continue?');
+        $continue = $this->option('yes') || $this->confirm('This will recalculate beatmap leaders, continue?', true);
 
         if (!$continue) {
             return $this->error('User aborted!');
