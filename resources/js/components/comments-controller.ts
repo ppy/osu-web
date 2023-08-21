@@ -119,7 +119,6 @@ export default class CommentsController {
   @observable state: State;
 
   private destroyed = false;
-  private stateEl: HTMLScriptElement;
   @observable private xhr: Partial<XhrCollection> = {};
 
   get commentableMeta() {
@@ -130,24 +129,28 @@ export default class CommentsController {
     return this.getComments(this.state.pinnedCommentIds);
   }
 
+  get stateEl() {
+    const ret = (window.newBody ?? document.body).querySelector(this.stateSelector);
+
+    if (ret instanceof HTMLScriptElement) {
+      return ret;
+    }
+
+    throw new Error('missing state element');
+  }
+
   get topLevelComments() {
     return this.getComments(this.state.commentIdsByParentId[0] ?? []);
   }
 
-  constructor(stateSelector: string, private baseCommentableMeta?: BaseCommentableMeta) {
-    const stateEl = (window.newBody ?? document.body).querySelector(stateSelector);
-    if (!(stateEl instanceof HTMLScriptElement)) {
-      throw new Error('missing state element');
-    }
-
-    this.stateEl = stateEl;
-
-    const savedStateJson = this.stateEl.dataset.savedState;
+  constructor(private stateSelector: string, private baseCommentableMeta?: BaseCommentableMeta) {
+    const stateEl = this.stateEl;
+    const savedStateJson = stateEl.dataset.savedState;
     if (savedStateJson != null) {
       this.state = this.stateFromJson(JSON.parse(savedStateJson) as StateJson);
     } else {
       this.state = initialState();
-      const initialBundle = JSON.parse(this.stateEl.text) as CommentBundleJson;
+      const initialBundle = JSON.parse(stateEl.text) as CommentBundleJson;
       this.loadBundle(initialBundle, false, true);
     }
 
