@@ -51,6 +51,7 @@ class ScoresController extends BaseController
 
         [$highScores, $hasMore] = $playlist
             ->highScores()
+            ->whereHas('scoreLink')
             ->cursorSort($cursorHelper, cursor_from_params($params))
             ->with(ScoreTransformer::MULTIPLAYER_BASE_PRELOAD)
             ->limit($limit)
