@@ -12,7 +12,7 @@
                 }
             @endphp
             <a
-                href="{{ route('search', ['mode' => $mode, 'query' => request('query')]) }}"
+                href="{{ route('search', ['mode' => $mode, 'query' => $allSearch->getRawQuery()]) }}"
                 class="{{ $cssClasses }}"
             >
                 <span class="fake-bold" data-content="{{ osu_trans("home.search.mode.{$mode}") }}">

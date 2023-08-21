@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { BeatmapsetJsonForShow } from 'interfaces/beatmapset-extended-json';
+import UserJson from 'interfaces/user-json';
 import { keyBy } from 'lodash';
 import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 import { deletedUser } from 'models/user';
@@ -71,7 +72,7 @@ export default class Controller {
 
   @computed
   get usersById() {
-    return keyBy(this.beatmapset.related_users, 'id');
+    return keyBy(this.beatmapset.related_users, 'id') as Partial<Record<number, UserJson>>;
   }
 
   constructor(private container: HTMLElement) {
