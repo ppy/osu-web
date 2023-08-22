@@ -159,8 +159,6 @@ use Request;
  * @property int $user_last_privmsg
  * @property int $user_last_search
  * @property int $user_last_warning
- * @property string $user_lastfm
- * @property string $user_lastfm_session
  * @property Carbon|null $user_lastmark
  * @property string $user_lastpage
  * @property Carbon|null $user_lastpost_time
@@ -782,8 +780,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'user_last_privmsg',
             'user_last_search',
             'user_last_warning',
-            'user_lastfm',
-            'user_lastfm_session',
             'user_lastpage',
             'user_login_attempts',
             'user_message_rules',
