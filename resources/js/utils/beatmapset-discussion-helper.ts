@@ -9,7 +9,7 @@ import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetDiscussionJson, { BeatmapsetDiscussionJsonForBundle, BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
 import BeatmapsetDiscussionPostJson from 'interfaces/beatmapset-discussion-post-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
-import GameMode from 'interfaces/game-mode';
+import GameMode, { gameModes } from 'interfaces/game-mode';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { assign, padStart, sortBy } from 'lodash';
@@ -146,10 +146,18 @@ function isNearbyDiscussion<T extends BeatmapsetDiscussionJson>(discussion: T): 
     && (discussion.user_id !== core.currentUserOrFail.id || moment(discussion.updated_at).diff(moment(), 'hour') <= -24);
 }
 
+// sync with $defaultRulesets in app/Models/UserGroup.php
+const defaultGroupRulesets: Partial<Record<string, Readonly<GameMode[]>>> = { nat: gameModes };
+
 export function isUserFullNominator(user?: UserJson | null, gameMode?: GameMode) {
   return user != null && user.groups != null && user.groups.some((group) => {
     if (gameMode != null) {
-      return (group.identifier === 'bng' || group.identifier === 'nat') && group.playmodes?.includes(gameMode);
+      let groupRulesets: Readonly<GameMode[]> = group.playmodes ?? [];
+      if (groupRulesets.length === 0) {
+        groupRulesets = defaultGroupRulesets[group.identifier] ?? [];
+      }
+
+      return (group.identifier === 'bng' || group.identifier === 'nat') && groupRulesets.includes(gameMode);
     } else {
       return (group.identifier === 'bng' || group.identifier === 'nat');
     }
