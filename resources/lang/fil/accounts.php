@@ -22,6 +22,12 @@ return [
             'title' => 'Email',
         ],
 
+        'legacy_api' => [
+            'api' => '',
+            'irc' => '',
+            'title' => '',
+        ],
+
         'password' => [
             'current' => 'kasalukuyang password',
             'new' => 'bagong password',
@@ -30,7 +36,13 @@ return [
         ],
 
         'profile' => [
+            'country' => '',
             'title' => 'Profile',
+
+            'country_change' => [
+                '_' => "",
+                'update_link' => '',
+            ],
 
             'user' => [
                 'user_discord' => '',

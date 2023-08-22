@@ -20,6 +20,12 @@ return [
             'title' => 'E-mail',
         ],
 
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'API Vechi',
+        ],
+
         'password' => [
             'current' => 'parola actuală',
             'new' => 'parolă nouă',
@@ -28,7 +34,13 @@ return [
         ],
 
         'profile' => [
+            'country' => 'țară',
             'title' => 'Profil',
+
+            'country_change' => [
+                '_' => "Se pare că țara contului tău nu se potrivește cu țara ta de reședință. :update_link.",
+                'update_link' => 'Actualizează la :country',
+            ],
 
             'user' => [
                 'user_discord' => '',

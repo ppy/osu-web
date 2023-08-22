@@ -6,7 +6,7 @@
 return [
     'beatmapset' => [
         'button' => 'Pranešti',
-        'title' => 'Pranešti :username bitmapą?',
+        'title' => 'Pranešti :username beatmap\'ą?',
     ],
 
     'beatmapset_discussion_post' => [

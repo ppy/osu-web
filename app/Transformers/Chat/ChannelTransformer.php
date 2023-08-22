@@ -46,6 +46,7 @@ class ChannelTransformer extends TransformerAbstract
             'channel_id' => $channel->channel_id,
             'description' => $channel->description,
             'icon' => $channel->displayIconFor($this->user),
+            'message_length_limit' => $channel->messageLengthLimit(),
             'moderated' => $channel->moderated,
             'name' => $channel->displayNameFor($this->user),
             'type' => $channel->type,

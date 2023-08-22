@@ -9,22 +9,14 @@ import { trans } from 'utils/lang';
 import MonthListing from './month-listing';
 import Years from './years';
 
-interface GroupedPosts {
-  [date: string]: NewsPostJson[];
-}
-
-interface DateMap {
-  [date: string]: moment.Moment;
-}
-
 interface Props {
   currentPost?: NewsPostJson;
   data: NewsSidebarMetaJson;
 }
 
 export default function Main(props: Props) {
-  const groupedPosts: GroupedPosts = {};
-  const dateMap: DateMap = {};
+  const groupedPosts: Partial<Record<string, NewsPostJson[]>> = {};
+  const dateMap: Partial<Record<string, moment.Moment>> = {};
   const postDates = new Set<string>();
 
   for (const post of props.data.news_posts) {
@@ -36,8 +28,7 @@ export default function Main(props: Props) {
     postDates.add(key);
   }
 
-  const orderedPostDates = [...postDates];
-  orderedPostDates.sort().reverse();
+  const orderedPostDates = [...postDates].sort().reverse();
   let first = true;
 
   return (
@@ -60,11 +51,13 @@ export default function Main(props: Props) {
         <Years currentYear={props.data.current_year} years={props.data.years} />
 
         {orderedPostDates.map((key) => {
-          if (groupedPosts[key] == null || dateMap[key] == null) {
+          const date = dateMap[key];
+          const posts = groupedPosts[key];
+
+          if (posts == null || date == null) {
             return;
           }
 
-          const date = dateMap[key];
           const initialExpand = first;
           first = false;
 
@@ -73,7 +66,7 @@ export default function Main(props: Props) {
             currentPost={props.currentPost}
             date={date}
             initialExpand={initialExpand}
-            posts={groupedPosts[key]}
+            posts={posts}
           />);
         })}
       </div>

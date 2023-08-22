@@ -5,7 +5,7 @@
 
 return [
     'page_description' => 'Artistas destacados en osu!',
-    'title' => 'Artistas Destacados',
+    'title' => 'Artistas destacados',
 
     'admin' => [
         'hidden' => 'EL ARTISTA ESTÁ ACTUALMENTE OCULTO',

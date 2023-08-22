@@ -17,9 +17,16 @@ return [
         ],
     ],
 
+    'kudosu' => [
+        'total' => '',
+        'available' => '',
+        'used' => '',
+    ],
+
     'type' => [
         'charts' => 'in de schijnwerpers',
         'country' => 'landelijk',
+        'kudosu' => '',
         'multiplayer' => 'multiplayer',
         'performance' => 'prestatie',
         'score' => 'score',

@@ -8,7 +8,7 @@ return [
     'talking_in' => 'pokalbis :channel',
     'talking_with' => 'pokalbis su :name',
     'title_compact' => 'pokalbiai',
-    'unread_messages' => '',
+    'unread_messages' => 'neperskaitytos žinutės',
 
     'cannot_send' => [
         'channel' => 'Šiuo metu jūs negalite rašyti šiame kanale.',
@@ -36,7 +36,7 @@ return [
 
         'labels' => [
             'description' => 'aprašymas',
-            'message' => '',
+            'message' => 'žinutė',
             'name' => 'kambario pavadinimas',
             'users' => 'žaidėjai pridėjimui',
         ],

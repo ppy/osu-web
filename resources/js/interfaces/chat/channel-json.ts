@@ -21,6 +21,7 @@ export default interface ChannelJson {
   description?: string;
   icon?: string;
   last_message_id?: number;
+  message_length_limit: number;
   name: string;
   type: ChannelType;
   users?: number[];

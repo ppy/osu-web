@@ -7,7 +7,7 @@ return [
     'invalid' => '',
     'not_negative' => ':attribute nevar būt negatīvs.',
     'required' => ':attribute ir nepieciešams.',
-    'too_long' => ':attribute pārsniedza maksimālo garumu - drīkts būt tikai līdz :limit zīmēm.',
+    'too_long' => ':attribute pārsniedza maksimālo garumu - drīkst būt tikai līdz :limit zīmēm.',
     'url' => '',
     'wrong_confirmation' => 'Apstiprinājums nesakrīt.',
 
@@ -111,6 +111,12 @@ return [
 
     'legacy_api_key' => [
         'exists' => '',
+
+        'attributes' => [
+            'api_key' => '',
+            'app_name' => '',
+            'app_url' => '',
+        ],
     ],
 
     'oauth' => [
@@ -169,6 +175,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => '',
+        'not_in_channel' => '',
         'reason_not_valid' => '',
         'self' => "",
     ],

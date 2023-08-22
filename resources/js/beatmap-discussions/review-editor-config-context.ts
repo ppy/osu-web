@@ -4,4 +4,4 @@
 import ReviewEditorConfigJson from 'interfaces/review-editor-config-json';
 import * as React from 'react';
 
-export const ReviewEditorConfigContext = React.createContext({} as ReviewEditorConfigJson);
+export const ReviewEditorConfigContext = React.createContext<ReviewEditorConfigJson>({ max_blocks: 0 });

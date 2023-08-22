@@ -5,9 +5,9 @@
 
 return [
     'empty' => [
-        '_' => '',
-        'playlists' => '',
-        'realtime' => '',
+        '_' => 'Ingen osu!(lazer) :type_group runder spilt ennå!',
+        'playlists' => 'spilleliste',
+        'realtime' => 'flerspiller',
     ],
 
     'room' => [
@@ -18,7 +18,7 @@ return [
         'time_left' => ':time igjen',
 
         'errors' => [
-            'duration_too_long' => '',
+            'duration_too_long' => 'Lengden er for lang.',
         ],
 
         'status' => [

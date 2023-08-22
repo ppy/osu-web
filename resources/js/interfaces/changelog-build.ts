@@ -6,4 +6,5 @@ export default interface ChangelogBuild {
     name: string;
   };
   version: string;
+  youtube_id: string | null;
 }

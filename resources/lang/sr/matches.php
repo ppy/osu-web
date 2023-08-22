@@ -12,7 +12,7 @@ return [
         'in_progress_spinner_label' => 'меч у току',
         'loading-events' => 'Учитавање догађаја...',
         'winner' => ':team је победио',
-        'winner_by' => '',
+        'winner_by' => ':winner са :difference',
 
         'events' => [
             'player-left' => ':user је напустио меч',

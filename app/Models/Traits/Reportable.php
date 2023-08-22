@@ -17,6 +17,11 @@ trait Reportable
 {
     abstract protected function newReportableExtraParams(): array;
 
+    public function reportableAdditionalInfo(): ?string
+    {
+        return null;
+    }
+
     public function reportedIn()
     {
         return $this->morphMany(UserReport::class, 'reportable');
@@ -36,7 +41,7 @@ trait Reportable
             $attributes['comments'] = $params['comments'] ?? '';
             $attributes['reporter_id'] = $reporter->getKey();
 
-            if (array_key_exists('reason', $params)) {
+            if (present($params['reason'] ?? null)) {
                 $attributes['reason'] = $params['reason'];
             }
 

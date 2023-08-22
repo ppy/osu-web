@@ -17,9 +17,16 @@ return [
         ],
     ],
 
+    'kudosu' => [
+        'total' => 'Đã nhận',
+        'available' => 'Đang có',
+        'used' => 'Đã dùng',
+    ],
+
     'type' => [
         'charts' => 'tiêu điểm',
         'country' => 'Quốc gia',
+        'kudosu' => 'kudosu',
         'multiplayer' => 'nhiều người chơi',
         'performance' => 'thành tích',
         'score' => 'số điểm',

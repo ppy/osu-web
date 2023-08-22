@@ -27,8 +27,10 @@ class CleanHTML
         $config = HTMLPurifier_Config::createDefault();
         $config->set('Cache.SerializerPath', $cachePath);
         $config->set('Attr.AllowedRel', ['nofollow']);
-        $config->set('HTML.Trusted', true);
         $config->set('CSS.Trusted', true);
+        $config->set('HTML.MaxImgLength', 5000);
+        $config->set('HTML.SafeIframe', true);
+        $config->set('URI.SafeIframeRegexp', '#^https://www.youtube.com/embed/[A-z0-9_-]+\?rel=0$#');
 
         $def = $config->getHTMLDefinition(true);
 
@@ -41,6 +43,14 @@ class CleanHTML
                 'src' => 'URI',
                 'controls' => 'Text',
             ]
+        );
+
+        $def->addElement(
+            'button',
+            'Formctrl',
+            'Optional: #PCDATA | Heading | List | Block | Inline',
+            'Common',
+            ['type' => 'Enum#button'],
         );
 
         $def->addAttribute('audio', 'preload', 'Text');

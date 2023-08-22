@@ -49,6 +49,7 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => 'Подарить тег osu!supporter',
         'loading' => 'Загрузка...',
         'send_message' => 'Отправить сообщение',
     ],
@@ -386,7 +387,7 @@ return [
                     'date' => 'Дата',
                     'action' => 'действие',
                     'length' => 'продолжительность',
-                    'length_permanent' => 'Навсегда',
+                    'length_indefinite' => '',
                     'description' => 'описание',
                     'actor' => ':username',
 

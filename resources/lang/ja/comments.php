@@ -11,6 +11,7 @@ return [
     'edited' => ':userが:timeagoに編集済み',
     'pinned' => 'ピン留め',
     'empty' => 'まだコメントがありません。',
+    'empty_other' => '',
     'load_replies' => '返信を読み込む',
     'replies_count' => ':count_delimited 返信',
     'title' => 'コメント',

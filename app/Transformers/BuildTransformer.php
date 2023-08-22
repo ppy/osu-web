@@ -23,11 +23,12 @@ class BuildTransformer extends TransformerAbstract
     public function transform(Build $build)
     {
         return [
-            'id' => $build->getKey(),
-            'version' => $build->version,
-            'display_version' => $build->displayVersion(),
-            'users' => $build->users ?? 0,
             'created_at' => json_time($build->date),
+            'display_version' => $build->displayVersion(),
+            'id' => $build->getKey(),
+            'users' => $build->users ?? 0,
+            'version' => $build->version,
+            'youtube_id' => $build->youtube_id,
         ];
     }
 

@@ -73,7 +73,7 @@ return [
             'mapped_by' => 'erstellt von :mapper',
             'mapped_by_guest' => 'Guest-Difficulty von :mapper',
             'unfavourite' => 'Diese Beatmap von deinen Favoriten entfernen',
-            'updated_timeago' => 'zuletzt aktualisiert vor :timeago',
+            'updated_timeago' => ':timeago zuletzt aktualisiert',
 
             'download' => [
                 '_' => 'Herunterladen',
@@ -89,12 +89,12 @@ return [
         ],
 
         'details_date' => [
-            'approved' => 'vor :timeago approved',
-            'loved' => 'vor :timeago loved',
-            'qualified' => 'vor :timeago qualifiziert',
-            'ranked' => 'vor :timeago ranked',
-            'submitted' => 'vor :timeago hochgeladen',
-            'updated' => 'vor :timeago zuletzt aktualisiert',
+            'approved' => ':timeago approved',
+            'loved' => ':timeago loved',
+            'qualified' => ':timeago qualifiziert',
+            'ranked' => ':timeago ranked',
+            'submitted' => ':timeago hochgeladen',
+            'updated' => ':timeago zuletzt aktualisiert',
         ],
 
         'favourites' => [

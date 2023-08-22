@@ -16,6 +16,7 @@ use App\Models\User;
 use Artisan;
 use DMS\PHPUnitExtensions\ArraySubset\ArraySubsetAsserts;
 use Firebase\JWT\JWT;
+use Illuminate\Database\DatabaseManager;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
@@ -42,6 +43,25 @@ class TestCase extends BaseTestCase
             '--no-interaction' => true,
         ]);
         $search->indexWait();
+    }
+
+    protected static function resetAppDb(DatabaseManager $database): void
+    {
+        foreach (array_keys(config('database.connections')) as $name) {
+            $connection = $database->connection($name);
+
+            $connection->rollBack();
+            $connection->disconnect();
+        }
+    }
+
+    protected static function withDbAccess(callable $callback): void
+    {
+        $db = (new static())->createApplication()->make('db');
+
+        $callback();
+
+        static::resetAppDb($db);
     }
 
     protected $connectionsToTransact = [
@@ -82,15 +102,8 @@ class TestCase extends BaseTestCase
         // Force connections to reset even if transactional tests were not used.
         // Should fix tests going wonky when different queue drivers are used, or anything that
         // breaks assumptions of object destructor timing.
-        $database = $this->app->make('db');
-        $this->beforeApplicationDestroyed(function () use ($database) {
-            foreach (array_keys(config('database.connections')) as $name) {
-                $connection = $database->connection($name);
-
-                $connection->rollBack();
-                $connection->disconnect();
-            }
-        });
+        $db = $this->app->make('db');
+        $this->beforeApplicationDestroyed(fn () => static::resetAppDb($db));
 
         app(BroadcastsPendingForTests::class)->reset();
     }

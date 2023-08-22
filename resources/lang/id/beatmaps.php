@@ -6,7 +6,7 @@
 return [
     'discussion-votes' => [
         'update' => [
-            'error' => 'Gagal memperbarui suara',
+            'error' => 'Pilihan gagal diperbarui',
         ],
     ],
 
@@ -163,7 +163,7 @@ return [
         'confirm' => "Apakah kamu yakin? Dengan ini, kamu akan memberikan 1 hype kepada beatmap ini dari :n hype yang kamu miliki saat ini. Tindakan ini tidak dapat diurungkan.",
         'explanation' => 'Berikan hype-mu untuk membawa beatmap ini lebih dekat menuju Ranked!',
         'explanation_guest' => 'Masuk dan berikan hype kepada beatmap ini agar beatmap ini dapat segera dinominasikan dan di-rank!',
-        'new_time' => "Anda akan mendapatkan hype tambahan :new_time.",
+        'new_time' => "Kamu akan memperoleh lebih banyak hype :new_time.",
         'remaining' => 'Kamu memiliki :remaining hype tersisa.',
         'required_text' => 'Hype: :current/:required',
         'section_title' => 'Hype Train',
@@ -175,6 +175,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => 'Kamu telah menominasikan beatmap ini.',
+        'cannot_nominate' => 'Kamu tidak dapat memberikan nominasi untuk mode permainan ini.',
         'delete' => 'Hapus',
         'delete_own_confirm' => 'Apakah kamu yakin? Beatmap yang dipilih akan dihapus dan kamu akan dialihkan kembali ke laman profilmu.',
         'delete_other_confirm' => 'Apakah kamu yakin? Beatmap yang dipilih akan dihapus dan kamu akan dialihkan kembali ke laman profil pengguna yang bersangkutan.',

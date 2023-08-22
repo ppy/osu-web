@@ -49,6 +49,7 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => 'Падарыць тэг osu!supporter',
         'loading' => 'Загрузка...',
         'send_message' => 'адправіць паведамленне',
     ],
@@ -386,7 +387,7 @@ return [
                     'date' => 'дата',
                     'action' => 'дзея',
                     'length' => 'працягласць',
-                    'length_permanent' => 'Назаўсёды',
+                    'length_indefinite' => '',
                     'description' => 'апісанне',
                     'actor' => ':username',
 

@@ -49,6 +49,7 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => '',
         'loading' => 'Зареждане...',
         'send_message' => 'изпрати съобщение',
     ],
@@ -386,7 +387,7 @@ return [
                     'date' => 'дата',
                     'action' => 'действие',
                     'length' => 'продължителност',
-                    'length_permanent' => 'Завинаги',
+                    'length_indefinite' => '',
                     'description' => 'описание',
                     'actor' => 'от :username',
 

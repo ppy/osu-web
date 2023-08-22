@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'play_more' => 'Kā tā vietā nedaudz paspēlēt osu!?',
+    'play_more' => 'Kā būtu, ja tā vietā nedaudz paspēlētu osu!?',
     'require_login' => 'Lūdzu, pierakstieties, lai turpinātu.',
     'require_verification' => 'Lūdzu, verificēt, lai turpinātu.',
     'restricted' => "Nevar veikt darbību, kamēr esat ierobežots.",
@@ -53,7 +53,7 @@ return [
     ],
 
     'beatmapset' => [
-        'discussion_locked' => '',
+        'discussion_locked' => 'Šī bītmape ir aizslēgta diskusijai.',
 
         'metadata' => [
             'nominated' => 'Nominētas mapes metadatus mainīt nevar. Sazinieties ar BN vai NAT locekli, ja uzskatāt, ka tā ir iestatīta nepareizi.',
@@ -104,7 +104,7 @@ return [
 
             'edit' => [
                 'deleted' => 'Nevar rediģēt izdzēstu rakstu.',
-                'locked' => 'Ziņai ir bloķēta rediģēšana.',
+                'locked' => 'Raksta rediģēšana ir slēgta.',
                 'no_forum_access' => 'Ir nepieciešama piekļuve pieprasītajam forumam.',
                 'not_owner' => 'Tikai publicētājs var rediģēt rakstu.',
                 'topic_locked' => 'Nevar rediģēt ziņojumus slēgtā tēmā.',
@@ -171,6 +171,7 @@ return [
 
     'score' => [
         'pin' => [
+            'disabled_type' => "",
             'not_owner' => 'Rezultātu var piespraust tikai rezultāta īpašnieks.',
             'too_many' => 'Piesprausti pārāk daudz rezultāti.',
         ],

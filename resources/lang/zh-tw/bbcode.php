@@ -6,9 +6,9 @@
 return [
     'bold' => '粗體',
     'heading' => '標題',
-    'help' => '',
+    'help' => '幫助',
     'image' => '圖片',
-    'imagemap' => '',
+    'imagemap' => '圖片地圖',
     'italic' => '斜體',
     'link' => '超連結',
     'list' => '無序列表',

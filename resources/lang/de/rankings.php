@@ -17,9 +17,16 @@ return [
         ],
     ],
 
+    'kudosu' => [
+        'total' => 'Verdient',
+        'available' => 'Verfügbar',
+        'used' => 'Ausgegeben',
+    ],
+
     'type' => [
         'charts' => 'Spotlights',
         'country' => 'Länder',
+        'kudosu' => 'Kudosu',
         'multiplayer' => 'Mehrspieler',
         'performance' => 'Performance',
         'score' => 'Punktzahl',

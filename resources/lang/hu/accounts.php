@@ -20,6 +20,12 @@ return [
             'title' => 'E-Mail',
         ],
 
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'Legacy API',
+        ],
+
         'password' => [
             'current' => 'jelenlegi jelszó',
             'new' => 'új jelszó',
@@ -28,7 +34,13 @@ return [
         ],
 
         'profile' => [
+            'country' => 'ország',
             'title' => 'Profil',
+
+            'country_change' => [
+                '_' => "Úgy tűnik, hogy a fiókod országa nem egyezik a lakhelyed országával. :update_link.",
+                'update_link' => 'Frissítsés a következőre: :country ',
+            ],
 
             'user' => [
                 'user_discord' => '',

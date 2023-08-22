@@ -243,7 +243,7 @@ export default class ChannelStore implements DispatchListener {
     const message = event.message;
     const channel = this.get(message.channelId);
     if (channel == null) {
-      console.debug('channel missing');
+      console.error('channel missing');
       return;
     }
 
@@ -254,7 +254,7 @@ export default class ChannelStore implements DispatchListener {
         const userId = channel.pmTarget;
 
         if (userId == null) {
-          console.debug('sendMessage:: userId not found?? this shouldn\'t happen');
+          console.error('sendMessage:: userId not found?? this shouldn\'t happen');
           return;
         }
 

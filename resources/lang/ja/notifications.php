@@ -14,7 +14,7 @@ return [
     'verifying' => '通知を表示するには、セッションを確認してください。',
 
     'action_type' => [
-        '_' => '',
+        '_' => '全て',
         'beatmapset' => '',
         'build' => '',
         'channel' => '',
@@ -150,15 +150,6 @@ return [
                 '_' => '新しいフォーラムの返信',
                 'forum_topic_reply' => ':usernameがフォーラムトピック「:title」に返信しました。',
                 'forum_topic_reply_compact' => ':username の返信',
-            ],
-        ],
-
-        'legacy_pm' => [
-            '_' => 'レガシーフォーラムPM',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited個の未読メッセージ',
             ],
         ],
 

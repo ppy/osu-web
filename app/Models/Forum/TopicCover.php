@@ -27,6 +27,9 @@ class TopicCover extends Model
 
     const MAX_DIMENSIONS = [2400, 580];
 
+    // To be passed to transformer for generating url for initial cover upload
+    public ?int $newForumId = null;
+
     protected $table = 'forum_topic_covers';
 
     private $_owner = [false, null];
@@ -114,5 +117,10 @@ class TopicCover extends Model
         } catch (Exception $_e) {
             // do nothing
         }
+    }
+
+    public function getForumId(): ?int
+    {
+        return $this->topic?->forum_id ?? $this->newForumId;
     }
 }

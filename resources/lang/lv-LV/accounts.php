@@ -20,6 +20,12 @@ return [
             'title' => 'E-pasts',
         ],
 
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'Legacy API',
+        ],
+
         'password' => [
             'current' => 'pašreizējā parole',
             'new' => 'jaunā parole',
@@ -28,7 +34,13 @@ return [
         ],
 
         'profile' => [
+            'country' => 'valsts',
             'title' => 'Profils',
+
+            'country_change' => [
+                '_' => "",
+                'update_link' => '',
+            ],
 
             'user' => [
                 'user_discord' => '',

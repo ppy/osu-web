@@ -20,6 +20,12 @@ return [
             'title' => 'E-pošta',
         ],
 
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'Starejši API',
+        ],
+
         'password' => [
             'current' => 'trenutno geslo',
             'new' => 'novo geslo',
@@ -28,7 +34,13 @@ return [
         ],
 
         'profile' => [
+            'country' => '',
             'title' => 'Profil',
+
+            'country_change' => [
+                '_' => "",
+                'update_link' => '',
+            ],
 
             'user' => [
                 'user_discord' => '',

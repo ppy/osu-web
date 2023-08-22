@@ -3,7 +3,6 @@
 
 import { blackoutHide, blackoutShow } from 'utils/blackout'
 import { fadeToggle } from 'utils/fade'
-import { pageChangeImmediate } from 'utils/page-change'
 
 export default class Nav2
   constructor: (@clickMenu) ->
@@ -38,7 +37,6 @@ export default class Nav2
       @centerPopup currentPopup, link
 
     $(window).on 'resize.nav2-center-popup', doCenter
-    pageChangeImmediate() if @loginBoxVisible()
     doCenter()
     currentPopup.querySelector('.js-nav2--autofocus')?.focus()
 
@@ -48,13 +46,18 @@ export default class Nav2
       @clickMenu.show('mobile-nav')
       Timeout.set 0, => $(@clickMenu.menu('mobile-menu')).finish().slideDown(150)
 
-    if tree.indexOf('mobile-menu') == -1
-      if previousTree.indexOf('mobile-menu') != -1
-        blackoutHide()
-        Timeout.set 0, => $(@clickMenu.menu('mobile-menu')).finish().slideUp(150, => document.body.classList.remove('js-nav2--active'))
-    else
+    @showingMobileNav = tree.indexOf('mobile-menu') != -1
+
+    if @showingMobileNav
       document.body.classList.add('js-nav2--active')
       blackoutShow()
+    else if previousTree.indexOf('mobile-menu') != -1
+      blackoutHide()
+      Timeout.set 0, =>
+        $(@clickMenu.menu('mobile-menu')).finish().slideUp 150, =>
+          # use actual state instead of always removing the class in case
+          # the menu is shown again right after it's closed
+          document.body.classList.toggle('js-nav2--active', @showingMobileNav)
 
 
   centerPopup: (popup, reference) ->

@@ -49,6 +49,7 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => '',
         'loading' => 'Nag lo-load...',
         'send_message' => 'Ipadala ang mensahe',
     ],
@@ -386,7 +387,7 @@ return [
                     'date' => 'petsa',
                     'action' => 'aksyon',
                     'length' => 'tagal',
-                    'length_permanent' => 'Permanente',
+                    'length_indefinite' => '',
                     'description' => 'deskripsyon',
                     'actor' => 'ni :username',
 

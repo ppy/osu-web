@@ -5,14 +5,14 @@
 
 return [
     'match' => [
-        'beatmap-deleted' => 'beatmap ที่ถูกลบ',
+        'beatmap-deleted' => 'บีทแมพที่ถูกลบ',
         'failed' => 'ล้มเหลว',
         'header' => 'แข่งขันแบบหลายคน',
         'in-progress' => '(การแข่งขันกำลังดำเนินการ)',
         'in_progress_spinner_label' => 'การแข่งขันกำลังดำเนินการ',
         'loading-events' => 'กำลังโหลดสิ่งที่เกิดขึ้น...',
         'winner' => ':team ชนะ',
-        'winner_by' => '',
+        'winner_by' => ':winner โดย :difference',
 
         'events' => [
             'player-left' => ':user ออกจากแมตช์',

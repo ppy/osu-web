@@ -5,8 +5,8 @@
 
 return [
     'comment' => [
-        'empty' => '',
-        'page_title' => '',
+        'empty' => 'Δεν παρακολουθήθηκαν σχόλια.',
+        'page_title' => 'watchlist σχολίων',
         'title' => 'σχόλιο',
 
         'table' => [
@@ -16,7 +16,7 @@ return [
     ],
 
     'forum_topic' => [
-        'title' => '',
+        'title' => 'θέμα φόρουμ',
     ],
 
     'index' => [
@@ -24,15 +24,15 @@ return [
     ],
 
     'mapping' => [
-        'empty' => '',
-        'followers' => '',
-        'page_title' => '',
-        'title' => '',
+        'empty' => 'Δεν παρακολουθήθηκαν mappers.',
+        'followers' => 'συνδρομητές mapping',
+        'page_title' => 'λίστα παρακολούθησης mapper',
+        'title' => 'mapper',
         'to_0' => 'σταμάτα να με ειδοποιείς όταν αυτός ο χρήστης ανεβάζει νέο beatmap',
         'to_1' => 'ειδοποίησέ με όταν αυτός ο χρήστης ανεβάζει νέο beatmap',
     ],
 
     'modding' => [
-        'title' => '',
+        'title' => 'συζήτηση beatmap',
     ],
 ];
