@@ -17,6 +17,9 @@ use Tests\TestCase;
 
 class CountryChangeTest extends TestCase
 {
+    /**
+     * @group EsSoloScores
+     */
     public function testDo(): void
     {
         $user = User::factory();
@@ -41,10 +44,19 @@ class CountryChangeTest extends TestCase
         foreach (Beatmap::MODES as $ruleset => $_rulesetId) {
             $this->assertSame($user->statistics($ruleset)->country_acronym, $targetCountry);
 
+            foreach (Beatmap::VARIANTS[$ruleset] ?? [] as $variant) {
+                $this->assertSame(
+                    $user->statistics($ruleset, false, $variant)->country_acronym,
+                    $targetCountry,
+                );
+            }
+
             foreach ($user->scoresBest($ruleset) as $score) {
                 $this->assertSame($score->country_acronym, $targetCountry);
             }
         }
+
+        // TODO: add test for solo score country change (in es index)
     }
 
     public function testDoInvalidCountry(): void
