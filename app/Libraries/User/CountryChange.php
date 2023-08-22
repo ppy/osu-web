@@ -29,11 +29,17 @@ class CountryChange
 
         $user->getConnection()->transaction(function () use ($newCountry, $reason, $user) {
             $oldCountry = $user->country_acronym;
-            $user->update(['country_acronym' => $newCountry]);
+
+            $newAttrs = ['country_acronym' => $newCountry];
+            $user->update($newAttrs);
             foreach (Beatmap::MODES as $ruleset => $_rulesetId) {
-                $user->statistics($ruleset, true)->update(['country_acronym' => $newCountry]);
-                $user->scoresBest($ruleset, true)->update(['country_acronym' => $newCountry]);
+                $user->statistics($ruleset, true)->update($newAttrs);
+                $user->scoresBest($ruleset, true)->update($newAttrs);
+                foreach (Beatmap::VARIANTS[$ruleset] ?? [] as $variant) {
+                    $user->statistics($ruleset, true, $variant)->update($newAttrs);
+                }
             }
+
             UserAccountHistory::addNote($user, "Changing country from {$oldCountry} to {$newCountry} ({$reason})");
         });
 

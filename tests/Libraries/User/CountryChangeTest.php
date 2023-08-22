@@ -41,6 +41,13 @@ class CountryChangeTest extends TestCase
         foreach (Beatmap::MODES as $ruleset => $_rulesetId) {
             $this->assertSame($user->statistics($ruleset)->country_acronym, $targetCountry);
 
+            foreach (Beatmap::VARIANTS[$ruleset] ?? [] as $variant) {
+                $this->assertSame(
+                    $user->statistics($ruleset, false, $variant)->country_acronym,
+                    $targetCountry,
+                );
+            }
+
             foreach ($user->scoresBest($ruleset) as $score) {
                 $this->assertSame($score->country_acronym, $targetCountry);
             }
