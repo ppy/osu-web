@@ -2173,10 +2173,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function profileBeatmapsetsGuest()
     {
-        return Beatmapset::withStates(['approved', 'loved', 'qualified', 'ranked'])
-            ->where('user_id', '<>', $this->getKey())
-            ->whereHas('beatmaps', fn ($q) => $q->where('user_id', $this->getKey()))
-            ->active()
+        return Beatmapset
+            ::where('user_id', '<>', $this->getKey())
+            ->whereHas('beatmaps', function (Builder $query) {
+                $query->scoreable()->where('user_id', $this->getKey());
+            })
             ->with('beatmaps');
     }
 
