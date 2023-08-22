@@ -17,6 +17,9 @@ use Tests\TestCase;
 
 class CountryChangeTest extends TestCase
 {
+    /**
+     * @group EsSoloScores
+     */
     public function testDo(): void
     {
         $user = User::factory();
@@ -52,6 +55,8 @@ class CountryChangeTest extends TestCase
                 $this->assertSame($score->country_acronym, $targetCountry);
             }
         }
+
+        // TODO: add test for solo score country change (in es index)
     }
 
     public function testDoInvalidCountry(): void
