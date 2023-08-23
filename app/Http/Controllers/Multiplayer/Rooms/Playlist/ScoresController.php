@@ -10,6 +10,7 @@ use App\Libraries\ClientCheck;
 use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\PlaylistItemUserHighScore;
 use App\Models\Multiplayer\Room;
+use App\Models\Multiplayer\ScoreLink;
 use App\Models\Solo\Score;
 use App\Transformers\ScoreTransformer;
 
@@ -68,10 +69,16 @@ class ScoresController extends BaseController
         $user = auth()->user();
 
         if ($user !== null) {
-            $userHighScore = $playlist->highScores()->where('user_id', $user->getKey())->first();
+            $userHighScoreLink = ScoreLink::whereIn(
+                'id',
+                $playlist
+                    ->highScores()
+                    ->where('user_id', $user->getKey())
+                    ->select('score_link_id'),
+            )->first();
 
-            if ($userHighScore !== null) {
-                $userScoreJson = json_item($userHighScore->scoreLink, $transformer, ScoreTransformer::MULTIPLAYER_BASE_INCLUDES);
+            if ($userHighScoreLink !== null) {
+                $userScoreJson = json_item($userHighScoreLink, $transformer, ScoreTransformer::MULTIPLAYER_BASE_INCLUDES);
             }
         }
 

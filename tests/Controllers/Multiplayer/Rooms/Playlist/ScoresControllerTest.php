@@ -8,11 +8,54 @@ namespace Tests\Controllers\Multiplayer\Rooms\Playlist;
 use App\Models\Build;
 use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\ScoreLink;
+use App\Models\Multiplayer\UserScoreAggregate;
 use App\Models\User;
 use Tests\TestCase;
 
 class ScoresControllerTest extends TestCase
 {
+    public function testIndex()
+    {
+        $playlist = PlaylistItem::factory()->create();
+        $user = User::factory()->create();
+        $scores = [];
+        $scores[] = ScoreLink
+            ::factory()
+            ->state(['playlist_item_id' => $playlist])
+            ->completed([], ['passed' => true, 'total_score' => 30])
+            ->create();
+        $scores[] = $userScore = ScoreLink
+            ::factory()
+            ->state([
+                'playlist_item_id' => $playlist,
+                'user_id' => $user,
+            ])->completed([], ['passed' => true, 'total_score' => 20])
+            ->create();
+        $scores[] = ScoreLink
+            ::factory()
+            ->state(['playlist_item_id' => $playlist])
+            ->completed([], ['passed' => true, 'total_score' => 10])
+            ->create();
+
+        foreach ($scores as $score) {
+            UserScoreAggregate::lookupOrDefault($score->user, $score->room)->recalculate();
+        }
+
+        $this->actAsScopedUser($user, ['*']);
+
+        $resp = $this->json('GET', route('api.rooms.playlist.scores.index', [
+            'room' => $playlist->room_id,
+            'playlist' => $playlist->getKey(),
+        ]))->assertSuccessful();
+
+        $json = json_decode($resp->getContent(), true);
+        $this->assertSame(count($scores), count($json['scores']));
+        foreach ($json['scores'] as $i => $jsonScore) {
+            $this->assertSame($scores[$i]->getKey(), $jsonScore['id']);
+        }
+        $this->assertSame($json['user_score']['id'], $userScore->getKey());
+    }
+
     public function testShow()
     {
         $scoreLink = ScoreLink::factory()->create();
