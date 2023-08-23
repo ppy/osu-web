@@ -223,7 +223,7 @@ php artisan tinker
 
 ## Generating assets
 
-Using Laravel's [Mix](https://laravel.com/docs/6.x/mix).
+Using Laravel's [Mix](https://laravel.com/docs/10.x/mix).
 
 ```bash
 # build assets (should be done automatically if using docker)
