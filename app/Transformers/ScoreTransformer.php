@@ -220,38 +220,25 @@ class ScoreTransformer extends TransformerAbstract
 
     public function includeScoresAround(MultiplayerScoreLink $scoreLink)
     {
-        $limit = 10;
+        static $limit = 10;
+        static $transformer;
+        $transformer ??= static::newSolo();
 
-        $highScorePlaceholder = new PlaylistItemUserHighScore([
-            'score_link_id' => $scoreLink->getKey(),
-            'total_score' => $scoreLink->data->totalScore,
-        ]);
+        return $this->primitive(array_map(
+            function ($item) use ($limit, $transformer) {
+                [$highScores, $hasMore] = $item['query']
+                    ->with(static::MULTIPLAYER_BASE_PRELOAD)
+                    ->limit($limit)
+                    ->getWithHasMore();
 
-        $typeOptions = [
-            'higher' => 'score_asc',
-            'lower' => 'score_desc',
-        ];
-
-        $ret = [];
-
-        foreach ($typeOptions as $type => $sortName) {
-            $cursorHelper = PlaylistItemUserHighScore::makeDbCursorHelper($sortName);
-            [$highScores, $hasMore] = PlaylistItemUserHighScore
-                ::cursorSort($cursorHelper, $highScorePlaceholder)
-                ->with(static::MULTIPLAYER_BASE_PRELOAD)
-                ->where('playlist_item_id', $scoreLink->playlist_item_id)
-                ->where('user_id', '<>', $scoreLink->user_id)
-                ->limit($limit)
-                ->getWithHasMore();
-
-            $ret[$type] = [
-                'scores' => json_collection($highScores->pluck('scoreLink'), static::newSolo(), static::MULTIPLAYER_BASE_INCLUDES),
-                'params' => ['limit' => $limit, 'sort' => $cursorHelper->getSortName()],
-                ...cursor_for_response($cursorHelper->next($highScores, $hasMore)),
-            ];
-        }
-
-        return $this->primitive($ret);
+                return [
+                    'scores' => json_collection($highScores->pluck('scoreLink'), $transformer, static::MULTIPLAYER_BASE_INCLUDES),
+                    'params' => ['limit' => $limit, 'sort' => $item['cursorHelper']->getSortName()],
+                    ...cursor_for_response($item['cursorHelper']->next($highScores, $hasMore)),
+                ];
+            },
+            PlaylistItemUserHighScore::scoresAround($scoreLink),
+        ));
     }
 
     public function includeRankCountry(ScoreBest|SoloScore $score)

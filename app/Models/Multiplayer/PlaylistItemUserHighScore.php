@@ -53,6 +53,35 @@ class PlaylistItemUserHighScore extends Model
         ]);
     }
 
+    public static function scoresAround(ScoreLink $scoreLink): array
+    {
+        $placeholder = new static([
+            'score_link_id' => $scoreLink->getKey(),
+            'total_score' => $scoreLink->data->totalScore,
+        ]);
+
+        static $typeOptions = [
+            'higher' => 'score_asc',
+            'lower' => 'score_desc',
+        ];
+
+        $ret = [];
+
+        foreach ($typeOptions as $type => $sortName) {
+            $cursorHelper = PlaylistItemUserHighScore::makeDbCursorHelper($sortName);
+
+            $ret[$type] = [
+                'query' => static
+                    ::cursorSort($cursorHelper, $placeholder)
+                    ->where('playlist_item_id', $scoreLink->playlist_item_id)
+                    ->where('user_id', '<>', $scoreLink->user_id),
+                'cursorHelper' => $cursorHelper,
+            ];
+        }
+
+        return $ret;
+    }
+
     public function scoreLink()
     {
         return $this->belongsTo(ScoreLink::class);
