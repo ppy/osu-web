@@ -71,7 +71,7 @@ class ScoresController extends BaseController
             $userHighScore = $playlist->highScores()->where('user_id', $user->getKey())->first();
 
             if ($userHighScore !== null) {
-                $userScoreJson = json_item($userHighScore->score, $transformer, ScoreTransformer::BASE_INCLUDES);
+                $userScoreJson = json_item($userHighScore->scoreLink, $transformer, ScoreTransformer::MULTIPLAYER_BASE_INCLUDES);
             }
         }
 
@@ -135,7 +135,7 @@ class ScoresController extends BaseController
     {
         $room = Room::find($roomId) ?? abort(404, 'Invalid room id');
         $playlistItem = $room->playlist()->find($playlistId) ?? abort(404, 'Invalid playlist id');
-        $score = $playlistItem->highScores()->where('user_id', $userId)->firstOrFail()->score ?? abort(404);
+        $score = $playlistItem->highScores()->where('user_id', $userId)->firstOrFail()->scoreLink ?? abort(404);
 
         return json_item(
             $score,
