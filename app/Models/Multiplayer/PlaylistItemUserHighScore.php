@@ -68,7 +68,7 @@ class PlaylistItemUserHighScore extends Model
         $ret = [];
 
         foreach ($typeOptions as $type => $sortName) {
-            $cursorHelper = PlaylistItemUserHighScore::makeDbCursorHelper($sortName);
+            $cursorHelper = static::makeDbCursorHelper($sortName);
 
             $ret[$type] = [
                 'query' => static
