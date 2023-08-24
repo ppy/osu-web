@@ -45,7 +45,7 @@ class ScoresController extends BaseController
      */
     public function index($roomId, $playlistId)
     {
-        $playlist = PlaylistItem::where('room_id', $roomId)->where('id', $playlistId)->firstOrFail();
+        $playlist = PlaylistItem::where('room_id', $roomId)->findOrFail($playlistId);
         $params = request()->all();
         $limit = clamp(get_int($params['limit'] ?? null) ?? 50, 1, 50);
         $cursorHelper = PlaylistItemUserHighScore::makeDbCursorHelper($params['sort'] ?? null);
