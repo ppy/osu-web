@@ -4,11 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'loading_users' => '',
+    'loading_users' => 'φόρτωση χρηστών...',
     'talking_in' => 'μιλάτε στο: :channel',
     'talking_with' => 'μιλάτε με: :name',
     'title_compact' => 'συνομιλία',
-    'unread_messages' => '',
+    'unread_messages' => 'μη αναγνωσμένα μηνύματα',
 
     'cannot_send' => [
         'channel' => 'Δεν μπορείτε να στείλετε μήνυμα σε αυτό το κανάλι αυτή τη στιγμή. Αυτό μπορεί να οφείλεται σε οποιοδήποτε από τους παρακάτω λόγους:',
@@ -16,41 +16,41 @@ return [
     ],
 
     'channels' => [
-        'confirm_part' => '',
-        'create' => '',
+        'confirm_part' => 'Θέλετε να αποκρύψετε αυτό το κανάλι? Θα εξακολουθείτε να λαμβάνετε μηνύματα από αυτό το κανάλι.',
+        'create' => 'δημιουργία ανακοίνωσης',
 
         'list' => [
             'title' => [
-                'ANNOUNCE' => '',
-                'GROUP' => '',
-                'PM' => '',
-                'PUBLIC' => '',
+                'ANNOUNCE' => 'Ανακοινώσεις',
+                'GROUP' => 'Ομάδες',
+                'PM' => 'Άμεσα μηνύματα',
+                'PUBLIC' => 'Κανάλια',
             ],
         ],
     ],
 
     'form' => [
         'title' => [
-            'announcement' => '',
+            'announcement' => 'Δημιουργία Νέας Ανακοίνωσης',
         ],
 
         'labels' => [
-            'description' => '',
-            'message' => '',
-            'name' => '',
-            'users' => '',
+            'description' => 'περιγραφή',
+            'message' => 'μήνυμα',
+            'name' => 'όνομα δωματίου',
+            'users' => 'παίκτες για προσθήκη',
         ],
     ],
 
     'not_found' => [
-        'message' => '',
-        'title' => '',
+        'message' => 'Δεν υπάρχει τίποτα εδώ, ίσως φύγετε από το κανάλι ή δεν υπάρχει...',
+        'title' => 'το κανάλι δεν βρέθηκε',
     ],
 
     'input' => [
-        'create' => '',
+        'create' => 'Δημιουργία',
         'disabled' => 'αδυναμία αποστολής μηνύματος...',
-        'disconnected' => '',
+        'disconnected' => 'Αποσυνδέθηκε',
         'placeholder' => 'εισάγετε μήνυμα...',
         'send' => 'Αποστολή',
     ],

@@ -387,7 +387,7 @@ return [
                     'date' => 'petsa',
                     'action' => 'aksyon',
                     'length' => 'tagal',
-                    'length_permanent' => 'Permanente',
+                    'length_indefinite' => '',
                     'description' => 'deskripsyon',
                     'actor' => 'ni :username',
 

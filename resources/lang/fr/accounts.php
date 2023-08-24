@@ -34,12 +34,12 @@ return [
         ],
 
         'profile' => [
-            'country' => '',
+            'country' => 'pays',
             'title' => 'Profil',
 
             'country_change' => [
-                '_' => "",
-                'update_link' => '',
+                '_' => "Il semble que le pays de votre compte ne correspond pas à votre pays de résidence. :update_link.",
+                'update_link' => 'Mettre à jour vers :country',
             ],
 
             'user' => [

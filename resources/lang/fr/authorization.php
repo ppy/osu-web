@@ -5,7 +5,7 @@
 
 return [
     'play_more' => 'Que diriez-vous de jouer un peu d\'osu! à la place ?',
-    'require_login' => 'Merci de vous connecter pour continuer.',
+    'require_login' => 'Veuillez vous connecter pour continuer.',
     'require_verification' => 'Veuillez vous authentifier pour continuer.',
     'restricted' => "Vous ne pouvez pas effectuer cette action lorsque votre compte est restreint.",
     'silenced' => "Vous ne pouvez pas effectuer cette action lorsque vous êtes réduit au silence.",
@@ -20,7 +20,7 @@ return [
             'exhausted' => 'Vous avez atteint la limite quotidienne de nominations, veuillez réessayer demain.',
             'incorrect_state' => 'Une erreur est survenue lors de l’exécution de cette action, essayez d’actualiser la page.',
             'owner' => "Vous ne pouvez pas nominer votre propre beatmap.",
-            'set_metadata' => 'Veuillez définir le genre et la langue de cette musique avant de nominer cette beatmap.',
+            'set_metadata' => 'Veuillez définir le genre et la langue de la musique avant de nominer cette beatmap.',
         ],
         'resolve' => [
             'not_owner' => 'Seuls l\'auteur du post et le créateur de la beatmap peuvent résoudre ce sujet.',
@@ -40,14 +40,14 @@ return [
 
     'beatmap_discussion_post' => [
         'destroy' => [
-            'not_owner' => 'Vous pouvez uniquement supprimer vos propres messages.',
-            'resolved' => 'Vous ne pouvez pas supprimer un message d\'une discussion résolue.',
-            'system_generated' => 'Les messages automatiquement générés ne peuvent être supprimés.',
+            'not_owner' => 'Vous pouvez uniquement supprimer vos propres posts.',
+            'resolved' => 'Vous ne pouvez pas supprimer un post d\'une discussion résolue.',
+            'system_generated' => 'Les posts automatiquement générés ne peuvent pas être supprimés.',
         ],
 
         'edit' => [
             'not_owner' => 'Seul l\'auteur de ce post peut l\'éditer.',
-            'resolved' => 'Vous ne pouvez pas modifier un message d\'une discussion résolue.',
+            'resolved' => 'Vous ne pouvez pas modifier un post d\'une discussion résolue.',
             'system_generated' => 'Un sujet posté automatiquement ne peut être édité.',
         ],
     ],
@@ -63,10 +63,10 @@ return [
     'chat' => [
         'annnonce_only' => 'Ce canal est uniquement pour les annonces.',
         'blocked' => 'Vous ne pouvez pas envoyer un message à un utilisateur qui vous a bloqué ou que vous avez bloqué.',
-        'friends_only' => 'Cet utilisateur bloque les messages des personnes qui ne sont pas dans sa liste d’amis.',
+        'friends_only' => 'Cet utilisateur bloque les messages des utilisateurs qui ne sont pas dans sa liste d’amis.',
         'moderated' => 'Ce canal est actuellement restreint par un modérateur.',
         'no_access' => 'Vous n’avez pas accès à ce canal.',
-        'receive_friends_only' => 'L\'utilisateur n\'est peut-être pas en mesure de répondre parce que vous n\'acceptez que les messages des personnes de votre liste d\'amis.',
+        'receive_friends_only' => 'L\'utilisateur n\'est peut-être pas en mesure de répondre parce que vous n\'acceptez que les messages des utilisateurs de votre liste d\'amis.',
         'restricted' => 'Vous ne pouvez pas envoyer de messages en étant réduit au silence, restreint ou banni.',
         'silenced' => 'Vous ne pouvez pas envoyer de messages en étant réduit au silence, restreint ou banni.',
     ],
@@ -96,7 +96,7 @@ return [
 
         'post' => [
             'delete' => [
-                'only_last_post' => 'Seul le dernier message peut être supprimé.',
+                'only_last_post' => 'Seul le dernier post peut être supprimé.',
                 'locked' => 'Impossible de supprimer un message sur un sujet verrouillé.',
                 'no_forum_access' => 'L\'accès au forum demandé est nécessaire.',
                 'not_owner' => 'Seul l\'auteur de ce post peut le supprimer.',
@@ -111,8 +111,8 @@ return [
             ],
 
             'store' => [
-                'play_more' => 'Essayez de jouer au jeu avant de poster sur les forums ! Si vous rencontrez des problèmes pour jouer, essayez de poster sur le forum Aide et Support.',
-                'too_many_help_posts' => "Vous devez jouer davantage avant de pouvoir créer de nouveaux posts. Si vous rencontrez toujours des difficultés pour jouer, envoyez un email à support@ppy.sh", // FIXME: unhardcode email address.
+                'play_more' => 'Essayez de jouer au jeu avant de poster sur les forums ! Si vous rencontrez des problèmes pour jouer, veuillez poster sur les forums Help et Support.',
+                'too_many_help_posts' => "Vous devez jouer davantage avant de pouvoir créer de nouveaux posts. Si vous rencontrez toujours des difficultés pour jouer, envoyez un e-mail à support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 
@@ -172,7 +172,7 @@ return [
     'score' => [
         'pin' => [
             'disabled_type' => "Impossible d'épingler ce type de score",
-            'not_owner' => 'Seul le propriétaire du score peut épingler le score.',
+            'not_owner' => 'Seul le propriétaire du score peut épingler ce score.',
             'too_many' => 'Trop de scores épinglés.',
         ],
     ],
@@ -182,7 +182,7 @@ return [
             'edit' => [
                 'locked' => 'La page utilisateur est verrouillée.',
                 'not_owner' => 'Vous ne pouvez éditer que votre propre page, pas celle d\'autres utilisateurs.',
-                'require_supporter_tag' => 'vous devez être un osu!supporter.',
+                'require_supporter_tag' => 'Vous devez être un osu!supporter.',
             ],
         ],
     ],

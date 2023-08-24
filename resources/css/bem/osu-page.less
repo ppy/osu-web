@@ -15,12 +15,17 @@
     background-color: @_default-bg;
     color: @_default-fg;
     .default-box-shadow();
-    margin-bottom: 10px;
   }
 
   .page-width();
   @media @desktop {
     .page-width-desktop();
+  }
+
+  &--account-edit {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
   }
 
   &--account-edit-header {
@@ -32,7 +37,6 @@
     .default-gutter-v2();
     padding-top: 20px;
     padding-bottom: 20px;
-    margin-bottom: 10px;
     color: @osu-colour-c1;
 
     h1, h3, h4 {
@@ -87,21 +91,15 @@
     padding-bottom: $padding-top;
   }
 
-  &--artists {
-    margin-bottom: 10px;
-  }
-
   &--beatmapsets-search-header {
     .default-box-shadow();
-    margin-bottom: 10px;
   }
 
   &--changelog {
-    .default;
+    .default();
     background-color: @osu-colour-b4;
     display: flex;
     flex-direction: column;
-    margin-bottom: 0;
   }
 
   &--comment {
@@ -111,7 +109,6 @@
     background-color: hsl(var(--comments-bg-hsl));
     color: var(--comments-fg);
     padding: 10px 0 0;
-    margin-bottom: 0;
   }
 
   &--comments {
@@ -124,7 +121,7 @@
   }
 
   &--contests {
-    .default;
+    .default();
   }
 
   &--description {
@@ -139,7 +136,6 @@
   &--forum {
     background-color: @osu-colour-b5;
     color: @osu-colour-c1;
-    margin-bottom: 10px;
   }
 
   &--forum-topic {
@@ -189,7 +185,7 @@
   }
 
   &--generic-compact {
-    .default;
+    .default();
   }
 
   &--info-bar {
@@ -229,14 +225,10 @@
     .default-box-shadow();
     background-color: @osu-colour-b5;
     color: @osu-colour-c1;
-
-    @media @desktop {
-      margin-bottom: 10px;
-    }
   }
 
   &--supporter {
-    .default;
+    .default();
     display: flex;
     flex-direction: column;
   }
@@ -253,15 +245,14 @@
   }
 
   &--chat {
-    .default;
+    .default();
 
     flex: 1 0 auto;
     display: flex;
-    height: calc((var(--vh, 1vh) * 100) - (@nav2-height + 70px + 50px)); // viewport height - compact header+footer
-    margin-bottom: 0;
+    height: calc((var(--vh, 1vh) * 100) - (@header-container-min-height + 60px)); // viewport height - (header + footer + margins)
 
     @media @mobile {
-      height: calc((var(--vh, 1vh) * 100) - 90px);
+      height: calc((var(--vh, 1vh) * 100) - var(--navbar-height));
     }
   }
 }

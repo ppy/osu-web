@@ -6,7 +6,7 @@
     use App\Jobs\Notifications\BroadcastNotificationBase;
     use App\Models\UserNotificationOption;
 @endphp
-<div class="account-edit">
+<div class="account-edit" id="notifications">
     <div class="account-edit__section">
         <h2 class="account-edit__section-title">
             {{ osu_trans('accounts.notifications.title') }}
