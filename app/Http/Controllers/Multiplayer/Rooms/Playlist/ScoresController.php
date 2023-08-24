@@ -50,9 +50,10 @@ class ScoresController extends BaseController
         $limit = clamp(get_int($params['limit'] ?? null) ?? 50, 1, 50);
         $cursorHelper = PlaylistItemUserHighScore::makeDbCursorHelper($params['sort'] ?? null);
 
-        [$highScores, $hasMore] = $playlist
-            ->highScores()
-            ->whereHas('scoreLink')
+        $highScoresQuery = $playlist->highScores()->whereHas('scoreLink');
+
+        [$highScores, $hasMore] = $highScoresQuery
+            ->clone()
             ->cursorSort($cursorHelper, cursor_from_params($params))
             ->with(ScoreTransformer::MULTIPLAYER_BASE_PRELOAD)
             ->limit($limit)
@@ -64,7 +65,7 @@ class ScoresController extends BaseController
             $transformer,
             ScoreTransformer::MULTIPLAYER_BASE_INCLUDES
         );
-        $total = $playlist->highScores()->count();
+        $total = $highScoresQuery->count();
 
         $user = auth()->user();
 
