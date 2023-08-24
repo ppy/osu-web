@@ -17,7 +17,7 @@ return [
     'title' => 'Komentarai',
 
     'commentable_name' => [
-        'beatmapset' => 'Bitmapas',
+        'beatmapset' => 'Beatmap\'as',
         'build' => 'Pakeitimų sąrašas',
         'news_post' => 'Naujienos',
         '_deleted' => 'Ištrintas elementas',

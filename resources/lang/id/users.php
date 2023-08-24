@@ -387,7 +387,7 @@ return [
                     'date' => 'waktu',
                     'action' => 'tindak lanjut',
                     'length' => 'durasi',
-                    'length_permanent' => 'Permanen',
+                    'length_indefinite' => '',
                     'description' => 'keterangan',
                     'actor' => 'oleh :username',
 

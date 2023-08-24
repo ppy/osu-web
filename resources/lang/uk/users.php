@@ -387,7 +387,7 @@ return [
                     'date' => 'дата',
                     'action' => 'покарання',
                     'length' => 'тривалість',
-                    'length_permanent' => 'Назавжди',
+                    'length_indefinite' => '',
                     'description' => 'опис',
                     'actor' => 'від :username',
 

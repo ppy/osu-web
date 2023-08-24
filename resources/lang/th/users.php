@@ -388,7 +388,7 @@ return [
                     'date' => 'วันที่',
                     'action' => 'ดำเนินการ',
                     'length' => 'ระยะเวลา',
-                    'length_permanent' => 'ถาวร',
+                    'length_indefinite' => '',
                     'description' => 'คำอธิบาย',
                     'actor' => 'โดย :username',
 
@@ -468,7 +468,7 @@ return [
     'status' => [
         'all' => 'ทั้งหมด',
         'online' => 'ออนไลน์',
-        'offline' => 'หายตัว!',
+        'offline' => 'ออฟไลน์',
     ],
     'store' => [
         'from_client' => 'โปรดลงทะเบียนผ่านในเกมแทน!',

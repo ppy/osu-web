@@ -6,39 +6,39 @@
 return [
     '_' => 'Ταξινόμηση κατά',
 
-    'all' => '',
-    'friends' => '',
-    'last_visit' => '',
+    'all' => 'Όλα',
+    'friends' => 'Φίλοι',
+    'last_visit' => 'Πρόσφατα ενεργή',
     'new' => 'Πρόσφατα',
     'old' => 'Παλαιότερα',
-    'rank' => '',
+    'rank' => 'Κατάταξη',
     'top' => 'Κορυφαία',
-    'username' => '',
+    'username' => 'Όνομα Χρήστη',
 
     'artist_tracks' => [
-        'album' => '',
-        'artist' => '',
-        'bpm' => '',
-        'genre' => '',
-        'length' => '',
-        'relevance' => '',
-        'title' => '',
-        'update' => '',
+        'album' => 'Άλμπουμ',
+        'artist' => 'Καλλιτέχνης',
+        'bpm' => 'BPM',
+        'genre' => 'Είδος',
+        'length' => 'Μήκος',
+        'relevance' => 'Συνάφεια',
+        'title' => 'Τίτλος',
+        'update' => 'Ενημέρωση',
     ],
 
     'forum_posts' => [
-        'created' => '',
-        'relevance' => '',
+        'created' => 'Χρόνος δημοσίευσης',
+        'relevance' => 'Συνάφεια',
     ],
 
     'forum_topics' => [
-        'created' => '',
+        'created' => 'Δημιουργήθηκε',
         'feature_votes' => 'Βάσει αστεριών',
         'new' => 'Τελευταία απάντηση',
     ],
 
     'users' => [
-        'relevance' => '',
-        'username' => '',
+        'relevance' => 'Συνάφεια',
+        'username' => 'Όνομα',
     ],
 ];

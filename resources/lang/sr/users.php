@@ -388,7 +388,7 @@ return [
                     'date' => 'датум',
                     'action' => 'радња',
                     'length' => 'дужина',
-                    'length_permanent' => 'Трајно',
+                    'length_indefinite' => '',
                     'description' => 'опис',
                     'actor' => 'од корисника :username
 ',

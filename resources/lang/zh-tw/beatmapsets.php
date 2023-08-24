@@ -71,7 +71,7 @@ return [
             'favourite_login' => '登入後才能把這張圖譜加到最愛',
             'logged-out' => '下載圖譜前請先登入！',
             'mapped_by' => '由 :mapper 製作',
-            'mapped_by_guest' => '',
+            'mapped_by_guest' => '由 :mapper 製作的客串難度',
             'unfavourite' => '取消收藏',
             'updated_timeago' => '最後更新時間 :timeago',
 

@@ -152,9 +152,10 @@ describe('utils/beatmapset-discussion-helper', () => {
           user: { ...userTemplate, groups: [{ ...groupsTemplate, identifier, playmodes: ['taiko'] }] },
         });
 
+        const isFullNominatorWhenNoRulesets = identifier === 'nat';
         cases.push({
-          description: `${identifier} without playmodes is not full nominator`,
-          expected: false,
+          description: `${identifier} without playmodes is${isFullNominatorWhenNoRulesets ? '' : ' not'} full nominator`,
+          expected: isFullNominatorWhenNoRulesets,
           gameMode: 'osu',
           user: { ...userTemplate, groups: [{ ...groupsTemplate, identifier }] },
         });

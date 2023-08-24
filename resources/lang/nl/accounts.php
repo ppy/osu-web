@@ -34,7 +34,7 @@ return [
         ],
 
         'profile' => [
-            'country' => '',
+            'country' => 'land',
             'title' => 'Profiel',
 
             'country_change' => [

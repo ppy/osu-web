@@ -5,7 +5,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class AddIndexOnSlackId extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -30,4 +30,4 @@ class AddIndexOnSlackId extends Migration
             $table->dropIndex('osu_slack_users_slack_id_index');
         });
     }
-}
+};

@@ -43,7 +43,7 @@ interface UserStatisticsBaseJson {
   variants?: Variant[];
 }
 
-interface UserStatisticsRankedJson extends UserStatisticsBaseJson {
+export interface UserStatisticsRankedJson extends UserStatisticsBaseJson {
   country_rank?: number;
   global_rank: number;
   is_ranked: true;

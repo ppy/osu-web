@@ -13,7 +13,7 @@ class UserSearchRequestParams extends UserSearchParams
     {
         parent::__construct();
 
-        $this->queryString = presence(trim($request['query'] ?? null));
+        $this->queryString = presence(trim(get_string($request['query'] ?? null) ?? ''));
         $this->page = get_int($request['page'] ?? null);
         $this->from = $this->pageAsFrom($this->page);
         $this->recentOnly = get_bool($request['recent_only'] ?? null);

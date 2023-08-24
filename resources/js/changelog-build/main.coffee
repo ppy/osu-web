@@ -4,7 +4,6 @@
 import { Build } from 'components/build'
 import { ChangelogHeaderStreams } from 'components/changelog-header-streams'
 import Comments from 'components/comments'
-import { CommentsManager } from 'components/comments-manager'
 import HeaderV4 from 'components/header-v4'
 import { route } from 'laroute'
 import * as React from 'react'
@@ -60,12 +59,12 @@ export class Main extends React.PureComponent
 
           div
             className: 'builds__group builds__group--discussions'
-            el CommentsManager,
-              component: Comments
-              commentableType: 'build'
-              commentableId: @props.build.id
-              componentProps:
-                modifiers: ['changelog']
+            el Comments,
+              baseCommentableMeta:
+                id: @props.build.id
+                type: 'build'
+              controllerStateSelector: '#json-comments'
+              modifiers: 'changelog'
 
 
   renderSupporterPromo: =>
