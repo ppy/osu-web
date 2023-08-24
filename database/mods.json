@@ -11,7 +11,9 @@
         "Settings": [
           {
             "Name": "retries",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Extra Lives",
+            "Description": "Number of extra lives"
           }
         ],
         "IncompatibleMods": [
@@ -34,6 +36,8 @@
           "SD",
           "PF",
           "AC",
+          "AT",
+          "CN",
           "RX",
           "AP"
         ],
@@ -50,7 +54,9 @@
         "Settings": [
           {
             "Name": "speed_change",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Speed decrease",
+            "Description": "The actual decrease to apply"
           }
         ],
         "IncompatibleMods": [
@@ -75,7 +81,9 @@
         "Settings": [
           {
             "Name": "speed_change",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Speed decrease",
+            "Description": "The actual decrease to apply"
           }
         ],
         "IncompatibleMods": [
@@ -116,13 +124,17 @@
         "Settings": [
           {
             "Name": "restart",
-            "Type": "boolean"
+            "Type": "boolean",
+            "Label": "Restart on fail",
+            "Description": "Automatically restarts when failed."
           }
         ],
         "IncompatibleMods": [
           "NF",
           "PF",
           "TP",
+          "AT",
+          "CN",
           "RX",
           "AP"
         ],
@@ -139,13 +151,17 @@
         "Settings": [
           {
             "Name": "restart",
-            "Type": "boolean"
+            "Type": "boolean",
+            "Label": "Restart on fail",
+            "Description": "Automatically restarts when failed."
           }
         ],
         "IncompatibleMods": [
           "NF",
           "SD",
           "AC",
+          "AT",
+          "CN",
           "RX",
           "AP"
         ],
@@ -162,7 +178,9 @@
         "Settings": [
           {
             "Name": "speed_change",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Speed increase",
+            "Description": "The actual increase to apply"
           }
         ],
         "IncompatibleMods": [
@@ -187,7 +205,9 @@
         "Settings": [
           {
             "Name": "speed_change",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Speed increase",
+            "Description": "The actual increase to apply"
           }
         ],
         "IncompatibleMods": [
@@ -212,7 +232,9 @@
         "Settings": [
           {
             "Name": "only_fade_approach_circles",
-            "Type": "boolean"
+            "Type": "boolean",
+            "Label": "Only fade approach circles",
+            "Description": "The main object body will not fade when enabled."
           }
         ],
         "IncompatibleMods": [
@@ -233,15 +255,21 @@
         "Settings": [
           {
             "Name": "follow_delay",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Follow delay",
+            "Description": "Milliseconds until the flashlight reaches the cursor"
           },
           {
             "Name": "size_multiplier",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Flashlight size",
+            "Description": "Multiplier applied to the default flashlight size."
           },
           {
             "Name": "combo_based_size",
-            "Type": "boolean"
+            "Type": "boolean",
+            "Label": "Change size based on combo",
+            "Description": "Decrease the flashlight size as combo increases."
           }
         ],
         "IncompatibleMods": [
@@ -289,21 +317,29 @@
         "Settings": [
           {
             "Name": "minimum_accuracy",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Minimum accuracy",
+            "Description": "Trigger a failure if your accuracy goes below this value."
           },
           {
             "Name": "accuracy_judge_mode",
-            "Type": "string"
+            "Type": "string",
+            "Label": "Accuracy mode",
+            "Description": "The mode of accuracy that will trigger failure."
           },
           {
             "Name": "restart",
-            "Type": "boolean"
+            "Type": "boolean",
+            "Label": "Restart on fail",
+            "Description": "Automatically restarts when failed."
           }
         ],
         "IncompatibleMods": [
           "EZ",
           "NF",
           "PF",
+          "AT",
+          "CN",
           "RX",
           "AP"
         ],
@@ -320,11 +356,15 @@
         "Settings": [
           {
             "Name": "seed",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Seed",
+            "Description": "Use a custom seed instead of a random one"
           },
           {
             "Name": "metronome",
-            "Type": "boolean"
+            "Type": "boolean",
+            "Label": "Metronome ticks",
+            "Description": "Whether a metronome beat should play in the background"
           }
         ],
         "IncompatibleMods": [
@@ -348,23 +388,33 @@
         "Settings": [
           {
             "Name": "circle_size",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Circle Size",
+            "Description": "Override a beatmap's set CS."
           },
           {
             "Name": "approach_rate",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Approach Rate",
+            "Description": "Override a beatmap's set AR."
           },
           {
             "Name": "drain_rate",
-            "Type": "number"
+            "Type": "number",
+            "Label": "HP Drain",
+            "Description": "Override a beatmap's set HP."
           },
           {
             "Name": "overall_difficulty",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Accuracy",
+            "Description": "Override a beatmap's set OD."
           },
           {
             "Name": "extended_limits",
-            "Type": "boolean"
+            "Type": "boolean",
+            "Label": "Extended Limits",
+            "Description": "Adjust difficulty beyond sane limits."
           }
         ],
         "IncompatibleMods": [
@@ -384,23 +434,33 @@
         "Settings": [
           {
             "Name": "no_slider_head_accuracy",
-            "Type": "boolean"
+            "Type": "boolean",
+            "Label": "No slider head accuracy requirement",
+            "Description": "Scores sliders proportionally to the number of ticks hit."
           },
           {
             "Name": "no_slider_head_movement",
-            "Type": "boolean"
+            "Type": "boolean",
+            "Label": "No slider head movement",
+            "Description": "Pins slider heads at their starting position, regardless of time."
           },
           {
             "Name": "classic_note_lock",
-            "Type": "boolean"
+            "Type": "boolean",
+            "Label": "Apply classic note lock",
+            "Description": "Applies note lock to the full hit window."
           },
           {
             "Name": "always_play_tail_sample",
-            "Type": "boolean"
+            "Type": "boolean",
+            "Label": "Always play a slider's tail sample",
+            "Description": "Always plays a slider's tail sample regardless of whether it was hit or not."
           },
           {
             "Name": "fade_hit_circle_early",
-            "Type": "boolean"
+            "Type": "boolean",
+            "Label": "Fade out hit circles earlier",
+            "Description": "Make hit circles fade out into a miss, rather than after it."
           }
         ],
         "IncompatibleMods": [
@@ -419,11 +479,15 @@
         "Settings": [
           {
             "Name": "angle_sharpness",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Angle sharpness",
+            "Description": "How sharp angles should be"
           },
           {
             "Name": "seed",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Seed",
+            "Description": "Use a custom seed instead of a random one"
           }
         ],
         "IncompatibleMods": [
@@ -442,7 +506,9 @@
         "Settings": [
           {
             "Name": "reflection",
-            "Type": "string"
+            "Type": "string",
+            "Label": "Mirrored axes",
+            "Description": "Choose which axes objects are mirrored over."
           }
         ],
         "IncompatibleMods": [
@@ -494,6 +560,10 @@
         "Type": "Automation",
         "Settings": [],
         "IncompatibleMods": [
+          "NF",
+          "SD",
+          "PF",
+          "AC",
           "AL",
           "SG",
           "CN",
@@ -516,6 +586,10 @@
         "Type": "Automation",
         "Settings": [],
         "IncompatibleMods": [
+          "NF",
+          "SD",
+          "PF",
+          "AC",
           "AL",
           "SG",
           "AT",
@@ -619,7 +693,9 @@
         "Settings": [
           {
             "Name": "strength",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Strength",
+            "Description": "Multiplier applied to the wiggling strength."
           }
         ],
         "IncompatibleMods": [
@@ -658,7 +734,9 @@
         "Settings": [
           {
             "Name": "start_scale",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Starting Size",
+            "Description": "The initial size multiplier applied to all objects."
           }
         ],
         "IncompatibleMods": [
@@ -681,7 +759,9 @@
         "Settings": [
           {
             "Name": "start_scale",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Starting Size",
+            "Description": "The initial size multiplier applied to all objects."
           }
         ],
         "IncompatibleMods": [
@@ -704,15 +784,21 @@
         "Settings": [
           {
             "Name": "initial_rate",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Initial rate",
+            "Description": "The starting speed of the track"
           },
           {
             "Name": "final_rate",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Final rate",
+            "Description": "The final speed to ramp to"
           },
           {
             "Name": "adjust_pitch",
-            "Type": "boolean"
+            "Type": "boolean",
+            "Label": "Adjust pitch",
+            "Description": "Should pitch be adjusted with speed"
           }
         ],
         "IncompatibleMods": [
@@ -736,15 +822,21 @@
         "Settings": [
           {
             "Name": "initial_rate",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Initial rate",
+            "Description": "The starting speed of the track"
           },
           {
             "Name": "final_rate",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Final rate",
+            "Description": "The final speed to ramp to"
           },
           {
             "Name": "adjust_pitch",
-            "Type": "boolean"
+            "Type": "boolean",
+            "Label": "Adjust pitch",
+            "Description": "Should pitch be adjusted with speed"
           }
         ],
         "IncompatibleMods": [
@@ -786,11 +878,15 @@
         "Settings": [
           {
             "Name": "spin_speed",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Roll speed",
+            "Description": "Rotations per minute"
           },
           {
             "Name": "direction",
-            "Type": "string"
+            "Type": "string",
+            "Label": "Direction",
+            "Description": "The direction of rotation"
           }
         ],
         "IncompatibleMods": [
@@ -809,11 +905,15 @@
         "Settings": [
           {
             "Name": "scale",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Initial size",
+            "Description": "Change the initial size of the approach circle, relative to hit circles."
           },
           {
             "Name": "style",
-            "Type": "string"
+            "Type": "string",
+            "Label": "Style",
+            "Description": "Change the animation style of the approach circles."
           }
         ],
         "IncompatibleMods": [
@@ -837,19 +937,27 @@
         "Settings": [
           {
             "Name": "inverse_muting",
-            "Type": "boolean"
+            "Type": "boolean",
+            "Label": "Start muted",
+            "Description": "Increase volume as combo builds."
           },
           {
             "Name": "enable_metronome",
-            "Type": "boolean"
+            "Type": "boolean",
+            "Label": "Enable metronome",
+            "Description": "Add a metronome beat to help you keep track of the rhythm."
           },
           {
             "Name": "mute_combo_count",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Final volume at combo",
+            "Description": "The combo count at which point the track reaches its final volume."
           },
           {
             "Name": "affects_hit_sounds",
-            "Type": "boolean"
+            "Type": "boolean",
+            "Label": "Mute hit sounds",
+            "Description": "Hit sounds are also muted alongside the track."
           }
         ],
         "IncompatibleMods": [],
@@ -866,7 +974,9 @@
         "Settings": [
           {
             "Name": "hidden_combo_count",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Hidden at combo",
+            "Description": "The combo count at which the cursor becomes completely hidden"
           }
         ],
         "IncompatibleMods": [],
@@ -883,7 +993,9 @@
         "Settings": [
           {
             "Name": "attraction_strength",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Attraction strength",
+            "Description": "How strong the pull is."
           }
         ],
         "IncompatibleMods": [
@@ -909,7 +1021,9 @@
         "Settings": [
           {
             "Name": "repulsion_strength",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Repulsion strength",
+            "Description": "How strong the repulsion is."
           }
         ],
         "IncompatibleMods": [
@@ -934,11 +1048,15 @@
         "Settings": [
           {
             "Name": "initial_rate",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Initial rate",
+            "Description": "The starting speed of the track"
           },
           {
             "Name": "adjust_pitch",
-            "Type": "boolean"
+            "Type": "boolean",
+            "Label": "Adjust pitch",
+            "Description": "Should pitch be adjusted with speed"
           }
         ],
         "IncompatibleMods": [
@@ -1009,18 +1127,6 @@
         "UserPlayable": true,
         "ValidForMultiplayer": true,
         "ValidForMultiplayerAsFreeMod": true
-      },
-      {
-        "Acronym": "SV2",
-        "Name": "Score V2",
-        "Description": "Score set on earlier osu! versions with the V2 scoring algorithm active.",
-        "Type": "System",
-        "Settings": [],
-        "IncompatibleMods": [],
-        "RequiresConfiguration": false,
-        "UserPlayable": true,
-        "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
       }
     ]
   },
@@ -1053,6 +1159,8 @@
           "SD",
           "PF",
           "AC",
+          "AT",
+          "CN",
           "RX"
         ],
         "RequiresConfiguration": false,
@@ -1068,7 +1176,9 @@
         "Settings": [
           {
             "Name": "speed_change",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Speed decrease",
+            "Description": "The actual decrease to apply"
           }
         ],
         "IncompatibleMods": [
@@ -1093,7 +1203,9 @@
         "Settings": [
           {
             "Name": "speed_change",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Speed decrease",
+            "Description": "The actual decrease to apply"
           }
         ],
         "IncompatibleMods": [
@@ -1133,12 +1245,16 @@
         "Settings": [
           {
             "Name": "restart",
-            "Type": "boolean"
+            "Type": "boolean",
+            "Label": "Restart on fail",
+            "Description": "Automatically restarts when failed."
           }
         ],
         "IncompatibleMods": [
           "NF",
           "PF",
+          "AT",
+          "CN",
           "RX"
         ],
         "RequiresConfiguration": false,
@@ -1154,13 +1270,17 @@
         "Settings": [
           {
             "Name": "restart",
-            "Type": "boolean"
+            "Type": "boolean",
+            "Label": "Restart on fail",
+            "Description": "Automatically restarts when failed."
           }
         ],
         "IncompatibleMods": [
           "NF",
           "SD",
           "AC",
+          "AT",
+          "CN",
           "RX"
         ],
         "RequiresConfiguration": false,
@@ -1176,7 +1296,9 @@
         "Settings": [
           {
             "Name": "speed_change",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Speed increase",
+            "Description": "The actual increase to apply"
           }
         ],
         "IncompatibleMods": [
@@ -1201,7 +1323,9 @@
         "Settings": [
           {
             "Name": "speed_change",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Speed increase",
+            "Description": "The actual increase to apply"
           }
         ],
         "IncompatibleMods": [
@@ -1238,11 +1362,15 @@
         "Settings": [
           {
             "Name": "size_multiplier",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Flashlight size",
+            "Description": "Multiplier applied to the default flashlight size."
           },
           {
             "Name": "combo_based_size",
-            "Type": "boolean"
+            "Type": "boolean",
+            "Label": "Change size based on combo",
+            "Description": "Decrease the flashlight size as combo increases."
           }
         ],
         "IncompatibleMods": [],
@@ -1259,20 +1387,28 @@
         "Settings": [
           {
             "Name": "minimum_accuracy",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Minimum accuracy",
+            "Description": "Trigger a failure if your accuracy goes below this value."
           },
           {
             "Name": "accuracy_judge_mode",
-            "Type": "string"
+            "Type": "string",
+            "Label": "Accuracy mode",
+            "Description": "The mode of accuracy that will trigger failure."
           },
           {
             "Name": "restart",
-            "Type": "boolean"
+            "Type": "boolean",
+            "Label": "Restart on fail",
+            "Description": "Automatically restarts when failed."
           }
         ],
         "IncompatibleMods": [
           "NF",
           "PF",
+          "AT",
+          "CN",
           "RX"
         ],
         "RequiresConfiguration": false,
@@ -1288,7 +1424,9 @@
         "Settings": [
           {
             "Name": "seed",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Seed",
+            "Description": "Use a custom seed instead of a random one"
           }
         ],
         "IncompatibleMods": [
@@ -1307,19 +1445,27 @@
         "Settings": [
           {
             "Name": "scroll_speed",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Scroll Speed",
+            "Description": "Adjust a beatmap's set scroll speed"
           },
           {
             "Name": "drain_rate",
-            "Type": "number"
+            "Type": "number",
+            "Label": "HP Drain",
+            "Description": "Override a beatmap's set HP."
           },
           {
             "Name": "overall_difficulty",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Accuracy",
+            "Description": "Override a beatmap's set OD."
           },
           {
             "Name": "extended_limits",
-            "Type": "boolean"
+            "Type": "boolean",
+            "Label": "Extended Limits",
+            "Description": "Adjust difficulty beyond sane limits."
           }
         ],
         "IncompatibleMods": [
@@ -1380,6 +1526,10 @@
         "Type": "Automation",
         "Settings": [],
         "IncompatibleMods": [
+          "NF",
+          "SD",
+          "PF",
+          "AC",
           "SG",
           "CN",
           "RX",
@@ -1397,6 +1547,10 @@
         "Type": "Automation",
         "Settings": [],
         "IncompatibleMods": [
+          "NF",
+          "SD",
+          "PF",
+          "AC",
           "SG",
           "AT",
           "CN",
@@ -1436,15 +1590,21 @@
         "Settings": [
           {
             "Name": "initial_rate",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Initial rate",
+            "Description": "The starting speed of the track"
           },
           {
             "Name": "final_rate",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Final rate",
+            "Description": "The final speed to ramp to"
           },
           {
             "Name": "adjust_pitch",
-            "Type": "boolean"
+            "Type": "boolean",
+            "Label": "Adjust pitch",
+            "Description": "Should pitch be adjusted with speed"
           }
         ],
         "IncompatibleMods": [
@@ -1468,15 +1628,21 @@
         "Settings": [
           {
             "Name": "initial_rate",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Initial rate",
+            "Description": "The starting speed of the track"
           },
           {
             "Name": "final_rate",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Final rate",
+            "Description": "The final speed to ramp to"
           },
           {
             "Name": "adjust_pitch",
-            "Type": "boolean"
+            "Type": "boolean",
+            "Label": "Adjust pitch",
+            "Description": "Should pitch be adjusted with speed"
           }
         ],
         "IncompatibleMods": [
@@ -1500,19 +1666,27 @@
         "Settings": [
           {
             "Name": "inverse_muting",
-            "Type": "boolean"
+            "Type": "boolean",
+            "Label": "Start muted",
+            "Description": "Increase volume as combo builds."
           },
           {
             "Name": "enable_metronome",
-            "Type": "boolean"
+            "Type": "boolean",
+            "Label": "Enable metronome",
+            "Description": "Add a metronome beat to help you keep track of the rhythm."
           },
           {
             "Name": "mute_combo_count",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Final volume at combo",
+            "Description": "The combo count at which point the track reaches its final volume."
           },
           {
             "Name": "affects_hit_sounds",
-            "Type": "boolean"
+            "Type": "boolean",
+            "Label": "Mute hit sounds",
+            "Description": "Hit sounds are also muted alongside the track."
           }
         ],
         "IncompatibleMods": [],
@@ -1529,11 +1703,15 @@
         "Settings": [
           {
             "Name": "initial_rate",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Initial rate",
+            "Description": "The starting speed of the track"
           },
           {
             "Name": "adjust_pitch",
-            "Type": "boolean"
+            "Type": "boolean",
+            "Label": "Adjust pitch",
+            "Description": "Should pitch be adjusted with speed"
           }
         ],
         "IncompatibleMods": [
@@ -1550,18 +1728,6 @@
         "UserPlayable": true,
         "ValidForMultiplayer": false,
         "ValidForMultiplayerAsFreeMod": false
-      },
-      {
-        "Acronym": "SV2",
-        "Name": "Score V2",
-        "Description": "Score set on earlier osu! versions with the V2 scoring algorithm active.",
-        "Type": "System",
-        "Settings": [],
-        "IncompatibleMods": [],
-        "RequiresConfiguration": false,
-        "UserPlayable": true,
-        "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
       }
     ]
   },
@@ -1577,7 +1743,9 @@
         "Settings": [
           {
             "Name": "retries",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Extra Lives",
+            "Description": "Number of extra lives"
           }
         ],
         "IncompatibleMods": [
@@ -1600,6 +1768,8 @@
           "SD",
           "PF",
           "AC",
+          "AT",
+          "CN",
           "RX"
         ],
         "RequiresConfiguration": false,
@@ -1615,7 +1785,9 @@
         "Settings": [
           {
             "Name": "speed_change",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Speed decrease",
+            "Description": "The actual decrease to apply"
           }
         ],
         "IncompatibleMods": [
@@ -1639,7 +1811,9 @@
         "Settings": [
           {
             "Name": "speed_change",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Speed decrease",
+            "Description": "The actual decrease to apply"
           }
         ],
         "IncompatibleMods": [
@@ -1678,12 +1852,16 @@
         "Settings": [
           {
             "Name": "restart",
-            "Type": "boolean"
+            "Type": "boolean",
+            "Label": "Restart on fail",
+            "Description": "Automatically restarts when failed."
           }
         ],
         "IncompatibleMods": [
           "NF",
           "PF",
+          "AT",
+          "CN",
           "RX"
         ],
         "RequiresConfiguration": false,
@@ -1699,13 +1877,17 @@
         "Settings": [
           {
             "Name": "restart",
-            "Type": "boolean"
+            "Type": "boolean",
+            "Label": "Restart on fail",
+            "Description": "Automatically restarts when failed."
           }
         ],
         "IncompatibleMods": [
           "NF",
           "SD",
           "AC",
+          "AT",
+          "CN",
           "RX"
         ],
         "RequiresConfiguration": false,
@@ -1721,7 +1903,9 @@
         "Settings": [
           {
             "Name": "speed_change",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Speed increase",
+            "Description": "The actual increase to apply"
           }
         ],
         "IncompatibleMods": [
@@ -1745,7 +1929,9 @@
         "Settings": [
           {
             "Name": "speed_change",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Speed increase",
+            "Description": "The actual increase to apply"
           }
         ],
         "IncompatibleMods": [
@@ -1781,11 +1967,15 @@
         "Settings": [
           {
             "Name": "size_multiplier",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Flashlight size",
+            "Description": "Multiplier applied to the default flashlight size."
           },
           {
             "Name": "combo_based_size",
-            "Type": "boolean"
+            "Type": "boolean",
+            "Label": "Change size based on combo",
+            "Description": "Decrease the flashlight size as combo increases."
           }
         ],
         "IncompatibleMods": [],
@@ -1802,21 +1992,29 @@
         "Settings": [
           {
             "Name": "minimum_accuracy",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Minimum accuracy",
+            "Description": "Trigger a failure if your accuracy goes below this value."
           },
           {
             "Name": "accuracy_judge_mode",
-            "Type": "string"
+            "Type": "string",
+            "Label": "Accuracy mode",
+            "Description": "The mode of accuracy that will trigger failure."
           },
           {
             "Name": "restart",
-            "Type": "boolean"
+            "Type": "boolean",
+            "Label": "Restart on fail",
+            "Description": "Automatically restarts when failed."
           }
         ],
         "IncompatibleMods": [
           "EZ",
           "NF",
           "PF",
+          "AT",
+          "CN",
           "RX"
         ],
         "RequiresConfiguration": false,
@@ -1832,27 +2030,39 @@
         "Settings": [
           {
             "Name": "circle_size",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Circle Size",
+            "Description": "Override a beatmap's set CS."
           },
           {
             "Name": "approach_rate",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Approach Rate",
+            "Description": "Override a beatmap's set AR."
           },
           {
             "Name": "hard_rock_offsets",
-            "Type": "boolean"
+            "Type": "boolean",
+            "Label": "Spicy Patterns",
+            "Description": "Adjust the patterns as if Hard Rock is enabled."
           },
           {
             "Name": "drain_rate",
-            "Type": "number"
+            "Type": "number",
+            "Label": "HP Drain",
+            "Description": "Override a beatmap's set HP."
           },
           {
             "Name": "overall_difficulty",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Accuracy",
+            "Description": "Override a beatmap's set OD."
           },
           {
             "Name": "extended_limits",
-            "Type": "boolean"
+            "Type": "boolean",
+            "Label": "Extended Limits",
+            "Description": "Adjust difficulty beyond sane limits."
           }
         ],
         "IncompatibleMods": [
@@ -1895,6 +2105,10 @@
         "Type": "Automation",
         "Settings": [],
         "IncompatibleMods": [
+          "NF",
+          "SD",
+          "PF",
+          "AC",
           "CN",
           "RX"
         ],
@@ -1910,6 +2124,10 @@
         "Type": "Automation",
         "Settings": [],
         "IncompatibleMods": [
+          "NF",
+          "SD",
+          "PF",
+          "AC",
           "AT",
           "CN",
           "RX"
@@ -1946,15 +2164,21 @@
         "Settings": [
           {
             "Name": "initial_rate",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Initial rate",
+            "Description": "The starting speed of the track"
           },
           {
             "Name": "final_rate",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Final rate",
+            "Description": "The final speed to ramp to"
           },
           {
             "Name": "adjust_pitch",
-            "Type": "boolean"
+            "Type": "boolean",
+            "Label": "Adjust pitch",
+            "Description": "Should pitch be adjusted with speed"
           }
         ],
         "IncompatibleMods": [
@@ -1977,15 +2201,21 @@
         "Settings": [
           {
             "Name": "initial_rate",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Initial rate",
+            "Description": "The starting speed of the track"
           },
           {
             "Name": "final_rate",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Final rate",
+            "Description": "The final speed to ramp to"
           },
           {
             "Name": "adjust_pitch",
-            "Type": "boolean"
+            "Type": "boolean",
+            "Label": "Adjust pitch",
+            "Description": "Should pitch be adjusted with speed"
           }
         ],
         "IncompatibleMods": [
@@ -2020,19 +2250,27 @@
         "Settings": [
           {
             "Name": "inverse_muting",
-            "Type": "boolean"
+            "Type": "boolean",
+            "Label": "Start muted",
+            "Description": "Increase volume as combo builds."
           },
           {
             "Name": "enable_metronome",
-            "Type": "boolean"
+            "Type": "boolean",
+            "Label": "Enable metronome",
+            "Description": "Add a metronome beat to help you keep track of the rhythm."
           },
           {
             "Name": "mute_combo_count",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Final volume at combo",
+            "Description": "The combo count at which point the track reaches its final volume."
           },
           {
             "Name": "affects_hit_sounds",
-            "Type": "boolean"
+            "Type": "boolean",
+            "Label": "Mute hit sounds",
+            "Description": "Hit sounds are also muted alongside the track."
           }
         ],
         "IncompatibleMods": [],
@@ -2049,21 +2287,11 @@
         "Settings": [
           {
             "Name": "hidden_combo_count",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Hidden at combo",
+            "Description": "The combo count at which the cursor becomes completely hidden"
           }
         ],
-        "IncompatibleMods": [],
-        "RequiresConfiguration": false,
-        "UserPlayable": true,
-        "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
-      },
-      {
-        "Acronym": "SV2",
-        "Name": "Score V2",
-        "Description": "Score set on earlier osu! versions with the V2 scoring algorithm active.",
-        "Type": "System",
-        "Settings": [],
         "IncompatibleMods": [],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -2084,7 +2312,9 @@
         "Settings": [
           {
             "Name": "retries",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Extra Lives",
+            "Description": "Number of extra lives"
           }
         ],
         "IncompatibleMods": [
@@ -2106,7 +2336,9 @@
         "IncompatibleMods": [
           "SD",
           "PF",
-          "AC"
+          "AC",
+          "AT",
+          "CN"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -2121,7 +2353,9 @@
         "Settings": [
           {
             "Name": "speed_change",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Speed decrease",
+            "Description": "The actual decrease to apply"
           }
         ],
         "IncompatibleMods": [
@@ -2146,7 +2380,9 @@
         "Settings": [
           {
             "Name": "speed_change",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Speed decrease",
+            "Description": "The actual decrease to apply"
           }
         ],
         "IncompatibleMods": [
@@ -2186,12 +2422,16 @@
         "Settings": [
           {
             "Name": "restart",
-            "Type": "boolean"
+            "Type": "boolean",
+            "Label": "Restart on fail",
+            "Description": "Automatically restarts when failed."
           }
         ],
         "IncompatibleMods": [
           "NF",
-          "PF"
+          "PF",
+          "AT",
+          "CN"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -2206,13 +2446,17 @@
         "Settings": [
           {
             "Name": "restart",
-            "Type": "boolean"
+            "Type": "boolean",
+            "Label": "Restart on fail",
+            "Description": "Automatically restarts when failed."
           }
         ],
         "IncompatibleMods": [
           "NF",
           "SD",
-          "AC"
+          "AC",
+          "AT",
+          "CN"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -2227,7 +2471,9 @@
         "Settings": [
           {
             "Name": "speed_change",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Speed increase",
+            "Description": "The actual increase to apply"
           }
         ],
         "IncompatibleMods": [
@@ -2252,7 +2498,9 @@
         "Settings": [
           {
             "Name": "speed_change",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Speed increase",
+            "Description": "The actual increase to apply"
           }
         ],
         "IncompatibleMods": [
@@ -2277,7 +2525,9 @@
         "Settings": [
           {
             "Name": "coverage",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Coverage",
+            "Description": "The proportion of playfield height that notes will be hidden for."
           }
         ],
         "IncompatibleMods": [
@@ -2297,7 +2547,9 @@
         "Settings": [
           {
             "Name": "coverage",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Coverage",
+            "Description": "The proportion of playfield height that notes will be hidden for."
           }
         ],
         "IncompatibleMods": [
@@ -2317,11 +2569,15 @@
         "Settings": [
           {
             "Name": "size_multiplier",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Flashlight size",
+            "Description": "Multiplier applied to the default flashlight size."
           },
           {
             "Name": "combo_based_size",
-            "Type": "boolean"
+            "Type": "boolean",
+            "Label": "Change size based on combo",
+            "Description": "Decrease the flashlight size as combo increases."
           }
         ],
         "IncompatibleMods": [
@@ -2341,21 +2597,29 @@
         "Settings": [
           {
             "Name": "minimum_accuracy",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Minimum accuracy",
+            "Description": "Trigger a failure if your accuracy goes below this value."
           },
           {
             "Name": "accuracy_judge_mode",
-            "Type": "string"
+            "Type": "string",
+            "Label": "Accuracy mode",
+            "Description": "The mode of accuracy that will trigger failure."
           },
           {
             "Name": "restart",
-            "Type": "boolean"
+            "Type": "boolean",
+            "Label": "Restart on fail",
+            "Description": "Automatically restarts when failed."
           }
         ],
         "IncompatibleMods": [
           "EZ",
           "NF",
-          "PF"
+          "PF",
+          "AT",
+          "CN"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -2590,7 +2854,9 @@
         "Settings": [
           {
             "Name": "seed",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Seed",
+            "Description": "Use a custom seed instead of a random one"
           }
         ],
         "IncompatibleMods": [],
@@ -2631,15 +2897,21 @@
         "Settings": [
           {
             "Name": "drain_rate",
-            "Type": "number"
+            "Type": "number",
+            "Label": "HP Drain",
+            "Description": "Override a beatmap's set HP."
           },
           {
             "Name": "overall_difficulty",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Accuracy",
+            "Description": "Override a beatmap's set OD."
           },
           {
             "Name": "extended_limits",
-            "Type": "boolean"
+            "Type": "boolean",
+            "Label": "Extended Limits",
+            "Description": "Adjust difficulty beyond sane limits."
           }
         ],
         "IncompatibleMods": [
@@ -2710,6 +2982,10 @@
         "Type": "Automation",
         "Settings": [],
         "IncompatibleMods": [
+          "NF",
+          "SD",
+          "PF",
+          "AC",
           "CN",
           "AS"
         ],
@@ -2725,6 +3001,10 @@
         "Type": "Automation",
         "Settings": [],
         "IncompatibleMods": [
+          "NF",
+          "SD",
+          "PF",
+          "AC",
           "AT",
           "CN",
           "AS"
@@ -2742,15 +3022,21 @@
         "Settings": [
           {
             "Name": "initial_rate",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Initial rate",
+            "Description": "The starting speed of the track"
           },
           {
             "Name": "final_rate",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Final rate",
+            "Description": "The final speed to ramp to"
           },
           {
             "Name": "adjust_pitch",
-            "Type": "boolean"
+            "Type": "boolean",
+            "Label": "Adjust pitch",
+            "Description": "Should pitch be adjusted with speed"
           }
         ],
         "IncompatibleMods": [
@@ -2774,15 +3060,21 @@
         "Settings": [
           {
             "Name": "initial_rate",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Initial rate",
+            "Description": "The starting speed of the track"
           },
           {
             "Name": "final_rate",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Final rate",
+            "Description": "The final speed to ramp to"
           },
           {
             "Name": "adjust_pitch",
-            "Type": "boolean"
+            "Type": "boolean",
+            "Label": "Adjust pitch",
+            "Description": "Should pitch be adjusted with speed"
           }
         ],
         "IncompatibleMods": [
@@ -2806,19 +3098,27 @@
         "Settings": [
           {
             "Name": "inverse_muting",
-            "Type": "boolean"
+            "Type": "boolean",
+            "Label": "Start muted",
+            "Description": "Increase volume as combo builds."
           },
           {
             "Name": "enable_metronome",
-            "Type": "boolean"
+            "Type": "boolean",
+            "Label": "Enable metronome",
+            "Description": "Add a metronome beat to help you keep track of the rhythm."
           },
           {
             "Name": "mute_combo_count",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Final volume at combo",
+            "Description": "The combo count at which point the track reaches its final volume."
           },
           {
             "Name": "affects_hit_sounds",
-            "Type": "boolean"
+            "Type": "boolean",
+            "Label": "Mute hit sounds",
+            "Description": "Hit sounds are also muted alongside the track."
           }
         ],
         "IncompatibleMods": [],
@@ -2835,11 +3135,15 @@
         "Settings": [
           {
             "Name": "initial_rate",
-            "Type": "number"
+            "Type": "number",
+            "Label": "Initial rate",
+            "Description": "The starting speed of the track"
           },
           {
             "Name": "adjust_pitch",
-            "Type": "boolean"
+            "Type": "boolean",
+            "Label": "Adjust pitch",
+            "Description": "Should pitch be adjusted with speed"
           }
         ],
         "IncompatibleMods": [
@@ -2856,18 +3160,6 @@
         "UserPlayable": true,
         "ValidForMultiplayer": false,
         "ValidForMultiplayerAsFreeMod": false
-      },
-      {
-        "Acronym": "SV2",
-        "Name": "Score V2",
-        "Description": "Score set on earlier osu! versions with the V2 scoring algorithm active.",
-        "Type": "System",
-        "Settings": [],
-        "IncompatibleMods": [],
-        "RequiresConfiguration": false,
-        "UserPlayable": true,
-        "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
       }
     ]
   }
