@@ -3,33 +3,31 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class NullableEntryUrlOnContestEntries extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::table('contest_entries', function (Blueprint $table) {
-            $table->string('entry_url')->nullable()->change();
+        Schema::table('multiplayer_rooms_high', function (Blueprint $table) {
+            $table->unsignedBigInteger('last_score_link_id')->nullable()->after('last_score_id');
         });
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
-        Schema::table('contest_entries', function (Blueprint $table) {
-            $table->string('entry_url')->nullable(false)->default('')->change();
+        Schema::table('multiplayer_rooms_high', function (Blueprint $table) {
+            $table->dropColumn('last_score_link_id');
         });
     }
-}
+};

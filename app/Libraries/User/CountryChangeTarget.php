@@ -27,21 +27,28 @@ class CountryChangeTarget
 
     public static function get(User $user): ?string
     {
-        $minMonths = static::minMonths();
-        $now = CarbonImmutable::now();
-        $until = static::currentMonth();
-        $since = $until->subMonths($minMonths - 1);
-
         if (static::isUserInTournament($user)) {
             return null;
         }
 
-        $history = $user
+        $until = static::currentMonth();
+        $minMonths = static::minMonths();
+
+        $yearMonths = $user
             ->userCountryHistory()
             ->whereBetween('year_month', [
-                UserCountryHistory::formatDate($since),
+                // one year maximum range. Offset by 1 because the range is inclusive
+                UserCountryHistory::formatDate($until->subMonths(11)),
                 UserCountryHistory::formatDate($until),
-            ])->whereHas('country')
+            ])->distinct()
+            ->orderBy('year_month', 'DESC')
+            ->limit($minMonths)
+            ->pluck('year_month');
+
+        $history = $user
+            ->userCountryHistory()
+            ->whereIn('year_month', $yearMonths)
+            ->whereHas('country')
             ->get();
 
         // First group countries by year_month
