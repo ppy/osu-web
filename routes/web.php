@@ -102,15 +102,11 @@ Route::group(['middleware' => ['web']], function () {
     Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['destroy', 'index', 'show', 'update']]);
 
     Route::group(['prefix' => 'scores', 'as' => 'scores.'], function () {
-        // make sure it's matched before {mode}/{score}
         Route::get('{score}/download', 'ScoresController@download')->name('download');
+        Route::get('{rulesetOrScore}/{score}/download', 'ScoresController@downloadLegacy')->name('download-legacy');
 
-        Route::group(['prefix' => '{mode}'], function () {
-            Route::get('{score}/download', 'ScoresController@download')->name('download-legacy');
-            Route::get('{score}', 'ScoresController@show')->name('show-legacy');
-        });
+        Route::get('{rulesetOrScore}/{score?}', 'ScoresController@show')->name('show');
     });
-    Route::resource('scores', 'ScoresController', ['only' => ['show']]);
 
     Route::delete('score-pins', 'ScorePinsController@destroy')->name('score-pins.destroy');
     Route::put('score-pins', 'ScorePinsController@reorder')->name('score-pins.reorder');
@@ -484,9 +480,11 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
 
         Route::apiResource('seasonal-backgrounds', 'SeasonalBackgroundsController', ['only' => ['index']]);
 
-        Route::group(['prefix' => 'scores/{mode}', 'as' => 'scores.'], function () {
+        Route::group(['prefix' => 'scores', 'as' => 'scores.'], function () {
             Route::get('{score}/download', 'ScoresController@download')->middleware(ThrottleRequests::getApiThrottle('scores_download'))->name('download');
-            Route::get('{score}', 'ScoresController@show')->name('show');
+            Route::get('{rulesetOrScore}/{score}/download', 'ScoresController@downloadLegacy')->middleware(ThrottleRequests::getApiThrottle('scores_download'))->name('download-legacy');
+
+            Route::get('{rulesetOrScore}/{score?}', 'ScoresController@show')->name('show');
         });
 
         // Beatmapsets
