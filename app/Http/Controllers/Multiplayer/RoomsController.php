@@ -26,7 +26,7 @@ class RoomsController extends BaseController
      * ---
      *
      * @queryParam limit Maximum number of results. No-example
-     * @queryParam mode Filter mode; `all`, `ended`, `participated`, `owned`. Defaults to active rooms only if not sepcified. No-example
+     * @queryParam mode Filter mode; `active` (default), `all`, `ended`, `participated`, `owned`. No-example
      * @queryParam season_id Season ID to return Rooms from. No-example
      * @queryParam sort Sort order; `ended`, `created`. No-example
      * @queryParam type_group `playlists` (default) or `realtime`. No-example
