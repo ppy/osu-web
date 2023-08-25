@@ -78,21 +78,25 @@ class ScoreTransformer extends TransformerAbstract
             if ($best !== null) {
                 $bestId = $best->getKey();
                 $pp = $best->pp;
-                $replay = $best->replay;
+                $hasReplay = $best->replay;
             }
         } elseif ($score instanceof SoloScore) {
             $pp = $score->pp;
-            $replay = $score->has_replay;
+            $hasReplay = $score->has_replay;
         }
 
-        return array_merge($score->data->jsonSerialize(), [
+        $hasReplay ??= false;
+
+        return [
+            ...$score->data->jsonSerialize(),
             'best_id' => $bestId ?? null,
+            'has_replay' => $hasReplay,
             'id' => $score->getKey(),
             'legacy_perfect' => $legacyPerfect ?? null,
             'pp' => $pp ?? null,
-            'replay' => $replay ?? false,
+            'replay' => $hasReplay,
             'type' => $score->getMorphClass(),
-        ]);
+        ];
     }
 
     public function transformLegacy(LegacyMatch\Score|ScoreModel|SoloScore $score)
