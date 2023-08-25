@@ -25,6 +25,8 @@ class RoomsController extends BaseController
      *
      * ---
      *
+     * @group Multiplayer
+     *
      * @queryParam limit Maximum number of results. No-example
      * @queryParam mode Filter mode; `active` (default), `all`, `ended`, `participated`, `owned`. No-example
      * @queryParam season_id Season ID to return Rooms from. No-example
