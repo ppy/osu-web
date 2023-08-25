@@ -23,8 +23,6 @@ class RoomsController extends BaseController
      *
      * Returns a list of multiplayer rooms.
      *
-     * ---
-     *
      * @group Multiplayer
      *
      * @queryParam limit Maximum number of results. No-example
