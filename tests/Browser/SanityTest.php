@@ -430,6 +430,10 @@ class SanityTest extends DuskTestCase
             'changelog.show' => [
                 'changelog' => self::$scaffolding['build']->version,
             ],
+            'scores.show' => [
+                'rulesetOrScore' => static::$scaffolding['score']->getMode(),
+                'score' => static::$scaffolding['score']->getKey(),
+            ],
             'legal' => [
                 'locale' => 'en',
                 'path' => 'Terms',
