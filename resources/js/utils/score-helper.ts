@@ -99,7 +99,7 @@ export function scoreDownloadUrl(score: SoloScoreJson) {
 
   if (score.best_id != null) {
     return route('scores.download-legacy', {
-      mode: rulesetName(score.ruleset_id),
+      rulesetOrScore: rulesetName(score.ruleset_id),
       score: score.best_id,
     });
   }
