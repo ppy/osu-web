@@ -680,21 +680,17 @@
         ]
     },
     {
-        "uri": "api/v2/rooms/{mode?}",
+        "uri": "api/v2/reports",
         "methods": [
-            "GET",
-            "HEAD"
+            "POST"
         ],
-        "controller": "App\\Http\\Controllers\\Multiplayer\\RoomsController@index",
+        "controller": "App\\Http\\Controllers\\ReportsController@store",
         "middlewares": [
             "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
             "App\\Http\\Middleware\\RequireScopes",
-            "Illuminate\\Auth\\Middleware\\Authenticate",
-            "App\\Http\\Middleware\\RequireScopes:public"
+            "Illuminate\\Auth\\Middleware\\Authenticate"
         ],
-        "scopes": [
-            "public"
-        ]
+        "scopes": []
     },
     {
         "uri": "api/v2/rooms/{room}/users/{user}",
@@ -811,17 +807,21 @@
         "scopes": []
     },
     {
-        "uri": "api/v2/reports",
+        "uri": "api/v2/rooms",
         "methods": [
-            "POST"
+            "GET",
+            "HEAD"
         ],
-        "controller": "App\\Http\\Controllers\\ReportsController@store",
+        "controller": "App\\Http\\Controllers\\Multiplayer\\RoomsController@index",
         "middlewares": [
             "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
             "App\\Http\\Middleware\\RequireScopes",
-            "Illuminate\\Auth\\Middleware\\Authenticate"
+            "Illuminate\\Auth\\Middleware\\Authenticate",
+            "App\\Http\\Middleware\\RequireScopes:public"
         ],
-        "scopes": []
+        "scopes": [
+            "public"
+        ]
     },
     {
         "uri": "api/v2/rooms",

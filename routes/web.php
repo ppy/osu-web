@@ -464,8 +464,9 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
         });
         Route::resource('matches', 'MatchesController', ['only' => ['index', 'show']]);
 
+        Route::resource('reports', 'ReportsController', ['only' => ['store']]);
+
         Route::group(['as' => 'rooms.', 'prefix' => 'rooms'], function () {
-            Route::get('{mode?}', 'Multiplayer\RoomsController@index')->name('index')->where('mode', 'owned|participated|ended');
             Route::put('{room}/users/{user}', 'Multiplayer\RoomsController@join')->name('join');
             Route::delete('{room}/users/{user}', 'Multiplayer\RoomsController@part')->name('part');
             Route::get('{room}/leaderboard', 'Multiplayer\RoomsController@leaderboard');
@@ -475,9 +476,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
             });
         });
 
-        Route::resource('reports', 'ReportsController', ['only' => ['store']]);
-
-        Route::apiResource('rooms', 'Multiplayer\RoomsController', ['only' => ['show', 'store']]);
+        Route::apiResource('rooms', 'Multiplayer\RoomsController', ['only' => ['index', 'show', 'store']]);
 
         Route::apiResource('seasonal-backgrounds', 'SeasonalBackgroundsController', ['only' => ['index']]);
 
