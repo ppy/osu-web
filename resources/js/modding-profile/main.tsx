@@ -175,11 +175,11 @@ export default class Main extends React.Component<Props> {
                     <>
                       <ProfileTournamentBanner banner={this.props.user.active_tournament_banner} />
                       <div className='profile-detail'>
-                        <Badges badges={this.props.user.badges} />
                         <Stats user={this.props.user} />
                       </div>
                     </>
                   )}
+                  <Badges badges={this.props.user.badges} />
                   <DetailBar user={this.props.user} />
                 </div>
                 <div

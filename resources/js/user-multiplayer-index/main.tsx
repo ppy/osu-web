@@ -39,9 +39,7 @@ export default function Main(props: Props) {
 
         <ProfileTournamentBanner banner={props.user.active_tournament_banner} />
 
-        <div className='profile-detail'>
-          <Badges badges={props.user.badges} />
-        </div>
+        <Badges badges={props.user.badges} modifiers='multiplayer' />
 
         <DetailBar user={props.user} />
 
