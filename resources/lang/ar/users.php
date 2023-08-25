@@ -49,6 +49,7 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => '',
         'loading' => 'جاري التحميل...',
         'send_message' => 'إرسال رسالة',
     ],
@@ -386,7 +387,7 @@ return [
                     'date' => 'التاريخ',
                     'action' => 'النشاط',
                     'length' => 'الطول',
-                    'length_permanent' => 'دائم',
+                    'length_indefinite' => '',
                     'description' => 'الوصف',
                     'actor' => 'بواسطة :username',
 

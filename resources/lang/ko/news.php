@@ -19,7 +19,7 @@ return [
     ],
 
     'show' => [
-        'by' => ':user 님이 작성',
+        'by' => ':user님이 작성',
 
         'nav' => [
             'newer' => '최근 글',

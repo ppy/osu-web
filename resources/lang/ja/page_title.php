@@ -101,7 +101,7 @@ return [
             '_' => 'パフォーマンス',
         ],
         'seasons_controller' => [
-            '_' => '',
+            '_' => 'ランキング',
         ],
         'tournaments_controller' => [
             '_' => 'トーナメント',

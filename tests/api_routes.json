@@ -552,6 +552,22 @@
         "scopes": []
     },
     {
+        "uri": "api/v2/events",
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "controller": "App\\Http\\Controllers\\EventsController@index",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "App\\Http\\Middleware\\RequireScopes:public"
+        ],
+        "scopes": [
+            "public"
+        ]
+    },
+    {
         "uri": "api/v2/forums/topics/{topic}/reply",
         "methods": [
             "POST"
@@ -747,7 +763,6 @@
         "middlewares": [
             "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
             "App\\Http\\Middleware\\RequireScopes",
-            "Illuminate\\Auth\\Middleware\\Authenticate",
             "App\\Http\\Middleware\\RequireScopes:public"
         ],
         "scopes": [
@@ -851,7 +866,7 @@
         "scopes": []
     },
     {
-        "uri": "api/v2/scores/{mode}/{score}/download",
+        "uri": "api/v2/scores/{score}/download",
         "methods": [
             "GET",
             "HEAD"
@@ -869,7 +884,25 @@
         ]
     },
     {
-        "uri": "api/v2/scores/{mode}/{score}",
+        "uri": "api/v2/scores/{rulesetOrScore}/{score}/download",
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "controller": "App\\Http\\Controllers\\ScoresController@downloadLegacy",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "App\\Http\\Middleware\\ThrottleRequests:10,1,api-scores-download:",
+            "Illuminate\\Auth\\Middleware\\Authenticate",
+            "App\\Http\\Middleware\\RequireScopes:public"
+        ],
+        "scopes": [
+            "public"
+        ]
+    },
+    {
+        "uri": "api/v2/scores/{rulesetOrScore}/{score?}",
         "methods": [
             "GET",
             "HEAD"

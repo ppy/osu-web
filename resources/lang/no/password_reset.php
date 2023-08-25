@@ -13,8 +13,8 @@ return [
 
     'error' => [
         'contact_support' => 'Vennligst kontakt kundestøtte for å gjenopprette kontoen.',
-        'expired' => '',
-        'invalid' => '',
+        'expired' => 'Bekreftelseskode er utløpt.',
+        'invalid' => 'Uventet feil i bekreftelseskoden.',
         'is_privileged' => 'Kontakt peppy lulz.',
         'missing_key' => 'Kreves.',
         'too_many_tries' => 'For mange mislykkede påloggingsforsøk.',

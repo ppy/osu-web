@@ -17,9 +17,16 @@ return [
         ],
     ],
 
+    'kudosu' => [
+        'total' => 'Tjänat',
+        'available' => 'Tillgängligt',
+        'used' => 'Spenderat',
+    ],
+
     'type' => [
         'charts' => 'i rampljuset',
         'country' => 'land',
+        'kudosu' => 'kudosu',
         'multiplayer' => 'flerspelarläge',
         'performance' => 'prestation',
         'score' => 'poäng',

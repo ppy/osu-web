@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import UserPreferences from 'core/user/user-preferences';
-import { autorun } from 'mobx';
+import { action, autorun, makeObservable } from 'mobx';
 import { trans } from 'utils/lang';
 import { presence } from 'utils/string';
 import Slider from './slider';
@@ -86,7 +86,7 @@ export default class Main {
     'NotSupportedError',
   ];
 
-  audio = new Audio();
+  readonly audio = new Audio();
   private currentSlider?: Slider;
   private durationFormatted = "'0:00'";
   private hasWorkingVolumeControl = true;
@@ -102,6 +102,8 @@ export default class Main {
   private url?: string;
 
   constructor(private userPreferences: UserPreferences) {
+    makeObservable(this);
+
     this.audio.volume = 0;
     this.audio.addEventListener('pause', this.onPause);
     this.audio.addEventListener('playing', this.onPlaying);
@@ -109,17 +111,18 @@ export default class Main {
     this.audio.addEventListener('timeupdate', this.onTimeupdate);
     this.audio.addEventListener('volumechange', this.syncVolumeDisplay);
 
-    $(document).on('click', '.js-audio--play', this.onClickPlay);
-    $(document).on('click', '.js-audio--main-play', this.togglePlay);
-    $(document).on(Slider.startEvents, '.js-audio--seek', this.onSeekStart);
-    $(document).on(Slider.startEvents, '.js-audio--volume', this.onVolumeChangeStart);
-    $(document).on('click', '.js-audio--toggle-mute', this.toggleMute);
-    $(document).on('click', '.js-audio--toggle-autoplay', this.toggleAutoplay);
-    $(document).on('click', '.js-audio--nav', this.nav);
-    $(document).on('turbolinks:load', this.onDocumentReady);
+    $(document)
+      .on('click', '.js-audio--play', this.onClickPlay)
+      .on('click', '.js-audio--main-play', this.togglePlay)
+      .on(Slider.startEvents, '.js-audio--seek', this.onSeekStart)
+      .on(Slider.startEvents, '.js-audio--volume', this.onVolumeChangeStart)
+      .on('click', '.js-audio--toggle-mute', this.toggleMute)
+      .on('click', '.js-audio--toggle-autoplay', this.toggleAutoplay)
+      .on('click', '.js-audio--nav', this.nav);
+    document.addEventListener('turbolinks:load', this.onDocumentReady);
   }
 
-  private checkVolumeSettings = () => {
+  private readonly checkVolumeSettings = () => {
     const prevVolume = this.audio.volume;
     const testVolume = prevVolume === 0.1 ? 0.2 : 0.1;
     this.audio.volume = testVolume;
@@ -133,7 +136,7 @@ export default class Main {
     }, 0);
   };
 
-  private ensurePagePlayerIsAttached = () => {
+  private readonly ensurePagePlayerIsAttached = () => {
     if (this.pagePlayer != null && !document.body.contains(this.pagePlayer)) {
       this.pagePlayer = undefined;
     }
@@ -147,7 +150,7 @@ export default class Main {
     }
   }
 
-  private load = (player: HTMLElement) => {
+  private readonly load = (player: HTMLElement) => {
     const url = player.dataset.audioUrl;
 
     if (url == null) {
@@ -169,7 +172,7 @@ export default class Main {
     // old api returns undefined
     promise?.catch((error: { name: string }) => {
       if (Main.ignoredErrors.includes(error.name)) {
-        console.debug('playback failed:', error.name);
+        console.error('playback failed:', error.name);
         this.stop();
         return;
       }
@@ -179,7 +182,7 @@ export default class Main {
     this.setNavigation();
   };
 
-  private nav = (e: JQuery.ClickEvent) => {
+  private readonly nav = (e: JQuery.ClickEvent) => {
     const button: unknown = e.currentTarget;
 
     if (!(button instanceof HTMLElement)) return;
@@ -191,7 +194,7 @@ export default class Main {
     }
   };
 
-  private observePage = (mutations: MutationRecord[]) => {
+  private readonly observePage = (mutations: MutationRecord[]) => {
     this.ensurePagePlayerIsAttached();
     const audioElems: HTMLAudioElement[] = [];
     const newPlayers: HTMLElement[] = [];
@@ -225,7 +228,7 @@ export default class Main {
     this.reattachPagePlayer(newPlayers);
   };
 
-  private onClickPlay = (e: JQuery.ClickEvent<Document, unknown, HTMLElement, HTMLElement>) => {
+  private readonly onClickPlay = (e: JQuery.ClickEvent<Document, unknown, HTMLElement, HTMLElement>) => {
     e.preventDefault();
 
     const pagePlayer = this.findPlayer(e.currentTarget);
@@ -241,12 +244,12 @@ export default class Main {
     }
   };
 
-  private onDocumentReady = () => {
+  private readonly onDocumentReady = () => {
     if (this.mainPlayer == null) {
       const mainPlayerPlaceholder = document.querySelector('.js-audio--main');
 
       if (mainPlayerPlaceholder == null) {
-        console.debug('page is missing main player placeholder');
+        console.error('page is missing main player placeholder');
         return;
       }
 
@@ -254,8 +257,15 @@ export default class Main {
       mainPlayerPlaceholder.replaceWith(this.mainPlayer);
 
       // This requires currentUser and should only be run once so it's done in here.
-      autorun(() => this.audio.muted = this.userPreferences.get('audio_muted'));
-      autorun(() => this.audio.volume = this.userPreferences.get('audio_volume'));
+      autorun(() => {
+        this.audio.muted = this.userPreferences.get('audio_muted');
+        this.audio.volume = this.userPreferences.get('audio_volume');
+
+        const autoplay = this.userPreferences.get('audio_autoplay') ? '1' : '0';
+        if (this.mainPlayer != null) {
+          this.mainPlayer.dataset.audioAutoplay = autoplay;
+        }
+      });
 
       // Only check after initial volume is set otherwise it'll be replaced with the volume at current point
       // due to the check being async.
@@ -272,7 +282,8 @@ export default class Main {
     this.reattachPagePlayer();
   };
 
-  private onEnded = () => {
+  @action
+  private readonly onEnded = () => {
     this.stop();
 
     if (this.playerNext != null && this.userPreferences.get('audio_autoplay')) {
@@ -280,17 +291,17 @@ export default class Main {
     }
   };
 
-  private onPause = () => {
+  private readonly onPause = () => {
     this.setState('paused');
   };
 
-  private onPlaying = () => {
+  private readonly onPlaying = () => {
     this.setTimeFormat();
     this.durationFormatted = format(this.audio.duration, this.timeFormat);
     this.setState('playing');
   };
 
-  private onSeekEnd = (slider: Slider) => {
+  private readonly onSeekEnd = (slider: Slider) => {
     this.currentSlider = undefined;
     const targetTime = slider.getPercentage() === 1
       ? this.audio.duration - 0.01
@@ -299,7 +310,7 @@ export default class Main {
     this.setTime(targetTime);
   };
 
-  private onSeekStart = (e: JQuery.TouchStartEvent) => {
+  private readonly onSeekStart = (e: JQuery.TouchStartEvent) => {
     const bar: unknown = e.currentTarget;
 
     if (!(bar instanceof HTMLElement)) return;
@@ -315,23 +326,24 @@ export default class Main {
     });
   };
 
-  private onTimeupdate = () => {
+  private readonly onTimeupdate = () => {
     // time update when playing is already handled by a requestAnimationFrame loop
     if (this.audio.paused) {
       this.syncProgress();
     }
   };
 
-  private onVolumeChangeEnd = () => {
+  @action
+  private readonly onVolumeChangeEnd = () => {
     this.currentSlider = undefined;
     void this.userPreferences.set('audio_volume', this.audio.volume);
   };
 
-  private onVolumeChangeMove = (slider: Slider) => {
+  private readonly onVolumeChangeMove = (slider: Slider) => {
     this.audio.volume = slider.getPercentage();
   };
 
-  private onVolumeChangeStart = (e: JQuery.TouchStartEvent) => {
+  private readonly onVolumeChangeStart = (e: JQuery.TouchStartEvent) => {
     const bar: unknown = e.currentTarget;
 
     if (!(bar instanceof HTMLElement)) return;
@@ -344,7 +356,7 @@ export default class Main {
     });
   };
 
-  private reattachPagePlayer = (elems?: Element[]) => {
+  private readonly reattachPagePlayer = (elems?: Element[]) => {
     this.ensurePagePlayerIsAttached();
 
     if (this.url != null && this.pagePlayer == null) {
@@ -364,7 +376,7 @@ export default class Main {
     this.setNavigation();
   };
 
-  private replaceAudioElem = (elem: HTMLAudioElement) => {
+  private readonly replaceAudioElem = (elem: HTMLAudioElement) => {
     const src = presence(elem.src) ?? presence(elem.querySelector('source')?.src);
 
     if (src == null) {
@@ -380,7 +392,7 @@ export default class Main {
     return player;
   };
 
-  private replaceAudioElems = (elems?: HTMLAudioElement[]) => {
+  private readonly replaceAudioElems = (elems?: HTMLAudioElement[]) => {
     if (elems == null) {
       elems = [...document.querySelectorAll('audio')];
     }
@@ -388,7 +400,7 @@ export default class Main {
     return elems.map(this.replaceAudioElem);
   };
 
-  private setNavigation = () => {
+  private readonly setNavigation = () => {
     if (this.settingNavigation) {
       return;
     }
@@ -431,7 +443,7 @@ export default class Main {
     });
   };
 
-  private setState = (state: PlayState) => {
+  private readonly setState = (state: PlayState) => {
     this.state = state;
     this.syncState();
 
@@ -449,12 +461,12 @@ export default class Main {
     }
   };
 
-  private setTime = (t: number) => {
+  private readonly setTime = (t: number) => {
     this.audio.currentTime = t;
     this.syncProgress();
   };
 
-  private setTimeFormat = () => {
+  private readonly setTimeFormat = () => {
     if (this.audio.duration < 600) {
       this.timeFormat = 'minute_minimal';
     } else if (this.audio.duration < 3600) {
@@ -466,7 +478,7 @@ export default class Main {
     }
   };
 
-  private stop = () => {
+  private readonly stop = () => {
     this.audio.pause();
     this.currentSlider?.end();
     this.audio.currentTime = 0;
@@ -474,7 +486,7 @@ export default class Main {
     this.onPause();
   };
 
-  private syncProgress = () => {
+  private readonly syncProgress = () => {
     if (this.audio.duration > 0) {
       const progress = this.audio.currentTime / this.audio.duration;
       const over50 = progress >= 0.5 ? '1' : '0';
@@ -492,9 +504,8 @@ export default class Main {
     }
   };
 
-  private syncState = () => {
+  private readonly syncState = () => {
     this.updatePlayers((player) => {
-      player.dataset.audioAutoplay = this.userPreferences.get('audio_autoplay') ? '1' : '0';
       player.dataset.audioHasDuration = Number.isFinite(this.audio.duration) ? '1' : '0';
       player.dataset.audioState = this.state;
       player.dataset.audioTimeFormat = this.timeFormat;
@@ -505,7 +516,7 @@ export default class Main {
     this.syncVolumeDisplay();
   };
 
-  private syncVolumeDisplay = () => {
+  private readonly syncVolumeDisplay = () => {
     if (this.mainPlayer == null) return;
 
     this.mainPlayer.dataset.audioVolumeBarVisible = this.hasWorkingVolumeControl ? '1' : '0';
@@ -513,16 +524,17 @@ export default class Main {
     this.mainPlayer.style.setProperty('--volume', this.audio.volume.toString());
   };
 
-  private toggleAutoplay = () => {
+  @action
+  private readonly toggleAutoplay = () => {
     void this.userPreferences.set('audio_autoplay', !this.userPreferences.get('audio_autoplay'));
-    this.syncState();
   };
 
-  private toggleMute = () => {
+  @action
+  private readonly toggleMute = () => {
     void this.userPreferences.set('audio_muted', !this.userPreferences.get('audio_muted'));
   };
 
-  private togglePlay = () => {
+  private readonly togglePlay = () => {
     if (this.url == null) {
       return;
     }
@@ -534,7 +546,7 @@ export default class Main {
     }
   };
 
-  private updatePlayers = (func: (player: HTMLElement) => void) => {
+  private readonly updatePlayers = (func: (player: HTMLElement) => void) => {
     [this.mainPlayer, this.pagePlayer].forEach((player) => {
       if (player != null) {
         func(player);
@@ -542,7 +554,7 @@ export default class Main {
     });
   };
 
-  private volumeIcon = () => {
+  private readonly volumeIcon = () => {
     if (this.audio.muted) {
       return 'muted';
     } else {

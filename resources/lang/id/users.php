@@ -49,6 +49,7 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => 'Hadiahkan supporter tag',
         'loading' => 'Memuat...',
         'send_message' => 'Kirim pesan',
     ],
@@ -328,7 +329,7 @@ return [
                 'title' => 'saya!',
             ],
             'medals' => [
-                'empty' => "Pengguna ini belum membuka medali apapun. ;_;",
+                'empty' => "Pengguna ini belum membuka medali apa pun. ;_;",
                 'recent' => 'Terbaru',
                 'title' => 'Medali',
             ],
@@ -386,7 +387,7 @@ return [
                     'date' => 'waktu',
                     'action' => 'tindak lanjut',
                     'length' => 'durasi',
-                    'length_permanent' => 'Permanen',
+                    'length_indefinite' => '',
                     'description' => 'keterangan',
                     'actor' => 'oleh :username',
 

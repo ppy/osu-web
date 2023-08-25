@@ -153,15 +153,6 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => 'PM forum legacy',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited messaggio non letto|:count_delimited messaggi non letti',
-            ],
-        ],
-
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Nuova beatmap',

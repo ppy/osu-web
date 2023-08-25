@@ -4,20 +4,20 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'confirm_new' => '',
-    'new' => '',
-    'none' => '',
+    'confirm_new' => 'Criar nova palavra-passe de IRC?',
+    'new' => 'Nova palavra-passe de IRC legado',
+    'none' => 'A palavra-passe de IRC não foi definida.',
 
     'form' => [
-        'server_host' => '',
-        'server_port' => '',
-        'token' => '',
-        'username' => '',
+        'server_host' => 'servidor',
+        'server_port' => 'porta',
+        'token' => 'palavra-passe do servidor',
+        'username' => 'nome de utilizador',
     ],
 
     'view' => [
-        'hide' => '',
-        'show' => '',
-        'delete' => '',
+        'hide' => 'Esconder palavra-passe',
+        'show' => 'Mostrar palavra-passe',
+        'delete' => 'Apagar',
     ],
 ];

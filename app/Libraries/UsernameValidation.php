@@ -5,8 +5,11 @@
 
 namespace App\Libraries;
 
+use App\Models\Beatmap;
+use App\Models\Beatmapset;
 use App\Models\RankHighest;
 use App\Models\User;
+use App\Models\UserBadge;
 use App\Models\UsernameChangeHistory;
 use Carbon\Carbon;
 use DB;
@@ -82,33 +85,32 @@ class UsernameValidation
     public static function validateUsersOfUsername(string $username): ValidationErrors
     {
         $errors = new ValidationErrors('user');
+        $userIds = static::usersOfUsername($username)->pluck('user_id');
 
-        $users = static::usersOfUsername($username);
-
-        // top 100
-        // Queried directly on model because User::rankHighests is disabled
-        // when experimental rank is set as default.
-        $highestRank = RankHighest::whereIn('user_id', $users->pluck('user_id'))->min('rank');
+        // Check if any of the users have been ranked in the top 100
+        $highestRank = RankHighest::whereIn('user_id', $userIds)->min('rank');
         if ($highestRank !== null && $highestRank <= 100) {
             return $errors->add('username', '.username_locked');
         }
 
-        foreach ($users as $user) {
-            // has badges
-            if ($user->badges()->exists()) {
-                return $errors->add('username', '.username_locked');
-            }
+        // Check if any of the users have badges
+        if (UserBadge::whereIn('user_id', $userIds)->exists()) {
+            return $errors->add('username', '.username_locked');
+        }
 
-            // ranked beatmaps
-            if ($user->profileBeatmapsetsRanked()->exists()) {
-                return $errors->add('username', '.username_locked');
-            }
+        // Check if any of the users have beatmaps or beatmapsets with
+        // leaderboards enabled
+        if (
+            Beatmap::scoreable()->whereIn('user_id', $userIds)->exists() ||
+            Beatmapset::scoreable()->whereIn('user_id', $userIds)->exists()
+        ) {
+            return $errors->add('username', '.username_locked');
         }
 
         return $errors;
     }
 
-    public static function usersOfUsername(string $username): Collection
+    private static function usersOfUsername(string $username): Collection
     {
         $userIds = UsernameChangeHistory::where('username_last', $username)->pluck('user_id');
         $users = User::whereIn('user_id', $userIds)->get();

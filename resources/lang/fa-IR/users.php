@@ -49,6 +49,7 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => '',
         'loading' => 'در حال بارگیری...',
         'send_message' => 'ارسال پیام',
     ],
@@ -386,7 +387,7 @@ return [
                     'date' => 'تاریخ',
                     'action' => 'اقدام انجام شده',
                     'length' => 'مدت',
-                    'length_permanent' => 'دائمی',
+                    'length_indefinite' => '',
                     'description' => 'توضیحات',
                     'actor' => 'توسط :username',
 

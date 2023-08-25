@@ -6,9 +6,9 @@
 return [
     'bold' => 'Lihavoitu',
     'heading' => 'Otsikko',
-    'help' => '',
+    'help' => 'Ohje',
     'image' => 'Kuva',
-    'imagemap' => '',
+    'imagemap' => 'Kuvakartta',
     'italic' => 'Kursivoitu',
     'link' => 'Linkki',
     'list' => 'Luettelo',

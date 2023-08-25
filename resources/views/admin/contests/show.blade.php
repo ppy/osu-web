@@ -5,9 +5,9 @@
 @extends('master', ['titlePrepend' => osu_trans('layout.header.admin.contest').' / '.$contest->name])
 
 @section('content')
-    @include('objects.css-override', ['mapping' => [
-        '.header-v4__bg' => $contest->header_url,
-    ]])
+    <style>
+        :root { {{ css_var_2x('--header-bg', $contest->header_url) }} }
+    </style>
 
     @include('admin/_header')
 

@@ -339,6 +339,11 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         });
     }
 
+    public function scopeScoreable(Builder $query): void
+    {
+        $query->where('approved', '>', 0);
+    }
+
     public function scopeWithModesForRanking($query, $modeInts)
     {
         if (!is_array($modeInts)) {
@@ -470,7 +475,10 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         }
 
         $curl = curl_init($url);
-        curl_setopt($curl, CURLOPT_FILE, $oszFile);
+        curl_setopt_array($curl, [
+            CURLOPT_FILE => $oszFile,
+            CURLOPT_TIMEOUT => 30,
+        ]);
         curl_exec($curl);
 
         if (curl_errno($curl) > 0) {

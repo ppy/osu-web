@@ -34,7 +34,13 @@ return [
         ],
 
         'profile' => [
+            'country' => 'negara',
             'title' => 'Profil',
+
+            'country_change' => [
+                '_' => "Sepertinya negara yang tertera pada akunmu tidak sesuai dengan negara tempat tinggalmu saat ini. :update_link.",
+                'update_link' => 'Perbarui ke :country',
+            ],
 
             'user' => [
                 'user_discord' => '',
@@ -80,7 +86,7 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => 'nonaktifkan peringatan untuk beatmap yang mengandung konten eksplisit',
+        'beatmapset_show_nsfw' => 'nonaktifkan peringatan untuk beatmap berkonten eksplisit',
         'beatmapset_title_show_original' => 'tampilkan metadata beatmap dalam bahasa aslinya',
         'title' => 'Pengaturan',
 

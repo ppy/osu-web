@@ -113,16 +113,16 @@ return [
         'exists' => 'Na jednoho uživatele je v tuto chvíli poskytován pouze jeden API klíč.',
 
         'attributes' => [
-            'api_key' => '',
-            'app_name' => '',
-            'app_url' => '',
+            'api_key' => 'api klíč',
+            'app_name' => 'jméno aplikace',
+            'app_url' => 'url aplikace',
         ],
     ],
 
     'oauth' => [
         'client' => [
             'too_many' => 'Byl překročen limit povolených možností.',
-            'url' => 'Zadejte prosím platnou adresu URL.',
+            'url' => 'Zadejte prosím platné adresy URL.',
 
             'attributes' => [
                 'name' => 'Název aplikace',
@@ -175,7 +175,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => 'Hodnocené beatmapy nemohou být nahlášeny',
-        'not_in_channel' => '',
+        'not_in_channel' => 'Nejste v tomto kanálu.',
         'reason_not_valid' => ':reason není platný pro tento typ nahlášení.',
         'self' => "Nemůžete nahlásit sám sebe!",
     ],

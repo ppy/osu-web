@@ -4,7 +4,6 @@
 import * as d3 from 'd3';
 import { isValid as isBeatmapExtendedJson } from 'interfaces/beatmap-extended-json';
 import BeatmapJson from 'interfaces/beatmap-json';
-import BeatmapsetJson from 'interfaces/beatmapset-json';
 import GameMode, { gameModes } from 'interfaces/game-mode';
 import * as _ from 'lodash';
 import core from 'osu-core-singleton';
@@ -32,18 +31,18 @@ interface FindDefaultParams<T> {
 
 export function findDefault<T extends BeatmapJson>(params: FindDefaultParams<T>): T | null {
   if (params.items != null) {
-    let currentDiffDelta: number;
+    let currentDiffDelta: number | null = null;
     let currentItem: T | null = null;
     const targetDiff = userRecommendedDifficulty(params.mode ?? gameModes[0]);
 
-    params.items.forEach((item) => {
+    for (const item of params.items) {
       const diffDelta = Math.abs(item.difficulty_rating - targetDiff);
 
       if (isVisibleBeatmap(item) && (currentDiffDelta == null || diffDelta < currentDiffDelta)) {
         currentDiffDelta = diffDelta;
         currentItem = item;
       }
-    });
+    }
 
     return currentItem ?? _.last(params.items) ?? null;
   }
@@ -85,25 +84,9 @@ export function getDiffColour(rating: number) {
   return difficultyColourSpectrum(rating);
 }
 
-// TODO: should make a Beatmapset proxy object or something
-export function getArtist(beatmapset: BeatmapsetJson) {
-  if (core.userPreferences.get('beatmapset_title_show_original')) {
-    return beatmapset.artist_unicode;
-  }
-
-  return beatmapset.artist;
-}
-
-export function getTitle(beatmapset: BeatmapsetJson) {
-  if (core.userPreferences.get('beatmapset_title_show_original')) {
-    return beatmapset.title_unicode;
-  }
-
-  return beatmapset.title;
-}
-
 export function group<T extends BeatmapJson>(beatmaps?: T[] | null): Map<GameMode, T[]> {
-  const grouped = _.groupBy(beatmaps ?? [], 'mode');
+  // TODO: replace with mapBy
+  const grouped: Partial<Record<GameMode, T[]>> = _.groupBy(beatmaps ?? [], 'mode');
   const ret = new Map<GameMode, T[]>();
 
   gameModes.forEach((mode) => {

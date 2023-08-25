@@ -71,7 +71,7 @@ interface UserJsonAvailableIncludes {
 interface UserJsonDefaultAttributes {
   avatar_url: string;
   country_code: string; // TODO: country object?
-  default_group: string;
+  default_group: string | null;
   id: number;
   is_active: boolean;
   is_bot: boolean;
@@ -83,6 +83,16 @@ interface UserJsonDefaultAttributes {
   profile_colour: string | null;
   username: string;
 }
+
+export type ProfileHeaderIncludes =
+  'active_tournament_banner'
+  | 'badges'
+  | 'comments_count'
+  | 'follower_count'
+  | 'groups'
+  | 'mapping_follower_count'
+  | 'previous_usernames'
+  | 'support_level';
 
 type UserJson = UserJsonDefaultAttributes & Partial<UserJsonAvailableIncludes>;
 

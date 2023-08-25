@@ -7,12 +7,6 @@
   }
 }
 
-.print-page-break {
-  @media print {
-    page-break-before: always;
-  }
-}
-
 .u-blackout-visible {
   z-index: @z-index--blackout-visible !important;
 }
@@ -25,7 +19,7 @@
 }
 
 .u-contents {
-  display: contents;
+  display: contents !important;
 }
 
 .u-ellipsis-overflow {
@@ -44,6 +38,17 @@
   white-space: pre !important;
   text-overflow: ellipsis !important;
   overflow: hidden !important;
+}
+
+.u-embed-wide {
+  // this trick maintains the video's aspect ratio while resizing
+  // see: http://alistapart.com/article/creating-intrinsic-ratios-for-video
+  padding-bottom: 56.25%; /* 16:9 */
+  position: relative;
+
+  > iframe {
+    .full-size();
+  }
 }
 
 .u-fancy-scrollbar {

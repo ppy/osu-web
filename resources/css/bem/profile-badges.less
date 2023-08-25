@@ -2,16 +2,27 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .profile-badges {
+  --gutter: @gutter-v2;
+  background-color: hsl(var(--hsl-b4));
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  padding: 10px var(--gutter);
+
+  @media @desktop {
+    --gutter: @gutter-v2-desktop;
+  }
+
+  // This is intentionally deviating from the design to visually separate the
+  // badges from the profile info above it. It should not be necessary if the
+  // multiplayer page gets a detail section like the other profile pages
+  &--multiplayer {
+    background-color: hsl(var(--hsl-b5));
+  }
 
   &__badge {
-    flex: none;
     width: 86px;
     height: 40px;
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
+    object-fit: contain;
   }
 }

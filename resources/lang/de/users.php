@@ -49,6 +49,7 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => 'Verschenke ein osu!supporter-Tag',
         'loading' => 'Lädt...',
         'send_message' => 'Nachricht senden',
     ],
@@ -386,7 +387,7 @@ return [
                     'date' => 'Datum',
                     'action' => 'Maßnahme',
                     'length' => 'Dauer',
-                    'length_permanent' => 'Permanent',
+                    'length_indefinite' => '',
                     'description' => 'Beschreibung',
                     'actor' => 'von :username',
 

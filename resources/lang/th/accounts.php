@@ -34,7 +34,13 @@ return [
         ],
 
         'profile' => [
+            'country' => 'ประเทศ',
             'title' => 'โปรไฟล์',
+
+            'country_change' => [
+                '_' => "ดูเหมือนว่าประเทศในบัญชีของคุณไม่ตรงกับประเทศที่คุณอาศัยอยู่ :update_link.",
+                'update_link' => 'อัปเดตเป็น :country',
+            ],
 
             'user' => [
                 'user_discord' => '',
@@ -53,8 +59,8 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_qualified_problem' => 'ได้รับการแจ้งเตือนสำหรับปัญหาใหม่เกี่ยวกับบีตแม็ปที่ผ่านการรับรองของโหมดต่อไปนี้',
-        'beatmapset_disqualify' => 'ได้รับการแจ้งเตือนเมื่อบีตแม็ปในโหมดที่ท่านเลือกถูกตัดสิทธิ์',
+        'beatmapset_discussion_qualified_problem' => 'ได้รับการแจ้งเตือนเกียวกับปัญหาของบีทแมพที่ผ่านการรับรองกับโหมดต่อไปนี้',
+        'beatmapset_disqualify' => 'ได้รับการแจ้งเตือนเมื่อบีทแมพในโหมดที่ท่านเลือกถูกตัดสิทธิ์',
         'comment_reply' => 'รับการแจ้งเตือนสำหรับการตอบกลับความคิดเห็นของคุณ',
         'title' => 'การแจ้งเตือน',
         'topic_auto_subscribe' => 'เปิดการแจ้งเตือนอัตโนมัติในกระทู้ที่คุณสร้างขึ้น',
@@ -62,12 +68,12 @@ return [
         'options' => [
             '_' => 'วิธีการรับการแจ้งเตือน',
             'beatmap_owner_change' => 'ระดับความยากของแขก',
-            'beatmapset:modding' => 'การวิจารณ์บีตแม็ป',
+            'beatmapset:modding' => 'การวิจารณ์บีทแมพ',
             'channel_message' => 'ข้อความส่วนตัว',
             'comment_new' => 'ความคิดเห็นใหม่',
             'forum_topic_reply' => 'ข้อความตอบกลับในกระทู้',
             'mail' => 'อีเมล',
-            'mapping' => 'ผู้ทำบีตแม็ป',
+            'mapping' => 'ผู้ทำบีทแมพ',
             'push' => 'ส่งการแจ้งเตือน',
             'user_achievement_unlock' => 'ผู้เล่นได้ปลดล็อกเหรียญตรา',
         ],
@@ -80,8 +86,8 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => 'ซ่อนคำเตือนเกี่ยวกับเนื้อหาที่ล่อแหลมในบีตแม็ป',
-        'beatmapset_title_show_original' => 'แสดงข้อมูลของบีตแม็ปในภาษาต้นฉบับ',
+        'beatmapset_show_nsfw' => 'ซ่อนคำเตือนเกี่ยวกับเนื้อหาที่ล่อแหลมในบีทแมพ',
+        'beatmapset_title_show_original' => 'แสดงข้อมูลของ บีทแมพ ในภาษาดั้งเดิม',
         'title' => 'ตัวเลือก',
 
         'beatmapset_download' => [

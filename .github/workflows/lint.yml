@@ -27,7 +27,8 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           tools: composer:v2
-          php-version: '8.1'
+          php-version: '8.2'
+          coverage: none
 
       - name: Get composer cache directory
         id: composercache
@@ -48,7 +49,7 @@ jobs:
       - name: Install js dependencies
         run: yarn --frozen-lockfile
 
-      - run: 'yarn lint --max-warnings 123 > /dev/null'
+      - run: 'yarn lint --max-warnings 98 > /dev/null'
 
       - run: ./bin/update_licence.sh -nf
 

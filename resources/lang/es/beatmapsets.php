@@ -67,7 +67,7 @@ return [
 
         'details' => [
             'by_artist' => 'por :artist',
-            'favourite' => 'Marcar como favorito',
+            'favourite' => 'marcar este mapa como favorito',
             'favourite_login' => 'inicie sesión para marcar este mapa como favorito',
             'logged-out' => '¡debe iniciar sesión para descargar cualquier mapa!',
             'mapped_by' => 'mapeado por :mapper',
@@ -203,7 +203,7 @@ return [
             'total_length' => 'Duración (Duración del drenaje: :hit_length)',
             'bpm' => 'BPM',
             'count_circles' => 'Número de círculos',
-            'count_sliders' => 'Número de deslizadores',
+            'count_sliders' => 'Número de sliders',
             'offset' => 'Compensación en línea: :offset',
             'user-rating' => 'Valoración de los usuarios',
             'rating-spread' => 'Desglose de valoraciones',

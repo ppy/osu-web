@@ -13,21 +13,21 @@ return [
     ],
 
     'scopes' => [
-        'bot' => 'Agir en tant que ChatBot.',
+        'bot' => 'Agir en tant que Chatbot.',
         'identify' => 'Vous identifier et lire votre profil public.',
 
         'chat' => [
-            'write' => 'Envoyez des messages en votre nom.',
+            'write' => 'Envoyer des messages en votre nom.',
         ],
 
         'forum' => [
-            'write' => 'Créer et modifier les sujets et les messages du forum en votre nom.',
+            'write' => 'Créer et modifier des sujets et des messages sur le forum en votre nom.',
         ],
 
         'friends' => [
             'read' => 'Voir qui vous suivez.',
         ],
 
-        'public' => 'Lire les données publiques en votre nom.',
+        'public' => 'Lire des données publiques en votre nom.',
     ],
 ];

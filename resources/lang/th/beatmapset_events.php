@@ -6,13 +6,13 @@
 return [
     'event' => [
         'approve' => 'อนุมัติ',
-        'beatmap_owner_change' => 'เจ้าของระดับความยาก:beatmapเปลี่ยนเป็น:new_user',
+        'beatmap_owner_change' => 'เจ้าของระดับความยาก :beatmap เปลี่ยนเป็น :new_user',
         'discussion_delete' => 'ผู้ดูแลลบการสนทนา :discussion',
-        'discussion_lock' => 'การสนทนาสำหรับบีตแม็ปนี้ถูกปิดใช้งาน (:text)',
+        'discussion_lock' => 'การสนทนาสำหรับบีทแมพนี้ถูกปิดใช้งาน (:text)',
         'discussion_post_delete' => 'ผู้ดูแลลบโพสต์จากการสนทนา:discussion',
         'discussion_post_restore' => 'ผู้ดูแลกู้คืนโพสต์จากการสนทนา :discussion',
         'discussion_restore' => 'ผู้ดูแลกู้คืนการสนทนา :discussion',
-        'discussion_unlock' => 'การสนทนาสำหรับบีตแม็ปนี้ถูกเปิดใช้งาน',
+        'discussion_unlock' => 'การสนทนาสำหรับบีทแมพนี้ถูกเปิดใช้งาน',
         'disqualify' => 'ถูกตัดสิทธิ์โดย :user ด้วยเหตุผล :discussion (:text)',
         'disqualify_legacy' => 'ถูกตัดสิทธิ์โดย :user: ด้วยเหตุผล :text',
         'genre_edit' => 'แก้ไขหมวดจาก :old เป็น :new',
@@ -43,7 +43,7 @@ return [
     ],
 
     'index' => [
-        'title' => 'กิจกรรมของเซ็ทบีตแม็ป',
+        'title' => 'กิจกรรมของเซ็ทบีทแมพ',
 
         'form' => [
             'period' => 'ระยะเวลา',
@@ -82,6 +82,6 @@ return [
         'offset_edit' => 'การแก้ไขออฟเซ็ต',
         'qualify' => 'คุณสมบัติ',
         'rank' => 'อันดับ',
-        'remove_from_loved' => 'ถูกนำออกจาก "ชื่นชอบ"',
+        'remove_from_loved' => 'ถูกนำออกจาก Loved',
     ],
 ];

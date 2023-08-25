@@ -56,7 +56,7 @@ services:
   beatmap-difficulty-lookup-cache:
     image: pppy/osu-beatmap-difficulty-lookup-cache
     ports:
-      - "${BEATMAPS_DIFFICULTY_CACHE_EXTERNAL_PORT:-5000}:80"
+      - "${BEATMAPS_DIFFICULTY_CACHE_EXTERNAL_PORT:-5001}:80"
 
   notification-server:
     image: pppy/osu-notification-server
@@ -148,7 +148,7 @@ services:
 
   score-indexer:
     image: pppy/osu-elastic-indexer
-    command: ["queue", "watch", "--force-version"]
+    command: ["queue", "watch", "--set-current"]
     depends_on:
       redis:
         condition: service_healthy
@@ -162,7 +162,7 @@ services:
 
   score-indexer-test:
     image: pppy/osu-elastic-indexer
-    command: ["queue", "watch", "--force-version"]
+    command: ["queue", "watch", "--set-current"]
     depends_on:
       redis:
         condition: service_healthy

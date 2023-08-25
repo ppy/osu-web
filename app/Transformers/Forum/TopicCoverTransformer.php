@@ -10,16 +10,15 @@ use App\Transformers\TransformerAbstract;
 
 class TopicCoverTransformer extends TransformerAbstract
 {
-    public function transform(TopicCover $cover = null)
+    public function transform(TopicCover $cover)
     {
-        if ($cover === null) {
-            $cover = new TopicCover();
-        }
-
         if ($cover->getFileProperties() === null) {
             $data = [
                 'method' => 'post',
-                'url' => route('forum.topic-covers.store', ['topic_id' => $cover->topic_id]),
+                'url' => route('forum.topic-covers.store', [
+                    'forum_id' => $cover->getForumId(),
+                    'topic_id' => $cover->topic_id,
+                ]),
             ];
         } else {
             $data = [

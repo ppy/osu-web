@@ -21,9 +21,9 @@ return [
         ],
 
         'legacy_api' => [
-            'api' => '',
-            'irc' => '',
-            'title' => '',
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'API heretada',
         ],
 
         'password' => [
@@ -34,7 +34,13 @@ return [
         ],
 
         'profile' => [
+            'country' => 'país',
             'title' => 'Perfil',
+
+            'country_change' => [
+                '_' => "",
+                'update_link' => 'Actualitza a :country',
+            ],
 
             'user' => [
                 'user_discord' => '',

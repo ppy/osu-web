@@ -6,11 +6,7 @@ import BeatmapJson from './beatmap-json';
 import GameMode from './game-mode';
 import Rank from './rank';
 import { ScoreJsonAvailableIncludes, ScoreJsonDefaultIncludes } from './score-json';
-
-interface Mod {
-  acronym: string; // TODO: list valid acronyms
-  settings: unknown; // TODO: list valid settings
-}
+import ScoreModJson from './score-mod-json';
 
 export type SoloScoreStatisticsAttribute =
   | 'good'
@@ -39,7 +35,7 @@ type SoloScoreJsonDefaultAttributes = {
   legacy_score_id: number | null;
   legacy_total_score: number | null;
   max_combo: number;
-  mods: Mod[];
+  mods: ScoreModJson[];
   passed: boolean;
   pp: number | null;
   rank: Rank;

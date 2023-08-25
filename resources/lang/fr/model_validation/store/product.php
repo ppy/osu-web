@@ -5,7 +5,7 @@
 
 return [
     'insufficient_stock' => 'Il n\'y a plus assez d\'exemplaires de cet article en stock !',
-    'must_separate' => 'Cet objet doit être commandé séparément des autres',
+    'must_separate' => 'Cet article doit être commandé séparément des autres',
     'not_available' => 'Cet article n\'est pas disponible.',
     'too_many' => 'Vous ne pouvez acheter que :count exemplaires de cet article par commande.',
 ];

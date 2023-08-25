@@ -20,7 +20,7 @@ return [
     ],
 
     'featured_artist_badge' => [
-        'label' => 'Featured artist',
+        'label' => 'Featured Artist',
     ],
 
     'index' => [
@@ -59,6 +59,10 @@ return [
 
     'show' => [
         'discussion' => 'Discussion',
+
+        'admin' => [
+            'full_size_cover' => 'View full size cover image',
+        ],
 
         'deleted_banner' => [
             'title' => 'This beatmap has been deleted.',

@@ -23,7 +23,7 @@ return [
         'legacy_api' => [
             'api' => 'api',
             'irc' => 'irc',
-            'title' => '',
+            'title' => 'Starsze API',
         ],
 
         'password' => [
@@ -34,7 +34,13 @@ return [
         ],
 
         'profile' => [
+            'country' => 'kraj',
             'title' => 'Profil',
+
+            'country_change' => [
+                '_' => "Wygląda na to, że kraj przypisany do konta nie zgadza się z twoim krajem zamieszkania. :update_link.",
+                'update_link' => 'Zaktualizuj na „:country”',
+            ],
 
             'user' => [
                 'user_discord' => '',

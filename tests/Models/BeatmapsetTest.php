@@ -60,6 +60,18 @@ class BeatmapsetTest extends TestCase
         $this->assertTrue($beatmapset->fresh()->isPending());
     }
 
+    public function testNominateNATAnyRuleset(): void
+    {
+        $beatmapset = $this->createBeatmapset();
+        $user = User::factory()->withGroup('nat', [])->create();
+
+        $this->expectCountChange(fn () => $beatmapset->nominations, 1);
+        $this->expectCountChange(fn () => $beatmapset->beatmapsetNominations()->current()->count(), 1);
+
+        $beatmapset->nominate($user, $beatmapset->playmodesStr());
+        $beatmapset->refresh();
+    }
+
     public function testQualify()
     {
         $beatmapset = $this->createBeatmapset();

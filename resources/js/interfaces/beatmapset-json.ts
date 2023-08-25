@@ -11,6 +11,11 @@ import GenreJson from './genre-json';
 import LanguageJson from './language-json';
 import UserJson, { UserJsonDeleted } from './user-json';
 
+export interface Availability {
+  download_disabled: boolean;
+  more_information: string | null;
+}
+
 interface BeatmapsetCovers {
   card: string;
   cover: string;
@@ -62,11 +67,12 @@ export interface CurrentUserAttributes {
   can_remove_from_loved: boolean;
   is_watching: boolean;
   new_hype_time: string | null;
-  nomination_modes: Partial<Record<GameMode, 'full' | 'limited'>>;
+  nomination_modes: Partial<Record<GameMode, 'full' | 'limited'>> | null;
   remaining_hype: number;
 }
 
 interface BeatmapsetJsonAvailableIncludes {
+  availability: Availability;
   beatmaps: BeatmapJson[];
   converts: BeatmapExtendedJson[];
   current_nominations: BeatmapsetNominationJson[];

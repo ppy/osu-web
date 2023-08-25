@@ -103,6 +103,22 @@ class RoomTest extends TestCase
         $room->startPlay($user, $playlistItem);
     }
 
+    public function testStartPlay(): void
+    {
+        $user = User::factory()->create();
+        $room = Room::factory()->create();
+        $playlistItem = PlaylistItem::factory()->create(['room_id' => $room]);
+
+        $this->expectCountChange(fn () => $room->participant_count, 1);
+        $this->expectCountChange(fn () => $room->userHighScores()->count(), 1);
+        $this->expectCountChange(fn () => $room->scores()->count(), 1);
+
+        $room->startPlay($user, $playlistItem);
+        $room->refresh();
+
+        $this->assertSame($user->getKey(), $room->scores()->last()->user_id);
+    }
+
     public function testMaxAttemptsReached()
     {
         $user = User::factory()->create();

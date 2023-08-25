@@ -34,7 +34,13 @@ return [
         ],
 
         'profile' => [
+            'country' => 'країна',
             'title' => 'Профіль',
+
+            'country_change' => [
+                '_' => "Схоже, що ваша країна з облікового запису не збігається з вашою країною проживання. :update_link.",
+                'update_link' => 'Змінити на :country',
+            ],
 
             'user' => [
                 'user_discord' => '',

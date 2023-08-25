@@ -30,7 +30,6 @@ import { nominationsCount } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { joinComponents, trans, transExists } from 'utils/lang';
-import { pageChange } from 'utils/page-change';
 import { presence } from 'utils/string';
 import { wikiUrl } from 'utils/url';
 import CurrentDiscussions from './current-discussions';
@@ -85,14 +84,6 @@ export class Nominations extends React.PureComponent<Props> {
     super(props);
 
     makeObservable(this);
-  }
-
-  componentDidMount() {
-    pageChange();
-  }
-
-  componentDidUpdate() {
-    pageChange();
   }
 
   componentWillUnmount() {
@@ -370,6 +361,7 @@ export class Nominations extends React.PureComponent<Props> {
       <BigButton
         {...buttonProps}
         isBusy={this.xhr.discussionLock != null}
+        modifiers='warning'
         text={trans(`beatmaps.discussions.lock.button.${lockAction}`)}
       />
     );

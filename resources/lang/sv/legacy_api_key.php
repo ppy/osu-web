@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'new' => '',
+    'new' => 'Ny Legacy API-nyckel',
     'none' => 'Ingen nyckel.',
 
     'docs' => [
@@ -13,18 +13,18 @@ return [
     ],
 
     'form' => [
-        'create' => '',
+        'create' => 'Skapa nyckel',
     ],
 
     'view' => [
-        'hide' => '',
-        'show' => '',
-        'delete' => '',
+        'hide' => 'Dölj nyckel',
+        'show' => 'Visa nyckel',
+        'delete' => 'Ta bort',
     ],
 
     'warning' => [
-        'line1' => '',
-        'line2' => "",
-        'line3' => '',
+        'line1' => 'Ge inte ut detta till andra.',
+        'line2' => "Det är jämförbart till att ge ut ditt lösenord.",
+        'line3' => 'Ditt konto kan bli äventyrat.',
     ],
 ];

@@ -25,6 +25,7 @@ Below is a list of some language-specific wrappers maintained by the community. 
 - [ossapi](https://github.com/circleguard/ossapi) (python)
 - [aiosu](https://github.com/NiceAesth/aiosu) (python)
 - [rosu-v2](https://github.com/MaxOhn/rosu-v2) (rust)
+- [osu.js](https://github.com/L-Mario564/osu.js) (javascript/typescript)
 
 # Changelog
 
@@ -52,7 +53,7 @@ For a full list of changes, see the
 - `chat/presence` endpoint has been deprecated, it will be removed in the near future.
 
 ### 2022-06-08
-- `discussion_enabled` in Beatmapset(#beatmapset) is deprecated. All beatmapsets now have it enabled.
+- `discussion_enabled` in [Beatmapset](#beatmapset) is deprecated. All beatmapsets now have it enabled.
 
 ### 2021-10-28
 - `beatmap` in [Get Beatmap scores](#get-beatmap-scores) `scores` array item is removed (it's never been documented in the first place).

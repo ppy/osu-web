@@ -13,6 +13,7 @@ use App\Libraries\Payments\UnsupportedNotificationTypeException;
 use App\Models\Store\Order;
 use App\Models\Store\OrderItem;
 use Config;
+use Illuminate\Support\Facades\Event;
 use Tests\TestCase;
 
 class CentiliPaymentProcessorTest extends TestCase
@@ -29,20 +30,23 @@ class CentiliPaymentProcessorTest extends TestCase
     public function testWhenPaymentWasCancelled()
     {
         // FIXME: but now we can't see the notification, annoying ?_?
-        $this->expectsEvents('store.payments.rejected.centili');
+        Event::fake();
 
         $params = $this->getTestParams(['status' => 'canceled']);
         $subject = new CentiliPaymentProcessor($params, $this->validSignature());
         $subject->run();
+        Event::assertDispatched('store.payments.rejected.centili');
     }
 
     public function testWhenPaymentFailed()
     {
-        $this->expectsEvents('store.payments.rejected.centili');
+        Event::fake();
 
         $params = $this->getTestParams(['status' => 'failed']);
         $subject = new CentiliPaymentProcessor($params, $this->validSignature());
         $subject->run();
+
+        Event::assertDispatched('store.payments.rejected.centili');
     }
 
     public function testWhenStatusIsUnknown()

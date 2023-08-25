@@ -17,7 +17,7 @@ return [
     'title' => 'ความคิดเห็น',
 
     'commentable_name' => [
-        'beatmapset' => 'บีตแม็ป',
+        'beatmapset' => 'บีทแมพ',
         'build' => 'การเปลี่ยนแปลง',
         'news_post' => 'ข่าวสาร',
         '_deleted' => 'รายการที่ถูกลบ',

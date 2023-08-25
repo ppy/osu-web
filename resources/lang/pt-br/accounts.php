@@ -34,7 +34,13 @@ return [
         ],
 
         'profile' => [
+            'country' => 'país',
             'title' => 'Perfil',
+
+            'country_change' => [
+                '_' => "Parece que o país da sua conta não corresponde ao país em que você reside atualmente. :update_link.",
+                'update_link' => 'Mudar para :country',
+            ],
 
             'user' => [
                 'user_discord' => '',
