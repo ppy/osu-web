@@ -388,7 +388,8 @@ export class Main extends React.PureComponent
       margin = @modeSwitcherRef.current.getBoundingClientRect().height
       margin += @newDiscussionRef.current.getBoundingClientRect().height if @state.pinnedNewDiscussion
 
-      document.documentElement.style.setProperty '--scroll-margin-top', "#{margin}px"
+      discussionsElement = document.querySelector('.js-beatmap-discussions')
+      discussionsElement?.style.setProperty '--scroll-margin-top', "#{margin}px"
 
       # avoid smooth scrolling to avoid triggering lazy loaded images.
       # FIXME: Safari still has the issue where images just out of view get loaded and push the page down
