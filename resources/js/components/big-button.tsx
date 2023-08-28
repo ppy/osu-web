@@ -59,7 +59,7 @@ export default class BigButton extends React.Component<Props> {
 
     if (this.disabled) {
       return (
-        <span className={blockClass} {...this.props.props}>
+        <span className={blockClass} {...this.props.props} onClick={undefined}>
           {this.renderChildren()}
         </span>
       );
