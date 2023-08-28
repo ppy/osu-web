@@ -15,10 +15,6 @@
   background-color: hsl(var(--comments-bg-hsl));
   color: var(--comments-fg);
 
-  @media @desktop {
-    margin-bottom: 10px;
-  }
-
   &--page-extra {
     --comments-bg-hsl: var(--hsl-b4);
     --comments-pinned-bg-hsl: var(--hsl-b3);
@@ -73,10 +69,6 @@
     .default-gutter-v2();
     padding-top: @_header-spacing;
     padding-bottom: @_header-spacing;
-  }
-
-  &__text {
-    .default-gutter-v2();
   }
 
   &__title {

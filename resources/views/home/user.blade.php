@@ -2,6 +2,11 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
+@php
+    use App\Models\NewsPost;
+
+    $newsPostLargePreviews = NewsPost::LANDING_LIMIT;
+@endphp
 @extends('master')
 
 @section('content')
@@ -13,17 +18,17 @@
                 <h2 class="user-home__news-title">{{ osu_trans('home.user.news.title') }}</h2>
 
                 @foreach ($news as $post)
-                    @if ($loop->iteration > 3)
+                    @if ($loop->iteration > $newsPostLargePreviews)
                         @break
                     @endif
 
                     @include('home._user_news_post_preview', ['post' => $post, 'collapsed' => false])
                 @endforeach
 
-                @if (count($news) > 3)
+                @if (count($news) > $newsPostLargePreviews)
                     <div class="user-home__news-posts-group">
                         @foreach ($news as $post)
-                            @if ($loop->iteration <= 3)
+                            @if ($loop->iteration <= $newsPostLargePreviews)
                                 @continue
                             @endif
 
@@ -32,7 +37,7 @@
                     </div>
                 @endif
 
-                @if (count($news) > App\Models\NewsPost::DASHBOARD_LIMIT)
+                @if (count($news) > NewsPost::DASHBOARD_LIMIT)
                     <a
                         href="{{ route('news.index') }}"
                         class="user-home__news-posts-group user-home__news-posts-group--more"

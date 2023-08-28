@@ -6,7 +6,6 @@
 namespace App\Console\Commands;
 
 use App\Libraries\Notification\BatchIdentities;
-use App\Models\User;
 use App\Models\UserNotification;
 use Datadog;
 use Illuminate\Console\Command;
@@ -55,7 +54,7 @@ class UserNotificationsCleanup extends Command
 
             foreach ($notificationIdByUserIds as $userId => $notificationIds) {
                 UserNotification::batchDestroy(
-                    User::find($userId),
+                    $userId,
                     BatchIdentities::fromParams(['notifications' => $notificationIds])
                 );
                 $deleted = count($notificationIds);

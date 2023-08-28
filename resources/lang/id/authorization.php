@@ -65,7 +65,7 @@ return [
         'blocked' => 'Pesan tidak dapat dikirim kepada pengguna yang kamu blokir atau memblokir dirimu.',
         'friends_only' => 'Pengguna memblokir pesan dari orang yang tidak dalam daftar temannya.',
         'moderated' => 'Kanal percakapan ini sedang dimoderasi.',
-        'no_access' => 'Anda tidak memiliki akses ke kanal percakapan ini.',
+        'no_access' => 'Kamu tidak memiliki akses ke kanal percakapan ini.',
         'receive_friends_only' => 'Pengguna ini tidak akan dapat membalas pesanmu karena kamu hanya menerima pesan dari nama-nama yang tertera pada daftar temanmu.',
         'restricted' => 'Kamu tidak dapat mengirim pesan pada saat akunmu sedang di-silence, di-restrict, atau di-ban.',
         'silenced' => 'Kamu tidak dapat mengirim pesan pada saat akunmu sedang di-silence, di-restrict, atau di-ban.',
@@ -171,6 +171,7 @@ return [
 
     'score' => [
         'pin' => [
+            'disabled_type' => "Tipe skor ini tidak dapat disematkan",
             'not_owner' => 'Hanya pemilik skor yang dapat menyematkan skor.',
             'too_many' => 'Skor yang disematkan sudah terlalu banyak.',
         ],

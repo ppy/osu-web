@@ -15,48 +15,50 @@
     <div class="account-edit__input-groups">
         <div class="account-edit__input-group">
             <div class="account-edit-entry account-edit-entry--no-label">
-                <div class="account-edit-entry__checkboxes-label">
-                    {{ osu_trans('accounts.options.beatmapset_download._') }}
-                </div>
-                <form
-                    class="account-edit-entry__checkboxes account-edit-entry__checkboxes--vertical js-account-edit"
-                    data-account-edit-auto-submit="1"
-                    data-account-edit-type="radio"
-                    data-url="{{ route('account.options') }}"
-                    data-field="user_profile_customization[beatmapset_download]"
-                >
-                    @php
-                        $statusIsRendered = false;
-                    @endphp
-                    @foreach (App\Models\UserProfileCustomization::BEATMAPSET_DOWNLOAD as $name)
-                        @if ($name === 'direct' && !auth()->user()->isSupporter())
-                            @continue
-                        @endif
-                        <label
-                            class="account-edit-entry__checkbox account-edit-entry__checkbox--inline"
-                        >
-                            @include('objects._switch', ['locals' => [
-                                'checked' => $customization->beatmapset_download === $name,
-                                'name' => 'user_profile_customization[beatmapset_download]',
-                                'type' => 'radio',
-                                'value' => $name,
-                            ]])
-
-                            <span class="account-edit-entry__checkbox-label">
-                                {{ osu_trans("accounts.options.beatmapset_download.{$name}") }}
-                            </span>
-
-                            @if (!$statusIsRendered)
-                                <div class="account-edit-entry__checkbox-status">
-                                    @include('accounts._edit_entry_status')
-                                </div>
-                                @php
-                                    $statusIsRendered = true;
-                                @endphp
+                <div>
+                    <div class="account-edit-entry__checkboxes-label">
+                        {{ osu_trans('accounts.options.beatmapset_download._') }}
+                    </div>
+                    <form
+                        class="account-edit-entry__checkboxes account-edit-entry__checkboxes--vertical js-account-edit"
+                        data-account-edit-auto-submit="1"
+                        data-account-edit-type="radio"
+                        data-url="{{ route('account.options') }}"
+                        data-field="user_profile_customization[beatmapset_download]"
+                    >
+                        @php
+                            $statusIsRendered = false;
+                        @endphp
+                        @foreach (App\Models\UserProfileCustomization::BEATMAPSET_DOWNLOAD as $name)
+                            @if ($name === 'direct' && !auth()->user()->isSupporter())
+                                @continue
                             @endif
-                        </label>
-                    @endforeach
-                </form>
+                            <label
+                                class="account-edit-entry__checkbox account-edit-entry__checkbox--inline"
+                            >
+                                @include('objects._switch', ['locals' => [
+                                    'checked' => $customization->beatmapset_download === $name,
+                                    'name' => 'user_profile_customization[beatmapset_download]',
+                                    'type' => 'radio',
+                                    'value' => $name,
+                                ]])
+
+                                <span class="account-edit-entry__checkbox-label">
+                                    {{ osu_trans("accounts.options.beatmapset_download.{$name}") }}
+                                </span>
+
+                                @if (!$statusIsRendered)
+                                    <div class="account-edit-entry__checkbox-status">
+                                        @include('accounts._edit_entry_status')
+                                    </div>
+                                    @php
+                                        $statusIsRendered = true;
+                                    @endphp
+                                @endif
+                            </label>
+                        @endforeach
+                    </form>
+                </div>
             </div>
         </div>
 

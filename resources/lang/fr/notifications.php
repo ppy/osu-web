@@ -153,15 +153,6 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => 'Ancienne page forum des messages privés',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited message non lu|:count_delimited messages non lus',
-            ],
-        ],
-
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Nouvelle beatmap',

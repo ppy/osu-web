@@ -153,15 +153,6 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => '舊論壇私訊',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited 則未讀訊息',
-            ],
-        ],
-
         'user' => [
             'user_beatmapset_new' => [
                 '_' => '新圖譜',
@@ -220,7 +211,7 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => '',
+                'announce' => '在 ":name" 中有一條新通知',
             ],
 
             'channel' => [
@@ -254,7 +245,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username 建立了新圖譜',
-                'user_beatmapset_revive' => '',
+                'user_beatmapset_revive' => ':username 復原了圖譜',
             ],
         ],
     ],

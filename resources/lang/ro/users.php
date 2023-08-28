@@ -49,6 +49,7 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => 'Oferă status de suporter osu! cadou',
         'loading' => 'Se încarcă...',
         'send_message' => 'trimite mesaj',
     ],
@@ -386,7 +387,7 @@ return [
                     'date' => 'data',
                     'action' => 'acțiune',
                     'length' => 'durată',
-                    'length_permanent' => 'Permanent',
+                    'length_indefinite' => 'Nedeterminată',
                     'description' => 'descriere',
                     'actor' => 'de :username',
 

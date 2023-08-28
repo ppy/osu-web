@@ -30,7 +30,7 @@ return [
         'cart_problems' => '장바구니에 문제가 생겼어요!',
         'cart_problems_edit' => '편집하려면 클릭하세요.',
         'declined' => '결제가 취소되었습니다.',
-        'delayed_shipping' => '현재 주문이 밀려있습니다! 주문을 해주시는건 기쁘지만, 지금 주문을 처리하는데 **1~2 주 지연**될 수 있다는 걸 알려드립니다.',
+        'delayed_shipping' => '현재 주문이 밀려있습니다! 주문을 해주시는 건 기쁘지만, 지금 주문을 처리하는데 **1~2주 지연**될 수 있다는 걸 알려드립니다.',
         'hide_from_activity' => '나의 활동에서 이 주문에 있는 모든 osu! 서포터 태그 내역 숨기기',
         'old_cart' => '장바구니가 오래되어 새로 고쳐졌습니다, 다시 시도해 주세요.',
         'pay' => 'Paypal로 결제',
@@ -80,7 +80,7 @@ return [
             'quantity' => '수량',
 
             'display_name' => [
-                'supporter_tag' => ':name for :username (:duration)',
+                'supporter_tag' => ':username님을 위한 :name (:duration)',
             ],
 
             'subtext' => [

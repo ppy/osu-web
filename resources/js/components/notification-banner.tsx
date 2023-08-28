@@ -51,6 +51,6 @@ export default class NotificationBanner extends React.PureComponent<Props> {
   }
 
   private notifySyncHeight(this: void) {
-    $.publish('osu:page:change');
+    $.publish('sync-height:force');
   }
 }

@@ -71,4 +71,13 @@ abstract class DuskTestCase extends BaseTestCase
 
         return $driver;
     }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        foreach (static::$browsers as $browser) {
+            static::resetSession($browser);
+        }
+    }
 }

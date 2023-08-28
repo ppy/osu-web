@@ -135,7 +135,7 @@
 
       @media @desktop {
         padding-top: @nav2-height + 15px;
-        min-height: (@nav2-height + 70px);
+        min-height: @header-container-min-height;
       }
 
       .@{_top}--supporter & {
@@ -159,6 +159,10 @@
     margin-right: 10px;
     flex: none;
     background-size: 75%;
+
+    .@{_top}--artist & {
+      background-image: url('~@images/icons/artists.svg');
+    }
 
     .@{_top}--artists & {
       background-image: url('~@images/icons/artists.svg');

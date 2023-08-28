@@ -17,9 +17,16 @@ return [
         ],
     ],
 
+    'kudosu' => [
+        'total' => 'Przyznane',
+        'available' => 'Dostępne',
+        'used' => 'Wykorzystane',
+    ],
+
     'type' => [
         'charts' => 'wyróżnionych',
         'country' => 'krajowy',
+        'kudosu' => 'kudosu',
         'multiplayer' => 'wieloosobowy',
         'performance' => 'globalny',
         'score' => 'punktowy',

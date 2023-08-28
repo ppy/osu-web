@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { Spinner } from 'components/spinner';
+import { linkRenderer } from 'markdown/renderers';
 import { observer } from 'mobx-react';
 import Message from 'models/chat/message';
 import * as React from 'react';
@@ -9,20 +10,13 @@ import ReactMarkdown from 'react-markdown';
 import autolink from 'remark-plugins/autolink';
 import disableConstructs from 'remark-plugins/disable-constructs';
 import legacyLink from 'remark-plugins/legacy-link';
+import oldLink from 'remark-plugins/old-link';
 import wikiLink, { RemarkWikiLinkPlugin } from 'remark-wiki-link';
 import { classWithModifiers } from 'utils/css';
-import { safeReactMarkdownUrl, wikiUrl } from 'utils/url';
+import { wikiUrl } from 'utils/url';
 
 interface Props {
   message: Message;
-}
-
-function linkRenderer(astProps: JSX.IntrinsicElements['a']) {
-  return (
-    <a href={safeReactMarkdownUrl(astProps.href)} rel='nofollow noreferrer' target='_blank'>
-      {astProps.children}
-    </a>
-  );
 }
 
 const components = Object.freeze({
@@ -62,7 +56,13 @@ export default class MessageItem extends React.Component<Props> {
           'chat-plain': remarkType === 'chatPlain',
         })}
         components={components}
-        remarkPlugins={[autolink, [disableConstructs, { type: remarkType }], legacyLink, wikiLinkPlugin]}
+        remarkPlugins={[
+          autolink,
+          [disableConstructs, { type: remarkType }],
+          legacyLink,
+          oldLink,
+          wikiLinkPlugin,
+        ]}
         unwrapDisallowed
       >
         {this.props.message.content}

@@ -20,6 +20,12 @@ return [
             'title' => 'Correo electrónico',
         ],
 
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'API heredada',
+        ],
+
         'password' => [
             'current' => 'contraseña actual',
             'new' => 'nueva contraseña',
@@ -28,7 +34,13 @@ return [
         ],
 
         'profile' => [
+            'country' => 'país',
             'title' => 'Perfil',
+
+            'country_change' => [
+                '_' => "Parece que el país de tu cuenta no coincide con tu país de residencia. :update_link.",
+                'update_link' => 'Actualizar a :country',
+            ],
 
             'user' => [
                 'user_discord' => '',

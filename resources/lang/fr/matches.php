@@ -12,7 +12,7 @@ return [
         'in_progress_spinner_label' => 'match en cours',
         'loading-events' => 'Chargement des événements...',
         'winner' => ':team gagne',
-        'winner_by' => '',
+        'winner_by' => ':winner de :difference',
 
         'events' => [
             'player-left' => ':user a quitté le match',

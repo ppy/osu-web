@@ -6,9 +6,9 @@
 return [
     'bold' => 'Удебелен',
     'heading' => 'Заглавен ред',
-    'help' => '',
+    'help' => 'Помощ',
     'image' => 'Изображение',
-    'imagemap' => '',
+    'imagemap' => 'Image Map',
     'italic' => 'Курсив',
     'link' => 'Връзка',
     'list' => 'Списък',

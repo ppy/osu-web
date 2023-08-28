@@ -1,8 +1,6 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { pageChange } from 'utils/page-change';
-
 export default class ForumPostEdit {
   constructor() {
     $(document)
@@ -21,8 +19,6 @@ export default class ForumPostEdit {
     $postBox
       .html($postBox.attr('data-original-post') ?? '')
       .attr('data-original-post', null);
-
-    pageChange();
   };
 
   private handleEditSaved = (e: JQuery.TriggeredEvent, data: string) => {
@@ -49,8 +45,6 @@ export default class ForumPostEdit {
     }
 
     $(target).parents('.js-forum-post').replaceWith(data);
-
-    pageChange();
   };
 
   private start = (target: unknown, data: string) => {
@@ -67,7 +61,5 @@ export default class ForumPostEdit {
       .focus();
 
     $.publish('forum-post-input:restore', [$postBox[0]]);
-
-    pageChange();
   };
 }

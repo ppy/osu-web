@@ -12,6 +12,8 @@ import Message from './message';
 
 const hideableChannelTypes: Set<ChannelType> = new Set(['ANNOUNCE', 'PM']);
 
+export const maxMessageLength = 1024;
+
 export default class Channel {
   private static readonly defaultIcon = '/images/layout/chat/channel-default.png'; // TODO: update with channel-specific icons?
 
@@ -24,6 +26,7 @@ export default class Channel {
   @observable lastReadId?: number;
   @observable loadingEarlierMessages = false;
   @observable loadingMessages = false;
+  @observable messageLengthLimit = maxMessageLength;
   @observable name = '';
   needsRefresh = true;
   @observable newPmChannel = false;
@@ -261,6 +264,7 @@ export default class Channel {
     this.description = json.description;
     this.type = json.type;
     this.icon = json.icon ?? Channel.defaultIcon;
+    this.messageLengthLimit = json.message_length_limit;
     this.userIds = json.users ?? this.userIds;
 
     this.serverLastMessageId = json.last_message_id;

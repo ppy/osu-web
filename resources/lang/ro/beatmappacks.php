@@ -36,6 +36,7 @@ return [
         'artist' => 'Artist/Album',
         'chart' => 'Promovări',
         'featured' => 'Artist Oficial',
+        'loved' => 'Proiectul Iubit',
         'standard' => 'Standard',
         'theme' => 'Temă',
         'tournament' => 'Turneu',
@@ -43,6 +44,6 @@ return [
 
     'require_login' => [
         '_' => 'Trebuie să fii :link pentru a descărca',
-        'link_text' => 'conectat',
+        'link_text' => 'autentificat',
     ],
 ];

@@ -36,6 +36,7 @@ return [
         'artist' => 'آلبوم/هنرمند',
         'chart' => 'برجسته ها',
         'featured' => '',
+        'loved' => '',
         'standard' => 'استاندارد',
         'theme' => 'تم',
         'tournament' => '',

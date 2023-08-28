@@ -39,7 +39,6 @@ export class Subscribe extends React.Component<Props> {
   render() {
     return (
       <BigButton
-        disabled={this.busy}
         icon={this.isWatching ? 'fas fa-eye-slash' : 'fas fa-eye'}
         isBusy={this.busy}
         modifiers='full'

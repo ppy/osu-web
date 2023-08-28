@@ -49,6 +49,7 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => 'Regalar etiqueta supporter',
         'loading' => 'Carregant...',
         'send_message' => 'Enviar missatge',
     ],
@@ -386,7 +387,7 @@ return [
                     'date' => 'data',
                     'action' => 'acció',
                     'length' => 'durada',
-                    'length_permanent' => 'Permanent',
+                    'length_indefinite' => '',
                     'description' => 'descripció',
                     'actor' => 'per :username',
 

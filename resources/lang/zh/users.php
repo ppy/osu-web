@@ -49,6 +49,7 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => '赠送支持者标签',
         'loading' => '加载中...',
         'send_message' => '发送消息',
     ],
@@ -386,7 +387,7 @@ return [
                     'date' => '时间',
                     'action' => '处理',
                     'length' => '时长',
-                    'length_permanent' => '永久',
+                    'length_indefinite' => '',
                     'description' => '原因',
                     'actor' => '裁决者： :username',
 

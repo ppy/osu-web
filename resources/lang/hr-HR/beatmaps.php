@@ -175,6 +175,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => '',
+        'cannot_nominate' => '',
         'delete' => 'Izbriši',
         'delete_own_confirm' => 'Jesi li siguran? Beatmapa će se izbrisati i bit ćeš preusmjeren natrag na svoj profil.',
         'delete_other_confirm' => 'Jesi li siguran? Beatmapa će se izbrisati i bit ćeš preusmjeren natrag na korisnikov profil.',

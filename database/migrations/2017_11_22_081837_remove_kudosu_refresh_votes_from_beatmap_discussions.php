@@ -14,7 +14,7 @@ class RemoveKudosuRefreshVotesFromBeatmapDiscussions extends Migration
      */
     public function up()
     {
-        (new AddKudosuRefreshVotesToBeatmapDiscussions())->down();
+        migration('2016_12_19_132350_add_kudosu_refresh_votes_to_beatmap_discussions')->down();
     }
 
     /**
@@ -24,6 +24,6 @@ class RemoveKudosuRefreshVotesFromBeatmapDiscussions extends Migration
      */
     public function down()
     {
-        (new AddKudosuRefreshVotesToBeatmapDiscussions())->up();
+        migration('2016_12_19_132350_add_kudosu_refresh_votes_to_beatmap_discussions')->up();
     }
 }

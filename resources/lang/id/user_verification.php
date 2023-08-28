@@ -13,10 +13,10 @@ return [
         'info' => [
             'check_spam' => "Pastikan untuk memeriksa folder spam apabila kamu tidak menemukan email yang dimaksud.",
             'recover' => "Apabila kamu tidak dapat mengakses emailmu atau sudah tidak lagi ingat alamat email yang kamu gunakan untuk mendaftar, silakan ikuti :link.",
-            'recover_link' => 'protokol pemulihan email berikut',
+            'recover_link' => 'proses pemulihan email berikut',
             'reissue' => 'Kamu juga dapat :reissue_link atau :logout_link.',
             'reissue_link' => 'meminta kode baru',
-            'logout_link' => 'keluar',
+            'logout_link' => 'keluar dari akun',
         ],
     ],
 

@@ -20,7 +20,7 @@
         'links' => [
             [
                 'title' => osu_trans('layout.header.help.index'),
-                'url' => wiki_url('Main_Page'),
+                'url' => wiki_url('Main_page'),
             ],
             [
                 'title' => osu_trans('layout.header.help.sitemap'),

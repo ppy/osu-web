@@ -7,7 +7,7 @@ php artisan dusk:chrome-driver --detect
 php artisan octane:start > /dev/null 2>&1 &
 
 # run the tests
-php artisan dusk --verbose "$@"
+php artisan dusk "$@"
 EXIT_CODE=$?
 
 php artisan octane:stop

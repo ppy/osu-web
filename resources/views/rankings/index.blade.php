@@ -7,29 +7,24 @@
     $selectorParams = [
         'type' => $type,
         'mode' => $mode,
-        'route' => function($routeMode, $routeType) use ($country, $spotlight) {
-            if ($routeType === 'country') {
-                return route('rankings', ['mode' => $routeMode, 'type' => $routeType]);
+        'route' => fn ($routeMode, $routeType) => (
+            match ($routeType) {
+                'country' => route('rankings', ['mode' => $routeMode, 'type' => $routeType]),
+                'multiplayer' => route('multiplayer.rooms.show', ['room' => 'latest']),
+                'seasons' => route('seasons.show', ['season' => 'latest']),
+                'kudosu' => route('rankings.kudosu'),
+                default => trim(route('rankings', [
+                    'mode' => $routeMode,
+                    'type' => $routeType,
+                    'spotlight' => $routeType === 'charts' ? $spotlight ?? null : null,
+                    'country' => $routeType === 'performance' ? ($country['acronym'] ?? null) : null,
+                ]), '?')
             }
-
-            if ($routeType === 'multiplayer') {
-                return route('multiplayer.rooms.show', ['room' => 'latest']);
-            }
-            if ($routeType === 'seasons') {
-                return route('seasons.show', ['season' => 'latest']);
-            }
-
-            return trim(route('rankings', [
-                'mode' => $routeMode,
-                'type' => $routeType,
-                'spotlight' => $routeType === 'charts' ? $spotlight ?? null : null,
-                'country' => $routeType === 'performance' ? ($country['acronym'] ?? null) : null,
-            ]), '?');
-        }
+        )
     ];
 
     $links = [];
-    foreach (['performance', 'charts', 'score', 'country', 'multiplayer', 'seasons'] as $tab) {
+    foreach (['performance', 'charts', 'score', 'country', 'multiplayer', 'seasons', 'kudosu'] as $tab) {
         $links[] = [
             'active' => $tab === $type,
             'title' => osu_trans("rankings.type.{$tab}"),

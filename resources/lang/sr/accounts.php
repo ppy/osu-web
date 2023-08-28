@@ -20,6 +20,12 @@ return [
             'title' => 'Имејл',
         ],
 
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'Застарели API',
+        ],
+
         'password' => [
             'current' => 'тренутна лозинка',
             'new' => 'нова лозинка',
@@ -28,7 +34,13 @@ return [
         ],
 
         'profile' => [
+            'country' => '',
             'title' => 'Профил',
+
+            'country_change' => [
+                '_' => "",
+                'update_link' => '',
+            ],
 
             'user' => [
                 'user_discord' => '',

@@ -3,6 +3,7 @@
 
 import { BeatmapsetSearchController } from 'beatmaps/beatmapset-search-controller';
 import ChatWorker from 'chat/chat-worker';
+import BrowserTitleWithNotificationCount from 'core/browser-title-with-notification-count';
 import Captcha from 'core/captcha';
 import ClickMenu from 'core/click-menu';
 import Enchant from 'core/enchant';
@@ -36,6 +37,7 @@ import { parseJsonNullable } from 'utils/json';
 // will this replace main.coffee eventually?
 export default class OsuCore {
   readonly beatmapsetSearchController;
+  readonly browserTitleWithNotificationCount;
   readonly captcha;
   readonly chatWorker;
   readonly clickMenu;
@@ -94,6 +96,7 @@ export default class OsuCore {
     this.forumPostReport = new ForumPostReport();
     this.localtime = new Localtime();
     this.mobileToggle = new MobileToggle();
+    this.browserTitleWithNotificationCount = new BrowserTitleWithNotificationCount(this);
     this.referenceLinkTooltip = new ReferenceLinkTooltip();
     this.scorePins = new ScorePins();
     this.stickyHeader = new StickyHeader();

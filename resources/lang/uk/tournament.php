@@ -9,7 +9,7 @@ return [
         'registration_period' => 'Реєстрація: з :start до :end',
 
         'header' => [
-            'title' => 'Турніри спільноти',
+            'title' => 'Турніри Спільноти',
         ],
 
         'item' => [

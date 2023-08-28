@@ -5,10 +5,10 @@
 
 return [
     'bold' => 'Gras',
-    'heading' => 'Titre',
-    'help' => '',
+    'heading' => 'En-tête',
+    'help' => 'Aide',
     'image' => 'Image',
-    'imagemap' => '',
+    'imagemap' => 'Image Mappée',
     'italic' => 'Italique',
     'link' => 'Lien',
     'list' => 'Liste',
@@ -18,7 +18,7 @@ return [
         'tiny' => 'Très petite',
         'small' => 'Petite',
         'normal' => 'Normale',
-        'large' => 'Large',
+        'large' => 'Grande',
     ],
     'spoilerbox' => 'Spoiler déroulant',
     'strikethrough' => 'Barré',

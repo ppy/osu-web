@@ -7,6 +7,7 @@ namespace App\Models;
 
 use App\Libraries\MorphMap;
 use App\Traits\Validatable;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
@@ -182,11 +183,21 @@ class Comment extends Model implements Traits\ReportableInterface
     public function setCommentable()
     {
         if ($this->parent_id === null || $this->parent === null) {
-            return;
+            if ($this->commentable_type !== null) {
+                return;
+            }
+            // Reset the id if type is null otherwise Laravel will try to
+            // "eager load" the commentable (whatever tha means in this context).
+            // Note that setting type to random string doesn't work because
+            // Laravel will happily try to create the random string class.
+            //
+            // Reference: https://github.com/laravel/framework/blob/53b02b3c1d926c095cccca06883a35a5c6729773/src/Illuminate/Database/Eloquent/Concerns/HasRelationships.php#L279-L281
+            $this->commentable_id = null;
+        } else {
+            $this->commentable_id = $this->parent->commentable_id;
+            $this->commentable_type = $this->parent->commentable_type;
         }
 
-        $this->commentable_id = $this->parent->commentable_id;
-        $this->commentable_type = $this->parent->commentable_type;
         $this->unsetRelation('commentable');
     }
 
@@ -244,7 +255,7 @@ class Comment extends Model implements Traits\ReportableInterface
         return $this->getConnection()->transaction(function () use ($options) {
             if (!$this->exists && $this->parent_id !== null && $this->parent !== null) {
                 // skips validation and everything
-                $this->parent->increment('replies_count_cache');
+                $this->parent->incrementInstance('replies_count_cache', 1, ['updated_at' => Carbon::now()]);
             }
 
             if ($this->isDirty('deleted_at')) {

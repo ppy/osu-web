@@ -3,13 +3,9 @@
 
 import { BeatmapsetSearch } from 'beatmaps/beatmapset-search';
 import ChatStateStore from 'chat/chat-state-store';
-import { CommentBundleJson } from 'interfaces/comment-json';
-import { action, makeObservable } from 'mobx';
 import { BeatmapsetStore } from './beatmapset-store';
 import ChannelStore from './channel-store';
 import ClientStore from './client-store';
-import CommentStore from './comment-store';
-import CommentableMetaStore from './commentable-meta-store';
 import NotificationStore from './notification-store';
 import OwnClientStore from './own-client-store';
 import UIStateStore from './ui-state-store';
@@ -21,8 +17,6 @@ export default class RootDataStore {
   channelStore: ChannelStore;
   chatState: ChatStateStore;
   clientStore: ClientStore;
-  commentableMetaStore: CommentableMetaStore;
-  commentStore: CommentStore;
   notificationStore: NotificationStore;
   ownClientStore: OwnClientStore;
   uiState: UIStateStore;
@@ -33,25 +27,11 @@ export default class RootDataStore {
     this.beatmapsetStore = new BeatmapsetStore();
     this.beatmapsetSearch = new BeatmapsetSearch(this.beatmapsetStore);
     this.clientStore = new ClientStore();
-    this.commentableMetaStore = new CommentableMetaStore();
-    this.commentStore = new CommentStore();
     this.notificationStore = new NotificationStore();
     this.ownClientStore = new OwnClientStore();
     this.userStore = new UserStore();
     this.channelStore = new ChannelStore();
     this.chatState = new ChatStateStore(this.channelStore);
-    this.uiState = new UIStateStore(this.commentStore);
-
-    makeObservable(this);
-  }
-
-  @action
-  updateWithCommentBundleJson(commentBundle: CommentBundleJson) {
-    this.commentableMetaStore.updateWithJson(commentBundle.commentable_meta);
-    this.commentStore.updateWithJson(commentBundle.comments);
-    this.commentStore.updateWithJson(commentBundle.included_comments);
-    this.commentStore.updateWithJson(commentBundle.pinned_comments);
-    this.userStore.updateMany(commentBundle.users);
-    this.commentStore.addVoted(commentBundle.user_votes);
+    this.uiState = new UIStateStore();
   }
 }

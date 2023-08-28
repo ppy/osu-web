@@ -8,11 +8,11 @@ return [
         'approve' => 'Patvirtintas.',
         'beatmap_owner_change' => 'Sunkumo savininkas :beatmap buvo pakeistas į :new_user.',
         'discussion_delete' => 'Moderatorius ištrynė diskusija :discussion.',
-        'discussion_lock' => 'Šio bitmapo diskusijos buvo išjungtos. (:text)',
+        'discussion_lock' => 'Šio beatmap\'o diskusijos buvo išjungtos. (:text)',
         'discussion_post_delete' => 'Moderatorius ištrynė įrašą iš diskusijos :discussion.',
         'discussion_post_restore' => 'Moderatorius atkūrė įrašą tarp diskusijos :discussion.',
         'discussion_restore' => 'Moderatorius atkūrė diskusiją :discussion.',
-        'discussion_unlock' => 'Šio bitmapo diskusijos buvo įjungtos.',
+        'discussion_unlock' => 'Šio beatmap\'o diskusijos buvo įjungtos.',
         'disqualify' => 'Diskvalifikavo :user. Priežastis: :discussion (:text).',
         'disqualify_legacy' => 'Diskvalifikavo :user. Priežastis: :text.',
         'genre_edit' => 'Žanras pakeistas iš :old į :new.',
@@ -31,10 +31,10 @@ return [
         'nomination_reset_received' => 'Vartotojo :user nominaciją atstatė :source_user (:text)',
         'nomination_reset_received_profile' => 'Nominaciją atstatė :user (:text)',
         'offset_edit' => 'Tinklo poslinkis pakeistas iš :old į :new.',
-        'qualify' => 'Šis bitmapas pasiekė reikiamą nominacijų skaičių ir buvo kvalifikuotas.',
+        'qualify' => 'Šis beatmap\'as pasiekė reikiamą nominacijų skaičių ir buvo kvalifikuotas.',
         'rank' => 'Reitinguotas.',
         'remove_from_loved' => 'Pašalino iš mylimų :user. (:text)',
-        'tags_edit' => '',
+        'tags_edit' => 'Žymėjimai pakeisti iš ":old" į ":new".',
 
         'nsfw_toggle' => [
             'to_0' => 'Pašalinta Eksplicitinio žymė',
@@ -43,7 +43,7 @@ return [
     ],
 
     'index' => [
-        'title' => 'Bitmapų seto Įvykiai',
+        'title' => 'Beatmap\'ų seto Įvykiai',
 
         'form' => [
             'period' => 'Laikotarpis',

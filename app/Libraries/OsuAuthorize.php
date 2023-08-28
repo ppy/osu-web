@@ -1481,20 +1481,22 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
-        $plays = $user->playCount();
-        $posts = $user->user_posts;
-        $forInitialHelpForum = in_array($forum->forum_id, config('osu.forum.initial_help_forum_ids'), true);
+        if (!$user->isBot()) {
+            $plays = $user->playCount();
+            $posts = $user->user_posts;
+            $forInitialHelpForum = in_array($forum->forum_id, config('osu.forum.initial_help_forum_ids'), true);
 
-        if ($forInitialHelpForum) {
-            if ($plays < 10 && $posts > 10) {
-                return $prefix.'too_many_help_posts';
-            }
-        } else {
-            if ($plays < config('osu.forum.minimum_plays') && $plays < $posts + 1) {
-                return $prefix.'play_more';
-            }
+            if ($forInitialHelpForum) {
+                if ($plays < 10 && $posts > 10) {
+                    return $prefix.'too_many_help_posts';
+                }
+            } else {
+                if ($plays < config('osu.forum.minimum_plays') && $plays < $posts + 1) {
+                    return $prefix.'play_more';
+                }
 
-            $this->ensureHasPlayed($user);
+                $this->ensureHasPlayed($user);
+            }
         }
 
         return 'ok';
@@ -1897,6 +1899,10 @@ class OsuAuthorize
 
         if ($score->user_id !== $user->getKey()) {
             return $prefix.'not_owner';
+        }
+
+        if ($score instanceof Solo\Score && config('osu.user.hide_pinned_solo_scores')) {
+            return $prefix.'disabled_type';
         }
 
         $pinned = $user->scorePins()->forRuleset($score->getMode())->withVisibleScore()->count();

@@ -4,7 +4,6 @@
 import { DiscussionsContext } from 'beatmap-discussions/discussions-context';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
-import UserJson from 'interfaces/user-json';
 import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
@@ -18,7 +17,6 @@ interface Props {
   beatmaps: BeatmapExtendedJson[];
   beatmapset: BeatmapsetExtendedJson;
   currentBeatmap: BeatmapExtendedJson;
-  currentUser: UserJson;
   innerRef: React.RefObject<HTMLDivElement>;
   pinned?: boolean;
   setPinned?: (sticky: boolean) => void;

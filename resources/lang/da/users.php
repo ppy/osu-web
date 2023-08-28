@@ -49,6 +49,7 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => '',
         'loading' => 'Indlæser...',
         'send_message' => 'Send besked',
     ],
@@ -386,7 +387,7 @@ return [
                     'date' => 'dato',
                     'action' => 'handling',
                     'length' => 'længde',
-                    'length_permanent' => 'Permanent',
+                    'length_indefinite' => '',
                     'description' => 'beskrivelse',
                     'actor' => 'af :username',
 

@@ -346,8 +346,10 @@ class BeatmapsetSearch extends RecordSearch
                 $query->must(['match' => ['beatmaps.approved' => Beatmapset::STATES['loved']]]);
                 break;
             case 'favourites':
-                $favs = model_pluck($this->params->user->favouriteBeatmapsets(), 'beatmapset_id', Beatmapset::class);
-                $query->must(['ids' => ['values' => $favs]]);
+                if ($this->params->user !== null) {
+                    $favs = model_pluck($this->params->user->favouriteBeatmapsets(), 'beatmapset_id', Beatmapset::class);
+                }
+                $query->must(['ids' => ['values' => $favs ?? []]]);
                 $queryForFilter = $mainQuery;
                 break;
             case 'qualified':
@@ -365,7 +367,11 @@ class BeatmapsetSearch extends RecordSearch
                 break;
             case 'mine':
                 if ($this->params->user !== null) {
-                    $maps = model_pluck($this->params->user->beatmapsets(), 'beatmapset_id');
+                    $maps = $this->params->user->beatmaps()
+                        ->select('beatmapset_id')
+                        ->distinct()
+                        ->pluck('beatmapset_id')
+                        ->all();
                 }
                 $query->must(['ids' => ['values' => $maps ?? []]]);
                 $queryForFilter = $mainQuery;

@@ -19,7 +19,7 @@ return [
         'missing_key' => 'จำเป็น',
         'too_many_tries' => 'จำนวนการลองไม่สำเร็จมากเกินไป',
         'user_not_found' => 'ไม่พบผู้ใช้ดังกล่าว',
-        'wrong_key' => 'รหัสผิด',
+        'wrong_key' => 'รหัสไม่ถูกต้อง.',
     ],
 
     'notice' => [

@@ -7,7 +7,7 @@ return [
     'cancel' => '취소',
 
     'authorise' => [
-        'request' => '는 당신의 계정에 접근할 수 있는 권한을 요청합니다.',
+        'request' => '이(가) 당신의 계정에 접근할 수 있는 권한을 요청합니다.',
         'scopes_title' => '이 애플리케이션은 다음 기능을 할 수 있습니다:',
         'title' => '권한 요청',
     ],
@@ -30,7 +30,7 @@ return [
         'redirect' => '애플리케이션 Callback URL',
         'reset' => '클라이언트 Secret 재설정',
         'reset_failed' => '클라이언트 Secret을 초기화하는데 실패했습니다.',
-        'secret' => '클라이언트 비밀 키',
+        'secret' => '클라이언트 Secret',
 
         'secret_visible' => [
             'false' => '클라이언트 Secret 보기',

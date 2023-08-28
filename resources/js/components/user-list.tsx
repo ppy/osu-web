@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import GameMode from 'interfaces/game-mode';
+import GroupJson from 'interfaces/group-json';
 import UserJson from 'interfaces/user-json';
 import { usernameSortAscending } from 'models/user';
 import * as moment from 'moment';
@@ -24,10 +25,7 @@ const playModes: PlayModeFilter[] = ['all', 'osu', 'taiko', 'fruits', 'mania'];
 const sortModes: SortMode[] = ['last_visit', 'rank', 'username'];
 
 interface Props {
-  descriptionHtml?: string;
-  playmodeFilter?: boolean;
-  playmodeFilterGroupId?: number;
-  title?: string;
+  group?: GroupJson;
   users: UserJson[];
 }
 
@@ -152,16 +150,19 @@ export class UserList extends React.PureComponent<Props> {
         {this.renderSelections()}
 
         <div className='user-list'>
-          {this.props.title != null && (
-            <h1 className='user-list__title'>{this.props.title}</h1>
+          {this.props.group != null && (
+            <h1 className='user-list__title'>{this.props.group.name}</h1>
           )}
 
-          {this.props.descriptionHtml != null && (
-            <div dangerouslySetInnerHTML={{ __html: this.props.descriptionHtml }} className='user-list__description' />
+          {this.props.group?.description != null && (
+            <div
+              dangerouslySetInnerHTML={{ __html: this.props.group.description.html }}
+              className='user-list__description'
+            />
           )}
 
           <div className='user-list__toolbar'>
-            {this.props.playmodeFilter && (
+            {this.props.group?.has_playmodes && (
               <div className='user-list__toolbar-row'>
                 <div className='user-list__toolbar-item'>{this.renderPlaymodeFilter()}</div>
               </div>
@@ -273,19 +274,14 @@ export class UserList extends React.PureComponent<Props> {
     // TODO: should be cached or something
     let users = this.props.users.slice();
     const playmode = this.state.playMode;
-    if (this.props.playmodeFilter && playmode !== 'all') {
-      users = users.filter((user) => {
-        if (user.groups && user.groups.length > 0) {
-          if (this.props.playmodeFilterGroupId != null) {
-            const filterGroup = user.groups.find((group) => group.id === this.props.playmodeFilterGroupId);
-            return filterGroup?.playmodes?.includes(playmode);
-          }
-
-          return user.groups.some((group) => group.playmodes?.includes(playmode));
-        } else {
-          return false;
-        }
-      });
+    if (playmode !== 'all' && this.props.group?.has_playmodes) {
+      const filterGroupId = this.props.group.id;
+      users = users.filter((user) => (
+        user.groups
+          ?.find((group) => group.id === filterGroupId)
+          ?.playmodes
+          ?.includes(playmode)
+      ));
     }
 
     switch (filter) {

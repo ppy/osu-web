@@ -20,6 +20,12 @@ return [
             'title' => 'E-Mail',
         ],
 
+        'legacy_api' => [
+            'api' => 'API',
+            'irc' => 'IRC',
+            'title' => 'Legacy-API',
+        ],
+
         'password' => [
             'current' => 'Aktuelles Passwort',
             'new' => 'neues passwort',
@@ -28,7 +34,13 @@ return [
         ],
 
         'profile' => [
+            'country' => 'Land',
             'title' => 'Profil',
+
+            'country_change' => [
+                '_' => "Es sieht so aus, als ob das Land deines Accounts nicht mit dem Land deines Wohnsitzes übereinstimmt. :update_link.",
+                'update_link' => 'Zu :country ändern',
+            ],
 
             'user' => [
                 'user_discord' => '',
@@ -36,7 +48,7 @@ return [
                 'user_interests' => 'Interessen',
                 'user_occ' => 'Beschäftigung',
                 'user_twitter' => '',
-                'user_website' => 'webseite',
+                'user_website' => 'Webseite',
             ],
         ],
 

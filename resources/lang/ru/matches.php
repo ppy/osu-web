@@ -12,7 +12,7 @@ return [
         'in_progress_spinner_label' => 'матч в процессе',
         'loading-events' => 'Загрузка событий...',
         'winner' => ':team победила',
-        'winner_by' => '',
+        'winner_by' => ':winner с разницей в :difference очков',
 
         'events' => [
             'player-left' => ':user покинул комнату',

@@ -188,7 +188,7 @@ return [
 
     'nominations' => [
         'already_nominated' => 'You\'ve already nominated this beatmap.',
-        'cannot_nominate' => 'You cannot nominate this beatmap playmode.',
+        'cannot_nominate' => 'You cannot nominate this beatmap game mode.',
         'delete' => 'Delete',
         'delete_own_confirm' => 'Are you sure? The beatmap will be deleted and you will be redirected back to your profile.',
         'delete_other_confirm' => 'Are you sure? The beatmap will be deleted and you will be redirected back to the user\'s profile.',
@@ -269,7 +269,7 @@ return [
     ],
     'general' => [
         'converts' => 'Include converted beatmaps',
-        'featured_artists' => 'Featured artists',
+        'featured_artists' => 'Featured Artists',
         'follows' => 'Subscribed mappers',
         'recommended' => 'Recommended difficulty',
         'spotlights' => 'Spotlighted beatmaps',

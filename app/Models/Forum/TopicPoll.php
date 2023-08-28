@@ -15,7 +15,14 @@ class TopicPoll
 
     private $topic;
     private $validated = false;
-    private $params;
+    private $params = [
+        'hide_results' => false,
+        'length_days' => 0,
+        'max_options' => 1,
+        'options' => [],
+        'title' => null,
+        'vote_change' => false,
+    ];
     private $votedBy = [];
 
     public function __get(string $field)
@@ -35,12 +42,10 @@ class TopicPoll
 
     public function fill($params)
     {
-        $this->params = array_merge([
-            'hide_results' => false,
-            'length_days' => 0,
-            'max_options' => 1,
-            'vote_change' => false,
-        ], $params);
+        $this->params = [
+            ...$this->params,
+            ...$params,
+        ];
         $this->validated = false;
 
         return $this;
@@ -61,7 +66,7 @@ class TopicPoll
             $this->validated = true;
             $this->validationErrors()->reset();
 
-            if (!isset($this->params['title']) || !present($this->params['title'])) {
+            if (!present($this->params['title'])) {
                 $this->validationErrors()->add('title', 'required');
             }
 

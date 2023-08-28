@@ -532,7 +532,7 @@ class Topic extends Model implements AfterCommit
                 throw $ex;
             }
 
-            $this->increment('topic_views');
+            $this->incrementInstance('topic_views');
         } elseif ($status->mark_time < $markTime) {
             $status->update(['mark_time' => $markTime]);
         }
@@ -793,7 +793,7 @@ class Topic extends Model implements AfterCommit
             $this->topic_title = "[{$tag}] {$this->topic_title}";
         }
 
-        $this->save();
+        $this->saveOrExplode();
     }
 
     public function unsetIssueTag($tag)
@@ -806,7 +806,7 @@ class Topic extends Model implements AfterCommit
             trim(str_replace("[{$tag}]", '', $this->topic_title))
         );
 
-        $this->save();
+        $this->saveOrExplode();
     }
 
     public function hasIssueTag($tag)

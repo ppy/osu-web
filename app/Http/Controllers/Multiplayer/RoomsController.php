@@ -18,6 +18,19 @@ class RoomsController extends BaseController
         $this->middleware('require-scopes:public', ['only' => ['index', 'leaderboard', 'show']]);
     }
 
+    /**
+     * Get Multiplayer Rooms
+     *
+     * Returns a list of multiplayer rooms.
+     *
+     * @group Multiplayer
+     *
+     * @queryParam limit Maximum number of results. No-example
+     * @queryParam mode Filter mode; `active` (default), `all`, `ended`, `participated`, `owned`. No-example
+     * @queryParam season_id Season ID to return Rooms from. No-example
+     * @queryParam sort Sort order; `ended`, `created`. No-example
+     * @queryParam type_group `playlists` (default) or `realtime`. No-example
+     */
     public function index()
     {
         $apiVersion = api_version();

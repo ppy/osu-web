@@ -27,14 +27,14 @@ return [
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => '비트맵 소유자나 nominator/QAT그룹 구성원만이 mapper notes를 작성할 수 있습니다.',
+            'mapper_note_wrong_user' => '비트맵 소유자나 노미네이터/NAT 구성원만이 매퍼 노트를 작성할 수 있습니다.',
         ],
 
         'vote' => [
             'bot' => "봇이 만든 토론에는 투표할 수 없습니다.",
             'limit_exceeded' => '더 투표하기 전에 잠시 기다려 주세요.',
             'owner' => "자신이 시작한 토론에는 투표할 수 없습니다.",
-            'wrong_beatmapset_state' => 'Pending인 비트맵의 토론에만 투표할 수 있습니다.',
+            'wrong_beatmapset_state' => '대기 중인 비트맵의 토론에만 투표할 수 있습니다.',
         ],
     ],
 
@@ -171,6 +171,7 @@ return [
 
     'score' => [
         'pin' => [
+            'disabled_type' => "이러한 유형의 점수는 고정할 수 없습니다",
             'not_owner' => '점수 소유자만 점수를 고정할 수 있습니다.',
             'too_many' => '너무 많은 점수를 고정했습니다.',
         ],

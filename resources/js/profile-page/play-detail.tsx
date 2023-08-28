@@ -8,7 +8,8 @@ import { SoloScoreJsonForUser } from 'interfaces/solo-score-json';
 import UserJson from 'interfaces/user-json';
 import * as React from 'react';
 import PpValue from 'scores/pp-value';
-import { getArtist, getTitle, rulesetName, shouldShowPp } from 'utils/beatmap-helper';
+import { rulesetName, shouldShowPp } from 'utils/beatmap-helper';
+import { getArtist, getTitle } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
@@ -110,7 +111,7 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
           </div>
 
           <div className={`${bn}__score-detail ${bn}__score-detail--mods`}>
-            {score.mods.map((mod) => <Mod key={mod.acronym} mod={mod.acronym} />)}
+            {score.mods.map((mod) => <Mod key={mod.acronym} mod={mod} />)}
           </div>
 
           <div className={`${bn}__pp`}>

@@ -4,5 +4,6 @@
 export default interface ModJson {
   acronym: string;
   name: string;
+  setting_labels: Partial<Record<string, string>>;
   type: string;
 }

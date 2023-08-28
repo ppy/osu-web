@@ -4,7 +4,7 @@
 import LineChart, { makeOptionsNumber } from 'charts/line-chart';
 import { scaleLinear, scaleLog } from 'd3';
 import RankHistoryJson from 'interfaces/rank-history-json';
-import UserStatisticsJson from 'interfaces/user-statistics-json';
+import { UserStatisticsRankedJson } from 'interfaces/user-statistics-json';
 import { last } from 'lodash';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -13,7 +13,7 @@ import { trans, transChoice } from 'utils/lang';
 
 interface Props {
   rankHistory: RankHistoryJson | null;
-  stats: UserStatisticsJson;
+  stats: UserStatisticsRankedJson;
 }
 
 const options = makeOptionsNumber({
@@ -44,8 +44,6 @@ export default class RankChart extends React.Component<Props> {
   private readonly rankChartArea = React.createRef<HTMLDivElement>();
 
   get data() {
-    if (!this.props.stats.is_ranked) return [];
-
     const raw = this.props.rankHistory?.data ?? [];
     const data = raw.map((rank, i) => ({ x: i - raw.length + 1, y: -rank })).filter((point) => point.y < 0);
 
