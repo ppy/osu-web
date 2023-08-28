@@ -174,6 +174,7 @@ export default class Main extends React.Component<Props> {
     if (discussion == null) return;
 
     const {
+      beatmapId,
       mode,
     } = stateFromDiscussion(discussion);
 
@@ -186,6 +187,10 @@ export default class Main extends React.Component<Props> {
     // unset user filter if new discussion would have been filtered out.
     if (this.discussionsState.selectedUserId != null && this.discussionsState.selectedUserId !== discussion.user_id) {
       this.discussionsState.selectedUserId = null;
+    }
+
+    if (beatmapId != null) {
+      this.discussionsState.currentBeatmapId = beatmapId;
     }
 
     this.discussionsState.currentMode = mode;
