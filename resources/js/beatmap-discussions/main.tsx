@@ -188,9 +188,14 @@ export default class Main extends React.Component<Props> {
       this.discussionsState.selectedUserId = null;
     }
 
+    this.discussionsState.currentMode = mode;
     this.discussionsState.highlightedDiscussionId = discussion.id;
 
-    const attribute = postId != null ? `data-post-id='${postId}'` : `data-id='${id}'`;
+    window.setTimeout(() => this.jumpToAfterRender(id, postId), 0);
+  }
+
+  private jumpToAfterRender(discussionId: number, postId?: number) {
+    const attribute = postId != null ? `data-post-id='${postId}'` : `data-id='${discussionId}'`;
     const target = $(`.js-beatmap-discussion-jump[${attribute}]`);
 
     if (target.length === 0) return;
