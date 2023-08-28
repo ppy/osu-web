@@ -57,16 +57,16 @@ export default class BigButton extends React.Component<Props> {
       blockClass += ` ${this.props.extraClasses.join(' ')}`;
     }
 
-    if (present(this.props.href)) {
-      if (this.disabled) {
-        return (
-          <span className={blockClass} {...this.props.props}>
-            {this.renderChildren()}
-          </span>
-        );
-      }
-
+    if (this.disabled) {
       return (
+        <span className={blockClass} {...this.props.props}>
+          {this.renderChildren()}
+        </span>
+      );
+    }
+
+    return present(this.props.href)
+      ? (
         <a
           className={blockClass}
           href={this.props.href}
@@ -74,19 +74,15 @@ export default class BigButton extends React.Component<Props> {
         >
           {this.renderChildren()}
         </a>
+      ) : (
+        <button
+          className={blockClass}
+          type={this.props.isSubmit ? 'submit' : 'button'}
+          {...this.props.props}
+        >
+          {this.renderChildren()}
+        </button>
       );
-    }
-
-    return (
-      <button
-        className={blockClass}
-        disabled={this.disabled}
-        type={this.props.isSubmit ? 'submit' : 'button'}
-        {...this.props.props}
-      >
-        {this.renderChildren()}
-      </button>
-    );
   }
 
   private renderChildren() {
