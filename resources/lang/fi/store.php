@@ -31,7 +31,7 @@ return [
         'cart_problems_edit' => 'Napsauta tästä muokataksesi sitä.',
         'declined' => 'Maksu peruutettiin.',
         'delayed_shipping' => 'Olemme tällä hetkellä hukkumassa tilauksiin! Olet vapaa tilaamaan, mutta ole valmis odottamaan **1-2 viikkoa lisää** kunnes olemme saaneet nykyiset tilaukset lähetettyä.',
-        'hide_from_activity' => '',
+        'hide_from_activity' => 'Älä ilmoita osu!supporter tilauksesta profiilissani',
         'old_cart' => 'Korisi näyttää olevan vanhentunut ja on ladattu uudestaan, yritä uudelleen.',
         'pay' => 'Maksa Paypalilla',
         'title_compact' => 'kassa',
@@ -51,7 +51,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Koska maksusi oli eCheck, anna maksimissaan 10 päivää että maksu pääsee PayPalin läpi!',
-        'hide_from_activity' => '',
+        'hide_from_activity' => 'Tämän tilauksen osu!supporter-tägejä ei näytetä profiilisi viimeaikainen toiminta kohdassa.',
         'title_compact' => 'lasku',
 
         'status' => [
@@ -84,7 +84,7 @@ return [
             ],
 
             'subtext' => [
-                'supporter_tag' => '',
+                'supporter_tag' => 'Viesti: :message',
             ],
         ],
 
@@ -127,7 +127,7 @@ return [
 
     'supporter_tag' => [
         'gift' => 'lahjoita pelaajalle',
-        'gift_message' => '',
+        'gift_message' => 'lisää omavalintainen viesti lahjaasi! (max. :length merkkiä)',
 
         'require_login' => [
             '_' => 'Sinun pitää olla :link saadaksesi osu!tukijan!',

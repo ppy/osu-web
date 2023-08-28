@@ -82,6 +82,6 @@ return [
         'offset_edit' => 'การแก้ไขออฟเซ็ต',
         'qualify' => 'คุณสมบัติ',
         'rank' => 'อันดับ',
-        'remove_from_loved' => 'ถูกนำออกจาก "ชื่นชอบ"',
+        'remove_from_loved' => 'ถูกนำออกจาก Loved',
     ],
 ];

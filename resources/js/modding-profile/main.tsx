@@ -122,11 +122,12 @@ export default class Main extends React.Component<BeatmapsetDiscussionsBundleJso
               <>
                 <ProfileTournamentBanner banner={this.user.active_tournament_banner} />
                 <div className='profile-detail'>
-                  <Badges badges={this.user.badges} />
+
                   <Stats user={this.user} />
                 </div>
               </>
             )}
+            <Badges badges={this.user.badges} />
             <DetailBar user={this.user} />
           </div>
           <div

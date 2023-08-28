@@ -99,7 +99,7 @@ export class NewDiscussion extends React.Component<Props> {
       };
     }
 
-    return this.nearbyDiscussionsCache?.discussions ?? [];
+    return this.nearbyDiscussionsCache.discussions;
   }
 
   private get pinned() {
@@ -473,6 +473,7 @@ export class NewDiscussion extends React.Component<Props> {
         props={{
           'data-type': type,
           onClick: this.post,
+          title: trans(`beatmaps.discussions.message_type_title.${typeText}`),
         }}
         text={trans(`beatmaps.discussions.message_type.${typeText}`)}
       />

@@ -22,7 +22,10 @@ class ChatController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('require-scopes:chat.write', ['only' => 'newConversation']);
+        $this->middleware('require-scopes:chat.read', ['only' => ['ack']]);
+        $this->middleware('require-scopes:chat.write', ['only' => ['newConversation']]);
+
+        // TODO: remove as it's already defined in parent controller?
         $this->middleware('auth');
 
         parent::__construct();

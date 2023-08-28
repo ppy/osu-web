@@ -54,7 +54,7 @@ export class Nominator extends React.Component<Props> {
     const nominations: BeatmapsetEventJson[] = [];
 
     forEachRight(this.beatmapset.events, (event) => {
-      if (event.type === 'nomination_reset') {
+      if (event.type === 'nomination_reset' || event.type === 'disqualify') {
         return false;
       }
 

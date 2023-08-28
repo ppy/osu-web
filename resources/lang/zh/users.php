@@ -387,7 +387,7 @@ return [
                     'date' => '时间',
                     'action' => '处理',
                     'length' => '时长',
-                    'length_permanent' => '永久',
+                    'length_indefinite' => '',
                     'description' => '原因',
                     'actor' => '裁决者： :username',
 
