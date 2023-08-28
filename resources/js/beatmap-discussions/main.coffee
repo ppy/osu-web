@@ -381,14 +381,19 @@ export class Main extends React.PureComponent
       $.publish 'beatmapset-discussions:highlight', discussionId: discussion.id
 
       attribute = if postId? then "data-post-id='#{postId}'" else "data-id='#{id}'"
-      target = $(".js-beatmap-discussion-jump[#{attribute}]")
+      target = document.querySelector(".js-beatmap-discussion-jump[#{attribute}]")
 
-      return if target.length == 0
+      return unless target? && @modeSwitcherRef.current? && @newDiscussionRef.current?
 
-      offsetTop = target.offset().top - @modeSwitcherRef.current.getBoundingClientRect().height
-      offsetTop -= @newDiscussionRef.current.getBoundingClientRect().height if @state.pinnedNewDiscussion
+      margin = @modeSwitcherRef.current.getBoundingClientRect().height
+      margin += @newDiscussionRef.current.getBoundingClientRect().height if @state.pinnedNewDiscussion
 
-      $(window).stop().scrollTo core.stickyHeader.scrollOffset(offsetTop), 500
+      document.documentElement.style.setProperty '--scroll-margin-top', "#{margin}px"
+
+      # avoid smooth scrolling to avoid triggering lazy loaded images.
+      # FIXME: Safari still has the issue where images just out of view get loaded and push the page down
+      # because it doesn't anchor the scroll position.
+      target.scrollIntoView behavior: 'instant', block: 'start', inline: 'nearest'
 
     @update null, newState
 
