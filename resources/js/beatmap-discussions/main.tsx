@@ -168,7 +168,7 @@ export default class Main extends React.Component<Props> {
   };
 
   @action
-  private readonly jumpTo = (_event: unknown, { id, postId }: { id: number; postId?: number }) => {
+  private jumpTo(id: number, postId?: number) {
     const discussion = this.store.discussions.get(id);
 
     if (discussion == null) return;
@@ -204,7 +204,7 @@ export default class Main extends React.Component<Props> {
     }
 
     $(window).stop().scrollTo(core.stickyHeader.scrollOffset(offsetTop), 500);
-  };
+  }
 
   private readonly jumpToClick = (e: JQuery.TriggeredEvent<Document, unknown, HTMLElement, HTMLElement>) => {
     if (!(e.currentTarget instanceof HTMLLinkElement)) return;
@@ -219,14 +219,14 @@ export default class Main extends React.Component<Props> {
     if (discussionId == null) return;
 
     e.preventDefault();
-    this.jumpTo(null, { id: discussionId, postId });
+    this.jumpTo(discussionId, postId);
   };
 
   private readonly jumpToDiscussionByHash = () => {
     const target = parseUrl(null, this.discussionsState.discussionsArray);
 
     if (target?.discussionId != null) {
-      this.jumpTo(null, { id: target.discussionId, postId: target.postId });
+      this.jumpTo(target.discussionId, target.postId);
     }
   };
 
