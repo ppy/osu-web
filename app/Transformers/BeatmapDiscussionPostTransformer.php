@@ -9,7 +9,7 @@ use App\Models\BeatmapDiscussionPost;
 
 class BeatmapDiscussionPostTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'beatmap_discussion',
     ];
 

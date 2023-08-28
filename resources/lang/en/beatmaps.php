@@ -78,6 +78,18 @@ return [
             'suggestion' => 'Suggestion',
         ],
 
+        'message_type_title' => [
+            'disqualify' => 'Post Disqualification',
+            'hype' => 'Post Hype!',
+            'mapper_note' => 'Post Note',
+            'nomination_reset' => 'Remove all Nominations',
+            'praise' => 'Post Praise',
+            'problem' => 'Post Problem',
+            'problem_warning' => 'Post Problem',
+            'review' => 'Post Review',
+            'suggestion' => 'Post Suggestion',
+        ],
+
         'mode' => [
             'events' => 'History',
             'general' => 'General :scope',
@@ -106,7 +118,7 @@ return [
                 'unsaved' => 'Unsaved',
                 'timestamp' => [
                     'all-diff' => 'Posts on "All difficulties" can\'t be timestamped.',
-                    'diff' => 'If this :type starts with a timestamp, it will be shown under Timeline.',
+                    'diff' => 'If this post starts with a timestamp, it will be shown under Timeline.',
                 ],
             ],
             'insert-block' => [
@@ -175,6 +187,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => 'You\'ve already nominated this beatmap.',
+        'cannot_nominate' => 'You cannot nominate this beatmap game mode.',
         'delete' => 'Delete',
         'delete_own_confirm' => 'Are you sure? The beatmap will be deleted and you will be redirected back to your profile.',
         'delete_other_confirm' => 'Are you sure? The beatmap will be deleted and you will be redirected back to the user\'s profile.',
@@ -199,6 +213,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'This map is estimated to be ranked :date if no issues are found. It is #:position in the :queue.',
+            'on' => 'on :date',
             'queue' => 'ranking queue',
             'soon' => 'soon',
         ],
@@ -254,7 +269,7 @@ return [
     ],
     'general' => [
         'converts' => 'Include converted beatmaps',
-        'featured_artists' => 'Featured artists',
+        'featured_artists' => 'Featured Artists',
         'follows' => 'Subscribed mappers',
         'recommended' => 'Recommended difficulty',
         'spotlights' => 'Spotlighted beatmaps',

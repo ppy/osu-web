@@ -25,6 +25,7 @@ return [
     ],
 
     'forums' => [
+        'forums' => 'Foorumit',
         'latest_post' => 'Viimeisin viesti',
 
         'index' => [
@@ -47,7 +48,7 @@ return [
         'confirm_restore' => 'Haluatko varmasti palauttaa viestin?',
         'edited' => 'Viimeksi muokannut :user :when, muokattu yhteensä :count kertaa.',
         'posted_at' => 'lähetetty :when',
-        'posted_by' => 'lähettänyt :username',
+        'posted_by_in' => '',
 
         'actions' => [
             'destroy' => 'Poista viesti',
@@ -149,19 +150,19 @@ return [
                 'unpin' => '',
             ],
 
-            'no_results' => '',
+            'no_results' => 'lokeja ei löytynyt...',
 
             'operations' => [
-                'delete_post' => '',
-                'delete_topic' => '',
+                'delete_post' => 'Poistettu viesti',
+                'delete_topic' => 'Poistettu aihe',
                 'edit_topic' => '',
                 'edit_poll' => '',
                 'fork' => '',
                 'issue_tag' => '',
-                'lock' => '',
+                'lock' => 'Lukittu aihe',
                 'merge' => '',
                 'move' => '',
-                'pin' => '',
+                'pin' => 'Kiinnitetty aihe',
                 'post_edited' => '',
                 'restore_post' => '',
                 'restore_topic' => '',

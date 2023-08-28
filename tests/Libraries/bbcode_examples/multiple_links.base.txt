@@ -1,0 +1,11 @@
+https://osu.ppy.sh https://osu.ppy.sh
+
+http://localhost/home
+http://localhost/home
+http://localhost/home
+
+www.example.com
+www.example.com
+
+user@example.com
+user@example.com

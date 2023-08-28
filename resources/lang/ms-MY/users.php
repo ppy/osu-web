@@ -37,6 +37,7 @@ return [
         'blocked_count' => '',
         'hide_profile' => '',
         'hide_comment' => '',
+        'forum_post_text' => '',
         'not_blocked' => '',
         'show_profile' => '',
         'show_comment' => '',
@@ -48,8 +49,25 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => '',
         'loading' => '',
         'send_message' => '',
+    ],
+
+    'create' => [
+        'form' => [
+            'password' => '',
+            'password_confirmation' => '',
+            'submit' => '',
+            'user_email' => '',
+            'user_email_confirmation' => '',
+            'username' => '',
+
+            'tos_notice' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
     ],
 
     'disabled' => [
@@ -142,6 +160,7 @@ return [
     'restricted_banner' => [
         'title' => '',
         'message' => '',
+        'message_link' => '',
     ],
     'show' => [
         'age' => '',
@@ -368,7 +387,7 @@ return [
                     'date' => '',
                     'action' => '',
                     'length' => '',
-                    'length_permanent' => '',
+                    'length_indefinite' => '',
                     'description' => '',
                     'actor' => '',
 
@@ -451,6 +470,8 @@ return [
         'offline' => '',
     ],
     'store' => [
+        'from_client' => '',
+        'from_web' => '',
         'saved' => '',
     ],
     'verify' => [

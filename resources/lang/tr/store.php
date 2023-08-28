@@ -31,7 +31,7 @@ return [
         'cart_problems_edit' => 'Düzenlemek için buraya tıklayın.',
         'declined' => 'Ödeme iptal edildi.',
         'delayed_shipping' => 'Şu an siparişlere boğulmuş durumdayız! Siparişinizi vermekte özgürsünüz ancak biz mevcut siparişleri yetiştirmekle uğraşırken **ek olarak 1-2 hafta gecikme** bekleyebilirsiniz.',
-        'hide_from_activity' => '',
+        'hide_from_activity' => 'Bu siparişteki tüm osu!supporter etiketlerini etkinliğimden gizle',
         'old_cart' => 'Sepetiniz güncel görünmediği için tekrar yüklendi, lütfen tekrar deneyin.',
         'pay' => 'Paypal ile Ödeme Yap',
         'title_compact' => 'kasaya git',
@@ -51,7 +51,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Ödemenizin bir eCheck olması nedeniyle, ödemenizin PayPal\'dan temizlenmesi için 10 ekstra günü göz önüne alın!',
-        'hide_from_activity' => '',
+        'hide_from_activity' => 'Bu siparişteki osu!supporter etiketleri yakın zamandaki etkinliklerinizde gösterilmez.',
         'title_compact' => 'fatura',
 
         'status' => [
@@ -84,7 +84,7 @@ return [
             ],
 
             'subtext' => [
-                'supporter_tag' => '',
+                'supporter_tag' => 'Mesaj: :message',
             ],
         ],
 
@@ -127,7 +127,7 @@ return [
 
     'supporter_tag' => [
         'gift' => 'oyuncuya hediye et',
-        'gift_message' => '',
+        'gift_message' => 'isterseniz hediyenize bir mesaj ekleyin! (en fazla :length karakter)',
 
         'require_login' => [
             '_' => 'osu!supporter etiketi almak için :link !',

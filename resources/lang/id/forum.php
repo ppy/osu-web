@@ -15,16 +15,17 @@ return [
         'create' => [
             '_' => 'Pasang gambar sampul',
             'button' => 'Unggah gambar sampul',
-            'info' => 'Ukuran gambar sampul yang disarankan adalah :dimensions. Anda juga dapat meletakkan gambar Anda di sini untuk mengunggahnya.',
+            'info' => 'Ukuran gambar sampul yang disarankan adalah :dimensions. Kamu juga dapat meletakkan gambar di sini untuk mengunggahnya.',
         ],
 
         'destroy' => [
             '_' => 'Hapus gambar sampul',
-            'confirm' => 'Apakah Anda yakin ingin menghapus gambar sampul ini?',
+            'confirm' => 'Apakah kamu yakin untuk menghapus gambar sampul ini?',
         ],
     ],
 
     'forums' => [
+        'forums' => 'Forum',
         'latest_post' => 'Kiriman Terbaru',
 
         'index' => [
@@ -38,16 +39,16 @@ return [
 
     'mark_as_read' => [
         'forum' => 'Tandai forum ini sebagai telah dibaca',
-        'forums' => 'Tandai forum-forum ini sebagai telah dibaca',
+        'forums' => 'Tandai forum yang dipilih sebagai telah dibaca',
         'busy' => 'Menandai sebagai telah dibaca...',
     ],
 
     'post' => [
-        'confirm_destroy' => 'Apakah Anda yakin untuk menghapus post ini?',
-        'confirm_restore' => 'Apakah Anda yakin untuk memulihkan post ini?',
+        'confirm_destroy' => 'Apakah kamu yakin untuk menghapus post ini?',
+        'confirm_restore' => 'Apakah kamu yakin untuk memulihkan post ini?',
         'edited' => 'Terakhir disunting oleh :user :when, dengan total penyuntingan sebanyak :count_delimited kali.|Terakhir disunting oleh :user :when, dengan total penyuntingan sebanyak :count_delimited kali.',
         'posted_at' => 'diposting :when',
-        'posted_by' => 'di-post oleh :username',
+        'posted_by_in' => 'diposting oleh :username pada :forum',
 
         'actions' => [
             'destroy' => 'Hapus post',
@@ -75,11 +76,11 @@ return [
     ],
 
     'topic' => [
-        'confirm_destroy' => 'Apakah Anda yakin untuk menghapus topik ini?',
-        'confirm_restore' => 'Apakah Anda yakin untuk memulihkan topik ini?',
+        'confirm_destroy' => 'Apakah kamu yakin untuk menghapus topik ini?',
+        'confirm_restore' => 'Apakah kamu yakin untuk memulihkan topik ini?',
         'deleted' => 'topik yang dihapus',
         'go_to_latest' => 'lihat postingan terbaru',
-        'has_replied' => 'Anda telah mengirimkan balasan pada topik ini',
+        'has_replied' => 'Kamu telah mengirimkan balasan pada topik ini',
         'in_forum' => 'pada forum :forum',
         'latest_post' => ':when oleh :user',
         'latest_reply_by' => 'balasan terbaru oleh :user',
@@ -105,16 +106,16 @@ return [
             'submit' => 'Kirim',
 
             'necropost' => [
-                'default' => 'Topik ini sudah tidak lagi aktif. Harap untuk tidak membuat balasan baru pada topik ini kecuali apabila Anda memiliki alasan khusus untuk melakukannya.',
+                'default' => 'Topik ini sudah tidak lagi aktif. Harap untuk tidak membuka balasan baru pada topik ini kecuali apabila kamu memiliki alasan khusus untuk melakukannya.',
 
                 'new_topic' => [
-                    '_' => "Topik ini sudah tidak lagi aktif. Apabila Anda tidak memiliki alasan khusus untuk membuat balasan baru pada topik ini, harap :create.",
+                    '_' => "Topik ini sudah tidak lagi aktif. Apabila kamu tidak memiliki alasan khusus untuk membuka balasan baru pada topik ini, harap :create.",
                     'create' => 'buat topik baru',
                 ],
             ],
 
             'placeholder' => [
-                'body' => 'Ketik konten post Anda di sini',
+                'body' => 'Ketik konten post di sini',
                 'title' => 'Klik di sini untuk mengatur judul',
             ],
         ],
@@ -192,8 +193,8 @@ return [
             ],
 
             'info' => [
-                'total' => 'Anda berlangganan :total topik.',
-                'unread' => 'Anda memiliki :unread pesan balasan yang belum dibaca pada topik-topik yang Anda langgan.',
+                'total' => 'Kamu berlangganan ke :total topik.',
+                'unread' => 'Kamu memiliki :unread balasan yang belum dibaca pada topik yang kamu langgan.',
             ],
         ],
 
@@ -230,11 +231,11 @@ return [
                 'hide_results_info' => 'Apabila diaktifkan, hasil suara baru akan tersedia setelah jajak pendapat berakhir.',
                 'length' => 'Jalankan jajak pendapat selama',
                 'length_days_suffix' => 'hari',
-                'length_info' => 'Kosongkan apabila Anda tidak ingin menerapkan tenggat waktu pada jajak pendapat ini',
+                'length_info' => 'Kosongkan apabila jajak pendapat ini tidak memiliki tenggat waktu akhir',
                 'max_options' => 'Pilihan per pengguna',
                 'max_options_info' => 'Jumlah pilihan yang dapat dipilih oleh masing-masing pengguna.',
                 'options' => 'Pilihan',
-                'options_info' => 'Tempatkan masing-masing pilihan pada baris baru. Anda dapat menyertakan hingga 10 pilihan.',
+                'options_info' => 'Tempatkan masing-masing pilihan pada baris baru. Kamu dapat menyertakan hingga 10 pilihan.',
                 'title' => 'Pertanyaan',
                 'vote_change' => 'Izinkan pemilihan ulang.',
                 'vote_change_info' => 'Apabila diaktifkan, para pengguna akan dapat mengubah pilihan mereka.',
@@ -253,44 +254,44 @@ return [
 
         'issue_tag_added' => [
             'to_0' => 'Hapus tag "added"',
-            'to_0_done' => 'Tag "added" telah dihapus',
+            'to_0_done' => 'Tag "added" dihapus',
             'to_1' => 'Sematkan tag "added"',
-            'to_1_done' => 'Tag "added" telah disematkan',
+            'to_1_done' => 'Tag "added" disematkan',
         ],
 
         'issue_tag_assigned' => [
             'to_0' => 'Hapus tag "assigned"',
-            'to_0_done' => 'Tag "assigned" telah dihapus',
+            'to_0_done' => 'Tag "assigned" dihapus',
             'to_1' => 'Sematkan tag "assigned"',
-            'to_1_done' => 'Tag "assigned" telah disematkan',
+            'to_1_done' => 'Tag "assigned" disematkan',
         ],
 
         'issue_tag_confirmed' => [
             'to_0' => 'Hapus tag "confirmed"',
-            'to_0_done' => 'Tag "confirmed" telah dihapus',
+            'to_0_done' => 'Tag "confirmed" dihapus',
             'to_1' => 'Sematkan tag "confirmed"',
-            'to_1_done' => 'Tag "confirmed" telah disematkan',
+            'to_1_done' => 'Tag "confirmed" disematkan',
         ],
 
         'issue_tag_duplicate' => [
             'to_0' => 'Hapus tag "duplicate"',
-            'to_0_done' => 'Tag "duplilcate" telah dihapus',
+            'to_0_done' => 'Tag "duplilcate" dihapus',
             'to_1' => 'Sematkan tag "duplicate"',
-            'to_1_done' => 'Tag "duplicate" telah disematkan',
+            'to_1_done' => 'Tag "duplicate" disematkan',
         ],
 
         'issue_tag_invalid' => [
             'to_0' => 'Hapus tag "invalid"',
-            'to_0_done' => 'Tag "invalid" telah dihapus',
+            'to_0_done' => 'Tag "invalid" dihapus',
             'to_1' => 'Sematkan tag "invalid"',
-            'to_1_done' => 'Tag "invalid" telah disematkan',
+            'to_1_done' => 'Tag "invalid" disematkan',
         ],
 
         'issue_tag_resolved' => [
             'to_0' => 'Hapus tag "resolved"',
-            'to_0_done' => 'Tag "resolved" telah dihapus',
+            'to_0_done' => 'Tag "resolved" dihapus',
             'to_1' => 'Sematkan tag "resolved"',
-            'to_1_done' => 'Tag "resolved" telah disematkan',
+            'to_1_done' => 'Tag "resolved" disematkan',
         ],
 
         'lock' => [
@@ -316,7 +317,7 @@ return [
             'to_1_done' => 'Topik telah disematkan',
             'to_2' => 'Sematkan topik dan tandai sebagai pengumuman',
             'to_2_confirm' => 'Sematkan topik dan tandai sebagai pengumuman?',
-            'to_2_done' => 'Topik telah disematkan dan ditandai sebagai pengumuman',
+            'to_2_done' => 'Topik disematkan dan ditandai sebagai pengumuman',
         ],
 
         'moderate_toggle_deleted' => [
@@ -340,8 +341,8 @@ return [
 
                 'user' => [
                     'count' => '{0} tidak ada suara|{1} :count_delimited suara|[2,*] :count_delimited suara',
-                    'current' => 'Anda memiliki :votes tersisa.',
-                    'not_enough' => "Anda tidak memiliki hak suara yang tersisa",
+                    'current' => 'Kamu memiliki :votes tersisa.',
+                    'not_enough' => "Kamu tidak memiliki hak suara yang tersisa",
                 ],
             ],
 
@@ -360,7 +361,7 @@ return [
                 'detail' => [
                     'end_time' => 'Jajak pendapat akan berakhir pada :time',
                     'ended' => 'Jajak pendapat telah berakhir pada :time',
-                    'results_hidden' => 'Hasil jajak pendapat baru akan tersedia setelah pemungutan suara berakhir.',
+                    'results_hidden' => 'Hasil jajak pendapat akan ditampilkan setelah pemungutan suara berakhir.',
                     'total' => 'Jumlah suara: :count',
                 ],
             ],

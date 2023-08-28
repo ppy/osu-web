@@ -77,7 +77,7 @@ module.exports = function(config) {
     concurrency: Infinity,
     exclude: [],
     files,
-    frameworks: ['jasmine'],
+    frameworks: ['jasmine', 'webpack'],
     logLevel: config.LOG_INFO,
     mime: { 'text/x-typescript': ['ts', 'tsx'] },
     port: 9876,

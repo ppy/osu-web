@@ -6,79 +6,94 @@
 return [
     'landing' => [
         'download' => 'Jetzt herunterladen',
-        'online' => 'aktuell <strong>:players</strong> online in <strong>:games</strong> Spielen',
+        'online' => 'aktuell sind <strong>:players</strong> in <strong>:games</strong> Spielen online',
         'peak' => 'Maximum, :count Benutzer online',
         'players' => '<strong>:count</strong> registrierte Spieler',
         'title' => 'willkommen',
         'see_more_news' => 'mehr Neuigkeiten anzeigen',
 
         'slogan' => [
-            'main' => 'das besteste free-to-play rhythmusspiel',
-            'sub' => 'der rhythmus ist nur einen klick entfernt',
+            'main' => 'das beste free-to-play Rhythmusspiel',
+            'sub' => 'Rhythmus ist nur ein Klick entfernt',
         ],
     ],
 
     'search' => [
         'advanced_link' => 'Erweiterte Suche',
         'button' => 'Suchen',
-        'empty_result' => 'Nichts gefunden!',
+        'empty_result' => 'Keine Treffer!',
         'keyword_required' => 'Ein Suchbegriff ist erforderlich',
-        'placeholder' => 'Zum Suchen Text eingeben',
-        'title' => 'Suchergebnisse',
+        'placeholder' => 'tippe, um zu suchen',
+        'title' => 'Suche',
 
         'beatmapset' => [
-            'login_required' => 'Melde Dich an, um Beatmaps zu sehen',
+            'login_required' => 'Melde dich an, um Beatmaps zu suchen',
             'more' => ':count weitere gefundene Beatmaps',
-            'more_simple' => 'Mehr gefundene Beatmaps anzeigen',
+            'more_simple' => 'Siehe mehr Beatmap-Ergebnisse',
             'title' => 'Beatmaps',
         ],
 
         'forum_post' => [
             'all' => 'Alle Foren',
-            'link' => 'Das Forum durchsuchen',
-            'login_required' => 'Melde Dich an, um das Forum zu durchsuchen',
-            'more_simple' => 'Mehr gefundene Forenbeiträge anzeigen',
+            'link' => 'Forum durchsuchen',
+            'login_required' => 'Melde dich an, um das Forum zu durchsuchen',
+            'more_simple' => 'Siehe mehr Foren-Ergebnisse',
             'title' => 'Forum',
 
             'label' => [
-                'forum' => 'in foren suchen',
-                'forum_children' => 'subforen einbeziehen',
+                'forum' => 'Foren durchsuchen',
+                'forum_children' => 'Subforen einbeziehen',
+                'include_deleted' => 'Gelöschte Beiträge miteinbeziehen',
                 'topic_id' => 'Thread #',
-                'username' => 'autor',
+                'username' => 'Autor',
             ],
         ],
 
         'mode' => [
             'all' => 'alle',
-            'beatmapset' => 'beatmap',
-            'forum_post' => 'forum',
-            'user' => 'spieler',
-            'wiki_page' => 'wiki',
+            'beatmapset' => 'Beatmap',
+            'forum_post' => 'Forum',
+            'user' => 'Spieler',
+            'wiki_page' => 'Wiki',
         ],
 
         'user' => [
             'login_required' => 'Melde Dich an, um Benutzer zu suchen',
-            'more' => ':count weitere gefundene Spieler',
-            'more_simple' => 'Mehr gefundene Spieler anzeigen',
-            'more_hidden' => 'Die Spielersuche ist auf :max Spieler limitiert. Verfeinere bitte deine Suchanfrage.',
+            'more' => ':count weitere Spieler-Ergebnisse',
+            'more_simple' => 'Siehe mehr Spieler-Ergebnisse',
+            'more_hidden' => 'Die Spielersuche ist auf :max Spieler limitiert. Versuche deine Suchanfrage zu verfeinern.',
             'title' => 'Spieler',
         ],
 
         'wiki_page' => [
-            'link' => 'Das Wiki durchsuchen',
+            'link' => 'wiki durchsuchen',
             'more_simple' => 'Mehr gefundene Wikieinträge anzeigen',
             'title' => 'Wiki',
         ],
     ],
 
     'download' => [
-        'tagline' => "lass uns<br>loslegen!",
         'action' => 'osu! herunterladen',
+        'action_lazer' => 'osu!(lazer) herunterladen',
+        'action_lazer_description' => 'das nächste große Update von osu!',
+        'action_lazer_info' => 'siehe hier für weitere Informationen',
+        'action_lazer_title' => 'osu!(lazer) ausprobieren',
+        'action_title' => 'osu! herunterladen',
+        'for_os' => 'für :os',
+        'lazer_note' => 'Anmerkung: Rücksetzungen der Rangliste möglich',
+        'macos-fallback' => 'macOS-Benutzer',
+        'mirror' => 'mirror',
+        'or' => 'oder',
+        'os_version_or_later' => ':os_version oder höher',
+        'other_os' => 'andere Plattformen',
+        'quick_start_guide' => 'Schnellstart',
+        'tagline' => "lass uns<br>loslegen!",
+        'video-guide' => 'Videoanleitung (Englisch)',
 
         'help' => [
-            '_' => 'wenn du probleme mit dem starten des spiels oder der registrierung deines accounts hast, :help_forum_link oder :support_button.',
-            'help_forum_link' => 'schau im hilfeforum nach',
-            'support_button' => 'kontaktiere den support',
+            '_' => 'Wenn du Probleme mit dem Starten des Spiels oder der Registrierung deines Accounts hast, :help_forum_link oder :support_button.',
+            'help_forum_link' => 'schau im Hilfeforum nach',
+            'support_button' => 'kontaktiere den Support',
         ],
 
         'os' => [
@@ -86,30 +101,27 @@ return [
             'macos' => 'für macOS',
             'linux' => 'für Linux',
         ],
-        'mirror' => 'mirror',
-        'macos-fallback' => 'macOS-benutzer',
         'steps' => [
             'register' => [
-                'title' => 'erstell einen account',
-                'description' => 'folge den aufforderungen beim spielstart, um dich einzuloggen oder einen account zu erstellen',
+                'title' => 'Erstelle einen Account',
+                'description' => 'Folge den Anweisungen beim Spielstart, um dich einzuloggen oder einen Account zu erstellen.',
             ],
             'download' => [
-                'title' => 'lade das spiel herunter',
-                'description' => 'klick den knopf da oben zum herunterladen und führ die installationsdatei aus!',
+                'title' => 'Spiel herunterladen',
+                'description' => 'Klicke zum Herunterladen oben auf den Button und führe die Installationsdatei aus!',
             ],
             'beatmaps' => [
-                'title' => 'hol\' dir beatmaps',
+                'title' => 'Beatmaps runterladen',
                 'description' => [
-                    '_' => ':browse durch die enorme bibliothek an von nutzern erstellten beatmaps und fang an zu spielen!',
-                    'browse' => 'stöbere',
+                    '_' => ':browse durch die riesige Bibliothek von an Nutzern erstellten Beatmaps und fang an zu spielen!',
+                    'browse' => 'Stöbere',
                 ],
             ],
         ],
-        'video-guide' => 'Videoanleitung (Englisch)',
     ],
 
     'user' => [
-        'title' => 'dashboard',
+        'title' => 'Dashboard',
         'news' => [
             'title' => 'News',
             'error' => 'News konnten nicht geladen werden. Versuche, die Seite neu zu laden?...',
@@ -118,7 +130,7 @@ return [
             'stats' => [
                 'friends' => 'Freunde online',
                 'games' => 'Mehrspielerräume',
-                'online' => 'Benutzer online',
+                'online' => 'User online',
             ],
         ],
         'beatmaps' => [

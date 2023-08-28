@@ -33,10 +33,11 @@ class FetchDedupedScores
             if ($nextCursor !== null) {
                 $search->searchAfter(array_values($nextCursor));
             }
-            $search->response();
+            $response = $search->response();
             $search->assertNoError();
 
-            if ($this->append($search->records()->all())) {
+            $records = $response->records()->whereHas('beatmap.beatmapset')->get()->all();
+            if ($this->append($records)) {
                 break;
             }
 

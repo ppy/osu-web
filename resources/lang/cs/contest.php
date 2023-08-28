@@ -50,7 +50,7 @@ return [
             'beatmap' => 'Pouze .osu soubory jsou přijímány pro tuto soutěž.',
             'music' => 'Pouze .mp3 soubory jsou přijímány pro tuto soutěž.',
         ],
-        'wrong_dimensions' => '',
+        'wrong_dimensions' => 'Příspěvky do soutěže musí mít rozměry :widthx:height',
         'too_big' => 'Možné vstupy pro tuto soutěž jsou :limit-krát.',
     ],
     'beatmaps' => [

@@ -8,6 +8,7 @@ return [
     'not_negative' => ':attribute не може бути від\'ємним.',
     'required' => ':attribute є обов\'язковим.',
     'too_long' => ':attribute перевищує максимальну кількість символів - можна використовувати тільки до :limit символів.',
+    'url' => 'Будь ласка, введіть дійсну URL-адресу.',
     'wrong_confirmation' => 'Повтори не збігаються.',
 
     'beatmapset_discussion' => [
@@ -108,6 +109,16 @@ return [
         ],
     ],
 
+    'legacy_api_key' => [
+        'exists' => 'На цю мить надається лише один ключ API.',
+
+        'attributes' => [
+            'api_key' => 'ключ api',
+            'app_name' => 'назва програми',
+            'app_url' => 'url-адреса програми',
+        ],
+    ],
+
     'oauth' => [
         'client' => [
             'too_many' => 'Перевищено максимальну кількість OAuth додатків.',
@@ -164,6 +175,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => 'Рейтингові карти не можуть бути оскаржені ',
+        'not_in_channel' => 'Ви не в цьому каналі.',
         'reason_not_valid' => ':reason неправильна для даного типу звіту.',
         'self' => "Ви не можете поскаржитися на себе!",
     ],

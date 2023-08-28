@@ -12,7 +12,7 @@ return [
     ],
 
     'cover' => [
-        'deleted' => '',
+        'deleted' => 'บีทแมพที่ถูกลบ',
     ],
 
     'download' => [
@@ -20,11 +20,11 @@ return [
     ],
 
     'featured_artist_badge' => [
-        'label' => '',
+        'label' => 'ศิลปินที่โดดเด่น',
     ],
 
     'index' => [
-        'title' => 'รายการ Beatmap',
+        'title' => 'รายการบีทแมพ',
         'guest_title' => 'บีทแมพ',
     ],
 
@@ -40,7 +40,7 @@ return [
     ],
 
     'nominate' => [
-        'hybrid_requires_modes' => 'เซ็ตบีทแมพที่เป็นแบบไฮบริดจะต้องเลือกโหมดการเล่นอย่างน้อยหนึ่งโหมดที่จะเสนอชื่อให้',
+        'hybrid_requires_modes' => 'บีตแมปแบบไฮบริดจำเป็นให้คุณต้องเลือกโหมดการเล่นอย่างน้อยหนึ่งโหมดเพื่อเสนอชื่อเข้าชิง',
         'incorrect_mode' => 'คุณไม่มีสิทธิในการเสนอชื่อในโหมด :mode',
         'full_bn_required' => 'คุณต้องเป็นผู้เสนอชื่อก่อนที่จะดำเนินการคุณสมบัตินี้ได้',
         'too_many' => 'ความต้องการเสนอชื่อได้สำเร็จแล้ว',
@@ -60,13 +60,19 @@ return [
     'show' => [
         'discussion' => 'การสนทนา',
 
+        'deleted_banner' => [
+            'title' => 'บีทแมพนี้ถูกลบไปแล้ว',
+            'message' => '(ผู้ดูแลเท่านั้นที่สามารถเห็นสิ่งนี้)',
+        ],
+
         'details' => [
             'by_artist' => 'โดย :artist',
-            'favourite' => 'กดชื่นชอบ beatmapset นี้',
-            'favourite_login' => 'ลงชื่อบีทแมพนี้เป็นรายการโปรด',
+            'favourite' => 'ชื่นชอบบีทแมพนี้',
+            'favourite_login' => 'ลงชื่อเข้าใช้เพื่อเพิ่มบีทแมพนี้เข้าในรายการโปรด',
             'logged-out' => 'คุณต้องเข้าสู่ระบบก่อนที่จะดาวน์โหลดบีทแมพ',
             'mapped_by' => 'แมพโดย :mapper',
-            'unfavourite' => 'เลิก Favourite beatmapset นี้',
+            'mapped_by_guest' => 'ระดับความยากโดย :mapper',
+            'unfavourite' => 'นำบีทแมพนี้ออกจากรายการโปรด',
             'updated_timeago' => 'อัปเดตล่าสุดเมื่อ :timeago',
 
             'download' => [
@@ -84,8 +90,8 @@ return [
 
         'details_date' => [
             'approved' => 'อนุมัติ :timeago',
-            'loved' => 'loved เมื่อ :timeago',
-            'qualified' => 'qualified :timeago',
+            'loved' => 'รักแล้ว :timeago',
+            'qualified' => 'ผ่านการรับรอง :timeago',
             'ranked' => 'จัดอันดับแล้วเมื่อ :timeago',
             'submitted' => 'ส่งเมื่อ :timeago',
             'updated' => 'อัปเดตครั้งล่าสุดเมื่อ :timeago',
@@ -103,13 +109,13 @@ return [
 
                 'status' => [
                     'pending' => 'อยู่ระหว่างดำเนินการ',
-                    'qualified' => 'qualified',
+                    'qualified' => 'ผ่านการรับรอง',
                     'wip' => 'อยู่ระหว่างดำเนินการ',
                 ],
             ],
 
             'disqualify' => [
-                '_' => 'ถ้าคุณพบปัญหากับบีทแมพนี้ ให้คุณยกเลิกสถานะ Qualified ของบีทแมพนี้ไป :link',
+                '_' => 'ถ้าคุณพบปัญหากับบีทแมพนี้ ให้คุณยกเลิกสถานะ "ผ่านการรับรอง" ของบีทแมพนี้ออก :link',
             ],
 
             'report' => [
@@ -124,9 +130,9 @@ return [
             'genre' => 'ประเภท',
             'language' => 'ภาษา',
             'no_scores' => 'ข้อมูลกำลังถูกคำนวณ...',
-            'nominators' => '',
+            'nominators' => 'ผู้เสนอชื่อ',
             'nsfw' => 'เนื้อหาไม่เหมาะสม',
-            'offset' => '',
+            'offset' => 'ออฟเซ็ตออนไลน์',
             'points-of-failure' => 'ความล้มเหลว',
             'source' => 'แหล่งที่มา',
             'storyboard' => 'บีทแมพนี้มี storyboard',
@@ -149,7 +155,7 @@ return [
         'scoreboard' => [
             'achieved' => 'ได้รับ :when',
             'country' => 'อันดับประเทศ',
-            'error' => '',
+            'error' => 'โหลดอันดับไม่สำเร็จ',
             'friend' => 'อันดับเพื่อน',
             'global' => 'อันดับโลก',
             'supporter-link' => 'คลิก <a href=":link">ที่นี่</a> เพื่อดูสิ่งสวยงามทั้งหมดที่คุณได้รับ!',
@@ -159,9 +165,9 @@ return [
             'headers' => [
                 'accuracy' => 'ความแม่นยำ',
                 'combo' => 'คอมโบสูงสุด',
-                'miss' => 'Miss',
+                'miss' => 'พลาด',
                 'mods' => 'ม็อด',
-                'pin' => '',
+                'pin' => 'ปักหมุด',
                 'player' => 'ผู้เล่น',
                 'pp' => '',
                 'rank' => 'อันดับ',
@@ -175,15 +181,15 @@ return [
                 'friend' => 'ยังไม่มีใครในเพือนของคุณที่ทำคะแนนบนแมพนี้ได้!',
                 'global' => 'ยังไม่มีคะแนน บางทีคุณอาจจะลองทำดูนะ',
                 'loading' => 'กำลังโหลดคะแนน...',
-                'unranked' => 'แมพที่ไม่ได้จัดอันดับ',
+                'unranked' => 'บีทแมพที่ไม่ได้จัดอันดับ',
             ],
             'score' => [
-                'first' => 'นำ',
+                'first' => 'สูงสุด',
                 'own' => 'คะแนนดีที่สุดของคุณ',
             ],
             'supporter_link' => [
-                '_' => '',
-                'here' => '',
+                '_' => 'คลิก :here เพื่อดูคุณสมบัติแฟนซีทั้งหมดที่คุณได้รับ!',
+                'here' => 'ที่นี่',
             ],
         ],
 
@@ -194,11 +200,11 @@ return [
             'accuracy' => 'ความแม่นยำ',
             'ar' => 'อัตราการเข้าใกล้',
             'stars' => 'ระดับความยาก',
-            'total_length' => 'ความยาว',
+            'total_length' => 'ความยาว (ความยาวสาย: :hit_length)',
             'bpm' => 'BPM',
             'count_circles' => 'จำนวนวงกลม',
             'count_sliders' => 'จำนวนสไลเดอร์',
-            'offset' => '',
+            'offset' => 'ออฟเซ็ตออนไลน์: :offset',
             'user-rating' => 'คะแนน',
             'rating-spread' => 'การกระจายคะแนนโหวต',
             'nominations' => 'การเสนอชื่อ',
@@ -208,8 +214,8 @@ return [
         'status' => [
             'ranked' => 'จัดอันดับแล้ว',
             'approved' => 'อนุมัติ',
-            'loved' => 'Loved',
-            'qualified' => 'Qualified',
+            'loved' => 'ชื่นชอบ',
+            'qualified' => 'ผ่านการรับรอง',
             'wip' => 'WIP',
             'pending' => 'อยู่ระหว่างดำเนินการ',
             'graveyard' => 'สุสาน',
@@ -217,6 +223,6 @@ return [
     ],
 
     'spotlight_badge' => [
-        'label' => '',
+        'label' => 'สปอร์ตไลท์',
     ],
 ];

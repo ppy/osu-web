@@ -5,41 +5,41 @@
 
 return [
     'button' => [
-        'cancel' => '',
-        'resend' => '',
-        'set' => '',
-        'start' => '',
+        'cancel' => 'Batal',
+        'resend' => 'Hantar semula e-mel pengesahan',
+        'set' => 'Tetap kata laluan',
+        'start' => 'Mula',
     ],
 
     'error' => [
-        'contact_support' => '',
-        'expired' => '',
-        'invalid' => '',
-        'is_privileged' => '',
-        'missing_key' => '',
-        'too_many_tries' => '',
-        'user_not_found' => '',
-        'wrong_key' => '',
+        'contact_support' => 'Sila hubungi layanan pembantu untuk memulihkan akaun.',
+        'expired' => 'Kod pengesahan telah luput.',
+        'invalid' => 'Terdapat keralatan dalam mengesahkan kod.',
+        'is_privileged' => 'Sila hubungi admin yang memiliki akses perizinan tingkat tinggi untuk memulihkan akaun.',
+        'missing_key' => 'Wajib.',
+        'too_many_tries' => 'Terlalu banyak percubaan yang gagal.',
+        'user_not_found' => 'Pengguna yang diminta tidak ditemukan.',
+        'wrong_key' => 'Kod salah.',
     ],
 
     'notice' => [
-        'sent' => '',
-        'saved' => '',
+        'sent' => 'Sila semak e-mel kamu untuk kod pengesahan.',
+        'saved' => 'Kata laluan baharu disimpan!',
     ],
 
     'started' => [
-        'password' => '',
-        'password_confirmation' => '',
-        'title' => '',
-        'verification_key' => '',
+        'password' => 'Kata laluan baharu',
+        'password_confirmation' => 'Pengesahan kata laluan',
+        'title' => 'Mengatur ulang kata laluan akaun <strong>:username</strong>.',
+        'verification_key' => 'Kod pengesahan',
     ],
 
     'starting' => [
-        'username' => '',
+        'username' => 'Masukkan alamat e-mel atau nama pengguna',
 
         'support' => [
-            '_' => '',
-            'button' => '',
+            '_' => 'Perlukan bantuan lebih lanjut? Hubungi :button kami.',
+            'button' => 'layanan dukungan',
         ],
     ],
 ];

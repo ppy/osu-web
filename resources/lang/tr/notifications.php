@@ -13,6 +13,16 @@ return [
     'see_channel' => 'sohbete git',
     'verifying' => 'Bildirimleri görüntülemek için lütfen oturumunuzu doğrulayın',
 
+    'action_type' => [
+        '_' => 'hepsi',
+        'beatmapset' => 'haritalar',
+        'build' => 'sürümler',
+        'channel' => 'sohbet',
+        'forum_topic' => 'forum',
+        'news_post' => 'haberler',
+        'user' => 'profil',
+    ],
+
     'filters' => [
         '_' => 'hepsi',
         'user' => 'profil',
@@ -92,7 +102,7 @@ return [
                 'announce' => [
                     'channel_announcement' => ':username ":title" diyor',
                     'channel_announcement_compact' => ':title',
-                    'channel_announcement_group' => ':username Tarafından duyuru',
+                    'channel_announcement_group' => ':username tarafından duyuru',
                 ],
             ],
 
@@ -143,15 +153,6 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => 'Legacy Forum PM',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited okunmamış mesaj.|:count_delimited okunmamış mesaj',
-            ],
-        ],
-
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Yeni beatmap',
@@ -160,8 +161,8 @@ return [
                 'user_beatmapset_new_compact' => 'Yeni beatmap ":title"',
                 'user_beatmapset_new_group' => ' :username tarafından yapılmış yeni beatmapler',
 
-                'user_beatmapset_revive' => '":title" isimli Beatmap :username tarafından hayata geri döndürüdü',
-                'user_beatmapset_revive_compact' => '":title" isim Beatmap hayata geri döndürüldü',
+                'user_beatmapset_revive' => '":title" adlı beatmap :username tarafından hayata geri döndürüldü',
+                'user_beatmapset_revive_compact' => '":title" adlı beatmap hayata geri döndürüldü',
             ],
         ],
 
@@ -209,6 +210,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => '":name" içinde yeni bir duyuru var',
+            ],
+
             'channel' => [
                 'pm' => ':username kullanıcısından yeni bir mesaj geldi',
             ],

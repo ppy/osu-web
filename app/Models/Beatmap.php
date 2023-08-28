@@ -6,6 +6,8 @@
 namespace App\Models;
 
 use App\Exceptions\InvariantException;
+use App\Jobs\EsDocument;
+use App\Libraries\Transactions\AfterCommit;
 use DB;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -35,7 +37,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $hit_length
  * @property \Carbon\Carbon $last_update
  * @property mixed $mode
- * @property bool $orphaned
  * @property int $passcount
  * @property int $playcount
  * @property int $playmode
@@ -45,7 +46,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $version
  * @property string|null $youtube_preview
  */
-class Beatmap extends Model
+class Beatmap extends Model implements AfterCommit
 {
     use SoftDeletes;
 
@@ -55,10 +56,9 @@ class Beatmap extends Model
     protected $primaryKey = 'beatmap_id';
 
     protected $casts = [
-        'orphaned' => 'boolean',
+        'last_update' => 'datetime',
     ];
 
-    protected $dates = ['last_update'];
     public $timestamps = false;
 
     const MODES = [
@@ -202,6 +202,15 @@ class Beatmap extends Model
         return $this->hasMany(Score\Best\Mania::class);
     }
 
+    public function afterCommit()
+    {
+        $beatmapset = $this->beatmapset;
+
+        if ($beatmapset !== null) {
+            dispatch(new EsDocument($beatmapset));
+        }
+    }
+
     public function isScoreable()
     {
         return $this->approved > 0;
@@ -236,8 +245,6 @@ class Beatmap extends Model
             'total_length',
             'user_id',
             'youtube_preview' => $this->getRawAttribute($key),
-
-            'orphaned' => (bool) $this->getRawAttribute($key),
 
             'deleted_at',
             'last_update' => $this->getTimeFast($key),

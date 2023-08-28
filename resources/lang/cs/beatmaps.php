@@ -106,7 +106,7 @@ return [
                 'unsaved' => 'Neuloženo',
                 'timestamp' => [
                     'all-diff' => 'Příspěvky na "Všechny obtížnosti" nemohou být časovány.',
-                    'diff' => 'Pokud tento :type začíná časovou značkou, zobrazí se v Časové ose.',
+                    'diff' => 'Pokud tento příspěvek začíná časovou značkou, zobrazí se v Časové ose.',
                 ],
             ],
             'insert-block' => [
@@ -175,6 +175,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => 'Už jsi tuto beatmapu nominoval.',
+        'cannot_nominate' => 'Nemůžeš nominovat tento herní mód beatmapy.',
         'delete' => 'Vymazat',
         'delete_own_confirm' => 'Jste si jistý? Tahle beatmapa bude smazána a pošleme vás zpátky na váš profil.',
         'delete_other_confirm' => 'Jste si jistý? Tahle beatmapa bude smazána a pošleme vás zpátky na profil uživatele.',
@@ -199,6 +201,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'Odhaduje se, že tato mapa bude schválena :date, pokud nejsou nalezeny žádné problémy. Aktuálně je #:position ve :queue.',
+            'on' => 'dne :date',
             'queue' => 'frontě schválení',
             'soon' => 'brzy',
         ],
@@ -248,13 +251,13 @@ return [
             ],
             'supporter_filter_quote' => [
                 '_' => 'Filtrování podle :filters vyžaduje aktivní :link',
-                'link_text' => 'stítek podporovatele',
+                'link_text' => 'osu!supporter tag',
             ],
         ],
     ],
     'general' => [
         'converts' => 'Zahrň překonvertované beatmapy',
-        'featured_artists' => 'Featured artists',
+        'featured_artists' => 'Featured Artists',
         'follows' => 'Odebíraní autoři map',
         'recommended' => 'Doporučená obtížnost',
         'spotlights' => 'Zvýrazněné beatmapy',
@@ -304,7 +307,7 @@ return [
         'german' => 'Německé',
         'italian' => 'Italské',
         'japanese' => 'Japonské',
-        'korean' => 'Korejské',
+        'korean' => 'Korejština',
         'spanish' => 'Španělské',
         'swedish' => 'Švédské',
         'russian' => 'Ruština',

@@ -9,7 +9,9 @@ use App\Models\Beatmap;
 use App\Models\Country;
 use App\Models\CountryStatistics;
 use App\Models\Spotlight;
+use App\Models\User;
 use App\Models\UserStatistics;
+use App\Transformers\SelectOptionTransformer;
 use DB;
 use Illuminate\Pagination\LengthAwarePaginator;
 
@@ -90,11 +92,11 @@ class RankingController extends Controller
 
             $this->defaultViewVars['country'] = $this->country;
             if ($type === 'performance') {
-                $this->defaultViewVars['countries'] = json_collection($this->getCountries($mode), 'Country', ['display']);
+                $this->defaultViewVars['countries'] = json_collection($this->getCountries($mode), new SelectOptionTransformer());
             }
 
             return $next($request);
-        });
+        }, ['except' => ['kudosu']]);
     }
 
     /**
@@ -219,6 +221,21 @@ class RankingController extends Controller
         return ext_view("rankings.{$type}", array_merge($this->defaultViewVars, compact('scores')));
     }
 
+    public function kudosu()
+    {
+        static $maxResults = 1000;
+
+        $maxPage = $maxResults / static::PAGE_SIZE;
+        $page = min(get_int(request('page')) ?? 1, $maxPage);
+
+        $scores = User::default()
+            ->with('country')
+            ->orderBy('osu_kudostotal', 'desc')
+            ->paginate(static::PAGE_SIZE, ['*'], 'page', $page, $maxResults);
+
+        return ext_view('rankings.kudosu', compact('scores'));
+    }
+
     public function spotlight($mode)
     {
         $chartId = $this->params['spotlight'] ?? null;
@@ -262,11 +279,10 @@ class RankingController extends Controller
             $scoreCount = 0;
         }
 
+        $selectOptionTransformer = new SelectOptionTransformer();
         $selectOptions = [
-            'selected' => $this->optionFromSpotlight($spotlight),
-            'options' => $spotlights->map(function ($s) {
-                return $this->optionFromSpotlight($s);
-            }),
+            'selected' => json_item($spotlight, $selectOptionTransformer),
+            'options' => json_collection($spotlights, $selectOptionTransformer),
         ];
 
         return ext_view(
@@ -288,11 +304,6 @@ class RankingController extends Controller
         return Country::whereHas($relation, function ($query) {
             $query->where('display', true);
         })->get();
-    }
-
-    private function optionFromSpotlight(Spotlight $spotlight): array
-    {
-        return ['id' => $spotlight->chart_id, 'text' => $spotlight->name];
     }
 
     private function maxResults($modeInt, $stats)

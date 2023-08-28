@@ -31,7 +31,7 @@ return [
         'cart_problems_edit' => 'اضغط هنا لتعديلها.',
         'declined' => 'تم إلغاء الدفع.',
         'delayed_shipping' => 'نحن حالياََ غارقون في الطلبات! انت مرحب بوضع طلبك, ولكن ارجوك انتظر **1-2 اسابيع اضافية اخرى** حتى ننتهي من الطلبات الحالية.',
-        'hide_from_activity' => '',
+        'hide_from_activity' => 'إخفاء جميع علامات osu!supporter في هذا الترتيب من نشاطي',
         'old_cart' => 'سلة التسوق الخاصة بك تبدو منتهية الصلاحية وتم اعادة شحنها, الرجاء المحاولة مجدداََ.',
         'pay' => 'الدفع بـ باي بال',
         'title_compact' => 'إتمام الشراء',
@@ -51,7 +51,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'بما ان دفعتك كانت الكترونية، يرجى السماح لنا حتى 10 أيام إضافية لدفع للمرور عن طريق باي بال!',
-        'hide_from_activity' => '',
+        'hide_from_activity' => 'إشارات osu!supporter لن تعرض بهذا الترتيب في نشاطك.',
         'title_compact' => 'الفاتورة',
 
         'status' => [
@@ -84,7 +84,7 @@ return [
             ],
 
             'subtext' => [
-                'supporter_tag' => '',
+                'supporter_tag' => 'الرسالة: :message',
             ],
         ],
 
@@ -127,7 +127,7 @@ return [
 
     'supporter_tag' => [
         'gift' => 'اهدِه الى لاعب',
-        'gift_message' => '',
+        'gift_message' => 'أضف رسالة اختيارية إلى هديتك! (بحد اقصى :length حرفا)',
 
         'require_login' => [
             '_' => 'يجب ان تكون :link لتحصل على شارة osu!supporter!',

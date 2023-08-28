@@ -25,6 +25,7 @@ return [
     ],
 
     'forums' => [
+        'forums' => 'Форуми',
         'latest_post' => 'Останній пост',
 
         'index' => [
@@ -47,7 +48,7 @@ return [
         'confirm_restore' => 'Відновити відповідь?',
         'edited' => 'Востаннє відредаговано :user :when, загалом відредаговано :count_delimited раз.|Востаннє відредаговано :user :when, загалом відредаговано :count_delimited разів.',
         'posted_at' => 'написано :when',
-        'posted_by' => 'опубліковано :username',
+        'posted_by_in' => 'опубліковано :username у :forum',
 
         'actions' => [
             'destroy' => 'Видалити відповідь',
@@ -101,7 +102,7 @@ return [
             'preview' => 'Попередній перегляд',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
-            'preview_hide' => 'Написати',
+            'preview_hide' => 'Редагувати',
             'submit' => 'Опублікувати',
 
             'necropost' => [

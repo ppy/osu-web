@@ -22,7 +22,7 @@ class ChannelTransformer extends TransformerAbstract
         ...self::CONVERSATION_INCLUDES,
     ];
 
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'current_user_attributes',
         'last_message_id',
         'last_read_id', // TODO: deprecated
@@ -46,6 +46,7 @@ class ChannelTransformer extends TransformerAbstract
             'channel_id' => $channel->channel_id,
             'description' => $channel->description,
             'icon' => $channel->displayIconFor($this->user),
+            'message_length_limit' => $channel->messageLengthLimit(),
             'moderated' => $channel->moderated,
             'name' => $channel->displayNameFor($this->user),
             'type' => $channel->type,

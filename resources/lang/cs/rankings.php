@@ -17,12 +17,27 @@ return [
         ],
     ],
 
+    'kudosu' => [
+        'total' => 'Získáno',
+        'available' => 'Dostupné',
+        'used' => 'Použito',
+    ],
+
     'type' => [
         'charts' => 'výběry',
         'country' => 'stát',
+        'kudosu' => 'kudosu',
         'multiplayer' => 'hra pro více hráčů',
         'performance' => 'výkon',
         'score' => 'skóre',
+        'seasons' => 'sezóny',
+    ],
+
+    'seasons' => [
+        'empty' => 'V této sezóně nejsou žádné místnosti.',
+        'ongoing' => 'Tato sezóna stále probíhá (více playlistů bude přidáno průběhem času).',
+        'room_count' => 'Počet playlistů',
+        'url' => 'Zobrazit více informací pro tuto sezónu.',
     ],
 
     'spotlight' => [

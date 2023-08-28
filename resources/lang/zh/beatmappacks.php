@@ -6,6 +6,7 @@
 return [
     'index' => [
         'description' => '围绕某个相同主题打包好的曲包',
+        'empty' => '敬请期待！',
         'nav_title' => '列表',
         'title' => '曲包',
 
@@ -27,15 +28,18 @@ return [
         ],
         'no_diff_reduction' => [
             '_' => '若要解锁成就，则不能使用:link游玩谱面。',
-            'link' => '降低难度的 Mod',
+            'link' => '降低难度的模组',
         ],
     ],
 
     'mode' => [
         'artist' => '艺术家/专辑',
         'chart' => '聚光灯',
+        'featured' => '精选艺术家',
+        'loved' => '社区喜爱计划',
         'standard' => '常规',
         'theme' => '主题',
+        'tournament' => '锦标赛',
     ],
 
     'require_login' => [

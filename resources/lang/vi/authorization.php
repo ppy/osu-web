@@ -50,13 +50,11 @@ return [
             'resolved' => 'Bạn không thể sửa một bài đăng về một thảo luận đã được giải quyết.',
             'system_generated' => 'Không thể chỉnh sửa bài đăng được tạo tự động.',
         ],
-
-        'store' => [
-            'beatmapset_locked' => 'Thảo luận bị khóa cho beatmap này.',
-        ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => 'Beatmap này bị khoá thảo luận.',
+
         'metadata' => [
             'nominated' => 'Bạn không thể thay đổi metadata của map đã được nominated. Liên hệ với một BN hoặc NAT nếu bạn thấy metadata bị sai.',
         ],
@@ -173,6 +171,7 @@ return [
 
     'score' => [
         'pin' => [
+            'disabled_type' => "Không thể ghim điểm này",
             'not_owner' => 'Chỉ có người sở hữu có thể ghim điểm.',
             'too_many' => 'Ghim quá nhiều điểm.',
         ],

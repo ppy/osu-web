@@ -13,20 +13,17 @@ class BanchoStatsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
-        $date = new Carbon();
+        $timestamp = Carbon::now();
 
-        //Create 500 new data points
-        factory(BanchoStats::class, 500)->make()->each(function ($stat) use ($date) {
-            $stat->date = $date;
-            $stat->save();
+        // Create 500 new data points
+        for ($i = 0; $i < 500; $i++) {
+            BanchoStats::factory()->create(['date' => $timestamp]);
 
-            //Increment the dates by 5 each time
-            $date->addMinutes(5);
-        });
+            // Increment the timestamp by 5 each time
+            $timestamp->addMinutes(5);
+        }
     }
 }

@@ -43,6 +43,7 @@ return [
             'label' => [
                 'forum' => 'buscar en los foros',
                 'forum_children' => 'incluir subforos',
+                'include_deleted' => 'incluir publicaciones eliminadas',
                 'topic_id' => 'tema #',
                 'username' => 'autor',
             ],
@@ -72,8 +73,22 @@ return [
     ],
 
     'download' => [
-        'tagline' => "¡vamos a<br>empezar!",
         'action' => 'Descargar osu!',
+        'action_lazer' => 'Descargar osu!(lazer)',
+        'action_lazer_description' => 'la próxima gran actualización de osu!',
+        'action_lazer_info' => 'revisa esta página para más información',
+        'action_lazer_title' => 'prueba osu!(lazer)',
+        'action_title' => 'descarga osu!',
+        'for_os' => 'para :os',
+        'lazer_note' => 'nota: se aplican reinicios de la tabla de clasificación',
+        'macos-fallback' => 'usuarios de macOS',
+        'mirror' => 'link alternativo',
+        'or' => 'o',
+        'os_version_or_later' => ':os_version o posterior',
+        'other_os' => 'otras plataformas',
+        'quick_start_guide' => 'guía de inicio rápido',
+        'tagline' => "¡vamos a<br>empezar!",
+        'video-guide' => 'guía en vídeo',
 
         'help' => [
             '_' => 'si tiene problemas para iniciar el juego o para obtener una cuenta, :help_forum_link o :support_button.',
@@ -86,8 +101,6 @@ return [
             'macos' => 'para macOS',
             'linux' => 'para Linux',
         ],
-        'mirror' => 'link alternativo',
-        'macos-fallback' => 'usuarios de macOS',
         'steps' => [
             'register' => [
                 'title' => 'obtener una cuenta',
@@ -105,7 +118,6 @@ return [
                 ],
             ],
         ],
-        'video-guide' => 'guía en vídeo',
     ],
 
     'user' => [

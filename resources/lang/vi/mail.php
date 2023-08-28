@@ -67,7 +67,7 @@ return [
         'duration' => 'Nhờ họ, bạn có quyền truy cập osu!direct và các quyền lợi osu!supporter khác trong :duration tiếp theo.',
         'features' => 'Bạn có thể tìm thêm thông tin về những tính năng này tại đây:',
         'gifted' => 'Ai đó vừa mới tặng bạn một osu!supporter tag!',
-        'gift_message' => '',
+        'gift_message' => 'Người đã tặng bạn cái thẻ này để lại một tin nhắn:',
         'subject' => 'Bạn đã được tặng một osu!supporter tag!',
     ],
 

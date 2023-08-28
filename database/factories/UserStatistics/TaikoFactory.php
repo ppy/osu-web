@@ -12,7 +12,4 @@ use App\Models\UserStatistics\Taiko;
 class TaikoFactory extends ModelFactory
 {
     protected $model = Taiko::class;
-
-    // TODO: remove following line after removing legacy-factories
-    // fooling legacy-factories' "isLegacyFactory" check: class Hello extends Factory
 }

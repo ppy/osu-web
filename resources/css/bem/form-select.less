@@ -1,0 +1,56 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.form-select {
+  .default-border-radius();
+  background-color: @osu-colour-b6;
+  color: @osu-colour-c1;
+
+  // reset global label style
+  text-transform: initial;
+  font-weight: initial;
+  line-height: normal;
+  margin: 0;
+  min-width: 0;
+
+  display: flex;
+  align-items: baseline;
+
+  font-size: @font-size--phone-input;
+  position: relative;
+
+  @media @desktop {
+    font-size: inherit;
+  }
+
+  &::after {
+    .fas();
+    .center-content();
+    content: '\f078';
+    padding: 0 10px;
+    position: absolute;
+    right: 0;
+    height: 100%;
+    background-color: inherit;
+    border-radius: inherit;
+    pointer-events: none;
+  }
+
+  &--full {
+    flex: 1;
+  }
+
+  &--simple-form {
+    background-color: @osu-colour-b4;
+    color: @osu-colour-c1;
+  }
+
+  &__input {
+    .reset-input();
+    padding: 5px calc(20px + 1em) 5px 5px;
+    flex: 1;
+    background-color: inherit;
+    border-radius: inherit;
+    max-width: 100%;
+  }
+}

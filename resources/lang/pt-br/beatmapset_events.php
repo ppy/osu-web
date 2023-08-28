@@ -34,6 +34,7 @@ return [
         'qualify' => 'Este beatmap alcançou o número de nomeações necessárias e se tornou qualificado.',
         'rank' => 'Ranqueado.',
         'remove_from_loved' => 'Removido dos Loved por :user. (:text)',
+        'tags_edit' => 'Tags alteradas de ":old" para ":new".',
 
         'nsfw_toggle' => [
             'to_0' => 'Marcação explícita removida',

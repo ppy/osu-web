@@ -24,6 +24,11 @@ abstract class DuskTestCase extends BaseTestCase
      */
     public static function prepare()
     {
+        $chromeDriver = presence(env('DUSK_WEBDRIVER_BIN'));
+        if ($chromeDriver !== null) {
+            static::$chromeDriver = $chromeDriver;
+        }
+
         if (!present(env('DUSK_WEBDRIVER_URL'))) {
             static::startChromeDriver();
         }
@@ -65,5 +70,14 @@ abstract class DuskTestCase extends BaseTestCase
             ->setSize(new WebDriverDimension(1920, 1080)); // ensure we get desktop layout
 
         return $driver;
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        foreach (static::$browsers as $browser) {
+            static::resetSession($browser);
+        }
     }
 }

@@ -31,7 +31,7 @@ return [
         'cart_problems_edit' => 'Kattints ide a szerkesztéséhez.',
         'declined' => 'A fizetés meg lett szakítva.',
         'delayed_shipping' => 'Jelenleg túlnyomóan sok rendelésünk van. Szívesen fogadjuk rendelésed, viszont arra számíts, hogy **további 1-2 hét késés** is lehet míg elérünk a jelenlegi rendelésekig.',
-        'hide_from_activity' => '',
+        'hide_from_activity' => 'Rejtse el ezeknek az osu!supporter címkék vásárlását az aktivitásomból',
         'old_cart' => 'A kosarad réginek tűnik és újra lett töltve, kérlek próbáld újra.',
         'pay' => 'Fizetés Paypal használatával',
         'title_compact' => 'fizetés',
@@ -51,7 +51,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Mivel a fizetésed egy eCheck volt, engedj meg neki legalább 10 napot a PayPal-es feldolgozásra!',
-        'hide_from_activity' => '',
+        'hide_from_activity' => 'ebben a vásárlásban szereplő osu!supporter címkék nem jelennek meg a legutóbbi aktivitásaid között.',
         'title_compact' => 'számla',
 
         'status' => [
@@ -84,7 +84,7 @@ return [
             ],
 
             'subtext' => [
-                'supporter_tag' => '',
+                'supporter_tag' => 'Üzenet: :message',
             ],
         ],
 
@@ -127,7 +127,7 @@ return [
 
     'supporter_tag' => [
         'gift' => 'játékosnak ajándékozás',
-        'gift_message' => '',
+        'gift_message' => 'adj egy üzenetet az ajándékodhoz, amennyiben szeretnél! (legfeljebb :length karakterű)',
 
         'require_login' => [
             '_' => 'Az osu!támogatói cím megszerzéséhez :link kell lenned!',

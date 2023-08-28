@@ -8,6 +8,7 @@ return [
     'not_negative' => ':attribute kan ikke være negativ.',
     'required' => ':attribute er påkrævet.',
     'too_long' => ':attribute overskrider maksimal længde - kan højest være op til :limit karakterer.',
+    'url' => '',
     'wrong_confirmation' => 'Bekræftelseskoden matchede ikke.',
 
     'beatmapset_discussion' => [
@@ -108,6 +109,16 @@ return [
         ],
     ],
 
+    'legacy_api_key' => [
+        'exists' => '',
+
+        'attributes' => [
+            'api_key' => '',
+            'app_name' => '',
+            'app_url' => '',
+        ],
+    ],
+
     'oauth' => [
         'client' => [
             'too_many' => 'Overskrider det maksimale antal tilladte OAuth applikationer.',
@@ -164,6 +175,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => 'Rangerede beatmaps kan ikke rapporteres',
+        'not_in_channel' => '',
         'reason_not_valid' => ':reason er ikke gyldt for denne type anmeldelse.',
         'self' => "Du kan ikke rapportere dig selv!",
     ],

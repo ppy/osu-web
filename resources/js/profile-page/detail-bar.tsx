@@ -1,0 +1,93 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+import Bar from 'components/bar';
+import FollowUserMappingButton from 'components/follow-user-mapping-button';
+import FriendButton from 'components/friend-button';
+import UserLevel from 'components/user-level';
+import UserExtendedJson from 'interfaces/user-extended-json';
+import { route } from 'laroute';
+import { observer } from 'mobx-react';
+import core from 'osu-core-singleton';
+import ExtraMenu, { showExtraMenu } from 'profile-page/extra-menu';
+import * as React from 'react';
+import { trans } from 'utils/lang';
+
+interface Props {
+  user: UserExtendedJson;
+}
+
+@observer
+export default class DetailBar extends React.Component<Props> {
+  private get showMessageButton() {
+    return core.currentUser == null
+      || (core.currentUser.id !== this.props.user.id && !core.currentUserModel.blocks.has(this.props.user.id));
+  }
+
+  render() {
+    return (
+      <div className='profile-detail-bar'>
+        <FriendButton
+          alwaysVisible
+          followers={this.props.user.follower_count}
+          modifiers='profile-page'
+          userId={this.props.user.id}
+        />
+
+        {this.props.user.is_bot ? this.renderMessageButton() : this.renderNonBotButtons()}
+      </div>
+    );
+  }
+
+  private renderMessageButton() {
+    if (!this.showMessageButton) return null;
+
+    return (
+      // extra div to allow using same user-action-button--profile-page
+      // like other buttons without resorting to additional styling
+      <div>
+        <a
+          className='user-action-button user-action-button--profile-page'
+          href={route('messages.users.show', { user: this.props.user.id })}
+          title={trans('users.card.send_message')}
+        >
+          <i className='fas fa-envelope' />
+        </a>
+      </div>
+    );
+  }
+
+  private renderNonBotButtons() {
+    return (
+      <>
+        <FollowUserMappingButton
+          alwaysVisible
+          followers={this.props.user.mapping_follower_count}
+          modifiers='profile-page'
+          showFollowerCounter
+          userId={this.props.user.id}
+        />
+
+        {this.renderMessageButton()}
+
+        {showExtraMenu(this.props.user) && <ExtraMenu user={this.props.user} />}
+
+        {this.props.user.statistics != null &&
+          <div className='profile-detail-bar__level'>
+            <div className='profile-detail-bar__level-bar'>
+              <Bar
+                current={this.props.user.statistics.level.progress}
+                modifiers='user-profile'
+                textPrecision={0}
+                title={trans('users.show.stats.level_progress')}
+                total={100}
+              />
+            </div>
+
+            <UserLevel level={this.props.user.statistics.level.current} />
+          </div>
+        }
+      </>
+    );
+  }
+}

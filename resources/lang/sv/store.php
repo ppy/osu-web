@@ -31,7 +31,7 @@ return [
         'cart_problems_edit' => 'Klicka här för att redigera den.',
         'declined' => 'Betalningen avbröts.',
         'delayed_shipping' => 'Vi är för nuvarande överväldigade med ordrar! Du får gärna placera din order, men kommer kanske få en **extra 1-2 veckors försening** medan vi kommer ikapp alla ordrar.',
-        'hide_from_activity' => '',
+        'hide_from_activity' => 'Dölj alla osu!supporter taggar i denna ordning från min aktivitet',
         'old_cart' => 'Din varukorg verkar vara inaktuell och har blivit återladdad, var god försök igen.',
         'pay' => 'Betala med Paypal',
         'title_compact' => 'kassan',
@@ -51,7 +51,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Eftersom din betalning var en eCheck, vänligen tillåt upp till 10 extra dagar för betalningen att accepteras via PayPal! ',
-        'hide_from_activity' => '',
+        'hide_from_activity' => 'osu!supporter taggar i denna ordning visas inte i dina senaste aktiviteter.',
         'title_compact' => 'faktura',
 
         'status' => [
@@ -84,7 +84,7 @@ return [
             ],
 
             'subtext' => [
-                'supporter_tag' => '',
+                'supporter_tag' => 'Meddelande: :message',
             ],
         ],
 
@@ -127,7 +127,7 @@ return [
 
     'supporter_tag' => [
         'gift' => 'ge som gåva',
-        'gift_message' => '',
+        'gift_message' => 'lägg till ett valfritt meddelande till din gåva! (upp till :length tecken)',
 
         'require_login' => [
             '_' => 'Du behöver vara :link för att kunna få en osu!supporter tagg!',

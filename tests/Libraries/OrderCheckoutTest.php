@@ -22,8 +22,8 @@ class OrderCheckoutTest extends TestCase
     {
         $tournament = Tournament::factory()->create();
         $product = $this->createTournamentProduct($tournament, Carbon::now()->addDays(1));
-        $orderItem = factory(OrderItem::class)->create([
-            'product_id' => $product->product_id,
+        $orderItem = OrderItem::factory()->create([
+            'product_id' => $product,
             'extra_data' => [
                 'tournament_id' => $tournament->getKey(),
             ],
@@ -39,8 +39,8 @@ class OrderCheckoutTest extends TestCase
     {
         $tournament = Tournament::factory()->create();
         $product = $this->createTournamentProduct($tournament);
-        $orderItem = factory(OrderItem::class)->create([
-            'product_id' => $product->product_id,
+        $orderItem = OrderItem::factory()->create([
+            'product_id' => $product,
             'extra_data' => [
                 'tournament_id' => $tournament->getKey(),
             ],
@@ -56,8 +56,8 @@ class OrderCheckoutTest extends TestCase
     {
         $tournament = Tournament::factory()->create();
         $product = $this->createTournamentProduct($tournament, Carbon::now()->subDays(1));
-        $orderItem = factory(OrderItem::class)->create([
-            'product_id' => $product->product_id,
+        $orderItem = OrderItem::factory()->create([
+            'product_id' => $product,
             'extra_data' => [
                 'tournament_id' => $tournament->getKey(),
             ],
@@ -69,21 +69,41 @@ class OrderCheckoutTest extends TestCase
         $this->assertNotEmpty($checkout->validate());
     }
 
+    public function testShippableItemRequiresShopify()
+    {
+        $product = Product::factory()->create(['stock' => 5, 'max_quantity' => 5, 'shopify_id' => null]);
+        $orderItem = OrderItem::factory()->create([
+            'product_id' => $product,
+            'quantity' => 1,
+        ]);
+
+        $order = Order::factory()->create();
+        $order->items()->save($orderItem);
+
+        $checkout = new OrderCheckout($order);
+        $result = $checkout->validate();
+
+        $this->assertSame(
+            [osu_trans('model_validation/store/product.not_available')],
+            array_get($result, "orderItems.{$orderItem->getKey()}")
+        );
+    }
+
     public function testShopifyItemDoesNotMix()
     {
-        $product1 = factory(Product::class)->create(['stock' => 5, 'max_quantity' => 5, 'shopify_id' => 1]);
-        $product2 = factory(Product::class)->create(['stock' => 5, 'max_quantity' => 5, 'shopify_id' => null]);
-        $orderItem1 = factory(OrderItem::class)->create([
-            'product_id' => $product1->product_id,
+        $product1 = Product::factory()->create(['stock' => 5, 'max_quantity' => 5, 'shopify_id' => 1]);
+        $product2 = Product::factory()->virtual()->create(['stock' => 5, 'max_quantity' => 5, 'shopify_id' => null]);
+        $orderItem1 = OrderItem::factory()->create([
+            'product_id' => $product1,
             'quantity' => 1,
         ]);
 
-        $orderItem2 = factory(OrderItem::class)->create([
-            'product_id' => $product2->product_id,
+        $orderItem2 = OrderItem::factory()->create([
+            'product_id' => $product2,
             'quantity' => 1,
         ]);
 
-        $order = factory(Order::class)->create();
+        $order = Order::factory()->create();
         $order->items()->save($orderItem1);
         $order->items()->save($orderItem2);
 
@@ -98,14 +118,14 @@ class OrderCheckoutTest extends TestCase
 
     public function testTotalNonZeroDoesNotAllowFreeCheckout()
     {
-        $product1 = factory(Product::class)->create(['stock' => 5, 'max_quantity' => 5, 'cost' => 1]);
-        $orderItem1 = factory(OrderItem::class)->create([
-            'product_id' => $product1->product_id,
+        $product1 = Product::factory()->create(['stock' => 5, 'max_quantity' => 5, 'cost' => 1]);
+        $orderItem1 = OrderItem::factory()->create([
+            'product_id' => $product1,
             'quantity' => 1,
             'cost' => $product1->cost,
         ]);
 
-        $order = factory(Order::class)->create();
+        $order = Order::factory()->create();
         $order->items()->save($orderItem1);
 
         $checkout = new OrderCheckout($order, Order::PROVIDER_FREE);
@@ -119,14 +139,14 @@ class OrderCheckoutTest extends TestCase
 
     public function testTotalZeroOnlyAllowsFreeCheckout()
     {
-        $product1 = factory(Product::class)->create(['stock' => 5, 'max_quantity' => 5, 'cost' => 0]);
-        $orderItem1 = factory(OrderItem::class)->create([
-            'product_id' => $product1->product_id,
+        $product1 = Product::factory()->create(['stock' => 5, 'max_quantity' => 5, 'cost' => 0]);
+        $orderItem1 = OrderItem::factory()->create([
+            'product_id' => $product1,
             'quantity' => 1,
             'cost' => $product1->cost,
         ]);
 
-        $order = factory(Order::class)->create();
+        $order = Order::factory()->create();
         $order->items()->save($orderItem1);
         $checkout = new OrderCheckout($order, Order::PROVIDER_PAYPAL);
         $result = $checkout->allowedCheckoutProviders();
@@ -141,7 +161,7 @@ class OrderCheckoutTest extends TestCase
     {
         $country = Country::inRandomOrder()->first() ?? Country::factory()->create();
 
-        $product = factory(Product::class)->states('child_banners')->create([
+        $product = Product::factory()->childBanners()->create([
             'available_until' => $availableUntil,
             'name' => "{$tournament->name} Support Banner ({$country->name})",
         ]);

@@ -31,7 +31,7 @@ return [
         'cart_problems_edit' => '',
         'declined' => '',
         'delayed_shipping' => '',
-        'hide_from_activity' => '',
+        'hide_from_activity' => 'Slēpt visus osu!supporter tagus šajā pasūtījumā no manas aktivitātes',
         'old_cart' => '',
         'pay' => '',
         'title_compact' => '',
@@ -51,7 +51,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => '',
-        'hide_from_activity' => '',
+        'hide_from_activity' => 'osu!supporter tagi šajā pasūtījumā netiek rādīti jūsu nesenajās aktivitātēs.',
         'title_compact' => '',
 
         'status' => [
@@ -130,7 +130,7 @@ return [
         'gift_message' => '',
 
         'require_login' => [
-            '_' => '',
+            '_' => 'Jums ir nepiciešams būt :link, lai iegūtu osu!supporter!',
             'link_text' => '',
         ],
     ],

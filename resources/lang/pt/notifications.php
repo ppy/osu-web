@@ -13,6 +13,16 @@ return [
     'see_channel' => 'ir para a conversa',
     'verifying' => 'Por favor verifica a sessão para ver as notificações',
 
+    'action_type' => [
+        '_' => 'tudo',
+        'beatmapset' => 'beatmaps',
+        'build' => 'compilações',
+        'channel' => 'conversa',
+        'forum_topic' => 'fórum',
+        'news_post' => 'notícias',
+        'user' => 'perfil',
+    ],
+
     'filters' => [
         '_' => 'todas',
         'user' => 'perfil',
@@ -143,15 +153,6 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => 'Fórum de legado de mensagens privadas',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited mensagem não lida.|:count_delimited mensagens não lidas',
-            ],
-        ],
-
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Novo beatmap',
@@ -209,6 +210,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => 'Há um novo comunicado em ":name"',
+            ],
+
             'channel' => [
                 'pm' => 'Tu recebeste uma nova mensagem de :username',
             ],

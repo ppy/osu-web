@@ -24,11 +24,11 @@ abstract class Model extends BaseModel
     public $timestamps = false;
 
     protected $casts = [
+        'date' => 'datetime',
         'pass' => 'bool',
         'perfect' => 'bool',
         'replay' => 'bool',
     ];
-    protected $dates = ['date'];
     protected $primaryKey = 'score_id';
 
     public static function getClassByRulesetId(int $rulesetId): ?string

@@ -6,7 +6,9 @@
 return [
     'bold' => 'Negrita',
     'heading' => 'Encabezado',
+    'help' => 'Ayuda',
     'image' => 'Imagen',
+    'imagemap' => 'Mapa de imágenes',
     'italic' => 'Cursiva',
     'link' => 'Enlace',
     'list' => 'Lista',
@@ -18,6 +20,6 @@ return [
         'normal' => 'Normal',
         'large' => 'Grande',
     ],
-    'spoilerbox' => 'Caja de Spoiler',
+    'spoilerbox' => 'Caja de spoiler',
     'strikethrough' => 'Tachar',
 ];

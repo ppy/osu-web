@@ -8,6 +8,7 @@ return [
     'talking_in' => ':channel kanalında konuşuyorsunuz',
     'talking_with' => ':name ile konuşuyorsunuz',
     'title_compact' => 'sohbet',
+    'unread_messages' => 'okunmamış mesajlar',
 
     'cannot_send' => [
         'channel' => 'Şu anda bu kanala mesaj yazamazsınız. Şunlardan herhangi birisi buna sebep olabilir:',
@@ -35,6 +36,7 @@ return [
 
         'labels' => [
             'description' => 'açıklama',
+            'message' => 'mesaj',
             'name' => 'oda adı',
             'users' => 'eklenecek oyuncular',
         ],

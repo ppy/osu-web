@@ -20,7 +20,7 @@ return [
     ],
 
     'featured_artist_badge' => [
-        'label' => 'Featured artist',
+        'label' => 'Featured Artist',
     ],
 
     'index' => [
@@ -60,13 +60,19 @@ return [
     'show' => [
         'discussion' => 'Diskuze',
 
+        'deleted_banner' => [
+            'title' => 'Tato beatmapa byla odstraněna.',
+            'message' => '(toto můžou vidět jen moderátoři)',
+        ],
+
         'details' => [
             'by_artist' => 'od :artist',
-            'favourite' => 'Přidat do mých oblíbených',
-            'favourite_login' => 'Pro přidání beatmapy do oblíbených se přihlas',
-            'logged-out' => 'Pro stahování beatmap musíš být přihlášen!',
+            'favourite' => 'přidat do mých oblíbených',
+            'favourite_login' => 'pro přidání beatmapy do oblíbených se přihlas',
+            'logged-out' => 'před stahováním beatmap se musíš nejprve přihlásit!',
             'mapped_by' => 'beatmapu vytvořil :mapper',
-            'unfavourite' => 'Odebrat z mých oblíbených',
+            'mapped_by_guest' => 'obtížnost hosta od :mapper',
+            'unfavourite' => 'odebrat z mých oblíbených',
             'updated_timeago' => 'naposledy aktualizováno :timeago',
 
             'download' => [
@@ -124,7 +130,7 @@ return [
             'genre' => 'Žánr',
             'language' => 'Jazyk',
             'no_scores' => 'Data se vypočítávají...',
-            'nominators' => '',
+            'nominators' => 'Nominátoři',
             'nsfw' => 'Explicitní obsah',
             'offset' => 'Online offset',
             'points-of-failure' => 'Body neúspěchů',

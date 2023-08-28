@@ -4,8 +4,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'confirmation' => 'Apakah Anda yakin?',
-    'confirmation_unsaved' => 'Segala perubahan yang tidak disimpan akan hilang. Apakah Anda yakin?',
+    'confirmation' => 'Apakah kamu yakin?',
+    'confirmation_unsaved' => 'Segala perubahan yang tidak disimpan akan hilang. Apakah kamu yakin?',
     'saved' => 'Tersimpan',
 
     'array_and' => [
@@ -157,7 +157,7 @@ return [
     ],
 
     'wrong_user' => [
-        '_' => 'Anda terdaftar masuk sebagai :user. :logout_link.',
+        '_' => 'Kamu terdaftar masuk sebagai :user. :logout_link.',
         'logout_link' => 'Klik di sini untuk masuk sebagai pengguna lain',
     ],
 ];

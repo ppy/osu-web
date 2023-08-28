@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'load_failed' => 'Impossibile caricare i dati.',
     'missing_route' => 'Url non valido o metodo di richiesta non corretto.',
     'no_restricted_access' => 'Non puoi fare questa azione mentre il tuo account è limitato.',
     'supporter_only' => 'Devi essere un supporter per poter usare questa funzionalità.',

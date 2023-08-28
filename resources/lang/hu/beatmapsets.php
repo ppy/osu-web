@@ -60,12 +60,18 @@ return [
     'show' => [
         'discussion' => 'Beszélgetés',
 
+        'deleted_banner' => [
+            'title' => 'Ez a beatmap törlésre került.',
+            'message' => '(ezt csak a moderátorok láthatják)',
+        ],
+
         'details' => [
             'by_artist' => ':artist által',
             'favourite' => 'A beatmap kedvencek közé tétele',
             'favourite_login' => 'Jelentkezz be, hogy kedvencnek jelölt ezt beatmap-et',
             'logged-out' => 'Beatmapek letöltéshez be kell jelentkezned!',
             'mapped_by' => 'mappolva :mapper által',
+            'mapped_by_guest' => 'vendég nehézség :mapper által',
             'unfavourite' => 'Beatmap eltávolitása a kedvencek közül',
             'updated_timeago' => 'utóljára frissítve: :timeago',
 
@@ -124,7 +130,7 @@ return [
             'genre' => 'Műfaj',
             'language' => 'Nyelv',
             'no_scores' => 'Az adatok még számítás alatt...',
-            'nominators' => '',
+            'nominators' => 'Nominálók',
             'nsfw' => 'Felnőtt tartalom',
             'offset' => 'Online eltolás',
             'points-of-failure' => 'Kibukási Alkalmak',

@@ -13,6 +13,16 @@ return [
     'see_channel' => '前往聊天',
     'verifying' => '请验证会话以查看通知',
 
+    'action_type' => [
+        '_' => '全部',
+        'beatmapset' => '谱面',
+        'build' => '版本',
+        'channel' => '聊天',
+        'forum_topic' => '论坛',
+        'news_post' => '新闻',
+        'user' => '个人资料',
+    ],
+
     'filters' => [
         '_' => '所有',
         'user' => '个人资料',
@@ -145,15 +155,6 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => '旧论坛私信',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited 条未读消息',
-            ],
-        ],
-
         'user' => [
             'user_beatmapset_new' => [
                 '_' => '新谱面',
@@ -212,6 +213,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => '“:name” 中有一条新通知',
+            ],
+
             'channel' => [
                 'pm' => '您收到了来自 :username 的新消息',
             ],

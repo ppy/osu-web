@@ -5,6 +5,9 @@
 
 namespace Tests;
 
+use App;
+use App\Models\User;
+
 class LocaleTest extends TestCase
 {
     public function testAll()
@@ -80,6 +83,66 @@ class LocaleTest extends TestCase
     public function testCorrespondingMomentLocaleFile($locale)
     {
         $this->assertNotNull(unmix('js/moment-locales/'.locale_meta($locale)->moment().'.js'));
+    }
+
+    public function testLocaleApiWithAcceptHeader()
+    {
+        $this
+            ->withHeaders(['accept-language' => 'ja;q=0.6,es,en-US;q=0.8'])
+            ->get(route('api.changelog.index'));
+
+        $this->assertSame('es', App::getLocale());
+    }
+
+    public function testLocaleApiWithAcceptHeaderMagicRespectsUserLang()
+    {
+        $this->actAsScopedUser(User::factory()->create(['user_lang' => 'de']));
+
+        $this
+            ->withHeaders(['accept-language' => '*'])
+            ->get(route('api.changelog.index'));
+
+        $this->assertSame('de', App::getLocale());
+    }
+
+    public function testLocaleApiWithAcceptHeaderOverridesUserLang()
+    {
+        $this->actAsScopedUser(User::factory()->create(['user_lang' => 'de']));
+
+        $this
+            ->withHeaders(['accept-language' => 'ja;q=0.6,es,en-US;q=0.8'])
+            ->get(route('api.changelog.index'));
+
+        $this->assertSame('es', App::getLocale());
+    }
+
+    public function testLocaleWebWithAcceptHeader()
+    {
+        $this
+            ->withHeaders(['accept-language' => 'ja;q=0.6,es,en-US;q=0.8'])
+            ->get('/');
+
+        $this->assertSame('es', App::getLocale());
+    }
+
+    public function testLocaleWebWithAcceptHeaderAndGuestCookie()
+    {
+        $this
+            ->withUnencryptedCookie('locale', 'ja')
+            ->withHeaders(['accept-language' => 'id;q=0.6,pt,en-US;q=0.8'])
+            ->get('/');
+
+        $this->assertSame('ja', App::getLocale());
+    }
+
+    public function testLocaleWebWithAcceptHeaderAndUserLang()
+    {
+        $this
+            ->actingAs(User::factory()->create(['user_lang' => 'fr']))
+            ->withHeaders(['accept-language' => 'ja;q=0.6,es,en-US;q=0.8'])
+            ->get('/');
+
+        $this->assertSame('fr', App::getLocale());
     }
 
     public function availableLocalesProvider()

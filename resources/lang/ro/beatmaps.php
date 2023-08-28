@@ -26,7 +26,7 @@ return [
         'message_type_select' => 'Selectează tipul comentariului',
         'reply_notice' => 'Apasă enter pentru a răspunde.',
         'reply_placeholder' => 'Scrie-ți răspunsul aici',
-        'require-login' => 'Te rugăm să te conectezi pentru a posta sau a răspunde',
+        'require-login' => 'Te rugăm să te autentifici pentru a posta sau a răspunde',
         'resolved' => 'Rezolvat',
         'restore' => 'restabilește',
         'show_deleted' => 'Arată șterse',
@@ -142,7 +142,7 @@ return [
             'graveyard' => "Acest beatmap nu a fost actualizat din :date și este cel mai probabil abandonat de către creator...",
             'loved' => 'Acest beatmap a fost adăugat la Iubit pe :date!',
             'ranked' => 'Acest beatmap a fost clasat pe :date!',
-            'wip' => 'Notă: Acest beatmap este marcat ca o lucrare în desfășurare de către creator.',
+            'wip' => 'Notă: Acest beatmap este marcat ca fiind în lucru de către creator.',
         ],
 
         'votes' => [
@@ -158,15 +158,15 @@ return [
     ],
 
     'hype' => [
-        'button' => '\'Hype\' acest beatmap!',
-        'button_done' => 'Deja Hyped!',
-        'confirm' => "Ești sigur? Acest lucru îți va folosi unul din restul tău de :n 'hype' rămași și nu poate fi anulat.",
-        'explanation' => '\'Hype\' acest beatmap pentru a-l face mai vizibil pentru nominalizare și clasament!',
-        'explanation_guest' => 'Conectează-te și \'hype\' acest beatmap pentru a-l face mai vizibil pentru nominalizare și clasament!',
-        'new_time' => "O să primești alt 'hype' pe :new_time.",
-        'remaining' => 'Mai ai :remaining \'hype\' rămași.',
+        'button' => 'Acordă hype acestui beatmap!',
+        'button_done' => 'Hype deja acordat!',
+        'confirm' => "Ești sigur? Acest lucru îți va folosi unul din cele :n hype rămase și nu poate fi anulat.",
+        'explanation' => 'Acordă un hype acestui beatmap pentru a-l face mai vizibil pentru nominalizare și clasament!',
+        'explanation_guest' => 'Autentifică-te și acordă un hype acestui beatmap pentru a-l face mai vizibil pentru nominalizare și clasament!',
+        'new_time' => "Vei primi un alt hype pe :new_time.",
+        'remaining' => 'Mai ai :remaining hype rămași.',
         'required_text' => 'Hype: :current/:required',
-        'section_title' => 'Trenul Hype',
+        'section_title' => 'Trenul de Hype',
         'title' => 'Hype',
     ],
 
@@ -175,6 +175,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => 'Ai nominalizat deja acest beatmap.',
+        'cannot_nominate' => 'Nu puteți nominaliza un beatmap pentru acest mod de joc.',
         'delete' => 'Șterge',
         'delete_own_confirm' => 'Ești sigur? Acest beatmap va fi șters, iar tu vei fi redirecționat înapoi la profilul tău.',
         'delete_other_confirm' => 'Ești sigur? Acest beatmap va fi șters, iar tu vei fi redirecționat înapoi la profilul utilizatorului.',
@@ -189,7 +191,7 @@ return [
         'nominate' => 'Nominalizează',
         'nominate_confirm' => 'Nominalizezi acest beatmap?',
         'nominated_by' => 'nominalizat de :users',
-        'not_enough_hype' => "Nu este suficient hype.",
+        'not_enough_hype' => "Nu există suficient hype.",
         'remove_from_loved' => 'Șterge din Iubit',
         'remove_from_loved_prompt' => 'Motivul pentru ștergere din Iubit:',
         'required_text' => 'Nominalizări: :current/:required',
@@ -199,6 +201,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'Acest beatmap este estimat a fi clasificat în data de :date dacă nu sunt găsite probleme. Este #:position în :queue.',
+            'on' => 'pe :date',
             'queue' => 'lista de așteptare pentru clasament',
             'soon' => 'în curând',
         ],

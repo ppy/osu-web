@@ -6,6 +6,7 @@
 return [
     'index' => [
         'description' => 'Collezioni pre-confezionate di beatmap con un tema comune.',
+        'empty' => 'Prossimamente!',
         'nav_title' => 'lista',
         'title' => 'Pacchetti Beatmap',
 
@@ -34,8 +35,11 @@ return [
     'mode' => [
         'artist' => 'Artista/Album',
         'chart' => 'Spotlight',
+        'featured' => 'Artista in primo piano',
+        'loved' => 'Project Loved',
         'standard' => 'Standard',
         'theme' => 'Tema',
+        'tournament' => 'Torneo',
     ],
 
     'require_login' => [

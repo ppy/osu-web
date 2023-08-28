@@ -8,6 +8,7 @@ return [
     'not_negative' => ':attribute не может быть отрицательным.',
     'required' => 'Поле :attribute обязательно для заполнения.',
     'too_long' => ':attribute превышает максимальное количество символов - можно использовать только до :limit characters символов.',
+    'url' => 'Пожалуйста, введите действительный URL.',
     'wrong_confirmation' => 'Поля не совпадают.',
 
     'beatmapset_discussion' => [
@@ -28,7 +29,7 @@ return [
             'guest' => 'Вам нужно войти, чтобы хайпить.',
             'hyped' => 'Вы уже хайпили на этой карте.',
             'limit_exceeded' => 'Вы уже использовали весь свой хайп.',
-            'not_hypeable' => 'Эта карта не может быть расхайплена',
+            'not_hypeable' => 'Эту карту нельзя хайпануть',
             'owner' => 'Вы не можете хайпить свои карты.',
         ],
 
@@ -108,6 +109,16 @@ return [
         ],
     ],
 
+    'legacy_api_key' => [
+        'exists' => 'Сейчас для каждого пользователя предоставляется только один ключ API.',
+
+        'attributes' => [
+            'api_key' => 'Ключ api',
+            'app_name' => 'Имя приложения',
+            'app_url' => 'URL приложения',
+        ],
+    ],
+
     'oauth' => [
         'client' => [
             'too_many' => 'Превышено максимальное количество приложений OAuth.',
@@ -122,7 +133,7 @@ return [
 
     'user' => [
         'contains_username' => 'Пароль не должен содержать никнейм.',
-        'email_already_used' => 'Почта уже использована.',
+        'email_already_used' => 'Эта почта занята.',
         'email_not_allowed' => 'Недопустимый адрес электронной почты.',
         'invalid_country' => 'Вашей страны нет в базе данных.',
         'invalid_discord' => 'Неверное имя пользователя Discord.',
@@ -132,15 +143,15 @@ return [
         'unknown_duplicate' => 'Никнейм или почта уже занята.',
         'username_available_in' => 'Этот никнейм будет доступен через :duration.',
         'username_available_soon' => 'Этот никнейм будет доступен в любой момент!',
-        'username_invalid_characters' => 'Выбранный никнейм содержит недопустимые символы.',
-        'username_in_use' => 'Этот никнейм уже используется!',
-        'username_locked' => 'Этот никнейм уже используется!', // TODO: language for this should be slightly different.
+        'username_invalid_characters' => 'Введённый никнейм содержит недопустимые символы.',
+        'username_in_use' => 'Этот никнейм занят!',
+        'username_locked' => 'Этот никнейм занят!', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => 'Пожалуйста не используйте пробелы и подчёркивания одновременно!',
         'username_no_spaces' => "Никнейм не может начинаться или заканчиваться пробелами!",
         'username_not_allowed' => 'Этот никнейм запрещён.',
-        'username_too_short' => 'Выбранный никнейм слишком короткий.',
-        'username_too_long' => 'Выбранный никнейм слишком длинный.',
-        'weak' => 'Слишком лёгкий пароль.',
+        'username_too_short' => 'Введённый никнейм слишком короткий.',
+        'username_too_long' => 'Введённый никнейм слишком длинный.',
+        'weak' => 'Введённый пароль находится в чёрном списке.',
         'wrong_current_password' => 'Текущий пароль неверный.',
         'wrong_email_confirmation' => 'Почты не совпадают.',
         'wrong_password_confirmation' => 'Пароли не совпадают.',
@@ -164,6 +175,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => 'На рейтинговые карты нельзя пожаловаться',
+        'not_in_channel' => 'Вас нет в этом канале.',
         'reason_not_valid' => ':reason не подходит для данного типа отчета.',
         'self' => "Вы не можете пожаловаться на себя!",
     ],

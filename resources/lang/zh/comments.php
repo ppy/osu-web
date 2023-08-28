@@ -11,6 +11,7 @@ return [
     'edited' => ':user 在 :timeago 编辑',
     'pinned' => '已置顶',
     'empty' => '暂无评论。',
+    'empty_other' => '暂无其他评论。',
     'load_replies' => '加载回复',
     'replies_count' => ':count_delimited 条回复',
     'title' => '评论',

@@ -22,7 +22,7 @@
         {!! json_encode($postJson) !!}
     </script>
 
-    <script id="json-comments-news_post-{{ $post->getKey() }}" type="application/json">
+    <script id="json-comments" type="application/json">
         {!! json_encode($commentBundle->toArray()) !!}
     </script>
 

@@ -16,6 +16,7 @@ use App\Models\Traits;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use LaravelRedis;
+use Storage;
 
 /**
  * @property int $beatmap_id
@@ -152,6 +153,12 @@ class Score extends Model implements Traits\ReportableInterface
         return Beatmap::modeStr($this->ruleset_id);
     }
 
+    public function getReplayFile(): string
+    {
+        return Storage::disk(config('osu.score_replays.storage').'-solo-replay')
+            ->get($this->getKey());
+    }
+
     public function isLegacy(): bool
     {
         return $this->data->buildId === null;
@@ -221,7 +228,7 @@ class Score extends Model implements Traits\ReportableInterface
 
     public function url(): string
     {
-        return route('scores.show', $this);
+        return route('scores.show', ['rulesetOrScore' => $this->getKey()]);
     }
 
     public function userRank(?array $params = null): int

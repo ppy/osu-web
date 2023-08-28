@@ -14,20 +14,20 @@ class UpdateOauthTables extends Migration
      */
     public function up()
     {
-        (new CreateOauthRefreshTokensTable())->down();
-        (new CreateOauthAccessTokenScopesTable())->down();
-        (new CreateOauthAccessTokensTable())->down();
-        (new CreateOauthAuthCodeScopesTable())->down();
-        (new CreateOauthAuthCodesTable())->down();
-        (new CreateOauthSessionScopesTable())->down();
-        (new CreateOauthSessionsTable())->down();
-        (new CreateOauthClientGrantsTable())->down();
-        (new CreateOauthClientScopesTable())->down();
-        (new CreateOauthClientEndpointsTable())->down();
-        (new CreateOauthClientsTable())->down();
-        (new CreateOauthGrantScopesTable())->down();
-        (new CreateOauthGrantsTable())->down();
-        (new CreateOauthScopesTable())->down();
+        migration('2016_03_18_170013_create_oauth_refresh_tokens_table')->down();
+        migration('2016_03_18_170012_create_oauth_access_token_scopes_table')->down();
+        migration('2016_03_18_170011_create_oauth_access_tokens_table')->down();
+        migration('2016_03_18_170010_create_oauth_auth_code_scopes_table')->down();
+        migration('2016_03_18_170009_create_oauth_auth_codes_table')->down();
+        migration('2016_03_18_170008_create_oauth_session_scopes_table')->down();
+        migration('2016_03_18_170007_create_oauth_sessions_table')->down();
+        migration('2016_03_18_170006_create_oauth_client_grants_table')->down();
+        migration('2016_03_18_170005_create_oauth_client_scopes_table')->down();
+        migration('2016_03_18_170004_create_oauth_client_endpoints_table')->down();
+        migration('2016_03_18_170003_create_oauth_clients_table')->down();
+        migration('2016_03_18_170002_create_oauth_grant_scopes_table')->down();
+        migration('2016_03_18_170001_create_oauth_grants_table')->down();
+        migration('2016_03_18_170000_create_oauth_scopes_table')->down();
     }
 
     /**
@@ -37,19 +37,19 @@ class UpdateOauthTables extends Migration
      */
     public function down()
     {
-        (new CreateOauthScopesTable())->up();
-        (new CreateOauthGrantsTable())->up();
-        (new CreateOauthGrantScopesTable())->up();
-        (new CreateOauthClientsTable())->up();
-        (new CreateOauthClientEndpointsTable())->up();
-        (new CreateOauthClientScopesTable())->up();
-        (new CreateOauthClientGrantsTable())->up();
-        (new CreateOauthSessionsTable())->up();
-        (new CreateOauthSessionScopesTable())->up();
-        (new CreateOauthAuthCodesTable())->up();
-        (new CreateOauthAuthCodeScopesTable())->up();
-        (new CreateOauthAccessTokensTable())->up();
-        (new CreateOauthAccessTokenScopesTable())->up();
-        (new CreateOauthRefreshTokensTable())->up();
+        migration('2016_03_18_170000_create_oauth_scopes_table')->up();
+        migration('2016_03_18_170001_create_oauth_grants_table')->up();
+        migration('2016_03_18_170002_create_oauth_grant_scopes_table')->up();
+        migration('2016_03_18_170003_create_oauth_clients_table')->up();
+        migration('2016_03_18_170004_create_oauth_client_endpoints_table')->up();
+        migration('2016_03_18_170005_create_oauth_client_scopes_table')->up();
+        migration('2016_03_18_170006_create_oauth_client_grants_table')->up();
+        migration('2016_03_18_170007_create_oauth_sessions_table')->up();
+        migration('2016_03_18_170008_create_oauth_session_scopes_table')->up();
+        migration('2016_03_18_170009_create_oauth_auth_codes_table')->up();
+        migration('2016_03_18_170010_create_oauth_auth_code_scopes_table')->up();
+        migration('2016_03_18_170011_create_oauth_access_tokens_table')->up();
+        migration('2016_03_18_170012_create_oauth_access_token_scopes_table')->up();
+        migration('2016_03_18_170013_create_oauth_refresh_tokens_table')->up();
     }
 }

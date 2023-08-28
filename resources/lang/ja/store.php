@@ -31,7 +31,7 @@ return [
         'cart_problems_edit' => 'クリックで変更',
         'declined' => 'お支払いはキャンセルされました。',
         'delayed_shipping' => '現在注文が多く大変混雑しています。注文はまだ受け付けていますが、**１～２週間ほどの遅延**が発生する可能性があります。',
-        'hide_from_activity' => '',
+        'hide_from_activity' => 'この順序でosu!サポータータグをすべて非表示にする',
         'old_cart' => 'あなたのカートは期限切れ、または再読み込みされたようです。再度お試しください。',
         'pay' => 'Paypalで支払う',
         'title_compact' => '決済',
@@ -51,7 +51,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => '決済方法がeCheckのため、PayPalを介した支払いが完了するまで、さらに最大10日を要します。予めご了承ください。',
-        'hide_from_activity' => '',
+        'hide_from_activity' => 'osu!サポータータグは最近のアクティビティには表示されません。',
         'title_compact' => '請求書',
 
         'status' => [
@@ -84,7 +84,7 @@ return [
             ],
 
             'subtext' => [
-                'supporter_tag' => '',
+                'supporter_tag' => 'メッセージ :message',
             ],
         ],
 
@@ -127,7 +127,7 @@ return [
 
     'supporter_tag' => [
         'gift' => 'プレイヤーにギフトを贈る',
-        'gift_message' => '',
+        'gift_message' => 'ギフトに任意のメッセージを追加 (最大 :length 文字)',
 
         'require_login' => [
             '_' => 'サポータータグを入手するには:linkが必要です！',

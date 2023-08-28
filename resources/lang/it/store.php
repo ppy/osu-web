@@ -9,7 +9,7 @@ return [
         'info' => ':count_delimited articolo nel carrello ($:subtotal)|:count_delimited articoli nel carrello ($:subtotal)',
         'more_goodies' => 'Voglio dare un\'occhiata ad altri elementi prima di completare l\'ordine',
         'shipping_fees' => 'costi di spedizione',
-        'title' => 'Carrello della spesa',
+        'title' => 'Carrello',
         'total' => 'totale',
 
         'errors_no_checkout' => [
@@ -31,7 +31,7 @@ return [
         'cart_problems_edit' => 'Clicca qui per modificarlo.',
         'declined' => 'Il pagamento è stato annullato.',
         'delayed_shipping' => 'Attualmente siamo sommersi dagli ordini! Sei libero di effettuare ordini, ma per favore aspettati un **ritardo addizionale di 1-2 settimane** mentre completiamo gli ordini già esistenti.',
-        'hide_from_activity' => '',
+        'hide_from_activity' => 'Nascondi tutti i tag osu!supporter in questo ordine dalla mia attività',
         'old_cart' => 'Il tuo carrello sembra essere obsoleto ed è stato ricaricato; per favore riprova.',
         'pay' => 'Acquista con Paypal',
         'title_compact' => 'pagamento',
@@ -51,7 +51,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Visto che il tuo pagamento era un eCheck, dovrai attendere altri 10 giorni per far passare il pagamento attraverso PayPal!',
-        'hide_from_activity' => '',
+        'hide_from_activity' => 'I tag osu!supporter in questo ordine non verranno mostrati nella tua attività recente.',
         'title_compact' => 'ricevuta',
 
         'status' => [
@@ -84,7 +84,7 @@ return [
             ],
 
             'subtext' => [
-                'supporter_tag' => '',
+                'supporter_tag' => 'Messaggio: :message',
             ],
         ],
 
@@ -127,7 +127,7 @@ return [
 
     'supporter_tag' => [
         'gift' => 'regalo ad un giocatore',
-        'gift_message' => '',
+        'gift_message' => 'aggiungi un messaggio opzionale al tuo regalo (fino a :length caratteri)',
 
         'require_login' => [
             '_' => 'Devi :link per poter ottenere un tag supporter!',

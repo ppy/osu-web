@@ -13,6 +13,16 @@ return [
     'see_channel' => 'accéder au tchat',
     'verifying' => 'Veuillez vérifier votre session pour voir les notifications',
 
+    'action_type' => [
+        '_' => 'toutes',
+        'beatmapset' => 'beatmaps',
+        'build' => 'versions',
+        'channel' => 'tchat',
+        'forum_topic' => 'forum',
+        'news_post' => 'actualités',
+        'user' => 'profil',
+    ],
+
     'filters' => [
         '_' => 'tout',
         'user' => 'profil',
@@ -143,15 +153,6 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => 'Ancienne page forum des messages privés',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited message non lu|:count_delimited messages non lus',
-            ],
-        ],
-
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Nouvelle beatmap',
@@ -209,6 +210,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => 'Il y a une nouvelle annonce dans ":name"',
+            ],
+
             'channel' => [
                 'pm' => 'Vous avez reçu un nouveau message de :username',
             ],

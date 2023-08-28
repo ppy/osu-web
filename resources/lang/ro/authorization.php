@@ -50,13 +50,11 @@ return [
             'resolved' => 'Nu poți edita o postare dintr-o discuție rezolvată.',
             'system_generated' => 'Postările generate automat nu pot fi editate.',
         ],
-
-        'store' => [
-            'beatmapset_locked' => 'Discuțiile sunt blocate pe acest beatmap.',
-        ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => 'Discuțiile sunt blocate pe acest beatmap.',
+
         'metadata' => [
             'nominated' => 'Nu poți schimba datele melodiei a unui beatmap nominalizat. Contactează un membru BN sau NAT dacă crezi că e setat greșit.',
         ],
@@ -173,6 +171,7 @@ return [
 
     'score' => [
         'pin' => [
+            'disabled_type' => "Nu se poate fixa acest tip de scor",
             'not_owner' => 'Numai creatorul scorului poate fixa acest scor.',
             'too_many' => 'Ai fixat prea multe scoruri.',
         ],

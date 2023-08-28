@@ -13,6 +13,16 @@ return [
     'see_channel' => 'gå til chat',
     'verifying' => 'Vennligst verifiser økten for å se varsler',
 
+    'action_type' => [
+        '_' => 'alt',
+        'beatmapset' => 'beatmaps',
+        'build' => 'versjon',
+        'channel' => 'chat',
+        'forum_topic' => 'forum',
+        'news_post' => 'nyheter',
+        'user' => 'profil',
+    ],
+
     'filters' => [
         '_' => 'alle',
         'user' => 'profil',
@@ -30,8 +40,8 @@ return [
 
             'beatmap_owner_change' => [
                 '_' => 'Gjeste-vanskelighetsgrad',
-                'beatmap_owner_change' => '',
-                'beatmap_owner_change_compact' => '',
+                'beatmap_owner_change' => 'Du er nå eier av vanskelighetsgrad ":beatmap for beatmap ":title',
+                'beatmap_owner_change_compact' => 'Du er nå eier av vanskelighetsgrad ":beatmap"',
             ],
 
             'beatmapset_discussion' => [
@@ -69,7 +79,7 @@ return [
                 'beatmapset_rank' => '":title" har blitt rangert',
                 'beatmapset_rank_compact' => 'Beatmappet var rangert',
                 'beatmapset_remove_from_loved' => '":title" ble fjernet fra Elsket',
-                'beatmapset_remove_from_loved_compact' => '',
+                'beatmapset_remove_from_loved_compact' => 'Beatmap ble fjernet fra Loved',
                 'beatmapset_reset_nominations' => 'Problemstilling skrevet av :username nullstilte nominasjonen av beatmappet ":title" ',
                 'beatmapset_reset_nominations_compact' => 'Nominasjonen ble tilbakestilt',
             ],
@@ -79,8 +89,8 @@ return [
 
                 'comment_new' => ':username kommenterte ":content" på ":title"',
                 'comment_new_compact' => ':username kommenterte ":content"',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply' => ':username svarte ":content" på ":title"',
+                'comment_reply_compact' => ':username svarte ":content"',
             ],
         ],
 
@@ -88,12 +98,12 @@ return [
             '_' => 'Chat',
 
             'announcement' => [
-                '_' => '',
+                '_' => 'Ny kunngjøring',
 
                 'announce' => [
-                    'channel_announcement' => '',
+                    'channel_announcement' => ':username sier ":title"',
                     'channel_announcement_compact' => ':title',
-                    'channel_announcement_group' => '',
+                    'channel_announcement_group' => 'Kunngjøring fra :username',
                 ],
             ],
 
@@ -116,8 +126,8 @@ return [
 
                 'comment_new' => ':username kommenterte ":content" på ":title"',
                 'comment_new_compact' => ':username kommenterte ":content"',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply' => ':username svarte ":content" på ":title"',
+                'comment_reply_compact' => ':username svarte ":content"',
             ],
         ],
 
@@ -129,8 +139,8 @@ return [
 
                 'comment_new' => ':username kommenterte ":content" på ":title"',
                 'comment_new_compact' => ':username kommenterte ":content"',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply' => ':username svarte ":content" på ":title"',
+                'comment_reply_compact' => ':username svarte ":content"',
             ],
         ],
 
@@ -144,25 +154,16 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => 'Eldre Forum PM',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited ulest melding.|:count_delimited uleste meldinger.',
-            ],
-        ],
-
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Nytt beatmap',
 
                 'user_beatmapset_new' => 'Nytt beatmap ":title" av :username',
-                'user_beatmapset_new_compact' => '',
-                'user_beatmapset_new_group' => '',
+                'user_beatmapset_new_compact' => 'Nytt beatmap ":title"',
+                'user_beatmapset_new_group' => 'Nye beatmap fra :username',
 
-                'user_beatmapset_revive' => '',
-                'user_beatmapset_revive_compact' => '',
+                'user_beatmapset_revive' => 'Beatmap ":title" gjenopplivet av :username',
+                'user_beatmapset_revive_compact' => 'Beatmap ":title" gjenopplivet',
             ],
         ],
 
@@ -181,7 +182,7 @@ return [
     'mail' => [
         'beatmapset' => [
             'beatmap_owner_change' => [
-                'beatmap_owner_change' => '',
+                'beatmap_owner_change' => 'Du er nå gjest for beatmap ":title',
             ],
 
             'beatmapset_discussion' => [
@@ -195,13 +196,13 @@ return [
             ],
 
             'beatmapset_state' => [
-                'beatmapset_disqualify' => '',
-                'beatmapset_love' => '',
-                'beatmapset_nominate' => '',
-                'beatmapset_qualify' => '',
-                'beatmapset_rank' => '',
-                'beatmapset_remove_from_loved' => '',
-                'beatmapset_reset_nominations' => '',
+                'beatmapset_disqualify' => '":title" har blitt diskvalifisert',
+                'beatmapset_love' => '":title" ble forfremmet til loved',
+                'beatmapset_nominate' => '":title" har blitt nominert',
+                'beatmapset_qualify' => '":title" har fått nok nominasjoner og er nå i rangeringskøen',
+                'beatmapset_rank' => '":title" har blitt rangert',
+                'beatmapset_remove_from_loved' => '":title" ble fjernet fra Loved',
+                'beatmapset_reset_nominations' => 'Nominasjon av ":title" har blitt tilbakestilt',
             ],
 
             'comment' => [
@@ -210,6 +211,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => 'Det er en ny kunngjøring i ":name',
+            ],
+
             'channel' => [
                 'pm' => 'Du fått en ny melding fra :username',
             ],
@@ -240,8 +245,8 @@ return [
             ],
 
             'user_beatmapset_new' => [
-                'user_beatmapset_new' => '',
-                'user_beatmapset_revive' => '',
+                'user_beatmapset_new' => ':username har opprettet nye beatmaps',
+                'user_beatmapset_revive' => ':username har gjenopplivet beatmaps',
             ],
         ],
     ],

@@ -18,8 +18,9 @@ use DB;
 class BuildPropagationHistory extends Model
 {
     public $timestamps = false;
-    protected $dates = [
-        'created_at',
+
+    protected $casts = [
+        'created_at' => 'datetime',
     ];
 
     public function build()

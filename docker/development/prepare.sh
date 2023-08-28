@@ -69,4 +69,8 @@ if [ ! -f .docker/.my.cnf ]; then
     cp .docker/.my.cnf.example .docker/.my.cnf
 fi
 
+if [ ! -f database/ip2asn/v6.tsv ]; then
+    _run artisan ip2asn:update
+fi
+
 echo "Preparation completed. Adjust .env file if needed and run 'docker compose up' followed by running migration."

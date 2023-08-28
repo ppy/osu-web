@@ -12,7 +12,7 @@ use App\Transformers\UserCompactTransformer;
 
 class UserScoreAggregateTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'playlist_item_attempts',
         'position',
         'user',

@@ -20,6 +20,12 @@ return [
             'title' => 'E-mail',
         ],
 
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'Starsze API',
+        ],
+
         'password' => [
             'current' => 'obecne hasło',
             'new' => 'nowe hasło',
@@ -28,7 +34,13 @@ return [
         ],
 
         'profile' => [
+            'country' => 'kraj',
             'title' => 'Profil',
+
+            'country_change' => [
+                '_' => "Wygląda na to, że kraj przypisany do konta nie zgadza się z twoim krajem zamieszkania. :update_link.",
+                'update_link' => 'Zaktualizuj na „:country”',
+            ],
 
             'user' => [
                 'user_discord' => '',

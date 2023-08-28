@@ -50,13 +50,11 @@ return [
             'resolved' => 'No puedes editar una publicación de una discusión resuelta.',
             'system_generated' => 'Una publicación generada automáticamente no se puede editar.',
         ],
-
-        'store' => [
-            'beatmapset_locked' => 'Este mapa está bloqueado para discusión.',
-        ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => 'La discusión de este mapa está bloqueada.',
+
         'metadata' => [
             'nominated' => 'No puedes cambiar los metadatos de un mapa nominado. Contacta con un miembro de los BN o del NAT si crees que están establecidos incorrectamente.',
         ],
@@ -87,7 +85,7 @@ return [
 
         'entry' => [
             'limit_reached' => 'Has alcanzado el límite de entradas para este concurso',
-            'over' => '¡Gracias por su participación! Los envíos se han cerrado para este concurso y la votación se abrirá pronto.',
+            'over' => '¡Gracias por tu participación! Los envíos se han cerrado para este concurso y la votación se abrirá pronto.',
         ],
     ],
 
@@ -109,7 +107,7 @@ return [
                 'locked' => 'La edición de la publicación está bloqueada.',
                 'no_forum_access' => 'Se requiere acceso al foro solicitado.',
                 'not_owner' => 'Solo el creador puede editar la publicación.',
-                'topic_locked' => 'No puedes editar una publicación en un hilo cerrado.',
+                'topic_locked' => 'No puedes editar una publicación de un tema cerrado.',
             ],
 
             'store' => [
@@ -173,6 +171,7 @@ return [
 
     'score' => [
         'pin' => [
+            'disabled_type' => "No se puede anclar este tipo de puntuación",
             'not_owner' => 'Solo el propietario puede anclar la puntuación.',
             'too_many' => 'Se han anclado demasiadas puntuaciones.',
         ],
@@ -183,7 +182,7 @@ return [
             'edit' => [
                 'locked' => 'La página de usuario está bloqueada.',
                 'not_owner' => 'Solo puedes editar tu página de usuario.',
-                'require_supporter_tag' => 'Se requiere el tag de osu!supporter.',
+                'require_supporter_tag' => 'Se requiere la etiqueta de osu!supporter.',
             ],
         ],
     ],

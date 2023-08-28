@@ -67,7 +67,7 @@ return [
         'duration' => 'Mulțumită lor, ai acces la osu!direct și alte beneficii de suporter osu! pentru :duration.',
         'features' => 'Mai multe detalii privind aceste beneficii pot fi găsite aici:',
         'gifted' => 'Cineva tocmai ți-a dăruit statusul de suporter osu!',
-        'gift_message' => '',
+        'gift_message' => 'Persoana care a dăruit statusul de suporter v-a lăsat un mesaj:',
         'subject' => 'Ți-a fost oferit statusul de suporter osu!',
     ],
 

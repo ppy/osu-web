@@ -1,0 +1,61 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.beatmapset-event {
+  font-size: @font-size--normal;
+  display: flex;
+  padding: 2px 0;
+  align-items: baseline;
+
+  &__content {
+    word-wrap: break-word;
+    min-width: 0;
+  }
+
+  &__icon {
+    border-radius: 3px;
+    width: 8px;
+    flex: none;
+    align-self: stretch;
+    background-color: var(--bg, transparent);
+
+    --bg-approve: @blue;
+    --bg-beatmap-owner-change: @blue;
+    --bg-discussion-delete: @yellow;
+    --bg-discussion-lock: @red;
+    --bg-discussion-post-delete: @yellow;
+    --bg-discussion-post-restore: @blue;
+    --bg-discussion-restore: @blue;
+    --bg-discussion-unlock: @green;
+    --bg-disqualify: @red;
+    --bg-genre-edit: @blue;
+    --bg-issue-reopen: @yellow;
+    --bg-issue-resolve: @green;
+    --bg-kudosu-allow: @blue;
+    --bg-kudosu-deny: @red;
+    --bg-kudosu-gain: @blue;
+    --bg-kudosu-lost: @red;
+    --bg-kudosu-recalculate: #ccc;
+    --bg-language-edit: @blue;
+    --bg-love: @pink;
+    --bg-nominate: @blue;
+    --bg-nomination-reset: @red;
+    --bg-nomination-reset-received: @red;
+    --bg-nsfw-toggle: @blue;
+    --bg-offset-edit: @blue;
+    --bg-tags-edit: @blue;
+    --bg-qualify: @blue;
+    --bg-rank: @green;
+    --bg-remove-from-loved: @red;
+
+    &--beatmapset-activities {
+      margin: 0 10px;
+    }
+  }
+
+  &__time {
+    width: 80px;
+    flex: none;
+    padding: 0 10px;
+  }
+}

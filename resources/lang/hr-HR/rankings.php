@@ -19,12 +19,27 @@ return [
         ],
     ],
 
+    'kudosu' => [
+        'total' => '',
+        'available' => '',
+        'used' => '',
+    ],
+
     'type' => [
         'charts' => 'istaknuto',
         'country' => 'države',
+        'kudosu' => '',
         'multiplayer' => 'multiplayer',
         'performance' => 'izvedba',
         'score' => 'bodovi',
+        'seasons' => '',
+    ],
+
+    'seasons' => [
+        'empty' => '',
+        'ongoing' => '',
+        'room_count' => '',
+        'url' => '',
     ],
 
     'spotlight' => [

@@ -4,11 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    '_' => 'Lajittele',
+    '_' => 'Lajitteluperuste',
 
     'all' => 'Kaikki',
-    'friends' => 'Kaverit',
-    'last_visit' => 'Äskettäin aktiivinen',
+    'friends' => 'Ystävät',
+    'last_visit' => 'Viime aikoina aktiivinen',
     'new' => 'Viimeisin',
     'old' => 'Vanha',
     'rank' => 'Sijoitus',
@@ -17,9 +17,9 @@ return [
 
     'artist_tracks' => [
         'album' => 'Albumi',
-        'artist' => 'Artisti',
+        'artist' => 'Esittäjä',
         'bpm' => 'BPM',
-        'genre' => 'Lajityyppi',
+        'genre' => 'Tyylilaji',
         'length' => 'Pituus',
         'relevance' => 'Osuvuus',
         'title' => 'Nimi',
@@ -32,6 +32,7 @@ return [
     ],
 
     'forum_topics' => [
+        'created' => 'Luomisaika',
         'feature_votes' => 'Tähtitaso',
         'new' => 'Viimeisin kommentti',
     ],

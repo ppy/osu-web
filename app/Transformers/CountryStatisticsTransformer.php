@@ -9,7 +9,7 @@ use App\Models\CountryStatistics;
 
 class CountryStatisticsTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = ['country'];
+    protected array $availableIncludes = ['country'];
 
     public function transform(CountryStatistics $stat)
     {

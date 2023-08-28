@@ -20,6 +20,12 @@ return [
             'title' => 'E-post',
         ],
 
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'Gammel API',
+        ],
+
         'password' => [
             'current' => 'nåværende passord',
             'new' => 'nytt passord',
@@ -28,7 +34,13 @@ return [
         ],
 
         'profile' => [
+            'country' => '',
             'title' => 'Profil',
+
+            'country_change' => [
+                '_' => "",
+                'update_link' => '',
+            ],
 
             'user' => [
                 'user_discord' => '',
@@ -55,7 +67,7 @@ return [
 
         'options' => [
             '_' => 'leveringsalternativer',
-            'beatmap_owner_change' => '',
+            'beatmap_owner_change' => 'gjeste-kart',
             'beatmapset:modding' => 'beatmap modding',
             'channel_message' => 'private meldinger',
             'comment_new' => 'nye kommentar',

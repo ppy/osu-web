@@ -11,9 +11,11 @@ class LanguageTransformer extends TransformerAbstract
 {
     public function transform(Language $language)
     {
+        $id = $language->getKey();
+
         return [
-            'id' => $language->language_id === 0 ? null : $language->language_id,
-            'name' => osu_trans('beatmaps.language.'.str_replace(' ', '-', strtolower($language->name))),
+            'id' => $id === 0 ? null : $id,
+            'name' => osu_trans('beatmaps.language.'.strtr(strtolower($language->name), ' ', '-')),
         ];
     }
 }

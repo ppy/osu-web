@@ -175,6 +175,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => 'Você já nomeou esse beatmap.',
+        'cannot_nominate' => 'Você não pode nomear esse modo de jogo do beatmap.',
         'delete' => 'Excluir',
         'delete_own_confirm' => 'Você tem certeza? Esse beatmap será deletado e você será redirecionado de volta para seu perfil.',
         'delete_other_confirm' => 'Você tem certeza? Esse beatmap será deletado e você será redirecionado de volta para seu perfil de usuário.',
@@ -199,6 +201,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'Este mapa é estimado a ser ranqueado em :date se nenhum problema for encontrado. É o #:position na :queue.',
+            'on' => 'em :date',
             'queue' => 'fila de ranqueamento',
             'soon' => 'em breve',
         ],

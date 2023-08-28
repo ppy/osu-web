@@ -37,6 +37,7 @@ return [
         'blocked_count' => 'utilizadores bloqueados (:count)',
         'hide_profile' => 'Ocultar perfil',
         'hide_comment' => 'ocultar',
+        'forum_post_text' => 'Esta publicação está oculta.',
         'not_blocked' => 'Esse utilizador não está bloqueado.',
         'show_profile' => 'Mostrar perfil',
         'show_comment' => 'mostrar',
@@ -48,8 +49,25 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => 'Oferecer uma etiqueta de apoiante',
         'loading' => 'A carregar...',
         'send_message' => 'Enviar mensagem',
+    ],
+
+    'create' => [
+        'form' => [
+            'password' => 'palavra-passe',
+            'password_confirmation' => 'confirmação da palavra-passe',
+            'submit' => 'criar conta',
+            'user_email' => 'email',
+            'user_email_confirmation' => 'confirmação do email',
+            'username' => 'nome de utilizador',
+
+            'tos_notice' => [
+                '_' => 'ao criar uma conta, tu concordas com :link',
+                'link' => 'termos de serviço',
+            ],
+        ],
     ],
 
     'disabled' => [
@@ -142,6 +160,7 @@ return [
     'restricted_banner' => [
         'title' => 'A tua conta foi restrita!',
         'message' => 'Enquanto restrito(a), estarás incapaz de interagir com outros jogadores e as tuas pontuações só serão visíveis para ti. Isto é habitualmente o resultado dum processo automático e irá ser levantado geralmente em 24 horas. Se quiseres apelar a tua restrição, por favor <a href="mailto:accounts@ppy.sh">contacta a assistência</a>.',
+        'message_link' => 'Consulta esta página para saberes mais.',
     ],
     'show' => [
         'age' => ':age anos',
@@ -368,7 +387,7 @@ return [
                     'date' => 'data',
                     'action' => 'ação',
                     'length' => 'duração',
-                    'length_permanent' => 'Permanente',
+                    'length_indefinite' => '',
                     'description' => 'descrição',
                     'actor' => 'por :username',
 
@@ -451,6 +470,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
+        'from_client' => 'por favor regista-te através do cliente do jogo!',
+        'from_web' => 'por favor regista-te através do sítio web',
         'saved' => 'Criado por utilizadores',
     ],
     'verify' => [

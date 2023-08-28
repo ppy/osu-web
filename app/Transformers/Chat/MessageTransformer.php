@@ -12,26 +12,32 @@ use App\Transformers\UserCompactTransformer;
 
 class MessageTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'sender',
     ];
 
     public function transform(Message $message)
     {
+        $type = $message->is_action
+            ? 'action'
+            : ($message->channel->isAnnouncement() ? 'markdown' : 'plain');
+
         $response = [
+            'channel_id' => $message->channel_id,
+            'content' => $message->content,
+            'is_action' => $message->is_action, // maybe deprecate?
             'message_id' => $message->message_id,
             'sender_id' => $message->user_id,
-            'channel_id' => $message->channel_id,
             'timestamp' => $message->timestamp_json,
-            'content' => $message->content,
-            'is_action' => $message->is_action,
+            'type' => $type,
         ];
 
         if ($message->uuid !== null) {
             $response['uuid'] = $message->uuid;
         }
 
-        if ($message->channel->isAnnouncement()) {
+        // TODO: deprecated; preserve while websocket clients reload.
+        if ($type === 'markdown') {
             $response['content_html'] = markdown_chat($message->content);
         }
 

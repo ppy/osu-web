@@ -34,6 +34,7 @@ return [
         'qualify' => 'Tato beatmapa získala požadované množství nominací a byla kvalifikována.',
         'rank' => 'Hodnocené.',
         'remove_from_loved' => 'Odstraněno z Loved uživatelem :user. (:text)',
+        'tags_edit' => 'Tagy se změnily z „:old“ na „:new“.',
 
         'nsfw_toggle' => [
             'to_0' => 'Odebráno explicitní označení',

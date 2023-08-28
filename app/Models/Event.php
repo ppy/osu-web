@@ -5,6 +5,7 @@
 
 namespace App\Models;
 
+use App\Models\Traits\WithDbCursorHelper;
 use Carbon\Carbon;
 use Sentry\State\Scope;
 
@@ -24,6 +25,18 @@ use Sentry\State\Scope;
  */
 class Event extends Model
 {
+    use WithDbCursorHelper;
+
+    protected const DEFAULT_SORT = 'id_desc';
+    protected const SORTS = [
+        'id_asc' => [
+            ['column' => 'event_id', 'order' => 'ASC'],
+        ],
+        'id_desc' => [
+            ['column' => 'event_id', 'order' => 'DESC'],
+        ],
+    ];
+
     public ?array $details = null;
     public $parsed = false;
     public ?string $type = null;
@@ -45,11 +58,11 @@ class Event extends Model
         'usernameChange' => "!^<b><a href='(?<userUrl>.+?)'>(?<previousUsername>.+?)</a></b> has changed their username to (?<userName>.+)\!$!",
     ];
 
-    protected $table = 'osu_events';
-    protected $primaryKey = 'event_id';
-
-    protected $dates = ['date'];
     public $timestamps = false;
+
+    protected $casts = ['date' => 'datetime'];
+    protected $primaryKey = 'event_id';
+    protected $table = 'osu_events';
 
     public static function generate($type, $options)
     {
@@ -247,7 +260,7 @@ class Event extends Model
             'Failed parsing event',
             null,
             (new Scope())
-                ->setExtra('reason', $reason)
+                ->setTag('reason', $reason)
                 ->setExtra('event', $this->toArray())
         );
 
@@ -256,7 +269,7 @@ class Event extends Model
 
     public function parseMatchesAchievement($matches)
     {
-        $achievement = Achievement::where(['name' => $matches['achievementName']])->first();
+        $achievement = app('medals')->byNameIncludeDisabled($matches['achievementName']);
         if ($achievement === null) {
             return $this->parseFailure("unknown achievement ({$matches['achievementName']})");
         }

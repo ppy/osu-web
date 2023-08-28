@@ -33,12 +33,12 @@ class Log extends Model
     const LOG_BEATMAPSET_MOD = 5;
     const LOG_USER_MOD = 6;
 
-    protected $table = 'phpbb_log';
-    protected $primaryKey = 'log_id';
-
     public $timestamps = false;
-    protected $dates = ['log_time'];
+
+    protected $casts = ['log_time' => 'datetime'];
     protected $dateFormat = 'U';
+    protected $primaryKey = 'log_id';
+    protected $table = 'phpbb_log';
 
     public function getLogDataAttribute($value)
     {

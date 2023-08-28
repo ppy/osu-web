@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'load_failed' => 'Data kunne ikke indlæses.',
     'missing_route' => 'Ugyldig URL eller forkert anmodningsmetode.',
     'no_restricted_access' => 'Du kan ikke udføre denne handling mens din konto er begrænset.',
     'supporter_only' => 'Du skal være osu!supporter for at kunne anvende denne funktion.',

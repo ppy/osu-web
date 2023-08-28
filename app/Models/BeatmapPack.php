@@ -21,31 +21,36 @@ use Exception;
 class BeatmapPack extends Model
 {
     const DEFAULT_TYPE = 'standard';
-    private static $tagMappings = [
+
+    // also display order for listing page
+    const TAG_MAPPINGS = [
         'standard' => 'S',
+        'featured' => 'F',
+        'tournament' => 'P', // since 'T' is taken and 'P' goes for 'pool'
+        'loved' => 'L',
+        'chart' => 'R',
         'theme' => 'T',
         'artist' => 'A',
-        'chart' => 'R',
     ];
 
     protected $table = 'osu_beatmappacks';
     protected $primaryKey = 'pack_id';
 
     protected $casts = [
+        'date' => 'datetime',
         'hidden' => 'boolean',
         'no_diff_reduction' => 'boolean',
     ];
 
-    protected $dates = ['date'];
     public $timestamps = false;
 
     public static function getPacks($type)
     {
-        if (!in_array($type, array_keys(static::$tagMappings), true)) {
-            return;
-        }
+        $tag = static::TAG_MAPPINGS[$type] ?? null;
 
-        $tag = static::$tagMappings[$type];
+        if ($tag === null) {
+            return null;
+        }
 
         return static::default()->where('tag', 'like', "{$tag}%")->orderBy('pack_id', 'desc');
     }
@@ -62,12 +67,19 @@ class BeatmapPack extends Model
 
     public function beatmapsets()
     {
-        $setsTable = (new Beatmapset())->getTable();
-        $itemsTable = (new BeatmapPackItem())->getTable();
+        return $this->hasManyThrough(
+            Beatmapset::class,
+            BeatmapPackItem::class,
+            'pack_id',
+            'beatmapset_id',
+            null,
+            'beatmapset_id',
+        );
+    }
 
-        return Beatmapset::query()
-            ->join($itemsTable, "{$itemsTable}.beatmapset_id", '=', "{$setsTable}.beatmapset_id")
-            ->where("{$itemsTable}.pack_id", '=', $this->pack_id);
+    public function getRouteKeyName(): string
+    {
+        return 'tag';
     }
 
     public function userCompletionData($user)

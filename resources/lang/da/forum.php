@@ -25,6 +25,7 @@ return [
     ],
 
     'forums' => [
+        'forums' => '',
         'latest_post' => 'Seneste Opslag',
 
         'index' => [
@@ -47,7 +48,7 @@ return [
         'confirm_restore' => 'Gendan opslag?',
         'edited' => 'Sidst redigeret af :user den :when, redigeret i alt :count gange.',
         'posted_at' => 'slået op på :when',
-        'posted_by' => 'Nyt oplsag af :username',
+        'posted_by_in' => '',
 
         'actions' => [
             'destroy' => 'Slet opslag',

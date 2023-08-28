@@ -24,7 +24,7 @@ return [
         'form' => [
             '_' => 'Søk',
             'deleted' => 'Inkluder slettede diskusjoner',
-            'mode' => '',
+            'mode' => 'Beatmap modus',
             'only_unresolved' => 'Vis bare uløste tråder',
             'types' => 'Meldingstyper',
             'username' => 'Brukernavn',

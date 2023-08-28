@@ -50,13 +50,11 @@ return [
             'resolved' => 'Nemůžete upravit příspěvek ve vyřešené diskusi.',
             'system_generated' => 'Nelze upravovat automaticky generovaný příspěvek.',
         ],
-
-        'store' => [
-            'beatmapset_locked' => 'Tato beatmapa je zablokována od diskuze.',
-        ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => 'Tato beatmapa je k diskuzi uzamčena.',
+
         'metadata' => [
             'nominated' => 'Nemůžete změnit metadata nominované beatmapy. Pokud si myslíte, že jsou nastavena nesprávně, kontaktujte člena BN nebo NAT.',
         ],
@@ -173,6 +171,7 @@ return [
 
     'score' => [
         'pin' => [
+            'disabled_type' => "Nelze připnout tento typ skóre",
             'not_owner' => 'Pouze vlastník skóre může připnout skóre.',
             'too_many' => 'Připnuto příliš mnoho skóre.',
         ],

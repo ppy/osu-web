@@ -8,6 +8,7 @@ return [
     'not_negative' => ':attribute nesmí být záporný.',
     'required' => ':attribute je vyžadován.',
     'too_long' => ':attribute přesáhl maximální délku - může mít maximálně :limit znaků.',
+    'url' => 'Zadejte prosím platnou URL adresu.',
     'wrong_confirmation' => 'Potvrzení se neshoduje.',
 
     'beatmapset_discussion' => [
@@ -108,10 +109,20 @@ return [
         ],
     ],
 
+    'legacy_api_key' => [
+        'exists' => 'Na jednoho uživatele je v tuto chvíli poskytován pouze jeden API klíč.',
+
+        'attributes' => [
+            'api_key' => 'api klíč',
+            'app_name' => 'jméno aplikace',
+            'app_url' => 'url aplikace',
+        ],
+    ],
+
     'oauth' => [
         'client' => [
             'too_many' => 'Byl překročen limit povolených možností.',
-            'url' => 'Zadejte prosím platnou adresu URL.',
+            'url' => 'Zadejte prosím platné adresy URL.',
 
             'attributes' => [
                 'name' => 'Název aplikace',
@@ -164,6 +175,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => 'Hodnocené beatmapy nemohou být nahlášeny',
+        'not_in_channel' => 'Nejste v tomto kanálu.',
         'reason_not_valid' => ':reason není platný pro tento typ nahlášení.',
         'self' => "Nemůžete nahlásit sám sebe!",
     ],

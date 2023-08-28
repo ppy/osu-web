@@ -5,18 +5,18 @@
 
 return [
     'index' => [
-        'description' => 'Dies sind deine beobachteten Diskussionen. Du wirst über neue Beiträge und Updates informiert.',
-        'title_compact' => 'beobachtete moddingthreads',
+        'description' => 'Dies sind deine gefolgten Beatmap-Diskussionen. Du wirst über neue Posts und Aktualisierungen benachrichtigt.',
+        'title_compact' => 'Merkliste von Beatmap-Diskussionen',
 
         'counts' => [
-            'total' => 'Beobachtete Beatmaps',
+            'total' => 'Gefolgte Beatmaps',
             'unread' => 'Beatmaps mit neuer Aktivität',
         ],
 
         'table' => [
-            'empty' => 'Du beobachtest keine Diskussionen.',
+            'empty' => 'Du folgst keiner Beatmap-Diskussion.',
             'last_update' => 'Letzte Aktualisierung',
-            'open_issues' => 'Offene Vorschläge/Probleme',
+            'open_issues' => 'Offene Probleme',
             'state' => 'Status',
             'title' => 'Titel',
         ],

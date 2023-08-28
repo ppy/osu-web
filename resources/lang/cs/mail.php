@@ -67,7 +67,7 @@ return [
         'duration' => 'Díky nim máte přístup k osu!direct a dalším osu!supporter výhod na další :duration.',
         'features' => 'Více informací o těchto funkcích naleznete zde:',
         'gifted' => 'Někdo vám právě daroval osu!supporter tag!',
-        'gift_message' => '',
+        'gift_message' => 'K tomuto dárku byla napsaná tato zpráva:',
         'subject' => 'Dostal si status osu!podporovatele jako dárek!',
     ],
 

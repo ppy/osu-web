@@ -6,6 +6,7 @@
 return [
     'index' => [
         'description' => 'Coleções pré-empacotadas de beatmaps baseadas num tema em comum.',
+        'empty' => 'Brevemente!',
         'nav_title' => 'listagem',
         'title' => 'Pacotes de beatmap',
 
@@ -34,8 +35,11 @@ return [
     'mode' => [
         'artist' => 'Artista/Álbum',
         'chart' => 'Em destaque',
+        'featured' => 'Artista Destacado',
+        'loved' => 'Project Loved',
         'standard' => 'Padrão',
         'theme' => 'Tema',
+        'tournament' => 'Torneio',
     ],
 
     'require_login' => [

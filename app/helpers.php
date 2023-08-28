@@ -5,6 +5,9 @@
 
 use App\Libraries\LocaleMeta;
 use App\Models\LoginAttempt;
+use Egulias\EmailValidator\EmailValidator;
+use Egulias\EmailValidator\Validation\NoRFCWarningsValidation;
+use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Arr;
 use Illuminate\Support\HtmlString;
 
@@ -38,11 +41,7 @@ function array_reject_null(iterable $array): array
  */
 function array_search_null($value, $array)
 {
-    $key = array_search($value, $array, true);
-
-    if ($key !== false) {
-        return $key;
-    }
+    return null_if_false(array_search($value, $array, true));
 }
 
 function atom_id(string $namespace, $id = null): string
@@ -74,9 +73,9 @@ function beatmap_timestamp_format($ms)
 /**
  * Allows using both html-safe and non-safe text inside `{{ }}` directive.
  */
-function blade_safe($html)
+function blade_safe($html): HtmlString
 {
-    return new Illuminate\Support\HtmlString($html);
+    return new HtmlString($html);
 }
 
 /**
@@ -181,7 +180,7 @@ function captcha_enabled()
     return config('captcha.sitekey') !== '' && config('captcha.secret') !== '';
 }
 
-function captcha_triggered()
+function captcha_login_triggered()
 {
     if (!captcha_enabled()) {
         return false;
@@ -268,16 +267,16 @@ function css_group_colour($group)
     return '--group-colour: '.(optional($group)->colour ?? 'initial');
 }
 
-function css_var_2x(string $key, string $url)
+function css_var_2x(string $key, ?string $url): ?HtmlString
 {
     if (!present($url)) {
-        return;
+        return null;
     }
 
     $url = e($url);
     $url2x = retinaify($url);
 
-    return blade_safe("{$key}: url('{$url}'); {$key}-2x: url('{$url2x}')");
+    return blade_safe("{$key}: url('{$url}'); {$key}-2x: url('{$url2x}');");
 }
 
 function current_locale_meta(): LocaleMeta
@@ -501,8 +500,12 @@ function markdown_chat($input)
     return $converter->convert($input)->getContent();
 }
 
-function markdown_plain($input)
+function markdown_plain(?string $input): string
 {
+    if ($input === null) {
+        return '';
+    }
+
     static $converter;
 
     if (!isset($converter)) {
@@ -615,26 +618,18 @@ function product_quantity_options($product, $selected = null)
 function read_image_properties($path)
 {
     try {
-        $data = getimagesize($path);
+        return null_if_false(getimagesize($path));
     } catch (Exception $_e) {
-        return;
-    }
-
-    if ($data !== false) {
-        return $data;
+        return null;
     }
 }
 
 function read_image_properties_from_string($string)
 {
     try {
-        $data = getimagesizefromstring($string);
+        return null_if_false(getimagesizefromstring($string));
     } catch (Exception $_e) {
-        return;
-    }
-
-    if ($data !== false) {
-        return $data;
+        return null;
     }
 }
 
@@ -757,6 +752,7 @@ function ext_view($view, $data = null, $type = null, $status = null)
         'html' => 'text/html',
         'js' => 'application/javascript',
         'json' => 'application/json',
+        'opensearch' => 'application/opensearchdescription+xml',
         'rss' => 'application/rss+xml',
     ];
 
@@ -776,6 +772,21 @@ function from_app_url()
     return starts_with(request()->headers->get('referer'), config('app.url').'/');
 }
 
+function forum_user_link(int $id, string $username, string|null $colour, int|null $currentUserId): string
+{
+    $icon = tag('span', [
+        'class' => 'forum-user-icon',
+        'style' => user_color_style($colour, 'background-color'),
+    ]);
+
+    $link = link_to_user($id, $username, null, []);
+    if ($currentUserId === $id) {
+        $link = tag('strong', null, $link);
+    }
+
+    return "{$icon} {$link}";
+}
+
 function is_api_request()
 {
     return request()->is('api/*');
@@ -784,6 +795,20 @@ function is_api_request()
 function is_json_request()
 {
     return is_api_request() || request()->expectsJson();
+}
+
+function is_valid_email_format(?string $email): bool
+{
+    if ($email === null) {
+        return false;
+    }
+
+    static $validator;
+    $validator ??= new EmailValidator();
+    static $lexer;
+    $lexer ??= new NoRFCWarningsValidation();
+
+    return $validator->isValid($email, $lexer);
 }
 
 function is_sql_unique_exception($ex)
@@ -944,18 +969,16 @@ function build_url($build)
 
 function post_url($topicId, $postId, $jumpHash = true, $tail = false)
 {
+    if ($topicId === null) {
+        return null;
+    }
+
     $postIdParamKey = 'start';
     if ($tail === true) {
         $postIdParamKey = 'end';
     }
 
-    if ($topicId === null) {
-        return;
-    }
-
-    $url = route('forum.topics.show', ['topic' => $topicId, $postIdParamKey => $postId]);
-
-    return $url;
+    return route('forum.topics.show', ['topic' => $topicId, $postIdParamKey => $postId]);
 }
 
 function wiki_image_url(string $path, bool $fullUrl = true)
@@ -967,7 +990,7 @@ function wiki_image_url(string $path, bool $fullUrl = true)
 
 function wiki_url($path = null, $locale = null, $api = null, $fullUrl = true)
 {
-    $path = $path === null ? 'Main_Page' : str_replace(['%2F', '%23'], ['/', '#'], rawurlencode($path));
+    $path = $path === null ? 'Main_page' : str_replace(['%2F', '%23'], ['/', '#'], rawurlencode($path));
 
     $params = [
         'path' => 'WIKI_PATH',
@@ -1043,9 +1066,7 @@ function proxy_media($url)
 
 function lazy_load_image($url, $class = '', $alt = '')
 {
-    $url = e($url);
-
-    return "<img class='{$class}' src='data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' data-normal='{$url}' alt='{$alt}' />";
+    return "<img class='{$class}' src='{$url}' alt='{$alt}' loading='lazy' />";
 }
 
 function nav_links()
@@ -1072,7 +1093,8 @@ function nav_links()
         'rankings.type.score' => route('rankings', ['mode' => $defaultMode, 'type' => 'score']),
         'rankings.type.country' => route('rankings', ['mode' => $defaultMode, 'type' => 'country']),
         'rankings.type.multiplayer' => route('multiplayer.rooms.show', ['room' => 'latest']),
-        'layout.menu.rankings.kudosu' => osu_url('rankings.kudosu'),
+        'rankings.type.seasons' => route('seasons.show', ['season' => 'latest']),
+        'layout.menu.rankings.kudosu' => route('rankings.kudosu'),
     ];
     $links['community'] = [
         'page_title.forum._' => route('forum.forums.index'),
@@ -1088,11 +1110,11 @@ function nav_links()
         'layout.header.store.orders' => route('store.orders.index'),
     ];
     $links['help'] = [
-        'page_title.main.wiki_controller._' => wiki_url('Main_Page'),
+        'page_title.main.wiki_controller._' => wiki_url('Main_page'),
         'layout.menu.help.getFaq' => wiki_url('FAQ'),
         'layout.menu.help.getRules' => wiki_url('Rules'),
-        'layout.menu.help.getAbuse' => wiki_url('Reporting_Bad_Behaviour/Abuse'),
-        'layout.menu.help.getSupport' => wiki_url('Help_Centre'),
+        'layout.menu.help.getAbuse' => wiki_url('Reporting_bad_behaviour/Abuse'),
+        'layout.menu.help.getSupport' => wiki_url('Help_centre'),
     ];
 
     return $links;
@@ -1111,7 +1133,7 @@ function footer_landing_links()
             'faq' => wiki_url('FAQ'),
             'forum' => route('forum.forums.index'),
             'livestreams' => route('livestreams.index'),
-            'wiki' => wiki_url('Main_Page'),
+            'wiki' => wiki_url('Main_page'),
         ],
         'legal' => footer_legal_links(),
     ];
@@ -1199,6 +1221,15 @@ function i18n_date($datetime, $format = IntlDateFormatter::LONG, $pattern = null
     return $formatter->format($datetime);
 }
 
+function i18n_date_auto(DateTimeInterface $date, string $skeleton): string
+{
+    $locale = App::getLocale();
+    $generator = new IntlDatePatternGenerator($locale);
+    $pattern = $generator->getBestPattern($skeleton);
+
+    return IntlDateFormatter::formatObject($date, $pattern, $locale);
+}
+
 function i18n_number_format($number, $style = null, $pattern = null, $precision = null, $locale = null)
 {
     if ($style === null && $pattern === null && $precision === null) {
@@ -1245,9 +1276,7 @@ function open_image($path, $dimensions = null)
                 break;
         }
 
-        if ($image !== false) {
-            return $image;
-        }
+        return null_if_false($image);
     } catch (ErrorException $_e) {
         // do nothing
     }
@@ -1289,22 +1318,15 @@ function fast_imagesize($url)
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_MAXREDIRS => 5,
+            CURLOPT_TIMEOUT => 10,
         ]);
         $data = curl_exec($curl);
-        curl_close($curl);
 
-        $result = read_image_properties_from_string($data);
-
-        if ($result === null) {
-            return false;
-        } else {
-            return $result;
-        }
+        // null isn't cached
+        return read_image_properties_from_string($data) ?? false;
     });
 
-    if ($result !== false) {
-        return $result;
-    }
+    return null_if_false($result);
 }
 
 function get_arr($input, $callback = null)
@@ -1417,9 +1439,10 @@ function get_string($input)
 
 function get_string_split($input)
 {
-    return get_arr(explode("\r\n", get_string($input)), function ($item) {
-        return presence(trim_unicode($item));
-    });
+    return get_arr(
+        explode("\n", strtr(get_string($input), ["\r\n" => "\n", "\r" => "\n"])),
+        fn ($item) => presence(trim_unicode($item)),
+    );
 }
 
 function get_class_basename($className)
@@ -1590,6 +1613,11 @@ function get_timestamp_or_zero(DateTime $time = null): int
     return $time === null ? 0 : $time->getTimestamp();
 }
 
+function null_if_false($value)
+{
+    return $value === false ? null : $value;
+}
+
 function parse_time_to_carbon($value)
 {
     if (!present($value)) {
@@ -1696,18 +1724,18 @@ function clamp($number, $min, $max)
 }
 
 // e.g. 100634983048665 -> 100.63 trillion
-function suffixed_number_format($number)
+function suffixed_number_format(float|int $number, ?string $locale = null): string
 {
-    $suffixes = ['', 'k', 'million', 'billion', 'trillion']; // TODO: localize
-    $k = 1000;
+    $locale ??= App::getLocale();
 
-    if ($number < $k) {
-        return $number;
+    static $formatters = [];
+
+    if (!isset($formatters[$locale])) {
+        $formatters[$locale] = new NumberFormatter($locale, NumberFormatter::PADDING_POSITION);
+        $formatters[$locale]->setAttribute(NumberFormatter::FRACTION_DIGITS, 2);
     }
 
-    $i = floor(log($number) / log($k));
-
-    return number_format($number / pow($k, $i), 2).' '.$suffixes[$i];
+    return $formatters[$locale]->format($number);
 }
 
 function suffixed_number_format_tag($number)
@@ -1762,10 +1790,7 @@ function check_url(string $url): bool
     ]);
     curl_exec($ch);
 
-    $errored = curl_errno($ch) > 0 || curl_getinfo($ch, CURLINFO_HTTP_CODE) !== 200;
-    curl_close($ch);
-
-    return !$errored;
+    return curl_errno($ch) === 0 && curl_getinfo($ch, CURLINFO_HTTP_CODE) === 200;
 }
 
 function mini_asset(string $url): string
@@ -1808,7 +1833,7 @@ function search_error_message(?Exception $e): ?string
     }
 
     $basename = snake_case(get_class_basename(get_class($e)));
-    $key = "errors.search.${basename}";
+    $key = "errors.search.{$basename}";
     $text = osu_trans($key);
 
     return $text === $key ? osu_trans('errors.search.default') : $text;
@@ -1822,4 +1847,12 @@ function search_error_message(?Exception $e): ?string
 function unmix(string $resource): HtmlString
 {
     return app('assets-manifest')->src($resource);
+}
+
+/**
+ * Get an instance of the named migration.
+ */
+function migration(string $name): Migration
+{
+    return require database_path("migrations/{$name}.php");
 }

@@ -313,8 +313,8 @@ class OsuAuthorize
         $this->ensureCleanRecord($user);
         $this->ensureHasPlayed($user);
 
-        if ($beatmapset->discussion_locked) {
-            return 'beatmap_discussion_post.store.beatmapset_locked';
+        if ($beatmapset->discussion_locked || $beatmapset->downloadLimited()) {
+            return 'beatmapset.discussion_locked';
         }
 
         return 'ok';
@@ -456,7 +456,7 @@ class OsuAuthorize
         }
 
         if ($post->beatmapDiscussion->beatmapset->discussion_locked) {
-            return 'beatmap_discussion_post.store.beatmapset_locked';
+            return 'beatmapset.discussion_locked';
         }
 
         return 'ok';
@@ -487,8 +487,9 @@ class OsuAuthorize
             return $prefix.'resolved';
         }
 
-        if ($post->beatmapDiscussion->beatmapset->discussion_locked) {
-            return 'beatmap_discussion_post.store.beatmapset_locked';
+        $beatmapset = $post->beatmapDiscussion->beatmapset;
+        if ($beatmapset->discussion_locked || $beatmapset->downloadLimited()) {
+            return 'beatmapset.discussion_locked';
         }
 
         return 'ok';
@@ -556,10 +557,6 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if (!$beatmapset->isScoreable() && $user->isModerator()) {
-            return 'ok';
-        }
-
         return 'unauthorized';
     }
 
@@ -604,13 +601,17 @@ class OsuAuthorize
         $this->ensureCleanRecord($user);
         $this->ensureHasPlayed($user);
 
+        // Moderators can't reply if download limited.
+        if ($beatmapset->downloadLimited()) {
+            return 'beatmapset.discussion_locked';
+        }
+
         if ($user->isModerator()) {
             return 'ok';
         }
 
         if ($beatmapset->discussion_locked) {
-            // TODO: key should be changed.
-            return 'beatmap_discussion_post.store.beatmapset_locked';
+            return 'beatmapset.discussion_locked';
         }
 
         return 'ok';
@@ -730,6 +731,15 @@ class OsuAuthorize
         return 'unauthorized';
     }
 
+    public function checkBeatmapsetShowDeleted(?User $user): string
+    {
+        if ($user !== null && $user->isModerator()) {
+            return 'ok';
+        }
+
+        return 'unauthorized';
+    }
+
     /**
      * @param User|null $user
      * @param Beatmapset $beatmapset
@@ -739,6 +749,7 @@ class OsuAuthorize
     public function checkBeatmapsetDescriptionEdit(?User $user, Beatmapset $beatmapset): string
     {
         $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
 
         if ((!$beatmapset->downloadLimited() && $user->getKey() === $beatmapset->user_id) || $user->isModerator()) {
             return 'ok';
@@ -818,6 +829,7 @@ class OsuAuthorize
     public function checkBeatmapsetMetadataEdit(?User $user, Beatmapset $beatmapset): string
     {
         $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
 
         if ($user->isModerator()) {
             return 'ok';
@@ -875,6 +887,17 @@ class OsuAuthorize
         return 'unauthorized';
     }
 
+    public function checkBeatmapsetTagsEdit(?User $user): string
+    {
+        $this->ensureLoggedIn($user);
+
+        if ($user->isModerator()) {
+            return 'ok';
+        }
+
+        return 'unauthorized';
+    }
+
     /**
      * @param User|null $user
      * @return string
@@ -913,7 +936,7 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user, $prefix);
 
-        if (!(config('osu.user.min_plays_allow_verified_bypass') || $user->isBot())) {
+        if (!config('osu.user.min_plays_allow_verified_bypass')) {
             $this->ensureHasPlayed($user);
         }
 
@@ -962,7 +985,7 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user, $prefix);
 
-        if (!(config('osu.user.min_plays_allow_verified_bypass') || $user->isBot())) {
+        if (!config('osu.user.min_plays_allow_verified_bypass')) {
             $this->ensureHasPlayed($user);
         }
 
@@ -998,9 +1021,7 @@ class OsuAuthorize
         $this->ensureSessionVerified($user);
         $this->ensureCleanRecord($user, $prefix);
         // This check becomes useless when min_plays_allow_verified_bypass is enabled.
-        if (!$user->isBot()) {
-            $this->ensureHasPlayed($user);
-        }
+        $this->ensureHasPlayed($user);
 
         if (!$this->doCheckUser($user, 'ChatChannelRead', $channel)->can()) {
             return $prefix.'no_access';
@@ -1460,20 +1481,22 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
-        $plays = $user->playCount();
-        $posts = $user->user_posts;
-        $forInitialHelpForum = in_array($forum->forum_id, config('osu.forum.initial_help_forum_ids'), true);
+        if (!$user->isBot()) {
+            $plays = $user->playCount();
+            $posts = $user->user_posts;
+            $forInitialHelpForum = in_array($forum->forum_id, config('osu.forum.initial_help_forum_ids'), true);
 
-        if ($forInitialHelpForum) {
-            if ($plays < 10 && $posts > 10) {
-                return $prefix.'too_many_help_posts';
-            }
-        } else {
-            if ($plays < config('osu.forum.minimum_plays') && $plays < $posts + 1) {
-                return $prefix.'play_more';
-            }
+            if ($forInitialHelpForum) {
+                if ($plays < 10 && $posts > 10) {
+                    return $prefix.'too_many_help_posts';
+                }
+            } else {
+                if ($plays < config('osu.forum.minimum_plays') && $plays < $posts + 1) {
+                    return $prefix.'play_more';
+                }
 
-            $this->ensureHasPlayed($user);
+                $this->ensureHasPlayed($user);
+            }
         }
 
         return 'ok';
@@ -1778,6 +1801,19 @@ class OsuAuthorize
         return 'unauthorized';
     }
 
+    public function checkLegacyIrcKeyStore(?User $user): string
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        // isBot checks user primary group
+        if (!$user->isGroup(app('groups')->byIdentifier('bot')) && $user->playCount() < 100) {
+            return 'play_more';
+        }
+
+        return 'ok';
+    }
+
     /**
      * @param User|null $user
      * @return string
@@ -1796,6 +1832,14 @@ class OsuAuthorize
     {
         // yet another admin only =D
         return 'unauthorized';
+    }
+
+    public function checkLegacyApiKeyStore(?User $user): string
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        return 'ok';
     }
 
     /**
@@ -1855,6 +1899,10 @@ class OsuAuthorize
 
         if ($score->user_id !== $user->getKey()) {
             return $prefix.'not_owner';
+        }
+
+        if ($score instanceof Solo\Score && config('osu.user.hide_pinned_solo_scores')) {
+            return $prefix.'disabled_type';
         }
 
         $pinned = $user->scorePins()->forRuleset($score->getMode())->withVisibleScore()->count();
@@ -2038,7 +2086,7 @@ class OsuAuthorize
      */
     public function ensureHasPlayed(?User $user): void
     {
-        if ($user === null) {
+        if ($user === null || $user->isBot()) {
             return;
         }
 

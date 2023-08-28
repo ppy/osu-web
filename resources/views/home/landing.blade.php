@@ -126,19 +126,17 @@
     </div>
 
     <footer class="osu-layout__section osu-layout__section--landing-footer">
-        <div class="osu-layout__row osu-layout__row--landing-sitemap landing-sitemap">
-            <div class="osu-layout__col-container osu-layout__col-container--landing-sitemap">
+        <div class="osu-layout__row osu-layout__row--landing-sitemap">
+            <div class="landing-sitemap">
                 @foreach (footer_landing_links() as $section => $links)
-                    <div class="osu-layout__col osu-layout__col--sm-4">
-                        <ul class="landing-sitemap__list">
-                            <li class="landing-sitemap__item">
-                                <div class="landing-sitemap__header">{{ osu_trans("layout.footer.$section._") }}</div>
-                            </li>
-                            @foreach ($links as $action => $link)
-                                <li class="landing-sitemap__item"><a href="{{ $link }}" class="landing-sitemap__link">{{ osu_trans("layout.footer.$section.$action") }}</a></li>
-                            @endforeach
-                        </ul>
-                    </div>
+                    <ul class="landing-sitemap__list">
+                        <li class="landing-sitemap__item">
+                            <div class="landing-sitemap__header">{{ osu_trans("layout.footer.$section._") }}</div>
+                        </li>
+                        @foreach ($links as $action => $link)
+                            <li class="landing-sitemap__item"><a href="{{ $link }}" class="landing-sitemap__link">{{ osu_trans("layout.footer.$section.$action") }}</a></li>
+                        @endforeach
+                    </ul>
                 @endforeach
             </div>
         </div>

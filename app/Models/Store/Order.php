@@ -83,10 +83,12 @@ class Order extends Model
     protected $primaryKey = 'order_id';
 
     protected $casts = [
+        'deleted_at' => 'datetime',
+        'paid_at' => 'datetime',
+        'shipped_at' => 'datetime',
         'shipping' => 'float',
     ];
 
-    protected $dates = ['deleted_at', 'shipped_at', 'paid_at'];
     protected $macros = ['itemsQuantities'];
 
     protected static function splitTransactionId($value)
@@ -263,14 +265,10 @@ class Order extends Model
         return static::splitTransactionId($this->transaction_id)[1] ?? null;
     }
 
-    public function getSubtotal($forShipping = false)
+    public function getSubtotal()
     {
         $total = 0;
         foreach ($this->items as $i) {
-            if ($forShipping && !$i->product->requiresShipping()) {
-                continue;
-            }
-
             $total += $i->subtotal();
         }
 

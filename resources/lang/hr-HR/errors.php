@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'load_failed' => '',
     'missing_route' => 'Nepostojeći url ili netočna metoda zahtijeva.',
     'no_restricted_access' => 'Ne možeš to raditi dok je tvoj račun ograničen.',
     'supporter_only' => 'Moraš imati osu!supporter oznaku kako bi koristio/la ovu značajku.',

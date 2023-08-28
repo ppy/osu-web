@@ -1,0 +1,237 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.beatmap-discussion-post {
+  @_top: beatmap-discussion-post;
+
+  @_info-text-size: @font-size--small;
+
+  @_discussion-text-size: @font-size--title-small-2;
+  @_reply-text-size: @font-size--normal-2;
+
+  @_content-gutter-base: 15px;
+
+  transition: background-color .1s ease-in-out;
+
+  &--deleted {
+    opacity: 0.5;
+  }
+
+  &--discussion {
+    min-width: 0;
+
+    @media @desktop {
+      flex: 1;
+    }
+  }
+
+  &--new-reply {
+    background-color: @osu-colour-b5;
+    border-radius: 0 0 @border-radius-base @border-radius-base;
+  }
+
+  &--new-reply-placeholder {
+    padding: 10px;
+    display: flex;
+    justify-content: flex-end;
+    background-color: transparent;
+  }
+
+  &--unread {
+    position: relative;
+
+    &::before {
+      .full-size();
+      content: '';
+      background-color: hsl(var(--hsl-blue-3));
+      width: 5px;
+    }
+  }
+
+  &__action {
+    margin: 0 5px;
+    text-transform: lowercase;
+
+    &--button {
+      .reset-input();
+      .link-plain();
+      .link-default();
+      // reset function above overrides margin
+      margin: 0 5px;
+      font-size: @font-size--small;
+    }
+
+    &--cancel {
+      .reset-input();
+      position: absolute;
+      color: @osu-colour-f1;
+      right: 0;
+      width: @beatmap-discussion--reply-padding;
+      height: @beatmap-discussion--reply-padding;
+    }
+  }
+
+  &__actions {
+    display: flex;
+
+    .@{_top}--editing & {
+      justify-content: flex-end;
+    }
+
+    .@{_top}--new-reply & {
+      justify-content: flex-end;
+    }
+
+    .@{_top}--editing.@{_top}--reply & {
+      margin-top: 5px;
+    }
+  }
+
+  &__actions-group {
+    display: flex;
+    align-items: center;
+    margin: 0 -5px;
+  }
+
+  &__avatar {
+    flex: none;
+    width: @beatmap-discussion--avatar-size;
+    height: @beatmap-discussion--avatar-size;
+    margin-bottom: 5px;
+
+    @media @desktop {
+      margin-right: 10px;
+      margin-bottom: 0;
+    }
+  }
+
+  &__content {
+    display: flex;
+    padding: 10px @_content-gutter-base;
+    flex-direction: column;
+    flex: none;
+    min-width: 0;
+
+    @media @desktop {
+      flex-direction: row;
+      flex: 1;
+    }
+
+    // Paddings for thread starter is handled by its parent.
+    .@{_top}--discussion & {
+      padding: 0;
+    }
+
+    .@{_top}--reply & {
+      // override padding for discussion previews
+      .beatmap-discussion--preview &,
+      .beatmap-discussion-review-post-embed & {
+        padding: 10px @_content-gutter-base;
+      }
+
+      @media @desktop {
+        padding-left: @beatmap-discussion--reply-padding;
+        padding-right: @beatmap-discussion--reply-padding;
+      }
+    }
+
+    .@{_top}--new-reply & {
+      padding-bottom: 0;
+    }
+  }
+
+  &__footer {
+    padding: 10px;
+
+    &--notice {
+      padding-top: 0;
+      padding-bottom: 0;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      font-size: @font-size--normal;
+      color: @osu-colour-f1;
+    }
+
+    .@{_top}--reply & {
+      padding-left: @_content-gutter-base;
+      padding-right: @_content-gutter-base;
+
+      @media @desktop {
+        padding-left: @beatmap-discussion--reply-padding;
+        padding-right: @beatmap-discussion--reply-padding;
+      }
+    }
+  }
+
+  &__info {
+    font-size: @_info-text-size;
+    margin-right: 10px;
+    color: @osu-colour-f1;
+  }
+
+  &__info-container {
+    display: flex;
+    flex-wrap: wrap;
+
+    .@{_top}--reply & {
+      &::after {
+        content: '';
+        height: 1px;
+        align-self: center;
+        flex: 1;
+      }
+    }
+  }
+
+  &__info-user {
+    opacity: 0.5;
+    font-weight: 600;
+  }
+
+  &__message {
+    .content-font();
+    word-break: break-word;
+    margin-bottom: 10px;
+    color: white;
+
+    .@{_top}--discussion & {
+      font-size: @_discussion-text-size;
+    }
+
+    .@{_top}--reply & {
+      font-size: @_reply-text-size;
+    }
+
+    &::placeholder {
+      color: @osu-colour-f1;
+    }
+
+    &--editor {
+      .reset-input();
+      width: 100%;
+      resize: vertical;
+      min-height: 3em;
+
+      // --reply part to override top modifier
+      &, .@{_top}--reply & {
+        font-size: @font-size--phone-input;
+
+        @media @desktop {
+          font-size: @_reply-text-size;
+        }
+      }
+    }
+  }
+
+  &__message-container {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    flex: none;
+
+    @media @desktop {
+      flex: 1;
+    }
+  }
+}

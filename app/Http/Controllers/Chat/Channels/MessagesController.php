@@ -16,6 +16,14 @@ use App\Transformers\UserCompactTransformer;
  */
 class MessagesController extends BaseController
 {
+    public function __construct()
+    {
+        $this->middleware('require-scopes:chat.read', ['only' => ['index']]);
+        $this->middleware('require-scopes:chat.write', ['only' => ['store']]);
+
+        parent::__construct();
+    }
+
     /**
      * Get Channel Messages
      *
