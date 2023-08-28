@@ -207,7 +207,7 @@ export default class Main extends React.Component<Props> {
   }
 
   private readonly jumpToClick = (e: JQuery.TriggeredEvent<Document, unknown, HTMLElement, HTMLElement>) => {
-    if (!(e.currentTarget instanceof HTMLLinkElement)) return;
+    if (!(e.currentTarget instanceof HTMLAnchorElement)) return;
 
     const url = e.currentTarget.href;
     const parsedUrl = parseUrl(url, this.discussionsState.discussionsArray);
