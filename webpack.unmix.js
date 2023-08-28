@@ -151,7 +151,11 @@ const plugins = [
   new webpack.DefinePlugin({
     'process.env.DOCS_URL': JSON.stringify(process.env.DOCS_URL || 'https://docs.ppy.sh'),
   }),
-  new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/), // don't add moment locales to bundle.
+  new webpack.IgnorePlugin({
+    // don't add moment locales to bundle.
+    contextRegExp: /moment$/,
+    resourceRegExp: /^\.\/locale$/,
+  }),
   new MiniCssExtractPlugin({
     filename: outputFilename('css/[name]', 'css'),
   }),
@@ -235,7 +239,8 @@ const rules = [
     ],
   },
   {
-    loaders: [
+    test: /(\.(png|jpe?g|gif|webp)$|^((?!font).)*\.svg$)/,
+    use: [
       {
         loader: 'file-loader',
         options: {
@@ -246,7 +251,6 @@ const rules = [
         loader: 'img-loader',
       },
     ],
-    test: /(\.(png|jpe?g|gif|webp)$|^((?!font).)*\.svg$)/,
   },
   {
     loader: 'file-loader',
@@ -315,15 +319,14 @@ const optimization = {
   splitChunks: {
     cacheGroups,
   },
-
 };
 
 if (inProduction) {
   optimization.minimizer = [
     new TerserPlugin({
-      sourceMap: true,
       terserOptions: {
         safari10: true,
+        sourceMap: true,
       },
     }),
     new CssMinimizerPlugin({

@@ -2,11 +2,11 @@
   "private": true,
   "scripts": {
     "dev": "yarn run development",
-    "development": "cross-env NODE_ENV=development webpack --progress --hide-modules --config=webpack.config.js",
+    "development": "cross-env NODE_ENV=development webpack --progress --config=webpack.config.js",
     "lint": "eslint --cache 'resources/js/**/*.{js,ts,tsx}' 'tests/karma/**/*.{ts,tsx}' '*.js'",
     "localize": "yarn run generate-localizations",
     "prod": "yarn run production",
-    "production": "cross-env NODE_ENV=production webpack --hide-modules --config=webpack.config.js",
+    "production": "cross-env NODE_ENV=production webpack --config=webpack.config.js",
     "watch": "yarn run development --watch",
     "watch-poll": "yarn run watch --watch-poll"
   },
