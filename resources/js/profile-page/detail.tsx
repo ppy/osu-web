@@ -42,9 +42,9 @@ export default class Detail extends React.Component<Props> {
 
         <ProfileTournamentBanner banner={this.user.active_tournament_banner} />
 
-        {this.renderNumbers()}
-
         <Badges badges={this.user.badges} />
+
+        {this.renderNumbers()}
 
         <DetailBar user={this.user} />
 

@@ -35,7 +35,7 @@ export default function Main(props: Props) {
       />
 
       <div className='osu-page osu-page--generic-compact'>
-        <Cover coverUrl={props.user.cover.url} currentMode={props.user.playmode} user={props.user} />
+        <Cover coverUrl={props.user.cover.url} currentMode={props.user.playmode} modifiers='multiplayer' user={props.user} />
 
         <ProfileTournamentBanner banner={props.user.active_tournament_banner} />
 
