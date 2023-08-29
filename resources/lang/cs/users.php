@@ -221,7 +221,7 @@ return [
                 'title' => 'Úspěchy',
             ],
             'beatmaps' => [
-                'by_artist' => 'autora :artist',
+                'by_artist' => 'od autora :artist',
                 'title' => 'Beatmapy',
 
                 'favourite' => [
@@ -387,7 +387,7 @@ return [
                     'date' => 'datum',
                     'action' => 'trest',
                     'length' => 'délka',
-                    'length_indefinite' => '',
+                    'length_indefinite' => 'Neurčitý',
                     'description' => 'popis',
                     'actor' => 'od :username',
 

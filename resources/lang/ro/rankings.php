@@ -10,7 +10,7 @@ return [
     ],
 
     'filter' => [
-        'title' => 'Arată',
+        'title' => 'Afișează',
 
         'variant' => [
             'title' => 'Variantă',

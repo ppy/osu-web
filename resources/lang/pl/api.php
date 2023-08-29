@@ -17,7 +17,9 @@ return [
         'identify' => 'zidentyfikować cię i uzyskać publiczne informacje z twojego profilu.',
 
         'chat' => [
+            'read' => '',
             'write' => 'wysyłać wiadomości w twoim imieniu.',
+            'write_manage' => '',
         ],
 
         'forum' => [

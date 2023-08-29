@@ -387,7 +387,7 @@ return [
                     'date' => '날짜',
                     'action' => '처벌',
                     'length' => '기간',
-                    'length_indefinite' => '',
+                    'length_indefinite' => '무기한',
                     'description' => '사유',
                     'actor' => ':username으로',
 

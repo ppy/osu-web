@@ -5,17 +5,17 @@
 
 return [
     'empty' => [
-        '_' => 'Pas de parties jouées sur osu!(lazer) :type_group pour le moment !',
+        '_' => 'Pas de parties :type_group jouées sur osu!(lazer) pour le moment !',
         'playlists' => 'playlist',
         'realtime' => 'multijoueur',
     ],
 
     'room' => [
-        'hosted_by' => 'hébergé par :user',
+        'hosted_by' => 'hébergée par :user',
         'invalid_password' => 'Mot de passe invalide',
         'map_count' => ':count_delimited map|:count_delimited maps',
         'player_count' => ':count_delimited joueur|:count_delimited joueurs',
-        'time_left' => ':time restant',
+        'time_left' => 'Il reste :time',
 
         'errors' => [
             'duration_too_long' => 'La durée est trop longue.',

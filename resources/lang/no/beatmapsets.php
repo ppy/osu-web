@@ -60,6 +60,10 @@ return [
     'show' => [
         'discussion' => 'Diskusjon',
 
+        'admin' => [
+            'full_size_cover' => '',
+        ],
+
         'deleted_banner' => [
             'title' => 'Dette beatmappet har blitt slettet.',
             'message' => '(kun moderatorer kan se dette)',
