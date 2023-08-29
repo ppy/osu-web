@@ -21,7 +21,7 @@ interface Props {
   currentMode: GameMode | null;
   editor?: JSX.Element;
   isUpdatingCover?: boolean;
-  modifiers?: Modifiers
+  modifiers?: Modifiers;
   user: UserExtendedJson;
 }
 
