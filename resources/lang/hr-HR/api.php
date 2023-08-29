@@ -17,7 +17,9 @@ return [
         'identify' => 'Tebe identificirati i očitati tvoj javni profil.',
 
         'chat' => [
+            'read' => '',
             'write' => 'Slati poruke u tvoje ime.',
+            'write_manage' => '',
         ],
 
         'forum' => [

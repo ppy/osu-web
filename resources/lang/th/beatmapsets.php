@@ -60,6 +60,10 @@ return [
     'show' => [
         'discussion' => 'การสนทนา',
 
+        'admin' => [
+            'full_size_cover' => '',
+        ],
+
         'deleted_banner' => [
             'title' => 'บีทแมพนี้ถูกลบไปแล้ว',
             'message' => '(ผู้ดูแลเท่านั้นที่สามารถเห็นสิ่งนี้)',

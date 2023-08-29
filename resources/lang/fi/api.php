@@ -17,7 +17,9 @@ return [
         'identify' => 'Tunnistaa sinut ja lukea julkista profiiliasi.',
 
         'chat' => [
+            'read' => '',
             'write' => 'Lähettää viestejä puolestasi.',
+            'write_manage' => '',
         ],
 
         'forum' => [

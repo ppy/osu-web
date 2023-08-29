@@ -60,6 +60,10 @@ return [
     'show' => [
         'discussion' => 'Keskustelu',
 
+        'admin' => [
+            'full_size_cover' => '',
+        ],
+
         'deleted_banner' => [
             'title' => 'Tämä rytmikartta on poistettu.',
             'message' => '(tämä näkyy vain moderaattoreille)',
