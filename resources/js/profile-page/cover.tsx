@@ -13,7 +13,7 @@ import { computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import { classWithModifiers, urlPresence } from 'utils/css';
+import { classWithModifiers, Modifiers, urlPresence } from 'utils/css';
 import { trans } from 'utils/lang';
 
 interface Props {
@@ -21,6 +21,7 @@ interface Props {
   currentMode: GameMode | null;
   editor?: JSX.Element;
   isUpdatingCover?: boolean;
+  modifiers?: Modifiers
   user: UserExtendedJson;
 }
 
@@ -43,7 +44,7 @@ export default class Cover extends React.Component<Props> {
 
   render() {
     return (
-      <div className={classWithModifiers('profile-info', { cover: this.showCover })}>
+      <div className={classWithModifiers('profile-info', this.props.modifiers, { cover: this.showCover })}>
         {this.showCover &&
           <div className='profile-info__bg' style={{ backgroundImage: urlPresence(this.props.coverUrl) }}>
             {this.props.isUpdatingCover &&
