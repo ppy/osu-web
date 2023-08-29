@@ -94,6 +94,7 @@ class ScoreTransformer extends TransformerAbstract
             'id' => $score->getKey(),
             'legacy_perfect' => $legacyPerfect ?? null,
             'pp' => $pp ?? null,
+            // TODO: remove this redundant field sometime after 2024-02
             'replay' => $hasReplay,
             'type' => $score->getMorphClass(),
         ];
