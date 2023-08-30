@@ -111,10 +111,10 @@ class ScoresController extends BaseController
     {
         $room = Room::find($roomId) ?? abort(404, 'Invalid room id');
         $playlistItem = $room->playlist()->find($playlistId) ?? abort(404, 'Invalid playlist id');
-        $scoreLinks = $playlistItem->scoreLinks()->findOrFail($id);
+        $scoreLink = $playlistItem->scoreLinks()->findOrFail($id);
 
         return json_item(
-            $scoreLinks,
+            $scoreLink,
             ScoreTransformer::newSolo(),
             [
                 ...ScoreTransformer::MULTIPLAYER_BASE_INCLUDES,
