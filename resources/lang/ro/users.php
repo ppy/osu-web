@@ -183,7 +183,7 @@ return [
         ],
         'cover' => [
             'to_0' => 'Ascunde fundal',
-            'to_1' => 'Arată fundal',
+            'to_1' => 'Afișează fundal',
         ],
         'edit' => [
             'cover' => [

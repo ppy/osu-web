@@ -118,6 +118,7 @@ export default class Main extends React.Component<BeatmapsetDiscussionsBundleJso
               currentMode={this.user.playmode}
               user={this.user}
             />
+            <Badges badges={this.user.badges} />
             {!this.user.is_bot && (
               <>
                 <ProfileTournamentBanner banner={this.user.active_tournament_banner} />
@@ -127,7 +128,6 @@ export default class Main extends React.Component<BeatmapsetDiscussionsBundleJso
                 </div>
               </>
             )}
-            <Badges badges={this.user.badges} />
             <DetailBar user={this.user} />
           </div>
           <div

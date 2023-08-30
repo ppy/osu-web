@@ -52,8 +52,8 @@ return [
     ],
 
     'store_payment_completed' => [
-        'prepare_shipping' => 'Kami telah menerima pembayaranmu, dan saat ini kami tengah mempersiapkan pesananmu untuk dikirim. Tergantung dari jumlah pesanan yang masuk, pesananmu dapat memerlukan waktu beberapa hari untuk dikirim. Kamu dapat melacak pesananmu beserta segala rincian tambahannya (apabila tersedia) pada tautan berikut:',
-        'processing' => 'Kami telah menerima pembayaranmu, dan saat ini kami sedang memproses pesananmu lebih lanjut. Kamu dapat mengikuti perkembangan pesananmu di sini:',
+        'prepare_shipping' => 'Kami telah menerima pembayaranmu dan sedang mempersiapkan pesananmu untuk dikirim. Tergantung dari jumlah pesanan yang masuk, pesananmu dapat memerlukan waktu beberapa hari untuk dikirim. Kamu dapat melacak pesananmu beserta segala rinciannya (apabila tersedia) pada tautan berikut:',
+        'processing' => 'Kami telah menerima pembayaranmu dan sedang memproses pesananmu. Kamu dapat mengikuti perkembangan pesananmu di sini:',
         'questions' => "Apabila kamu memiliki pertanyaan lebih lanjut, jangan sungkan untuk membalas email ini.",
         'shipping' => 'Pengiriman',
         'subject' => 'Kami telah menerima pesanan osu!store milikmu!',
@@ -79,7 +79,7 @@ return [
     ],
 
     'user_force_reactivation' => [
-        'main' => 'Akunmu terindikasi telah disalahgunakan, memiliki rekam jejak aktivitas yang mencurigakan, atau memiliki kata sandi yang SANGAT lemah. Oleh karenanya, kami memintamu untuk menentukan kata sandi baru. Pastikan kamu memilih kata sandi yang LEBIH AMAN.',
+        'main' => 'Akunmu terindikasi telah disusupi, memiliki rekam jejak aktivitas yang mencurigakan, atau memiliki kata sandi yang SANGAT lemah. Oleh karenanya, kami memintamu untuk menentukan kata sandi baru. Pastikan kamu memilih kata sandi yang LEBIH AMAN.',
         'perform_reset' => 'Kamu dapat mengatur ulang kata sandi akunmu melalui :url',
         'reason' => 'Alasan:',
         'subject' => 'Aktivasi Ulang Akun osu! Dibutuhkan',

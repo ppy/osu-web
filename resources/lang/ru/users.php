@@ -387,14 +387,14 @@ return [
                     'date' => 'Дата',
                     'action' => 'действие',
                     'length' => 'продолжительность',
-                    'length_indefinite' => '',
+                    'length_indefinite' => 'Бессрочно',
                     'description' => 'описание',
                     'actor' => ':username',
 
                     'actions' => [
                         'restriction' => 'Бан',
                         'silence' => 'Заглушение',
-                        'tournament_ban' => 'Запрет на участие в турнирах',
+                        'tournament_ban' => 'Турнирный бан',
                         'note' => 'Заметка',
                     ],
                 ],

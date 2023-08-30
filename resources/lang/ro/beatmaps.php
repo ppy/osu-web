@@ -29,7 +29,7 @@ return [
         'require-login' => 'Te rugăm să te autentifici pentru a posta sau a răspunde',
         'resolved' => 'Rezolvat',
         'restore' => 'restabilește',
-        'show_deleted' => 'Arată șterse',
+        'show_deleted' => 'Afișează șterse',
         'title' => 'Discuții',
 
         'collapse' => [
@@ -50,7 +50,7 @@ return [
 
             'prompt' => [
                 'lock' => 'Motiv pentru blocare',
-                'unlock' => 'Ești sigur că vrei să deblochezi?',
+                'unlock' => 'Ești sigur că dorești să deblochezi?',
             ],
         ],
 
@@ -76,6 +76,18 @@ return [
             'problem_warning' => 'Raportează o problemă',
             'review' => 'Recenzie',
             'suggestion' => 'Sugestie',
+        ],
+
+        'message_type_title' => [
+            'disqualify' => '',
+            'hype' => '',
+            'mapper_note' => '',
+            'nomination_reset' => '',
+            'praise' => '',
+            'problem' => '',
+            'problem_warning' => '',
+            'review' => '',
+            'suggestion' => '',
         ],
 
         'mode' => [
@@ -319,7 +331,7 @@ return [
 
     'nsfw' => [
         'exclude' => 'Ascunde',
-        'include' => 'Arată',
+        'include' => 'Afișează',
     ],
 
     'played' => [

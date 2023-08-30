@@ -18,15 +18,15 @@ return [
     ],
 
     'kudosu' => [
-        'total' => '',
-        'available' => '',
-        'used' => '',
+        'total' => 'Спечелени',
+        'available' => 'Налични',
+        'used' => 'Похарчени',
     ],
 
     'type' => [
         'charts' => 'под прожекторите',
         'country' => 'държава',
-        'kudosu' => '',
+        'kudosu' => 'kudosu',
         'multiplayer' => 'мултиплейър',
         'performance' => 'представяне',
         'score' => 'резултат',

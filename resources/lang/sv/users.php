@@ -387,7 +387,7 @@ return [
                     'date' => 'datum',
                     'action' => 'åtgärd',
                     'length' => 'längd',
-                    'length_indefinite' => '',
+                    'length_indefinite' => 'Obestämd',
                     'description' => 'beskrivning',
                     'actor' => 'efter :användarnamn',
 

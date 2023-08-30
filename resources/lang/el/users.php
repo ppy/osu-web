@@ -387,7 +387,7 @@ return [
                     'date' => 'ημερομηνία',
                     'action' => 'δράση',
                     'length' => 'μήκος',
-                    'length_indefinite' => '',
+                    'length_indefinite' => 'Αόριστο',
                     'description' => 'περιγραφή',
                     'actor' => 'από :username',
 
