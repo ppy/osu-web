@@ -17,9 +17,15 @@ class CurrentUserAttributesTransformer extends TransformerAbstract
 {
     public function transform(LegacyMatch\Score|ScoreModel|SoloScoreInterface $score): array
     {
-        $pinnable = $score instanceof ScoreModel
-            ? $score->best
-            : ($score instanceof SoloScore ? $score : null);
+        if ($score instanceof ScoreModel) {
+            $pinnable = $score->best;
+        } elseif ($score instanceof SoloScore) {
+            $pinnable = $score;
+        } elseif ($score instanceof MultiplayerScoreLink) {
+            $pinnable = $score->score;
+        } else {
+            $pinnable = null;
+        }
 
         return [
             'pin' => $pinnable !== null && $this->isOwnScore($pinnable)
