@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'new' => 'Uusi rajapinta-avain',
+    'new' => 'Uusi legacy-rajapinnan avain',
     'none' => 'Ei avainta.',
 
     'docs' => [

@@ -3,7 +3,6 @@
 
 .profile-detail {
   --gutter: @gutter-v2;
-  .inner-shadow-top();
   background-color: hsl(var(--hsl-b5));
   padding: 10px var(--gutter);
   display: grid;
@@ -11,6 +10,10 @@
 
   &:empty {
     display: none;
+  }
+
+  .profile-info + & {
+    .inner-shadow-top();
   }
 
   @media @desktop {

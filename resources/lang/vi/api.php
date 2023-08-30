@@ -17,7 +17,9 @@ return [
         'identify' => 'Nhận diện và đọc trang cá nhân công khai của bạn.',
 
         'chat' => [
+            'read' => '',
             'write' => 'Gửi tin nhắn dưới tư cách của bạn.',
+            'write_manage' => '',
         ],
 
         'forum' => [

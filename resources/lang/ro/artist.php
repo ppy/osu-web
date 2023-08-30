@@ -13,8 +13,8 @@ return [
 
     'beatmaps' => [
         '_' => 'Beatmap-uri',
-        'download' => 'Descarcă Șablonul pentru Beatmap',
-        'download-na' => 'Șablonul pentru Beatmap nu este încă disponibil',
+        'download' => 'descarcă șablonul pentru beatmap',
+        'download-na' => 'șablonul pentru beatmap nu este încă disponibil',
     ],
 
     'index' => [

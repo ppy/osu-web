@@ -17,7 +17,9 @@ return [
         'identify' => 'Mengenali dirimu dan membaca profil awam milik kamu.',
 
         'chat' => [
+            'read' => '',
             'write' => 'Mengirim pesan atas nama akaun kamu.',
+            'write_manage' => '',
         ],
 
         'forum' => [

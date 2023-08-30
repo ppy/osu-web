@@ -60,6 +60,10 @@ return [
     'show' => [
         'discussion' => 'Discussion',
 
+        'admin' => [
+            'full_size_cover' => '',
+        ],
+
         'deleted_banner' => [
             'title' => 'Cette beatmap a été supprimée.',
             'message' => '(seuls les modérateurs peuvent voir ceci)',

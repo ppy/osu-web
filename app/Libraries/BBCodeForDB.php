@@ -375,7 +375,7 @@ class BBCodeForDB
     public function parseYoutube($text)
     {
         return preg_replace_callback(
-            '#\[youtube\](.+?)\[/youtube\]#',
+            '#\[youtube\](?:https?://(?:youtu\.be/|(?:m\.|www\.|)youtube\.com/(?:embed/|shorts/|watch\?v=))|)(.+?)\[/youtube\]#',
             function ($m) {
                 $videoId = preg_replace('/\?.*/', '', $this->extraEscapes($m[1]));
 

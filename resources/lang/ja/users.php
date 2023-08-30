@@ -387,7 +387,7 @@ return [
                     'date' => '発生日',
                     'action' => 'アクション',
                     'length' => '期間',
-                    'length_indefinite' => '',
+                    'length_indefinite' => '無期限',
                     'description' => '詳細',
                     'actor' => 'by :username',
 
