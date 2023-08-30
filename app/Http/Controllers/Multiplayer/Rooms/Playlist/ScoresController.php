@@ -143,10 +143,10 @@ class ScoresController extends BaseController
     {
         $room = Room::find($roomId) ?? abort(404, 'Invalid room id');
         $playlistItem = $room->playlist()->find($playlistId) ?? abort(404, 'Invalid playlist id');
-        $score = $playlistItem->highScores()->where('user_id', $userId)->firstOrFail()->scoreLink ?? abort(404);
+        $scoreLink = $playlistItem->highScores()->where('user_id', $userId)->firstOrFail()->scoreLink ?? abort(404);
 
         return json_item(
-            $score,
+            $scoreLink,
             ScoreTransformer::newSolo(),
             [
                 ...ScoreTransformer::MULTIPLAYER_BASE_INCLUDES,
@@ -169,9 +169,9 @@ class ScoresController extends BaseController
         $buildId = ClientCheck::findBuild($user, $params)?->getKey()
             ?? config('osu.client.default_build_id');
 
-        $score = $room->startPlay($user, $playlistItem, $buildId);
+        $scoreLink = $room->startPlay($user, $playlistItem, $buildId);
 
-        return json_item($score, ScoreTransformer::newSolo());
+        return json_item($scoreLink, ScoreTransformer::newSolo());
     }
 
     /**
