@@ -18,7 +18,7 @@ return [
 
     'view' => [
         'hide' => 'Ascunde Cheie',
-        'show' => 'Arată Cheie',
+        'show' => 'Afișează Cheie',
         'delete' => 'Șterge',
     ],
 

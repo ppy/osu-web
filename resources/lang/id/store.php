@@ -57,10 +57,10 @@ return [
         'status' => [
             'processing' => [
                 'title' => 'Pembayaranmu belum terkonfirmasi!',
-                'line_1' => 'Apabila kamu telah membayar sebelumnya, ada kemungkinan sistem kami masih memproses dan mengonfirmasi pembayaranmu. Silakan muat ulang halaman ini dalam beberapa menit!',
+                'line_1' => 'Apabila kamu telah membayar sebelumnya, ada kemungkinan sistem kami masih menunggu konfirmasi atas pembayaranmu. Silakan muat ulang halaman ini dalam beberapa menit!',
                 'line_2' => [
                     '_' => 'Apabila kamu mengalami masalah dalam proses checkout, :link',
-                    'link_text' => 'klik di sini untuk melanjutkan transaksimu',
+                    'link_text' => 'klik di sini untuk melanjutkan proses checkout',
                 ],
             ],
         ],
@@ -100,7 +100,7 @@ return [
 
         'status' => [
             'cancelled' => 'Dibatalkan',
-            'checkout' => 'Pesanan Diproses',
+            'checkout' => 'Menyiapkan',
             'delivered' => 'Terkirim',
             'paid' => 'Lunas',
             'processing' => 'Menunggu konfirmasi',
@@ -112,14 +112,14 @@ return [
         'name' => 'Nama',
 
         'stock' => [
-            'out' => 'Stok barang saat ini sedang tidak tersedia. Silakan periksa kembali nanti!',
-            'out_with_alternative' => 'Sayangnya stok untuk barang ini habis. Gunakan menu dropdown untuk memilih jenis yang lain atau silahkan periksa kembali nanti!',
+            'out' => 'Stok barang ini sedang tidak tersedia. Silakan periksa kembali nanti!',
+            'out_with_alternative' => 'Sayangnya, stok barang ini sedang tidak tersedia. Gunakan menu dropdown untuk memilih varian lain atau periksa kembali nanti!',
         ],
 
         'add_to_cart' => 'Tambahkan ke Keranjang',
         'notify' => 'Beri tahu saya bila telah tersedia!',
 
-        'notification_success' => 'kamu akan diberitahukan pada saat kami memiliki stok baru. klik :link untuk membatalkan',
+        'notification_success' => 'kamu akan menerima notifikasi pada saat kami memiliki stok baru. klik :link untuk membatalkan',
         'notification_remove_text' => 'di sini',
 
         'notification_in_stock' => 'Produk ini telah tersedia!',

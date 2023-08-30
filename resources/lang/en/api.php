@@ -17,7 +17,9 @@ return [
         'identify' => 'Identify you and read your public profile.',
 
         'chat' => [
+            'read' => 'Read messages on your behalf.',
             'write' => 'Send messages on your behalf.',
+            'write_manage' => 'Join and leave channels on your behalf.',
         ],
 
         'forum' => [

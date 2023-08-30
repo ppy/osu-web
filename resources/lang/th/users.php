@@ -388,7 +388,7 @@ return [
                     'date' => 'วันที่',
                     'action' => 'ดำเนินการ',
                     'length' => 'ระยะเวลา',
-                    'length_indefinite' => '',
+                    'length_indefinite' => 'ไม่มีกำหนด',
                     'description' => 'คำอธิบาย',
                     'actor' => 'โดย :username',
 

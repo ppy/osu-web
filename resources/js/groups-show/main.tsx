@@ -20,10 +20,7 @@ export class Main extends React.PureComponent<Props> {
 
         <div className='osu-page osu-page--generic-compact'>
           <UserList
-            descriptionHtml={this.props.group.description?.html}
-            playmodeFilter={this.props.group.has_playmodes}
-            playmodeFilterGroupId={this.props.group.id}
-            title={this.props.group.name}
+            group={this.props.group}
             users={this.props.users}
           />
         </div>

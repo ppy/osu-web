@@ -60,6 +60,10 @@ return [
     'show' => [
         'discussion' => '討論',
 
+        'admin' => [
+            'full_size_cover' => '',
+        ],
+
         'deleted_banner' => [
             'title' => '此圖譜已被刪除。',
             'message' => '(僅審核者可見)',

@@ -50,7 +50,7 @@ export class GameHeader extends React.Component
         h2 className: 'mp-history-game__metadata mp-history-game__metadata--artist', getArtist(@props.beatmapset)
 
       div className: 'mp-history-game__mods',
-        el(Mod, key: mod, mod: mod) for mod in @props.game.mods
+        el(Mod, key: mod, mod: { acronym: mod }) for mod in @props.game.mods
 
       div
         className: 'mp-history-game__team-type'

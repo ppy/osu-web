@@ -60,6 +60,10 @@ return [
     'show' => [
         'discussion' => 'Абмеркаванне',
 
+        'admin' => [
+            'full_size_cover' => '',
+        ],
+
         'deleted_banner' => [
             'title' => 'Гэта бітмапа была выдалена.',
             'message' => '(гэта бачаць толькі мадэратары) ',

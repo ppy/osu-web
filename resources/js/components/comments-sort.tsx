@@ -2,14 +2,13 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { observer } from 'mobx-react';
-import core from 'osu-core-singleton';
 import * as React from 'react';
 import type { Modifiers } from 'utils/css';
+import CommentsController from './comments-controller';
 import { Sort } from './sort';
 
-const uiState = core.dataStore.uiState;
-
 interface Props {
+  controller: CommentsController;
   modifiers?: Modifiers;
 }
 
@@ -18,7 +17,7 @@ export default class CommentsSort extends React.Component<Props> {
   render() {
     return (
       <Sort
-        currentValue={uiState.comments.loadingSort ?? uiState.comments.currentSort}
+        currentValue={this.props.controller.nextState.sort ?? this.props.controller.state.sort}
         modifiers={this.props.modifiers}
         onChange={this.handleChange}
         values={['new', 'old', 'top']}
@@ -26,7 +25,7 @@ export default class CommentsSort extends React.Component<Props> {
     );
   }
 
-  private handleChange(this: void, e: React.MouseEvent<HTMLButtonElement>) {
-    $.publish('comments:sort', { sort: e.currentTarget.dataset.value });
-  }
+  private readonly handleChange = (e: React.MouseEvent<HTMLButtonElement>) => {
+    this.props.controller.apiSetSort(e.currentTarget.dataset.value ?? '');
+  };
 }

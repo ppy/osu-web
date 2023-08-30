@@ -39,7 +39,7 @@ class MigrateFreshOrRunCommand extends Command
     private function fresh()
     {
         $this->info('Database is empty. Calling migrate:fresh to initalise database and elasticsearch.');
-        $this->call('migrate:fresh', ['--yes' => true]);
+        $this->call('migrate:fresh', ['--no-interaction' => true]);
     }
 
     private function migrate()
