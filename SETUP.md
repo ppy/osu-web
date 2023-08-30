@@ -223,8 +223,6 @@ php artisan tinker
 
 ## Generating assets
 
-Using Laravel's [Mix](https://laravel.com/docs/6.x/mix).
-
 ```bash
 # build assets (should be done automatically if using docker)
 yarn run development
@@ -272,13 +270,13 @@ Once the env files are set, database for testing will need to be setup:
 Tests should be run against an empty database, to initialize an empty database:
 
 ```
-APP_ENV=testing php artisan migrate:fresh --yes
+APP_ENV=testing php artisan migrate:fresh --no-interaction
 ```
 
 or if using docker:
 
 ```
-docker compose run --rm -e APP_ENV=testing php artisan migrate:fresh --yes
+docker compose run --rm -e APP_ENV=testing php artisan migrate:fresh --no-interaction
 ```
 
 ---

@@ -42,7 +42,7 @@ return [
         'header' => 'Registre una nueva aplicación OAuth',
         'register' => 'Registro de aplicación',
         'terms_of_use' => [
-            '_' => 'Al usar la API, usted acepta los :link.',
+            '_' => 'Al usar la API, aceptas los :link.',
             'link' => 'términos de uso',
         ],
     ],

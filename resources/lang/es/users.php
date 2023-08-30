@@ -137,7 +137,7 @@ return [
     'report' => [
         'button_text' => 'Reportar',
         'comments' => 'Comentarios',
-        'placeholder' => 'Por favor, proporcione cualquier información que crea que pueda ser útil.',
+        'placeholder' => 'Por favor, proporciona cualquier información que creas que pueda ser útil.',
         'reason' => 'Motivo',
         'thanks' => '¡Gracias por reportar!',
         'title' => '¿Reportar a :username?',
@@ -387,7 +387,7 @@ return [
                     'date' => 'fecha',
                     'action' => 'acción',
                     'length' => 'duración',
-                    'length_permanent' => 'Permanente',
+                    'length_indefinite' => 'Indefinido',
                     'description' => 'descripción',
                     'actor' => 'por :username',
 

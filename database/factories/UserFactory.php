@@ -9,6 +9,7 @@ namespace Database\Factories;
 
 use App\Libraries\Fulfillments\ApplySupporterTag;
 use App\Libraries\User\CountryChangeTarget;
+use App\Models\Beatmap;
 use App\Models\Country;
 use App\Models\User;
 use App\Models\UserAccountHistory;
@@ -138,10 +139,24 @@ class UserFactory extends Factory
         return $this->has(UserAccountHistory::factory(), 'accountHistories');
     }
 
-    public function withPlays(?int $count = null, ?string $mode = 'osu')
+    public function withPlays(?int $count = null, ?string $ruleset = 'osu'): static
     {
-        return $this->has(UserStatisticsModel::getClass($mode)::factory()->state([
+        $state = [
             'playcount' => $count ?? config('osu.user.min_plays_for_posting'),
-        ]), 'statistics'.studly_case($mode));
+        ];
+
+        $ret = $this->has(
+            UserStatisticsModel::getClass($ruleset)::factory()->state($state),
+            'statistics'.studly_case($ruleset),
+        );
+
+        foreach (Beatmap::VARIANTS[$ruleset] ?? [] as $variant) {
+            $ret = $ret->has(
+                UserStatisticsModel::getClass($ruleset, $variant)::factory()->state($state),
+                'statistics'.studly_case("{$ruleset}_{$variant}"),
+            );
+        }
+
+        return $ret;
     }
 }

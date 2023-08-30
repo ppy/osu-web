@@ -75,12 +75,12 @@ return [
         'warning' => "Apabila kamu melanggar peraturan, akunmu akan ditempatkan pada masa percobaan selama satu bulan, di mana dalam rentang waktu ini kami tidak akan menanggapi permintaan apa pun yang terkait dengan akun Anda. Setelah masa ini berakhir, Anda baru akan dapat menghubungi kami untuk mengembalikan akunmu. Mohon diperhatikan bahwa membuat akun baru <strong>hanya akan menambah masa hukumanmu</strong>, dan <strong>masa hukumanmu akan bertambah panjang untuk setiap akun baru yang kamu buat</strong>. Kami harap kamu dapat belajar dari kesalahanmu!",
 
         'if_mistake' => [
-            '_' => 'Apabila kamu merasa bahwa hal ini merupakan sebuah kesalahan, kamu disarankan untuk mengontak kami (baik melalui :email atau tombol "?" yang terletak pada pojok kanan bawah layar) sesegera mungkin. Mohon diperhatikan bahwa segala keputusan yang kami ambil selalu berdasar pada data yang konkrit dan diambil dengan penuh keyakinan. Di samping itu, kami juga berhak untuk tidak menindaklanjuti aduanmu lebih lanjut apabila kami merasa kamu dengan sengaja telah berbohong kepada kami.',
+            '_' => 'Apabila kamu merasa bahwa hal ini merupakan sebuah kesalahan, kamu dapat menghubungi kami (baik melalui :email atau tombol "?" yang terletak pada pojok kanan bawah layar) sesegera mungkin. Mohon diperhatikan bahwa segala keputusan yang kami ambil selalu berdasar pada data dan diambil dengan penuh keyakinan. Di samping itu, kami juga berhak untuk tidak menindaklanjuti aduanmu apabila kami merasa kamu dengan sengaja telah berbohong kepada kami.',
             'email' => 'email',
         ],
 
         'reasons' => [
-            'compromised' => 'Akunmu terindikasi telah disalahgunakan oleh pihak lain. Akun ini akan dinonaktifkan untuk sementara waktu hingga identitas pengguna akun telah terkonfirmasi.',
+            'compromised' => 'Akunmu terindikasi telah disusupi. Akun ini akan dinonaktifkan untuk sementara waktu hingga identitas pengguna akun terkonfirmasi.',
             'opening' => 'Terdapat sejumlah alasan yang dapat menyebabkan akunmu dinonaktifkan:',
 
             'tos' => [
@@ -106,15 +106,15 @@ return [
         'button' => 'Masuk',
         'button_posting' => 'Mencoba masuk...',
         'email_login_disabled' => 'Alamat email untuk saat ini tidak dapat digunakan untuk masuk. Silakan masuk dengan menggunakan nama pengguna.',
-        'failed' => 'Gagal masuk',
+        'failed' => 'Rincian masuk salah',
         'forgot' => 'Lupa kata sandi?',
         'info' => 'Silakan masuk untuk melanjutkan',
-        'invalid_captcha' => 'Kamu telah berulang kali gagal memasukkan kredensial pengguna yang valid. Harap selesaikan captcha yang muncul dan coba lagi. (Muat ulang laman ini apabila captcha tidak terlihat)',
+        'invalid_captcha' => 'Terlalu banyak upaya login yang gagal. Mohon selesaikan captcha yang muncul dan coba lagi. (Muat ulang laman ini apabila captcha tidak terlihat)',
         'locked_ip' => 'Alamat IP-mu dikunci. Silakan tunggu beberapa menit.',
         'password' => 'Kata Sandi',
         'register' => "Belum memiliki akun osu!? Buat sekarang",
         'remember' => 'Ingat perangkat ini',
-        'title' => 'Mohon masuk untuk melanjutkan',
+        'title' => 'Silakan masuk untuk melanjutkan',
         'username' => 'Nama Pengguna',
 
         'beta' => [
@@ -190,7 +190,7 @@ return [
                 'button' => 'Ubah Sampul Profil',
                 'defaults_info' => 'Pilihan sampul lainnya akan tersedia di masa mendatang',
                 'upload' => [
-                    'broken_file' => 'Gagal memproses gambar. Mohon periksa kembali gambar yang diunggah dan coba lagi.',
+                    'broken_file' => 'Gambar gagal diproses. Periksa keabsahan gambar yang diunggah dan coba lagi.',
                     'button' => 'Unggah gambar',
                     'dropzone' => 'Letakkan di sini untuk mengunggah',
                     'dropzone_info' => 'Kamu juga dapat meletakkan gambar di sini untuk mengunggah',
@@ -387,7 +387,7 @@ return [
                     'date' => 'waktu',
                     'action' => 'tindak lanjut',
                     'length' => 'durasi',
-                    'length_permanent' => 'Permanen',
+                    'length_indefinite' => 'Tak tentu',
                     'description' => 'keterangan',
                     'actor' => 'oleh :username',
 

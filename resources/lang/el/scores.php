@@ -5,7 +5,7 @@
 
 return [
     'show' => [
-        'title' => '',
+        'title' => ':username στο :title [:version]',
 
         'beatmap' => [
             'by' => 'από τον :artist',
@@ -13,18 +13,18 @@ return [
 
         'player' => [
             'by' => 'Παίχτηκε από',
-            'submitted_on' => '',
+            'submitted_on' => 'Υποβλήθηκε στις',
 
             'rank' => [
-                'country' => '',
-                'global' => '',
+                'country' => 'Κατάταξη Χώρας',
+                'global' => 'Καθολική Κατάταξη',
             ],
         ],
     ],
 
     'status' => [
-        'non_best' => '',
-        'non_passing' => '',
-        'processing' => '',
+        'non_best' => 'Μόνο προσωπικές καλύτερες βαθμολογίες που απονέμονται pp',
+        'non_passing' => 'Περνώντας μόνο βαθμολογίες που απονέμονται pp',
+        'processing' => 'Αυτό το σκορ εξακολουθεί να υπολογίζεται και θα εμφανιστεί σύντομα',
     ],
 ];

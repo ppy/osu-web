@@ -34,12 +34,12 @@ return [
         ],
 
         'profile' => [
-            'country' => '',
+            'country' => 'країна',
             'title' => 'Профіль',
 
             'country_change' => [
-                '_' => "",
-                'update_link' => '',
+                '_' => "Схоже, що ваша країна з облікового запису не збігається з вашою країною проживання. :update_link.",
+                'update_link' => 'Змінити на :country',
             ],
 
             'user' => [

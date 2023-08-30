@@ -98,11 +98,11 @@ class ScoreTransformer extends TransformerAbstract
             if ($best !== null) {
                 $bestId = $best->getKey();
                 $pp = $best->pp;
-                $replay = $best->replay;
+                $hasReplay = $best->replay;
             }
         } elseif ($score instanceof SoloScoreInterface) {
             $pp = $score->pp;
-            $replay = $score->has_replay;
+            $hasReplay = $score->has_replay;
 
             if ($score instanceof MultiplayerScoreLink) {
                 $multiplayerAttributes = [
@@ -112,14 +112,18 @@ class ScoreTransformer extends TransformerAbstract
             }
         }
 
+        $hasReplay ??= false;
+
         return [
             ...$score->data->jsonSerialize(),
             ...($multiplayerAttributes ?? []),
             'best_id' => $bestId ?? null,
+            'has_replay' => $hasReplay,
             'id' => $score->getKey(),
             'legacy_perfect' => $legacyPerfect ?? null,
             'pp' => $pp ?? null,
-            'replay' => $replay ?? false,
+            // TODO: remove this redundant field sometime after 2024-02
+            'replay' => $hasReplay,
             'type' => $score->getMorphClass(),
         ];
     }

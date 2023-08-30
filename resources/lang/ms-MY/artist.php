@@ -4,8 +4,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'page_description' => '',
-    'title' => '',
+    'page_description' => '\'Featured Artists\' di osu!',
+    'title' => 'Featured Artists',
 
     'admin' => [
         'hidden' => 'ARTIS SAAT INI TERSEMBUNYI',
@@ -14,11 +14,11 @@ return [
     'beatmaps' => [
         '_' => 'Beatmaps',
         'download' => 'muat turun templat beatmap',
-        'download-na' => '',
+        'download-na' => 'templat beatmap belum lagi tersedia',
     ],
 
     'index' => [
-        'description' => '',
+        'description' => 'Featured Artist merupakan artis-artis yang telah secara rasmi bekerjasama dengan kami dalam menyediakan lagu-lagu baru dan asli untuk osu!. Para artis berikut — beserta karya-karya pilihan mereka — telah dipilih secara saksama oleh kumpulan kami bagi para mapper untuk dapat berkreasi dengannya. Lebih dari itu, beberapa dari mereka bahkan telah turut menciptakan lagu-lagu baru untuk osu! secara eksklusif.<br><br>Seluruh lagu yang tertera pada katalog di bawah ini dapat dimuat turun secara bebas dalam format .osz (lengkap dengan penetapan masa yang telah kami siapkan sebelumnya) serta telah diizinkan secara sah untuk dapat dipergunakan dan disebarluaskan di dalam osu! dan kandungan berkaitan osu!.',
     ],
 
     'links' => [
@@ -30,7 +30,7 @@ return [
     'songs' => [
         '_' => 'Lagu',
         'count' => '',
-        'original' => '',
+        'original' => 'osu! original',
         'original_badge' => 'ASLI',
     ],
 

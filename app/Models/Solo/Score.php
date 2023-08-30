@@ -252,7 +252,7 @@ class Score extends Model implements Traits\ReportableInterface, Traits\SoloScor
 
     public function url(): string
     {
-        return route('scores.show', $this);
+        return route('scores.show', ['rulesetOrScore' => $this->getKey()]);
     }
 
     public function userRank(?array $params = null): int

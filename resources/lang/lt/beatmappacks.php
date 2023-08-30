@@ -5,10 +5,10 @@
 
 return [
     'index' => [
-        'description' => 'Surinktos bitmapų kolekcijos pagal temas.',
+        'description' => 'Surinktos beatmap\'ų kolekcijos pagal temas.',
         'empty' => 'Jau greitai!',
         'nav_title' => 'sąrašas',
-        'title' => 'Bitmapų Rinkiniai',
+        'title' => 'Beatmap\'ų Rinkiniai',
 
         'blurb' => [
             'important' => 'PERSKAITYK PRIEŠ ATSISIŲSDAMAS',

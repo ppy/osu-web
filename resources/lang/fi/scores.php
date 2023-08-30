@@ -5,26 +5,26 @@
 
 return [
     'show' => [
-        'title' => ':username käynnissä :title [:version]',
+        'title' => ':username\'n tulos: :title [:version]',
 
         'beatmap' => [
-            'by' => 'Luonut :artist ',
+            'by' => 'esittäjä :artist',
         ],
 
         'player' => [
-            'by' => 'Esittäjänä',
-            'submitted_on' => 'Lähetetty',
+            'by' => 'Pelaaja',
+            'submitted_on' => 'Tulos lähetetty',
 
             'rank' => [
-                'country' => 'Maan sijoitus',
+                'country' => 'Maakohtainen sijoitus',
                 'global' => 'Maailmanlaajuinen sijoitus',
             ],
         ],
     ],
 
     'status' => [
-        'non_best' => 'Vain parhaat henkilökohtaiset tulokset saa pp',
-        'non_passing' => '',
+        'non_best' => 'Vain parhaat henkilökohtaiset tulokset antavat pp\'tä',
+        'non_passing' => 'Vain ne tulokset, joissa on päästy rytmikartan loppuun asti, antavat pp\'tä',
         'processing' => 'Pisteitä lasketaan ja ne näytetään pian',
     ],
 ];

@@ -29,6 +29,7 @@ class AddIndexToBeatmapDiscussion extends Migration
     public function down()
     {
         Schema::table('beatmap_discussions', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
             $table->dropIndex(['user_id', 'updated_at']);
         });
     }
