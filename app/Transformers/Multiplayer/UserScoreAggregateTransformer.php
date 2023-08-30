@@ -44,7 +44,7 @@ class UserScoreAggregateTransformer extends TransformerAbstract
 
         foreach ($scoreAggs as $scoreAgg) {
             $attempts[] = [
-                'attempts' => $scoreAgg->attempts,
+                'attempts' => $scoreAgg->getRawAttribute('attempts'),
                 'id' => $scoreAgg->playlist_item_id,
             ];
         }
