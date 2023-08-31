@@ -312,7 +312,7 @@ const cacheGroups = {
 };
 
 const optimization = {
-  moduleIds: 'hashed',
+  moduleIds: 'deterministic',
   runtimeChunk: {
     name: 'runtime',
   },
