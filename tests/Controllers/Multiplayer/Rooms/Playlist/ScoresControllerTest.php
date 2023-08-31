@@ -18,27 +18,27 @@ class ScoresControllerTest extends TestCase
     {
         $playlist = PlaylistItem::factory()->create();
         $user = User::factory()->create();
-        $scores = [];
-        $scores[] = ScoreLink
+        $scoreLinks = [];
+        $scoreLinks[] = ScoreLink
             ::factory()
             ->state(['playlist_item_id' => $playlist])
             ->completed([], ['passed' => true, 'total_score' => 30])
             ->create();
-        $scores[] = $userScore = ScoreLink
+        $scoreLinks[] = $userScoreLink = ScoreLink
             ::factory()
             ->state([
                 'playlist_item_id' => $playlist,
                 'user_id' => $user,
             ])->completed([], ['passed' => true, 'total_score' => 20])
             ->create();
-        $scores[] = ScoreLink
+        $scoreLinks[] = ScoreLink
             ::factory()
             ->state(['playlist_item_id' => $playlist])
             ->completed([], ['passed' => true, 'total_score' => 10])
             ->create();
 
-        foreach ($scores as $score) {
-            UserScoreAggregate::lookupOrDefault($score->user, $score->room)->recalculate();
+        foreach ($scoreLinks as $scoreLink) {
+            UserScoreAggregate::lookupOrDefault($scoreLink->user, $scoreLink->room)->recalculate();
         }
 
         $this->actAsScopedUser($user, ['*']);
@@ -49,52 +49,52 @@ class ScoresControllerTest extends TestCase
         ]))->assertSuccessful();
 
         $json = json_decode($resp->getContent(), true);
-        $this->assertSame(count($scores), count($json['scores']));
+        $this->assertSame(count($scoreLinks), count($json['scores']));
         foreach ($json['scores'] as $i => $jsonScore) {
-            $this->assertSame($scores[$i]->getKey(), $jsonScore['id']);
+            $this->assertSame($scoreLinks[$i]->getKey(), $jsonScore['id']);
         }
-        $this->assertSame($json['user_score']['id'], $userScore->getKey());
+        $this->assertSame($json['user_score']['id'], $userScoreLink->getKey());
     }
 
     public function testShow()
     {
         $playlist = PlaylistItem::factory()->create();
         $user = User::factory()->create();
-        $scores = [];
-        $scores[] = ScoreLink
+        $scoreLinks = [];
+        $scoreLinks[] = ScoreLink
             ::factory()
             ->state(['playlist_item_id' => $playlist])
             ->completed([], ['passed' => true, 'total_score' => 30])
             ->create();
-        $scores[] = $userScore = ScoreLink
+        $scoreLinks[] = $userScoreLink = ScoreLink
             ::factory()
             ->state([
                 'playlist_item_id' => $playlist,
                 'user_id' => $user,
             ])->completed([], ['passed' => true, 'total_score' => 20])
             ->create();
-        $scores[] = ScoreLink
+        $scoreLinks[] = ScoreLink
             ::factory()
             ->state(['playlist_item_id' => $playlist])
             ->completed([], ['passed' => true, 'total_score' => 10])
             ->create();
 
-        foreach ($scores as $score) {
-            UserScoreAggregate::lookupOrDefault($score->user, $score->room)->recalculate();
+        foreach ($scoreLinks as $scoreLink) {
+            UserScoreAggregate::lookupOrDefault($scoreLink->user, $scoreLink->room)->recalculate();
         }
 
         $this->actAsScopedUser($user, ['*']);
 
         $resp = $this->json('GET', route('api.rooms.playlist.scores.show', [
-            'room' => $userScore->room_id,
-            'playlist' => $userScore->playlist_item_id,
-            'score' => $userScore->getKey(),
+            'room' => $userScoreLink->room_id,
+            'playlist' => $userScoreLink->playlist_item_id,
+            'score' => $userScoreLink->getKey(),
         ]))->assertSuccessful();
 
         $json = json_decode($resp->getContent(), true);
-        $this->assertSame($json['id'], $userScore->getKey());
-        $this->assertSame($json['scores_around']['higher']['scores'][0]['id'], $scores[0]->getKey());
-        $this->assertSame($json['scores_around']['lower']['scores'][0]['id'], $scores[2]->getKey());
+        $this->assertSame($json['id'], $userScoreLink->getKey());
+        $this->assertSame($json['scores_around']['higher']['scores'][0]['id'], $scoreLinks[0]->getKey());
+        $this->assertSame($json['scores_around']['lower']['scores'][0]['id'], $scoreLinks[2]->getKey());
     }
 
     /**
