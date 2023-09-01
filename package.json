@@ -52,7 +52,6 @@
     "imports-loader": "^0.8.0",
     "inter-ui": "^3.9.0",
     "is-hotkey": "^0.1.6",
-    "is-plain-object": "^5.0.0",
     "jets": "^0.15.0",
     "jquery": "^3.5.0",
     "jquery-ui": "^1.13.2",
@@ -121,5 +120,8 @@
     "karma-webpack": "^5.0.0",
     "mobx-react-devtools": "^6.0.3",
     "webpack-build-notifier": "^2.3.0"
+  },
+  "resolutions": {
+    "is-plain-object": "^5.0.0"
   }
 }
