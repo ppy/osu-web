@@ -109,7 +109,7 @@ return [
                 'default' => 'Topik ini sudah tidak lagi aktif. Harap untuk tidak membuka balasan baru pada topik ini kecuali apabila kamu memiliki alasan khusus untuk melakukannya.',
 
                 'new_topic' => [
-                    '_' => "Topik ini sudah tidak lagi aktif. Apabila kamu tidak memiliki alasan khusus untuk membuka balasan baru pada topik ini, harap :create.",
+                    '_' => "Topik ini sudah tidak lagi aktif. Apabila kamu tidak memiliki alasan khusus untuk membuka balasan baru pada topik ini, mohon :create.",
                     'create' => 'buat topik baru',
                 ],
             ],

@@ -34,7 +34,7 @@ return [
     ],
 
     'seasons' => [
-        'empty' => '',
+        'empty' => 'Tällä kaudella ei ole vielä huoneita.',
         'ongoing' => 'Tämä kausi on edelleen käynnissä (lisää soittolistoja tullaan lisäämään).',
         'room_count' => 'Soittolistojen määrä',
         'url' => 'Lisätietoja tästä kaudesta.',

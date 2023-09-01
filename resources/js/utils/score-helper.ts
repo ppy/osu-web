@@ -20,7 +20,7 @@ export function hasMenu(score: SoloScoreJson) {
 }
 
 export function hasReplay(score: SoloScoreJson) {
-  return score.replay != null && score.replay;
+  return score.has_replay;
 }
 
 export function hasShow(score: SoloScoreJson) {

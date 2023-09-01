@@ -49,7 +49,7 @@ return [
     ],
 
     'card' => [
-        'gift_supporter' => '',
+        'gift_supporter' => 'Anna tukijamerkki lahjaksi',
         'loading' => 'Ladataan...',
         'send_message' => 'lähetä viesti',
     ],
@@ -387,7 +387,7 @@ return [
                     'date' => 'päivä',
                     'action' => 'toiminto',
                     'length' => 'pituus',
-                    'length_indefinite' => '',
+                    'length_indefinite' => 'Toistaiseksi',
                     'description' => 'kuvaus',
                     'actor' => 'käyttäjältä :username',
 

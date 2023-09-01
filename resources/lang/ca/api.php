@@ -17,7 +17,9 @@ return [
         'identify' => 'Identifiqueu-vos i llegiu el vostre perfil públic.',
 
         'chat' => [
+            'read' => '',
             'write' => 'Enviar missatges en nom vostre.',
+            'write_manage' => '',
         ],
 
         'forum' => [

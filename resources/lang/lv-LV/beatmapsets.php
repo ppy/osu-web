@@ -60,6 +60,10 @@ return [
     'show' => [
         'discussion' => 'Diskusija',
 
+        'admin' => [
+            'full_size_cover' => '',
+        ],
+
         'deleted_banner' => [
             'title' => 'Šī bītmape ir izdzēsta.',
             'message' => '(šo var redzēt tikai moderatori)',

@@ -25,7 +25,7 @@ return [
             '_' => 'Caută',
             'deleted' => 'Include discuțiile șterse',
             'mode' => 'Mod beatmap',
-            'only_unresolved' => 'Arată doar discuții nerezolvate',
+            'only_unresolved' => 'Afișează doar discuții nerezolvate',
             'types' => 'Tipuri de mesaje',
             'username' => 'Nume de utilizator',
 

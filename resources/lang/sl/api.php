@@ -17,7 +17,9 @@ return [
         'identify' => 'Identifikacija in branje tvojega javnega profila.',
 
         'chat' => [
+            'read' => '',
             'write' => 'Pošlji sporočila v tvojem imenu.',
+            'write_manage' => '',
         ],
 
         'forum' => [

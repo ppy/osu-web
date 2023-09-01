@@ -17,7 +17,9 @@ return [
         'identify' => '識別您的身份並閱讀您的公開個人資料。',
 
         'chat' => [
+            'read' => '',
             'write' => '以你的身份傳送訊息。',
+            'write_manage' => '',
         ],
 
         'forum' => [
