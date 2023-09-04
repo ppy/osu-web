@@ -46,7 +46,7 @@ export class Score extends React.Component
           div className: 'mp-history-player-score__stat-row mp-history-player-score__stat-row--first',
             div className: 'mp-history-player-score__mods',
               for mod in @props.score.mods
-                el Mod, key: mod, mod: mod
+                el Mod, key: mod, mod: { acronym: mod }
 
             @firstRow.map (m) =>
               modifier = 'medium'

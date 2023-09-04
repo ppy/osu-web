@@ -60,6 +60,10 @@ return [
     'show' => [
         'discussion' => 'Góc Thảo Luận',
 
+        'admin' => [
+            'full_size_cover' => '',
+        ],
+
         'deleted_banner' => [
             'title' => 'Beatmap này đã bị xoá.',
             'message' => '(chỉ điều phối viên mới có thể thấy cái này)',

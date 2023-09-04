@@ -134,8 +134,8 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => 'Nuevos Mapas Clasificados',
-            'popular' => 'Mapas Populares',
+            'new' => 'Nuevos mapas clasificados',
+            'popular' => 'Mapas populares',
             'by_user' => 'por :user',
         ],
         'buttons' => [
