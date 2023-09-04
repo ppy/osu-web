@@ -193,7 +193,7 @@ class BeatmapsControllerSoloScoresTest extends TestCase
 
     /**
      * @dataProvider dataProviderForTestQuery
-     * @group EsSoloScores
+     * @group RequiresScoreIndexer
      */
     public function testQuery(array $scoreKeys, array $params)
     {

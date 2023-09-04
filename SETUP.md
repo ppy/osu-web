@@ -313,14 +313,14 @@ bin/phpunit.sh --filter=Route --stop-on-failure
 Some tests are marked with a `@group` they require a specific service to be available.
 These groups can be used to exclude tests:
 
-    bin/phpunit.sh --exclude=EsSoloScores,BeatmapDifficultyLookupCacheServer
+    bin/phpunit.sh --exclude=RequiresScoreIndexer,RequiresBeatmapDifficultyLookupCache
 
 or run only those tests:
 
-    bin/phpunit.sh --group=EsSoloScores
+    bin/phpunit.sh --group=RequiresScoreIndexer
 
-- `BeatmapDifficultyLookupCacheServer`: Requires `beatmap-difficulty-lookup-cache` to be running
-- `EsSoloScores`: Requires a score indexing schema to be set and `score-indexer-test` service to be running
+- `RequiresBeatmapDifficultyLookupCache`: Requires `beatmap-difficulty-lookup-cache` to be running
+- `RequiresScoreIndexer`: Requires a score indexing schema to be set and `score-indexer-test` service to be running
 
 Most tests require `elasticsearch` and `redis` to be available, so these are not optional.
 

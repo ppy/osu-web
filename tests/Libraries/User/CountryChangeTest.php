@@ -18,7 +18,7 @@ use Tests\TestCase;
 class CountryChangeTest extends TestCase
 {
     /**
-     * @group EsSoloScores
+     * @group RequiresScoreIndexer
      */
     public function testDo(): void
     {
