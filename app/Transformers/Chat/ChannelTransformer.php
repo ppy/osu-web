@@ -6,6 +6,7 @@
 namespace App\Transformers\Chat;
 
 use App\Models\Chat\Channel;
+use App\Models\Chat\Message;
 use App\Models\User;
 use App\Transformers\TransformerAbstract;
 
