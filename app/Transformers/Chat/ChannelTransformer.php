@@ -78,14 +78,17 @@ class ChannelTransformer extends TransformerAbstract
     public function includeRecentMessages(Channel $channel)
     {
         if ($channel->exists) {
-            $messages = $channel
-                ->filteredMessages()
-                // assumes sender will be included by the Message transformer
-                ->with('sender')
-                ->orderBy('message_id', 'desc')
-                ->limit(50)
-                ->get()
-                ->reverse();
+            $messages = Message::filterBacklogs(
+                $channel,
+                $channel
+                    ->messages()
+                    // assumes sender will be included by the Message transformer
+                    ->with('sender')
+                    ->orderBy('message_id', 'desc')
+                    ->limit(50)
+                    ->get()
+                    ->reverse(),
+            );
         } else {
             $messages = [];
         }
