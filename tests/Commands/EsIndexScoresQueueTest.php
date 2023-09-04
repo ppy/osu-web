@@ -48,6 +48,7 @@ class EsIndexScoresQueueTest extends TestCase
 
     /**
      * @dataProvider dataProviderForTestQueueScores
+     * @group EsSoloScores
      */
     public function testQueueScores(callable $setUp, array|callable $params, int $change): void
     {

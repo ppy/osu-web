@@ -138,6 +138,8 @@ There are multiple services involved:
 - redis: cache and session server. Can be skipped just like db service
 - elasticsearch: search database. Can be skipped just like db service
 - nginx: proxies php and notification-server(-dusk) so they can be accessed under same host
+- score-indexer: `Solo\Score` indexer.
+- score-indexer-test: `Solo\Score` indexer used by tests.
 
 #### Modifying environment (`.env`, `.env.dusk.local`) files
 
@@ -305,6 +307,22 @@ Regular PHPUnit arguments are accepted, e.g.:
 ```
 bin/phpunit.sh --filter=Route --stop-on-failure
 ```
+
+## Test groups
+
+Some tests are marked with a `@group` they require a specific service to be available.
+These groups can be used to exclude tests:
+
+    bin/phpunit.sh --exclude=EsSoloScores,BeatmapDifficultyLookupCacheServer
+
+or run only those tests:
+
+    bin/phpunit.sh --group=EsSoloScores
+
+- `BeatmapDifficultyLookupCacheServer`: Requires `beatmap-difficulty-lookup-cache` to be running
+- `EsSoloScores`: Requires a score indexing schema to be set and `score-indexer-test` service to be running
+
+Most tests require `elasticsearch` and `redis` to be available, so these are not optional.
 
 ## Browser tests
 
