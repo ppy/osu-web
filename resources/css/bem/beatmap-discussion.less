@@ -3,14 +3,12 @@
 
 .beatmap-discussion {
   @_top: beatmap-discussion;
-
   @_top-padding-y: 10px;
   @_top-padding-x: 15px;
 
   --base-bg: hsl(var(--hsl-b4));
   .own-layer();
   display: flex;
-  scroll-margin-top: var(--scroll-margin-top, 36px);
 
   &--deleted {
     opacity: 0.5;
@@ -63,6 +61,7 @@
     // hightlighted will override ::after
     &::before {
       @media @mobile {
+        overflow-anchor: none;
         content: '';
         position: absolute;
         right: 0;
@@ -142,6 +141,7 @@
   }
 
   &__timestamp {
+    overflow-anchor: none;
     flex: none;
 
     // hopefully enough for type and resolve status icons.
@@ -154,6 +154,7 @@
   }
 
   &__top {
+    overflow-anchor: none;
     background-color: @osu-colour-b3;
     display: grid;
     grid-template-areas: "user actions" "message message";
