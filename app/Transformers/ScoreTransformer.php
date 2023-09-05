@@ -106,8 +106,8 @@ class ScoreTransformer extends TransformerAbstract
 
             if ($score instanceof MultiplayerScoreLink) {
                 $multiplayerAttributes = [
-                    'room_id' => $score->room_id,
                     'playlist_item_id' => $score->playlist_item_id,
+                    'room_id' => $score->room_id,
                 ];
             }
         }
