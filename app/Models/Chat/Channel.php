@@ -263,19 +263,6 @@ class Channel extends Model
         return $this->hasMany(Message::class);
     }
 
-    public function filteredMessages()
-    {
-        $messages = $this->messages();
-
-        if ($this->isPublic()) {
-            $messages = $messages->where('timestamp', '>', Carbon::now()->subHours(config('osu.chat.public_backlog_limit')));
-        }
-
-        // TODO: additional message filtering
-
-        return $messages;
-    }
-
     public function userChannels()
     {
         return $this->hasMany(UserChannel::class);
