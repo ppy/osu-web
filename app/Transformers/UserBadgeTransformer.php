@@ -12,7 +12,7 @@ class UserBadgeTransformer extends TransformerAbstract
     public function transform(UserBadge $badge)
     {
         $imageUrl = $badge->imageUrl();
-        $image2xUrl = retinaify($image_url);
+        $image2xUrl = retinaify($imageUrl);
 
         return [
             'awarded_at' => json_time($badge->awarded),
