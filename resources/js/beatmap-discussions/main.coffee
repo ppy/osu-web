@@ -99,7 +99,7 @@ export class Main extends React.PureComponent
     $.unsubscribe ".#{@eventId}"
     $(document).off ".#{@eventId}"
 
-    document.documentElement.style.removeProperty '--scroll-padding-top'
+    document.documentElement.style.removeProperty '--scroll-padding-top-extra'
 
     Timeout.clear(timeout) for _name, timeout of @timeouts
     xhr?.abort() for _name, xhr of @xhr
@@ -391,7 +391,7 @@ export class Main extends React.PureComponent
       margin += @newDiscussionRef.current.getBoundingClientRect().height if @state.pinnedNewDiscussion
 
       # Update scroll-padding instead of adding scroll-margin, otherwise it doesn't anchor in the right place.
-      document.documentElement.style.setProperty '--scroll-padding-top', "calc(var(--scroll-padding-top-base) + #{Math.floor(margin)}px)"
+      document.documentElement.style.setProperty '--scroll-padding-top-extra', "#{Math.floor(margin)}px"
 
       # avoid smooth scrolling to avoid triggering lazy loaded images.
       # FIXME: Safari still has the issue where images just out of view get loaded and push the page down
