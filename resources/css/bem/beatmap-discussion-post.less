@@ -12,6 +12,8 @@
   @_content-gutter-base: 15px;
 
   transition: background-color .1s ease-in-out;
+  // margin here instead of padding on __content to make Chrome anchor when images above load in.
+  // even 1 px margin is enough to fix the shifting.
   margin: 10px 0;
 
   &--deleted {
@@ -20,6 +22,7 @@
 
   &--discussion {
     min-width: 0;
+    margin: 0;
 
     @media @desktop {
       flex: 1;
