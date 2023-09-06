@@ -141,7 +141,7 @@ class RoomsController extends BaseController
     public function show($id)
     {
         if ($id === 'latest') {
-            $room = Room::where('category', 'spotlight')->last();
+            $room = Room::featured()->last();
 
             if ($room === null) {
                 abort(404);
@@ -175,7 +175,7 @@ class RoomsController extends BaseController
         $beatmaps = $playlistItemsQuery->with('beatmap.beatmapset.beatmaps')->get()->pluck('beatmap');
         $beatmapsets = $beatmaps->pluck('beatmapset');
         $highScores = $room->topScores()->paginate(50);
-        $spotlightRooms = Room::where('category', 'spotlight')->orderBy('id', 'DESC')->get();
+        $spotlightRooms = Room::featured()->orderBy('id', 'DESC')->get();
 
         return ext_view('multiplayer.rooms.show', [
             'beatmaps' => $beatmaps,
