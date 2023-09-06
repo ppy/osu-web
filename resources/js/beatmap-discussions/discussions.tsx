@@ -172,10 +172,7 @@ export class Discussions extends React.Component<Props> {
     const parentDiscussion = discussion.parent_id != null ? this.props.currentDiscussions.byFilter.total.reviews[discussion.parent_id] : null;
 
     return (
-      <div
-        key={discussion.id}
-        className={`${bn}__discussion`}
-      >
+      <React.Fragment key={discussion.id}>
         <Discussion
           beatmapset={this.props.beatmapset}
           currentBeatmap={this.props.currentBeatmap}
@@ -186,7 +183,7 @@ export class Discussions extends React.Component<Props> {
           showDeleted={this.props.showDeleted}
           users={this.props.users}
         />
-      </div>
+      </React.Fragment>
     );
   };
 
