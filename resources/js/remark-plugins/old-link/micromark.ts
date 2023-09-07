@@ -56,7 +56,9 @@ function tokenize(effects: Effects, ok: State, nok: State) {
       if (foundUrl) {
         if (openBrackets === 0) {
           effects.exit('oldLinkUrl');
+          effects.enter('oldLinkUrlClose');
           effects.consume(code);
+          effects.exit('oldLinkUrlClose');
           effects.exit('oldLink');
 
           return ok(code);
@@ -78,7 +80,9 @@ function tokenize(effects: Effects, ok: State, nok: State) {
 
   function consumeUrlStart(code: Code): State | void {
     if (code === codes.leftSquareBracket) {
+      effects.enter('oldLinkUrlOpen');
       effects.consume(code);
+      effects.exit('oldLinkUrlOpen');
       effects.enter('oldLinkUrl');
 
       return consumeUrl;
@@ -101,7 +105,9 @@ function tokenize(effects: Effects, ok: State, nok: State) {
         if (foundTitle) {
           effects.exit('chunkString');
           effects.exit('oldLinkTitle');
+          effects.enter('oldLinkTitleClose');
           effects.consume(code);
+          effects.exit('oldLinkTitleClose');
 
           return consumeUrlStart;
         } else {

@@ -165,7 +165,7 @@ class EsIndexWiki extends Command
             );
         }
 
-        return $this->yes || $this->confirm("This index to {$this->indexName}, begin indexing?");
+        return $this->yes || $this->confirm("This index to {$this->indexName}, begin indexing?", true);
     }
 
     private function updateSitemap()

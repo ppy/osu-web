@@ -60,6 +60,10 @@ return [
     'show' => [
         'discussion' => '讨论',
 
+        'admin' => [
+            'full_size_cover' => '',
+        ],
+
         'deleted_banner' => [
             'title' => '此谱面已删除。',
             'message' => '（仅管理员可见）',

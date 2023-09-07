@@ -17,7 +17,9 @@ return [
         'identify' => 'Vous identifier et lire votre profil public.',
 
         'chat' => [
+            'read' => '',
             'write' => 'Envoyer des messages en votre nom.',
+            'write_manage' => '',
         ],
 
         'forum' => [

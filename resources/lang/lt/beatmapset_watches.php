@@ -5,16 +5,16 @@
 
 return [
     'index' => [
-        'description' => 'Čia bitmapų diskusijos, kurias sekate. Jūs būsite informuoti, kai bus naujų įrašų ar atnaujinimų.',
-        'title_compact' => 'bitmapų diskusijų stebėjimo sąrašas',
+        'description' => 'Čia beatmap\'ų diskusijos, kurias sekate. Jūs būsite informuoti, kai bus naujų įrašų ar atnaujinimų.',
+        'title_compact' => 'beatmap\'ų diskusijų stebėjimo sąrašas',
 
         'counts' => [
-            'total' => 'Stebimi bitmapai',
-            'unread' => 'Bitmapai su naujais įvykiais',
+            'total' => 'Stebimi beatmap\'ai',
+            'unread' => 'Beatmap\'ai su naujais įvykiais',
         ],
 
         'table' => [
-            'empty' => 'Nėra stebimų bitmapų diskusijų.',
+            'empty' => 'Nėra stebimų beatmap\'ų diskusijų.',
             'last_update' => 'Paskutinis atnaujinimas',
             'open_issues' => 'Atviros klaidos',
             'state' => 'Būsena',

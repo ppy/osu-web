@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { timestampDecorator, transformLinkUri } from 'markdown/renderers';
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import rehypeTruncate from 'rehype-truncate';
@@ -8,7 +9,6 @@ import autolink from 'remark-plugins/autolink';
 import disableConstructs, { DisabledType } from 'remark-plugins/disable-constructs';
 import { maxMessagePreviewLength, propsFromHref } from 'utils/beatmapset-discussion-helper';
 import { presence } from 'utils/string';
-import { timestampDecorator, transformLinkUri } from './renderers';
 
 const components = Object.freeze({
   a: linkRenderer,

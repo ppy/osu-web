@@ -149,7 +149,7 @@ export default class ScoreboardTableRow extends React.Component<Props> {
 
         <TdLink href={this.scoreUrl} modifiers='mods'>
           <div className={`${bn}__mods`}>
-            {score.mods.map((mod) => <Mod key={mod.acronym} mod={mod.acronym} />)}
+            {score.mods.map((mod) => <Mod key={mod.acronym} mod={mod} />)}
           </div>
         </TdLink>
 

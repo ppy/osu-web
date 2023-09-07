@@ -22,9 +22,6 @@ use App\Models\UserGroupEvent;
 use App\Models\UserRelation;
 use Tests\TestCase;
 
-/**
- * @group EsSoloScores
- */
 class BeatmapsControllerSoloScoresTest extends TestCase
 {
     protected $connectionsToTransact = [];
@@ -190,6 +187,7 @@ class BeatmapsControllerSoloScoresTest extends TestCase
 
     /**
      * @dataProvider dataProviderForTestQuery
+     * @group RequiresScoreIndexer
      */
     public function testQuery(array $scoreKeys, array $params, string $route)
     {

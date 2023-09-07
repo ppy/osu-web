@@ -17,12 +17,16 @@
   flex-direction: column;
   flex: none;
   width: 100%;
-  background-color: hsl(var(--hsl-b4));
+  background-color: hsl(var(--hsl-b3));
 
   &--cover {
     --cover-radius: var(--cover-radius-extended);
     --cover-size: var(--cover-size-extended);
     --info-margin: var(--info-margin-extended);
+  }
+
+  &--multiplayer {
+    background-color: hsl(var(--hsl-b4));
   }
 
   @media @desktop {

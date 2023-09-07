@@ -78,6 +78,18 @@ return [
             'suggestion' => 'Suggestion',
         ],
 
+        'message_type_title' => [
+            'disqualify' => 'Post Disqualification',
+            'hype' => 'Post Hype!',
+            'mapper_note' => 'Post Note',
+            'nomination_reset' => 'Remove all Nominations',
+            'praise' => 'Post Praise',
+            'problem' => 'Post Problem',
+            'problem_warning' => 'Post Problem',
+            'review' => 'Post Review',
+            'suggestion' => 'Post Suggestion',
+        ],
+
         'mode' => [
             'events' => 'History',
             'general' => 'General :scope',

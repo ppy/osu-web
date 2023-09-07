@@ -171,11 +171,11 @@ export default class Main extends React.Component<Props> {
                     currentMode={this.props.user.playmode}
                     user={this.props.user}
                   />
+                  <Badges badges={this.props.user.badges} />
                   {!this.props.user.is_bot && (
                     <>
                       <ProfileTournamentBanner banner={this.props.user.active_tournament_banner} />
                       <div className='profile-detail'>
-                        <Badges badges={this.props.user.badges} />
                         <Stats user={this.props.user} />
                       </div>
                     </>

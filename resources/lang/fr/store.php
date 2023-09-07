@@ -6,7 +6,7 @@
 return [
     'cart' => [
         'checkout' => 'Acheter',
-        'info' => ':count_delimited produit dans le panier ($:subtotal)|:count_delimited produits dans le panier ($:subtotal)',
+        'info' => ':count_delimited article dans le panier ($:subtotal)|:count_delimited articles dans le panier ($:subtotal)',
         'more_goodies' => 'Je souhaite chercher d\'autres goodies avant de passer commande',
         'shipping_fees' => 'frais de livraison',
         'title' => 'Panier',

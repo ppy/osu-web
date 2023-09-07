@@ -17,7 +17,9 @@ return [
         'identify' => '鉴别你的身份并读取你的公开个人资料',
 
         'chat' => [
+            'read' => '',
             'write' => '以您的名义发送消息。',
+            'write_manage' => '',
         ],
 
         'forum' => [

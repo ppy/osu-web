@@ -41,7 +41,7 @@ export default class RankingSelectOptions extends React.PureComponent<Props> {
 
   private renderOption = (props: OptionRenderProps<SelectOptionJson>) => (
     <a
-      key={props.option.id ?? -1}
+      key={props.option.id}
       className={props.cssClasses}
       href={this.href(props.option.id)}
       onClick={props.onClick}
