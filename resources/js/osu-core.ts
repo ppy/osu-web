@@ -11,6 +11,7 @@ import ForumPoll from 'core/forum/forum-poll';
 import ForumPostEdit from 'core/forum/forum-post-edit';
 import ForumPostInput from 'core/forum/forum-post-input';
 import ForumPostReport from 'core/forum/forum-post-report';
+import LinkMainHost from 'core/link-main-host';
 import Localtime from 'core/localtime';
 import MobileToggle from 'core/mobile-toggle';
 import OsuAudio from 'core/osu-audio/main';
@@ -49,6 +50,7 @@ export default class OsuCore {
   readonly forumPostEdit;
   readonly forumPostInput;
   readonly forumPostReport;
+  readonly linkMainHost;
   readonly localtime;
   readonly mobileToggle;
   readonly notificationsWorker;
@@ -94,6 +96,7 @@ export default class OsuCore {
     this.forumPostEdit = new ForumPostEdit();
     this.forumPostInput = new ForumPostInput();
     this.forumPostReport = new ForumPostReport();
+    this.linkMainHost = new LinkMainHost();
     this.localtime = new Localtime();
     this.mobileToggle = new MobileToggle();
     this.browserTitleWithNotificationCount = new BrowserTitleWithNotificationCount(this);
