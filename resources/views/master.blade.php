@@ -53,7 +53,6 @@
             osu-layout
             osu-layout--body
             t-section
-            action-{{ $currentAction }}
             {{ $bodyAdditionalClasses ?? '' }}
         "
     >
@@ -90,7 +89,7 @@
                 @stack('notification_banners')
             </div>
         @endif
-        <div class="osu-layout__section osu-layout__section--full js-content {{ $currentSection }}_{{ $currentAction }}">
+        <div class="osu-layout__section osu-layout__section--full">
             @yield('content')
         </div>
         @if (!isset($blank))

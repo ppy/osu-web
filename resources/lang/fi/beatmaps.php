@@ -78,6 +78,18 @@ return [
             'suggestion' => 'Ehdotus',
         ],
 
+        'message_type_title' => [
+            'disqualify' => '',
+            'hype' => '',
+            'mapper_note' => '',
+            'nomination_reset' => '',
+            'praise' => '',
+            'problem' => '',
+            'problem_warning' => '',
+            'review' => '',
+            'suggestion' => '',
+        ],
+
         'mode' => [
             'events' => 'Historia',
             'general' => 'Yleinen :scope',
@@ -260,7 +272,7 @@ return [
         'featured_artists' => 'Esitellyt artistit',
         'follows' => 'Tilatut kartoittajat',
         'recommended' => 'Suositeltu vaikeustaso',
-        'spotlights' => 'Valokeilassa olevat beatmapit',
+        'spotlights' => 'Kohdevaloissa olevat rytmikartat',
     ],
     'mode' => [
         'all' => 'Kaikki',
@@ -278,8 +290,8 @@ return [
         'leaderboard' => 'Tulostaulukollinen',
         'loved' => 'Rakastettu',
         'mine' => 'Mappini',
-        'pending' => 'Vireillä & WIP',
-        'wip' => 'Kesken',
+        'pending' => 'Vireillä',
+        'wip' => 'Työn alla',
         'qualified' => 'Esihyväksytty',
         'ranked' => 'Hyväksytty',
     ],

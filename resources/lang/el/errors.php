@@ -4,8 +4,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'load_failed' => '',
-    'missing_route' => '',
+    'load_failed' => 'Αποτυχία φόρτωσης δεδομένων.',
+    'missing_route' => 'Μη έγκυρη διεύθυνση url ή εσφαλμένη μέθοδος αιτήματος.',
     'no_restricted_access' => 'Δεν μπορείτε να εκτελέσετε αυτήν την ενέργεια ενώ ο λογαριασμός σας είναι σε περιορισμένη κατάσταση (restricted).',
     'supporter_only' => 'Πρέπει να είστε supporter για να χρησιμοποιήσετε αυτήν τη λειτουργία.',
     'unknown' => 'Προέκυψε άγνωστο σφάλμα.',
@@ -29,8 +29,8 @@ return [
         'generic' => 'Παρουσιάστηκε κάποιο σφάλμα στην προετοιμασία της αγοράς σας.',
     ],
     'search' => [
-        'default' => '',
-        'invalid_cursor_exception' => '',
-        'operation_timeout_exception' => '',
+        'default' => 'Δεν ήταν δυνατή η λήψη αποτελεσμάτων, προσπαθήστε ξανά αργότερα.',
+        'invalid_cursor_exception' => 'Καθορίστηκε μη έγκυρη παράμετρος δρομέα.',
+        'operation_timeout_exception' => 'Η αναζήτηση αυτή τη στιγμή είναι πιο έντονη από το συνηθισμένο, δοκιμάστε ξανά αργότερα.',
     ],
 ];

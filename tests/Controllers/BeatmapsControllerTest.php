@@ -20,7 +20,7 @@ class BeatmapsControllerTest extends TestCase
     private $beatmap;
 
     /**
-     * @group BeatmapDifficultyLookupCacheServer
+     * @group RequiresBeatmapDifficultyLookupCache
      */
     public function testAttributes(): void
     {

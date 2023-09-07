@@ -60,9 +60,13 @@ return [
     'show' => [
         'discussion' => 'ディスカッション',
 
+        'admin' => [
+            'full_size_cover' => '',
+        ],
+
         'deleted_banner' => [
             'title' => 'このビートマップは削除されました。',
-            'message' => '',
+            'message' => '(モデレータのみがこれを見ることができます)',
         ],
 
         'details' => [

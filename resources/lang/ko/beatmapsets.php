@@ -60,6 +60,10 @@ return [
     'show' => [
         'discussion' => '토론',
 
+        'admin' => [
+            'full_size_cover' => '',
+        ],
+
         'deleted_banner' => [
             'title' => '이 비트맵은 삭제되었습니다.',
             'message' => '(관리자만 볼 수 있습니다)',

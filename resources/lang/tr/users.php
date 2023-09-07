@@ -49,7 +49,7 @@ return [
     ],
 
     'card' => [
-        'gift_supporter' => '',
+        'gift_supporter' => 'Supporter etiketi hediye et',
         'loading' => 'Yükleniyor...',
         'send_message' => 'mesaj gönder',
     ],
@@ -387,7 +387,7 @@ return [
                     'date' => 'tarih',
                     'action' => 'eylem',
                     'length' => 'uzunluk',
-                    'length_permanent' => 'Kalıcı',
+                    'length_indefinite' => '',
                     'description' => 'açıklama',
                     'actor' => ':username tarafından',
 

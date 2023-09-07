@@ -14,6 +14,7 @@ export const defaultUserPreferencesJson: UserPreferencesJson = {
   beatmapset_show_nsfw: false,
   beatmapset_title_show_original: false,
   comments_show_deleted: false,
+  comments_sort: 'new',
   forum_posts_show_deleted: true,
   profile_cover_expanded: true,
   user_list_filter: 'all',
@@ -30,6 +31,7 @@ export default interface UserPreferencesJson {
   beatmapset_show_nsfw: boolean;
   beatmapset_title_show_original: boolean;
   comments_show_deleted: boolean;
+  comments_sort: string;
   forum_posts_show_deleted: boolean;
   profile_cover_expanded: boolean;
   user_list_filter: Filter;

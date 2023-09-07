@@ -2,10 +2,15 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .landing-sitemap {
-  text-align: center;
+  display: grid;
+  grid-gap: 10px;
 
   @media @desktop {
-    text-align: left;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media @mobile {
+    text-align: center;
   }
 
   &__header {

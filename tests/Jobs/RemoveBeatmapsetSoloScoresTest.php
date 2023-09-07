@@ -23,7 +23,7 @@ use App\Models\UserGroupEvent;
 use Tests\TestCase;
 
 /**
- * @group EsSoloScores
+ * @group RequiresScoreIndexer
  */
 class RemoveBeatmapsetSoloScoresTest extends TestCase
 {

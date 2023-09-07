@@ -13,49 +13,49 @@ return [
     ],
 
     'authorized_clients' => [
-        'confirm_revoke' => '',
-        'scopes_title' => '',
-        'owned_by' => '',
-        'none' => '',
+        'confirm_revoke' => 'Είστε βέβαιοι ότι θέλετε να ανακαλέσετε τα δικαιώματα αυτού του client;',
+        'scopes_title' => 'Αυτή η εφαρμογή μπορεί:',
+        'owned_by' => 'Ανήκει σε :user',
+        'none' => 'Δεν Υπάρχουν clients',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Ανάκληση Πρόσβασης',
+            'true' => 'Ανάκληση Πρόσβασης',
         ],
     ],
 
     'client' => [
-        'id' => '',
-        'name' => '',
-        'redirect' => '',
-        'reset' => '',
-        'reset_failed' => '',
-        'secret' => '',
+        'id' => 'Ταυτότητα Client',
+        'name' => 'Όνομα Εφαρμογής',
+        'redirect' => 'Url Επανάκλησης Εφαρμογής',
+        'reset' => 'Επαναφορά μυστικού client',
+        'reset_failed' => 'Αποτυχία επαναφοράς του μυστικού client',
+        'secret' => 'Μυστικό Client',
 
         'secret_visible' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Εμφάνιση μυστικού client',
+            'true' => 'Απόκρυψη μυστικού client',
         ],
     ],
 
     'new_client' => [
-        'header' => '',
-        'register' => '',
+        'header' => 'Καταχωρήστε μια νέα εφαρμογή OAuth',
+        'register' => 'Εγγραφή αίτησης',
         'terms_of_use' => [
-            '_' => '',
-            'link' => '',
+            '_' => 'Χρησιμοποιώντας το API συμφωνείτε με το :link.',
+            'link' => 'Όροι χρήσης',
         ],
     ],
 
     'own_clients' => [
-        'confirm_delete' => '',
-        'confirm_reset' => '',
-        'new' => '',
-        'none' => '',
+        'confirm_delete' => 'Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτόν τον πελάτη;',
+        'confirm_reset' => 'Είστε βέβαιοι ότι θέλετε να επαναφέρετε το μυστικό του πελάτη? Αυτό θα ανακαλέσει όλα τα υπάρχοντα Tokens.',
+        'new' => 'Νέα Εφαρμογή Oauth',
+        'none' => 'Δεν Υπάρχουν Clients',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Διαγραφή',
+            'true' => 'Διαγράφηκε',
         ],
     ],
 ];

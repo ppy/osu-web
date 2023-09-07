@@ -44,6 +44,7 @@ class UserGroup extends Model
     public function actualRulesets(): array
     {
         static $defaultRulesets;
+        // sync with defaultGroupRulesets in resources/js/utils/beatmapset-discussion-helper.ts
         $defaultRulesets ??= [
             'nat' => array_keys(Beatmap::MODES),
         ];

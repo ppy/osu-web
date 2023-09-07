@@ -14,7 +14,7 @@ return [
     'verifying' => '通知を表示するには、セッションを確認してください。',
 
     'action_type' => [
-        '_' => '',
+        '_' => '全て',
         'beatmapset' => '',
         'build' => '',
         'channel' => '',

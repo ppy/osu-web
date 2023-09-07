@@ -6,7 +6,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\Schema;
 
-class AddKudosuRefreshVotesToBeatmapDiscussions extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -31,4 +31,4 @@ class AddKudosuRefreshVotesToBeatmapDiscussions extends Migration
             $table->dropColumn('kudosu_refresh_votes');
         });
     }
-}
+};
