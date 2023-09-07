@@ -14,7 +14,7 @@ export default function User({ user, modifiers = [] }: { modifiers?: string[]; u
   const url = route('users.show', { user: user.id });
 
   return (
-    <div className={`${classWithModifiers('user-search-card', modifiers)}`}>
+    <div className={classWithModifiers('user-search-card', modifiers)}>
       <a className='user-search-card__background-container' href={url} />
       <div className='user-search-card__container'>
         <a className='user-search-card__avatar-container' href={url}>
