@@ -22,7 +22,7 @@ export default function User({ user, modifiers = [] }: { modifiers?: string[]; u
         </a>
 
         <div className='user-search-card__details'>
-          <div className='user-search-card__col  user-search-card__col--flag'>
+          <div className='user-search-card__col user-search-card__col--flag'>
             <FlagCountry country={user.country} />
           </div>
 
