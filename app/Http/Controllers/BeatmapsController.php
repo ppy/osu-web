@@ -26,7 +26,7 @@ class BeatmapsController extends Controller
 
     private static function assertSupporterOnlyOptions(?User $currentUser, string $type, array $mods): void
     {
-        $isSupporter = $currentUser?->isSupporter() ?? false;
+        $isSupporter = $currentUser !== null && $currentUser->isSupporter();
         if ($type !== 'global' && !$isSupporter) {
             throw new InvariantException(osu_trans('errors.supporter_only'));
         }
