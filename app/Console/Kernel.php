@@ -101,7 +101,7 @@ class Kernel extends ConsoleKernel
             ->everyThirtyMinutes()
             ->onOneServer();
 
-        $schedule->command('forum:topic-cover-cleanup --yes')
+        $schedule->command('forum:topic-cover-cleanup --no-interaction')
             ->daily()
             ->withoutOverlapping()
             ->onOneServer();

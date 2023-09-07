@@ -17,7 +17,9 @@ return [
         'identify' => 'Nustatyti jūsų tapatybę ir skaityti jūsų viešąjį profilį.',
 
         'chat' => [
+            'read' => '',
             'write' => 'Siųsti žinutes jūsų vardu.',
+            'write_manage' => '',
         ],
 
         'forum' => [

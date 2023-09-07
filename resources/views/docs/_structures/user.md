@@ -61,6 +61,7 @@
     {
       "awarded_at": "2015-01-01T00:00:00+00:00",
       "description": "Test badge",
+      "image@2x_url": "https://assets.ppy.sh/profile-badges/test@2x.png",
       "image_url": "https://assets.ppy.sh/profile-badges/test.png",
       "url": ""
     }

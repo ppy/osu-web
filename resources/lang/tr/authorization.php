@@ -171,7 +171,7 @@ return [
 
     'score' => [
         'pin' => [
-            'disabled_type' => "",
+            'disabled_type' => "Bu tür skorlar sabitlenemez",
             'not_owner' => 'Sadece skor sahibi skoru sabitleyebilir.',
             'too_many' => 'Çok fazla skor sabitlendi.',
         ],

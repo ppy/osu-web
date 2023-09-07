@@ -34,12 +34,12 @@ return [
         ],
 
         'profile' => [
-            'country' => '',
+            'country' => 'negara',
             'title' => 'Profil',
 
             'country_change' => [
-                '_' => "",
-                'update_link' => '',
+                '_' => "Sepertinya negara yang tertera pada akunmu tidak sesuai dengan negara tempat tinggalmu saat ini. :update_link.",
+                'update_link' => 'Perbarui ke :country',
             ],
 
             'user' => [
@@ -86,7 +86,7 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => 'nonaktifkan peringatan untuk beatmap yang mengandung konten eksplisit',
+        'beatmapset_show_nsfw' => 'nonaktifkan peringatan untuk beatmap berkonten eksplisit',
         'beatmapset_title_show_original' => 'tampilkan metadata beatmap dalam bahasa aslinya',
         'title' => 'Pengaturan',
 
@@ -108,7 +108,7 @@ return [
 
     'privacy' => [
         'friends_only' => 'blokir pesan pribadi dari pengguna yang tidak termasuk dalam daftar teman',
-        'hide_online' => 'sembunyikan keberadaan online Anda',
+        'hide_online' => 'sembunyikan status onlinemu',
         'title' => 'Kebijakan Privasi',
     ],
 

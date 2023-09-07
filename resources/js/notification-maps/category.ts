@@ -3,10 +3,6 @@
 
 import Notification from 'models/notification';
 
-interface CategoryMap {
-  [key: string]: string;
-}
-
 export function categoryGroupKey(item: Notification) {
   if (item.objectId == null || item.name == null || item.category == null) {
     return null;
@@ -23,7 +19,7 @@ export function categoryFromName(name: string) {
   return nameToCategory[name] ?? name;
 }
 
-export const nameToCategory: CategoryMap = {
+export const nameToCategory: Partial<Record<string, string>> = {
   beatmap_owner_change: 'beatmap_owner_change',
   beatmapset_discussion_lock: 'beatmapset_discussion',
   beatmapset_discussion_post_new: 'beatmapset_discussion',

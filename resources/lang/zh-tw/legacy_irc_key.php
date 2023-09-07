@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'confirm_new' => '要新增 IRC 密碼？',
+    'confirm_new' => '要新增 IRC 密碼嗎？',
     'new' => '新增舊版 IRC 密碼',
     'none' => 'IRC 密碼未設定。',
 

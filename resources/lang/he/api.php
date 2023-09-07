@@ -17,7 +17,9 @@ return [
         'identify' => 'לזהות אותך ולקרוא את הפרופיל הציבורי שלך.',
 
         'chat' => [
+            'read' => '',
             'write' => '',
+            'write_manage' => '',
         ],
 
         'forum' => [

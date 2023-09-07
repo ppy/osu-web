@@ -60,6 +60,10 @@ return [
     'show' => [
         'discussion' => 'Diskusia',
 
+        'admin' => [
+            'full_size_cover' => '',
+        ],
+
         'deleted_banner' => [
             'title' => 'Táto beatmapa bola odstránená. ',
             'message' => '(toto môžu vidieť len moderátori)',

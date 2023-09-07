@@ -116,6 +116,8 @@ use Request;
  * @property-read Collection<Score\Taiko> $scoresTaiko
  * @property-read UserStatistics\Fruits|null $statisticsFruits
  * @property-read UserStatistics\Mania|null $statisticsMania
+ * @property-read UserStatistics\Mania4k|null $statisticsMania4k
+ * @property-read UserStatistics\Mania7k|null $statisticsMania7k
  * @property-read UserStatistics\Osu|null $statisticsOsu
  * @property-read UserStatistics\Taiko|null $statisticsTaiko
  * @property-read Collection<Store\Address> $storeAddresses
@@ -159,8 +161,6 @@ use Request;
  * @property int $user_last_privmsg
  * @property int $user_last_search
  * @property int $user_last_warning
- * @property string $user_lastfm
- * @property string $user_lastfm_session
  * @property Carbon|null $user_lastmark
  * @property string $user_lastpage
  * @property Carbon|null $user_lastpost_time
@@ -782,8 +782,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'user_last_privmsg',
             'user_last_search',
             'user_last_warning',
-            'user_lastfm',
-            'user_lastfm_session',
             'user_lastpage',
             'user_login_attempts',
             'user_message_rules',
@@ -919,6 +917,8 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'soloScores',
             'statisticsFruits',
             'statisticsMania',
+            'statisticsMania4k',
+            'statisticsMania7k',
             'statisticsOsu',
             'statisticsTaiko',
             'storeAddresses',
@@ -1319,18 +1319,34 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->hasOne(UserStatistics\Mania::class);
     }
 
+    public function statisticsMania4k()
+    {
+        return $this->hasOne(UserStatistics\Mania4k::class);
+    }
+
+    public function statisticsMania7k()
+    {
+        return $this->hasOne(UserStatistics\Mania4k::class);
+    }
+
     public function statisticsTaiko()
     {
         return $this->hasOne(UserStatistics\Taiko::class);
     }
 
-    public function statistics(string $mode, bool $returnQuery = false)
+    public function statistics(string $ruleset, bool $returnQuery = false, ?string $variant = null)
     {
-        if (!Beatmap::isModeValid($mode)) {
+        if (!Beatmap::isModeValid($ruleset)) {
             return;
         }
 
-        $relation = 'statistics'.studly_case($mode);
+        if (!Beatmap::isVariantValid($ruleset, $variant)) {
+            return;
+        }
+
+        $variantSuffix = $variant === null ? '' : "_{$variant}";
+
+        $relation = 'statistics'.studly_case("{$ruleset}{$variantSuffix}");
 
         return $returnQuery ? $this->$relation() : $this->$relation;
     }
@@ -2191,10 +2207,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function profileBeatmapsetsGuest()
     {
-        return Beatmapset::withStates(['approved', 'loved', 'qualified', 'ranked'])
-            ->where('user_id', '<>', $this->getKey())
-            ->whereHas('beatmaps', fn ($q) => $q->where('user_id', $this->getKey()))
-            ->active()
+        return Beatmapset
+            ::where('user_id', '<>', $this->getKey())
+            ->whereHas('beatmaps', function (Builder $query) {
+                $query->scoreable()->where('user_id', $this->getKey());
+            })
             ->with('beatmaps');
     }
 

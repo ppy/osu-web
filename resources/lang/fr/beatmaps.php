@@ -38,7 +38,7 @@ return [
         ],
 
         'empty' => [
-            'empty' => 'Pas de discussion !',
+            'empty' => 'Aucune discussion pour le moment !',
             'hidden' => 'Aucune discussion ne correspond à vos critères.',
         ],
 
@@ -76,6 +76,18 @@ return [
             'problem_warning' => 'Signaler un problème',
             'review' => 'Review',
             'suggestion' => 'Suggestion',
+        ],
+
+        'message_type_title' => [
+            'disqualify' => '',
+            'hype' => '',
+            'mapper_note' => '',
+            'nomination_reset' => '',
+            'praise' => '',
+            'problem' => '',
+            'problem_warning' => '',
+            'review' => '',
+            'suggestion' => '',
         ],
 
         'mode' => [

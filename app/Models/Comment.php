@@ -7,6 +7,7 @@ namespace App\Models;
 
 use App\Libraries\MorphMap;
 use App\Traits\Validatable;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
@@ -254,7 +255,7 @@ class Comment extends Model implements Traits\ReportableInterface
         return $this->getConnection()->transaction(function () use ($options) {
             if (!$this->exists && $this->parent_id !== null && $this->parent !== null) {
                 // skips validation and everything
-                $this->parent->incrementInstance('replies_count_cache');
+                $this->parent->incrementInstance('replies_count_cache', 1, ['updated_at' => Carbon::now()]);
             }
 
             if ($this->isDirty('deleted_at')) {

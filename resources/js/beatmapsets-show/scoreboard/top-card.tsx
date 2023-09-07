@@ -182,7 +182,7 @@ export default class TopCard extends React.PureComponent<Props> {
                   {trans('beatmapsets.show.scoreboard.headers.mods')}
                 </div>
                 <div className='beatmap-score-top__stat-value beatmap-score-top__stat-value--mods u-hover'>
-                  {this.props.score.mods.map((mod) => <Mod key={mod.acronym} mod={mod.acronym} />)}
+                  {this.props.score.mods.map((mod) => <Mod key={mod.acronym} mod={mod} />)}
                 </div>
               </div>
             </div>
