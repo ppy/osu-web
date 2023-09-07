@@ -85,6 +85,7 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
             'best' => $this,
             'data' => $this->getData(),
             'enabled_mods' => $this->getEnabledModsAttribute($this->getRawAttribute('enabled_mods')),
+            'nonexistent' => null,
             'pass' => true,
 
             'beatmap',

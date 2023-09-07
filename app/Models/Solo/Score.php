@@ -101,6 +101,23 @@ class Score extends Model implements Traits\ReportableInterface
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function scopeDefault(Builder $query): Builder
+    {
+        return $query->whereHas('beatmap');
+    }
+
+    public function scopeForRuleset(Builder $query, string $ruleset): Builder
+    {
+        return $query->where('ruleset_id', Beatmap::MODES[$ruleset]);
+    }
+
+    public function scopeIncludeFails(Builder $query, bool $includeFails): Builder
+    {
+        return $includeFails
+            ? $query
+            : $query->where('data->passed', true);
+    }
+
     /**
      * This should match the one used in osu-elastic-indexer.
      */
