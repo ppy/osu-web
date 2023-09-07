@@ -21,7 +21,7 @@ return [
     'donation_thanks' => [
         'benefit_more' => '¡Además, con el tiempo aparecerán nuevos beneficios para supporter!',
         'feedback' => "Si tienes alguna pregunta o comentarios, no dudes en responder a este correo; ¡Te responderé lo antes posible!",
-        'keep_free' => 'Es gracias a personas como usted que osu! es capaz de mantener el juego y la comunidad funcionando sin ningún tipo de anuncios ni pagos forzados.',
+        'keep_free' => 'Es gracias a personas como tú que osu! es capaz de mantener el juego y la comunidad funcionando sin ningún tipo de anuncios ni pagos forzados.',
         'keep_running' => '¡Su apoyo mantiene a osu! funcionando durante :minutes! Puede que no parezca mucho, pero todo suma :).',
         'subject' => 'Gracias, osu! te <3',
         'translation' => 'Se muestra a continuación una traducción proporcionada por la comunidad con fines informativos:',
@@ -64,7 +64,7 @@ return [
     'supporter_gift' => [
         'anonymous_gift' => 'La persona que le regaló esta etiqueta puede optar por permanecer en el anonimato, por lo que no se le ha mencionado en esta notificación.',
         'anonymous_gift_maybe_not' => 'Pero es probable que ya sepas quién es ;).',
-        'duration' => 'Gracias a esa persona, usted tiene acceso a osu!direct y a otros beneficios de osu!supporter durante :duration.',
+        'duration' => 'Gracias a esa persona, tienes acceso a osu!direct y a otros beneficios de osu!supporter durante :duration.',
         'features' => 'Puede encontrar más detalles sobre estas características aquí:',
         'gifted' => '¡Alguien le acaba de regalar una etiqueta de osu!supporter!',
         'gift_message' => 'La persona que le regaló esta etiqueta le dejó un mensaje:',

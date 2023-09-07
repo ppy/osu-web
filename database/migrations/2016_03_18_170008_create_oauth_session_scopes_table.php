@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * This file is part of OAuth 2.0 Laravel.
  *
  * (c) Luca Degasperi <packages@lucadegasperi.com>
@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Schema;
  *
  * @author Luca Degasperi <packages@lucadegasperi.com>
  */
-class CreateOauthSessionScopesTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -60,4 +60,4 @@ class CreateOauthSessionScopesTable extends Migration
         });
         Schema::drop('oauth_session_scopes');
     }
-}
+};

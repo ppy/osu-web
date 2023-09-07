@@ -6,11 +6,7 @@ import BeatmapJson from './beatmap-json';
 import GameMode from './game-mode';
 import Rank from './rank';
 import { ScoreJsonAvailableIncludes, ScoreJsonDefaultIncludes } from './score-json';
-
-interface Mod {
-  acronym: string; // TODO: list valid acronyms
-  settings: unknown; // TODO: list valid settings
-}
+import ScoreModJson from './score-mod-json';
 
 export type SoloScoreStatisticsAttribute =
   | 'good'
@@ -35,15 +31,15 @@ type SoloScoreJsonDefaultAttributes = {
   best_id: number | null;
   build_id: number | null;
   ended_at: string;
+  has_replay: boolean;
   id: number;
   legacy_score_id: number | null;
   legacy_total_score: number | null;
   max_combo: number;
-  mods: Mod[];
+  mods: ScoreModJson[];
   passed: boolean;
   pp: number | null;
   rank: Rank;
-  replay: boolean | null;
   ruleset_id: number;
   started_at: string | null;
   statistics: Partial<Record<SoloScoreStatisticsAttribute, number>>;
@@ -65,7 +61,7 @@ export default SoloScoreJson;
 export type SoloScoreJsonForBeatmap = SoloScoreJson & Required<Pick<SoloScoreJson, 'user'>>;
 
 export type SoloScoreJsonForShow = SoloScoreJson
-& Required<Pick<SoloScoreJson, 'beatmapset' | 'best_id' | 'rank_global' | 'replay' | 'user'>>
+& Required<Pick<SoloScoreJson, 'beatmapset' | 'best_id' | 'rank_global' | 'user'>>
 & {
   beatmap: BeatmapExtendedJson & Required<Pick<BeatmapJson, 'user'>>;
 };

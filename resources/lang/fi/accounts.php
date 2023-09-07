@@ -34,12 +34,12 @@ return [
         ],
 
         'profile' => [
-            'country' => '',
+            'country' => 'maa',
             'title' => 'Profiili',
 
             'country_change' => [
-                '_' => "",
-                'update_link' => '',
+                '_' => "Näyttää siltä, että tilisi maa ei ole sama kuin asuinmaasi. :update_link.",
+                'update_link' => 'Aseta tilin maaksi :country',
             ],
 
             'user' => [

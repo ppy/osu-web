@@ -15,13 +15,14 @@
 
   display: flex;
   flex-direction: column;
-  margin-bottom: 5px;
 
   @media @desktop {
     flex-direction: row;
   }
 
   &--first {
+    position: relative;
+
     &::after {
       .inner-shadow-top();
       .full-size();

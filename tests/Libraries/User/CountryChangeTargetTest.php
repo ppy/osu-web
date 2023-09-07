@@ -11,6 +11,7 @@ use App\Libraries\User\CountryChangeTarget;
 use App\Models\Country;
 use App\Models\Tournament;
 use App\Models\User;
+use App\Models\UserCountryHistory;
 use Carbon\CarbonImmutable;
 use Database\Factories\UserFactory;
 use Tests\TestCase;
@@ -84,6 +85,56 @@ class CountryChangeTargetTest extends TestCase
         $tournament->registrations()->create([
             'user_id' => $user->getKey(),
         ]);
+
+        $this->assertSame($targetCountry, CountryChangeTarget::get($user));
+    }
+
+    public function testGetLastMonthDifferentCountry(): void
+    {
+        $user = User::factory()->create();
+        $targetCountry = Country::factory()->create()->getKey();
+        UserFactory::createRecentCountryHistory($user, $targetCountry, CountryChangeTarget::minMonths() + 1);
+
+        $user
+            ->userCountryHistory()
+            ->orderBy('year_month', 'DESC')
+            ->first()
+            ->fill(['country_acronym' => Country::factory()->create()->getKey()])
+            ->saveOrExplode();
+
+        $this->assertNull(CountryChangeTarget::get($user));
+    }
+
+    public function testGetWithBlankMonth(): void
+    {
+        $user = User::factory()->create();
+        $targetCountry = Country::factory()->create()->getKey();
+        $minMonths = CountryChangeTarget::minMonths();
+        UserFactory::createRecentCountryHistory($user, $targetCountry, $minMonths + 1);
+
+        $user
+            ->userCountryHistory()
+            ->where('year_month', '>', UserCountryHistory::formatDate(CountryChangeTarget::currentMonth()->subMonths($minMonths)))
+            ->inRandomOrder()
+            ->limit(1)
+            ->delete();
+
+        $this->assertSame($targetCountry, CountryChangeTarget::get($user));
+    }
+
+    public function testGetWithBlankMonths(): void
+    {
+        $user = User::factory()->create();
+        $targetCountry = Country::factory()->create()->getKey();
+        $minMonths = CountryChangeTarget::minMonths();
+        UserFactory::createRecentCountryHistory($user, $targetCountry, $minMonths + 3);
+
+        $user
+            ->userCountryHistory()
+            ->where('year_month', '>', UserCountryHistory::formatDate(CountryChangeTarget::currentMonth()->subMonths($minMonths)))
+            ->inRandomOrder()
+            ->limit(2)
+            ->delete();
 
         $this->assertSame($targetCountry, CountryChangeTarget::get($user));
     }

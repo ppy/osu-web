@@ -4,6 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'mixture' => '',
-    'required' => '',
+    'mixture' => ':attribute цифр немесе әріп жетіспейді',
+    'required' => ':attribute міндетті түрде қажет',
 ];

@@ -28,6 +28,7 @@ class UniqueBeatmapsetDiscussionVotes extends Migration
     public function down()
     {
         Schema::table('beatmap_discussion_votes', function ($table) {
+            $table->dropForeign(['beatmap_discussion_id']);
             $table->dropUnique('beatmap_discussion_votes_beatmap_discussion_id_user_id_unique');
         });
     }

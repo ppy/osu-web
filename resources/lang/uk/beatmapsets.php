@@ -60,6 +60,10 @@ return [
     'show' => [
         'discussion' => 'Обговорення',
 
+        'admin' => [
+            'full_size_cover' => '',
+        ],
+
         'deleted_banner' => [
             'title' => 'Ця мапа була видалена.',
             'message' => '(лише модератори можуть це бачити)',

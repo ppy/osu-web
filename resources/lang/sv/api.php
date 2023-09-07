@@ -17,7 +17,9 @@ return [
         'identify' => 'Identifiera dig och läs din offentliga profil.',
 
         'chat' => [
+            'read' => '',
             'write' => 'Skicka meddelanden åt dig.',
+            'write_manage' => '',
         ],
 
         'forum' => [

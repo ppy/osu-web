@@ -80,7 +80,7 @@ class TestCase extends BaseTestCase
 
         foreach (Passport::scopes()->pluck('id') as $scope) {
             // just skip over any scopes that require special conditions for now.
-            if (in_array($scope, ['chat.write', 'delegate'], true)) {
+            if (in_array($scope, ['chat.read', 'chat.write', 'chat.write_manage', 'delegate'], true)) {
                 continue;
             }
 

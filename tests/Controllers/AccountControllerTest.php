@@ -68,6 +68,7 @@ class AccountControllerTest extends TestCase
 
     /**
      * @dataProvider dataProviderForUpdateCountry
+     * @group RequiresScoreIndexer
      *
      * More complete tests are done through CountryChange and CountryChangeTarget.
      */

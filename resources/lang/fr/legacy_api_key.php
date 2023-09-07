@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'new' => 'Nouvelle clé d\'API héritée',
+    'new' => 'Nouvelle clé de l\'ancienne API',
     'none' => 'Aucune clé.',
 
     'docs' => [

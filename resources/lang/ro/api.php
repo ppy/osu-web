@@ -17,7 +17,9 @@ return [
         'identify' => 'Să te identifice și să-ți citească profilul public.',
 
         'chat' => [
+            'read' => '',
             'write' => 'Să trimită mesaje în numele tău.',
+            'write_manage' => '',
         ],
 
         'forum' => [

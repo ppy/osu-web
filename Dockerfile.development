@@ -20,20 +20,20 @@ RUN DEBIAN_FRONTEND=noninteractive apt install -y \
     libnss3 \
     netcat-openbsd \
     nodejs \
-    php8.1 \
-    php8.1-common \
-    php8.1-curl \
-    php8.1-ds \
-    php8.1-gd \
-    php8.1-intl \
-    php8.1-mbstring \
-    php8.1-mysql \
-    php8.1-redis \
-    php8.1-sqlite3 \
-    php8.1-swoole \
-    php8.1-tokenizer \
-    php8.1-xml \
-    php8.1-zip \
+    php8.2 \
+    php8.2-common \
+    php8.2-curl \
+    php8.2-ds \
+    php8.2-gd \
+    php8.2-intl \
+    php8.2-mbstring \
+    php8.2-mysql \
+    php8.2-redis \
+    php8.2-sqlite3 \
+    php8.2-swoole \
+    php8.2-tokenizer \
+    php8.2-xml \
+    php8.2-zip \
     zip
 
 RUN npm install -g yarn

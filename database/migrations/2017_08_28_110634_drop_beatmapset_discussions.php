@@ -14,7 +14,7 @@ class DropBeatmapsetDiscussions extends Migration
      */
     public function up()
     {
-        (new CreateBeatmapsetDiscussions())->down();
+        migration('2016_02_29_052133_create_beatmapset_discussions')->down();
     }
 
     /**
@@ -24,6 +24,6 @@ class DropBeatmapsetDiscussions extends Migration
      */
     public function down()
     {
-        (new CreateBeatmapsetDiscussions())->up();
+        migration('2016_02_29_052133_create_beatmapset_discussions')->up();
     }
 }
