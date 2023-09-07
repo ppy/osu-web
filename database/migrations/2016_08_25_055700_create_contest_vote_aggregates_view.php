@@ -5,7 +5,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class CreateContestVoteAggregatesView extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -26,4 +26,4 @@ class CreateContestVoteAggregatesView extends Migration
     {
         DB::statement('DROP VIEW contest_vote_aggregates');
     }
-}
+};

@@ -387,7 +387,7 @@ return [
                     'date' => 'dátum',
                     'action' => 'művelet',
                     'length' => 'hossz',
-                    'length_permanent' => 'Végleges',
+                    'length_indefinite' => 'Határozatlan',
                     'description' => 'leírás',
                     'actor' => ':username által',
 

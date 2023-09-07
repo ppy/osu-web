@@ -5,7 +5,7 @@
 
 return [
     'comment' => [
-        'empty' => 'Nėra stebimų comentarų.',
+        'empty' => 'Nėra stebimų komentarų.',
         'page_title' => 'komentarų stebėjimo sąrašas',
         'title' => 'komentarai',
 
@@ -28,11 +28,11 @@ return [
         'followers' => 'mapinimo prenumeratos',
         'page_title' => 'kūrėjų stebėjimo sąrašas',
         'title' => 'kūrėjas',
-        'to_0' => 'sustabdyti pranešimus apie vartotojo įkeliamus naujus bitmapus',
-        'to_1' => 'pranešti man, kai šis vartotojas įkels naują bitmapą',
+        'to_0' => 'sustabdyti pranešimus apie vartotojo įkeliamus naujus beatmap\'us',
+        'to_1' => 'pranešti man, kai šis vartotojas įkels naują beatmap\'ą',
     ],
 
     'modding' => [
-        'title' => 'bitmapo diskusija',
+        'title' => 'beatmap\'o diskusija',
     ],
 ];

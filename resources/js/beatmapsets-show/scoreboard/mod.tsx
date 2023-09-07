@@ -23,7 +23,7 @@ export default class ScoreboardMod extends React.Component<Props> {
         onClick={this.onClick}
         type='button'
       >
-        <Mod mod={this.props.mod} />
+        <Mod mod={{ acronym: this.props.mod }} />
       </button>
     );
   }

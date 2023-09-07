@@ -125,7 +125,7 @@ class HomeController extends Controller
 
     public function quickSearch()
     {
-        $quickSearch = new QuickSearch(request(), ['user' => auth()->user()]);
+        $quickSearch = new QuickSearch(Request::all(), ['user' => auth()->user()]);
         $searches = $quickSearch->searches();
 
         $result = [];
@@ -177,18 +177,20 @@ class HomeController extends Controller
      */
     public function search()
     {
-        if (request('mode') === 'beatmapset') {
-            return ujs_redirect(route('beatmapsets.index', ['q' => request('query')]));
+        $currentUser = Auth::user();
+        $allSearch = new AllSearch(Request::all(), ['user' => $currentUser]);
+
+        if ($allSearch->getMode() === 'beatmapset') {
+            return ujs_redirect(route('beatmapsets.index', ['q' => $allSearch->getRawQuery()]));
         }
 
-        $allSearch = new AllSearch(request(), ['user' => Auth::user()]);
         $isSearchPage = true;
 
         if (is_api_request()) {
             return response()->json($allSearch->toJson());
         }
 
-        $fields = Auth::user()?->isModerator() ?? false ? [] : ['includeDeleted' => null];
+        $fields = $currentUser?->isModerator() ?? false ? [] : ['includeDeleted' => null];
 
         return ext_view('home.search', compact('allSearch', 'fields', 'isSearchPage'));
     }

@@ -22,7 +22,7 @@ return [
         'page_title' => [
             '_' => 'liste des changements',
             '_from' => 'changements depuis :from',
-            '_from_to' => 'changements entre :from et :to',
+            '_from_to' => 'changements entre le :from et le :to',
             '_stream' => 'changements dans :stream',
             '_stream_from' => 'changements dans :stream depuis :from',
             '_stream_from_to' => 'changements dans :stream entre :from et :to',
@@ -33,7 +33,7 @@ return [
 
     'support' => [
         'heading' => 'Vous aimez cette mise à jour ?',
-        'text_1' => 'Supportez le développement d\'osu! et :link dès maintenant !',
+        'text_1' => 'Soutenez le développement d\'osu! et :link dès maintenant !',
         'text_1_link' => 'devenez un osu!supporter',
         'text_2' => 'En plus de contribuer à accélérer le développement, vous recevrez des fonctionnalités supplémentaires et des personnalisations diverses !',
     ],

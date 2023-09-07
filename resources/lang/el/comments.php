@@ -5,15 +5,15 @@
 
 return [
     'deleted' => 'διαγράφηκε',
-    'deleted_by' => '',
-    'deleted_by_system' => '',
+    'deleted_by' => 'διαγράφηκε :timeago από :user',
+    'deleted_by_system' => 'σύστημα',
     'deleted_count' => ':count_delimited διαγραμμένο σχόλιο|:count_delimited διαγραμμένα σχόλια',
     'edited' => 'επεξεργάστηκε :timeago απο :user',
-    'pinned' => '',
+    'pinned' => 'καρφιτσωμένο',
     'empty' => 'Κανένα σχόλιο ακόμη.',
-    'empty_other' => '',
-    'load_replies' => '',
-    'replies_count' => '',
+    'empty_other' => 'Κανένα άλλο σχόλιο ακόμα.',
+    'load_replies' => 'φόρτωση απαντήσεων',
+    'replies_count' => ':count_delimited απαντούν οι απαντήσεις:count_delimited',
     'title' => 'Σχόλια',
 
     'commentable_name' => [
@@ -38,9 +38,9 @@ return [
     ],
 
     'index' => [
-        'nav_comments' => '',
-        'nav_title' => '',
-        'no_comments' => '',
+        'nav_comments' => 'σχόλια',
+        'nav_title' => 'καταχώρηση',
+        'no_comments' => 'δεν βρέθηκαν σχόλια...',
     ],
 
     'placeholder' => [
@@ -50,6 +50,6 @@ return [
     ],
 
     'show' => [
-        'nav_title' => '',
+        'nav_title' => 'σχόλια',
     ],
 ];

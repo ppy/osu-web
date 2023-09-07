@@ -41,7 +41,7 @@ return [
     'beatmap_discussion_post' => [
         'destroy' => [
             'not_owner' => 'Kamu hanya dapat menghapus postingan milik diri sendiri.',
-            'resolved' => 'Kamu tidak dapat menghapus postingan pada topik diskusi yang telah ditandai terjawab.',
+            'resolved' => 'Kamu tidak dapat menghapus postingan pada topik diskusi yang telah terjawab.',
             'system_generated' => 'Postingan yang dibuat otomatis tidak dapat dihapus.',
         ],
 
@@ -56,7 +56,7 @@ return [
         'discussion_locked' => 'Diskusi pada beatmap ini telah dikunci.',
 
         'metadata' => [
-            'nominated' => 'Kamu tidak dapat mengubah pengaturan metadata pada beatmap yang telah dinominasikan. Harap hubungi BN atau NAT apabila kamu merasa ada suatu hal yang perlu diubah.',
+            'nominated' => 'Kamu tidak dapat mengubah metadata beatmap yang telah dinominasikan. Mohon hubungi anggota BN atau NAT apabila kamu merasa terdapat kesalahan pada metadata beatmap ini.',
         ],
     ],
 

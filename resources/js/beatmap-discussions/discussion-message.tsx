@@ -1,13 +1,13 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { createRenderer, linkRenderer, transformLinkUri } from 'markdown/renderers';
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkBreaks from 'remark-breaks';
 import autolink from 'remark-plugins/autolink';
 import disableConstructs, { DisabledType } from 'remark-plugins/disable-constructs';
 import ImageLink from './image-link';
-import { createRenderer, linkRenderer, transformLinkUri } from './renderers';
 
 const components = Object.freeze({
   a: linkRenderer,

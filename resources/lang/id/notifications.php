@@ -71,8 +71,8 @@ return [
                 'beatmapset_disqualify_compact' => 'Beatmap telah didiskualifikasi',
                 'beatmapset_love' => 'Beatmap ":title" telah diberikan status loved',
                 'beatmapset_love_compact' => 'Status beatmap dipromosikan menjadi loved',
-                'beatmapset_nominate' => '":title" telah mendapatkan nominasi',
-                'beatmapset_nominate_compact' => 'Beatmap telah mendapatkan nominasi',
+                'beatmapset_nominate' => '":title" telah dinominasikan',
+                'beatmapset_nominate_compact' => 'Beatmap telah dinominasikan',
                 'beatmapset_qualify' => '":title" telah memperoleh jumlah nominasi yang dibutuhkan untuk dapat memasuki antrian ranking',
                 'beatmapset_qualify_compact' => 'Beatmap telah memasuki antrian ranking',
                 'beatmapset_rank' => '":title" telah berstatus Ranked',
@@ -197,7 +197,7 @@ return [
             'beatmapset_state' => [
                 'beatmapset_disqualify' => '":title" telah didiskualifikasi',
                 'beatmapset_love' => '":title" telah dipromosikan ke dalam kategori Loved',
-                'beatmapset_nominate' => '":title" telah mendapatkan nominasi',
+                'beatmapset_nominate' => '":title" telah dinominasikan',
                 'beatmapset_qualify' => '":title" telah memperoleh jumlah nominasi yang dibutuhkan untuk dapat memasuki antrian ranking',
                 'beatmapset_rank' => '":title" telah berstatus Ranked',
                 'beatmapset_remove_from_loved' => ':title telah dilepas dari Loved',
@@ -239,7 +239,7 @@ return [
 
         'user' => [
             'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':username telah mendapatkan medali baru, ":title"!',
+                'user_achievement_unlock' => ':username telah membuka medali baru, ":title"!',
                 'user_achievement_unlock_self' => 'Kamu telah membuka medali baru, ":title"!',
             ],
 

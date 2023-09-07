@@ -23,7 +23,7 @@ class ContestTest extends TestCase
     /**
      * @dataProvider dataProviderForTestAssertVoteRequirementPlaylistBeatmapsets
      */
-    public function testAssertVoteRequirementPlaylistBeatmapsets(bool $loggedIn, bool $played, bool $passed, ?bool $mustPass, bool $canVote): void
+    public function testAssertVoteRequirementPlaylistBeatmapsets(bool $loggedIn, bool $played, bool $completed, bool $passed, ?bool $mustPass, bool $canVote): void
     {
         $beatmapsets = Beatmapset::factory()->count(5)->create();
         $beatmaps = [];
@@ -72,7 +72,7 @@ class ContestTest extends TestCase
                     ->whereIn('beatmap_id', array_column($beatmapset->beatmaps->all(), 'beatmap_id'))
                     ->first();
                 MultiplayerScore::factory()->create([
-                    'ended_at' => $endedAt,
+                    'ended_at' => $completed ? $endedAt : null,
                     'passed' => $passed,
                     'playlist_item_id' => $playlistItem,
                     'user_id' => $userId,
@@ -116,20 +116,22 @@ class ContestTest extends TestCase
     {
         return [
             // when passing is required
-            [true, true, true, true, true],
-            [true, true, false, true, false],
-            [true, false, false, true, false],
-            [false, false, false, true, false],
+            [true, true, true, true, true, true],
+            [true, true, true, false, true, false],
+            [true, false, true, false, true, false],
+            [false, false, true, false, true, false],
             // when passing is not specified (default required)
-            [true, true, true, null, true],
-            [true, true, false, null, false],
-            [true, false, false, null, false],
-            [false, false, false, null, false],
+            [true, true, true, true, null, true],
+            [true, true, true, false, null, false],
+            [true, false, true, false, null, false],
+            [false, false, true, false, null, false],
             // when passing is not required
-            [true, true, true, false, true],
-            [true, true, false, false, true],
-            [true, false, false, false, false],
-            [false, false, false, false, false],
+            [true, true, true, true, false, true],
+            [true, true, true, false, false, true],
+            [true, false, true, false, false, false],
+            [false, false, true, false, false, false],
+            // ensure completion is actually checked
+            [true, true, false, false, false, false],
         ];
     }
 

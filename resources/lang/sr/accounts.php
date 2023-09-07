@@ -34,12 +34,12 @@ return [
         ],
 
         'profile' => [
-            'country' => '',
+            'country' => 'држава',
             'title' => 'Профил',
 
             'country_change' => [
-                '_' => "",
-                'update_link' => '',
+                '_' => "Изгледа да земља вашег налога не одговара вашој земљи пребивалишта. :update_link.",
+                'update_link' => 'Промените у :country',
             ],
 
             'user' => [

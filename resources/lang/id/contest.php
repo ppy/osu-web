@@ -5,7 +5,7 @@
 
 return [
     'header' => [
-        'small' => 'Karena sesungguhnya persaingan tidak hanya terjadi di dalam lapangan permainan.',
+        'small' => 'Karena sesungguhnya persaingan tidak hanya terjadi di dalam permainan.',
         'large' => 'Kontes Komunitas',
     ],
 

@@ -175,7 +175,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => 'Nie można zgłosić rankingowych beatmap.',
-        'not_in_channel' => '',
+        'not_in_channel' => 'Nie jesteś na tym kanale.',
         'reason_not_valid' => 'Powód „:reason” nie jest właściwy dla tego typu zgłoszenia.',
         'self' => "Nie możesz zgłosić swojego konta!",
     ],

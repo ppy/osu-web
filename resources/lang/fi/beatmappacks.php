@@ -34,7 +34,7 @@ return [
 
     'mode' => [
         'artist' => 'Esittäjä/Albumi',
-        'chart' => 'Valokeilassa',
+        'chart' => 'Kohdevaloissa',
         'featured' => 'Suositeltu esittäjä',
         'loved' => 'Project Loved',
         'standard' => 'Tavallinen',

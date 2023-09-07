@@ -8,6 +8,7 @@ namespace App\Http\Controllers\Chat\Channels;
 use App\Http\Controllers\Chat\Controller as BaseController;
 use App\Libraries\Chat;
 use App\Models\Chat\Channel;
+use App\Models\Chat\Message;
 use App\Transformers\Chat\MessageTransformer;
 use App\Transformers\UserCompactTransformer;
 
@@ -16,6 +17,14 @@ use App\Transformers\UserCompactTransformer;
  */
 class MessagesController extends BaseController
 {
+    public function __construct()
+    {
+        $this->middleware('require-scopes:chat.read', ['only' => ['index']]);
+        $this->middleware('require-scopes:chat.write', ['only' => ['store']]);
+
+        parent::__construct();
+    }
+
     /**
      * Get Channel Messages
      *
@@ -103,7 +112,7 @@ class MessagesController extends BaseController
         }
 
         $messages = $channel
-            ->filteredMessages()
+            ->messages()
             ->with(['channel', 'sender'])
             ->limit($limit);
 
@@ -118,6 +127,8 @@ class MessagesController extends BaseController
 
             $messages = $messages->orderBy('message_id', 'desc')->get()->reverse();
         }
+
+        $messages = Message::filterBacklogs($channel, $messages);
 
         if (!$returnObject) {
             return json_collection(

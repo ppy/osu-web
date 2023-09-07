@@ -20,7 +20,7 @@
 
     @include('home._user_header_default', ['themeOverride' => 'settings'])
 
-    <div class="osu-page">
+    <div class="osu-page osu-page--account-edit">
         <div class="account-edit account-edit--first">
             <div class="account-edit__section">
                 <h2 class="account-edit__section-title">
@@ -66,10 +66,8 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="osu-page" id="avatar">
-        <div class="account-edit">
+        <div class="account-edit" id="avatar">
             <div class="account-edit__section">
                 <h2 class="account-edit__section-title">
                     {{ osu_trans('accounts.edit.avatar.title') }}
@@ -132,45 +130,25 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="osu-page">
         @include('accounts._edit_signature')
-    </div>
 
-    <div class="osu-page">
         @include('accounts._edit_playstyles')
-    </div>
 
-    <div class="osu-page">
         @include('accounts._edit_privacy')
-    </div>
 
-    <div class="osu-page" id="notifications">
         @include('accounts._edit_notifications')
-    </div>
 
-    <div class="osu-page">
         @include('accounts._edit_options')
-    </div>
 
-    <div class="osu-page">
         @include('accounts._edit_password')
-    </div>
 
-    <div class="osu-page">
         @include('accounts._edit_email')
-    </div>
 
-    <div class="osu-page">
         @include('accounts._edit_sessions')
-    </div>
 
-    <div class="osu-page" id="oauth">
         @include('accounts._edit_oauth')
-    </div>
 
-    <div class="osu-page" id="legacy-api">
         @include('accounts._edit_legacy_api')
     </div>
 @endsection

@@ -5,13 +5,13 @@
 
 return [
     'beatmapset' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Αναφορά',
+        'title' => 'Αναφορά του beatmap από τον :username;',
     ],
 
     'beatmapset_discussion_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Αναφορά',
+        'title' => 'Αναφορά ανάρτησης :username;',
     ],
 
     'comment' => [
@@ -20,8 +20,8 @@ return [
     ],
 
     'forum_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Αναφορά',
+        'title' => 'Αναφορά ανάρτησης :username;',
     ],
 
     'scores' => [
@@ -30,7 +30,7 @@ return [
     ],
 
     'user' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Αναφορά',
+        'title' => 'Αναφορά :username;',
     ],
 ];
