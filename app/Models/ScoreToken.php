@@ -25,6 +25,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class ScoreToken extends Model
 {
+    protected $table = 'solo_score_tokens';
+
     public function beatmap()
     {
         return $this->belongsTo(Beatmap::class, 'beatmap_id');

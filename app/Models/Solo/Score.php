@@ -45,6 +45,8 @@ class Score extends Model implements Traits\ReportableInterface
         'preserve' => 'boolean',
     ];
 
+    protected $table = 'solo_scores';
+
     public static function createFromJsonOrExplode(array $params)
     {
         $score = new static([
