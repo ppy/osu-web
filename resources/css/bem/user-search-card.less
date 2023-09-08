@@ -3,7 +3,7 @@
 
 .user-search-card {
   .fade-element(120ms);
-  display: flex;
+  position: relative;
   border-radius: @border-radius-large;
   background-color: @osu-colour-b4;
   font-size: @font-size--normal;
@@ -22,6 +22,16 @@
     background-size: cover;
   }
 
+  &__background-container {
+    .full-size();
+  }
+
+  &__container {
+    display: flex;
+    position: relative;
+    pointer-events: none;
+  }
+
   &__details {
     display: flex;
     align-items: center;
@@ -34,6 +44,7 @@
     margin: 0 5px;
     flex: none;
     display: flex;
+    pointer-events: auto;
 
     &:empty {
       display: none;
