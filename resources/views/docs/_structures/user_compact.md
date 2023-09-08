@@ -112,9 +112,10 @@ type        | string    | `note`, `restriction`, or `silence`.
 
 ### UserBadge
 
-Field       | Type      | Description
-------------|-----------|------------
-awarded_at  | Timestamp | |
-description | string    | |
-image_url   | string    | |
-url         | string    | |
+Field        | Type      | Description
+-------------|-----------|------------
+awarded_at   | Timestamp | |
+description  | string    | |
+image@2x_url | string    | |
+image_url    | string    | |
+url          | string    | |

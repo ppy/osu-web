@@ -150,8 +150,7 @@ export class Discussion extends React.Component<Props> {
 
     return (
       <div
-        className={`${topClasses} js-beatmap-discussion-jump`}
-        data-id={this.props.discussion.id}
+        className={`${topClasses}`}
         onClick={this.handleSetHighlight}
         style={{
           '--discussion-colour': `var(--beatmapset-discussion-colour--${this.props.discussion.message_type})`,
@@ -160,8 +159,8 @@ export class Discussion extends React.Component<Props> {
         <div className={`${bn}__timestamp hidden-xs`}>
           {this.renderTimestamp()}
         </div>
-
-        <div className={`${bn}__discussion`}>
+        {/* jump is here instead of the top to have the margin on the element so that Chrome will anchor properly when an image lazy loads. */}
+        <div className={`${bn}__discussion js-beatmap-discussion-jump`} data-id={this.props.discussion.id}>
           <div
             className={`${bn}__top`}
             style={groupColour(group)}

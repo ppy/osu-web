@@ -24,6 +24,32 @@ class BeatmapsController extends Controller
     const DEFAULT_API_INCLUDES = ['beatmapset.ratings', 'failtimes', 'max_combo'];
     const DEFAULT_SCORE_INCLUDES = ['user', 'user.country', 'user.cover'];
 
+    private static function assertSupporterOnlyOptions(?User $currentUser, string $type, array $mods): void
+    {
+        $isSupporter = $currentUser !== null && $currentUser->isSupporter();
+        if ($type !== 'global' && !$isSupporter) {
+            throw new InvariantException(osu_trans('errors.supporter_only'));
+        }
+        if (!empty($mods) && !is_api_request() && !$isSupporter) {
+            throw new InvariantException(osu_trans('errors.supporter_only'));
+        }
+    }
+
+    private static function baseScoreQuery(Beatmap $beatmap, $mode, $mods, $type = null)
+    {
+        $query = BestModel::getClass($mode)
+            ::default()
+            ->where('beatmap_id', $beatmap->getKey())
+            ->with(['beatmap', 'user.country', 'user.userProfileCustomization'])
+            ->withMods($mods);
+
+        if ($type !== null) {
+            $query->withType($type, ['user' => auth()->user()]);
+        }
+
+        return $query;
+    }
+
     public function __construct()
     {
         parent::__construct();
@@ -282,7 +308,7 @@ class BeatmapsController extends Controller
         $type = presence($params['type']) ?? 'global';
         $currentUser = auth()->user();
 
-        $this->assertSupporterOnlyOptions($currentUser, $type, $mods);
+        static::assertSupporterOnlyOptions($currentUser, $type, $mods);
 
         $query = static::baseScoreQuery($beatmap, $mode, $mods, $type);
 
@@ -357,7 +383,7 @@ class BeatmapsController extends Controller
         $type = presence($params['type'], 'global');
         $currentUser = auth()->user();
 
-        $this->assertSupporterOnlyOptions($currentUser, $type, $mods);
+        static::assertSupporterOnlyOptions($currentUser, $type, $mods);
 
         $esFetch = new BeatmapScores([
             'beatmap_ids' => [$beatmap->getKey()],
@@ -497,31 +523,5 @@ class BeatmapsController extends Controller
         return [
             'scores' => json_collection($scores, new ScoreTransformer()),
         ];
-    }
-
-    private static function baseScoreQuery(Beatmap $beatmap, $mode, $mods, $type = null)
-    {
-        $query = BestModel::getClass($mode)
-            ::default()
-            ->where('beatmap_id', $beatmap->getKey())
-            ->with(['beatmap', 'user.country', 'user.userProfileCustomization'])
-            ->withMods($mods);
-
-        if ($type !== null) {
-            $query->withType($type, ['user' => auth()->user()]);
-        }
-
-        return $query;
-    }
-
-    private function assertSupporterOnlyOptions(?User $currentUser, string $type, array $mods): void
-    {
-        $isSupporter = $currentUser?->isSupporter() ?? false;
-        if ($type !== 'global' && !$isSupporter) {
-            throw new InvariantException(osu_trans('errors.supporter_only'));
-        }
-        if (!empty($mods) && !is_api_request() && !$isSupporter) {
-            throw new InvariantException(osu_trans('errors.supporter_only'));
-        }
     }
 }

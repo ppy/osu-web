@@ -115,7 +115,7 @@ export class Discussions extends React.Component<Props> {
   render() {
     return (
       <div className='osu-page osu-page--small osu-page--full'>
-        <div className={bn}>
+        <div className={`${bn} js-beatmap-discussions`}>
           <div className='page-title'>
             {trans('beatmaps.discussions.title')}
           </div>
@@ -154,18 +154,14 @@ export class Discussions extends React.Component<Props> {
     const parentDiscussion = this.store.discussions.get(discussion.parent_id);
 
     return (
-      <div
+      <Discussion
         key={discussion.id}
-        className={`${bn}__discussion`}
-      >
-        <Discussion
-          discussion={discussion}
-          discussionsState={this.discussionsState}
-          isTimelineVisible={this.isTimelineVisible}
-          parentDiscussion={parentDiscussion?.message_type === 'review' ? parentDiscussion : null}
-          store={this.store}
-        />
-      </div>
+        discussion={discussion}
+        discussionsState={this.discussionsState}
+        isTimelineVisible={this.isTimelineVisible}
+        parentDiscussion={parentDiscussion?.message_type === 'review' ? parentDiscussion : null}
+        store={this.store}
+      />
     );
   };
 
