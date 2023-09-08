@@ -64,6 +64,9 @@ class BeatmapsetQueryParser
                 case 'creator':
                     $option = static::makeTextOption($op, $m['value']);
                     break;
+                case 'difficulty' :
+                    $option = static::makeTextOption($op, $m['value']);
+                    break;
                 case 'artist':
                     $option = static::makeTextOption($op, $m['value']);
                     break;

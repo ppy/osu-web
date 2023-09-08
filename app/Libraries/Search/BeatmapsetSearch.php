@@ -78,6 +78,7 @@ class BeatmapsetSearch extends RecordSearch
         $this->addSpotlightsFilter($query);
 
         $nested = new BoolQuery();
+        $this->addDifficultyFilter($nested);
         $this->addStatusFilter($query, $nested);
         $this->addManiaKeysFilter($nested);
         $this->addModeFilter($nested);
@@ -163,6 +164,13 @@ class BeatmapsetSearch extends RecordSearch
             $this->addTextFilter($query, 'creator', ['creator']);
         } else {
             $nested->filter(['term' => ['beatmaps.user_id' => $user->getKey()]]);
+        }
+    }
+
+    private function addDifficultyFilter(BoolQuery $nested)
+    {
+        if ($this->params->difficulty !== null) {
+            $nested->must(QueryHelper::queryString($this->params->difficulty, ['beatmaps.version'], 'and'));
         }
     }
 
