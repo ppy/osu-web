@@ -8,5 +8,5 @@ interface Message {
 }
 
 export default class SocketMessageSendAction implements DispatcherAction {
-  constructor(public message: Message) {}
+  constructor(public message: Message) { /* do nothing */ }
 }
