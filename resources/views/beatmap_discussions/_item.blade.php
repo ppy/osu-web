@@ -12,7 +12,7 @@
       'suggestion' => 'far fa-circle',
     ];
 @endphp
-<div class="beatmap-discussions__discussion beatmapset-activities__discussion-post">
+<div class="beatmapset-activities__discussion-post">
     <div class="beatmap-discussion beatmap-discussion--single beatmapset-activities__post-grow{{ $discussion->trashed() ? ' beatmap-discussion--deleted' : ''}}">
         <div class="beatmap-discussion-timestamp__icons-container">
             <div class="beatmap-discussion-timestamp__icons">
