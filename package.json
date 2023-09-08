@@ -116,7 +116,7 @@
     "karma-jasmine": "^5.1.0",
     "karma-mocha-reporter": "^2.2.5",
     "karma-sourcemap-loader": "^0.3.8",
-    "karma-typescript": "^5.5.3",
+    "karma-typescript": "^5.5.4",
     "karma-webpack": "^5.0.0",
     "mobx-react-devtools": "^6.0.3",
     "webpack-build-notifier": "^2.3.0"
