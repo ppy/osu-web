@@ -3,7 +3,6 @@
 
 .beatmap-discussion {
   @_top: beatmap-discussion;
-
   @_top-padding-y: 10px;
   @_top-padding-x: 15px;
 
@@ -62,6 +61,7 @@
     // hightlighted will override ::after
     &::before {
       @media @mobile {
+        overflow-anchor: none;
         content: '';
         position: absolute;
         right: 0;
@@ -141,6 +141,7 @@
   }
 
   &__timestamp {
+    overflow-anchor: none;
     flex: none;
 
     // hopefully enough for type and resolve status icons.
