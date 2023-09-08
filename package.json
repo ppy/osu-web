@@ -101,8 +101,8 @@
     "yargs": "^12.0.5"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.29.0",
-    "@typescript-eslint/parser": "^5.29.0",
+    "@typescript-eslint/eslint-plugin": "^6.6.0",
+    "@typescript-eslint/parser": "^6.6.0",
     "deasync": "^0.1.26",
     "eslint": "^7.15.0",
     "eslint-plugin-import": "^2.22.1",
