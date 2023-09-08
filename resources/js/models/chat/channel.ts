@@ -295,7 +295,9 @@ export default class Channel {
 
       runInAction(() => {
         // gap in messages, just clear all messages instead of dealing with the gap.
-        const minMessageId = minBy(messages, 'messageId')?.messageId ?? -1;
+        const maybeMinMessageId = minBy(messages, 'messageId')?.messageId ?? -1;
+        // for typing; realistically, a uuid won't be min unless it's the only value.
+        const minMessageId = typeof maybeMinMessageId === 'number' ? maybeMinMessageId : -1;
         if (minMessageId > this.lastMessageId) {
           // TODO: force scroll to the end.
           this.messagesMap.clear();
