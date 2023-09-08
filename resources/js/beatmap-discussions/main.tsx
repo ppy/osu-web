@@ -90,6 +90,8 @@ export default class Main extends React.Component<Props> {
     $.unsubscribe(`.${this.eventId}`);
     $(document).off(`.${this.eventId}`);
 
+    document.documentElement.style.removeProperty('--scroll-padding-top-extra');
+
     Object.values(this.timeouts).forEach(window.clearTimeout);
 
     this.xhrCheckNew?.abort();
@@ -201,19 +203,22 @@ export default class Main extends React.Component<Props> {
 
   private jumpToAfterRender(discussionId: number, postId?: number) {
     const attribute = postId != null ? `data-post-id='${postId}'` : `data-id='${discussionId}'`;
-    const target = $(`.js-beatmap-discussion-jump[${attribute}]`);
+    const target = document.querySelector(`.js-beatmap-discussion-jump[${attribute}]`);
 
-    if (target.length === 0) return;
-    const offset = target.offset();
+    if (target == null || this.modeSwitcherRef.current == null || this.newDiscussionRef.current == null) return;
 
-    if (offset == null || this.modeSwitcherRef.current == null || this.newDiscussionRef.current == null) return;
-
-    let offsetTop = offset.top - this.modeSwitcherRef.current.getBoundingClientRect().height;
+    let margin = this.modeSwitcherRef.current.getBoundingClientRect().height;
     if (this.discussionsState.pinnedNewDiscussion) {
-      offsetTop -= this.newDiscussionRef.current.getBoundingClientRect().height;
+      margin += this.newDiscussionRef.current.getBoundingClientRect().height;
     }
 
-    $(window).stop().scrollTo(core.stickyHeader.scrollOffset(offsetTop), 500);
+    // Update scroll-padding instead of adding scroll-margin, otherwise it doesn't anchor in the right place.
+    document.documentElement.style.setProperty('--scroll-padding-top-extra', `${Math.floor(margin)}px`);
+
+    // avoid smooth scrolling to avoid triggering lazy loaded images.
+    // FIXME: Safari still has the issue where images just out of view get loaded and push the page down
+    // because it doesn't anchor the scroll position.
+    target.scrollIntoView({ behavior: 'instant', block: 'start', inline: 'nearest' });
   }
 
   private readonly jumpToClick = (e: JQuery.TriggeredEvent<Document, unknown, HTMLElement, HTMLElement>) => {
