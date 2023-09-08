@@ -172,21 +172,17 @@ export class Discussions extends React.Component<Props> {
     const parentDiscussion = discussion.parent_id != null ? this.props.currentDiscussions.byFilter.total.reviews[discussion.parent_id] : null;
 
     return (
-      <div
+      <Discussion
         key={discussion.id}
-        className={`${bn}__discussion`}
-      >
-        <Discussion
-          beatmapset={this.props.beatmapset}
-          currentBeatmap={this.props.currentBeatmap}
-          discussion={discussion}
-          isTimelineVisible={this.isTimelineVisible}
-          parentDiscussion={parentDiscussion}
-          readPostIds={this.props.readPostIds}
-          showDeleted={this.props.showDeleted}
-          users={this.props.users}
-        />
-      </div>
+        beatmapset={this.props.beatmapset}
+        currentBeatmap={this.props.currentBeatmap}
+        discussion={discussion}
+        isTimelineVisible={this.isTimelineVisible}
+        parentDiscussion={parentDiscussion}
+        readPostIds={this.props.readPostIds}
+        showDeleted={this.props.showDeleted}
+        users={this.props.users}
+      />
     );
   };
 
