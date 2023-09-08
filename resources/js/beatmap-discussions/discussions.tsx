@@ -124,7 +124,7 @@ export class Discussions extends React.Component<Props> {
   render() {
     return (
       <div className='osu-page osu-page--small osu-page--full'>
-        <div className={bn}>
+        <div className={`${bn} js-beatmap-discussions`}>
           <div className='page-title'>
             {trans('beatmaps.discussions.title')}
           </div>

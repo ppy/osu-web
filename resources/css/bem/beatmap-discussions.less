@@ -41,6 +41,7 @@
   &__mode-circle {
     .circle(@_mode-circle-diameter);
     background-color: @_timeline-colour;
+    overflow-anchor: none;
   }
 
   &__mode-text {
@@ -48,6 +49,7 @@
   }
 
   &__timeline-line {
+    overflow-anchor: none;
     position: absolute;
     top: (@_discussions-vertical-padding + @_mode-circle-diameter / 2);
     left: @_discussions-horizontal-padding;
