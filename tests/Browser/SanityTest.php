@@ -257,8 +257,6 @@ class SanityTest extends DuskTestCase
         self::$scaffolding['score'] = Score\Best\Osu::factory()->withReplay()->create();
 
         self::$scaffolding['room'] = Room::factory()->create(['category' => 'spotlight']);
-
-        app('groups')->resetMemoized();
     }
 
     private static function filterLog(array $log)

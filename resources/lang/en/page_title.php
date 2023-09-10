@@ -66,6 +66,9 @@ return [
         'contests_controller' => [
             '_' => 'contests',
         ],
+        'group_history_controller' => [
+            '_' => 'group history',
+        ],
         'groups_controller' => [
             'show' => 'groups',
         ],
