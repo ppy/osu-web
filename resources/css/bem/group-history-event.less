@@ -1,0 +1,64 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.group-history-event {
+  @_top: group-history-event;
+
+  align-items: center;
+  display: flex;
+  font-size: @font-size--title-small;
+  gap: 15px;
+
+  &__icon {
+    @icons: {
+      group-add: users;
+      group-remove: users-slash;
+      group-rename: users-cog;
+      user-add: user-plus;
+      user-add-playmodes: user-tag;
+      user-remove: user-minus;
+      user-remove-playmodes: user-tag;
+      user-set-default: user-cog;
+    };
+    each(@icons, {
+      .@{_top}--@{key} & {
+        @icon-var: 'fa-var-@{value}';
+        --icon: @@icon-var;
+      }
+    });
+
+    .fas();
+    background-color: var(--group-colour, @osu-colour-b1);
+    border-radius: 10000px;
+    color: @osu-colour-b6;
+    padding: 3px 6px;
+
+    &::before {
+      content: var(--icon);
+    }
+  }
+
+  &__info {
+    color: @osu-colour-f1;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    font-size: @font-size--normal;
+    gap: 0 15px;
+
+    @media @desktop {
+      flex-direction: row-reverse;
+    }
+  }
+
+  &__message {
+    @bold-events: group-add, group-remove, group-rename;
+    each(@bold-events, {
+      .@{_top}--@{value} & {
+        font-weight: bold;
+      }
+    });
+
+    flex-grow: 1;
+  }
+}

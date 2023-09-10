@@ -12,7 +12,8 @@ class GroupsController extends Controller
     public function show($id)
     {
         $group = app('groups')->byIdOrFail($id);
-        abort_unless($group->hasListing(), 404);
+        abort_if($group->identifier === 'default', 404);
+        priv_check('GroupShow', $group)->ensureCan();
 
         $currentMode = default_mode();
         $users = $group->users()
