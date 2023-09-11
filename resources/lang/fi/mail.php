@@ -27,8 +27,8 @@ return [
         'translation' => 'Seuraava on yhteisön tuottama käännös tiedostusta varten:',
 
         'benefit' => [
-            'gift' => '',
-            'self' => '',
+            'gift' => 'Lahjasi saaneilla on nyt pääsy osu!direct:iin ja moniin muihin tukija-etuihin.',
+            'self' => 'Saat nyt pääsyn osu!direct:iin ja moniin muihin tukija-etuihin :duration ajalle. ',
         ],
 
         'support' => [
@@ -62,10 +62,10 @@ return [
     ],
 
     'supporter_gift' => [
-        'anonymous_gift' => '',
+        'anonymous_gift' => 'Henkilö, joka lahjoitti sinulle tämän tägin, voi halutessaan pysyä anonyyminä, joten heitä ei ole maininttu tässä ilmoituksessa.',
         'anonymous_gift_maybe_not' => 'Mutta taidat jo tietää kuka se mahtaa olla ;).',
         'duration' => '',
-        'features' => '',
+        'features' => 'Voit saada lisätietoja näistä ominaisuuksista täältä:',
         'gifted' => 'Joku on juuri antanut sinulle osu! -tukijan!',
         'gift_message' => '',
         'subject' => 'Sinulle on lahjoitettu osu!tukijatagi!',
@@ -99,12 +99,12 @@ return [
     'user_verification' => [
         'code' => 'Vahvistuskoodisi on:',
         'code_hint' => 'Voit syöttää koodin välilyönneillä tai ilman niitä.',
-        'link' => '',
+        'link' => 'Vaihtoehtoisesti, voit myös suorittaa vahvistuksen loppuun alla olevasta linkistä:',
         'report' => 'Jos et ole pyytänyt tätä, ole hyvä ja VASTAA HETI, koska tilisi voi olla vaarassa.',
         'subject' => 'osu! tilin vahvistaminen',
 
         'action_from' => [
-            '_' => '',
+            '_' => 'Tililläsi suoritettu toiminto maasta :country vaatii vahvistuksen.',
             'unknown_country' => 'tuntemattomasta maasta',
         ],
     ],

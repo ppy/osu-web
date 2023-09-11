@@ -8,7 +8,7 @@ return [
         'description' => 'Des collections pré-packagées de beatmaps autour d\'un thème commun.',
         'empty' => 'Arrive prochainement !',
         'nav_title' => 'liste',
-        'title' => 'Collections de Beatmaps',
+        'title' => 'Beatmap packs',
 
         'blurb' => [
             'important' => 'LISEZ CECI AVANT DE TÉLÉCHARGER',
@@ -36,6 +36,7 @@ return [
         'artist' => 'Artiste/Album',
         'chart' => 'Spotlights',
         'featured' => 'Featured Artist',
+        'loved' => 'Project Loved',
         'standard' => 'Standard',
         'theme' => 'Thème',
         'tournament' => 'Tournoi',

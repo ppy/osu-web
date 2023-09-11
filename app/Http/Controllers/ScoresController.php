@@ -30,14 +30,14 @@ class ScoresController extends Controller
         $shouldRedirect = !is_api_request() && !from_app_url();
         if ($id === null) {
             if ($shouldRedirect) {
-                return ujs_redirect(route('scores.show', ['score' => $rulesetOrSoloId]));
+                return ujs_redirect(route('scores.show', ['rulesetOrScore' => $rulesetOrSoloId]));
             }
             $soloScore = SoloScore::where('has_replay', true)->findOrFail($rulesetOrSoloId);
 
             $score = $soloScore->legacyScore() ?? $soloScore;
         } else {
             if ($shouldRedirect) {
-                return ujs_redirect(route('scores.show-legacy', ['score' => $id, 'mode' => $rulesetOrSoloId]));
+                return ujs_redirect(route('scores.show', ['rulesetOrScore' => $rulesetOrSoloId, 'score' => $id]));
             }
             // don't limit downloading replays of restricted users for review purpose
             $score = ScoreBest::getClass($rulesetOrSoloId)
@@ -63,6 +63,11 @@ class ScoresController extends Controller
         return response()->streamDownload(function () use ($file) {
             echo $file;
         }, $this->makeReplayFilename($score), $responseHeaders);
+    }
+
+    public function downloadLegacy($ruleset, $id)
+    {
+        return $this->download($ruleset, $id);
     }
 
     public function show($rulesetOrSoloId, $legacyId = null)

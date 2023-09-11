@@ -23,7 +23,7 @@ return [
                 'description' => 'Příspěvky jsou použity k zajištění provozu serverů, na kterých běží webové stránky, multiplayer, online žebříčky atd.',
             ],
             'featured-artists' => [
-                'title' => 'Vybraní umělci',
+                'title' => 'Featured Artists',
                 'description' => 'S tvojí podporou můžeme získat více úžasných tvůrců a licencovat více skvělé hudby pro použití v osu!',
                 'link_text' => 'Zobrazit aktuální seznam &raquo;',
             ],

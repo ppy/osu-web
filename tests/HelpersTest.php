@@ -7,6 +7,8 @@ declare(strict_types=1);
 
 namespace Tests;
 
+use App\Models\Country;
+
 class HelpersTest extends TestCase
 {
     /**
@@ -23,6 +25,35 @@ class HelpersTest extends TestCase
     public function testClassWithModifiers($class, $modifiers, $expected): void
     {
         $this->assertSame($expected, class_with_modifiers($class, ...$modifiers));
+    }
+
+    public function testIsSqlUniqueException(): void
+    {
+        $baseParams = [
+            'rankedscore' => 0,
+            'playcount' => 0,
+            'usercount' => 0,
+        ];
+
+        (new Country([
+            ...$baseParams,
+            'acronym' => 'AA',
+            'name' => '1',
+        ]))->saveOrExplode();
+
+        $exception = null;
+
+        try {
+            (new Country([
+                ...$baseParams,
+                'acronym' => 'AA',
+                'name' => '2',
+            ]))->saveOrExplode();
+        } catch (\Exception $e) {
+            $exception = $e;
+        }
+
+        $this->assertTrue(is_sql_unique_exception($exception));
     }
 
     public function dataForClassWithModifiers(): array

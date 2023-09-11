@@ -37,7 +37,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $hit_length
  * @property \Carbon\Carbon $last_update
  * @property mixed $mode
- * @property bool $orphaned
  * @property int $passcount
  * @property int $playcount
  * @property int $playmode
@@ -58,7 +57,6 @@ class Beatmap extends Model implements AfterCommit
 
     protected $casts = [
         'last_update' => 'datetime',
-        'orphaned' => 'boolean',
     ];
 
     public $timestamps = false;
@@ -247,8 +245,6 @@ class Beatmap extends Model implements AfterCommit
             'total_length',
             'user_id',
             'youtube_preview' => $this->getRawAttribute($key),
-
-            'orphaned' => (bool) $this->getRawAttribute($key),
 
             'deleted_at',
             'last_update' => $this->getTimeFast($key),

@@ -78,6 +78,18 @@ return [
             'suggestion' => 'Suhestyon',
         ],
 
+        'message_type_title' => [
+            'disqualify' => '',
+            'hype' => '',
+            'mapper_note' => '',
+            'nomination_reset' => '',
+            'praise' => '',
+            'problem' => '',
+            'problem_warning' => '',
+            'review' => '',
+            'suggestion' => '',
+        ],
+
         'mode' => [
             'events' => 'Kasaysayan',
             'general' => 'Kabuuan :scope',
@@ -175,6 +187,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => '',
+        'cannot_nominate' => '',
         'delete' => 'Tanggalin',
         'delete_own_confirm' => 'Sigurado ka ba? Ang beatmap ay matatanggal at ikaw ay muling babalik sa iyong profile.',
         'delete_other_confirm' => 'Sigurado ka ba? Ang beatmap ay matatanggal at ikaw ay muling babalik sa profile ng user.',

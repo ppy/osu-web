@@ -17,7 +17,9 @@ return [
         'identify' => '당신을 식별하고 공개 프로필을 읽습니다.',
 
         'chat' => [
+            'read' => '',
             'write' => '당신을 대신하여 메시지를 전송합니다.',
+            'write_manage' => '',
         ],
 
         'forum' => [

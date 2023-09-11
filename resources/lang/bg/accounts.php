@@ -20,6 +20,12 @@ return [
             'title' => 'Имейл',
         ],
 
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'Наследен API',
+        ],
+
         'password' => [
             'current' => 'текуща парола',
             'new' => 'нова парола',
@@ -28,7 +34,13 @@ return [
         ],
 
         'profile' => [
+            'country' => 'държава',
             'title' => 'Профил',
+
+            'country_change' => [
+                '_' => "Изглежда че държавата на профила не съвпада с текущата ви държава. :update_link.",
+                'update_link' => 'Променете на :country',
+            ],
 
             'user' => [
                 'user_discord' => '',

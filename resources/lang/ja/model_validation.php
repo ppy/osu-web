@@ -112,6 +112,12 @@ return [
 
     'legacy_api_key' => [
         'exists' => '',
+
+        'attributes' => [
+            'api_key' => 'apiキー',
+            'app_name' => 'アプリケーション名',
+            'app_url' => '',
+        ],
     ],
 
     'oauth' => [
@@ -170,6 +176,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => 'ランク付けされたビートマップは報告できません。',
+        'not_in_channel' => '',
         'reason_not_valid' => ':reason はこの報告タイプでは無効です。',
         'self' => "自分自身を報告することはできません！",
     ],

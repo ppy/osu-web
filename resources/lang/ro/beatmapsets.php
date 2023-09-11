@@ -60,6 +60,10 @@ return [
     'show' => [
         'discussion' => 'Discuție',
 
+        'admin' => [
+            'full_size_cover' => '',
+        ],
+
         'deleted_banner' => [
             'title' => 'Acest beatmap a fost șters.',
             'message' => '(doar moderatorii pot vedea asta)',
@@ -102,10 +106,10 @@ return [
         ],
 
         'hype' => [
-            'action' => 'Hype această mapă dacă ți-a plăcut să o joci, astfel încât să progreseze la stadiul de <strong>Clasat</strong>.',
+            'action' => 'Acordă un hype acestui beatmap dacă ți-a plăcut să îl joci pentru a îl ajuta să progreseze la stadiul de <strong>Clasat</strong>.',
 
             'current' => [
-                '_' => 'Această mapă este în prezent :status.',
+                '_' => 'Acest beatmap este în prezent :status.',
 
                 'status' => [
                     'pending' => 'în așteptare',
@@ -148,7 +152,7 @@ return [
             'buttons' => [
                 'disable' => 'Dezactivează avertisment',
                 'listing' => 'Lista beatmap-uri',
-                'show' => 'Arată',
+                'show' => 'Afișează',
             ],
         ],
 
@@ -178,7 +182,7 @@ return [
 
             'no_scores' => [
                 'country' => 'Nimeni din țara ta nu a stabilit un scor pe acest beatmap încă!',
-                'friend' => 'Nimeni din prietenii tăi nu a stabilit un scor pe acest beatmap încă!',
+                'friend' => 'Niciunul dintre prietenii tăi nu a stabilit un scor pe acest beatmap încă!',
                 'global' => 'Niciun scor încă. Poate ar trebui să încerci să obții câteva?',
                 'loading' => 'Se încarcă scorurile...',
                 'unranked' => 'Beatmap neclasificat.',

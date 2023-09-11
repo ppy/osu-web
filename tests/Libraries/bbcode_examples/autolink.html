@@ -1,33 +1,33 @@
-<!-- m --><a href="ftp://ftp.example.com" rel="nofollow">ftp://ftp.example.com</a><!-- m --><br />
+<a href="ftp://ftp.example.com" rel="nofollow">ftp://ftp.example.com</a><br />
 <br />
-<!-- w --><a href="http://www.example.com" rel="nofollow">www.example.com</a><!-- w --><br />
+<a href="http://www.example.com" rel="nofollow">www.example.com</a><br />
 <br />
-<!-- e --><a href="mailto:user@example.com" rel="nofollow">user@example.com</a><!-- e --><br />
+<a href="mailto:user@example.com" rel="nofollow">user@example.com</a><br />
 <br />
 Boundary test<br />
-Link to <!-- m --><a href="http://example.com/path:1/hello" rel="nofollow">http://example.com/path:1/hello</a><!-- m -->: the colon should be excluded.<br />
-Link to (<!-- m --><a href="http://example.com/path:1/hello" rel="nofollow">http://example.com/path:1/hello</a><!-- m -->): the parentheses and colon should be excluded.<br />
-Link (to <!-- m --><a href="http://example.com/path:1/hello" rel="nofollow">http://example.com/path:1/hello</a><!-- m -->). The parentheses and period should be excluded.<br />
-Link to &lt;<!-- m --><a href="http://example.com/path:1/hello" rel="nofollow">http://example.com/path:1/hello</a><!-- m -->&gt; The angle brackets should be excluded.<br />
-Link to <!-- m --><a href="http://example.com/path:1/hello" rel="nofollow">http://example.com/path:1/hello&gt;world</a><!-- m --> The angle brackets should be included.<br />
+Link to <a href="http://example.com/path:1/hello" rel="nofollow">http://example.com/path:1/hello</a>: the colon should be excluded.<br />
+Link to (<a href="http://example.com/path:1/hello" rel="nofollow">http://example.com/path:1/hello</a>): the parentheses and colon should be excluded.<br />
+Link (to <a href="http://example.com/path:1/hello" rel="nofollow">http://example.com/path:1/hello</a>). The parentheses and period should be excluded.<br />
+Link to &lt;<a href="http://example.com/path:1/hello" rel="nofollow">http://example.com/path:1/hello</a>&gt; The angle brackets should be excluded.<br />
+Link to <a href="http://example.com/path:1/hello" rel="nofollow">http://example.com/path:1/hello&gt;world</a> The angle brackets should be included.<br />
 <br />
 Relative test<br />
-Link to <!-- m --><a href="http://localhost/path:1/hello" rel="nofollow">path:1/hello</a><!-- m --> the domain part should be excluded.<br />
+Link to <a href="http://localhost/path:1/hello" rel="nofollow">path:1/hello</a> the domain part should be excluded.<br />
 <br />
 At start of a block tag<br />
-<blockquote><!-- m --><a href="https://example.com" rel="nofollow">https://example.com</a><!-- m --> test</blockquote>
+<blockquote><a href="https://example.com" rel="nofollow">https://example.com</a> test</blockquote>
 
 At end of a block tag<br />
-<blockquote>Test: <!-- m --><a href="https://example.com" rel="nofollow">https://example.com</a><!-- m --></blockquote>
+<blockquote>Test: <a href="https://example.com" rel="nofollow">https://example.com</a></blockquote>
 
 Alone in a block tag<br />
-<blockquote><!-- m --><a href="https://example.com" rel="nofollow">https://example.com</a><!-- m --></blockquote>
+<blockquote><a href="https://example.com" rel="nofollow">https://example.com</a></blockquote>
 
 At start of an inline tag<br />
-<strong><!-- m --><a href="https://example.com" rel="nofollow">https://example.com</a><!-- m --> test</strong><br />
+<strong><a href="https://example.com" rel="nofollow">https://example.com</a> test</strong><br />
 <br />
 At end of an inline tag<br />
-<strong>Test: <!-- m --><a href="https://example.com" rel="nofollow">https://example.com</a><!-- m --></strong><br />
+<strong>Test: <a href="https://example.com" rel="nofollow">https://example.com</a></strong><br />
 <br />
 Alone in an inline tag<br />
-<strong><!-- m --><a href="https://example.com" rel="nofollow">https://example.com</a><!-- m --></strong>
+<strong><a href="https://example.com" rel="nofollow">https://example.com</a></strong>

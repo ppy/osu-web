@@ -78,6 +78,18 @@ return [
             'suggestion' => 'Javaslat',
         ],
 
+        'message_type_title' => [
+            'disqualify' => '',
+            'hype' => '',
+            'mapper_note' => '',
+            'nomination_reset' => '',
+            'praise' => '',
+            'problem' => '',
+            'problem_warning' => '',
+            'review' => '',
+            'suggestion' => '',
+        ],
+
         'mode' => [
             'events' => 'Előzmények',
             'general' => 'Általános :scope',
@@ -175,6 +187,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => 'Már nominálva vagy erre a beatmapre.',
+        'cannot_nominate' => 'Nem nominálhatod ezt a beatmapet ebben a játékmódban.',
         'delete' => 'Törlés',
         'delete_own_confirm' => 'Biztos vagy benne? A beatmap törlésre kerül és vissza leszel irányítva a profilodra.',
         'delete_other_confirm' => 'Biztos vagy benne? A beatmap törlésre kerül és vissza leszel irányítva a felhasználó profiljára.',

@@ -8,15 +8,15 @@ return [
     'not_negative' => ':attribute negali būti neigiamas.',
     'required' => ':attribute yra privalomas.',
     'too_long' => ':attribute yra per ilgas - gali būti daugiausiai :limit simbolių.',
-    'url' => '',
+    'url' => 'Prašome įvesti tinkamą URL.',
     'wrong_confirmation' => 'Patvirtinimas nesutampa.',
 
     'beatmapset_discussion' => [
-        'beatmap_missing' => 'Laiko žyma nurodyta tačiau trūksta bitmapo sunkumo.',
-        'beatmapset_no_hype' => "Bitmapas negali būti skatinamas.",
+        'beatmap_missing' => 'Laiko žyma nurodyta tačiau trūksta beatmap\'o sunkumo.',
+        'beatmapset_no_hype' => "Beatmap'as negali būti skatinamas.",
         'hype_requires_null_beatmap' => 'Skatinimas turi būti atliekamas Bendroje (visų sudėtingumų) sekcijoje.',
         'invalid_beatmap_id' => 'Nurodytas neteisingas sunkumas.',
-        'invalid_beatmapset_id' => 'Nurodytas neteisingas bitmapas.',
+        'invalid_beatmapset_id' => 'Nurodytas neteisingas beatmap\'as.',
         'locked' => 'Diskusija užrakinta.',
 
         'attributes' => [
@@ -25,16 +25,16 @@ return [
         ],
 
         'hype' => [
-            'discussion_locked' => "Šio bitmapo diskusija šiuo metu užrakinta ir jis negali būti skatinamas",
+            'discussion_locked' => "Šio beatmap'o diskusija šiuo metu užrakinta ir jis negali būti skatinamas",
             'guest' => 'Skatinimui reikia prisijungti.',
-            'hyped' => 'Tu jau paskatinai šį bitmapą.',
+            'hyped' => 'Tu jau paskatinai šį beatmap\'ą.',
             'limit_exceeded' => 'Jau išnaudojai visus savo skatinimus.',
-            'not_hypeable' => 'Šis Bitmapas negali būti skatinamas',
-            'owner' => 'Savo bitmapo skatinti negali.',
+            'not_hypeable' => 'Šis Beatmap\'as negali būti skatinamas',
+            'owner' => 'Savo beatmap\'o skatinti negali.',
         ],
 
         'timestamp' => [
-            'exceeds_beatmapset_length' => 'Nurodytas laiko žyma yra didesnė negu bitmapo trukmė.',
+            'exceeds_beatmapset_length' => 'Nurodytas laiko žyma yra didesnė negu beatmap\'o trukmė.',
             'negative' => "Laikas negali būti neigiamas.",
         ],
     ],
@@ -72,8 +72,8 @@ return [
         ],
 
         'post' => [
-            'beatmapset_post_no_delete' => 'Negalima ištrinti bitmapo metaduomenų įrašo.',
-            'beatmapset_post_no_edit' => 'Negalima redaguoti bitmapo metaduomenų įrašo.',
+            'beatmapset_post_no_delete' => 'Negalima ištrinti beatmap\'o metaduomenų įrašo.',
+            'beatmapset_post_no_edit' => 'Negalima redaguoti beatmap\'o metaduomenų įrašo.',
             'first_post_no_delete' => 'Negalimas ištrinti pirmojo įrašo',
             'missing_topic' => 'Įrašas neturi temos',
             'only_quote' => 'Jūsų atsakyme yra tik citata.',
@@ -110,7 +110,13 @@ return [
     ],
 
     'legacy_api_key' => [
-        'exists' => '',
+        'exists' => 'Tik vienas API raktas yra paskirtas vienam vartotojui šiuo metu.',
+
+        'attributes' => [
+            'api_key' => 'api raktas',
+            'app_name' => 'aplikacijos pavadinimas',
+            'app_url' => 'aplikacijos url',
+        ],
     ],
 
     'oauth' => [
@@ -168,7 +174,8 @@ return [
     ],
 
     'user_report' => [
-        'no_ranked_beatmapset' => 'Reitinguoti bitmapai negali būti pranešti',
+        'no_ranked_beatmapset' => 'Reitinguoti beatmap\'ai negali būti pranešti',
+        'not_in_channel' => 'Jūs neesate šiame kanale.',
         'reason_not_valid' => ':reason negalioja šiam pranešimo tipui.',
         'self' => "Negalite pranešti savęs!",
     ],

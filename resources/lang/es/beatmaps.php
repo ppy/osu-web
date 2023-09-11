@@ -78,6 +78,18 @@ return [
             'suggestion' => 'Sugerencia',
         ],
 
+        'message_type_title' => [
+            'disqualify' => '',
+            'hype' => '',
+            'mapper_note' => '',
+            'nomination_reset' => '',
+            'praise' => '',
+            'problem' => '',
+            'problem_warning' => '',
+            'review' => '',
+            'suggestion' => '',
+        ],
+
         'mode' => [
             'events' => 'Historial',
             'general' => 'General :scope',
@@ -175,6 +187,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => 'Ya has nominado este mapa.',
+        'cannot_nominate' => 'No puedes nominar este modo de juego del mapa.',
         'delete' => 'Eliminar',
         'delete_own_confirm' => '¿Está seguro? El mapa será eliminado y serás redirigido de vuelta a tu perfil.',
         'delete_other_confirm' => '¿Está seguro? El mapa será eliminado y serás redirigido de vuelta al perfil de usuario.',
@@ -212,7 +226,7 @@ return [
         'reset_confirm' => [
             'disqualify' => '¿Está seguro? Esto eliminará el mapa de la calificación y restablecerá el proceso de nominación.',
             'nomination_reset' => '¿Está seguro? Publicar un nuevo problema restablecerá el proceso de nominación.',
-            'problem_warning' => '¿Seguro que desea informar de un problema en este mapa? Esto alertará a los Beatmap Nominators.',
+            'problem_warning' => '¿Seguro que deseas reportar de un problema en este mapa? Esto alertará a los Beatmap Nominators.',
         ],
     ],
 
@@ -221,7 +235,7 @@ return [
             'prompt' => 'escriba en palabras clave...',
             'login_required' => 'Inicie sesión para buscar.',
             'options' => 'Más opciones de búsqueda',
-            'supporter_filter' => 'Filtrar por :filters requiere un tag activo de osu!supporter',
+            'supporter_filter' => 'Filtrar por :filters requiere una etiqueta activa de osu!supporter',
             'not-found' => 'no hay resultados',
             'not-found-quote' => '... nop, nada encontrado.',
             'filters' => [
@@ -249,7 +263,7 @@ return [
             ],
             'supporter_filter_quote' => [
                 '_' => 'Necesitas un :link activo para filtrar por :filters',
-                'link_text' => 'tag de osu!supporter',
+                'link_text' => 'etiqueta de osu!supporter',
             ],
         ],
     ],

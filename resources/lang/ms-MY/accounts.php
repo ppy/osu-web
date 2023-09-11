@@ -9,7 +9,7 @@ return [
         'username' => 'nama pengguna',
 
         'avatar' => [
-            'title' => '',
+            'title' => 'Avatar',
             'rules' => 'Pastikan avatarmu akur pada :link yang berlaku.<br/>Dengan kata lain, avatarmu mestilah <strong>sesuai untuk segala usia</strong> tanpa mengandung unsur apa pun yang tidak dibenarkan seperti cacian, hinaan, atau hal yang tidak senonoh.',
             'rules_link' => 'peraturan komuniti',
         ],
@@ -20,6 +20,12 @@ return [
             'title' => 'E-mel',
         ],
 
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => '\'irc\' ',
+            'title' => 'API Legasi',
+        ],
+
         'password' => [
             'current' => 'kata laluan terkini',
             'new' => 'kata laluan baharu',
@@ -28,7 +34,13 @@ return [
         ],
 
         'profile' => [
+            'country' => 'negara',
             'title' => 'Profil',
+
+            'country_change' => [
+                '_' => "Kelihatannya negara akaun anda tidak sempadan dengan negara petempatan anda. :update_link.",
+                'update_link' => 'Kemaskini ke :country',
+            ],
 
             'user' => [
                 'user_discord' => '',
@@ -47,11 +59,11 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_qualified_problem' => '',
-        'beatmapset_disqualify' => '',
-        'comment_reply' => '',
-        'title' => '',
-        'topic_auto_subscribe' => '',
+        'beatmapset_discussion_qualified_problem' => 'terima notifikasi untuk masalah baru pada beatmap berkelayakan pada mod tersebut ',
+        'beatmapset_disqualify' => 'terima notifikasi apabila beatmap bagi mod tersebut telah didisqualifikasi ',
+        'comment_reply' => 'terima notifikasi untuk balasan pada komen anda',
+        'title' => 'Notifikasi',
+        'topic_auto_subscribe' => 'hidupkan notifikasi secara automatik pada topik forum baru yang anda cipta',
 
         'options' => [
             '_' => 'hantarkan pemberitahuan melalui',

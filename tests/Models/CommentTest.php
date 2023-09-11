@@ -69,6 +69,17 @@ class CommentTest extends TestCase
         $this->assertArrayHasKey('parent_id', $comment->validationErrors()->all());
     }
 
+    /**
+     * @dataProvider dataProviderForSetCommentableInvalid
+     */
+    public function testSetCommentableInvalid($type, $id)
+    {
+        $comment = new Comment(['commentable_type' => $type, 'commentable_id' => $id]);
+        $comment->setCommentable();
+
+        $this->assertNull($comment->commentable);
+    }
+
     public function testUnpinOnDelete()
     {
         $comment = Comment::factory(['pinned' => true])->create();
@@ -83,6 +94,16 @@ class CommentTest extends TestCase
             [null, true],
             [false, false],
             [true, true],
+        ];
+    }
+
+    public function dataProviderForSetCommentableInvalid()
+    {
+        return [
+            [null, null],
+            [null, 10],
+            ['beatmapset', null],
+            ['beatmapset', 0],
         ];
     }
 }

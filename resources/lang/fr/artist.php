@@ -5,7 +5,7 @@
 
 return [
     'page_description' => 'Artistes affiliés à osu!',
-    'title' => 'Artistes affiliés',
+    'title' => 'Featured Artists',
 
     'admin' => [
         'hidden' => 'L\'ARTISTE EST ACTUELLEMENT MASQUÉ',

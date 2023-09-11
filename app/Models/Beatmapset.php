@@ -339,6 +339,11 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         });
     }
 
+    public function scopeScoreable(Builder $query): void
+    {
+        $query->where('approved', '>', 0);
+    }
+
     public function scopeWithModesForRanking($query, $modeInts)
     {
         if (!is_array($modeInts)) {
@@ -469,15 +474,20 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             return false;
         }
 
-        $contents = file_get_contents($url);
-        if ($contents === false) {
-            throw new BeatmapProcessorException('Error retrieving beatmap');
+        $curl = curl_init($url);
+        curl_setopt_array($curl, [
+            CURLOPT_FILE => $oszFile,
+            CURLOPT_TIMEOUT => 30,
+        ]);
+        curl_exec($curl);
+
+        if (curl_errno($curl) > 0) {
+            throw new BeatmapProcessorException('Failed downloading osz: '.curl_error($curl));
         }
 
-        $bytesWritten = fwrite($oszFile, $contents);
-
-        if ($bytesWritten === false) {
-            throw new BeatmapProcessorException('Failed writing stream');
+        $statusCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+        if ($statusCode !== 200) {
+            throw new BeatmapProcessorException('Failed downloading osz: HTTP Error '.$statusCode);
         }
 
         return new BeatmapsetArchive(get_stream_filename($oszFile));

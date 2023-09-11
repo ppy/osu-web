@@ -14,13 +14,13 @@ return [
     'verifying' => 'Verifica la sessió per a veure les notificacions',
 
     'action_type' => [
-        '_' => '',
-        'beatmapset' => '',
-        'build' => '',
-        'channel' => '',
-        'forum_topic' => '',
-        'news_post' => '',
-        'user' => '',
+        '_' => 'totes',
+        'beatmapset' => 'beatmaps',
+        'build' => 'versions',
+        'channel' => 'xat',
+        'forum_topic' => 'fòrum',
+        'news_post' => 'novetats',
+        'user' => 'perfil',
     ],
 
     'filters' => [
@@ -150,15 +150,6 @@ return [
                 '_' => 'Nova resposta al fòrum',
                 'forum_topic_reply' => ':username ha respost a ":title"',
                 'forum_topic_reply_compact' => ':username ha respost',
-            ],
-        ],
-
-        'legacy_pm' => [
-            '_' => 'MP del fòrum antic',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited missatge no llegit|:count_delimited missatges no llegits',
             ],
         ],
 

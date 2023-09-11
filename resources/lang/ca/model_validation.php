@@ -8,7 +8,7 @@ return [
     'not_negative' => ':attribute no pot ser negatiu.',
     'required' => ':attribute és requerit.',
     'too_long' => ':attribute ha excedit el límit de caràcters (màxim :limit).',
-    'url' => '',
+    'url' => 'Si us plau, introdueix un URL vàlid.',
     'wrong_confirmation' => 'La confirmació no coincideix.',
 
     'beatmapset_discussion' => [
@@ -110,7 +110,13 @@ return [
     ],
 
     'legacy_api_key' => [
-        'exists' => '',
+        'exists' => 'Ara per ara, només s\'ofereix una clau de l\'API per usuari.',
+
+        'attributes' => [
+            'api_key' => 'clau de l\'api',
+            'app_name' => 'nom de l\'aplicació',
+            'app_url' => 'url de l\'aplicació',
+        ],
     ],
 
     'oauth' => [
@@ -169,6 +175,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => 'Els beatmaps classificatoris no es poden denunciar',
+        'not_in_channel' => 'No ets en aquest canal.',
         'reason_not_valid' => ':reason no és vàlida per aquest tipus d\'informe.',
         'self' => "No et pots denunciar a tu mateix!",
     ],

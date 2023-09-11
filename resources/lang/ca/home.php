@@ -43,7 +43,7 @@ return [
             'label' => [
                 'forum' => 'cerca en fòrums',
                 'forum_children' => 'inclou subfòrums',
-                'include_deleted' => '',
+                'include_deleted' => 'inclou publicacions eliminades',
                 'topic_id' => 'tema #',
                 'username' => 'autor',
             ],
@@ -84,7 +84,7 @@ return [
         'macos-fallback' => 'usuaris de macOS',
         'mirror' => 'enllaç alternatiu',
         'or' => 'o',
-        'os_version_or_later' => '',
+        'os_version_or_later' => ':os_version o posterior',
         'other_os' => 'altres plataformes',
         'quick_start_guide' => 'guia d\'inici ràpid',
         'tagline' => "endavant<br>comencem!",

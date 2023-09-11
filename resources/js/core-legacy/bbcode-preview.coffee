@@ -3,7 +3,6 @@
 
 import { route } from 'laroute'
 import { emitError } from 'utils/ajax'
-import { pageChange } from 'utils/page-change'
 import { present } from 'utils/string'
 
 export default class BbcodePreview
@@ -40,7 +39,6 @@ export default class BbcodePreview
       $body.attr('data-last-text', text)
 
       $preview.html(data)
-      pageChange()
       @showPreview(e)
 
     .fail emitError(target)
@@ -48,12 +46,12 @@ export default class BbcodePreview
 
   showPreview: (e) =>
     $(e.target).parents('.js-bbcode-preview--form').attr('data-state', 'preview')
-    pageChange() # sync height of reply box
+    $.publish 'sync-height:force'
 
 
   hidePreview: (e) =>
     $form = $(e.target).parents('.js-bbcode-preview--form')
     $form.attr('data-state', 'write')
-    pageChange() # sync height of reply box
+    $.publish 'sync-height:force'
 
     $form.find('.js-bbcode-preview--body').focus()

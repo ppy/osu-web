@@ -54,7 +54,7 @@ return [
 
     'nearby_posts' => [
         'confirm' => 'Saya tidak menemukan adanya postingan yang membahas isu yang ingin saya angkat',
-        'notice' => 'Terdapat postingan lain di sekitar :timestamp (:existing_timestamps). Harap periksa apakah isu yang ingin kamu angkat telah dibahas oleh pengguna lain sebelumnya.',
+        'notice' => 'Terdapat postingan lain di sekitar :timestamp (:existing_timestamps). Mohon periksa apakah isu yang ingin kamu angkat telah dibahas oleh pengguna lain sebelumnya.',
         'unsaved' => ':count pada kajian ini',
     ],
 

@@ -78,6 +78,18 @@ return [
             'suggestion' => 'Öneri',
         ],
 
+        'message_type_title' => [
+            'disqualify' => '',
+            'hype' => '',
+            'mapper_note' => '',
+            'nomination_reset' => '',
+            'praise' => '',
+            'problem' => '',
+            'problem_warning' => '',
+            'review' => '',
+            'suggestion' => '',
+        ],
+
         'mode' => [
             'events' => 'Geçmiş',
             'general' => 'Genel :scope',
@@ -175,6 +187,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => 'Bu beatmapi zaten aday gösterdiniz.',
+        'cannot_nominate' => 'Bu beatmap oyun modunu aday gösteremezsiniz.',
         'delete' => 'Sil',
         'delete_own_confirm' => 'Emin misin? Beatmap silinecek ve profiline yönlendirileceksin.',
         'delete_other_confirm' => 'Emin misin? Beatmap silinecek ve kullanıcının profiline yönlendirileceksin.',

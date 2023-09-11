@@ -17,9 +17,16 @@ return [
         ],
     ],
 
+    'kudosu' => [
+        'total' => '',
+        'available' => '',
+        'used' => '',
+    ],
+
     'type' => [
         'charts' => 'Baner',
         'country' => 'Land',
+        'kudosu' => '',
         'multiplayer' => 'multiplayer',
         'performance' => 'Præstation',
         'score' => 'Score',

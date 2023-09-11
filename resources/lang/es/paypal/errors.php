@@ -6,8 +6,8 @@
 return [
     'instrument_declined' => 'El método de pago seleccionado fue rechazado por PayPal.',
     'invalid_resource_id' => 'No se encontró información de pago.',
-    'invalid_token' => 'Hubo un error al completar su pago.',
-    'old_format' => 'El enlace de pago ha caducado, inténtelo de nuevo.',
+    'invalid_token' => 'Hubo un error al completar tu pago.',
+    'old_format' => 'El enlace de pago ha caducado, inténtalo de nuevo.',
     'resource_not_found' => 'No se encontró información de pago.',
     'unknown' => "El pago fue rechazado, pero no sabemos por qué.",
 ];

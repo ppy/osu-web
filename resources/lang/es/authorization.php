@@ -85,7 +85,7 @@ return [
 
         'entry' => [
             'limit_reached' => 'Has alcanzado el límite de entradas para este concurso',
-            'over' => '¡Gracias por su participación! Los envíos se han cerrado para este concurso y la votación se abrirá pronto.',
+            'over' => '¡Gracias por tu participación! Los envíos se han cerrado para este concurso y la votación se abrirá pronto.',
         ],
     ],
 
@@ -107,7 +107,7 @@ return [
                 'locked' => 'La edición de la publicación está bloqueada.',
                 'no_forum_access' => 'Se requiere acceso al foro solicitado.',
                 'not_owner' => 'Solo el creador puede editar la publicación.',
-                'topic_locked' => 'No puedes editar una publicación en un hilo cerrado.',
+                'topic_locked' => 'No puedes editar una publicación de un tema cerrado.',
             ],
 
             'store' => [
@@ -171,6 +171,7 @@ return [
 
     'score' => [
         'pin' => [
+            'disabled_type' => "No se puede anclar este tipo de puntuación",
             'not_owner' => 'Solo el propietario puede anclar la puntuación.',
             'too_many' => 'Se han anclado demasiadas puntuaciones.',
         ],
@@ -181,7 +182,7 @@ return [
             'edit' => [
                 'locked' => 'La página de usuario está bloqueada.',
                 'not_owner' => 'Solo puedes editar tu página de usuario.',
-                'require_supporter_tag' => 'Se requiere el tag de osu!supporter.',
+                'require_supporter_tag' => 'Se requiere la etiqueta de osu!supporter.',
             ],
         ],
     ],

@@ -31,7 +31,7 @@ return [
         'cart_problems_edit' => 'Trykk her for å endre den.',
         'declined' => 'Betalingen ble avbrutt.',
         'delayed_shipping' => 'Vi er for tiden overveldet av bestillinger! Du er velkommen til å bestille, men vennligst ta hensyn til at bestillingen kan ta **ytterlige 1-2 uke lenger** mens vi fullfører de eksisterende bestillingene.',
-        'hide_from_activity' => '',
+        'hide_from_activity' => 'Skjul alle osu!supporter tags i denne bestillingen fra min aktivitet',
         'old_cart' => 'Det ser ut til at handlevognen din er utdatert og har blitt oppdatert, prøv igjen.',
         'pay' => 'Betal med Paypal',
         'title_compact' => 'gå til kassen',
@@ -51,7 +51,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Ettersom betalingen din var en eCheck, vennligst tillatt opp til 10 ekstra dager for at betalingen skal kunne komme gjennom PayPal!',
-        'hide_from_activity' => '',
+        'hide_from_activity' => 'osu!supporter tag i denne bestillingen vises ikke i dine nylige aktiviteter.',
         'title_compact' => 'faktura',
 
         'status' => [
@@ -67,14 +67,14 @@ return [
     ],
 
     'order' => [
-        'cancel' => '',
-        'cancel_confirm' => '',
-        'cancel_not_allowed' => '',
+        'cancel' => 'Avbryt Bestilling',
+        'cancel_confirm' => 'Bestillingen vil bli kansellert og betaling vil ikke bli godtatt for den. Betalingsleverandøren vil kanskje refundere umiddelbart. Er du sikker?',
+        'cancel_not_allowed' => 'Denne bestillingen kan ikke avbrytes på dette tidspunkt.',
         'invoice' => 'Vis faktura',
         'no_orders' => 'Ingen bestillinger å vise.',
         'paid_on' => 'Bestilling plassert den :date',
         'resume' => 'Tilbake til kassen',
-        'shopify_expired' => '',
+        'shopify_expired' => 'Utsjekkingslenken for denne bestillingen er utløpt.',
 
         'item' => [
             'quantity' => 'Mengde',

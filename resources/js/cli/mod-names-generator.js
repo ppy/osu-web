@@ -13,9 +13,14 @@ function modNamesGenerator() {
   const modNames = {};
   for (const mods of modsByRuleset) {
     for (const mod of mods.Mods) {
+      const settingLabels = modNames[mod.Acronym]?.setting_labels ?? {};
+      for (const setting of mod.Settings) {
+        settingLabels[setting.Name] = setting.Label;
+      }
       modNames[mod.Acronym] = {
         acronym: mod.Acronym,
         name: mod.Name,
+        setting_labels: settingLabels,
         type: mod.Type,
       };
     }
@@ -25,11 +30,13 @@ function modNamesGenerator() {
   modNames.V2 = {
     acronym: 'V2',
     name: 'Score V2',
+    setting_labels: {},
     type: 'Conversion',
   };
   modNames.NM = {
     acronym: 'NM',
     name: 'No Mod',
+    setting_labels: {},
     type: 'Conversion', // not really relevant
   };
 

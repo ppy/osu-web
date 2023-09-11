@@ -49,6 +49,7 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => '',
         'loading' => 'Nalaganje...',
         'send_message' => 'Pošlji sporočilo',
     ],
@@ -386,7 +387,7 @@ return [
                     'date' => 'datum',
                     'action' => 'dejanje',
                     'length' => 'trajanje',
-                    'length_permanent' => 'Permanentno',
+                    'length_indefinite' => '',
                     'description' => 'opis',
                     'actor' => 'od :username',
 

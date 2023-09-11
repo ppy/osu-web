@@ -49,6 +49,7 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => '',
         'loading' => 'Notiek ielāde...',
         'send_message' => 'nosūtīt ziņu',
     ],
@@ -386,7 +387,7 @@ return [
                     'date' => 'datums',
                     'action' => 'darbība',
                     'length' => 'ilgums',
-                    'length_permanent' => 'Neatgriezenisks',
+                    'length_indefinite' => '',
                     'description' => 'apraksts',
                     'actor' => 'no :username',
 

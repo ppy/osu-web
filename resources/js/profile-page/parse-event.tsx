@@ -1,11 +1,13 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import StringWithComponent from 'components/string-with-component';
 import EventJson from 'interfaces/event-json';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { Modifiers } from 'utils/css';
-import { trans } from 'utils/lang';
+import { formatNumber } from 'utils/html';
+import { trans, transExists } from 'utils/lang';
 import { switchNever } from 'utils/switch-never';
 import AchievementBadge from './achievement-badge';
 
@@ -91,16 +93,31 @@ export default function parseEvent(event: EventJson, modifiers: Modifiers): { ba
         },
       };
 
-    case 'rank':
+    case 'rank': {
+      const rankNumber = formatNumber(event.rank);
+      // TODO: remove check after all languages are updated to have both `rank` and `value.rank`.
+      let rank: React.ReactNode = transExists('events.rank') && !transExists('events.value.rank')
+        ? rankNumber
+        : (
+          <StringWithComponent
+            mappings={{ rank: rankNumber }}
+            pattern={trans('events.value.rank')}
+          />
+        );
+      if (event.rank <= 50) {
+        rank = <strong>{rank}</strong>;
+      }
+
       return {
         badge: <div className={`score-rank score-rank--${event.scoreRank}`} />,
         mappings: {
           beatmap: <em><a href={event.beatmap.url}>{event.beatmap.title}</a></em>,
           mode: trans(`beatmaps.mode.${event.mode}`),
-          rank: event.rank,
+          rank,
           user: <strong><em><a href={event.user.url}>{event.user.username}</a></em></strong>,
         },
       };
+    }
 
     case 'rankLost':
       return {

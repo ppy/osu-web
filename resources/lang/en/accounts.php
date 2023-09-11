@@ -34,7 +34,13 @@ return [
         ],
 
         'profile' => [
+            'country' => 'country',
             'title' => 'Profile',
+
+            'country_change' => [
+                '_' => "It looks like your account country doesn't match your country of residence. :update_link.",
+                'update_link' => 'Update to :country',
+            ],
 
             'user' => [
                 'user_discord' => 'discord',

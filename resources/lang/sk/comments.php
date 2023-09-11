@@ -11,6 +11,7 @@ return [
     'edited' => 'upravené :timeago používateľom :user',
     'pinned' => 'pripnuté',
     'empty' => 'Zatiaľ žiadne komentáre.',
+    'empty_other' => '',
     'load_replies' => '',
     'replies_count' => '',
     'title' => 'Komentáre',

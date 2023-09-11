@@ -28,6 +28,7 @@ import { present } from 'utils/string';
 import CurrentDiscussions from './current-discussions';
 import DiscussionMessageLengthCounter from './discussion-message-length-counter';
 import DiscussionMode from './discussion-mode';
+import { hypeExplanationClass } from './nominations';
 
 const bn = 'beatmap-discussion-new';
 
@@ -94,7 +95,7 @@ export class NewDiscussion extends React.Component<Props> {
       };
     }
 
-    return this.nearbyDiscussionsCache?.discussions ?? [];
+    return this.nearbyDiscussionsCache.discussions;
   }
 
   private get storageKey() {
@@ -315,7 +316,7 @@ export class NewDiscussion extends React.Component<Props> {
     if (!(this.props.mode === 'generalAll' && this.props.beatmapset.can_be_hyped)) return null;
 
     return (
-      <div className={`${bn}__footer-content js-hype--explanation js-flash-border`}>
+      <div className={`${bn}__footer-content ${hypeExplanationClass} js-flash-border`}>
         <div className={`${bn}__footer-message ${bn}__footer-message--label`}>
           {trans('beatmaps.hype.title')}
         </div>
@@ -455,6 +456,7 @@ export class NewDiscussion extends React.Component<Props> {
         props={{
           'data-type': type,
           onClick: this.post,
+          title: trans(`beatmaps.discussions.message_type_title.${typeText}`),
         }}
         text={trans(`beatmaps.discussions.message_type.${typeText}`)}
       />

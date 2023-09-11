@@ -6,7 +6,7 @@
 return [
     'event' => [
         'approve' => 'อนุมัติ',
-        'beatmap_owner_change' => 'เจ้าของระดับความยาก:beatmapเปลี่ยนเป็น:new_user',
+        'beatmap_owner_change' => 'เจ้าของระดับความยาก :beatmap เปลี่ยนเป็น :new_user',
         'discussion_delete' => 'ผู้ดูแลลบการสนทนา :discussion',
         'discussion_lock' => 'การสนทนาสำหรับบีทแมพนี้ถูกปิดใช้งาน (:text)',
         'discussion_post_delete' => 'ผู้ดูแลลบโพสต์จากการสนทนา:discussion',
@@ -29,7 +29,7 @@ return [
         'nominate_modes' => 'เสนอชื่อโดย :user (:modes)',
         'nomination_reset' => 'ปัญหาใหม่ :discussion (:text) ทำให้เกิดการรีเซทการเสนอชื่อ',
         'nomination_reset_received' => 'การ nominate โดย :user ถูกรีเซ็ตโดย :source_user (:text)',
-        'nomination_reset_received_profile' => 'การ nominate ถูกรีเซ็ตโดย :user (:text)',
+        'nomination_reset_received_profile' => 'การเสนอชื่อถูกรีเซ็ตโดย :user (:text)',
         'offset_edit' => 'ออฟเซ็ตออนไลน์เปลี่ยนจาก :old เป็น :new.',
         'qualify' => 'บีทแมพนี้ได้รับจำนวนการเสนอชื่อครบแล้ว และได้ถูก Qualified',
         'rank' => 'จัดอันดับ',
@@ -43,7 +43,7 @@ return [
     ],
 
     'index' => [
-        'title' => 'กิจกรรมของ Beatmapset',
+        'title' => 'กิจกรรมของเซ็ทบีทแมพ',
 
         'form' => [
             'period' => 'ระยะเวลา',

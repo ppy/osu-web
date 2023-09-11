@@ -20,6 +20,12 @@ return [
             'title' => 'E-mail',
         ],
 
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'Legacy API',
+        ],
+
         'password' => [
             'current' => 'současné heslo',
             'new' => 'nové heslo',
@@ -28,7 +34,13 @@ return [
         ],
 
         'profile' => [
+            'country' => 'země',
             'title' => 'Profil',
+
+            'country_change' => [
+                '_' => "Vypadá to, že země zvolená na Vašem účtu neodpovídá zemi Vašeho bydliště. :update_link.",
+                'update_link' => 'Změnit na :country',
+            ],
 
             'user' => [
                 'user_discord' => '',

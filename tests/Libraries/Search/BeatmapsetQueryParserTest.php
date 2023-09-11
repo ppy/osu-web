@@ -50,8 +50,8 @@ class BeatmapsetQueryParserTest extends TestCase
             ['ranked=2018/05', ['keywords' => null, 'options' => ['ranked' => ['gte' => '2018-05-01T00:00:00+00:00', 'lt' => '2018-06-01T00:00:00+00:00']]]],
             ['ranked=2018.05.01', ['keywords' => null, 'options' => ['ranked' => ['gte' => '2018-05-01T00:00:00+00:00', 'lt' => '2018-05-02T00:00:00+00:00']]]],
             ['ranked>2018/05/01', ['keywords' => null, 'options' => ['ranked' => ['gte' => '2018-05-02T00:00:00+00:00']]]],
-            ['ranked>="2020-07-21 12:30:30 +09:00"', ['keywords' => null, 'options' => ['ranked' => ['gte' => '2020-07-21T12:30:30+09:00']]]],
-            ['ranked="2020-07-21 12:30:30 +09:00"', ['keywords' => null, 'options' => ['ranked' => ['gte' => '2020-07-21T12:30:30+09:00', 'lt' => '2020-07-21T12:30:31+09:00']]]],
+            ['ranked>="2020-07-21 12:30:30 +09:00"', ['keywords' => null, 'options' => ['ranked' => ['gte' => '2020-07-21T03:30:30+00:00']]]],
+            ['ranked="2020-07-21 12:30:30 +09:00"', ['keywords' => null, 'options' => ['ranked' => ['gte' => '2020-07-21T03:30:30+00:00', 'lt' => '2020-07-21T03:30:31+00:00']]]],
             ['ranked="invalid date format"', ['keywords' => 'ranked="invalid date format"', 'options' => []]],
 
             // multiple options
@@ -98,6 +98,8 @@ class BeatmapsetQueryParserTest extends TestCase
             ['bpm=bad', ['keywords' => 'bpm=bad', 'options' => []]],
             ['divisor<nah', ['keywords' => 'divisor<nah', 'options' => []]],
             ['status=noidea', ['keywords' => 'status=noidea', 'options' => []]],
+            ['status=l', ['keywords' => null, 'options' => ['status' => ['gte' => Beatmapset::STATES['loved'], 'lte' => Beatmapset::STATES['loved']]]]],
+            ['status=lo', ['keywords' => null, 'options' => ['status' => ['gte' => Beatmapset::STATES['loved'], 'lte' => Beatmapset::STATES['loved']]]]],
         ];
     }
 }

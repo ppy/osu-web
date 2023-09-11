@@ -25,7 +25,7 @@ export default function FlagCountry({ country, modifiers }: Props) {
   }
 
   return (
-    <div
+    <span
       className={classWithModifiers('flag-country', modifiers)}
       style={{
         backgroundImage: `url('${flagUrl(country.code)}')`,

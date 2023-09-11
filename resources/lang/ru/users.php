@@ -49,6 +49,7 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => 'Подарить тег osu!supporter',
         'loading' => 'Загрузка...',
         'send_message' => 'Отправить сообщение',
     ],
@@ -386,14 +387,14 @@ return [
                     'date' => 'Дата',
                     'action' => 'действие',
                     'length' => 'продолжительность',
-                    'length_permanent' => 'Навсегда',
+                    'length_indefinite' => 'Бессрочно',
                     'description' => 'описание',
                     'actor' => ':username',
 
                     'actions' => [
                         'restriction' => 'Бан',
                         'silence' => 'Заглушение',
-                        'tournament_ban' => 'Запрет на участие в турнирах',
+                        'tournament_ban' => 'Турнирный бан',
                         'note' => 'Заметка',
                     ],
                 ],

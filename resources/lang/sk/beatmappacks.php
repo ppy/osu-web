@@ -36,6 +36,7 @@ return [
         'artist' => 'Interpret/Album',
         'chart' => 'Oslňujúce',
         'featured' => 'Vybraní umelci',
+        'loved' => '',
         'standard' => 'Obyčajné',
         'theme' => 'Témy',
         'tournament' => 'Turnaj',

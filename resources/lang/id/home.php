@@ -91,7 +91,7 @@ return [
         'video-guide' => 'panduan video',
 
         'help' => [
-            '_' => 'apabila kamu menemui masalah pada saat kamu ingin memulai permainan atau mendaftarkan akun, harap :help_forum_link atau :support_button.',
+            '_' => 'apabila kamu menemui masalah pada saat kamu ingin memulai permainan atau mendaftarkan akun, silakan :help_forum_link atau :support_button.',
             'help_forum_link' => 'kunjungi sub-forum Help',
             'support_button' => 'hubungi layanan dukungan kami',
         ],
@@ -103,17 +103,17 @@ return [
         ],
         'steps' => [
             'register' => [
-                'title' => 'buat akun',
+                'title' => 'buat akunnya',
                 'description' => 'ikuti petunjuk yang muncul pada awal permainan untuk masuk atau membuat akun baru',
             ],
             'download' => [
                 'title' => 'unduh permainannya',
-                'description' => 'klik tombol di atas untuk mengunduh file instalasi, lalu jalankan!',
+                'description' => 'klik tombol di atas untuk mengunduh berkas instalasi, lalu jalankan!',
             ],
             'beatmaps' => [
-                'title' => 'dapatkan beatmap',
+                'title' => 'dapatkan beatmapnya',
                 'description' => [
-                    '_' => ':browse berbagai beatmap buatan pengguna yang tersedia pada katalog beatmap kami yang senantiasa berkembang dan mulailah bermain!',
+                    '_' => ':browse berbagai beatmap buatan pengguna yang tersedia pada pustaka beatmap kami dan mulailah bermain!',
                     'browse' => 'telusuri',
                 ],
             ],
