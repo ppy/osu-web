@@ -4,7 +4,7 @@
 import { markAsRead, getChannel, getMessages } from 'chat/chat-api';
 import ChannelJson, { ChannelType, SupportedChannelType, supportedTypeLookup } from 'interfaces/chat/channel-json';
 import MessageJson from 'interfaces/chat/message-json';
-import { minBy, sortBy, throttle } from 'lodash';
+import { sortBy, throttle } from 'lodash';
 import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 import User, { usernameSortAscending } from 'models/user';
 import core from 'osu-core-singleton';
@@ -13,12 +13,6 @@ import Message from './message';
 const hideableChannelTypes: Set<ChannelType> = new Set(['ANNOUNCE', 'PM']);
 
 export const maxMessageLength = 1024;
-
-function minByIndentity(message: Message) {
-  return typeof message.messageId === 'number'
-    ? message.messageId
-    : NaN;
-}
 
 export default class Channel {
   private static readonly defaultIcon = '/images/layout/chat/channel-default.png'; // TODO: update with channel-specific icons?
@@ -300,9 +294,17 @@ export default class Channel {
       const messages = await getMessages(this.channelId);
 
       runInAction(() => {
+        // get min messageId
+        let minMessageId: number | undefined;
+        for (const message of messages) {
+          if (typeof message.messageId === 'number' && (minMessageId == null || message.messageId < minMessageId)) {
+            minMessageId = message.messageId;
+          }
+        }
+
+        minMessageId ??= -1;
+
         // gap in messages, just clear all messages instead of dealing with the gap.
-        const maybeMinMessageId = minBy(messages, minByIndentity)?.messageId;
-        const minMessageId = typeof maybeMinMessageId === 'number' ? maybeMinMessageId : -1;
         if (minMessageId > this.lastMessageId) {
           // TODO: force scroll to the end.
           this.messagesMap.clear();
