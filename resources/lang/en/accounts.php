@@ -20,7 +20,7 @@ return [
             'title' => 'Email',
             'locked' => [
                 '_' => 'Please contact :accounts if you need your email updated.',
-                'accounts' => 'accounts',
+                'accounts' => 'osu! support',
             ],
         ],
 
