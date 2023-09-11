@@ -14,6 +14,12 @@ const hideableChannelTypes: Set<ChannelType> = new Set(['ANNOUNCE', 'PM']);
 
 export const maxMessageLength = 1024;
 
+function minByIndentity(message: Message) {
+  return typeof message.messageId === 'number'
+    ? message.messageId
+    : NaN;
+}
+
 export default class Channel {
   private static readonly defaultIcon = '/images/layout/chat/channel-default.png'; // TODO: update with channel-specific icons?
 
@@ -295,8 +301,7 @@ export default class Channel {
 
       runInAction(() => {
         // gap in messages, just clear all messages instead of dealing with the gap.
-        const maybeMinMessageId = minBy(messages, 'messageId')?.messageId ?? -1;
-        // for typing; realistically, a uuid won't be min unless it's the only value.
+        const maybeMinMessageId = minBy(messages, minByIndentity)?.messageId;
         const minMessageId = typeof maybeMinMessageId === 'number' ? maybeMinMessageId : -1;
         if (minMessageId > this.lastMessageId) {
           // TODO: force scroll to the end.
