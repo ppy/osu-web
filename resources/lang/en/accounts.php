@@ -18,6 +18,10 @@ return [
             'new' => 'new email',
             'new_confirmation' => 'email confirmation',
             'title' => 'Email',
+            'locked' => [
+                '_' => 'Please contact :accounts if you need your email updated.',
+                'accounts' => 'accounts',
+            ],
         ],
 
         'legacy_api' => [
