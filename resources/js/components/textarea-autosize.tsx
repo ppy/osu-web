@@ -10,31 +10,41 @@ interface Props extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   maxRows?: number;
 }
 
-export default class TextareaAutosize extends React.Component<Props> {
+interface State {
+  lineHeight?: number;
+}
+
+export default class TextareaAutosize extends React.Component<Props, State> {
   static readonly defaultProps = {
     async: false,
     rows: 1,
   };
 
-  private lineHeight?: number;
   private ref = this.props.innerRef ?? React.createRef<HTMLTextAreaElement>();
 
   private get maxHeight() {
-    return this.props.maxRows != null && this.lineHeight
-      ? Math.ceil(this.lineHeight * this.props.maxRows)
+    return this.props.maxRows != null && this.state.lineHeight != null
+      ? Math.ceil(this.state.lineHeight * this.props.maxRows)
       : null;
+  }
+
+  constructor(props: Props) {
+    super(props);
+    this.state = {};
   }
 
   componentDidMount() {
     if (this.ref.current == null) return;
 
-    if (this.props.maxRows != null) {
-      this.lineHeight = parseFloat(window.getComputedStyle(this.ref.current).getPropertyValue('line-height'));
-    }
-
     if (this.props.maxRows != null || this.props.async) {
       window.setTimeout(() => {
         if (this.ref.current != null) {
+          if (this.props.maxRows != null) {
+            // getting line-height should be delayed until after turbolinks navigation, otherwise it returns NaN.
+            const lineHeight = parseFloat(window.getComputedStyle(this.ref.current).getPropertyValue('line-height'));
+            this.setState({ lineHeight });
+          }
+
           autosize(this.ref.current);
         }
       }, 0);
