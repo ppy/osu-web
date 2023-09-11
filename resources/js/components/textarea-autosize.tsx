@@ -24,7 +24,7 @@ export default class TextareaAutosize extends React.Component<Props, State> {
 
   private get maxHeight() {
     return this.props.maxRows != null && this.state.lineHeight != null
-      ? Math.ceil(this.state.lineHeight * this.props.maxRows)
+      ? Math.ceil(this.state.lineHeight * (this.props.maxRows + 1)) // additional row to fit maxRows + slight leeway for scrollbar
       : null;
   }
 
