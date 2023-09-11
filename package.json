@@ -30,6 +30,7 @@
     "@types/timeago": "^1.6.0",
     "@types/unist": "^2.0.6",
     "autoprefixer": "^9.8.6",
+    "autosize": "^6.0.1",
     "blueimp-file-upload": "^9.11.2",
     "bootstrap": "^3.3.6",
     "chokidar": "^3.5.2",
@@ -73,7 +74,6 @@
     "postcss-loader": "^3.0.0",
     "qtip2": "https://github.com/notbakaneko/qTip2.git#cd5f038667d2b23a44f4274c46de01834d704ce6",
     "react": "^17.0.2",
-    "react-autosize-textarea": "7.0.0",
     "react-dom": "^17.0.2",
     "react-dom-factories": "^1.0.0",
     "react-markdown": "^8.0.5",
@@ -101,6 +101,7 @@
     "yargs": "^12.0.5"
   },
   "devDependencies": {
+    "@types/autosize": "^4.0.1",
     "@typescript-eslint/eslint-plugin": "^5.29.0",
     "@typescript-eslint/parser": "^5.29.0",
     "deasync": "^0.1.26",

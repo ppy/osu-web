@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BigButton from 'components/big-button';
+import TextareaAutosize from 'components/textarea-autosize';
 import UserAvatar from 'components/user-avatar';
 import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
@@ -12,7 +13,6 @@ import { action, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import TextareaAutosize from 'react-autosize-textarea';
 import { onError } from 'utils/ajax';
 import { validMessageLength } from 'utils/beatmapset-discussion-helper';
 import { InputEventType, makeTextAreaHandler, TextAreaCallback } from 'utils/input-handler';
@@ -182,9 +182,9 @@ export class NewReply extends React.Component<Props> {
           </div>
           <div className={`${bn}__message-container`}>
             <TextareaAutosize
-              ref={this.box}
               className={`${bn}__message ${bn}__message--editor`}
               disabled={this.posting != null}
+              innerRef={this.box}
               onChange={this.handleChange}
               onKeyDown={this.handleKeyDown}
               placeholder={trans('beatmaps.discussions.reply_placeholder')}
