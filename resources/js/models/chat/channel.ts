@@ -14,6 +14,18 @@ const hideableChannelTypes: Set<ChannelType> = new Set(['ANNOUNCE', 'PM']);
 
 export const maxMessageLength = 1024;
 
+// TODO: rename minMessageId and also check firstMessageId
+function getMinMessageIdFrom(messages: Message[]) {
+  let minMessageId: number | undefined;
+  for (const message of messages) {
+    if (typeof message.messageId === 'number' && (minMessageId == null || message.messageId < minMessageId)) {
+      minMessageId = message.messageId;
+    }
+  }
+
+  return minMessageId ?? -1;
+}
+
 export default class Channel {
   private static readonly defaultIcon = '/images/layout/chat/channel-default.png'; // TODO: update with channel-specific icons?
 
@@ -294,16 +306,7 @@ export default class Channel {
       const messages = await getMessages(this.channelId);
 
       runInAction(() => {
-        // get min messageId
-        let minMessageId: number | undefined;
-        for (const message of messages) {
-          if (typeof message.messageId === 'number' && (minMessageId == null || message.messageId < minMessageId)) {
-            minMessageId = message.messageId;
-          }
-        }
-
-        minMessageId ??= -1;
-
+        const minMessageId = getMinMessageIdFrom(messages);
         // gap in messages, just clear all messages instead of dealing with the gap.
         if (minMessageId > this.lastMessageId) {
           // TODO: force scroll to the end.
