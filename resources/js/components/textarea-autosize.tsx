@@ -24,7 +24,7 @@ export default class TextareaAutosize extends React.Component<Props, State> {
 
   private get maxHeight() {
     return this.props.maxRows != null && this.state.lineHeight != null
-      ? Math.ceil(this.state.lineHeight * (this.props.maxRows + 1)) // additional row to fit maxRows + slight leeway for scrollbar
+      ? this.state.lineHeight * (this.props.maxRows + 1) // additional row to fit maxRows + slight leeway for scrollbar
       : null;
   }
 
@@ -41,7 +41,7 @@ export default class TextareaAutosize extends React.Component<Props, State> {
         if (this.ref.current != null) {
           if (this.props.maxRows != null) {
             // getting line-height should be delayed until after turbolinks navigation, otherwise it returns NaN.
-            const lineHeight = parseFloat(window.getComputedStyle(this.ref.current).getPropertyValue('line-height'));
+            const lineHeight = Math.ceil(parseFloat(window.getComputedStyle(this.ref.current).getPropertyValue('line-height')));
             this.setState({ lineHeight });
           }
 
