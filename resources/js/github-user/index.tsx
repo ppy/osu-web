@@ -75,7 +75,7 @@ export default class GithubUser extends React.Component<Props> {
       route('account.github-users.destroy', { github_user: this.user?.id }),
       { method: 'DELETE' },
     )
-      .done(() => this.user = null)
+      .done(action(() => this.user = null))
       .fail(onErrorWithCallback(this.onDeleteButtonClick))
       .always(action(() => this.xhr = null));
   };
