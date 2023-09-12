@@ -4,5 +4,5 @@
 import DispatcherAction from 'actions/dispatcher-action';
 
 export default class SocketStateChangedAction implements DispatcherAction {
-  constructor(public connected: boolean) {}
+  constructor(public connected: boolean) { /* do nothing */ }
 }

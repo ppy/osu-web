@@ -58,10 +58,10 @@ class BeatmapDiscussionPostsController extends Controller
      *
      * Field         | Type                                                    | Description
      * ------------- | ------------------------------------------------------- | -----------
-     * beatmapsets   | [BeatmapsetCompact](#beatmapsetcompact)                 | |
+     * beatmapsets   | [Beatmapset](#beatmapset)                               | |
      * cursor_string | [CursorString](#cursorstring)                           | |
      * posts         | [BeatmapsetDiscussionPost](#beatmapsetdiscussionpost)[] | |
-     * users         | [UserCompact](#usercompact)                             | |
+     * users         | [User](#user)                                           | |
      *
      * @queryParam beatmapset_discussion_id `id` of the [BeatmapsetDiscussion](#beatmapsetdiscussion).
      * @queryParam limit Maximum number of results.

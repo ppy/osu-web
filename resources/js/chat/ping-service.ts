@@ -16,8 +16,7 @@ export default class PingService {
   private timerId?: number;
   private xhr?: JQuery.jqXHR<AckResponseJson>;
 
-  constructor(private channelStore: ChannelStore) {
-  }
+  constructor(private channelStore: ChannelStore) { /* do nothing */ }
 
   start() {
     if (this.timerId == null) {
