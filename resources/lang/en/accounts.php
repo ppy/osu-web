@@ -62,6 +62,7 @@ return [
         'info' => "If you're a contributor to osu!'s open-source repositories, linking your GitHub account here will associate your changelog entries with your osu! profile. GitHub accounts with no contribution history to osu! cannot be linked.",
         'link' => 'Link GitHub account',
         'title' => 'GitHub',
+        'unlink' => 'Unlink GitHub account',
 
         'error' => [
             'already_linked' => 'This GitHub account is already linked to a different user.',

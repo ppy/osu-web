@@ -44,11 +44,11 @@ export default class GithubUser extends React.Component<Props> {
           {this.user.github_username}
         </a>
         <BigButton
-          icon='fas fa-trash'
+          icon='fas fa-unlink'
           isBusy={this.xhr != null}
           modifiers={['account-edit', 'account-edit-small', 'danger']}
           props={{ onClick: this.onDeleteButtonClick }}
-          text={trans('common.buttons.delete')}
+          text={trans('accounts.github_user.unlink')}
         />
       </div>
     ) : (
