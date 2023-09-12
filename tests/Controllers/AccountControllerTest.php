@@ -110,6 +110,22 @@ class AccountControllerTest extends TestCase
         Mail::assertQueued(UserEmailUpdated::class, 2);
     }
 
+    public function testUpdateEmailLocked()
+    {
+        $newEmail = 'new-'.$this->user->user_email;
+        $this->user->update(['lock_email_changes' => true]);
+
+        $this->actingAsVerified($this->user())
+            ->json('PUT', route('account.email'), [
+                'user' => [
+                    'current_password' => 'password',
+                    'user_email' => $newEmail,
+                    'user_email_confirmation' => $newEmail,
+                ],
+            ])
+            ->assertStatus(403);
+    }
+
     public function testUpdateEmailInvalidPassword()
     {
         $newEmail = 'new-'.$this->user->user_email;

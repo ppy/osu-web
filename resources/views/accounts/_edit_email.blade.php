@@ -16,69 +16,81 @@
     </div>
 
     <div class="account-edit__input-groups">
-        <div class="account-edit__input-group">
-            <div class="account-edit-entry js-form-error--field">
-                <input
-                    class="account-edit-entry__input"
-                    name="user[current_password]"
-                    type="password"
-                    required
-                >
-
-                <div class="account-edit-entry__label">
-                    {{ osu_trans('accounts.edit.password.current') }}
+        @if ($user->lock_email_changes)
+            <div class="account-edit__input-group">
+                <div class="account-edit-entry account-edit-entry--no-label">
+                    <div>{!! osu_trans('accounts.edit.email.locked._', [
+                        'accounts' => tag('a', [
+                            'href' => 'mailto:'.config('osu.emails.account'),
+                        ], osu_trans('accounts.edit.email.locked.accounts'))
+                    ]) !!}</div>
                 </div>
-
-                <div class="account-edit-entry__error js-form-error--error"></div>
             </div>
-        </div>
+        @else
+            <div class="account-edit__input-group">
+                <div class="account-edit-entry js-form-error--field">
+                    <input
+                        class="account-edit-entry__input"
+                        name="user[current_password]"
+                        type="password"
+                        required
+                    >
 
-        <div class="account-edit__input-group">
-            <div class="account-edit-entry js-form-error--field">
-                <input
-                    class="account-edit-entry__input js-form-confirmation"
-                    name="user[user_email]"
-                    required
-                >
-
-                <div class="account-edit-entry__label">
-                    {{ osu_trans('accounts.edit.email.new') }}
-                </div>
-
-                <div class="account-edit-entry__error js-form-error--error"></div>
-            </div>
-
-            <div class="account-edit-entry js-form-error--field">
-                <input
-                    class="account-edit-entry__input js-form-confirmation"
-                    name="user[user_email_confirmation]"
-                    required
-                >
-
-                <div class="account-edit-entry__label">
-                    {{ osu_trans('accounts.edit.email.new_confirmation') }}
-                </div>
-
-                <div class="account-edit-entry__error js-form-error--error"></div>
-            </div>
-        </div>
-
-        <div class="account-edit__input-group">
-            <div class="account-edit-entry account-edit-entry--no-label">
-                <button class="btn-osu-big btn-osu-big--account-edit" type="submit" data-disable-with="{{ osu_trans('common.buttons.saving') }}">
-                    <div class="btn-osu-big__content">
-                        <div class="btn-osu-big__left">
-                            {{ osu_trans('accounts.update_email.update') }}
-                        </div>
-
-                        <div class="btn-osu-big__icon">
-                            <i class="fas fa-check"></i>
-                        </div>
+                    <div class="account-edit-entry__label">
+                        {{ osu_trans('accounts.edit.password.current') }}
                     </div>
-                </button>
 
-                @include('accounts._edit_entry_status')
+                    <div class="account-edit-entry__error js-form-error--error"></div>
+                </div>
             </div>
-        </div>
+
+            <div class="account-edit__input-group">
+                <div class="account-edit-entry js-form-error--field">
+                    <input
+                        class="account-edit-entry__input js-form-confirmation"
+                        name="user[user_email]"
+                        required
+                    >
+
+                    <div class="account-edit-entry__label">
+                        {{ osu_trans('accounts.edit.email.new') }}
+                    </div>
+
+                    <div class="account-edit-entry__error js-form-error--error"></div>
+                </div>
+
+                <div class="account-edit-entry js-form-error--field">
+                    <input
+                        class="account-edit-entry__input js-form-confirmation"
+                        name="user[user_email_confirmation]"
+                        required
+                    >
+
+                    <div class="account-edit-entry__label">
+                        {{ osu_trans('accounts.edit.email.new_confirmation') }}
+                    </div>
+
+                    <div class="account-edit-entry__error js-form-error--error"></div>
+                </div>
+            </div>
+
+            <div class="account-edit__input-group">
+                <div class="account-edit-entry account-edit-entry--no-label">
+                    <button class="btn-osu-big btn-osu-big--account-edit" type="submit" data-disable-with="{{ osu_trans('common.buttons.saving') }}">
+                        <div class="btn-osu-big__content">
+                            <div class="btn-osu-big__left">
+                                {{ osu_trans('accounts.update_email.update') }}
+                            </div>
+
+                            <div class="btn-osu-big__icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                    </button>
+
+                    @include('accounts._edit_entry_status')
+                </div>
+            </div>
+        @endif
     </div>
 {!! Form::close() !!}
