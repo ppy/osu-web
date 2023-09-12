@@ -19,8 +19,8 @@ return [
             'new_confirmation' => 'email confirmation',
             'title' => 'Email',
             'locked' => [
-                '_' => 'Please contact :accounts if you need your email updated.',
-                'accounts' => 'osu! support',
+                '_' => 'Please contact the :accounts if you need your email updated.',
+                'accounts' => 'account support team',
             ],
         ],
 
