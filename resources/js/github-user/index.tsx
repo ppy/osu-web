@@ -60,6 +60,7 @@ export default class GithubUser extends React.Component<Props> {
           <BigButton
             href={route('account.github-users.create')}
             icon='fas fa-link'
+            props={{ 'data-turbolinks': 'false' }}
             text={trans('accounts.github_user.link')}
           />
         )}
