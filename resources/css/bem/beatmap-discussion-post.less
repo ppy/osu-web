@@ -30,10 +30,9 @@
   }
 
   &--new-reply {
-    // use padding because this section is a different background colour to the parent
-    // and fortunately doesn't need an anchor.
+    // remove margin because this section is a different background colour to the parent
+    // and fortunately doesn't need an anchor. Also the padding for reply is on __content.
     margin: 0;
-    padding: 10px 0;
     background-color: @osu-colour-b5;
     border-radius: 0 0 @border-radius-base @border-radius-base;
   }
@@ -145,6 +144,7 @@
     }
 
     .@{_top}--new-reply & {
+      padding-top: 10px;
       padding-bottom: 0;
     }
   }
