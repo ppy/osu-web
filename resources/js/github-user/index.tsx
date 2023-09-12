@@ -51,7 +51,7 @@ export default class GithubUser extends React.Component<Props> {
             <BigButton
               icon='fas fa-trash'
               isBusy={this.xhr != null}
-              modifiers={['account-edit', 'danger', 'settings-github']}
+              modifiers={['account-edit', 'account-edit-small', 'danger']}
               props={{ onClick: this.onDeleteButtonClick }}
               text={trans('common.buttons.delete')}
             />
