@@ -182,6 +182,8 @@ class AccountController extends Controller
 
     public function updateEmail()
     {
+        priv_check('UserUpdateEmail')->ensureCan();
+
         $params = get_params(request()->all(), 'user', ['current_password', 'user_email', 'user_email_confirmation']);
         $user = Auth::user()->validateCurrentPassword()->validateEmailConfirmation();
         $previousEmail = $user->user_email;

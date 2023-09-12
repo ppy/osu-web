@@ -70,6 +70,7 @@ use Request;
  * @property-read Collection<KudosuHistory> $givenKudosu
  * @property int $group_id
  * @property bool $hide_presence
+ * @property bool $lock_email_changes
  * @property-read Collection<UserMonthlyPlaycount> $monthlyPlaycounts
  * @property-read Collection<UserNotificationOption> $notificationOptions
  * @property-read Collection<Client> $oauthClients
@@ -249,6 +250,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         'user_allow_pm' => true,
     ];
     protected $casts = [
+        'lock_email_changes' => 'boolean',
         'osu_subscriber' => 'boolean',
         'user_allow_pm' => 'boolean',
         'user_allow_viewonline' => 'boolean',
@@ -814,7 +816,8 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'username_previous',
             'userpage_post_id' => $this->getRawAttribute($key),
 
-            // boolean
+            // boolean, default to false for null value
+            'lock_email_changes',
             'osu_subscriber',
             'user_allow_pm',
             'user_allow_viewonline',

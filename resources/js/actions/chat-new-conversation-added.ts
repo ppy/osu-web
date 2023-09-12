@@ -4,6 +4,5 @@
 import DispatcherAction from 'actions/dispatcher-action';
 
 export class ChatNewConversationAdded implements DispatcherAction {
-  constructor(readonly channelId: number) {
-  }
+  constructor(readonly channelId: number) { /* do nothing */ }
 }
