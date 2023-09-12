@@ -92,6 +92,7 @@ class BeatmapsetEvent extends Model
 
         $query = static::limit($params['limit'])->offset($pagination['offset']);
         $searchByUser = present($rawParams['user'] ?? null);
+        $searchByBeatmapset = present($rawParams['beatmapset'] ?? null);
         $isModerator = $rawParams['is_moderator'] ?? false;
 
         if ($searchByUser) {
@@ -103,6 +104,18 @@ class BeatmapsetEvent extends Model
                 $query->none();
             } else {
                 $query->where('user_id', '=', $user->getKey());
+            }
+        }
+
+        if ($searchByBeatmapset) {
+            $params['beatmapset'] = $rawParams['beatmapset'];
+            $beatmapset = Beatmapset::find($params['beatmapset']);
+
+            if ($beatmapset === null) {
+                $query->none();
+            }
+            else {
+                $query->where('beatmapset_id', '=', $beatmapset->getKey());
             }
         }
 
