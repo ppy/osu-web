@@ -76,6 +76,7 @@ const disabled: Record<DisabledType, Construct[]> = {
     'autolink',
     'labelEnd',
     'labelStartLink',
+    'lineEnding',
   ]),
   default: defaultDisabled,
   // Editor has to disable nearly everything to show mostly text.
