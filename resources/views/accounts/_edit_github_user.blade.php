@@ -16,7 +16,10 @@
                     {{ osu_trans('accounts.github_user.account')}}
                 </div>
                 <div class="account-edit__input-groups">
-                    <div class="js-react--github-user"></div>
+                    <div
+                        class="js-react--github-user"
+                        data-user="{{ json_encode($githubUser) }}"
+                    ></div>
                 </div>
             </div>
         </div>

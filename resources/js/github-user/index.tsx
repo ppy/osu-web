@@ -4,31 +4,37 @@
 import BigButton from 'components/big-button';
 import GithubUserJson from 'interfaces/github-user-json';
 import { route } from 'laroute';
-import { action, makeObservable, observable } from 'mobx';
+import { action, makeObservable, observable, reaction } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { onErrorWithCallback } from 'utils/ajax';
 import { trans } from 'utils/lang';
 
 interface Props {
-  user: GithubUserJson | null | undefined;
+  container: HTMLElement;
 }
 
 @observer
 export default class GithubUser extends React.Component<Props> {
   @observable private deleting = false;
-  @observable private user: GithubUserJson | null | undefined;
+  @observable private user: GithubUserJson | null;
+  private userDatasetSyncDisposer;
   private xhr?: JQuery.jqXHR;
 
   constructor(props: Props) {
     super(props);
 
-    this.user = props.user;
+    this.user = JSON.parse(this.props.container.dataset.user ?? '') as GithubUserJson | null;
+    this.userDatasetSyncDisposer = reaction(
+      () => JSON.stringify(this.user),
+      (githubUserJson) => this.props.container.dataset.user = githubUserJson,
+    );
 
     makeObservable(this);
   }
 
   componentWillUnmount() {
+    this.userDatasetSyncDisposer();
     this.xhr?.abort();
   }
 

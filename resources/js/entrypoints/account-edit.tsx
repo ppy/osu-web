@@ -21,8 +21,8 @@ core.reactTurbolinks.register('authorized-clients', () => {
   return <AuthorizedClients />;
 });
 
-core.reactTurbolinks.register('github-user', () => (
-  <GithubUser user={parseJsonNullable('json-github-user', true)} />
+core.reactTurbolinks.register('github-user', (container: HTMLElement) => (
+  <GithubUser container={container} />
 ));
 
 core.reactTurbolinks.register('legacy-api-key', (container: HTMLElement) => (

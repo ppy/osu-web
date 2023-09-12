@@ -162,12 +162,6 @@
     {!! json_encode($authorizedClients) !!}
   </script>
 
-  @if (\App\Models\GithubUser::canAuthenticate())
-    <script id="json-github-user" type="application/json">
-      {!! json_encode($githubUser) !!}
-    </script>
-  @endif
-
   <script id="json-own-clients" type="application/json">
     {!! json_encode($ownClients) !!}
   </script>
