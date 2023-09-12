@@ -31,7 +31,8 @@ class GithubUsersController extends Controller
 
         abort_unless(isset($params['code']), 422, 'Invalid code.');
         abort_unless(
-            isset($params['state']) && $params['state'] === session()->pull('github_auth_state'),
+            isset($params['state']) &&
+                hash_equals(session()->pull('github_auth_state'), $params['state']),
             403,
             'Invalid state.',
         );
