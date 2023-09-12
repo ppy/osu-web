@@ -20,8 +20,8 @@ return new class extends Migration
         GithubUser::orWhereNull(['canonical_id', 'username'])->delete();
 
         Schema::table('github_users', function (Blueprint $table): void {
-            $table->unsignedBigInteger('canonical_id')->nullable(false)->change();
-            $table->string('username')->nullable(false)->change();
+            $table->unsignedBigInteger('canonical_id')->change();
+            $table->string('username')->change();
         });
     }
 
