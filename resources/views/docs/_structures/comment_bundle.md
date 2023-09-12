@@ -101,4 +101,4 @@ top_level_count   | number?                               | Number of comments a
 total             | number?                               | Total number of comments. Not retuned for replies.
 user_follow       | boolean                               | is the current user watching the comment thread?
 user_votes        | number[]                              | IDs of the comments in the bundle the current user has upvoted
-users             | [UserCompact](#usercompact)[]         | array of users related to the comments
+users             | [User](#user)[]                       | array of users related to the comments
