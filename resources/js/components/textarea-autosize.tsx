@@ -55,6 +55,13 @@ export default class TextareaAutosize extends React.Component<Props, State> {
 
   componentDidUpdate() {
     if (this.ref.current == null) return;
+
+    // autosize sets overflowX to 'scroll' on update unless the existing style is 'hidden'.
+    // It doesn't work if the style is set on class, component or didMount.
+    if (this.ref.current.style.overflowX !== 'hidden') {
+      this.ref.current.style.overflowX = 'hidden';
+    }
+
     autosize.update(this.ref.current);
   }
 
