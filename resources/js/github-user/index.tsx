@@ -16,9 +16,9 @@ interface Props {
 
 @observer
 export default class GithubUser extends React.Component<Props> {
+  @observable private unlinkXhr: JQuery.jqXHR<void> | null = null;
   @observable private user: GithubUserJson | null;
   private userDatasetSyncDisposer;
-  @observable private xhr: JQuery.jqXHR<void> | null = null;
 
   constructor(props: Props) {
     super(props);
@@ -33,8 +33,8 @@ export default class GithubUser extends React.Component<Props> {
   }
 
   componentWillUnmount() {
+    this.unlinkXhr?.abort();
     this.userDatasetSyncDisposer();
-    this.xhr?.abort();
   }
 
   render() {
@@ -45,9 +45,9 @@ export default class GithubUser extends React.Component<Props> {
         </a>
         <BigButton
           icon='fas fa-unlink'
-          isBusy={this.xhr != null}
+          isBusy={this.unlinkXhr != null}
           modifiers={['account-edit', 'account-edit-small', 'danger']}
-          props={{ onClick: this.onDeleteButtonClick }}
+          props={{ onClick: this.onUnlinkButtonClick }}
           text={trans('accounts.github_user.unlink')}
         />
       </div>
@@ -67,15 +67,15 @@ export default class GithubUser extends React.Component<Props> {
   }
 
   @action
-  private onDeleteButtonClick = () => {
-    if (this.xhr != null) return;
+  private onUnlinkButtonClick = () => {
+    if (this.unlinkXhr != null) return;
 
-    this.xhr = $.ajax(
+    this.unlinkXhr = $.ajax(
       route('account.github-users.destroy', { github_user: this.user?.id }),
       { method: 'DELETE' },
     )
       .done(action(() => this.user = null))
-      .fail(onErrorWithCallback(this.onDeleteButtonClick))
-      .always(action(() => this.xhr = null));
+      .fail(onErrorWithCallback(this.onUnlinkButtonClick))
+      .always(action(() => this.unlinkXhr = null));
   };
 }
