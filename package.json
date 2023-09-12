@@ -13,6 +13,7 @@
   "dependencies": {
     "@discordapp/twemoji": "^14.0.2",
     "@fortawesome/fontawesome-free": "^5.6.3",
+    "@types/autosize": "^4.0.1",
     "@types/bootstrap": "^3.3.0",
     "@types/d3": "^7.1.0",
     "@types/grecaptcha": "^3.0.1",
@@ -30,6 +31,7 @@
     "@types/timeago": "^1.6.0",
     "@types/unist": "^2.0.6",
     "autoprefixer": "^9.8.6",
+    "autosize": "^6.0.1",
     "blueimp-file-upload": "^9.11.2",
     "bootstrap": "^3.3.6",
     "chokidar": "^3.5.2",
@@ -73,7 +75,6 @@
     "postcss-loader": "^3.0.0",
     "qtip2": "https://github.com/notbakaneko/qTip2.git#cd5f038667d2b23a44f4274c46de01834d704ce6",
     "react": "^17.0.2",
-    "react-autosize-textarea": "7.0.0",
     "react-dom": "^17.0.2",
     "react-dom-factories": "^1.0.0",
     "react-markdown": "^8.0.5",
@@ -118,7 +119,6 @@
     "karma-sourcemap-loader": "^0.3.8",
     "karma-typescript": "^5.5.4",
     "karma-webpack": "^5.0.0",
-    "mobx-react-devtools": "^6.0.3",
     "webpack-build-notifier": "^2.3.0"
   },
   "resolutions": {
