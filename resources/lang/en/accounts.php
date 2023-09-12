@@ -59,7 +59,7 @@ return [
     ],
 
     'github_user' => [
-        'account' => 'account',
+        'info' => "If you're a contributor to osu!'s open-source repositories, linking your GitHub account here will associate your changelog entries with your osu! profile. GitHub accounts with no contribution history to osu! cannot be linked.",
         'link' => 'Link GitHub account',
         'title' => 'GitHub',
 

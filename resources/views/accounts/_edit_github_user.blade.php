@@ -11,16 +11,11 @@
 
     <div class="account-edit__input-groups">
         <div class="account-edit__input-group">
-            <div class="account-edit-entry">
-                <div class="account-edit-entry__label">
-                    {{ osu_trans('accounts.github_user.account')}}
-                </div>
-                <div class="account-edit__input-groups">
-                    <div
-                        class="js-react--github-user"
-                        data-user="{{ json_encode($githubUser) }}"
-                    ></div>
-                </div>
+            <div class="account-edit-entry account-edit-entry--block">
+                <div
+                    class="js-react--github-user"
+                    data-user="{{ json_encode($githubUser) }}"
+                ></div>
             </div>
         </div>
     </div>

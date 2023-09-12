@@ -38,33 +38,31 @@ export default class GithubUser extends React.Component<Props> {
   }
 
   render() {
-    return (
+    return this.user != null ? (
       <div className='github-user'>
-        {this.user != null ? (
-          <>
-            <a
-              className='github-user__name'
-              href={this.user.github_url}
-            >
-              {this.user.github_username}
-            </a>
-            <BigButton
-              icon='fas fa-trash'
-              isBusy={this.xhr != null}
-              modifiers={['account-edit', 'account-edit-small', 'danger']}
-              props={{ onClick: this.onDeleteButtonClick }}
-              text={trans('common.buttons.delete')}
-            />
-          </>
-        ) : (
-          <BigButton
-            href={route('account.github-users.create')}
-            icon='fas fa-link'
-            props={{ 'data-turbolinks': 'false' }}
-            text={trans('accounts.github_user.link')}
-          />
-        )}
+        <a className='github-user__name' href={this.user.github_url}>
+          {this.user.github_username}
+        </a>
+        <BigButton
+          icon='fas fa-trash'
+          isBusy={this.xhr != null}
+          modifiers={['account-edit', 'account-edit-small', 'danger']}
+          props={{ onClick: this.onDeleteButtonClick }}
+          text={trans('common.buttons.delete')}
+        />
       </div>
+    ) : (
+      <>
+        <BigButton
+          href={route('account.github-users.create')}
+          icon='fas fa-link'
+          props={{ 'data-turbolinks': 'false' }}
+          text={trans('accounts.github_user.link')}
+        />
+        <div className='account-edit-entry__rules'>
+          {trans('accounts.github_user.info')}
+        </div>
+      </>
     );
   }
 

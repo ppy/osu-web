@@ -76,7 +76,7 @@
 
             <div class="account-edit__input-groups">
                 <div class="account-edit__input-group">
-                    <div class="account-edit-entry account-edit-entry--avatar js-account-edit-avatar">
+                    <div class="account-edit-entry account-edit-entry--block js-account-edit-avatar">
                         <div class="account-edit-entry__avatar">
                             <div class="avatar avatar--full-rounded js-current-user-avatar"></div>
 
