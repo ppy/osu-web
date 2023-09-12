@@ -66,6 +66,7 @@ return [
         'error' => [
             'already_linked' => 'This GitHub account is already linked to a different user.',
             'no_contribution' => 'Cannot link GitHub account without any contribution history in osu! repositories.',
+            'unverified_email' => 'Please verify your primary email on GitHub, then try linking your account again.',
         ],
     ],
 

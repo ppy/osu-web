@@ -9,7 +9,7 @@ namespace App\Http\Controllers\Account;
 
 use App\Http\Controllers\Controller;
 use App\Models\GithubUser;
-use Github\Client as GithubClient;
+use League\OAuth2\Client\Provider\Exception\GithubIdentityProviderException;
 use League\OAuth2\Client\Provider\Github as GithubProvider;
 
 class GithubUsersController extends Controller
@@ -26,28 +26,55 @@ class GithubUsersController extends Controller
     {
         $params = get_params(request()->all(), null, [
             'code:string',
+            'error:string',
             'state:string',
-        ]);
+        ], ['null_missing' => true]);
 
-        abort_unless(isset($params['code']), 422, 'Invalid code.');
+        abort_if($params['state'] === null, 422, 'Missing state parameter.');
         abort_unless(
-            isset($params['state']) &&
-                hash_equals(session()->pull('github_auth_state'), $params['state']),
+            hash_equals(session()->pull('github_auth_state', ''), $params['state']),
             403,
             'Invalid state.',
         );
 
-        $client = new GithubClient();
-        $provider = $this->makeGithubOAuthProvider();
-        $token = $provider->getAccessToken('authorization_code', [
-            'code' => $params['code'],
-        ]);
-        $client->authenticate($token->getToken(), null, GithubClient::AUTH_ACCESS_TOKEN);
+        // If the user denied authorization on GitHub, redirect back to the GitHub account settings
+        // <https://docs.github.com/en/apps/oauth-apps/maintaining-oauth-apps/troubleshooting-authorization-request-errors#access-denied>
+        if ($params['error'] === 'access_denied') {
+            return redirect(route('account.edit').'#github');
+        }
+
+        abort_if($params['error'] !== null, 500, 'Error obtaining authorization from GitHub.');
+        abort_if($params['code'] === null, 422, 'Missing code parameter.');
+
+        try {
+            $token = $this
+                ->makeGithubOAuthProvider()
+                ->getAccessToken('authorization_code', ['code' => $params['code']]);
+        } catch (GithubIdentityProviderException $exception) {
+            // <https://docs.github.com/en/apps/oauth-apps/maintaining-oauth-apps/troubleshooting-oauth-app-access-token-request-errors#bad-verification-code>
+            abort_if(
+                $exception->getMessage() === 'bad_verification_code',
+                422,
+                'Invalid authorization code.',
+            );
+
+            // <https://docs.github.com/en/apps/oauth-apps/maintaining-oauth-apps/troubleshooting-oauth-app-access-token-request-errors#unverified-user-email>
+            abort_if(
+                $exception->getMessage() === 'unverified_user_email',
+                422,
+                osu_trans('accounts.github_user.error.unverified_email'),
+            );
+
+            throw $exception;
+        }
+
+        $client = new \Github\Client();
+        $client->authenticate($token->getToken(), \Github\AuthMethod::ACCESS_TOKEN);
         $apiUser = $client->currentUser()->show();
+
         $user = GithubUser::firstWhere('canonical_id', $apiUser['id']);
 
         abort_if($user === null, 422, osu_trans('accounts.github_user.error.no_contribution'));
-
         abort_if($user->user_id !== null, 422, osu_trans('accounts.github_user.error.already_linked'));
 
         $user->update([
