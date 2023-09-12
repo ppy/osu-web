@@ -141,9 +141,9 @@ class BeatmapsController extends Controller
      *
      * ### Response format
      *
-     * Field    | Type                  | Description
-     * -------- | --------------------- | -----------
-     * beatmaps | [Beatmap](#beatmap)[] | Includes `beatmapset` (with `ratings`), `failtimes`, and `max_combo`.
+     * Field    | Type                                  | Description
+     * -------- | ------------------------------------- | -----------
+     * beatmaps | [BeatmapExtended](#beatmapextended)[] | Includes `beatmapset` (with `ratings`), `failtimes`, and `max_combo`.
      *
      * @queryParam ids[] integer Beatmap IDs to be returned. Specify once for each beatmap ID requested. Up to 50 beatmaps can be requested at once. Example: 1
      *
@@ -229,14 +229,14 @@ class BeatmapsController extends Controller
      *
      * ### Response format
      *
-     * Returns [Beatmap](#beatmap) object.
+     * Returns [BeatmapExtended](#beatmapextended) object.
      * Following attributes are included in the response object when applicable,
      *
-     * Attribute                            | Notes
-     * -------------------------------------|------
-     * beatmapset                           | Includes ratings property.
-     * failtimes                            | |
-     * max_combo                            | |
+     * Attribute  | Notes
+     * ---------- | -----
+     * beatmapset | Includes ratings property.
+     * failtimes  | |
+     * max_combo  | |
      *
      * @urlParam beatmap integer required The ID of the beatmap.
      *
