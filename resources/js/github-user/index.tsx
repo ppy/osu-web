@@ -16,10 +16,9 @@ interface Props {
 
 @observer
 export default class GithubUser extends React.Component<Props> {
-  @observable private deleting = false;
   @observable private user: GithubUserJson | null;
   private userDatasetSyncDisposer;
-  private xhr?: JQuery.jqXHR;
+  @observable private xhr: JQuery.jqXHR<void> | null = null;
 
   constructor(props: Props) {
     super(props);
@@ -51,7 +50,7 @@ export default class GithubUser extends React.Component<Props> {
             </a>
             <BigButton
               icon='fas fa-trash'
-              isBusy={this.deleting}
+              isBusy={this.xhr != null}
               modifiers={['account-edit', 'danger', 'settings-github']}
               props={{ onClick: this.onDeleteButtonClick }}
               text={trans('common.buttons.delete')}
@@ -70,8 +69,7 @@ export default class GithubUser extends React.Component<Props> {
 
   @action
   private onDeleteButtonClick = () => {
-    this.xhr?.abort();
-    this.deleting = true;
+    if (this.xhr != null) return;
 
     this.xhr = $.ajax(
       route('account.github-users.destroy', { github_user: this.user?.id }),
@@ -79,6 +77,6 @@ export default class GithubUser extends React.Component<Props> {
     )
       .done(() => this.user = null)
       .fail(onErrorWithCallback(this.onDeleteButtonClick))
-      .always(action(() => this.deleting = false));
+      .always(action(() => this.xhr = null));
   };
 }
