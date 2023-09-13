@@ -113,8 +113,7 @@ class BeatmapsetEvent extends Model
 
             if ($beatmapset === null) {
                 $query->none();
-            }
-            else {
+            } else {
                 $query->where('beatmapset_id', '=', $beatmapset->getKey());
             }
         }
