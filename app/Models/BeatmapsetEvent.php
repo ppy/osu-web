@@ -92,7 +92,6 @@ class BeatmapsetEvent extends Model
 
         $query = static::limit($params['limit'])->offset($pagination['offset']);
         $searchByUser = present($rawParams['user'] ?? null);
-        $searchByBeatmapset = present($rawParams['beatmapset'] ?? null);
         $isModerator = $rawParams['is_moderator'] ?? false;
 
         if ($searchByUser) {
@@ -107,7 +106,7 @@ class BeatmapsetEvent extends Model
             }
         }
 
-        if ($searchByBeatmapset) {
+        if (isset($rawParams['beatmapset'])) {
             $params['beatmapset'] = $rawParams['beatmapset'];
             $beatmapset = Beatmapset::find($params['beatmapset']);
 
