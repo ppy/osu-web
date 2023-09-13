@@ -231,7 +231,9 @@ class RankingController extends Controller
      *
      * ### Response format
      *
-     * Returns an array of [UserCompact](#usercompact) with `kudosu` included.
+     * Field   | Type                          | Description
+     * ------- | ----------------------------- | -----------
+     * ranking | [UserCompact](#usercompact)[] | Includes `kudosu`.
      *
      * @queryParam page Ranking page. Example: 1
      */
@@ -247,11 +249,11 @@ class RankingController extends Controller
             ->paginate(static::PAGE_SIZE, ['*'], 'page', $page, $maxResults);
 
         if (is_json_request()) {
-            return json_collection(
+            return ['ranking' => json_collection(
                 $scores,
                 new UserCompactTransformer(),
                 'kudosu',
-            );
+            )];
         }
 
         $scores->loadMissing('country');
