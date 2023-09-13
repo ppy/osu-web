@@ -128,7 +128,8 @@ for (const entrypointsPath of entrypointDirs) {
 }
 
 const output = {
-  filename: outputFilename('js/[name]', 'js', 'contenthash:8'),
+  filename: outputFilename('js/[name]', 'js', 'contenthash'),
+  hashDigestLength: 8,
   hashFunction: 'sha512',
   path: resolvePath('public/assets'),
   publicPath: '/assets/',
