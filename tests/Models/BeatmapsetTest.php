@@ -38,6 +38,7 @@ class BeatmapsetTest extends TestCase
         $this->assertSame($notifications + 1, Notification::count());
         $this->assertSame($userNotifications + 1, UserNotification::count());
         $this->assertTrue($beatmapset->fresh()->isLoved());
+        $this->assertSame('loved', $beatmapset->beatmaps()->first()->status());
     }
 
     public function testLoveBeatmapApprovedStates(): void
