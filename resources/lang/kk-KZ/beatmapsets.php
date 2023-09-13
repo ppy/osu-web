@@ -60,6 +60,10 @@ return [
     'show' => [
         'discussion' => 'Пікірталас',
 
+        'admin' => [
+            'full_size_cover' => '',
+        ],
+
         'deleted_banner' => [
             'title' => 'Бұл карта жойылды.',
             'message' => '(мұны тек модераторлар көре алады)',

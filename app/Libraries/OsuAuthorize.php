@@ -46,6 +46,7 @@ class OsuAuthorize
             'IsOwnClient',
             'IsNotOAuth',
             'IsSpecialScope',
+            'UserUpdateEmail',
         ]);
 
         return $set->contains($ability);
@@ -1999,6 +2000,15 @@ class OsuAuthorize
         }
 
         return 'unauthorized';
+    }
+
+    public function checkUserUpdateEmail(?User $user): ?string
+    {
+        $this->ensureLoggedIn($user);
+
+        return $user->lock_email_changes
+            ? 'user.update_email.locked'
+            : 'ok';
     }
 
     /**

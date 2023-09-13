@@ -17,7 +17,9 @@ return [
         'identify' => '',
 
         'chat' => [
+            'read' => '',
             'write' => '',
+            'write_manage' => '',
         ],
 
         'forum' => [

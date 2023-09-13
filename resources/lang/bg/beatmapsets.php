@@ -60,6 +60,10 @@ return [
     'show' => [
         'discussion' => 'Дискусия',
 
+        'admin' => [
+            'full_size_cover' => '',
+        ],
+
         'deleted_banner' => [
             'title' => 'Този бийтмап беше изтрит.',
             'message' => '(само модератори могат да видят това)',

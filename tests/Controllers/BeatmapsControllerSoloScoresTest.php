@@ -19,7 +19,6 @@ use App\Models\User;
 use App\Models\UserGroup;
 use App\Models\UserGroupEvent;
 use App\Models\UserRelation;
-use Artisan;
 use Tests\TestCase;
 
 class BeatmapsControllerSoloScoresTest extends TestCase
@@ -152,11 +151,7 @@ class BeatmapsControllerSoloScoresTest extends TestCase
                 'zebra_id' => $friend->getKey(),
             ]);
 
-            Artisan::call('es:index-scores:queue', [
-                '--all' => true,
-                '--no-interaction' => true,
-            ]);
-            (new ScoreSearch())->indexWait();
+            static::reindexScores();
         });
     }
 
@@ -193,7 +188,7 @@ class BeatmapsControllerSoloScoresTest extends TestCase
 
     /**
      * @dataProvider dataProviderForTestQuery
-     * @group EsSoloScores
+     * @group RequiresScoreIndexer
      */
     public function testQuery(array $scoreKeys, array $params)
     {

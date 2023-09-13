@@ -3,6 +3,7 @@
 
 import { Spinner } from 'components/spinner';
 import StringWithComponent from 'components/string-with-component';
+import TextareaAutosize from 'components/textarea-autosize';
 import { ValidatingInput } from 'components/validating-input';
 import { FormErrors } from 'form-errors';
 import { OwnClientJson } from 'interfaces/own-client-json';
@@ -11,7 +12,6 @@ import { action, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import TextareaAutosize from 'react-autosize-textarea';
 import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 

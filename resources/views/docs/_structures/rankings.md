@@ -57,10 +57,10 @@
 }
 ```
 
-Field          | Type                                | Description
--------------- | ----------------------------------- | --------------------------------------------------------------------
-beatmapsets    | [Beatmapset](#beatmapset)[]?        | The list of beatmaps in the requested spotlight for the given `mode`; only available if `type` is `charts`
-cursor         | [Cursor](#cursor)                   | A cursor
-ranking        | [UserStatistics](#userstatistics)[] | Score details ordered by rank in descending order.
-spotlight      | [Spotlight](#spotlight)?            | Spotlight details; only available if `type` is `charts`
-total          | number                              | An approximate count of ranks available
+Field          | Type                                         | Description
+-------------- | -------------------------------------------- | -----------
+beatmapsets    | [BeatmapsetExtended](#beatmapsetextended)[]? | The list of beatmaps in the requested spotlight for the given `mode`; only available if `type` is `charts`
+cursor         | [Cursor](#cursor)                            | A cursor
+ranking        | [UserStatistics](#userstatistics)[]          | Score details ordered by rank in descending order.
+spotlight      | [Spotlight](#spotlight)?                     | Spotlight details; only available if `type` is `charts`
+total          | number                                       | An approximate count of ranks available

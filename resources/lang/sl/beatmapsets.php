@@ -60,6 +60,10 @@ return [
     'show' => [
         'discussion' => 'Razprava',
 
+        'admin' => [
+            'full_size_cover' => '',
+        ],
+
         'deleted_banner' => [
             'title' => 'Ta beatmapa je bila izbrisana.',
             'message' => '(to lahko vidijo samo moderatorji)',

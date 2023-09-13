@@ -16,6 +16,7 @@ type Construct = keyof typeof Constructs;
 const allDisabledList: Construct[] = [
   // 'characterEscape', // escaping things is always useful
   // 'content', // not sure what this is
+  // 'lineEnding',
 
   'attention',
   'autolink',
@@ -33,7 +34,6 @@ const allDisabledList: Construct[] = [
   'labelEnd',
   'labelStartImage',
   'labelStartLink',
-  'lineEnding',
   'list',
   'setextUnderline',
   'thematicBreak',

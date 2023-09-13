@@ -387,7 +387,7 @@ return [
                     'date' => 'date',
                     'action' => 'sanction',
                     'length' => 'durée',
-                    'length_indefinite' => '',
+                    'length_indefinite' => 'Indéterminée',
                     'description' => 'description',
                     'actor' => 'par :username',
 

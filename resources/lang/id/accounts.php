@@ -108,7 +108,7 @@ return [
 
     'privacy' => [
         'friends_only' => 'blokir pesan pribadi dari pengguna yang tidak termasuk dalam daftar teman',
-        'hide_online' => 'sembunyikan keberadaan online Anda',
+        'hide_online' => 'sembunyikan status onlinemu',
         'title' => 'Kebijakan Privasi',
     ],
 

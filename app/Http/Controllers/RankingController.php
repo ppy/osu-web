@@ -231,9 +231,9 @@ class RankingController extends Controller
      *
      * ### Response format
      *
-     * Field   | Type                          | Description
-     * ------- | ----------------------------- | -----------
-     * ranking | [UserCompact](#usercompact)[] | Includes `kudosu`.
+     * Field   | Type            | Description
+     * ------- | --------------- | -----------
+     * ranking | [User](#user)[] | Includes `kudosu`.
      *
      * @queryParam page Ranking page. Example: 1
      */

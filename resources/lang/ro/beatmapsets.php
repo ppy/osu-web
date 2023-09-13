@@ -60,6 +60,10 @@ return [
     'show' => [
         'discussion' => 'Discuție',
 
+        'admin' => [
+            'full_size_cover' => '',
+        ],
+
         'deleted_banner' => [
             'title' => 'Acest beatmap a fost șters.',
             'message' => '(doar moderatorii pot vedea asta)',
@@ -148,7 +152,7 @@ return [
             'buttons' => [
                 'disable' => 'Dezactivează avertisment',
                 'listing' => 'Lista beatmap-uri',
-                'show' => 'Arată',
+                'show' => 'Afișează',
             ],
         ],
 

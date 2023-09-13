@@ -5,7 +5,7 @@
 
 return [
     'comment' => [
-        'empty' => 'Nėra stebimų comentarų.',
+        'empty' => 'Nėra stebimų komentarų.',
         'page_title' => 'komentarų stebėjimo sąrašas',
         'title' => 'komentarai',
 

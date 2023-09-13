@@ -17,7 +17,9 @@ return [
         'identify' => 'Azonosíthat téged és olvashat a nyilvános profilodból.',
 
         'chat' => [
+            'read' => '',
             'write' => 'Küldjön üzeneteket az Ön nevében.',
+            'write_manage' => '',
         ],
 
         'forum' => [

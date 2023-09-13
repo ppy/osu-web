@@ -60,6 +60,10 @@ return [
     'show' => [
         'discussion' => 'Beszélgetés',
 
+        'admin' => [
+            'full_size_cover' => '',
+        ],
+
         'deleted_banner' => [
             'title' => 'Ez a beatmap törlésre került.',
             'message' => '(ezt csak a moderátorok láthatják)',

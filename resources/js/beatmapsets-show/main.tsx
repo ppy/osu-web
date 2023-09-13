@@ -2,7 +2,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import Comments from 'components/comments';
-import { CommentsManager } from 'components/comments-manager';
 import HeaderV4 from 'components/header-v4';
 import NotificationBanner from 'components/notification-banner';
 import PlaymodeTabs from 'components/playmode-tabs';
@@ -136,13 +135,13 @@ export default class Main extends React.Component<Props> {
             }
 
             <div className='page-extra page-extra--compact'>
-              <CommentsManager
-                commentableId={this.controller.beatmapset.id}
-                commentableType='beatmapset'
-                component={Comments}
-                componentProps={{
-                  modifiers: 'page-extra',
+              <Comments
+                baseCommentableMeta={{
+                  id: this.controller.beatmapset.id,
+                  type: 'beatmapset',
                 }}
+                controllerStateSelector='#json-comments'
+                modifiers='page-extra'
               />
             </div>
           </div>
