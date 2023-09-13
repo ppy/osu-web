@@ -34,7 +34,7 @@ const writeManifest = !(process.env.SKIP_MANIFEST === '1'
 // #region helpers
 // Most plugins should follow webpack's own interpolation format:
 // https://github.com/webpack/loader-utils#interpolatename
-function outputFilename(name, ext = '[ext]', hashType = 'contenthash:8') {
+function outputFilename(name, ext = '[ext]', hashType = 'sha512:contenthash:hex:8') {
   return `${name}.[${hashType}].${ext}`;
 }
 
@@ -128,7 +128,8 @@ for (const entrypointsPath of entrypointDirs) {
 }
 
 const output = {
-  filename: outputFilename('js/[name]', 'js'),
+  filename: outputFilename('js/[name]', 'js', 'contenthash:8'),
+  hashFunction: 'sha512',
   path: resolvePath('public/assets'),
   publicPath: '/assets/',
 };
