@@ -144,7 +144,7 @@ class ChannelsController extends Controller
      * Field   | Type                        | Description
      * ------- | --------------------------- | -----------
      * channel | [ChatChannel](#chatchannel) | |
-     * users   | [UserCompact](#usercompact) | Users are only visible for PM channels.
+     * users   | [User](#user)               | Users are only visible for PM channels.
      *
      * @response {
      *   "channel": {

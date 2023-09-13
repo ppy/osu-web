@@ -7,6 +7,7 @@ import BigButton from 'components/big-button';
 import ClickToCopy from 'components/click-to-copy';
 import { ReportReportable } from 'components/report-reportable';
 import StringWithComponent from 'components/string-with-component';
+import TextareaAutosize from 'components/textarea-autosize';
 import TimeWithTooltip from 'components/time-with-tooltip';
 import UserLink from 'components/user-link';
 import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
@@ -21,7 +22,6 @@ import { disposeOnUnmount, observer } from 'mobx-react';
 import { deletedUserJson } from 'models/user';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import TextareaAutosize from 'react-autosize-textarea';
 import { onError } from 'utils/ajax';
 import { badgeGroup, canModeratePosts, makeUrl, validMessageLength } from 'utils/beatmapset-discussion-helper';
 import { downloadLimited } from 'utils/beatmapset-helper';
@@ -305,9 +305,9 @@ export default class Post extends React.Component<Props> {
         ) : (
           <>
             <TextareaAutosize
-              ref={this.textareaRef}
               className={`${bn}__message ${bn}__message--editor`}
               disabled={this.isPosting}
+              innerRef={this.textareaRef}
               onChange={this.handleTextareaChange}
               onKeyDown={this.handleTextareaKeyDown}
               style={{ minHeight: this.textareaMinHeight }}

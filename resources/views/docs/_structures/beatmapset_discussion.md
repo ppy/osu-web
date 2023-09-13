@@ -4,9 +4,9 @@ Represents a Beatmapset modding discussion.
 
 Field                   | Type                                                     | Description
 ----------------------- | -------------------------------------------------------- | -----------
-beatmap                 | [BeatmapCompact](#beatmapcompact)?                       | |
+beatmap                 | [Beatmap](#beatmap)?                                     | |
 beatmap_id              | number?                                                  | |
-beatmapset              | [BeatmapsetCompact](#beatmapsetcompact)?                 | |
+beatmapset              | [Beatmapset](#beatmapset)?                               | |
 beatmapset_id           | number                                                   | |
 can_be_resolved         | boolean                                                  | |
 can_grant_kudosu        | boolean                                                  | |
