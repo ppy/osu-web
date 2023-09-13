@@ -17,8 +17,8 @@ interface OsuProps {
   user_url: string;
 }
 
-type GithubUserJson = CommonProps & GithubProps & (OsuProps | { [P in keyof OsuProps]: null });
-type GithubUserJsonLegacy = CommonProps & { [P in keyof GithubProps]: null } & OsuProps;
+type GithubUserJson = CommonProps & GithubProps & (OsuProps | Record<keyof OsuProps, null>);
+type GithubUserJsonLegacy = CommonProps & Record<keyof GithubProps, null> & OsuProps;
 
 export default GithubUserJson;
 export type GithubUserJsonForChangelog = GithubUserJson | GithubUserJsonLegacy;
