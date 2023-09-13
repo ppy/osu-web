@@ -438,9 +438,9 @@ export default class Editor extends React.Component<Props, State> {
     const willDisqualify = this.beatmapset.status === 'qualified' && docContainsProblem;
     const canReset = core.currentUser != null && (core.currentUser.is_admin || core.currentUser.is_nat || core.currentUser.is_bng);
     const willReset =
-      this.beatmapset.status === 'pending' &&
-      this.beatmapset.nominations && nominationsCount(this.beatmapset.nominations, 'current') > 0 &&
-      docContainsProblem;
+      this.beatmapset.status === 'pending'
+        && nominationsCount(this.beatmapset.nominations, 'current') > 0
+        && docContainsProblem;
 
     if (canDisqualify && willDisqualify) {
       return confirm(trans('beatmaps.nominations.reset_confirm.disqualify'));
