@@ -76,6 +76,15 @@ unread_pm_count            | |
 user_achievements          | |
 user_preferences           | |
 
+<div id="usercompact-kudosu" data-unique="usercompact-kudosu"></div>
+
+### Kudosu
+
+Field     | Type
+----------|-----
+available | number
+total     | number
+
 <div id="usercompact-profilebanner" data-unique="usercompact-profilebanner"></div>
 
 ### ProfileBanner
@@ -119,12 +128,3 @@ awarded_at  | Timestamp | |
 description | string    | |
 image_url   | string    | |
 url         | string    | |
-
-<div id="usercompact-kudosu" data-unique="usercompact-kudosu"></div>
-
-### Kudosu
-
-Field     | Type
-----------|-----
-available | number
-total     | number
