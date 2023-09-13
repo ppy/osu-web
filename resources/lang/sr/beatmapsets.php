@@ -61,6 +61,10 @@ return [
     'show' => [
         'discussion' => 'Дискусија',
 
+        'admin' => [
+            'full_size_cover' => '',
+        ],
+
         'deleted_banner' => [
             'title' => 'Ова мапа је избрисана.',
             'message' => '(ово могу да виде само модератори)',

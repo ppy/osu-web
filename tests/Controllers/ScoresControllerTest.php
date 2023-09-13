@@ -90,7 +90,7 @@ class ScoresControllerTest extends TestCase
                 'GET',
                 route('scores.download-legacy', $this->params())
             )
-            ->assertRedirect(route('scores.show-legacy', $this->params()));
+            ->assertRedirect(route('scores.show', $this->params()));
 
         $this
             ->actingAs($this->user)
@@ -99,7 +99,7 @@ class ScoresControllerTest extends TestCase
                 'GET',
                 route('scores.download-legacy', $this->params())
             )
-            ->assertRedirect(route('scores.show-legacy', $this->params()));
+            ->assertRedirect(route('scores.show', $this->params()));
     }
 
     public function testDownloadInvalidMode()
@@ -108,7 +108,7 @@ class ScoresControllerTest extends TestCase
             ->actingAs($this->user)
             ->json(
                 'GET',
-                route('scores.download-legacy', ['mode' => 'nope', 'score' => $this->score->getKey()])
+                route('scores.download-legacy', ['rulesetOrScore' => 'nope', 'score' => $this->score->getKey()])
             )
             ->assertStatus(302);
     }
@@ -143,7 +143,7 @@ class ScoresControllerTest extends TestCase
     private function params()
     {
         return [
-            'mode' => $this->score->getMode(),
+            'rulesetOrScore' => $this->score->getMode(),
             'score' => $this->score->getKey(),
         ];
     }

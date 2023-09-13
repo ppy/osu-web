@@ -17,7 +17,7 @@ export type CommentableMetaJson = {
   title: string;
 };
 
-export interface CommentJson {
+export default interface CommentJson {
   commentable_id: number;
   commentable_type: string;
   created_at: string;

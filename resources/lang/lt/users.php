@@ -49,7 +49,7 @@ return [
     ],
 
     'card' => [
-        'gift_supporter' => '',
+        'gift_supporter' => 'Dovanoti rėmėjo žymą',
         'loading' => 'Įkeliama...',
         'send_message' => 'Siųsti žinutę',
     ],
@@ -179,7 +179,7 @@ return [
 
         'comments_count' => [
             '_' => 'Publikuota :link',
-            'count' => '::count_delimited komentaras|:count_delimited komentarų',
+            'count' => ':count_delimited komentaras|:count_delimited komentarų',
         ],
         'cover' => [
             'to_0' => 'Slėpti viršelį',
@@ -272,8 +272,8 @@ return [
                     'title' => 'Nesenai žaisti (24h)',
                 ],
                 'replays_watched_counts' => [
-                    'title' => 'Atkūrimų Peržiūrų Istorija',
-                    'count_label' => 'Atkūrimai Žiūrėti',
+                    'title' => 'Sužaidimų Peržiūrų Istorija',
+                    'count_label' => 'Sužaidimai Žiūrėti',
                 ],
             ],
             'kudosu' => [
@@ -348,7 +348,7 @@ return [
                 'title' => 'Tinklo Žaidimai',
             ],
             'top_ranks' => [
-                'download_replay' => 'Atsiusti atkūrimą',
+                'download_replay' => 'Atsiųsti Sužaidimą',
                 'not_ranked' => 'Tik reitinguoti beatmap\'ai duoda pp',
                 'pp_weight' => 'prilygintas :percentage',
                 'view_details' => 'Išsamiau',
@@ -387,7 +387,7 @@ return [
                     'date' => 'data',
                     'action' => 'veiksmai',
                     'length' => 'trukmė',
-                    'length_indefinite' => '',
+                    'length_indefinite' => 'Neribota',
                     'description' => 'aprašymas',
                     'actor' => 'nuo :username',
 
@@ -448,7 +448,7 @@ return [
             'play_time' => 'Bendras žaidimo laikas
 ',
             'ranked_score' => 'Reitinguoti taškai',
-            'replays_watched_by_others' => 'Atkūrimų peržiūros iš kitų',
+            'replays_watched_by_others' => 'Sužaidimų peržiūros iš kitų',
             'score_ranks' => 'Taškų Įvertinimai',
             'total_hits' => 'Visi Pataikymai',
             'total_score' => 'Visi taškai',

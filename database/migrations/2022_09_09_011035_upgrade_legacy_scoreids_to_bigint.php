@@ -27,13 +27,12 @@ class UpgradeLegacyScoreidsToBigint extends Migration
                 $table->bigInteger('score_id')->unsigned()->default(0)->change();
             });
 
-            Schema::table("osu_scores{$modeSuffix}_high", function (Blueprint $table) {
-                $table->bigIncrements('score_id')->change();
-            });
 
-            Schema::table("osu_scores{$modeSuffix}", function (Blueprint $table) {
-                $table->bigIncrements('score_id')->change();
-            });
+            // Laravel bigIncrements() is always a primary key, which causes issues with the existing primary key.
+
+            DB::statement("ALTER TABLE `osu_scores{$modeSuffix}_high` MODIFY `score_id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT");
+
+            DB::statement("ALTER TABLE `osu_scores{$modeSuffix}` MODIFY `score_id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT");
         }
 
         Schema::table('osu_user_reports', function (Blueprint $table) {
@@ -61,24 +60,18 @@ class UpgradeLegacyScoreidsToBigint extends Migration
                 $table->integer('score_id')->unsigned()->default(0)->change();
             });
 
-            Schema::table("osu_scores{$modeSuffix}_high", function (Blueprint $table) {
-                $table->increments('score_id')->change();
-            });
+            // Workaround for same issue with increments() as above.
+
+            DB::statement("ALTER TABLE `osu_scores{$modeSuffix}_high` MODIFY `score_id` INT UNSIGNED NOT NULL AUTO_INCREMENT");
         }
 
         // osu_scores remains as BIGINT
 
-        Schema::table('osu_scores_fruits', function (Blueprint $table) {
-            $table->increments('score_id')->change();
-        });
+        DB::statement('ALTER TABLE `osu_scores_fruits` MODIFY `score_id` INT UNSIGNED NOT NULL AUTO_INCREMENT');
 
-        Schema::table('osu_scores_taiko', function (Blueprint $table) {
-            $table->increments('score_id')->change();
-        });
+        DB::statement('ALTER TABLE `osu_scores_taiko` MODIFY `score_id` INT UNSIGNED NOT NULL AUTO_INCREMENT');
 
-        Schema::table('osu_scores_mania', function (Blueprint $table) {
-            $table->increments('score_id')->change();
-        });
+        DB::statement('ALTER TABLE `osu_scores_mania` MODIFY `score_id` INT UNSIGNED NOT NULL AUTO_INCREMENT');
 
         Schema::table('osu_user_reports', function (Blueprint $table) {
             $table->integer('score_id')->unsigned()->default(0)->change();

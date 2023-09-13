@@ -60,6 +60,10 @@ return [
     'show' => [
         'discussion' => 'Diskusija',
 
+        'admin' => [
+            'full_size_cover' => '',
+        ],
+
         'deleted_banner' => [
             'title' => 'Šis beatmap\'as buvo ištrintas.',
             'message' => '(tik moderatoriai gali matyti tai)',

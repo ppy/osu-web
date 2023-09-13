@@ -17,7 +17,9 @@ return [
         'identify' => 'Identifikovať vás a prezerať verejný profil.',
 
         'chat' => [
+            'read' => '',
             'write' => 'Posielajte správy vo vašom mene.',
+            'write_manage' => '',
         ],
 
         'forum' => [

@@ -3,7 +3,6 @@
 
 import AdminMenu from 'components/admin-menu';
 import Comments from 'components/comments';
-import { CommentsManager } from 'components/comments-manager';
 import NewsHeader from 'components/news-header';
 import StringWithComponent from 'components/string-with-component';
 import NewsPostJson from 'interfaces/news-post-json';
@@ -88,13 +87,13 @@ export default class Main extends React.Component<Props> {
             </div>
           </div>
 
-          <CommentsManager
-            commentableId={this.props.post.id}
-            commentableType='news_post'
-            component={Comments}
-            componentProps={{
-              modifiers: ['changelog'],
+          <Comments
+            baseCommentableMeta={{
+              id: this.props.post.id,
+              type: 'news_post',
             }}
+            controllerStateSelector='#json-comments'
+            modifiers='changelog'
           />
         </div>
 

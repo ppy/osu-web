@@ -49,7 +49,7 @@ return [
     ],
 
     'card' => [
-        'gift_supporter' => '',
+        'gift_supporter' => 'Подари osu!supporter',
         'loading' => 'Зареждане...',
         'send_message' => 'изпрати съобщение',
     ],
@@ -387,7 +387,7 @@ return [
                     'date' => 'дата',
                     'action' => 'действие',
                     'length' => 'продължителност',
-                    'length_indefinite' => '',
+                    'length_indefinite' => 'Неопределен',
                     'description' => 'описание',
                     'actor' => 'от :username',
 
