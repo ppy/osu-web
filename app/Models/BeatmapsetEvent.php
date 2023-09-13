@@ -106,7 +106,7 @@ class BeatmapsetEvent extends Model
             }
         }
 
-        if (isset($rawParams['beatmapset'])) {
+        if (present($rawParams['beatmapset'] ?? null)) {
             $params['beatmapset'] = $rawParams['beatmapset'];
             $beatmapset = Beatmapset::find($params['beatmapset']);
 
