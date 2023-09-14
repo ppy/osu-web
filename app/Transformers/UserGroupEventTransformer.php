@@ -45,7 +45,7 @@ class UserGroupEventTransformer extends TransformerAbstract
     {
         return $this->primitive([
             'id' => $event->actor_id,
-            'name' => $event->details['actor_name'],
+            'username' => $event->details['actor_name'],
         ]);
     }
 }
