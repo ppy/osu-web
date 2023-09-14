@@ -35,7 +35,7 @@ const writeManifest = !(process.env.SKIP_MANIFEST === '1'
 // Most plugins should follow webpack's own interpolation format:
 // https://github.com/webpack/loader-utils#interpolatename
 function outputFilename(name, ext = '[ext]', hashType = 'contenthash:8') {
-  return `${name}.[${hashType}].${ext}`;
+  return `${name}.[${hashType}]${ext}`;
 }
 
 function resolvePath(...segments) {
@@ -128,7 +128,7 @@ for (const entrypointsPath of entrypointDirs) {
 }
 
 const output = {
-  filename: outputFilename('js/[name]', 'js'),
+  filename: outputFilename('js/[name]', '.js'),
   path: resolvePath('public/assets'),
   publicPath: '/assets/',
 };
@@ -157,13 +157,13 @@ const plugins = [
     resourceRegExp: /^\.\/locale$/,
   }),
   new MiniCssExtractPlugin({
-    filename: outputFilename('css/[name]', 'css'),
+    filename: outputFilename('css/[name]', '.css'),
   }),
   new CopyPlugin({
     patterns: [
       { from: 'resources/builds/locales', to: outputFilename('js/locales/[name]') },
       { from: 'node_modules/moment/locale', to: outputFilename('js/moment-locales/[name]') },
-      { from: 'node_modules/@discordapp/twemoji/dist/svg/*-*.svg', to: 'images/flags/[name].[ext]' },
+      { from: 'node_modules/@discordapp/twemoji/dist/svg/*-*.svg', to: 'images/flags/[name][ext]' },
     ],
   }),
 ];
@@ -174,9 +174,7 @@ if (writeManifest) {
 
 // TODO: should have a different flag for this
 if (!inProduction) {
-  // there is an issue (bug?) where assets loaded via file-loader don't show up in the stats
-  // when recompiling css so they end up being considered stale.
-  plugins.push(new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }));
+  plugins.push(new CleanWebpackPlugin());
 }
 
 if (process.env.SENTRY_RELEASE === '1') {
@@ -239,25 +237,18 @@ const rules = [
     ],
   },
   {
+    generator: {
+      filename: outputFilename('images/[name]'),
+    },
     test: /(\.(png|jpe?g|gif|webp)$|^((?!font).)*\.svg$)/,
-    use: [
-      {
-        loader: 'file-loader',
-        options: {
-          name: outputFilename('images/[name]'),
-        },
-      },
-      {
-        loader: 'img-loader',
-      },
-    ],
+    type: 'asset/resource',
   },
   {
-    loader: 'file-loader',
-    options: {
-      name: outputFilename('fonts/[name]'),
+    generator: {
+      filename: outputFilename('fonts/[name]'),
     },
     test: /(\.(woff2?|ttf|eot|otf)$|font.*\.svg$)/,
+    type: 'asset/resource',
   },
 ];
 
@@ -329,9 +320,7 @@ if (inProduction) {
         sourceMap: true,
       },
     }),
-    new CssMinimizerPlugin({
-      sourceMap: true,
-    }),
+    new CssMinimizerPlugin(),
   ];
 }
 
