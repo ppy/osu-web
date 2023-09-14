@@ -16,22 +16,14 @@ class GroupHistoryController extends Controller
     {
         $rawParams = request()->all();
         $params = get_params($rawParams, null, [
-            'after:time',
-            'before:time',
             'group:string',
+            'max_date:time',
+            'min_date:time',
             'sort:string',
             'user:string',
         ], ['null_missing' => true]);
         $query = UserGroupEvent::visibleForUser(auth()->user());
         $skipQuery = false;
-
-        if ($params['after'] !== null) {
-            $query->where('created_at', '>', $params['after']);
-        }
-
-        if ($params['before'] !== null) {
-            $query->where('created_at', '<', $params['before']);
-        }
 
         if ($params['group'] !== null) {
             // Not `app('groups')->byIdentifier(...)` because that would create the group if not found
@@ -42,6 +34,14 @@ class GroupHistoryController extends Controller
             } else {
                 $skipQuery = true;
             }
+        }
+
+        if ($params['max_date'] !== null) {
+            $query->where('created_at', '<=', $params['max_date']);
+        }
+
+        if ($params['min_date'] !== null) {
+            $query->where('created_at', '>=', $params['min_date']);
         }
 
         if ($params['user'] !== null) {
