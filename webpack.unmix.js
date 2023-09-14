@@ -174,9 +174,7 @@ if (writeManifest) {
 
 // TODO: should have a different flag for this
 if (!inProduction) {
-  // there is an issue (bug?) where assets loaded via file-loader don't show up in the stats
-  // when recompiling css so they end up being considered stale.
-  plugins.push(new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }));
+  plugins.push(new CleanWebpackPlugin());
 }
 
 if (process.env.SENTRY_RELEASE === '1') {
