@@ -21,6 +21,7 @@ class UserTransformer extends UserCompactTransformer
         'is_nat',
         'is_restricted',
         'is_silenced',
+        'kudosu',
     ];
 
     public function transform(User $user)
@@ -35,10 +36,6 @@ class UserTransformer extends UserCompactTransformer
             'has_supported' => $user->hasSupported(),
             'interests' => $user->user_interests,
             'join_date' => json_time($user->user_regdate),
-            'kudosu' => [
-                'total' => $user->osu_kudostotal,
-                'available' => $user->osu_kudosavailable,
-            ],
             'location' => $user->user_from,
             'max_blocks' => $user->maxBlocks(),
             'max_friends' => $user->maxFriends(),

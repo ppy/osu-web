@@ -55,6 +55,7 @@ graveyard_beatmapset_count | number
 groups                     | [UserGroup](#usergroup)[]
 guest_beatmapset_count     | number
 is_restricted              | boolean?
+kudosu                     | [User.Kudosu](#user-kudosu)
 loved_beatmapset_count     | number
 mapping_follower_count     | number
 monthly_playcounts         | [UserMonthlyPlaycount](#usermonthlyplaycount)[]
@@ -74,6 +75,15 @@ support_level              | |
 unread_pm_count            | |
 user_achievements          | |
 user_preferences           | |
+
+<div id="user-kudosu" data-unique="user-kudosu"></div>
+
+### Kudosu
+
+Field     | Type
+----------|-----
+available | number
+total     | number
 
 <div id="user-profilebanner" data-unique="user-profilebanner"></div>
 
