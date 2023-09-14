@@ -42,7 +42,7 @@
     "copy-webpack-plugin": "^11.0.0",
     "cross-env": "^5.2.0",
     "css-loader": "^6.8.1",
-    "css-minimizer-webpack-plugin": "^1.1.1",
+    "css-minimizer-webpack-plugin": "^5.0.1",
     "d3": "^7.1.1",
     "dotenv": "^8.2.0",
     "fork-ts-checker-webpack-plugin": "^8.0",

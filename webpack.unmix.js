@@ -320,9 +320,7 @@ if (inProduction) {
         sourceMap: true,
       },
     }),
-    new CssMinimizerPlugin({
-      sourceMap: true,
-    }),
+    new CssMinimizerPlugin(),
   ];
 }
 
