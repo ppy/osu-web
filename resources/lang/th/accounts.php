@@ -34,7 +34,13 @@ return [
         ],
 
         'profile' => [
+            'country' => 'ประเทศ',
             'title' => 'โปรไฟล์',
+
+            'country_change' => [
+                '_' => "ดูเหมือนว่าประเทศในบัญชีของคุณไม่ตรงกับประเทศที่คุณอาศัยอยู่ :update_link.",
+                'update_link' => 'อัปเดตเป็น :country',
+            ],
 
             'user' => [
                 'user_discord' => '',

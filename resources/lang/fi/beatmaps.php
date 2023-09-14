@@ -78,6 +78,18 @@ return [
             'suggestion' => 'Ehdotus',
         ],
 
+        'message_type_title' => [
+            'disqualify' => '',
+            'hype' => '',
+            'mapper_note' => '',
+            'nomination_reset' => '',
+            'praise' => '',
+            'problem' => '',
+            'problem_warning' => '',
+            'review' => '',
+            'suggestion' => '',
+        ],
+
         'mode' => [
             'events' => 'Historia',
             'general' => 'Yleinen :scope',
@@ -118,7 +130,7 @@ return [
         ],
 
         'show' => [
-            'title' => ':title, luonut :mapper',
+            'title' => ':title, kartoittanut :mapper',
         ],
 
         'sort' => [
@@ -175,8 +187,8 @@ return [
     ],
 
     'nominations' => [
-        'already_nominated' => '',
-        'cannot_nominate' => '',
+        'already_nominated' => 'Olet jo pannut ehdolle tämän rytmikartan.',
+        'cannot_nominate' => 'Et voi panna ehdolle tähän pelimuotoon kuuluvia rytmikarttoja.',
         'delete' => 'Poista',
         'delete_own_confirm' => 'Oletko varma? Tämä beatmap poistetaan ja sinut uudelleenohjataan takaisin profiiliisi.',
         'delete_other_confirm' => 'Oletko varma? Tämä beatmap poistetaan ja sinut uudelleenohjataan käyttäjän profiiliin.',
@@ -260,7 +272,7 @@ return [
         'featured_artists' => 'Esitellyt artistit',
         'follows' => 'Tilatut kartoittajat',
         'recommended' => 'Suositeltu vaikeustaso',
-        'spotlights' => 'Valokeilassa olevat beatmapit',
+        'spotlights' => 'Kohdevaloissa olevat rytmikartat',
     ],
     'mode' => [
         'all' => 'Kaikki',
@@ -278,8 +290,8 @@ return [
         'leaderboard' => 'Tulostaulukollinen',
         'loved' => 'Rakastettu',
         'mine' => 'Mappini',
-        'pending' => 'Vireillä & WIP',
-        'wip' => 'Kesken',
+        'pending' => 'Vireillä',
+        'wip' => 'Työn alla',
         'qualified' => 'Esihyväksytty',
         'ranked' => 'Hyväksytty',
     ],

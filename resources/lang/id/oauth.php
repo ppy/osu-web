@@ -7,7 +7,7 @@ return [
     'cancel' => 'Batal',
 
     'authorise' => [
-        'request' => 'meminta izin untuk dapat mengakses akunmu.',
+        'request' => 'meminta izin untuk mengakses akunmu.',
         'scopes_title' => 'Ke depannya, aplikasi ini akan mampu untuk:',
         'title' => 'Permohonan Otorisasi',
     ],
@@ -42,7 +42,7 @@ return [
         'header' => 'Daftarkan aplikasi OAuth baru',
         'register' => 'Daftarkan aplikasi',
         'terms_of_use' => [
-            '_' => 'Dengan menggunakan API kami, Anda menyetujui :link berikut.',
+            '_' => 'Dengan menggunakan API kami, Anda menyatakan diri setuju terhadap :link yang berlaku.',
             'link' => 'Ketentuan Penggunaan',
         ],
     ],

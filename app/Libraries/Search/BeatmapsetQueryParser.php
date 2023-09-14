@@ -59,9 +59,12 @@ class BeatmapsetQueryParser
                     $option = static::makeIntRangeOption($op, $m['value']);
                     break;
                 case 'status':
-                    $option = static::makeIntRangeOption($op, Beatmapset::STATES[$m['value']] ?? null);
+                    $option = static::makeIntRangeOption($op, static::statePrefixSearch($m['value']));
                     break;
                 case 'creator':
+                    $option = static::makeTextOption($op, $m['value']);
+                    break;
+                case 'difficulty':
                     $option = static::makeTextOption($op, $m['value']);
                     break;
                 case 'artist':
@@ -223,5 +226,24 @@ class BeatmapsetQueryParser
         if ($operator === '=') {
             return presence(trim($value, '"'));
         }
+    }
+
+    private static function statePrefixSearch($value): ?int
+    {
+        if (!present($value)) {
+            return null;
+        }
+
+        if (isset(Beatmapset::STATES[$value])) {
+            return Beatmapset::STATES[$value];
+        }
+
+        foreach (Beatmapset::STATES as $string => $int) {
+            if (starts_with($string, $value)) {
+                return $int;
+            }
+        }
+
+        return null;
     }
 }

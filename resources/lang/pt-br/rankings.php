@@ -18,15 +18,15 @@ return [
     ],
 
     'kudosu' => [
-        'total' => '',
-        'available' => '',
-        'used' => '',
+        'total' => 'Obtidos',
+        'available' => 'Disponível',
+        'used' => 'Gasto',
     ],
 
     'type' => [
         'charts' => 'Destaques',
         'country' => 'país',
-        'kudosu' => '',
+        'kudosu' => 'kudosu',
         'multiplayer' => 'multijogador',
         'performance' => 'desempenho',
         'score' => 'pontuação',

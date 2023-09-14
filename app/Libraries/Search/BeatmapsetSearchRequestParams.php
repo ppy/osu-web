@@ -218,6 +218,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
             'created' => 'created',
             'creator' => 'creator',
             'cs' => 'cs',
+            'difficulty' => 'difficulty',
             'dr' => 'drain',
             'featured_artist' => 'featuredArtist',
             'keys' => 'keys',

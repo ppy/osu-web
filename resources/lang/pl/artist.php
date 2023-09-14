@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'page_description' => 'Wyróżnieni wykonawcy osu!',
+    'page_description' => 'Wyróżnieni artyści osu!',
     'title' => 'Wyróżnieni artyści',
 
     'admin' => [
@@ -18,7 +18,7 @@ return [
     ],
 
     'index' => [
-        'description' => 'Wyróżnieni wykonawcy to osoby z którymi współpracujemy, by zapewnić społeczności osu! oryginalną muzykę - część artystów stworzyła utwory wyłączne dla naszej gry! Zarówno oni sami, jak i ich utwory, zostali starannie wybrani przez członków zespołu osu!, głównie za ich odlotowość oraz łatwość w tworzeniu beatmap.<br><br>Wszystkie utwory w tej sekcji występują w formie plików o rozszerzeniu .osz z odpowiednio ustawionym rytmem. Utwory są oficjalnie licencjonowane dla osu! i rzeczy z nim powiązanych.',
+        'description' => 'Wyróżnieni artyści to osoby z którymi współpracujemy, by zapewnić społeczności osu! oryginalną muzykę - część artystów stworzyła utwory wyłączne dla naszej gry! Zarówno oni sami, jak i ich utwory, zostali starannie wybrani przez członków zespołu osu!, głównie za ich odlotowość oraz łatwość w tworzeniu beatmap.<br><br>Wszystkie utwory w tej sekcji występują w formie plików o rozszerzeniu .osz z odpowiednio ustawionym rytmem. Utwory są oficjalnie licencjonowane dla osu! i rzeczy z nim powiązanych.',
     ],
 
     'links' => [

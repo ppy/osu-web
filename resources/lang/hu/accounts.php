@@ -34,7 +34,13 @@ return [
         ],
 
         'profile' => [
+            'country' => 'ország',
             'title' => 'Profil',
+
+            'country_change' => [
+                '_' => "Úgy tűnik, hogy a fiókod országa nem egyezik a lakhelyed országával. :update_link.",
+                'update_link' => 'Frissítsés a következőre: :country ',
+            ],
 
             'user' => [
                 'user_discord' => '',

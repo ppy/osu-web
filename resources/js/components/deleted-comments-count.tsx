@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { Comment } from 'models/comment';
+import Comment from 'models/comment';
 import * as React from 'react';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { transChoice } from 'utils/lang';

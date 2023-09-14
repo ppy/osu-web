@@ -37,7 +37,7 @@ return [
         'blocked_count' => 'blokirani korisnici (:count)',
         'hide_profile' => 'Sakrij profil',
         'hide_comment' => 'sakrij',
-        'forum_post_text' => '',
+        'forum_post_text' => 'Ovaj objava je skrivena.',
         'not_blocked' => 'Taj korisnik nije blokiran.',
         'show_profile' => 'Prikaži profil',
         'show_comment' => 'prikaži',
@@ -49,23 +49,23 @@ return [
     ],
 
     'card' => [
-        'gift_supporter' => '',
+        'gift_supporter' => 'Daruj osu!supporter oznaku',
         'loading' => 'Učitavanje...',
         'send_message' => 'Pošalji poruku',
     ],
 
     'create' => [
         'form' => [
-            'password' => '',
-            'password_confirmation' => '',
-            'submit' => '',
-            'user_email' => '',
-            'user_email_confirmation' => '',
-            'username' => '',
+            'password' => 'lozinka',
+            'password_confirmation' => 'potvrda lozinke',
+            'submit' => 'stvori račun',
+            'user_email' => 'e-pošta',
+            'user_email_confirmation' => 'potvrda adrese e-pošte',
+            'username' => 'korisničko ime',
 
             'tos_notice' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'izradom računa prihvaćaš :link',
+                'link' => 'uvjeti korištenja',
             ],
         ],
     ],
@@ -237,7 +237,7 @@ return [
                     'title' => 'Voljene beatmape',
                 ],
                 'nominated' => [
-                    'title' => '',
+                    'title' => 'Nove Rangirane Beatmape',
                 ],
                 'pending' => [
                     'title' => 'Beatmape na čekanju',
@@ -387,7 +387,7 @@ return [
                     'date' => 'datum',
                     'action' => 'akcija',
                     'length' => 'dužina',
-                    'length_permanent' => 'Trajno',
+                    'length_indefinite' => '',
                     'description' => 'opis',
                     'actor' => 'od :username',
 
@@ -436,7 +436,7 @@ return [
             'country_simple' => 'Rang u državi',
             'global' => 'Globalni rang za :mode',
             'global_simple' => 'Globalni rang',
-            'highest' => '',
+            'highest' => 'Najviši položaj: :rank na :date',
         ],
         'stats' => [
             'hit_accuracy' => 'Preciznost pogodaka',

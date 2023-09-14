@@ -78,6 +78,18 @@ return [
             'suggestion' => '建議',
         ],
 
+        'message_type_title' => [
+            'disqualify' => '',
+            'hype' => '',
+            'mapper_note' => '',
+            'nomination_reset' => '',
+            'praise' => '',
+            'problem' => '',
+            'problem_warning' => '',
+            'review' => '',
+            'suggestion' => '',
+        ],
+
         'mode' => [
             'events' => '歷史',
             'general' => '整體:scope',
@@ -175,8 +187,8 @@ return [
     ],
 
     'nominations' => [
-        'already_nominated' => '',
-        'cannot_nominate' => '',
+        'already_nominated' => '您已經提名過這張圖譜了',
+        'cannot_nominate' => '您不能提名此遊戲模式的圖譜',
         'delete' => '刪除',
         'delete_own_confirm' => '你確定嗎？這個圖譜將被刪除，刪除後你將重新導向到你的個人資料頁面。',
         'delete_other_confirm' => '你確定嗎？這個圖譜將被刪除，刪除後你將重新導向到他的個人資料頁面。',

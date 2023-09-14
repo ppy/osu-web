@@ -113,9 +113,9 @@ return [
         'exists' => 'Тренутно је обезбеђен само један API кључ по кориснику.',
 
         'attributes' => [
-            'api_key' => '',
-            'app_name' => '',
-            'app_url' => '',
+            'api_key' => 'api кључ',
+            'app_name' => 'име апликације',
+            'app_url' => 'url апликације',
         ],
     ],
 
@@ -176,7 +176,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => 'Није могуће пријавити рангиране мапе',
-        'not_in_channel' => '',
+        'not_in_channel' => 'Нисте на овом каналу.',
         'reason_not_valid' => ':reason није важећи за овај тип извештаја.',
         'self' => "Не можете сами да се пријавите!",
     ],

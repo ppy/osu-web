@@ -10,7 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
-            'rules' => 'Pidä huoli, että avatari ei riko :link.<br/>Tämä tarkoittaa sitä, että kuvan on <strong>sovittava kaikenikäisille</strong>, eli ei alastomuutta tai muita hävyttömyyksiä.',
+            'rules' => 'Pidä huoli, ettei profiilikuvasi riko :link.<br/>Tämä tarkoittaa sitä, että kuvan on <strong>sovittava kaikenikäisille</strong>, eli ei alastomuutta tai muita hävyttömyyksiä.',
             'rules_link' => 'yhteisön sääntöjä',
         ],
 
@@ -34,7 +34,13 @@ return [
         ],
 
         'profile' => [
+            'country' => 'maa',
             'title' => 'Profiili',
+
+            'country_change' => [
+                '_' => "Näyttää siltä, että tilisi maa ei ole sama kuin asuinmaasi. :update_link.",
+                'update_link' => 'Aseta tilin maaksi :country',
+            ],
 
             'user' => [
                 'user_discord' => '',
@@ -57,7 +63,7 @@ return [
         'beatmapset_disqualify' => 'vastaanota ilmoituksia kun beatmappeja hylätään seuraavista tiloista',
         'comment_reply' => 'vastaanota ilmoituksia vastauksista kommentteihisi',
         'title' => 'Ilmoitukset',
-        'topic_auto_subscribe' => 'automaattisesti salli ilmoitukset uusille foorumiaiheille jotka luot',
+        'topic_auto_subscribe' => 'ota automaattisesti ilmoitukset käyttöön tekemillesi uusille foorumiaiheille',
 
         'options' => [
             '_' => 'toimitusvaihtoehdot',
@@ -97,7 +103,7 @@ return [
         'mouse' => 'hiiri',
         'tablet' => 'piirtopöytä',
         'title' => 'Pelityylit',
-        'touch' => 'kosketus',
+        'touch' => 'kosketusnäyttö',
     ],
 
     'privacy' => [

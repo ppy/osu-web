@@ -5,7 +5,7 @@
 
 return [
     'confirm_new' => 'Créer un nouveau mot de passe IRC ?',
-    'new' => 'Nouveau mot de passe IRC hérité',
+    'new' => 'Nouveau mot de passe de l\'ancien IRC',
     'none' => 'Le mot de passe IRC n\'est pas défini.',
 
     'form' => [

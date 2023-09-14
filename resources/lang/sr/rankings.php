@@ -18,15 +18,15 @@ return [
     ],
 
     'kudosu' => [
-        'total' => '',
-        'available' => '',
-        'used' => '',
+        'total' => 'Зарађено',
+        'available' => 'Доступно',
+        'used' => 'Потрошен',
     ],
 
     'type' => [
         'charts' => 'колекције',
         'country' => 'држава',
-        'kudosu' => '',
+        'kudosu' => 'kudosu',
         'multiplayer' => 'мултиплејер',
         'performance' => 'перформансе',
         'score' => 'резултат',

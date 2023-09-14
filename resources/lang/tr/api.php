@@ -17,7 +17,9 @@ return [
         'identify' => 'Kim olduğunuzu ve herkese açık profilinizi görüntüleyebilir.',
 
         'chat' => [
+            'read' => '',
             'write' => 'Sizin adınıza mesaj gönderebilir.',
+            'write_manage' => '',
         ],
 
         'forum' => [

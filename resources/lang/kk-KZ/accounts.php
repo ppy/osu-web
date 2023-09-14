@@ -34,7 +34,13 @@ return [
         ],
 
         'profile' => [
+            'country' => 'ел',
             'title' => 'Профиль',
+
+            'country_change' => [
+                '_' => "Сіздің аккаунтыңыздың елі мен сіздің тұрғылықты еліңіз сәйкес келмейтін сияқты. :update_link.",
+                'update_link' => ':country еліне жаңарту',
+            ],
 
             'user' => [
                 'user_discord' => '',

@@ -5,9 +5,9 @@
 
 return [
     'beatmapset_update_notice' => [
-        'new' => 'Tiesiog leidžiam žinoti, kad bitmapas ":title" buvo atnaujintas nuo jūsų paskutinio apsilankymo.',
-        'subject' => 'Naujas atnaujinimas šiam bitmapui ":title"',
-        'unwatch' => 'Jei nebenori stebėti šio bitmapo, gali paspausti „Nebestebėti“ nuoroda viršuje arba taisymų stebėjimo sąrašo puslapyje:',
+        'new' => 'Tiesiog leidžiam žinoti, kad beatmap\'as ":title" buvo atnaujintas nuo jūsų paskutinio apsilankymo.',
+        'subject' => 'Naujas atnaujinimas šiam beatmap\'ui ":title"',
+        'unwatch' => 'Jei nebenori stebėti šio beatmap\'o, gali paspausti „Nebestebėti“ nuoroda viršuje arba taisymų stebėjimo sąrašo puslapyje:',
         'visit' => 'Aplankykite diskusijos puslapį čia: ',
     ],
 

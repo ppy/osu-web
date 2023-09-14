@@ -21,9 +21,9 @@ return [
         ],
 
         'legacy_api' => [
-            'api' => '',
-            'irc' => '',
-            'title' => '',
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'Застарели API',
         ],
 
         'password' => [
@@ -34,7 +34,13 @@ return [
         ],
 
         'profile' => [
+            'country' => 'држава',
             'title' => 'Профил',
+
+            'country_change' => [
+                '_' => "Изгледа да земља вашег налога не одговара вашој земљи пребивалишта. :update_link.",
+                'update_link' => 'Промените у :country',
+            ],
 
             'user' => [
                 'user_discord' => '',

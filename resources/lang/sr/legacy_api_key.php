@@ -4,27 +4,27 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'new' => '',
-    'none' => '',
+    'new' => 'Нови кључ од старијег API',
+    'none' => 'Нема кључа.',
 
     'docs' => [
-        '_' => '',
-        'github' => '',
+        '_' => 'Документација је доступна на :github.',
+        'github' => 'GitHub',
     ],
 
     'form' => [
-        'create' => '',
+        'create' => 'Направи Кључ',
     ],
 
     'view' => [
-        'hide' => '',
-        'show' => '',
-        'delete' => '',
+        'hide' => 'Сакриј Кључ',
+        'show' => 'Прикажи Кључ',
+        'delete' => 'Избриши',
     ],
 
     'warning' => [
-        'line1' => '',
-        'line2' => "",
-        'line3' => '',
+        'line1' => 'Не дајте ово другима.',
+        'line2' => "То је еквивалентно давање ваше лозинке.",
+        'line3' => 'Ваш налог је можда компромитован.',
     ],
 ];

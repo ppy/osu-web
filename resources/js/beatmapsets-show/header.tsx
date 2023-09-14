@@ -295,7 +295,7 @@ export default class Header extends React.Component<Props> {
   }
 
   private renderDownloadButtons() {
-    if (core.currentUser == null || (this.controller.beatmapset.availability?.download_disabled ?? false)) return;
+    if (core.currentUser == null || this.controller.beatmapset.availability.download_disabled) return;
 
     return (
       <>

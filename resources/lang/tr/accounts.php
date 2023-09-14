@@ -34,7 +34,13 @@ return [
         ],
 
         'profile' => [
+            'country' => '',
             'title' => 'Profil',
+
+            'country_change' => [
+                '_' => "",
+                'update_link' => ':country olarak güncelle',
+            ],
 
             'user' => [
                 'user_discord' => '',

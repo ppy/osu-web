@@ -11,7 +11,6 @@ import { each, isEmpty, last, throttle } from 'lodash';
 import { action, computed, makeObservable, reaction } from 'mobx';
 import { disposeOnUnmount, observer } from 'mobx-react';
 import Message from 'models/chat/message';
-import { deletedUser } from 'models/user';
 import * as moment from 'moment';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -50,8 +49,11 @@ export default class ConversationView extends React.Component<Props> {
 
     each(channel.messages, (message: Message, key: number) => {
       // check if the last read indicator needs to be shown
-      // when messageId is a uuid, comparison will always be false.
-      if (!unreadMarkerShown && message.messageId > (channel.lastReadId ?? -1) && message.sender.id !== core.currentUser?.id) {
+      if (!unreadMarkerShown
+        && typeof message.messageId === 'number'
+        && message.messageId > (channel.lastReadId ?? -1)
+        && message.sender.id !== core.currentUser?.id
+      ) {
         unreadMarkerShown = true;
         // TODO: handle the case where unread messages are in the backlog
 
@@ -265,7 +267,7 @@ export default class ConversationView extends React.Component<Props> {
           </>
         ) : (
           this.currentChannel.announcementUsers.map((user) => (
-            <UserCardBrick key={user?.id} user={(user ?? deletedUser).toJson()} />
+            <UserCardBrick key={user.id} user={user.toJson()} />
           ))
         )}
       </div>

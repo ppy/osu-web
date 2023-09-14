@@ -106,14 +106,14 @@ return [
             'faq' => 'Questions fréquemment posées',
             'forum' => 'Forums communautaire',
             'livestreams' => 'Streams en direct',
-            'report' => 'Signaler une erreur',
+            'report' => 'Signaler un problème',
             'wiki' => 'Wiki',
         ],
         'legal' => [
             '_' => 'Statut & Légal',
             'copyright' => 'Copyright (DMCA)',
             'privacy' => 'Confidentialité',
-            'server_status' => 'Statut du serveur',
+            'server_status' => 'État du serveur',
             'source_code' => 'Code source',
             'terms' => 'Conditions d\'utilisation',
         ],
@@ -157,7 +157,7 @@ return [
             'description' => "Nous avons été automatiquement notifié de cette erreur.",
         ],
         '503' => [
-            'error' => 'Maintenance en cours!',
+            'error' => 'Maintenance en cours !',
             'description' => "Les maintenances prennent en général 5 à 10 minutes. Si c'est plus long, regardez :link pour plus d'informations.",
             'link' => [
                 'text' => '',

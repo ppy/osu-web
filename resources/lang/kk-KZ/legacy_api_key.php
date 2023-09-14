@@ -9,7 +9,7 @@ return [
 
     'docs' => [
         '_' => '',
-        'github' => '',
+        'github' => 'GitHub',
     ],
 
     'form' => [

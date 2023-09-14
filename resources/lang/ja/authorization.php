@@ -171,7 +171,7 @@ return [
 
     'score' => [
         'pin' => [
-            'disabled_type' => "",
+            'disabled_type' => "この種類のスコアはピン留めできません",
             'not_owner' => 'スコアの所有者のみがピン留めできます。',
             'too_many' => 'ピン留めの数が多すぎます。',
         ],

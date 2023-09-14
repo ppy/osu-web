@@ -34,7 +34,13 @@ return [
         ],
 
         'profile' => [
+            'country' => '国家或地区',
             'title' => '个人资料',
+
+            'country_change' => [
+                '_' => "您的个人资料所在国家或地区似乎与您的居住地不符。:update_link。",
+                'update_link' => '更新为 :country',
+            ],
 
             'user' => [
                 'user_discord' => '',

@@ -102,15 +102,11 @@ Route::group(['middleware' => ['web']], function () {
     Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['destroy', 'index', 'show', 'update']]);
 
     Route::group(['prefix' => 'scores', 'as' => 'scores.'], function () {
-        // make sure it's matched before {mode}/{score}
         Route::get('{score}/download', 'ScoresController@download')->name('download');
+        Route::get('{rulesetOrScore}/{score}/download', 'ScoresController@downloadLegacy')->name('download-legacy');
 
-        Route::group(['prefix' => '{mode}'], function () {
-            Route::get('{score}/download', 'ScoresController@download')->name('download-legacy');
-            Route::get('{score}', 'ScoresController@show')->name('show-legacy');
-        });
+        Route::get('{rulesetOrScore}/{score?}', 'ScoresController@show')->name('show');
     });
-    Route::resource('scores', 'ScoresController', ['only' => ['show']]);
 
     Route::delete('score-pins', 'ScorePinsController@destroy')->name('score-pins.destroy');
     Route::put('score-pins', 'ScorePinsController@reorder')->name('score-pins.reorder');
@@ -469,8 +465,9 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
         });
         Route::resource('matches', 'MatchesController', ['only' => ['index', 'show']]);
 
+        Route::resource('reports', 'ReportsController', ['only' => ['store']]);
+
         Route::group(['as' => 'rooms.', 'prefix' => 'rooms'], function () {
-            Route::get('{mode?}', 'Multiplayer\RoomsController@index')->name('index')->where('mode', 'owned|participated|ended');
             Route::put('{room}/users/{user}', 'Multiplayer\RoomsController@join')->name('join');
             Route::delete('{room}/users/{user}', 'Multiplayer\RoomsController@part')->name('part');
             Route::get('{room}/leaderboard', 'Multiplayer\RoomsController@leaderboard');
@@ -480,15 +477,15 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
             });
         });
 
-        Route::resource('reports', 'ReportsController', ['only' => ['store']]);
-
-        Route::apiResource('rooms', 'Multiplayer\RoomsController', ['only' => ['show', 'store']]);
+        Route::apiResource('rooms', 'Multiplayer\RoomsController', ['only' => ['index', 'show', 'store']]);
 
         Route::apiResource('seasonal-backgrounds', 'SeasonalBackgroundsController', ['only' => ['index']]);
 
-        Route::group(['prefix' => 'scores/{mode}', 'as' => 'scores.'], function () {
+        Route::group(['prefix' => 'scores', 'as' => 'scores.'], function () {
             Route::get('{score}/download', 'ScoresController@download')->middleware(ThrottleRequests::getApiThrottle('scores_download'))->name('download');
-            Route::get('{score}', 'ScoresController@show')->name('show');
+            Route::get('{rulesetOrScore}/{score}/download', 'ScoresController@downloadLegacy')->middleware(ThrottleRequests::getApiThrottle('scores_download'))->name('download-legacy');
+
+            Route::get('{rulesetOrScore}/{score?}', 'ScoresController@show')->name('show');
         });
 
         // Beatmapsets

@@ -20,7 +20,7 @@ return [
     ],
 
     'featured_artist_badge' => [
-        'label' => 'Featured artist',
+        'label' => 'Featured Artist',
     ],
 
     'index' => [
@@ -59,6 +59,10 @@ return [
 
     'show' => [
         'discussion' => 'Diskuze',
+
+        'admin' => [
+            'full_size_cover' => '',
+        ],
 
         'deleted_banner' => [
             'title' => 'Tato beatmapa byla odstraněna.',

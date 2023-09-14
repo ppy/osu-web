@@ -11,7 +11,7 @@ return [
 
     'beatmapset_discussion_post' => [
         'button' => 'Signaler',
-        'title' => 'Signaler le message de :username ?',
+        'title' => 'Signaler le post de :username ?',
     ],
 
     'comment' => [

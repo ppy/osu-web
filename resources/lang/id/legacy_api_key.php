@@ -23,8 +23,8 @@ return [
     ],
 
     'warning' => [
-        'line1' => 'Jangan berikan informasi ini ke orang lain.',
-        'line2' => "Tindakan ini sama halnya dengan memberikan kata sandimu.",
-        'line3' => 'Akunmu mungkin telah disusupi.',
+        'line1' => 'Jangan berikan informasi ini kepada orang lain.',
+        'line2' => "Tindakan ini sama halnya dengan membocorkan kata sandimu.",
+        'line3' => 'Apabila kamu gegabah, akunmu akan dapat disusupi.',
     ],
 ];

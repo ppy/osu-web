@@ -4,10 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'months' => '',
+    'months' => 'ай',
 
     'user_search' => [
-        'searching' => '',
-        'not_found' => "",
+        'searching' => 'іздеу...',
+        'not_found' => "Бұл қолданушы жоқ",
     ],
 ];

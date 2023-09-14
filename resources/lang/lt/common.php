@@ -131,18 +131,18 @@ return [
     ],
 
     'scoreboard_time' => [
-        'd' => '%dd',
-        'dd' => '%dd',
-        'h' => '%d val',
-        'hh' => '%d val',
+        'd' => '%d d.',
+        'dd' => '%d d.',
+        'h' => '%d val.',
+        'hh' => '%d val.',
         'm' => 'dabar',
         'mm' => 'dabar',
-        'month' => '%d min',
-        'months' => '%d min',
+        'month' => '%d mėn.',
+        'months' => '%d mėn.',
         'past' => '',
         's' => 'dabar',
-        'y' => '%dm',
-        'yy' => '%dm',
+        'y' => '%d m.',
+        'yy' => '%d m.',
     ],
 
     'time' => [

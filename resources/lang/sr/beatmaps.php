@@ -78,6 +78,18 @@ return [
             'suggestion' => 'Предлог',
         ],
 
+        'message_type_title' => [
+            'disqualify' => '',
+            'hype' => '',
+            'mapper_note' => '',
+            'nomination_reset' => '',
+            'praise' => '',
+            'problem' => '',
+            'problem_warning' => '',
+            'review' => '',
+            'suggestion' => '',
+        ],
+
         'mode' => [
             'events' => 'Историја',
             'general' => 'Генерална :scope',
@@ -175,8 +187,8 @@ return [
     ],
 
     'nominations' => [
-        'already_nominated' => '',
-        'cannot_nominate' => '',
+        'already_nominated' => 'Већ сте номиновали ову мапу.',
+        'cannot_nominate' => 'Не можете номиновати ову мапу режиму игре.',
         'delete' => 'Обриши',
         'delete_own_confirm' => 'Да ли сте сигурни? Мапа ће бити обрисана и бићете враћени назад на ваш профил.',
         'delete_other_confirm' => 'Да ли сте сигурни? Мапа ће бити обрисана и бићете враћени назад на профил корисника.',

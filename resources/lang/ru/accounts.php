@@ -34,7 +34,13 @@ return [
         ],
 
         'profile' => [
+            'country' => 'страна',
             'title' => 'Профиль',
+
+            'country_change' => [
+                '_' => "Похоже, что страна аккаунта не совпадает с местом вашего проживания. :update_link.",
+                'update_link' => 'Сменить на :country',
+            ],
 
             'user' => [
                 'user_discord' => 'дискорд',
