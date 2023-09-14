@@ -23,7 +23,6 @@ class GroupHistoryController extends Controller
             'user:string',
         ], ['null_missing' => true]);
         $query = UserGroupEvent::visibleForUser(auth()->user());
-        $skipQuery = false;
 
         if ($params['group'] !== null) {
             // Not `app('groups')->byIdentifier(...)` because that would create the group if not found
@@ -32,7 +31,7 @@ class GroupHistoryController extends Controller
             if ($groupId !== null) {
                 $query->where('group_id', $groupId);
             } else {
-                $skipQuery = true;
+                $query->none();
             }
         }
 
@@ -50,21 +49,16 @@ class GroupHistoryController extends Controller
             if ($userId !== null) {
                 $query->where('user_id', $userId);
             } else {
-                $skipQuery = true;
+                $query->none();
             }
         }
 
-        if ($skipQuery) {
-            $cursor = null;
-            $events = [];
-        } else {
-            $cursorHelper = UserGroupEvent::makeDbCursorHelper($params['sort']);
-            [$events, $hasMore] = $query
-                ->cursorSort($cursorHelper, cursor_from_params($rawParams))
-                ->limit(50)
-                ->getWithHasMore();
-            $cursor = $cursorHelper->next($events, $hasMore);
-        }
+        $cursorHelper = UserGroupEvent::makeDbCursorHelper($params['sort']);
+        [$events, $hasMore] = $query
+            ->cursorSort($cursorHelper, cursor_from_params($rawParams))
+            ->limit(50)
+            ->getWithHasMore();
+        $cursor = $cursorHelper->next($events, $hasMore);
 
         return [
             'events' => json_collection($events, 'UserGroupEvent'),
