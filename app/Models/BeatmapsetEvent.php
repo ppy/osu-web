@@ -108,9 +108,7 @@ class BeatmapsetEvent extends Model
 
         if (present($rawParams['beatmapset_id'] ?? null)) {
             $params['beatmapset_id'] = $rawParams['beatmapset_id'];
-            $beatmapset = Beatmapset::find($params['beatmapset_id']);
-
-            $query->where('beatmapset_id', '=', $beatmapset->getKey());
+            $query->where('beatmapset_id', '=', $params['beatmapset_id']);
         }
 
         if (isset($rawParams['sort'])) {
