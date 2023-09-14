@@ -161,9 +161,9 @@ const plugins = [
   }),
   new CopyPlugin({
     patterns: [
-      { from: 'resources/builds/locales', to: outputFilename('js/locales/[name]', '.[ext]') },
-      { from: 'node_modules/moment/locale', to: outputFilename('js/moment-locales/[name]', '.[ext]') },
-      { from: 'node_modules/@discordapp/twemoji/dist/svg/*-*.svg', to: 'images/flags/[name].[ext]' },
+      { from: 'resources/builds/locales', to: outputFilename('js/locales/[name]') },
+      { from: 'node_modules/moment/locale', to: outputFilename('js/moment-locales/[name]') },
+      { from: 'node_modules/@discordapp/twemoji/dist/svg/*-*.svg', to: 'images/flags/[name][ext]' },
     ],
   }),
 ];
