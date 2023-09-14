@@ -27,17 +27,17 @@ class UserGroupEventFactory extends Factory
                 'user_name' => $event->user?->username,
             ];
 
-            match ($event->type) {
-                UserGroupEvent::GROUP_RENAME => $defaultDetails['previous_group_name'] =
-                    "Old {$event->group->group_name}",
+            switch ($event->type) {
+                case UserGroupEvent::GROUP_RENAME:
+                    $defaultDetails['previous_group_name'] = "Old {$event->group->group_name}";
+                    break;
 
-                UserGroupEvent::USER_ADD,
-                UserGroupEvent::USER_ADD_PLAYMODES,
-                UserGroupEvent::USER_REMOVE_PLAYMODES => $defaultDetails['playmodes'] =
-                    $this->faker->randomElements(array_keys(Beatmap::MODES)),
-
-                default => null,
-            };
+                case UserGroupEvent::USER_ADD:
+                case UserGroupEvent::USER_ADD_PLAYMODES:
+                case UserGroupEvent::USER_REMOVE_PLAYMODES:
+                    $defaultDetails['playmodes'] = [array_rand(Beatmap::MODES)];
+                    break;
+            }
 
             $event->details = array_merge($defaultDetails, $event->details);
         });
