@@ -106,15 +106,11 @@ class BeatmapsetEvent extends Model
             }
         }
 
-        if (present($rawParams['beatmapset'] ?? null)) {
-            $params['beatmapset'] = $rawParams['beatmapset'];
-            $beatmapset = Beatmapset::find($params['beatmapset']);
+        if (present($rawParams['beatmapset_id'] ?? null)) {
+            $params['beatmapset_id'] = $rawParams['beatmapset_id'];
+            $beatmapset = Beatmapset::find($params['beatmapset_id']);
 
-            if ($beatmapset === null) {
-                $query->none();
-            } else {
-                $query->where('beatmapset_id', '=', $beatmapset->getKey());
-            }
+            $query->where('beatmapset_id', '=', $beatmapset->getKey());
         }
 
         if (isset($rawParams['sort'])) {
