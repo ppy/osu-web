@@ -1,15 +1,16 @@
 FROM debian:11
 
-RUN apt update
-RUN DEBIAN_FRONTEND=noninteractive apt install -y apt-transport-https lsb-release ca-certificates curl
+RUN apt-get update
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y apt-transport-https lsb-release ca-certificates curl gnupg
 
 RUN curl -sSLo /usr/share/keyrings/deb.sury.org-php.gpg https://packages.sury.org/php/apt.gpg
 RUN echo "deb [signed-by=/usr/share/keyrings/deb.sury.org-php.gpg] https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list
 
-RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
+RUN curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /usr/share/keyrings/nodesource.gpg
+RUN echo "deb [signed-by=/usr/share/keyrings/nodesource.gpg] https://deb.nodesource.com/node_18.x nodistro main" > /etc/apt/sources.list.d/nodesource.list
 
-RUN apt update
-RUN DEBIAN_FRONTEND=noninteractive apt install -y \
+RUN apt-get update
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
     build-essential \
     chromium-driver \
     default-mysql-client \
