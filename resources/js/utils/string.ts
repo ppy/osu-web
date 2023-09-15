@@ -5,6 +5,6 @@ export function presence(value?: string | null) {
   return present(value) ? value : null;
 }
 
-export function present(value?: string | null) {
+export function present(value?: string | null): value is string {
   return value != null && value !== '';
 }
