@@ -96,6 +96,7 @@
     "watchpack": "^1.6.0",
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4",
+    "webpack-manifest-plugin": "^5.0.0",
     "webpack-sentry-plugin": "^2.0.2",
     "yargs": "^12.0.5"
   },
