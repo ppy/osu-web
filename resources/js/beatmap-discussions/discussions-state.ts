@@ -151,10 +151,10 @@ export default class DiscussionsState {
       } else if (discussion.beatmap_id == null) {
         value.generalAll.push(discussion);
       } else if (discussion.beatmap_id === this.currentBeatmapId) {
-        value.general.push(discussion);
-
         if (discussion.timestamp != null) {
           value.timeline.push(discussion);
+        } else {
+          value.general.push(discussion);
         }
       }
     }
