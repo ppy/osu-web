@@ -24,9 +24,9 @@ export default class Badges extends React.PureComponent<Props> {
           const img = (
             <Img2x
               className='profile-badges__badge'
+              data-date={badge.awarded_at}
               src={badge.image_url}
               title={badge.description}
-              data-date={badge.awarded_at}
             />
           );
 
