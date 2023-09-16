@@ -21,7 +21,7 @@ return [
     'buttons' => [
         'admin' => 'Administrateur',
         'authorise' => 'Autoriser',
-        'authorising' => 'Autorisation...',
+        'authorising' => 'Autorisation en cours...',
         'back_to_previous' => 'Retour à la position précédente',
         'back_to_top' => 'Retour en haut',
         'cancel' => 'Annuler',
@@ -46,7 +46,7 @@ return [
         'restore' => 'Restaurer',
         'retry' => 'Réessayer',
         'save' => 'Sauvegarder',
-        'saving' => 'Sauvegarde...',
+        'saving' => 'Sauvegarde en cours...',
         'search' => 'Rechercher',
         'see_more' => 'voir plus',
         'show' => 'afficher',

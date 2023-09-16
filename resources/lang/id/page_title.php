@@ -92,7 +92,7 @@ return [
             '_' => 'riwayat notifikasi',
         ],
         'password_reset_controller' => [
-            '_' => 'reset kata sandi',
+            '_' => 'pengaturan ulang kata sandi',
         ],
         'ranking_controller' => [
             '_' => 'peringkat',

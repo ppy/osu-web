@@ -18,12 +18,16 @@ return [
             'new' => 'email baru',
             'new_confirmation' => 'konfirmasi email',
             'title' => 'Email',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
         ],
 
         'legacy_api' => [
             'api' => 'api',
             'irc' => 'irc',
-            'title' => 'API lawas',
+            'title' => 'API Lawas',
         ],
 
         'password' => [

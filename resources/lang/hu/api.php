@@ -17,9 +17,9 @@ return [
         'identify' => 'Azonosíthat téged és olvashat a nyilvános profilodból.',
 
         'chat' => [
-            'read' => '',
+            'read' => 'Olvasson üzeneteket az Ön nevében.',
             'write' => 'Küldjön üzeneteket az Ön nevében.',
-            'write_manage' => '',
+            'write_manage' => 'Csatornákhoz csatlakozás, vagy azok elhagyása az Ön nevében.',
         ],
 
         'forum' => [

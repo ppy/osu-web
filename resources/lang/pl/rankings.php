@@ -18,7 +18,7 @@ return [
     ],
 
     'kudosu' => [
-        'total' => 'Przyznane',
+        'total' => 'Zdobyte',
         'available' => 'Dostępne',
         'used' => 'Wykorzystane',
     ],

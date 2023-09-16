@@ -18,6 +18,10 @@ return [
             'new' => 'uusi sähköpostiosoite',
             'new_confirmation' => 'sähköpostivahvistus',
             'title' => 'Sähköposti',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
         ],
 
         'legacy_api' => [

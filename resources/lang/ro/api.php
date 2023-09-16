@@ -17,9 +17,9 @@ return [
         'identify' => 'Să te identifice și să-ți citească profilul public.',
 
         'chat' => [
-            'read' => '',
+            'read' => 'Să citească mesaje în numele tău.',
             'write' => 'Să trimită mesaje în numele tău.',
-            'write_manage' => '',
+            'write_manage' => 'Să părăsească și să se alăture la canale text în numele tău.',
         ],
 
         'forum' => [

@@ -114,7 +114,7 @@ return [
         'password' => 'Password',
         'register' => "Non hai un account di osu!? Fanne uno nuovo",
         'remember' => 'Ricorda questo computer',
-        'title' => 'Per favore accedi per procedere',
+        'title' => 'Accedi per poter continuare',
         'username' => 'Nome Utente',
 
         'beta' => [

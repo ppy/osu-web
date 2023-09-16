@@ -185,5 +185,8 @@ return [
                 'require_supporter_tag' => 'osu! remėjo žyma yra reikalinga.',
             ],
         ],
+        'update_email' => [
+            'locked' => '',
+        ],
     ],
 ];

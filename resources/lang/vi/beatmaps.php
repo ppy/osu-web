@@ -82,11 +82,11 @@ return [
             'disqualify' => '',
             'hype' => '',
             'mapper_note' => '',
-            'nomination_reset' => '',
+            'nomination_reset' => 'Loại bỏ tất cả đề cử',
             'praise' => '',
             'problem' => '',
             'problem_warning' => '',
-            'review' => '',
+            'review' => 'Đăng nhận xét',
             'suggestion' => '',
         ],
 

@@ -18,6 +18,10 @@ return [
             'new' => 'нова пошта',
             'new_confirmation' => 'підтвердження пошти',
             'title' => 'Ел. пошта',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
         ],
 
         'legacy_api' => [

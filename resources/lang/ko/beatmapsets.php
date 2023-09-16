@@ -61,7 +61,7 @@ return [
         'discussion' => '토론',
 
         'admin' => [
-            'full_size_cover' => '',
+            'full_size_cover' => '전체 사이즈 커버 이미지 보기',
         ],
 
         'deleted_banner' => [
