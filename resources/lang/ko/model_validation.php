@@ -141,16 +141,16 @@ return [
         'invalid_twitter' => 'Twitter 유저 이름이 올바르지 않습니다.',
         'too_short' => '새 비밀번호가 너무 짧습니다.',
         'unknown_duplicate' => '유저 이름 또는 이메일 주소가 이미 사용중입니다.',
-        'username_available_in' => '이 사용자 이름은 :duration 안에 사용 가능합니다.',
-        'username_available_soon' => '이 사용자 이름은 곧 사용 가능 합니다!',
-        'username_invalid_characters' => '요청한 사용자 이름에 유효하지 않은 문자가 있습니다.',
-        'username_in_use' => '이미 사용중인 사용자 이름 입니다!',
+        'username_available_in' => '이 유저 이름은 :duration 안에 사용 가능합니다.',
+        'username_available_soon' => '이 유저 이름은 곧 사용 가능 합니다!',
+        'username_invalid_characters' => '요청한 유저 이름에 유효하지 않은 문자가 있습니다.',
+        'username_in_use' => '이미 사용중인 유저 이름 입니다!',
         'username_locked' => '이미 사용 중인 사용자 이름입니다!', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => '언더바나 공백을 사용해주세요, 둘 중 하나요!',
-        'username_no_spaces' => "사용자 이름은 공백으로 시작하거나 끝날 수 없습니다!",
+        'username_no_spaces' => "유저 이름은 공백으로 시작하거나 끝날 수 없습니다!",
         'username_not_allowed' => '이 사용자 이름 선택은 허용되지 않습니다.',
         'username_too_short' => '요청하신 유저 이름이 너무 짧습니다.',
-        'username_too_long' => '요청한 사용자 이름이 너무 깁니다.',
+        'username_too_long' => '요청한 유저 이름이 너무 깁니다.',
         'weak' => '비밀번호에 사용할 수 없는 문자나 패턴이 포함되어 있습니다.',
         'wrong_current_password' => '현재 비밀번호가 일치하지 않습니다.',
         'wrong_email_confirmation' => '이메일과 이메일 확인란이 일치하지 않습니다.',
@@ -158,13 +158,13 @@ return [
         'too_long' => '최대 길이를 초과하셨습니다 - :limit자리 까지만 가능합니다.',
 
         'attributes' => [
-            'username' => '사용자 이름',
+            'username' => '유저 이름',
             'user_email' => '이메일 주소',
             'password' => '비밀번호',
         ],
 
         'change_username' => [
-            'restricted' => '제한된 상태의 계정은 사용자 이름을 변경할 수 없습니다.',
+            'restricted' => '제한된 상태의 계정은 유저 이름을 변경할 수 없습니다.',
             'supporter_required' => [
                 '_' => '무조건 :link해야만 이름을 변경할 수 있습니다!',
                 'link_text' => 'osu!를 후원',

@@ -23,11 +23,11 @@ return [
         ],
 
         'votes_received' => [
-            'title_most' => 'Les mieux notés (les 3 derniers mois)',
+            'title_most' => 'Les mieux notées (les 3 derniers mois)',
         ],
 
         'votes_made' => [
-            'title_most' => 'Les mieux notés (les 3 derniers mois)',
+            'title_most' => 'Les mieux notées (les 3 derniers mois)',
         ],
     ],
 
@@ -159,7 +159,7 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'Votre compte a été restreint !',
-        'message' => 'Quand vous êtes restreint, vous ne pouvez pas interagir avec les autres joueurs et vos scores ne seront visibles que par vous. Cette restriction est souvent le résultat d\'un processus automatique et sera en général levée dans les 24 heures. Si vous souhaitez faire appel de votre restriction, merci de <a href="mailto:accounts@ppy.sh">contacter le support</a>.',
+        'message' => 'Lorsque vous êtes restreint, vous ne pouvez pas interagir avec les autres joueurs et vos scores ne seront visibles que par vous-même. Cette restriction est souvent le résultat d\'un processus automatique et sera généralement levée sous 24 heures. :link',
         'message_link' => 'Consultez cette page pour en savoir plus.',
     ],
     'show' => [

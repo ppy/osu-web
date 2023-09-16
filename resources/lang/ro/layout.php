@@ -59,7 +59,7 @@ return [
 
     'gallery' => [
         'close' => 'Închide (Esc)',
-        'fullscreen' => 'Comută fullscreen',
+        'fullscreen' => 'Comutare fullscreen',
         'zoom' => 'Mărire/Micșorare',
         'previous' => 'Precedent (săgeată stânga)',
         'next' => 'Următor (săgeată dreapta)',

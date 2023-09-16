@@ -18,6 +18,10 @@ return [
             'new' => 'อีเมลใหม่',
             'new_confirmation' => 'ยืนยันอีเมล',
             'title' => 'อีเมล',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
         ],
 
         'legacy_api' => [

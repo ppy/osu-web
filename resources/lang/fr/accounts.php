@@ -18,6 +18,10 @@ return [
             'new' => 'nouvel e-mail',
             'new_confirmation' => 'confirmation de l\'e-mail',
             'title' => 'E-mail',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
         ],
 
         'legacy_api' => [
@@ -39,7 +43,7 @@ return [
 
             'country_change' => [
                 '_' => "Il semble que le pays de votre compte ne correspond pas à votre pays de résidence. :update_link.",
-                'update_link' => 'Mettre à jour vers :country',
+                'update_link' => 'Obtenir le drapeau du pays suivant : :country',
             ],
 
             'user' => [

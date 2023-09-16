@@ -17,9 +17,9 @@ return [
         'identify' => 'Identificarti e leggere il tuo profilo pubblico.',
 
         'chat' => [
-            'read' => '',
-            'write' => 'Mandare messaggi per tuo conto.',
-            'write_manage' => '',
+            'read' => 'Leggere messaggi a nome tuo.',
+            'write' => 'Mandare messaggi a nome tuo.',
+            'write_manage' => 'Unirsi e lasciare canali a nome tuo.',
         ],
 
         'forum' => [

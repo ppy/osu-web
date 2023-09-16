@@ -18,6 +18,10 @@ return [
             'new' => 'nowy e-mail',
             'new_confirmation' => 'potwierdź e-mail',
             'title' => 'E-mail',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
         ],
 
         'legacy_api' => [

@@ -61,7 +61,7 @@ return [
         'discussion' => '讨论',
 
         'admin' => [
-            'full_size_cover' => '',
+            'full_size_cover' => '查看完整封面图',
         ],
 
         'deleted_banner' => [

@@ -20,6 +20,10 @@ return [
             'new' => 'bagong email',
             'new_confirmation' => 'ikumpirma ang email',
             'title' => 'Email',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
         ],
 
         'legacy_api' => [

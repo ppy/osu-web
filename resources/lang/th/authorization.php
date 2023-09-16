@@ -185,5 +185,8 @@ return [
                 'require_supporter_tag' => 'จำเป็นต้องมี Supporter Tag',
             ],
         ],
+        'update_email' => [
+            'locked' => '',
+        ],
     ],
 ];

@@ -18,6 +18,10 @@ return [
             'new' => 'новая почта',
             'new_confirmation' => 'повторите почту',
             'title' => 'Смена почты',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
         ],
 
         'legacy_api' => [

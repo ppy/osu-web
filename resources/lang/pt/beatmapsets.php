@@ -61,7 +61,7 @@ return [
         'discussion' => 'Discussão',
 
         'admin' => [
-            'full_size_cover' => '',
+            'full_size_cover' => 'Ver imagem da capa em tamanho real',
         ],
 
         'deleted_banner' => [
