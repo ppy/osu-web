@@ -24,6 +24,8 @@ export default class TooltipDefault
     $content =
       if isTime
         @timeagoTip el, title
+      else if (dateString = el.dataset.date)?
+        @tipWithDate el, title, dateString
       else
         htmlTitle ? $('<span>').text(title)
 
@@ -140,6 +142,20 @@ export default class TooltipDefault
       .append $dateEl
       .append ' '
       .append $timeEl
+  
+  tipWithDate: (el, title, dateString) =>
+    date = moment(dateString)
+
+    $titleEl = $('<div>')
+      .text title
+
+    $dateEl = $('<div>')
+      .addClass 'tooltip-default__date'
+      .text date.format('LL')
+
+    $('<div>')
+      .append $titleEl
+      .append $dateEl
 
 
   tzString: (time) ->

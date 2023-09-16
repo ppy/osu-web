@@ -26,6 +26,7 @@ export default class Badges extends React.PureComponent<Props> {
               className='profile-badges__badge'
               src={badge.image_url}
               title={badge.description}
+              data-date={badge.awarded_at}
             />
           );
 
