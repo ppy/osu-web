@@ -114,11 +114,11 @@ export default class BeatmapsetEvent extends React.PureComponent<Props> {
   }
 
   private content() {
-    let discussionLink: React.ReactChild = '';
-    let discussionUserLink: React.ReactChild = '[unknown user]';
-    let text: React.ReactChild = '';
+    let discussionLink: React.ReactElement | number | string = '';
+    let discussionUserLink: React.ReactElement | number | string = '[unknown user]';
+    let text: React.ReactElement | number | string = '';
     let url = '';
-    let user: React.ReactChild | undefined;
+    let user: React.ReactElement | number | string | undefined;
 
     if (this.discussionId != null) {
       if (this.discussion == null) {
