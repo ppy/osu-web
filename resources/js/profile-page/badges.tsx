@@ -23,8 +23,8 @@ export default class Badges extends React.PureComponent<Props> {
       <div className={classWithModifiers('profile-badges', this.props.modifiers)}>
         {this.props.badges.map((badge) => {
           const hasDate = present(badge.awarded_at);
-          const htmlTitle = hasDate ?`<div>${badge.description}</div>
-            <div class='tooltip-default__date'>${moment(badge.awarded_at).format('LL')}</div>` : null;
+          const htmlTitle = hasDate ? `<div>${badge.description}</div>
+            <div class='profile-badges__date'>${moment(badge.awarded_at).format('LL')}</div>` : null;
 
           const img = (
             <Img2x
