@@ -66,7 +66,7 @@ interface State {
     );
   }
 
-  private toggle = (event?: React.SyntheticEvent<HTMLElement>) => {
+  private readonly toggle = (event?: React.SyntheticEvent<HTMLElement>) => {
     if (core.currentUser == null) {
       return;
     }

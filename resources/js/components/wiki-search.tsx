@@ -119,7 +119,7 @@ export class WikiSearch extends React.Component {
     );
   }
 
-  private handleSuggestionMouseEnter = (e: React.SyntheticEvent<HTMLElement>) => {
+  private readonly handleSuggestionMouseEnter = (e: React.SyntheticEvent<HTMLElement>) => {
     this.keepSelectionInView = false;
     this.controller.selectIndex(parseInt(e.currentTarget.dataset.index ?? '', 10));
   };
