@@ -1,98 +1,10 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-const { spawnSync } = require('child_process');
-const path = require('path');
-const Watchpack = require('watchpack');
-const generateLocalizations = require('./resources/js/cli/generate-localizations');
-const modNamesGenerator = require('./resources/js/cli/mod-names-generator');
-
-const spawnOptions = { stdio: 'inherit' };
-
-const modsFile = path.resolve(__dirname, 'database/mods.json');
-const routesFile = path.resolve(__dirname, 'routes/web.php');
-const langDir = path.resolve(__dirname, 'resources/lang');
-
-const webpackConfig = require('./webpack.unmix.js');
-
-let resolved = false;
-
-const watches = [
-  {
-    callback: modNamesGenerator,
-    path: modsFile,
-    type: 'file',
-  },
-  {
-    callback: () => {
-      spawnSync('php', ['artisan', 'ziggy:generate', 'resources/builds/ziggy.js'], spawnOptions);
-    },
-    path: routesFile,
-    type: 'file',
-  },
-  {
-    callback: () => {
-      generateLocalizations();
-      // touching the file on first build might cause karma's watchers to fire after tests start.
-      if (resolved) {
-        spawnSync('touch', [path.resolve(__dirname, 'resources/js/main.coffee')], spawnOptions);
-      }
-    },
-    path: langDir,
-    type: 'dir',
-  },
-];
-function configPromise(env, argv) {
-  return new Promise((resolve) => {
-    const options = {
-      // fire an aggregated event after 200ms on changes.
-      aggregateTimeout: 200,
-    };
-    // same as webpack-cli's handling
-    if (argv['watch-poll'] === 'true' || argv['watch-poll'] === '') options.poll = true;
-
-    if (!argv.watch) {
-      watches.forEach((watched) => {
-        watched.callback();
-      });
-
-      return resolve(webpackConfig);
-    }
-
-    const wp = new Watchpack(options);
-    wp.watch(
-      watches.filter((x) => x.type === 'file').map((x) => x.path),
-      watches.filter((x) => x.type === 'dir').map((x) => x.path),
-    ); // files and directories are different arguments.
-
-    // directory watchers cause change events on start, file watchers don't;
-    // run the callback for each file watcher once.
-    watches.filter((x) => x.type === 'file').forEach((watched) => {
-      watched.callback();
-      watched.ranOnce = true;
-    });
-
-    wp.on('aggregated', (changes, removals) => {
-      watches.forEach((watched) => {
-        if (changes.includes(watched.path) || removals.includes(watched.path)) {
-          watched.callback();
-          watched.ranOnce = true;
-        }
-      });
-
-      // let webpack run after the first build.
-      if (!resolved && watches.reduce((value, watched) => value && watched.ranOnce, true)) {
-        resolved = true;
-        resolve(webpackConfig);
-      }
-    });
-  });
-}
-
-module.exports = configPromise;
 'use strict';
 
 // built-in imports
+const { spawnSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 
@@ -105,9 +17,13 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const Watchpack = require('watchpack');
 const webpack = require('webpack');
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 const SentryPlugin = require('webpack-sentry-plugin');
+const generateLocalizations = require('./resources/js/cli/generate-localizations');
+const modNamesGenerator = require('./resources/js/cli/mod-names-generator');
+
 
 // #region env
 const env = process.env.NODE_ENV || 'development';
@@ -271,8 +187,9 @@ const rules = [
       {
         loader: 'postcss-loader',
         options: {
-          plugins: [Autoprefixer],
-          sourceMap: true,
+          postcssOptions: {
+            plugins: [Autoprefixer],
+          },
         },
       },
       { loader: 'less-loader', options: { sourceMap: true } },
@@ -368,25 +285,75 @@ if (inProduction) {
 
 // #endregion
 
-module.exports = {
-  devtool: 'source-map',
-  entry,
-  mode: inProduction ? 'production' : 'development',
-  module: {
-    rules,
+const watches = [
+  {
+    callback: modNamesGenerator,
+    path: resolvePath('database/mods.json'),
+    type: 'file',
   },
-  optimization,
-  output,
-  plugins,
-  resolve,
-  stats: {
-    entrypoints: false,
-    errorDetails: false,
-    excludeAssets: [
-      // exclude copied files
-      /^js\/(moment-locales|locales)\//,
-      /^fonts/,
-      /^images/,
-    ],
+  {
+    callback: () => spawnSync(
+      'php',
+      ['artisan', 'ziggy:generate', 'resources/builds/ziggy.js'],
+      { stdio: 'inherit' },
+    ),
+    path: resolvePath('routes/web.php'),
+    type: 'file',
   },
-};
+  {
+    callback: generateLocalizations,
+    path: resolvePath('resources/lang'),
+    type: 'dir',
+  },
+];
+
+function configFunction(_env, argv) {
+  watches.forEach((watched) => watched.callback());
+
+  if (argv.watch) {
+    const wp = new Watchpack({
+      // fire an aggregated event after 200ms on changes.
+      aggregateTimeout: 200,
+      // same as webpack-cli's handling
+      poll: argv.watchOptionsPoll,
+    });
+
+    wp.watch({
+      directories: watches.filter((x) => x.type === 'dir').map((x) => x.path),
+      files: watches.filter((x) => x.type === 'file').map((x) => x.path),
+    });
+
+    wp.on('aggregated', (changes, removals) => {
+      watches.forEach((watched) => {
+        if (changes.has(watched.path) || removals.has(watched.path)) {
+          watched.callback();
+        }
+      });
+    });
+  }
+
+  return {
+    devtool: 'source-map',
+    entry,
+    mode: inProduction ? 'production' : 'development',
+    module: {
+      rules,
+    },
+    optimization,
+    output,
+    plugins,
+    resolve,
+    stats: {
+      entrypoints: false,
+      errorDetails: false,
+      excludeAssets: [
+        // exclude copied files
+        /^js\/(moment-locales|locales)\//,
+        /^fonts/,
+        /^images/,
+      ],
+    },
+  };
+}
+
+module.exports = configFunction;
