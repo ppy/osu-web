@@ -18,6 +18,10 @@ return [
             'new' => '',
             'new_confirmation' => '',
             'title' => '',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
         ],
 
         'legacy_api' => [

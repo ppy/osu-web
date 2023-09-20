@@ -139,7 +139,7 @@ return [
             ],
 
             'data' => [
-                'add_tag' => 'etiqueta ":tag" agregada',
+                'add_tag' => 'etiqueta «:tag» añadida',
                 'announcement' => 'tema anclado y marcado como anuncio',
                 'edit_topic' => 'a :title',
                 'fork' => 'de :topic',
@@ -253,45 +253,45 @@ return [
         ],
 
         'issue_tag_added' => [
-            'to_0' => 'Eliminar etiqueta "agregado"',
-            'to_0_done' => 'Etiqueta "agregado" eliminada',
-            'to_1' => 'Agregar etiqueta "agregado"',
-            'to_1_done' => 'Etiqueta "agregado" agregada',
+            'to_0' => 'Eliminar etiqueta «agregado»',
+            'to_0_done' => 'Etiqueta «agregado» eliminada',
+            'to_1' => 'Añadir etiqueta «agregado»',
+            'to_1_done' => 'Etiqueta «agregado» añadida',
         ],
 
         'issue_tag_assigned' => [
             'to_0' => 'Eliminar etiqueta "asignado"',
             'to_0_done' => 'Etiqueta "asignado" eliminada',
             'to_1' => 'Agregar etiqueta "asignado"',
-            'to_1_done' => 'Etiqueta "asignado" agregada',
+            'to_1_done' => 'Etiqueta «asignado» añadida',
         ],
 
         'issue_tag_confirmed' => [
             'to_0' => 'Eliminar etiqueta "confirmado"',
             'to_0_done' => 'Etiqueta "confirmado" eliminada',
             'to_1' => 'Agregar etiqueta "confirmado"',
-            'to_1_done' => 'Etiqueta "confirmado" agregada',
+            'to_1_done' => 'Etiqueta «confirmado» añadida',
         ],
 
         'issue_tag_duplicate' => [
             'to_0' => 'Eliminar etiqueta "duplicado"',
             'to_0_done' => 'Etiqueta "duplicado" eliminada',
             'to_1' => 'Agregar etiqueta "duplicado"',
-            'to_1_done' => 'Etiqueta "duplicado" agregada',
+            'to_1_done' => 'Etiqueta «duplicado» añadida',
         ],
 
         'issue_tag_invalid' => [
             'to_0' => 'Eliminar etiqueta "inválido"',
             'to_0_done' => 'Etiqueta "inválido" eliminada',
             'to_1' => 'Agregar etiqueta "inválido"',
-            'to_1_done' => 'Etiqueta "inválido" agregada',
+            'to_1_done' => 'Etiqueta «inválido» añadida',
         ],
 
         'issue_tag_resolved' => [
             'to_0' => 'Eliminar etiqueta "resuelto"',
             'to_0_done' => 'Etiqueta "resuelto" eliminada',
             'to_1' => 'Agregar etiqueta "resuelto"',
-            'to_1_done' => 'Etiqueta "resuelto" agregada',
+            'to_1_done' => 'Etiqueta «resuelto» añadida',
         ],
 
         'lock' => [

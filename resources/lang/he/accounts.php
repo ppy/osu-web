@@ -18,6 +18,10 @@ return [
             'new' => 'דואר אלקטרוני חדש',
             'new_confirmation' => 'אישור דואר אלקטרוני חדש',
             'title' => 'דואר אלקטרוני',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
         ],
 
         'legacy_api' => [

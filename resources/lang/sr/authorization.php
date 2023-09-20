@@ -185,5 +185,8 @@ return [
                 'require_supporter_tag' => 'морате да имате osu!supporter статус.',
             ],
         ],
+        'update_email' => [
+            'locked' => '',
+        ],
     ],
 ];

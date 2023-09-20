@@ -61,7 +61,7 @@ return [
         'discussion' => 'การสนทนา',
 
         'admin' => [
-            'full_size_cover' => '',
+            'full_size_cover' => 'ดูภาพปกขนาดเต็ม',
         ],
 
         'deleted_banner' => [

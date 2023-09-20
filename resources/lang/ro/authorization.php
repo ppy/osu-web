@@ -185,5 +185,8 @@ return [
                 'require_supporter_tag' => 'Statusul de suporter osu! este necesar.',
             ],
         ],
+        'update_email' => [
+            'locked' => '',
+        ],
     ],
 ];

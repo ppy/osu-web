@@ -5,8 +5,8 @@
 
 return [
     'play_more' => 'Che ne dici di giocare un po\' ad osu!?',
-    'require_login' => 'Per favore effettua il login per poter procedere.',
-    'require_verification' => 'Per favore, esegui la verifica prima di procedere.',
+    'require_login' => 'Accedi per poter continuare.',
+    'require_verification' => 'Esegui la verifica per poter continuare.',
     'restricted' => "Non puoi farlo mentre sei limitato.",
     'silenced' => "Non puoi farlo mentre sei silenziato.",
     'unauthorized' => 'Accesso Negato.',
@@ -17,7 +17,7 @@ return [
             'has_reply' => 'Impossibile eliminare una discussione con risposte',
         ],
         'nominate' => [
-            'exhausted' => 'Hai raggiunto il limite di nomine per oggi, per favore riprova domani.',
+            'exhausted' => 'Hai raggiunto il limite di nomine per oggi, riprova domani.',
             'incorrect_state' => 'Errore nell\'eseguire questa azione, prova a ricaricare la pagina.',
             'owner' => "Non puoi nominare la tua beatmap.",
             'set_metadata' => 'Devi impostare il genere e la lingua prima di nominarla.',
@@ -32,7 +32,7 @@ return [
 
         'vote' => [
             'bot' => "Non puoi votare in una discussione creata da un bot",
-            'limit_exceeded' => 'Per favore attendi un po\' prima di esprimere altri voti',
+            'limit_exceeded' => 'Attendi un po\' prima di aggiungere più voti',
             'owner' => "Non puoi votare la tua discussione.",
             'wrong_beatmapset_state' => 'Puoi votare solo su discussioni di beatmap in attesa.',
         ],
@@ -124,7 +124,7 @@ return [
                 'no_permission' => 'Non hai i permessi per rispondere.',
 
                 'user' => [
-                    'require_login' => 'Per favore effettua il login per rispondere.',
+                    'require_login' => 'Effettua il login per poter rispondere.',
                     'restricted' => "Non puoi rispondere mentre sei limitato.",
                     'silenced' => "Non puoi rispondere mentre sei silenziato.",
                 ],
@@ -143,7 +143,7 @@ return [
                 'voted' => 'Non è permesso cambiare voto.',
 
                 'user' => [
-                    'require_login' => 'Per favore effettua il login per votare.',
+                    'require_login' => 'Effettua il login per poter votare.',
                     'restricted' => "Non puoi votare mentre sei limitato.",
                     'silenced' => "Non puoi votare mentre sei silenziato.",
                 ],
@@ -184,6 +184,9 @@ return [
                 'not_owner' => 'Puoi modificare solo la tua pagina utente.',
                 'require_supporter_tag' => 'è necessario avere il tag osu!supporter.',
             ],
+        ],
+        'update_email' => [
+            'locked' => '',
         ],
     ],
 ];
