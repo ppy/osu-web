@@ -13,6 +13,16 @@ return [
     'see_channel' => 'ir para o chat',
     'verifying' => 'Por favor verifique a sessão para ver as notificações',
 
+    'action_type' => [
+        '_' => 'todas',
+        'beatmapset' => 'beatmaps',
+        'build' => 'versões',
+        'channel' => 'chat',
+        'forum_topic' => 'fórum',
+        'news_post' => 'notícias',
+        'user' => 'perfil',
+    ],
+
     'filters' => [
         '_' => 'tudo',
         'user' => 'perfil',
@@ -86,8 +96,19 @@ return [
         'channel' => [
             '_' => 'Chat',
 
+            'announcement' => [
+                '_' => 'Novo aviso',
+
+                'announce' => [
+                    'channel_announcement' => ':username diz ":title"',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => 'Aviso de :username',
+                ],
+            ],
+
             'channel' => [
                 '_' => 'Nova mensagem',
+
                 'pm' => [
                     'channel_message' => ':username diz ":title"',
                     'channel_message_compact' => ':title',
@@ -132,15 +153,6 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => 'Mensagens Privadas do Fórum Legado',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited mensagem não lida|:count_delimited mensagens não lidas',
-            ],
-        ],
-
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Novo beatmap',
@@ -148,6 +160,9 @@ return [
                 'user_beatmapset_new' => 'Novo beatmap ":title" por :username',
                 'user_beatmapset_new_compact' => 'Novo beatmap ":title"',
                 'user_beatmapset_new_group' => 'Novos beatmaps por :username',
+
+                'user_beatmapset_revive' => 'Beatmap ":title" revivido por :username',
+                'user_beatmapset_revive_compact' => 'Beatmap ":title" revivido',
             ],
         ],
 
@@ -195,6 +210,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => 'Há um novo anúncio em ":name"',
+            ],
+
             'channel' => [
                 'pm' => 'Você recebeu uma nova mensagem de :username',
             ],
@@ -226,6 +245,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username criou novos beatmaps',
+                'user_beatmapset_revive' => ':username reviveu beatmaps',
             ],
         ],
     ],

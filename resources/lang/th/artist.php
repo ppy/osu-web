@@ -13,8 +13,8 @@ return [
 
     'beatmaps' => [
         '_' => 'บีทแมพ',
-        'download' => 'ดาวน์โหลดตัวอย่าง Beatmap',
-        'download-na' => 'ตัวอย่าง Beatmap นี้ยังไม่สามารถให้ใช้งานได้',
+        'download' => 'ดาวน์โหลดตัวอย่างบีตแม็ป',
+        'download-na' => 'ตัวอย่างบีทแมพนี้ยังไม่สามารถให้ใช้งานได้',
     ],
 
     'index' => [
@@ -22,6 +22,7 @@ return [
     ],
 
     'links' => [
+        'beatmaps' => 'osu! บีทแมพ',
         'osu' => 'โปรไฟล์ osu!',
         'site' => 'เว็บไซต์อย่างเป็นทางการ',
     ],
@@ -29,7 +30,8 @@ return [
     'songs' => [
         '_' => 'เพลง',
         'count' => ':count_delimited เพลง|:count_delimited เพลง',
-        'exclusive' => 'เฉพาะ osu!',
+        'original' => 'osu! ต้นฉบับ',
+        'original_badge' => 'ต้นฉบับ',
     ],
 
     'tracklist' => [
@@ -37,5 +39,24 @@ return [
         'length' => 'ระยะเวลา',
         'bpm' => 'bpm',
         'genre' => 'ประเภท',
+    ],
+
+    'tracks' => [
+        'index' => [
+            '_' => 'ค้นหาแทร็ก',
+
+            'form' => [
+                'advanced' => 'การค้นหาขั้นสูง',
+                'album' => 'อัลบั้ม',
+                'artist' => 'ศิลปิน',
+                'bpm_gte' => 'BPM ต่ำสุด',
+                'bpm_lte' => 'BPM สูงสุด',
+                'empty' => 'ไม่พบแทร็กที่ตรงกับเกณฑ์การค้นหา',
+                'genre' => 'ประเภท',
+                'genre_all' => 'ทั้งหมด',
+                'length_gte' => 'ความยาวต่ำสุด',
+                'length_lte' => 'ความยาวสูงสุด',
+            ],
+        ],
     ],
 ];

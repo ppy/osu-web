@@ -3,7 +3,7 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 
-<a href="{{ $href }}" class="btn-home btn-home--{{ $colour ?? '' }}">
+<a href="{{ $href }}" class="{{ class_with_modifiers('btn-home', $colour ?? null) }}">
     <span class="btn-home__text">{{ $label }}</span>
     <span class="btn-home__icon">
         <i class="fas fa-fw fa-{{$icon}}"></i>

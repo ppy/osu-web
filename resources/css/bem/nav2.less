@@ -1,0 +1,184 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.nav2 {
+  @_top: nav2;
+  @_menu-gutter: 10px;
+  @_link-padding-vertical: 6px;
+  @_link-highlight-margin-vertical: 2px;
+  @_menu-offset: -(((@nav2-height - @nav2-avatar-height) / 2) + 5px);
+  @_menu-offset--pinned: -5px;
+
+  .own-layer();
+  width: 100%;
+  height: @nav2-height;
+  display: flex;
+  font-size: @font-size--title-small;
+  font-weight: 500;
+  transition: height @header-pinned-animation-duration;
+
+  .@{header-pinned} & {
+    height: @nav2-height--pinned;
+  }
+
+  &__col {
+    display: flex;
+    align-items: center;
+    flex: none;
+
+    &--avatar {
+      margin-left: 6px;
+    }
+
+    &--logo {
+      margin-right: 10px;
+    }
+
+    &--menu {
+      align-items: stretch;
+      position: relative;
+    }
+
+    &--notifications {
+      margin-left: 6px;
+    }
+  }
+
+  &__colgroup {
+    display: flex;
+    flex: none;
+
+    &--menu {
+      margin-right: auto;
+    }
+  }
+
+  &__logo {
+    .full-size();
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: all 100ms ease-in-out;
+    will-change: opacity, transform;
+
+    background-image: url('~@images/layout/osu-logo-white.svg');
+
+    .@{_top}__logo-link:hover & {
+      // be careful of weird snapping at the end of animation on Firefox (with 1.1, ~60px).
+      transform: scale(1.11);
+    }
+
+    &--bg {
+      background-image: url('~@images/layout/osu-logo-triangles.svg');
+      opacity: 0;
+
+      .@{_top}__logo-link:hover & {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__logo-link {
+    @__logo-whitespace: 5px;
+    @_logo-size: (@nav2-avatar-height + @__logo-whitespace * 2);
+    width: @_logo-size;
+    height: @_logo-size;
+    margin: -@__logo-whitespace;
+    transition: width @header-pinned-animation-duration, height @header-pinned-animation-duration;
+    position: relative;
+
+    .@{header-pinned} & {
+      height: @nav2-avatar-height--pinned;
+      width: @nav2-avatar-height--pinned;
+    }
+  }
+
+  &__menu-link {
+    .link-plain();
+    padding: 6px @_menu-gutter;
+    line-height: 1;
+
+    color: @pink-light;
+
+    &::after {
+      content: '';
+      position: absolute;
+
+      border-radius: 10px;
+      top: (@_link-padding-vertical + @_link-highlight-margin-vertical);
+      right: 100%;
+      width: 3px;
+      height: calc(100% - (@_link-padding-vertical * 2 + @_link-highlight-margin-vertical * 2));
+      background-color: @yellow;
+      opacity: 0;
+      will-change: opacity;
+    }
+
+    &:hover {
+      color: #fff;
+
+      &::after {
+        opacity: 1;
+      }
+    }
+
+    &:active {
+      color: #fff;
+    }
+  }
+
+  &__menu-link-main {
+    .link-white();
+    .link-plain();
+    padding: 10px @_menu-gutter;
+    display: flex;
+    align-items: center;
+
+    .@{_top}__colgroup:hover & {
+      color: fade(#fff, 70%);
+
+      &:hover, &.js-menu--active {
+        color: #fff;
+      }
+    }
+
+    &--search {
+      .center-content();
+      .circle(40px);
+      align-self: center;
+      padding: 0;
+    }
+  }
+
+  &__menu-link-bar {
+    position: absolute;
+    top: 100%;
+    margin-top: 5px;
+    height: 3px;
+    border-radius: 10px;
+    width: 100%;
+    display: block;
+  }
+
+  &__menu-popup {
+    position: absolute;
+    top: 100%;
+    height: 0; // avoid covering page when the content is hidden
+    margin-top: @_menu-offset;
+    left: @_menu-gutter;
+    white-space: nowrap;
+    display: flex;
+    flex-direction: column;
+    transition: margin-top @header-pinned-animation-duration;
+
+    .@{header-pinned} & {
+      margin-top: @_menu-offset--pinned;
+    }
+  }
+
+  &__notification-container {
+    display: flex;
+    padding: 2px;
+    border: 2px solid hsl(var(--hsl-c1));
+    border-radius: 30px;
+  }
+}

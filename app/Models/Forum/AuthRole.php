@@ -12,7 +12,10 @@ namespace App\Models\Forum;
  */
 class AuthRole extends Model
 {
-    protected $table = 'phpbb_acl_roles_data';
+    public $incrementing = false;
+    public $timestamps = false;
 
-    protected $primaryKey = false;
+    protected $primaryKey = ':composite';
+    protected $primaryKeys = ['role_id', 'auth_option_id'];
+    protected $table = 'phpbb_acl_roles_data';
 }

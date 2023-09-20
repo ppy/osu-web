@@ -6,9 +6,9 @@
 namespace App\Http\Controllers\Solo;
 
 use App\Http\Controllers\Controller as BaseController;
-use App\Libraries\Multiplayer\Mod;
 use App\Models\Solo\Score;
 use App\Models\Solo\ScoreToken;
+use App\Transformers\ScoreTransformer;
 use DB;
 
 class ScoresController extends BaseController
@@ -32,6 +32,7 @@ class ScoresController extends BaseController
                 $params = get_params(request()->all(), null, [
                     'accuracy:float',
                     'max_combo:int',
+                    'maximum_statistics:array',
                     'mods:array',
                     'passed:bool',
                     'rank:string',
@@ -41,17 +42,16 @@ class ScoresController extends BaseController
 
                 $params = array_merge($params, [
                     'beatmap_id' => $scoreToken->beatmap_id,
-                    'ended_at' => now(),
-                    'mods' => Mod::parseInputArray($params['mods'] ?? [], $scoreToken->ruleset_id),
+                    'build_id' => $scoreToken->build_id,
+                    'ended_at' => json_time(now()),
+                    'mods' => app('mods')->parseInputArray($scoreToken->ruleset_id, $params['mods'] ?? []),
                     'ruleset_id' => $scoreToken->ruleset_id,
-                    'started_at' => $scoreToken->created_at,
+                    'started_at' => $scoreToken->created_at_json,
                     'user_id' => $scoreToken->user_id,
                 ]);
 
-                $score = new Score();
-
-                $score->complete($params);
-                $score->createLegacyEntry();
+                $score = Score::createFromJsonOrExplode($params);
+                $score->createLegacyEntryOrExplode();
                 $scoreToken->fill(['score_id' => $score->getKey()])->saveOrExplode();
             } else {
                 // assume score exists and is valid
@@ -61,6 +61,11 @@ class ScoresController extends BaseController
             return $score;
         });
 
-        return json_item($score, 'Solo\Score');
+        $scoreJson = json_item($score, new ScoreTransformer(ScoreTransformer::TYPE_SOLO));
+        if ($score->wasRecentlyCreated) {
+            $score::queueForProcessing($scoreJson);
+        }
+
+        return $scoreJson;
     }
 }

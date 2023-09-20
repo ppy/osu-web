@@ -50,28 +50,31 @@ return [
             'resolved' => 'Du kan ikke redigere et opslag fra en løst diskussion.',
             'system_generated' => 'Automatisk genererede opslag kan ikke redigeres.',
         ],
-
-        'store' => [
-            'beatmapset_locked' => 'Dette beatmap er låst for diskussion.',
-        ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => '',
+
         'metadata' => [
             'nominated' => 'Du kan ikke ændre metadata for et nomineret map. Kontakt et BAT- eller NAT-medlem, hvis du mener, at det er angivet forkert.',
         ],
     ],
 
     'chat' => [
+        'annnonce_only' => 'Denne kanal er kun for annonceringer.',
         'blocked' => 'Du kan ikke sende denne besked, enten har brugeren blokeret dig eller du har blokeret brugeren.',
         'friends_only' => 'Brugeren blokerer beskeder fra folk der ikke er på deres venneliste.',
         'moderated' => 'Denne kanal er i øjeblikket modereret.',
         'no_access' => 'Du har ikke adgang til denne kanal.',
+        'receive_friends_only' => 'Brugeren kan muligvis ikke svare, fordi du kun accepterer beskeder fra folk på din venneliste.',
         'restricted' => 'Du kan ikke sende beskeder når du er enten muted, begrænset eller banned.',
         'silenced' => 'Du kan ikke sende beskeder når du er enten muted, begrænset eller banned.',
     ],
 
     'comment' => [
+        'store' => [
+            'disabled' => 'Der er lukket for kommentarer',
+        ],
         'update' => [
             'deleted' => "Kan ikke redigere slettede opslag.",
         ],
@@ -166,6 +169,14 @@ return [
         ],
     ],
 
+    'score' => [
+        'pin' => [
+            'disabled_type' => "",
+            'not_owner' => 'Kun score ejer kan pin score.',
+            'too_many' => 'Fastgjort for mange score.',
+        ],
+    ],
+
     'user' => [
         'page' => [
             'edit' => [
@@ -173,6 +184,9 @@ return [
                 'not_owner' => 'Du kan kun redigere din egen brugerside.',
                 'require_supporter_tag' => 'osu!supporter tag er nødvendigt.',
             ],
+        ],
+        'update_email' => [
+            'locked' => '',
         ],
     ],
 ];

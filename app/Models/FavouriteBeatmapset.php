@@ -14,12 +14,15 @@ namespace App\Models;
  */
 class FavouriteBeatmapset extends Model
 {
-    protected $table = 'osu_favouritemaps';
-
+    public $incrementing = false;
     public $timestamps = false;
-    protected $dates = [
-        'dateadded',
+
+    protected $casts = [
+        'dateadded' => 'datetime',
     ];
+    protected $primaryKey = ':composite';
+    protected $primaryKeys = ['beatmapset_id', 'user_id'];
+    protected $table = 'osu_favouritemaps';
 
     public function user()
     {

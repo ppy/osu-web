@@ -31,6 +31,12 @@ return [
         'progress' => [
             '_' => ':used / :max oy kullanıldı',
         ],
+
+        'requirement' => [
+            'playlist_beatmapsets' => [
+                'incomplete_play' => 'Oylama yapabilmek için belirli playlistlerdeki bütün haritaları oynamanız gerekmektedir',
+            ],
+        ],
     ],
     'entry' => [
         '_' => 'girdi',
@@ -44,6 +50,7 @@ return [
             'beatmap' => 'Bu yarışma için sadece .osu dosyaları kabul edilir.',
             'music' => 'Bu yarışma için sadece .mp3 dosyaları kabul edilir.',
         ],
+        'wrong_dimensions' => 'Bu yarışma için başvurular şu şekilde olmalıdır: :widthx:height',
         'too_big' => 'Bu yarışma için :limit girdi gönderilebilir.',
     ],
     'beatmaps' => [

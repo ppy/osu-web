@@ -11,8 +11,16 @@ return [
         'rule_violation' => '已移除此圖譜中部份被評斷為不合適於 osu! 的內容。',
     ],
 
+    'cover' => [
+        'deleted' => '已刪除圖譜',
+    ],
+
     'download' => [
         'limit_exceeded' => '欲速則不達。',
+    ],
+
+    'featured_artist_badge' => [
+        'label' => '精選藝術家',
     ],
 
     'index' => [
@@ -52,12 +60,22 @@ return [
     'show' => [
         'discussion' => '討論',
 
+        'admin' => [
+            'full_size_cover' => '檢視完整封面圖片',
+        ],
+
+        'deleted_banner' => [
+            'title' => '此圖譜已被刪除。',
+            'message' => '(僅審核者可見)',
+        ],
+
         'details' => [
             'by_artist' => '作者：:artist',
             'favourite' => '收藏這張圖譜',
             'favourite_login' => '登入後才能把這張圖譜加到最愛',
             'logged-out' => '下載圖譜前請先登入！',
             'mapped_by' => '由 :mapper 製作',
+            'mapped_by_guest' => '由 :mapper 製作的客串難度',
             'unfavourite' => '取消收藏',
             'updated_timeago' => '最後更新時間 :timeago',
 
@@ -84,17 +102,17 @@ return [
         ],
 
         'favourites' => [
-            'limit_reached' => '您收藏的圖譜已達上限，請取消一張再試。',
+            'limit_reached' => '您收藏的圖譜已達上限，請取消收藏一些再試。',
         ],
 
         'hype' => [
             'action' => '如果你喜歡這張圖譜，請推薦它來幫助它進展至<strong>進榜</strong>狀態。',
 
             'current' => [
-                '_' => '此地圖目前是 :status 的。',
+                '_' => '此圖譜目前為 :status。',
 
                 'status' => [
-                    'pending' => '待處理',
+                    'pending' => '等待中',
                     'qualified' => '已提名',
                     'wip' => '製作中',
                 ],
@@ -116,7 +134,9 @@ return [
             'genre' => '曲風',
             'language' => '語言',
             'no_scores' => '資料還在計算中...',
+            'nominators' => '提名者',
             'nsfw' => '成人內容',
+            'offset' => '線上偏移調整',
             'points-of-failure' => '失敗位置',
             'source' => '來源',
             'storyboard' => '這張圖譜包含 Storyboard',
@@ -139,8 +159,9 @@ return [
         'scoreboard' => [
             'achieved' => '在 :when 達成',
             'country' => '國內排行榜',
-            'friend' => '好友排行榜',
-            'global' => '世界排行榜',
+            'error' => '無法載入排行榜',
+            'friend' => '好友排名',
+            'global' => '世界排名',
             'supporter-link' => '點擊 <a href=":link">這裡</a> 來查看你可以得到的精彩功能！',
             'supporter-only' => '你需要成為贊助者才能查看國內與好友排名！',
             'title' => '排行榜',
@@ -150,11 +171,12 @@ return [
                 'combo' => '最大連擊',
                 'miss' => 'Miss',
                 'mods' => 'Mods',
+                'pin' => '置頂',
                 'player' => '玩家',
                 'pp' => '',
                 'rank' => '排行榜',
-                'score_total' => '總分',
                 'score' => '得分',
+                'score_total' => '總分',
                 'time' => '時間',
             ],
 
@@ -163,11 +185,15 @@ return [
                 'friend' => '您的好友尚未上傳成績！',
                 'global' => '沒有任何玩家上傳過成績，來挑戰嗎？',
                 'loading' => '加載分數中...',
-                'unranked' => '未進榜圖譜',
+                'unranked' => 'Unranked 譜面',
             ],
             'score' => [
                 'first' => '領先者',
                 'own' => '您的最佳成績',
+            ],
+            'supporter_link' => [
+                '_' => '點:here查看您能得到的精彩功能！',
+                'here' => '這裡',
             ],
         ],
 
@@ -182,6 +208,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => '圓圈總數',
             'count_sliders' => '滑條總數',
+            'offset' => '線上偏移調整：:offset',
             'user-rating' => '玩家評價',
             'rating-spread' => '評分情況',
             'nominations' => '提名',
@@ -197,5 +224,9 @@ return [
             'pending' => '待處理',
             'graveyard' => '拋棄',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => '聚光燈',
     ],
 ];

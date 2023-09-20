@@ -21,8 +21,12 @@ return [
 
     'beatmapset_status' => [
         'approved' => 'được duyệt',
-        'loved' => 'được yêu thích',
+        'loved' => 'được yêu mến',
         'qualified' => 'đủ điều kiện',
         'ranked' => 'được xếp hạng',
+    ],
+
+    'value' => [
+        'rank' => '',
     ],
 ];

@@ -73,8 +73,21 @@ return [
             'nomination_reset' => 'Reset Nomination',
             'praise' => 'Praise',
             'problem' => 'Problem',
+            'problem_warning' => 'Report Problem',
             'review' => 'Review',
             'suggestion' => 'Suggestion',
+        ],
+
+        'message_type_title' => [
+            'disqualify' => 'Post Disqualification',
+            'hype' => 'Post Hype!',
+            'mapper_note' => 'Post Note',
+            'nomination_reset' => 'Remove all Nominations',
+            'praise' => 'Post Praise',
+            'problem' => 'Post Problem',
+            'problem_warning' => 'Post Problem',
+            'review' => 'Post Review',
+            'suggestion' => 'Post Suggestion',
         ],
 
         'mode' => [
@@ -105,7 +118,7 @@ return [
                 'unsaved' => 'Unsaved',
                 'timestamp' => [
                     'all-diff' => 'Posts on "All difficulties" can\'t be timestamped.',
-                    'diff' => 'If this :type starts with a timestamp, it will be shown under Timeline.',
+                    'diff' => 'If this post starts with a timestamp, it will be shown under Timeline.',
                 ],
             ],
             'insert-block' => [
@@ -174,6 +187,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => 'You\'ve already nominated this beatmap.',
+        'cannot_nominate' => 'You cannot nominate this beatmap game mode.',
         'delete' => 'Delete',
         'delete_own_confirm' => 'Are you sure? The beatmap will be deleted and you will be redirected back to your profile.',
         'delete_other_confirm' => 'Are you sure? The beatmap will be deleted and you will be redirected back to the user\'s profile.',
@@ -183,6 +198,7 @@ return [
         'disqualify' => 'Disqualify',
         'incorrect_state' => 'Error performing that action, try refreshing the page.',
         'love' => 'Love',
+        'love_choose' => 'Choose difficulty for loved',
         'love_confirm' => 'Love this beatmap?',
         'nominate' => 'Nominate',
         'nominate_confirm' => 'Nominate this beatmap?',
@@ -197,6 +213,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'This map is estimated to be ranked :date if no issues are found. It is #:position in the :queue.',
+            'on' => 'on :date',
             'queue' => 'ranking queue',
             'soon' => 'soon',
         ],
@@ -207,8 +224,9 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => 'Are you sure? Posting a new problem will reset the nomination process.',
             'disqualify' => 'Are you sure? This will remove the beatmap from qualifying and reset the nomination process.',
+            'nomination_reset' => 'Are you sure? Posting a new problem will reset the nomination process.',
+            'problem_warning' => 'Are you sure to report issue on this beatmap? This will alert Beatmap Nominators.',
         ],
     ],
 
@@ -251,8 +269,10 @@ return [
     ],
     'general' => [
         'converts' => 'Include converted beatmaps',
+        'featured_artists' => 'Featured Artists',
         'follows' => 'Subscribed mappers',
         'recommended' => 'Recommended difficulty',
+        'spotlights' => 'Spotlighted beatmaps',
     ],
     'mode' => [
         'all' => 'All',
@@ -271,6 +291,7 @@ return [
         'loved' => 'Loved',
         'mine' => 'My Maps',
         'pending' => 'Pending',
+        'wip' => 'WIP',
         'qualified' => 'Qualified',
         'ranked' => 'Ranked',
     ],
@@ -289,32 +310,6 @@ return [
         'classical' => 'Classical',
         'folk' => 'Folk',
         'jazz' => 'Jazz',
-    ],
-    'mods' => [
-        '4K' => '4K',
-        '5K' => '5K',
-        '6K' => '6K',
-        '7K' => '7K',
-        '8K' => '8K',
-        '9K' => '9K',
-        'AP' => 'Auto Pilot',
-        'DT' => 'Double Time',
-        'EZ' => 'Easy Mode',
-        'FI' => 'Fade In',
-        'FL' => 'Flashlight',
-        'HD' => 'Hidden',
-        'HR' => 'Hard Rock',
-        'HT' => 'Half Time',
-        'MR' => 'Mirror',
-        'NC' => 'Nightcore',
-        'NF' => 'No Fail',
-        'NM' => 'No mods',
-        'PF' => 'Perfect',
-        'RX' => 'Relax',
-        'SD' => 'Sudden Death',
-        'SO' => 'Spun Out',
-        'TD' => 'Touch Device',
-        'V2' => 'Score V2',
     ],
     'language' => [
         'any' => 'Any',

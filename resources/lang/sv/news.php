@@ -14,7 +14,7 @@ return [
 
         'title' => [
             '_' => 'nyheter',
-            'info' => 'framsida',
+            'info' => 'förstasida',
         ],
     ],
 

@@ -28,13 +28,13 @@ return [
         'id' => 'ID cliente',
         'name' => 'Nombre de Aplicación',
         'redirect' => 'URL de llamada de Aplicación',
-        'reset' => 'Restablecer secreto de cliente',
-        'reset_failed' => 'No se pudo restablecer el secreto de cliente',
-        'secret' => 'Secreto de cliente',
+        'reset' => 'Restablecer cliente secreto',
+        'reset_failed' => 'No se pudo restablecer el cliente secreto',
+        'secret' => 'Cliente secreto',
 
         'secret_visible' => [
-            'false' => 'Mostrar secreto de cliente',
-            'true' => 'Ocultar secreto de cliente',
+            'false' => 'Mostrar cliente secreto',
+            'true' => 'Ocultar cliente secreto',
         ],
     ],
 
@@ -42,14 +42,14 @@ return [
         'header' => 'Registre una nueva aplicación OAuth',
         'register' => 'Registro de aplicación',
         'terms_of_use' => [
-            '_' => 'Al usar la API, usted acepta los :link.',
+            '_' => 'Al usar la API, aceptas los :link.',
             'link' => 'términos de uso',
         ],
     ],
 
     'own_clients' => [
         'confirm_delete' => '¿Seguro que desea eliminar este cliente?',
-        'confirm_reset' => '¿Seguro que desea restablecer el secreto de cliente? Esto revocará todos los tokens existentes.',
+        'confirm_reset' => '¿Seguro que desea restablecer el cliente secreto? Esto revocará todos los tokens existentes.',
         'new' => 'Nueva aplicación OAuth',
         'none' => 'No hay clientes',
 

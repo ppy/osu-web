@@ -7,17 +7,11 @@ return [
     'admin' => [
         '_' => 'admin',
     ],
-    'admin_forum' => [
-        '_' => 'admin',
-    ],
-    'admin_store' => [
-        '_' => 'admin',
-    ],
     'error' => [
         'error' => [
             '400' => 'ungültige Anfrage',
             '404' => 'nicht gefunden',
-            '403' => 'verboten',
+            '403' => 'nicht berechtigt',
             '401' => 'nicht authorisiert',
             '401-verification' => 'accountverifizierung',
             '405' => 'nicht gefunden',
@@ -28,18 +22,17 @@ return [
         ],
     ],
     'forum' => [
-        '_' => 'forum',
-        'topic_watches_controller' => [
-            'index' => 'dashboard',
+        '_' => 'Forum',
+        'topic_logs_controller' => [
+            'index' => 'thread-protokolle',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => 'dashboard',
             'verify_link' => 'accountverifizierung',
         ],
         'artists_controller' => [
-            '_' => 'featured artists',
+            '_' => 'Featured Artists',
         ],
         'beatmap_discussion_posts_controller' => [
             '_' => 'beatmap-diskussion-beiträge',
@@ -48,47 +41,38 @@ return [
             '_' => 'beatmap-diskussionen',
         ],
         'beatmap_packs_controller' => [
-            '_' => 'beatmap-pakete',
+            '_' => 'Beatmap-Pakete',
         ],
         'beatmapset_discussion_votes_controller' => [
             '_' => 'beatmap-diskussion-stimmen',
         ],
         'beatmapset_events_controller' => [
-            '_' => 'beatmap-verlauf',
-        ],
-        'beatmapset_watches_controller' => [
-            'index' => 'dashboard',
+            '_' => 'Beatmap-Verlauf',
         ],
         'beatmapsets_controller' => [
             'discussion' => 'beatmap-diskussion',
-            'index' => 'beatmap-auflistung',
+            'index' => 'Beatmap-Auflistung',
             'show' => 'beatmap-info',
         ],
         'changelog_controller' => [
-            '_' => 'änderungsprotokoll',
+            '_' => 'Änderungsprotokoll',
         ],
         'chat_controller' => [
-            '_' => 'chat',
+            '_' => 'Chat',
         ],
         'comments_controller' => [
             '_' => 'kommentare',
         ],
         'contests_controller' => [
-            '_' => 'wettbewerbe',
-        ],
-        'follows_controller' => [
-            'index' => 'dashboard',
-        ],
-        'friends_controller' => [
-            'index' => 'dashboard',
+            '_' => 'Wettbewerbe',
         ],
         'groups_controller' => [
             'show' => 'gruppen',
         ],
         'home_controller' => [
-            'get_download' => 'herunterladen',
-            'index' => 'dashboard',
-            'search' => 'suchen',
+            'get_download' => 'Herunterladen',
+            'index' => 'Dashboard',
+            'search' => 'Suchen',
             'support_the_game' => 'Das Spiel unterstützen',
             'testflight' => 'testflight',
         ],
@@ -96,43 +80,44 @@ return [
             '_' => 'informationen',
         ],
         'livestreams_controller' => [
-            '_' => 'liveübertragung',
+            '_' => 'Liveübertragung',
         ],
         'matches_controller' => [
             '_' => 'spiele',
         ],
         'news_controller' => [
-            '_' => 'neuigkeiten',
+            '_' => 'Neuigkeiten',
         ],
         'notifications_controller' => [
-            '_' => 'benachrichtigungsverlauf',
+            '_' => 'Benachrichtigungsverlauf',
         ],
         'password_reset_controller' => [
             '_' => 'passwort zurücksetzen',
         ],
         'ranking_controller' => [
-            '_' => 'ranglisten',
+            '_' => 'Ranglisten',
         ],
         'scores_controller' => [
-            '_' => 'performance',
+            '_' => 'Performance',
         ],
-        'store_controller' => [
-            '_' => 'shop',
+        'seasons_controller' => [
+            '_' => 'Ranglisten',
         ],
         'tournaments_controller' => [
-            '_' => 'turniere',
+            '_' => 'Turniere',
         ],
         'users_controller' => [
             '_' => 'spieler-info',
+            'create' => 'account erstellen',
             'disabled' => 'notiz',
         ],
         'wiki_controller' => [
-            '_' => 'wiki',
+            '_' => 'Wiki',
         ],
     ],
-    'multiplayer' => [
-        'rooms_controller' => [
-            '_' => 'rangliste',
+    'passport' => [
+        'authorization_controller' => [
+            '_' => 'App authorisieren',
         ],
     ],
     'store' => [
@@ -143,7 +128,7 @@ return [
             '_' => 'modder info',
         ],
         'multiplayer_controller' => [
-            '_' => 'mehrspielerverlauf',
+            '_' => 'Mehrspielerverlauf',
         ],
     ],
 ];

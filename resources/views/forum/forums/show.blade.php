@@ -3,6 +3,7 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @extends('master', [
+    'bodyAdditionalClasses' => "t-forum-{$forum->categorySlug()}",
     'pageDescription' => $forum->toMetaDescription(),
     'searchParams' => [
         'forum_id' => $forum->getKey(),
@@ -11,14 +12,17 @@
     'titlePrepend' => $forum->forum_name,
 ])
 
+@php
+    $currentUserId = Auth::user()?->getKey();
+@endphp
 @section('content')
     @include('forum._header', [
         'background' => $cover['fileUrl'] ?? null,
         'forum' => $forum,
     ])
 
-    <div class="osu-page osu-page--forum t-forum-{{ $forum->categorySlug() }}">
-        <div class="forum-title forum-title--forum u-forum--before-bg">
+    <div class="osu-page osu-page--forum">
+        <div class="forum-title forum-title--forum">
             <h1 class="forum-title__name">
                 <a class="link--white link--no-underline" href="{{ route("forum.forums.show", $forum->getKey()) }}">
                     {{ $forum->forum_name }}
@@ -31,11 +35,19 @@
 
         @if ($forum->subforums()->exists())
             <div class="forum-list">
-                <h2 class="title title--no-margin">{{ osu_trans("forum.subforums") }}</h2>
+                <h2 class="title title--forum">{{ osu_trans("forum.subforums") }}</h2>
 
                 <ul class="forum-list__items">
+                    <li class="forum-item forum-item--header">
+                        <div class="forum-item__details">
+                            {{ osu_trans('forum.forums.forums') }}
+                        </div>
+                        <div class="forum-item__latest-post">
+                            {{ osu_trans('forum.forums.latest_post') }}
+                        </div>
+                    </li>
                     @foreach ($forum->subforums as $subforum)
-                        @include('forum.forums._forum', ['forum' => $subforum])
+                        @include('forum.forums._forum', ['currentUserId' => $currentUserId, 'forum' => $subforum])
                     @endforeach
                 </ul>
             </div>
@@ -44,7 +56,7 @@
         @if (count($pinnedTopics) > 0)
             <div class="forum-list">
                 <div class="forum-list__header">
-                    <h2 class="title title--no-margin">
+                    <h2 class="title title--forum">
                         {{ osu_trans('forum.pinned_topics') }}
                     </h2>
                 </div>
@@ -58,7 +70,7 @@
         @if (count($topics) > 0 || $forum->isOpen())
             <div id="topics" class="forum-list">
                 <div class="forum-list__header">
-                    <h2 class="title title--no-margin">
+                    <h2 class="title title--forum">
                         {{ osu_trans('forum.topics._') }}
                     </h2>
 

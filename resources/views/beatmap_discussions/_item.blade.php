@@ -12,19 +12,23 @@
       'suggestion' => 'far fa-circle',
     ];
 @endphp
-<div class="beatmap-discussions__discussion beatmapset-activities__discussion-post">
+<div class="beatmapset-activities__discussion-post">
     <div class="beatmap-discussion beatmap-discussion--single beatmapset-activities__post-grow{{ $discussion->trashed() ? ' beatmap-discussion--deleted' : ''}}">
         <div class="beatmap-discussion-timestamp__icons-container">
             <div class="beatmap-discussion-timestamp__icons">
-                <a href="{{ route('beatmapsets.discussion', $discussion->beatmapset) }}#/{{ $discussion->getKey() }}">
-                    <img class='beatmapset-cover'
-                        src="{{$discussion->beatmapset->coverURL('list')}}"
-                        srcSet="{{$discussion->beatmapset->coverURL('list')}} 1x, {{$discussion->beatmapset->coverURL('list@2x')}} 2x">
+                <a class="link link--no-underline" href="{{ route('beatmapsets.discussion', $discussion->beatmapset) }}#/{{ $discussion->getKey() }}">
+                    @include('objects._beatmapset_cover', [
+                        'beatmapset' => $discussion->beatmapset,
+                        'modifiers' => null,
+                        'size' => 'list',
+                    ])
                 </a>
                 <div class="beatmap-discussion-timestamp__icon beatmapset-activities__timeline-icon-margin">
-                    <span class="beatmap-discussion-message-type beatmap-discussion-message-type--{{str_replace('_', '-', $discussion->message_type)}}">
-                        <span class="{{$postTypeToIcon[$discussion->message_type]}}" title="{{osu_trans("beatmaps.discussions.message_type.{$discussion->message_type}")}}"></span>
-                    </span>
+                    <span
+                        class="{{ $postTypeToIcon[$discussion->message_type] }}"
+                        style="color: var(--beatmapset-discussion-colour--{{ $discussion->message_type }})"
+                        title="{{ osu_trans("beatmaps.discussions.message_type.{$discussion->message_type}") }}"
+                    ></span>
                 </div>
             </div>
         </div>

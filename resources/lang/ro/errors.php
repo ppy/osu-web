@@ -4,7 +4,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'missing_route' => '',
+    'load_failed' => 'Nu s-au putut încărca datele.',
+    'missing_route' => 'URL sau metoda de solicitare incorectă.',
     'no_restricted_access' => 'Nu ești capabil să efectuezi această acțiune în timp ce contul tău se află într-un statut restricționat.',
     'supporter_only' => 'Trebuie să fii un suporter pentru a folosi această funcție.',
     'unknown' => 'A avut loc o eroare necunoscută.',
@@ -22,13 +23,14 @@ return [
     ],
     'beatmaps' => [
         'invalid_mode' => 'Mod specificat invalid.',
-        'standard_converts_only' => 'Niciun scor avabil pentru modul solicitat pe această dificultate beatmap.',
+        'standard_converts_only' => 'Niciun scor valabil pentru modul solicitat pe această dificultate beatmap.',
     ],
     'checkout' => [
         'generic' => 'A apărut o eroare în timpul preparării comenzii tale.',
     ],
     'search' => [
         'default' => 'Nu s-au putut obține rezultate, încearcă mai târziu.',
+        'invalid_cursor_exception' => 'Parametru cursor specificat nevalid.',
         'operation_timeout_exception' => 'Căutarea este mai ocupată decât de obicei, încearcă mai târziu.',
     ],
 ];

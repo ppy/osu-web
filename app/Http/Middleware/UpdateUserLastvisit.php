@@ -5,7 +5,6 @@
 
 namespace App\Http\Middleware;
 
-use App\Libraries\UserVerification;
 use App\Models\Country;
 use Carbon\Carbon;
 use Closure;
@@ -22,13 +21,13 @@ class UpdateUserLastvisit
 
     public function handle($request, Closure $next)
     {
-        if ($this->auth->check()) {
-            $user = auth()->user();
+        $user = $this->auth->user();
 
+        if ($user !== null) {
             $isInactive = $user->isInactive();
 
             if ($isInactive) {
-                $isVerified = UserVerification::fromCurrentRequest()->isDone();
+                $isVerified = $user->isSessionVerified();
             }
 
             if (!$isInactive || $isVerified) {
@@ -51,7 +50,7 @@ class UpdateUserLastvisit
     private function recordSession($request)
     {
         // Add metadata to session to help user recognize this login location
-        $countryCode = presence(request_country($request)) ?? 'XX';
+        $countryCode = presence(request_country($request)) ?? Country::UNKNOWN;
         $request->session()->put('meta', [
             'agent' => $request->header('User-Agent'),
             'country' => [

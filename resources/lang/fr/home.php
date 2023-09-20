@@ -14,7 +14,7 @@ return [
 
         'slogan' => [
             'main' => 'le meilleur jeu de rythme free-to-win',
-            'sub' => 'le rythme est à portée de clic',
+            'sub' => 'rhythm is just a click away',
         ],
     ],
 
@@ -36,13 +36,14 @@ return [
         'forum_post' => [
             'all' => 'Tous les forums',
             'link' => 'Rechercher sur le forum',
-            'login_required' => 'Connectez-vous pour rechercher dans le forum',
+            'login_required' => 'Connectez-vous pour rechercher sur le forum',
             'more_simple' => 'Voir plus de résultats de la recherche du forum',
             'title' => 'Forum',
 
             'label' => [
                 'forum' => 'Rechercher dans les forums',
                 'forum_children' => 'inclure les sous-forums',
+                'include_deleted' => 'inclure les messages supprimés',
                 'topic_id' => 'sujet #',
                 'username' => 'auteur',
             ],
@@ -72,13 +73,27 @@ return [
     ],
 
     'download' => [
-        'tagline' => "c'est parti<br>lancez-vous !",
         'action' => 'Télécharger osu!',
+        'action_lazer' => 'Télécharger osu!(lazer)',
+        'action_lazer_description' => 'la prochaine mise à jour majeure d\'osu!',
+        'action_lazer_info' => 'consultez cette page pour plus d\'informations',
+        'action_lazer_title' => 'essayez osu!(lazer)',
+        'action_title' => 'télécharger osu!',
+        'for_os' => 'pour :os',
+        'lazer_note' => 'remarque : il y a des réinitialisations du classement',
+        'macos-fallback' => 'utilisateurs macOS',
+        'mirror' => 'miroir',
+        'or' => 'ou',
+        'os_version_or_later' => ':os_version ou plus',
+        'other_os' => 'autres plateformes',
+        'quick_start_guide' => 'guide de démarrage rapide',
+        'tagline' => "c'est parti<br>lancez-vous !",
+        'video-guide' => 'guide vidéo',
 
         'help' => [
             '_' => 'si vous avez des problèmes pour démarrer le jeu ou pour créer un compte, :help_forum_link ou :support_button.',
             'help_forum_link' => 'consultez le forum d\'aide',
-            'support_button' => 'contacter le support',
+            'support_button' => 'contactez le support',
         ],
 
         'os' => [
@@ -86,8 +101,6 @@ return [
             'macos' => 'pour macOS',
             'linux' => 'pour Linux',
         ],
-        'mirror' => 'mirroir',
-        'macos-fallback' => 'utilisateurs macOS',
         'steps' => [
             'register' => [
                 'title' => 'créer un compte',
@@ -95,17 +108,16 @@ return [
             ],
             'download' => [
                 'title' => 'installer le jeu',
-                'description' => 'cliquez sur le bouton au-dessus pour télécharger l\'installateur, lancez-le ensuite !',
+                'description' => 'cliquez sur le bouton ci-dessus pour télécharger l\'installateur, lancez-le ensuite !',
             ],
             'beatmaps' => [
                 'title' => 'obtenir des beatmaps',
                 'description' => [
-                    '_' => ':browse dans la vaste librairie des beatmaps créées par la communauté et commencez à jouer !',
+                    '_' => ':browse la vaste librairie des beatmaps créées par la communauté et commencez à jouer !',
                     'browse' => 'parcourir',
                 ],
             ],
         ],
-        'video-guide' => 'guide vidéo',
     ],
 
     'user' => [
@@ -128,19 +140,8 @@ return [
         ],
         'buttons' => [
             'download' => 'Télécharger osu!',
-            'support' => 'Supporter osu!',
+            'support' => 'Soutenir osu!',
             'store' => 'osu!store',
         ],
-    ],
-
-    'support-osu' => [
-        'title' => 'Wow !',
-        'subtitle' => 'Vous semblez passer un bon moment ! :D',
-        'body' => [
-            'part-1' => 'Saviez-vous que osu! fonctionne sans publicité et compte sur les joueurs pour supporter son développement et ses coûts ?',
-            'part-2' => 'Saviez-vous aussi que supporter osu! permet d\'obtenir une poignée de fonctions utiles, comme le <strong>téléchargement de beatmaps en jeu</strong> qui est automatique en mode spectateur et dans les parties multijoueur ?',
-        ],
-        'find-out-more' => 'Cliquez ici pour en savoir plus !',
-        'download-starting' => "Oh, et ne vous inquiétez pas - votre téléchargement a déjà commencé pour vous ;)",
     ],
 ];

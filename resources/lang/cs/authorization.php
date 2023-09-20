@@ -5,7 +5,7 @@
 
 return [
     'play_more' => 'Co si místo toho zahrát osu!?',
-    'require_login' => 'Pro pokračování se prosím přihlašte.',
+    'require_login' => 'Pro pokračování se prosím přihlaste.',
     'require_verification' => 'Prosím ověřte se pro pokračování.',
     'restricted' => "Toto nelze provést, když jste omezeni.",
     'silenced' => "Toto nelze provést, když jste umlčeni.",
@@ -20,7 +20,7 @@ return [
             'exhausted' => 'Dosáhl jsi dnešního limitu nominací, zkus to prosím zítra.',
             'incorrect_state' => 'Nastala chyba při provádění akce, zkuste stránku obnovit.',
             'owner' => "Nelze nominovat vlastní beatmapu.",
-            'set_metadata' => 'Před jmenováním musíte nastavit žánr a jazyk.',
+            'set_metadata' => 'Před nominováním musíte nastavit žánr a jazyk.',
         ],
         'resolve' => [
             'not_owner' => 'Pouze zakladatel vlákna a vlastník beatmapy může označit diskusi za vyřešenou.',
@@ -50,28 +50,31 @@ return [
             'resolved' => 'Nemůžete upravit příspěvek ve vyřešené diskusi.',
             'system_generated' => 'Nelze upravovat automaticky generovaný příspěvek.',
         ],
-
-        'store' => [
-            'beatmapset_locked' => 'Tato beatmapa je zablokována od diskuze.',
-        ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => 'Tato beatmapa je k diskuzi uzamčena.',
+
         'metadata' => [
-            'nominated' => 'Nemůžete změnit informace nominované mapy. Pokud si myslíte že je nastavena nesprávně, kontaktujte BN nebo NAT člena.',
+            'nominated' => 'Nemůžete změnit metadata nominované beatmapy. Pokud si myslíte, že jsou nastavena nesprávně, kontaktujte člena BN nebo NAT.',
         ],
     ],
 
     'chat' => [
+        'annnonce_only' => 'Tento kanál je pouze pro oznámení.',
         'blocked' => 'Nemůžete napsat uživateli, kterého máte buď zablokovaného nebo vás má v zablokovaných.',
         'friends_only' => 'Uživatel blokuje zprávy od lidí, kteří nejsou v jeho listu přátel.',
         'moderated' => 'Tento kanál je právě moderován.',
         'no_access' => 'Nemáte přístup k tomu kanálu.',
+        'receive_friends_only' => 'Tento uživatel nemusí být schopen odpovědět, protože přijímáte zprávy pouze od lidí ve vašem seznamu přátel.',
         'restricted' => 'Nemůžete posílat zprávy, když jste umlčen, omezen nebo zabanován.',
-        'silenced' => '',
+        'silenced' => 'Nemůžete posílat zprávy, když jste umlčen, omezen nebo zabanován.',
     ],
 
     'comment' => [
+        'store' => [
+            'disabled' => 'Komentáře jsou vypnuty',
+        ],
         'update' => [
             'deleted' => "Nemůžete editovat již odstraněný příspěvek.",
         ],
@@ -129,7 +132,7 @@ return [
 
             'store' => [
                 'no_forum_access' => 'K vybranému fóru je vyžadován přístup.',
-                'no_permission' => 'Žádná oprávnění k vytvoření nového tématu.',
+                'no_permission' => 'Nemáte oprávnění na vytvoření nového tématu.',
                 'forum_closed' => 'Fórum je uzavřeno a další příspěvky se už nesmí přidávat.',
             ],
 
@@ -140,7 +143,7 @@ return [
                 'voted' => 'Změna hlasu není povolena.',
 
                 'user' => [
-                    'require_login' => 'Pro hlasování se prosím přihlašte.',
+                    'require_login' => 'Pro hlasování se prosím přihlaste.',
                     'restricted' => "Nelze hlasovat, když jste omezeni.",
                     'silenced' => "Nelze hlasovat, když jste umlčeni.",
                 ],
@@ -166,6 +169,14 @@ return [
         ],
     ],
 
+    'score' => [
+        'pin' => [
+            'disabled_type' => "Nelze připnout tento typ skóre",
+            'not_owner' => 'Pouze vlastník skóre může připnout skóre.',
+            'too_many' => 'Připnuto příliš mnoho skóre.',
+        ],
+    ],
+
     'user' => [
         'page' => [
             'edit' => [
@@ -173,6 +184,9 @@ return [
                 'not_owner' => 'Lze upravit pouze svou vlastní uživatelskou stránku.',
                 'require_supporter_tag' => 'supporter tag je vyžadován.',
             ],
+        ],
+        'update_email' => [
+            'locked' => '',
         ],
     ],
 ];

@@ -9,12 +9,12 @@
     @component('layout._page_header_v4', ['params' => [
         'links' => [[
             'title' => osu_trans('layout.header.help.index'),
-            'url' => wiki_url('Main_Page', $page->requestedLocale),
+            'url' => wiki_url('Main_page', $page->requestedLocale),
         ]],
         'linksBreadcrumb' => true,
         'theme' => 'help',
     ]])
-        @slot('navAppend')
+        @slot('linksAppend')
             @include('wiki._actions')
         @endslot
     @endcomponent

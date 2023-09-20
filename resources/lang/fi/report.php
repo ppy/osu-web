@@ -4,19 +4,24 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'beatmapset' => [
+        'button' => 'Ilmianna',
+        'title' => 'Ilmiannetaanko käyttäjän :username beatmappi?',
+    ],
+
     'beatmapset_discussion_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Ilmianna',
+        'title' => 'Ilmiannetaanko käyttäjän :username viesti?',
     ],
 
     'comment' => [
-        'button' => 'Reportoi',
-        'title' => 'Reportoi :username\'n kommentti?',
+        'button' => 'Ilmianna',
+        'title' => 'Ilmiannetaanko käyttäjän :username kommentti?',
     ],
 
     'forum_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Ilmianna',
+        'title' => 'Ilmiannetaanko käyttäjän :username viesti?',
     ],
 
     'scores' => [
@@ -25,7 +30,7 @@ return [
     ],
 
     'user' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Ilmianna',
+        'title' => 'Ilmiannetaanko :username?',
     ],
 ];

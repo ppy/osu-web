@@ -10,7 +10,6 @@ public/assets
 public/uploads
 public/uploads-avatar
 public/uploads-replay
-resources/assets/build/
-resources/assets/js/ziggy.js
+resources/builds/
 storage/
 vendor/

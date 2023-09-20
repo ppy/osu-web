@@ -4,10 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'admin' => [
-        'warehouse' => 'Kho hàng',
-    ],
-
     'cart' => [
         'checkout' => 'Thanh Toán',
         'info' => ':count_delimited sản phẩm trong giỏ ($:subtotal)|:count_delimited sản phẩm trong giỏ ($:subtotal)',
@@ -35,6 +31,7 @@ return [
         'cart_problems_edit' => 'Nhấp vào đây để chỉnh sửa nó.',
         'declined' => 'Thanh toán đã bị hủy.',
         'delayed_shipping' => 'Hiện tại chúng tôi đang có một lượng đơn hàng rất lớn! Bạn vẫn có thể thoải mái đặt hàng, nhưng vui lòng đợi **thêm 1-2 tuần** trong khi chúng tôi bắt kịp với những đơn hàng hiện tại.',
+        'hide_from_activity' => 'Ẩn tất cả thẻ osu!supporter trong đơn hàng này khỏi hoạt động của tôi',
         'old_cart' => 'Giỏ hàng của bạn đã hết hạn và đã được nạp lại, vui lòng thử lại sau.',
         'pay' => 'Thanh toán với Paypal',
         'title_compact' => 'thanh toán',
@@ -54,6 +51,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Vì bạn thanh toán bằng eCheck, hãy chờ thêm tối đa 10 ngày để thanh toán qua khỏi PayPal!',
+        'hide_from_activity' => 'thẻ osu!supporter ở trong đơn hàng này sẽ không được hiện lên ở trong hoạt động gần đây của bạn.',
         'title_compact' => 'hóa đơn',
 
         'status' => [
@@ -79,10 +77,15 @@ return [
         'shopify_expired' => 'Link thanh toán cho đơn hàng này đã hết hạn.',
 
         'item' => [
+            'quantity' => 'Số lượng',
+
             'display_name' => [
                 'supporter_tag' => ':name cho :username (:duration)',
             ],
-            'quantity' => 'Số lượng',
+
+            'subtext' => [
+                'supporter_tag' => 'Số tin nhắn: :message',
+            ],
         ],
 
         'not_modifiable_exception' => [
@@ -110,7 +113,7 @@ return [
 
         'stock' => [
             'out' => 'Mặt hàng này hiện đang hết hàng. Kiểm tra lại sau!',
-            'out_with_alternative' => 'Rất tiếc, sản phẩm này đã hết hàng. Sử dụng dropdown menu để chọn loại khác hoặc kiểm tra lại sau!',
+            'out_with_alternative' => 'Rất tiếc, sản phẩm này đã hết hàng. Sử dụng bảng chọn thả xuống để chọn loại khác hoặc kiểm tra lại sau!',
         ],
 
         'add_to_cart' => 'Thêm Vào Giỏ Hàng',
@@ -124,6 +127,8 @@ return [
 
     'supporter_tag' => [
         'gift' => 'tặng người chơi khác',
+        'gift_message' => 'thêm một lời nhắn vào món quà của bạn!( lên tới :length chữ)',
+
         'require_login' => [
             '_' => 'Bạn cần phải :link để nhận một osu!supporter tag!',
             'link_text' => 'đăng nhập',

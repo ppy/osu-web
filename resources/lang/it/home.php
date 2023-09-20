@@ -14,7 +14,7 @@ return [
 
         'slogan' => [
             'main' => 'il miglior gioco di ritmo free-to-win',
-            'sub' => 'il ritmo è solo ad un click di distanza',
+            'sub' => 'il ritmo è solo a un click di distanza',
         ],
     ],
 
@@ -43,6 +43,7 @@ return [
             'label' => [
                 'forum' => 'cerca nel forum',
                 'forum_children' => 'includi subforum',
+                'include_deleted' => 'includi i post eliminati',
                 'topic_id' => 'discussione #',
                 'username' => 'autore',
             ],
@@ -72,8 +73,22 @@ return [
     ],
 
     'download' => [
-        'tagline' => "iniziamo<br>subito!",
         'action' => 'Scarica osu!',
+        'action_lazer' => 'Scarica osu!(lazer)',
+        'action_lazer_description' => 'il prossimo grande aggiornamento per osu!',
+        'action_lazer_info' => 'guarda questa pagina per i dettagli',
+        'action_lazer_title' => 'prova osu!(lazer)',
+        'action_title' => 'scarica osu!',
+        'for_os' => 'per :os',
+        'lazer_note' => 'attenzione: si applicano reset alle classifiche',
+        'macos-fallback' => 'utenti macOS',
+        'mirror' => 'mirror',
+        'or' => 'oppure',
+        'os_version_or_later' => ':os_version o superiore',
+        'other_os' => 'altre piattaforme',
+        'quick_start_guide' => 'guida iniziale',
+        'tagline' => "iniziamo<br>subito!",
+        'video-guide' => 'video guida',
 
         'help' => [
             '_' => 'se hai problemi ad avviare il gioco o a registrarti l\'account, :help_forum_link oppure :support_button.',
@@ -86,11 +101,9 @@ return [
             'macos' => 'per macOS',
             'linux' => 'per Linux',
         ],
-        'mirror' => 'mirror',
-        'macos-fallback' => 'utenti macOS',
         'steps' => [
             'register' => [
-                'title' => 'registrati',
+                'title' => 'registra un\'account',
                 'description' => 'segui le istruzioni quando avvii il gioco per accedere o creare un nuovo account',
             ],
             'download' => [
@@ -105,7 +118,6 @@ return [
                 ],
             ],
         ],
-        'video-guide' => 'video guida',
     ],
 
     'user' => [
@@ -122,7 +134,7 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => 'Nuove Beatmap Rankate',
+            'new' => 'Nuove Beatmap Classificate',
             'popular' => 'Beatmap Popolari',
             'by_user' => 'di :user',
         ],
@@ -131,16 +143,5 @@ return [
             'support' => 'Supporta osu!',
             'store' => 'osu!store',
         ],
-    ],
-
-    'support-osu' => [
-        'title' => 'Wow!',
-        'subtitle' => 'Sembra che te la stai passando bene! :D',
-        'body' => [
-            'part-1' => 'Sapevi che osu! è privo di pubblicità, e si basa sui giocatori per supportare il suo sviluppo e mantenimento?',
-            'part-2' => 'Sapevi anche che supportando osu! ricevi nuove utili funzionalità, come ad esempio il <strong>download in gioco</strong> che si avvia in modalità spettatore e nelle partite multigiocatore?',
-        ],
-        'find-out-more' => 'Clicca qui per scoprire di più!',
-        'download-starting' => "Oh, e non preoccuparti - il tuo download è stato già avviato per te ;)",
     ],
 ];

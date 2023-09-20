@@ -5,12 +5,13 @@
 
 return [
     'deleted' => 'poistettu',
-    'deleted_by' => '',
-    'deleted_by_system' => '',
+    'deleted_by' => ':user poisti tämän viestin :timeago sitten',
+    'deleted_by_system' => 'järjestelmä',
     'deleted_count' => ':count_delimited poistettu kommentti|:count_delimited poistettua kommenttia',
-    'edited' => ':user muokkasi :timeago sitten',
+    'edited' => ':user muokkasi tämän viestin :timeago sitten',
     'pinned' => 'kiinnitetty',
     'empty' => 'Ei vielä kommentteja.',
+    'empty_other' => 'Ei vielä muita kommentteja.',
     'load_replies' => 'lataa vastauksia',
     'replies_count' => ':count_delimited vastaus|:count_delimited vastauksia',
     'title' => 'Kommentit',
@@ -24,15 +25,15 @@ return [
 
     'editor' => [
         'textarea_hint' => [
-            '_' => 'Paina enter-näppäintä tehdäksesi :action. Paina shift- ja enter-näppäimiä tehdäksesi uuden rivin.',
-            'edit' => 'tallenna',
-            'new' => 'lähetä',
-            'reply' => 'vastaa',
+            '_' => 'Paina enter-näppäintä :action. Paina shift- ja enter-näppäimiä tehdäksesi uuden rivin.',
+            'edit' => 'tallentaaksesi',
+            'new' => 'lähettääksesi',
+            'reply' => 'vastataksesi',
         ],
     ],
 
     'guest_button' => [
-        'new' => 'Kirjaudu sisään tehdäksesi kommentti',
+        'new' => 'Kirjaudu sisään kommentoidaksesi',
         'reply' => 'Kirjaudu sisään vastataksesi',
     ],
 
@@ -45,7 +46,7 @@ return [
     'placeholder' => [
         'edit' => 'Muokkaa kommenttia tässä',
         'new' => 'Kirjoita kommenttisi tähän',
-        'reply' => 'Kirjoita vastauksesi tänne',
+        'reply' => 'Kirjoita vastauksesi tähän',
     ],
 
     'show' => [

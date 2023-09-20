@@ -10,11 +10,11 @@ return [
         'peak' => 'Vrchol, :count online uživatelů',
         'players' => '<strong>:count</strong> registrovaných hráčů',
         'title' => 'vítejte',
-        'see_more_news' => 'zlédnout více novinek',
+        'see_more_news' => 'zobrazit další novinky',
 
         'slogan' => [
-            'main' => 'nejlepší free-to-win rytmická hra',
-            'sub' => 'rytmus je jen o klkání',
+            'main' => 'nejlepšejší free-to-win rytmická hra',
+            'sub' => 'rytmus je na dosah jen jednoho kliknutí',
         ],
     ],
 
@@ -22,12 +22,12 @@ return [
         'advanced_link' => 'Pokročilé vyhledávání',
         'button' => 'Hledat',
         'empty_result' => 'Nebylo nic nenalezeno!',
-        'keyword_required' => '',
+        'keyword_required' => 'Je vyžadováno hledané slovo',
         'placeholder' => 'zadejte hledaný výraz',
-        'title' => 'Hledat',
+        'title' => 'hledat',
 
         'beatmapset' => [
-            'login_required' => 'Přihlašte se k hledání beatmap',
+            'login_required' => 'Pro hledání beatmap se přihlaste',
             'more' => ':count dalších výsledků vyhledávání map',
             'more_simple' => 'Zobrazit další výsledky vyhledávání map',
             'title' => 'Beatmapy',
@@ -36,13 +36,14 @@ return [
         'forum_post' => [
             'all' => 'Všechna fóra',
             'link' => 'Prohledat fórum',
-            'login_required' => 'Přihlašte se k hledání na fóru',
-            'more_simple' => 'Zobrazit další výsledky prohledávání fór',
+            'login_required' => 'Pro hledání na fóru se přihlaste',
+            'more_simple' => 'Zobrazit další výsledky z prohledávání fór',
             'title' => 'Fórum',
 
             'label' => [
                 'forum' => 'hledat ve fórech',
                 'forum_children' => 'zahrnout subfóra',
+                'include_deleted' => 'zahrnout smazané příspěvky',
                 'topic_id' => 'téma #',
                 'username' => 'autor',
             ],
@@ -57,7 +58,7 @@ return [
         ],
 
         'user' => [
-            'login_required' => 'Přihlašte se k hledání uživatelů',
+            'login_required' => 'Pro hledání uživatelů se přihlaste',
             'more' => ':count dalších výsledků vyhledávání hráčů',
             'more_simple' => 'Zobrazit další výsledky vyhledávání hráčů',
             'more_hidden' => 'Vyhledávání hráčů je omezeno na :max hráčů. Zkus upravit tvé vyhledávání.',
@@ -66,19 +67,33 @@ return [
 
         'wiki_page' => [
             'link' => 'Prohledat wiki',
-            'more_simple' => 'Zobrazit další výsledky prohledávání wiki',
+            'more_simple' => 'Zobrazit další výsledky z prohledávání wiki',
             'title' => 'Wiki',
         ],
     ],
 
     'download' => [
-        'tagline' => "pusťme se<br>do toho!",
         'action' => 'Stáhnout osu!',
+        'action_lazer' => 'Stáhnout osu!(lazer)',
+        'action_lazer_description' => 'další velká aktualizace pro osu!',
+        'action_lazer_info' => 'více informací naleznete na této stránce',
+        'action_lazer_title' => 'zkusit osu!(lazer)',
+        'action_title' => 'stáhnout osu!',
+        'for_os' => 'pro :os',
+        'lazer_note' => 'poznámka: resetuje žebříčky',
+        'macos-fallback' => 'macOS uživatelé',
+        'mirror' => 'mirror',
+        'or' => 'nebo',
+        'os_version_or_later' => ':os_version nebo novější ',
+        'other_os' => 'ostatní platformy',
+        'quick_start_guide' => 'příručka pro začátečníky',
+        'tagline' => "pusťme se<br>do toho!",
+        'video-guide' => 'videonávod',
 
         'help' => [
-            '_' => '',
-            'help_forum_link' => '',
-            'support_button' => '',
+            '_' => 'pokud máš problém se spuštěním hry nebo registrací účtu, tak :help_forum_link nebo :support_button.',
+            'help_forum_link' => 'se podívej na fórum s nápovědou',
+            'support_button' => 'kontaktuj podporu',
         ],
 
         'os' => [
@@ -86,8 +101,6 @@ return [
             'macos' => 'pro macOS',
             'linux' => 'pro Linux',
         ],
-        'mirror' => 'mirror',
-        'macos-fallback' => 'macOS uživatelé',
         'steps' => [
             'register' => [
                 'title' => 'založte si účet',
@@ -105,7 +118,6 @@ return [
                 ],
             ],
         ],
-        'video-guide' => 'videonávod',
     ],
 
     'user' => [
@@ -123,7 +135,7 @@ return [
         ],
         'beatmaps' => [
             'new' => 'Nově hodnocené beatmapy',
-            'popular' => 'Populární Beatmapy',
+            'popular' => 'Populární beatmapy',
             'by_user' => 'od :user',
         ],
         'buttons' => [
@@ -131,16 +143,5 @@ return [
             'support' => 'Podpoř osu!',
             'store' => 'osu!store',
         ],
-    ],
-
-    'support-osu' => [
-        'title' => 'Woah!',
-        'subtitle' => 'Vypadá to, že se dobře bavíš! :D',
-        'body' => [
-            'part-1' => 'Věděl jsi, že osu! běží bez reklam a spoléhá se pouze na hráčích, aby podpořili rozvoj a provozní náklady?',
-            'part-2' => 'Věděl jsi také, že podpořením osu! získáš spoustu užitečných výhod, jako třeba <strong>in-game stahování</strong> které se automaticky spustí při pozorování a multiplayer hrách?',
-        ],
-        'find-out-more' => 'Klikni zde abyste zjistili víc!',
-        'download-starting' => "Ou, a není se čeho bát - Tvé stahování již bylo zahájeno :)",
     ],
 ];

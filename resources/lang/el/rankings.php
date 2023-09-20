@@ -5,24 +5,39 @@
 
 return [
     'countries' => [
-        'all' => '',
-        'title' => '',
+        'all' => 'Όλα',
+        'title' => 'Χώρα',
     ],
 
     'filter' => [
-        'title' => '',
+        'title' => 'Εμφάνιση',
 
         'variant' => [
-            'title' => '',
+            'title' => 'Παραλλαγή',
         ],
+    ],
+
+    'kudosu' => [
+        'total' => 'Κερδισμένα',
+        'available' => 'Διαθέσιμο',
+        'used' => 'Ξοδεύτηκαν',
     ],
 
     'type' => [
         'charts' => 'Spotlights',
         'country' => 'Χώρας',
-        'multiplayer' => '',
+        'kudosu' => 'kudosu',
+        'multiplayer' => 'multiplayer',
         'performance' => 'Επίδοσης',
         'score' => 'Σκορ',
+        'seasons' => 'εποχές',
+    ],
+
+    'seasons' => [
+        'empty' => 'Δεν υπάρχουν ακόμα δωμάτια σε αυτή τη σεζόν.',
+        'ongoing' => 'Αυτή η σεζόν βρίσκεται ακόμα σε εξέλιξη (θα υπάρξουν περισσότερες λίστες αναπαραγωγής).',
+        'room_count' => 'Πλήθος λίστας αναπαραγωγής',
+        'url' => 'Εμφάνιση περισσότερων πληροφοριών σε εκείνη τη σεζόν.',
     ],
 
     'spotlight' => [

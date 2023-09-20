@@ -9,25 +9,26 @@ use Storage;
 
 class StorageWithUrl
 {
+    private string $baseUrl;
     private $disk;
-    private $baseUrl;
+    private string $diskName;
 
     public function __construct($diskName = null)
     {
-        $diskName = $diskName ?? config('filesystems.default');
-
-        $this->disk = Storage::disk($diskName);
-
-        $this->baseUrl = config("filesystems.disks.{$diskName}.base_url");
+        $this->diskName = $diskName ?? config('filesystems.default');
     }
 
     public function url($path)
     {
+        $this->baseUrl ??= config("filesystems.disks.{$this->diskName}.base_url");
+
         return "{$this->baseUrl}/{$path}";
     }
 
     public function __call($method, $parameters)
     {
+        $this->disk ??= Storage::disk($this->diskName);
+
         return call_user_func_array([$this->disk, $method], $parameters);
     }
 }

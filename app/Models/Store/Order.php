@@ -8,10 +8,11 @@ namespace App\Models\Store;
 use App\Exceptions\InvariantException;
 use App\Exceptions\OrderNotModifiableException;
 use App\Models\Country;
-use App\Models\SupporterTag;
 use App\Models\User;
 use Carbon\Carbon;
 use DB;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -28,21 +29,21 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @property Address $address
  * @property int|null $address_id
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon|null $deleted_at
- * @property \Illuminate\Database\Eloquent\Collection $items OrderItem
+ * @property Carbon $created_at
+ * @property Carbon|null $deleted_at
+ * @property Collection<OrderItem> $items
  * @property string|null $last_tracking_state
  * @property int $order_id
  * @property string|null $provider
- * @property \Carbon\Carbon|null $paid_at
- * @property \Illuminate\Database\Eloquent\Collection $payments Payment
+ * @property Carbon|null $paid_at
+ * @property Collection<Payment> $payments
  * @property string|null $reference For paypal transactions, this is the resource Id of the paypal order; otherwise, it is the same as the transaction_id without the prefix.
- * @property \Carbon\Carbon|null $shipped_at
+ * @property Carbon|null $shipped_at
  * @property float|null $shipping
  * @property mixed $status
  * @property string|null $tracking_code
  * @property string|null $transaction_id For paypal transactions, this value is based on the IPN or captured payment Id, not the order resource id.
- * @property \Carbon\Carbon|null $updated_at
+ * @property Carbon|null $updated_at
  * @property User $user
  * @property int $user_id
  */
@@ -60,20 +61,48 @@ class Order extends Model
     const PROVIDER_SHOPIFY = 'shopify';
     const PROVIDER_XSOLLA = 'xsolla';
 
-    const STATUS_HAS_INVOICE = ['processing', 'checkout', 'paid', 'shipped', 'cancelled', 'delivered'];
+    const STATUS_CANCELLED = 'cancelled';
+    const STATUS_DELIVERED = 'delivered';
+    const STATUS_INCART = 'incart';
+    const STATUS_PAID = 'paid';
+    const STATUS_PAYMENT_APPROVED = 'checkout';
+    const STATUS_PAYMENT_REQUESTED = 'processing';
+    const STATUS_SHIPPED = 'shipped';
+
+    const STATUS_CAN_CHECKOUT = [self::STATUS_INCART, self::STATUS_PAYMENT_REQUESTED];
+
+    const STATUS_HAS_INVOICE = [
+        self::STATUS_CANCELLED,
+        self::STATUS_DELIVERED,
+        self::STATUS_PAID,
+        self::STATUS_PAYMENT_APPROVED,
+        self::STATUS_PAYMENT_REQUESTED,
+        self::STATUS_SHIPPED,
+    ];
 
     protected $primaryKey = 'order_id';
 
     protected $casts = [
+        'deleted_at' => 'datetime',
+        'paid_at' => 'datetime',
+        'shipped_at' => 'datetime',
         'shipping' => 'float',
     ];
 
-    protected $dates = ['deleted_at', 'shipped_at', 'paid_at'];
     protected $macros = ['itemsQuantities'];
 
     protected static function splitTransactionId($value)
     {
         return explode('-', $value, 2);
+    }
+
+    public static function pendingForUser(?User $user): ?Builder
+    {
+        if ($user === null) {
+            return null;
+        }
+
+        return static::where('user_id', $user->getKey())->paymentRequested();
     }
 
     public function items()
@@ -96,14 +125,19 @@ class Order extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function scopeInCart($query)
+    public function scopeWhereCanCheckout($query)
     {
-        return $query->where('status', 'incart');
+        return $query->whereIn('status', [static::STATUS_INCART, static::STATUS_PAYMENT_REQUESTED]);
     }
 
-    public function scopeProcessing($query)
+    public function scopeInCart($query)
     {
-        return $query->where('status', 'processing');
+        return $query->where('status', static::STATUS_INCART);
+    }
+
+    public function scopePaymentRequested($query)
+    {
+        return $query->where('status', static::STATUS_PAYMENT_REQUESTED);
     }
 
     public function scopeStale($query)
@@ -114,11 +148,6 @@ class Order extends Model
     public function scopeWhereHasInvoice($query)
     {
         return $query->whereIn('status', static::STATUS_HAS_INVOICE);
-    }
-
-    public function scopeWithPayments($query)
-    {
-        return $query->with('payments');
     }
 
     public function scopeWhereOrderNumber($query, $orderNumber)
@@ -147,6 +176,11 @@ class Order extends Model
                 ->where('provider', $provider)
                 ->where('transaction_id', $transactionId)
                 ->where('cancelled', false));
+    }
+
+    public function scopeWithPayments($query)
+    {
+        return $query->with('payments');
     }
 
     public function trackingCodes()
@@ -194,16 +228,16 @@ class Order extends Model
     public function getPaymentStatusText()
     {
         switch ($this->status) {
-            case 'cancelled':
+            case static::STATUS_CANCELLED:
                 return 'Cancelled';
-            case 'checkout':
-            case 'processing':
-                return 'Awaiting Payment';
-            case 'incart':
+            case static::STATUS_PAYMENT_REQUESTED:
+            case static::STATUS_PAYMENT_APPROVED:
+                return 'Confirmation Pending';
+            case static::STATUS_INCART:
                 return '';
-            case 'paid':
-            case 'shipped':
-            case 'delivered':
+            case static::STATUS_PAID:
+            case static::STATUS_SHIPPED:
+            case static::STATUS_DELIVERED:
                 return 'Paid';
             default:
                 return 'Unknown';
@@ -231,14 +265,10 @@ class Order extends Model
         return static::splitTransactionId($this->transaction_id)[1] ?? null;
     }
 
-    public function getSubtotal($forShipping = false)
+    public function getSubtotal()
     {
         $total = 0;
         foreach ($this->items as $i) {
-            if ($forShipping && !$i->product->requiresShipping()) {
-                continue;
-            }
-
             $total += $i->subtotal();
         }
 
@@ -326,50 +356,94 @@ class Order extends Model
         });
     }
 
-    public function canCheckout()
+    public function canCheckout(): bool
     {
-        return in_array($this->status, ['incart', 'processing'], true);
+        return in_array($this->status, static::STATUS_CAN_CHECKOUT, true);
     }
 
-    public function canUserCancel()
+    public function canUserCancel(): bool
     {
-        return $this->status === 'processing';
+        return $this->status === static::STATUS_PAYMENT_REQUESTED;
     }
 
-    public function hasInvoice()
+    public function containsSupporterTag(): bool
+    {
+        return $this->items->contains(fn (OrderItem $item) => $item->product->custom_class === Product::SUPPORTER_TAG_NAME);
+    }
+
+    public function hasInvoice(): bool
     {
         return in_array($this->status, static::STATUS_HAS_INVOICE, true);
     }
 
-    public function isEmpty()
+    public function isCancelled(): bool
+    {
+        return $this->status === static::STATUS_CANCELLED;
+    }
+
+    public function isCart(): bool
+    {
+        return $this->status === static::STATUS_INCART;
+    }
+
+    public function isDelivered(): bool
+    {
+        return $this->status === static::STATUS_DELIVERED;
+    }
+
+    public function isEmpty(): bool
     {
         return !$this->items()->exists();
     }
 
-    public function isAwaitingPayment()
+    public function isHideSupporterFromActivity(): bool
     {
-        return in_array($this->status, ['processing', 'checkout'], true);
+        // Consider all supporter tags should be hidden from activity if any one of them is marked to be hidden.
+        // This also skips needing to perform a product lookup.
+        foreach ($this->items as $item) {
+            $extraData = $item->extra_data;
+            if ($extraData instanceof ExtraDataSupporterTag && $extraData->hidden) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
-    public function isModifiable()
+    public function isModifiable(): bool
     {
         // new cart is status = null
-        return in_array($this->status, ['incart', null], true);
+        return in_array($this->status, [static::STATUS_INCART, null], true);
     }
 
-    public function isProcessing()
+    public function isPendingPaymentCapture(): bool
     {
-        return $this->status === 'processing';
+        return in_array($this->status, [static::STATUS_PAYMENT_REQUESTED, static::STATUS_PAYMENT_APPROVED], true);
     }
 
-    public function isPaidOrDelivered()
+    public function isPaymentRequested(): bool
     {
-        return in_array($this->status, ['paid', 'delivered'], true);
+        return $this->status === static::STATUS_PAYMENT_REQUESTED;
     }
 
-    public function isPendingEcheck()
+    public function isPaid(): bool
+    {
+        return $this->status === static::STATUS_PAID;
+    }
+
+    public function isPaidOrDelivered(): bool
+    {
+        return in_array($this->status, [static::STATUS_PAID, static::STATUS_DELIVERED], true);
+    }
+
+    public function isPendingEcheck(): bool
     {
         return $this->tracking_code === static::PENDING_ECHECK;
+    }
+
+    public function isShipped(): bool
+    {
+        return $this->status === static::STATUS_SHIPPED;
     }
 
     public function isShopify(): bool
@@ -411,9 +485,31 @@ class Order extends Model
         $this->saveOrExplode();
     }
 
+    public function setGiftsHidden(bool $hide = true)
+    {
+        // batch update query not used as it will override extra_data contents.
+        $this->getConnection()->transaction(function () use ($hide) {
+            foreach ($this->items as $item) {
+                $extraData = $item->extra_data;
+                if ($extraData instanceof ExtraDataSupporterTag) {
+                    $extraData->hidden = $hide;
+                    $item->saveOrExplode();
+                }
+            }
+        });
+    }
+
+    #region public functions for updating cart state
+
+    /**
+     * Marks the Order as cancelled. Does not do anything if already cancelled.
+     *
+     * @param User|null $user The User requesting to cancel the order, null for system.
+     * @return void
+     */
     public function cancel(?User $user = null)
     {
-        if ($this->status === 'cancelled') {
+        if ($this->isCancelled()) {
             return;
         }
 
@@ -423,7 +519,7 @@ class Order extends Model
             throw new InvariantException(osu_trans('store.order.cancel_not_allowed'));
         }
 
-        $this->status = 'cancelled';
+        $this->status = Order::STATUS_CANCELLED;
         $this->saveOrExplode();
     }
 
@@ -446,9 +542,13 @@ class Order extends Model
             $this->paid_at = Carbon::now();
         }
 
-        $this->status = $this->requiresShipping() ? 'paid' : 'delivered';
+        $this->status = $this->requiresShipping() ? static::STATUS_PAID : static::STATUS_DELIVERED;
         $this->saveOrExplode();
     }
+
+    #endregion
+
+    #region public functions for updating cart quantities
 
     /**
      * Updates the Order with form parameters.
@@ -463,7 +563,7 @@ class Order extends Model
     public function updateItem(array $itemForm, $addToExisting = false)
     {
         return $this->guardNotModifiable(function () use ($itemForm, $addToExisting) {
-            $params = static::orderItemParams($itemForm);
+            [$params, $product] = static::orderItemParams($itemForm);
 
             // done first to allow removing of disabled products from cart.
             if ($params['quantity'] <= 0) {
@@ -471,16 +571,16 @@ class Order extends Model
             }
 
             // TODO: better validation handling.
-            if ($params['product'] === null) {
+            if ($product === null) {
                 return osu_trans('model_validation/store/product.not_available');
             }
 
             $this->saveOrExplode();
 
-            if ($params['product']->allow_multiple) {
-                $item = $this->newOrderItem($params);
+            if ($product->allow_multiple) {
+                $item = $this->newOrderItem($params, $product);
             } else {
-                $item = $this->updateOrderItem($params, $addToExisting);
+                $item = $this->updateOrderItem($params, $product, $addToExisting);
             }
 
             $item->saveOrExplode();
@@ -519,6 +619,8 @@ class Order extends Model
             $orderItem->saveOrExplode();
         });
     }
+
+    #endregion
 
     public static function cart($user)
     {
@@ -583,27 +685,15 @@ class Order extends Model
         optional($this->items()->find($params['id']))->delete();
     }
 
-    private function newOrderItem(array $params)
+    private function newOrderItem(array $params, Product $product)
     {
-        if ($params['cost'] < 0) {
-            $params['cost'] = 0;
-        }
-
-        $product = $params['product'];
-
         // FIXME: custom class stuff should probably not go in Order...
         switch ($product->custom_class) {
-            case 'supporter-tag':
-                $targetId = (int) $params['extraData']['target_id'];
-                if ($targetId === $this->user_id) {
-                    $params['extraData']['username'] = $this->user->username;
-                } else {
-                    $user = User::default()->where('user_id', $targetId)->firstOrFail();
-                    $params['extraData']['username'] = $user->username;
-                }
-
-                $params['extraData']['duration'] = SupporterTag::getDuration($params['cost']);
+            case Product::SUPPORTER_TAG_NAME:
+                $params['cost'] ??= 0;
+                $params['extra_data'] = ExtraDataSupporterTag::fromOrderItemParams($params, $this->user);
                 break;
+            // TODO: look at migrating to extra_data
             case 'username-change':
                 // ignore received cost
                 $params['cost'] = $this->user->usernameChangeCost();
@@ -613,31 +703,33 @@ class Order extends Model
             case 'mwc7-supporter':
             case 'owc-supporter':
             case 'twc-supporter':
-                // much dodgy. wow.
-                $matches = [];
-                preg_match('/.+\((?<country>.+)\)$/', $product->name, $matches);
-                $params['extraData']['cc'] = Country::where('name', $matches['country'])->first()->acronym;
+                $params['extra_data'] = $this->extraDataTournamentBanner($params, $product);
                 $params['cost'] = $product->cost ?? 0;
                 break;
+            case Product::REDIRECT_PLACEHOLDER:
+                throw new InvariantException("Product can't be ordered");
             default:
                 $params['cost'] = $product->cost ?? 0;
         }
 
-        return $this->items()->make([
+        $item = $this->items()->make([
             'quantity' => $params['quantity'],
-            'extra_info' => $params['extraInfo'],
-            'extra_data' => $params['extraData'],
+            'extra_info' => $params['extra_info'],
+            'extra_data' => $params['extra_data'],
             'cost' => $params['cost'],
-            'product_id' => $product->product_id,
+            'product_id' => $product->getKey(),
         ]);
+
+        $item->setRelation('product', $product);
+
+        return $item;
     }
 
-    private function updateOrderItem(array $params, $addToExisting = false)
+    private function updateOrderItem(array $params, Product $product, $addToExisting = false)
     {
-        $product = $params['product'];
         $item = $this->items()->where('product_id', $product->product_id)->get()->first();
         if ($item === null) {
-            return $this->newOrderItem($params);
+            return $this->newOrderItem($params, $product);
         }
 
         if ($addToExisting) {
@@ -649,15 +741,36 @@ class Order extends Model
         return $item;
     }
 
+    // TODO: maybe move to class later?
+    private function extraDataTournamentBanner(array $orderItemParams, Product $product)
+    {
+        $params = get_params($orderItemParams, 'extra_data', [
+            'tournament_id:int',
+        ]);
+
+        // much dodgy. wow.
+        $matches = [];
+        preg_match('/.+\((?<country>.+)\)$/', $product->name, $matches);
+        $params['cc'] = Country::where('name', $matches['country'])->first()->acronym;
+
+        return new ExtraDataTournamentBanner($params);
+    }
+
     private static function orderItemParams(array $form)
     {
-        return [
-            'id' => array_get($form, 'id'),
-            'quantity' => array_get($form, 'quantity'),
-            'product' => Product::enabled()->find(array_get($form, 'product_id')),
-            'cost' => intval(array_get($form, 'cost')),
-            'extraInfo' => array_get($form, 'extra_info'),
-            'extraData' => array_get($form, 'extra_data'),
-        ];
+        $params = get_params($form, null, [
+            'id:int',
+            'cost:int',
+            'extra_data:array',
+            'extra_info',
+            'product_id:int',
+            'quantity:int',
+        ], ['null_missing' => true]);
+
+        $product = Product::enabled()->find($params['product_id']);
+
+        unset($params['product_id']);
+
+        return [$params, $product];
     }
 }

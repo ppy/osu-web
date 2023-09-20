@@ -4,7 +4,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'missing_route' => 'URL inválido ou método de pedido incorreto.',
+    'load_failed' => 'Falha ao carregar os dados.',
+    'missing_route' => 'Hiperligação inválida ou método de pedido incorreto.',
     'no_restricted_access' => 'Tu não és capaz de desempenhar esta ação enquanto a tua conta estiver num estado restrito.',
     'supporter_only' => 'Tens de ser um apoiante para utilizar esta funcionalidade.',
     'unknown' => 'Ocorreu um erro desconhecido.',
@@ -29,6 +30,7 @@ return [
     ],
     'search' => [
         'default' => 'Não foi possível obter nenhuns resultados, tenta outra vez mais tarde.',
+        'invalid_cursor_exception' => 'Parâmetro do cursor inválido.',
         'operation_timeout_exception' => 'De momento, a pesquisa está mais ocupada que o habitual, tenta outra vez mais tarde.',
     ],
 ];

@@ -5,7 +5,11 @@
 
 namespace App\Models\Chat;
 
+use App\Models\Traits\Reportable;
+use App\Models\Traits\ReportableInterface;
 use App\Models\User;
+use Carbon\Carbon;
+use Illuminate\Support\Collection;
 
 /**
  * @property Channel $channel
@@ -17,16 +21,35 @@ use App\Models\User;
  * @property \Carbon\Carbon $timestamp
  * @property int $user_id
  */
-class Message extends Model
+class Message extends Model implements ReportableInterface
 {
+    use Reportable;
+
+    public static function filterBacklogs(Channel $channel, Collection $messages): Collection
+    {
+        if (!$channel->isPublic()) {
+            return $messages;
+        }
+
+        $minTimestamp = json_time(Carbon::now()->subHours(config('osu.chat.public_backlog_limit')));
+        $ret = [];
+
+        foreach ($messages as $message) {
+            if ($message->timestamp_json > $minTimestamp) {
+                $ret[] = $message;
+            }
+        }
+
+        return collect($ret);
+    }
+
+    public ?string $uuid = null;
+
     protected $primaryKey = 'message_id';
     protected $casts = [
         'is_action' => 'boolean',
+        'timestamp' => 'datetime',
     ];
-    protected $dates = [
-        'timestamp',
-    ];
-    protected $guarded = [];
 
     public function channel()
     {
@@ -38,19 +61,61 @@ class Message extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function scopeForUser($query, User $user)
-    {
-        $channelIds = UserChannel::where([
-            'user_id' => $user->user_id,
-            'hidden' => false,
-        ])->pluck('channel_id');
-
-        return $query->whereIn('channel_id', $channelIds)
-            ->orderBy('message_id', 'desc');
-    }
-
     public function scopeSince($query, $messageId)
     {
         return $query->where('message_id', '>', $messageId);
+    }
+
+    public function getAttribute($key)
+    {
+        return match ($key) {
+            'channel_id',
+            'content',
+            'message_id',
+            'user_id' => $this->getRawAttribute($key),
+
+            'is_action' => (bool) $this->getRawAttribute($key),
+
+            'timestamp' => $this->getTimeFast($key),
+
+            'timestamp_json' => $this->getJsonTimeFast($key),
+
+            'channel',
+            'reportedIn',
+            'sender' => $this->getRelationValue($key),
+        };
+    }
+
+    public function reportableAdditionalInfo(): ?string
+    {
+        $history = static
+            ::where('message_id', '<=', $this->getKey())
+            ->whereHas('channel', fn ($ch) => $ch->where('type', '<>', Channel::TYPES['pm']))
+            ->where('user_id', $this->user_id)
+            ->orderBy('timestamp', 'DESC')
+            ->with('channel')
+            ->limit(5)
+            ->get()
+            ->map(fn ($m) => "**{$m->timestamp_json} {$m->channel->name}:**\n{$m->content}\n")
+            ->reverse()
+            ->join("\n");
+
+        $channel = $this->channel;
+        $header = 'Reported in: '.($channel->isPM() ? 'pm' : '**'.$channel->name.'** ('.strtolower($channel->type).')');
+
+        return "{$header}\n\n{$history}";
+    }
+
+    public function trashed(): bool
+    {
+        return false;
+    }
+
+    protected function newReportableExtraParams(): array
+    {
+        return [
+            'reason' => 'Spam',
+            'user_id' => $this->user_id,
+        ];
     }
 }

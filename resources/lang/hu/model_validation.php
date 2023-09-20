@@ -8,11 +8,12 @@ return [
     'not_negative' => ':attribute nem lehet negatív.',
     'required' => ':attribute kötelező.',
     'too_long' => ':attribute elérte a maximális hosszt - csak :limit karakter hosszú lehet.',
+    'url' => 'Kérjük adjon meg egy helyes URL-t.',
     'wrong_confirmation' => 'A megerősítés nem egyezik.',
 
     'beatmapset_discussion' => [
         'beatmap_missing' => 'Időbélyeg meg van adva, de a beatmap hiányzik.',
-        'beatmapset_no_hype' => "A beatmap-et nem lehet hype-olni.",
+        'beatmapset_no_hype' => "A beatmapet nem lehet hype-olni.",
         'hype_requires_null_beatmap' => 'A Hype-olás az Általános (összes nehézség) szekcióban végzendő.',
         'invalid_beatmap_id' => 'Érvénytelen nehézség lett megadva.',
         'invalid_beatmapset_id' => 'Érvénytelen beatmap lett megadva.',
@@ -24,12 +25,12 @@ return [
         ],
 
         'hype' => [
-            'discussion_locked' => "Ez a beatmap jelenleg nem elérhető kommentelésre és hypolásra",
+            'discussion_locked' => "Ez a beatmap jelenleg nem elérhető kommentelésre és hype-olásra",
             'guest' => 'A hype-oláshoz bejelentkezve kell lenned.',
-            'hyped' => 'Már hype-oltad ezt a beatmap-et.',
+            'hyped' => 'Már hype-oltad ezt a beatmapet.',
             'limit_exceeded' => 'Az összes hype-odat elhasználtad.',
-            'not_hypeable' => 'Ezt a beatmap-et nem lehet hype-olni',
-            'owner' => 'Saját beatmap-et nem lehet hype-olni.',
+            'not_hypeable' => 'Ez a beatmap nem hype-olható',
+            'owner' => 'Saját beatmapet nem lehet hype-olni.',
         ],
 
         'timestamp' => [
@@ -108,6 +109,16 @@ return [
         ],
     ],
 
+    'legacy_api_key' => [
+        'exists' => 'Jelenleg csak egy API kulcs jár felhasználóként.',
+
+        'attributes' => [
+            'api_key' => 'api kulcs',
+            'app_name' => 'alkalmazás neve',
+            'app_url' => 'alkalmazás url',
+        ],
+    ],
+
     'oauth' => [
         'client' => [
             'too_many' => 'Elérted a maximum OAuth applikációk számát.',
@@ -163,6 +174,8 @@ return [
     ],
 
     'user_report' => [
+        'no_ranked_beatmapset' => 'Rangsorolt beatmapokat nem lehet jelenteni',
+        'not_in_channel' => 'Nem vagy ebben a csatornában.',
         'reason_not_valid' => 'ez a jelentés nem megfelelő, ehhez a jelentés fajtához.:reason.',
         'self' => "Nem jelentheted magadat!",
     ],

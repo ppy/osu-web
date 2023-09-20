@@ -8,6 +8,7 @@ namespace App\Http\Controllers;
 use App\Libraries\User\DatadogLoginAttempt;
 use App\Libraries\User\ForceReactivation;
 use App\Models\User;
+use App\Transformers\CurrentUserTransformer;
 use Auth;
 use NoCaptcha;
 
@@ -19,7 +20,7 @@ class SessionsController extends Controller
             'store',
         ]]);
 
-        return parent::__construct();
+        parent::__construct();
     }
 
     public function store()
@@ -43,7 +44,7 @@ class SessionsController extends Controller
             abort(422);
         }
 
-        if (captcha_triggered()) {
+        if (captcha_login_triggered()) {
             $token = presence($params['g-recaptcha-response'] ?? null);
             $validCaptcha = false;
 
@@ -86,11 +87,11 @@ class SessionsController extends Controller
             return [
                 'header' => view('layout._header_user')->render(),
                 'header_popup' => view('layout._popup_user')->render(),
-                'user' => Auth::user()->defaultJson(),
+                'user' => json_item($user, new CurrentUserTransformer()),
             ];
         }
 
-        if (captcha_triggered()) {
+        if (captcha_login_triggered()) {
             return $this->triggerCaptcha($authError);
         }
 

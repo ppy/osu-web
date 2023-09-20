@@ -9,9 +9,6 @@ use App\Libraries\Elasticsearch\SearchParams;
 
 class WikiSuggestionsParams extends SearchParams
 {
-    /** @var string|null */
-    public $queryString = null;
-
     public $size = 10;
 
     /**

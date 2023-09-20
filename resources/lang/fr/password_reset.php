@@ -6,13 +6,15 @@
 return [
     'button' => [
         'cancel' => 'Annuler',
-        'resend' => 'Renvoyer l\'email de vérification',
+        'resend' => 'Renvoyer l\'e-mail de vérification',
         'set' => 'Définir le mot de passe',
         'start' => 'Démarrer',
     ],
 
     'error' => [
         'contact_support' => 'Veuillez contacter le support pour récupérer votre compte.',
+        'expired' => 'Le code de vérification a expiré.',
+        'invalid' => 'Erreur inattendue dans le code de vérification.',
         'is_privileged' => 'Veuillez contacter un administrateur de haut niveau pour récupérer le compte.',
         'missing_key' => 'Requis.',
         'too_many_tries' => 'Trop de tentatives ratées.',
@@ -21,7 +23,7 @@ return [
     ],
 
     'notice' => [
-        'sent' => 'Vérifiez votre email pour le code de vérification.',
+        'sent' => 'Vérifiez votre boîte mail pour obtenir le code de vérification.',
         'saved' => 'Nouveau mot de passe sauvegardé !',
     ],
 
@@ -33,7 +35,7 @@ return [
     ],
 
     'starting' => [
-        'username' => 'Entrez une adresse email ou un nom d\'utilisateur',
+        'username' => 'Entrez une adresse e-mail ou un nom d\'utilisateur',
 
         'support' => [
             '_' => 'Vous avez besoin d\'aide supplémentaire ? Contactez-nous via notre :button.',

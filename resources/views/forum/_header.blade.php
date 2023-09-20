@@ -33,6 +33,10 @@
             'title' => $forum->forum_name,
             'url' => route("forum.forums.show", $forum->forum_id),
         ];
+
+        if (isset($additionalLinks)) {
+            $links = array_merge($links, $additionalLinks);
+        }
     }
 @endphp
 @include('layout._page_header_v4', ['params' => [

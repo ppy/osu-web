@@ -1,0 +1,4 @@
+[email=]foo[/email]:1]
+[email=test@example.org][/email]:1]
+[url=]foo[/url]:1]
+[url=https://osu.ppy.sh][/url]:1]

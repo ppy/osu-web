@@ -29,7 +29,13 @@ return [
         ],
 
         'progress' => [
-            '_' => '',
+            '_' => ':used / :max stemmen',
+        ],
+
+        'requirement' => [
+            'playlist_beatmapsets' => [
+                'incomplete_play' => 'Moet alle beatmaps spelen in de opgegeven afspeellijsten voor stemmen',
+            ],
         ],
     ],
     'entry' => [
@@ -44,6 +50,7 @@ return [
             'beatmap' => 'Alleen .osu bestanden worden geaccepteerd voor deze wedstrijd.',
             'music' => 'Alleen .mp3 bestanden worden geaccepteerd voor deze wedstrijd.',
         ],
+        'wrong_dimensions' => 'Inzendingen voor deze wedstrijd moeten :widthx:height zijn',
         'too_big' => 'Inzendingen voor deze wedstrijd kunnen maar :limit zijn.',
     ],
     'beatmaps' => [
@@ -51,8 +58,8 @@ return [
     ],
     'vote' => [
         'list' => 'stemmen',
-        'count' => ':count stem|:count stemmen',
-        'points' => ':count punt|:count punten',
+        'count' => ':count_delimited stem|:count_delimited stemmen',
+        'points' => ':count_delimited punt|:count_delimited punten',
     ],
     'dates' => [
         'ended' => 'Gesloten :date',

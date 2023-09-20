@@ -7,12 +7,6 @@ return [
     'admin' => [
         '_' => 'admin',
     ],
-    'admin_forum' => [
-        '_' => 'admin',
-    ],
-    'admin_store' => [
-        '_' => 'admin',
-    ],
     'error' => [
         'error' => [
             '400' => 'Érvénytelen lekérés',
@@ -29,13 +23,12 @@ return [
     ],
     'forum' => [
         '_' => 'fórum',
-        'topic_watches_controller' => [
-            'index' => 'írányítópult',
+        'topic_logs_controller' => [
+            'index' => 'téma napló',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => 'irányítópult',
             'verify_link' => 'Fiók hitelesítése',
         ],
         'artists_controller' => [
@@ -56,31 +49,22 @@ return [
         'beatmapset_events_controller' => [
             '_' => 'beatmap előzmények',
         ],
-        'beatmapset_watches_controller' => [
-            'index' => 'irányítópult',
-        ],
         'beatmapsets_controller' => [
             'discussion' => 'beatmap beszélgetések',
-            'index' => 'beatmapes listák',
+            'index' => 'beatmap lista',
             'show' => 'beatmap információk',
         ],
         'changelog_controller' => [
             '_' => 'változási napló',
         ],
         'chat_controller' => [
-            '_' => 'chat',
+            '_' => 'csevegés',
         ],
         'comments_controller' => [
             '_' => 'hozzászolások',
         ],
         'contests_controller' => [
             '_' => 'versenyek',
-        ],
-        'follows_controller' => [
-            'index' => 'áttekintés',
-        ],
-        'friends_controller' => [
-            'index' => 'irányítópult',
         ],
         'groups_controller' => [
             'show' => 'csoportok',
@@ -116,23 +100,24 @@ return [
         'scores_controller' => [
             '_' => 'teljesítmény',
         ],
-        'store_controller' => [
-            '_' => 'áruház',
+        'seasons_controller' => [
+            '_' => 'rangsorok',
         ],
         'tournaments_controller' => [
             '_' => 'bajnokságok',
         ],
         'users_controller' => [
             '_' => 'játékos információi',
+            'create' => 'fiók létrehozása',
             'disabled' => 'értesítés',
         ],
         'wiki_controller' => [
             '_' => 'wiki',
         ],
     ],
-    'multiplayer' => [
-        'rooms_controller' => [
-            '_' => 'rangsorolás',
+    'passport' => [
+        'authorization_controller' => [
+            '_' => 'alkalmazás engedélyezése',
         ],
     ],
     'store' => [
@@ -143,7 +128,7 @@ return [
             '_' => 'modding információ',
         ],
         'multiplayer_controller' => [
-            '_' => '',
+            '_' => 'többjátékos történelem',
         ],
     ],
 ];

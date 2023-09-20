@@ -5,7 +5,9 @@
 
 namespace Tests\Controllers;
 
+use App\Models\Beatmap;
 use App\Models\Score\Best\Osu;
+use App\Models\Solo\Score as SoloScore;
 use App\Models\User;
 use Illuminate\Filesystem\Filesystem;
 use Storage;
@@ -23,9 +25,61 @@ class ScoresControllerTest extends TestCase
             ->withHeaders(['HTTP_REFERER' => config('app.url').'/'])
             ->json(
                 'GET',
-                route('scores.download', $this->params())
+                route('scores.download-legacy', $this->params())
             )
             ->assertSuccessful();
+    }
+
+    public function testDownloadSoloScore()
+    {
+        $soloScore = SoloScore::factory()
+            ->withData(['legacy_score_id' => $this->score->getKey()])
+            ->create([
+                'ruleset_id' => Beatmap::MODES[$this->score->getMode()],
+                'has_replay' => true,
+            ]);
+
+        $this
+            ->actingAs($this->user)
+            ->withHeaders(['HTTP_REFERER' => config('app.url').'/'])
+            ->json(
+                'GET',
+                route('scores.download', $soloScore)
+            )
+            ->assertSuccessful();
+    }
+
+    public function testDownloadDeletedBeatmap()
+    {
+        $this->score->beatmap->delete();
+
+        $this
+            ->actingAs($this->user)
+            ->withHeaders(['HTTP_REFERER' => config('app.url').'/'])
+            ->get(route('scores.download-legacy', $this->params()))
+            ->assertSuccessful();
+    }
+
+    public function testDownloadMissingBeatmap()
+    {
+        $this->score->beatmap->forceDelete();
+
+        $this
+            ->actingAs($this->user)
+            ->withHeaders(['HTTP_REFERER' => config('app.url').'/'])
+            ->get(route('scores.download-legacy', $this->params()))
+            ->assertStatus(422);
+    }
+
+    public function testDownloadMissingUser()
+    {
+        $this->score->user->delete();
+
+        $this
+            ->actingAs($this->user)
+            ->withHeaders(['HTTP_REFERER' => config('app.url').'/'])
+            ->get(route('scores.download-legacy', $this->params()))
+            ->assertStatus(422);
     }
 
     public function testDownloadInvalidReferer()
@@ -34,7 +88,7 @@ class ScoresControllerTest extends TestCase
             ->actingAs($this->user)
             ->json(
                 'GET',
-                route('scores.download', $this->params())
+                route('scores.download-legacy', $this->params())
             )
             ->assertRedirect(route('scores.show', $this->params()));
 
@@ -43,7 +97,7 @@ class ScoresControllerTest extends TestCase
             ->withHeaders(['HTTP_REFERER' => rtrim(config('app.url'), '/').'.example.com'])
             ->json(
                 'GET',
-                route('scores.download', $this->params())
+                route('scores.download-legacy', $this->params())
             )
             ->assertRedirect(route('scores.show', $this->params()));
     }
@@ -54,9 +108,9 @@ class ScoresControllerTest extends TestCase
             ->actingAs($this->user)
             ->json(
                 'GET',
-                route('scores.download', ['mode' => 'nope', 'score' => $this->score->getKey()])
+                route('scores.download-legacy', ['rulesetOrScore' => 'nope', 'score' => $this->score->getKey()])
             )
-            ->assertStatus(404);
+            ->assertStatus(302);
     }
 
     protected function setUp(): void
@@ -82,14 +136,14 @@ class ScoresControllerTest extends TestCase
             }
         });
 
-        $this->user = factory(User::class)->create();
-        $this->score = factory(Osu::class)->states('with_replay')->create();
+        $this->user = User::factory()->create();
+        $this->score = Osu::factory()->withReplay()->create();
     }
 
     private function params()
     {
         return [
-            'mode' => $this->score->getMode(),
+            'rulesetOrScore' => $this->score->getMode(),
             'score' => $this->score->getKey(),
         ];
     }

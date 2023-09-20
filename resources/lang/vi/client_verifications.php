@@ -12,7 +12,7 @@ return [
     ],
 
     'create' => [
-        'confirm' => '',
+        'confirm' => 'Nhấn vào nút xác thực bên dưới để hoàn thành xác minh.',
         'title' => 'xác thực osu! client',
     ],
 ];

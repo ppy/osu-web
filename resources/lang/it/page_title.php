@@ -7,12 +7,6 @@ return [
     'admin' => [
         '_' => 'amministratore',
     ],
-    'admin_forum' => [
-        '_' => 'amministratore',
-    ],
-    'admin_store' => [
-        '_' => 'amministratore',
-    ],
     'error' => [
         'error' => [
             '400' => 'richiesta non valida',
@@ -29,13 +23,12 @@ return [
     ],
     'forum' => [
         '_' => 'forum',
-        'topic_watches_controller' => [
-            'index' => 'dashboard',
+        'topic_logs_controller' => [
+            'index' => 'log dei topic',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => 'dashboard',
             'verify_link' => 'verifica account',
         ],
         'artists_controller' => [
@@ -56,13 +49,10 @@ return [
         'beatmapset_events_controller' => [
             '_' => 'cronologia beatmap',
         ],
-        'beatmapset_watches_controller' => [
-            'index' => 'dashboard',
-        ],
         'beatmapsets_controller' => [
             'discussion' => 'discussione beatmap',
             'index' => 'lista beatmap',
-            'show' => 'info beatmap',
+            'show' => 'informazioni beatmap',
         ],
         'changelog_controller' => [
             '_' => 'note di rilascio',
@@ -75,12 +65,6 @@ return [
         ],
         'contests_controller' => [
             '_' => 'concorsi',
-        ],
-        'follows_controller' => [
-            'index' => 'dashboard',
-        ],
-        'friends_controller' => [
-            'index' => 'dashboard',
         ],
         'groups_controller' => [
             'show' => 'gruppi',
@@ -96,7 +80,7 @@ return [
             '_' => 'informazioni',
         ],
         'livestreams_controller' => [
-            '_' => 'trasmissioni in diretta',
+            '_' => 'live streaming',
         ],
         'matches_controller' => [
             '_' => 'partite',
@@ -108,7 +92,7 @@ return [
             '_' => 'cronologia notifiche',
         ],
         'password_reset_controller' => [
-            '_' => 'reimpostazione password',
+            '_' => 'reset password',
         ],
         'ranking_controller' => [
             '_' => 'classifiche',
@@ -116,31 +100,32 @@ return [
         'scores_controller' => [
             '_' => 'performance',
         ],
-        'store_controller' => [
-            '_' => 'negozio',
+        'seasons_controller' => [
+            '_' => 'classifiche',
         ],
         'tournaments_controller' => [
             '_' => 'tornei',
         ],
         'users_controller' => [
-            '_' => 'info giocatore',
+            '_' => 'informazioni giocatore',
+            'create' => 'crea account',
             'disabled' => 'avviso',
         ],
         'wiki_controller' => [
             '_' => 'wiki',
         ],
     ],
-    'multiplayer' => [
-        'rooms_controller' => [
-            '_' => 'classifica',
+    'passport' => [
+        'authorization_controller' => [
+            '_' => 'autorizza app',
         ],
     ],
     'store' => [
-        '_' => 'negozio',
+        '_' => 'osu!store',
     ],
     'users' => [
         'modding_history_controller' => [
-            '_' => 'info modder',
+            '_' => 'informazioni modder',
         ],
         'multiplayer_controller' => [
             '_' => 'cronologia multigiocatore',

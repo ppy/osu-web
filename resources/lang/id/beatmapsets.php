@@ -8,11 +8,19 @@ return [
         'disabled' => 'Beatmap saat ini tidak tersedia untuk diunduh.',
         'parts-removed' => 'Beberapa bagian dari beatmap ini telah dihapus atas permintaan pembuat lagu atau pihak ketiga pemegang hak cipta.',
         'more-info' => 'Lihat di sini untuk informasi lebih lanjut.',
-        'rule_violation' => 'Sebagian aset yang terkandung dalam berkas beatmap ini telah dihapus setelah tim kami memutuskan bahwa aset-aset yang bersangkutan tidak layak untuk dipergunakan secara luas di dalam lingkungan osu!.',
+        'rule_violation' => 'Sebagian aset yang terkandung dalam berkas beatmap ini telah dihapus karena dinilai tidak sesuai dengan kaidah penggunaan konten yang berlaku di osu!.',
+    ],
+
+    'cover' => [
+        'deleted' => 'Beatmap yang telah dihapus',
     ],
 
     'download' => [
-        'limit_exceeded' => 'Jangan terlalu bernafsu dalam mengunduh. Harap mainkan beatmap-beatmap yang telah Anda miliki terlebih dahulu.',
+        'limit_exceeded' => 'Jangan terlalu bernafsu dalam mengunduh. Mainkan beatmap yang telah kamu miliki terlebih dahulu.',
+    ],
+
+    'featured_artist_badge' => [
+        'label' => 'Featured artist',
     ],
 
     'index' => [
@@ -32,16 +40,16 @@ return [
     ],
 
     'nominate' => [
-        'hybrid_requires_modes' => 'Pada beatmapset hybrid, Anda harus memilih satu mode permainan yang akan Anda nominasikan.',
-        'incorrect_mode' => 'Anda tidak memiliki hak untuk memberikan nominasi pada mode permainan: :mode',
-        'full_bn_required' => 'Anda harus berstatus sebagai nominator penuh (full nominator) untuk dapat menominasikan beatmap ini.',
+        'hybrid_requires_modes' => 'Pada beatmap hybrid, kamu harus memilih setidaknya satu mode permainan untuk dinominasikan.',
+        'incorrect_mode' => 'Kamu tidak memiliki hak untuk memberikan nominasi pada mode permainan: :mode',
+        'full_bn_required' => 'Kamu harus berstatus sebagai nominator penuh (full nominator) untuk menominasikan beatmap ini.',
         'too_many' => 'Persyaratan nominasi telah terpenuhi.',
 
         'dialog' => [
-            'confirmation' => 'Apakah Anda yakin untuk menominasikan beatmap ini?',
+            'confirmation' => 'Apakah kamu yakin untuk menominasikan beatmap ini?',
             'header' => 'Nominasikan Beatmap',
-            'hybrid_warning' => 'catatan: Anda hanya dapat memberikan satu nominasi, sehingga pastikan Anda memberikan nominasi pada mode permainan yang memang Anda kehendaki',
-            'which_modes' => 'Mode permainan apa yang hendak Anda nominasikan?',
+            'hybrid_warning' => 'catatan: kamu hanya dapat memberikan satu nominasi, sehingga pastikan kamu memberikan nominasi pada mode permainan yang memang kamu kehendaki',
+            'which_modes' => 'Mode permainan mana yang ingin dinominasikan?',
         ],
     ],
 
@@ -52,13 +60,23 @@ return [
     'show' => [
         'discussion' => 'Diskusi',
 
+        'admin' => [
+            'full_size_cover' => 'Lihat gambar sampul ukuran penuh',
+        ],
+
+        'deleted_banner' => [
+            'title' => 'Beatmap ini telah dihapus.',
+            'message' => '(hanya moderator yang dapat melihat ini)',
+        ],
+
         'details' => [
             'by_artist' => 'oleh :artist',
-            'favourite' => 'Tambahkan beatmap ini ke dalam daftar Beatmap Favorit',
-            'favourite_login' => 'Silakan masuk untuk menambahkan beatmap ini ke Beatmap Favorit',
-            'logged-out' => 'Anda harus masuk sebelum mengunduh beatmap!',
+            'favourite' => 'favoritkan beatmap ini',
+            'favourite_login' => 'silakan masuk untuk memfavoritkan beatmap ini',
+            'logged-out' => 'kamu harus masuk untuk mengunduh beatmap!',
             'mapped_by' => 'dibuat oleh :mapper',
-            'unfavourite' => 'Hapus beatmap ini dari daftar Beatmap Favorit',
+            'mapped_by_guest' => 'guest difficulty oleh :mapper',
+            'unfavourite' => 'hapus beatmap ini dari daftar beatmap favorit',
             'updated_timeago' => 'terakhir diperbarui :timeago',
 
             'download' => [
@@ -84,11 +102,11 @@ return [
         ],
 
         'favourites' => [
-            'limit_reached' => 'Beatmap yang telah Anda favorit terlalu banyak! Mohon hapus beberapa sebelum melanjutkan.',
+            'limit_reached' => 'Kamu telah memiliki terlalu banyak beatmap yang difavoritkan! Silakan hapus beberapa beatmap dari daftar favoritmu sebelum melanjutkan.',
         ],
 
         'hype' => [
-            'action' => 'Apabila Anda menyukai beatmap ini, berikanlah hype Anda untuk mendorong beatmap ini agar dapat selangkah lebih dekat menuju status <strong>Ranked</strong>.',
+            'action' => 'Apabila kamu menyukai beatmap ini, berikanlah hype-mu agar beatmap ini dapat selangkah lebih dekat menuju status <strong>Ranked</strong>.',
 
             'current' => [
                 '_' => 'Beatmap ini sedang berstatus :status.',
@@ -101,11 +119,11 @@ return [
             ],
 
             'disqualify' => [
-                '_' => 'Jika Anda menemukan masalah pada beatmap ini, mohon diskualifikasi beatmap yang bersangkutan melalui :link.',
+                '_' => 'Apabila kamu menemukan suatu masalah pada beatmap ini, mohon diskualifikasi beatmap yang bersangkutan melalui :link.',
             ],
 
             'report' => [
-                '_' => 'Jika Anda menemukan masalah pada beatmap ini, mohon laporkan kepada tim kami melalui :link.',
+                '_' => 'Apabila kamu menemukan suatu masalah pada beatmap ini, mohon laporkan kepada tim kami melalui :link.',
                 'button' => 'Laporkan Masalah',
                 'link' => 'tautan ini',
             ],
@@ -116,7 +134,9 @@ return [
             'genre' => 'Aliran',
             'language' => 'Bahasa',
             'no_scores' => 'Data sedang diproses...',
+            'nominators' => 'Nominator',
             'nsfw' => 'Konten eksplisit',
+            'offset' => 'Offset online',
             'points-of-failure' => 'Titik-Titik Kegagalan',
             'source' => 'Sumber',
             'storyboard' => 'Beatmap ini menyertakan storyboard',
@@ -126,7 +146,7 @@ return [
         ],
 
         'nsfw_warning' => [
-            'details' => 'Beatmap ini ditenggarai mengandung konten yang bersifat eksplisit dan/atau konten yang dapat dianggap menyinggung bagi kalangan tertentu. Apakah Anda tetap ingin melihat beatmap ini?',
+            'details' => 'Beatmap ini mengandung konten yang bersifat eksplisit dan/atau konten yang dapat dianggap menyinggung bagi kalangan tertentu. Apakah kamu tetap ingin melihat beatmap ini?',
             'title' => 'Konten Eksplisit',
 
             'buttons' => [
@@ -139,10 +159,11 @@ return [
         'scoreboard' => [
             'achieved' => 'diraih pada :when',
             'country' => 'Peringkat Negara',
+            'error' => 'Gagal memuat peringkat',
             'friend' => 'Peringkat Teman',
             'global' => 'Peringkat Global',
-            'supporter-link' => 'Klik <a href=":link">di sini</a> untuk melihat semua fitur eksklusif yang Anda dapatkan!',
-            'supporter-only' => 'Anda harus menjadi supporter untuk mengakses fitur peringkat teman dan negara!',
+            'supporter-link' => 'Klik <a href=":link">di sini</a> untuk melihat seluruh fitur menarik yang akan kamu peroleh!',
+            'supporter-only' => 'Kamu harus menjadi osu!supporter untuk mengakses papan peringkat teman, negara, atau mod!',
             'title' => 'Papan Skor',
 
             'headers' => [
@@ -150,38 +171,44 @@ return [
                 'combo' => 'Kombo Maks',
                 'miss' => 'Miss',
                 'mods' => 'Mod',
+                'pin' => 'Sematkan',
                 'player' => 'Pemain',
                 'pp' => '',
                 'rank' => 'Peringkat',
-                'score_total' => 'Jumlah Skor',
                 'score' => 'Skor',
+                'score_total' => 'Jumlah Skor',
                 'time' => 'Waktu',
             ],
 
             'no_scores' => [
                 'country' => 'Tidak seorang pun dari negara Anda yang memiliki skor di map ini!',
-                'friend' => 'Tidak seorang pun dari daftar teman Anda yang memiliki skor di map ini!',
-                'global' => 'Belum ada skor yang tercatat pada beatmap ini. Mungkin Anda tertarik untuk mencetak skor Anda sendiri?',
+                'friend' => 'Kamu tidak memiliki teman yang telah menorehkan skor pada map ini!',
+                'global' => 'Belum ada skor yang tercatat. Mungkin kamu tertarik untuk mencetak skormu sendiri?',
                 'loading' => 'Memuat skor...',
                 'unranked' => 'Beatmap ini tidak berstatus Ranked.',
             ],
             'score' => [
                 'first' => 'Di Posisi Pertama',
-                'own' => 'Skor Terbaik Anda',
+                'own' => 'Skor Terbaikmu',
+            ],
+            'supporter_link' => [
+                '_' => 'Klik :here untuk melihat seluruh fitur menarik yang akan kamu peroleh!',
+                'here' => 'di sini',
             ],
         ],
 
         'stats' => [
             'cs' => 'Circle Size',
-            'cs-mania' => 'Key Amount',
+            'cs-mania' => 'Jumlah Key',
             'drain' => 'HP Drain',
             'accuracy' => 'Accuracy',
             'ar' => 'Approach Rate',
             'stars' => 'Star Difficulty',
-            'total_length' => 'Durasi',
+            'total_length' => 'Durasi Total (Durasi Bersih: :hit_length)',
             'bpm' => 'BPM',
             'count_circles' => 'Jumlah Circle',
             'count_sliders' => 'Jumlah Slider',
+            'offset' => 'Offset online: :offset',
             'user-rating' => 'Nilai Pengguna',
             'rating-spread' => 'Persebaran Nilai Pengguna',
             'nominations' => 'Nominasi',
@@ -197,5 +224,9 @@ return [
             'pending' => 'Pending',
             'graveyard' => 'Graveyard',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => 'Spotlight',
     ],
 ];

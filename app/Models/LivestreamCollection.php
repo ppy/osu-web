@@ -41,8 +41,12 @@ class LivestreamCollection
 
     public function download($api)
     {
-        $token = $this->token();
+        $clientId = config('osu.twitch_client_id');
+        if ($clientId === null) {
+            return;
+        }
 
+        $token = $this->token();
         if (empty($token)) {
             log_error(new Exception('failed getting token'));
 
@@ -52,7 +56,7 @@ class LivestreamCollection
         try {
             $response = (new Client(['base_uri' => 'https://api.twitch.tv/helix/']))
                 ->request('GET', $api, ['headers' => [
-                    'Client-Id' => config('osu.twitch_client_id'),
+                    'Client-Id' => $clientId,
                     'Authorization' => "Bearer {$token['access_token']}",
                 ]])
                 ->getBody()

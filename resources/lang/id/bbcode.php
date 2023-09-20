@@ -6,11 +6,13 @@
 return [
     'bold' => 'Cetak Tebal',
     'heading' => 'Tajuk',
+    'help' => 'Bantuan',
     'image' => 'Gambar',
+    'imagemap' => 'Peta Gambar',
     'italic' => 'Cetak Miring',
     'link' => 'Tautan',
     'list' => 'Daftar',
-    'list_numbered' => 'Daftar Berurutan Angka',
+    'list_numbered' => 'Daftar Angka Berurut',
     'size' => [
         '_' => 'Ukuran Huruf',
         'tiny' => 'Mungil',

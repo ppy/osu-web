@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'load_failed' => 'Impossible de charger les données.',
     'missing_route' => 'URL invalide ou méthode de requête incorrecte.',
     'no_restricted_access' => 'Vous ne pouvez pas effectuer cette action avec un compte restreint.',
     'supporter_only' => 'Vous devez être un osu!supporter pour utiliser cette fonctionnalité.',
@@ -25,10 +26,11 @@ return [
         'standard_converts_only' => 'Aucun score n\'est disponible pour le mode sélectionné sur cette difficulté de beatmap.',
     ],
     'checkout' => [
-        'generic' => 'Une erreur s’est produite lors de la préparation de votre commande.',
+        'generic' => 'Une erreur s’est produite lors de votre achat.',
     ],
     'search' => [
         'default' => 'Impossible d\'obtenir des résultats, réessayez plus tard.',
+        'invalid_cursor_exception' => 'Paramètre de curseur non valide spécifié.',
         'operation_timeout_exception' => 'La recherche est actuellement plus chargée que d\'habitude, réessayez plus tard.',
     ],
 ];

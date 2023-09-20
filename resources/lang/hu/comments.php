@@ -11,6 +11,7 @@ return [
     'edited' => ':user által szerkesztve :timeago',
     'pinned' => 'rögzített',
     'empty' => 'Még nincsenek hozzászólások.',
+    'empty_other' => 'Még nincsenek hozzászólások.',
     'load_replies' => 'válaszok betöltése',
     'replies_count' => ':count_delimited válasz|:count_delimited válaszok',
     'title' => 'Hozzászólások',
@@ -24,7 +25,7 @@ return [
 
     'editor' => [
         'textarea_hint' => [
-            '_' => 'Az :action végrehajtásához nyomj entert. Új sorhoz használj shift+entert.',
+            '_' => 'A(z) :action végrehajtásához nyomj entert. Új sorhoz használj shift+entert.',
             'edit' => 'mentés',
             'new' => 'posztolás',
             'reply' => 'válasz',

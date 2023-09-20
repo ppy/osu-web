@@ -33,10 +33,14 @@ return [
 
     'blocks' => [
         'banner_text' => 'Hai bloccato questo utente.',
+        'comment_text' => 'Questo commento è nascosto.',
         'blocked_count' => 'utenti bloccati (:count)',
         'hide_profile' => 'Nascondi profilo',
+        'hide_comment' => 'nascondi',
+        'forum_post_text' => 'Questo post è nascosto.',
         'not_blocked' => 'Questo utente non è bloccato.',
         'show_profile' => 'Visualizza profilo',
+        'show_comment' => 'mostra',
         'too_many' => 'Limite blocchi raggiunto.',
         'button' => [
             'block' => 'Blocca',
@@ -45,8 +49,25 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => 'Regala osu!supporter',
         'loading' => 'Caricamento...',
         'send_message' => 'Invia messaggio',
+    ],
+
+    'create' => [
+        'form' => [
+            'password' => 'password',
+            'password_confirmation' => 'conferma password',
+            'submit' => 'crea account',
+            'user_email' => 'email',
+            'user_email_confirmation' => 'conferma email',
+            'username' => 'nome utente',
+
+            'tos_notice' => [
+                '_' => 'creando un account accetti i :link',
+                'link' => 'termini di servizio',
+            ],
+        ],
     ],
 
     'disabled' => [
@@ -89,11 +110,11 @@ return [
         'forgot' => 'Hai dimenticato la tua password?',
         'info' => 'Accedi per continuare',
         'invalid_captcha' => 'Troppi tentativi di accesso falliti, completa il captcha e riprova. (Ricarica la pagina se il captcha non è visibile)',
-        'locked_ip' => 'il tuo indirizzo IP è bloccato. Aspetta qualche minuto per favore.',
+        'locked_ip' => 'Il tuo indirizzo IP è bloccato. Aspetta qualche minuto per favore.',
         'password' => 'Password',
         'register' => "Non hai un account di osu!? Fanne uno nuovo",
         'remember' => 'Ricorda questo computer',
-        'title' => 'Per favore accedi per procedere',
+        'title' => 'Accedi per poter continuare',
         'username' => 'Nome Utente',
 
         'beta' => [
@@ -138,7 +159,8 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'Il tuo account è stato limitato!',
-        'message' => 'Quando sei limitato, non sarai in grado di interagire con gli altri giocatori e i tuoi punteggi saranno visibili solo a te. Solitamente questo è il risultato di un processo automatico e verrà risolto preferibilmente entro 24 ore. Se desideri fare appello alla tua restrizione, <a href="mailto:accounts@ppy.sh">contatta il supporto</a>.',
+        'message' => 'Quando sei limitato, non sarai in grado di interagire con gli altri giocatori e i tuoi punteggi saranno visibili solo a te. Di solito questo è il risultato di un processo automatico e dovrebbe risolversi entro 24 ore. :link',
+        'message_link' => 'Controlla questa pagina per saperne di più.',
     ],
     'show' => [
         'age' => ':age anni',
@@ -151,13 +173,17 @@ return [
         'lastvisit_online' => 'Attualmente online',
         'missingtext' => 'Potresti aver fatto un errore di battitura! (o l\'utente potrebbe essere stato bannato)',
         'origin_country' => 'da :country',
-        'previous_usernames' => 'precedentemente conosciuto come',
+        'previous_usernames' => 'conosciuto in precedenza come',
         'plays_with' => 'Gioca con :devices',
         'title' => "Profilo di :username",
 
         'comments_count' => [
             '_' => 'Ha postato :link',
             'count' => ':count_delimited commento|:count_delimited commenti',
+        ],
+        'cover' => [
+            'to_0' => 'Nascondi copertina',
+            'to_1' => 'Mostra copertina',
         ],
         'edit' => [
             'cover' => [
@@ -204,8 +230,14 @@ return [
                 'graveyard' => [
                     'title' => 'Beatmap Abbandonate',
                 ],
+                'guest' => [
+                    'title' => 'Beatmap Partecipazione Ospite',
+                ],
                 'loved' => [
                     'title' => 'Beatmap Amate',
+                ],
+                'nominated' => [
+                    'title' => 'Beatmap Classificate Nominate',
                 ],
                 'pending' => [
                     'title' => 'Beatmap In Attesa',
@@ -301,8 +333,8 @@ return [
                 'recent' => 'Più recenti',
                 'title' => 'Medaglie',
             ],
-            'multiplayer' => [
-                'title' => 'Partite Multigiocatore',
+            'playlists' => [
+                'title' => 'Partite Playlist',
             ],
             'posts' => [
                 'title' => 'Post',
@@ -312,9 +344,12 @@ return [
             'recent_activity' => [
                 'title' => 'Recenti',
             ],
+            'realtime' => [
+                'title' => 'Partite Multigiocatore',
+            ],
             'top_ranks' => [
                 'download_replay' => 'Scarica Replay',
-                'not_ranked' => 'Solo le mappe classificate danno pp.',
+                'not_ranked' => 'Solo le beatmap classificate conferiscono pp',
                 'pp_weight' => 'valutata :percentage',
                 'view_details' => 'Visualizza Dettagli',
                 'title' => 'Rank',
@@ -323,7 +358,16 @@ return [
                     'title' => 'Migliore Performance',
                 ],
                 'first' => [
-                    'title' => 'Rank Primo Posto',
+                    'title' => 'Primi Posti',
+                ],
+                'pin' => [
+                    'to_0' => 'Rimuovi',
+                    'to_0_done' => 'Punteggio rimosso dai fissati',
+                    'to_1' => 'Fissa',
+                    'to_1_done' => 'Punteggio fissato',
+                ],
+                'pinned' => [
+                    'title' => 'Punteggi Fissati',
                 ],
             ],
             'votes' => [
@@ -343,13 +387,14 @@ return [
                     'date' => 'data',
                     'action' => 'azione',
                     'length' => 'durata',
-                    'length_permanent' => 'Permanente',
+                    'length_indefinite' => 'Indeterminato',
                     'description' => 'descrizione',
                     'actor' => 'da :username',
 
                     'actions' => [
                         'restriction' => 'Ban',
                         'silence' => 'Silenziato',
+                        'tournament_ban' => 'Ban Torneo',
                         'note' => 'Nota',
                     ],
                 ],
@@ -388,19 +433,20 @@ return [
         ],
         'rank' => [
             'country' => 'Rank del paese per :mode',
-            'country_simple' => 'Classifica del Paese',
-            'global' => 'Rank globale :mode',
-            'global_simple' => 'Classifica globale',
+            'country_simple' => 'Classifica Nazionale',
+            'global' => 'Posto globale per :mode',
+            'global_simple' => 'Classifica Globale',
+            'highest' => 'Grado più alto: :rank il :date',
         ],
         'stats' => [
-            'hit_accuracy' => 'Precisione dei colpi',
+            'hit_accuracy' => 'Precisione dei Colpi',
             'level' => 'Livello :level',
             'level_progress' => 'Avanzamento al livello successivo',
             'maximum_combo' => 'Combo Massima',
             'medals' => 'Medaglie',
-            'play_count' => 'Partite giocate',
-            'play_time' => 'Tempo totale di gioco',
-            'ranked_score' => 'Punteggio Rankato',
+            'play_count' => 'Partite Giocate',
+            'play_time' => 'Tempo di Gioco',
+            'ranked_score' => 'Punteggio Classificato',
             'replays_watched_by_others' => 'Replay Guardati da Altri',
             'score_ranks' => 'Rank dei Punteggi',
             'total_hits' => 'Colpi Totali',
@@ -424,6 +470,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
+        'from_client' => 'registrati attraverso il gioco!',
+        'from_web' => 'si prega di completare la registrazione utilizzando il sito osu!',
         'saved' => 'Utente creato',
     ],
     'verify' => [

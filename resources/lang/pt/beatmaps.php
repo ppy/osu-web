@@ -73,8 +73,21 @@ return [
             'nomination_reset' => 'Reiniciar nomeação',
             'praise' => 'Glorificar',
             'problem' => 'Problema',
+            'problem_warning' => 'Relatar problema',
             'review' => 'Análise',
             'suggestion' => 'Sugestão',
+        ],
+
+        'message_type_title' => [
+            'disqualify' => '',
+            'hype' => '',
+            'mapper_note' => '',
+            'nomination_reset' => 'Remover todas as nomeações',
+            'praise' => '',
+            'problem' => '',
+            'problem_warning' => '',
+            'review' => '',
+            'suggestion' => '',
         ],
 
         'mode' => [
@@ -142,7 +155,7 @@ return [
             'graveyard' => "Este beatmap não tem sido atualizado desde :date e muito provavelmente foi abandonado pelo criador...",
             'loved' => 'Este beatmap foi adicionado a adorado em :date!',
             'ranked' => 'Este beatmap foi classificado em :date!',
-            'wip' => 'Nota: Este beatmap está marcado como um trabalho em progresso pelo criador.',
+            'wip' => 'Nota: este beatmap está marcado como um trabalho em andamento pelo criador.',
         ],
 
         'votes' => [
@@ -175,6 +188,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => 'Já nomeaste este beatmap.',
+        'cannot_nominate' => 'Não podes nomear este modo de jogo de beatmap.',
         'delete' => 'Apagar',
         'delete_own_confirm' => 'Tens a certeza? O beatmap será apagado e serás redirecionado de volta para o teu perfil.',
         'delete_other_confirm' => 'Tens a certeza? O beatmap será apagado e serás redirecionado de volta para o perfil de utilizador.',
@@ -184,6 +199,7 @@ return [
         'disqualify' => 'Desqualificar',
         'incorrect_state' => 'Erro ao desempenhar essa ação, tenta recarregar a página.',
         'love' => 'Adorar',
+        'love_choose' => 'Escolher dificuldade para adorado',
         'love_confirm' => 'Queres adorar este beatmap?',
         'nominate' => 'Nomear',
         'nominate_confirm' => 'Pretendes nomear este beatmap?',
@@ -198,6 +214,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'Este mapa está estimado a ser classificado em :date se não forem descobertos quaisquer problemas. Está em #:position na :queue.',
+            'on' => 'em :date',
             'queue' => 'fila de classificação',
             'soon' => 'em breve',
         ],
@@ -208,15 +225,16 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => 'Tens a certeza? Publicar um novo problema irá reiniciar o processo de nomeação.',
             'disqualify' => 'Tens a certeza? Isto irá remover o beatmap de qualificar-se e reiniciará o processo de nomeação.',
+            'nomination_reset' => 'Tens a certeza? Publicar um novo problema irá reiniciar o processo de nomeação.',
+            'problem_warning' => 'Tens a certeza de que queres comunicar o problema neste beatmap? Isto irá alertar os Nomeadores do Beatmap.',
         ],
     ],
 
     'listing' => [
         'search' => [
             'prompt' => 'escreve em palavras-chave...',
-            'login_required' => 'Inicia sessão para procurares.',
+            'login_required' => 'Inicia sessão para procurares',
             'options' => 'Mais opções de pesquisa',
             'supporter_filter' => 'Filtrar por :filters requer uma etiqueta osu!supporter',
             'not-found' => 'sem resultados',
@@ -252,8 +270,10 @@ return [
     ],
     'general' => [
         'converts' => 'Incluir beatmaps convertidos',
+        'featured_artists' => 'Artistas destacados',
         'follows' => 'Mapeadores subscritos',
         'recommended' => 'Dificuldade recomendada',
+        'spotlights' => 'Beatmaps em destaque',
     ],
     'mode' => [
         'all' => 'Todos',
@@ -271,7 +291,8 @@ return [
         'leaderboard' => 'Possui uma tabela de classificações',
         'loved' => 'Adorados',
         'mine' => 'Os meus mapas',
-        'pending' => 'Pendente e Trabalho em progresso',
+        'pending' => 'Pendente',
+        'wip' => 'Trabalho em curso',
         'qualified' => 'Qualificados',
         'ranked' => 'Classificados',
     ],
@@ -290,32 +311,6 @@ return [
         'classical' => 'Clássica',
         'folk' => 'Música popular',
         'jazz' => 'Jazz',
-    ],
-    'mods' => [
-        '4K' => '',
-        '5K' => '',
-        '6K' => '',
-        '7K' => '',
-        '8K' => '',
-        '9K' => '',
-        'AP' => '',
-        'DT' => '',
-        'EZ' => '',
-        'FI' => '',
-        'FL' => '',
-        'HD' => '',
-        'HR' => '',
-        'HT' => '',
-        'MR' => '',
-        'NC' => '',
-        'NF' => '',
-        'NM' => '',
-        'PF' => '',
-        'RX' => '',
-        'SD' => '',
-        'SO' => '',
-        'TD' => '',
-        'V2' => '',
     ],
     'language' => [
         'any' => 'Qualquer',

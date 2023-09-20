@@ -17,11 +17,13 @@ return [
         'identify' => 'Nhận diện và đọc trang cá nhân công khai của bạn.',
 
         'chat' => [
+            'read' => 'Đọc tin nhắn dưới tư cách của bạn.',
             'write' => 'Gửi tin nhắn dưới tư cách của bạn.',
+            'write_manage' => 'Tham gia và rời kênh dưới tư cách của bạn.',
         ],
 
         'forum' => [
-            'write' => '',
+            'write' => 'Tạo và chỉnh sửa các chủ đề, bài đăng trên diễn đàn thay mặt bạn.',
         ],
 
         'friends' => [

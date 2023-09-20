@@ -13,6 +13,16 @@ return [
     'see_channel' => 'схадзіць у чат',
     'verifying' => 'Калі ласка, пацвердзіце сеанс для прагляду апавяшчэнняў',
 
+    'action_type' => [
+        '_' => 'усё',
+        'beatmapset' => 'бітмапы',
+        'build' => 'зборкі',
+        'channel' => 'чат',
+        'forum_topic' => 'форум',
+        'news_post' => 'навіны',
+        'user' => 'профіль',
+    ],
+
     'filters' => [
         '_' => 'усе',
         'user' => 'профіль',
@@ -86,8 +96,19 @@ return [
         'channel' => [
             '_' => 'Чат',
 
+            'announcement' => [
+                '_' => 'Новая аб\'ява',
+
+                'announce' => [
+                    'channel_announcement' => ':username сказаў ":title"',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => 'Аб\'ява ад :username',
+                ],
+            ],
+
             'channel' => [
                 '_' => 'Новае паведамленне',
+
                 'pm' => [
                     'channel_message' => ':username сказаў ":title"',
                     'channel_message_compact' => ':title',
@@ -97,7 +118,7 @@ return [
         ],
 
         'build' => [
-            '_' => 'Спic змен',
+            '_' => 'Гісторыя змен',
 
             'comment' => [
                 '_' => 'Новы каментарый',
@@ -132,15 +153,6 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => 'Правілы Forum PM',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited непрачытанае паведамленне.|:count_delimited ннепрачытанныя паведамленні.',
-            ],
-        ],
-
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Новая бітмапа',
@@ -148,6 +160,9 @@ return [
                 'user_beatmapset_new' => 'Новая бітмапа ":title" ад :username',
                 'user_beatmapset_new_compact' => 'Новая бітмапа ":title"',
                 'user_beatmapset_new_group' => 'Новая бітмапа ад :username',
+
+                'user_beatmapset_revive' => 'Бітмапа ":title" адноўлена :username',
+                'user_beatmapset_revive_compact' => 'Бітмапа ":title" адноўлена',
             ],
         ],
 
@@ -195,6 +210,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => 'Новая аб\'ява ў ":name"',
+            ],
+
             'channel' => [
                 'pm' => 'Вы атрымалі новае паведамленне ад :username',
             ],
@@ -202,7 +221,7 @@ return [
 
         'build' => [
             'comment' => [
-                'comment_new' => 'Журнал зменаў ":title" мае новыя каментарыі',
+                'comment_new' => 'Гісторыя зменаў ":title" мае новыя каментарыі',
             ],
         ],
 
@@ -226,6 +245,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username стварыў новыя бітмапы',
+                'user_beatmapset_revive' => ':username абнавіў карты',
             ],
         ],
     ],

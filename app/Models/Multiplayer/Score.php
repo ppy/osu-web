@@ -7,8 +7,8 @@ namespace App\Models\Multiplayer;
 
 use App\Exceptions\GameCompletedException;
 use App\Exceptions\InvariantException;
-use App\Libraries\ScoreCheck;
 use App\Models\Model;
+use App\Models\Solo\ScoreData;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -30,7 +30,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Room $room
  * @property int $room_id
  * @property \Carbon\Carbon $started_at
- * @property array|null $statistics
+ * @property \stdClass|null $statistics
  * @property int|null $total_score
  * @property \Carbon\Carbon|null $updated_at
  * @property User $user
@@ -40,13 +40,14 @@ class Score extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'multiplayer_scores';
-    protected $dates = ['started_at', 'ended_at'];
     protected $casts = [
-        'passed' => 'boolean',
+        'ended_at' => 'datetime',
         'mods' => 'object',
-        'statistics' => 'array',
+        'passed' => 'boolean',
+        'started_at' => 'datetime',
+        'statistics' => 'object',
     ];
+    protected $table = 'multiplayer_scores';
 
     public static function start(array $params)
     {
@@ -72,6 +73,19 @@ class Score extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function getDataAttribute()
+    {
+        // FIXME: convert this class to the new score table layout
+        $params = $this->getAttributes();
+        $params['mods'] = json_decode($params['mods'], true);
+        $params['passed'] = get_bool($params['passed']);
+        $params['ruleset_id'] = $this->playlistItem->ruleset_id;
+        $params['statistics'] = json_decode($params['statistics'], true);
+        $params['ruleset_id'] = $this->playlistItem->ruleset_id;
+
+        return new ScoreData($params);
     }
 
     public function scopeCompleted($query)
@@ -120,7 +134,7 @@ class Score extends Model
             }
         }
 
-        ScoreCheck::assertCompleted($this);
+        $this->data->assertCompleted();
 
         $this->save();
     }

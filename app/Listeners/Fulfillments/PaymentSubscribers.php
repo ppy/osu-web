@@ -26,6 +26,7 @@ class PaymentSubscribers
 
     public function onPaymentCompleted($eventName, $data)
     {
+        /** @var \App\Events\Fulfillments\PaymentEvent $event */
         $event = $data[0] ?? null;
         $fulfillers = FulfillmentFactory::createFulfillersFor($event->order);
         $count = count($fulfillers);
@@ -125,6 +126,9 @@ class PaymentSubscribers
             return;
         }
 
-        Mail::to($order->user)->queue(new StorePaymentCompleted($order));
+        $user = $order->user;
+        if (is_valid_email_format($user->user_email)) {
+            Mail::to($user)->queue(new StorePaymentCompleted($order));
+        }
     }
 }

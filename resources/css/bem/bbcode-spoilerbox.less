@@ -1,0 +1,50 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.bbcode-spoilerbox {
+  @_top: bbcode-spoilerbox;
+  @_padding-left: 20px;
+
+  &__body {
+    display: none;
+    margin-top: 10px;
+    padding-left: @_padding-left;
+    color: @osu-colour-c2;
+
+    .@{_top}.js-spoilerbox--open > & {
+      display: block;
+    }
+  }
+
+  &__link {
+    .reset-input();
+    .link-default();
+    text-align: left;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-wrap: anywhere;
+    font-weight: bold;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__link-icon {
+    width: @_padding-left;
+    display: block;
+    flex: none;
+
+    &::before {
+      .fas();
+      content: @fa-var-angle-right;
+      color: @osu-colour-c1;
+      display: inline-block;
+      text-align: left;
+    }
+
+    .@{_top}.js-spoilerbox--open > .@{_top}__link > &::before {
+      content: @fa-var-angle-down;
+    }
+  }
+}

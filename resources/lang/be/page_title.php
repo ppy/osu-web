@@ -7,19 +7,13 @@ return [
     'admin' => [
         '_' => 'адмін',
     ],
-    'admin_forum' => [
-        '_' => 'адмін',
-    ],
-    'admin_store' => [
-        '_' => 'адмін',
-    ],
     'error' => [
         'error' => [
             '400' => 'недапушчальны запыт',
             '404' => 'страчана',
             '403' => 'забаронена',
             '401' => 'вы не аўтарізованы',
-            '401-verification' => 'пацверджанне ўліковага запісу',
+            '401-verification' => 'верыфікацыя акаўнту',
             '405' => 'не знойдзена',
             '422' => 'недапушчальны запыт',
             '429' => 'занадта шмат запытаў',
@@ -29,14 +23,13 @@ return [
     ],
     'forum' => [
         '_' => 'форум',
-        'topic_watches_controller' => [
-            'index' => 'панэль кіравання',
+        'topic_logs_controller' => [
+            'index' => 'статыстыка тэмы',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => 'панэль кіравання',
-            'verify_link' => 'пацверджанне ўліковага запісу',
+            'verify_link' => 'верыфікацыя акаўнту',
         ],
         'artists_controller' => [
             '_' => 'ліцэнзаваныя мастакі',
@@ -56,9 +49,6 @@ return [
         'beatmapset_events_controller' => [
             '_' => 'гісторыя бітмапы',
         ],
-        'beatmapset_watches_controller' => [
-            'index' => 'панэль кіравання',
-        ],
         'beatmapsets_controller' => [
             'discussion' => 'абмеркаванне бітмапы',
             'index' => 'спіс бітмап',
@@ -75,12 +65,6 @@ return [
         ],
         'contests_controller' => [
             '_' => 'конкурсы',
-        ],
-        'follows_controller' => [
-            'index' => 'табліца',
-        ],
-        'friends_controller' => [
-            'index' => 'панэль кіравання',
         ],
         'groups_controller' => [
             'show' => 'групы',
@@ -114,26 +98,26 @@ return [
             '_' => 'рэйтынг',
         ],
         'scores_controller' => [
-            '_' => 'прадукцыйнасць',
+            '_' => 'па прадукцыйнасці',
         ],
-        'store_controller' => [
-            '_' => 'крама',
+        'seasons_controller' => [
+            '_' => 'рэйтынг',
         ],
         'tournaments_controller' => [
             '_' => 'турніры',
         ],
         'users_controller' => [
             '_' => 'інфармацыя пра гульца',
+            'create' => 'стварыць акаўнт',
             'disabled' => 'звярніце ўвагу',
         ],
         'wiki_controller' => [
             '_' => 'вікі',
         ],
     ],
-    'multiplayer' => [
-        'rooms_controller' => [
-            '_' => 'рэйтынг
-',
+    'passport' => [
+        'authorization_controller' => [
+            '_' => 'аўтарызацыя праграмы',
         ],
     ],
     'store' => [

@@ -5,37 +5,33 @@
 
 namespace App\Libraries\Markdown\Indexing\Renderers;
 
-use League\CommonMark\Block\Element\AbstractBlock;
-use League\CommonMark\ElementRendererInterface;
 use League\CommonMark\Extension\Table\TableCell;
 use League\CommonMark\Extension\Table\TableRow;
 use League\CommonMark\Extension\Table\TableSection;
+use League\CommonMark\Node\Node;
+use League\CommonMark\Renderer\ChildNodeRendererInterface;
 
 class TableRenderer extends BlockRenderer
 {
     const INLINE_CLASSES = [TableCell::class, TableRow::class];
 
     /**
-     * @param AbstractBlock $block
-     * @param ElementRendererInterface $htmlRenderer
-     * @param bool $inTightList
+     * @param Node $node
+     * @param ChildNodeRendererInterface $childRenderer
      *
      * @return string
      */
-    public function render(AbstractBlock $block, ElementRendererInterface $renderer, $inTightList = false)
+    public function render(Node $node, ChildNodeRendererInterface $childRenderer): string
     {
-        if (!$block->hasChildren()) {
+        if (!$node->hasChildren()) {
             return '';
         }
 
         // skip header
-        if ($block instanceof TableSection && $block->isHead()) {
+        if ($node instanceof TableSection && $node->isHead()) {
             return '';
         }
 
-        $blockClass = get_class($block);
-        $inTightList = !in_array($blockClass, static::INLINE_CLASSES, true);
-
-        return parent::render($block, $renderer, $inTightList);
+        return parent::render($node, $childRenderer);
     }
 }

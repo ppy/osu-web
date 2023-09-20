@@ -10,8 +10,9 @@ return [
         'missing' => 'Gevraagde pagina ":keyword" kon niet worden gevonden.',
         'missing_title' => 'Niet Gevonden',
         'missing_translation' => 'De opgevraagde pagina kon niet gevonden worden in de geselecteerde taal.',
-        'needs_cleanup_or_rewrite' => 'Deze pagina voldoet niet aan de normen van de osu! wiki en moet worden opgeschoond of herschreven. Als u kunt helpen, overweeg dan om het artikel te updaten!',
+        'needs_cleanup_or_rewrite' => 'Deze pagina beantwoordt niet aan de standaarden die we met osu! wiki willen bereiken, en moet opgeschoond of herschreven worden. Je kunt ons hiermee helpen door het artikel bij te werken!',
         'search' => 'Zoek bestaande pagina\'s voor :link.',
+        'stub' => 'Dit artikel is onvolledig en aan het wachten op iemand die het wilt aanvullen.',
         'toc' => 'Inhoud',
 
         'edit' => [

@@ -14,7 +14,7 @@ class UserVerificationTest extends TestCase
 {
     public function testIssue()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $this
             ->be($user)
@@ -30,7 +30,7 @@ class UserVerificationTest extends TestCase
 
     public function testVerify()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $this
             ->be($user)
@@ -52,7 +52,7 @@ class UserVerificationTest extends TestCase
 
     public function testVerifyMismatch()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $this
             ->be($user)

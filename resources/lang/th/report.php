@@ -4,8 +4,13 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'beatmapset' => [
+        'button' => 'รายงาน',
+        'title' => 'คุณต้องการรายงานบีทแมพของ :username หรือไม่?',
+    ],
+
     'beatmapset_discussion_post' => [
-        'button' => 'รีพอร์ต',
+        'button' => 'รายงาน',
         'title' => 'รายงานโพสต์ของ :username?',
     ],
 

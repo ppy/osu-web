@@ -6,33 +6,33 @@
 return [
     'comment' => [
         'empty' => 'Nu sunt comentarii urmărite.',
-        'page_title' => '',
+        'page_title' => 'abonamente comentarii',
         'title' => 'comentariu',
 
         'table' => [
-            'latest_comment_empty' => 'niciun comentariu',
-            'latest_comment_value' => '',
+            'latest_comment_empty' => 'nici un comentariu',
+            'latest_comment_value' => ':time de :username',
         ],
     ],
 
     'forum_topic' => [
-        'title' => '',
+        'title' => 'subiect forum',
     ],
 
     'index' => [
-        'title_compact' => '',
+        'title_compact' => 'abonamente pagini',
     ],
 
     'mapping' => [
-        'empty' => '',
-        'followers' => '',
-        'page_title' => '',
-        'title' => '',
-        'to_0' => 'nu mă mai notifica atunci când acest utilizator încarcă un nou beatmap',
-        'to_1' => 'notifică-mă când acest utilizator încarcă un nou beatmap',
+        'empty' => 'Niciun creator de beatmap-uri urmărit.',
+        'followers' => 'abonați beatmap-uri ',
+        'page_title' => 'abonamente creatori beatmap-uri',
+        'title' => 'creator de beatmap-uri ',
+        'to_0' => 'nu mă mai notifica când acest utilizator încarcă un beatmap nou',
+        'to_1' => 'notifică-mă când acest utilizator încarcă un beatmap nou',
     ],
 
     'modding' => [
-        'title' => '',
+        'title' => 'discuție beatmap',
     ],
 ];

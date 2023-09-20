@@ -5,11 +5,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\Handler as ExceptionsHandler;
 use App\Jobs\BeatmapsetDelete;
-use App\Libraries\BeatmapsetDiscussionReview;
+use App\Libraries\BeatmapsetDiscussion\Review;
 use App\Libraries\CommentBundle;
 use App\Libraries\Search\BeatmapsetSearchCached;
 use App\Libraries\Search\BeatmapsetSearchRequestParams;
+use App\Models\Beatmap;
 use App\Models\BeatmapDownload;
 use App\Models\BeatmapMirror;
 use App\Models\Beatmapset;
@@ -29,7 +31,7 @@ class BeatmapsetsController extends Controller
     {
         parent::__construct();
 
-        $this->middleware('require-scopes:public', ['only' => ['search', 'show']]);
+        $this->middleware('require-scopes:public', ['only' => ['lookup', 'search', 'show']]);
     }
 
     public function destroy($id)
@@ -43,16 +45,38 @@ class BeatmapsetsController extends Controller
 
     public function index()
     {
-        $beatmaps = $this->getSearchResponse();
+        $canAdvancedSearch = priv_check('BeatmapsetAdvancedSearch')->can();
+        // only cache if guest user and guest advanced search is disabled
+        $beatmapsets = !auth()->check() && !$canAdvancedSearch
+            ? cache_remember_mutexed('beatmapsets_guest', 600, [], fn () => $this->getSearchResponse([])['content'])
+            : $this->getSearchResponse()['content'];
 
-        $filters = BeatmapsetSearchRequestParams::getAvailableFilters();
+        return ext_view('beatmapsets.index', [
+            'beatmapsets' => $beatmapsets,
+            'canAdvancedSearch' => $canAdvancedSearch,
+        ]);
+    }
 
-        return ext_view('beatmapsets.index', compact('filters', 'beatmaps'));
+    public function lookup()
+    {
+        $beatmapId = get_int(request('beatmap_id'));
+
+        if ($beatmapId === null) {
+            abort(404);
+        }
+
+        $beatmap = Beatmap::findOrFail($beatmapId);
+
+        return $this->show($beatmap->beatmapset_id);
     }
 
     public function show($id)
     {
-        $beatmapset = Beatmapset::findOrFail($id);
+        $beatmapset = (
+            priv_check('BeatmapsetShowDeleted')->can()
+                ? Beatmapset::withTrashed()->whereHas('allBeatmaps')
+                : Beatmapset::whereHas('beatmaps')
+        )->findOrFail($id);
 
         $set = $this->showJson($beatmapset);
 
@@ -86,7 +110,7 @@ class BeatmapsetsController extends Controller
     {
         $response = $this->getSearchResponse();
 
-        return response($response, is_null($response['error']) ? 200 : 504);
+        return response($response['content'], $response['status']);
     }
 
     public function discussion($id)
@@ -94,7 +118,7 @@ class BeatmapsetsController extends Controller
         $returnJson = Request::input('format') === 'json';
         $requestLastUpdated = get_int(Request::input('last_updated'));
 
-        $beatmapset = Beatmapset::where('discussion_enabled', true)->findOrFail($id);
+        $beatmapset = Beatmapset::findOrFail($id);
 
         if ($returnJson) {
             $lastDiscussionUpdate = $beatmapset->lastDiscussionTime();
@@ -113,7 +137,7 @@ class BeatmapsetsController extends Controller
 
         $initialData = [
             'beatmapset' => $beatmapset->defaultDiscussionJson(),
-            'reviews_config' => BeatmapsetDiscussionReview::config(),
+            'reviews_config' => Review::config(),
         ];
 
         BeatmapsetWatch::markRead($beatmapset, Auth::user());
@@ -129,8 +153,8 @@ class BeatmapsetsController extends Controller
     {
         priv_check('BeatmapsetDiscussionLock')->ensureCan();
 
-        $beatmapset = Beatmapset::where('discussion_enabled', true)->findOrFail($id);
-        $beatmapset->discussionUnlock(Auth::user(), request('reason'));
+        $beatmapset = Beatmapset::findOrFail($id);
+        $beatmapset->discussionUnlock(Auth::user());
 
         return $beatmapset->defaultDiscussionJson();
     }
@@ -139,7 +163,7 @@ class BeatmapsetsController extends Controller
     {
         priv_check('BeatmapsetDiscussionLock')->ensureCan();
 
-        $beatmapset = Beatmapset::where('discussion_enabled', true)->findOrFail($id);
+        $beatmapset = Beatmapset::findOrFail($id);
         $beatmapset->discussionLock(Auth::user(), request('reason'));
 
         return $beatmapset->defaultDiscussionJson();
@@ -148,7 +172,7 @@ class BeatmapsetsController extends Controller
     public function download($id)
     {
         if (!is_api_request() && !from_app_url()) {
-            return ujs_redirect(route('beatmapsets.show', ['beatmapset' => $id]));
+            return ujs_redirect(route('beatmapsets.show', ['beatmapset' => rawurlencode($id)]));
         }
 
         $beatmapset = Beatmapset::findOrFail($id);
@@ -160,7 +184,7 @@ class BeatmapsetsController extends Controller
         priv_check('BeatmapsetDownload', $beatmapset)->ensureCan();
 
         $recentlyDownloaded = BeatmapDownload::where('user_id', Auth::user()->user_id)
-            ->where('timestamp', '>', Carbon::now()->subHour()->getTimestamp())
+            ->where('timestamp', '>', Carbon::now()->subHours()->getTimestamp())
             ->count();
 
         if ($recentlyDownloaded > Auth::user()->beatmapsetDownloadAllowance()) {
@@ -202,9 +226,11 @@ class BeatmapsetsController extends Controller
     {
         $beatmapset = Beatmapset::findOrFail($id);
 
+        $params = get_params(request()->all(), null, ['beatmap_ids:int[]'], ['null_missing' => true]);
+
         priv_check('BeatmapsetLove')->ensureCan();
 
-        $nomination = $beatmapset->love(Auth::user());
+        $nomination = $beatmapset->love(Auth::user(), $params['beatmap_ids']);
         if (!$nomination['result']) {
             return error_popup($nomination['message']);
         }
@@ -218,7 +244,7 @@ class BeatmapsetsController extends Controller
     {
         $beatmapset = Beatmapset::findOrFail($id);
 
-        priv_check('BeatmapsetLove')->ensureCan();
+        priv_check('BeatmapsetRemoveFromLoved')->ensureCan();
 
         $result = $beatmapset->removeFromLoved(Auth::user(), request('reason'));
         if (!$result['result']) {
@@ -248,39 +274,74 @@ class BeatmapsetsController extends Controller
         }
 
         $metadataParams = get_params($params, 'beatmapset', [
-            'language_id:int',
             'genre_id:int',
+            'language_id:int',
             'nsfw:bool',
         ]);
 
         if (count($metadataParams) > 0) {
             priv_check('BeatmapsetMetadataEdit', $beatmapset)->ensureCan();
+        }
 
-            DB::transaction(function () use ($beatmapset, $metadataParams) {
+        $updateParams = [
+            ...$metadataParams,
+            ...get_params($params, 'beatmapset', [
+                'offset:int',
+                'tags:string',
+            ]),
+        ];
+
+        if (array_key_exists('offset', $updateParams)) {
+            priv_check('BeatmapsetOffsetEdit')->ensureCan();
+        }
+
+        if (array_key_exists('tags', $updateParams)) {
+            priv_check('BeatmapsetTagsEdit')->ensureCan();
+        }
+
+        if (count($updateParams) > 0) {
+            DB::transaction(function () use ($beatmapset, $updateParams) {
                 $oldGenreId = $beatmapset->genre_id;
                 $oldLanguageId = $beatmapset->language_id;
                 $oldNsfw = $beatmapset->nsfw;
+                $oldOffset = $beatmapset->offset;
+                $oldTags = $beatmapset->tags;
+                $user = auth()->user();
 
-                $beatmapset->fill($metadataParams)->saveOrExplode();
+                $beatmapset->fill($updateParams)->saveOrExplode();
 
                 if ($oldGenreId !== $beatmapset->genre_id) {
-                    BeatmapsetEvent::log(BeatmapsetEvent::GENRE_EDIT, Auth::user(), $beatmapset, [
+                    BeatmapsetEvent::log(BeatmapsetEvent::GENRE_EDIT, $user, $beatmapset, [
                         'old' => Genre::find($oldGenreId)->name,
                         'new' => $beatmapset->genre->name,
                     ])->saveOrExplode();
                 }
 
                 if ($oldLanguageId !== $beatmapset->language_id) {
-                    BeatmapsetEvent::log(BeatmapsetEvent::LANGUAGE_EDIT, Auth::user(), $beatmapset, [
+                    BeatmapsetEvent::log(BeatmapsetEvent::LANGUAGE_EDIT, $user, $beatmapset, [
                         'old' => Language::find($oldLanguageId)->name,
                         'new' => $beatmapset->language->name,
                     ])->saveOrExplode();
                 }
 
                 if ($oldNsfw !== $beatmapset->nsfw) {
-                    BeatmapsetEvent::log(BeatmapsetEvent::NSFW_TOGGLE, Auth::user(), $beatmapset, [
+                    BeatmapsetEvent::log(BeatmapsetEvent::NSFW_TOGGLE, $user, $beatmapset, [
                         'old' => $oldNsfw,
                         'new' => $beatmapset->nsfw,
+                    ])->saveOrExplode();
+                }
+
+                if ($oldOffset !== $beatmapset->offset) {
+                    BeatmapsetEvent::log(BeatmapsetEvent::OFFSET_EDIT, $user, $beatmapset, [
+                        'old' => $oldOffset,
+                        'new' => $beatmapset->offset,
+                    ])->saveOrExplode();
+                }
+
+                if ($oldTags !== $beatmapset->tags) {
+                    BeatmapsetEvent::log(BeatmapsetEvent::TAGS_EDIT, $user, $beatmapset, [
+                        'old' => $oldTags,
+                        'new' => $beatmapset->tags,
                     ])->saveOrExplode();
                 }
             });
@@ -289,54 +350,67 @@ class BeatmapsetsController extends Controller
         return $this->showJson($beatmapset);
     }
 
-    private function getSearchResponse()
+    private function getSearchResponse(?array $params = null)
     {
-        $params = new BeatmapsetSearchRequestParams(request()->all(), Auth::user());
+        $params = new BeatmapsetSearchRequestParams($params ?? request()->all(), auth()->user());
         $search = (new BeatmapsetSearchCached($params));
 
         $records = datadog_timing(function () use ($search) {
             return $search->records();
         }, config('datadog-helper.prefix_web').'.search', ['type' => 'beatmapset']);
 
+        $error = $search->getError();
+
         return [
-            'beatmapsets' => json_collection(
-                $records,
-                new BeatmapsetTransformer(),
-                'beatmaps.max_combo'
-            ),
-            'cursor' => $search->getSortCursor(),
-            'search' => [
-                'sort' => $search->getParams()->getSort(),
-            ],
-            'recommended_difficulty' => $params->getRecommendedDifficulty(),
-            'error' => search_error_message($search->getError()),
-            'total' => $search->count(),
+            'content' => array_merge([
+                'beatmapsets' => json_collection(
+                    $records,
+                    new BeatmapsetTransformer(),
+                    ['beatmaps.max_combo', 'pack_tags']
+                ),
+                'search' => [
+                    'sort' => $search->getParams()->getSort(),
+                ],
+                'recommended_difficulty' => $params->getRecommendedDifficulty(),
+                'error' => search_error_message($error),
+                'total' => $search->count(),
+            ], cursor_for_response($search->getSortCursor())),
+            'status' => $error === null ? 200 : ExceptionsHandler::statusCode($error),
         ];
     }
 
     private function showJson($beatmapset)
     {
+        $beatmapRelation = $beatmapset->trashed()
+            ? 'allBeatmaps'
+            : 'beatmaps';
         $beatmapset->load([
-            'beatmaps.baseMaxCombo',
-            'beatmaps.difficulty',
-            'beatmaps.failtimes',
+            "{$beatmapRelation}.baseDifficultyRatings",
+            "{$beatmapRelation}.baseMaxCombo",
+            "{$beatmapRelation}.failtimes",
             'genre',
             'language',
             'user',
         ]);
 
-        return json_item($beatmapset, 'Beatmapset', [
+        $transformer = new BeatmapsetTransformer();
+        $transformer->relatedUsersType = 'show';
+
+        return json_item($beatmapset, $transformer, [
             'beatmaps',
             'beatmaps.failtimes',
             'beatmaps.max_combo',
             'converts',
             'converts.failtimes',
+            'current_nominations',
             'current_user_attributes',
             'description',
             'genre',
             'language',
+            'pack_tags',
             'ratings',
             'recent_favourites',
+            'related_users',
             'user',
         ]);
     }

@@ -50,28 +50,31 @@ return [
             'resolved' => 'Nie możesz edytować posta z rozwiązanej dyskusji.',
             'system_generated' => 'Nie możesz edytować automatycznie wygenerowanego posta.',
         ],
-
-        'store' => [
-            'beatmapset_locked' => 'Tworzenie dyskusji dla tej beatmapy zostało zablokowane.',
-        ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => 'Tworzenie dyskusji dla tej beatmapy zostało zablokowane.',
+
         'metadata' => [
             'nominated' => 'Nie możesz zmienić metadanych nominowanej mapy. Skontaktuj się z członkiem BN lub NAT, jeśli uważasz, że są one ustawione nieprawidłowo.',
         ],
     ],
 
     'chat' => [
+        'annnonce_only' => 'Ten kanał jest przeznaczony wyłącznie na ogłoszenia.',
         'blocked' => 'Nie możesz wysłać wiadomości do użytkownika, którego blokujesz lub który cię blokuje.',
         'friends_only' => 'Ten użytkownik blokuje wiadomości od osób spoza listy znajomych.',
         'moderated' => 'Ten kanał jest obecnie w trybie tylko dla moderatorów.',
         'no_access' => 'Nie masz dostępu do tego kanału.',
+        'receive_friends_only' => 'Ten użytkownik może nie być w stanie odpowiedzieć, ponieważ blokujesz prywatne wiadomości od osób spoza listy znajomych.',
         'restricted' => 'Nie możesz wysyłać wiadomości po tym, jak twoje konto zostało uciszone, ograniczone lub zablokowane.',
         'silenced' => 'Nie możesz wysyłać wiadomości po tym, jak twoje konto zostało uciszone, ograniczone lub zablokowane.',
     ],
 
     'comment' => [
+        'store' => [
+            'disabled' => 'Komentarze są wyłączone',
+        ],
         'update' => [
             'deleted' => "Nie możesz edytować usuniętego posta.",
         ],
@@ -166,6 +169,14 @@ return [
         ],
     ],
 
+    'score' => [
+        'pin' => [
+            'disabled_type' => "Nie możesz przypiąć tego typu wyników",
+            'not_owner' => 'Nie możesz przypiąć czyjegoś wyniku.',
+            'too_many' => 'Przypięto zbyt wiele wyników.',
+        ],
+    ],
+
     'user' => [
         'page' => [
             'edit' => [
@@ -173,6 +184,9 @@ return [
                 'not_owner' => 'Możesz edytować tylko własną stronę użytkownika.',
                 'require_supporter_tag' => 'Aby to zrobić, wymagany jest status donatora osu!.',
             ],
+        ],
+        'update_email' => [
+            'locked' => '',
         ],
     ],
 ];

@@ -1,6 +1,9 @@
 name: Lint
 
 on: [push, pull_request]
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 env:
   APP_ENV: testing
@@ -11,43 +14,32 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
       - name: Setup node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
-          node-version: '12'
+          cache: yarn
+          node-version: '18'
 
       - name: Set php version
         uses: shivammathur/setup-php@v2
         with:
           tools: composer:v2
-          php-version: '8.0'
-
-      - name: Checkout
-        uses: actions/checkout@v2
+          php-version: '8.2'
+          coverage: none
 
       - name: Get composer cache directory
         id: composercache
-        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
       - name: Cache composer
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ${{ steps.composercache.outputs.dir }}
           key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
-
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-
-      - name: Cache yarn
-        uses: actions/cache@v2
-        id: yarn-cache
-        with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
 
       - name: Install Composer dependencies
         run: >-
@@ -57,7 +49,8 @@ jobs:
       - name: Install js dependencies
         run: yarn --frozen-lockfile
 
-      - run: yarn lint
+      - run: 'yarn lint --max-warnings 96 > /dev/null'
+
       - run: ./bin/update_licence.sh -nf
 
       - name: Run PHPCS

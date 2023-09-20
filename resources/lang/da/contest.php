@@ -29,7 +29,13 @@ return [
         ],
 
         'progress' => [
-            '_' => '',
+            '_' => ':used / :max stemmer brugt',
+        ],
+
+        'requirement' => [
+            'playlist_beatmapsets' => [
+                'incomplete_play' => 'Du skal spile alle beatmaps i denne specifikke playliste før du kan stemme',
+            ],
         ],
     ],
     'entry' => [
@@ -44,6 +50,7 @@ return [
             'beatmap' => 'Kun .osu filer er accepteret i denne konkurrence.',
             'music' => 'Kun .mp3 filer er accepteret i denne konkurrence.',
         ],
+        'wrong_dimensions' => '',
         'too_big' => 'Bidrag til denne konkurrence kan maks være op til :limit.',
     ],
     'beatmaps' => [
@@ -56,7 +63,7 @@ return [
     ],
     'dates' => [
         'ended' => 'Sluttede den :date',
-        'ended_no_date' => '',
+        'ended_no_date' => 'Afsluttet',
 
         'starts' => [
             '_' => 'Starter den :date',

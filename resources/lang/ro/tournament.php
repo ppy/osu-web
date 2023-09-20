@@ -9,7 +9,7 @@ return [
         'registration_period' => 'Înscriere: :start la :end',
 
         'header' => [
-            'title' => 'Turnee comunitare',
+            'title' => 'Turnee Comunitare',
         ],
 
         'item' => [

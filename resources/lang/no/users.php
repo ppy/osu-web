@@ -33,10 +33,14 @@ return [
 
     'blocks' => [
         'banner_text' => 'Du har blokkerte denne brukeren.',
+        'comment_text' => 'Denne kommentaren er skjult.',
         'blocked_count' => 'blokkerte brukere (:count)',
         'hide_profile' => 'Skjul profil',
+        'hide_comment' => 'skjul',
+        'forum_post_text' => 'Dette innlegget er skjult.',
         'not_blocked' => 'Den brukeren er ikke blokkert.',
         'show_profile' => 'Vis profil',
+        'show_comment' => 'vis',
         'too_many' => 'Maks antall blokkerte personer nådd.',
         'button' => [
             'block' => 'Blokker',
@@ -45,8 +49,25 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => '',
         'loading' => 'Laster...',
         'send_message' => 'send melding',
+    ],
+
+    'create' => [
+        'form' => [
+            'password' => 'passord',
+            'password_confirmation' => 'passord bekreftelse',
+            'submit' => 'opprett konto',
+            'user_email' => 'epost',
+            'user_email_confirmation' => 'epostbekreftelse',
+            'username' => 'brukernavn',
+
+            'tos_notice' => [
+                '_' => 'ved å opprette konto samtykker du til :link',
+                'link' => 'vilkår for bruk',
+            ],
+        ],
     ],
 
     'disabled' => [
@@ -71,7 +92,7 @@ return [
     ],
 
     'filtering' => [
-        'by_game_mode' => '',
+        'by_game_mode' => 'Medlemmer etter spillmodus',
     ],
 
     'force_reactivation' => [
@@ -88,7 +109,7 @@ return [
         'failed' => 'Feil innlogging',
         'forgot' => 'Glemt passordet ditt?',
         'info' => 'Vennligst logg inn for å fortsette',
-        'invalid_captcha' => '',
+        'invalid_captcha' => 'For mange mislykkede innloggingsforsøk, fullfør captcha og prøv på nytt. (Oppdater siden hvis captcha ikke er synlig)',
         'locked_ip' => 'IP-adressen din er blokkert. Vennligst vent et par minutter.',
         'password' => 'Passord',
         'register' => "Har du ikke en osu!-konto? Lag en ny en",
@@ -127,8 +148,8 @@ return [
         ],
 
         'options' => [
-            'cheating' => 'Lureri / Juks',
-            'multiple_accounts' => '',
+            'cheating' => 'Juksing',
+            'multiple_accounts' => 'Bruker flere kontoer',
             'insults' => 'Fornærmer meg / andre',
             'spam' => 'Spamming',
             'unwanted_content' => 'Deling av upassende innhold',
@@ -139,6 +160,7 @@ return [
     'restricted_banner' => [
         'title' => 'Kontoen din har blitt begrenset!',
         'message' => 'Mens du er begrenset vil du ikke være i stand til å samhandle med andre spillere, og poengresultatene dine vil kun være synlige for deg selv. Dette er vanligvis resultatet av en automatisert prosess og vil normalt bli hevet innen 24 timer. Hvis du ønsker å appellere begrensningen, vennligst <a href="mailto:accounts@ppy.sh">kontakt støtteteamet</a>.',
+        'message_link' => 'Sjekk denne siden for å lære mer.',
     ],
     'show' => [
         'age' => ':age år gammel',
@@ -156,8 +178,12 @@ return [
         'title' => "Profilen til :username",
 
         'comments_count' => [
-            '_' => '',
-            'count' => '',
+            '_' => 'La ut :link',
+            'count' => ':count_delimited kommentar|:count_delimited kommentarer',
+        ],
+        'cover' => [
+            'to_0' => 'Skjul banner',
+            'to_1' => 'Vis banner',
         ],
         'edit' => [
             'cover' => [
@@ -204,8 +230,14 @@ return [
                 'graveyard' => [
                     'title' => 'Gravlagte Beatmaps',
                 ],
+                'guest' => [
+                    'title' => 'Gjestebidrag Beatmaps',
+                ],
                 'loved' => [
                     'title' => 'Elskede Beatmaps',
+                ],
+                'nominated' => [
+                    'title' => 'Nominerte Rangerte Beatmaps',
                 ],
                 'pending' => [
                     'title' => 'Ventende Beatmaps',
@@ -301,8 +333,8 @@ return [
                 'recent' => 'Nyeste',
                 'title' => 'Medaljer',
             ],
-            'multiplayer' => [
-                'title' => '',
+            'playlists' => [
+                'title' => 'Spilleliste runder',
             ],
             'posts' => [
                 'title' => 'Innlegg',
@@ -311,6 +343,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'Nylige',
+            ],
+            'realtime' => [
+                'title' => 'Flerspiller runder',
             ],
             'top_ranks' => [
                 'download_replay' => 'Last ned Reprise',
@@ -324,6 +359,15 @@ return [
                 ],
                 'first' => [
                     'title' => 'Førsteplasser',
+                ],
+                'pin' => [
+                    'to_0' => 'Løsne',
+                    'to_0_done' => 'Løsnet score',
+                    'to_1' => 'Fest',
+                    'to_1_done' => 'Festet score',
+                ],
+                'pinned' => [
+                    'title' => 'Festet Scores',
                 ],
             ],
             'votes' => [
@@ -343,13 +387,14 @@ return [
                     'date' => 'dato',
                     'action' => 'handling',
                     'length' => 'lengde',
-                    'length_permanent' => 'Permanent',
+                    'length_indefinite' => '',
                     'description' => 'beskrivelse',
                     'actor' => 'av :username',
 
                     'actions' => [
                         'restriction' => 'Utestengelse',
                         'silence' => 'Forstummet',
+                        'tournament_ban' => 'Turneringshenvisning',
                         'note' => 'Merknad',
                     ],
                 ],
@@ -391,6 +436,7 @@ return [
             'country_simple' => 'Landsrangering',
             'global' => 'Global rangering for :mode',
             'global_simple' => 'Global Rangering',
+            'highest' => 'Høyeste rangering: :rank den :date',
         ],
         'stats' => [
             'hit_accuracy' => 'Presisjon',
@@ -414,8 +460,8 @@ return [
     ],
 
     'silenced_banner' => [
-        'title' => '',
-        'message' => '',
+        'title' => 'Du er øyeblikkelig forstummet.',
+        'message' => 'Noen handlinger kan være utilgjengelige.',
     ],
 
     'status' => [
@@ -424,6 +470,8 @@ return [
         'offline' => 'Frakoblet',
     ],
     'store' => [
+        'from_client' => 'vennligst registrer deg via spillklienten i stedet!',
+        'from_web' => 'vennligst fullfør registrering på osu!-nettsiden',
         'saved' => 'Bruker opprettet',
     ],
     'verify' => [

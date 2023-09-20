@@ -11,16 +11,28 @@ return [
     'last_visit' => 'Nyligen aktiva',
     'new' => 'Nyligen',
     'old' => 'Gammal',
-    'rank' => 'Rang',
+    'rank' => 'Rank',
     'top' => 'Topp',
     'username' => 'Användarnamn',
 
+    'artist_tracks' => [
+        'album' => 'Album',
+        'artist' => 'Artist',
+        'bpm' => 'BPM',
+        'genre' => 'Genre',
+        'length' => 'Längd',
+        'relevance' => 'Relevans',
+        'title' => 'Titel',
+        'update' => 'Uppdatering',
+    ],
+
     'forum_posts' => [
-        'created' => '',
+        'created' => 'Inläggstid',
         'relevance' => 'Relevans',
     ],
 
     'forum_topics' => [
+        'created' => 'Skapad',
         'feature_votes' => 'Stjärnprioritet',
         'new' => 'Senaste svar',
     ],

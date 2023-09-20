@@ -16,7 +16,7 @@ class OAuthDeleteExpiredTokensTest extends TestCase
     {
         config()->set('osu.oauth.retain_expired_tokens_days', 0);
 
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $tokenAttributes = [
             'client_id' => 1, // irrelevant.
             'expires_at' => now()->subDays(1),

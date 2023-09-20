@@ -7,7 +7,7 @@
     'method' => 'PUT',
     'data-remote' => true,
     'data-skip-ajax-error-popup' => '1',
-    'class' => 'js-form-clear js-form-error js-account-edit account-edit'
+    'class' => 'js-form-clear js-form-error js-account-edit js-password-update account-edit'
 ]) !!}
     <div class="account-edit__section">
         <h2 class="account-edit__section-title">

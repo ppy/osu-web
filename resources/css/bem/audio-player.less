@@ -1,0 +1,254 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.audio-player {
+  @_top: audio-player;
+
+  @_height: 40px;
+
+  --current-time: '0:00';
+  --duration: '0:00';
+  --progress: 0;
+
+  height: @_height;
+  width: 100%;
+  max-width: 520px;
+  background-color: @osu-colour-b2;
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+  font-family: @font-default;
+  text-align: left;
+  pointer-events: auto;
+  position: relative;
+
+  &--main {
+    margin-left: auto;
+    bottom: -@_height;
+    transition: bottom 120ms;
+
+    &[data-audio-visible="1"] {
+      bottom: 0;
+    }
+  }
+
+  &__autoplay-button {
+    .fas();
+    .fa-fw();
+    .reset-input();
+    flex: none;
+    opacity: 0.5;
+
+    &:hover {
+      color: @osu-colour-l1;
+    }
+
+    &::before {
+      content: @fa-var-redo;
+    }
+
+    .@{_top}[data-audio-autoplay="1"] & {
+      opacity: 1;
+    }
+  }
+
+  &__button {
+    .reset-input();
+    flex: none;
+    .center-content();
+    color: @osu-colour-c1;
+    padding: 5px;
+    font-size: 14px; // icon size
+
+    &:hover {
+      color: @osu-colour-l1;
+    }
+
+    &--prev {
+      opacity: 0.5;
+      pointer-events: none;
+
+      .@{_top}[data-audio-has-prev="1"] & {
+        opacity: 1;
+        pointer-events: auto;
+      }
+    }
+
+    &--play {
+      font-size: 16px; // icon size
+    }
+
+    &--next {
+      opacity: 0.5;
+      pointer-events: none;
+
+      .@{_top}[data-audio-has-next="1"] & {
+        opacity: 1;
+        pointer-events: auto;
+      }
+    }
+  }
+
+  &__current-time {
+    &::before {
+      content: var(--current-time);
+    }
+  }
+
+  &__bar {
+    flex: 1;
+    cursor: pointer;
+    margin: 0 5px 0 10px;
+    height: 2px;
+    background-color: @osu-colour-b6;
+    border-radius: 10000px;
+    --current-head-opacity: 0;
+    --bar: 0;
+    transition: height 100ms, opacity 100ms;
+    user-select: none;
+    position: relative;
+
+    // extended hover area
+    &::before {
+      position: absolute;
+      content: '';
+      display: block;
+      left: -5px;
+      right: $left;
+      top: -10px;
+      bottom: $top;
+    }
+
+    &:hover, &[data-audio-dragging="1"] {
+      height: 6px;
+      --current-head-opacity: 1;
+    }
+
+    &--progress {
+      --bar: var(--progress);
+    }
+
+    &--volume {
+      --bar: var(--volume);
+      width: 50px;
+      flex: none;
+
+      .@{_top}[data-audio-volume-bar-visible="0"] & {
+        display: none;
+      }
+    }
+  }
+
+  &__bar-current {
+    height: 100%;
+    width: calc(var(--bar) * 100%);
+    background-color: @osu-colour-h1;
+    pointer-events: none;
+    border-radius: inherit;
+    position: relative;
+
+    // current head
+    &::after {
+      position: absolute;
+      width: 14px;
+      height: $width;
+      border-radius: 50%;
+      background-color: @osu-colour-h1;
+      right: (-$width / 2);
+      top: calc(50% - ($width / 2));
+      content: '';
+      display: block;
+      opacity: var(--current-head-opacity);
+      transition: inherit;
+    }
+  }
+
+  &__timestamps {
+    display: flex;
+    font-size: @font-size--normal;
+    font-variant-numeric: tabular-nums;
+  }
+
+  &__timestamp {
+    margin: 0 5px;
+    text-align: right;
+    @_colon: 6px;
+    @_number: 9px;
+    min-width: (@_colon + @_number * 3);
+
+    &::before {
+      content: var(--timestamp, '');
+    }
+
+    .@{_top}[data-audio-time-format="minute"] & {
+      min-width: (@_colon + @_number * 4);
+    }
+
+    .@{_top}[data-audio-time-format="hour_minimal"] & {
+      min-width: (@_colon * 2 + @_number * 5);
+    }
+
+    .@{_top}[data-audio-time-format="hour"] & {
+      min-width: (@_colon * 2 + @_number * 6);
+    }
+
+    &--current {
+      display: none;
+
+      .@{_top}[data-audio-has-duration="1"] & {
+        display: block;
+        --timestamp: var(--current-time);
+      }
+    }
+
+    &--total {
+      color: @osu-colour-c2;
+      --timestamp: '--:--';
+
+      .@{_top}[data-audio-has-duration="1"] & {
+        --timestamp: var(--duration);
+      }
+    }
+  }
+
+  &__timestamp-separator {
+    display: none;
+
+    .@{_top}[data-audio-has-duration="1"] & {
+      display: block;
+    }
+  }
+
+  &__volume-button {
+    .fas();
+    .fa-fw();
+    .reset-input();
+    flex: none;
+    --icon: @fa-var-volume-up;
+
+    &:hover {
+      color: @osu-colour-l1;
+    }
+
+    &::before {
+      content: var(--icon);
+    }
+
+    .@{_top}[data-audio-volume="muted"] & {
+      --icon: @fa-var-volume-mute;
+    }
+
+    .@{_top}[data-audio-volume="silent"] & {
+      --icon: @fa-var-volume-off;
+    }
+
+    .@{_top}[data-audio-volume="quiet"] & {
+      --icon: @fa-var-volume-down;
+    }
+  }
+
+  &__volume-control {
+    display: flex;
+    align-items: center;
+  }
+}

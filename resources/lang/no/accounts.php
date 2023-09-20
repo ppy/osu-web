@@ -15,10 +15,19 @@ return [
         ],
 
         'email' => [
-            'current' => 'nåværende e-post',
             'new' => 'ny e-post',
             'new_confirmation' => 'bekreft e-post',
             'title' => 'E-post',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
+        ],
+
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'Gammel API',
         ],
 
         'password' => [
@@ -29,7 +38,13 @@ return [
         ],
 
         'profile' => [
+            'country' => '',
             'title' => 'Profil',
+
+            'country_change' => [
+                '_' => "",
+                'update_link' => '',
+            ],
 
             'user' => [
                 'user_discord' => '',
@@ -56,13 +71,13 @@ return [
 
         'options' => [
             '_' => 'leveringsalternativer',
-            'beatmap_owner_change' => '',
+            'beatmap_owner_change' => 'gjeste-kart',
             'beatmapset:modding' => 'beatmap modding',
             'channel_message' => 'private meldinger',
             'comment_new' => 'nye kommentar',
             'forum_topic_reply' => 'emne svar',
             'mail' => 'e-post',
-            'mapping' => '',
+            'mapping' => 'beatmap mapper',
             'push' => 'trykk',
             'user_achievement_unlock' => 'brukerens medalje ulåst',
         ],

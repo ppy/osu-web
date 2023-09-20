@@ -7,12 +7,6 @@ return [
     'admin' => [
         '_' => '管理员',
     ],
-    'admin_forum' => [
-        '_' => '管理',
-    ],
-    'admin_store' => [
-        '_' => '管理员',
-    ],
     'error' => [
         'error' => [
             '400' => '请求无效',
@@ -23,19 +17,18 @@ return [
             '405' => '访问方法错误',
             '422' => '请求无效',
             '429' => '请求过多',
-            '500' => '服务器出现了一些问题...',
+            '500' => '服务器出现了一些问题……',
             '503' => '服务器维护中',
         ],
     ],
     'forum' => [
         '_' => '论坛',
-        'topic_watches_controller' => [
-            'index' => '主页',
+        'topic_logs_controller' => [
+            'index' => '主题记录',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => '主页',
             'verify_link' => '账户验证',
         ],
         'artists_controller' => [
@@ -56,9 +49,6 @@ return [
         'beatmapset_events_controller' => [
             '_' => '谱面历史',
         ],
-        'beatmapset_watches_controller' => [
-            'index' => '主页',
-        ],
         'beatmapsets_controller' => [
             'discussion' => '谱面讨论',
             'index' => '谱面列表',
@@ -75,12 +65,6 @@ return [
         ],
         'contests_controller' => [
             '_' => '评选',
-        ],
-        'follows_controller' => [
-            'index' => '看板',
-        ],
-        'friends_controller' => [
-            'index' => '主页',
         ],
         'groups_controller' => [
             'show' => '用户组',
@@ -116,23 +100,24 @@ return [
         'scores_controller' => [
             '_' => '表现',
         ],
-        'store_controller' => [
-            '_' => '商店',
+        'seasons_controller' => [
+            '_' => '排名',
         ],
         'tournaments_controller' => [
             '_' => '比赛',
         ],
         'users_controller' => [
             '_' => '玩家信息',
+            'create' => '创建账户',
             'disabled' => '通知',
         ],
         'wiki_controller' => [
             '_' => 'wiki',
         ],
     ],
-    'multiplayer' => [
-        'rooms_controller' => [
-            '_' => '排名',
+    'passport' => [
+        'authorization_controller' => [
+            '_' => '授权应用',
         ],
     ],
     'store' => [

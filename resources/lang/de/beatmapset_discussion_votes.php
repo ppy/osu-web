@@ -5,10 +5,10 @@
 
 return [
     'index' => [
-        'title' => 'Beatmapdiskussion: Abstimmung',
+        'title' => 'Beatmap-Diskussions-Stimmen',
     ],
 
     'item' => [
-        'score' => 'Punktzahl',
+        'score' => 'Ergebnis',
     ],
 ];

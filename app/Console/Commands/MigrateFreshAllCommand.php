@@ -10,15 +10,10 @@ use Symfony\Component\Console\Input\InputOption;
 
 class MigrateFreshAllCommand extends FreshCommand
 {
-    /**
-     * Execute the console command.
-     *
-     * @return void
-     */
     public function handle()
     {
         if (!$this->confirmToProceed()) {
-            return;
+            return 1;
         }
 
         $connections = config('database.connections');
@@ -29,15 +24,17 @@ class MigrateFreshAllCommand extends FreshCommand
             $this->warn("{$name} => {$config['database']}");
         }
 
-        $continue = $this->option('yes') || $this->confirm('continue?');
+        $continue = $this->option('yes') || $this->confirm('continue?', true);
         if (!$continue) {
-            return $this->error('User aborted!');
+            $this->error('User aborted!');
+            return 1;
         }
 
         foreach (array_keys($connections) as $database) {
             $this->warn($database);
             $this->call('db:wipe', [
                 '--database' => $database,
+                '--drop-views' => true,
             ]);
         }
 
@@ -51,13 +48,13 @@ class MigrateFreshAllCommand extends FreshCommand
 
         $this->call('es:index-documents', [
             '--cleanup' => true,
-            '--yes' => $this->option('yes'),
+            '--no-interaction' => $this->option('no-interaction'),
         ]);
 
         $this->call('es:index-wiki', [
             '--cleanup' => true,
             '--create-only' => true,
-            '--yes' => $this->option('yes'),
+            '--no-interaction' => $this->option('no-interaction'),
         ]);
 
         $this->call('es:create-search-blacklist');
@@ -65,6 +62,8 @@ class MigrateFreshAllCommand extends FreshCommand
         if ($this->needsSeeding()) {
             $this->runSeeder(null);
         }
+
+        return 0;
     }
 
     /**

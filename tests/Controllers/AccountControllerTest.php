@@ -3,12 +3,19 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
 namespace Tests\Controllers;
 
+use App\Mail\UserEmailUpdated;
+use App\Mail\UserPasswordUpdated;
+use App\Models\Country;
 use App\Models\User;
 use App\Models\UserProfileCustomization;
 use App\Models\WeakPassword;
+use Database\Factories\UserFactory;
 use Hash;
+use Mail;
 use Tests\TestCase;
 
 class AccountControllerTest extends TestCase
@@ -59,9 +66,34 @@ class AccountControllerTest extends TestCase
             ->assertJsonFragment(['profile_order' => $newOrder]);
     }
 
+    /**
+     * @dataProvider dataProviderForUpdateCountry
+     * @group RequiresScoreIndexer
+     *
+     * More complete tests are done through CountryChange and CountryChangeTarget.
+     */
+    public function testUpdateCountry(string $historyCountry, string $targetCountry, bool $success): void
+    {
+        $user = $this->user();
+        foreach (array_unique([$historyCountry, $targetCountry]) as $country) {
+            Country::factory()->create(['acronym' => $country]);
+        }
+        UserFactory::createRecentCountryHistory($user, $historyCountry, null);
+
+        $resultCountry = $success ? $targetCountry : $user->country_acronym;
+
+        $this->actingAsVerified($user)
+            ->json('PUT', route('account.country', ['country_acronym' => $targetCountry]))
+            ->assertStatus($success ? 200 : 403);
+
+        $this->assertSame($user->fresh()->country_acronym, $resultCountry);
+    }
+
     public function testUpdateEmail()
     {
         $newEmail = 'new-'.$this->user->user_email;
+
+        Mail::fake();
 
         $this->actingAsVerified($this->user())
             ->json('PUT', route('account.email'), [
@@ -75,7 +107,23 @@ class AccountControllerTest extends TestCase
 
         $this->assertSame($newEmail, $this->user->fresh()->user_email);
 
-        // FIXME: add test to check there's mail sent
+        Mail::assertQueued(UserEmailUpdated::class, 2);
+    }
+
+    public function testUpdateEmailLocked()
+    {
+        $newEmail = 'new-'.$this->user->user_email;
+        $this->user->update(['lock_email_changes' => true]);
+
+        $this->actingAsVerified($this->user())
+            ->json('PUT', route('account.email'), [
+                'user' => [
+                    'current_password' => 'password',
+                    'user_email' => $newEmail,
+                    'user_email_confirmation' => $newEmail,
+                ],
+            ])
+            ->assertStatus(403);
     }
 
     public function testUpdateEmailInvalidPassword()
@@ -97,6 +145,8 @@ class AccountControllerTest extends TestCase
     {
         $newPassword = 'newpassword';
 
+        Mail::fake();
+
         $this->actingAsVerified($this->user())
             ->json('PUT', route('account.password'), [
                 'user' => [
@@ -108,6 +158,8 @@ class AccountControllerTest extends TestCase
             ->assertSuccessful();
 
         $this->assertTrue(Hash::check($newPassword, $this->user->fresh()->user_password));
+
+        Mail::assertQueued(UserPasswordUpdated::class);
     }
 
     public function testUpdatePasswordInvalidCurrentPassword()
@@ -179,11 +231,19 @@ class AccountControllerTest extends TestCase
             ->assertStatus(422);
     }
 
+    public function dataProviderForUpdateCountry(): array
+    {
+        return [
+            ['_A', '_A', true],
+            ['_B', '_A', false],
+        ];
+    }
+
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->user = factory(User::class)->create();
+        $this->user = User::factory()->create();
     }
 
     private function user()

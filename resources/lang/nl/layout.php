@@ -19,11 +19,15 @@ return [
             'contest' => 'competitie',
             'contests' => 'competities',
             'root' => 'console',
-            'store_orders' => 'winkel beheerder',
         ],
 
         'artists' => [
             'index' => 'lijst',
+        ],
+
+        'beatmapsets' => [
+            'show' => 'info',
+            'discussions' => 'discussie',
         ],
 
         'changelog' => [
@@ -47,7 +51,8 @@ return [
 
         'users' => [
             'modding' => 'modding',
-            'multiplayer' => '',
+            'playlists' => 'afspeellijsten',
+            'realtime' => 'multiplayer',
             'show' => 'info',
         ],
     ],
@@ -63,18 +68,10 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => 'beatmaps',
-            'artists' => 'aanbevolen artiesten',
-            'index' => 'index',
-            'packs' => 'pakketten',
         ],
         'community' => [
             '_' => 'community',
-            'chat' => 'chat',
-            'contests' => 'wedstrijden',
             'dev' => 'ontwikkeling',
-            'forum-forums-index' => 'forum',
-            'getLive' => 'live',
-            'tournaments' => 'toernooien',
         ],
         'help' => [
             '_' => 'hulp',
@@ -82,30 +79,17 @@ return [
             'getFaq' => 'faq',
             'getRules' => 'regels',
             'getSupport' => 'ondersteuning',
-            'getWiki' => 'wiki',
         ],
         'home' => [
             '_' => 'start',
-            'changelog-index' => 'changelog',
-            'getDownload' => 'downloaden',
-            'news-index' => 'nieuws',
-            'search' => 'zoeken',
             'team' => 'team',
         ],
         'rankings' => [
             '_' => 'rankings',
-            'charts' => 'in de schijnwerpers',
-            'country' => 'land',
-            'index' => 'prestatie',
             'kudosu' => 'kudosu',
-            'multiplayer' => 'multiplayer',
-            'score' => 'score',
         ],
         'store' => [
             '_' => 'winkel',
-            'cart-show' => 'winkelwagen',
-            'getListing' => 'index',
-            'orders-index' => 'bestelgeschiedenis',
         ],
     ],
 
@@ -188,7 +172,7 @@ return [
         'button' => 'inloggen / registreren',
 
         'login' => [
-            'forgot' => "Ik ben mij gegevens vergeten",
+            'forgot' => "Ik ben mijn inloggegevens vergeten",
             'password' => 'wachtwoord',
             'title' => 'Log In Om Verder Te Gaan',
             'username' => 'gebruikersnaam',
@@ -201,7 +185,7 @@ return [
 
         'register' => [
             'download' => 'Download',
-            'info' => 'Je hebt een account nodig, meneer. Waarom heeft u er niet al eentje?',
+            'info' => 'Download osu! om een account aan te maken!',
             'title' => "Heb je geen account?",
         ],
     ],

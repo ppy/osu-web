@@ -4,13 +4,9 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'admin' => [
-        'warehouse' => 'Depozit',
-    ],
-
     'cart' => [
         'checkout' => 'Plată',
-        'info' => ':count_delimited obiect în coș ($:subtotal)|:count_delimited obiecte în coș ($:subtotal)',
+        'info' => 'un obiect în coș ($:subtotal)|:count_delimited obiecte în coș ($:subtotal)|:count_delimited de obiecte în coș ($:subtotal)',
         'more_goodies' => 'Vreau să-mi verific bunătățile înainte de a completa comanda',
         'shipping_fees' => 'taxe de livrare',
         'title' => 'Coșul de cumpărături',
@@ -35,12 +31,13 @@ return [
         'cart_problems_edit' => 'Dă clic aici pentru a-l edita.',
         'declined' => 'Plata a fost anulată.',
         'delayed_shipping' => 'În prezent suntem copleșiți de comenzi! Ești binevenit să-ți plasezi comanda, dar te rugăm să aștepți **o întârziere de 1-2 săptămâni suplimentară** în timp ce prindem din urmă comenzile existente.',
+        'hide_from_activity' => 'Ascunde toate statusurile de suporter osu! din această comandă din activitatea mea',
         'old_cart' => 'Coșul tău pare a fi expirat și a fost reîncărcat, te rugăm să încerci din nou.',
         'pay' => 'Plătește cu Paypal',
         'title_compact' => 'finalizare plată',
 
         'has_pending' => [
-            '_' => 'Dacă ai plăți incomplete, apasă click pe :link pentru a le vedea.',
+            '_' => 'Aveți achiziții incomplete, faceți clic :link pentru a le vedea.',
             'link_text' => 'aici',
         ],
 
@@ -54,6 +51,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Pentru că plata ta a fost făcută electronic, te rugăm să aștepți încă 10 zile pentru ca plata să se afișeze prin PayPal!',
+        'hide_from_activity' => 'Statusul de suporter osu! din această comandă nu sunt afișate în activitățile tale recente.',
         'title_compact' => 'factură fiscală',
 
         'status' => [
@@ -69,20 +67,25 @@ return [
     ],
 
     'order' => [
-        'cancel' => '',
-        'cancel_confirm' => '',
-        'cancel_not_allowed' => '',
+        'cancel' => 'Anulează comanda',
+        'cancel_confirm' => 'Această comandă va fi anulată și plata nu va fi acceptată pentru ea. Este posibil ca furnizorul de plăți să nu elibereze imediat niciun fond rezervat. Ești sigur?',
+        'cancel_not_allowed' => 'Aceasta comanda nu poate fi anulata in acest moment.',
         'invoice' => 'Vezi factura',
         'no_orders' => 'Nu sunt comenzi pentru vizualizare.',
         'paid_on' => 'Comandă plasată pe :date',
         'resume' => 'Reia finalizarea comenzii',
-        'shopify_expired' => '',
+        'shopify_expired' => 'Link-ul de finalizare a comenzii a expirat.',
 
         'item' => [
+            'quantity' => 'Cantitate',
+
             'display_name' => [
                 'supporter_tag' => ':name pentru :username (:duration)',
             ],
-            'quantity' => 'Cantitate',
+
+            'subtext' => [
+                'supporter_tag' => 'Mesaj: :message',
+            ],
         ],
 
         'not_modifiable_exception' => [
@@ -124,8 +127,10 @@ return [
 
     'supporter_tag' => [
         'gift' => 'dăruiește unui jucător',
+        'gift_message' => 'adaugă un mesaj opțional la cadoul tău! (până la :length caractere)',
+
         'require_login' => [
-            '_' => 'Trebuie să fii :link pentru a obține o insignă de suporter osu!',
+            '_' => 'Trebuie să fii :link pentru a obține statusul de suporter osu!',
             'link_text' => 'conectat',
         ],
     ],

@@ -4,6 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'beatmapset' => [
+        'button' => 'Báo cáo',
+        'title' => 'Báo cáo beatmap của :username?',
+    ],
+
     'beatmapset_discussion_post' => [
         'button' => 'Báo cáo',
         'title' => 'Báo cáo bài đăng của :username?',
@@ -20,7 +25,7 @@ return [
     ],
 
     'scores' => [
-        'button' => 'Báo Cáo Điểm',
+        'button' => 'Báo cáo điểm',
         'title' => 'Báo cáo điểm của :username?',
     ],
 

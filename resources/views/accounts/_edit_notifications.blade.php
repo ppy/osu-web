@@ -3,9 +3,10 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @php
+    use App\Jobs\Notifications\BroadcastNotificationBase;
     use App\Models\UserNotificationOption;
 @endphp
-<div class="account-edit">
+<div class="account-edit" id="notifications">
     <div class="account-edit__section">
         <h2 class="account-edit__section-title">
             {{ osu_trans('accounts.notifications.title') }}
@@ -20,11 +21,11 @@
                 data-url="{{ route('account.options') }}"
             >
                 <label class="account-edit-entry__checkbox">
-                    @include('objects._switch', [
+                    @include('objects._switch', ['locals' => [
                         'additionalClass'=> 'js-account-edit__input',
                         'checked' => auth()->user()->user_notify,
                         'name' => 'user[user_notify]',
-                    ])
+                    ]])
 
                     <span class="account-edit-entry__checkbox-label">
                         {{ osu_trans('accounts.notifications.topic_auto_subscribe') }}
@@ -46,11 +47,11 @@
                         $name = App\Models\Notification::COMMENT_NEW;
                         $option = UserNotificationOption::COMMENT_REPLY;
                     @endphp
-                    @include('objects._switch', [
+                    @include('objects._switch', ['locals' => [
                         'additionalClass'=> 'js-account-edit__input',
                         'checked' => $notificationOptions[$name]->details[$option] ?? true,
                         'name' => "user_notification_option[{$name}][details][{$option}]",
-                    ])
+                    ]])
 
                     <span class="account-edit-entry__checkbox-label">
                         {{ osu_trans('accounts.notifications.comment_reply') }}
@@ -66,36 +67,38 @@
         <div class="account-edit__input-group">
             @foreach (UserNotificationOption::BEATMAPSET_DISQUALIFIABLE_NOTIFICATIONS as $notificationType)
                 <div class="account-edit-entry account-edit-entry--no-label">
-                    <div class="account-edit-entry__checkboxes-label">
-                        {{ osu_trans("accounts.notifications.$notificationType") }}
-                    </div>
-                    <form
-                        class="account-edit-entry__checkboxes js-account-edit"
-                        data-account-edit-auto-submit="1"
-                        data-account-edit-type="array"
-                        data-url="{{ route('account.notification-options') }}"
-                        data-field="{{ "user_notification_option[{$notificationType}][details][modes]" }}"
-                    >
-                        @php
-                            $modes = $notificationOptions[$notificationType]->details['modes'] ?? [];
-                        @endphp
-                        @foreach (App\Models\Beatmap::MODES as $key => $_value)
-                            <label class="account-edit-entry__checkbox account-edit-entry__checkbox--inline">
-                                @include('objects._switch', [
-                                    'checked' => in_array($key, $modes, true),
-                                    'value' => $key,
-                                ])
-
-                                <span class="account-edit-entry__checkbox-label">
-                                    {{ osu_trans("beatmaps.mode.{$key}") }}
-                                </span>
-                            </label>
-                        @endforeach
-
-                        <div class="account-edit-entry__checkboxes-status">
-                            @include('accounts._edit_entry_status')
+                    <div>
+                        <div class="account-edit-entry__checkboxes-label">
+                            {{ osu_trans("accounts.notifications.$notificationType") }}
                         </div>
-                    </form>
+                        <form
+                            class="account-edit-entry__checkboxes js-account-edit"
+                            data-account-edit-auto-submit="1"
+                            data-account-edit-type="array"
+                            data-url="{{ route('account.notification-options') }}"
+                            data-field="{{ "user_notification_option[{$notificationType}][details][modes]" }}"
+                        >
+                            @php
+                                $modes = $notificationOptions[$notificationType]->details['modes'] ?? [];
+                            @endphp
+                            @foreach (App\Models\Beatmap::MODES as $key => $_value)
+                                <label class="account-edit-entry__checkbox account-edit-entry__checkbox--inline">
+                                    @include('objects._switch', ['locals' => [
+                                        'checked' => in_array($key, $modes, true),
+                                        'value' => $key,
+                                    ]])
+
+                                    <span class="account-edit-entry__checkbox-label">
+                                        {{ osu_trans("beatmaps.mode.{$key}") }}
+                                    </span>
+                                </label>
+                            @endforeach
+
+                            <div class="account-edit-entry__checkboxes-status">
+                                @include('accounts._edit_entry_status')
+                            </div>
+                        </form>
+                    </div>
                 </div>
             @endforeach
         </div>
@@ -123,13 +126,13 @@
                             <label
                                 class="account-edit-entry__checkbox account-edit-entry__checkbox--grid"
                             >
-                                @include('objects._switch', [
+                                @include('objects._switch', ['locals' => [
                                     'additionalClass'=> 'js-account-edit__input',
-                                    'checked' => $notificationOptions[$name]->details[$mode] ?? UserNotificationOption::DELIVERY_MODE_DEFAULTS[$mode],
+                                    'checked' => $notificationOptions[$name]->details[$mode] ?? BroadcastNotificationBase::DELIVERY_MODE_DEFAULTS[$mode],
                                     'defaultValue' => '0',
                                     'modifiers' => ['grid'],
                                     'name' => "user_notification_option[{$name}][details][{$mode}]",
-                                ])
+                                ]])
                             </label>
                         @endforeach
 

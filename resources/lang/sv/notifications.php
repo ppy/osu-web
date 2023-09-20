@@ -13,13 +13,23 @@ return [
     'see_channel' => 'gå till chatt',
     'verifying' => 'Vänligen verifiera sessionen för att visa aviseringar',
 
+    'action_type' => [
+        '_' => 'alla',
+        'beatmapset' => 'beatmaps',
+        'build' => 'builds',
+        'channel' => 'chatt',
+        'forum_topic' => 'forum',
+        'news_post' => 'nyheter',
+        'user' => 'profil',
+    ],
+
     'filters' => [
         '_' => 'alla',
         'user' => 'profil',
         'beatmapset' => 'beatmaps',
         'forum_topic' => 'forum',
         'news_post' => 'nyheter',
-        'build' => 'build',
+        'build' => 'builds',
         'channel' => 'chatt',
     ],
 
@@ -36,7 +46,7 @@ return [
             'beatmapset_discussion' => [
                 '_' => 'Beatmapdiskussion',
                 'beatmapset_discussion_lock' => 'Diskussion om ":title" har låsts',
-                'beatmapset_discussion_lock_compact' => 'Diskussionen var låst',
+                'beatmapset_discussion_lock_compact' => 'Diskussionen låstes',
                 'beatmapset_discussion_post_new' => 'Nytt inlägg på ":title" av :username: ":content"',
                 'beatmapset_discussion_post_new_empty' => 'Nytt inlägg på ":title" av :username',
                 'beatmapset_discussion_post_new_compact' => 'Nytt inlägg på ":username" av :content"',
@@ -44,27 +54,27 @@ return [
                 'beatmapset_discussion_review_new' => 'Ny recension av ":title" av:username som innehåller problem: :problems, förslag: :suggestions, beröm: :praises',
                 'beatmapset_discussion_review_new_compact' => 'Ny recension av :username som innehåller problem: :problems, förslag: :suggestions, beröm: :praises',
                 'beatmapset_discussion_unlock' => 'Diskussion om ":title" har låsts upp',
-                'beatmapset_discussion_unlock_compact' => 'Diskussionen var upplåst',
+                'beatmapset_discussion_unlock_compact' => 'Diskussionen låstes upp',
             ],
 
             'beatmapset_problem' => [
-                '_' => 'Kvalificerade Beatmap problem',
+                '_' => 'Kvalificerad beatmap-problem',
                 'beatmapset_discussion_qualified_problem' => 'Rapporterat av :username på ":title": ":content"',
                 'beatmapset_discussion_qualified_problem_empty' => 'Rapporterat av :username på ":title"',
-                'beatmapset_discussion_qualified_problem_compact' => 'Rapporterat av :username på ":content"',
+                'beatmapset_discussion_qualified_problem_compact' => 'Rapporterat av :username: ":content"',
                 'beatmapset_discussion_qualified_problem_compact_empty' => 'Rapporterad av :username',
             ],
 
             'beatmapset_state' => [
-                '_' => 'Beatmap status ändrad',
+                '_' => 'Beatmapstatus ändrad',
                 'beatmapset_disqualify' => '":title" har diskvalificerats',
                 'beatmapset_disqualify_compact' => 'Beatmap diskvalificerades',
                 'beatmapset_love' => '":title" befordrades till älskad',
                 'beatmapset_love_compact' => 'Beatmap befordrades till älskad',
                 'beatmapset_nominate' => '":title" har nominerats',
                 'beatmapset_nominate_compact' => 'Beatmap nominerades',
-                'beatmapset_qualify' => '":title" har fått tillräckligt många nomineringar och angett rankingkön',
-                'beatmapset_qualify_compact' => 'Beatmap har angett rankingkö',
+                'beatmapset_qualify' => '":title" har fått tillräckligt många nomineringar och gått in i rankingkön',
+                'beatmapset_qualify_compact' => 'Beatmap har gått in i rankningskön',
                 'beatmapset_rank' => '":title" har rankats',
                 'beatmapset_rank_compact' => 'Beatmap rankades',
                 'beatmapset_remove_from_loved' => '":title" har tagits bort från Älskad',
@@ -86,8 +96,19 @@ return [
         'channel' => [
             '_' => 'Chatt',
 
+            'announcement' => [
+                '_' => 'Nytt meddelande',
+
+                'announce' => [
+                    'channel_announcement' => ':username säger ":title"',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => 'Meddelande från :username',
+                ],
+            ],
+
             'channel' => [
                 '_' => 'Nytt meddelande',
+
                 'pm' => [
                     'channel_message' => ':username säger ":title"',
                     'channel_message_compact' => ':title',
@@ -132,15 +153,6 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => 'Forumets äldre PM',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited oläst meddelande|:count_delimited olästa meddelanden',
-            ],
-        ],
-
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Ny beatmap',
@@ -148,6 +160,9 @@ return [
                 'user_beatmapset_new' => 'Ny beatmap ":title" av :username',
                 'user_beatmapset_new_compact' => 'Ny beatmap ":title"',
                 'user_beatmapset_new_group' => 'Nya beatmaps av :username',
+
+                'user_beatmapset_revive' => 'Beatmap ":title" återupplivad av :username',
+                'user_beatmapset_revive_compact' => 'Beatmap ":title" återupplivad',
             ],
         ],
 
@@ -156,8 +171,8 @@ return [
 
             'user_achievement_unlock' => [
                 '_' => 'Ny medalj',
-                'user_achievement_unlock' => 'Upplåst ":title"!',
-                'user_achievement_unlock_compact' => 'Upplåst ":title"!',
+                'user_achievement_unlock' => 'Låste upp ":title"!',
+                'user_achievement_unlock_compact' => 'Låste upp ":title"!',
                 'user_achievement_unlock_group' => 'Medaljer upplåsta!',
             ],
         ],
@@ -183,7 +198,7 @@ return [
                 'beatmapset_disqualify' => '":title" har blivit diskvalificerad',
                 'beatmapset_love' => '":title" befordrades till älskad',
                 'beatmapset_nominate' => '":title" har blivit nominerad',
-                'beatmapset_qualify' => '',
+                'beatmapset_qualify' => '":title" har fått tillräckligt många nomineringar och har gått in i rankingkön',
                 'beatmapset_rank' => '":title" har blivit rankad',
                 'beatmapset_remove_from_loved' => '":title" togs bort från Älskad',
                 'beatmapset_reset_nominations' => 'Nominering av ":title" har blivit återställd',
@@ -195,6 +210,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => 'Det finns ett nytt meddelande i ":name"',
+            ],
+
             'channel' => [
                 'pm' => 'Du har fått ett nytt meddelande från :username',
             ],
@@ -226,6 +245,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username har skapat nya beatmaps',
+                'user_beatmapset_revive' => ':username har återupplivat beatmaps',
             ],
         ],
     ],

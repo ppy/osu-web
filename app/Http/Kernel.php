@@ -5,7 +5,6 @@
 
 namespace App\Http;
 
-use Fideloper\Proxy\TrustProxies;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -22,11 +21,10 @@ class Kernel extends HttpKernel
     protected $middlewareGroups = [
         'api' => [
             Middleware\AuthApi::class,
-            Middleware\SetLocale::class,
+            Middleware\SetLocaleApi::class,
             Middleware\CheckUserBanStatus::class,
         ],
         'web' => [
-            TrustProxies::class,
             Middleware\StripCookies::class,
             Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
@@ -34,6 +32,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             Middleware\AutologinFromLegacyCookie::class,
             Middleware\VerifyCsrfToken::class,
+            Middleware\SetSessionVerification::class,
             Middleware\SetLocale::class,
             Middleware\UpdateUserLastvisit::class,
             Middleware\VerifyUserAlways::class,
@@ -45,6 +44,9 @@ class Kernel extends HttpKernel
         ],
     ];
 
+    // TODO: check if laravel builtin order makes sense
+    protected $middlewarePriority = [];
+
     /**
      * The application's route middleware.
      *
@@ -55,6 +57,7 @@ class Kernel extends HttpKernel
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'check-user-restricted' => Middleware\CheckUserRestricted::class,
         'guest' => Middleware\RedirectIfAuthenticated::class,
+        'request-cost' => Middleware\RequestCost::class,
         'require-scopes' => Middleware\RequireScopes::class,
         'throttle' => Middleware\ThrottleRequests::class,
         'verify-user' => Middleware\VerifyUser::class,

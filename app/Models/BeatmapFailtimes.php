@@ -113,40 +113,27 @@ namespace App\Models;
  */
 class BeatmapFailtimes extends Model
 {
-    protected $table = 'osu_beatmap_failtimes';
-
+    public $incrementing = false;
     public $timestamps = false;
 
-    public function getDataAttribute()
-    {
-        $data = [];
-
-        for ($i = 1; $i <= 100; $i++) {
-            $column = 'p'.strval($i);
-
-            $data[] = intval($this->$column);
-        }
-
-        return $data;
-    }
+    protected $primaryKey = ':composite';
+    protected $primaryKeys = ['beatmap_id', 'type'];
+    protected $table = 'osu_beatmap_failtimes';
 
     public function beatmap()
     {
         return $this->belongsTo(Beatmap::class, 'beatmap_id');
     }
 
-    public function delete()
+    public function getDataAttribute()
     {
-        // only because laravel can't seem to support composite primary keys
-        static::where('beatmap_id', $this->beatmap_id)
-            ->where('type', $this->type)
-            ->delete();
-    }
+        $data = [];
 
-    public static function find($beatmap_id, $type)
-    {
-        return static::where('beatmap_id', '=', $beatmap_id)
-            ->where('type', '=', $type)
-            ->first();
+        $attributes = $this->getAttributes();
+        for ($i = 1; $i <= 100; $i++) {
+            $data[] = $attributes["p{$i}"] ?? 0;
+        }
+
+        return $data;
     }
 }

@@ -6,26 +6,26 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Anda harus masuk untuk dapat menyunting.',
-            'system_generated' => 'Post yang dihasilkan secara otomatis tidak dapat disunting.',
+            'null_user' => 'Kamu harus masuk untuk menyunting.',
+            'system_generated' => 'Post yang dibuat secara otomatis tidak dapat disunting.',
             'wrong_user' => 'Hanya pembuat post yang diperbolehkan untuk menyunting post.',
         ],
     ],
 
     'events' => [
-        'empty' => 'Belum ada yang terjadi.',
+        'empty' => 'Belum ada hal apapun yang terjadi... hingga saat ini.',
     ],
 
     'index' => [
         'deleted_beatmap' => 'telah dihapus',
-        'none_found' => 'Tidak ada diskusi yang memenuhi kriteria pencarian.',
+        'none_found' => 'Tidak ada topik diskusi yang sesuai dengan kriteria pencarian.',
         'title' => 'Laman Diskusi Beatmap',
 
         'form' => [
             '_' => 'Cari',
             'deleted' => 'Sertakan diskusi yang telah dihapus',
             'mode' => 'Mode beatmap',
-            'only_unresolved' => 'Hanya tampilkan diskusi yang belum selesai',
+            'only_unresolved' => 'Hanya tampilkan topik diskusi yang belum terjawab',
             'types' => 'Tipe pesan',
             'username' => 'Nama Pengguna',
 
@@ -33,7 +33,7 @@ return [
                 '_' => 'Status Beatmap',
                 'all' => 'Semua',
                 'disqualified' => 'Disqualified',
-                'never_qualified' => 'Tidak pernah Qualified',
+                'never_qualified' => 'Belum Pernah Qualified',
                 'qualified' => 'Qualified',
                 'ranked' => 'Ranked',
             ],
@@ -46,15 +46,15 @@ return [
     ],
 
     'item' => [
-        'created_at' => 'Tanggal kiriman',
+        'created_at' => 'Tanggal dibuat',
         'deleted_at' => 'Tanggal penghapusan',
         'message_type' => 'Jenis',
         'permalink' => 'Tautan',
     ],
 
     'nearby_posts' => [
-        'confirm' => 'Tidak ada postingan yang membahas masalah saya',
-        'notice' => 'Terdapat postingan pada :timestamp (:existing_timestamps). Silakan periksa sebelum memposting.',
+        'confirm' => 'Saya tidak menemukan adanya postingan yang membahas isu yang ingin saya angkat',
+        'notice' => 'Terdapat postingan lain di sekitar :timestamp (:existing_timestamps). Mohon periksa apakah isu yang ingin kamu angkat telah dibahas oleh pengguna lain sebelumnya.',
         'unsaved' => ':count pada kajian ini',
     ],
 
@@ -73,25 +73,25 @@ return [
     ],
 
     'review' => [
-        'block_count' => ':used / :max blok telah dipergunakan',
+        'block_count' => ':used / :max blok telah digunakan',
         'go_to_parent' => 'Lihat Kajian',
         'go_to_child' => 'Lihat Topik Diskusi',
         'validation' => [
             'block_too_large' => 'masing-masing poin yang dikaji terbatas pada :limit karakter',
-            'external_references' => 'kajian ini mengandung satu atau lebih poin yang mengacu pada isu-isu yang tidak berasal dari beatmap ini',
-            'invalid_block_type' => 'tipe blok tidak sah',
-            'invalid_document' => 'kajian tidak sah',
-            'invalid_discussion_type' => '',
-            'minimum_issues' => 'kajian harus tersusun atas setidaknya :count isu|kajian harus tersusun atas setidaknya :count isu',
-            'missing_text' => 'tidak terdapat tulisan pada blok',
-            'too_many_blocks' => 'kajian hanya dapat tersusun sepanjang maksimal :count paragraf/isu|kajian hanya dapat tersusun sepanjang maksimal :count paragraf/isu',
+            'external_references' => 'kajian mengandung poin yang merujuk pada isu yang tidak berasal dari kajian ini',
+            'invalid_block_type' => 'tipe blok tidak valid',
+            'invalid_document' => 'kajian tidak valid',
+            'invalid_discussion_type' => 'tipe diskusi tidak valid',
+            'minimum_issues' => 'kajian harus mengandung setidaknya :count isu|kajian harus mengandung setidaknya :count isu',
+            'missing_text' => 'blok tidak mengandung teks',
+            'too_many_blocks' => 'kajian hanya dapat mengandung maksimal :count paragraf/isu|kajian hanya dapat mengandung maksimal :count paragraf/isu',
         ],
     ],
 
     'system' => [
         'resolved' => [
             'true' => 'Ditandai sebagai telah terjawab oleh :user',
-            'false' => 'Dibuka ulang oleh :user',
+            'false' => 'Dibuka kembali oleh :user',
         ],
     ],
 
@@ -101,7 +101,7 @@ return [
     ],
 
     'user_filter' => [
-        'everyone' => 'Semua orang',
+        'everyone' => 'Semua',
         'label' => 'Saring berdasarkan pengguna',
     ],
 ];

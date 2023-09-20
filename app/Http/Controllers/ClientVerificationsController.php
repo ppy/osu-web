@@ -15,7 +15,7 @@ class ClientVerificationsController extends Controller
         $this->middleware('verify-user');
         $this->middleware('throttle:60,10');
 
-        return parent::__construct();
+        parent::__construct();
     }
 
     public function create()

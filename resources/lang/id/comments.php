@@ -11,6 +11,7 @@ return [
     'edited' => 'disunting :timeago oleh :user',
     'pinned' => 'disematkan',
     'empty' => 'Belum ada komentar.',
+    'empty_other' => 'Belum ada komentar lainnya.',
     'load_replies' => 'muat lebih banyak balasan',
     'replies_count' => ':count_delimited balasan|:count_delimited balasan',
     'title' => 'Komentar',
@@ -24,10 +25,10 @@ return [
 
     'editor' => [
         'textarea_hint' => [
-            '_' => 'Tekan enter untuk mengirimkan :action Anda. Gunakan shift+enter untuk memulai baris baru.',
+            '_' => 'Tekan enter untuk mengirimkan :action. Gunakan shift+enter untuk memulai baris baru.',
             'edit' => 'simpan',
             'new' => 'komentar',
-            'reply' => 'balas',
+            'reply' => 'balasan',
         ],
     ],
 
@@ -45,7 +46,7 @@ return [
     'placeholder' => [
         'edit' => 'Sunting komentar di sini',
         'new' => 'Ketik komentar baru di sini',
-        'reply' => 'Ketik balasan Anda di sini',
+        'reply' => 'Ketik balasanmu di sini',
     ],
 
     'show' => [

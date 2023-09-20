@@ -31,12 +31,18 @@ return [
         'progress' => [
             '_' => ':used / :max votos utilizados',
         ],
+
+        'requirement' => [
+            'playlist_beatmapsets' => [
+                'incomplete_play' => 'Precisas de jogar todos os beatmaps nas playlists especificadas antes de votares',
+            ],
+        ],
     ],
     'entry' => [
         '_' => 'inscrição',
         'login_required' => 'Por favor inicia sessão para entrar no concurso.',
         'silenced_or_restricted' => 'Não podes entrar em concursos enquanto estiveres restrito ou silenciado.',
-        'preparation' => 'Atualmente, estamos a preparar este concurso. Por favor espera pacientemente!',
+        'preparation' => 'Estamos de momento a preparar este concurso. Por favor, espera pacientemente!',
         'drop_here' => 'Larga a tua inscrição aqui',
         'download' => 'Transferir .osz',
         'wrong_type' => [
@@ -44,6 +50,7 @@ return [
             'beatmap' => 'Somente ficheiros .osu são aceites para este concurso.',
             'music' => 'Somente ficheiros .mp3 são aceites para este concurso.',
         ],
+        'wrong_dimensions' => 'As entradas para este concurso devem ser :widthx:height',
         'too_big' => 'As inscrições para este concurso só podem ser até :limit.',
     ],
     'beatmaps' => [

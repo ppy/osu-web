@@ -30,9 +30,11 @@ return [
         'nomination_reset' => 'New problem :discussion (:text) triggered a nomination reset.',
         'nomination_reset_received' => 'Nomination by :user was reset by :source_user (:text)',
         'nomination_reset_received_profile' => 'Nomination was reset by :user (:text)',
+        'offset_edit' => 'Online offset changed from :old to :new.',
         'qualify' => 'This beatmap has reached the required number of nominations and has been qualified.',
         'rank' => 'Ranked.',
         'remove_from_loved' => 'Removed from Loved by :user. (:text)',
+        'tags_edit' => 'Tags changed from ":old" to ":new".',
 
         'nsfw_toggle' => [
             'to_0' => 'Removed explicit mark',
@@ -77,6 +79,7 @@ return [
         'nomination_reset' => 'Nomination resetting',
         'nomination_reset_received' => 'Nomination reset received',
         'nsfw_toggle' => 'Explicit mark',
+        'offset_edit' => 'Offset edit',
         'qualify' => 'Qualification',
         'rank' => 'Ranking',
         'remove_from_loved' => 'Loved removal',

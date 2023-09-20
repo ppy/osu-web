@@ -25,6 +25,7 @@ return [
     ],
 
     'forums' => [
+        'forums' => 'Foros',
         'latest_post' => 'Último mensaje',
 
         'index' => [
@@ -47,12 +48,12 @@ return [
         'confirm_restore' => '¿Realmente desea restaurar la publicación?',
         'edited' => 'Última edición por :user :when, editado :count_delimited vez en total.|Última edición por :user :when, editado :count_delimited veces en total.',
         'posted_at' => 'publicado :when',
-        'posted_by' => 'publicado por :username',
+        'posted_by_in' => 'publicado por :username en :forum',
 
         'actions' => [
             'destroy' => 'Eliminar publicación',
             'edit' => 'Editar publicación',
-            'report' => 'Denunciar publicación',
+            'report' => 'Reportar publicación',
             'restore' => 'Restaurar publicación',
         ],
 
@@ -101,11 +102,11 @@ return [
             'preview' => 'Previsualizar',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
-            'preview_hide' => 'Escribir',
+            'preview_hide' => 'Editar',
             'submit' => 'Publicar',
 
             'necropost' => [
-                'default' => 'Este tema ha estado inactivo durante mucho tiempo. Sólo publique aquí si tiene una razón específica para hacerlo.',
+                'default' => 'Este tema ha estado inactivo durante mucho tiempo. Solo publique aquí si tiene una razón específica para hacerlo.',
 
                 'new_topic' => [
                     '_' => "Este tema ha estado inactivo durante mucho tiempo. Si no tiene una razón específica para publicar aquí, por favor :create en su lugar.",
@@ -125,6 +126,55 @@ return [
             'last' => 'ir a la última publicación',
             'next' => 'saltarse las siguientes 10 publicaciones',
             'previous' => 'ir 10 publicaciones atrás',
+        ],
+
+        'logs' => [
+            '_' => 'Registros de temas',
+            'button' => 'Buscar registros de temas',
+
+            'columns' => [
+                'action' => 'Acción',
+                'date' => 'Fecha',
+                'user' => 'Usuario',
+            ],
+
+            'data' => [
+                'add_tag' => 'etiqueta «:tag» añadida',
+                'announcement' => 'tema anclado y marcado como anuncio',
+                'edit_topic' => 'a :title',
+                'fork' => 'de :topic',
+                'pin' => 'tema anclado',
+                'post_operation' => 'publicado por :username',
+                'remove_tag' => 'etiqueta removida ":tag"',
+                'source_forum_operation' => 'de :forum',
+                'unpin' => 'tema sin fijar',
+            ],
+
+            'no_results' => 'no se encontraron registros...',
+
+            'operations' => [
+                'delete_post' => 'Publicación eliminada',
+                'delete_topic' => 'Tema eliminado',
+                'edit_topic' => 'Título del tema cambiado',
+                'edit_poll' => 'Encuesta del tema editada',
+                'fork' => 'Tema copiado',
+                'issue_tag' => 'Etiqueta emitida',
+                'lock' => 'Tema bloqueado',
+                'merge' => 'Publicaciones unidas dentro de este tema',
+                'move' => 'Tema movido',
+                'pin' => 'Tema anclado',
+                'post_edited' => 'Publicación editada',
+                'restore_post' => 'Publicación restaurada',
+                'restore_topic' => 'Tema restaurado',
+                'split_destination' => 'Publicaciones separadas movidas',
+                'split_source' => 'Separar publicaciones',
+                'topic_type' => 'Establecer el tipo de tema',
+                'topic_type_changed' => 'Tipo de tema cambiado',
+                'unlock' => 'Tema desbloqueado',
+                'unpin' => 'Tema sin anclar',
+                'user_lock' => 'Tema propio bloqueado',
+                'user_unlock' => 'Tema propio desbloqueado',
+            ],
         ],
 
         'post_edit' => [
@@ -185,7 +235,7 @@ return [
                 'max_options' => 'Opciones por usuario',
                 'max_options_info' => 'Este es el número de opciones que un usuario puede seleccionar al votar.',
                 'options' => 'Opciones',
-                'options_info' => 'Escriba cada opción en una nueva línea. Puede añadir hasta 10 opciones.',
+                'options_info' => 'Escriba cada opción en una nueva línea. Puede introducir hasta 10 opciones.',
                 'title' => 'Pregunta',
                 'vote_change' => 'Permitir volver a votar.',
                 'vote_change_info' => 'Si está activado, los usuarios podrán cambiar su voto.',
@@ -203,45 +253,45 @@ return [
         ],
 
         'issue_tag_added' => [
-            'to_0' => 'Eliminar etiqueta "agregado"',
-            'to_0_done' => 'Etiqueta "agregado" eliminada',
-            'to_1' => 'Agregar etiqueta "agregado"',
-            'to_1_done' => 'Etiqueta "agregado" agregada',
+            'to_0' => 'Eliminar etiqueta «agregado»',
+            'to_0_done' => 'Etiqueta «agregado» eliminada',
+            'to_1' => 'Añadir etiqueta «agregado»',
+            'to_1_done' => 'Etiqueta «agregado» añadida',
         ],
 
         'issue_tag_assigned' => [
             'to_0' => 'Eliminar etiqueta "asignado"',
             'to_0_done' => 'Etiqueta "asignado" eliminada',
             'to_1' => 'Agregar etiqueta "asignado"',
-            'to_1_done' => 'Etiqueta "asignado" agregada',
+            'to_1_done' => 'Etiqueta «asignado» añadida',
         ],
 
         'issue_tag_confirmed' => [
             'to_0' => 'Eliminar etiqueta "confirmado"',
             'to_0_done' => 'Etiqueta "confirmado" eliminada',
             'to_1' => 'Agregar etiqueta "confirmado"',
-            'to_1_done' => 'Etiqueta "confirmado" agregada',
+            'to_1_done' => 'Etiqueta «confirmado» añadida',
         ],
 
         'issue_tag_duplicate' => [
             'to_0' => 'Eliminar etiqueta "duplicado"',
             'to_0_done' => 'Etiqueta "duplicado" eliminada',
             'to_1' => 'Agregar etiqueta "duplicado"',
-            'to_1_done' => 'Etiqueta "duplicado" agregada',
+            'to_1_done' => 'Etiqueta «duplicado» añadida',
         ],
 
         'issue_tag_invalid' => [
             'to_0' => 'Eliminar etiqueta "inválido"',
             'to_0_done' => 'Etiqueta "inválido" eliminada',
             'to_1' => 'Agregar etiqueta "inválido"',
-            'to_1_done' => 'Etiqueta "inválido" agregada',
+            'to_1_done' => 'Etiqueta «inválido» añadida',
         ],
 
         'issue_tag_resolved' => [
             'to_0' => 'Eliminar etiqueta "resuelto"',
             'to_0_done' => 'Etiqueta "resuelto" eliminada',
             'to_1' => 'Agregar etiqueta "resuelto"',
-            'to_1_done' => 'Etiqueta "resuelto" agregada',
+            'to_1_done' => 'Etiqueta «resuelto» añadida',
         ],
 
         'lock' => [

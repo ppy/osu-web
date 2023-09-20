@@ -4,8 +4,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'insufficient_stock' => 'Нестае такой рэчы!',
+    'insufficient_stock' => 'Такой рэчы нестае ў патрэбнай колькасьці!',
     'must_separate' => 'Гэты твара павінны пакупацца асобна ад іншых',
     'not_available' => 'Гэтая рэч недаступная.',
-    'too_many' => 'Вы можаце заказаць толькі :count шт. гэтай рэчы за раз.',
+    'too_many' => 'Вы можаце замовіць толькі :count шт. гэтай рэчы за раз.',
 ];

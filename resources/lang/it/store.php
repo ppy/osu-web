@@ -4,16 +4,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'admin' => [
-        'warehouse' => 'Magazzino',
-    ],
-
     'cart' => [
         'checkout' => 'Paga',
         'info' => ':count_delimited articolo nel carrello ($:subtotal)|:count_delimited articoli nel carrello ($:subtotal)',
         'more_goodies' => 'Voglio dare un\'occhiata ad altri elementi prima di completare l\'ordine',
         'shipping_fees' => 'costi di spedizione',
-        'title' => 'Carrello della spesa',
+        'title' => 'Carrello',
         'total' => 'totale',
 
         'errors_no_checkout' => [
@@ -34,13 +30,14 @@ return [
         'cart_problems' => 'Uh oh, ci sono problemi con il carrello!',
         'cart_problems_edit' => 'Clicca qui per modificarlo.',
         'declined' => 'Il pagamento è stato annullato.',
-        'delayed_shipping' => 'Attualmente siamo sommersi dagli ordini! Sei libero di effettuare ordini, ma per favore aspettati un **ritardo addizionale di 1-2 settimane** mentre completiamo gli ordini già esistenti.',
-        'old_cart' => 'Il tuo carrello sembra essere obsoleto ed è stato ricaricato; per favore riprova.',
+        'delayed_shipping' => 'Attualmente siamo sommersi dagli ordini! Sei libero di effettuare ordini, ma ci si aspetta un **ritardo aggiuntivo di 1-2 settimane** mentre completiamo gli ordini già esistenti.',
+        'hide_from_activity' => 'Nascondi tutti i tag osu!supporter in questo ordine dalla mia attività',
+        'old_cart' => 'Il tuo carrello sembra essere obsoleto ed è stato ricaricato, per favore riprova.',
         'pay' => 'Acquista con Paypal',
         'title_compact' => 'pagamento',
 
         'has_pending' => [
-            '_' => 'Hai pagamenti incompleti, clicca :link per vederli.',
+            '_' => 'Hai dei pagamenti incompleti, clicca :link per vederli.',
             'link_text' => 'qui',
         ],
 
@@ -54,12 +51,13 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Visto che il tuo pagamento era un eCheck, dovrai attendere altri 10 giorni per far passare il pagamento attraverso PayPal!',
+        'hide_from_activity' => 'I tag osu!supporter in questo ordine non verranno mostrati nella tua attività recente.',
         'title_compact' => 'ricevuta',
 
         'status' => [
             'processing' => [
                 'title' => 'Il tuo pagamento non è ancora stato confermato!',
-                'line_1' => 'Se hai già pagato, potremmo ancora essere in attesa di una conferma del tuo pagamento. Per favore ricarica la pagina in un minuto o due!',
+                'line_1' => 'Se hai già pagato, potremmo ancora essere in attesa di una conferma del tuo pagamento. Ricarica la pagina in un minuto o due!',
                 'line_2' => [
                     '_' => 'Sei hai avuto un problema durante il pagamento, :link',
                     'link_text' => 'clicca qui per riprendere con il pagamento',
@@ -79,10 +77,15 @@ return [
         'shopify_expired' => 'Il link del pagamento per quest\'ordine è scaduto.',
 
         'item' => [
+            'quantity' => 'Quantità',
+
             'display_name' => [
                 'supporter_tag' => ':name per :username(:duration)',
             ],
-            'quantity' => 'Quantità',
+
+            'subtext' => [
+                'supporter_tag' => 'Messaggio: :message',
+            ],
         ],
 
         'not_modifiable_exception' => [
@@ -124,6 +127,8 @@ return [
 
     'supporter_tag' => [
         'gift' => 'regalo ad un giocatore',
+        'gift_message' => 'aggiungi un messaggio opzionale al tuo regalo (fino a :length caratteri)',
+
         'require_login' => [
             '_' => 'Devi :link per poter ottenere un tag supporter!',
             'link_text' => 'eseguire l\'accesso',

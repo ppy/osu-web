@@ -5,7 +5,7 @@
 
 return [
     'page_description' => 'Artistas destacados en osu!',
-    'title' => 'Artistas Destacados',
+    'title' => 'Artistas destacados',
 
     'admin' => [
         'hidden' => 'EL ARTISTA ESTÁ ACTUALMENTE OCULTO',
@@ -13,8 +13,8 @@ return [
 
     'beatmaps' => [
         '_' => 'Mapas',
-        'download' => 'Descargar plantilla del mapa',
-        'download-na' => 'La plantilla del mapa no está disponible aún',
+        'download' => 'descargar plantilla del mapa',
+        'download-na' => 'plantilla del mapa aún no disponible',
     ],
 
     'index' => [
@@ -22,6 +22,7 @@ return [
     ],
 
     'links' => [
+        'beatmaps' => 'Mapas de osu!',
         'osu' => 'Perfil de osu!',
         'site' => 'Sitio web oficial',
     ],
@@ -29,13 +30,33 @@ return [
     'songs' => [
         '_' => 'Canciones',
         'count' => ':count canción|:count canciones',
-        'exclusive' => 'exclusiva para osu!',
+        'original' => 'Original de osu!',
+        'original_badge' => 'ORIGINAL',
     ],
 
     'tracklist' => [
         'title' => 'título',
         'length' => 'duración',
-        'bpm' => 'bpm',
+        'bpm' => 'ppm',
         'genre' => 'género',
+    ],
+
+    'tracks' => [
+        'index' => [
+            '_' => 'búsqueda de pistas',
+
+            'form' => [
+                'advanced' => 'Búsqueda avanzada',
+                'album' => 'Álbum',
+                'artist' => 'Artista',
+                'bpm_gte' => 'PPM mínimo',
+                'bpm_lte' => 'PPM máximo',
+                'empty' => 'No se encontraron pistas que coincidieran con ese criterio de búsqueda.',
+                'genre' => 'Género',
+                'genre_all' => 'Todos',
+                'length_gte' => 'Duración mínima',
+                'length_lte' => 'Duración máxima',
+            ],
+        ],
     ],
 ];

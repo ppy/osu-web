@@ -24,7 +24,10 @@
         ]) !!}
     </p>
 
-    @if (isset($ref))
+    @php
+        $ref = request()->attributes->get('ref');
+    @endphp
+    @if ($ref !== null)
         <h4>{{ osu_trans('layout.errors.reference') }}<br><small>{{ $ref }}</small></h4>
     @endif
 </div>

@@ -5,12 +5,13 @@
 
 return [
     'deleted' => 'slettet',
-    'deleted_by' => '',
-    'deleted_by_system' => '',
+    'deleted_by' => 'blev slettet :timeago af :user',
+    'deleted_by_system' => 'system',
     'deleted_count' => ':count_delimited slettet kommentar|:count_delimited slettede kommentarer',
     'edited' => 'redigeret :timeago af :user',
     'pinned' => 'fastgjort',
     'empty' => 'Ingen kommentare endnu.',
+    'empty_other' => '',
     'load_replies' => 'indlæs svar',
     'replies_count' => ':count_delimited svar|:count_delimited svar',
     'title' => 'Kommentarer',
@@ -37,9 +38,9 @@ return [
     ],
 
     'index' => [
-        'nav_comments' => '',
+        'nav_comments' => 'kommentarer',
         'nav_title' => 'katalog',
-        'no_comments' => '',
+        'no_comments' => 'ingen kommentarer endnu...',
     ],
 
     'placeholder' => [

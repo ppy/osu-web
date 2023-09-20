@@ -15,6 +15,7 @@ return [
         'closing' => 'Cordialmente,',
         'hello' => 'Olá, :user,',
         'report' => 'Por favor responda a este e-mail IMEDIATAMENTE se você não solicitou essa alteração.',
+        'ignore' => 'Se você não pediu isto, você pode ignorar esse email.',
     ],
 
     'donation_thanks' => [
@@ -66,6 +67,7 @@ return [
         'duration' => 'Graças a ele(a), você tem acesso ao osu!direct e outros benefícios de osu!supporter por :duration.',
         'features' => 'Você pode saber mais detalhes sobre estes recursos aqui:',
         'gifted' => 'Alguém acabou de te presentear uma tag do osu!supporter!',
+        'gift_message' => 'A pessoa que te presenteou essa tag deixou uma mensagem para você:',
         'subject' => 'Você foi presenteado com uma osu!supporter tag!',
     ],
 

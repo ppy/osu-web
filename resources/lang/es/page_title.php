@@ -7,12 +7,6 @@ return [
     'admin' => [
         '_' => 'administración',
     ],
-    'admin_forum' => [
-        '_' => 'administración',
-    ],
-    'admin_store' => [
-        '_' => 'administración',
-    ],
     'error' => [
         'error' => [
             '400' => 'solicitud no válida',
@@ -29,13 +23,12 @@ return [
     ],
     'forum' => [
         '_' => 'foro',
-        'topic_watches_controller' => [
-            'index' => 'panel',
+        'topic_logs_controller' => [
+            'index' => 'registros de temas',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => 'panel',
             'verify_link' => 'verificación de la cuenta',
         ],
         'artists_controller' => [
@@ -56,9 +49,6 @@ return [
         'beatmapset_events_controller' => [
             '_' => 'historial del mapa',
         ],
-        'beatmapset_watches_controller' => [
-            'index' => 'panel',
-        ],
         'beatmapsets_controller' => [
             'discussion' => 'discusión del mapa',
             'index' => 'lista de mapas',
@@ -75,12 +65,6 @@ return [
         ],
         'contests_controller' => [
             '_' => 'concursos',
-        ],
-        'follows_controller' => [
-            'index' => 'tablero',
-        ],
-        'friends_controller' => [
-            'index' => 'panel',
         ],
         'groups_controller' => [
             'show' => 'grupos',
@@ -116,23 +100,24 @@ return [
         'scores_controller' => [
             '_' => 'rendimiento',
         ],
-        'store_controller' => [
-            '_' => 'tienda',
+        'seasons_controller' => [
+            '_' => 'clasificaciones',
         ],
         'tournaments_controller' => [
             '_' => 'torneos',
         ],
         'users_controller' => [
             '_' => 'información del jugador',
+            'create' => 'crear una cuenta',
             'disabled' => 'aviso',
         ],
         'wiki_controller' => [
             '_' => 'wiki',
         ],
     ],
-    'multiplayer' => [
-        'rooms_controller' => [
-            '_' => 'clasificación',
+    'passport' => [
+        'authorization_controller' => [
+            '_' => 'autorizar aplicación',
         ],
     ],
     'store' => [

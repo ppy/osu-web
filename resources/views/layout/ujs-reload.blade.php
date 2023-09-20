@@ -3,5 +3,5 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 (function() {
-    osu.reloadPage()
+    window.reloadPage()
 }).call(this)

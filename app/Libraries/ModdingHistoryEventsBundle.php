@@ -5,10 +5,12 @@
 
 namespace App\Libraries;
 
+use App\Libraries\BeatmapsetDiscussion\Review;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\BeatmapDiscussionVote;
+use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
 use App\Models\User;
 use App\Traits\Memoizes;
@@ -91,7 +93,7 @@ class ModdingHistoryEventsBundle
                     'BeatmapsetEvent',
                     ['discussion.starting_post', 'beatmapset.user']
                 ),
-                'reviewsConfig' => BeatmapsetDiscussionReview::config(),
+                'reviewsConfig' => Review::config(),
                 'users' => json_collection(
                     $this->getUsers(),
                     'UserCompact',
@@ -105,16 +107,22 @@ class ModdingHistoryEventsBundle
                     'Beatmap'
                 );
 
+                $array['beatmapsets'] = json_collection(
+                    $this->getBeatmapsets(),
+                    'Beatmapset'
+                );
+
                 $array['discussions'] = json_collection(
                     $this->getDiscussions(),
                     'BeatmapDiscussion',
-                    ['starting_post', 'beatmap', 'beatmapset', 'current_user_attributes']
+                    ['starting_post', 'current_user_attributes']
                 );
 
                 $array['posts'] = json_collection(
                     $this->getPosts(),
                     'BeatmapDiscussionPost',
-                    ['beatmap_discussion.beatmapset']
+                    // TODO: should get beatmapset from top level beatmapset key instead of embedded property.
+                    ['beatmap_discussion.beatmapset.availability']
                 );
 
                 $array['votes'] = $this->getVotes();
@@ -167,12 +175,26 @@ class ModdingHistoryEventsBundle
                 return collect();
             }
 
+            $beatmapsetId = $this->getBeatmapsets()
+                ->pluck('beatmapset_id');
+
+            return Beatmap::whereIn('beatmapset_id', $beatmapsetId)->get();
+        });
+    }
+
+    private function getBeatmapsets()
+    {
+        return $this->memoize(__FUNCTION__, function () {
+            if (!$this->withExtras) {
+                return collect();
+            }
+
             $beatmapsetId = $this->getDiscussions()
                 ->pluck('beatmapset_id')
                 ->unique()
                 ->toArray();
 
-            return Beatmap::whereIn('beatmapset_id', $beatmapsetId)->get();
+            return Beatmapset::whereIn('beatmapset_id', $beatmapsetId)->get();
         });
     }
 

@@ -18,7 +18,7 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Bugünkü aday gösterme sınırınıza ulaştınız, lütfen yarın tekrar deneyin.',
-            'incorrect_state' => 'Bu işlemi gerçekleştirirken hata oluştu, sayfayı yenilemeyi deneyin.',
+            'incorrect_state' => 'Bu eylemi gerçekleştirirken bir hata oluştu, sayfayı yenilemeyi deneyin.',
             'owner' => "Kendi beatmapinizi aday gösteremezsiniz.",
             'set_metadata' => 'Aday göstermeden önce türü ve dili ayarlamalısınız.',
         ],
@@ -50,28 +50,31 @@ return [
             'resolved' => 'Çözülmüş bir tartışmanın gönderisini düzenleyemezsiniz.',
             'system_generated' => 'Otomatik olarak oluşturulmuş gönderiler düzenlenemez.',
         ],
-
-        'store' => [
-            'beatmapset_locked' => 'Bu beatmap tartışma için kilitlenmiş.',
-        ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => 'Bu harita tartışma için kilitlenmiştir.',
+
         'metadata' => [
             'nominated' => 'Aday gösterilen bir mapin metaverisini değiştiremezsiniz. Hatalı ayarlandığını düşünüyorsanız bir BN ya da NAT üyesiyle iletişime geçiniz.',
         ],
     ],
 
     'chat' => [
+        'annnonce_only' => 'Bu kanal sadece duyurular içindir.',
         'blocked' => 'Sizi engelleyen ya da sizin engellediğiniz bir kullanıcıya mesaj gönderemezsiniz.',
         'friends_only' => 'Kullanıcı arkadaş listesinde bulunmayan kişilerden gelen mesajları engelliyor.',
-        'moderated' => 'Bu kanal şu anda modere ediliyor.',
+        'moderated' => 'O kanal şu anda modere ediliyor.',
         'no_access' => 'Bu kanala erişiminiz yok.',
+        'receive_friends_only' => 'Yalnızca arkadaş listenizdeki kişilerden gelen mesajları kabul ettiğiniz için kullanıcı yanıt veremeyebilir.',
         'restricted' => 'Susturulmuş, kısıtlanmış ya da banlanmış iken mesaj gönderemezsiniz.',
         'silenced' => 'Susturulmuşken, kısıtlıyken veya banlıyken mesaj gönderemezsiniz.',
     ],
 
     'comment' => [
+        'store' => [
+            'disabled' => 'Yorumlar devre dışı',
+        ],
         'update' => [
             'deleted' => "Silinmiş gönderi düzenlenemez.",
         ],
@@ -166,6 +169,14 @@ return [
         ],
     ],
 
+    'score' => [
+        'pin' => [
+            'disabled_type' => "Bu tür skorlar sabitlenemez",
+            'not_owner' => 'Sadece skor sahibi skoru sabitleyebilir.',
+            'too_many' => 'Çok fazla skor sabitlendi.',
+        ],
+    ],
+
     'user' => [
         'page' => [
             'edit' => [
@@ -173,6 +184,9 @@ return [
                 'not_owner' => 'Yalnızca kendi kullanıcı sayfanızı düzenleyebilirsiniz.',
                 'require_supporter_tag' => 'osu!supporter etiketi gereklidir.',
             ],
+        ],
+        'update_email' => [
+            'locked' => '',
         ],
     ],
 ];

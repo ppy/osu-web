@@ -11,12 +11,13 @@ return [
     'edited' => ':user відредагував :timeago',
     'pinned' => 'закріплено',
     'empty' => 'Ще немає коментарів.',
+    'empty_other' => 'Поки немає жодних коментарів.',
     'load_replies' => 'завантажити відповіді',
-    'replies_count' => ':count_delimited відповідь|:count_delimited вiдповиiдей',
+    'replies_count' => ':count_delimited відповідь|:count_delimited відповідей',
     'title' => 'Коментарі',
 
     'commentable_name' => [
-        'beatmapset' => 'Карти',
+        'beatmapset' => 'Бітмапа',
         'build' => 'Список змін',
         'news_post' => 'Новини',
         '_deleted' => 'Видалений елемент',
@@ -24,10 +25,10 @@ return [
 
     'editor' => [
         'textarea_hint' => [
-            '_' => 'Натисніть Enter для :action. Використовуйте Shift + Enter для переходу на новий рядок.',
-            'edit' => 'збереження',
-            'new' => 'відправки',
-            'reply' => 'відповідь',
+            '_' => 'Натисніть Enter щоб :action. Використовуйте Shift + Enter для переходу на новий рядок.',
+            'edit' => 'зберегти',
+            'new' => 'відправити',
+            'reply' => 'відповісти',
         ],
     ],
 

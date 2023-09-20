@@ -15,8 +15,20 @@ class TopicPoll
 
     private $topic;
     private $validated = false;
-    private $params;
+    private $params = [
+        'hide_results' => false,
+        'length_days' => 0,
+        'max_options' => 1,
+        'options' => [],
+        'title' => null,
+        'vote_change' => false,
+    ];
     private $votedBy = [];
+
+    public function __get(string $field)
+    {
+        return $this->params[$field];
+    }
 
     public function canEdit()
     {
@@ -30,12 +42,10 @@ class TopicPoll
 
     public function fill($params)
     {
-        $this->params = array_merge([
-            'hide_results' => false,
-            'length_days' => 0,
-            'max_options' => 1,
-            'vote_change' => false,
-        ], $params);
+        $this->params = [
+            ...$this->params,
+            ...$params,
+        ];
         $this->validated = false;
 
         return $this;
@@ -56,9 +66,11 @@ class TopicPoll
             $this->validated = true;
             $this->validationErrors()->reset();
 
-            if (!isset($this->params['title']) || !present($this->params['title'])) {
+            if (!present($this->params['title'])) {
                 $this->validationErrors()->add('title', 'required');
             }
+
+            $this->validateFieldLength(255, 'title');
 
             if (count($this->params['options']) > count(array_unique($this->params['options']))) {
                 $this->validationErrors()->add('options', '.duplicate_options');
@@ -141,7 +153,18 @@ class TopicPoll
         return $this;
     }
 
-    public function validationErrorsTranslationPrefix()
+    /**
+     * Get the aggregate vote count of this poll, or `0` if the poll doesn't exist. If the poll
+     * allows selecting more than one option, this may be greater than the number of users who voted.
+     */
+    public function totalVoteCount(): int
+    {
+        return $this->exists()
+            ? $this->topic->pollOptions->sum('poll_option_total')
+            : 0;
+    }
+
+    public function validationErrorsTranslationPrefix(): string
     {
         return 'forum.topic_poll';
     }

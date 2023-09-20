@@ -14,8 +14,8 @@ return [
 
     'result' => [
         'empty' => '无结果',
-        'empty_for' => '未找到:modes搜索结果',
-        'more' => '查看更多:mode搜索结果',
-        'title' => ':mode搜索结果',
+        'empty_for' => '未找到 :modes 搜索结果',
+        'more' => '查看更多 :mode 搜索结果',
+        'title' => ':mode 搜索结果',
     ],
 ];

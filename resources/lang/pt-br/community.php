@@ -20,7 +20,7 @@ return [
             ],
             'infra' => [
                 'title' => 'Infraestrutura do Servidor',
-                'description' => 'Contribuições são diretamente utilizadas para o funcionamento do website, serviços multiplayer, tabelas de classificações, etc.',
+                'description' => 'Contribuições são diretamente utilizadas para o funcionamento do website, serviços multiplayer, placares, etc.',
             ],
             'featured-artists' => [
                 'title' => 'Artistas em Destaque',
@@ -132,7 +132,7 @@ return [
                 'description' => 'A quantidade máxima de beatmaps não-ranqueados que você pode ter é calculado com base em um valor padrão (normalmente 4) +1 adicional para cada beatmap ranqueado que você possui (max. 2).<br/><br/> Com osu!supporter, esse limite é aumentado para 8 + 1 adicional para cada beatmap ranqueado (max. 12).',
             ],
             'friend_filtering' => [
-                'title' => 'Classificação de Amigos',
+                'title' => 'Placar de amigos',
                 'description' => 'Dispute com seus amigos e veja como se sai contra eles!* <br/><br/><small>* ainda não disponível no novo site, embreve(tm)</small>',
             ],
 

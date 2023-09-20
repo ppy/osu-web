@@ -7,7 +7,8 @@ return [
     'invalid' => ':attribute especificado no válido.',
     'not_negative' => ':attribute no puede ser negativo.',
     'required' => ':attribute es requerido.',
-    'too_long' => ':attribute ha excedido el límite máximo - sólo puede ser de hasta :limit caracteres.',
+    'too_long' => ':attribute ha excedido el límite máximo - solo puede ser de hasta :limit caracteres.',
+    'url' => 'Por favor, introduzca una URL válida.',
     'wrong_confirmation' => 'La confirmación no coincide.',
 
     'beatmapset_discussion' => [
@@ -75,7 +76,7 @@ return [
             'beatmapset_post_no_edit' => 'Editar la publicación de los metadatos del mapa no está permitido.',
             'first_post_no_delete' => 'No se puede eliminar la publicación inicial',
             'missing_topic' => 'Falta el tema de la publicación',
-            'only_quote' => 'Tu respuesta sólo contiene una cita.',
+            'only_quote' => 'Tu respuesta solo contiene una cita.',
 
             'attributes' => [
                 'post_text' => 'Cuerpo de la publicación',
@@ -92,7 +93,7 @@ return [
             'duplicate_options' => 'Opciones duplicadas no permitidas.',
             'grace_period_expired' => 'No se puede editar una encuesta después de :limit horas',
             'hiding_results_forever' => 'No se pueden ocultar los resultados de una encuesta que nunca finaliza.',
-            'invalid_max_options' => 'La opciones por usuario no pueden exceder el número de opciones disponibles.',
+            'invalid_max_options' => 'Las opciones por usuario no pueden exceder el número de opciones disponibles.',
             'minimum_one_selection' => 'Se requiere un mínimo de una opción por usuario.',
             'minimum_two_options' => 'Se necesitan al menos dos opciones.',
             'too_many_options' => 'Número de opciones permitidas excedidas.',
@@ -105,6 +106,16 @@ return [
         'topic_vote' => [
             'required' => 'Selecciona una opción para votar.',
             'too_many' => 'Seleccionadas más opciones de las permitidas.',
+        ],
+    ],
+
+    'legacy_api_key' => [
+        'exists' => 'Solo se proporciona una clave API por usuario por el momento.',
+
+        'attributes' => [
+            'api_key' => 'clave api',
+            'app_name' => 'nombre de la aplicación',
+            'app_url' => 'url de la aplicación',
         ],
     ],
 
@@ -122,14 +133,14 @@ return [
 
     'user' => [
         'contains_username' => 'La contraseña no puede contener el nombre de usuario.',
-        'email_already_used' => 'El correo electrónico ya está siendo utilizado.',
-        'email_not_allowed' => 'Dirección de correo electrónico no permitida.',
+        'email_already_used' => 'Dirección de correo ya usada.',
+        'email_not_allowed' => 'Dirección de correo no permitida.',
         'invalid_country' => 'El país no está en la base de datos.',
         'invalid_discord' => 'Nombre de usuario de Discord no válido.',
-        'invalid_email' => "No parece ser una dirección de correo electrónico válida.",
+        'invalid_email' => "No parece ser una dirección de correo válida.",
         'invalid_twitter' => 'Nombre de usuario de Twitter no válido.',
         'too_short' => 'La nueva contraseña es muy corta.',
-        'unknown_duplicate' => 'El nombre de usuario o correo electrónico ya está siendo utilizado.',
+        'unknown_duplicate' => 'Nombre de usuario o correo ya usado.',
         'username_available_in' => 'Este nombre de usuario estará disponible para su uso en :duration.',
         'username_available_soon' => '¡Este nombre de usuario estará disponible para su uso en cualquier momento!',
         'username_invalid_characters' => 'El nombre de usuario solicitado contiene caracteres no válidos.',
@@ -142,13 +153,13 @@ return [
         'username_too_long' => 'El nombre de usuario solicitado es muy largo.',
         'weak' => 'Contraseña no permitida.',
         'wrong_current_password' => 'La contraseña actual es incorrecta.',
-        'wrong_email_confirmation' => 'La confirmación de correo electrónico no coincide.',
+        'wrong_email_confirmation' => 'La confirmación de correo no coincide.',
         'wrong_password_confirmation' => 'La confirmación de contraseña no coincide.',
         'too_long' => 'Se excedió el límite máximo - puedes usar hasta :limit caracteres.',
 
         'attributes' => [
             'username' => 'Nombre de usuario',
-            'user_email' => 'Correo electrónico',
+            'user_email' => 'Dirección de correo',
             'password' => 'Contraseña',
         ],
 
@@ -163,8 +174,10 @@ return [
     ],
 
     'user_report' => [
-        'reason_not_valid' => ':reason no válido para este tipo de denuncia.',
-        'self' => "¡No puede denunciarse a sí mismo!",
+        'no_ranked_beatmapset' => 'No se pueden reportar mapas clasificados',
+        'not_in_channel' => 'No estás en este canal.',
+        'reason_not_valid' => ':reason no válido para este tipo de reporte.',
+        'self' => "¡No puedes reportarte a ti mismo!",
     ],
 
     'store' => [

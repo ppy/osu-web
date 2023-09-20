@@ -4,10 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'admin' => [
-        'warehouse' => 'Varasto',
-    ],
-
     'cart' => [
         'checkout' => 'Kassa',
         'info' => ':count_delimited tuote ostoskorissa ($:subtotal)|:count_delimited tuotteet ostoskorissa ($:subtotal)',
@@ -35,6 +31,7 @@ return [
         'cart_problems_edit' => 'Napsauta tästä muokataksesi sitä.',
         'declined' => 'Maksu peruutettiin.',
         'delayed_shipping' => 'Olemme tällä hetkellä hukkumassa tilauksiin! Olet vapaa tilaamaan, mutta ole valmis odottamaan **1-2 viikkoa lisää** kunnes olemme saaneet nykyiset tilaukset lähetettyä.',
+        'hide_from_activity' => 'Älä ilmoita osu!supporter tilauksesta profiilissani',
         'old_cart' => 'Korisi näyttää olevan vanhentunut ja on ladattu uudestaan, yritä uudelleen.',
         'pay' => 'Maksa Paypalilla',
         'title_compact' => 'kassa',
@@ -54,6 +51,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Koska maksusi oli eCheck, anna maksimissaan 10 päivää että maksu pääsee PayPalin läpi!',
+        'hide_from_activity' => 'Tämän tilauksen osu!supporter-tägejä ei näytetä profiilisi viimeaikainen toiminta kohdassa.',
         'title_compact' => 'lasku',
 
         'status' => [
@@ -75,20 +73,25 @@ return [
         'invoice' => 'Näytä lasku',
         'no_orders' => 'Ei tilauksia katsottavissa.',
         'paid_on' => 'Tilaus laitettu :date',
-        'resume' => 'Jatka Kassalle',
+        'resume' => 'Jatka kassalle',
         'shopify_expired' => 'Tämän tilauksen kassalinkki on vanhentunut.',
 
         'item' => [
+            'quantity' => 'Määrä',
+
             'display_name' => [
                 'supporter_tag' => ':name käyttäjälle :username (:duration)',
             ],
-            'quantity' => 'Määrä',
+
+            'subtext' => [
+                'supporter_tag' => 'Viesti: :message',
+            ],
         ],
 
         'not_modifiable_exception' => [
             'cancelled' => 'Et voi muokata tilaustasi, sillä se on peruuntunut.',
             'checkout' => 'Et voi muokata tilaustasi, koska sitä käsitellään vielä.', // checkout and processing should have the same message.
-            'default' => 'Tilaus ei ole muokattavissa',
+            'default' => 'Tilausta ei voi muokata',
             'delivered' => 'Et voi muokata tilaustasi, sillä se on jo toimitettu.',
             'paid' => 'Et voi muokata tilaustasi, sillä se on jo maksettu.',
             'processing' => 'Et voi muokata tilaustasi, koska sitä käsitellään vielä.',
@@ -124,6 +127,8 @@ return [
 
     'supporter_tag' => [
         'gift' => 'lahjoita pelaajalle',
+        'gift_message' => 'lisää omavalintainen viesti lahjaasi! (max. :length merkkiä)',
+
         'require_login' => [
             '_' => 'Sinun pitää olla :link saadaksesi osu!tukijan!',
             'link_text' => 'kirjautunut sisään',

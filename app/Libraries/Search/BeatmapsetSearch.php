@@ -9,10 +9,12 @@ use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Elasticsearch\FunctionScore;
 use App\Libraries\Elasticsearch\QueryHelper;
 use App\Libraries\Elasticsearch\RecordSearch;
+use App\Models\ArtistTrack;
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\Follow;
 use App\Models\Score;
+use App\Models\User;
 
 class BeatmapsetSearch extends RecordSearch
 {
@@ -65,15 +67,19 @@ class BeatmapsetSearch extends RecordSearch
 
         $this->addBlacklistFilter($query);
         $this->addBlockedUsersFilter($query);
+        $this->addFeaturedArtistFilter($query);
+        $this->addFeaturedArtistsFilter($query);
         $this->addFollowsFilter($query);
         $this->addGenreFilter($query);
         $this->addLanguageFilter($query);
         $this->addExtraFilter($query);
         $this->addNsfwFilter($query);
         $this->addRankedFilter($query);
-        $this->addStatusFilter($query);
+        $this->addSpotlightsFilter($query);
 
         $nested = new BoolQuery();
+        $this->addDifficultyFilter($nested);
+        $this->addStatusFilter($query, $nested);
         $this->addManiaKeysFilter($nested);
         $this->addModeFilter($nested);
         $this->addPlayedFilter($query, $nested);
@@ -81,8 +87,8 @@ class BeatmapsetSearch extends RecordSearch
         $this->addRecommendedFilter($nested);
 
         $this->addSimpleFilters($query, $nested);
+        $this->addCreatorFilter($query, $nested);
         $this->addTextFilter($query, 'artist', ['artist', 'artist_unicode']);
-        $this->addTextFilter($query, 'creator', ['creator']);
 
         $query->filter([
             'nested' => [
@@ -110,6 +116,7 @@ class BeatmapsetSearch extends RecordSearch
         return $this
             ->response()
             ->records()
+            ->withPackTags()
             ->with(['beatmaps' => function ($q) {
                 return $q->withMaxCombo();
             }])->get();
@@ -118,18 +125,19 @@ class BeatmapsetSearch extends RecordSearch
     private function addBlacklistFilter($query)
     {
         static $fields = ['artist', 'source', 'tags'];
+        $params = [
+            'index' => config('osu.elasticsearch.prefix').'blacklist',
+            'id' => 'beatmapsets',
+            // can be changed to per-field blacklist as different fields should probably have different restrictions.
+            'path' => 'keywords',
+        ];
+
         $bool = new BoolQuery();
 
         foreach ($fields as $field) {
             $bool->mustNot([
                 'terms' => [
-                    $field => [
-                        'index' => config('osu.elasticsearch.prefix').'blacklist',
-                        'type' => 'blacklist', // FIXME: change to _doc after upgrading from 6.1
-                        'id' => 'beatmapsets',
-                        // can be changed to per-field blacklist as different fields should probably have different restrictions.
-                        'path' => 'keywords',
-                    ],
+                    $field => $params,
                 ],
             ]);
         }
@@ -142,10 +150,49 @@ class BeatmapsetSearch extends RecordSearch
         $query->mustNot(['terms' => ['user_id' => $this->params->blockedUserIds()]]);
     }
 
+    private function addCreatorFilter(BoolQuery $query, BoolQuery $nested): void
+    {
+        $value = $this->params->creator;
+
+        if (!present($value)) {
+            return;
+        }
+
+        $user = User::lookup($value);
+
+        if ($user === null) {
+            $this->addTextFilter($query, 'creator', ['creator']);
+        } else {
+            $nested->filter(['term' => ['beatmaps.user_id' => $user->getKey()]]);
+        }
+    }
+
+    private function addDifficultyFilter(BoolQuery $nested)
+    {
+        if ($this->params->difficulty !== null) {
+            $nested->must(QueryHelper::queryString($this->params->difficulty, ['beatmaps.version'], 'and'));
+        }
+    }
+
     private function addExtraFilter($query)
     {
         foreach ($this->params->extra as $val) {
             $query->filter(['term' => [$val => true]]);
+        }
+    }
+
+    private function addFeaturedArtistFilter($query)
+    {
+        if ($this->params->featuredArtist !== null) {
+            $trackIds = ArtistTrack::where('artist_id', $this->params->featuredArtist)->pluck('id');
+            $query->filter(['terms' => ['track_id' => $trackIds]]);
+        }
+    }
+
+    private function addFeaturedArtistsFilter($query)
+    {
+        if ($this->params->showFeaturedArtists) {
+            $query->filter(['exists' => ['field' => 'track_id']]);
         }
     }
 
@@ -282,9 +329,17 @@ class BeatmapsetSearch extends RecordSearch
         }
     }
 
-    // statuses are non scoring for the query context.
-    private function addStatusFilter($mainQuery)
+    private function addSpotlightsFilter($query)
     {
+        if ($this->params->showSpotlights) {
+            $query->filter(['term' => ['spotlight' => true]]);
+        }
+    }
+
+    // statuses are non scoring for the query context.
+    private function addStatusFilter($mainQuery, $beatmapQuery)
+    {
+        $queryForFilter = $beatmapQuery;
         $query = new BoolQuery();
 
         switch ($this->params->status) {
@@ -292,42 +347,52 @@ class BeatmapsetSearch extends RecordSearch
                 break;
             case 'ranked':
                 $query
-                    ->should(['match' => ['approved' => Beatmapset::STATES['ranked']]])
-                    ->should(['match' => ['approved' => Beatmapset::STATES['approved']]]);
+                    ->should(['match' => ['beatmaps.approved' => Beatmapset::STATES['ranked']]])
+                    ->should(['match' => ['beatmaps.approved' => Beatmapset::STATES['approved']]]);
                 break;
             case 'loved':
-                $query->must(['match' => ['approved' => Beatmapset::STATES['loved']]]);
+                $query->must(['match' => ['beatmaps.approved' => Beatmapset::STATES['loved']]]);
                 break;
             case 'favourites':
-                $favs = model_pluck($this->params->user->favouriteBeatmapsets(), 'beatmapset_id', Beatmapset::class);
-                $query->must(['ids' => ['values' => $favs]]);
+                if ($this->params->user !== null) {
+                    $favs = model_pluck($this->params->user->favouriteBeatmapsets(), 'beatmapset_id', Beatmapset::class);
+                }
+                $query->must(['ids' => ['values' => $favs ?? []]]);
+                $queryForFilter = $mainQuery;
                 break;
             case 'qualified':
-                $query->should(['match' => ['approved' => Beatmapset::STATES['qualified']]]);
+                $query->should(['match' => ['beatmaps.approved' => Beatmapset::STATES['qualified']]]);
                 break;
             case 'pending':
                 $query
-                    ->should(['match' => ['approved' => Beatmapset::STATES['wip']]])
-                    ->should(['match' => ['approved' => Beatmapset::STATES['pending']]]);
+                    ->must(['match' => ['beatmaps.approved' => Beatmapset::STATES['pending']]]);
+                break;
+            case 'wip':
+                $query->must(['match' => ['beatmaps.approved' => Beatmapset::STATES['wip']]]);
                 break;
             case 'graveyard':
-                $query->must(['match' => ['approved' => Beatmapset::STATES['graveyard']]]);
+                $query->must(['match' => ['beatmaps.approved' => Beatmapset::STATES['graveyard']]]);
                 break;
             case 'mine':
                 if ($this->params->user !== null) {
-                    $maps = model_pluck($this->params->user->beatmapsets(), 'beatmapset_id');
+                    $maps = $this->params->user->beatmaps()
+                        ->select('beatmapset_id')
+                        ->distinct()
+                        ->pluck('beatmapset_id')
+                        ->all();
                 }
                 $query->must(['ids' => ['values' => $maps ?? []]]);
+                $queryForFilter = $mainQuery;
                 break;
             default: // null, etc
                 $query
-                    ->should(['match' => ['approved' => Beatmapset::STATES['ranked']]])
-                    ->should(['match' => ['approved' => Beatmapset::STATES['approved']]])
-                    ->should(['match' => ['approved' => Beatmapset::STATES['loved']]]);
+                    ->should(['match' => ['beatmaps.approved' => Beatmapset::STATES['ranked']]])
+                    ->should(['match' => ['beatmaps.approved' => Beatmapset::STATES['approved']]])
+                    ->should(['match' => ['beatmaps.approved' => Beatmapset::STATES['loved']]]);
                 break;
         }
 
-        $mainQuery->filter($query);
+        $queryForFilter->filter($query);
     }
 
     private function addTextFilter(BoolQuery $query, string $paramField, array $fields): void
@@ -360,7 +425,7 @@ class BeatmapsetSearch extends RecordSearch
         $select = $rank === null ? 'beatmap_id' : ['beatmap_id', 'score', 'rank'];
 
         foreach ($this->getSelectedModes() as $mode) {
-            $newQuery = Score\Best\Model::getClass($mode)
+            $newQuery = Score\Best\Model::getClassByRulesetId($mode)
                 ::forUser($this->params->user)
                 ->select($select);
 

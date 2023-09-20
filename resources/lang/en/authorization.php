@@ -50,28 +50,31 @@ return [
             'resolved' => 'You can not edit a post of a resolved discussion.',
             'system_generated' => 'Automatically generated post can not be edited.',
         ],
-
-        'store' => [
-            'beatmapset_locked' => 'This beatmap is locked for discussion.',
-        ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => 'This beatmap is locked for discussion.',
+
         'metadata' => [
             'nominated' => 'You cannot change metadata of a nominated map. Contact a BN or NAT member if you think it is set incorrectly.',
         ],
     ],
 
     'chat' => [
+        'annnonce_only' => 'This channel is for announcements only.',
         'blocked' => 'Cannot message a user that is blocking you or that you have blocked.',
         'friends_only' => 'User is blocking messages from people not on their friends list.',
-        'moderated' => 'That channel is currently moderated.',
+        'moderated' => 'This channel is currently moderated.',
         'no_access' => 'You do not have access to that channel.',
+        'receive_friends_only' => 'The user may not be able to reply because you are only accepting messages from people on your friends list.',
         'restricted' => 'You cannot send messages while silenced, restricted or banned.',
         'silenced' => 'You cannot send messages while silenced, restricted or banned.',
     ],
 
     'comment' => [
+        'store' => [
+            'disabled' => 'Comments are disabled',
+        ],
         'update' => [
             'deleted' => "Can't edit deleted post.",
         ],
@@ -166,6 +169,14 @@ return [
         ],
     ],
 
+    'score' => [
+        'pin' => [
+            'disabled_type' => "Can't pin this type of score",
+            'not_owner' => 'Only score owner can pin score.',
+            'too_many' => 'Pinned too many scores.',
+        ],
+    ],
+
     'user' => [
         'page' => [
             'edit' => [
@@ -173,6 +184,9 @@ return [
                 'not_owner' => 'Can only edit own user page.',
                 'require_supporter_tag' => 'osu!supporter tag is required.',
             ],
+        ],
+        'update_email' => [
+            'locked' => 'email address is locked',
         ],
     ],
 ];

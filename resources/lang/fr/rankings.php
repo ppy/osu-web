@@ -17,17 +17,32 @@ return [
         ],
     ],
 
+    'kudosu' => [
+        'total' => 'Cumulés',
+        'available' => 'Disponible',
+        'used' => 'Utilisé',
+    ],
+
     'type' => [
-        'charts' => 'mise en avant',
+        'charts' => 'spotlights',
         'country' => 'pays',
+        'kudosu' => 'kudosu',
         'multiplayer' => 'multijoueur',
         'performance' => 'performance',
         'score' => 'score',
+        'seasons' => 'saisons',
+    ],
+
+    'seasons' => [
+        'empty' => 'Il n\'y a pas encore de salons pour cette saison.',
+        'ongoing' => 'Cette saison est toujours en cours (il y aura plus de playlists ajoutées).',
+        'room_count' => 'Nombre de playlists',
+        'url' => 'Afficher plus d\'informations sur cette saison.',
     ],
 
     'spotlight' => [
         'end_date' => 'Date de fin',
-        'map_count' => 'Nombre de map',
+        'map_count' => 'Nombre de beatmaps',
         'participants' => 'Participants',
         'start_date' => 'Date de début',
     ],
@@ -39,9 +54,9 @@ return [
         'play_count' => 'Nombres de parties',
         'performance' => 'Performance',
         'total_score' => 'Score total',
-        'ranked_score' => 'Score Classé',
+        'ranked_score' => 'Score classé',
         'average_score' => 'Score Moyen',
-        'average_performance' => 'Performance moyenne.',
+        'average_performance' => 'Performance moyenne',
         'ss' => '',
         's' => '',
         'a' => '',

@@ -22,6 +22,7 @@ return [
     ],
 
     'links' => [
+        'beatmaps' => 'osu! Beatmaps',
         'osu' => 'osu! profil',
         'site' => 'Offisielt nettsted',
     ],
@@ -29,7 +30,8 @@ return [
     'songs' => [
         '_' => 'Sanger',
         'count' => ':count sang|:count sanger',
-        'exclusive' => 'osu! eksklusiv',
+        'original' => 'osu! original',
+        'original_badge' => 'ORIGINAL',
     ],
 
     'tracklist' => [
@@ -37,5 +39,24 @@ return [
         'length' => 'lengde',
         'bpm' => 'spm',
         'genre' => 'sjanger',
+    ],
+
+    'tracks' => [
+        'index' => [
+            '_' => 'sporsøk',
+
+            'form' => [
+                'advanced' => 'Avansert Søk',
+                'album' => 'Album',
+                'artist' => 'Artist',
+                'bpm_gte' => 'Minste BPM',
+                'bpm_lte' => 'Maks BPM',
+                'empty' => 'Fant ingen spor som samsvarer med søkekriteriene.',
+                'genre' => 'Sjanger',
+                'genre_all' => 'Alle',
+                'length_gte' => 'Minste Lengde',
+                'length_lte' => 'Maks Lengde',
+            ],
+        ],
     ],
 ];

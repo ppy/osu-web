@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'deleted' => '[被删除的用户]',
+    'deleted' => '[已删除的用户]',
 
     'beatmapset_activities' => [
         'title' => ":user 的摸图历史",
@@ -23,20 +23,24 @@ return [
         ],
 
         'votes_received' => [
-            'title_most' => '得赞最多（最近三个月）',
+            'title_most' => '最多获赞（最近三个月）',
         ],
 
         'votes_made' => [
-            'title_most' => '赞数最多（最近三个月）',
+            'title_most' => '最多点赞（最近三个月）',
         ],
     ],
 
     'blocks' => [
         'banner_text' => '你已经屏蔽此用户。',
+        'comment_text' => '此评论已隐藏。',
         'blocked_count' => '被屏蔽的用户 (:count)',
         'hide_profile' => '隐藏用户资料',
+        'hide_comment' => '隐藏',
+        'forum_post_text' => '此帖子已被隐藏。',
         'not_blocked' => '此用户未被屏蔽。',
         'show_profile' => '显示用户资料',
+        'show_comment' => '展开',
         'too_many' => '屏蔽用户数量达到最大限制。',
         'button' => [
             'block' => '屏蔽',
@@ -45,13 +49,30 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => '赠送支持者标签',
         'loading' => '加载中...',
         'send_message' => '发送消息',
     ],
 
+    'create' => [
+        'form' => [
+            'password' => '密码',
+            'password_confirmation' => '确认密码',
+            'submit' => '注册新账户',
+            'user_email' => '邮箱地址',
+            'user_email_confirmation' => '确认邮箱地址',
+            'username' => '用户名',
+
+            'tos_notice' => [
+                '_' => '完成注册，即视为您同意了 :link',
+                'link' => '服务协议',
+            ],
+        ],
+    ],
+
     'disabled' => [
-        'title' => '哎呀！看起来您的帐户已被禁用。',
-        'warning' => "如果您违反了规则，我们原则上在一个月的期限以内不会考虑解禁您的帐户。在此之后，您如果需要，可以随时联系我们。请注意，在一个帐户被封后创建新帐户会<strong>使您的封禁期限被延长</strong>。您更需要注意<strong>您每创建一个新帐户都会更严重地违反规则</strong>。我们强烈建议您不要误入歧途。",
+        'title' => '哎呀！看起来您的账户已被禁用。',
+        'warning' => "如果您违反了规则，原则上在一个月的期限以内我们不会考虑解禁您的账户。在此之后，您如果需要，可以随时联系我们。请注意，在一个账户被封后创建新账户会<strong>使您的封禁期限被延长</strong>。您更需要注意<strong>您每创建一个新账户都会更严重地违反规则</strong>。我们强烈建议您不要误入歧途。",
 
         'if_mistake' => [
             '_' => '如果你觉得我们误封了你的账号，你可以通过电子邮件（:email）或者点击本页面右下方的问号来联系我们。一般来说，我们犯错的几率是很低的。我们只以可靠的数据为参考进行这一类的操作。如果你执意违反规则，我们保留拒绝你的请求的权利。',
@@ -59,11 +80,11 @@ return [
         ],
 
         'reasons' => [
-            'compromised' => '我们认为你的帐户已被盗用。在确认身份期间，该帐户会被暂时停用。',
+            'compromised' => '我们认为你的账户已被盗用。在确认身份期间，账户被暂时停用。',
             'opening' => '您的账户可能由于这几种原因被禁用：',
 
             'tos' => [
-                '_' => '您已经违反了一条或多条 :community_rules 或是 :tos',
+                '_' => '您已经违反了一条或多条 :community_rules 或是 :tos。',
                 'community_rules' => '社区规则',
                 'tos' => '服务条款',
             ],
@@ -84,21 +105,21 @@ return [
         '_' => '登录',
         'button' => '登录',
         'button_posting' => '登录中...',
-        'email_login_disabled' => '当前不可以使用电子邮件登陆。请使用您的用户名。',
+        'email_login_disabled' => '当前不可以使用电子邮件登录。请使用您的用户名。',
         'failed' => '登录失败',
         'forgot' => '忘记密码？',
         'info' => '请登录以继续',
         'invalid_captcha' => '验证码无效，请刷新页面后重试。',
-        'locked_ip' => 'IP 已被锁定，请稍等几分钟',
+        'locked_ip' => 'IP 已被锁定，请稍等几分钟。',
         'password' => '密码',
         'register' => "没有 osu! 账户？现在就注册一个！",
-        'remember' => '记住此电脑',
+        'remember' => '在这台电脑上记住我',
         'title' => '登录以继续',
         'username' => '用户名',
 
         'beta' => [
             'main' => 'Beta 仅限于特定用户访问',
-            'small' => '（在不久后将对 osu!支持者 开放）',
+            'small' => '（在不久后将对 osu! 支持者开放）',
         ],
     ],
 
@@ -128,7 +149,7 @@ return [
 
         'options' => [
             'cheating' => '作弊',
-            'multiple_accounts' => '使用多个账号',
+            'multiple_accounts' => '使用多账号（开小号）',
             'insults' => '侮辱 我/其他人',
             'spam' => '刷屏/垃圾广告',
             'unwanted_content' => '发布包含不当内容的链接',
@@ -138,42 +159,47 @@ return [
     ],
     'restricted_banner' => [
         'title' => '账户进入限制模式！',
-        'message' => '在被限制时，无法与其他玩家互动，分数只有自己可见。该限制通常由系统自动给予，并将在24小时内解除。需要申诉？请<a href="mailto:accounts@ppy.sh">联系支持团队</a>.',
+        'message' => '处于被限制状态时，你将不能与其他玩家互动，分数只有你自己可见。限制通常是系统自动给予，通常会在 24 小时内解除。:link',
+        'message_link' => '点击此页了解更多。',
     ],
     'show' => [
         'age' => ':age 岁',
         'change_avatar' => '更换头像！',
         'first_members' => '元老玩家',
         'is_developer' => 'osu! 开发者',
-        'is_supporter' => 'osu!supporter',
-        'joined_at' => '注册时间：:date',
-        'lastvisit' => '上次登录：:date',
+        'is_supporter' => 'osu! 支持者',
+        'joined_at' => '注册于 :date',
+        'lastvisit' => '最后活跃：:date',
         'lastvisit_online' => '当前在线',
         'missingtext' => '你可能打错字了！（或者该用户已经被封禁）',
         'origin_country' => '来自 :country',
         'previous_usernames' => '曾用名',
-        'plays_with' => '惯用 :devices',
+        'plays_with' => '用 :devices 游玩',
         'title' => ":username 的个人资料",
 
         'comments_count' => [
             '_' => '发表了 :link',
             'count' => ':count_delimited 条评论',
         ],
+        'cover' => [
+            'to_0' => '隐藏封面',
+            'to_1' => '显示封面',
+        ],
         'edit' => [
             'cover' => [
-                'button' => '更换个人资料头图',
-                'defaults_info' => '在将来会有更多头图可用',
+                'button' => '更换个人资料封面',
+                'defaults_info' => '在将来会有更多封面可用',
                 'upload' => [
-                    'broken_file' => '上传失败.请检查上传的图片然后重试.',
+                    'broken_file' => '上传失败。请检查上传的图片然后重试。',
                     'button' => '上传图片',
                     'dropzone' => '拖拽到此处',
                     'dropzone_info' => '将图片拖动到这里也可以上传',
-                    'size_info' => '图片大小最好是 2400x620 像素',
+                    'size_info' => '图片尺寸最好是 2400x620 像素',
                     'too_large' => '上传的图片过大。',
                     'unsupported_format' => '不支持的格式。',
 
                     'restriction_info' => [
-                        '_' => '自定义头图只有 :link 可用',
+                        '_' => '自定义封面只有 :link 可用',
                         'link' => 'osu! 支持者',
                     ],
                 ],
@@ -187,10 +213,10 @@ return [
 
         'extra' => [
             'none' => '无',
-            'unranked' => '最近没有玩过',
+            'unranked' => '最近没玩过',
 
             'achievements' => [
-                'achieved-on' => '达成于 :date',
+                'achieved-on' => ':date 达成',
                 'locked' => '锁定',
                 'title' => '成就',
             ],
@@ -202,16 +228,22 @@ return [
                     'title' => '收藏的谱面',
                 ],
                 'graveyard' => [
-                    'title' => '坟场里的谱面',
+                    'title' => '已停更的谱面',
+                ],
+                'guest' => [
+                    'title' => '客串制作的谱面',
                 ],
                 'loved' => [
-                    'title' => 'Loved 的谱面',
+                    'title' => '社区喜爱 (Loved) 谱面',
+                ],
+                'nominated' => [
+                    'title' => '提名并上架 (Ranked) 的谱面',
                 ],
                 'pending' => [
-                    'title' => 'Pending 的谱面',
+                    'title' => '待定 (Pending) 谱面',
                 ],
                 'ranked' => [
-                    'title' => 'Ranked & Approved 的谱面',
+                    'title' => '上架 (Ranked) 谱面',
                 ],
             ],
             'discussions' => [
@@ -255,7 +287,7 @@ return [
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
-                            'give' => '因讨论帖 :post 的 kudosu 移除操作的撤销而获得 :amount',
+                            'give' => '因移除讨论帖 :post 内送出的 kudosu 而获得 :amount kudosu',
                         ],
 
                         'deny_kudosu' => [
@@ -301,8 +333,8 @@ return [
                 'recent' => '最近取得',
                 'title' => '成就',
             ],
-            'multiplayer' => [
-                'title' => '多人游戏',
+            'playlists' => [
+                'title' => '歌单游戏',
             ],
             'posts' => [
                 'title' => '回复',
@@ -312,9 +344,12 @@ return [
             'recent_activity' => [
                 'title' => '最近活动',
             ],
+            'realtime' => [
+                'title' => '多人游戏',
+            ],
             'top_ranks' => [
                 'download_replay' => '下载回放',
-                'not_ranked' => '只有 ranked 谱面才能得到 pp。',
+                'not_ranked' => '只能在上架 (Ranked) 谱面中获得 pp。',
                 'pp_weight' => '权重：:percentage',
                 'view_details' => '查看详情',
                 'title' => '成绩',
@@ -325,31 +360,41 @@ return [
                 'first' => [
                     'title' => '第一名',
                 ],
+                'pin' => [
+                    'to_0' => '取消置顶',
+                    'to_0_done' => '已取消置顶成绩',
+                    'to_1' => '置顶',
+                    'to_1_done' => '已置顶成绩',
+                ],
+                'pinned' => [
+                    'title' => '置顶成绩',
+                ],
             ],
             'votes' => [
-                'given' => '给予投票（最近三个月）',
-                'received' => '所得投票（最近三个月）',
+                'given' => '最近三个月的给予投票',
+                'received' => '最近三个月所得投票',
                 'title' => '投票',
                 'title_longer' => '最近投票',
                 'vote_count' => ':count_delimited 票',
             ],
             'account_standing' => [
-                'title' => '帐号状态',
-                'bad_standing' => "<strong>:username</strong> 的帐号存在不良记录 :(",
-                'remaining_silence' => '<strong>:username</strong> 的禁言将在 :duration 解除',
+                'title' => '账号状态',
+                'bad_standing' => ":username 的账号存在不良记录 :(",
+                'remaining_silence' => ':username的禁言将在 :duration 解除',
 
                 'recent_infringements' => [
                     'title' => '最近记录',
                     'date' => '时间',
                     'action' => '处理',
                     'length' => '时长',
-                    'length_permanent' => '永久',
+                    'length_indefinite' => '无限期',
                     'description' => '原因',
                     'actor' => '裁决者： :username',
 
                     'actions' => [
                         'restriction' => '封禁',
                         'silence' => '禁言',
+                        'tournament_ban' => '锦标赛封禁',
                         'note' => '注释',
                     ],
                 ],
@@ -366,7 +411,7 @@ return [
         ],
         'not_found' => [
             'reason_1' => '他可能换了用户名。',
-            'reason_2' => '该帐号由于安全或滥用问题暂时不可用。',
+            'reason_2' => '该账号由于安全或滥用问题暂时不可用。',
             'reason_3' => '你可能输错用户名了！',
             'reason_header' => '可能是由于以下原因：',
             'title' => '找不到指定的用户',
@@ -379,18 +424,19 @@ return [
 
             'restriction_info' => [
                 '_' => '你需要成为 :link 才能使用此功能。',
-                'link' => 'osu!支持者',
+                'link' => 'osu! 支持者',
             ],
         ],
         'post_count' => [
             '_' => '发表了 :link',
-            'count' => ':count 篇帖子',
+            'count' => ':count_delimited 篇帖子|:count_delimited 篇帖子',
         ],
         'rank' => [
-            'country' => ':mode 模式的国内/区内排名',
-            'country_simple' => '国内/区内排名',
+            'country' => ':mode 模式的地区排名',
+            'country_simple' => '地区排名',
             'global' => ':mode 模式的全球排名',
             'global_simple' => '全球排名',
+            'highest' => ':date 达成生涯最高排名 :rank',
         ],
         'stats' => [
             'hit_accuracy' => '准确率',
@@ -400,16 +446,16 @@ return [
             'medals' => '奖章',
             'play_count' => '游戏次数',
             'play_time' => '游戏时间',
-            'ranked_score' => 'Ranked 谱面总分',
+            'ranked_score' => '进榜总分',
             'replays_watched_by_others' => '回放被观看次数',
             'score_ranks' => '得分等级',
             'total_hits' => '总命中次数',
             'total_score' => '总分',
             // modding stats
             'graveyard_beatmapset_count' => '坟场里的谱面',
-            'loved_beatmapset_count' => 'Loved 的谱面',
-            'pending_beatmapset_count' => 'Pending 的谱面',
-            'ranked_beatmapset_count' => 'Ranked & Approved 的谱面',
+            'loved_beatmapset_count' => '社区喜爱 (Loved) 谱面',
+            'pending_beatmapset_count' => '待定 (Pending) 谱面',
+            'ranked_beatmapset_count' => '上架 (Ranked) 谱面',
         ],
     ],
 
@@ -424,6 +470,8 @@ return [
         'offline' => '离线',
     ],
     'store' => [
+        'from_client' => '请使用游戏客户端注册！',
+        'from_web' => '请通过网页完成注册',
         'saved' => '账户已创建',
     ],
     'verify' => [
@@ -431,7 +479,7 @@ return [
     ],
 
     'view_mode' => [
-        'brick' => '方块视图',
+        'brick' => '方块检视',
         'card' => '卡片检视',
         'list' => '列表检视',
     ],

@@ -53,7 +53,7 @@ class ModdingRankCommand extends Command
         $rankedTodayCount = Beatmapset::ranked()
             ->withoutTrashed()
             ->withModesForRanking($modeInt)
-            ->where('approved_date', '>=', now()->subDay())
+            ->where('approved_date', '>=', now()->subDays())
             ->count();
 
         $rankableQuota = config('osu.beatmapset.rank_per_day') - $rankedTodayCount;

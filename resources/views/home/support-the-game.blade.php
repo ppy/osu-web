@@ -2,6 +2,10 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
+@php
+    use App\Models\Store\Product;
+@endphp
+
 @extends('master')
 
 @section('content')
@@ -15,12 +19,12 @@
                 @if (!empty($supporterStatus))
                     <!-- supporter status  -->
                     <div class="supporter-status__flex-container">
-                        <a class="supporter-eyecatch__link" href="{{ route('store.products.show', 'supporter-tag') }}" title="{{ osu_trans('community.support.convinced.support') }}">
+                        <a class="supporter-eyecatch__link" href="{{ route('store.products.show', Product::SUPPORTER_TAG_NAME) }}" title="{{ osu_trans('community.support.convinced.support') }}">
                             <div class="supporter-heart{{ $supporterStatus['current'] ? ' supporter-heart--active' : '' }}"></div>
                         </a>
                         <div class="supporter-status__flex-container-inner">
                             <div class="supporter-status__progress-bar supporter-status__progress-bar--active">
-                                <div class="supporter-status__progress-bar-fill supporter-status__progress-bar-fill--active" style="width: {{$supporterStatus['remainingRatio'] ?? 0}}%;"></div>
+                                <div class="supporter-status__progress-bar-fill supporter-status__progress-bar-fill--active" style="width: {{ $supporterStatus['remainingPercent'] ?? '0' }}%;"></div>
                             </div>
                             @if ($supporterStatus['expiration'] !== null)
                             <div class="supporter-status__text supporter-status__text--first">
@@ -94,7 +98,7 @@
             </h3>
             <div class="supporter-eyecatch">
                 <div class="supporter-eyecatch__box">
-                    <a class="supporter-eyecatch__link" href="{{ route('store.products.show', 'supporter-tag') }}">
+                    <a class="supporter-eyecatch__link" href="{{ route('store.products.show', Product::SUPPORTER_TAG_NAME) }}">
                         <div class="supporter-heart supporter-heart--larger supporter-heart--active"></div>
                     </a>
                     <div class="supporter-eyecatch__text supporter-eyecatch__text--main">

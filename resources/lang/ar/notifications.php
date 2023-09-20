@@ -13,6 +13,16 @@ return [
     'see_channel' => 'انتقل للمُحادثة',
     'verifying' => 'الرجاء التحقق من الجلسة لعرض الإشعارات',
 
+    'action_type' => [
+        '_' => 'الكل',
+        'beatmapset' => 'خرائط الموسيقى',
+        'build' => '',
+        'channel' => 'المحادثة',
+        'forum_topic' => 'منتدى',
+        'news_post' => 'الأخبار',
+        'user' => 'الملف الشخصي',
+    ],
+
     'filters' => [
         '_' => 'الكل',
         'user' => 'الملف الشخصي',
@@ -59,16 +69,16 @@ return [
                 '_' => 'تم تغيير حالة الخريطة',
                 'beatmapset_disqualify' => 'حرُِمت ":title" من التأهل',
                 'beatmapset_disqualify_compact' => 'تم استبعاد الخريطة',
-                'beatmapset_love' => 'أرتقت ":title" لـ خريطة محبوبة',
-                'beatmapset_love_compact' => 'أرتقت  الخريطة لـ محبوبة',
+                'beatmapset_love' => 'أرتقت ":title" لـ خريطة Loved',
+                'beatmapset_love_compact' => 'أرتقت الخريطة لتصبح Loved',
                 'beatmapset_nominate' => 'تم ترشيح ":title"',
                 'beatmapset_nominate_compact' => 'تم ترشيح الخريطة',
                 'beatmapset_qualify' => '":title" حصلت على ترشيحات كافية ودخلت حالة التصنيف',
                 'beatmapset_qualify_compact' => 'دخلت الخريطة قائمة التصنيف',
-                'beatmapset_rank' => 'اصبحت ":title" مُصنفة',
-                'beatmapset_rank_compact' => 'تم تصنيف الخريطة',
-                'beatmapset_remove_from_loved' => '":title" تمت ازالتها من "الخرائط المحبوبة"',
-                'beatmapset_remove_from_loved_compact' => 'أُزيلت الخريطة من "الخرائِط المحبوبة"',
+                'beatmapset_rank' => '":title" اصبحت الأن Ranked',
+                'beatmapset_rank_compact' => ' كانت هذه الخريطة Ranked',
+                'beatmapset_remove_from_loved' => '":title" تمت ازالتها من "خرائط Loved"',
+                'beatmapset_remove_from_loved_compact' => 'أُزيلت الخريطة من "خرائط Loved"',
                 'beatmapset_reset_nominations' => 'تم اعادة تعيين ترشيحات ":title"',
                 'beatmapset_reset_nominations_compact' => 'تم اعادة ضبط الترشيح',
             ],
@@ -86,8 +96,19 @@ return [
         'channel' => [
             '_' => 'دردشة',
 
+            'announcement' => [
+                '_' => 'إعلان جديد',
+
+                'announce' => [
+                    'channel_announcement' => ':username يقول ":title"',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => 'إعلان من :username',
+                ],
+            ],
+
             'channel' => [
                 '_' => 'رسالة جديدة',
+
                 'pm' => [
                     'channel_message' => ':title يقول :username',
                     'channel_message_compact' => 'العنوان:',
@@ -132,15 +153,6 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => 'نظام الرسائل القديم',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited رسالة غير مقروءة|:count_delimited رسائل غير مقروءة',
-            ],
-        ],
-
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'خريطة جديدة',
@@ -148,6 +160,9 @@ return [
                 'user_beatmapset_new' => 'خريطة جديدة ":title" بواسطة :username',
                 'user_beatmapset_new_compact' => 'خريطة جديدة ":title"',
                 'user_beatmapset_new_group' => 'خرائِط جديدة بواسطة :username',
+
+                'user_beatmapset_revive' => 'الخريطة ":title" تم إحياؤها بواسطة :username',
+                'user_beatmapset_revive_compact' => 'تم إحياء الخريطة ":title"',
             ],
         ],
 
@@ -181,11 +196,11 @@ return [
 
             'beatmapset_state' => [
                 'beatmapset_disqualify' => 'حُرِمَت ":title" من التأهُل',
-                'beatmapset_love' => 'اصبحت ":title" محبوبة',
+                'beatmapset_love' => '":title" اصبخت الأن Loved',
                 'beatmapset_nominate' => 'اصبحت ":title" مرشحة',
                 'beatmapset_qualify' => '":title" حصلت على ترشيحات كافية ودخلت حالة التصنيف',
-                'beatmapset_rank' => 'اصبحت ":title" مصنفة',
-                'beatmapset_remove_from_loved' => '":title" أُزيلَت مِن "الخرائط المحبوبة"',
+                'beatmapset_rank' => '":title" اصبحت الأن Ranked',
+                'beatmapset_remove_from_loved' => '":title" أُزيلَت مِن "خرائط Loved"',
                 'beatmapset_reset_nominations' => 'تم اعادة تعيين ترشيحات ":title"',
             ],
 
@@ -195,6 +210,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => 'هناك إعلان جديد في ":name"',
+            ],
+
             'channel' => [
                 'pm' => 'لقد تلقيت رسالة جديدة من :username',
             ],
@@ -226,6 +245,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => 'قام :username بإنشاء خرائط جديدة',
+                'user_beatmapset_revive' => ':username قام بإحياء الخرائط',
             ],
         ],
     ],

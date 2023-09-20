@@ -15,10 +15,19 @@ return [
         ],
 
         'email' => [
-            'current' => 'τρέχον email',
             'new' => 'νέο email',
             'new_confirmation' => 'επιβεβαίωση email',
             'title' => 'Email',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
+        ],
+
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'Legacy API',
         ],
 
         'password' => [
@@ -29,7 +38,13 @@ return [
         ],
 
         'profile' => [
+            'country' => 'χώρα',
             'title' => 'Προφίλ',
+
+            'country_change' => [
+                '_' => "Φαίνεται ότι η χώρα του λογαριασμού σας δεν ταιριάζει με τη χώρα διαμονής σας. :update_link.",
+                'update_link' => 'Ενημέρωση σε :country',
+            ],
 
             'user' => [
                 'user_discord' => '',
@@ -48,23 +63,23 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_qualified_problem' => '',
-        'beatmapset_disqualify' => '',
-        'comment_reply' => '',
+        'beatmapset_discussion_qualified_problem' => 'λαμβάνετε ειδοποιήσεις για νέα προβλήματα σε πιστοποιημένους beatmaps των παρακάτω λειτουργιών',
+        'beatmapset_disqualify' => 'λαμβάνετε ειδοποιήσεις για το πότε τα beatmaps των παρακάτω λειτουργιών αποκλείονται',
+        'comment_reply' => 'λαμβάνετε ειδοποιήσεις για απαντήσεις στα σχόλιά σας',
         'title' => 'Ειδοποιήσεις',
         'topic_auto_subscribe' => 'αυτόματη ενεργοποίηση ειδοποιήσεων για τα νέα θέματα που δημιουργείτε στο φόρουμ',
 
         'options' => [
             '_' => 'επιλογές παράδοσης',
-            'beatmap_owner_change' => '',
-            'beatmapset:modding' => '',
+            'beatmap_owner_change' => 'δυσκολία επισκέπτη',
+            'beatmapset:modding' => 'beatmap modding',
             'channel_message' => 'ιδιωτικά μηνύματα',
             'comment_new' => 'νέα σχόλια',
-            'forum_topic_reply' => '',
+            'forum_topic_reply' => 'απάντηση θέματος',
             'mail' => 'mail',
-            'mapping' => '',
+            'mapping' => 'beatmap mapper',
             'push' => 'push',
-            'user_achievement_unlock' => '',
+            'user_achievement_unlock' => 'το μετάλλιο χρήστη ξεκλειδώθηκε',
         ],
     ],
 
@@ -75,13 +90,13 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => '',
-        'beatmapset_title_show_original' => '',
+        'beatmapset_show_nsfw' => 'απόκρυψη προειδοποιήσεων για ακατάλληλο περιεχόμενο σε beatmaps',
+        'beatmapset_title_show_original' => 'εμφάνιση μεταδεδομένων beatmap στην αρχική γλώσσα',
         'title' => 'Ρυθμίσεις',
 
         'beatmapset_download' => [
-            '_' => '',
-            'all' => '',
+            '_' => 'προεπιλεγμένος τύπος λήψης beatmap',
+            'all' => 'με βίντεο εάν είναι διαθέσιμο',
             'direct' => 'άνοιγμα με osu!direct',
             'no_video' => 'χωρίς βίντεο',
         ],

@@ -39,7 +39,8 @@ class FixUsernameChangeTopicCache extends Command
         $continue = $this->confirm('WARNING! This will refresh the cache for forum topics effected by username changes after 2017/08/09');
 
         if (!$continue) {
-            return $this->error('User aborted!');
+            $this->error('User aborted!');
+            return;
         }
 
         $start = time();
@@ -74,7 +75,8 @@ class FixUsernameChangeTopicCache extends Command
 
         // reconfirm.
         if (!$this->confirm("This will affect an estimated {$count} Topics.")) {
-            return $this->error('User aborted!');
+            $this->error('User aborted!');
+            return;
         }
 
         $start = time();

@@ -58,7 +58,8 @@ class EsIndexWiki extends Command
 
         $continue = $this->starterMessage();
         if (!$continue) {
-            return $this->error('User aborted!');
+            $this->error('User aborted!');
+            return;
         }
 
         if (!Es::getClient()->indices()->exists(['index' => [$this->indexName]])) {
@@ -91,7 +92,7 @@ class EsIndexWiki extends Command
     {
         return (new BasicSearch($this->indexName))
             ->query(['match_all' => new \stdClass()])
-            ->sort(new Sort('_id', 'asc'))
+            ->sort([new Sort('path.keyword', 'asc'), new Sort('locale.keyword', 'asc')])
             ->source(false);
     }
 
@@ -121,7 +122,7 @@ class EsIndexWiki extends Command
 
         if ($this->inplace) {
             $this->line('Fetching existing list...');
-            $cursor = ['']; // works with Sort(_id, asc) to start at the beginning.
+            $cursor = ['', '']; // number of params for initial cursor must match number of sorts used.
             while ($cursor !== null) {
                 $search = $this->newBaseSearch()->searchAfter(array_values($cursor));
                 $response = $search->response();
@@ -164,7 +165,7 @@ class EsIndexWiki extends Command
             );
         }
 
-        return $this->yes || $this->confirm("This index to {$this->indexName}, begin indexing?");
+        return $this->yes || $this->confirm("This index to {$this->indexName}, begin indexing?", true);
     }
 
     private function updateSitemap()

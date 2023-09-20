@@ -15,10 +15,19 @@ return [
         ],
 
         'email' => [
-            'current' => 'aktuálny email',
             'new' => 'nový email',
             'new_confirmation' => 'potvrdenie emailu',
             'title' => 'Email',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
+        ],
+
+        'legacy_api' => [
+            'api' => '',
+            'irc' => '',
+            'title' => '',
         ],
 
         'password' => [
@@ -29,7 +38,13 @@ return [
         ],
 
         'profile' => [
+            'country' => '',
             'title' => 'Profil',
+
+            'country_change' => [
+                '_' => "",
+                'update_link' => '',
+            ],
 
             'user' => [
                 'user_discord' => '',
@@ -56,14 +71,14 @@ return [
 
         'options' => [
             '_' => 'spôsoby doručenia',
-            'beatmap_owner_change' => '',
+            'beatmap_owner_change' => 'obtiažnosť hosťa',
             'beatmapset:modding' => 'módovanie beatmáp',
             'channel_message' => 'súkromné správy',
             'comment_new' => 'nové komentáre
 ',
             'forum_topic_reply' => 'odpoveď na tému',
             'mail' => 'pošta',
-            'mapping' => '',
+            'mapping' => 'tvorca beatmapy',
             'push' => 'upozornenia na stránke',
             'user_achievement_unlock' => 'hráčska medaila odomknutá',
         ],
@@ -76,7 +91,7 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => '',
+        'beatmapset_show_nsfw' => 'skryť varovania pre explicitný obsah v beatmapách',
         'beatmapset_title_show_original' => 'zobraziť metadáta beatmapy v originálnom jazyku',
         'title' => 'Možnosti',
 

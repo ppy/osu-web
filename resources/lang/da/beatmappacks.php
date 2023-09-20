@@ -6,18 +6,13 @@
 return [
     'index' => [
         'description' => 'Færdigpakkede samlinger af beatmaps bygget op omkring et fælles tema.',
+        'empty' => '',
         'nav_title' => 'katalog',
         'title' => 'Beatmap Pakker',
 
         'blurb' => [
             'important' => 'LÆS DETTE FØR DU DOWNLOADER',
-            'instruction' => [
-                '_' => "Installation: Så snart en pakke er hentet, skal du pakke .rar-filen ud i dit osu! sangbibliotek.
-                    Alle sangene er stadig i .zip og/eller .osz format indeni pakken, så osu! bliver nødt til at udpakke beatmapsene næste gang du går ind i Play mode.
-                    Udpak :scary .zip/.osz-filerne selv,
-                    ellers vil beatmapsene fremstå forkert i osu! og vil ikke fungere korrekt.",
-                'scary' => 'ALDRIG',
-            ],
+            'install_instruction' => 'Installation: Når en pakke er blevet downloadet, udtrække indholdet af pakken i din osu! Sange mappe og osu! vil gøre resten.',
             'note' => [
                 '_' => 'Vær opmærksom på, at det er stærkt anbefalet at :scary, eftersom ældre beatmaps er meget ringere kvalitet i forhold til nyere beatmaps.',
                 'scary' => 'hente pakker fra nyest til ældst',
@@ -40,8 +35,11 @@ return [
     'mode' => [
         'artist' => 'Artist/Album',
         'chart' => 'Spotlights',
+        'featured' => '',
+        'loved' => '',
         'standard' => 'Standard',
         'theme' => 'Tema',
+        'tournament' => 'Turnering',
     ],
 
     'require_login' => [

@@ -4,10 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'admin' => [
-        'warehouse' => 'Сховішча',
-    ],
-
     'cart' => [
         'checkout' => 'Завяршэнне пакупкі',
         'info' => ':count_delimited тавар у кошыку ($:subtotal)|:count_delimited прадметы ў кошыку  ($:subtotal)',
@@ -35,6 +31,7 @@ return [
         'cart_problems_edit' => 'Каб рэдагаваць гэта, націсніце сюды.',
         'declined' => 'Аплата была скасаваная.',
         'delayed_shipping' => 'У дадзены момант у нас шмат заказаў. Вы можаце заказваць, але помніце, што яго апрацоўка можа займаць дадатковыя 1-2 тадні.',
+        'hide_from_activity' => 'Схаваць усе паведамленні аб тэгах osu!supporter з секцыі актыўнасці ў маім профілі пасля куплі',
         'old_cart' => 'Ваш кошык, здаецца, састарэў і быў перазагружаны, паспрабуйце нанова.',
         'pay' => 'Аплата праз Paypal',
         'title_compact' => 'праверыць',
@@ -54,6 +51,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Так як аплата была праз eCheck, чаканне пацверджання аплаты праз Paypal можа займаць да 10 дзён!',
+        'hide_from_activity' => 'паведамленні аб тэгах osu!supporter пасля куплі не будуць адлюстраваны ў вашым профілі.',
         'title_compact' => 'рахунак-фактура',
 
         'status' => [
@@ -79,10 +77,15 @@ return [
         'shopify_expired' => 'Тэрмін дзеяння спасылкі на заказ для гэтага замовы скончыўся.',
 
         'item' => [
+            'quantity' => 'Колькасць',
+
             'display_name' => [
                 'supporter_tag' => ':name для :username (:duration)',
             ],
-            'quantity' => 'Колькасць',
+
+            'subtext' => [
+                'supporter_tag' => 'Паведамленне: :message',
+            ],
         ],
 
         'not_modifiable_exception' => [
@@ -124,6 +127,8 @@ return [
 
     'supporter_tag' => [
         'gift' => 'падарунак для гульца',
+        'gift_message' => 'дадайце паведамленне да вашага падарунку! (да :length знакаў)',
+
         'require_login' => [
             '_' => 'Вы павінны :link, каб атрымаць тэг osu!supporter!',
             'link_text' => 'увайсці',

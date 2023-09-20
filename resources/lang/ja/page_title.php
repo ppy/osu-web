@@ -7,12 +7,6 @@ return [
     'admin' => [
         '_' => '管理者',
     ],
-    'admin_forum' => [
-        '_' => '管理者',
-    ],
-    'admin_store' => [
-        '_' => '管理者',
-    ],
     'error' => [
         'error' => [
             '400' => '無効なリクエスト',
@@ -29,20 +23,19 @@ return [
     ],
     'forum' => [
         '_' => 'フォーラム',
-        'topic_watches_controller' => [
-            'index' => 'ダッシュボード',
+        'topic_logs_controller' => [
+            'index' => 'トピックログ',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => 'ダッシュボード',
             'verify_link' => 'アカウント認証',
         ],
         'artists_controller' => [
             '_' => '注目アーティスト',
         ],
         'beatmap_discussion_posts_controller' => [
-            '_' => 'ビートマップディスカッション投稿',
+            '_' => 'ビートマップディスカッションの投稿',
         ],
         'beatmap_discussions_controller' => [
             '_' => 'ビートマップディスカッション',
@@ -51,13 +44,10 @@ return [
             '_' => 'ビートマップパック',
         ],
         'beatmapset_discussion_votes_controller' => [
-            '_' => 'ビートマップディスカッション投票',
+            '_' => 'ビートマップディスカッションの投票',
         ],
         'beatmapset_events_controller' => [
             '_' => 'ビートマップ履歴',
-        ],
-        'beatmapset_watches_controller' => [
-            'index' => 'ダッシュボード',
         ],
         'beatmapsets_controller' => [
             'discussion' => 'ビートマップディスカッション',
@@ -75,12 +65,6 @@ return [
         ],
         'contests_controller' => [
             '_' => 'コンテスト',
-        ],
-        'follows_controller' => [
-            'index' => 'ダッシュボード',
-        ],
-        'friends_controller' => [
-            'index' => 'ダッシュボード',
         ],
         'groups_controller' => [
             'show' => 'グループ',
@@ -116,23 +100,24 @@ return [
         'scores_controller' => [
             '_' => 'パフォーマンス',
         ],
-        'store_controller' => [
-            '_' => 'ストア',
+        'seasons_controller' => [
+            '_' => 'ランキング',
         ],
         'tournaments_controller' => [
             '_' => 'トーナメント',
         ],
         'users_controller' => [
             '_' => 'プレイヤー情報',
+            'create' => 'アカウント作成',
             'disabled' => '通知',
         ],
         'wiki_controller' => [
             '_' => 'wiki',
         ],
     ],
-    'multiplayer' => [
-        'rooms_controller' => [
-            '_' => 'ランキング',
+    'passport' => [
+        'authorization_controller' => [
+            '_' => 'アプリを認証',
         ],
     ],
     'store' => [

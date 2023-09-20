@@ -8,50 +8,50 @@ return [
         'convinced' => [
             'title' => 'Sunt convins! :D',
             'support' => 'sprijină osu!',
-            'gift' => 'sau oferă altor jucători',
-            'instructions' => 'Faceți clic pe butonul în formă de inimă pentru a merge la magazinul osu!',
+            'gift' => 'sau oferă suporter altcuiva',
+            'instructions' => 'faceți clic pe butonul în formă de inimă pentru a merge la magazinul osu!',
         ],
         'why-support' => [
-            'title' => 'De ce ar trebui să suport osu!? Unde se duc bani?',
+            'title' => 'De ce ar trebui să sprijin osu!? Unde se duc bani?',
 
             'team' => [
                 'title' => 'Ajută echipa',
-                'description' => 'O echipă mică dezvoltează și rulează osu!. Suportul tău îi ajută pe ei să, știi tu... trăiască.',
+                'description' => 'O echipă mică dezvoltă și întreține osu!. Suportul tău îi ajută pe ei să, știi tu... trăiască.',
             ],
             'infra' => [
                 'title' => 'Infrastructura de Server',
-                'description' => 'Contribuțiile merg către servere pentru a menține website-ul, Serviciile multiplayer, Clasamente Online, etc.',
+                'description' => 'Contribuțiile merg către finanțarea serverelor pentru a menține website-ul, serviciile multiplayer, clasamentul online, etc.',
             ],
             'featured-artists' => [
-                'title' => 'Artiști renumiți',
-                'description' => 'Cu suportul tău, putem să ajungem la și mai mulți artiști geniali și să licităm și mai multă muzică grozavă pentru folosirea în osu!',
-                'link_text' => 'Vezi roster-ul curent &raquo;',
+                'title' => 'Artiști Oficiali',
+                'description' => 'Cu suportul tău, putem ajunge la și mai mulți artiști geniali și să obținem licențe pentru mai multă muzică grozavă în osu!',
+                'link_text' => 'Vezi roster-ul actual &raquo;',
             ],
             'ads' => [
-                'title' => 'Menține osu! sine-stătător',
+                'title' => 'Păstrează osu! autonom',
                 'description' => 'Contribuțiile tale țin jocul independent și complet gratuit de reclame și sponsori de afară.',
             ],
             'tournaments' => [
                 'title' => 'Turnee Oficiale',
-                'description' => 'Ajută fondatul și menținerea (și premiile pentru) osu oficial! Turnee mondiale.',
-                'link_text' => 'Explorează turnee &raquo;',
+                'description' => 'Ajută la finanțarea funcționării (și a premiilor) cupelor mondiale osu!.',
+                'link_text' => 'Explorează turneele &raquo;',
             ],
             'bounty-program' => [
-                'title' => 'Deschide Programul Sursă Bounty',
-                'description' => 'Sprijină contribuitorii comunității care și-au dat timpul și efortul să ajute creerea osu! mai bună.',
+                'title' => 'Program de recompensă Open Source',
+                'description' => 'Sprijină contribuitorii din comunitate care și-au dat timpul și efortul să îmbunătățească osu!.',
                 'link_text' => 'Află mai mult &raquo;',
             ],
         ],
         'perks' => [
-            'title' => 'Oh? Ce primesc?!',
+            'title' => 'Grozav! Ce beneficii primesc?',
             'osu_direct' => [
                 'title' => 'osu!direct',
-                'description' => 'acces rapid și ușor pentru a căuta beatmaps fără a părăsi jocul.',
+                'description' => 'acces rapid și ușor pentru a căuta și descărca beatmap-uri fără a părăsi jocul.',
             ],
 
             'friend_ranking' => [
                 'title' => 'Clasament Prieteni',
-                'description' => "Să vedem cum concurezi peste prietenii tăi pe un clasament într-un beatmap, ambele în joc și pe website.",
+                'description' => "Vezi cum te compari față de prietenii tăi pe clasamentul unui beatmap, atat în joc, cât și pe site.",
             ],
 
             'country_ranking' => [
@@ -60,8 +60,8 @@ return [
             ],
 
             'mod_filtering' => [
-                'title' => 'Filtrează după Moderatori',
-                'description' => 'Asociază doar cu oamenii care joacă HDHR? Nicio problemă!',
+                'title' => 'Filtrează după Mod-uri',
+                'description' => 'Te înțelegi doar cu jucători HDHR? Nicio problemă!',
             ],
 
             'auto_downloads' => [
@@ -71,27 +71,27 @@ return [
 
             'upload_more' => [
                 'title' => 'Încarcă mai mult',
-                'description' => 'Sloturi suplimentare pentru beatmaps în așteptare (pe beatmap clasificat) până la un maxim de 10.',
+                'description' => 'Sloturi suplimentare pentru beatmap-uri în așteptare (pe beatmap clasificat) până la un maxim de 10.',
             ],
 
             'early_access' => [
                 'title' => 'Acces anticipat',
-                'description' => 'Acces la lansări timpurii, unde poți încerca noi funcții înainte de toți ceilalți!',
+                'description' => 'Acces la versiuni timpurii, unde poți încerca noi funcții înainte de toți ceilalți!<br/><br/>Acesta include și acces la facilități noi pe site!',
             ],
 
             'customisation' => [
                 'title' => 'Personalizare',
-                'description' => "Personalizează-ți profilul adăugând o pagină de utilizator complet personalizabilă.",
+                'description' => "Personalizează-ți profilul tău de utilizator printr-un fundal special sau prin secțiunea 'eu!'.",
             ],
 
             'beatmap_filters' => [
-                'title' => 'Organizarea beatmap',
-                'description' => 'Filtrează cautările de beatmaps, prin mape jucate și nejucate, dar și prin clasamentul obținut (dacă există).',
+                'title' => 'Filtre Beatmap-uri',
+                'description' => 'Filtrează căutările de beatmap-uri prin mape jucate și nejucate, dar și prin clasamentul obținut.',
             ],
 
             'yellow_fellow' => [
                 'title' => 'Porecla de aur',
-                'description' => 'Fii recunoscut în joc cu o nouă culoare galben-deschis.',
+                'description' => 'Fii recunoscut în joc cu o nouă culoare galben-deschisă.',
             ],
 
             'speedy_downloads' => [
@@ -106,7 +106,7 @@ return [
 
             'skinnables' => [
                 'title' => 'Posibilități de personalizare',
-                'description' => 'Posibilități extra de personalizare în joc, ca fundalul din meniul principal.',
+                'description' => 'Posibilități extra de personalizare în joc, precum fundalul din meniul principal.',
             ],
 
             'feature_votes' => [
@@ -120,29 +120,29 @@ return [
             ],
 
             'more_favourites' => [
-                'title' => 'Mai multe favorite',
-                'description' => 'Numărul maxim de beatmap-uri care poți favoriza este mărit din :normally &rarr; :supporter',
+                'title' => 'Mai Multe Favorite',
+                'description' => 'Numărul maxim de beatmap-uri favorite este mărit de la :normally &rarr; :supporter',
             ],
             'more_friends' => [
                 'title' => 'Mai Mulți Prieteni',
-                'description' => 'Numărul maxim de prieteni pe care în poți avea este mărit din :normally &rarr; :supporter',
+                'description' => 'Numărul maxim de prieteni pe care îl poți avea este mărit de la :normally &rarr; :supporter',
             ],
             'more_beatmaps' => [
                 'title' => 'Distribuie mai multe Beatmap-uri',
-                'description' => 'Câte beatmap-uri neclasate poți avea în același timp este calculat dintr-o bază valută plus încă un bonus pentru fiecare beatmap clasat acum ai (până la limită).<br/><br/>Normal acesta este 4 plus 1 per beatmap clasat (până la 2). Cu ajutător, aceste se mărește la 8 plus 1 per beatmap clasat (până la 12).',
+                'description' => 'Numărul de beatmap-uri neclasificate pe care le poți avea simultan este calculat dintr-o valoare de bază plus un bonus pentru fiecare beatmap clasat pe care îl ai (până la o limită).<br/><br/>Normal, acesta este :base plus :bonus per beatmap clasat (până la :bonus_max). Ca suporter, acesta se mărește la :supporter_base plus :supporter_bonus per beatmap clasat (până la :supporter_bonus_max).',
             ],
             'friend_filtering' => [
                 'title' => 'Clasamente Prieteni',
-                'description' => 'Completează cu prietenii tăi și vezi cât clasezi înpotriva lor!*<br/><br/><small>* nu este încă disponibil pe site-ul nou, disponibilcurând(tm)</small>',
+                'description' => 'Concurează cu prietenii tăi și vezi cum te compari față de ei!',
             ],
 
         ],
         'supporter_status' => [
-            'contribution' => 'Mulțumim pentru sprijinul vostru de până acum! Ai contribuit cu un total de :dollars pentru :tags achiziționări de tag-uri!',
-            'gifted' => ":giftedTags din achiziționările tale de tag-uri au fost dăruite (pentru un total de :giftedDollars dăruiți), cât de generos!",
-            'not_yet' => "Încă nu ai eticheta de suporter :(",
-            'valid_until' => 'Tag-ul tău curent de suporter este valid până la :date!',
-            'was_valid_until' => 'Tag-ul tău de suporter a fost valid pâna la data de :date.',
+            'contribution' => 'Mulțumim pentru sprijinul acordat! Ai contribuit cu un total de :dollars în :tags statusuri suporter!',
+            'gifted' => ":giftedTags din achizițiile tale de statusuri suporter au fost dăruite (valorând :giftedDollars), cât de generos!",
+            'not_yet' => "Nu ai avut vreodată status de suporter osu! :(",
+            'valid_until' => 'Statusul tău actual de suporter osu! este valid până la :date!',
+            'was_valid_until' => 'Statusul tău de suporter a fost valid pâna la data de :date.',
         ],
     ],
 ];

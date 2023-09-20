@@ -13,6 +13,16 @@ return [
     'see_channel' => 'ga naar chat',
     'verifying' => 'Verifieer de sessie om meldingen te bekijken',
 
+    'action_type' => [
+        '_' => 'alle',
+        'beatmapset' => 'beatmaps',
+        'build' => 'versies',
+        'channel' => 'chat',
+        'forum_topic' => 'forum',
+        'news_post' => 'nieuws',
+        'user' => 'profiel',
+    ],
+
     'filters' => [
         '_' => 'alle',
         'user' => 'profiel',
@@ -28,9 +38,9 @@ return [
             '_' => 'Beatmap',
 
             'beatmap_owner_change' => [
-                '_' => '',
-                'beatmap_owner_change' => '',
-                'beatmap_owner_change_compact' => '',
+                '_' => 'Gast moeilijkheidsgraad',
+                'beatmap_owner_change' => 'Je hebt nu de moeilijkheid ":beatmap" voor beatmap ":title"',
+                'beatmap_owner_change_compact' => 'Je bent nu eigenaar van de moeilijkheidsgraad ":beatmap"',
             ],
 
             'beatmapset_discussion' => [
@@ -86,8 +96,19 @@ return [
         'channel' => [
             '_' => 'Chat',
 
+            'announcement' => [
+                '_' => 'Nieuwe aankondiging',
+
+                'announce' => [
+                    'channel_announcement' => ':username zegt ":title"',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => 'Aankondiging van :username',
+                ],
+            ],
+
             'channel' => [
                 '_' => 'Nieuw bericht',
+
                 'pm' => [
                     'channel_message' => ':username zegt ":title"',
                     'channel_message_compact' => ':title',
@@ -132,15 +153,6 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => 'Ouder Forum PM',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited ongelezen bericht.|:count_delimited berichten.',
-            ],
-        ],
-
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Nieuwe beatmap',
@@ -148,6 +160,11 @@ return [
                 'user_beatmapset_new' => 'Nieuwe beatmap ":title" door :username',
                 'user_beatmapset_new_compact' => 'Nieuwe beatmap ":title"',
                 'user_beatmapset_new_group' => 'Nieuwe beatmaps door :username',
+
+                'user_beatmapset_revive' => '
+Beatmap ":title" vernieuwd door :username',
+                'user_beatmapset_revive_compact' => '
+Beatmap ":title" vernieuwd',
             ],
         ],
 
@@ -166,7 +183,7 @@ return [
     'mail' => [
         'beatmapset' => [
             'beatmap_owner_change' => [
-                'beatmap_owner_change' => '',
+                'beatmap_owner_change' => 'Je bent nu gast van beatmap ":title"',
             ],
 
             'beatmapset_discussion' => [
@@ -195,6 +212,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => 'Er is een nieuwe aankondiging in ":name"',
+            ],
+
             'channel' => [
                 'pm' => 'Je hebt een nieuw bericht ontvangen van :username',
             ],
@@ -226,6 +247,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username heeft nieuwe beatmaps aangemaakt',
+                'user_beatmapset_revive' => ':username heeft beatmaps vernieuwd',
             ],
         ],
     ],

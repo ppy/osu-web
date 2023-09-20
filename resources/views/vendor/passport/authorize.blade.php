@@ -8,6 +8,7 @@
 
 @extends('master', [
     'blank' => true,
+    'titlePrepend' => $client->name,
 ])
 
 @section('content')

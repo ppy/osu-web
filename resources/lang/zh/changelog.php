@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'generic' => '修复已知问题并做了小改动.',
+    'generic' => '修复已知问题并做了小改动',
 
     'build' => [
         'title' => ':version 中的更新',
@@ -33,8 +33,8 @@ return [
 
     'support' => [
         'heading' => '喜欢这次更新吗？',
-        'text_1' => '支持 osu! 的后续开发， :link 吧！',
-        'text_1_link' => '成为 osu!supporter',
-        'text_2' => '你不仅仅能加快开发进度，还能获得一些额外的功能，甚至个性化你的游戏界面！',
+        'text_1' => '若想支持 osu! 的后续开发，请 :link 吧！',
+        'text_1_link' => '成为 osu! 支持者',
+        'text_2' => '您不仅能帮助推进开发，还能获得一些额外的功能，甚至个性化定制游戏界面！',
     ],
 ];

@@ -16,6 +16,7 @@
         @endif
 
         @include('forum.topics._moderate_toggle_deleted')
+        @include('forum.topics._moderate_logs', compact('topic'))
     @endif
 @endsection
 
@@ -28,14 +29,12 @@
         <div class="
             forum-topic-nav__seek-bar
             forum-topic-nav__seek-bar--all
-            u-forum--bg-link
         "></div>
 
         <div
             class="
                 js-forum__posts-progress
                 forum-topic-nav__seek-bar
-                u-forum--bg-link
             "
         >
         </div>
@@ -165,7 +164,7 @@
             </button>
 
             <a
-                href="{{ route('forum.topics.show', ['topic' => $topic, 'end' => $topic->topic_last_post_id]) }}#forum-post-{{ $topic->topic_last_post_id }}"
+                href="{{ route('forum.posts.show', ['post' => $topic->topic_last_post_id]) }}"
                 class="js-forum-posts-seek--jump btn-circle btn-circle--topic-nav"
                 data-jump-target="last"
                 data-tooltip-float="fixed"

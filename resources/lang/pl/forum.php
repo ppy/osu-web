@@ -25,6 +25,7 @@ return [
     ],
 
     'forums' => [
+        'forums' => 'Forum',
         'latest_post' => 'Ostatni post',
 
         'index' => [
@@ -47,7 +48,7 @@ return [
         'confirm_restore' => 'Czy na pewno chcesz przywrócić post?',
         'edited' => 'Ostatnio edytowane przez :user :when, łącznie edytowane :count_delimited raz.|Ostatnio edytowane przez :user :when, łącznie edytowane :count_delimited razy.|Ostatnio edytowane przez :user :when, łącznie edytowane :count_delimited razy.',
         'posted_at' => 'opublikowane :when',
-        'posted_by' => 'opublikowany przez :username',
+        'posted_by_in' => 'opublikowane przez :username na forum :forum',
 
         'actions' => [
             'destroy' => 'Usuń post',
@@ -125,6 +126,55 @@ return [
             'last' => 'przejdź do ostatniego posta',
             'next' => 'pomiń następne 10 postów',
             'previous' => 'cofnij się o 10 postów',
+        ],
+
+        'logs' => [
+            '_' => 'Rejestr wątków',
+            'button' => 'Przeglądaj rejestr wątków',
+
+            'columns' => [
+                'action' => 'Zdarzenie',
+                'date' => 'Data',
+                'user' => 'Użytkownik',
+            ],
+
+            'data' => [
+                'add_tag' => 'dodano tag „:tag”',
+                'announcement' => 'przypięto wątek i oznaczono jako ogłoszenie',
+                'edit_topic' => 'na :title',
+                'fork' => 'z :topic',
+                'pin' => 'przypięto wątek',
+                'post_operation' => 'autor: :username',
+                'remove_tag' => 'usunięto tag „:tag”',
+                'source_forum_operation' => 'z :forum',
+                'unpin' => 'odpięto wątek',
+            ],
+
+            'no_results' => 'brak zdarzeń do wyświetlenia...',
+
+            'operations' => [
+                'delete_post' => 'Usunięto post',
+                'delete_topic' => 'Usunięto wątek',
+                'edit_topic' => 'Zmieniono tytuł wątku',
+                'edit_poll' => 'Edytowano ankietę w wątku',
+                'fork' => 'Skopiowano wątek',
+                'issue_tag' => 'Zmieniono tag wątku',
+                'lock' => 'Zamknięto wątek',
+                'merge' => 'Scalono posty w ten wątek',
+                'move' => 'Przeniesiono wątek',
+                'pin' => 'Przypięto wątek',
+                'post_edited' => 'Edytowano post',
+                'restore_post' => 'Przywrócono post',
+                'restore_topic' => 'Przywrócono wątek',
+                'split_destination' => 'Przeniesiono rozdzielone posty',
+                'split_source' => 'Rozdzielono posty',
+                'topic_type' => 'Ustawiono typ wątku',
+                'topic_type_changed' => 'Zmieniono typ wątku',
+                'unlock' => 'Odblokowano wątek',
+                'unpin' => 'Odpięto wątek',
+                'user_lock' => 'Zamknięto własny wątek',
+                'user_unlock' => 'Odblokowano własny wątek',
+            ],
         ],
 
         'post_edit' => [

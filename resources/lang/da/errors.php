@@ -4,7 +4,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'missing_route' => '',
+    'load_failed' => 'Data kunne ikke indlæses.',
+    'missing_route' => 'Ugyldig URL eller forkert anmodningsmetode.',
     'no_restricted_access' => 'Du kan ikke udføre denne handling mens din konto er begrænset.',
     'supporter_only' => 'Du skal være osu!supporter for at kunne anvende denne funktion.',
     'unknown' => 'En ukendt fejl er opstået.',
@@ -29,6 +30,7 @@ return [
     ],
     'search' => [
         'default' => 'Kunne ikke få resultater, prøv igen senere.',
+        'invalid_cursor_exception' => 'Ugyldig markørparameter angivet.',
         'operation_timeout_exception' => 'Søgemaskinen er i øjeblikket travlere end ellers, prøv igen senere.',
     ],
 ];

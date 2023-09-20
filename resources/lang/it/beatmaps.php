@@ -18,7 +18,7 @@ return [
         'deny_kudosu' => 'nega kudosu',
         'edit' => 'modifica',
         'edited' => 'Ultima modifica di :editor :update_time',
-        'guest' => 'Guest difficulty di :user',
+        'guest' => 'Difficoltà guest di :user',
         'kudosu_denied' => 'Negato dall\'ottenimento di kudosu.',
         'message_placeholder_deleted_beatmap' => 'Questa difficoltà è stata eliminata, quindi non può più essere discussa.',
         'message_placeholder_locked' => 'La discussione per questa beatmap è stata disabilitata.',
@@ -26,7 +26,7 @@ return [
         'message_type_select' => 'Seleziona il tipo di commento',
         'reply_notice' => 'Premi invio per rispondere.',
         'reply_placeholder' => 'Scrivi la tua risposta qui',
-        'require-login' => 'Per favore effettua il login per postare o rispondere',
+        'require-login' => 'Effettua il login per poter postare o rispondere',
         'resolved' => 'Risolto',
         'restore' => 'ripristina',
         'show_deleted' => 'Mostra eliminati',
@@ -55,7 +55,7 @@ return [
         ],
 
         'message_hint' => [
-            'in_general' => 'Questo post andrà nella discussione generale del beatmapset. Per moddare questa beatmap, inizia il tuo messaggio con un timestamp (es. 00:12:345).',
+            'in_general' => 'Questo post andrà nella discussione generale della beatmap. Per moddare questa beatmap, inizia il tuo messaggio con un timestamp (es. 00:12:345).',
             'in_timeline' => 'Per moddare più timestamp, posta più volte (un post per timestamp).',
         ],
 
@@ -73,8 +73,21 @@ return [
             'nomination_reset' => 'Resetta Nomina',
             'praise' => 'Elogio',
             'problem' => 'Problema',
+            'problem_warning' => 'Segnala un Problema',
             'review' => 'Revisione',
             'suggestion' => 'Suggerimento',
+        ],
+
+        'message_type_title' => [
+            'disqualify' => 'Posta Squalifica',
+            'hype' => 'Posta Hype!',
+            'mapper_note' => 'Posta Nota',
+            'nomination_reset' => 'Rimuovi tutte le Nomine',
+            'praise' => 'Posta Elogio',
+            'problem' => 'Posta Problema',
+            'problem_warning' => 'Posta Problema',
+            'review' => 'Posta Revisione',
+            'suggestion' => 'Posta Suggerimento',
         ],
 
         'mode' => [
@@ -91,7 +104,7 @@ return [
         'new' => [
             'pin' => 'Fissa',
             'timestamp' => 'Timestamp',
-            'timestamp_missing' => 'fai ctrl-c nell\'editor ed incolla nel tuo messaggio per aggiungere un timestamp!',
+            'timestamp_missing' => 'fai ctrl-c nell\'editor e incolla nel tuo messaggio per aggiungere un timestamp!',
             'title' => 'Nuova Discussione',
             'unpin' => 'Non fissare',
         ],
@@ -140,7 +153,7 @@ return [
             'approved' => 'Questa beatmap è stata approvata il :date!',
             'graveyard' => "Questa beatmap non è stata aggiornata dal :date ed è stata molto probabilmente abbandonata...",
             'loved' => 'Questa beatmap è stata aggiunta a quelle amate il :date!',
-            'ranked' => 'Questa beatmap è stata classificata il :date!',
+            'ranked' => 'Questa beatmap è stata classificata il giorno :date!',
             'wip' => 'Nota: Questa beatmap è contrassegnata come work-in-progress dal creatore.',
         ],
 
@@ -161,7 +174,7 @@ return [
         'button_done' => 'Hype già messo!',
         'confirm' => "Sei sicuro? Questo utilizzerà uno dei tuoi :n hype rimanenti e non può essere annullato.",
         'explanation' => 'Metti hype a questa beatmap per renderla più visibile per la nomina e il ranking!',
-        'explanation_guest' => 'Effettua l\'accesso e metti hype a questa beatmap per renderla più visibile per la nomina e il raking!',
+        'explanation_guest' => 'Effettua l\'accesso e metti hype a questa beatmap per renderla più visibile per la nomina e la classificazione!',
         'new_time' => "Riceverai un altro hype :new_time.",
         'remaining' => 'Hai ancora :remaining hype rimanenti.',
         'required_text' => 'Hype: :current/:required',
@@ -174,6 +187,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => 'Hai già nominato questa beatmap.',
+        'cannot_nominate' => 'Non puoi nominare questa modalità di gioco della beatmap.',
         'delete' => 'Elimina',
         'delete_own_confirm' => 'Sei sicuro? La beatmap verrà eliminata e sarai reindirizzato al tuo profilo.',
         'delete_other_confirm' => 'Sei sicuro? La beatmap verrà eliminata e sarai reindirizzato al profilo del creatore.',
@@ -183,6 +198,7 @@ return [
         'disqualify' => 'Squalifica',
         'incorrect_state' => 'Errore nel eseguire quell\'azione, prova a ricaricare la pagina.',
         'love' => 'Ama',
+        'love_choose' => 'Scegli la difficoltà da rendere amata',
         'love_confirm' => 'Ama questa beatmap?',
         'nominate' => 'Nomina',
         'nominate_confirm' => 'Nominare questa beatmap?',
@@ -196,8 +212,9 @@ return [
         'unresolved_issues' => 'Ci sono ancora dei problemi irrisolti che vanno prima sistemati.',
 
         'rank_estimate' => [
-            '_' => 'È stimato che questa mappa verrà rankata in data :date se non vengono trovati problemi. È in posizione #:position nella :queue.',
-            'queue' => 'coda di ranking',
+            '_' => 'È stimato che questa mappa verrà classificata in data :date se non vengono trovati problemi. È in posizione #:position nella :queue.',
+            'on' => 'il giorno :date',
+            'queue' => 'coda per la classifica',
             'soon' => 'molto vicina',
         ],
 
@@ -207,8 +224,9 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => 'Sei sicuro? Postando un nuovo problema si resetterà il processo di nomina.',
             'disqualify' => 'Sei sicuro? Questo rimuoverà la beatmap dalla qualificazione e resetterà il processo di nomina.',
+            'nomination_reset' => 'Sei sicuro? Postando un nuovo problema si resetterà il processo di nomina.',
+            'problem_warning' => 'Sei sicuro di voler segnalare un problema su questa beatmap? Questo avviserà i nominatori Beatmap.',
         ],
     ],
 
@@ -228,7 +246,7 @@ return [
                 'mode' => 'Modalità',
                 'nsfw' => 'Contenuto Esplicito',
                 'played' => 'Giocato',
-                'rank' => 'Rank ottenuto',
+                'rank' => 'Grado Raggiunto',
                 'status' => 'Categorie',
             ],
             'sorting' => [
@@ -237,7 +255,7 @@ return [
                 'difficulty' => 'Difficoltà',
                 'favourites' => 'Preferiti',
                 'updated' => 'Aggiornato',
-                'ranked' => 'Rankata',
+                'ranked' => 'Classificata',
                 'rating' => 'Valutazione',
                 'plays' => 'Giocate',
                 'relevance' => 'Pertinenza',
@@ -251,8 +269,10 @@ return [
     ],
     'general' => [
         'converts' => 'Includi beatmap convertite',
+        'featured_artists' => 'Artisti in primo piano',
         'follows' => 'Mapper iscritti',
         'recommended' => 'Difficoltà consigliata',
+        'spotlights' => 'Beatmap spotlight',
     ],
     'mode' => [
         'all' => 'Qualsiasi',
@@ -270,9 +290,10 @@ return [
         'leaderboard' => 'Con classifica',
         'loved' => 'Amate',
         'mine' => 'Le mie mappe',
-        'pending' => 'In Attesa & WIP',
+        'pending' => 'In Attesa',
+        'wip' => 'WIP',
         'qualified' => 'Qualificate',
-        'ranked' => 'Rankate',
+        'ranked' => 'Classificate',
     ],
     'genre' => [
         'any' => 'Qualsiasi',
@@ -289,32 +310,6 @@ return [
         'classical' => 'Classico',
         'folk' => 'Folk',
         'jazz' => 'Jazz',
-    ],
-    'mods' => [
-        '4K' => '',
-        '5K' => '',
-        '6K' => '',
-        '7K' => '',
-        '8K' => '',
-        '9K' => '',
-        'AP' => '',
-        'DT' => '',
-        'EZ' => '',
-        'FI' => '',
-        'FL' => '',
-        'HD' => '',
-        'HR' => '',
-        'HT' => '',
-        'MR' => '',
-        'NC' => '',
-        'NF' => '',
-        'NM' => '',
-        'PF' => '',
-        'RX' => '',
-        'SD' => '',
-        'SO' => '',
-        'TD' => '',
-        'V2' => '',
     ],
     'language' => [
         'any' => 'Qualsiasi',

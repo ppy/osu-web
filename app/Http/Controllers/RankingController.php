@@ -9,7 +9,10 @@ use App\Models\Beatmap;
 use App\Models\Country;
 use App\Models\CountryStatistics;
 use App\Models\Spotlight;
+use App\Models\User;
 use App\Models\UserStatistics;
+use App\Transformers\SelectOptionTransformer;
+use App\Transformers\UserCompactTransformer;
 use DB;
 use Illuminate\Pagination\LengthAwarePaginator;
 
@@ -20,6 +23,7 @@ class RankingController extends Controller
 {
     private $country;
     private $countryStats;
+    private array $defaultViewVars;
     private $params;
     private $friendsOnly;
 
@@ -52,9 +56,11 @@ class RankingController extends Controller
             $this->friendsOnly = auth()->check() && $this->params['filter'] === 'friends';
             $this->setVariantParam();
 
-            view()->share('hasPager', !in_array($type, static::SPOTLIGHT_TYPES, true));
-            view()->share('spotlight', null); // so variable capture in selector function doesn't die when spotlight is null.
-            view()->share($this->params); // won't set null values
+            $this->defaultViewVars = array_merge([
+                'hasPager' => !in_array($type, static::SPOTLIGHT_TYPES, true),
+                // so variable capture in selector function doesn't die when spotlight is null.
+                'spotlight' => null,
+            ], $this->params);
 
             if ($mode === null) {
                 return ujs_redirect(route('rankings', ['mode' => default_mode(), 'type' => 'performance']));
@@ -85,10 +91,13 @@ class RankingController extends Controller
                 $this->country = $this->countryStats->country;
             }
 
-            view()->share('country', $this->country);
+            $this->defaultViewVars['country'] = $this->country;
+            if ($type === 'performance') {
+                $this->defaultViewVars['countries'] = json_collection($this->getCountries($mode), new SelectOptionTransformer());
+            }
 
             return $next($request);
-        });
+        }, ['except' => ['kudosu']]);
     }
 
     /**
@@ -127,24 +136,27 @@ class RankingController extends Controller
         } else {
             $class = UserStatistics\Model::getClass($mode, $this->params['variant']);
             $table = (new $class())->getTable();
+            $ppColumn = $class::ppColumn();
             $stats = $class
                 ::with(['user', 'user.country'])
+                ->where($ppColumn, '>', 0)
                 ->whereHas('user', function ($userQuery) {
                     $userQuery->default();
                 });
 
             if ($type === 'performance') {
+                $isExperimentalRank = config('osu.scores.experimental_rank_as_default');
                 if ($this->country !== null) {
                     $stats->where('country_acronym', $this->country['acronym']);
                     // preferrable to rank_score when filtering by country.
                     // On a few countries the default index is slightly better but much worse on the rest.
-                    $forceIndex = 'country_acronym_2';
+                    $forceIndex = $isExperimentalRank ? 'country_acronym_exp' : 'country_acronym_2';
                 } else {
                     // force to order by rank_score instead of sucking down entire users table first.
-                    $forceIndex = 'rank_score';
+                    $forceIndex = $isExperimentalRank ? 'rank_score_exp' : 'rank_score';
                 }
 
-                $stats->orderBy('rank_score', 'desc');
+                $stats->orderBy($ppColumn, 'desc');
             } else { // 'score'
                 $stats->orderBy('ranked_score', 'desc');
                 // force to order by ranked_score instead of sucking down entire users table first.
@@ -207,9 +219,46 @@ class RankingController extends Controller
             ])]
         );
 
-        $countries = json_collection($this->getCountries($mode), 'Country', ['display']);
+        return ext_view("rankings.{$type}", array_merge($this->defaultViewVars, compact('scores')));
+    }
 
-        return ext_view("rankings.{$type}", compact('countries', 'scores'));
+    /**
+     * Get Kudosu Ranking
+     *
+     * Gets the kudosu ranking.
+     *
+     * ---
+     *
+     * ### Response format
+     *
+     * Field   | Type            | Description
+     * ------- | --------------- | -----------
+     * ranking | [User](#user)[] | Includes `kudosu`.
+     *
+     * @queryParam page Ranking page. Example: 1
+     */
+    public function kudosu()
+    {
+        static $maxResults = 1000;
+
+        $maxPage = $maxResults / static::PAGE_SIZE;
+        $page = min(get_int(request('page')) ?? 1, $maxPage);
+
+        $scores = User::default()
+            ->orderBy('osu_kudostotal', 'desc')
+            ->paginate(static::PAGE_SIZE, ['*'], 'page', $page, $maxResults);
+
+        if (is_json_request()) {
+            return ['ranking' => json_collection(
+                $scores,
+                new UserCompactTransformer(),
+                'kudosu',
+            )];
+        }
+
+        $scores->loadMissing('country');
+
+        return ext_view('rankings.kudosu', compact('scores'));
     }
 
     public function spotlight($mode)
@@ -255,16 +304,21 @@ class RankingController extends Controller
             $scoreCount = 0;
         }
 
+        $selectOptionTransformer = new SelectOptionTransformer();
         $selectOptions = [
-            'selected' => $this->optionFromSpotlight($spotlight),
-            'options' => $spotlights->map(function ($s) {
-                return $this->optionFromSpotlight($s);
-            }),
+            'selected' => json_item($spotlight, $selectOptionTransformer),
+            'options' => json_collection($spotlights, $selectOptionTransformer),
         ];
 
         return ext_view(
             'rankings.charts',
-            compact('scores', 'scoreCount', 'selectOptions', 'spotlight', 'beatmapsets')
+            array_merge($this->defaultViewVars, compact(
+                'beatmapsets',
+                'scoreCount',
+                'scores',
+                'selectOptions',
+                'spotlight',
+            ))
         );
     }
 
@@ -272,14 +326,9 @@ class RankingController extends Controller
     {
         $relation = 'statistics'.title_case($mode);
 
-        return Country::where('display', '>', 0)->whereHas($relation, function ($query) {
+        return Country::whereHas($relation, function ($query) {
             $query->where('display', true);
         })->get();
-    }
-
-    private function optionFromSpotlight(Spotlight $spotlight): array
-    {
-        return ['id' => $spotlight->chart_id, 'text' => $spotlight->name];
     }
 
     private function maxResults($modeInt, $stats)

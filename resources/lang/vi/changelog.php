@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'generic' => 'Sửa lỗi và một số cải tiến',
+    'generic' => 'Sửa lỗi và một số cải tiến nhỏ',
 
     'build' => [
         'title' => 'những thay đổi trong :version',
@@ -20,7 +20,7 @@ return [
 
     'index' => [
         'page_title' => [
-            '_' => 'danh sách thay đổi',
+            '_' => 'danh sách nhật kí thay đổi',
             '_from' => 'những thay đổi từ :from',
             '_from_to' => 'những thay đổi giữa :from và :to',
             '_stream' => 'những thay đổi trong :stream',

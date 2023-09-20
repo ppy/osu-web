@@ -4,10 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'admin' => [
-        'warehouse' => '倉庫',
-    ],
-
     'cart' => [
         'checkout' => '結帳',
         'info' => '購物車裡有 :count_delimited 件商品（$:subtotal）|購物車裡有 :count_delimited 件商品（$:subtotal）',
@@ -35,6 +31,7 @@ return [
         'cart_problems_edit' => '點擊此處以編輯。',
         'declined' => '付款被取消。',
         'delayed_shipping' => '感謝您的訂購，由於近期湧入訂單過多，故該訂單恐將**延後1~2週的時間**',
+        'hide_from_activity' => '不要在最近活動中顯示這項 osu! 贊助者標籤訂單',
         'old_cart' => '您的購物車已過期，請重試。',
         'pay' => '使用 Paypal 付款',
         'title_compact' => '結帳',
@@ -54,12 +51,13 @@ return [
 
     'invoice' => [
         'echeck_delay' => '由於您是用 eCheck 付款，請等待至多 10 天以使該支付通過 PayPal 完成！',
+        'hide_from_activity' => '這項 osu! 贊助者訂單未在您的最近活動中顯示。',
         'title_compact' => '帳單',
 
         'status' => [
             'processing' => [
                 'title' => '您的付款尚未被確認!',
-                'line_1' => '如果您已經付款, 我們可能還在等待收到您付款的確認。請在一兩分鐘內重新整理此頁面!',
+                'line_1' => '如果您已經付款，我們可能還在等待收到您付款的確認。請在一兩分鐘內重新載入此頁面！',
                 'line_2' => [
                     '_' => '如果您在結帳時遇到問題，請查看 :link',
                     'link_text' => '點擊這裡繼續您的結帳',
@@ -79,10 +77,15 @@ return [
         'shopify_expired' => '此訂單的結帳網址已經過期。',
 
         'item' => [
+            'quantity' => '數量',
+
             'display_name' => [
                 'supporter_tag' => ':name 給 :username （:duration）',
             ],
-            'quantity' => '數量',
+
+            'subtext' => [
+                'supporter_tag' => '留言: :message',
+            ],
         ],
 
         'not_modifiable_exception' => [
@@ -124,6 +127,8 @@ return [
 
     'supporter_tag' => [
         'gift' => '要贈與的玩家',
+        'gift_message' => '為這份禮物寫些留言吧！ (最多 :length 個字符)',
+
         'require_login' => [
             '_' => '您需要 :link 以獲得 osu!贊助者標籤！',
             'link_text' => '登入',

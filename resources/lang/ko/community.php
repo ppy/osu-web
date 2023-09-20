@@ -8,7 +8,7 @@ return [
         'convinced' => [
             'title' => '납득하셨나요? :D',
             'support' => 'osu! 지원하기',
-            'gift' => '아니면 osu!를 지원하여 다른 플레이어에게 선물할 수도 있습니다.',
+            'gift' => '아니면 서포터 태그를 다른 플레이어에게 선물할 수도 있습니다.',
             'instructions' => '하트 버튼을 누르면 osu!store로 이동합니다.',
         ],
         'why-support' => [
@@ -91,7 +91,7 @@ return [
 
             'yellow_fellow' => [
                 'title' => '노란색 이름 태그',
-                'description' => '게임 내 유저 이름이 노란색으로 표시되어 서포터임을 주목받을 수 있습니다.',
+                'description' => '게임 내 아이디가 노란색으로 표시되어 서포터임을 주목받을 수 있습니다.',
             ],
 
             'speedy_downloads' => [
@@ -100,8 +100,8 @@ return [
             ],
 
             'change_username' => [
-                'title' => '사용자 이름 변경',
-                'description' => '추가 비용없이 사용자 이름을 바꿀 수 있습니다. (1회 한정)',
+                'title' => '아이디 변경',
+                'description' => '첫 서포터 구매 시 1회 한정으로 추가 비용 없이 아이디를 바꿀 수 있습니다.',
             ],
 
             'skinnables' => [
@@ -121,15 +121,15 @@ return [
 
             'more_favourites' => [
                 'title' => '최대 즐겨찾기 수 증가',
-                'description' => '즐겨 찾을 수 있는 비트맵의 수가 :normally &rarr; :supporter 으로 늘어납니다.',
+                'description' => '즐겨 찾을 수 있는 비트맵의 수가 :normally &rarr; :supporter(으)로 늘어납니다.',
             ],
             'more_friends' => [
                 'title' => '최대 친구 수 증가',
-                'description' => '사귈 수 있는 친구의 숫자가 :normally &rarr; :supporter 으로 늘어납니다.',
+                'description' => '사귈 수 있는 친구의 숫자가 :normally &rarr; :supporter(으)로 늘어납니다.',
             ],
             'more_beatmaps' => [
                 'title' => '더 많은 비트맵 업로드',
-                'description' => '한 번에 가질 수 있는 Ranked 되지 않은 비트맵의 수는 기본 값 + 현재 소유하고 있는 각 Ranked 된 비트맵 (한계치까지) 의 추가적 보너스로 계산됩니다. <br/><br/>일반적으로 이 값은 Ranked 된 비트맵 당 4 + 1입니다 (최대 2). 서포터가 있으면, 이 값이 Ranked 된 비트맵 당 8 + 1로 증가합니다 (최대 12).',
+                'description' => '한 번에 가질 수 있는 랭크되지 않은 비트맵의 수는 기본 값 + 현재 소유하고 있는 각 랭크된 비트맵(한계치까지)의 추가적 보너스로 계산됩니다. <br/><br/>일반적으로 이 값은 랭크된 비트맵 당 :base + :bonus입니다 (최대 :bonus_max). 서포터가 있으면, 이 값이 랭크된 비트맵 당 :supporter_base + :supporter_bonus로 증가합니다 (최대 :supporter_bonus_max).',
             ],
             'friend_filtering' => [
                 'title' => '친구 리더보드',
@@ -140,9 +140,9 @@ return [
         'supporter_status' => [
             'contribution' => '지금까지 지원해 주셔서 감사합니다! 총 :tags번의 결제로 :dollars를 후원하셨습니다.',
             'gifted' => "총 :giftedTags번 서포터 태그를 선물하셨습니다. (총 :giftedDollars 달러 어치), 관대의 끝판왕이시네요!",
-            'not_yet' => "아직 osu!서포터 태그를 다셔보신 적이 없으시네요 :(",
-            'valid_until' => '현재 서포터 태그는 :date까지 유효합니다!',
-            'was_valid_until' => '지난 서포터 태그는 :date까지였습니다.',
+            'not_yet' => "아직 osu! 서포터 태그를 가지신 적이 없으시네요 :(",
+            'valid_until' => '현재 osu! 서포터 태그는 :date까지 유효합니다!',
+            'was_valid_until' => '지난 osu! 서포터 태그는 :date까지 유효했습니다.',
         ],
     ],
 ];

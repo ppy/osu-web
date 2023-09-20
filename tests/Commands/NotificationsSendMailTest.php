@@ -55,21 +55,21 @@ class NotificationsSendMailTest extends TestCase
 
         Mail::fake();
 
-        $sender = factory(User::class)->create();
-        $user = factory(User::class)->create();
+        $sender = User::factory()->create();
+        $user = User::factory()->create();
         $user->notificationOptions()->create([
             'name' => UserNotificationOption::BEATMAPSET_MODDING,
             'details' => ['mail' => true],
         ]);
 
         $beatmapsets = [
-            factory(Beatmapset::class)->states('with_discussion')->create(['user_id' => $user->getKey()]),
-            factory(Beatmapset::class)->states('with_discussion')->create(['user_id' => $user->getKey()]),
+            Beatmapset::factory()->owner($user)->withDiscussion()->create(),
+            Beatmapset::factory()->owner($user)->withDiscussion()->create(),
         ];
 
         foreach ($beatmapsets as $beatmapset) {
             $beatmapset->watches()->create([
-                'last_read' => now()->subSecond(),
+                'last_read' => now()->subSeconds(),
                 'user_id' => $user->getKey(),
             ]);
             $this

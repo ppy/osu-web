@@ -2,9 +2,6 @@
 
 return [
     'allow_restricted_users' => get_bool(env('STORE_ALLOW_RESTRICTED_USERS')) ?? false,
-    'invoice' => [
-        'max_copies' => get_int(env('STORE_INVOICE_MAX_COPIES')) ?? 10,
-    ],
     'mail' => [
         'donation_thanks' => [
             'sender_address' => env('STORE_THANKS_SENDER_ADDRESS', 'osu@ppy.sh'),
@@ -17,5 +14,9 @@ return [
     ],
     'queue' => [
         'notifications' => presence(env('STORE_NOTIFICATIONS_QUEUE'), 'store-notifications'),
+    ],
+    'shopify' => [
+        'domain' => presence(env('SHOPIFY_DOMAIN')),
+        'storefront_token' => presence(env('SHOPIFY_STOREFRONT_TOKEN')),
     ],
 ];

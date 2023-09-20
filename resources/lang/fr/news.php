@@ -22,8 +22,8 @@ return [
         'by' => 'par :user',
 
         'nav' => [
-            'newer' => 'Article le plus récent',
-            'older' => 'Article le plus ancien',
+            'newer' => 'Article suivant',
+            'older' => 'Article précédent',
         ],
 
         'title' => [
@@ -33,7 +33,7 @@ return [
     ],
 
     'sidebar' => [
-        'archive' => 'Archives des actualités',
+        'archive' => 'Archives des news',
     ],
 
     'store' => [

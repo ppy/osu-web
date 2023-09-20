@@ -6,13 +6,21 @@
 return [
     'availability' => [
         'disabled' => 'Ez a beatmap jelenleg nem letölthető.',
-        'parts-removed' => 'Ez a beatmap eltávolításra került a készítő vagy egy jogbirtokos harmadik fél kérésére.',
+        'parts-removed' => 'Ez a beatmap eltávolításra került a készítő, vagy egy jogbirtokos harmadik fél kérésére.',
         'more-info' => 'Itt találsz több információt.',
         'rule_violation' => 'Ennek a map-nek néhány elemét eltávolítottuk, mert nem találtuk őket megfelelőnek az osu!-ban történő használathoz.',
     ],
 
+    'cover' => [
+        'deleted' => 'Beatmap törölve',
+    ],
+
     'download' => [
         'limit_exceeded' => 'Lassíts le, játssz többet.',
+    ],
+
+    'featured_artist_badge' => [
+        'label' => 'Kiemelt Előadó',
     ],
 
     'index' => [
@@ -34,7 +42,7 @@ return [
     'nominate' => [
         'hybrid_requires_modes' => 'Egy hibrid beatmap szettet legalább egy játékmódra nominálni kell.',
         'incorrect_mode' => 'Nincs jogosultságod :mode módban nominálni',
-        'full_bn_required' => 'Teljes jogú nominátornak kell lenned a kvalifikálásra nomináláshoz.',
+        'full_bn_required' => 'Teljes jogú nominátornak kell lenned a kvalifikáló nomináláshoz.',
         'too_many' => 'A nominálási követelmények már teljesültek.',
 
         'dialog' => [
@@ -52,12 +60,22 @@ return [
     'show' => [
         'discussion' => 'Beszélgetés',
 
+        'admin' => [
+            'full_size_cover' => 'Teljes borítókép megtekintése',
+        ],
+
+        'deleted_banner' => [
+            'title' => 'Ez a beatmap törlésre került.',
+            'message' => '(ezt csak a moderátorok láthatják)',
+        ],
+
         'details' => [
-            'by_artist' => ':artist által',
-            'favourite' => 'A beatmap szett kedvencek közé tétele',
+            'by_artist' => ':artist',
+            'favourite' => 'A beatmap kedvencek közé tétele',
             'favourite_login' => 'Jelentkezz be, hogy kedvencnek jelölt ezt beatmap-et',
-            'logged-out' => 'Beatmap letöltéshez be kell jelentkezned!',
+            'logged-out' => 'Beatmapek letöltéshez be kell jelentkezned!',
             'mapped_by' => 'mappolva :mapper által',
+            'mapped_by_guest' => 'vendég nehézséget készítette: :mapper',
             'unfavourite' => 'Beatmap eltávolitása a kedvencek közül',
             'updated_timeago' => 'utóljára frissítve: :timeago',
 
@@ -76,11 +94,11 @@ return [
 
         'details_date' => [
             'approved' => 'jóváhagyva: :timeago',
-            'loved' => 'kedvelve: :timeago',
+            'loved' => 'loved: :timeago',
             'qualified' => 'kvalifikálva: :timeago',
             'ranked' => 'rangsorolva: :timeago',
             'submitted' => 'beküldve: :timeago',
-            'updated' => 'utolsó frissítés: :timeago',
+            'updated' => 'utoljára frissítve: :timeago',
         ],
 
         'favourites' => [
@@ -88,10 +106,10 @@ return [
         ],
 
         'hype' => [
-            'action' => 'Hype-old a map-et ha élvezted rajta a játékot, hogy segíthesd a <strong>Rangsorolt</strong> állapot felé jutásban.',
+            'action' => 'Hype-old a beatmapet ha élvezted rajta a játékot, hogy segíthesd a <strong>Rangsorolt</strong> állapot felé jutásban.',
 
             'current' => [
-                '_' => 'Ez a map :status jelenleg.',
+                '_' => 'Ez a map jelenleg :status.',
 
                 'status' => [
                     'pending' => 'függőben',
@@ -116,8 +134,10 @@ return [
             'genre' => 'Műfaj',
             'language' => 'Nyelv',
             'no_scores' => 'Az adatok még számítás alatt...',
+            'nominators' => 'Nominálók',
             'nsfw' => 'Felnőtt tartalom',
-            'points-of-failure' => 'Kibukási Alkalmak',
+            'offset' => 'Online eltolás',
+            'points-of-failure' => 'Kibukási Időpontok',
             'source' => 'Forrás',
             'storyboard' => 'Ez a beatmap storyboard-ot tartalmaz',
             'success-rate' => 'Teljesítési arány',
@@ -132,29 +152,31 @@ return [
             'buttons' => [
                 'disable' => 'Figyelmeztetés kikapcsolása',
                 'listing' => 'Beatmap lista',
-                'show' => 'Mutassa',
+                'show' => 'Mutatás',
             ],
         ],
 
         'scoreboard' => [
             'achieved' => 'elérve: :when',
             'country' => 'Országos Ranglista',
+            'error' => 'Ranglista betöltése sikertelen',
             'friend' => 'Baráti Ranglista',
             'global' => 'Globális Ranglista',
-            'supporter-link' => 'Kattints <a href=":link">ide</a>,hogy megtekinthesd azt a sok jó funkciót amit kaphatsz!',
+            'supporter-link' => 'Kattints <a href=":link">ide</a>, hogy megtekinthesd azt a sok jó funkciót amit kaphatsz!',
             'supporter-only' => 'Támogató kell legyél, hogy elérd a baráti és az országos ranglistát!',
             'title' => 'Eredménylista',
 
             'headers' => [
                 'accuracy' => 'Pontosság',
-                'combo' => 'Legmagasabb kombó',
+                'combo' => 'Max Kombó',
                 'miss' => 'Miss',
                 'mods' => 'Modok',
+                'pin' => 'Rögzítés',
                 'player' => 'Játékos',
                 'pp' => '',
                 'rank' => 'Rang',
-                'score_total' => 'Összpontszám',
                 'score' => 'Pontszám',
+                'score_total' => 'Összpontszám',
                 'time' => 'Idő',
             ],
 
@@ -169,6 +191,10 @@ return [
                 'first' => 'Az élen',
                 'own' => 'A legjobbad',
             ],
+            'supporter_link' => [
+                '_' => 'Kattints :here, hogy megtekinthesd azt a sok jó funkciót amit kaphatsz!',
+                'here' => 'ide',
+            ],
         ],
 
         'stats' => [
@@ -182,6 +208,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Körök Száma',
             'count_sliders' => 'Sliderek Száma',
+            'offset' => 'Online eltolás :offset',
             'user-rating' => 'Felhasználói Értékelés',
             'rating-spread' => 'Értékelési Szórás',
             'nominations' => 'Nominálások',
@@ -191,11 +218,15 @@ return [
         'status' => [
             'ranked' => 'Rangsorolt',
             'approved' => 'Jóváhagyott',
-            'loved' => 'Kedvelve',
+            'loved' => 'Loved',
             'qualified' => 'Kvalifikálva',
             'wip' => 'Készítés alatt',
             'pending' => 'Függőben',
             'graveyard' => 'Temető',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => 'Reflektorfény',
     ],
 ];

@@ -23,8 +23,8 @@ return [
     ],
 
     'show' => [
-        'banner' => '贊助您的隊伍',
-        'entered' => '你已經報名這次比賽。<br><br>請注意，這不表示你已經被分組。<br><br>比賽開始前你將收到郵件通知，所以請確保你的 osu! 帳號的email可以收到信件！',
+        'banner' => '支持你的隊伍',
+        'entered' => '你已報名此次比賽。<br><br>這不意味著你已經被分組。<br><br>比賽開始前你將收到郵件通知，所以請確保你的 osu! 郵箱可用！',
         'info_page' => '資訊頁',
         'login_to_register' => '請 :login 以查看報名細節！',
         'not_yet_entered' => '你還沒有報名這次比賽。',

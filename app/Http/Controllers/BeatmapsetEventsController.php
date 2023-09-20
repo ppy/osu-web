@@ -13,7 +13,7 @@ class BeatmapsetEventsController extends Controller
     {
         $this->middleware('require-scopes:public', ['only' => ['index']]);
 
-        return parent::__construct();
+        parent::__construct();
     }
 
     public function index()

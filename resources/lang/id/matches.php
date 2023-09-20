@@ -5,14 +5,14 @@
 
 return [
     'match' => [
-        'beatmap-deleted' => 'beatmap yang sudah dihapus',
-        'difference' => 'dengan selisih skor sebesar :difference',
+        'beatmap-deleted' => 'beatmap yang telah dihapus',
         'failed' => 'GAGAL',
         'header' => 'Pertandingan Multiplayer',
         'in-progress' => '(pertandingan sedang berlangsung)',
         'in_progress_spinner_label' => 'pertandingan sedang berlangsung',
         'loading-events' => 'Memuat peristiwa...',
         'winner' => ':team menang',
+        'winner_by' => ':winner dengan selisih skor :difference',
 
         'events' => [
             'player-left' => ':user meninggalkan ruang pertandingan',

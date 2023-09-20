@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'load_failed' => '無法載入數據。',
     'missing_route' => '網址或請求方法錯誤。',
     'no_restricted_access' => '由於您的帳號已受限，故無法執行該操作。',
     'supporter_only' => '您需要成為 osu!贊助者才能使用此功能 。',
@@ -29,6 +30,7 @@ return [
     ],
     'search' => [
         'default' => '無法獲得任何結果，請稍後再試。',
+        'invalid_cursor_exception' => '指定的游標參數無效。',
         'operation_timeout_exception' => '搜索目前比平常更繁忙，稍後再試。',
     ],
 ];

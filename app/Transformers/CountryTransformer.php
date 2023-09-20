@@ -9,7 +9,7 @@ use App\Models\Country;
 
 class CountryTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'display',
         'ranking',
     ];

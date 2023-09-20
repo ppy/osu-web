@@ -12,9 +12,8 @@ class PaypalSignature implements PaymentSignature
 {
     const VERIFIED_RESPONSE = 'VERIFIED';
 
-    public function __construct(Request $request)
+    public function __construct(private Request $request)
     {
-        $this->request = $request;
     }
 
     public function isValid()

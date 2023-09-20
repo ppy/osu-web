@@ -5,7 +5,7 @@
 
 return [
     'audio' => [
-        'autoplay' => 'تشغيل المقطع التالي تلقائياً',
+        'autoplay' => 'تشغيل الأغنية التالية تلقائياً',
     ],
 
     'defaults' => [
@@ -19,11 +19,15 @@ return [
             'contest' => 'مسابقة',
             'contests' => 'المسابقات',
             'root' => 'وحدة التحكم',
-            'store_orders' => 'مشرف المتجر',
         ],
 
         'artists' => [
             'index' => 'القائمة',
+        ],
+
+        'beatmapsets' => [
+            'show' => 'معلومات',
+            'discussions' => 'المناقشة',
         ],
 
         'changelog' => [
@@ -47,7 +51,8 @@ return [
 
         'users' => [
             'modding' => 'الاِقتراح',
-            'multiplayer' => 'متعدد اللاعبين',
+            'playlists' => 'قوائم التشغيل',
+            'realtime' => 'لعب جماعي',
             'show' => 'معلومات',
         ],
     ],
@@ -63,18 +68,10 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => 'خرائط الموسيقى',
-            'artists' => 'الفنانين الموصى بهم',
-            'index' => 'القائمة',
-            'packs' => 'حزم',
         ],
         'community' => [
             '_' => 'المجتمع',
-            'chat' => 'محادثة',
-            'contests' => 'مسابقة',
             'dev' => 'التطوير',
-            'forum-forums-index' => 'المنتديات',
-            'getLive' => 'مباشر',
-            'tournaments' => 'البطولات',
         ],
         'help' => [
             '_' => 'مساعدة',
@@ -82,30 +79,17 @@ return [
             'getFaq' => 'الأسئلة الشائعة',
             'getRules' => 'القوانين',
             'getSupport' => 'لا، حقاً، أنا بحاجة إلى مساعدة!',
-            'getWiki' => 'ويكي',
         ],
         'home' => [
             '_' => 'الرئيسية',
-            'changelog-index' => 'سِجل التغييرات',
-            'getDownload' => 'تحميل',
-            'news-index' => 'الأخبار',
-            'search' => 'البحث',
             'team' => 'الفريق',
         ],
         'rankings' => [
             '_' => 'الترتيب',
-            'charts' => 'منطقة ألأضواء',
-            'country' => 'الدولة',
-            'index' => 'الأداء',
             'kudosu' => 'كودوسو',
-            'multiplayer' => 'متعدد اللاعبين',
-            'score' => 'النتيجة',
         ],
         'store' => [
             '_' => 'المتجر',
-            'cart-show' => 'عربة التسوق',
-            'getListing' => 'القائمة',
-            'orders-index' => 'تاريخ الطلب',
         ],
     ],
 

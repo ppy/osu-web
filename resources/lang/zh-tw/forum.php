@@ -25,6 +25,7 @@ return [
     ],
 
     'forums' => [
+        'forums' => '論壇',
         'latest_post' => '最新貼文',
 
         'index' => [
@@ -47,7 +48,7 @@ return [
         'confirm_restore' => '恢復此回覆？',
         'edited' => '最後由 :user 於 :when 編輯，總共編輯了 :count 次。',
         'posted_at' => '發表於 :when',
-        'posted_by' => '由 :username 發布',
+        'posted_by_in' => ':username 在 ":forum" 中發布了貼文',
 
         'actions' => [
             'destroy' => '刪除回覆',
@@ -125,6 +126,55 @@ return [
             'last' => '跳至最後',
             'next' => '往後 10 篇',
             'previous' => '往前 10 篇',
+        ],
+
+        'logs' => [
+            '_' => '主題日誌',
+            'button' => '瀏覽主題日誌',
+
+            'columns' => [
+                'action' => '動作',
+                'date' => '日期',
+                'user' => '使用者',
+            ],
+
+            'data' => [
+                'add_tag' => '已加入「:tag」標籤',
+                'announcement' => '已置頂主題，並標記為公告',
+                'edit_topic' => '到 :title',
+                'fork' => '源自 :topic',
+                'pin' => '已置頂主題',
+                'post_operation' => '由 :username 發布',
+                'remove_tag' => '已移除「:tag」標籤',
+                'source_forum_operation' => '源自 :forum',
+                'unpin' => '已取消置頂主題',
+            ],
+
+            'no_results' => '找不到日誌……',
+
+            'operations' => [
+                'delete_post' => '已刪除貼文',
+                'delete_topic' => '已刪除主題',
+                'edit_topic' => '已變更主題標題',
+                'edit_poll' => '已編輯主題投票',
+                'fork' => '已複製主題',
+                'issue_tag' => '已打上標籤',
+                'lock' => '已鎖定主題',
+                'merge' => '已將貼文合併進這則主題',
+                'move' => '已移動主題',
+                'pin' => '已置頂主題',
+                'post_edited' => '已編輯貼文',
+                'restore_post' => '已回復貼文',
+                'restore_topic' => '已回復主題',
+                'split_destination' => '已移動分割的貼文',
+                'split_source' => '已分割貼文',
+                'topic_type' => '已設定主題類型',
+                'topic_type_changed' => '已變更主題類型',
+                'unlock' => '已解鎖主題',
+                'unpin' => '已取消置頂主題',
+                'user_lock' => '已鎖定自己的主題',
+                'user_unlock' => '已解鎖自己的主題',
+            ],
         ],
 
         'post_edit' => [
@@ -265,7 +315,7 @@ return [
             'to_1' => '置頂',
             'to_1_confirm' => '置頂主題?',
             'to_1_done' => '該主题已置頂',
-            'to_2' => '至頂並標記為公告',
+            'to_2' => '置頂並標記為公告',
             'to_2_confirm' => '置頂主題並設為公告?',
             'to_2_done' => '該主题已置頂並標記為公告',
         ],
@@ -291,7 +341,7 @@ return [
 
                 'user' => [
                     'count' => '{0} 沒有票|[1,*] :count 票',
-                    'current' => '剩下 :votes 票.',
+                    'current' => '你還有 :votes 票.',
                     'not_enough' => "沒有票了",
                 ],
             ],

@@ -20,6 +20,10 @@ namespace App\Models;
  */
 class ArtistAlbum extends Model
 {
+    protected $casts = [
+        'visible' => 'boolean',
+    ];
+
     public function artist()
     {
         return $this->belongsTo(Artist::class);
@@ -32,6 +36,6 @@ class ArtistAlbum extends Model
 
     public function isNew()
     {
-        return $this->created_at->isAfter(now()->subMonth(1));
+        return $this->created_at->isAfter(now()->subMonths(1));
     }
 }

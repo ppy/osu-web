@@ -19,6 +19,11 @@ class ScaffoldDummy
         return $this->value;
     }
 
+    public function getRouteKey(): string
+    {
+        return $this->getKey();
+    }
+
     public function forceDelete()
     {
         return true;

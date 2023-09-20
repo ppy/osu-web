@@ -15,7 +15,7 @@
         }
     }
 @endphp
-Timeout.set(0, function() {
+window.setTimeout(function() {
     $('.js-forum-topic-{{ $type }}--extra[data-topic-id={{ $topic->topic_id }}]').remove();
     $('.js-forum-topic-{{ $type }}--state[data-topic-id={{ $topic->topic_id }}]')
         .attr('data-topic-{{ $type }}', '{{ $stateText }}');
@@ -25,5 +25,5 @@ Timeout.set(0, function() {
             compact('topic', 'state', 'userCanModerate')
         )->render()) !!});
 
-    osu.popup({!! json_encode(osu_trans('forum.topics.'.$type.'.to_'.$stateText.'_done')) !!}, 'success');
+    window.popup({!! json_encode(osu_trans('forum.topics.'.$type.'.to_'.$stateText.'_done')) !!}, 'success');
 });

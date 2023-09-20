@@ -10,7 +10,7 @@ return [
         'peak' => 'Κορύφωση, :count συνδεδεμένοι χρήστες',
         'players' => '<strong>:count</strong> εγγεγραμμένοι παίκτες',
         'title' => 'καλώς ήρθατε',
-        'see_more_news' => '',
+        'see_more_news' => 'δείτε περισσότερα νέα',
 
         'slogan' => [
             'main' => 'το καλυτερότερο free-to-win ρυθμικό παιχνίδι',
@@ -22,12 +22,12 @@ return [
         'advanced_link' => 'Σύνθετη αναζήτηση',
         'button' => 'Αναζήτηση',
         'empty_result' => 'Δεν βρέθηκε τίποτα!',
-        'keyword_required' => '',
+        'keyword_required' => 'Απαιτείται μια λέξη-κλειδί αναζήτησης',
         'placeholder' => 'πληκτρολογήστε για αναζήτηση',
         'title' => 'Αναζήτηση',
 
         'beatmapset' => [
-            'login_required' => '',
+            'login_required' => 'Συνδεθείτε για να αναζητήσετε beatmaps',
             'more' => ':count περισσότερα αποτελέσματα αναζήτησης beatmap',
             'more_simple' => 'Δείτε περισσότερα αποτελέσματα αναζήτησης beatmap',
             'title' => 'Beatmaps',
@@ -36,13 +36,14 @@ return [
         'forum_post' => [
             'all' => 'Όλα τα Φόρουμ',
             'link' => 'Αναζήτηση στο φόρουμ',
-            'login_required' => '',
+            'login_required' => 'Συνδεθείτε για να αναζητήσετε στο φόρουμ',
             'more_simple' => 'Δείτε περισσότερα αποτελέσματα αναζήτησης φόρουμ',
             'title' => 'Φόρουμ',
 
             'label' => [
                 'forum' => 'αναζήτηση στο φόρουμ',
                 'forum_children' => 'συμπεριλάμβανε υπο-φόρουμ',
+                'include_deleted' => 'περιλαμβάνει διαγραμμένες δημοσιεύσεις',
                 'topic_id' => 'θέμα #',
                 'username' => 'συντάκτης',
             ],
@@ -57,7 +58,7 @@ return [
         ],
 
         'user' => [
-            'login_required' => '',
+            'login_required' => 'Συνδεθείτε για να αναζητήσετε χρήστες',
             'more' => ':count περισσότερα αποτελέσματα αναζήτησης παίκτη',
             'more_simple' => 'Δείτε περισσότερα αποτελέσματα αναζήτησης παίκτη',
             'more_hidden' => 'Αναζήτηση παικτών περιορίζεται σε :max παίκτες. Δοκιμάστε να βελτιώσετε το ερώτημα αναζήτησης.',
@@ -72,13 +73,27 @@ return [
     ],
 
     'download' => [
-        'tagline' => "ας<br>αρχίσουμε!",
         'action' => 'Λήψη osu!',
+        'action_lazer' => 'Κατέβασε το osu!(lazer)',
+        'action_lazer_description' => 'Η νέα μεγάλη ενημέρωση στο osu!',
+        'action_lazer_info' => 'δες αυτήν τη σελίδα για περισσότερες πληροφορίες',
+        'action_lazer_title' => 'δοκίμασε το osu!(lazer)',
+        'action_title' => 'κατέβασε το osu!',
+        'for_os' => 'για :os',
+        'lazer_note' => 'σημείωση: ισχύουν επαναλήψεις leaderboard',
+        'macos-fallback' => 'χρήστες macOS',
+        'mirror' => 'mirror',
+        'or' => 'ή',
+        'os_version_or_later' => ':os_version ή μεγαλύτερο',
+        'other_os' => 'άλλες πλατφόρμες',
+        'quick_start_guide' => 'οδηγός γρήγορης εκκίνησης',
+        'tagline' => "ας<br>αρχίσουμε!",
+        'video-guide' => 'οδηγός βίντεο',
 
         'help' => [
-            '_' => '',
-            'help_forum_link' => '',
-            'support_button' => '',
+            '_' => 'αν έχετε πρόβλημα με την εκκίνηση του παιχνιδιού ή με την εγγραφή ενός λογαριασμού, :help_forum_link ή :support_button.',
+            'help_forum_link' => 'ελέγξτε το φόρουμ βοήθειας',
+            'support_button' => 'επικοινωνήστε με την υποστήριξη',
         ],
 
         'os' => [
@@ -86,8 +101,6 @@ return [
             'macos' => 'για macOS',
             'linux' => 'για Linux',
         ],
-        'mirror' => 'mirror',
-        'macos-fallback' => 'χρήστες macOS',
         'steps' => [
             'register' => [
                 'title' => 'αποκτήστε ένα λογαριασμό',
@@ -105,7 +118,6 @@ return [
                 ],
             ],
         ],
-        'video-guide' => 'οδηγός βίντεο',
     ],
 
     'user' => [
@@ -124,23 +136,12 @@ return [
         'beatmaps' => [
             'new' => 'Νέα Ranked Beatmaps',
             'popular' => 'Δημοφιλή Beatmaps',
-            'by_user' => '',
+            'by_user' => 'από :user',
         ],
         'buttons' => [
             'download' => 'Λήψη osu!',
             'support' => 'Υποστηρίξτε το osu!',
             'store' => 'osu!κατάστημα',
         ],
-    ],
-
-    'support-osu' => [
-        'title' => 'Ουάου!',
-        'subtitle' => 'Φαίνεται να περνάτε καλά! :D',
-        'body' => [
-            'part-1' => 'Ξέρατε ότι το osu! τρέχει χωρίς διαφημίσεις και βασίζεται στους παίκτες για την υποστήριξη της ανάπτυξης και το κόστος λειτουργίας;',
-            'part-2' => 'Ξέρατε επίσης ότι υποστηρίζοντας το osu! παίρνετε ένα σωρό χρήσιμες λειτουργίες, όπως η <strong>λήψη εντός παιχνιδιού</strong> η οποία ενεργοποιείται αυτόματα στο spectator και στα multiplayer λόμπυ;',
-        ],
-        'find-out-more' => 'Κάντε κλικ εδώ για να μάθετε περισσότερα!',
-        'download-starting' => "Ω, και μην ανησυχείτε - η λήψη σας έχει ήδη ξεκινήσει ;)",
     ],
 ];

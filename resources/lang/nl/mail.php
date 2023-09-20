@@ -15,6 +15,7 @@ return [
         'closing' => 'Met vriendelijke groet,',
         'hello' => 'Hallo :user,',
         'report' => 'Reageer op deze e-mail met SPOED als je niet om deze wijziging hebt verzocht.',
+        'ignore' => 'Als dit verzoek niet van jou kwam, dan kun je dit bericht negeren.',
     ],
 
     'donation_thanks' => [
@@ -66,6 +67,7 @@ return [
         'duration' => 'Dankzij hen, heb je toegang tot osu!direct en andere osu!supporter voordelen voor de volgende :duration.',
         'features' => 'Je kunt hier meer details over deze functies vinden:',
         'gifted' => 'Iemand heeft je zojuist een osu! supporter tag cadeau gedaan!',
+        'gift_message' => 'De persoon die je deze tag cadeau gaf heeft je een bericht achtergelaten:',
         'subject' => 'Je hebt een osu!supporter tag cadeau gekregen!',
     ],
 

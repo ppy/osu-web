@@ -5,7 +5,7 @@
 
 namespace App\Models\Forum;
 
-use App\Jobs\EsIndexDocument;
+use App\Jobs\EsDocument;
 use App\Jobs\UpdateUserForumCache;
 use App\Jobs\UpdateUserForumTopicFollows;
 use App\Libraries\BBCodeForDB;
@@ -35,11 +35,11 @@ use Illuminate\Database\QueryException;
  * @property \Illuminate\Database\Eloquent\Collection $pollOptions PollOption
  * @property \Illuminate\Database\Eloquent\Collection $pollVotes PollVote
  * @property bool $poll_hide_results
- * @property int $poll_last_vote
+ * @property \Carbon\Carbon|null $poll_last_vote
  * @property int $poll_length
  * @property mixed $poll_length_days
  * @property int $poll_max_options
- * @property int $poll_start
+ * @property \Carbon\Carbon|null $poll_start
  * @property string $poll_title
  * @property bool $poll_vote_change
  * @property \Illuminate\Database\Eloquent\Collection $posts Post
@@ -48,23 +48,23 @@ use Illuminate\Database\QueryException;
  * @property int $topic_bumped
  * @property int $topic_bumper
  * @property int $topic_first_post_id
- * @property string $topic_first_poster_colour
+ * @property string|null $topic_first_poster_colour
  * @property string $topic_first_poster_name
  * @property int $topic_id
  * @property int $topic_last_post_id
  * @property string $topic_last_post_subject
- * @property int $topic_last_post_time
- * @property string $topic_last_poster_colour
+ * @property \Carbon\Carbon|null $topic_last_post_time
+ * @property string|null $topic_last_poster_colour
  * @property int $topic_last_poster_id
  * @property string $topic_last_poster_name
- * @property int $topic_last_view_time
+ * @property \Carbon\Carbon|null $topic_last_view_time
  * @property int $topic_moved_id
  * @property int $topic_poster
  * @property int $topic_replies
  * @property int $topic_replies_real
  * @property int $topic_reported
  * @property int $topic_status
- * @property int $topic_time
+ * @property \Carbon\Carbon|null $topic_time
  * @property int $topic_time_limit
  * @property string $topic_title
  * @property int $topic_type
@@ -158,7 +158,7 @@ class Topic extends Model implements AfterCommit
         }
     }
 
-    public function validationErrorsTranslationPrefix()
+    public function validationErrorsTranslationPrefix(): string
     {
         return 'forum.topic';
     }
@@ -333,15 +333,7 @@ class Topic extends Model implements AfterCommit
             $this->validationErrors()->add('topic_title', 'required');
         }
 
-        foreach (static::MAX_FIELD_LENGTHS as $field => $limit) {
-            if ($this->isDirty($field)) {
-                $val = $this->$field;
-
-                if (mb_strlen($val) > $limit) {
-                    $this->validationErrors()->add($field, 'too_long', ['limit' => $limit]);
-                }
-            }
-        }
+        $this->validateDbFieldLengths();
 
         return $this->validationErrors()->isEmpty();
     }
@@ -424,12 +416,15 @@ class Topic extends Model implements AfterCommit
         $tieBreakerOrder = 'desc';
 
         switch ($sort) {
+            case 'created':
+                $query->orderBy('topic_time', 'desc');
+                break;
             case 'feature-votes':
                 $query->orderBy('osu_starpriority', 'desc');
                 break;
         }
 
-        $query->orderBy('topic_last_post_time', $tieBreakerOrder);
+        return $query->orderBy('topic_last_post_time', $tieBreakerOrder);
     }
 
     public function scopeRecent($query, $params = null)
@@ -463,7 +458,7 @@ class Topic extends Model implements AfterCommit
 
     public function pollTitleHTML()
     {
-        return bbcode($this->poll_title, $this->posts()->withTrashed()->first()->bbcode_uid);
+        return bbcode($this->poll_title, $this->firstPost->bbcode_uid);
     }
 
     public function pollEnd()
@@ -530,13 +525,14 @@ class Topic extends Model implements AfterCommit
                 // Duplicate entry.
                 // Retry, hoping $status now contains something.
                 if (is_sql_unique_exception($ex)) {
-                    return $this->markRead($user, $markTime);
+                    $this->markRead($user, $markTime);
+                    return;
                 }
 
                 throw $ex;
             }
 
-            $this->increment('topic_views');
+            $this->incrementInstance('topic_views');
         } elseif ($status->mark_time < $markTime) {
             $status->update(['mark_time' => $markTime]);
         }
@@ -775,7 +771,7 @@ class Topic extends Model implements AfterCommit
         return $this->topic_type === static::TYPES['normal'] && $this->forum->isFeatureForum();
     }
 
-    public function poll($poll = null)
+    public function poll($poll = null): TopicPoll
     {
         return $this->memoize(__FUNCTION__, function () use ($poll) {
             return ($poll ?? new TopicPoll())->setTopic($this);
@@ -797,7 +793,7 @@ class Topic extends Model implements AfterCommit
             $this->topic_title = "[{$tag}] {$this->topic_title}";
         }
 
-        $this->save();
+        $this->saveOrExplode();
     }
 
     public function unsetIssueTag($tag)
@@ -810,7 +806,7 @@ class Topic extends Model implements AfterCommit
             trim(str_replace("[{$tag}]", '', $this->topic_title))
         );
 
-        $this->save();
+        $this->saveOrExplode();
     }
 
     public function hasIssueTag($tag)
@@ -826,7 +822,7 @@ class Topic extends Model implements AfterCommit
     public function afterCommit()
     {
         if ($this->exists && $this->firstPost !== null) {
-            dispatch(new EsIndexDocument($this->firstPost));
+            dispatch(new EsDocument($this->firstPost));
         }
     }
 
@@ -839,7 +835,7 @@ class Topic extends Model implements AfterCommit
             ->select(['poster_id', 'post_id'])
             ->each(function ($post) {
                 dispatch(new UpdateUserForumCache($post->poster_id));
-                dispatch(new EsIndexDocument($post));
+                dispatch(new EsDocument($post));
             });
 
         dispatch(new UpdateUserForumTopicFollows($this));

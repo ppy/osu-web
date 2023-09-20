@@ -13,7 +13,7 @@ return [
 
         'player' => [
             'by' => 'Spelad av',
-            'submitted_on' => 'Inlämnad den',
+            'submitted_on' => 'Uppladdat den',
 
             'rank' => [
                 'country' => 'Nationell rankning',
@@ -24,6 +24,7 @@ return [
 
     'status' => [
         'non_best' => 'Endast personbästa poäng ger pp',
+        'non_passing' => 'Endast godkända poäng ger pp',
         'processing' => 'Poängsiffran räknas ännu ut och kommer snart att visas',
     ],
 ];

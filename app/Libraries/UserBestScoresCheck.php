@@ -50,7 +50,7 @@ class UserBestScoresCheck
         $this->dbIdsFound = 0;
         $this->esIdsFound = 0;
 
-        $clazz = Best\Model::getClassByString($mode);
+        $clazz = Best\Model::getClass($mode);
 
         $search = $this->newSearch($mode);
         $cursor = [0];

@@ -6,7 +6,7 @@
 return [
     'comment' => [
         'empty' => 'Ei yhtään kommentteja seurattu.',
-        'page_title' => 'kommenttien seurantalista',
+        'page_title' => 'seuratut kommentit',
         'title' => 'kommentit',
 
         'table' => [
@@ -26,7 +26,7 @@ return [
     'mapping' => [
         'empty' => 'Ei yhtään kartoittajaa seurattu.',
         'followers' => 'kartoittajatilaajat',
-        'page_title' => 'kartoittajien seurantalista',
+        'page_title' => 'seuratut kartoittajat',
         'title' => 'kartoittajat',
         'to_0' => 'älä ilmoita minulle, kun tämä käyttäjä lataa uuden beatmapin',
         'to_1' => 'ilmoita minulle, kun tämä käyttäjä lataa uuden beatmapin',

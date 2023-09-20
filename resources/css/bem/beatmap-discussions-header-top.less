@@ -1,0 +1,113 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.beatmap-discussions-header-top {
+  .default-box-shadow();
+  background-color: @osu-colour-b2;
+  --box-height: 50px;
+  --gutter: @gutter-beatmapset;
+
+  @media @desktop {
+    --gutter: @gutter-beatmapset-desktop;
+  }
+
+  &__beatmap-stats {
+    position: absolute;
+
+    right: 0;
+    top: 0;
+    width: 100%;
+    padding: 10px 10px 0;
+    flex-direction: column;
+    display: flex;
+
+    @media @narrow-up {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+
+  &__content {
+    position: relative;
+    padding: 70px var(--gutter) 0;
+  }
+
+  &__cover {
+    --border-radius: 0;
+    .light-header-overlay();
+  }
+
+  &__title-container {
+    .default-text-shadow();
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+  }
+
+  &__filter-group {
+    min-width: 0;
+    flex: 1 1 auto;
+
+    & + & {
+      margin-top: 10px;
+    }
+
+    @media @desktop {
+      align-self: flex-end;
+
+      & + & {
+        margin-top: 0;
+      }
+
+      &--stats {
+        flex: none;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+      }
+    }
+  }
+
+  &__filters {
+    display: flex;
+    margin: 10px 0;
+    flex-direction: column;
+    position: relative;
+
+    @media @desktop {
+      justify-content: space-between;
+      flex-direction: row;
+    }
+  }
+
+  &__guest {
+    font-size: @font-size--title-small;
+    display: flex;
+    align-items: center;
+  }
+
+  &__stats {
+    flex: none;
+    margin: 5px -5px;
+    display: flex;
+    flex-wrap: wrap;
+
+    @media @desktop {
+      margin-bottom: -5px;
+      margin-left: 5px;
+    }
+  }
+
+  &__title {
+    color: inherit;
+    margin: 0;
+    font-size: @font-size--title;
+    font-weight: 600;
+
+    &--artist {
+      font-size: @font-size--title-small-2;
+      font-weight: normal;
+    }
+  }
+}

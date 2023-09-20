@@ -18,7 +18,7 @@ class NotificationRequestsController extends Controller
             $this->middleware('check-user-restricted');
         }
 
-        return parent::__construct();
+        parent::__construct();
     }
 
     public function store($productId)

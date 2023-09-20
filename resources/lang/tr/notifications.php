@@ -13,6 +13,16 @@ return [
     'see_channel' => 'sohbete git',
     'verifying' => 'Bildirimleri görüntülemek için lütfen oturumunuzu doğrulayın',
 
+    'action_type' => [
+        '_' => 'hepsi',
+        'beatmapset' => 'haritalar',
+        'build' => 'sürümler',
+        'channel' => 'sohbet',
+        'forum_topic' => 'forum',
+        'news_post' => 'haberler',
+        'user' => 'profil',
+    ],
+
     'filters' => [
         '_' => 'hepsi',
         'user' => 'profil',
@@ -69,8 +79,8 @@ return [
                 'beatmapset_rank_compact' => 'Beatmap dereceli oldu',
                 'beatmapset_remove_from_loved' => '":title" Sevilenlerden çıkarıldı',
                 'beatmapset_remove_from_loved_compact' => 'Beatmap Sevilenlerden çıkarıldı',
-                'beatmapset_reset_nominations' => '":title" setinin aday gösterimi sıfırlandı',
-                'beatmapset_reset_nominations_compact' => 'Aday gösterim sıfırlandı',
+                'beatmapset_reset_nominations' => '":title" setinin adaylığı sıfırlandı',
+                'beatmapset_reset_nominations_compact' => 'Adaylık sıfırlandı',
             ],
 
             'comment' => [
@@ -86,8 +96,19 @@ return [
         'channel' => [
             '_' => 'Sohbet',
 
+            'announcement' => [
+                '_' => 'Yeni duyuru',
+
+                'announce' => [
+                    'channel_announcement' => ':username ":title" diyor',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => ':username tarafından duyuru',
+                ],
+            ],
+
             'channel' => [
                 '_' => 'Yeni mesaj',
+
                 'pm' => [
                     'channel_message' => ':username ":title" diyor',
                     'channel_message_compact' => ':title',
@@ -132,15 +153,6 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => 'Legacy Forum PM',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited okunmamış mesaj.|:count_delimited okunmamış mesaj',
-            ],
-        ],
-
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Yeni beatmap',
@@ -148,6 +160,9 @@ return [
                 'user_beatmapset_new' => ':username tarafından yeni beatmap ":title"',
                 'user_beatmapset_new_compact' => 'Yeni beatmap ":title"',
                 'user_beatmapset_new_group' => ' :username tarafından yapılmış yeni beatmapler',
+
+                'user_beatmapset_revive' => '":title" adlı beatmap :username tarafından hayata geri döndürüldü',
+                'user_beatmapset_revive_compact' => '":title" adlı beatmap hayata geri döndürüldü',
             ],
         ],
 
@@ -186,7 +201,7 @@ return [
                 'beatmapset_qualify' => '":title" yeterli aday gösterimi aldı ve derecelendirme sırasına girdi',
                 'beatmapset_rank' => '":title" dereceli oldu',
                 'beatmapset_remove_from_loved' => '":title" Sevilenlerden çıkarıldı',
-                'beatmapset_reset_nominations' => '":title" setinin aday gösterimi sıfırlandı',
+                'beatmapset_reset_nominations' => '":title" setinin adaylığı sıfırlandı',
             ],
 
             'comment' => [
@@ -195,6 +210,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => '":name" içinde yeni bir duyuru var',
+            ],
+
             'channel' => [
                 'pm' => ':username kullanıcısından yeni bir mesaj geldi',
             ],
@@ -226,6 +245,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username yeni beatmapler yaptı',
+                'user_beatmapset_revive' => ':username beatmap\'leri hayata geri döndürdü',
             ],
         ],
     ],

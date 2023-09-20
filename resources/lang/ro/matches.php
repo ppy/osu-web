@@ -6,13 +6,13 @@
 return [
     'match' => [
         'beatmap-deleted' => 'beatmap șters',
-        'difference' => 'cu :difference puncte',
         'failed' => 'EȘUAT',
-        'header' => 'Meciuri multijucător',
+        'header' => 'Meciuri Multiplayer',
         'in-progress' => '(meci în desfășurare)',
         'in_progress_spinner_label' => 'meci în desfășurare',
         'loading-events' => 'Se încarcă evenimentele...',
         'winner' => ':team câștigă',
+        'winner_by' => ':winner cu :difference puncte',
 
         'events' => [
             'player-left' => ':user a părăsit meciul',
@@ -46,16 +46,16 @@ return [
         ],
 
         'teams' => [
-            'blue' => 'Echipa albastră',
-            'red' => 'Echipa roșie',
+            'blue' => 'Echipa Albastră',
+            'red' => 'Echipa Roșie',
         ],
     ],
     'game' => [
         'scoring-type' => [
-            'score' => 'Cel mai mare scor',
-            'accuracy' => 'Cea mai mare precizie',
-            'combo' => 'Cel mai mare combo',
-            'scorev2' => 'Score V2',
+            'score' => 'Scor Maxim',
+            'accuracy' => 'Precizie Maximă',
+            'combo' => 'Combo Maxim',
+            'scorev2' => 'Scor V2',
         ],
     ],
 ];

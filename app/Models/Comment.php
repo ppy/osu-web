@@ -7,8 +7,8 @@ namespace App\Models;
 
 use App\Libraries\MorphMap;
 use App\Traits\Validatable;
-use App\Traits\WithDbCursorHelper;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * @property mixed $commentable
@@ -28,6 +28,7 @@ use Carbon\Carbon;
  * @property string $message
  * @property static $parent
  * @property int|null $parent_id
+ * @property bool $pinned
  * @property \Illuminate\Database\Eloquent\Collection $replies static
  * @property int $replies_count_cache
  * @property \Carbon\Carbon|null $updated_at
@@ -36,9 +37,9 @@ use Carbon\Carbon;
  * @property \Illuminate\Database\Eloquent\Collection $votes CommentVote
  * @property int $votes_count_cache
  */
-class Comment extends Model
+class Comment extends Model implements Traits\ReportableInterface
 {
-    use Reportable, Validatable, WithDbCursorHelper;
+    use Traits\Reportable, Traits\WithDbCursorHelper, Validatable;
 
     const COMMENTABLES = [
         MorphMap::MAP[Beatmapset::class],
@@ -46,9 +47,11 @@ class Comment extends Model
         MorphMap::MAP[NewsPost::class],
     ];
 
-    // FIXME: decide on good number.
-    // some people seem to put song lyrics in comment which inflated the size.
-    const MESSAGE_LIMIT = 10000;
+    const MAX_FIELD_LENGTHS = [
+        // FIXME: decide on good number.
+        // some people seem to put song lyrics in comment which inflated the size.
+        'message' => 10000,
+    ];
 
     const SORTS = [
         'new' => [
@@ -68,18 +71,23 @@ class Comment extends Model
 
     const DEFAULT_SORT = 'new';
 
-    protected $dates = ['deleted_at', 'edited_at'];
+    public $allowEmptyCommentable = false;
 
     protected $casts = [
+        'deleted_at' => 'datetime',
         'disqus_user_data' => 'array',
+        'edited_at' => 'datetime',
         'pinned' => 'boolean',
     ];
-
-    public $allowEmptyCommentable = false;
 
     public static function isValidType($type)
     {
         return in_array($type, static::COMMENTABLES, true);
+    }
+
+    public function scopePinned(Builder $query): Builder
+    {
+        return $query->where('pinned', true);
     }
 
     public function scopeWithoutTrashed($query)
@@ -114,7 +122,7 @@ class Comment extends Model
 
     public function setMessageAttribute($value)
     {
-        return $this->attributes['message'] = unzalgo($value);
+        return $this->attributes['message'] = trim(unzalgo($value));
     }
 
     public function votes()
@@ -131,23 +139,81 @@ class Comment extends Model
         $this->attributes['commentable_type'] = $value;
     }
 
+    public function getAttribute($key)
+    {
+        return match ($key) {
+            'commentable_id',
+            'commentable_type',
+            'deleted_by_id',
+            'disqus_id',
+            'disqus_parent_id',
+            'disqus_thread_id',
+            'edited_by_id',
+            'id',
+            'message',
+            'parent_id',
+            'replies_count_cache',
+            'user_id',
+            'votes_count_cache' => $this->getRawAttribute($key),
+
+            'created_at',
+            'deleted_at',
+            'edited_at',
+            'updated_at' => $this->getTimeFast($key),
+
+            'created_at_json',
+            'deleted_at_json',
+            'edited_at_json',
+            'updated_at_json' => $this->getJsonTimeFast($key),
+
+            'pinned' => (bool) $this->getRawAttribute($key),
+
+            'disqus_user_data' => $this->getDisqusUserData(),
+
+            'commentable',
+            'editor',
+            'parent',
+            'replies',
+            'reportedIn',
+            'user',
+            'votes' => $this->getRelationValue($key),
+        };
+    }
+
+    public function setCommentable()
+    {
+        if ($this->parent_id === null || $this->parent === null) {
+            if ($this->commentable_type !== null) {
+                return;
+            }
+            // Reset the id if type is null otherwise Laravel will try to
+            // "eager load" the commentable (whatever tha means in this context).
+            // Note that setting type to random string doesn't work because
+            // Laravel will happily try to create the random string class.
+            //
+            // Reference: https://github.com/laravel/framework/blob/53b02b3c1d926c095cccca06883a35a5c6729773/src/Illuminate/Database/Eloquent/Concerns/HasRelationships.php#L279-L281
+            $this->commentable_id = null;
+        } else {
+            $this->commentable_id = $this->parent->commentable_id;
+            $this->commentable_type = $this->parent->commentable_type;
+        }
+
+        $this->unsetRelation('commentable');
+    }
+
     public function isValid()
     {
         $this->validationErrors()->reset();
-
-        $messageLength = mb_strlen(trim($this->message));
 
         if ($this->isDirty('pinned') && $this->pinned && $this->parent_id !== null) {
             $this->validationErrors()->add('pinned', '.top_only');
         }
 
-        if ($messageLength === 0) {
+        if (!present($this->message)) {
             $this->validationErrors()->add('message', 'required');
         }
 
-        if ($messageLength > static::MESSAGE_LIMIT) {
-            $this->validationErrors()->add('message', 'too_long', ['limit' => static::MESSAGE_LIMIT]);
-        }
+        $this->validateDbFieldLengths();
 
         if ($this->isDirty('parent_id') && $this->parent_id !== null) {
             if ($this->parent === null) {
@@ -175,18 +241,13 @@ class Comment extends Model
         return route('comments.show', ['comment' => $this->getKey()]);
     }
 
-    public function validationErrorsTranslationPrefix()
+    public function validationErrorsTranslationPrefix(): string
     {
         return 'comment';
     }
 
     public function save(array $options = [])
     {
-        if ($this->parent_id !== null && $this->parent !== null) {
-            $this->commentable_id = $this->parent->commentable_id;
-            $this->commentable_type = $this->parent->commentable_type;
-        }
-
         if (!$this->isValid()) {
             return false;
         }
@@ -194,7 +255,7 @@ class Comment extends Model
         return $this->getConnection()->transaction(function () use ($options) {
             if (!$this->exists && $this->parent_id !== null && $this->parent !== null) {
                 // skips validation and everything
-                $this->parent->increment('replies_count_cache');
+                $this->parent->incrementInstance('replies_count_cache', 1, ['updated_at' => Carbon::now()]);
             }
 
             if ($this->isDirty('deleted_at')) {
@@ -222,8 +283,9 @@ class Comment extends Model
     public function softDelete($deletedBy)
     {
         return $this->update([
+            'deleted_at' => now(),
             'deleted_by_id' => $deletedBy->getKey(),
-            'deleted_at' => Carbon::now(),
+            'pinned' => false,
         ]);
     }
 
@@ -238,5 +300,12 @@ class Comment extends Model
             'reason' => 'Spam',
             'user_id' => $this->user_id,
         ];
+    }
+
+    private function getDisqusUserData(): ?array
+    {
+        $value = $this->getRawAttribute('disqus_user_data');
+
+        return $value === null ? null : json_decode($value, true);
     }
 }

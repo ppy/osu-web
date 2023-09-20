@@ -9,7 +9,7 @@ return [
         'title_compact' => 'modding volglijst',
 
         'counts' => [
-            'total' => 'Beatmaps bekeken',
+            'total' => 'Beatmaps gevolgd',
             'unread' => 'Beatmaps met nieuwe activiteit',
         ],
 

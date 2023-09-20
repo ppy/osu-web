@@ -6,19 +6,18 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\ModelNotSavedException;
-use App\Jobs\Notifications\BeatmapsetDiscussionPostNew;
-use App\Jobs\Notifications\BeatmapsetDiscussionQualifiedProblem;
+use App\Libraries\BeatmapsetDiscussion\Discussion;
+use App\Libraries\BeatmapsetDiscussion\Reply;
+use App\Libraries\BeatmapsetDiscussion\Review;
 use App\Libraries\BeatmapsetDiscussionPostsBundle;
-use App\Libraries\BeatmapsetDiscussionReview;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
-use App\Models\BeatmapsetEvent;
 use App\Models\BeatmapsetWatch;
 use App\Models\User;
 
 /**
- @group Beatmapset Discussions
+ * @group Beatmapset Discussions
  */
 class BeatmapDiscussionPostsController extends Controller
 {
@@ -27,7 +26,7 @@ class BeatmapDiscussionPostsController extends Controller
         $this->middleware('auth', ['except' => ['index', 'show']]);
         $this->middleware('require-scopes:public', ['only' => ['index']]);
 
-        return parent::__construct();
+        parent::__construct();
     }
 
     public function destroy($id)
@@ -57,17 +56,18 @@ class BeatmapDiscussionPostsController extends Controller
      *   The response of this endpoint is likely to change soon!
      * </aside>
      *
-     * Field       | Type                                                    | Description
-     * ----------- | ------------------------------------------------------- | -----------
-     * beatmapsets | [BeatmapsetCompact](#beatmapsetcompact)                 | |
-     * cursor      | [Cursor](#cursor)                                       | |
-     * posts       | [BeatmapsetDiscussionPost](#beatmapsetdiscussionpost)[] | |
-     * users       | [UserCompact](#usercompact)                             | |
+     * Field         | Type                                                    | Description
+     * ------------- | ------------------------------------------------------- | -----------
+     * beatmapsets   | [Beatmapset](#beatmapset)                               | |
+     * cursor_string | [CursorString](#cursorstring)                           | |
+     * posts         | [BeatmapsetDiscussionPost](#beatmapsetdiscussionpost)[] | |
+     * users         | [User](#user)                                           | |
      *
      * @queryParam beatmapset_discussion_id `id` of the [BeatmapsetDiscussion](#beatmapsetdiscussion).
      * @queryParam limit Maximum number of results.
      * @queryParam page Search result page.
      * @queryParam sort `id_desc` for newest first; `id_asc` for oldest first. Defaults to `id_desc`.
+     * @queryParam types[] `first`, `reply`, `system` are the valid values. Defaults to `reply`.
      * @queryParam user The `id` of the [User](#user).
      * @queryParam with_deleted This param has no effect as api calls do not currently receive group permissions.
      */
@@ -111,59 +111,36 @@ class BeatmapDiscussionPostsController extends Controller
     {
         /** @var User $user */
         $user = auth()->user();
-        $discussion = $this->prepareDiscussion(request());
+        $request = request()->all();
 
-        if (!$discussion->exists) {
-            priv_check('BeatmapDiscussionStore', $discussion)->ensureCan();
+        $discussionId = get_int($request['beatmap_discussion_id'] ?? null);
+        $beatmapsetId = get_int($request['beatmapset_id'] ?? null);
+
+        $message = presence(get_string($request['beatmap_discussion_post']['message'] ?? null));
+
+        if ($discussionId !== null) {
+            $discussion = BeatmapDiscussion::findOrFail($discussionId);
+            $resolve = get_bool($request['beatmap_discussion']['resolved'] ?? null);
+            $posts = (new Reply($user, $discussion, $message, $resolve))->handle();
+
+            $beatmapset = $discussion->beatmapset;
+        } elseif ($beatmapsetId !== null) {
+            $beatmapset = Beatmapset::findOrFail($beatmapsetId);
+            $discussionParams = get_params($request, 'beatmap_discussion', [
+                'beatmap_id:int',
+                'message_type',
+                'timestamp:int',
+            ], ['null_missing' => true]);
+
+            [$discussion, $posts] = (new Discussion($user, $beatmapset, $discussionParams, $message))->handle();
+        } else {
+            abort(404);
         }
 
-        $postParams = get_params(request()->all(), 'beatmap_discussion_post', ['message']);
-        $postParams['user_id'] = $user->getKey();
-        $post = new BeatmapDiscussionPost($postParams);
-        $post->beatmapDiscussion()->associate($discussion);
-
-        priv_check('BeatmapDiscussionPostStore', $post)->ensureCan();
-
-        $event = BeatmapsetEvent::getBeatmapsetEventType($discussion, $user);
-        $notifyQualifiedProblem = $discussion->shouldNotifyQualifiedProblem($event);
-
-        $posts = $discussion->getConnection()->transaction(function () use ($discussion, $event, $post, $user) {
-            $discussion->saveOrExplode();
-
-            // done here since discussion may or may not previously exist
-            $post->beatmap_discussion_id = $discussion->getKey();
-            $post->saveOrExplode();
-            $newPosts = [$post];
-
-            switch ($event) {
-                case BeatmapsetEvent::ISSUE_REOPEN:
-                case BeatmapsetEvent::ISSUE_RESOLVE:
-                    $systemPost = BeatmapDiscussionPost::generateLogResolveChange($user, $discussion->resolved);
-                    $systemPost->beatmap_discussion_id = $discussion->getKey();
-                    $systemPost->saveOrExplode();
-                    BeatmapsetEvent::log($event, $user, $post)->saveOrExplode();
-                    $newPosts[] = $systemPost;
-                    break;
-
-                case BeatmapsetEvent::DISQUALIFY:
-                case BeatmapsetEvent::NOMINATION_RESET:
-                    $discussion->beatmapset->disqualifyOrResetNominations($user, $discussion);
-                    break;
-            }
-
-            return $newPosts;
-        });
-
-        if ($notifyQualifiedProblem) {
-            (new BeatmapsetDiscussionQualifiedProblem($post, $user))->dispatch();
-        }
-
-        (new BeatmapsetDiscussionPostNew($post, $user))->dispatch();
-
-        BeatmapsetWatch::markRead($discussion->beatmapset, $user);
+        BeatmapsetWatch::markRead($beatmapset, $user);
 
         return [
-            'beatmapset' => $discussion->beatmapset->defaultDiscussionJson(),
+            'beatmapset' => $beatmapset->defaultDiscussionJson(),
             'beatmap_discussion_post_ids' => array_pluck($posts, 'id'),
             'beatmap_discussion_id' => $discussion->getKey(),
         ];
@@ -182,7 +159,7 @@ class BeatmapDiscussionPostsController extends Controller
             // handle reviews (but not replies to the reviews)
             try {
                 $document = json_decode($params['message'], true);
-                BeatmapsetDiscussionReview::update($post->beatmapDiscussion, $document, auth()->user());
+                Review::update($post->beatmapDiscussion, $document, auth()->user());
             } catch (\Exception $e) {
                 throw new ModelNotSavedException($e->getMessage());
             }
@@ -191,36 +168,5 @@ class BeatmapDiscussionPostsController extends Controller
         }
 
         return $post->beatmapset->defaultDiscussionJson();
-    }
-
-    private function prepareDiscussion($request): BeatmapDiscussion
-    {
-        $discussionId = get_int($request['beatmap_discussion_id']);
-
-        if ($discussionId === null) {
-            $beatmapset = Beatmapset
-                ::where('discussion_enabled', true)
-                ->findOrFail($request['beatmapset_id']);
-
-            $discussion = new BeatmapDiscussion([
-                'beatmapset_id' => $beatmapset->getKey(),
-                'user_id' => auth()->user()->getKey(),
-                'resolved' => false,
-            ]);
-
-            $discussionFilters = [
-                'beatmap_id:int',
-                'message_type',
-                'timestamp:int',
-            ];
-        } else {
-            $discussion = BeatmapDiscussion::findOrFail($discussionId);
-            $discussionFilters = ['resolved:bool'];
-        }
-
-        $discussionParams = get_params($request, 'beatmap_discussion', $discussionFilters);
-        $discussion->fill($discussionParams);
-
-        return $discussion;
     }
 }

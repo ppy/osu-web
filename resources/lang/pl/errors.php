@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'load_failed' => 'Nie udało się załadować danych.',
     'missing_route' => 'Nieprawidłowy adres URL lub nieprawidłowa metoda żądania.',
     'no_restricted_access' => 'Nie możesz wykonać tej czynności podczas blokady konta.',
     'supporter_only' => 'Potrzebujesz statusu donatora osu!, aby korzystać z tej funkcji.',
@@ -29,6 +30,7 @@ return [
     ],
     'search' => [
         'default' => 'Nie udało się niczego znaleźć, spróbuj ponownie później.',
+        'invalid_cursor_exception' => 'Określono nieprawidłowy parametr kursora. ',
         'operation_timeout_exception' => 'Wyszukiwanie jest obecnie bardziej obciążone niż zwykle, spróbuj ponownie później.',
     ],
 ];

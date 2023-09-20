@@ -13,8 +13,8 @@ return [
 
     'beatmaps' => [
         '_' => 'Карты',
-        'download' => 'Скачать шаблон карты',
-        'download-na' => 'Шаблон карты ещё не доступен',
+        'download' => 'скачать шаблон карты',
+        'download-na' => 'шаблон карты пока недоступен',
     ],
 
     'index' => [
@@ -22,14 +22,16 @@ return [
     ],
 
     'links' => [
-        'osu' => 'профиль osu!',
+        'beatmaps' => 'Карты osu!',
+        'osu' => 'Профиль в osu!',
         'site' => 'Официальный сайт',
     ],
 
     'songs' => [
         '_' => 'Песни',
-        'count' => ':count песня|:count песни|:count песен',
-        'exclusive' => 'эксклюзив osu!',
+        'count' => ':count_delimited песня|:count_delimited песни|:count_delimited песен',
+        'original' => 'исключительно для osu!',
+        'original_badge' => 'ORIGINAL',
     ],
 
     'tracklist' => [
@@ -37,5 +39,24 @@ return [
         'length' => 'длина',
         'bpm' => 'bpm',
         'genre' => 'жанр',
+    ],
+
+    'tracks' => [
+        'index' => [
+            '_' => 'поиск треков',
+
+            'form' => [
+                'advanced' => 'Расширенный поиск',
+                'album' => 'Альбом',
+                'artist' => 'Исполнитель',
+                'bpm_gte' => 'Минимальный BPM',
+                'bpm_lte' => 'Максимальный BPM',
+                'empty' => 'Треков, соответствующих критериям поиска, не найдено.',
+                'genre' => 'Жанр',
+                'genre_all' => 'Все',
+                'length_gte' => 'Минимальная длина',
+                'length_lte' => 'Максимальная длина',
+            ],
+        ],
     ],
 ];

@@ -30,7 +30,7 @@ class BeatmapsetSearchRequestParamsTest extends TestCase
             $this->expectException(InvariantException::class);
         }
 
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $searchAfter = (new BeatmapsetSearchRequestParams($requestParams, $user))->searchAfter;
 
         $this->assertSame($expected, $searchAfter);
@@ -68,9 +68,9 @@ class BeatmapsetSearchRequestParamsTest extends TestCase
             ['', [], true, null],
             ['title_desc', null, false, null],
             ['title_desc', ['title.raw' => 'a'], true, null],
-            ['title_desc', ['title.raw' => 'a', '_id' => 1], false, ['a', 1]],
-            ['title_desc', ['_id' => 1, 'title.raw' => 'a'], false, ['a', 1]],
-            ['title_desc', ['ignored' => 'hi', 'title.raw' => 'a', '_id' => 1], false, ['a', 1]],
+            ['title_desc', ['title.raw' => 'a', 'id' => 1], false, ['a', 1]],
+            ['title_desc', ['id' => 1, 'title.raw' => 'a'], false, ['a', 1]],
+            ['title_desc', ['ignored' => 'hi', 'title.raw' => 'a', 'id' => 1], false, ['a', 1]],
         ];
     }
 
@@ -83,9 +83,9 @@ class BeatmapsetSearchRequestParamsTest extends TestCase
             ['', [], true, null],
             ['title_desc', null, false, null],
             ['title_desc', ['title.raw' => 'a'], true, null],
-            ['title_desc', ['title.raw' => 'a', '_id' => 1], true, null],
-            ['title_desc', ['_id' => 1, 'title.raw' => 'a'], true, null],
-            ['title_desc', ['ignored' => 'hi', 'title.raw' => 'a', '_id' => 1], true, null],
+            ['title_desc', ['title.raw' => 'a', 'id' => 1], true, null],
+            ['title_desc', ['id' => 1, 'title.raw' => 'a'], true, null],
+            ['title_desc', ['ignored' => 'hi', 'title.raw' => 'a', 'id' => 1], true, null],
         ];
     }
 }

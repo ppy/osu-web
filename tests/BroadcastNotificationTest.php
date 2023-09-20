@@ -18,15 +18,18 @@ use Event;
 use Mail;
 use Queue;
 use ReflectionClass;
+use ReflectionClassConstant;
 use Symfony\Component\Finder\Finder;
 
 class BroadcastNotificationTest extends TestCase
 {
+    private const IGNORED_CONST_NAMES = ['NAME_TO_CATEGORY', 'NOTIFIABLE_CLASSES', 'SUBTYPES'];
+
     protected $sender;
 
     public function testNoNotificationForBotUser()
     {
-        $bot = $this->createUserWithGroup('bot', ['user_allow_pm' => true]);
+        $bot = User::factory()->withGroup('bot')->create(['user_allow_pm' => true]);
         $this->sender->markSessionVerified();
         $notificationsCount = Notification::count();
 
@@ -61,17 +64,15 @@ class BroadcastNotificationTest extends TestCase
      */
     public function testSendNotificationWithOptions($details)
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $user->notificationOptions()->create([
             'name' => UserNotificationOption::BEATMAPSET_MODDING,
             'details' => $details,
         ]);
 
-        $beatmapset = factory(Beatmapset::class)->states('with_discussion')->create([
-            'user_id' => $user->getKey(),
-        ]);
+        $beatmapset = Beatmapset::factory()->owner()->withDiscussion()->create();
         $beatmapset->watches()->create([
-            'last_read' => now()->subSecond(), // make sure last_read isn't the same second the test runs.
+            'last_read' => now()->subSeconds(), // make sure last_read isn't the same second the test runs.
             'user_id' => $user->getKey(),
         ]);
 
@@ -83,7 +84,7 @@ class BroadcastNotificationTest extends TestCase
         Queue::assertPushed(BeatmapsetDiscussionPostNew::class);
         $this->runFakeQueue();
 
-        if ($details['push'] ?? UserNotificationOption::DELIVERY_MODE_DEFAULTS['push']) {
+        if ($details['push'] ?? BeatmapsetDiscussionPostNew::DELIVERY_MODE_DEFAULTS['push']) {
             Event::assertDispatched(NewPrivateNotificationEvent::class);
         } else {
             Event::assertNotDispatched(NewPrivateNotificationEvent::class);
@@ -94,7 +95,7 @@ class BroadcastNotificationTest extends TestCase
         $this->artisan('notifications:send-mail');
         $this->runFakeQueue();
 
-        if ($details['mail'] ?? UserNotificationOption::DELIVERY_MODE_DEFAULTS['mail']) {
+        if ($details['mail'] ?? BeatmapsetDiscussionPostNew::DELIVERY_MODE_DEFAULTS['mail']) {
             Mail::assertSent(UserNotificationDigest::class);
         } else {
             Mail::assertNotSent(UserNotificationDigest::class);
@@ -118,13 +119,14 @@ class BroadcastNotificationTest extends TestCase
     public function notificationNamesDataProvider()
     {
         // TODO: move notification names to different class instead of filtering
-        $constants = collect((new ReflectionClass(Notification::class))->getConstants())
-            ->except(['NAME_TO_CATEGORY', 'NOTIFIABLE_CLASSES', 'SUBTYPES', 'CREATED_AT', 'UPDATED_AT'])
+        $constants = collect((new ReflectionClass(Notification::class))->getReflectionConstants())
+            ->filter(fn (ReflectionClassConstant $constant) => (
+                $constant->getDeclaringClass()->name === Notification::class
+                    && !in_array($constant->name, static::IGNORED_CONST_NAMES, true)
+            ))
             ->values();
 
-        return $constants->map(function ($name) {
-            return [$name];
-        });
+        return $constants->map(fn (ReflectionClassConstant $constant) => [$constant->getValue()])->all();
     }
 
     public function userNotificationDetailsDataProvider()
@@ -146,6 +148,6 @@ class BroadcastNotificationTest extends TestCase
         Event::fake();
         Mail::fake();
 
-        $this->sender = factory(User::class)->create();
+        $this->sender = User::factory()->create();
     }
 }

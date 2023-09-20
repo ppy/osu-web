@@ -20,7 +20,7 @@ class CommentTest extends TestCase
      */
     public function testCommentReplyNotification($option, $shouldBeSent)
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         if ($option !== null) {
             $user->notificationOptions()->create([
                 'name' => Notification::COMMENT_NEW,
@@ -28,8 +28,8 @@ class CommentTest extends TestCase
             ]);
         }
 
-        $commenter = factory(User::class)->create();
-        $commentable = factory(Build::class)->create();
+        $commenter = User::factory()->create();
+        $commentable = Build::factory()->create();
         $parentComment = $commentable->comments()->create([
             'message' => 'Test',
             'user_id' => $user->getKey(),
@@ -52,8 +52,8 @@ class CommentTest extends TestCase
 
     public function testReplyingToDeletedComment()
     {
-        $user = factory(User::class)->create();
-        $commentable = factory(Build::class)->create();
+        $user = User::factory()->create();
+        $commentable = Build::factory()->create();
         $parentComment = $commentable->comments()->create([
             'message' => 'Test',
             'user_id' => $user->getKey(),
@@ -69,12 +69,41 @@ class CommentTest extends TestCase
         $this->assertArrayHasKey('parent_id', $comment->validationErrors()->all());
     }
 
+    /**
+     * @dataProvider dataProviderForSetCommentableInvalid
+     */
+    public function testSetCommentableInvalid($type, $id)
+    {
+        $comment = new Comment(['commentable_type' => $type, 'commentable_id' => $id]);
+        $comment->setCommentable();
+
+        $this->assertNull($comment->commentable);
+    }
+
+    public function testUnpinOnDelete()
+    {
+        $comment = Comment::factory(['pinned' => true])->create();
+        $comment->softDelete(User::factory()->create());
+
+        $this->assertFalse($comment->fresh()->pinned);
+    }
+
     public function commentReplyOptionDataProvider()
     {
         return [
             [null, true],
             [false, false],
             [true, true],
+        ];
+    }
+
+    public function dataProviderForSetCommentableInvalid()
+    {
+        return [
+            [null, null],
+            [null, 10],
+            ['beatmapset', null],
+            ['beatmapset', 0],
         ];
     }
 }

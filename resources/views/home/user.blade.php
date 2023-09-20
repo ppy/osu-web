@@ -2,13 +2,12 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
-@extends('master')
-
 @php
-    $user = auth()->user();
-    $profileCustomization = $user->userProfileCustomization ?? $user->userProfileCustomization()->make();
-    $beatmapsetShowNsfw = $profileCustomization->beatmapset_show_nsfw;
+    use App\Models\NewsPost;
+
+    $newsPostLargePreviews = NewsPost::LANDING_LIMIT;
 @endphp
+@extends('master')
 
 @section('content')
     @include('home._user_header_default')
@@ -19,17 +18,17 @@
                 <h2 class="user-home__news-title">{{ osu_trans('home.user.news.title') }}</h2>
 
                 @foreach ($news as $post)
-                    @if ($loop->iteration > 3)
+                    @if ($loop->iteration > $newsPostLargePreviews)
                         @break
                     @endif
 
                     @include('home._user_news_post_preview', ['post' => $post, 'collapsed' => false])
                 @endforeach
 
-                @if (count($news) > 3)
+                @if (count($news) > $newsPostLargePreviews)
                     <div class="user-home__news-posts-group">
                         @foreach ($news as $post)
-                            @if ($loop->iteration <= 3)
+                            @if ($loop->iteration <= $newsPostLargePreviews)
                                 @continue
                             @endif
 
@@ -38,7 +37,7 @@
                     </div>
                 @endif
 
-                @if (count($news) > App\Models\NewsPost::DASHBOARD_LIMIT)
+                @if (count($news) > NewsPost::DASHBOARD_LIMIT)
                     <a
                         href="{{ route('news.index') }}"
                         class="user-home__news-posts-group user-home__news-posts-group--more"
@@ -65,7 +64,7 @@
                             'href' => route('support-the-game'),
                             'label' => osu_trans('home.user.buttons.support'),
                             'icon' => 'heart',
-                            'colour' => 'green'
+                            'colour' => 'c-pink-darker'
                         ])
                     </div>
 
@@ -74,7 +73,7 @@
                             'href' => route('store.products.index'),
                             'label' => osu_trans('home.user.buttons.store'),
                             'icon' => 'shopping-cart',
-                            'colour' => 'pink-darker'
+                            'colour' => 'c-darkorange'
                         ])
                     </div>
                 </div>
@@ -85,7 +84,7 @@
 
                 <div class="user-home__beatmapsets">
                     @foreach ($newBeatmapsets as $beatmapset)
-                        @include('home._user_beatmapset', ['type' => 'new', 'showNsfw' => $beatmapsetShowNsfw])
+                        @include('home._user_beatmapset', ['type' => 'new'])
                     @endforeach
                 </div>
 
@@ -95,7 +94,7 @@
 
                 <div class="user-home__beatmapsets">
                     @foreach ($popularBeatmapsets as $beatmapset)
-                        @include('home._user_beatmapset', ['type' => 'popular', 'showNsfw' => $beatmapsetShowNsfw])
+                        @include('home._user_beatmapset', ['type' => 'popular'])
                     @endforeach
                 </div>
             </div>

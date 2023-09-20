@@ -13,6 +13,7 @@ class TopicVote
 {
     use Validatable;
 
+    private array $params = [];
     private $topic;
     private $validated = false;
 
@@ -81,7 +82,7 @@ class TopicVote
         });
     }
 
-    public function validationErrorsTranslationPrefix()
+    public function validationErrorsTranslationPrefix(): string
     {
         return 'forum.topic_vote';
     }

@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'play_more' => 'Mitä jos pelaisit vähän osu! sen sijaan?',
+    'play_more' => 'Mitä jos pelaisit vähän osu!a sen sijaan?',
     'require_login' => 'Kirjaudu sisään jatkaaksesi.',
     'require_verification' => 'Vahvista jatkaaksesi.',
     'restricted' => "Et voi tehdä tätä rajoitettuna.",
@@ -18,9 +18,9 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Olet saavuttanut suosittelurajan tälle päivälle, yritä huomenna uudelleen.',
-            'incorrect_state' => 'Virhe toimintoa suorittaessa, kokeile sivun päivittämistä.',
+            'incorrect_state' => 'Virhe toiminnon suorittamisessa, kokeile päivittää sivu.',
             'owner' => "Omaa beatmappia ei voi suositella.",
-            'set_metadata' => '',
+            'set_metadata' => 'Sinun täytyy määrittää tyylilaji ja kieli ennen ehdolle asettamista.',
         ],
         'resolve' => [
             'not_owner' => 'Vain aiheen aloittaja sekä beatmapin omistaja voivat ratkaista keskustelun.',
@@ -41,37 +41,40 @@ return [
     'beatmap_discussion_post' => [
         'destroy' => [
             'not_owner' => 'Voit poistaa vaan omia viestejä.',
-            'resolved' => '',
-            'system_generated' => '',
+            'resolved' => 'Et voi poistaa ratkaistun keskustelun viestiä.',
+            'system_generated' => 'Automaattisesti luotua viestiä ei voi poistaa.',
         ],
 
         'edit' => [
             'not_owner' => 'Vain lähettäjä voi muokata viestiä.',
-            'resolved' => '',
+            'resolved' => 'Et voi muokata ratkaistun keskustelun viestiä.',
             'system_generated' => 'Automaattisesti luotua viestiä ei voi muokata.',
-        ],
-
-        'store' => [
-            'beatmapset_locked' => 'Tämä beatmap on lukittu keskustelulta.',
         ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => 'Tämän rytmikartan keskustelu on lukittu.',
+
         'metadata' => [
-            'nominated' => '',
+            'nominated' => 'Et voi muuttaa ehdolle asetetun kartan metatietoja. Ota yhteyttä BN- tai NAT-jäseneen, jos luulet sen olevan virheellinen.',
         ],
     ],
 
     'chat' => [
+        'annnonce_only' => 'Tämä kanava on tarkoitettu vain tiedotuksiin.',
         'blocked' => 'Et voi lähettää viestejä käyttäjälle, joka on estänyt sinut tai jonka olet estänyt.',
         'friends_only' => 'Käyttäjä on estänyt viestit henkilöiltä, jotka eivät ole hänen kaverilistassaan.',
         'moderated' => 'Tätä kanavaa moderoidaan.',
         'no_access' => 'Sinulla ei ole oikeuksia tälle kanavalle.',
+        'receive_friends_only' => 'Käyttäjä ei välttämättä pysty vastaamaan, koska hyväksyt viestejä vain ystävälistallasi olevilta henkilöiltä.',
         'restricted' => 'Et voi lähettää viestejä mykistettynä, rajoitettuna tai bännättynä.',
-        'silenced' => '',
+        'silenced' => 'Et voi lähettää viestejä mykistettynä, rajoitettuna tai bännättynä.',
     ],
 
     'comment' => [
+        'store' => [
+            'disabled' => 'Kommentit ovat poistettu käytöstä',
+        ],
         'update' => [
             'deleted' => "Poistettuja viestejä ei voi mukata.",
         ],
@@ -128,7 +131,7 @@ return [
             ],
 
             'store' => [
-                'no_forum_access' => 'Pääsy kyseiselle foorumille vaaditaan.',
+                'no_forum_access' => 'Tarvitset pääsyn tälle foorumille.',
                 'no_permission' => 'Oikeudet uuden aiheen luomiseen puuttuvat.',
                 'forum_closed' => 'Foorumi on suljettu, eikä siihen voi lähettää viestejä.',
             ],
@@ -157,12 +160,20 @@ return [
                 'not_owner' => 'Vain omistaja voi muuttaa kansikuvaa.',
             ],
             'store' => [
-                'forum_not_allowed' => '',
+                'forum_not_allowed' => 'Tämä foorumi ei hyväksy aiheen kansikuvia.',
             ],
         ],
 
         'view' => [
             'admin_only' => 'Vain ylläpitäjä voi nähdä tämän foorumin.',
+        ],
+    ],
+
+    'score' => [
+        'pin' => [
+            'disabled_type' => "Ei voida kiinnittää tämäntyyppistä pisteytystä",
+            'not_owner' => 'Vain tuloksen omistaja voi kiinnittää tuloksen.',
+            'too_many' => 'Kiinnitit liian monta tulosta.',
         ],
     ],
 
@@ -173,6 +184,9 @@ return [
                 'not_owner' => 'Voit muokata vain omaa käyttäjäsivuasi.',
                 'require_supporter_tag' => 'Sinun on oltava Tukija.',
             ],
+        ],
+        'update_email' => [
+            'locked' => '',
         ],
     ],
 ];

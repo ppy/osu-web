@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'play_more' => 'Que tal jogar um pouco de osu! em vez disso?',
+    'play_more' => 'Que tal jogar osu! como alternativa?',
     'require_login' => 'Por favor inicia sessão para proceder.',
     'require_verification' => 'Por favor verifica para proceder.',
     'restricted' => "Não é possível fazeres isso enquanto estiveres restrito.",
@@ -50,28 +50,31 @@ return [
             'resolved' => 'Não podes editar uma publicação duma discussão resolvida.',
             'system_generated' => 'Uma publicação gerada automaticamente não pode ser editada.',
         ],
-
-        'store' => [
-            'beatmapset_locked' => 'Este beatmap está bloqueado para discussão.',
-        ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => 'A discussão deste beatmap foi bloqueada.',
+
         'metadata' => [
             'nominated' => 'Não podes alterar os metadados dum mapa nomeado. Contacta um membro dos BN ou da NAT se achas que estão estabelecidos incorretamente.',
         ],
     ],
 
     'chat' => [
+        'annnonce_only' => 'Este canal é apenas para novos comunicados.',
         'blocked' => 'Não é possível enviar uma mensagem a um utilizador que te esteja a bloquear ou que o tenhas bloqueado.',
         'friends_only' => 'O utilizador está a bloquear mensagens de pessoas que não façam parte da sua lista de amigos.',
-        'moderated' => 'Esse canal está atualmente moderado.',
+        'moderated' => 'Este canal está atualmente moderado.',
         'no_access' => 'Tu não tens acesso a esse canal.',
+        'receive_friends_only' => 'O utilizador pode não conseguir responder porque só estás a aceitar mensagens de pessoas da tua lista de amigos.',
         'restricted' => 'Não podes enviar mensagens enquanto estiveres silenciado, restrito ou banido.',
         'silenced' => 'Não podes enviar mensagens enquanto estiveres silenciado, restringido ou banido.',
     ],
 
     'comment' => [
+        'store' => [
+            'disabled' => 'Os comentários estão desativados',
+        ],
         'update' => [
             'deleted' => "Não é possível editares uma publicação apagada.",
         ],
@@ -166,13 +169,24 @@ return [
         ],
     ],
 
+    'score' => [
+        'pin' => [
+            'disabled_type' => "Não é possível afixar este tipo de pontuação",
+            'not_owner' => 'Só o dono da pontuação é que a pode fixar.',
+            'too_many' => 'Afixaste demasiadas pontuações.',
+        ],
+    ],
+
     'user' => [
         'page' => [
             'edit' => [
                 'locked' => 'A página de utilizador está bloqueada.',
                 'not_owner' => 'Só é possível editar a própria página de utilizador.',
-                'require_supporter_tag' => 'Uma etiqueta osu!supporter é necessária.',
+                'require_supporter_tag' => 'É preciso uma etiqueta osu!supporter.',
             ],
+        ],
+        'update_email' => [
+            'locked' => '',
         ],
     ],
 ];

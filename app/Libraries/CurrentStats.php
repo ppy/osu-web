@@ -12,10 +12,11 @@ use Cache;
 
 class CurrentStats
 {
-    public $currentOnline;
-    public $currentGames;
-    public $graphData;
-    public $totalUsers;
+    public int $currentOnline;
+    public int $currentGames;
+    public array $graphData;
+    public int $onlineFriends;
+    public int $totalUsers;
 
     public function __construct()
     {
@@ -27,7 +28,7 @@ class CurrentStats
                 'currentOnline' => $latest['users_osu'] ?? 0,
                 'currentGames' => $latest['multiplayer_games'] ?? 0,
                 'graphData' => array_to_graph_json($stats, 'users_osu'),
-                'totalUsers' => Count::totalUsers(),
+                'totalUsers' => Count::totalUsers()->count,
             ];
         });
 

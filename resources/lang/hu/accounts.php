@@ -15,10 +15,19 @@ return [
         ],
 
         'email' => [
-            'current' => 'jelenlegi e-mail cím',
             'new' => 'új e-mail cím',
             'new_confirmation' => 'e-mail cím megerősítése',
             'title' => 'E-Mail',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
+        ],
+
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'Legacy API',
         ],
 
         'password' => [
@@ -29,7 +38,13 @@ return [
         ],
 
         'profile' => [
+            'country' => 'ország',
             'title' => 'Profil',
+
+            'country_change' => [
+                '_' => "Úgy tűnik, hogy a fiókod országa nem egyezik a lakhelyed országával. :update_link.",
+                'update_link' => 'Frissítsés a következőre: :country ',
+            ],
 
             'user' => [
                 'user_discord' => '',
@@ -48,14 +63,14 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_qualified_problem' => 'Értesítések kérése minősített beatmapok problémáival kapcsolatban a következő módokból',
+        'beatmapset_discussion_qualified_problem' => 'értesítések kérése kvalifikált beatmapok problémáival kapcsolatban a következő módokból',
         'beatmapset_disqualify' => 'értesíts, ha a következő játékmódok egy beatmapje diszkvalifikálva lett',
         'comment_reply' => 'értesítések küldése a kommentjeidre érkezett válaszokról',
         'title' => 'Értesítések',
         'topic_auto_subscribe' => 'az általad létrehozott új fórum témák értesítéseinek automatikus bekapcsolása',
 
         'options' => [
-            '_' => 'Szállítási lehetőségek',
+            '_' => 'szállítási lehetőségek',
             'beatmap_owner_change' => 'vendég nehézség',
             'beatmapset:modding' => 'beatmap modolás',
             'channel_message' => 'Privát üzenetek',
@@ -64,7 +79,7 @@ return [
             'mail' => 'e-mail',
             'mapping' => 'beatmap készítő',
             'push' => 'Elöjövő',
-            'user_achievement_unlock' => 'Medál feloldva',
+            'user_achievement_unlock' => 'felhasználói medál feloldva',
         ],
     ],
 
@@ -76,14 +91,14 @@ return [
 
     'options' => [
         'beatmapset_show_nsfw' => 'beatmapekben lévő felnőtt tartalmakra vonatkozó figyelmeztetések elrejtése',
-        'beatmapset_title_show_original' => 'A beatmap metaadatai megjelenítése eredeti nyelven',
+        'beatmapset_title_show_original' => 'a beatmap metaadatai megjelenítése eredeti nyelven',
         'title' => 'Beállítások',
 
         'beatmapset_download' => [
-            '_' => 'Alapértelmezett beatmap letöltés típusa',
-            'all' => 'Videóval, ha elérhető',
-            'direct' => 'Megnyitás osu!direct-ben',
-            'no_video' => 'Videó nélkül',
+            '_' => 'alapértelmezett beatmap letöltés típusa',
+            'all' => 'videóval, ha elérhető',
+            'direct' => 'megnyitás osu!direct-ben',
+            'no_video' => 'videó nélkül',
         ],
     ],
 

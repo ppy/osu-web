@@ -26,14 +26,12 @@
 
 <div class="osu-page">
     <div class="beatmap-packs-header">
-        @php
-            $scaryTexts = [
-                tag('span', ['class' => 'beatmap-packs-header__scary'], osu_trans('beatmappacks.index.blurb.instruction.scary')),
-                tag('span', ['class' => 'beatmap-packs-header__scary'], osu_trans('beatmappacks.index.blurb.note.scary')),
-            ];
-        @endphp
         <p class="beatmap-packs-header__important">{{ osu_trans('beatmappacks.index.blurb.important') }}</p>
-        <p>{!! osu_trans('beatmappacks.index.blurb.instruction._', ['scary' => $scaryTexts[0]]) !!}</p>
-        <p>{!! osu_trans('beatmappacks.index.blurb.note._', ['scary' => $scaryTexts[1]]) !!}</p>
+        <p>{{ osu_trans('beatmappacks.index.blurb.install_instruction') }}</p>
+        <p>{!! osu_trans('beatmappacks.index.blurb.note._', ['scary' => tag(
+            'span',
+            ['class' => 'beatmap-packs-header__scary'],
+            osu_trans('beatmappacks.index.blurb.note.scary')
+        )]) !!}</p>
     </div>
 </div>

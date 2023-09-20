@@ -19,11 +19,15 @@ return [
             'contest' => '竞赛',
             'contests' => '竞赛',
             'root' => '控制中心',
-            'store_orders' => '商店管理',
         ],
 
         'artists' => [
             'index' => '列表',
+        ],
+
+        'beatmapsets' => [
+            'show' => '信息',
+            'discussions' => '讨论',
         ],
 
         'changelog' => [
@@ -47,7 +51,8 @@ return [
 
         'users' => [
             'modding' => '摸图',
-            'multiplayer' => '多人游戏',
+            'playlists' => '歌单',
+            'realtime' => '多人游戏',
             'show' => '信息',
         ],
     ],
@@ -63,18 +68,10 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => '谱面',
-            'artists' => '精选艺术家',
-            'index' => '列表',
-            'packs' => '曲包',
         ],
         'community' => [
             '_' => '社区',
-            'chat' => '聊天',
-            'contests' => '评选',
             'dev' => '开发',
-            'forum-forums-index' => '论坛',
-            'getLive' => '直播',
-            'tournaments' => '官方比赛',
         ],
         'help' => [
             '_' => '帮助',
@@ -82,30 +79,17 @@ return [
             'getFaq' => '常见问题',
             'getRules' => '规章制度',
             'getSupport' => '帮助中心',
-            'getWiki' => 'wiki',
         ],
         'home' => [
             '_' => '主页',
-            'changelog-index' => '更新日志',
-            'getDownload' => '下载',
-            'news-index' => '新闻',
-            'search' => '搜索',
             'team' => '团队',
         ],
         'rankings' => [
             '_' => '排名',
-            'charts' => '月赛',
-            'country' => '国家和地区',
-            'index' => '表现',
             'kudosu' => 'kudosu',
-            'multiplayer' => '聚光灯',
-            'score' => '得分',
         ],
         'store' => [
             '_' => '商店',
-            'cart-show' => '购物车',
-            'getListing' => '列表',
-            'orders-index' => '历史订单',
         ],
     ],
 
@@ -201,7 +185,7 @@ return [
 
         'register' => [
             'download' => '下载',
-            'info' => '立刻下载 osu! 并且注册帐号吧！',
+            'info' => '立刻下载 osu! 并且注册账号吧！',
             'title' => "没有账号？",
         ],
     ],
@@ -217,7 +201,7 @@ return [
     ],
 
     'popup_search' => [
-        'initial' => '键入以搜索！',
+        'initial' => '输入以搜索！',
         'retry' => '搜索失败。点此重试。',
     ],
 ];

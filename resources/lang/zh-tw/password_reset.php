@@ -13,6 +13,8 @@ return [
 
     'error' => [
         'contact_support' => '請聯繫支援團隊以找回帳戶。',
+        'expired' => '驗證碼已過期。',
+        'invalid' => '驗證碼中發生未預期的錯誤。',
         'is_privileged' => '聯繫 peppy（笑）',
         'missing_key' => '必填',
         'too_many_tries' => '重試次數過多',

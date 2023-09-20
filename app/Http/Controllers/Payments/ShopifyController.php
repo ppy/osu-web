@@ -48,6 +48,7 @@ class ShopifyController extends Controller
             return response([], 204);
         }
 
+        /** @var Order $order */
         $order = Order::findOrFail($orderId);
 
         switch ($type) {
@@ -60,10 +61,10 @@ class ShopifyController extends Controller
                 });
                 break;
             case 'orders/fulfilled':
-                $order->update(['status' => 'shipped', 'shipped_at' => now()]);
+                $order->update(['status' => Order::STATUS_SHIPPED, 'shipped_at' => now()]);
                 break;
             case 'orders/create':
-                if ($order->status === 'shipped' && $this->isDuplicateOrder()) {
+                if ($order->isShipped() && $this->isDuplicateOrder()) {
                     return response([], 204);
                 }
 

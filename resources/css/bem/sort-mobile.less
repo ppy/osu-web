@@ -1,0 +1,27 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.sort-mobile {
+  display: grid;
+  gap: 5px;
+
+  grid-template-columns: 1fr auto auto;
+
+  &__item {
+    font-size: @font-size--normal;
+
+    &--title {
+      color: hsl(var(--hsl-c2));
+      align-self: center;
+    }
+  }
+
+  &__order {
+    .link-white();
+    .link-plain();
+    padding: 0 5px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+}

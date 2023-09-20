@@ -4,9 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'load_failed' => '데이터를 로드할 수 없습니다.',
     'missing_route' => 'URL이 잘못되었거나 잘못된 요청 메서드입니다.',
     'no_restricted_access' => '계정이 제한된 상태에서는 이 작업을 수행할 수 없습니다.',
-    'supporter_only' => '이 기능을 사용하려면 서포터가 되셔야 합니다.',
+    'supporter_only' => '이 기능을 사용하려면 osu! 서포터가 되셔야 합니다.',
     'unknown' => '알 수 없는 문제가 발생했습니다.',
 
     'codes' => [
@@ -29,6 +30,7 @@ return [
     ],
     'search' => [
         'default' => '결과를 불러오지 못했습니다. 나중에 다시 시도해주세요.',
+        'invalid_cursor_exception' => '유효하지 않은 커서 매개 변수가 지정되었습니다.',
         'operation_timeout_exception' => '검색 기능의 사용량이 평소보다 많습니다, 잠시 후 다시 시도해 주세요.',
     ],
 ];

@@ -11,7 +11,7 @@ return [
 
         'table' => [
             'latest_comment_empty' => '没有评论',
-            'latest_comment_value' => ':username 于 :time 发出',
+            'latest_comment_value' => ':username 在 :time 发出',
         ],
     ],
 
@@ -28,8 +28,8 @@ return [
         'followers' => '作图关注者',
         'page_title' => '谱师关注列表',
         'title' => '谱师',
-        'to_0' => '不要再通知我 ta 上传了新谱面',
-        'to_1' => '当 ta 上传新谱面时通知我',
+        'to_0' => '该用户上传新谱面时不要再通知我',
+        'to_1' => '该用户上传新谱面时通知我',
     ],
 
     'modding' => [

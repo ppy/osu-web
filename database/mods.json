@@ -1,0 +1,3150 @@
+[
+  {
+    "Name": "osu",
+    "RulesetID": 0,
+    "Mods": [
+      {
+        "Acronym": "EZ",
+        "Name": "Easy",
+        "Description": "Larger circles, more forgiving HP drain, less accuracy required, and three lives!",
+        "Type": "DifficultyReduction",
+        "Settings": [
+          {
+            "Name": "retries",
+            "Type": "number",
+            "Label": "Extra Lives",
+            "Description": "Number of extra lives"
+          }
+        ],
+        "IncompatibleMods": [
+          "HR",
+          "AC",
+          "DA"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "NF",
+        "Name": "No Fail",
+        "Description": "You can't fail, no matter what.",
+        "Type": "DifficultyReduction",
+        "Settings": [],
+        "IncompatibleMods": [
+          "SD",
+          "PF",
+          "AC",
+          "RX",
+          "AP"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "HT",
+        "Name": "Half Time",
+        "Description": "Less zoom...",
+        "Type": "DifficultyReduction",
+        "Settings": [
+          {
+            "Name": "speed_change",
+            "Type": "number",
+            "Label": "Speed decrease",
+            "Description": "The actual decrease to apply"
+          }
+        ],
+        "IncompatibleMods": [
+          "HT",
+          "DC",
+          "DT",
+          "NC",
+          "WU",
+          "WD",
+          "AS"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": false
+      },
+      {
+        "Acronym": "DC",
+        "Name": "Daycore",
+        "Description": "Whoaaaaa...",
+        "Type": "DifficultyReduction",
+        "Settings": [
+          {
+            "Name": "speed_change",
+            "Type": "number",
+            "Label": "Speed decrease",
+            "Description": "The actual decrease to apply"
+          }
+        ],
+        "IncompatibleMods": [
+          "HT",
+          "DC",
+          "DT",
+          "NC",
+          "WU",
+          "WD",
+          "AS"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": false
+      },
+      {
+        "Acronym": "HR",
+        "Name": "Hard Rock",
+        "Description": "Everything just got a bit harder...",
+        "Type": "DifficultyIncrease",
+        "Settings": [],
+        "IncompatibleMods": [
+          "EZ",
+          "DA",
+          "MR"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "SD",
+        "Name": "Sudden Death",
+        "Description": "Miss and fail.",
+        "Type": "DifficultyIncrease",
+        "Settings": [
+          {
+            "Name": "restart",
+            "Type": "boolean",
+            "Label": "Restart on fail",
+            "Description": "Automatically restarts when failed."
+          }
+        ],
+        "IncompatibleMods": [
+          "NF",
+          "PF",
+          "TP",
+          "RX",
+          "AP"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "PF",
+        "Name": "Perfect",
+        "Description": "SS or quit.",
+        "Type": "DifficultyIncrease",
+        "Settings": [
+          {
+            "Name": "restart",
+            "Type": "boolean",
+            "Label": "Restart on fail",
+            "Description": "Automatically restarts when failed."
+          }
+        ],
+        "IncompatibleMods": [
+          "NF",
+          "SD",
+          "AC",
+          "RX",
+          "AP"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "DT",
+        "Name": "Double Time",
+        "Description": "Zoooooooooom...",
+        "Type": "DifficultyIncrease",
+        "Settings": [
+          {
+            "Name": "speed_change",
+            "Type": "number",
+            "Label": "Speed increase",
+            "Description": "The actual increase to apply"
+          }
+        ],
+        "IncompatibleMods": [
+          "HT",
+          "DC",
+          "DT",
+          "NC",
+          "WU",
+          "WD",
+          "AS"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": false
+      },
+      {
+        "Acronym": "NC",
+        "Name": "Nightcore",
+        "Description": "Uguuuuuuuu...",
+        "Type": "DifficultyIncrease",
+        "Settings": [
+          {
+            "Name": "speed_change",
+            "Type": "number",
+            "Label": "Speed increase",
+            "Description": "The actual increase to apply"
+          }
+        ],
+        "IncompatibleMods": [
+          "HT",
+          "DC",
+          "DT",
+          "NC",
+          "WU",
+          "WD",
+          "AS"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": false
+      },
+      {
+        "Acronym": "HD",
+        "Name": "Hidden",
+        "Description": "Play with no approach circles and fading circles/sliders.",
+        "Type": "DifficultyIncrease",
+        "Settings": [
+          {
+            "Name": "only_fade_approach_circles",
+            "Type": "boolean",
+            "Label": "Only fade approach circles",
+            "Description": "The main object body will not fade when enabled."
+          }
+        ],
+        "IncompatibleMods": [
+          "SI",
+          "TC",
+          "AD"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "FL",
+        "Name": "Flashlight",
+        "Description": "Restricted view area.",
+        "Type": "DifficultyIncrease",
+        "Settings": [
+          {
+            "Name": "follow_delay",
+            "Type": "number",
+            "Label": "Follow delay",
+            "Description": "Milliseconds until the flashlight reaches the cursor"
+          },
+          {
+            "Name": "size_multiplier",
+            "Type": "number",
+            "Label": "Flashlight size",
+            "Description": "Multiplier applied to the default flashlight size."
+          },
+          {
+            "Name": "combo_based_size",
+            "Type": "boolean",
+            "Label": "Change size based on combo",
+            "Description": "Decrease the flashlight size as combo increases."
+          }
+        ],
+        "IncompatibleMods": [
+          "BL"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "BL",
+        "Name": "Blinds",
+        "Description": "Play with blinds on your screen.",
+        "Type": "DifficultyIncrease",
+        "Settings": [],
+        "IncompatibleMods": [
+          "FL"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "ST",
+        "Name": "Strict Tracking",
+        "Description": "Once you start a slider, follow precisely or get a miss.",
+        "Type": "DifficultyIncrease",
+        "Settings": [],
+        "IncompatibleMods": [
+          "TP",
+          "CL"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "AC",
+        "Name": "Accuracy Challenge",
+        "Description": "Fail if your accuracy drops too low!",
+        "Type": "DifficultyIncrease",
+        "Settings": [
+          {
+            "Name": "minimum_accuracy",
+            "Type": "number",
+            "Label": "Minimum accuracy",
+            "Description": "Trigger a failure if your accuracy goes below this value."
+          },
+          {
+            "Name": "accuracy_judge_mode",
+            "Type": "string",
+            "Label": "Accuracy mode",
+            "Description": "The mode of accuracy that will trigger failure."
+          },
+          {
+            "Name": "restart",
+            "Type": "boolean",
+            "Label": "Restart on fail",
+            "Description": "Automatically restarts when failed."
+          }
+        ],
+        "IncompatibleMods": [
+          "EZ",
+          "NF",
+          "PF",
+          "RX",
+          "AP"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "TP",
+        "Name": "Target Practice",
+        "Description": "Practice keeping up with the beat of the song.",
+        "Type": "Conversion",
+        "Settings": [
+          {
+            "Name": "seed",
+            "Type": "number",
+            "Label": "Seed",
+            "Description": "Use a custom seed instead of a random one"
+          },
+          {
+            "Name": "metronome",
+            "Type": "boolean",
+            "Label": "Metronome ticks",
+            "Description": "Whether a metronome beat should play in the background"
+          }
+        ],
+        "IncompatibleMods": [
+          "SD",
+          "ST",
+          "RD",
+          "SO",
+          "TC",
+          "AD"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "DA",
+        "Name": "Difficulty Adjust",
+        "Description": "Override a beatmap's difficulty settings.",
+        "Type": "Conversion",
+        "Settings": [
+          {
+            "Name": "circle_size",
+            "Type": "number",
+            "Label": "Circle Size",
+            "Description": "Override a beatmap's set CS."
+          },
+          {
+            "Name": "approach_rate",
+            "Type": "number",
+            "Label": "Approach Rate",
+            "Description": "Override a beatmap's set AR."
+          },
+          {
+            "Name": "drain_rate",
+            "Type": "number",
+            "Label": "HP Drain",
+            "Description": "Override a beatmap's set HP."
+          },
+          {
+            "Name": "overall_difficulty",
+            "Type": "number",
+            "Label": "Accuracy",
+            "Description": "Override a beatmap's set OD."
+          },
+          {
+            "Name": "extended_limits",
+            "Type": "boolean",
+            "Label": "Extended Limits",
+            "Description": "Adjust difficulty beyond sane limits."
+          }
+        ],
+        "IncompatibleMods": [
+          "EZ",
+          "HR"
+        ],
+        "RequiresConfiguration": true,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "CL",
+        "Name": "Classic",
+        "Description": "Feeling nostalgic?",
+        "Type": "Conversion",
+        "Settings": [
+          {
+            "Name": "no_slider_head_accuracy",
+            "Type": "boolean",
+            "Label": "No slider head accuracy requirement",
+            "Description": "Scores sliders proportionally to the number of ticks hit."
+          },
+          {
+            "Name": "no_slider_head_movement",
+            "Type": "boolean",
+            "Label": "No slider head movement",
+            "Description": "Pins slider heads at their starting position, regardless of time."
+          },
+          {
+            "Name": "classic_note_lock",
+            "Type": "boolean",
+            "Label": "Apply classic note lock",
+            "Description": "Applies note lock to the full hit window."
+          },
+          {
+            "Name": "always_play_tail_sample",
+            "Type": "boolean",
+            "Label": "Always play a slider's tail sample",
+            "Description": "Always plays a slider's tail sample regardless of whether it was hit or not."
+          },
+          {
+            "Name": "fade_hit_circle_early",
+            "Type": "boolean",
+            "Label": "Fade out hit circles earlier",
+            "Description": "Make hit circles fade out into a miss, rather than after it."
+          }
+        ],
+        "IncompatibleMods": [
+          "ST"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "RD",
+        "Name": "Random",
+        "Description": "It never gets boring!",
+        "Type": "Conversion",
+        "Settings": [
+          {
+            "Name": "angle_sharpness",
+            "Type": "number",
+            "Label": "Angle sharpness",
+            "Description": "How sharp angles should be"
+          },
+          {
+            "Name": "seed",
+            "Type": "number",
+            "Label": "Seed",
+            "Description": "Use a custom seed instead of a random one"
+          }
+        ],
+        "IncompatibleMods": [
+          "TP"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "MR",
+        "Name": "Mirror",
+        "Description": "Flip objects on the chosen axes.",
+        "Type": "Conversion",
+        "Settings": [
+          {
+            "Name": "reflection",
+            "Type": "string",
+            "Label": "Mirrored axes",
+            "Description": "Choose which axes objects are mirrored over."
+          }
+        ],
+        "IncompatibleMods": [
+          "HR"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "AL",
+        "Name": "Alternate",
+        "Description": "Don't use the same key twice in a row!",
+        "Type": "Conversion",
+        "Settings": [],
+        "IncompatibleMods": [
+          "SG",
+          "AT",
+          "CN",
+          "RX"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "SG",
+        "Name": "Single Tap",
+        "Description": "You must only use one key!",
+        "Type": "Conversion",
+        "Settings": [],
+        "IncompatibleMods": [
+          "AL",
+          "AT",
+          "CN",
+          "RX"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "AT",
+        "Name": "Autoplay",
+        "Description": "Watch a perfect automated play through the song.",
+        "Type": "Automation",
+        "Settings": [],
+        "IncompatibleMods": [
+          "AL",
+          "SG",
+          "CN",
+          "RX",
+          "AP",
+          "SO",
+          "MG",
+          "RP",
+          "AS"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": false,
+        "ValidForMultiplayer": false,
+        "ValidForMultiplayerAsFreeMod": false
+      },
+      {
+        "Acronym": "CN",
+        "Name": "Cinema",
+        "Description": "Watch the video without visual distractions.",
+        "Type": "Automation",
+        "Settings": [],
+        "IncompatibleMods": [
+          "AL",
+          "SG",
+          "AT",
+          "CN",
+          "RX",
+          "AP",
+          "SO",
+          "MG",
+          "RP",
+          "AS"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": false,
+        "ValidForMultiplayer": false,
+        "ValidForMultiplayerAsFreeMod": false
+      },
+      {
+        "Acronym": "RX",
+        "Name": "Relax",
+        "Description": "You don't need to click. Give your clicking/tapping fingers a break from the heat of things.",
+        "Type": "Automation",
+        "Settings": [],
+        "IncompatibleMods": [
+          "NF",
+          "SD",
+          "PF",
+          "AC",
+          "AL",
+          "SG",
+          "AT",
+          "CN",
+          "AP",
+          "MG"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "AP",
+        "Name": "Autopilot",
+        "Description": "Automatic cursor movement - just follow the rhythm.",
+        "Type": "Automation",
+        "Settings": [],
+        "IncompatibleMods": [
+          "NF",
+          "SD",
+          "PF",
+          "AC",
+          "AT",
+          "CN",
+          "RX",
+          "SO",
+          "MG",
+          "RP"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "SO",
+        "Name": "Spun Out",
+        "Description": "Spinners will be automatically completed.",
+        "Type": "Automation",
+        "Settings": [],
+        "IncompatibleMods": [
+          "TP",
+          "AT",
+          "CN",
+          "AP"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "TR",
+        "Name": "Transform",
+        "Description": "Everything rotates. EVERYTHING.",
+        "Type": "Fun",
+        "Settings": [],
+        "IncompatibleMods": [
+          "WG",
+          "MG",
+          "RP"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "WG",
+        "Name": "Wiggle",
+        "Description": "They just won't stay still...",
+        "Type": "Fun",
+        "Settings": [
+          {
+            "Name": "strength",
+            "Type": "number",
+            "Label": "Strength",
+            "Description": "Multiplier applied to the wiggling strength."
+          }
+        ],
+        "IncompatibleMods": [
+          "TR",
+          "MG",
+          "RP"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "SI",
+        "Name": "Spin In",
+        "Description": "Circles spin in. No approach circles.",
+        "Type": "Fun",
+        "Settings": [],
+        "IncompatibleMods": [
+          "HD",
+          "GR",
+          "DF",
+          "TC",
+          "AD"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "GR",
+        "Name": "Grow",
+        "Description": "Hit them at the right size!",
+        "Type": "Fun",
+        "Settings": [
+          {
+            "Name": "start_scale",
+            "Type": "number",
+            "Label": "Starting Size",
+            "Description": "The initial size multiplier applied to all objects."
+          }
+        ],
+        "IncompatibleMods": [
+          "SI",
+          "GR",
+          "DF",
+          "TC",
+          "AD"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "DF",
+        "Name": "Deflate",
+        "Description": "Hit them at the right size!",
+        "Type": "Fun",
+        "Settings": [
+          {
+            "Name": "start_scale",
+            "Type": "number",
+            "Label": "Starting Size",
+            "Description": "The initial size multiplier applied to all objects."
+          }
+        ],
+        "IncompatibleMods": [
+          "SI",
+          "GR",
+          "DF",
+          "TC",
+          "AD"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "WU",
+        "Name": "Wind Up",
+        "Description": "Can you keep up?",
+        "Type": "Fun",
+        "Settings": [
+          {
+            "Name": "initial_rate",
+            "Type": "number",
+            "Label": "Initial rate",
+            "Description": "The starting speed of the track"
+          },
+          {
+            "Name": "final_rate",
+            "Type": "number",
+            "Label": "Final rate",
+            "Description": "The final speed to ramp to"
+          },
+          {
+            "Name": "adjust_pitch",
+            "Type": "boolean",
+            "Label": "Adjust pitch",
+            "Description": "Should pitch be adjusted with speed"
+          }
+        ],
+        "IncompatibleMods": [
+          "HT",
+          "DC",
+          "DT",
+          "NC",
+          "WD",
+          "AS"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": false
+      },
+      {
+        "Acronym": "WD",
+        "Name": "Wind Down",
+        "Description": "Sloooow doooown...",
+        "Type": "Fun",
+        "Settings": [
+          {
+            "Name": "initial_rate",
+            "Type": "number",
+            "Label": "Initial rate",
+            "Description": "The starting speed of the track"
+          },
+          {
+            "Name": "final_rate",
+            "Type": "number",
+            "Label": "Final rate",
+            "Description": "The final speed to ramp to"
+          },
+          {
+            "Name": "adjust_pitch",
+            "Type": "boolean",
+            "Label": "Adjust pitch",
+            "Description": "Should pitch be adjusted with speed"
+          }
+        ],
+        "IncompatibleMods": [
+          "HT",
+          "DC",
+          "DT",
+          "NC",
+          "WU",
+          "AS"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": false
+      },
+      {
+        "Acronym": "TC",
+        "Name": "Traceable",
+        "Description": "Put your faith in the approach circles...",
+        "Type": "Fun",
+        "Settings": [],
+        "IncompatibleMods": [
+          "HD",
+          "TP",
+          "SI",
+          "GR",
+          "DF"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "BR",
+        "Name": "Barrel Roll",
+        "Description": "The whole playfield is on a wheel!",
+        "Type": "Fun",
+        "Settings": [
+          {
+            "Name": "spin_speed",
+            "Type": "number",
+            "Label": "Roll speed",
+            "Description": "Rotations per minute"
+          },
+          {
+            "Name": "direction",
+            "Type": "string",
+            "Label": "Direction",
+            "Description": "The direction of rotation"
+          }
+        ],
+        "IncompatibleMods": [
+          "BU"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "AD",
+        "Name": "Approach Different",
+        "Description": "Never trust the approach circles...",
+        "Type": "Fun",
+        "Settings": [
+          {
+            "Name": "scale",
+            "Type": "number",
+            "Label": "Initial size",
+            "Description": "Change the initial size of the approach circle, relative to hit circles."
+          },
+          {
+            "Name": "style",
+            "Type": "string",
+            "Label": "Style",
+            "Description": "Change the animation style of the approach circles."
+          }
+        ],
+        "IncompatibleMods": [
+          "HD",
+          "TP",
+          "SI",
+          "GR",
+          "DF",
+          "FR"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "MU",
+        "Name": "Muted",
+        "Description": "Can you still feel the rhythm without music?",
+        "Type": "Fun",
+        "Settings": [
+          {
+            "Name": "inverse_muting",
+            "Type": "boolean",
+            "Label": "Start muted",
+            "Description": "Increase volume as combo builds."
+          },
+          {
+            "Name": "enable_metronome",
+            "Type": "boolean",
+            "Label": "Enable metronome",
+            "Description": "Add a metronome beat to help you keep track of the rhythm."
+          },
+          {
+            "Name": "mute_combo_count",
+            "Type": "number",
+            "Label": "Final volume at combo",
+            "Description": "The combo count at which point the track reaches its final volume."
+          },
+          {
+            "Name": "affects_hit_sounds",
+            "Type": "boolean",
+            "Label": "Mute hit sounds",
+            "Description": "Hit sounds are also muted alongside the track."
+          }
+        ],
+        "IncompatibleMods": [],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "NS",
+        "Name": "No Scope",
+        "Description": "Where's the cursor?",
+        "Type": "Fun",
+        "Settings": [
+          {
+            "Name": "hidden_combo_count",
+            "Type": "number",
+            "Label": "Hidden at combo",
+            "Description": "The combo count at which the cursor becomes completely hidden"
+          }
+        ],
+        "IncompatibleMods": [],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "MG",
+        "Name": "Magnetised",
+        "Description": "No need to chase the circles – your cursor is a magnet!",
+        "Type": "Fun",
+        "Settings": [
+          {
+            "Name": "attraction_strength",
+            "Type": "number",
+            "Label": "Attraction strength",
+            "Description": "How strong the pull is."
+          }
+        ],
+        "IncompatibleMods": [
+          "AT",
+          "CN",
+          "RX",
+          "AP",
+          "TR",
+          "WG",
+          "RP",
+          "BU"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "RP",
+        "Name": "Repel",
+        "Description": "Hit objects run away!",
+        "Type": "Fun",
+        "Settings": [
+          {
+            "Name": "repulsion_strength",
+            "Type": "number",
+            "Label": "Repulsion strength",
+            "Description": "How strong the repulsion is."
+          }
+        ],
+        "IncompatibleMods": [
+          "AT",
+          "CN",
+          "AP",
+          "TR",
+          "WG",
+          "MG",
+          "BU"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "AS",
+        "Name": "Adaptive Speed",
+        "Description": "Let track speed adapt to you.",
+        "Type": "Fun",
+        "Settings": [
+          {
+            "Name": "initial_rate",
+            "Type": "number",
+            "Label": "Initial rate",
+            "Description": "The starting speed of the track"
+          },
+          {
+            "Name": "adjust_pitch",
+            "Type": "boolean",
+            "Label": "Adjust pitch",
+            "Description": "Should pitch be adjusted with speed"
+          }
+        ],
+        "IncompatibleMods": [
+          "HT",
+          "DC",
+          "DT",
+          "NC",
+          "AT",
+          "CN",
+          "WU",
+          "WD"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": false,
+        "ValidForMultiplayerAsFreeMod": false
+      },
+      {
+        "Acronym": "FR",
+        "Name": "Freeze Frame",
+        "Description": "Burn the notes into your memory.",
+        "Type": "Fun",
+        "Settings": [],
+        "IncompatibleMods": [
+          "AD"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "BU",
+        "Name": "Bubbles",
+        "Description": "Don't let their popping distract you!",
+        "Type": "Fun",
+        "Settings": [],
+        "IncompatibleMods": [
+          "BR",
+          "MG",
+          "RP"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "SY",
+        "Name": "Synesthesia",
+        "Description": "Colours hit objects based on the rhythm.",
+        "Type": "Fun",
+        "Settings": [],
+        "IncompatibleMods": [],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "TD",
+        "Name": "Touch Device",
+        "Description": "Automatically applied to plays on devices with a touchscreen.",
+        "Type": "System",
+        "Settings": [],
+        "IncompatibleMods": [],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "SV2",
+        "Name": "Score V2",
+        "Description": "Score set on earlier osu! versions with the V2 scoring algorithm active.",
+        "Type": "System",
+        "Settings": [],
+        "IncompatibleMods": [],
+        "RequiresConfiguration": false,
+        "UserPlayable": false,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      }
+    ]
+  },
+  {
+    "Name": "taiko",
+    "RulesetID": 1,
+    "Mods": [
+      {
+        "Acronym": "EZ",
+        "Name": "Easy",
+        "Description": "Beats move slower, and less accuracy required!",
+        "Type": "DifficultyReduction",
+        "Settings": [],
+        "IncompatibleMods": [
+          "HR",
+          "DA"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "NF",
+        "Name": "No Fail",
+        "Description": "You can't fail, no matter what.",
+        "Type": "DifficultyReduction",
+        "Settings": [],
+        "IncompatibleMods": [
+          "SD",
+          "PF",
+          "AC",
+          "RX"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "HT",
+        "Name": "Half Time",
+        "Description": "Less zoom...",
+        "Type": "DifficultyReduction",
+        "Settings": [
+          {
+            "Name": "speed_change",
+            "Type": "number",
+            "Label": "Speed decrease",
+            "Description": "The actual decrease to apply"
+          }
+        ],
+        "IncompatibleMods": [
+          "HT",
+          "DC",
+          "DT",
+          "NC",
+          "WU",
+          "WD",
+          "AS"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": false
+      },
+      {
+        "Acronym": "DC",
+        "Name": "Daycore",
+        "Description": "Whoaaaaa...",
+        "Type": "DifficultyReduction",
+        "Settings": [
+          {
+            "Name": "speed_change",
+            "Type": "number",
+            "Label": "Speed decrease",
+            "Description": "The actual decrease to apply"
+          }
+        ],
+        "IncompatibleMods": [
+          "HT",
+          "DC",
+          "DT",
+          "NC",
+          "WU",
+          "WD",
+          "AS"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": false
+      },
+      {
+        "Acronym": "HR",
+        "Name": "Hard Rock",
+        "Description": "Everything just got a bit harder...",
+        "Type": "DifficultyIncrease",
+        "Settings": [],
+        "IncompatibleMods": [
+          "EZ",
+          "DA"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "SD",
+        "Name": "Sudden Death",
+        "Description": "Miss and fail.",
+        "Type": "DifficultyIncrease",
+        "Settings": [
+          {
+            "Name": "restart",
+            "Type": "boolean",
+            "Label": "Restart on fail",
+            "Description": "Automatically restarts when failed."
+          }
+        ],
+        "IncompatibleMods": [
+          "NF",
+          "PF",
+          "RX"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "PF",
+        "Name": "Perfect",
+        "Description": "SS or quit.",
+        "Type": "DifficultyIncrease",
+        "Settings": [
+          {
+            "Name": "restart",
+            "Type": "boolean",
+            "Label": "Restart on fail",
+            "Description": "Automatically restarts when failed."
+          }
+        ],
+        "IncompatibleMods": [
+          "NF",
+          "SD",
+          "AC",
+          "RX"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "DT",
+        "Name": "Double Time",
+        "Description": "Zoooooooooom...",
+        "Type": "DifficultyIncrease",
+        "Settings": [
+          {
+            "Name": "speed_change",
+            "Type": "number",
+            "Label": "Speed increase",
+            "Description": "The actual increase to apply"
+          }
+        ],
+        "IncompatibleMods": [
+          "HT",
+          "DC",
+          "DT",
+          "NC",
+          "WU",
+          "WD",
+          "AS"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": false
+      },
+      {
+        "Acronym": "NC",
+        "Name": "Nightcore",
+        "Description": "Uguuuuuuuu...",
+        "Type": "DifficultyIncrease",
+        "Settings": [
+          {
+            "Name": "speed_change",
+            "Type": "number",
+            "Label": "Speed increase",
+            "Description": "The actual increase to apply"
+          }
+        ],
+        "IncompatibleMods": [
+          "HT",
+          "DC",
+          "DT",
+          "NC",
+          "WU",
+          "WD",
+          "AS"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": false
+      },
+      {
+        "Acronym": "HD",
+        "Name": "Hidden",
+        "Description": "Beats fade out before you hit them!",
+        "Type": "DifficultyIncrease",
+        "Settings": [],
+        "IncompatibleMods": [],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "FL",
+        "Name": "Flashlight",
+        "Description": "Restricted view area.",
+        "Type": "DifficultyIncrease",
+        "Settings": [
+          {
+            "Name": "size_multiplier",
+            "Type": "number",
+            "Label": "Flashlight size",
+            "Description": "Multiplier applied to the default flashlight size."
+          },
+          {
+            "Name": "combo_based_size",
+            "Type": "boolean",
+            "Label": "Change size based on combo",
+            "Description": "Decrease the flashlight size as combo increases."
+          }
+        ],
+        "IncompatibleMods": [],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "AC",
+        "Name": "Accuracy Challenge",
+        "Description": "Fail if your accuracy drops too low!",
+        "Type": "DifficultyIncrease",
+        "Settings": [
+          {
+            "Name": "minimum_accuracy",
+            "Type": "number",
+            "Label": "Minimum accuracy",
+            "Description": "Trigger a failure if your accuracy goes below this value."
+          },
+          {
+            "Name": "accuracy_judge_mode",
+            "Type": "string",
+            "Label": "Accuracy mode",
+            "Description": "The mode of accuracy that will trigger failure."
+          },
+          {
+            "Name": "restart",
+            "Type": "boolean",
+            "Label": "Restart on fail",
+            "Description": "Automatically restarts when failed."
+          }
+        ],
+        "IncompatibleMods": [
+          "NF",
+          "PF",
+          "RX"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "RD",
+        "Name": "Random",
+        "Description": "Shuffle around the colours!",
+        "Type": "Conversion",
+        "Settings": [
+          {
+            "Name": "seed",
+            "Type": "number",
+            "Label": "Seed",
+            "Description": "Use a custom seed instead of a random one"
+          }
+        ],
+        "IncompatibleMods": [
+          "SW"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "DA",
+        "Name": "Difficulty Adjust",
+        "Description": "Override a beatmap's difficulty settings.",
+        "Type": "Conversion",
+        "Settings": [
+          {
+            "Name": "scroll_speed",
+            "Type": "number",
+            "Label": "Scroll Speed",
+            "Description": "Adjust a beatmap's set scroll speed"
+          },
+          {
+            "Name": "drain_rate",
+            "Type": "number",
+            "Label": "HP Drain",
+            "Description": "Override a beatmap's set HP."
+          },
+          {
+            "Name": "overall_difficulty",
+            "Type": "number",
+            "Label": "Accuracy",
+            "Description": "Override a beatmap's set OD."
+          },
+          {
+            "Name": "extended_limits",
+            "Type": "boolean",
+            "Label": "Extended Limits",
+            "Description": "Adjust difficulty beyond sane limits."
+          }
+        ],
+        "IncompatibleMods": [
+          "EZ",
+          "HR"
+        ],
+        "RequiresConfiguration": true,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "CL",
+        "Name": "Classic",
+        "Description": "Feeling nostalgic?",
+        "Type": "Conversion",
+        "Settings": [],
+        "IncompatibleMods": [],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "SW",
+        "Name": "Swap",
+        "Description": "Dons become kats, kats become dons",
+        "Type": "Conversion",
+        "Settings": [],
+        "IncompatibleMods": [
+          "RD"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "SG",
+        "Name": "Single Tap",
+        "Description": "One key for dons, one key for kats.",
+        "Type": "Conversion",
+        "Settings": [],
+        "IncompatibleMods": [
+          "AT",
+          "CN",
+          "RX"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "AT",
+        "Name": "Autoplay",
+        "Description": "Watch a perfect automated play through the song.",
+        "Type": "Automation",
+        "Settings": [],
+        "IncompatibleMods": [
+          "SG",
+          "CN",
+          "RX",
+          "AS"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": false,
+        "ValidForMultiplayer": false,
+        "ValidForMultiplayerAsFreeMod": false
+      },
+      {
+        "Acronym": "CN",
+        "Name": "Cinema",
+        "Description": "Watch the video without visual distractions.",
+        "Type": "Automation",
+        "Settings": [],
+        "IncompatibleMods": [
+          "SG",
+          "AT",
+          "CN",
+          "RX",
+          "AS"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": false,
+        "ValidForMultiplayer": false,
+        "ValidForMultiplayerAsFreeMod": false
+      },
+      {
+        "Acronym": "RX",
+        "Name": "Relax",
+        "Description": "No ninja-like spinners, demanding drumrolls or unexpected katus.",
+        "Type": "Automation",
+        "Settings": [],
+        "IncompatibleMods": [
+          "NF",
+          "SD",
+          "PF",
+          "AC",
+          "SG",
+          "AT",
+          "CN"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "WU",
+        "Name": "Wind Up",
+        "Description": "Can you keep up?",
+        "Type": "Fun",
+        "Settings": [
+          {
+            "Name": "initial_rate",
+            "Type": "number",
+            "Label": "Initial rate",
+            "Description": "The starting speed of the track"
+          },
+          {
+            "Name": "final_rate",
+            "Type": "number",
+            "Label": "Final rate",
+            "Description": "The final speed to ramp to"
+          },
+          {
+            "Name": "adjust_pitch",
+            "Type": "boolean",
+            "Label": "Adjust pitch",
+            "Description": "Should pitch be adjusted with speed"
+          }
+        ],
+        "IncompatibleMods": [
+          "HT",
+          "DC",
+          "DT",
+          "NC",
+          "WD",
+          "AS"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": false
+      },
+      {
+        "Acronym": "WD",
+        "Name": "Wind Down",
+        "Description": "Sloooow doooown...",
+        "Type": "Fun",
+        "Settings": [
+          {
+            "Name": "initial_rate",
+            "Type": "number",
+            "Label": "Initial rate",
+            "Description": "The starting speed of the track"
+          },
+          {
+            "Name": "final_rate",
+            "Type": "number",
+            "Label": "Final rate",
+            "Description": "The final speed to ramp to"
+          },
+          {
+            "Name": "adjust_pitch",
+            "Type": "boolean",
+            "Label": "Adjust pitch",
+            "Description": "Should pitch be adjusted with speed"
+          }
+        ],
+        "IncompatibleMods": [
+          "HT",
+          "DC",
+          "DT",
+          "NC",
+          "WU",
+          "AS"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": false
+      },
+      {
+        "Acronym": "MU",
+        "Name": "Muted",
+        "Description": "Can you still feel the rhythm without music?",
+        "Type": "Fun",
+        "Settings": [
+          {
+            "Name": "inverse_muting",
+            "Type": "boolean",
+            "Label": "Start muted",
+            "Description": "Increase volume as combo builds."
+          },
+          {
+            "Name": "enable_metronome",
+            "Type": "boolean",
+            "Label": "Enable metronome",
+            "Description": "Add a metronome beat to help you keep track of the rhythm."
+          },
+          {
+            "Name": "mute_combo_count",
+            "Type": "number",
+            "Label": "Final volume at combo",
+            "Description": "The combo count at which point the track reaches its final volume."
+          },
+          {
+            "Name": "affects_hit_sounds",
+            "Type": "boolean",
+            "Label": "Mute hit sounds",
+            "Description": "Hit sounds are also muted alongside the track."
+          }
+        ],
+        "IncompatibleMods": [],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "AS",
+        "Name": "Adaptive Speed",
+        "Description": "Let track speed adapt to you.",
+        "Type": "Fun",
+        "Settings": [
+          {
+            "Name": "initial_rate",
+            "Type": "number",
+            "Label": "Initial rate",
+            "Description": "The starting speed of the track"
+          },
+          {
+            "Name": "adjust_pitch",
+            "Type": "boolean",
+            "Label": "Adjust pitch",
+            "Description": "Should pitch be adjusted with speed"
+          }
+        ],
+        "IncompatibleMods": [
+          "HT",
+          "DC",
+          "DT",
+          "NC",
+          "AT",
+          "CN",
+          "WU",
+          "WD"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": false,
+        "ValidForMultiplayerAsFreeMod": false
+      },
+      {
+        "Acronym": "SV2",
+        "Name": "Score V2",
+        "Description": "Score set on earlier osu! versions with the V2 scoring algorithm active.",
+        "Type": "System",
+        "Settings": [],
+        "IncompatibleMods": [],
+        "RequiresConfiguration": false,
+        "UserPlayable": false,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      }
+    ]
+  },
+  {
+    "Name": "fruits",
+    "RulesetID": 2,
+    "Mods": [
+      {
+        "Acronym": "EZ",
+        "Name": "Easy",
+        "Description": "Larger fruits, more forgiving HP drain, less accuracy required, and three lives!",
+        "Type": "DifficultyReduction",
+        "Settings": [
+          {
+            "Name": "retries",
+            "Type": "number",
+            "Label": "Extra Lives",
+            "Description": "Number of extra lives"
+          }
+        ],
+        "IncompatibleMods": [
+          "HR",
+          "AC",
+          "DA"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "NF",
+        "Name": "No Fail",
+        "Description": "You can't fail, no matter what.",
+        "Type": "DifficultyReduction",
+        "Settings": [],
+        "IncompatibleMods": [
+          "SD",
+          "PF",
+          "AC",
+          "RX"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "HT",
+        "Name": "Half Time",
+        "Description": "Less zoom...",
+        "Type": "DifficultyReduction",
+        "Settings": [
+          {
+            "Name": "speed_change",
+            "Type": "number",
+            "Label": "Speed decrease",
+            "Description": "The actual decrease to apply"
+          }
+        ],
+        "IncompatibleMods": [
+          "HT",
+          "DC",
+          "DT",
+          "NC",
+          "WU",
+          "WD"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": false
+      },
+      {
+        "Acronym": "DC",
+        "Name": "Daycore",
+        "Description": "Whoaaaaa...",
+        "Type": "DifficultyReduction",
+        "Settings": [
+          {
+            "Name": "speed_change",
+            "Type": "number",
+            "Label": "Speed decrease",
+            "Description": "The actual decrease to apply"
+          }
+        ],
+        "IncompatibleMods": [
+          "HT",
+          "DC",
+          "DT",
+          "NC",
+          "WU",
+          "WD"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": false
+      },
+      {
+        "Acronym": "HR",
+        "Name": "Hard Rock",
+        "Description": "Everything just got a bit harder...",
+        "Type": "DifficultyIncrease",
+        "Settings": [],
+        "IncompatibleMods": [
+          "EZ",
+          "DA"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "SD",
+        "Name": "Sudden Death",
+        "Description": "Miss and fail.",
+        "Type": "DifficultyIncrease",
+        "Settings": [
+          {
+            "Name": "restart",
+            "Type": "boolean",
+            "Label": "Restart on fail",
+            "Description": "Automatically restarts when failed."
+          }
+        ],
+        "IncompatibleMods": [
+          "NF",
+          "PF",
+          "RX"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "PF",
+        "Name": "Perfect",
+        "Description": "SS or quit.",
+        "Type": "DifficultyIncrease",
+        "Settings": [
+          {
+            "Name": "restart",
+            "Type": "boolean",
+            "Label": "Restart on fail",
+            "Description": "Automatically restarts when failed."
+          }
+        ],
+        "IncompatibleMods": [
+          "NF",
+          "SD",
+          "AC",
+          "RX"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "DT",
+        "Name": "Double Time",
+        "Description": "Zoooooooooom...",
+        "Type": "DifficultyIncrease",
+        "Settings": [
+          {
+            "Name": "speed_change",
+            "Type": "number",
+            "Label": "Speed increase",
+            "Description": "The actual increase to apply"
+          }
+        ],
+        "IncompatibleMods": [
+          "HT",
+          "DC",
+          "DT",
+          "NC",
+          "WU",
+          "WD"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": false
+      },
+      {
+        "Acronym": "NC",
+        "Name": "Nightcore",
+        "Description": "Uguuuuuuuu...",
+        "Type": "DifficultyIncrease",
+        "Settings": [
+          {
+            "Name": "speed_change",
+            "Type": "number",
+            "Label": "Speed increase",
+            "Description": "The actual increase to apply"
+          }
+        ],
+        "IncompatibleMods": [
+          "HT",
+          "DC",
+          "DT",
+          "NC",
+          "WU",
+          "WD"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": false
+      },
+      {
+        "Acronym": "HD",
+        "Name": "Hidden",
+        "Description": "Play with fading fruits.",
+        "Type": "DifficultyIncrease",
+        "Settings": [],
+        "IncompatibleMods": [],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "FL",
+        "Name": "Flashlight",
+        "Description": "Restricted view area.",
+        "Type": "DifficultyIncrease",
+        "Settings": [
+          {
+            "Name": "size_multiplier",
+            "Type": "number",
+            "Label": "Flashlight size",
+            "Description": "Multiplier applied to the default flashlight size."
+          },
+          {
+            "Name": "combo_based_size",
+            "Type": "boolean",
+            "Label": "Change size based on combo",
+            "Description": "Decrease the flashlight size as combo increases."
+          }
+        ],
+        "IncompatibleMods": [],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "AC",
+        "Name": "Accuracy Challenge",
+        "Description": "Fail if your accuracy drops too low!",
+        "Type": "DifficultyIncrease",
+        "Settings": [
+          {
+            "Name": "minimum_accuracy",
+            "Type": "number",
+            "Label": "Minimum accuracy",
+            "Description": "Trigger a failure if your accuracy goes below this value."
+          },
+          {
+            "Name": "accuracy_judge_mode",
+            "Type": "string",
+            "Label": "Accuracy mode",
+            "Description": "The mode of accuracy that will trigger failure."
+          },
+          {
+            "Name": "restart",
+            "Type": "boolean",
+            "Label": "Restart on fail",
+            "Description": "Automatically restarts when failed."
+          }
+        ],
+        "IncompatibleMods": [
+          "EZ",
+          "NF",
+          "PF",
+          "RX"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "DA",
+        "Name": "Difficulty Adjust",
+        "Description": "Override a beatmap's difficulty settings.",
+        "Type": "Conversion",
+        "Settings": [
+          {
+            "Name": "circle_size",
+            "Type": "number",
+            "Label": "Circle Size",
+            "Description": "Override a beatmap's set CS."
+          },
+          {
+            "Name": "approach_rate",
+            "Type": "number",
+            "Label": "Approach Rate",
+            "Description": "Override a beatmap's set AR."
+          },
+          {
+            "Name": "hard_rock_offsets",
+            "Type": "boolean",
+            "Label": "Spicy Patterns",
+            "Description": "Adjust the patterns as if Hard Rock is enabled."
+          },
+          {
+            "Name": "drain_rate",
+            "Type": "number",
+            "Label": "HP Drain",
+            "Description": "Override a beatmap's set HP."
+          },
+          {
+            "Name": "overall_difficulty",
+            "Type": "number",
+            "Label": "Accuracy",
+            "Description": "Override a beatmap's set OD."
+          },
+          {
+            "Name": "extended_limits",
+            "Type": "boolean",
+            "Label": "Extended Limits",
+            "Description": "Adjust difficulty beyond sane limits."
+          }
+        ],
+        "IncompatibleMods": [
+          "EZ",
+          "HR"
+        ],
+        "RequiresConfiguration": true,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "CL",
+        "Name": "Classic",
+        "Description": "Feeling nostalgic?",
+        "Type": "Conversion",
+        "Settings": [],
+        "IncompatibleMods": [],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "MR",
+        "Name": "Mirror",
+        "Description": "Fruits are flipped horizontally.",
+        "Type": "Conversion",
+        "Settings": [],
+        "IncompatibleMods": [],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "AT",
+        "Name": "Autoplay",
+        "Description": "Watch a perfect automated play through the song.",
+        "Type": "Automation",
+        "Settings": [],
+        "IncompatibleMods": [
+          "CN",
+          "RX"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": false,
+        "ValidForMultiplayer": false,
+        "ValidForMultiplayerAsFreeMod": false
+      },
+      {
+        "Acronym": "CN",
+        "Name": "Cinema",
+        "Description": "Watch the video without visual distractions.",
+        "Type": "Automation",
+        "Settings": [],
+        "IncompatibleMods": [
+          "AT",
+          "CN",
+          "RX"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": false,
+        "ValidForMultiplayer": false,
+        "ValidForMultiplayerAsFreeMod": false
+      },
+      {
+        "Acronym": "RX",
+        "Name": "Relax",
+        "Description": "Use the mouse to control the catcher.",
+        "Type": "Automation",
+        "Settings": [],
+        "IncompatibleMods": [
+          "NF",
+          "SD",
+          "PF",
+          "AC",
+          "AT",
+          "CN"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "WU",
+        "Name": "Wind Up",
+        "Description": "Can you keep up?",
+        "Type": "Fun",
+        "Settings": [
+          {
+            "Name": "initial_rate",
+            "Type": "number",
+            "Label": "Initial rate",
+            "Description": "The starting speed of the track"
+          },
+          {
+            "Name": "final_rate",
+            "Type": "number",
+            "Label": "Final rate",
+            "Description": "The final speed to ramp to"
+          },
+          {
+            "Name": "adjust_pitch",
+            "Type": "boolean",
+            "Label": "Adjust pitch",
+            "Description": "Should pitch be adjusted with speed"
+          }
+        ],
+        "IncompatibleMods": [
+          "HT",
+          "DC",
+          "DT",
+          "NC",
+          "WD"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": false
+      },
+      {
+        "Acronym": "WD",
+        "Name": "Wind Down",
+        "Description": "Sloooow doooown...",
+        "Type": "Fun",
+        "Settings": [
+          {
+            "Name": "initial_rate",
+            "Type": "number",
+            "Label": "Initial rate",
+            "Description": "The starting speed of the track"
+          },
+          {
+            "Name": "final_rate",
+            "Type": "number",
+            "Label": "Final rate",
+            "Description": "The final speed to ramp to"
+          },
+          {
+            "Name": "adjust_pitch",
+            "Type": "boolean",
+            "Label": "Adjust pitch",
+            "Description": "Should pitch be adjusted with speed"
+          }
+        ],
+        "IncompatibleMods": [
+          "HT",
+          "DC",
+          "DT",
+          "NC",
+          "WU"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": false
+      },
+      {
+        "Acronym": "FF",
+        "Name": "Floating Fruits",
+        "Description": "The fruits are... floating?",
+        "Type": "Fun",
+        "Settings": [],
+        "IncompatibleMods": [],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "MU",
+        "Name": "Muted",
+        "Description": "Can you still feel the rhythm without music?",
+        "Type": "Fun",
+        "Settings": [
+          {
+            "Name": "inverse_muting",
+            "Type": "boolean",
+            "Label": "Start muted",
+            "Description": "Increase volume as combo builds."
+          },
+          {
+            "Name": "enable_metronome",
+            "Type": "boolean",
+            "Label": "Enable metronome",
+            "Description": "Add a metronome beat to help you keep track of the rhythm."
+          },
+          {
+            "Name": "mute_combo_count",
+            "Type": "number",
+            "Label": "Final volume at combo",
+            "Description": "The combo count at which point the track reaches its final volume."
+          },
+          {
+            "Name": "affects_hit_sounds",
+            "Type": "boolean",
+            "Label": "Mute hit sounds",
+            "Description": "Hit sounds are also muted alongside the track."
+          }
+        ],
+        "IncompatibleMods": [],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "NS",
+        "Name": "No Scope",
+        "Description": "Where's the catcher?",
+        "Type": "Fun",
+        "Settings": [
+          {
+            "Name": "hidden_combo_count",
+            "Type": "number",
+            "Label": "Hidden at combo",
+            "Description": "The combo count at which the cursor becomes completely hidden"
+          }
+        ],
+        "IncompatibleMods": [],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "SV2",
+        "Name": "Score V2",
+        "Description": "Score set on earlier osu! versions with the V2 scoring algorithm active.",
+        "Type": "System",
+        "Settings": [],
+        "IncompatibleMods": [],
+        "RequiresConfiguration": false,
+        "UserPlayable": false,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      }
+    ]
+  },
+  {
+    "Name": "mania",
+    "RulesetID": 3,
+    "Mods": [
+      {
+        "Acronym": "EZ",
+        "Name": "Easy",
+        "Description": "More forgiving HP drain, less accuracy required, and three lives!",
+        "Type": "DifficultyReduction",
+        "Settings": [
+          {
+            "Name": "retries",
+            "Type": "number",
+            "Label": "Extra Lives",
+            "Description": "Number of extra lives"
+          }
+        ],
+        "IncompatibleMods": [
+          "HR",
+          "AC",
+          "DA"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "NF",
+        "Name": "No Fail",
+        "Description": "You can't fail, no matter what.",
+        "Type": "DifficultyReduction",
+        "Settings": [],
+        "IncompatibleMods": [
+          "SD",
+          "PF",
+          "AC"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "HT",
+        "Name": "Half Time",
+        "Description": "Less zoom...",
+        "Type": "DifficultyReduction",
+        "Settings": [
+          {
+            "Name": "speed_change",
+            "Type": "number",
+            "Label": "Speed decrease",
+            "Description": "The actual decrease to apply"
+          }
+        ],
+        "IncompatibleMods": [
+          "HT",
+          "DC",
+          "DT",
+          "NC",
+          "WU",
+          "WD",
+          "AS"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": false
+      },
+      {
+        "Acronym": "DC",
+        "Name": "Daycore",
+        "Description": "Whoaaaaa...",
+        "Type": "DifficultyReduction",
+        "Settings": [
+          {
+            "Name": "speed_change",
+            "Type": "number",
+            "Label": "Speed decrease",
+            "Description": "The actual decrease to apply"
+          }
+        ],
+        "IncompatibleMods": [
+          "HT",
+          "DC",
+          "DT",
+          "NC",
+          "WU",
+          "WD",
+          "AS"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": false
+      },
+      {
+        "Acronym": "HR",
+        "Name": "Hard Rock",
+        "Description": "Everything just got a bit harder...",
+        "Type": "DifficultyIncrease",
+        "Settings": [],
+        "IncompatibleMods": [
+          "EZ",
+          "DA"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "SD",
+        "Name": "Sudden Death",
+        "Description": "Miss and fail.",
+        "Type": "DifficultyIncrease",
+        "Settings": [
+          {
+            "Name": "restart",
+            "Type": "boolean",
+            "Label": "Restart on fail",
+            "Description": "Automatically restarts when failed."
+          }
+        ],
+        "IncompatibleMods": [
+          "NF",
+          "PF"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "PF",
+        "Name": "Perfect",
+        "Description": "SS or quit.",
+        "Type": "DifficultyIncrease",
+        "Settings": [
+          {
+            "Name": "restart",
+            "Type": "boolean",
+            "Label": "Restart on fail",
+            "Description": "Automatically restarts when failed."
+          }
+        ],
+        "IncompatibleMods": [
+          "NF",
+          "SD",
+          "AC"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "DT",
+        "Name": "Double Time",
+        "Description": "Zoooooooooom...",
+        "Type": "DifficultyIncrease",
+        "Settings": [
+          {
+            "Name": "speed_change",
+            "Type": "number",
+            "Label": "Speed increase",
+            "Description": "The actual increase to apply"
+          }
+        ],
+        "IncompatibleMods": [
+          "HT",
+          "DC",
+          "DT",
+          "NC",
+          "WU",
+          "WD",
+          "AS"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": false
+      },
+      {
+        "Acronym": "NC",
+        "Name": "Nightcore",
+        "Description": "Uguuuuuuuu...",
+        "Type": "DifficultyIncrease",
+        "Settings": [
+          {
+            "Name": "speed_change",
+            "Type": "number",
+            "Label": "Speed increase",
+            "Description": "The actual increase to apply"
+          }
+        ],
+        "IncompatibleMods": [
+          "HT",
+          "DC",
+          "DT",
+          "NC",
+          "WU",
+          "WD",
+          "AS"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": false
+      },
+      {
+        "Acronym": "FI",
+        "Name": "Fade In",
+        "Description": "Keys appear out of nowhere!",
+        "Type": "DifficultyIncrease",
+        "Settings": [
+          {
+            "Name": "coverage",
+            "Type": "number",
+            "Label": "Coverage",
+            "Description": "The proportion of playfield height that notes will be hidden for."
+          }
+        ],
+        "IncompatibleMods": [
+          "HD",
+          "FL"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "HD",
+        "Name": "Hidden",
+        "Description": "Keys fade out before you hit them!",
+        "Type": "DifficultyIncrease",
+        "Settings": [
+          {
+            "Name": "coverage",
+            "Type": "number",
+            "Label": "Coverage",
+            "Description": "The proportion of playfield height that notes will be hidden for."
+          }
+        ],
+        "IncompatibleMods": [
+          "FI",
+          "FL"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "FL",
+        "Name": "Flashlight",
+        "Description": "Restricted view area.",
+        "Type": "DifficultyIncrease",
+        "Settings": [
+          {
+            "Name": "size_multiplier",
+            "Type": "number",
+            "Label": "Flashlight size",
+            "Description": "Multiplier applied to the default flashlight size."
+          },
+          {
+            "Name": "combo_based_size",
+            "Type": "boolean",
+            "Label": "Change size based on combo",
+            "Description": "Decrease the flashlight size as combo increases."
+          }
+        ],
+        "IncompatibleMods": [
+          "FI",
+          "HD"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "AC",
+        "Name": "Accuracy Challenge",
+        "Description": "Fail if your accuracy drops too low!",
+        "Type": "DifficultyIncrease",
+        "Settings": [
+          {
+            "Name": "minimum_accuracy",
+            "Type": "number",
+            "Label": "Minimum accuracy",
+            "Description": "Trigger a failure if your accuracy goes below this value."
+          },
+          {
+            "Name": "accuracy_judge_mode",
+            "Type": "string",
+            "Label": "Accuracy mode",
+            "Description": "The mode of accuracy that will trigger failure."
+          },
+          {
+            "Name": "restart",
+            "Type": "boolean",
+            "Label": "Restart on fail",
+            "Description": "Automatically restarts when failed."
+          }
+        ],
+        "IncompatibleMods": [
+          "EZ",
+          "NF",
+          "PF"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "4K",
+        "Name": "Four Keys",
+        "Description": "Play with four keys.",
+        "Type": "Conversion",
+        "Settings": [],
+        "IncompatibleMods": [
+          "5K",
+          "6K",
+          "7K",
+          "8K",
+          "9K",
+          "10K",
+          "1K",
+          "2K",
+          "3K"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "5K",
+        "Name": "Five Keys",
+        "Description": "Play with five keys.",
+        "Type": "Conversion",
+        "Settings": [],
+        "IncompatibleMods": [
+          "4K",
+          "6K",
+          "7K",
+          "8K",
+          "9K",
+          "10K",
+          "1K",
+          "2K",
+          "3K"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "6K",
+        "Name": "Six Keys",
+        "Description": "Play with six keys.",
+        "Type": "Conversion",
+        "Settings": [],
+        "IncompatibleMods": [
+          "4K",
+          "5K",
+          "7K",
+          "8K",
+          "9K",
+          "10K",
+          "1K",
+          "2K",
+          "3K"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "7K",
+        "Name": "Seven Keys",
+        "Description": "Play with seven keys.",
+        "Type": "Conversion",
+        "Settings": [],
+        "IncompatibleMods": [
+          "4K",
+          "5K",
+          "6K",
+          "8K",
+          "9K",
+          "10K",
+          "1K",
+          "2K",
+          "3K"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "8K",
+        "Name": "Eight Keys",
+        "Description": "Play with eight keys.",
+        "Type": "Conversion",
+        "Settings": [],
+        "IncompatibleMods": [
+          "4K",
+          "5K",
+          "6K",
+          "7K",
+          "9K",
+          "10K",
+          "1K",
+          "2K",
+          "3K"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "9K",
+        "Name": "Nine Keys",
+        "Description": "Play with nine keys.",
+        "Type": "Conversion",
+        "Settings": [],
+        "IncompatibleMods": [
+          "4K",
+          "5K",
+          "6K",
+          "7K",
+          "8K",
+          "10K",
+          "1K",
+          "2K",
+          "3K"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "10K",
+        "Name": "Ten Keys",
+        "Description": "Play with ten keys.",
+        "Type": "Conversion",
+        "Settings": [],
+        "IncompatibleMods": [
+          "4K",
+          "5K",
+          "6K",
+          "7K",
+          "8K",
+          "9K",
+          "1K",
+          "2K",
+          "3K"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "1K",
+        "Name": "One Key",
+        "Description": "Play with one key.",
+        "Type": "Conversion",
+        "Settings": [],
+        "IncompatibleMods": [
+          "4K",
+          "5K",
+          "6K",
+          "7K",
+          "8K",
+          "9K",
+          "10K",
+          "2K",
+          "3K"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "2K",
+        "Name": "Two Keys",
+        "Description": "Play with two keys.",
+        "Type": "Conversion",
+        "Settings": [],
+        "IncompatibleMods": [
+          "4K",
+          "5K",
+          "6K",
+          "7K",
+          "8K",
+          "9K",
+          "10K",
+          "1K",
+          "3K"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "3K",
+        "Name": "Three Keys",
+        "Description": "Play with three keys.",
+        "Type": "Conversion",
+        "Settings": [],
+        "IncompatibleMods": [
+          "4K",
+          "5K",
+          "6K",
+          "7K",
+          "8K",
+          "9K",
+          "10K",
+          "1K",
+          "2K"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "RD",
+        "Name": "Random",
+        "Description": "Shuffle around the keys!",
+        "Type": "Conversion",
+        "Settings": [
+          {
+            "Name": "seed",
+            "Type": "number",
+            "Label": "Seed",
+            "Description": "Use a custom seed instead of a random one"
+          }
+        ],
+        "IncompatibleMods": [],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "DS",
+        "Name": "Dual Stages",
+        "Description": "Double the stages, double the fun!",
+        "Type": "Conversion",
+        "Settings": [],
+        "IncompatibleMods": [],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "MR",
+        "Name": "Mirror",
+        "Description": "Notes are flipped horizontally.",
+        "Type": "Conversion",
+        "Settings": [],
+        "IncompatibleMods": [],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "DA",
+        "Name": "Difficulty Adjust",
+        "Description": "Override a beatmap's difficulty settings.",
+        "Type": "Conversion",
+        "Settings": [
+          {
+            "Name": "drain_rate",
+            "Type": "number",
+            "Label": "HP Drain",
+            "Description": "Override a beatmap's set HP."
+          },
+          {
+            "Name": "overall_difficulty",
+            "Type": "number",
+            "Label": "Accuracy",
+            "Description": "Override a beatmap's set OD."
+          },
+          {
+            "Name": "extended_limits",
+            "Type": "boolean",
+            "Label": "Extended Limits",
+            "Description": "Adjust difficulty beyond sane limits."
+          }
+        ],
+        "IncompatibleMods": [
+          "EZ",
+          "HR"
+        ],
+        "RequiresConfiguration": true,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "CL",
+        "Name": "Classic",
+        "Description": "Feeling nostalgic?",
+        "Type": "Conversion",
+        "Settings": [],
+        "IncompatibleMods": [],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "IN",
+        "Name": "Invert",
+        "Description": "Hold the keys. To the beat.",
+        "Type": "Conversion",
+        "Settings": [],
+        "IncompatibleMods": [
+          "HO"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "CS",
+        "Name": "Constant Speed",
+        "Description": "No more tricky speed changes!",
+        "Type": "Conversion",
+        "Settings": [],
+        "IncompatibleMods": [],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "HO",
+        "Name": "Hold Off",
+        "Description": "Replaces all hold notes with normal notes.",
+        "Type": "Conversion",
+        "Settings": [],
+        "IncompatibleMods": [
+          "IN"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "AT",
+        "Name": "Autoplay",
+        "Description": "Watch a perfect automated play through the song.",
+        "Type": "Automation",
+        "Settings": [],
+        "IncompatibleMods": [
+          "CN",
+          "AS"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": false,
+        "ValidForMultiplayer": false,
+        "ValidForMultiplayerAsFreeMod": false
+      },
+      {
+        "Acronym": "CN",
+        "Name": "Cinema",
+        "Description": "Watch the video without visual distractions.",
+        "Type": "Automation",
+        "Settings": [],
+        "IncompatibleMods": [
+          "AT",
+          "CN",
+          "AS"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": false,
+        "ValidForMultiplayer": false,
+        "ValidForMultiplayerAsFreeMod": false
+      },
+      {
+        "Acronym": "WU",
+        "Name": "Wind Up",
+        "Description": "Can you keep up?",
+        "Type": "Fun",
+        "Settings": [
+          {
+            "Name": "initial_rate",
+            "Type": "number",
+            "Label": "Initial rate",
+            "Description": "The starting speed of the track"
+          },
+          {
+            "Name": "final_rate",
+            "Type": "number",
+            "Label": "Final rate",
+            "Description": "The final speed to ramp to"
+          },
+          {
+            "Name": "adjust_pitch",
+            "Type": "boolean",
+            "Label": "Adjust pitch",
+            "Description": "Should pitch be adjusted with speed"
+          }
+        ],
+        "IncompatibleMods": [
+          "HT",
+          "DC",
+          "DT",
+          "NC",
+          "WD",
+          "AS"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": false
+      },
+      {
+        "Acronym": "WD",
+        "Name": "Wind Down",
+        "Description": "Sloooow doooown...",
+        "Type": "Fun",
+        "Settings": [
+          {
+            "Name": "initial_rate",
+            "Type": "number",
+            "Label": "Initial rate",
+            "Description": "The starting speed of the track"
+          },
+          {
+            "Name": "final_rate",
+            "Type": "number",
+            "Label": "Final rate",
+            "Description": "The final speed to ramp to"
+          },
+          {
+            "Name": "adjust_pitch",
+            "Type": "boolean",
+            "Label": "Adjust pitch",
+            "Description": "Should pitch be adjusted with speed"
+          }
+        ],
+        "IncompatibleMods": [
+          "HT",
+          "DC",
+          "DT",
+          "NC",
+          "WU",
+          "AS"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": false
+      },
+      {
+        "Acronym": "MU",
+        "Name": "Muted",
+        "Description": "Can you still feel the rhythm without music?",
+        "Type": "Fun",
+        "Settings": [
+          {
+            "Name": "inverse_muting",
+            "Type": "boolean",
+            "Label": "Start muted",
+            "Description": "Increase volume as combo builds."
+          },
+          {
+            "Name": "enable_metronome",
+            "Type": "boolean",
+            "Label": "Enable metronome",
+            "Description": "Add a metronome beat to help you keep track of the rhythm."
+          },
+          {
+            "Name": "mute_combo_count",
+            "Type": "number",
+            "Label": "Final volume at combo",
+            "Description": "The combo count at which point the track reaches its final volume."
+          },
+          {
+            "Name": "affects_hit_sounds",
+            "Type": "boolean",
+            "Label": "Mute hit sounds",
+            "Description": "Hit sounds are also muted alongside the track."
+          }
+        ],
+        "IncompatibleMods": [],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "AS",
+        "Name": "Adaptive Speed",
+        "Description": "Let track speed adapt to you.",
+        "Type": "Fun",
+        "Settings": [
+          {
+            "Name": "initial_rate",
+            "Type": "number",
+            "Label": "Initial rate",
+            "Description": "The starting speed of the track"
+          },
+          {
+            "Name": "adjust_pitch",
+            "Type": "boolean",
+            "Label": "Adjust pitch",
+            "Description": "Should pitch be adjusted with speed"
+          }
+        ],
+        "IncompatibleMods": [
+          "HT",
+          "DC",
+          "DT",
+          "NC",
+          "AT",
+          "CN",
+          "WU",
+          "WD"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": false,
+        "ValidForMultiplayerAsFreeMod": false
+      },
+      {
+        "Acronym": "SV2",
+        "Name": "Score V2",
+        "Description": "Score set on earlier osu! versions with the V2 scoring algorithm active.",
+        "Type": "System",
+        "Settings": [],
+        "IncompatibleMods": [],
+        "RequiresConfiguration": false,
+        "UserPlayable": false,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      }
+    ]
+  }
+]

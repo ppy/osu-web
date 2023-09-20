@@ -50,18 +50,18 @@ return [
             ],
 
             'friend_ranking' => [
-                'title' => 'Clasificación entre Amigos',
+                'title' => 'Clasificación entre amigos',
                 'description' => "Vea cómo se compara con sus amigos en la tabla de clasificación de un mapa, tanto dentro del juego como en el sitio web.",
             ],
 
             'country_ranking' => [
-                'title' => 'Clasificación Nacional',
+                'title' => 'Clasificación nacional',
                 'description' => 'Conquiste su país antes de conquistar el mundo.',
             ],
 
             'mod_filtering' => [
                 'title' => 'Filtrar por Mods',
-                'description' => '¿Asociarse sólo con personas que juegan con mods HDHR? ¡No hay problema!',
+                'description' => '¿Asociarse solo con personas que juegan con mods HDHR? ¡No hay problema!',
             ],
 
             'auto_downloads' => [
@@ -138,11 +138,11 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution' => '¡Gracias por su apoyo hasta ahora! ¡Ha contribuido con :dollars con la compra de :tags tag(s)!',
+            'contribution' => '¡Gracias por tu apoyo hasta ahora! ¡Has contribuido con :dollars con la compra de :tags etiquetas!',
             'gifted' => "Ha regalado :giftedTags de sus compras (por valor de :giftedDollars), ¡qué generoso!",
-            'not_yet' => "Nunca has tenido un tag de osu!supporter :(",
-            'valid_until' => '¡Su tag de osu!supporter actual es válido hasta el :date!',
-            'was_valid_until' => 'Su tag de osu!supporter fue válido hasta el :date.',
+            'not_yet' => "Nunca has tenido una etiqueta osu!supporter :(",
+            'valid_until' => '¡Tu etiqueta osu!supporter actual es válida hasta el :date!',
+            'was_valid_until' => 'Tu etiqueta osu!supporter fue válida hasta el :date.',
         ],
     ],
 ];

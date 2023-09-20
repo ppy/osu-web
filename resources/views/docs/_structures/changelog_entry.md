@@ -24,7 +24,6 @@ github_pull_request_id | number?
 github_url             | string?
 id                     | number?
 major                  | boolean
-message_html           | string?
 repository             | string?
 title                  | string?
 type                   | string
@@ -34,6 +33,8 @@ url                    | string?
 
 The following are attributes which may be additionally included in responses. Relevant endpoints should list them if applicable.
 
-Field       | Type                      | Notes
-------------|---------------------------|------
-github_user | [GithubUser](#githubuser) | If the changelog entry has no GitHub user, a placeholder is generated.
+Field        | Type                      | Notes
+------------ | ------------------------- | -----
+github_user  | [GithubUser](#githubuser) | If the changelog entry has no GitHub user, a placeholder is generated.
+message      | string?                   | Entry message in Markdown format. Embedded HTML is allowed.
+message_html | string?                   | Entry message in HTML format.

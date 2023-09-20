@@ -66,7 +66,7 @@ return [
 
             'auto_downloads' => [
                 'title' => '自動下載',
-                'description' => '當多人遊戲與觀看玩家無圖譜時，osu! 會自動下載！',
+                'description' => '本地沒有需要的譜面時，osu! 會自動下載！',
             ],
 
             'upload_more' => [
@@ -116,7 +116,7 @@ return [
 
             'sort_options' => [
                 'title' => '排名',
-                'description' => '查看排名時可按 國家/好友/所選MOD 進行排名。',
+                'description' => '可以查看圖譜的 國內／好友／所選 MOD 排名。',
             ],
 
             'more_favourites' => [

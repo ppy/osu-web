@@ -37,7 +37,7 @@ class RouteTest extends TestCase
      */
     public function testChangelogRoutes()
     {
-        $this->assertGetRoutes(['/home/download']);
+        $this->assertGetRoutes(['/home/changelog']);
     }
 
     /**
@@ -87,10 +87,9 @@ class RouteTest extends TestCase
      */
     public function testProfileRoutes()
     {
-        $user = factory(User::class)->create();
-        $id = $user->user_id;
-        $username = $user->username;
-        $this->assertGetRoutes(["/u/{$id}", '/u/'.$username]);
+        $user = User::factory()->create();
+
+        $this->assertGetRoutes(["/u/{$user->getKey()}", "/u/{$user->username}"]);
     }
 
     /**

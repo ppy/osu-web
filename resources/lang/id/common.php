@@ -4,8 +4,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'confirmation' => 'Apakah Anda yakin?',
-    'confirmation_unsaved' => 'Perubahan yang tidak disimpan akan hilang. Apa Anda yakin?',
+    'confirmation' => 'Apakah kamu yakin?',
+    'confirmation_unsaved' => 'Segala perubahan yang tidak disimpan akan hilang. Apakah kamu yakin?',
     'saved' => 'Tersimpan',
 
     'array_and' => [
@@ -41,25 +41,27 @@ return [
         'read_more' => 'baca selengkapnya',
         'reply' => 'Balas',
         'reply_reopen' => 'Balas dan Buka Kembali',
-        'reply_resolve' => 'Balas dan Tandai Selesai',
+        'reply_resolve' => 'Balas dan Tutup',
         'reset' => 'Atur Ulang',
         'restore' => 'Pulihkan',
+        'retry' => 'Coba lagi',
         'save' => 'Simpan',
         'saving' => 'Menyimpan...',
         'search' => 'Cari',
-        'see_more' => 'perlihatkan lebih banyak',
+        'see_more' => 'tampilkan lebih banyak',
         'show' => 'tampilkan',
         'show_deleted' => 'Tampilkan yang telah dihapus',
         'show_less' => 'tampilkan lebih sedikit',
         'show_more' => 'tampilkan lebih banyak',
         'show_more_options' => 'tampilkan pilihan lainnya',
+        'submit' => 'Kirim',
         'unpin' => 'lepas sematan',
         'update' => 'Perbarui',
         'upload_image' => 'unggah gambar',
 
         'watch' => [
-            'to_0' => 'Batalkan Pantauan',
-            'to_1' => 'Pantau',
+            'to_0' => 'Berhenti Ikuti',
+            'to_1' => 'Ikuti',
         ],
     ],
 
@@ -67,7 +69,7 @@ return [
         'badges' => ':count_delimited lencana|:count_delimited lencana',
         'days' => ':count_delimited hari|:count_delimited hari',
         'hour_short_unit' => 'jam|jam',
-        'hours' => ':count_delimited jam',
+        'hours' => ':count_delimited jam|:count_delimited jam',
         'item' => ':count_delimited unit|:count_delimited unit',
         'minute_short_unit' => 'menit|menit',
         'minutes' => ':count_delimited menit|:count_delimited menit',
@@ -133,10 +135,10 @@ return [
         'dd' => '%d hr',
         'h' => '%d jam',
         'hh' => '%d jam',
-        'M' => '%d bln',
         'm' => 'sekarang',
-        'MM' => '%d bln',
         'mm' => 'sekarang',
+        'month' => '%d bln',
+        'months' => '%d bln',
         'past' => '',
         's' => 'sekarang',
         'y' => '%d thn',
@@ -155,7 +157,7 @@ return [
     ],
 
     'wrong_user' => [
-        '_' => 'Anda terdaftar masuk sebagai :user. :logout_link.',
+        '_' => 'Kamu terdaftar masuk sebagai :user. :logout_link.',
         'logout_link' => 'Klik di sini untuk masuk sebagai pengguna lain',
     ],
 ];

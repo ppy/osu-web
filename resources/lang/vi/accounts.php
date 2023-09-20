@@ -5,7 +5,7 @@
 
 return [
     'edit' => [
-        'title_compact' => 'cài đặt',
+        'title_compact' => 'cài đặt tài khoản',
         'username' => 'tên người dùng',
 
         'avatar' => [
@@ -15,10 +15,19 @@ return [
         ],
 
         'email' => [
-            'current' => 'email hiện tại.',
             'new' => 'email mới',
             'new_confirmation' => 'xác nhận email',
             'title' => 'Email',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
+        ],
+
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'API cũ',
         ],
 
         'password' => [
@@ -29,7 +38,13 @@ return [
         ],
 
         'profile' => [
+            'country' => 'quốc gia',
             'title' => 'Trang cá nhân',
+
+            'country_change' => [
+                '_' => "Có vẻ như quốc gia cho tài khoản của bạn chưa khớp với quốc gia bạn đang ở. :update_link.",
+                'update_link' => 'Cập nhật quốc gia thành :country',
+            ],
 
             'user' => [
                 'user_discord' => '',
@@ -49,22 +64,22 @@ return [
 
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'nhận thông báo về vấn đề mới ở các beatmap đủ tiêu chuẩn của chế độ này',
-        'beatmapset_disqualify' => 'nhận thông báo khi beatmap ở các chế độ sau bị disqualified',
+        'beatmapset_disqualify' => 'nhận thông báo khi beatmap ở các chế độ sau bị từ chối',
         'comment_reply' => 'nhận thông báo khi có phản hồi đến bình luận của bạn',
         'title' => 'Thông báo',
-        'topic_auto_subscribe' => 'tự động nhận thông báo cho các topic bạn tạo trong forum',
+        'topic_auto_subscribe' => 'tự động nhận thông báo cho các chủ đề bạn tạo trong forum',
 
         'options' => [
             '_' => 'phương thức giao hàng',
-            'beatmap_owner_change' => 'Độ khó khách mời',
+            'beatmap_owner_change' => 'guest difficulty',
             'beatmapset:modding' => 'sửa đổi beatmap',
             'channel_message' => 'tin nhắn riêng tư',
             'comment_new' => 'bình luận mới',
             'forum_topic_reply' => 'trả lời chủ đề',
             'mail' => 'thư',
-            'mapping' => '',
-            'push' => 'push',
-            'user_achievement_unlock' => 'mở khoá huy chương',
+            'mapping' => 'người tạo beatmap',
+            'push' => 'đẩy',
+            'user_achievement_unlock' => 'đã mở khoá huy chương',
         ],
     ],
 
@@ -75,7 +90,7 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => 'ẩn cảnh báo nội dung không phù hợp trong beatmap',
+        'beatmapset_show_nsfw' => 'ẩn cảnh báo nội dung không lành mạnh trong beatmap',
         'beatmapset_title_show_original' => 'hiển thị metadata của beatmap ở ngôn ngữ gốc',
         'title' => 'Tuỳ chọn',
 
@@ -90,14 +105,14 @@ return [
     'playstyles' => [
         'keyboard' => 'bàn phím',
         'mouse' => 'chuột',
-        'tablet' => 'tablet',
+        'tablet' => 'bảng vẽ',
         'title' => 'Lối Chơi',
         'touch' => 'cảm ứng',
     ],
 
     'privacy' => [
         'friends_only' => 'chặn tin nhắn từ những người không có trong danh sách bạn bè của bạn',
-        'hide_online' => 'Ẩn sự xuất hiện của bạn khi bạn online',
+        'hide_online' => 'ẩn trạng thái của bạn khi bạn online',
         'title' => 'Quyền Riêng Tư',
     ],
 

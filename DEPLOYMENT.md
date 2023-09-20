@@ -2,15 +2,12 @@
 
 There's only one image to be built:
 
-    docker build -f Docker.deployment --tag <repository>:<tag> --build-arg <buildarg1> --build-arg <buildarg2> .
+    docker build -f Dockerfile.deployment --tag <repository>:<tag> --build-arg <buildarg1> --build-arg <buildarg2> .
 
 There are several build arguments required:
 
 - `APP_URL`
 - `DOCS_URL`
-- `PAYMENT_SANDBOX`
-- `SHOPIFY_DOMAIN`
-- `SHOPIFY_STOREFRONT_TOKEN`
 - `GIT_SHA` (build version. Something like `"$(date "+%Y%m%d-%H%M%S")-$(git rev-parse HEAD | cut -c1-7)"` should work)
 
 ## Updating image
@@ -19,40 +16,35 @@ Run build with `--pull --no-cache` parameters to ensure latest image and package
 
 ## Configuration files
 
-There are three main configuration files which should be mounted to the container:
+There are three main configuration files which can be mounted to the container:
 
 - `/app/.env`: environment file. Can also be done by passing them as environment variables
-- `/app/storage/oauth-private.key`: OAuth private key. Required
-- `/app/storage/oauth-public.key`: OAuth public key for the private key above. Required
+- `/app/storage/oauth-private.key`: OAuth private key. Alternatively can be set using environment variable `PASSPORT_PRIVATE_KEY`
+- `/app/storage/oauth-public.key`: OAuth public key for the private key above. Similarly can be an environment variable `PASSPORT_PUBLIC_KEY`
 
 Note that as the actual process is run as non-root user, the files must be world-readable.
 
 ## Services
 
-The image built serves multiple purposes, each can be run by passing the parameter when starting docker (or as command if using orchestration tools like docker-compose).
+The image built serves multiple purposes, each can be run by passing the parameter when starting docker (or as command if using orchestration tools like docker compose).
 
 There are three main commands:
 
-- php: starts php-fpm on port 9000
-- assets: starts nginx on port 8000. Used to serve statis assets
+- octane: starts octane on port 8000
+- assets: starts nginx on port 8080. Used to serve static assets
 - artisan: starts artisan command. This should be followed by correct options
 
-### php-fpm
+### octane
 
-Command: `php`
+Command: `octane`
 
-Connect to it at port 9000 through a reverse proxy like `nginx`. Root directory for it is `/app/public`.
-
-Technically the proxy should only be accessing `/index.php` as there's no other public accessible php scripts.
-Use something like `SCRIPT_FILENAME /app/public/index.php` when using nginx.
-
-php (or more accurately, php-fpm) config can be overridden by mounting the file to `/app/docker/deployment/php-fpm.conf`. See the included default file for reference. User/group settings aren't actually used as it's already run using non-root user but it needs a valid username.
+Serves PHP over HTTP. Connect to it at port 8000 through a reverse proxy like `nginx`.
 
 ### static assets
 
 Command: `assets`
 
-This serves static files using nginx at port 8000. Similar to php-fpm, nginx config file can be overridden through `/app/docker/deployment/nginx-assets.conf`.
+This serves static files using nginx at port 8080. The nginx config file is located at `/app/docker/deployment/nginx-assets.conf` and can be overridden by mounting.
 
 ### job runner
 

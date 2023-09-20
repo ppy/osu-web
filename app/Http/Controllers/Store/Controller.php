@@ -11,19 +11,8 @@ use Auth;
 
 abstract class Controller extends BaseController
 {
-    protected $pendingCheckout;
-
     public function __construct()
     {
-        $this->middleware(function ($request, $next) {
-            if (Auth::check()) {
-                $pendingCheckouts = Order::where('user_id', Auth::user()->getKey())->processing();
-                view()->share('pendingCheckout', $pendingCheckouts->first());
-            }
-
-            return $next($request);
-        });
-
         parent::__construct();
     }
 

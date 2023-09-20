@@ -15,12 +15,24 @@ return [
     'top' => 'Найлепшае',
     'username' => 'Імя карыстальніка',
 
+    'artist_tracks' => [
+        'album' => 'Альбом',
+        'artist' => 'Артыст',
+        'bpm' => 'BPM',
+        'genre' => 'Жанр',
+        'length' => 'Даўжыня',
+        'relevance' => 'Актуальнасць',
+        'title' => 'Назва',
+        'update' => 'Дата абнаўлення',
+    ],
+
     'forum_posts' => [
         'created' => 'Час публікацыі',
         'relevance' => 'Рэлевантнасць',
     ],
 
     'forum_topics' => [
+        'created' => 'Дата ўтварэння',
         'feature_votes' => 'Зорны прыярытэт',
         'new' => 'Апошні адказ',
     ],

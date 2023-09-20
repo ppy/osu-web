@@ -31,6 +31,12 @@ return [
         'progress' => [
             '_' => '',
         ],
+
+        'requirement' => [
+            'playlist_beatmapsets' => [
+                'incomplete_play' => '',
+            ],
+        ],
     ],
     'entry' => [
         '_' => 'vstup',
@@ -44,6 +50,7 @@ return [
             'beatmap' => 'Iba .osu súbory su akceptované pre túto súťaž.',
             'music' => 'Iba .mp3 súbory sú akceptované pre túto súťaž.',
         ],
+        'wrong_dimensions' => '',
         'too_big' => 'Možné vstupy pre túto súťaž sú :limit-krát.',
     ],
     'beatmaps' => [

@@ -22,7 +22,7 @@
         {!! json_encode($postJson) !!}
     </script>
 
-    <script id="json-comments-news_post-{{ $post->getKey() }}" type="application/json">
+    <script id="json-comments" type="application/json">
         {!! json_encode($commentBundle->toArray()) !!}
     </script>
 
@@ -32,5 +32,5 @@
 
     <div class="js-news-sidebar-record"></div>
 
-    @include('layout._react_js', ['src' => 'js/react/news-show.js'])
+    @include('layout._react_js', ['src' => 'js/news-show.js'])
 @endsection

@@ -66,7 +66,6 @@ class RouteConvert extends Command
     protected function write()
     {
         $written = false;
-        $this->routeScopesHelper->fillMissingMiddlewares();
 
         if ($filename = $this->options['to-csv']) {
             $this->routeScopesHelper->toCsv($filename);
@@ -79,7 +78,7 @@ class RouteConvert extends Command
         }
 
         if (!$written) {
-            $this->line(json_encode($this->routeScopesHelper->toArray(), JSON_PRETTY_PRINT));
+            $this->line(json_encode($this->routeScopesHelper->toArray(), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
         }
     }
 }

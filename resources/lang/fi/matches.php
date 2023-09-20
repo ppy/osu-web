@@ -6,13 +6,13 @@
 return [
     'match' => [
         'beatmap-deleted' => 'poistettu beatmappi',
-        'difference' => ':difference pisteen erotuksella',
         'failed' => 'HÄVISI',
         'header' => 'Moninpelit',
         'in-progress' => '(peli meneillään)',
         'in_progress_spinner_label' => 'peli meneillään',
         'loading-events' => 'Ladataan tapahtumia...',
         'winner' => ':team voitti',
+        'winner_by' => '',
 
         'events' => [
             'player-left' => ':user poistui pelistä',

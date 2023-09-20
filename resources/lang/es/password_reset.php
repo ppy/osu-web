@@ -6,13 +6,15 @@
 return [
     'button' => [
         'cancel' => 'Cancelar',
-        'resend' => 'Reenviar verificación por correo electrónico',
+        'resend' => 'Reenviar verificación por correo',
         'set' => 'Establecer contraseña',
         'start' => 'Empezar',
     ],
 
     'error' => [
         'contact_support' => 'Contacta al soporte técnico para recuperar tu contraseña.',
+        'expired' => 'El código de verificación ha expirado.',
+        'invalid' => 'Error inesperado en el código de verificación.',
         'is_privileged' => 'Por favor, póngase en contacto con un administrador de alto nivel para recuperar la cuenta.',
         'missing_key' => 'Requerido.',
         'too_many_tries' => 'Demasiados intentos fallidos.',
@@ -21,7 +23,7 @@ return [
     ],
 
     'notice' => [
-        'sent' => 'Revisa tu correo electrónico por tu código de verificación.',
+        'sent' => 'Revise su correo para obtener el código de verificación.',
         'saved' => '¡Nueva contraseña guardada!',
     ],
 
@@ -33,7 +35,7 @@ return [
     ],
 
     'starting' => [
-        'username' => 'Ingresa correo electrónico o nombre de usuario',
+        'username' => 'Ingrese correo o nombre de usuario',
 
         'support' => [
             '_' => '¿Necesita asistencia? Contáctenos a través de nuestro :button.',

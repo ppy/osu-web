@@ -15,10 +15,19 @@ return [
         ],
 
         'email' => [
-            'current' => 'current email',
             'new' => 'new email',
             'new_confirmation' => 'email confirmation',
             'title' => 'Email',
+            'locked' => [
+                '_' => 'Please contact the :accounts if you need your email updated.',
+                'accounts' => 'account support team',
+            ],
+        ],
+
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'Legacy API',
         ],
 
         'password' => [
@@ -29,7 +38,13 @@ return [
         ],
 
         'profile' => [
+            'country' => 'country',
             'title' => 'Profile',
+
+            'country_change' => [
+                '_' => "It looks like your account country doesn't match your country of residence. :update_link.",
+                'update_link' => 'Update to :country',
+            ],
 
             'user' => [
                 'user_discord' => 'discord',
@@ -48,8 +63,8 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_qualified_problem' => 'receive notifications for new problem on qualified beatmaps of following modes',
-        'beatmapset_disqualify' => 'receive notifications for when beatmaps of following modes are disqualified',
+        'beatmapset_discussion_qualified_problem' => 'receive notifications for new problems on qualified beatmaps of the following modes',
+        'beatmapset_disqualify' => 'receive notifications for when beatmaps of the following modes are disqualified',
         'comment_reply' => 'receive notifications for replies to your comments',
         'title' => 'Notifications',
         'topic_auto_subscribe' => 'automatically enable notifications on new forum topics that you create',

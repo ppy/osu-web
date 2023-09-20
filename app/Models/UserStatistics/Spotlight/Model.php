@@ -34,6 +34,6 @@ abstract class Model extends BaseModel implements HasDynamicTable
             $this->a_rank_count = 0;
         }
 
-        return parent::__construct($attributes, false);
+        parent::__construct($attributes, false);
     }
 }

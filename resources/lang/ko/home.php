@@ -23,7 +23,7 @@ return [
         'button' => '검색',
         'empty_result' => '아무것도 찾지 못했습니다!',
         'keyword_required' => '검색 키워드가 필요합니다',
-        'placeholder' => '검색어를 입력해주세요',
+        'placeholder' => '검색어를 입력하세요',
         'title' => '검색',
 
         'beatmapset' => [
@@ -43,6 +43,7 @@ return [
             'label' => [
                 'forum' => '포럼에서 검색하기',
                 'forum_children' => '서브포럼을 포함하여 검색',
+                'include_deleted' => '삭제된 글 포함',
                 'topic_id' => '주제 #',
                 'username' => '글쓴이',
             ],
@@ -57,7 +58,7 @@ return [
         ],
 
         'user' => [
-            'login_required' => '사용자를 검색하기 위해서 로그인',
+            'login_required' => '유저를 검색하기 위해서 로그인',
             'more' => ':count명의 플레이어 검색 결과 더 보기',
             'more_simple' => '플레이어 검색 결과 더 보기',
             'more_hidden' => '플레이어 검색은 최대 :max명 까지 가능합니다. 다른 검색어로 시도해보세요.',
@@ -72,8 +73,22 @@ return [
     ],
 
     'download' => [
-        'tagline' => "시작해봐요!",
         'action' => 'osu! 다운로드',
+        'action_lazer' => 'osu!(lazer) 다운로드',
+        'action_lazer_description' => 'osu!의 다음 메이저 업데이트',
+        'action_lazer_info' => '이 페이지에서 자세한 정보를 확인해보세요.',
+        'action_lazer_title' => 'osu!(lazer) 체험하기',
+        'action_title' => 'osu! 다운로드',
+        'for_os' => ':os 전용',
+        'lazer_note' => '참고: 점수가 초기화될 수 있습니다',
+        'macos-fallback' => 'macOS 유저',
+        'mirror' => '미러',
+        'or' => '혹은',
+        'os_version_or_later' => ':os_version 이상',
+        'other_os' => '다른 플랫폼',
+        'quick_start_guide' => '빠른 시작 안내',
+        'tagline' => "시작해봐요!",
+        'video-guide' => '영상 가이드',
 
         'help' => [
             '_' => '게임을 시작하거나 계정을 등록하는데 문제가 있다면, :help_forum_link 하거나 :support_button 해보세요.',
@@ -86,8 +101,6 @@ return [
             'macos' => 'macOS 용',
             'linux' => 'Linux 용',
         ],
-        'mirror' => '미러',
-        'macos-fallback' => 'macOS 사용자',
         'steps' => [
             'register' => [
                 'title' => '계정 만들기',
@@ -105,7 +118,6 @@ return [
                 ],
             ],
         ],
-        'video-guide' => '영상 가이드',
     ],
 
     'user' => [
@@ -122,25 +134,14 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => '새로 Ranked된 비트맵',
+            'new' => '새로 랭크된 비트맵',
             'popular' => '인기 비트맵',
-            'by_user' => ':user 님이 만듦',
+            'by_user' => ':user님이 만듦',
         ],
         'buttons' => [
             'download' => 'osu! 다운로드',
             'support' => 'osu! 지원하기',
             'store' => 'osu!store',
         ],
-    ],
-
-    'support-osu' => [
-        'title' => '와!',
-        'subtitle' => '즐거운 시간을 보내고 계신 것 같네요! :D',
-        'body' => [
-            'part-1' => 'osu!가 아무런 광고 수익 없이, 사용자들의 지원으로만 개발 / 운영된다는 사실, 알고 계신가요?',
-            'part-2' => '그리고 또, osu!를 지원하면 게임 내 자동 다운로드 같은 다양한 유용한 기능들을 이용할 수 있다는 점도 알고 계세요?',
-        ],
-        'find-out-more' => '더 알아보려면 여기를 눌러주세요!',
-        'download-starting' => "아, 걱정은 하지마세요 - 요청하신 다운로드는 이미 시작됐으니까요 ;)",
     ],
 ];

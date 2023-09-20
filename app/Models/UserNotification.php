@@ -22,7 +22,7 @@ class UserNotification extends Model
         'is_read' => 'boolean',
     ];
 
-    public static function batchDestroy(User $user, BatchIdentities $batchIdentities)
+    public static function batchDestroy(int $userId, BatchIdentities $batchIdentities)
     {
         $notificationIds = $batchIdentities->getNotificationIds();
         $identities = $batchIdentities->getIdentities();
@@ -32,9 +32,9 @@ class UserNotification extends Model
         }
 
         $now = now();
+        $userNotificationQuery = static::where(['user_id' => $userId]);
         // obtain and filter valid user notification ids
-        $ids = $user
-            ->userNotifications()
+        $ids = $userNotificationQuery->clone()
             ->whereIn('notification_id', $notificationIds)
             ->where('created_at', '<=', $now)
             ->pluck('id')
@@ -47,14 +47,12 @@ class UserNotification extends Model
         $readCount = 0;
 
         foreach (array_chunk($ids, 1000) as $chunkedIds) {
-            $unreadCountQuery = $user
-                ->userNotifications()
+            $unreadCountQuery = $userNotificationQuery->clone()
                 ->hasPushDelivery()
                 ->where('is_read', false)
                 ->whereIn('id', $chunkedIds);
             $unreadCountInitial = $unreadCountQuery->count();
-            $user
-                ->userNotifications()
+            $userNotificationQuery->clone()
                 ->whereIn('id', $chunkedIds)
                 ->delete();
 
@@ -62,11 +60,11 @@ class UserNotification extends Model
             $readCount += $unreadCountInitial - $unreadCountCurrent;
         }
 
-        event(new NotificationDeleteEvent($user->getKey(), [
+        (new NotificationDeleteEvent($userId, [
             'notifications' => $identities,
             'read_count' => $readCount,
             'timestamp' => $now,
-        ]));
+        ]))->broadcast();
     }
 
     public static function batchMarkAsRead(User $user, BatchIdentities $batchIdentities)
@@ -102,7 +100,7 @@ class UserNotification extends Model
         }
 
         if ($count > 0) {
-            event(new NotificationReadEvent($user->getKey(), ['notifications' => $identities, 'read_count' => $count, 'timestamp' => $now]));
+            (new NotificationReadEvent($user->getKey(), ['notifications' => $identities, 'read_count' => $count, 'timestamp' => $now]))->broadcast();
         }
     }
 

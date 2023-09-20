@@ -3,12 +3,19 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @php
+    use App\Libraries\User\UserSignatures;
+
+    $currentUser = Auth::user();
+    $currentUserId = $currentUser?->getKey();
+    $userSignatures = new UserSignatures();
+
     $postPosition = $firstPostPosition;
 @endphp
 
 @foreach($posts as $post)
     @php
-        $withDeleteLink = priv_check('ForumPostDelete', $post)->can();
+        $deletePriv = priv_check('ForumPostDelete', $post);
+        $withDeleteLink = $deletePriv->can() || $deletePriv->rawMessage() === 'forum.post.delete.only_last_post';
 
         if ($post->trashed() && $postPosition > 0 && !$loop->first) {
             $postPosition--;
@@ -21,7 +28,10 @@
         $isBeatmapsetPost = $postPosition === 1 && $post->isBeatmapsetPost();
     @endphp
     @include('forum.topics._post', [
+        'currentUser' => $currentUser,
+        'currentUserId' => $currentUserId,
         'post' => $post,
+        'userSignatures' => $userSignatures,
         'options' => [
             'postPosition' => $postPosition,
             'signature' => $topic->forum->enable_sigs,

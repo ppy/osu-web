@@ -40,9 +40,13 @@ use Carbon\Carbon;
  */
 class Product extends Model
 {
+    const REDIRECT_PLACEHOLDER = 'redirect';
+    const SUPPORTER_TAG_NAME = 'supporter-tag';
+
     protected $primaryKey = 'product_id';
 
     protected $casts = [
+        'available_until' => 'datetime',
         'cost' => 'float',
         'base_shipping' => 'float',
         'next_shipping' => 'float',
@@ -50,8 +54,6 @@ class Product extends Model
         'enabled' => 'boolean',
         'allow_multiple' => 'boolean',
     ];
-
-    protected $dates = ['available_until'];
 
     private $images;
     private $types;
@@ -69,6 +71,11 @@ class Product extends Model
     public function notificationRequests()
     {
         return $this->hasMany(NotificationRequest::class);
+    }
+
+    public function isRedirectPlaceholder()
+    {
+        return $this->custom_class === static::REDIRECT_PLACEHOLDER;
     }
 
     public function inStock($quantity = 1, $includeVariations = false)
@@ -223,7 +230,7 @@ class Product extends Model
             return;
         }
 
-        $this->increment('stock', $quantity);
+        $this->incrementInstance('stock', $quantity);
     }
 
     public function reserve($quantity)
@@ -232,7 +239,7 @@ class Product extends Model
             return;
         }
 
-        $this->decrement('stock', $quantity);
+        $this->decrementInstance('stock', $quantity);
 
         // operating under the assumtion that the caller will prevent concurrent updates.
         if ($this->stock < 0) {
@@ -267,5 +274,12 @@ class Product extends Model
         }
 
         return $this->types;
+    }
+
+    public function url(): string
+    {
+        return $this->isRedirectPlaceholder()
+            ? $this->description
+            : route('store.products.show', $this);
     }
 }

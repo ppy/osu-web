@@ -13,6 +13,16 @@ return [
     'see_channel' => '',
     'verifying' => '',
 
+    'action_type' => [
+        '_' => '',
+        'beatmapset' => '',
+        'build' => '',
+        'channel' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'user' => '',
+    ],
+
     'filters' => [
         '_' => '',
         'user' => '',
@@ -86,8 +96,19 @@ return [
         'channel' => [
             '_' => '',
 
+            'announcement' => [
+                '_' => '',
+
+                'announce' => [
+                    'channel_announcement' => '',
+                    'channel_announcement_compact' => '',
+                    'channel_announcement_group' => '',
+                ],
+            ],
+
             'channel' => [
                 '_' => '',
+
                 'pm' => [
                     'channel_message' => '',
                     'channel_message_compact' => '',
@@ -132,15 +153,6 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => 'Προσωπικά Μηνύματα του Παλαιότερου Forum',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited αδιάβαστο μήνυμα.|:count_delimited αδιάβαστα μηνύματα.',
-            ],
-        ],
-
         'user' => [
             'user_beatmapset_new' => [
                 '_' => '',
@@ -148,6 +160,9 @@ return [
                 'user_beatmapset_new' => '',
                 'user_beatmapset_new_compact' => '',
                 'user_beatmapset_new_group' => '',
+
+                'user_beatmapset_revive' => '',
+                'user_beatmapset_revive_compact' => '',
             ],
         ],
 
@@ -195,6 +210,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => '',
+            ],
+
             'channel' => [
                 'pm' => '',
             ],
@@ -226,6 +245,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => '',
+                'user_beatmapset_revive' => '',
             ],
         ],
     ],

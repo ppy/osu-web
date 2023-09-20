@@ -33,10 +33,14 @@ return [
 
     'blocks' => [
         'banner_text' => 'You have blocked this user.',
+        'comment_text' => 'This comment is hidden.',
         'blocked_count' => 'blocked users (:count)',
         'hide_profile' => 'Hide profile',
+        'hide_comment' => 'hide',
+        'forum_post_text' => 'This post is hidden.',
         'not_blocked' => 'That user is not blocked.',
         'show_profile' => 'Show profile',
+        'show_comment' => 'show',
         'too_many' => 'Block limit reached.',
         'button' => [
             'block' => 'Block',
@@ -45,8 +49,25 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => 'Gift supporter tag',
         'loading' => 'Loading...',
         'send_message' => 'Send message',
+    ],
+
+    'create' => [
+        'form' => [
+            'password' => 'password',
+            'password_confirmation' => 'password confirmation',
+            'submit' => 'create account',
+            'user_email' => 'email',
+            'user_email_confirmation' => 'email confirmation',
+            'username' => 'username',
+
+            'tos_notice' => [
+                '_' => 'by creating account you agree to the :link',
+                'link' => 'terms of service',
+            ],
+        ],
     ],
 
     'disabled' => [
@@ -89,7 +110,7 @@ return [
         'forgot' => 'Forgotten your password?',
         'info' => 'Please sign in to continue',
         'invalid_captcha' => 'Too many failed login attempts, please complete the captcha and try again. (Refresh page if captcha is not visible)',
-        'locked_ip' => 'your IP address is locked. Please wait a few minutes.',
+        'locked_ip' => 'Your IP address is locked. Please wait a few minutes.',
         'password' => 'Password',
         'register' => "Don't have an osu! account? Make a new one",
         'remember' => 'Remember this computer',
@@ -115,7 +136,7 @@ return [
     'logout_confirm' => 'Are you sure you want to sign out? :(',
     'report' => [
         'button_text' => 'Report',
-        'comments' => 'Additional Comments',
+        'comments' => 'Comments',
         'placeholder' => 'Please provide any information you believe could be useful.',
         'reason' => 'Reason',
         'thanks' => 'Thanks for your report!',
@@ -138,7 +159,8 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'Your account has been restricted!',
-        'message' => 'While restricted, you will be unable to interact with other players and your scores will only be visible to you. This is usually the result of an automated process and will usually be lifted within 24 hours. If you wish to appeal your restriction, please <a href="mailto:accounts@ppy.sh">contact support</a>.',
+        'message' => 'While restricted, you will be unable to interact with other players and your scores will only be visible to you. This is usually the result of an automated process and will usually be lifted within 24 hours. :link',
+        'message_link' => 'Check this page to learn more.',
     ],
     'show' => [
         'age' => ':age years old',
@@ -158,6 +180,10 @@ return [
         'comments_count' => [
             '_' => 'Posted :link',
             'count' => ':count_delimited comment|:count_delimited comments',
+        ],
+        'cover' => [
+            'to_0' => 'Hide cover',
+            'to_1' => 'Show cover',
         ],
         'edit' => [
             'cover' => [
@@ -204,8 +230,14 @@ return [
                 'graveyard' => [
                     'title' => 'Graveyarded Beatmaps',
                 ],
+                'guest' => [
+                    'title' => 'Guest Participation Beatmaps',
+                ],
                 'loved' => [
                     'title' => 'Loved Beatmaps',
+                ],
+                'nominated' => [
+                    'title' => 'Nominated Ranked Beatmaps',
                 ],
                 'pending' => [
                     'title' => 'Pending Beatmaps',
@@ -301,8 +333,8 @@ return [
                 'recent' => 'Latest',
                 'title' => 'Medals',
             ],
-            'multiplayer' => [
-                'title' => 'Multiplayer Games',
+            'playlists' => [
+                'title' => 'Playlist Games',
             ],
             'posts' => [
                 'title' => 'Posts',
@@ -311,6 +343,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'Recent',
+            ],
+            'realtime' => [
+                'title' => 'Multiplayer Games',
             ],
             'top_ranks' => [
                 'download_replay' => 'Download Replay',
@@ -325,6 +360,15 @@ return [
                 'first' => [
                     'title' => 'First Place Ranks',
                 ],
+                'pin' => [
+                    'to_0' => 'Unpin',
+                    'to_0_done' => 'Unpinned score',
+                    'to_1' => 'Pin',
+                    'to_1_done' => 'Pinned score',
+                ],
+                'pinned' => [
+                    'title' => 'Pinned Scores',
+                ],
             ],
             'votes' => [
                 'given' => 'Votes Given (last 3 months)',
@@ -335,21 +379,22 @@ return [
             ],
             'account_standing' => [
                 'title' => 'Account Standing',
-                'bad_standing' => "<strong>:username's</strong> account is not in a good standing :(",
-                'remaining_silence' => '<strong>:username</strong> will be able to speak again :duration.',
+                'bad_standing' => ":username's account is not in a good standing :(",
+                'remaining_silence' => ':username will be able to speak again :duration.',
 
                 'recent_infringements' => [
                     'title' => 'Recent Infringements',
                     'date' => 'date',
                     'action' => 'action',
                     'length' => 'length',
-                    'length_permanent' => 'Permanent',
+                    'length_indefinite' => 'Indefinite',
                     'description' => 'description',
                     'actor' => 'by :username',
 
                     'actions' => [
                         'restriction' => 'Ban',
                         'silence' => 'Silence',
+                        'tournament_ban' => 'Tournament ban',
                         'note' => 'Note',
                     ],
                 ],
@@ -372,7 +417,7 @@ return [
             'title' => 'User not found! ;_;',
         ],
         'page' => [
-            'button' => 'Edit profile page',
+            'button' => 'edit profile page',
             'description' => '<strong>me!</strong> is a personal customisable area in your profile page.',
             'edit_big' => 'Edit me!',
             'placeholder' => 'Type page content here',
@@ -391,11 +436,12 @@ return [
             'country_simple' => 'Country Ranking',
             'global' => 'Global rank for :mode',
             'global_simple' => 'Global Ranking',
+            'highest' => 'Highest rank: :rank on :date',
         ],
         'stats' => [
             'hit_accuracy' => 'Hit Accuracy',
             'level' => 'Level :level',
-            'level_progress' => 'Progress to next level',
+            'level_progress' => 'progress to next level',
             'maximum_combo' => 'Maximum Combo',
             'medals' => 'Medals',
             'play_count' => 'Play Count',
@@ -424,6 +470,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
+        'from_client' => 'please register via the game client instead!',
+        'from_web' => 'please complete registration using the osu! website',
         'saved' => 'User created',
     ],
     'verify' => [

@@ -33,10 +33,14 @@ return [
 
     'blocks' => [
         'banner_text' => 'Užívateľ bol zablokovaný.',
+        'comment_text' => 'Tento komentár je schovaný.',
         'blocked_count' => 'zablokovaný užívatelia (:count)',
         'hide_profile' => 'skryť profil',
+        'hide_comment' => 'schovať',
+        'forum_post_text' => 'Tento príspevok je schovaný.',
         'not_blocked' => 'Tento užívateľ nie je zablokovaný.',
         'show_profile' => 'zobraziť profil',
+        'show_comment' => 'zobraziť',
         'too_many' => 'Bol dosiahnutý blokovací limit.',
         'button' => [
             'block' => 'blokovať',
@@ -45,12 +49,29 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => '',
         'loading' => 'Načitávanie...',
         'send_message' => 'poslať správu',
     ],
 
+    'create' => [
+        'form' => [
+            'password' => 'heslo',
+            'password_confirmation' => 'potvrdiť heslo',
+            'submit' => 'vytvoriť účet',
+            'user_email' => 'email',
+            'user_email_confirmation' => 'potvrdiť email',
+            'username' => 'používateľské meno',
+
+            'tos_notice' => [
+                '_' => 'vytvorením účtu súhlasíte s :link',
+                'link' => 'podmienky používania',
+            ],
+        ],
+    ],
+
     'disabled' => [
-        'title' => '',
+        'title' => 'Ups! Vyzerá to tak, že tvoj účet bol zakázaný.',
         'warning' => "",
 
         'if_mistake' => [
@@ -139,6 +160,7 @@ return [
     'restricted_banner' => [
         'title' => 'Tvoj účet bol zablokovaný!',
         'message' => 'Zatial čo si v zablokovanom režime, nebudeš môcť komunikovať s ostatnými hráčmi a tvoje skóre budu viditeľné iba pre teba. Toto je obvykle výsledkom automatického procesu, ktorý by sa mal vyriešit do 24 hodín. Pokiaľ si praješ odvolať tvoj blokovaný režim, prosím <a href="mailto:accounts@ppy.sh">kontaktuj podporu</a>.',
+        'message_link' => '',
     ],
     'show' => [
         'age' => ':age rokov',
@@ -158,6 +180,10 @@ return [
         'comments_count' => [
             '_' => '',
             'count' => '',
+        ],
+        'cover' => [
+            'to_0' => '',
+            'to_1' => '',
         ],
         'edit' => [
             'cover' => [
@@ -204,8 +230,14 @@ return [
                 'graveyard' => [
                     'title' => 'Pochované Beatmapy',
                 ],
+                'guest' => [
+                    'title' => '',
+                ],
                 'loved' => [
                     'title' => 'Obľúbené Beatmapy',
+                ],
+                'nominated' => [
+                    'title' => '',
                 ],
                 'pending' => [
                     'title' => 'Čakajúce Beatmapy',
@@ -301,7 +333,7 @@ return [
                 'recent' => 'Najnovšie',
                 'title' => 'Medaile',
             ],
-            'multiplayer' => [
+            'playlists' => [
                 'title' => '',
             ],
             'posts' => [
@@ -311,6 +343,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'Nedávne',
+            ],
+            'realtime' => [
+                'title' => '',
             ],
             'top_ranks' => [
                 'download_replay' => 'Stiahnuť Záznam',
@@ -324,6 +359,15 @@ return [
                 ],
                 'first' => [
                     'title' => 'Umiestnenie na prvom mieste',
+                ],
+                'pin' => [
+                    'to_0' => '',
+                    'to_0_done' => '',
+                    'to_1' => '',
+                    'to_1_done' => '',
+                ],
+                'pinned' => [
+                    'title' => '',
                 ],
             ],
             'votes' => [
@@ -343,13 +387,14 @@ return [
                     'date' => 'dátum',
                     'action' => 'trest',
                     'length' => 'dĺžka',
-                    'length_permanent' => 'Permanentné',
+                    'length_indefinite' => '',
                     'description' => 'popis',
                     'actor' => 'od :username',
 
                     'actions' => [
                         'restriction' => 'Ban',
                         'silence' => 'Stlmenie',
+                        'tournament_ban' => '',
                         'note' => 'Poznámka',
                     ],
                 ],
@@ -391,6 +436,7 @@ return [
             'country_simple' => 'Umiestnenie v krajine',
             'global' => 'Globálna pozícia pre :mode',
             'global_simple' => 'Celkové umiestnenie',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Presnosť Zásahov',
@@ -424,6 +470,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
+        'from_client' => '',
+        'from_web' => '',
         'saved' => 'Vytvorený používateľom',
     ],
     'verify' => [

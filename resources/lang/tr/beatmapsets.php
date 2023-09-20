@@ -11,8 +11,16 @@ return [
         'rule_violation' => 'Bu beatmap üzerinde yer alan bazı varlıklar osu!\'da kullanıma uygun olmadığına karar verildikten sonra kaldırıldı.',
     ],
 
+    'cover' => [
+        'deleted' => 'Silinmiş beatmap',
+    ],
+
     'download' => [
         'limit_exceeded' => 'Yavaş ol, daha çok oyna.',
+    ],
+
+    'featured_artist_badge' => [
+        'label' => 'Featured artist',
     ],
 
     'index' => [
@@ -34,7 +42,7 @@ return [
     'nominate' => [
         'hybrid_requires_modes' => 'Karma bir beatmap seti, adaylık için en az bir oyun modu seçmenizi gerektirir.',
         'incorrect_mode' => ':mode modunu aday göstermek için izniniz yok.',
-        'full_bn_required' => 'Bu niteliklendirme aday gösterimini gerçekleştirebilmeniz için tam aday gösterici olmanız gerekmektedir.',
+        'full_bn_required' => 'Bu niteliklendirme aday gösterimini gerçekleştirebilmeniz için asil aday gösterici olmanız gerekmektedir.',
         'too_many' => 'Adaylık şartı zaten yerine getirildi.',
 
         'dialog' => [
@@ -52,12 +60,22 @@ return [
     'show' => [
         'discussion' => 'Tartışma',
 
+        'admin' => [
+            'full_size_cover' => 'Kapak resmini tam boyutlu görüntüle',
+        ],
+
+        'deleted_banner' => [
+            'title' => 'Bu beatmap silindi.',
+            'message' => '(bunu sadece moderatörler görebilir)',
+        ],
+
         'details' => [
             'by_artist' => ':artist tarafından',
             'favourite' => 'Beatmap setini favorilere ekle',
             'favourite_login' => 'Beatmapi favorilere eklemek için giriş yap',
             'logged-out' => 'Herhangi bir beatmapi indirmeden önce giriş yapmalısınız!',
             'mapped_by' => ':mapper tarafından yapıldı',
+            'mapped_by_guest' => ':mapper tarafından konuk zorluk',
             'unfavourite' => 'Beatmap setini favorilerden çıkar',
             'updated_timeago' => 'son güncelleme: :timeago',
 
@@ -116,7 +134,9 @@ return [
             'genre' => 'Tür',
             'language' => 'Dil',
             'no_scores' => 'Veriler hala hesaplanıyor...',
+            'nominators' => 'Nominator\'ler',
             'nsfw' => 'Müstehcen içerik',
+            'offset' => 'Çevrimiçi ofset',
             'points-of-failure' => 'Başarısız Olunan Kısımlar',
             'source' => 'Kaynak',
             'storyboard' => 'Bu beatmap storyboard içeriyor',
@@ -139,6 +159,7 @@ return [
         'scoreboard' => [
             'achieved' => ':when oynandı',
             'country' => 'Ülke Sıralaması',
+            'error' => 'Sıralama yüklenemedi',
             'friend' => 'Arkadaş Sıralaması',
             'global' => 'Dünya Sıralaması',
             'supporter-link' => 'Aldığınız tüm süslü özellikleri görmek için buraya <a href=":link">tıklayın</a>!',
@@ -146,15 +167,16 @@ return [
             'title' => 'Skor tahtası',
 
             'headers' => [
-                'accuracy' => 'İSABETLİLİK',
+                'accuracy' => 'İsabetlilik',
                 'combo' => 'Maks Kombo',
                 'miss' => 'Iska',
                 'mods' => 'Modlar',
+                'pin' => 'Sabitle',
                 'player' => 'Oyuncu',
                 'pp' => '',
                 'rank' => 'Sıralama',
-                'score_total' => 'Toplam Skor',
                 'score' => 'Skor',
+                'score_total' => 'Toplam Skor',
                 'time' => 'Zaman',
             ],
 
@@ -169,6 +191,10 @@ return [
                 'first' => 'Lider',
                 'own' => 'En İyi Skorun',
             ],
+            'supporter_link' => [
+                '_' => 'Aldığınız tüm süslü özellikleri görmek için :here tıklayın!',
+                'here' => 'burada',
+            ],
         ],
 
         'stats' => [
@@ -182,6 +208,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Daire Sayısı',
             'count_sliders' => 'Slider Sayısı',
+            'offset' => 'Çevrimiçi ofset: :offset',
             'user-rating' => 'Kullanıcı Reytingi',
             'rating-spread' => 'Reyting Dağılımı',
             'nominations' => 'Adaylıklar',
@@ -197,5 +224,9 @@ return [
             'pending' => 'Beklemede',
             'graveyard' => 'Mezarlıkta',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => 'Spotlight',
     ],
 ];

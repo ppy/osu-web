@@ -31,9 +31,15 @@ return [
         'progress' => [
             '_' => ':used / :max votos usados',
         ],
+
+        'requirement' => [
+            'playlist_beatmapsets' => [
+                'incomplete_play' => 'Debe jugar todos los mapas en las listas de juego especificadas antes de votar',
+            ],
+        ],
     ],
     'entry' => [
-        '_' => 'participación',
+        '_' => 'entrada',
         'login_required' => 'Inicie sesión para participar en el concurso.',
         'silenced_or_restricted' => 'No puede participar en los concursos mientras esté restringido o silenciado.',
         'preparation' => 'Estamos preparando este concurso actualmente. Por favor, ¡Espera pacientemente!',
@@ -44,7 +50,8 @@ return [
             'beatmap' => 'Solo se aceptan archivos .osu en este concurso.',
             'music' => 'Solo se aceptan archivos .mp3 en este concurso.',
         ],
-        'too_big' => 'Tu archivo no puede exceder el siguiente tamaño: :limit.',
+        'wrong_dimensions' => 'Las entradas para este concurso deben ser :widthx:height',
+        'too_big' => 'Las entradas para este concurso solo pueden ser de hasta :limit.',
     ],
     'beatmaps' => [
         'download' => 'Descargar entrada',
@@ -64,7 +71,7 @@ return [
         ],
     ],
     'states' => [
-        'entry' => 'Registros Abiertos',
+        'entry' => 'Entrada abierta',
         'voting' => 'Votación Iniciada',
         'results' => 'Resultados',
     ],

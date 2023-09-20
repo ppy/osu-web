@@ -7,12 +7,6 @@ return [
     'admin' => [
         '_' => 'admin',
     ],
-    'admin_forum' => [
-        '_' => 'admin',
-    ],
-    'admin_store' => [
-        '_' => 'admin',
-    ],
     'error' => [
         'error' => [
             '400' => 'ogiltig begäran',
@@ -29,13 +23,12 @@ return [
     ],
     'forum' => [
         '_' => 'forum',
-        'topic_watches_controller' => [
-            'index' => 'kontrollpanel',
+        'topic_logs_controller' => [
+            'index' => 'ämneslogg',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => 'kontrollpanel',
             'verify_link' => 'kontobekräftelse',
         ],
         'artists_controller' => [
@@ -56,12 +49,9 @@ return [
         'beatmapset_events_controller' => [
             '_' => 'beatmaphistorik',
         ],
-        'beatmapset_watches_controller' => [
-            'index' => 'kontrollpanel',
-        ],
         'beatmapsets_controller' => [
             'discussion' => 'beatmapdiskussioner',
-            'index' => 'beatmap listningar',
+            'index' => 'beatmaplistning',
             'show' => 'beatmapinfo',
         ],
         'changelog_controller' => [
@@ -76,12 +66,6 @@ return [
         'contests_controller' => [
             '_' => 'tävlingar',
         ],
-        'follows_controller' => [
-            'index' => 'kontrollpanel',
-        ],
-        'friends_controller' => [
-            'index' => 'kontrollpanel',
-        ],
         'groups_controller' => [
             'show' => 'grupper',
         ],
@@ -89,8 +73,8 @@ return [
             'get_download' => 'ladda ner',
             'index' => 'kontrollpanel',
             'search' => 'sök',
-            'support_the_game' => 'stödja spelet',
-            'testflight' => 'testflyg',
+            'support_the_game' => 'stötta spelet',
+            'testflight' => 'testflight',
         ],
         'legal_controller' => [
             '_' => 'information',
@@ -99,7 +83,7 @@ return [
             '_' => 'direktsändningar',
         ],
         'matches_controller' => [
-            '_' => 'matchningar',
+            '_' => 'matcher',
         ],
         'news_controller' => [
             '_' => 'nyheter',
@@ -116,23 +100,24 @@ return [
         'scores_controller' => [
             '_' => 'prestation',
         ],
-        'store_controller' => [
-            '_' => 'butik',
+        'seasons_controller' => [
+            '_' => 'rankningar',
         ],
         'tournaments_controller' => [
             '_' => 'turneringar',
         ],
         'users_controller' => [
-            '_' => 'spelar information',
+            '_' => 'spelarinformation',
+            'create' => 'skapa konto',
             'disabled' => 'notera',
         ],
         'wiki_controller' => [
             '_' => 'wiki',
         ],
     ],
-    'multiplayer' => [
-        'rooms_controller' => [
-            '_' => 'rankning',
+    'passport' => [
+        'authorization_controller' => [
+            '_' => 'auktorisera app',
         ],
     ],
     'store' => [

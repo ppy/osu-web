@@ -4,14 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'admin' => [
-        'warehouse' => 'Magasin',
-    ],
-
     'cart' => [
         'checkout' => 'Acheter',
-        'info' => ':count_delimited produit dans le panier ($:subtotal)|:count_delimited produits dans le panier ($:subtotal)',
-        'more_goodies' => 'Je souhaite regarder d\'autres goodies avant de passer commande',
+        'info' => ':count_delimited article dans le panier ($:subtotal)|:count_delimited articles dans le panier ($:subtotal)',
+        'more_goodies' => 'Je souhaite chercher d\'autres goodies avant de passer commande',
         'shipping_fees' => 'frais de livraison',
         'title' => 'Panier',
         'total' => 'total',
@@ -24,7 +20,7 @@ return [
         'empty' => [
             'text' => 'Votre panier est vide.',
             'return_link' => [
-                '_' => 'Retourner à :link pour trouver quelques goodies !',
+                '_' => 'Retournez à la page :link pour trouver quelques goodies !',
                 'link_text' => 'articles',
             ],
         ],
@@ -35,6 +31,7 @@ return [
         'cart_problems_edit' => 'Cliquez ici pour l\'éditer.',
         'declined' => 'Le paiement a été annulé.',
         'delayed_shipping' => 'Nous sommes actuellement submergés de commandes ! Vous pouvez tout de même commander, mais attendez-vous à **une à deux semaines de délai supplémentaire** le temps que nous puissions traiter toutes ces commandes.',
+        'hide_from_activity' => 'Masquer tous les tags osu!supporter dans cette commande de mon activité',
         'old_cart' => 'Votre panier semble être obsolète et a donc été actualisé, merci de réessayer.',
         'pay' => 'Payer avec PayPal',
         'title_compact' => 'commander',
@@ -54,15 +51,16 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Si votre paiement est en eCheck, comptez jusqu\'à 10 jours supplémentaires pour le paiement via PayPal !',
+        'hide_from_activity' => 'Les tags osu!supporter dans cette commande ne sont pas affichés dans vos activités récentes.',
         'title_compact' => 'facture',
 
         'status' => [
             'processing' => [
                 'title' => 'Votre paiement n\'a pas encore été confirmé !',
-                'line_1' => 'Si vous avez déjà payé, nous attendons toujours de recevoir une confirmation de votre paiement. Veuillez rafraîchir cette page dans une minute ou deux !',
+                'line_1' => 'Si vous avez déjà payé, il se pourrait que nous attendions toujours de recevoir une confirmation de votre paiement. Veuillez rafraîchir cette page dans une minute ou deux !',
                 'line_2' => [
                     '_' => 'Si vous avez rencontré un problème lors de votre commande, :link',
-                    'link_text' => 'cliquez ici pour reprendre votre commande',
+                    'link_text' => 'cliquez ici pour la reprendre',
                 ],
             ],
         ],
@@ -74,24 +72,29 @@ return [
         'cancel_not_allowed' => 'Cette commande ne peut pas être annulée pour le moment.',
         'invoice' => 'Afficher la facture',
         'no_orders' => 'Aucune commande à voir.',
-        'paid_on' => 'Commande passée le :date',
+        'paid_on' => 'Commande passée :date',
         'resume' => 'Reprendre la commande',
         'shopify_expired' => 'Le lien de commande pour cette commande a expiré.',
 
         'item' => [
+            'quantity' => 'Quantité',
+
             'display_name' => [
                 'supporter_tag' => ':name pour :username (:duration)',
             ],
-            'quantity' => 'Quantité',
+
+            'subtext' => [
+                'supporter_tag' => 'Message : :message',
+            ],
         ],
 
         'not_modifiable_exception' => [
             'cancelled' => 'Vous ne pouvez pas modifier votre commande, puisqu\'elle a été annulée.',
-            'checkout' => 'Vous ne pouvez pas modifier votre commande puisqu\'elle est en préparation.', // checkout and processing should have the same message.
+            'checkout' => 'Vous ne pouvez pas modifier votre commande lorsqu\'elle est en préparation.', // checkout and processing should have the same message.
             'default' => 'La commande n\'est pas modifiable',
             'delivered' => 'Vous ne pouvez pas modifier votre commande puisqu\'elle a été expédiée.',
             'paid' => 'Vous ne pouvez pas modifier votre commande puisqu\'elle a déjà été payée.',
-            'processing' => 'Vous ne pouvez pas modifier votre commande puisqu\'elle est en préparation.',
+            'processing' => 'Vous ne pouvez pas modifier votre commande lorsqu\'elle est en préparation.',
             'shipped' => 'Vous ne pouvez pas modifier votre commande puisqu\'elle a été expédiée.',
         ],
 
@@ -110,7 +113,7 @@ return [
 
         'stock' => [
             'out' => 'Cet article est en rupture de stock pour le moment. Revenez plus tard !',
-            'out_with_alternative' => 'Malheureusement cet article est en rupture de stock. Sélectionnez-en un autre à l\'aide du menu déroulant ou revenez plus tard !',
+            'out_with_alternative' => 'Malheureusement, cet article est en rupture de stock. Sélectionnez-en un autre à l\'aide du menu déroulant ou revenez plus tard !',
         ],
 
         'add_to_cart' => 'Ajouter au panier',
@@ -124,6 +127,8 @@ return [
 
     'supporter_tag' => [
         'gift' => 'offrir à un joueur',
+        'gift_message' => 'ajouter un message optionnel à votre cadeau ! (jusqu\'à :length caractères)',
+
         'require_login' => [
             '_' => 'Vous devez être :link pour obtenir un tag osu!supporter !',
             'link_text' => 'connecté',

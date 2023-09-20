@@ -5,14 +5,14 @@
 
 return [
     'match' => [
-        'beatmap-deleted' => 'видалена карта',
-        'difference' => 'з різницею в :difference очок',
+        'beatmap-deleted' => 'видалена мапа',
         'failed' => 'ПРОГРАШ',
         'header' => 'Багатокористувацька гра',
         'in-progress' => '(гра в процесі)',
         'in_progress_spinner_label' => 'гра в процесі',
         'loading-events' => 'Завантаження подій...',
         'winner' => ':team перемогла,',
+        'winner_by' => ':winner з відривом в :difference очко|:winner з відривом в :difference очка|:winner з відривом в :difference очків',
 
         'events' => [
             'player-left' => ':user покинув гру',

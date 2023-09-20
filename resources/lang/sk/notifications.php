@@ -5,22 +5,32 @@
 
 return [
     'all_read' => 'Všetky upozornenia prečítané!',
-    'delete' => '',
-    'loading' => '',
-    'mark_read' => '',
-    'none' => '',
-    'see_all' => '',
-    'see_channel' => '',
+    'delete' => 'Vymazať :type',
+    'loading' => 'Načítavanie neprečítaných notifikácií...',
+    'mark_read' => 'Vyčistiť :type',
+    'none' => 'Žiadne upozornenia',
+    'see_all' => 'zobraziť všetky upozornenia',
+    'see_channel' => 'prejsť ku konverzáciám',
     'verifying' => '',
 
-    'filters' => [
+    'action_type' => [
         '_' => '',
-        'user' => '',
         'beatmapset' => '',
-        'forum_topic' => '',
-        'news_post' => '',
         'build' => '',
         'channel' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'user' => '',
+    ],
+
+    'filters' => [
+        '_' => 'všetko',
+        'user' => 'profil',
+        'beatmapset' => 'beatmapy',
+        'forum_topic' => 'fórum',
+        'news_post' => 'novinky',
+        'build' => '',
+        'channel' => 'konverzácie',
     ],
 
     'item' => [
@@ -28,15 +38,15 @@ return [
             '_' => '',
 
             'beatmap_owner_change' => [
-                '_' => '',
-                'beatmap_owner_change' => '',
-                'beatmap_owner_change_compact' => '',
+                '_' => 'Obtiažnosť hosťa',
+                'beatmap_owner_change' => 'Stali ste sa majiteľom obtiažnosti ":beatmap" pre beatmapu ":title"',
+                'beatmap_owner_change_compact' => 'Stali ste sa majiteľom obtiažnosti ":beatmap"',
             ],
 
             'beatmapset_discussion' => [
-                '_' => '',
-                'beatmapset_discussion_lock' => '',
-                'beatmapset_discussion_lock_compact' => '',
+                '_' => 'Diskusia o beatmape',
+                'beatmapset_discussion_lock' => 'Diskusia o ":title" bola uzamknutá',
+                'beatmapset_discussion_lock_compact' => 'Diskusia bola uzamknutá',
                 'beatmapset_discussion_post_new' => '',
                 'beatmapset_discussion_post_new_empty' => '',
                 'beatmapset_discussion_post_new_compact' => '',
@@ -86,8 +96,19 @@ return [
         'channel' => [
             '_' => 'Konverzácia',
 
+            'announcement' => [
+                '_' => '',
+
+                'announce' => [
+                    'channel_announcement' => '',
+                    'channel_announcement_compact' => '',
+                    'channel_announcement_group' => '',
+                ],
+            ],
+
             'channel' => [
                 '_' => '',
+
                 'pm' => [
                     'channel_message' => '',
                     'channel_message_compact' => '',
@@ -132,15 +153,6 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => '',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => '',
-            ],
-        ],
-
         'user' => [
             'user_beatmapset_new' => [
                 '_' => '',
@@ -148,6 +160,9 @@ return [
                 'user_beatmapset_new' => '',
                 'user_beatmapset_new_compact' => '',
                 'user_beatmapset_new_group' => '',
+
+                'user_beatmapset_revive' => '',
+                'user_beatmapset_revive_compact' => '',
             ],
         ],
 
@@ -195,6 +210,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => '',
+            ],
+
             'channel' => [
                 'pm' => '',
             ],
@@ -226,6 +245,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => '',
+                'user_beatmapset_revive' => '',
             ],
         ],
     ],

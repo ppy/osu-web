@@ -5,12 +5,13 @@
 
 return [
     'deleted' => '已删除',
-    'deleted_by' => '被 :user 删除于 :timeago',
+    'deleted_by' => ':user 在 :timeago 删除',
     'deleted_by_system' => '系统',
     'deleted_count' => ':count_delimited 条已删除评论',
-    'edited' => ':user 编辑于 :timeago',
+    'edited' => ':user 在 :timeago 编辑',
     'pinned' => '已置顶',
     'empty' => '暂无评论。',
+    'empty_other' => '暂无其他评论。',
     'load_replies' => '加载回复',
     'replies_count' => ':count_delimited 条回复',
     'title' => '评论',
@@ -24,7 +25,7 @@ return [
 
     'editor' => [
         'textarea_hint' => [
-            '_' => '按回车以 :action 。使用 Shift+Enter 以换行。',
+            '_' => '按回车:action。使用 Shift+Enter 换行。',
             'edit' => '保存',
             'new' => '发送',
             'reply' => '回复',
@@ -39,7 +40,7 @@ return [
     'index' => [
         'nav_comments' => '评论',
         'nav_title' => '列表',
-        'no_comments' => '未找到评论',
+        'no_comments' => '未找到评论……',
     ],
 
     'placeholder' => [

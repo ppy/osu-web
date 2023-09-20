@@ -5,7 +5,7 @@
 
 namespace App\Jobs\Notifications;
 
-use App\Libraries\BeatmapsetDiscussionReview;
+use App\Libraries\BeatmapsetDiscussion\Review;
 use App\Models\BeatmapDiscussion;
 use App\Models\Notification;
 use App\Models\User;
@@ -37,7 +37,7 @@ class BeatmapsetDiscussionReviewNew extends BroadcastNotificationBase
     public function getDetails(): array
     {
         $beatmapset = $this->beatmapsetDiscussion->beatmapset;
-        $stats = BeatmapsetDiscussionReview::getStats(json_decode($this->beatmapsetDiscussion->startingPost->message, true));
+        $stats = Review::getStats(json_decode($this->beatmapsetDiscussion->startingPost->message, true));
 
         return [
             'title' => $beatmapset->title,
@@ -68,6 +68,6 @@ class BeatmapsetDiscussionReviewNew extends BroadcastNotificationBase
     {
         $this->beatmapsetDiscussion->beatmapset->watches()->update(['last_notified' => $this->getTimestamp()]);
 
-        return parent::handle();
+        parent::handle();
     }
 }

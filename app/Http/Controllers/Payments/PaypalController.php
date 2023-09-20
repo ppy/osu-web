@@ -31,7 +31,7 @@ class PaypalController extends Controller
         $this->middleware('check-user-restricted', ['except' => ['ipn']]);
         $this->middleware('verify-user', ['except' => ['ipn']]);
 
-        return parent::__construct();
+        parent::__construct();
     }
 
     // When user has approved a payment at Paypal and is redirected back here.
@@ -46,7 +46,7 @@ class PaypalController extends Controller
 
         $order = auth()->user()
             ->orders()
-            ->processing()
+            ->paymentRequested()
             ->findOrFail($params['order_id']);
 
         if (present($params['paymentId'])) {
@@ -72,7 +72,7 @@ class PaypalController extends Controller
     {
         $orderId = get_int(request('order_id'));
 
-        $order = auth()->user()->orders()->processing()->findOrFail($orderId);
+        $order = auth()->user()->orders()->paymentRequested()->findOrFail($orderId);
 
         return (new PaypalCreatePayment($order))->run();
     }
@@ -82,7 +82,7 @@ class PaypalController extends Controller
     {
         $orderId = get_int(request('order_id'));
 
-        $order = auth()->user()->orders()->processing()->find($orderId);
+        $order = auth()->user()->orders()->paymentRequested()->find($orderId);
 
         if ($order === null) {
             return ujs_redirect(route('store.cart.show'));

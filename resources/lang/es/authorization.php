@@ -27,7 +27,7 @@ return [
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => 'Sólo el dueño del mapa o el nominador/miembro del grupo NAT puede publicar notas de mapeo.',
+            'mapper_note_wrong_user' => 'Solo el dueño del mapa o el nominador/miembro del grupo NAT puede publicar notas de mapeo.',
         ],
 
         'vote' => [
@@ -50,28 +50,31 @@ return [
             'resolved' => 'No puedes editar una publicación de una discusión resuelta.',
             'system_generated' => 'Una publicación generada automáticamente no se puede editar.',
         ],
-
-        'store' => [
-            'beatmapset_locked' => 'Este mapa está bloqueado para discusión.',
-        ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => 'La discusión de este mapa está bloqueada.',
+
         'metadata' => [
             'nominated' => 'No puedes cambiar los metadatos de un mapa nominado. Contacta con un miembro de los BN o del NAT si crees que están establecidos incorrectamente.',
         ],
     ],
 
     'chat' => [
+        'annnonce_only' => 'Este canal es solo para anuncios.',
         'blocked' => 'No puedes enviar mensajes a un usuario que bloqueaste o que te haya bloqueado.',
         'friends_only' => 'Este usuario está bloqueando los mensajes de personas que no están en su lista de amigos.',
         'moderated' => 'Ese canal está actualmente siendo moderado.',
         'no_access' => 'No tienes acceso a ese canal.',
+        'receive_friends_only' => 'Es posible que el usuario no pueda responder porque solo acepta mensajes de personas de su lista de amigos.',
         'restricted' => 'No puede enviar mensajes mientras esté silenciado, restringido o baneado.',
         'silenced' => 'No puede enviar mensajes mientras esté silenciado, restringido o baneado.',
     ],
 
     'comment' => [
+        'store' => [
+            'disabled' => 'Los comentarios están desactivados',
+        ],
         'update' => [
             'deleted' => "No puedes editar una publicación eliminada.",
         ],
@@ -82,7 +85,7 @@ return [
 
         'entry' => [
             'limit_reached' => 'Has alcanzado el límite de entradas para este concurso',
-            'over' => '¡Gracias por su participación! Los envíos se han cerrado para este concurso y la votación se abrirá pronto.',
+            'over' => '¡Gracias por tu participación! Los envíos se han cerrado para este concurso y la votación se abrirá pronto.',
         ],
     ],
 
@@ -104,18 +107,18 @@ return [
                 'locked' => 'La edición de la publicación está bloqueada.',
                 'no_forum_access' => 'Se requiere acceso al foro solicitado.',
                 'not_owner' => 'Solo el creador puede editar la publicación.',
-                'topic_locked' => 'No puedes editar una publicación en un hilo cerrado.',
+                'topic_locked' => 'No puedes editar una publicación de un tema cerrado.',
             ],
 
             'store' => [
                 'play_more' => '¡Intenta jugar antes de publicar en los foros, por favor! Si tiene un problema jugando, publícalo en el foro de Ayuda y Soporte.',
-                'too_many_help_posts' => "Necesitas jugar más el juego antes de poder hacer publicaciones adicionales. Si aún tienes problemas para jugar, envía un correo electrónico a support@ppy.sh", // FIXME: unhardcode email address.
+                'too_many_help_posts' => "Necesitas jugar más el juego antes de poder hacer publicaciones adicionales. Si sigues teniendo problemas para jugar, envía un correo a support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Por favor edita tu última publicación en vez de publicar otra vez.',
+                'double_post' => 'Por favor, edite su última publicación en lugar de publicarla de nuevo.',
                 'locked' => 'No puedes responder a un hilo cerrado.',
                 'no_forum_access' => 'Se requiere acceso al foro solicitado.',
                 'no_permission' => 'No tienes permisos para responder.',
@@ -153,7 +156,7 @@ return [
 
         'topic_cover' => [
             'edit' => [
-                'uneditable' => 'Portada especificada inválida.',
+                'uneditable' => 'Portada especificada no válida.',
                 'not_owner' => 'Solo el dueño puede editar la portada.',
             ],
             'store' => [
@@ -166,13 +169,24 @@ return [
         ],
     ],
 
+    'score' => [
+        'pin' => [
+            'disabled_type' => "No se puede anclar este tipo de puntuación",
+            'not_owner' => 'Solo el propietario puede anclar la puntuación.',
+            'too_many' => 'Se han anclado demasiadas puntuaciones.',
+        ],
+    ],
+
     'user' => [
         'page' => [
             'edit' => [
                 'locked' => 'La página de usuario está bloqueada.',
                 'not_owner' => 'Solo puedes editar tu página de usuario.',
-                'require_supporter_tag' => 'Se requiere el tag de osu!supporter.',
+                'require_supporter_tag' => 'Se requiere la etiqueta osu!supporter.',
             ],
+        ],
+        'update_email' => [
+            'locked' => '',
         ],
     ],
 ];

@@ -10,24 +10,39 @@ return [
     ],
 
     'filter' => [
-        'title' => 'Arată',
+        'title' => 'Afișează',
 
         'variant' => [
             'title' => 'Variantă',
         ],
     ],
 
+    'kudosu' => [
+        'total' => 'Obținut',
+        'available' => 'Disponibil',
+        'used' => 'Folosit',
+    ],
+
     'type' => [
-        'charts' => 'În lumina reflectoarelor',
+        'charts' => 'promovări',
         'country' => 'pe țară',
+        'kudosu' => 'kudosu',
         'multiplayer' => 'multiplayer',
         'performance' => 'performanță',
         'score' => 'scor',
+        'seasons' => 'sezoane',
+    ],
+
+    'seasons' => [
+        'empty' => 'Nu există camere încă în acest sezon.',
+        'ongoing' => 'Acest sezon este în curs de desfășurare (vor fi adăugate mai multe playlist-uri).',
+        'room_count' => 'Număr playlist-uri',
+        'url' => 'Afișează mai multe informații despre acel sezon.',
     ],
 
     'spotlight' => [
         'end_date' => 'Data încheierii',
-        'map_count' => 'Număr de mape',
+        'map_count' => 'Număr de Beatmap-uri',
         'participants' => 'Participanți',
         'start_date' => 'Data începerii',
     ],
@@ -36,10 +51,10 @@ return [
         'accuracy' => 'Precizie',
         'active_users' => 'Utilizatori activi',
         'country' => 'Țară',
-        'play_count' => 'Număr de jocuri',
+        'play_count' => 'Număr de Încercări',
         'performance' => 'Performanță',
         'total_score' => 'Scor total',
-        'ranked_score' => 'Scor clasat',
+        'ranked_score' => 'Scor Clasat',
         'average_score' => 'Scor mediu',
         'average_performance' => 'Performanța medie',
         'ss' => '',

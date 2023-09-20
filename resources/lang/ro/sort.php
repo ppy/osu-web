@@ -15,18 +15,30 @@ return [
     'top' => 'Top',
     'username' => 'Nume de utilizator',
 
+    'artist_tracks' => [
+        'album' => 'Album',
+        'artist' => 'Artist',
+        'bpm' => 'BPM',
+        'genre' => 'Gen',
+        'length' => 'Durată',
+        'relevance' => 'Relevanţă',
+        'title' => 'Titlu',
+        'update' => 'Actualizare',
+    ],
+
     'forum_posts' => [
         'created' => 'Data postării',
         'relevance' => 'Relevanţă',
     ],
 
     'forum_topics' => [
+        'created' => 'Creat',
         'feature_votes' => 'Prioritatea stelelor',
         'new' => 'Ultimul răspuns',
     ],
 
     'users' => [
-        'relevance' => '',
-        'username' => '',
+        'relevance' => 'Relevanţă',
+        'username' => 'Nume',
     ],
 ];

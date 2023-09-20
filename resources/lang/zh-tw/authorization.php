@@ -50,28 +50,31 @@ return [
             'resolved' => '你不能編輯已解決討論裡的貼文。',
             'system_generated' => '無法編輯自動回覆。',
         ],
-
-        'store' => [
-            'beatmapset_locked' => '這個圖譜被鎖定討論。',
-        ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => '這個圖譜被鎖定討論。',
+
         'metadata' => [
             'nominated' => '你不能修改已提名的圖譜資訊。如果你認為有誤，請聯繫 BN 或 NAT 成員。',
         ],
     ],
 
     'chat' => [
+        'annnonce_only' => '本頻道僅供發布公告。',
         'blocked' => '無法向封鎖你或被你封鎖的人發送訊息。',
         'friends_only' => '用戶阻止了來自非好友的訊息。',
         'moderated' => '該頻道目前正在被管制中。',
         'no_access' => '你沒有權限訪問該頻道。',
+        'receive_friends_only' => '由於您只接受好友訊息，故使用者可能無法回應。',
         'restricted' => '你不能在帳戶被禁言、限制或封鎖的時候發送訊息。',
         'silenced' => '你不能在帳戶被禁言、限制或封鎖的時候傳送訊息。',
     ],
 
     'comment' => [
+        'store' => [
+            'disabled' => '留言已停用',
+        ],
         'update' => [
             'deleted' => "無法編輯已刪除的回覆。",
         ],
@@ -136,7 +139,7 @@ return [
             'vote' => [
                 'no_forum_access' => '沒有權限，無法進入該討論區。',
                 'over' => '投票已結束！',
-                'play_more' => '你需要在論壇上投票之前多玩一些。',
+                'play_more' => '你需要多玩一些才可以在論壇上投票。',
                 'voted' => '不允許修改投票。',
 
                 'user' => [
@@ -166,13 +169,24 @@ return [
         ],
     ],
 
+    'score' => [
+        'pin' => [
+            'disabled_type' => "無法置頂這類分數。",
+            'not_owner' => '只有擁有者才可置頂成績。',
+            'too_many' => '置頂過多成績。',
+        ],
+    ],
+
     'user' => [
         'page' => [
             'edit' => [
                 'locked' => '個人頁面被鎖定。',
                 'not_owner' => '只能編輯自己的個人頁面。',
-                'require_supporter_tag' => '需要成為osu!贊助者。',
+                'require_supporter_tag' => '需要成為 osu! 贊助者。',
             ],
+        ],
+        'update_email' => [
+            'locked' => '',
         ],
     ],
 ];

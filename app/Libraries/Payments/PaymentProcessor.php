@@ -221,44 +221,40 @@ abstract class PaymentProcessor implements \ArrayAccess
 
         DB::connection('mysql-store')->transaction(function () {
             try {
-                $order = $this->getOrder();
+                $order = $this->getOrder()->lockSelf();
                 $payment = $order->payments->where('cancelled', false)->first();
 
-                if ($order->status === 'cancelled') {
-                    if ($payment === null) {
-                        // payment not processed, manually cancelled - don't explode
-                        // notify and bail out.
-                        $this->dispatchErrorEvent(
-                            new Exception('Order already cancelled with no existing payment found.'),
-                            $order
-                        );
-
-                        return;
-                    }
-
-                    // check for pre-existing cancelled payment.
-                    // Paypal sends multiple notifications that we treat as a cancellation.
-                    // If the order is already cancelled and the payment cancelled, skip the rest.
-                    if ($order->payments->where('cancelled', true)->first() !== null) {
-                        $this->dispatchErrorEvent(
-                            new Exception('Order already cancelled.'),
-                            $order
-                        );
-                    }
-
-                    return;
+                if ($payment === null) {
+                    // payment not processed, manually cancelled.
+                    $this->dispatchErrorEvent(
+                        new Exception('Cancelling order with no existing payment found.'),
+                        $order
+                    );
                 }
 
-                $payment->cancel();
-                $order->cancel();
+                // check for pre-existing cancelled payment.
+                // Paypal sends multiple notifications that we treat as a cancellation.
+                if ($order->payments->where('cancelled', true)->first() !== null) {
+                    $this->dispatchErrorEvent(
+                        new Exception('Payment already cancelled.'),
+                        $order
+                    );
+                }
 
-                $eventName = "store.payments.cancelled.{$payment->provider}";
+                if ($payment !== null) {
+                    $payment->cancel();
+                    $eventName = "store.payments.cancelled.{$payment->provider}";
+                }
+
+                $order->cancel();
             } catch (Exception $exception) {
                 $this->dispatchErrorEvent($exception, $order);
                 throw $exception;
             }
 
-            event($eventName, new PaymentEvent($order));
+            if (isset($eventName)) {
+                event($eventName, new PaymentEvent($order));
+            }
         });
     }
 
@@ -358,22 +354,22 @@ abstract class PaymentProcessor implements \ArrayAccess
     /**
      * implements ArrayAccess.
      */
-    public function offsetExists($key)
+    public function offsetExists($key): bool
     {
         return array_has($this->params, $key);
     }
 
-    public function offsetGet($key)
+    public function offsetGet($key): mixed
     {
         return data_get($this->params, $key);
     }
 
-    public function offsetSet($key, $value)
+    public function offsetSet($key, $value): void
     {
         throw new \BadMethodCallException('not supported');
     }
 
-    public function offsetUnset($key)
+    public function offsetUnset($key): void
     {
         throw new \BadMethodCallException('not supported');
     }
@@ -381,12 +377,12 @@ abstract class PaymentProcessor implements \ArrayAccess
     /**
      * Validatable.
      */
-    public function validationErrorsTranslationPrefix()
+    public function validationErrorsTranslationPrefix(): string
     {
         return 'payments';
     }
 
-    public function validationErrorsKeyBase()
+    public function validationErrorsKeyBase(): string
     {
         return 'model_validation/';
     }

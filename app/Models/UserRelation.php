@@ -17,14 +17,16 @@ use DB;
  */
 class UserRelation extends Model
 {
-    protected $table = 'phpbb_zebra';
+    public $incrementing = false;
     public $timestamps = false;
-    protected $casts = [
-        'friend' => 'boolean',
-        'foe' => 'boolean',
-    ];
 
+    protected $casts = [
+        'foe' => 'boolean',
+        'friend' => 'boolean',
+    ];
+    protected $primaryKey = ':composite';
     protected $primaryKeys = ['user_id', 'zebra_id'];
+    protected $table = 'phpbb_zebra';
 
     public function user()
     {

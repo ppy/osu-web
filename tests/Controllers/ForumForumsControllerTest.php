@@ -3,26 +3,28 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
 namespace Tests\Controllers;
 
-use App\Models\Forum;
+use App\Models\Forum\Forum;
 use Tests\TestCase;
 
 class ForumForumsControllerTest extends TestCase
 {
-    public function testIndex()
+    public function testIndex(): void
     {
         $this
             ->get(route('forum.forums.index'))
             ->assertStatus(200);
     }
 
-    public function testShow()
+    public function testShow(): void
     {
-        $forum = factory(Forum\Forum::class)->states('parent')->create();
+        $forum = Forum::factory()->create();
 
         $this
-            ->get(route('forum.forums.show', $forum->forum_id))
+            ->get(route('forum.forums.show', $forum))
             ->assertStatus(200);
     }
 }

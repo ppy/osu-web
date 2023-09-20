@@ -19,11 +19,15 @@ return [
             'contest' => 'konkurs',
             'contests' => 'konkursy',
             'root' => 'konsola',
-            'store_orders' => 'administrator sklepu',
         ],
 
         'artists' => [
             'index' => 'lista',
+        ],
+
+        'beatmapsets' => [
+            'show' => 'informacje',
+            'discussions' => 'dyskusja',
         ],
 
         'changelog' => [
@@ -47,7 +51,8 @@ return [
 
         'users' => [
             'modding' => 'modowanie',
-            'multiplayer' => 'tryb wieloosobowy',
+            'playlists' => 'tryb asynchroniczny',
+            'realtime' => 'tryb wieloosobowy',
             'show' => 'informacje',
         ],
     ],
@@ -63,18 +68,10 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => 'beatmapy',
-            'artists' => 'wyróżnieni artyści',
-            'index' => 'lista',
-            'packs' => 'paczki',
         ],
         'community' => [
             '_' => 'społeczność',
-            'chat' => 'czat',
-            'contests' => 'konkursy',
             'dev' => 'rozwój',
-            'forum-forums-index' => 'forum',
-            'getLive' => 'na żywo',
-            'tournaments' => 'turnieje',
         ],
         'help' => [
             '_' => 'pomoc',
@@ -82,30 +79,17 @@ return [
             'getFaq' => 'faq',
             'getRules' => 'zasady',
             'getSupport' => 'pomoc techniczna',
-            'getWiki' => 'wiki',
         ],
         'home' => [
             '_' => 'strona główna',
-            'changelog-index' => 'zmiany',
-            'getDownload' => 'pobierz',
-            'news-index' => 'aktualności',
-            'search' => 'wyszukiwarka',
             'team' => 'zespół',
         ],
         'rankings' => [
             '_' => 'rankingi',
-            'charts' => 'wyróżnionych',
-            'country' => 'krajowy',
-            'index' => 'globalny',
             'kudosu' => 'kudosu',
-            'multiplayer' => 'wieloosobowy',
-            'score' => 'punktowy',
         ],
         'store' => [
             '_' => 'sklep',
-            'cart-show' => 'koszyk',
-            'getListing' => 'przedmioty',
-            'orders-index' => 'historia zamówień',
         ],
     ],
 

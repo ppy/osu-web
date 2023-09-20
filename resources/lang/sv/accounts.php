@@ -10,15 +10,24 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
-            'rules' => 'Se till att din avatar följer :link.<br/>Det betyder att den måste vara <strong>lämplig för alla åldrar</strong>. dvs ingen nakenhet, svordomar eller suggestivt innehåll.',
+            'rules' => 'Se till att din avatar följer :link.<br/>Det betyder att den måste vara <strong>lämplig för alla åldrar</strong>. dvs. ingen nakenhet, svordomar eller suggestivt innehåll.',
             'rules_link' => 'gemenskapsreglerna',
         ],
 
         'email' => [
-            'current' => 'nuvarande e-postadress',
             'new' => 'ny e-postadress',
             'new_confirmation' => 'e-postbekräftelse',
             'title' => 'E-postadress',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
+        ],
+
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'Legacy API',
         ],
 
         'password' => [
@@ -29,11 +38,17 @@ return [
         ],
 
         'profile' => [
+            'country' => 'land',
             'title' => 'Profil',
+
+            'country_change' => [
+                '_' => "Det verkar som om att ditt kontos land inte matchar landet du befinner dig i. :update_link.",
+                'update_link' => 'Uppdatera till :country',
+            ],
 
             'user' => [
                 'user_discord' => '',
-                'user_from' => 'nuvarande position',
+                'user_from' => 'nuvarande plats',
                 'user_interests' => 'intressen',
                 'user_occ' => 'sysselsättning',
                 'user_twitter' => '',
@@ -48,21 +63,21 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_qualified_problem' => 'ta emot meddelanden om nya problem på kvalificerade beatmaps över följande lägen',
+        'beatmapset_discussion_qualified_problem' => 'ta emot aviseringar om nya problem på kvalificerade beatmaps i följande spellägen',
         'beatmapset_disqualify' => 'ta emot aviseringar när beatmaps för följande lägen diskvalificeras',
-        'comment_reply' => 'motta aviseringar för svar på dina kommentarer',
+        'comment_reply' => 'ta emot aviseringar för svar på dina kommentarer',
         'title' => 'Aviseringar',
         'topic_auto_subscribe' => 'aktivera aviseringar automatiskt på nya forumtrådar som du skapar ',
 
         'options' => [
             '_' => 'leveransalternativ',
             'beatmap_owner_change' => 'gästsvårighetsgrad',
-            'beatmapset:modding' => 'beatmap modding',
+            'beatmapset:modding' => 'beatmapmodding',
             'channel_message' => 'privata chattmeddelanden',
             'comment_new' => 'nya kommentarer',
             'forum_topic_reply' => 'ämnessvar',
-            'mail' => 'mail',
-            'mapping' => 'beatmap ägare',
+            'mail' => 'e-post',
+            'mapping' => 'beatmap-ägare',
             'push' => 'push',
             'user_achievement_unlock' => 'användarmedalj upplåst',
         ],
@@ -80,7 +95,7 @@ return [
         'title' => 'Alternativ',
 
         'beatmapset_download' => [
-            '_' => 'standard beatmap nedladdningstyp',
+            '_' => 'standard nedladdningstyp för beatmaps',
             'all' => 'med video om tillgängligt',
             'direct' => 'öppna i osu!direct',
             'no_video' => 'utan video',
@@ -90,13 +105,13 @@ return [
     'playstyles' => [
         'keyboard' => 'tangentbord',
         'mouse' => 'mus',
-        'tablet' => 'platta',
-        'title' => 'Spelsätt',
+        'tablet' => 'ritplatta',
+        'title' => 'Spelstil',
         'touch' => 'pekskärm',
     ],
 
     'privacy' => [
-        'friends_only' => 'Blockera privata meddelanden från icke-vänner',
+        'friends_only' => 'blockera privata meddelanden från icke-vänner',
         'hide_online' => 'dölj din online-närvaro',
         'title' => 'Sekretess',
     ],
@@ -104,7 +119,7 @@ return [
     'security' => [
         'current_session' => 'nuvarande',
         'end_session' => 'Avsluta sessionen',
-        'end_session_confirmation' => 'Detta kommer avsluta din session på den valda enheten. Är du säker?',
+        'end_session_confirmation' => 'Detta kommer omedelbart avsluta din session på den valda enheten. Är du säker?',
         'last_active' => 'Senast aktiv:',
         'title' => 'Säkerhet',
         'web_sessions' => 'webbsessioner',
@@ -119,11 +134,11 @@ return [
     ],
 
     'verification_completed' => [
-        'text' => 'Du kan stänga detta fönstret nu',
+        'text' => 'Du kan stänga detta fönster nu',
         'title' => 'Verifieringen har slutförts',
     ],
 
     'verification_invalid' => [
-        'title' => 'Ogiltig eller utgånget verifieringslänk',
+        'title' => 'Ogiltig eller utgången verifieringslänk',
     ],
 ];

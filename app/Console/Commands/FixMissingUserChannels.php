@@ -35,7 +35,8 @@ class FixMissingUserChannels extends Command
         $continue = $this->confirm('Proceed?');
 
         if (!$continue) {
-            return $this->error('Aborted.');
+            $this->error('Aborted.');
+            return;
         }
 
         $start = time();
@@ -60,7 +61,8 @@ class FixMissingUserChannels extends Command
 
         // reconfirm
         if (!$this->confirm("{$count} channels need to be repaired, proceed?")) {
-            return $this->error('Aborted.');
+            $this->error('Aborted.');
+            return;
         }
 
         $start = time();

@@ -16,8 +16,8 @@ class ChatChannelSetLastMessageId extends Command
 
     public function handle()
     {
-        $delay = $this->option('delay') ?? 1;
-        $chunkSize = $this->option('chunk-size') ?? 1000;
+        $delay = get_int($this->option('delay')) ?? 1;
+        $chunkSize = get_int($this->option('chunk-size')) ?? 1000;
         if ($chunkSize < 1) {
             return;
         }

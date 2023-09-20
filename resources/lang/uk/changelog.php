@@ -4,14 +4,14 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'generic' => 'Виправлення помилок і дрібні поліпшення',
+    'generic' => 'Виправлення помилок і незначні покращення',
 
     'build' => [
         'title' => 'зміни в :version',
     ],
 
     'builds' => [
-        'users_online' => ':count_delimited гравець онлайн|:count_delimited гравців онлайн',
+        'users_online' => ':count_delimited гравець онлайн|:count_delimited гравці|:count_delimited гравців онлайн',
     ],
 
     'entry' => [
@@ -33,8 +33,8 @@ return [
 
     'support' => [
         'heading' => 'Сподобалось оновлення?',
-        'text_1' => 'Підтримайте майбутні розробки osu! і :link сьогодні!',
-        'text_1_link' => 'купивши osu!послідовник',
-        'text_2' => 'Ви не тільки прискорите розробку, але і отримаєте додаткові можливості!',
+        'text_1' => 'Підтримайте подальшу розробку osu! :link вже сьогодні!',
+        'text_1_link' => 'придбавши тег osu!прихильник',
+        'text_2' => 'Цим ви не тільки допоможете прискорити розробку, але й отримаєте деякі додаткові можливості і кастомізації!',
     ],
 ];

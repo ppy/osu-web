@@ -10,6 +10,6 @@ return [
         'reverting_username_mismatch' => '',
     ],
     'supporter_tag' => [
-        'insufficient_paid' => 'Um donativo é menos que necessário para oferecer uma etiqueta osu!supporter (:actual > :expected)',
+        'insufficient_paid' => 'O donativo é menos do que o necessário para oferecer uma etiqueta osu!supporter (:actual > :expected)',
     ],
 ];

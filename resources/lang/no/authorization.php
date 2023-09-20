@@ -31,7 +31,7 @@ return [
         ],
 
         'vote' => [
-            'bot' => "",
+            'bot' => "Kan ikke stemme på diskusjon lagd av bot",
             'limit_exceeded' => 'Vennligst vent en stund før du avgir flere stemmer',
             'owner' => "Du kan ikke stemme på ditt eget diskusjonsinnlegg.",
             'wrong_beatmapset_state' => 'Kan bare stemme på diskusjoner der beatmappet er ventende.',
@@ -50,28 +50,31 @@ return [
             'resolved' => 'Du kan ikke redigere et innlegg på en besvart tråd.',
             'system_generated' => 'Innlegg som er automatisk generert kan ikke bli endret.',
         ],
-
-        'store' => [
-            'beatmapset_locked' => 'Dette beatmappet har blitt låst for diskusjon.',
-        ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => 'Diskusjon er låst for dette beatmappet.',
+
         'metadata' => [
             'nominated' => 'Du kan ikke endre metadataen av et nominert kart. Kontakt et BN eller NAT medlem hvis du tror det er angitt feil.',
         ],
     ],
 
     'chat' => [
+        'annnonce_only' => 'Denne kanalen er bare beregnet på kunngjøringer.',
         'blocked' => 'Kan ikke sende en melding til en bruker som blokkerer deg eller som du har blokkert.',
         'friends_only' => 'Brukeren blokkerer meldinger fra personer som ikke er på deres venneliste.',
         'moderated' => 'Denne kanalen er for tiden moderert.',
         'no_access' => 'Du har ingen adgang til denne kanalen.',
+        'receive_friends_only' => 'Brukeren kan ikke svare fordi du bare godtar meldinger fra personer på vennelisten din.',
         'restricted' => 'Du kan ikke sende meldinger mens du er stum, begrenset eller bannlyst.',
-        'silenced' => '',
+        'silenced' => 'Du kan ikke sende meldinger mens du er stum, begrenset eller bannlyst.',
     ],
 
     'comment' => [
+        'store' => [
+            'disabled' => 'Kommentarer er deaktivert',
+        ],
         'update' => [
             'deleted' => "Kan ikke redigere slettet innlegg.",
         ],
@@ -166,6 +169,14 @@ return [
         ],
     ],
 
+    'score' => [
+        'pin' => [
+            'disabled_type' => "Kan ikke feste denne typen score",
+            'not_owner' => 'Kun resultateieren kan festeresultat.',
+            'too_many' => 'Festet for mange resultater.',
+        ],
+    ],
+
     'user' => [
         'page' => [
             'edit' => [
@@ -173,6 +184,9 @@ return [
                 'not_owner' => 'Kan kun redigere egen brukerside.',
                 'require_supporter_tag' => 'osu!supporter tag kreves.',
             ],
+        ],
+        'update_email' => [
+            'locked' => '',
         ],
     ],
 ];

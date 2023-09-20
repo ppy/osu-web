@@ -5,11 +5,11 @@
 
 return [
     'audio' => [
-        'autoplay' => 'Jouer automatiquement le titre suivant',
+        'autoplay' => 'Jouer automatiquement la musique suivante',
     ],
 
     'defaults' => [
-        'page_description' => 'osu ! - Le rythme n\'est plus qu\'à un *clic* !  Avec les modes de jeu Ouendan/EBA, Taiko et original, ainsi qu\'un éditeur de niveaux entièrement fonctionnel.',
+        'page_description' => 'osu! - Rhythm is just a *click* away! Avec les modes de jeu Ouendan/EBA, Taiko et d\'autres modes de jeu originaux, ainsi qu\'un éditeur de niveaux entièrement fonctionnel.',
     ],
 
     'header' => [
@@ -19,11 +19,15 @@ return [
             'contest' => 'concours',
             'contests' => 'concours',
             'root' => 'console',
-            'store_orders' => 'administration de la boutique',
         ],
 
         'artists' => [
             'index' => 'liste',
+        ],
+
+        'beatmapsets' => [
+            'show' => 'informations',
+            'discussions' => 'discussion',
         ],
 
         'changelog' => [
@@ -38,7 +42,7 @@ return [
         'store' => [
             'cart' => 'panier',
             'orders' => 'historique des commandes',
-            'products' => 'produits',
+            'products' => 'articles',
         ],
 
         'tournaments' => [
@@ -47,7 +51,8 @@ return [
 
         'users' => [
             'modding' => 'modding',
-            'multiplayer' => 'multijoueur',
+            'playlists' => 'playlists',
+            'realtime' => 'multijoueur',
             'show' => 'infos',
         ],
     ],
@@ -63,18 +68,10 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => 'beatmaps',
-            'artists' => 'artistes en vedette',
-            'index' => 'liste',
-            'packs' => 'collections',
         ],
         'community' => [
             '_' => 'communauté',
-            'chat' => 'tchat',
-            'contests' => 'concours',
             'dev' => 'développement',
-            'forum-forums-index' => 'forums',
-            'getLive' => 'direct',
-            'tournaments' => 'tournois',
         ],
         'help' => [
             '_' => 'aide',
@@ -82,30 +79,17 @@ return [
             'getFaq' => 'faq',
             'getRules' => 'règles',
             'getSupport' => 'non, vraiment, j\'ai besoin d\'aide !',
-            'getWiki' => 'wiki',
         ],
         'home' => [
             '_' => 'accueil',
-            'changelog-index' => 'changelog',
-            'getDownload' => 'télécharger',
-            'news-index' => 'actualités',
-            'search' => 'rechercher',
             'team' => 'équipe',
         ],
         'rankings' => [
             '_' => 'classements',
-            'charts' => 'mise en avant',
-            'country' => 'pays',
-            'index' => 'performance',
             'kudosu' => 'kudosu',
-            'multiplayer' => 'multijoueur',
-            'score' => 'score',
         ],
         'store' => [
             '_' => 'magasin',
-            'cart-show' => 'panier',
-            'getListing' => 'liste',
-            'orders-index' => 'historique des commandes',
         ],
     ],
 
@@ -122,16 +106,16 @@ return [
             'faq' => 'Questions fréquemment posées',
             'forum' => 'Forums communautaire',
             'livestreams' => 'Streams en direct',
-            'report' => 'Signaler une erreur',
+            'report' => 'Signaler un problème',
             'wiki' => 'Wiki',
         ],
         'legal' => [
             '_' => 'Statut & Légal',
             'copyright' => 'Copyright (DMCA)',
             'privacy' => 'Confidentialité',
-            'server_status' => 'Statut du serveur',
+            'server_status' => 'État du serveur',
             'source_code' => 'Code source',
-            'terms' => 'Conditions du service',
+            'terms' => 'Conditions d\'utilisation',
         ],
     ],
 
@@ -173,7 +157,7 @@ return [
             'description' => "Nous avons été automatiquement notifié de cette erreur.",
         ],
         '503' => [
-            'error' => 'Maintenance en cours!',
+            'error' => 'Maintenance en cours !',
             'description' => "Les maintenances prennent en général 5 à 10 minutes. Si c'est plus long, regardez :link pour plus d'informations.",
             'link' => [
                 'text' => '',

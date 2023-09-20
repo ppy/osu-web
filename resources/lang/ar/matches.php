@@ -6,13 +6,13 @@
 return [
     'match' => [
         'beatmap-deleted' => 'خريطة محذوفة',
-        'difference' => 'بواسطة :difference',
         'failed' => 'فشل',
         'header' => 'الغرف الجماعية',
         'in-progress' => '(مباراة في التقدم)',
         'in_progress_spinner_label' => 'مباراة في التقدم',
         'loading-events' => 'جارِ تحميل الأحداث...',
         'winner' => ':team فاز',
+        'winner_by' => '',
 
         'events' => [
             'player-left' => ':user غادر الغرفة',
@@ -33,7 +33,7 @@ return [
         'score' => [
             'stats' => [
                 'accuracy' => 'الدقة',
-                'combo' => 'السرد',
+                'combo' => 'كومبو',
                 'score' => 'المجموع',
             ],
         ],
@@ -54,7 +54,7 @@ return [
         'scoring-type' => [
             'score' => 'أعلى نتيجة',
             'accuracy' => 'اعلى دقة',
-            'combo' => 'اعلى سرد',
+            'combo' => 'اعلى كومبو',
             'scorev2' => 'المجموع نسخة 2',
         ],
     ],

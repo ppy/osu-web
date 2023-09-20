@@ -5,9 +5,47 @@
 
 namespace Tests\Browser;
 
+use App\Models\Artist;
+use App\Models\ArtistTrack;
+use App\Models\Beatmap;
+use App\Models\BeatmapDiscussion;
+use App\Models\BeatmapDiscussionPost;
+use App\Models\BeatmapMirror;
+use App\Models\BeatmapPack;
+use App\Models\Beatmapset;
+use App\Models\Build;
+use App\Models\Changelog;
+use App\Models\Chat\Channel;
+use App\Models\Chat\UserChannel;
+use App\Models\Comment;
+use App\Models\Contest;
+use App\Models\Count;
 use App\Models\Country;
+use App\Models\Forum\AuthOption;
+use App\Models\Forum\Authorize;
+use App\Models\Forum\Forum;
+use App\Models\Forum\Post;
+use App\Models\Forum\Topic;
+use App\Models\Forum\TopicTrack;
+use App\Models\Genre;
+use App\Models\Group;
+use App\Models\Language;
+use App\Models\LegacyMatch;
+use App\Models\LoginAttempt;
 use App\Models\Multiplayer\Room;
-use DB;
+use App\Models\NewsPost;
+use App\Models\Notification;
+use App\Models\Score;
+use App\Models\Season;
+use App\Models\Store;
+use App\Models\Tournament;
+use App\Models\UpdateStream;
+use App\Models\User;
+use App\Models\UserGroup;
+use App\Models\UserGroupEvent;
+use App\Models\UserNotification;
+use App\Models\UserProfileCustomization;
+use App\Models\UserStatistics;
 use Exception;
 use Illuminate\Routing\Route as LaravelRoute;
 use Laravel\Dusk\Browser;
@@ -38,10 +76,6 @@ class SanityTest extends DuskTestCase
         }
 
         (new static())->createApplication();
-        // Clean up extra things that get created (i.e. as side-effects, etc)
-        if (isset(self::$scaffolding['user'])) {
-            self::$scaffolding['user']->userProfileCustomization()->forceDelete();
-        }
 
         // Tear down in reverse-order so that dependants get destroyed before their dependencies.
         $nukingOrder = array_reverse(self::$scaffolding);
@@ -51,13 +85,34 @@ class SanityTest extends DuskTestCase
 
             if ($name === 'order' || $name === 'invoice') {
                 // we need to perform custom deletion for orders to bypass their immutability protections
-                DB::connection('mysql-store')->delete('delete from orders where order_id = ?', [$scaffold->getKey()]);
+                Store\Order::withTrashed()->forceDelete();
             } else {
                 $scaffold->forceDelete();
             }
         }
 
-        app('groups')->resetCache();
+        // Clean up extra things that get created (i.e. as side-effects, etc)
+        Beatmap::truncate();
+        Beatmapset::truncate();
+        Channel::truncate();
+        Count::truncate();
+        AuthOption::truncate();
+        Authorize::truncate();
+        TopicTrack::truncate();
+        Genre::truncate();
+        Group::truncate();
+        Language::truncate();
+        LoginAttempt::truncate();
+        NewsPost::truncate();
+        Notification::truncate();
+        User::truncate();
+        UserGroup::truncate();
+        UserGroupEvent::truncate();
+        UserNotification::truncate();
+        UserProfileCustomization::truncate();
+        UserStatistics\Osu::truncate();
+
+        app('groups')->resetMemoized();
     }
 
     private static function createScaffolding()
@@ -67,91 +122,96 @@ class SanityTest extends DuskTestCase
         }
 
         (new static())->createApplication();
-        self::$scaffolding['country'] = Country::first() ?? factory(\App\Models\Country::class)->create();
+        self::$scaffolding['country'] = Country::first() ?? Country::factory()->create();
         // user to login as and to use for requests
-        self::$scaffolding['user'] = factory(\App\Models\User::class)->create([
+        self::$scaffolding['user'] = User::factory()->create([
             'country_acronym' => self::$scaffolding['country']->acronym,
         ]);
 
         // factories for /beatmapsets/*
-        self::$scaffolding['beatmap_mirror'] = factory(\App\Models\BeatmapMirror::class)->create();
-        self::$scaffolding['genre'] = factory(\App\Models\Genre::class)->create();
-        self::$scaffolding['language'] = factory(\App\Models\Language::class)->create();
-        self::$scaffolding['beatmapset'] = factory(\App\Models\Beatmapset::class)->create([
-            'discussion_enabled' => true,
-            'genre_id' => self::$scaffolding['genre']->genre_id,
-            'language_id' => self::$scaffolding['language']->language_id,
-            'user_id' => self::$scaffolding['user']->getKey(),
+        self::$scaffolding['beatmap_mirror'] = BeatmapMirror::factory()->create();
+        self::$scaffolding['genre'] = Genre::factory()->create();
+        self::$scaffolding['language'] = Language::factory()->create();
+        self::$scaffolding['beatmapset'] = Beatmapset::factory()->create([
+            'genre_id' => self::$scaffolding['genre'],
+            'language_id' => self::$scaffolding['language'],
+            'user_id' => self::$scaffolding['user'],
         ]);
-        self::$scaffolding['beatmap'] = factory(\App\Models\Beatmap::class)->create([
-            'beatmapset_id' => self::$scaffolding['beatmapset']->getKey(),
+        self::$scaffolding['beatmap'] = Beatmap::factory()->create([
+            'beatmapset_id' => self::$scaffolding['beatmapset'],
         ]);
-        self::$scaffolding['beatmap_discussion'] = factory(\App\Models\BeatmapDiscussion::class)->create([
-            'beatmapset_id' => self::$scaffolding['beatmapset']->getKey(),
-            'beatmap_id' => self::$scaffolding['beatmap']->getKey(),
+        self::$scaffolding['beatmap_discussion'] = BeatmapDiscussion::factory()->create([
+            'beatmapset_id' => self::$scaffolding['beatmapset'],
+            'beatmap_id' => self::$scaffolding['beatmap'],
+            'user_id' => self::$scaffolding['user'],
         ]);
-        self::$scaffolding['pack'] = factory(\App\Models\BeatmapPack::class)->create();
+        self::$scaffolding['beatmap_discussion_post'] = BeatmapDiscussionPost::factory()->timeline()->create([
+            'beatmap_discussion_id' => self::$scaffolding['beatmap_discussion'],
+            'user_id' => self::$scaffolding['user'],
+        ]);
+        self::$scaffolding['beatmap_discussion_reply'] = BeatmapDiscussionPost::factory()->create([
+            'beatmap_discussion_id' => self::$scaffolding['beatmap_discussion'],
+            'user_id' => self::$scaffolding['user'],
+        ]);
+        self::$scaffolding['pack'] = BeatmapPack::factory()->create();
 
         // factories for /community/contests/*
-        self::$scaffolding['contest'] = factory(\App\Models\Contest::class)->states('entry')->create();
+        self::$scaffolding['contest'] = Contest::factory()->entry()->create();
 
         // factories for /community/tournaments/*
-        self::$scaffolding['tournament'] = factory(\App\Models\Tournament::class)->create();
+        self::$scaffolding['tournament'] = Tournament::factory()->create();
 
         // factories for /beatmaps/artists/*
-        self::$scaffolding['artist'] = factory(\App\Models\Artist::class)->create();
+        self::$scaffolding['artist'] = Artist::factory()->create();
+        self::$scaffolding['track'] = ArtistTrack::factory()->create([
+            'artist_id' => self::$scaffolding['artist']->getKey(),
+        ]);
 
         // factories for /store/*
-        self::$scaffolding['product'] = factory(\App\Models\Store\Product::class)->states('master_tshirt')->create();
-        self::$scaffolding['order'] = factory(\App\Models\Store\Order::class)->states('checkout')->create([
-            'user_id' => self::$scaffolding['user']->getKey(),
+        self::$scaffolding['product'] = Store\Product::factory()->masterTshirt()->create();
+        self::$scaffolding['order'] = Store\Order::factory()->checkout()->create([
+            'user_id' => self::$scaffolding['user'],
         ]);
         self::$scaffolding['checkout'] = new ScaffoldDummy(self::$scaffolding['order']->getKey());
-        self::$scaffolding['invoice'] = factory(\App\Models\Store\Order::class)->states('paid')->create([
-            'user_id' => self::$scaffolding['user']->getKey(),
+        self::$scaffolding['invoice'] = Store\Order::factory()->paid()->create([
+            'user_id' => self::$scaffolding['user'],
         ]);
 
         // factories for /community/forums/*
-        self::$scaffolding['forum_parent'] = factory(\App\Models\Forum\Forum::class)->states('parent')->create();
-        self::$scaffolding['forum'] = factory(\App\Models\Forum\Forum::class)->states('child')->create([
-            'parent_id' => self::$scaffolding['forum_parent']->getKey(),
+        self::$scaffolding['forum_parent'] = Forum::factory()->closed()->create();
+        self::$scaffolding['forum'] = Forum::factory()->create([
+            'parent_id' => self::$scaffolding['forum_parent'],
         ]);
         // satisfy group permissions required for posting in forum
         self::$scaffolding['_group'] = app('groups')->byIdentifier('default');
-        self::$scaffolding['_forum_acl_post'] = factory(\App\Models\Forum\Authorize::class)->states('post')->create([
-            'forum_id' => self::$scaffolding['forum']->getKey(),
-            'group_id' => self::$scaffolding['_group']->getKey(),
+        self::$scaffolding['_forum_acl_post'] = Authorize::factory()->post()->create([
+            'forum_id' => self::$scaffolding['forum'],
+            'group_id' => self::$scaffolding['_group'],
         ]);
-        self::$scaffolding['_forum_acl_reply'] = factory(\App\Models\Forum\Authorize::class)->states('reply')->create([
-            'forum_id' => self::$scaffolding['forum']->getKey(),
-            'group_id' => self::$scaffolding['_group']->getKey(),
+        self::$scaffolding['_forum_acl_reply'] = Authorize::factory()->reply()->create([
+            'forum_id' => self::$scaffolding['forum'],
+            'group_id' => self::$scaffolding['_group'],
         ]);
-        self::$scaffolding['_user_group'] = factory(\App\Models\UserGroup::class)->create([
-            'user_id' => self::$scaffolding['user']->getKey(),
-            'group_id' => self::$scaffolding['_group']->getKey(),
-            'user_pending' => false,
-        ]);
+        self::$scaffolding['_user_group'] = UserGroup::first();
+
         // satisfy minimum playcount for forum posting
-        self::$scaffolding['user']->statisticsOsu()->save(factory(\App\Models\UserStatistics\Osu::class)->make(['playcount' => config('osu.forum.minimum_plays')]));
-
-        self::$scaffolding['topic'] = factory(\App\Models\Forum\Topic::class)->create([
-            'topic_poster' => self::$scaffolding['user']->getKey(),
-            'topic_first_poster_name' => self::$scaffolding['user']->username,
-            'topic_last_poster_id' => self::$scaffolding['user']->getKey(),
-            'topic_last_poster_name' => self::$scaffolding['user']->username,
-            'forum_id' => self::$scaffolding['forum']->getKey(),
+        UserStatistics\Osu::factory()->create([
+            'playcount' => config('osu.forum.minimum_plays'),
+            'user_id' => self::$scaffolding['user'],
         ]);
 
-        self::$scaffolding['post'] = factory(\App\Models\Forum\Post::class)->create([
-            'poster_id' => self::$scaffolding['user']->getKey(),
-            'post_username' => self::$scaffolding['user']->username,
-            'forum_id' => self::$scaffolding['forum']->getKey(),
-            'topic_id' => self::$scaffolding['topic']->getKey(),
+        self::$scaffolding['topic'] = Topic::factory()->create([
+            'forum_id' => self::$scaffolding['forum'],
+            'topic_poster' => self::$scaffolding['user'],
+        ]);
+        self::$scaffolding['post'] = Post::factory()->create([
+            'poster_id' => self::$scaffolding['user'],
+            'topic_id' => self::$scaffolding['topic'],
         ]);
 
         // factories for /community/chat/*
-        self::$scaffolding['channel'] = factory(\App\Models\Chat\Channel::class)->states('public')->create();
-        self::$scaffolding['user_channel'] = factory(\App\Models\Chat\UserChannel::class)->create([
+        self::$scaffolding['channel'] = Channel::factory()->type('public')->create();
+        self::$scaffolding['user_channel'] = UserChannel::factory()->create([
             'channel_id' => self::$scaffolding['channel']->getKey(),
             'user_id' => self::$scaffolding['user']->getKey(),
         ]);
@@ -159,27 +219,31 @@ class SanityTest extends DuskTestCase
         // dummy for game mode param
         self::$scaffolding['mode'] = new ScaffoldDummy('osu');
 
+        // factory for /seasons/*
+        self::$scaffolding['season'] = Season::factory()->create();
+
         // factory for /home/changelog/*
-        self::$scaffolding['stream'] = factory(\App\Models\UpdateStream::class)->create();
-        self::$scaffolding['changelog'] = factory(\App\Models\Changelog::class)->create([
+        self::$scaffolding['stream'] = UpdateStream::factory()->create();
+        self::$scaffolding['changelog'] = Changelog::factory()->create([
             'stream_id' => self::$scaffolding['stream']->stream_id,
         ]);
-        self::$scaffolding['build'] = factory(\App\Models\Build::class)->create([
+        self::$scaffolding['build'] = Build::factory()->create([
             'stream_id' => self::$scaffolding['stream']->stream_id,
         ]);
 
         // factory for /g/*
-        self::$scaffolding['group'] = factory(\App\Models\Group::class)->create();
+        self::$scaffolding['group'] = Group::factory()->create();
 
         // factory for comments
-        self::$scaffolding['comment'] = factory(\App\Models\Comment::class)->create([
-            'user_id' => self::$scaffolding['user']->user_id,
+        self::$scaffolding['comment'] = Comment::factory()->create([
             'commentable_id' => self::$scaffolding['build'],
+            'commentable_type' => 'build',
+            'user_id' => self::$scaffolding['user'],
         ]);
 
         // factory for matches
-        self::$scaffolding['match'] = factory(\App\Models\LegacyMatch\LegacyMatch::class)->create();
-        self::$scaffolding['event'] = factory(\App\Models\LegacyMatch\Event::class)->states('join')->create([
+        self::$scaffolding['match'] = LegacyMatch\LegacyMatch::factory()->create();
+        self::$scaffolding['event'] = LegacyMatch\Event::factory()->join()->create([
             'match_id' => self::$scaffolding['match']->getKey(),
         ]);
 
@@ -190,42 +254,41 @@ class SanityTest extends DuskTestCase
         self::$scaffolding['news'] = new ScaffoldDummy('2014-06-21-meet-yuzu');
 
         // score factory
-        self::$scaffolding['score'] = factory(\App\Models\Score\Best\Osu::class)->states('with_replay')->create();
+        self::$scaffolding['score'] = Score\Best\Osu::factory()->withReplay()->create();
 
-        self::$scaffolding['room'] = factory(Room::class)->create(['category' => 'spotlight']);
+        self::$scaffolding['room'] = Room::factory()->create(['category' => 'spotlight']);
 
-        app('groups')->resetCache();
+        app('groups')->resetMemoized();
     }
 
     private static function filterLog(array $log)
     {
+        $appUrl = config('app.url');
         $return = [];
 
         foreach ($log as $line) {
             if ($line['source'] === 'network') {
                 $matches = [];
-                preg_match_all('/^([^ ]+) - Failed to load resource: the server responded with a status of ([0-9]{3}) \(([^\)]*)\)$/i', $line['message'], $matches);
-                $returnCode = get_int(optional($matches[2])[0]);
-                $url = optional($matches[1])[0];
+                $count = preg_match_all('/^([^ ]+) - Failed to load resource: the server responded with a status of ([0-9]{3}) \(([^\)]*)\)$/i', $line['message'], $matches);
 
-                // ignore missing non-critical assets
-                if (
-                    ($returnCode === 404 && starts_with($url, 'https://assets.ppy.sh')) ||
-                    ($returnCode === 403 && starts_with($url, 'https://i.ppy.sh'))
-                ) {
-                    continue;
+                if ($count !== false && $count > 0) {
+                    $returnCode = get_int($matches[2][0]);
+                    $url = $matches[1][0];
+
+                    // ignore missing non-critical assets
+                    if (
+                        ($returnCode === 403 || $returnCode === 404) && starts_with($url, ['https://assets.ppy.sh', 'https://i.ppy.sh']) ||
+                        ($returnCode < 500 && starts_with($url, $appUrl))
+                    ) {
+                        continue;
+                    }
                 }
-
-                $return[] = [
-                    'url' => $url,
-                    'status' => $returnCode,
-                    'message' => optional($matches[3])[0],
-                    'source' => 'network',
-                    'raw' => $line['message'],
-                ];
-            } else {
-                $return[] = $line;
+            } elseif ($line['message'] === "security - Error with Permissions-Policy header: Unrecognized feature: 'ch-ua-form-factor'.") {
+                // we don't use ch-ua-* crap and this error is thrown by youtube.com as of 2023-05-16
+                continue;
             }
+
+            $return[] = $line;
         }
 
         return $return;
@@ -297,8 +360,6 @@ class SanityTest extends DuskTestCase
 
         // TODO: add additional logic for certain routes to re-run tests per game mode, per user score type, etc
         $this->browse(function (Browser $browser) use ($route, $type, $url) {
-            static::resetSession($browser);
-
             try {
                 if ($type === 'user') {
                     $browser->loginAs(self::$scaffolding['user']);
@@ -351,6 +412,9 @@ class SanityTest extends DuskTestCase
                 //     'pending',
                 // ],
             ],
+            'users.multiplayer.index' => [
+                'typeGroup' => 'playlists',
+            ],
             'users.scores' => [
                 'type' => 'best',
                 // 'type' => [
@@ -365,6 +429,14 @@ class SanityTest extends DuskTestCase
             ],
             'changelog.show' => [
                 'changelog' => self::$scaffolding['build']->version,
+            ],
+            'scores.download-legacy' => [
+                'rulesetOrScore' => static::$scaffolding['score']->getMode(),
+                'score' => static::$scaffolding['score']->getKey(),
+            ],
+            'scores.show' => [
+                'rulesetOrScore' => static::$scaffolding['score']->getMode(),
+                'score' => static::$scaffolding['score']->getKey(),
             ],
             'legal' => [
                 'locale' => 'en',
@@ -390,7 +462,7 @@ class SanityTest extends DuskTestCase
                 static::output($params[$paramName]." \e[30;1m(override)\e[0m\n");
             } else {
                 if (isset(self::$scaffolding[$paramName])) {
-                    $params[$paramName] = self::$scaffolding[$paramName]->getKey();
+                    $params[$paramName] = self::$scaffolding[$paramName]->getRouteKey();
                     static::output($params[$paramName]."\n");
                 } else {
                     static::output("\e[30;1m¯\_(ツ)_/¯\e[0m\n");
@@ -424,7 +496,7 @@ class SanityTest extends DuskTestCase
 
     private function checkAdminPermission(Browser $browser, LaravelRoute $route)
     {
-        $adminRestricted = [];
+        $adminRestricted = ['chat.users.index', 'forum.topics.logs.index'];
 
         if (starts_with($route->uri, 'admin') || in_array($route->getName(), $adminRestricted, true)) {
             // TODO: retry and check page as admin? (will affect subsequent tests though, so figure out how to deal with that..)
@@ -440,8 +512,8 @@ class SanityTest extends DuskTestCase
         $rawLog = $browser->driver->manage()->getLog('browser');
         $logLines = collect(self::filterLog($rawLog));
 
-        if ($logLines->contains('source', 'javascript')) {
-            $error = implode(' | ', $logLines->where('source', 'javascript')->pluck('message')->toArray());
+        if ($logLines->isNotEmpty()) {
+            $error = implode(' | ', $logLines->pluck('message')->toArray());
 
             throw new Exception("JavaScript ERROR: {$error}");
         }
@@ -451,7 +523,9 @@ class SanityTest extends DuskTestCase
     {
         $verificationExpected = [
             'account.edit',
+            'chat.index',
             'client-verifications.create',
+            'messages.users.show',
             'store.checkout.show',
             'store.invoice.show',
             'store.orders.index',

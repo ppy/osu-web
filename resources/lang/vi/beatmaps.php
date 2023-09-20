@@ -6,7 +6,7 @@
 return [
     'discussion-votes' => [
         'update' => [
-            'error' => 'Cập nhật vote thất bại',
+            'error' => 'Cập nhật phiếu thất bại',
         ],
     ],
 
@@ -18,18 +18,18 @@ return [
         'deny_kudosu' => 'từ chối kudosu',
         'edit' => 'chỉnh sửa',
         'edited' => 'Sửa đổi lần cuối bởi :editor :update_time.',
-        'guest' => '',
+        'guest' => 'Chế độ khách bởi :user',
         'kudosu_denied' => 'Đã từ chối nhận kudosu.',
         'message_placeholder_deleted_beatmap' => 'Difficulty này đã bị xóa nên nó có thể sẽ không còn được thảo luận nữa.',
         'message_placeholder_locked' => 'Chức năng bàn luận của beatmap này đã bị vô hiệu hóa.',
         'message_placeholder_silenced' => "Không thể đăng thảo luận khi bị khoá mõm.",
-        'message_type_select' => 'Chọn Loại Nhận Xét',
+        'message_type_select' => 'Chọn Kiểu Bình Luận',
         'reply_notice' => 'Nhấn enter để trả lời.',
         'reply_placeholder' => 'Nhập câu trả lời của bạn tại đây',
         'require-login' => 'Hãy đăng nhập để đăng hoặc trả lời',
         'resolved' => 'Đã giải quyết',
-        'restore' => 'hoàn lại',
-        'show_deleted' => 'Hiển thị đã bị xóa',
+        'restore' => 'khôi phục',
+        'show_deleted' => 'Hiển thị bình luận đã xóa',
         'title' => 'Góc Thảo Luận',
 
         'collapse' => [
@@ -50,7 +50,7 @@ return [
 
             'prompt' => [
                 'lock' => 'Lí do khóa',
-                'unlock' => 'Bạn có chắc chắn muốn mở khóa không ?',
+                'unlock' => 'Bạn có chắc chắn muốn mở khóa không?',
             ],
         ],
 
@@ -67,21 +67,34 @@ return [
         ],
 
         'message_type' => [
-            'disqualify' => 'Disqualify',
+            'disqualify' => 'Không đủ tư cách',
             'hype' => 'Hype!',
             'mapper_note' => 'Ghi Chú',
             'nomination_reset' => 'Thiết Lập Lại Đề Cử',
-            'praise' => 'Khen Ngợi',
-            'problem' => 'Vấn Đề',
+            'praise' => 'Khen ngợi',
+            'problem' => 'Vấn đề',
+            'problem_warning' => 'Báo cáo vấn đề',
             'review' => 'Đánh giá',
-            'suggestion' => 'Đề Nghị',
+            'suggestion' => 'Gợi ý',
+        ],
+
+        'message_type_title' => [
+            'disqualify' => '',
+            'hype' => '',
+            'mapper_note' => '',
+            'nomination_reset' => 'Loại bỏ tất cả đề cử',
+            'praise' => '',
+            'problem' => '',
+            'problem_warning' => '',
+            'review' => 'Đăng nhận xét',
+            'suggestion' => '',
         ],
 
         'mode' => [
             'events' => 'Lịch sử',
             'general' => 'Chung :scope',
             'reviews' => 'Các đánh giá',
-            'timeline' => 'Timeline',
+            'timeline' => 'Dòng thời gian',
             'scopes' => [
                 'general' => 'Difficulty này',
                 'generalAll' => 'Tất cả difficulties',
@@ -105,7 +118,7 @@ return [
                 'unsaved' => 'Huỷ lưu',
                 'timestamp' => [
                     'all-diff' => 'Các bài đăng trên "Mọi độ khó" không thể gắn mốc thời gian.',
-                    'diff' => '',
+                    'diff' => 'Nếu điều :type này bắt đầu với một dấu thời gian, nó sẽ được hiển thị trong Dòng thời gian.',
                 ],
             ],
             'insert-block' => [
@@ -138,7 +151,7 @@ return [
 
         'status-messages' => [
             'approved' => 'Beatmap này đã được chấp nhận (approved) vào :date!',
-            'graveyard' => "Beatmap này chưa được cập nhật từ :date và có thể đã bị bỏ rơi bởi mapper...",
+            'graveyard' => "Beatmap này chưa được cập nhật từ :date và có thể đã bị đắp mộ...",
             'loved' => 'Beatmap này đã được love vào :date!',
             'ranked' => 'Beatmap này đã được xếp hạng (ranked) vào :date!',
             'wip' => 'Ghi chú: Beatmap này được đánh dấu là đang thực hiện bởi mapper.',
@@ -163,17 +176,19 @@ return [
         'explanation' => 'Hype beatmap này để làm nó có khả năng được đề cử (nominate) và xếp hạng (rank)!',
         'explanation_guest' => 'Đăng nhập và hype beatmap này để nó có khả năng được đề cử (nominate) và xếp hạng (rank)!',
         'new_time' => "Bạn sẽ nhận được đợt hype khác vào :new_time.",
-        'remaining' => 'Bạn còn :remaining hype.',
+        'remaining' => 'Bạn chỉ còn :remaining hype.',
         'required_text' => 'Hype: :current/:required',
         'section_title' => 'Hype Train',
         'title' => 'Hype',
     ],
 
     'feedback' => [
-        'button' => 'Để Lại Phản Hồi',
+        'button' => 'Để lại Phản hồi',
     ],
 
     'nominations' => [
+        'already_nominated' => 'Bạn đã đề cử beatmap này rồi.',
+        'cannot_nominate' => 'Bạn không thể đề cử chế độ trò chơi của beatmap này.',
         'delete' => 'Xóa',
         'delete_own_confirm' => 'Bạn có chắc không? Beatmap sẽ bị xóa và bạn sẽ được chuyển hướng quay lại trang cá nhân của bạn.',
         'delete_other_confirm' => 'Bạn có chắc không? Beatmap sẽ bị xóa và bạn sẽ được chuyển hướng quay trở lại trang cá nhân của người dùng.',
@@ -183,12 +198,13 @@ return [
         'disqualify' => 'Disqualify',
         'incorrect_state' => 'Có lỗi khi thực hiện việc này, hãy thử tải lại trang.',
         'love' => 'Yêu thích',
+        'love_choose' => 'Lựa chọn chế độ yêu thích',
         'love_confirm' => 'Yêu thích beatmap này?',
         'nominate' => 'Đề Cử',
         'nominate_confirm' => 'Đề cử (nominate) beatmap này?',
         'nominated_by' => 'Được :users đề cử',
         'not_enough_hype' => "Không đủ hype.",
-        'remove_from_loved' => 'Gỡ khỏi Được Yêu thích',
+        'remove_from_loved' => 'Gỡ khỏi Được Yêu mến',
         'remove_from_loved_prompt' => 'Lý do gỡ khỏi Được Yêu thích:',
         'required_text' => 'Trạng thái đề cử: :current/:required',
         'reset_message_deleted' => 'đã xóa',
@@ -197,6 +213,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'Map này ước tính sẽ được Xếp Hạng :date nếu không tìm ra lỗi nào. Nó đang ở #:position trong :queue.',
+            'on' => 'vào ngày :date',
             'queue' => 'hàng chờ xếp hạng',
             'soon' => 'sớm',
         ],
@@ -207,8 +224,9 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => 'Bạn chắc không? Đăng một vấn đề mới sẽ thiết lập lại quá trình đề cử (nomination).',
             'disqualify' => 'Bạn chắc không? Việc này sẽ loại bỏ beatmap khỏi qualify và thiết lập lại quá trình đề cử.',
+            'nomination_reset' => 'Bạn chắc không? Đăng một vấn đề mới sẽ thiết lập lại quá trình đề cử (nomination).',
+            'problem_warning' => 'Bạn có chắc là muốn báo cáo vấn đề về beatmap này không? Việc này sẽ gửi cánh báo đến những người đề cử beatmap.',
         ],
     ],
 
@@ -251,8 +269,10 @@ return [
     ],
     'general' => [
         'converts' => 'Bao gồm beatmap được chuyển đổi',
-        'follows' => '',
+        'featured_artists' => 'Nghệ sĩ nổi bật',
+        'follows' => 'Mapper đã đăng ký',
         'recommended' => 'Độ khó đề nghị',
+        'spotlights' => 'Beatmap tiêu điểm',
     ],
     'mode' => [
         'all' => 'Tất cả',
@@ -266,12 +286,13 @@ return [
         'any' => 'Bất Kì',
         'approved' => 'Được Chấp Nhận',
         'favourites' => 'Yêu thích',
-        'graveyard' => 'Graveyard',
+        'graveyard' => 'Đắp mộ',
         'leaderboard' => 'Có danh sách xếp hạng',
-        'loved' => 'Loved',
+        'loved' => 'Được yêu mến',
         'mine' => 'Map của tôi',
-        'pending' => 'Đang chờ & WIP',
-        'qualified' => 'Qualified',
+        'pending' => 'Đang chờ',
+        'wip' => 'Chưa xong',
+        'qualified' => 'Đủ tư cách',
         'ranked' => 'Đã được xếp hạng',
     ],
     'genre' => [
@@ -289,32 +310,6 @@ return [
         'classical' => 'Cổ điển',
         'folk' => 'Dân ca',
         'jazz' => 'Jazz',
-    ],
-    'mods' => [
-        '4K' => '',
-        '5K' => '',
-        '6K' => '',
-        '7K' => '',
-        '8K' => '',
-        '9K' => '',
-        'AP' => '',
-        'DT' => '',
-        'EZ' => '',
-        'FI' => '',
-        'FL' => '',
-        'HD' => '',
-        'HR' => '',
-        'HT' => '',
-        'MR' => '',
-        'NC' => '',
-        'NF' => '',
-        'NM' => '',
-        'PF' => '',
-        'RX' => '',
-        'SD' => '',
-        'SO' => '',
-        'TD' => '',
-        'V2' => '',
     ],
     'language' => [
         'any' => 'Bất Kì',

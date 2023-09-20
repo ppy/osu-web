@@ -6,7 +6,7 @@
 namespace App\Models\Forum;
 
 use App\Exceptions\ModelNotSavedException;
-use App\Jobs\EsIndexDocument;
+use App\Jobs\EsDocument;
 use App\Jobs\MarkNotificationsRead;
 use App\Libraries\BBCodeForDB;
 use App\Libraries\BBCodeFromDB;
@@ -14,11 +14,9 @@ use App\Libraries\Elasticsearch\Indexable;
 use App\Libraries\Transactions\AfterCommit;
 use App\Models\Beatmapset;
 use App\Models\DeletedUser;
-use App\Models\Elasticsearch;
-use App\Models\Reportable;
+use App\Models\Traits;
 use App\Models\User;
 use App\Traits\Validatable;
-use App\Traits\WithDbCursorHelper;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -59,9 +57,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $topic_id
  * @property User $user
  */
-class Post extends Model implements AfterCommit, Indexable
+class Post extends Model implements AfterCommit, Indexable, Traits\ReportableInterface
 {
-    use Elasticsearch\PostTrait, Reportable, Validatable, WithDbCursorHelper;
+    use Traits\Es\ForumPostSearch, Traits\Reportable, Traits\WithDbCursorHelper, Validatable;
     use SoftDeletes {
         restore as private origRestore;
     }
@@ -357,9 +355,7 @@ class Post extends Model implements AfterCommit, Indexable
             }
         }
 
-        if ($this->isDirty('post_text') && mb_strlen($this->body_raw) > config('osu.forum.max_post_length')) {
-            $this->validationErrors()->add('post_text', 'too_long', ['limit' => config('osu.forum.max_post_length')]);
-        }
+        $this->validateDbFieldLength(config('osu.forum.max_post_length'), 'post_text', 'body_raw');
 
         if (!$this->skipBeatmapPostRestrictions) {
             // don't forget to sync with views.forum.topics._posts
@@ -381,10 +377,10 @@ class Post extends Model implements AfterCommit, Indexable
 
         // record edit history
         if ($this->exists && $this->isDirty('post_text')) {
-            $this->fill([
-                'post_edit_time' => Carbon::now(),
-                'post_edit_count' => DB::raw('post_edit_count + 1'),
-            ]);
+            $this->post_edit_time = Carbon::now();
+            if ($this->post_edit_count < 64000) {
+                $this->post_edit_count = DB::raw('post_edit_count + 1');
+            }
         }
 
         return parent::save($options);
@@ -399,7 +395,7 @@ class Post extends Model implements AfterCommit, Indexable
         }
     }
 
-    public function validationErrorsTranslationPrefix()
+    public function validationErrorsTranslationPrefix(): string
     {
         return 'forum.post';
     }
@@ -419,7 +415,7 @@ class Post extends Model implements AfterCommit, Indexable
     public function afterCommit()
     {
         if ($this->exists) {
-            dispatch(new EsIndexDocument($this));
+            dispatch(new EsDocument($this));
         }
     }
 

@@ -43,6 +43,7 @@ return [
             'label' => [
                 'forum' => '在论坛中搜索',
                 'forum_children' => '包括子版块',
+                'include_deleted' => '包括已删除的帖子',
                 'topic_id' => '主题 #',
                 'username' => '作者',
             ],
@@ -60,7 +61,7 @@ return [
             'login_required' => '登录以搜索玩家',
             'more' => '搜索到 :count 个玩家',
             'more_simple' => '查看更多搜索结果',
-            'more_hidden' => '玩家搜索超出 :max 个限制，请修改搜索内容。',
+            'more_hidden' => '玩家搜索结果超出 :max 个限制，请修改搜索内容。',
             'title' => '玩家',
         ],
 
@@ -72,11 +73,25 @@ return [
     ],
 
     'download' => [
-        'tagline' => "让我们<br>开始吧！",
         'action' => '下载 osu!',
+        'action_lazer' => '下载 osu!(lazer)',
+        'action_lazer_description' => 'osu! 的下一个主要更新',
+        'action_lazer_info' => '详情请查阅这个页面',
+        'action_lazer_title' => '尝试 osu!(lazer)',
+        'action_title' => '下载 osu!',
+        'for_os' => '适用于 :os',
+        'lazer_note' => '注意：排行榜将重置',
+        'macos-fallback' => 'macOS 用户',
+        'mirror' => '从镜像服务器下载',
+        'or' => '或',
+        'os_version_or_later' => ':os_version 或更高版本',
+        'other_os' => '其他平台',
+        'quick_start_guide' => '快速入门指南',
+        'tagline' => "让我们<br>开始吧！",
+        'video-guide' => '视频教程',
 
         'help' => [
-            '_' => '如果您在开始游戏或注册帐户时遇到问题，请 :help_forum_link 或 :support_button。',
+            '_' => '如果您在开始游戏或注册账户时遇到问题，请 :help_forum_link 或 :support_button。',
             'help_forum_link' => '查看帮助论坛',
             'support_button' => '联系支持团队',
         ],
@@ -86,15 +101,13 @@ return [
             'macos' => 'macOS 版',
             'linux' => 'Linux 版',
         ],
-        'mirror' => '从镜像服务器下载',
-        'macos-fallback' => 'macOS 用户',
         'steps' => [
             'register' => [
-                'title' => '注册帐号',
-                'description' => '根据游戏提示进行登录或注册',
+                'title' => '注册账号',
+                'description' => '根据游戏提示登录或注册',
             ],
             'download' => [
-                'title' => '下载游戏',
+                'title' => '安装游戏',
                 'description' => '点击上面的按钮下载安装器，然后运行它！',
             ],
             'beatmaps' => [
@@ -105,7 +118,6 @@ return [
                 ],
             ],
         ],
-        'video-guide' => '视频教程',
     ],
 
     'user' => [
@@ -122,8 +134,8 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => '新 Ranked 谱面',
-            'popular' => '高人气谱面',
+            'new' => '新上架 (Ranked) 谱面',
+            'popular' => '热门谱面',
             'by_user' => '作者：:user',
         ],
         'buttons' => [
@@ -131,16 +143,5 @@ return [
             'support' => '支持 osu!',
             'store' => 'osu! 商店',
         ],
-    ],
-
-    'support-osu' => [
-        'title' => '喔！',
-        'subtitle' => '看起来你玩得很开心！',
-        'body' => [
-            'part-1' => '你知道吗？ osu! 是一款没有广告，完全依赖玩家支持以维持开发及运营的游戏。',
-            'part-2' => '如果你选择给 osu! 捐赠，就可以解锁额外的功能，例如<strong>游戏内自动下载</strong>。',
-        ],
-        'find-out-more' => '点击这里以了解更多',
-        'download-starting' => "对了，别担心 - 下载已经开始了 ;)",
     ],
 ];

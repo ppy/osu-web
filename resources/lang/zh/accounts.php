@@ -5,20 +5,29 @@
 
 return [
     'edit' => [
-        'title_compact' => '设置',
+        'title_compact' => '账户设置',
         'username' => '用户名',
 
         'avatar' => [
             'title' => '头像',
-            'rules' => '请确保你的头像符合 :link。<br/>这意味着头像内容必须是<strong>全年龄的</strong>，即没有裸露、亵渎或暗示的内容。',
-            'rules_link' => '社群规则',
+            'rules' => '请确保你的头像符合 :link。<br/>这意味着头像内容必须是<strong>全年龄的</strong>，即没有裸露、不文明语言或暗示的内容。',
+            'rules_link' => '社区规则',
         ],
 
         'email' => [
-            'current' => '当前邮箱地址',
             'new' => '新邮箱地址',
             'new_confirmation' => '确认新邮箱地址',
             'title' => '邮箱',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
+        ],
+
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => '旧版本 API',
         ],
 
         'password' => [
@@ -29,7 +38,13 @@ return [
         ],
 
         'profile' => [
+            'country' => '国家或地区',
             'title' => '个人资料',
+
+            'country_change' => [
+                '_' => "您的个人资料所在国家或地区似乎与您的居住地不符。:update_link。",
+                'update_link' => '更新为 :country',
+            ],
 
             'user' => [
                 'user_discord' => '',
@@ -37,7 +52,7 @@ return [
                 'user_interests' => '兴趣爱好',
                 'user_occ' => '职业',
                 'user_twitter' => '',
-                'user_website' => '个人主页',
+                'user_website' => '个人网站',
             ],
         ],
 
@@ -48,8 +63,8 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_qualified_problem' => '在以下模式的合格谱面上接收新问题通知：',
-        'beatmapset_disqualify' => '在以下模式的谱面被标记为不合格时接收通知：',
+        'beatmapset_discussion_qualified_problem' => '接收以下游戏模式在过审 (Qualified) 谱面上的新问题通知：',
+        'beatmapset_disqualify' => '接收以下游戏模式谱面下架 (DQ) 时的通知：',
         'comment_reply' => '在你的评论被回复时接收通知',
         'title' => '通知',
         'topic_auto_subscribe' => '自动启用自己创建的主题的通知',
@@ -69,19 +84,19 @@ return [
     ],
 
     'oauth' => [
-        'authorized_clients' => '已授权的第三应用',
+        'authorized_clients' => '已授权的第三方',
         'own_clients' => '拥有的客户端',
         'title' => '开放授权',
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => '隐藏谱面少儿不宜提示',
+        'beatmapset_show_nsfw' => '隐藏不良内容谱面提示',
         'beatmapset_title_show_original' => '以原语言显示谱面信息',
         'title' => '选项',
 
         'beatmapset_download' => [
             '_' => '默认谱面下载类型',
-            'all' => '包含视频',
+            'all' => '包含视频（若可用）',
             'direct' => '在 osu!direct 中查看',
             'no_video' => '不包含视频',
         ],
@@ -98,16 +113,16 @@ return [
     'privacy' => [
         'friends_only' => '屏蔽来自陌生人的私信',
         'hide_online' => '隐藏在线状态',
-        'title' => '隐私政策',
+        'title' => '隐私',
     ],
 
     'security' => [
         'current_session' => '当前',
         'end_session' => '终止会话',
         'end_session_confirmation' => '这将立刻结束该设备上的会话，你确定吗？',
-        'last_active' => '上次使用：',
+        'last_active' => '上次登录：',
         'title' => '安全',
-        'web_sessions' => '浏览器会话',
+        'web_sessions' => '网页会话',
     ],
 
     'update_email' => [
@@ -119,7 +134,7 @@ return [
     ],
 
     'verification_completed' => [
-        'text' => '现在可以关闭本窗口了',
+        'text' => '现在可以关闭此窗口',
         'title' => '验证已经完成',
     ],
 

@@ -5,26 +5,25 @@
 
 namespace App\Libraries\Markdown\Indexing\Renderers;
 
-use League\CommonMark\Block\Element\AbstractBlock;
-use League\CommonMark\Block\Renderer\BlockRendererInterface;
-use League\CommonMark\ElementRendererInterface;
+use League\CommonMark\Node\Node;
+use League\CommonMark\Renderer\ChildNodeRendererInterface;
+use League\CommonMark\Renderer\NodeRendererInterface;
 
-class ListItemRenderer implements BlockRendererInterface
+class ListItemRenderer implements NodeRendererInterface
 {
     /**
-     * @param AbstractBlock $block
-     * @param ElementRendererInterface $htmlRenderer
-     * @param bool $inTightList
+     * @param Node $node
+     * @param ChildNodeRendererInterface $childRenderer
      *
      * @return string
      */
-    public function render(AbstractBlock $block, ElementRendererInterface $renderer, $inTightList = false)
+    public function render(Node $node, ChildNodeRendererInterface $childRenderer): string
     {
         $rendered = [];
 
-        $children = $block->children();
+        $children = $node->children();
         foreach ($children as $child) {
-            $rendered[] = $renderer->renderBlock($child, false);
+            $rendered[] = $childRenderer->renderNodes([$child]);
         }
 
         return implode('', $rendered);

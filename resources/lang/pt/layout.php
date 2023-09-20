@@ -19,11 +19,15 @@ return [
             'contest' => 'concurso',
             'contests' => 'concursos',
             'root' => 'consola',
-            'store_orders' => 'administrador da loja',
         ],
 
         'artists' => [
             'index' => 'listagem',
+        ],
+
+        'beatmapsets' => [
+            'show' => 'informação',
+            'discussions' => 'discussão',
         ],
 
         'changelog' => [
@@ -47,7 +51,8 @@ return [
 
         'users' => [
             'modding' => 'modding',
-            'multiplayer' => 'multijogador',
+            'playlists' => 'playlists',
+            'realtime' => 'multijogador',
             'show' => 'informação',
         ],
     ],
@@ -63,18 +68,10 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => 'beatmaps',
-            'artists' => 'artistas destacados',
-            'index' => 'listagem',
-            'packs' => 'pacotes',
         ],
         'community' => [
             '_' => 'comunidade',
-            'chat' => 'chat',
-            'contests' => 'concursos',
             'dev' => 'desenvolvimento',
-            'forum-forums-index' => 'fóruns',
-            'getLive' => 'em direto',
-            'tournaments' => 'torneios',
         ],
         'help' => [
             '_' => 'ajuda',
@@ -82,30 +79,17 @@ return [
             'getFaq' => 'perguntas frequentes',
             'getRules' => 'regras',
             'getSupport' => 'a sério, preciso mesmo de ajuda!',
-            'getWiki' => 'wiki',
         ],
         'home' => [
             '_' => 'início',
-            'changelog-index' => 'lista de mudanças',
-            'getDownload' => 'transferir',
-            'news-index' => 'notícias',
-            'search' => 'pesquisar',
             'team' => 'equipa',
         ],
         'rankings' => [
             '_' => 'classificações',
-            'charts' => 'em destaque',
-            'country' => 'país',
-            'index' => 'desempenho',
             'kudosu' => 'kudosu',
-            'multiplayer' => 'multijogador',
-            'score' => 'pontuação',
         ],
         'store' => [
             '_' => 'loja',
-            'cart-show' => 'carrinho',
-            'getListing' => 'listagem',
-            'orders-index' => 'histórico de encomendas',
         ],
     ],
 
@@ -201,7 +185,7 @@ return [
 
         'register' => [
             'download' => 'Descarregar',
-            'info' => 'Transfere o osu! para criar a tua própria conta!',
+            'info' => 'Transfere o osu! para criares a tua própria conta!',
             'title' => "Não tens uma conta?",
         ],
     ],

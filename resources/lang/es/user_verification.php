@@ -5,14 +5,14 @@
 
 return [
     'box' => [
-        'sent' => 'Se ha enviado un correo electrónico a :mail con un código de verificación. Introduzca el código.',
+        'sent' => 'Se ha enviado un correo a :mail con un código de verificación. Introduzca el código.',
         'title' => 'Verificación de la cuenta',
         'verifying' => 'Verificando...',
         'issuing' => 'Emitiendo nuevo código...',
 
         'info' => [
-            'check_spam' => "Asegúrese de revisar su carpeta de spam o correo no deseado si no puede encontrar el correo electrónico.",
-            'recover' => "Si no puede acceder a su correo electrónico o ha olvidado el que utilizó, siga el :link.",
+            'check_spam' => "Asegúrese de revisar su carpeta de spam (correo no deseado) si no puede encontrar el correo.",
+            'recover' => "Si no puede acceder a su correo o ha olvidado el que usó, siga el :link.",
             'recover_link' => 'proceso de recuperación de correo electrónico aquí',
             'reissue' => 'También puede :reissue_link o :logout_link.',
             'reissue_link' => 'solicitar otro código',

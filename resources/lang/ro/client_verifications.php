@@ -5,14 +5,14 @@
 
 return [
     'completed' => [
-        'home' => 'Mergi la panoul de comenzi',
+        'home' => 'Mergi la tabloul de comenzi',
         'logout' => 'Deconectează-te',
-        'text' => 'Acum poți închide această fereastră/tab',
-        'title' => 'osu! verificarea clientului a fost completată',
+        'text' => 'Poți închide această fereastră acum',
+        'title' => 'verificarea client-ului osu! a fost finalizată',
     ],
 
     'create' => [
-        'confirm' => 'Fă click pe butonul de autorizare de mai jos pentru a finaliza verificarea clientului.',
-        'title' => 'osu! verificare client',
+        'confirm' => 'Faceți clic pe butonul de autorizare de mai jos pentru a finaliza verificarea client-ului.',
+        'title' => 'verificare client osu!',
     ],
 ];

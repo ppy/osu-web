@@ -6,7 +6,7 @@
 return [
     'discussion-votes' => [
         'update' => [
-            'error' => 'อัปเดตโหวตล้มเหลว',
+            'error' => 'ไม่สามารถอัปเดตการลงคะแนน',
         ],
     ],
 
@@ -18,7 +18,7 @@ return [
         'deny_kudosu' => 'ปฏิเสธการให้ kudosu',
         'edit' => 'แก้ไข',
         'edited' => 'แก้ไขล่าสุดโดย :editor เมื่อเวลา :update_time',
-        'guest' => 'ระดับความยากของแขกโดย:user',
+        'guest' => 'ความยากของผู้มาเยี่ยมโดย :user',
         'kudosu_denied' => 'ถูกปฏิเสธการให้ kudosu',
         'message_placeholder_deleted_beatmap' => 'ระดับความยากนี้ถูกลบแล้วจึงไม่ควรถูกสนทนาถึง',
         'message_placeholder_locked' => 'การสนทนาสำหรับบีทแมพนี้ถูกปิดใช้งาน',
@@ -73,8 +73,21 @@ return [
             'nomination_reset' => 'รีเซทการเสนอชื่อ',
             'praise' => 'ชื่นชม',
             'problem' => 'ข้อผิดพลาด',
+            'problem_warning' => 'รายงานปัญหา',
             'review' => 'บทวิจารณ์',
             'suggestion' => 'ข้อเสนอแนะ',
+        ],
+
+        'message_type_title' => [
+            'disqualify' => 'โพสต์การตัดสิทธิ์',
+            'hype' => 'โพสต์ Hype!',
+            'mapper_note' => 'โพสต์หมายเหตุ',
+            'nomination_reset' => 'ลบการเสนอชื่อทั้งหมด',
+            'praise' => 'โพสต์การชื่นชม',
+            'problem' => 'โพสต์ปัญหา',
+            'problem_warning' => 'โพสต์ปัญหา',
+            'review' => 'โพสต์รีวิว',
+            'suggestion' => 'โพสต์คำแนะนำ',
         ],
 
         'mode' => [
@@ -137,7 +150,7 @@ return [
         ],
 
         'status-messages' => [
-            'approved' => 'Beatmap นี้ถูกอนุมัติในวันที่ :date',
+            'approved' => 'บีทแมพนี้ถูกอนุมัติในวันที่ :date',
             'graveyard' => "บีทแมพนี้ไม่ถูกอัปเดตตั้งแต่ :date และน่าจะถูกละทิ้งโดยผู้ทำแมพไปแล้ว",
             'loved' => 'บีทแมพนี้ถูก Loved ในวันที่ :date',
             'ranked' => 'บีทแมพนี้ถูกจัดอันดับในวันที่ :date',
@@ -157,7 +170,7 @@ return [
     ],
 
     'hype' => [
-        'button' => 'Hype Beatmap!',
+        'button' => 'Hype บีทแมพ!',
         'button_done' => 'Hype ไปแล้ว!',
         'confirm' => "แน่ใจหรอ นี่จะใช้หนึ่งใน :n Hype ที่เหลือของคุณและไม่สามารถแก้ไขได้",
         'explanation' => 'Hype บีทแมพนี้เพื่อทำให้ง่ายขึ้นต่อการเสนอชื่อและจัดอันดับ',
@@ -174,6 +187,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => 'คุณได้เสนอชื่อบีทแมพนี้แล้ว',
+        'cannot_nominate' => 'คุณไม่สามารถเสนอชื่อโหมดเกมของบีทแมพนี้ได้',
         'delete' => 'ลบ',
         'delete_own_confirm' => 'คุณแน่ใจใช่ไหม? บีทแมพจะถูกลบและคุณจะถูกนำกลับไปยังหน้าโปรไฟล์ของคุณ',
         'delete_other_confirm' => 'คุณแน่ใจใช่ไหม? บีทแมพจะถูกลบและคุณจะถูกนำกลับไปยังหน้าโปรไฟล์ของผู้เล่น',
@@ -182,7 +197,8 @@ return [
         'disqualified_no_reason' => 'ไม่มีเหตุผลที่ระบุไว้',
         'disqualify' => 'ตัดสิทธิ์',
         'incorrect_state' => 'เกิดข้อผิดพลาดในการดำเนินการ ลองรีเฟรชหน้าเพจนี้ดู',
-        'love' => 'Love',
+        'love' => 'ชอบ',
+        'love_choose' => 'เลือกระดับความยากสำหรับ Loved',
         'love_confirm' => 'ชอบบีทแมพนี้หรือ?',
         'nominate' => 'เสนอชื่อ',
         'nominate_confirm' => 'เสนอชื่อบีทแมพนี้?',
@@ -197,8 +213,9 @@ return [
 
         'rank_estimate' => [
             '_' => 'แมพนี้จะถูก ranked  ใน :date ถ้าไม่พบเจอปัญหาเพิ่มเติม แมพนี้อยู่ที่ #:position ใน :queue',
-            'queue' => 'คิวการ rank',
-            'soon' => 'เร็ว ๆ นี้',
+            'on' => 'เมื่อ :date',
+            'queue' => 'คิวการจัดอันดับ',
+            'soon' => 'เร็วๆ นี้',
         ],
 
         'reset_at' => [
@@ -207,8 +224,9 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => 'คุณแน่ใจหรือ? ในการโพสต์ปัญหาใหม่จะรีเซ็ตการเสนอชื่อ',
             'disqualify' => 'คุณแน่ใจใช่หรือไม่? ที่จะลบบีทแมพออกและรีเซ็ตความคืบหน้า',
+            'nomination_reset' => 'คุณแน่ใจหรือ? ในการโพสต์ปัญหาใหม่จะรีเซ็ตการเสนอชื่อ',
+            'problem_warning' => 'คุณแน่ใจที่จะรายงานปัญหาบนบีทแมพนี้หรือไม่ รายงานนี้จะถูกแจ้งเตือนไปยัง Beatmap Nominators',
         ],
     ],
 
@@ -245,14 +263,16 @@ return [
             ],
             'supporter_filter_quote' => [
                 '_' => 'กรองโดย :filters ต้องมี :link ทำงานอยู่',
-                'link_text' => 'แท็กสนับสนุน',
+                'link_text' => 'แท็ก osu!supporter',
             ],
         ],
     ],
     'general' => [
-        'converts' => 'รวมแมพคอนเวิรต์ด้วย',
+        'converts' => 'รวมบีทแมพที่แปลงแล้ว',
+        'featured_artists' => 'ศิลปินโดดเด่น',
         'follows' => 'ติดตามผู้ทำแมพ',
         'recommended' => 'ระดับความยากที่แนะนำ',
+        'spotlights' => 'บีทแมพที่โดดเด่น',
     ],
     'mode' => [
         'all' => 'ทั้งหมด',
@@ -270,8 +290,9 @@ return [
         'leaderboard' => 'สถิติการจัดลำดับ',
         'loved' => 'Loved',
         'mine' => 'แมพของฉัน',
-        'pending' => 'รอดำเนินการ & WIP',
-        'qualified' => 'Qualified',
+        'pending' => 'รอดำเนินการ',
+        'wip' => 'WIP',
+        'qualified' => 'ผ่านการรับรอง',
         'ranked' => 'จัดอันดับแล้ว',
     ],
     'genre' => [
@@ -290,34 +311,8 @@ return [
         'folk' => 'โฟล์ค',
         'jazz' => 'แจ๊ส',
     ],
-    'mods' => [
-        '4K' => '',
-        '5K' => '',
-        '6K' => '',
-        '7K' => '',
-        '8K' => '',
-        '9K' => '',
-        'AP' => '',
-        'DT' => '',
-        'EZ' => '',
-        'FI' => '',
-        'FL' => '',
-        'HD' => '',
-        'HR' => '',
-        'HT' => '',
-        'MR' => '',
-        'NC' => '',
-        'NF' => '',
-        'NM' => '',
-        'PF' => '',
-        'RX' => '',
-        'SD' => '',
-        'SO' => '',
-        'TD' => '',
-        'V2' => '',
-    ],
     'language' => [
-        'any' => 'Any',
+        'any' => 'ไม่เจาะจง',
         'english' => 'อังกฤษ',
         'chinese' => 'จีน',
         'french' => 'ฝรั่งเศส',
@@ -327,8 +322,8 @@ return [
         'korean' => 'เกาหลี',
         'spanish' => 'สเปน',
         'swedish' => 'สวีเดน',
-        'russian' => 'ภาษารัสเซีย',
-        'polish' => 'ภาษาโปแลนด์',
+        'russian' => 'รัสเซีย',
+        'polish' => 'โปแลนด์',
         'instrumental' => 'เครื่องดนตรี',
         'other' => 'อื่นๆ',
         'unspecified' => 'ไม่ระบุภาษา',
@@ -361,7 +356,7 @@ return [
     ],
     'panel' => [
         'playcount' => 'จำนวนการเล่น: :count',
-        'favourites' => 'จำนวนการชื่นชอบ: :count',
+        'favourites' => 'รายการโปรด: :count',
     ],
     'variant' => [
         'mania' => [

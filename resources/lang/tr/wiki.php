@@ -5,13 +5,14 @@
 
 return [
     'show' => [
-        'fallback_translation' => 'İstenen sayfa, istenilen dile (:language) henüz çevrilmedi. İngilizce sürümü gösteriliyor.',
+        'fallback_translation' => 'İstenilen sayfa, seçilen dile (:language) henüz çevrilmedi. İngilizce sürümü gösteriliyor.',
         'incomplete_or_outdated' => 'Bu sayfadaki içerik tamamlanmamış veya güncel değil. Eğer yardım edebilecekseniz, lütfen makaleyi güncellemeyi bir düşünün!',
         'missing' => 'İstenilen ":keyword" sayfası bulunamadı.',
         'missing_title' => 'Bulunamadı',
         'missing_translation' => 'İstenilen sayfa seçilen dilde bulunamadı.',
         'needs_cleanup_or_rewrite' => 'Bu sayfa osu! wiki standartlarına uymamaktadır, bu nedenle düzenlenmeli veya yeniden yazılmalıdır. Eğer yardımcı olabilirseniz, lütfen makaleyi güncellemeyi bir düşünün!',
         'search' => ':link için mevcut sayfaları ara.',
+        'stub' => 'Bu makale henüz taslak halindedir ve birisi tarafından genişletilmeyi beklemektedir.',
         'toc' => 'İçerik',
 
         'edit' => [

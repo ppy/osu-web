@@ -5,7 +5,7 @@
 
 return [
     'edit' => [
-        'title_compact' => 'ajustes',
+        'title_compact' => 'configuración de la cuenta',
         'username' => 'nombre de usuario',
 
         'avatar' => [
@@ -15,10 +15,19 @@ return [
         ],
 
         'email' => [
-            'current' => 'correo electrónico actual',
             'new' => 'nuevo correo electrónico',
             'new_confirmation' => 'confirmar correo electrónico',
             'title' => 'Correo electrónico',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
+        ],
+
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'API heredada',
         ],
 
         'password' => [
@@ -29,7 +38,13 @@ return [
         ],
 
         'profile' => [
+            'country' => 'país',
             'title' => 'Perfil',
+
+            'country_change' => [
+                '_' => "Parece que el país de tu cuenta no coincide con tu país de residencia. :update_link.",
+                'update_link' => 'Actualizar a :country',
+            ],
 
             'user' => [
                 'user_discord' => '',
@@ -61,7 +76,7 @@ return [
             'channel_message' => 'mensajes de chat privados',
             'comment_new' => 'nuevos comentarios',
             'forum_topic_reply' => 'respuestas a temas',
-            'mail' => 'correo electrónico',
+            'mail' => 'correo',
             'mapping' => 'creadores de mapas',
             'push' => 'push',
             'user_achievement_unlock' => 'medallas desbloqueadas',

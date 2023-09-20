@@ -1,20 +1,5 @@
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 import { dispatch, dispatcher } from 'app-dispatcher';
 import { NotificationBundleJson } from 'interfaces/notification-json';
@@ -26,16 +11,29 @@ import NotificationStore from 'stores/notification-store';
 import { makeNotificationJson, makeStackJson } from './helpers';
 
 describe('Notification Event Read (NotificationType only)', () => {
-  // @ts-ignore
-  beforeEach(() => dispatcher.listeners.clear());
-  // @ts-ignore
-  afterEach(() => dispatcher.listeners.clear());
+  beforeEach(() => dispatcher.clear());
+  afterEach(() => dispatcher.clear());
 
   describe('on NotificationEventRead', () => {
     const identities = [
-      { id: 1000, objectType: 'beatmapset', objectId: 1, category: 'beatmapset_discussion' },
-      { id: 1002, objectType: 'beatmapset', objectId: 2, category: 'beatmapset_discussion' },
-      { id: 1004, objectType: 'channel', objectId: 3, category: 'channel' },
+      {
+        category: 'beatmapset_discussion',
+        id: 1000,
+        objectId: 1,
+        objectType: 'beatmapset',
+      },
+      {
+        category: 'beatmapset_discussion',
+        id: 1002,
+        objectId: 2,
+        objectType: 'beatmapset',
+      },
+      {
+        category: 'channel',
+        id: 1004,
+        objectId: 3,
+        objectType: 'channel',
+      },
     ];
 
     const baseUnreadCount = 10;

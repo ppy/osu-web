@@ -33,10 +33,14 @@ return [
 
     'blocks' => [
         'banner_text' => 'Você bloqueou este usuário.',
+        'comment_text' => 'Este comentário está oculto.',
         'blocked_count' => 'usuários bloqueados: (:count)',
         'hide_profile' => 'Ocultar perfil',
+        'hide_comment' => 'ocultar',
+        'forum_post_text' => 'Essa publicação está oculta.',
         'not_blocked' => 'Este usuário não está bloqueado.',
         'show_profile' => 'Exibir perfil',
+        'show_comment' => 'exibir',
         'too_many' => 'Limite de bloqueios atingido.',
         'button' => [
             'block' => 'Bloquear',
@@ -45,8 +49,25 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => 'Presentear supporter tag',
         'loading' => 'Carregando...',
         'send_message' => 'enviar mensagem',
+    ],
+
+    'create' => [
+        'form' => [
+            'password' => 'senha',
+            'password_confirmation' => 'confirmar senha',
+            'submit' => 'criar conta',
+            'user_email' => 'email',
+            'user_email_confirmation' => 'confirmar email',
+            'username' => 'nome de usuário',
+
+            'tos_notice' => [
+                '_' => 'ao criar a conta você concorda com :link',
+                'link' => 'termos de serviço',
+            ],
+        ],
     ],
 
     'disabled' => [
@@ -59,7 +80,7 @@ return [
         ],
 
         'reasons' => [
-            'compromised' => 'Sua conta foi considerada comprometida. Ela pode estar desativada temporariamente enquanto sua identidade for confirmada.',
+            'compromised' => 'Sua conta foi considerada comprometida. Ela pode estar desativada temporariamente enquanto sua identidade está sendo confirmada.',
             'opening' => 'Há vários motivos que podem resultar na desativação da sua conta:',
 
             'tos' => [
@@ -97,7 +118,7 @@ return [
         'username' => 'Nome de Usuário',
 
         'beta' => [
-            'main' => 'Acesso beta está restrito apenas para usuários privilegiados.',
+            'main' => 'Acesso Beta está restrito apenas para usuários privilegiados.',
             'small' => '(osu!supporters terão acesso em breve)',
         ],
     ],
@@ -139,6 +160,7 @@ return [
     'restricted_banner' => [
         'title' => 'Sua conta foi restrita!',
         'message' => 'Enquanto restrito, você será impossibilitado de interagir com outros jogadores e suas pontuações serão visíveis apenas para você. Isso é geralmente causado por um processo automático e provavelmente será resolvido em até 24 horas. Caso tenha interesse em recorrer contra sua restrição, por favor, <a href="mailto:accounts@ppy.sh">entre em contato com o suporte</a>.',
+        'message_link' => 'Veja esta página para saber mais.',
     ],
     'show' => [
         'age' => ':age anos',
@@ -158,6 +180,10 @@ return [
         'comments_count' => [
             '_' => 'Publicado :link',
             'count' => ':count_delimited comentário|:count_delimited comentários',
+        ],
+        'cover' => [
+            'to_0' => 'Ocultar capa',
+            'to_1' => 'Mostrar capa',
         ],
         'edit' => [
             'cover' => [
@@ -204,8 +230,14 @@ return [
                 'graveyard' => [
                     'title' => 'Beatmaps no Cemitério',
                 ],
+                'guest' => [
+                    'title' => 'Beatmaps de Participação de Visitantes',
+                ],
                 'loved' => [
                     'title' => 'Beatmaps Loved',
+                ],
+                'nominated' => [
+                    'title' => 'Beatmaps Ranqueados Nominados',
                 ],
                 'pending' => [
                     'title' => 'Beatmaps Pendentes',
@@ -301,9 +333,8 @@ return [
                 'recent' => 'Recente',
                 'title' => 'Medalhas',
             ],
-            'multiplayer' => [
-                'title' => 'Jogos multijogador
-',
+            'playlists' => [
+                'title' => 'Jogos da Seleção de Música',
             ],
             'posts' => [
                 'title' => 'Publicações',
@@ -312,6 +343,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'Recente',
+            ],
+            'realtime' => [
+                'title' => 'Jogos em Multiplayer',
             ],
             'top_ranks' => [
                 'download_replay' => 'Baixar Replay',
@@ -325,6 +359,15 @@ return [
                 ],
                 'first' => [
                     'title' => 'Primeiros Lugares',
+                ],
+                'pin' => [
+                    'to_0' => 'Desafixar',
+                    'to_0_done' => 'Pontuação desafixada',
+                    'to_1' => 'Fixar',
+                    'to_1_done' => 'Pontuação fixada',
+                ],
+                'pinned' => [
+                    'title' => 'Pontuações fixadas',
                 ],
             ],
             'votes' => [
@@ -344,13 +387,14 @@ return [
                     'date' => 'data',
                     'action' => 'ação',
                     'length' => 'duração',
-                    'length_permanent' => 'Permanente',
+                    'length_indefinite' => 'Indefinido',
                     'description' => 'descrição',
                     'actor' => 'por :username',
 
                     'actions' => [
                         'restriction' => 'Banimento',
                         'silence' => 'Silenciamento',
+                        'tournament_ban' => 'Ban do torneio',
                         'note' => 'Nota',
                     ],
                 ],
@@ -392,6 +436,7 @@ return [
             'country_simple' => 'Ranking Nacional',
             'global' => 'Ranking global de :mode',
             'global_simple' => 'Ranking Global',
+            'highest' => 'Maior classificação: :rank em :date',
         ],
         'stats' => [
             'hit_accuracy' => 'Precisão',
@@ -425,6 +470,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
+        'from_client' => 'por favor registre-se através do cliente do jogo!',
+        'from_web' => 'por favor registre-se através do site',
         'saved' => 'Usuário criado',
     ],
     'verify' => [

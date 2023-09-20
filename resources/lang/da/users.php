@@ -33,10 +33,14 @@ return [
 
     'blocks' => [
         'banner_text' => 'Du har blokeret denne bruger.',
+        'comment_text' => 'Denne kommentar er skjult.',
         'blocked_count' => 'blokerede brugere (:count)',
         'hide_profile' => 'Skjul profil',
+        'hide_comment' => 'skjul',
+        'forum_post_text' => '',
         'not_blocked' => 'Denne bruger er ikke blokeret.',
         'show_profile' => 'Vis profil',
+        'show_comment' => 'vis',
         'too_many' => 'Blokeringsgrænsen er nået.',
         'button' => [
             'block' => 'Bloker',
@@ -45,8 +49,25 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => '',
         'loading' => 'Indlæser...',
         'send_message' => 'Send besked',
+    ],
+
+    'create' => [
+        'form' => [
+            'password' => 'adgangskode',
+            'password_confirmation' => 'bekræftelse af adgangskode',
+            'submit' => 'opret konto',
+            'user_email' => 'e-mail',
+            'user_email_confirmation' => 'e-mail bekræftelse',
+            'username' => 'brugernavn',
+
+            'tos_notice' => [
+                '_' => 'ved at oprette konto accepterer du :link',
+                'link' => '',
+            ],
+        ],
     ],
 
     'disabled' => [
@@ -128,7 +149,7 @@ return [
 
         'options' => [
             'cheating' => 'Uærligt spil / Snyd',
-            'multiple_accounts' => '',
+            'multiple_accounts' => 'Bruger flere konti',
             'insults' => 'Fornærmede mig / andre',
             'spam' => 'Spamming',
             'unwanted_content' => 'Sender links med upassende indhold',
@@ -138,7 +159,8 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'Du konto er blevet begrænset!',
-        'message' => 'Når du er begrænset, kan du ikke interagere med andre spillere, og dine scores vil kun være synlige for dig. Dette er som regel en automatisk proces, og begrænsningen vil blive fjernet indenfor 24 timer. Hvis du ønsker at appellere din begrænsning, <a href="mailto:accounts@ppy.sh">kontakt supporten</a>.',
+        'message' => 'Når du er begrænset, kan du ikke interagere med andre spillere, og dine scores vil kun være synlige for dig. Dette er som regel en automatisk proces, og begrænsningen vil blive fjernet indenfor 24 timer. :link',
+        'message_link' => 'Tjek denne side for at lære mere.',
     ],
     'show' => [
         'age' => ':age år gammel',
@@ -158,6 +180,10 @@ return [
         'comments_count' => [
             '_' => 'Slået op :link',
             'count' => ':count_delimited kommentar|:count_delimited kommentarer',
+        ],
+        'cover' => [
+            'to_0' => 'Skjul omslag',
+            'to_1' => 'Vis omslag',
         ],
         'edit' => [
             'cover' => [
@@ -204,8 +230,14 @@ return [
                 'graveyard' => [
                     'title' => 'Beatmaps på Kirkegården',
                 ],
+                'guest' => [
+                    'title' => 'Gæst Deltagelse Beatmaps',
+                ],
                 'loved' => [
                     'title' => 'Elskede beatmaps',
+                ],
+                'nominated' => [
+                    'title' => '',
                 ],
                 'pending' => [
                     'title' => 'Afventende Beatmaps',
@@ -294,15 +326,15 @@ return [
                 ],
             ],
             'me' => [
-                'title' => 'me!',
+                'title' => 'mig!',
             ],
             'medals' => [
                 'empty' => "Denne bruger har ikke fået nogle endnu. ;_;",
                 'recent' => 'Seneste',
                 'title' => 'Medaljer',
             ],
-            'multiplayer' => [
-                'title' => '',
+            'playlists' => [
+                'title' => 'Spilleliste spil',
             ],
             'posts' => [
                 'title' => 'Opslag',
@@ -311,6 +343,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'Seneste',
+            ],
+            'realtime' => [
+                'title' => 'Multiplayerspil',
             ],
             'top_ranks' => [
                 'download_replay' => 'Download Replay',
@@ -324,6 +359,15 @@ return [
                 ],
                 'first' => [
                     'title' => 'Førstepladser',
+                ],
+                'pin' => [
+                    'to_0' => 'Frigør',
+                    'to_0_done' => 'Ufastgjort score',
+                    'to_1' => 'Fastgør',
+                    'to_1_done' => 'Fastgjort score',
+                ],
+                'pinned' => [
+                    'title' => 'Fastgjorte Scores',
                 ],
             ],
             'votes' => [
@@ -343,13 +387,14 @@ return [
                     'date' => 'dato',
                     'action' => 'handling',
                     'length' => 'længde',
-                    'length_permanent' => 'Permanent',
+                    'length_indefinite' => '',
                     'description' => 'beskrivelse',
                     'actor' => 'af :username',
 
                     'actions' => [
                         'restriction' => 'Ban',
                         'silence' => 'Mute',
+                        'tournament_ban' => 'Turneringsforbud',
                         'note' => 'Noter',
                     ],
                 ],
@@ -391,6 +436,7 @@ return [
             'country_simple' => 'Lande Rang',
             'global' => 'Global rang for :mode',
             'global_simple' => 'Global Rang',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Præcision',
@@ -424,6 +470,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
+        'from_client' => '',
+        'from_web' => '',
         'saved' => 'Bruger Oprettet',
     ],
     'verify' => [

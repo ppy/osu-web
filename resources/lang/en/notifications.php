@@ -13,6 +13,16 @@ return [
     'see_channel' => 'go to chat',
     'verifying' => 'Please verify session to view notifications',
 
+    'action_type' => [
+        '_' => 'all',
+        'beatmapset' => 'beatmaps',
+        'build' => 'builds',
+        'channel' => 'chat',
+        'forum_topic' => 'forum',
+        'news_post' => 'news',
+        'user' => 'profile',
+    ],
+
     'filters' => [
         '_' => 'all',
         'user' => 'profile',
@@ -86,8 +96,19 @@ return [
         'channel' => [
             '_' => 'Chat',
 
+            'announcement' => [
+                '_' => 'New announcement',
+
+                'announce' => [
+                    'channel_announcement' => ':username says ":title"',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => 'Announcement from :username',
+                ],
+            ],
+
             'channel' => [
                 '_' => 'New message',
+
                 'pm' => [
                     'channel_message' => ':username says ":title"',
                     'channel_message_compact' => ':title',
@@ -132,15 +153,6 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => 'Legacy Forum PM',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited unread message|:count_delimited unread messages',
-            ],
-        ],
-
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'New beatmap',
@@ -148,6 +160,9 @@ return [
                 'user_beatmapset_new' => 'New beatmap ":title" by :username',
                 'user_beatmapset_new_compact' => 'New beatmap ":title"',
                 'user_beatmapset_new_group' => 'New beatmaps by :username',
+
+                'user_beatmapset_revive' => 'Beatmap ":title" revived by :username',
+                'user_beatmapset_revive_compact' => 'Beatmap ":title" revived',
             ],
         ],
 
@@ -195,6 +210,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => 'There is a new annoucement in ":name"',
+            ],
+
             'channel' => [
                 'pm' => 'You\'ve received a new message from :username',
             ],
@@ -226,6 +245,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username has created new beatmaps',
+                'user_beatmapset_revive' => ':username has revived beatmaps',
             ],
         ],
     ],

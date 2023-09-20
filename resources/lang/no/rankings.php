@@ -17,12 +17,27 @@ return [
         ],
     ],
 
+    'kudosu' => [
+        'total' => '',
+        'available' => '',
+        'used' => '',
+    ],
+
     'type' => [
         'charts' => 'Rampelyset',
         'country' => 'Land',
+        'kudosu' => '',
         'multiplayer' => 'flerspiller',
         'performance' => 'Prestasjon',
         'score' => 'Poengsum',
+        'seasons' => 'sesonger',
+    ],
+
+    'seasons' => [
+        'empty' => 'Det er ingen rom i denne sesongen ennå.',
+        'ongoing' => 'Denne sesongen er pågående (flere spillelister vil bli lagt til).',
+        'room_count' => 'Antall spillelister',
+        'url' => 'Vis mer informasjon om den sesongen.',
     ],
 
     'spotlight' => [

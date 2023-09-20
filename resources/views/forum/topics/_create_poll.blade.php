@@ -61,10 +61,10 @@
 
     <label class="simple-form__row">
         <div class="simple-form__label simple-form__label--full">
-            @include('objects._switch', [
-                'checked' => optional($topic)->poll_vote_change,
+            @include('objects._switch', ['locals' => [
+                'checked' => $topic?->poll_vote_change,
                 'name' => 'forum_topic_poll[vote_change]',
-            ])
+            ]])
 
             {{ osu_trans('forum.topics.create.poll.vote_change') }}
             <span class="simple-form__info">{{ osu_trans('forum.topics.create.poll.vote_change_info') }}</span>
@@ -73,10 +73,10 @@
 
     <label class="simple-form__row">
         <div class="simple-form__label simple-form__label--full">
-            @include('objects._switch', [
-                'checked' => optional($topic)->poll_hide_results,
+            @include('objects._switch', ['locals' => [
+                'checked' => $topic?->poll_hide_results,
                 'name' => 'forum_topic_poll[hide_results]',
-            ])
+            ]])
 
             {{ osu_trans('forum.topics.create.poll.hide_results') }}
             <span class="simple-form__info">{{ osu_trans('forum.topics.create.poll.hide_results_info') }}</span>

@@ -10,15 +10,24 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
-            'rules' => 'Assicurati che la tua immagine di profilo aderisca alle :link.<br/>Questo significa che deve essere <strong>adatto a tutte le età</strong> (ad esempio: niente nudità, profanità o contenuti provocanti).',
+            'rules' => 'Assicurati che la tua immagine di profilo aderisca alle :link.<br/>Questo significa che deve essere <strong>adatta a tutte le età</strong> (ad esempio: niente nudità, profanità o contenuti provocanti).',
             'rules_link' => 'regole della comunità',
         ],
 
         'email' => [
-            'current' => 'email attuale',
             'new' => 'nuova email',
             'new_confirmation' => 'conferma email',
             'title' => 'Email',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
+        ],
+
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'API Legacy',
         ],
 
         'password' => [
@@ -29,7 +38,13 @@ return [
         ],
 
         'profile' => [
+            'country' => 'paese',
             'title' => 'Profilo',
+
+            'country_change' => [
+                '_' => "Sembra che il paese del tuo account non corrisponda al tuo paese di residenza. :update_link.",
+                'update_link' => 'Aggiorna a :country',
+            ],
 
             'user' => [
                 'user_discord' => '',
@@ -56,7 +71,7 @@ return [
 
         'options' => [
             '_' => 'opzioni di notifica',
-            'beatmap_owner_change' => 'guest difficulty',
+            'beatmap_owner_change' => 'difficoltà guest',
             'beatmapset:modding' => 'modding delle beatmap',
             'channel_message' => 'messaggi privati',
             'comment_new' => 'nuovi commenti',

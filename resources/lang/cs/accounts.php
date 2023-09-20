@@ -5,7 +5,7 @@
 
 return [
     'edit' => [
-        'title_compact' => 'nastavení',
+        'title_compact' => 'nastavení účtu',
         'username' => 'uživatelské jméno',
 
         'avatar' => [
@@ -15,10 +15,19 @@ return [
         ],
 
         'email' => [
-            'current' => 'aktuální e-mail',
             'new' => 'nový e-mail',
             'new_confirmation' => 'ověření e-mailu',
             'title' => 'E-mail',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
+        ],
+
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'Legacy API',
         ],
 
         'password' => [
@@ -29,7 +38,13 @@ return [
         ],
 
         'profile' => [
+            'country' => 'země',
             'title' => 'Profil',
+
+            'country_change' => [
+                '_' => "Vypadá to, že země zvolená na Vašem účtu neodpovídá zemi Vašeho bydliště. :update_link.",
+                'update_link' => 'Změnit na :country',
+            ],
 
             'user' => [
                 'user_discord' => '',
@@ -56,15 +71,15 @@ return [
 
         'options' => [
             '_' => 'možnosti doručení',
-            'beatmap_owner_change' => '',
+            'beatmap_owner_change' => 'obtížnost hosta',
             'beatmapset:modding' => 'módování beatmap',
             'channel_message' => 'soukromé zprávy',
             'comment_new' => 'nové komentáře',
-            'forum_topic_reply' => 'odpoveď témata',
+            'forum_topic_reply' => 'odpověď v tématu',
             'mail' => 'e-mail',
-            'mapping' => '',
+            'mapping' => 'tvůrce beatmapy',
             'push' => 'push',
-            'user_achievement_unlock' => 'medaile odemčena',
+            'user_achievement_unlock' => 'odemčení nové medaile',
         ],
     ],
 
@@ -75,8 +90,8 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => 'skrýt varování pro explicitní obsah v beatmapách',
-        'beatmapset_title_show_original' => 'zobrazit informace map v originálním jazyce',
+        'beatmapset_show_nsfw' => 'skrýt varování před explicitním obsahem v beatmapách',
+        'beatmapset_title_show_original' => 'zobrazovat metadata beatmap v původním jazyce',
         'title' => 'Možnosti',
 
         'beatmapset_download' => [

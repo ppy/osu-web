@@ -16,7 +16,7 @@ class SessionsController extends Controller
         $this->middleware('auth');
         $this->middleware('verify-user');
 
-        return parent::__construct();
+        parent::__construct();
     }
 
     public function destroy($id)

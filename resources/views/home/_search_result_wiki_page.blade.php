@@ -6,34 +6,29 @@
     @php
         $url = wiki_url($entry->path, $entry->locale);
     @endphp
-    <div class="search-result-entry">
-        <a
-            class="search-entry"
-            href="{{ $url }}"
-        >
-            <div class="search-wiki-page">
-                <div class="search-wiki-page__content">
-                    <h1 class="search-wiki-page__row search-wiki-page__row--title">
-                        <span class="search-highlight">
-                            {!! $entry->highlightedTitle() !!}
-                        </span>
+    <a class="search-entry" href="{{ $url }}">
+        <div class="search-wiki-page">
+            <div class="search-wiki-page__content">
+                <h1 class="search-wiki-page__row search-wiki-page__row--title">
+                    <span class="search-highlight">
+                        {!! $entry->highlightedTitle() !!}
+                    </span>
 
-                    </h1>
+                </h1>
 
-                    <p class="search-wiki-page__row search-wiki-page__row--excerpt">
-                        <span class="search-highlight">
-                            {!! $entry->highlights() !!}
-                        </span>
-                    </p>
+                <p class="search-wiki-page__row search-wiki-page__row--excerpt">
+                    <span class="search-highlight">
+                        {!! $entry->highlights() !!}
+                    </span>
+                </p>
 
-                    <p class="search-wiki-page__row search-wiki-page__row--footer">
-                        {{ $url }}
-                    </p>
-                </div>
-                <div class="search-wiki-page__more">
-                    <span class="fas fa-angle-right"></span>
-                </div>
+                <p class="search-wiki-page__row search-wiki-page__row--footer">
+                    {{ $url }}
+                </p>
             </div>
-        </a>
-    </div>
+            <div class="search-wiki-page__more">
+                <span class="fas fa-angle-right"></span>
+            </div>
+        </div>
+    </a>
 @endforeach

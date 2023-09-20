@@ -8,7 +8,7 @@ namespace App\Http\Controllers;
 use App\Libraries\BeatmapsetDiscussionVotesBundle;
 
 /**
- @group Beatmapset Discussions
+ * @group Beatmapset Discussions
  */
 class BeatmapsetDiscussionVotesController extends Controller
 {
@@ -16,7 +16,7 @@ class BeatmapsetDiscussionVotesController extends Controller
     {
         $this->middleware('require-scopes:public');
 
-        return parent::__construct();
+        parent::__construct();
     }
 
     /**
@@ -32,12 +32,12 @@ class BeatmapsetDiscussionVotesController extends Controller
      *   The response of this endpoint is likely to change soon!
      * </aside>
      *
-     * Field       | Type                                                    | Description
-     * ----------- | ------------------------------------------------------- | -----------
-     * cursor      | [Cursor](#cursor)                                       | |
-     * discussions | [BeatmapsetDiscussion](#beatmapsetdiscussion)           | |
-     * users       | [UserCompact](#usercompact)                             | |
-     * votes       | [BeatmapsetDiscussionVote](#beatmapsetdiscussionvote)[] | |
+     * Field         | Type                                                    | Description
+     * ------------- | ------------------------------------------------------- | -----------
+     * cursor_string | [CursorString](#cursorstring)                           | |
+     * discussions   | [BeatmapsetDiscussion](#beatmapsetdiscussion)           | |
+     * users         | [User](#user)                                           | |
+     * votes         | [BeatmapsetDiscussionVote](#beatmapsetdiscussionvote)[] | |
      *
      * @queryParam beatmapset_discussion_id `id` of the [BeatmapsetDiscussion](#beatmapsetdiscussion).
      * @queryParam limit Maximum number of results.

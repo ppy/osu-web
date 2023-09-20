@@ -18,6 +18,8 @@ class BBCodeFromDB
     public $refId;
     public $withGallery;
 
+    private array $options;
+
     public function __construct($text, $uid = '', $options = [])
     {
         $defaultOptions = [
@@ -34,11 +36,6 @@ class BBCodeFromDB
         if ($this->options['withGallery']) {
             $this->refId = rand();
         }
-    }
-
-    public function clearSpacesBetweenTags($text)
-    {
-        return preg_replace('/([^-][^-]>)\s*</', '\1<', $text);
     }
 
     public function parseAudio($text)
@@ -65,7 +62,7 @@ class BBCodeFromDB
 
     public function parseBox($text)
     {
-        $text = preg_replace("#\[box=([^]]*?):{$this->uid}\]\n*#s", $this->parseBoxHelperPrefix('\\1'), $text);
+        $text = preg_replace("#\[box=((\\\[\[\]]|[^][]|\[(\\\[\[\]]|[^][]|(?R))*\])*?):{$this->uid}\]\n*#s", $this->parseBoxHelperPrefix('\\1'), $text);
         $text = preg_replace("#\n*\[/box:{$this->uid}]\n?#s", $this->parseBoxHelperSuffix(), $text);
 
         $text = preg_replace("#\[spoilerbox:{$this->uid}\]\n*#s", $this->parseBoxHelperPrefix(), $text);
@@ -118,7 +115,7 @@ class BBCodeFromDB
             "<a rel='nofollow' href='mailto:\\1'>\\1</a>",
             $text
         );
-        $text = preg_replace("#\[email=(.+?):{$this->uid}\]#", "<a rel='nofollow' href='mailto:\\1'>", $text);
+        $text = preg_replace("#\[email=([^\]]+):{$this->uid}\]#", "<a rel='nofollow' href='mailto:\\1'>", $text);
         $text = str_replace("[/email:{$this->uid}]", '</a>', $text);
 
         return $text;
@@ -127,9 +124,63 @@ class BBCodeFromDB
     public function parseHeading($text)
     {
         $text = str_replace("[heading:{$this->uid}]", '<h2>', $text);
-        $text = str_replace("[/heading:{$this->uid}]", '</h2>', $text);
+        $text = preg_replace("#\[/heading:{$this->uid}\]\n?#", '</h2>', $text);
 
         return $text;
+    }
+
+    public function parseImagemap($text)
+    {
+        return preg_replace_callback(
+            '#(\[imagemap\].+?\[/imagemap\]\n?)#',
+            function ($m) {
+                $unescaped = html_entity_decode_better(BBCodeForDB::extraUnescape($m[1]));
+                $parsed = preg_replace_callback(
+                    '#\[imagemap\]\n(?<imageUrl>https?://.+)\n(?<links>(?:(?:[0-9.]+ ){4}(?:\#|https?://[^\s]+|mailto:[^\s]+)(?: .*)?\n)+)\[/imagemap\]\n?#',
+                    function ($map) {
+                        $links = array_map(
+                            fn ($rawLink) => explode(' ', $rawLink, 6),
+                            explode("\n", $map['links']),
+                        );
+                        array_pop($links); // remove the empty string from last newline
+
+                        $linksHtml = implode('', array_map(
+                            fn ($link) => tag($link[4] === '#' ? 'span' : 'a', [
+                                'class' => 'imagemap__link',
+                                'href' => $link[4],
+                                'style' => implode(';', [
+                                    "left: {$link[0]}%",
+                                    "top: {$link[1]}%",
+                                    "width: {$link[2]}%",
+                                    "height: {$link[3]}%",
+                                ]),
+                                'title' => $link[5] ?? '',
+                            ]),
+                            $links,
+                        ));
+
+                        $imageUrl = proxy_media($map['imageUrl']);
+                        $imageAttributes = [
+                            'class' => 'imagemap__image',
+                            'loading' => 'lazy',
+                            'src' => $imageUrl,
+                        ];
+                        $imageSize = fast_imagesize($imageUrl);
+                        if ($imageSize !== null) {
+                            $imageAttributes['width'] = $imageSize[0];
+                            $imageAttributes['height'] = $imageSize[1];
+                        }
+                        $imageHtml = tag('img', $imageAttributes);
+
+                        return tag('div', ['class' => 'imagemap'], $imageHtml.$linksHtml);
+                    },
+                    $unescaped,
+                );
+
+                return $parsed === $unescaped ? $m[1] : $parsed;
+            },
+            $text,
+        );
     }
 
     public function parseItalic($text)
@@ -178,6 +229,14 @@ class BBCodeFromDB
         return $text;
     }
 
+    public function parseInlineCode(string $text): string
+    {
+        return strtr($text, [
+            "[c:{$this->uid}]" => '<code>',
+            "[/c:{$this->uid}]" => '</code>',
+        ]);
+    }
+
     public function parseList($text)
     {
         // basic list.
@@ -185,12 +244,11 @@ class BBCodeFromDB
         $text = preg_replace("#\[list:{$this->uid}\]\s*\[\*:{$this->uid}\]#", '<ol class="unordered"><li>', $text);
 
         // convert list items.
-        $text = preg_replace("#\[/\*(:m)?:{$this->uid}\]\n?#", '</li>', $text);
-        $text = str_replace("[*:{$this->uid}]", '<li>', $text);
+        $text = preg_replace("#\[/\*(:m)?:{$this->uid}\]\n?\n?#", '</li>', $text);
+        $text = preg_replace("#\s*\[\*:{$this->uid}\]#", '<li>', $text);
 
         // close list tags.
-        $text = str_replace("[/list:o:{$this->uid}]", '</ol>', $text);
-        $text = str_replace("[/list:u:{$this->uid}]", '</ol>', $text);
+        $text = preg_replace("#\s*\[/list:(o|u):{$this->uid}\]\n?\n?#", '</ol>', $text);
 
         // list with "title", with it being just a list without style.
         $text = preg_replace("#\[list=[^]]+:{$this->uid}\](.+?)(<li>|</ol>)#s", '<ul class="bbcode__list-title"><li>$1</li></ul><ol>$2', $text);
@@ -214,7 +272,7 @@ class BBCodeFromDB
 
         foreach ($users as $user) {
             $username = html_entity_decode_better($user['name']);
-            $userId = presence($user['id']) ?? $username;
+            $userId = presence($user['id']) ?? "@{$username}";
             $userLink = link_to_user($userId, $username, null);
             $text = str_replace($user[0], $userLink, $text);
         }
@@ -226,13 +284,12 @@ class BBCodeFromDB
     {
         $text = preg_replace("#\[quote=&quot;([^:]+)&quot;:{$this->uid}\]\s*#", '<blockquote><h4>\\1 wrote:</h4>', $text);
         $text = preg_replace("#\[quote:{$this->uid}\]\s*#", '<blockquote>', $text);
-        $text = preg_replace("#\s*\[/quote:{$this->uid}\]\s*#", '</blockquote>', $text);
+        $text = preg_replace("#\s*\[/quote:{$this->uid}\]\n?\n?#", '</blockquote>', $text);
 
         return $text;
     }
 
     // stolen from: www/forum/includes/functions.php:2845
-
     public function parseSmilies($text)
     {
         return preg_replace('#<!\-\- s(.*?) \-\-><img src="\{SMILIES_PATH\}\/(.*?) \/><!\-\- s\1 \-\->#', '<img class="smiley" src="'.osu_url('smilies').'/\2 />', $text);
@@ -266,8 +323,12 @@ class BBCodeFromDB
 
     public function parseSize($text)
     {
-        $text = preg_replace("#\[size=(\d+):{$this->uid}\]#", "<span class='size-\\1'>", $text);
-        $text = str_replace("[/size:{$this->uid}]", '</span>', $text);
+        $text = preg_replace_callback(
+            "#\[size=(\d+):{$this->uid}\]#",
+            fn ($m) => '<span style="font-size:'.clamp((int) $m[1], 30, 200).'%;">',
+            $text,
+        );
+        $text = strtr($text, ["[/size:{$this->uid}]" => '</span>']);
 
         return $text;
     }
@@ -275,7 +336,7 @@ class BBCodeFromDB
     public function parseUrl($text)
     {
         $text = preg_replace("#\[url:{$this->uid}\](.+?)\[/url:{$this->uid}\]#", "<a rel='nofollow' href='\\1'>\\1</a>", $text);
-        $text = preg_replace("#\[url=(.+?):{$this->uid}\]#", "<a rel='nofollow' href='\\1'>", $text);
+        $text = preg_replace("#\[url=([^\]]+):{$this->uid}\]#", "<a rel='nofollow' href='\\1'>", $text);
         $text = str_replace("[/url:{$this->uid}]", '</a>', $text);
 
         return $text;
@@ -283,8 +344,8 @@ class BBCodeFromDB
 
     public function parseYoutube($text)
     {
-        $text = str_replace("[youtube:{$this->uid}]", "<div class='bbcode__video-box'><div class='bbcode__video'><iframe src='https://www.youtube.com/embed/", $text);
-        $text = str_replace("[/youtube:{$this->uid}]", "?rel=0' frameborder='0' allowfullscreen></iframe></div></div>", $text);
+        $text = str_replace("[youtube:{$this->uid}]", "<div class='bbcode__video-box'><div class='u-embed-wide'><iframe src='https://www.youtube.com/embed/", $text);
+        $text = str_replace("[/youtube:{$this->uid}]", "?rel=0' allowfullscreen></iframe></div></div>", $text);
 
         return $text;
     }
@@ -294,18 +355,19 @@ class BBCodeFromDB
         $text = $this->text;
 
         // block
+        $text = $this->parseImagemap($text);
         $text = $this->parseBox($text);
         $text = $this->parseCode($text);
         $text = $this->parseList($text);
         $text = $this->parseNotice($text);
         $text = $this->parseQuote($text);
         $text = $this->parseHeading($text);
-        $text = $this->clearSpacesBetweenTags($text);
 
         // inline
         $text = $this->parseAudio($text);
         $text = $this->parseBold($text);
         $text = $this->parseCentre($text);
+        $text = $this->parseInlineCode($text);
         $text = $this->parseColour($text);
         $text = $this->parseEmail($text);
         $text = $this->parseImage($text);
@@ -320,7 +382,7 @@ class BBCodeFromDB
         $text = $this->parseProfile($text);
 
         $text = str_replace("\n", '<br />', $text);
-        $text = CleanHTML::purify($text);
+        $text = app('clean-html')->purify($text);
 
         $className = class_with_modifiers('bbcode', $this->options['modifiers']);
 

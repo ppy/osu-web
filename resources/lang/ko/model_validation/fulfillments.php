@@ -10,6 +10,6 @@ return [
         'reverting_username_mismatch' => '',
     ],
     'supporter_tag' => [
-        'insufficient_paid' => '기부액이 서포터 권한을 얻는데 필요한 최소액보다 적습니다 (:actual > :expected)',
+        'insufficient_paid' => '기부액이 osu! 서포터 태그를 얻는데 필요한 최소액보다 적습니다. (:actual > :expected)',
     ],
 ];

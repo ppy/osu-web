@@ -5,7 +5,7 @@
 @extends('master', ['titlePrepend' => $groupJson['name']])
 
 @section('content')
-    <div class="js-react--groups-show osu-layout osu-layout--full"></div>
+    <div class="js-react--groups-show"></div>
 @endsection
 
 @section("script")
@@ -19,5 +19,5 @@
         {!! json_encode($usersJson) !!}
     </script>
 
-    @include('layout._react_js', ['src' => 'js/react/groups-show.js'])
+    @include('layout._react_js', ['src' => 'js/groups-show.js'])
 @endsection

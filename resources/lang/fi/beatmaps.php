@@ -18,7 +18,7 @@ return [
         'deny_kudosu' => 'hylkää kudosu',
         'edit' => 'muokkaa',
         'edited' => 'Viimeksi muokannut :editor :update_time.',
-        'guest' => '',
+        'guest' => 'Vieraileva vaikeustaso - :user',
         'kudosu_denied' => 'Evätty saamasta kudosua.',
         'message_placeholder_deleted_beatmap' => 'Tämä vaikeustaso on poistettu, joten siitä ei voi enää keskustella.',
         'message_placeholder_locked' => 'Keskustelu tällä beatmapille on poistettu käytöstä.',
@@ -69,12 +69,25 @@ return [
         'message_type' => [
             'disqualify' => 'Hylkää',
             'hype' => 'Hurraus!',
-            'mapper_note' => 'Huomautus',
+            'mapper_note' => 'Muistiinpano',
             'nomination_reset' => 'Nollaa Suositus',
             'praise' => 'Kehu',
             'problem' => 'Ongelma',
+            'problem_warning' => 'Ilmoita ongelmasta',
             'review' => 'Arvostelu',
             'suggestion' => 'Ehdotus',
+        ],
+
+        'message_type_title' => [
+            'disqualify' => '',
+            'hype' => '',
+            'mapper_note' => '',
+            'nomination_reset' => '',
+            'praise' => '',
+            'problem' => '',
+            'problem_warning' => '',
+            'review' => '',
+            'suggestion' => '',
         ],
 
         'mode' => [
@@ -101,11 +114,11 @@ return [
             'embed' => [
                 'delete' => 'Poista',
                 'missing' => '[KESKUSTELU POISTETTU]',
-                'unlink' => '',
-                'unsaved' => '',
+                'unlink' => 'Irrota',
+                'unsaved' => 'Tallentamaton',
                 'timestamp' => [
-                    'all-diff' => '',
-                    'diff' => '',
+                    'all-diff' => 'Viestit "Kaikki vaikeustasot" -osiossa eivät voi olla aikaleimattuja.',
+                    'diff' => 'Jos tämä :type alkaa aikaleimalla, se näytetään aikajanalla.',
                 ],
             ],
             'insert-block' => [
@@ -117,7 +130,7 @@ return [
         ],
 
         'show' => [
-            'title' => ':title, luonut :mapper',
+            'title' => ':title, kartoittanut :mapper',
         ],
 
         'sort' => [
@@ -146,12 +159,12 @@ return [
 
         'votes' => [
             'none' => [
-                'down' => '',
-                'up' => '',
+                'down' => 'Ei vielä vastaääniä',
+                'up' => 'Ei vielä ääniä',
             ],
             'latest' => [
-                'down' => '',
-                'up' => '',
+                'down' => 'Viimeisimmät vastaäänet',
+                'up' => 'Viimeisimmät äänet',
             ],
         ],
     ],
@@ -174,6 +187,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => 'Olet jo pannut ehdolle tämän rytmikartan.',
+        'cannot_nominate' => 'Et voi panna ehdolle tähän pelimuotoon kuuluvia rytmikarttoja.',
         'delete' => 'Poista',
         'delete_own_confirm' => 'Oletko varma? Tämä beatmap poistetaan ja sinut uudelleenohjataan takaisin profiiliisi.',
         'delete_other_confirm' => 'Oletko varma? Tämä beatmap poistetaan ja sinut uudelleenohjataan käyttäjän profiiliin.',
@@ -183,6 +198,7 @@ return [
         'disqualify' => 'Hylkää',
         'incorrect_state' => 'Virhe toiminnon suorittamisessa, kokeile päivittää sivu.',
         'love' => 'Rakasta',
+        'love_choose' => 'Valitse rakastetun vaikeustaso',
         'love_confirm' => 'Rakasta tätä beatmappia?',
         'nominate' => 'Suosittele',
         'nominate_confirm' => 'Suosittele tätä beatmappia?',
@@ -197,6 +213,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'Tämän beatmapin arvioidaan tulla hyväksytyksi :date, jos mitään ongelmia ei löydy. Se on #:position :queue.',
+            'on' => ':date',
             'queue' => 'hyväksytysjonossa',
             'soon' => 'pian',
         ],
@@ -207,26 +224,27 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => 'Oletko varma? Uuden ongelman lähettäminen kumoaa suositusprosessin.',
             'disqualify' => 'Oletko varma? Tämä poistaa beatmapin esihyväksytyistä ja kumoaa suositusprosessin.',
+            'nomination_reset' => 'Oletko varma? Uuden ongelman lähettäminen kumoaa suositusprosessin.',
+            'problem_warning' => 'Oletko varma rapoitoidaksesi ongelman tässä beatmapissa? Tämä hälyttää Beatmap nimittäjät.',
         ],
     ],
 
     'listing' => [
         'search' => [
-            'prompt' => 'anna hakusana...',
+            'prompt' => 'syötä hakusana...',
             'login_required' => 'Kirjaudu sisään hakeaksesi.',
             'options' => 'Enemmän Hakuasetuksia',
             'supporter_filter' => 'Tunnisteella :filters rajaaminen vaatii aktiivisen osu!supporter-tagin',
             'not-found' => 'ei tuloksia',
             'not-found-quote' => '... mitään ei löytynyt.',
             'filters' => [
-                'extra' => 'extra',
+                'extra' => 'Extra',
                 'general' => 'Yleinen',
                 'genre' => 'Tyylilaji',
                 'language' => 'Kieli',
                 'mode' => 'Pelitila',
-                'nsfw' => '',
+                'nsfw' => 'Sopimaton sisältö',
                 'played' => 'Pelatut',
                 'rank' => 'Luokitus',
                 'status' => 'Luokat',
@@ -251,8 +269,10 @@ return [
     ],
     'general' => [
         'converts' => 'Sisällytä muunnetut beatmapit',
+        'featured_artists' => 'Esitellyt artistit',
         'follows' => 'Tilatut kartoittajat',
         'recommended' => 'Suositeltu vaikeustaso',
+        'spotlights' => 'Kohdevaloissa olevat rytmikartat',
     ],
     'mode' => [
         'all' => 'Kaikki',
@@ -270,7 +290,8 @@ return [
         'leaderboard' => 'Tulostaulukollinen',
         'loved' => 'Rakastettu',
         'mine' => 'Mappini',
-        'pending' => 'Vireillä & WIP',
+        'pending' => 'Vireillä',
+        'wip' => 'Työn alla',
         'qualified' => 'Esihyväksytty',
         'ranked' => 'Hyväksytty',
     ],
@@ -288,33 +309,7 @@ return [
         'metal' => 'Metalli',
         'classical' => 'Klassinen',
         'folk' => 'Kansanmusiikki',
-        'jazz' => 'Jatsi',
-    ],
-    'mods' => [
-        '4K' => '',
-        '5K' => '',
-        '6K' => '',
-        '7K' => '',
-        '8K' => '',
-        '9K' => '',
-        'AP' => '',
-        'DT' => '',
-        'EZ' => '',
-        'FI' => '',
-        'FL' => '',
-        'HD' => '',
-        'HR' => '',
-        'HT' => '',
-        'MR' => '',
-        'NC' => '',
-        'NF' => '',
-        'NM' => '',
-        'PF' => '',
-        'RX' => '',
-        'SD' => '',
-        'SO' => '',
-        'TD' => '',
-        'V2' => '',
+        'jazz' => 'Jazz',
     ],
     'language' => [
         'any' => 'Kaikki',
@@ -327,8 +322,8 @@ return [
         'korean' => 'korea',
         'spanish' => 'espanja',
         'swedish' => 'ruotsi',
-        'russian' => 'Venäläinen',
-        'polish' => 'Puolalainen',
+        'russian' => 'venäjä',
+        'polish' => 'puola',
         'instrumental' => 'Instrumentaalinen',
         'other' => 'Muu',
         'unspecified' => 'Täsmentämätön',

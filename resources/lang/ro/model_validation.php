@@ -4,36 +4,37 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid' => ':attribute specificat/ă este invalidă.',
+    'invalid' => ':attribute specificat este invalid.',
     'not_negative' => ':attribute nu poate fi negativ.',
     'required' => ':attribute este necesar.',
     'too_long' => ':attribute depășește lungimea maximă - poate fi doar până la :limit de caractere.',
+    'url' => 'Te rog introdu un URL valid.',
     'wrong_confirmation' => 'Confirmarea nu se potrivește.',
 
     'beatmapset_discussion' => [
-        'beatmap_missing' => 'Marcajul de timp este specificat dar beatmapul lipsește.',
-        'beatmapset_no_hype' => "Acest beatmap nu poate fi hyped.",
-        'hype_requires_null_beatmap' => 'Hype trebuie să fie făcut în secțiunea General (toate dificultățile).',
+        'beatmap_missing' => 'Marcajul de timp este specificat dar beatmap-ul lipsește.',
+        'beatmapset_no_hype' => "Nu poți acorda hype acestui beatmap.",
+        'hype_requires_null_beatmap' => 'Hype-ul trebuie să fie acordat în secțiunea General (toate dificultățile).',
         'invalid_beatmap_id' => 'Dificultatea specificată nu este validă.',
-        'invalid_beatmapset_id' => 'Beatmapul specificat nu este valid.',
+        'invalid_beatmapset_id' => 'Beatmap-ul specificat nu este valid.',
         'locked' => 'Discuția este închisă.',
 
         'attributes' => [
             'message_type' => 'Tipul mesajului',
-            'timestamp' => 'Dată/Oră',
+            'timestamp' => 'Marcajul de timp',
         ],
 
         'hype' => [
-            'discussion_locked' => "Acest beatmap este momentan blocat pentru discuții și nu poate fi hyped",
+            'discussion_locked' => "Acest beatmap este momentan blocat pentru discuții și hype-ul nu poate fi acordat",
             'guest' => 'Trebuie să fii autentificat pentru a acorda un hype.',
             'hyped' => 'Deja ai acordat un hype acestui beatmap.',
             'limit_exceeded' => 'Ți-ai folosit deja tot hype-ul.',
-            'not_hypeable' => 'Acest beatmap nu poate fi hyped',
+            'not_hypeable' => 'Nu poți acorda hype acestui beatmap',
             'owner' => 'Nu ii poți acorda un hype propriului tău beatmap.',
         ],
 
         'timestamp' => [
-            'exceeds_beatmapset_length' => 'Marcajul de timp specificat este dincolo de lungimea beatmapului.',
+            'exceeds_beatmapset_length' => 'Marcajul de timp specificat este dincolo de lungimea beatmap-ului.',
             'negative' => "Marcajul de timp nu poate fi negativ.",
         ],
     ],
@@ -57,7 +58,7 @@ return [
     ],
 
     'follow' => [
-        'invalid' => ':attribute specificat/ă este invalidă.',
+        'invalid' => ':attribute specificat este invalid.',
     ],
 
     'forum' => [
@@ -71,14 +72,14 @@ return [
         ],
 
         'post' => [
-            'beatmapset_post_no_delete' => 'Ștergerea metadatei unui beatmap nu este permisă.',
-            'beatmapset_post_no_edit' => 'Editarea metadatei unui beatmap nu este permisă.',
-            'first_post_no_delete' => '',
-            'missing_topic' => '',
+            'beatmapset_post_no_delete' => 'Ștergerea datelor melodiilor unui beatmap nu este permisă.',
+            'beatmapset_post_no_edit' => 'Editarea datelor melodiilor unui beatmap nu este permisă.',
+            'first_post_no_delete' => 'Nu se poate șterge postarea de început',
+            'missing_topic' => 'Postării îi lipsește un subiect',
             'only_quote' => 'Răspunsul tău conţine doar un citat.',
 
             'attributes' => [
-                'post_text' => 'Postează corp',
+                'post_text' => 'Conținutul postării',
             ],
         ],
 
@@ -91,20 +92,30 @@ return [
         'topic_poll' => [
             'duplicate_options' => 'Opțiunile duplicate nu sunt permise.',
             'grace_period_expired' => 'Nu poți edita un sondaj după mai mult de :limit ore',
-            'hiding_results_forever' => 'Nu se pot ascunde rezultatele unui sondaj care nu se termină.',
+            'hiding_results_forever' => 'Nu se pot ascunde rezultatele unui sondaj care nu are sfârșit.',
             'invalid_max_options' => 'Opțiunea per utilizator nu poate depăși numărul de opțiuni disponibile.',
             'minimum_one_selection' => 'Este necesar cel puțin o opțiune per utilizator.',
             'minimum_two_options' => 'Este nevoie de cel puțin două opțiuni.',
             'too_many_options' => 'Ai depășit numărul maxim de opțiuni permise.',
 
             'attributes' => [
-                'title' => 'Titlu sondaj',
+                'title' => 'Titlul sondajului',
             ],
         ],
 
         'topic_vote' => [
             'required' => 'Selectează o opțiune când votezi.',
             'too_many' => 'Ai selectat mai multe opțiuni decât este permis.',
+        ],
+    ],
+
+    'legacy_api_key' => [
+        'exists' => 'Momentan este furnizată o singură cheie API per utilizator.',
+
+        'attributes' => [
+            'api_key' => 'cheie api',
+            'app_name' => 'numele aplicației',
+            'app_url' => 'url aplicație',
         ],
     ],
 
@@ -123,7 +134,7 @@ return [
     'user' => [
         'contains_username' => 'Parola nu poate conține numele de utilizator.',
         'email_already_used' => 'Adresa de e-mail este deja folosită.',
-        'email_not_allowed' => '',
+        'email_not_allowed' => 'Adresa de e-mail nu poate fi folosită.',
         'invalid_country' => 'Țara nu se află în baza de date.',
         'invalid_discord' => 'Nume de utilizator Discord invalid.',
         'invalid_email' => "Nu pare să fie o adresă de e-mail validă.",
@@ -141,15 +152,15 @@ return [
         'username_too_short' => 'Numele de utilizator solicitat este prea scurt.',
         'username_too_long' => 'Numele de utilizator solicitat este prea lung.',
         'weak' => 'Parolă interzisă.',
-        'wrong_current_password' => 'Parola curentă este incorectă.',
+        'wrong_current_password' => 'Parola actuală este incorectă.',
         'wrong_email_confirmation' => 'Confirmarea e-mailului nu se potrivește.',
         'wrong_password_confirmation' => 'Parola de confirmare nu se potrivește.',
         'too_long' => 'Ai depășit lungimea maximă - nu poate fi decât până la :limit caractere.',
 
         'attributes' => [
-            'username' => 'Nume de utilizator',
-            'user_email' => 'Adresă de e-mail',
-            'password' => 'Parolă',
+            'username' => 'Numele de utilizator',
+            'user_email' => 'Email-ul',
+            'password' => 'Parola',
         ],
 
         'change_username' => [
@@ -163,6 +174,8 @@ return [
     ],
 
     'user_report' => [
+        'no_ranked_beatmapset' => 'Beatmap-urile clasate nu pot fi raportate',
+        'not_in_channel' => 'Nu ești în acest canal.',
         'reason_not_valid' => ':reason nu este valid pentru acest tip de raportare.',
         'self' => "Nu te poți raporta pe tine însuți!",
     ],

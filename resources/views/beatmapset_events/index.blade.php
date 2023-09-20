@@ -47,16 +47,17 @@
                             } else {
                                 $types = App\Models\BeatmapsetEvent::types('all');
                             }
+                            $selectedTypes = new Ds\Set($params['types']);
                         @endphp
                         @foreach ($types as $type)
                             <div class="simple-form__checkbox-overflow-container">
                                 <label class="simple-form__checkbox simple-form__checkbox--overflow">
-                                    @include('objects._switch', [
-                                        'checked' => in_array($type, $params['types'], true),
+                                    @include('objects._switch', ['locals' => [
+                                        'checked' => $selectedTypes->contains($type),
                                         'name' => 'types[]',
                                         'type' => 'checkbox',
                                         'value' => $type,
-                                    ])
+                                    ]])
                                     {{ osu_trans("beatmapset_events.type.{$type}") }}
                                 </label>
                             </div>
@@ -106,10 +107,7 @@
                 </div>
             </form>
 
-            <div class='beatmapset-events' id="events">
-                <div class='beatmapset-events__title'></div>
-                <div class='js-react--beatmap-discussion-events'></div>
-            </div>
+            <div class="js-react--beatmap-discussion-events" id="events"></div>
             @include('objects._pagination_v2', ['object' => $paginator->fragment('events')])
         </div>
     </div>

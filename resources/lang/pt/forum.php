@@ -25,6 +25,7 @@ return [
     ],
 
     'forums' => [
+        'forums' => 'Fóruns',
         'latest_post' => 'Última publicação',
 
         'index' => [
@@ -47,7 +48,7 @@ return [
         'confirm_restore' => 'Queres mesmo restaurar a publicação?',
         'edited' => 'Editado pela última vez por :user :when, editado :count vezes no total.',
         'posted_at' => 'publicado :when',
-        'posted_by' => 'publicado por :username',
+        'posted_by_in' => 'publicado por :username em :forum',
 
         'actions' => [
             'destroy' => 'Eliminar publicação',
@@ -125,6 +126,55 @@ return [
             'last' => 'ir para a última publicação',
             'next' => 'saltar as próximas 10 publicações',
             'previous' => 'retroceder 10 publicações',
+        ],
+
+        'logs' => [
+            '_' => 'Registos do tópico',
+            'button' => 'Consultar os registos do tópico',
+
+            'columns' => [
+                'action' => 'Ação',
+                'date' => 'Data',
+                'user' => 'Utilizador',
+            ],
+
+            'data' => [
+                'add_tag' => 'etiqueta ":tag" adicionada',
+                'announcement' => 'tópico afixado e marcado como comunicado',
+                'edit_topic' => 'para :title',
+                'fork' => 'de :topic',
+                'pin' => 'tópico afixado',
+                'post_operation' => 'publicado por :username',
+                'remove_tag' => 'etiqueta ":tag" removida',
+                'source_forum_operation' => 'de :forum',
+                'unpin' => 'tópico desafixado',
+            ],
+
+            'no_results' => 'nenhum registo encontrado...',
+
+            'operations' => [
+                'delete_post' => 'Publicação eliminada',
+                'delete_topic' => 'Tópico eliminado',
+                'edit_topic' => 'Título do tópico alterado',
+                'edit_poll' => 'Sondagem do tópico editada',
+                'fork' => 'Tópico copiado',
+                'issue_tag' => 'Etiqueta emitida',
+                'lock' => 'Tópico bloqueado',
+                'merge' => 'Publicações fundidas para este tópico',
+                'move' => 'Tópico movido',
+                'pin' => 'Tópico afixado',
+                'post_edited' => 'Publicação editada',
+                'restore_post' => 'Publicação restaurada',
+                'restore_topic' => 'Tópico restaurado',
+                'split_destination' => 'Publicações divididas movidas',
+                'split_source' => 'Publicações divididas',
+                'topic_type' => 'Definir tipo de tópico',
+                'topic_type_changed' => 'Tipo de tópico alterado',
+                'unlock' => 'Tópico desbloqueado',
+                'unpin' => 'Tópico desafixado',
+                'user_lock' => 'Bloqueaste o teu tópico',
+                'user_unlock' => 'Desbloqueaste o teu tópico',
+            ],
         ],
 
         'post_edit' => [
@@ -265,9 +315,9 @@ return [
             'to_1' => 'Afixar tópico',
             'to_1_confirm' => 'Afixar tópico?',
             'to_1_done' => 'O tópico foi afixado',
-            'to_2' => 'Afixar tópico e marcar como uma declaração pública',
-            'to_2_confirm' => 'Afixar tópico e marcá-lo como um comunicado?',
-            'to_2_done' => 'O tópico foi afixado e marcado como uma declaração pública',
+            'to_2' => 'Afixar tópico e marcar como comunicado',
+            'to_2_confirm' => 'Afixar tópico e marcar como comunicado?',
+            'to_2_done' => 'O tópico foi afixado e marcado como comunicado',
         ],
 
         'moderate_toggle_deleted' => [

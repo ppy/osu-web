@@ -1,0 +1,1 @@
+[email=hello&#64;example&#46;com:1]My email at hello&#64;example&#46;com[/email:1]

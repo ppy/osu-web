@@ -7,27 +7,27 @@ return [
     'cancel' => 'Batal',
 
     'authorise' => [
-        'request' => 'meminta izin untuk mengakses ke dalam akun Anda.',
+        'request' => 'meminta izin untuk mengakses akunmu.',
         'scopes_title' => 'Ke depannya, aplikasi ini akan mampu untuk:',
         'title' => 'Permohonan Otorisasi',
     ],
 
     'authorized_clients' => [
-        'confirm_revoke' => 'Apakah anda yakin untuk mencabut izin akses klien ini?',
+        'confirm_revoke' => 'Apakah kamu yakin untuk mencabut izin akses klien ini?',
         'scopes_title' => 'Aplikasi ini dapat:',
         'owned_by' => 'Dimiliki oleh :user',
-        'none' => 'Tidak ada klien',
+        'none' => 'Tidak Ada Klien',
 
         'revoked' => [
-            'false' => 'Cabut akses',
-            'true' => 'Akses telah dicabut',
+            'false' => 'Cabut Akses',
+            'true' => 'Akses Telah Dicabut',
         ],
     ],
 
     'client' => [
         'id' => 'ID Klien',
         'name' => 'Nama Aplikasi',
-        'redirect' => 'Application Callback URL',
+        'redirect' => 'URL Callback Aplikasi',
         'reset' => 'Atur ulang client secret',
         'reset_failed' => 'Pengaturan ulang client secret gagal',
         'secret' => 'Client Secret',
@@ -42,16 +42,16 @@ return [
         'header' => 'Daftarkan aplikasi OAuth baru',
         'register' => 'Daftarkan aplikasi',
         'terms_of_use' => [
-            '_' => 'Dengan menggunakan API kami Anda menyetujui :link berikut.',
+            '_' => 'Dengan menggunakan API kami, Anda menyatakan diri setuju terhadap :link yang berlaku.',
             'link' => 'Ketentuan Penggunaan',
         ],
     ],
 
     'own_clients' => [
-        'confirm_delete' => 'Apakah anda yakin untuk menghapus klien ini?',
-        'confirm_reset' => 'Apakah Anda yakin untuk mengatur ulang client secret? Aksi ini akan mencabut izin akses dari token-token yang telah diotorisir sebelumnya.',
-        'new' => 'Buat aplikasi OAuth baru',
-        'none' => 'Tidak ada klien',
+        'confirm_delete' => 'Apakah kamu yakin untuk menghapus klien ini?',
+        'confirm_reset' => 'Apakah kamu yakin untuk mengatur ulang client secret? Tindakan ini akan menganulir izin akses seluruh token yang telah diotorisir sebelumnya.',
+        'new' => 'Buat Izin Aplikasi Baru',
+        'none' => 'Tidak Ada Klien',
 
         'revoked' => [
             'false' => 'Hapus',

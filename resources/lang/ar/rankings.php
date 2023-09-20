@@ -17,12 +17,27 @@ return [
         ],
     ],
 
+    'kudosu' => [
+        'total' => '',
+        'available' => '',
+        'used' => '',
+    ],
+
     'type' => [
         'charts' => 'منطقة ألأضواء',
         'country' => 'الدولة',
+        'kudosu' => '',
         'multiplayer' => 'متعدد اللاعبين',
         'performance' => 'الأداء',
         'score' => 'النقاط',
+        'seasons' => 'مواسم',
+    ],
+
+    'seasons' => [
+        'empty' => 'لا توجد غرف في هذا الموسم حتى الآن.',
+        'ongoing' => 'هذا الموسم لا يزال جاريا (سيتم إضافة المزيد من قوائم التشغيل).',
+        'room_count' => 'عدد قوائم التشغيل',
+        'url' => 'عرض المزيد من المعلومات عن هذا الموسم.',
     ],
 
     'spotlight' => [
@@ -39,7 +54,7 @@ return [
         'play_count' => 'مرات اللعب',
         'performance' => 'الأداء',
         'total_score' => 'مجموع النقاط',
-        'ranked_score' => 'نقاط الترتيب',
+        'ranked_score' => 'نتيجة Ranked',
         'average_score' => 'متوسط النقاط',
         'average_performance' => 'متوسط الاداء.',
         'ss' => '',

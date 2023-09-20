@@ -17,7 +17,7 @@ return [
     ],
 
     'index' => [
-        'deleted_beatmap' => '删除',
+        'deleted_beatmap' => '已删除',
         'none_found' => '找不到符合条件的讨论内容',
         'title' => '谱面讨论',
 
@@ -32,10 +32,10 @@ return [
             'beatmapset_status' => [
                 '_' => '谱面状态',
                 'all' => '所有',
-                'disqualified' => 'Disqualified',
-                'never_qualified' => '从未被Qualified',
-                'qualified' => 'Qualified',
-                'ranked' => 'Ranked',
+                'disqualified' => '下架 (DQ)',
+                'never_qualified' => '从未过审 (Qualified)',
+                'qualified' => '合格',
+                'ranked' => '上架 (Ranked)',
             ],
 
             'user' => [
@@ -54,14 +54,14 @@ return [
 
     'nearby_posts' => [
         'confirm' => '在这个时间点上没有相关的讨论记录。',
-        'notice' => '在 :timestamp 附近（:existing_timestamps）有讨论记录，发表前请检查。',
+        'notice' => '发表讨论前，请检查 :timestamp 附近 (:existing_timestamps) 已存在的讨论记录。',
         'unsaved' => '此审阅中有 :count',
     ],
 
     'owner_editor' => [
         'button' => '难度作者',
         'reset_confirm' => '重置此难度的作者？',
-        'user' => '作者/拥有者',
+        'user' => '作者',
         'version' => '难度',
     ],
 
@@ -78,10 +78,10 @@ return [
         'go_to_child' => '查看讨论',
         'validation' => [
             'block_too_large' => '每块只能包含最多 :limit 个字符',
-            'external_references' => '审阅包含不属于此审阅的 issues 的引用',
+            'external_references' => '审阅包含不属于此审阅问题的引用',
             'invalid_block_type' => '板块类型无效',
             'invalid_document' => '审阅无效',
-            'invalid_discussion_type' => '',
+            'invalid_discussion_type' => '讨论类型无效',
             'minimum_issues' => '审阅时必须指出最少 :count 个问题',
             'missing_text' => '该版块缺少文本。',
             'too_many_blocks' => '审阅只能包含 :count 个段落或问题',
@@ -90,8 +90,8 @@ return [
 
     'system' => [
         'resolved' => [
-            'true' => '被 :user 标记为 “已解决”',
-            'false' => '被 :user 重新打开',
+            'true' => ':user 标记为已解决',
+            'false' => ':user 要求重审',
         ],
     ],
 

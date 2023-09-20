@@ -17,11 +17,13 @@ return [
         'identify' => 'Identifiera dig och läs din offentliga profil.',
 
         'chat' => [
+            'read' => '',
             'write' => 'Skicka meddelanden åt dig.',
+            'write_manage' => '',
         ],
 
         'forum' => [
-            'write' => 'Skapa och redigera forumsämne och inlägg åt dig.',
+            'write' => 'Skapa och redigera forumämnen och inlägg åt dig.',
         ],
 
         'friends' => [

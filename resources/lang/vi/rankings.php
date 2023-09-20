@@ -10,38 +10,53 @@ return [
     ],
 
     'filter' => [
-        'title' => '',
+        'title' => 'Hiển thị',
 
         'variant' => [
-            'title' => '',
+            'title' => 'Biến thể',
         ],
     ],
 
+    'kudosu' => [
+        'total' => 'Đã nhận',
+        'available' => 'Đang có',
+        'used' => 'Đã dùng',
+    ],
+
     'type' => [
-        'charts' => 'Tiêu điểm',
-        'country' => 'Quốc Gia',
-        'multiplayer' => '',
-        'performance' => 'Performance',
-        'score' => 'Điểm',
+        'charts' => 'tiêu điểm',
+        'country' => 'Quốc gia',
+        'kudosu' => 'kudosu',
+        'multiplayer' => 'nhiều người chơi',
+        'performance' => 'thành tích',
+        'score' => 'số điểm',
+        'seasons' => 'mùa',
+    ],
+
+    'seasons' => [
+        'empty' => 'Hiện tại chưa có phòng nào ở mùa này.',
+        'ongoing' => 'Mùa đang diễn ra (sẽ có nhiều playlist được thêm vào).',
+        'room_count' => 'Số playlist',
+        'url' => 'Hiện thêm thông tin về mùa đó.',
     ],
 
     'spotlight' => [
-        'end_date' => 'Ngày Kết thúc',
-        'map_count' => 'Số Lần Chơi',
+        'end_date' => 'Ngày kết thúc',
+        'map_count' => 'Số lần chơi',
         'participants' => 'Người tham gia',
-        'start_date' => 'Ngày Bắt đầu',
+        'start_date' => 'Ngày bắt đầu',
     ],
 
     'stat' => [
-        'accuracy' => 'Độ Chính Xác',
+        'accuracy' => 'Độ chính xác',
         'active_users' => 'Số người đang hoạt động',
-        'country' => 'Quốc Gia',
-        'play_count' => 'Số Lần Chơi',
-        'performance' => 'Performance',
-        'total_score' => 'Tổng Điểm',
-        'ranked_score' => 'Điểm Được Xếp Hạng',
-        'average_score' => 'Điểm Trung Bình',
-        'average_performance' => 'pp Trung Bình',
+        'country' => 'Quốc gia',
+        'play_count' => 'Số lần chơi',
+        'performance' => 'Thành tích',
+        'total_score' => 'Tổng số điểm',
+        'ranked_score' => 'Điểm được xếp hạng',
+        'average_score' => 'Điểm trung bình',
+        'average_performance' => 'Thành tích trung bình',
         'ss' => '',
         's' => '',
         'a' => '',

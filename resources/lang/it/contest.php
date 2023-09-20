@@ -14,7 +14,7 @@ return [
     ],
 
     'voting' => [
-        'login_required' => 'Per favore effettua il login per votare.',
+        'login_required' => 'Effettua il login per poter votare.',
         'over' => 'Le votazioni per questo contest sono terminate',
         'show_voted_only' => 'Mostra votati',
 
@@ -31,12 +31,18 @@ return [
         'progress' => [
             '_' => ':used / :max voti utilizzati',
         ],
+
+        'requirement' => [
+            'playlist_beatmapsets' => [
+                'incomplete_play' => 'È necessario giocare tutte le beatmap nelle playlist specificate prima di votare',
+            ],
+        ],
     ],
     'entry' => [
         '_' => 'iscrizione',
-        'login_required' => 'Per favore effettua il login per entrare nel contest.',
+        'login_required' => 'Effettua il login per poter entrare nel contest.',
         'silenced_or_restricted' => 'Non puoi entrare nei contest se sei limitato o silenziato.',
-        'preparation' => 'Attualmente stiamo preparando il contest. Per favore attendi con pazienza!',
+        'preparation' => 'Attualmente stiamo preparando il contest. Aspettate con pazienza!',
         'drop_here' => 'Trascina la tua iscrizione qui',
         'download' => 'Scarica .osz',
         'wrong_type' => [
@@ -44,6 +50,7 @@ return [
             'beatmap' => 'Solo file .osu sono accettati per questo contest.',
             'music' => 'Solo file .mp3 sono accettati per questo contest.',
         ],
+        'wrong_dimensions' => 'Le iscrizioni per questo concorso devono essere :widthx:height',
         'too_big' => 'Le iscrizioni per questo contest non possono essere più grandi di :limit.',
     ],
     'beatmaps' => [

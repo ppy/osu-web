@@ -8,9 +8,10 @@ return [
     'deleted_by' => 'supprimé :timeago par :user',
     'deleted_by_system' => 'système',
     'deleted_count' => ':count_delimited commentaire supprimé|:count_delimited commentaires supprimés',
-    'edited' => 'édité par :user il y a :timeago',
+    'edited' => 'édité par :user :timeago',
     'pinned' => 'épinglé',
     'empty' => 'Il n’y a pas encore de commentaires.',
+    'empty_other' => 'Aucun autre commentaire pour le moment.',
     'load_replies' => 'charger les réponses',
     'replies_count' => ':count_delimited réponse|:count_delimited réponses',
     'title' => 'Commentaires',
@@ -24,9 +25,9 @@ return [
 
     'editor' => [
         'textarea_hint' => [
-            '_' => 'Appuyez sur entrée pour :action. Utilisez shift+entrée pour une nouvelle ligne.',
+            '_' => 'Appuyez sur Entrée pour :action. Appuyez sur Shift+Entrée pour passer à la ligne.',
             'edit' => 'sauvegarder',
-            'new' => 'post',
+            'new' => 'poster',
             'reply' => 'répondre',
         ],
     ],

@@ -6,21 +6,16 @@
 return [
     'index' => [
         'description' => 'Färdigförpackade samlingar med beatmaps som är baserade på ett gemensamt tema.',
+        'empty' => 'Kommer snart!',
         'nav_title' => 'listning',
         'title' => 'Beatmap-samlingar',
 
         'blurb' => [
             'important' => 'LÄS DETTA INNAN NEDLADDNING',
-            'instruction' => [
-                '_' => "Installation: När en samling har laddats ner, extrahera .rar filen till din osu! Songs mapp.
-                    Alla låtar är fortfarande i .zip/.osz-samlingen, så osu! kommer behöva extrahera beatmapsen nästa gång du går in i spelläget.
-                    Extrahera :scary .zip/.osz själv,
-                    annars kommer beatmapsen visas inkorrekt i osu! och kommer inte fungera korrekt.",
-                'scary' => 'INTE',
-            ],
+            'install_instruction' => 'Installation: När ett paket har laddats ner, extrahera innehållet i paketet i osu! Låt-mappen och osu! kommer att göra resten.',
             'note' => [
                 '_' => 'Notera att det är som högst rekommenderat att :scary, eftersom de äldsta mapparna är av mycket lägre kvalité jämfört med de nyaste mapparna.',
-                'scary' => 'ladda ner samlingarna från nyaste till äldsta',
+                'scary' => 'ladda ner samlingarna från senaste till tidigaste',
             ],
         ],
     ],
@@ -40,8 +35,11 @@ return [
     'mode' => [
         'artist' => 'Artist/Album',
         'chart' => 'I rampljuset',
+        'featured' => 'Utvald artist',
+        'loved' => 'Project Loved',
         'standard' => 'Standard',
         'theme' => 'Tema',
+        'tournament' => 'Turnering',
     ],
 
     'require_login' => [

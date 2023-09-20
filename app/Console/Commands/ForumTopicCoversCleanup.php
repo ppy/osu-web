@@ -34,8 +34,9 @@ class ForumTopicCoversCleanup extends Command
         $createdBefore = now()->subDays(get_int($this->option('maxdays')) ?? 30);
         $this->line("This will delete unused topic covers before {$createdBefore}.");
 
-        if (!$this->option('yes') && !$this->confirm('Proceed?')) {
-            return $this->error('Aborted.');
+        if (!$this->option('yes') && !$this->confirm('Proceed?', true)) {
+            $this->error('Aborted.');
+            return;
         }
 
         $progress = $this->output->createProgressBar();
@@ -54,6 +55,7 @@ class ForumTopicCoversCleanup extends Command
             }
         });
 
+        $progress->finish();
         $this->line('');
         $this->info("Done. Deleted {$deleted} cover(s).");
     }

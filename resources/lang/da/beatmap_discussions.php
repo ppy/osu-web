@@ -59,8 +59,8 @@ return [
     ],
 
     'owner_editor' => [
-        'button' => '',
-        'reset_confirm' => '',
+        'button' => 'Sværhedsgrad Ejer',
+        'reset_confirm' => 'Nulstil ejeren for denne sværhedsgrad?',
         'user' => 'Ejer',
         'version' => 'Sværhedsgrad',
     ],
@@ -73,15 +73,15 @@ return [
     ],
 
     'review' => [
-        'block_count' => '',
+        'block_count' => ':used / :max blokke brugt',
         'go_to_parent' => 'Vis Anmeldelses-opslag',
         'go_to_child' => 'Vis Diskussion',
         'validation' => [
-            'block_too_large' => '',
-            'external_references' => '',
+            'block_too_large' => 'hver blok må kun indeholde op til :limit tegn',
+            'external_references' => 'anmeldelse indholder referencer til problemer som ikke hører til denne anmeldelse',
             'invalid_block_type' => 'ugyldig block type',
             'invalid_document' => 'ugyldig vurdering',
-            'invalid_discussion_type' => '',
+            'invalid_discussion_type' => 'ugyldig diskussionstype',
             'minimum_issues' => 'vurdering skal som minimum indeholde :count fejl|vurdering skal som minimum indholde :count fejl',
             'missing_text' => 'block mangler tekst',
             'too_many_blocks' => 'vurderinger må kun indeholde :count afsnit/problem|vurderinger må kun indeholde op til :count afsnit/problemer',

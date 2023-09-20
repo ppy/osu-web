@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'play_more' => '',
+    'play_more' => 'Čo si tak namiesto toho zahrať osu!?',
     'require_login' => 'Prosím, prihláste sa, aby ste mohli pokračovať.',
     'require_verification' => 'Prosím overte pre pokračovanie.',
     'restricted' => "Toto nemôžete robiť, kým ste umlčaný.",
@@ -31,7 +31,7 @@ return [
         ],
 
         'vote' => [
-            'bot' => "",
+            'bot' => "Nemožno hlasovať pre diskusiu vytvorenú botom",
             'limit_exceeded' => 'Počkaj chvíľku pred ďalším hlasovaním',
             'owner' => "Nemôžete hlasovať vo vlastnej diskusii.",
             'wrong_beatmapset_state' => 'Hlasovať môžete iba v diskusii očakávaných beatmáp.',
@@ -50,28 +50,31 @@ return [
             'resolved' => 'Nemôžete upravovať príspevky vyriešenej diskusie.',
             'system_generated' => 'Automaticky generovaný príspevok nie je možné upravovať.',
         ],
-
-        'store' => [
-            'beatmapset_locked' => 'Táto beatmapa má zamknutú diskusiu.',
-        ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => 'Táto beatmapa je k diskusii zamknutá.',
+
         'metadata' => [
-            'nominated' => '',
+            'nominated' => 'Nemôžete zmeniť metadáta nominovanej mapy. Kontaktujte člena BN alebo NAT, ak si myslíte, že to je nastavené nesprávne.',
         ],
     ],
 
     'chat' => [
+        'annnonce_only' => 'Tento kanál je iba pre oznamy.',
         'blocked' => 'Nie je možné poslať správu používateľovi, ktorý blokuje teba, alebo ty blokuješ jeho.',
         'friends_only' => 'Používateľ blokuje správy od ľudí, ktorí nie sú na ich ich liste priateľstva.',
         'moderated' => 'Kanál je momentálne moderovaný.',
         'no_access' => 'Nemáte prístup k tomuto kanálu.',
+        'receive_friends_only' => 'Používateľ nemusí byť schopný odpovedať, keďže prijímate iba správy od ľudí vo Vašom zozname priateľov.',
         'restricted' => 'Nemôžete posielať správy, keď ste umlčaný, obmedzený alebo zabanovaný.',
-        'silenced' => '',
+        'silenced' => 'Nemôžete posielať správy, keď ste umlčaný, obmedzený alebo zabanovaný.',
     ],
 
     'comment' => [
+        'store' => [
+            'disabled' => 'Komentáre sú vypnuté',
+        ],
         'update' => [
             'deleted' => "Nemôžeš upraviť zmazaný príspevok.",
         ],
@@ -166,6 +169,14 @@ return [
         ],
     ],
 
+    'score' => [
+        'pin' => [
+            'disabled_type' => "",
+            'not_owner' => 'Skóre môže pripnúť iba pôvodný hráč.',
+            'too_many' => 'Už bolo pripnuté maximum skóre.',
+        ],
+    ],
+
     'user' => [
         'page' => [
             'edit' => [
@@ -173,6 +184,9 @@ return [
                 'not_owner' => 'Môžete upravovať iba vlastnú uživateľskú stránku.',
                 'require_supporter_tag' => 'osu!supporter tag je vyžadovaný.',
             ],
+        ],
+        'update_email' => [
+            'locked' => '',
         ],
     ],
 ];

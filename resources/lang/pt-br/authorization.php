@@ -27,7 +27,7 @@ return [
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => 'Apenas o criador do beatmap ou nominator/membros QAT podem publicar notas do mapeador.',
+            'mapper_note_wrong_user' => 'Apenas o criador do beatmap ou nominator/membros QAT podem publicar notas do mapper.',
         ],
 
         'vote' => [
@@ -50,28 +50,31 @@ return [
             'resolved' => 'Você não pode editar a publicação de uma discussão resolvida.',
             'system_generated' => 'Publicações geradas automaticamente não podem ser editadas.',
         ],
-
-        'store' => [
-            'beatmapset_locked' => 'Este beatmap está bloqueado para discussão.',
-        ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => 'Este beatmap está trancado para discussão.',
+
         'metadata' => [
             'nominated' => 'Você não pode alterar os metadados de um mapa nomeado. Entre em contato com um membro do BN ou NAT se você acha que ele está definido incorretamente.',
         ],
     ],
 
     'chat' => [
+        'annnonce_only' => 'Este canal é apenas para avisos.',
         'blocked' => 'Não é possível enviar uma mensagem para um usuário que foi bloqueado ou te bloqueou.',
         'friends_only' => 'O usuário está bloqueando mensagens de pessoas fora de sua lista de amigos.',
         'moderated' => 'O canal atual está sendo moderado.',
         'no_access' => 'Você não tem acesso a esse canal.',
+        'receive_friends_only' => 'O usuário pode não ser capaz de te responder, porque você só está aceitando mensagens de pessoas em sua lista de amigos.',
         'restricted' => 'Você não pode enviar mensagens enquanto silenciado, restrito ou banido.',
         'silenced' => 'Você não pode enviar mensagens enquanto silenciado, restrito ou banido.',
     ],
 
     'comment' => [
+        'store' => [
+            'disabled' => 'Comentários estão desativados',
+        ],
         'update' => [
             'deleted' => "Não é possível editar publicações deletadas.",
         ],
@@ -166,6 +169,14 @@ return [
         ],
     ],
 
+    'score' => [
+        'pin' => [
+            'disabled_type' => "Não é possível fixar este tipo de pontuação",
+            'not_owner' => 'Somente o proprietário da pontuação pode fixar sua pontuação.',
+            'too_many' => 'Muitas pontuações fixadas.',
+        ],
+    ],
+
     'user' => [
         'page' => [
             'edit' => [
@@ -173,6 +184,9 @@ return [
                 'not_owner' => 'Só é possível editar sua própria página de usuário.',
                 'require_supporter_tag' => 'É necessário possuir uma osu!supporter tag.',
             ],
+        ],
+        'update_email' => [
+            'locked' => '',
         ],
     ],
 ];

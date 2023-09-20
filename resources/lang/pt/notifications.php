@@ -13,6 +13,16 @@ return [
     'see_channel' => 'ir para a conversa',
     'verifying' => 'Por favor verifica a sessão para ver as notificações',
 
+    'action_type' => [
+        '_' => 'tudo',
+        'beatmapset' => 'beatmaps',
+        'build' => 'compilações',
+        'channel' => 'conversa',
+        'forum_topic' => 'fórum',
+        'news_post' => 'notícias',
+        'user' => 'perfil',
+    ],
+
     'filters' => [
         '_' => 'todas',
         'user' => 'perfil',
@@ -86,8 +96,19 @@ return [
         'channel' => [
             '_' => 'Chat',
 
+            'announcement' => [
+                '_' => 'Novo comunicado',
+
+                'announce' => [
+                    'channel_announcement' => ':username diz ":title"',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => 'Comunicado de :username',
+                ],
+            ],
+
             'channel' => [
                 '_' => 'Nova mensagem',
+
                 'pm' => [
                     'channel_message' => ':username diz ":title"',
                     'channel_message_compact' => ':title',
@@ -132,15 +153,6 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => 'Fórum de legado de mensagens privadas',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited mensagem não lida.|:count_delimited mensagens não lidas',
-            ],
-        ],
-
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Novo beatmap',
@@ -148,6 +160,9 @@ return [
                 'user_beatmapset_new' => 'Novo beatmap ":title" por :username',
                 'user_beatmapset_new_compact' => 'Novo beatmap ":title"',
                 'user_beatmapset_new_group' => 'Novos beatmaps por :username',
+
+                'user_beatmapset_revive' => 'O beatmap ":title", foi restaurado por :username',
+                'user_beatmapset_revive_compact' => 'O beatmap ":title", foi restaurado',
             ],
         ],
 
@@ -195,6 +210,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => 'Há um novo comunicado em ":name"',
+            ],
+
             'channel' => [
                 'pm' => 'Tu recebeste uma nova mensagem de :username',
             ],
@@ -226,6 +245,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username criou novos beatmaps',
+                'user_beatmapset_revive' => ':username ressuscitou beatmaps',
             ],
         ],
     ],

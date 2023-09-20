@@ -76,30 +76,33 @@
                         <span class="fas fa-search"></span>
                     </button>
 
-                    <button
+                    <a
                         class="mobile-menu-tab js-click-menu js-react--chat-icon"
                         data-click-menu-target="mobile-chat-notification"
                         data-turbolinks-permanent
                         data-type='mobile'
                         id="notification-widget-chat-icon-mobile"
+                        href="{{ route('chat.index') }}"
                     >
                         <span class="notification-icon notification-icon--mobile">
                             <i class="fas fa-comment-alt"></i>
                             <span class="notification-icon__count">...</span>
                         </span>
-                    </button>
+                    </a>
 
-                    <button class="mobile-menu-tab js-click-menu js-react--main-notification-icon"
+                    <a
+                        class="mobile-menu-tab js-click-menu js-react--main-notification-icon"
                         data-click-menu-target="mobile-notification"
                         data-turbolinks-permanent
                         data-type='mobile'
                         id="notification-widget-icon-mobile"
+                        href="{{ route('notifications.index') }}"
                     >
                         <span class="notification-icon notification-icon--mobile">
                             <i class="fas fa-inbox"></i>
                             <span class="notification-icon__count">...</span>
                         </span>
-                    </button>
+                    </a>
                 @endif
             </div>
 

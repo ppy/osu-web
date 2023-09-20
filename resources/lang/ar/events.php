@@ -21,8 +21,12 @@ return [
 
     'beatmapset_status' => [
         'approved' => 'مقبولة',
-        'loved' => 'محبوبة',
+        'loved' => 'loved',
         'qualified' => 'مؤهلة',
-        'ranked' => 'مصفوفة',
+        'ranked' => 'ranked',
+    ],
+
+    'value' => [
+        'rank' => '',
     ],
 ];

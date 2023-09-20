@@ -6,7 +6,7 @@
 return [
     'index' => [
         'description' => 'Seuraat näiden beatmappien keskusteluja. Sinulle huomautetaan uusista viesteistä ja päivityksistä.',
-        'title_compact' => 'modiseuranta',
+        'title_compact' => 'seuratut beatmap-keskustelut',
 
         'counts' => [
             'total' => 'Beatmappeja seurattu',

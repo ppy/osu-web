@@ -13,10 +13,20 @@ return [
     'see_channel' => 'перейти до чату',
     'verifying' => 'Будь ласка, перевірте сеанс, щоб переглянути сповіщення',
 
+    'action_type' => [
+        '_' => 'всі',
+        'beatmapset' => 'мапи',
+        'build' => 'збірки',
+        'channel' => 'чат',
+        'forum_topic' => 'форум',
+        'news_post' => 'новини',
+        'user' => 'профіль',
+    ],
+
     'filters' => [
         '_' => 'усе',
         'user' => 'профіль',
-        'beatmapset' => 'карти',
+        'beatmapset' => 'мапи',
         'forum_topic' => 'форум',
         'news_post' => 'новини',
         'build' => 'збiрки',
@@ -25,7 +35,7 @@ return [
 
     'item' => [
         'beatmapset' => [
-            '_' => 'Карта',
+            '_' => 'Бітмапа',
 
             'beatmap_owner_change' => [
                 '_' => 'Гостьова складність',
@@ -34,16 +44,16 @@ return [
             ],
 
             'beatmapset_discussion' => [
-                '_' => 'Обговорення карти',
-                'beatmapset_discussion_lock' => 'Карта ":title" заблокована для обговорень.',
+                '_' => 'Обговорення мапи',
+                'beatmapset_discussion_lock' => 'Мапа ":title" заблокована для обговорень',
                 'beatmapset_discussion_lock_compact' => 'Обговорення закрито',
-                'beatmapset_discussion_post_new' => ':username опублікував нове повідомлення в обговореннях карти ":title".',
-                'beatmapset_discussion_post_new_empty' => 'Новий пост в ":title" вiд :username',
-                'beatmapset_discussion_post_new_compact' => 'Нова публікація від :username',
-                'beatmapset_discussion_post_new_compact_empty' => 'Нова публікація від :username',
+                'beatmapset_discussion_post_new' => 'Новий допис на ":title" від :username: ":content"',
+                'beatmapset_discussion_post_new_empty' => 'Новий допис на ":title" від :username',
+                'beatmapset_discussion_post_new_compact' => 'Новий допис від :username ":content"',
+                'beatmapset_discussion_post_new_compact_empty' => 'Новий допис від :username',
                 'beatmapset_discussion_review_new' => 'Новий відгук на ":title" від :username, що містить проблеми: :problems, пропозиції: :suggestions, похвали: :praises',
                 'beatmapset_discussion_review_new_compact' => 'Новий відгук від :username, що містить проблеми: :problems, пропозиції: :suggestions, похвали: :praises',
-                'beatmapset_discussion_unlock' => 'Карта ":title" розблокована для обговорень.',
+                'beatmapset_discussion_unlock' => 'Мапа ":title" розблокована для обговорень',
                 'beatmapset_discussion_unlock_compact' => 'Обговорення відкрито',
             ],
 
@@ -56,20 +66,20 @@ return [
             ],
 
             'beatmapset_state' => [
-                '_' => 'Статус карти змінений',
-                'beatmapset_disqualify' => 'Карта ":title" була дискваліфікована :username.',
-                'beatmapset_disqualify_compact' => 'Карту було дискваліфіковано',
+                '_' => 'Статус мапи змінився',
+                'beatmapset_disqualify' => '":title" була дискваліфікована',
+                'beatmapset_disqualify_compact' => 'Мапу було дискваліфіковано',
                 'beatmapset_love' => ':username присвоїв статус улюблена карті ":title".',
                 'beatmapset_love_compact' => 'Карту внесено до улюблених',
-                'beatmapset_nominate' => 'Карта ":title" була номінована :username.',
+                'beatmapset_nominate' => '":title" була номінована',
                 'beatmapset_nominate_compact' => 'Карту було номіновано',
-                'beatmapset_qualify' => 'Карта ":title" отримала достатньо номінацій, і очікує отримання рейтингу.',
+                'beatmapset_qualify' => 'Карта ":title" отримала достатньо номінацій, і очікує отримання рейтингу',
                 'beatmapset_qualify_compact' => 'Карта увійшла до черги рейтингу',
-                'beatmapset_rank' => '":title" оцінено',
-                'beatmapset_rank_compact' => 'Карта була ранкнута',
-                'beatmapset_remove_from_loved' => '":title" вилучений з Улюблені',
-                'beatmapset_remove_from_loved_compact' => 'Бітмапа була вилучена з Улюблені',
-                'beatmapset_reset_nominations' => 'Проблема опублікована :username викликала скидання процесу номінації карти ":title" ',
+                'beatmapset_rank' => '":title" стала ранговою',
+                'beatmapset_rank_compact' => 'Мапа стала ранговою',
+                'beatmapset_remove_from_loved' => '":title" вилучена з Улюблених',
+                'beatmapset_remove_from_loved_compact' => 'Бітмапа була вилучена з Улюблених',
+                'beatmapset_reset_nominations' => 'Номінацію для мапи ":title" було скинуто через проблему від :username',
                 'beatmapset_reset_nominations_compact' => 'Номінацію було скинуто',
             ],
 
@@ -86,8 +96,19 @@ return [
         'channel' => [
             '_' => 'Чат',
 
+            'announcement' => [
+                '_' => 'Нове оголошення',
+
+                'announce' => [
+                    'channel_announcement' => ':username сказав ":title"',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => 'Оголошення від :username',
+                ],
+            ],
+
             'channel' => [
                 '_' => 'Нове повідомлення',
+
                 'pm' => [
                     'channel_message' => ':username сказав ":title"',
                     'channel_message_compact' => ':title',
@@ -132,15 +153,6 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => 'Вхідні повідомлення старого форуму',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited непрочитане повідомлення.|:count_delimited непрочитані повідомлення.',
-            ],
-        ],
-
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Нова бітмапа',
@@ -148,6 +160,9 @@ return [
                 'user_beatmapset_new' => 'Нова бітмапа ":title" від :username',
                 'user_beatmapset_new_compact' => 'Нова бітмапа ":title"',
                 'user_beatmapset_new_group' => 'Нова бітмапа від :username',
+
+                'user_beatmapset_revive' => 'Мапа ":title" була відновлена :username',
+                'user_beatmapset_revive_compact' => 'Beatmap ":title" відновлена',
             ],
         ],
 
@@ -155,7 +170,7 @@ return [
             '_' => 'Досягнення',
 
             'user_achievement_unlock' => [
-                '_' => 'Нова медаль',
+                '_' => 'Нове досягнення',
                 'user_achievement_unlock' => 'Розблоковано ":title"!',
                 'user_achievement_unlock_compact' => 'Розблоковано ":title"!',
                 'user_achievement_unlock_group' => 'Медалі розблоковано!',
@@ -185,16 +200,20 @@ return [
                 'beatmapset_nominate' => '":title" було номіновано',
                 'beatmapset_qualify' => '":title" отримав достатню кількість номінацій і увійшов до черги рейтингу',
                 'beatmapset_rank' => '":title" було оцінено',
-                'beatmapset_remove_from_loved' => '":title" видалений з Улюблені',
+                'beatmapset_remove_from_loved' => '":title" була вилучена з Улюблених',
                 'beatmapset_reset_nominations' => 'Номінація ":title" була скинута',
             ],
 
             'comment' => [
-                'comment_new' => 'У карті ":title" були знайдені нові коментарі',
+                'comment_new' => 'На мапі ":title" нові коментарі',
             ],
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => 'Нове оголошення в ":name"',
+            ],
+
             'channel' => [
                 'pm' => 'Ви отримали нове повідомлення від :username',
             ],
@@ -226,6 +245,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username створив нову бітмапу',
+                'user_beatmapset_revive' => ':username відновив бітмапи',
             ],
         ],
     ],

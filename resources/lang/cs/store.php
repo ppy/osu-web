@@ -4,13 +4,9 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'admin' => [
-        'warehouse' => 'Sklad',
-    ],
-
     'cart' => [
         'checkout' => 'Zaplatit',
-        'info' => ':count_delimited položka v košíku ($:subtotal)|:count_delimited položkek v košíku ($:subtotal)',
+        'info' => ':count_delimited položka v košíku ($:subtotal)|:count_delimited položky v košíku ($:subtotal)|:count_delimited položek v košíku ($:subtotal)',
         'more_goodies' => 'Chci se ještě podívat na nějaké dobroty než dokončím objednávku',
         'shipping_fees' => 'poplatky za dopravu',
         'title' => 'Nákupní košík',
@@ -35,6 +31,7 @@ return [
         'cart_problems_edit' => 'Pro editaci klikni sem.',
         'declined' => 'Tvá platba byla zrušena.',
         'delayed_shipping' => 'V tuto chvíli jsme zahlceni objednávkami! Svou objednávku můžeš umístit, ale počítej prosím s **dalšími 1-2 týdny zpoždění** zatímco dokončíme už existující objednávky.',
+        'hide_from_activity' => 'Schovat všechny osu!supporter tagy v této objednávce z mých aktivit',
         'old_cart' => 'Obsah tvého košíku se zdá být zastaralý a proto byl znovu načten, zkus to prosím znovu.',
         'pay' => 'Zaplatit přes PayPal',
         'title_compact' => 'zaplatit',
@@ -54,6 +51,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Jelikož vaše platba byla prováděna službou eCheck, prosím, dejte nám až 10 dní na to, aby platba úspěšně prošla přes PayPal!',
+        'hide_from_activity' => 'osu!supporter tagy v této objednávce se nebudou zobrazovat v nedávných aktivitách.',
         'title_compact' => 'faktura',
 
         'status' => [
@@ -69,20 +67,25 @@ return [
     ],
 
     'order' => [
-        'cancel' => '',
-        'cancel_confirm' => '',
-        'cancel_not_allowed' => '',
+        'cancel' => 'Zrušit objednávku',
+        'cancel_confirm' => 'Tato objednávka bude zrušena a platba za ni nebude přijata. Poskytovatel platby nemusí okamžitě uvolnit rezervované finanční prostředky. Jste si jisti?',
+        'cancel_not_allowed' => 'Tuto objednávku momentálně nelze zrušit.',
         'invoice' => 'Zobrazit fakturu',
         'no_orders' => 'Nejsou zde žádné objednávky k zobrazení.',
-        'paid_on' => 'Objednávka vystavena dne :date',
+        'paid_on' => 'Objednávka zadána :date',
         'resume' => 'Obnovit objednávku',
-        'shopify_expired' => '',
+        'shopify_expired' => 'Odkaz na objednávku pro tuto objednávku vypršel.',
 
         'item' => [
+            'quantity' => 'Množství',
+
             'display_name' => [
                 'supporter_tag' => ':name pro :username (:duration)',
             ],
-            'quantity' => 'Množství',
+
+            'subtext' => [
+                'supporter_tag' => 'Zpráva: :message',
+            ],
         ],
 
         'not_modifiable_exception' => [
@@ -124,6 +127,8 @@ return [
 
     'supporter_tag' => [
         'gift' => 'darovat hráči',
+        'gift_message' => 'přidat volitelnou zprávu k dárku! (maximálně :length znaků)',
+
         'require_login' => [
             '_' => 'Pro obdržení štítku podporovatele se musíš :link!',
             'link_text' => 'přihlášený',

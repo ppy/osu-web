@@ -11,8 +11,9 @@ return [
     'edited' => 'editado :timeago por :user',
     'pinned' => 'anclado',
     'empty' => 'Aún no hay comentarios.',
+    'empty_other' => 'Aún no hay otros comentarios.',
     'load_replies' => 'cargar respuestas',
-    'replies_count' => ':count_delimited respuesta|:count_delimited respuestas',
+    'replies_count' => 'una respuesta|:count_delimited respuestas',
     'title' => 'Comentarios',
 
     'commentable_name' => [

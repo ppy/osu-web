@@ -5,15 +5,16 @@
 
 return [
     'deleted' => 'verwijderd',
-    'deleted_by' => '',
-    'deleted_by_system' => '',
+    'deleted_by' => ':timeago verwijderd door :user',
+    'deleted_by_system' => 'systeem',
     'deleted_count' => ':count_delimited verwijderde opmerking|:count_delimited verwijderde opmerkingen',
     'edited' => 'gewijzigd :timeago door :user',
-    'pinned' => 'vast gezet',
-    'empty' => 'Nog geen commentaar.',
+    'pinned' => 'vastgezet',
+    'empty' => 'Nog geen reacties.',
+    'empty_other' => 'Nog geen andere opmerkingen.',
     'load_replies' => 'antwoorden laden',
-    'replies_count' => ':count_delimited Antwoord-:count_delimited antwoorden',
-    'title' => 'Opmerkingen',
+    'replies_count' => ':count_delimited antwoord|:count_delimited antwoorden',
+    'title' => 'Reacties',
 
     'commentable_name' => [
         'beatmapset' => 'Beatmap',
@@ -26,7 +27,7 @@ return [
         'textarea_hint' => [
             '_' => 'Druk op enter om te :action. Gebruik shift+enter voor een nieuwe regel.',
             'edit' => 'bewaar',
-            'new' => 'plaats',
+            'new' => 'plaatsen',
             'reply' => 'reageer',
         ],
     ],
@@ -44,7 +45,7 @@ return [
 
     'placeholder' => [
         'edit' => 'Wijzig de opmerking hier',
-        'new' => 'Plaats een nieuwe opmerking hier',
+        'new' => 'Typ hier een nieuwe reactie',
         'reply' => 'Type hier je reactie',
     ],
 

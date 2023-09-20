@@ -67,14 +67,27 @@ return [
         ],
 
         'message_type' => [
-            'disqualify' => 'Diskalifiye',
+            'disqualify' => 'Diskalifiye et',
             'hype' => 'Gazla!',
             'mapper_note' => 'Not',
             'nomination_reset' => 'Adaylığı Sıfırla',
             'praise' => 'Övgü',
             'problem' => 'Sorun',
+            'problem_warning' => 'Sorun bildir',
             'review' => 'İnceleme',
             'suggestion' => 'Öneri',
+        ],
+
+        'message_type_title' => [
+            'disqualify' => 'Diskalifiye Gönder',
+            'hype' => 'Hype Gönder!',
+            'mapper_note' => 'Not Paylaş',
+            'nomination_reset' => 'Tüm Adaylıkları Kaldır',
+            'praise' => 'Övgü Gönder',
+            'problem' => 'Sorun Bildir',
+            'problem_warning' => 'Sorun Bildir',
+            'review' => 'Değerlendirme Gönder',
+            'suggestion' => 'Öneri Gönder',
         ],
 
         'mode' => [
@@ -174,6 +187,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => 'Bu beatmapi zaten aday gösterdiniz.',
+        'cannot_nominate' => 'Bu beatmap oyun modunu aday gösteremezsiniz.',
         'delete' => 'Sil',
         'delete_own_confirm' => 'Emin misin? Beatmap silinecek ve profiline yönlendirileceksin.',
         'delete_other_confirm' => 'Emin misin? Beatmap silinecek ve kullanıcının profiline yönlendirileceksin.',
@@ -183,6 +198,7 @@ return [
         'disqualify' => 'Diskalifiye et',
         'incorrect_state' => 'Bu eylemi gerçekleştirirken bir hata oluştu, sayfayı yenilemeyi deneyin.',
         'love' => 'Sevilenlere ekle',
+        'love_choose' => 'Sevilen\'lere eklenecek zorluğu seçin',
         'love_confirm' => 'Bu beatmapi seviyor musun?',
         'nominate' => 'Aday Göster',
         'nominate_confirm' => 'Beatmap aday gösterilsin mi?',
@@ -197,6 +213,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'Herhangi bir sorun bulunmazsa mapin tahminen dereceli olacağı vakit :date. :queue :position. sırada bulunuyor.',
+            'on' => ':date tarihinde',
             'queue' => 'Derecelendirme sırasında',
             'soon' => 'çok yakın',
         ],
@@ -207,8 +224,9 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => 'Emin misin? Yeni bir sorun bildirmek aday gösterme sürecini sıfırlayacaktır.',
             'disqualify' => 'Emin misiniz? Bu, beatmapin nitelikli olmasını önleyecek ve aday gösterme sürecini sıfırlayacak.',
+            'nomination_reset' => 'Emin misin? Yeni bir sorun bildirmek aday gösterme sürecini sıfırlayacaktır.',
+            'problem_warning' => 'Bu beatmap\'teki sorunu bildireceğinizden emin misiniz? Bu, Beatmap adaylarını uyaracaktır.',
         ],
     ],
 
@@ -251,8 +269,10 @@ return [
     ],
     'general' => [
         'converts' => 'Dönüştürülmüş beatmapleri dahil et',
+        'featured_artists' => 'Featured artist\'ler',
         'follows' => 'Abone olunan mapperlar',
         'recommended' => 'Önerilen zorluk seviyesi',
+        'spotlights' => 'Öne çıkan beatmapler',
     ],
     'mode' => [
         'all' => 'Hepsi',
@@ -271,6 +291,7 @@ return [
         'loved' => 'Sevilen',
         'mine' => 'Benim Maplerim',
         'pending' => 'Beklemede & Yapım Aşamasında',
+        'wip' => 'Yapım Aşamasında',
         'qualified' => 'Nitelikli',
         'ranked' => 'Dereceli',
     ],
@@ -289,32 +310,6 @@ return [
         'classical' => 'Klasik',
         'folk' => 'Folk',
         'jazz' => 'Caz',
-    ],
-    'mods' => [
-        '4K' => '',
-        '5K' => '',
-        '6K' => '',
-        '7K' => '',
-        '8K' => '',
-        '9K' => '',
-        'AP' => '',
-        'DT' => '',
-        'EZ' => '',
-        'FI' => '',
-        'FL' => '',
-        'HD' => '',
-        'HR' => '',
-        'HT' => '',
-        'MR' => '',
-        'NC' => '',
-        'NF' => '',
-        'NM' => '',
-        'PF' => '',
-        'RX' => '',
-        'SD' => '',
-        'SO' => '',
-        'TD' => '',
-        'V2' => '',
     ],
     'language' => [
         'any' => 'Herhangi biri',

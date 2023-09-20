@@ -23,7 +23,7 @@ return [
         'button' => 'Hae',
         'empty_result' => 'Mitään ei löytynyt!',
         'keyword_required' => 'Syötä hakusana',
-        'placeholder' => 'kirjoita hakeaksesi',
+        'placeholder' => 'tee haku kirjoittamalla',
         'title' => 'Hae',
 
         'beatmapset' => [
@@ -43,6 +43,7 @@ return [
             'label' => [
                 'forum' => 'etsi foorumeista',
                 'forum_children' => 'etsi myös alafoorumeilta',
+                'include_deleted' => 'sisällytä poistetut viestit',
                 'topic_id' => 'aihe #',
                 'username' => 'tekijä',
             ],
@@ -72,8 +73,22 @@ return [
     ],
 
     'download' => [
-        'tagline' => "laitetaan sinut<br>liikkeelle!",
         'action' => 'Lataa osu!',
+        'action_lazer' => 'Lataa osu!(lazer)',
+        'action_lazer_description' => 'seuraava suuri päivitys osu!:un',
+        'action_lazer_info' => 'lisätietoja saat täältä',
+        'action_lazer_title' => 'kokeile osu!(lazer):ia',
+        'action_title' => 'lataa osu!',
+        'for_os' => 'käyttöjärjestelmälle :os',
+        'lazer_note' => 'huomautus: tulostaulukoiden nollaus pätee',
+        'macos-fallback' => 'macOS-käyttäjät',
+        'mirror' => 'vaihtoehtoinen lataus',
+        'or' => 'tai',
+        'os_version_or_later' => ':os_version tai uudempi',
+        'other_os' => 'muut alustat',
+        'quick_start_guide' => 'pikakäyttöohjeet',
+        'tagline' => "laitetaan sinut<br>liikkeelle!",
+        'video-guide' => 'video-opas',
 
         'help' => [
             '_' => 'jos sinulla on ongelmia pelin käynnistämisessä tai tilin rekisteröinnissä, :help_forum_link tai :support_button.',
@@ -86,8 +101,6 @@ return [
             'macos' => 'macOS:lle',
             'linux' => 'Linuxille',
         ],
-        'mirror' => 'vaihtoehtoinen lataus',
-        'macos-fallback' => 'macOS-käyttäjät',
         'steps' => [
             'register' => [
                 'title' => 'luo tili',
@@ -105,7 +118,6 @@ return [
                 ],
             ],
         ],
-        'video-guide' => 'video-opas',
     ],
 
     'user' => [
@@ -131,16 +143,5 @@ return [
             'support' => 'Tue osua!',
             'store' => 'osu!kauppa',
         ],
-    ],
-
-    'support-osu' => [
-        'title' => 'Vau!',
-        'subtitle' => 'Sinulla taitaa olla hauskaa! :D',
-        'body' => [
-            'part-1' => 'Tiesitkö että osu!a pidetään yllä ilman mainoksia ja turvautuu pelaajien tukeen sen kehitys- ja käyttökustannuksissa?',
-            'part-2' => 'Tiesitkö myös että osua! tukemalla saat kasan hyödyllisiä ominaisuuksia, kuten <strong>pelinsisäisen beatmappien lataamisen</strong> joka aktivoituu automaattisesti moninpelissä ja katsojatilassa?',
-        ],
-        'find-out-more' => 'Klikkaa tästä lisätietoja!',
-        'download-starting' => "Niin, ja älä huoli - latauksesi on jo aloitettu ;)",
     ],
 ];

@@ -13,8 +13,8 @@ return [
 
     'beatmaps' => [
         '_' => 'Beatmapy',
-        'download' => 'Pobierz szablon beatmapy',
-        'download-na' => 'Szablon beatmapy nie jest jeszcze dostępny',
+        'download' => 'pobierz szablon beatmapy',
+        'download-na' => 'szablon beatmapy nie jest jeszcze dostępny',
     ],
 
     'index' => [
@@ -22,6 +22,7 @@ return [
     ],
 
     'links' => [
+        'beatmaps' => 'Powiązane beatmapy',
         'osu' => 'Konto osu!',
         'site' => 'Oficjalna strona internetowa',
     ],
@@ -29,7 +30,8 @@ return [
     'songs' => [
         '_' => 'Utwory',
         'count' => ':count utwór|:count utwory|:count utworów',
-        'exclusive' => 'wyłączny dla osu!',
+        'original' => 'ekskluzywny dla osu!',
+        'original_badge' => 'EKSKLUZYWNY',
     ],
 
     'tracklist' => [
@@ -37,5 +39,24 @@ return [
         'length' => 'długość',
         'bpm' => 'bpm',
         'genre' => 'gatunek',
+    ],
+
+    'tracks' => [
+        'index' => [
+            '_' => 'wyszukiwarka utworów',
+
+            'form' => [
+                'advanced' => 'Wyszukiwanie zaawansowane',
+                'album' => 'Album',
+                'artist' => 'Artysta',
+                'bpm_gte' => 'Minimalne BPM',
+                'bpm_lte' => 'Maksymalne BPM',
+                'empty' => 'Brak utworów spełniających wybrane kryteria wyszukiwania.',
+                'genre' => 'Gatunek',
+                'genre_all' => 'Wszystkie',
+                'length_gte' => 'Minimalna długość',
+                'length_lte' => 'Maksymalna długość',
+            ],
+        ],
     ],
 ];

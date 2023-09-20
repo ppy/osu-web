@@ -27,10 +27,10 @@ return [
         'title' => 'Keresés',
 
         'beatmapset' => [
-            'login_required' => 'Beatmap-ek kereséséhez jelentkezz be',
+            'login_required' => 'Beatmapek kereséséhez jelentkezz be',
             'more' => ':count talált beatmap',
             'more_simple' => 'Több beatmap keresése',
-            'title' => 'Beatmap-ek',
+            'title' => 'Beatmapek',
         ],
 
         'forum_post' => [
@@ -43,6 +43,7 @@ return [
             'label' => [
                 'forum' => 'forumokban keresés',
                 'forum_children' => 'alforumok tartalmazása',
+                'include_deleted' => 'törölt hozzászólásokat tartalmaz',
                 'topic_id' => 'témák #',
                 'username' => 'szerző',
             ],
@@ -72,8 +73,22 @@ return [
     ],
 
     'download' => [
-        'tagline' => "vágjunk<br>bele!",
         'action' => 'osu! letöltése',
+        'action_lazer' => 'Töltsd le osu!(lazer)-t',
+        'action_lazer_description' => 'az új nagy frissítése osu!-nak',
+        'action_lazer_info' => 'lásd ezt az oldalt több információért',
+        'action_lazer_title' => 'próbáld ki osu!lazer-t',
+        'action_title' => 'osu! letöltése',
+        'for_os' => ':os operációs rendszerhez',
+        'lazer_note' => 'megjegyzés: ranglista visszaállítások történnek',
+        'macos-fallback' => 'macOS használók',
+        'mirror' => 'tükör',
+        'or' => 'vagy',
+        'os_version_or_later' => ':os_version vagy újabb',
+        'other_os' => 'egyéb platoformok',
+        'quick_start_guide' => 'gyors útmutató',
+        'tagline' => "vágjunk<br>bele!",
+        'video-guide' => 'videó útmutató',
 
         'help' => [
             '_' => 'ha meccs indításakor vagy fiók létrehozásánál problémába ütközöl, :help_forum_link vagy :support_button.',
@@ -86,8 +101,6 @@ return [
             'macos' => 'macOS rendszerre',
             'linux' => 'Linux rendszerre',
         ],
-        'mirror' => 'tükör',
-        'macos-fallback' => 'macOS használók',
         'steps' => [
             'register' => [
                 'title' => 'hozz létre fiókot',
@@ -98,14 +111,13 @@ return [
                 'description' => 'nyomd meg a fenti gombot a telepítő letöltéséhez, majd indítsd el!',
             ],
             'beatmaps' => [
-                'title' => 'beatmap-ek beszerzése',
+                'title' => 'beatmapek beszerzése',
                 'description' => [
                     '_' => ':browse felhasználók által létrehozott hatalmas beatmap könyvtárban és kezd játszani!',
                     'browse' => 'böngéssz',
                 ],
             ],
         ],
-        'video-guide' => 'videó útmutató',
     ],
 
     'user' => [
@@ -122,8 +134,8 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => 'Új Rangsorolt Beatmap-ek',
-            'popular' => 'Népszerű beatmap-ek',
+            'new' => 'Új rangsorolt beatmapek',
+            'popular' => 'Népszerű beatmapek',
             'by_user' => ':user által',
         ],
         'buttons' => [
@@ -131,16 +143,5 @@ return [
             'support' => 'osu! támogatása',
             'store' => 'osu!bolt',
         ],
-    ],
-
-    'support-osu' => [
-        'title' => 'Hűha!',
-        'subtitle' => 'Úgy néz ki nagyon jól szórakozol! :D',
-        'body' => [
-            'part-1' => 'Tudtad, hogy az osu! reklámok nélkül van fenntartva, és teljesen a játékosi támogatásra hagyatkozik a fenntartási és fejlesztési költségekhez?',
-            'part-2' => 'És azt tudtad, hogy az osu! támogatásával egy rakás hasznos funkciót kapsz, mint például a <strong>játékon belüli letöltés</strong> ami automatikusan életbe lép megfigyelőként és többjátékos módban?',
-        ],
-        'find-out-more' => 'További információért kattints ide!',
-        'download-starting' => "Oh, és ne aggódj - a letöltésedet már elindítottuk ;)",
     ],
 ];

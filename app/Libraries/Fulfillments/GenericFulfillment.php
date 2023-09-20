@@ -31,8 +31,8 @@ class GenericFulfillment extends OrderFulfiller
         event("store.fulfillments.revoke.{$this->taggedName()}", new OrderFulfillerEvent($this->order));
     }
 
-    public function validationErrorsTranslationPrefix()
+    public function validationErrorsTranslationPrefix(): string
     {
-        // noop
+        return '';
     }
 }

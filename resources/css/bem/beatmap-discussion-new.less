@@ -1,0 +1,151 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.beatmap-discussion-new {
+  @_avatar-size: 45px;
+  @_side-padding: 20px;
+
+  .default-box-shadow();
+  display: flex;
+  background-color: @osu-colour-b4;
+  flex-direction: column;
+
+  &__avatar {
+    flex: none;
+    width: @_avatar-size;
+    height: @_avatar-size;
+  }
+
+  &__content {
+    display: flex;
+    padding: 0 @_side-padding 10px;
+  }
+
+  &__footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    background-color: @osu-colour-b5;
+    padding: 10px @_side-padding;
+    justify-content: space-between;
+
+    @media @mobile {
+      flex-direction: column;
+    }
+  }
+
+  &__footer-content {
+    display: flex;
+    min-height: 2em; // prevent squashing when wrapping.
+
+    &--right {
+      gap: 5px;
+      justify-content: flex-end;
+      flex: 1 0 auto;
+      flex-wrap: wrap;
+    }
+  }
+
+  &__footer-message {
+    .default-text-shadow();
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    font-size: @font-size--small-2;
+    color: #fff;
+    background-color: @osu-colour-b3;
+    border-radius: 0 @border-radius-base @border-radius-base 0;
+
+    &--label {
+      background-color: @osu-colour-b6;
+      border-radius: @border-radius-base 0 0 @border-radius-base;
+      flex-grow: 0;
+    }
+  }
+
+  &__login-required {
+    .content-font();
+    color: @osu-colour-f1;
+    padding: 0 20px 20px 20px;
+    font-size: @font-size--title-small-2;
+  }
+
+  &__message {
+    .content-font();
+    color: @osu-colour-f1;
+    flex: 1;
+    padding-left: 10px;
+    font-size: @font-size--title-small-2;
+
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__message-area {
+    color: white;
+    .reset-input();
+    resize: vertical;
+    width: 100%;
+    max-height: calc(50 * var(--vh, 1vh));
+    min-height: 3em;
+    -webkit-overflow-scrolling: touch;
+
+    flex: 1 0 auto;
+    font-size: @font-size--phone-input;
+
+    @media @mobile {
+      max-height: calc(40 * var(--vh, 1vh));
+    }
+
+    &::placeholder {
+      color: @osu-colour-b1;
+    }
+
+    @media @desktop {
+      font-size: inherit;
+    }
+  }
+
+  &__message-counter {
+    font-size: @font-size--normal;
+    text-align: right;
+    margin-top: 5px;
+
+    &--almost-over {
+      color: @yellow-dark;
+    }
+
+    &--over {
+      color: @red;
+      font-weight: 700;
+    }
+  }
+
+  &__notice {
+    background-color: @osu-colour-b5;
+    padding: 5px @_side-padding;
+    color: #fff;
+    font-size: @font-size--normal;
+  }
+
+  &__notice-checkbox {
+    margin: 5px 0 0;
+    text-transform: initial;
+    font-weight: initial;
+  }
+
+  &__type {
+    color: #999;
+    margin: 0 5px;
+
+    &--active {
+      color: #fff;
+    }
+  }
+
+  &__types {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
+  }
+}

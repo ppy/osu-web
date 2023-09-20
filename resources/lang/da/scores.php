@@ -24,6 +24,7 @@ return [
 
     'status' => [
         'non_best' => 'Kun personlige bedste scorer giver pp',
+        'non_passing' => '',
         'processing' => 'Denne score bliver stadig beregnet og vil snart blive vist',
     ],
 ];

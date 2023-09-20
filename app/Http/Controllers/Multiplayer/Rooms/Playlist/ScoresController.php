@@ -8,18 +8,20 @@ namespace App\Http\Controllers\Multiplayer\Rooms\Playlist;
 use App\Exceptions\InvariantException;
 use App\Http\Controllers\Controller as BaseController;
 use App\Libraries\ClientCheck;
-use App\Libraries\Multiplayer\Mod;
 use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\PlaylistItemUserHighScore;
 use App\Models\Multiplayer\Room;
 use App\Transformers\Multiplayer\ScoreTransformer;
 use Carbon\Carbon;
 
+/**
+ * @group Multiplayer
+ */
 class ScoresController extends BaseController
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => ['index']]);
         $this->middleware('require-scopes:public', ['only' => ['index']]);
     }
 
@@ -39,9 +41,7 @@ class ScoresController extends BaseController
      *
      * @queryParam limit Number of scores to be returned.
      * @queryParam sort [MultiplayerScoresSort](#multiplayerscoressort) parameter.
-     * @queryParam cursor [MultiplayerScoresCursor](#multiplayerscorescursor) parameter.
-     *
-     * @group Multiplayer
+     * @queryParam cursor_string [CursorString](#cursorstring) parameter.
      */
     public function index($roomId, $playlistId)
     {
@@ -52,7 +52,7 @@ class ScoresController extends BaseController
 
         [$highScores, $hasMore] = $playlist
             ->highScores()
-            ->cursorSort($cursorHelper, $params['cursor'] ?? null)
+            ->cursorSort($cursorHelper, cursor_from_params($params))
             ->with(ScoreTransformer::BASE_PRELOAD)
             ->limit($limit)
             ->getWithHasMore();
@@ -75,11 +75,11 @@ class ScoresController extends BaseController
         }
 
         return [
-            'cursor' => $hasMore ? $cursorHelper->next($highScores) : null,
             'params' => ['limit' => $limit, 'sort' => $cursorHelper->getSortName()],
             'scores' => $scoresJson,
             'total' => $total,
             'user_score' => $userScoreJson ?? null,
+            ...cursor_for_response($cursorHelper->next($highScores, $hasMore)),
         ];
     }
 
@@ -97,8 +97,6 @@ class ScoresController extends BaseController
      * @urlParam room integer required Id of the room.
      * @urlParam playlist integer required Id of the playlist item.
      * @urlParam score integer required Id of the score.
-     *
-     * @group Multiplayer
      */
     public function show($roomId, $playlistId, $id)
     {
@@ -127,8 +125,6 @@ class ScoresController extends BaseController
      * @urlParam room integer required Id of the room.
      * @urlParam playlist integer required Id of the playlist item.
      * @urlParam user integer required User id.
-     *
-     * @group Multiplayer
      */
     public function showUser($roomId, $playlistId, $userId)
     {
@@ -143,6 +139,9 @@ class ScoresController extends BaseController
         );
     }
 
+    /**
+     * @group Undocumented
+     */
     public function store($roomId, $playlistId)
     {
         $room = Room::findOrFail($roomId);
@@ -150,7 +149,7 @@ class ScoresController extends BaseController
         $user = auth()->user();
         $params = request()->all();
 
-        ClientCheck::assert($user, $params);
+        ClientCheck::findBuild($user, $params);
 
         $score = $room->startPlay($user, $playlistItem);
 
@@ -160,6 +159,9 @@ class ScoresController extends BaseController
         );
     }
 
+    /**
+     * @group Undocumented
+     */
     public function update($roomId, $playlistId, $scoreId)
     {
         $room = Room::findOrFail($roomId);
@@ -191,9 +193,9 @@ class ScoresController extends BaseController
 
     private function extractScoreParams(array $params, PlaylistItem $playlistItem)
     {
-        $mods = Mod::parseInputArray(
+        $mods = app('mods')->parseInputArray(
+            $playlistItem->ruleset_id,
             $params['mods'] ?? [],
-            $playlistItem->ruleset_id
         );
 
         return [

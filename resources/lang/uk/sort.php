@@ -4,16 +4,27 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    '_' => 'Сортувати за',
+    '_' => 'Сортувати',
 
     'all' => 'Усі',
     'friends' => 'Друзі',
-    'last_visit' => 'Останні дії',
-    'new' => 'Свіжістю',
-    'old' => 'Старістю',
+    'last_visit' => 'Нещодавно активні',
+    'new' => 'Нещодавні',
+    'old' => 'Старі',
     'rank' => 'Ранг',
-    'top' => 'Популярністю',
+    'top' => 'Популярні',
     'username' => 'Ім\'я користувача',
+
+    'artist_tracks' => [
+        'album' => 'Альбом ',
+        'artist' => 'Виконавець',
+        'bpm' => 'БПМ',
+        'genre' => 'Жанр',
+        'length' => 'Тривалість',
+        'relevance' => 'Актуальність',
+        'title' => 'Назва',
+        'update' => 'Оновлення',
+    ],
 
     'forum_posts' => [
         'created' => 'Час розміщення',
@@ -21,8 +32,9 @@ return [
     ],
 
     'forum_topics' => [
-        'feature_votes' => 'Кількістю голосів',
-        'new' => 'Останьою відповідю',
+        'created' => 'Створено',
+        'feature_votes' => 'Кількість голосів',
+        'new' => 'Остання відповідь',
     ],
 
     'users' => [

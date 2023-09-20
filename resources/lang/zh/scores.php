@@ -8,7 +8,7 @@ return [
         'title' => ':username 在 :title [:version] 上的成绩',
 
         'beatmap' => [
-            'by' => '曲师：:artist',
+            'by' => 'by :artist',
         ],
 
         'player' => [
@@ -16,14 +16,15 @@ return [
             'submitted_on' => '达成时间',
 
             'rank' => [
-                'country' => '国内/区内排名',
+                'country' => '地区排名',
                 'global' => '全球排名',
             ],
         ],
     ],
 
     'status' => [
-        'non_best' => '只有最棒的成绩才奖励 pp',
+        'non_best' => '只有个人最好成绩才能获取到 pp',
+        'non_passing' => '只能在通过的成绩上获取 pp',
         'processing' => '此分数仍在计算中，即将显示',
     ],
 ];

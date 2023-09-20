@@ -5,20 +5,21 @@
 
 return [
     'deleted' => 'șters',
-    'deleted_by' => '',
-    'deleted_by_system' => '',
-    'deleted_count' => ':count_delimited comentariu șters|:count_delimited comentariu șters',
-    'edited' => 'editat :timeago de :user',
+    'deleted_by' => 'șters din :timeago de :user',
+    'deleted_by_system' => 'sistem',
+    'deleted_count' => 'un comentariu șters|:count_delimited comentarii șterse|:count_delimited de comentarii șterse',
+    'edited' => 'editat acum :timeago de :user',
     'pinned' => 'fixat',
     'empty' => 'Niciun comentariu încă.',
+    'empty_other' => 'Nici un alt comentariu încă.',
     'load_replies' => 'încarcă răspunsurile',
-    'replies_count' => ':count_delimited răspuns|:count_delimited răspunsuri',
+    'replies_count' => 'un răspuns|:count_delimited răspunsuri|:count_delimited de răspunsuri',
     'title' => 'Comentarii',
 
     'commentable_name' => [
         'beatmapset' => 'Beatmap',
-        'build' => 'Jurnal modificări',
-        'news_post' => 'Ştiri',
+        'build' => 'Istoric modificări',
+        'news_post' => 'Noutăți',
         '_deleted' => 'Articol șters',
     ],
 
@@ -38,7 +39,7 @@ return [
 
     'index' => [
         'nav_comments' => 'comentarii',
-        'nav_title' => 'listare',
+        'nav_title' => 'listă',
         'no_comments' => 'niciun comentariu găsit...',
     ],
 

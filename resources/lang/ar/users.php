@@ -8,7 +8,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => "سجل اقتراحات :user",
-        'title_compact' => 'الإقتراحات',
+        'title_compact' => 'تقديم الإقتِراحات',
 
         'discussions' => [
             'title_recent' => 'المناقشات التي بدأت مؤخرا',
@@ -33,10 +33,14 @@ return [
 
     'blocks' => [
         'banner_text' => 'لقد قمت بحظر هذا المستخدم.',
+        'comment_text' => 'هذا التعليق مخفي.',
         'blocked_count' => 'المستخدمون المحظورون (:count)',
         'hide_profile' => 'إخفاء الملف الشخصي',
+        'hide_comment' => 'إخفاء',
+        'forum_post_text' => '',
         'not_blocked' => 'هذا المستخدم ليس محظوراََ.',
         'show_profile' => 'عرض الملف الشخصي',
+        'show_comment' => 'إظهار',
         'too_many' => 'تم الوصول للحد الأقصى للحظر.',
         'button' => [
             'block' => 'حظر',
@@ -45,8 +49,25 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => '',
         'loading' => 'جاري التحميل...',
         'send_message' => 'إرسال رسالة',
+    ],
+
+    'create' => [
+        'form' => [
+            'password' => 'كلمة السر',
+            'password_confirmation' => 'تأكيد كلمة السر',
+            'submit' => 'إنشاء حساب',
+            'user_email' => 'الايميل',
+            'user_email_confirmation' => 'تأكيد الأيميل',
+            'username' => 'اسم المستخدم',
+
+            'tos_notice' => [
+                '_' => 'من خلال إنشاء الحساب أنت توافق على :link',
+                'link' => 'شروط الخدمة',
+            ],
+        ],
     ],
 
     'disabled' => [
@@ -139,6 +160,7 @@ return [
     'restricted_banner' => [
         'title' => 'تم تقييد حسابك!',
         'message' => 'عندما تكون مقيداََ, سوف تمنع من مراسلة الاخرين ونتائج ستكون ظاهرة لك فقط. هذه عادة نتيجة تلقائية وسوف تختفي خلال 24 ساعة. اذا كنت تريد الغاء تقييدك, ارجوك <a href="mailto:accounts@ppy.sh">اتصل بالدعم</a>.',
+        'message_link' => 'تحقق من هذه الصفحة لمعرفة المزيد.',
     ],
     'show' => [
         'age' => ':age سنة',
@@ -158,6 +180,10 @@ return [
         'comments_count' => [
             '_' => 'نَشَر :link',
             'count' => ':count_delimited تعليق|:count_delimited تعليقات',
+        ],
+        'cover' => [
+            'to_0' => 'إخفاء الغلاف',
+            'to_1' => 'إظهار الغلاف',
         ],
         'edit' => [
             'cover' => [
@@ -204,14 +230,20 @@ return [
                 'graveyard' => [
                     'title' => 'الخرائط المقبورة',
                 ],
+                'guest' => [
+                    'title' => 'خرائط من مشاركات الضيف',
+                ],
                 'loved' => [
-                    'title' => 'الخرائط المُحَبَبة',
+                    'title' => 'خرائط Loved',
+                ],
+                'nominated' => [
+                    'title' => 'خرائط Ranked جديدة',
                 ],
                 'pending' => [
                     'title' => 'الخرائط المعلقة',
                 ],
                 'ranked' => [
-                    'title' => 'الخرائط المصفوفة والمقبولة',
+                    'title' => 'الخرائط الـ Ranked',
                 ],
             ],
             'discussions' => [
@@ -240,8 +272,8 @@ return [
                     'title' => 'الخرائط الملعوبة اخر (24 ساعة)',
                 ],
                 'replays_watched_counts' => [
-                    'title' => 'تاريخ مشاهدات النتائج',
-                    'count_label' => 'مشاهدات النتائج',
+                    'title' => 'تاريخ مشاهدات الـ Replays',
+                    'count_label' => 'الـ Replays التي شاهدتها',
                 ],
             ],
             'kudosu' => [
@@ -301,8 +333,8 @@ return [
                 'recent' => 'الأخير',
                 'title' => 'الاوسمة',
             ],
-            'multiplayer' => [
-                'title' => 'المباريات الجماعية',
+            'playlists' => [
+                'title' => 'العاب قائمة التشغيل',
             ],
             'posts' => [
                 'title' => 'المنشورات',
@@ -312,9 +344,12 @@ return [
             'recent_activity' => [
                 'title' => 'الأخيرة',
             ],
+            'realtime' => [
+                'title' => 'ألـ ألعاب الجماعية',
+            ],
             'top_ranks' => [
-                'download_replay' => 'تحميل النتيجة',
-                'not_ranked' => 'فقط الخرائط المصفوفة تعطي نقاط خبرة.',
+                'download_replay' => 'تحميل الـ Replay',
+                'not_ranked' => 'فقط الخرائط الـ Ranked تعطي نقاط خبرة',
                 'pp_weight' => 'موزون :percentage',
                 'view_details' => 'عرض التفاصيل',
                 'title' => 'النتائج',
@@ -324,6 +359,15 @@ return [
                 ],
                 'first' => [
                     'title' => 'المراكز الاولى',
+                ],
+                'pin' => [
+                    'to_0' => 'إزالة التثبيت',
+                    'to_0_done' => 'نتيجة غير مثبتة',
+                    'to_1' => 'تثبيت',
+                    'to_1_done' => 'نتيجة مثبتة',
+                ],
+                'pinned' => [
+                    'title' => 'النتائج المثبتة',
                 ],
             ],
             'votes' => [
@@ -343,13 +387,14 @@ return [
                     'date' => 'التاريخ',
                     'action' => 'النشاط',
                     'length' => 'الطول',
-                    'length_permanent' => 'دائم',
+                    'length_indefinite' => '',
                     'description' => 'الوصف',
                     'actor' => 'بواسطة :username',
 
                     'actions' => [
                         'restriction' => 'حظر',
                         'silence' => 'سكون',
+                        'tournament_ban' => 'حظر البطولات',
                         'note' => 'ملاحظة',
                     ],
                 ],
@@ -391,25 +436,26 @@ return [
             'country_simple' => 'ترتيب الدولة',
             'global' => 'الترتيب العالمي لـ :mode',
             'global_simple' => 'الترتيب العالمي',
+            'highest' => 'أعلى ترتيب: :rank في :date',
         ],
         'stats' => [
             'hit_accuracy' => 'دقة التصويب',
             'level' => 'المستوى :level',
             'level_progress' => 'التقدم للمستوى التالي',
-            'maximum_combo' => 'السرد الأقصى',
+            'maximum_combo' => 'اقصى كومبو',
             'medals' => 'الاوسمة',
             'play_count' => 'مرات اللعب',
             'play_time' => 'وقت اللعب الإجمالي',
-            'ranked_score' => 'نقاط الترتيب',
-            'replays_watched_by_others' => 'النتائج التي شوهدت بواسطة الاخرين',
+            'ranked_score' => 'عدد نقاط الـ Ranked',
+            'replays_watched_by_others' => 'الـ Replays التي شاهدها الأخرون',
             'score_ranks' => 'ترتيب النقاط',
             'total_hits' => 'مجموع التصويبات',
             'total_score' => 'مجموع النقاط',
             // modding stats
             'graveyard_beatmapset_count' => 'الخرائط المقبورة',
-            'loved_beatmapset_count' => 'الخرائط المُحَبَبة',
+            'loved_beatmapset_count' => 'خرائط Loved',
             'pending_beatmapset_count' => 'الخرائط المعلقة',
-            'ranked_beatmapset_count' => 'الخرائط المصفوفة والمقبولة',
+            'ranked_beatmapset_count' => 'الخرائط الـ Ranked',
         ],
     ],
 
@@ -424,6 +470,8 @@ return [
         'offline' => 'غير متصل',
     ],
     'store' => [
+        'from_client' => 'الرجاء التسجيل داخل اللعبة بدلاً من هنا!',
+        'from_web' => 'يرجى إكمال التسجيل عبر موقع osu!',
         'saved' => 'انشأ المستخدم',
     ],
     'verify' => [

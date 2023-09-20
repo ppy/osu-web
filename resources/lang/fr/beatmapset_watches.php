@@ -5,7 +5,7 @@
 
 return [
     'index' => [
-        'description' => 'Ce sont les discussions sur la beatmap que vous suivez. Vous serez averti lorsqu\'il y aura de nouveaux messages ou des mises à jour.',
+        'description' => 'Voici les discussions sur les beatmaps que vous suivez. Vous serez averti lorsqu\'il y aura de nouveaux messages ou des mises à jour.',
         'title_compact' => 'liste d\'abonnement des modifications',
 
         'counts' => [
@@ -14,7 +14,7 @@ return [
         ],
 
         'table' => [
-            'empty' => 'Aucune discussion sur une beatmap suivie.',
+            'empty' => 'Aucune discussion suivie.',
             'last_update' => 'Dernière mise à jour',
             'open_issues' => 'Problèmes ouverts',
             'state' => 'Statut',

@@ -22,7 +22,7 @@ abstract class BroadcastNotificationBase implements ShouldQueue
     use NotificationQueue, Queueable, SerializesModels;
 
     const CONTENT_TRUNCATE = 36;
-
+    const DELIVERY_MODE_DEFAULTS = ['mail' => false, 'push' => true];
     const NOTIFICATION_OPTION_NAME = null;
 
     protected $name;
@@ -97,10 +97,10 @@ abstract class BroadcastNotificationBase implements ShouldQueue
             }
 
             foreach ($chunkedUserIds as $userId) {
-                $details = $notificationOptions[$userId]->details ?? UserNotificationOption::DELIVERY_MODE_DEFAULTS;
+                $details = $notificationOptions[$userId]->details ?? static::DELIVERY_MODE_DEFAULTS;
                 $delivery = 0;
                 foreach (UserNotification::DELIVERY_OFFSETS as $type => $_offset) {
-                    if ($details[$type] ?? UserNotificationOption::DELIVERY_MODE_DEFAULTS[$type]) {
+                    if ($details[$type] ?? static::DELIVERY_MODE_DEFAULTS[$type]) {
                         $delivery |= UserNotification::deliveryMask($type);
                     }
                 }
@@ -134,6 +134,7 @@ abstract class BroadcastNotificationBase implements ShouldQueue
     {
         $this->name = snake_case(get_class_basename(get_class($this)));
         $this->source = $source;
+        $this->afterCommit = true;
     }
 
     abstract public function getDetails(): array;
@@ -207,7 +208,7 @@ abstract class BroadcastNotificationBase implements ShouldQueue
         });
 
         if (!empty($pushReceiverIds)) {
-            event(new NewPrivateNotificationEvent($notification, $pushReceiverIds));
+            (new NewPrivateNotificationEvent($notification, $pushReceiverIds))->broadcast();
         }
     }
 

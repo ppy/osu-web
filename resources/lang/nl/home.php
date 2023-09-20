@@ -23,7 +23,7 @@ return [
         'button' => 'Zoeken',
         'empty_result' => 'Niets gevonden!',
         'keyword_required' => 'Een zoekwoord is vereist',
-        'placeholder' => 'type om te zoeken',
+        'placeholder' => 'typ hier om te zoeken',
         'title' => 'Zoek',
 
         'beatmapset' => [
@@ -43,6 +43,7 @@ return [
             'label' => [
                 'forum' => 'doorzoek het forum',
                 'forum_children' => 'tel subforums mee',
+                'include_deleted' => 'zoek ook naar verwijderde posts',
                 'topic_id' => 'onderwerp #',
                 'username' => 'auteur',
             ],
@@ -72,13 +73,27 @@ return [
     ],
 
     'download' => [
-        'tagline' => "laten we<br>beginnen!",
         'action' => 'Download osu!',
+        'action_lazer' => 'Download osu!(lazer)',
+        'action_lazer_description' => 'de volgende grote update voor osu!',
+        'action_lazer_info' => 'bekijk deze pagina voor meer informatie',
+        'action_lazer_title' => 'probeer osu!(lazer)',
+        'action_title' => 'download osu!',
+        'for_os' => 'voor :os',
+        'lazer_note' => 'opmerking: leaderboard resets zijn van toepassing',
+        'macos-fallback' => 'macOS gebruikers',
+        'mirror' => 'mirror',
+        'or' => 'of',
+        'os_version_or_later' => ':os_version of nieuwer',
+        'other_os' => 'andere platformen',
+        'quick_start_guide' => 'snelstartgids',
+        'tagline' => "laten we<br>beginnen!",
+        'video-guide' => 'videogids',
 
         'help' => [
-            '_' => 'als je problemen hebt met het starten van het spel of registreren voor een account, :help_forum_link of :support_button.',
-            'help_forum_link' => 'bekijk Help-forum',
-            'support_button' => 'contact support',
+            '_' => 'als je problemen hebt met het opstarten van het spel of wanneer je een account wilt aanmaken, neem dan een kijkje op het :help_forum_link of neem contact op met :support_button.',
+            'help_forum_link' => 'hulpforum',
+            'support_button' => 'ondersteuning',
         ],
 
         'os' => [
@@ -86,8 +101,6 @@ return [
             'macos' => 'voor macOS',
             'linux' => 'voor Linux',
         ],
-        'mirror' => 'mirror',
-        'macos-fallback' => 'macOS gebruikers',
         'steps' => [
             'register' => [
                 'title' => 'maak een account',
@@ -95,17 +108,16 @@ return [
             ],
             'download' => [
                 'title' => 'download de game',
-                'description' => 'klik de knop hierboven om de installer te downloaden, en voer het dan uit!',
+                'description' => 'klik op bovenstaande knop om het installatieprogramma te downloaden, waarna je hem kunt uitvoeren!',
             ],
             'beatmaps' => [
                 'title' => 'download beatmaps',
                 'description' => [
-                    '_' => ':browse de enorme bibliotheek van door gebruikers-gemaakte beatmaps en begin the spelen!',
+                    '_' => ':browse de enorme bibliotheek van beatmaps, gemaakt door onze gebruikers, en begin te spelen!',
                     'browse' => 'doorblader',
                 ],
             ],
         ],
-        'video-guide' => 'video gids',
     ],
 
     'user' => [
@@ -122,25 +134,14 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => 'Nieuwe Gerankte Beatmappen',
+            'new' => 'Nieuwe Ranked Beatmaps',
             'popular' => 'Populaire Beatmaps',
             'by_user' => 'door :user',
         ],
         'buttons' => [
             'download' => 'Download osu!',
-            'support' => 'Support osu!',
+            'support' => 'Ondersteun osu!',
             'store' => 'osu!store',
         ],
-    ],
-
-    'support-osu' => [
-        'title' => 'Wow!',
-        'subtitle' => 'Jij lijkt plezier te hebben! :D',
-        'body' => [
-            'part-1' => 'Wist je dat osu! geen advertenties toont, en afhangt van spelers voor de ontwikkelings- en onderhoudskosten?',
-            'part-2' => 'Wist je dat je door osu! te helpen ook een hoop handige features krijgt, waaronder <strong>in-game downloads</strong> die automatisch starten tijdens spectator en multiplayer games?',
-        ],
-        'find-out-more' => 'Klik hier voor meer!',
-        'download-starting' => "Oh, en maak je geen zorgen - je download is al gestart :)",
     ],
 ];

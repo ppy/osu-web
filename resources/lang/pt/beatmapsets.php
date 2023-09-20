@@ -8,11 +8,19 @@ return [
         'disabled' => 'Este beatmap não está disponível atualmente para transferência.',
         'parts-removed' => 'Algumas porções deste beatmap foram removidas a pedido do criador ou dum titular de direitos de terceiros.',
         'more-info' => 'Clica aqui para mais informações.',
-        'rule_violation' => 'Alguns elementos contidos neste mapa foram removidos após serem avaliados como não sendo adequados para uso no osu!.',
+        'rule_violation' => 'Alguns elementos contidos neste mapa foram removidos após terem sido considerados como não sendo adequados para utilização no osu!',
+    ],
+
+    'cover' => [
+        'deleted' => 'Beatmaps eliminados',
     ],
 
     'download' => [
         'limit_exceeded' => 'Abranda, joga mais.',
+    ],
+
+    'featured_artist_badge' => [
+        'label' => 'Artista destacado',
     ],
 
     'index' => [
@@ -52,12 +60,22 @@ return [
     'show' => [
         'discussion' => 'Discussão',
 
+        'admin' => [
+            'full_size_cover' => 'Ver imagem da capa em tamanho real',
+        ],
+
+        'deleted_banner' => [
+            'title' => 'Este beatmap foi apagado.',
+            'message' => '(apenas os moderadores podem ver isto)',
+        ],
+
         'details' => [
             'by_artist' => 'por :artist',
             'favourite' => 'Marcar este beatmapset como favorito',
             'favourite_login' => 'Inicia sessão para pôr este beatmap nos favoritos',
             'logged-out' => 'Precisas de iniciar sessão antes de transferir quaisquer beatmaps!',
             'mapped_by' => 'mapeado por :mapper',
+            'mapped_by_guest' => 'dificuldade de convidado por :mapper',
             'unfavourite' => 'Desmarcar este beatmapset como favorito',
             'updated_timeago' => 'atualizado há :timeago',
 
@@ -88,7 +106,7 @@ return [
         ],
 
         'hype' => [
-            'action' => 'Hypeia este mapa se gostaste de o jogar para ajudá-lo a progredir ao estado <strong>Classificado</strong>.',
+            'action' => 'Hypeia este mapa se gostaste de jogá-lo para o ajudar a progredir ao estado <strong>Classificado</strong>.',
 
             'current' => [
                 '_' => 'Este mapa está atualmente :status.',
@@ -96,7 +114,7 @@ return [
                 'status' => [
                     'pending' => 'pendente',
                     'qualified' => 'qualificado',
-                    'wip' => 'trabalho em progresso',
+                    'wip' => 'trabalho em curso',
                 ],
             ],
 
@@ -116,7 +134,9 @@ return [
             'genre' => 'Género',
             'language' => 'Língua',
             'no_scores' => 'Os dados ainda estão a ser calculados...',
+            'nominators' => 'Nomeadores',
             'nsfw' => 'Conteúdo explícito',
+            'offset' => 'Desvio do online',
             'points-of-failure' => 'Pontos de falha',
             'source' => 'Fonte',
             'storyboard' => 'Este beatmap contém um cenário',
@@ -139,10 +159,11 @@ return [
         'scoreboard' => [
             'achieved' => 'conseguido :when',
             'country' => 'Classificação nacional',
+            'error' => 'Falha ao carregar a classificação',
             'friend' => 'Classificação de amigos',
             'global' => 'Classificação global',
             'supporter-link' => 'Clica <a href=":link">aqui</a> para ver todas as funcionalidades extravagantes que obténs!',
-            'supporter-only' => 'Precisas de ser um osu!supporter para ter acesso às classificações de amigos e nacional!',
+            'supporter-only' => 'Precisas de ser um osu!supporter para acederes às classificações de amigos e países!',
             'title' => 'Tabela de pontuações',
 
             'headers' => [
@@ -150,11 +171,12 @@ return [
                 'combo' => 'Combo máximo',
                 'miss' => 'Erros',
                 'mods' => 'Mods',
+                'pin' => 'Afixar',
                 'player' => 'Jogador',
                 'pp' => '',
                 'rank' => 'Posição',
-                'score_total' => 'Pontuação total',
                 'score' => 'Pontuação',
+                'score_total' => 'Pontuação total',
                 'time' => 'Tempo',
             ],
 
@@ -169,6 +191,10 @@ return [
                 'first' => 'Na liderança',
                 'own' => 'A tua melhor',
             ],
+            'supporter_link' => [
+                '_' => 'Clica :here para veres todas as funcionalidades catitas que recebes!',
+                'here' => 'aqui',
+            ],
         ],
 
         'stats' => [
@@ -182,6 +208,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Número de círculos',
             'count_sliders' => 'Número de deslizadores',
+            'offset' => 'Desvio do online :offset',
             'user-rating' => 'Classificação de utilizador',
             'rating-spread' => 'Avaliação dispersada',
             'nominations' => 'Nomeações',
@@ -193,9 +220,13 @@ return [
             'approved' => 'Aprovado',
             'loved' => 'Adorado',
             'qualified' => 'Qualificado',
-            'wip' => 'Trabalho em progresso',
+            'wip' => 'Trabalho em curso',
             'pending' => 'Pendente',
             'graveyard' => 'Cemitério',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => 'Em destaque',
     ],
 ];

@@ -42,8 +42,13 @@ class BeatmapsetQueryParser
                     $option = static::makeFloatRangeOption($op, $m['value'], 0.01 / 2);
                     break;
                 case 'length':
-                    $parsed = static::parseLength($m['value']);
-                    $option = static::makeFloatRangeOption($op, $parsed['value'], $parsed['scale'] / 2.0);
+                    $parsed = get_length($m['value']);
+                    if ($parsed !== null) {
+                        $option = static::makeFloatRangeOption($op, $parsed['value'], $parsed['scale'] / 2.0);
+                    }
+                    break;
+                case 'featured_artist':
+                    $option = static::makeIntOption($op, $m['value']);
                     break;
                 case 'key':
                 case 'keys':
@@ -54,9 +59,12 @@ class BeatmapsetQueryParser
                     $option = static::makeIntRangeOption($op, $m['value']);
                     break;
                 case 'status':
-                    $option = static::makeIntRangeOption($op, Beatmapset::STATES[$m['value']] ?? null);
+                    $option = static::makeIntRangeOption($op, static::statePrefixSearch($m['value']));
                     break;
                 case 'creator':
+                    $option = static::makeTextOption($op, $m['value']);
+                    break;
+                case 'difficulty':
                     $option = static::makeTextOption($op, $m['value']);
                     break;
                 case 'artist':
@@ -95,16 +103,16 @@ class BeatmapsetQueryParser
 
         if (preg_match('#^\d{4}$#', $value) === 1) {
             $startTime = Carbon::create($value, 1, 1, 0, 0, 0, 'UTC');
-            $endTimeFunction = 'addYear';
+            $endTimeFunction = 'addYears';
         } elseif (preg_match('#^(?<year>\d{4})[-./]?(?<month>\d{1,2})$#', $value, $m) === 1) {
             $startTime = Carbon::create($m['year'], $m['month'], 1, 0, 0, 0, 'UTC');
-            $endTimeFunction = 'addMonth';
+            $endTimeFunction = 'addMonths';
         } elseif (preg_match('#^(?<year>\d{4})[-./]?(?<month>\d{1,2})[-./]?(?<day>\d{1,2})$#', $value, $m) === 1) {
             $startTime = Carbon::create($m['year'], $m['month'], $m['day'], 0, 0, 0, 'UTC');
-            $endTimeFunction = 'addDay';
+            $endTimeFunction = 'addDays';
         } else {
-            $startTime = parse_time_to_carbon($value);
-            $endTimeFunction = 'addSecond';
+            $startTime = parse_time_to_carbon($value)?->utc();
+            $endTimeFunction = 'addSeconds';
         }
 
         if (isset($startTime) && isset($endTimeFunction)) {
@@ -173,6 +181,13 @@ class BeatmapsetQueryParser
         }
     }
 
+    private static function makeIntOption($operator, $value)
+    {
+        if (is_numeric($value) && $operator === '=') {
+            return get_int($value);
+        }
+    }
+
     private static function makeIntRangeOption($operator, $value)
     {
         if (!is_numeric($value)) {
@@ -213,25 +228,22 @@ class BeatmapsetQueryParser
         }
     }
 
-    private static function parseLength($input)
+    private static function statePrefixSearch($value): ?int
     {
-        static $scales = [
-            'ms' => 0.001,
-            's' => 1,
-            'm' => 60,
-            'h' => 3600,
-        ];
-
-        $value = get_float($input);
-
-        if ($value !== null) {
-            $scale = $scales[substr($input, -2)] ?? $scales[substr($input, -1)] ?? 1;
-            $value *= $scale;
+        if (!present($value)) {
+            return null;
         }
 
-        return [
-            'value' => $value,
-            'scale' => $scale ?? null,
-        ];
+        if (isset(Beatmapset::STATES[$value])) {
+            return Beatmapset::STATES[$value];
+        }
+
+        foreach (Beatmapset::STATES as $string => $int) {
+            if (starts_with($string, $value)) {
+                return $int;
+            }
+        }
+
+        return null;
     }
 }

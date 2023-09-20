@@ -5,9 +5,9 @@
 @extends('master', ['titlePrepend' => osu_trans('layout.header.admin.contest').' / '.$contest->name])
 
 @section('content')
-    @include('objects.css-override', ['mapping' => [
-        '.header-v4__bg' => $contest->header_url,
-    ]])
+    <style>
+        :root { {{ css_var_2x('--header-bg', $contest->header_url) }} }
+    </style>
 
     @include('admin/_header')
 
@@ -37,8 +37,9 @@
             </div>
             <div class="col-md-4 text-right">
                 {!! Form::open([
+                    'data-loading-overlay' => '0',
+                    'method' => 'POST',
                     'route' => ['admin.contests.get-zip', $contest->id],
-                    'method' => 'POST'
                 ]) !!}
                     <button class="btn-osu-big">
                         <i class="fas fa-fw fa-file-archive"></i>
@@ -76,5 +77,5 @@
     {!! json_encode($entries) !!}
   </script>
 
-  @include('layout._react_js', ['src' => 'js/react/admin/contest.js'])
+  @include('layout._react_js', ['src' => 'js/admin-contest.js'])
 @stop

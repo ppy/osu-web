@@ -9,7 +9,7 @@ use App\Libraries\MorphMap;
 use App\Models\Notification;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-abstract class NotificationEventBase implements ShouldBroadcast
+abstract class NotificationEventBase extends BroadcastableEventBase implements ShouldBroadcast
 {
     public $broadcastQueue;
 

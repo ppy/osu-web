@@ -73,8 +73,21 @@ return [
             'nomination_reset' => 'ノミネーションをリセット',
             'praise' => '称賛',
             'problem' => '問題',
+            'problem_warning' => '問題を報告する',
             'review' => 'レビュー',
             'suggestion' => '提案',
+        ],
+
+        'message_type_title' => [
+            'disqualify' => '',
+            'hype' => '',
+            'mapper_note' => '',
+            'nomination_reset' => '',
+            'praise' => '',
+            'problem' => '',
+            'problem_warning' => '',
+            'review' => '',
+            'suggestion' => '',
         ],
 
         'mode' => [
@@ -104,7 +117,7 @@ return [
                 'unlink' => 'リンク解除',
                 'unsaved' => '未保存',
                 'timestamp' => [
-                    'all-diff' => '「全ての難易度」に関する投稿はタイムスタンプできません。',
+                    'all-diff' => '「全ての難易度」にはタイムスタンプを含む投稿はできません。',
                     'diff' => 'この:typeがタイムスタンプで始まる場合、タイムラインの下に表示されます。',
                 ],
             ],
@@ -174,6 +187,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => '',
+        'cannot_nominate' => '',
         'delete' => '削除',
         'delete_own_confirm' => '本当によろしいですか？ビートマップは削除され、プロフィール画面にリダイレクトされます。',
         'delete_other_confirm' => '本当によろしいですか？ビートマップは削除され、ユーザーのプロフィール画面にリダイレクトされます。',
@@ -183,6 +198,7 @@ return [
         'disqualify' => 'Disqualify',
         'incorrect_state' => 'エラーが発生しました。ページの再読み込みを試してください。',
         'love' => 'Lovedに追加',
+        'love_choose' => 'lovedの難易度を選択',
         'love_confirm' => 'Lovedに追加しますか？',
         'nominate' => 'ノミネート',
         'nominate_confirm' => 'このビートマップをノミネートしますか？',
@@ -197,6 +213,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'このマップは、問題が見つからなければ :date にrankedされると推定されます。:queue 内の #:position ',
+            'on' => '',
             'queue' => 'ランキングキュー',
             'soon' => '間もなく',
         ],
@@ -207,8 +224,9 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => '本当によろしいですか？新しい問題を投稿するとノミネーション審査中ではなくなります。',
             'disqualify' => '本当によろしいですか？これによりビートマップがQualifiedから外され、ノミネーション審査がリセットされます。',
+            'nomination_reset' => '本当によろしいですか？新しい問題を投稿するとノミネーション審査中ではなくなります。',
+            'problem_warning' => 'このビートマップを報告してもよろしいですか？報告するとビートマップノミネーターに通知が行きます。',
         ],
     ],
 
@@ -251,8 +269,10 @@ return [
     ],
     'general' => [
         'converts' => 'コンバートビートマップを含める',
+        'featured_artists' => '注目アーティスト',
         'follows' => 'サブスクライブ中のマッパー',
         'recommended' => '推奨難易度',
+        'spotlights' => 'スポットライト',
     ],
     'mode' => [
         'all' => '全て',
@@ -271,6 +291,7 @@ return [
         'loved' => 'Loved',
         'mine' => 'マイマップ',
         'pending' => 'Pending & WIP',
+        'wip' => 'WIP',
         'qualified' => 'Qualified',
         'ranked' => 'Ranked',
     ],
@@ -289,32 +310,6 @@ return [
         'classical' => 'クラシカル',
         'folk' => 'フォーク',
         'jazz' => 'ジャズ',
-    ],
-    'mods' => [
-        '4K' => '',
-        '5K' => '',
-        '6K' => '',
-        '7K' => '',
-        '8K' => '',
-        '9K' => '',
-        'AP' => '',
-        'DT' => '',
-        'EZ' => '',
-        'FI' => '',
-        'FL' => '',
-        'HD' => '',
-        'HR' => '',
-        'HT' => '',
-        'MR' => '',
-        'NC' => '',
-        'NF' => '',
-        'NM' => '',
-        'PF' => '',
-        'RX' => '',
-        'SD' => '',
-        'SO' => '',
-        'TD' => '',
-        'V2' => '',
     ],
     'language' => [
         'any' => '全て',

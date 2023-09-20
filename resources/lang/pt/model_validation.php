@@ -8,6 +8,7 @@ return [
     'not_negative' => ':attribute não pode ser negativo.',
     'required' => ':attribute é necessário.',
     'too_long' => ':attribute limite máximo excedido - só pode ser até :limit caracteres.',
+    'url' => 'Por favor insere um URL válido.',
     'wrong_confirmation' => 'A confirmação não corresponde.',
 
     'beatmapset_discussion' => [
@@ -24,7 +25,7 @@ return [
         ],
 
         'hype' => [
-            'discussion_locked' => "Este mapa está atualmente bloqueado para ser discutido e não pode ser publicado",
+            'discussion_locked' => "Este mapa está bloqueado presentemente para ser discutido e não pode ser hypeado",
             'guest' => 'Tens que estar com a sessão iniciada para hypear.',
             'hyped' => 'Já hypeaste este beatmap.',
             'limit_exceeded' => 'Usaste todo o teu hype.',
@@ -93,7 +94,7 @@ return [
             'grace_period_expired' => 'Não é possível editar uma sondagem depois de mais de :limit horas',
             'hiding_results_forever' => 'Não é possível esconder os resultados duma sondagem que nunca irá terminar.',
             'invalid_max_options' => 'As opções por cada utilizador não podem exceder o número de opções disponíveis.',
-            'minimum_one_selection' => 'Um mínimo de uma opção é necessária por utilizador.',
+            'minimum_one_selection' => 'É necessária pelo menos uma opção por cada utilizador.',
             'minimum_two_options' => 'São necessárias pelo menos duas opções.',
             'too_many_options' => 'Número máximo de opções permitidas excedido.',
 
@@ -105,6 +106,16 @@ return [
         'topic_vote' => [
             'required' => 'Seleciona uma opção quando estiveres a votar.',
             'too_many' => 'Foram selecionadas opções a mais do que as permitidas.',
+        ],
+    ],
+
+    'legacy_api_key' => [
+        'exists' => 'De momento, só é fornecida uma chave por utilizador.',
+
+        'attributes' => [
+            'api_key' => 'chave API',
+            'app_name' => 'nome da aplicação',
+            'app_url' => 'URL da aplicação',
         ],
     ],
 
@@ -163,6 +174,8 @@ return [
     ],
 
     'user_report' => [
+        'no_ranked_beatmapset' => 'Os beatmaps classificados não podem ser denunciados',
+        'not_in_channel' => 'Não estás neste canal.',
         'reason_not_valid' => ':reason não é valida para este tipo de denúncia.',
         'self' => "Não te podes denunciar a ti mesmo!",
     ],

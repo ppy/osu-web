@@ -40,12 +40,16 @@ class BeatmapDiscussion extends Model
 {
     use Validatable;
 
-    protected $casts = [
-        'kudosu_denied' => 'boolean',
-        'resolved' => 'boolean',
+    protected $attributes = [
+        'resolved' => false,
     ];
 
-    protected $dates = ['deleted_at', 'last_post_at'];
+    protected $casts = [
+        'deleted_at' => 'datetime',
+        'kudosu_denied' => 'boolean',
+        'last_post_at' => 'datetime',
+        'resolved' => 'boolean',
+    ];
 
     const KUDOSU_STEPS = [1, 2, 5];
 
@@ -67,7 +71,7 @@ class BeatmapDiscussion extends Model
     // FIXME: This and other static search functions should be extracted out.
     public static function search($rawParams = [])
     {
-        $pagination = pagination($rawParams);
+        $pagination = pagination(cursor_from_params($rawParams) ?? $rawParams);
 
         $params = [
             'limit' => $pagination['limit'],
@@ -383,17 +387,6 @@ class BeatmapDiscussion extends Model
         ])->saveOrExplode();
     }
 
-    /**
-     * To get the correct result, this should be called before discussions are updated, as it checks the open problems count.
-     */
-    public function shouldNotifyQualifiedProblem(?string $event): bool
-    {
-        return $this->beatmapset->isQualified() && (
-            $event === BeatmapsetEvent::ISSUE_REOPEN
-            || $event === null && !$this->exists && $this->isProblem()
-        ) && $this->beatmapset->beatmapDiscussions()->openProblems()->count() === 0;
-    }
-
     public function fixBeatmapsetId()
     {
         if (!$this->isDirty('beatmap_id') || $this->beatmap === null) {
@@ -504,7 +497,7 @@ class BeatmapDiscussion extends Model
         return $this->validationErrors()->isEmpty();
     }
 
-    public function validationErrorsTranslationPrefix()
+    public function validationErrorsTranslationPrefix(): string
     {
         return 'beatmapset_discussion';
     }
@@ -666,6 +659,7 @@ class BeatmapDiscussion extends Model
                 BeatmapsetEvent::log(BeatmapsetEvent::DISCUSSION_RESTORE, $restoredBy, $this)->saveOrExplode();
             }
 
+            $this->beatmapDiscussionPosts()->where('deleted_at', $this->deleted_at)->update(['deleted_at' => null]);
             $this->update(['deleted_at' => null]);
             $this->refreshKudosu('restore');
         });
@@ -692,10 +686,12 @@ class BeatmapDiscussion extends Model
                 BeatmapsetEvent::log(BeatmapsetEvent::DISCUSSION_DELETE, $deletedBy, $this)->saveOrExplode();
             }
 
-            $this->fill([
+            $deleteAttributes = [
                 'deleted_by_id' => $deletedBy->user_id ?? null,
                 'deleted_at' => Carbon::now(),
-            ])->saveOrExplode();
+            ];
+            $this->fill($deleteAttributes)->saveOrExplode();
+            $this->beatmapDiscussionPosts()->whereNull('deleted_at')->update($deleteAttributes);
             $this->refreshKudosu('delete');
         });
     }

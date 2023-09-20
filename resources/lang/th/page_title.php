@@ -7,12 +7,6 @@ return [
     'admin' => [
         '_' => 'ผู้ดูแล',
     ],
-    'admin_forum' => [
-        '_' => 'ผู้ดูแล',
-    ],
-    'admin_store' => [
-        '_' => 'ผู้ดูแล',
-    ],
     'error' => [
         'error' => [
             '400' => 'คำร้องขอไม่ถูกต้อง',
@@ -29,13 +23,12 @@ return [
     ],
     'forum' => [
         '_' => 'ฟอรัม',
-        'topic_watches_controller' => [
-            'index' => 'หน้าหลัก',
+        'topic_logs_controller' => [
+            'index' => 'บันทึกหัวข้อ',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => 'หน้าหลัก',
             'verify_link' => 'การยืนยันบัญชี',
         ],
         'artists_controller' => [
@@ -48,20 +41,17 @@ return [
             '_' => 'การสนทนาเกี่ยวกับ Beatmap',
         ],
         'beatmap_packs_controller' => [
-            '_' => 'บีทแมพแพ็ค',
+            '_' => 'แพ็คบีทแมพ',
         ],
         'beatmapset_discussion_votes_controller' => [
-            '_' => 'โหวตการสนทนา Beatmap',
+            '_' => 'โหวตการสนทนาบีทแมพ',
         ],
         'beatmapset_events_controller' => [
-            '_' => 'ประวัติ Beatmap',
-        ],
-        'beatmapset_watches_controller' => [
-            'index' => 'หน้าหลัก',
+            '_' => 'ประวัติบีทแมพ',
         ],
         'beatmapsets_controller' => [
-            'discussion' => 'การสนทนาเกี่ยวกับ Beatmap',
-            'index' => 'รายการ Beatmap',
+            'discussion' => 'การสนทนาเกี่ยวกับบีทแมพ',
+            'index' => 'รายการบีทแมพ',
             'show' => 'ข้อมูลบีทแมพ',
         ],
         'changelog_controller' => [
@@ -76,12 +66,6 @@ return [
         'contests_controller' => [
             '_' => 'การแข่งขัน',
         ],
-        'follows_controller' => [
-            'index' => 'หน้าหลัก',
-        ],
-        'friends_controller' => [
-            'index' => 'หน้าหลัก',
-        ],
         'groups_controller' => [
             'show' => 'กลุ่ม',
         ],
@@ -90,7 +74,7 @@ return [
             'index' => 'หน้าหลัก',
             'search' => 'ค้นหา',
             'support_the_game' => 'สนับสนุนเกมนี้',
-            'testflight' => 'TestFlight',
+            'testflight' => 'บินเที่ยว',
         ],
         'legal_controller' => [
             '_' => 'ข้อมูล',
@@ -116,8 +100,8 @@ return [
         'scores_controller' => [
             '_' => 'ค่าศักยภาพ',
         ],
-        'store_controller' => [
-            '_' => 'ร้านค้า',
+        'seasons_controller' => [
+            '_' => 'การจัดอันดับ',
         ],
         'tournaments_controller' => [
             '_' => '
@@ -125,15 +109,16 @@ return [
         ],
         'users_controller' => [
             '_' => 'ข้อมูลผู้เล่น',
+            'create' => 'สร้างบัญชี',
             'disabled' => 'การแจ้งเตือน',
         ],
         'wiki_controller' => [
             '_' => 'วิกิ',
         ],
     ],
-    'multiplayer' => [
-        'rooms_controller' => [
-            '_' => 'การจัดอันดับ',
+    'passport' => [
+        'authorization_controller' => [
+            '_' => 'อนุญาตแอป',
         ],
     ],
     'store' => [
@@ -144,7 +129,7 @@ return [
             '_' => 'ข้อมูลผู้ให้คำวิจารณ์',
         ],
         'multiplayer_controller' => [
-            '_' => '',
+            '_' => 'ประวัติโหมดการเล่นหลายคน',
         ],
     ],
 ];

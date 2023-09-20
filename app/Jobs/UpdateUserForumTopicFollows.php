@@ -47,13 +47,13 @@ class UpdateUserForumTopicFollows implements ShouldQueue
 
             $watch->delete();
             UserNotification::batchDestroy(
-                $user,
+                $user->getKey(),
                 BatchIdentities::fromParams(['identities' => [
                     [
                         'object_id' => $topic->getKey(),
-                        'object_type' => $topic->getMorphClass()],
+                        'object_type' => $topic->getMorphClass(),
                     ],
-                ])
+                ]])
             );
         }
     }

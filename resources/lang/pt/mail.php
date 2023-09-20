@@ -15,6 +15,7 @@ return [
         'closing' => 'Cumprimentos,',
         'hello' => 'Olá :user,',
         'report' => 'Por favor responde a este email IMEDIATAMENTE se não pediste esta alteração.',
+        'ignore' => 'Se não solicitaste isto, podes ignorar este email sem riscos.',
     ],
 
     'donation_thanks' => [
@@ -31,7 +32,7 @@ return [
         ],
 
         'support' => [
-            '_' => 'Muito obrigado pelo teu :support ao osu!.',
+            '_' => 'Muito obrigado pelo teu :support ao osu!',
             'first' => 'apoio',
             'repeat' => 'apoio contínuo',
         ],
@@ -46,12 +47,12 @@ return [
 
     'password_reset' => [
         'code' => 'O teu código de verificação é:',
-        'requested' => 'Tu ou alguém a fingir que és tu solicitou um reinício da palavra-passe na tua conta osu!.',
+        'requested' => 'Tu ou alguém a fingir que és tu, solicitou uma redefinição da palavra-passe na tua conta osu!',
         'subject' => 'Recuperação da conta osu!',
     ],
 
     'store_payment_completed' => [
-        'prepare_shipping' => 'Recebemos o teu pagamento e estamos a processar o teu pedido para ser enviado. Poderá demorar alguns dias da nossa parte para o enviá-lo, dependendo da quantidade de pedidos. Podes seguir o progresso do teu pedido aqui, incluindo os detalhes de seguimento onde disponível:',
+        'prepare_shipping' => 'Recebemos o teu pagamento e estamos a processar o teu pedido para ser enviado. Poderá demorar alguns dias da nossa parte para enviá-lo, dependendo da quantidade de pedidos. Podes seguir o progresso do teu pedido aqui, incluindo os detalhes de seguimento onde disponível:',
         'processing' => 'Recebemos o teu pagamento e estamos a processar o teu pedido para ser enviado. Podes seguir o progresso da tua encomenda aqui:',
         'questions' => "Se tiveres alguma questão, não hesites em responder a este email.",
         'shipping' => 'Envio',
@@ -66,6 +67,7 @@ return [
         'duration' => 'Graças a essa pessoa, tens acesso ao osu!direct e a outros benefícios de osu!supporter por :duration.',
         'features' => 'Poderás encontrar mais detalhes nestas funcionalidades aqui:',
         'gifted' => 'Alguém acabou de te oferecer uma etiqueta osu!supporter!',
+        'gift_message' => 'A pessoa que te ofereceu esta etiqueta deixou-te uma mensagem:',
         'subject' => 'Ofereceram-te uma etiqueta osu!supporter!',
     ],
 
@@ -80,7 +82,7 @@ return [
         'main' => 'A tua conta está suspeita de ter sido comprometida, possui uma atividade recente suspeita ou uma palavra-passe MUITO fraca. Como resultado, precisamos que definas uma nova passe. Assegura-te de escolher uma palavra-passe SEGURA por favor.',
         'perform_reset' => 'Podes efetuar o reinício a partir de :url',
         'reason' => 'Motivo:',
-        'subject' => 'Uma reativação da conta osu! é necessária',
+        'subject' => 'Reativação da conta osu! necessária',
     ],
 
     'user_notification_digest' => [

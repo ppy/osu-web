@@ -10,7 +10,7 @@ use App\Models\User;
 use App\Models\UserRelation;
 use App\Transformers\UserCompactTransformer;
 use Auth;
-use Request;
+use Exception;
 
 class FriendsController extends Controller
 {
@@ -27,7 +27,7 @@ class FriendsController extends Controller
 
         $this->middleware('require-scopes:friends.read', ['only' => ['index']]);
 
-        return parent::__construct();
+        parent::__construct();
     }
 
     public function index()
@@ -57,31 +57,56 @@ class FriendsController extends Controller
 
     public function store()
     {
-        $currentUser = Auth::user();
-        $friends = $currentUser->friends(); // don't fetch (avoids potentially instantiating 500+ friend objects)
+        $currentUser = auth()->user();
 
-        if ($friends->count() >= $currentUser->maxFriends()) {
+        if ($currentUser->friends()->count() >= $currentUser->maxFriends()) {
             return error_popup(osu_trans('friends.too_many'));
         }
 
-        $targetId = get_int(Request::input('target'));
+        $targetId = get_int(request('target'));
         $targetUser = User::lookup($targetId, 'id');
 
-        if (!$targetUser) {
+        if ($targetUser === null) {
             abort(404);
         }
 
-        $alreadyFriends = $friends
-            ->wherePivot('zebra_id', $targetId)
-            ->exists();
+        if ($currentUser->getKey() === $targetId) {
+            abort(422);
+        }
 
-        if (!$alreadyFriends) {
-            UserRelation::create([
-                'user_id' => $currentUser->user_id,
-                'zebra_id' => $targetId,
-                'friend' => true,
-            ]);
+        while (true) {
+            $existingRelation = $currentUser->relations()->where('zebra_id', $targetId)->first();
+            $updateCount = false;
 
+            if ($existingRelation === null) {
+                try {
+                    UserRelation::create([
+                        'user_id' => $currentUser->user_id,
+                        'zebra_id' => $targetId,
+                        'friend' => true,
+                    ]);
+                    $updateCount = true;
+                } catch (Exception $e) {
+                    if (is_sql_unique_exception($e)) {
+                        // redo the loop with what should be a non-null
+                        // $existingRelation on the next one
+                        continue;
+                    }
+
+                    throw $e;
+                }
+            } elseif (!$existingRelation->friend) {
+                $existingRelation->update([
+                    'friend' => true,
+                    'foe' => false,
+                ]);
+                $updateCount = true;
+            }
+
+            break;
+        }
+
+        if ($updateCount) {
             dispatch(new UpdateUserFollowerCountCache($targetId));
         }
 

@@ -69,6 +69,10 @@ class PasswordResetController extends Controller
             return $this->restart('invalid');
         }
 
+        if (!hash_equals($session['auth_hash'], $user->authHash())) {
+            return $this->restart('expired');
+        }
+
         $inputKey = str_replace(' ', '', Request::input('key'));
 
         if (!present($inputKey)) {
@@ -97,6 +101,7 @@ class PasswordResetController extends Controller
 
         if ($user->update($params)) {
             $this->clear();
+            $user->resetSessions();
             $this->login($user);
 
             UserAccountHistory::logUserResetPassword($user);
@@ -122,7 +127,7 @@ class PasswordResetController extends Controller
             return osu_trans('password_reset.error.user_not_found');
         }
 
-        if (!present($user->user_email)) {
+        if (!is_valid_email_format($user->user_email)) {
             return osu_trans('password_reset.error.contact_support');
         }
 
@@ -131,6 +136,7 @@ class PasswordResetController extends Controller
         }
 
         $session = [
+            'auth_hash' => $user->authHash(),
             'username' => $username,
             'user_id' => $user->user_id,
             'key' => bin2hex(random_bytes(config('osu.user.password_reset.key_length') / 2)),

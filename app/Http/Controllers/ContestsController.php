@@ -5,6 +5,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\InvariantException;
 use App\Models\Contest;
 use Auth;
 
@@ -42,9 +43,19 @@ class ContestsController extends Controller
         }
 
         if ($contest->isVotingStarted()) {
+            if ($contest->isVotingOpen()) {
+                // TODO: add support for $contests requirement instead of at parent
+                try {
+                    $contest->assertVoteRequirement($user);
+                } catch (InvariantException $e) {
+                    $noVoteReason = $e->getMessage();
+                }
+            }
+
             return ext_view('contests.voting', [
                 'contestMeta' => $contest,
                 'contests' => $contests,
+                'noVoteReason' => $noVoteReason ?? null,
             ]);
         } else {
             return ext_view('contests.enter', [

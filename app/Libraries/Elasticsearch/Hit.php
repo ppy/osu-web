@@ -59,7 +59,7 @@ class Hit implements \ArrayAccess
         $results = $this->raw['inner_hits'][$name] ?? null;
 
         if ($results) {
-            return new SearchResponse($results, $name);
+            return new SearchResponse($results);
         }
 
         return SearchResponse::empty();
@@ -83,22 +83,22 @@ class Hit implements \ArrayAccess
     // ArrayAccess
     //================
 
-    public function offsetExists($key)
+    public function offsetExists($key): bool
     {
         return array_has($this->raw, $key);
     }
 
-    public function offsetGet($key)
+    public function offsetGet($key): mixed
     {
         return data_get($this->raw, $key);
     }
 
-    public function offsetSet($key, $value)
+    public function offsetSet($key, $value): void
     {
         throw new \BadMethodCallException('not supported');
     }
 
-    public function offsetUnset($key)
+    public function offsetUnset($key): void
     {
         throw new \BadMethodCallException('not supported');
     }

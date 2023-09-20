@@ -42,7 +42,6 @@ class EsIndexDocumentBulk implements ShouldQueue
                 // TODO: handling response would be nice =)
                 Es::getClient()->bulk([
                     'index' => $this->className::esIndexName(),
-                    'type' => '_doc',
                     'body' => $actions,
                     'client' => ['timeout' => 0],
                 ]);

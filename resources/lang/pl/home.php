@@ -43,6 +43,7 @@ return [
             'label' => [
                 'forum' => 'przeszukaj fora',
                 'forum_children' => 'uwzględnij podfora',
+                'include_deleted' => 'uwzględnij usunięte posty',
                 'topic_id' => 'wątek #',
                 'username' => 'autor',
             ],
@@ -72,12 +73,26 @@ return [
     ],
 
     'download' => [
-        'tagline' => "rozpocznij swoją<br>przygodę z osu!",
         'action' => 'Pobierz osu!',
+        'action_lazer' => 'Pobierz osu!(lazer)',
+        'action_lazer_description' => 'nadchodząca nowa wersja osu!',
+        'action_lazer_info' => 'sprawdź ten artykuł, aby dowiedzieć się więcej',
+        'action_lazer_title' => 'wypróbuj osu!(lazer)',
+        'action_title' => 'pobierz osu!',
+        'for_os' => 'dla systemu :os',
+        'lazer_note' => 'uwaga: ustanowione wyniki mogą zostać usunięte',
+        'macos-fallback' => 'użytkownicy macOS',
+        'mirror' => 'serwer lustrzany',
+        'or' => 'lub',
+        'os_version_or_later' => ':os_version lub nowszych',
+        'other_os' => 'inne platformy',
+        'quick_start_guide' => 'krótki przewodnik',
+        'tagline' => "rozpocznij swoją<br>przygodę z osu!",
+        'video-guide' => 'poradnik',
 
         'help' => [
             '_' => 'jeżeli masz problem z uruchomieniem gry lub utworzeniem konta, :help_forum_link albo :support_button.',
-            'help_forum_link' => 'sprawdź forum',
+            'help_forum_link' => 'sprawdź forum pomocy',
             'support_button' => 'skontaktuj się z pomocą techniczną',
         ],
 
@@ -86,8 +101,6 @@ return [
             'macos' => 'dla systemu macOS',
             'linux' => 'dla systemu Linux',
         ],
-        'mirror' => 'serwer lustrzany',
-        'macos-fallback' => 'użytkownicy macOS',
         'steps' => [
             'register' => [
                 'title' => 'utwórz konto',
@@ -105,7 +118,6 @@ return [
                 ],
             ],
         ],
-        'video-guide' => 'poradnik',
     ],
 
     'user' => [
@@ -131,16 +143,5 @@ return [
             'support' => 'Wspomóż osu!',
             'store' => 'Sklep osu!',
         ],
-    ],
-
-    'support-osu' => [
-        'title' => 'Wow!',
-        'subtitle' => 'Wygląda na to, że dobrze się bawisz! :D',
-        'body' => [
-            'part-1' => 'Czy wiesz, że osu! nie zawiera reklam i jest utrzymywane dzięki wsparciu graczy?',
-            'part-2' => 'Czy wiesz, że wspierając osu! otrzymasz wiele przydatnych funkcji takich jak <strong>automatyczne pobieranie beatmap</strong> podczas gier wieloosobowych czy oglądania innych graczy?',
-        ],
-        'find-out-more' => 'Kliknij tutaj, aby dowiedzieć się więcej!',
-        'download-starting' => "A, i nie martw się - pobieranie już się rozpoczęło ;)",
     ],
 ];

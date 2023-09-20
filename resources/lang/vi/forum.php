@@ -5,7 +5,7 @@
 
 return [
     'pinned_topics' => 'Chủ Đề Đã Ghim',
-    'slogan' => "chơi một mình khá rất nguy hiểm đấy.",
+    'slogan' => "Chơi một mình khá là nguy hiểm đấy.",
     'subforums' => 'Diễn đàn phụ',
     'title' => 'Diễn đàn ',
 
@@ -25,6 +25,7 @@ return [
     ],
 
     'forums' => [
+        'forums' => 'Diễn đàn',
         'latest_post' => 'Bài viết mới nhất',
 
         'index' => [
@@ -32,7 +33,7 @@ return [
         ],
 
         'topics' => [
-            'empty' => 'Không có chủ đề nào cả!',
+            'empty' => 'Không có chủ đề!',
         ],
     ],
 
@@ -47,7 +48,7 @@ return [
         'confirm_restore' => 'Bạn muốn phục hồi bài viết?',
         'edited' => 'Lần chỉnh sửa cuối cùng bởi :user :when, chỉnh sửa :count_delimited tổng thời gian.|Lần chỉnh sửa cuối cùng bởi :user :when, chỉnh sửa :count_delimited tổng thời gian.',
         'posted_at' => 'đã đăng vào :when',
-        'posted_by' => 'đã đăng bởi :username',
+        'posted_by_in' => 'được :username đăng lên :forum',
 
         'actions' => [
             'destroy' => 'Xóa bài viết',
@@ -58,13 +59,13 @@ return [
 
         'create' => [
             'title' => [
-                'reply' => 'Có trả lời mới',
+                'reply' => 'Tạo trả lời mới',
             ],
         ],
 
         'info' => [
             'post_count' => ':count_delimited bài đăng|:count_delimited bài đăng',
-            'topic_starter' => 'Người tạo topic',
+            'topic_starter' => 'Chủ thớt',
         ],
     ],
 
@@ -78,7 +79,7 @@ return [
         'confirm_destroy' => 'Bạn có muốn xóa bài viết này?',
         'confirm_restore' => 'Bạn có muốn phục hồi bài viết này?',
         'deleted' => 'chủ đề đã xóa',
-        'go_to_latest' => 'xem bài viết mới nhất',
+        'go_to_latest' => 'xem bài viết gần đây nhất',
         'has_replied' => 'Bạn đã trả lời topic này',
         'in_forum' => 'trong :forum',
         'latest_post' => ':when bởi :user',
@@ -121,10 +122,59 @@ return [
 
         'jump' => [
             'enter' => 'click để nhập số thứ tự cụ thể',
-            'first' => 'đi đến bài đăng đầu tiên',
-            'last' => 'đi đến bài đăng cuối cùng',
+            'first' => 'bài đăng đầu tiên',
+            'last' => 'bài đăng cuối cùng',
             'next' => 'bỏ qua 10 bài đăng',
             'previous' => 'trở lại 10 bài đăng',
+        ],
+
+        'logs' => [
+            '_' => 'Nhật kí chủ đề',
+            'button' => 'Duyệt nhật kí chủ đề',
+
+            'columns' => [
+                'action' => 'Hành động',
+                'date' => 'Ngày',
+                'user' => 'Người dùng',
+            ],
+
+            'data' => [
+                'add_tag' => 'đã thêm nhãn ":tag"',
+                'announcement' => 'chủ đề được ghim và đánh dấu là thông báo',
+                'edit_topic' => 'tới :title',
+                'fork' => 'từ :topic',
+                'pin' => 'chủ đề được ghim',
+                'post_operation' => 'đăng bởi :username',
+                'remove_tag' => 'gỡ thẻ ":tag"',
+                'source_forum_operation' => 'từ :forum',
+                'unpin' => 'chủ đề được bỏ ghim',
+            ],
+
+            'no_results' => 'không tìm thấy log...',
+
+            'operations' => [
+                'delete_post' => 'Bài đăng đã xoá',
+                'delete_topic' => 'Đã xoá chủ đề',
+                'edit_topic' => 'Tiêu đề chủ đề đã được thay đổi',
+                'edit_poll' => 'Cuộc thăm dò chủ đề đã được chỉnh sửa',
+                'fork' => 'Chủ đề đã được sao chép',
+                'issue_tag' => 'Thẻ được phát hành',
+                'lock' => 'Chủ đề bị khóa',
+                'merge' => 'Các bài viết đã được gộp vào chủ đề này',
+                'move' => 'Di chuyển chủ đề',
+                'pin' => 'Chủ đề được ghim',
+                'post_edited' => 'Bài  viết  đã  được  chỉnh sửa',
+                'restore_post' => 'Khôi phục bài viết',
+                'restore_topic' => 'Khôi phục chủ đề',
+                'split_destination' => 'Các bài viết tách rời đã được di chuyển ',
+                'split_source' => 'Tách bài đăng',
+                'topic_type' => 'Đặt loại chủ đề',
+                'topic_type_changed' => 'Đổi loại chủ đề',
+                'unlock' => 'Mở khóa chủ đề',
+                'unpin' => 'Bỏ ghim chủ đề',
+                'user_lock' => 'Khoá chủ đề của tôi',
+                'user_unlock' => 'Mở khoá chủ đề của tôi',
+            ],
         ],
 
         'post_edit' => [

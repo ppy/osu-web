@@ -30,16 +30,16 @@ class MigrateFreshOrRunCommand extends Command
     public function handle()
     {
         if (!$this->migrator->repositoryExists() || $this->migrator->getLastBatchNumber() === null) {
-            return $this->fresh();
+            $this->fresh();
         } else {
-            return $this->migrate();
+            $this->migrate();
         }
     }
 
     private function fresh()
     {
-        $this->info('Database is empty. Calling migrate:fresh do initalise database and elasticsearch.');
-        $this->call('migrate:fresh', ['--yes' => true]);
+        $this->info('Database is empty. Calling migrate:fresh to initalise database and elasticsearch.');
+        $this->call('migrate:fresh', ['--no-interaction' => true]);
     }
 
     private function migrate()

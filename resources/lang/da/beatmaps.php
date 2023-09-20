@@ -18,7 +18,7 @@ return [
         'deny_kudosu' => 'nægt kudosu',
         'edit' => 'rediger',
         'edited' => 'Sidst redigeret af :editor :update_time.',
-        'guest' => '',
+        'guest' => 'Gæst sværhedsgrad af :user',
         'kudosu_denied' => 'Nægtet fra at kunne modtage kudosu.',
         'message_placeholder_deleted_beatmap' => 'Denne sværhedsgrad er blevet slettet så den kan ikke blive diskuteret længere.',
         'message_placeholder_locked' => 'Diskussion for dette beatmap er blevet deaktiveret.',
@@ -73,8 +73,21 @@ return [
             'nomination_reset' => 'Nulstil Nominering',
             'praise' => 'Ros',
             'problem' => 'Problem',
+            'problem_warning' => 'Anmeld problem',
             'review' => 'Anmeld',
             'suggestion' => 'Forslag',
+        ],
+
+        'message_type_title' => [
+            'disqualify' => '',
+            'hype' => '',
+            'mapper_note' => '',
+            'nomination_reset' => '',
+            'praise' => '',
+            'problem' => '',
+            'problem_warning' => '',
+            'review' => '',
+            'suggestion' => '',
         ],
 
         'mode' => [
@@ -104,13 +117,13 @@ return [
                 'unlink' => 'Fjern link',
                 'unsaved' => 'Ikke gemt',
                 'timestamp' => [
-                    'all-diff' => '',
-                    'diff' => '',
+                    'all-diff' => 'Indlæg på "Alle sværhedsgrader" kan ikke tidsstemples.',
+                    'diff' => 'Hvis denne :type starter med et tidsstempel, vil den blive vist under tidslinje.',
                 ],
             ],
             'insert-block' => [
                 'paragraph' => 'indsæt afsnit',
-                'praise' => '',
+                'praise' => 'indsæt praise',
                 'problem' => 'indsæt problem',
                 'suggestion' => 'indsæt forslag',
             ],
@@ -174,6 +187,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => '',
+        'cannot_nominate' => '',
         'delete' => 'Fjern',
         'delete_own_confirm' => 'Er du sikker? Dette beatmap vil blive slettet og du vil blive ledt tilbage til din profil.',
         'delete_other_confirm' => 'Er du sikker? Dette beatmap vil blive slettet og du vil blive ledt tilbage til brugerens profil.',
@@ -183,6 +198,7 @@ return [
         'disqualify' => 'Diskvalificér',
         'incorrect_state' => 'Der opstod en fejl da vi prøvede at udføre handlingen, prøv at genindlæse siden.',
         'love' => 'Elsk',
+        'love_choose' => 'Vælg sværhedsgrad for elskede',
         'love_confirm' => 'Elsk dette beatmap?',
         'nominate' => 'Nominér',
         'nominate_confirm' => 'Nominér dette beatmap?',
@@ -196,8 +212,9 @@ return [
         'unresolved_issues' => 'Der er stadig uløste problemer der skal tages fat på først.',
 
         'rank_estimate' => [
-            '_' => '',
-            'queue' => '',
+            '_' => 'Dette kort anslås at være rangeret :date , hvis ingen problemer findes. Det er #:position i :queue.',
+            'on' => '',
+            'queue' => 'rangering kø',
             'soon' => 'snart',
         ],
 
@@ -207,8 +224,9 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => 'Er du sikker? At slå et nyt problem op nulstiller nominations-processen.',
             'disqualify' => 'Er du sikker? Dette vil fjerne beatmappet fra de kvalificerede beatmaps og vil nulstille nominations-processen.',
+            'nomination_reset' => 'Er du sikker? At slå et nyt problem op nulstiller nominations-processen.',
+            'problem_warning' => 'Er du sikker på at du vil rapportere problem på dette beatmap? Dette vil advare Beatmap Nominatorer.',
         ],
     ],
 
@@ -226,7 +244,7 @@ return [
                 'genre' => 'Genre',
                 'language' => 'Sprog',
                 'mode' => 'Mode',
-                'nsfw' => '',
+                'nsfw' => 'Eksplicit Indhold',
                 'played' => 'Allerede spillet',
                 'rank' => 'Rank Opnået',
                 'status' => 'Kategorier',
@@ -251,9 +269,11 @@ return [
     ],
     'general' => [
         'converts' => 'Inkluder konvertert beatmeaps',
+        'featured_artists' => 'Udvalgte kunstnere',
         'follows' => 'Subscribed mappers
 ',
         'recommended' => 'Rekommenderat sværhedsgrad',
+        'spotlights' => 'Spotlightet beatmaps',
     ],
     'mode' => [
         'all' => 'Alle',
@@ -272,6 +292,7 @@ return [
         'loved' => 'Elsket',
         'mine' => 'Mine Maps',
         'pending' => 'Afventende & WIP',
+        'wip' => 'WIP',
         'qualified' => 'Kvalificeret',
         'ranked' => 'Ranked',
     ],
@@ -292,34 +313,8 @@ return [
         'folk' => 'Folkemusik',
         'jazz' => 'Jazz',
     ],
-    'mods' => [
-        '4K' => '',
-        '5K' => '',
-        '6K' => '',
-        '7K' => '',
-        '8K' => '',
-        '9K' => '',
-        'AP' => '',
-        'DT' => '',
-        'EZ' => '',
-        'FI' => '',
-        'FL' => '',
-        'HD' => '',
-        'HR' => '',
-        'HT' => '',
-        'MR' => '',
-        'NC' => '',
-        'NF' => '',
-        'NM' => '',
-        'PF' => '',
-        'RX' => '',
-        'SD' => '',
-        'SO' => '',
-        'TD' => '',
-        'V2' => '',
-    ],
     'language' => [
-        'any' => '',
+        'any' => 'Alle',
         'english' => 'Engelsk',
         'chinese' => 'Kinesisk',
         'french' => 'Fransk',
@@ -337,8 +332,8 @@ return [
     ],
 
     'nsfw' => [
-        'exclude' => '',
-        'include' => '',
+        'exclude' => 'Skjul',
+        'include' => 'Vis',
     ],
 
     'played' => [

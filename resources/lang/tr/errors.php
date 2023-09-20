@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'load_failed' => 'Veri yüklenemedi.',
     'missing_route' => 'Geçersiz URL ya da hatalı istek metodu.',
     'no_restricted_access' => 'Hesabınız kısıtlanmış durumdayken bu işlemi gerçekleştiremezsiniz.',
     'supporter_only' => 'Bu özelliği kullanabilmeniz için supporter olmanız gerekmektedir.',
@@ -29,6 +30,7 @@ return [
     ],
     'search' => [
         'default' => 'Hiç bir sonuç bulunamadı, sonra tekrar deneyiniz.',
+        'invalid_cursor_exception' => 'Geçersiz imleç parametresi belirtildi.',
         'operation_timeout_exception' => 'Arama, şu an her zamankinden daha yoğun, lütfen sonra tekrar deneyiniz.',
     ],
 ];

@@ -58,11 +58,11 @@ class MarkNotificationsRead implements ShouldQueue
         $count = $userNotifications->update(['is_read' => true]);
 
         if ($count > 0) {
-            event(new NotificationReadEvent($this->user->getKey(), [
+            (new NotificationReadEvent($this->user->getKey(), [
                 'notifications' => $notificationIdentities,
                 'read_count' => $count,
                 'timestamp' => now(),
-            ]));
+            ]))->broadcast();
         }
     }
 }

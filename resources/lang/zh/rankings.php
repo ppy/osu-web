@@ -10,19 +10,34 @@ return [
     ],
 
     'filter' => [
-        'title' => '显示:',
+        'title' => '显示',
 
         'variant' => [
             'title' => '筛选',
         ],
     ],
 
+    'kudosu' => [
+        'total' => '获得的',
+        'available' => '可用的',
+        'used' => '已用的',
+    ],
+
     'type' => [
-        'charts' => '月赛',
-        'country' => '国家和地区',
-        'multiplayer' => '聚光灯',
+        'charts' => '高光',
+        'country' => '国家/地区',
+        'kudosu' => 'Kudosu',
+        'multiplayer' => '多人游戏',
         'performance' => '表现',
         'score' => '总分',
+        'seasons' => '季赛',
+    ],
+
+    'seasons' => [
+        'empty' => '本季赛暂无可用房间。',
+        'ongoing' => '本季赛仍在进行中（将加入更多歌单）。',
+        'room_count' => '歌单数量',
+        'url' => '显示该季赛更多信息。',
     ],
 
     'spotlight' => [
@@ -35,11 +50,11 @@ return [
     'stat' => [
         'accuracy' => '准确率',
         'active_users' => '活跃用户',
-        'country' => '国家和地区',
+        'country' => '国家/地区',
         'play_count' => '游戏次数',
         'performance' => '表现',
         'total_score' => '总分',
-        'ranked_score' => 'Ranked 总分',
+        'ranked_score' => '进榜总分',
         'average_score' => '平均得分',
         'average_performance' => '平均表现',
         'ss' => '',

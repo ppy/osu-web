@@ -24,7 +24,7 @@ return [
         'form' => [
             '_' => 'Hľadať',
             'deleted' => 'Zahrnúť odstránené diskusie',
-            'mode' => '',
+            'mode' => 'Režim beatmapy',
             'only_unresolved' => 'Ukázať iba nevyriešené diskusie',
             'types' => 'Typy správ',
             'username' => 'Meno Uživateľa',
@@ -55,14 +55,14 @@ return [
     'nearby_posts' => [
         'confirm' => 'Žiadny z príspevkov nerieši môj problém',
         'notice' => 'Príspevky okolo času :timestamp (:existing_timestamps) už existujú. Prosím, skontrolujte ich pred prispievaním.',
-        'unsaved' => '',
+        'unsaved' => ':count v tomto posudku',
     ],
 
     'owner_editor' => [
-        'button' => '',
-        'reset_confirm' => '',
-        'user' => '',
-        'version' => '',
+        'button' => 'Majiteľ obtiažnosti ',
+        'reset_confirm' => 'Resetovať majiteľa pro tuto obtiažnosť?',
+        'user' => 'Majiteľ ',
+        'version' => 'Obtiažnosť ',
     ],
 
     'reply' => [
@@ -73,15 +73,15 @@ return [
     ],
 
     'review' => [
-        'block_count' => '',
+        'block_count' => ':used / :max blokov použito ',
         'go_to_parent' => 'Zobraziť recenziu',
         'go_to_child' => 'Nová diskusia',
         'validation' => [
-            'block_too_large' => '',
-            'external_references' => '',
+            'block_too_large' => 'každý blok môže obsahovať iba :limit znakov maximálne',
+            'external_references' => 'posudok obsahuje referencie k problémom, ktoré nepatrí k tomuto posudku',
             'invalid_block_type' => 'neplatný typ bloku',
             'invalid_document' => 'neplatná recenzia',
-            'invalid_discussion_type' => '',
+            'invalid_discussion_type' => 'neplatný typ diskusie ',
             'minimum_issues' => 'kontrola musí obsahovať minimálne :count problémov|kontrola musí obsahovať minimálne :count problémov',
             'missing_text' => 'v bloku nie je žiadny text',
             'too_many_blocks' => 'recenzie môžu obsahovať iba :count odsekov/vydaní|recenzie môžu obsahovať iba :count odsekov/čísel',

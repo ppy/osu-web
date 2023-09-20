@@ -8,6 +8,8 @@
     $currentSection = $currentRoute['section'];
     $currentAction = $currentRoute['action'];
 
+    $currentUser = Auth::user();
+
     $titleTree = [];
 
     if (isset($titleOverride)) {
@@ -40,7 +42,7 @@
     $currentLocaleMeta ??= current_locale_meta();
 @endphp
 <!DOCTYPE html>
-<html prefix="og: http://ogp.me/ns#" lang="{{ $currentLocaleMeta->html() }}">
+<html prefix="og: http://ogp.me/ns#" lang="{{ $contentLocale ?? $currentLocaleMeta->html() }}">
     <head>
         @include("layout.metadata")
         <title>{!! $title !!}</title>
@@ -51,7 +53,6 @@
             osu-layout
             osu-layout--body
             t-section
-            action-{{ $currentAction }}
             {{ $bodyAdditionalClasses ?? '' }}
         "
     >
@@ -64,35 +65,32 @@
         <div id="overlay" class="blackout blackout--overlay" style="display: none;"></div>
         <div class="blackout js-blackout" data-visibility="hidden"></div>
 
-        @if (Auth::user() && Auth::user()->isRestricted())
+        @if ($currentUser !== null && $currentUser->isRestricted())
             @include('objects._notification_banner', [
                 'type' => 'alert',
                 'title' => osu_trans('users.restricted_banner.title'),
-                'message' => osu_trans('users.restricted_banner.message'),
+                'message' => osu_trans('users.restricted_banner.message', [
+                    'link' => tag(
+                        'a',
+                        ['href' => config('osu.urls.user.restriction')],
+                        osu_trans('users.restricted_banner.message_link'),
+                    ),
+                ]),
             ])
         @endif
 
         @if (!isset($blank))
             @include("layout.header")
 
-            <div class="osu-page osu-page--notification-banners js-notification-banners">
+            <div
+                class="osu-page osu-page--notification-banners js-notification-banners js-sync-height--reference"
+                data-sync-height-target="notification-banners"
+            >
                 @stack('notification_banners')
             </div>
         @endif
-        <div class="osu-layout__section osu-layout__section--full js-content {{ $currentSection }}_{{ $currentAction }}">
-            @include("layout.popup")
-            @if (View::hasSection('content'))
-                @yield('content')
-            @else
-                <div class="osu-layout__row osu-layout__row--page">
-                    <h1 class="text-center">
-                        <span class="dark">{{ $currentSection }}</span>
-                        /
-                        <span class="dark">{{ $currentAction }}</span>
-                        is <span class="normal">now printing</span> <span class="light">♪</span>
-                    </h1>
-                </div>
-            @endif
+        <div class="osu-layout__section osu-layout__section--full">
+            @yield('content')
         </div>
         @if (!isset($blank))
             @include("layout.gallery_window")
@@ -111,6 +109,12 @@
                 data-sync-height-target="permanent-fixed-footer"
             >
                 @yield('permanent-fixed-footer')
+
+                @if (config('osu.is_development_deploy'))
+                    <div class="development-deploy-footer">
+                        This is a development instance of the <a href="https://osu.ppy.sh" class="development-deploy-footer__link">osu! website</a>. Please do not login with your osu! credentials.
+                    </div>
+                @endif
             </div>
         </div>
 

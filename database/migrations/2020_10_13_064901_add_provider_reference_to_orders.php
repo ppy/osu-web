@@ -30,10 +30,9 @@ class AddProviderReferenceToOrders extends Migration
      */
     public function down()
     {
-        Schema::connection('mysql-store')('orders', function (Blueprint $table) {
+        Schema::connection('mysql-store')->table('orders', function (Blueprint $table) {
             $table->dropColumn('provider');
             $table->dropColumn('reference');
-            $table->dropIndex(['provider', 'reference']);
         });
     }
 }

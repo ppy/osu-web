@@ -10,6 +10,6 @@ return [
         'reverting_username_mismatch' => '',
     ],
     'supporter_tag' => [
-        'insufficient_paid' => 'Ахвяраванне меней, чым патрабуецца для атрымання osu!supporter (:actual замест :expected)',
+        'insufficient_paid' => 'Дадзенае ахвяраванне меней патрэбнага дзеля атрымання osu!supporter (:actual замест :expected)',
     ],
 ];

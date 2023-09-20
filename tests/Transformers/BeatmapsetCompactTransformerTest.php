@@ -6,6 +6,7 @@
 namespace Tests\Transformers;
 
 use App\Models\Beatmapset;
+use App\Models\User;
 use App\Transformers\BeatmapsetCompactTransformer;
 use Tests\TestCase;
 
@@ -80,7 +81,7 @@ class BeatmapsetCompactTransformerTest extends TestCase
     {
         parent::setUp();
 
-        $this->viewer = $this->createUserWithGroup([]);
-        $this->beatmapset = factory(Beatmapset::class)->create();
+        $this->viewer = User::factory()->create();
+        $this->beatmapset = Beatmapset::factory()->create();
     }
 }

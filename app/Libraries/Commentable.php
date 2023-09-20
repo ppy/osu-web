@@ -7,6 +7,8 @@ namespace App\Libraries;
 
 interface Commentable
 {
+    public function commentLocked(): bool;
+
     public function comments();
 
     public function commentableTitle();

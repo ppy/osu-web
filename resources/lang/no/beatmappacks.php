@@ -6,18 +6,13 @@
 return [
     'index' => [
         'description' => 'Forhåndspakkede samlinger av beatmaps basert rundt et felles tema.',
+        'empty' => 'Kommer snart!',
         'nav_title' => 'liste',
         'title' => 'Beatmappakker',
 
         'blurb' => [
             'important' => 'LES DETTE FØR NEDLASTING',
-            'instruction' => [
-                '_' => "Installasjon: Pakk ut .rar filen i osu!'s \"Songs\" mappe når en pakke er lastet ned,
-                    Alle sanger i pakken er fortsatt i filformatet .zip og/eller .osz, så osu! vil pakke dem ut automatisk neste gang du spiller.
-                    :scary pakk ut zip/osz filene selv,
-                    ettersom dette kan medføre til at beatmappene ikke vises eller fungerer riktig i osu!",
-                'scary' => 'ALDRI',
-            ],
+            'install_instruction' => 'Installasjon: Når en pakke er lastet ned, pakk ut innholdet i pakken til osu! Sang mappen og osu! vil gjøre resten.',
             'note' => [
                 '_' => 'Legg også merke til at det er sterkt anbefalt å :scary, ettersom de eldste mappene er av mye lavere kvalitet enn de fleste nye maps.',
                 'scary' => 'laste ned de nye pakkene først',
@@ -32,16 +27,19 @@ return [
             'not_cleared' => 'ikke fullført',
         ],
         'no_diff_reduction' => [
-            '_' => '',
-            'link' => '',
+            '_' => ':link må ikke brukes til å fjerne denne pakken.',
+            'link' => 'Vanskelighetsgrad reduksjon av modifikasjoner',
         ],
     ],
 
     'mode' => [
         'artist' => 'Artist/Album',
         'chart' => 'I rampelyset',
+        'featured' => 'Fremhevet Artist',
+        'loved' => 'Prosjekt Loved',
         'standard' => 'Standard',
         'theme' => 'Tema',
+        'tournament' => 'Turnering',
     ],
 
     'require_login' => [

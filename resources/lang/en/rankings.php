@@ -17,12 +17,27 @@ return [
         ],
     ],
 
+    'kudosu' => [
+        'total' => 'Earned',
+        'available' => 'Available',
+        'used' => 'Spent',
+    ],
+
     'type' => [
         'charts' => 'spotlights',
         'country' => 'country',
+        'kudosu' => 'kudosu',
         'multiplayer' => 'multiplayer',
         'performance' => 'performance',
         'score' => 'score',
+        'seasons' => 'seasons',
+    ],
+
+    'seasons' => [
+        'empty' => 'There are no rooms in this season yet.',
+        'ongoing' => 'This season is still ongoing (there will be more playlists added).',
+        'room_count' => 'Playlist count',
+        'url' => 'Display more informations on that season.',
     ],
 
     'spotlight' => [

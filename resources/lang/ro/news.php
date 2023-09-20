@@ -5,7 +5,7 @@
 
 return [
     'index' => [
-        'title_page' => 'ştiri osu!',
+        'title_page' => 'noutăți osu!',
 
         'nav' => [
             'newer' => 'Postări mai noi',
@@ -13,7 +13,7 @@ return [
         ],
 
         'title' => [
-            '_' => 'Ştiri :info',
+            '_' => 'noutăți',
             'info' => 'Pagina de pornire',
         ],
     ],
@@ -27,18 +27,18 @@ return [
         ],
 
         'title' => [
-            '_' => 'Ştiri :info',
+            '_' => 'noutăți',
             'info' => 'Postare',
         ],
     ],
 
     'sidebar' => [
-        'archive' => 'Arhiva de știri',
+        'archive' => 'Arhiva de Noutăți',
     ],
 
     'store' => [
         'button' => 'Actualizare',
-        'ok' => 'Listă modifictă.',
+        'ok' => 'Listă modificată.',
     ],
 
     'update' => [

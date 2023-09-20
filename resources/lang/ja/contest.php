@@ -31,6 +31,12 @@ return [
         'progress' => [
             '_' => ':used / :max の投票を使用済み',
         ],
+
+        'requirement' => [
+            'playlist_beatmapsets' => [
+                'incomplete_play' => '投票前に指定されたプレイリストのすべてのビートマップをプレイする必要があります。',
+            ],
+        ],
     ],
     'entry' => [
         '_' => 'エントリー',
@@ -44,6 +50,7 @@ return [
             'beatmap' => 'このコンテストは.osu拡張子のファイルしか受け付けていません。',
             'music' => 'このコンテストは.mp3拡張子のファイルしか受け付けていません。',
         ],
+        'wrong_dimensions' => 'このコンテストのエントリーは:widthx:heightでなければいけません',
         'too_big' => 'このコンテストのエントリーの上限は:limitです。',
     ],
     'beatmaps' => [

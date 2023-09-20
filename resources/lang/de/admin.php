@@ -14,13 +14,6 @@ return [
         ],
         'show' => [
             'covers' => '',
-            'discussion' => [
-                '_' => '',
-                'activate' => '',
-                'activate_confirm' => '',
-                'active' => '',
-                'inactive' => '',
-            ],
         ],
     ],
 
@@ -60,15 +53,6 @@ return [
                 'beatmapsets' => '',
                 'forum' => '',
                 'general' => '',
-                'store' => '',
-            ],
-        ],
-    ],
-
-    'store' => [
-        'orders' => [
-            'index' => [
-                'title' => '',
             ],
         ],
     ],

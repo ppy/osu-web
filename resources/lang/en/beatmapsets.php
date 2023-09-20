@@ -11,8 +11,16 @@ return [
         'rule_violation' => 'Some assets contained within this map have been removed after being judged as not being suitable for use in osu!.',
     ],
 
+    'cover' => [
+        'deleted' => 'Deleted beatmap',
+    ],
+
     'download' => [
         'limit_exceeded' => 'Slow down, play more.',
+    ],
+
+    'featured_artist_badge' => [
+        'label' => 'Featured Artist',
     ],
 
     'index' => [
@@ -52,13 +60,23 @@ return [
     'show' => [
         'discussion' => 'Discussion',
 
+        'admin' => [
+            'full_size_cover' => 'View full size cover image',
+        ],
+
+        'deleted_banner' => [
+            'title' => 'This beatmap has been deleted.',
+            'message' => '(only moderators can see this)',
+        ],
+
         'details' => [
             'by_artist' => 'by :artist',
-            'favourite' => 'Favourite this beatmap',
-            'favourite_login' => 'Sign in to favourite this beatmap',
-            'logged-out' => 'You need to sign in before downloading any beatmaps!',
+            'favourite' => 'favourite this beatmap',
+            'favourite_login' => 'sign in to favourite this beatmap',
+            'logged-out' => 'you need to sign in before downloading any beatmaps!',
             'mapped_by' => 'mapped by :mapper',
-            'unfavourite' => 'Unfavourite this beatmap',
+            'mapped_by_guest' => 'guest difficulty by :mapper',
+            'unfavourite' => 'unfavourite this beatmap',
             'updated_timeago' => 'last updated :timeago',
 
             'download' => [
@@ -116,7 +134,9 @@ return [
             'genre' => 'Genre',
             'language' => 'Language',
             'no_scores' => 'Data still being calculated...',
+            'nominators' => 'Nominators',
             'nsfw' => 'Explicit content',
+            'offset' => 'Online offset',
             'points-of-failure' => 'Points of Failure',
             'source' => 'Source',
             'storyboard' => 'This beatmap contains storyboard',
@@ -139,6 +159,7 @@ return [
         'scoreboard' => [
             'achieved' => 'achieved :when',
             'country' => 'Country Ranking',
+            'error' => 'Failed loading ranking',
             'friend' => 'Friend Ranking',
             'global' => 'Global Ranking',
             'supporter-link' => 'Click <a href=":link">here</a> to see all the fancy features that you get!',
@@ -150,17 +171,18 @@ return [
                 'combo' => 'Max Combo',
                 'miss' => 'Miss',
                 'mods' => 'Mods',
+                'pin' => 'Pin',
                 'player' => 'Player',
                 'pp' => 'pp',
                 'rank' => 'Rank',
-                'score_total' => 'Total Score',
                 'score' => 'Score',
+                'score_total' => 'Total Score',
                 'time' => 'Time',
             ],
 
             'no_scores' => [
                 'country' => 'No one from your country has set a score on this map yet!',
-                'friend' => 'None of your friends has set a score on this map yet!',
+                'friend' => 'None of your friends have set a score on this map yet!',
                 'global' => 'No scores yet. Maybe you should try setting some?',
                 'loading' => 'Loading scores...',
                 'unranked' => 'Unranked beatmap.',
@@ -169,19 +191,24 @@ return [
                 'first' => 'In the Lead',
                 'own' => 'Your Best',
             ],
+            'supporter_link' => [
+                '_' => 'Click :here to see all the fancy features that you get!',
+                'here' => 'here',
+            ],
         ],
 
         'stats' => [
             'cs' => 'Circle Size',
-            'cs-mania' => 'Key Amount',
+            'cs-mania' => 'Key Count',
             'drain' => 'HP Drain',
             'accuracy' => 'Accuracy',
             'ar' => 'Approach Rate',
-            'stars' => 'Star Difficulty',
+            'stars' => 'Star Rating',
             'total_length' => 'Length (Drain length: :hit_length)',
             'bpm' => 'BPM',
             'count_circles' => 'Circle Count',
             'count_sliders' => 'Slider Count',
+            'offset' => 'Online offset: :offset',
             'user-rating' => 'User Rating',
             'rating-spread' => 'Rating Spread',
             'nominations' => 'Nominations',
@@ -197,5 +224,9 @@ return [
             'pending' => 'Pending',
             'graveyard' => 'Graveyard',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => 'Spotlight',
     ],
 ];

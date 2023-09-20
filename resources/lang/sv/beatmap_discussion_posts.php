@@ -5,7 +5,7 @@
 
 return [
     'index' => [
-        'title' => 'Beatmap diskussionsinlägg',
+        'title' => 'Beatmap-diskussionsinlägg',
     ],
 
     'item' => [

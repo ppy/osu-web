@@ -5,7 +5,7 @@
 
 return [
     'index' => [
-        'none_running' => 'No hay torneos en activos en este momento, ¡por favor vuelve más tarde!',
+        'none_running' => 'No hay torneos activos en este momento, ¡por favor vuelva más tarde!',
         'registration_period' => 'Inscripción: :start al :end',
 
         'header' => [
@@ -13,7 +13,7 @@ return [
         ],
 
         'item' => [
-            'registered' => 'Jugadores registrados',
+            'registered' => 'jugadores registrados',
         ],
 
         'state' => [
@@ -24,7 +24,7 @@ return [
 
     'show' => [
         'banner' => 'Apoya A Tu Equipo',
-        'entered' => 'Estás inscrito en este torneo.<br><br>Por favor, ten en cuenta que esto <b>no</b> significa que has sido asignado a un equipo.<br><br>Más instrucciones te serán enviadas por correo electrónico cerca de la fecha del torneo, así que ¡por favor asegúrese de que la dirección de correo electrónico de su cuenta osu! es válida!',
+        'entered' => 'Estás inscrito en este torneo.<br><br>Ten en cuenta que esto <b>no</b> significa que has sido asignado a un equipo.<br><br>Más instrucciones serán enviadas por correo cerca de la fecha del torneo, así que ¡por favor asegúrese de que la dirección de correo electrónico de su cuenta osu! es válida!',
         'info_page' => 'Página de Información',
         'login_to_register' => '¡Por favor :login para ver los detalles de inscripción!',
         'not_yet_entered' => 'No estás inscrito en este torneo.',
@@ -44,7 +44,7 @@ return [
         'state' => [
             'before_registration' => 'La inscripción para este torneo aún no se ha abierto.',
             'ended' => 'Este torneo ha concluido. Visita la página de información para los resultados.',
-            'registration_closed' => 'Registro para este torneo ha cerrado. Visite la página de información para las actualizaciones más recientes.',
+            'registration_closed' => 'El registro para este torneo se ha cerrado. Visite la página de información para las actualizaciones más recientes.',
             'running' => 'Este torneo está actualmente en curso. Visita la página de información para más detalles.',
         ],
     ],

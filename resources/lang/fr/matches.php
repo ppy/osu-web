@@ -6,13 +6,13 @@
 return [
     'match' => [
         'beatmap-deleted' => 'beatmap supprimée',
-        'difference' => 'de :difference points',
         'failed' => 'ÉCHEC',
         'header' => 'Match multijoueur',
         'in-progress' => '(match en cours)',
         'in_progress_spinner_label' => 'match en cours',
         'loading-events' => 'Chargement des événements...',
         'winner' => ':team gagne',
+        'winner_by' => ':winner de :difference',
 
         'events' => [
             'player-left' => ':user a quitté le match',
@@ -46,15 +46,15 @@ return [
         ],
 
         'teams' => [
-            'blue' => 'Équipe bleue',
-            'red' => 'Équipe rouge',
+            'blue' => 'L\'équipe bleue',
+            'red' => 'L\'équipe rouge',
         ],
     ],
     'game' => [
         'scoring-type' => [
-            'score' => 'Score le plus haut',
-            'accuracy' => 'Précision la plus haute',
-            'combo' => 'Combo le plus haut',
+            'score' => 'Score le plus élevé',
+            'accuracy' => 'Précision la plus élevée',
+            'combo' => 'Combo le plus élevé',
             'scorev2' => 'Score V2',
         ],
     ],

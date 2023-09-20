@@ -6,27 +6,21 @@
 namespace App\Models\Score\Best;
 
 use App\Libraries\ReplayFile;
+use App\Libraries\Score\UserRankCache;
 use App\Models\Beatmap;
-use App\Models\BeatmapModeStats;
+use App\Models\Country;
 use App\Models\ReplayViewCount;
-use App\Models\Reportable;
 use App\Models\Score\Model as BaseModel;
+use App\Models\Traits;
 use App\Models\User;
-use App\Traits\WithDbCursorHelper;
-use Datadog;
 use DB;
-use Exception;
-use GuzzleHttp\Client;
 
 /**
  * @property User $user
  */
-abstract class Model extends BaseModel
+abstract class Model extends BaseModel implements Traits\ReportableInterface
 {
-    use Reportable, WithDbCursorHelper;
-
-    public $position = null;
-    public $weight = null;
+    use Traits\Reportable, Traits\WithDbCursorHelper, Traits\WithWeightedPp;
 
     protected $macros = [
         'accurateRankCounts',
@@ -55,11 +49,49 @@ abstract class Model extends BaseModel
     {
         $instance = new static();
         $table = $instance->getTable();
-        $modeId = Beatmap::MODES[static::getMode()];
+        $modeId = Beatmap::MODES[$instance->getMode()];
 
         $instance->getConnection()->insert(
             "INSERT INTO score_process_queue (score_id, mode, status) SELECT score_id, {$modeId}, 1 FROM {$table} WHERE user_id = {$user->getKey()}"
         );
+    }
+
+    public function getAttribute($key)
+    {
+        return match ($key) {
+            'beatmap_id',
+            'count100',
+            'count300',
+            'count50',
+            'countgeki',
+            'countkatu',
+            'countmiss',
+            'country_acronym',
+            'maxcombo',
+            'pp',
+            'rank',
+            'score',
+            'score_id',
+            'user_id' => $this->getRawAttribute($key),
+
+            'hidden',
+            'perfect',
+            'replay' => (bool) $this->getRawAttribute($key),
+
+            'date' => $this->getTimeFast($key),
+
+            'date_json' => $this->getJsonTimeFast($key),
+
+            'best' => $this,
+            'data' => $this->getData(),
+            'enabled_mods' => $this->getEnabledModsAttribute($this->getRawAttribute('enabled_mods')),
+            'pass' => true,
+
+            'beatmap',
+            'replayViewCount',
+            'reportedIn',
+            'user' => $this->getRelationValue($key),
+        };
     }
 
     public function replayFile(): ?ReplayFile
@@ -71,16 +103,11 @@ abstract class Model extends BaseModel
         return null;
     }
 
-    public function weightedPp()
-    {
-        return $this->weight * $this->pp;
-    }
-
     public function macroForListing()
     {
-        return function ($query) {
-            $limit = config('osu.beatmaps.max-scores');
-            $newQuery = (clone $query)->with('user')->limit($limit * 3);
+        return function ($query, $limit) {
+            $limit = clamp($limit ?? 50, 1, config('osu.beatmaps.max_scores'));
+            $newQuery = (clone $query)->with('user')->limit($limit + 100);
 
             $result = [];
             $offset = 0;
@@ -116,6 +143,11 @@ abstract class Model extends BaseModel
         };
     }
 
+    public function url(): string
+    {
+        return route('scores.show', ['rulesetOrScore' => $this->getMode(), 'score' => $this->getKey()]);
+    }
+
     public function userRank($options)
     {
         // laravel model has a $hidden property
@@ -124,7 +156,12 @@ abstract class Model extends BaseModel
         }
 
         if ($options['cached'] ?? true) {
-            $rank = $this->userRankCached($options);
+            $rank = UserRankCache::fetch(
+                $options,
+                $this->beatmap_id,
+                Beatmap::modeInt($this->getMode()),
+                $this->score,
+            );
 
             if ($rank !== null && $rank > 50) {
                 return $rank;
@@ -149,62 +186,6 @@ abstract class Model extends BaseModel
         $countQuery = DB::raw('DISTINCT user_id');
 
         return 1 + $query->visibleUsers()->default()->count($countQuery);
-    }
-
-    public function userRankCached($options)
-    {
-        $ddPrefix = config('datadog-helper.prefix_web').'.user_rank_cached_lookup';
-
-        $server = config('osu.scores.rank_cache.server_url');
-
-        if ($server === null || !empty($options['mods']) || ($options['type'] ?? 'global') !== 'global') {
-            Datadog::increment("{$ddPrefix}.miss", 1, ['reason' => 'unsupported_mode']);
-
-            return;
-        }
-
-        $modeInt = Beatmap::modeInt($this->getMode());
-        $stats = BeatmapModeStats::where([
-            'beatmap_id' => $this->beatmap_id,
-            'mode' => $modeInt,
-        ])->first();
-
-        if ($stats === null) {
-            Datadog::increment("{$ddPrefix}.miss", 1, ['reason' => 'missing_stats']);
-
-            return;
-        }
-
-        if ($stats->unique_users < config('osu.scores.rank_cache.min_users')) {
-            Datadog::increment("{$ddPrefix}.miss", 1, ['reason' => 'not_enough_unique_users']);
-
-            return;
-        }
-
-        try {
-            $response = (new Client(['base_uri' => $server]))
-                ->request('GET', 'rankLookup', [
-                    'connect_timeout' => 1,
-                    'timeout' => config('osu.scores.rank_cache.timeout'),
-
-                    'query' => [
-                        'beatmapId' => $this->beatmap_id,
-                        'rulesetId' => $modeInt,
-                        'score' => $this->score,
-                    ],
-                ])
-                ->getBody()
-                ->getContents();
-        } catch (Exception $e) {
-            log_error($e);
-            Datadog::increment("{$ddPrefix}.miss", 1, ['reason' => 'fetch_failure']);
-
-            return;
-        }
-
-        Datadog::increment("{$ddPrefix}.hit", 1);
-
-        return 1 + $response;
     }
 
     public function macroUserBest()
@@ -246,11 +227,7 @@ abstract class Model extends BaseModel
     public function macroAccurateRankCounts()
     {
         return function ($query) {
-            $newQuery = clone $query;
-            // FIXME: mysql 5.6 compat
-            $newQuery->getQuery()->orders = null;
-
-            $scores = $newQuery
+            $scores = (clone $query)
                 ->select(['user_id', 'beatmap_id', 'score', 'rank'])
                 ->get();
 
@@ -303,7 +280,7 @@ abstract class Model extends BaseModel
     {
         switch ($type) {
             case 'country':
-                $countryAcronym = $options['countryAcronym'] ?? $options['user']->country_acronym ?? 'XX';
+                $countryAcronym = $options['countryAcronym'] ?? $options['user']->country_acronym ?? Country::UNKNOWN;
 
                 return $query->fromCountry($countryAcronym);
             case 'friend':
@@ -333,9 +310,16 @@ abstract class Model extends BaseModel
         return $query;
     }
 
-    public function getPassAttribute(): bool
+    public function isPersonalBest(): bool
     {
-        return true;
+        return $this->getKey() === (static
+            ::where([
+                'user_id' => $this->user_id,
+                'beatmap_id' => $this->beatmap_id,
+            ])->default()
+            ->limit(1)
+            ->pluck('score_id')
+            ->first() ?? $this->getKey());
     }
 
     public function replayViewCount()
@@ -345,37 +329,56 @@ abstract class Model extends BaseModel
         return $this->hasOne($class, 'score_id');
     }
 
+    public function trashed()
+    {
+        return $this->getAttribute('hidden');
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    /**
+     * This doesn't delete the score in elasticsearch.
+     */
     public function delete()
     {
         $result = $this->getConnection()->transaction(function () {
-            $stats = optional($this->user)->statistics($this->gameModeString());
+            $statsColumn = static::RANK_TO_STATS_COLUMN_MAPPING[$this->rank] ?? null;
 
-            if ($stats !== null) {
-                $statsColumn = static::RANK_TO_STATS_COLUMN_MAPPING[$this->rank] ?? null;
+            if ($statsColumn !== null && $this->isPersonalBest()) {
+                $userStats = $this->user?->statistics($this->getMode());
 
-                if ($statsColumn !== null) {
-                    $stats->decrement($statsColumn);
+                if ($userStats !== null) {
+                    $userStats->decrementInstance($statsColumn);
+
+                    $nextBest = static::where([
+                        'beatmap_id' => $this->beatmap_id,
+                        'user_id' => $this->user_id,
+                    ])->where($this->getKeyName(), '<>', $this->getKey())
+                    ->orderBy('score', 'DESC')
+                    ->orderBy($this->getKeyName(), 'ASC')
+                    ->first();
+
+                    if ($nextBest !== null) {
+                        $nextBestStatsColumn = static::RANK_TO_STATS_COLUMN_MAPPING[$nextBest->rank] ?? null;
+
+                        if ($nextBestStatsColumn !== null) {
+                            $userStats->incrementInstance($nextBestStatsColumn);
+                        }
+                    }
                 }
             }
 
-            optional($this->replayViewCount)->delete();
+            $this->replayViewCount?->delete();
 
             return parent::delete();
         });
 
-        optional($this->replayFile())->delete();
+        $this->replayFile()?->delete();
 
         return $result;
-    }
-
-    public function getBestIdAttribute()
-    {
-        return $this->getKey();
     }
 
     protected function newReportableExtraParams(): array

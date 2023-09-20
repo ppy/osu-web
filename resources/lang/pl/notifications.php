@@ -13,6 +13,16 @@ return [
     'see_channel' => 'przejdź do czatu',
     'verifying' => 'Zweryfikuj sesję, by wyświetlić powiadomienia',
 
+    'action_type' => [
+        '_' => 'wszystkie',
+        'beatmapset' => 'beatmapy',
+        'build' => 'zmiany',
+        'channel' => 'czat',
+        'forum_topic' => 'forum',
+        'news_post' => 'aktualności',
+        'user' => 'profil',
+    ],
+
     'filters' => [
         '_' => 'wszystkie',
         'user' => 'profil',
@@ -86,8 +96,19 @@ return [
         'channel' => [
             '_' => 'Czat',
 
+            'announcement' => [
+                '_' => 'Nowe ogłoszenie',
+
+                'announce' => [
+                    'channel_announcement' => ':username pisze: „:title”',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => 'Ogłoszenie od użytkownika :username',
+                ],
+            ],
+
             'channel' => [
                 '_' => 'Nowa wiadomość',
+
                 'pm' => [
                     'channel_message' => ':username pisze: „:title”',
                     'channel_message_compact' => ':title',
@@ -132,15 +153,6 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => 'Skrzynka odbiorcza starego forum',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited nieprzeczytana wiadomość|:count_delimited nieprzeczytane wiadomości|:count_delimited nieprzeczytanych wiadomości',
-            ],
-        ],
-
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Nowa beatmapa',
@@ -148,6 +160,9 @@ return [
                 'user_beatmapset_new' => 'Nowa beatmapa od użytkownika :username: „:title”',
                 'user_beatmapset_new_compact' => 'Nowa beatmapa: „:title”',
                 'user_beatmapset_new_group' => 'Nowe beatmapy od użytkownika :username',
+
+                'user_beatmapset_revive' => 'Beatmapa „:title” została ożywiona przez użytkownika :username',
+                'user_beatmapset_revive_compact' => 'Beatmapa „:title” została ożywiona',
             ],
         ],
 
@@ -195,6 +210,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => 'Nowe ogłoszenie w pokoju „:name” ',
+            ],
+
             'channel' => [
                 'pm' => 'Otrzymujesz nową wiadomość od użytkownika :username',
             ],
@@ -225,7 +244,8 @@ return [
             ],
 
             'user_beatmapset_new' => [
-                'user_beatmapset_new' => ':username przesyła nowe beatmapy',
+                'user_beatmapset_new' => 'Użytkownik :username przesłał nowe beatmapy',
+                'user_beatmapset_revive' => 'Użytkownik :username ożywił beatmapy',
             ],
         ],
     ],

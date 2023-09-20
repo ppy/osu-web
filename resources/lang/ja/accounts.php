@@ -15,10 +15,19 @@ return [
         ],
 
         'email' => [
-            'current' => '現在のメールアドレス',
             'new' => '新しいメールアドレス',
             'new_confirmation' => '新しいメールアドレス（再入力）',
             'title' => 'メールアドレス',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
+        ],
+
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'レガシーAPI',
         ],
 
         'password' => [
@@ -29,7 +38,13 @@ return [
         ],
 
         'profile' => [
+            'country' => '国',
             'title' => 'プロフィール',
+
+            'country_change' => [
+                '_' => "",
+                'update_link' => '',
+            ],
 
             'user' => [
                 'user_discord' => '',
@@ -80,7 +95,7 @@ return [
         'title' => 'オプション',
 
         'beatmapset_download' => [
-            '_' => 'デフォルトのビートマップダウンロートタイプ',
+            '_' => 'デフォルトのビートマップダウンロードタイプ',
             'all' => '可能であれば動画付き',
             'direct' => 'osu!directで開く',
             'no_video' => '動画なし',

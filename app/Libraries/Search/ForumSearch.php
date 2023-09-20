@@ -32,7 +32,7 @@ class ForumSearch extends Search
     {
         parent::__construct(Post::esIndexName(), $params ?? new ForumSearchParams());
 
-        $this->source(['topic_id', 'post_id', 'post_time', 'poster_id', 'search_content', 'topic_title']);
+        $this->source(['is_deleted','topic_id', 'post_id', 'post_time', 'poster_id', 'search_content', 'topic_title']);
         $this->highlight(
             (new Highlight())
                 ->field('topic_title')
@@ -65,6 +65,10 @@ class ForumSearch extends Search
 
         $query->mustNot(['terms' => ['poster_id' => $this->params->blockedUserIds()]]);
 
+        if (!$this->params->includeDeleted) {
+            $query->mustNot(['term' => ['is_deleted' => true]]);
+        }
+
         return $query;
     }
 
@@ -80,12 +84,10 @@ class ForumSearch extends Search
 
     /**
      * Returns a Builder for a Collection of all the posts that appeared in this query.
-     *
-     * @return array
      */
     public function topics(): Builder
     {
-        return Topic::whereIn('topic_id', $this->response()->ids('topic_id'));
+        return Topic::withTrashed()->whereIn('topic_id', $this->response()->ids('topic_id'));
     }
 
     public function response(): SearchResponse

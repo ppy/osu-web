@@ -5,35 +5,50 @@
 
 return [
     'edit' => [
-        'title_compact' => 'setări',
+        'title_compact' => 'setări cont',
         'username' => 'nume de utilizator',
 
         'avatar' => [
             'title' => 'Avatar',
-            'rules' => 'Te rog asigură-te că avatar-ul tău respectă :link<br/>Asta înseamnă că trebuie să fie <strong>adecvat pentru toate vârstele</strong>. Care să nu conțină nuditate, profanare sau conținut sugestiv.',
+            'rules' => 'Te rugăm să te asiguri că avatar-ul tău respectă :link<br/>Asta înseamnă că trebuie să fie <strong>adecvat pentru toate vârstele</strong>. spre ex. fără nuditate, vulgarități sau conținut sugestiv.',
             'rules_link' => 'regulile comunității',
         ],
 
         'email' => [
-            'current' => 'e-mail curent',
             'new' => 'e-mail nou',
             'new_confirmation' => 'confirmare e-mail',
             'title' => 'E-mail',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
+        ],
+
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'API Vechi',
         ],
 
         'password' => [
-            'current' => 'parola curentă',
+            'current' => 'parola actuală',
             'new' => 'parolă nouă',
             'new_confirmation' => 'confirmare parolă',
             'title' => 'Parolă',
         ],
 
         'profile' => [
+            'country' => 'țară',
             'title' => 'Profil',
+
+            'country_change' => [
+                '_' => "Se pare că țara contului tău nu se potrivește cu țara ta de reședință. :update_link.",
+                'update_link' => 'Actualizează la :country',
+            ],
 
             'user' => [
                 'user_discord' => '',
-                'user_from' => 'locație curentă',
+                'user_from' => 'locație actuală',
                 'user_interests' => 'interese',
                 'user_occ' => 'ocupație',
                 'user_twitter' => '',
@@ -48,21 +63,21 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_qualified_problem' => 'primește notificări pentru noi probleme pe hărți calificate de modelele următoare',
-        'beatmapset_disqualify' => 'primește notificări pentru când beatmap-urile din modurile următoare sunt descalificate',
+        'beatmapset_discussion_qualified_problem' => 'primește notificări pentru probleme noi pe hărți calificate pentru modurile următoare',
+        'beatmapset_disqualify' => 'primește notificări când beatmap-urile din modurile următoare sunt descalificate',
         'comment_reply' => 'primește notificări pentru răspunsurile la comentariile tale',
         'title' => 'Notificări',
-        'topic_auto_subscribe' => 'activați notificările automat pe noi topici de pe forum pe care le poți creea',
+        'topic_auto_subscribe' => 'activează automat notificările pe subiecte noi din forum pe care le creați',
 
         'options' => [
             '_' => 'opțiuni de livrare',
-            'beatmap_owner_change' => '',
-            'beatmapset:modding' => 'modatul de beatmap',
+            'beatmap_owner_change' => 'dificultatea oaspeților',
+            'beatmapset:modding' => 'modding beatmap-uri',
             'channel_message' => 'mesaje chat private',
             'comment_new' => 'comentarii noi',
-            'forum_topic_reply' => 'răspuns topic',
+            'forum_topic_reply' => 'răspuns subiect',
             'mail' => 'mail',
-            'mapping' => '',
+            'mapping' => 'creator beatmap',
             'push' => 'push',
             'user_achievement_unlock' => 'medalie de utilizator deblocată',
         ],
@@ -70,19 +85,19 @@ return [
 
     'oauth' => [
         'authorized_clients' => 'clienți autorizați',
-        'own_clients' => 'deține Client',
+        'own_clients' => 'clienți proprii',
         'title' => 'OAuth',
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => 'ascunde avertismente pentru conținut explicit în beatmaps',
-        'beatmapset_title_show_original' => 'arată metadatele beatmap în limba originală',
+        'beatmapset_show_nsfw' => 'ascunde avertismente pentru conținut obscen în beatmap-uri',
+        'beatmapset_title_show_original' => 'arată datele melodiilor în limba originală',
         'title' => 'Opțiuni',
 
         'beatmapset_download' => [
-            '_' => 'tip implicit de descărcare de beatmap',
+            '_' => 'tip implicit de descărcare a beatmap-urilor',
             'all' => 'cu video dacă e disponibil',
-            'direct' => 'deschis în osu!direct',
+            'direct' => 'deschide în osu!direct',
             'no_video' => 'fără video',
         ],
     ],
@@ -92,19 +107,19 @@ return [
         'mouse' => 'mouse',
         'tablet' => 'tabletă',
         'title' => 'Stiluri de joc',
-        'touch' => 'touch',
+        'touch' => 'ecran tactil',
     ],
 
     'privacy' => [
-        'friends_only' => 'Blochează mesajele private de la oameni care nu sunt pe lista ta de prieteni',
+        'friends_only' => 'blochează mesajele private de la oameni care nu sunt pe lista ta de prieteni',
         'hide_online' => 'ascunde-ți prezența online',
         'title' => 'Confidențialitate',
     ],
 
     'security' => [
-        'current_session' => 'curent',
+        'current_session' => 'actual',
         'end_session' => 'Încheie sesiunea',
-        'end_session_confirmation' => 'Acest lucru iți va încheia imediat sesiunea pe acel dispozitiv. Ești sigur?',
+        'end_session_confirmation' => 'Acest lucru iți va încheia instantaneu sesiunea pe acel dispozitiv. Ești sigur?',
         'last_active' => 'Ultima conectare:',
         'title' => 'Securitate',
         'web_sessions' => 'sesiuni web',

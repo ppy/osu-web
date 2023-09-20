@@ -5,18 +5,19 @@
 
 return [
     'deleted' => 'ถูกลบไปแล้ว',
-    'deleted_by' => '',
-    'deleted_by_system' => '',
+    'deleted_by' => 'ถูกลบ :timeago โดย :user',
+    'deleted_by_system' => 'ระบบ',
     'deleted_count' => ':count_delimited คอมเม้นต์ที่ลบไป|:count_delimited คอมเม้นต์ที่ลบไป',
     'edited' => 'แก้ไขเมื่อ :timeago โดย :user',
     'pinned' => 'ปักหมุดแล้ว',
     'empty' => 'ยังไม่มีความคิดเห็นเลย',
+    'empty_other' => 'ยังไม่มีความคิดเห็นในขณะนี้',
     'load_replies' => 'โหลดข้อความตอบกลับ',
     'replies_count' => ':count_delimited ข้อความตอบกลับ|:count_delimited ข้อความตอบกลับ',
     'title' => 'ความคิดเห็น',
 
     'commentable_name' => [
-        'beatmapset' => 'Beatmap',
+        'beatmapset' => 'บีทแมพ',
         'build' => 'การเปลี่ยนแปลง',
         'news_post' => 'ข่าวสาร',
         '_deleted' => 'รายการที่ถูกลบ',

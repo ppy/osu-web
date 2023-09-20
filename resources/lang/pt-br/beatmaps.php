@@ -73,8 +73,21 @@ return [
             'nomination_reset' => 'Reiniciar nomeação',
             'praise' => 'Elogio',
             'problem' => 'Problema',
+            'problem_warning' => 'Relatar problema',
             'review' => 'Revisão',
             'suggestion' => 'Sugestão',
+        ],
+
+        'message_type_title' => [
+            'disqualify' => 'Enviar desqualificação',
+            'hype' => 'Enviar Hype!',
+            'mapper_note' => 'Enviar Nota',
+            'nomination_reset' => 'Remover todas as Nomeações',
+            'praise' => 'Enviar elogio',
+            'problem' => 'Enviar problema',
+            'problem_warning' => 'Enviar problema',
+            'review' => 'Enviar avaliação',
+            'suggestion' => 'Enviar sugestão',
         ],
 
         'mode' => [
@@ -174,6 +187,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => 'Você já nomeou esse beatmap.',
+        'cannot_nominate' => 'Você não pode nomear esse modo de jogo do beatmap.',
         'delete' => 'Excluir',
         'delete_own_confirm' => 'Você tem certeza? Esse beatmap será deletado e você será redirecionado de volta para seu perfil.',
         'delete_other_confirm' => 'Você tem certeza? Esse beatmap será deletado e você será redirecionado de volta para seu perfil de usuário.',
@@ -183,6 +198,7 @@ return [
         'disqualify' => 'Desqualificar',
         'incorrect_state' => 'Erro ao realizar essa ação, tente atualizar a página.',
         'love' => 'Amar',
+        'love_choose' => 'Escolher dificuldade para os mapas loved',
         'love_confirm' => 'Amar esse beatmap?',
         'nominate' => 'Nomear',
         'nominate_confirm' => 'Nomear este beatmap?',
@@ -197,6 +213,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'Este mapa é estimado a ser ranqueado em :date se nenhum problema for encontrado. É o #:position na :queue.',
+            'on' => 'em :date',
             'queue' => 'fila de ranqueamento',
             'soon' => 'em breve',
         ],
@@ -207,8 +224,9 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => 'Você tem certeza? Postar um novo problema reiniciará as nomeações.',
             'disqualify' => 'Você tem certeza? Isso irá remover este beatmap da qualificação e reiniciará o processo de nomeação.',
+            'nomination_reset' => 'Você tem certeza? Postar um novo problema reiniciará as nomeações.',
+            'problem_warning' => 'Você tem certeza que deseja relatar um problema neste beatmap? Isso irá alertar os Nominadores do Beatmap.',
         ],
     ],
 
@@ -251,8 +269,10 @@ return [
     ],
     'general' => [
         'converts' => 'Incluir beatmaps convertidos',
+        'featured_artists' => 'Artistas em destaque',
         'follows' => 'Mappers inscritos',
         'recommended' => 'Dificuldade recomendada',
+        'spotlights' => 'Beatmaps destacados',
     ],
     'mode' => [
         'all' => 'Todos',
@@ -271,6 +291,7 @@ return [
         'loved' => 'Loved',
         'mine' => 'Meus Maps',
         'pending' => 'Pendentes & Em Progresso',
+        'wip' => 'Trabalho em progresso',
         'qualified' => 'Qualificados',
         'ranked' => 'Ranqueados',
     ],
@@ -289,32 +310,6 @@ return [
         'classical' => 'Clássica',
         'folk' => 'Música popular',
         'jazz' => 'Jazz',
-    ],
-    'mods' => [
-        '4K' => '',
-        '5K' => '',
-        '6K' => '',
-        '7K' => '',
-        '8K' => '',
-        '9K' => '',
-        'AP' => '',
-        'DT' => '',
-        'EZ' => '',
-        'FI' => '',
-        'FL' => '',
-        'HD' => '',
-        'HR' => '',
-        'HT' => '',
-        'MR' => '',
-        'NC' => '',
-        'NF' => '',
-        'NM' => '',
-        'PF' => '',
-        'RX' => '',
-        'SD' => '',
-        'SO' => '',
-        'TD' => '',
-        'V2' => '',
     ],
     'language' => [
         'any' => 'Todos',

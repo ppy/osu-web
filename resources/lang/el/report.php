@@ -4,9 +4,14 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'beatmapset' => [
+        'button' => 'Αναφορά',
+        'title' => 'Αναφορά του beatmap από τον :username;',
+    ],
+
     'beatmapset_discussion_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Αναφορά',
+        'title' => 'Αναφορά ανάρτησης :username;',
     ],
 
     'comment' => [
@@ -15,8 +20,8 @@ return [
     ],
 
     'forum_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Αναφορά',
+        'title' => 'Αναφορά ανάρτησης :username;',
     ],
 
     'scores' => [
@@ -25,7 +30,7 @@ return [
     ],
 
     'user' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Αναφορά',
+        'title' => 'Αναφορά :username;',
     ],
 ];

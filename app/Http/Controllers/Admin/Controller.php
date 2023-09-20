@@ -22,6 +22,6 @@ abstract class Controller extends BaseController
             return $next($request);
         });
 
-        return parent::__construct();
+        parent::__construct();
     }
 }

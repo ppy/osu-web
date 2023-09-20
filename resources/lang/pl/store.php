@@ -4,10 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'admin' => [
-        'warehouse' => 'Magazyn',
-    ],
-
     'cart' => [
         'checkout' => 'Zapłać',
         'info' => ':count_delimited produkt w koszyku (:subtotal$)|:count_delimited produkty w koszyku (:subtotal$)|:count_delimited produktów w koszyku (:subtotal$)',
@@ -35,6 +31,7 @@ return [
         'cart_problems_edit' => 'Kliknij tutaj, aby go zedytować.',
         'declined' => 'Płatność została anulowana.',
         'delayed_shipping' => 'Obecnie jesteśmy przeciążeni zamówieniami! Wciąż możesz złożyć swoje zamówienie, ale spodziewaj się **dodatkowego opóźnienia w postaci 1-2 tygodni**, dopóki te już istniejące nie zostaną zakończone.',
+        'hide_from_activity' => 'Ukryj zakup wszystkich statusów donatora osu! z tego zamówienia w mojej aktywności',
         'old_cart' => 'Zawartość twojego koszyka była przestarzała i została odświeżona, spróbuj ponownie.',
         'pay' => 'Zapłać przez PayPal',
         'title_compact' => 'kasa',
@@ -54,6 +51,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Jako że twoja płatność została przesłana czekiem elektronicznym, odczekaj do 10 dni na przetworzenie transakcji przez PayPal.',
+        'hide_from_activity' => 'Zakup statusów donatora osu! z tego zamówienia nie zostanie wyświetlony w twojej aktywności.',
         'title_compact' => 'faktura',
 
         'status' => [
@@ -79,10 +77,15 @@ return [
         'shopify_expired' => 'Łącze do płatności za to zamówienie wygasło.',
 
         'item' => [
+            'quantity' => 'Ilość',
+
             'display_name' => [
                 'supporter_tag' => ':name dla :username (:duration)',
             ],
-            'quantity' => 'Ilość',
+
+            'subtext' => [
+                'supporter_tag' => 'Wiadomość: „:message”',
+            ],
         ],
 
         'not_modifiable_exception' => [
@@ -124,6 +127,8 @@ return [
 
     'supporter_tag' => [
         'gift' => 'podaruj innemu użytkownikowi',
+        'gift_message' => 'dołącz opcjonalną wiadomość do tego prezentu (do :length znaków)',
+
         'require_login' => [
             '_' => 'Aby uzyskać status donatora osu!, musisz się :link!',
             'link_text' => 'zalogować',

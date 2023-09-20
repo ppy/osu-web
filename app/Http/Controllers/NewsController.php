@@ -22,15 +22,15 @@ class NewsController extends Controller
      *
      * ### Response Format
      *
-     * Field                     | Type                    | Notes
-     * --------------------------|-------------------------|------
-     * cursor                    | [Cursor](#cursor)       | |
-     * news_posts                | [NewsPost](#newspost)[] | Includes `preview`.
-     * news_sidebar.current_year | number                  | Year of the first post's publish time, or current year if no posts returned.
-     * news_sidebar.news_posts   | [NewsPost](#newspost)[] | All posts published during `current_year`.
-     * news_sidebar.years        | number[]                | All years during which posts have been published.
-     * search.limit              | number                  | Clamped limit input.
-     * search.sort               | string                  | Always `published_desc`.
+     * Field                     | Type                          | Notes
+     * ------------------------- | ----------------------------- | -----
+     * cursor_string             | [CursorString](#cursorstring) | |
+     * news_posts                | [NewsPost](#newspost)[]       | Includes `preview`.
+     * news_sidebar.current_year | number                        | Year of the first post's publish time, or current year if no posts returned.
+     * news_sidebar.news_posts   | [NewsPost](#newspost)[]       | All posts published during `current_year`.
+     * news_sidebar.years        | number[]                      | All years during which posts have been published.
+     * search.limit              | number                        | Clamped limit input.
+     * search.sort               | string                        | Always `published_desc`.
      *
      * <aside class="notice">
      *   <a href="#newspost">NewsPost</a> collections queried by year will also include posts published in November and December of the previous year if the current date is the same year and before April.
@@ -38,7 +38,7 @@ class NewsController extends Controller
      *
      * @queryParam limit integer Maximum number of posts (12 default, 1 minimum, 21 maximum). No-example
      * @queryParam year integer Year to return posts from. No-example
-     * @queryParam cursor [Cursor](#cursor) for pagination. No-example
+     * @queryParam cursor_string [CursorString](#cursorstring) for pagination. No-example
      * @response {
      *   "news_posts": [
      *     {
@@ -75,10 +75,7 @@ class NewsController extends Controller
      *     "limit": 12,
      *     "sort": "published_desc"
      *   },
-     *   "cursor": {
-     *     "published_at": "2021-05-09T18:00:00.000000Z",
-     *     "id": 953
-     *   }
+     *   "cursor_string": "WyJodHRwczpcL1wvd3d3LnlvdXR1YmUuY29tXC93YXRjaD92PWRRdzR3OVdnWGNRIl0"
      * }
      */
     public function index()
@@ -90,7 +87,7 @@ class NewsController extends Controller
 
         $search = NewsPost::search(array_merge(compact('limit'), $params));
 
-        $posts = $search['query']->get();
+        [$posts, $hasMore] = $search['query']->getWithHasMore();
 
         if ($isFeed) {
             return ext_view("news.index-{$format}", compact('posts'), $format);
@@ -100,12 +97,15 @@ class NewsController extends Controller
             'news_posts' => json_collection($posts, 'NewsPost', ['preview']),
             'news_sidebar' => $this->sidebarMeta($posts[0] ?? null),
             'search' => $search['params'],
-            'cursor' => $search['cursorHelper']->next($posts),
+            ...cursor_for_response($search['cursorHelper']->next($posts, $hasMore)),
         ];
 
         if (is_json_request()) {
             return $postsJson;
         } else {
+            // force current year search parameter for html
+            $postsJson['search']['year'] = $postsJson['news_sidebar']['current_year'];
+
             return ext_view('news.index', [
                 'atom' => [
                     'url' => route('news.index', ['format' => 'atom']),
@@ -114,6 +114,13 @@ class NewsController extends Controller
                 'postsJson' => $postsJson,
             ]);
         }
+    }
+
+    public function redirect($tumblrId)
+    {
+        $post = NewsPost::where('tumblr_id', $tumblrId)->firstOrFail();
+
+        return ujs_redirect(route('news.show', $post->slug));
     }
 
     /**

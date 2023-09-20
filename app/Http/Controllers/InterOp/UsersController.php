@@ -5,13 +5,31 @@
 
 namespace App\Http\Controllers\InterOp;
 
+use App\Exceptions\ModelNotSavedException;
 use App\Exceptions\ValidationException;
 use App\Http\Controllers\Controller;
 use App\Libraries\UserRegistration;
+use App\Models\Beatmap;
 use App\Models\User;
+use App\Models\UserAchievement;
+use App\Transformers\CurrentUserTransformer;
 
 class UsersController extends Controller
 {
+    public function achievement($id, $achievementId, $beatmapId = null)
+    {
+        $achievement = app('medals')->byIdOrFail($achievementId);
+        $unlocked = UserAchievement::unlock(
+            User::findOrFail($id),
+            $achievement,
+            Beatmap::find($beatmapId),
+        );
+
+        abort_unless($unlocked, 422, 'user already unlocked the specified achievement');
+
+        return $achievement->getKey();
+    }
+
     public function store()
     {
         $request = request()->all();
@@ -40,11 +58,11 @@ class UsersController extends Controller
         try {
             $registration->save();
 
-            return $registration->user()->fresh()->defaultJson();
+            return json_item($registration->user()->fresh(), new CurrentUserTransformer());
         } catch (ValidationException $ex) {
-            return response(['form_error' => [
-                'user' => $registration->user()->validationErrors()->all(),
-            ]], 422);
+            return ModelNotSavedException::makeResponse($ex, [
+                'user' => $registration->user(),
+            ]);
         }
     }
 }

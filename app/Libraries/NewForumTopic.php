@@ -5,22 +5,25 @@
 
 namespace App\Libraries;
 
+use App\Models\Forum\Forum;
 use App\Models\Forum\Post;
+use App\Models\Forum\TopicCover;
+use App\Models\User;
+use App\Transformers\Forum\TopicCoverTransformer;
 use Carbon\Carbon;
 
 class NewForumTopic
 {
-    private $forum;
-
-    public function __construct($forum, $user)
+    public function __construct(private Forum $forum, private ?User $user)
     {
-        $this->forum = $forum;
-        $this->user = $user;
     }
 
     public function cover()
     {
-        return json_item(null, 'Forum/TopicCover');
+        $cover = new TopicCover();
+        $cover->newForumId = $this->forum->getKey();
+
+        return json_item($cover, new TopicCoverTransformer());
     }
 
     public function post()
@@ -56,12 +59,12 @@ class NewForumTopic
         ]);
     }
 
-    public function titlePlaceholder()
+    public function titlePlaceholder(): ?string
     {
-        if ($this->forum->isHelpForum()) {
+        return $this->forum->isHelpForum()
             // In English language forum, no localization.
-            return 'What is your problem (50 characters)';
-        }
+            ? 'What is your problem (50 characters)'
+            : null;
     }
 
     public function toArray()

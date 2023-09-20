@@ -6,7 +6,7 @@
 return [
     'support' => [
         'convinced' => [
-            'title' => 'Je suis convaincu! :D',
+            'title' => 'Je suis convaincu ! :D',
             'support' => 'soutenez osu!',
             'gift' => 'ou offrez osu!supporter à un autre joueur',
             'instructions' => 'cliquez sur le cœur pour vous rendre dans l\'osu!store',
@@ -20,20 +20,20 @@ return [
             ],
             'infra' => [
                 'title' => 'Infrastructure du serveur',
-                'description' => 'Les contributions vont vers les serveurs pour l\'exécution du site, des services multijoueurs, des classements en ligne, etc.',
+                'description' => 'Les contributions vont vers les serveurs pour faire fonctionner le site, les services multijoueurs, les classements en ligne, etc.',
             ],
             'featured-artists' => [
-                'title' => 'Artistes mis en avant',
-                'description' => 'Avec votre soutien, nous pouvons approcher encore plus d\'artistes géniaux et obtenir les licences de plus de musique pour leur utilisation dans osu!',
-                'link_text' => 'Voir la liste courante &raquo;',
+                'title' => 'Featured artists',
+                'description' => 'Avec votre soutien, nous pouvons réunir encore plus d\'artistes géniaux et obtenir les droits de plus de musiques afin de les utiliser sur osu!',
+                'link_text' => 'Voir la liste actuelle &raquo;',
             ],
             'ads' => [
-                'title' => 'Garder osu! auto-soutenant',
-                'description' => 'Vos contributions aident à garder le jeu indépendant et totalement exempt des annonces et des sponsors extérieurs.',
+                'title' => 'Garder osu! auto-suffisant',
+                'description' => 'Vos contributions aident à garder le jeu indépendant et totalement exempt d\'annonces et de sponsors extérieurs.',
             ],
             'tournaments' => [
                 'title' => 'Tournois officiels',
-                'description' => 'Aidez à financer le fonctionnement (et les prix pour) des tournois officiels de la Coupe du Monde.',
+                'description' => 'Aidez à financer le fonctionnement (et les prix) des tournois officiels de l\'osu! World Cup.',
                 'link_text' => 'Explorer les tournois &raquo;',
             ],
             'bounty-program' => [
@@ -51,27 +51,27 @@ return [
 
             'friend_ranking' => [
                 'title' => 'Classement des amis',
-                'description' => "Comparez vos résultats à ceux de vos amis dans le classement d'une beatmap, à la fois dans le jeu et sur le site Web.",
+                'description' => "Comparez vos scores à ceux de vos amis dans le classement d'une beatmap, à la fois dans le jeu et sur le site Web.",
             ],
 
             'country_ranking' => [
                 'title' => 'Classement national',
-                'description' => 'Conquérez votre pays avant de conquérir le monde.',
+                'description' => 'Partez à la conquête de votre pays avant de conquérir le monde.',
             ],
 
             'mod_filtering' => [
                 'title' => 'Filtrer par Mods',
-                'description' => 'Associez seulement les personnes qui jouent sur HDHR ? Pas de problème !',
+                'description' => 'Vous ne souhaitez voir que les scores réalisés avec les mods HDHR ? Pas de problème !',
             ],
 
             'auto_downloads' => [
                 'title' => 'Téléchargements automatiques',
-                'description' => 'Les beatmaps se téléchargent automatiquement dans les jeux multijoueurs, lorsque vous observez les autres ou lorsque vous cliquez sur les liens pertinents dans le tchat !',
+                'description' => 'Les beatmaps se téléchargent automatiquement dans les parties multijoueurs, lorsque vous observez les autres ou lorsque vous cliquez sur les liens de beatmaps dans le tchat !',
             ],
 
             'upload_more' => [
                 'title' => 'Plus de slots d\'upload',
-                'description' => 'Emplacements supplémentaires pour les beatmaps en attente (par beatmaps classée), jusqu\'à un maximum de 10.',
+                'description' => 'Emplacements supplémentaires pour les beatmaps en attente (par beatmap classée), jusqu\'à un maximum de 10.',
             ],
 
             'early_access' => [
@@ -81,12 +81,12 @@ return [
 
             'customisation' => [
                 'title' => 'Personnalisation',
-                'description' => "Démarquez-vous en téléchargeant une image de couverture personnalisée ou en créant une section \"moi !\" entièrement personnalisable dans votre profil d'utilisateur.",
+                'description' => "Démarquez-vous en mettant en ligne une image de couverture personnalisée ou en créant une section \"moi !\" entièrement personnalisable sur votre profil d'utilisateur.",
             ],
 
             'beatmap_filters' => [
                 'title' => 'Filtres de beatmaps',
-                'description' => 'Filtrez les recherches des beatmaps par cartes jouées et non jouées, ou par rang atteint.',
+                'description' => 'Filtrez les recherches de beatmaps par beatmaps jouées et non jouées, ou par rang obtenu.',
             ],
 
             'yellow_fellow' => [
@@ -96,7 +96,7 @@ return [
 
             'speedy_downloads' => [
                 'title' => 'Téléchargements plus rapides',
-                'description' => 'Des restrictions de téléchargement plus clémentes, notamment grâce à osu!direct.',
+                'description' => 'Des téléchargements plus rapides, notamment grâce à osu!direct.',
             ],
 
             'change_username' => [
@@ -121,7 +121,7 @@ return [
 
             'more_favourites' => [
                 'title' => 'Plus de favoris',
-                'description' => 'Le nombre maximum de beatmaps que vous pouvez ajouter au favoris est augmenté de :normally &rarr; :supporter',
+                'description' => 'Le nombre maximum de beatmaps que vous pouvez ajouter aux favoris est augmenté de :normally &rarr; :supporter',
             ],
             'more_friends' => [
                 'title' => 'Plus d\'amis',
@@ -129,7 +129,7 @@ return [
             ],
             'more_beatmaps' => [
                 'title' => 'Mettre en ligne plus de beatmaps',
-                'description' => 'Le nombre de beatmaps en attente que vous pouvez avoir en même temps est calculé à partir d\'une valeur de base plus un bonus supplémentaire pour chaque beatmap classée que vous avez actuellement (jusqu\'à une limite).<br/><br/>Normalement, cela est :base plus :bonus par beatmap classé (jusqu\'à :bonus_max). Avec supporter, cela passe à :supporter_base plus :supporter_bonus par beatmap classé (jusqu\'à :supporter_bonus_max).',
+                'description' => 'Le nombre de beatmaps en attente que vous pouvez avoir en même temps est calculé à partir d\'une valeur de base plus un bonus supplémentaire pour chaque beatmap classée que vous avez actuellement (jusqu\'à une certaine limite).<br/><br/>Normalement, cette limite est de :base plus :bonus par beatmap classée (jusqu\'à :bonus_max). Avec le supporter, cette limite passe à :supporter_base plus :supporter_bonus par beatmap classée (jusqu\'à :supporter_bonus_max).',
             ],
             'friend_filtering' => [
                 'title' => 'Classement des amis',
@@ -138,10 +138,10 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution' => 'Merci beaucoup de votre support ! Vous avez contribué pour un total de :dollars avec :tags achats de tags !',
-            'gifted' => ":giftedTags de vos achats de tags ont été offerts en cadeau (pour un total de :giftedDollars offerts), quelle générosité !",
-            'not_yet' => "Vous n'avez pas de tag supporter :(",
-            'valid_until' => 'Votre badge osu!supporter actuel est valable jusqu\'au :date!',
+            'contribution' => 'Merci beaucoup pour votre soutien ! Vous avez contribué avec un total de :dollars avec :tags achats de tags !',
+            'gifted' => "Vous avez offert :giftedTags tags (pour un total de :giftedDollars offerts), quelle générosité !",
+            'not_yet' => "Vous n'avez pas de tag osu!supporter :(",
+            'valid_until' => 'Votre badge osu!supporter actuel est valable jusqu\'au :date !',
             'was_valid_until' => 'Votre badge osu!supporter était valable jusqu\'au :date.',
         ],
     ],

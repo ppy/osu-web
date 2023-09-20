@@ -12,33 +12,33 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'kudosu toestaan',
-        'beatmap_information' => 'Beatmap pagina',
+        'beatmap_information' => 'Beatmap Pagina',
         'delete' => 'verwijder',
         'deleted' => 'Verwijderd door :editor :delete_time.',
         'deny_kudosu' => 'kudosu ontzeggen',
         'edit' => 'bewerk',
-        'edited' => 'Laatst bewerkt door :editor :update_time',
-        'guest' => '',
-        'kudosu_denied' => 'Verkrijgen van kudosu ontkend.',
+        'edited' => 'Laatst bewerkt door :editor :update_time.',
+        'guest' => 'Gast moeilijkheidsgraad door :user',
+        'kudosu_denied' => 'Verkrijgen van kudosu ontzegd.',
         'message_placeholder_deleted_beatmap' => 'Deze moeilijkheidsgraad is verwijderd en mag niet meer besproken worden.',
         'message_placeholder_locked' => 'Discussie voor deze beatmap is uitgeschakeld.',
-        'message_placeholder_silenced' => "Kan discussie niet plaatsen als je je misdragen hebt.",
+        'message_placeholder_silenced' => "Kan discussie niet plaatsen als je account niet in goede staat is.",
         'message_type_select' => 'Selecteer Commentaartype',
         'reply_notice' => 'Druk op enter om te antwoorden.',
         'reply_placeholder' => 'Type hier je reactie',
         'require-login' => 'Log in om te posten of te antwoorden',
         'resolved' => 'Opgelost',
         'restore' => 'herstel',
-        'show_deleted' => 'Toon verwijderde discussies',
+        'show_deleted' => 'Toon verwijderde',
         'title' => 'Discussies',
 
         'collapse' => [
-            'all-collapse' => 'Sluit alles',
-            'all-expand' => 'Open alles',
+            'all-collapse' => 'Alles invouwen',
+            'all-expand' => 'Alles openvouwen',
         ],
 
         'empty' => [
-            'empty' => 'Nog geen bestaande discussie!',
+            'empty' => 'Er bestaan nog geen discussies!',
             'hidden' => 'Geen discussies komen overeen met de geselecteerde filter.',
         ],
 
@@ -49,32 +49,45 @@ return [
             ],
 
             'prompt' => [
-                'lock' => 'Reden voor vergrendelen',
+                'lock' => 'Reden voor vergrendeling',
                 'unlock' => 'Weet je zeker dat je het wilt ontgrendelen?',
             ],
         ],
 
         'message_hint' => [
-            'in_general' => 'Deze post gaat naar de algemene beatmapset discussie. Om deze map te modden moet je beginnen met een tijdstip (bijv. 00:12:345).',
+            'in_general' => 'Deze post gaat naar de algemene beatmap-discussie. Om deze map te modden moet je beginnen met een tijdstip (bijv. 00:12:345).',
             'in_timeline' => 'Om meerdere tijdstippen te modden moet je meerdere keren posten (een post per tijdstip).',
         ],
 
         'message_placeholder' => [
             'general' => 'Typ hier om in General te posten (:version)',
-            'generalAll' => 'Typ hier om in General te posten (Alle moeilijkheden)',
+            'generalAll' => 'Typ hier om in General te posten (Alle moeilijkheidsgraden)',
             'review' => 'Typ hier om een recensie te plaatsen',
-            'timeline' => 'Typ hier om naar de tijdlijn te posten (:version)',
+            'timeline' => 'Typ hier om op de tijdlijn te posten (:version)',
         ],
 
         'message_type' => [
             'disqualify' => 'Diskwalificeer',
             'hype' => 'Hype!',
-            'mapper_note' => 'Opmerking',
+            'mapper_note' => 'Notitie',
             'nomination_reset' => 'Reset Nominatie',
             'praise' => 'Prijs',
             'problem' => 'Probleem',
+            'problem_warning' => 'Rapporteer Probleem',
             'review' => 'Recensie',
             'suggestion' => 'Suggestie',
+        ],
+
+        'message_type_title' => [
+            'disqualify' => '',
+            'hype' => '',
+            'mapper_note' => '',
+            'nomination_reset' => '',
+            'praise' => '',
+            'problem' => '',
+            'problem_warning' => '',
+            'review' => '',
+            'suggestion' => '',
         ],
 
         'mode' => [
@@ -159,7 +172,7 @@ return [
     'hype' => [
         'button' => 'Hype Beatmap!',
         'button_done' => 'Al Gehyped!',
-        'confirm' => "Weet je dat zeker? Dit zal een van je :n hypes gebruiken en kan niet ongedaan gemaakt worden.",
+        'confirm' => "Weet je dit zeker? Dit zal een van je :n hypes gebruiken en kan niet ongedaan gemaakt worden.",
         'explanation' => 'Hype deze beatmap om ze zichtbaarder te maken voor nominatie en ranking!',
         'explanation_guest' => 'Log in en hype deze beatmap om ze zichtbaarder te maken voor nominatie en ranking!',
         'new_time' => "Je krijgt nog een hype :new_time.",
@@ -174,6 +187,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => 'Je hebt deze beatmap al genomineerd.',
+        'cannot_nominate' => 'Je kunt deze beatmap spelmodus niet nomineren.',
         'delete' => 'Verwijder',
         'delete_own_confirm' => 'Weet je het zeker? De beatmap zal worden verwijderd en je zult worden terug gestuurd naar je profiel.',
         'delete_other_confirm' => 'Weet je het zeker? De beatmap zal worden verwijderd en je zult worden terug gestuurd naar het profiel van de gebruiker.',
@@ -183,10 +198,11 @@ return [
         'disqualify' => 'Diskwalificeer',
         'incorrect_state' => 'Fout tijdens het uitvoeren van deze bewerking, probeer de pagina te herladen.',
         'love' => 'Love',
+        'love_choose' => 'Kies moeilijkheid voor loved',
         'love_confirm' => 'Love deze beatmap?',
         'nominate' => 'Nomineer',
         'nominate_confirm' => 'Nomineer deze beatmap?',
-        'nominated_by' => 'genomineerd door :gebruikers',
+        'nominated_by' => 'genomineerd door :users',
         'not_enough_hype' => "Er is niet genoeg hype.",
         'remove_from_loved' => 'Verwijderen uit Loved',
         'remove_from_loved_prompt' => 'Reden voor het verwijderen uit Loved:',
@@ -197,6 +213,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'Deze map staat gepland om ranked te worden op :date als er geen problemen worden gevonden. Het is #:position in de :queue.',
+            'on' => 'op :date',
             'queue' => 'ranking wachtlijst',
             'soon' => 'binnenkort',
         ],
@@ -207,8 +224,9 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => 'Weet je dat zeker? Een nieuw probleem posten zal het nominatieproces resetten.',
             'disqualify' => 'Weet je het zeker? Hierdoor zal de beatmap worden verwijderd van kwalificatie en wordt het nominatie proces gereset.',
+            'nomination_reset' => 'Weet je dat zeker? Een nieuw probleem posten zal het nominatieproces resetten.',
+            'problem_warning' => 'Weet je zeker dat je een probleem op deze beatmap wilt rapporteren? Dit zal de Beatmap Nominators waarschuwen.',
         ],
     ],
 
@@ -221,14 +239,14 @@ return [
             'not-found' => 'geen resultaten',
             'not-found-quote' => '... nope, niets gevonden.',
             'filters' => [
-                'extra' => 'extra',
+                'extra' => 'Extra',
                 'general' => 'Algemeen',
                 'genre' => 'Genre',
                 'language' => 'Taal',
                 'mode' => 'Mode',
-                'nsfw' => 'Expliciete inhoud',
+                'nsfw' => 'Expliciete Inhoud',
                 'played' => 'Gespeeld',
-                'rank' => 'Rank Behaald',
+                'rank' => 'Behaalde Rank',
                 'status' => 'Categorieën',
             ],
             'sorting' => [
@@ -251,8 +269,10 @@ return [
     ],
     'general' => [
         'converts' => 'Tel geconverteerde beatmaps mee',
+        'featured_artists' => 'Uitgelichte artiesten',
         'follows' => 'Geabonneerde mappers',
         'recommended' => 'Aanbevolen moeilijkheid',
+        'spotlights' => 'Uitgelichte beatmaps',
     ],
     'mode' => [
         'all' => 'Alle',
@@ -271,6 +291,7 @@ return [
         'loved' => 'Loved',
         'mine' => 'Mijn Mappen',
         'pending' => 'Pending & WIP',
+        'wip' => 'WIP',
         'qualified' => 'Gekwalificeerd',
         'ranked' => 'Ranked',
     ],
@@ -289,32 +310,6 @@ return [
         'classical' => 'Klassiek',
         'folk' => 'Volksmuziek',
         'jazz' => 'Jazz',
-    ],
-    'mods' => [
-        '4K' => '',
-        '5K' => '',
-        '6K' => '',
-        '7K' => '',
-        '8K' => '',
-        '9K' => '',
-        'AP' => '',
-        'DT' => '',
-        'EZ' => '',
-        'FI' => '',
-        'FL' => '',
-        'HD' => '',
-        'HR' => '',
-        'HT' => '',
-        'MR' => '',
-        'NC' => '',
-        'NF' => '',
-        'NM' => '',
-        'PF' => '',
-        'RX' => '',
-        'SD' => '',
-        'SO' => '',
-        'TD' => '',
-        'V2' => '',
     ],
     'language' => [
         'any' => 'Alles',
@@ -360,7 +355,7 @@ return [
         'D' => '',
     ],
     'panel' => [
-        'playcount' => 'Speelaantal :count',
+        'playcount' => 'Speelaantal: :count',
         'favourites' => 'Favorieten: :count',
     ],
     'variant' => [

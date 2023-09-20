@@ -16,17 +16,14 @@ use Illuminate\Mail\Mailable;
 class UserNotificationDigest extends Mailable
 {
     private $groups = [];
-    private $notifications;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(array $notifications, User $user)
+    public function __construct(private array $notifications, private User $user)
     {
-        $this->user = $user;
-        $this->notifications = $notifications;
     }
 
     private function addToGroups(Notification $notification)

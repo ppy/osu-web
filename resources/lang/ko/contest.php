@@ -31,6 +31,12 @@ return [
         'progress' => [
             '_' => ':max개 중 :used개의 투표권 사용됨',
         ],
+
+        'requirement' => [
+            'playlist_beatmapsets' => [
+                'incomplete_play' => '투표하기 전에 지정한 플레이리스트에 있는 모든 비트맵을 플레이하셔야 합니다.',
+            ],
+        ],
     ],
     'entry' => [
         '_' => '참가',
@@ -44,6 +50,7 @@ return [
             'beatmap' => '이 콘테스트에서는 .osu 파일만 등록할 수 있습니다.',
             'music' => '이 콘테스트에서는 .mp3 파일만 등록할 수 있습니다.',
         ],
+        'wrong_dimensions' => '이 콘테스트의 출품작은 반드시 :widthx:height 여야 합니다.',
         'too_big' => '이 콘테스트의 최대 참가 가능한 작품 수는 :limit개 입니다.',
     ],
     'beatmaps' => [
@@ -55,11 +62,11 @@ return [
         'points' => ':count포인트',
     ],
     'dates' => [
-        'ended' => ':date 에 끝났습니다',
+        'ended' => ':date에 끝났습니다',
         'ended_no_date' => '종료됨',
 
         'starts' => [
-            '_' => ':date 에 시작합니다',
+            '_' => ':date에 시작합니다',
             'soon' => '곧...™',
         ],
     ],

@@ -3,6 +3,8 @@
 set -e
 set -u
 
+export CHROME_BIN=/usr/bin/chromium
+export DUSK_WEBDRIVER_BIN=/usr/bin/chromedriver
 export YARN_CACHE_FOLDER=/app/.docker/.yarn
 export COMPOSER_HOME=/app/.docker/.composer
 
@@ -37,7 +39,12 @@ _job() {
 }
 
 _migrate() {
-    _rexec /app/bin/wait_for.sh db:3306 -- php /app/artisan migrate:fresh-or-run
+    _run php /app/artisan db:create
+    _rexec php /app/artisan migrate:fresh-or-run
+}
+
+_octane() {
+  _rexec /app/artisan octane:start --host=0.0.0.0 "$@"
 }
 
 _schedule() {
@@ -45,10 +52,6 @@ _schedule() {
         _run php /app/artisan schedule:run &
         echo 'Sleeping for 5 minutes'
     done
-}
-
-_serve() {
-    exec php-fpm8.0 -R -y docker/development/php-fpm.conf
 }
 
 _test() {
@@ -59,19 +62,26 @@ _test() {
     fi
 
     case "$command" in
-        browser) _rexec php /app/artisan dusk --verbose "$@";;
-        js) _rexec yarnpkg karma start --single-run --browsers ChromeHeadless "$@";;
+        browser) _test_browser "$@";;
+        js) _rexec yarn karma start --single-run --browsers ChromeHeadless "$@";;
         phpunit) _rexec ./bin/phpunit.sh "$@";;
     esac
 }
 
+_test_browser() {
+    export APP_ENV=dusk.local
+    export OCTANE_STATE_FILE=/app/storage/logs/octane-server-state-dusk.json
+    _rexec ./bin/run_dusk.sh "$@"
+}
+
+
 _watch() {
-    _run yarnpkg --network-timeout 100000
-    _rexec yarnpkg watch
+    _run yarn --network-timeout 100000
+    _rexec yarn watch
 }
 
 case "$command" in
     artisan) _rexec php /app/artisan "$@";;
-    job|migrate|schedule|serve|test|watch) "_$command" "$@";;
+    job|migrate|octane|schedule|test|watch) "_$command" "$@";;
     *) _rexec "$command" "$@";;
 esac

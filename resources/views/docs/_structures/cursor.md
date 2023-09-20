@@ -21,3 +21,7 @@ The values of the cursor should be provided to next request of the same endpoint
 If there are no more results available, a cursor with a value of `null` is returned: `"cursor": null`.
 
 Note that `sort` option should also be specified for it to work.
+
+<aside class="warning">
+    This pagination parameter is being deprecated and replaced with <a href="#cursorstring">CursorString</a>.
+</aside>

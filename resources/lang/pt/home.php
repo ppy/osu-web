@@ -22,7 +22,7 @@ return [
         'advanced_link' => 'Pesquisa avançada',
         'button' => 'Pesquisar',
         'empty_result' => 'Nada encontrado!',
-        'keyword_required' => 'Uma palavra-chave de pesquisa é necessária',
+        'keyword_required' => 'É necessária uma palavra-chave de pesquisa',
         'placeholder' => 'escreve para procurar',
         'title' => 'Procurar',
 
@@ -43,6 +43,7 @@ return [
             'label' => [
                 'forum' => 'procurar nos fóruns',
                 'forum_children' => 'incluir sub-fóruns',
+                'include_deleted' => 'incluir publicações eliminadas',
                 'topic_id' => 'tópico #',
                 'username' => 'autor',
             ],
@@ -72,8 +73,22 @@ return [
     ],
 
     'download' => [
-        'tagline' => "vamos pôr-te<br>a começar!",
         'action' => 'Descarrega o osu!',
+        'action_lazer' => 'Descarregar o osu!(lazer)',
+        'action_lazer_description' => 'a próxima grande atualização do osu!',
+        'action_lazer_info' => 'verifica esta página para obter mais informações',
+        'action_lazer_title' => 'experimenta osu!(lazer)',
+        'action_title' => 'descarregar o osu!',
+        'for_os' => 'para :os',
+        'lazer_note' => 'nota: as redefinições da tabela de liderança aplicam-se',
+        'macos-fallback' => 'utilizadores de macOS',
+        'mirror' => 'link alternativo',
+        'or' => 'ou',
+        'os_version_or_later' => ':os_version ou superior',
+        'other_os' => 'outras plataformas',
+        'quick_start_guide' => 'guia de início rápido',
+        'tagline' => "vamos pôr-te<br>a andar!",
+        'video-guide' => 'vídeo de guia',
 
         'help' => [
             '_' => 'se tiveres problemas ao iniciar o jogo ou ao criar uma conta, vê :help_forum_link ou :support_button.',
@@ -86,11 +101,9 @@ return [
             'macos' => 'para macOS',
             'linux' => 'para Linux',
         ],
-        'mirror' => 'link alternativo',
-        'macos-fallback' => 'utilizadores de macOS',
         'steps' => [
             'register' => [
-                'title' => 'adquire uma conta',
+                'title' => 'obtém uma conta',
                 'description' => 'segue as indicações ao iniciares o jogo para iniciar sessão ou criar uma nova conta',
             ],
             'download' => [
@@ -98,14 +111,13 @@ return [
                 'description' => 'clica no botão acima para transferir o instalador e depois abre-o!',
             ],
             'beatmaps' => [
-                'title' => 'obtém beatmaps',
+                'title' => 'adquire beatmaps',
                 'description' => [
-                    '_' => ':browse a biblioteca vasta de beatmaps criados por utilizadores e começa a jogar!',
-                    'browse' => 'navegar',
+                    '_' => ':browse a vasta biblioteca de beatmaps criados por utilizadores e começa a jogar!',
+                    'browse' => 'explora',
                 ],
             ],
         ],
-        'video-guide' => 'vídeo de guia',
     ],
 
     'user' => [
@@ -131,16 +143,5 @@ return [
             'support' => 'Apoia o osu!',
             'store' => 'osu!store',
         ],
-    ],
-
-    'support-osu' => [
-        'title' => 'Uau!',
-        'subtitle' => 'Pareces estar a passar um momento agradável! :D',
-        'body' => [
-            'part-1' => 'Sabias que o osu! corre sem nenhuma publicidade e que depende de jogadores para apoiar o seu desenvolvimento e custos de manutenção?',
-            'part-2' => 'Também sabias que ao apoiar o osu! recebes um monte de funcionalidades úteis, tal como <strong>downloads dentro do jogo</strong> que aciona automaticamente em jogos de espectador e multijogador?',
-        ],
-        'find-out-more' => 'Clica aqui para descobrir mais!',
-        'download-starting' => "Ah e não te preocupes - o teu download já foi iniciado para ti ;)",
     ],
 ];

@@ -14,8 +14,6 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class ModdingHistoryController extends Controller
 {
-    protected $isModerator;
-    protected $isKudosuModerator;
     protected $searchParams;
     protected $user;
 
@@ -24,9 +22,6 @@ class ModdingHistoryController extends Controller
         $this->middleware(function ($request, $next) {
             $this->user = FindForProfilePage::find($request->route('user'));
 
-            $this->isModerator = priv_check('BeatmapDiscussionModerate')->can();
-            $this->isKudosuModerator = priv_check('BeatmapDiscussionAllowOrDenyKudosu')->can();
-
             $userId = $this->user->getKey();
             $this->searchParams = array_merge(request()->query(), [
                 'current_user_id' => $userId,
@@ -34,9 +29,9 @@ class ModdingHistoryController extends Controller
             ]);
 
             // This bit isn't needed when ModdingHistoryEventsBundle is used.
-            $this->searchParams['is_moderator'] = $this->isModerator;
-            $this->searchParams['is_kudosu_moderator'] = $this->isKudosuModerator;
-            if (!$this->isModerator) {
+            $this->searchParams['is_moderator'] = priv_check('BeatmapDiscussionModerate')->can();
+            $this->searchParams['is_kudosu_moderator'] = priv_check('BeatmapDiscussionAllowOrDenyKudosu')->can();
+            if (!$this->searchParams['is_moderator']) {
                 $this->searchParams['with_deleted'] = false;
             }
 

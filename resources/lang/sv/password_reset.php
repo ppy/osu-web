@@ -13,7 +13,9 @@ return [
 
     'error' => [
         'contact_support' => 'Vänligen kontakta support för att återhämta konto.',
-        'is_privileged' => 'Kontakta peppy lulz.',
+        'expired' => 'Verifieringskod har löpt ut.',
+        'invalid' => 'Oväntat fel i verifieringskod.',
+        'is_privileged' => 'Kontakta en administratör på hög nivå för att återställa kontot.',
         'missing_key' => 'Krävs.',
         'too_many_tries' => 'För många misslyckade försök.',
         'user_not_found' => 'Användaren finns inte.',
@@ -36,8 +38,8 @@ return [
         'username' => 'Fyll i din e-postadress eller ditt användarnamn',
 
         'support' => [
-            '_' => 'Behöver du mer hjälp? Kontakta oss via våran :button.',
-            'button' => 'support system',
+            '_' => 'Behöver du mer hjälp? Kontakta oss via vår :button.',
+            'button' => 'supportsystem',
         ],
     ],
 ];

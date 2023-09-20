@@ -27,19 +27,19 @@ return [
             'mode' => '비트맵 모드',
             'only_unresolved' => '미해결 토론만 보기',
             'types' => '메시지 종류',
-            'username' => '사용자 이름',
+            'username' => '아이디',
 
             'beatmapset_status' => [
                 '_' => '비트맵 상태',
                 'all' => '전체',
-                'disqualified' => 'Disqualified',
-                'never_qualified' => 'Qualified 된 적 없음',
-                'qualified' => 'Qualified',
-                'ranked' => 'Ranked',
+                'disqualified' => '디스퀄리파이 됨',
+                'never_qualified' => '퀄리파이 된 적 없음',
+                'qualified' => '퀄리파이',
+                'ranked' => '랭크됨',
             ],
 
             'user' => [
-                'label' => '사용자',
+                'label' => '유저',
                 'overview' => '활동 개요',
             ],
         ],
@@ -74,14 +74,14 @@ return [
 
     'review' => [
         'block_count' => ':used / :max 블록 사용됨',
-        'go_to_parent' => '평가 글 보기',
+        'go_to_parent' => '리뷰 글 보기',
         'go_to_child' => '토론 글 보기',
         'validation' => [
             'block_too_large' => '각 문단은 최대 :limit자까지 입력할 수 있습니다.',
             'external_references' => '이 리뷰는 관련 없는 이슈 참조를 포함하고 있습니다.',
             'invalid_block_type' => '잘못된 블록 종류',
             'invalid_document' => '잘못된 리뷰',
-            'invalid_discussion_type' => '',
+            'invalid_discussion_type' => '잘못된 토론 종류',
             'minimum_issues' => '리뷰는 최소한 :count개의 이슈를 포함해야 합니다',
             'missing_text' => '블록이 텍스트를 포함하고 있지 않음',
             'too_many_blocks' => '리뷰는 최대 :count개의 문단 및 이슈를 포함할 수 있습니다.',
@@ -90,7 +90,7 @@ return [
 
     'system' => [
         'resolved' => [
-            'true' => ':user 님이 해결함으로 표시함.',
+            'true' => ':user님이 토론을 끝마쳤습니다',
             'false' => ':user님이 토론을 재개했습니다',
         ],
     ],
@@ -102,6 +102,6 @@ return [
 
     'user_filter' => [
         'everyone' => '모두',
-        'label' => '사용자순 필터링',
+        'label' => '유저순 필터링',
     ],
 ];

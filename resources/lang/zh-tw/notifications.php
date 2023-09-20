@@ -13,6 +13,16 @@ return [
     'see_channel' => '前往聊天',
     'verifying' => '請驗證此工作階段以查看通知',
 
+    'action_type' => [
+        '_' => '全部',
+        'beatmapset' => '圖譜',
+        'build' => '版本',
+        'channel' => '聊天',
+        'forum_topic' => '論壇',
+        'news_post' => '新聞',
+        'user' => '個人資料',
+    ],
+
     'filters' => [
         '_' => '全部',
         'user' => '個人簡介',
@@ -86,8 +96,19 @@ return [
         'channel' => [
             '_' => '聊天',
 
+            'announcement' => [
+                '_' => '新增公告',
+
+                'announce' => [
+                    'channel_announcement' => ':username 發表了「:title」',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => ':username 發布的公告',
+                ],
+            ],
+
             'channel' => [
                 '_' => '新訊息',
+
                 'pm' => [
                     'channel_message' => ':username 發表了「:title」',
                     'channel_message_compact' => ':title',
@@ -132,15 +153,6 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => '舊論壇私訊',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited 則未讀訊息',
-            ],
-        ],
-
         'user' => [
             'user_beatmapset_new' => [
                 '_' => '新圖譜',
@@ -148,6 +160,9 @@ return [
                 'user_beatmapset_new' => ':username 上傳了標題為 “:title” 的新圖譜',
                 'user_beatmapset_new_compact' => '新圖譜 ":title"',
                 'user_beatmapset_new_group' => ':username 上傳了新圖譜',
+
+                'user_beatmapset_revive' => '「:title」圖譜已被 :username 恢復',
+                'user_beatmapset_revive_compact' => '已恢復「:title」圖譜',
             ],
         ],
 
@@ -195,6 +210,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => '在 ":name" 中有一條新通知',
+            ],
+
             'channel' => [
                 'pm' => '您收到了來自 :username 的新訊息',
             ],
@@ -226,6 +245,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username 建立了新圖譜',
+                'user_beatmapset_revive' => ':username 復原了圖譜',
             ],
         ],
     ],

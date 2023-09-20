@@ -43,6 +43,7 @@ return [
             'label' => [
                 'forum' => 'search in forums',
                 'forum_children' => 'include subforums',
+                'include_deleted' => 'include deleted posts',
                 'topic_id' => 'topic #',
                 'username' => 'author',
             ],
@@ -72,12 +73,26 @@ return [
     ],
 
     'download' => [
-        'tagline' => "let's get<br>you started!",
         'action' => 'Download osu!',
+        'action_lazer' => 'Download osu!(lazer)',
+        'action_lazer_description' => 'the next major update to osu!',
+        'action_lazer_info' => 'check this page for more information',
+        'action_lazer_title' => 'try osu!(lazer)',
+        'action_title' => 'download osu!',
+        'for_os' => 'for :os',
+        'lazer_note' => 'note: leaderboard resets apply',
+        'macos-fallback' => 'macOS users',
+        'mirror' => 'mirror',
+        'or' => 'or',
+        'os_version_or_later' => ':os_version or later',
+        'other_os' => 'other platforms',
+        'quick_start_guide' => 'quick start guide',
+        'tagline' => "let's get<br>you started!",
+        'video-guide' => 'video guide',
 
         'help' => [
-            '_' => 'if you have problem starting the game or registering for account, :help_forum_link or :support_button.',
-            'help_forum_link' => 'check help forum',
+            '_' => 'if you have a problem starting the game or registering for an account, :help_forum_link or :support_button.',
+            'help_forum_link' => 'check the help forum',
             'support_button' => 'contact support',
         ],
 
@@ -86,8 +101,6 @@ return [
             'macos' => 'for macOS',
             'linux' => 'for Linux',
         ],
-        'mirror' => 'mirror',
-        'macos-fallback' => 'macOS users',
         'steps' => [
             'register' => [
                 'title' => 'get an account',
@@ -105,7 +118,6 @@ return [
                 ],
             ],
         ],
-        'video-guide' => 'video guide',
     ],
 
     'user' => [
@@ -131,16 +143,5 @@ return [
             'support' => 'Support osu!',
             'store' => 'osu!store',
         ],
-    ],
-
-    'support-osu' => [
-        'title' => 'Wow!',
-        'subtitle' => 'You seem to be having a good time! :D',
-        'body' => [
-            'part-1' => 'Did you know that osu! runs with no advertising, and relies on players to support its development and running costs?',
-            'part-2' => 'Did you also know that by supporting osu! you get a heap of useful features, such as <strong>in-game downloading</strong> which automatically triggers in spectator and multiplayer games?',
-        ],
-        'find-out-more' => 'Click here to find out more!',
-        'download-starting' => "Oh, and don't worry - your download has already been started for you already ;)",
     ],
 ];

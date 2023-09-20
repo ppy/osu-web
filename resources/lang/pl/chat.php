@@ -4,29 +4,57 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'loading_users' => 'ładowanie użytkowników...',
     'talking_in' => 'rozmowa na kanale :channel',
     'talking_with' => 'rozmowa z użytkownikiem :name',
     'title_compact' => 'czat',
+    'unread_messages' => 'nieodczytane wiadomości',
 
     'cannot_send' => [
-        'channel' => 'Nie możesz wysłać wiadomości na ten kanał z jednego z następujących powodów:',
-        'user' => 'Nie możesz wysłać wiadomości do tego użytkownika z jednego z następujących powodów:',
-        'reasons' => [
-            'blocked' => 'Ten użytkownik zablokował cię',
-            'channel_moderated' => 'Ten kanał jest w trybie tylko dla moderatorów',
-            'friends_only' => 'Ten użytkownik nie przyjmuje wiadomości od osób spoza listy znajomych',
-            'not_enough_plays' => 'Nie zarejestrowano wystarczającego czasu spędzonego w grze.',
-            'not_verified' => 'Twoja sesja nie została zweryfikowana',
-            'restricted' => 'Twoje konto zostało zablokowane',
-            'silenced' => 'Twoje konto jest obecnie uciszone',
-            'target_restricted' => 'Konto tego użytkownika jest obecnie zablokowane',
+        'channel' => 'W tej chwili nie możesz wysyłać wiadomości na ten kanał.',
+        'user' => 'W tej chwili nie możesz wysyłać wiadomości do tego użytkownika.',
+    ],
+
+    'channels' => [
+        'confirm_part' => 'Czy na pewno chcesz ukryć ten kanał? Wciąż będziesz otrzymywać z niego wiadomości.',
+        'create' => 'utwórz ogłoszenie',
+
+        'list' => [
+            'title' => [
+                'ANNOUNCE' => 'Ogłoszenia',
+                'GROUP' => 'Grupy',
+                'PM' => 'Wiadomości prywatne',
+                'PUBLIC' => 'Kanały',
+            ],
         ],
     ],
+
+    'form' => [
+        'title' => [
+            'announcement' => 'Utwórz nowe ogłoszenie',
+        ],
+
+        'labels' => [
+            'description' => 'opis',
+            'message' => 'wiadomość',
+            'name' => 'nazwa pokoju',
+            'users' => 'odbiorcy',
+        ],
+    ],
+
+    'not_found' => [
+        'message' => 'Nic tu nie ma, być może taki kanał nie istnieje lub do niego nie należysz...',
+        'title' => 'nie znaleziono kanału',
+    ],
+
     'input' => [
+        'create' => 'Utwórz',
         'disabled' => 'nie udało się wysłać wiadomości...',
+        'disconnected' => 'Rozłączono',
         'placeholder' => 'napisz wiadomość...',
         'send' => 'Wyślij',
     ],
+
     'no-conversations' => [
         'howto' => "Rozpocznij konwersację poprzez profil lub kartę użytkownika.",
         'lazer' => 'Publiczne kanały, do których dołączysz poprzez <a href=":link">osu!lazer</a>, także będą tutaj widoczne.',

@@ -6,18 +6,13 @@
 return [
     'index' => [
         'description' => 'Kolekcie beatmáp s podobnou tématikou.',
+        'empty' => 'Už čoskoro!',
         'nav_title' => 'výpis',
         'title' => 'Balíky beatmáp',
 
         'blurb' => [
             'important' => 'PREČÍTAJTE SI PRED SŤAHOVANÍM',
-            'instruction' => [
-                '_' => "Inštalácia: Akonáhle je balík stiahnutý, rozbaľte .rar súbor do priečinku s osu! skladbami.
-Skladby vnútri balíka sú stále v .zip a/alebo .osz formáte, takže osu! si bude musieť beatmapy rozbaliť, keď nabudúce začnete hrať.
-:scary extrahujte .zip/.osz súbory sami,
-lebo sa budú beatmapy v osu! zobrazovať nesprávne a nebudú poriadne fungovať.",
-                'scary' => 'NE',
-            ],
+            'install_instruction' => 'Inštalácia: Keď bol nainštalovaný balíček, extrahujte vnútro balíčka do osu! Songs zložky a osu! urobí zbytok.',
             'note' => [
                 '_' => 'Taktiež je veľmi odporúčané :scary, keďže staré mapy sú oveľa menej kvalitné v porovnaní s tými nedávnymi.',
                 'scary' => 'sťahovať balíky od najnovších po najstaršie',
@@ -32,16 +27,19 @@ lebo sa budú beatmapy v osu! zobrazovať nesprávne a nebudú poriadne fungova�
             'not_cleared' => 'nesplnené',
         ],
         'no_diff_reduction' => [
-            '_' => '',
-            'link' => '',
+            '_' => ':link nemôže byť použiť k vyčistení tohoto balíčku.',
+            'link' => 'Módy k redukovanie obtiažnosti ',
         ],
     ],
 
     'mode' => [
         'artist' => 'Interpret/Album',
         'chart' => 'Oslňujúce',
+        'featured' => 'Vybraní umelci',
+        'loved' => '',
         'standard' => 'Obyčajné',
         'theme' => 'Témy',
+        'tournament' => 'Turnaj',
     ],
 
     'require_login' => [

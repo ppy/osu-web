@@ -13,7 +13,7 @@ class ClientVerificationsControllerTest extends TestCase
 {
     public function testCreate()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $hash = implode(':', [md5('osu'), '', md5('mac'), md5('unique'), md5('disk')]);
 
@@ -43,7 +43,7 @@ class ClientVerificationsControllerTest extends TestCase
 
     public function testCreateWithInvalidHash()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $this->actingAsVerified($user)
             ->get(route('client-verifications.create'))
@@ -56,7 +56,7 @@ class ClientVerificationsControllerTest extends TestCase
 
     public function testStore()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $hash = implode(':', [md5('osu'), '', md5('mac'), md5('unique'), md5('disk')]);
 
@@ -104,7 +104,7 @@ class ClientVerificationsControllerTest extends TestCase
 
     public function testStoreWithInvalidHash()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $initialCount = UserClient::count();
 

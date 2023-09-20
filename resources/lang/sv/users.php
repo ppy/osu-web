@@ -7,7 +7,7 @@ return [
     'deleted' => '[raderad användare]',
 
     'beatmapset_activities' => [
-        'title' => ":user's Modding Historik",
+        'title' => ":users moddinghistorik",
         'title_compact' => 'Modding',
 
         'discussions' => [
@@ -33,33 +33,54 @@ return [
 
     'blocks' => [
         'banner_text' => 'Du har blockerat denna användare.',
+        'comment_text' => 'Denna kommentar är dold.',
         'blocked_count' => 'blockerade användare (:count)',
         'hide_profile' => 'dölj profil',
+        'hide_comment' => 'dölj',
+        'forum_post_text' => 'Denna kommentar är dold.',
         'not_blocked' => 'Användaren är inte blockerad.',
         'show_profile' => 'visa profil',
+        'show_comment' => 'visa',
         'too_many' => 'Du har nått gränsen för blockeringar.',
         'button' => [
-            'block' => 'blockera',
-            'unblock' => 'avblockera',
+            'block' => 'Blockera',
+            'unblock' => 'Avblockera',
         ],
     ],
 
     'card' => [
+        'gift_supporter' => 'Ge supporter-tag',
         'loading' => 'Laddar...',
         'send_message' => 'skicka meddelande',
     ],
 
+    'create' => [
+        'form' => [
+            'password' => 'lösenord',
+            'password_confirmation' => 'lösenordsbekräftelse',
+            'submit' => 'skapa konto',
+            'user_email' => 'email',
+            'user_email_confirmation' => 'e-postbekräftelse',
+            'username' => 'användarnamn',
+
+            'tos_notice' => [
+                '_' => 'genom att skapa konto godkänner du :link',
+                'link' => 'användarvillkor',
+            ],
+        ],
+    ],
+
     'disabled' => [
-        'title' => 'Uh-oh! Det verkar som att ditt konto har inaktiverats.',
-        'warning' => "Om du har brutit mot en regel, vänligen notera att det generellt finns en cool-down-period á en månad under vilken vi inte kommer att överväga några amnestiförfrågningar. Efter denna period, är du välkommen att kontakta oss om du anser det nödvändigt. Vänligen notera att skapandet av nya konton efter att du haft ett inaktiverat kommer att resultera i en <strong>förlängning av denna en månads cool-down</strong>. Vänligen notera även att för <strong>varje konto du skapar, bryter du mot reglerna ytterligare</strong>. Vi rekommenderar starkt att du inte tar denna vägen!",
+        'title' => 'Hoppsan! Det verkar som att ditt konto har inaktiverats.',
+        'warning' => "Om du har brutit mot en regel, vänligen notera att det generellt finns en cool-down-period á en månad under vilken vi inte kommer att överväga några amnestiförfrågningar. Efter denna period är du välkommen att kontakta oss om du anser det nödvändigt. Vänligen notera att skapandet av nya konton efter att du haft ett inaktiverat kommer att resultera i en <strong>förlängning av denna en månads cool-down</strong>. Vänligen notera även att för <strong>varje konto du skapar, bryter du mot reglerna ytterligare</strong>. Vi rekommenderar starkt att du inte tar denna vägen!",
 
         'if_mistake' => [
-            '_' => 'Om du upplever att detta är ett misstag, är du välkommen att kontakta oss (via :email eller genom att klicka "?" i det nedre högra hörnet av denna sidan). Vänligen notera att vi alltid är helt säkra i våra ageranden, då de är baserade på mycket pålitlig data. Vi förbehåller oss rätten att bortse från din förfrågan om vi upplever att du avsiktligen är oärlig. ',
+            '_' => 'Om du upplever att detta är ett misstag, är du välkommen att kontakta oss (via :email eller genom att klicka "?" i det nedre högra hörnet av denna sida). Vänligen notera att vi alltid är helt säkra i våra ageranden, då de är baserade på mycket pålitlig data. Vi förbehåller oss rätten att bortse från din förfrågan om vi upplever att du avsiktligen är oärlig. ',
             'email' => 'email',
         ],
 
         'reasons' => [
-            'compromised' => 'Ditt konto har bedömts vara komprometterat. Det kan inaktiveras tillfälligt medan dess identitet bekräftas. ',
+            'compromised' => 'Ditt konto har bedömts vara infiltrerat. Det kan inaktiveras tillfälligt medan dess identitet bekräftas. ',
             'opening' => 'Det finns ett antal skäl som kan leda till att ditt konto inaktiveras:',
 
             'tos' => [
@@ -88,7 +109,7 @@ return [
         'failed' => 'Felaktig inloggning',
         'forgot' => 'Glömt ditt lösenord?',
         'info' => 'Vänligen logga in för att fortsätta',
-        'invalid_captcha' => 'Captcha ogiltig, uppdatera sidan och försök igen.',
+        'invalid_captcha' => 'För många misslyckade inloggningsförsök, var vänlig fyll i captcha och försök igen. (Uppdatera sidan om captcha inte är synlig)',
         'locked_ip' => 'din IP-adress är låst. Var vänlig vänta några minuter.',
         'password' => 'Lösenord',
         'register' => "Har du inget osu! konto? Skapa ett nytt",
@@ -103,7 +124,7 @@ return [
     ],
 
     'posts' => [
-        'title' => ':username\'s inlägg',
+        'title' => ':usernames inlägg',
     ],
 
     'anonymous' => [
@@ -114,21 +135,21 @@ return [
     ],
     'logout_confirm' => 'Är du säker på att du vill logga ut? :(',
     'report' => [
-        'button_text' => 'rapportera',
+        'button_text' => 'Anmäl',
         'comments' => 'Ytterligare kommentarer',
-        'placeholder' => 'Var snäll och lämna någon information som du tror kan vara användbar.',
+        'placeholder' => 'Var snäll och lämna all information som du tror kan vara användbar.',
         'reason' => 'Orsak',
-        'thanks' => 'Tack för din rapport!',
-        'title' => 'Rapportera :username?',
+        'thanks' => 'Tack för din anmälan!',
+        'title' => 'Anmäl :username?',
 
         'actions' => [
-            'send' => 'Skicka Rapport',
+            'send' => 'Skicka anmälan',
             'cancel' => 'Avbryt',
         ],
 
         'options' => [
-            'cheating' => 'Fult spel / Fusk',
-            'multiple_accounts' => '',
+            'cheating' => 'Fusk',
+            'multiple_accounts' => 'Använder flera konton',
             'insults' => 'Förolämpar mig / andra',
             'spam' => 'Spammning',
             'unwanted_content' => 'Länkar olämpligt innehåll',
@@ -139,6 +160,7 @@ return [
     'restricted_banner' => [
         'title' => 'Ditt konto har blivit begränsat!',
         'message' => 'När du är begränsad, kommer du inte kunna interagera med andra spelare och dina poäng kommer endast vara synliga för dig. Detta är oftast ett resultat av en automatiserad process och kommer troligen lyftas inom 24 timmar. Om du vill överklaga din begränsning, var vänlig <a href="mailto:accounts@ppy.sh">kontakta support</a>.',
+        'message_link' => 'Kolla in den här sidan för att lära dig mer.',
     ],
     'show' => [
         'age' => ':age år gammal',
@@ -153,11 +175,15 @@ return [
         'origin_country' => 'Från :country',
         'previous_usernames' => 'tidigare känd som',
         'plays_with' => 'Spelar med :devices',
-        'title' => ":username's profil",
+        'title' => ":usernames profil",
 
         'comments_count' => [
             '_' => 'Upplagd :link',
-            'count' => '',
+            'count' => ':count_delimited kommentar|:count_delimited kommentarer',
+        ],
+        'cover' => [
+            'to_0' => 'Dölj omslagsbild',
+            'to_1' => 'Visa omslagsbild',
         ],
         'edit' => [
             'cover' => [
@@ -180,7 +206,7 @@ return [
             ],
 
             'default_playmode' => [
-                'is_default_tooltip' => 'standard spelläge',
+                'is_default_tooltip' => 'standardspelläge',
                 'set' => 'sätt :mode som profilens förvalda spelläge',
             ],
         ],
@@ -199,33 +225,39 @@ return [
                 'title' => 'Beatmaps',
 
                 'favourite' => [
-                    'title' => 'Favoriserade Beatmaps',
+                    'title' => 'Favoritmarkerade beatmaps',
                 ],
                 'graveyard' => [
-                    'title' => 'Begravda Beatmaps',
+                    'title' => 'Beatmaps på kyrkogården',
+                ],
+                'guest' => [
+                    'title' => 'Gästdeltagande Beatmaps',
                 ],
                 'loved' => [
-                    'title' => 'Älskade Beatmaps',
+                    'title' => 'Älskade beatmaps',
+                ],
+                'nominated' => [
+                    'title' => 'Nominerade rankade beatmaps',
                 ],
                 'pending' => [
-                    'title' => 'Väntade Beatmaps',
+                    'title' => 'Väntande beatmaps',
                 ],
                 'ranked' => [
-                    'title' => 'Rankade & Godkända Beatmaps',
+                    'title' => 'Rankade & godkända beatmaps',
                 ],
             ],
             'discussions' => [
                 'title' => 'Diskussioner',
-                'title_longer' => 'Senaste Diskussionerna',
+                'title_longer' => 'Senaste diskussionerna',
                 'show_more' => 'se fler diskussioner',
             ],
             'events' => [
                 'title' => 'Händelser',
-                'title_longer' => 'Senaste Händelser',
+                'title_longer' => 'Senaste händelser',
                 'show_more' => 'se fler händelser',
             ],
             'historical' => [
-                'title' => 'Historisk',
+                'title' => 'Historiskt',
 
                 'monthly_playcounts' => [
                     'title' => 'Spelhistorik',
@@ -233,21 +265,21 @@ return [
                 ],
                 'most_played' => [
                     'count' => 'gånger spelade',
-                    'title' => 'Mest Spelade Beatmaps',
+                    'title' => 'Mest spelade beatmaps',
                 ],
                 'recent_plays' => [
-                    'accuracy' => 'precision: :percentage',
-                    'title' => 'Senaste spel (24h)',
+                    'accuracy' => 'träffsäkerhet: :percentage',
+                    'title' => 'Senaste spel (24t)',
                 ],
                 'replays_watched_counts' => [
-                    'title' => 'Repriser kollade',
-                    'count_label' => 'Repriser Sedda',
+                    'title' => 'Repriser sedda av andra',
+                    'count_label' => 'Repriser sedda',
                 ],
             ],
             'kudosu' => [
-                'recent_entries' => 'Nyligen Kudosu Historia',
+                'recent_entries' => 'Senaste Kudosu-historik',
                 'title' => 'Kudosu!',
-                'total' => 'Total Kudosu Intjänad',
+                'total' => 'Total Kudosu intjänad',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -301,8 +333,8 @@ return [
                 'recent' => 'Senaste',
                 'title' => 'Medaljer',
             ],
-            'multiplayer' => [
-                'title' => '',
+            'playlists' => [
+                'title' => 'Spelspellista',
             ],
             'posts' => [
                 'title' => 'Inlägg',
@@ -311,6 +343,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'Senaste',
+            ],
+            'realtime' => [
+                'title' => 'Multiplayerspel',
             ],
             'top_ranks' => [
                 'download_replay' => 'Ladda ner Repris',
@@ -325,13 +360,22 @@ return [
                 'first' => [
                     'title' => 'Förstaplats-ranker',
                 ],
+                'pin' => [
+                    'to_0' => 'Lossa',
+                    'to_0_done' => 'Ej fäst resultat',
+                    'to_1' => 'Fäst',
+                    'to_1_done' => 'Fäst resultat',
+                ],
+                'pinned' => [
+                    'title' => 'Fästa resultat',
+                ],
             ],
             'votes' => [
                 'given' => 'Röster Givna (senaste 3 månaderna)',
                 'received' => 'Röster Erhållna (senaste 3 månaderna)',
                 'title' => 'Röster',
-                'title_longer' => 'Senaste Röster',
-                'vote_count' => ':count_delimited rösta|:count_delimited röster ',
+                'title_longer' => 'Senaste röster',
+                'vote_count' => ':count_delimited röst|:count_delimited röster ',
             ],
             'account_standing' => [
                 'title' => 'Kontoställning',
@@ -339,17 +383,18 @@ return [
                 'remaining_silence' => '<strong>:username</strong> kan prata igen om :duration.',
 
                 'recent_infringements' => [
-                    'title' => 'Senaste Överträdelser',
+                    'title' => 'Senaste överträdelser',
                     'date' => 'datum',
                     'action' => 'åtgärd',
                     'length' => 'längd',
-                    'length_permanent' => 'Permanent',
+                    'length_indefinite' => 'Obestämd',
                     'description' => 'beskrivning',
                     'actor' => 'efter :användarnamn',
 
                     'actions' => [
                         'restriction' => 'Bannlys',
-                        'silence' => 'Tystnad',
+                        'silence' => 'Tystad',
+                        'tournament_ban' => 'Turneringsförbud',
                         'note' => 'Anteckning',
                     ],
                 ],
@@ -366,15 +411,15 @@ return [
         ],
         'not_found' => [
             'reason_1' => 'De kan ha ändrat sitt användarnamn.',
-            'reason_2' => 'Kontot kan vara otillgängligt på grund av säkerhet eller missbruksproblem.',
+            'reason_2' => 'Kontot kan för tillfället vara otillgängligt på grund av säkerhets- eller missbruksproblem.',
             'reason_3' => 'Du kan ha gjort ett stavfel!',
             'reason_header' => 'Det finns några möjliga orsaker till detta:',
-            'title' => 'Användare hittades inte! ;_;',
+            'title' => 'Användaren hittades inte! ;_;',
         ],
         'page' => [
             'button' => 'Redigera profilsida',
             'description' => '<strong>jag!</strong> är en personlig anpassningsbar del på din profil sida.',
-            'edit_big' => 'Redigera mig!',
+            'edit_big' => 'Redigera jag!',
             'placeholder' => 'Skriv sidoinnehåll här',
 
             'restriction_info' => [
@@ -384,32 +429,33 @@ return [
         ],
         'post_count' => [
             '_' => 'Bidragit med :link',
-            'count' => ':count foruminlägg|:count foruminlägg',
+            'count' => ':count_delimited foruminlägg|:count_delimited foruminlägg',
         ],
         'rank' => [
-            'country' => 'Landsrank för :mode',
-            'country_simple' => 'Nationell Rankning',
+            'country' => 'Nationell rankning för :mode',
+            'country_simple' => 'Nationell rankning',
             'global' => 'Global rank för :mode',
-            'global_simple' => 'Global Rankning',
+            'global_simple' => 'Global rankning',
+            'highest' => 'Högsta rank: :rank den :date',
         ],
         'stats' => [
             'hit_accuracy' => 'Träffsäkerhet',
             'level' => 'Nivå :level',
             'level_progress' => 'Framsteg till nästa nivå',
-            'maximum_combo' => 'Maximal Kombo',
+            'maximum_combo' => 'Högsta kombo',
             'medals' => 'Medaljer',
-            'play_count' => 'Antal Gånger Spelat',
+            'play_count' => 'Antal gånger spelat',
             'play_time' => 'Total speltid',
-            'ranked_score' => 'Rankad Poäng',
-            'replays_watched_by_others' => 'Repriser Sedda av Andra',
-            'score_ranks' => 'Poäng Ranker',
-            'total_hits' => 'Totala Träffar',
-            'total_score' => 'Total Poäng',
+            'ranked_score' => 'Rankad poäng',
+            'replays_watched_by_others' => 'Repriser sedda av andra',
+            'score_ranks' => 'Poängranker',
+            'total_hits' => 'Totala träffar',
+            'total_score' => 'Total poäng',
             // modding stats
-            'graveyard_beatmapset_count' => 'Begravda Beatmaps',
-            'loved_beatmapset_count' => 'Älskade Beatmaps',
-            'pending_beatmapset_count' => 'Väntande Beatmaps',
-            'ranked_beatmapset_count' => 'Rankade & Godkända Beatmaps',
+            'graveyard_beatmapset_count' => 'Beatmaps på kyrkogården',
+            'loved_beatmapset_count' => 'Älskade beatmaps',
+            'pending_beatmapset_count' => 'Väntande beatmaps',
+            'ranked_beatmapset_count' => 'Rankade & godkända beatmaps',
         ],
     ],
 
@@ -424,6 +470,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
+        'from_client' => 'vänligen registrera dig via spelklienten istället!',
+        'from_web' => 'var snäll och slutför registreringen med hjälp av osu! webbplatsen',
         'saved' => 'Användare skapad',
     ],
     'verify' => [

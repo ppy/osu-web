@@ -6,13 +6,21 @@
 return [
     'availability' => [
         'disabled' => '该谱面现在无法下载。',
-        'parts-removed' => '应 歌曲作者/第三方版权持有者 的要求，这张谱面已经下架。',
+        'parts-removed' => '应歌曲作者或第三方版权持有者的要求，已移除这张谱面的部分内容。',
         'more-info' => '点击这里查看更多信息。',
-        'rule_violation' => '谱面中不适合 osu! 的内容已在审核后被移除。',
+        'rule_violation' => '已在审核后移除了谱面中不适合于 osu! 展示的内容。',
+    ],
+
+    'cover' => [
+        'deleted' => '已删除的谱面',
     ],
 
     'download' => [
         'limit_exceeded' => '慢一点，打几张图再回来吧。',
+    ],
+
+    'featured_artist_badge' => [
+        'label' => '精选艺术家',
     ],
 
     'index' => [
@@ -32,34 +40,44 @@ return [
     ],
 
     'nominate' => [
-        'hybrid_requires_modes' => '有多于一个模式的谱面需要选择至少一个要提名的游戏模式。',
-        'incorrect_mode' => '你没有权限为该模式提名：:mode',
-        'full_bn_required' => '你必须是正式提名人才能进行此提名。',
+        'hybrid_requires_modes' => '您需要在多模式谱面中选择至少一个游戏模式并提名。',
+        'incorrect_mode' => '您没有提名 :mode 模式的权限。',
+        'full_bn_required' => '您必须成为正式谱面审核成员 (Full BN) 才有资格提名这张谱面。',
         'too_many' => '提名需求已达标。',
 
         'dialog' => [
-            'confirmation' => '你确定要提名这张谱面吗？',
+            'confirmation' => '您确定要提名这张谱面吗？',
             'header' => '提名谱面',
-            'hybrid_warning' => '注意：你只能提名一次，所以请确保你的提名包含所有你想要提名的游戏模式。',
-            'which_modes' => '你要提名哪种模式？',
+            'hybrid_warning' => '注意：您只能提名一次，所以请确保提名包含所有您想要提名的游戏模式。',
+            'which_modes' => '您要提名哪种模式？',
         ],
     ],
 
     'nsfw_badge' => [
-        'label' => '少儿不宜',
+        'label' => '不良内容',
     ],
 
     'show' => [
         'discussion' => '讨论',
 
+        'admin' => [
+            'full_size_cover' => '查看完整封面图',
+        ],
+
+        'deleted_banner' => [
+            'title' => '此谱面已删除。',
+            'message' => '（仅管理员可见）',
+        ],
+
         'details' => [
-            'by_artist' => '曲师：:artist',
+            'by_artist' => 'by :artist',
             'favourite' => '收藏这张谱面',
             'favourite_login' => '登录以收藏这张谱面',
             'logged-out' => '下载谱面前请先登录！',
             'mapped_by' => '谱师：:mapper',
+            'mapped_by_guest' => ':mapper 的客串难度',
             'unfavourite' => '取消收藏',
-            'updated_timeago' => '上次更新于 :timeago',
+            'updated_timeago' => ':timeago 更新',
 
             'download' => [
                 '_' => '下载',
@@ -75,12 +93,12 @@ return [
         ],
 
         'details_date' => [
-            'approved' => 'approved 于 :timeago',
-            'loved' => 'loved 于 :timeago',
-            'qualified' => 'qualified 于 :timeago',
-            'ranked' => 'ranked 于 :timeago',
-            'submitted' => '提交于 :timeago',
-            'updated' => '上次更新于 :timeago',
+            'approved' => ':timeago 达标 (Approved)',
+            'loved' => ':timeago 加入社区喜爱 (Loved)',
+            'qualified' => ':timeago 过审 (Qualified)',
+            'ranked' => ':timeago 上架 (Ranked)',
+            'submitted' => ':timeago 提交',
+            'updated' => ':timeago 更新',
         ],
 
         'favourites' => [
@@ -88,24 +106,24 @@ return [
         ],
 
         'hype' => [
-            'action' => '如果你觉得这张谱面很好玩，推荐它来帮助它发展到<strong>Ranked</strong>状态。',
+            'action' => '如果你觉得这张谱面很好玩，来推荐谱面并推动它进入<strong>上架 (Ranked)</strong> 状态。',
 
             'current' => [
-                '_' => '这张谱面正处于 :status 状态。',
+                '_' => '谱面正处于 :status 状态。',
 
                 'status' => [
-                    'pending' => 'pending',
-                    'qualified' => 'qualified',
-                    'wip' => '制作中',
+                    'pending' => '待定 (Pending)',
+                    'qualified' => '过审 (Qualified)',
+                    'wip' => '制作中 (WIP)',
                 ],
             ],
 
             'disqualify' => [
-                '_' => '如果你认为此谱面有问题，可以取消提名：:link',
+                '_' => '如果你认为此谱面有问题，可以按下 :link 取消提名。',
             ],
 
             'report' => [
-                '_' => '如果您发现此谱面有问题，请在 :link 通知审核团。',
+                '_' => '如果您发现此谱面有问题，请前往 :link 通知审核团队。',
                 'button' => '报告问题',
                 'link' => '这里',
             ],
@@ -116,7 +134,9 @@ return [
             'genre' => '流派',
             'language' => '语言',
             'no_scores' => '数据还在计算中。。。',
-            'nsfw' => '少儿不宜内容',
+            'nominators' => '提名者',
+            'nsfw' => '不良内容',
+            'offset' => '在线偏移值',
             'points-of-failure' => '失败位置',
             'source' => '来源',
             'storyboard' => '此谱面包含故事板',
@@ -126,8 +146,8 @@ return [
         ],
 
         'nsfw_warning' => [
-            'details' => '此谱面包含少儿不宜的、具有冒犯性的或令人不安的内容。您仍然想查看它吗？',
-            'title' => '少儿不宜内容',
+            'details' => '此谱面包含少儿不宜、冒犯性或令人不安的内容。您仍然想查看它吗？',
+            'title' => '不良内容',
 
             'buttons' => [
                 'disable' => '关闭警告',
@@ -138,36 +158,42 @@ return [
 
         'scoreboard' => [
             'achieved' => '在 :when 达成',
-            'country' => '国内/区内排名',
+            'country' => '地区排名',
+            'error' => '加载排名失败',
             'friend' => '好友排名',
             'global' => '全球排名',
             'supporter-link' => '点击 <a href=":link">这里</a> 来查看你得到的精彩功能！',
-            'supporter-only' => '你需要成为 osu! 支持者才能查看国内/好友排名！',
+            'supporter-only' => '你需要成为 osu! 支持者才能查看地区/好友/特定 Mod 排名！',
             'title' => '排行榜',
 
             'headers' => [
                 'accuracy' => '准确率',
                 'combo' => '最大连击',
                 'miss' => 'Miss',
-                'mods' => 'Mod',
+                'mods' => '模组',
+                'pin' => '置顶',
                 'player' => '玩家',
                 'pp' => '',
                 'rank' => '排名',
-                'score_total' => '得分',
                 'score' => '得分',
+                'score_total' => '得分',
                 'time' => '达成时间',
             ],
 
             'no_scores' => [
-                'country' => '还没有玩家上传过成绩！',
+                'country' => '您所在的国家/地区中还没有玩家上传过成绩！',
                 'friend' => '还没有好友上传成绩！',
                 'global' => '还没有玩家上传过成绩，来玩一把？',
                 'loading' => '加载分数中...',
-                'unranked' => 'Unranked 谱面',
+                'unranked' => '未上架 (Unranked) 谱面',
             ],
             'score' => [
                 'first' => '领衔者',
                 'own' => '你的最佳成绩',
+            ],
+            'supporter_link' => [
+                '_' => '点击 :here 查看您获得的所有精彩功能！',
+                'here' => '这里',
             ],
         ],
 
@@ -178,10 +204,11 @@ return [
             'accuracy' => '准度要求',
             'ar' => '缩圈速度',
             'stars' => '难度星级',
-            'total_length' => '长度',
+            'total_length' => '长度（游玩长度：:hit_length）',
             'bpm' => 'BPM',
             'count_circles' => '圆圈总数',
             'count_sliders' => '滑条总数',
+            'offset' => '在线偏移值：:offset',
             'user-rating' => '玩家评价',
             'rating-spread' => '评分情况',
             'nominations' => '提名状态',
@@ -197,5 +224,9 @@ return [
             'pending' => 'Pending',
             'graveyard' => 'Graveyard',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => '聚光灯',
     ],
 ];

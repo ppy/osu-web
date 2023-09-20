@@ -4,32 +4,60 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'talking_in' => 'sprechen in :channel',
-    'talking_with' => 'sprechen mit :name',
-    'title_compact' => 'chat',
+    'loading_users' => 'lade User...',
+    'talking_in' => 'in :channel reden',
+    'talking_with' => 'im Gespräch mit :name',
+    'title_compact' => 'Chat',
+    'unread_messages' => 'ungelesene Nachrichten',
 
     'cannot_send' => [
-        'channel' => 'Du kannst derzeit keine Nachrichten an diesen Kanal senden. Dies kann folgende Gründe haben:',
+        'channel' => 'Du kannst derzeit keine Nachrichten in diesem Channel senden. Dies kann folgende Gründe haben:',
         'user' => 'Du kannst derzeit keine Nachrichten an diesen User senden. Dies kann folgende Gründe haben:',
-        'reasons' => [
-            'blocked' => 'Du wurdest vom Empfänger blockiert',
-            'channel_moderated' => 'Der Kanal wurde moderiert',
-            'friends_only' => 'Der Empfänger akzeptiert nur Nachrichten von Personen in seiner Freundesliste',
-            'not_enough_plays' => 'Du hast das Spiel nicht genug gespielt',
-            'not_verified' => 'Deine Sitzung wurde noch nicht verifiziert',
-            'restricted' => 'Du bist zurzeit eingeschränkt',
-            'silenced' => 'Du bist derzeit stumm',
-            'target_restricted' => 'Der Empfänger ist zurzeit eingeschränkt',
+    ],
+
+    'channels' => [
+        'confirm_part' => 'Möchtest du diesen Channel ausblenden? Du erhältst weiterhin Nachrichten aus diesem Channel.',
+        'create' => 'Ankündigung erstellen',
+
+        'list' => [
+            'title' => [
+                'ANNOUNCE' => 'Ankündigungen',
+                'GROUP' => 'Gruppen',
+                'PM' => 'Direktnachrichten',
+                'PUBLIC' => 'Channel',
+            ],
         ],
     ],
+
+    'form' => [
+        'title' => [
+            'announcement' => 'Erstelle neue Ankündigung',
+        ],
+
+        'labels' => [
+            'description' => 'Beschreibung',
+            'message' => 'Nachricht',
+            'name' => 'Raumname',
+            'users' => 'Spieler hinzufügen',
+        ],
+    ],
+
+    'not_found' => [
+        'message' => 'Hier gibt es nichts, vielleicht hast du den Channel verlassen oder er existiert nicht...',
+        'title' => 'Channel nicht gefunden',
+    ],
+
     'input' => [
+        'create' => 'Erstellen',
         'disabled' => 'Nachricht konnte nicht gesendet werden...',
+        'disconnected' => 'Verbindung getrennt',
         'placeholder' => 'Nachricht verfassen...',
         'send' => 'Senden',
     ],
+
     'no-conversations' => [
-        'howto' => "Starte eine Unterhaltung von einem User-Profil oder einem Usercard-Popup.",
-        'lazer' => 'Öffentliche Kanäle, die du mit <a href=":link">osu!lazer</a> beitrittst, werden auch hier angezeigt.',
+        'howto' => "Starte eine Unterhaltung von einem User-Profil oder einem Usercard-Pop-up.",
+        'lazer' => 'Öffentliche Channel, welche du mit <a href=":link">osu!lazer</a> betrittst, werden hier auch sichtbar sein.',
         'title' => 'noch keine Unterhaltungen',
     ],
 ];

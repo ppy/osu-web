@@ -14,7 +14,7 @@ return [
 
         'slogan' => [
             'main' => 'el mejor juego de ritmo gratis',
-            'sub' => 'el ritmo está solo a un clic de distancia',
+            'sub' => 'el ritmo está a un solo clic de distancia',
         ],
     ],
 
@@ -43,6 +43,7 @@ return [
             'label' => [
                 'forum' => 'buscar en los foros',
                 'forum_children' => 'incluir subforos',
+                'include_deleted' => 'incluir publicaciones eliminadas',
                 'topic_id' => 'tema #',
                 'username' => 'autor',
             ],
@@ -72,8 +73,22 @@ return [
     ],
 
     'download' => [
-        'tagline' => "¡vamos a<br>empezar!",
         'action' => 'Descargar osu!',
+        'action_lazer' => 'Descargar osu!(lazer)',
+        'action_lazer_description' => 'la próxima gran actualización de osu!',
+        'action_lazer_info' => 'revisa esta página para más información',
+        'action_lazer_title' => 'prueba osu!(lazer)',
+        'action_title' => 'descarga osu!',
+        'for_os' => 'para :os',
+        'lazer_note' => 'nota: se aplican reinicios de la tabla de clasificación',
+        'macos-fallback' => 'usuarios de macOS',
+        'mirror' => 'link alternativo',
+        'or' => 'o',
+        'os_version_or_later' => ':os_version o posterior',
+        'other_os' => 'otras plataformas',
+        'quick_start_guide' => 'guía de inicio rápido',
+        'tagline' => "¡vamos a<br>empezar!",
+        'video-guide' => 'guía en vídeo',
 
         'help' => [
             '_' => 'si tiene problemas para iniciar el juego o para obtener una cuenta, :help_forum_link o :support_button.',
@@ -86,8 +101,6 @@ return [
             'macos' => 'para macOS',
             'linux' => 'para Linux',
         ],
-        'mirror' => 'link alternativo',
-        'macos-fallback' => 'usuarios de macOS',
         'steps' => [
             'register' => [
                 'title' => 'obtener una cuenta',
@@ -105,7 +118,6 @@ return [
                 ],
             ],
         ],
-        'video-guide' => 'guía en vídeo',
     ],
 
     'user' => [
@@ -122,8 +134,8 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => 'Nuevos Mapas Clasificados',
-            'popular' => 'Mapas Populares',
+            'new' => 'Nuevos mapas clasificados',
+            'popular' => 'Mapas populares',
             'by_user' => 'por :user',
         ],
         'buttons' => [
@@ -131,16 +143,5 @@ return [
             'support' => 'Apoyar a osu!',
             'store' => 'osu!store',
         ],
-    ],
-
-    'support-osu' => [
-        'title' => '¡Wow!',
-        'subtitle' => '¡Pareces estar pasando un buen rato! :D',
-        'body' => [
-            'part-1' => '¿Sabías que osu! se mantiene sin publicidad y confía en sus jugadores para apoyar su desarrollo y costos de mantenimiento?',
-            'part-2' => '¿También sabías que apoyando a osu! obtienes un montón de características útiles, como <strong>la descarga en el juego</strong> que se activa automáticamente en partidas de espectador y multijugador?',
-        ],
-        'find-out-more' => '¡Haz clic aquí para obtener más información!',
-        'download-starting' => "Ah, y no te preocupes - tu descarga ya se ha iniciado para ti ;)",
     ],
 ];

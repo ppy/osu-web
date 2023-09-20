@@ -8,14 +8,20 @@
 
 @section('content')
     @include('layout._page_header_v4', ['params' => [
-        'links' => [[
-            'title' => osu_trans('layout.header.artists.index'),
-            'url' => route('artists.index'),
-        ]],
-        'linksBreadcrumb' => true,
+        'links' => [
+            [
+                'active' => true,
+                'title' => osu_trans('layout.header.artists.index'),
+                'url' => route('artists.index'),
+            ],
+            [
+                'title' => osu_trans('artist.tracks.index._'),
+                'url' => route('artists.tracks.index'),
+            ],
+        ],
         'theme' => 'artists',
     ]])
-    <div class="osu-page osu-page--artists">
+    <div class="osu-page">
         <div class="page-contents page-contents--artist">
             <div class="page-contents__artist-left">
                 <div class="artist__description artist__description--index">{!! osu_trans('artist.index.description') !!}</div>

@@ -10,22 +10,6 @@
         <h1>{{ $beatmapset->title }} - {{ $beatmapset->artist }}</h1>
 
         <ul>
-            <li>{{ osu_trans('admin.beatmapsets.show.discussion._') }}:
-                @if ($beatmapset->discussion_enabled)
-                    {{ osu_trans('admin.beatmapsets.show.discussion.active') }}
-                @else
-                    {{ osu_trans('admin.beatmapsets.show.discussion.inactive') }}
-                    /
-                    <a
-                        href="{{ route('admin.beatmapsets.update', [
-                            $beatmapset->getKey(),
-                            'beatmapset[discussion_enabled]' => true,
-                        ]) }}"
-                        data-method="PUT"
-                        data-confirm="{{ osu_trans('admin.beatmapsets.show.discussion.activate_confirm') }}"
-                    >{{ osu_trans('admin.beatmapsets.show.discussion.activate') }}</a>
-                @endif
-            </li>
             <li><a href="{{ route('admin.beatmapsets.covers', $beatmapset->beatmapset_id) }}">{{ osu_trans('admin.beatmapsets.show.covers') }}</a></li>
         </ul>
     </div>

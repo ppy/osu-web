@@ -15,7 +15,7 @@ return [
     'result' => [
         'empty' => 'Niciun rezultat',
         'empty_for' => 'Niciun rezultat pentru :modes',
-        'more' => 'Mai multe rezultate de la :mode',
-        'title' => 'Rezultate de la :mode',
+        'more' => 'Mai multe rezultate pentru: :mode',
+        'title' => 'Rezultate pentru: :mode',
     ],
 ];

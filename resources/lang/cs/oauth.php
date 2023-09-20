@@ -13,45 +13,45 @@ return [
     ],
 
     'authorized_clients' => [
-        'confirm_revoke' => '',
-        'scopes_title' => '',
+        'confirm_revoke' => 'Jste si jisti, že chcete odstranit toto oprávnění?',
+        'scopes_title' => 'Tato aplikace může:',
         'owned_by' => 'Vlastní :user',
-        'none' => '',
+        'none' => 'Žádní klienti',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Zrušit přístup',
+            'true' => 'Přístup byl zrušen',
         ],
     ],
 
     'client' => [
         'id' => 'ID klienta',
-        'name' => '',
-        'redirect' => '',
-        'reset' => '',
-        'reset_failed' => '',
+        'name' => 'Název aplikace',
+        'redirect' => 'URL adresy zpětného volání aplikace',
+        'reset' => 'Resetovat tajný klíč klienta',
+        'reset_failed' => 'Obnovení tajného klíče klienta se nezdařilo',
         'secret' => 'Tajný klíč klienta',
 
         'secret_visible' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Zobrazit tajný klíč klienta',
+            'true' => 'Skrýt tajný klíč klienta',
         ],
     ],
 
     'new_client' => [
-        'header' => '',
-        'register' => '',
+        'header' => 'Registrovat novou OAuth aplikaci',
+        'register' => 'Registrovat aplikaci',
         'terms_of_use' => [
-            '_' => '',
+            '_' => 'Používáním API souhlasíte s :link.',
             'link' => 'Smluvní podmínky',
         ],
     ],
 
     'own_clients' => [
-        'confirm_delete' => '',
-        'confirm_reset' => '',
-        'new' => '',
-        'none' => '',
+        'confirm_delete' => 'Opravdu chcete odebrat tohoto klienta?',
+        'confirm_reset' => 'Jste si jisti, že chcete resetovat klíč klienta? Tímto se zruší všechny existující tokeny.',
+        'new' => 'Nová OAuth aplikace',
+        'none' => 'Žádní klienti',
 
         'revoked' => [
             'false' => 'Smazat',

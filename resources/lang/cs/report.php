@@ -4,6 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'beatmapset' => [
+        'button' => 'Nahlásit',
+        'title' => 'Nahlásit beatmapu uživatele :username?',
+    ],
+
     'beatmapset_discussion_post' => [
         'button' => 'Nahlásit',
         'title' => 'Nahlásit příspěvek od :username?',
@@ -15,8 +20,8 @@ return [
     ],
 
     'forum_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Nahlásit',
+        'title' => 'Nahlásit příspěvek uživatele :username?',
     ],
 
     'scores' => [

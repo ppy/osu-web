@@ -5,6 +5,7 @@
 
 namespace Tests\Controllers;
 
+use App\Models\User;
 use Tests\TestCase;
 
 class HomeControllerTest extends TestCase
@@ -16,6 +17,17 @@ class HomeControllerTest extends TestCase
         $this
             ->post(route('bbcode-preview'), ['text' => 'test'])
             ->assertStatus(200);
+    }
+
+    public function testDownloadQuotaCheckApi()
+    {
+        $user = User::factory()->create();
+
+        $this->actAsScopedUser($user);
+        $this
+            ->get(route('api.download-quota-check'))
+            ->assertSuccessful()
+            ->assertJson(['quota_used' => 0]);
     }
 
     public function testRoot()

@@ -5,7 +5,7 @@
 
 return [
     'audio' => [
-        'autoplay' => '',
+        'autoplay' => 'Αυτόματη αναπαραγωγή επόμενου κομματιού',
     ],
 
     'defaults' => [
@@ -14,98 +14,82 @@ return [
 
     'header' => [
         'admin' => [
-            'beatmapset' => '',
-            'beatmapset_covers' => '',
-            'contest' => '',
-            'contests' => '',
-            'root' => '',
-            'store_orders' => '',
+            'beatmapset' => 'beatmapset',
+            'beatmapset_covers' => 'καλύμματα beatmapset',
+            'contest' => 'διαγωνισμός',
+            'contests' => 'διαγωνισμοί',
+            'root' => 'κονσόλα',
         ],
 
         'artists' => [
-            'index' => '',
+            'index' => 'καταχώρηση',
+        ],
+
+        'beatmapsets' => [
+            'show' => 'πληροφορίες',
+            'discussions' => 'συζήτηση',
         ],
 
         'changelog' => [
-            'index' => '',
+            'index' => 'καταχώρηση',
         ],
 
         'help' => [
-            'index' => '',
-            'sitemap' => '',
+            'index' => 'ευρετήριο',
+            'sitemap' => 'Sitemap',
         ],
 
         'store' => [
-            'cart' => '',
-            'orders' => '',
-            'products' => '',
+            'cart' => 'καλάθι',
+            'orders' => 'ιστορικό παραγγελιών',
+            'products' => 'προϊόντα',
         ],
 
         'tournaments' => [
-            'index' => '',
+            'index' => 'καταχώρηση',
         ],
 
         'users' => [
-            'modding' => '',
-            'multiplayer' => '',
-            'show' => '',
+            'modding' => 'modding',
+            'playlists' => 'λίστες αναπαραγωγής',
+            'realtime' => 'multiplayer',
+            'show' => 'πληροφορίες',
         ],
     ],
 
     'gallery' => [
-        'close' => '',
-        'fullscreen' => '',
-        'zoom' => '',
-        'previous' => '',
-        'next' => '',
+        'close' => 'Κλείσιμο (Esc)',
+        'fullscreen' => 'Εναλλαγή πλήρους οθόνης',
+        'zoom' => 'Εστίαση σε/έξω',
+        'previous' => 'Προηγούμενο (αριστερό βέλος)',
+        'next' => 'Επόμενο (βέλος δεξιά)',
     ],
 
     'menu' => [
         'beatmaps' => [
             '_' => 'beatmaps',
-            'artists' => 'επιλεγμένοι καλλιτέχνες',
-            'index' => 'λίστα',
-            'packs' => 'πακέτα',
         ],
         'community' => [
             '_' => 'κοινότητα',
-            'chat' => 'συνομιλία',
-            'contests' => 'διαγωνισμοί',
             'dev' => 'προγραμματισμός',
-            'forum-forums-index' => 'φόρουμ',
-            'getLive' => 'ζωντανά',
-            'tournaments' => 'τουρνουά',
         ],
         'help' => [
             '_' => 'βοήθεια',
-            'getAbuse' => '',
+            'getAbuse' => 'αναφορά κατάχρησης',
             'getFaq' => 'συχνές ερωτήσεις',
             'getRules' => 'κανόνες',
             'getSupport' => 'όχι, πραγματικά, χρειάζομαι βοήθεια!',
-            'getWiki' => 'wiki',
         ],
         'home' => [
             '_' => 'αρχική σελίδα',
-            'changelog-index' => 'αρχείο καταγραφής αλλαγών',
-            'getDownload' => 'λήψη',
-            'news-index' => 'ειδήσεις',
-            'search' => 'αναζήτηση',
             'team' => 'ομάδα',
         ],
         'rankings' => [
             '_' => 'κατατάξεις',
-            'charts' => 'spotlights',
-            'country' => 'χώρα',
-            'index' => 'επίδοση',
             'kudosu' => 'kudosu',
-            'multiplayer' => '',
-            'score' => 'βαθμολογία',
         ],
         'store' => [
             '_' => 'κατάστημα',
-            'cart-show' => 'καλάθι',
-            'getListing' => 'λίστα',
-            'orders-index' => 'ιστορικό παραγγελιών',
         ],
     ],
 
@@ -123,7 +107,7 @@ return [
             'forum' => 'Φόρουμ Κοινότητας',
             'livestreams' => 'Ζωντανές Μεταδόσεις',
             'report' => 'Αναφέρετε Κάποιο Πρόβλημα',
-            'wiki' => '',
+            'wiki' => 'Wiki',
         ],
         'legal' => [
             '_' => 'Νομική Υπόσταση',
@@ -137,7 +121,7 @@ return [
 
     'errors' => [
         '400' => [
-            'error' => '',
+            'error' => 'Μη έγκυρη παράμετρος αιτήματος',
             'description' => '',
         ],
         '404' => [
@@ -157,11 +141,11 @@ return [
             'description' => "Λυπούμαστε, αλλά η σελίδα που ζητήσατε δεν είναι εδώ!",
         ],
         '422' => [
-            'error' => '',
+            'error' => 'Μη έγκυρη παράμετρος αιτήματος',
             'description' => '',
         ],
         '429' => [
-            'error' => '',
+            'error' => 'Υπέρβαση ορίου τιμής',
             'description' => '',
         ],
         '500' => [
@@ -185,13 +169,13 @@ return [
     ],
 
     'popup_login' => [
-        'button' => '',
+        'button' => 'συνδεθείτε / εγγραφείτε',
 
         'login' => [
             'forgot' => "Έχω ξεχάσει τα στοιχεία μου",
             'password' => 'κωδικός',
             'title' => 'Συνδεθείτε Για Να Συνεχίσετε',
-            'username' => '',
+            'username' => 'όνομα χρήστη',
 
             'error' => [
                 'email' => "Το όνομα χρήστη ή η διεύθυνση ηλεκτρονικού ταχυδρομείου δεν υπάρχει",
@@ -200,7 +184,7 @@ return [
         ],
 
         'register' => [
-            'download' => '',
+            'download' => 'Λήψη',
             'info' => 'Χρειάζεστε λογαριασμό, κύριε. Γιατί δεν έχετε ήδη έναν;',
             'title' => "Δεν έχετε λογαριασμό;",
         ],
@@ -209,7 +193,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Ρυθμίσεις',
-            'follows' => '',
+            'follows' => 'Λίστες Παρακολούθησης',
             'friends' => 'Φίλοι',
             'logout' => 'Αποσύνδεση',
             'profile' => 'Το Προφίλ μου',

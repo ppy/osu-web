@@ -21,9 +21,9 @@
         {!! json_encode($chartConfig) !!}
     </script>
 
-    <script id="json-comments-build-{{ $build->getKey() }}" type="application/json">
+    <script id="json-comments" type="application/json">
         {!! json_encode($commentBundle->toArray()) !!}
     </script>
 
-    @include('layout._react_js', ['src' => 'js/react/changelog-build.js'])
+    @include('layout._react_js', ['src' => 'js/changelog-build.js'])
 @endsection

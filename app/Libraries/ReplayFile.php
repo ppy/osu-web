@@ -5,6 +5,7 @@
 
 namespace App\Libraries;
 
+use App\Exceptions\InvariantException;
 use App\Models\Beatmap;
 use Storage;
 
@@ -19,7 +20,7 @@ class ReplayFile
     public function __construct($score)
     {
         $this->filename = $score->getKey();
-        $mode = $score->gameModeString();
+        $mode = $score->getMode();
         $this->diskName = 'replays.'.$mode.'.'.config('osu.score_replays.storage');
         $this->score = $score;
     }
@@ -51,7 +52,7 @@ class ReplayFile
 
     public function getVersion()
     {
-        return optional($this->score->replayViewCount)->version ?? static::DEFAULT_VERSION;
+        return $this->score->replayViewCount?->version ?? static::DEFAULT_VERSION;
     }
 
     /**
@@ -62,9 +63,18 @@ class ReplayFile
     public function headerChunk(): string
     {
         $score = $this->score;
-        $beatmap = $score->beatmap;
+        $beatmap = $score->beatmap()->withTrashed()->first();
+
+        if ($beatmap === null) {
+            throw new InvariantException('score is missing beatmap');
+        }
+
         $mode = Beatmap::MODES[$score->getMode()];
         $user = $score->user;
+
+        if ($user === null) {
+            throw new InvariantException('score is missing user');
+        }
 
         $md5 = md5("{$score->maxcombo}osu{$user->username}{$beatmap->checksum}{$score->score}{$score->rank}");
         $ticks = $score->date->timestamp * 10000000 + 621355968000000000; // Conversion to dotnet DateTime.Ticks.

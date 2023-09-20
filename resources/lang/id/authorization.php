@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'play_more' => 'Mengapa Anda tidak mencoba untuk bermain osu! terlebih dahulu?',
+    'play_more' => 'Mengapa kamu tidak mencoba untuk bermain terlebih dahulu?',
     'require_login' => 'Silakan masuk untuk melanjutkan.',
     'require_verification' => 'Silakan verifikasi untuk melanjutkan.',
     'restricted' => "Tidak dapat melakukan hal itu saat dibatasi.",
@@ -18,9 +18,9 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Anda telah mencapai batas nominasi Anda untuk hari ini, silakan coba lagi besok.',
-            'incorrect_state' => 'Terjadi kesalahan saat memproses perintah, silakan muat ulang laman.',
+            'incorrect_state' => 'Terjadi kesalahan pada saat melangsungkan tindakan. Silakan muat ulang laman.',
             'owner' => "Tidak dapat menominasikan beatmap buatan sendiri.",
-            'set_metadata' => 'Anda harus terlebih dahulu mengubah pengaturan aliran dan bahasa sebelum beatmap ini dapat dinominasikan.',
+            'set_metadata' => 'Kamu harus terlebih dahulu menentukan aliran dan bahasa sebelum menominasikan beatmap.',
         ],
         'resolve' => [
             'not_owner' => 'Hanya pemilik topik dan beatmap yang dapat menyelesaikan diskusi.',
@@ -40,38 +40,41 @@ return [
 
     'beatmap_discussion_post' => [
         'destroy' => [
-            'not_owner' => 'Anda hanya dapat menghapus postingan milik Anda sendiri.',
-            'resolved' => 'Anda tidak dapat menghapus postingan pada topik diskusi yang telah terjawab.',
+            'not_owner' => 'Kamu hanya dapat menghapus postingan milik diri sendiri.',
+            'resolved' => 'Kamu tidak dapat menghapus postingan pada topik diskusi yang telah terjawab.',
             'system_generated' => 'Postingan yang dibuat otomatis tidak dapat dihapus.',
         ],
 
         'edit' => [
             'not_owner' => 'Hanya pemilik topik yang diperbolehkan untuk menyunting kiriman.',
-            'resolved' => 'Kamu tidak dapat mengubah postingan yang sudah ditutup.',
-            'system_generated' => 'Kiriman yang dihasilkan secara otomatis tidak dapat disunting.',
-        ],
-
-        'store' => [
-            'beatmapset_locked' => 'Beatmap ini dikunci untuk diskusi.',
+            'resolved' => 'Kamu tidak dapat menyunting postingan pada topik diskusi yang telah terjawab.',
+            'system_generated' => 'Post yang dihasilkan secara otomatis tidak dapat disunting.',
         ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => 'Diskusi pada beatmap ini telah dikunci.',
+
         'metadata' => [
-            'nominated' => 'Anda tidak dapat mengubah pengaturan metadata pada beatmap yang telah dinominasikan sebelumnya. Harap hubungi BN atau NAT apabila Anda merasa ada suatu hal yang perlu diubah.',
+            'nominated' => 'Kamu tidak dapat mengubah metadata beatmap yang telah dinominasikan. Mohon hubungi anggota BN atau NAT apabila kamu merasa terdapat kesalahan pada metadata beatmap ini.',
         ],
     ],
 
     'chat' => [
-        'blocked' => 'Tidak dapat mengirim pesan kepada pengguna yang memblokir Anda atau pengguna yang Anda blokir.',
-        'friends_only' => 'Pengguna memblokir pesan dari orang yang tidak ada dalam daftar teman pengguna.',
-        'moderated' => 'Channel itu sedang dalam pengelolaan.',
-        'no_access' => 'Anda tidak memiliki akses ke channel ini.',
-        'restricted' => 'Anda tidak dapat mengirim pesan pada saat akun Anda sedang di-silence, di-restrict, atau di-ban.',
-        'silenced' => 'Anda tidak dapat mengirim pesan pada saat akun Anda sedang di-silence, di-restrict, atau di-ban.',
+        'annnonce_only' => 'Kanal ini hanya dikhususkan untuk pengumuman.',
+        'blocked' => 'Pesan tidak dapat dikirim kepada pengguna yang kamu blokir atau memblokir dirimu.',
+        'friends_only' => 'Pengguna memblokir pesan dari orang yang tidak dalam daftar temannya.',
+        'moderated' => 'Kanal percakapan ini sedang dimoderasi.',
+        'no_access' => 'Kamu tidak memiliki akses ke kanal percakapan ini.',
+        'receive_friends_only' => 'Pengguna ini tidak akan dapat membalas pesanmu karena kamu hanya menerima pesan dari nama-nama yang tertera pada daftar temanmu.',
+        'restricted' => 'Kamu tidak dapat mengirim pesan pada saat akunmu sedang di-silence, di-restrict, atau di-ban.',
+        'silenced' => 'Kamu tidak dapat mengirim pesan pada saat akunmu sedang di-silence, di-restrict, atau di-ban.',
     ],
 
     'comment' => [
+        'store' => [
+            'disabled' => 'Komentar dinonaktifkan',
+        ],
         'update' => [
             'deleted' => "Tidak dapat menyunting post yang telah dihapus.",
         ],
@@ -81,8 +84,8 @@ return [
         'voting_over' => 'Anda tidak dapat mengubah pilihan Anda setelah periode pemungutan suara untuk kontes ini telah berakhir.',
 
         'entry' => [
-            'limit_reached' => 'Anda telah mencapai batas entri untuk kontes ini',
-            'over' => 'Terima kasih telah mengirimkan entri Anda! Meskipun demikian, dengan sangat menyesal kami harus memberi tahu Anda bahwa tahapan penyerahan entri untuk kontes ini telah berakhir. Mohon maaf sebelumnya!',
+            'limit_reached' => 'Kamu telah mencapai batas entri untuk kontes ini',
+            'over' => 'Terima kasih telah mengirimkan entrimu! Submisi untuk kontes ini telah ditutup dan pemungutan suara akan segera berlangsung.',
         ],
     ],
 
@@ -95,59 +98,59 @@ return [
             'delete' => [
                 'only_last_post' => 'Hanya kiriman terakhir yang dapat dihapus.',
                 'locked' => 'Tidak dapat menghapus kiriman di topik yang telah dikunci.',
-                'no_forum_access' => 'Anda tidak memiliki akses ke forum yang ingin Anda tuju.',
+                'no_forum_access' => 'Kamu tidak memiliki akses ke forum yang dituju.',
                 'not_owner' => 'Hanya pemilik topik yang dapat menghapus kiriman.',
             ],
 
             'edit' => [
                 'deleted' => 'Tidak dapat menyunting postingan yang telah dihapus.',
                 'locked' => 'Topik telah dikunci, sehingga penyuntingan kiriman tidak lagi dapat dilakukan.',
-                'no_forum_access' => 'Anda tidak memiliki akses ke forum yang ingin Anda tuju.',
+                'no_forum_access' => 'Kamu tidak memiliki akses ke forum yang dituju.',
                 'not_owner' => 'Hanya pemilik topik yang dapat menyunting kiriman.',
                 'topic_locked' => 'Tidak dapat menyunting kiriman di topik yang telah dikunci.',
             ],
 
             'store' => [
-                'play_more' => 'Anda harus memainkan beberapa beatmap dahulu sebelum Anda dapat memposting di forum! Jika Anda memiliki permasalahan yang terkait dengan permainan, silakan kunjungi forum Help & Support.',
-                'too_many_help_posts' => "Anda harus memainkan lebih banyak beatmap sebelum Anda dapat membuat postingan tambahan. Jika Anda masih membutuhkan bantuan lebih lanjut, silakan mengirimkan email ke support@ppy.sh", // FIXME: unhardcode email address.
+                'play_more' => 'Kamu harus terlebih dahulu bermain sebelum kamu dapat membuat postingan pada forum! Apabila kamu mengalami masalah saat bermain, silakan kunjungi forum Help & Support.',
+                'too_many_help_posts' => "Kamu harus lebih banyak bermain sebelum kamu dapat membuat postingan tambahan. Apabila kamu masih memerlukan bantuan lebih lanjut, silakan kirim email ke support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Mohon sunting postingan terakhir Anda ketimbang memposting kembali.',
+                'double_post' => 'Mohon sunting postingan terakhirmu alih-alih membuat postingan baru.',
                 'locked' => 'Tidak dapat mengirimkan balasan pada topik yang telah dikunci.',
-                'no_forum_access' => 'Anda tidak memiliki akses ke forum yang ingin Anda tuju.',
+                'no_forum_access' => 'Kamu tidak memiliki akses ke forum yang dituju.',
                 'no_permission' => 'Tidak memiliki izin untuk membalas.',
 
                 'user' => [
                     'require_login' => 'Silakan masuk untuk membalas.',
-                    'restricted' => "Anda tidak dapat mengirimkan balasan ketika akun Anda sedang di-restrict.",
-                    'silenced' => "Anda tidak dapat mengirimkan balasan ketika akun Anda sedang di-silence.",
+                    'restricted' => "Kamu tidak dapat mengirimkan balasan ketika akunmu sedang di-restrict.",
+                    'silenced' => "Kamu tidak dapat mengirimkan balasan ketika akunmu sedang di-silence.",
                 ],
             ],
 
             'store' => [
-                'no_forum_access' => 'Anda tidak memiliki akses ke forum yang ingin Anda tuju.',
+                'no_forum_access' => 'Kamu tidak memiliki akses ke forum yang dituju.',
                 'no_permission' => 'Tidak memiliki izin untuk membuat topik baru.',
                 'forum_closed' => 'Forum ditutup sehingga tidak dapat membuat postingan.',
             ],
 
             'vote' => [
-                'no_forum_access' => 'Akses ke forum yang diminta diperlukan.',
+                'no_forum_access' => 'Kamu tidak memiliki akses ke forum yang dituju.',
                 'over' => 'Polling selesai dan tidak dapat dipilih lagi.',
-                'play_more' => 'Anda harus bermain lebih banyak untuk dapat memberikan suara pada forum.',
+                'play_more' => 'Kamu harus lebih banyak bermain sebelum kamu dapat memberikan suara pada forum.',
                 'voted' => 'Pengubahan suara tidak diizinkan.',
 
                 'user' => [
                     'require_login' => 'Silakan masuk untuk memberikan suara.',
-                    'restricted' => "Anda tidak dapat memberikan suara ketika akun Anda sedang di-restrict.",
+                    'restricted' => "Kamu tidak dapat memberikan suara ketika akunmu sedang di-restrict.",
                     'silenced' => "Tidak dapat memberikan suara saat di-silence.",
                 ],
             ],
 
             'watch' => [
-                'no_forum_access' => 'Anda tidak memiliki akses ke forum yang ingin Anda tuju.',
+                'no_forum_access' => 'Kamu tidak memiliki akses ke forum yang dituju.',
             ],
         ],
 
@@ -166,6 +169,14 @@ return [
         ],
     ],
 
+    'score' => [
+        'pin' => [
+            'disabled_type' => "Tipe skor ini tidak dapat disematkan",
+            'not_owner' => 'Hanya pemilik skor yang dapat menyematkan skor.',
+            'too_many' => 'Skor yang disematkan sudah terlalu banyak.',
+        ],
+    ],
+
     'user' => [
         'page' => [
             'edit' => [
@@ -173,6 +184,9 @@ return [
                 'not_owner' => 'Hanya dapat menyunting laman pengguna sendiri.',
                 'require_supporter_tag' => 'osu!supporter tag diperlukan.',
             ],
+        ],
+        'update_email' => [
+            'locked' => '',
         ],
     ],
 ];

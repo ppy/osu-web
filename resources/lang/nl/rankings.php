@@ -17,23 +17,38 @@ return [
         ],
     ],
 
+    'kudosu' => [
+        'total' => '',
+        'available' => '',
+        'used' => '',
+    ],
+
     'type' => [
-        'charts' => 'In de schijnwerpers',
-        'country' => 'Landelijk',
+        'charts' => 'in de schijnwerpers',
+        'country' => 'landelijk',
+        'kudosu' => '',
         'multiplayer' => 'multiplayer',
-        'performance' => 'Prestatie',
-        'score' => 'Score',
+        'performance' => 'prestatie',
+        'score' => 'score',
+        'seasons' => 'seizoenen',
+    ],
+
+    'seasons' => [
+        'empty' => 'Er zijn nog geen ruimtes in dit seizoen.',
+        'ongoing' => 'Dit seizoen is nog steeds gaande (er zullen meer afspeellijsten toegevoegd worden).',
+        'room_count' => 'Aantal afspeellijsten',
+        'url' => 'Geef meer informatie weer over dat seizoen.',
     ],
 
     'spotlight' => [
-        'end_date' => 'Eind Datum',
+        'end_date' => 'Einddatum',
         'map_count' => 'Map Aantal',
         'participants' => 'Deelnemers',
-        'start_date' => 'Start Datum',
+        'start_date' => 'Startdatum',
     ],
 
     'stat' => [
-        'accuracy' => 'Precisie',
+        'accuracy' => 'Nauwkeurigheid',
         'active_users' => 'Actieve gebruikers',
         'country' => 'Land',
         'play_count' => 'Aantal keer gespeeld',

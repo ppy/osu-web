@@ -5,11 +5,13 @@
 
 namespace App\Models;
 
+use App\Exceptions\InvariantException;
 use App\Traits\Memoizes;
 use App\Transformers\ContestEntryTransformer;
 use App\Transformers\ContestTransformer;
 use App\Transformers\UserContestEntryTransformer;
 use Cache;
+use Exception;
 
 /**
  * @property \Carbon\Carbon|null $created_at
@@ -40,10 +42,13 @@ class Contest extends Model
 {
     use Memoizes;
 
-    protected $dates = ['entry_starts_at', 'entry_ends_at', 'voting_starts_at', 'voting_ends_at'];
     protected $casts = [
+        'entry_ends_at' => 'datetime',
+        'entry_starts_at' => 'datetime',
         'extra_options' => 'array',
         'visible' => 'boolean',
+        'voting_ends_at' => 'datetime',
+        'voting_starts_at' => 'datetime',
     ];
 
     public function entries()
@@ -61,9 +66,52 @@ class Contest extends Model
         return $this->hasMany(ContestVote::class);
     }
 
-    public function isBestOf()
+    public function assertVoteRequirement(?User $user): void
+    {
+        $requirement = $this->getExtraOptions()['requirement'] ?? null;
+
+        if ($requirement === null) {
+            return;
+        }
+
+        if ($user === null) {
+            throw new InvariantException(osu_trans('authorization.require_login'));
+        }
+
+        switch ($requirement['name']) {
+            // requires playing (and optionally passing) all the beatmapsets in the specified room ids
+            case 'playlist_beatmapsets':
+                $roomIds = $requirement['room_ids'];
+                $mustPass = $requirement['must_pass'] ?? true;
+                $beatmapIdsQuery = Multiplayer\PlaylistItem::whereIn('room_id', $roomIds)->select('beatmap_id');
+                $requiredBeatmapsetCount = Beatmap::whereIn('beatmap_id', $beatmapIdsQuery)->distinct('beatmapset_id')->count();
+                $playedBeatmapIdsQuery = Multiplayer\Score
+                    ::whereIn('room_id', $roomIds)
+                    ->where(['user_id' => $user->getKey()])
+                    ->completed()
+                    ->select('beatmap_id');
+                if ($mustPass) {
+                    $playedBeatmapIdsQuery->where('passed', true);
+                }
+                $playedBeatmapsetCount = Beatmap::whereIn('beatmap_id', $playedBeatmapIdsQuery)->distinct('beatmapset_id')->count();
+
+                if ($playedBeatmapsetCount !== $requiredBeatmapsetCount) {
+                    throw new InvariantException(osu_trans('contest.voting.requirement.playlist_beatmapsets.incomplete_play'));
+                }
+                break;
+            default:
+                throw new Exception('unknown requirement');
+        }
+    }
+
+    public function isBestOf(): bool
     {
         return isset($this->getExtraOptions()['best_of']);
+    }
+
+    public function isSubmittedBeatmaps(): bool
+    {
+        return $this->isBestOf() || ($this->getExtraOptions()['submitted_beatmaps'] ?? false);
     }
 
     public function isSubmissionOpen()
@@ -182,6 +230,7 @@ class Contest extends Model
         if ($vote->exists()) {
             $vote->delete();
         } else {
+            $this->assertVoteRequirement($user);
             // there's probably a race-condition here, but abusing this just results in the user diluting their vote... so *shrug*
             if ($this->votes()->where('user_id', $user->user_id)->count() < $this->max_votes) {
                 $this->votes()->create(['user_id' => $user->user_id, 'contest_entry_id' => $entry->id]);
@@ -240,17 +289,25 @@ class Contest extends Model
             $includes[] = 'artMeta';
         }
 
-        if ($this->show_votes) {
+        $showVotes = $this->show_votes;
+        if ($showVotes) {
             $includes[] = 'results';
         }
+        if ($this->showEntryUser()) {
+            $includes[] = 'user';
+        }
 
-        $contestJson = json_item($this, new ContestTransformer());
+        $contestJson = json_item(
+            $this,
+            new ContestTransformer(),
+            $showVotes ? ['users_voted_count'] : null,
+        );
         if ($this->isVotingStarted()) {
             $contestJson['entries'] = json_collection($this->entriesByType($user), new ContestEntryTransformer(), $includes);
         }
 
         if (!empty($contestJson['entries'])) {
-            if (!$this->show_votes) {
+            if (!$showVotes) {
                 if ($this->unmasked) {
                     // For unmasked contests, we sort alphabetically.
                     usort($contestJson['entries'], function ($a, $b) {
@@ -297,6 +354,15 @@ class Contest extends Model
         );
     }
 
+    public function usersVotedCount(): int
+    {
+        return cache()->remember(
+            static::class.':'.__FUNCTION__.':'.$this->getKey(),
+            300,
+            fn () => $this->votes()->distinct('user_id')->count(),
+        );
+    }
+
     public function url()
     {
         return route('contests.show', $this->id);
@@ -313,5 +379,20 @@ class Contest extends Model
         return $this->memoize(__FUNCTION__, function () {
             return $this->extra_options;
         });
+    }
+
+    public function getForcedWidth()
+    {
+        return $this->getExtraOptions()['forced_width'] ?? null;
+    }
+
+    public function getForcedHeight()
+    {
+        return $this->getExtraOptions()['forced_height'] ?? null;
+    }
+
+    public function showEntryUser(): bool
+    {
+        return $this->show_votes || ($this->getExtraOptions()['show_entry_user'] ?? false);
     }
 }

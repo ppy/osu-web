@@ -4,10 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'admin' => [
-        'warehouse' => 'Armazém',
-    ],
-
     'cart' => [
         'checkout' => 'Pagamento',
         'info' => ':count_delimited artigo no carrinho ($:subtotal)|:count_delimited artigos no carrinho ($:subtotal)',
@@ -24,8 +20,8 @@ return [
         'empty' => [
             'text' => 'O teu carrinho está vazio.',
             'return_link' => [
-                '_' => 'Volta ao :link para encontrar brindes!',
-                'link_text' => 'listagem da loja',
+                '_' => 'Regressa ao :link para descobrires coisas fixolas!',
+                'link_text' => 'catálogo da loja',
             ],
         ],
     ],
@@ -35,6 +31,7 @@ return [
         'cart_problems_edit' => 'Clica aqui para editá-lo.',
         'declined' => 'O pagamento foi cancelado.',
         'delayed_shipping' => 'Nós estamos atualmente sobrecarregados com encomendas! Podes realizar o teu pedido, mas por favor espera aguardar **1-2 semanas** enquanto nos pomos a par dos pedidos existentes.',
+        'hide_from_activity' => 'Ocultar todas as etiquetas osu!supporter nesta ordem da minha atividade',
         'old_cart' => 'O teu carrinho parece que está fora de prazo e foi recarregado, por favor tenta outra vez.',
         'pay' => 'Pagar com Paypal',
         'title_compact' => 'pagamento',
@@ -54,6 +51,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Como o teu pagamento era um eCheck, por favor permite até 10 dias extras para o pagamento ser autorizado através do PayPal!',
+        'hide_from_activity' => 'As etiquetas osu!supporter nesta ordem não estão visíveis nas tuas atividades recentes.',
         'title_compact' => 'fatura',
 
         'status' => [
@@ -79,10 +77,15 @@ return [
         'shopify_expired' => 'O link de pagamento para este pedido expirou.',
 
         'item' => [
+            'quantity' => 'Quantidade',
+
             'display_name' => [
                 'supporter_tag' => ':name para :username (:duration)',
             ],
-            'quantity' => 'Quantidade',
+
+            'subtext' => [
+                'supporter_tag' => 'Mensagem: :message',
+            ],
         ],
 
         'not_modifiable_exception' => [
@@ -110,7 +113,7 @@ return [
 
         'stock' => [
             'out' => 'Este artigo está esgotado atualmente. Volta mais tarde!',
-            'out_with_alternative' => 'Infelizmente este artigo está fora de stock. Usa a opção de colapsar para escolher um tipo diferente ou volta mais tarde!',
+            'out_with_alternative' => 'Infelizmente este artigo está fora de stock. Usa a opção acima para escolher um tipo diferente ou volta mais tarde!',
         ],
 
         'add_to_cart' => 'Adicionar ao carrinho',
@@ -124,8 +127,10 @@ return [
 
     'supporter_tag' => [
         'gift' => 'oferecer ao jogador',
+        'gift_message' => 'junta uma mensagem opcional ao teu presente! (até :length caracteres)',
+
         'require_login' => [
-            '_' => 'Precisas de ser :link para arranjar uma etiqueta osu!supporter!',
+            '_' => 'Precisas de ter :link para obter uma etiqueta osu!supporter!',
             'link_text' => 'sessão iniciada',
         ],
     ],
@@ -134,7 +139,7 @@ return [
         'check' => 'Introduz um nome de utilizador para confirmar disponibilidade!',
         'checking' => 'A confirmar disponibilidade de :username...',
         'require_login' => [
-            '_' => 'Precisas de ser :link para mudares o teu nome!',
+            '_' => 'Precisas de ter :link para mudares o teu nome!',
             'link_text' => 'sessão iniciada',
         ],
     ],

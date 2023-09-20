@@ -16,7 +16,7 @@ class StoreCleanupStaleOrders extends Command
 
     public function handle()
     {
-        $count = Order::processing()->stale()->update(['status' => 'cancelled']);
+        $count = Order::paymentRequested()->stale()->update(['status' => Order::STATUS_CANCELLED]);
 
         $this->line("Cancelled {$count} stale orders.");
     }

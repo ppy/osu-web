@@ -17,7 +17,9 @@ return [
         'identify' => 'Identificeer je en lees je openbare profiel.',
 
         'chat' => [
+            'read' => '',
             'write' => 'Berichten namens jou verzenden.',
+            'write_manage' => '',
         ],
 
         'forum' => [

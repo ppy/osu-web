@@ -43,6 +43,7 @@ return [
             'label' => [
                 'forum' => 'tìm trong diễn đần',
                 'forum_children' => 'bao gồm diễn đàn con',
+                'include_deleted' => 'bao gồm các bài đăng bị xoá',
                 'topic_id' => '# chủ đề',
                 'username' => 'người đăng',
             ],
@@ -72,12 +73,26 @@ return [
     ],
 
     'download' => [
-        'tagline' => "hãy<br>bắt đầu!",
         'action' => 'Tải xuống osu!',
+        'action_lazer' => 'Tải xuông osu!(lazer)',
+        'action_lazer_description' => 'bản cập nhật lớn tiếp theo của osu!',
+        'action_lazer_info' => 'nhấp vào đây để biết thêm thông tin',
+        'action_lazer_title' => 'thử osu!(lazer)',
+        'action_title' => 'tải xuống osu!',
+        'for_os' => 'dành cho :os',
+        'lazer_note' => 'ghi chú: bảng xêp hạng có thể được đặt lại',
+        'macos-fallback' => 'người dùng macOS',
+        'mirror' => 'liên kết phụ',
+        'or' => 'hoặc',
+        'os_version_or_later' => ':os_version trở lên',
+        'other_os' => 'nền tảng khác',
+        'quick_start_guide' => 'hướng dẫn nhanh',
+        'tagline' => "hãy<br>bắt đầu!",
+        'video-guide' => 'hướng dẫn bằng video',
 
         'help' => [
             '_' => 'nếu bạn gặp vấn đề khi bắt đầu game hoặc tạo tài khoản, :help_forum_link hoặc :support_button.',
-            'help_forum_link' => '',
+            'help_forum_link' => 'kiểm tra diễn đàng trợ giúp',
             'support_button' => 'liên hệ hỗ trợ',
         ],
 
@@ -86,8 +101,6 @@ return [
             'macos' => 'cho macOS',
             'linux' => 'cho Linux',
         ],
-        'mirror' => 'liên kết phụ',
-        'macos-fallback' => 'người dùng macOS',
         'steps' => [
             'register' => [
                 'title' => 'tạo tài khoản',
@@ -105,7 +118,6 @@ return [
                 ],
             ],
         ],
-        'video-guide' => 'hướng dẫn bằng video',
     ],
 
     'user' => [
@@ -131,16 +143,5 @@ return [
             'support' => 'Ủng Hộ osu!',
             'store' => 'osu!store',
         ],
-    ],
-
-    'support-osu' => [
-        'title' => 'Wow!',
-        'subtitle' => 'Dường như bạn đang có một khoảng thời gian vui vẻ! :D',
-        'body' => [
-            'part-1' => 'Bạn có biết rằng osu! không được vận hành dựa vào lợi nhuận quảng cáo, mà dựa vào sự ủng hộ của người chơi để hỗ trợ sự phát triển và chi phí hoạt động?',
-            'part-2' => 'Bạn có biết rằng bằng cách hỗ trợ osu! bạn sẽ nhận được hàng tá các tính năng hữu ích, chẳng hạn như <strong>tải xuống beatmap ngay trong game</strong> khi bạn theo dõi người chơi khác và trong chế độ multiplayer?',
-        ],
-        'find-out-more' => 'Nhấp vào đây để tìm hiểu thêm!',
-        'download-starting' => "Ồ, và đừng lo lắng - quá trình tải xuống đã được bắt đầu cho bạn rồi ;)",
     ],
 ];

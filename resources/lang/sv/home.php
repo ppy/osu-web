@@ -6,14 +6,14 @@
 return [
     'landing' => [
         'download' => 'Ladda ner nu',
-        'online' => '<strong>:players</strong> spelare online i <strong>:games</strong> spel',
+        'online' => '<strong>:players</strong> spelare online i <strong>:games</strong> matcher',
         'peak' => 'Som högst, :count spelare online',
         'players' => '<strong>:count</strong> registrerade spelare',
         'title' => 'välkommen',
         'see_more_news' => 'se fler nyheter',
 
         'slogan' => [
-            'main' => 'det bästaste gratis-att-vinna rytmspelet',
+            'main' => 'det bästaste gratis-att-vinna-rytmspelet',
             'sub' => 'rytmen är bara ett klick bort',
         ],
     ],
@@ -22,12 +22,12 @@ return [
         'advanced_link' => 'Avancerad sökning',
         'button' => 'Sök',
         'empty_result' => 'Ingenting hittades!',
-        'keyword_required' => 'Ett sökord krävs',
+        'keyword_required' => 'En sökterm krävs',
         'placeholder' => 'skriv för att söka',
-        'title' => 'Sök',
+        'title' => 'sök',
 
         'beatmapset' => [
-            'login_required' => 'Logga in för att söka beatmaps',
+            'login_required' => 'Logga in för att söka efter beatmaps',
             'more' => ':count fler sökresultat på beatmaps',
             'more_simple' => 'Se fler sökresultat på beatmaps',
             'title' => 'Beatmaps',
@@ -43,6 +43,7 @@ return [
             'label' => [
                 'forum' => 'sök i forumen',
                 'forum_children' => 'inkludera subforum',
+                'include_deleted' => 'inkludera raderade inlägg',
                 'topic_id' => 'ämne #',
                 'username' => 'författare',
             ],
@@ -57,7 +58,7 @@ return [
         ],
 
         'user' => [
-            'login_required' => 'Logga in för att söka användare',
+            'login_required' => 'Logga in för att söka efter användare',
             'more' => ':count fler sökresultat på spelare',
             'more_simple' => 'Se fler sökresultat på spelare',
             'more_hidden' => 'Sökning på spelare är begränsad till :max spelare. Försök att förfina sökningen.',
@@ -72,12 +73,26 @@ return [
     ],
 
     'download' => [
-        'tagline' => "låt oss<br>få dig igång!",
         'action' => 'Ladda ner osu!',
+        'action_lazer' => 'Ladda ner osu!(lazer)',
+        'action_lazer_description' => 'den nästa stora uppdateringen till osu!',
+        'action_lazer_info' => 'se denna sida för mer information',
+        'action_lazer_title' => 'pröva osu!(lazer)',
+        'action_title' => 'installera osu!',
+        'for_os' => 'för :os',
+        'lazer_note' => 'obs. rankningsliståterställningar tillämpas',
+        'macos-fallback' => 'macOS-användare',
+        'mirror' => 'mirror',
+        'or' => 'eller',
+        'os_version_or_later' => ':os_version eller senare',
+        'other_os' => 'andra plattformar',
+        'quick_start_guide' => 'snabbstartsguide',
+        'tagline' => "låt oss<br>få dig igång!",
+        'video-guide' => 'videoguide',
 
         'help' => [
-            '_' => 'om du har problem med att starta spelet eller registrera dig för konto, :help_forum_link eller :support_button.',
-            'help_forum_link' => '',
+            '_' => 'om du har problem med att starta spelet eller registrera ett konto, :help_forum_link eller :support_button.',
+            'help_forum_link' => 'se hjälpforumet',
             'support_button' => 'kontakta support',
         ],
 
@@ -86,16 +101,14 @@ return [
             'macos' => 'för macOS',
             'linux' => 'för Linux',
         ],
-        'mirror' => 'spegel',
-        'macos-fallback' => 'macOS användare',
         'steps' => [
             'register' => [
                 'title' => 'skaffa ett konto',
-                'description' => 'följ anvisningarna när du startar spelet för att logga in eller skapa ett nytt konto',
+                'description' => 'följ instruktionerna när du startar spelet för att logga in eller skapa ett nytt konto',
             ],
             'download' => [
-                'title' => 'ladda ner spelet',
-                'description' => 'klicka på knappen ovan för att ladda ner installeraren, sedan kör du den!',
+                'title' => 'installera spelet',
+                'description' => 'klicka på knappen ovan för att ladda ner installationsprogrammet, sedan kör du det!',
             ],
             'beatmaps' => [
                 'title' => 'skaffa beatmaps',
@@ -105,7 +118,6 @@ return [
                 ],
             ],
         ],
-        'video-guide' => 'videoguide',
     ],
 
     'user' => [
@@ -116,14 +128,14 @@ return [
         ],
         'header' => [
             'stats' => [
-                'friends' => 'Vänner Online',
+                'friends' => 'Vänner online',
                 'games' => 'Spel',
-                'online' => 'Användare Online',
+                'online' => 'Användare online',
             ],
         ],
         'beatmaps' => [
-            'new' => 'Nya Rankade Beatmaps',
-            'popular' => 'Populära Beatmaps',
+            'new' => 'Nya rankade beatmaps',
+            'popular' => 'Populära beatmaps',
             'by_user' => 'av :user',
         ],
         'buttons' => [
@@ -131,16 +143,5 @@ return [
             'support' => 'Stötta osu!',
             'store' => 'osu!store',
         ],
-    ],
-
-    'support-osu' => [
-        'title' => 'Wow!',
-        'subtitle' => 'Det ser ut som att du har kul! :D',
-        'body' => [
-            'part-1' => 'Visste du att osu! körs utan annonser, och förlitar sig på spelare som stöttar utvecklingen och kostnader för underhåll?',
-            'part-2' => 'Visste du också att när du stöttar osu! så kommer du få en hög med användbara funktioner, som <strong>nedladdning i spelet</strong> vilket automatiskt sätts igång när du är åskådare eller spelar med andra?',
-        ],
-        'find-out-more' => 'Klicka här för att ta reda på mer!',
-        'download-starting' => "Åh, och oroa dig inte - din nedladdning har redan startas åt dig ;)",
     ],
 ];

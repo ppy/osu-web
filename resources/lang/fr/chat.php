@@ -4,32 +4,60 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'talking_in' => 'parle dans :channel',
-    'talking_with' => 'parle avec :name',
+    'loading_users' => 'chargement des utilisateurs...',
+    'talking_in' => 'parler dans :channel',
+    'talking_with' => 'parler avec :name',
     'title_compact' => 'tchat',
+    'unread_messages' => 'messages non lus',
 
     'cannot_send' => [
         'channel' => 'Vous ne pouvez pas envoyer de messages dans ce canal pour le moment. Cela peut être dû à une des raisons suivantes :',
-        'user' => 'Vous ne pouvez pas envoyer de messages à cet utilisateur pour le moment. Cela peut être dû à une des raisons suivantes :',
-        'reasons' => [
-            'blocked' => 'Vous avez été bloqué par le destinataire',
-            'channel_moderated' => 'Ce canal a été modéré',
-            'friends_only' => 'Le destinaire accepte uniquement les messages provenant de personnes sur sa liste d’amis',
-            'not_enough_plays' => 'Vous n\'avez pas assez joué au jeu',
-            'not_verified' => 'Votre session n\'a pas été vérifiée',
-            'restricted' => 'Vous êtes actuellement restreint',
-            'silenced' => 'Vous êtes actuellement réduit au silence',
-            'target_restricted' => 'Le destinataire est actuellement restreint',
+        'user' => 'Vous ne pouvez pas envoyer de messages à cet utilisateur pour le moment.',
+    ],
+
+    'channels' => [
+        'confirm_part' => 'Voulez-vous masquer ce canal ? Vous recevrez toujours des messages de ce canal.',
+        'create' => 'créer une annonce',
+
+        'list' => [
+            'title' => [
+                'ANNOUNCE' => 'Annonces',
+                'GROUP' => 'Groupes',
+                'PM' => 'Messages directs',
+                'PUBLIC' => 'Canaux',
+            ],
         ],
     ],
+
+    'form' => [
+        'title' => [
+            'announcement' => 'Créer une Nouvelle Annonce',
+        ],
+
+        'labels' => [
+            'description' => 'description',
+            'message' => 'message',
+            'name' => 'nom du salon',
+            'users' => 'joueurs à ajouter',
+        ],
+    ],
+
+    'not_found' => [
+        'message' => 'Il n\'y a rien ici, vous avez peut-être quitté le canal ou alors il n\'existe pas...',
+        'title' => 'canal introuvable',
+    ],
+
     'input' => [
-        'disabled' => 'impossible d’envoyer le message...',
-        'placeholder' => 'saisissez le message...',
+        'create' => 'Créer',
+        'disabled' => 'impossible d\'envoyer un message...',
+        'disconnected' => 'Déconnecté',
+        'placeholder' => 'saisissez votre message...',
         'send' => 'Envoyer',
     ],
+
     'no-conversations' => [
-        'howto' => "Démarrer des conversations depuis un profil utilisateur ou un popup carte utilisateur.",
-        'lazer' => 'Les canaux publics que vous rejoignez via <a href=":link">osu!lazer</a> seront aussi visibles ici.',
+        'howto' => "Commencez à discuter depuis un profil utilisateur ou un popup de carte utilisateur.",
+        'lazer' => 'Les salons de discussion que vous rejoignez via <a href=":link">osu!lazer</a> seront aussi visibles ici.',
         'title' => 'aucune conversation',
     ],
 ];

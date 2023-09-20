@@ -31,6 +31,12 @@ return [
         'progress' => [
             '_' => ':used \ :max اصوات مستخدمة',
         ],
+
+        'requirement' => [
+            'playlist_beatmapsets' => [
+                'incomplete_play' => 'يجب لعب جميع الخرائط في قوائم التشغيل المحددة قبل التصويت',
+            ],
+        ],
     ],
     'entry' => [
         '_' => 'مشاركة',
@@ -44,6 +50,7 @@ return [
             'beatmap' => 'تُقبل ملفات .osu فقط لهذه المسابقة.',
             'music' => 'تُقبل ملفات .mp3 فقط لهذه المسابقة.',
         ],
+        'wrong_dimensions' => 'مشاركات هذه المسابقة يجب ان تكون :widthx:height',
         'too_big' => 'مشاركات هذه المسابقة يمكن ان تصل الى :limit.',
     ],
     'beatmaps' => [

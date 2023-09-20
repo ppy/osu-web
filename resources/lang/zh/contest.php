@@ -16,7 +16,7 @@ return [
     'voting' => [
         'login_required' => '请登录后再投票.',
         'over' => '这场评选的投票已经结束',
-        'show_voted_only' => '显示投票',
+        'show_voted_only' => '仅显示已投票的',
 
         'best_of' => [
             'none_played' => "没有符合此次评选条件的谱面！",
@@ -31,19 +31,26 @@ return [
         'progress' => [
             '_' => ':used / :max 票已用',
         ],
+
+        'requirement' => [
+            'playlist_beatmapsets' => [
+                'incomplete_play' => '必须完成指定歌单中的所有谱面后才能投票',
+            ],
+        ],
     ],
     'entry' => [
         '_' => '列表',
         'login_required' => '请登录后再参加评选。',
-        'silenced_or_restricted' => '账户受限时无法参加评选。',
+        'silenced_or_restricted' => '账户受限或禁言时无法参加评选。',
         'preparation' => '我们正在准备这场评选，请耐心等待！',
         'drop_here' => '将您的参赛文件拖到此处',
-        'download' => '下载 .osz',
+        'download' => '下载 .osz 文件',
         'wrong_type' => [
             'art' => '只接受 .jpg 和 .png 格式的文件.',
             'beatmap' => '只接受 .osu 格式的文件.',
             'music' => '只接受 .mp3 格式的文件.',
         ],
+        'wrong_dimensions' => '参与竞赛的数量必须达到 :widthx:height',
         'too_big' => '参赛文件的大小不能超过 :limit.',
     ],
     'beatmaps' => [
@@ -51,16 +58,17 @@ return [
     ],
     'vote' => [
         'list' => '票数',
-        'count' => ':count 票',
-        'points' => ':count 分',
+        'count' => ':count_delimited 票',
+        'points' => ':count_delimited 分',
     ],
     'dates' => [
-        'ended' => '结束于 :date',
+        'ended' => ':date 结束',
         'ended_no_date' => '已结束',
 
         'starts' => [
-            '_' => '开始于 :date',
-            'soon' => '不久之后',
+            '_' => ':date 开始',
+            'soon' => '敬请期待™
+',
         ],
     ],
     'states' => [

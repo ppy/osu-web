@@ -41,6 +41,10 @@
             'url' => route('store.orders.index'),
         ],
     ];
+
+    $showPendingCheckout = $currentNav !== 'cart'
+        && App\Models\Store\Order::pendingForUser(auth()->user())?->exists()
+        ?? false;
 @endphp
 
 @component('layout._page_header_v4', ['params' => [
@@ -56,7 +60,7 @@
         </div>
     @endslot
 
-    @slot('navAppend')
+    @slot('linksAppend')
         @if(isset($cart) && $cart && $cart->items()->exists())
             <a href="{{ route('store.cart.show') }}" class="btn-osu-big btn-osu-big--store-cart">
                 <span class="btn-osu-big__content">
@@ -86,7 +90,7 @@
 
     {{-- TODO: make nicer --}}
     {{-- Show message if there is a pending checkout and not currently on a checkout page --}}
-    @if(isset($pendingCheckout) && optional(request()->route())->getName() !== 'store.checkout.show')
+    @if($showPendingCheckout)
         @php
             $pendingCheckoutLink = Html::link(
                 route('store.orders.index', ['type' => 'processing']),

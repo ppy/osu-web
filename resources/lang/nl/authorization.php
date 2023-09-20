@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'play_more' => 'Wat dacht je anders van osu! ?',
+    'play_more' => 'Misschien eerst wat osu! spelen?',
     'require_login' => 'Log in om verder te gaan.',
     'require_verification' => 'Gelieve te verifiëren om verder te gaan.',
     'restricted' => "Je kan dit niet doen terwijl je restricted bent.",
@@ -50,28 +50,31 @@ return [
             'resolved' => 'U kunt geen bericht van een opgeloste discussie bewerken.',
             'system_generated' => 'Automatisch gegenereerde posts kunnen niet worden bewerkt.',
         ],
-
-        'store' => [
-            'beatmapset_locked' => 'Deze beatmap is vergrendeld voor discussie.',
-        ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => 'Deze beatmap is gesloten voor discussie.',
+
         'metadata' => [
             'nominated' => 'U kunt metagegevens van een nominale kaart niet wijzigen. Neem contact op met een BN of NAT lid als u denkt dat deze onjuist is ingesteld.',
         ],
     ],
 
     'chat' => [
+        'annnonce_only' => 'Dit kanaal is enkel voor aankondigingen bestemd.',
         'blocked' => 'Kan geen bericht versturen naar een gebruiker die jou blokkeert of die jij geblokkeerd hebt.',
         'friends_only' => 'Gebruiker blokkeert berichten van mensen die niet op de vriendenlijst staan.',
         'moderated' => 'Dat kanaal wordt op dit moment gemodereerd.',
         'no_access' => 'Je hebt geen toegang tot dat kanaal.',
+        'receive_friends_only' => 'Het is mogelijk dat de gebruiker niet zal kunnen antwoorden omdat je enkel berichten van mensen op je vriendenlijst aanvaardt.',
         'restricted' => 'Je kunt geen berichten versturen wanneer je het zwijgen is opgelegd, wanneer je bent beperkt of verbannen.',
         'silenced' => 'Je kunt geen berichten verzenden als je op stil staat, bent beperkt of bent verbannen.',
     ],
 
     'comment' => [
+        'store' => [
+            'disabled' => 'Reacties zijn uitgeschakeld',
+        ],
         'update' => [
             'deleted' => "Je kunt geen verwijderde berichten bewerken.",
         ],
@@ -166,6 +169,14 @@ return [
         ],
     ],
 
+    'score' => [
+        'pin' => [
+            'disabled_type' => "",
+            'not_owner' => 'Enkel de eigenaar van de score kan deze vastzetten.',
+            'too_many' => 'Te veel scores vastgezet.',
+        ],
+    ],
+
     'user' => [
         'page' => [
             'edit' => [
@@ -173,6 +184,9 @@ return [
                 'not_owner' => 'Je kan alleen je eigen gebruikerspagina bewerken.',
                 'require_supporter_tag' => 'osu!supporter tag is vereist.',
             ],
+        ],
+        'update_email' => [
+            'locked' => '',
         ],
     ],
 ];

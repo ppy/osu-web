@@ -31,6 +31,12 @@ return [
         'progress' => [
             '_' => ':used / :max 已使用票數',
         ],
+
+        'requirement' => [
+            'playlist_beatmapsets' => [
+                'incomplete_play' => '在玩過指定音樂清單中的所有圖譜後您才能進行投票',
+            ],
+        ],
     ],
     'entry' => [
         '_' => '參加',
@@ -44,6 +50,7 @@ return [
             'beatmap' => '只接受 .osu 格式的文件.',
             'music' => '只接受 .mp3 格式的文件.',
         ],
+        'wrong_dimensions' => '參加競賽的數量必須達到 :widthx:height',
         'too_big' => '參賽文件的大小不能超過 :limit.',
     ],
     'beatmaps' => [

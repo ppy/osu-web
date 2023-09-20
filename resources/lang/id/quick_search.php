@@ -13,8 +13,8 @@ return [
     ],
 
     'result' => [
-        'empty' => 'Hasil tidak ditemukan',
-        'empty_for' => 'Tidak menemukan hasil untuk pencarian :modes',
+        'empty' => 'Tidak ada hasil yang ditemukan',
+        'empty_for' => 'Tidak ada hasil pencarian :modes yang ditemukan',
         'more' => 'Muat Lebih Banyak Hasil Pencarian :mode',
         'title' => 'Hasil Pencarian :mode',
     ],

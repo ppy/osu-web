@@ -2,12 +2,12 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
+@php
+    use App\Models\Store\ExtraDataSupporterTag;
+@endphp
+
 @if(!Auth::user())
-<div class="grid grid--gutters">
-    <div class="grid-cell grid-cell--1of2">
-        {!! require_login('store.supporter_tag.require_login._', 'store.supporter_tag.require_login.link_text') !!}
-    </div>
-</div>
+    {!! require_login('store.supporter_tag.require_login._', 'store.supporter_tag.require_login.link_text') !!}
 @else
 <div class="js-store js-store-supporter-tag store-supporter-tag">
     <input type="hidden" name="item[product_id]" value="{{ $product->product_id }}" />
@@ -16,16 +16,28 @@
     <input type="hidden" name="item[extra_data][target_id]" value="{{ Auth::user()->user_id }}" />
     <div class="store-supporter-tag__user-search">
         <div class="js-react--user-card-store" data-user="null"></div>
-        <div class="grid-cell grid-cell--store-user-search">
+        {!!
+            Form::text(
+                'item[extra_data][username]',
+                get_string(request('target')),
+                [
+                    'id' => 'username',
+                    'class' => 'js-username-input store-supporter-tag__input',
+                    'placeholder' => osu_trans('store.supporter_tag.gift'),
+                    'autocomplete' => 'off'
+                ]
+            )
+        !!}
+        <div class="js-store-supporter-tag-message">
             {!!
-                Form::text(
-                    'item[extra_data][username]',
+                Form::textarea(
+                    'item[extra_data][message]',
                     null,
                     [
-                        'id' => 'username',
-                        'class' => 'js-username-input store-supporter-tag__input',
-                        'placeholder' => osu_trans('store.supporter_tag.gift'),
-                        'autocomplete' => 'off'
+                        'class' => 'store-supporter-tag__input store-supporter-tag__input--message',
+                        'maxlength' => ExtraDataSupporterTag::MAX_MESSAGE_LENGTH,
+                        'placeholder' => osu_trans('store.supporter_tag.gift_message', ['length' => ExtraDataSupporterTag::MAX_MESSAGE_LENGTH]),
+                        'rows' => 3,
                     ]
                 )
             !!}
@@ -43,7 +55,7 @@
                 </div>
             </div>
         </div>
-        <div class="grid grid--xs grid--right store-slider__presets">
+        <div class="store-slider__presets">
             <span class="store-slider__presets-blurb">{{ osu_trans('supporter_tag.months') }}</span>
             @foreach([1, 2, 4, 6, 12, 18, 24] as $months)
                 <div class="js-slider-preset store-slider__preset" data-months="{{$months}}">{{$months}}</div>

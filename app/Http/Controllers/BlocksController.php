@@ -24,7 +24,7 @@ class BlocksController extends Controller
             ],
         ]);
 
-        return parent::__construct();
+        parent::__construct();
     }
 
     public function store()
@@ -64,7 +64,7 @@ class BlocksController extends Controller
         }
 
         return json_collection(
-            $currentUser->relations()->visible()->get(),
+            $currentUser->relations()->visible()->withMutual()->get(),
             'UserRelation'
         );
     }
@@ -84,7 +84,7 @@ class BlocksController extends Controller
         $user->blocks()->detach($block);
 
         return json_collection(
-            $user->relations()->visible()->get(),
+            $user->relations()->visible()->withMutual()->get(),
             'UserRelation'
         );
     }

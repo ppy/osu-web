@@ -25,6 +25,7 @@ return [
     ],
 
     'forums' => [
+        'forums' => 'المنتديات',
         'latest_post' => 'اخر المنشورات',
 
         'index' => [
@@ -47,7 +48,7 @@ return [
         'confirm_restore' => 'اتريد حقاََ اِسترجاع المنشور؟',
         'edited' => 'التعديل الأخير تم بواسطة :user :when، عُدِلَ ::count_delimited مرة في المجموع.|التعديل الأخير تم بواسطة :user:when, عُدِلَ ::count_delimited مرات في المجموع.',
         'posted_at' => 'نُشِر :when',
-        'posted_by' => 'منشور بواسطة :username',
+        'posted_by_in' => '',
 
         'actions' => [
             'destroy' => 'منشور محذوف',
@@ -125,6 +126,55 @@ return [
             'last' => 'الذهاب إلى آخر منشور',
             'next' => 'تخطى الـ 10 منشورات القادمة',
             'previous' => 'عُد 10 منشورات للخلف',
+        ],
+
+        'logs' => [
+            '_' => 'سجلات الموضوع',
+            'button' => 'تصفح سجلات الموضوع',
+
+            'columns' => [
+                'action' => 'الإجراء',
+                'date' => 'التاريخ',
+                'user' => 'المستخدم',
+            ],
+
+            'data' => [
+                'add_tag' => 'تم إضافة إشارة ":tag"',
+                'announcement' => 'تم تثبيت الموضوع وتعليمه كـ إعلان',
+                'edit_topic' => 'إلى :title',
+                'fork' => 'من :topic',
+                'pin' => 'موضوع مثبت',
+                'post_operation' => 'نُشِر بواسطة :username',
+                'remove_tag' => 'إزالة إشارة ":tag"',
+                'source_forum_operation' => 'من :forum',
+                'unpin' => 'موضوع غير مثبت',
+            ],
+
+            'no_results' => 'لم يتم العثور على سجلات...',
+
+            'operations' => [
+                'delete_post' => 'منشور محذوف',
+                'delete_topic' => 'موضوع محذوف',
+                'edit_topic' => 'تم تغيير عنوان الموضوع',
+                'edit_poll' => 'تم تعديل الإستبيان في الموضوع',
+                'fork' => 'تم نسخ الموضوع',
+                'issue_tag' => 'الإشارة الصادرة',
+                'lock' => 'موضوع مغلق',
+                'merge' => 'المشاركات المدمجة في هذا الموضوع',
+                'move' => 'موضوع منقول',
+                'pin' => 'موضوع مثبت',
+                'post_edited' => 'تم تعديل المشاركة',
+                'restore_post' => 'تم إستعادة المشاركة',
+                'restore_topic' => 'تم استعادة الموضوع',
+                'split_destination' => 'مشاركات منقسمة منقولة',
+                'split_source' => 'مشاركات مُنقسمة',
+                'topic_type' => 'تعيين نوع الموضوع',
+                'topic_type_changed' => 'تم تغيير نوع الموضوع',
+                'unlock' => 'موضوع غير مغلق',
+                'unpin' => 'موضوع غير مثبت',
+                'user_lock' => 'موضوع مغلق ينتمي لك',
+                'user_unlock' => 'موضوع غير مغلق ينتمي لك',
+            ],
         ],
 
         'post_edit' => [

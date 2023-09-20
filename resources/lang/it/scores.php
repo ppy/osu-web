@@ -16,14 +16,15 @@ return [
             'submitted_on' => 'Inviato il',
 
             'rank' => [
-                'country' => 'Rank nel Paese',
-                'global' => 'Rank Globale',
+                'country' => ' Classifica Nazionale',
+                'global' => 'Classifica Globale',
             ],
         ],
     ],
 
     'status' => [
-        'non_best' => 'Solo i punteggi personali migliori attribuiscono pp',
+        'non_best' => 'Solo i punteggi migliori conferiscono pp',
+        'non_passing' => 'Solo i punteggi passati conferiscono pp',
         'processing' => 'Questo punteggio dev\'essere ancora calcolato e verrà mostrato presto',
     ],
 ];

@@ -10,15 +10,24 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
-            'rules' => 'Por favor assegura-te de que o teu avatar respeita :link.<br/>Isto significa que deve ser <strong>adequado para todas as idades</strong>, ou seja, sem nudez, profanidade ou conteúdo sugestivo.',
+            'rules' => 'Por favor, assegura-te de que o teu avatar respeita :link.<br/>Isto significa que deve ser <strong>adequado para todas as idades</strong>, ou seja, sem nudez, profanidade ou conteúdo estimulante.',
             'rules_link' => 'as regras da comunidade',
         ],
 
         'email' => [
-            'current' => 'email atual',
             'new' => 'novo email',
             'new_confirmation' => 'confirmação do email',
             'title' => 'Email',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
+        ],
+
+        'legacy_api' => [
+            'api' => 'API',
+            'irc' => 'IRC',
+            'title' => 'API legada',
         ],
 
         'password' => [
@@ -29,7 +38,13 @@ return [
         ],
 
         'profile' => [
+            'country' => 'país',
             'title' => 'Perfil',
+
+            'country_change' => [
+                '_' => "Parece que o país da tua conta não corresponde ao teu país de residência. :update_link",
+                'update_link' => 'Atualizar para :country',
+            ],
 
             'user' => [
                 'user_discord' => '',
@@ -80,7 +95,7 @@ return [
         'title' => 'Opções',
 
         'beatmapset_download' => [
-            '_' => 'tipo de download padrão de beatmap',
+            '_' => 'tipo de download predefinido do beatmap',
             'all' => 'com vídeo, se disponível',
             'direct' => 'abrir em osu!direct',
             'no_video' => 'sem vídeo',

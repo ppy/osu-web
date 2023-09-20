@@ -5,8 +5,8 @@
 
 return [
     'promote' => [
-        'pin' => '',
-        'unpin' => "",
+        'pin' => 'Weet je zeker dat je deze livestream wilt promoten?',
+        'unpin' => "Weet je zeker dat je deze livestream promotie wilt verwijderen?",
     ],
 
     'top-headers' => [

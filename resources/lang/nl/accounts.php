@@ -15,10 +15,19 @@ return [
         ],
 
         'email' => [
-            'current' => 'huidige e-mail',
             'new' => 'nieuwe email',
             'new_confirmation' => 'e-mail bevestiging',
             'title' => 'E-mail',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
+        ],
+
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'Legacy API',
         ],
 
         'password' => [
@@ -29,7 +38,13 @@ return [
         ],
 
         'profile' => [
+            'country' => 'land',
             'title' => 'Profiel',
+
+            'country_change' => [
+                '_' => "",
+                'update_link' => '',
+            ],
 
             'user' => [
                 'user_discord' => '',

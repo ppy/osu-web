@@ -22,6 +22,7 @@ return [
     ],
 
     'links' => [
+        'beatmaps' => 'osu! Beatmaps',
         'osu' => 'osu! προφίλ',
         'site' => 'Επίσημη Ιστοσελίδα',
     ],
@@ -29,7 +30,8 @@ return [
     'songs' => [
         '_' => 'Τραγούδια',
         'count' => ':count τραγούδι|:count τραγούδια',
-        'exclusive' => 'αποκλειστικό του osu!',
+        'original' => 'osu! original',
+        'original_badge' => 'ΠΡΩΤΟΤΥΠΟ',
     ],
 
     'tracklist' => [
@@ -37,5 +39,24 @@ return [
         'length' => 'διάρκεια',
         'bpm' => 'bpm',
         'genre' => 'είδος',
+    ],
+
+    'tracks' => [
+        'index' => [
+            '_' => 'αναζήτηση κομματιών',
+
+            'form' => [
+                'advanced' => 'Σύνθετη Αναζήτηση',
+                'album' => 'Άλμπουμ',
+                'artist' => 'Καλλιτέχνης',
+                'bpm_gte' => 'Ελάχιστο BPM',
+                'bpm_lte' => 'Μέγιστο BPM',
+                'empty' => 'Δεν βρέθηκαν κομμάτια που να ταιριάζουν με τα κριτήρια αναζήτησης.',
+                'genre' => 'Είδος',
+                'genre_all' => 'Όλα',
+                'length_gte' => 'Ελάχιστο Μήκος',
+                'length_lte' => 'Μέγιστο Μήκος',
+            ],
+        ],
     ],
 ];

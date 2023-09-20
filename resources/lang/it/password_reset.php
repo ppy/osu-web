@@ -13,6 +13,8 @@ return [
 
     'error' => [
         'contact_support' => 'Si prega di contattare il supporto per ripristinare l\'account.',
+        'expired' => 'Il codice di verifica è scaduto.',
+        'invalid' => 'Errore inatteso nel codice di verifica.',
         'is_privileged' => 'Contatta peppy lulz.',
         'missing_key' => 'Richiesto.',
         'too_many_tries' => 'Troppi tentativi sbagliati.',
@@ -28,12 +30,12 @@ return [
     'started' => [
         'password' => 'Nuova password',
         'password_confirmation' => 'Conferma password',
-        'title' => 'Resettando password per l\'account <strong>:username</strong>.',
+        'title' => 'Reimpostazione della password per l\'account <strong>:username</strong>.',
         'verification_key' => 'Codice verifica',
     ],
 
     'starting' => [
-        'username' => 'Inserisci indirizzo email o nome utente',
+        'username' => 'Inserisci l\'indirizzo email o il nome utente',
 
         'support' => [
             '_' => 'Hai bisogno di ulteriore assistenza? Contattaci col nostro :button.',

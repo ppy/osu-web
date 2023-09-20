@@ -7,12 +7,6 @@ return [
     'admin' => [
         '_' => 'admin',
     ],
-    'admin_forum' => [
-        '_' => 'admin',
-    ],
-    'admin_store' => [
-        '_' => 'admin',
-    ],
     'error' => [
         'error' => [
             '400' => 'invalid request',
@@ -29,13 +23,12 @@ return [
     ],
     'forum' => [
         '_' => 'forum',
-        'topic_watches_controller' => [
-            'index' => 'dashboard',
+        'topic_logs_controller' => [
+            'index' => 'topic logs',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => 'dashboard',
             'verify_link' => 'account verification',
         ],
         'artists_controller' => [
@@ -56,9 +49,6 @@ return [
         'beatmapset_events_controller' => [
             '_' => 'beatmap history',
         ],
-        'beatmapset_watches_controller' => [
-            'index' => 'dashboard',
-        ],
         'beatmapsets_controller' => [
             'discussion' => 'beatmap discussion',
             'index' => 'beatmap listing',
@@ -75,12 +65,6 @@ return [
         ],
         'contests_controller' => [
             '_' => 'contests',
-        ],
-        'follows_controller' => [
-            'index' => 'dashboard',
-        ],
-        'friends_controller' => [
-            'index' => 'dashboard',
         ],
         'groups_controller' => [
             'show' => 'groups',
@@ -116,23 +100,24 @@ return [
         'scores_controller' => [
             '_' => 'performance',
         ],
-        'store_controller' => [
-            '_' => 'store',
+        'seasons_controller' => [
+            '_' => 'rankings',
         ],
         'tournaments_controller' => [
             '_' => 'tournaments',
         ],
         'users_controller' => [
             '_' => 'player info',
+            'create' => 'create account',
             'disabled' => 'notice',
         ],
         'wiki_controller' => [
             '_' => 'wiki',
         ],
     ],
-    'multiplayer' => [
-        'rooms_controller' => [
-            '_' => 'rankings',
+    'passport' => [
+        'authorization_controller' => [
+            '_' => 'authorize app',
         ],
     ],
     'store' => [

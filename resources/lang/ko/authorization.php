@@ -27,14 +27,14 @@ return [
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => '비트맵 소유자나 nominator/QAT그룹 구성원만이 mapper notes를 작성할 수 있습니다.',
+            'mapper_note_wrong_user' => '비트맵 소유자나 노미네이터/NAT 구성원만이 매퍼 노트를 작성할 수 있습니다.',
         ],
 
         'vote' => [
             'bot' => "봇이 만든 토론에는 투표할 수 없습니다.",
             'limit_exceeded' => '더 투표하기 전에 잠시 기다려 주세요.',
             'owner' => "자신이 시작한 토론에는 투표할 수 없습니다.",
-            'wrong_beatmapset_state' => 'Pending인 비트맵의 토론에만 투표할 수 있습니다.',
+            'wrong_beatmapset_state' => '대기 중인 비트맵의 토론에만 투표할 수 있습니다.',
         ],
     ],
 
@@ -50,28 +50,31 @@ return [
             'resolved' => '해결된 토론의 게시글은 수정할 수 없습니다.',
             'system_generated' => '자동으로 생성된 글은 수정할 수 없습니다.',
         ],
-
-        'store' => [
-            'beatmapset_locked' => '이 비트맵은 토론을 할 수 없도록 잠겨 있습니다.',
-        ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => '이 비트맵은 토론을 할 수 없도록 잠겨 있습니다.',
+
         'metadata' => [
-            'nominated' => '추천된 맵의 메타데이터를 변경할 순 없습니다. 잘못 지정된 것 같으면 BN이나 NAT 멤버에게 알려주세요.',
+            'nominated' => '추천된 맵의 메타데이터를 변경할 수는 없습니다. 잘못 지정된 것 같으시면 BN이나 NAT 멤버에게 알려주세요.',
         ],
     ],
 
     'chat' => [
+        'annnonce_only' => '이 채널은 공지 전용입니다.',
         'blocked' => '당신을 차단하였거나 당신이 차단한 유저에게 메시지를 보낼 수 없습니다.',
         'friends_only' => '해당 유저는 친구가 아닌 유저의 메시지를 차단한 상태입니다.',
         'moderated' => '채널은 현재 관리 중입니다.',
         'no_access' => '해당 채널에 대한 접근 권한이 없습니다.',
+        'receive_friends_only' => '친구 목록에 있는 사람들의 메시지만 수락하기 때문에 유저가 답장하지 못할 수 있습니다.',
         'restricted' => '침묵, 제한, 차단 상태에서는 메시지를 전송할 수 없습니다.',
         'silenced' => '침묵, 제한, 차단 상태에서는 메시지를 전송할 수 없습니다.',
     ],
 
     'comment' => [
+        'store' => [
+            'disabled' => '댓글이 비활성화되었습니다',
+        ],
         'update' => [
             'deleted' => "삭제된 게시물을 수정 할 수 없습니다.",
         ],
@@ -166,6 +169,14 @@ return [
         ],
     ],
 
+    'score' => [
+        'pin' => [
+            'disabled_type' => "이러한 유형의 점수는 고정할 수 없습니다",
+            'not_owner' => '점수 소유자만 점수를 고정할 수 있습니다.',
+            'too_many' => '너무 많은 점수를 고정했습니다.',
+        ],
+    ],
+
     'user' => [
         'page' => [
             'edit' => [
@@ -173,6 +184,9 @@ return [
                 'not_owner' => '본인의 유저 페이지만 수정할 수 있습니다.',
                 'require_supporter_tag' => 'osu! 서포터 태그가 필요합니다.',
             ],
+        ],
+        'update_email' => [
+            'locked' => '',
         ],
     ],
 ];

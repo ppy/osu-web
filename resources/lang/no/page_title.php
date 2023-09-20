@@ -7,12 +7,6 @@ return [
     'admin' => [
         '_' => 'admin',
     ],
-    'admin_forum' => [
-        '_' => 'admin',
-    ],
-    'admin_store' => [
-        '_' => 'admin',
-    ],
     'error' => [
         'error' => [
             '400' => 'ugyldig forespørsel',
@@ -22,20 +16,19 @@ return [
             '401-verification' => 'kontobekreftelse',
             '405' => 'mangler',
             '422' => 'ugyldig forespørsel',
-            '429' => '',
+            '429' => 'for mange forespørsler',
             '500' => 'noe gikk i stykker',
             '503' => 'vedlikehold',
         ],
     ],
     'forum' => [
         '_' => 'forum',
-        'topic_watches_controller' => [
-            'index' => 'dashbord',
+        'topic_logs_controller' => [
+            'index' => 'emnelogger',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => 'dashbord',
             'verify_link' => 'kontobekreftelse',
         ],
         'artists_controller' => [
@@ -56,9 +49,6 @@ return [
         'beatmapset_events_controller' => [
             '_' => 'beatmaphistorie',
         ],
-        'beatmapset_watches_controller' => [
-            'index' => 'dashbord',
-        ],
         'beatmapsets_controller' => [
             'discussion' => 'beatmapdiskusjon',
             'index' => 'beatmapliste',
@@ -75,12 +65,6 @@ return [
         ],
         'contests_controller' => [
             '_' => 'konkurranser',
-        ],
-        'follows_controller' => [
-            'index' => '',
-        ],
-        'friends_controller' => [
-            'index' => 'dashbord',
         ],
         'groups_controller' => [
             'show' => 'grupper',
@@ -116,23 +100,24 @@ return [
         'scores_controller' => [
             '_' => 'gjennomføring',
         ],
-        'store_controller' => [
-            '_' => 'butikk',
+        'seasons_controller' => [
+            '_' => 'rangeringer',
         ],
         'tournaments_controller' => [
             '_' => 'turneringer',
         ],
         'users_controller' => [
             '_' => 'spillerinfo',
+            'create' => 'opprett konto',
             'disabled' => 'varsel',
         ],
         'wiki_controller' => [
             '_' => 'wiki',
         ],
     ],
-    'multiplayer' => [
-        'rooms_controller' => [
-            '_' => 'rangering',
+    'passport' => [
+        'authorization_controller' => [
+            '_' => 'autoriser app',
         ],
     ],
     'store' => [
@@ -143,7 +128,7 @@ return [
             '_' => 'modder info',
         ],
         'multiplayer_controller' => [
-            '_' => '',
+            '_' => 'flerspillerlogg',
         ],
     ],
 ];

@@ -6,21 +6,33 @@
 namespace App\Models;
 
 use App\Exceptions\ModelNotSavedException;
+use App\Libraries\MorphMap;
 use App\Libraries\Transactions\AfterCommit;
 use App\Libraries\Transactions\AfterRollback;
 use App\Libraries\TransactionStateManager;
-use App\Traits\MacroableModel;
+use App\Scopes\MacroableModelScope;
+use App\Traits\Validatable;
+use Carbon\Carbon;
 use Exception;
+use Illuminate\Database\ClassMorphViolationException;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model as BaseModel;
 
 abstract class Model extends BaseModel
 {
-    use MacroableModel;
+    use HasFactory, Validatable;
+
+    const MAX_FIELD_LENGTHS = [];
 
     protected $connection = 'mysql';
     protected $guarded = [];
     protected $macros;
     protected $primaryKeys;
+
+    public static function booted()
+    {
+        static::addGlobalScope(new MacroableModelScope());
+    }
 
     public function getForeignKey()
     {
@@ -29,6 +41,11 @@ abstract class Model extends BaseModel
         }
 
         return $this->primaryKey;
+    }
+
+    public function getKey()
+    {
+        return $this->getRawAttribute($this->primaryKey);
     }
 
     public function getMacros()
@@ -40,6 +57,24 @@ abstract class Model extends BaseModel
         ];
 
         return array_merge($this->macros ?? [], $baseMacros);
+    }
+
+    public function getMorphClass()
+    {
+        $className = static::class;
+
+        $ret = MorphMap::getType($className);
+
+        if ($ret !== null) {
+            return $ret;
+        }
+
+        throw new ClassMorphViolationException($this);
+    }
+
+    public function getRawAttribute(string $key)
+    {
+        return $this->attributes[$key] ?? null;
     }
 
     /**
@@ -85,7 +120,7 @@ abstract class Model extends BaseModel
     {
         return function ($baseQuery) {
             $query = clone $baseQuery;
-            $query->getQuery()->orders = null;
+            $query->unorder();
             $query->getQuery()->offset = null;
             $query->limit(null);
 
@@ -104,9 +139,7 @@ abstract class Model extends BaseModel
 
     public function scopeReorderBy($query, $field, $order)
     {
-        $query->getQuery()->orders = null;
-
-        return $query->orderBy($field, $order);
+        return $query->unorder()->orderBy($field, $order);
     }
 
     public function scopeOrderByField($query, $field, $ids)
@@ -129,9 +162,28 @@ abstract class Model extends BaseModel
         $query->whereRaw('false');
     }
 
+    public function scopeUnorder($query)
+    {
+        $query->getQuery()->orders = null;
+
+        return $query;
+    }
+
     public function scopeWithPresent($query, $column)
     {
         $query->whereNotNull($column)->where($column, '<>', '');
+    }
+
+    /**
+     * Just like decrement but only works on saved instance instead of falling back to entire model
+     */
+    public function decrementInstance()
+    {
+        if (!$this->exists) {
+            return false;
+        }
+
+        return $this->decrement(...func_get_args());
     }
 
     public function delete()
@@ -139,6 +191,18 @@ abstract class Model extends BaseModel
         return $this->runAfterCommitWrapper(function () {
             return parent::delete();
         });
+    }
+
+    /**
+     * Just like increment but only works on saved instance instead of falling back to entire model
+     */
+    public function incrementInstance()
+    {
+        if (!$this->exists) {
+            return false;
+        }
+
+        return $this->increment(...func_get_args());
     }
 
     public function save(array $options = [])
@@ -154,9 +218,8 @@ abstract class Model extends BaseModel
             $result = $this->save($options);
 
             if ($result === false) {
-                $message = method_exists($this, 'validationErrors') ?
-                    $this->validationErrors()->toSentence() :
-                    'failed saving model';
+                $errors = $this->validationErrors();
+                $message = $errors->isEmpty() ? 'failed saving model' : $errors->toSentence();
 
                 throw new ModelNotSavedException($message);
             }
@@ -177,6 +240,41 @@ abstract class Model extends BaseModel
         return ($includeDbPrefix ? $this->dbName().'.' : '').$this->getTable();
     }
 
+    /**
+     * Fast Time Attribute Getter (kind of)
+     *
+     * This is only usable for models with default dateFormat (`Y-m-d H:i:s`).
+     */
+    protected function getTimeFast(string $key): ?Carbon
+    {
+        $value = $this->getRawAttribute($key);
+
+        return $value === null
+            ? null
+            : Carbon::createFromFormat('Y-m-d H:i:s', $value);
+    }
+
+    /**
+     * Fast Time Attribute to Json Transformer
+     *
+     * Key must be suffixed with `_json`.
+     * This is only usable for models with default dateFormat (`Y-m-d H:i:s`).
+     */
+    protected function getJsonTimeFast(string $key): ?string
+    {
+        $value = $this->getRawAttribute(substr($key, 0, -5));
+
+        if ($value === null) {
+            return null;
+        }
+
+        // From: "2020-10-10 10:10:10"
+        // To: "2020-10-10T10:10:10Z"
+        $value[10] = 'T';
+
+        return "{$value}Z";
+    }
+
     // Allows save/update/delete to work with composite primary keys.
     // Note this doesn't fix 'find' method and a bunch of other laravel things
     // which rely on getKeyName and getKey (and they themselves are broken as well).
@@ -188,9 +286,34 @@ abstract class Model extends BaseModel
             }
 
             return $query;
-        } else {
-            return parent::setKeysForSaveQuery($query);
         }
+
+        return parent::setKeysForSaveQuery($query);
+    }
+
+    // same deal with setKeysForSaveQuery but for select query
+    protected function setKeysForSelectQuery($query)
+    {
+        return $this->setKeysForSaveQuery($query);
+    }
+
+    protected function validateDbFieldLength(int $limit, string $dbField, ?string $checkField = null): void
+    {
+        if ($this->isDirty($dbField)) {
+            $this->validateFieldLength($limit, $dbField, $checkField);
+        }
+    }
+
+    protected function validateDbFieldLengths(): void
+    {
+        foreach (static::MAX_FIELD_LENGTHS as $field => $limit) {
+            $this->validateDbFieldLength($limit, $field, $field);
+        }
+    }
+
+    protected function validationErrorsTranslationPrefix(): string
+    {
+        return '';
     }
 
     private function enlistCallbacks($model, $connection)

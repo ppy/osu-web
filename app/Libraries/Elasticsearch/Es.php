@@ -40,11 +40,6 @@ class Es
     {
         static $clients = [];
 
-        if (!array_key_exists($name, $clients)) {
-            $config = $name === 'default' ? 'elasticsearch' : "elasticsearch_{$name}";
-            $clients[$name] = ClientBuilder::fromConfig(config($config));
-        }
-
-        return $clients[$name];
+        return $clients[$name] ??= ClientBuilder::fromConfig(config("elasticsearch.connections.{$name}"));
     }
 }

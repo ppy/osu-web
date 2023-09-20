@@ -45,7 +45,7 @@ return [
             'before_registration' => 'A inscrição para este torneio ainda não foi aberta.',
             'ended' => 'Este torneio foi concluído. Consulta a página de informação para ver os resultados.',
             'registration_closed' => 'A inscrição para este torneio fechou. Consulta a página de informação para ver as últimas atualizações.',
-            'running' => 'Este torneio está atualmente em progresso. Consulta a página de informação para mais detalhes.',
+            'running' => 'Este torneio está em andamento. Consulta a página de informação para mais detalhes.',
         ],
     ],
     'tournament_period' => ':start até :end',

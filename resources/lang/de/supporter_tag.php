@@ -7,7 +7,7 @@ return [
     'months' => 'monate',
 
     'user_search' => [
-        'searching' => 'sucht...',
+        'searching' => 'suche...',
         'not_found' => "Dieser Nutzer existiert nicht",
     ],
 ];

@@ -15,6 +15,7 @@ return [
         'closing' => '祝順，',
         'hello' => '嗨 :user,',
         'report' => '如果您沒有進行此項操作，請「立刻」回覆此信件!',
+        'ignore' => '若您未請求，則可以安全忽略這封信。',
     ],
 
     'donation_thanks' => [
@@ -66,14 +67,15 @@ return [
         'duration' => '因為他們，您可以在接下來的 :duration 內享受 osu!direct 和其他 osu! 支持者享有的特權。',
         'features' => '您可以在此處找到這些功能的更多資訊：',
         'gifted' => '有人剛剛送給你了一份osu!贊助者標籤!',
+        'gift_message' => '向您贈送此贊助者標籤的人為您寫了如下留言:',
         'subject' => '您已獲贈 osu!supporter 標籤！',
     ],
 
     'user_email_updated' => [
-        'changed_to' => '提醒您，您的osu!電子信箱已被更改為:email',
-        'check' => '為了防止將來無法取存取您的osu!帳戶，請確保您已在新的電子信箱收到本電子郵件。',
-        'sent' => '為了確保帳號安全，我們已將此郵件發送至您的原信箱和修改後的信箱',
-        'subject' => 'osu! 帳號電子郵件變更',
+        'changed_to' => '提醒您，您的osu! 電郵地址已被更改為 :email。',
+        'check' => '為了防止將來無法取存取您的 osu! 帳戶，請確保您已在新的電郵地址收到本電子郵件。',
+        'sent' => '為了確保帳號安全，我們已將此郵件發送至您的原電郵地址和修改後的電郵地址',
+        'subject' => 'osu! 帳號電郵地址變更',
     ],
 
     'user_force_reactivation' => [

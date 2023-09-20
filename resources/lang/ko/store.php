@@ -4,10 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'admin' => [
-        'warehouse' => '웨어하우스',
-    ],
-
     'cart' => [
         'checkout' => '결제',
         'info' => '장바구니에 담긴 :count_delimited개의 항목 ($:subtotal)',
@@ -34,7 +30,8 @@ return [
         'cart_problems' => '장바구니에 문제가 생겼어요!',
         'cart_problems_edit' => '편집하려면 클릭하세요.',
         'declined' => '결제가 취소되었습니다.',
-        'delayed_shipping' => '현재 주문이 밀려있습니다! 주문을 해주시는건 기쁘지만, 지금 주문을 처리하는데 **1~2 주 지연**될 수 있다는 걸 알려드립니다.',
+        'delayed_shipping' => '현재 주문이 밀려있습니다! 주문을 해주시는 건 기쁘지만, 지금 주문을 처리하는데 **1~2주 지연**될 수 있다는 걸 알려드립니다.',
+        'hide_from_activity' => '나의 활동에서 이 주문에 있는 모든 osu! 서포터 태그 내역 숨기기',
         'old_cart' => '장바구니가 오래되어 새로 고쳐졌습니다, 다시 시도해 주세요.',
         'pay' => 'Paypal로 결제',
         'title_compact' => '결제',
@@ -54,6 +51,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'eCheck로 결제하셨다면 10일까지 PayPal을 통해 결제할 수 있도록 허용해주세요.',
+        'hide_from_activity' => '이 주문에 포함된 osu! 서포터 내역은 나의 최근 활동에 표시되지 않습니다.',
         'title_compact' => '청구서',
 
         'status' => [
@@ -79,10 +77,15 @@ return [
         'shopify_expired' => '이 주문의 결제 링크가 만료되었습니다.',
 
         'item' => [
-            'display_name' => [
-                'supporter_tag' => ':name for :username (:duration)',
-            ],
             'quantity' => '수량',
+
+            'display_name' => [
+                'supporter_tag' => ':username님을 위한 :name (:duration)',
+            ],
+
+            'subtext' => [
+                'supporter_tag' => '메시지: :message',
+            ],
         ],
 
         'not_modifiable_exception' => [
@@ -124,8 +127,10 @@ return [
 
     'supporter_tag' => [
         'gift' => '선물하기',
+        'gift_message' => '선물에 메시지를 남겨보세요! (최대 :length자)',
+
         'require_login' => [
-            '_' => '서포터 권한을 구매하려면 :link하셔야 합니다!',
+            '_' => 'osu! 서포터 태그를 구매하려면 :link하셔야 합니다!',
             'link_text' => '로그인',
         ],
     ],

@@ -10,13 +10,13 @@ return [
     ],
 
     'index' => [
-        'nav_title' => 'listare',
+        'nav_title' => 'listă',
     ],
 
     'voting' => [
         'login_required' => 'Te rugăm să te autentifici pentru a vota.',
         'over' => 'Votarea pentru acest concurs s-a încheiat',
-        'show_voted_only' => '',
+        'show_voted_only' => 'Afișare voturi',
 
         'best_of' => [
             'none_played' => "Nu pare să fi jucat niciun beatmap care se califică pentru acest concurs!",
@@ -29,14 +29,20 @@ return [
         ],
 
         'progress' => [
-            '_' => '',
+            '_' => ':used / :max voturi folosite',
+        ],
+
+        'requirement' => [
+            'playlist_beatmapsets' => [
+                'incomplete_play' => 'Trebuie să joci toate beatmap-urile din acest playlist înainte de a vota',
+            ],
         ],
     ],
     'entry' => [
         '_' => 'intrare',
         'login_required' => 'Te rugăm să te conectezi pentru a intra în concurs.',
-        'silenced_or_restricted' => 'Nu poți participa la concursuri în timp ce ești restricționat sau amuțit.',
-        'preparation' => 'Pregătim acest concurs în prezent. Te rugăm să aștepți cu răbdare!',
+        'silenced_or_restricted' => 'Nu poți participa la concursuri în timp ce ești restricționat sau mut.',
+        'preparation' => 'Încă pregătim acest concurs. Te rugăm să aștepți cu răbdare!',
         'drop_here' => 'Trage intrarea ta aici',
         'download' => 'Descarcă .osz',
         'wrong_type' => [
@@ -44,6 +50,7 @@ return [
             'beatmap' => 'Numai fișierele de tip .osu sunt acceptate pentru acest concurs.',
             'music' => 'Numai fișierele de tip .mp3 sunt acceptate pentru acest concurs.',
         ],
+        'wrong_dimensions' => 'Intrările pentru acest concurs trebuie să fie :widthx:height',
         'too_big' => 'Întrările pentru acest concurs pot fi numai până la :limit.',
     ],
     'beatmaps' => [
@@ -51,8 +58,8 @@ return [
     ],
     'vote' => [
         'list' => 'voturi',
-        'count' => ':count vot|:count voturi|:count de voturi',
-        'points' => ':count punct|:count puncte|:count de puncte',
+        'count' => 'un vot|:count_delimited voturi|:count_delimited de voturi',
+        'points' => 'un punct|:count_delimited puncte|:count_delimited de puncte',
     ],
     'dates' => [
         'ended' => 'S-a terminat pe :date',
@@ -60,11 +67,11 @@ return [
 
         'starts' => [
             '_' => 'Începe pe :date',
-            'soon' => 'curând™',
+            'soon' => 'în curând™',
         ],
     ],
     'states' => [
-        'entry' => 'Inscriere deschisă',
+        'entry' => 'Înscriere Deschisă',
         'voting' => 'Votarea a început',
         'results' => 'Rezultate postate',
     ],

@@ -14,16 +14,20 @@ return [
 
     'header' => [
         'admin' => [
-            'beatmapset' => '',
-            'beatmapset_covers' => '',
+            'beatmapset' => 'beatmapsetti',
+            'beatmapset_covers' => 'beatmapsettien kannet',
             'contest' => 'kilpailu',
             'contests' => 'kilpailuja',
             'root' => 'konsoli',
-            'store_orders' => 'kaupan ylläpitäjä',
         ],
 
         'artists' => [
             'index' => 'listaus',
+        ],
+
+        'beatmapsets' => [
+            'show' => '',
+            'discussions' => '',
         ],
 
         'changelog' => [
@@ -32,7 +36,7 @@ return [
 
         'help' => [
             'index' => 'indeksi',
-            'sitemap' => 'Sivukartta',
+            'sitemap' => 'Sivustokartta',
         ],
 
         'store' => [
@@ -47,7 +51,8 @@ return [
 
         'users' => [
             'modding' => 'modaus',
-            'multiplayer' => 'moninpeli',
+            'playlists' => '',
+            'realtime' => '',
             'show' => 'tiedot',
         ],
     ],
@@ -63,18 +68,10 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => 'beatmapit',
-            'artists' => 'suositellut artistit',
-            'index' => 'listaus',
-            'packs' => 'kokoelmat',
         ],
         'community' => [
             '_' => 'yhteisö',
-            'chat' => 'viestit',
-            'contests' => 'kilpailut',
             'dev' => 'kehitystyö',
-            'forum-forums-index' => 'foorumit',
-            'getLive' => 'suorat',
-            'tournaments' => 'turnaukset',
         ],
         'help' => [
             '_' => 'apua',
@@ -82,30 +79,17 @@ return [
             'getFaq' => 'ukk',
             'getRules' => 'säännöt',
             'getSupport' => 'tarvitsen siis oikeasti apua!',
-            'getWiki' => 'wiki',
         ],
         'home' => [
             '_' => 'etusivu',
-            'changelog-index' => 'muutosloki',
-            'getDownload' => 'lataa',
-            'news-index' => 'uutiset',
-            'search' => 'haku',
             'team' => 'tiimi',
         ],
         'rankings' => [
             '_' => 'tilastot',
-            'charts' => 'valokeilassa',
-            'country' => 'maa',
-            'index' => 'suorituskyky',
             'kudosu' => 'kudosu',
-            'multiplayer' => 'moninpeli',
-            'score' => 'pisteet',
         ],
         'store' => [
             '_' => 'kauppa',
-            'cart-show' => 'ostoskori',
-            'getListing' => 'listaus',
-            'orders-index' => 'tilaushistoria',
         ],
     ],
 
@@ -161,7 +145,7 @@ return [
             'description' => '',
         ],
         '429' => [
-            'error' => '',
+            'error' => 'Pyyntöraja ylitetty',
             'description' => '',
         ],
         '500' => [
@@ -217,7 +201,7 @@ return [
     ],
 
     'popup_search' => [
-        'initial' => 'Kirjoita etsiäksesi!',
+        'initial' => 'Tee haku kirjoittamalla!',
         'retry' => 'Haku epäonnistui. Yritä uudelleen napsauttamalla.',
     ],
 ];

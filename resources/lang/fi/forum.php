@@ -10,7 +10,7 @@ return [
     'title' => 'osu!-foorumit',
 
     'covers' => [
-        'edit' => '',
+        'edit' => 'Muokkaa kantta',
 
         'create' => [
             '_' => 'Aseta kansikuva',
@@ -25,10 +25,11 @@ return [
     ],
 
     'forums' => [
-        'latest_post' => '',
+        'forums' => 'Foorumit',
+        'latest_post' => 'Viimeisin viesti',
 
         'index' => [
-            'title' => '',
+            'title' => 'Foorumien listaus',
         ],
 
         'topics' => [
@@ -47,12 +48,12 @@ return [
         'confirm_restore' => 'Haluatko varmasti palauttaa viestin?',
         'edited' => 'Viimeksi muokannut :user :when, muokattu yhteensä :count kertaa.',
         'posted_at' => 'lähetetty :when',
-        'posted_by' => '',
+        'posted_by_in' => '',
 
         'actions' => [
             'destroy' => 'Poista viesti',
             'edit' => 'Muokkaa viestiä',
-            'report' => '',
+            'report' => 'Ilmoita viesti',
             'restore' => 'Palauta viesti',
         ],
 
@@ -80,7 +81,7 @@ return [
         'deleted' => 'poistettu aihe',
         'go_to_latest' => 'näytä viimeisin viesti',
         'has_replied' => 'Olet vastannut tähän aiheeseen',
-        'in_forum' => '',
+        'in_forum' => ':forum -foorumissa',
         'latest_post' => ':when käyttäjältä :user',
         'latest_reply_by' => 'viimeisimmän vastauksen jätti :user',
         'new_topic' => 'Lähetä uusi aihe',
@@ -127,6 +128,55 @@ return [
             'previous' => 'mene 10 viestiä takaisin',
         ],
 
+        'logs' => [
+            '_' => '',
+            'button' => '',
+
+            'columns' => [
+                'action' => '',
+                'date' => 'Päivämäärä',
+                'user' => 'Käyttäjä',
+            ],
+
+            'data' => [
+                'add_tag' => '',
+                'announcement' => '',
+                'edit_topic' => '',
+                'fork' => '',
+                'pin' => '',
+                'post_operation' => '',
+                'remove_tag' => '',
+                'source_forum_operation' => '',
+                'unpin' => '',
+            ],
+
+            'no_results' => 'lokeja ei löytynyt...',
+
+            'operations' => [
+                'delete_post' => 'Poistettu viesti',
+                'delete_topic' => 'Poistettu aihe',
+                'edit_topic' => '',
+                'edit_poll' => '',
+                'fork' => '',
+                'issue_tag' => '',
+                'lock' => 'Lukittu aihe',
+                'merge' => '',
+                'move' => '',
+                'pin' => 'Kiinnitetty aihe',
+                'post_edited' => '',
+                'restore_post' => '',
+                'restore_topic' => '',
+                'split_destination' => '',
+                'split_source' => '',
+                'topic_type' => '',
+                'topic_type_changed' => '',
+                'unlock' => '',
+                'unpin' => '',
+                'user_lock' => '',
+                'user_unlock' => '',
+            ],
+        ],
+
         'post_edit' => [
             'cancel' => 'Peruuta',
             'post' => 'Tallenna',
@@ -135,7 +185,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title_compact' => 'foorumilla seuratut',
+            'title_compact' => 'seuratut foorumiaiheet',
 
             'box' => [
                 'total' => 'Seurattuja aiheita',
@@ -178,7 +228,7 @@ return [
 
             'poll' => [
                 'hide_results' => 'Piilota äänestyksen tulokset.',
-                'hide_results_info' => '',
+                'hide_results_info' => 'Ne näytetään vasta sen jälkeen, kun keyselyaika on päättynyt.',
                 'length' => 'Pidä äänestystä auki',
                 'length_days_suffix' => 'päivää',
                 'length_info' => 'Jätä tyhjäksi jos haluat kyselyn kestävän ikuisesti',
@@ -247,7 +297,7 @@ return [
         'lock' => [
             'is_locked' => 'Tämä aihe on lukittu, eikä siihen voida vastata',
             'to_0' => 'Avaa aihe',
-            'to_0_confirm' => '',
+            'to_0_confirm' => 'Poista foorumiaiheen lukitus?',
             'to_0_done' => 'Aihe on avattu',
             'to_1' => 'Lukitse aihe',
             'to_1_confirm' => 'Lukitse aihe?',
@@ -297,14 +347,14 @@ return [
             ],
 
             'poll' => [
-                'edit' => '',
-                'edit_warning' => '',
+                'edit' => 'Kyselyn muokkaus',
+                'edit_warning' => 'Kyselyn muokkaaminen poistaa nykyiset tulokset!',
                 'vote' => 'Äänestä',
 
                 'button' => [
-                    'change_vote' => '',
-                    'edit' => '',
-                    'view_results' => '',
+                    'change_vote' => 'Muuta valikoima',
+                    'edit' => 'Muokkaa kyselyä',
+                    'view_results' => 'Siirry tuloksiin',
                     'vote' => 'Äänestä',
                 ],
 

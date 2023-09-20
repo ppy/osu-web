@@ -14,7 +14,6 @@ class UserSearchParams extends SearchParams
 
     // all public because lazy.
 
-    public $queryString = null;
     public $recentOnly = false;
 
     public $sortField = 'relevance';

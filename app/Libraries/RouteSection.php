@@ -27,6 +27,9 @@ class RouteSection
             'account_controller' => [
                 '_' => 'home',
             ],
+            'artist_tracks_controller' => [
+                '_' => 'beatmaps',
+            ],
             'artists_controller' => [
                 '_' => 'beatmaps',
             ],
@@ -93,6 +96,9 @@ class RouteSection
             ],
             'scores_controller' => [
                 '_' => 'beatmaps',
+            ],
+            'seasons_controller' => [
+                '_' => 'rankings',
             ],
             'sessions_controller' => [
                 '_' => 'user',

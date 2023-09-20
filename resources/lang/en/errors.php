@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'load_failed' => 'Failed to load data.',
     'missing_route' => 'Invalid url or incorrect request method.',
     'no_restricted_access' => 'You are not able to perform this action while your account is in a restricted state.',
     'supporter_only' => 'You must be an osu!supporter to use this feature.',
@@ -29,6 +30,7 @@ return [
     ],
     'search' => [
         'default' => 'Could not get any results, try again later.',
+        'invalid_cursor_exception' => 'Invalid cursor parameter specified.',
         'operation_timeout_exception' => 'Search is currently busier than usual, try again later.',
     ],
 ];

@@ -6,9 +6,10 @@
 return [
     'invalid' => 'Указан неверный :attribute.',
     'not_negative' => ':attribute не может быть отрицательным.',
-    'required' => ':attribute является необходимым.',
+    'required' => 'Поле :attribute обязательно для заполнения.',
     'too_long' => ':attribute превышает максимальное количество символов - можно использовать только до :limit characters символов.',
-    'wrong_confirmation' => 'Повторы не совпадают.',
+    'url' => 'Пожалуйста, введите действительный URL.',
+    'wrong_confirmation' => 'Поля не совпадают.',
 
     'beatmapset_discussion' => [
         'beatmap_missing' => 'Временная отметка указана, но карта не найдена.',
@@ -28,7 +29,7 @@ return [
             'guest' => 'Вам нужно войти, чтобы хайпить.',
             'hyped' => 'Вы уже хайпили на этой карте.',
             'limit_exceeded' => 'Вы уже использовали весь свой хайп.',
-            'not_hypeable' => 'Эта карта не может быть расхайплена',
+            'not_hypeable' => 'Эту карту нельзя хайпануть',
             'owner' => 'Вы не можете хайпить свои карты.',
         ],
 
@@ -40,7 +41,7 @@ return [
 
     'beatmapset_discussion_post' => [
         'discussion_locked' => 'Обсуждение закрыто.',
-        'first_post' => 'Невозможно удалить первую публикацию.',
+        'first_post' => 'Невозможно удалить первый пост.',
 
         'attributes' => [
             'message' => 'Сообщение',
@@ -73,8 +74,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Нельзя удалить метаданные карты.',
             'beatmapset_post_no_edit' => 'Нельзя изменить метаданные карты.',
-            'first_post_no_delete' => 'Невозможно удалить первую публикацию',
-            'missing_topic' => 'В публикации отсутствует тема',
+            'first_post_no_delete' => 'Невозможно удалить первый пост',
+            'missing_topic' => 'Отсутствует тема поста',
             'only_quote' => 'Ваш ответ содержит только цитату.',
 
             'attributes' => [
@@ -90,7 +91,7 @@ return [
 
         'topic_poll' => [
             'duplicate_options' => 'Повторение вариантов недопустимо.',
-            'grace_period_expired' => 'Нельзя отредактировать опрос спустя :limit часов',
+            'grace_period_expired' => 'Нельзя отредактировать опрос спустя более чем :limit часов.',
             'hiding_results_forever' => 'Нельзя скрыть результаты опроса, если он никогда не закончится.',
             'invalid_max_options' => 'Вариант на пользователя не может превышать количество доступных опций.',
             'minimum_one_selection' => 'Требуется минимум один вариант для каждого пользователя.',
@@ -108,9 +109,19 @@ return [
         ],
     ],
 
+    'legacy_api_key' => [
+        'exists' => 'Сейчас для каждого пользователя предоставляется только один ключ API.',
+
+        'attributes' => [
+            'api_key' => 'Ключ api',
+            'app_name' => 'Имя приложения',
+            'app_url' => 'URL приложения',
+        ],
+    ],
+
     'oauth' => [
         'client' => [
-            'too_many' => 'Превышено максимально количество приложений OAuth.',
+            'too_many' => 'Превышено максимальное количество приложений OAuth.',
             'url' => 'Пожалуйста, введите действительный URL.',
 
             'attributes' => [
@@ -122,47 +133,49 @@ return [
 
     'user' => [
         'contains_username' => 'Пароль не должен содержать никнейм.',
-        'email_already_used' => 'Почта уже использована.',
+        'email_already_used' => 'Эта почта занята.',
         'email_not_allowed' => 'Недопустимый адрес электронной почты.',
         'invalid_country' => 'Вашей страны нет в базе данных.',
         'invalid_discord' => 'Неверное имя пользователя Discord.',
-        'invalid_email' => "Это не похоже на адрес электронной почты.",
+        'invalid_email' => "Кажется, эта почта недействительна.",
         'invalid_twitter' => 'Неверное имя пользователя Twitter.',
         'too_short' => 'Новый пароль слишком короткий.',
-        'unknown_duplicate' => 'Имя пользователя или почта уже занята.',
-        'username_available_in' => 'Это имя будет доступно только спустя :duration.',
-        'username_available_soon' => 'Это имя будет доступно для выбора в любую минуту!',
-        'username_invalid_characters' => 'Выбранное имя содержит недопустимые символы.',
-        'username_in_use' => 'Это имя уже используется!',
-        'username_locked' => 'Это имя уже используется!', // TODO: language for this should be slightly different.
+        'unknown_duplicate' => 'Никнейм или почта уже занята.',
+        'username_available_in' => 'Этот никнейм будет доступен через :duration.',
+        'username_available_soon' => 'Этот никнейм будет доступен в любой момент!',
+        'username_invalid_characters' => 'Введённый никнейм содержит недопустимые символы.',
+        'username_in_use' => 'Этот никнейм занят!',
+        'username_locked' => 'Этот никнейм занят!', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => 'Пожалуйста не используйте пробелы и подчёркивания одновременно!',
-        'username_no_spaces' => "Имя не может начинаться и заканчиваться пробелами!",
-        'username_not_allowed' => 'Это имя недоступно.',
-        'username_too_short' => 'Выбранное имя слишком короткое.',
-        'username_too_long' => 'Выбранное имя слишком длинное.',
-        'weak' => 'Слишком лёгкий пароль.',
+        'username_no_spaces' => "Никнейм не может начинаться или заканчиваться пробелами!",
+        'username_not_allowed' => 'Этот никнейм запрещён.',
+        'username_too_short' => 'Введённый никнейм слишком короткий.',
+        'username_too_long' => 'Введённый никнейм слишком длинный.',
+        'weak' => 'Введённый пароль находится в чёрном списке.',
         'wrong_current_password' => 'Текущий пароль неверный.',
-        'wrong_email_confirmation' => 'Подтверждения почты не совпадают.',
-        'wrong_password_confirmation' => 'Подтверждения пароля не совпадают.',
+        'wrong_email_confirmation' => 'Почты не совпадают.',
+        'wrong_password_confirmation' => 'Пароли не совпадают.',
         'too_long' => 'Превышено максимальное количество символов - можно использовать только до :limit characters символов.',
 
         'attributes' => [
-            'username' => 'Имя пользователя',
+            'username' => 'Никнейм',
             'user_email' => 'E-mail адрес',
             'password' => 'Пароль',
         ],
 
         'change_username' => [
-            'restricted' => 'Вы не можете сменить своё имя, пока ваш аккаунт ограничен.',
+            'restricted' => 'Вы не можете сменить свой никнейм, пока ваш аккаунт ограничен.',
             'supporter_required' => [
-                '_' => 'Вы должны :link , чтобы изменить свое имя!',
+                '_' => 'Вы должны :link , чтобы изменить свой никнейм!',
                 'link_text' => 'поддержать osu!',
             ],
-            'username_is_same' => 'Это имя уже используется!',
+            'username_is_same' => 'Это уже и есть Ваш никнейм!',
         ],
     ],
 
     'user_report' => [
+        'no_ranked_beatmapset' => 'На рейтинговые карты нельзя пожаловаться',
+        'not_in_channel' => 'Вас нет в этом канале.',
         'reason_not_valid' => ':reason не подходит для данного типа отчета.',
         'self' => "Вы не можете пожаловаться на себя!",
     ],

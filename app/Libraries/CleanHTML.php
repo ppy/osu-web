@@ -5,17 +5,32 @@
 
 namespace App\Libraries;
 
+use ErrorException;
 use HTMLPurifier;
 use HTMLPurifier_Config;
 
 class CleanHTML
 {
-    public static function purify($text)
+    private HTMLPurifier $purifier;
+
+    public function __construct()
     {
+        $cachePath = storage_path().'/htmlpurifier';
+        try {
+            mkdir($cachePath, 0700, true);
+        } catch (ErrorException $e) {
+            if (!is_dir($cachePath)) {
+                throw $e;
+            }
+        }
+
         $config = HTMLPurifier_Config::createDefault();
-        $config->set('Cache.SerializerPath', storage_path().'/htmlpurifier');
+        $config->set('Cache.SerializerPath', $cachePath);
         $config->set('Attr.AllowedRel', ['nofollow']);
-        $config->set('HTML.Trusted', true);
+        $config->set('CSS.Trusted', true);
+        $config->set('HTML.MaxImgLength', 5000);
+        $config->set('HTML.SafeIframe', true);
+        $config->set('URI.SafeIframeRegexp', '#^https://www.youtube.com/embed/[A-z0-9_-]+\?rel=0$#');
 
         $def = $config->getHTMLDefinition(true);
 
@@ -30,9 +45,17 @@ class CleanHTML
             ]
         );
 
+        $def->addElement(
+            'button',
+            'Formctrl',
+            'Optional: #PCDATA | Heading | List | Block | Inline',
+            'Common',
+            ['type' => 'Enum#button'],
+        );
+
         $def->addAttribute('audio', 'preload', 'Text');
 
-        $def->addAttribute('img', 'data-normal', 'Text');
+        $def->addAttribute('img', 'loading', 'Text');
         $def->addAttribute('img', 'src', 'Text');
 
         $def->addAttribute('span', 'data-src', 'Text');
@@ -43,6 +66,11 @@ class CleanHTML
 
         $def->addAttribute('a', 'data-user-id', 'Text');
 
-        return (new HTMLPurifier($config))->purify($text);
+        $this->purifier = new HTMLPurifier($config);
+    }
+
+    public function purify($text)
+    {
+        return $this->purifier->purify($text);
     }
 }
