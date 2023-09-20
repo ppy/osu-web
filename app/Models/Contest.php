@@ -56,11 +56,6 @@ class Contest extends Model
         'voting_starts_at' => 'datetime',
     ];
 
-    public function a()
-    {
-
-    }
-
     public function entries()
     {
         return $this->hasMany(ContestEntry::class);
