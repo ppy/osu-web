@@ -3,26 +3,10 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 
-@php
-    $userJson = $initialData['user'];
-    $stats = $initialData['user']['statistics'];
-    $globalRank = $stats['global_rank'] ?? null;
-    $countryRank = $stats['country_rank'] ?? null;
-
-    $rankDescriptions = [];
-    if ($globalRank !== null) {
-        $rankDescriptions[] = trans('users.show.rank.global', ['mode' => $currentMode]) . ': #' . i18n_number_format($globalRank);
-    }
-
-    if ($countryRank !== null) {
-        $rankDescriptions[] = trans('users.show.rank.country', ['mode' => $currentMode]) . ': #' . i18n_number_format($countryRank);
-    }
-@endphp
-
 @extends('master', [
     'canonicalUrl' => $user->url(),
     'titlePrepend' => blade_safe(str_replace(' ', '&nbsp;', e($user->username))),
-    'pageDescription' => presence(implode(', ', $rankDescriptions)),
+    'pageDescription' => $pageDescription,
     'opengraph' => [
         'title' => trans('users.show.title', ['username' => $user->username]),
         'image' => $user->user_avatar,
