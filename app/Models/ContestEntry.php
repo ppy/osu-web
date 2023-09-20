@@ -9,18 +9,20 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 /**
- * @property Contest $contest
+ * @property-read \Illuminate\Database\Eloquent\Collection $categoryVotes ContestJudgeCategoryVote
+ * @property-read Contest $contest
  * @property int $contest_id
  * @property \Carbon\Carbon|null $created_at
  * @property string|null $entry_url
  * @property string|null $thumbnail_url
  * @property int $id
+ * @property-read \Illuminate\Database\Eloquent\Collection $judgeVotes ContestJudgeVote
  * @property string $masked_name
  * @property string $name
  * @property \Carbon\Carbon|null $updated_at
- * @property User $user
+ * @property-read User $user
  * @property int|null $user_id
- * @property \Illuminate\Database\Eloquent\Collection $votes ContestVote
+ * @property-read \Illuminate\Database\Eloquent\Collection $votes ContestVote
  */
 class ContestEntry extends Model
 {

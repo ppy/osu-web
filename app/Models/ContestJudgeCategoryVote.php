@@ -10,14 +10,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * @property ContestJudgeCategory $category
+ * @property-read ContestJudgeCategory $category
  * @property int $contest_judge_category_id
  * @property int $contest_judge_vote_id
  * @property \Carbon\Carbon|null $created_at
  * @property int $id
  * @property \Carbon\Carbon|null $updated_at
  * @property int $value
- * @property ContestJudgeVote $vote
+ * @property-read ContestJudgeVote $vote
  */
 class ContestJudgeCategoryVote extends Model
 {

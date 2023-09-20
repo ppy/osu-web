@@ -59,6 +59,7 @@ use Request;
  * @property-read Country|null $country
  * @property string|null $country_acronym
  * @property-write string|null $current_password
+ * @property-read Collection<ContestJudgeVote> $contestJudgeVotes
  * @property-read Carbon|null $displayed_last_visit
  * @property-read string|null $email
  * @property-read Collection<Event> $events

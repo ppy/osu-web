@@ -10,12 +10,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * @property Contest $contest
+ * @property-read Contest $contest
  * @property int $contest_id
  * @property \Carbon\Carbon|null $created_at
  * @property int $id
  * @property \Carbon\Carbon|null $updated_at
- * @property User $user
+ * @property-read User $user
  * @property int $user_id
  */
 class ContestJudge extends Model

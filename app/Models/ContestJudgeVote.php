@@ -11,14 +11,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
- * @property \Illuminate\Database\Eloquent\Collection $categoryVotes
+ * @property-read \Illuminate\Database\Eloquent\Collection $categoryVotes
  * @property string|null $comment
  * @property int $contest_entry_id
  * @property \Carbon\Carbon|null $created_at
- * @property ContestEntry $entry
+ * @property-read ContestEntry $entry
  * @property int $id
  * @property \Carbon\Carbon|null $updated_at
- * @property User $user
+ * @property-read User $user
  * @property int $user_id
  */
 class ContestJudgeVote extends Model
