@@ -649,7 +649,8 @@ class UsersController extends Controller
                 'user' => $userArray,
             ];
 
-            $pageDescription = blade_safe($user->toMetaDescription(['ruleset' => $currentMode]));
+            $metaDescription = $user->toMetaDescription(['ruleset' => $currentMode]);
+            $pageDescription = $metaDescription !== null ? blade_safe($metaDescription) : null;
 
             return ext_view('users.show', compact('initialData', 'pageDescription', 'mode', 'user'));
         }
