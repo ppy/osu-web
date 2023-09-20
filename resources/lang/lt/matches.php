@@ -5,14 +5,14 @@
 
 return [
     'match' => [
-        'beatmap-deleted' => 'bitmapas ištrintas',
+        'beatmap-deleted' => 'beatmap\'as ištrintas',
         'failed' => 'NEPRAĖJO',
         'header' => 'Keli Mačai',
         'in-progress' => '(vyksta mačas)',
         'in_progress_spinner_label' => 'vyksta mačas',
         'loading-events' => 'Įvykiai keliami...',
         'winner' => ':team laimėjo',
-        'winner_by' => '',
+        'winner_by' => ':winner skirtumu :difference',
 
         'events' => [
             'player-left' => ':user išėjo iš mačo',

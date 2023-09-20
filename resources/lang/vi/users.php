@@ -49,6 +49,7 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => 'Tặng osu!supporter',
         'loading' => 'Đang tải...',
         'send_message' => 'Gửi tin nhắn',
     ],
@@ -386,7 +387,7 @@ return [
                     'date' => 'ngày',
                     'action' => 'hành động',
                     'length' => 'thời lượng',
-                    'length_permanent' => 'vĩnh viễn',
+                    'length_indefinite' => 'Vô thời hạn',
                     'description' => 'mô tả',
                     'actor' => 'bởi :username',
 

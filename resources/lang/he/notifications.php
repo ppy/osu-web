@@ -153,15 +153,6 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => 'הודעה פרטית ישנה',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited הודעה שלא נקראה.|:count_delimited הודעות שלא נקראו.',
-            ],
-        ],
-
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'מפה חדשה',

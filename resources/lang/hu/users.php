@@ -49,6 +49,7 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => 'Supporter címke ajándékozása',
         'loading' => 'Betöltés...',
         'send_message' => 'üzenet küldése',
     ],
@@ -386,7 +387,7 @@ return [
                     'date' => 'dátum',
                     'action' => 'művelet',
                     'length' => 'hossz',
-                    'length_permanent' => 'Végleges',
+                    'length_indefinite' => 'Határozatlan',
                     'description' => 'leírás',
                     'actor' => ':username által',
 

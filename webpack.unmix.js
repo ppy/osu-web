@@ -17,6 +17,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const webpack = require('webpack');
+const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 const SentryPlugin = require('webpack-sentry-plugin');
 
 // #region env
@@ -35,69 +36,11 @@ const writeManifest = !(process.env.SKIP_MANIFEST === '1'
 // Most plugins should follow webpack's own interpolation format:
 // https://github.com/webpack/loader-utils#interpolatename
 function outputFilename(name, ext = '[ext]', hashType = 'contenthash:8') {
-  return `${name}.[${hashType}].${ext}`;
+  return `${name}.[${hashType}]${ext}`;
 }
 
 function resolvePath(...segments) {
   return path.resolve(__dirname, ...segments);
-}
-
-// #endregion
-
-// #region Custom plugins
-// Custom manifest dumper
-// Dumps a manifest file for hashless asset name lookups outside of webpack.
-// Uses asset name only unlike webpack-manifest-plugin which prefers chunk name first.
-// webpack-assets-manifest is better but doesn't include assets from copy-webpack-plugin
-// https://github.com/webdeveric/webpack-assets-manifest/issues/49
-class Manifest {
-  constructor(options = {}) {
-    this.fileName = options.fileName;
-  }
-
-  apply(compiler) {
-    compiler.hooks.afterEmit.tap({ name: 'Manifest' }, (compilation) => {
-      const json = compilation.getStats().toJson({
-        // Disable data generation of everything we don't use
-        all: false,
-        // Add asset Information
-        assets: true,
-        // Show cached assets (setting this to `false` only shows emitted files)
-        cachedAssets: true,
-      });
-
-      const manifest = {};
-      json.assets.forEach((asset) => {
-        let name = asset.name;
-        if (!(name.startsWith('js/') || name.startsWith('css/'))) return;
-        if (name.endsWith('.map')) return;
-
-        // remove hash from name.
-        if (name.lastIndexOf('?') > 0) {
-          // querystring version
-          name = name.substring(0, name.lastIndexOf('?'));
-        } else {
-          // hash in filename version
-          const extname = path.extname(name);
-          let basename = name.substring(0, name.lastIndexOf(extname));
-          basename = basename.substring(0, basename.lastIndexOf('.'));
-
-          name = `${basename}${extname}`;
-        }
-
-        manifest[name] = path.join(compiler.options.output.publicPath, asset.name);
-      });
-
-      // directory might not exist when using webpack-dev-server because it
-      // doesn't write to the same location as the manifest file.
-      const dirname = path.dirname(this.fileName);
-      if (!fs.existsSync(dirname)) {
-        fs.mkdirSync(dirname, { recursive: true });
-      }
-
-      fs.writeFileSync(this.fileName, JSON.stringify(manifest, null, 2));
-    });
-  }
 }
 
 // #endregion
@@ -128,7 +71,7 @@ for (const entrypointsPath of entrypointDirs) {
 }
 
 const output = {
-  filename: outputFilename('js/[name]', 'js'),
+  filename: outputFilename('js/[name]', '.js'),
   path: resolvePath('public/assets'),
   publicPath: '/assets/',
 };
@@ -151,28 +94,40 @@ const plugins = [
   new webpack.DefinePlugin({
     'process.env.DOCS_URL': JSON.stringify(process.env.DOCS_URL || 'https://docs.ppy.sh'),
   }),
-  new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/), // don't add moment locales to bundle.
+  new webpack.IgnorePlugin({
+    // don't add moment locales to bundle.
+    contextRegExp: /moment$/,
+    resourceRegExp: /^\.\/locale$/,
+  }),
   new MiniCssExtractPlugin({
-    filename: outputFilename('css/[name]', 'css'),
+    filename: outputFilename('css/[name]', '.css'),
   }),
   new CopyPlugin({
     patterns: [
       { from: 'resources/builds/locales', to: outputFilename('js/locales/[name]') },
       { from: 'node_modules/moment/locale', to: outputFilename('js/moment-locales/[name]') },
-      { from: 'node_modules/@discordapp/twemoji/dist/svg/*-*.svg', to: 'images/flags/[name].[ext]' },
+      { from: 'node_modules/@discordapp/twemoji/dist/svg/*-*.svg', to: 'images/flags/[name][ext]' },
     ],
   }),
 ];
 
 if (writeManifest) {
-  plugins.push(new Manifest({ fileName: path.join(output.path, 'manifest.json') }));
+  plugins.push(new WebpackManifestPlugin({
+    filter: (file) => file.path.match(/^\/assets\/(?:css|js)\/.*\.(?:css|js)$/) !== null,
+    map: (file) => {
+      const baseDir = file.path.match(/^\/assets\/(css|js)\//)?.[1];
+      if (baseDir !== null && !file.name.startsWith(`${baseDir}/`)) {
+        file.name = `${baseDir}/${file.name}`;
+      }
+
+      return file;
+    },
+  }));
 }
 
 // TODO: should have a different flag for this
 if (!inProduction) {
-  // there is an issue (bug?) where assets loaded via file-loader don't show up in the stats
-  // when recompiling css so they end up being considered stale.
-  plugins.push(new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }));
+  plugins.push(new CleanWebpackPlugin());
 }
 
 if (process.env.SENTRY_RELEASE === '1') {
@@ -235,25 +190,18 @@ const rules = [
     ],
   },
   {
-    loaders: [
-      {
-        loader: 'file-loader',
-        options: {
-          name: outputFilename('images/[name]'),
-        },
-      },
-      {
-        loader: 'img-loader',
-      },
-    ],
+    generator: {
+      filename: outputFilename('images/[name]'),
+    },
     test: /(\.(png|jpe?g|gif|webp)$|^((?!font).)*\.svg$)/,
+    type: 'asset/resource',
   },
   {
-    loader: 'file-loader',
-    options: {
-      name: outputFilename('fonts/[name]'),
+    generator: {
+      filename: outputFilename('fonts/[name]'),
     },
     test: /(\.(woff2?|ttf|eot|otf)$|font.*\.svg$)/,
+    type: 'asset/resource',
   },
 ];
 
@@ -308,27 +256,24 @@ const cacheGroups = {
 };
 
 const optimization = {
-  moduleIds: 'hashed',
+  moduleIds: 'deterministic',
   runtimeChunk: {
     name: 'runtime',
   },
   splitChunks: {
     cacheGroups,
   },
-
 };
 
 if (inProduction) {
   optimization.minimizer = [
     new TerserPlugin({
-      sourceMap: true,
       terserOptions: {
         safari10: true,
+        sourceMap: true,
       },
     }),
-    new CssMinimizerPlugin({
-      sourceMap: true,
-    }),
+    new CssMinimizerPlugin(),
   ];
 }
 

@@ -171,6 +171,7 @@ return [
 
     'score' => [
         'pin' => [
+            'disabled_type' => "無法置頂這類分數。",
             'not_owner' => '只有擁有者才可置頂成績。',
             'too_many' => '置頂過多成績。',
         ],
@@ -183,6 +184,9 @@ return [
                 'not_owner' => '只能編輯自己的個人頁面。',
                 'require_supporter_tag' => '需要成為 osu! 贊助者。',
             ],
+        ],
+        'update_email' => [
+            'locked' => '',
         ],
     ],
 ];

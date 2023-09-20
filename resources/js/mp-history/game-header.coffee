@@ -7,7 +7,7 @@ import TimeWithTooltip from 'components/time-with-tooltip'
 import { route } from 'laroute'
 import * as React from 'react'
 import { div, a, span, h1, h2 } from 'react-dom-factories'
-import { getArtist, getTitle } from 'utils/beatmap-helper'
+import { getArtist, getTitle } from 'utils/beatmapset-helper'
 import { trans } from 'utils/lang'
 
 el = React.createElement
@@ -50,7 +50,7 @@ export class GameHeader extends React.Component
         h2 className: 'mp-history-game__metadata mp-history-game__metadata--artist', getArtist(@props.beatmapset)
 
       div className: 'mp-history-game__mods',
-        el(Mod, key: mod, mod: mod) for mod in @props.game.mods
+        el(Mod, key: mod, mod: { acronym: mod }) for mod in @props.game.mods
 
       div
         className: 'mp-history-game__team-type'

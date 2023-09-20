@@ -339,6 +339,11 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         });
     }
 
+    public function scopeScoreable(Builder $query): void
+    {
+        $query->where('approved', '>', 0);
+    }
+
     public function scopeWithModesForRanking($query, $modeInts)
     {
         if (!is_array($modeInts)) {
@@ -470,7 +475,10 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         }
 
         $curl = curl_init($url);
-        curl_setopt($curl, CURLOPT_FILE, $oszFile);
+        curl_setopt_array($curl, [
+            CURLOPT_FILE => $oszFile,
+            CURLOPT_TIMEOUT => 30,
+        ]);
         curl_exec($curl);
 
         if (curl_errno($curl) > 0) {
@@ -550,11 +558,23 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         $approvedState = static::STATES[$state];
         $beatmaps = $this->beatmaps();
 
-        if (isset($beatmapIds)) {
-            if ($beatmaps->whereKey($beatmapIds)->count() === count($beatmapIds)) {
-                $beatmaps = $beatmaps->whereIn('beatmap_id', $beatmapIds);
-            } else {
-                throw new InvariantException('beatmap_ids contains invalid id');
+        if ($beatmapIds !== null) {
+            $beatmaps->whereKey($beatmapIds);
+
+            if ($beatmaps->count() !== count($beatmapIds)) {
+                throw new InvariantException('Invalid beatmap IDs');
+            }
+
+            // If the beatmapset will be scoreable, set all of the unspecified
+            // beatmaps currently "WIP" or "pending" to "graveyard". It doesn't
+            // make sense for any beatmaps to be in those states when they
+            // cannot be updated.
+            if ($approvedState > 0) {
+                $this
+                    ->beatmaps()
+                    ->whereKeyNot($beatmapIds)
+                    ->whereIn('approved', [static::STATES['wip'], static::STATES['pending']])
+                    ->update(['approved' => static::STATES['graveyard']]);
             }
         }
 

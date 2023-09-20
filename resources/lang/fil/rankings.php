@@ -17,9 +17,16 @@ return [
         ],
     ],
 
+    'kudosu' => [
+        'total' => '',
+        'available' => '',
+        'used' => '',
+    ],
+
     'type' => [
         'charts' => 'Mga Spotlight',
         'country' => 'Bansa',
+        'kudosu' => '',
         'multiplayer' => 'multiplayer',
         'performance' => 'Performance',
         'score' => 'Iskor',

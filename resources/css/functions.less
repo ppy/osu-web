@@ -249,6 +249,14 @@
   }
 }
 
+.at2x-simple-var(@var) {
+  background-image: var(@var);
+
+  @media @highdpi {
+    background-image: var(~"@{var}-2x");
+  }
+}
+
 .at2x-fallback(@var, @fallback) {
   @fallback2x: replace(@fallback, "(\.[^.]+)$", "@2x$1");
   background-image: var(@var, url(@fallback));

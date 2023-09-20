@@ -36,7 +36,7 @@ class BeatmapsetDiscussionVotesController extends Controller
      * ------------- | ------------------------------------------------------- | -----------
      * cursor_string | [CursorString](#cursorstring)                           | |
      * discussions   | [BeatmapsetDiscussion](#beatmapsetdiscussion)           | |
-     * users         | [UserCompact](#usercompact)                             | |
+     * users         | [User](#user)                                           | |
      * votes         | [BeatmapsetDiscussionVote](#beatmapsetdiscussionvote)[] | |
      *
      * @queryParam beatmapset_discussion_id `id` of the [BeatmapsetDiscussion](#beatmapsetdiscussion).

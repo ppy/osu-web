@@ -1,37 +1,25 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import TextareaAutosize from 'components/textarea-autosize';
 import { CommentableMetaJson } from 'interfaces/comment-json';
-import { route } from 'laroute';
-import { action, computed, makeObservable, observable, runInAction } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
-import { Comment } from 'models/comment';
+import Comment from 'models/comment';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import TextareaAutosize from 'react-autosize-textarea';
-import { onErrorWithCallback } from 'utils/ajax';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { InputEventType, makeTextAreaHandler, TextAreaCallback } from 'utils/input-handler';
 import { trans } from 'utils/lang';
-import { switchNever } from 'utils/switch-never';
 import BigButton from './big-button';
+import Controller, { CommentEditMode, PostParams } from './comments-controller';
 import { Spinner } from './spinner';
 import UserAvatar from './user-avatar';
-
-export type CommentEditMode = 'edit' | 'new' | 'reply';
-
-interface CommentPostParams {
-  comment: {
-    commentable_id?: number;
-    commentable_type?: string;
-    message: string;
-    parent_id?: number;
-  };
-}
 
 interface Props {
   close?: () => void;
   commentableMeta?: CommentableMetaJson;
+  controller: Controller;
   focus?: boolean;
   id?: number;
   message?: string;
@@ -127,9 +115,9 @@ export default class CommentEditor extends React.Component<Props> {
         }
 
         <TextareaAutosize
-          ref={this.textarea}
           className={`${bn}__message`}
           disabled={!this.canComment || this.posting}
+          innerRef={this.textarea}
           onChange={this.onChange}
           onKeyDown={this.handleKeyDown}
           placeholder={this.placeholder}
@@ -200,13 +188,21 @@ export default class CommentEditor extends React.Component<Props> {
   };
 
   @action
-  private readonly onChange = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+  private readonly onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     this.message = e.currentTarget.value;
   };
 
   @action
   private readonly post = () => {
-    if (this.posting) return;
+    const postParams: PostParams = {
+      commentableMeta: this.props.commentableMeta,
+      id: this.props.id,
+      message: this.message,
+      mode: this.mode,
+      parentId: this.props.parent?.id,
+    };
+
+    if (this.props.controller.isPosting(postParams)) return;
 
     if (this.mode === 'edit' && this.message === (this.props.message ?? '')) {
       this.props.close?.();
@@ -214,57 +210,10 @@ export default class CommentEditor extends React.Component<Props> {
       return;
     }
 
-    this.posting = true;
-    const params: CommentPostParams = {
-      comment: { message: this.message },
-    };
-
-    let url = route('comments.store');
-    let method = 'POST';
-    let resetMessage = true;
-    let publishEvent = 'comments:new';
-
-    switch (this.mode) {
-      case 'edit':
-        if (this.props.id == null) {
-          throw new Error('missing post id in edit mode');
-        }
-        url = route('comments.update', { comment: this.props.id });
-        method = 'PUT';
-        resetMessage = false;
-        publishEvent = 'comment:updated';
-        break;
-
-      case 'new':
-        if (this.props.commentableMeta == null || !('id' in this.props.commentableMeta)) {
-          throw new Error('missing commentable meta in new mode');
-        }
-        params.comment.commentable_type = this.props.commentableMeta.type;
-        params.comment.commentable_id = this.props.commentableMeta.id;
-        break;
-
-      case 'reply':
-        if (this.props.parent == null) {
-          throw new Error('missing parent in reply mode');
-        }
-        params.comment.parent_id = this.props.parent.id;
-        break;
-
-      default:
-        switchNever(this.mode);
-    }
-
-    this.xhr = $.ajax(url, { data: params, method });
-    this.xhr
-      .always(action(() => {
-        this.posting = false;
-      })).done((data) => runInAction(() => {
-        if (resetMessage) {
-          this.message = '';
-        }
-        $.publish(publishEvent, data);
-        this.props.onPosted?.(this.mode);
-        this.props.close?.();
-      })).fail(onErrorWithCallback(this.post));
+    this.props.controller.apiPost(postParams, action(() => {
+      this.message = '';
+      this.props.onPosted?.(this.mode);
+      this.props.close?.();
+    }));
   };
 }

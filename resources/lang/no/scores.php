@@ -23,8 +23,8 @@ return [
     ],
 
     'status' => [
-        'non_best' => '',
-        'non_passing' => '',
-        'processing' => '',
+        'non_best' => 'Kun personlige rekorder tilldeler pp',
+        'non_passing' => 'Kun gjenomførte kart tilldeler pp',
+        'processing' => 'Denne scoren blir fremdeles beregnet og vil vises snart',
     ],
 ];

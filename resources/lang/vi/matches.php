@@ -12,7 +12,7 @@ return [
         'in_progress_spinner_label' => 'trận đấu đang diễn ra',
         'loading-events' => 'Đang tải các sự kiện...',
         'winner' => ':team thắng',
-        'winner_by' => '',
+        'winner_by' => ':winner thắng với :difference điểm',
 
         'events' => [
             'player-left' => ':user đã rời khỏi trận đấu',

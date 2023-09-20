@@ -171,6 +171,7 @@ return [
 
     'score' => [
         'pin' => [
+            'disabled_type' => "この種類のスコアはピン留めできません",
             'not_owner' => 'スコアの所有者のみがピン留めできます。',
             'too_many' => 'ピン留めの数が多すぎます。',
         ],
@@ -183,6 +184,9 @@ return [
                 'not_owner' => '自分のユーザーページのみ編集できます。',
                 'require_supporter_tag' => 'osu!サポータータグが必要です。',
             ],
+        ],
+        'update_email' => [
+            'locked' => '',
         ],
     ],
 ];

@@ -53,6 +53,13 @@
   --forum-bg: hsl(var(--hsl-h1));
   --forum-text: @link-color;
   --forum-text: @link-hover-color;
+
+  --navbar-height: @navbar-height;
+  --scroll-padding-top: calc(var(--navbar-height) + 1em + var(--scroll-padding-top-extra, 0px));
+
+  @media @desktop {
+    --navbar-height: @nav2-height--pinned;
+  }
 }
 
 html, body {
@@ -60,12 +67,8 @@ html, body {
 }
 
 html {
-  scroll-padding-top: calc(@nav2-height--pinned + 1em);
+  scroll-padding-top: var(--scroll-padding-top);
   scroll-padding-bottom: 1em;
-
-  @media @mobile {
-    scroll-padding-top: calc(@navbar-height + 1em);
-  }
 }
 
 body {

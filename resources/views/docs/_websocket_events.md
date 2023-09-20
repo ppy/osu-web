@@ -67,7 +67,7 @@ Sent to the user when the user receives a chat message.
 Field    | Type                          | Description
 -------- |------------------------------ |-------------
 messages | [ChatMessage](#chatmessage)[] | The messages received.
-users    | [UserCompact](#usercompact)[] | The related users who sent the messages.
+users    | [User](#user)[]               | The related users who sent the messages.
 
 Messages intented for a user are always sent even if the user does not currently have the channel open.
 Such messages include PM and Announcement messages.

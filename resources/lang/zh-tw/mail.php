@@ -67,7 +67,7 @@ return [
         'duration' => '因為他們，您可以在接下來的 :duration 內享受 osu!direct 和其他 osu! 支持者享有的特權。',
         'features' => '您可以在此處找到這些功能的更多資訊：',
         'gifted' => '有人剛剛送給你了一份osu!贊助者標籤!',
-        'gift_message' => '',
+        'gift_message' => '向您贈送此贊助者標籤的人為您寫了如下留言:',
         'subject' => '您已獲贈 osu!supporter 標籤！',
     ],
 

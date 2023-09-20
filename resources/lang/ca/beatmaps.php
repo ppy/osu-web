@@ -78,6 +78,18 @@ return [
             'suggestion' => 'Suggeriment',
         ],
 
+        'message_type_title' => [
+            'disqualify' => '',
+            'hype' => '',
+            'mapper_note' => '',
+            'nomination_reset' => '',
+            'praise' => '',
+            'problem' => '',
+            'problem_warning' => '',
+            'review' => '',
+            'suggestion' => '',
+        ],
+
         'mode' => [
             'events' => 'Historial',
             'general' => 'General :scope',
@@ -175,6 +187,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => 'Ja has nominat aquest beatmap.',
+        'cannot_nominate' => 'No podeu nominar aquest mode de joc del beatmap.',
         'delete' => 'Eliminar',
         'delete_own_confirm' => 'Estàs segur? El beatmap serà eliminat i se us redirigirà al vostre perfil.',
         'delete_other_confirm' => 'Estàs segur? El beatmap serà eliminat i se us redirigirà al perfil de l\'usuari.
@@ -200,7 +214,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'S\'estima que aquest mapa es classificarà en :date si no es troben problemes. És el número :position a la :queue.',
-            'on' => '',
+            'on' => 'a :date',
             'queue' => 'cua de classificació',
             'soon' => 'aviat',
         ],

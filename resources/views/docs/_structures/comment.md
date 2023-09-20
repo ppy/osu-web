@@ -20,7 +20,7 @@
 }
 ```
 
-Represents an single comment.
+Represents a single comment.
 
 Field            | Type       | Description
 ---------------- | ---------- | ------------------

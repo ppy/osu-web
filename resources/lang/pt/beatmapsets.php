@@ -60,6 +60,10 @@ return [
     'show' => [
         'discussion' => 'Discussão',
 
+        'admin' => [
+            'full_size_cover' => 'Ver imagem da capa em tamanho real',
+        ],
+
         'deleted_banner' => [
             'title' => 'Este beatmap foi apagado.',
             'message' => '(apenas os moderadores podem ver isto)',

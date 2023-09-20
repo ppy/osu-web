@@ -20,6 +20,16 @@ return [
             'new' => 'bagong email',
             'new_confirmation' => 'ikumpirma ang email',
             'title' => 'Email',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
+        ],
+
+        'legacy_api' => [
+            'api' => '',
+            'irc' => '',
+            'title' => '',
         ],
 
         'password' => [
@@ -30,7 +40,13 @@ return [
         ],
 
         'profile' => [
+            'country' => '',
             'title' => 'Profile',
+
+            'country_change' => [
+                '_' => "",
+                'update_link' => '',
+            ],
 
             'user' => [
                 'user_discord' => '',

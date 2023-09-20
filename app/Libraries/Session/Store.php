@@ -15,13 +15,16 @@ class Store extends \Illuminate\Session\Store
 {
     const SESSION_ID_LENGTH = 40;
 
-    public static function destroy($userId)
+    public static function destroy($userId, ?string $excludedSessionId = null)
     {
         if (!static::isUsingRedis()) {
             return;
         }
 
         $keys = static::keys($userId);
+        if ($excludedSessionId !== null) {
+            $keys = array_filter($keys, fn ($key) => $key !== $excludedSessionId);
+        }
         UserSessionEvent::newLogout($userId, $keys)->broadcast();
         Redis::del(array_merge([static::listKey($userId)], $keys));
     }
@@ -143,6 +146,8 @@ class Store extends \Illuminate\Session\Store
 
         $userId = Auth::user()->user_id;
 
+        // prevent the following save from clearing up current flash data
+        $this->reflash();
         // flush the current session data to redis early, otherwise we will get stale metadata for the current session
         $this->save();
 

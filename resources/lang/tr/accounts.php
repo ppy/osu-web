@@ -18,6 +18,16 @@ return [
             'new' => 'yeni e-posta',
             'new_confirmation' => 'e-posta onayı',
             'title' => 'E-posta',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
+        ],
+
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'Eski API',
         ],
 
         'password' => [
@@ -28,7 +38,13 @@ return [
         ],
 
         'profile' => [
+            'country' => 'ülke',
             'title' => 'Profil',
+
+            'country_change' => [
+                '_' => "Görünüşe göre hesabınızın ülkesi ikamet ettiğiniz ülkeyle eşleşmiyor.  :update_link.",
+                'update_link' => ':country olarak güncelle',
+            ],
 
             'user' => [
                 'user_discord' => '',

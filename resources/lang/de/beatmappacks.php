@@ -27,7 +27,7 @@ return [
             'not_cleared' => 'nicht geschafft',
         ],
         'no_diff_reduction' => [
-            '_' => ':link darf zum Absolvieren dieses Beatmap-Packs nicht verwendet werden.',
+            '_' => ':link dürfen zum Absolvieren dieses Beatmap-Pakets nicht verwendet werden.',
             'link' => 'Mods zur Vereinfachung der Schwierigkeit',
         ],
     ],
@@ -36,6 +36,7 @@ return [
         'artist' => 'Künstler/Album',
         'chart' => 'Spotlights',
         'featured' => 'Featured Artist',
+        'loved' => 'Project Loved',
         'standard' => 'Standard',
         'theme' => 'Thema',
         'tournament' => 'Turnier',

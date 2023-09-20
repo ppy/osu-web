@@ -18,6 +18,16 @@ return [
             'new' => 'דואר אלקטרוני חדש',
             'new_confirmation' => 'אישור דואר אלקטרוני חדש',
             'title' => 'דואר אלקטרוני',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
+        ],
+
+        'legacy_api' => [
+            'api' => '',
+            'irc' => '',
+            'title' => '',
         ],
 
         'password' => [
@@ -28,7 +38,13 @@ return [
         ],
 
         'profile' => [
+            'country' => '',
             'title' => 'פרופיל',
+
+            'country_change' => [
+                '_' => "",
+                'update_link' => '',
+            ],
 
             'user' => [
                 'user_discord' => '',

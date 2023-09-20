@@ -78,6 +78,18 @@ return [
             'suggestion' => 'Návrh',
         ],
 
+        'message_type_title' => [
+            'disqualify' => '',
+            'hype' => '',
+            'mapper_note' => '',
+            'nomination_reset' => '',
+            'praise' => '',
+            'problem' => '',
+            'problem_warning' => '',
+            'review' => '',
+            'suggestion' => '',
+        ],
+
         'mode' => [
             'events' => 'História',
             'general' => 'Všeobecný :scope',
@@ -175,6 +187,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => '',
+        'cannot_nominate' => '',
         'delete' => 'Odstrániť',
         'delete_own_confirm' => 'Ste si istý? Beatmapa bude odstránená a budete presmerovaný späť na svoj profil.',
         'delete_other_confirm' => 'Ste si istý? Beatmapa bude odstránená a budete presmerovaný späť na profil používateľa.',

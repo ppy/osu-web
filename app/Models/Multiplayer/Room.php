@@ -18,6 +18,7 @@ use App\Traits\Memoizes;
 use App\Transformers\Multiplayer\RoomTransformer;
 use Carbon\Carbon;
 use Ds\Set;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -254,6 +255,11 @@ class Room extends Model
     public function scopeEnded($query)
     {
         return $query->where('ends_at', '<', Carbon::now());
+    }
+
+    public function scopeFeatured(Builder $query): Builder
+    {
+        return $query->whereIn('category', ['featured_artist', 'spotlight']);
     }
 
     public function scopeHasParticipated($query, User $user)
@@ -597,13 +603,8 @@ class Room extends Model
 
         return $this->getConnection()->transaction(function () use ($user, $playlistItem) {
             $agg = UserScoreAggregate::new($user, $this);
-            if ($agg->isNew) {
-                // sanity; if the object isn't saved, laravel will increment the entire table.
-                if (!$this->exists) {
-                    $this->save();
-                }
-
-                $this->increment('participant_count');
+            if ($agg->wasRecentlyCreated) {
+                $this->incrementInstance('participant_count');
             }
 
             $agg->updateUserAttempts();

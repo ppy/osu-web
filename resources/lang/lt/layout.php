@@ -14,8 +14,8 @@ return [
 
     'header' => [
         'admin' => [
-            'beatmapset' => 'bitmapų setas',
-            'beatmapset_covers' => 'bitmapo seto viršeliai',
+            'beatmapset' => 'beatmap\'ų setas',
+            'beatmapset_covers' => 'beatmap\'o seto viršeliai',
             'contest' => 'konkursas',
             'contests' => 'konkursai',
             'root' => 'konsolė',
@@ -67,7 +67,7 @@ return [
 
     'menu' => [
         'beatmaps' => [
-            '_' => 'bitmapai',
+            '_' => 'beatmap\'ai',
         ],
         'community' => [
             '_' => 'bendruomenė',
@@ -98,7 +98,7 @@ return [
             '_' => 'Bendrieji',
             'home' => 'Pradžia',
             'changelog-index' => 'Pakeitimų sąrašas',
-            'beatmaps' => 'Bitmapų sąrašas',
+            'beatmaps' => 'Beatmap\'ų sąrašas',
             'download' => 'Atsisiūsti osu!',
         ],
         'help' => [

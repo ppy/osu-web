@@ -8,7 +8,7 @@ return [
     'not_negative' => ':attribute ne sme biti negativen.',
     'required' => ':attribute je obvezen.',
     'too_long' => 'Dosežen največja dolžina za :attribute - lahko vsebuje samo do :limit znakov.',
-    'url' => '',
+    'url' => 'Prosimo vnesi pravilen URL.',
     'wrong_confirmation' => 'Potrditev se ne ujema.',
 
     'beatmapset_discussion' => [
@@ -110,7 +110,13 @@ return [
     ],
 
     'legacy_api_key' => [
-        'exists' => '',
+        'exists' => 'Trenutno je uporabniku na voljo le en API ključ.',
+
+        'attributes' => [
+            'api_key' => 'api ključ',
+            'app_name' => 'ime aplikacije',
+            'app_url' => 'url aplikacije',
+        ],
     ],
 
     'oauth' => [
@@ -169,6 +175,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => 'Rankiranih beatmap ni možno prijaviti ',
+        'not_in_channel' => 'Nisi v tem kanalu.',
         'reason_not_valid' => ':reason ni veljaven tip prijave.',
         'self' => "Ne moreš prijaviti samega sebe!",
     ],

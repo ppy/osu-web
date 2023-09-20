@@ -5,8 +5,8 @@
 
 return [
     'promote' => [
-        'pin' => '',
-        'unpin' => "",
+        'pin' => 'Er du sikker på at du vil fremheve denne direktestrømming?',
+        'unpin' => "Er du sikker på at du vil fjerne framhevingen på denne direktestrømming?",
     ],
 
     'top-headers' => [

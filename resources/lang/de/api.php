@@ -17,7 +17,9 @@ return [
         'identify' => 'Dich identifizieren und dein öffentliches Profil lesen.',
 
         'chat' => [
+            'read' => 'Nachrichten in deinem Namen lesen.',
             'write' => 'Nachrichten unter deinem Namen versenden.',
+            'write_manage' => 'Betrete und verlasse Channel in deinem Namen.',
         ],
 
         'forum' => [

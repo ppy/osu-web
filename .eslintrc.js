@@ -3,7 +3,7 @@
 
 module.exports = {
   env: {
-    es2017: true,
+    es2020: true,
     node: true,
   },
   extends: [
@@ -229,7 +229,7 @@ module.exports = {
     'new-parens': 'error',
     'no-bitwise': 'error',
     'no-caller': 'error',
-    'no-console': 'warn',
+    'no-console': ['error', { allow: ['error', 'warn'] }],
     'no-empty-function': 'error',
     'no-eval': 'error',
     'no-invalid-this': 'error',

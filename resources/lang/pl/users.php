@@ -49,6 +49,7 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => 'Podaruj status donatora',
         'loading' => 'Ładowanie...',
         'send_message' => 'Wyślij wiadomość',
     ],
@@ -386,7 +387,7 @@ return [
                     'date' => 'data',
                     'action' => 'typ',
                     'length' => 'długość',
-                    'length_permanent' => 'Na zawsze',
+                    'length_indefinite' => 'Nieokreślona',
                     'description' => 'opis',
                     'actor' => 'przez :username',
 

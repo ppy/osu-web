@@ -69,10 +69,30 @@ class OrderCheckoutTest extends TestCase
         $this->assertNotEmpty($checkout->validate());
     }
 
+    public function testShippableItemRequiresShopify()
+    {
+        $product = Product::factory()->create(['stock' => 5, 'max_quantity' => 5, 'shopify_id' => null]);
+        $orderItem = OrderItem::factory()->create([
+            'product_id' => $product,
+            'quantity' => 1,
+        ]);
+
+        $order = Order::factory()->create();
+        $order->items()->save($orderItem);
+
+        $checkout = new OrderCheckout($order);
+        $result = $checkout->validate();
+
+        $this->assertSame(
+            [osu_trans('model_validation/store/product.not_available')],
+            array_get($result, "orderItems.{$orderItem->getKey()}")
+        );
+    }
+
     public function testShopifyItemDoesNotMix()
     {
         $product1 = Product::factory()->create(['stock' => 5, 'max_quantity' => 5, 'shopify_id' => 1]);
-        $product2 = Product::factory()->create(['stock' => 5, 'max_quantity' => 5, 'shopify_id' => null]);
+        $product2 = Product::factory()->virtual()->create(['stock' => 5, 'max_quantity' => 5, 'shopify_id' => null]);
         $orderItem1 = OrderItem::factory()->create([
             'product_id' => $product1,
             'quantity' => 1,

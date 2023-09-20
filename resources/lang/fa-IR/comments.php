@@ -11,6 +11,7 @@ return [
     'edited' => 'ویرایش شده در :timeago توسط :user',
     'pinned' => 'سنجاق شده',
     'empty' => 'هیچ دیدگاهی وجود ندارد.',
+    'empty_other' => '',
     'load_replies' => 'نمایش پاسخ ها',
     'replies_count' => ':count_delimited پاسخ|:count_delimited پاسخ ها',
     'title' => 'نظرات',

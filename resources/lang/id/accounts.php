@@ -18,6 +18,16 @@ return [
             'new' => 'email baru',
             'new_confirmation' => 'konfirmasi email',
             'title' => 'Email',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
+        ],
+
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'API Lawas',
         ],
 
         'password' => [
@@ -28,7 +38,13 @@ return [
         ],
 
         'profile' => [
+            'country' => 'negara',
             'title' => 'Profil',
+
+            'country_change' => [
+                '_' => "Sepertinya negara yang tertera pada akunmu tidak sesuai dengan negara tempat tinggalmu saat ini. :update_link.",
+                'update_link' => 'Perbarui ke :country',
+            ],
 
             'user' => [
                 'user_discord' => '',
@@ -74,7 +90,7 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => 'nonaktifkan peringatan untuk beatmap yang mengandung konten eksplisit',
+        'beatmapset_show_nsfw' => 'nonaktifkan peringatan untuk beatmap berkonten eksplisit',
         'beatmapset_title_show_original' => 'tampilkan metadata beatmap dalam bahasa aslinya',
         'title' => 'Pengaturan',
 
@@ -95,8 +111,8 @@ return [
     ],
 
     'privacy' => [
-        'friends_only' => 'Blokir pesan pribadi dari orang yang tidak ada dalam daftar teman Anda',
-        'hide_online' => 'sembunyikan keberadaan online Anda',
+        'friends_only' => 'blokir pesan pribadi dari pengguna yang tidak termasuk dalam daftar teman',
+        'hide_online' => 'sembunyikan status onlinemu',
         'title' => 'Kebijakan Privasi',
     ],
 

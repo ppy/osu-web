@@ -9,8 +9,10 @@ use App\Models\Beatmap;
 use App\Models\Country;
 use App\Models\CountryStatistics;
 use App\Models\Spotlight;
+use App\Models\User;
 use App\Models\UserStatistics;
 use App\Transformers\SelectOptionTransformer;
+use App\Transformers\UserCompactTransformer;
 use DB;
 use Illuminate\Pagination\LengthAwarePaginator;
 
@@ -95,7 +97,7 @@ class RankingController extends Controller
             }
 
             return $next($request);
-        });
+        }, ['except' => ['kudosu']]);
     }
 
     /**
@@ -218,6 +220,45 @@ class RankingController extends Controller
         );
 
         return ext_view("rankings.{$type}", array_merge($this->defaultViewVars, compact('scores')));
+    }
+
+    /**
+     * Get Kudosu Ranking
+     *
+     * Gets the kudosu ranking.
+     *
+     * ---
+     *
+     * ### Response format
+     *
+     * Field   | Type            | Description
+     * ------- | --------------- | -----------
+     * ranking | [User](#user)[] | Includes `kudosu`.
+     *
+     * @queryParam page Ranking page. Example: 1
+     */
+    public function kudosu()
+    {
+        static $maxResults = 1000;
+
+        $maxPage = $maxResults / static::PAGE_SIZE;
+        $page = min(get_int(request('page')) ?? 1, $maxPage);
+
+        $scores = User::default()
+            ->orderBy('osu_kudostotal', 'desc')
+            ->paginate(static::PAGE_SIZE, ['*'], 'page', $page, $maxResults);
+
+        if (is_json_request()) {
+            return ['ranking' => json_collection(
+                $scores,
+                new UserCompactTransformer(),
+                'kudosu',
+            )];
+        }
+
+        $scores->loadMissing('country');
+
+        return ext_view('rankings.kudosu', compact('scores'));
     }
 
     public function spotlight($mode)

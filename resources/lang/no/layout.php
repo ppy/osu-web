@@ -26,8 +26,8 @@ return [
         ],
 
         'beatmapsets' => [
-            'show' => '',
-            'discussions' => '',
+            'show' => 'info',
+            'discussions' => 'diskusjon',
         ],
 
         'changelog' => [
@@ -51,8 +51,8 @@ return [
 
         'users' => [
             'modding' => 'modding',
-            'playlists' => '',
-            'realtime' => '',
+            'playlists' => 'spillelister',
+            'realtime' => 'flerspiller',
             'show' => 'info',
         ],
     ],
@@ -145,7 +145,7 @@ return [
             'description' => '',
         ],
         '429' => [
-            'error' => '',
+            'error' => 'Frekvensgrensen overskredet',
             'description' => '',
         ],
         '500' => [
@@ -169,7 +169,7 @@ return [
     ],
 
     'popup_login' => [
-        'button' => '',
+        'button' => 'logg inn / registrer',
 
         'login' => [
             'forgot' => "Jeg har glemt kontoinformasjonen min",
@@ -193,7 +193,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Innstillinger',
-            'follows' => '',
+            'follows' => 'Overvåkningslister',
             'friends' => 'Venner',
             'logout' => 'Logg Ut',
             'profile' => 'Min Profil',

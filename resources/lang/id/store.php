@@ -30,7 +30,7 @@ return [
         'cart_problems' => 'Uh oh, terdapat masalah dengan keranjangmu!',
         'cart_problems_edit' => 'Klik di sini untuk menyuntingnya.',
         'declined' => 'Pembayaran dibatalkan.',
-        'delayed_shipping' => 'Kami sedang kebanjiran pesanan! Apabila kamu memesan sekarang, harap beri kami waktu tambahan **selama 1-2 minggu** untuk memproses pesananmu karena kami saat ini masih harus mengurus pesanan yang telah kami terima sebelumnya.',
+        'delayed_shipping' => 'Kami sedang kebanjiran pesanan! Apabila kamu memesan sekarang, mohon beri kami waktu tambahan **selama 1-2 minggu** untuk memproses pesananmu karena kami saat ini masih harus mengurus pesanan yang ada.',
         'hide_from_activity' => 'Sembunyikan seluruh tag osu!supporter pada pesanan ini dari aktivitas saya',
         'old_cart' => 'Keranjangmu sepertinya telah kedaluwarsa dan telah dimuat ulang. Silakan coba lagi.',
         'pay' => 'Checkout melalui Paypal',
@@ -57,10 +57,10 @@ return [
         'status' => [
             'processing' => [
                 'title' => 'Pembayaranmu belum terkonfirmasi!',
-                'line_1' => 'Apabila kamu telah membayar sebelumnya, ada kemungkinan sistem kami masih memproses dan mengonfirmasi pembayaranmu. Silakan muat ulang halaman ini dalam beberapa menit!',
+                'line_1' => 'Apabila kamu telah membayar sebelumnya, ada kemungkinan sistem kami masih menunggu konfirmasi atas pembayaranmu. Silakan muat ulang halaman ini dalam beberapa menit!',
                 'line_2' => [
                     '_' => 'Apabila kamu mengalami masalah dalam proses checkout, :link',
-                    'link_text' => 'klik di sini untuk melanjutkan transaksimu',
+                    'link_text' => 'klik di sini untuk melanjutkan proses checkout',
                 ],
             ],
         ],
@@ -74,7 +74,7 @@ return [
         'no_orders' => 'Tidak ada pesanan yang tercatat.',
         'paid_on' => 'Pemesanan dilangsungkan pada :date',
         'resume' => 'Lanjutkan Proses Checkout',
-        'shopify_expired' => 'Tautan checkout untuk pesanan ini telah kadaluarsa.',
+        'shopify_expired' => 'Tautan checkout untuk pesanan ini telah kedaluwarsa.',
 
         'item' => [
             'quantity' => 'Jumlah',
@@ -100,7 +100,7 @@ return [
 
         'status' => [
             'cancelled' => 'Dibatalkan',
-            'checkout' => 'Pesanan Diproses',
+            'checkout' => 'Menyiapkan',
             'delivered' => 'Terkirim',
             'paid' => 'Lunas',
             'processing' => 'Menunggu konfirmasi',
@@ -112,14 +112,14 @@ return [
         'name' => 'Nama',
 
         'stock' => [
-            'out' => 'Stok barang saat ini sedang tidak tersedia. Silakan periksa kembali nanti!',
-            'out_with_alternative' => 'Sayangnya stok untuk barang ini habis. Gunakan menu dropdown untuk memilih jenis yang lain atau silahkan periksa kembali nanti!',
+            'out' => 'Stok barang ini sedang tidak tersedia. Silakan periksa kembali nanti!',
+            'out_with_alternative' => 'Sayangnya, stok barang ini sedang tidak tersedia. Gunakan menu dropdown untuk memilih varian lain atau periksa kembali nanti!',
         ],
 
         'add_to_cart' => 'Tambahkan ke Keranjang',
         'notify' => 'Beri tahu saya bila telah tersedia!',
 
-        'notification_success' => 'kamu akan diberitahukan pada saat kami memiliki stok baru. klik :link untuk membatalkan',
+        'notification_success' => 'kamu akan menerima notifikasi pada saat kami memiliki stok baru. klik :link untuk membatalkan',
         'notification_remove_text' => 'di sini',
 
         'notification_in_stock' => 'Produk ini telah tersedia!',

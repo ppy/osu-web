@@ -5,8 +5,6 @@ import BeatmapsetPanel, { Props as BeatmapsetPanelProps } from 'beatmapset-panel
 import BeatmapsetEvents, { Props as BeatmapsetEventsProps } from 'components/beatmapset-events';
 import BlockButton from 'components/block-button';
 import ChatIcon from 'components/chat-icon';
-import Comments from 'components/comments';
-import { CommentsManager, Props as CommentsManagerProps } from 'components/comments-manager';
 import CountdownTimer from 'components/countdown-timer';
 import { LandingNews } from 'components/landing-news';
 import MainNotificationIcon from 'components/main-notification-icon';
@@ -23,7 +21,7 @@ import { UserCards } from 'components/user-cards';
 import { WikiSearch } from 'components/wiki-search';
 import { keyBy } from 'lodash';
 import { observable } from 'mobx';
-import { deletedUser } from 'models/user';
+import { deletedUserJson } from 'models/user';
 import NotificationWidget from 'notification-widget/main';
 import core from 'osu-core-singleton';
 import QuickSearch from 'quick-search/main';
@@ -61,7 +59,7 @@ core.reactTurbolinks.register('beatmap-discussion-events', () => {
 
   // TODO: move to store?
   // eslint-disable-next-line id-blacklist
-  props.users.null = props.users.undefined = deletedUser.toJson();
+  props.users.null = props.users.undefined = deletedUserJson;
 
   return <BeatmapsetEvents {...props} />;
 });
@@ -79,15 +77,6 @@ core.reactTurbolinks.register('ranking-select-options', () => (
 core.reactTurbolinks.register('spotlight-select-options', () => (
   <SpotlightSelectOptions {...parseJson('json-spotlight-select-options')} />
 ));
-
-core.reactTurbolinks.register('comments', (container) => {
-  const props = {
-    ...reqJson<Omit<CommentsManagerProps, 'component'>>(container.dataset.props),
-    component: Comments,
-  };
-
-  return <CommentsManager {...props} />;
-});
 
 core.reactTurbolinks.register('chat-icon', (container) => (
   <ChatIcon type={container.dataset.type} />

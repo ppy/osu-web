@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace App\Jobs;
 
+use Datadog;
 use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -58,6 +59,7 @@ class EsDocument implements ShouldQueue
 
         if ($model !== null) {
             $model->esIndexDocument();
+            $this->incrementStat('index');
 
             return;
         }
@@ -66,5 +68,18 @@ class EsDocument implements ShouldQueue
         $keyName = $model->getKeyName();
         $model->setAttribute($keyName, $id);
         $model->esDeleteDocument();
+        $this->incrementStat('delete');
+    }
+
+    private function incrementStat(string $action): void
+    {
+        Datadog::increment(
+            config('datadog-helper.prefix_web').'.es_document',
+            1,
+            [
+                'action' => $action,
+                'class' => $this->modelMeta['class'],
+            ],
+        );
     }
 }

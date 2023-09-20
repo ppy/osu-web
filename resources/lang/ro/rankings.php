@@ -10,16 +10,23 @@ return [
     ],
 
     'filter' => [
-        'title' => 'Arată',
+        'title' => 'Afișează',
 
         'variant' => [
             'title' => 'Variantă',
         ],
     ],
 
+    'kudosu' => [
+        'total' => 'Obținut',
+        'available' => 'Disponibil',
+        'used' => 'Folosit',
+    ],
+
     'type' => [
         'charts' => 'promovări',
         'country' => 'pe țară',
+        'kudosu' => 'kudosu',
         'multiplayer' => 'multiplayer',
         'performance' => 'performanță',
         'score' => 'scor',

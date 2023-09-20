@@ -171,6 +171,7 @@ return [
 
     'score' => [
         'pin' => [
+            'disabled_type' => "Can't pin this type of score",
             'not_owner' => 'Only score owner can pin score.',
             'too_many' => 'Pinned too many scores.',
         ],
@@ -183,6 +184,9 @@ return [
                 'not_owner' => 'Can only edit own user page.',
                 'require_supporter_tag' => 'osu!supporter tag is required.',
             ],
+        ],
+        'update_email' => [
+            'locked' => 'email address is locked',
         ],
     ],
 ];

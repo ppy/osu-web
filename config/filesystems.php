@@ -1,5 +1,15 @@
 <?php
 
+$s3Default = [
+    'bucket' => env('S3_BUCKET'),
+    'driver' => 's3',
+    'endpoint' => env('S3_ENDPOINT'),
+    'key' => env('S3_KEY'),
+    'region' => env('S3_REGION'),
+    'secret' => env('S3_SECRET'),
+    'use_path_style_endpoint' => get_bool(env('S3_USE_PATH_STYLE_ENDPOINT')) ?? false,
+];
+
 foreach (['osu', 'taiko', 'fruits', 'mania'] as $mode) {
     $replays[$mode] = [
         'local' => [
@@ -8,10 +18,7 @@ foreach (['osu', 'taiko', 'fruits', 'mania'] as $mode) {
         ],
 
         's3' => [
-            'driver' => 's3',
-            'key' => env('S3_KEY'),
-            'secret' => env('S3_SECRET'),
-            'region' => env('S3_REGION'),
+            ...$s3Default,
             'bucket' => "replay-{$mode}",
         ],
     ];
@@ -79,30 +86,23 @@ return [
         ],
 
         's3' => [
-            'driver' => 's3',
-            'key' => env('S3_KEY'),
-            'secret' => env('S3_SECRET'),
-            'region' => env('S3_REGION'),
-            'bucket' => env('S3_BUCKET'),
+            ...$s3Default,
             'base_url' => env('S3_BASE_URL'),
             'mini_url' => env('S3_MINI_URL') ?? env('S3_BASE_URL'),
         ],
 
         's3-avatar' => [
-            'driver' => 's3',
-            'key' => env('S3_AVATAR_KEY'),
-            'secret' => env('S3_AVATAR_SECRET'),
-            'region' => env('S3_AVATAR_REGION'),
-            'bucket' => env('S3_AVATAR_BUCKET'),
+            ...$s3Default,
             'base_url' => env('S3_AVATAR_BASE_URL'),
+            'bucket' => env('S3_AVATAR_BUCKET'),
+            'key' => env('S3_AVATAR_KEY'),
+            'region' => env('S3_AVATAR_REGION'),
+            'secret' => env('S3_AVATAR_SECRET'),
         ],
 
         's3-solo-replay' => [
-            'driver' => 's3',
-            'key' => env('S3_KEY'),
-            'secret' => env('S3_SECRET'),
-            'region' => env('S3_REGION'),
-            'bucket' => 'solo-scores-replay',
+            ...$s3Default,
+            'bucket' => presence(env('S3_SOLO_REPLAY_BUCKET')) ?? 'solo-scores-replays',
         ],
     ],
 

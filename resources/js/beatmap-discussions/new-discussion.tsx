@@ -4,6 +4,7 @@
 import { DiscussionType, discussionTypeIcons, discussionTypes } from 'beatmap-discussions/discussion-type';
 import BigButton from 'components/big-button';
 import StringWithComponent from 'components/string-with-component';
+import TextareaAutosize from 'components/textarea-autosize';
 import TimeWithTooltip from 'components/time-with-tooltip';
 import UserAvatar from 'components/user-avatar';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
@@ -16,7 +17,6 @@ import { action, computed, makeObservable, observable, runInAction } from 'mobx'
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import TextareaAutosize from 'react-autosize-textarea';
 import { onError } from 'utils/ajax';
 import { canModeratePosts, formatTimestamp, makeUrl, NearbyDiscussion, nearbyDiscussions, parseTimestamp, validMessageLength } from 'utils/beatmapset-discussion-helper';
 import { downloadLimited, nominationsCount } from 'utils/beatmapset-helper';
@@ -28,6 +28,7 @@ import { present } from 'utils/string';
 import CurrentDiscussions from './current-discussions';
 import DiscussionMessageLengthCounter from './discussion-message-length-counter';
 import DiscussionMode from './discussion-mode';
+import { hypeExplanationClass } from './nominations';
 
 const bn = 'beatmap-discussion-new';
 
@@ -94,7 +95,7 @@ export class NewDiscussion extends React.Component<Props> {
       };
     }
 
-    return this.nearbyDiscussionsCache?.discussions ?? [];
+    return this.nearbyDiscussionsCache.discussions;
   }
 
   private get storageKey() {
@@ -315,7 +316,7 @@ export class NewDiscussion extends React.Component<Props> {
     if (!(this.props.mode === 'generalAll' && this.props.beatmapset.can_be_hyped)) return null;
 
     return (
-      <div className={`${bn}__footer-content js-hype--explanation js-flash-border`}>
+      <div className={`${bn}__footer-content ${hypeExplanationClass} js-flash-border`}>
         <div className={`${bn}__footer-message ${bn}__footer-message--label`}>
           {trans('beatmaps.hype.title')}
         </div>
@@ -390,9 +391,9 @@ export class NewDiscussion extends React.Component<Props> {
     return (
       <>
         <TextareaAutosize
-          ref={this.inputBox}
           className={`${bn}__message-area js-hype--input`}
           disabled={this.posting != null || !this.canPost}
+          innerRef={this.inputBox}
           onChange={this.setMessage}
           onFocus={this.onFocus}
           onKeyDown={this.handleKeyDown}
@@ -455,6 +456,7 @@ export class NewDiscussion extends React.Component<Props> {
         props={{
           'data-type': type,
           onClick: this.post,
+          title: trans(`beatmaps.discussions.message_type_title.${typeText}`),
         }}
         text={trans(`beatmaps.discussions.message_type.${typeText}`)}
       />

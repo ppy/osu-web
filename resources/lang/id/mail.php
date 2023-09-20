@@ -14,7 +14,7 @@ return [
     'common' => [
         'closing' => 'Salam,',
         'hello' => 'Hai :user,',
-        'report' => 'Harap balas email ini DENGAN SEGERA apabila kamu tidak merasa melakukan tindakan ini.',
+        'report' => 'Mohon balas email ini DENGAN SEGERA apabila kamu tidak merasa meminta perubahan ini.',
         'ignore' => 'Apabila kamu tidak mengirim permintaan ini, kamu dapat mengabaikan email ini.',
     ],
 
@@ -52,8 +52,8 @@ return [
     ],
 
     'store_payment_completed' => [
-        'prepare_shipping' => 'Kami telah menerima pembayaranmu, dan saat ini kami tengah mempersiapkan pesananmu untuk dikirim. Tergantung dari jumlah pesanan yang masuk, pesananmu dapat memerlukan waktu beberapa hari untuk dikirim. Kamu dapat melacak pesananmu beserta segala rincian tambahannya (apabila tersedia) pada tautan berikut:',
-        'processing' => 'Kami telah menerima pembayaranmu, dan saat ini kami sedang memproses pesananmu lebih lanjut. Kamu dapat mengikuti perkembangan pesananmu di sini:',
+        'prepare_shipping' => 'Kami telah menerima pembayaranmu dan sedang mempersiapkan pesananmu untuk dikirim. Tergantung dari jumlah pesanan yang masuk, pesananmu dapat memerlukan waktu beberapa hari untuk dikirim. Kamu dapat melacak pesananmu beserta segala rinciannya (apabila tersedia) pada tautan berikut:',
+        'processing' => 'Kami telah menerima pembayaranmu dan sedang memproses pesananmu. Kamu dapat mengikuti perkembangan pesananmu di sini:',
         'questions' => "Apabila kamu memiliki pertanyaan lebih lanjut, jangan sungkan untuk membalas email ini.",
         'shipping' => 'Pengiriman',
         'subject' => 'Kami telah menerima pesanan osu!store milikmu!',
@@ -64,7 +64,7 @@ return [
     'supporter_gift' => [
         'anonymous_gift' => 'Pengguna yang menghadiahkanmu tag supporter ini memilih untuk tetap anonim, sehingga nama mereka tidak disebutkan pada email ini.',
         'anonymous_gift_maybe_not' => 'Tetapi kamu mungkin sudah tahu siapa itu ;).',
-        'duration' => 'Berkat mereka, kamu kini dapat menikmati akses osu!direct dan berbagai fitur khusus osu!supporter lainnya selama :duration.',
+        'duration' => 'Berkat mereka, kamu kini dapat mengakses osu!direct dan berbagai fitur khusus osu!supporter lainnya selama :duration.',
         'features' => 'Kamu dapat membaca rincian lebih lanjut mengenai berbagai fitur ini di sini:',
         'gifted' => 'Seseorang baru saja menghadiahkanmu osu!supporter tag!',
         'gift_message' => 'Pengguna yang menghadiahkan tag ini menitipkan pesan berikut untukmu:',
@@ -73,13 +73,13 @@ return [
 
     'user_email_updated' => [
         'changed_to' => 'Email ini merupakan bukti konfirmasi bahwa alamat email yang terhubung dengan akun osu! milikmu telah diubah menjadi ":email".',
-        'check' => 'Harap pastikan bahwa kamu menerima email ini pada alamat email yang baru agar ke depannya kamu tidak kehilangan akses menuju akun osu! milikmu.',
+        'check' => 'Mohon pastikan bahwa kamu menerima email ini pada alamat email yang baru agar ke depannya kamu tidak kehilangan akses menuju akun osu! milikmu.',
         'sent' => 'Demi alasan keamanan, email ini telah dikirim ke alamat email baru dan lama milikmu.',
         'subject' => 'Konfirmasi perubahan email osu!',
     ],
 
     'user_force_reactivation' => [
-        'main' => 'Akunmu terindikasi telah disalahgunakan, memiliki rekam jejak aktivitas yang mencurigakan, atau memiliki kata sandi yang SANGAT lemah. Oleh karenanya, kami memintamu untuk menentukan kata sandi baru. Pastikan kamu memilih kata sandi yang LEBIH AMAN.',
+        'main' => 'Akunmu terindikasi telah disusupi, memiliki rekam jejak aktivitas yang mencurigakan, atau memiliki kata sandi yang SANGAT lemah. Oleh karenanya, kami memintamu untuk menentukan kata sandi baru. Pastikan kamu memilih kata sandi yang LEBIH AMAN.',
         'perform_reset' => 'Kamu dapat mengatur ulang kata sandi akunmu melalui :url',
         'reason' => 'Alasan:',
         'subject' => 'Aktivasi Ulang Akun osu! Dibutuhkan',

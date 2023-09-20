@@ -49,6 +49,7 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => 'Ge supporter-tag',
         'loading' => 'Laddar...',
         'send_message' => 'skicka meddelande',
     ],
@@ -386,7 +387,7 @@ return [
                     'date' => 'datum',
                     'action' => 'åtgärd',
                     'length' => 'längd',
-                    'length_permanent' => 'Permanent',
+                    'length_indefinite' => 'Obestämd',
                     'description' => 'beskrivning',
                     'actor' => 'efter :användarnamn',
 

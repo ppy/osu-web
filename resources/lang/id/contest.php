@@ -5,7 +5,7 @@
 
 return [
     'header' => [
-        'small' => 'Karena sesungguhnya persaingan tidak hanya terjadi di dalam lapangan permainan.',
+        'small' => 'Karena sesungguhnya persaingan tidak hanya terjadi di dalam permainan.',
         'large' => 'Kontes Komunitas',
     ],
 
@@ -42,7 +42,7 @@ return [
         '_' => 'entri',
         'login_required' => 'Silakan masuk untuk mengikuti kontes.',
         'silenced_or_restricted' => 'Kamu tidak dapat mengikuti kontes ketika kamu sedang di-restrict atau di-silence.',
-        'preparation' => 'Kami sedang mempersiapkan kontes ini. Harap bersabar!',
+        'preparation' => 'Kami sedang mempersiapkan kontes ini. Mohon bersabar!',
         'drop_here' => 'Letakkan entrimu di sini',
         'download' => 'Unduh .osz',
         'wrong_type' => [

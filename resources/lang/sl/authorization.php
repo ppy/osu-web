@@ -171,6 +171,7 @@ return [
 
     'score' => [
         'pin' => [
+            'disabled_type' => "",
             'not_owner' => 'Samo lastnik rezultata lahko pripne rezultat.',
             'too_many' => 'Pripeto je preveč rezultatov.',
         ],
@@ -183,6 +184,9 @@ return [
                 'not_owner' => 'Možno je urejati le lastno uporabniško stran.',
                 'require_supporter_tag' => 'Potrebna je osu!supporter značka.',
             ],
+        ],
+        'update_email' => [
+            'locked' => '',
         ],
     ],
 ];

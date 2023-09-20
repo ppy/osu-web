@@ -26,7 +26,7 @@ return [
         'message_type_select' => 'Seleziona il tipo di commento',
         'reply_notice' => 'Premi invio per rispondere.',
         'reply_placeholder' => 'Scrivi la tua risposta qui',
-        'require-login' => 'Per favore effettua il login per postare o rispondere',
+        'require-login' => 'Effettua il login per poter postare o rispondere',
         'resolved' => 'Risolto',
         'restore' => 'ripristina',
         'show_deleted' => 'Mostra eliminati',
@@ -76,6 +76,18 @@ return [
             'problem_warning' => 'Segnala un Problema',
             'review' => 'Revisione',
             'suggestion' => 'Suggerimento',
+        ],
+
+        'message_type_title' => [
+            'disqualify' => 'Posta Squalifica',
+            'hype' => 'Posta Hype!',
+            'mapper_note' => 'Posta Nota',
+            'nomination_reset' => 'Rimuovi tutte le Nomine',
+            'praise' => 'Posta Elogio',
+            'problem' => 'Posta Problema',
+            'problem_warning' => 'Posta Problema',
+            'review' => 'Posta Revisione',
+            'suggestion' => 'Posta Suggerimento',
         ],
 
         'mode' => [
@@ -175,6 +187,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => 'Hai già nominato questa beatmap.',
+        'cannot_nominate' => 'Non puoi nominare questa modalità di gioco della beatmap.',
         'delete' => 'Elimina',
         'delete_own_confirm' => 'Sei sicuro? La beatmap verrà eliminata e sarai reindirizzato al tuo profilo.',
         'delete_other_confirm' => 'Sei sicuro? La beatmap verrà eliminata e sarai reindirizzato al profilo del creatore.',

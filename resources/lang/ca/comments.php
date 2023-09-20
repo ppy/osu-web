@@ -11,6 +11,7 @@ return [
     'edited' => 'editat :timeago per :user',
     'pinned' => 'fixat',
     'empty' => 'No hi ha comentaris.',
+    'empty_other' => 'Encara no hi ha cap altre comentari.',
     'load_replies' => 'carrega les respostes',
     'replies_count' => ':count_delimited resposta|:count_delimited respostes',
     'title' => 'Comentaris',

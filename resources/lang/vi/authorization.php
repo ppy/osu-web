@@ -171,6 +171,7 @@ return [
 
     'score' => [
         'pin' => [
+            'disabled_type' => "Không thể ghim điểm này",
             'not_owner' => 'Chỉ có người sở hữu có thể ghim điểm.',
             'too_many' => 'Ghim quá nhiều điểm.',
         ],
@@ -183,6 +184,9 @@ return [
                 'not_owner' => 'Chỉ có thể chỉnh sửa trang người dùng của bạn.',
                 'require_supporter_tag' => 'phải có osu!supporter.',
             ],
+        ],
+        'update_email' => [
+            'locked' => '',
         ],
     ],
 ];

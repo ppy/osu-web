@@ -75,7 +75,7 @@ export default class LazyLoad extends React.Component<React.PropsWithChildren<Pr
 
   // get the bounds and scroll position before update.
   getSnapshotBeforeUpdate() {
-    return this.context?.getSnapshot(this.props.name);
+    return this.context?.getSnapshot(this.props.name) ?? null;
   }
 
   render() {

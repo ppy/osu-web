@@ -78,6 +78,18 @@ return [
             'suggestion' => 'Sugestão',
         ],
 
+        'message_type_title' => [
+            'disqualify' => '',
+            'hype' => '',
+            'mapper_note' => '',
+            'nomination_reset' => 'Remover todas as nomeações',
+            'praise' => '',
+            'problem' => '',
+            'problem_warning' => '',
+            'review' => '',
+            'suggestion' => '',
+        ],
+
         'mode' => [
             'events' => 'Historial',
             'general' => 'Geral :scope',
@@ -176,6 +188,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => 'Já nomeaste este beatmap.',
+        'cannot_nominate' => 'Não podes nomear este modo de jogo de beatmap.',
         'delete' => 'Apagar',
         'delete_own_confirm' => 'Tens a certeza? O beatmap será apagado e serás redirecionado de volta para o teu perfil.',
         'delete_other_confirm' => 'Tens a certeza? O beatmap será apagado e serás redirecionado de volta para o perfil de utilizador.',

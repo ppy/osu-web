@@ -78,6 +78,18 @@ return [
             'suggestion' => 'הצעה',
         ],
 
+        'message_type_title' => [
+            'disqualify' => '',
+            'hype' => '',
+            'mapper_note' => '',
+            'nomination_reset' => '',
+            'praise' => '',
+            'problem' => '',
+            'problem_warning' => '',
+            'review' => '',
+            'suggestion' => '',
+        ],
+
         'mode' => [
             'events' => 'היסטוריה',
             'general' => 'כללי :scope',
@@ -175,6 +187,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => '',
+        'cannot_nominate' => '',
         'delete' => 'מחק',
         'delete_own_confirm' => 'אתה בטוח? Beatmap זו תימחק ואתה תועבר חזרה לפרופיל שלך.',
         'delete_other_confirm' => 'אתה בטוח? Beatmap זו תימחק ואתה תועבר חזרה לפרופיל של המשתמש.',

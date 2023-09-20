@@ -18,6 +18,16 @@ return [
             'new' => 'ny e-post',
             'new_confirmation' => 'bekreft e-post',
             'title' => 'E-post',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
+        ],
+
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'Gammel API',
         ],
 
         'password' => [
@@ -28,7 +38,13 @@ return [
         ],
 
         'profile' => [
+            'country' => '',
             'title' => 'Profil',
+
+            'country_change' => [
+                '_' => "",
+                'update_link' => '',
+            ],
 
             'user' => [
                 'user_discord' => '',

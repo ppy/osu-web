@@ -18,6 +18,16 @@ return [
             'new' => 'jauns e-pasts',
             'new_confirmation' => 'e-pasta apstiprinājums',
             'title' => 'E-pasts',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
+        ],
+
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'Legacy API',
         ],
 
         'password' => [
@@ -28,7 +38,13 @@ return [
         ],
 
         'profile' => [
+            'country' => 'valsts',
             'title' => 'Profils',
+
+            'country_change' => [
+                '_' => "",
+                'update_link' => '',
+            ],
 
             'user' => [
                 'user_discord' => '',

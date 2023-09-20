@@ -49,6 +49,7 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => 'Darovat supporter tag',
         'loading' => 'Načítání...',
         'send_message' => 'Odeslat zprávu',
     ],
@@ -158,7 +159,7 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'Tvůj účet byl omezen!',
-        'message' => 'Zatímco jsi omezený, nebudeš moci komunikovat s ostatními hráči a tvá skóre budou viditelná pouze pro tebe. Toto je obvykle výsledkem automatického procesu, který by se měl sám vyřešit nejpozději do 24 hodin. Pokud si přeješ odvolat své omezení, prosím <a href="mailto:accounts@ppy.sh">kontaktuj podporu</a>.',
+        'message' => 'Zatímco jsi omezený, nebudeš moci komunikovat s ostatními hráči a tvá skóre budou viditelná pouze pro tebe. Toto je obvykle výsledkem automatického procesu a většinou jsou tato omezení zrušena do 24 hodin. :link',
         'message_link' => 'Na této stránce se dozvíte více.',
     ],
     'show' => [
@@ -220,7 +221,7 @@ return [
                 'title' => 'Úspěchy',
             ],
             'beatmaps' => [
-                'by_artist' => 'autora :artist',
+                'by_artist' => 'od autora :artist',
                 'title' => 'Beatmapy',
 
                 'favourite' => [
@@ -386,7 +387,7 @@ return [
                     'date' => 'datum',
                     'action' => 'trest',
                     'length' => 'délka',
-                    'length_permanent' => 'Permanentní',
+                    'length_indefinite' => 'Neurčitý',
                     'description' => 'popis',
                     'actor' => 'od :username',
 
@@ -416,7 +417,7 @@ return [
             'title' => 'Uživatel nebyl nalezen! ;_;',
         ],
         'page' => [
-            'button' => 'Upravit stránku profilu',
+            'button' => 'upravit stránku profilu',
             'description' => '<strong>já!</strong> je osobní přizpůsobitelná plocha na vašem profilu.',
             'edit_big' => 'Uprav mě!',
             'placeholder' => 'Zde napiš obsah stánky',
@@ -440,7 +441,7 @@ return [
         'stats' => [
             'hit_accuracy' => 'Přesnost zásahů',
             'level' => 'Úroveň :level',
-            'level_progress' => 'Postup do dalšího levelu',
+            'level_progress' => 'postup do dalšího levelu',
             'maximum_combo' => 'Maximální Combo',
             'medals' => 'Medaile',
             'play_count' => 'Počet zahrání',

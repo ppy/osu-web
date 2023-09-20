@@ -171,6 +171,7 @@ return [
 
     'score' => [
         'pin' => [
+            'disabled_type' => "Dieser Score-Typ kann nicht angepinnt werden",
             'not_owner' => 'Nur der Spieler, der den Score eingereicht hat, kann ihn anpinnen.',
             'too_many' => 'Zu viele Scores angepinnt.',
         ],
@@ -183,6 +184,9 @@ return [
                 'not_owner' => 'Nur das eigene Profil kann bearbeitet werden.',
                 'require_supporter_tag' => 'Ein osu!supporter-Tag ist erforderlich.',
             ],
+        ],
+        'update_email' => [
+            'locked' => '',
         ],
     ],
 ];
