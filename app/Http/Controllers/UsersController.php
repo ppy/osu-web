@@ -649,7 +649,7 @@ class UsersController extends Controller
                 'user' => $userArray,
             ];
 
-            $pageDescription = $user->toMetaDescription(['mode' => $currentMode]);
+            $pageDescription = blade_safe($user->toMetaDescription(['mode' => $currentMode]));
 
             return ext_view('users.show', compact('initialData', 'pageDescription', 'mode', 'user'));
         }
