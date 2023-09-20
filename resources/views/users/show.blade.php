@@ -4,21 +4,28 @@
 --}}
 
 @php
-    $userData = $jsonChunks["user"];
-    $stats = $userData["statistics"];
-    $globalRankLabel = trans('users.show.rank.global_simple');
-    $globalRankValue = number_format($stats["global_rank"]);
-    $countryRankLabel = trans('users.show.rank.country_simple');
-    $countryRankValue = number_format($stats["country_rank"]);
+    $userJson = $initialData['user'];
+    $stats = $initialData['user']['statistics'];
+    $globalRank = $stats['global_rank'] ?? null;
+    $countryRank = $stats['country_rank'] ?? null;
+
+    $rankDescriptions = [];
+    if ($globalRank !== null) {
+        $rankDescriptions[] = trans('users.show.rank.global', ['mode' => $currentMode]) . ': #' . i18n_number_format($globalRank);
+    }
+
+    if ($countryRank !== null) {
+        $rankDescriptions[] = trans('users.show.rank.country', ['mode' => $currentMode]) . ': #' . i18n_number_format($countryRank);
+    }
 @endphp
 
 @extends('master', [
     'canonicalUrl' => $user->url(),
     'titlePrepend' => blade_safe(str_replace(' ', '&nbsp;', e($user->username))),
-    'pageDescription' => "{$globalRankLabel}: #{$globalRankValue}\n{$countryRankLabel}: #{$countryRankValue}",
+    'pageDescription' => presence(implode(', ', $rankDescriptions)),
     'opengraph' => [
-        'title' => trans('users.show.title', ["username" => $user->username]),
-        'image' => $userData["avatar_url"]
+        'title' => trans('users.show.title', ['username' => $user->username]),
+        'image' => $user->user_avatar,
     ]
 ])
 

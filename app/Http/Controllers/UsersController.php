@@ -649,7 +649,7 @@ class UsersController extends Controller
                 'user' => $userArray,
             ];
 
-            return ext_view('users.show', compact('initialData', 'user'));
+            return ext_view('users.show', compact('currentMode', 'initialData', 'user'));
         }
     }
 
