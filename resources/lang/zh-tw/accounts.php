@@ -18,6 +18,10 @@ return [
             'new' => '新電子郵件地址',
             'new_confirmation' => '再次輸入電子郵件地址',
             'title' => '電子郵件',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
         ],
 
         'legacy_api' => [
@@ -34,12 +38,12 @@ return [
         ],
 
         'profile' => [
-            'country' => '',
+            'country' => '國家',
             'title' => '個人資料',
 
             'country_change' => [
-                '_' => "",
-                'update_link' => '',
+                '_' => "您的帳戶資料上所顯示的國家似乎與您當前的居住地不匹配。:update_link。",
+                'update_link' => '更新為 :country',
             ],
 
             'user' => [

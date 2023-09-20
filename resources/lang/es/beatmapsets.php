@@ -60,6 +60,10 @@ return [
     'show' => [
         'discussion' => 'Discusión',
 
+        'admin' => [
+            'full_size_cover' => 'Ver imagen de portada a tamaño completo',
+        ],
+
         'deleted_banner' => [
             'title' => 'Este mapa ha sido eliminado.',
             'message' => '(solo los moderadores pueden ver esto)',

@@ -18,6 +18,10 @@ return [
             'new' => 'új e-mail cím',
             'new_confirmation' => 'e-mail cím megerősítése',
             'title' => 'E-Mail',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
         ],
 
         'legacy_api' => [
@@ -34,12 +38,12 @@ return [
         ],
 
         'profile' => [
-            'country' => '',
+            'country' => 'ország',
             'title' => 'Profil',
 
             'country_change' => [
-                '_' => "",
-                'update_link' => '',
+                '_' => "Úgy tűnik, hogy a fiókod országa nem egyezik a lakhelyed országával. :update_link.",
+                'update_link' => 'Frissítsés a következőre: :country ',
             ],
 
             'user' => [

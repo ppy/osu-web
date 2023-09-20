@@ -387,7 +387,7 @@ return [
                     'date' => '',
                     'action' => '',
                     'length' => '',
-                    'length_permanent' => '',
+                    'length_indefinite' => '',
                     'description' => '',
                     'actor' => '',
 

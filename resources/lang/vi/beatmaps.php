@@ -78,6 +78,18 @@ return [
             'suggestion' => 'Gợi ý',
         ],
 
+        'message_type_title' => [
+            'disqualify' => '',
+            'hype' => '',
+            'mapper_note' => '',
+            'nomination_reset' => 'Loại bỏ tất cả đề cử',
+            'praise' => '',
+            'problem' => '',
+            'problem_warning' => '',
+            'review' => 'Đăng nhận xét',
+            'suggestion' => '',
+        ],
+
         'mode' => [
             'events' => 'Lịch sử',
             'general' => 'Chung :scope',

@@ -11,7 +11,7 @@ return [
     'edited' => ':user muokkasi tämän viestin :timeago sitten',
     'pinned' => 'kiinnitetty',
     'empty' => 'Ei vielä kommentteja.',
-    'empty_other' => '',
+    'empty_other' => 'Ei vielä muita kommentteja.',
     'load_replies' => 'lataa vastauksia',
     'replies_count' => ':count_delimited vastaus|:count_delimited vastauksia',
     'title' => 'Kommentit',
@@ -46,7 +46,7 @@ return [
     'placeholder' => [
         'edit' => 'Muokkaa kommenttia tässä',
         'new' => 'Kirjoita kommenttisi tähän',
-        'reply' => 'Kirjoita vastauksesi tänne',
+        'reply' => 'Kirjoita vastauksesi tähän',
     ],
 
     'show' => [

@@ -78,6 +78,18 @@ return [
             'suggestion' => 'ข้อเสนอแนะ',
         ],
 
+        'message_type_title' => [
+            'disqualify' => 'โพสต์การตัดสิทธิ์',
+            'hype' => 'โพสต์ Hype!',
+            'mapper_note' => 'โพสต์หมายเหตุ',
+            'nomination_reset' => 'ลบการเสนอชื่อทั้งหมด',
+            'praise' => 'โพสต์การชื่นชม',
+            'problem' => 'โพสต์ปัญหา',
+            'problem_warning' => 'โพสต์ปัญหา',
+            'review' => 'โพสต์รีวิว',
+            'suggestion' => 'โพสต์คำแนะนำ',
+        ],
+
         'mode' => [
             'events' => 'ประวัติ',
             'general' => 'ทั่วไป :scope',

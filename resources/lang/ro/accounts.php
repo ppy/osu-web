@@ -18,6 +18,10 @@ return [
             'new' => 'e-mail nou',
             'new_confirmation' => 'confirmare e-mail',
             'title' => 'E-mail',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
         ],
 
         'legacy_api' => [
@@ -34,12 +38,12 @@ return [
         ],
 
         'profile' => [
-            'country' => '',
+            'country' => 'țară',
             'title' => 'Profil',
 
             'country_change' => [
-                '_' => "",
-                'update_link' => '',
+                '_' => "Se pare că țara contului tău nu se potrivește cu țara ta de reședință. :update_link.",
+                'update_link' => 'Actualizează la :country',
             ],
 
             'user' => [

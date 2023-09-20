@@ -27,7 +27,7 @@ return [
             'mode' => '비트맵 모드',
             'only_unresolved' => '미해결 토론만 보기',
             'types' => '메시지 종류',
-            'username' => '사용자 이름',
+            'username' => '아이디',
 
             'beatmapset_status' => [
                 '_' => '비트맵 상태',
@@ -39,7 +39,7 @@ return [
             ],
 
             'user' => [
-                'label' => '사용자',
+                'label' => '유저',
                 'overview' => '활동 개요',
             ],
         ],
@@ -102,6 +102,6 @@ return [
 
     'user_filter' => [
         'everyone' => '모두',
-        'label' => '사용자순 필터링',
+        'label' => '유저순 필터링',
     ],
 ];

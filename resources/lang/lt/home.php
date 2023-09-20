@@ -28,9 +28,9 @@ return [
 
         'beatmapset' => [
             'login_required' => 'Prisijunkite, kad ieškoti bitmapų',
-            'more' => ':count dar bitmapų paieškos rezultatų',
+            'more' => ':count dar beatmap\'ų paieškos rezultatų',
             'more_simple' => ' Žiūrėti daugiau bitmapų paieškos rezultatų',
-            'title' => 'Bitmapai',
+            'title' => 'Beatmap\'ai',
         ],
 
         'forum_post' => [
@@ -51,7 +51,7 @@ return [
 
         'mode' => [
             'all' => 'visi',
-            'beatmapset' => 'bitmapas',
+            'beatmapset' => 'beatmap\'as',
             'forum_post' => 'forumas',
             'user' => 'žaidėjas',
             'wiki_page' => 'wiki',
@@ -111,9 +111,9 @@ return [
                 'description' => 'paspauskt mygtyką viršuje, kad atsisiųsti diegimo programa, ir paleisk!',
             ],
             'beatmaps' => [
-                'title' => 'gauk bitmapų',
+                'title' => 'gauk beatmap\'ų',
                 'description' => [
-                    '_' => ':browse žaidėjų sukurtus bitmapus ir pradėk juos žaisti!',
+                    '_' => ':browse žaidėjų sukurtus beatmap\'us ir pradėk juos žaisti!',
                     'browse' => 'naršyti',
                 ],
             ],
@@ -134,8 +134,8 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => 'Nauji Reitinguoti Bitmapai',
-            'popular' => 'Populiarūs Bitmapai',
+            'new' => 'Nauji Reitinguoti Beatmap\'ai',
+            'popular' => 'Populiarūs Beatmap\'ai',
             'by_user' => 'sukūrė :user',
         ],
         'buttons' => [

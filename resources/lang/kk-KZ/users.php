@@ -4,22 +4,22 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'deleted' => '',
+    'deleted' => '[жойылған қолданушы]',
 
     'beatmapset_activities' => [
-        'title' => "",
-        'title_compact' => '',
+        'title' => ":user Модтау Тарихы",
+        'title_compact' => 'Модтау',
 
         'discussions' => [
-            'title_recent' => '',
+            'title_recent' => 'Жақында басталған пікірталастар',
         ],
 
         'events' => [
-            'title_recent' => '',
+            'title_recent' => 'Жуырдағы оқиғалар',
         ],
 
         'posts' => [
-            'title_recent' => '',
+            'title_recent' => 'Жуырдағы жазбалар',
         ],
 
         'votes_received' => [
@@ -387,7 +387,7 @@ return [
                     'date' => '',
                     'action' => '',
                     'length' => '',
-                    'length_permanent' => '',
+                    'length_indefinite' => '',
                     'description' => '',
                     'actor' => '',
 

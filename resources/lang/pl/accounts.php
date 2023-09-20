@@ -18,6 +18,10 @@ return [
             'new' => 'nowy e-mail',
             'new_confirmation' => 'potwierdź e-mail',
             'title' => 'E-mail',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
         ],
 
         'legacy_api' => [
@@ -34,12 +38,12 @@ return [
         ],
 
         'profile' => [
-            'country' => '',
+            'country' => 'kraj',
             'title' => 'Profil',
 
             'country_change' => [
-                '_' => "",
-                'update_link' => '',
+                '_' => "Wygląda na to, że kraj przypisany do konta nie zgadza się z twoim krajem zamieszkania. :update_link.",
+                'update_link' => 'Zaktualizuj na „:country”',
             ],
 
             'user' => [

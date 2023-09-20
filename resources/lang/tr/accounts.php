@@ -18,6 +18,10 @@ return [
             'new' => 'yeni e-posta',
             'new_confirmation' => 'e-posta onayı',
             'title' => 'E-posta',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
         ],
 
         'legacy_api' => [
@@ -34,12 +38,12 @@ return [
         ],
 
         'profile' => [
-            'country' => '',
+            'country' => 'ülke',
             'title' => 'Profil',
 
             'country_change' => [
-                '_' => "",
-                'update_link' => '',
+                '_' => "Görünüşe göre hesabınızın ülkesi ikamet ettiğiniz ülkeyle eşleşmiyor.  :update_link.",
+                'update_link' => ':country olarak güncelle',
             ],
 
             'user' => [

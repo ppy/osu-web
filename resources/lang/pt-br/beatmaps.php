@@ -78,6 +78,18 @@ return [
             'suggestion' => 'Sugestão',
         ],
 
+        'message_type_title' => [
+            'disqualify' => 'Enviar desqualificação',
+            'hype' => 'Enviar Hype!',
+            'mapper_note' => 'Enviar Nota',
+            'nomination_reset' => 'Remover todas as Nomeações',
+            'praise' => 'Enviar elogio',
+            'problem' => 'Enviar problema',
+            'problem_warning' => 'Enviar problema',
+            'review' => 'Enviar avaliação',
+            'suggestion' => 'Enviar sugestão',
+        ],
+
         'mode' => [
             'events' => 'Histórico',
             'general' => 'Geral :scope',

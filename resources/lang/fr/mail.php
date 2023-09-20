@@ -14,7 +14,7 @@ return [
     'common' => [
         'closing' => 'Cordialement,',
         'hello' => 'Bonjour :user,',
-        'report' => 'Veuillez répondre à cet email IMMÉDIATEMENT si vous n\'avez pas demandé ce changement.',
+        'report' => 'Veuillez répondre à cet e-mail IMMÉDIATEMENT si vous n\'avez pas demandé ce changement.',
         'ignore' => 'Si vous n\'êtes pas à l\'origine de cette demande, vous pouvez ignorer ce message en toute sécurité.',
     ],
 

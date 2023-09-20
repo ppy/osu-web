@@ -15,7 +15,7 @@ return [
         ],
 
         'events' => [
-            'title_recent' => 'Évènements récents',
+            'title_recent' => 'Événements récents',
         ],
 
         'posts' => [
@@ -23,11 +23,11 @@ return [
         ],
 
         'votes_received' => [
-            'title_most' => 'Les mieux notés (les 3 derniers mois)',
+            'title_most' => 'Les mieux notées (les 3 derniers mois)',
         ],
 
         'votes_made' => [
-            'title_most' => 'Les mieux notés (les 3 derniers mois)',
+            'title_most' => 'Les mieux notées (les 3 derniers mois)',
         ],
     ],
 
@@ -76,7 +76,7 @@ return [
 
         'if_mistake' => [
             '_' => 'Si vous pensez qu\'il s\'agit d\'une erreur, vous êtes invités à nous contacter (via :email ou en cliquant sur le "?" dans le coin en bas à droite de cette page). Veuillez noter que nous sommes confiants en nos actions, car elles reposent sur des données solides. Nous nous réservons le droit de ne pas tenir compte de votre demande si nous pensons que vous êtes délibérément malhonnête.',
-            'email' => 'email',
+            'email' => 'e-mail',
         ],
 
         'reasons' => [
@@ -159,7 +159,7 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'Votre compte a été restreint !',
-        'message' => 'Quand vous êtes restreint, vous ne pouvez pas interagir avec les autres joueurs et vos scores ne seront visibles que par vous. Cette restriction est souvent le résultat d\'un processus automatique et sera en général levée dans les 24 heures. Si vous souhaitez faire appel de votre restriction, merci de <a href="mailto:accounts@ppy.sh">contacter le support</a>.',
+        'message' => 'Lorsque vous êtes restreint, vous ne pouvez pas interagir avec les autres joueurs et vos scores ne seront visibles que par vous-même. Cette restriction est souvent le résultat d\'un processus automatique et sera généralement levée sous 24 heures. :link',
         'message_link' => 'Consultez cette page pour en savoir plus.',
     ],
     'show' => [
@@ -190,9 +190,9 @@ return [
                 'button' => 'Changer la bannière du profil',
                 'defaults_info' => 'D\'autres options de bannières seront disponibles à l\'avenir',
                 'upload' => [
-                    'broken_file' => 'Impossible de traiter l\'image. Vérifiez l\'image uploadée et réessayez.',
+                    'broken_file' => 'Impossible de traiter l\'image. Vérifiez l\'image mise en ligne et réessayez.',
                     'button' => 'Mettre en ligne une image',
-                    'dropzone' => 'Déplacez ici pour uploader',
+                    'dropzone' => 'Déplacez ici pour mettre en ligne',
                     'dropzone_info' => 'Vous pouvez aussi déplacer l\'image ici pour la mettre en ligne',
                     'size_info' => 'La taille de la bannière devrait être de 2400x640',
                     'too_large' => 'Le fichier est trop volumineux.',
@@ -264,7 +264,7 @@ return [
                     'count_label' => 'Parties',
                 ],
                 'most_played' => [
-                    'count' => 'nombre de fois jouée',
+                    'count' => 'nombre de parties',
                     'title' => 'Beatmaps les plus jouées',
                 ],
                 'recent_plays' => [
@@ -277,13 +277,13 @@ return [
                 ],
             ],
             'kudosu' => [
-                'recent_entries' => 'Historique de Kudosu récent',
+                'recent_entries' => 'Historique de Kudosu récents',
                 'title' => 'Kudosu!',
                 'total' => 'Kudosu reçus au total',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
-                    'empty' => "Cet utilisateur n'a jamais reçu de Kudosu !",
+                    'empty' => "Cet utilisateur n'a jamais reçu de kudosu !",
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
@@ -299,7 +299,7 @@ return [
                         ],
 
                         'restore' => [
-                            'give' => 'Réception de :amount kudosu suite à la restoration du post :post',
+                            'give' => 'Réception de :amount kudosu suite à la restauration du post :post',
                         ],
 
                         'vote' => [
@@ -345,7 +345,7 @@ return [
                 'title' => 'Activité récente',
             ],
             'realtime' => [
-                'title' => 'Parties multijoueurs',
+                'title' => 'Parties multijoueur',
             ],
             'top_ranks' => [
                 'download_replay' => 'Télécharger le replay',
@@ -387,14 +387,14 @@ return [
                     'date' => 'date',
                     'action' => 'sanction',
                     'length' => 'durée',
-                    'length_permanent' => 'Permanent',
+                    'length_indefinite' => 'Indéterminée',
                     'description' => 'description',
                     'actor' => 'par :username',
 
                     'actions' => [
                         'restriction' => 'Restriction',
                         'silence' => 'Silence',
-                        'tournament_ban' => 'Bannissement du tournoi',
+                        'tournament_ban' => 'Bannissement de tournoi',
                         'note' => 'Note',
                     ],
                 ],
@@ -418,7 +418,7 @@ return [
         ],
         'page' => [
             'button' => 'Modifier le profil',
-            'description' => '<strong>Moi !</strong> est une zone personnalisable du profil.',
+            'description' => '<strong>moi !</strong> est une zone personnalisable du profil.',
             'edit_big' => 'Éditez-moi !',
             'placeholder' => 'Tapez le contenu de la page',
 

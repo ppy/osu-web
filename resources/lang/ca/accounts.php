@@ -18,6 +18,10 @@ return [
             'new' => 'nou correu electrònic',
             'new_confirmation' => 'confirmació per correu electrònic',
             'title' => 'Correu electrònic',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
         ],
 
         'legacy_api' => [
@@ -34,12 +38,12 @@ return [
         ],
 
         'profile' => [
-            'country' => '',
+            'country' => 'país',
             'title' => 'Perfil',
 
             'country_change' => [
                 '_' => "",
-                'update_link' => '',
+                'update_link' => 'Actualitza a :country',
             ],
 
             'user' => [

@@ -60,6 +60,10 @@ return [
     'show' => [
         'discussion' => 'Diskuze',
 
+        'admin' => [
+            'full_size_cover' => 'Zobrazit plnou velikost úvodního obrázku',
+        ],
+
         'deleted_banner' => [
             'title' => 'Tato beatmapa byla odstraněna.',
             'message' => '(toto můžou vidět jen moderátoři)',

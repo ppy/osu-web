@@ -18,6 +18,10 @@ return [
             'new' => 'jauns e-pasts',
             'new_confirmation' => 'e-pasta apstiprinājums',
             'title' => 'E-pasts',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
         ],
 
         'legacy_api' => [
@@ -34,7 +38,7 @@ return [
         ],
 
         'profile' => [
-            'country' => '',
+            'country' => 'valsts',
             'title' => 'Profils',
 
             'country_change' => [

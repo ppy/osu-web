@@ -78,6 +78,18 @@ return [
             'suggestion' => 'Предложение',
         ],
 
+        'message_type_title' => [
+            'disqualify' => 'Отправить дисквалификацию',
+            'hype' => 'Отправить хайп!',
+            'mapper_note' => 'Отправить заметку',
+            'nomination_reset' => 'Удалить все номинации',
+            'praise' => 'Отправить похвалу',
+            'problem' => 'Отправить проблему',
+            'problem_warning' => 'Отправить проблему',
+            'review' => 'Отправить отзыв',
+            'suggestion' => 'Отправить предложение',
+        ],
+
         'mode' => [
             'events' => 'История',
             'general' => 'Общее :scope',

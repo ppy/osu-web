@@ -17,6 +17,27 @@
 
 @section('content')
     <div class="js-react--beatmapset-page osu-layout osu-layout--full"></div>
+    @if (Auth::user()?->isModerator() ?? false)
+        <div class="admin-menu">
+            <button class="admin-menu__button js-menu" data-menu-target="admin-beatmapset" type="button">
+                <span class="fas fa-angle-up"></span>
+                <span class="admin-menu__button-icon fas fa-tools"></span>
+            </button>
+            <div class="admin-menu__menu js-menu" data-menu-id="admin-beatmapset" data-visibility="hidden">
+                <a class="admin-menu-item" href="{{ $beatmapset->coverURL('raw') }}" target="_blank">
+                    <span class="admin-menu-item__content">
+                        <span class="admin-menu-item__label admin-menu-item__label--icon">
+                            <span class="fas fa-image"></span>
+                        </span>
+
+                        <span class="admin-menu-item__label admin-menu-item__label--text">
+                            {{ osu_trans('beatmapsets.show.admin.full_size_cover') }}
+                        </span>
+                    </span>
+                </a>
+            </div>
+        </div>
+    @endif
 @endsection
 
 @section("script")
@@ -26,7 +47,7 @@
         {!! json_encode($set) !!}
     </script>
 
-    <script id="json-comments-beatmapset-{{ $beatmapset->getKey() }}" type="application/json">
+    <script id="json-comments" type="application/json">
         {!! json_encode($commentBundle->toArray()) !!}
     </script>
 

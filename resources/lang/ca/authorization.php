@@ -171,7 +171,7 @@ return [
 
     'score' => [
         'pin' => [
-            'disabled_type' => "",
+            'disabled_type' => "No es pot fixar aquest tipus de puntuació",
             'not_owner' => 'Només el propietari de la puntuació pot fixar la puntuació.',
             'too_many' => 'Has fixat massa puntuacions.',
         ],
@@ -184,6 +184,9 @@ return [
                 'not_owner' => 'Només podeu editar la vostra pàgina d\'usuari.',
                 'require_supporter_tag' => 'Es requereix osu!supporter.',
             ],
+        ],
+        'update_email' => [
+            'locked' => '',
         ],
     ],
 ];

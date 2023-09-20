@@ -78,6 +78,18 @@ return [
             'suggestion' => 'Saran',
         ],
 
+        'message_type_title' => [
+            'disqualify' => 'Tulis Diskualifikasi',
+            'hype' => 'Tulis Hype!',
+            'mapper_note' => 'Tulis Catatan',
+            'nomination_reset' => 'Hapus seluruh Nominasi',
+            'praise' => 'Tulis Pujian',
+            'problem' => 'Tulis Masalah',
+            'problem_warning' => 'Tulis Masalah',
+            'review' => 'Tulis Kajian',
+            'suggestion' => 'Tulis Saran',
+        ],
+
         'mode' => [
             'events' => 'Riwayat',
             'general' => 'Umum :scope',
@@ -184,7 +196,7 @@ return [
         'disqualified_at' => 'Didiskualifikasi pada :time_ago (:reason).',
         'disqualified_no_reason' => 'tidak ada alasan yang diberikan',
         'disqualify' => 'Diskualifikasi',
-        'incorrect_state' => 'Terdapat kesalahan saat melakukan tindakan ini. Harap muat ulang laman.',
+        'incorrect_state' => 'Terdapat kesalahan pada saat melakukan tindakan ini. Cobalah untuk memuat ulang laman.',
         'love' => 'Love',
         'love_choose' => 'Pilih tingkat kesulitan untuk diangkat ke kategori Loved',
         'love_confirm' => 'Love beatmap ini?',

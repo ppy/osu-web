@@ -78,6 +78,18 @@ return [
             'suggestion' => '제안',
         ],
 
+        'message_type_title' => [
+            'disqualify' => '디스퀄리파이 게시',
+            'hype' => 'Hype 게시!',
+            'mapper_note' => '노트 게시',
+            'nomination_reset' => '모든 노미네이션 삭제',
+            'praise' => '칭찬 게시',
+            'problem' => '문제 게시',
+            'problem_warning' => '문제 게시',
+            'review' => '리뷰 게시',
+            'suggestion' => '제안 게시',
+        ],
+
         'mode' => [
             'events' => '기록',
             'general' => '일반 :scope',
@@ -106,7 +118,7 @@ return [
                 'unsaved' => '저장되지 않음',
                 'timestamp' => [
                     'all-diff' => '"모든 난이도"의 게시글에는 시간을 달 수 없습니다.',
-                    'diff' => '만약 이 :type 이(가) 시각으로 시작한다면 타임라인 아래에 보여집니다.',
+                    'diff' => '만약 이 게시글이 타임스탬프로 시작한다면, 타임라인 아래에 표시됩니다.',
                 ],
             ],
             'insert-block' => [

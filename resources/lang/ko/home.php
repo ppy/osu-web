@@ -58,7 +58,7 @@ return [
         ],
 
         'user' => [
-            'login_required' => '사용자를 검색하기 위해서 로그인',
+            'login_required' => '유저를 검색하기 위해서 로그인',
             'more' => ':count명의 플레이어 검색 결과 더 보기',
             'more_simple' => '플레이어 검색 결과 더 보기',
             'more_hidden' => '플레이어 검색은 최대 :max명 까지 가능합니다. 다른 검색어로 시도해보세요.',
@@ -81,7 +81,7 @@ return [
         'action_title' => 'osu! 다운로드',
         'for_os' => ':os 전용',
         'lazer_note' => '참고: 점수가 초기화될 수 있습니다',
-        'macos-fallback' => 'macOS 사용자',
+        'macos-fallback' => 'macOS 유저',
         'mirror' => '미러',
         'or' => '혹은',
         'os_version_or_later' => ':os_version 이상',

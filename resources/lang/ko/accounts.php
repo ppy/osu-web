@@ -6,7 +6,7 @@
 return [
     'edit' => [
         'title_compact' => '설정',
-        'username' => '사용자 이름',
+        'username' => '아이디',
 
         'avatar' => [
             'title' => '아바타',
@@ -18,6 +18,10 @@ return [
             'new' => '새 이메일 주소',
             'new_confirmation' => '이메일 주소 확인',
             'title' => '이메일',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
         ],
 
         'legacy_api' => [
@@ -34,12 +38,12 @@ return [
         ],
 
         'profile' => [
-            'country' => '',
+            'country' => '국가',
             'title' => '프로필',
 
             'country_change' => [
-                '_' => "",
-                'update_link' => '',
+                '_' => "계정에 등록된 국가와 실제 거주 국가가 다른 것 같습니다. :update_link",
+                'update_link' => ':country(으)로 변경',
             ],
 
             'user' => [

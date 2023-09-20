@@ -18,6 +18,10 @@ return [
             'new' => '新しいメールアドレス',
             'new_confirmation' => '新しいメールアドレス（再入力）',
             'title' => 'メールアドレス',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
         ],
 
         'legacy_api' => [
@@ -34,7 +38,7 @@ return [
         ],
 
         'profile' => [
-            'country' => '',
+            'country' => '国',
             'title' => 'プロフィール',
 
             'country_change' => [

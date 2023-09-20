@@ -69,6 +69,7 @@ class UserCompactTransformer extends TransformerAbstract
         'is_nat',
         'is_restricted',
         'is_silenced',
+        'kudosu',
         'loved_beatmapset_count',
         'mapping_follower_count',
         'monthly_playcounts',
@@ -283,6 +284,14 @@ class UserCompactTransformer extends TransformerAbstract
     public function includeIsSilenced(User $user)
     {
         return $this->primitive($user->isSilenced());
+    }
+
+    public function includeKudosu(User $user): ResourceInterface
+    {
+        return $this->primitive([
+            'available' => $user->osu_kudosavailable,
+            'total' => $user->osu_kudostotal,
+        ]);
     }
 
     public function includeLovedBeatmapsetCount(User $user)

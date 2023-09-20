@@ -7,7 +7,6 @@
 ])
 
 @section('content')
-    @include('forum.topics._floating_header')
     @include('forum._header', [
         'additionalLinks' => [
             [

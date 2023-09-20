@@ -387,14 +387,14 @@ return [
                     'date' => 'Дата',
                     'action' => 'действие',
                     'length' => 'продолжительность',
-                    'length_permanent' => 'Навсегда',
+                    'length_indefinite' => 'Бессрочно',
                     'description' => 'описание',
                     'actor' => ':username',
 
                     'actions' => [
                         'restriction' => 'Бан',
-                        'silence' => 'Заглушение',
-                        'tournament_ban' => 'Запрет на участие в турнирах',
+                        'silence' => 'Без голоса',
+                        'tournament_ban' => 'Турнирный бан',
                         'note' => 'Заметка',
                     ],
                 ],
@@ -460,7 +460,7 @@ return [
     ],
 
     'silenced_banner' => [
-        'title' => 'Вы сейчас заглушены.',
+        'title' => 'Вы временно лишены возможности общаться.',
         'message' => 'Некоторые действия могут быть недоступны.',
     ],
 

@@ -18,12 +18,23 @@ export function linkRenderer(astProps: JSX.IntrinsicElements['a']) {
   const props = propsFromHref(astProps.href);
   const href = safeReactMarkdownUrl(props.href);
 
+  const useLinkText = props.children == null
+    || astProps.children instanceof Array
+      && astProps.children.length > 0
+      && astProps.children[0] !== astProps.href;
+
+  const content = useLinkText
+    ? astProps.children
+    : props.children;
+
   return (
-    <>
-      <LinkContext.Provider value={{ inLink: true }}>
-        <a {...props} href={href}>{props.children ?? astProps.children}</a>
-      </LinkContext.Provider>
-    </>
+    <LinkContext.Consumer>
+      {({ inLink }) => (
+        <LinkContext.Provider value={{ inLink: true }}>
+          {inLink ? content : <a {...props} href={href}>{content}</a>}
+        </LinkContext.Provider>
+      )}
+    </LinkContext.Consumer>
   );
 }
 
@@ -43,6 +54,7 @@ export function timestampDecorator(reactNode: React.ReactNode): React.ReactNode 
 
         // decorate the timestamp as a link
         const [,,, m, s, ms, range] = match;
+        // TODO: look at noUncheckedIndexedAccess
         const timestamp = `${m}:${s}:${ms}${range ?? ''}`;
 
         nodes.push((

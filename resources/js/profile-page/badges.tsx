@@ -4,10 +4,12 @@
 import Img2x from 'components/img2x';
 import UserBadgeJson from 'interfaces/user-badge-json';
 import * as React from 'react';
+import { Modifiers, classWithModifiers } from 'utils/css';
 import { present } from 'utils/string';
 
 interface Props {
   badges: UserBadgeJson[];
+  modifiers?: Modifiers;
 }
 
 export default class Badges extends React.PureComponent<Props> {
@@ -17,7 +19,7 @@ export default class Badges extends React.PureComponent<Props> {
     if (this.props.badges.length === 0) return null;
 
     return (
-      <div className='profile-badges'>
+      <div className={classWithModifiers('profile-badges', this.props.modifiers)}>
         {this.props.badges.map((badge) => {
           const img = (
             <Img2x

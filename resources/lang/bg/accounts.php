@@ -18,6 +18,10 @@ return [
             'new' => 'нов имейл',
             'new_confirmation' => 'потвърди нов имейл',
             'title' => 'Имейл',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
         ],
 
         'legacy_api' => [
@@ -34,12 +38,12 @@ return [
         ],
 
         'profile' => [
-            'country' => '',
+            'country' => 'държава',
             'title' => 'Профил',
 
             'country_change' => [
-                '_' => "",
-                'update_link' => '',
+                '_' => "Изглежда че държавата на профила не съвпада с текущата ви държава. :update_link.",
+                'update_link' => 'Променете на :country',
             ],
 
             'user' => [

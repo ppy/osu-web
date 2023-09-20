@@ -185,5 +185,8 @@ return [
                 'require_supporter_tag' => 'У вас нет osu!supporter.',
             ],
         ],
+        'update_email' => [
+            'locked' => '',
+        ],
     ],
 ];

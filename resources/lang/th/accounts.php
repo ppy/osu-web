@@ -18,6 +18,10 @@ return [
             'new' => 'อีเมลใหม่',
             'new_confirmation' => 'ยืนยันอีเมล',
             'title' => 'อีเมล',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
         ],
 
         'legacy_api' => [
@@ -34,12 +38,12 @@ return [
         ],
 
         'profile' => [
-            'country' => '',
+            'country' => 'ประเทศ',
             'title' => 'โปรไฟล์',
 
             'country_change' => [
-                '_' => "",
-                'update_link' => '',
+                '_' => "ดูเหมือนว่าประเทศในบัญชีของคุณไม่ตรงกับประเทศที่คุณอาศัยอยู่ :update_link.",
+                'update_link' => 'อัปเดตเป็น :country',
             ],
 
             'user' => [

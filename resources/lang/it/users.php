@@ -114,7 +114,7 @@ return [
         'password' => 'Password',
         'register' => "Non hai un account di osu!? Fanne uno nuovo",
         'remember' => 'Ricorda questo computer',
-        'title' => 'Per favore accedi per procedere',
+        'title' => 'Accedi per poter continuare',
         'username' => 'Nome Utente',
 
         'beta' => [
@@ -387,7 +387,7 @@ return [
                     'date' => 'data',
                     'action' => 'azione',
                     'length' => 'durata',
-                    'length_permanent' => 'Permanente',
+                    'length_indefinite' => 'Indeterminato',
                     'description' => 'descrizione',
                     'actor' => 'da :username',
 

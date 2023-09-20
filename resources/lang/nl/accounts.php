@@ -18,6 +18,10 @@ return [
             'new' => 'nieuwe email',
             'new_confirmation' => 'e-mail bevestiging',
             'title' => 'E-mail',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
         ],
 
         'legacy_api' => [
@@ -34,7 +38,7 @@ return [
         ],
 
         'profile' => [
-            'country' => '',
+            'country' => 'land',
             'title' => 'Profiel',
 
             'country_change' => [

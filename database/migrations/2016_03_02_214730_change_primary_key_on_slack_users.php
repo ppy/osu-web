@@ -5,7 +5,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class ChangePrimaryKeyOnSlackUsers extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -32,4 +32,4 @@ class ChangePrimaryKeyOnSlackUsers extends Migration
             $table->primary('slack_id');
         });
     }
-}
+};

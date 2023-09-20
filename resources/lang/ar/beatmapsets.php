@@ -60,6 +60,10 @@ return [
     'show' => [
         'discussion' => 'مناقشة',
 
+        'admin' => [
+            'full_size_cover' => '',
+        ],
+
         'deleted_banner' => [
             'title' => 'تم حذف هذه الخريطة.',
             'message' => '(يمكن للمشرفين فقط رؤية هذا)',

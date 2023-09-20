@@ -49,6 +49,6 @@ class CreateNewScoreTables extends Migration
     {
         Schema::dropIfExists('solo_scores_process_history');
         Schema::dropIfExists('solo_scores');
-        (new CreateSoloScores())->up();
+        migration('2021_03_24_130818_create_solo_scores')->up();
     }
 }

@@ -387,7 +387,7 @@ return [
                     'date' => 'التاريخ',
                     'action' => 'النشاط',
                     'length' => 'الطول',
-                    'length_permanent' => 'دائم',
+                    'length_indefinite' => '',
                     'description' => 'الوصف',
                     'actor' => 'بواسطة :username',
 

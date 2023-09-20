@@ -18,6 +18,10 @@ return [
             'new' => 'nový e-mail',
             'new_confirmation' => 'ověření e-mailu',
             'title' => 'E-mail',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
         ],
 
         'legacy_api' => [
@@ -34,12 +38,12 @@ return [
         ],
 
         'profile' => [
-            'country' => '',
+            'country' => 'země',
             'title' => 'Profil',
 
             'country_change' => [
-                '_' => "",
-                'update_link' => '',
+                '_' => "Vypadá to, že země zvolená na Vašem účtu neodpovídá zemi Vašeho bydliště. :update_link.",
+                'update_link' => 'Změnit na :country',
             ],
 
             'user' => [

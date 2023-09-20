@@ -78,6 +78,18 @@ return [
             'suggestion' => 'Öneri',
         ],
 
+        'message_type_title' => [
+            'disqualify' => 'Diskalifiye Gönder',
+            'hype' => 'Hype Gönder!',
+            'mapper_note' => 'Not Paylaş',
+            'nomination_reset' => 'Tüm Adaylıkları Kaldır',
+            'praise' => 'Övgü Gönder',
+            'problem' => 'Sorun Bildir',
+            'problem_warning' => 'Sorun Bildir',
+            'review' => 'Değerlendirme Gönder',
+            'suggestion' => 'Öneri Gönder',
+        ],
+
         'mode' => [
             'events' => 'Geçmiş',
             'general' => 'Genel :scope',

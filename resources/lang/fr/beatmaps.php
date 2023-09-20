@@ -38,7 +38,7 @@ return [
         ],
 
         'empty' => [
-            'empty' => 'Pas de discussion !',
+            'empty' => 'Aucune discussion pour le moment !',
             'hidden' => 'Aucune discussion ne correspond à vos critères.',
         ],
 
@@ -76,6 +76,18 @@ return [
             'problem_warning' => 'Signaler un problème',
             'review' => 'Review',
             'suggestion' => 'Suggestion',
+        ],
+
+        'message_type_title' => [
+            'disqualify' => 'Poster une disqualification',
+            'hype' => 'Poster un hype',
+            'mapper_note' => 'Poster une note',
+            'nomination_reset' => 'Supprimer toutes les nominations',
+            'praise' => 'Poster des compliments',
+            'problem' => 'Poster un problème',
+            'problem_warning' => 'Poster un problème',
+            'review' => 'Poster un avis',
+            'suggestion' => 'Poster une suggestion',
         ],
 
         'mode' => [
@@ -132,7 +144,7 @@ return [
             'mapper_notes' => 'Notes',
             'mine' => 'Moi',
             'pending' => 'En attente',
-            'praises' => 'Hommages',
+            'praises' => 'Compliments',
             'resolved' => 'Résolu',
             'total' => 'Tout',
         ],
@@ -165,7 +177,7 @@ return [
         'explanation_guest' => 'Connectez-vous et hypez cette beatmap afin de la rendre plus visible pour sa nomination et son classement !',
         'new_time' => "Vous obtiendrez un point de hype dans :new_time.",
         'remaining' => 'Il vous reste :remaining hypes.',
-        'required_text' => 'Hype: :current/:required',
+        'required_text' => 'Hype : :current/:required',
         'section_title' => 'Train de la hype',
         'title' => 'Hype',
     ],
@@ -194,7 +206,7 @@ return [
         'not_enough_hype' => "Il n'y a pas assez de hype.",
         'remove_from_loved' => 'Retirer de la catégorie Loved',
         'remove_from_loved_prompt' => 'Raison pour laquelle cette beatmap a été retirée de la catégorie Loved :',
-        'required_text' => 'Nominations: :current/:required',
+        'required_text' => 'Nominations : :current/:required',
         'reset_message_deleted' => 'supprimée',
         'title' => 'Statut de la nomination',
         'unresolved_issues' => 'Il y a encore des problèmes non résolus qui doivent être traités en priorité.',

@@ -6,7 +6,7 @@
 return [
     'cart' => [
         'checkout' => 'Acheter',
-        'info' => ':count_delimited produit dans le panier ($:subtotal)|:count_delimited produits dans le panier ($:subtotal)',
+        'info' => ':count_delimited article dans le panier ($:subtotal)|:count_delimited articles dans le panier ($:subtotal)',
         'more_goodies' => 'Je souhaite chercher d\'autres goodies avant de passer commande',
         'shipping_fees' => 'frais de livraison',
         'title' => 'Panier',
@@ -72,7 +72,7 @@ return [
         'cancel_not_allowed' => 'Cette commande ne peut pas être annulée pour le moment.',
         'invoice' => 'Afficher la facture',
         'no_orders' => 'Aucune commande à voir.',
-        'paid_on' => 'Commande passée le :date',
+        'paid_on' => 'Commande passée :date',
         'resume' => 'Reprendre la commande',
         'shopify_expired' => 'Le lien de commande pour cette commande a expiré.',
 

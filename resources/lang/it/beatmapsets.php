@@ -60,6 +60,10 @@ return [
     'show' => [
         'discussion' => 'Discussione',
 
+        'admin' => [
+            'full_size_cover' => 'Mostra copertina a grandezza intera',
+        ],
+
         'deleted_banner' => [
             'title' => 'Questa beatmap è stata eliminata.',
             'message' => '(solo i moderatori possono vedere questo)',
@@ -115,7 +119,7 @@ return [
             ],
 
             'disqualify' => [
-                '_' => 'Se trovi un errore in questa beatmap, per favore segnalalo :link.',
+                '_' => 'Se trovi un errore in questa beatmap, segnalalo :link.',
             ],
 
             'report' => [

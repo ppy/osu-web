@@ -12,7 +12,7 @@ return [
         'server_host' => '서버',
         'server_port' => '포트',
         'token' => '서버 비밀번호',
-        'username' => '사용자 이름',
+        'username' => '아이디',
     ],
 
     'view' => [

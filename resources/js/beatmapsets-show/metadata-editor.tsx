@@ -56,7 +56,7 @@ export default class MetadataEditor extends React.Component<Props> {
     const initialState = runInAction(() => ({
       genreId: this.controller.beatmapset.genre.id ?? 0,
       languageId: this.controller.beatmapset.language.id ?? 0,
-      nsfw: this.controller.beatmapset.nsfw ?? false,
+      nsfw: this.controller.beatmapset.nsfw,
       offset: this.controller.beatmapset.offset.toString(),
       tags: this.controller.beatmapset.tags,
     }));

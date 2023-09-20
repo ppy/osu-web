@@ -18,6 +18,10 @@ return [
             'new' => '新邮箱地址',
             'new_confirmation' => '确认新邮箱地址',
             'title' => '邮箱',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
         ],
 
         'legacy_api' => [
@@ -34,12 +38,12 @@ return [
         ],
 
         'profile' => [
-            'country' => '',
+            'country' => '国家或地区',
             'title' => '个人资料',
 
             'country_change' => [
-                '_' => "",
-                'update_link' => '',
+                '_' => "您的个人资料所在国家或地区似乎与您的居住地不符。:update_link。",
+                'update_link' => '更新为 :country',
             ],
 
             'user' => [

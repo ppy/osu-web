@@ -18,6 +18,10 @@ return [
             'new' => 'новая почта',
             'new_confirmation' => 'повторите почту',
             'title' => 'Смена почты',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
         ],
 
         'legacy_api' => [
@@ -34,12 +38,12 @@ return [
         ],
 
         'profile' => [
-            'country' => '',
+            'country' => 'страна',
             'title' => 'Профиль',
 
             'country_change' => [
-                '_' => "",
-                'update_link' => '',
+                '_' => "Похоже, что страна аккаунта не совпадает с местом вашего проживания. :update_link.",
+                'update_link' => 'Сменить на :country',
             ],
 
             'user' => [

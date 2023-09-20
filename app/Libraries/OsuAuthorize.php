@@ -30,6 +30,7 @@ use App\Models\Solo;
 use App\Models\Traits\ReportableInterface;
 use App\Models\User;
 use App\Models\UserContestEntry;
+use App\Models\UserGroupEvent;
 use Carbon\Carbon;
 use Ds;
 
@@ -46,6 +47,7 @@ class OsuAuthorize
             'IsOwnClient',
             'IsNotOAuth',
             'IsSpecialScope',
+            'UserUpdateEmail',
         ]);
 
         return $set->contains($ability);
@@ -1931,6 +1933,20 @@ class OsuAuthorize
         return 'ok';
     }
 
+    public function checkUserGroupEventShowActor(?User $user, UserGroupEvent $event): string
+    {
+        if ($user?->isGroup($event->group)) {
+            return 'ok';
+        }
+
+        return 'unauthorized';
+    }
+
+    public function checkUserGroupEventShowAll(?User $user): string
+    {
+        return 'unauthorized';
+    }
+
     /**
      * @param User|null $user
      * @param User $pageOwner
@@ -2016,6 +2032,15 @@ class OsuAuthorize
         }
 
         return 'unauthorized';
+    }
+
+    public function checkUserUpdateEmail(?User $user): ?string
+    {
+        $this->ensureLoggedIn($user);
+
+        return $user->lock_email_changes
+            ? 'user.update_email.locked'
+            : 'ok';
     }
 
     /**

@@ -270,8 +270,6 @@ class SanityTest extends DuskTestCase
         self::$scaffolding['score'] = Score\Best\Osu::factory()->withReplay()->create();
 
         self::$scaffolding['room'] = Room::factory()->create(['category' => 'spotlight']);
-
-        app('groups')->resetMemoized();
     }
 
     private static function filterLog(array $log)
@@ -442,6 +440,14 @@ class SanityTest extends DuskTestCase
             ],
             'changelog.show' => [
                 'changelog' => self::$scaffolding['build']->version,
+            ],
+            'scores.download-legacy' => [
+                'rulesetOrScore' => static::$scaffolding['score']->getMode(),
+                'score' => static::$scaffolding['score']->getKey(),
+            ],
+            'scores.show' => [
+                'rulesetOrScore' => static::$scaffolding['score']->getMode(),
+                'score' => static::$scaffolding['score']->getKey(),
             ],
             'legal' => [
                 'locale' => 'en',
