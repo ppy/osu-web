@@ -5,24 +5,25 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 /**
- * @property-read \Illuminate\Database\Eloquent\Collection $categoryVotes ContestJudgeCategoryVote
+ * @property-read Collection<ContestJudgeCategoryVote> $categoryVotes
  * @property-read Contest $contest
  * @property int $contest_id
  * @property \Carbon\Carbon|null $created_at
  * @property string|null $entry_url
  * @property string|null $thumbnail_url
  * @property int $id
- * @property-read \Illuminate\Database\Eloquent\Collection $judgeVotes ContestJudgeVote
+ * @property-read Collection<ContestJudgeVote> $judgeVotes
  * @property string $masked_name
  * @property string $name
  * @property \Carbon\Carbon|null $updated_at
  * @property-read User $user
  * @property int|null $user_id
- * @property-read \Illuminate\Database\Eloquent\Collection $votes ContestVote
+ * @property-read Collection<ContestVote> $votes
  */
 class ContestEntry extends Model
 {

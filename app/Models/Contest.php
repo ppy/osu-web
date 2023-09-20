@@ -12,6 +12,7 @@ use App\Transformers\ContestTransformer;
 use App\Transformers\UserContestEntryTransformer;
 use Cache;
 use Exception;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -19,7 +20,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property \Carbon\Carbon|null $created_at
  * @property string $description_enter
  * @property string|null $description_voting
- * @property-read \Illuminate\Database\Eloquent\Collection $entries ContestEntry
+ * @property-read Collection<ContestEntry> $entries
  * @property \Carbon\Carbon|null $entry_ends_at
  * @property mixed $thumbnail_shape
  * @property \Carbon\Carbon|null $entry_starts_at
@@ -27,8 +28,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $header_url
  * @property int $id
  * @property mixed $link_icon
- * @property-read \Illuminate\Database\Eloquent\Collection $judgeCategories ContestJudgeCategory
- * @property-read \Illuminate\Database\Eloquent\Collection $judges ContestJudge
+ * @property-read Collection<ContestJudgeCategory> $judgeCategories
+ * @property-read Collection<ContestJudge> $judges ContestJudge
  * @property int $max_entries
  * @property int $max_votes
  * @property string $name
@@ -38,7 +39,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property bool $show_names
  * @property \Carbon\Carbon|null $updated_at
  * @property bool $visible
- * @property-read \Illuminate\Database\Eloquent\Collection $votes ContestVote
+ * @property-read Collection<ContestVote> $votes
  * @property \Carbon\Carbon|null $voting_ends_at
  * @property \Carbon\Carbon|null $voting_starts_at
  */
@@ -54,6 +55,11 @@ class Contest extends Model
         'voting_ends_at' => 'datetime',
         'voting_starts_at' => 'datetime',
     ];
+
+    public function a()
+    {
+
+    }
 
     public function entries()
     {

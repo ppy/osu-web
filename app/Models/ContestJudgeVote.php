@@ -7,11 +7,12 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
- * @property-read \Illuminate\Database\Eloquent\Collection $categoryVotes
+ * @property-read Collection<ContestJudgeCategoryVote> $categoryVotes
  * @property string|null $comment
  * @property int $contest_entry_id
  * @property \Carbon\Carbon|null $created_at
