@@ -1814,16 +1814,13 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->rank?->url;
     }
 
-    public function toMetaDescription(array $options = []): ?string
+    public function toMetaDescription(array $options = []): string
     {
         $ruleset = $options['ruleset'] ?? $this->playmode;
         $stats = $this->statistics($ruleset);
-        if ($stats === null) {
-            return null;
-        }
 
-        $countryRank = $stats->countryRank();
-        $globalRank = $stats->globalRank();
+        $countryRank = $stats?->countryRank();
+        $globalRank = $stats?->globalRank();
 
         return osu_trans('users.ogp.description._', [
             'country' => osu_trans('users.ogp.description.country', [
