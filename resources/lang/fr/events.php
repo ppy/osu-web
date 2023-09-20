@@ -25,4 +25,8 @@ return [
         'qualified' => 'qualifiée',
         'ranked' => 'classée',
     ],
+
+    'value' => [
+        'rank' => '',
+    ],
 ];

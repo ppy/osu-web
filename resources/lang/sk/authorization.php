@@ -185,5 +185,8 @@ return [
                 'require_supporter_tag' => 'osu!supporter tag je vyžadovaný.',
             ],
         ],
+        'update_email' => [
+            'locked' => '',
+        ],
     ],
 ];

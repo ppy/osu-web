@@ -61,7 +61,7 @@ return [
         'discussion' => 'Дискусия',
 
         'admin' => [
-            'full_size_cover' => '',
+            'full_size_cover' => 'Преглед на пълноразмерната корица',
         ],
 
         'deleted_banner' => [

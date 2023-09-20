@@ -185,5 +185,8 @@ return [
                 'require_supporter_tag' => 'تحتاج الى شارة osu!supporter.',
             ],
         ],
+        'update_email' => [
+            'locked' => '',
+        ],
     ],
 ];

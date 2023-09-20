@@ -25,4 +25,8 @@ return [
         'qualified' => '已核可',
         'ranked' => '已進榜',
     ],
+
+    'value' => [
+        'rank' => '',
+    ],
 ];

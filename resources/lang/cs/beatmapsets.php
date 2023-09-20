@@ -61,7 +61,7 @@ return [
         'discussion' => 'Diskuze',
 
         'admin' => [
-            'full_size_cover' => '',
+            'full_size_cover' => 'Zobrazit plnou velikost úvodního obrázku',
         ],
 
         'deleted_banner' => [

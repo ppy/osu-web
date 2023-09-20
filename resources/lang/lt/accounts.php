@@ -18,6 +18,10 @@ return [
             'new' => 'naujas el. paštas',
             'new_confirmation' => 'el. pašto patvirtinimas',
             'title' => 'El. Paštas',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
         ],
 
         'legacy_api' => [

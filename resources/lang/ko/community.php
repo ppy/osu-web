@@ -91,7 +91,7 @@ return [
 
             'yellow_fellow' => [
                 'title' => '노란색 이름 태그',
-                'description' => '게임 내 유저 이름이 노란색으로 표시되어 서포터임을 주목받을 수 있습니다.',
+                'description' => '게임 내 아이디가 노란색으로 표시되어 서포터임을 주목받을 수 있습니다.',
             ],
 
             'speedy_downloads' => [
@@ -100,8 +100,8 @@ return [
             ],
 
             'change_username' => [
-                'title' => '사용자 이름 변경',
-                'description' => '추가 비용없이 사용자 이름을 바꿀 수 있습니다. (1회 한정)',
+                'title' => '아이디 변경',
+                'description' => '첫 서포터 구매 시 1회 한정으로 추가 비용 없이 아이디를 바꿀 수 있습니다.',
             ],
 
             'skinnables' => [

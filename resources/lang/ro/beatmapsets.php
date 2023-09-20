@@ -61,7 +61,7 @@ return [
         'discussion' => 'Discuție',
 
         'admin' => [
-            'full_size_cover' => '',
+            'full_size_cover' => 'Vezi imaginea de copertă întreagă',
         ],
 
         'deleted_banner' => [
