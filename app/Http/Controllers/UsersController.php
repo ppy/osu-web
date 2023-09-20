@@ -651,7 +651,7 @@ class UsersController extends Controller
 
             $pageDescription = $user->toMetaDescription(['mode' => $currentMode]);
 
-            return ext_view('users.show', compact('initialData', 'pageDescription', 'user'));
+            return ext_view('users.show', compact('initialData', 'pageDescription', 'mode', 'user'));
         }
     }
 

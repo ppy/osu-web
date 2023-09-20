@@ -4,7 +4,7 @@
 --}}
 
 @extends('master', [
-    'canonicalUrl' => $user->url(),
+    'canonicalUrl' => $user->url($mode),
     'titlePrepend' => blade_safe(str_replace(' ', '&nbsp;', e($user->username))),
     'pageDescription' => $pageDescription,
     'opengraph' => [
