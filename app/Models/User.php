@@ -1827,10 +1827,10 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
         return osu_trans('users.ogp.description._', [
             'country' => osu_trans('users.ogp.description.country', [
-                'rank' => $countryRank !== null ? '#' . i18n_number_format($countryRank) : '-',
+                'rank' => $countryRank !== null ? '#'.i18n_number_format($countryRank) : '-',
             ]),
             'global' => osu_trans('users.ogp.description.global', [
-                'rank' => $globalRank !== null ? '#' . i18n_number_format($globalRank) : '-',
+                'rank' => $globalRank !== null ? '#'.i18n_number_format($globalRank) : '-',
             ]),
             'mode' => $mode,
         ]);
