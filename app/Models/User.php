@@ -1816,8 +1816,8 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function toMetaDescription(array $options = []): ?string
     {
-        $mode = $options['mode'] ?? $this->playmode;
-        $stats = $this->statistics($mode);
+        $ruleset = $options['ruleset'] ?? $this->playmode;
+        $stats = $this->statistics($ruleset);
         if ($stats === null) {
             return null;
         }
@@ -1832,7 +1832,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'global' => osu_trans('users.ogp.description.global', [
                 'rank' => $globalRank !== null ? '#'.i18n_number_format($globalRank) : '-',
             ]),
-            'mode' => $mode,
+            'ruleset' => $ruleset,
         ]);
     }
 
