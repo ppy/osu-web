@@ -6,7 +6,6 @@
 @extends('master', [
     'canonicalUrl' => $user->url($mode),
     'titlePrepend' => blade_safe(str_replace(' ', '&nbsp;', e($user->username))),
-    'pageDescription' => $pageDescription,
     'opengraph' => [
         'title' => trans('users.show.title', ['username' => $user->username]),
         'image' => $user->user_avatar,
