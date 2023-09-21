@@ -1176,22 +1176,6 @@ function user_color_style($color, $style)
     return sprintf('%s: %s', $style, e($color));
 }
 
-function base62_encode($input)
-{
-    $numbers = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $base = strlen($numbers);
-
-    $output = '';
-    $remaining = $input;
-
-    do {
-        $output = $numbers[$remaining % $base].$output;
-        $remaining = floor($remaining / $base);
-    } while ($remaining > 0);
-
-    return $output;
-}
-
 function display_regdate($user)
 {
     if ($user->user_regdate === null) {
