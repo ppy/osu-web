@@ -545,8 +545,22 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             return null;
         }
 
+        // also reject looking up history when it's all digit and not explicit username search
+        if ($type !== 'username' && ctype_digit($usernameOrId)) {
+            return null;
+        }
+
+        $searchUsername = $usernameOrId[0] === '@'
+            ? substr($usernameOrId, 1)
+            : $usernameOrId;
+        $searchUsernames = [
+            $searchUsername,
+            strtr($searchUsername, ' ', '_'),
+            strtr($searchUsername, '_', ' '),
+        ];
+
         $change = UsernameChangeHistory::visible()
-            ->where('username_last', $usernameOrId)
+            ->whereIn('username_last', $searchUsernames)
             ->orderBy('change_id', 'desc')
             ->first();
 
@@ -1328,7 +1342,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function statisticsMania7k()
     {
-        return $this->hasOne(UserStatistics\Mania4k::class);
+        return $this->hasOne(UserStatistics\Mania7k::class);
     }
 
     public function statisticsTaiko()
@@ -1812,6 +1826,39 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function titleUrl(): ?string
     {
         return $this->rank?->url;
+    }
+
+    public function toMetaDescription(array $options = []): string
+    {
+        static $rankTypes = ['country', 'global'];
+
+        $ruleset = $options['ruleset'] ?? $this->playmode;
+        $stats = $this->statistics($ruleset);
+
+        $replacements['ruleset'] = $ruleset;
+
+        foreach ($rankTypes as $type) {
+            $method = "{$type}Rank";
+            $replacements[$type] = osu_trans("users.ogp.description.{$type}", [
+                'rank' => format_rank($stats?->$method()),
+            ]);
+
+            $variants = Beatmap::VARIANTS[$ruleset] ?? [];
+
+            $variantsTexts = null;
+            foreach ($variants as $variant) {
+                $variantRank = $this->statistics($ruleset, false, $variant)?->$method();
+                if ($variantRank !== null) {
+                    $variantsTexts[] = $variant.' '.format_rank($variantRank);
+                }
+            }
+
+            if (!empty($variantsTexts)) {
+                $replacements[$type] .= ' ('.implode(', ', $variantsTexts).')';
+            }
+        }
+
+        return osu_trans('users.ogp.description._', $replacements);
     }
 
     public function hasProfile()
@@ -2354,9 +2401,9 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->user_lang;
     }
 
-    public function url()
+    public function url(?string $ruleset = null)
     {
-        return route('users.show', ['user' => $this->getKey()]);
+        return route('users.show', ['mode' => $ruleset, 'user' => $this->getKey()]);
     }
 
     public function validationErrorsTranslationPrefix(): string
