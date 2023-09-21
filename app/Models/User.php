@@ -1328,7 +1328,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function statisticsMania7k()
     {
-        return $this->hasOne(UserStatistics\Mania4k::class);
+        return $this->hasOne(UserStatistics\Mania7k::class);
     }
 
     public function statisticsTaiko()
