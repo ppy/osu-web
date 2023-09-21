@@ -128,6 +128,7 @@ return [
             '_' => 'Rank (:ruleset): :global | :country',
             'country' => 'Country :rank',
             'global' => 'Global :rank',
+            'variant' => ' (:variant :rank)',
         ],
     ],
 

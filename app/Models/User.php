@@ -1816,21 +1816,32 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function toMetaDescription(array $options = []): string
     {
+        static $rankTypes = ['country', 'global'];
+
         $ruleset = $options['ruleset'] ?? $this->playmode;
         $stats = $this->statistics($ruleset);
 
-        $countryRank = $stats?->countryRank();
-        $globalRank = $stats?->globalRank();
+        $replacements['ruleset'] = $ruleset;
 
-        return osu_trans('users.ogp.description._', [
-            'country' => osu_trans('users.ogp.description.country', [
-                'rank' => $countryRank !== null ? '#'.i18n_number_format($countryRank) : '-',
-            ]),
-            'global' => osu_trans('users.ogp.description.global', [
-                'rank' => $globalRank !== null ? '#'.i18n_number_format($globalRank) : '-',
-            ]),
-            'ruleset' => $ruleset,
-        ]);
+        foreach ($rankTypes as $type) {
+            $method = "{$type}Rank";
+            $replacements[$type] = osu_trans("users.ogp.description.{$type}", [
+                'rank' => format_rank($stats?->$method()),
+            ]);
+
+            $variants = Beatmap::VARIANTS[$ruleset] ?? [];
+
+            foreach ($variants as $variant) {
+                $variantStats = $this->statistics($ruleset, false, $variant);
+
+                $replacements[$type] .= osu_trans('users.ogp.description.variant', [
+                    'rank' => format_rank($variantStats?->$method()),
+                    'variant' => $variant,
+                ]);
+            }
+        }
+
+        return osu_trans('users.ogp.description._', $replacements);
     }
 
     public function hasProfile()
