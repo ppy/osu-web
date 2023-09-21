@@ -26,7 +26,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('beatmaps', function (Blueprint $table) {
+        Schema::table('osu_beatmaps', function (Blueprint $table) {
             $table->dropColumn('max_combo');
         });
     }
