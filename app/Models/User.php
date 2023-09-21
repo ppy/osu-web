@@ -1835,7 +1835,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             foreach ($variants as $variant) {
                 $variantStats = $this->statistics($ruleset, false, $variant);
                 if ($variantStats !== null) {
-                    $variantsTexts[] = $variant.' '.format_rank($variantStats?->$method());
+                    $variantsTexts[] = $variant.' '.format_rank($variantStats->$method());
                 }
             }
 
