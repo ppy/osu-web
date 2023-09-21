@@ -630,8 +630,7 @@ class UsersController extends Controller
         }
 
         // preload and set relation for toMetaDescription and transformer sharing data
-        $stats = $user->statistics($currentMode);
-        $stats?->setRelation('user', $user);
+        $user->statistics($currentMode)?->setRelation('user', $user);
 
         $userArray = $this->fillDeprecatedDuplicateFields(json_item(
             $user,
