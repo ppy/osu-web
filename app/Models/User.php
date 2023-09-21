@@ -1831,13 +1831,14 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
             $variants = Beatmap::VARIANTS[$ruleset] ?? [];
 
+            $variantsTexts = null;
             foreach ($variants as $variant) {
                 $variantStats = $this->statistics($ruleset, false, $variant);
+                $variantsTexts[] = $variant.' '.format_rank($variantStats?->$method());
+            }
 
-                $replacements[$type] .= osu_trans('users.ogp.description.variant', [
-                    'rank' => format_rank($variantStats?->$method()),
-                    'variant' => $variant,
-                ]);
+            if ($variantsTexts !== null) {
+                $replacements[$type] .= ' ('.implode(', ', $variantsTexts).')';
             }
         }
 
