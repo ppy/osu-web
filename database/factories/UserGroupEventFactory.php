@@ -76,11 +76,8 @@ class UserGroupEventFactory extends Factory
     public function withRandomExistingModels(): static
     {
         return $this->state([
-            'actor_id' => User::inRandomOrder()->first(),
-            'group_id' => function () {
-                return app('groups')->all()->random()
-                    ?? throw new ItemNotFoundException();
-            },
+            'actor_id' => fn () => User::inRandomOrder()->first(),
+            'group_id' => fn () => app('groups')->all()->random() ?? throw new ItemNotFoundException(),
             'user_id' => fn (array $attr) => match ($attr['type']) {
                 UserGroupEvent::GROUP_ADD,
                 UserGroupEvent::GROUP_REMOVE,
