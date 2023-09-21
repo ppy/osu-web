@@ -555,6 +555,8 @@ class UsersController extends Controller
             abort(404);
         }
 
+        $user->statistics($currentMode)?->setRelation('user', $user);
+
         return $this->fillDeprecatedDuplicateFields(json_item(
             $user,
             (new UserTransformer())->setMode($currentMode),
