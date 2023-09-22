@@ -28,7 +28,7 @@ use Exception;
  * @property int $max_entries
  * @property int $max_votes
  * @property string $name
- * @property int $show_votes
+ * @property bool $show_votes
  * @property mixed $type
  * @property mixed $unmasked
  * @property bool $show_names
@@ -46,6 +46,7 @@ class Contest extends Model
         'entry_ends_at' => 'datetime',
         'entry_starts_at' => 'datetime',
         'extra_options' => 'array',
+        'show_votes' => 'boolean',
         'visible' => 'boolean',
         'voting_ends_at' => 'datetime',
         'voting_starts_at' => 'datetime',
