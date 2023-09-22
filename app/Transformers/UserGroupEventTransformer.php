@@ -43,6 +43,10 @@ class UserGroupEventTransformer extends TransformerAbstract
 
     public function includeActor(UserGroupEvent $event): ResourceInterface
     {
+        if ($event->actor_id === null) {
+            return $this->null();
+        }
+
         return $this->primitive([
             'id' => $event->actor_id,
             'username' => $event->details['actor_name'],
