@@ -74,11 +74,15 @@ class GroupHistoryController extends Controller
                 $eventGroupIds->contains($group->getKey()) ||
                 priv_check('GroupShow', $group)->can(),
         );
-        return [
+        $json = [
             ...cursor_for_response($cursorHelper->next($events, $hasMore)),
             'events' => json_collection($events, 'UserGroupEvent'),
             'groups' => json_collection($groups, 'Group'),
             'params' => $params,
         ];
+
+        return is_json_request()
+            ? $json
+            : ext_view('group_history.index', compact('json'));
     }
 }
