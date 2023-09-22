@@ -33,6 +33,7 @@ return [
     ],
 
     'voting' => [
+        'judge_link' => 'You are a judge of this contest. Judge the entries here!',
         'judged_notice' => 'This contest is using the judging system, the judges are currently processing the entries.',
         'login_required' => 'Please sign in to vote.',
         'over' => 'Voting for this contest has ended',
