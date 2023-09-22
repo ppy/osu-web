@@ -1501,6 +1501,8 @@ function get_param_value($input, $type)
             return get_length($input);
         case 'string':
             return get_string($input);
+        case 'string_presence':
+            return presence(get_string($input));
         case 'string_split':
             return get_string_split($input);
         case 'string[]':

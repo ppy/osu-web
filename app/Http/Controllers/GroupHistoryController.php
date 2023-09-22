@@ -16,11 +16,10 @@ class GroupHistoryController extends Controller
     {
         $rawParams = request()->all();
         $params = get_params($rawParams, null, [
-            'group:string',
+            'group:string_presence',
             'max_date:time',
             'min_date:time',
-            'sort:string',
-            'user:string',
+            'user:string_presence',
         ], ['null_missing' => true]);
         $query = UserGroupEvent::visibleForUser(auth()->user());
 
@@ -36,11 +35,19 @@ class GroupHistoryController extends Controller
         }
 
         if ($params['max_date'] !== null) {
+            $params['max_date']->endOfDay();
+
             $query->where('created_at', '<=', $params['max_date']);
+
+            $params['max_date'] = json_date($params['max_date']);
         }
 
         if ($params['min_date'] !== null) {
+            $params['min_date']->startOfDay();
+
             $query->where('created_at', '>=', $params['min_date']);
+
+            $params['min_date'] = json_date($params['min_date']);
         }
 
         if ($params['user'] !== null) {
@@ -53,16 +60,17 @@ class GroupHistoryController extends Controller
             }
         }
 
-        $cursorHelper = UserGroupEvent::makeDbCursorHelper($params['sort']);
+        $cursorHelper = UserGroupEvent::makeDbCursorHelper($rawParams['sort'] ?? null);
+        $params['sort'] = $cursorHelper->getSortName();
         [$events, $hasMore] = $query
             ->cursorSort($cursorHelper, cursor_from_params($rawParams))
             ->limit(50)
             ->getWithHasMore();
-        $cursor = $cursorHelper->next($events, $hasMore);
 
         return [
+            ...cursor_for_response($cursorHelper->next($events, $hasMore)),
             'events' => json_collection($events, 'UserGroupEvent'),
-            ...cursor_for_response($cursor),
+            'params' => $params,
         ];
     }
 }
