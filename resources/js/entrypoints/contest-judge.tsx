@@ -7,12 +7,14 @@ import * as React from 'react';
 import ContestEntryStore from 'stores/contest-entry-store';
 import { parseJson } from 'utils/json';
 
-const store = new ContestEntryStore();
-store.updateWithJson(parseJson('json-entries'));
+core.reactTurbolinks.register('contest-judge', () => {
+  const store = new ContestEntryStore();
+  store.updateWithJson(parseJson('json-entries'));
 
-core.reactTurbolinks.register('contest-judge', () => (
-  <Main
-    contest={parseJson('json-contest')}
-    store={store}
-  />
-));
+  return (
+    <Main
+      contest={parseJson('json-contest')}
+      store={store}
+    />
+  );
+});

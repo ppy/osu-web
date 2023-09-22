@@ -6,7 +6,7 @@ import { action, makeObservable, observable } from 'mobx';
 import { ContestEntry } from 'models/contest-entry';
 
 export default class ContestEntryStore {
-  @observable entries = observable.map<number, ContestEntry>();
+  @observable entries = new Map<number, ContestEntry>();
 
   constructor() {
     makeObservable(this);
