@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Models\Group;
 use App\Models\User;
 use App\Models\UserGroupEvent;
 
@@ -67,9 +68,16 @@ class GroupHistoryController extends Controller
             ->limit(50)
             ->getWithHasMore();
 
+        $eventGroupIds = $events->pluck('group_id');
+        $groups = app('groups')->all()->filter(
+            fn (Group $group) =>
+                $eventGroupIds->contains($group->getKey()) ||
+                priv_check('GroupShow', $group)->can(),
+        );
         return [
             ...cursor_for_response($cursorHelper->next($events, $hasMore)),
             'events' => json_collection($events, 'UserGroupEvent'),
+            'groups' => json_collection($groups, 'Group'),
             'params' => $params,
         ];
     }
