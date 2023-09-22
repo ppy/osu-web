@@ -17,10 +17,10 @@ class GroupHistoryController extends Controller
     {
         $rawParams = request()->all();
         $params = get_params($rawParams, null, [
-            'group:string_presence',
+            'group',
             'max_date:time',
             'min_date:time',
-            'user:string_presence',
+            'user',
         ], ['null_missing' => true]);
         $query = UserGroupEvent::visibleForUser(auth()->user());
 
