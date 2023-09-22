@@ -3,22 +3,25 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-use Illuminate\Database\Migrations\Migration;
+declare(strict_types=1);
 
-class CreateSessionsTable extends Migration
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
         if (Schema::hasTable('phpbb_sessions')) {
             return;
         }
 
-        Schema::create('phpbb_sessions', function ($table) {
+        Schema::create('phpbb_sessions', function (Blueprint $table) {
             $table->collation = 'utf8_bin';
             $table->charset = 'utf8';
 
@@ -46,11 +49,9 @@ class CreateSessionsTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::drop('phpbb_sessions');
     }
-}
+};
