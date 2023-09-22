@@ -29,7 +29,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property int $id
  * @property mixed $link_icon
  * @property-read Collection<ContestJudgeCategory> $judgeCategories
- * @property-read Collection<ContestJudge> $judges ContestJudge
+ * @property-read Collection<ContestJudge> $judges
  * @property int $max_entries
  * @property int $max_votes
  * @property string $name
