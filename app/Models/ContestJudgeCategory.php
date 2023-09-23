@@ -10,6 +10,7 @@ namespace App\Models;
 /**
  * @property int $contest_id
  * @property \Carbon\Carbon|null $created_at
+ * @property string $description
  * @property int $id
  * @property int $max_value
  * @property string $name

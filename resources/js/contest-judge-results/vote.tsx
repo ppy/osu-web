@@ -39,6 +39,10 @@ export default function Vote(props: Props) {
         {props.vote.category_votes?.map((categoryVote) => (
           <div key={categoryVote.id} className='contest-judge-categories__row'>
             <div className='contest-judge-categories__col'>
+              <div className='contest-judge-entry__description-icon' title={categoryVote.category?.description}>
+                <i className='fas fa-question-circle' />
+              </div>
+
               <span className='u-ellipsis-overflow'>{categoryVote.category?.name}</span>
             </div>
             <div className='contest-judge-categories__col contest-judge-categories__col--score'>

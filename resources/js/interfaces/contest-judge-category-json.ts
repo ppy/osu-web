@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 export default interface ContestJudgeCategoryJson {
+  description: string;
   id: number;
   max_value: number;
   name: string;

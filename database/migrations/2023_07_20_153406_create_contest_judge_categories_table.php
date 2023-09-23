@@ -20,6 +20,7 @@ return new class extends Migration
             $table->id();
             $table->integer('contest_id')->unsigned();
             $table->string('name');
+            $table->string('description');
             $table->tinyInteger('max_value')->default(10);
             $table->timestamps();
 

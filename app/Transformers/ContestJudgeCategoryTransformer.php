@@ -14,6 +14,7 @@ class ContestJudgeCategoryTransformer extends TransformerAbstract
     public function transform(ContestJudgeCategory $judgeCategory): array
     {
         return [
+            'description' => $judgeCategory->description,
             'id' => $judgeCategory->getKey(),
             'max_value' => $judgeCategory->max_value,
             'name' => $judgeCategory->name,
