@@ -1815,7 +1815,6 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
-        // isBot checks user primary group
         if (!$user->isGroup('bot') && $user->playCount() < 100) {
             return 'play_more';
         }

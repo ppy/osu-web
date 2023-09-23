@@ -963,19 +963,51 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     |
     */
 
+    /**
+     * Check if the user is in the "bng" or "bng_limited" groups.
+     */
     public function isBNG(): bool
     {
         return $this->isGroup('bng') || $this->isGroup('bng_limited');
     }
 
+    /**
+     * Check if the user is a bot.
+     *
+     * Note that this checks the user's default group, so it is different from
+     * calling `isGroup('bot')`:
+     *
+     * - Use `isBot()` to check if the user does not represent a real person.
+     * - Use `isGroup('bot')` to check if the user has been given approval to
+     *   run a chat bot on their account.
+     */
+    public function isBot(): bool
+    {
+        return $this->defaultGroup()->identifier === 'bot';
+    }
+
+    /**
+     * Check if the user is in the "gmt" or "nat" groups.
+     */
     public function isModerator(): bool
     {
         return $this->isGroup('gmt') || $this->isGroup('nat');
     }
 
-    public function isBot(): bool
+    /**
+     * Check if the user is in any groups that give extra permissions.
+     */
+    public function isPrivileged(): bool
     {
-        return $this->defaultGroup()->identifier === 'bot';
+        static $groups = ['admin', 'bng', 'bng_limited', 'dev', 'gmt', 'loved', 'nat'];
+
+        foreach ($groups as $group) {
+            if ($this->isGroup($group)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public function hasSupported()
@@ -1007,19 +1039,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     {
         return !$this->hide_presence
             && $this->user_lastvisit > Carbon::now()->subMinutes(config('osu.user.online_window'));
-    }
-
-    public function isPrivileged(): bool
-    {
-        static $groups = ['admin', 'bng', 'bng_limited', 'dev', 'gmt', 'loved', 'nat'];
-
-        foreach ($groups as $group) {
-            if ($this->isGroup($group)) {
-                return true;
-            }
-        }
-
-        return false;
     }
 
     public function isBanned()
