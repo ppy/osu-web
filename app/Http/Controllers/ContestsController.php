@@ -32,7 +32,7 @@ class ContestsController extends Controller
             ->with('judgeCategories')
             ->findOrFail($id);
 
-        abort_if(!$contest->isJudgingActive(), 404);
+        abort_if(!$contest->isJudged(), 404);
 
         priv_check('ContestJudge', $contest)->ensureCan();
 

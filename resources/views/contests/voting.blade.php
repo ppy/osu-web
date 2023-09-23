@@ -39,7 +39,7 @@
             {{ $noVoteReason }}
         </div>
 
-        @if ($contestMeta->isJudgingActive() && priv_check('ContestJudge', $contestMeta)->can())
+        @if ($contestMeta->isJudged() && priv_check('ContestJudge', $contestMeta)->can())
             <div class='contest__voting-notice'>
                 <a href="{{ route('contests.judge', $contestMeta) }}" target="_blank">{{osu_trans('contest.voting.judge_link')}}</a>
             </div>

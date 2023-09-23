@@ -20,7 +20,6 @@ return [
         'update' => 'update',
         'validation' => [
             'contest_vote_judged' => 'can\'t vote in judged contests',
-            'judging_not_active' => 'judging for this contest isn\'t active',
             'missing_category_vote' => 'missing category vote',
         ],
     ],

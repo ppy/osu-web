@@ -1340,6 +1340,10 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
 
+        if (!$contest->isJudgingActive()) {
+            return 'contest.judging_not_active';
+        }
+
         if ($contest->judges->find($user->getKey()) === null) {
             return 'unauthorized';
         }

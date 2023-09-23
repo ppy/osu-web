@@ -62,10 +62,6 @@ class ContestEntriesController extends Controller
             ->with('judgeVotes')
             ->findOrFail($id);
 
-        if (!$entry->contest->isJudgingActive()) {
-            throw new InvariantException(osu_trans('contest.judge.validation.judging_not_active'));
-        }
-
         priv_check('ContestJudge', $entry->contest)->ensureCan();
 
         $params = get_params(request()->all(), null, [
