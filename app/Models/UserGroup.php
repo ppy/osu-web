@@ -8,10 +8,10 @@ namespace App\Models;
 /**
  * @property Group $group
  * @property int $group_id
- * @property int $group_leader
+ * @property bool $group_leader
  * @property User $user
  * @property int $user_id
- * @property int $user_pending
+ * @property bool $user_pending
  * @property array|null $playmodes
  */
 class UserGroup extends Model
@@ -20,6 +20,7 @@ class UserGroup extends Model
     public $incrementing = false;
 
     protected $casts = [
+        'group_leader' => 'boolean',
         'user_pending' => 'boolean',
     ];
     protected $primaryKey = ':composite';
