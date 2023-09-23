@@ -963,23 +963,9 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     |
     */
 
-    public function inGroupWithPlaymode($groupIdentifier, $playmode = null)
-    {
-        $group = app('groups')->byIdentifier($groupIdentifier);
-        $isGroup = $this->isGroup($group);
-
-        if ($isGroup === false || $playmode === null) {
-            return $isGroup;
-        }
-
-        $groupModes = $this->findUserGroup($group)->actualRulesets();
-
-        return in_array($playmode, $groupModes ?? [], true);
-    }
-
     public function isNAT($mode = null)
     {
-        return $this->inGroupWithPlaymode('nat', $mode);
+        return $this->isGroup(app('groups')->byIdentifier('nat'), $mode);
     }
 
     public function isAdmin()
@@ -1004,12 +990,12 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function isFullBN($mode = null)
     {
-        return $this->inGroupWithPlaymode('bng', $mode);
+        return $this->isGroup(app('groups')->byIdentifier('bng'), $mode);
     }
 
     public function isLimitedBN($mode = null)
     {
-        return $this->inGroupWithPlaymode('bng_limited', $mode);
+        return $this->isGroup(app('groups')->byIdentifier('bng_limited'), $mode);
     }
 
     public function isDev()
@@ -1165,17 +1151,26 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     }
 
     /**
-     * Check if a user is in a specific group.
+     * Check if the user is in a specified group.
      *
-     * This will always return false when called on user authenticated using OAuth.
+     * This will always return false if the user was authenticated using OAuth.
      *
-     * @param Group $group
-     *
-     * @return bool
+     * @param \App\Models\Group $group
+     * @param string|null $ruleset Additionally check if the usergroup has a specified ruleset.
      */
-    public function isGroup($group)
+    public function isGroup(Group $group, ?string $ruleset = null): bool
     {
-        return $this->findUserGroup($group) !== null && $this->token() === null;
+        if ($this->token() !== null) {
+            return false;
+        }
+
+        $userGroup = $this->findUserGroup($group);
+
+        if ($userGroup === null) {
+            return false;
+        }
+
+        return $ruleset === null || in_array($ruleset, $userGroup->actualRulesets(), true);
     }
 
     public function badges()
