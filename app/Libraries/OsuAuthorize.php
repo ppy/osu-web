@@ -1363,7 +1363,7 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if ($forum->moderator_groups !== null && !empty(array_intersect($user->groupIds()['active'], $forum->moderator_groups))) {
+        if ($forum->moderator_groups !== null && !empty(array_intersect($user->groupIds(), $forum->moderator_groups))) {
             return 'ok';
         }
 

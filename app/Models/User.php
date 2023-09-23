@@ -444,7 +444,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     {
         $playCount = $this->playCount();
 
-        $allGroupIds = array_merge([$this->group_id], $this->groupIds()['active']);
+        $allGroupIds = array_merge([$this->group_id], $this->groupIds());
         $allowedGroupIds = array_map(function ($groupIdentifier) {
             return app('groups')->byIdentifier($groupIdentifier)->getKey();
         }, config('osu.user.allowed_rename_groups'));
@@ -1132,23 +1132,21 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $groups->byId($this->group_id) ?? $groups->byIdentifier('default');
     }
 
-    public function groupIds()
+    /**
+     * Get the group IDs of the user's active usergroups.
+     *
+     * @return array<int, int>
+     */
+    public function groupIds(): array
     {
         return $this->memoize(__FUNCTION__, function () {
-            $ret = [
-                'active' => [],
-                'pending' => [],
-            ];
-
-            foreach ($this->userGroups as $userGroup) {
-                $key = $userGroup->user_pending ? 'pending' : 'active';
-                $ret[$key][] = $userGroup->group_id;
-            }
-
-            return $ret;
+            return $this
+                ->userGroups
+                ->where('user_pending', false)
+                ->pluck('group_id')
+                ->all();
         });
     }
-
 
     public function findUserGroup($group, bool $activeOnly): ?UserGroup
     {
