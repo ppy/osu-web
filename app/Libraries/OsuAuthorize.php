@@ -1363,6 +1363,13 @@ class OsuAuthorize
             return 'ok';
         }
 
+        // TODO: If `$user` is the resource owner, authorizing with a
+        //       third-party OAuth client, `$user->groupIds()` should be empty
+        //       here to match the restrictions in `User::isGroup()`.
+        //
+        //       Some third-party clients currently rely on this mistake, so an
+        //       alternative method to request usage of group permissions needs
+        //       to be provided before fixing this.
         if ($forum->moderator_groups !== null && !empty(array_intersect($user->groupIds(), $forum->moderator_groups))) {
             return 'ok';
         }
