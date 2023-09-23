@@ -243,7 +243,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeIsAdmin(User $user)
     {
-        return $this->primitive($user->isAdmin());
+        return $this->primitive($user->isGroup('admin'));
     }
 
     public function includeIsBng(User $user)
@@ -253,17 +253,17 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeIsFullBn(User $user)
     {
-        return $this->primitive($user->isFullBN());
+        return $this->primitive($user->isGroup('bng'));
     }
 
     public function includeIsGmt(User $user)
     {
-        return $this->primitive($user->isGMT());
+        return $this->primitive($user->isGroup('gmt'));
     }
 
     public function includeIsLimitedBn(User $user)
     {
-        return $this->primitive($user->isLimitedBN());
+        return $this->primitive($user->isGroup('bng_limited'));
     }
 
     public function includeIsModerator(User $user)
@@ -273,7 +273,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeIsNat(User $user)
     {
-        return $this->primitive($user->isNAT());
+        return $this->primitive($user->isGroup('nat'));
     }
 
     public function includeIsRestricted(User $user)

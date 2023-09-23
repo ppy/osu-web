@@ -132,7 +132,7 @@
         @endif
     </div>
 
-    @if (auth()->check() && auth()->user()->isAdmin())
+    @if (auth()->check() && auth()->user()->isGroup('admin'))
         <div class="admin-menu">
             <button class="admin-menu__button js-menu" data-menu-target="admin-menu-forums-show">
                 <span class="fas fa-angle-up"></span>

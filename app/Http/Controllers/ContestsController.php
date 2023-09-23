@@ -15,7 +15,7 @@ class ContestsController extends Controller
     {
         $contests = Contest::orderBy('id', 'desc');
 
-        if (!Auth::check() || !Auth::user()->isAdmin()) {
+        if (!Auth::check() || !Auth::user()->isGroup('admin')) {
             $contests->where('visible', true);
         }
 
@@ -29,7 +29,7 @@ class ContestsController extends Controller
         $contest = Contest::findOrFail($id);
 
         $user = Auth::user();
-        if (!$contest->visible && (!$user || !$user->isAdmin())) {
+        if (!$contest->visible && (!$user || !$user->isGroup('admin'))) {
             abort(404);
         }
 

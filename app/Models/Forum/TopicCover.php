@@ -52,7 +52,7 @@ class TopicCover extends Model
 
         $covers = static::select();
 
-        if ($user->isAdmin() === false) {
+        if ($user->isGroup('admin') === false) {
             $covers->where('user_id', $user->user_id);
         }
 

@@ -63,7 +63,7 @@
 
     @if ($order->address !== null)
         @php
-            $showTrackingCode = ($order->isShipped() || $order->isDelivered() || Auth::user()->isAdmin()) && $order->tracking_code;
+            $showTrackingCode = ($order->isShipped() || $order->isDelivered() || Auth::user()->isGroup('admin')) && $order->tracking_code;
 
             $transactionDetails = [
                 'Salesperson' => 'osu!store',

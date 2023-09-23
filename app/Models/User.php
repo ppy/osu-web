@@ -963,69 +963,19 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     |
     */
 
-    public function isNAT($mode = null)
+    public function isBNG(): bool
     {
-        return $this->isGroup('nat', $mode);
+        return $this->isGroup('bng') || $this->isGroup('bng_limited');
     }
 
-    public function isAdmin()
+    public function isModerator(): bool
     {
-        return $this->isGroup('admin');
+        return $this->isGroup('gmt') || $this->isGroup('nat');
     }
 
-    public function isChatAnnouncer()
+    public function isBot(): bool
     {
-        return $this->isGroup('announce', allowOAuth: true);
-    }
-
-    public function isGMT()
-    {
-        return $this->isGroup('gmt');
-    }
-
-    public function isBNG($mode = null)
-    {
-        return $this->isFullBN($mode) || $this->isLimitedBN($mode);
-    }
-
-    public function isFullBN($mode = null)
-    {
-        return $this->isGroup('bng', $mode);
-    }
-
-    public function isLimitedBN($mode = null)
-    {
-        return $this->isGroup('bng_limited', $mode);
-    }
-
-    public function isDev()
-    {
-        return $this->isGroup('dev');
-    }
-
-    public function isModerator()
-    {
-        return $this->isGMT() || $this->isNAT();
-    }
-
-    public function isAlumni()
-    {
-        return $this->isGroup('alumni');
-    }
-
-    public function isRegistered()
-    {
-        return $this->isGroup('default');
-    }
-
-    public function isProjectLoved()
-    {
-        return $this->isGroup('loved');
-    }
-
-    public function isBot()
-    {
-        return $this->group_id === app('groups')->byIdentifier('bot')->getKey();
+        return $this->defaultGroup()->identifier === 'bot';
     }
 
     public function hasSupported()
@@ -1059,14 +1009,17 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             && $this->user_lastvisit > Carbon::now()->subMinutes(config('osu.user.online_window'));
     }
 
-    public function isPrivileged()
+    public function isPrivileged(): bool
     {
-        return $this->isAdmin()
-            || $this->isDev()
-            || $this->isGMT()
-            || $this->isBNG()
-            || $this->isNAT()
-            || $this->isProjectLoved();
+        static $groups = ['admin', 'bng', 'bng_limited', 'dev', 'gmt', 'loved', 'nat'];
+
+        foreach ($groups as $group) {
+            if ($this->isGroup($group)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public function isBanned()
@@ -1722,27 +1675,27 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function nominationModes()
     {
         return $this->memoize(__FUNCTION__, function () {
-            if (!$this->isNAT() && !$this->isBNG()) {
+            if (!$this->isGroup('nat') && !$this->isBNG()) {
                 return;
             }
 
             $modes = [];
 
-            if ($this->isLimitedBN()) {
+            if ($this->isGroup('bng_limited')) {
                 $playmodes = $this->findUserGroup('bng_limited')->actualRulesets();
                 foreach ($playmodes as $playmode) {
                     $modes[$playmode] = 'limited';
                 }
             }
 
-            if ($this->isFullBN()) {
+            if ($this->isGroup('bng')) {
                 $playmodes = $this->findUserGroup('bng')->actualRulesets();
                 foreach ($playmodes as $playmode) {
                     $modes[$playmode] = 'full';
                 }
             }
 
-            if ($this->isNAT()) {
+            if ($this->isGroup('nat')) {
                 $playmodes = $this->findUserGroup('nat')->actualRulesets();
                 foreach ($playmodes as $playmode) {
                     $modes[$playmode] = 'full';

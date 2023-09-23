@@ -18,7 +18,7 @@ class ArtistsController extends Controller
         $artists = Artist::with('label')->withMax('tracks', 'created_at')->withCount('tracks')->orderBy('name', 'asc');
         $user = Auth::user();
 
-        if ($user === null || !$user->isAdmin()) {
+        if ($user === null || !$user->isGroup('admin')) {
             $artists->where('visible', true);
         }
 
@@ -32,7 +32,7 @@ class ArtistsController extends Controller
         $artist = Artist::with('label')->findOrFail($id);
         $user = Auth::user();
 
-        if (!$artist->visible && ($user === null || !$user->isAdmin())) {
+        if (!$artist->visible && ($user === null || !$user->isGroup('admin'))) {
             abort(404);
         }
 
