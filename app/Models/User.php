@@ -1672,8 +1672,8 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             }
 
             return $this->userGroups
-                ->filter(function ($userGroup) {
-                    return optional($userGroup->group)->hasBadge();
+                ->filter(function (UserGroup $userGroup) {
+                    return !$userGroup->user_pending && $userGroup->group->hasBadge();
                 })
                 ->sort(function ($a, $b) {
                     // If the user has a default group, always show it first
