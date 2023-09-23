@@ -653,7 +653,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function setDefaultGroup(Group $group, ?self $actor = null): void
     {
         $this->getConnection()->transaction(function () use ($actor, $group) {
-            if ($this->findUserGroup($group) === null) {
+            if (!$this->isGroup($group, allowOAuth: true)) {
                 $this->addToGroup($group, null, $actor);
             }
 
@@ -975,7 +975,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function isChatAnnouncer()
     {
-        return $this->findUserGroup(app('groups')->byIdentifier('announce')) !== null;
+        return $this->isGroup(app('groups')->byIdentifier('announce'), allowOAuth: true);
     }
 
     public function isGMT()
@@ -1153,14 +1153,13 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     /**
      * Check if the user is in a specified group.
      *
-     * This will always return false if the user was authenticated using OAuth.
-     *
      * @param \App\Models\Group $group
      * @param string|null $ruleset Additionally check if the usergroup has a specified ruleset.
+     * @param bool $allowOAuth Whether to perform the check if the user was authenticated using OAuth.
      */
-    public function isGroup(Group $group, ?string $ruleset = null): bool
+    public function isGroup(Group $group, ?string $ruleset = null, bool $allowOAuth = false): bool
     {
-        if ($this->token() !== null) {
+        if (!$allowOAuth && $this->token() !== null) {
             return false;
         }
 
