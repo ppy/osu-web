@@ -79,6 +79,7 @@ composer-installer
 # cache files
 /.eslintcache
 /.phpunit.result.cache
+/.stylelintcache
 /bootstrap/cache/
 /storage/htmlpurifier/
 /storage/paypal_auth.cache
