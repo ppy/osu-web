@@ -70,14 +70,6 @@
     display: flex;
     justify-content: center;
 
-    & + & {
-      margin-top: 10px;
-
-      &--buttons {
-        margin-top: 15px;
-      }
-    }
-
     &--buttons {
       flex-direction: column;
       align-items: center;
@@ -89,6 +81,14 @@
 
     &--title {
       font-weight: 300;
+    }
+
+    & + & {
+      margin-top: 10px;
+
+      &--buttons {
+        margin-top: 15px;
+      }
     }
   }
 

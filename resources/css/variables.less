@@ -8,11 +8,13 @@
 
 @font-grade: Venera, sans-serif;
 @font-content: Inter, sans-serif;
-@font-default: Torus, Inter, 'Helvetica Neue', Tahoma, Arial, 'Hiragino Kaku Gothic ProN', Meiryo, 'Microsoft YaHei', 'Apple SD Gothic Neo', sans-serif;
-@font-default-vi: Quicksand, Torus, Inter, 'Helvetica Neue', Tahoma, Arial, 'PingFang TC', 'Microsoft JhengHei', 'Apple SD Gothic Neo', system-ui, sans-serif;
-@font-default-th: Torus, Inter, 'Helvetica Neue', 'Prompt', Tahoma, Arial, 'Hiragino Kaku Gothic ProN', Meiryo, 'Microsoft YaHei', "Apple SD Gothic Neo", sans-serif;
-@font-default-zh: Torus, Inter, 'Helvetica Neue', Tahoma, Arial, 'Hiragino Sans GB', 'Microsoft YaHei', 'Apple SD Gothic Neo', system-ui, sans-serif;
-@font-default-zh-tw: Torus, Inter, 'Helvetica Neue', Tahoma, Arial, 'PingFang TC', 'Microsoft JhengHei', 'Apple SD Gothic Neo', system-ui, sans-serif;
+// stylelint-disable stylistic/max-line-length
+@font-default: Torus, Inter, "Helvetica Neue", Tahoma, Arial, "Hiragino Kaku Gothic ProN", Meiryo, "Microsoft YaHei", "Apple SD Gothic Neo", sans-serif;
+@font-default-vi: Quicksand, Torus, Inter, "Helvetica Neue", Tahoma, Arial, "PingFang TC", "Microsoft JhengHei", "Apple SD Gothic Neo", system-ui, sans-serif;
+@font-default-th: Torus, Inter, "Helvetica Neue", "Prompt", Tahoma, Arial, "Hiragino Kaku Gothic ProN", Meiryo, "Microsoft YaHei", "Apple SD Gothic Neo", sans-serif;
+@font-default-zh: Torus, Inter, "Helvetica Neue", Tahoma, Arial, "Hiragino Sans GB", "Microsoft YaHei", "Apple SD Gothic Neo", system-ui, sans-serif;
+@font-default-zh-tw: Torus, Inter, "Helvetica Neue", Tahoma, Arial, "PingFang TC", "Microsoft JhengHei", "Apple SD Gothic Neo", system-ui, sans-serif;
+// stylelint-enable stylistic/max-line-length
 
 @screen-mobile-max: (@screen-sm-min - 1px);
 @desktop: ~"(min-width: @{screen-sm-min})";
@@ -20,6 +22,7 @@
 @narrow: ~"(max-width: 479px)";
 @narrow-up: ~"(min-width: 480px)";
 
+// stylelint-disable-next-line stylistic/max-line-length
 @highdpi: ~"(-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (min-resolution: 1.5dppx)";
 
 @hover-transition-duration: 120ms;
@@ -31,7 +34,7 @@
 
 // update app-deps.ts when changing the height of the header.
 @nav2-avatar-height: 60px;
-@nav2-avatar-height--pinned : 40px;
+@nav2-avatar-height--pinned: 40px;
 @nav2-height: 90px;
 @nav2-height--pinned: 50px;
 @nav2-header-height: 360px;
@@ -254,7 +257,7 @@
 @beatmap-discussion--color-review: @osu-colour-c2;
 @beatmap-discussion--color-suggestion: @osu-colour-orange-3;
 
-@beatmap-score--hsl-perfect: var(--hsl-lime-1);
+@beatmap-score--perfect: hsl(var(--hsl-lime-1));
 
 @beatmappack-listing--gutter: 20px;
 

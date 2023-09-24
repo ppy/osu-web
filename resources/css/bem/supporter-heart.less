@@ -71,11 +71,15 @@
   &--active {
     opacity: 1;
     background-color: @osu-colour-pink-1;
-    animation: support-circle-pulsate @animation-rate infinite ease-in-out, support-circle-glow @animation-rate infinite ease-in-out;
+    animation:
+      support-circle-pulsate @animation-rate infinite ease-in-out,
+      support-circle-glow @animation-rate infinite ease-in-out;
     animation-fill-mode: none;
 
     &::after {
-      animation: support-heart-pulsate @animation-rate infinite ease-in-out, support-heart-glow @animation-rate infinite ease-in-out;
+      animation:
+        support-heart-pulsate @animation-rate infinite ease-in-out,
+        support-heart-glow @animation-rate infinite ease-in-out;
     }
   }
 }
