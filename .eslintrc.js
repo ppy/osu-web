@@ -9,6 +9,7 @@ module.exports = {
   extends: [
     'eslint:recommended',
   ],
+  ignorePatterns: ['!/*.js'],
   overrides: [
     {
       extends: [
