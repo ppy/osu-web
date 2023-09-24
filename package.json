@@ -4,6 +4,7 @@
     "dev": "yarn run development",
     "development": "cross-env NODE_ENV=development webpack --progress --config=webpack.config.js",
     "lint": "eslint --cache 'resources/js/**/*.{js,ts,tsx}' 'tests/karma/**/*.{ts,tsx}' '*.js'",
+    "lint-less": "stylelint --cache 'resources/css/**/*.less'",
     "localize": "yarn run generate-localizations",
     "prod": "yarn run production",
     "production": "cross-env NODE_ENV=production webpack --config=webpack.config.js",

@@ -49,8 +49,13 @@ jobs:
       - name: Install js dependencies
         run: yarn --frozen-lockfile
 
+      - name: Lint JavaScript and TypeScript
       - run: 'yarn lint --max-warnings 96 > /dev/null'
 
+      - name: Lint Less
+      - run: yarn lint-less --formatter github
+
+      - name: Check for invalid licence headers
       - run: ./bin/update_licence.sh -nf
 
       - name: Run PHPCS
