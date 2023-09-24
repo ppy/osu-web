@@ -118,6 +118,11 @@
     "karma-sourcemap-loader": "^0.3.8",
     "karma-typescript": "^5.5.4",
     "karma-webpack": "^5.0.0",
+    "postcss": "^8.4.30",
+    "postcss-less": "^6.0.0",
+    "stylelint": "^15.10.3",
+    "stylelint-config-standard": "^34.0.0",
+    "stylelint-stylistic": "^0.4.3",
     "webpack-build-notifier": "^2.3.0"
   },
   "resolutions": {
