@@ -21,13 +21,14 @@
   .u-section--gradient-down {
     // the parts after 50% are for the header size transition.
 
-    background-image: linear-gradient(
-      hsla(var(--hsl-h2), 0.9) 0%,
-      @osu-colour-h2 37.5%,
-      @osu-colour-h2 50%,
-      @osu-colour-h2 50%,
-      @osu-colour-h2 100%
-    );
+    background-image:
+      linear-gradient(
+        hsla(var(--hsl-h2), 0.9) 0%,
+        @osu-colour-h2 37.5%,
+        @osu-colour-h2 50%,
+        @osu-colour-h2 50%,
+        @osu-colour-h2 100%
+      );
     background-size: 200% 200%;
   }
 }
@@ -45,7 +46,6 @@
 .menu-colour(multiplayer, osu-colour-pink-1);
 .menu-colour(rankings, osu-colour-green-1);
 .menu-colour(store, osu-colour-darkorange-1);
-
 
 .menu-colour(@section, @colour) {
   .u-section-@{section}--before-bg-normal {
@@ -95,6 +95,6 @@
     --forum-bg: @bg;
     --forum-text: @text;
     --forum-text-hover: @text-hover;
-    .at2x-var(--forum-cover, '~@images/headers/forum-topic-covers/forum-cover-@{category}.jpg');
+    .at2x-var(--forum-cover, "~@images/headers/forum-topic-covers/forum-cover-@{category}.jpg");
   }
 }

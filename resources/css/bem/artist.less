@@ -3,6 +3,7 @@
 
 .artist {
   @_top: artist;
+
   &__index {
     background-color: @osu-colour-b4;
     padding: 10px;
@@ -54,6 +55,7 @@
     font-weight: bold;
     margin-top: 5px;
     display: block;
+
     &:hover {
       color: white;
     }
@@ -115,6 +117,7 @@
       width: 200px;
       height: 200px;
       margin: 0;
+
       @media @desktop {
         margin: 0;
       }
@@ -132,12 +135,12 @@
     bottom: 0;
     right: 0;
     position: absolute;
-    border-radius: 4px 0 3px 0;
+    border-radius: 4px 0 3px;
     .at2x-simple-var(--artist-label-overlay);
   }
 
   &__links-area {
-    margin: 0 auto 10px auto;
+    margin: 0 auto 10px;
     width: 270px;
     padding: 10px;
 

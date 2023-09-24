@@ -30,6 +30,7 @@
   &--selected {
     color: white;
     background: linear-gradient(to right, @osu-colour-b5 @tile-margin, @osu-colour-b4 33%, @osu-colour-b4 100%);
+
     @media @mobile {
       background: @osu-colour-b4;
     }
@@ -91,7 +92,7 @@
       opacity: 0.5;
       .full-size();
       border-radius: 1px;
-      content: '';
+      content: "";
       box-shadow: 0 0 5px lighten(@green, 10%);
       animation: glow-pulse 2s infinite;
     }

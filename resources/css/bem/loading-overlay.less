@@ -27,7 +27,7 @@
 
   &::before {
     .full-size();
-    content: ' ';
+    content: " ";
     background-color: #000;
     will-change: opacity;
   }
@@ -41,7 +41,6 @@
       animation-fill-mode: forwards;
     }
   }
-
 
   &__container {
     width: @circle-size*4;
@@ -108,7 +107,6 @@
     &--approach {
       border-radius: 100%;
       background-color: transparent;
-
 
       .@{_top}--visible & {
         animation-name: loading-overlay--circle-approach;

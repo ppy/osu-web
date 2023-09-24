@@ -29,10 +29,12 @@
   /* Turn on custom 8px wide scrollbar */
   ::-webkit-scrollbar {
     width: 10px; /* 1px wider than Lion. */
+
     /* This is more usable for users trying to click it. */
     background-color: @_scrollbar-track;
     -webkit-border-radius: 100px;
   }
+
   /* hover effect for both scrollbar area, and scrollbar 'thumb' */
   ::-webkit-scrollbar:hover {
     background-color: rgba(0, 0, 0, 0.09);
@@ -48,10 +50,11 @@
     -webkit-border-radius: 100px;
     background-clip: padding-box;
     border: 2px solid rgba(255, 255, 255, 0);
-    min-height: 10px; /*Prevent it from getting too small */
+    min-height: 10px; /* Prevent it from getting too small */
   }
+
   ::-webkit-scrollbar-thumb:active {
-    background: rgba(255,255,255,0.61); /* Some darker color when you click it */
+    background: rgba(255, 255, 255, 0.61); /* Some darker color when you click it */
     -webkit-border-radius: 100px;
   }
 }
@@ -99,7 +102,7 @@
 .light-header-overlay() {
   &::after {
     .full-size();
-    content: '';
+    content: "";
     background-color: hsla(var(--hsl-b5), 60%);
   }
 }
@@ -123,7 +126,7 @@
 // This style is for the remaining un-restyled sections,
 // nuke this when the entire site is correctly restyled
 .link-old() {
-  color: #2299bb;
+  color: #29b;
   .link-hover({ color: #6cf; });
 }
 

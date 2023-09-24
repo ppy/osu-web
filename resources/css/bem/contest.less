@@ -46,7 +46,7 @@
   }
 
   &__art-list {
-    padding: 0px 20px;
+    padding: 0 20px;
   }
 
   &__group-heading {
@@ -55,6 +55,7 @@
     padding: 10px;
 
     color: white;
+
     &:hover, &:visited, &:link, &:active {
       color: white;
       text-decoration: none;
@@ -95,9 +96,10 @@
     display: flex;
     align-items: center;
     width: 32px;
+
     &--art {
       width: inherit;
-      margin-right: 10px
+      margin-right: 10px;
     }
   }
 
@@ -143,6 +145,7 @@
     &--selected {
       font-size: inherit;
       color: @contest-selected-colour;
+
       &:hover, &:focus {
         color: fade(@contest-selected-colour, 75%);
       }
@@ -151,6 +154,7 @@
     &--selected-art {
       font-size: inherit;
       color: white;
+
       &:hover, &:focus {
         color: fade(white, 50%);
       }

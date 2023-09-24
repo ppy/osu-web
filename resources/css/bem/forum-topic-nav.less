@@ -16,6 +16,7 @@
   height: var(--main-height);
 
   --main-height: 40px;
+
   @media @desktop {
     --main-height: 50px;
   }
@@ -39,6 +40,7 @@
   &__counter {
     // enough for 5 digits
     width: 40px;
+
     @media @desktop {
       width: 50px;
     }
@@ -74,7 +76,6 @@
   &__counter-container {
     .reset-input();
     .center-content();
-    color: @osu-colour-c1;
     border: 2px solid transparent;
     border-radius: 10000px;
     position: relative;
@@ -138,7 +139,6 @@
         display: none;
       }
     }
-
   }
 
   &__mobile-float {
@@ -172,7 +172,7 @@
 
     // easier targeting
     &::after {
-      content: ' ';
+      content: " ";
       position: absolute;
       left: 0;
       bottom: 100%;
@@ -215,7 +215,6 @@
     height: var(--main-height);
   }
 
-
   &__seek-tooltip {
     position: absolute;
     bottom: calc(var(--main-height) + @_seek-bar-height-desktop-hover + @_seek-tooltip-arrow-height);
@@ -234,7 +233,7 @@
     flex: none;
 
     &::before {
-      content: ' ';
+      content: " ";
       position: absolute;
       top: 100%;
       left: 50%;

@@ -6,27 +6,27 @@
 
   @keyframes support-circle-pulsate {
     0%   { transform: scale(0.9); }
-    20%  { transform: scale(1.0); }
+    20%  { transform: scale(1); }
     100% { transform: scale(0.9); }
   }
 
   @keyframes support-circle-glow {
     // this is basically .default-box-shadow() animated to have a less intense shadow with an added glow when pulsating
-    0%   { box-shadow: 0 1px @box-shadow-radius @box-shadow-color, inset 0 0 0px white;  }
-    20%  { box-shadow: 0 1px @box-shadow-radius lighten(@box-shadow-color, 70%), inset 0 0 5px white;  }
-    80%  { box-shadow: 0 1px @box-shadow-radius @box-shadow-color, inset 0 0 0px white;  }
+    0%   { box-shadow: 0 1px @box-shadow-radius @box-shadow-color, inset 0 0 0 white; }
+    20%  { box-shadow: 0 1px @box-shadow-radius lighten(@box-shadow-color, 70%), inset 0 0 5px white; }
+    80%  { box-shadow: 0 1px @box-shadow-radius @box-shadow-color, inset 0 0 0 white; }
   }
 
   @keyframes support-heart-pulsate {
-    0%   { transform: scale(1.0); }
+    0%   { transform: scale(1); }
     20%  { transform: scale(1.2); }
-    100% { transform: scale(1.0); }
+    100% { transform: scale(1); }
   }
 
   @keyframes support-heart-glow {
-    0%   { text-shadow: 0 0 0px white; }
+    0%   { text-shadow: 0 0 0 white; }
     20%  { text-shadow: 0 0 10px white; }
-    80%  { text-shadow: 0 0 0px white; }
+    80%  { text-shadow: 0 0 0 white; }
   }
 
   .btn-bg();
@@ -51,6 +51,7 @@
 
   &--larger {
     .circle(150px);
+
     &::after {
       font-size: 60px;
     }

@@ -38,7 +38,7 @@
 
       &::before {
         .full-size();
-        content: ' ';
+        content: " ";
         width: 1px;
         right: 100%;
         background-image: linear-gradient(to bottom, hsla(var(--hsl-b1), 0), @osu-colour-b1 50%, hsla(var(--hsl-b1), 0));
@@ -62,7 +62,7 @@
     &::before {
       @media @mobile {
         overflow-anchor: none;
-        content: '';
+        content: "";
         position: absolute;
         right: 0;
         top: 0;
@@ -74,13 +74,15 @@
 
     .@{_top}--highlighted & {
       .thicker-box-shadow();
+
       &::after {
         .full-size();
-        content: ' ';
+        content: " ";
         background: fade(white, 15%);
         pointer-events: none;
         opacity: 0.5;
-        animation: flash .5s;
+        animation: flash 0.5s;
+
         @keyframes flash {
           0% { opacity: 1; }
           100% { opacity: 0.5; }
@@ -170,7 +172,7 @@
     .@{_top}--unread & {
       &::before {
         .full-size();
-        content: ' ';
+        content: " ";
         background-color: @blue-darker;
         width: 5px;
       }
