@@ -213,7 +213,8 @@ Route::group(['middleware' => ['web']], function () {
             Route::put('/', 'AccountController@update')->name('update');
 
             Route::get('github-users/callback', 'Account\GithubUsersController@callback')->name('github-users.callback');
-            Route::resource('github-users', 'Account\GithubUsersController', ['only' => ['create', 'destroy']]);
+            Route::resource('github-users', 'Account\GithubUsersController', ['only' => ['create']]);
+            Route::delete('github-users', 'Account\GithubUsersController@destroy')->name('github-users.destroy');
         });
 
         Route::get('quick-search', 'HomeController@quickSearch')->name('quick-search');

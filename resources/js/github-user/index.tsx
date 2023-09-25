@@ -71,7 +71,7 @@ export default class GithubUser extends React.Component<Props> {
     if (this.unlinkXhr != null) return;
 
     this.unlinkXhr = $.ajax(
-      route('account.github-users.destroy', { github_user: this.user?.id }),
+      route('account.github-users.destroy'),
       { method: 'DELETE' },
     )
       .done(action(() => this.user = null))

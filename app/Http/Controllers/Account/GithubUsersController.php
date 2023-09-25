@@ -102,12 +102,9 @@ class GithubUsersController extends Controller
         return redirect($url);
     }
 
-    public function destroy(int $id)
+    public function destroy()
     {
-        GithubUser
-            ::where('user_id', auth()->id())
-            ->findOrFail($id)
-            ->update(['user_id' => null]);
+        auth()->user()->githubUser()->update(['user_id' => null]);
 
         return response(null, 204);
     }
