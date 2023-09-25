@@ -118,7 +118,7 @@ export default class BbcodeEditor extends React.Component<Props> {
     );
   }
 
-  private onKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+  private readonly onKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (!this.props.ignoreEsc && e.key === 'Escape') {
       this.cancel();
     }
@@ -176,7 +176,7 @@ export default class BbcodeEditor extends React.Component<Props> {
     );
   }
 
-  private save = (event?: React.SyntheticEvent) => {
+  private readonly save = (event?: React.SyntheticEvent) => {
     this.sendOnChange({ event, type: 'save' });
   };
 

@@ -19,7 +19,7 @@ import NotificationStore from './notification-store';
 @dispatchListener
 export default class NotificationStackStore implements DispatchListener {
   @observable readonly types = new Map<string | null, NotificationType>();
-  private deletedStacks = new Set<string>();
+  private readonly deletedStacks = new Set<string>();
   private readonly resolver = new NotificationResolver();
 
   get allStacks() {
@@ -194,7 +194,7 @@ export default class NotificationStackStore implements DispatchListener {
     bundle.notifications?.forEach((json) => this.updateWithNotificationJson(json));
   }
 
-  private removeByNotification = (identity: NotificationIdentity) => {
+  private readonly removeByNotification = (identity: NotificationIdentity) => {
     if (identity.id == null) return;
 
     const stack = this.getStack(identity);

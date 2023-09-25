@@ -43,7 +43,7 @@ export default class BeatmapsetCardViewSelector extends React.Component<Props> {
     );
   }
 
-  private handleClick = () => {
+  private readonly handleClick = () => {
     void core.userPreferences.set('beatmapset_card_size', this.props.size);
   };
 }

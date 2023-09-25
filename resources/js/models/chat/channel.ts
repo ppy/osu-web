@@ -51,7 +51,7 @@ export default class Channel {
   @observable userIds: number[] = [];
 
   private markAsReadLastSent = 0;
-  @observable private messagesMap = new Map<number | string, Message>();
+  @observable private readonly messagesMap = new Map<number | string, Message>();
   private serverLastMessageId?: number;
   @observable private usersLoaded = false;
 

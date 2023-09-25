@@ -83,7 +83,7 @@ export default class UserVerification {
     return $('.js-user-verification');
   }
 
-  private autoSubmit = () => {
+  private readonly autoSubmit = () => {
     const target = this.inputBox;
 
     if (target == null) return;
@@ -107,11 +107,11 @@ export default class UserVerification {
       .fail(this.error);
   };
 
-  private error = (xhr: JQuery.jqXHR) => {
+  private readonly error = (xhr: JQuery.jqXHR) => {
     this.setMessage(xhrErrorMessage(xhr));
   };
 
-  private float = (float: boolean, modal: HTMLElement, referenceBottom?: number) => {
+  private readonly float = (float: boolean, modal: HTMLElement, referenceBottom?: number) => {
     if (float) {
       modal.classList.add('js-user-verification--center');
       modal.style.paddingTop = '';
@@ -121,22 +121,22 @@ export default class UserVerification {
     }
   };
 
-  private isActive = () => this.modal?.classList.contains('js-user-verification--active');
+  private readonly isActive = () => this.modal?.classList.contains('js-user-verification--active');
 
   private isVerificationPage() {
     return document.querySelector('.js-user-verification--on-load') != null;
   }
 
-  private onError = (e: { target: unknown }, xhr: JQuery.jqXHR) => (
+  private readonly onError = (e: { target: unknown }, xhr: JQuery.jqXHR) => (
     this.showOnError(xhr, createClickCallback(e.target))
   );
 
-  private prepareForRequest = (type: string) => {
+  private readonly prepareForRequest = (type: string) => {
     this.request?.abort();
     this.setMessage(trans(`user_verification.box.${type}`), true);
   };
 
-  private reissue = (e: JQuery.Event) => {
+  private readonly reissue = (e: JQuery.Event) => {
     e.preventDefault();
 
     this.prepareForRequest('issuing');
@@ -149,7 +149,7 @@ export default class UserVerification {
       .fail(this.error);
   };
 
-  private reposition = () => {
+  private readonly reposition = () => {
     if (!this.isActive() || this.modal == null) return;
 
     if (core.windowSize.isMobile) {
@@ -161,11 +161,11 @@ export default class UserVerification {
     }
   };
 
-  private setDelayShow = () => {
+  private readonly setDelayShow = () => {
     this.delayShow = true;
   };
 
-  private setMessage = (text?: string, withSpinner = false) => {
+  private readonly setMessage = (text?: string, withSpinner = false) => {
     const message = this.message;
     if (message == null) return;
 
@@ -184,13 +184,13 @@ export default class UserVerification {
     fadeIn(message);
   };
 
-  private setModal = () => {
+  private readonly setModal = () => {
     const modal = document.querySelector('.js-user-verification');
 
     this.modal = modal instanceof HTMLElement ? modal : undefined;
   };
 
-  private show = (html?: string, callback?: () => void) => {
+  private readonly show = (html?: string, callback?: () => void) => {
     if (this.delayShow) {
       this.delayShowCallback = () => this.show(html, callback);
       return;
@@ -215,7 +215,7 @@ export default class UserVerification {
 
   // for pages which require authentication
   // and being visited directly from outside
-  private showOnLoad = () => {
+  private readonly showOnLoad = () => {
     this.delayShow = false;
 
     if (this.delayShowCallback != null) {
@@ -226,7 +226,7 @@ export default class UserVerification {
     }
   };
 
-  private success = () => {
+  private readonly success = () => {
     if (!this.isActive() || this.modal == null) return;
 
     const inputBox = this.inputBox;

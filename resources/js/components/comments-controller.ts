@@ -143,7 +143,7 @@ export default class CommentsController {
     return this.getComments(this.state.commentIdsByParentId[0] ?? []);
   }
 
-  constructor(private stateSelector: string, private baseCommentableMeta?: BaseCommentableMeta) {
+  constructor(private readonly stateSelector: string, private readonly baseCommentableMeta?: BaseCommentableMeta) {
     const stateEl = this.stateEl;
     const savedStateJson = stateEl.dataset.savedState;
     if (savedStateJson != null) {
