@@ -482,6 +482,16 @@ class Topic extends Model implements AfterCommit
         });
     }
 
+    public function isOld()
+    {
+        // pinned and announce posts should never be considered old
+        if ($this->topic_type !== static::TYPES['normal']) {
+            return false;
+        }
+
+        return $this->topic_last_post_time < Carbon::now()->subMonths(config('osu.forum.old_months'));
+    }
+
     public function isLocked()
     {
         // not checking STATUS_LOCK because there's another
