@@ -31,8 +31,8 @@ export default function UserLevel({ level }: { level: number }) {
       className={blockClass}
       title={trans('users.show.stats.level', { level })}
     >
-      <span className="user-level__level">{level}</span>
       <div className="user-level__icon" />
+      <span className="user-level__level">{level}</span>
     </div>
   );
 }
