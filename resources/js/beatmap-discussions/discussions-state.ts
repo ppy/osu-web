@@ -193,6 +193,7 @@ export default class DiscussionsState {
     return [...this.store.discussions.values()];
   }
 
+  @computed
   get discussionsForSelectedUserByMode() {
     if (this.selectedUser == null) {
       return this.discussionsByMode;

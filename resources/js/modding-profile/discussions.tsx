@@ -7,6 +7,7 @@ import { BeatmapsetDiscussionJsonForBundle } from 'interfaces/beatmapset-discuss
 import BeatmapsetDiscussions from 'interfaces/beatmapset-discussions';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
+import { observer } from 'mobx-react';
 import React from 'react';
 import { makeUrl } from 'utils/beatmapset-discussion-helper';
 import { trans } from 'utils/lang';
@@ -17,6 +18,7 @@ interface Props {
   user: UserJson;
 }
 
+@observer
 export default class Discussions extends React.Component<Props> {
   render() {
     return (

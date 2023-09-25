@@ -66,7 +66,6 @@ export class Discussion extends React.Component<Props> {
 
   private lastResolvedState = false;
 
-  @computed
   private get beatmapset() {
     return this.props.discussionsState?.beatmapset;
   }

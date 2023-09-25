@@ -49,6 +49,7 @@ export class UserFilter extends React.Component<Props> {
     return this.props.discussionsState.beatmapset.user_id;
   }
 
+  @computed
   private get selected() {
     return this.props.discussionsState.selectedUser != null
       ? mapUserProperties(this.props.discussionsState.selectedUser)
