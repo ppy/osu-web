@@ -51,21 +51,18 @@ class GithubUsersController extends Controller
                 ->makeGithubOAuthProvider()
                 ->getAccessToken('authorization_code', ['code' => $params['code']]);
         } catch (GithubIdentityProviderException $exception) {
-            // <https://docs.github.com/en/apps/oauth-apps/maintaining-oauth-apps/troubleshooting-oauth-app-access-token-request-errors#bad-verification-code>
-            abort_if(
-                $exception->getMessage() === 'bad_verification_code',
-                422,
-                'Invalid authorization code.',
-            );
+            switch ($exception->getMessage()) {
+                // <https://docs.github.com/en/apps/oauth-apps/maintaining-oauth-apps/troubleshooting-oauth-app-access-token-request-errors#bad-verification-code>
+                case 'bad_verification_code':
+                    return abort(422, 'Invalid authorization code.');
 
-            // <https://docs.github.com/en/apps/oauth-apps/maintaining-oauth-apps/troubleshooting-oauth-app-access-token-request-errors#unverified-user-email>
-            abort_if(
-                $exception->getMessage() === 'unverified_user_email',
-                422,
-                osu_trans('accounts.github_user.error.unverified_email'),
-            );
+                // <https://docs.github.com/en/apps/oauth-apps/maintaining-oauth-apps/troubleshooting-oauth-app-access-token-request-errors#unverified-user-email>
+                case 'unverified_user_email':
+                    return abort(422, osu_trans('accounts.github_user.error.unverified_email'));
 
-            throw $exception;
+                default:
+                    throw $exception;
+            }
         }
 
         $client = new \Github\Client();
