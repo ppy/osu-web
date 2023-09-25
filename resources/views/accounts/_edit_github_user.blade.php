@@ -10,13 +10,9 @@
     </div>
 
     <div class="account-edit__input-groups">
-        <div class="account-edit__input-group">
-            <div class="account-edit-entry account-edit-entry--block">
-                <div
-                    class="js-react--github-user"
-                    data-user="{{ json_encode($githubUser) }}"
-                ></div>
-            </div>
-        </div>
+        <div
+            class="account-edit__input-group js-react--github-user"
+            data-user="{{ json_encode($githubUser) }}"
+        ></div>
     </div>
 </div>

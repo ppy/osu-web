@@ -37,31 +37,35 @@ export default class GithubUser extends React.Component<Props> {
   }
 
   render() {
-    return this.user != null ? (
-      <div className='github-user'>
-        <a className='github-user__name' href={this.user.github_url}>
-          {this.user.github_username}
-        </a>
-        <BigButton
-          icon='fas fa-unlink'
-          isBusy={this.unlinkXhr != null}
-          modifiers={['account-edit', 'account-edit-small', 'danger']}
-          props={{ onClick: this.onUnlinkButtonClick }}
-          text={trans('accounts.github_user.unlink')}
-        />
+    return (
+      <div className='account-edit-entry account-edit-entry--block'>
+        {this.user != null ? (
+          <div className='github-user'>
+            <a className='github-user__name' href={this.user.github_url}>
+              {this.user.github_username}
+            </a>
+            <BigButton
+              icon='fas fa-unlink'
+              isBusy={this.unlinkXhr != null}
+              modifiers={['account-edit', 'account-edit-small', 'danger']}
+              props={{ onClick: this.onUnlinkButtonClick }}
+              text={trans('accounts.github_user.unlink')}
+            />
+          </div>
+        ) : (
+          <>
+            <BigButton
+              href={route('account.github-users.create')}
+              icon='fas fa-link'
+              props={{ 'data-turbolinks': 'false' }}
+              text={trans('accounts.github_user.link')}
+            />
+            <div className='account-edit-entry__rules'>
+              {trans('accounts.github_user.info')}
+            </div>
+          </>
+        )}
       </div>
-    ) : (
-      <>
-        <BigButton
-          href={route('account.github-users.create')}
-          icon='fas fa-link'
-          props={{ 'data-turbolinks': 'false' }}
-          text={trans('accounts.github_user.link')}
-        />
-        <div className='account-edit-entry__rules'>
-          {trans('accounts.github_user.info')}
-        </div>
-      </>
     );
   }
 
