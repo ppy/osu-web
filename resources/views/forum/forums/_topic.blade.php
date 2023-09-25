@@ -7,7 +7,10 @@
 @endphp
 <li
     class="
-        {{ class_with_modifiers('forum-topic-entry', $topic->trashed() ? 'deleted' : null, $topic->isOld() ? 'old' : null) }}
+        {{ class_with_modifiers('forum-topic-entry', [
+            'deleted' => $topic->trashed(),
+            'old' => $topic->isOld(),
+        ]) }}
         clickable-row
         js-forum-topic-entry
     "
