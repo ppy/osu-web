@@ -43,7 +43,7 @@ class UserGroupsController extends Controller
 
     private function getActor(): ?User
     {
-        $actorId = request()->input('actor');
+        $actorId = request()->input('actor_id');
 
         return present($actorId) ? User::findOrFail($actorId) : null;
     }

@@ -329,7 +329,7 @@ class UserGroupsControllerTest extends TestCase
         $group = app('groups')->byIdentifier('gmt');
         $actor = User::factory()->create();
         $url = route($route, [
-            'actor' => $actor->getKey(),
+            'actor_id' => $actor->getKey(),
             'group' => $group->getKey(),
             'timestamp' => time(),
             'user' => $user->getKey(),
@@ -358,7 +358,7 @@ class UserGroupsControllerTest extends TestCase
         $user = User::factory()->create();
         $group = app('groups')->byIdentifier('gmt');
         $url = route($route, [
-            'actor' => $user->getKey() + 1,
+            'actor_id' => $user->getKey() + 1,
             'group' => $group->getKey(),
             'timestamp' => time(),
             'user' => $user->getKey(),
