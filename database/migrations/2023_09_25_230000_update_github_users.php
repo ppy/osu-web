@@ -5,7 +5,6 @@
 
 declare(strict_types=1);
 
-use App\Models\GithubUser;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -17,11 +16,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        GithubUser::orWhereNull(['canonical_id', 'username'])->delete();
-
         Schema::table('github_users', function (Blueprint $table): void {
             $table->unsignedBigInteger('canonical_id')->change();
             $table->string('username')->change();
+
+            $table->unique('user_id');
         });
     }
 
@@ -33,6 +32,8 @@ return new class extends Migration
         Schema::table('github_users', function (Blueprint $table): void {
             $table->unsignedBigInteger('canonical_id')->nullable()->change();
             $table->string('username')->nullable()->change();
+
+            $table->dropUnique('github_users_user_id_unique');
         });
     }
 };
