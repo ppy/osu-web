@@ -61,7 +61,7 @@ return [
         'discussion' => 'Diskussion',
 
         'admin' => [
-            'full_size_cover' => '',
+            'full_size_cover' => 'Titelbild in Originalgröße anzeigen',
         ],
 
         'deleted_banner' => [

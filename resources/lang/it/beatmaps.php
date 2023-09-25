@@ -26,7 +26,7 @@ return [
         'message_type_select' => 'Seleziona il tipo di commento',
         'reply_notice' => 'Premi invio per rispondere.',
         'reply_placeholder' => 'Scrivi la tua risposta qui',
-        'require-login' => 'Per favore effettua il login per postare o rispondere',
+        'require-login' => 'Effettua il login per poter postare o rispondere',
         'resolved' => 'Risolto',
         'restore' => 'ripristina',
         'show_deleted' => 'Mostra eliminati',
@@ -79,15 +79,15 @@ return [
         ],
 
         'message_type_title' => [
-            'disqualify' => '',
-            'hype' => '',
-            'mapper_note' => '',
-            'nomination_reset' => '',
-            'praise' => '',
-            'problem' => '',
-            'problem_warning' => '',
-            'review' => '',
-            'suggestion' => '',
+            'disqualify' => 'Posta Squalifica',
+            'hype' => 'Posta Hype!',
+            'mapper_note' => 'Posta Nota',
+            'nomination_reset' => 'Rimuovi tutte le Nomine',
+            'praise' => 'Posta Elogio',
+            'problem' => 'Posta Problema',
+            'problem_warning' => 'Posta Problema',
+            'review' => 'Posta Revisione',
+            'suggestion' => 'Posta Suggerimento',
         ],
 
         'mode' => [

@@ -79,15 +79,15 @@ return [
         ],
 
         'message_type_title' => [
-            'disqualify' => '',
-            'hype' => '',
-            'mapper_note' => '',
-            'nomination_reset' => '',
-            'praise' => '',
-            'problem' => '',
-            'problem_warning' => '',
-            'review' => '',
-            'suggestion' => '',
+            'disqualify' => '取消提名',
+            'hype' => '推薦！',
+            'mapper_note' => '備注',
+            'nomination_reset' => '刪除所有提名',
+            'praise' => '表揚',
+            'problem' => '問題',
+            'problem_warning' => '問題警告',
+            'review' => '評論',
+            'suggestion' => '建議',
         ],
 
         'mode' => [

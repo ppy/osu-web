@@ -330,7 +330,7 @@ return [
             'total_posts' => 'Укупно Постова',
 
             'feature_vote' => [
-                'current' => '',
+                'current' => 'Тренутни Приоритет: +:count',
                 'do' => 'Промовишите овај захтев',
 
                 'info' => [

@@ -18,6 +18,10 @@ return [
             'new' => 'e-mel baharu',
             'new_confirmation' => 'pengesahan e-mel',
             'title' => 'E-mel',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
         ],
 
         'legacy_api' => [

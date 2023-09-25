@@ -16,6 +16,7 @@ use App\Libraries\Session\Store as SessionStore;
 use App\Libraries\Transactions\AfterCommit;
 use App\Libraries\User\DatadogLoginAttempt;
 use App\Libraries\User\ProfileBeatmapset;
+use App\Libraries\User\UsernamesForDbLookup;
 use App\Libraries\UsernameValidation;
 use App\Models\Forum\TopicWatch;
 use App\Models\OAuth\Client;
@@ -417,7 +418,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     {
         return static::whereIn(
             'username',
-            [str_replace(' ', '_', $username), str_replace('_', ' ', $username)]
+            UsernamesForDbLookup::make($username, trimPrefix: false),
         )->first();
     }
 
@@ -494,15 +495,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
         switch ($type) {
             case 'username':
-                $searchUsername = (string) $usernameOrId;
-                if ($searchUsername[0] === '@') {
-                    $searchUsername = substr($searchUsername, 1);
-                }
-                $searchUsernames = [
-                    $searchUsername,
-                    strtr($searchUsername, ' ', '_'),
-                    strtr($searchUsername, '_', ' '),
-                ];
+                $searchUsernames = UsernamesForDbLookup::make($usernameOrId);
 
                 $user = static::where(fn ($query) => $query
                     ->whereIn('username', $searchUsernames)
@@ -545,8 +538,13 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             return null;
         }
 
+        // also reject looking up history when it's all digit and not explicit username search
+        if ($type !== 'username' && ctype_digit($usernameOrId)) {
+            return null;
+        }
+
         $change = UsernameChangeHistory::visible()
-            ->where('username_last', $usernameOrId)
+            ->whereIn('username_last', UsernamesForDbLookup::make($usernameOrId))
             ->orderBy('change_id', 'desc')
             ->first();
 
@@ -1328,7 +1326,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function statisticsMania7k()
     {
-        return $this->hasOne(UserStatistics\Mania4k::class);
+        return $this->hasOne(UserStatistics\Mania7k::class);
     }
 
     public function statisticsTaiko()
@@ -1812,6 +1810,39 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function titleUrl(): ?string
     {
         return $this->rank?->url;
+    }
+
+    public function toMetaDescription(array $options = []): string
+    {
+        static $rankTypes = ['country', 'global'];
+
+        $ruleset = $options['ruleset'] ?? $this->playmode;
+        $stats = $this->statistics($ruleset);
+
+        $replacements['ruleset'] = $ruleset;
+
+        foreach ($rankTypes as $type) {
+            $method = "{$type}Rank";
+            $replacements[$type] = osu_trans("users.ogp.description.{$type}", [
+                'rank' => format_rank($stats?->$method()),
+            ]);
+
+            $variants = Beatmap::VARIANTS[$ruleset] ?? [];
+
+            $variantsTexts = null;
+            foreach ($variants as $variant) {
+                $variantRank = $this->statistics($ruleset, false, $variant)?->$method();
+                if ($variantRank !== null) {
+                    $variantsTexts[] = $variant.' '.format_rank($variantRank);
+                }
+            }
+
+            if (!empty($variantsTexts)) {
+                $replacements[$type] .= ' ('.implode(', ', $variantsTexts).')';
+            }
+        }
+
+        return osu_trans('users.ogp.description._', $replacements);
     }
 
     public function hasProfile()
@@ -2354,9 +2385,9 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->user_lang;
     }
 
-    public function url()
+    public function url(?string $ruleset = null)
     {
-        return route('users.show', ['user' => $this->getKey()]);
+        return route('users.show', ['mode' => $ruleset, 'user' => $this->getKey()]);
     }
 
     public function validationErrorsTranslationPrefix(): string

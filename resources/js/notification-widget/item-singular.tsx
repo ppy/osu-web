@@ -38,11 +38,11 @@ export default class ItemSingular extends React.Component<Props> {
     );
   }
 
-  private handleDelete = () => {
+  private readonly handleDelete = () => {
     this.props.stack.deleteItem(this.props.stack.first);
   };
 
-  private handleMarkAsRead = () => {
+  private readonly handleMarkAsRead = () => {
     this.props.stack.markAsRead(this.props.stack.first);
   };
 }

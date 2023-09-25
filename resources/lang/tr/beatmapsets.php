@@ -61,7 +61,7 @@ return [
         'discussion' => 'Tartışma',
 
         'admin' => [
-            'full_size_cover' => '',
+            'full_size_cover' => 'Kapak resmini tam boyutlu görüntüle',
         ],
 
         'deleted_banner' => [

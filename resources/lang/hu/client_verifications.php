@@ -5,10 +5,10 @@
 
 return [
     'completed' => [
-        'home' => 'Menj az irányítópultra',
+        'home' => 'Menj az irányítópultba',
         'logout' => 'Kijelentkezés',
         'text' => 'Most már bezárhatod ezt az ablakot',
-        'title' => 'Az osu! kliens ellenőrzése befejezödőtt',
+        'title' => 'Az osu! kliens hitelesítése befejezödőtt',
     ],
 
     'create' => [

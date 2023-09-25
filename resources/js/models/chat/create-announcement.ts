@@ -38,9 +38,9 @@ export default class CreateAnnouncement implements FormWithErrors<InputKey> {
   @observable showError: Record<InputKey, boolean>;
   @observable validUsers = new Map<number, UserJson>();
 
-  private debouncedLookupUsers = debounce(() => this.lookupUsers(), 1000);
+  private readonly debouncedLookupUsers = debounce(() => this.lookupUsers(), 1000);
   private initialized = false;
-  private uuid = uuid();
+  private readonly uuid = uuid();
   private xhrLookupUsers?: JQuery.jqXHR<{ users: UserJson[] }>;
 
   @computed

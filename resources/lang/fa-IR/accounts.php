@@ -18,6 +18,10 @@ return [
             'new' => 'ایمیل جدید',
             'new_confirmation' => 'تایید ایمیل',
             'title' => 'ایمیل',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
         ],
 
         'legacy_api' => [

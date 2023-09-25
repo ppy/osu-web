@@ -6,7 +6,7 @@
 return [
     'header' => [
         'small' => 'Rivalisez avec d\'autres moyens que juste cliquer sur des cercles.',
-        'large' => 'Concours Communautaires',
+        'large' => 'Concours communautaires',
     ],
 
     'index' => [
@@ -44,7 +44,7 @@ return [
         'silenced_or_restricted' => 'Vous ne pouvez pas entrer dans un concours quand vous êtes réduit au silence ou restreint.',
         'preparation' => 'Nous sommes en train de préparer le concours. Merci de patienter !',
         'drop_here' => 'Déposez votre entrée ici',
-        'download' => 'Télécharger .osz',
+        'download' => 'Télécharger le .osz',
         'wrong_type' => [
             'art' => 'Seuls les fichiers .jpg et .png sont acceptés pour ce concours.',
             'beatmap' => 'Seuls les fichiers .osu sont acceptés pour ce concours.',

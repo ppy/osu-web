@@ -18,6 +18,10 @@ return [
             'new' => 'nou correu electrònic',
             'new_confirmation' => 'confirmació per correu electrònic',
             'title' => 'Correu electrònic',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
         ],
 
         'legacy_api' => [

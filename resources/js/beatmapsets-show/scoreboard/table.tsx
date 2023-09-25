@@ -105,7 +105,7 @@ export default class Table extends React.Component<Props> {
   }
 
   @action
-  private activeKeyDidChange = (key: number | null) => {
+  private readonly activeKeyDidChange = (key: number | null) => {
     this.activeKey = key;
   };
 }

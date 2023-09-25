@@ -6,7 +6,7 @@
 return [
     'edit' => [
         'title_compact' => '설정',
-        'username' => '사용자 이름',
+        'username' => '아이디',
 
         'avatar' => [
             'title' => '아바타',
@@ -18,6 +18,10 @@ return [
             'new' => '새 이메일 주소',
             'new_confirmation' => '이메일 주소 확인',
             'title' => '이메일',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
         ],
 
         'legacy_api' => [

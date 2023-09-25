@@ -14,7 +14,7 @@ return [
     ],
 
     'voting' => [
-        'login_required' => 'Per favore effettua il login per votare.',
+        'login_required' => 'Effettua il login per poter votare.',
         'over' => 'Le votazioni per questo contest sono terminate',
         'show_voted_only' => 'Mostra votati',
 
@@ -40,9 +40,9 @@ return [
     ],
     'entry' => [
         '_' => 'iscrizione',
-        'login_required' => 'Per favore effettua il login per entrare nel contest.',
+        'login_required' => 'Effettua il login per poter entrare nel contest.',
         'silenced_or_restricted' => 'Non puoi entrare nei contest se sei limitato o silenziato.',
-        'preparation' => 'Attualmente stiamo preparando il contest. Per favore attendi con pazienza!',
+        'preparation' => 'Attualmente stiamo preparando il contest. Aspettate con pazienza!',
         'drop_here' => 'Trascina la tua iscrizione qui',
         'download' => 'Scarica .osz',
         'wrong_type' => [

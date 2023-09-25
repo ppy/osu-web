@@ -18,6 +18,10 @@ return [
             'new' => '新邮箱地址',
             'new_confirmation' => '确认新邮箱地址',
             'title' => '邮箱',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
         ],
 
         'legacy_api' => [

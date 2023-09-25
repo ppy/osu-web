@@ -38,6 +38,30 @@ class BeatmapsetTest extends TestCase
         $this->assertSame($notifications + 1, Notification::count());
         $this->assertSame($userNotifications + 1, UserNotification::count());
         $this->assertTrue($beatmapset->fresh()->isLoved());
+        $this->assertSame('loved', $beatmapset->beatmaps()->first()->status());
+    }
+
+    public function testLoveBeatmapApprovedStates(): void
+    {
+        $user = User::factory()->create();
+        $beatmapset = $this->createBeatmapset();
+
+        $specifiedBeatmap = $beatmapset->beatmaps()->first();
+        $beatmapset->beatmaps()->saveMany([
+            $graveyardBeatmap = Beatmap::factory()->make(['approved' => Beatmapset::STATES['graveyard']]),
+            $pendingBeatmap = Beatmap::factory()->make(['approved' => Beatmapset::STATES['pending']]),
+            $wipBeatmap = Beatmap::factory()->make(['approved' => Beatmapset::STATES['wip']]),
+            $rankedBeatmap = Beatmap::factory()->make(['approved' => Beatmapset::STATES['ranked']]),
+        ]);
+
+        $beatmapset->love($user, [$specifiedBeatmap->getKey()]);
+
+        $this->assertTrue($beatmapset->fresh()->isLoved());
+        $this->assertSame('loved', $specifiedBeatmap->fresh()->status());
+        $this->assertSame('graveyard', $graveyardBeatmap->fresh()->status());
+        $this->assertSame('graveyard', $pendingBeatmap->fresh()->status());
+        $this->assertSame('graveyard', $wipBeatmap->fresh()->status());
+        $this->assertSame('ranked', $rankedBeatmap->fresh()->status());
     }
 
     // region single-playmode beatmap sets
