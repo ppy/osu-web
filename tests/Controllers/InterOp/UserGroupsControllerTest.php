@@ -335,9 +335,13 @@ class UserGroupsControllerTest extends TestCase
             'user' => $user->getKey(),
         ]);
 
+        if ($type === UserGroupEvent::USER_REMOVE) {
+            $user->addToGroup($group);
+        }
+
         $this->expectCountChange(
             fn () => $this->eventCount($type, $user, $group, $actor),
-            $type === UserGroupEvent::USER_REMOVE ? 0 : 1,
+            1,
         );
 
         $this
