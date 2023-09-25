@@ -53,7 +53,7 @@ export default class Main extends React.Component<Props> {
   private nextTimeout = checkNewTimeoutDefault;
   private reviewsConfig = this.props.initial.reviews_config;
   @observable private store;
-  private readonly timeouts: Record<string, number> = {};
+  private timeoutCheckNew?: number;
   private xhrCheckNew?: JQuery.jqXHR<InitialData>;
 
   constructor(props: Props) {
@@ -79,7 +79,7 @@ export default class Main extends React.Component<Props> {
       this.disposers.add(core.reactTurbolinks.runAfterPageLoad(this.jumpToDiscussionByHash));
     }
 
-    this.timeouts.checkNew = window.setTimeout(this.checkNew, checkNewTimeoutDefault);
+    this.timeoutCheckNew = window.setTimeout(this.checkNew, checkNewTimeoutDefault);
   }
 
   componentWillUnmount() {
@@ -88,8 +88,7 @@ export default class Main extends React.Component<Props> {
 
     document.documentElement.style.removeProperty('--scroll-padding-top-extra');
 
-    Object.values(this.timeouts).forEach(window.clearTimeout);
-
+    window.clearTimeout(this.timeoutCheckNew);
     this.xhrCheckNew?.abort();
     this.disposers.forEach((disposer) => disposer?.());
   }
@@ -142,8 +141,9 @@ export default class Main extends React.Component<Props> {
 
   @action
   private readonly checkNew = () => {
-    window.clearTimeout(this.timeouts.checkNew);
-    this.xhrCheckNew?.abort();
+    if (this.xhrCheckNew != null) return;
+
+    window.clearTimeout(this.timeoutCheckNew);
 
     this.xhrCheckNew = $.get(route('beatmapsets.discussion', { beatmapset: this.discussionsState.beatmapset.id }), {
       format: 'json',
@@ -161,7 +161,7 @@ export default class Main extends React.Component<Props> {
     }).always(() => {
       this.nextTimeout = Math.min(this.nextTimeout, checkNewTimeoutMax);
 
-      this.timeouts.checkNew = window.setTimeout(this.checkNew, this.nextTimeout);
+      this.timeoutCheckNew = window.setTimeout(this.checkNew, this.nextTimeout);
     });
   };
 
