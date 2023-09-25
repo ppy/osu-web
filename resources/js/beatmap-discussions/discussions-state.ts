@@ -228,7 +228,7 @@ export default class DiscussionsState {
   get hasCurrentUserHyped() {
     const currentUser = core.currentUser; // core.currentUser check below doesn't make the inferrence that it's not nullable after the check.
     return currentUser != null
-      && this.discussionsByFilter.hype.some((discussion) => discussion.beatmap_id == null && discussion?.user_id === currentUser.id);
+      && this.discussionsByFilter.hype.some((discussion) => discussion.beatmap_id == null && discussion.user_id === currentUser.id);
   }
 
   @computed
@@ -268,10 +268,7 @@ export default class DiscussionsState {
   @computed
   get totalHype() {
     return this.presentDiscussions
-      .reduce((sum, discussion) => discussion.message_type === 'hype'
-        ? sum++
-        : sum,
-      0);
+      .reduce((sum, discussion) => +(discussion.message_type === 'hype') + sum, 0);
   }
 
   @computed

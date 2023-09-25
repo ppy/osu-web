@@ -28,7 +28,7 @@ export default class BeatmapsetDiscussionsStore implements BeatmapsetDiscussions
 
   @computed
   get beatmapsets() {
-    return new Map<number, BeatmapsetExtendedJson>().set(this.beatmapset.id, this.beatmapset);
+    return new Map<number, BeatmapsetExtendedJson>([[this.beatmapset.id, this.beatmapset]]);
   }
 
   @computed

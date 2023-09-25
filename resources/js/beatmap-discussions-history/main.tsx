@@ -13,7 +13,7 @@ import { trans } from 'utils/lang';
 
 @observer
 export default class Main extends React.Component<BeatmapsetDiscussionsBundleJson> {
-  @observable store = new BeatmapsetDiscussionsBundleStore(this.props);
+  @observable private readonly store = new BeatmapsetDiscussionsBundleStore(this.props);
 
   constructor(props: BeatmapsetDiscussionsBundleJson) {
     super(props);
