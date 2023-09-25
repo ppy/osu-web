@@ -1170,7 +1170,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function githubUser(): HasOne
     {
-        return $this->hasOne(GithubUser::class)->orderBy('updated_at', 'desc');
+        return $this->hasOne(GithubUser::class);
     }
 
     public function legacyIrcKey(): HasOne
