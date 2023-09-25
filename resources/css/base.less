@@ -12,12 +12,12 @@ blockquote {
 h1 {
   font-size: 30px;
   font-weight: normal;
-  margin: 0 0 20px 0;
+  margin: 0 0 20px;
 }
 
 h2 {
   font-weight: normal;
-  margin: 10px 0 0 0;
+  margin: 10px 0 0;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -44,13 +44,14 @@ code {
 }
 
 @font-face {
-  font-family: 'FontAwesomeExtra';
-  src: url('~@fonts/extra/extra.eot?1280178');
-  src: url('~@fonts/extra/extra.eot?1280178#iefix') format('embedded-opentype'),
-       url('~@fonts/extra/extra.woff2?1280178') format('woff2'),
-       url('~@fonts/extra/extra.woff?1280178') format('woff'),
-       url('~@fonts/extra/extra.ttf?1280178') format('truetype'),
-       url('~@fonts/extra/extra.svg?1280178#extra') format('svg');
+  font-family: FontAwesomeExtra;
+  src: url("~@fonts/extra/extra.eot?1280178");
+  src:
+    url("~@fonts/extra/extra.eot?1280178#iefix") format("embedded-opentype"),
+    url("~@fonts/extra/extra.woff2?1280178") format("woff2"),
+    url("~@fonts/extra/extra.woff?1280178") format("woff"),
+    url("~@fonts/extra/extra.ttf?1280178") format("truetype"),
+    url("~@fonts/extra/extra.svg?1280178#extra") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -82,7 +83,7 @@ code {
 
 select.form-control {
   .default-box-shadow();
-  font-weight: 700;
+  font-weight: bold;
 
   &:focus {
     .default-box-shadow();

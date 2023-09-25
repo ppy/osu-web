@@ -6,8 +6,8 @@
 
   @_height: 40px;
 
-  --current-time: '0:00';
-  --duration: '0:00';
+  --current-time: "0:00";
+  --duration: "0:00";
   --progress: 0;
 
   height: @_height;
@@ -111,7 +111,7 @@
     // extended hover area
     &::before {
       position: absolute;
-      content: '';
+      content: "";
       display: block;
       left: -5px;
       right: $left;
@@ -156,7 +156,7 @@
       background-color: @osu-colour-h1;
       right: (-$width / 2);
       top: calc(50% - ($width / 2));
-      content: '';
+      content: "";
       display: block;
       opacity: var(--current-head-opacity);
       transition: inherit;
@@ -177,7 +177,7 @@
     min-width: (@_colon + @_number * 3);
 
     &::before {
-      content: var(--timestamp, '');
+      content: var(--timestamp, "");
     }
 
     .@{_top}[data-audio-time-format="minute"] & {
@@ -203,7 +203,7 @@
 
     &--total {
       color: @osu-colour-c2;
-      --timestamp: '--:--';
+      --timestamp: "--:--";
 
       .@{_top}[data-audio-has-duration="1"] & {
         --timestamp: var(--duration);

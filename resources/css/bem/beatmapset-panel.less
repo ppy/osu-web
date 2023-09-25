@@ -18,10 +18,10 @@
 
   // Extend by 1px on respective corner to prevent gap on some zoom levels.
   // Sizing is based on @border-radius--large.
-  @_top-left-inverted-corner-path: path('M-1 -1 L-1 10 L0 10 A10 10 0 0 1 10 0 L10 -1 Z');
-  @_bottom-left-inverted-corner-path: path('M-1 11 L-1 0 L0 0 A10 10 0 0 0 10 10 L10 11 Z');
-  @_top-right-inverted-corner-path: path('M11 -1 L11 10 L10 10 A10 10 0 0 0 0 0 L0 -1 Z');
-  @_bottom-right-inverted-corner-path: path('M11 11 L11 0 L10 0 A10 10 0 0 1 0 10 L 0 11 Z');
+  @_top-left-inverted-corner-path: path("M-1 -1 L-1 10 L0 10 A10 10 0 0 1 10 0 L10 -1 Z");
+  @_bottom-left-inverted-corner-path: path("M-1 11 L-1 0 L0 0 A10 10 0 0 0 10 10 L10 11 Z");
+  @_top-right-inverted-corner-path: path("M11 -1 L11 10 L10 10 A10 10 0 0 0 0 0 L0 -1 Z");
+  @_bottom-right-inverted-corner-path: path("M11 11 L11 0 L10 0 A10 10 0 0 1 0 10 L 0 11 Z");
 
   --border-cover-opacity: 0;
   // For elements which provide overall beatmap link.
@@ -75,7 +75,7 @@
 
   // hide bottom radius when cover is shown
   &::before {
-    content: '';
+    content: "";
     background-color: inherit;
     height: @border-radius--large;
     width: 100%;
@@ -182,7 +182,7 @@
 
     // solid cover for mobile
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       display: block;
       width: calc(100% - var(--play-width));
@@ -265,7 +265,7 @@
       font-weight: bold;
 
       &::after {
-        content: '\a0';
+        content: "\a0";
       }
     }
 
@@ -324,7 +324,7 @@
     }
 
     &::after, &::before {
-      content: '';
+      content: "";
       width: @border-radius--large;
       height: $width;
       position: absolute;
@@ -408,7 +408,7 @@
     border-radius: (@border-radius--large - 1px) 0 0 (@border-radius--large - 1px);
 
     &::after, &::before {
-      content: '';
+      content: "";
       width: @border-radius--large;
       height: $width;
       position: absolute;

@@ -210,6 +210,6 @@ _fix "${licence_old_c}" "${licence_new_c}" '*.ts' tests/
 _fix "${licence_old_c}" "${licence_new_c}" '*.ts' resources/js/
 _fix "${licence_old_c}" "${licence_new_c}" '*.tsx' resources/js/
 _fix "${licence_old_c}" "${licence_new_c}" '*.js' resources/js/
-_fix "${licence_old_c}" "${licence_new_c}" '*.js' *.js
+_fix "${licence_old_c}" "${licence_new_c}" '*.js' -maxdepth 1
 
 _fix "${licence_old_coffee}" "${licence_new_coffee}" '*.coffee' resources/js/

@@ -51,7 +51,6 @@
   --beatmapset-discussion-colour--suggestion: hsl(var(--hsl-orange-3));
 
   --forum-bg: hsl(var(--hsl-h1));
-  --forum-text: @link-color;
   --forum-text: @link-hover-color;
 
   --navbar-height: @navbar-height;
@@ -81,6 +80,7 @@ body {
   position: static;
 
   --z-index--nav-bar-mobile: @z-index--nav-bar;
+
   &.js-nav2--active {
     --z-index--nav-bar-mobile: @z-index--nav-bar-mobile-active;
   }
@@ -102,6 +102,6 @@ body {
 
   .popup-text {
     vertical-align: middle;
-    font-weight: 700;
+    font-weight: bold;
   }
 }

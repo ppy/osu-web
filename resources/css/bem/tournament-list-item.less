@@ -1,96 +1,96 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
- .tournament-list-item {
-    @_top: tournament-list-item;
+.tournament-list-item {
+  @_top: tournament-list-item;
 
+  display: flex;
+  flex-direction: column;
+  background-color: @osu-colour-b4;
+
+  .link-white();
+  .link-plain();
+  .default-box-shadow();
+
+  transition: 50ms ease-in-out;
+
+  &:hover {
+    @media @desktop {
+      .@{_top}__image {
+        transform: scale(1.02);
+      }
+    }
+    background-color: @osu-colour-b3;
+  }
+
+  &__metadata {
     display: flex;
-    flex-direction: column;
-    background-color: @osu-colour-b4;
+    justify-content: space-between;
 
-    .link-white();
-    .link-plain();
-    .default-box-shadow();
-
-    transition: 50ms ease-in-out;
-
-    &:hover {
-      @media @desktop {
-        .@{_top}__image {
-          transform: scale(1.02);
-        }
-      }
-      background-color: @osu-colour-b3;
-    }
-
-    &__metadata {
-      display: flex;
-      justify-content: space-between;
-
-      @media @mobile {
-        align-items: center;
-      }
-    }
-
-    &__metadata-left {
-      padding: 15px;
-      padding-top: 10px;
-    }
-
-    &__metadata-right {
-      padding: 10px;
-    }
-
-    &__tournament-date {
-      font-size: @font-size--title-small-4;
-      font-weight: bold;
-      padding-bottom: 5px;
-
-      @media @mobile {
-        font-size: 12px;
-      }
-    }
-
-    &__registration-date {
-      color: @osu-colour-f1;
-      font-size: 12px;
-
-      @media @mobile {
-        font-size: 9px;
-      }
-    }
-
-    &__registrations {
-      font-size: @font-size--title-small-2;
-
-      @media @mobile {
-        font-size: 12px;
-        display: flex;
-        flex-direction: column-reverse;
-        align-items: center;
-      }
-    }
-
-    &__image-wrapper {
-      overflow: hidden;
-    }
-
-    &__image {
-      transition: 50ms ease-in-out;
-      height: 510px;
-      width: 100%;
-      object-fit: cover;
-      will-change: transform, filter, opacity;
-
-      .@{_top}--old & {
-        filter: grayscale();
-        opacity: 0.75;
-        height: 210px;
-      }
-
-      .@{_top}--old:hover & {
-        filter: none;
-        opacity: 1;
-      }
+    @media @mobile {
+      align-items: center;
     }
   }
+
+  &__metadata-left {
+    padding: 15px;
+    padding-top: 10px;
+  }
+
+  &__metadata-right {
+    padding: 10px;
+  }
+
+  &__tournament-date {
+    font-size: @font-size--title-small-4;
+    font-weight: bold;
+    padding-bottom: 5px;
+
+    @media @mobile {
+      font-size: 12px;
+    }
+  }
+
+  &__registration-date {
+    color: @osu-colour-f1;
+    font-size: 12px;
+
+    @media @mobile {
+      font-size: 9px;
+    }
+  }
+
+  &__registrations {
+    font-size: @font-size--title-small-2;
+
+    @media @mobile {
+      font-size: 12px;
+      display: flex;
+      flex-direction: column-reverse;
+      align-items: center;
+    }
+  }
+
+  &__image-wrapper {
+    overflow: hidden;
+  }
+
+  &__image {
+    transition: 50ms ease-in-out;
+    height: 510px;
+    width: 100%;
+    object-fit: cover;
+    will-change: transform, filter, opacity;
+
+    .@{_top}--old & {
+      filter: grayscale();
+      opacity: 0.75;
+      height: 210px;
+    }
+
+    .@{_top}--old:hover & {
+      filter: none;
+      opacity: 1;
+    }
+  }
+}
