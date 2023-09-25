@@ -13,11 +13,22 @@ class GroupFactory extends Factory
 {
     protected $model = Group::class;
 
+    public function configure(): static
+    {
+        return $this->afterCreating(function () {
+            app('groups')->resetMemoized();
+        });
+    }
+
     public function definition(): array
     {
         return [
             'group_name' => fn() => "{$this->faker->colorName()} {$this->faker->domainWord()}",
             'group_desc' => fn() => $this->faker->sentence(),
+            'identifier' => fn () => $this->faker->domainWord(),
+
+            // depends on identifier
+            'short_name' => fn (array $attr) => strtoupper($attr['identifier']),
         ];
     }
 }

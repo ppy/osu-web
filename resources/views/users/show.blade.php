@@ -2,9 +2,14 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
+
 @extends('master', [
+    'canonicalUrl' => $user->url($mode),
     'titlePrepend' => blade_safe(str_replace(' ', '&nbsp;', e($user->username))),
-    'pageDescription' => page_description($user->username),
+    'opengraph' => [
+        'title' => blade_safe(osu_trans('users.show.title', ['username' => $user->username])),
+        'image' => $user->user_avatar,
+    ]
 ])
 
 @section('content')
