@@ -70,7 +70,7 @@ export default class GithubUser extends React.Component<Props> {
   }
 
   @action
-  private onUnlinkButtonClick = () => {
+  private readonly onUnlinkButtonClick = () => {
     if (this.unlinkXhr != null) return;
 
     this.unlinkXhr = $.ajax(
