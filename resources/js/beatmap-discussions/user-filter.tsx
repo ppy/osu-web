@@ -5,14 +5,13 @@ import mapperGroup from 'beatmap-discussions/mapper-group';
 import SelectOptions, { OptionRenderProps } from 'components/select-options';
 import BeatmapsetDiscussions from 'interfaces/beatmapset-discussions';
 import UserJson from 'interfaces/user-json';
-import { action, makeObservable } from 'mobx';
+import { action, computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import { usernameSortAscending } from 'models/user';
 import * as React from 'react';
 import { makeUrl, parseUrl } from 'utils/beatmapset-discussion-helper';
 import { groupColour } from 'utils/css';
 import { trans } from 'utils/lang';
-import { mapBy } from 'utils/map';
 import DiscussionsState from './discussions-state';
 
 const allUsers = Object.freeze({
@@ -56,13 +55,24 @@ export class UserFilter extends React.Component<Props> {
       : noSelection;
   }
 
+  @computed
   private get options() {
-    const userIdsWithDiscussions = mapBy([...this.props.store.discussions.values()], 'user_id');
-    const usersWithDiscussions = [...this.props.store.users.values()]
-      .filter((user) => userIdsWithDiscussions.has(user.id))
-      .sort(usernameSortAscending);
+    const usersWithDicussions = new Map<number, UserJson>();
+    for (const [, discussion] of this.props.store.discussions) {
+      if (discussion.message_type === 'hype') continue;
 
-    return [allUsers, ...[...usersWithDiscussions].map(mapUserProperties)];
+      const user = this.props.store.users.get(discussion.user_id);
+      if (user != null && !usersWithDicussions.has(user.id)) {
+        usersWithDicussions.set(user.id, user);
+      }
+    }
+
+    return [
+      allUsers,
+      ...[...usersWithDicussions.values()]
+        .sort(usernameSortAscending)
+        .map(mapUserProperties),
+    ];
   }
 
   constructor(props: Props) {

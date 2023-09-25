@@ -193,16 +193,6 @@ export default class DiscussionsState {
     return [...this.store.discussions.values()];
   }
 
-  @computed
-  get discussionStarters() {
-    const userIds = new Set(this.discussionsArray
-      .filter((discussion) => discussion.message_type !== 'hype')
-      .map((discussion) => discussion.user_id));
-
-    // TODO: sort user.username.toLocaleLowerCase()
-    return [...userIds].map((userId) => this.store.users.get(userId)).sort();
-  }
-
   get discussionsForSelectedUserByMode() {
     if (this.selectedUser == null) {
       return this.discussionsByMode;
