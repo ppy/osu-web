@@ -12,7 +12,8 @@ import BeatmapsetDiscussionsStore from 'stores/beatmapset-discussions-store';
 import { findDefault, group, sortWithMode } from 'utils/beatmap-helper';
 import { canModeratePosts, makeUrl, parseUrl } from 'utils/beatmapset-discussion-helper';
 import { Filter, filters } from './current-discussions';
-import DiscussionMode, { DiscussionPage, discussionModes, isDiscussionPage } from './discussion-mode';
+import DiscussionMode, { discussionModes } from './discussion-mode';
+import DiscussionPage, { isDiscussionPage } from './discussion-page';
 
 export interface UpdateOptions {
   beatmap_discussion_post_ids: number[];

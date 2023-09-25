@@ -2,7 +2,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { Filter, filters } from 'beatmap-discussions/current-discussions';
-import DiscussionMode, { DiscussionPage, discussionPages } from 'beatmap-discussions/discussion-mode';
+import DiscussionMode from 'beatmap-discussions/discussion-mode';
+import DiscussionPage, { isDiscussionPage } from 'beatmap-discussions/discussion-page';
 import guestGroup from 'beatmap-discussions/guest-group';
 import mapperGroup from 'beatmap-discussions/mapper-group';
 import BeatmapJson from 'interfaces/beatmap-json';
@@ -70,7 +71,6 @@ export const defaultFilter = 'total';
 // parseUrl and makeUrl lookups
 const filterLookup = new Set<unknown>(filters);
 const generalPages = new Set<unknown>(['events', 'generalAll', 'reviews']);
-const pageLookup = new Set<unknown>(discussionPages);
 
 const defaultBeatmapId = '-';
 
@@ -132,11 +132,6 @@ export function formatTimestamp(value: number) {
   const m = Math.floor(value / 1000 / 60);
 
   return `${padStart(m.toString(), 2, '0')}:${padStart(s.toString(), 2, '0')}:${padStart(ms.toString(), 3, '0')}`;
-}
-
-
-function isDiscussionPage(value: string): value is DiscussionPage {
-  return pageLookup.has(value);
 }
 
 function isFilter(value: string): value is Filter {
