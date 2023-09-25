@@ -18,9 +18,9 @@ class GithubUserTransformer extends TransformerAbstract
             'github_url' => $githubUser->githubUrl(),
             'github_username' => $githubUser->username,
             'id' => $githubUser->getKey(),
-            'osu_username' => $githubUser->osuUsername(),
+            'osu_username' => $githubUser->user?->username,
             'user_id' => $githubUser->user_id,
-            'user_url' => $githubUser->userUrl(),
+            'user_url' => $githubUser->user?->url(),
         ];
     }
 }

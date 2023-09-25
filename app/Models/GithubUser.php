@@ -62,25 +62,13 @@ class GithubUser extends Model
 
     public function displayUsername(): string
     {
-        return $this->username ?? $this->osuUsername() ?? '[no name]';
+        return $this->username ?? $this->user?->username ?? '[no name]';
     }
 
     public function githubUrl(): ?string
     {
         return $this->username !== null
             ? "https://github.com/{$this->username}"
-            : null;
-    }
-
-    public function osuUsername(): ?string
-    {
-        return $this->user?->username;
-    }
-
-    public function userUrl(): ?string
-    {
-        return $this->user_id !== null
-            ? route('users.show', $this->user_id)
             : null;
     }
 
