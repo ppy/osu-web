@@ -17,7 +17,7 @@ interface Props {
 @observer
 export default class GithubUser extends React.Component<Props> {
   @observable private unlinkXhr: JQuery.jqXHR<void> | null = null;
-  @observable private user: GithubUserJson | null;
+  @observable private user;
 
   constructor(props: Props) {
     super(props);
