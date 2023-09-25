@@ -15,6 +15,7 @@ class UserGroupsController extends Controller
         User::findOrFail($userId)->addToGroup(
             app('groups')->byIdOrFail($groupId),
             get_arr(request()->input('playmodes'), 'get_string'),
+            $this->getActor(),
         );
 
         return response(null, 204);
@@ -24,6 +25,7 @@ class UserGroupsController extends Controller
     {
         User::findOrFail($userId)->removeFromGroup(
             app('groups')->byIdOrFail($groupId),
+            $this->getActor(),
         );
 
         return response(null, 204);
@@ -33,8 +35,16 @@ class UserGroupsController extends Controller
     {
         User::findOrFail($userId)->setDefaultGroup(
             app('groups')->byIdOrFail($groupId),
+            $this->getActor(),
         );
 
         return response(null, 204);
+    }
+
+    private function getActor(): ?User
+    {
+        $actorId = request()->input('actor');
+
+        return present($actorId) ? User::findOrFail($actorId) : null;
     }
 }
