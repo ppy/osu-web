@@ -87,20 +87,20 @@ export default class Main extends React.Component<Props, State> {
     );
   }
 
-  private handleFilterClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  private readonly handleFilterClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     const type = ((event.currentTarget as HTMLButtonElement).dataset.type ?? null) as Name;
     this.controller.navigateTo(type);
   };
 
-  private handleMarkAsRead = () => {
+  private readonly handleMarkAsRead = () => {
     this.controller.markCurrentTypeAsRead();
   };
 
-  private handleShowMore = () => {
+  private readonly handleShowMore = () => {
     this.controller.loadMore();
   };
 
-  private renderFilter = (link: Link) => {
+  private readonly renderFilter = (link: Link) => {
     const type = this.controller.getType(link.type);
     const isSameFilter = link.type === this.controller.currentFilter;
 

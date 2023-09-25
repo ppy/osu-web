@@ -25,7 +25,7 @@ interface Props {
 
 @observer
 export default class Main extends React.Component<Props> {
-  @observable private controller: Controller;
+  @observable private readonly controller: Controller;
   private setHashDisposer?: IReactionDisposer;
 
   @computed

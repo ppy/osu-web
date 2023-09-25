@@ -33,11 +33,11 @@ export default class ItemCompact extends React.Component<Props> {
     );
   }
 
-  private handleDelete = () => {
+  private readonly handleDelete = () => {
     this.props.stack.deleteItem(this.props.item);
   };
 
-  private handleMarkAsRead = () => {
+  private readonly handleMarkAsRead = () => {
     this.props.stack.markAsRead(this.props.item);
   };
 }

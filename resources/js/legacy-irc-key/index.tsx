@@ -15,7 +15,7 @@ interface Props {
 
 @observer
 export default class LegacyIrcKey extends React.Component<Props> {
-  private controller;
+  private readonly controller;
 
   constructor(props: Props) {
     super(props);

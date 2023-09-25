@@ -23,7 +23,7 @@ export default class UserCardBrick extends React.Component<Props> {
 
   declare context: React.ContextType<typeof UserCardTypeContext>;
 
-  private ref = React.createRef<HTMLDivElement>();
+  private readonly ref = React.createRef<HTMLDivElement>();
 
   @computed
   private get friendModifier() {
@@ -84,7 +84,7 @@ export default class UserCardBrick extends React.Component<Props> {
     );
   }
 
-  private handleRemoveClick = () => {
+  private readonly handleRemoveClick = () => {
     this.props.onRemoveClick?.(this.props.user);
   };
 }

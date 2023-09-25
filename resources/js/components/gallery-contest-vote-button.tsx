@@ -22,8 +22,8 @@ interface State {
 }
 
 export default class GalleryContestVoteButton extends React.PureComponent<Props, State> {
-  private eventId = `gallery-contest-${nextVal()}`;
-  private mainRef = React.createRef<HTMLButtonElement>();
+  private readonly eventId = `gallery-contest-${nextVal()}`;
+  private readonly mainRef = React.createRef<HTMLButtonElement>();
 
   constructor(props: Props) {
     super(props);
@@ -67,7 +67,7 @@ export default class GalleryContestVoteButton extends React.PureComponent<Props,
     return document.querySelector(`.js-contest-vote-button[data-button-id='${id}']`) as HTMLElement;
   }
 
-  private buttonState = () => {
+  private readonly buttonState = () => {
     const button = this.button();
 
     if (button != null && button.dataset.contestVoteMeta != null) {
@@ -82,7 +82,7 @@ export default class GalleryContestVoteButton extends React.PureComponent<Props,
     };
   };
 
-  private buttonTitle = () => {
+  private readonly buttonTitle = () => {
     if (this.state.isLoading || this.state.button.votingOver) {
       return;
     }
@@ -107,20 +107,20 @@ export default class GalleryContestVoteButton extends React.PureComponent<Props,
     }
   }
 
-  private isDisabled = () => this.state.isLoading ||
+  private readonly isDisabled = () => this.state.isLoading ||
       this.state.button.votingOver ||
       (!this.state.button.isSelected && !this.state.button.hasVote);
 
-  private loadingEnd = () => {
+  private readonly loadingEnd = () => {
     this.setState({ isLoading: false });
     this.syncState();
   };
 
-  private loadingStart = () => {
+  private readonly loadingStart = () => {
     this.setState({ isLoading: true });
   };
 
-  private mainClass = () => {
+  private readonly mainClass = () => {
     let ret = 'pswp__button pswp__button--contest-vote js-gallery-extra';
 
     if (this.state.button.isSelected) {
@@ -134,7 +134,7 @@ export default class GalleryContestVoteButton extends React.PureComponent<Props,
     return ret;
   };
 
-  private resetTooltip = () => {
+  private readonly resetTooltip = () => {
     const main = this.mainRef.current;
 
     if (main != null) {
@@ -142,11 +142,11 @@ export default class GalleryContestVoteButton extends React.PureComponent<Props,
     }
   };
 
-  private syncState = () => {
+  private readonly syncState = () => {
     this.setState({ button: this.buttonState() });
   };
 
-  private vote = () => {
+  private readonly vote = () => {
     if (this.isDisabled()) {
       return;
     }

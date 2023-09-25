@@ -100,7 +100,7 @@ export class EditorInsertionMenu extends React.Component<Props> {
     $(this.scrollContainer).on(`scroll.${this.eventId}`, this.throttledScroll);
   }
 
-  private containerMouseMove = (event: JQuery.MouseMoveEvent) => {
+  private readonly containerMouseMove = (event: JQuery.MouseMoveEvent) => {
     if (!event.originalEvent) {
       return;
     }
@@ -141,12 +141,12 @@ export class EditorInsertionMenu extends React.Component<Props> {
     this.startHideTimer();
   };
 
-  private forceHideMenu = () => {
+  private readonly forceHideMenu = () => {
     this.mouseOver = false;
     this.hideMenu();
   };
 
-  private hideMenu = () => {
+  private readonly hideMenu = () => {
     if (!this.insertRef.current || this.mouseOver) {
       return;
     }
@@ -154,7 +154,7 @@ export class EditorInsertionMenu extends React.Component<Props> {
     this.insertRef.current.style.display = 'none';
   };
 
-  private insertBlock = (event: React.MouseEvent<HTMLElement>) => {
+  private readonly insertBlock = (event: React.MouseEvent<HTMLElement>) => {
     const ed = this.context;
     const slateNodeElement = this.hoveredBlock?.lastChild;
     const type = event.currentTarget.dataset.discussionType;
@@ -221,7 +221,7 @@ export class EditorInsertionMenu extends React.Component<Props> {
     Transforms.insertNodes(ed, insertNode, { at: insertAt });
   };
 
-  private insertButton = (type: string) => {
+  private readonly insertButton = (type: string) => {
     let icon = 'fas fa-question';
 
     switch (type) {
@@ -248,11 +248,11 @@ export class EditorInsertionMenu extends React.Component<Props> {
     );
   };
 
-  private menuMouseEnter = () => {
+  private readonly menuMouseEnter = () => {
     this.mouseOver = true;
   };
 
-  private menuMouseLeave = () => {
+  private readonly menuMouseLeave = () => {
     this.mouseOver = false;
     this.startHideTimer();
   };
