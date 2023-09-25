@@ -26,9 +26,6 @@ export default function UserLevel({ level }: { level: number }) {
 
   const blockClass = classWithModifiers('user-level', `tier-${tier}`);
 
-  // using tier as a modifier in the linear gradient is required to ensure that
-  // if multiple level components are on one page they will only use matching gradients
-
   return (
     <div
       className={blockClass}
