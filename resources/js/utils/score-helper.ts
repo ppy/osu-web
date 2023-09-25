@@ -20,7 +20,7 @@ export function hasMenu(score: SoloScoreJson) {
 }
 
 export function hasReplay(score: SoloScoreJson) {
-  return score.replay != null && score.replay;
+  return score.has_replay;
 }
 
 export function hasShow(score: SoloScoreJson) {
@@ -99,7 +99,7 @@ export function scoreDownloadUrl(score: SoloScoreJson) {
 
   if (score.best_id != null) {
     return route('scores.download-legacy', {
-      mode: rulesetName(score.ruleset_id),
+      rulesetOrScore: rulesetName(score.ruleset_id),
       score: score.best_id,
     });
   }
@@ -109,12 +109,12 @@ export function scoreDownloadUrl(score: SoloScoreJson) {
 
 export function scoreUrl(score: SoloScoreJson) {
   if (score.type === 'solo_score') {
-    return route('scores.show', { score: score.id });
+    return route('scores.show', { rulesetOrScore: score.id });
   }
 
   if (score.best_id != null) {
-    return route('scores.show-legacy', {
-      mode: rulesetName(score.ruleset_id),
+    return route('scores.show', {
+      rulesetOrScore: rulesetName(score.ruleset_id),
       score: score.best_id,
     });
   }

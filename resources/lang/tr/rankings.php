@@ -17,9 +17,16 @@ return [
         ],
     ],
 
+    'kudosu' => [
+        'total' => 'Kazanılan',
+        'available' => 'Kullanılabilir',
+        'used' => 'Harcanan',
+    ],
+
     'type' => [
         'charts' => 'Öne Çıkanlar',
         'country' => 'Ülke',
+        'kudosu' => 'kudosu',
         'multiplayer' => 'çok oyunculu',
         'performance' => 'Performans',
         'score' => 'Skor',

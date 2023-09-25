@@ -17,7 +17,9 @@ return [
         'identify' => 'zidentyfikować cię i uzyskać publiczne informacje z twojego profilu.',
 
         'chat' => [
+            'read' => 'czytać wiadomości w twoim imieniu.',
             'write' => 'wysyłać wiadomości w twoim imieniu.',
+            'write_manage' => 'dołączać i opuszczać kanały w twoim imieniu.',
         ],
 
         'forum' => [

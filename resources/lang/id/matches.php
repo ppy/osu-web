@@ -12,7 +12,7 @@ return [
         'in_progress_spinner_label' => 'pertandingan sedang berlangsung',
         'loading-events' => 'Memuat peristiwa...',
         'winner' => ':team menang',
-        'winner_by' => '',
+        'winner_by' => ':winner dengan selisih skor :difference',
 
         'events' => [
             'player-left' => ':user meninggalkan ruang pertandingan',

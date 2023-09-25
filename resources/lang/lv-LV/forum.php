@@ -25,7 +25,7 @@ return [
     ],
 
     'forums' => [
-        'forums' => '',
+        'forums' => 'Forumi',
         'latest_post' => 'Beidzamais Raksts',
 
         'index' => [
@@ -48,7 +48,7 @@ return [
         'confirm_restore' => 'Vai tiešām atjaunot rakstu?',
         'edited' => 'Beidzamo reizi rediģēts pēc :user :when, rediģējot :count reizes kopumā.',
         'posted_at' => 'publicēts :when',
-        'posted_by_in' => '',
+        'posted_by_in' => 'publicēja :username iekš :forum',
 
         'actions' => [
             'destroy' => 'Izdzēst rakstu',
@@ -155,11 +155,11 @@ return [
             'operations' => [
                 'delete_post' => 'Izdzēsts raksts',
                 'delete_topic' => 'Izdzēsta tēma',
-                'edit_topic' => '',
-                'edit_poll' => '',
-                'fork' => '',
-                'issue_tag' => '',
-                'lock' => '',
+                'edit_topic' => 'Mainīts tēmas nosaukums',
+                'edit_poll' => 'Rediģēta tēmas aptauja',
+                'fork' => 'Nokopēta tēma',
+                'issue_tag' => 'Izsniegts tags',
+                'lock' => 'Slēgta tēma',
                 'merge' => '',
                 'move' => '',
                 'pin' => '',

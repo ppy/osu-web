@@ -82,7 +82,7 @@ return [
         'for_os' => 'สำหรับ :os',
         'lazer_note' => 'หมายเหตุ: ใช้การรีเซ็ตกระดานอันดับ',
         'macos-fallback' => 'ผู้ใช้ macOS',
-        'mirror' => 'เซิร์ฟเวอร์อื่น',
+        'mirror' => 'สำรอง',
         'or' => 'หรือ',
         'os_version_or_later' => ':os_version หรือสูงกว่า',
         'other_os' => 'แพลตฟอร์มอื่นๆ',
@@ -141,7 +141,7 @@ return [
         'buttons' => [
             'download' => 'ดาวน์โหลด osu!',
             'support' => 'สนับสนุน osu!',
-            'store' => 'osu!store',
+            'store' => 'osu!ร้านค้า',
         ],
     ],
 ];

@@ -60,6 +60,10 @@ return [
     'show' => [
         'discussion' => '讨论',
 
+        'admin' => [
+            'full_size_cover' => '查看完整封面图',
+        ],
+
         'deleted_banner' => [
             'title' => '此谱面已删除。',
             'message' => '（仅管理员可见）',
@@ -159,7 +163,7 @@ return [
             'friend' => '好友排名',
             'global' => '全球排名',
             'supporter-link' => '点击 <a href=":link">这里</a> 来查看你得到的精彩功能！',
-            'supporter-only' => '你需要成为 osu! 支持者才能查看国内/好友/特定 Mod 排名！',
+            'supporter-only' => '你需要成为 osu! 支持者才能查看地区/好友/特定 Mod 排名！',
             'title' => '排行榜',
 
             'headers' => [

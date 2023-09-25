@@ -6,7 +6,7 @@
 return [
     'achievement' => '<strong><em>:user</em></strong> отримав досягнення "<strong>:achievement</strong>"!',
     'beatmap_playcount' => ':beatmap зіграно :count разів!',
-    'beatmapset_approve' => ':beatmapset від <strong>:user</strong> була :approval!',
+    'beatmapset_approve' => ':beatmapset від <strong>:user</strong> був :approval!',
     'beatmapset_delete' => ':beatmapset було видалено.',
     'beatmapset_revive' => ':beatmapset відродилася з вічного сну <strong>:user</strong>.',
     'beatmapset_update' => '<strong><em>:user</em></strong> оновив мапу "<em>:beatmapset</em>"',
@@ -24,5 +24,9 @@ return [
         'loved' => 'додана в улюблені',
         'qualified' => 'кваліфікована',
         'ranked' => 'ранкнута',
+    ],
+
+    'value' => [
+        'rank' => '',
     ],
 ];

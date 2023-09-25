@@ -5,8 +5,7 @@ import DispatcherAction from 'actions/dispatcher-action';
 import DispatchListener from './dispatch-listener';
 
 export default class Dispatcher {
-  private listeners = new Set<DispatchListener>();
-  private trace = false;
+  private readonly listeners = new Set<DispatchListener>();
 
   get size() {
     return this.listeners.size;
@@ -17,9 +16,6 @@ export default class Dispatcher {
   }
 
   dispatch = (action: DispatcherAction) => {
-    if (this.trace) {
-      console.debug('Dispatcher::dispatch', action);
-    }
     this.listeners.forEach((listener) => {
       listener.handleDispatchAction(action);
     });

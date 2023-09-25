@@ -79,7 +79,7 @@ return [
         'post' => ':count_delimited개의 게시글',
         'second_short_unit' => '초',
         'star_priority' => '별 우선 순위 :count_delimited',
-        'update' => ':count_delimited 업데이트',
+        'update' => ':count_delimited회 업데이트',
         'view' => ':count_delimited회 조회',
         'years' => ':count년',
     ],
@@ -158,6 +158,6 @@ return [
 
     'wrong_user' => [
         '_' => ':user로 로그인되어있습니다. :logout_link.',
-        'logout_link' => '다른 사용자로 로그인하려면 이곳을 클릭하세요',
+        'logout_link' => '다른 유저로 로그인하려면 이곳을 클릭하세요',
     ],
 ];

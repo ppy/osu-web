@@ -8,7 +8,7 @@ return [
     'not_negative' => 'Atrybut „:attribute” nie może być ujemny.',
     'required' => 'Atrybut „:attribute” jest wymagany.',
     'too_long' => 'Atrybut „:attribute” przekroczył maksymalną liczbę znaków - możliwe jest użycie tylko :limit znaków.',
-    'url' => '',
+    'url' => 'Wprowadź prawidłowy adres URL.',
     'wrong_confirmation' => 'Potwierdzenie się nie zgadza.',
 
     'beatmapset_discussion' => [
@@ -110,13 +110,19 @@ return [
     ],
 
     'legacy_api_key' => [
-        'exists' => '',
+        'exists' => 'Posiadanie kilku kluczy API przez jednego użytkownika jest obecnie niedozwolone.',
+
+        'attributes' => [
+            'api_key' => 'klucz api',
+            'app_name' => 'nazwa aplikacji',
+            'app_url' => 'adres url aplikacji',
+        ],
     ],
 
     'oauth' => [
         'client' => [
             'too_many' => 'Przekroczono maksymalną liczbę dozwolonych aplikacji OAuth.',
-            'url' => 'Wprowadź prawidłowy adres URL.',
+            'url' => 'Wprowadź prawidłowe adresy URL.',
 
             'attributes' => [
                 'name' => 'Nazwa aplikacji',
@@ -169,6 +175,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => 'Nie można zgłosić rankingowych beatmap.',
+        'not_in_channel' => 'Nie jesteś na tym kanale.',
         'reason_not_valid' => 'Powód „:reason” nie jest właściwy dla tego typu zgłoszenia.',
         'self' => "Nie możesz zgłosić swojego konta!",
     ],

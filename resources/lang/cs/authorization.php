@@ -171,6 +171,7 @@ return [
 
     'score' => [
         'pin' => [
+            'disabled_type' => "Nelze připnout tento typ skóre",
             'not_owner' => 'Pouze vlastník skóre může připnout skóre.',
             'too_many' => 'Připnuto příliš mnoho skóre.',
         ],
@@ -183,6 +184,9 @@ return [
                 'not_owner' => 'Lze upravit pouze svou vlastní uživatelskou stránku.',
                 'require_supporter_tag' => 'supporter tag je vyžadován.',
             ],
+        ],
+        'update_email' => [
+            'locked' => '',
         ],
     ],
 ];

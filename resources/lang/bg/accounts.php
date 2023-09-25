@@ -18,6 +18,16 @@ return [
             'new' => 'нов имейл',
             'new_confirmation' => 'потвърди нов имейл',
             'title' => 'Имейл',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
+        ],
+
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'Наследен API',
         ],
 
         'password' => [
@@ -28,7 +38,13 @@ return [
         ],
 
         'profile' => [
+            'country' => 'държава',
             'title' => 'Профил',
+
+            'country_change' => [
+                '_' => "Изглежда че държавата на профила не съвпада с текущата ви държава. :update_link.",
+                'update_link' => 'Променете на :country',
+            ],
 
             'user' => [
                 'user_discord' => '',

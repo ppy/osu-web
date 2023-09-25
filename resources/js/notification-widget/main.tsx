@@ -7,7 +7,6 @@ import { computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import { Name, typeNames } from 'models/notification-type';
 import { NotificationContext } from 'notifications-context';
-import LegacyPm from 'notifications/legacy-pm';
 import NotificationController from 'notifications/notification-controller';
 import NotificationReadButton from 'notifications/notification-read-button';
 import core from 'osu-core-singleton';
@@ -78,7 +77,6 @@ export default class Main extends React.Component<Props, State> {
                 {this.renderMarkAsReadButton()}
               </div>
             </div>
-            {this.renderLegacyPm()}
             <div className='notification-stacks'>
               {this.renderStacks()}
               {this.renderShowMore()}
@@ -89,20 +87,20 @@ export default class Main extends React.Component<Props, State> {
     );
   }
 
-  private handleFilterClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  private readonly handleFilterClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     const type = ((event.currentTarget as HTMLButtonElement).dataset.type ?? null) as Name;
     this.controller.navigateTo(type);
   };
 
-  private handleMarkAsRead = () => {
+  private readonly handleMarkAsRead = () => {
     this.controller.markCurrentTypeAsRead();
   };
 
-  private handleShowMore = () => {
+  private readonly handleShowMore = () => {
     this.controller.loadMore();
   };
 
-  private renderFilter = (link: Link) => {
+  private readonly renderFilter = (link: Link) => {
     const type = this.controller.getType(link.type);
     const isSameFilter = link.type === this.controller.currentFilter;
 
@@ -144,19 +142,13 @@ export default class Main extends React.Component<Props, State> {
     );
   }
 
-  private renderLegacyPm() {
-    if (this.controller.currentFilter != null) return;
-
-    return <LegacyPm />;
-  }
-
   private renderMarkAsReadButton() {
     const type = this.controller.type;
     if (type.isEmpty) return null;
 
     return (
       <NotificationReadButton
-        isMarkingAsRead={type.isMarkingAsRead}
+        isMarkingAsRead={this.controller.isMarkingCurrentTypeAsRead}
         onMarkAsRead={this.handleMarkAsRead}
         text={trans('notifications.mark_read', { type: trans(`notifications.action_type.${type.name ?? '_'}`) })}
       />

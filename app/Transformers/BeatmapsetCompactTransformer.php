@@ -127,10 +127,6 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
     {
         $currentUser = Auth::user();
 
-        if ($currentUser === null) {
-            return;
-        }
-
         $hypeValidation = $beatmapset->validateHypeBy($currentUser);
 
         return $this->primitive([
@@ -144,9 +140,9 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
             'can_love' => $beatmapset->isLoveable() && priv_check('BeatmapsetLove')->can(),
             'can_remove_from_loved' => $beatmapset->isLoved() && priv_check('BeatmapsetRemoveFromLoved')->can(),
             'is_watching' => BeatmapsetWatch::check($beatmapset, Auth::user()),
-            'new_hype_time' => json_time($currentUser->newHypeTime()),
-            'nomination_modes' => $currentUser->nominationModes(),
-            'remaining_hype' => $currentUser->remainingHype(),
+            'new_hype_time' => json_time($currentUser?->newHypeTime()),
+            'nomination_modes' => $currentUser?->nominationModes(),
+            'remaining_hype' => $currentUser?->remainingHype() ?? 0,
         ]);
     }
 

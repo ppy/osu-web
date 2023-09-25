@@ -8,6 +8,8 @@ namespace App\Models\Chat;
 use App\Models\Traits\Reportable;
 use App\Models\Traits\ReportableInterface;
 use App\Models\User;
+use Carbon\Carbon;
+use Illuminate\Support\Collection;
 
 /**
  * @property Channel $channel
@@ -22,6 +24,24 @@ use App\Models\User;
 class Message extends Model implements ReportableInterface
 {
     use Reportable;
+
+    public static function filterBacklogs(Channel $channel, Collection $messages): Collection
+    {
+        if (!$channel->isPublic()) {
+            return $messages;
+        }
+
+        $minTimestamp = json_time(Carbon::now()->subHours(config('osu.chat.public_backlog_limit')));
+        $ret = [];
+
+        foreach ($messages as $message) {
+            if ($message->timestamp_json > $minTimestamp) {
+                $ret[] = $message;
+            }
+        }
+
+        return collect($ret);
+    }
 
     public ?string $uuid = null;
 
@@ -64,6 +84,26 @@ class Message extends Model implements ReportableInterface
             'reportedIn',
             'sender' => $this->getRelationValue($key),
         };
+    }
+
+    public function reportableAdditionalInfo(): ?string
+    {
+        $history = static
+            ::where('message_id', '<=', $this->getKey())
+            ->whereHas('channel', fn ($ch) => $ch->where('type', '<>', Channel::TYPES['pm']))
+            ->where('user_id', $this->user_id)
+            ->orderBy('timestamp', 'DESC')
+            ->with('channel')
+            ->limit(5)
+            ->get()
+            ->map(fn ($m) => "**{$m->timestamp_json} {$m->channel->name}:**\n{$m->content}\n")
+            ->reverse()
+            ->join("\n");
+
+        $channel = $this->channel;
+        $header = 'Reported in: '.($channel->isPM() ? 'pm' : '**'.$channel->name.'** ('.strtolower($channel->type).')');
+
+        return "{$header}\n\n{$history}";
     }
 
     public function trashed(): bool

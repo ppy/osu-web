@@ -49,6 +49,7 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => 'Gift supporter tag',
         'loading' => 'Loading...',
         'send_message' => 'Send message',
     ],
@@ -119,6 +120,14 @@ return [
         'beta' => [
             'main' => 'Beta access is currently restricted to privileged users.',
             'small' => '(osu!supporters will get in soon)',
+        ],
+    ],
+
+    'ogp' => [
+        'description' => [
+            '_' => 'Rank (:ruleset): :global | :country',
+            'country' => 'Country :rank',
+            'global' => 'Global :rank',
         ],
     ],
 
@@ -386,7 +395,7 @@ return [
                     'date' => 'date',
                     'action' => 'action',
                     'length' => 'length',
-                    'length_permanent' => 'Permanent',
+                    'length_indefinite' => 'Indefinite',
                     'description' => 'description',
                     'actor' => 'by :username',
 

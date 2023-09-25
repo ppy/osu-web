@@ -61,7 +61,7 @@ return [
 
         'message_placeholder' => [
             'general' => 'Hier schreiben, um in General zu posten (:version)',
-            'generalAll' => 'Hier schreiben, um in General zu posten (Alle Difficulties)',
+            'generalAll' => 'Hier schreiben, um in Allgemein zu posten (Alle Difficulties)',
             'review' => 'Hier schreiben, um eine Kurzfassung zu posten',
             'timeline' => 'Hier schreiben, um in der Timeline zu posten (:version)',
         ],
@@ -76,6 +76,18 @@ return [
             'problem_warning' => 'Problem melden',
             'review' => 'Kurzfassung',
             'suggestion' => 'Vorschlag',
+        ],
+
+        'message_type_title' => [
+            'disqualify' => 'Disqualifizierung posten',
+            'hype' => 'Hype posten!',
+            'mapper_note' => 'Notiz posten',
+            'nomination_reset' => 'Entferne alle Nominierungen',
+            'praise' => 'Lob posten',
+            'problem' => 'Problem posten',
+            'problem_warning' => 'Problem posten',
+            'review' => 'Bewertung posten',
+            'suggestion' => 'Vorschlag posten',
         ],
 
         'mode' => [
@@ -175,6 +187,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => 'Du hast diese Beatmap bereits nominiert.',
+        'cannot_nominate' => 'Du kannst diesen Spielmodus dieser Beatmap nicht nominieren.',
         'delete' => 'Löschen',
         'delete_own_confirm' => 'Bist du sicher? Die Beatmap wird gelöscht und du wirst auf dein Profil weitergeleitet.',
         'delete_other_confirm' => 'Bist du sicher? Die Beatmap wird gelöscht und du wirst auf das Profil weitergeleitet.',

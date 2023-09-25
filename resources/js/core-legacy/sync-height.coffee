@@ -8,7 +8,6 @@ export default class SyncHeight
     @throttledSync = _.throttle @sync, 100
 
     $(document).on 'turbolinks:load', @sync
-    $.subscribe 'osu:page:change', @throttledSync
     $.subscribe 'sync-height:force', @sync
     $(window).on 'resize', @sync
 

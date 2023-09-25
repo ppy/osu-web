@@ -7,7 +7,7 @@ return [
     'deleted' => '[gelöschter Benutzer]',
 
     'beatmapset_activities' => [
-        'title' => ":users Moddingverlauf",
+        'title' => "Moddingverlauf von :user",
         'title_compact' => 'Modding',
 
         'discussions' => [
@@ -49,6 +49,7 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => 'Verschenke ein osu!supporter-Tag',
         'loading' => 'Lädt...',
         'send_message' => 'Nachricht senden',
     ],
@@ -104,7 +105,7 @@ return [
         '_' => 'Login',
         'button' => 'Einloggen',
         'button_posting' => 'Logge ein...',
-        'email_login_disabled' => 'Das Anmelden per E-Mail ist derzeit deaktiviert. Bitte benutze stattdessen Deinen Benutzernamen.',
+        'email_login_disabled' => 'Das Anmelden per E-Mail ist derzeit deaktiviert. Bitte benutze stattdessen deinen Benutzernamen.',
         'failed' => 'Falscher Login',
         'forgot' => 'Passwort vergessen?',
         'info' => 'Bitte melde dich an, um fortzufahren',
@@ -263,7 +264,7 @@ return [
                     'count_label' => 'Spiele',
                 ],
                 'most_played' => [
-                    'count' => 'mal gespielt',
+                    'count' => 'Anzahl der Spiele',
                     'title' => 'Meistgespielte Beatmaps',
                 ],
                 'recent_plays' => [
@@ -379,14 +380,14 @@ return [
             'account_standing' => [
                 'title' => 'Accountstatus',
                 'bad_standing' => "Der Account von :username ist zurzeit eingeschränkt :(",
-                'remaining_silence' => '<strong>:username</strong> kann in :duration wieder sprechen.',
+                'remaining_silence' => ':username kann in :duration wieder sprechen.',
 
                 'recent_infringements' => [
                     'title' => 'Neuliche Verstöße',
                     'date' => 'Datum',
                     'action' => 'Maßnahme',
                     'length' => 'Dauer',
-                    'length_permanent' => 'Permanent',
+                    'length_indefinite' => 'Unbestimmt',
                     'description' => 'Beschreibung',
                     'actor' => 'von :username',
 

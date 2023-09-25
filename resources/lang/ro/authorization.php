@@ -171,6 +171,7 @@ return [
 
     'score' => [
         'pin' => [
+            'disabled_type' => "Nu se poate fixa acest tip de scor",
             'not_owner' => 'Numai creatorul scorului poate fixa acest scor.',
             'too_many' => 'Ai fixat prea multe scoruri.',
         ],
@@ -183,6 +184,9 @@ return [
                 'not_owner' => 'Îți poți edita doar propria pagină de utilizator.',
                 'require_supporter_tag' => 'Statusul de suporter osu! este necesar.',
             ],
+        ],
+        'update_email' => [
+            'locked' => '',
         ],
     ],
 ];

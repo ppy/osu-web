@@ -37,7 +37,7 @@ return [
                 'link_text' => 'Selaa turnauksia &raquo;',
             ],
             'bounty-program' => [
-                'title' => '',
+                'title' => 'Open Source Palkkio-ohjelma',
                 'description' => 'Tue yhteisön osallistujia, jotka ovat antaneet aikaa ja vaivaa auttaa tekemään osu!\'a paremmaksi.',
                 'link_text' => 'Lue lisää &raquo;',
             ],
@@ -132,7 +132,7 @@ return [
                 'description' => 'Kuinka monta vireillä olevia beatmappeja sinulla voi olla kerralla, lasketaan yhteen perusarvosta ja lisäbonuksesta kullekin hyväksytyille beatmapeille, mitä sinulla on (tiettyyn rajaan asti).<br/><br/>Normaalitapauksessa tämä on :base plus :bonus per hyväksytty beatmappi (enintään :bonus_max). Jos olet osu!tukija, raja on :supporter_base plus :supporter_bonus per hyväksytty beatmappi (enintään :supporter_bonus_max).',
             ],
             'friend_filtering' => [
-                'title' => '',
+                'title' => 'Ystävien tulostaulukko',
                 'description' => 'Kilpaile kaveriasi kanssa ja katso, miten sijoittaudut heitä vastaan!',
             ],
 

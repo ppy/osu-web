@@ -11,6 +11,9 @@ interface Props {
   extraClasses: string[];
   href?: string;
   icon?: string;
+  /**
+   * Changes icon to spinner and disables the button (implies `disabled`).
+   */
   isBusy: boolean;
   isSubmit: boolean;
   modifiers?: Modifiers;
@@ -30,6 +33,10 @@ export default class BigButton extends React.Component<Props> {
     props: {},
   };
 
+  get disabled() {
+    return this.props.disabled || this.props.isBusy;
+  }
+
   get text() {
     if (this.props.text == null) {
       return null;
@@ -45,21 +52,21 @@ export default class BigButton extends React.Component<Props> {
   }
 
   render() {
-    let blockClass = classWithModifiers('btn-osu-big', this.props.modifiers, { disabled: this.props.disabled });
+    let blockClass = classWithModifiers('btn-osu-big', this.props.modifiers, { disabled: this.disabled });
     if (this.props.extraClasses != null) {
       blockClass += ` ${this.props.extraClasses.join(' ')}`;
     }
 
-    if (present(this.props.href)) {
-      if (this.props.disabled) {
-        return (
-          <span className={blockClass} {...this.props.props}>
-            {this.renderChildren()}
-          </span>
-        );
-      }
-
+    if (this.disabled) {
       return (
+        <span className={blockClass} {...this.props.props} onClick={undefined}>
+          {this.renderChildren()}
+        </span>
+      );
+    }
+
+    return present(this.props.href)
+      ? (
         <a
           className={blockClass}
           href={this.props.href}
@@ -67,19 +74,15 @@ export default class BigButton extends React.Component<Props> {
         >
           {this.renderChildren()}
         </a>
+      ) : (
+        <button
+          className={blockClass}
+          type={this.props.isSubmit ? 'submit' : 'button'}
+          {...this.props.props}
+        >
+          {this.renderChildren()}
+        </button>
       );
-    }
-
-    return (
-      <button
-        className={blockClass}
-        disabled={this.props.disabled}
-        type={this.props.isSubmit ? 'submit' : 'button'}
-        {...this.props.props}
-      >
-        {this.renderChildren()}
-      </button>
-    );
   }
 
   private renderChildren() {

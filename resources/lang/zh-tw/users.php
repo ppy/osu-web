@@ -49,6 +49,7 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => '贈送 osu! 贊助者標籤',
         'loading' => '載入中...',
         'send_message' => '傳送訊息',
     ],
@@ -236,7 +237,7 @@ return [
                     'title' => '喜歡的圖譜',
                 ],
                 'nominated' => [
-                    'title' => '',
+                    'title' => '已提名 & 進榜的圖譜',
                 ],
                 'pending' => [
                     'title' => '待處理的圖譜',
@@ -386,7 +387,7 @@ return [
                     'date' => '時間',
                     'action' => '處理',
                     'length' => '時長',
-                    'length_permanent' => '永久',
+                    'length_indefinite' => '無限期',
                     'description' => '詳情',
                     'actor' => '裁决者： :username',
 
@@ -435,7 +436,7 @@ return [
             'country_simple' => '國內排名',
             'global' => ':mode 模式的全球排名',
             'global_simple' => '全球排名',
-            'highest' => '',
+            'highest' => '最高排名:rank於:date',
         ],
         'stats' => [
             'hit_accuracy' => '準確率',
@@ -470,7 +471,7 @@ return [
     ],
     'store' => [
         'from_client' => '請透過遊戲客戶端註冊!',
-        'from_web' => '',
+        'from_web' => '請於osu!網站完成註冊',
         'saved' => '帳號已註冊',
     ],
     'verify' => [

@@ -60,19 +60,19 @@ export default class ItemGroup extends React.Component<Props, State> {
     );
   }
 
-  private handleDelete = () => {
+  private readonly handleDelete = () => {
     this.props.stack.delete();
   };
 
-  private handleMarkAsRead = () => {
+  private readonly handleMarkAsRead = () => {
     this.props.stack.markStackAsRead();
   };
 
-  private handleShowLess = () => {
+  private readonly handleShowLess = () => {
     this.setState({ expanded: false });
   };
 
-  private handleShowMore = () => {
+  private readonly handleShowMore = () => {
     this.props.stack.loadMore(this.context);
   };
 
@@ -98,7 +98,7 @@ export default class ItemGroup extends React.Component<Props, State> {
     );
   }
 
-  private renderItem = (item: Notification) => (
+  private readonly renderItem = (item: Notification) => (
     <div key={item.id} className='notification-popup-item-group__item'>
       <ItemCompact item={item} stack={this.props.stack} />
     </div>
@@ -164,7 +164,7 @@ export default class ItemGroup extends React.Component<Props, State> {
     );
   }
 
-  private toggleExpand = () => {
+  private readonly toggleExpand = () => {
     this.setState({ expanded: !this.state.expanded });
   };
 }

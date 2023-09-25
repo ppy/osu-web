@@ -5,6 +5,9 @@
 
 use App\Libraries\LocaleMeta;
 use App\Models\LoginAttempt;
+use Egulias\EmailValidator\EmailValidator;
+use Egulias\EmailValidator\Validation\NoRFCWarningsValidation;
+use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Arr;
 use Illuminate\Support\HtmlString;
 
@@ -38,11 +41,7 @@ function array_reject_null(iterable $array): array
  */
 function array_search_null($value, $array)
 {
-    $key = array_search($value, $array, true);
-
-    if ($key !== false) {
-        return $key;
-    }
+    return null_if_false(array_search($value, $array, true));
 }
 
 function atom_id(string $namespace, $id = null): string
@@ -74,9 +73,9 @@ function beatmap_timestamp_format($ms)
 /**
  * Allows using both html-safe and non-safe text inside `{{ }}` directive.
  */
-function blade_safe($html)
+function blade_safe($html): HtmlString
 {
-    return new Illuminate\Support\HtmlString($html);
+    return new HtmlString($html);
 }
 
 /**
@@ -268,16 +267,16 @@ function css_group_colour($group)
     return '--group-colour: '.(optional($group)->colour ?? 'initial');
 }
 
-function css_var_2x(string $key, string $url)
+function css_var_2x(string $key, ?string $url): ?HtmlString
 {
     if (!present($url)) {
-        return;
+        return null;
     }
 
     $url = e($url);
     $url2x = retinaify($url);
 
-    return blade_safe("{$key}: url('{$url}'); {$key}-2x: url('{$url2x}')");
+    return blade_safe("{$key}: url('{$url}'); {$key}-2x: url('{$url2x}');");
 }
 
 function current_locale_meta(): LocaleMeta
@@ -378,6 +377,11 @@ function flag_url($countryCode)
     $baseFileName = implode('-', $hexEmojiChars);
 
     return "/assets/images/flags/{$baseFileName}.svg";
+}
+
+function format_rank(?int $rank): string
+{
+    return $rank !== null ? '#'.i18n_number_format($rank) : '-';
 }
 
 function get_valid_locale($requestedLocale)
@@ -619,26 +623,18 @@ function product_quantity_options($product, $selected = null)
 function read_image_properties($path)
 {
     try {
-        $data = getimagesize($path);
+        return null_if_false(getimagesize($path));
     } catch (Exception $_e) {
-        return;
-    }
-
-    if ($data !== false) {
-        return $data;
+        return null;
     }
 }
 
 function read_image_properties_from_string($string)
 {
     try {
-        $data = getimagesizefromstring($string);
+        return null_if_false(getimagesizefromstring($string));
     } catch (Exception $_e) {
-        return;
-    }
-
-    if ($data !== false) {
-        return $data;
+        return null;
     }
 }
 
@@ -804,6 +800,20 @@ function is_api_request()
 function is_json_request()
 {
     return is_api_request() || request()->expectsJson();
+}
+
+function is_valid_email_format(?string $email): bool
+{
+    if ($email === null) {
+        return false;
+    }
+
+    static $validator;
+    $validator ??= new EmailValidator();
+    static $lexer;
+    $lexer ??= new NoRFCWarningsValidation();
+
+    return $validator->isValid($email, $lexer);
 }
 
 function is_sql_unique_exception($ex)
@@ -985,7 +995,7 @@ function wiki_image_url(string $path, bool $fullUrl = true)
 
 function wiki_url($path = null, $locale = null, $api = null, $fullUrl = true)
 {
-    $path = $path === null ? 'Main_Page' : str_replace(['%2F', '%23'], ['/', '#'], rawurlencode($path));
+    $path = $path === null ? 'Main_page' : str_replace(['%2F', '%23'], ['/', '#'], rawurlencode($path));
 
     $params = [
         'path' => 'WIKI_PATH',
@@ -1089,7 +1099,7 @@ function nav_links()
         'rankings.type.country' => route('rankings', ['mode' => $defaultMode, 'type' => 'country']),
         'rankings.type.multiplayer' => route('multiplayer.rooms.show', ['room' => 'latest']),
         'rankings.type.seasons' => route('seasons.show', ['season' => 'latest']),
-        'layout.menu.rankings.kudosu' => osu_url('rankings.kudosu'),
+        'layout.menu.rankings.kudosu' => route('rankings.kudosu'),
     ];
     $links['community'] = [
         'page_title.forum._' => route('forum.forums.index'),
@@ -1105,11 +1115,11 @@ function nav_links()
         'layout.header.store.orders' => route('store.orders.index'),
     ];
     $links['help'] = [
-        'page_title.main.wiki_controller._' => wiki_url('Main_Page'),
+        'page_title.main.wiki_controller._' => wiki_url('Main_page'),
         'layout.menu.help.getFaq' => wiki_url('FAQ'),
         'layout.menu.help.getRules' => wiki_url('Rules'),
-        'layout.menu.help.getAbuse' => wiki_url('Reporting_Bad_Behaviour/Abuse'),
-        'layout.menu.help.getSupport' => wiki_url('Help_Centre'),
+        'layout.menu.help.getAbuse' => wiki_url('Reporting_bad_behaviour/Abuse'),
+        'layout.menu.help.getSupport' => wiki_url('Help_centre'),
     ];
 
     return $links;
@@ -1128,7 +1138,7 @@ function footer_landing_links()
             'faq' => wiki_url('FAQ'),
             'forum' => route('forum.forums.index'),
             'livestreams' => route('livestreams.index'),
-            'wiki' => wiki_url('Main_Page'),
+            'wiki' => wiki_url('Main_page'),
         ],
         'legal' => footer_legal_links(),
     ];
@@ -1164,22 +1174,6 @@ function user_color_style($color, $style)
     }
 
     return sprintf('%s: %s', $style, e($color));
-}
-
-function base62_encode($input)
-{
-    $numbers = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $base = strlen($numbers);
-
-    $output = '';
-    $remaining = $input;
-
-    do {
-        $output = $numbers[$remaining % $base].$output;
-        $remaining = floor($remaining / $base);
-    } while ($remaining > 0);
-
-    return $output;
 }
 
 function display_regdate($user)
@@ -1271,9 +1265,7 @@ function open_image($path, $dimensions = null)
                 break;
         }
 
-        if ($image !== false) {
-            return $image;
-        }
+        return null_if_false($image);
     } catch (ErrorException $_e) {
         // do nothing
     }
@@ -1315,22 +1307,15 @@ function fast_imagesize($url)
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_MAXREDIRS => 5,
+            CURLOPT_TIMEOUT => 10,
         ]);
         $data = curl_exec($curl);
-        curl_close($curl);
 
-        $result = read_image_properties_from_string($data);
-
-        if ($result === null) {
-            return false;
-        } else {
-            return $result;
-        }
+        // null isn't cached
+        return read_image_properties_from_string($data) ?? false;
     });
 
-    if ($result !== false) {
-        return $result;
-    }
+    return null_if_false($result);
 }
 
 function get_arr($input, $callback = null)
@@ -1617,6 +1602,11 @@ function get_timestamp_or_zero(DateTime $time = null): int
     return $time === null ? 0 : $time->getTimestamp();
 }
 
+function null_if_false($value)
+{
+    return $value === false ? null : $value;
+}
+
 function parse_time_to_carbon($value)
 {
     if (!present($value)) {
@@ -1704,18 +1694,6 @@ function first_paragraph($html, $split_on = "\n")
     return $match_pos === false ? $text : substr($text, 0, $match_pos);
 }
 
-function build_icon($prefix)
-{
-    switch ($prefix) {
-        case 'add':
-            return 'plus';
-        case 'fix':
-            return 'wrench';
-        case 'misc':
-            return 'question';
-    }
-}
-
 // clamps $number to be between $min and $max
 function clamp($number, $min, $max)
 {
@@ -1789,10 +1767,7 @@ function check_url(string $url): bool
     ]);
     curl_exec($ch);
 
-    $errored = curl_errno($ch) > 0 || curl_getinfo($ch, CURLINFO_HTTP_CODE) !== 200;
-    curl_close($ch);
-
-    return !$errored;
+    return curl_errno($ch) === 0 && curl_getinfo($ch, CURLINFO_HTTP_CODE) === 200;
 }
 
 function mini_asset(string $url): string
@@ -1849,4 +1824,12 @@ function search_error_message(?Exception $e): ?string
 function unmix(string $resource): HtmlString
 {
     return app('assets-manifest')->src($resource);
+}
+
+/**
+ * Get an instance of the named migration.
+ */
+function migration(string $name): Migration
+{
+    return require database_path("migrations/{$name}.php");
 }

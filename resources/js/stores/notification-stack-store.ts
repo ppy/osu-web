@@ -7,7 +7,6 @@ import { dispatchListener } from 'app-dispatcher';
 import DispatchListener from 'dispatch-listener';
 import NotificationJson, { NotificationBundleJson, NotificationStackJson, NotificationTypeJson } from 'interfaces/notification-json';
 import { action, computed, makeObservable, observable } from 'mobx';
-import LegacyPmNotification from 'models/legacy-pm-notification';
 import Notification from 'models/notification';
 import NotificationStack, { idFromJson } from 'models/notification-stack';
 import NotificationType, { Name as NotificationTypeName  } from 'models/notification-type';
@@ -19,9 +18,8 @@ import NotificationStore from './notification-store';
 
 @dispatchListener
 export default class NotificationStackStore implements DispatchListener {
-  @observable readonly legacyPm = new LegacyPmNotification();
   @observable readonly types = new Map<string | null, NotificationType>();
-  private deletedStacks = new Set<string>();
+  private readonly deletedStacks = new Set<string>();
   private readonly resolver = new NotificationResolver();
 
   get allStacks() {
@@ -196,7 +194,7 @@ export default class NotificationStackStore implements DispatchListener {
     bundle.notifications?.forEach((json) => this.updateWithNotificationJson(json));
   }
 
-  private removeByNotification = (identity: NotificationIdentity) => {
+  private readonly removeByNotification = (identity: NotificationIdentity) => {
     if (identity.id == null) return;
 
     const stack = this.getStack(identity);

@@ -49,6 +49,7 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => 'Поклони osu!supporter ознаку',
         'loading' => 'Учитавање...',
         'send_message' => 'Пошаљите поруку',
     ],
@@ -387,7 +388,7 @@ return [
                     'date' => 'датум',
                     'action' => 'радња',
                     'length' => 'дужина',
-                    'length_permanent' => 'Трајно',
+                    'length_indefinite' => 'Неодређен',
                     'description' => 'опис',
                     'actor' => 'од корисника :username
 ',

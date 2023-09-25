@@ -17,9 +17,16 @@ return [
         ],
     ],
 
+    'kudosu' => [
+        'total' => '获得的',
+        'available' => '可用的',
+        'used' => '已用的',
+    ],
+
     'type' => [
         'charts' => '高光',
         'country' => '国家/地区',
+        'kudosu' => 'Kudosu',
         'multiplayer' => '多人游戏',
         'performance' => '表现',
         'score' => '总分',

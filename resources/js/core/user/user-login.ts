@@ -73,11 +73,11 @@ export default class UserLogin {
     return true;
   };
 
-  private clearError = () => {
+  private readonly clearError = () => {
     $('.js-login-form--error').text('');
   };
 
-  private loginError = (e: JQuery.TriggeredEvent, xhr: JQuery.jqXHR) => {
+  private readonly loginError = (e: JQuery.TriggeredEvent, xhr: JQuery.jqXHR) => {
     e.preventDefault();
     e.stopPropagation();
     $('.js-login-form--error').text(xhrErrorMessage(xhr));
@@ -95,7 +95,7 @@ export default class UserLogin {
     }
   };
 
-  private loginSuccess = (event: unknown, data: LoginSuccessJson) => {
+  private readonly loginSuccess = (event: unknown, data: LoginSuccessJson) => {
     const callback = this.callback;
 
     if (callback == null) {
@@ -119,28 +119,28 @@ export default class UserLogin {
     }, 0);
   };
 
-  private onError = (e: { target: unknown }, xhr: JQuery.jqXHR) => {
+  private readonly onError = (e: { target: unknown }, xhr: JQuery.jqXHR) => {
     this.showOnError(xhr, createClickCallback(e.target));
   };
 
-  private refreshToken = () => {
+  private readonly refreshToken = () => {
     const token = Cookies.get('XSRF-TOKEN') ?? null;
     $('[name="_token"]').attr('value', token);
     $('[name="csrf-token"]').attr('content', token);
   };
 
-  private reset = () => {
+  private readonly reset = () => {
     this.callback = undefined;
   };
 
-  private showOnClick = (e: JQuery.Event) => {
+  private readonly showOnClick = (e: JQuery.Event) => {
     e.preventDefault();
     this.show();
   };
 
   // for pages which require authentication
   // and being visited directly from outside
-  private showOnLoad = () => {
+  private readonly showOnLoad = () => {
     if (!window.showLoginModal) {
       return;
     }
@@ -149,7 +149,7 @@ export default class UserLogin {
     this.show();
   };
 
-  private showToContinue = (e: JQuery.ClickEvent) => {
+  private readonly showToContinue = (e: JQuery.ClickEvent) => {
     if (core.currentUser != null) {
       return;
     }

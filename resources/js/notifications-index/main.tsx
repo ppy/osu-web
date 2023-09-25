@@ -10,7 +10,6 @@ import { observer } from 'mobx-react';
 import { Name as NotificationTypeName, typeNames } from 'models/notification-type';
 import Stack from 'notification-widget/stack';
 import { NotificationContext, NotificationContextData } from 'notifications-context';
-import LegacyPm from 'notifications/legacy-pm';
 import NotificationController from 'notifications/notification-controller';
 import NotificationDeleteButton from 'notifications/notification-delete-button';
 import NotificationReadButton from 'notifications/notification-read-button';
@@ -65,8 +64,6 @@ export class Main extends React.Component {
               </div>
             }
 
-            {this.renderLegacyPm()}
-
             {this.type.isEmpty
               ? this.type.isLoading
                 ? null
@@ -79,12 +76,6 @@ export class Main extends React.Component {
         </div>
       </div>
     );
-  }
-
-  renderLegacyPm() {
-    if (this.controller.currentFilter != null) return;
-
-    return <LegacyPm />;
   }
 
   renderShowMore() {
@@ -108,22 +99,22 @@ export class Main extends React.Component {
     );
   }
 
-  private handleDelete = () => {
+  private readonly handleDelete = () => {
     this.type.delete();
   };
 
-  private handleLinkClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+  private readonly handleLinkClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
 
     const type = ((event.currentTarget as HTMLAnchorElement).dataset.type ?? null) as NotificationTypeName;
     this.controller.navigateTo(type);
   };
 
-  private handleMarkAsRead = () => {
+  private readonly handleMarkAsRead = () => {
     this.controller.markCurrentTypeAsRead();
   };
 
-  private handleShowMore = () => {
+  private readonly handleShowMore = () => {
     this.controller.loadMore();
   };
 
@@ -140,7 +131,7 @@ export class Main extends React.Component {
   private renderMarkAsReadButton() {
     return (
       <NotificationReadButton
-        isMarkingAsRead={this.type.isMarkingAsRead}
+        isMarkingAsRead={this.controller.isMarkingCurrentTypeAsRead}
         onMarkAsRead={this.handleMarkAsRead}
         text={trans('notifications.mark_read', { type: trans(`notifications.action_type.${this.type.name ?? '_'}`) })}
       />

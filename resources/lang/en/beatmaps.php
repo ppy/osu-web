@@ -78,6 +78,18 @@ return [
             'suggestion' => 'Suggestion',
         ],
 
+        'message_type_title' => [
+            'disqualify' => 'Post Disqualification',
+            'hype' => 'Post Hype!',
+            'mapper_note' => 'Post Note',
+            'nomination_reset' => 'Remove all Nominations',
+            'praise' => 'Post Praise',
+            'problem' => 'Post Problem',
+            'problem_warning' => 'Post Problem',
+            'review' => 'Post Review',
+            'suggestion' => 'Post Suggestion',
+        ],
+
         'mode' => [
             'events' => 'History',
             'general' => 'General :scope',
@@ -176,7 +188,7 @@ return [
 
     'nominations' => [
         'already_nominated' => 'You\'ve already nominated this beatmap.',
-        'cannot_nominate' => 'You cannot nominate this beatmap playmode.',
+        'cannot_nominate' => 'You cannot nominate this beatmap game mode.',
         'delete' => 'Delete',
         'delete_own_confirm' => 'Are you sure? The beatmap will be deleted and you will be redirected back to your profile.',
         'delete_other_confirm' => 'Are you sure? The beatmap will be deleted and you will be redirected back to the user\'s profile.',
@@ -257,7 +269,7 @@ return [
     ],
     'general' => [
         'converts' => 'Include converted beatmaps',
-        'featured_artists' => 'Featured artists',
+        'featured_artists' => 'Featured Artists',
         'follows' => 'Subscribed mappers',
         'recommended' => 'Recommended difficulty',
         'spotlights' => 'Spotlighted beatmaps',

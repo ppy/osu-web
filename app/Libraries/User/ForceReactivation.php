@@ -49,7 +49,7 @@ class ForceReactivation
         LegacySession::where('session_user_id', $userId)->delete();
         UserClient::where('user_id', $userId)->update(['verified' => false]);
 
-        if (!$waitingActivation && present($this->user->user_email)) {
+        if (!$waitingActivation && is_valid_email_format($this->user->user_email)) {
             Mail::to($this->user)->send(new UserForceReactivation([
                 'user' => $this->user,
                 'reason' => $this->reason,

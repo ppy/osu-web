@@ -12,8 +12,13 @@ import { updateQueryString } from 'utils/url';
 export default class NotificationController {
   @observable currentFilter: NotificationTypeName;
 
-  private store: NotificationStackStore;
+  private readonly store: NotificationStackStore;
   private readonly typeNamesWithoutNull = typeNames.filter((name) => !(name == null || this.isExcluded(name)));
+
+  @computed
+  get isMarkingCurrentTypeAsRead() {
+    return this.getNonNullTypes(this.type).some((type) => type.isMarkingAsRead);
+  }
 
   @computed
   get stacks() {
@@ -22,7 +27,7 @@ export default class NotificationController {
 
   @computed
   get type() {
-    return this.store.getOrCreateType({ objectType: this.currentFilter });
+    return this.getType(this.currentFilter);
   }
 
   private get typeNameFromUrl() {
@@ -43,16 +48,10 @@ export default class NotificationController {
   }
 
   getTotal(type: NotificationType) {
-    if (type.name == null) {
-      return this.typeNamesWithoutNull.reduce((acc, current) => acc + this.store.getOrCreateType({ objectType: current }).total, 0);
-    }
-
-    return type.total;
+    return this.getNonNullTypes(type).reduce((acc, current) => acc + current.total, 0);
   }
 
-  getType(name: NotificationTypeName) {
-    return this.store.getOrCreateType({ objectType: name });
-  }
+  readonly getType = (name: NotificationTypeName) => this.store.getOrCreateType({ objectType: name });
 
   @action
   loadMore() {
@@ -61,13 +60,9 @@ export default class NotificationController {
 
   @action
   markCurrentTypeAsRead() {
-    if (this.type.name == null) {
-      for (const name of this.typeNamesWithoutNull) {
-        this.store.getOrCreateType({ objectType: name }).markTypeAsRead();
-      }
-    } else {
-      this.type.markTypeAsRead();
-    }
+    this.getNonNullTypes(this.type).forEach((type) => {
+      type.markTypeAsRead();
+    });
   }
 
   @action
@@ -91,6 +86,14 @@ export default class NotificationController {
 
       Turbolinks.controller.advanceHistory(href);
     }
+  }
+
+  private getNonNullTypes(type: NotificationType) {
+    if (type.name != null) {
+      return [type];
+    }
+
+    return this.typeNamesWithoutNull.map(this.getType);
   }
 
   private isExcluded(name: NotificationTypeName) {

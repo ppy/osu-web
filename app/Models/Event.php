@@ -5,6 +5,7 @@
 
 namespace App\Models;
 
+use App\Models\Traits\WithDbCursorHelper;
 use Carbon\Carbon;
 use Sentry\State\Scope;
 
@@ -24,6 +25,18 @@ use Sentry\State\Scope;
  */
 class Event extends Model
 {
+    use WithDbCursorHelper;
+
+    protected const DEFAULT_SORT = 'id_desc';
+    protected const SORTS = [
+        'id_asc' => [
+            ['column' => 'event_id', 'order' => 'ASC'],
+        ],
+        'id_desc' => [
+            ['column' => 'event_id', 'order' => 'DESC'],
+        ],
+    ];
+
     public ?array $details = null;
     public $parsed = false;
     public ?string $type = null;
@@ -247,7 +260,7 @@ class Event extends Model
             'Failed parsing event',
             null,
             (new Scope())
-                ->setExtra('reason', $reason)
+                ->setTag('reason', $reason)
                 ->setExtra('event', $this->toArray())
         );
 

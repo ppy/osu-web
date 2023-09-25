@@ -14,10 +14,10 @@ return [
     'verifying' => 'Vahvista istuntosi nähdäksesi ilmoitukset',
 
     'action_type' => [
-        '_' => '',
+        '_' => 'kaikki',
         'beatmapset' => '',
         'build' => '',
-        'channel' => '',
+        'channel' => 'chat',
         'forum_topic' => '',
         'news_post' => '',
         'user' => '',
@@ -30,7 +30,7 @@ return [
         'forum_topic' => 'foorumi',
         'news_post' => 'uutiset',
         'build' => '',
-        'channel' => 'chat',
+        'channel' => 'chatti',
     ],
 
     'item' => [
@@ -38,9 +38,9 @@ return [
             '_' => 'Beatmappi',
 
             'beatmap_owner_change' => [
-                '_' => '',
-                'beatmap_owner_change' => '',
-                'beatmap_owner_change_compact' => '',
+                '_' => 'Vieraan vaikeustaso',
+                'beatmap_owner_change' => 'Omistat nyt vaikeustason ":beatmap" beatmapille ":title"',
+                'beatmap_owner_change_compact' => 'Omistat nyt vaikeustason ":beatmap"',
             ],
 
             'beatmapset_discussion' => [
@@ -58,25 +58,25 @@ return [
             ],
 
             'beatmapset_problem' => [
-                '_' => '',
+                '_' => 'Esihyväksytyn Beatmapin ongelma',
                 'beatmapset_discussion_qualified_problem' => '',
                 'beatmapset_discussion_qualified_problem_empty' => '',
                 'beatmapset_discussion_qualified_problem_compact' => '',
-                'beatmapset_discussion_qualified_problem_compact_empty' => '',
+                'beatmapset_discussion_qualified_problem_compact_empty' => ':username:n Ilmiantama',
             ],
 
             'beatmapset_state' => [
-                '_' => '',
-                'beatmapset_disqualify' => '',
-                'beatmapset_disqualify_compact' => '',
+                '_' => 'Beatmapin tila muutettu',
+                'beatmapset_disqualify' => '":title" on hylätty',
+                'beatmapset_disqualify_compact' => 'Beatmappi hylättiin',
                 'beatmapset_love' => '',
                 'beatmapset_love_compact' => '',
-                'beatmapset_nominate' => '',
+                'beatmapset_nominate' => '":title" on hyväksytty',
                 'beatmapset_nominate_compact' => '',
                 'beatmapset_qualify' => '',
-                'beatmapset_qualify_compact' => '',
-                'beatmapset_rank' => '',
-                'beatmapset_rank_compact' => '',
+                'beatmapset_qualify_compact' => 'Beatmap on siirtynyt ranking-jonoon',
+                'beatmapset_rank' => '":title" on hyväksytty',
+                'beatmapset_rank_compact' => 'Beatmap hyväksyttiin',
                 'beatmapset_remove_from_loved' => '',
                 'beatmapset_remove_from_loved_compact' => '',
                 'beatmapset_reset_nominations' => '',
@@ -94,10 +94,10 @@ return [
         ],
 
         'channel' => [
-            '_' => 'Chat',
+            '_' => 'Chatti',
 
             'announcement' => [
-                '_' => '',
+                '_' => 'Uusi ilmoitus',
 
                 'announce' => [
                     'channel_announcement' => '',
@@ -153,15 +153,6 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => '',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited lukematon viesti.|:count_delimited lukemattomia viestejä.',
-            ],
-        ],
-
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Uusi beatmappi',
@@ -204,11 +195,11 @@ return [
             ],
 
             'beatmapset_state' => [
-                'beatmapset_disqualify' => '',
+                'beatmapset_disqualify' => '":title" on hylätty',
                 'beatmapset_love' => '',
-                'beatmapset_nominate' => '',
+                'beatmapset_nominate' => '":title" on hyväksytty',
                 'beatmapset_qualify' => '',
-                'beatmapset_rank' => '',
+                'beatmapset_rank' => '":title" on hyväksytty',
                 'beatmapset_remove_from_loved' => '',
                 'beatmapset_reset_nominations' => '',
             ],
@@ -249,12 +240,12 @@ return [
         'user' => [
             'user_achievement_unlock' => [
                 'user_achievement_unlock' => '',
-                'user_achievement_unlock_self' => '',
+                'user_achievement_unlock_self' => 'Olet avannut uuden mitalin, ":title"!',
             ],
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => '',
-                'user_beatmapset_revive' => '',
+                'user_beatmapset_revive' => ':username on elvyttänyt beatmappeja',
             ],
         ],
     ],

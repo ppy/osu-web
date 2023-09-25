@@ -42,8 +42,30 @@ class PlaylistItemUserHighScore extends Model
 
     protected $table = 'multiplayer_scores_high';
 
+    public static function lookupOrDefault(Score $score): static
+    {
+        return static::firstOrNew([
+            'playlist_item_id' => $score->playlist_item_id,
+            'user_id' => $score->user_id,
+        ], [
+            'accuracy' => 0,
+            'pp' => 0,
+            'total_score' => 0,
+        ]);
+    }
+
     public function score()
     {
         return $this->belongsTo(Score::class);
+    }
+
+    public function updateWithScore(Score $score): void
+    {
+        $this->fill([
+            'accuracy' => $score->accuracy,
+            'pp' => $score->pp,
+            'score_id' => $score->getKey(),
+            'total_score' => $score->total_score,
+        ])->save();
     }
 }

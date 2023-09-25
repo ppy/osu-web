@@ -501,7 +501,9 @@ fetch("{{ config('app.url') }}/api/[version]/[endpoint]", {
 
 @php
 $scopeDescriptions = [
+    'chat.read' => "Allows read chat messages on a user's behalf.",
     'chat.write' => "Allows sending chat messages on a user's behalf.",
+    'chat.write_manage' => "Allows joining and leaving chat channels on a user's behalf.",
     'delegate' => "Allows acting as the owner of a client; only available for [Client Credentials Grant](#client-credentials-grant).",
     'forum.write' => "Allows creating and editing forum posts on a user's behalf.",
     'friends.read' => 'Allows reading of the user\'s friend list.',

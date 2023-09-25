@@ -78,6 +78,18 @@ return [
             'suggestion' => 'Návrh',
         ],
 
+        'message_type_title' => [
+            'disqualify' => 'Diskvalifikace Přízpěvku',
+            'hype' => 'Poslat Hype!',
+            'mapper_note' => 'Poslat Poznámku',
+            'nomination_reset' => 'Odstranit veškeré Nominace',
+            'praise' => 'Poslat Pochvalu',
+            'problem' => 'Poslat Problém',
+            'problem_warning' => 'Poslat Problém',
+            'review' => 'Poslat Hodnocení',
+            'suggestion' => 'Poslat Návrh',
+        ],
+
         'mode' => [
             'events' => 'Historie',
             'general' => 'Obecné :scope',
@@ -106,7 +118,7 @@ return [
                 'unsaved' => 'Neuloženo',
                 'timestamp' => [
                     'all-diff' => 'Příspěvky na "Všechny obtížnosti" nemohou být časovány.',
-                    'diff' => 'Pokud tento :type začíná časovou značkou, zobrazí se v Časové ose.',
+                    'diff' => 'Pokud tento příspěvek začíná časovou značkou, zobrazí se v Časové ose.',
                 ],
             ],
             'insert-block' => [
@@ -175,6 +187,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => 'Už jsi tuto beatmapu nominoval.',
+        'cannot_nominate' => 'Nemůžeš nominovat tento herní mód beatmapy.',
         'delete' => 'Vymazat',
         'delete_own_confirm' => 'Jste si jistý? Tahle beatmapa bude smazána a pošleme vás zpátky na váš profil.',
         'delete_other_confirm' => 'Jste si jistý? Tahle beatmapa bude smazána a pošleme vás zpátky na profil uživatele.',
@@ -249,13 +263,13 @@ return [
             ],
             'supporter_filter_quote' => [
                 '_' => 'Filtrování podle :filters vyžaduje aktivní :link',
-                'link_text' => 'stítek podporovatele',
+                'link_text' => 'osu!supporter tag',
             ],
         ],
     ],
     'general' => [
-        'converts' => 'Zahrň překonvertované beatmapy',
-        'featured_artists' => 'Featured artists',
+        'converts' => 'Zahrnout překonvertované beatmapy',
+        'featured_artists' => 'Featured Artists',
         'follows' => 'Odebíraní autoři map',
         'recommended' => 'Doporučená obtížnost',
         'spotlights' => 'Zvýrazněné beatmapy',
@@ -299,15 +313,15 @@ return [
     ],
     'language' => [
         'any' => 'Jakýkoliv',
-        'english' => 'Anglické',
-        'chinese' => 'Čínské',
-        'french' => 'Francouzské',
-        'german' => 'Německé',
-        'italian' => 'Italské',
-        'japanese' => 'Japonské',
-        'korean' => 'Korejské',
-        'spanish' => 'Španělské',
-        'swedish' => 'Švédské',
+        'english' => 'Angličtina',
+        'chinese' => 'Čínština',
+        'french' => 'Francouzština',
+        'german' => 'Němčina',
+        'italian' => 'Italština',
+        'japanese' => 'Japonština',
+        'korean' => 'Korejština',
+        'spanish' => 'Španělština ',
+        'swedish' => 'Švédština',
         'russian' => 'Ruština',
         'polish' => 'Polština',
         'instrumental' => 'Instrumentální',

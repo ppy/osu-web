@@ -60,6 +60,10 @@ return [
     'show' => [
         'discussion' => 'Συζήτηση',
 
+        'admin' => [
+            'full_size_cover' => '',
+        ],
+
         'deleted_banner' => [
             'title' => '',
             'message' => '',

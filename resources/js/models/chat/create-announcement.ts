@@ -10,7 +10,7 @@ import core from 'osu-core-singleton';
 import { onError } from 'utils/ajax';
 import { uuid } from 'utils/seq';
 import { presence, present } from 'utils/string';
-import { maxLength } from './message';
+import { maxMessageLength } from './channel';
 
 interface LocalStorageProps extends Record<InputKey, string> {
   validUsers: number[];
@@ -23,7 +23,7 @@ const localStorageKey = 'createAnnouncement';
 
 export const maxLengths = Object.freeze({
   description: 255,
-  message: maxLength,
+  message: maxMessageLength,
   name: 50,
 });
 
@@ -38,9 +38,9 @@ export default class CreateAnnouncement implements FormWithErrors<InputKey> {
   @observable showError: Record<InputKey, boolean>;
   @observable validUsers = new Map<number, UserJson>();
 
-  private debouncedLookupUsers = debounce(() => this.lookupUsers(), 1000);
+  private readonly debouncedLookupUsers = debounce(() => this.lookupUsers(), 1000);
   private initialized = false;
-  private uuid = uuid();
+  private readonly uuid = uuid();
   private xhrLookupUsers?: JQuery.jqXHR<{ users: UserJson[] }>;
 
   @computed

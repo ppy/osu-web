@@ -18,6 +18,16 @@ return [
             'new' => 'nou correu electrònic',
             'new_confirmation' => 'confirmació per correu electrònic',
             'title' => 'Correu electrònic',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
+        ],
+
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'API heretada',
         ],
 
         'password' => [
@@ -28,7 +38,13 @@ return [
         ],
 
         'profile' => [
+            'country' => 'país',
             'title' => 'Perfil',
+
+            'country_change' => [
+                '_' => "",
+                'update_link' => 'Actualitza a :country',
+            ],
 
             'user' => [
                 'user_discord' => '',

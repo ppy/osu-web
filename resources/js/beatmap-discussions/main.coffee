@@ -5,9 +5,9 @@ import { DiscussionsContext } from 'beatmap-discussions/discussions-context'
 import { BeatmapsContext } from 'beatmap-discussions/beatmaps-context'
 import NewReview from 'beatmap-discussions/new-review'
 import { ReviewEditorConfigContext } from 'beatmap-discussions/review-editor-config-context'
-import { BackToTop } from 'components/back-to-top'
+import BackToTop from 'components/back-to-top'
 import { route } from 'laroute'
-import { deletedUser } from 'models/user'
+import { deletedUserJson } from 'models/user'
 import core from 'osu-core-singleton'
 import * as React from 'react'
 import { div } from 'react-dom-factories'
@@ -98,6 +98,8 @@ export class Main extends React.PureComponent
   componentWillUnmount: =>
     $.unsubscribe ".#{@eventId}"
     $(document).off ".#{@eventId}"
+
+    document.documentElement.style.removeProperty '--scroll-padding-top-extra'
 
     Timeout.clear(timeout) for _name, timeout of @timeouts
     xhr?.abort() for _name, xhr of @xhr
@@ -381,14 +383,20 @@ export class Main extends React.PureComponent
       $.publish 'beatmapset-discussions:highlight', discussionId: discussion.id
 
       attribute = if postId? then "data-post-id='#{postId}'" else "data-id='#{id}'"
-      target = $(".js-beatmap-discussion-jump[#{attribute}]")
+      target = document.querySelector(".js-beatmap-discussion-jump[#{attribute}]")
 
-      return if target.length == 0
+      return unless target? && @modeSwitcherRef.current? && @newDiscussionRef.current?
 
-      offsetTop = target.offset().top - @modeSwitcherRef.current.getBoundingClientRect().height
-      offsetTop -= @newDiscussionRef.current.getBoundingClientRect().height if @state.pinnedNewDiscussion
+      margin = @modeSwitcherRef.current.getBoundingClientRect().height
+      margin += @newDiscussionRef.current.getBoundingClientRect().height if @state.pinnedNewDiscussion
 
-      $(window).stop().scrollTo core.stickyHeader.scrollOffset(offsetTop), 500
+      # Update scroll-padding instead of adding scroll-margin, otherwise it doesn't anchor in the right place.
+      document.documentElement.style.setProperty '--scroll-padding-top-extra', "#{Math.floor(margin)}px"
+
+      # avoid smooth scrolling to avoid triggering lazy loaded images.
+      # FIXME: Safari still has the issue where images just out of view get loaded and push the page down
+      # because it doesn't anchor the scroll position.
+      target.scrollIntoView behavior: 'instant', block: 'start', inline: 'nearest'
 
     @update null, newState
 
@@ -515,7 +523,7 @@ export class Main extends React.PureComponent
   users: =>
     if !@cache.users?
       @cache.users = _.keyBy @state.beatmapset.related_users, 'id'
-      @cache.users[null] = @cache.users[undefined] = deletedUser.toJson()
+      @cache.users[null] = @cache.users[undefined] = deletedUserJson
 
     @cache.users
 

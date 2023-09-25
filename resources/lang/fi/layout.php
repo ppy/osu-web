@@ -201,7 +201,7 @@ return [
     ],
 
     'popup_search' => [
-        'initial' => 'Kirjoita etsiäksesi!',
+        'initial' => 'Tee haku kirjoittamalla!',
         'retry' => 'Haku epäonnistui. Yritä uudelleen napsauttamalla.',
     ],
 ];

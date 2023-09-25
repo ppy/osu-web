@@ -21,7 +21,7 @@
         {!! json_encode($chartConfig) !!}
     </script>
 
-    <script id="json-comments-build-{{ $build->getKey() }}" type="application/json">
+    <script id="json-comments" type="application/json">
         {!! json_encode($commentBundle->toArray()) !!}
     </script>
 

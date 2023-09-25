@@ -42,19 +42,19 @@ export default class BeatmapSelection extends React.Component<Props> {
     );
   }
 
-  private onClick = (e: React.SyntheticEvent) => {
+  private readonly onClick = (e: React.SyntheticEvent) => {
     e.preventDefault();
 
     this.props.controller.setCurrentBeatmap(this.props.beatmap);
   };
 
   @action
-  private onMouseEnter = () => {
+  private readonly onMouseEnter = () => {
     this.props.controller.hoveredBeatmap = this.props.beatmap;
   };
 
   @action
-  private onMouseLeave = () => {
+  private readonly onMouseLeave = () => {
     this.props.controller.hoveredBeatmap = null;
   };
 }

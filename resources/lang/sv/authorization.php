@@ -171,6 +171,7 @@ return [
 
     'score' => [
         'pin' => [
+            'disabled_type' => "Kan inte fästa den här typen av poäng",
             'not_owner' => 'Endast resultatägaren kan fästa resultat.',
             'too_many' => 'Fäst för många resultat.',
         ],
@@ -183,6 +184,9 @@ return [
                 'not_owner' => 'Kan endast redigera sin egna användar-sida.',
                 'require_supporter_tag' => 'osu!supporter tagg krävs.',
             ],
+        ],
+        'update_email' => [
+            'locked' => '',
         ],
     ],
 ];

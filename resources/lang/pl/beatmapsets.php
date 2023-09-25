@@ -60,6 +60,10 @@ return [
     'show' => [
         'discussion' => 'Dyskusja',
 
+        'admin' => [
+            'full_size_cover' => 'Wyświetl tło w pełnej rozdzielczości',
+        ],
+
         'deleted_banner' => [
             'title' => 'Ta beatmapa została usunięta.',
             'message' => '(widoczne tylko dla moderatorów)',

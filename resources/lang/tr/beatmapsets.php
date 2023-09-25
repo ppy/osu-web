@@ -60,6 +60,10 @@ return [
     'show' => [
         'discussion' => 'Tartışma',
 
+        'admin' => [
+            'full_size_cover' => 'Kapak resmini tam boyutlu görüntüle',
+        ],
+
         'deleted_banner' => [
             'title' => 'Bu beatmap silindi.',
             'message' => '(bunu sadece moderatörler görebilir)',

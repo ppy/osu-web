@@ -49,6 +49,7 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => '',
         'loading' => '',
         'send_message' => '',
     ],
@@ -386,7 +387,7 @@ return [
                     'date' => '',
                     'action' => '',
                     'length' => '',
-                    'length_permanent' => '',
+                    'length_indefinite' => '',
                     'description' => '',
                     'actor' => '',
 

@@ -29,7 +29,7 @@ const bn = 'nomination-dialog';
 
 @observer
 export class Nominator extends React.Component<Props> {
-  private checkboxContainerRef = React.createRef<HTMLDivElement>();
+  private readonly checkboxContainerRef = React.createRef<HTMLDivElement>();
   @observable private loading = false;
   @observable private selectedModes: GameMode[] = [];
   @observable private visible = false;
@@ -47,7 +47,7 @@ export class Nominator extends React.Component<Props> {
     const nominations: BeatmapsetEventJson[] = [];
 
     forEachRight(this.props.beatmapset.events, (event) => {
-      if (event.type === 'nomination_reset') {
+      if (event.type === 'nomination_reset' || event.type === 'disqualify') {
         return false;
       }
 
@@ -208,7 +208,7 @@ export class Nominator extends React.Component<Props> {
           {isHybrid ? this.renderModalContentHybrid() : this.renderModalContentNormal()}
           <div className={`${bn}__buttons`}>
             <BigButton
-              disabled={(isHybrid && this.selectedModes.length < 1) || this.loading}
+              disabled={isHybrid && this.selectedModes.length < 1}
               icon='fas fa-thumbs-up'
               isBusy={this.loading}
               props={{

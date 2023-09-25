@@ -12,12 +12,11 @@ import RetryDelay from 'utils/retry-delay';
 export default class PingService {
   private lastHistoryId?: number;
   // standard polling time of 0 to 20 seconds from default RetryDelay random
-  private retryDelay = new RetryDelay(0, 45000);
+  private readonly retryDelay = new RetryDelay(0, 45000);
   private timerId?: number;
   private xhr?: JQuery.jqXHR<AckResponseJson>;
 
-  constructor(private channelStore: ChannelStore) {
-  }
+  constructor(private readonly channelStore: ChannelStore) { /* do nothing */ }
 
   start() {
     if (this.timerId == null) {
@@ -34,7 +33,7 @@ export default class PingService {
     }
   }
 
-  private ping = () => {
+  private readonly ping = () => {
     this.xhr = ack(this.channelStore.lastReceivedMessageId, this.lastHistoryId).done((json) => {
       const newHistoryId = maxBy(json.silences, 'id')?.id;
 

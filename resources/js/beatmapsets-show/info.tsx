@@ -25,7 +25,7 @@ interface Props {
 
 @observer
 export default class Info extends React.Component<Props> {
-  private descriptionEditorRef = React.createRef<BbcodeEditor>();
+  private readonly descriptionEditorRef = React.createRef<BbcodeEditor>();
   @observable private isEditingDescription = false;
   @observable private isEditingMetadata = false;
   @observable private saveDescriptionXhr: JQuery.jqXHR<BeatmapsetJsonForShow> | null = null;
@@ -70,7 +70,7 @@ export default class Info extends React.Component<Props> {
   }
 
   private get withEditMetadata() {
-    return this.controller.beatmapset.current_user_attributes?.can_edit_metadata ?? false;
+    return this.controller.beatmapset.current_user_attributes.can_edit_metadata;
   }
 
   constructor(props: Props) {

@@ -47,9 +47,11 @@
                 </label>
             </div>
 
-            <div class="forum-topic-toolbar__item u-relative">
-                @include('forum.topics._cover_editor')
-            </div>
+            @if (priv_check('ForumTopicCoverStore', $forum)->can())
+                <div class="forum-topic-toolbar__item u-relative">
+                    @include('forum.topics._cover_editor')
+                </div>
+            @endif
         </div>
 
         {{-- inlined style to work with jquery's slide animation --}}

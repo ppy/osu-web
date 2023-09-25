@@ -171,6 +171,7 @@ return [
 
     'score' => [
         'pin' => [
+            'disabled_type' => "Nie możesz przypiąć tego typu wyników",
             'not_owner' => 'Nie możesz przypiąć czyjegoś wyniku.',
             'too_many' => 'Przypięto zbyt wiele wyników.',
         ],
@@ -183,6 +184,9 @@ return [
                 'not_owner' => 'Możesz edytować tylko własną stronę użytkownika.',
                 'require_supporter_tag' => 'Aby to zrobić, wymagany jest status donatora osu!.',
             ],
+        ],
+        'update_email' => [
+            'locked' => '',
         ],
     ],
 ];

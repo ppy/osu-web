@@ -171,6 +171,7 @@ return [
 
     'score' => [
         'pin' => [
+            'disabled_type' => "",
             'not_owner' => '',
             'too_many' => '',
         ],
@@ -183,6 +184,9 @@ return [
                 'not_owner' => 'ניתן לערוך את דף המשתמש שלכם בלבד.',
                 'require_supporter_tag' => 'התג osu!supporter נדרש.',
             ],
+        ],
+        'update_email' => [
+            'locked' => '',
         ],
     ],
 ];

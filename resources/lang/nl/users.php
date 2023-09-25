@@ -49,6 +49,7 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => 'Geef supporter tag cadeau',
         'loading' => 'Bezig met laden...',
         'send_message' => 'Bericht sturen',
     ],
@@ -386,7 +387,7 @@ return [
                     'date' => 'datum',
                     'action' => 'actie',
                     'length' => 'lengte',
-                    'length_permanent' => 'Permanent',
+                    'length_indefinite' => '',
                     'description' => 'omschrijving',
                     'actor' => 'door :username',
 

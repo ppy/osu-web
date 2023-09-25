@@ -1,25 +1,20 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { CommentableMetaJson } from 'interfaces/comment-json';
-import { route } from 'laroute';
-import { last } from 'lodash';
-import { action, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
-import { Comment } from 'models/comment';
-import core from 'osu-core-singleton';
+import Comment from 'models/comment';
 import * as React from 'react';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { trans } from 'utils/lang';
+import CommentsController from './comments-controller';
 import ShowMoreLink from './show-more-link';
 import { Spinner } from './spinner';
 
-const uiState = core.dataStore.uiState;
 const bn = 'comment-show-more';
 
 interface Props {
-  commentableMeta?: CommentableMetaJson;
   comments: Comment[];
+  controller: CommentsController;
   label?: string;
   modifiers?: Modifiers;
   parent?: Comment;
@@ -29,20 +24,13 @@ interface Props {
 
 @observer
 export default class CommentShowMore extends React.Component<Props> {
-  @observable private loading = false;
-  private xhr?: JQuery.jqXHR<void>;
+  private get loading() {
+    return this.props.controller.isLoading(this.props.parent);
+  }
 
   private get hasMoreComments() {
-    return uiState.comments.hasMoreComments[this.props.parent?.id ?? 'null'] ?? true;
-  }
-
-  constructor(props: Props) {
-    super(props);
-    makeObservable(this);
-  }
-
-  componentWillUnmount() {
-    this.xhr?.abort();
+    return this.props.parent == null
+      || (this.props.controller.state.hasMore[this.props.parent.id] ?? true);
   }
 
   render() {
@@ -75,41 +63,7 @@ export default class CommentShowMore extends React.Component<Props> {
       );
   }
 
-  @action
   private readonly load = () => {
-    if (this.loading) return;
-
-    this.loading = true;
-
-    const params: Partial<Record<string, unknown>> = { sort: uiState.comments.currentSort };
-    if (this.props.parent == null) {
-      params.parent_id = 0;
-
-      if (this.props.commentableMeta != null && ('id' in this.props.commentableMeta)) {
-        params.commentable_id = this.props.commentableMeta.id;
-        params.commentable_type = this.props.commentableMeta.type;
-      }
-    } else {
-      params.commentable_id = this.props.parent.commentableId;
-      params.commentable_type = this.props.parent.commentableType;
-      params.parent_id = this.props.parent.id;
-    }
-
-    const lastComment = last(this.props.comments);
-    if (lastComment != null) {
-      // TODO: convert to plain after_id params of some sort instead of cursor
-      params.cursor = {
-        created_at: lastComment.createdAt,
-        id: lastComment.id,
-        votes_count: lastComment.votesCount,
-      };
-    }
-
-    this.xhr = $.ajax(route('comments.index'), { data: params, dataType: 'json' });
-    this.xhr.done((data) => {
-      $.publish('comments:added', data);
-    }).always(action(() => {
-      this.loading = false;
-    }));
+    this.props.controller.apiLoadMore(this.props.parent);
   };
 }

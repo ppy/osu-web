@@ -257,8 +257,6 @@ class SanityTest extends DuskTestCase
         self::$scaffolding['score'] = Score\Best\Osu::factory()->withReplay()->create();
 
         self::$scaffolding['room'] = Room::factory()->create(['category' => 'spotlight']);
-
-        app('groups')->resetMemoized();
     }
 
     private static function filterLog(array $log)
@@ -360,8 +358,6 @@ class SanityTest extends DuskTestCase
 
         // TODO: add additional logic for certain routes to re-run tests per game mode, per user score type, etc
         $this->browse(function (Browser $browser) use ($route, $type, $url) {
-            static::resetSession($browser);
-
             try {
                 if ($type === 'user') {
                     $browser->loginAs(self::$scaffolding['user']);
@@ -431,6 +427,14 @@ class SanityTest extends DuskTestCase
             ],
             'changelog.show' => [
                 'changelog' => self::$scaffolding['build']->version,
+            ],
+            'scores.download-legacy' => [
+                'rulesetOrScore' => static::$scaffolding['score']->getMode(),
+                'score' => static::$scaffolding['score']->getKey(),
+            ],
+            'scores.show' => [
+                'rulesetOrScore' => static::$scaffolding['score']->getMode(),
+                'score' => static::$scaffolding['score']->getKey(),
             ],
             'legal' => [
                 'locale' => 'en',

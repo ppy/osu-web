@@ -25,4 +25,8 @@ return [
         'qualified' => 'nitelikli',
         'ranked' => 'dereceli',
     ],
+
+    'value' => [
+        'rank' => '',
+    ],
 ];

@@ -18,6 +18,16 @@ return [
             'new' => 'nova adresa e-pošte',
             'new_confirmation' => 'potvrda adrese e-pošte',
             'title' => 'E-pošta',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
+        ],
+
+        'legacy_api' => [
+            'api' => '',
+            'irc' => '',
+            'title' => '',
         ],
 
         'password' => [
@@ -28,7 +38,13 @@ return [
         ],
 
         'profile' => [
+            'country' => '',
             'title' => 'Profil',
+
+            'country_change' => [
+                '_' => "",
+                'update_link' => '',
+            ],
 
             'user' => [
                 'user_discord' => '',

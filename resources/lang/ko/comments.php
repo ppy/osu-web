@@ -11,6 +11,7 @@ return [
     'edited' => ':user에 의해 :timeago에 수정됨',
     'pinned' => '고정됨',
     'empty' => '아직 댓글이 없습니다.',
+    'empty_other' => '다른 댓글이 없습니다.',
     'load_replies' => '답글 불러오기',
     'replies_count' => '답글 :count_delimited개',
     'title' => '댓글',
@@ -24,9 +25,9 @@ return [
 
     'editor' => [
         'textarea_hint' => [
-            '_' => 'enter를 눌러 :action. shift+enter를 눌러 줄 바꿈.',
+            '_' => 'Enter를 눌러 :action, Shift+Enter로 줄을 바꿀 수 있습니다.',
             'edit' => '저장',
-            'new' => '게시',
+            'new' => '게시하기',
             'reply' => '답변하기',
         ],
     ],

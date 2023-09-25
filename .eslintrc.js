@@ -3,7 +3,7 @@
 
 module.exports = {
   env: {
-    es2017: true,
+    es2020: true,
     node: true,
   },
   extends: [
@@ -106,6 +106,7 @@ module.exports = {
         '@typescript-eslint/object-curly-spacing': ['error', 'always'],
         '@typescript-eslint/prefer-for-of': 'error',
         '@typescript-eslint/prefer-function-type': 'error',
+        '@typescript-eslint/prefer-readonly': 'error',
         '@typescript-eslint/quotes': [
           'error',
           'single',
@@ -198,6 +199,7 @@ module.exports = {
   rules: {
     'arrow-body-style': 'error',
     'arrow-parens': 'error',
+    'arrow-spacing': 'error',
     'brace-style': 'error',
     'comma-dangle': ['error', 'always-multiline'],
     complexity: 'off',
@@ -228,7 +230,7 @@ module.exports = {
     'new-parens': 'error',
     'no-bitwise': 'error',
     'no-caller': 'error',
-    'no-console': 'warn',
+    'no-console': ['error', { allow: ['error', 'warn'] }],
     'no-empty-function': 'error',
     'no-eval': 'error',
     'no-invalid-this': 'error',

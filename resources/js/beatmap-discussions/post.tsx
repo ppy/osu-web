@@ -9,22 +9,23 @@ import BigButton from 'components/big-button';
 import ClickToCopy from 'components/click-to-copy';
 import { ReportReportable } from 'components/report-reportable';
 import StringWithComponent from 'components/string-with-component';
+import TextareaAutosize from 'components/textarea-autosize';
 import TimeWithTooltip from 'components/time-with-tooltip';
 import UserLink from 'components/user-link';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import { BeatmapsetDiscussionMessagePostJson } from 'interfaces/beatmapset-discussion-post-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
+import BeatmapsetJson from 'interfaces/beatmapset-json';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { isEqual } from 'lodash';
 import { action, autorun, computed, makeObservable, observable, runInAction } from 'mobx';
 import { disposeOnUnmount, observer } from 'mobx-react';
-import { deletedUser } from 'models/user';
+import { deletedUser, deletedUserJson } from 'models/user';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import TextareaAutosize from 'react-autosize-textarea';
 import { onError } from 'utils/ajax';
 import { badgeGroup, canModeratePosts, makeUrl, validMessageLength } from 'utils/beatmapset-discussion-helper';
 import { downloadLimited } from 'utils/beatmapset-helper';
@@ -39,7 +40,7 @@ const bn = 'beatmap-discussion-post';
 
 interface Props {
   beatmap: BeatmapExtendedJson | null;
-  beatmapset: BeatmapsetExtendedJson;
+  beatmapset: BeatmapsetJson | BeatmapsetExtendedJson;
   discussion: BeatmapsetDiscussionJson;
   post: BeatmapsetDiscussionMessagePostJson;
   read: boolean;
@@ -64,6 +65,11 @@ export default class Post extends React.Component<Props> {
 
   @computed
   private get canEdit() {
+    // no information available (non-discussion pages), return false.
+    if (!('discussion_locked' in this.props.beatmapset)) {
+      return false;
+    }
+
     return this.isAdmin
       || (!downloadLimited(this.props.beatmapset)
         && this.isOwn
@@ -241,7 +247,7 @@ export default class Post extends React.Component<Props> {
       return null;
     }
 
-    const lastEditor = this.props.users[this.props.post.last_editor_id] ?? deletedUser.toJson();
+    const lastEditor = this.props.users[this.props.post.last_editor_id] ?? deletedUserJson;
 
     return (
       <span className={`${bn}__info`}>
@@ -301,9 +307,9 @@ export default class Post extends React.Component<Props> {
         ) : (
           <>
             <TextareaAutosize
-              ref={this.textareaRef}
               className={`${bn}__message ${bn}__message--editor`}
               disabled={this.isPosting}
+              innerRef={this.textareaRef}
               onChange={this.handleTextareaChange}
               onKeyDown={this.handleTextareaKeyDown}
               style={{ minHeight: this.textareaMinHeight }}

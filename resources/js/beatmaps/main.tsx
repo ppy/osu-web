@@ -3,7 +3,7 @@
 
 import AvailableFilters from 'beatmaps/available-filters';
 import { SearchContent } from 'beatmaps/search-content';
-import { BackToTop } from 'components/back-to-top';
+import BackToTop from 'components/back-to-top';
 import HeaderV4 from 'components/header-v4';
 import { isEqual } from 'lodash';
 import { reaction } from 'mobx';
@@ -58,7 +58,7 @@ export class Main extends React.Component<Props> {
     );
   }
 
-  private scrollPositionHandler = (value: SearchStatus, oldValue: SearchStatus) => {
+  private readonly scrollPositionHandler = (value: SearchStatus, oldValue: SearchStatus) => {
     if (value.restore) return;
     if (isEqual(oldValue, value)) return;
 
@@ -76,7 +76,7 @@ export class Main extends React.Component<Props> {
     }
   };
 
-  private searchStatusErrorHandler = (value: SearchStatus) => {
+  private readonly searchStatusErrorHandler = (value: SearchStatus) => {
     if (value.error != null) {
       onError(value.error);
     }

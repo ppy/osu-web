@@ -78,6 +78,18 @@ return [
             'suggestion' => 'Predlog',
         ],
 
+        'message_type_title' => [
+            'disqualify' => '',
+            'hype' => '',
+            'mapper_note' => '',
+            'nomination_reset' => '',
+            'praise' => '',
+            'problem' => '',
+            'problem_warning' => '',
+            'review' => '',
+            'suggestion' => '',
+        ],
+
         'mode' => [
             'events' => 'Zgodovina',
             'general' => 'Splošno :scope',
@@ -175,6 +187,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => 'To beatmapo si že nominiral.',
+        'cannot_nominate' => 'Ni možno nominirati to beamapo v trenutnem igralnem načinu.',
         'delete' => 'Odstrani',
         'delete_own_confirm' => 'Ali si prepričan? Beatmapa bo odstranjena in nato boš preusmerjen na svoj profil.',
         'delete_other_confirm' => 'Ali si prepričan? Beatmapa bo odstranjena in nato boš preusmerjen na igralčev profil.',

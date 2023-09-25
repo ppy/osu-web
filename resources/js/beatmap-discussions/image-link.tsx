@@ -3,11 +3,11 @@
 
 import { Spinner } from 'components/spinner';
 import { route } from 'laroute';
+import { LinkContext } from 'markdown/renderers';
 import { action, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import React from 'react';
 import { ReactMarkdownProps } from 'react-markdown/lib/complex-types';
-import { LinkContext } from './renderers';
 
 type Props = ReactMarkdownProps & JSX.IntrinsicElements['img'];
 
@@ -52,7 +52,7 @@ export default class ImageLink extends React.Component<Props> {
   }
 
   @action
-  private handleOnLoad = () => {
+  private readonly handleOnLoad = () => {
     this.loaded = true;
   };
 

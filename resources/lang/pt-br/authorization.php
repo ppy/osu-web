@@ -171,6 +171,7 @@ return [
 
     'score' => [
         'pin' => [
+            'disabled_type' => "Não é possível fixar este tipo de pontuação",
             'not_owner' => 'Somente o proprietário da pontuação pode fixar sua pontuação.',
             'too_many' => 'Muitas pontuações fixadas.',
         ],
@@ -183,6 +184,9 @@ return [
                 'not_owner' => 'Só é possível editar sua própria página de usuário.',
                 'require_supporter_tag' => 'É necessário possuir uma osu!supporter tag.',
             ],
+        ],
+        'update_email' => [
+            'locked' => '',
         ],
     ],
 ];

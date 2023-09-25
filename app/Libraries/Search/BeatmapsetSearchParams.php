@@ -21,6 +21,7 @@ class BeatmapsetSearchParams extends SearchParams
     public ?array $created = null;
     public ?string $creator = null;
     public ?array $cs = null;
+    public ?string $difficulty = null;
     public ?array $difficultyRating = null;
     public ?array $drain = null;
     public array $extra = [];

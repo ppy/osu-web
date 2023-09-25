@@ -18,6 +18,16 @@ return [
             'new' => 'nuova email',
             'new_confirmation' => 'conferma email',
             'title' => 'Email',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
+        ],
+
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'API Legacy',
         ],
 
         'password' => [
@@ -28,7 +38,13 @@ return [
         ],
 
         'profile' => [
+            'country' => 'paese',
             'title' => 'Profilo',
+
+            'country_change' => [
+                '_' => "Sembra che il paese del tuo account non corrisponda al tuo paese di residenza. :update_link.",
+                'update_link' => 'Aggiorna a :country',
+            ],
 
             'user' => [
                 'user_discord' => '',

@@ -48,7 +48,7 @@ return [
         'confirm_restore' => 'Vuoi veramente ripristinare il post?',
         'edited' => 'Ultima modifica di :user :when, modificato :count_delimited volta in totale.|Ultima modifica di :user :when, modificato :count_delimited volte in totale.',
         'posted_at' => 'postato :when',
-        'posted_by_in' => '',
+        'posted_by_in' => 'inviato da :username in :forum',
 
         'actions' => [
             'destroy' => 'Elimina post',
@@ -109,8 +109,8 @@ return [
                 'default' => 'Questa discussione è inattiva da un bel po\' di tempo. Posta solo se hai una motivazione in particolare.',
 
                 'new_topic' => [
-                    '_' => "Questa discussione è inattiva da un bel po' di tempo. Se non hai un motivo in particolare per postare qui, per favore :create.",
-                    'create' => 'crea una nuova discussione',
+                    '_' => "Questa discussione è inattiva da un bel po' di tempo. Se non hai un motivo particolare per postare qui, puoi :create.",
+                    'create' => 'creare un nuovo topic',
                 ],
             ],
 

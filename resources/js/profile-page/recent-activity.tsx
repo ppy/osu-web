@@ -66,7 +66,7 @@ export default class RecentActivity extends React.Component<ExtraPageProps> {
     return (
       <ul className='profile-extra-entries'>
         {this.data.items.map(this.renderEntry)}
-        <li className='profile-extra-entries__item'>
+        <li className='profile-extra-entries__item u-contents'>
           <ShowMoreLink
             {...this.data.pagination}
             callback={this.onShowMore}
@@ -77,7 +77,7 @@ export default class RecentActivity extends React.Component<ExtraPageProps> {
     );
   }
 
-  private renderEntry = (event: EventJson) => {
+  private readonly renderEntry = (event: EventJson) => {
     const { badge, iconModifiers, mappings } = parseEvent(event, 'recent-activity');
     if (mappings == null) return null;
 

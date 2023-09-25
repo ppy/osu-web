@@ -4,8 +4,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'page_description' => 'Artistes affiliés à osu!',
-    'title' => 'Artistes affiliés',
+    'page_description' => 'Featured Artists sur osu!',
+    'title' => 'Featured Artists',
 
     'admin' => [
         'hidden' => 'L\'ARTISTE EST ACTUELLEMENT MASQUÉ',
@@ -18,7 +18,7 @@ return [
     ],
 
     'index' => [
-        'description' => 'Les featured artists sont des artistes avec qui nous collaborons pour apporter des musiques nouvelles et originales à osu!. Ces artistes ainsi qu\'une sélection de leurs musiques ont été sélectionnés par l\'équipe d\'osu! pour leur qualité et leur potentiel pour le mapping. Quelques-uns de ces artistes ont également créé des musiques exclusivement pour osu!.<br><br>Toutes les musiques de cette section sont fournies avec des fichiers .osz pré-timés et peuvent officiellement être utilisées sur osu! ainsi que tout contenu relatif à osu!.',
+        'description' => 'Les Featured Artists sont des artistes avec qui nous collaborons pour apporter des musiques nouvelles et originales à osu!. Ces artistes ainsi qu\'une sélection de leurs musiques ont été sélectionnés par l\'équipe d\'osu! pour leur qualité et leur potentiel pour le mapping. Quelques-uns de ces artistes ont également créé des musiques exclusivement pour osu!.<br><br>Toutes les musiques de cette section sont fournies avec des fichiers .osz pré-timés et peuvent officiellement être utilisées sur osu! ainsi que tout contenu relatif à osu!.',
     ],
 
     'links' => [

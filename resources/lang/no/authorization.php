@@ -53,7 +53,7 @@ return [
     ],
 
     'beatmapset' => [
-        'discussion_locked' => '',
+        'discussion_locked' => 'Diskusjon er låst for dette beatmappet.',
 
         'metadata' => [
             'nominated' => 'Du kan ikke endre metadataen av et nominert kart. Kontakt et BN eller NAT medlem hvis du tror det er angitt feil.',
@@ -171,6 +171,7 @@ return [
 
     'score' => [
         'pin' => [
+            'disabled_type' => "Kan ikke feste denne typen score",
             'not_owner' => 'Kun resultateieren kan festeresultat.',
             'too_many' => 'Festet for mange resultater.',
         ],
@@ -183,6 +184,9 @@ return [
                 'not_owner' => 'Kan kun redigere egen brukerside.',
                 'require_supporter_tag' => 'osu!supporter tag kreves.',
             ],
+        ],
+        'update_email' => [
+            'locked' => '',
         ],
     ],
 ];

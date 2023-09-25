@@ -14,7 +14,7 @@ return [
         ],
 
         'table' => [
-            'empty' => 'No estàs veient cap discussió d\'un beatmap.',
+            'empty' => 'No estàs veient cap discussió de beatmap.',
             'last_update' => 'Última actualització',
             'open_issues' => 'Incidències obertes',
             'state' => 'Estat',

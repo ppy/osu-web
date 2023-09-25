@@ -3,12 +3,12 @@
 
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import { classWithModifiers } from 'utils/css';
+import { classWithModifiers, Modifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 
 interface Props {
   currentValue: string;
-  modifiers?: string[];
+  modifiers?: Modifiers;
   onChange(event: React.MouseEvent<HTMLButtonElement>): void;
   showTitle?: boolean;
   title?: string;

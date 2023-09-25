@@ -3,9 +3,10 @@
 
 import { route } from 'laroute'
 import { trans } from 'utils/lang'
+import { toggleCart } from 'utils/store-cart'
 
 preventUsernameSubmission = ->
-  StoreCart.setEnabled(false)
+  toggleCart(false)
   $('#username-check-price').text ''
 
 checkUsernameValidity = ->
@@ -17,10 +18,9 @@ checkUsernameValidity = ->
     return unless data.username == $('.js-username-change-input').val()
 
     if data.available
-      $('.js-store-add-to-cart').attr 'disabled', false
+      toggleCart(true)
       $('#username-check-price').text data.costString
       $('#username-form-price').val data.cost
-      $('#product-form').data('disabled', false)
     else
       preventUsernameSubmission()
 

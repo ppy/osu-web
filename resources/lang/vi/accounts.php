@@ -18,6 +18,16 @@ return [
             'new' => 'email mới',
             'new_confirmation' => 'xác nhận email',
             'title' => 'Email',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
+        ],
+
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'API cũ',
         ],
 
         'password' => [
@@ -28,7 +38,13 @@ return [
         ],
 
         'profile' => [
+            'country' => 'quốc gia',
             'title' => 'Trang cá nhân',
+
+            'country_change' => [
+                '_' => "Có vẻ như quốc gia cho tài khoản của bạn chưa khớp với quốc gia bạn đang ở. :update_link.",
+                'update_link' => 'Cập nhật quốc gia thành :country',
+            ],
 
             'user' => [
                 'user_discord' => '',

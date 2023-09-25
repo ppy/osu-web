@@ -171,6 +171,7 @@ return [
 
     'score' => [
         'pin' => [
+            'disabled_type' => "",
             'not_owner' => 'يمكن لمالك النتيجة فقط تثبيتها.',
             'too_many' => 'قمت بتثبيت نتائج كثيرة.',
         ],
@@ -183,6 +184,9 @@ return [
                 'not_owner' => 'يمكن فقط تعديل الصفحة الخاصة بك.',
                 'require_supporter_tag' => 'تحتاج الى شارة osu!supporter.',
             ],
+        ],
+        'update_email' => [
+            'locked' => '',
         ],
     ],
 ];

@@ -18,6 +18,16 @@ return [
             'new' => 'ایمیل جدید',
             'new_confirmation' => 'تایید ایمیل',
             'title' => 'ایمیل',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
+        ],
+
+        'legacy_api' => [
+            'api' => '',
+            'irc' => '',
+            'title' => '',
         ],
 
         'password' => [
@@ -28,7 +38,13 @@ return [
         ],
 
         'profile' => [
+            'country' => '',
             'title' => 'نمایه',
+
+            'country_change' => [
+                '_' => "",
+                'update_link' => '',
+            ],
 
             'user' => [
                 'user_discord' => '',

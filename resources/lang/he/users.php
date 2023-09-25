@@ -49,6 +49,7 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => '',
         'loading' => 'טוען...',
         'send_message' => 'שלח הודעה',
     ],
@@ -388,7 +389,7 @@ return [
                     'date' => 'תאריך',
                     'action' => 'פעולה',
                     'length' => 'אורך',
-                    'length_permanent' => 'לצמיתות',
+                    'length_indefinite' => '',
                     'description' => 'תיאור',
                     'actor' => 'על ידי :username',
 

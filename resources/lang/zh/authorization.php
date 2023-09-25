@@ -171,6 +171,7 @@ return [
 
     'score' => [
         'pin' => [
+            'disabled_type' => "无法置顶这类分数",
             'not_owner' => '只有获得此成绩的玩家才可以置顶它。',
             'too_many' => '已置顶的成绩过多',
         ],
@@ -183,6 +184,9 @@ return [
                 'not_owner' => '只能编辑自己的个人页面。',
                 'require_supporter_tag' => '需要成为支持者。',
             ],
+        ],
+        'update_email' => [
+            'locked' => '',
         ],
     ],
 ];

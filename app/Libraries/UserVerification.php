@@ -96,7 +96,7 @@ class UserVerification
     {
         $user = $this->user;
 
-        if (!present($user->user_email)) {
+        if (!is_valid_email_format($user->user_email)) {
             return;
         }
 

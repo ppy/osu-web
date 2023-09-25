@@ -4,36 +4,36 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'play_more' => '',
-    'require_login' => '',
-    'require_verification' => '',
-    'restricted' => "",
-    'silenced' => "",
-    'unauthorized' => '',
+    'play_more' => 'Mengapa kamu tidak cuba untuk bermain osu! terlebih dahulu?',
+    'require_login' => 'Sila log masuk untuk meneruskan. ',
+    'require_verification' => 'Sila sahkan untuk meneruskan. ',
+    'restricted' => "Tidak boleh dilakukan ketika dihadkan.",
+    'silenced' => "Tidak boleh dilakukan ketika dibisukan. ",
+    'unauthorized' => 'Akses ditolak.',
 
     'beatmap_discussion' => [
         'destroy' => [
             'is_hype' => '',
-            'has_reply' => '',
+            'has_reply' => 'Tidak dapat memadam perbincangan yang mempunyai balasan',
         ],
         'nominate' => [
-            'exhausted' => '',
-            'incorrect_state' => '',
-            'owner' => "",
-            'set_metadata' => '',
+            'exhausted' => 'Anda telah mencapai had nominasi Anda untuk hari ini, sila coba lagi esok.',
+            'incorrect_state' => 'Terjadi ralat ketika melakukan tindakan itu, cuba muat semula.',
+            'owner' => "Tidak dapat menominasikan beatmap sendiri.",
+            'set_metadata' => 'Anda mesti menentukan aliran dan bahasa terlebih dahulu sebelum menominasikan beatmap.',
         ],
         'resolve' => [
-            'not_owner' => '',
+            'not_owner' => 'Hanya pemilik topik dan beatmap yang dapat menyelesaikan perbincangan.',
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => '',
+            'mapper_note_wrong_user' => 'Hanya pencipta beatmap atau anggota BN/NAT yang dapat menyiarkan catatan pada laman diskusi beatmap.',
         ],
 
         'vote' => [
-            'bot' => "",
-            'limit_exceeded' => '',
-            'owner' => "",
+            'bot' => "Tidak boleh mengundi pada perbincangan yang dibuka oleh bot",
+            'limit_exceeded' => 'Tunggu seketika sebelum memberikan lebih banyak undian ',
+            'owner' => "Tidak dapat mengundi perbincangan sendiri.",
             'wrong_beatmapset_state' => '',
         ],
     ],
@@ -171,6 +171,7 @@ return [
 
     'score' => [
         'pin' => [
+            'disabled_type' => "",
             'not_owner' => '',
             'too_many' => '',
         ],
@@ -183,6 +184,9 @@ return [
                 'not_owner' => '',
                 'require_supporter_tag' => '',
             ],
+        ],
+        'update_email' => [
+            'locked' => '',
         ],
     ],
 ];

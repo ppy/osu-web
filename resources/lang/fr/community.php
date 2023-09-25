@@ -140,7 +140,7 @@ return [
         'supporter_status' => [
             'contribution' => 'Merci beaucoup pour votre soutien ! Vous avez contribué avec un total de :dollars avec :tags achats de tags !',
             'gifted' => "Vous avez offert :giftedTags tags (pour un total de :giftedDollars offerts), quelle générosité !",
-            'not_yet' => "Vous n'avez pas de tag supporter :(",
+            'not_yet' => "Vous n'avez pas de tag osu!supporter :(",
             'valid_until' => 'Votre badge osu!supporter actuel est valable jusqu\'au :date !',
             'was_valid_until' => 'Votre badge osu!supporter était valable jusqu\'au :date.',
         ],

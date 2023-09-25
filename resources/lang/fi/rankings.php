@@ -17,20 +17,27 @@ return [
         ],
     ],
 
+    'kudosu' => [
+        'total' => 'Ansaittu',
+        'available' => 'Saatavilla',
+        'used' => 'Käytetty',
+    ],
+
     'type' => [
-        'charts' => 'Valokeilassa',
+        'charts' => 'kohdevalot',
         'country' => 'Maa',
+        'kudosu' => 'kudosu',
         'multiplayer' => 'moninpeli',
         'performance' => 'Suorituskyky',
         'score' => 'Piste',
-        'seasons' => '',
+        'seasons' => 'kaudet',
     ],
 
     'seasons' => [
-        'empty' => '',
-        'ongoing' => '',
-        'room_count' => '',
-        'url' => '',
+        'empty' => 'Tällä kaudella ei ole vielä huoneita.',
+        'ongoing' => 'Tämä kausi on edelleen käynnissä (lisää soittolistoja tullaan lisäämään).',
+        'room_count' => 'Soittolistojen määrä',
+        'url' => 'Lisätietoja tästä kaudesta.',
     ],
 
     'spotlight' => [

@@ -30,6 +30,7 @@ use App\Models\Solo;
 use App\Models\Traits\ReportableInterface;
 use App\Models\User;
 use App\Models\UserContestEntry;
+use App\Models\UserGroupEvent;
 use Carbon\Carbon;
 use Ds;
 
@@ -46,6 +47,7 @@ class OsuAuthorize
             'IsOwnClient',
             'IsNotOAuth',
             'IsSpecialScope',
+            'UserUpdateEmail',
         ]);
 
         return $set->contains($ability);
@@ -1481,20 +1483,22 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
-        $plays = $user->playCount();
-        $posts = $user->user_posts;
-        $forInitialHelpForum = in_array($forum->forum_id, config('osu.forum.initial_help_forum_ids'), true);
+        if (!$user->isBot()) {
+            $plays = $user->playCount();
+            $posts = $user->user_posts;
+            $forInitialHelpForum = in_array($forum->forum_id, config('osu.forum.initial_help_forum_ids'), true);
 
-        if ($forInitialHelpForum) {
-            if ($plays < 10 && $posts > 10) {
-                return $prefix.'too_many_help_posts';
-            }
-        } else {
-            if ($plays < config('osu.forum.minimum_plays') && $plays < $posts + 1) {
-                return $prefix.'play_more';
-            }
+            if ($forInitialHelpForum) {
+                if ($plays < 10 && $posts > 10) {
+                    return $prefix.'too_many_help_posts';
+                }
+            } else {
+                if ($plays < config('osu.forum.minimum_plays') && $plays < $posts + 1) {
+                    return $prefix.'play_more';
+                }
 
-            $this->ensureHasPlayed($user);
+                $this->ensureHasPlayed($user);
+            }
         }
 
         return 'ok';
@@ -1899,6 +1903,10 @@ class OsuAuthorize
             return $prefix.'not_owner';
         }
 
+        if ($score instanceof Solo\Score && config('osu.user.hide_pinned_solo_scores')) {
+            return $prefix.'disabled_type';
+        }
+
         $pinned = $user->scorePins()->forRuleset($score->getMode())->withVisibleScore()->count();
 
         if ($pinned >= $user->maxScorePins()) {
@@ -1906,6 +1914,20 @@ class OsuAuthorize
         }
 
         return 'ok';
+    }
+
+    public function checkUserGroupEventShowActor(?User $user, UserGroupEvent $event): string
+    {
+        if ($user?->isGroup($event->group)) {
+            return 'ok';
+        }
+
+        return 'unauthorized';
+    }
+
+    public function checkUserGroupEventShowAll(?User $user): string
+    {
+        return 'unauthorized';
     }
 
     /**
@@ -1993,6 +2015,15 @@ class OsuAuthorize
         }
 
         return 'unauthorized';
+    }
+
+    public function checkUserUpdateEmail(?User $user): ?string
+    {
+        $this->ensureLoggedIn($user);
+
+        return $user->lock_email_changes
+            ? 'user.update_email.locked'
+            : 'ok';
     }
 
     /**

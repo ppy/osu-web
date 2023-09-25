@@ -171,6 +171,7 @@ return [
 
     'score' => [
         'pin' => [
+            'disabled_type' => "",
             'not_owner' => 'Tanging ang may-ari ng iskor ang maaaring mag-pin ng iskor.',
             'too_many' => 'Nag-pin ng masyadong maraming mga iskor.',
         ],
@@ -183,6 +184,9 @@ return [
                 'not_owner' => 'Maaari lamang i-edit ang sariling pahina ng user.',
                 'require_supporter_tag' => 'osu!supporter tag ay kinakailangan.',
             ],
+        ],
+        'update_email' => [
+            'locked' => '',
         ],
     ],
 ];
