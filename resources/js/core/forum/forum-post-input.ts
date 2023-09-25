@@ -40,21 +40,21 @@ export default class ForumPostInput {
     return this.prefixKey(input.dataset.forumPostInputId);
   }
 
-  private handleClear = (e: unknown, element: unknown) => {
+  private readonly handleClear = (e: unknown, element: unknown) => {
     this.clearInput(getInputFromElement(element));
   };
 
-  private handlePageLoad = () => {
+  private readonly handlePageLoad = () => {
     for (const element of document.querySelectorAll('.js-forum-post-input')) {
       this.handleRestore(null, element);
     }
   };
 
-  private handlePostSaved = (e: JQuery.TriggeredEvent) => {
+  private readonly handlePostSaved = (e: JQuery.TriggeredEvent) => {
     this.clearInput(getInputFromElement(e.target));
   };
 
-  private handleRestore = (e: unknown, element: unknown) => {
+  private readonly handleRestore = (e: unknown, element: unknown) => {
     const input = getInputFromElement(element);
     if (input == null) return;
 
@@ -80,7 +80,7 @@ export default class ForumPostInput {
     }
   };
 
-  private onInput = (e: JQuery.ChangeEvent) => {
+  private readonly onInput = (e: JQuery.ChangeEvent) => {
     const input: unknown = e.currentTarget;
     if (!(input instanceof HTMLTextAreaElement)) return;
 

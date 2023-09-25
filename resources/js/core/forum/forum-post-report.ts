@@ -8,7 +8,7 @@ export default class ForumPostReport {
     $(document).on('click', '.js-forum-post-report', this.onClickReportButton);
   }
 
-  private onClickReportButton = (e: JQuery.ClickEvent<Document>) => {
+  private readonly onClickReportButton = (e: JQuery.ClickEvent<Document>) => {
     if (e.button !== 0) return;
 
     const post = e.currentTarget.closest('.js-forum-post');

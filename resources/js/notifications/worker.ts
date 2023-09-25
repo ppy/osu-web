@@ -37,10 +37,10 @@ const isNotificationEventReadJson = (arg: SocketEventData): arg is NotificationE
 export default class Worker implements DispatchListener {
   @observable waitingVerification = false;
   @observable private firstLoadedAt?: Date;
-  private retryDelay = new RetryDelay();
-  private timeout: Partial<Record<string, number>> = {};
-  private xhr: Partial<Record<string, JQueryXHR>> = {};
-  private xhrLoadingState: Partial<Record<string, boolean>> = {};
+  private readonly retryDelay = new RetryDelay();
+  private readonly timeout: Partial<Record<string, number>> = {};
+  private readonly xhr: Partial<Record<string, JQueryXHR>> = {};
+  private readonly xhrLoadingState: Partial<Record<string, boolean>> = {};
 
   @computed
   get hasData() {
@@ -94,7 +94,7 @@ export default class Worker implements DispatchListener {
     }
   }
 
-  private loadMore = () => {
+  private readonly loadMore = () => {
     if (this.xhrLoadingState.loadMore) {
       return;
     }

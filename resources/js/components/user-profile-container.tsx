@@ -70,7 +70,7 @@ export default class UserProfileContainer extends React.Component<Props> {
   }
 
   @action
-  private handleClick = () => {
+  private readonly handleClick = () => {
     this.forceShow = !this.forceShow;
   };
 }

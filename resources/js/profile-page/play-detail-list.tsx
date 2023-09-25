@@ -149,15 +149,15 @@ export default class PlayDetailList extends React.Component<Props> {
   }
 
   @action
-  private activeKeyDidChange = (key: number | null) => {
+  private readonly activeKeyDidChange = (key: number | null) => {
     this.activeKey = key;
   };
 
-  private onShowMore = () => {
+  private readonly onShowMore = () => {
     this.props.controller.apiShowMore(this.props.section);
   };
 
-  private onUpdatePinOrder = (event: Event, ui: JQueryUI.SortableUIParams) => {
+  private readonly onUpdatePinOrder = (event: Event, ui: JQueryUI.SortableUIParams) => {
     if (this.scores == null) {
       throw new Error('trying to update pin order with missing data');
     }
