@@ -8,6 +8,9 @@ interface CommonProps {
 interface GithubProps {
   github_url: string;
   github_username: string;
+}
+
+interface IdProps {
   id: number;
 }
 
@@ -17,8 +20,11 @@ interface OsuProps {
   user_url: string;
 }
 
-type GithubUserJson = CommonProps & GithubProps & (OsuProps | Record<keyof OsuProps, null>);
-type GithubUserJsonLegacy = CommonProps & Record<keyof GithubProps, null> & OsuProps;
+type Null<T> = Record<keyof T, null>;
+
+type GithubUserJson = CommonProps & GithubProps       & IdProps       & (OsuProps | Null<OsuProps>);
+type Legacy         = CommonProps & Null<GithubProps> & Null<IdProps> & OsuProps;
+type Placeholder    = CommonProps & GithubProps       & Null<IdProps> & Null<OsuProps>;
 
 export default GithubUserJson;
-export type GithubUserJsonForChangelog = GithubUserJson | GithubUserJsonLegacy;
+export type GithubUserJsonForChangelog = GithubUserJson | Legacy | Placeholder;
