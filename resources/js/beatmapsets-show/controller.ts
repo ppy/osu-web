@@ -75,7 +75,7 @@ export default class Controller {
     return keyBy(this.beatmapset.related_users, 'id') as Partial<Record<number, UserJson>>;
   }
 
-  constructor(private container: HTMLElement) {
+  constructor(private readonly container: HTMLElement) {
     let state: State | null = null;
     try {
       state = JSON.parse(this.container.dataset.state ?? 'null') as (State | null);

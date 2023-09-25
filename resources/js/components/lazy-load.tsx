@@ -27,7 +27,7 @@ export default class LazyLoad extends React.Component<React.PropsWithChildren<Pr
   @observable private loaded;
   private readonly observer?: IntersectionObserver;
   private readonly ref = React.createRef<HTMLDivElement>();
-  @observable private skipLazyLoad = this.props.hasData ?? false;
+  @observable private readonly skipLazyLoad = this.props.hasData ?? false;
 
   @computed
   private get ready() {

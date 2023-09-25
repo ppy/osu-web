@@ -22,11 +22,11 @@ export default class UserLoginObserver {
     }
   }
 
-  private handleUserLogin = () => {
+  private readonly handleUserLogin = () => {
     dispatch(new UserLoginAction());
   };
 
-  private handleUserLogout = (event: JQuery.TriggeredEvent<unknown, unknown, HTMLElement, unknown>) => {
+  private readonly handleUserLogout = (event: JQuery.TriggeredEvent<unknown, unknown, HTMLElement, unknown>) => {
     const redirect = !!(event.currentTarget.dataset.redirectHome);
     this.logout(redirect);
   };

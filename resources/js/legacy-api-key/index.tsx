@@ -17,7 +17,7 @@ interface Props {
 
 @observer
 export default class LegacyApiKey extends React.Component<Props> {
-  private controller;
+  private readonly controller;
   private readonly formRef = React.createRef<Form>();
 
   constructor(props: Props) {

@@ -72,7 +72,7 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
     );
   }
 
-  private beatmapListItem = (beatmap: BeatmapExtendedJson) => {
+  private readonly beatmapListItem = (beatmap: BeatmapExtendedJson) => {
     const count = this.props.getCount(beatmap);
 
     return (
@@ -98,13 +98,13 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
     );
   };
 
-  private hideSelector = () => {
+  private readonly hideSelector = () => {
     if (this.state.showingSelector) {
       this.setSelector(false);
     }
   };
 
-  private onDocumentClick = (e: JQuery.ClickEvent) => {
+  private readonly onDocumentClick = (e: JQuery.ClickEvent) => {
     if (e.button !== 0) return;
 
     if ($(e.target).closest('.js-beatmap-list-selector').length) {
@@ -114,7 +114,7 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
     this.hideSelector();
   };
 
-  private selectBeatmap = (e: React.MouseEvent<HTMLElement>) => {
+  private readonly selectBeatmap = (e: React.MouseEvent<HTMLElement>) => {
     if (e.button !== 0) return;
     e.preventDefault();
 
@@ -122,17 +122,17 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
     this.props.onSelectBeatmap(beatmapId);
   };
 
-  private setSelector = (state: boolean) => {
+  private readonly setSelector = (state: boolean) => {
     if (this.state.showingSelector !== state) {
       this.setState({ showingSelector: state }, this.syncBlackout);
     }
   };
 
-  private syncBlackout = () => {
+  private readonly syncBlackout = () => {
     blackoutToggle(this.state.showingSelector, 0.5);
   };
 
-  private toggleSelector = (e: React.MouseEvent<HTMLElement>) => {
+  private readonly toggleSelector = (e: React.MouseEvent<HTMLElement>) => {
     if (e.button !== 0) return;
     e.preventDefault();
 

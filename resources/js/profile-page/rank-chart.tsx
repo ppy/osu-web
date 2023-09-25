@@ -89,7 +89,7 @@ export default class RankChart extends React.Component<Props> {
     return <div ref={this.rankChartArea} />;
   }
 
-  private loadRankChart = () => {
+  private readonly loadRankChart = () => {
     this.rankChart?.loadData(this.data);
   };
 }

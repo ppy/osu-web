@@ -28,7 +28,7 @@ export default class CreateAnnouncementButton extends React.Component {
     );
   }
 
-  private handleClick = () => {
+  private readonly handleClick = () => {
     core.dataStore.chatState.selectChannel('create');
   };
 }

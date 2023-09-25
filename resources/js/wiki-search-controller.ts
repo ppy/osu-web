@@ -16,7 +16,7 @@ export class WikiSearchController {
   @observable shouldShowSuggestions = false;
   @observable suggestions: SuggestionJson[] = [];
 
-  private debouncedFetchSuggestions = debounce(() => this.fetchSuggestions(), 200);
+  private readonly debouncedFetchSuggestions = debounce(() => this.fetchSuggestions(), 200);
   @observable private query = '';
   private xhr?: JQueryXHR;
 
