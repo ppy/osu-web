@@ -27,8 +27,10 @@ function settingsLabel(modJson: NonNullable<typeof modNames[string]>, scoreModJs
     if (setting === 'speed_change') {
       settings.push(`${format(value)}×`);
     } else {
-      const label = modJson.setting_labels[setting] ?? setting;
-      settings.push(`${label}: ${format(value)}`);
+      const label = modJson.setting_labels[setting];
+      if (label != null) {
+        settings.push(`${label}: ${format(value)}`);
+      }
     }
   }
 
