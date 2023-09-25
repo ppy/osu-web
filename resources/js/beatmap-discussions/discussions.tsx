@@ -67,8 +67,8 @@ export class Discussions extends React.Component<Props> {
 
   @computed
   private get currentSort() {
-    if (this.discussionsState.currentMode === 'events') return 'timeline'; // just return any valid mode.
-    return this.sort[this.discussionsState.currentMode];
+    if (this.discussionsState.currentPage === 'events') return 'timeline'; // just return any valid mode.
+    return this.sort[this.discussionsState.currentPage];
   }
 
   private get discussionsState() {
@@ -77,7 +77,7 @@ export class Discussions extends React.Component<Props> {
 
   @computed
   private get isTimelineVisible() {
-    return this.discussionsState.currentMode === 'timeline' && this.currentSort === 'timeline';
+    return this.discussionsState.currentPage === 'timeline' && this.currentSort === 'timeline';
   }
 
   private get store() {
@@ -86,9 +86,9 @@ export class Discussions extends React.Component<Props> {
 
   @computed
   private get sortedDiscussions() {
-    if (this.discussionsState.currentMode === 'events') return [];
+    if (this.discussionsState.currentPage === 'events') return [];
 
-    const discussions = this.discussionsState.discussionsForSelectedUserByMode[this.discussionsState.currentMode];
+    const discussions = this.discussionsState.discussionsForSelectedUserByMode[this.discussionsState.currentPage];
 
     return discussions.slice().sort((a: BeatmapsetDiscussionJson, b: BeatmapsetDiscussionJson) => {
       const mapperNoteCompare =
@@ -140,8 +140,8 @@ export class Discussions extends React.Component<Props> {
 
   @action
   private readonly handleChangeSort = (e: React.SyntheticEvent<HTMLButtonElement>) => {
-    if (this.discussionsState.currentMode === 'events') return;
-    this.sort[this.discussionsState.currentMode] = e.currentTarget.dataset.sortPreset as Sort;
+    if (this.discussionsState.currentPage === 'events') return;
+    this.sort[this.discussionsState.currentPage] = e.currentTarget.dataset.sortPreset as Sort;
   };
 
   @action
@@ -228,7 +228,7 @@ export class Discussions extends React.Component<Props> {
   }
 
   private renderSortOptions() {
-    const presets: Sort[] = this.discussionsState.currentMode === 'timeline'
+    const presets: Sort[] = this.discussionsState.currentPage === 'timeline'
       ? ['timeline', 'updated_at']
       : ['created_at', 'updated_at'];
 

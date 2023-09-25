@@ -241,7 +241,7 @@ export class Nominations extends React.Component<Props> {
   private focusNewDiscussionWithModeSwitch = () => {
     // Switch to generalAll tab just in case currently in event tab
     // and thus new discussion box isn't visible.
-    if (this.props.discussionsState.currentMode === 'events') {
+    if (this.props.discussionsState.currentPage === 'events') {
       this.props.discussionsState.changeDiscussionPage('generalAll');
       this.focusNewDiscussion();
     }

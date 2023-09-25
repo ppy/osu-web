@@ -64,7 +64,7 @@ export class NewDiscussion extends React.Component<Props> {
   }
 
   private get currentMode() {
-    return this.props.discussionsState.currentMode;
+    return this.props.discussionsState.currentPage;
   }
 
   private get canPost() {

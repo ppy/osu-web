@@ -45,7 +45,7 @@ function isFilter(value: unknown): value is Filter {
 export default class DiscussionsState {
   @observable currentBeatmapId: number;
   @observable currentFilter: Filter = 'total'; // TODO: filter should always be total when page is events (also no highlight)
-  @observable currentMode: DiscussionPage = 'general';
+  @observable currentPage: DiscussionPage = 'general';
   @observable discussionCollapsed = new Map<number, boolean>();
   @observable discussionDefaultCollapsed = false;
   @observable highlightedDiscussionId: number | null = null;
@@ -316,7 +316,7 @@ export default class DiscussionsState {
     const query = parseUrl(null, store.beatmapset.discussions);
     if (query != null) {
       // TODO: maybe die instead?
-      this.currentMode = query.mode;
+      this.currentPage = query.mode;
       this.currentFilter = query.filter;
       if (query.beatmapId != null) {
         this.currentBeatmapId = query.beatmapId;
@@ -340,14 +340,14 @@ export default class DiscussionsState {
 
     if (page === 'events') {
       // record page and filter when switching to events
-      this.previousPage = this.currentMode;
+      this.previousPage = this.currentPage;
       this.previousFilter = this.currentFilter;
     } else if (this.currentFilter !== this.previousFilter) {
       // restore previous filter when switching away from events
       this.currentFilter = this.previousFilter;
     }
 
-    this.currentMode = page;
+    this.currentPage = page;
     Turbolinks.controller.advanceHistory(url);
   }
 
@@ -356,8 +356,8 @@ export default class DiscussionsState {
     if (!isFilter(filter)) return;
 
     // restore previous page when selecting a filter.
-    if (this.currentMode === 'events') {
-      this.currentMode = this.previousPage;
+    if (this.currentPage === 'events') {
+      this.currentPage = this.previousPage;
     }
 
     this.currentFilter = filter;

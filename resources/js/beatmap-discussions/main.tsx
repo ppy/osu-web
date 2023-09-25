@@ -105,7 +105,7 @@ export default class Main extends React.Component<Props> {
           discussionsState={this.discussionsState}
           innerRef={this.modeSwitcherRef}
         />
-        {this.discussionsState.currentMode === 'events' ? (
+        {this.discussionsState.currentPage === 'events' ? (
           <Events
             discussions={this.store.discussions}
             events={this.discussionsState.beatmapset.events}
@@ -113,7 +113,7 @@ export default class Main extends React.Component<Props> {
           />
         ) : (
           <ReviewEditorConfigContext.Provider value={this.reviewsConfig}>
-            {this.discussionsState.currentMode === 'reviews' ? (
+            {this.discussionsState.currentPage === 'reviews' ? (
               <NewReview
                 discussionsState={this.discussionsState}
                 innerRef={this.newDiscussionRef}
@@ -191,7 +191,7 @@ export default class Main extends React.Component<Props> {
       this.discussionsState.currentBeatmapId = beatmapId;
     }
 
-    this.discussionsState.currentMode = mode;
+    this.discussionsState.currentPage = mode;
     this.discussionsState.highlightedDiscussionId = discussion.id;
 
     window.setTimeout(() => this.jumpToAfterRender(id, postId), 0);

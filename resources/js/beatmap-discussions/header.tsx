@@ -245,7 +245,7 @@ export class Header extends React.Component<Props> {
     const bn = 'counter-box';
 
     let topClasses = classWithModifiers(bn, 'beatmap-discussions', kebabCase(type));
-    if (this.discussionsState.currentMode !== 'events' && this.discussionsState.currentFilter === type) {
+    if (this.discussionsState.currentPage !== 'events' && this.discussionsState.currentFilter === type) {
       topClasses += ' js-active';
     }
 
@@ -258,7 +258,7 @@ export class Header extends React.Component<Props> {
           beatmapId: this.currentBeatmap.id,
           beatmapsetId: this.beatmapset.id,
           filter: type,
-          mode: this.discussionsState.currentMode,
+          mode: this.discussionsState.currentPage,
         })}
         onClick={this.setFilter}
       >
