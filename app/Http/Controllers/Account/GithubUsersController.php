@@ -85,11 +85,10 @@ class GithubUsersController extends Controller
     public function create()
     {
         abort_unless(GithubUser::canAuthenticate(), 404);
-        abort_if(
-            auth()->user()->githubUser()->exists(),
-            422,
-            'Cannot link more than one GitHub account.',
-        );
+
+        if (auth()->user()->githubUser()->exists()) {
+            return redirect(route('account.edit').'#github');
+        }
 
         $provider = $this->makeGithubOAuthProvider();
         $url = $provider->getAuthorizationUrl([
