@@ -19,6 +19,24 @@ function format(value: unknown) {
   return String(value);
 }
 
+function settingsLabel(modJson: NonNullable<typeof modNames[string]>, scoreModJson: ScoreModJson) {
+  const settings = [];
+  for (const [setting, value] of Object.entries(scoreModJson.settings ?? {})) {
+    // Can use a better way to custom format mod settings but this is the
+    // most common one for now.
+    if (setting === 'speed_change') {
+      settings.push(`${format(value)}×`);
+    } else {
+      const label = modJson.setting_labels[setting] ?? setting;
+      settings.push(`${label}: ${format(value)}`);
+    }
+  }
+
+  return settings.length === 0
+    ? ''
+    : ` (${settings.join(', ')})`;
+}
+
 interface Props {
   mod: ScoreModJson;
 }
@@ -31,28 +49,11 @@ export default function Mod({ mod }: Props) {
     type: 'Fun',
   };
 
-  let title = modJson.name;
-
-  const settings = [];
-  for (const [setting, value] of Object.entries(mod.settings ?? {})) {
-    // Can use a better way to custom format mod settings but this is the
-    // most common one for now.
-    if (setting === 'speed_change') {
-      settings.push(`${format(value)}×`);
-    } else {
-      const label = modJson.setting_labels[setting] ?? setting;
-      settings.push(`${label}: ${format(value)}`);
-    }
-  }
-  if (settings.length > 0) {
-    title += ` (${settings.join(', ')})`;
-  }
-
   return (
     <div
       className={classWithModifiers('mod', modJson.acronym, `type-${modJson.type}`)}
       data-acronym={modJson.acronym}
-      title={title}
+      title={`${modJson.name}${settingsLabel(modJson, mod)}`}
     />
   );
 }
