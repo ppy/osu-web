@@ -30,11 +30,11 @@ export default class SocketWorker {
   userId: number | null = null;
   @observable private active = false;
   private endpoint?: string;
-  private retryDelay = new RetryDelay();
-  private timeout: Partial<Record<string, number>> = {};
+  private readonly retryDelay = new RetryDelay();
+  private readonly timeout: Partial<Record<string, number>> = {};
   private ws: WebSocket | null | undefined;
-  private xhr: Partial<Record<string, JQueryXHR>> = {};
-  private xhrLoadingState: Partial<Record<string, boolean>> = {};
+  private readonly xhr: Partial<Record<string, JQueryXHR>> = {};
+  private readonly xhrLoadingState: Partial<Record<string, boolean>> = {};
 
   @computed
   get isConnected() {
@@ -124,7 +124,7 @@ export default class SocketWorker {
     this.connectionStatus = 'disconnected';
   }
 
-  private handleNewEvent = (event: MessageEvent<string>) => {
+  private readonly handleNewEvent = (event: MessageEvent<string>) => {
     const eventData = this.parseMessageEvent(event);
     if (eventData == null) return;
 
@@ -152,7 +152,7 @@ export default class SocketWorker {
   }
 
   @action
-  private reconnectWebSocket = () => {
+  private readonly reconnectWebSocket = () => {
     this.connectionStatus = 'disconnected';
     if (!this.active) {
       return;
@@ -164,7 +164,7 @@ export default class SocketWorker {
     }), this.retryDelay.get());
   };
 
-  private startWebSocket = () => {
+  private readonly startWebSocket = () => {
     if (this.endpoint != null) {
       return this.connectWebSocket();
     }

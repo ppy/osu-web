@@ -102,7 +102,8 @@ class UserStatisticsTransformer extends TransformerAbstract
         $data = [];
 
         foreach ($variants as $variant) {
-            $entry = UserStatistics\Model::getClass($mode, $variant)::where('user_id', $stats->user_id)->firstOrNew([]);
+            // User should be preloaded in cases where this is used.
+            $entry = $stats->user->statistics($mode, false, $variant) ?? new (UserStatistics\Model::getClass($mode, $variant));
 
             $data[] = [
                 'mode' => $mode,

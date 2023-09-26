@@ -555,6 +555,8 @@ class UsersController extends Controller
             abort(404);
         }
 
+        $user->statistics($currentMode)?->setRelation('user', $user);
+
         return $this->fillDeprecatedDuplicateFields(json_item(
             $user,
             (new UserTransformer())->setMode($currentMode),
@@ -629,6 +631,9 @@ class UsersController extends Controller
             abort(404);
         }
 
+        // preload and set relation for toMetaDescription and transformer sharing data
+        $user->statistics($currentMode)?->setRelation('user', $user);
+
         $userArray = $this->fillDeprecatedDuplicateFields(json_item(
             $user,
             (new UserTransformer())->setMode($currentMode),
@@ -649,7 +654,9 @@ class UsersController extends Controller
                 'user' => $userArray,
             ];
 
-            return ext_view('users.show', compact('initialData', 'user'));
+            $pageDescription = blade_safe($user->toMetaDescription(['ruleset' => $currentMode]));
+
+            return ext_view('users.show', compact('initialData', 'pageDescription', 'mode', 'user'));
         }
     }
 

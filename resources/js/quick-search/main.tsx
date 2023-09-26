@@ -25,7 +25,7 @@ interface Props {
 const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
 
 @observer export default class QuickSearch extends React.Component<Props> {
-  private inputRef = React.createRef<HTMLInputElement>();
+  private readonly inputRef = React.createRef<HTMLInputElement>();
 
   focus = () => {
     if (this.inputRef.current != null) {
@@ -97,7 +97,7 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
     }
   }
 
-  private onInputKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+  private readonly onInputKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     const key = event.key;
     if (key === 'Enter') {
       // this will prevent keyboard arrow navigation
@@ -110,14 +110,14 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
     }
   };
 
-  private onMouseEnter = (event: React.MouseEvent<HTMLDivElement>) => {
+  private readonly onMouseEnter = (event: React.MouseEvent<HTMLDivElement>) => {
     const section = event.currentTarget.dataset.section as Section;
     const index = parseInt(event.currentTarget.dataset.index ?? '0', 10);
 
     this.selectBox(section, index);
   };
 
-  private onMouseLeave = () => {
+  private readonly onMouseLeave = () => {
     this.props.worker.selectNone();
   };
 
@@ -329,7 +329,7 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
     this.props.worker.setSelected(section, index);
   }
 
-  private updateQuery = (event: React.SyntheticEvent<HTMLInputElement>) => {
+  private readonly updateQuery = (event: React.SyntheticEvent<HTMLInputElement>) => {
     this.props.worker.updateQuery(event.currentTarget.value);
   };
 }
