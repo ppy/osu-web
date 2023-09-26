@@ -47,7 +47,7 @@ class BeatmapsetsController extends Controller
     {
         $canAdvancedSearch = priv_check('BeatmapsetAdvancedSearch')->can();
         // only cache if guest user and guest advanced search is disabled
-        $beatmapsetsJsonString = !auth()->check() && !$canAdvancedSearch
+        $beatmapsetsJsonString = !Auth::check() && !$canAdvancedSearch
             ? cache_remember_mutexed(
                 'beatmapsets_guest_str',
                 600,
