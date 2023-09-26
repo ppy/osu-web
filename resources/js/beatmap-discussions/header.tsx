@@ -17,7 +17,7 @@ import BeatmapsetDiscussions from 'interfaces/beatmapset-discussions';
 import GameMode, { gameModes } from 'interfaces/game-mode';
 import { route } from 'laroute';
 import { kebabCase, snakeCase } from 'lodash';
-import { action, computed, makeObservable, observable } from 'mobx';
+import { action, computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import { deletedUserJson } from 'models/user';
 import core from 'osu-core-singleton';
@@ -121,13 +121,13 @@ export class Header extends React.Component<Props> {
   private readonly getCount = (beatmap: BeatmapExtendedJson) => beatmap.deleted_at == null ? this.discussionsState.discussionsByBeatmap(beatmap.id).length : undefined;
 
   @action
-  private onClickMode = (event: React.MouseEvent<HTMLAnchorElement>, mode: GameMode) => {
+  private readonly onClickMode = (event: React.MouseEvent<HTMLAnchorElement>, mode: GameMode) => {
     event.preventDefault();
     this.discussionsState.changeGameMode(mode);
   };
 
   @action
-  private onSelectBeatmap = (beatmapId: number) => {
+  private readonly onSelectBeatmap = (beatmapId: number) => {
     this.discussionsState.currentBeatmapId = beatmapId;
     this.discussionsState.changeDiscussionPage('timeline');
   };

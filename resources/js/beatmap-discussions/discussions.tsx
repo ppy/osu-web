@@ -145,7 +145,7 @@ export class Discussions extends React.Component<Props> {
   };
 
   @action
-  private handleExpandClick = (e: React.SyntheticEvent<HTMLButtonElement>) => {
+  private readonly handleExpandClick = (e: React.SyntheticEvent<HTMLButtonElement>) => {
     this.discussionsState.discussionDefaultCollapsed = e.currentTarget.dataset.type === 'collapse';
     this.discussionsState.discussionCollapsed.clear();
   };

@@ -27,7 +27,7 @@ export default class BeatmapsetDiscussionsBundleForModdingProfileStore implement
     return mapByWithNulls(this.bundle.users, 'id');
   }
 
-  constructor(private bundle: BeatmapsetDiscussionsBundleJsonForModdingProfile) {
+  constructor(private readonly bundle: BeatmapsetDiscussionsBundleJsonForModdingProfile) {
     makeObservable(this);
   }
 }

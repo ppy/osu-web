@@ -47,12 +47,12 @@ export default class Main extends React.Component<Props> {
   private readonly disposers = new Set<((() => void) | undefined)>();
   private readonly eventId = `beatmap-discussions-${nextVal()}`;
   // FIXME: update url handler to recognize this instead
-  private focusNewDiscussion = currentUrl().hash === '#new';
+  private readonly focusNewDiscussion = currentUrl().hash === '#new';
   private readonly modeSwitcherRef = React.createRef<HTMLDivElement>();
   private readonly newDiscussionRef = React.createRef<HTMLDivElement>();
   private nextTimeout = checkNewTimeoutDefault;
-  private reviewsConfig = this.props.initial.reviews_config;
-  @observable private store;
+  private readonly reviewsConfig = this.props.initial.reviews_config;
+  @observable private readonly store;
   private timeoutCheckNew?: number;
   private xhrCheckNew?: JQuery.jqXHR<InitialData>;
 
@@ -243,11 +243,6 @@ export default class Main extends React.Component<Props> {
   private readonly saveStateToContainer = () => {
     this.props.container.dataset.beatmapset = JSON.stringify(this.discussionsState.beatmapset);
     this.props.container.dataset.discussionsState = this.discussionsState.toJsonString();
-  };
-
-  @action
-  private readonly toggleShowDeleted = () => {
-    this.discussionsState.showDeleted = !this.discussionsState.showDeleted;
   };
 
   private readonly ujsDiscussionUpdate = (_event: unknown, beatmapset: BeatmapsetWithDiscussionsJson) => {
