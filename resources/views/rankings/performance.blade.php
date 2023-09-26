@@ -86,7 +86,7 @@
                     </td>
                     @if ($showRankChange)
                         @php
-                            $rankChange = $score->user->recentRankChange($mode);
+                            $rankChange = $score->user->rankChangeSince30Days($mode);
                         @endphp
                         @if ($rankChange)
                             @php
