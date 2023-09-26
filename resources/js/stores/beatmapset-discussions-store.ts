@@ -4,7 +4,6 @@
 import BeatmapsetDiscussions from 'interfaces/beatmapset-discussions';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
-import { isEmpty } from 'lodash';
 import { computed, makeObservable, observable } from 'mobx';
 import { mapBy, mapByWithNulls } from 'utils/map';
 
@@ -21,7 +20,7 @@ export default class BeatmapsetDiscussionsStore implements BeatmapsetDiscussions
     }
 
     return mapBy(
-      this.beatmapset.beatmaps.filter((beatmap) => !isEmpty(beatmap) && (beatmap.deleted_at == null || hasDiscussion.has(beatmap.id))),
+      this.beatmapset.beatmaps.filter((beatmap) => beatmap.deleted_at == null || hasDiscussion.has(beatmap.id)),
       'id',
     );
   }
@@ -38,7 +37,7 @@ export default class BeatmapsetDiscussionsStore implements BeatmapsetDiscussions
     // - deleted beatmap
 
     // allow null for the key so we can use .get(null)
-    return mapByWithNulls(this.beatmapset.discussions.filter((discussion) => !isEmpty(discussion)), 'id');
+    return mapByWithNulls(this.beatmapset.discussions, 'id');
   }
 
   @computed
