@@ -4,22 +4,13 @@
 import { Discussion } from 'beatmap-discussions/discussion';
 import BeatmapsetCover from 'components/beatmapset-cover';
 import BeatmapsetDiscussionsBundleJson from 'interfaces/beatmapset-discussions-bundle-json';
-import { makeObservable, observable } from 'mobx';
-import { observer } from 'mobx-react';
 import * as React from 'react';
 import BeatmapsetDiscussionsBundleStore from 'stores/beatmapset-discussions-bundle-store';
 import { makeUrl } from 'utils/beatmapset-discussion-helper';
 import { trans } from 'utils/lang';
 
-@observer
 export default class Main extends React.Component<BeatmapsetDiscussionsBundleJson> {
-  @observable private readonly store = new BeatmapsetDiscussionsBundleStore(this.props);
-
-  constructor(props: BeatmapsetDiscussionsBundleJson) {
-    super(props);
-
-    makeObservable(this);
-  }
+  private readonly store = new BeatmapsetDiscussionsBundleStore(this.props);
 
   render() {
     return (
