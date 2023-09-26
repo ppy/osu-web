@@ -38,7 +38,6 @@ export default class Main extends React.Component<BeatmapsetDiscussionsBundleJso
                 discussion={discussion}
                 discussionsState={null}
                 isTimelineVisible={false}
-                preview
                 readonly
                 store={this.store}
               />
