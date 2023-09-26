@@ -69,7 +69,6 @@ export default class Main extends React.Component<Props> {
 
   componentDidMount() {
     $.subscribe(`beatmapsetDiscussions:update.${this.eventId}`, this.update);
-    $.subscribe(`beatmapDiscussionPost:toggleShowDeleted.${this.eventId}`, this.toggleShowDeleted);
 
     $(document).on(`ajax:success.${this.eventId}`, '.js-beatmapset-discussion-update', this.ujsDiscussionUpdate);
     $(document).on(`click.${this.eventId}`, '.js-beatmap-discussion--jump', this.jumpToClick);
