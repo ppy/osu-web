@@ -71,7 +71,7 @@ export class Header extends React.Component<Props> {
 
   @computed
   private get timelineDiscussions() {
-    return this.discussionsState.discussionsByMode.timeline;
+    return this.discussionsState.discussionsForSelectedUserByMode.timeline;
   }
 
   private get users() {
