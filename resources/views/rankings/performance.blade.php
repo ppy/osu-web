@@ -87,18 +87,24 @@
                     @if ($showRankChange)
                         @php
                             $rankChange = $score->user->rankChangeSince30Days($mode);
+                            $modifier = 'rank-change-'.match (true) {
+                                $rankChange === null => 'pending',
+                                $rankChange > 0 => 'down',
+                                $rankChange < 0 => 'up',
+                                default => 'none',
+                            };
                         @endphp
-                        @if ($rankChange)
-                            @php
-                                $modifier = 'rank-change-'.($rankChange > 0 ? 'down' : 'up');
-                            @endphp
-                            <td class="{{ class_with_modifiers('ranking-page-table__column', 'rank-change-icon', $modifier) }}"></td>
-                            <td class="{{ class_with_modifiers('ranking-page-table__column', 'rank-change-value', $modifier) }}">
+                        <td
+                            class="{{ class_with_modifiers('ranking-page-table__column', 'rank-change-icon', $modifier) }}"
+                            @if ($rankChange === null)
+                                title="{{ osu_trans('rankings.performance.insufficient_history') }}"
+                            @endif
+                        ></td>
+                        <td class="{{ class_with_modifiers('ranking-page-table__column', 'rank-change-value', $modifier) }}">
+                            @if ($rankChange)
                                 {{ i18n_number_format(abs($rankChange)) }}
-                            </td>
-                        @else
-                            <td class="ranking-page-table__column" colspan="2"></td>
-                        @endif
+                            @endif
+                        </td>
                     @endif
                     <td class="ranking-page-table__column">
                         <div class="ranking-page-table__user-link">
