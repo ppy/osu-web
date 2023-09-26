@@ -54,6 +54,9 @@
         <thead>
             <tr>
                 <th class="ranking-page-table__heading"></th>
+                @if ($showRankChange)
+                    <th colspan="2"></th>
+                @endif
                 <th class="ranking-page-table__heading ranking-page-table__heading--main"></th>
                 <th class="ranking-page-table__heading">
                     {{ osu_trans('rankings.stat.accuracy') }}
@@ -81,6 +84,22 @@
                     <td class="ranking-page-table__column ranking-page-table__column--rank">
                         #{{ $scores->firstItem() + $index }}
                     </td>
+                    @if ($showRankChange)
+                        @php
+                            $rankChange = $score->user->recentRankChange($mode);
+                        @endphp
+                        @if ($rankChange)
+                            @php
+                                $modifier = 'rank-change-'.($rankChange > 0 ? 'down' : 'up');
+                            @endphp
+                            <td class="{{ class_with_modifiers('ranking-page-table__column', 'rank-change-icon', $modifier) }}"></td>
+                            <td class="{{ class_with_modifiers('ranking-page-table__column', 'rank-change-value', $modifier) }}">
+                                {{ i18n_number_format(abs($rankChange)) }}
+                            </td>
+                        @else
+                            <td class="ranking-page-table__column" colspan="2"></td>
+                        @endif
+                    @endif
                     <td class="ranking-page-table__column">
                         <div class="ranking-page-table__user-link">
                             <a

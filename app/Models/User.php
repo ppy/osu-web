@@ -1924,6 +1924,14 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return 3;
     }
 
+    public function recentRankChange(string $ruleset): ?int
+    {
+        return $this
+            ->rankHistories
+            ->firstWhere('mode', $ruleset)
+            ?->rankChangeSinceDays(30);
+    }
+
     /**
      * Recommended star difficulty.
      *

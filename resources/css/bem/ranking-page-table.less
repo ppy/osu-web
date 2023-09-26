@@ -51,6 +51,26 @@
       opacity: 1;
     }
 
+    &--rank-change-down {
+      --icon: @fa-var-arrow-down;
+      color: hsl(var(--hsl-red-1));
+    }
+
+    &--rank-change-up {
+      --icon: @fa-var-arrow-up;
+      color: hsl(var(--hsl-lime-1));
+    }
+
+    &--rank-change-icon::before {
+      .fas();
+      content: var(--icon);
+    }
+
+    &--rank-change-value {
+      padding-left: 5px;
+      padding-right: 10px;
+    }
+
     &:first-child {
       border-top-left-radius: @border-radius-base;
       border-bottom-left-radius: @border-radius-base;

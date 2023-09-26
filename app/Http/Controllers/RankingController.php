@@ -14,6 +14,7 @@ use App\Models\UserStatistics;
 use App\Transformers\SelectOptionTransformer;
 use App\Transformers\UserCompactTransformer;
 use DB;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 /**
@@ -187,6 +188,18 @@ class RankingController extends Controller
             ->offset(static::PAGE_SIZE * ($page - 1))
             ->get();
 
+        $showRankChange =
+            $type === 'performance' &&
+            $this->country === null &&
+            !$this->friendsOnly &&
+            $this->params['variant'] === null;
+
+        if ($showRankChange) {
+            $stats->loadMissing([
+                'user.rankHistories' => fn (Relation $query) => $query->where('mode', $modeInt),
+            ]);
+        }
+
         if (is_api_request()) {
             switch ($type) {
                 case 'country':
@@ -219,7 +232,7 @@ class RankingController extends Controller
             ])]
         );
 
-        return ext_view("rankings.{$type}", array_merge($this->defaultViewVars, compact('scores')));
+        return ext_view("rankings.{$type}", array_merge($this->defaultViewVars, compact('scores', 'showRankChange')));
     }
 
     /**

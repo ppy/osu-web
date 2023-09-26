@@ -156,6 +156,39 @@ class RankHistory extends Model
         return Beatmap::modeStr($value);
     }
 
+    /**
+     * Get the difference between the current rank and the rank as of a
+     * specified number of days ago.
+     *
+     * If rank history is not available at exactly `$days` ago, compare against
+     * the oldest rank history available that is more recent than `$days`.
+     */
+    public function rankChangeSinceDays(int $days): ?int
+    {
+        $data = $this->data;
+        $dataLength = count($data);
+
+        if ($dataLength === 0 || $days >= $dataLength) {
+            return null;
+        }
+
+        $currentRank = $data[$dataLength - 1];
+
+        if ($currentRank <= 0) {
+            return null;
+        }
+
+        for (; $days > 0; $days--) {
+            $previousRank = $data[$dataLength - 1 - $days];
+
+            if ($previousRank > 0) {
+                return $currentRank - $previousRank;
+            }
+        }
+
+        return null;
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
