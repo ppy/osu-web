@@ -50,12 +50,7 @@ class UserRelation extends Model
 
     public function scopeOnline($query)
     {
-        return $query->whereExists(function ($query) {
-            $query->select(DB::raw(1))
-                ->from('phpbb_users')
-                ->whereRaw('phpbb_users.user_id = phpbb_zebra.zebra_id')
-                ->whereRaw('phpbb_users.user_lastvisit > UNIX_TIMESTAMP(DATE_SUB(NOW(), INTERVAL '.config('osu.user.online_window').' MINUTE))');
-        });
+        return $query->whereHas('target', fn ($q) => $q->online());
     }
 
     public function scopeVisible($query)
@@ -96,7 +91,7 @@ class UserRelation extends Model
     {
         return $query->addSelect(DB::raw(
             '(
-                SELECT phpbb_users.user_lastvisit > UNIX_TIMESTAMP(DATE_SUB(NOW(), INTERVAL '.config('osu.user.online_window').' MINUTE))
+                SELECT phpbb_users.user_allow_viewonline && phpbb_users.user_lastvisit > '.(time() - config('osu.user.online_window')).'
                 FROM phpbb_users
                 WHERE phpbb_users.user_id = phpbb_zebra.zebra_id
             ) as online'
