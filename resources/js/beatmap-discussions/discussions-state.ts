@@ -226,9 +226,11 @@ export default class DiscussionsState {
 
   @computed
   get hasCurrentUserHyped() {
-    const currentUser = core.currentUser; // core.currentUser check below doesn't make the inferrence that it's not nullable after the check.
+    const currentUser = core.currentUser;
     return currentUser != null
-      && this.discussionsByFilter.hype.some((discussion) => discussion.beatmap_id == null && discussion.user_id === currentUser.id);
+      && this.discussionsByFilter.hype.some((discussion) => (
+        discussion.beatmap_id == null && discussion.user_id === currentUser.id
+      ));
   }
 
   @computed
