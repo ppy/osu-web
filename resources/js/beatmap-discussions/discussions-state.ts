@@ -298,7 +298,7 @@ export default class DiscussionsState {
     const existingState = state == null ? null : parseState(state);
 
     if (existingState != null) {
-      Object.apply(this, existingState);
+      Object.assign(this, existingState);
     } else {
       this.jumpToDiscussion = true;
       for (const discussion of store.beatmapset.discussions) {
