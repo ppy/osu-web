@@ -58,8 +58,15 @@ export class Header extends React.Component<Props> {
   @computed
   private get discussionCounts() {
     const counts: Partial<Record<Filter, number>> = observable({});
+    const selectedUserId = this.discussionsState.selectedUserId;
+
     for (const type of statTypes) {
-      counts[type] = this.discussionsState.discussionsByFilter[type].length;
+      let discussions = this.discussionsState.discussionsByFilter[type];
+      if (selectedUserId != null) {
+        discussions = discussions.filter((discussion) => discussion.user_id === selectedUserId);
+      }
+
+      counts[type] = discussions.length;
     }
 
     return counts;
