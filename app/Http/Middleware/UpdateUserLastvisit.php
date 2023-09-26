@@ -31,10 +31,10 @@ class UpdateUserLastvisit
             }
 
             if (!$isInactive || $isVerified) {
-                $recordedLastVisit = $user->user_lastvisit;
-                $currentLastVisit = now();
+                $recordedLastVisit = $user->getRawAttribute('user_lastvisit');
+                $currentLastVisit = time();
 
-                if ($currentLastVisit->diffInRealSeconds($recordedLastVisit) > 300) {
+                if ($currentLastVisit - $recordedLastVisit > 300) {
                     $user->update([
                         'user_lastvisit' => $currentLastVisit,
                     ], ['skipValidations' => true]);
