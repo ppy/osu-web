@@ -34,7 +34,7 @@ class UpdateUserLastvisit
                 $recordedLastVisit = $user->user_lastvisit;
                 $currentLastVisit = now();
 
-                if ($currentLastVisit->diffInRealSeconds($recordedLastVisit) > 60) {
+                if ($currentLastVisit->diffInRealSeconds($recordedLastVisit) > 300) {
                     $user->update([
                         'user_lastvisit' => $currentLastVisit,
                     ], ['skipValidations' => true]);
