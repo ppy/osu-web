@@ -517,7 +517,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
 
         Route::get('rankings/kudosu', 'RankingController@kudosu');
         //  GET /api/v2/rankings/:mode/:type
-        Route::get('rankings/{mode}/{type}', 'RankingController@index');
+        Route::get('rankings/{mode}/{type}', 'RankingController@index')->name('rankings');
         Route::resource('spotlights', 'SpotlightsController', ['only' => ['index']]);
 
         Route::get('search', 'HomeController@search');

@@ -207,7 +207,13 @@ class RankingController extends Controller
                     break;
 
                 default:
-                    $ranking = json_collection($stats, 'UserStatistics', ['user', 'user.cover', 'user.country']);
+                    $includes = ['user', 'user.cover', 'user.country'];
+
+                    if ($showRankChange) {
+                        $includes[] = 'recent_rank_change';
+                    }
+
+                    $ranking = json_collection($stats, 'UserStatistics', $includes);
                     break;
             }
 
