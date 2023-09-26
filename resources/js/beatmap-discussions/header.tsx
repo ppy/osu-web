@@ -57,7 +57,7 @@ export class Header extends React.Component<Props> {
 
   @computed
   private get discussionCounts() {
-    const counts: Partial<Record<Filter, number>> = observable({});
+    const counts: Partial<Record<Filter, number>> = {};
     const selectedUserId = this.discussionsState.selectedUserId;
 
     for (const type of statTypes) {
