@@ -185,5 +185,8 @@ return [
                 'require_supporter_tag' => '需要成為 osu! 贊助者。',
             ],
         ],
+        'update_email' => [
+            'locked' => '',
+        ],
     ],
 ];

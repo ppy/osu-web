@@ -79,15 +79,15 @@ return [
         ],
 
         'message_type_title' => [
-            'disqualify' => '',
-            'hype' => '',
-            'mapper_note' => '',
-            'nomination_reset' => '',
-            'praise' => '',
-            'problem' => '',
-            'problem_warning' => '',
-            'review' => '',
-            'suggestion' => '',
+            'disqualify' => 'Disqualifizierung posten',
+            'hype' => 'Hype posten!',
+            'mapper_note' => 'Notiz posten',
+            'nomination_reset' => 'Entferne alle Nominierungen',
+            'praise' => 'Lob posten',
+            'problem' => 'Problem posten',
+            'problem_warning' => 'Problem posten',
+            'review' => 'Bewertung posten',
+            'suggestion' => 'Vorschlag posten',
         ],
 
         'mode' => [

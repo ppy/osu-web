@@ -170,7 +170,7 @@ export default class Main extends React.Component<BeatmapsetDiscussionsBundleJso
     );
   }
 
-  private extraPage = (name: ModdingExtraPage) => {
+  private readonly extraPage = (name: ModdingExtraPage) => {
     switch (name) {
       case 'discussions':
         return <Discussions discussions={this.userDiscussions} store={this.store} user={this.user} />;
@@ -260,7 +260,7 @@ export default class Main extends React.Component<BeatmapsetDiscussionsBundleJso
     window.scrollTo({ behavior: smooth ? 'smooth' : undefined, top });
   };
 
-  private tabClick = (e: React.SyntheticEvent<HTMLAnchorElement>) => {
+  private readonly tabClick = (e: React.SyntheticEvent<HTMLAnchorElement>) => {
     e.preventDefault();
 
     this.pageJump(validPage(e.currentTarget.dataset.pageId));

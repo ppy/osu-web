@@ -18,6 +18,10 @@ return [
             'new' => 'жаңа пошта',
             'new_confirmation' => 'email-ды растаңыз',
             'title' => 'Email',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
         ],
 
         'legacy_api' => [

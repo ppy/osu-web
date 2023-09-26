@@ -21,7 +21,7 @@ const selectedClassName = 'page-mode-link--is-active';
 
 @observer
 export class ModeSwitcher extends React.Component<Props> {
-  private scrollerRef = React.createRef<HTMLUListElement>();
+  private readonly scrollerRef = React.createRef<HTMLUListElement>();
 
   private get beatmapset() {
     return this.props.discussionsState.beatmapset;
@@ -58,7 +58,7 @@ export class ModeSwitcher extends React.Component<Props> {
     );
   }
 
-  private renderMode = (mode: DiscussionPage) => (
+  private readonly renderMode = (mode: DiscussionPage) => (
     <li key={mode} className='page-mode__item'>
       <a
         className={classWithModifiers('page-mode-link', { 'is-active': this.currentMode === mode })}

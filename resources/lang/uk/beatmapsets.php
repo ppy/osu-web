@@ -61,7 +61,7 @@ return [
         'discussion' => 'Обговорення',
 
         'admin' => [
-            'full_size_cover' => '',
+            'full_size_cover' => 'Перегляд зображення повнорозмірної обкладинки',
         ],
 
         'deleted_banner' => [

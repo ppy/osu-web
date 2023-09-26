@@ -99,22 +99,22 @@ export class Main extends React.Component {
     );
   }
 
-  private handleDelete = () => {
+  private readonly handleDelete = () => {
     this.type.delete();
   };
 
-  private handleLinkClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+  private readonly handleLinkClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
 
     const type = ((event.currentTarget as HTMLAnchorElement).dataset.type ?? null) as NotificationTypeName;
     this.controller.navigateTo(type);
   };
 
-  private handleMarkAsRead = () => {
+  private readonly handleMarkAsRead = () => {
     this.controller.markCurrentTypeAsRead();
   };
 
-  private handleShowMore = () => {
+  private readonly handleShowMore = () => {
     this.controller.loadMore();
   };
 

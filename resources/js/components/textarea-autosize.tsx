@@ -20,7 +20,7 @@ export default class TextareaAutosize extends React.Component<Props, State> {
     rows: 1,
   };
 
-  private ref = this.props.innerRef ?? React.createRef<HTMLTextAreaElement>();
+  private readonly ref = this.props.innerRef ?? React.createRef<HTMLTextAreaElement>();
 
   private get maxHeight() {
     return this.props.maxRows != null && this.state.lineHeight != null

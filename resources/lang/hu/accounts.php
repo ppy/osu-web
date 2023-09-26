@@ -18,6 +18,10 @@ return [
             'new' => 'új e-mail cím',
             'new_confirmation' => 'e-mail cím megerősítése',
             'title' => 'E-Mail',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
         ],
 
         'legacy_api' => [

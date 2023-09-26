@@ -79,15 +79,15 @@ return [
         ],
 
         'message_type_title' => [
-            'disqualify' => '',
-            'hype' => '',
-            'mapper_note' => '',
-            'nomination_reset' => '',
-            'praise' => '',
-            'problem' => '',
-            'problem_warning' => '',
-            'review' => '',
-            'suggestion' => '',
+            'disqualify' => 'Добави дисквалификация',
+            'hype' => 'Добави надъхване!',
+            'mapper_note' => 'Добави бележка',
+            'nomination_reset' => 'Премахни всички номинации',
+            'praise' => 'Добави похвала',
+            'problem' => 'Добави проблем',
+            'problem_warning' => 'Добавяне на проблем',
+            'review' => 'Добави ревю',
+            'suggestion' => 'Добави предложение',
         ],
 
         'mode' => [
@@ -170,7 +170,7 @@ return [
     ],
 
     'hype' => [
-        'button' => 'Надъхване на бийтмапа!',
+        'button' => 'Надъхване на бийтмап!',
         'button_done' => 'Вече е надъхан!',
         'confirm' => "Сигурни ли сте? Ще бъде използвано едно от вашите :n надъхвания и не може да бъде отменено.",
         'explanation' => 'Надъхай този бийтмап, за увеличаване на шансовете му да бъде номиниран и класиран!',
@@ -355,7 +355,7 @@ return [
         'D' => '',
     ],
     'panel' => [
-        'playcount' => 'Брой игри: :count',
+        'playcount' => 'Изигран: :count',
         'favourites' => 'Любими: :count',
     ],
     'variant' => [

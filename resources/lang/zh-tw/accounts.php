@@ -18,6 +18,10 @@ return [
             'new' => '新電子郵件地址',
             'new_confirmation' => '再次輸入電子郵件地址',
             'title' => '電子郵件',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
         ],
 
         'legacy_api' => [

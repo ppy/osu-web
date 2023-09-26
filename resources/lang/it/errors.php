@@ -11,7 +11,7 @@ return [
     'unknown' => 'Si è verificato un errore sconosciuto.',
 
     'codes' => [
-        'http-401' => 'Per favore effettua il login per poter continuare.',
+        'http-401' => 'Effettua il login per poter continuare.',
         'http-403' => 'Accesso Negato.',
         'http-404' => 'Non trovato.',
         'http-429' => 'Troppi tentativi. Riprova più tardi.',

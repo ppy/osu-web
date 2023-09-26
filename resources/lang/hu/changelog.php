@@ -7,7 +7,7 @@ return [
     'generic' => 'Hibajavítások és kisebb fejlesztések.',
 
     'build' => [
-        'title' => 'változtatások a :version -ben',
+        'title' => ':version változtatások ',
     ],
 
     'builds' => [
@@ -15,7 +15,7 @@ return [
     ],
 
     'entry' => [
-        'by' => ':user által',
+        'by' => ':user',
     ],
 
     'index' => [
@@ -26,8 +26,8 @@ return [
             '_stream' => ':stream változtatások',
             '_stream_from' => ':stream változtatások :from óta',
             '_stream_from_to' => ':stream változtatások :from és :to között',
-            '_stream_to' => ':stream változtatások :to -ig',
-            '_to' => 'változtatások :to -ig',
+            '_stream_to' => ':stream változtatások :to napjáig',
+            '_to' => 'változtatások :to napjáig',
         ],
     ],
 

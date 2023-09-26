@@ -40,9 +40,9 @@ const buttonTextKey: Record<CommentEditMode, string> = {
 export default class CommentEditor extends React.Component<Props> {
   private readonly handleKeyDown;
   @observable private message: string;
-  @observable private posting = false;
+  @observable private readonly posting = false;
   private readonly textarea = React.createRef<HTMLTextAreaElement>();
-  private xhr: JQuery.jqXHR<unknown> | null = null;
+  private readonly xhr: JQuery.jqXHR<unknown> | null = null;
 
   @computed
   private get canComment() {

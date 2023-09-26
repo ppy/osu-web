@@ -387,7 +387,7 @@ return [
                     'date' => 'tarih',
                     'action' => 'eylem',
                     'length' => 'uzunluk',
-                    'length_indefinite' => '',
+                    'length_indefinite' => 'Belirsiz',
                     'description' => 'açıklama',
                     'actor' => ':username tarafından',
 

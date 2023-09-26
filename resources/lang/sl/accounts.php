@@ -18,6 +18,10 @@ return [
             'new' => 'nova e-pošta',
             'new_confirmation' => 'potrditev e-pošte',
             'title' => 'E-pošta',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
         ],
 
         'legacy_api' => [

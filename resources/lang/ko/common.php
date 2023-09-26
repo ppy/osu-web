@@ -158,6 +158,6 @@ return [
 
     'wrong_user' => [
         '_' => ':user로 로그인되어있습니다. :logout_link.',
-        'logout_link' => '다른 사용자로 로그인하려면 이곳을 클릭하세요',
+        'logout_link' => '다른 유저로 로그인하려면 이곳을 클릭하세요',
     ],
 ];

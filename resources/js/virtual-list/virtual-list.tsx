@@ -102,7 +102,7 @@ export default class VirtualList<T> extends React.Component<Props<T>> {
   }
 
   @action
-  private setScroll = () => {
+  private readonly setScroll = () => {
     this.scrollTop = this.scrollContainer.scrollY;
   };
 }

@@ -84,13 +84,13 @@ export default class MonthListing extends React.Component<Props, State> {
     );
   }
 
-  private recordState = () => {
+  private readonly recordState = () => {
     if (this.stateRecord != null) {
       this.stateRecord.dataset[this.stateRecordKey] = this.state.expanded ? '1' : '';
     }
   };
 
-  private renderPost = (post: NewsPostJson) => {
+  private readonly renderPost = (post: NewsPostJson) => {
     let linkClass = 'news-sidebar-month__item';
 
     if (this.props.currentPost != null && this.props.currentPost.id === post.id) {
@@ -109,7 +109,7 @@ export default class MonthListing extends React.Component<Props, State> {
     );
   };
 
-  private toggleExpand = () => {
+  private readonly toggleExpand = () => {
     this.setState({ expanded: !this.state.expanded }, this.recordState);
   };
 }

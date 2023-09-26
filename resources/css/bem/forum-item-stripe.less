@@ -17,7 +17,7 @@
     content: '';
     .full-size();
     border-radius: @border-radius-base 0 0 @border-radius-base;
-    background-color: @forum-item-background-color;
+    background-color: var(--forum-item-background-color);
     top: 0;
     will-change: transform;
     transition: @forum-item-animate;
@@ -36,11 +36,11 @@
   }
 
   .forum-item:hover &, .forum-topic-entry:hover & {
-    color: @forum-item-background-color-hover;
+    color: var(--forum-item-background-color-hover);
     width: 25px;
 
     &::after {
-      background-color: @forum-item-background-color-hover;
+      background-color: var(--forum-item-background-color-hover);
 
       @media @desktop {
         transform: translateX(15px);
