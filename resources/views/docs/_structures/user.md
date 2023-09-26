@@ -69,7 +69,7 @@ replays_watched_counts     | |
 scores_best_count          | number
 scores_first_count         | number
 scores_recent_count        | number
-statistics                 | |
+statistics                 | [UserStatistics](#userstatistics)
 statistics_rulesets        | UserStatisticsRulesets
 support_level              | |
 unread_pm_count            | |

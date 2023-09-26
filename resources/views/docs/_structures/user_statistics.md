@@ -82,4 +82,10 @@ ranked_score              | number        | Current ranked score.
 replays_watched_by_others | number        | Number of replays watched by other users.
 total_hits                | number        | Total number of hits.
 total_score               | number        | Total score.
-user                      | [User](#user) | The associated user.
+
+### Optional attributes
+
+Field              | Type          | Description
+------------------ | ------------- | -----------
+recent_rank_change | number?       | Difference between current rank and rank 30 days ago, according to pp.
+user               | [User](#user) | |
