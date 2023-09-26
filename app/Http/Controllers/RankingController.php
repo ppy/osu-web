@@ -198,6 +198,12 @@ class RankingController extends Controller
             $stats->loadMissing([
                 'user.rankHistories' => fn (Relation $query) => $query->where('mode', $modeInt),
             ]);
+
+            foreach ($stats as $stat) {
+                // Set user.rankHistories.user.statistics{ruleset} relation
+                $stat->user->setRelation('statistics'.studly_case($mode), $stat);
+                $stat->user->rankHistories->each->setRelation('user', $stat->user);
+            }
         }
 
         if (is_api_request()) {
