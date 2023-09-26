@@ -85,7 +85,7 @@ total_score               | number        | Total score.
 
 ### Optional attributes
 
-Field              | Type          | Description
------------------- | ------------- | -----------
-recent_rank_change | number?       | Difference between current rank and rank 30 days ago, according to pp.
-user               | [User](#user) | |
+Field                     | Type          | Description
+------------------------- | ------------- | -----------
+rank_change_since_30_days | number?       | Difference between current rank and rank 30 days ago, according to pp.
+user                      | [User](#user) | |

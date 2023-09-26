@@ -14,7 +14,7 @@ class UserStatisticsTransformer extends TransformerAbstract
     protected array $availableIncludes = [
         'country_rank',
         'rank',
-        'recent_rank_change',
+        'rank_change_since_30_days',
         'user',
         'variants',
     ];
@@ -79,7 +79,7 @@ class UserStatisticsTransformer extends TransformerAbstract
         return $this->primitive(['country' => $stats->countryRank()]);
     }
 
-    public function includeRecentRankChange(UserStatistics\Model $stats): ResourceInterface
+    public function includeRankChangeSince30Days(UserStatistics\Model $stats): ResourceInterface
     {
         return $this->primitive($stats->user->rankChangeSince30Days($stats->getMode()));
     }

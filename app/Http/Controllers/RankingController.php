@@ -216,7 +216,7 @@ class RankingController extends Controller
                     $includes = ['user', 'user.cover', 'user.country'];
 
                     if ($showRankChange) {
-                        $includes[] = 'recent_rank_change';
+                        $includes[] = 'rank_change_since_30_days';
                     }
 
                     $ranking = json_collection($stats, 'UserStatistics', $includes);

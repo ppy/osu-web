@@ -41,7 +41,7 @@ class RankingControllerTest extends TestCase
             ->assertStatus(404);
     }
 
-    public function testRecentRankChange(): void
+    public function testRankChange(): void
     {
         $ruleset = 'osu';
         $user = User::factory()
@@ -64,6 +64,6 @@ class RankingControllerTest extends TestCase
         $this
             ->getJson(route('api.rankings', ['mode' => $ruleset, 'type' => 'performance']))
             ->assertOk()
-            ->assertJsonPath('ranking.0.recent_rank_change', -10000);
+            ->assertJsonPath('ranking.0.rank_change_since_30_days', -10000);
     }
 }

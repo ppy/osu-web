@@ -61,6 +61,6 @@ Field          | Type                                         | Description
 -------------- | -------------------------------------------- | -----------
 beatmapsets    | [BeatmapsetExtended](#beatmapsetextended)[]? | The list of beatmaps in the requested spotlight for the given `mode`; only available if `type` is `charts`
 cursor         | [Cursor](#cursor)                            | A cursor
-ranking        | [UserStatistics](#userstatistics)[]          | <p>User statistics for the requested ruleset in order of descending rank.</p>Includes `user`, `user.country`, and `user.cover`.<br/>Includes `recent_rank_change` if the ranking type is `performance` with no additional filters applied.
+ranking        | [UserStatistics](#userstatistics)[]          | <p>User statistics for the requested ruleset in order of descending rank.</p>Includes `user`, `user.country`, and `user.cover`.<br/>Includes `rank_change_since_30_days` if the ranking type is `performance` with no additional filters applied.
 spotlight      | [Spotlight](#spotlight)?                     | Spotlight details; only available if `type` is `charts`
 total          | number                                       | An approximate count of ranks available
