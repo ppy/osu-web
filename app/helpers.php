@@ -461,13 +461,6 @@ function logout()
         $guard->logout();
     }
 
-    // FIXME: Temporarily here for cross-site login, nuke after old site is... nuked.
-    foreach (['phpbb3_2cjk5_sid', 'phpbb3_2cjk5_sid_check'] as $key) {
-        foreach (['ppy.sh', 'osu.ppy.sh', ''] as $domain) {
-            cookie()->queueForget($key, null, $domain);
-        }
-    }
-
     cleanup_cookies();
 
     session()->invalidate();
