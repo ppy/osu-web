@@ -49,7 +49,7 @@ export class OwnClient extends React.Component<Props> {
           <BigButton
             disabled={client.isRevoking || client.revoked}
             icon='fas fa-pencil-alt'
-            modifiers={['account-edit', 'settings-oauth']}
+            modifiers={['account-edit', 'account-edit-small']}
             props={{
               onClick: this.showClientDetails,
             }}
@@ -59,7 +59,7 @@ export class OwnClient extends React.Component<Props> {
             disabled={client.revoked}
             icon={client.revoked ? 'fas fa-ban' : 'fas fa-trash'}
             isBusy={client.isRevoking}
-            modifiers={['account-edit', 'danger', 'settings-oauth']}
+            modifiers={['account-edit', 'account-edit-small', 'danger']}
             props={{
               onClick: this.deleteClicked,
             }}
