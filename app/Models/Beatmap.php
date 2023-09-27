@@ -277,7 +277,7 @@ class Beatmap extends Model implements AfterCommit
     public function maxCombo()
     {
         if (!$this->convert) {
-            $rowMaxCombo = $this->getRawAttribute('max_combo');
+            $rowMaxCombo = $this->max_combo;
 
             if ($rowMaxCombo > 0) {
                 return $rowMaxCombo;
