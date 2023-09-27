@@ -17,19 +17,19 @@ return [
         'identify' => 'Tunnistaa sinut ja lukea julkista profiiliasi.',
 
         'chat' => [
-            'read' => '',
-            'write' => 'Lähettää viestejä puolestasi.',
-            'write_manage' => '',
+            'read' => 'Lukea viestejä sinun nimissäsi.',
+            'write' => 'Lähettää viestejä sinun nimissäsi.',
+            'write_manage' => 'Liittyä ja lähteä kanavilta sinun nimissäsi.',
         ],
 
         'forum' => [
-            'write' => 'Luoda ja muokata foorumiaiheita ja -viestejä puolestasi.',
+            'write' => 'Luoda ja muokata foorumin aiheita ja viestejä sinun nimissäsi.',
         ],
 
         'friends' => [
             'read' => 'Nähdä, keitä seuraat.',
         ],
 
-        'public' => 'Lukea julkisia tietoja puolestasi.',
+        'public' => 'Lukea julkisia tietoja sinun nimissäsi.',
     ],
 ];

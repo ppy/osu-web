@@ -186,7 +186,7 @@ return [
             ],
         ],
         'update_email' => [
-            'locked' => '',
+            'locked' => 'sähköpostiosoite on lukittu',
         ],
     ],
 ];

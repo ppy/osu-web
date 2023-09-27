@@ -15,7 +15,7 @@ return [
         'closing' => 'Cu stimă,',
         'hello' => 'Bună :user,',
         'report' => 'Vă rugăm să răspundeți la acest e-mail IMEDIAT dacă nu ați solicitat această modificare.',
-        'ignore' => 'Dacă nu ai solicitat acest lucru, te rugăm să ignori acest email.',
+        'ignore' => 'Dacă nu ai solicitat acest lucru, te rugăm să ignori acest e-mail.',
     ],
 
     'donation_thanks' => [
@@ -54,7 +54,7 @@ return [
     'store_payment_completed' => [
         'prepare_shipping' => 'Am primit plata ta și îti pregătim comanda ta pentru livrare. Poate dura câteva zile până o vom trimite, în funcție de numărul de comenzi. Poți urmări progresul comenzii tale aici, inclusiv detalii pentru urmărirea comenzii dacă sunt disponibile:',
         'processing' => 'Am primit plata ta și momentan procesăm comanda. Poți urmări progresul comenzii tale aici:',
-        'questions' => "Dacă ai întrebări/nelămuriri, nu ezita să răspunzi la acest email.",
+        'questions' => "Dacă ai întrebări/nelămuriri, nu ezita să răspunzi la acest e-mail.",
         'shipping' => 'Livrare',
         'subject' => 'Am primit comanda ta din magazinul osu!',
         'thank_you' => 'Mulțumim pentru comanda ta din magazinul osu!',
@@ -72,8 +72,8 @@ return [
     ],
 
     'user_email_updated' => [
-        'changed_to' => 'Acesta este un email de confirmare pentru a te informa că e-mailul tău osu! a fost modificat cu ":email".',
-        'check' => 'Te rugăm să te asiguri că ai primit acest email la noua ta adresă, pentru a te asigura că nu îți vei pierde accesul la contul tău osu! în viitor.',
+        'changed_to' => 'Acesta este un e-mail de confirmare pentru a te informa că e-mailul contului tău osu! a fost modificat la ":email".',
+        'check' => 'Te rugăm să te asiguri că ai primit acest e-mail la noua ta adresă, pentru a te asigura că nu îți vei pierde accesul la contul tău osu! în viitor.',
         'sent' => 'Din motive de securitate, acest e-mail a fost trimis atât la adresa de e-mail nouă, cât și la adresa veche.',
         'subject' => 'confirmarea schimbării e-mailului în osu!',
     ],
@@ -100,7 +100,7 @@ return [
         'code' => 'Codul tău de verificare este:',
         'code_hint' => 'Poți introduce codul cu sau fără spații.',
         'link' => 'De asemenea, puteți vizita link-ul de mai jos pentru a finaliza verificarea:',
-        'report' => 'Dacă nu ați solicitat acest lucru, te rugăm trimite un mesaj înapoi IMEDIAT la acest email, altfel contul tău poate fi în pericol.',
+        'report' => 'Dacă nu ați solicitat acest lucru, vă rugăm să reveniți IMEDIAT cu un răspuns la acest e-mail, altfel contul dvs. poate fi în pericol.',
         'subject' => 'verificarea contului osu!',
 
         'action_from' => [

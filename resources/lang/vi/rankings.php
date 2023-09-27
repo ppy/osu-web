@@ -25,7 +25,7 @@ return [
 
     'type' => [
         'charts' => 'tiêu điểm',
-        'country' => 'Quốc gia',
+        'country' => 'quốc gia',
         'kudosu' => 'kudosu',
         'multiplayer' => 'nhiều người chơi',
         'performance' => 'thành tích',

@@ -15,7 +15,7 @@ return [
             'title' => 'Mengapa saya harus mendukung osu!? Ke mana saja uangnya akan disalurkan?',
 
             'team' => [
-                'title' => 'Upah Tim Kami',
+                'title' => 'Dukung Tim kami',
                 'description' => 'osu! dikembangkan dan dikelola oleh tim yang berukuran kecil. Dukunganmu akan sangat membantu... keberlangsungan hidup mereka.',
             ],
             'infra' => [
