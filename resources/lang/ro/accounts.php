@@ -19,8 +19,8 @@ return [
             'new_confirmation' => 'confirmare e-mail',
             'title' => 'E-mail',
             'locked' => [
-                '_' => '',
-                'accounts' => '',
+                '_' => 'Vă rugăm să contactați :accounts dacă aveți nevoie să vă actualizați e-mailul.',
+                'accounts' => 'echipa de suport conturi',
             ],
         ],
 

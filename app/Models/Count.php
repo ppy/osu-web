@@ -9,7 +9,7 @@ namespace App\Models;
 
 /**
  * @property int $count
- * @property int $name
+ * @property string $name
  */
 class Count extends Model
 {

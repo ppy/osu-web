@@ -21,7 +21,7 @@ type Props = Record<string, never>;
 
 @observer
 export default class InputBox extends React.Component<Props> {
-  private inputBoxRef = React.createRef<HTMLTextAreaElement>();
+  private readonly inputBoxRef = React.createRef<HTMLTextAreaElement>();
 
   get allowMultiLine() {
     return this.currentChannel?.type === 'ANNOUNCE';

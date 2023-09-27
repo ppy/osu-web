@@ -23,7 +23,7 @@ return [
         'button' => 'Hae',
         'empty_result' => 'Mitään ei löytynyt!',
         'keyword_required' => 'Syötä hakusana',
-        'placeholder' => 'tee haku kirjoittamalla',
+        'placeholder' => 'kirjoita etsiäksesi',
         'title' => 'Hae',
 
         'beatmapset' => [

@@ -19,8 +19,8 @@ return [
             'new_confirmation' => '确认新邮箱地址',
             'title' => '邮箱',
             'locked' => [
-                '_' => '',
-                'accounts' => '',
+                '_' => '如果您想修改邮箱地址，请联系 :accounts。',
+                'accounts' => '账号支持团队',
             ],
         ],
 

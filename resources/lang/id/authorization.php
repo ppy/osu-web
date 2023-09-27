@@ -186,7 +186,7 @@ return [
             ],
         ],
         'update_email' => [
-            'locked' => '',
+            'locked' => 'alamat email terkunci',
         ],
     ],
 ];

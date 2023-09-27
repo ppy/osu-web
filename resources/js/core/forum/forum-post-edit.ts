@@ -9,7 +9,7 @@ export default class ForumPostEdit {
       .on('ajax:success', '.js-forum-post-edit', this.handleEditSaved);
   }
 
-  private handleCancel = (e: JQuery.TriggeredEvent) => {
+  private readonly handleCancel = (e: JQuery.TriggeredEvent) => {
     e.preventDefault();
 
     // clear before target is removed
@@ -21,7 +21,7 @@ export default class ForumPostEdit {
       .attr('data-original-post', null);
   };
 
-  private handleEditSaved = (e: JQuery.TriggeredEvent, data: string) => {
+  private readonly handleEditSaved = (e: JQuery.TriggeredEvent, data: string) => {
     const target: unknown = e.target;
 
     // allow another callbacks to finish before replacing form with new post.
@@ -30,7 +30,7 @@ export default class ForumPostEdit {
     });
   };
 
-  private handleEditStart = (e: JQuery.TriggeredEvent, data: string) => {
+  private readonly handleEditStart = (e: JQuery.TriggeredEvent, data: string) => {
     const target: unknown = e.target;
 
     // allow another callbacks to finish before replacing post with form.
@@ -39,7 +39,7 @@ export default class ForumPostEdit {
     });
   };
 
-  private saved = (target: unknown, data: string) => {
+  private readonly saved = (target: unknown, data: string) => {
     if (!(target instanceof HTMLElement)) {
       throw new Error('target must be instance of HTMLElement');
     }
@@ -47,7 +47,7 @@ export default class ForumPostEdit {
     $(target).parents('.js-forum-post').replaceWith(data);
   };
 
-  private start = (target: unknown, data: string) => {
+  private readonly start = (target: unknown, data: string) => {
     if (!(target instanceof HTMLElement)) {
       throw new Error('target must be instance of HTMLElement');
     }

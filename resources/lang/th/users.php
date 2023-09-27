@@ -124,6 +124,14 @@ return [
         ],
     ],
 
+    'ogp' => [
+        'description' => [
+            '_' => '',
+            'country' => '',
+            'global' => '',
+        ],
+    ],
+
     'posts' => [
         'title' => 'โพสต์ทั้งหมดของ:username',
     ],

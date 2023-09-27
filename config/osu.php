@@ -113,6 +113,7 @@ return [
         'max_post_length' => get_int(env('FORUM_POST_MAX_LENGTH')) ?? 60000,
         'minimum_plays' => get_int(env('FORUM_POST_MINIMUM_PLAYS')) ?? 200,
         'necropost_months' => 6,
+        'old_months' => 1,
         'poll_edit_hours' => get_int(env('FORUM_POLL_EDIT_HOURS')) ?? 1,
 
         'double_post_time' => [
@@ -123,6 +124,10 @@ return [
     'git-sha' => presence(env('GIT_SHA'))
         ?? (file_exists(__DIR__.'/../version') ? trim(file_get_contents(__DIR__.'/../version')) : null)
         ?? 'unknown-version',
+    'github' => [
+        'client_id' => presence(env('GITHUB_CLIENT_ID')),
+        'client_secret' => presence(env('GITHUB_CLIENT_SECRET')),
+    ],
     'is_development_deploy' => get_bool(env('IS_DEVELOPMENT_DEPLOY')) ?? true,
     'landing' => [
         'video_url' => env('LANDING_VIDEO_URL', 'https://assets.ppy.sh/media/landing.mp4'),

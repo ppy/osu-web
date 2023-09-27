@@ -46,7 +46,7 @@ export default class Main extends React.PureComponent<Props> {
     );
   }
 
-  private renderItem = (follow: FollowCommentJson) => {
+  private readonly renderItem = (follow: FollowCommentJson) => {
     const key = `${follow.notifiable_type}:${follow.notifiable_id}`;
 
     return (

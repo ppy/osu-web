@@ -27,6 +27,6 @@ return [
     ],
 
     'value' => [
-        'rank' => '',
+        'rank' => '排名 #:rank',
     ],
 ];

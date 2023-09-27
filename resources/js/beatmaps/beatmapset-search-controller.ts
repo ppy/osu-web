@@ -43,7 +43,7 @@ export class BeatmapsetSearchController {
   private filtersObserver!: Lambda;
   private initialErrorMessage?: string;
 
-  constructor(private beatmapsetSearch: BeatmapsetSearch) {
+  constructor(private readonly beatmapsetSearch: BeatmapsetSearch) {
     makeObservable(this);
   }
 
@@ -150,7 +150,7 @@ export class BeatmapsetSearchController {
     });
   }
 
-  private filterChangedHandler = (change: IObjectDidChange<BeatmapsetSearchFilters>) => {
+  private readonly filterChangedHandler = (change: IObjectDidChange<BeatmapsetSearchFilters>) => {
     if (change.type === 'update' && change.oldValue === change.newValue) return;
     // FIXME: sort = null changes ignored because search triggered too early during filter update.
     if (change.type !== 'remove' && change.name === 'sort' && change.newValue == null) return;
