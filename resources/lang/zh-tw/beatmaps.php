@@ -78,6 +78,18 @@ return [
             'suggestion' => '建議',
         ],
 
+        'message_type_title' => [
+            'disqualify' => '取消提名',
+            'hype' => '推薦！',
+            'mapper_note' => '備注',
+            'nomination_reset' => '刪除所有提名',
+            'praise' => '表揚',
+            'problem' => '問題',
+            'problem_warning' => '問題警告',
+            'review' => '評論',
+            'suggestion' => '建議',
+        ],
+
         'mode' => [
             'events' => '歷史',
             'general' => '整體:scope',
@@ -175,6 +187,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => '您已經提名過這張圖譜了',
+        'cannot_nominate' => '您不能提名此遊戲模式的圖譜',
         'delete' => '刪除',
         'delete_own_confirm' => '你確定嗎？這個圖譜將被刪除，刪除後你將重新導向到你的個人資料頁面。',
         'delete_other_confirm' => '你確定嗎？這個圖譜將被刪除，刪除後你將重新導向到他的個人資料頁面。',
@@ -199,6 +213,7 @@ return [
 
         'rank_estimate' => [
             '_' => '若沒找到問題，該圖譜將於 :date 進榜。位於 :queue 中的 #:position。',
+            'on' => '在:date',
             'queue' => 'ranking 列隊',
             'soon' => '不久後',
         ],

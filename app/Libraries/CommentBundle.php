@@ -171,7 +171,9 @@ class CommentBundle
 
     private function getComments($query, $isChildren = true, $pinnedOnly = false)
     {
-        $sortOrCursorHelper = $pinnedOnly ? 'new' : $this->params->cursorHelper;
+        $cursorHelper = $pinnedOnly
+            ? Comment::makeDbCursorHelper('new')
+            : $this->params->cursorHelper;
         $queryLimit = $this->params->limit;
 
         if (!$isChildren) {
@@ -180,14 +182,20 @@ class CommentBundle
             }
 
             $queryLimit++;
-            $cursor = $this->params->cursor;
+
+            if ($this->params->after === null) {
+                $cursor = $this->params->cursor;
+            } else {
+                $lastComment = Comment::findOrFail($this->params->after);
+                $cursor = $cursorHelper->next([$lastComment]);
+            }
 
             if ($cursor === null) {
                 $query->offset(max_offset($this->params->page, $this->params->limit));
             }
         }
 
-        $query->cursorSort($sortOrCursorHelper, $cursor ?? null);
+        $query->cursorSort($cursorHelper, $cursor ?? null);
 
         if (!$this->includeDeleted) {
             $query->whereNull('deleted_at');

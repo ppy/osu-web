@@ -18,6 +18,16 @@ return [
             'new' => 'e-mail nou',
             'new_confirmation' => 'confirmare e-mail',
             'title' => 'E-mail',
+            'locked' => [
+                '_' => 'Vă rugăm să contactați :accounts dacă aveți nevoie să vă actualizați e-mailul.',
+                'accounts' => 'echipa de suport conturi',
+            ],
+        ],
+
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'API Vechi',
         ],
 
         'password' => [
@@ -28,7 +38,13 @@ return [
         ],
 
         'profile' => [
+            'country' => 'țară',
             'title' => 'Profil',
+
+            'country_change' => [
+                '_' => "Se pare că țara contului tău nu se potrivește cu țara ta de reședință. :update_link.",
+                'update_link' => 'Actualizează la :country',
+            ],
 
             'user' => [
                 'user_discord' => '',

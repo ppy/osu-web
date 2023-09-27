@@ -13,6 +13,16 @@ return [
     'see_channel' => 'đi đến trò chuyện',
     'verifying' => 'Vui lòng xác minh phiên để xem thông báo',
 
+    'action_type' => [
+        '_' => 'tất cả',
+        'beatmapset' => 'beatmap',
+        'build' => 'xây dựng',
+        'channel' => 'trò chuyện',
+        'forum_topic' => 'diễn đàn',
+        'news_post' => 'tin tức',
+        'user' => 'hồ sơ',
+    ],
+
     'filters' => [
         '_' => 'tất cả',
         'user' => 'trang cá nhân',
@@ -144,15 +154,6 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => 'Diễn đàn kế thừa PM',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited tin nhắn chưa đọc|:count_delimited tin nhắn chưa đọc',
-            ],
-        ],
-
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Beatmap mới',
@@ -161,8 +162,8 @@ return [
                 'user_beatmapset_new_compact' => 'Beatmap mới ":title"',
                 'user_beatmapset_new_group' => 'Beatmaps mới bởi :username',
 
-                'user_beatmapset_revive' => '',
-                'user_beatmapset_revive_compact' => '',
+                'user_beatmapset_revive' => 'Beatmap ":title" đã được hồi sinh bởi :username',
+                'user_beatmapset_revive_compact' => 'Beatmap ":title" đã được hồi sinh',
             ],
         ],
 
@@ -210,6 +211,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => 'Có một thông báo mới trong ":name"',
+            ],
+
             'channel' => [
                 'pm' => 'Bạn đã nhận được một tin nhắn mới từ
 :username',
@@ -242,7 +247,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username đã tạo beatmap mới',
-                'user_beatmapset_revive' => '',
+                'user_beatmapset_revive' => ':username đã hồi sinh một số beatmap',
             ],
         ],
     ],

@@ -25,6 +25,7 @@ return [
     ],
 
     'forums' => [
+        'forums' => 'Foorumit',
         'latest_post' => 'Viimeisin viesti',
 
         'index' => [
@@ -47,7 +48,7 @@ return [
         'confirm_restore' => 'Haluatko varmasti palauttaa viestin?',
         'edited' => 'Viimeksi muokannut :user :when, muokattu yhteensä :count kertaa.',
         'posted_at' => 'lähetetty :when',
-        'posted_by' => 'lähettänyt :username',
+        'posted_by_in' => 'lähettänyt :username foorumille :forum',
 
         'actions' => [
             'destroy' => 'Poista viesti',
@@ -128,43 +129,43 @@ return [
         ],
 
         'logs' => [
-            '_' => '',
-            'button' => '',
+            '_' => 'Aiheen lokit',
+            'button' => 'Selaa aiheen lokeja',
 
             'columns' => [
-                'action' => '',
+                'action' => 'Toiminto',
                 'date' => 'Päivämäärä',
                 'user' => 'Käyttäjä',
             ],
 
             'data' => [
-                'add_tag' => '',
-                'announcement' => '',
-                'edit_topic' => '',
-                'fork' => '',
-                'pin' => '',
-                'post_operation' => '',
-                'remove_tag' => '',
-                'source_forum_operation' => '',
-                'unpin' => '',
+                'add_tag' => 'lisätty tunniste ":tag"',
+                'announcement' => 'aihe kiinnitetty ja merkitty tiedotteeksi',
+                'edit_topic' => 'otsikoksi :title',
+                'fork' => 'aiheesta :topic',
+                'pin' => 'aihe kiinnitetty',
+                'post_operation' => 'lähettänyt :username',
+                'remove_tag' => 'poistettu tunniste ":tag"',
+                'source_forum_operation' => 'foorumista :forum',
+                'unpin' => 'aihe irrotettu',
             ],
 
-            'no_results' => '',
+            'no_results' => 'lokeja ei löytynyt...',
 
             'operations' => [
-                'delete_post' => '',
-                'delete_topic' => '',
-                'edit_topic' => '',
-                'edit_poll' => '',
-                'fork' => '',
-                'issue_tag' => '',
-                'lock' => '',
-                'merge' => '',
-                'move' => '',
-                'pin' => '',
-                'post_edited' => '',
-                'restore_post' => '',
-                'restore_topic' => '',
+                'delete_post' => 'Poistettu viesti',
+                'delete_topic' => 'Poistettu aihe',
+                'edit_topic' => 'Vaihdettu aiheen otsikkoa',
+                'edit_poll' => 'Muokattu aiheen kyselyä',
+                'fork' => 'Aihe kopioitu',
+                'issue_tag' => 'Tunniste myönnetty',
+                'lock' => 'Lukittu aihe',
+                'merge' => 'Yhdistetty viestejä tähän aiheeseen',
+                'move' => 'Aihe siirretty',
+                'pin' => 'Kiinnitetty aihe',
+                'post_edited' => 'Muokattu viestiä',
+                'restore_post' => 'Viesti palautettu',
+                'restore_topic' => 'Aihe palautettu',
                 'split_destination' => '',
                 'split_source' => '',
                 'topic_type' => '',

@@ -25,6 +25,7 @@ return [
     ],
 
     'forums' => [
+        'forums' => 'Fórum',
         'latest_post' => 'Poslední příspěvek',
 
         'index' => [
@@ -47,7 +48,7 @@ return [
         'confirm_restore' => 'Opravdu chcete příspěvek obnovit?',
         'edited' => 'Naposledy upravil :user :when, upraveno celkem :count_delimited krát.',
         'posted_at' => 'publikováno :when',
-        'posted_by' => 'příspěvek přidal :username',
+        'posted_by_in' => 'zveřejněno uživatelem :username v :forum',
 
         'actions' => [
             'destroy' => 'Odstranit příspěvek',
@@ -101,7 +102,7 @@ return [
             'preview' => 'Náhled',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
-            'preview_hide' => 'Psát',
+            'preview_hide' => 'Editovat',
             'submit' => 'Odeslat',
 
             'necropost' => [

@@ -50,13 +50,11 @@ return [
             'resolved' => 'Nu poți edita o postare dintr-o discuție rezolvată.',
             'system_generated' => 'Postările generate automat nu pot fi editate.',
         ],
-
-        'store' => [
-            'beatmapset_locked' => 'Discuțiile sunt blocate pe acest beatmap.',
-        ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => 'Discuțiile sunt blocate pe acest beatmap.',
+
         'metadata' => [
             'nominated' => 'Nu poți schimba datele melodiei a unui beatmap nominalizat. Contactează un membru BN sau NAT dacă crezi că e setat greșit.',
         ],
@@ -114,7 +112,7 @@ return [
 
             'store' => [
                 'play_more' => 'Te rugăm să încerci să te joci înainte de a posta pe forum. Dacă ai o problemă în ceea ce privește jocul, te rugăm să o postezi pe forum-ul de ajutor și asistență.',
-                'too_many_help_posts' => "Trebuie să te joci înainte de a putea face postări suplimentare. Dacă ai o problemă legată de joc, trimite un e-mail la support@ppy.sh", // FIXME: unhardcode email address.
+                'too_many_help_posts' => "Trebuie să te joci mai mult înainte de a putea face postări suplimentare. Dacă încă mai ai probleme legate de jucatul jocului, trimite un e-mail la support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 
@@ -173,6 +171,7 @@ return [
 
     'score' => [
         'pin' => [
+            'disabled_type' => "Nu se poate fixa acest tip de scor",
             'not_owner' => 'Numai creatorul scorului poate fixa acest scor.',
             'too_many' => 'Ai fixat prea multe scoruri.',
         ],
@@ -185,6 +184,9 @@ return [
                 'not_owner' => 'Îți poți edita doar propria pagină de utilizator.',
                 'require_supporter_tag' => 'Statusul de suporter osu! este necesar.',
             ],
+        ],
+        'update_email' => [
+            'locked' => 'adresa de e-mail este blocată',
         ],
     ],
 ];

@@ -86,7 +86,7 @@ return [
             '_' => '경기',
         ],
         'news_controller' => [
-            '_' => '소식',
+            '_' => '뉴스',
         ],
         'notifications_controller' => [
             '_' => '알림 기록',
@@ -100,11 +100,15 @@ return [
         'scores_controller' => [
             '_' => '퍼포먼스',
         ],
+        'seasons_controller' => [
+            '_' => '순위',
+        ],
         'tournaments_controller' => [
             '_' => '토너먼트',
         ],
         'users_controller' => [
             '_' => '플레이어 정보',
+            'create' => '계정 만들기',
             'disabled' => '알림',
         ],
         'wiki_controller' => [

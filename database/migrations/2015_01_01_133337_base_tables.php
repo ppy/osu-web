@@ -1394,7 +1394,7 @@ class BaseTables extends Migration
             $table->collation = 'utf8_bin';
 
             $table->mediumIncrements('user_id');
-            $table->boolean('user_type')->default(0);
+            $table->tinyInteger('user_type')->default(0);
             $table->mediumInteger('group_id')->unsigned()->default(2);
             $column = $table->mediumText('user_permissions');
             $column->collation = 'utf8_bin';

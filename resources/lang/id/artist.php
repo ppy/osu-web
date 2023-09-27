@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'page_description' => 'Featured artist di osu!',
+    'page_description' => 'Artis unggulan osu!',
     'title' => 'Featured Artist',
 
     'admin' => [
@@ -13,8 +13,8 @@ return [
 
     'beatmaps' => [
         '_' => 'Beatmaps',
-        'download' => 'Unduh Template Beatmap',
-        'download-na' => 'Template Beatmap belum tersedia',
+        'download' => 'unduh template beatmap',
+        'download-na' => 'template beatmap belum tersedia',
     ],
 
     'index' => [
@@ -51,7 +51,7 @@ return [
                 'artist' => 'Artis',
                 'bpm_gte' => 'BPM Minimal',
                 'bpm_lte' => 'BPM Maksimal',
-                'empty' => 'Tidak ada lagu yang sesuai dengan kriteria pencarian Anda.',
+                'empty' => 'Tidak ada lagu yang sesuai dengan kriteria pencarian yang ditentukan.',
                 'genre' => 'Aliran',
                 'genre_all' => 'Semua',
                 'length_gte' => 'Durasi Minimal',

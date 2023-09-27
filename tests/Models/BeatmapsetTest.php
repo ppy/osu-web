@@ -38,6 +38,30 @@ class BeatmapsetTest extends TestCase
         $this->assertSame($notifications + 1, Notification::count());
         $this->assertSame($userNotifications + 1, UserNotification::count());
         $this->assertTrue($beatmapset->fresh()->isLoved());
+        $this->assertSame('loved', $beatmapset->beatmaps()->first()->status());
+    }
+
+    public function testLoveBeatmapApprovedStates(): void
+    {
+        $user = User::factory()->create();
+        $beatmapset = $this->createBeatmapset();
+
+        $specifiedBeatmap = $beatmapset->beatmaps()->first();
+        $beatmapset->beatmaps()->saveMany([
+            $graveyardBeatmap = Beatmap::factory()->make(['approved' => Beatmapset::STATES['graveyard']]),
+            $pendingBeatmap = Beatmap::factory()->make(['approved' => Beatmapset::STATES['pending']]),
+            $wipBeatmap = Beatmap::factory()->make(['approved' => Beatmapset::STATES['wip']]),
+            $rankedBeatmap = Beatmap::factory()->make(['approved' => Beatmapset::STATES['ranked']]),
+        ]);
+
+        $beatmapset->love($user, [$specifiedBeatmap->getKey()]);
+
+        $this->assertTrue($beatmapset->fresh()->isLoved());
+        $this->assertSame('loved', $specifiedBeatmap->fresh()->status());
+        $this->assertSame('graveyard', $graveyardBeatmap->fresh()->status());
+        $this->assertSame('graveyard', $pendingBeatmap->fresh()->status());
+        $this->assertSame('graveyard', $wipBeatmap->fresh()->status());
+        $this->assertSame('ranked', $rankedBeatmap->fresh()->status());
     }
 
     // region single-playmode beatmap sets
@@ -58,6 +82,18 @@ class BeatmapsetTest extends TestCase
         $this->assertSame($notifications + 1, Notification::count());
         $this->assertSame($userNotifications + 1, UserNotification::count());
         $this->assertTrue($beatmapset->fresh()->isPending());
+    }
+
+    public function testNominateNATAnyRuleset(): void
+    {
+        $beatmapset = $this->createBeatmapset();
+        $user = User::factory()->withGroup('nat', [])->create();
+
+        $this->expectCountChange(fn () => $beatmapset->nominations, 1);
+        $this->expectCountChange(fn () => $beatmapset->beatmapsetNominations()->current()->count(), 1);
+
+        $beatmapset->nominate($user, $beatmapset->playmodesStr());
+        $beatmapset->refresh();
     }
 
     public function testQualify()
@@ -443,7 +479,7 @@ class BeatmapsetTest extends TestCase
 
         $beatmapset = Beatmapset::factory()->create(array_merge($defaultParams, $params));
         $beatmapset->beatmaps()->save(Beatmap::factory()->make());
-        factory(BeatmapMirror::class)->states('default')->create();
+        BeatmapMirror::factory()->default()->create();
 
         return $beatmapset;
     }
@@ -464,7 +500,7 @@ class BeatmapsetTest extends TestCase
         foreach ($playmodes as $playmode) {
             $beatmapset->beatmaps()->save(Beatmap::factory()->make(['playmode' => Beatmap::modeInt($playmode)]));
         }
-        factory(BeatmapMirror::class)->states('default')->create();
+        BeatmapMirror::factory()->default()->create();
 
         return $beatmapset;
     }

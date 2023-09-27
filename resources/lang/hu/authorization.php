@@ -50,13 +50,11 @@ return [
             'resolved' => 'Nem szerkeszthetsz bejegyzést egy megbeszélt témában.',
             'system_generated' => 'Automatikusan generált posztot nem lehet szerkeszteni.',
         ],
-
-        'store' => [
-            'beatmapset_locked' => 'Ez a beatmap megbeszélés miatt zárolva.',
-        ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => 'Ez a beatmap megbeszélés miatt zárolva van.',
+
         'metadata' => [
             'nominated' => 'Nem változtathatod meg egy nominált map metaadatait. Ha úgy gondolod valami nincs rendben, lépj kapcsolatba egy BN vagy egy NAT taggal.',
         ],
@@ -173,6 +171,7 @@ return [
 
     'score' => [
         'pin' => [
+            'disabled_type' => "Nem lehet ilyen típusú pontszámot kitűzni",
             'not_owner' => 'Csak eredménnyel rendelkezők tűzhetnek ki eredményeket.',
             'too_many' => 'Túl sok kitűzött eredmény.',
         ],
@@ -185,6 +184,9 @@ return [
                 'not_owner' => 'Csak a saját felhasználói oldaladat szerkesztheted.',
                 'require_supporter_tag' => 'osu!támogatói cím szükséges.',
             ],
+        ],
+        'update_email' => [
+            'locked' => '',
         ],
     ],
 ];

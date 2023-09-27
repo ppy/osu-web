@@ -4,58 +4,58 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'page_description' => '',
-    'title' => '',
+    'page_description' => '\'Featured Artists\' di osu!',
+    'title' => 'Featured Artists',
 
     'admin' => [
-        'hidden' => '',
+        'hidden' => 'ARTIS SAAT INI TERSEMBUNYI',
     ],
 
     'beatmaps' => [
-        '_' => '',
-        'download' => '',
-        'download-na' => '',
+        '_' => 'Beatmaps',
+        'download' => 'muat turun templat beatmap',
+        'download-na' => 'templat beatmap belum lagi tersedia',
     ],
 
     'index' => [
-        'description' => '',
+        'description' => 'Featured Artist merupakan artis-artis yang telah secara rasmi bekerjasama dengan kami dalam menyediakan lagu-lagu baru dan asli untuk osu!. Para artis berikut — beserta karya-karya pilihan mereka — telah dipilih secara saksama oleh kumpulan kami bagi para mapper untuk dapat berkreasi dengannya. Lebih dari itu, beberapa dari mereka bahkan telah turut menciptakan lagu-lagu baru untuk osu! secara eksklusif.<br><br>Seluruh lagu yang tertera pada katalog di bawah ini dapat dimuat turun secara bebas dalam format .osz (lengkap dengan penetapan masa yang telah kami siapkan sebelumnya) serta telah diizinkan secara sah untuk dapat dipergunakan dan disebarluaskan di dalam osu! dan kandungan berkaitan osu!.',
     ],
 
     'links' => [
-        'beatmaps' => '',
-        'osu' => '',
-        'site' => '',
+        'beatmaps' => 'Daftar Beatmap',
+        'osu' => 'Profil osu!',
+        'site' => 'Laman Web Rasmi',
     ],
 
     'songs' => [
-        '_' => '',
+        '_' => 'Lagu',
         'count' => '',
-        'original' => '',
-        'original_badge' => '',
+        'original' => 'osu! original',
+        'original_badge' => 'ASLI',
     ],
 
     'tracklist' => [
-        'title' => '',
-        'length' => '',
-        'bpm' => '',
-        'genre' => '',
+        'title' => 'tajuk',
+        'length' => 'tempoh',
+        'bpm' => 'bpm',
+        'genre' => 'aliran',
     ],
 
     'tracks' => [
         'index' => [
-            '_' => '',
+            '_' => 'carian lagu',
 
             'form' => [
-                'advanced' => '',
-                'album' => '',
-                'artist' => '',
-                'bpm_gte' => '',
-                'bpm_lte' => '',
-                'empty' => '',
-                'genre' => '',
-                'genre_all' => '',
-                'length_gte' => '',
-                'length_lte' => '',
+                'advanced' => 'Carian Lanjutan',
+                'album' => 'Album',
+                'artist' => 'Artis',
+                'bpm_gte' => 'BPM Minimum',
+                'bpm_lte' => 'BPM Maksimum',
+                'empty' => 'Tiada lagu yang sesuai dengan ukur tara pencarian yang ditentukan.',
+                'genre' => 'Aliran',
+                'genre_all' => 'Semua',
+                'length_gte' => 'Tempoh Minimum',
+                'length_lte' => 'Tempoh Maksimum',
             ],
         ],
     ],

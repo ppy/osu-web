@@ -13,12 +13,12 @@ return [
 
     'beatmaps' => [
         '_' => 'Beatmapy',
-        'download' => 'Stáhnout šablonu beatmapy',
-        'download-na' => 'Šablona beatmapy zatím není dostupná',
+        'download' => 'stáhnout šablonu beatmapy',
+        'download-na' => 'šablona beatmapy zatím není dostupná',
     ],
 
     'index' => [
-        'description' => 'Featured artists jsou umělci, se kterými spolupracujeme, abychom do osu! přinesli novou a originální hudbu. Tito umělci a výběr jejich skladeb byli ručně zvoleni týmem osu! kvůli jejich úžasnosti a vlohám pro zmapování. Někteří z featured artists navíc vytvořili nové skladby exkluzivně pro osu!.<br><br>Všechny skladby v této sekci jsou k dispozici jako předem načasované .osz soubory a jsou oficiálně licencované pro použití v osu! a obsahu s osu! souvisejícím.',
+        'description' => 'Featured Artists jsou umělci, se kterými spolupracujeme, abychom do osu! přinesli novou a originální hudbu. Tito umělci a výběr jejich skladeb byli ručně zvoleni týmem osu! kvůli jejich úžasnosti a vlohám pro zmapování. Někteří z Featured Artists navíc vytvořili nové skladby exkluzivně pro osu!.<br><br>Všechny skladby v této sekci jsou k dispozici jako předem načasované .osz soubory a jsou oficiálně licencované pro použití v osu! a obsahu s osu! souvisejícím.',
     ],
 
     'links' => [

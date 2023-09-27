@@ -5,34 +5,34 @@
 
 return [
     'comment' => [
-        'empty' => '',
-        'page_title' => '',
-        'title' => '',
+        'empty' => 'Δεν παρακολουθήθηκαν σχόλια.',
+        'page_title' => 'watchlist σχολίων',
+        'title' => 'σχόλιο',
 
         'table' => [
-            'latest_comment_empty' => '',
-            'latest_comment_value' => '',
+            'latest_comment_empty' => 'δεν υπάρχουν σχόλια',
+            'latest_comment_value' => ':time από :username',
         ],
     ],
 
     'forum_topic' => [
-        'title' => '',
+        'title' => 'θέμα φόρουμ',
     ],
 
     'index' => [
-        'title_compact' => '',
+        'title_compact' => 'λίστες παρακολούθησης',
     ],
 
     'mapping' => [
-        'empty' => '',
-        'followers' => '',
-        'page_title' => '',
-        'title' => '',
-        'to_0' => '',
-        'to_1' => '',
+        'empty' => 'Δεν παρακολουθήθηκαν mappers.',
+        'followers' => 'συνδρομητές mapping',
+        'page_title' => 'λίστα παρακολούθησης mapper',
+        'title' => 'mapper',
+        'to_0' => 'σταμάτα να με ειδοποιείς όταν αυτός ο χρήστης ανεβάζει νέο beatmap',
+        'to_1' => 'ειδοποίησέ με όταν αυτός ο χρήστης ανεβάζει νέο beatmap',
     ],
 
     'modding' => [
-        'title' => '',
+        'title' => 'συζήτηση beatmap',
     ],
 ];

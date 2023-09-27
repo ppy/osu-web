@@ -37,6 +37,7 @@ return [
         'blocked_count' => 'zablokowani użytkownicy (:count)',
         'hide_profile' => 'ukryj profil',
         'hide_comment' => 'ukryj',
+        'forum_post_text' => 'Ten post został ukryty.',
         'not_blocked' => 'Ten użytkownik nie jest zablokowany.',
         'show_profile' => 'pokaż profil',
         'show_comment' => 'pokaż',
@@ -48,8 +49,25 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => 'Podaruj status donatora',
         'loading' => 'Ładowanie...',
         'send_message' => 'Wyślij wiadomość',
+    ],
+
+    'create' => [
+        'form' => [
+            'password' => 'hasło',
+            'password_confirmation' => 'potwierdź hasło',
+            'submit' => 'utwórz konto',
+            'user_email' => 'e-mail',
+            'user_email_confirmation' => 'potwierdź e-mail',
+            'username' => 'nazwa użytkownika',
+
+            'tos_notice' => [
+                '_' => 'tworząc konto, wyrażasz zgodę na :link',
+                'link' => 'warunki świadczenia usług',
+            ],
+        ],
     ],
 
     'disabled' => [
@@ -105,6 +123,14 @@ return [
         ],
     ],
 
+    'ogp' => [
+        'description' => [
+            '_' => '',
+            'country' => '',
+            'global' => '',
+        ],
+    ],
+
     'posts' => [
         'title' => 'Posty użytkownika :username',
     ],
@@ -141,7 +167,8 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'Twoje konto zostało zablokowane!',
-        'message' => 'Podczas blokady konta interakcja z innymi użytkownikami nie będzie możliwa, a twoje wyniki będą widoczne tylko dla ciebie. Zazwyczaj nałożenie blokady jest rezultatem zautomatyzowanego procesu, a jej usunięcie powinno nastąpić w ciągu 24 godzin. Jeżeli chcesz odwołać się od blokady, skontaktuj się z <a href="mailto:accounts@ppy.sh">pomocą techniczną</a>.',
+        'message' => 'Podczas blokady konta interakcja z innymi użytkownikami nie będzie możliwa, a twoje wyniki będą widoczne tylko dla ciebie. Zazwyczaj nałożenie blokady jest rezultatem zautomatyzowanego procesu, a jej usunięcie powinno nastąpić w ciągu 24 godzin. :link',
+        'message_link' => 'Kliknij tutaj, by dowiedzieć się więcej.',
     ],
     'show' => [
         'age' => 'Ma :age lat',
@@ -218,7 +245,7 @@ return [
                     'title' => 'Ulubione beatmapy społeczności',
                 ],
                 'nominated' => [
-                    'title' => '',
+                    'title' => 'Nominowane beatmapy do sekcji rankingowej',
                 ],
                 'pending' => [
                     'title' => 'Oczekujące beatmapy',
@@ -368,7 +395,7 @@ return [
                     'date' => 'data',
                     'action' => 'typ',
                     'length' => 'długość',
-                    'length_permanent' => 'Na zawsze',
+                    'length_indefinite' => 'Nieokreślona',
                     'description' => 'opis',
                     'actor' => 'przez :username',
 
@@ -398,7 +425,7 @@ return [
             'title' => 'Nie znaleziono użytkownika! ;_;',
         ],
         'page' => [
-            'button' => 'Edytuj stronę użytkownika',
+            'button' => 'edytuj stronę użytkownika',
             'description' => '<strong>O mnie</strong> to twoje osobiste miejsce, które możesz dowolnie dostosować.',
             'edit_big' => 'Edytuj mnie!',
             'placeholder' => 'Pisz tutaj',
@@ -422,7 +449,7 @@ return [
         'stats' => [
             'hit_accuracy' => 'Celność',
             'level' => 'Poziom :level',
-            'level_progress' => 'Postęp do następnego poziomu',
+            'level_progress' => 'postęp do następnego poziomu',
             'maximum_combo' => 'Maksymalne combo',
             'medals' => 'Medale',
             'play_count' => 'Liczba zagrań',
@@ -451,6 +478,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
+        'from_client' => 'zarejestruj się poprzez klient gry!',
+        'from_web' => 'ukończ proces rejestracji poprzez stronę osu!',
         'saved' => 'Użytkownik utworzony',
     ],
     'verify' => [

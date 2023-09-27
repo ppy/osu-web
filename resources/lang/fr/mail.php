@@ -14,7 +14,7 @@ return [
     'common' => [
         'closing' => 'Cordialement,',
         'hello' => 'Bonjour :user,',
-        'report' => 'Veuillez répondre à cet email IMMÉDIATEMENT si vous n\'avez pas demandé ce changement.',
+        'report' => 'Veuillez répondre à cet e-mail IMMÉDIATEMENT si vous n\'avez pas demandé ce changement.',
         'ignore' => 'Si vous n\'êtes pas à l\'origine de cette demande, vous pouvez ignorer ce message en toute sécurité.',
     ],
 
@@ -67,6 +67,7 @@ return [
         'duration' => 'Grâce à cette personne, vous pouvez utiliser osu!direct et d\'autres avantages osu!supporter pour les prochains :duration.',
         'features' => 'Vous trouverez plus de détails sur ces fonctionnalités ici :',
         'gifted' => 'Quelqu\'un vient de vous offrir un tag osu!supporter !',
+        'gift_message' => 'La personne qui vous a donné ce tag vous a laissé un message :',
         'subject' => 'On vous a offert un tag osu!supporter !',
     ],
 

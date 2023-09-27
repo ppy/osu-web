@@ -127,7 +127,7 @@ class PasswordResetController extends Controller
             return osu_trans('password_reset.error.user_not_found');
         }
 
-        if (!present($user->user_email)) {
+        if (!is_valid_email_format($user->user_email)) {
             return osu_trans('password_reset.error.contact_support');
         }
 

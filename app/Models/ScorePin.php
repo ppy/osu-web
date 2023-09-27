@@ -45,7 +45,14 @@ class ScorePin extends Model
 
     public function scopeWithVisibleScore($query): Builder
     {
-        return $query->whereHasMorph('score', static::SCORES, fn ($q) => $q->whereHas('beatmap.beatmapset'));
+        $scoreModels = static::SCORES;
+
+        if (config('osu.user.hide_pinned_solo_scores')) {
+            $soloScoreIndex = array_search_null(MorphMap::MAP[Solo\Score::class], $scoreModels);
+            array_splice($scoreModels, $soloScoreIndex, 1);
+        }
+
+        return $query->whereHasMorph('score', $scoreModels, fn ($q) => $q->whereHas('beatmap.beatmapset'));
     }
 
     public function score(): MorphTo

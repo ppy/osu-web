@@ -20,7 +20,7 @@ return [
     ],
 
     'featured_artist_badge' => [
-        'label' => 'Featured artist',
+        'label' => 'Featured Artist',
     ],
 
     'index' => [
@@ -60,13 +60,23 @@ return [
     'show' => [
         'discussion' => 'Discussion',
 
+        'admin' => [
+            'full_size_cover' => 'View full size cover image',
+        ],
+
+        'deleted_banner' => [
+            'title' => 'This beatmap has been deleted.',
+            'message' => '(only moderators can see this)',
+        ],
+
         'details' => [
             'by_artist' => 'by :artist',
-            'favourite' => 'Favourite this beatmap',
-            'favourite_login' => 'Sign in to favourite this beatmap',
-            'logged-out' => 'You need to sign in before downloading any beatmaps!',
+            'favourite' => 'favourite this beatmap',
+            'favourite_login' => 'sign in to favourite this beatmap',
+            'logged-out' => 'you need to sign in before downloading any beatmaps!',
             'mapped_by' => 'mapped by :mapper',
-            'unfavourite' => 'Unfavourite this beatmap',
+            'mapped_by_guest' => 'guest difficulty by :mapper',
+            'unfavourite' => 'unfavourite this beatmap',
             'updated_timeago' => 'last updated :timeago',
 
             'download' => [

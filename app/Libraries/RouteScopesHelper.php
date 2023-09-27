@@ -126,6 +126,6 @@ class RouteScopesHelper
 
     public function toJson(string $filename)
     {
-        file_put_contents($filename, str_replace('\/', '/', json_encode($this->toArray(), JSON_PRETTY_PRINT)."\n"));
+        file_put_contents($filename, json_encode($this->toArray(), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES)."\n");
     }
 }

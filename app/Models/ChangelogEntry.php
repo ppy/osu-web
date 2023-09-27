@@ -70,13 +70,12 @@ class ChangelogEntry extends Model
         static $ignored = [
             'high priority',
             'resolves issue',
-            'size/xs',
-            'size/s',
-            'size/m',
-            'size/l',
-            'size/xl',
-            'size/xxl',
             'update',
+        ];
+
+        static $ignoredPrefixes = [
+            'priority:',
+            'size/',
         ];
 
         if ($data['repository']['full_name'] === OsuWiki::user().'/'.OsuWiki::repository()) {
@@ -86,7 +85,12 @@ class ChangelogEntry extends Model
         foreach ($data['pull_request']['labels'] as $label) {
             $name = $label['name'];
 
-            if (in_array(strtolower($name), $ignored, true)) {
+            $lowerName = strtolower($name);
+            if (in_array($lowerName, $ignored, true)) {
+                continue;
+            }
+
+            if (starts_with($lowerName, $ignoredPrefixes)) {
                 continue;
             }
 
@@ -185,11 +189,7 @@ class ChangelogEntry extends Model
         static $separator = "\n\n---\n";
         // prepended with \n\n just in case the message starts with ---\n (blank first part).
         $message = "\n\n".trim(str_replace("\r\n", "\n", $message));
-        $splitPos = strpos($message, $separator);
-
-        if ($splitPos === false) {
-            $splitPos = strlen($message);
-        }
+        $splitPos = null_if_false(strpos($message, $separator)) ?? strlen($message);
 
         return [
             presence(trim(substr($message, 0, $splitPos))),

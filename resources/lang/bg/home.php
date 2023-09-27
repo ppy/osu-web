@@ -42,7 +42,8 @@ return [
 
             'label' => [
                 'forum' => 'търси във форум',
-                'forum_children' => 'включи и подфоруми',
+                'forum_children' => 'включително и подфоруми',
+                'include_deleted' => 'включително изтрити теми',
                 'topic_id' => 'тема #',
                 'username' => 'автор',
             ],
@@ -72,9 +73,23 @@ return [
     ],
 
     'download' => [
+        'action' => 'Изтегли osu!',
+        'action_lazer' => 'Изтегли osu!(lazer)',
+        'action_lazer_description' => 'предстоящата основна актуализация на osu!',
+        'action_lazer_info' => 'разгледайте тази страница за повече информация',
+        'action_lazer_title' => 'изпробвайте osu!(lazer)',
+        'action_title' => 'изтеглете osu!',
+        'for_os' => 'за :os',
+        'lazer_note' => 'внимание: прилага се рестарт на класирането',
+        'macos-fallback' => 'macOS потребители',
+        'mirror' => 'алтернативна връзка',
+        'or' => 'или',
+        'os_version_or_later' => ':os_version и нагоре',
+        'other_os' => 'други устройства',
+        'quick_start_guide' => 'ръководство за започване',
         'tagline' => "нека ви помогнем<br>
 да започнете!",
-        'action' => 'Изтегли osu!',
+        'video-guide' => 'видео ръководство',
 
         'help' => [
             '_' => 'при проблем със стартиране на играта или регистриране на профил, посетете :help_forum_link или :support_button.',
@@ -87,8 +102,6 @@ return [
             'macos' => 'за macOS',
             'linux' => 'за Linux',
         ],
-        'mirror' => 'алтернативна връзка',
-        'macos-fallback' => 'macOS потребители',
         'steps' => [
             'register' => [
                 'title' => 'създай акаунт',
@@ -106,7 +119,6 @@ return [
                 ],
             ],
         ],
-        'video-guide' => 'видео ръководство',
     ],
 
     'user' => [

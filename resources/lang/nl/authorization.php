@@ -50,13 +50,11 @@ return [
             'resolved' => 'U kunt geen bericht van een opgeloste discussie bewerken.',
             'system_generated' => 'Automatisch gegenereerde posts kunnen niet worden bewerkt.',
         ],
-
-        'store' => [
-            'beatmapset_locked' => 'Deze beatmap is vergrendeld voor discussie.',
-        ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => 'Deze beatmap is gesloten voor discussie.',
+
         'metadata' => [
             'nominated' => 'U kunt metagegevens van een nominale kaart niet wijzigen. Neem contact op met een BN of NAT lid als u denkt dat deze onjuist is ingesteld.',
         ],
@@ -173,6 +171,7 @@ return [
 
     'score' => [
         'pin' => [
+            'disabled_type' => "",
             'not_owner' => 'Enkel de eigenaar van de score kan deze vastzetten.',
             'too_many' => 'Te veel scores vastgezet.',
         ],
@@ -185,6 +184,9 @@ return [
                 'not_owner' => 'Je kan alleen je eigen gebruikerspagina bewerken.',
                 'require_supporter_tag' => 'osu!supporter tag is vereist.',
             ],
+        ],
+        'update_email' => [
+            'locked' => '',
         ],
     ],
 ];

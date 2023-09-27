@@ -158,7 +158,7 @@ class Topic extends Model implements AfterCommit
         }
     }
 
-    public function validationErrorsTranslationPrefix()
+    public function validationErrorsTranslationPrefix(): string
     {
         return 'forum.topic';
     }
@@ -333,15 +333,7 @@ class Topic extends Model implements AfterCommit
             $this->validationErrors()->add('topic_title', 'required');
         }
 
-        foreach (static::MAX_FIELD_LENGTHS as $field => $limit) {
-            if ($this->isDirty($field)) {
-                $val = $this->$field;
-
-                if (mb_strlen($val) > $limit) {
-                    $this->validationErrors()->add($field, 'too_long', ['limit' => $limit]);
-                }
-            }
-        }
+        $this->validateDbFieldLengths();
 
         return $this->validationErrors()->isEmpty();
     }
@@ -424,12 +416,15 @@ class Topic extends Model implements AfterCommit
         $tieBreakerOrder = 'desc';
 
         switch ($sort) {
+            case 'created':
+                $query->orderBy('topic_time', 'desc');
+                break;
             case 'feature-votes':
                 $query->orderBy('osu_starpriority', 'desc');
                 break;
         }
 
-        $query->orderBy('topic_last_post_time', $tieBreakerOrder);
+        return $query->orderBy('topic_last_post_time', $tieBreakerOrder);
     }
 
     public function scopeRecent($query, $params = null)
@@ -487,6 +482,16 @@ class Topic extends Model implements AfterCommit
         });
     }
 
+    public function isOld()
+    {
+        // pinned and announce posts should never be considered old
+        if ($this->topic_type !== static::TYPES['normal']) {
+            return false;
+        }
+
+        return $this->topic_last_post_time < Carbon::now()->subMonths(config('osu.forum.old_months'));
+    }
+
     public function isLocked()
     {
         // not checking STATUS_LOCK because there's another
@@ -537,7 +542,7 @@ class Topic extends Model implements AfterCommit
                 throw $ex;
             }
 
-            $this->increment('topic_views');
+            $this->incrementInstance('topic_views');
         } elseif ($status->mark_time < $markTime) {
             $status->update(['mark_time' => $markTime]);
         }
@@ -798,7 +803,7 @@ class Topic extends Model implements AfterCommit
             $this->topic_title = "[{$tag}] {$this->topic_title}";
         }
 
-        $this->save();
+        $this->saveOrExplode();
     }
 
     public function unsetIssueTag($tag)
@@ -811,7 +816,7 @@ class Topic extends Model implements AfterCommit
             trim(str_replace("[{$tag}]", '', $this->topic_title))
         );
 
-        $this->save();
+        $this->saveOrExplode();
     }
 
     public function hasIssueTag($tag)

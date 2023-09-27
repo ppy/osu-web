@@ -13,6 +13,16 @@ return [
     'see_channel' => 'vai alla chat',
     'verifying' => 'Verifica la sessione per visualizzare le notifiche',
 
+    'action_type' => [
+        '_' => '"tutto"',
+        'beatmapset' => '"beatmap"',
+        'build' => '"versioni"',
+        'channel' => '"chat"',
+        'forum_topic' => '"forum"',
+        'news_post' => '"notizie"',
+        'user' => '"profilo"',
+    ],
+
     'filters' => [
         '_' => 'tutto',
         'user' => 'profilo',
@@ -28,7 +38,7 @@ return [
             '_' => 'Beatmap',
 
             'beatmap_owner_change' => [
-                '_' => 'Guest difficulty',
+                '_' => 'Difficoltà guest',
                 'beatmap_owner_change' => 'Sei diventato il proprietario della difficoltà ":beatmap" nella beatmap ":title"',
                 'beatmap_owner_change_compact' => 'Sei diventato il proprietario della difficoltà ":beatmap"',
             ],
@@ -143,15 +153,6 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => 'PM forum legacy',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited messaggio non letto|:count_delimited messaggi non letti',
-            ],
-        ],
-
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Nuova beatmap',
@@ -209,6 +210,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => 'C\'è un nuovo annuncio in ":name"',
+            ],
+
             'channel' => [
                 'pm' => 'Hai ricevuto un nuovo messaggio da :username',
             ],

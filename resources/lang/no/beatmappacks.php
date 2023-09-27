@@ -6,6 +6,7 @@
 return [
     'index' => [
         'description' => 'Forhåndspakkede samlinger av beatmaps basert rundt et felles tema.',
+        'empty' => 'Kommer snart!',
         'nav_title' => 'liste',
         'title' => 'Beatmappakker',
 
@@ -34,8 +35,11 @@ return [
     'mode' => [
         'artist' => 'Artist/Album',
         'chart' => 'I rampelyset',
+        'featured' => 'Fremhevet Artist',
+        'loved' => 'Prosjekt Loved',
         'standard' => 'Standard',
         'theme' => 'Tema',
+        'tournament' => 'Turnering',
     ],
 
     'require_login' => [

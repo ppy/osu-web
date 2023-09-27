@@ -19,6 +19,8 @@ class ForumSearchParams extends SearchParams
     /** @var int|null */
     public $forumId = null;
 
+    public bool $includeDeleted = false;
+
     /** @var bool */
     public $includeSubforums = false;
 

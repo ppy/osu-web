@@ -24,24 +24,29 @@ class SetLocale
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::check()) {
-            $locale = Auth::user()->user_lang;
-        } else {
-            $locale = presence($request->cookie('locale'));
-        }
+        $this->setLocale(
+            Auth::user()?->user_lang ?? presence($request->cookie('locale')),
+            $request,
+        );
 
-        $locale = get_valid_locale($locale);
+        return $next($request);
+    }
 
-        if ($locale === null) {
-            $accept = $request->server('HTTP_ACCEPT_LANGUAGE');
-            $parser = new Parser($accept);
-            $locale = $parser->languageRegionCompatibleFrom(config('app.available_locales')) ?? config('app.fallback_locale');
+    protected function setLocale(?string $locale, Request $request): void
+    {
+        if ($locale !== null) {
+            $locale = get_valid_locale($locale);
         }
+        $locale ??= $this->localeFromHeader($request);
 
         App::setLocale($locale);
         // Carbon setLocale normalizes the locale
-        Carbon::setLocale($locale);
+        Carbon::setLocale($locale === 'sr' ? 'sr_Cyrl' : $locale);
+    }
 
-        return $next($request);
+    private function localeFromHeader(Request $request): string
+    {
+        return (new Parser())->languageRegionCompatibleFor($request->server('HTTP_ACCEPT_LANGUAGE'))
+            ?? config('app.fallback_locale');
     }
 }

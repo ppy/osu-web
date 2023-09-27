@@ -6,6 +6,7 @@
 namespace App\Transformers\Chat;
 
 use App\Models\Chat\Channel;
+use App\Models\Chat\Message;
 use App\Models\User;
 use App\Transformers\TransformerAbstract;
 
@@ -22,7 +23,7 @@ class ChannelTransformer extends TransformerAbstract
         ...self::CONVERSATION_INCLUDES,
     ];
 
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'current_user_attributes',
         'last_message_id',
         'last_read_id', // TODO: deprecated
@@ -46,6 +47,7 @@ class ChannelTransformer extends TransformerAbstract
             'channel_id' => $channel->channel_id,
             'description' => $channel->description,
             'icon' => $channel->displayIconFor($this->user),
+            'message_length_limit' => $channel->messageLengthLimit(),
             'moderated' => $channel->moderated,
             'name' => $channel->displayNameFor($this->user),
             'type' => $channel->type,
@@ -77,14 +79,17 @@ class ChannelTransformer extends TransformerAbstract
     public function includeRecentMessages(Channel $channel)
     {
         if ($channel->exists) {
-            $messages = $channel
-                ->filteredMessages()
-                // assumes sender will be included by the Message transformer
-                ->with('sender')
-                ->orderBy('message_id', 'desc')
-                ->limit(50)
-                ->get()
-                ->reverse();
+            $messages = Message::filterBacklogs(
+                $channel,
+                $channel
+                    ->messages()
+                    // assumes sender will be included by the Message transformer
+                    ->with('sender')
+                    ->orderBy('message_id', 'desc')
+                    ->limit(50)
+                    ->get()
+                    ->reverse(),
+            );
         } else {
             $messages = [];
         }

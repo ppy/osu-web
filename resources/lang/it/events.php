@@ -12,10 +12,10 @@ return [
     'beatmapset_update' => '<strong><em>:user</em></strong> ha aggiornato la beatmap "<em>:beatmapset</em>"',
     'beatmapset_upload' => '<strong><em>:user</em></strong> ha inviato una nuova beatmap ":beatmapset"',
     'empty' => "Questo utente non ha fatto nulla degno di nota recentemente!",
-    'rank' => '<strong><em>:user</em></strong> ha ottenuto il posto #:rank su <em>:beatmap</em> (:mode)',
+    'rank' => ':user ha raggiunto :rank su :beatmap (:mode)',
     'rank_lost' => '<strong><em>:user</em></strong> ha perso il primo posto su <em>:beatmap</em> (:mode)',
     'user_support_again' => '<strong>:user</strong> ha scelto ancora una volta di sostenere osu! - grazie per la tua generosità!',
-    'user_support_first' => '<strong>:user</strong> è diventato un osu!supporter - grazie per la tua generosità!',
+    'user_support_first' => '<strong>:user</strong> ha supportato osu! - grazie per la tua generosità!',
     'user_support_gift' => '<strong>:user</strong> ha ricevuto in regalo l\'osu!supporter!',
     'username_change' => '<strong>:previousUsername</strong> ha cambiato il suo nome utente in <strong><em>:user</em></strong>!',
 
@@ -24,5 +24,9 @@ return [
         'loved' => 'amata',
         'qualified' => 'qualificata',
         'ranked' => 'classificata',
+    ],
+
+    'value' => [
+        'rank' => 'la posizione #:rank',
     ],
 ];

@@ -6,6 +6,7 @@
 return [
     'index' => [
         'description' => 'Előre csomagolt, általános témákat körbeölelő beatmap gyűjtemények.',
+        'empty' => 'Hamarosan!',
         'nav_title' => 'listázás',
         'title' => 'Beatmap Csomagok',
 
@@ -34,8 +35,11 @@ return [
     'mode' => [
         'artist' => 'Előadó/Album',
         'chart' => 'Reflektorfény',
+        'featured' => 'Kiemelt Előadó',
+        'loved' => 'Loved projekt',
         'standard' => 'Standard',
         'theme' => 'Téma',
+        'tournament' => 'Bajnokság',
     ],
 
     'require_login' => [

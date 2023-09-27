@@ -6,21 +6,21 @@
 namespace App\Libraries;
 
 use App\Models\Group;
-use App\Traits\LocallyCached;
+use App\Traits\Memoizes;
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class Groups
 {
-    use LocallyCached;
+    use Memoizes;
 
     /**
      * Get all groups.
      */
     public function all(): Collection
     {
-        return $this->cachedMemoize(__FUNCTION__, fn () => $this->fetch());
+        return $this->memoize(__FUNCTION__, fn () => $this->fetch());
     }
 
     /**
@@ -70,9 +70,10 @@ class Groups
         if ($group === null) {
             try {
                 $group = Group::create([
-                    'identifier' => $id,
+                    'group_desc' => '',
                     'group_name' => $id,
-                    'group_desc' => $id,
+                    'group_type' => 2,
+                    'identifier' => $id,
                     'short_name' => $id,
                 ])->fresh();
             } catch (Exception $ex) {
@@ -85,7 +86,7 @@ class Groups
             // TODO: This shouldn't have to be called here, since it's already
             // called by `Group::afterCommit`, but `Group::afterCommit` isn't
             // running in tests when creating/saving `Group`s.
-            $this->resetCache();
+            $this->resetMemoized();
         }
 
         return $group;

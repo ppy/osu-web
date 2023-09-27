@@ -50,13 +50,11 @@ return [
             'resolved' => '你不能編輯已解決討論裡的貼文。',
             'system_generated' => '無法編輯自動回覆。',
         ],
-
-        'store' => [
-            'beatmapset_locked' => '這個圖譜被鎖定討論。',
-        ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => '這個圖譜被鎖定討論。',
+
         'metadata' => [
             'nominated' => '你不能修改已提名的圖譜資訊。如果你認為有誤，請聯繫 BN 或 NAT 成員。',
         ],
@@ -173,6 +171,7 @@ return [
 
     'score' => [
         'pin' => [
+            'disabled_type' => "無法置頂這類分數。",
             'not_owner' => '只有擁有者才可置頂成績。',
             'too_many' => '置頂過多成績。',
         ],
@@ -185,6 +184,9 @@ return [
                 'not_owner' => '只能編輯自己的個人頁面。',
                 'require_supporter_tag' => '需要成為 osu! 贊助者。',
             ],
+        ],
+        'update_email' => [
+            'locked' => '電子郵箱地址已鎖定',
         ],
     ],
 ];

@@ -1,0 +1,31 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.tournament-list {
+  .default-gutter-v2();
+  background-color: @osu-colour-b5;
+  font-weight: 300;
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  &__heading {
+    color: white;
+    padding: 10px 0 10px;
+    margin: 0;
+  }
+
+  &__group {
+    display: grid;
+    grid-gap: 10px;
+    margin-bottom: 10px;
+
+    &--old {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  &__none-running {
+    color: @osu-colour-l1;
+    margin-left: 10px;
+  }
+}

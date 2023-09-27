@@ -38,7 +38,7 @@ return [
         ],
 
         'empty' => [
-            'empty' => 'Pas de discussion !',
+            'empty' => 'Aucune discussion pour le moment !',
             'hidden' => 'Aucune discussion ne correspond à vos critères.',
         ],
 
@@ -76,6 +76,18 @@ return [
             'problem_warning' => 'Signaler un problème',
             'review' => 'Review',
             'suggestion' => 'Suggestion',
+        ],
+
+        'message_type_title' => [
+            'disqualify' => 'Poster une disqualification',
+            'hype' => 'Poster un hype',
+            'mapper_note' => 'Poster une note',
+            'nomination_reset' => 'Supprimer toutes les nominations',
+            'praise' => 'Poster des compliments',
+            'problem' => 'Poster un problème',
+            'problem_warning' => 'Poster un problème',
+            'review' => 'Poster un avis',
+            'suggestion' => 'Poster une suggestion',
         ],
 
         'mode' => [
@@ -132,14 +144,14 @@ return [
             'mapper_notes' => 'Notes',
             'mine' => 'Moi',
             'pending' => 'En attente',
-            'praises' => 'Hommages',
+            'praises' => 'Compliments',
             'resolved' => 'Résolu',
             'total' => 'Tout',
         ],
 
         'status-messages' => [
             'approved' => 'Cette beatmap a été approuvée le :date !',
-            'graveyard' => "Cette beatmap n'a pas été modifiée depuis :date et a sûrement été abandonnée par son créateur...",
+            'graveyard' => "Cette beatmap n'a pas été modifiée depuis le :date et a donc été placée au cimetière...",
             'loved' => 'Cette beatmap a été ajoutée à la catégorie Loved le :date !',
             'ranked' => 'Cette beatmap a été classée le :date !',
             'wip' => 'Remarque : Cette beatmap a été marquée comme en cours de travail par son créateur.',
@@ -165,7 +177,7 @@ return [
         'explanation_guest' => 'Connectez-vous et hypez cette beatmap afin de la rendre plus visible pour sa nomination et son classement !',
         'new_time' => "Vous obtiendrez un point de hype dans :new_time.",
         'remaining' => 'Il vous reste :remaining hypes.',
-        'required_text' => 'Hype: :current/:required',
+        'required_text' => 'Hype : :current/:required',
         'section_title' => 'Train de la hype',
         'title' => 'Hype',
     ],
@@ -175,6 +187,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => 'Vous avez déjà nominé cette beatmap.',
+        'cannot_nominate' => 'Vous ne pouvez pas nominer le mode de jeu de cette beatmap.',
         'delete' => 'Supprimer',
         'delete_own_confirm' => 'Êtes-vous sûr ? La beatmap sera supprimée et vous serez redirigé vers votre profil.',
         'delete_other_confirm' => 'Êtes-vous sûr ? La beatmap sera supprimée et vous serez redirigé vers le profil de l\'utilisateur.',
@@ -192,13 +206,14 @@ return [
         'not_enough_hype' => "Il n'y a pas assez de hype.",
         'remove_from_loved' => 'Retirer de la catégorie Loved',
         'remove_from_loved_prompt' => 'Raison pour laquelle cette beatmap a été retirée de la catégorie Loved :',
-        'required_text' => 'Nominations: :current/:required',
+        'required_text' => 'Nominations : :current/:required',
         'reset_message_deleted' => 'supprimée',
         'title' => 'Statut de la nomination',
         'unresolved_issues' => 'Il y a encore des problèmes non résolus qui doivent être traités en priorité.',
 
         'rank_estimate' => [
             '_' => 'Cette beatmap devrait être classée le :date si aucun problème n\'est trouvé. Elle est #:position dans la :queue.',
+            'on' => 'le :date',
             'queue' => 'file d\'attente de classement',
             'soon' => 'bientôt',
         ],
@@ -254,7 +269,7 @@ return [
     ],
     'general' => [
         'converts' => 'Inclure les beatmaps converties',
-        'featured_artists' => 'Featured artists',
+        'featured_artists' => 'Featured Artists',
         'follows' => 'Mappeurs suivis',
         'recommended' => 'Difficulté recommandée',
         'spotlights' => 'Beatmaps spotlight',

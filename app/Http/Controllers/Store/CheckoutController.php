@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Store;
 
 use App\Events\Fulfillments\PaymentEvent;
 use App\Libraries\OrderCheckout;
+use App\Models\Store\Order;
 use App\Traits\CheckoutErrorSettable;
 use App\Traits\StoreNotifiable;
 use Auth;
@@ -51,17 +52,24 @@ class CheckoutController extends Controller
 
     public function store()
     {
-        $orderId = get_int(request('orderId'));
-        $provider = request('provider');
-        $shopifyCheckoutId = presence(request('shopifyCheckoutId'));
+        $params = get_params(request()->all(), null, [
+            'hide_from_activity:bool',
+            'orderId:int',
+            'provider',
+            'shopifyCheckoutId',
+        ], ['null_missing' => true]);
 
-        $order = $this->orderForCheckout($orderId);
+        $order = $this->orderForCheckout($params['orderId']);
 
         if ($order === null || $order->isEmpty()) {
             return ujs_redirect(route('store.cart.show'));
         }
 
-        $checkout = new OrderCheckout($order, $provider, $shopifyCheckoutId);
+        if ($params['hide_from_activity'] !== null) {
+            $order->setGiftsHidden($params['hide_from_activity']);
+        }
+
+        $checkout = new OrderCheckout($order, $params['provider'], $params['shopifyCheckoutId']);
 
         $validationErrors = $checkout->validate();
         if (!empty($validationErrors)) {
@@ -101,7 +109,7 @@ class CheckoutController extends Controller
         return ujs_redirect(route('store.invoice.show', ['invoice' => $order->order_id, 'thanks' => 1]));
     }
 
-    private function orderForCheckout($id)
+    private function orderForCheckout($id): ?Order
     {
         return Auth::user()
             ->orders()

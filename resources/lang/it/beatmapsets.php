@@ -60,12 +60,22 @@ return [
     'show' => [
         'discussion' => 'Discussione',
 
+        'admin' => [
+            'full_size_cover' => 'Mostra copertina a grandezza intera',
+        ],
+
+        'deleted_banner' => [
+            'title' => 'Questa beatmap è stata eliminata.',
+            'message' => '(solo i moderatori possono vedere questo)',
+        ],
+
         'details' => [
             'by_artist' => 'di :artist',
             'favourite' => 'Mi piace questa beatmap',
             'favourite_login' => 'Accedi per aggiungere questa beatmap ai preferiti',
             'logged-out' => 'Devi avere effettuato il login prima di scaricare qualsiasi beatmap!',
             'mapped_by' => 'mappata da :mapper',
+            'mapped_by_guest' => 'difficoltà guest di :mapper',
             'unfavourite' => 'Non mi piace questa beatmap',
             'updated_timeago' => 'ultimo aggiornamento :timeago',
 
@@ -109,7 +119,7 @@ return [
             ],
 
             'disqualify' => [
-                '_' => 'Se trovi un errore in questa beatmap, per favore segnalalo :link.',
+                '_' => 'Se trovi un errore in questa beatmap, segnalalo :link.',
             ],
 
             'report' => [
@@ -124,7 +134,7 @@ return [
             'genre' => 'Genere',
             'language' => 'Lingua',
             'no_scores' => 'Dati ancora in elaborazione...',
-            'nominators' => '',
+            'nominators' => 'Nominatori',
             'nsfw' => 'Contenuto esplicito',
             'offset' => 'Offset online',
             'points-of-failure' => 'Punti di Fallimento',

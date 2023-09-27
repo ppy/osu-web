@@ -60,12 +60,22 @@ return [
     'show' => [
         'discussion' => 'Discuție',
 
+        'admin' => [
+            'full_size_cover' => 'Vezi imaginea de copertă întreagă',
+        ],
+
+        'deleted_banner' => [
+            'title' => 'Acest beatmap a fost șters.',
+            'message' => '(doar moderatorii pot vedea asta)',
+        ],
+
         'details' => [
             'by_artist' => 'de :artist',
             'favourite' => 'Adaugă acest beatmap la favorite',
             'favourite_login' => 'Autentifică-te pentru a adăuga acest beatmap la preferate',
             'logged-out' => 'Trebuie să te autentifici înainte de a descărca vreun beatmap!',
             'mapped_by' => 'creat de :mapper',
+            'mapped_by_guest' => 'dificultate cu participare ca oaspete de :mapper',
             'unfavourite' => 'Elimină acest beatmapset de la favorite',
             'updated_timeago' => 'ultima actualizare :timeago',
 
@@ -96,15 +106,15 @@ return [
         ],
 
         'hype' => [
-            'action' => 'Hype această mapă dacă ți-a plăcut să o joci, astfel încât să progreseze la stadiul de <strong>Clasat</strong>.',
+            'action' => 'Acordă un hype acestui beatmap dacă ți-a plăcut să îl joci pentru a îl ajuta să progreseze la stadiul de <strong>Clasat</strong>.',
 
             'current' => [
-                '_' => 'Această mapă este în prezent :status.',
+                '_' => 'Acest beatmap este în prezent :status.',
 
                 'status' => [
                     'pending' => 'în așteptare',
                     'qualified' => 'calificată',
-                    'wip' => 'muncă în desfășurare',
+                    'wip' => 'în lucru',
                 ],
             ],
 
@@ -124,14 +134,14 @@ return [
             'genre' => 'Gen',
             'language' => 'Limbă',
             'no_scores' => 'Încă se calculează datele...',
-            'nominators' => '',
+            'nominators' => 'Nominalizatori',
             'nsfw' => 'Conținut obscen',
             'offset' => 'Offset online',
             'points-of-failure' => 'Puncte de eșec',
             'source' => 'Sursă',
             'storyboard' => 'Acest beatmap conține un storyboard',
-            'success-rate' => 'Rata de succes',
-            'tags' => 'Tag-uri',
+            'success-rate' => 'Rată de succes',
+            'tags' => 'Etichete',
             'video' => 'Acest beatmap conține un video',
         ],
 
@@ -142,7 +152,7 @@ return [
             'buttons' => [
                 'disable' => 'Dezactivează avertisment',
                 'listing' => 'Lista beatmap-uri',
-                'show' => 'Arată',
+                'show' => 'Afișează',
             ],
         ],
 
@@ -172,7 +182,7 @@ return [
 
             'no_scores' => [
                 'country' => 'Nimeni din țara ta nu a stabilit un scor pe acest beatmap încă!',
-                'friend' => 'Nimeni din prietenii tăi nu a stabilit un scor pe acest beatmap încă!',
+                'friend' => 'Niciunul dintre prietenii tăi nu a stabilit un scor pe acest beatmap încă!',
                 'global' => 'Niciun scor încă. Poate ar trebui să încerci să obții câteva?',
                 'loading' => 'Se încarcă scorurile...',
                 'unranked' => 'Beatmap neclasificat.',
@@ -211,7 +221,7 @@ Viață',
             'approved' => 'Aprobat',
             'loved' => 'Iubit',
             'qualified' => 'Calificat',
-            'wip' => 'WIP',
+            'wip' => 'În lucru',
             'pending' => 'În Așteptare',
             'graveyard' => 'Inactiv',
         ],

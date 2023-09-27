@@ -37,6 +37,7 @@ return [
         'blocked_count' => 'blokerede brugere (:count)',
         'hide_profile' => 'Skjul profil',
         'hide_comment' => 'skjul',
+        'forum_post_text' => '',
         'not_blocked' => 'Denne bruger er ikke blokeret.',
         'show_profile' => 'Vis profil',
         'show_comment' => 'vis',
@@ -48,8 +49,25 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => '',
         'loading' => 'Indlæser...',
         'send_message' => 'Send besked',
+    ],
+
+    'create' => [
+        'form' => [
+            'password' => 'adgangskode',
+            'password_confirmation' => 'bekræftelse af adgangskode',
+            'submit' => 'opret konto',
+            'user_email' => 'e-mail',
+            'user_email_confirmation' => 'e-mail bekræftelse',
+            'username' => 'brugernavn',
+
+            'tos_notice' => [
+                '_' => 'ved at oprette konto accepterer du :link',
+                'link' => '',
+            ],
+        ],
     ],
 
     'disabled' => [
@@ -105,6 +123,14 @@ return [
         ],
     ],
 
+    'ogp' => [
+        'description' => [
+            '_' => '',
+            'country' => '',
+            'global' => '',
+        ],
+    ],
+
     'posts' => [
         'title' => ':username\'s opslag',
     ],
@@ -141,7 +167,8 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'Du konto er blevet begrænset!',
-        'message' => 'Når du er begrænset, kan du ikke interagere med andre spillere, og dine scores vil kun være synlige for dig. Dette er som regel en automatisk proces, og begrænsningen vil blive fjernet indenfor 24 timer. Hvis du ønsker at appellere din begrænsning, <a href="mailto:accounts@ppy.sh">kontakt supporten</a>.',
+        'message' => 'Når du er begrænset, kan du ikke interagere med andre spillere, og dine scores vil kun være synlige for dig. Dette er som regel en automatisk proces, og begrænsningen vil blive fjernet indenfor 24 timer. :link',
+        'message_link' => 'Tjek denne side for at lære mere.',
     ],
     'show' => [
         'age' => ':age år gammel',
@@ -368,7 +395,7 @@ return [
                     'date' => 'dato',
                     'action' => 'handling',
                     'length' => 'længde',
-                    'length_permanent' => 'Permanent',
+                    'length_indefinite' => '',
                     'description' => 'beskrivelse',
                     'actor' => 'af :username',
 
@@ -451,6 +478,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
+        'from_client' => '',
+        'from_web' => '',
         'saved' => 'Bruger Oprettet',
     ],
     'verify' => [

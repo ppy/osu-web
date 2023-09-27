@@ -25,14 +25,14 @@ use DB;
  */
 class KudosuHistory extends Model
 {
+    public $timestamps = false;
+
     protected $table = 'osu_kudos_exchange';
     protected $primaryKey = 'exchange_id';
     protected $casts = [
+        'date' => 'datetime',
         'details' => 'array',
     ];
-
-    protected $dates = ['date'];
-    public $timestamps = false;
 
     public function giver()
     {

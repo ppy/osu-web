@@ -8,6 +8,7 @@ return [
     'not_negative' => ':attribute kan ikke være negativ.',
     'required' => ':attribute kreves.',
     'too_long' => ':attribute overskrider maksimumslengden - kan bare være opp til :limit tegn.',
+    'url' => 'Vennligst skriv en gyldig URL.',
     'wrong_confirmation' => 'Bekreftelsen stemmer ikke.',
 
     'beatmapset_discussion' => [
@@ -73,8 +74,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Sletting av beatmap metadata innlegget er ikke tillatt.',
             'beatmapset_post_no_edit' => 'Redigering av beatmap metadata innlegget er ikke tillatt.',
-            'first_post_no_delete' => '',
-            'missing_topic' => '',
+            'first_post_no_delete' => 'Kan ikke slette det første innlegget',
+            'missing_topic' => 'Innlegg mangler emne',
             'only_quote' => 'Svaret ditt inneholder kun et sitat.',
 
             'attributes' => [
@@ -109,6 +110,16 @@ return [
         ],
     ],
 
+    'legacy_api_key' => [
+        'exists' => 'Kun en API-nøkkel er gitt ut per bruker for øyeblikket.',
+
+        'attributes' => [
+            'api_key' => 'api nøkkel',
+            'app_name' => 'applikasjonsnavn',
+            'app_url' => 'url til applikasjon',
+        ],
+    ],
+
     'oauth' => [
         'client' => [
             'too_many' => 'Du har nådd grensen for maksimalt antall oAuth-applikasjoner.',
@@ -124,7 +135,7 @@ return [
     'user' => [
         'contains_username' => 'Passord kan ikke inneholde brukernavnet ditt.',
         'email_already_used' => 'E-postadressen er allerede i bruk.',
-        'email_not_allowed' => '',
+        'email_not_allowed' => 'E-postadresse er ikke tillatt.',
         'invalid_country' => 'Land er ikke i databasen.',
         'invalid_discord' => 'Discord brukernavnet er ugyldig.',
         'invalid_email' => "Dette ser ikke ut til å være en gyldig e-postadresse.",
@@ -164,7 +175,8 @@ return [
     ],
 
     'user_report' => [
-        'no_ranked_beatmapset' => '',
+        'no_ranked_beatmapset' => 'Rangerte beatmaps kan ikke rapporteres',
+        'not_in_channel' => 'Du er ikke i denne kanalen.',
         'reason_not_valid' => ':reason er ikke gyldig for denne rapporttypen.',
         'self' => "Du kan ikke rapportere deg selv!",
     ],

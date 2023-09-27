@@ -18,6 +18,16 @@ return [
             'new' => 'email mới',
             'new_confirmation' => 'xác nhận email',
             'title' => 'Email',
+            'locked' => [
+                '_' => 'Vui lòng liên hệ :accounts nếu bạn cần cập nhật địa chỉ email.',
+                'accounts' => 'đội ngũ hỗ trợ tài khoản',
+            ],
+        ],
+
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'API cũ',
         ],
 
         'password' => [
@@ -28,7 +38,13 @@ return [
         ],
 
         'profile' => [
+            'country' => 'quốc gia',
             'title' => 'Trang cá nhân',
+
+            'country_change' => [
+                '_' => "Có vẻ như quốc gia cho tài khoản của bạn chưa khớp với quốc gia bạn đang ở. :update_link.",
+                'update_link' => 'Cập nhật quốc gia thành :country',
+            ],
 
             'user' => [
                 'user_discord' => '',
@@ -55,7 +71,7 @@ return [
 
         'options' => [
             '_' => 'phương thức giao hàng',
-            'beatmap_owner_change' => 'guest difficulty',
+            'beatmap_owner_change' => 'độ khó khách mời',
             'beatmapset:modding' => 'sửa đổi beatmap',
             'channel_message' => 'tin nhắn riêng tư',
             'comment_new' => 'bình luận mới',
@@ -75,7 +91,7 @@ return [
 
     'options' => [
         'beatmapset_show_nsfw' => 'ẩn cảnh báo nội dung không lành mạnh trong beatmap',
-        'beatmapset_title_show_original' => 'hiển thị metadata của beatmap ở ngôn ngữ gốc',
+        'beatmapset_title_show_original' => 'hiển thị metadata của beatmap bằng ngôn ngữ gốc',
         'title' => 'Tuỳ chọn',
 
         'beatmapset_download' => [
@@ -103,7 +119,7 @@ return [
     'security' => [
         'current_session' => 'hiện tại',
         'end_session' => 'Kết thúc Phiên',
-        'end_session_confirmation' => 'Việc này sẽ ngay lập tức kết thúc phiên của bạn trên thiết bị đó. Bạn có chắc không?',
+        'end_session_confirmation' => 'Việc này sẽ ngay lập tức kết thúc phiên của bạn trên thiết bị đó. Bạn chắc chứ?',
         'last_active' => 'Hoạt động lần cuối:',
         'title' => 'Bảo mật',
         'web_sessions' => 'phiên trên web',

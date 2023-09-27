@@ -10,7 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
-            'rules' => 'Por favor assegura-te de que o teu avatar respeita :link.<br/>Isto significa que deve ser <strong>adequado para todas as idades</strong>, ou seja, sem nudez, profanidade ou conteúdo estimulante.',
+            'rules' => 'Por favor, assegura-te de que o teu avatar respeita :link.<br/>Isto significa que deve ser <strong>adequado para todas as idades</strong>, ou seja, sem nudez, profanidade ou conteúdo estimulante.',
             'rules_link' => 'as regras da comunidade',
         ],
 
@@ -18,6 +18,16 @@ return [
             'new' => 'novo email',
             'new_confirmation' => 'confirmação do email',
             'title' => 'Email',
+            'locked' => [
+                '_' => 'Entra em contacto com :accounts se precisares de atualizar o teu email.',
+                'accounts' => 'equipa de apoio à conta',
+            ],
+        ],
+
+        'legacy_api' => [
+            'api' => 'API',
+            'irc' => 'IRC',
+            'title' => 'API legada',
         ],
 
         'password' => [
@@ -28,7 +38,13 @@ return [
         ],
 
         'profile' => [
+            'country' => 'país',
             'title' => 'Perfil',
+
+            'country_change' => [
+                '_' => "Parece que o país da tua conta não corresponde ao teu país de residência. :update_link",
+                'update_link' => 'Atualizar para :country',
+            ],
 
             'user' => [
                 'user_discord' => '',

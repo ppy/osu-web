@@ -17,12 +17,27 @@ return [
         ],
     ],
 
+    'kudosu' => [
+        'total' => '獲得',
+        'available' => '可用',
+        'used' => '已使用',
+    ],
+
     'type' => [
         'charts' => '月賽',
         'country' => '國家',
+        'kudosu' => 'kudosu',
         'multiplayer' => '多人遊戲',
         'performance' => '成績',
         'score' => '總分',
+        'seasons' => '季',
+    ],
+
+    'seasons' => [
+        'empty' => '目前這個賽季暫無房間。',
+        'ongoing' => '這個賽季仍在進行中 (更多歌單即將加入)。',
+        'room_count' => '歌單數量',
+        'url' => '顯示這個賽季的更多資訊。',
     ],
 
     'spotlight' => [

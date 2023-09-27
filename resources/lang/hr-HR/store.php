@@ -33,6 +33,7 @@ return [
         'cart_problems_edit' => 'Klikni ovdje za uređivanje košarice.',
         'declined' => 'Plaćanje je otkazano.',
         'delayed_shipping' => 'Trenutno smo zatrpani narudžbama! Slobodno možeš naručiti, ali očekuj **dodatna kašnjenja od 1-2 tjedna** dok ne sustignemo postojeće narudžbe.',
+        'hide_from_activity' => '',
         'old_cart' => 'Čini se da je tvoja košarica zastarjela i ponovno je učitana, pokušaj ponovno.',
         'pay' => 'Plati s Paypalom',
         'title_compact' => 'plati',
@@ -52,6 +53,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Budući da je tvoje plaćanje bilo eCheck, pricekaj do 10 dodatnih dana da se uplata izvrši putem PayPala!',
+        'hide_from_activity' => '',
         'title_compact' => 'račun',
 
         'status' => [
@@ -77,10 +79,15 @@ return [
         'shopify_expired' => 'Poveznica za naplatu za ovu narudžbu je istekla.',
 
         'item' => [
+            'quantity' => 'Količina',
+
             'display_name' => [
                 'supporter_tag' => ':name za :username (:duration)',
             ],
-            'quantity' => 'Količina',
+
+            'subtext' => [
+                'supporter_tag' => '',
+            ],
         ],
 
         'not_modifiable_exception' => [
@@ -122,6 +129,8 @@ return [
 
     'supporter_tag' => [
         'gift' => 'pokloni igraču',
+        'gift_message' => '',
+
         'require_login' => [
             '_' => 'Moraš biti :link da dobiješ osu!supporter oznaku!',
             'link_text' => 'prijavljen',

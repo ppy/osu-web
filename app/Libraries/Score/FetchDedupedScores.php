@@ -31,14 +31,13 @@ class FetchDedupedScores
 
         while ($hasNext) {
             if ($nextCursor !== null) {
-                // FIXME: cursor value returned is 0/1 but elasticsearch expects false/true...
-                $nextCursor['is_legacy'] = get_bool($nextCursor['is_legacy']);
                 $search->searchAfter(array_values($nextCursor));
             }
-            $search->response();
+            $response = $search->response();
             $search->assertNoError();
 
-            if ($this->append($search->records()->all())) {
+            $records = $response->records()->whereHas('beatmap.beatmapset')->get()->all();
+            if ($this->append($records)) {
                 break;
             }
 

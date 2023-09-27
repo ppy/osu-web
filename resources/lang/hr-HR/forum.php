@@ -7,7 +7,7 @@ return [
     'pinned_topics' => '',
     'slogan' => "",
     'subforums' => '',
-    'title' => '',
+    'title' => 'Forumi',
 
     'covers' => [
         'edit' => '',
@@ -25,6 +25,7 @@ return [
     ],
 
     'forums' => [
+        'forums' => '',
         'latest_post' => '',
 
         'index' => [
@@ -47,7 +48,7 @@ return [
         'confirm_restore' => '',
         'edited' => '',
         'posted_at' => '',
-        'posted_by' => '',
+        'posted_by_in' => '',
 
         'actions' => [
             'destroy' => '',
@@ -98,7 +99,7 @@ return [
 
         'create' => [
             'close' => 'Zatvori',
-            'preview' => '',
+            'preview' => 'Pretpregled',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
             'preview_hide' => '',

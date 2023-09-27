@@ -21,21 +21,22 @@ namespace App\Models;
  */
 class LegacySession extends Model
 {
-    protected $table = 'phpbb_sessions';
-    protected $primaryKey = 'session_id';
-    protected $keyType = 'string';
     public $incrementing = false;
-
-    protected $dateFormat = 'U';
-    protected $dates = ['session_last_visit', 'session_start', 'session_time'];
     public $timestamps = false;
 
     protected $casts = [
         'session_admin' => 'boolean',
         'session_autologin' => 'boolean',
+        'session_last_visit' => 'datetime',
+        'session_start' => 'datetime',
+        'session_time' => 'datetime',
         'session_viewonline' => 'boolean',
         'verified' => 'boolean',
     ];
+    protected $dateFormat = 'U';
+    protected $keyType = 'string';
+    protected $primaryKey = 'session_id';
+    protected $table = 'phpbb_sessions';
 
     public static function loadFromRequest($request)
     {

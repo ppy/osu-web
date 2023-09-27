@@ -27,7 +27,7 @@ return [
     'client' => [
         'id' => 'Client-ID',
         'name' => 'Anwendungsname',
-        'redirect' => 'Anwendungs-Callback-URL',
+        'redirect' => 'Anwendungs-Callback-URLs',
         'reset' => 'Client-Secret zurücksetzen',
         'reset_failed' => 'Client-Secret konnte nicht zurückgesetzt werden',
         'secret' => 'Client Secret',

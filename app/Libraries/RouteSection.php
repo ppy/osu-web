@@ -97,6 +97,9 @@ class RouteSection
             'scores_controller' => [
                 '_' => 'beatmaps',
             ],
+            'seasons_controller' => [
+                '_' => 'rankings',
+            ],
             'sessions_controller' => [
                 '_' => 'user',
             ],

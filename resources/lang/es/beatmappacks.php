@@ -6,11 +6,12 @@
 return [
     'index' => [
         'description' => 'Colecciones preempaquetadas de mapas basadas en un tema común.',
+        'empty' => '¡Próximamente!',
         'nav_title' => 'listado',
         'title' => 'Paquetes de Mapas',
 
         'blurb' => [
-            'important' => 'LEA ESTO ANTES DE DESCARGAR',
+            'important' => 'LEE ESTO ANTES DE DESCARGAR',
             'install_instruction' => 'Instalación: Una vez descargado un paquete, extraiga el contenido del mismo en su directorio Songs de osu! y este hará el resto.',
             'note' => [
                 '_' => 'También ten en cuenta que es muy recomendable :scary, ya que los mapas más antiguos son de mucha menor calidad que los mapas más recientes.',
@@ -34,8 +35,11 @@ return [
     'mode' => [
         'artist' => 'Artista/Álbum',
         'chart' => 'Destacados',
+        'featured' => 'Artista destacado',
+        'loved' => 'Project Loved',
         'standard' => 'Standard',
         'theme' => 'Tema',
+        'tournament' => 'Torneo',
     ],
 
     'require_login' => [

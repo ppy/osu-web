@@ -69,13 +69,25 @@ return [
         'message_type' => [
             'disqualify' => 'Hylkää',
             'hype' => 'Hurraus!',
-            'mapper_note' => 'Huomautus',
+            'mapper_note' => 'Muistiinpano',
             'nomination_reset' => 'Nollaa Suositus',
             'praise' => 'Kehu',
             'problem' => 'Ongelma',
             'problem_warning' => 'Ilmoita ongelmasta',
             'review' => 'Arvostelu',
             'suggestion' => 'Ehdotus',
+        ],
+
+        'message_type_title' => [
+            'disqualify' => 'Lähetä hylkäys',
+            'hype' => 'Lähetä hurraus!',
+            'mapper_note' => 'Lähetä merkintä',
+            'nomination_reset' => 'Poista kaikki ehdollepanot',
+            'praise' => 'Lähetä ylistys',
+            'problem' => 'Lähetä ongelma',
+            'problem_warning' => 'Lähetä ongelma',
+            'review' => 'Lähetä arvostelu',
+            'suggestion' => 'Lähetä ehdotus',
         ],
 
         'mode' => [
@@ -118,7 +130,7 @@ return [
         ],
 
         'show' => [
-            'title' => ':title, luonut :mapper',
+            'title' => ':title, kartoittanut :mapper',
         ],
 
         'sort' => [
@@ -175,6 +187,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => 'Olet jo pannut ehdolle tämän rytmikartan.',
+        'cannot_nominate' => 'Et voi panna ehdolle tähän pelimuotoon kuuluvia rytmikarttoja.',
         'delete' => 'Poista',
         'delete_own_confirm' => 'Oletko varma? Tämä beatmap poistetaan ja sinut uudelleenohjataan takaisin profiiliisi.',
         'delete_other_confirm' => 'Oletko varma? Tämä beatmap poistetaan ja sinut uudelleenohjataan käyttäjän profiiliin.',
@@ -199,6 +213,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'Tämän beatmapin arvioidaan tulla hyväksytyksi :date, jos mitään ongelmia ei löydy. Se on #:position :queue.',
+            'on' => ':date',
             'queue' => 'hyväksytysjonossa',
             'soon' => 'pian',
         ],
@@ -217,7 +232,7 @@ return [
 
     'listing' => [
         'search' => [
-            'prompt' => 'syötä hakusana...',
+            'prompt' => 'syötä hakusanoja...',
             'login_required' => 'Kirjaudu sisään hakeaksesi.',
             'options' => 'Enemmän Hakuasetuksia',
             'supporter_filter' => 'Tunnisteella :filters rajaaminen vaatii aktiivisen osu!supporter-tagin',
@@ -257,7 +272,7 @@ return [
         'featured_artists' => 'Esitellyt artistit',
         'follows' => 'Tilatut kartoittajat',
         'recommended' => 'Suositeltu vaikeustaso',
-        'spotlights' => 'Valokeilassa olevat beatmapit',
+        'spotlights' => 'Kohdevaloissa olevat rytmikartat',
     ],
     'mode' => [
         'all' => 'Kaikki',
@@ -275,8 +290,8 @@ return [
         'leaderboard' => 'Tulostaulukollinen',
         'loved' => 'Rakastettu',
         'mine' => 'Mappini',
-        'pending' => 'Vireillä & WIP',
-        'wip' => 'Kesken',
+        'pending' => 'Vireillä',
+        'wip' => 'Työn alla',
         'qualified' => 'Esihyväksytty',
         'ranked' => 'Hyväksytty',
     ],

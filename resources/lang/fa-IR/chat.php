@@ -8,6 +8,7 @@ return [
     'talking_in' => 'در حال گفت و گو در کانال :channel',
     'talking_with' => 'در حال گفت و گو با :name',
     'title_compact' => 'چت',
+    'unread_messages' => '',
 
     'cannot_send' => [
         'channel' => 'شما در حال حاضر نمی توانید در این چنل پیام بدهید.',
@@ -35,6 +36,7 @@ return [
 
         'labels' => [
             'description' => '',
+            'message' => '',
             'name' => '',
             'users' => '',
         ],

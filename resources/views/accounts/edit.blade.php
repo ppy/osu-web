@@ -2,10 +2,15 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
+@php
+    $user = Auth::user();
+    $isSilenced = $user->isSilenced();
+@endphp
+
 @extends('master', ['titlePrepend' => osu_trans('accounts.edit.title_compact')])
 
 @section('content')
-    @if (Auth::user()->isSilenced() && !Auth::user()->isRestricted())
+    @if ($isSilenced && !$user->isRestricted())
         @include('objects._notification_banner', [
             'type' => 'alert',
             'title' => osu_trans('users.silenced_banner.title'),
@@ -15,7 +20,7 @@
 
     @include('home._user_header_default', ['themeOverride' => 'settings'])
 
-    <div class="osu-page">
+    <div class="osu-page osu-page--account-edit">
         <div class="account-edit account-edit--first">
             <div class="account-edit__section">
                 <h2 class="account-edit__section-title">
@@ -30,7 +35,7 @@
                             {{ osu_trans('accounts.edit.username') }}
                         </div>
                         <div class="account-edit-entry__input">
-                            {{ Auth::user()->username }}
+                            {{ $user->username }}
                         </div>
 
                         <div class="account-edit-entry__button">
@@ -47,6 +52,7 @@
                             </a>
                         </div>
                     </div>
+                    @include('accounts._edit_country')
                 </div>
                 <div class="account-edit__input-group">
                     @include('accounts._edit_entry_simple', ['field' => 'user_from'])
@@ -60,10 +66,8 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="osu-page" id="avatar">
-        <div class="account-edit">
+        <div class="account-edit" id="avatar">
             <div class="account-edit__section">
                 <h2 class="account-edit__section-title">
                     {{ osu_trans('accounts.edit.avatar.title') }}
@@ -89,7 +93,7 @@
 
                         <label
                             class="btn-osu-big btn-osu-big--account-edit"
-                            @if (Auth::user()->isSilenced())
+                            @if ($isSilenced)
                                 disabled
                             @endif
                         >
@@ -108,7 +112,7 @@
                                 type="file"
                                 name="avatar_file"
                                 data-url="{{ route('account.avatar') }}"
-                                @if (Auth::user()->isSilenced())
+                                @if ($isSilenced)
                                     disabled
                                 @endif
                             >
@@ -126,42 +130,26 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="osu-page">
         @include('accounts._edit_signature')
-    </div>
 
-    <div class="osu-page">
         @include('accounts._edit_playstyles')
-    </div>
 
-    <div class="osu-page">
         @include('accounts._edit_privacy')
-    </div>
 
-    <div class="osu-page" id="notifications">
         @include('accounts._edit_notifications')
-    </div>
 
-    <div class="osu-page">
         @include('accounts._edit_options')
-    </div>
 
-    <div class="osu-page">
         @include('accounts._edit_password')
-    </div>
 
-    <div class="osu-page">
         @include('accounts._edit_email')
-    </div>
 
-    <div class="osu-page">
         @include('accounts._edit_sessions')
-    </div>
 
-    <div class="osu-page" id="oauth">
         @include('accounts._edit_oauth')
+
+        @include('accounts._edit_legacy_api')
     </div>
 @endsection
 

@@ -13,6 +13,16 @@ return [
     'see_channel' => 'ir al chat',
     'verifying' => 'Verifique la sesión para ver las notificaciones',
 
+    'action_type' => [
+        '_' => 'todas',
+        'beatmapset' => 'mapas',
+        'build' => 'versiones',
+        'channel' => 'chat',
+        'forum_topic' => 'foro',
+        'news_post' => 'noticias',
+        'user' => 'perfil',
+    ],
+
     'filters' => [
         '_' => 'todas',
         'user' => 'perfil',
@@ -143,15 +153,6 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => 'MP del foro antiguo',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited mensaje sin leer|:count_delimited mensajes sin leer',
-            ],
-        ],
-
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Nuevo mapa',
@@ -209,6 +210,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => 'Hay un nuevo anuncio en ":name"',
+            ],
+
             'channel' => [
                 'pm' => 'Ha recibido un nuevo mensaje de :username',
             ],

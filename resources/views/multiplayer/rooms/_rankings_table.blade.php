@@ -32,7 +32,7 @@
                             'modifiers' => ['medium'],
                         ])
                         <a
-                            href="{{ route('users.show', ['user' => $score->user_id, 'mode' => $mode]) }}"
+                            href="{{ route('users.show', ['user' => $score->user_id, 'mode' => $mode ?? null]) }}"
                             class="ranking-page-table__user-link-text js-usercard"
                             data-user-id="{{ $score->user_id }}"
                             data-tooltip-position="right center"

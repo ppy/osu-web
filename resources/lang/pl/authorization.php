@@ -50,13 +50,11 @@ return [
             'resolved' => 'Nie możesz edytować posta z rozwiązanej dyskusji.',
             'system_generated' => 'Nie możesz edytować automatycznie wygenerowanego posta.',
         ],
-
-        'store' => [
-            'beatmapset_locked' => 'Tworzenie dyskusji dla tej beatmapy zostało zablokowane.',
-        ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => 'Tworzenie dyskusji dla tej beatmapy zostało zablokowane.',
+
         'metadata' => [
             'nominated' => 'Nie możesz zmienić metadanych nominowanej mapy. Skontaktuj się z członkiem BN lub NAT, jeśli uważasz, że są one ustawione nieprawidłowo.',
         ],
@@ -173,6 +171,7 @@ return [
 
     'score' => [
         'pin' => [
+            'disabled_type' => "Nie możesz przypiąć tego typu wyników",
             'not_owner' => 'Nie możesz przypiąć czyjegoś wyniku.',
             'too_many' => 'Przypięto zbyt wiele wyników.',
         ],
@@ -185,6 +184,9 @@ return [
                 'not_owner' => 'Możesz edytować tylko własną stronę użytkownika.',
                 'require_supporter_tag' => 'Aby to zrobić, wymagany jest status donatora osu!.',
             ],
+        ],
+        'update_email' => [
+            'locked' => '',
         ],
     ],
 ];

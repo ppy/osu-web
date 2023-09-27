@@ -6,7 +6,7 @@
 return [
     'event' => [
         'approve' => 'Godkjent.',
-        'beatmap_owner_change' => '',
+        'beatmap_owner_change' => 'Eier av vanskelighetsgrad :beatmap endret til :new_user.',
         'discussion_delete' => 'Moderator slettet diskusjonen :discussion.',
         'discussion_lock' => 'Diskusjon for dette beatmappet har blitt deaktivert. (:text)',
         'discussion_post_delete' => 'Moderator slettet innlegg fra diskusjonen :discussion.',
@@ -28,16 +28,17 @@ return [
         'nominate' => 'Nominert av :user.',
         'nominate_modes' => 'Nominert av :user (:modes).',
         'nomination_reset' => 'Nytt problem :discussion (:text) utløste en tilbakestilling av nominasjonen.',
-        'nomination_reset_received' => '',
-        'nomination_reset_received_profile' => '',
-        'offset_edit' => '',
+        'nomination_reset_received' => 'Nominasjon av :user ble tilbakestilt av :source_user (:text)',
+        'nomination_reset_received_profile' => 'Nominering ble tilbakesatt av :user (:text)',
+        'offset_edit' => 'Globalt offset endret fra :old til :new.',
         'qualify' => 'Dette beatmappet har nådd det nødvendige antallet med nominasjoner og har nå blitt kvalifisert.',
         'rank' => 'Rangert.',
-        'remove_from_loved' => '',
+        'remove_from_loved' => 'Fjernet fra Loved av :user (:text)',
+        'tags_edit' => 'Tagger endret fra ":old" til ":new".',
 
         'nsfw_toggle' => [
-            'to_0' => '',
-            'to_1' => '',
+            'to_0' => 'Fjernet markering for grovt innhold',
+            'to_1' => 'Markert som grovt innhold',
         ],
     ],
 
@@ -58,7 +59,7 @@ return [
 
     'type' => [
         'approve' => 'Godkjenning',
-        'beatmap_owner_change' => '',
+        'beatmap_owner_change' => 'Endring av vanskelighetsgradens eier',
         'discussion_delete' => 'Diskusjon sletting',
         'discussion_post_delete' => 'Diskusjonsvar sletting',
         'discussion_post_restore' => 'Diskusjonsvar gjenopprettelse',
@@ -76,11 +77,11 @@ return [
         'love' => 'Elsk',
         'nominate' => 'Nominasjon',
         'nomination_reset' => 'Nominasjon nullstilling',
-        'nomination_reset_received' => '',
-        'nsfw_toggle' => '',
-        'offset_edit' => '',
+        'nomination_reset_received' => 'Tilbakestilling av nominasjon motatt',
+        'nsfw_toggle' => 'Markering for grovt innhold',
+        'offset_edit' => 'Offset endring',
         'qualify' => 'Kvalifikasjon',
         'rank' => 'Rangering',
-        'remove_from_loved' => '',
+        'remove_from_loved' => 'Fjerning av Loved',
     ],
 ];

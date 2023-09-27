@@ -27,7 +27,7 @@
         @if ($type === 'create')
             <input
                 class="bbcode-editor__input-title u-focus-hides-placeholder"
-                placeholder="{{ osu_trans("forum.topic.create.placeholder.title") }}"
+                placeholder="{{ $titlePlaceholder ?? osu_trans("forum.topic.create.placeholder.title") }}"
                 name="title"
             />
         @endif

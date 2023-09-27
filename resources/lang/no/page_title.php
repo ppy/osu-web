@@ -16,7 +16,7 @@ return [
             '401-verification' => 'kontobekreftelse',
             '405' => 'mangler',
             '422' => 'ugyldig forespørsel',
-            '429' => '',
+            '429' => 'for mange forespørsler',
             '500' => 'noe gikk i stykker',
             '503' => 'vedlikehold',
         ],
@@ -24,7 +24,7 @@ return [
     'forum' => [
         '_' => 'forum',
         'topic_logs_controller' => [
-            'index' => '',
+            'index' => 'emnelogger',
         ],
     ],
     'main' => [
@@ -100,11 +100,15 @@ return [
         'scores_controller' => [
             '_' => 'gjennomføring',
         ],
+        'seasons_controller' => [
+            '_' => 'rangeringer',
+        ],
         'tournaments_controller' => [
             '_' => 'turneringer',
         ],
         'users_controller' => [
             '_' => 'spillerinfo',
+            'create' => 'opprett konto',
             'disabled' => 'varsel',
         ],
         'wiki_controller' => [
@@ -113,7 +117,7 @@ return [
     ],
     'passport' => [
         'authorization_controller' => [
-            '_' => '',
+            '_' => 'autoriser app',
         ],
     ],
     'store' => [
@@ -124,7 +128,7 @@ return [
             '_' => 'modder info',
         ],
         'multiplayer_controller' => [
-            '_' => '',
+            '_' => 'flerspillerlogg',
         ],
     ],
 ];

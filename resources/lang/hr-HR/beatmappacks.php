@@ -6,6 +6,7 @@
 return [
     'index' => [
         'description' => 'Unaprijed zapakirane zbirke beatmapa temeljenih na zajedničkoj temi.',
+        'empty' => '',
         'nav_title' => 'popis',
         'title' => 'Paketi beatmapa',
 
@@ -34,8 +35,11 @@ return [
     'mode' => [
         'artist' => 'Izvođač/Album',
         'chart' => 'Istaknuto',
+        'featured' => '',
+        'loved' => '',
         'standard' => 'Standardni',
         'theme' => 'Tema',
+        'tournament' => '',
     ],
 
     'require_login' => [

@@ -4,25 +4,26 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'loading_users' => '',
+    'loading_users' => 'laster inn brukere...',
     'talking_in' => 'snakker i :channel',
     'talking_with' => 'snakker med :name',
     'title_compact' => 'chat',
+    'unread_messages' => 'uleste meldinger',
 
     'cannot_send' => [
-        'channel' => 'Du kan ikke sende meldinger i denne kanalen akkurat nå. Dette kan være en av følgende grunner:',
-        'user' => 'Du kan ikke sende meldinger til denne brukeren akkurat nå. Dette kan være en av følgende grunner:',
+        'channel' => 'Du kan ikke sende meldinger i denne kanalen akkurat nå.',
+        'user' => 'Du kan ikke sende meldinger til denne brukeren akkurat nå.',
     ],
 
     'channels' => [
-        'confirm_part' => '',
-        'create' => '',
+        'confirm_part' => 'Vil du skjule denne kanalen? Du vil fortsatt motta meldinger fra denne kanalen.',
+        'create' => 'lag kunngjøring',
 
         'list' => [
             'title' => [
-                'ANNOUNCE' => '',
+                'ANNOUNCE' => 'Kunngjøringer',
                 'GROUP' => 'Grupper',
-                'PM' => '',
+                'PM' => 'Direktemeldinger',
                 'PUBLIC' => 'Kanaler',
             ],
         ],
@@ -30,25 +31,26 @@ return [
 
     'form' => [
         'title' => [
-            'announcement' => '',
+            'announcement' => 'Lag ny kunngjøring',
         ],
 
         'labels' => [
             'description' => 'beskrivelse',
-            'name' => '',
-            'users' => '',
+            'message' => '',
+            'name' => 'romnavn',
+            'users' => 'spillere å legge til',
         ],
     ],
 
     'not_found' => [
-        'message' => '',
-        'title' => '',
+        'message' => 'Ingenting her, kanskje fordi du forlot kanalen, eller at den ikke finnes...',
+        'title' => 'fant ikke kanalen',
     ],
 
     'input' => [
         'create' => 'Opprett',
         'disabled' => 'kan ikke sende melding...',
-        'disconnected' => '',
+        'disconnected' => 'Koblet fra',
         'placeholder' => 'skriv melding...',
         'send' => 'Send',
     ],

@@ -13,6 +13,16 @@ return [
     'see_channel' => 'ga naar chat',
     'verifying' => 'Verifieer de sessie om meldingen te bekijken',
 
+    'action_type' => [
+        '_' => 'alle',
+        'beatmapset' => 'beatmaps',
+        'build' => 'versies',
+        'channel' => 'chat',
+        'forum_topic' => 'forum',
+        'news_post' => 'nieuws',
+        'user' => 'profiel',
+    ],
+
     'filters' => [
         '_' => 'alle',
         'user' => 'profiel',
@@ -143,15 +153,6 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => 'Ouder Forum PM',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited ongelezen bericht|:count_delimited berichten',
-            ],
-        ],
-
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Nieuwe beatmap',
@@ -211,6 +212,10 @@ Beatmap ":title" vernieuwd',
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => 'Er is een nieuwe aankondiging in ":name"',
+            ],
+
             'channel' => [
                 'pm' => 'Je hebt een nieuw bericht ontvangen van :username',
             ],

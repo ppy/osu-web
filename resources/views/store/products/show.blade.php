@@ -19,96 +19,86 @@
             <h1 class="store-text store-text--title">{{ $product->name }}</h1>
 
             @if($product->custom_class && View::exists("store.products.{$product->custom_class}"))
-
-                <div class="grid">
-                    <div class="grid-cell grid-cell--fill">
-                        {!! markdown($product->description, 'store') !!}
-                    </div>
-                </div>
-
+                {!! markdown($product->description, 'store') !!}
                 @include("store.products.{$product->custom_class}")
-
             @else
-            <div class="grid grid--gutters">
-                <div class="grid-cell grid-cell--1of2">
-                    <div class="gallery-previews">
-                        @foreach($product->images() as $i => $image)
-                            <?php $imageSize = fast_imagesize($image[1]); ?>
-                            <a
-                                class="gallery-previews__item js-gallery"
-                                data-width="{{ $imageSize[0] ?? null }}"
-                                data-height="{{ $imageSize[1] ?? null }}"
-                                data-gallery-id="product-{{ $product->product_id }}"
-                                data-index="{{ $i }}"
-                                href="{{ $image[1] }}"
-                                style="background-image: url('{{ $image[1] }}');"
-                                data-visibility="{{ $loop->first ? '' : 'hidden' }}"
-                            ></a>
-                        @endforeach
-                    </div>
-                    <div class="gallery-thumbnails">
-                        @foreach($product->images() as $i => $image)
-                            <a
-                                href="#"
-                                style="background-image: url('{{ $image[0] }}');"
-                                class="
-                                    gallery-thumbnails__item
-                                    js-gallery-thumbnail
-                                    {{ $loop->first ? 'js-gallery-thumbnail--active' : '' }}
-                                "
-                                data-gallery-id="product-{{ $product->product_id }}"
-                                data-index="{{ $i }}"
-                            ></a>
-                        @endforeach
-                    </div>
-                </div>
-                <div class="grid-cell grid-cell--1of2">
-                    <div class="grid">
-                        <div class="grid-cell grid-cell--fill">
-                            {!! markdown($product->description, 'store') !!}
+                <div class="store-page__product">
+                    <div>
+                        <div class="gallery-previews">
+                            @foreach($product->images() as $i => $image)
+                                @php
+                                    $imageSize = fast_imagesize($image[1]);
+                                @endphp
+                                <a
+                                    class="gallery-previews__item js-gallery"
+                                    data-width="{{ $imageSize[0] ?? null }}"
+                                    data-height="{{ $imageSize[1] ?? null }}"
+                                    data-gallery-id="product-{{ $product->product_id }}"
+                                    data-index="{{ $i }}"
+                                    href="{{ $image[1] }}"
+                                    style="background-image: url('{{ $image[1] }}');"
+                                    data-visibility="{{ $loop->first ? '' : 'hidden' }}"
+                                ></a>
+                            @endforeach
+                        </div>
+                        <div class="gallery-thumbnails">
+                            @foreach($product->images() as $i => $image)
+                                <a
+                                    href="#"
+                                    style="background-image: url('{{ $image[0] }}');"
+                                    class="
+                                        gallery-thumbnails__item
+                                        js-gallery-thumbnail
+                                        {{ $loop->first ? 'js-gallery-thumbnail--active' : '' }}
+                                    "
+                                    data-gallery-id="product-{{ $product->product_id }}"
+                                    data-index="{{ $i }}"
+                                ></a>
+                            @endforeach
                         </div>
                     </div>
-                    <div class="grid">
-                        <div class="grid-cell grid-cell--fill">
-                            <p class="store-text store-text--price">{{ currency($product->cost) }}</p>
-                            @if($product->requiresShipping())
-                                <p class="store-text store-text--price-note">excluding shipping fees</p>
-                            @endif
-                        </div>
-                    </div>
+                    <div>
+                        {!! markdown($product->description, 'store') !!}
 
-                    @if($product->types())
-                        @foreach($product->types() as $type => $values)
-                            @if (count($values) === 1)
-                                {{-- magic property --}}
-                                <input type="hidden" name="item[extra_data][{{ $type }}]" value="{{ array_keys($values)[0] }}" />
-                            @else
-                                <div class="form-group">
-                                    <label for="select-product-{{ $type }}">{{ $type }}</label>
+                        <p class="store-text store-text--price">{{ currency($product->cost) }}</p>
+                        @if($product->requiresShipping())
+                            <p class="store-text store-text--price-note">excluding shipping fees</p>
+                        @endif
 
-                                    <div class="form-select">
-                                        <select id="select-product-{{ $type }}" class="form-select__input js-url-selector" data-keep-scroll="1">
-                                            @foreach($values as $value => $product_id)
-                                                <option
-                                                    {{ $product_id === $product->product_id ? 'selected' : '' }}
-                                                    value="{{ route('store.products.show', $product_id) }}"
-                                                >
-                                                    {{ $value }}
-                                                </option>
-                                            @endforeach
-                                        </select>
+                        @if($product->types())
+                            @foreach($product->types() as $type => $values)
+                                @if (count($values) === 1)
+                                    {{-- magic property --}}
+                                    <input type="hidden" name="item[extra_data][{{ $type }}]" value="{{ array_keys($values)[0] }}" />
+                                @else
+                                    <div class="form-group">
+                                        <label class="u-uppercase" for="select-product-{{ $type }}">{{ $type }}</label>
+
+                                        <div class="form-select">
+                                            <select id="select-product-{{ $type }}" class="form-select__input js-url-selector" data-keep-scroll="1">
+                                                @foreach($values as $value => $product_id)
+                                                    <option
+                                                        {{ $product_id === $product->product_id ? 'selected' : '' }}
+                                                        value="{{ route('store.products.show', $product_id) }}"
+                                                    >
+                                                        {{ $value }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                     </div>
-                                </div>
-                            @endif
-                        @endforeach
-                    @endif
+                                @endif
+                            @endforeach
+                        @endif
 
-                    @if($product->inStock())
-                    <div class="grid">
-                        <div class="grid-cell grid-cell--fill">
+                        @if($product->inStock())
                             <div class='form-group'>
                                 <input type="hidden" name="item[product_id]" value="{{ $product->product_id }}" />
-                                {!! Form::label('item[quantity]', 'Quantity') !!}
+                                {!! Form::label(
+                                    'item[quantity]',
+                                    osu_trans('store.order.item.quantity'),
+                                    ['class' => 'u-uppercase']
+                                ) !!}
 
                                 <div class="form-select">
                                     {!! Form::select(
@@ -118,23 +108,13 @@
                                     ) !!}
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    @elseif($product->inStock(1, true))
-                    <div class="grid">
-                        <div class="grid-cell grid-cell--fill">
+                        @elseif ($product->inStock(1, true))
                             {{ osu_trans('store.product.stock.out_with_alternative') }}
-                        </div>
-                    </div>
-                    @else
-                    <div class="grid">
-                        <div class="grid-cell grid-cell--fill">
+                        @else
                             {{ osu_trans('store.product.stock.out') }}
-                        </div>
+                        @endif
                     </div>
-                    @endif
                 </div>
-            </div>
             @endif
         </div>
 

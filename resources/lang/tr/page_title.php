@@ -100,11 +100,15 @@ return [
         'scores_controller' => [
             '_' => 'performans',
         ],
+        'seasons_controller' => [
+            '_' => 'sıralamalar',
+        ],
         'tournaments_controller' => [
             '_' => 'turnuvalar',
         ],
         'users_controller' => [
             '_' => 'oyuncu bilgisi',
+            'create' => 'hesap oluştur',
             'disabled' => 'bildirim',
         ],
         'wiki_controller' => [

@@ -50,13 +50,11 @@ return [
             'resolved' => '',
             'system_generated' => '',
         ],
-
-        'store' => [
-            'beatmapset_locked' => '',
-        ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => '',
+
         'metadata' => [
             'nominated' => '',
         ],
@@ -173,6 +171,7 @@ return [
 
     'score' => [
         'pin' => [
+            'disabled_type' => "",
             'not_owner' => '',
             'too_many' => '',
         ],
@@ -185,6 +184,9 @@ return [
                 'not_owner' => '',
                 'require_supporter_tag' => '',
             ],
+        ],
+        'update_email' => [
+            'locked' => '',
         ],
     ],
 ];

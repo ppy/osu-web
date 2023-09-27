@@ -174,7 +174,7 @@ return [
         'login' => [
             'forgot' => "Ho dimenticato i miei dati",
             'password' => 'password',
-            'title' => 'Accedi per Procedere',
+            'title' => 'Accedi Per Continuare',
             'username' => 'nome utente',
 
             'error' => [

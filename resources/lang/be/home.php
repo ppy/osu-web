@@ -43,6 +43,7 @@ return [
             'label' => [
                 'forum' => 'пошук па форумах',
                 'forum_children' => 'уключаючы падфорумы',
+                'include_deleted' => 'уключаючы выдаленыя пасты',
                 'topic_id' => 'тэма #',
                 'username' => 'аўтар',
             ],
@@ -72,11 +73,25 @@ return [
     ],
 
     'download' => [
-        'tagline' => "давай<br>распачнем!",
         'action' => 'Спампаваць osu!',
+        'action_lazer' => 'Скачаць osu!(lazer)',
+        'action_lazer_description' => 'наступнае глабальнае абнаўленне osu!',
+        'action_lazer_info' => 'артыкул з падрабязнай інфармацыяй',
+        'action_lazer_title' => 'паспрабаваць osu!(lazer)',
+        'action_title' => 'скачаць osu!',
+        'for_os' => 'для :os',
+        'lazer_note' => 'заўвага: вашы рэкорды могуць быць выдалены',
+        'macos-fallback' => 'для macOS',
+        'mirror' => 'люстэрка',
+        'or' => 'або',
+        'os_version_or_later' => ':os_version ці навей',
+        'other_os' => 'iншыя платформы',
+        'quick_start_guide' => 'кароткае кіраўніцтва',
+        'tagline' => "давай<br>распачнем!",
+        'video-guide' => 'відэа дапаможнік',
 
         'help' => [
-            '_' => 'калі ў вас узніклі праблемы з пачаткам гульні альбо рэгістрацыяй уліковага запісу, :help_forum_link або :support_button. ',
+            '_' => 'калі ў вас узніклі праблемы з пачаткам гульні альбо рэгістрацыяй акаўнту, :help_forum_link або :support_button. ',
             'help_forum_link' => 'праверце даведачны форум',
             'support_button' => 'кантактная падтрымка',
         ],
@@ -86,12 +101,10 @@ return [
             'macos' => 'для macOS',
             'linux' => 'для Linux',
         ],
-        'mirror' => 'люстэрка',
-        'macos-fallback' => 'для macOS',
         'steps' => [
             'register' => [
-                'title' => 'стварыце ўлік. запіс',
-                'description' => 'прытрымлівайцеся падказак гульні, каб увайсці або стварыць уліковы запіс',
+                'title' => 'стварыце акаўнт',
+                'description' => 'прытрымлівайцеся падказак гульні, каб увайсці або стварыць акаўнт',
             ],
             'download' => [
                 'title' => 'спампаваць гульню',
@@ -105,7 +118,6 @@ return [
                 ],
             ],
         ],
-        'video-guide' => 'відэа дапаможнік',
     ],
 
     'user' => [

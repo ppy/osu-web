@@ -1,0 +1,61 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.beatmapsets-search-filter {
+  position: relative;
+  margin: 2px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+
+  &--grid {
+    display: contents;
+  }
+
+  &__header {
+    display: block;
+    color: @osu-colour-c1;
+    margin: 15px 0 5px;
+
+    @media @desktop {
+      margin-top: 5px;
+    }
+  }
+
+  &__item {
+    --colour: hsl(var(--hsl-l2));
+    --colour-hover: hsl(var(--hsl-l1));
+    color: var(--colour);
+
+    &--active {
+      font-weight: 600;
+      --colour: hsl(var(--hsl-c1));
+      --colour-hover: var(--colour);
+    }
+
+    &--featured-artists {
+      --colour: hsl(var(--hsl-orange-1));
+      --colour-hover: var(--colour);
+    }
+
+    &:focus {
+      color: var(--colour);
+    }
+
+    &:hover {
+      color: var(--colour-hover);
+    }
+
+    &:active {
+      color: var(--colour-hover);
+    }
+  }
+
+  &__items {
+    flex: 1;
+    display: flex;
+    gap: 2px 10px;
+    flex-wrap: wrap;
+    align-items: baseline;
+  }
+}

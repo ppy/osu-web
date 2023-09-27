@@ -7,7 +7,7 @@ return [
     'support' => [
         'convinced' => [
             'title' => 'Meggyőztél! :D',
-            'support' => 'osu! támogatása!',
+            'support' => 'osu! támogatása',
             'gift' => 'vagy ajándékozz támogatói címet más játékosoknak',
             'instructions' => 'kattints a szívet ábrázoló gombra, hogy továbblépj az osu!boltba',
         ],
@@ -16,42 +16,42 @@ return [
 
             'team' => [
                 'title' => 'Támogasd a Csapatot',
-                'description' => 'Egy kis csapat fejleszti és futtatja az osu!-t. A te támogatásod segíti őket, hogy, tudod.. éljenek.',
+                'description' => 'Egy kis csapat fejleszti és futtatja az osu!-t. A te támogatásod segíti őket, hogy, tudod... éljenek.',
             ],
             'infra' => [
                 'title' => 'Szerver Infrastruktúra',
-                'description' => 'A támogatások a szerverekhez mennek amik futtatják a weboldalt, multiplayer szolgáltatásokhoz, online ranglétrákhoz, stb.',
+                'description' => 'A támogatások a szerverekhez mennek, amik futtatják a weboldalt, multiplayer szolgáltatásokat, online ranglétrákat, stb.',
             ],
             'featured-artists' => [
                 'title' => 'Kiemelt Előadók',
-                'description' => 'A te támogatásoddal mégtöbb nagyszerű előadókat érünk el és szerződtetünk le az osu!-hoz!',
+                'description' => 'A te támogatásoddal mégtöbb nagyszerű előadót érünk el és szerződtetünk le az osu!-hoz!',
                 'link_text' => 'Nézd meg a jelenlegi felállást &raquo;',
             ],
             'ads' => [
                 'title' => 'Tartsd az osu!-t önfenntartóvá',
-                'description' => 'A ti támogatásotok segíti, hogy a játék független legyen és teljesen hirdetésmentes szponzorok nélkül.',
+                'description' => 'A támogatásaid segítenek, hogy a játék teljesen független, és a szponzorokon kívül hirdetésmentes legyen.',
             ],
             'tournaments' => [
-                'title' => 'Hivatalos Versenyek',
+                'title' => 'Hivatalos bajnokságok',
                 'description' => 'Támogasd a hivatalos osu! Világbajnokság rendezését (és díjait).',
-                'link_text' => 'Versenyek felfedezése &raquo;',
+                'link_text' => 'Bajnokságok felfedezése &raquo;',
             ],
             'bounty-program' => [
                 'title' => 'Nyílt forrású bounty program',
-                'description' => 'Támogasd a közösséget ami adta az idejét és az erejét, hogy az osu!-t jobbá tegyék.',
-                'link_text' => 'Láss többet &raquo;',
+                'description' => 'Támogasd a közösségi közreműködőket, akik idejükkel és erőfeszítéseikkel teszik jobbá az osu!-t.',
+                'link_text' => 'Tudj meg többet &raquo;',
             ],
         ],
         'perks' => [
-            'title' => 'Oh? Mit is kapok?!',
+            'title' => 'Szuper! Mit is kapok?',
             'osu_direct' => [
                 'title' => 'osu!direct',
-                'description' => 'gyors és egyszerű beatmap keresés a játék elhagyása nélkül.',
+                'description' => 'Gyors és egyszerű beatmap keresés és letöltés a játék elhagyása nélkül.',
             ],
 
             'friend_ranking' => [
                 'title' => 'Baráti Ranglista',
-                'description' => "Nézd meg hogyan álltok a barátaiddal egy beatmapen a ranglistán a játékban, vagy akár a weboldalon is.",
+                'description' => "Nézd meg hogyan álltok a barátaiddal egy beatmap ranglistáján a játékban és a weboldalon is.",
             ],
 
             'country_ranking' => [
@@ -60,8 +60,8 @@ return [
             ],
 
             'mod_filtering' => [
-                'title' => 'Szűrés modok szerint',
-                'description' => 'Csak HDHR-es emberekkel akarsz játszani? Nem probléma!',
+                'title' => 'Szűrés Modok szerint',
+                'description' => 'Csak HDHR játékosok érdekelnek? Nem probléma!',
             ],
 
             'auto_downloads' => [
@@ -76,7 +76,7 @@ return [
 
             'early_access' => [
                 'title' => 'Korai Hozzáférés',
-                'description' => 'Korai hozzáférés új kiadásokhoz amikben új funkciókat próbálhatsz ki mielőtt publikusak lennének!',
+                'description' => 'Korai hozzáférés új kiadásokhoz amikben új funkciókat próbálhatsz ki mielőtt publikusak lennének!<br/><br/>Ez magába foglalja a webhely új funkcióihoz való korai hozzáférést is!',
             ],
 
             'customisation' => [
@@ -86,7 +86,7 @@ return [
 
             'beatmap_filters' => [
                 'title' => 'Beatmap Szűrők',
-                'description' => 'Keresési szűrő játszott és nem játszott, illetve megszerzett rank által (ha van).',
+                'description' => 'Beatmap-ek szűrése játszott, nem játszott, illetve elért rang alapján.',
             ],
 
             'yellow_fellow' => [
@@ -101,7 +101,7 @@ return [
 
             'change_username' => [
                 'title' => 'Felhasználónév Csere',
-                'description' => 'Lehetőség a felhasználóneved költségmentes megváltoztatására. (maximum egyszer)',
+                'description' => 'Az első támogatói vásárlás egy ingyenes felhasználónév változtatást is tartalmaz.',
             ],
 
             'skinnables' => [
@@ -121,7 +121,7 @@ return [
 
             'more_favourites' => [
                 'title' => 'Több Kedvenc',
-                'description' => 'A maximum kedvencelhető beatmapek száma megnövekedett :normally &rarr; :supporter',
+                'description' => 'A maximum kedvencelhető beatmap-ek száma megnövekedett :normally &rarr; :supporter',
             ],
             'more_friends' => [
                 'title' => 'Több Barát',
@@ -129,20 +129,19 @@ return [
             ],
             'more_beatmaps' => [
                 'title' => 'Több Beatmap Feltöltése',
-                'description' => 'Hogy mennyi függő beatmapod lehet, az függ egy alap értéktől és egy bónusztól amit minden egyes rangsorolt beatmaptól kapsz, ami jelenleg van neked (egy bizonyos korlátig).<br/><br/> Általában ez az alap érték :base, és ez a plusz :bonus amit rangsorolt beatmapponként kapsz (egészen :bonus_max-ig).
-Ha támogató vagy, ez megnövekszik :supporter_base (alap) + :supporter_bonus (bónusz) rangsorolt beatmapponként (egészen :supporter_bonus_max-ig). ',
+                'description' => 'A saját függőben lévő beatmap-ek száma egy alap érték, és egy bónusz szám összege, melyet minden egyes saját rangsorolt beatmap után kapsz (egy bizonyos korlátig).<br/><br/>Ez általában :base plusz :bonus rangsorolt beatmap-enként (max: :bonus_max).
+Ha támogató vagy, ez megnövekszik :supporter_base plusz :supporter_bonus rangsorolt beatmap-enként (max: :supporter_bonus_max).',
             ],
             'friend_filtering' => [
                 'title' => 'Baráti ranglétrák',
-                'description' => 'Versenyezz a barátaiddal és nézd, hogyan válsz jobbá ellenük! *<br/><br/><small>* még nem elérhető az új oldalon, hamarosan(tm)
-</small>',
+                'description' => 'Versenyezz a barátaiddal és nézd, hogyan állsz hozzájuk képest!',
             ],
 
         ],
         'supporter_status' => [
             'contribution' => 'Köszönjük az eddigi támogatásodat! Összesen :dollars adománnyal járultál hozzá :tags: cím vásárlással!',
             'gifted' => "A cím vételeidből :giftedTags ajándékozott (eddig összesen :giftedDollars ajándékozott), milyen nagylelkű!",
-            'not_yet' => "Nincsen támogatói címed még :(",
+            'not_yet' => "Még nincsen támogatói címed :(",
             'valid_until' => 'A jelenlegi támogatói címed eddig érvényes: :date!',
             'was_valid_until' => 'A támogatói címed eddig volt érvényes: :date.',
         ],

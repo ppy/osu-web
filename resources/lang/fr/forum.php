@@ -15,7 +15,7 @@ return [
         'create' => [
             '_' => 'Définir une image de couverture',
             'button' => 'Uploader une image',
-            'info' => 'La bannière devrait avoir les résolutions :dimensions. Vous pouvez aussi faire glisser l\'image ici pour l\'uploader',
+            'info' => 'La résolution de la bannière devrait être de :dimensions. Vous pouvez également faire glisser l\'image ici pour la mettre en ligne.',
         ],
 
         'destroy' => [
@@ -25,6 +25,7 @@ return [
     ],
 
     'forums' => [
+        'forums' => 'Forums',
         'latest_post' => 'Dernier message',
 
         'index' => [
@@ -47,7 +48,7 @@ return [
         'confirm_restore' => 'Voulez-vous vraiment restaurer ce post ?',
         'edited' => 'Dernière édition par :user :when, modifié :count_delimited fois au total.|Dernière édition par :user :when, modifié :count_delimited fois au total.',
         'posted_at' => 'posté le :when',
-        'posted_by' => 'posté par :username',
+        'posted_by_in' => 'posté par :username dans :forum',
 
         'actions' => [
             'destroy' => 'Supprimer le post',
@@ -89,7 +90,7 @@ return [
         'reply_box_placeholder' => 'Tapez ici pour répondre',
         'reply_title_prefix' => 'Re',
         'started_by' => 'par :user',
-        'started_by_verbose' => 'suivi par :user',
+        'started_by_verbose' => 'commencé par :user',
 
         'actions' => [
             'destroy' => 'Supprimer le sujet',
@@ -353,7 +354,7 @@ return [
                 'button' => [
                     'change_vote' => 'Changer le vote',
                     'edit' => 'Éditer le sondage',
-                    'view_results' => 'Passer aux résultats',
+                    'view_results' => 'Voir les résultats',
                     'vote' => 'Voter',
                 ],
 

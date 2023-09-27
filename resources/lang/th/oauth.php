@@ -27,14 +27,14 @@ return [
     'client' => [
         'id' => 'ID ของไคลเอนต์',
         'name' => 'ชื่อแอปพลิเคชัน',
-        'redirect' => 'Application Callback URL',
-        'reset' => 'รีเซ็ต Client Secret',
-        'reset_failed' => 'ไม่สามารถรีเซ็ต Client Secret',
+        'redirect' => 'URL การเรียกกลับของแอปพลิเคชัน',
+        'reset' => 'รีเซ็ตรหัสลับไคลเอ็นต์',
+        'reset_failed' => 'ไม่สามารถรีเซ็ตรหัสลับไคลเอ็นต์',
         'secret' => 'รหัสลับไคลเอ็นต์',
 
         'secret_visible' => [
-            'false' => 'แสดง Client Secret',
-            'true' => 'ซ่อน Client Secret',
+            'false' => 'แสดงรหัสลับไคลเอ็นต์',
+            'true' => 'ซ่อนรหัสลับไคลเอ็นต์',
         ],
     ],
 

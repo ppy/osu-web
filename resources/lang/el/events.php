@@ -20,9 +20,13 @@ return [
     'username_change' => 'Ο χρήστης <strong>:previousUsername</strong> άλλαξε το όνομα χρήστη του σε <strong><em>:user</strong></em>!',
 
     'beatmapset_status' => [
-        'approved' => '',
-        'loved' => '',
-        'qualified' => '',
-        'ranked' => '',
+        'approved' => 'εγκεκριμένο',
+        'loved' => 'loved',
+        'qualified' => 'πιστοποιημένο',
+        'ranked' => 'ranked',
+    ],
+
+    'value' => [
+        'rank' => '',
     ],
 ];

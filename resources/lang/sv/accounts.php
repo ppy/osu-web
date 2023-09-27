@@ -18,6 +18,16 @@ return [
             'new' => 'ny e-postadress',
             'new_confirmation' => 'e-postbekräftelse',
             'title' => 'E-postadress',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
+        ],
+
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'Legacy API',
         ],
 
         'password' => [
@@ -28,7 +38,13 @@ return [
         ],
 
         'profile' => [
+            'country' => 'land',
             'title' => 'Profil',
+
+            'country_change' => [
+                '_' => "Det verkar som om att ditt kontos land inte matchar landet du befinner dig i. :update_link.",
+                'update_link' => 'Uppdatera till :country',
+            ],
 
             'user' => [
                 'user_discord' => '',

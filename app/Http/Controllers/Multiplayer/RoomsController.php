@@ -18,9 +18,24 @@ class RoomsController extends BaseController
         $this->middleware('require-scopes:public', ['only' => ['index', 'leaderboard', 'show']]);
     }
 
+    /**
+     * Get Multiplayer Rooms
+     *
+     * Returns a list of multiplayer rooms.
+     *
+     * @group Multiplayer
+     *
+     * @queryParam limit Maximum number of results. No-example
+     * @queryParam mode Filter mode; `active` (default), `all`, `ended`, `participated`, `owned`. No-example
+     * @queryParam season_id Season ID to return Rooms from. No-example
+     * @queryParam sort Sort order; `ended`, `created`. No-example
+     * @queryParam type_group `playlists` (default) or `realtime`. No-example
+     */
     public function index()
     {
-        $compactReturn = api_version() >= 20220217;
+        $apiVersion = api_version();
+        $compactReturn = $apiVersion >= 20220217;
+        $objectReturn = $apiVersion >= 99999999;
         $params = request()->all();
         $params['user'] = auth()->user();
 
@@ -41,13 +56,21 @@ class RoomsController extends BaseController
             $rooms->each->findAndSetCurrentPlaylistItem();
             $rooms->loadMissing('currentPlaylistItem.beatmap.beatmapset');
 
-            return json_collection($rooms, new RoomTransformer(), [
+            $roomsJson = json_collection($rooms, new RoomTransformer(), [
                 'current_playlist_item.beatmap.beatmapset',
                 'difficulty_range',
                 'host.country',
                 'playlist_item_stats',
                 'recent_participants',
             ]);
+
+            if ($objectReturn) {
+                return array_merge([
+                    'rooms' => $roomsJson,
+                ], cursor_for_response($search['cursorHelper']->next($rooms)));
+            } else {
+                return $roomsJson;
+            }
         } else {
             return json_collection($rooms, new RoomTransformer(), [
                 'host.country',
@@ -118,7 +141,7 @@ class RoomsController extends BaseController
     public function show($id)
     {
         if ($id === 'latest') {
-            $room = Room::where('category', 'spotlight')->last();
+            $room = Room::featured()->last();
 
             if ($room === null) {
                 abort(404);
@@ -152,7 +175,7 @@ class RoomsController extends BaseController
         $beatmaps = $playlistItemsQuery->with('beatmap.beatmapset.beatmaps')->get()->pluck('beatmap');
         $beatmapsets = $beatmaps->pluck('beatmapset');
         $highScores = $room->topScores()->paginate(50);
-        $spotlightRooms = Room::where('category', 'spotlight')->orderBy('id', 'DESC')->get();
+        $spotlightRooms = Room::featured()->orderBy('id', 'DESC')->get();
 
         return ext_view('multiplayer.rooms.show', [
             'beatmaps' => $beatmaps,

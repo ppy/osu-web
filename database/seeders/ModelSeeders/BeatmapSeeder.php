@@ -171,8 +171,8 @@ class BeatmapSeeder extends Seeder
         BeatmapFailtimes::where('beatmap_id', $beatmap->beatmap_id)->delete();
 
         $beatmap->failtimes()->saveMany([
-            factory(BeatmapFailtimes::class)->states('fail')->make(),
-            factory(BeatmapFailtimes::class)->states('retry')->make(),
+            BeatmapFailtimes::factory()->fail()->make(),
+            BeatmapFailtimes::factory()->retry()->make(),
         ]);
     }
 

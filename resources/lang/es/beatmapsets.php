@@ -60,13 +60,23 @@ return [
     'show' => [
         'discussion' => 'Discusión',
 
+        'admin' => [
+            'full_size_cover' => 'Ver imagen de portada a tamaño completo',
+        ],
+
+        'deleted_banner' => [
+            'title' => 'Este mapa ha sido eliminado.',
+            'message' => '(solo los moderadores pueden ver esto)',
+        ],
+
         'details' => [
             'by_artist' => 'por :artist',
-            'favourite' => 'Marcar como favorito',
-            'favourite_login' => 'Inicie sesión para marcar este mapa como favorito',
-            'logged-out' => '¡Necesitas iniciar sesión antes de descargar cualquier mapa!',
+            'favourite' => 'marcar este mapa como favorito',
+            'favourite_login' => 'inicie sesión para marcar este mapa como favorito',
+            'logged-out' => '¡debe iniciar sesión para descargar cualquier mapa!',
             'mapped_by' => 'mapeado por :mapper',
-            'unfavourite' => 'Desmarcar como favorito',
+            'mapped_by_guest' => 'dificultad de invitado por :mapper',
+            'unfavourite' => 'desmarcar como favorito',
             'updated_timeago' => 'actualizado por última vez :timeago',
 
             'download' => [
@@ -124,7 +134,7 @@ return [
             'genre' => 'Género',
             'language' => 'Idioma',
             'no_scores' => 'Los datos todavía están siendo calculados...',
-            'nominators' => '',
+            'nominators' => 'Nominadores',
             'nsfw' => 'Contenido explícito',
             'offset' => 'Compensación en línea',
             'points-of-failure' => 'Puntos de fracaso',
@@ -148,10 +158,10 @@ return [
 
         'scoreboard' => [
             'achieved' => 'logrado :when',
-            'country' => 'Clasificación Nacional',
+            'country' => 'Clasificación nacional',
             'error' => 'Error al cargar las clasificaciones',
-            'friend' => 'Clasificación entre Amigos',
-            'global' => 'Clasificación Global',
+            'friend' => 'Clasificación entre amigos',
+            'global' => 'Clasificación global',
             'supporter-link' => '¡Clic <a href=":link">aquí</a> para ver todas las características de lujo que ofrece!',
             'supporter-only' => '¡Debe ser un osu!supporter para acceder a las clasificaciones nacionales y entre amigos!',
             'title' => 'Tabla de puntuaciones',
@@ -197,7 +207,7 @@ return [
             'total_length' => 'Duración (Duración del drenaje: :hit_length)',
             'bpm' => 'BPM',
             'count_circles' => 'Número de círculos',
-            'count_sliders' => 'Número de deslizadores',
+            'count_sliders' => 'Número de sliders',
             'offset' => 'Compensación en línea: :offset',
             'user-rating' => 'Valoración de los usuarios',
             'rating-spread' => 'Desglose de valoraciones',

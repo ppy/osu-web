@@ -40,16 +40,16 @@ return [
     ],
 
     'nominate' => [
-        'hybrid_requires_modes' => '하이브리드 비트맵 셋을 사용하려면 추천할 플레이 모드를 하나 이상 선택해야 합니다.',
-        'incorrect_mode' => '이 모드 (:mode)를 추천할 권한을 가지고 있지 않습니다.',
-        'full_bn_required' => '완전한 Nominator가 되어야만 이 qualify 추천을 할 수 있습니다.',
-        'too_many' => '비트맵 추천 요구 사항을 이미 만족했습니다.',
+        'hybrid_requires_modes' => '하이브리드 비트맵 셋은 노미네이트 할 플레이 모드를 하나 이상 선택해야 합니다.',
+        'incorrect_mode' => ':mode 모드를 노미네이트 할 권한을 가지고 있지 않습니다.',
+        'full_bn_required' => '정식 노미네이터만 이 맵을 퀄리파이 할 수 있습니다.',
+        'too_many' => '노미네이션 요구 사항을 이미 만족했습니다.',
 
         'dialog' => [
-            'confirmation' => '정말로 이 비트맵을 추천하시겠어요?',
-            'header' => '비트맵 추천',
-            'hybrid_warning' => '주의: 오직 한 번만 추천할 수 있기에 원하는 게임 모드 전체를 선택했는지 확인해주세요.',
-            'which_modes' => '어떤 모드로 추천하시겠어요?',
+            'confirmation' => '정말로 이 비트맵을 노미네이트 하시겠어요?',
+            'header' => '비트맵 노미네이트',
+            'hybrid_warning' => '주의: 딱 한 번만 노미네이트 할 수 있으므로 자신이 노미네이트 하려는 모든 게임 모드를 선택했는지 확인해주세요.',
+            'which_modes' => '어떤 모드를 노미네이트 하겠습니까?',
         ],
     ],
 
@@ -60,12 +60,22 @@ return [
     'show' => [
         'discussion' => '토론',
 
+        'admin' => [
+            'full_size_cover' => '전체 사이즈 커버 이미지 보기',
+        ],
+
+        'deleted_banner' => [
+            'title' => '이 비트맵은 삭제되었습니다.',
+            'message' => '(관리자만 볼 수 있습니다)',
+        ],
+
         'details' => [
             'by_artist' => 'by :artist',
             'favourite' => '즐겨찾기',
             'favourite_login' => '로그인하여 이 비트맵을 즐겨찾기 하세요.',
             'logged-out' => '로그인 후 비트맵을 다운로드하세요!',
-            'mapped_by' => ':mapper 님의 맵',
+            'mapped_by' => ':mapper님의 맵',
+            'mapped_by_guest' => ':mapper님의 게스트 난이도',
             'unfavourite' => '즐겨찾기 해제',
             'updated_timeago' => ':timeago에 마지막으로 수정',
 
@@ -83,10 +93,10 @@ return [
         ],
 
         'details_date' => [
-            'approved' => ':timeago에 approved 됨',
-            'loved' => ':timeago에 loved 됨',
-            'qualified' => ':timeago에 qualified 됨',
-            'ranked' => ':timeago에 ranked 됨',
+            'approved' => ':timeago에 어프루브됨',
+            'loved' => ':timeago에 러브드 상태가 됨',
+            'qualified' => ':timeago에 퀄리파이됨',
+            'ranked' => ':timeago에 랭크됨',
             'submitted' => ':timeago에 제출됨',
             'updated' => ':timeago에 마지막으로 수정',
         ],
@@ -96,20 +106,20 @@ return [
         ],
 
         'hype' => [
-            'action' => '이 맵이 마음에 드신다면 <strong>Ranked</strong> 상태가 될 수 있도록 도움을 주게 Hype 해주세요.',
+            'action' => '이 맵이 마음에 드신다면 <strong>랭크</strong> 상태가 될 수 있도록 Hype 하여 도움을 주세요.',
 
             'current' => [
                 '_' => '이 맵은 현재 :status 상태입니다.',
 
                 'status' => [
-                    'pending' => '보류',
-                    'qualified' => 'qualified',
+                    'pending' => '대기',
+                    'qualified' => '퀄리파이',
                     'wip' => '제작 중',
                 ],
             ],
 
             'disqualify' => [
-                '_' => '이 비트맵에 문제가 있다면, :link해 주세요.',
+                '_' => '이 비트맵에 문제가 있다면 :link에서 디스퀄리파이 해 주세요.',
             ],
 
             'report' => [
@@ -124,11 +134,11 @@ return [
             'genre' => '장르',
             'language' => '언어',
             'no_scores' => '데이터를 수집중입니다...',
-            'nominators' => '',
+            'nominators' => '노미네이터',
             'nsfw' => '부적절한 내용',
             'offset' => '온라인 오프셋',
             'points-of-failure' => '실패 지점',
-            'source' => '원작',
+            'source' => '출처',
             'storyboard' => '이 비트맵은 스토리보드를 포함합니다.',
             'success-rate' => '클리어 비율',
             'tags' => '태그',
@@ -193,25 +203,25 @@ return [
             'drain' => 'HP Drain',
             'accuracy' => 'Accuracy',
             'ar' => 'Approach Rate',
-            'stars' => 'Star Difficulty',
+            'stars' => 'Star Rating',
             'total_length' => '길이',
             'bpm' => 'BPM',
-            'count_circles' => 'Circle Count',
-            'count_sliders' => 'Slider Count',
+            'count_circles' => '서클 개수',
+            'count_sliders' => '슬라이더 개수',
             'offset' => '온라인 오프셋 :offset',
             'user-rating' => '유저 평점',
             'rating-spread' => '평점 분포도',
-            'nominations' => '추천',
+            'nominations' => '노미네이션',
             'playcount' => '플레이 횟수',
         ],
 
         'status' => [
-            'ranked' => 'Ranked',
-            'approved' => 'Approved',
-            'loved' => 'Loved',
-            'qualified' => 'Qualified',
+            'ranked' => '랭크됨',
+            'approved' => '어프루브 됨',
+            'loved' => '러브드',
+            'qualified' => '퀄리파이 됨',
             'wip' => '제작 중',
-            'pending' => '보류 중',
+            'pending' => '대기 중',
             'graveyard' => '무덤에 감',
         ],
     ],

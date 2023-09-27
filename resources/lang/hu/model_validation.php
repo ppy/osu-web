@@ -8,6 +8,7 @@ return [
     'not_negative' => ':attribute nem lehet negatív.',
     'required' => ':attribute kötelező.',
     'too_long' => ':attribute elérte a maximális hosszt - csak :limit karakter hosszú lehet.',
+    'url' => 'Kérjük adjon meg egy helyes URL-t.',
     'wrong_confirmation' => 'A megerősítés nem egyezik.',
 
     'beatmapset_discussion' => [
@@ -108,6 +109,16 @@ return [
         ],
     ],
 
+    'legacy_api_key' => [
+        'exists' => 'Jelenleg csak egy API kulcs jár felhasználóként.',
+
+        'attributes' => [
+            'api_key' => 'api kulcs',
+            'app_name' => 'alkalmazás neve',
+            'app_url' => 'alkalmazás url',
+        ],
+    ],
+
     'oauth' => [
         'client' => [
             'too_many' => 'Elérted a maximum OAuth applikációk számát.',
@@ -164,6 +175,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => 'Rangsorolt beatmapokat nem lehet jelenteni',
+        'not_in_channel' => 'Nem vagy ebben a csatornában.',
         'reason_not_valid' => 'ez a jelentés nem megfelelő, ehhez a jelentés fajtához.:reason.',
         'self' => "Nem jelentheted magadat!",
     ],

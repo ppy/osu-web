@@ -6,11 +6,11 @@
 return [
     'edit' => [
         'title_compact' => 'asetukset',
-        'username' => 'käyttäjätunnus',
+        'username' => 'käyttäjänimi',
 
         'avatar' => [
             'title' => 'Avatar',
-            'rules' => 'Pidä huoli, että avatari ei riko :link.<br/>Tämä tarkoittaa sitä, että kuvan on <strong>sovittava kaikenikäisille</strong>, eli ei alastomuutta tai muita hävyttömyyksiä.',
+            'rules' => 'Pidä huoli, ettei profiilikuvasi riko :link.<br/>Tämä tarkoittaa sitä, että kuvan on <strong>sovittava kaikenikäisille</strong>, eli ei alastomuutta tai muita hävyttömyyksiä.',
             'rules_link' => 'yhteisön sääntöjä',
         ],
 
@@ -18,6 +18,16 @@ return [
             'new' => 'uusi sähköpostiosoite',
             'new_confirmation' => 'sähköpostivahvistus',
             'title' => 'Sähköposti',
+            'locked' => [
+                '_' => 'Ota yhteyttä :accounts, jos sinun tarvitsee päivittää sähköpostiosoitteesi.',
+                'accounts' => 'tilien tukiryhmään',
+            ],
+        ],
+
+        'legacy_api' => [
+            'api' => 'rajapinta',
+            'irc' => 'irc',
+            'title' => 'Vanha rajapinta',
         ],
 
         'password' => [
@@ -28,7 +38,13 @@ return [
         ],
 
         'profile' => [
+            'country' => 'maa',
             'title' => 'Profiili',
+
+            'country_change' => [
+                '_' => "Näyttää siltä, että tilisi maa ei ole sama kuin asuinmaasi. :update_link.",
+                'update_link' => 'Aseta tilin maaksi :country',
+            ],
 
             'user' => [
                 'user_discord' => '',
@@ -51,7 +67,7 @@ return [
         'beatmapset_disqualify' => 'vastaanota ilmoituksia kun beatmappeja hylätään seuraavista tiloista',
         'comment_reply' => 'vastaanota ilmoituksia vastauksista kommentteihisi',
         'title' => 'Ilmoitukset',
-        'topic_auto_subscribe' => 'automaattisesti salli ilmoitukset uusille foorumiaiheille jotka luot',
+        'topic_auto_subscribe' => 'ota automaattisesti ilmoitukset käyttöön tekemillesi uusille foorumiaiheille',
 
         'options' => [
             '_' => 'toimitusvaihtoehdot',
@@ -63,7 +79,7 @@ return [
             'mail' => 'posti',
             'mapping' => 'beatmapin kartoittaja',
             'push' => 'push',
-            'user_achievement_unlock' => 'käyttäjämitali avattu',
+            'user_achievement_unlock' => 'mitali ansaittu',
         ],
     ],
 
@@ -74,7 +90,7 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => 'piilota varoitukset sopimattomattomasta sisällöstä beatmapeissa',
+        'beatmapset_show_nsfw' => 'piilota varoitukset sopimattomasta sisällöstä rytmikartoissa',
         'beatmapset_title_show_original' => 'näytä beatmap-metadata alkuperäisellä kielellä',
         'title' => 'Asetukset',
 
@@ -91,7 +107,7 @@ return [
         'mouse' => 'hiiri',
         'tablet' => 'piirtopöytä',
         'title' => 'Pelityylit',
-        'touch' => 'kosketus',
+        'touch' => 'kosketusnäyttö',
     ],
 
     'privacy' => [

@@ -78,6 +78,18 @@ return [
             'suggestion' => 'Sugerencia',
         ],
 
+        'message_type_title' => [
+            'disqualify' => 'Publicar descalificación',
+            'hype' => '¡Publicar Hype!',
+            'mapper_note' => 'Publicar nota',
+            'nomination_reset' => 'Eliminar todas las nominaciones',
+            'praise' => 'Publicar elogio',
+            'problem' => 'Publicar problema',
+            'problem_warning' => 'Publicar problema',
+            'review' => 'Publicar revisión',
+            'suggestion' => 'Publicar sugerencia',
+        ],
+
         'mode' => [
             'events' => 'Historial',
             'general' => 'General :scope',
@@ -106,7 +118,7 @@ return [
                 'unsaved' => 'No guardado',
                 'timestamp' => [
                     'all-diff' => 'Las publicaciones en "Todas las dificultades" no pueden tener marcas de tiempo.',
-                    'diff' => 'Si el comentario de :type empieza con una marca de tiempo, se mostrará en la Línea de tiempo.',
+                    'diff' => 'Si esta publicación empieza con una marca de tiempo, se mostrará en la Línea de tiempo.',
                 ],
             ],
             'insert-block' => [
@@ -175,6 +187,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => 'Ya has nominado este mapa.',
+        'cannot_nominate' => 'No puedes nominar este modo de juego del mapa.',
         'delete' => 'Eliminar',
         'delete_own_confirm' => '¿Está seguro? El mapa será eliminado y serás redirigido de vuelta a tu perfil.',
         'delete_other_confirm' => '¿Está seguro? El mapa será eliminado y serás redirigido de vuelta al perfil de usuario.',
@@ -199,6 +213,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'Se estima que este mapa se clasificará :date si no se encuentran problemas. Es el número :position en la :queue.',
+            'on' => 'el :date',
             'queue' => 'cola de clasificación',
             'soon' => 'pronto',
         ],
@@ -211,7 +226,7 @@ return [
         'reset_confirm' => [
             'disqualify' => '¿Está seguro? Esto eliminará el mapa de la calificación y restablecerá el proceso de nominación.',
             'nomination_reset' => '¿Está seguro? Publicar un nuevo problema restablecerá el proceso de nominación.',
-            'problem_warning' => '¿Seguro que desea informar de un problema en este mapa? Esto alertará a los Beatmap Nominators.',
+            'problem_warning' => '¿Seguro que deseas reportar de un problema en este mapa? Esto alertará a los Beatmap Nominators.',
         ],
     ],
 
@@ -220,7 +235,7 @@ return [
             'prompt' => 'escriba en palabras clave...',
             'login_required' => 'Inicie sesión para buscar.',
             'options' => 'Más opciones de búsqueda',
-            'supporter_filter' => 'Filtrar por :filters requiere un tag activo de osu!supporter',
+            'supporter_filter' => 'Filtrar por :filters requiere una etiqueta osu!supporter activa',
             'not-found' => 'no hay resultados',
             'not-found-quote' => '... nop, nada encontrado.',
             'filters' => [
@@ -248,7 +263,7 @@ return [
             ],
             'supporter_filter_quote' => [
                 '_' => 'Necesitas un :link activo para filtrar por :filters',
-                'link_text' => 'tag de osu!supporter',
+                'link_text' => 'etiqueta osu!supporter',
             ],
         ],
     ],
@@ -283,35 +298,35 @@ return [
     'genre' => [
         'any' => 'Cualquier',
         'unspecified' => 'No especificado',
-        'video-game' => 'videojuego',
-        'anime' => 'anime',
-        'rock' => 'rock',
-        'pop' => 'pop',
-        'other' => 'otro',
-        'novelty' => 'novedad',
-        'hip-hop' => 'hip hop',
-        'electronic' => 'electrónica',
-        'metal' => 'metal',
+        'video-game' => 'Videojuego',
+        'anime' => 'Anime',
+        'rock' => 'Rock',
+        'pop' => 'Pop',
+        'other' => 'Otro',
+        'novelty' => 'Novedad',
+        'hip-hop' => 'Hip Hop',
+        'electronic' => 'Electrónica',
+        'metal' => 'Metal',
         'classical' => 'Clásica',
-        'folk' => 'folk',
-        'jazz' => 'jazz',
+        'folk' => 'Folk',
+        'jazz' => 'Jazz',
     ],
     'language' => [
         'any' => 'Cualquiera',
-        'english' => 'inglés',
-        'chinese' => 'chino',
-        'french' => 'francés',
-        'german' => 'alemán',
-        'italian' => 'italiano',
-        'japanese' => 'japonés',
-        'korean' => 'coreano',
-        'spanish' => 'español',
-        'swedish' => 'sueco',
-        'russian' => 'ruso',
-        'polish' => 'polaco',
-        'instrumental' => 'instrumental',
-        'other' => 'otro',
-        'unspecified' => 'no especificado',
+        'english' => 'Inglés',
+        'chinese' => 'Chino',
+        'french' => 'Francés',
+        'german' => 'Alemán',
+        'italian' => 'Italiano',
+        'japanese' => 'Japonés',
+        'korean' => 'Coreano',
+        'spanish' => 'Español',
+        'swedish' => 'Sueco',
+        'russian' => 'Ruso',
+        'polish' => 'Polaco',
+        'instrumental' => 'Instrumental',
+        'other' => 'Otro',
+        'unspecified' => 'No especificado',
     ],
 
     'nsfw' => [

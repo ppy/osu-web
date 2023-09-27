@@ -50,13 +50,11 @@ return [
             'resolved' => 'Não podes editar uma publicação duma discussão resolvida.',
             'system_generated' => 'Uma publicação gerada automaticamente não pode ser editada.',
         ],
-
-        'store' => [
-            'beatmapset_locked' => 'Este beatmap está bloqueado para discussão.',
-        ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => 'A discussão deste beatmap foi bloqueada.',
+
         'metadata' => [
             'nominated' => 'Não podes alterar os metadados dum mapa nomeado. Contacta um membro dos BN ou da NAT se achas que estão estabelecidos incorretamente.',
         ],
@@ -173,6 +171,7 @@ return [
 
     'score' => [
         'pin' => [
+            'disabled_type' => "Não é possível afixar este tipo de pontuação",
             'not_owner' => 'Só o dono da pontuação é que a pode fixar.',
             'too_many' => 'Afixaste demasiadas pontuações.',
         ],
@@ -185,6 +184,9 @@ return [
                 'not_owner' => 'Só é possível editar a própria página de utilizador.',
                 'require_supporter_tag' => 'É preciso uma etiqueta osu!supporter.',
             ],
+        ],
+        'update_email' => [
+            'locked' => 'o endereço de email está bloqueado',
         ],
     ],
 ];

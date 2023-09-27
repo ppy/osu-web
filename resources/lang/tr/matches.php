@@ -6,13 +6,13 @@
 return [
     'match' => [
         'beatmap-deleted' => 'silinmiş beatmap',
-        'difference' => ':difference puan farkla kazandı',
         'failed' => 'BAŞARISIZ',
         'header' => 'Çok Oyunculu Maçlar',
         'in-progress' => '(devam eden maç)',
         'in_progress_spinner_label' => 'devam eden maç',
         'loading-events' => 'Olaylar yükleniyor...',
         'winner' => ':team',
+        'winner_by' => ':difference farkla :winner',
 
         'events' => [
             'player-left' => ':user maçtan ayrıldı',
@@ -32,7 +32,7 @@ return [
 
         'score' => [
             'stats' => [
-                'accuracy' => 'Doğruluk',
+                'accuracy' => 'İsabetlilik',
                 'combo' => 'Kombo',
                 'score' => 'Skor',
             ],
@@ -53,7 +53,7 @@ return [
     'game' => [
         'scoring-type' => [
             'score' => 'En Yüksek Skor',
-            'accuracy' => 'Yüksek doğruluk',
+            'accuracy' => 'En Yüksek İsabetlilik',
             'combo' => 'En yüksek Kombo',
             'scorev2' => 'Skor V2',
         ],

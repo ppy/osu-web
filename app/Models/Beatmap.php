@@ -6,6 +6,8 @@
 namespace App\Models;
 
 use App\Exceptions\InvariantException;
+use App\Jobs\EsDocument;
+use App\Libraries\Transactions\AfterCommit;
 use DB;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -34,8 +36,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string|null $filename
  * @property int $hit_length
  * @property \Carbon\Carbon $last_update
+ * @property int $max_combo
  * @property mixed $mode
- * @property bool $orphaned
  * @property int $passcount
  * @property int $playcount
  * @property int $playmode
@@ -45,7 +47,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $version
  * @property string|null $youtube_preview
  */
-class Beatmap extends Model
+class Beatmap extends Model implements AfterCommit
 {
     use SoftDeletes;
 
@@ -55,10 +57,9 @@ class Beatmap extends Model
     protected $primaryKey = 'beatmap_id';
 
     protected $casts = [
-        'orphaned' => 'boolean',
+        'last_update' => 'datetime',
     ];
 
-    protected $dates = ['last_update'];
     public $timestamps = false;
 
     const MODES = [
@@ -164,7 +165,7 @@ class Beatmap extends Model
                     AND mode = {$mode}
                     AND mods = {$mods}
                     AND attrib_id = {$attrib}
-            ) AS max_combo"));
+            ) AS attrib_max_combo"));
     }
 
     public function failtimes()
@@ -202,6 +203,15 @@ class Beatmap extends Model
         return $this->hasMany(Score\Best\Mania::class);
     }
 
+    public function afterCommit()
+    {
+        $beatmapset = $this->beatmapset;
+
+        if ($beatmapset !== null) {
+            dispatch(new EsDocument($beatmapset));
+        }
+    }
+
     public function isScoreable()
     {
         return $this->approved > 0;
@@ -229,6 +239,7 @@ class Beatmap extends Model
             'diff_overall',
             'filename',
             'hit_length',
+            'max_combo',
             'passcount',
             'playcount',
             'playmode',
@@ -236,8 +247,6 @@ class Beatmap extends Model
             'total_length',
             'user_id',
             'youtube_preview' => $this->getRawAttribute($key),
-
-            'orphaned' => (bool) $this->getRawAttribute($key),
 
             'deleted_at',
             'last_update' => $this->getTimeFast($key),
@@ -267,8 +276,8 @@ class Beatmap extends Model
 
     public function maxCombo()
     {
-        if (!$this->convert && array_key_exists('max_combo', $this->attributes)) {
-            return $this->attributes['max_combo'];
+        if (!$this->convert && array_key_exists('attrib_max_combo', $this->attributes)) {
+            return $this->attributes['attrib_max_combo'];
         }
 
         if ($this->relationLoaded('baseMaxCombo')) {

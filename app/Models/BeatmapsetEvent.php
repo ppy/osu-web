@@ -53,6 +53,7 @@ class BeatmapsetEvent extends Model
     const LANGUAGE_EDIT = 'language_edit';
     const NSFW_TOGGLE = 'nsfw_toggle';
     const OFFSET_EDIT = 'offset_edit';
+    const TAGS_EDIT = 'tags_edit';
 
     const BEATMAP_OWNER_CHANGE = 'beatmap_owner_change';
 
@@ -103,6 +104,11 @@ class BeatmapsetEvent extends Model
             } else {
                 $query->where('user_id', '=', $user->getKey());
             }
+        }
+
+        if (present($rawParams['beatmapset_id'] ?? null)) {
+            $params['beatmapset_id'] = $rawParams['beatmapset_id'];
+            $query->where('beatmapset_id', '=', $params['beatmapset_id']);
         }
 
         if (isset($rawParams['sort'])) {

@@ -8,6 +8,7 @@ return [
     'talking_in' => 'píšete do :channel',
     'talking_with' => 'píšete si s :name',
     'title_compact' => 'chat',
+    'unread_messages' => '',
 
     'cannot_send' => [
         'channel' => 'Momentálne nemôžete poslať správu do tohto kanálu. Toto môže byť zapríčinené hociktorým z týchto dôvodov:',
@@ -35,6 +36,7 @@ return [
 
         'labels' => [
             'description' => 'popis',
+            'message' => '',
             'name' => 'názov miestnosti',
             'users' => '',
         ],

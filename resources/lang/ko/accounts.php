@@ -6,11 +6,11 @@
 return [
     'edit' => [
         'title_compact' => '설정',
-        'username' => '사용자 이름',
+        'username' => '아이디',
 
         'avatar' => [
             'title' => '아바타',
-            'rules' => '아바타는 :link을 따라야 합니다.<br/>이는 아바타가 <strong>모든 연령에 적합해야 한다</strong>는 것을 의미하므로, 나체, 남에게 모욕적인 표현 또는 이러한 것을 암시하는 내용이 없어야 합니다.',
+            'rules' => '아바타가 :link을 따르고 있는지 확인하세요.<br/>이는 아바타가 <strong>모든 연령에 적합해야 하므로</strong> 과도한 노출, 욕설 혹은 이러한 것을 암시하는 내용이 없어야 한다는 의미입니다.',
             'rules_link' => '커뮤니티 규칙',
         ],
 
@@ -18,6 +18,16 @@ return [
             'new' => '새 이메일 주소',
             'new_confirmation' => '이메일 주소 확인',
             'title' => '이메일',
+            'locked' => [
+                '_' => '이메일 변경이 필요하시다면 :accounts에 연락해 주세요.',
+                'accounts' => '계정 지원 팀',
+            ],
+        ],
+
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => '레거시 API',
         ],
 
         'password' => [
@@ -28,7 +38,13 @@ return [
         ],
 
         'profile' => [
+            'country' => '국가',
             'title' => '프로필',
+
+            'country_change' => [
+                '_' => "계정에 등록된 국가와 실제 거주 국가가 다른 것 같습니다. :update_link",
+                'update_link' => ':country(으)로 변경',
+            ],
 
             'user' => [
                 'user_discord' => '',

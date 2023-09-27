@@ -50,7 +50,7 @@ return [
         'search' => 'Caută',
         'see_more' => 'vezi mai mult',
         'show' => 'arată',
-        'show_deleted' => 'Arată șterse',
+        'show_deleted' => 'Afișează șterse',
         'show_less' => 'arată mai puțin',
         'show_more' => 'arată mai mult',
         'show_more_options' => 'arată mai multe opţiuni',
@@ -153,7 +153,7 @@ return [
     ],
 
     'title' => [
-        'notice' => 'Notificare',
+        'notice' => 'Observație',
     ],
 
     'wrong_user' => [

@@ -9,7 +9,7 @@ use App\Models\UserAccountHistory;
 
 class UserAccountHistoryTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'actor',
         'supporting_url',
     ];

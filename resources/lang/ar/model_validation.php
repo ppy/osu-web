@@ -8,6 +8,7 @@ return [
     'not_negative' => ':attribute لا يمكن ان يكون سلبياََ.',
     'required' => ':attribute مطلوب.',
     'too_long' => ':attribute تجاوز الحد المطلوب - يمكن ان يصل حد :limit حروف فقط.',
+    'url' => '',
     'wrong_confirmation' => 'التأكيد لا يتطابق.',
 
     'beatmapset_discussion' => [
@@ -108,6 +109,16 @@ return [
         ],
     ],
 
+    'legacy_api_key' => [
+        'exists' => '',
+
+        'attributes' => [
+            'api_key' => '',
+            'app_name' => '',
+            'app_url' => '',
+        ],
+    ],
+
     'oauth' => [
         'client' => [
             'too_many' => 'تجاوزت الحد الأقصى لعدد الـ0Auth المسموح به.',
@@ -164,6 +175,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => 'الخرائط الـ Ranked لا يمكن الإبلاغ عنها',
+        'not_in_channel' => '',
         'reason_not_valid' => ':reason ليس مقبولا لنوع الأبلاغ هذا.',
         'self' => "لا يمكنك الإبلاغ عن نفسك!",
     ],

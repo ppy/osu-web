@@ -106,7 +106,7 @@ class ScoreSearch extends RecordSearch
         throw new Exception("Indexable and indexed score counts still don't match. Queue runner is probably either having problem, not running, or too slow");
     }
 
-    public function queueForIndex(?array $schemas = null, array $ids): void
+    public function queueForIndex(?array $schemas, array $ids): void
     {
         $count = count($ids);
 

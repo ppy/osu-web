@@ -5,6 +5,9 @@
       "forum_id": {
         "type": "long"
       },
+      "is_deleted": {
+        "type": "boolean"
+      },
       "post_id": {
         "type": "long"
       },

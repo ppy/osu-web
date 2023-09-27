@@ -60,12 +60,22 @@ return [
     'show' => [
         'discussion' => 'Дискусия',
 
+        'admin' => [
+            'full_size_cover' => 'Преглед на пълноразмерната корица',
+        ],
+
+        'deleted_banner' => [
+            'title' => 'Този бийтмап беше изтрит.',
+            'message' => '(само модератори могат да видят това)',
+        ],
+
         'details' => [
             'by_artist' => '- :artist',
             'favourite' => 'добавяне в Любими',
             'favourite_login' => 'Влез, за добавяне в любими',
             'logged-out' => 'Моля, влез в профила си, за изтегляне на бийтмапове!',
             'mapped_by' => 'създаден от :mapper',
+            'mapped_by_guest' => 'трудност, предложена от :mapper',
             'unfavourite' => 'премахване от Любими',
             'updated_timeago' => 'последно актуализиран :timeago',
 
@@ -124,7 +134,7 @@ return [
             'genre' => 'Жанр',
             'language' => 'Език',
             'no_scores' => 'Информацията все още се обработва...',
-            'nominators' => '',
+            'nominators' => 'Номинатори',
             'nsfw' => 'Explicit съдържание',
             'offset' => 'Онлайн offset',
             'points-of-failure' => 'Връхни точки на провал',

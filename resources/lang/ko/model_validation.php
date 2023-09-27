@@ -8,6 +8,7 @@ return [
     'not_negative' => ':attribute 속성은 음수가 될 수 없습니다.',
     'required' => ':attribute 속성이 필요합니다.',
     'too_long' => ':attribute의 최대 길이를 초과 했습니다 - :limit자 까지만 쓸 수 있습니다.',
+    'url' => '유효한 URL을 입력하세요.',
     'wrong_confirmation' => '확인란이 일치하지 않습니다.',
 
     'beatmapset_discussion' => [
@@ -108,6 +109,16 @@ return [
         ],
     ],
 
+    'legacy_api_key' => [
+        'exists' => '현재는 유저당 오직 한 개의 API 키만 제공됩니다.',
+
+        'attributes' => [
+            'api_key' => 'api key',
+            'app_name' => '애플리케이션 이름',
+            'app_url' => '애플리케이션 URL',
+        ],
+    ],
+
     'oauth' => [
         'client' => [
             'too_many' => '허용된 OAuth 애플리케이션 수를 초과했습니다.',
@@ -123,23 +134,23 @@ return [
     'user' => [
         'contains_username' => '비밀번호는 유저 이름을 포함할 수 없습니다.',
         'email_already_used' => '이미 사용중인 이메일 주소입니다.',
-        'email_not_allowed' => '이메일 주소가 허용되지 않습니다.',
+        'email_not_allowed' => '허용되지 않은 이메일 주소입니다.',
         'invalid_country' => '해당하는 국가가 데이터베이스에 존재하지 않습니다.',
         'invalid_discord' => 'Discord 유저 이름이 올바르지 않습니다.',
         'invalid_email' => "이메일 주소가 잘못되었습니다.",
         'invalid_twitter' => 'Twitter 유저 이름이 올바르지 않습니다.',
         'too_short' => '새 비밀번호가 너무 짧습니다.',
         'unknown_duplicate' => '유저 이름 또는 이메일 주소가 이미 사용중입니다.',
-        'username_available_in' => '이 사용자 이름은 :duration 안에 사용 가능합니다.',
-        'username_available_soon' => '이 사용자 이름은 곧 사용 가능 합니다!',
-        'username_invalid_characters' => '요청한 사용자 이름에 유효하지 않은 문자가 있습니다.',
-        'username_in_use' => '이미 사용중인 사용자 이름 입니다!',
+        'username_available_in' => '이 유저 이름은 :duration 안에 사용 가능합니다.',
+        'username_available_soon' => '이 유저 이름은 곧 사용 가능 합니다!',
+        'username_invalid_characters' => '요청한 유저 이름에 유효하지 않은 문자가 있습니다.',
+        'username_in_use' => '이미 사용중인 유저 이름 입니다!',
         'username_locked' => '이미 사용 중인 사용자 이름입니다!', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => '언더바나 공백을 사용해주세요, 둘 중 하나요!',
-        'username_no_spaces' => "사용자 이름은 공백으로 시작하거나 끝날 수 없습니다!",
+        'username_no_spaces' => "유저 이름은 공백으로 시작하거나 끝날 수 없습니다!",
         'username_not_allowed' => '이 사용자 이름 선택은 허용되지 않습니다.',
         'username_too_short' => '요청하신 유저 이름이 너무 짧습니다.',
-        'username_too_long' => '요청한 사용자 이름이 너무 깁니다.',
+        'username_too_long' => '요청한 유저 이름이 너무 깁니다.',
         'weak' => '비밀번호에 사용할 수 없는 문자나 패턴이 포함되어 있습니다.',
         'wrong_current_password' => '현재 비밀번호가 일치하지 않습니다.',
         'wrong_email_confirmation' => '이메일과 이메일 확인란이 일치하지 않습니다.',
@@ -147,13 +158,13 @@ return [
         'too_long' => '최대 길이를 초과하셨습니다 - :limit자리 까지만 가능합니다.',
 
         'attributes' => [
-            'username' => '사용자 이름',
+            'username' => '유저 이름',
             'user_email' => '이메일 주소',
             'password' => '비밀번호',
         ],
 
         'change_username' => [
-            'restricted' => '제한된 상태의 계정은 사용자 이름을 변경할 수 없습니다.',
+            'restricted' => '제한된 상태의 계정은 유저 이름을 변경할 수 없습니다.',
             'supporter_required' => [
                 '_' => '무조건 :link해야만 이름을 변경할 수 있습니다!',
                 'link_text' => 'osu!를 후원',
@@ -164,6 +175,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => '랭크된 비트맵은 신고할 수 없습니다.',
+        'not_in_channel' => '이 채널에 있지 않습니다.',
         'reason_not_valid' => ':reason 은(는) 이 신고 형식에 맞지 않습니다.',
         'self' => "자기 자신은 신고할 수 없습니다!",
     ],

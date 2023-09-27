@@ -32,6 +32,7 @@ return [
     ],
 
     'forum_topics' => [
+        'created' => '',
         'feature_votes' => 'スターの優先度',
         'new' => '最後の返信',
     ],

@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'generic' => '修复已知问题并做了小改动.',
+    'generic' => '修复已知问题并做了小改动',
 
     'build' => [
         'title' => ':version 中的更新',

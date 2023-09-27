@@ -60,12 +60,22 @@ return [
     'show' => [
         'discussion' => 'Discussão',
 
+        'admin' => [
+            'full_size_cover' => 'Ver imagem da capa em tamanho real',
+        ],
+
+        'deleted_banner' => [
+            'title' => 'Este beatmap foi apagado.',
+            'message' => '(apenas os moderadores podem ver isto)',
+        ],
+
         'details' => [
             'by_artist' => 'por :artist',
             'favourite' => 'Marcar este beatmapset como favorito',
             'favourite_login' => 'Inicia sessão para pôr este beatmap nos favoritos',
             'logged-out' => 'Precisas de iniciar sessão antes de transferir quaisquer beatmaps!',
             'mapped_by' => 'mapeado por :mapper',
+            'mapped_by_guest' => 'dificuldade de convidado por :mapper',
             'unfavourite' => 'Desmarcar este beatmapset como favorito',
             'updated_timeago' => 'atualizado há :timeago',
 
@@ -124,7 +134,7 @@ return [
             'genre' => 'Género',
             'language' => 'Língua',
             'no_scores' => 'Os dados ainda estão a ser calculados...',
-            'nominators' => '',
+            'nominators' => 'Nomeadores',
             'nsfw' => 'Conteúdo explícito',
             'offset' => 'Desvio do online',
             'points-of-failure' => 'Pontos de falha',

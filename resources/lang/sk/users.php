@@ -33,13 +33,14 @@ return [
 
     'blocks' => [
         'banner_text' => 'Užívateľ bol zablokovaný.',
-        'comment_text' => '',
+        'comment_text' => 'Tento komentár je schovaný.',
         'blocked_count' => 'zablokovaný užívatelia (:count)',
         'hide_profile' => 'skryť profil',
-        'hide_comment' => '',
+        'hide_comment' => 'schovať',
+        'forum_post_text' => 'Tento príspevok je schovaný.',
         'not_blocked' => 'Tento užívateľ nie je zablokovaný.',
         'show_profile' => 'zobraziť profil',
-        'show_comment' => '',
+        'show_comment' => 'zobraziť',
         'too_many' => 'Bol dosiahnutý blokovací limit.',
         'button' => [
             'block' => 'blokovať',
@@ -48,12 +49,29 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => '',
         'loading' => 'Načitávanie...',
         'send_message' => 'poslať správu',
     ],
 
+    'create' => [
+        'form' => [
+            'password' => 'heslo',
+            'password_confirmation' => 'potvrdiť heslo',
+            'submit' => 'vytvoriť účet',
+            'user_email' => 'email',
+            'user_email_confirmation' => 'potvrdiť email',
+            'username' => 'používateľské meno',
+
+            'tos_notice' => [
+                '_' => 'vytvorením účtu súhlasíte s :link',
+                'link' => 'podmienky používania',
+            ],
+        ],
+    ],
+
     'disabled' => [
-        'title' => '',
+        'title' => 'Ups! Vyzerá to tak, že tvoj účet bol zakázaný.',
         'warning' => "",
 
         'if_mistake' => [
@@ -105,6 +123,14 @@ return [
         ],
     ],
 
+    'ogp' => [
+        'description' => [
+            '_' => '',
+            'country' => '',
+            'global' => '',
+        ],
+    ],
+
     'posts' => [
         'title' => ':username\'s príspevky',
     ],
@@ -142,6 +168,7 @@ return [
     'restricted_banner' => [
         'title' => 'Tvoj účet bol zablokovaný!',
         'message' => 'Zatial čo si v zablokovanom režime, nebudeš môcť komunikovať s ostatnými hráčmi a tvoje skóre budu viditeľné iba pre teba. Toto je obvykle výsledkom automatického procesu, ktorý by sa mal vyriešit do 24 hodín. Pokiaľ si praješ odvolať tvoj blokovaný režim, prosím <a href="mailto:accounts@ppy.sh">kontaktuj podporu</a>.',
+        'message_link' => '',
     ],
     'show' => [
         'age' => ':age rokov',
@@ -368,7 +395,7 @@ return [
                     'date' => 'dátum',
                     'action' => 'trest',
                     'length' => 'dĺžka',
-                    'length_permanent' => 'Permanentné',
+                    'length_indefinite' => '',
                     'description' => 'popis',
                     'actor' => 'od :username',
 
@@ -451,6 +478,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
+        'from_client' => '',
+        'from_web' => '',
         'saved' => 'Vytvorený používateľom',
     ],
     'verify' => [

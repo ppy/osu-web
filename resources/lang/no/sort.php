@@ -16,28 +16,29 @@ return [
     'username' => 'Brukernavn',
 
     'artist_tracks' => [
-        'album' => '',
-        'artist' => '',
-        'bpm' => '',
-        'genre' => '',
-        'length' => '',
-        'relevance' => '',
-        'title' => '',
-        'update' => '',
+        'album' => 'Album',
+        'artist' => 'Artist',
+        'bpm' => 'BPM',
+        'genre' => 'Sjanger',
+        'length' => 'Lengde',
+        'relevance' => 'Relevans',
+        'title' => 'Tittel',
+        'update' => 'Oppdatering',
     ],
 
     'forum_posts' => [
-        'created' => '',
-        'relevance' => '',
+        'created' => 'Innleggstid',
+        'relevance' => 'Relevans',
     ],
 
     'forum_topics' => [
+        'created' => 'Opprettet',
         'feature_votes' => 'Stjerneprioritet',
         'new' => 'Siste svar',
     ],
 
     'users' => [
-        'relevance' => '',
-        'username' => '',
+        'relevance' => 'Relevans',
+        'username' => 'Navn',
     ],
 ];

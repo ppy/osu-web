@@ -15,7 +15,7 @@ return [
     'rank' => '',
     'rank_lost' => '',
     'user_support_again' => '',
-    'user_support_first' => '',
+    'user_support_first' => '<strong>:user</strong> از osu! پشتیبانی کرد! - از سخاوتمندی شما متشکریم!',
     'user_support_gift' => '',
     'username_change' => '',
 
@@ -24,5 +24,9 @@ return [
         'loved' => '',
         'qualified' => '',
         'ranked' => '',
+    ],
+
+    'value' => [
+        'rank' => '',
     ],
 ];

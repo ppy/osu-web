@@ -6,10 +6,10 @@
 return [
     'index' => [
         'none_running' => 'ไม่มีทัวร์นาเมนต์ในขณะนี้ มาทีหลังนะ',
-        'registration_period' => 'Registration: :start to :end',
+        'registration_period' => 'ระยะเวลาการลงทะเบียน: :start ถึง :end',
 
         'header' => [
-            'title' => 'คอมมูนิตี้ ทัวร์นาเมนต์',
+            'title' => 'การแข่งขันของชุมชน',
         ],
 
         'item' => [

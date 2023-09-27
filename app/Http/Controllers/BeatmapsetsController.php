@@ -72,7 +72,11 @@ class BeatmapsetsController extends Controller
 
     public function show($id)
     {
-        $beatmapset = Beatmapset::whereHas('beatmaps')->findOrFail($id);
+        $beatmapset = (
+            priv_check('BeatmapsetShowDeleted')->can()
+                ? Beatmapset::withTrashed()->whereHas('allBeatmaps')
+                : Beatmapset::whereHas('beatmaps')
+        )->findOrFail($id);
 
         $set = $this->showJson($beatmapset);
 
@@ -275,18 +279,24 @@ class BeatmapsetsController extends Controller
             'nsfw:bool',
         ]);
 
-        $offsetParams = get_params($params, 'beatmapset', [
-            'offset:int',
-        ]);
-
-        $updateParams = array_merge($metadataParams, $offsetParams);
-
         if (count($metadataParams) > 0) {
             priv_check('BeatmapsetMetadataEdit', $beatmapset)->ensureCan();
         }
 
-        if (count($offsetParams) > 0) {
+        $updateParams = [
+            ...$metadataParams,
+            ...get_params($params, 'beatmapset', [
+                'offset:int',
+                'tags:string',
+            ]),
+        ];
+
+        if (array_key_exists('offset', $updateParams)) {
             priv_check('BeatmapsetOffsetEdit')->ensureCan();
+        }
+
+        if (array_key_exists('tags', $updateParams)) {
+            priv_check('BeatmapsetTagsEdit')->ensureCan();
         }
 
         if (count($updateParams) > 0) {
@@ -295,6 +305,7 @@ class BeatmapsetsController extends Controller
                 $oldLanguageId = $beatmapset->language_id;
                 $oldNsfw = $beatmapset->nsfw;
                 $oldOffset = $beatmapset->offset;
+                $oldTags = $beatmapset->tags;
                 $user = auth()->user();
 
                 $beatmapset->fill($updateParams)->saveOrExplode();
@@ -326,6 +337,13 @@ class BeatmapsetsController extends Controller
                         'new' => $beatmapset->offset,
                     ])->saveOrExplode();
                 }
+
+                if ($oldTags !== $beatmapset->tags) {
+                    BeatmapsetEvent::log(BeatmapsetEvent::TAGS_EDIT, $user, $beatmapset, [
+                        'old' => $oldTags,
+                        'new' => $beatmapset->tags,
+                    ])->saveOrExplode();
+                }
             });
         }
 
@@ -348,7 +366,7 @@ class BeatmapsetsController extends Controller
                 'beatmapsets' => json_collection(
                     $records,
                     new BeatmapsetTransformer(),
-                    'beatmaps.max_combo'
+                    ['beatmaps.max_combo', 'pack_tags']
                 ),
                 'search' => [
                     'sort' => $search->getParams()->getSort(),
@@ -363,10 +381,13 @@ class BeatmapsetsController extends Controller
 
     private function showJson($beatmapset)
     {
+        $beatmapRelation = $beatmapset->trashed()
+            ? 'allBeatmaps'
+            : 'beatmaps';
         $beatmapset->load([
-            'beatmaps.baseDifficultyRatings',
-            'beatmaps.baseMaxCombo',
-            'beatmaps.failtimes',
+            "{$beatmapRelation}.baseDifficultyRatings",
+            "{$beatmapRelation}.baseMaxCombo",
+            "{$beatmapRelation}.failtimes",
             'genre',
             'language',
             'user',
@@ -386,6 +407,7 @@ class BeatmapsetsController extends Controller
             'description',
             'genre',
             'language',
+            'pack_tags',
             'ratings',
             'recent_favourites',
             'related_users',

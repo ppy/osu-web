@@ -14,7 +14,7 @@ return [
             '403' => 'kielletty',
             '401' => 'luvaton',
             '401-verification' => 'tilin vahvistaminen',
-            '405' => '',
+            '405' => 'puuttuu',
             '422' => 'virheellinen pyyntö',
             '429' => 'liian monta pyyntöä',
             '500' => 'jotain hajosi',
@@ -24,7 +24,7 @@ return [
     'forum' => [
         '_' => 'foorumi',
         'topic_logs_controller' => [
-            'index' => '',
+            'index' => 'aiheen lokit',
         ],
     ],
     'main' => [
@@ -32,7 +32,7 @@ return [
             'verify_link' => 'tilin vahvistaminen',
         ],
         'artists_controller' => [
-            '_' => '',
+            '_' => 'esitellyt artistit',
         ],
         'beatmap_discussion_posts_controller' => [
             '_' => 'viestit beatmap-keskustelussa',
@@ -41,10 +41,10 @@ return [
             '_' => 'beatmap-keskustelut',
         ],
         'beatmap_packs_controller' => [
-            '_' => '',
+            '_' => 'rytmikarttapaketit',
         ],
         'beatmapset_discussion_votes_controller' => [
-            '_' => '',
+            '_' => 'rytmikartan keskustelun äänestys',
         ],
         'beatmapset_events_controller' => [
             '_' => 'beatmap-historiikki',
@@ -77,7 +77,7 @@ return [
             'testflight' => 'testflight',
         ],
         'legal_controller' => [
-            '_' => '',
+            '_' => 'tiedot',
         ],
         'livestreams_controller' => [
             '_' => 'suoralähetykset',
@@ -100,12 +100,16 @@ return [
         'scores_controller' => [
             '_' => 'suorituskyky',
         ],
+        'seasons_controller' => [
+            '_' => 'tilastot',
+        ],
         'tournaments_controller' => [
             '_' => 'turnaukset',
         ],
         'users_controller' => [
             '_' => 'pelaajatiedot',
-            'disabled' => 'ilmoitus',
+            'create' => 'luo tili',
+            'disabled' => 'huomautus',
         ],
         'wiki_controller' => [
             '_' => 'wiki',

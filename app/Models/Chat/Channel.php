@@ -53,17 +53,23 @@ class Channel extends Model
     const ANNOUNCE_MESSAGE_LENGTH_LIMIT = 1024; // limited by column length
     const CHAT_ACTIVITY_TIMEOUT = 60; // in seconds.
 
+    const MAX_FIELD_LENGTHS = [
+        'description' => 255,
+        'name' => 50,
+    ];
+
     public ?string $uuid = null;
 
-    protected $primaryKey = 'channel_id';
+    protected $attributes = [
+        'description' => '',
+    ];
 
     protected $casts = [
+        'creation_time' => 'datetime',
         'moderated' => 'boolean',
     ];
 
-    protected $dates = [
-        'creation_time',
-    ];
+    protected $primaryKey = 'channel_id';
 
     private ?Collection $pmUsers;
     private array $preloadedUserChannels = [];
@@ -216,7 +222,7 @@ class Channel extends Model
 
     public function setDescriptionAttribute(?string $value)
     {
-        $this->attributes['description'] = $value !== null ? trim($value) : null;
+        $this->attributes['description'] = trim($value ?? '');
     }
 
     public function setNameAttribute(?string $value)
@@ -255,19 +261,6 @@ class Channel extends Model
     public function messages()
     {
         return $this->hasMany(Message::class);
-    }
-
-    public function filteredMessages()
-    {
-        $messages = $this->messages();
-
-        if ($this->isPublic()) {
-            $messages = $messages->where('timestamp', '>', Carbon::now()->subHours(config('osu.chat.public_backlog_limit')));
-        }
-
-        // TODO: additional message filtering
-
-        return $messages;
     }
 
     public function userChannels()
@@ -391,11 +384,16 @@ class Channel extends Model
             $this->validationErrors()->add('name', 'required');
         }
 
-        if ($this->description === null) {
-            $this->validationErrors()->add('description', 'required');
-        }
+        $this->validateDbFieldLengths();
 
         return $this->validationErrors()->isEmpty();
+    }
+
+    public function messageLengthLimit(): int
+    {
+        return $this->isAnnouncement()
+            ? static::ANNOUNCE_MESSAGE_LENGTH_LIMIT
+            : config('osu.chat.message_length_limit');
     }
 
     public function multiplayerMatch()
@@ -426,7 +424,7 @@ class Channel extends Model
             throw new API\ChatMessageEmptyException(osu_trans('api.error.chat.empty'));
         }
 
-        $maxLength = $this->isAnnouncement() ? static::ANNOUNCE_MESSAGE_LENGTH_LIMIT : config('osu.chat.message_length_limit');
+        $maxLength = $this->messageLengthLimit();
         if (mb_strlen($content, 'UTF-8') > $maxLength) {
             throw new API\ChatMessageTooLongException(osu_trans('api.error.chat.too_long'));
         }
@@ -606,7 +604,7 @@ class Channel extends Model
         }
     }
 
-    public function validationErrorsTranslationPrefix()
+    public function validationErrorsTranslationPrefix(): string
     {
         return 'chat.channel';
     }

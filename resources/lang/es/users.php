@@ -37,6 +37,7 @@ return [
         'blocked_count' => 'usuarios bloqueados (:count)',
         'hide_profile' => 'Ocultar perfil',
         'hide_comment' => 'ocultar',
+        'forum_post_text' => 'Esta publicación está oculta.',
         'not_blocked' => 'Ese usuario no está bloqueado.',
         'show_profile' => 'Mostrar perfil',
         'show_comment' => 'mostrar',
@@ -48,8 +49,25 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => 'Regalar etiqueta de supporter',
         'loading' => 'Cargando...',
         'send_message' => 'Enviar mensaje',
+    ],
+
+    'create' => [
+        'form' => [
+            'password' => 'contraseña',
+            'password_confirmation' => 'confirmar contraseña',
+            'submit' => 'crear cuenta',
+            'user_email' => 'correo',
+            'user_email_confirmation' => 'confirmar correo',
+            'username' => 'nombre de usuario',
+
+            'tos_notice' => [
+                '_' => 'al crear una cuenta aceptas los :link',
+                'link' => 'términos de servicio',
+            ],
+        ],
     ],
 
     'disabled' => [
@@ -58,7 +76,7 @@ return [
 
         'if_mistake' => [
             '_' => 'Si cree que se trata de un error, puede ponerse en contacto con nosotros (por :email o haciendo clic en el "?" en la esquina inferior derecha de esta página). Tenga en cuenta que siempre confiamos plenamente en nuestras acciones, ya que se basan en datos muy sólidos. Nos reservamos el derecho de ignorar su petición si consideramos que está siendo intencionadamente deshonesto.',
-            'email' => 'correo',
+            'email' => 'correo electrónico',
         ],
 
         'reasons' => [
@@ -79,7 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
-            'inactive_different_country' => "Su cuenta no ha sido utilizada en mucho tiempo.",
+            'inactive_different_country' => "Tu cuenta no ha sido usada en mucho tiempo.",
         ],
     ],
 
@@ -87,7 +105,7 @@ return [
         '_' => 'Iniciar sesión',
         'button' => 'Iniciar sesión',
         'button_posting' => 'Iniciando sesión...',
-        'email_login_disabled' => 'El inicio de sesión con correo está actualmente desactivado. Use el nombre de usuario en su lugar.',
+        'email_login_disabled' => 'El inicio de sesión con correo electrónico está actualmente desactivado. Por favor, usa el nombre de usuario en su lugar.',
         'failed' => 'Inicio de sesión incorrecto',
         'forgot' => '¿Olvidaste tu contraseña?',
         'info' => 'Por favor, inicie sesión para continuar',
@@ -105,6 +123,14 @@ return [
         ],
     ],
 
+    'ogp' => [
+        'description' => [
+            '_' => 'Clasificación (:ruleset): :global | :country',
+            'country' => 'Clasificación nacional :rank',
+            'global' => 'Clasificación global :rank',
+        ],
+    ],
+
     'posts' => [
         'title' => 'Publicaciones de :username',
     ],
@@ -118,8 +144,8 @@ return [
     'logout_confirm' => '¿Seguro que desea cerrar la sesión? :(',
     'report' => [
         'button_text' => 'Reportar',
-        'comments' => 'Comentarios adicionales',
-        'placeholder' => 'Por favor, proporcione cualquier información que crea que pueda ser útil.',
+        'comments' => 'Comentarios',
+        'placeholder' => 'Por favor, proporciona cualquier información que creas que pueda ser útil.',
         'reason' => 'Motivo',
         'thanks' => '¡Gracias por reportar!',
         'title' => '¿Reportar a :username?',
@@ -132,7 +158,7 @@ return [
         'options' => [
             'cheating' => 'Juega sucio o hace trampa',
             'multiple_accounts' => 'Utiliza múltiples cuentas',
-            'insults' => 'Insulta a mí o a otros',
+            'insults' => 'Insultándome/insultando a otros',
             'spam' => 'Envía mensajes spam',
             'unwanted_content' => 'Enlaza contenido inapropiado',
             'nonsense' => 'Sin sentido',
@@ -140,8 +166,9 @@ return [
         ],
     ],
     'restricted_banner' => [
-        'title' => '¡Su cuenta ha sido restringida!',
-        'message' => 'Mientras estás restringido, no podrás interactuar con otros jugadores y tus puntuaciones solo las podrás ver tú. Esto es, normalmente, el resultado de un proceso automatizado, y se levanta normalmente dentro de 24 horas. Si deseas apelar a tu restricción, por favor <a href="mailto:accounts@ppy.sh">contacta con el soporte</a>.',
+        'title' => '¡Tu cuenta ha sido restringida!',
+        'message' => 'Mientras estás restringido, no podrás interactuar con otros jugadores y tus puntuaciones solo las podrás ver tú. Normalmente, este es el resultado de un proceso automatizado, y se levanta normalmente dentro de 24 horas. :link',
+        'message_link' => 'Consulta esta página para obtener más información.',
     ],
     'show' => [
         'age' => ':age años',
@@ -152,7 +179,7 @@ return [
         'joined_at' => 'Se unió en :date',
         'lastvisit' => 'Visto :date',
         'lastvisit_online' => 'Actualmente en línea',
-        'missingtext' => '¡Es posible que hayas cometido un error tipográfico! (o el usuario puede haber sido baneado)',
+        'missingtext' => '¡Es posible que hayas cometido un error tipográfico! (o el usuario puede haber sido restringido)',
         'origin_country' => 'De :country',
         'previous_usernames' => 'antes conocido como',
         'plays_with' => 'Juega con :devices',
@@ -206,25 +233,25 @@ return [
                 'title' => 'Mapas',
 
                 'favourite' => [
-                    'title' => 'Mapas Favoritos',
+                    'title' => 'Mapas favoritos',
                 ],
                 'graveyard' => [
-                    'title' => 'Mapas Abandonados',
+                    'title' => 'Mapas abandonados',
                 ],
                 'guest' => [
                     'title' => 'Mapas con participación de invitados',
                 ],
                 'loved' => [
-                    'title' => 'Mapas Amados',
+                    'title' => 'Mapas amados',
                 ],
                 'nominated' => [
-                    'title' => '',
+                    'title' => 'Mapas clasificados nominados',
                 ],
                 'pending' => [
-                    'title' => 'Mapas Pendientes',
+                    'title' => 'Mapas pendientes',
                 ],
                 'ranked' => [
-                    'title' => 'Mapas Clasificados',
+                    'title' => 'Mapas clasificados',
                 ],
             ],
             'discussions' => [
@@ -250,7 +277,7 @@ return [
                 ],
                 'recent_plays' => [
                     'accuracy' => 'precisión: :percentage',
-                    'title' => 'Jugadas recientes (24 h)',
+                    'title' => 'Jugadas recientes (24 h)',
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Historial de repeticiones vistas',
@@ -258,7 +285,7 @@ return [
                 ],
             ],
             'kudosu' => [
-                'recent_entries' => 'Historial de Kudosu Reciente',
+                'recent_entries' => 'Historial de Kudosu reciente',
                 'title' => 'Kudosu!',
                 'total' => 'Total de Kudosu obtenido',
 
@@ -302,7 +329,7 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => 'Según la contribución que el usuario ha hecho al modding de mapas. Vea :link para más información.',
+                    '_' => 'Según la contribución que el usuario ha hecho a la moderación de mapas. Consulta :link para más información.',
                     'link' => 'esta página',
                 ],
             ],
@@ -368,14 +395,14 @@ return [
                     'date' => 'fecha',
                     'action' => 'acción',
                     'length' => 'duración',
-                    'length_permanent' => 'Permanente',
+                    'length_indefinite' => 'Indefinido',
                     'description' => 'descripción',
                     'actor' => 'por :username',
 
                     'actions' => [
-                        'restriction' => 'Restringir',
+                        'restriction' => 'Prohibir',
                         'silence' => 'Silenciado',
-                        'tournament_ban' => 'Excluído de torneos',
+                        'tournament_ban' => 'Restricción de torneos',
                         'note' => 'Nota',
                     ],
                 ],
@@ -398,7 +425,7 @@ return [
             'title' => '¡Usuario no encontrado! ;_;',
         ],
         'page' => [
-            'button' => 'Editar página de perfil',
+            'button' => 'editar página de perfil',
             'description' => '<strong>¡yo!</strong> es una área personal y personalizable en tu perfil.',
             'edit_big' => 'Editar ¡yo!',
             'placeholder' => 'Escriba el contenido de la página aquí',
@@ -414,18 +441,18 @@ return [
         ],
         'rank' => [
             'country' => 'Rank nacional para :mode',
-            'country_simple' => 'Clasificación Nacional',
+            'country_simple' => 'Clasificación nacional',
             'global' => 'Rank global para :mode',
-            'global_simple' => 'Clasificación Global',
+            'global_simple' => 'Clasificación global',
             'highest' => 'Clasificación más alta: :rank el :date',
         ],
         'stats' => [
             'hit_accuracy' => 'Precisión',
             'level' => 'Nivel :level',
-            'level_progress' => 'Progreso al siguiente nivel',
+            'level_progress' => 'progreso al siguiente nivel',
             'maximum_combo' => 'Combo máximo',
             'medals' => 'Medallas',
-            'play_count' => 'Conteo de jugadas',
+            'play_count' => 'Número de jugadas',
             'play_time' => 'Tiempo de juego total',
             'ranked_score' => 'Puntuación clasificada',
             'replays_watched_by_others' => 'Repeticiones vistas por otros',
@@ -433,15 +460,15 @@ return [
             'total_hits' => 'Golpes totales',
             'total_score' => 'Puntuación total',
             // modding stats
-            'graveyard_beatmapset_count' => 'Mapas Abandonados',
-            'loved_beatmapset_count' => 'Mapas Amados',
-            'pending_beatmapset_count' => 'Mapas Pendientes',
-            'ranked_beatmapset_count' => 'Mapas Clasificados',
+            'graveyard_beatmapset_count' => 'Mapas abandonados',
+            'loved_beatmapset_count' => 'Mapas amados',
+            'pending_beatmapset_count' => 'Mapas pendientes',
+            'ranked_beatmapset_count' => 'Mapas clasificados',
         ],
     ],
 
     'silenced_banner' => [
-        'title' => 'Actualmente está silenciado.',
+        'title' => 'Actualmente estás silenciado.',
         'message' => 'Es posible que algunas acciones no estén disponibles.',
     ],
 
@@ -451,6 +478,8 @@ return [
         'offline' => 'Sin conexión',
     ],
     'store' => [
+        'from_client' => '¡por favor regístrese a través del cliente del juego en su lugar!',
+        'from_web' => 'por favor complete el registro usando el sitio web de osu!',
         'saved' => 'Usuario creado',
     ],
     'verify' => [

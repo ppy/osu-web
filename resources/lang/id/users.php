@@ -32,11 +32,12 @@ return [
     ],
 
     'blocks' => [
-        'banner_text' => 'Anda telah memblokir pengguna ini.',
+        'banner_text' => 'Kamu telah memblokir pengguna ini.',
         'comment_text' => 'Komentar ini disembunyikan.',
         'blocked_count' => 'pengguna yang diblokir (:count)',
         'hide_profile' => 'Sembunyikan profil',
         'hide_comment' => 'sembunyikan',
+        'forum_post_text' => 'Postingan ini disembunyikan.',
         'not_blocked' => 'Pengguna ini tidak diblokir.',
         'show_profile' => 'Tampilkan profil',
         'show_comment' => 'tampilkan',
@@ -48,25 +49,42 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => 'Hadiahkan supporter tag',
         'loading' => 'Memuat...',
         'send_message' => 'Kirim pesan',
     ],
 
+    'create' => [
+        'form' => [
+            'password' => 'kata sandi',
+            'password_confirmation' => 'konfirmasi kata sandi',
+            'submit' => 'buat akun',
+            'user_email' => 'email',
+            'user_email_confirmation' => 'konfirmasi email',
+            'username' => 'nama pengguna',
+
+            'tos_notice' => [
+                '_' => 'dengan membuat akun, anda menyatakan diri setuju dengan :link yang berlaku',
+                'link' => 'ketentuan layanan',
+            ],
+        ],
+    ],
+
     'disabled' => [
-        'title' => 'Uh-oh! Sepertinya akun Anda telah dinonaktifkan.',
-        'warning' => "Apabila Anda telah melanggar peraturan, akun Anda akan ditempatkan pada masa percobaan selama satu bulan di mana dalam rentang waktu ini kami tidak akan menanggapi segala permintaan yang terkait dengan akun Anda. Setelah masa percobaan ini berakhir, Anda baru akan dapat menghubungi kami untuk mengembalikan akun Anda. Mohon diperhatikan bahwa membuat akun baru <strong>hanya akan menambah masa hukuman Anda</strong>, dan <strong>masa hukuman Anda akan bertambah panjang untuk setiap akun baru yang Anda buat</strong>. Kami harap Anda dapat belajar dari kesalahan Anda!",
+        'title' => 'Uh-oh! Sepertinya akunmu telah dinonaktifkan.',
+        'warning' => "Apabila kamu melanggar peraturan, akunmu akan ditempatkan pada masa percobaan selama satu bulan, di mana dalam rentang waktu ini kami tidak akan menanggapi permintaan apa pun yang terkait dengan akun Anda. Setelah masa ini berakhir, Anda baru akan dapat menghubungi kami untuk mengembalikan akunmu. Mohon diperhatikan bahwa membuat akun baru <strong>hanya akan menambah masa hukumanmu</strong>, dan <strong>masa hukumanmu akan bertambah panjang untuk setiap akun baru yang kamu buat</strong>. Kami harap kamu dapat belajar dari kesalahanmu!",
 
         'if_mistake' => [
-            '_' => 'Apabila Anda merasa hal ini merupakan sebuah kesalahpahaman, Anda dianjurkan untuk mengontak kami (baik itu melalui :email atau tombol "?" yang terletak pada pojok kanan bawah laman ini) sesegera mungkin. Mohon diperhatikan bahwa segala keputusan yang kami ambil selalu berdasar pada data yang konkrit dan diambil dengan penuh keyakinan. Di samping itu, kami juga berhak untuk tidak menindaklanjuti aduan Anda lebih lanjut apabila kami merasa Anda dengan sengaja telah berbohong kepada kami.',
+            '_' => 'Apabila kamu merasa bahwa hal ini merupakan sebuah kesalahan, kamu dapat menghubungi kami (baik melalui :email atau tombol "?" yang terletak pada pojok kanan bawah layar) sesegera mungkin. Mohon diperhatikan bahwa segala keputusan yang kami ambil selalu berdasar pada data dan diambil dengan penuh keyakinan. Di samping itu, kami juga berhak untuk tidak menindaklanjuti aduanmu apabila kami merasa kamu dengan sengaja telah berbohong kepada kami.',
             'email' => 'email',
         ],
 
         'reasons' => [
-            'compromised' => 'Akun Anda terindikasi telah disalahgunakan oleh pihak lain. Akun Anda akan dinonaktifkan untuk sementara waktu hingga identitas pengguna akun telah terkonfirmasi.',
-            'opening' => 'Ada sejumlah alasan yang dapat menyebabkan akun Anda dinonaktifkan:',
+            'compromised' => 'Akunmu terindikasi telah disusupi. Akun ini akan dinonaktifkan untuk sementara waktu hingga identitas pengguna akun terkonfirmasi.',
+            'opening' => 'Terdapat sejumlah alasan yang dapat menyebabkan akunmu dinonaktifkan:',
 
             'tos' => [
-                '_' => 'Anda telah melakukan pelanggaran terhadap satu atau lebih poin yang tercantum pada :community_rules atau :tos kami.',
+                '_' => 'Kamu telah melakukan pelanggaran terhadap satu atau lebih poin yang tertera pada :community_rules atau :tos kami.',
                 'community_rules' => 'peraturan komunitas',
                 'tos' => 'ketentuan layanan',
             ],
@@ -79,7 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
-            'inactive_different_country' => "Akun Anda telah lama tidak digunakan.",
+            'inactive_different_country' => "Akunmu telah lama tidak digunakan.",
         ],
     ],
 
@@ -87,21 +105,29 @@ return [
         '_' => 'Masuk',
         'button' => 'Masuk',
         'button_posting' => 'Mencoba masuk...',
-        'email_login_disabled' => 'Anda tidak lagi dapat masuk dengan menggunakan alamat email. Silakan masuk dengan menggunakan nama pengguna.',
-        'failed' => 'Gagal masuk',
+        'email_login_disabled' => 'Alamat email untuk saat ini tidak dapat digunakan untuk masuk. Silakan masuk dengan menggunakan nama pengguna.',
+        'failed' => 'Rincian masuk salah',
         'forgot' => 'Lupa kata sandi?',
         'info' => 'Silakan masuk untuk melanjutkan',
-        'invalid_captcha' => 'Anda telah berulang kali gagal memasukkan kredensial pengguna yang valid. Harap selesaikan captcha berikut dan coba lagi. (Muat ulang laman ini apabila captcha tidak terlihat)',
-        'locked_ip' => 'Alamat IP Anda dikunci. Mohon tunggu beberapa menit.',
+        'invalid_captcha' => 'Terlalu banyak upaya login yang gagal. Mohon selesaikan captcha yang muncul dan coba lagi. (Muat ulang laman ini apabila captcha tidak terlihat)',
+        'locked_ip' => 'Alamat IP-mu dikunci. Silakan tunggu beberapa menit.',
         'password' => 'Kata Sandi',
         'register' => "Belum memiliki akun osu!? Buat sekarang",
         'remember' => 'Ingat perangkat ini',
-        'title' => 'Mohon masuk untuk melanjutkan',
+        'title' => 'Silakan masuk untuk melanjutkan',
         'username' => 'Nama Pengguna',
 
         'beta' => [
             'main' => 'Akses beta saat ini hanya tersedia bagi para pengguna dengan hak khusus.',
             'small' => '(para pemilik osu!supporter akan segera masuk)',
+        ],
+    ],
+
+    'ogp' => [
+        'description' => [
+            '_' => '',
+            'country' => '',
+            'global' => '',
         ],
     ],
 
@@ -113,15 +139,15 @@ return [
         'login_link' => 'klik untuk masuk',
         'login_text' => 'masuk',
         'username' => 'Tamu',
-        'error' => 'Anda harus masuk terlebih dahulu untuk dapat melakukan tindakan ini.',
+        'error' => 'Kamu harus masuk untuk melakukan tindakan ini.',
     ],
-    'logout_confirm' => 'Apakah Anda yakin ingin keluar? :(',
+    'logout_confirm' => 'Apakah kamu yakin ingin keluar? :(',
     'report' => [
         'button_text' => 'Laporkan',
         'comments' => 'Komentar Tambahan',
-        'placeholder' => 'Mohon berikan informasi apapun yang Anda yakini dapat bermanfaat.',
+        'placeholder' => 'Mohon berikan informasi apa pun yang kamu yakini dapat bermanfaat.',
         'reason' => 'Alasan',
-        'thanks' => 'Terima kasih atas laporan Anda!',
+        'thanks' => 'Terima kasih atas laporanmu!',
         'title' => 'Laporkan :username?',
 
         'actions' => [
@@ -140,19 +166,20 @@ return [
         ],
     ],
     'restricted_banner' => [
-        'title' => 'Akun Anda telah di-restrict!',
-        'message' => 'Selama akun Anda di-restrict, Anda tidak akan dapat berinteraksi dengan para pengguna lain dan skor yang telah Anda raih hanya akan dapat dilihat oleh diri Anda sendiri. Hal ini pada umumnya merupakan efek samping dari proses yang dilakukan oleh sistem kami secara otomatis dan akan diangkat dalam 24 jam apabila Anda memang tidak melanggar peraturan apapun. Apabila Anda ingin mengajukan banding, mohon <a href="mailto:accounts@ppy.sh">hubungi layanan dukungan</a>.',
+        'title' => 'Akunmu telah di-restrict!',
+        'message' => 'Selama di-restrict, kamu tidak dapat berinteraksi dengan pengguna lain dan skormu hanya akan dapat dilihat oleh dirimu sendiri. Hal ini biasanya terproses secara otomatis dan akan diangkat dalam 24 jam. :link',
+        'message_link' => 'Kunjungi laman ini untuk keterangan lebih lanjut.',
     ],
     'show' => [
         'age' => ':age tahun',
-        'change_avatar' => 'ubah avatar Anda!',
+        'change_avatar' => 'ubah avatarmu!',
         'first_members' => 'Di sini sejak awal',
         'is_developer' => 'osu!developer',
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Bergabung pada :date',
         'lastvisit' => 'Terakhir terlihat :date',
         'lastvisit_online' => 'Saat ini online',
-        'missingtext' => 'Mungkin Anda salah ketik! (atau pengguna ini telah di-ban)',
+        'missingtext' => 'Mungkin kamu salah ketik! (atau pengguna ini telah di-ban)',
         'origin_country' => 'Dari :country',
         'previous_usernames' => 'sebelumnya dikenal sebagai',
         'plays_with' => 'Bermain menggunakan :devices',
@@ -171,10 +198,10 @@ return [
                 'button' => 'Ubah Sampul Profil',
                 'defaults_info' => 'Pilihan sampul lainnya akan tersedia di masa mendatang',
                 'upload' => [
-                    'broken_file' => 'Gagal memproses gambar. Mohon periksa kembali gambar yang diunggah dan coba lagi.',
+                    'broken_file' => 'Gambar gagal diproses. Periksa keabsahan gambar yang diunggah dan coba lagi.',
                     'button' => 'Unggah gambar',
                     'dropzone' => 'Letakkan di sini untuk mengunggah',
-                    'dropzone_info' => 'Anda juga dapat meletakkan gambar Anda di sini untuk mengunggahnya',
+                    'dropzone_info' => 'Kamu juga dapat meletakkan gambar di sini untuk mengunggah',
                     'size_info' => 'Ukuran gambar sampul yang disarankan adalah 2400x640',
                     'too_large' => 'Berkas yang diunggah terlalu besar.',
                     'unsupported_format' => 'Format tidak didukung.',
@@ -188,7 +215,7 @@ return [
 
             'default_playmode' => [
                 'is_default_tooltip' => 'mode permainan utama',
-                'set' => 'atur :mode sebagai mode permainan utama Anda',
+                'set' => 'atur :mode sebagai mode permainan utamamu',
             ],
         ],
 
@@ -218,7 +245,7 @@ return [
                     'title' => 'Beatmap Loved',
                 ],
                 'nominated' => [
-                    'title' => '',
+                    'title' => 'Beatmap Ranked yang Dinominasikan',
                 ],
                 'pending' => [
                     'title' => 'Beatmap Pending',
@@ -310,7 +337,7 @@ return [
                 'title' => 'saya!',
             ],
             'medals' => [
-                'empty' => "Pengguna ini belum membuka medali apapun. ;_;",
+                'empty' => "Pengguna ini belum membuka medali apa pun. ;_;",
                 'recent' => 'Terbaru',
                 'title' => 'Medali',
             ],
@@ -368,7 +395,7 @@ return [
                     'date' => 'waktu',
                     'action' => 'tindak lanjut',
                     'length' => 'durasi',
-                    'length_permanent' => 'Permanen',
+                    'length_indefinite' => 'Tak tentu',
                     'description' => 'keterangan',
                     'actor' => 'oleh :username',
 
@@ -393,18 +420,18 @@ return [
         'not_found' => [
             'reason_1' => 'Pengguna ini telah mengubah nama penggunanya.',
             'reason_2' => 'Pengguna ini telah dinonaktifkan untuk sementara waktu karena memiliki riwayat masalah yang berhubungan dengan keamanan atau penyalahgunaan akun.',
-            'reason_3' => 'Atau mungkin Anda salah ketik!',
+            'reason_3' => 'Atau mungkin kamu salah ketik!',
             'reason_header' => 'Ada beberapa kemungkinan mengapa hal ini bisa terjadi:',
             'title' => 'Pengguna tidak ditemukan! ;_;',
         ],
         'page' => [
             'button' => 'Sunting laman profil',
-            'description' => '<strong>saya!</strong> adalah area pribadi yang dapat dimodifikasi di laman profil Anda.',
+            'description' => '<strong>saya!</strong> merupakan area pada laman profilmu yang dapat kamu modifikasi sesuka hati.',
             'edit_big' => 'Sunting saya!',
             'placeholder' => 'Ketik konten laman di sini',
 
             'restriction_info' => [
-                '_' => 'Anda harus menjadi seorang :link untuk dapat menggunakan fitur ini.',
+                '_' => 'Kamu harus menjadi seorang :link untuk menggunakan fitur ini.',
                 'link' => 'osu!supporter',
             ],
         ],
@@ -441,8 +468,8 @@ return [
     ],
 
     'silenced_banner' => [
-        'title' => 'Anda sedang di-silence.',
-        'message' => 'Anda sedang tidak dapat melakukan tindakan-tindakan tertentu.',
+        'title' => 'Kamu sedang di-silence.',
+        'message' => 'Kamu sedang tidak dapat melakukan tindakan tertentu.',
     ],
 
     'status' => [
@@ -451,6 +478,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
+        'from_client' => 'silakan mendaftarkan diri melalui klien permainan!',
+        'from_web' => 'mohon selesaikan pendaftaran melalui situs web osu!',
         'saved' => 'Pengguna dibuat',
     ],
     'verify' => [

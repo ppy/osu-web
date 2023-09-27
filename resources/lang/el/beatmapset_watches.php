@@ -9,13 +9,13 @@ return [
         'title_compact' => 'λίστα συζητήσεων που ακολουθώ',
 
         'counts' => [
-            'total' => '',
-            'unread' => '',
+            'total' => 'Παρακολουθήθηκαν Beatmaps',
+            'unread' => 'Beatmaps με νέα δραστηριότητα',
         ],
 
         'table' => [
             'empty' => 'Δεν ακολουθείτε καμία συζήτηση beatmap.',
-            'last_update' => '',
+            'last_update' => 'Τελευταία ενημέρωση',
             'open_issues' => 'Ανοιχτά θέματα',
             'state' => 'Κατάσταση',
             'title' => 'Τίτλος',

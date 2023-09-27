@@ -14,7 +14,7 @@ class DeleteContestVoteAggregatesView extends Migration
      */
     public function up()
     {
-        (new CreateContestVoteAggregatesView())->down();
+        migration('2016_08_25_055700_create_contest_vote_aggregates_view')->down();
     }
 
     /**
@@ -24,6 +24,6 @@ class DeleteContestVoteAggregatesView extends Migration
      */
     public function down()
     {
-        (new CreateContestVoteAggregatesView())->up();
+        migration('2016_08_25_055700_create_contest_vote_aggregates_view')->up();
     }
 }

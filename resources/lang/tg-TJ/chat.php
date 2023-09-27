@@ -8,6 +8,7 @@ return [
     'talking_in' => '',
     'talking_with' => '',
     'title_compact' => '',
+    'unread_messages' => '',
 
     'cannot_send' => [
         'channel' => '',
@@ -35,6 +36,7 @@ return [
 
         'labels' => [
             'description' => '',
+            'message' => '',
             'name' => '',
             'users' => '',
         ],

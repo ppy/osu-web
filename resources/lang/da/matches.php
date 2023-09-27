@@ -6,13 +6,13 @@
 return [
     'match' => [
         'beatmap-deleted' => 'slettet beatmap',
-        'difference' => 'med :difference',
         'failed' => 'FEJLET',
         'header' => 'Multiplayer Kampe',
         'in-progress' => '(kamp i gang)',
         'in_progress_spinner_label' => 'kamp i gang',
         'loading-events' => 'Indlæser begivenheder...',
         'winner' => ':team vinder',
+        'winner_by' => '',
 
         'events' => [
             'player-left' => ':user forlod kampen',

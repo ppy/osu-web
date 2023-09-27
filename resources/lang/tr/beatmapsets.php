@@ -60,12 +60,22 @@ return [
     'show' => [
         'discussion' => 'Tartışma',
 
+        'admin' => [
+            'full_size_cover' => 'Kapak resmini tam boyutlu görüntüle',
+        ],
+
+        'deleted_banner' => [
+            'title' => 'Bu beatmap silindi.',
+            'message' => '(bunu sadece moderatörler görebilir)',
+        ],
+
         'details' => [
             'by_artist' => ':artist tarafından',
             'favourite' => 'Beatmap setini favorilere ekle',
             'favourite_login' => 'Beatmapi favorilere eklemek için giriş yap',
             'logged-out' => 'Herhangi bir beatmapi indirmeden önce giriş yapmalısınız!',
             'mapped_by' => ':mapper tarafından yapıldı',
+            'mapped_by_guest' => ':mapper tarafından konuk zorluk',
             'unfavourite' => 'Beatmap setini favorilerden çıkar',
             'updated_timeago' => 'son güncelleme: :timeago',
 
@@ -124,7 +134,7 @@ return [
             'genre' => 'Tür',
             'language' => 'Dil',
             'no_scores' => 'Veriler hala hesaplanıyor...',
-            'nominators' => '',
+            'nominators' => 'Nominator\'ler',
             'nsfw' => 'Müstehcen içerik',
             'offset' => 'Çevrimiçi ofset',
             'points-of-failure' => 'Başarısız Olunan Kısımlar',
@@ -157,7 +167,7 @@ return [
             'title' => 'Skor tahtası',
 
             'headers' => [
-                'accuracy' => 'İSABETLİLİK',
+                'accuracy' => 'İsabetlilik',
                 'combo' => 'Maks Kombo',
                 'miss' => 'Iska',
                 'mods' => 'Modlar',

@@ -6,7 +6,7 @@
 return [
     'cart' => [
         'checkout' => 'Acheter',
-        'info' => ':count_delimited produit dans le panier ($:subtotal)|:count_delimited produits dans le panier ($:subtotal)',
+        'info' => ':count_delimited article dans le panier ($:subtotal)|:count_delimited articles dans le panier ($:subtotal)',
         'more_goodies' => 'Je souhaite chercher d\'autres goodies avant de passer commande',
         'shipping_fees' => 'frais de livraison',
         'title' => 'Panier',
@@ -31,6 +31,7 @@ return [
         'cart_problems_edit' => 'Cliquez ici pour l\'éditer.',
         'declined' => 'Le paiement a été annulé.',
         'delayed_shipping' => 'Nous sommes actuellement submergés de commandes ! Vous pouvez tout de même commander, mais attendez-vous à **une à deux semaines de délai supplémentaire** le temps que nous puissions traiter toutes ces commandes.',
+        'hide_from_activity' => 'Masquer tous les tags osu!supporter dans cette commande de mon activité',
         'old_cart' => 'Votre panier semble être obsolète et a donc été actualisé, merci de réessayer.',
         'pay' => 'Payer avec PayPal',
         'title_compact' => 'commander',
@@ -50,6 +51,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Si votre paiement est en eCheck, comptez jusqu\'à 10 jours supplémentaires pour le paiement via PayPal !',
+        'hide_from_activity' => 'Les tags osu!supporter dans cette commande ne sont pas affichés dans vos activités récentes.',
         'title_compact' => 'facture',
 
         'status' => [
@@ -70,15 +72,20 @@ return [
         'cancel_not_allowed' => 'Cette commande ne peut pas être annulée pour le moment.',
         'invoice' => 'Afficher la facture',
         'no_orders' => 'Aucune commande à voir.',
-        'paid_on' => 'Commande passée le :date',
+        'paid_on' => 'Commande passée :date',
         'resume' => 'Reprendre la commande',
         'shopify_expired' => 'Le lien de commande pour cette commande a expiré.',
 
         'item' => [
+            'quantity' => 'Quantité',
+
             'display_name' => [
                 'supporter_tag' => ':name pour :username (:duration)',
             ],
-            'quantity' => 'Quantité',
+
+            'subtext' => [
+                'supporter_tag' => 'Message : :message',
+            ],
         ],
 
         'not_modifiable_exception' => [
@@ -120,6 +127,8 @@ return [
 
     'supporter_tag' => [
         'gift' => 'offrir à un joueur',
+        'gift_message' => 'ajouter un message optionnel à votre cadeau ! (jusqu\'à :length caractères)',
+
         'require_login' => [
             '_' => 'Vous devez être :link pour obtenir un tag osu!supporter !',
             'link_text' => 'connecté',

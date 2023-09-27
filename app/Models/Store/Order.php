@@ -8,11 +8,11 @@ namespace App\Models\Store;
 use App\Exceptions\InvariantException;
 use App\Exceptions\OrderNotModifiableException;
 use App\Models\Country;
-use App\Models\SupporterTag;
 use App\Models\User;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -29,21 +29,21 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @property Address $address
  * @property int|null $address_id
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon|null $deleted_at
- * @property \Illuminate\Database\Eloquent\Collection $items OrderItem
+ * @property Carbon $created_at
+ * @property Carbon|null $deleted_at
+ * @property Collection<OrderItem> $items
  * @property string|null $last_tracking_state
  * @property int $order_id
  * @property string|null $provider
- * @property \Carbon\Carbon|null $paid_at
- * @property \Illuminate\Database\Eloquent\Collection $payments Payment
+ * @property Carbon|null $paid_at
+ * @property Collection<Payment> $payments
  * @property string|null $reference For paypal transactions, this is the resource Id of the paypal order; otherwise, it is the same as the transaction_id without the prefix.
- * @property \Carbon\Carbon|null $shipped_at
+ * @property Carbon|null $shipped_at
  * @property float|null $shipping
  * @property mixed $status
  * @property string|null $tracking_code
  * @property string|null $transaction_id For paypal transactions, this value is based on the IPN or captured payment Id, not the order resource id.
- * @property \Carbon\Carbon|null $updated_at
+ * @property Carbon|null $updated_at
  * @property User $user
  * @property int $user_id
  */
@@ -83,10 +83,12 @@ class Order extends Model
     protected $primaryKey = 'order_id';
 
     protected $casts = [
+        'deleted_at' => 'datetime',
+        'paid_at' => 'datetime',
+        'shipped_at' => 'datetime',
         'shipping' => 'float',
     ];
 
-    protected $dates = ['deleted_at', 'shipped_at', 'paid_at'];
     protected $macros = ['itemsQuantities'];
 
     protected static function splitTransactionId($value)
@@ -263,14 +265,10 @@ class Order extends Model
         return static::splitTransactionId($this->transaction_id)[1] ?? null;
     }
 
-    public function getSubtotal($forShipping = false)
+    public function getSubtotal()
     {
         $total = 0;
         foreach ($this->items as $i) {
-            if ($forShipping && !$i->product->requiresShipping()) {
-                continue;
-            }
-
             $total += $i->subtotal();
         }
 
@@ -368,6 +366,11 @@ class Order extends Model
         return $this->status === static::STATUS_PAYMENT_REQUESTED;
     }
 
+    public function containsSupporterTag(): bool
+    {
+        return $this->items->contains(fn (OrderItem $item) => $item->product->custom_class === Product::SUPPORTER_TAG_NAME);
+    }
+
     public function hasInvoice(): bool
     {
         return in_array($this->status, static::STATUS_HAS_INVOICE, true);
@@ -391,6 +394,20 @@ class Order extends Model
     public function isEmpty(): bool
     {
         return !$this->items()->exists();
+    }
+
+    public function isHideSupporterFromActivity(): bool
+    {
+        // Consider all supporter tags should be hidden from activity if any one of them is marked to be hidden.
+        // This also skips needing to perform a product lookup.
+        foreach ($this->items as $item) {
+            $extraData = $item->extra_data;
+            if ($extraData instanceof ExtraDataSupporterTag && $extraData->hidden) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public function isModifiable(): bool
@@ -468,6 +485,22 @@ class Order extends Model
         $this->saveOrExplode();
     }
 
+    public function setGiftsHidden(bool $hide = true)
+    {
+        // batch update query not used as it will override extra_data contents.
+        $this->getConnection()->transaction(function () use ($hide) {
+            foreach ($this->items as $item) {
+                $extraData = $item->extra_data;
+                if ($extraData instanceof ExtraDataSupporterTag) {
+                    $extraData->hidden = $hide;
+                    $item->saveOrExplode();
+                }
+            }
+        });
+    }
+
+    #region public functions for updating cart state
+
     /**
      * Marks the Order as cancelled. Does not do anything if already cancelled.
      *
@@ -512,6 +545,10 @@ class Order extends Model
         $this->status = $this->requiresShipping() ? static::STATUS_PAID : static::STATUS_DELIVERED;
         $this->saveOrExplode();
     }
+
+    #endregion
+
+    #region public functions for updating cart quantities
 
     /**
      * Updates the Order with form parameters.
@@ -583,6 +620,8 @@ class Order extends Model
         });
     }
 
+    #endregion
+
     public static function cart($user)
     {
         return static::query()
@@ -650,9 +689,9 @@ class Order extends Model
     {
         // FIXME: custom class stuff should probably not go in Order...
         switch ($product->custom_class) {
-            case 'supporter-tag':
+            case Product::SUPPORTER_TAG_NAME:
                 $params['cost'] ??= 0;
-                $params['extra_data'] = $this->extraDataSupporterTag($params);
+                $params['extra_data'] = ExtraDataSupporterTag::fromOrderItemParams($params, $this->user);
                 break;
             // TODO: look at migrating to extra_data
             case 'username-change':
@@ -700,26 +739,6 @@ class Order extends Model
         }
 
         return $item;
-    }
-
-    // TODO: maybe move to class later?
-    private function extraDataSupporterTag(array $orderItemParams)
-    {
-        $params = get_params($orderItemParams, 'extra_data', [
-            'target_id:int',
-        ]);
-
-        $targetId = $params['target_id'];
-        if ($targetId === $this->user_id) {
-            $params['username'] = $this->user->username;
-        } else {
-            $user = User::default()->where('user_id', $targetId)->firstOrFail();
-            $params['username'] = $user->username;
-        }
-
-        $params['duration'] = SupporterTag::getDuration($orderItemParams['cost']);
-
-        return new ExtraDataSupporterTag($params);
     }
 
     // TODO: maybe move to class later?

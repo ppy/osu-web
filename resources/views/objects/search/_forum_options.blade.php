@@ -8,6 +8,7 @@
     // TODO: hopefully this can be temporary ಠ_ಠ.
     $fieldDefaults = [
         'forumId' => 'forum_id',
+        'includeDeleted' => 'include_deleted',
         'includeSubforums' => 'forum_children',
         'sort' => 'sort',
         'topicId' => 'topic_id',
@@ -70,7 +71,7 @@
                         {{ osu_trans('home.search.forum_post.all') }}
                     </option>
 
-                    @foreach (App\Models\Forum\Forum::displayList()->get() as $forum)
+                    @foreach (App\Models\Forum\Forum::searchable()->displayList()->get() as $forum)
                         @if (priv_check('ForumView', $forum)->can())
                             <option
                                 value="{{ $forum->getKey() }}"
@@ -92,6 +93,17 @@
             ]])
 
             {{ osu_trans('home.search.forum_post.label.forum_children') }}
+        </label>
+    @endif
+
+    @if ($fields['includeDeleted'] !== null)
+        <label class="search-forum-options__input-group">
+            @include('objects._switch', ['locals' => [
+                'checked' => $params[$fields['includeDeleted']] ?? null,
+                'name' => $fields['includeDeleted'],
+            ]])
+
+            {{ osu_trans('home.search.forum_post.label.include_deleted') }}
         </label>
     @endif
 

@@ -6,12 +6,13 @@
 return [
     'index' => [
         'description' => '围绕某个相同主题打包好的曲包',
+        'empty' => '敬请期待！',
         'nav_title' => '列表',
         'title' => '曲包',
 
         'blurb' => [
             'important' => '下载前必读',
-            'install_instruction' => '导入：当谱面合集包下载完成后，把它解压至 Songs 文件夹内即可。osu! 会完成接下来的工作。',
+            'install_instruction' => '导入：当曲包下载完成后，把它解压至 Songs 文件夹内即可。osu! 会完成接下来的工作。',
             'note' => [
                 '_' => '强烈建议 :scary，因为旧谱面的质量可能不如新谱面。',
                 'scary' => '下载最新的曲包',
@@ -27,15 +28,18 @@ return [
         ],
         'no_diff_reduction' => [
             '_' => '若要解锁成就，则不能使用:link游玩谱面。',
-            'link' => '降低难度的 mods',
+            'link' => '降低难度的模组',
         ],
     ],
 
     'mode' => [
         'artist' => '艺术家/专辑',
         'chart' => '聚光灯',
+        'featured' => '精选艺术家',
+        'loved' => '社区喜爱计划',
         'standard' => '常规',
         'theme' => '主题',
+        'tournament' => '锦标赛',
     ],
 
     'require_login' => [

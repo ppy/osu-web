@@ -17,12 +17,27 @@ return [
         ],
     ],
 
+    'kudosu' => [
+        'total' => 'Szerzett',
+        'available' => 'Elérhető',
+        'used' => 'Elköltve',
+    ],
+
     'type' => [
         'charts' => 'Reflektorfény',
         'country' => 'Ország',
+        'kudosu' => 'kudosu',
         'multiplayer' => 'többjátékos',
         'performance' => 'Teljesítmény',
         'score' => 'Pontszám',
+        'seasons' => 'szezonok',
+    ],
+
+    'seasons' => [
+        'empty' => 'Ebben a szezonban még nincsenek szobák.',
+        'ongoing' => 'Ez a szezon még folyamatban van (lesznek még játéklisták).',
+        'room_count' => 'Játéklista száma',
+        'url' => 'További információk megjelenítése az adott szezonról.',
     ],
 
     'spotlight' => [

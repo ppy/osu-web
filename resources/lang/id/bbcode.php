@@ -6,7 +6,9 @@
 return [
     'bold' => 'Cetak Tebal',
     'heading' => 'Tajuk',
+    'help' => 'Bantuan',
     'image' => 'Gambar',
+    'imagemap' => 'Peta Gambar',
     'italic' => 'Cetak Miring',
     'link' => 'Tautan',
     'list' => 'Daftar',

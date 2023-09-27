@@ -13,6 +13,16 @@ return [
     'see_channel' => 'przejdź do czatu',
     'verifying' => 'Zweryfikuj sesję, by wyświetlić powiadomienia',
 
+    'action_type' => [
+        '_' => 'wszystkie',
+        'beatmapset' => 'beatmapy',
+        'build' => 'zmiany',
+        'channel' => 'czat',
+        'forum_topic' => 'forum',
+        'news_post' => 'aktualności',
+        'user' => 'profil',
+    ],
+
     'filters' => [
         '_' => 'wszystkie',
         'user' => 'profil',
@@ -143,15 +153,6 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => 'Skrzynka odbiorcza starego forum',
-
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited nieprzeczytana wiadomość|:count_delimited nieprzeczytane wiadomości|:count_delimited nieprzeczytanych wiadomości',
-            ],
-        ],
-
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Nowa beatmapa',
@@ -209,6 +210,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => 'Nowe ogłoszenie w pokoju „:name” ',
+            ],
+
             'channel' => [
                 'pm' => 'Otrzymujesz nową wiadomość od użytkownika :username',
             ],

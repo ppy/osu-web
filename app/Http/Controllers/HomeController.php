@@ -15,6 +15,7 @@ use App\Models\Forum\Post;
 use App\Models\NewsPost;
 use App\Models\UserDonation;
 use Auth;
+use Jenssegers\Agent\Agent;
 use Request;
 
 /**
@@ -55,7 +56,33 @@ class HomeController extends Controller
 
     public function getDownload()
     {
-        return ext_view('home.download');
+        $lazerPlatformNames = [
+            'android' => osu_trans('home.download.os_version_or_later', ['os_version' => 'Android 5']),
+            'ios' => osu_trans('home.download.os_version_or_later', ['os_version' => 'iOS 13.4']),
+            'linux_x64' => 'Linux (x64)',
+            'macos_as' => osu_trans('home.download.os_version_or_later', ['os_version' => 'macOS 10.15']).' (Apple Silicon)',
+            'windows_x64' => osu_trans('home.download.os_version_or_later', ['os_version' => 'Windows 8.1']).' (x64)',
+        ];
+
+        $agent = new Agent(Request::server());
+
+        $platform = match (true) {
+            // Try matching most likely platform first
+            $agent->is('Windows') => 'windows_x64',
+            // iPadOS detection apparently doesn't work on newer version
+            // and detected as macOS instead.
+            ($agent->isiOS() || $agent->isiPadOS()) => $platform = 'ios',
+            // FIXME: Figure out a way to differentiate Intel and Apple Silicon.
+            $agent->is('OS X') => 'macos_as',
+            $agent->isAndroidOS() => 'android',
+            $agent->is('Linux') => 'linux_x64',
+            default => 'windows_x64',
+        };
+
+        return ext_view('home.download', [
+            'lazerUrl' => config("osu.urls.lazer_dl.{$platform}"),
+            'lazerPlatformName' => $lazerPlatformNames[$platform],
+        ]);
     }
 
     public function index()
@@ -91,9 +118,14 @@ class HomeController extends Controller
         return ujs_redirect(route('chat.index', ['sendto' => $user]));
     }
 
+    public function opensearch()
+    {
+        return ext_view('home.opensearch', null, 'opensearch')->header('Cache-Control', 'max-age=86400');
+    }
+
     public function quickSearch()
     {
-        $quickSearch = new QuickSearch(request(), ['user' => auth()->user()]);
+        $quickSearch = new QuickSearch(Request::all(), ['user' => auth()->user()]);
         $searches = $quickSearch->searches();
 
         $result = [];
@@ -127,10 +159,10 @@ class HomeController extends Controller
      *
      * ### Response Format
      *
-     * Field     | Type                          | Description
-     * --------- | ----------------------------- | -----------
-     * user      | SearchResult&lt;UserCompact>? | For `all` or `user` mode. Only first 100 results are accessible
-     * wiki_page | SearchResult&lt;WikiPage>?    | For `all` or `wiki_page` mode
+     * Field     | Type                       | Description
+     * --------- | -------------------------- | -----------
+     * user      | SearchResult&lt;User>?     | For `all` or `user` mode. Only first 100 results are accessible
+     * wiki_page | SearchResult&lt;WikiPage>? | For `all` or `wiki_page` mode
      *
      * #### SearchResult&lt;T>
      *
@@ -145,18 +177,22 @@ class HomeController extends Controller
      */
     public function search()
     {
-        if (request('mode') === 'beatmapset') {
-            return ujs_redirect(route('beatmapsets.index', ['q' => request('query')]));
+        $currentUser = Auth::user();
+        $allSearch = new AllSearch(Request::all(), ['user' => $currentUser]);
+
+        if ($allSearch->getMode() === 'beatmapset') {
+            return ujs_redirect(route('beatmapsets.index', ['q' => $allSearch->getRawQuery()]));
         }
 
-        $allSearch = new AllSearch(request(), ['user' => Auth::user()]);
         $isSearchPage = true;
 
         if (is_api_request()) {
             return response()->json($allSearch->toJson());
         }
 
-        return ext_view('home.search', compact('allSearch', 'isSearchPage'));
+        $fields = $currentUser?->isModerator() ?? false ? [] : ['includeDeleted' => null];
+
+        return ext_view('home.search', compact('allSearch', 'fields', 'isSearchPage'));
     }
 
     public function setLocale()

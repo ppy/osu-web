@@ -17,12 +17,27 @@ return [
         ],
     ],
 
+    'kudosu' => [
+        'total' => '獲得',
+        'available' => '利用可能',
+        'used' => '使用済み',
+    ],
+
     'type' => [
         'charts' => 'スポットライト',
         'country' => '国別',
+        'kudosu' => 'kudosu',
         'multiplayer' => 'マルチプレイ',
         'performance' => 'パフォーマンス',
         'score' => 'スコア',
+        'seasons' => '',
+    ],
+
+    'seasons' => [
+        'empty' => '',
+        'ongoing' => '',
+        'room_count' => '',
+        'url' => '',
     ],
 
     'spotlight' => [

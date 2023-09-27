@@ -43,6 +43,7 @@ return [
             'label' => [
                 'forum' => 'pretrži u forumima',
                 'forum_children' => 'uključi podforume',
+                'include_deleted' => '',
                 'topic_id' => 'tema #',
                 'username' => 'autor',
             ],
@@ -72,8 +73,22 @@ return [
     ],
 
     'download' => [
-        'tagline' => "idemo<br>započeti!",
         'action' => 'Preuzmi osu!',
+        'action_lazer' => '',
+        'action_lazer_description' => '',
+        'action_lazer_info' => '',
+        'action_lazer_title' => '',
+        'action_title' => '',
+        'for_os' => '',
+        'lazer_note' => '',
+        'macos-fallback' => 'macOS korisnici',
+        'mirror' => 'mirror',
+        'or' => '',
+        'os_version_or_later' => '',
+        'other_os' => '',
+        'quick_start_guide' => '',
+        'tagline' => "idemo<br>započeti!",
+        'video-guide' => 'video vodič',
 
         'help' => [
             '_' => 'ako imaš problema s pokretanjem igre ili registracijom računa, :help_forum_link ili :support_button.',
@@ -86,8 +101,6 @@ return [
             'macos' => 'za macOS',
             'linux' => 'za Linux',
         ],
-        'mirror' => 'mirror',
-        'macos-fallback' => 'macOS korisnici',
         'steps' => [
             'register' => [
                 'title' => 'nabavi račun',
@@ -105,7 +118,6 @@ return [
                 ],
             ],
         ],
-        'video-guide' => 'video vodič',
     ],
 
     'user' => [

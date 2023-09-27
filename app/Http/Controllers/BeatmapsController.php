@@ -12,6 +12,7 @@ use App\Libraries\Score\BeatmapScores;
 use App\Models\Beatmap;
 use App\Models\BeatmapsetEvent;
 use App\Models\Score\Best\Model as BestModel;
+use App\Models\User;
 use App\Transformers\BeatmapTransformer;
 use App\Transformers\ScoreTransformer;
 
@@ -22,6 +23,32 @@ class BeatmapsController extends Controller
 {
     const DEFAULT_API_INCLUDES = ['beatmapset.ratings', 'failtimes', 'max_combo'];
     const DEFAULT_SCORE_INCLUDES = ['user', 'user.country', 'user.cover'];
+
+    private static function assertSupporterOnlyOptions(?User $currentUser, string $type, array $mods): void
+    {
+        $isSupporter = $currentUser !== null && $currentUser->isSupporter();
+        if ($type !== 'global' && !$isSupporter) {
+            throw new InvariantException(osu_trans('errors.supporter_only'));
+        }
+        if (!empty($mods) && !is_api_request() && !$isSupporter) {
+            throw new InvariantException(osu_trans('errors.supporter_only'));
+        }
+    }
+
+    private static function baseScoreQuery(Beatmap $beatmap, $mode, $mods, $type = null)
+    {
+        $query = BestModel::getClass($mode)
+            ::default()
+            ->where('beatmap_id', $beatmap->getKey())
+            ->with(['beatmap', 'user.country', 'user.userProfileCustomization'])
+            ->withMods($mods);
+
+        if ($type !== null) {
+            $query->withType($type, ['user' => auth()->user()]);
+        }
+
+        return $query;
+    }
 
     public function __construct()
     {
@@ -114,9 +141,9 @@ class BeatmapsController extends Controller
      *
      * ### Response format
      *
-     * Field    | Type                  | Description
-     * -------- | --------------------- | -----------
-     * beatmaps | [Beatmap](#beatmap)[] | Includes `beatmapset` (with `ratings`), `failtimes`, and `max_combo`.
+     * Field    | Type                                  | Description
+     * -------- | ------------------------------------- | -----------
+     * beatmaps | [BeatmapExtended](#beatmapextended)[] | Includes `beatmapset` (with `ratings`), `failtimes`, and `max_combo`.
      *
      * @queryParam ids[] integer Beatmap IDs to be returned. Specify once for each beatmap ID requested. Up to 50 beatmaps can be requested at once. Example: 1
      *
@@ -202,14 +229,14 @@ class BeatmapsController extends Controller
      *
      * ### Response format
      *
-     * Returns [Beatmap](#beatmap) object.
+     * Returns [BeatmapExtended](#beatmapextended) object.
      * Following attributes are included in the response object when applicable,
      *
-     * Attribute                            | Notes
-     * -------------------------------------|------
-     * beatmapset                           | Includes ratings property.
-     * failtimes                            | |
-     * max_combo                            | |
+     * Attribute  | Notes
+     * ---------- | -----
+     * beatmapset | Includes ratings property.
+     * failtimes  | |
+     * max_combo  | |
      *
      * @urlParam beatmap integer required The ID of the beatmap.
      *
@@ -270,21 +297,18 @@ class BeatmapsController extends Controller
         }
 
         $params = get_params(request()->all(), null, [
+            'limit:int',
             'mode:string',
             'mods:string[]',
             'type:string',
-        ]);
+        ], ['null_missing' => true]);
 
-        $mode = presence($params['mode'] ?? null, $beatmap->mode);
+        $mode = presence($params['mode']) ?? $beatmap->mode;
         $mods = array_values(array_filter($params['mods'] ?? []));
-        $type = presence($params['type'] ?? null, 'global');
+        $type = presence($params['type']) ?? 'global';
         $currentUser = auth()->user();
 
-        if ($type !== 'global' || !empty($mods)) {
-            if ($currentUser === null || !$currentUser->isSupporter()) {
-                throw new InvariantException(osu_trans('errors.supporter_only'));
-            }
-        }
+        static::assertSupporterOnlyOptions($currentUser, $type, $mods);
 
         $query = static::baseScoreQuery($beatmap, $mode, $mods, $type);
 
@@ -297,7 +321,7 @@ class BeatmapsController extends Controller
 
         $results = [
             'scores' => json_collection(
-                $query->visibleUsers()->forListing(),
+                $query->visibleUsers()->forListing($params['limit']),
                 $scoreTransformer,
                 static::DEFAULT_SCORE_INCLUDES
             ),
@@ -342,6 +366,7 @@ class BeatmapsController extends Controller
         }
 
         $params = get_params(request()->all(), null, [
+            'limit:int',
             'mode',
             'mods:string[]',
             'type:string',
@@ -358,15 +383,12 @@ class BeatmapsController extends Controller
         $type = presence($params['type'], 'global');
         $currentUser = auth()->user();
 
-        if ($type !== 'global' || !empty($mods)) {
-            if ($currentUser === null || !$currentUser->isSupporter()) {
-                throw new InvariantException(osu_trans('errors.supporter_only'));
-            }
-        }
+        static::assertSupporterOnlyOptions($currentUser, $type, $mods);
 
         $esFetch = new BeatmapScores([
             'beatmap_ids' => [$beatmap->getKey()],
             'is_legacy' => false,
+            'limit' => $params['limit'],
             'mods' => $mods,
             'ruleset_id' => $rulesetId,
             'type' => $type,
@@ -501,20 +523,5 @@ class BeatmapsController extends Controller
         return [
             'scores' => json_collection($scores, new ScoreTransformer()),
         ];
-    }
-
-    private static function baseScoreQuery(Beatmap $beatmap, $mode, $mods, $type = null)
-    {
-        $query = BestModel::getClass($mode)
-            ::default()
-            ->where('beatmap_id', $beatmap->getKey())
-            ->with(['beatmap', 'user.country', 'user.userProfileCustomization'])
-            ->withMods($mods);
-
-        if ($type !== null) {
-            $query->withType($type, ['user' => auth()->user()]);
-        }
-
-        return $query;
     }
 }

@@ -18,6 +18,16 @@ return [
             'new' => 'nowy e-mail',
             'new_confirmation' => 'potwierdź e-mail',
             'title' => 'E-mail',
+            'locked' => [
+                '_' => 'Skontaktuj się z :accounts jeśli chcesz zaktualizować swój adres e-mail.',
+                'accounts' => '',
+            ],
+        ],
+
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'Starsze API',
         ],
 
         'password' => [
@@ -28,7 +38,13 @@ return [
         ],
 
         'profile' => [
+            'country' => 'kraj',
             'title' => 'Profil',
+
+            'country_change' => [
+                '_' => "Wygląda na to, że kraj przypisany do konta nie zgadza się z twoim krajem zamieszkania. :update_link.",
+                'update_link' => 'Zaktualizuj na „:country”',
+            ],
 
             'user' => [
                 'user_discord' => '',

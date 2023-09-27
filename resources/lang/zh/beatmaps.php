@@ -74,8 +74,20 @@ return [
             'praise' => '赞',
             'problem' => '问题',
             'problem_warning' => '报告问题',
-            'review' => '审核',
+            'review' => '审阅',
             'suggestion' => '建议',
+        ],
+
+        'message_type_title' => [
+            'disqualify' => '发布下架 (DQ) 帖',
+            'hype' => '发布推荐帖！',
+            'mapper_note' => '发布备注帖',
+            'nomination_reset' => '删除所有提名',
+            'praise' => '发布赞',
+            'problem' => '发布问题帖',
+            'problem_warning' => '发布问题帖',
+            'review' => '发布审阅帖',
+            'suggestion' => '发布建议帖',
         ],
 
         'mode' => [
@@ -175,6 +187,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => '你已经提名过这张谱面了。',
+        'cannot_nominate' => '您不能提名此谱面游戏模式。',
         'delete' => '删除',
         'delete_own_confirm' => '你确定要删除吗？删除后你将回到个人资料页。',
         'delete_other_confirm' => '你确定要删除吗？删除后你将回到他的个人资料页。',
@@ -198,7 +212,8 @@ return [
         'unresolved_issues' => '请先解决谱面内未解决的问题。',
 
         'rank_estimate' => [
-            '_' => '谱面正位于 :queue 中第 :position 位。如果没有问题，谱面将在 :date 上架 (Ranked)。',
+            '_' => '谱面正位于 :queue 中第 :position 位。如果没有问题，谱面将 :date 上架 (Ranked)。',
+            'on' => '在 :date',
             'queue' => '谱面上架队列',
             'soon' => '不久后',
         ],
@@ -311,7 +326,7 @@ return [
         'polish' => '波兰语',
         'instrumental' => '器乐',
         'other' => '其他',
-        'unspecified' => '未指定',
+        'unspecified' => '尚未指定',
     ],
 
     'nsfw' => [
