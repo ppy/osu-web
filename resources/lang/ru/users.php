@@ -123,6 +123,14 @@ return [
         ],
     ],
 
+    'ogp' => [
+        'description' => [
+            '_' => '',
+            'country' => '',
+            'global' => '',
+        ],
+    ],
+
     'posts' => [
         'title' => 'посты :username',
     ],
@@ -393,7 +401,7 @@ return [
 
                     'actions' => [
                         'restriction' => 'Бан',
-                        'silence' => 'Без голоса',
+                        'silence' => 'Заглушение',
                         'tournament_ban' => 'Турнирный бан',
                         'note' => 'Заметка',
                     ],

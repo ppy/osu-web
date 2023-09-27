@@ -55,7 +55,7 @@ return [
             ],
 
             'country_ranking' => [
-                'title' => 'Classificació per Països',
+                'title' => 'Classificació per països',
                 'description' => 'Conquereix el teu país abans de conquerir el món.',
             ],
 

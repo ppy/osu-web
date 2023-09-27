@@ -97,7 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
-            'inactive_different_country' => "Su cuenta no ha sido utilizada en mucho tiempo.",
+            'inactive_different_country' => "Tu cuenta no ha sido usada en mucho tiempo.",
         ],
     ],
 
@@ -105,7 +105,7 @@ return [
         '_' => 'Iniciar sesión',
         'button' => 'Iniciar sesión',
         'button_posting' => 'Iniciando sesión...',
-        'email_login_disabled' => 'El inicio de sesión con correo está actualmente desactivado. Use el nombre de usuario en su lugar.',
+        'email_login_disabled' => 'El inicio de sesión con correo electrónico está actualmente desactivado. Por favor, usa el nombre de usuario en su lugar.',
         'failed' => 'Inicio de sesión incorrecto',
         'forgot' => '¿Olvidaste tu contraseña?',
         'info' => 'Por favor, inicie sesión para continuar',
@@ -120,6 +120,14 @@ return [
         'beta' => [
             'main' => 'El acceso a la beta está actualmente restringido a usuarios privilegiados.',
             'small' => '(los osu!supporters tendrán acceso pronto)',
+        ],
+    ],
+
+    'ogp' => [
+        'description' => [
+            '_' => '',
+            'country' => '',
+            'global' => '',
         ],
     ],
 
@@ -150,7 +158,7 @@ return [
         'options' => [
             'cheating' => 'Juega sucio o hace trampa',
             'multiple_accounts' => 'Utiliza múltiples cuentas',
-            'insults' => 'Insulta a mí o a otros',
+            'insults' => 'Insultándome/insultando a otros',
             'spam' => 'Envía mensajes spam',
             'unwanted_content' => 'Enlaza contenido inapropiado',
             'nonsense' => 'Sin sentido',
@@ -158,9 +166,9 @@ return [
         ],
     ],
     'restricted_banner' => [
-        'title' => '¡Su cuenta ha sido restringida!',
-        'message' => 'Mientras estás restringido, no podrás interactuar con otros jugadores y tus puntuaciones solo las podrás ver tú. Esto es, normalmente, el resultado de un proceso automatizado, y se levanta normalmente dentro de 24 horas. Si deseas apelar a tu restricción, por favor <a href="mailto:accounts@ppy.sh">contacta con el soporte</a>.',
-        'message_link' => 'Consulte esta página para obtener más información.',
+        'title' => '¡Tu cuenta ha sido restringida!',
+        'message' => 'Mientras estás restringido, no podrás interactuar con otros jugadores y tus puntuaciones solo las podrás ver tú. Normalmente, este es el resultado de un proceso automatizado, y se levanta normalmente dentro de 24 horas. :link',
+        'message_link' => 'Consulta esta página para obtener más información.',
     ],
     'show' => [
         'age' => ':age años',
@@ -171,7 +179,7 @@ return [
         'joined_at' => 'Se unió en :date',
         'lastvisit' => 'Visto :date',
         'lastvisit_online' => 'Actualmente en línea',
-        'missingtext' => '¡Es posible que hayas cometido un error tipográfico! (o el usuario puede haber sido baneado)',
+        'missingtext' => '¡Es posible que hayas cometido un error tipográfico! (o el usuario puede haber sido restringido)',
         'origin_country' => 'De :country',
         'previous_usernames' => 'antes conocido como',
         'plays_with' => 'Juega con :devices',
@@ -269,7 +277,7 @@ return [
                 ],
                 'recent_plays' => [
                     'accuracy' => 'precisión: :percentage',
-                    'title' => 'Jugadas recientes (24 h)',
+                    'title' => 'Jugadas recientes (24 h)',
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Historial de repeticiones vistas',
@@ -277,7 +285,7 @@ return [
                 ],
             ],
             'kudosu' => [
-                'recent_entries' => 'Historial de Kudosu Reciente',
+                'recent_entries' => 'Historial de Kudosu reciente',
                 'title' => 'Kudosu!',
                 'total' => 'Total de Kudosu obtenido',
 
@@ -321,7 +329,7 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => 'Según la contribución que el usuario ha hecho al modding de mapas. Vea :link para más información.',
+                    '_' => 'Según la contribución que el usuario ha hecho a la moderación de mapas. Consulta :link para más información.',
                     'link' => 'esta página',
                 ],
             ],
@@ -392,9 +400,9 @@ return [
                     'actor' => 'por :username',
 
                     'actions' => [
-                        'restriction' => 'Restringir',
+                        'restriction' => 'Prohibir',
                         'silence' => 'Silenciado',
-                        'tournament_ban' => 'Prohibición de torneo',
+                        'tournament_ban' => 'Restricción de torneos',
                         'note' => 'Nota',
                     ],
                 ],
@@ -444,7 +452,7 @@ return [
             'level_progress' => 'progreso al siguiente nivel',
             'maximum_combo' => 'Combo máximo',
             'medals' => 'Medallas',
-            'play_count' => 'Conteo de jugadas',
+            'play_count' => 'Número de jugadas',
             'play_time' => 'Tiempo de juego total',
             'ranked_score' => 'Puntuación clasificada',
             'replays_watched_by_others' => 'Repeticiones vistas por otros',
@@ -460,7 +468,7 @@ return [
     ],
 
     'silenced_banner' => [
-        'title' => 'Actualmente está silenciado.',
+        'title' => 'Actualmente estás silenciado.',
         'message' => 'Es posible que algunas acciones no estén disponibles.',
     ],
 
