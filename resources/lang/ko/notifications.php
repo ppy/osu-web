@@ -19,7 +19,7 @@ return [
         'build' => '빌드',
         'channel' => '채팅',
         'forum_topic' => '포럼',
-        'news_post' => '소식',
+        'news_post' => '뉴스',
         'user' => '프로필',
     ],
 
@@ -28,7 +28,7 @@ return [
         'user' => '프로필',
         'beatmapset' => '비트맵',
         'forum_topic' => '포럼',
-        'news_post' => '소식',
+        'news_post' => '뉴스',
         'build' => '빌드 버전',
         'channel' => '채팅',
     ],
@@ -131,7 +131,7 @@ return [
         ],
 
         'news_post' => [
-            '_' => '소식',
+            '_' => '뉴스',
 
             'comment' => [
                 '_' => '새 댓글',

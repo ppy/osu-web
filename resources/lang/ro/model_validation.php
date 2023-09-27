@@ -134,7 +134,7 @@ return [
     'user' => [
         'contains_username' => 'Parola nu poate conține numele de utilizator.',
         'email_already_used' => 'Adresa de e-mail este deja folosită.',
-        'email_not_allowed' => 'Adresa de e-mail nu poate fi folosită.',
+        'email_not_allowed' => 'Adresa de e-mail nu este permisă.',
         'invalid_country' => 'Țara nu se află în baza de date.',
         'invalid_discord' => 'Nume de utilizator Discord invalid.',
         'invalid_email' => "Nu pare să fie o adresă de e-mail validă.",
@@ -159,7 +159,7 @@ return [
 
         'attributes' => [
             'username' => 'Numele de utilizator',
-            'user_email' => 'Email-ul',
+            'user_email' => 'E-mailul',
             'password' => 'Parola',
         ],
 

@@ -19,8 +19,8 @@ return [
             'new_confirmation' => 'E-Mail bestätigen',
             'title' => 'E-Mail',
             'locked' => [
-                '_' => '',
-                'accounts' => '',
+                '_' => 'Bitte kontaktiere das :accounts, wenn du deine E-Mail-Adresse aktualisieren möchtest.',
+                'accounts' => 'Account Support Team',
             ],
         ],
 

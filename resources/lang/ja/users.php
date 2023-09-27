@@ -37,7 +37,7 @@ return [
         'blocked_count' => 'ブロックしたユーザー(:count)',
         'hide_profile' => 'プロフィールを隠す',
         'hide_comment' => '隠す',
-        'forum_post_text' => '',
+        'forum_post_text' => 'この投稿を隠す。',
         'not_blocked' => 'このユーザーはブロックされていません。',
         'show_profile' => 'プロフィールを表示',
         'show_comment' => '表示',
@@ -120,6 +120,14 @@ return [
         'beta' => [
             'main' => 'ベータアクセスは権限があるユーザーのみに付与されます。',
             'small' => '(osu!サポーターはすぐ手に入ります)',
+        ],
+    ],
+
+    'ogp' => [
+        'description' => [
+            '_' => '',
+            'country' => '',
+            'global' => '',
         ],
     ],
 

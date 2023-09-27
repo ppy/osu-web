@@ -151,7 +151,7 @@ return [
 
         'status-messages' => [
             'approved' => 'Cette beatmap a été approuvée le :date !',
-            'graveyard' => "Cette beatmap n'a pas été modifiée depuis :date et a sûrement été abandonnée par son créateur...",
+            'graveyard' => "Cette beatmap n'a pas été modifiée depuis le :date et a donc été placée au cimetière...",
             'loved' => 'Cette beatmap a été ajoutée à la catégorie Loved le :date !',
             'ranked' => 'Cette beatmap a été classée le :date !',
             'wip' => 'Remarque : Cette beatmap a été marquée comme en cours de travail par son créateur.',
@@ -269,7 +269,7 @@ return [
     ],
     'general' => [
         'converts' => 'Inclure les beatmaps converties',
-        'featured_artists' => 'Featured artists',
+        'featured_artists' => 'Featured Artists',
         'follows' => 'Mappeurs suivis',
         'recommended' => 'Difficulté recommandée',
         'spotlights' => 'Beatmaps spotlight',

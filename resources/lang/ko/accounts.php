@@ -19,8 +19,8 @@ return [
             'new_confirmation' => '이메일 주소 확인',
             'title' => '이메일',
             'locked' => [
-                '_' => '',
-                'accounts' => '',
+                '_' => '이메일 변경이 필요하시다면 :accounts에 연락해 주세요.',
+                'accounts' => '계정 지원 팀',
             ],
         ],
 

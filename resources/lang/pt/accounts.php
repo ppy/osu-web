@@ -19,8 +19,8 @@ return [
             'new_confirmation' => 'confirmação do email',
             'title' => 'Email',
             'locked' => [
-                '_' => '',
-                'accounts' => '',
+                '_' => 'Entra em contacto com :accounts se precisares de atualizar o teu email.',
+                'accounts' => 'equipa de apoio à conta',
             ],
         ],
 

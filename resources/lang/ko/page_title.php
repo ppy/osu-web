@@ -86,7 +86,7 @@ return [
             '_' => '경기',
         ],
         'news_controller' => [
-            '_' => '소식',
+            '_' => '뉴스',
         ],
         'notifications_controller' => [
             '_' => '알림 기록',
