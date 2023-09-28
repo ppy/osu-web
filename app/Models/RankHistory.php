@@ -5,6 +5,8 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 /**
  * @property mixed $data
  * @property string $mode
@@ -116,11 +118,26 @@ class RankHistory extends Model
         parent::__construct($attributes);
     }
 
+    public function currentStart(): BelongsTo
+    {
+        return $this->belongsTo(Count::class, 'current_start_name', 'name');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function getCurrentStartNameAttribute(): string
+    {
+        return Count::currentRankStartName($this->ruleset);
+    }
+
     public function getDataAttribute()
     {
         $data = [];
 
-        $startOffset = Count::currentRankStart($this->mode)->count;
+        $startOffset = $this->currentStart?->count ?? 0;
         $end = $startOffset + 90;
 
         $attributes = $this->attributes;
@@ -151,13 +168,8 @@ class RankHistory extends Model
         return $data;
     }
 
-    public function getModeAttribute($value)
+    public function getRulesetAttribute()
     {
-        return Beatmap::modeStr($value);
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id');
+        return Beatmap::modeStr($this->getRawAttribute('mode'));
     }
 }
