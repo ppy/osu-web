@@ -101,7 +101,7 @@ export default class Main {
   private timeFormat: TimeFormat = 'minute_minimal';
   private url?: string;
 
-  constructor(private userPreferences: UserPreferences) {
+  constructor(private readonly userPreferences: UserPreferences) {
     makeObservable(this);
 
     this.audio.volume = 0;

@@ -12,7 +12,7 @@ return [
         'in_progress_spinner_label' => 'peli meneillään',
         'loading-events' => 'Ladataan tapahtumia...',
         'winner' => ':team voitti',
-        'winner_by' => '',
+        'winner_by' => ':winner :difference pisteellä',
 
         'events' => [
             'player-left' => ':user poistui pelistä',

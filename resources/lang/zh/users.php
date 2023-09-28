@@ -123,6 +123,14 @@ return [
         ],
     ],
 
+    'ogp' => [
+        'description' => [
+            '_' => '排名 (:ruleset): :global | :country',
+            'country' => '地区 :rank',
+            'global' => '全球 :rank',
+        ],
+    ],
+
     'posts' => [
         'title' => ':username 的帖子',
     ],

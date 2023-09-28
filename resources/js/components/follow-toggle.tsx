@@ -27,7 +27,7 @@ export default class FollowToggle extends React.PureComponent<Props, State> {
 
   state: State;
 
-  private eventId = `follow-toggle-${nextVal()}`;
+  private readonly eventId = `follow-toggle-${nextVal()}`;
   private toggleXhr: null | JQueryXHR = null;
 
   constructor(props: Props) {
@@ -64,7 +64,7 @@ export default class FollowToggle extends React.PureComponent<Props, State> {
     );
   }
 
-  private onClick = () => {
+  private readonly onClick = () => {
     const params = {
       follow: {
         notifiable_id: this.props.follow.notifiable_id,
@@ -94,7 +94,7 @@ export default class FollowToggle extends React.PureComponent<Props, State> {
     });
   };
 
-  private refresh = () => {
+  private readonly refresh = () => {
     if (this.props.follow.subtype === 'mapping') {
       this.setState({
         following: core.currentUser != null && core.currentUser.follow_user_mapping.includes(this.props.follow.notifiable_id),

@@ -7,7 +7,6 @@ namespace App\Libraries\User;
 
 use App\Libraries\Session\Store as SessionStore;
 use App\Mail\UserForceReactivation;
-use App\Models\LegacySession;
 use App\Models\UserAccountHistory;
 use App\Models\UserClient;
 use Mail;
@@ -46,7 +45,6 @@ class ForceReactivation
         $this->addHistoryNote();
         $this->user->update(['user_password' => '']);
         SessionStore::destroy($userId);
-        LegacySession::where('session_user_id', $userId)->delete();
         UserClient::where('user_id', $userId)->update(['verified' => false]);
 
         if (!$waitingActivation && is_valid_email_format($this->user->user_email)) {

@@ -133,11 +133,11 @@ export default class ClickMenu {
     return tree;
   };
 
-  private onDocumentMousedown = (e: JQuery.MouseDownEvent<Document, unknown, Document, HTMLElement | Document>) => {
+  private readonly onDocumentMousedown = (e: JQuery.MouseDownEvent<Document, unknown, Document, HTMLElement | Document>) => {
     this.documentMouseEventTarget = e.button === 0 ? e.target : null;
   };
 
-  private onDocumentMouseup = (e: JQuery.MouseUpEvent<Document, unknown, Document, HTMLElement | Document>) => {
+  private readonly onDocumentMouseup = (e: JQuery.MouseUpEvent<Document, unknown, Document, HTMLElement | Document>) => {
     if (this.documentMouseEventTarget !== e.target) return;
     if (e.button !== 0) return;
     if (isModalShowing()) return;

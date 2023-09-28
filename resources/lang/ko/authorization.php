@@ -186,7 +186,7 @@ return [
             ],
         ],
         'update_email' => [
-            'locked' => '',
+            'locked' => '이메일 주소가 잠겨있습니다.',
         ],
     ],
 ];

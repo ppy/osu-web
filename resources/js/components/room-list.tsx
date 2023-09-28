@@ -61,7 +61,7 @@ export default class RoomList extends React.Component<Props> {
   }
 
   @action
-  private handleShowMore = () => {
+  private readonly handleShowMore = () => {
     if (this.loading) return;
 
     this.loading = true;

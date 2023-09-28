@@ -19,7 +19,7 @@ return [
             'new_confirmation' => 'potwierdź e-mail',
             'title' => 'E-mail',
             'locked' => [
-                '_' => '',
+                '_' => 'Skontaktuj się z :accounts jeśli chcesz zaktualizować swój adres e-mail.',
                 'accounts' => '',
             ],
         ],

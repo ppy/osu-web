@@ -521,6 +521,8 @@ class SanityTest extends DuskTestCase
     {
         $verificationExpected = [
             'account.edit',
+            'account.github-users.callback',
+            'account.github-users.create',
             'chat.index',
             'client-verifications.create',
             'messages.users.show',

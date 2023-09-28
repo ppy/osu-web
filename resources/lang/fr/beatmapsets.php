@@ -20,7 +20,7 @@ return [
     ],
 
     'featured_artist_badge' => [
-        'label' => 'Featured artist',
+        'label' => 'Featured Artist',
     ],
 
     'index' => [
@@ -182,7 +182,7 @@ return [
 
             'no_scores' => [
                 'country' => 'Personne de votre pays n\'a encore fait un score !',
-                'friend' => 'Aucun de vos amis n\'a encore établi de score sur cette map !',
+                'friend' => 'Aucun de vos amis n\'a encore établi de score sur cette beatmap !',
                 'global' => 'Pas de scores. Peut-être devriez-vous en faire un ?',
                 'loading' => 'Chargement des scores...',
                 'unranked' => 'Beatmap non classée.',

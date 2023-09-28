@@ -23,7 +23,7 @@ return [
                 'description' => 'Les contributions vont vers les serveurs pour faire fonctionner le site, les services multijoueurs, les classements en ligne, etc.',
             ],
             'featured-artists' => [
-                'title' => 'Featured artists',
+                'title' => 'Featured Artists',
                 'description' => 'Avec votre soutien, nous pouvons réunir encore plus d\'artistes géniaux et obtenir les droits de plus de musiques afin de les utiliser sur osu!',
                 'link_text' => 'Voir la liste actuelle &raquo;',
             ],
