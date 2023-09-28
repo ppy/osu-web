@@ -137,33 +137,19 @@ class RankHistory extends Model
     {
         $data = [];
 
-        $startOffset = $this->currentStart?->count ?? 0;
-        $end = $startOffset + 90;
+        // The r$(count) may actually contain today's rank when the update
+        // process is running so it should just be ignored and use the rank
+        // from user statistics for the current rank value.
+        $startOffset = ($this->currentStart?->count ?? 0) + 1;
+        $endOffset = $startOffset + 88;
 
         $attributes = $this->attributes;
-        for ($i = $startOffset; $i < $end; $i++) {
-            $data[] = $attributes['r'.strval($i % 90)] ?? 0;
+        for ($i = $startOffset; $i <= $endOffset; $i++) {
+            $data[] = $attributes['r'.($i % 90)] ?? 0;
         }
 
-        $diffHead = $data[0] - $data[1];
-        $diffTail = $data[0] - array_last($data);
-
-        $shiftData = abs($diffTail) < abs($diffHead);
-        $userStatistics = $this->user->statistics($this->mode);
-
-        if ($userStatistics !== null) {
-            $currentRank = $userStatistics->globalRank();
-            $shiftData = $shiftData || $currentRank === $data[0];
-        }
-
-        if ($shiftData) {
-            $lastRank = array_shift($data);
-            $data[] = $lastRank;
-        }
-
-        if (isset($currentRank)) {
-            $data[count($data) - 1] = $currentRank;
-        }
+        $userStatistics = $this->user->statistics($this->ruleset);
+        $data[] = $userStatistics?->globalRank() ?? 0;
 
         return $data;
     }
