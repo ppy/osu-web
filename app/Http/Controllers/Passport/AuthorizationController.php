@@ -35,7 +35,7 @@ class AuthorizationController extends PassportAuthorizationController
         ClientRepository $clients,
         TokenRepository $tokens
     ) {
-        $redirectUri = presence(trim($request['redirect_uri']));
+        $redirectUri = presence(trim(get_string($request['redirect_uri']) ?? ''));
 
         abort_if($redirectUri === null, 400, osu_trans('model_validation.required', ['attribute' => 'redirect_uri']));
 
