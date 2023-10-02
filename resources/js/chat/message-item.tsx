@@ -13,7 +13,7 @@ import legacyLink from 'remark-plugins/legacy-link';
 import oldLink from 'remark-plugins/old-link';
 import wikiLink, { RemarkWikiLinkPlugin } from 'remark-wiki-link';
 import { classWithModifiers } from 'utils/css';
-import { wikiUrl } from 'utils/url';
+import { wikiUrlWithoutLocale } from 'utils/url';
 
 interface Props {
   message: Message;
@@ -47,7 +47,7 @@ export default class MessageItem extends React.Component<Props> {
 
   private renderMarkdown() {
     const remarkType = this.props.message.type === 'markdown' ? 'chat' : 'chatPlain';
-    const wikiLinkPlugin: RemarkWikiLinkPlugin = [wikiLink, { hrefTemplate: wikiUrl }];
+    const wikiLinkPlugin: RemarkWikiLinkPlugin = [wikiLink, { hrefTemplate: wikiUrlWithoutLocale, pageResolver: (name) => [name] }];
 
     return (
       <ReactMarkdown
