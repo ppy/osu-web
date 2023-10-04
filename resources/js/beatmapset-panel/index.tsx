@@ -107,10 +107,10 @@ const StatsItem = ({ icon, title, type, value }: StatsItemProps) => (
 @observer
 export default class BeatmapsetPanel extends React.Component<Props> {
   @observable private beatmapsPopupHover = false;
-  private beatmapsPopupRef = React.createRef<BeatmapsPopup>();
-  private blockRef = React.createRef<HTMLDivElement>();
+  private readonly beatmapsPopupRef = React.createRef<BeatmapsPopup>();
+  private readonly blockRef = React.createRef<HTMLDivElement>();
   @observable private mobileExpanded = false;
-  private timeouts: Partial<Record<string, number>> = {};
+  private readonly timeouts: Partial<Record<string, number>> = {};
 
   @computed
   private get beatmapDotsCompact() {
@@ -280,7 +280,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
     );
   }
 
-  private beatmapsPopupDelayedHide = () => {
+  private readonly beatmapsPopupDelayedHide = () => {
     window.clearTimeout(this.timeouts.beatmapsPopup);
 
     if (!this.beatmapsPopupHover) return;
@@ -290,7 +290,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
     }), 500);
   };
 
-  private beatmapsPopupDelayedShow = () => {
+  private readonly beatmapsPopupDelayedShow = () => {
     window.clearTimeout(this.timeouts.beatmapsPopup);
 
     if (this.beatmapsPopupHover) return;
@@ -301,29 +301,29 @@ export default class BeatmapsetPanel extends React.Component<Props> {
   };
 
   @action
-  private beatmapsPopupHide = () => {
+  private readonly beatmapsPopupHide = () => {
     window.clearTimeout(this.timeouts.beatmapsPopup);
 
     this.beatmapsPopupHover = false;
   };
 
   @action
-  private beatmapsPopupKeep = () => {
+  private readonly beatmapsPopupKeep = () => {
     window.clearTimeout(this.timeouts.beatmapsPopup);
 
     this.beatmapsPopupHover = true;
   };
 
-  private onBeatmapsPopupEnter = () => {
+  private readonly onBeatmapsPopupEnter = () => {
     this.beatmapsPopupKeep();
   };
 
-  private onBeatmapsPopupLeave = () => {
+  private readonly onBeatmapsPopupLeave = () => {
     this.beatmapsPopupDelayedHide();
   };
 
   @action
-  private onDocumentClick = (e: JQuery.ClickEvent<Document, unknown, Document, Document | HTMLElement>) => {
+  private readonly onDocumentClick = (e: JQuery.ClickEvent<Document, unknown, Document, Document | HTMLElement>) => {
     // only for shrinking
     if (!this.mobileExpanded) return;
     // clicking on anything on the panel itself is handled by the relevant element
@@ -335,16 +335,16 @@ export default class BeatmapsetPanel extends React.Component<Props> {
     this.mobileExpanded = false;
   };
 
-  private onExtraRowEnter = () => {
+  private readonly onExtraRowEnter = () => {
     this.beatmapsPopupDelayedShow();
   };
 
-  private onExtraRowLeave = () => {
+  private readonly onExtraRowLeave = () => {
     this.beatmapsPopupDelayedHide();
   };
 
   @action
-  private onMobileExpandToggleClick = () => {
+  private readonly onMobileExpandToggleClick = () => {
     this.mobileExpanded = !this.mobileExpanded;
     if (this.mobileExpanded) {
       $(document).on('click', this.onDocumentClick);
@@ -584,7 +584,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
     );
   }
 
-  private toggleFavourite = () => {
+  private readonly toggleFavourite = () => {
     toggleFavourite(this.props.beatmapset);
   };
 }

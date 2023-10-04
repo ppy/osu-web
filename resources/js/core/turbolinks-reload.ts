@@ -2,8 +2,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 export default class TurbolinksReload {
-  private loaded = new Set<string>();
-  private loading = new Map<string, JQuery.jqXHR<void>>();
+  private readonly loaded = new Set<string>();
+  private readonly loading = new Map<string, JQuery.jqXHR<void>>();
 
   constructor() {
     $(document).on('turbolinks:before-cache', this.abortLoading);

@@ -100,7 +100,7 @@ export default class Main extends React.Component<Props> {
   }
 
   @action
-  private handleShowMore = () => {
+  private readonly handleShowMore = () => {
     if (this.data.cursor_string == null || this.loadingXhr != null) {
       return;
     }

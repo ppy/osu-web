@@ -15,7 +15,7 @@ type DatasetState = Partial<State> & Required<Pick<State, 'legacy_api_key'>>;
 
 export default class Controller {
   @observable state;
-  private stateSyncDisposer;
+  private readonly stateSyncDisposer;
   @observable private xhrCreate?: JQuery.jqXHR<LegacyApiKeyJson>;
   @observable private xhrDelete?: JQuery.jqXHR<void>;
 
@@ -31,7 +31,7 @@ export default class Controller {
     return this.state.legacy_api_key;
   }
 
-  constructor(private container: HTMLElement) {
+  constructor(private readonly container: HTMLElement) {
     this.state = {
       ...JSON.parse(container.dataset.state ?? '') as DatasetState,
       showing_form: false,

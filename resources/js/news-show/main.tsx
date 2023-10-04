@@ -125,7 +125,7 @@ export default class Main extends React.Component<Props> {
     );
   }
 
-  private processContent = () => {
+  private readonly processContent = () => {
     let content = this.props.post.content;
 
     if (content == null) {
@@ -156,7 +156,7 @@ export default class Main extends React.Component<Props> {
     return { content };
   };
 
-  private renderNav = () => {
+  private readonly renderNav = () => {
     if (this.props.post.navigation == null) {
       return;
     }

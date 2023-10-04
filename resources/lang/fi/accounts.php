@@ -19,8 +19,8 @@ return [
             'new_confirmation' => 'sähköpostivahvistus',
             'title' => 'Sähköposti',
             'locked' => [
-                '_' => '',
-                'accounts' => '',
+                '_' => 'Ota yhteyttä :accounts, jos sinun tarvitsee päivittää sähköpostiosoitteesi.',
+                'accounts' => 'tilien tukiryhmään',
             ],
         ],
 

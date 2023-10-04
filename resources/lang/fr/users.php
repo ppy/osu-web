@@ -123,6 +123,14 @@ return [
         ],
     ],
 
+    'ogp' => [
+        'description' => [
+            '_' => '',
+            'country' => '',
+            'global' => '',
+        ],
+    ],
+
     'posts' => [
         'title' => 'Posts de :username',
     ],
@@ -435,7 +443,7 @@ return [
             'country' => 'Classement national en :mode',
             'country_simple' => 'Classement Pays',
             'global' => 'Classement global en :mode',
-            'global_simple' => 'Classement Global',
+            'global_simple' => 'Classement global',
             'highest' => 'Meilleur rang : :rank le :date',
         ],
         'stats' => [

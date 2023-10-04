@@ -227,7 +227,7 @@ export class Nominations extends React.PureComponent<Props> {
     });
   }
 
-  private focusNewDiscussionWithModeSwitch = () => {
+  private readonly focusNewDiscussionWithModeSwitch = () => {
     // Switch to generalAll tab just in case currently in event tab
     // and thus new discussion box isn't visible.
     $.publish('beatmapsetDiscussions:update', {
