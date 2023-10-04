@@ -24,13 +24,13 @@ use App\Libraries\BBCodeFromDB;
 use App\Libraries\Commentable;
 use App\Libraries\Elasticsearch\Indexable;
 use App\Libraries\ImageProcessorService;
-use App\Libraries\StorageWithUrl;
 use App\Libraries\Transactions\AfterCommit;
 use App\Traits\Memoizes;
 use App\Traits\Validatable;
 use Cache;
 use Carbon\Carbon;
 use DB;
+use Illuminate\Contracts\Filesystem\Cloud;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -145,7 +145,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     public $timestamps = false;
 
-    protected $_storage = null;
+    protected Cloud $_storage;
     protected $casts = self::CASTS;
     protected $primaryKey = 'beatmapset_id';
     protected $table = 'osu_beatmapsets';
@@ -446,11 +446,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     public function storage()
     {
-        if ($this->_storage === null) {
-            $this->_storage = new StorageWithUrl();
-        }
-
-        return $this->_storage;
+        return $this->_storage ??= \Storage::disk();
     }
 
     public function removeCovers()
