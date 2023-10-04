@@ -399,6 +399,8 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
         Route::group(['as' => 'beatmaps.', 'prefix' => 'beatmaps'], function () {
             Route::get('lookup', 'BeatmapsController@lookup')->name('lookup');
 
+            Route::resource('packs', 'BeatmapPacksController', ['only' => ['index', 'show']]);
+
             Route::group(['prefix' => '{beatmap}'], function () {
                 Route::get('scores/users/{user}', 'BeatmapsController@userScore');
                 Route::get('scores/users/{user}/all', 'BeatmapsController@userScoreAll');

@@ -7,12 +7,20 @@ namespace App\Http\Controllers;
 
 use App\Models\Beatmap;
 use App\Models\BeatmapPack;
+use App\Transformers\BeatmapPackTransformer;
 use Auth;
 use Request;
 
 class BeatmapPacksController extends Controller
 {
     private const PER_PAGE = 100;
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->middleware('require-scopes:public');
+    }
 
     public function index()
     {
@@ -22,8 +30,14 @@ class BeatmapPacksController extends Controller
             abort(404);
         }
 
+        $page = $packs->paginate(static::PER_PAGE);
+
+        if (is_api_request()) {
+            return json_collection($page, new BeatmapPackTransformer(), ['beatmapsets']);
+        }
+
         return ext_view('packs.index', [
-            'packs' => $packs->paginate(static::PER_PAGE)->appends(['type' => $type]),
+            'packs' => $page->appends(['type' => $type]),
             'type' => $type,
         ]);
     }
@@ -42,6 +56,10 @@ class BeatmapPacksController extends Controller
         $mode = Beatmap::modeStr($pack->playmode ?? 0);
         $sets = $pack->beatmapsets;
         $userCompletionData = $pack->userCompletionData(Auth::user());
+
+        if (is_api_request()) {
+            return json_item($pack, new BeatmapPackTransformer($userCompletionData), ['beatmapsets']);
+        }
 
         $view = request('format') === 'raw' ? 'packs.raw' : 'packs.show';
 
