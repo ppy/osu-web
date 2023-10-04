@@ -31,11 +31,11 @@ const blankSnapshot = (): Snapshot => ({ chatHeight: 0, chatTop: 0 });
 
 @observer
 export default class ConversationView extends React.Component<Props> {
-  private chatViewRef = React.createRef<HTMLDivElement>();
+  private readonly chatViewRef = React.createRef<HTMLDivElement>();
   private didSwitchChannel = true;
-  private disposers = new Set<(() => void) | undefined>();
+  private readonly disposers = new Set<(() => void) | undefined>();
   private firstMessage?: Message;
-  private unreadMarkerRef = React.createRef<HTMLDivElement>();
+  private readonly unreadMarkerRef = React.createRef<HTMLDivElement>();
 
   @computed
   private get conversationStack() {
@@ -49,8 +49,11 @@ export default class ConversationView extends React.Component<Props> {
 
     each(channel.messages, (message: Message, key: number) => {
       // check if the last read indicator needs to be shown
-      // when messageId is a uuid, comparison will always be false.
-      if (!unreadMarkerShown && message.messageId > (channel.lastReadId ?? -1) && message.sender.id !== core.currentUser?.id) {
+      if (!unreadMarkerShown
+        && typeof message.messageId === 'number'
+        && message.messageId > (channel.lastReadId ?? -1)
+        && message.sender.id !== core.currentUser?.id
+      ) {
         unreadMarkerShown = true;
         // TODO: handle the case where unread messages are in the backlog
 
@@ -272,7 +275,7 @@ export default class ConversationView extends React.Component<Props> {
   }
 
   @action
-  private handleOnScroll = () => {
+  private readonly handleOnScroll = () => {
     const chatView = this.chatViewRef.current;
     if (chatView == null || this.currentChannel == null) return;
 
@@ -284,7 +287,7 @@ export default class ConversationView extends React.Component<Props> {
     }
   };
 
-  private loadEarlierMessages = () => {
+  private readonly loadEarlierMessages = () => {
     if (this.currentChannel == null) return;
     core.dataStore.channelStore.loadChannelEarlierMessages(this.currentChannel.channelId);
   };

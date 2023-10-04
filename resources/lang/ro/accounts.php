@@ -18,6 +18,10 @@ return [
             'new' => 'e-mail nou',
             'new_confirmation' => 'confirmare e-mail',
             'title' => 'E-mail',
+            'locked' => [
+                '_' => 'Vă rugăm să contactați :accounts dacă aveți nevoie să vă actualizați e-mailul.',
+                'accounts' => 'echipa de suport conturi',
+            ],
         ],
 
         'legacy_api' => [

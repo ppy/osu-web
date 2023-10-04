@@ -191,6 +191,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::resource('chat', 'ChatController', ['only' => ['index']]);
     });
 
+    Route::get('groups/history', 'GroupHistoryController@index')->name('group-history.index');
     Route::resource('groups', 'GroupsController', ['only' => ['show']]);
 
     Route::group(['prefix' => 'home'], function () {
@@ -211,6 +212,10 @@ Route::group(['middleware' => ['web']], function () {
             Route::get('verify', 'AccountController@verifyLink');
             Route::post('verify', 'AccountController@verify')->name('verify');
             Route::put('/', 'AccountController@update')->name('update');
+
+            Route::get('github-users/callback', 'Account\GithubUsersController@callback')->name('github-users.callback');
+            Route::resource('github-users', 'Account\GithubUsersController', ['only' => ['create']]);
+            Route::delete('github-users', 'Account\GithubUsersController@destroy')->name('github-users.destroy');
         });
 
         Route::get('quick-search', 'HomeController@quickSearch')->name('quick-search');
@@ -514,6 +519,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
         //  POST /api/v2/notifications/mark-read
         Route::post('notifications/mark-read', 'NotificationsController@markRead')->name('notifications.mark-read');
 
+        Route::get('rankings/kudosu', 'RankingController@kudosu');
         //  GET /api/v2/rankings/:mode/:type
         Route::get('rankings/{mode}/{type}', 'RankingController@index');
         Route::resource('spotlights', 'SpotlightsController', ['only' => ['index']]);

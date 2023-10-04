@@ -79,15 +79,15 @@ return [
         ],
 
         'message_type_title' => [
-            'disqualify' => '',
-            'hype' => '',
-            'mapper_note' => '',
-            'nomination_reset' => '',
-            'praise' => '',
-            'problem' => '',
-            'problem_warning' => '',
-            'review' => '',
-            'suggestion' => '',
+            'disqualify' => '发布下架 (DQ) 帖',
+            'hype' => '发布推荐帖！',
+            'mapper_note' => '发布备注帖',
+            'nomination_reset' => '删除所有提名',
+            'praise' => '发布赞',
+            'problem' => '发布问题帖',
+            'problem_warning' => '发布问题帖',
+            'review' => '发布审阅帖',
+            'suggestion' => '发布建议帖',
         ],
 
         'mode' => [

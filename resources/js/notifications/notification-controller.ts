@@ -12,7 +12,7 @@ import { updateQueryString } from 'utils/url';
 export default class NotificationController {
   @observable currentFilter: NotificationTypeName;
 
-  private store: NotificationStackStore;
+  private readonly store: NotificationStackStore;
   private readonly typeNamesWithoutNull = typeNames.filter((name) => !(name == null || this.isExcluded(name)));
 
   @computed

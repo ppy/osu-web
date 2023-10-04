@@ -42,7 +42,7 @@ export class ReportReportable extends React.PureComponent<Props> {
     );
   }
 
-  private onShowFormButtonClick = (e: React.MouseEvent<HTMLElement>) => {
+  private readonly onShowFormButtonClick = (e: React.MouseEvent<HTMLElement>) => {
     if (e.button !== 0) return;
 
     this.props.onFormOpen();

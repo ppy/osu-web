@@ -16,7 +16,7 @@ export class EditorToolbar extends React.Component {
   static contextType = SlateContext;
   declare context: React.ContextType<typeof SlateContext>;
   private readonly eventId = `editor-toolbar-${nextVal()}`;
-  private ref = React.createRef<HTMLDivElement>();
+  private readonly ref = React.createRef<HTMLDivElement>();
   private scrollContainer?: HTMLElement;
   private scrollTimer?: number;
   private readonly throttledUpdate = throttle(() => this.updatePosition(), 100);

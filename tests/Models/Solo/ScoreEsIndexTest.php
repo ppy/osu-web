@@ -22,7 +22,7 @@ use App\Models\UserRelation;
 use Tests\TestCase;
 
 /**
- * @group EsSoloScores
+ * @group RequiresScoreIndexer
  */
 class ScoreEsIndexTest extends TestCase
 {

@@ -5,7 +5,7 @@
 
 return [
     'page_description' => 'osu! Featured artistit',
-    'title' => 'Featured Artistit',
+    'title' => 'Esitellyt artistit',
 
     'admin' => [
         'hidden' => 'ARTISTI ON TÄLLÄ HETKELLÄ PIILOTETTU',

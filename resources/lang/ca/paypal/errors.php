@@ -7,7 +7,7 @@ return [
     'instrument_declined' => 'Paypal ha rebutjat el mètode de pagament seleccionat.',
     'invalid_resource_id' => 'No s\'ha trobat informació de pagament.',
     'invalid_token' => 'S\'ha produït un error en completar el pagament.',
-    'old_format' => 'L\'enllaç de pagament ha vençut, torneu-ho a provar.',
+    'old_format' => 'L\'enllaç de pagament ha expirat, torna a provar.',
     'resource_not_found' => 'No s\'ha trobat informació de pagament.',
-    'unknown' => "El pagament va ser rebutjat, però no sabem per què.",
+    'unknown' => "El pagament s'ha rebutjat, però no sabem per què.",
 ];

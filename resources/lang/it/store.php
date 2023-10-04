@@ -30,9 +30,9 @@ return [
         'cart_problems' => 'Uh oh, ci sono problemi con il carrello!',
         'cart_problems_edit' => 'Clicca qui per modificarlo.',
         'declined' => 'Il pagamento è stato annullato.',
-        'delayed_shipping' => 'Attualmente siamo sommersi dagli ordini! Sei libero di effettuare ordini, ma per favore aspettati un **ritardo addizionale di 1-2 settimane** mentre completiamo gli ordini già esistenti.',
+        'delayed_shipping' => 'Attualmente siamo sommersi dagli ordini! Sei libero di effettuare ordini, ma ci si aspetta un **ritardo aggiuntivo di 1-2 settimane** mentre completiamo gli ordini già esistenti.',
         'hide_from_activity' => 'Nascondi tutti i tag osu!supporter in questo ordine dalla mia attività',
-        'old_cart' => 'Il tuo carrello sembra essere obsoleto ed è stato ricaricato; per favore riprova.',
+        'old_cart' => 'Il tuo carrello sembra essere obsoleto ed è stato ricaricato, per favore riprova.',
         'pay' => 'Acquista con Paypal',
         'title_compact' => 'pagamento',
 
@@ -57,7 +57,7 @@ return [
         'status' => [
             'processing' => [
                 'title' => 'Il tuo pagamento non è ancora stato confermato!',
-                'line_1' => 'Se hai già pagato, potremmo ancora essere in attesa di una conferma del tuo pagamento. Per favore ricarica la pagina in un minuto o due!',
+                'line_1' => 'Se hai già pagato, potremmo ancora essere in attesa di una conferma del tuo pagamento. Ricarica la pagina in un minuto o due!',
                 'line_2' => [
                     '_' => 'Sei hai avuto un problema durante il pagamento, :link',
                     'link_text' => 'clicca qui per riprendere con il pagamento',

@@ -125,6 +125,11 @@ class Score extends Model implements Traits\ReportableInterface, Traits\SoloScor
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function scopeDefault(Builder $query): Builder
+    {
+        return $query->whereHas('beatmap.beatmapset');
+    }
+
     /**
      * This should match the one used in osu-elastic-indexer.
      */

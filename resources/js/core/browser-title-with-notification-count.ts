@@ -15,7 +15,7 @@ export default class BrowserTitleWithNotificationCount {
     });
   }
 
-  constructor(private core: OsuCore) {
+  constructor(private readonly core: OsuCore) {
     makeObservable(this);
     document.addEventListener('turbolinks:load', this.setTitle);
     document.addEventListener('turbolinks:before-cache', this.resetTitle);

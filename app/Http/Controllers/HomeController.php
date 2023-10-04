@@ -159,10 +159,10 @@ class HomeController extends Controller
      *
      * ### Response Format
      *
-     * Field     | Type                          | Description
-     * --------- | ----------------------------- | -----------
-     * user      | SearchResult&lt;UserCompact>? | For `all` or `user` mode. Only first 100 results are accessible
-     * wiki_page | SearchResult&lt;WikiPage>?    | For `all` or `wiki_page` mode
+     * Field     | Type                       | Description
+     * --------- | -------------------------- | -----------
+     * user      | SearchResult&lt;User>?     | For `all` or `user` mode. Only first 100 results are accessible
+     * wiki_page | SearchResult&lt;WikiPage>? | For `all` or `wiki_page` mode
      *
      * #### SearchResult&lt;T>
      *

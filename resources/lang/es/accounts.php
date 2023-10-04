@@ -18,6 +18,10 @@ return [
             'new' => 'nuevo correo electrónico',
             'new_confirmation' => 'confirmar correo electrónico',
             'title' => 'Correo electrónico',
+            'locked' => [
+                '_' => 'Ponte en contacto con el :accounts si necesitas actualizar tu correo electrónico.',
+                'accounts' => 'equipo de soporte de cuentas',
+            ],
         ],
 
         'legacy_api' => [

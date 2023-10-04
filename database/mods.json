@@ -36,8 +36,6 @@
           "SD",
           "PF",
           "AC",
-          "AT",
-          "CN",
           "RX",
           "AP"
         ],
@@ -133,8 +131,6 @@
           "NF",
           "PF",
           "TP",
-          "AT",
-          "CN",
           "RX",
           "AP"
         ],
@@ -160,8 +156,6 @@
           "NF",
           "SD",
           "AC",
-          "AT",
-          "CN",
           "RX",
           "AP"
         ],
@@ -338,8 +332,6 @@
           "EZ",
           "NF",
           "PF",
-          "AT",
-          "CN",
           "RX",
           "AP"
         ],
@@ -437,12 +429,6 @@
             "Type": "boolean",
             "Label": "No slider head accuracy requirement",
             "Description": "Scores sliders proportionally to the number of ticks hit."
-          },
-          {
-            "Name": "no_slider_head_movement",
-            "Type": "boolean",
-            "Label": "No slider head movement",
-            "Description": "Pins slider heads at their starting position, regardless of time."
           },
           {
             "Name": "classic_note_lock",
@@ -560,10 +546,6 @@
         "Type": "Automation",
         "Settings": [],
         "IncompatibleMods": [
-          "NF",
-          "SD",
-          "PF",
-          "AC",
           "AL",
           "SG",
           "CN",
@@ -586,10 +568,6 @@
         "Type": "Automation",
         "Settings": [],
         "IncompatibleMods": [
-          "NF",
-          "SD",
-          "PF",
-          "AC",
           "AL",
           "SG",
           "AT",
@@ -1127,6 +1105,18 @@
         "UserPlayable": true,
         "ValidForMultiplayer": true,
         "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "SV2",
+        "Name": "Score V2",
+        "Description": "Score set on earlier osu! versions with the V2 scoring algorithm active.",
+        "Type": "System",
+        "Settings": [],
+        "IncompatibleMods": [],
+        "RequiresConfiguration": false,
+        "UserPlayable": false,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
       }
     ]
   },
@@ -1159,8 +1149,6 @@
           "SD",
           "PF",
           "AC",
-          "AT",
-          "CN",
           "RX"
         ],
         "RequiresConfiguration": false,
@@ -1253,8 +1241,6 @@
         "IncompatibleMods": [
           "NF",
           "PF",
-          "AT",
-          "CN",
           "RX"
         ],
         "RequiresConfiguration": false,
@@ -1279,8 +1265,6 @@
           "NF",
           "SD",
           "AC",
-          "AT",
-          "CN",
           "RX"
         ],
         "RequiresConfiguration": false,
@@ -1407,8 +1391,6 @@
         "IncompatibleMods": [
           "NF",
           "PF",
-          "AT",
-          "CN",
           "RX"
         ],
         "RequiresConfiguration": false,
@@ -1526,10 +1508,6 @@
         "Type": "Automation",
         "Settings": [],
         "IncompatibleMods": [
-          "NF",
-          "SD",
-          "PF",
-          "AC",
           "SG",
           "CN",
           "RX",
@@ -1547,10 +1525,6 @@
         "Type": "Automation",
         "Settings": [],
         "IncompatibleMods": [
-          "NF",
-          "SD",
-          "PF",
-          "AC",
           "SG",
           "AT",
           "CN",
@@ -1728,6 +1702,18 @@
         "UserPlayable": true,
         "ValidForMultiplayer": false,
         "ValidForMultiplayerAsFreeMod": false
+      },
+      {
+        "Acronym": "SV2",
+        "Name": "Score V2",
+        "Description": "Score set on earlier osu! versions with the V2 scoring algorithm active.",
+        "Type": "System",
+        "Settings": [],
+        "IncompatibleMods": [],
+        "RequiresConfiguration": false,
+        "UserPlayable": false,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
       }
     ]
   },
@@ -1768,8 +1754,6 @@
           "SD",
           "PF",
           "AC",
-          "AT",
-          "CN",
           "RX"
         ],
         "RequiresConfiguration": false,
@@ -1860,8 +1844,6 @@
         "IncompatibleMods": [
           "NF",
           "PF",
-          "AT",
-          "CN",
           "RX"
         ],
         "RequiresConfiguration": false,
@@ -1886,8 +1868,6 @@
           "NF",
           "SD",
           "AC",
-          "AT",
-          "CN",
           "RX"
         ],
         "RequiresConfiguration": false,
@@ -2013,8 +1993,6 @@
           "EZ",
           "NF",
           "PF",
-          "AT",
-          "CN",
           "RX"
         ],
         "RequiresConfiguration": false,
@@ -2105,10 +2083,6 @@
         "Type": "Automation",
         "Settings": [],
         "IncompatibleMods": [
-          "NF",
-          "SD",
-          "PF",
-          "AC",
           "CN",
           "RX"
         ],
@@ -2124,10 +2098,6 @@
         "Type": "Automation",
         "Settings": [],
         "IncompatibleMods": [
-          "NF",
-          "SD",
-          "PF",
-          "AC",
           "AT",
           "CN",
           "RX"
@@ -2297,6 +2267,18 @@
         "UserPlayable": true,
         "ValidForMultiplayer": true,
         "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "SV2",
+        "Name": "Score V2",
+        "Description": "Score set on earlier osu! versions with the V2 scoring algorithm active.",
+        "Type": "System",
+        "Settings": [],
+        "IncompatibleMods": [],
+        "RequiresConfiguration": false,
+        "UserPlayable": false,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
       }
     ]
   },
@@ -2336,9 +2318,7 @@
         "IncompatibleMods": [
           "SD",
           "PF",
-          "AC",
-          "AT",
-          "CN"
+          "AC"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -2429,9 +2409,7 @@
         ],
         "IncompatibleMods": [
           "NF",
-          "PF",
-          "AT",
-          "CN"
+          "PF"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -2454,9 +2432,7 @@
         "IncompatibleMods": [
           "NF",
           "SD",
-          "AC",
-          "AT",
-          "CN"
+          "AC"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -2617,9 +2593,7 @@
         "IncompatibleMods": [
           "EZ",
           "NF",
-          "PF",
-          "AT",
-          "CN"
+          "PF"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -2982,10 +2956,6 @@
         "Type": "Automation",
         "Settings": [],
         "IncompatibleMods": [
-          "NF",
-          "SD",
-          "PF",
-          "AC",
           "CN",
           "AS"
         ],
@@ -3001,10 +2971,6 @@
         "Type": "Automation",
         "Settings": [],
         "IncompatibleMods": [
-          "NF",
-          "SD",
-          "PF",
-          "AC",
           "AT",
           "CN",
           "AS"
@@ -3160,6 +3126,18 @@
         "UserPlayable": true,
         "ValidForMultiplayer": false,
         "ValidForMultiplayerAsFreeMod": false
+      },
+      {
+        "Acronym": "SV2",
+        "Name": "Score V2",
+        "Description": "Score set on earlier osu! versions with the V2 scoring algorithm active.",
+        "Type": "System",
+        "Settings": [],
+        "IncompatibleMods": [],
+        "RequiresConfiguration": false,
+        "UserPlayable": false,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
       }
     ]
   }

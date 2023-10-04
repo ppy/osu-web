@@ -24,7 +24,7 @@ return [
 
     'show' => [
         'banner' => 'Sprijină-ți echipa',
-        'entered' => 'Ești înscris în acest turneu.<br><br>Reține că acest lucru nu înseamnă că ai fost repartizat unei echipe.<br><br>Instrucțiunile suplimentare vor fi trimise prin e-mail mai aproape de data turneului, deci asigură-te că adresa de e-mail conectată la contul tău osu! este validă!',
+        'entered' => 'Ești înscris în acest turneu.<br><br>Reține că acest lucru <b>nu</b> înseamnă că ai fost repartizat unei echipe.<br><br>Instrucțiuni suplimentare vor fi trimise prin e-mail mai aproape de data turneului, deci asigură-te că adresa de e-mail conectată la contul tău osu! este validă!',
         'info_page' => 'Pagina de informații',
         'login_to_register' => 'Te rugăm :login pentru a vedea detaliile de înregistrare!',
         'not_yet_entered' => 'Nu ești înscris în acest turneu.',

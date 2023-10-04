@@ -25,4 +25,8 @@ return [
         'qualified' => 'Qualified',
         'ranked' => 'Ranked',
     ],
+
+    'value' => [
+        'rank' => 'peringkat #:rank',
+    ],
 ];

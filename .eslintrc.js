@@ -106,6 +106,7 @@ module.exports = {
         '@typescript-eslint/object-curly-spacing': ['error', 'always'],
         '@typescript-eslint/prefer-for-of': 'error',
         '@typescript-eslint/prefer-function-type': 'error',
+        '@typescript-eslint/prefer-readonly': 'error',
         '@typescript-eslint/quotes': [
           'error',
           'single',

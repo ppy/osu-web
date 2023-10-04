@@ -185,5 +185,8 @@ return [
                 'require_supporter_tag' => 'osu!supporter etiketi gereklidir.',
             ],
         ],
+        'update_email' => [
+            'locked' => 'e-posta adresi kilitlenmiş durumda',
+        ],
     ],
 ];

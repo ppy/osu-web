@@ -79,15 +79,15 @@ return [
         ],
 
         'message_type_title' => [
-            'disqualify' => '',
-            'hype' => '',
-            'mapper_note' => '',
-            'nomination_reset' => '',
-            'praise' => '',
-            'problem' => '',
-            'problem_warning' => '',
-            'review' => '',
-            'suggestion' => '',
+            'disqualify' => 'Publicar desqualificação',
+            'hype' => 'Publicar Hype!',
+            'mapper_note' => 'Publicar observação',
+            'nomination_reset' => 'Remover todas as nomeações',
+            'praise' => 'Publicar elogio',
+            'problem' => 'Publicar problema',
+            'problem_warning' => 'Publicar problema',
+            'review' => 'Publicar análise',
+            'suggestion' => 'Publicar sugestão',
         ],
 
         'mode' => [

@@ -283,7 +283,7 @@ class UsersController extends Controller
      * ### Response format
      *
      * Array of [BeatmapPlaycount](#beatmapplaycount) when `type` is `most_played`;
-     * array of [Beatmapset](#beatmapset), otherwise.
+     * array of [BeatmapsetExtended](#beatmapsetextended), otherwise.
      *
      * @urlParam user integer required Id of the user. Example: 1
      * @urlParam type string required Beatmap type. Example: favourite
@@ -336,9 +336,9 @@ class UsersController extends Controller
      *
      * ### Response format
      *
-     * Field | Type                          | Description
-     * ----- | ----------------------------- | -----------
-     * users | [UserCompact](#usercompact)[] | Includes: country, cover, groups, statistics_rulesets.
+     * Field | Type            | Description
+     * ----- | --------------- | -----------
+     * users | [User](#user)[] | Includes: country, cover, groups, statistics_rulesets.
      *
      * @queryParam ids[] User id to be returned. Specify once for each user id requested. Up to 50 users can be requested at once. Example: 1
      *
@@ -555,6 +555,8 @@ class UsersController extends Controller
             abort(404);
         }
 
+        $user->statistics($currentMode)?->setRelation('user', $user);
+
         return $this->fillDeprecatedDuplicateFields(json_item(
             $user,
             (new UserTransformer())->setMode($currentMode),
@@ -581,8 +583,8 @@ class UsersController extends Controller
      *
      * ### Response format
      *
-     * Returns [User](#user) object.
-     * The following [optional attributes on UserCompact](#usercompact-optionalattributes) are included:
+     * Returns [UserExtended](#userextended) object.
+     * The following [optional attributes on User](#user-optionalattributes) are included:
      *
      * - account_history
      * - active_tournament_banner
@@ -629,6 +631,9 @@ class UsersController extends Controller
             abort(404);
         }
 
+        // preload and set relation for toMetaDescription and transformer sharing data
+        $user->statistics($currentMode)?->setRelation('user', $user);
+
         $userArray = $this->fillDeprecatedDuplicateFields(json_item(
             $user,
             (new UserTransformer())->setMode($currentMode),
@@ -649,7 +654,9 @@ class UsersController extends Controller
                 'user' => $userArray,
             ];
 
-            return ext_view('users.show', compact('initialData', 'user'));
+            $pageDescription = blade_safe($user->toMetaDescription(['ruleset' => $currentMode]));
+
+            return ext_view('users.show', compact('initialData', 'pageDescription', 'mode', 'user'));
         }
     }
 

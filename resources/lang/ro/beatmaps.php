@@ -73,21 +73,21 @@ return [
             'nomination_reset' => 'Resetați nominalizarea',
             'praise' => 'Laudă',
             'problem' => 'Problemă',
-            'problem_warning' => 'Raportează o problemă',
+            'problem_warning' => 'Raportează Problemă',
             'review' => 'Recenzie',
             'suggestion' => 'Sugestie',
         ],
 
         'message_type_title' => [
-            'disqualify' => '',
-            'hype' => '',
-            'mapper_note' => '',
-            'nomination_reset' => '',
-            'praise' => '',
-            'problem' => '',
-            'problem_warning' => '',
-            'review' => '',
-            'suggestion' => '',
+            'disqualify' => 'Postează Descalificare',
+            'hype' => 'Postează Hype!',
+            'mapper_note' => 'Postează Notă',
+            'nomination_reset' => 'Elimină toate Nominalizările',
+            'praise' => 'Postează Laudă',
+            'problem' => 'Postează Problemă',
+            'problem_warning' => 'Postează Problemă',
+            'review' => 'Postează Recenzie',
+            'suggestion' => 'Postează Sugestie',
         ],
 
         'mode' => [
@@ -151,7 +151,7 @@ return [
 
         'status-messages' => [
             'approved' => 'Acest beatmap a fost aprobat pe :date!',
-            'graveyard' => "Acest beatmap nu a fost actualizat din :date și este cel mai probabil abandonat de către creator...",
+            'graveyard' => "Acest beatmap nu a fost actualizat din :date așa că a fost marcat ca și inactiv...",
             'loved' => 'Acest beatmap a fost adăugat la Iubit pe :date!',
             'ranked' => 'Acest beatmap a fost clasat pe :date!',
             'wip' => 'Notă: Acest beatmap este marcat ca fiind în lucru de către creator.',
@@ -246,7 +246,7 @@ return [
                 'mode' => 'Mod',
                 'nsfw' => 'Conținut Obscen',
                 'played' => 'Jucat',
-                'rank' => 'Clasament Obținut',
+                'rank' => 'Grad Obținut',
                 'status' => 'Categorii',
             ],
             'sorting' => [

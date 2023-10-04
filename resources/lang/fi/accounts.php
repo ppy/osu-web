@@ -18,6 +18,10 @@ return [
             'new' => 'uusi sähköpostiosoite',
             'new_confirmation' => 'sähköpostivahvistus',
             'title' => 'Sähköposti',
+            'locked' => [
+                '_' => 'Ota yhteyttä :accounts, jos sinun tarvitsee päivittää sähköpostiosoitteesi.',
+                'accounts' => 'tilien tukiryhmään',
+            ],
         ],
 
         'legacy_api' => [

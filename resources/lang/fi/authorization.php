@@ -185,5 +185,8 @@ return [
                 'require_supporter_tag' => 'Sinun on oltava Tukija.',
             ],
         ],
+        'update_email' => [
+            'locked' => 'sähköpostiosoite on lukittu',
+        ],
     ],
 ];

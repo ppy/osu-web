@@ -79,15 +79,15 @@ return [
         ],
 
         'message_type_title' => [
-            'disqualify' => '',
-            'hype' => '',
-            'mapper_note' => '',
-            'nomination_reset' => '',
-            'praise' => '',
-            'problem' => '',
-            'problem_warning' => '',
-            'review' => '',
-            'suggestion' => '',
+            'disqualify' => 'Diskvalifikace Přízpěvku',
+            'hype' => 'Poslat Hype!',
+            'mapper_note' => 'Poslat Poznámku',
+            'nomination_reset' => 'Odstranit veškeré Nominace',
+            'praise' => 'Poslat Pochvalu',
+            'problem' => 'Poslat Problém',
+            'problem_warning' => 'Poslat Problém',
+            'review' => 'Poslat Hodnocení',
+            'suggestion' => 'Poslat Návrh',
         ],
 
         'mode' => [

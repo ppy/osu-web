@@ -27,7 +27,7 @@ return [
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => 'Seul le propriétaire de la beatmap ou le nominateur/membre du groupe NAT peut publier des notes sur le mapper.',
+            'mapper_note_wrong_user' => 'Seul le propriétaire de la beatmap, un Beatmap Nominator ou un membre de la NAT peut publier des notes sur le mappeur.',
         ],
 
         'vote' => [
@@ -184,6 +184,9 @@ return [
                 'not_owner' => 'Vous ne pouvez éditer que votre propre page, pas celle d\'autres utilisateurs.',
                 'require_supporter_tag' => 'Vous devez être un osu!supporter.',
             ],
+        ],
+        'update_email' => [
+            'locked' => 'l\'adresse e-mail est verrouillée',
         ],
     ],
 ];

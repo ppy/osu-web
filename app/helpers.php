@@ -379,6 +379,11 @@ function flag_url($countryCode)
     return "/assets/images/flags/{$baseFileName}.svg";
 }
 
+function format_rank(?int $rank): string
+{
+    return $rank !== null ? '#'.i18n_number_format($rank) : '-';
+}
+
 function get_valid_locale($requestedLocale)
 {
     if (in_array($requestedLocale, config('app.available_locales'), true)) {
@@ -454,13 +459,6 @@ function logout()
     $guard = auth()->guard();
     if ($guard instanceof Illuminate\Contracts\Auth\StatefulGuard) {
         $guard->logout();
-    }
-
-    // FIXME: Temporarily here for cross-site login, nuke after old site is... nuked.
-    foreach (['phpbb3_2cjk5_sid', 'phpbb3_2cjk5_sid_check'] as $key) {
-        foreach (['ppy.sh', 'osu.ppy.sh', ''] as $domain) {
-            cookie()->queueForget($key, null, $domain);
-        }
     }
 
     cleanup_cookies();
@@ -1171,22 +1169,6 @@ function user_color_style($color, $style)
     return sprintf('%s: %s', $style, e($color));
 }
 
-function base62_encode($input)
-{
-    $numbers = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $base = strlen($numbers);
-
-    $output = '';
-    $remaining = $input;
-
-    do {
-        $output = $numbers[$remaining % $base].$output;
-        $remaining = floor($remaining / $base);
-    } while ($remaining > 0);
-
-    return $output;
-}
-
 function display_regdate($user)
 {
     if ($user->user_regdate === null) {
@@ -1703,18 +1685,6 @@ function first_paragraph($html, $split_on = "\n")
     $match_pos = strpos($text, $split_on);
 
     return $match_pos === false ? $text : substr($text, 0, $match_pos);
-}
-
-function build_icon($prefix)
-{
-    switch ($prefix) {
-        case 'add':
-            return 'plus';
-        case 'fix':
-            return 'wrench';
-        case 'misc':
-            return 'question';
-    }
 }
 
 // clamps $number to be between $min and $max

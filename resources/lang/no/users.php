@@ -123,6 +123,14 @@ return [
         ],
     ],
 
+    'ogp' => [
+        'description' => [
+            '_' => '',
+            'country' => '',
+            'global' => '',
+        ],
+    ],
+
     'posts' => [
         'title' => 'Innleggene til :username',
     ],

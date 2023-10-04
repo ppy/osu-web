@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'deleted' => '[삭제된 사용자]',
+    'deleted' => '[삭제된 유저]',
 
     'beatmapset_activities' => [
         'title' => ":user님의 모딩 기록",
@@ -61,7 +61,7 @@ return [
             'submit' => '계정 만들기',
             'user_email' => '이메일',
             'user_email_confirmation' => '이메일 확인',
-            'username' => '사용자 이름',
+            'username' => '아이디',
 
             'tos_notice' => [
                 '_' => '계정을 만듦으로써 :link에 동의하는 것으로 간주됩니다.',
@@ -105,7 +105,7 @@ return [
         '_' => '로그인',
         'button' => '로그인',
         'button_posting' => '로그인 중...',
-        'email_login_disabled' => '현재 이메일로 로그인할 수 없습니다. 대신 유저 이름을 사용해 주세요.',
+        'email_login_disabled' => '현재 이메일로 로그인할 수 없습니다. 대신 아이디를 이용하여 로그인해 주세요.',
         'failed' => '계정 정보가 올바르지 않습니다',
         'forgot' => '비밀번호를 잊어버리셨나요?',
         'info' => '계속 하시려면 로그인 해주세요',
@@ -118,8 +118,16 @@ return [
         'username' => 'Username',
 
         'beta' => [
-            'main' => '베타 권한은 현재 일부 특수 사용자만 가지고 있습니다.',
+            'main' => '베타 엑세스는 현재 권한이 있는 사용자로 제한되어 있습니다.',
             'small' => '(osu! 서포터들도 곧 받게 될 거에요)',
+        ],
+    ],
+
+    'ogp' => [
+        'description' => [
+            '_' => '',
+            'country' => '',
+            'global' => '',
         ],
     ],
 
@@ -171,9 +179,9 @@ return [
         'joined_at' => ':date에 가입',
         'lastvisit' => ':date에 마지막으로 접속',
         'lastvisit_online' => '현재 온라인',
-        'missingtext' => '오타가 있는 것 같은데요! (또는 차단된 사용자일 수 있습니다)',
+        'missingtext' => '오타가 있는 것 같은데요! (또는 계정이 정지된 유저일 수 있습니다)',
         'origin_country' => ':country에 거주',
-        'previous_usernames' => '이전 사용자명',
+        'previous_usernames' => '이전 아이디',
         'plays_with' => '플레이 장비: :devices',
         'title' => ":username님의 프로필",
 
@@ -392,9 +400,9 @@ return [
                     'actor' => ':username으로',
 
                     'actions' => [
-                        'restriction' => 'Ban',
+                        'restriction' => '밴',
                         'silence' => '침묵',
-                        'tournament_ban' => '토너먼트 차단',
+                        'tournament_ban' => '토너먼트 밴',
                         'note' => '알림',
                     ],
                 ],
@@ -410,11 +418,11 @@ return [
             'website' => '웹사이트',
         ],
         'not_found' => [
-            'reason_1' => '사용자명이 변경되었을 가능성이 있습니다.',
+            'reason_1' => '유저 이름이 변경되었을 가능성이 있습니다.',
             'reason_2' => '보안 혹은 남용 문제 때문에 일시적으로 이 계정을 사용할 수 없습니다.',
             'reason_3' => '오타가 있나봐요!',
             'reason_header' => '아래 이유로 인해 발생했을 가능성이 있어요:',
-            'title' => '사용자를 찾을 수 없습니다! ;_;',
+            'title' => '유저를 찾을 수 없습니다! ;_;',
         ],
         'page' => [
             'button' => '프로필 페이지 수정',
@@ -472,7 +480,7 @@ return [
     'store' => [
         'from_client' => '게임 클라이언트에서 가입해주세요!',
         'from_web' => 'osu! 웹사이트를 통해 가입해주세요!',
-        'saved' => '사용자 계정 생성됨',
+        'saved' => '계정 생성됨',
     ],
     'verify' => [
         'title' => '계정 인증',

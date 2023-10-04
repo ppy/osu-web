@@ -72,7 +72,7 @@ return [
         'cancel_not_allowed' => 'Cette commande ne peut pas être annulée pour le moment.',
         'invoice' => 'Afficher la facture',
         'no_orders' => 'Aucune commande à voir.',
-        'paid_on' => 'Commande passée le :date',
+        'paid_on' => 'Commande passée :date',
         'resume' => 'Reprendre la commande',
         'shopify_expired' => 'Le lien de commande pour cette commande a expiré.',
 

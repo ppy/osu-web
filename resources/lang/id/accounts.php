@@ -18,12 +18,16 @@ return [
             'new' => 'email baru',
             'new_confirmation' => 'konfirmasi email',
             'title' => 'Email',
+            'locked' => [
+                '_' => 'Harap hubungi :accounts jika kamu ingin memperbarui email.',
+                'accounts' => 'tim bantuan akun',
+            ],
         ],
 
         'legacy_api' => [
             'api' => 'api',
             'irc' => 'irc',
-            'title' => 'API lawas',
+            'title' => 'API Lawas',
         ],
 
         'password' => [

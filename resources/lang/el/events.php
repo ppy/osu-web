@@ -25,4 +25,8 @@ return [
         'qualified' => 'πιστοποιημένο',
         'ranked' => 'ranked',
     ],
+
+    'value' => [
+        'rank' => '',
+    ],
 ];

@@ -11,13 +11,13 @@
   transition: @forum-item-animate;
 
   .default-border-radius();
-  background-color: @forum-item-background-color;
+  background-color: var(--forum-item-background-color);
   font-size: @font-size--normal;
   position: relative;
   --latest-post-colour: hsl(var(--hsl-c2));
 
   &:hover {
-    background-color: @forum-item-background-color-hover;
+    background-color: var(--forum-item-background-color-hover);
   }
 
   @media @desktop {

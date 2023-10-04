@@ -5,7 +5,7 @@
 
 return [
     'event' => [
-        'approve' => 'Approuvé.',
+        'approve' => 'Approuvée.',
         'beatmap_owner_change' => 'Propriétaire de la difficulté :beatmap remplacé par :new_user.',
         'discussion_delete' => 'Un modérateur a supprimé la discussion :discussion.',
         'discussion_lock' => 'La discussion pour cette beatmap a été désactivée. (:text)',

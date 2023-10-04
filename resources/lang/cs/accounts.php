@@ -18,6 +18,10 @@ return [
             'new' => 'nový e-mail',
             'new_confirmation' => 'ověření e-mailu',
             'title' => 'E-mail',
+            'locked' => [
+                '_' => 'Kontaktujte prosím :accounts, pokud potřebujete aktualizovat svoji emailovou adresu.',
+                'accounts' => 'tým podpory pro účty',
+            ],
         ],
 
         'legacy_api' => [

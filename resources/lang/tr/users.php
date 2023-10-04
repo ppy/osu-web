@@ -123,6 +123,14 @@ return [
         ],
     ],
 
+    'ogp' => [
+        'description' => [
+            '_' => '',
+            'country' => '',
+            'global' => '',
+        ],
+    ],
+
     'posts' => [
         'title' => ':username\'in gönderileri',
     ],
@@ -387,7 +395,7 @@ return [
                     'date' => 'tarih',
                     'action' => 'eylem',
                     'length' => 'uzunluk',
-                    'length_indefinite' => '',
+                    'length_indefinite' => 'Belirsiz',
                     'description' => 'açıklama',
                     'actor' => ':username tarafından',
 
