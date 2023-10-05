@@ -58,7 +58,11 @@ class BeatmapPacksController extends Controller
         $userCompletionData = $pack->userCompletionData(Auth::user());
 
         if (is_api_request()) {
-            return json_item($pack, new BeatmapPackTransformer($userCompletionData), ['beatmapsets']);
+            return json_item(
+                $pack,
+                new BeatmapPackTransformer($userCompletionData),
+                ['beatmapsets', 'user_completion_data']
+            );
         }
 
         $view = request('format') === 'raw' ? 'packs.raw' : 'packs.show';

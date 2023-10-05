@@ -11,6 +11,7 @@ class BeatmapPackTransformer extends TransformerAbstract
 {
     protected array $availableIncludes = [
         'beatmapsets',
+        'user_completion_data',
     ];
 
     private $userCompletionData;
@@ -32,12 +33,19 @@ class BeatmapPackTransformer extends TransformerAbstract
             'playmode' => $pack->playmode,
             'tag' => $pack->tag,
             'url' => $pack->url,
-            'userCompletionData' => $this->userCompletionData,
         ];
     }
 
     public function includeBeatmapsets(BeatmapPack $pack)
     {
         return $this->collection($pack->beatmapsets, new BeatmapsetTransformer());
+    }
+
+    public function includeUserCompletionData(BeatmapPack $pack)
+    {
+        return $this->primitive([
+            'completed' => $this->userCompletionData['completed'],
+            'beatmapset_ids' => $this->userCompletionData['beatmapset_ids'],
+        ]);
     }
 }
