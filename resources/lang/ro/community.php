@@ -86,7 +86,7 @@ return [
 
             'beatmap_filters' => [
                 'title' => 'Filtre Beatmap-uri',
-                'description' => 'Filtrează căutările de beatmap-uri prin mape jucate și nejucate, dar și prin clasamentul obținut.',
+                'description' => 'Filtrează căutările de beatmap-uri prin mape jucate și nejucate, dar și prin gradul obținut.',
             ],
 
             'yellow_fellow' => [

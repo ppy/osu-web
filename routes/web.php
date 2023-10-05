@@ -212,6 +212,10 @@ Route::group(['middleware' => ['web']], function () {
             Route::get('verify', 'AccountController@verifyLink');
             Route::post('verify', 'AccountController@verify')->name('verify');
             Route::put('/', 'AccountController@update')->name('update');
+
+            Route::get('github-users/callback', 'Account\GithubUsersController@callback')->name('github-users.callback');
+            Route::resource('github-users', 'Account\GithubUsersController', ['only' => ['create']]);
+            Route::delete('github-users', 'Account\GithubUsersController@destroy')->name('github-users.destroy');
         });
 
         Route::get('quick-search', 'HomeController@quickSearch')->name('quick-search');

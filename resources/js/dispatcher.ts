@@ -5,7 +5,7 @@ import DispatcherAction from 'actions/dispatcher-action';
 import DispatchListener from './dispatch-listener';
 
 export default class Dispatcher {
-  private listeners = new Set<DispatchListener>();
+  private readonly listeners = new Set<DispatchListener>();
 
   get size() {
     return this.listeners.size;

@@ -19,8 +19,8 @@ return [
             'new_confirmation' => 'konfirmasi email',
             'title' => 'Email',
             'locked' => [
-                '_' => '',
-                'accounts' => '',
+                '_' => 'Harap hubungi :accounts jika kamu ingin memperbarui email.',
+                'accounts' => 'tim bantuan akun',
             ],
         ],
 

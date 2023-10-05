@@ -5,7 +5,7 @@
 
 namespace App\Transformers\Multiplayer;
 
-use App\Models\Multiplayer\Score;
+use App\Models\Multiplayer\ScoreLink;
 use App\Models\Multiplayer\UserScoreAggregate;
 use App\Transformers\TransformerAbstract;
 use App\Transformers\UserCompactTransformer;
@@ -33,7 +33,7 @@ class UserScoreAggregateTransformer extends TransformerAbstract
 
     public function includePlaylistItemAttempts(UserScoreAggregate $score)
     {
-        $scoreAggs = Score::where([
+        $scoreAggs = ScoreLink::where([
                 'room_id' => $score->room_id,
                 'user_id' => $score->user_id,
             ])->groupBy('playlist_item_id')
@@ -44,7 +44,7 @@ class UserScoreAggregateTransformer extends TransformerAbstract
 
         foreach ($scoreAggs as $scoreAgg) {
             $attempts[] = [
-                'attempts' => $scoreAgg->attempts,
+                'attempts' => $scoreAgg->getRawAttribute('attempts'),
                 'id' => $scoreAgg->playlist_item_id,
             ];
         }

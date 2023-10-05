@@ -147,7 +147,7 @@ return [
             '_' => 'Foorumin aihe',
 
             'forum_topic_reply' => [
-                '_' => 'Uusi foorumi vastaus',
+                '_' => 'Uusi foorumivastaus',
                 'forum_topic_reply' => ':username vastasi foorumi aiheeseen ":title".',
                 'forum_topic_reply_compact' => ':username vastasi',
             ],

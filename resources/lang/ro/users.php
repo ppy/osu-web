@@ -75,8 +75,8 @@ return [
         'warning' => "În cazul în care ați încălcat o regulă, vă rugăm să notați că în general este o perioadă de răcire de o lună în care vom considera orice cerere de amnesty. După această perioadă, simtete liber să ne contactezi dacă o găsești necesar. Vă rugăm să notați că după creearea unui cont nou ați avut unul dezactivat va rezulta într-un <strong>extesie în acestă răcire de o lună</strong>. Vă rugăm să notați și că pentru <strong>orice cont creat, încalci regulile în continuare</strong>. Vă recomandăm puternic să nu faceți asta!",
 
         'if_mistake' => [
-            '_' => 'Dacă credeți că a fost o greșeală, ești bine venit să ne contactezi (prin :email sau faceți clic pe "?" din colțul din drepta-jos de pe această pagină). Vă rugăm rețineți că suntem foarte siguri pe acțiunile noastre, care sunt bazate pe date concrete. Ne rezervăm dreptul de a vă respinge dacă considerăm că sunteți dezonest.',
-            'email' => 'email',
+            '_' => 'Dacă credeți că a fost o greșeală, ești bine venit să ne contactezi (prin :email sau faceți clic pe "?" din colțul din drepta-jos de pe această pagină). Vă rugăm rețineți că suntem foarte siguri pe acțiunile noastre, care sunt bazate pe date concrete. Ne rezervăm dreptul de a vă respinge dacă considerăm că sunteți necinstit intenționat.',
+            'email' => 'e-mail',
         ],
 
         'reasons' => [
@@ -105,7 +105,7 @@ return [
         '_' => 'Autentifică-te',
         'button' => 'Autentifică-te',
         'button_posting' => 'Se conectează...',
-        'email_login_disabled' => 'Înregistrarea cu email este momentan dezactivată. Vă rugăm folosiți numele de utilizator în schimb.',
+        'email_login_disabled' => 'Conectarea prin e-mail este momentan dezactivată. Vă rugăm să folosiți numele de utilizator în schimb.',
         'failed' => 'Conectare incorectă',
         'forgot' => 'Ți-ai uitat parola?',
         'info' => 'Pentru a continua, vă rugam să vă autentificaţi',
@@ -120,6 +120,14 @@ return [
         'beta' => [
             'main' => 'Accesul beta este momentan limitat la utilizatorii autorizați.',
             'small' => '(suporterii osu! vor primi acces curând)',
+        ],
+    ],
+
+    'ogp' => [
+        'description' => [
+            '_' => '',
+            'country' => '',
+            'global' => '',
         ],
     ],
 
@@ -228,7 +236,7 @@ return [
                     'title' => 'Beatmap-uri Favorite',
                 ],
                 'graveyard' => [
-                    'title' => 'Beatmap-uri inactive',
+                    'title' => 'Beatmap-uri Inactive',
                 ],
                 'guest' => [
                     'title' => 'Beatmap-uri cu Participare ca Oaspete',

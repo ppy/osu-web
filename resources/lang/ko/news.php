@@ -5,7 +5,7 @@
 
 return [
     'index' => [
-        'title_page' => 'osu!소식',
+        'title_page' => 'osu!news',
 
         'nav' => [
             'newer' => '최근 글',
@@ -13,7 +13,7 @@ return [
         ],
 
         'title' => [
-            '_' => '소식',
+            '_' => '뉴스',
             'info' => '메인 화면',
         ],
     ],
@@ -27,7 +27,7 @@ return [
         ],
 
         'title' => [
-            '_' => '소식',
+            '_' => '뉴스',
             'info' => '게시글',
         ],
     ],

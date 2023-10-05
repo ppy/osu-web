@@ -26,8 +26,8 @@ return [
         ],
 
         'beatmapsets' => [
-            'show' => '',
-            'discussions' => '',
+            'show' => 'tiedot',
+            'discussions' => 'keskustelut',
         ],
 
         'changelog' => [
@@ -51,8 +51,8 @@ return [
 
         'users' => [
             'modding' => 'modaus',
-            'playlists' => '',
-            'realtime' => '',
+            'playlists' => 'soittolistat',
+            'realtime' => 'moninpeli',
             'show' => 'tiedot',
         ],
     ],
@@ -75,8 +75,8 @@ return [
         ],
         'help' => [
             '_' => 'apua',
-            'getAbuse' => 'ilmoita väärinkäyttöstä',
-            'getFaq' => 'ukk',
+            'getAbuse' => 'ilmoita väärinkohtelusta',
+            'getFaq' => 'usein kysytyt',
             'getRules' => 'säännöt',
             'getSupport' => 'tarvitsen siis oikeasti apua!',
         ],
@@ -201,7 +201,7 @@ return [
     ],
 
     'popup_search' => [
-        'initial' => 'Tee haku kirjoittamalla!',
+        'initial' => 'Kirjoita etsiäksesi!',
         'retry' => 'Haku epäonnistui. Yritä uudelleen napsauttamalla.',
     ],
 ];

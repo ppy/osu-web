@@ -7,7 +7,7 @@
   font-size: @font-size--normal;
   display: flex;
   margin: 2px -@forum-item-overflow;
-  background-color: @forum-item-background-color;
+  background-color: var(--forum-item-background-color);
   .default-border-radius();
   padding: 7px 0 7px @forum-item-overflow;
   color: @osu-colour-c2;
@@ -15,7 +15,7 @@
   position: relative;
 
   &:hover {
-    background-color: @forum-item-background-color-hover;
+    background-color: var(--forum-item-background-color-hover);
   }
 
   @media @desktop {
@@ -24,7 +24,14 @@
     padding-left: @forum-item-overflow-desktop;
   }
 
+  &--old {
+    opacity: 0.7;
+  }
+
   &--deleted {
+    --forum-item-background-color: hsl(var(--hsl-red-4));
+    --forum-item-background-color-hover: hsl(var(--hsl-red-3));
+
     opacity: 0.5;
   }
 

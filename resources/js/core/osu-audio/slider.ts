@@ -20,9 +20,9 @@ export default class Slider {
   static readonly startEvents = 'mousedown touchstart';
   private active = true;
 
-  private bar: HTMLElement;
-  private endCallback?: Callback;
-  private moveCallback?: Callback;
+  private readonly bar: HTMLElement;
+  private readonly endCallback?: Callback;
+  private readonly moveCallback?: Callback;
   private percentage = 0;
 
   private constructor(params: Params) {
@@ -72,7 +72,7 @@ export default class Slider {
 
   getPercentage = () => this.percentage;
 
-  private move = (clientX: number) => {
+  private readonly move = (clientX: number) => {
     // this function is async (called by rAF) so make sure the object is still valid
     if (!this.active) return;
 
@@ -88,7 +88,7 @@ export default class Slider {
     this.bar.style.setProperty('--bar', this.percentage.toString());
   };
 
-  private onMove = (e: JQuery.MouseMoveEvent | JQuery.TouchMoveEvent) => {
+  private readonly onMove = (e: JQuery.MouseMoveEvent | JQuery.TouchMoveEvent) => {
     const x = getX(e);
 
     requestAnimationFrame(() => {

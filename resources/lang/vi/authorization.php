@@ -23,7 +23,7 @@ return [
             'set_metadata' => 'Bạn phải chọn thể loại nhạc và ngôn ngữ trước khi nominating.',
         ],
         'resolve' => [
-            'not_owner' => 'Chỉ có chủ thớt và chủ beatmap mới có thể đánh dấu cuộc thảo luận là đã được giải quyết.',
+            'not_owner' => 'Chỉ có người mở thread và chủ beatmap mới có thể đánh dấu cuộc thảo luận là đã được giải quyết.',
         ],
 
         'store' => [
@@ -31,7 +31,7 @@ return [
         ],
 
         'vote' => [
-            'bot' => "Không thể bầu trên thảo luận tạo bởi bot",
+            'bot' => "Không thể bình chọn trên thảo luận tạo bởi bot",
             'limit_exceeded' => 'Vui lòng đợi một lúc trước khi bình chọn thêm',
             'owner' => "Không thể bình chọn cuộc thảo luận của bạn.",
             'wrong_beatmapset_state' => 'Chỉ có thể bình chọn cuộc thảo luận của beatmap ở trạng thái pending.',
@@ -46,7 +46,7 @@ return [
         ],
 
         'edit' => [
-            'not_owner' => 'Bài đăng chỉ có thể được chỉnh sửa bởi người đăng.',
+            'not_owner' => 'Chỉ người đăng mới có thể chỉnh sửa bài đăng.',
             'resolved' => 'Bạn không thể sửa một bài đăng về một thảo luận đã được giải quyết.',
             'system_generated' => 'Không thể chỉnh sửa bài đăng được tạo tự động.',
         ],
@@ -186,7 +186,7 @@ return [
             ],
         ],
         'update_email' => [
-            'locked' => '',
+            'locked' => 'địa chỉ email bị khóa',
         ],
     ],
 ];
