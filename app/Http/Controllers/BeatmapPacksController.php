@@ -22,6 +22,22 @@ class BeatmapPacksController extends Controller
         $this->middleware('require-scopes:public');
     }
 
+    /**
+     * Get Beatmap Packs
+     *
+     * Returns a list of beatmap packs.
+     *
+     * ---
+     *
+     * ### Response format
+     *
+     * Field         | Type
+     * ------------- | -----------------------------
+     * beatmap_packs | [BeatmapPack](#beatmappack)[]
+     *
+     * @queryParam type string [BeatmapPackType](#beatmappacktype) of the beatmap packs to be returned. Defaults to `standard`.
+     * @queryParam page integer Beatmap pack page.
+     */
     public function index()
     {
         $type = presence(get_string(Request::input('type'))) ?? BeatmapPack::DEFAULT_TYPE;
@@ -34,7 +50,7 @@ class BeatmapPacksController extends Controller
 
         if (is_api_request()) {
             return [
-                'beatmap_packs' => json_collection($page, new BeatmapPackTransformer(), ['beatmapsets']),
+                'beatmap_packs' => json_collection($page, new BeatmapPackTransformer()),
             ];
         }
 
@@ -44,6 +60,25 @@ class BeatmapPacksController extends Controller
         ]);
     }
 
+    /**
+     * Get Beatmap Pack
+     *
+     * Gets the beatmap pack for the specified beatmap pack tag.
+     *
+     * ---
+     *
+     * ### Response format
+     *
+     * Returns [BeatmapPack](#beatmappack) object.
+     * The following attributes are always included as well:
+     *
+     * Attribute            |
+     * -------------------- |
+     * beatmapsets          |
+     * user_completion_data |
+     *
+     * @urlParam pack string required The tag of the beatmap pack to be returned.
+     */
     public function show($idOrTag)
     {
         $query = BeatmapPack::default();
