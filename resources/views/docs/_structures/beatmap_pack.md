@@ -16,7 +16,7 @@ url               | string                  | The download url of the beatmap pa
 
 ### Optional Attributes
 
-Field              | Type                        | Description
------------------- | --------------------------- | -----------
-beatmapsets        | [Beatmapset](#beatmapset)[] |
-userCompletionData |                             |
+Field                | Type                        | Description
+-------------------- | --------------------------- | -----------
+beatmapsets          | [Beatmapset](#beatmapset)[] |
+user_completion_data |                             |
