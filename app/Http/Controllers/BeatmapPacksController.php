@@ -33,7 +33,9 @@ class BeatmapPacksController extends Controller
         $page = $packs->paginate(static::PER_PAGE);
 
         if (is_api_request()) {
-            return json_collection($page, new BeatmapPackTransformer(), ['beatmapsets']);
+            return [
+                'beatmap_packs' => json_collection($page, new BeatmapPackTransformer(), ['beatmapsets']),
+            ];
         }
 
         return ext_view('packs.index', [
@@ -46,7 +48,7 @@ class BeatmapPacksController extends Controller
     {
         $query = BeatmapPack::default();
 
-        if (ctype_digit($idOrTag)) {
+        if (!is_api_request() && ctype_digit($idOrTag)) {
             $pack = $query->findOrFail($idOrTag);
 
             return ujs_redirect(route('packs.show', $pack));
