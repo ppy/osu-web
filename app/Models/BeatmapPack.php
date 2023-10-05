@@ -79,7 +79,7 @@ class BeatmapPack extends Model
 
     public function getMode(): string
     {
-        return Beatmap::modeStr($this->play_mode);
+        return Beatmap::modeStr($this->playmode);
     }
 
     public function getRouteKeyName(): string
