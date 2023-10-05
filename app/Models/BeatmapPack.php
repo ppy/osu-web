@@ -77,6 +77,11 @@ class BeatmapPack extends Model
         );
     }
 
+    public function getMode(): string
+    {
+        return Beatmap::modeStr($this->play_mode);
+    }
+
     public function getRouteKeyName(): string
     {
         return 'tag';

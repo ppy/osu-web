@@ -27,10 +27,10 @@ class BeatmapPackTransformer extends TransformerAbstract
             'author' => $pack->author,
             'date' => $pack->date,
             'hidden' => $pack->hidden,
+            'mode' => $pack->getMode(),
             'name' => $pack->name,
-            'pack_id' => $pack->pack_id,
             'no_diff_reduction' => $pack->no_diff_reduction,
-            'playmode' => $pack->playmode,
+            'pack_id' => $pack->pack_id,
             'tag' => $pack->tag,
             'url' => $pack->url,
         ];
