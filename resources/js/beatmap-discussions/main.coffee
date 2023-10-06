@@ -359,6 +359,7 @@ export class Main extends React.PureComponent
 
 
   handleNewDiscussionFocus: =>
+    # Bug with position: sticky and scroll-padding: https://bugs.chromium.org/p/chromium/issues/detail?id=1466472
     document.documentElement.style.removeProperty '--scroll-padding-top-extra'
 
 
