@@ -164,6 +164,7 @@ export class Main extends React.PureComponent
                   currentDiscussions: @currentDiscussions()
                   innerRef: @newDiscussionRef
                   mode: @state.currentMode
+                  onFocus: @handleNewDiscussionFocus
                   pinned: @state.pinnedNewDiscussion
                   setPinned: @setPinnedNewDiscussion
                   stickTo: @modeSwitcherRef
@@ -355,6 +356,10 @@ export class Main extends React.PureComponent
 
   groupedBeatmaps: (discussionSet) =>
     @cache.groupedBeatmaps ?= BeatmapHelper.group _.values(@beatmaps())
+
+
+  handleNewDiscussionFocus: =>
+    document.documentElement.style.removeProperty '--scroll-padding-top-extra'
 
 
   jumpToDiscussionByHash: =>
