@@ -11,6 +11,9 @@ use App\Transformers\BeatmapPackTransformer;
 use Auth;
 use Request;
 
+/**
+ * @group Beatmap Packs
+ */
 class BeatmapPacksController extends Controller
 {
     private const PER_PAGE = 100;
