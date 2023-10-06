@@ -14,8 +14,10 @@ use App\Models\Contest;
 use App\Models\ContestEntry;
 use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\Room;
-use App\Models\Multiplayer\Score as MultiplayerScore;
+use App\Models\Multiplayer\ScoreLink as MultiplayerScoreLink;
+use App\Models\Multiplayer\UserScoreAggregate;
 use App\Models\User;
+use Carbon\Carbon;
 use Tests\TestCase;
 
 class ContestTest extends TestCase
@@ -56,28 +58,37 @@ class ContestTest extends TestCase
         ]);
         $entries = ContestEntry::factory()->count(2)->create(['contest_id' => $contest->getKey()]);
 
-        if (!$canVote) {
-            $this->expectException(InvariantException::class);
-        }
-
         $user = $loggedIn ? User::factory()->create() : null;
 
         if ($loggedIn && $played) {
             $userId = $user->getKey();
-            $endedAt = now();
+            $endedAt = json_time(Carbon::now());
             foreach ($beatmapsets as $beatmapset) {
                 $room = array_rand_val($rooms);
                 $playlistItem = $room
                     ->playlist()
                     ->whereIn('beatmap_id', array_column($beatmapset->beatmaps->all(), 'beatmap_id'))
                     ->first();
-                MultiplayerScore::factory()->create([
-                    'ended_at' => $completed ? $endedAt : null,
-                    'passed' => $passed,
+
+                $scoreLink = MultiplayerScoreLink::factory()->state([
                     'playlist_item_id' => $playlistItem,
                     'user_id' => $userId,
                 ]);
+                if ($completed) {
+                    $scoreLink = $scoreLink->completed([], [
+                        'ended_at' => $endedAt,
+                        'passed' => $passed,
+                    ]);
+                }
+                $scoreLink->create();
             }
+            foreach ($rooms as $room) {
+                UserScoreAggregate::lookupOrDefault($user, $room)->recalculate();
+            }
+        }
+
+        if (!$canVote) {
+            $this->expectException(InvariantException::class);
         }
 
         $contest->assertVoteRequirement($user);

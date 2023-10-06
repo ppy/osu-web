@@ -47,12 +47,16 @@ class BeatmapsetsController extends Controller
     {
         $canAdvancedSearch = priv_check('BeatmapsetAdvancedSearch')->can();
         // only cache if guest user and guest advanced search is disabled
-        $beatmapsets = !auth()->check() && !$canAdvancedSearch
-            ? cache_remember_mutexed('beatmapsets_guest', 600, [], fn () => $this->getSearchResponse([])['content'])
-            : $this->getSearchResponse()['content'];
+        $beatmapsetsJsonString = !Auth::check() && !$canAdvancedSearch
+            ? cache_remember_mutexed(
+                'beatmapsets_guest_str',
+                600,
+                '{}',
+                fn () => json_encode($this->getSearchResponse([])['content'])
+            ) : json_encode($this->getSearchResponse()['content']);
 
         return ext_view('beatmapsets.index', [
-            'beatmapsets' => $beatmapsets,
+            'beatmapsetsJsonString' => $beatmapsetsJsonString,
             'canAdvancedSearch' => $canAdvancedSearch,
         ]);
     }
