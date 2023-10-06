@@ -67,7 +67,7 @@ use Request;
  * @property-read Collection<Follow> $follows
  * @property-read Collection<Forum\Post> $forumPosts
  * @property-read Collection<static> $friends
- * @property-read Collection<GithubUser> $githubUsers
+ * @property-read GithubUser|null $githubUser
  * @property-read Collection<KudosuHistory> $givenKudosu
  * @property int $group_id
  * @property bool $hide_presence
@@ -881,7 +881,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'follows',
             'forumPosts',
             'friends',
-            'githubUsers',
+            'githubUser',
             'givenKudosu',
             'legacyIrcKey',
             'monthlyPlaycounts',
@@ -1038,7 +1038,9 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function isActive()
     {
-        return $this->user_lastvisit > Carbon::now()->subMonths();
+        static $monthInSecond = 30 * 86400;
+
+        return time() - $this->getRawAttribute('user_lastvisit') < $monthInSecond;
     }
 
     /*
@@ -1048,13 +1050,13 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
      */
     public function isInactive(): bool
     {
-        return $this->user_lastvisit->addDays(config('osu.user.inactive_days_verification'))->isPast();
+        return time() - $this->getRawAttribute('user_lastvisit') > config('osu.user.inactive_seconds_verification');
     }
 
     public function isOnline()
     {
         return !$this->hide_presence
-            && $this->user_lastvisit > Carbon::now()->subMinutes(config('osu.user.online_window'));
+            && time() - $this->getRawAttribute('user_lastvisit') < config('osu.user.online_window');
     }
 
     public function isPrivileged()
@@ -1166,9 +1168,9 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->hasMany(UserBadge::class);
     }
 
-    public function githubUsers()
+    public function githubUser(): HasOne
     {
-        return $this->hasMany(GithubUser::class);
+        return $this->hasOne(GithubUser::class);
     }
 
     public function legacyIrcKey(): HasOne
@@ -2003,7 +2005,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     {
         return $query
             ->where('user_allow_viewonline', true)
-            ->whereRaw('user_lastvisit > UNIX_TIMESTAMP(DATE_SUB(NOW(), INTERVAL '.config('osu.user.online_window').' MINUTE))');
+            ->where('user_lastvisit', '>', time() - config('osu.user.online_window'));
     }
 
     public function scopeEagerloadForListing($query)

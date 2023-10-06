@@ -10,15 +10,22 @@ namespace App\Transformers\Score;
 use App\Models\LegacyMatch;
 use App\Models\Score\Model as ScoreModel;
 use App\Models\Solo\Score as SoloScore;
+use App\Models\Traits\SoloScoreInterface;
 use App\Transformers\TransformerAbstract;
 
 class CurrentUserAttributesTransformer extends TransformerAbstract
 {
-    public function transform(LegacyMatch\Score|ScoreModel|SoloScore $score): array
+    public function transform(LegacyMatch\Score|ScoreModel|SoloScoreInterface $score): array
     {
-        $pinnable = $score instanceof ScoreModel
-            ? $score->best
-            : ($score instanceof SoloScore ? $score : null);
+        if ($score instanceof ScoreModel) {
+            $pinnable = $score->best;
+        } elseif ($score instanceof SoloScore) {
+            $pinnable = $score;
+        } elseif ($score instanceof MultiplayerScoreLink) {
+            $pinnable = $score->score;
+        } else {
+            $pinnable = null;
+        }
 
         return [
             'pin' => $pinnable !== null && $this->isOwnScore($pinnable)

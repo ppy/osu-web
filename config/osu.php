@@ -124,6 +124,10 @@ return [
     'git-sha' => presence(env('GIT_SHA'))
         ?? (file_exists(__DIR__.'/../version') ? trim(file_get_contents(__DIR__.'/../version')) : null)
         ?? 'unknown-version',
+    'github' => [
+        'client_id' => presence(env('GITHUB_CLIENT_ID')),
+        'client_secret' => presence(env('GITHUB_CLIENT_SECRET')),
+    ],
     'is_development_deploy' => get_bool(env('IS_DEVELOPMENT_DEPLOY')) ?? true,
     'landing' => [
         'video_url' => env('LANDING_VIDEO_URL', 'https://assets.ppy.sh/media/landing.mp4'),
@@ -238,7 +242,7 @@ return [
         'allowed_rename_groups' => explode(' ', env('USER_ALLOWED_RENAME_GROUPS', 'default')),
         'bypass_verification' => get_bool(env('USER_BYPASS_VERIFICATION')) ?? false,
         'hide_pinned_solo_scores' => get_bool(env('USER_HIDE_PINNED_SOLO_SCORES')) ?? true,
-        'inactive_days_verification' => get_int(env('USER_INACTIVE_DAYS_VERIFICATION')) ?? 180,
+        'inactive_seconds_verification' => (get_int(env('USER_INACTIVE_DAYS_VERIFICATION')) ?? 180) * 86400,
         'min_plays_for_posting' => get_int(env('USER_MIN_PLAYS_FOR_POSTING')) ?? 10,
         'min_plays_allow_verified_bypass' => get_bool(env('USER_MIN_PLAYS_ALLOW_VERIFIED_BYPASS')) ?? true,
         'post_action_verification' => get_bool(env('USER_POST_ACTION_VERIFICATION')) ?? true,
@@ -256,7 +260,7 @@ return [
         'max_multiplayer_rooms_supporter' => get_int(env('USER_MAX_MULTIPLAYER_ROOMS_SUPPORTER')) ?? 5,
         'max_score_pins' => get_int(env('USER_MAX_SCORE_PINS')) ?? 10,
         'max_score_pins_supporter' => get_int(env('USER_MAX_SCORE_PINS_SUPPORTER')) ?? 50,
-        'online_window' => intval(env('USER_ONLINE_WINDOW', 10)),
+        'online_window' => intval(env('USER_ONLINE_WINDOW', 10)) * 60,
         'password_reset' => [
             'expires_hour' => 2,
             'key_length' => 8,

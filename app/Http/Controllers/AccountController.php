@@ -13,6 +13,7 @@ use App\Libraries\UserVerification;
 use App\Libraries\UserVerificationState;
 use App\Mail\UserEmailUpdated;
 use App\Mail\UserPasswordUpdated;
+use App\Models\GithubUser;
 use App\Models\OAuth\Client;
 use App\Models\UserAccountHistory;
 use App\Models\UserNotificationOption;
@@ -124,10 +125,15 @@ class AccountController extends Controller
 
         $notificationOptions = $user->notificationOptions->keyBy('name');
 
+        $githubUser = GithubUser::canAuthenticate() && $user->githubUser !== null
+            ? json_item($user->githubUser, 'GithubUser')
+            : null;
+
         return ext_view('accounts.edit', compact(
             'authorizedClients',
             'blocks',
             'currentSessionId',
+            'githubUser',
             'legacyApiKeyJson',
             'legacyIrcKeyJson',
             'notificationOptions',

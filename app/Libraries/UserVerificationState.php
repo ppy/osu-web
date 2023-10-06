@@ -8,24 +8,17 @@ namespace App\Libraries;
 use App\Events\UserSessionEvent;
 use App\Exceptions\UserVerificationException;
 use App\Libraries\Session\SessionManager;
-use App\Models\LegacySession;
 use App\Models\User;
 
 class UserVerificationState
 {
     protected $user;
 
-    private $legacySession = [];
-    private $legacySessionQueryWhere;
     private $session;
 
     public static function fromCurrentRequest()
     {
-        return new static(
-            auth()->user(),
-            session(),
-            LegacySession::queryWhereFromRequest(request())
-        );
+        return new static(auth()->user(), session());
     }
 
     public static function fromVerifyLink($linkKey)
@@ -48,16 +41,11 @@ class UserVerificationState
         $session->setId($params['sessionId']);
         $session->start();
 
-        return new static(
-            User::find($params['userId']),
-            $session,
-            $params['legacySessionQueryWhere']
-        );
+        return new static(User::find($params['userId']), $session);
     }
 
-    private function __construct($user, $session, $legacySessionQueryWhere)
+    private function __construct($user, $session)
     {
-        $this->legacySessionQueryWhere = $legacySessionQueryWhere;
         $this->session = $session;
         $this->user = $user;
 
@@ -75,7 +63,6 @@ class UserVerificationState
         return [
             'userId' => $this->user->getKey(),
             'sessionId' => $this->session->getId(),
-            'legacySessionQueryWhere' => $this->legacySessionQueryWhere,
         ];
     }
 
@@ -121,35 +108,7 @@ class UserVerificationState
             return true;
         }
 
-        if ($this->isDoneLegacy()) {
-            $this->markVerified();
-
-            return true;
-        }
-
         return false;
-    }
-
-    public function isDoneLegacy()
-    {
-        return $this->legacySession() !== null
-            && $this->legacySession()->verified;
-    }
-
-    public function legacySession()
-    {
-        if ($this->legacySessionQueryWhere === null) {
-            return;
-        }
-
-        if (!array_key_exists('value', $this->legacySession)) {
-            $this->legacySession['value'] = LegacySession
-                ::where($this->legacySessionQueryWhere)
-                ->where(['session_user_id' => $this->user->getKey()])
-                ->first();
-        }
-
-        return $this->legacySession['value'];
     }
 
     public function markVerified()
@@ -159,10 +118,6 @@ class UserVerificationState
         $this->session->forget('verification_key');
         $this->session->put('verified', true);
         $this->session->save();
-
-        if ($this->legacySession() !== null) {
-            $this->legacySession()->update(['verified' => true]);
-        }
 
         UserSessionEvent::newVerified($this->user->getKey(), $this->session->getKey())->broadcast();
     }
