@@ -10,7 +10,7 @@ namespace Database\Seeders\ModelSeeders;
 use App\Models\Beatmap;
 use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\Room;
-use App\Models\Multiplayer\Score;
+use App\Models\Multiplayer\ScoreLink;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
@@ -39,18 +39,22 @@ class MultiplayerSeeder extends Seeder
                     $attempts = rand(1, 10);
                     for ($i = 0; $i < $attempts; $i++) {
                         $completed = rand(0, 100) > 20;
-                        Score::factory()->create([
+                        $scoreLink = ScoreLink::factory()->make([
                             'playlist_item_id' => $playlistItem->getKey(),
                             'user_id' => $user->getKey(),
                             'beatmap_id' => $beatmap->getKey(),
                             'room_id' => $room->getKey(),
-                            'total_score' => rand(10000, 100000),
-                            'started_at' => Carbon::now()->subMinutes(5),
-                            'ended_at' => $completed ? Carbon::now() : null,
-                            'passed' => $completed ? rand(0, 100) > 20 : null,
-                            'accuracy' => rand(50, 100) / 100,
-                            'pp' => rand(100, 200),
                         ]);
+                        if ($completed) {
+                            $scoreLink = $scoreLink->completed([
+                                'pp' => rand(100, 200),
+                            ], [
+                                'total_score' => rand(10000, 100000),
+                                'started_at' => Carbon::now()->subMinutes(5),
+                                'passed' => rand(0, 100) > 20,
+                                'accuracy' => rand(50, 100) / 100,
+                            ]);
+                        }
                     }
                 }
             }
