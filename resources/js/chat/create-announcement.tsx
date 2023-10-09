@@ -136,7 +136,7 @@ export default class CreateAnnouncement extends React.Component<Props> {
   }
 
   @action
-  private handleBlur = (e: React.FocusEvent<HTMLInputElement> | React.FocusEvent<HTMLTextAreaElement>) => {
+  private readonly handleBlur = (e: React.FocusEvent<HTMLInputElement> | React.FocusEvent<HTMLTextAreaElement>) => {
     const elem = e.target;
 
     if (isInputKey(elem.name)) {
@@ -145,12 +145,12 @@ export default class CreateAnnouncement extends React.Component<Props> {
   };
 
   @action
-  private handleButtonClick = () => {
+  private readonly handleButtonClick = () => {
     core.dataStore.chatState.joinChannel();
   };
 
   @action
-  private handleInput = (e: React.ChangeEvent<HTMLInputElement> | React.FormEvent<HTMLTextAreaElement>) => {
+  private readonly handleInput = (e: React.ChangeEvent<HTMLInputElement> | React.FormEvent<HTMLTextAreaElement>) => {
     const elem = e.currentTarget;
 
     if (isInputKey(elem.name)) {
@@ -159,17 +159,17 @@ export default class CreateAnnouncement extends React.Component<Props> {
   };
 
   @action
-  private handleRemoveUser = (user: UserJson) => {
+  private readonly handleRemoveUser = (user: UserJson) => {
     this.model.validUsers.delete(user.id);
   };
 
   @action
-  private handleUsersInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  private readonly handleUsersInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.model.updateUsers(e.currentTarget.value, false);
   };
 
   @action
-  private handleUsersInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  private readonly handleUsersInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     const elem = e.currentTarget;
     if (e.key === 'Backspace' && elem.selectionStart === 0 && elem.selectionEnd === 0) {
       const last = [...this.model.validUsers.keys()].pop();
@@ -180,7 +180,7 @@ export default class CreateAnnouncement extends React.Component<Props> {
   };
 
   @action
-  private handleUsersInputPaste = (e: React.SyntheticEvent<HTMLInputElement>) => {
+  private readonly handleUsersInputPaste = (e: React.SyntheticEvent<HTMLInputElement>) => {
     this.model.updateUsers(e.currentTarget.value, true);
   };
 

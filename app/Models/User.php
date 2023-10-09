@@ -16,6 +16,7 @@ use App\Libraries\Session\Store as SessionStore;
 use App\Libraries\Transactions\AfterCommit;
 use App\Libraries\User\DatadogLoginAttempt;
 use App\Libraries\User\ProfileBeatmapset;
+use App\Libraries\User\UsernamesForDbLookup;
 use App\Libraries\UsernameValidation;
 use App\Models\Forum\TopicWatch;
 use App\Models\OAuth\Client;
@@ -66,7 +67,7 @@ use Request;
  * @property-read Collection<Follow> $follows
  * @property-read Collection<Forum\Post> $forumPosts
  * @property-read Collection<static> $friends
- * @property-read Collection<GithubUser> $githubUsers
+ * @property-read GithubUser|null $githubUser
  * @property-read Collection<KudosuHistory> $givenKudosu
  * @property int $group_id
  * @property bool $hide_presence
@@ -417,7 +418,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     {
         return static::whereIn(
             'username',
-            [str_replace(' ', '_', $username), str_replace('_', ' ', $username)]
+            UsernamesForDbLookup::make($username, trimPrefix: false),
         )->first();
     }
 
@@ -494,15 +495,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
         switch ($type) {
             case 'username':
-                $searchUsername = (string) $usernameOrId;
-                if ($searchUsername[0] === '@') {
-                    $searchUsername = substr($searchUsername, 1);
-                }
-                $searchUsernames = [
-                    $searchUsername,
-                    strtr($searchUsername, ' ', '_'),
-                    strtr($searchUsername, '_', ' '),
-                ];
+                $searchUsernames = UsernamesForDbLookup::make($usernameOrId);
 
                 $user = static::where(fn ($query) => $query
                     ->whereIn('username', $searchUsernames)
@@ -550,17 +543,8 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             return null;
         }
 
-        $searchUsername = $usernameOrId[0] === '@'
-            ? substr($usernameOrId, 1)
-            : $usernameOrId;
-        $searchUsernames = [
-            $searchUsername,
-            strtr($searchUsername, ' ', '_'),
-            strtr($searchUsername, '_', ' '),
-        ];
-
         $change = UsernameChangeHistory::visible()
-            ->whereIn('username_last', $searchUsernames)
+            ->whereIn('username_last', UsernamesForDbLookup::make($usernameOrId))
             ->orderBy('change_id', 'desc')
             ->first();
 
@@ -897,7 +881,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'follows',
             'forumPosts',
             'friends',
-            'githubUsers',
+            'githubUser',
             'givenKudosu',
             'legacyIrcKey',
             'monthlyPlaycounts',
@@ -1022,7 +1006,9 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function isActive()
     {
-        return $this->user_lastvisit > Carbon::now()->subMonths();
+        static $monthInSecond = 30 * 86400;
+
+        return time() - $this->getRawAttribute('user_lastvisit') < $monthInSecond;
     }
 
     /*
@@ -1032,13 +1018,13 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
      */
     public function isInactive(): bool
     {
-        return $this->user_lastvisit->addDays(config('osu.user.inactive_days_verification'))->isPast();
+        return time() - $this->getRawAttribute('user_lastvisit') > config('osu.user.inactive_seconds_verification');
     }
 
     public function isOnline()
     {
         return !$this->hide_presence
-            && $this->user_lastvisit > Carbon::now()->subMinutes(config('osu.user.online_window'));
+            && time() - $this->getRawAttribute('user_lastvisit') < config('osu.user.online_window');
     }
 
     public function isBanned()
@@ -1153,9 +1139,9 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->hasMany(UserBadge::class);
     }
 
-    public function githubUsers()
+    public function githubUser(): HasOne
     {
-        return $this->hasMany(GithubUser::class);
+        return $this->hasOne(GithubUser::class);
     }
 
     public function legacyIrcKey(): HasOne
@@ -1990,7 +1976,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     {
         return $query
             ->where('user_allow_viewonline', true)
-            ->whereRaw('user_lastvisit > UNIX_TIMESTAMP(DATE_SUB(NOW(), INTERVAL '.config('osu.user.online_window').' MINUTE))');
+            ->where('user_lastvisit', '>', time() - config('osu.user.online_window'));
     }
 
     public function scopeEagerloadForListing($query)

@@ -21,7 +21,7 @@ interface Props {
 
 @observer
 export default class LoveBeatmapDialog extends React.Component<Props> {
-  @observable private selectedBeatmapIds: Set<number>;
+  @observable private readonly selectedBeatmapIds: Set<number>;
   @observable private xhr: JQuery.jqXHR<BeatmapsetWithDiscussionsJson> | null = null;
 
   @computed
@@ -79,7 +79,7 @@ export default class LoveBeatmapDialog extends React.Component<Props> {
     );
   }
 
-  private checkIsModeSelected = (mode: GameMode) => {
+  private readonly checkIsModeSelected = (mode: GameMode) => {
     const modeBeatmaps = this.groupedBeatmaps.get(mode) ?? [];
     const isAllSelected = modeBeatmaps.every((beatmap) => this.selectedBeatmapIds.has(beatmap.id));
     const isAllUnselected = modeBeatmaps.every((beatmap) => !this.selectedBeatmapIds.has(beatmap.id));
@@ -92,7 +92,7 @@ export default class LoveBeatmapDialog extends React.Component<Props> {
   };
 
   @action
-  private handleCheckboxDifficulty = (e: React.ChangeEvent<HTMLInputElement>) => {
+  private readonly handleCheckboxDifficulty = (e: React.ChangeEvent<HTMLInputElement>) => {
     const beatmapId = parseInt(e.target.value, 10);
 
     if (this.selectedBeatmapIds.has(beatmapId)) {
@@ -102,7 +102,7 @@ export default class LoveBeatmapDialog extends React.Component<Props> {
     }
   };
 
-  private handleCheckboxMode = (e: React.ChangeEvent<HTMLInputElement>) => {
+  private readonly handleCheckboxMode = (e: React.ChangeEvent<HTMLInputElement>) => {
     const mode = e.target.value as GameMode;
     const modeBeatmaps = this.groupedBeatmaps.get(mode) ?? [];
 
@@ -111,7 +111,7 @@ export default class LoveBeatmapDialog extends React.Component<Props> {
   };
 
   @action
-  private handleSubmit = () => {
+  private readonly handleSubmit = () => {
     if (this.xhr != null
       || this.selectedBeatmapIds.size === 0
       || !confirm(trans('beatmaps.nominations.love_confirm'))) {

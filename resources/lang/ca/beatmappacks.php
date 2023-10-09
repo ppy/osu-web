@@ -34,7 +34,7 @@ return [
 
     'mode' => [
         'artist' => 'Artista/Àlbum',
-        'chart' => 'Destacats',
+        'chart' => 'Spotlights',
         'featured' => 'Artista Destacat',
         'loved' => 'Project Loved',
         'standard' => 'Standard',

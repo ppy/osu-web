@@ -55,7 +55,7 @@ return [
         'performance' => 'Performance',
         'total_score' => 'Score total',
         'ranked_score' => 'Score classé',
-        'average_score' => 'Score Moyen',
+        'average_score' => 'Score moyen',
         'average_performance' => 'Performance moyenne',
         'ss' => '',
         's' => '',

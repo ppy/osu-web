@@ -12,7 +12,5 @@ class EncryptCookies extends EncryptCookiesBase
     protected $except = [
         'XSRF-TOKEN',
         'locale',
-        'phpbb3_2cjk5_sid',
-        'phpbb3_2cjk5_sid_check',
     ];
 }

@@ -90,7 +90,7 @@ return [
         'reply_box_placeholder' => 'Tapez ici pour répondre',
         'reply_title_prefix' => 'Re',
         'started_by' => 'par :user',
-        'started_by_verbose' => 'suivi par :user',
+        'started_by_verbose' => 'commencé par :user',
 
         'actions' => [
             'destroy' => 'Supprimer le sujet',

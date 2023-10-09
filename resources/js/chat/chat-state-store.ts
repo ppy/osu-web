@@ -35,7 +35,7 @@ export default class ChatStateStore implements DispatchListener {
   @observable viewsMounted = new Set<MainView>();
   @observable private isConnected = false;
   private lastHistoryId: number | null = null;
-  private pingService: PingService;
+  private readonly pingService: PingService;
   @observable private selected: ChannelId = null;
   private selectedIndex = 0;
   @observable private waitJoinChannelUuid: string | null = null;

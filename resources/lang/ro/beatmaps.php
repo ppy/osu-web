@@ -151,7 +151,7 @@ return [
 
         'status-messages' => [
             'approved' => 'Acest beatmap a fost aprobat pe :date!',
-            'graveyard' => "Acest beatmap nu a fost actualizat din :date și este cel mai probabil abandonat de către creator...",
+            'graveyard' => "Acest beatmap nu a fost actualizat din :date așa că a fost marcat ca și inactiv...",
             'loved' => 'Acest beatmap a fost adăugat la Iubit pe :date!',
             'ranked' => 'Acest beatmap a fost clasat pe :date!',
             'wip' => 'Notă: Acest beatmap este marcat ca fiind în lucru de către creator.',
@@ -246,7 +246,7 @@ return [
                 'mode' => 'Mod',
                 'nsfw' => 'Conținut Obscen',
                 'played' => 'Jucat',
-                'rank' => 'Clasament Obținut',
+                'rank' => 'Grad Obținut',
                 'status' => 'Categorii',
             ],
             'sorting' => [

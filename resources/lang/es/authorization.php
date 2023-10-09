@@ -186,7 +186,7 @@ return [
             ],
         ],
         'update_email' => [
-            'locked' => '',
+            'locked' => 'la dirección de correo está bloqueada',
         ],
     ],
 ];

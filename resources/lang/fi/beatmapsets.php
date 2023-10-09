@@ -20,7 +20,7 @@ return [
     ],
 
     'featured_artist_badge' => [
-        'label' => 'Suositeltu esittäjä',
+        'label' => 'Esitelty artisti',
     ],
 
     'index' => [
@@ -61,7 +61,7 @@ return [
         'discussion' => 'Keskustelu',
 
         'admin' => [
-            'full_size_cover' => '',
+            'full_size_cover' => 'Näytä täysikokoinen kansikuva',
         ],
 
         'deleted_banner' => [
@@ -96,7 +96,7 @@ return [
             'approved' => 'hyväksytty :timeago',
             'loved' => 'rakastettu :timeago',
             'qualified' => 'kelpuutettu :timeago',
-            'ranked' => 'tehty pisteyttäväksi :timeago',
+            'ranked' => 'rankattu :timeago',
             'submitted' => 'lähetetty :timeago',
             'updated' => 'päivitetty viimeksi :timeago',
         ],
@@ -216,7 +216,7 @@ return [
         ],
 
         'status' => [
-            'ranked' => 'Pisteyttävä',
+            'ranked' => 'Rankattu',
             'approved' => 'Hyväksytty',
             'loved' => 'Rakastettu',
             'qualified' => 'Esihyväksytty',

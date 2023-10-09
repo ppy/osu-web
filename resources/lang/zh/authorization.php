@@ -186,7 +186,7 @@ return [
             ],
         ],
         'update_email' => [
-            'locked' => '',
+            'locked' => '邮箱地址已锁定',
         ],
     ],
 ];
