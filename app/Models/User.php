@@ -983,7 +983,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
      */
     public function isBot(): bool
     {
-        return $this->defaultGroup()->identifier === 'bot';
+        return $this->group_id === app('groups')->byIdentifier('bot')->getKey();
     }
 
     /**
