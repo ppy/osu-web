@@ -15,12 +15,30 @@ class GroupPermissionTest extends TestCase
     /**
      * @dataProvider booleanDataProvider
      */
+    public function testIsBot(bool $useOAuth): void
+    {
+        $user = User::factory()->withGroup('bot')->create();
+
+        if ($useOAuth) {
+            $this->actAsScopedUser($user, ['public']);
+        } else {
+            $this->actAsUser($user);
+        }
+
+        $this->assertTrue(auth()->user()->isBot());
+    }
+
+    /**
+     * @dataProvider booleanDataProvider
+     */
     public function testIsGroupWithOAuth(bool $allowOAuth): void
     {
         $group = 'test_group';
-        $user = User::factory()->withGroup($group)->create();
 
-        $this->actAsUserWithToken($this->createToken($user, ['public']));
+        $this->actAsScopedUser(
+            User::factory()->withGroup($group)->create(),
+            ['public'],
+        );
 
         $this->assertSame(
             $allowOAuth,
@@ -34,9 +52,8 @@ class GroupPermissionTest extends TestCase
     public function testIsGroupWithoutOAuth(bool $allowOAuth): void
     {
         $group = 'test_group';
-        $user = User::factory()->withGroup($group)->create();
 
-        $this->actAsUser($user);
+        $this->actAsUser(User::factory()->withGroup($group)->create());
 
         $this->assertTrue(auth()->user()->isGroup($group, allowOAuth: $allowOAuth));
     }
