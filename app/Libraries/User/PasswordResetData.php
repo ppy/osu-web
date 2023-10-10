@@ -14,6 +14,8 @@ class PasswordResetData
 {
     private const RESEND_MAIL_INTERVAL = 300;
 
+    private string $cacheKey;
+
     public static function create(?User $user): ?string
     {
         if ($user === null) {
