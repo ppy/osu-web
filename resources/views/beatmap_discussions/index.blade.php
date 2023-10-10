@@ -98,6 +98,17 @@
                 <div class="simple-form__row simple-form__row--no-label">
                     <label class="simple-form__checkbox">
                         @include('objects._switch', ['locals' => [
+                            'checked' => $search['show_review_embeds'],
+                            'defaultValue' => '0',
+                            'name' => 'show_review_embeds',
+                        ]])
+                        {{ osu_trans('beatmap_discussions.index.form.show_review_embeds') }}
+                    </label>
+                </div>
+
+                <div class="simple-form__row simple-form__row--no-label">
+                    <label class="simple-form__checkbox">
+                        @include('objects._switch', ['locals' => [
                             'checked' => $search['only_unresolved'],
                             'name' => 'only_unresolved',
                         ]])
