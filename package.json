@@ -70,7 +70,7 @@
     "moment": "^2.29.4",
     "normalize.css": "^8.0.1",
     "photoswipe": "^4.1.1",
-    "postcss": "^8.4.30",
+    "postcss": "^8.4.31",
     "postcss-loader": "^7.3.3",
     "qtip2": "https://github.com/notbakaneko/qTip2.git#cd5f038667d2b23a44f4274c46de01834d704ce6",
     "react": "^17.0.2",
