@@ -10,6 +10,8 @@ use App\Models\Beatmapset;
 use App\Models\Chat\UserChannel;
 use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\Room;
+use App\Models\Multiplayer\ScoreLink;
+use App\Models\Multiplayer\UserScoreAggregate;
 use App\Models\OAuth\Token;
 use App\Models\User;
 use Tests\TestCase;
@@ -24,6 +26,25 @@ class RoomsControllerTest extends TestCase
         $this->actAsScopedUser($user, ['*']);
 
         $this->json('GET', route('api.rooms.index'))->assertSuccessful();
+    }
+
+    public function testShow()
+    {
+        $room = Room::factory()->create();
+        $user = User::factory()->create();
+        $playlist = PlaylistItem::factory()->create(['room_id' => $room]);
+        $scoreLink = ScoreLink
+            ::factory()
+            ->state([
+                'playlist_item_id' => $playlist,
+                'user_id' => $user,
+            ])->completed([], ['passed' => true, 'total_score' => 20])
+            ->create();
+        UserScoreAggregate::lookupOrDefault($scoreLink->user, $scoreLink->room)->recalculate();
+
+        $this->actAsScopedUser($user, ['*']);
+
+        $this->json('GET', route('api.rooms.show', $room))->assertSuccessful();
     }
 
     public function testStore()

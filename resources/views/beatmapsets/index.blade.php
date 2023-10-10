@@ -31,7 +31,7 @@
   {!! app('layout-cache')->getBeatmapsetFilters() !!}
 
   <script id="json-beatmaps" type="application/json">
-    {!! json_encode($beatmapsets) !!}
+    {!! $beatmapsetsJsonString !!}
   </script>
 
   @include('layout._react_js', ['src' => 'js/beatmaps.js'])
