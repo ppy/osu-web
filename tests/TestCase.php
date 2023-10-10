@@ -8,7 +8,6 @@ namespace Tests;
 use App\Events\NewPrivateNotificationEvent;
 use App\Http\Middleware\AuthApi;
 use App\Jobs\Notifications\BroadcastNotificationBase;
-use App\Libraries\BroadcastsPendingForTests;
 use App\Libraries\Search\ScoreSearch;
 use App\Models\Beatmapset;
 use App\Models\OAuth\Client;
@@ -104,8 +103,6 @@ class TestCase extends BaseTestCase
         // breaks assumptions of object destructor timing.
         $db = $this->app->make('db');
         $this->beforeApplicationDestroyed(fn () => static::resetAppDb($db));
-
-        app(BroadcastsPendingForTests::class)->reset();
     }
 
     protected function tearDown(): void
