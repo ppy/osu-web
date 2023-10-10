@@ -5,7 +5,6 @@
 
 return [
     'button' => [
-        'cancel' => 'Cancel',
         'resend' => 'Resend verification email',
         'set' => 'Set password',
         'start' => 'Start',
