@@ -12,7 +12,7 @@ class RankHistoryTransformer extends TransformerAbstract
     public function transform(RankHistory $rankHistory)
     {
         return [
-            'mode' => $rankHistory->mode,
+            'mode' => $rankHistory->ruleset,
             'data' => $rankHistory->data,
         ];
     }
