@@ -73,6 +73,7 @@ class PlaylistItemUserHighScore extends Model
             $ret[$type] = [
                 'query' => static
                     ::cursorSort($cursorHelper, $placeholder)
+                    ->whereHas('scoreLink')
                     ->where('playlist_item_id', $scoreLink->playlist_item_id)
                     ->where('user_id', '<>', $scoreLink->user_id),
                 'cursorHelper' => $cursorHelper,
