@@ -18,6 +18,7 @@ interface Props {
   beatmapset: BeatmapsetExtendedJson;
   currentBeatmap: BeatmapExtendedJson;
   innerRef: React.RefObject<HTMLDivElement>;
+  onFocus?: () => void;
   pinned?: boolean;
   setPinned?: (sticky: boolean) => void;
   stickTo?: React.RefObject<HTMLDivElement>;
@@ -109,7 +110,10 @@ export default class NewReview extends React.Component<Props> {
     );
   }
 
-  private readonly handleFocus = () => this.setSticky(true);
+  private readonly handleFocus = () => {
+    this.setSticky(true);
+    this.props.onFocus?.();
+  };
 
   @action
   private setSticky(sticky: boolean) {

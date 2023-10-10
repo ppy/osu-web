@@ -14,8 +14,6 @@
     @include('layout._page_header_v4', ['params' => ['theme' => 'beatmapsets']])
     <div class="osu-page osu-page--generic">
         <div class="beatmapset-activities">
-            <h3>{{ osu_trans('beatmap_discussions.index.title') }}</h3>
-
             <form class="simple-form simple-form--search-box">
                 <h2 class="simple-form__row simple-form__row--title">
                     {{ osu_trans('beatmap_discussions.index.form._') }}
