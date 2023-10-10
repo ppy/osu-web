@@ -7,7 +7,6 @@ namespace App\Providers;
 
 use App\Hashing\OsuHashManager;
 use App\Libraries\AssetsManifest;
-use App\Libraries\BroadcastsPendingForTests;
 use App\Libraries\ChatFilters;
 use App\Libraries\CleanHTML;
 use App\Libraries\Groups;
@@ -147,9 +146,6 @@ class AppServiceProvider extends ServiceProvider
         if ($env === 'testing' || $env === 'dusk.local') {
             // This is needed for testing with Dusk.
             $this->app->register(AdditionalDuskServiceProvider::class);
-
-            // This is for testing after commit broadcastable events.
-            $this->app->singleton(BroadcastsPendingForTests::class, fn () => new BroadcastsPendingForTests());
         }
     }
 }
