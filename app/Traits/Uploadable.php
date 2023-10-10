@@ -5,12 +5,12 @@
 
 namespace App\Traits;
 
-use App\Libraries\StorageWithUrl;
+use Illuminate\Contracts\Filesystem\Cloud;
 use Illuminate\Http\File;
 
 trait Uploadable
 {
-    protected $_storage = null;
+    protected Cloud $_storage;
 
     /**
      * Returns maximum size of the file in bytes. Defaults to 1 MB.
@@ -61,11 +61,7 @@ trait Uploadable
 
     public function storage()
     {
-        if ($this->_storage === null) {
-            $this->_storage = new StorageWithUrl();
-        }
-
-        return $this->_storage;
+        return $this->_storage ??= \Storage::disk();
     }
 
     public function fileDir()
