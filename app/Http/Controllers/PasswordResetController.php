@@ -32,7 +32,7 @@ class PasswordResetController extends Controller
     {
         $username = get_string(\Request::input('username'));
         $user = static::getUser($username);
-        $error = PasswordResetData::create($user);
+        $error = PasswordResetData::create($user, $username);
 
         if ($error === null) {
             \Session::flash('popup', osu_trans('password_reset.notice.sent'));
@@ -56,7 +56,7 @@ class PasswordResetController extends Controller
     {
         $username = get_string(\Request::input('username'));
         $user = static::getUser($username) ?? abort(422);
-        $data = PasswordResetData::find($user);
+        $data = PasswordResetData::find($user, $username);
 
         if ($data !== null && $data->sendMail()) {
             $data->save();
@@ -84,7 +84,7 @@ class PasswordResetController extends Controller
         try {
             $user = static::getUser($params['username'])
                 ?? throw new PasswordResetFailException('invalid');
-            $data = PasswordResetData::find($user)
+            $data = PasswordResetData::find($user, $params['username'])
                 ?? throw new PasswordResetFailException('invalid');
 
             if (!$data->isActive()) {

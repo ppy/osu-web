@@ -56,10 +56,18 @@ class PasswordResetControllerTest extends TestCase
 
         Mail::fake();
         $this->post($this->path(), ['username' => $user->username])->assertRedirect();
-        $this->post($this->path(), ['username' => $user->user_email])->assertRedirect();
+        $this->post($this->path(), ['username' => $user->username])->assertRedirect();
+        Mail::assertQueuedCount(1);
+    }
+
+    public function testCreateSendMailByUsernameParameter()
+    {
+        $user = User::factory()->create();
+
+        Mail::fake();
         $this->post($this->path(), ['username' => $user->username])->assertRedirect();
         $this->post($this->path(), ['username' => $user->user_email])->assertRedirect();
-        Mail::assertQueuedCount(1);
+        Mail::assertQueuedCount(2);
     }
 
     public function testIndex()
@@ -73,11 +81,11 @@ class PasswordResetControllerTest extends TestCase
 
         Mail::fake();
         $this->generateKey($user);
-        $data = PasswordResetData::find($user);
+        $data = PasswordResetData::find($user, $user->username);
         $data->attrs['canResendMailAfter'] = 0;
         $data->save();
 
-        $this->post(route('password-reset.resend-mail', ['username' => $user->user_email]))->assertSuccessful();
+        $this->post(route('password-reset.resend-mail', ['username' => $user->username]))->assertSuccessful();
         Mail::assertQueuedCount(2);
     }
 
@@ -246,10 +254,11 @@ class PasswordResetControllerTest extends TestCase
 
     private function generateKey(User $user): string
     {
-        PasswordResetData::find($user)?->delete();
-        PasswordResetData::create($user);
+        $username = $user->username;
+        PasswordResetData::find($user, $username)?->delete();
+        PasswordResetData::create($user, $username);
 
-        return PasswordResetData::find($user)->attrs['key'];
+        return PasswordResetData::find($user, $username)->attrs['key'];
     }
 
     private function path(): string

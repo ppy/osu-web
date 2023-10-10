@@ -16,13 +16,13 @@ class PasswordResetData
 
     private string $cacheKey;
 
-    public static function create(?User $user): ?string
+    public static function create(?User $user, string $username): ?string
     {
         if ($user === null) {
             return osu_trans('password_reset.error.user_not_found');
         }
 
-        if (static::find($user) !== null) {
+        if (static::find($user, $username) !== null) {
             return null;
         }
 
@@ -41,31 +41,35 @@ class PasswordResetData
             'key' => bin2hex(random_bytes(config('osu.user.password_reset.key_length') / 2)),
             'expiresAt' => $now + config('osu.user.password_reset.expires_hour') * 3600,
             'tries' => 0,
-        ], $user);
+        ], $user, $username);
         $data->sendMail();
         $data->save();
 
         return null;
     }
 
-    public static function find(User $user): ?static
+    public static function find(User $user, string $username): ?static
     {
         if ($user === null) {
             return null;
         }
 
-        $attrs = \Cache::get(static::cacheKey($user));
+        $attrs = \Cache::get(static::cacheKey($user, $username));
 
         if ($attrs === null) {
             return null;
         }
 
-        return new static($attrs, $user);
+        return new static($attrs, $user, $username);
     }
 
-    public static function cacheKey(User $user): string
+    public static function cacheKey(User $user, string $username): string
     {
-        return "password_reset:data:{$user->getKey()}";
+        $type = strpos($username, '@') === false
+            ? 'username'
+            : 'email';
+
+        return "password_reset:data:{$user->getKey()}:{$type}";
     }
 
     private static function authHash(User $user): string
@@ -73,9 +77,12 @@ class PasswordResetData
         return hash('sha256', $user->user_email).':'.hash('sha256', $user->user_password);
     }
 
-    private function __construct(public array $attrs, private readonly User $user)
-    {
-        $this->cacheKey = static::cacheKey($this->user);
+    private function __construct(
+        public array $attrs,
+        private readonly User $user,
+        string $username
+    ) {
+        $this->cacheKey = static::cacheKey($this->user, $username);
     }
 
     public function delete(): void
