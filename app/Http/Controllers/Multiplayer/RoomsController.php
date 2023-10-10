@@ -170,7 +170,7 @@ class RoomsController extends BaseController
 
         $playlistItemsQuery = $room->playlist();
         if ($room->isRealtime()) {
-            $playlistItemsQuery->whereHas('scores');
+            $playlistItemsQuery->whereHas('scoreLinks');
         }
         $beatmaps = $playlistItemsQuery->with('beatmap.beatmapset.beatmaps')->get()->pluck('beatmap');
         $beatmapsets = $beatmaps->pluck('beatmapset');

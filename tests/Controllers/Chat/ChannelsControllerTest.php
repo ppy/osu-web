@@ -10,7 +10,7 @@ namespace Tests\Controllers\Chat;
 use App\Libraries\UserChannelList;
 use App\Models\Chat\Channel;
 use App\Models\Chat\Message;
-use App\Models\Multiplayer\Score;
+use App\Models\Multiplayer\ScoreLink;
 use App\Models\User;
 use Illuminate\Testing\AssertableJsonString;
 use Illuminate\Testing\Fluent\AssertableJson;
@@ -181,11 +181,11 @@ class ChannelsControllerTest extends TestCase
 
     public function testChannelJoinMultiplayerWhenNotParticipated()
     {
-        $score = Score::factory()->create();
+        $scoreLink = ScoreLink::factory()->create();
 
         $this->actAsScopedUser($this->user, ['*']);
         $request = $this->json('PUT', route('api.chat.channels.join', [
-            'channel' => $score->room->channel_id,
+            'channel' => $scoreLink->room->channel_id,
             'user' => $this->user->getKey(),
         ]));
 
@@ -194,15 +194,15 @@ class ChannelsControllerTest extends TestCase
 
     public function testChannelJoinMultiplayerWhenParticipated()
     {
-        $score = Score::factory()->create(['user_id' => $this->user]);
+        $scoreLink = ScoreLink::factory()->create(['user_id' => $this->user]);
 
         $this->actAsScopedUser($this->user, ['*']);
         $request = $this->json('PUT', route('api.chat.channels.join', [
-            'channel' => $score->room->channel_id,
+            'channel' => $scoreLink->room->channel_id,
             'user' => $this->user->getKey(),
         ]));
 
-        $request->assertStatus(200)->assertJsonFragment(['channel_id' => $score->room->channel_id, 'type' => Channel::TYPES['multiplayer']]);
+        $request->assertStatus(200)->assertJsonFragment(['channel_id' => $scoreLink->room->channel_id, 'type' => Channel::TYPES['multiplayer']]);
     }
 
     //endregion
