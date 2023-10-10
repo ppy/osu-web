@@ -23,7 +23,7 @@ use App\Models\User;
  * @property Room $room
  * @property int $room_id
  * @property int|null $ruleset_id
- * @property \Illuminate\Database\Eloquent\Collection $scores Score
+ * @property \Illuminate\Database\Eloquent\Collection $scoreLinks ScoreLink
  * @property \Carbon\Carbon|null $updated_at
  * @property bool expired
  * @property \Carbon\Carbon|null $played_at
@@ -96,17 +96,17 @@ class PlaylistItem extends Model
         return $this->hasMany(PlaylistItemUserHighScore::class);
     }
 
-    public function scores()
+    public function scoreLinks()
     {
-        return $this->hasMany(Score::class);
+        return $this->hasMany(ScoreLink::class);
     }
 
     public function topScores()
     {
         return $this->highScores()
-            ->with('score')
+            ->with('scoreLink.score')
             ->orderBy('total_score', 'desc')
-            ->orderBy('score_id', 'asc');
+            ->orderBy('score_link_id', 'asc');
     }
 
     private function assertValidMaxAttempts()

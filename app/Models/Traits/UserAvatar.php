@@ -6,16 +6,16 @@
 namespace App\Models\Traits;
 
 use App\Libraries\ImageProcessor;
-use App\Libraries\StorageWithUrl;
 use ErrorException;
+use Illuminate\Contracts\Filesystem\Cloud;
 
 trait UserAvatar
 {
-    private $avatarStorage;
+    private Cloud $avatarStorage;
 
     public function avatarStorage()
     {
-        return $this->avatarStorage ??= new StorageWithUrl(config('osu.avatar.storage'));
+        return $this->avatarStorage ??= \Storage::disk(config('osu.avatar.storage'));
     }
 
     public function setUserAvatarAttribute($value)
