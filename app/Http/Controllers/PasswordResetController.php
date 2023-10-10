@@ -5,6 +5,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Libraries\RateLimiter;
 use App\Mail\PasswordReset;
 use App\Models\User;
 use App\Models\UserAccountHistory;
@@ -127,6 +128,12 @@ class PasswordResetController extends Controller
             return osu_trans('password_reset.error.user_not_found');
         }
 
+        $throttleKey = "password-reset:user_id:{$user->getKey()}";
+
+        if (app(RateLimiter::class)->tooManyAttempts($throttleKey, 5)) {
+            abort(429);
+        }
+
         if (!is_valid_email_format($user->user_email)) {
             return osu_trans('password_reset.error.contact_support');
         }
@@ -150,6 +157,8 @@ class PasswordResetController extends Controller
             'user' => $user,
             'key' => $session['key'],
         ]));
+
+        app(RateLimiter::class)->hit($throttleKey, 3600);
     }
 
     private function restart($reasonKey)
