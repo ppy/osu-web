@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { SupportedChannelType, supportedChannelTypes } from 'interfaces/chat/channel-json';
+import { chunk } from 'lodash';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -21,6 +22,8 @@ function renderChannels(type: SupportedChannelType) {
   if (channels.length > 0 || type === 'ANNOUNCE' && core.dataStore.chatState.canChatAnnounce) {
     const title = trans(`chat.channels.list.title.${type}`);
 
+    const chunks = chunk(channels, 100);
+
     return (
       <React.Fragment key={type}>
         <div className='chat-conversation-list__group'>
@@ -28,7 +31,11 @@ function renderChannels(type: SupportedChannelType) {
             <span className='chat-conversation-list__header-text'>{title}</span>
             <span className='chat-conversation-list__header-icon' title={title}><i className={icons[type]} /></span>
           </div>
-          {channels.map((channel) => <ConversationListItem key={channel.channelId} channel={channel} />)}
+          {chunks.map((c, index) => (
+            <div key={index} className='u-own-layer'>
+              {c.map((channel) => <ConversationListItem key={channel.channelId} channel={channel} />)}
+            </div>
+          ))}
           {type === 'ANNOUNCE' && <CreateAnnouncementButton />}
         </div>
         <div className='chat-conversation-list-separator' />
