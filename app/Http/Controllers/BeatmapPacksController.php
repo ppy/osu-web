@@ -43,17 +43,14 @@ class BeatmapPacksController extends Controller
     public function index()
     {
         $params = request()->all();
-        $cursorHelper = BeatmapPack::makeDbCursorHelper();
-
         $type = presence(get_string($params['type'] ?? null)) ?? BeatmapPack::DEFAULT_TYPE;
-
         $query = BeatmapPack::getPacks($type);
-
         if ($query === null) {
             abort(404);
         }
 
         if (is_api_request()) {
+            $cursorHelper = BeatmapPack::makeDbCursorHelper();
             [$packs, $hasMore] = $query
                 ->cursorSort($cursorHelper, cursor_from_params($params))
                 ->limit(static::PER_PAGE)
