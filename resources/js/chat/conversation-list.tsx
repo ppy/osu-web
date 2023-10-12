@@ -22,6 +22,9 @@ function renderChannels(type: SupportedChannelType) {
   if (channels.length > 0 || type === 'ANNOUNCE' && core.dataStore.chatState.canChatAnnounce) {
     const title = trans(`chat.channels.list.title.${type}`);
 
+    // Optimization so that the channel list can be rendered as several smaller layers.
+    // This shouldn't be too large, otherwise, Safari can't handle the layer; it also can't be
+    // too small, otherwise there'll be too many layout recalculations.
     const chunks = chunk(channels, 100);
 
     return (
