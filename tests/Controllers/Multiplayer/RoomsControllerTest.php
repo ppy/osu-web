@@ -40,7 +40,7 @@ class RoomsControllerTest extends TestCase
                 'user_id' => $user,
             ])->completed([], ['passed' => true, 'total_score' => 20])
             ->create();
-        UserScoreAggregate::lookupOrDefault($scoreLink->user, $scoreLink->room)->recalculate();
+        UserScoreAggregate::lookupOrDefault($scoreLink->user, $scoreLink->playlistItem->room)->recalculate();
 
         $this->actAsScopedUser($user, ['*']);
 

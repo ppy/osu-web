@@ -9,7 +9,9 @@ use App\Exceptions\InvariantException;
 use App\Libraries\Multiplayer\Ruleset;
 use App\Models\Beatmap;
 use App\Models\Model;
+use App\Models\Solo\ScoreToken;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @property json|null $allowed_mods
@@ -99,6 +101,11 @@ class PlaylistItem extends Model
     public function scoreLinks()
     {
         return $this->hasMany(ScoreLink::class);
+    }
+
+    public function scoreTokens(): HasMany
+    {
+        return $this->hasMany(ScoreToken::class);
     }
 
     public function topScores()

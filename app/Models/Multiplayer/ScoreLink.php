@@ -5,31 +5,28 @@
 
 namespace App\Models\Multiplayer;
 
-use App\Exceptions\GameCompletedException;
 use App\Exceptions\InvariantException;
 use App\Models\Model;
 use App\Models\Solo\Score;
 use App\Models\Traits\SoloScoreInterface;
 use App\Models\User;
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property int $build_id
- * @property \Carbon\Carbon|null $created_at
- * @property int $id
  * @property PlaylistItem $playlistItem
  * @property int $playlist_item_id
- * @property Room $room
- * @property int $room_id
  * @property Score $score
- * @property int|null $score_id
- * @property \Carbon\Carbon|null $updated_at
+ * @property int $score_id
  * @property User $user
  * @property int $user_id
  */
 class ScoreLink extends Model implements SoloScoreInterface
 {
+    public $incrementing = false;
+    public $timestamps = false;
+
+    protected $primaryKey = 'score_id';
     protected $table = 'multiplayer_score_links';
 
     private Score $defaultScore;
@@ -42,11 +39,6 @@ class ScoreLink extends Model implements SoloScoreInterface
     public function playlistItemUserHighScore()
     {
         return $this->hasOne(PlaylistItemUserHighScore::class);
-    }
-
-    public function room()
-    {
-        return $this->belongsTo(Room::class, 'room_id');
     }
 
     public function score(): BelongsTo
@@ -63,55 +55,27 @@ class ScoreLink extends Model implements SoloScoreInterface
     {
         return match ($key) {
             'build_id',
-            'id',
             'playlist_item_id',
-            'room_id',
             'score_id',
             'user_id' => $this->getRawAttribute($key),
 
-            'data' => $this->getScoreOrDefault()->data,
-            'has_replay' => $this->getScoreOrDefault()->has_replay ?? false,
-            'pp' => $this->getScoreOrDefault()->pp ?? 0.0,
+            'data' => $this->score->data,
+            'has_replay' => $this->score->has_replay ?? false,
+            'pp' => $this->score->pp ?? 0.0,
 
             'beatmap_id' => $this->playlistItem?->beatmap_id,
             'ruleset_id' => $this->playlistItem?->ruleset_id,
 
-            'created_at',
-            'updated_at' => $this->getTimeFast($key),
-
-            'created_at_json',
-            'updated_at_json' => $this->getJsonTimeFast($key),
-
             'playlistItem',
             'playlistItemUserHighScore',
-            'room',
             'score',
             'user' => $this->getRelationValue($key),
         };
     }
 
-    public function scopeCompleted($query)
-    {
-        return $query->whereNotNull('score_id');
-    }
-
-    public function scopeForPlaylistItem($query, $playlistItemId)
-    {
-        return $query->where('playlist_item_id', $playlistItemId);
-    }
-
-    public function isCompleted(): bool
-    {
-        return $this->score_id !== null;
-    }
-
     public function complete(array $params)
     {
         $this->getConnection()->transaction(function () use ($params) {
-            if ($this->isCompleted()) {
-                throw new GameCompletedException('cannot modify score after submission');
-            }
-
             $score = Score::createFromJsonOrExplode($params);
             $mods = $score->data->mods;
 
@@ -159,16 +123,5 @@ class ScoreLink extends Model implements SoloScoreInterface
             ]);
 
         return 1 + $query->count();
-    }
-
-    private function getScoreOrDefault(): Score
-    {
-        return $this->score ?? ($this->defaultScore ??= new Score([
-            'beatmap_id' => $this->beatmap_id,
-            'ruleset_id' => $this->ruleset_id,
-            'user_id' => $this->user_id,
-            'created_at' => Carbon::now(),
-            'data' => [],
-        ]));
     }
 }

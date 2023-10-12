@@ -102,7 +102,7 @@ class UserScoreAggregate extends Model
     public function scoreLinks(): Builder
     {
         return ScoreLink
-            ::where('room_id', $this->room_id)
+            ::whereHas('playlistItem', fn ($q) => $q->where('room_id', $this->room_id))
             ->where('user_id', $this->user_id);
     }
 
@@ -184,7 +184,7 @@ class UserScoreAggregate extends Model
         $this->accuracy += $current->data->accuracy;
         $this->pp += $current->pp;
         $this->completed++;
-        $this->last_score_link_id = $currentScoreLink->getKey();
+        $this->last_score_link_id = $this->last_score_id = $currentScoreLink->getKey();
 
         $this->save();
     }

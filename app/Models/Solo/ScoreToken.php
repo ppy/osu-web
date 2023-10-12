@@ -8,7 +8,9 @@ namespace App\Models\Solo;
 use App\Models\Beatmap;
 use App\Models\Build;
 use App\Models\Model;
+use App\Models\Multiplayer\PlaylistItem;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property \App\Models\Beatmap $beatmap
@@ -38,6 +40,11 @@ class ScoreToken extends Model
         return $this->belongsTo(Build::class, 'build_id');
     }
 
+    public function playlistItem(): BelongsTo
+    {
+        return $this->belongsTo(PlaylistItem::class);
+    }
+
     public function score()
     {
         return $this->belongsTo(Score::class);
@@ -54,6 +61,7 @@ class ScoreToken extends Model
             'beatmap_id',
             'build_id',
             'id',
+            'playlist_item_id',
             'ruleset_id',
             'score_id',
             'user_id' => $this->getRawAttribute($key),
@@ -66,6 +74,7 @@ class ScoreToken extends Model
 
             'beatmap',
             'build',
+            'playlistItem',
             'score',
             'user' => $this->getRelationValue($key),
         };

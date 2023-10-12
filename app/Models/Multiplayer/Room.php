@@ -12,6 +12,7 @@ use App\Models\Chat\Channel;
 use App\Models\Model;
 use App\Models\Season;
 use App\Models\SeasonRoom;
+use App\Models\Solo\ScoreToken;
 use App\Models\Traits\WithDbCursorHelper;
 use App\Models\User;
 use App\Traits\Memoizes;
@@ -265,7 +266,7 @@ class Room extends Model
     public function scopeHasParticipated($query, User $user)
     {
         return $query->whereHas(
-            'scoreLinks',
+            'userHighScores',
             fn ($q) => $q->where('user_id', $user->getKey()),
         );
     }
@@ -607,11 +608,11 @@ class Room extends Model
 
             $agg->updateUserAttempts();
 
-            return ScoreLink::create([
+            return ScoreToken::create([
                 'beatmap_id' => $playlistItem->beatmap_id,
                 'build_id' => $buildId,
                 'playlist_item_id' => $playlistItem->getKey(),
-                'room_id' => $this->getKey(),
+                'ruleset_id' => $playlistItem->ruleset_id,
                 'user_id' => $user->getKey(),
             ]);
         });
@@ -688,7 +689,8 @@ class Room extends Model
         }
 
         if ($playlistItem->max_attempts !== null) {
-            $playlistAttempts = $playlistItem->scoreLinks()->where('user_id', $user->getKey())->count();
+            $playlistAttempts = $playlistItem->scoreTokens()->where('user_id', $user->getKey())->whereNull('score_id')->count();
+                + $playlistItem->scoreLinks()->where('user_id', $user->getKey())->count();
             if ($playlistAttempts >= $playlistItem->max_attempts) {
                 throw new InvariantException('You have reached the maximum number of tries allowed.');
             }
