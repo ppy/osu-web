@@ -77,7 +77,7 @@ class BeatmapPack extends Model
         );
     }
 
-    public function getMode(): string
+    public function getRulesetAttribute(): string
     {
         return Beatmap::modeStr($this->playmode ?? 0);
     }
