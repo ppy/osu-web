@@ -26,11 +26,10 @@ class BeatmapPackTransformer extends TransformerAbstract
         return [
             'author' => $pack->author,
             'date' => $pack->date,
-            'hidden' => $pack->hidden,
             'name' => $pack->name,
             'no_diff_reduction' => $pack->no_diff_reduction,
             'pack_id' => $pack->pack_id,
-            'ruleset' => $pack->getRulesetAttribute(),
+            'ruleset_id' => $pack->getRulesetIdAttribute(),
             'tag' => $pack->tag,
             'url' => $pack->url,
         ];

@@ -87,9 +87,9 @@ class BeatmapPack extends Model
         );
     }
 
-    public function getRulesetAttribute(): string
+    public function getRulesetIdAttribute(): ?int
     {
-        return Beatmap::modeStr($this->playmode ?? 0);
+        return $this->playmode;
     }
 
     public function getRouteKeyName(): string

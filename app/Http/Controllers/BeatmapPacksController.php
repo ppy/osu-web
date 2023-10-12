@@ -43,39 +43,33 @@ class BeatmapPacksController extends Controller
      */
     public function index()
     {
+        $params = request()->all();
+        $cursorHelper = BeatmapPack::makeDbCursorHelper();
+
+        $type = presence(get_string($params['type'] ?? null)) ?? BeatmapPack::DEFAULT_TYPE;
+
+        $query = BeatmapPack::getPacks($type);
+
+        if ($query === null) {
+            abort(404);
+        }
+
         if (is_api_request()) {
-            $params = request()->all();
-            $cursorHelper = BeatmapPack::makeDbCursorHelper();
-
-            $query = BeatmapPack
-                ::cursorSort($cursorHelper, cursor_from_params($params))
-                ->limit(static::PER_PAGE);
-
-            $type = presence(get_string($params['type'] ?? null)) ?? BeatmapPack::DEFAULT_TYPE;
-            $tag = BeatmapPack::TAG_MAPPINGS[$type] ?? null;
-            if ($tag === null) {
-                abort(404);
-            }
-            $query->where('tag', 'like', "{$tag}%");
-
-            [$packs, $hasMore] = $query->getWithHasMore();
+            [$packs, $hasMore] = $query
+                ->cursorSort($cursorHelper, cursor_from_params($params))
+                ->limit(static::PER_PAGE)
+                ->getWithHasMore();
 
             return [
                 'beatmap_packs' => json_collection($packs, new BeatmapPackTransformer()),
                 ...cursor_for_response($cursorHelper->next($packs, $hasMore)),
             ];
+        } else {
+            return ext_view('packs.index', [
+                'packs' => $query->paginate(static::PER_PAGE)->appends(['type' => $type]),
+                'type' => $type,
+            ]);
         }
-
-        $type = presence(get_string(Request::input('type'))) ?? BeatmapPack::DEFAULT_TYPE;
-        $packs = BeatmapPack::getPacks($type);
-        if ($packs === null) {
-            abort(404);
-        }
-
-        return ext_view('packs.index', [
-            'packs' => $packs->paginate(static::PER_PAGE)->appends(['type' => $type]),
-            'type' => $type,
-        ]);
     }
 
     /**
