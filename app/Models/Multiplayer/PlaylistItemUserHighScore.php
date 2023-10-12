@@ -95,7 +95,7 @@ class PlaylistItemUserHighScore extends Model
         $this->fill([
             'accuracy' => $score->data->accuracy,
             'pp' => $score->pp,
-            'score_id' => 0, // TODO: remove after migrated
+            'score_id' => $score->getKey(),
             'score_link_id' => $scoreLink->getKey(),
             'total_score' => $score->data->totalScore,
         ])->save();
