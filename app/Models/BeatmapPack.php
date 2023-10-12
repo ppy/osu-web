@@ -5,6 +5,7 @@
 
 namespace App\Models;
 
+use App\Models\Traits\WithDbCursorHelper;
 use Exception;
 
 /**
@@ -20,6 +21,15 @@ use Exception;
  */
 class BeatmapPack extends Model
 {
+    use WithDbCursorHelper;
+
+    protected const DEFAULT_SORT = 'id_desc';
+    protected const SORTS = [
+        'id_desc' => [
+            ['column' => 'pack_id', 'order' => 'DESC'],
+        ],
+    ];
+
     const DEFAULT_TYPE = 'standard';
 
     // also display order for listing page
