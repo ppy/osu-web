@@ -58,7 +58,11 @@ class PasswordResetController extends Controller
         $user = static::getUser($username) ?? abort(422);
         $data = PasswordResetData::find($user, $username);
 
-        if ($data !== null && $data->sendMail()) {
+        if ($data === null) {
+            \Session::flash('popup', osu_trans('password_reset.error.expired'));
+
+            return ujs_redirect(route('password-reset'));
+        } elseif ($data->sendMail()) {
             $data->save();
         }
 
