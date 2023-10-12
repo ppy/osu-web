@@ -184,6 +184,7 @@ class UserScoreAggregate extends Model
         $this->accuracy += $current->data->accuracy;
         $this->pp += $current->pp;
         $this->completed++;
+        $this->last_score_id = $current->getKey();
         $this->last_score_link_id = $currentScoreLink->getKey();
 
         $this->save();
