@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @property int $completed
  * @property \Carbon\Carbon $created_at
  * @property int $id
+ * @property int|null $last_score_id
  * @property bool $in_room
  * @property float|null $pp
  * @property int $room_id
@@ -33,7 +34,7 @@ class UserScoreAggregate extends Model
     const SORTS = [
         'score_asc' => [
             ['column' => 'total_score', 'order' => 'ASC'],
-            ['column' => 'last_score_link_id', 'order' => 'DESC'],
+            ['column' => 'last_score_id', 'order' => 'DESC'],
         ],
     ];
 
@@ -144,7 +145,7 @@ class UserScoreAggregate extends Model
                 $userQuery->default();
             })
             ->orderBy('total_score', 'DESC')
-            ->orderBy('last_score_link_id', 'ASC');
+            ->orderBy('last_score_id', 'ASC');
     }
 
     public function updateUserAttempts()
@@ -159,7 +160,7 @@ class UserScoreAggregate extends Model
 
     public function userRank()
     {
-        if ($this->total_score === null || $this->last_score_link_id === null) {
+        if ($this->total_score === null || $this->last_score_id === null) {
             return;
         }
 

@@ -119,7 +119,7 @@ class ScoreLink extends Model implements SoloScoreInterface
             ::where('playlist_item_id', $this->playlist_item_id)
             ->cursorSort('score_asc', [
                 'total_score' => $score->data->totalScore,
-                'score_link_id' => $this->getKey(),
+                'score_id' => $this->getKey(),
             ]);
 
         return 1 + $query->count();
