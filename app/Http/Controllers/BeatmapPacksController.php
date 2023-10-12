@@ -9,7 +9,6 @@ use App\Models\Beatmap;
 use App\Models\BeatmapPack;
 use App\Transformers\BeatmapPackTransformer;
 use Auth;
-use Request;
 
 /**
  * @group Beatmap Packs
