@@ -391,10 +391,13 @@ class Room extends Model
     public function calculateMissingTopScores()
     {
         // just run through all the users, UserScoreAggregate::new will calculate and persist if necessary.
-        $users = User::whereIn('user_id', ScoreLink::where('room_id', $this->getKey())->select('user_id'));
-        $users->each(function ($user) {
+        $scoreLinkQuery = ScoreLink
+            ::whereHas('playlistItem', fn ($q) => $q->where('room_id', $this->getKey()))
+            ->select('user_id');
+
+        foreach (User::whereIn('user_id', $scoreLinkQuery)->get() as $user) {
             UserScoreAggregate::new($user, $this);
-        });
+        }
     }
 
     public function completePlay(ScoreLink $scoreLink, array $params)
