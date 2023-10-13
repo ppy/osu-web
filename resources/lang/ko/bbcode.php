@@ -9,7 +9,7 @@ return [
     'help' => '도움말',
     'image' => '이미지',
     'imagemap' => '이미지 맵',
-    'italic' => '기울임꼴',
+    'italic' => '이탤릭체',
     'link' => '링크',
     'list' => '글머리 기호',
     'list_numbered' => '번호 매기기',

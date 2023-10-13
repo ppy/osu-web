@@ -26,6 +26,7 @@ return [
             'deleted' => 'Vključi izbrisane razprave',
             'mode' => 'Igralni način beatmape',
             'only_unresolved' => 'Prikaži le nerešene razprave',
+            'show_review_embeds' => '',
             'types' => 'Vrste sporočil',
             'username' => 'Uporabniško ime',
 

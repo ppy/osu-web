@@ -16,7 +16,7 @@ return [
         'confirm_revoke' => 'Oletko varma, että haluat peruuttaa tämän käyttäjän valtuudet?',
         'scopes_title' => 'Tämä sovellus voi:',
         'owned_by' => 'Omistaa :user',
-        'none' => '',
+        'none' => 'Ei clienttejä',
 
         'revoked' => [
             'false' => 'Kumoa käyttöoikeudet',
@@ -25,16 +25,16 @@ return [
     ],
 
     'client' => [
-        'id' => '',
+        'id' => 'Clientin ID',
         'name' => 'Sovelluksen Nimi',
         'redirect' => 'Sovelluksen Takaisinsoitto URL:t',
-        'reset' => '',
-        'reset_failed' => '',
-        'secret' => '',
+        'reset' => 'Nollaa clientin salaisuus',
+        'reset_failed' => 'Clientin salaisuuden nollaaminen epäonnistui',
+        'secret' => 'Clientin salaisuus',
 
         'secret_visible' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Näytä clientin salaisuus',
+            'true' => 'Piilota clientin salaisuus',
         ],
     ],
 
@@ -48,10 +48,10 @@ return [
     ],
 
     'own_clients' => [
-        'confirm_delete' => '',
-        'confirm_reset' => '',
+        'confirm_delete' => 'Haluatko varmasti poistaa tämän clientin?',
+        'confirm_reset' => 'Haluatko varmasti nollata clientin salaisuuden? Tämä kumoaa kaikki olemassa olevat tokenit.',
         'new' => 'Uusi OAuth-Sovellus',
-        'none' => '',
+        'none' => 'Ei clienttejä',
 
         'revoked' => [
             'false' => 'Poista',

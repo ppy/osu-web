@@ -121,7 +121,7 @@ return [
         ],
     ],
     'store' => [
-        '_' => 'shop',
+        '_' => 'Shop',
     ],
     'users' => [
         'modding_history_controller' => [

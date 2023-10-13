@@ -47,7 +47,7 @@ return [
         ],
     ],
 
-    'discount' => 'spare :percent%',
+    'discount' => 'Spare :percent%',
 
     'invoice' => [
         'echeck_delay' => 'Da es sich bei deiner Zahlung um einen eCheck handelt, kannst du bis zu 10 zusätzliche Tage einplanen, um die Zahlung über PayPal abzuwickeln!',

@@ -61,7 +61,7 @@ return [
         'discussion' => 'Discussió',
 
         'admin' => [
-            'full_size_cover' => '',
+            'full_size_cover' => 'Veure imatge de portada a mida completa',
         ],
 
         'deleted_banner' => [

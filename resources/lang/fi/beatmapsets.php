@@ -8,11 +8,11 @@ return [
         'disabled' => 'Beatmap ei ole tällä hetkellä saatavilla.',
         'parts-removed' => 'Joitain osia tästä beatmapista on poistettu joko sen tekijän tai kolmannen osapuolen oikeuksien omaavan pyynnöstä.',
         'more-info' => 'Klikkaa nähdäksesi lisätietoja.',
-        'rule_violation' => 'Osa tämän rytmikartan resursseista on poistettu, koska on katsottu, että niiden käyttö ei sovi osu!un.',
+        'rule_violation' => 'Osa tämän beatmapin resursseista on poistettu, koska on katsottu, että niiden käyttö ei sovi osu!un.',
     ],
 
     'cover' => [
-        'deleted' => 'Poistettu rytmikartta',
+        'deleted' => 'Poistettu beatmappi',
     ],
 
     'download' => [
@@ -25,11 +25,11 @@ return [
 
     'index' => [
         'title' => 'Beatmapit',
-        'guest_title' => 'Rytmikartat',
+        'guest_title' => 'Beatmapit',
     ],
 
     'panel' => [
-        'empty' => 'ei rytmikarttoja',
+        'empty' => 'ei beatmappeja',
 
         'download' => [
             'all' => 'lataa',
@@ -40,14 +40,14 @@ return [
     ],
 
     'nominate' => [
-        'hybrid_requires_modes' => 'Usean pelimuodon rytmikartta edellyttää, että valitset ainakin yhden pelimuodon, jonka panet ehdolle.',
+        'hybrid_requires_modes' => 'Usean pelimuodon beatmappi edellyttää, että valitset ainakin yhden pelimuodon, jonka panet ehdolle.',
         'incorrect_mode' => 'Sinulla ei ole käyttöoikeutta panna ehdolle pelimuotoa: :mode',
         'full_bn_required' => 'Sinun on oltava täysivaltainen ehdollepanija, jotta voit tehdä tämän kelpuuttavan ehdollepanon.',
         'too_many' => 'Ehdollepanovaatimus on jo täyttynyt.',
 
         'dialog' => [
-            'confirmation' => 'Oletko varma, että haluat ehdollepanna tämän rytmikartan?',
-            'header' => 'Ehdollepane rytmikartta',
+            'confirmation' => 'Oletko varma, että haluat ehdollepanna tämän beatmapin?',
+            'header' => 'Ehdollepane beatmappi',
             'hybrid_warning' => 'huomaa: voit tehdä ehdollepanon vain kerran, joten varmista, että olet valinnut kaikki pelimuodot, jotka aiot panna ehdolle',
             'which_modes' => 'Mitkä pelimuodot ehdollepannaan?',
         ],
@@ -65,14 +65,14 @@ return [
         ],
 
         'deleted_banner' => [
-            'title' => 'Tämä rytmikartta on poistettu.',
+            'title' => 'Tämä beatmappi on poistettu.',
             'message' => '(tämä näkyy vain moderaattoreille)',
         ],
 
         'details' => [
             'by_artist' => 'esittäjältä :artist',
             'favourite' => 'Lisää tämä beatmap-setti suosikkeihin',
-            'favourite_login' => 'kirjaudu sisään, niin voit lisätä tämän rytmikartan suosikkeihin',
+            'favourite_login' => 'kirjaudu sisään, niin voit lisätä tämän beatmapin suosikkeihin',
             'logged-out' => 'Sinun täytyy kirjautua sisään ladataksesi beatmappeja!',
             'mapped_by' => 'kartoittanut :mapper',
             'mapped_by_guest' => 'vieraileva vaikeustaso, kartoittanut :mapper',
@@ -119,7 +119,7 @@ return [
             ],
 
             'disqualify' => [
-                '_' => 'Jos löydät ongelman, joka liittyy tähän rytmikarttaan, ole hyvä ja epäkelpuuta se :link.',
+                '_' => 'Jos löydät ongelman, joka liittyy tähän beatmappiin, ole hyvä ja epäkelpuuta se :link.',
             ],
 
             'report' => [
@@ -139,19 +139,19 @@ return [
             'offset' => 'Online tasoitus',
             'points-of-failure' => 'Epäonnistumiskohdat',
             'source' => 'Lähde',
-            'storyboard' => 'Tämä rytmikartta sisältää taustaesityksen',
+            'storyboard' => 'Tämä beatmappi sisältää taustaesityksen',
             'success-rate' => 'Läpäisyprosentti',
             'tags' => 'Tunnisteet',
-            'video' => 'Tämä rytmikartta sisältää videon',
+            'video' => 'Tämä beatmappi sisältää videon',
         ],
 
         'nsfw_warning' => [
-            'details' => 'Tämä rytmikartta sisältää sopimatonta, loukkaavaa ta järkyttävää sisältöä. Haluatko kuitenkin tarkastella sitä?',
+            'details' => 'Tämä beatmappi sisältää sopimatonta, loukkaavaa ta järkyttävää sisältöä. Haluatko kuitenkin tarkastella sitä?',
             'title' => 'Sopimatonta sisältöä',
 
             'buttons' => [
                 'disable' => 'Poista varoitus käytöstä',
-                'listing' => 'Rytmikarttalista',
+                'listing' => 'Beatmappilistaus',
                 'show' => 'Näytä',
             ],
         ],

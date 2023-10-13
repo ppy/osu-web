@@ -12,7 +12,7 @@ return [
     'beatmapset_update' => '<strong><em>:user</em></strong> aktualizuje beatmapę <em>:beatmapset</em>',
     'beatmapset_upload' => '<strong><em>:user</em></strong> przesyła nową beatmapę: :beatmapset',
     'empty' => "Ten gracz nie zrobił w ostatnim czasie nic godnego uwagi!",
-    'rank' => '<strong><em>:user</em></strong> zdobył :rank. miejsce na beatmapie <em>:beatmap</em> (:mode)',
+    'rank' => ':user zdobywa :rank na beatmapie :beatmap (:mode)',
     'rank_lost' => '<strong><em>:user</em></strong> traci pierwsze miejsce na beatmapie <em>:beatmap</em> (:mode)',
     'user_support_again' => '<strong>:user</strong> decyduje się ponownie wspomóc osu! - dziękujemy za szczodrość!',
     'user_support_first' => '<strong>:user</strong> zdecydował(a) się wspomóc osu! - dziękujemy za szczodrość!',
@@ -27,6 +27,6 @@ return [
     ],
 
     'value' => [
-        'rank' => 'pozycja #:rank',
+        'rank' => ':rank. miejsce',
     ],
 ];

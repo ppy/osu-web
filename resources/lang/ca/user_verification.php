@@ -12,7 +12,7 @@ return [
 
         'info' => [
             'check_spam' => "Assegureu-vos de comprovar la vostra carpeta de correu brossa si no podeu trobar el correu electrònic.",
-            'recover' => "Si no podeu accedir al vostre correu electrònic o heu oblidat el que heu utilitzat, seguiu l'enllaç :link.",
+            'recover' => "Si no pots accedir al teu correu electrònic o has oblidat el que has utilitzat, segueix l'enllaç :link.",
             'recover_link' => 'procés de recuperació del correu electrònic aquí',
             'reissue' => 'També podeu :reissue_link o :logout_link.',
             'reissue_link' => 'sol·licita un altre codi',

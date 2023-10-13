@@ -62,6 +62,19 @@ return [
         ],
     ],
 
+    'github_user' => [
+        'info' => "",
+        'link' => '',
+        'title' => '',
+        'unlink' => '',
+
+        'error' => [
+            'already_linked' => '',
+            'no_contribution' => '',
+            'unverified_email' => '',
+        ],
+    ],
+
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'primește notificări pentru probleme noi pe hărți calificate pentru modurile următoare',
         'beatmapset_disqualify' => 'primește notificări când beatmap-urile din modurile următoare sunt descalificate',
@@ -106,7 +119,7 @@ return [
         'keyboard' => 'tastatură',
         'mouse' => 'mouse',
         'tablet' => 'tabletă',
-        'title' => 'Stiluri de joc',
+        'title' => 'Stiluri de Joc',
         'touch' => 'ecran tactil',
     ],
 
@@ -118,9 +131,9 @@ return [
 
     'security' => [
         'current_session' => 'actual',
-        'end_session' => 'Încheie sesiunea',
+        'end_session' => 'Încheie Sesiunea',
         'end_session_confirmation' => 'Acest lucru iți va încheia instantaneu sesiunea pe acel dispozitiv. Ești sigur?',
-        'last_active' => 'Ultima conectare:',
+        'last_active' => 'Ultima dată activ:',
         'title' => 'Securitate',
         'web_sessions' => 'sesiuni web',
     ],

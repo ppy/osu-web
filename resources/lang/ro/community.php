@@ -51,11 +51,11 @@ return [
 
             'friend_ranking' => [
                 'title' => 'Clasament Prieteni',
-                'description' => "Vezi cum te compari față de prietenii tăi pe clasamentul unui beatmap, atat în joc, cât și pe site.",
+                'description' => "Vezi cum te compari față de prietenii tăi pe clasamentul unui beatmap, atât în joc, cât și pe site.",
             ],
 
             'country_ranking' => [
-                'title' => 'Clasament Țară',
+                'title' => 'Clasament Național',
                 'description' => 'Cucerește țara ta înainte de a cuceri lumea.',
             ],
 
@@ -71,7 +71,7 @@ return [
 
             'upload_more' => [
                 'title' => 'Încarcă mai mult',
-                'description' => 'Sloturi suplimentare pentru beatmap-uri în așteptare (pe beatmap clasificat) până la un maxim de 10.',
+                'description' => 'Sloturi suplimentare pentru beatmap-uri în așteptare (per beatmap clasificat) până la un maxim de 10.',
             ],
 
             'early_access' => [
@@ -116,7 +116,7 @@ return [
 
             'sort_options' => [
                 'title' => 'Opțiuni de sortare',
-                'description' => 'Abilitatea de a vedea clasarea după țară / prieteni / moduri specifice în joc.',
+                'description' => 'Abilitatea de a vedea clasamente naționale / după prieteni / după mod-uri specifice în joc.',
             ],
 
             'more_favourites' => [

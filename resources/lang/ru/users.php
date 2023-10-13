@@ -125,9 +125,9 @@ return [
 
     'ogp' => [
         'description' => [
-            '_' => '',
-            'country' => '',
-            'global' => '',
+            '_' => 'Рейтинг (:ruleset): :global | :country',
+            'country' => 'В стране :rank',
+            'global' => 'В мире :rank',
         ],
     ],
 

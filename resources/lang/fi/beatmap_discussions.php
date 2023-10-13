@@ -26,6 +26,7 @@ return [
             'deleted' => 'Sisällytä poistetut keskustelut',
             'mode' => 'Beatmap-tila',
             'only_unresolved' => 'Näytä vain ratkaisemattomat keskustelut',
+            'show_review_embeds' => '',
             'types' => 'Viestityypit',
             'username' => 'Käyttäjänimi',
 

@@ -5,7 +5,6 @@
 
 return [
     'button' => [
-        'cancel' => 'Zrušit',
         'resend' => 'Znovu odeslat ověřovací e-mail',
         'set' => 'Nastavit heslo',
         'start' => 'Začít',

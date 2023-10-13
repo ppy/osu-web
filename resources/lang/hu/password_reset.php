@@ -5,7 +5,6 @@
 
 return [
     'button' => [
-        'cancel' => 'Mégse',
         'resend' => 'Megerősítő email újraküldése',
         'set' => 'Jelszó beállítása',
         'start' => 'Start',

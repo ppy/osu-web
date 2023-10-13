@@ -5,7 +5,6 @@
 
 return [
     'button' => [
-        'cancel' => 'Cancel·la',
         'resend' => 'Torna a enviar el correu de verificació',
         'set' => 'Estableix contrasenya',
         'start' => 'Inici',
