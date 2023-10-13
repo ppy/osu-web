@@ -689,7 +689,7 @@ class Room extends Model
         }
 
         if ($playlistItem->max_attempts !== null) {
-            $playlistAttempts = $playlistItem->scoreTokens()->where('user_id', $user->getKey())->whereNull('score_id')->count();
+            $playlistAttempts = $playlistItem->scoreTokens()->where('user_id', $user->getKey())->whereNull('score_id')->count()
                 + $playlistItem->scoreLinks()->where('user_id', $user->getKey())->count();
             if ($playlistAttempts >= $playlistItem->max_attempts) {
                 throw new InvariantException('You have reached the maximum number of tries allowed.');
