@@ -175,7 +175,7 @@ location         | string?                            | |
 max_blocks       | number                             | maximum number of users allowed to be blocked
 max_friends      | number                             | maximum number of friends allowed to be added
 occupation       | string?                            | |
-playmode         | [GameMode](#gamemode)              | |
+playmode         | [Ruleset](#ruleset)                | |
 playstyle        | string[]                           | Device choices of the user.
 post_count       | number                             | number of forum posts
 profile_order    | [ProfilePage](#user-profilepage)[] | ordered array of sections in user profile page

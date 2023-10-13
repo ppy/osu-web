@@ -16,7 +16,7 @@ Field             | Type     | Description
 ----------------- | -------- | ----------------------------------------------------------------------------
 end_date          | DateTime | The end date of the spotlight.
 id                | number   | The ID of this spotlight.
-mode_specific     | boolean  | If the spotlight has different mades specific to each [GameMode](#gamemode).
+mode_specific     | boolean  | If the spotlight has different mades specific to each [Ruleset](#ruleset).
 participant_count | number?  | The number of users participating in this spotlight. This is only shown when viewing a single spotlight.
 name              | string   | The name of the spotlight.
 start_date        | DateTime | The starting date of the spotlight.

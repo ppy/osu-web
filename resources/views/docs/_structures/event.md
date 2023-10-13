@@ -113,7 +113,7 @@ Field     | Type                            | Description
 ----------|---------------------------------|--------------------------------------------
 scoreRank | string                          | (FIXME)
 rank      | number                          | |
-mode      | GameMode                        | |
+mode      | [Ruleset](#ruleset)             | |
 beatmap   | [Event.Beatmap](#event-beatmap) | |
 user      | [Event.User](#event-user)       | |
 
@@ -123,7 +123,7 @@ When a user loses first place to another user.
 
 Field     | Type
 ----------|-------------
-mode      | [GameMode](#gamemode)
+mode      | [Ruleset](#ruleset)
 beatmap   | [Event.Beatmap](#event-beatmap)
 user      | [Event.User](#event-user)
 

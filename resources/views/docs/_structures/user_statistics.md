@@ -53,7 +53,7 @@
 }
 ```
 
-A summary of various gameplay statistics for a [User](#user). Specific to a [GameMode](#gamemode)
+A summary of various gameplay statistics for a [User](#user). Specific to a [Ruleset](#ruleset)
 
 Field                     | Type          | Description
 ------------------------- | ------------- | -----------
