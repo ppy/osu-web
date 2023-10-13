@@ -34,9 +34,9 @@ class UserScoreAggregateTransformer extends TransformerAbstract
     public function includePlaylistItemAttempts(UserScoreAggregate $score)
     {
         $scoreAggs = ScoreLink::where([
-                'room_id' => $score->room_id,
                 'user_id' => $score->user_id,
-            ])->groupBy('playlist_item_id')
+            ])->whereHas('playlist', fn ($q) => $q->where('room_id', $score->room_id))
+            ->groupBy('playlist_item_id')
             ->selectRaw('COUNT(*) AS attempts, playlist_item_id')
             ->get();
 
