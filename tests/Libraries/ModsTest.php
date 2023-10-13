@@ -6,14 +6,14 @@
 namespace Tests\Libraries;
 
 use App\Exceptions\InvariantException;
-use App\Libraries\Multiplayer\Ruleset;
+use App\Libraries\Ruleset;
 use Tests\TestCase;
 
 class ModsTest extends TestCase
 {
     public function testModSettings()
     {
-        $settings = app('mods')->filterSettings(Ruleset::OSU, 'WU', ['initial_rate' => '1']);
+        $settings = app('mods')->filterSettings(Ruleset::osu->value, 'WU', ['initial_rate' => '1']);
 
         $this->assertSame(1.0, $settings->initial_rate);
     }
@@ -21,13 +21,13 @@ class ModsTest extends TestCase
     public function testModSettingsInvalid()
     {
         $this->expectException(InvariantException::class);
-        app('mods')->filterSettings(Ruleset::OSU, 'WU', ['x' => '1']);
+        app('mods')->filterSettings(Ruleset::osu->value, 'WU', ['x' => '1']);
     }
 
     public function testParseInputArray()
     {
         $input = [['acronym' => 'WU', 'settings' => []]];
-        $parsed = app('mods')->parseInputArray(Ruleset::OSU, $input);
+        $parsed = app('mods')->parseInputArray(Ruleset::osu->value, $input);
 
         $this->assertSame(1, count($parsed));
         $this->assertSame(0, count((array) $parsed[0]->settings));
@@ -39,13 +39,13 @@ class ModsTest extends TestCase
         $input = [['acronym' => 'XYZ', 'settings' => []]];
 
         $this->expectException(InvariantException::class);
-        app('mods')->parseInputArray(Ruleset::OSU, $input);
+        app('mods')->parseInputArray(Ruleset::osu->value, $input);
     }
 
     public function testParseInputArrayWithSettings()
     {
         $input = [['acronym' => 'WU', 'settings' => ['initial_rate' => '1', 'adjust_pitch' => false]]];
-        $parsed = app('mods')->parseInputArray(Ruleset::OSU, $input);
+        $parsed = app('mods')->parseInputArray(Ruleset::osu->value, $input);
 
         $this->assertSame(1, count($parsed));
         $this->assertSame(2, count((array) $parsed[0]->settings));
@@ -59,7 +59,7 @@ class ModsTest extends TestCase
         $input = [['acronym' => 'WU', 'settings' => ['x' => '1']]];
 
         $this->expectException(InvariantException::class);
-        app('mods')->parseInputArray(Ruleset::OSU, $input);
+        app('mods')->parseInputArray(Ruleset::osu->value, $input);
     }
 
     public function testValidateSelectionWithInvalidRuleset()
@@ -71,13 +71,13 @@ class ModsTest extends TestCase
     /**
      * @dataProvider modComboExclusives
      */
-    public function testAssertValidExclusivity($rulesetId, $requiredIds, $allowedIds, $isValid)
+    public function testAssertValidExclusivity(Ruleset $ruleset, $requiredIds, $allowedIds, $isValid)
     {
         if (!$isValid) {
             $this->expectException(InvariantException::class);
         }
 
-        $result = app('mods')->assertValidExclusivity($rulesetId, $requiredIds, $allowedIds);
+        $result = app('mods')->assertValidExclusivity($ruleset->value, $requiredIds, $allowedIds);
 
         if ($isValid) {
             $this->assertTrue($result);
@@ -87,13 +87,13 @@ class ModsTest extends TestCase
     /**
      * @dataProvider modCombos
      */
-    public function testValidateSelection($rulesetId, $modCombo, $isValid)
+    public function testValidateSelection(Ruleset $ruleset, $modCombo, $isValid)
     {
         if (!$isValid) {
             $this->expectException(InvariantException::class);
         }
 
-        $result = app('mods')->validateSelection($rulesetId, $modCombo);
+        $result = app('mods')->validateSelection($ruleset->value, $modCombo);
 
         if ($isValid) {
             $this->assertTrue($result);
@@ -104,39 +104,39 @@ class ModsTest extends TestCase
     {
         return [
             // valid
-            [Ruleset::OSU, ['HD', 'DT'], true],
-            [Ruleset::OSU, ['HD', 'HR'], true],
-            [Ruleset::OSU, ['HD', 'HR'], true],
-            [Ruleset::OSU, ['HD', 'NC'], true],
+            [Ruleset::osu, ['HD', 'DT'], true],
+            [Ruleset::osu, ['HD', 'HR'], true],
+            [Ruleset::osu, ['HD', 'HR'], true],
+            [Ruleset::osu, ['HD', 'NC'], true],
 
-            [Ruleset::TAIKO, ['HD', 'NC'], true],
-            [Ruleset::TAIKO, ['HD', 'DT'], true],
-            [Ruleset::TAIKO, ['HD', 'HR'], true],
-            [Ruleset::TAIKO, ['HR', 'PF'], true],
-            [Ruleset::TAIKO, ['RD', 'SD'], true],
+            [Ruleset::taiko, ['HD', 'NC'], true],
+            [Ruleset::taiko, ['HD', 'DT'], true],
+            [Ruleset::taiko, ['HD', 'HR'], true],
+            [Ruleset::taiko, ['HR', 'PF'], true],
+            [Ruleset::taiko, ['RD', 'SD'], true],
 
-            [Ruleset::CATCH, ['HD', 'HR'], true],
-            [Ruleset::CATCH, ['HD', 'PF'], true],
-            [Ruleset::CATCH, ['HD', 'SD'], true],
-            [Ruleset::CATCH, ['HD'], true],
-            [Ruleset::CATCH, ['EZ'], true],
+            [Ruleset::catch, ['HD', 'HR'], true],
+            [Ruleset::catch, ['HD', 'PF'], true],
+            [Ruleset::catch, ['HD', 'SD'], true],
+            [Ruleset::catch, ['HD'], true],
+            [Ruleset::catch, ['EZ'], true],
 
-            [Ruleset::MANIA, ['DT', 'PF'], true],
-            [Ruleset::MANIA, ['NC', 'SD'], true],
-            [Ruleset::MANIA, ['6K', 'HD'], true],
-            [Ruleset::MANIA, ['4K', 'HT'], true],
+            [Ruleset::mania, ['DT', 'PF'], true],
+            [Ruleset::mania, ['NC', 'SD'], true],
+            [Ruleset::mania, ['6K', 'HD'], true],
+            [Ruleset::mania, ['4K', 'HT'], true],
 
             // invalid
-            [Ruleset::OSU, ['5K'], false],
-            [Ruleset::OSU, ['DS'], false],
-            [Ruleset::OSU, ['HD', 'HD'], false],
+            [Ruleset::osu, ['5K'], false],
+            [Ruleset::osu, ['DS'], false],
+            [Ruleset::osu, ['HD', 'HD'], false],
 
-            [Ruleset::TAIKO, ['AP'], false],
+            [Ruleset::taiko, ['AP'], false],
 
-            [Ruleset::CATCH, ['4K'], false],
-            [Ruleset::CATCH, ['AP'], false],
+            [Ruleset::catch, ['4K'], false],
+            [Ruleset::catch, ['AP'], false],
 
-            [Ruleset::MANIA, ['AP'], false],
+            [Ruleset::mania, ['AP'], false],
         ];
     }
 
@@ -144,20 +144,20 @@ class ModsTest extends TestCase
     {
         return [
             // non-exclusive required mods and no allowed mods
-            [Ruleset::OSU, ['HD', 'NC'], [], true],
-            [Ruleset::MANIA, ['DT', 'PF'], [], true],
+            [Ruleset::osu, ['HD', 'NC'], [], true],
+            [Ruleset::mania, ['DT', 'PF'], [], true],
 
             // no conflicting exclusive required mods and allowed mods
-            [Ruleset::OSU, ['HD'], ['NC'], true],
-            [Ruleset::MANIA, ['DT'], ['PF'], true],
+            [Ruleset::osu, ['HD'], ['NC'], true],
+            [Ruleset::mania, ['DT'], ['PF'], true],
 
             // conflicting exclusive required mods
-            [Ruleset::OSU, ['RX', 'PF'], [], false],
-            [Ruleset::MANIA, ['FI', 'HD'], [], false],
+            [Ruleset::osu, ['RX', 'PF'], [], false],
+            [Ruleset::mania, ['FI', 'HD'], [], false],
 
             // allowed mods conflicts with exclusive required mods
-            [Ruleset::OSU, ['RX'], ['PF'], false],
-            [Ruleset::TAIKO, ['RX'], ['PF'], false],
+            [Ruleset::osu, ['RX'], ['PF'], false],
+            [Ruleset::taiko, ['RX'], ['PF'], false],
         ];
     }
 }

@@ -6,7 +6,7 @@
 namespace App\Models\Multiplayer;
 
 use App\Exceptions\InvariantException;
-use App\Libraries\Multiplayer\Ruleset;
+use App\Libraries\Ruleset;
 use App\Models\Beatmap;
 use App\Models\Model;
 use App\Models\Solo\ScoreToken;
@@ -131,7 +131,7 @@ class PlaylistItem extends Model
     private function validateRuleset()
     {
         // osu beatmaps can be played in any mode, but non-osu maps can only be played in their specific modes
-        if ($this->beatmap->playmode !== Ruleset::OSU && $this->beatmap->playmode !== $this->ruleset_id) {
+        if ($this->beatmap->playmode !== Ruleset::osu->value && $this->beatmap->playmode !== $this->ruleset_id) {
             throw new InvariantException("invalid ruleset_id for beatmap {$this->beatmap->beatmap_id}");
         }
     }
