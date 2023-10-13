@@ -73,6 +73,7 @@ class PlaylistItemUserHighScore extends Model
             $ret[$type] = [
                 'query' => static
                     ::cursorSort($cursorHelper, $placeholder)
+                    ->whereHas('scoreLink')
                     ->where('playlist_item_id', $scoreLink->playlist_item_id)
                     ->where('user_id', '<>', $scoreLink->user_id),
                 'cursorHelper' => $cursorHelper,
@@ -94,7 +95,7 @@ class PlaylistItemUserHighScore extends Model
         $this->fill([
             'accuracy' => $score->data->accuracy,
             'pp' => $score->pp,
-            'score_id' => 0, // TODO: remove after migrated
+            'score_id' => $score->getKey(),
             'score_link_id' => $scoreLink->getKey(),
             'total_score' => $score->data->totalScore,
         ])->save();
