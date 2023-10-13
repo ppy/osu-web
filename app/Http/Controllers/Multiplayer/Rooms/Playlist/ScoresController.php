@@ -77,7 +77,7 @@ class ScoresController extends BaseController
                 $playlist
                     ->highScores()
                     ->where('user_id', $user->getKey())
-                    ->select('score_link_id'),
+                    ->select('score_id'),
             )->first();
 
             if ($userHighScoreLink !== null) {

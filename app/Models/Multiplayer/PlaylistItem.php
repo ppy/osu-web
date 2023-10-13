@@ -113,7 +113,7 @@ class PlaylistItem extends Model
         return $this->highScores()
             ->with('scoreLink.score')
             ->orderBy('total_score', 'desc')
-            ->orderBy('score_link_id', 'asc');
+            ->orderBy('score_id', 'asc');
     }
 
     private function assertValidMaxAttempts()
