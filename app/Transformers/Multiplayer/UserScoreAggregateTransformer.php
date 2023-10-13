@@ -35,7 +35,7 @@ class UserScoreAggregateTransformer extends TransformerAbstract
     {
         $scoreAggs = ScoreLink::where([
                 'user_id' => $score->user_id,
-            ])->whereHas('playlist', fn ($q) => $q->where('room_id', $score->room_id))
+            ])->whereHas('playlistItem', fn ($q) => $q->where('room_id', $score->room_id))
             ->groupBy('playlist_item_id')
             ->selectRaw('COUNT(*) AS attempts, playlist_item_id')
             ->get();
