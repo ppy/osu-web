@@ -26,6 +26,7 @@ return [
             'deleted' => 'Gelöschte Diskussionen einbeziehen',
             'mode' => 'Beatmap-Modus',
             'only_unresolved' => 'Nur ungelöste Diskussionen anzeigen',
+            'show_review_embeds' => '',
             'types' => 'Nachrichtentyp',
             'username' => 'Benutzername',
 

@@ -126,8 +126,8 @@ return [
     'ogp' => [
         'description' => [
             '_' => 'Clasificación (:ruleset): :global | :country',
-            'country' => 'Clasificación nacional :rank',
-            'global' => 'Clasificación global :rank',
+            'country' => 'País :rank',
+            'global' => 'Global :rank',
         ],
     ],
 
@@ -400,7 +400,7 @@ return [
                     'actor' => 'por :username',
 
                     'actions' => [
-                        'restriction' => 'Prohibir',
+                        'restriction' => 'Restricción',
                         'silence' => 'Silenciado',
                         'tournament_ban' => 'Restricción de torneos',
                         'note' => 'Nota',
@@ -440,7 +440,7 @@ return [
             'count' => ':count_delimited publicación en el foro|:count_delimited publicaciones en el foro',
         ],
         'rank' => [
-            'country' => 'Rank nacional para :mode',
+            'country' => 'Clasificación nacional para :mode',
             'country_simple' => 'Clasificación nacional',
             'global' => 'Rank global para :mode',
             'global_simple' => 'Clasificación global',

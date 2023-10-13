@@ -5,7 +5,6 @@
 
 return [
     'button' => [
-        'cancel' => 'Abbrechen',
         'resend' => 'Bestätigungsmail erneut senden',
         'set' => 'Passwort festlegen',
         'start' => 'Starten',

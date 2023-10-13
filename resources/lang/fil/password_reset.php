@@ -5,7 +5,6 @@
 
 return [
     'button' => [
-        'cancel' => 'Kansel',
         'resend' => 'Ipadala muli ang verification email',
         'set' => 'I-set ang password',
         'start' => 'Magsimula',

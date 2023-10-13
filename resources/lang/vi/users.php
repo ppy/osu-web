@@ -125,9 +125,9 @@ return [
 
     'ogp' => [
         'description' => [
-            '_' => '',
-            'country' => '',
-            'global' => '',
+            '_' => 'Hạng (:ruleset): :global | :country',
+            'country' => 'Quốc gia :rank',
+            'global' => 'Toàn cầu :rank',
         ],
     ],
 

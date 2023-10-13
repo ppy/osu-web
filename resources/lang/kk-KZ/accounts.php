@@ -62,6 +62,19 @@ return [
         ],
     ],
 
+    'github_user' => [
+        'info' => "",
+        'link' => '',
+        'title' => '',
+        'unlink' => '',
+
+        'error' => [
+            'already_linked' => '',
+            'no_contribution' => '',
+            'unverified_email' => '',
+        ],
+    ],
+
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'келесі режимдердің білікті карталарындағы жаңа мәселелерге байланысты хабарландырулар алу',
         'beatmapset_disqualify' => 'келесі режимдердің карталары дисквалификацияланған жағдайда хабарландырулар алу',

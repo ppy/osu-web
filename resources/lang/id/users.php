@@ -125,9 +125,9 @@ return [
 
     'ogp' => [
         'description' => [
-            '_' => '',
-            'country' => '',
-            'global' => '',
+            '_' => 'Peringkat (:ruleset): :global | :country',
+            'country' => 'Negara :rank',
+            'global' => 'Global :rank',
         ],
     ],
 

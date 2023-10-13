@@ -26,6 +26,7 @@ return [
             'deleted' => 'Törölt beszélgetések mellékelése',
             'mode' => 'Beatmap  mód',
             'only_unresolved' => 'Csak a megoldatlan beszélgetéseket mutasd',
+            'show_review_embeds' => '',
             'types' => 'Üzenettípusok',
             'username' => 'Felhasználónév',
 

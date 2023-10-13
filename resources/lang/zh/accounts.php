@@ -10,7 +10,7 @@ return [
 
         'avatar' => [
             'title' => '头像',
-            'rules' => '请确保你的头像符合 :link。<br/>这意味着头像内容必须是<strong>全年龄的</strong>，即没有裸露、不文明语言或暗示的内容。',
+            'rules' => '请确保你的头像符合 :link。<br/>这意味着头像内容必须是<strong>全年龄的</strong>，即没有裸露、亵渎或暗示的内容。',
             'rules_link' => '社区规则',
         ],
 
@@ -59,6 +59,19 @@ return [
         'signature' => [
             'title' => '个性签名',
             'update' => '更新',
+        ],
+    ],
+
+    'github_user' => [
+        'info' => "",
+        'link' => '',
+        'title' => '',
+        'unlink' => '',
+
+        'error' => [
+            'already_linked' => '',
+            'no_contribution' => '',
+            'unverified_email' => '',
         ],
     ],
 

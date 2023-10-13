@@ -26,6 +26,7 @@ return [
             'deleted' => '包含已经删除的讨论',
             'mode' => '谱面模式',
             'only_unresolved' => '只显示未解决的讨论',
+            'show_review_embeds' => '',
             'types' => '评论类型',
             'username' => '用户名',
 

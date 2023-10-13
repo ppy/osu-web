@@ -19,8 +19,8 @@ return [
             'new_confirmation' => 'e-mail cím megerősítése',
             'title' => 'E-Mail',
             'locked' => [
-                '_' => '',
-                'accounts' => '',
+                '_' => 'Kérlek lépj kapcsolatba velük, ha az emailedet akarod frissíteni: :accounts .',
+                'accounts' => 'fiók ügyfélszolgáltatás',
             ],
         ],
 
@@ -59,6 +59,19 @@ return [
         'signature' => [
             'title' => 'Aláírás',
             'update' => 'mentés',
+        ],
+    ],
+
+    'github_user' => [
+        'info' => "",
+        'link' => '',
+        'title' => '',
+        'unlink' => '',
+
+        'error' => [
+            'already_linked' => '',
+            'no_contribution' => '',
+            'unverified_email' => '',
         ],
     ],
 

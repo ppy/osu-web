@@ -97,7 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
-            'inactive_different_country' => "Contul dumneavoastră nu a fost folosit într-un timp îndelungat.",
+            'inactive_different_country' => "Contul dumneavoastră nu a fost folosit de mult timp.",
         ],
     ],
 
@@ -125,9 +125,9 @@ return [
 
     'ogp' => [
         'description' => [
-            '_' => '',
-            'country' => '',
-            'global' => '',
+            '_' => 'Rang (:ruleset): :global | :country',
+            'country' => 'Național :rank',
+            'global' => 'Global :rank',
         ],
     ],
 
@@ -187,7 +187,7 @@ return [
 
         'comments_count' => [
             '_' => 'A postat :link',
-            'count' => ':count_delimited comentariu|:count_delimited comentarii|:count_delimited de comentarii',
+            'count' => 'un comentariu|:count_delimited comentarii|:count_delimited de comentarii',
         ],
         'cover' => [
             'to_0' => 'Ascunde fundal',
@@ -251,7 +251,7 @@ return [
                     'title' => 'Beatmap-uri în Așteptare',
                 ],
                 'ranked' => [
-                    'title' => 'Beatmap-uri Clasate & Aprobate',
+                    'title' => 'Beatmap-uri Clasate',
                 ],
             ],
             'discussions' => [
@@ -440,11 +440,11 @@ return [
             'count' => 'o postare pe forum|:count_delimited postări pe forum|:count_delimited de postări pe forum',
         ],
         'rank' => [
-            'country' => 'Clasament pe țară pentru :mode',
-            'country_simple' => 'Clasament pe țară',
-            'global' => 'Clasament global pentru :mode',
-            'global_simple' => 'Clasament global',
-            'highest' => 'Clasament maxim :rank atins pe :date',
+            'country' => 'Rang național pentru :mode',
+            'country_simple' => 'Clasament Național',
+            'global' => 'Rang global pentru :mode',
+            'global_simple' => 'Rang Global',
+            'highest' => 'Rang maxim :rank atins pe :date',
         ],
         'stats' => [
             'hit_accuracy' => 'Precizie',
@@ -456,14 +456,14 @@ return [
             'play_time' => 'Timpul total de joc',
             'ranked_score' => 'Scor Clasat',
             'replays_watched_by_others' => 'Reluări Vizionate de Alții',
-            'score_ranks' => 'Clasament de scoruri',
+            'score_ranks' => 'Clasamente Scoruri',
             'total_hits' => 'Număr de Clicuri',
             'total_score' => 'Scor Total',
             // modding stats
             'graveyard_beatmapset_count' => 'Beatmap-uri Inactive',
             'loved_beatmapset_count' => 'Beatmap-uri Iubite',
             'pending_beatmapset_count' => 'Beatmap-uri în Așteptare',
-            'ranked_beatmapset_count' => 'Beatmap-uri Clasate & Aprobate',
+            'ranked_beatmapset_count' => 'Beatmap-uri Clasate',
         ],
     ],
 

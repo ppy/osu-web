@@ -62,6 +62,19 @@ return [
         ],
     ],
 
+    'github_user' => [
+        'info' => "",
+        'link' => '',
+        'title' => '',
+        'unlink' => '',
+
+        'error' => [
+            'already_linked' => '',
+            'no_contribution' => '',
+            'unverified_email' => '',
+        ],
+    ],
+
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'показване на известие при нов проблем с квалифициран бийтмап от следните видове игра:',
         'beatmapset_disqualify' => 'показване на известие, когато бийтмап от следните видове игра е дисквалифициран:',

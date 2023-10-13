@@ -41,10 +41,10 @@ return [
             '_' => 'beatmap-keskustelut',
         ],
         'beatmap_packs_controller' => [
-            '_' => 'rytmikarttapaketit',
+            '_' => 'beatmappipaketit',
         ],
         'beatmapset_discussion_votes_controller' => [
-            '_' => 'rytmikartan keskustelun äänestys',
+            '_' => 'beatmapin keskustelun äänestys',
         ],
         'beatmapset_events_controller' => [
             '_' => 'beatmap-historiikki',

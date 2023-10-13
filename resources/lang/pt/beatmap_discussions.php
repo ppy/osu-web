@@ -26,6 +26,7 @@ return [
             'deleted' => 'Incluir discussões eliminadas',
             'mode' => 'Modo beatmap',
             'only_unresolved' => 'Mostrar apenas as discussões não resolvidas',
+            'show_review_embeds' => '',
             'types' => 'Tipos de mensagem',
             'username' => 'Nome de utilizador',
 

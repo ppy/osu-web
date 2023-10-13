@@ -26,6 +26,7 @@ return [
             'deleted' => '削除されたディスカッションを含める',
             'mode' => 'ビートマップモード',
             'only_unresolved' => '未解決のディスカッションのみ表示',
+            'show_review_embeds' => '',
             'types' => 'メッセージの種類',
             'username' => 'ユーザー名',
 

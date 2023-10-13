@@ -9,9 +9,9 @@ return [
     'none' => 'IRC-salasanaa ei asetettu.',
 
     'form' => [
-        'server_host' => '',
-        'server_port' => '',
-        'token' => '',
+        'server_host' => 'palvelin',
+        'server_port' => 'portti',
+        'token' => 'palvelimen salasana',
         'username' => 'käyttäjänimi',
     ],
 

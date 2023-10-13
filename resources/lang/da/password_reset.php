@@ -5,7 +5,6 @@
 
 return [
     'button' => [
-        'cancel' => 'Annuller',
         'resend' => 'Gensend Bekræftelsesemail',
         'set' => 'Indstil adgangskode',
         'start' => 'Start',

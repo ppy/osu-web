@@ -62,6 +62,19 @@ return [
         ],
     ],
 
+    'github_user' => [
+        'info' => "",
+        'link' => '',
+        'title' => '',
+        'unlink' => '',
+
+        'error' => [
+            'already_linked' => '',
+            'no_contribution' => '',
+            'unverified_email' => '',
+        ],
+    ],
+
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'примајте обавештења за нове проблеме на квалификованим мапама следећих модова',
         'beatmapset_disqualify' => 'примајте обавештења када мапе од следећих модова су дисквалификоване',

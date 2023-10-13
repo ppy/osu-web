@@ -68,7 +68,7 @@ return [
         'no_access' => 'Bạn không có quyền truy cập vào kênh này.',
         'receive_friends_only' => 'Người này có thể không trả lời được vì bạn đang chỉ chấp nhận tin nhắn từ người trong danh sách bạn bè.',
         'restricted' => 'Bạn không thể gửi tin nhắn trong khi bị silenced, bị hạn chế hoặc bị cấm (ban).',
-        'silenced' => 'Bạn không thể gửi tin nhắn khi bị tắt tiếng, bị hạn chế hoặc bị cấm.',
+        'silenced' => 'Bạn không thể gửi tin nhắn trong khi bị silenced, bị hạn chế hoặc bị cấm (ban).',
     ],
 
     'comment' => [

@@ -152,7 +152,7 @@ return [
         'status-messages' => [
             'approved' => '이 비트맵은 :date에 어프루브 되었습니다!',
             'graveyard' => "이 비트맵은 :date 이후로 업데이트되지 않았고, 제작자에게 버려진 것 같습니다..",
-            'loved' => '이 비트맵은 :date에 러브드 되었습니다!',
+            'loved' => '이 비트맵은 :date에 Loved 되었습니다!',
             'ranked' => '이 비트맵은 :date에 랭크되었습니다!',
             'wip' => '안내: 이 비트맵은 제작자가 제작 중으로 표시한 맵입니다.',
         ],
@@ -284,11 +284,11 @@ return [
     ],
     'status' => [
         'any' => '모두',
-        'approved' => '어프루브',
+        'approved' => 'Approved',
         'favourites' => '즐겨찾기',
         'graveyard' => '무덤에 감',
         'leaderboard' => '리더보드 있음',
-        'loved' => '러브드',
+        'loved' => 'Loved',
         'mine' => '내 비트맵',
         'pending' => '대기 중 & 작업 중',
         'wip' => '제작 중',

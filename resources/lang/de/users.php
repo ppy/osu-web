@@ -75,7 +75,7 @@ return [
         'warning' => "Falls Du gegen eine Regel verstoßen hast, beachte bitte, dass es in der Regel eine Frist von einem Monat gibt, in der wir keine Anträge berücksichtigen. Nach diesem Zeitraum kannst Du uns jederzeit kontaktieren, falls Du dies für erforderlich hältst. Beachte, dass das Erstellen neuer Konten nach dem Deaktivieren eines Kontos zu einer <strong>Verlängerung dieser einmonatigen Frist</strong> führt. Bitte beachte auch, dass du für <strong>jedes Konto, das du erstellst, weitere Regeln verletzt</strong>. Wir empfehlen Dir dringend, diesen Weg nicht zu gehen!",
 
         'if_mistake' => [
-            '_' => 'Wenn Du der Meinung bist, dass dies ein Fehler ist, kannst Du uns gerne kontaktieren (per :email oder durch Klicken auf das "?" in der rechten unteren Ecke dieser Seite). Bitte beachte, dass wir bei unseren Handlungen immer volles Vertrauen haben, da sie auf sehr soliden Daten beruhen. Wir behalten uns das Recht vor, Deine Anfrage zu ignorieren, wenn wir das Gefühl haben, dass Du absichtlich unehrlich bist.',
+            '_' => 'Wenn du der Meinung bist, dass dies ein Fehler ist, kannst du uns gerne kontaktieren (per :email oder durch Klicken auf das "?" in der rechten unteren Ecke dieser Seite). Bitte beachte, dass wir bei unseren Handlungen immer volles Vertrauen haben, da sie auf sehr soliden Daten beruhen. Wir behalten uns das Recht vor, deine Anfrage zu ignorieren, wenn wir das Gefühl haben, dass du absichtlich unehrlich bist.',
             'email' => 'E-Mail',
         ],
 
@@ -125,9 +125,9 @@ return [
 
     'ogp' => [
         'description' => [
-            '_' => '',
-            'country' => '',
-            'global' => '',
+            '_' => 'Rang (:ruleset): :global | :country',
+            'country' => 'Land :rank',
+            'global' => 'Global :rank',
         ],
     ],
 
@@ -143,7 +143,7 @@ return [
     ],
     'logout_confirm' => 'Sicher, dass du dich ausloggen willst? :(',
     'report' => [
-        'button_text' => 'melden',
+        'button_text' => 'Melden',
         'comments' => 'Weitere Kommentare',
         'placeholder' => 'Bitte stelle jegliche Infomationen zur Verfügung, die nützlich sein könnten.',
         'reason' => 'Grund',

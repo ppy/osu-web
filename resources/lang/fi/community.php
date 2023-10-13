@@ -85,7 +85,7 @@ return [
             ],
 
             'beatmap_filters' => [
-                'title' => 'Beatmap Suodattimet',
+                'title' => 'Beatmapsuodattimet',
                 'description' => 'Suodata beatmappien hakua pelatun, pelaamattoman sekä kartassa saavutetun luokituksen mukaan.',
             ],
 

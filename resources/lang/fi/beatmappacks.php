@@ -5,10 +5,10 @@
 
 return [
     'index' => [
-        'description' => 'Valmiiksi kasattuja rytmikarttakokoelmia, joissa yhdistyy tietty teema.',
+        'description' => 'Valmiiksi pakattuja kokoelmia beatmappeja, joissa yhdistyy tietty teema.',
         'empty' => 'Tulossa pian!',
         'nav_title' => 'listaus',
-        'title' => 'Rytmikarttapaketit',
+        'title' => 'Beatmappipaketit',
 
         'blurb' => [
             'important' => 'LUE TÄMÄ ENNEN LATAAMISTA',

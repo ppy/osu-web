@@ -62,6 +62,19 @@ return [
         ],
     ],
 
+    'github_user' => [
+        'info' => "",
+        'link' => '',
+        'title' => '',
+        'unlink' => '',
+
+        'error' => [
+            'already_linked' => '',
+            'no_contribution' => '',
+            'unverified_email' => '',
+        ],
+    ],
+
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'отримувати сповіщення про нові проблеми у кваліфікованих мапах для перелічених режимів',
         'beatmapset_disqualify' => 'отримувати сповіщення коли мапи перелічених режимів будуть дискваліфіковані',

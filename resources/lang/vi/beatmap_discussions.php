@@ -26,6 +26,7 @@ return [
             'deleted' => 'Bao gồm cuộc thảo luận đã xóa',
             'mode' => 'Chế độ Beatmap',
             'only_unresolved' => 'Chỉ hiện các cuộc thảo luận chưa được giải quyết',
+            'show_review_embeds' => '',
             'types' => 'Kiểu tin nhắn',
             'username' => 'Tên người dùng',
 
@@ -33,7 +34,7 @@ return [
                 '_' => 'Tình trạng Beatmap',
                 'all' => 'Tất cả',
                 'disqualified' => 'Disqualified ',
-                'never_qualified' => 'Không bao giờ đủ tư cách',
+                'never_qualified' => 'Chưa bao giờ Qualified',
                 'qualified' => 'Qualified',
                 'ranked' => 'Xếp Hạng',
             ],
@@ -80,7 +81,7 @@ return [
         'validation' => [
             'block_too_large' => 'mỗi khối chỉ có thể chứa tối đa :limit giới hạn kí tự',
             'external_references' => 'bài đánh giá có chứa tham chiếu đến các vấn đề không thuộc bài đánh giá này',
-            'invalid_block_type' => 'Loại khối không hợp lệ',
+            'invalid_block_type' => 'loại khối không hợp lệ',
             'invalid_document' => 'đánh giá không phù hợp',
             'invalid_discussion_type' => 'loại thảo luận không hợp lệ',
             'minimum_issues' => 'đánh giá phải chứa tối thiểu :count vấn_đề|đánh_giá phải chứa tối thiểu :count vấn đề',

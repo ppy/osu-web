@@ -27,6 +27,6 @@ return [
     ],
 
     'value' => [
-        'rank' => 'место #:rank',
+        'rank' => '#:rank место',
     ],
 ];
