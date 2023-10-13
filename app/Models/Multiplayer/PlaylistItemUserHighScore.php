@@ -96,7 +96,6 @@ class PlaylistItemUserHighScore extends Model
             'accuracy' => $score->data->accuracy,
             'pp' => $score->pp,
             'score_id' => $scoreLink->getKey(),
-            'score_link_id' => $scoreLink->getKey(),
             'total_score' => $score->data->totalScore,
         ])->save();
     }
