@@ -29,7 +29,7 @@ class BeatmapPackTransformer extends TransformerAbstract
             'name' => $pack->name,
             'no_diff_reduction' => $pack->no_diff_reduction,
             'pack_id' => $pack->pack_id,
-            'ruleset_id' => $pack->getRulesetIdAttribute(),
+            'ruleset_id' => $pack->playmode,
             'tag' => $pack->tag,
             'url' => $pack->url,
         ];
