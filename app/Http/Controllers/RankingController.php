@@ -14,6 +14,7 @@ use App\Models\UserStatistics;
 use App\Transformers\SelectOptionTransformer;
 use App\Transformers\UserCompactTransformer;
 use DB;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 /**
@@ -187,6 +188,24 @@ class RankingController extends Controller
             ->offset(static::PAGE_SIZE * ($page - 1))
             ->get();
 
+        $showRankChange =
+            $type === 'performance' &&
+            $this->country === null &&
+            !$this->friendsOnly &&
+            $this->params['variant'] === null;
+
+        if ($showRankChange) {
+            $stats->loadMissing([
+                'user.rankHistories' => fn (Relation $query) => $query->where('mode', $modeInt),
+            ]);
+
+            foreach ($stats as $stat) {
+                // Set user.rankHistories.user.statistics{ruleset} relation
+                $stat->user->setRelation('statistics'.studly_case($mode), $stat);
+                $stat->user->rankHistories->each->setRelation('user', $stat->user);
+            }
+        }
+
         if (is_api_request()) {
             switch ($type) {
                 case 'country':
@@ -194,7 +213,13 @@ class RankingController extends Controller
                     break;
 
                 default:
-                    $ranking = json_collection($stats, 'UserStatistics', ['user', 'user.cover', 'user.country']);
+                    $includes = ['user', 'user.cover', 'user.country'];
+
+                    if ($showRankChange) {
+                        $includes[] = 'rank_change_since_30_days';
+                    }
+
+                    $ranking = json_collection($stats, 'UserStatistics', $includes);
                     break;
             }
 
@@ -219,7 +244,7 @@ class RankingController extends Controller
             ])]
         );
 
-        return ext_view("rankings.{$type}", array_merge($this->defaultViewVars, compact('scores')));
+        return ext_view("rankings.{$type}", array_merge($this->defaultViewVars, compact('scores', 'showRankChange')));
     }
 
     /**
