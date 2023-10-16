@@ -827,10 +827,12 @@ class Topic extends Model implements AfterCommit, HasOpengraph
 
     public function toOpengraph(?array $options = []): array
     {
-        $opengraph = $this->forum->toOpengraph();
-        $opengraph['description'] = "{$opengraph['description']} » {$this->topic_title}";
+        $forumOpengraph = $this->forum->toOpengraph();
 
-        return $opengraph;
+        return [
+            'description' => "{$forumOpengraph['description']} » {$this->topic_title}",
+            'image' => $this->cover?->fileUrl() ?? $this->forum->cover?->defaultTopicCover->fileUrl(),
+        ];
     }
 
     public function afterCommit()

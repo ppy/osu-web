@@ -1428,6 +1428,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, HasOpengraph
 
         return [
             'description' => "osu! » {$section} » {$this->artist} - {$this->title}",
+            'image' => $this->coverURL('card'),
         ];
     }
 

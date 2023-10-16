@@ -387,6 +387,9 @@ class Forum extends Model implements HasOpengraph
         $description = implode(' » ', $stack);
 
         // Reminder to update Topic::toOpengraph() if these values change.
-        return compact('description');
+        return [
+            'description' => $description,
+            'image' => $this->cover?->fileUrl(),
+        ];
     }
 }

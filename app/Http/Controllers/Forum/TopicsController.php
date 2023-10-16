@@ -429,7 +429,7 @@ class TopicsController extends Controller
 
         $posts->last()->markRead($currentUser);
 
-        $coverModel = $topic->cover()->firstOrNew([]);
+        $coverModel = $topic->cover ?? new TopicCover();
         $coverModel->setRelation('topic', $topic);
         $cover = json_item($coverModel, new TopicCoverTransformer());
 
