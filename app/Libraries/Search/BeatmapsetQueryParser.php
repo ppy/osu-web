@@ -76,6 +76,9 @@ class BeatmapsetQueryParser
                 case 'ranked':
                     $option = static::makeDateRangeOption($op, $m['value']);
                     break;
+                case 'updated':
+                    $option = static::makeDateRangeOption($op, $m['value']);
+                    break;
             }
 
             if (isset($option)) {
