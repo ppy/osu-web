@@ -25,6 +25,7 @@ use App\Libraries\Commentable;
 use App\Libraries\Elasticsearch\Indexable;
 use App\Libraries\ImageProcessorService;
 use App\Libraries\Transactions\AfterCommit;
+use App\Models\Traits\HasOpengraph;
 use App\Traits\Memoizes;
 use App\Traits\Validatable;
 use Cache;
@@ -104,7 +105,7 @@ use Illuminate\Database\QueryException;
  * @property bool $video
  * @property \Illuminate\Database\Eloquent\Collection $watches BeatmapsetWatch
  */
-class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, Traits\ReportableInterface
+class Beatmapset extends Model implements AfterCommit, Commentable, HasOpengraph, Indexable, Traits\ReportableInterface
 {
     use Memoizes, SoftDeletes, Traits\CommentableDefaults, Traits\Es\BeatmapsetSearch, Traits\Reportable, Validatable;
 
@@ -1421,11 +1422,13 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             ]);
     }
 
-    public function toMetaDescription()
+    public function toOpengraph(?array $options = []): array
     {
         $section = osu_trans('layout.menu.beatmaps._');
 
-        return "osu! » {$section} » {$this->artist} - {$this->title}";
+        return [
+            'description' => "osu! » {$section} » {$this->artist} - {$this->title}",
+        ];
     }
 
     private function extractDescription($post)

@@ -98,6 +98,7 @@ class BeatmapsetsController extends Controller
             }
 
             $noindex = !$beatmapset->esShouldIndex();
+            $opengraph = $beatmapset->toOpengraph();
 
             return ext_view('beatmapsets.show', compact(
                 'beatmapset',
@@ -105,6 +106,7 @@ class BeatmapsetsController extends Controller
                 'genres',
                 'languages',
                 'noindex',
+                'opengraph',
                 'set'
             ));
         }
