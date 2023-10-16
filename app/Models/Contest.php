@@ -334,8 +334,9 @@ class Contest extends Model implements HasOpengraph
     public function toOpengraph(?array $options = []): array
     {
         return [
-            'title' => $this->name,
+            'description' => strip_tags(markdown($this->currentDescription())),
             'image' => $this->header_url,
+            'title' => $this->name,
         ];
     }
 

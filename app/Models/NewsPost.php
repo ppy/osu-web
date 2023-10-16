@@ -333,8 +333,9 @@ class NewsPost extends Model implements Commentable, HasOpengraph, Wiki\WikiObje
     public function toOpengraph(?array $options = []): array
     {
         return [
-            'title' => $this->title(),
+            'description' => blade_safe($this->previewText()),
             'image' => $this->firstImage(true),
+            'title' => $this->title(),
         ];
     }
 

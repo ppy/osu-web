@@ -73,8 +73,9 @@ class Artist extends Model implements HasOpengraph
     public function toOpengraph(?array $options = []): array
     {
         return [
-            'title' => $this->name,
+            'description' => $this->description,
             'image' => $this->cover_url,
+            'title' => $this->name,
         ];
     }
 

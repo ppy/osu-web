@@ -5,7 +5,6 @@
 @extends('master', [
     'titlePrepend' => $post->title(),
     'canonicalUrl' => $post->url(),
-    'pageDescription' => blade_safe($post->previewText()),
 ])
 
 @section('content')

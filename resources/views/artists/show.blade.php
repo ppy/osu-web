@@ -20,7 +20,6 @@
 
 @extends('master', [
     'titlePrepend' => $artist->name,
-    'pageDescription' => $artist->description,
     'canonicalUrl' => $artist->url(),
 ])
 
