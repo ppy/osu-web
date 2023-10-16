@@ -10,7 +10,6 @@ namespace App\Models\Multiplayer;
 use App\Exceptions\InvariantException;
 use App\Models\Model;
 use App\Models\Solo\Score;
-use App\Models\Traits\SoloScoreInterface;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -24,7 +23,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property User $user
  * @property int $user_id
  */
-class ScoreLink extends Model implements SoloScoreInterface
+class ScoreLink extends Model
 {
     public $incrementing = false;
     public $timestamps = false;
@@ -55,17 +54,9 @@ class ScoreLink extends Model implements SoloScoreInterface
     public function getAttribute($key)
     {
         return match ($key) {
-            'build_id',
             'playlist_item_id',
             'score_id',
             'user_id' => $this->getRawAttribute($key),
-
-            'data' => $this->score->data,
-            'has_replay' => $this->score->has_replay ?? false,
-            'pp' => $this->score->pp ?? 0.0,
-
-            'beatmap_id' => $this->playlistItem?->beatmap_id,
-            'ruleset_id' => $this->playlistItem?->ruleset_id,
 
             'playlistItem',
             'playlistItemUserHighScore',

@@ -57,7 +57,7 @@ class PlaylistItemUserHighScore extends Model
     {
         $placeholder = new static([
             'score_id' => $scoreLink->getKey(),
-            'total_score' => $scoreLink->data->totalScore,
+            'total_score' => $scoreLink->score->data->totalScore,
         ]);
 
         static $typeOptions = [
