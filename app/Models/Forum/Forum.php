@@ -375,7 +375,7 @@ class Forum extends Model implements HasOpengraph
         });
     }
 
-    public function toMetaDescription()
+    public function toOpengraph(?array $options = []): array
     {
         $stack = [osu_trans('forum.title')];
         foreach ($this->forum_parents as $forumId => $forumData) {
@@ -384,13 +384,9 @@ class Forum extends Model implements HasOpengraph
 
         $stack[] = $this->forum_name;
 
-        return implode(' » ', $stack);
-    }
+        $description = implode(' » ', $stack);
 
-    public function toOpengraph(?array $options = []): array
-    {
-        return [
-            'description' => $this->toMetaDescription(),
-        ];
+        // Reminder to update Topic::toOpengraph() if these values change.
+        return compact('description');
     }
 }

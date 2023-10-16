@@ -1815,43 +1815,10 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->rank?->url;
     }
 
-    public function toMetaDescription(array $options = []): string
-    {
-        static $rankTypes = ['country', 'global'];
-
-        $ruleset = $options['ruleset'] ?? $this->playmode;
-        $stats = $this->statistics($ruleset);
-
-        $replacements['ruleset'] = $ruleset;
-
-        foreach ($rankTypes as $type) {
-            $method = "{$type}Rank";
-            $replacements[$type] = osu_trans("users.ogp.description.{$type}", [
-                'rank' => format_rank($stats?->$method()),
-            ]);
-
-            $variants = Beatmap::VARIANTS[$ruleset] ?? [];
-
-            $variantsTexts = null;
-            foreach ($variants as $variant) {
-                $variantRank = $this->statistics($ruleset, false, $variant)?->$method();
-                if ($variantRank !== null) {
-                    $variantsTexts[] = $variant.' '.format_rank($variantRank);
-                }
-            }
-
-            if (!empty($variantsTexts)) {
-                $replacements[$type] .= ' ('.implode(', ', $variantsTexts).')';
-            }
-        }
-
-        return osu_trans('users.ogp.description._', $replacements);
-    }
-
     public function toOpengraph(?array $options = []): array
     {
         return [
-            'description' => blade_safe($this->toMetaDescription($options)),
+            'description' => blade_safe($this->getOpengraphDescription($options)),
             'image' => $this->user_avatar,
             'title' => blade_safe(osu_trans('users.show.title', ['username' => $this->username])),
         ];
@@ -2432,6 +2399,39 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     private function getDisplayedLastVisit()
     {
         return $this->hide_presence ? null : $this->user_lastvisit;
+    }
+
+    private function getOpengraphDescription(array $options = []): string
+    {
+        static $rankTypes = ['country', 'global'];
+
+        $ruleset = $options['ruleset'] ?? $this->playmode;
+        $stats = $this->statistics($ruleset);
+
+        $replacements['ruleset'] = $ruleset;
+
+        foreach ($rankTypes as $type) {
+            $method = "{$type}Rank";
+            $replacements[$type] = osu_trans("users.ogp.description.{$type}", [
+                'rank' => format_rank($stats?->$method()),
+            ]);
+
+            $variants = Beatmap::VARIANTS[$ruleset] ?? [];
+
+            $variantsTexts = null;
+            foreach ($variants as $variant) {
+                $variantRank = $this->statistics($ruleset, false, $variant)?->$method();
+                if ($variantRank !== null) {
+                    $variantsTexts[] = $variant.' '.format_rank($variantRank);
+                }
+            }
+
+            if (!empty($variantsTexts)) {
+                $replacements[$type] .= ' ('.implode(', ', $variantsTexts).')';
+            }
+        }
+
+        return osu_trans('users.ogp.description._', $replacements);
     }
 
     private function getOsuPlaystyle()

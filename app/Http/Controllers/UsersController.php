@@ -631,7 +631,7 @@ class UsersController extends Controller
             abort(404);
         }
 
-        // preload and set relation for toMetaDescription and transformer sharing data
+        // preload and set relation for opengraph header and transformer sharing data
         $user->statistics($currentMode)?->setRelation('user', $user);
 
         $userArray = $this->fillDeprecatedDuplicateFields(json_item(

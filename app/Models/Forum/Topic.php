@@ -825,16 +825,12 @@ class Topic extends Model implements AfterCommit, HasOpengraph
         return strpos($this->topic_title, "[{$tag}]") !== false;
     }
 
-    public function toMetaDescription()
-    {
-        return "{$this->forum->toMetaDescription()} » {$this->topic_title}";
-    }
-
     public function toOpengraph(?array $options = []): array
     {
-        return [
-            'description' => $this->toMetaDescription(),
-        ];
+        $opengraph = $this->forum->toOpengraph();
+        $opengraph['description'] = "{$opengraph['description']} » {$this->topic_title}";
+
+        return $opengraph;
     }
 
     public function afterCommit()
