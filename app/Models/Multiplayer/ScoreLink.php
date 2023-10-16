@@ -3,6 +3,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
 namespace App\Models\Multiplayer;
 
 use App\Exceptions\InvariantException;
@@ -11,6 +13,7 @@ use App\Models\Solo\Score;
 use App\Models\Traits\SoloScoreInterface;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * @property int $build_id
@@ -29,12 +32,12 @@ class ScoreLink extends Model implements SoloScoreInterface
     protected $primaryKey = 'score_id';
     protected $table = 'multiplayer_score_links';
 
-    public function playlistItem()
+    public function playlistItem(): BelongsTo
     {
         return $this->belongsTo(PlaylistItem::class, 'playlist_item_id');
     }
 
-    public function playlistItemUserHighScore()
+    public function playlistItemUserHighScore(): HasOne
     {
         return $this->hasOne(PlaylistItemUserHighScore::class);
     }
@@ -44,7 +47,7 @@ class ScoreLink extends Model implements SoloScoreInterface
         return $this->belongsTo(Score::class, 'score_id');
     }
 
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
     }
@@ -71,7 +74,7 @@ class ScoreLink extends Model implements SoloScoreInterface
         };
     }
 
-    public function complete(array $params)
+    public function complete(array $params): void
     {
         $this->getConnection()->transaction(function () use ($params) {
             $score = Score::createFromJsonOrExplode($params);
