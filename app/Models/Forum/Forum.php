@@ -389,6 +389,7 @@ class Forum extends Model implements HasOpengraph
         // Reminder to update Topic::toOpengraph() if these values change.
         return [
             'description' => $description,
+            'title' => $this->forum_name,
             'image' => $this->cover?->fileUrl(),
         ];
     }

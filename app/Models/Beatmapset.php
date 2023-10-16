@@ -1425,10 +1425,12 @@ class Beatmapset extends Model implements AfterCommit, Commentable, HasOpengraph
     public function toOpengraph(?array $options = []): array
     {
         $section = osu_trans('layout.menu.beatmaps._');
+        $title = "{$this->artist} - {$this->title}"; // opengrah header always intended for guest.
 
         return [
-            'description' => "osu! » {$section} » {$this->artist} - {$this->title}",
+            'description' => "osu! » {$section} » {$title}",
             'image' => $this->coverURL('card'),
+            'title' => $title,
         ];
     }
 

@@ -832,6 +832,7 @@ class Topic extends Model implements AfterCommit, HasOpengraph
         return [
             'description' => "{$forumOpengraph['description']} » {$this->topic_title}",
             'image' => $this->cover?->fileUrl() ?? $this->forum->cover?->defaultTopicCover->fileUrl(),
+            'title' => $this->topic_title,
         ];
     }
 
