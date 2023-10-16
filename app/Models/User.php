@@ -20,6 +20,7 @@ use App\Libraries\User\UsernamesForDbLookup;
 use App\Libraries\UsernameValidation;
 use App\Models\Forum\TopicWatch;
 use App\Models\OAuth\Client;
+use App\Models\Traits\HasOpengraph;
 use App\Traits\Memoizes;
 use App\Traits\Validatable;
 use Cache;
@@ -210,7 +211,7 @@ use Request;
  * @method static Builder eagerloadForListing()
  * @method static Builder online()
  */
-class User extends Model implements AfterCommit, AuthenticatableContract, HasLocalePreference, Indexable, Traits\ReportableInterface
+class User extends Model implements AfterCommit, AuthenticatableContract, HasLocalePreference, HasOpengraph, Indexable, Traits\ReportableInterface
 {
     use Authenticatable, HasApiTokens, Memoizes, Traits\Es\UserSearch, Traits\Reportable, Traits\UserAvatar, Traits\UserScoreable, Traits\UserStore, Validatable;
 
@@ -1845,6 +1846,15 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         }
 
         return osu_trans('users.ogp.description._', $replacements);
+    }
+
+    public function toOpengraph(?array $options = []): array
+    {
+        return [
+            'description' => blade_safe($this->toMetaDescription($options)),
+            'image' => $this->user_avatar,
+            'title' => blade_safe(osu_trans('users.show.title', ['username' => $this->username])),
+        ];
     }
 
     public function hasProfile()

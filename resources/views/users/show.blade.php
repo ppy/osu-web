@@ -6,10 +6,6 @@
 @extends('master', [
     'canonicalUrl' => $user->url($mode),
     'titlePrepend' => blade_safe(str_replace(' ', '&nbsp;', e($user->username))),
-    'opengraph' => [
-        'title' => blade_safe(osu_trans('users.show.title', ['username' => $user->username])),
-        'image' => $user->user_avatar,
-    ]
 ])
 
 @section('content')

@@ -26,10 +26,12 @@
     <meta property="og:site_name" content="osu! » {{ page_title() }}">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ $canonicalUrl }}">
-    <meta property="og:title" content="{{ $opengraph['title'] }}">
-    <meta property="og:image" content="{{ $opengraph['image'] }}">
 
-    @if (isset($pageDescription))
+    @foreach ($opengraph as $key => $value)
+        <meta property="og:{{ $key }}" content="{{ $value }}">
+    @endforeach
+
+    @if (!isset($opengraph['description']) && isset($pageDescription))
         <meta property="og:description" content="{{ $pageDescription }}">
     @endif
 @endif

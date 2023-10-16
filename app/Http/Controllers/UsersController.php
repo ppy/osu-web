@@ -654,9 +654,10 @@ class UsersController extends Controller
                 'user' => $userArray,
             ];
 
-            $pageDescription = blade_safe($user->toMetaDescription(['ruleset' => $currentMode]));
 
-            return ext_view('users.show', compact('initialData', 'pageDescription', 'mode', 'user'));
+            $opengraph = $user->toOpengraph(['ruleset' => $currentMode]);
+
+            return ext_view('users.show', compact('initialData', 'mode', 'opengraph', 'user'));
         }
     }
 
