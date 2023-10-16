@@ -29,8 +29,6 @@ class ScoreLink extends Model implements SoloScoreInterface
     protected $primaryKey = 'score_id';
     protected $table = 'multiplayer_score_links';
 
-    private Score $defaultScore;
-
     public function playlistItem()
     {
         return $this->belongsTo(PlaylistItem::class, 'playlist_item_id');
