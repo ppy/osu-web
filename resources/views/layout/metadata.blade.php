@@ -7,7 +7,7 @@
     $currentLocale = App::getLocale();
     $fallbackLocale = config('app.fallback_locale');
 
-    $pageDescription ??= $opengraph['description'] ?? null;
+    $opengraph['description'] ??= $opengraph['description'] ?? $pageDescription ?? null;
 @endphp
 <link rel="apple-touch-icon" sizes="180x180" href="{{ $appUrl }}/images/favicon/apple-touch-icon.png">
 <link rel="icon" sizes="32x32" href="{{ $appUrl }}/images/favicon/favicon-32x32.png">
@@ -18,30 +18,24 @@
 <meta name="theme-color" content="hsl({{ $currentHue }}, 10%, 40%)"> {{-- @osu-colour-b1 --}}
 
 <meta charset="utf-8">
-<meta name="description" content="{{ $pageDescription ?? osu_trans('layout.defaults.page_description') }}">
+<meta name="description" content="{{ $opengraph['description'] ?? osu_trans('layout.defaults.page_description') }}">
 <meta name="keywords" content="osu, peppy, ouendan, elite, beat, agents, ds, windows, game, taiko, tatsujin, simulator, sim, xna, ddr, beatmania, osu!, osume">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link rel="search" type="application/opensearchdescription+xml" title="osu! search" href="{{ config('app.url') }}/opensearch.xml">
 
-@if (isset($opengraph))
-    <meta property="og:site_name" content="osu! » {{ page_title() }}">
-    <meta property="og:type" content="website">
+<meta property="og:site_name" content="osu! » {{ page_title() }}">
+<meta property="og:type" content="website">
 
-    @if (isset($canonicalUrl))
-        <meta property="og:url" content="{{ $canonicalUrl }}">
-    @endif
-
-    @foreach ($opengraph as $key => $value)
-        @if (present($value))
-            <meta property="og:{{ $key }}" content="{{ $value }}">
-        @endif
-    @endforeach
-
-    @if (!isset($opengraph['description']) && isset($pageDescription))
-        <meta property="og:description" content="{{ $pageDescription }}">
-    @endif
+@if (isset($canonicalUrl))
+    <meta property="og:url" content="{{ $canonicalUrl }}">
 @endif
+
+@foreach ($opengraph as $key => $value)
+    @if (present($value))
+        <meta property="og:{{ $key }}" content="{{ $value }}">
+    @endif
+@endforeach
 
 @if ($noindex ?? false)
     <meta name="robots" content="noindex">
