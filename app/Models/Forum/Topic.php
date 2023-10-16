@@ -13,6 +13,7 @@ use App\Libraries\Transactions\AfterCommit;
 use App\Models\Beatmapset;
 use App\Models\Log;
 use App\Models\Notification;
+use App\Models\Traits\HasOpengraph;
 use App\Models\User;
 use App\Traits\Memoizes;
 use App\Traits\Validatable;
@@ -72,7 +73,7 @@ use Illuminate\Database\QueryException;
  * @property \Illuminate\Database\Eloquent\Collection $userTracks TopicTrack
  * @property \Illuminate\Database\Eloquent\Collection $watches TopicWatch
  */
-class Topic extends Model implements AfterCommit
+class Topic extends Model implements AfterCommit, HasOpengraph
 {
     use Memoizes, Validatable;
     use SoftDeletes {
@@ -827,6 +828,13 @@ class Topic extends Model implements AfterCommit
     public function toMetaDescription()
     {
         return "{$this->forum->toMetaDescription()} » {$this->topic_title}";
+    }
+
+    public function toOpengraph(?array $options = []): array
+    {
+        return [
+            'description' => $this->toMetaDescription(),
+        ];
     }
 
     public function afterCommit()

@@ -5,6 +5,7 @@
 
 namespace App\Models\Forum;
 
+use App\Models\Traits\HasOpengraph;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
@@ -59,7 +60,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @property \Illuminate\Database\Eloquent\Collection $subforums static
  * @property \Illuminate\Database\Eloquent\Collection $topics Topic
  */
-class Forum extends Model
+class Forum extends Model implements HasOpengraph
 {
     public $timestamps = false;
 
@@ -384,5 +385,12 @@ class Forum extends Model
         $stack[] = $this->forum_name;
 
         return implode(' » ', $stack);
+    }
+
+    public function toOpengraph(?array $options = []): array
+    {
+        return [
+            'description' => $this->toMetaDescription(),
+        ];
     }
 }

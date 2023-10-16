@@ -27,10 +27,15 @@
 @if (isset($opengraph))
     <meta property="og:site_name" content="osu! » {{ page_title() }}">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="{{ $canonicalUrl }}">
+
+    @if (isset($canonicalUrl))
+        <meta property="og:url" content="{{ $canonicalUrl }}">
+    @endif
 
     @foreach ($opengraph as $key => $value)
-        <meta property="og:{{ $key }}" content="{{ $value }}">
+        @if (present($value))
+            <meta property="og:{{ $key }}" content="{{ $value }}">
+        @endif
     @endforeach
 
     @if (!isset($opengraph['description']) && isset($pageDescription))

@@ -437,6 +437,7 @@ class TopicsController extends Controller
 
         $featureVotes = $this->groupFeatureVotes($topic);
         $noindex = !$topic->forum->enable_indexing;
+        $opengraph = $topic->toOpengraph();
 
         return ext_view('forum.topics.show', compact(
             'canEditPoll',
@@ -449,6 +450,7 @@ class TopicsController extends Controller
             'firstPostPosition',
             'navUrls',
             'noindex',
+            'opengraph',
             'topic',
             'userCanModerate',
             'showDeleted'

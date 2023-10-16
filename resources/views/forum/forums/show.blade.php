@@ -4,7 +4,6 @@
 --}}
 @extends('master', [
     'bodyAdditionalClasses' => "t-forum-{$forum->categorySlug()}",
-    'pageDescription' => $forum->toMetaDescription(),
     'searchParams' => [
         'forum_id' => $forum->getKey(),
         'mode' => 'forum_post',

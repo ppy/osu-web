@@ -5,7 +5,6 @@
 @extends('master', [
     'titlePrepend' => $topic->topic_title,
     'canonicalUrl' => route('forum.topics.show', $topic->topic_id),
-    'pageDescription' => $topic->toMetaDescription(),
 ])
 
 @php
