@@ -19,10 +19,6 @@
     'titlePrepend' => $contestMeta->name,
     'pageDescription' => strip_tags(markdown($contestMeta->currentDescription())),
     'canonicalUrl' => $contestMeta->url(),
-    'opengraph' => [
-        'title' => $contestMeta->name,
-        'image' => $contestMeta->header_url,
-    ],
 ])
 
 @section('content')

@@ -5,6 +5,7 @@
 
 namespace App\Models;
 
+use App\Models\Traits\HasOpengraph;
 use App\Traits\Memoizes;
 
 /**
@@ -31,7 +32,7 @@ use App\Traits\Memoizes;
  * @property string|null $website
  * @property string|null $youtube
  */
-class Artist extends Model
+class Artist extends Model implements HasOpengraph
 {
     use Memoizes;
 
@@ -67,6 +68,14 @@ class Artist extends Model
         $date = parse_time_to_carbon($this->attributes['tracks_max_created_at']);
 
         return $date !== null && $date->addMonths(1)->isFuture();
+    }
+
+    public function toOpengraph(?array $options = []): array
+    {
+        return [
+            'title' => $this->name,
+            'image' => $this->cover_url,
+        ];
     }
 
     public function url()

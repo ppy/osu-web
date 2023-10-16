@@ -9,6 +9,7 @@ use App\Exceptions\GitHubNotFoundException;
 use App\Libraries\Commentable;
 use App\Libraries\Markdown\OsuMarkdown;
 use App\Libraries\OsuWiki;
+use App\Models\Traits\HasOpengraph;
 use App\Traits\Memoizes;
 use Carbon\Carbon;
 use Exception;
@@ -26,7 +27,7 @@ use Exception;
  * @property \Carbon\Carbon|null $updated_at
  * @property string|null $version
  */
-class NewsPost extends Model implements Commentable, Wiki\WikiObject
+class NewsPost extends Model implements Commentable, HasOpengraph, Wiki\WikiObject
 {
     use Memoizes, Traits\CommentableDefaults, Traits\WithDbCursorHelper;
 
@@ -327,6 +328,14 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
         $this->save();
 
         return $this;
+    }
+
+    public function toOpengraph(?array $options = []): array
+    {
+        return [
+            'title' => $this->title(),
+            'image' => $this->firstImage(true),
+        ];
     }
 
     public function pagePublishedAt()

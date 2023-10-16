@@ -196,6 +196,7 @@ class NewsController extends Controller
 
         return ext_view('news.show', [
             'commentBundle' => CommentBundle::forEmbed($post),
+            'opengraph' => $post->toOpengraph(),
             'post' => $post,
             'postJson' => $postJson,
             'sidebarMeta' => $this->sidebarMeta($post),

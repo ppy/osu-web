@@ -42,6 +42,8 @@ class ContestsController extends Controller
             $contests = collect([$contest]);
         }
 
+        $opengraph = $contest->toOpengraph();
+
         if ($contest->isVotingStarted()) {
             if ($contest->isVotingOpen()) {
                 // TODO: add support for $contests requirement instead of at parent
@@ -56,11 +58,13 @@ class ContestsController extends Controller
                 'contestMeta' => $contest,
                 'contests' => $contests,
                 'noVoteReason' => $noVoteReason ?? null,
+                'opengraph' => $opengraph,
             ]);
         } else {
             return ext_view('contests.enter', [
                 'contestMeta' => $contest,
                 'contest' => $contests->first(),
+                'opengraph' => $opengraph,
             ]);
         }
     }

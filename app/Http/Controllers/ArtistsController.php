@@ -120,6 +120,7 @@ class ArtistsController extends Controller
                 'tracks' => json_collection($tracks, new ArtistTrackTransformer()),
             ],
             'links' => $links,
+            'opengraph' => $artist->toOpengraph(),
         ]);
     }
 }
