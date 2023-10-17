@@ -34,6 +34,10 @@ For a full list of changes, see the
 
 ## Breaking Changes
 
+### 2023-10-17
+- GameMode has been renamed to [Ruleset](#ruleset); existing property names remain unchanged.
+- `number` has been removed from documentation and replaced with `integer` or `float` to better reflect the type of number.
+
 ### 2023-09-11
 - object structures with two main variants (Beatmap, Beatmapset, and User) have their naming changed. The base object which previously has `Compact` suffix has their suffix removed and the previously extended object with no suffix now has `Extended` suffix instead. This matches existing TypeScript interface.
 
