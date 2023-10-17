@@ -17,16 +17,16 @@
 
 Represents a notification object.
 
-Field            | Type     | Description
----------------- | -------  | ------------------------------------------------------------------------
-id               | integer  | |
-name             | string   | Name of the event
-created_at       | string   | ISO 8601 date
-object_type      | string   | |
-object_id        | integer  | |
-source_user_id   | integer? | |
-is_read          | boolean  | |
-details          | object   | `message_id` of last known message (only returned in presence responses)
+Field            | Type                    | Description
+---------------- | ----------------------- | ------------------------------------------------------------------------
+id               | integer                 | |
+name             | string                  | Name of the event
+created_at       | [Timestamp](#timestamp) | ISO 8601 date
+object_type      | string                  | |
+object_id        | integer                 | |
+source_user_id   | integer?                | |
+is_read          | boolean                 | |
+details          | object                  | `message_id` of last known message (only returned in presence responses)
 
 ### Event Names
 

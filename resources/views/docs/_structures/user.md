@@ -123,23 +123,23 @@ updated_at | [Timestamp](#timestamp)
 
 ### UserAccountHistory
 
-Field       | Type      | Description
-------------|-----------|------------
-description | string?   | |
-id          | integer   | |
-length      | integer   | In seconds.
-permanent   | boolean   | |
-timestamp   | Timestamp | |
-type        | string    | `note`, `restriction`, or `silence`.
+Field       | Type                    | Description
+------------|-------------------------|------------
+description | string?                 | |
+id          | integer                 | |
+length      | integer                 | In seconds.
+permanent   | boolean                 | |
+timestamp   | [Timestamp](#timestamp) | |
+type        | string                  | `note`, `restriction`, or `silence`.
 
 <div id="user-userbadge" data-unique="user-userbadge"></div>
 
 ### UserBadge
 
-Field        | Type      | Description
--------------|-----------|------------
-awarded_at   | Timestamp | |
-description  | string    | |
-image@2x_url | string    | |
-image_url    | string    | |
-url          | string    | |
+Field        | Type                    | Description
+-------------|-------------------------|------------
+awarded_at   | [Timestamp](#timestamp) | |
+description  | string                  | |
+image@2x_url | string                  | |
+image_url    | string                  | |
+url          | string                  | |
