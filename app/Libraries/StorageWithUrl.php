@@ -3,22 +3,24 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
 namespace App\Libraries;
 
-use Storage;
+use Illuminate\Contracts\Filesystem\Cloud;
 
 class StorageWithUrl
 {
     private string $baseUrl;
-    private $disk;
+    private Cloud $disk;
     private string $diskName;
 
-    public function __construct($diskName = null)
+    public function __construct(?string $diskName = null)
     {
         $this->diskName = $diskName ?? config('filesystems.default');
     }
 
-    public function url($path)
+    public function url(string $path): string
     {
         $this->baseUrl ??= config("filesystems.disks.{$this->diskName}.base_url");
 
@@ -27,8 +29,8 @@ class StorageWithUrl
 
     public function __call($method, $parameters)
     {
-        $this->disk ??= Storage::disk($this->diskName);
+        $this->disk ??= \Storage::disk($this->diskName);
 
-        return call_user_func_array([$this->disk, $method], $parameters);
+        return $this->disk->$method(...$parameters);
     }
 }
