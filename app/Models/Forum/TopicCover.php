@@ -5,8 +5,9 @@
 
 namespace App\Models\Forum;
 
+use App\Casts\LegacyFilename;
+use App\Libraries\Uploader;
 use App\Models\User;
-use App\Traits\Imageable;
 use DB;
 use Exception;
 
@@ -23,26 +24,18 @@ use Exception;
  */
 class TopicCover extends Model
 {
-    use Imageable;
-
     const MAX_DIMENSIONS = [2400, 580];
 
     // To be passed to transformer for generating url for initial cover upload
     public ?int $newForumId = null;
 
+    protected $casts = [
+        'filename' => LegacyFilename::class,
+    ];
     protected $table = 'forum_topic_covers';
 
+    private Uploader $file;
     private $_owner = [false, null];
-
-    public function getMaxDimensions()
-    {
-        return static::MAX_DIMENSIONS;
-    }
-
-    public function getFileRoot()
-    {
-        return 'topic-covers';
-    }
 
     public static function findForUse($id, $user)
     {
@@ -67,7 +60,7 @@ class TopicCover extends Model
             $cover->save(); // get id
             $cover->user()->associate($user);
             $cover->topic()->associate($topic);
-            $cover->storeFile($filePath);
+            $cover->file()->store($filePath);
             $cover->save();
         });
 
@@ -104,7 +97,7 @@ class TopicCover extends Model
     public function updateFile($filePath, $user)
     {
         $this->user()->associate($user);
-        $this->storeFile($filePath);
+        $this->file()->store($filePath);
         $this->save();
 
         return $this->fresh();
@@ -113,10 +106,27 @@ class TopicCover extends Model
     public function defaultFileUrl()
     {
         try {
-            return $this->topic->forum->cover->defaultTopicCover->fileUrl();
+            return $this->topic->forum->cover->defaultTopicCover->url();
         } catch (Exception $_e) {
             // do nothing
         }
+    }
+
+    public function delete()
+    {
+        $this->file()->delete();
+
+        return parent::delete();
+    }
+
+    public function file(): Uploader
+    {
+        return $this->file ??= new Uploader(
+            'topic-covers',
+            $this,
+            'filename',
+            ['image' => ['maxDimensions' => static::MAX_DIMENSIONS]],
+        );
     }
 
     public function getForumId(): ?int

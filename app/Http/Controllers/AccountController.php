@@ -92,9 +92,9 @@ class AccountController extends Controller
         }
 
         try {
-            $user
-                ->profileCustomization()
-                ->setCover(Request::input('cover_id'), Request::file('cover_file'));
+            $profile = $user->profileCustomization();
+            $profile->cover()->set(Request::input('cover_id'), Request::file('cover_file'));
+            $profile->save();
         } catch (ImageProcessorException $e) {
             return error_popup($e->getMessage());
         }

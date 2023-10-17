@@ -18,19 +18,19 @@
                 </h2>
 
                 @foreach ([
-                    'main' => ['cover' => $forum->cover, 'key' => 'main_cover'],
+                    'main' => ['cover' => $forum->cover->file(), 'key' => 'main_cover'],
                     'default-topic' => ['cover' => $forum->cover->defaultTopicCover ?? null, 'key' => 'default_topic_cover']
                 ] as $type => $cover)
                     <div class="forum-cover-admin-item__cover">
                         <h3>{{ osu_trans("admin.forum.forum-covers.index.type-title.{$type}") }}</h3>
 
-                        @if ($cover['cover'] !== null && $cover['cover']->fileUrl() !== null)
+                        @if ($cover['cover'] !== null && $cover['cover']->url() !== null)
                             <div class="forum-cover-admin-item__cover-image"
-                                style="background-image:url('{{ $cover['cover']->fileUrl() }}')"
+                                style="background-image:url('{{ $cover['cover']->url() }}')"
                             ></div>
 
                             <form
-                                action="{{ route('admin.forum.forum-covers.update', $cover['cover']->id) }}"
+                                action="{{ route('admin.forum.forum-covers.update', $cover['cover']->model->getKey()) }}"
                                 enctype="multipart/form-data"
                                 method="POST"
                             >
