@@ -239,7 +239,7 @@ class Contest extends Model
         }
     }
 
-    public function entriesByType($user = null, array $preloads)
+    public function entriesByType($user = null, array $preloads = [])
     {
         $entries = $this->entries()->with(['contest', ...$preloads]);
 
