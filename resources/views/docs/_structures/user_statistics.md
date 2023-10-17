@@ -57,29 +57,29 @@ A summary of various gameplay statistics for a [User](#user). Specific to a [Rul
 
 Field                     | Type          | Description
 ------------------------- | ------------- | -----------
-count_100                 | number        | |
-count_300                 | number        | |
-count_50                  | number        | |
-count_miss                | number        | |
-country_rank              | number?       | Current country rank according to pp.
-grade_counts.a            | number        | Number of A ranked scores.
-grade_counts.s            | number        | Number of S ranked scores.
-grade_counts.sh           | number        | Number of Silver S ranked scores.
-grade_counts.ss           | number        | Number of SS ranked scores.
-grade_counts.ssh          | number        | Number of Silver SS ranked scores.
-hit_accuracy              | number        | Hit accuracy percentage
+count_100                 | integer       | |
+count_300                 | integer       | |
+count_50                  | integer       | |
+count_miss                | integer       | |
+country_rank              | integer?      | Current country rank according to pp.
+grade_counts.a            | integer       | integerof A ranked scores.
+grade_counts.s            | integer       | integerof S ranked scores.
+grade_counts.sh           | integer       | integerof Silver S ranked scores.
+grade_counts.ss           | integer       | integerof SS ranked scores.
+grade_counts.ssh          | integer       | integerof Silver SS ranked scores.
+hit_accuracy              | float         | Hit accuracy percentage
 is_ranked                 | boolean       | Is actively ranked
-level.current             | number        | Current level.
-level.progress            | number        | Progress to next level.
-maximum_combo             | number        | Highest maximum combo.
-play_count                | number        | Number of maps played.
-play_time                 | number        | Cumulative time played.
-pp                        | number        | Performance points
-pp_exp                    | number        | Experimental (lazer) performance points
-global_rank               | number?       | Current rank according to pp.
-global_rank_exp           | number?       | Current rank according to experimental (lazer) pp.
-ranked_score              | number        | Current ranked score.
-replays_watched_by_others | number        | Number of replays watched by other users.
-total_hits                | number        | Total number of hits.
-total_score               | number        | Total score.
+level.current             | integer       | Current level.
+level.progress            | float         | Progress to next level.
+maximum_combo             | integer       | Highest maximum combo.
+play_count                | integer       | integerof maps played.
+play_time                 | integer       | Cumulative time played.
+pp                        | float         | Performance points
+pp_exp                    | float         | Experimental (lazer) performance points
+global_rank               | integer?      | Current rank according to pp.
+global_rank_exp           | integer?      | Current rank according to experimental (lazer) pp.
+ranked_score              | integer       | Current ranked score.
+replays_watched_by_others | integer       | integerof replays watched by other users.
+total_hits                | integer       | Total number of hits.
+total_score               | integer       | Total score.
 user                      | [User](#user) | The associated user.

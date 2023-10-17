@@ -27,12 +27,12 @@ Represents an individual Message within a [ChatChannel](#chatchannel).
 
 Field        | Type    | Description
 ------------ | ------- | ------------------------------------------------------------
-channel_id   | number  | `channel_id` of where the message was sent
+channel_id   | integer | `channel_id` of where the message was sent
 content      | string  | message content
 content_html | string? | Deprecated. Markdown message content as HTML
 is_action    | boolean | was this an action? i.e. `/me dances`
-message_id   | number  | unique identifier for message
-sender_id    | number  | `user_id` of the sender
+message_id   | integer | unique identifier for message
+sender_id    | integer | `user_id` of the sender
 timestamp    | string  | when the message was sent, ISO-8601
 type         | string  | type of message; 'action', 'markdown' or 'plain'
 uuid         | string? | message identifier originally sent by client

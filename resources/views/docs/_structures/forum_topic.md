@@ -37,9 +37,9 @@ total_vote_count        | number
 
 ### PollOption
 
-Field       | Type    | Notes
-------------|---------|------
-id          | number  | Unique only per-topic.
-text.bbcode | string  | |
-text.html   | string  | |
-vote_count  | number? | Not present if the poll is incomplete and results are hidden.
+Field       | Type     | Notes
+------------|----------|------
+id          | integer  | Unique only per-topic.
+text.bbcode | string   | |
+text.html   | string   | |
+vote_count  | integer? | Not present if the poll is incomplete and results are hidden.

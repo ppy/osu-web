@@ -4,18 +4,18 @@ Score data.
 
 Field              | Type                       | Description
 -------------------|----------------------------|-------------------
-`id`               | `number`                   |  |
-`user_id`          | `number`                   |  |
-`room_id`          | `number`                   |  |
-`playlist_item_id` | `number`                   |  |
-`beatmap_id`       | `number`                   |  |
+`id`               | `integer`                  |  |
+`user_id`          | `integer`                  |  |
+`room_id`          | `integer`                  |  |
+`playlist_item_id` | `integer`                  |  |
+`beatmap_id`       | `integer`                  |  |
 `rank`             | `rank`                     |  |
-`total_score`      | `number`                   |  |
-`accuracy`         | `number`                   |  |
-`max_combo`        | `number`                   |  |
+`total_score`      | `integer`                  |  |
+`accuracy`         | `float`                    |  |
+`max_combo`        | `integer`                  |  |
 `mods`             | `Mod[]`                    |  |
 `statistics`       | `Statistics`               |  |
 `passed`           | `bool`                     |  |
-`position`         | `number?`                  |  |
+`position`         | `integer?`                 |  |
 `scores_around`    | `MultiplayerScoresAround?` | Scores around the specified score.
 `user`             | `User`                     |  |

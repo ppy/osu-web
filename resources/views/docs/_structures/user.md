@@ -21,7 +21,7 @@ Field           | Type                      | Description
 avatar_url      | string                    | url of user's avatar
 country_code    | string                    | two-letter code representing user's country
 default_group   | string?                   | Identifier of the default [Group](#group) the user belongs to.
-id              | number                    | unique identifier for user
+id              | integer                   | unique identifier for user
 is_active       | boolean                   | has this account been active in the last x months?
 is_bot          | boolean                   | is this a bot account?
 is_deleted      | boolean                   ||
@@ -48,8 +48,8 @@ blocks                     | |
 country                    | |
 cover                      | |
 favourite_beatmapset_count | number
-follow_user_mapping        | number[]
-follower_count             | number
+follow_user_mapping        | integer[]
+follower_count             | integer
 friends                    | |
 graveyard_beatmapset_count | number
 groups                     | [UserGroup](#usergroup)[]
@@ -91,8 +91,8 @@ total     | number
 
 Field         | Type        | Description
 --------------|-------------|------------
-id            | number      | |
-tournament_id | number      | |
+id            | integer     | |
+tournament_id | integer     | |
 image         | string?     | |
 image@2x      | string?     | |
 
@@ -126,8 +126,8 @@ updated_at | [Timestamp](#timestamp)
 Field       | Type      | Description
 ------------|-----------|------------
 description | string?   | |
-id          | number    | |
-length      | number    | In seconds.
+id          | integer   | |
+length      | integer   | In seconds.
 permanent   | boolean   | |
 timestamp   | Timestamp | |
 type        | string    | `note`, `restriction`, or `silence`.

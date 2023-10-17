@@ -7,7 +7,7 @@ Field           | Type    | Description
 colour          | string? | |
 has_listing     | boolean | Whether this group displays a listing at `/groups/{id}`.
 has_playmodes   | boolean | Whether this group associates [Rulesets](#ruleset) with users' memberships.
-id              | number  | |
+id              | integer | |
 identifier      | string  | Unique string to identify the group.
 is_probationary | boolean | Whether members of this group are considered probationary.
 name            | string  | |

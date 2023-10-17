@@ -5,7 +5,7 @@ The object has different attributes depending on its `type`. Following are attri
 Field      | Type                      | Description
 -----------|---------------------------|------------
 created_at | [Timestamp](#timestamp)   | |
-id         | number                    | |
+id         | integer                   | |
 type       | [Event.Type](#event-type) | |
 
 ### Additional objects
@@ -112,7 +112,7 @@ When a user achieves a certain rank on a beatmap.
 Field     | Type                            | Description
 ----------|---------------------------------|--------------------------------------------
 scoreRank | string                          | (FIXME)
-rank      | number                          | |
+rank      | integer                         | |
 mode      | [Ruleset](#ruleset)             | |
 beatmap   | [Event.Beatmap](#event-beatmap) | |
 user      | [Event.User](#event-user)       | |

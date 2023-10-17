@@ -24,19 +24,19 @@ Represents a single comment.
 
 Field            | Type       | Description
 ---------------- | ---------- | ------------------
-commentable_id   | number     | ID of the object the comment is attached to
+commentable_id   | integer    | ID of the object the comment is attached to
 commentable_type | string     | type of object the comment is attached to
 created_at       | string     | ISO 8601 date
 deleted_at       | string?    | ISO 8601 date if the comment was deleted; null, otherwise
 edited_at        | string?    | ISO 8601 date if the comment was edited; null, otherwise
-edited_by_id     | number?    | user id of the user that edited the post; null, otherwise
-id               | number     | the ID of the comment
+edited_by_id     | integer?   | user id of the user that edited the post; null, otherwise
+id               | integer    | the ID of the comment
 legacy_name      | string?    | username displayed on legacy comments
 message          | string?    | markdown of the comment's content
 message_html     | string?    | html version of the comment's content
-parent_id        | number?    | ID of the comment's parent
+parent_id        | integer?   | ID of the comment's parent
 pinned           | boolean    | Pin status of the comment
-replies_count    | number     | number of replies to the comment
+replies_count    | integer    | integerof replies to the comment
 updated_at       | string     | ISO 8601 date
-user_id          | number     | user ID of the poster
-votes_count      | number     | number of votes
+user_id          | integer    | user ID of the poster
+votes_count      | integer    | integerof votes

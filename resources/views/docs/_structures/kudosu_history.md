@@ -2,9 +2,9 @@
 
 Field      | Type       | Description
 -----------|------------|-----------------------------
-id         | number     | |
+id         | integer    | |
 action     | string     | One of `give`, `vote.give`, `reset`, `vote.reset`, `revoke`, or `vote.revoke`.
-amount     | number     | |
+amount     | integer    | |
 model      | string     | Object type which the exchange happened on (`forum_post`, etc).
 created_at | Timestamp  | |
 giver      | Giver?     | Simple detail of the user who started the exchange.
