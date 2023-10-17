@@ -2,7 +2,7 @@
 
 Field            | Type
 -----------------|-----
-beatmapset_id    | number
+beatmapset_id    | integer
 rulesets         | [Ruleset](#ruleset)[]
 reset            | boolean
-user_id          | number
+user_id          | integer

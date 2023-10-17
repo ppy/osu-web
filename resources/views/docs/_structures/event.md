@@ -58,7 +58,7 @@ When a beatmap has been played for certain number of times.
 Field       | Type
 ------------|------------
 beatmap     | [Event.Beatmap](#event-beatmap)
-count       | number
+count       | integer
 
 #### beatmapsetApprove
 

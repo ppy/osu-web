@@ -26,10 +26,10 @@ class NewsController extends Controller
      * ------------------------- | ----------------------------- | -----
      * cursor_string             | [CursorString](#cursorstring) | |
      * news_posts                | [NewsPost](#newspost)[]       | Includes `preview`.
-     * news_sidebar.current_year | number                        | Year of the first post's publish time, or current year if no posts returned.
+     * news_sidebar.current_year | integer                       | Year of the first post's publish time, or current year if no posts returned.
      * news_sidebar.news_posts   | [NewsPost](#newspost)[]       | All posts published during `current_year`.
      * news_sidebar.years        | number[]                      | All years during which posts have been published.
-     * search.limit              | number                        | Clamped limit input.
+     * search.limit              | integer                       | Clamped limit input.
      * search.sort               | string                        | Always `published_desc`.
      *
      * <aside class="notice">

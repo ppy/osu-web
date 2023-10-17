@@ -43,21 +43,21 @@ Field                      | Type
 account_history            | [User.UserAccountHistory](#user-useraccounthistory)[]
 active_tournament_banner   | [User.ProfileBanner](#user-profilebanner)?
 badges                     | [User.UserBadge](#user-userbadge)[]
-beatmap_playcounts_count   | number
+beatmap_playcounts_count   | integer
 blocks                     | |
 country                    | |
 cover                      | |
-favourite_beatmapset_count | number
+favourite_beatmapset_count | integer
 follow_user_mapping        | integer[]
 follower_count             | integer
 friends                    | |
-graveyard_beatmapset_count | number
+graveyard_beatmapset_count | integer
 groups                     | [UserGroup](#usergroup)[]
-guest_beatmapset_count     | number
+guest_beatmapset_count     | integer
 is_restricted              | boolean?
 kudosu                     | [User.Kudosu](#user-kudosu)
-loved_beatmapset_count     | number
-mapping_follower_count     | number
+loved_beatmapset_count     | integer
+mapping_follower_count     | integer
 monthly_playcounts         | [UserMonthlyPlaycount](#usermonthlyplaycount)[]
 page                       | |
 pending_beatmapset_count   | |
@@ -66,9 +66,9 @@ rank_highest               | [User.RankHighest](#user-rankhighest)?
 rank_history               | |
 ranked_beatmapset_count    | |
 replays_watched_counts     | |
-scores_best_count          | number
-scores_first_count         | number
-scores_recent_count        | number
+scores_best_count          | integer
+scores_first_count         | integer
+scores_recent_count        | integer
 statistics                 | |
 statistics_rulesets        | UserStatisticsRulesets
 support_level              | |
@@ -82,8 +82,8 @@ user_preferences           | |
 
 Field     | Type
 ----------|-----
-available | number
-total     | number
+available | integer
+total     | integer
 
 <div id="user-profilebanner" data-unique="user-profilebanner"></div>
 
@@ -116,7 +116,7 @@ image@2x      | string?     | |
 
 Field      | Type
 -----------|-----
-rank       | number
+rank       | integer
 updated_at | [Timestamp](#timestamp)
 
 <div id="user-useraccounthistory" data-unique="user-useraccounthistory"></div>
