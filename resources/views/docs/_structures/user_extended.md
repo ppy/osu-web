@@ -177,7 +177,7 @@ max_friends      | integer                            | maximum number of friend
 occupation       | string?                            | |
 playmode         | [Ruleset](#ruleset)                | |
 playstyle        | string[]                           | Device choices of the user.
-post_count       | integer                            | integerof forum posts
+post_count       | integer                            | Number of forum posts
 profile_order    | [ProfilePage](#user-profilepage)[] | ordered array of sections in user profile page
 title            | string?                            | user-specific title
 title_url        | string?                            | |

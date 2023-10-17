@@ -62,24 +62,24 @@ count_300                 | integer       | |
 count_50                  | integer       | |
 count_miss                | integer       | |
 country_rank              | integer?      | Current country rank according to pp.
-grade_counts.a            | integer       | integerof A ranked scores.
-grade_counts.s            | integer       | integerof S ranked scores.
-grade_counts.sh           | integer       | integerof Silver S ranked scores.
-grade_counts.ss           | integer       | integerof SS ranked scores.
-grade_counts.ssh          | integer       | integerof Silver SS ranked scores.
+grade_counts.a            | integer       | Number of A ranked scores.
+grade_counts.s            | integer       | Number of S ranked scores.
+grade_counts.sh           | integer       | Number of Silver S ranked scores.
+grade_counts.ss           | integer       | Number of SS ranked scores.
+grade_counts.ssh          | integer       | Number of Silver SS ranked scores.
 hit_accuracy              | float         | Hit accuracy percentage
 is_ranked                 | boolean       | Is actively ranked
 level.current             | integer       | Current level.
 level.progress            | float         | Progress to next level.
 maximum_combo             | integer       | Highest maximum combo.
-play_count                | integer       | integerof maps played.
+play_count                | integer       | Number of maps played.
 play_time                 | integer       | Cumulative time played.
 pp                        | float         | Performance points
 pp_exp                    | float         | Experimental (lazer) performance points
 global_rank               | integer?      | Current rank according to pp.
 global_rank_exp           | integer?      | Current rank according to experimental (lazer) pp.
 ranked_score              | integer       | Current ranked score.
-replays_watched_by_others | integer       | integerof replays watched by other users.
+replays_watched_by_others | integer       | Number of replays watched by other users.
 total_hits                | integer       | Total number of hits.
 total_score               | integer       | Total score.
 user                      | [User](#user) | The associated user.

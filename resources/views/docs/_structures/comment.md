@@ -36,7 +36,7 @@ message          | string?                  | markdown of the comment's content
 message_html     | string?                  | html version of the comment's content
 parent_id        | integer?                 | ID of the comment's parent
 pinned           | boolean                  | Pin status of the comment
-replies_count    | integer                  | integerof replies to the comment
+replies_count    | integer                  | Number of replies to the comment
 updated_at       | [Timestamp](#timestamp)  | ISO 8601 date
 user_id          | integer                  | user ID of the poster
-votes_count      | integer                  | integerof votes
+votes_count      | integer                  | Number of votes

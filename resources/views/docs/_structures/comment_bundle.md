@@ -97,7 +97,7 @@ has_more_id       | integer?                              |
 included_comments | [Comment](#comment)[]                 | Related comments; e.g. parent comments and nested replies
 pinned_comments   | [Comment](#comment)[]?                | Pinned comments
 sort              | string                                | one of the [CommentSort](#commentsort) types
-top_level_count   | integer?                              | integerof comments at the top level. Not returned for replies.
+top_level_count   | integer?                              | Number of comments at the top level. Not returned for replies.
 total             | integer?                              | Total number of comments. Not retuned for replies.
 user_follow       | boolean                               | is the current user watching the comment thread?
 user_votes        | integer[]                             | IDs of the comments in the bundle the current user has upvoted
