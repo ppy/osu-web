@@ -5,11 +5,11 @@ Field        | Type                     | Description
 created_at   | [Timestamp](#timestamp)  | |
 deleted_at   | [Timestamp](#timestamp)? | |
 edited_at    | [Timestamp](#timestamp)? | |
-edited_by_id | ingeter?                 | |
-forum_id     | ingeter                  | |
-id           | ingeter                  | |
-topic_id     | ingeter                  | |
-user_id      | ingeter                  | |
+edited_by_id | integer?                 | |
+forum_id     | integer                  | |
+id           | integer                  | |
+topic_id     | integer                  | |
+user_id      | integer                  | |
 
 Following fields are optional.
 
