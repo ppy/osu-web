@@ -115,20 +115,15 @@ class UserScoreAggregate extends Model
 
             foreach ($aggs as $agg) {
                 $playlistItemId = $agg->getRawAttribute('playlist_item_id');
-                $attempts[$playlistItemId] ??= 0;
-                $attempts[$playlistItemId] += $agg->getRawAttribute('attempts');
+                $attempts[$playlistItemId] ??= [
+                    'attempts' => 0,
+                    'id' => $playlistItemId,
+                ];
+                $attempts[$playlistItemId]['attempts'] += $agg->getRawAttribute('attempts');
             }
         }
 
-        $ret = [];
-        foreach ($attempts as $playlistItemId => $count) {
-            $ret[] = [
-                'attempts' => $count,
-                'id' => $playlistItemId,
-            ];
-        }
-
-        return $ret;
+        return array_values($attempts);
     }
 
     public function scoreLinks(): Builder
