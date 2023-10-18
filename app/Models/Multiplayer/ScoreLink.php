@@ -15,7 +15,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
- * @property int $build_id
  * @property PlaylistItem $playlistItem
  * @property int $playlist_item_id
  * @property Score $score
