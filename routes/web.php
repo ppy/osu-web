@@ -498,7 +498,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
 
         // Beatmapsets
         //   GET /api/v2/beatmapsets/search/:filters
-        Route::get('beatmapsets/search/{filters?}', 'BeatmapsetsController@search');
+        Route::get('beatmapsets/search', 'BeatmapsetsController@search');
         //   GET /api/v2/beatmapsets/lookup
         Route::get('beatmapsets/lookup', 'BeatmapsetsController@lookup');
         //   GET /api/v2/beatmapsets/:beatmapset_id
