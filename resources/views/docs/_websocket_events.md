@@ -37,10 +37,10 @@ Sent when a notification has been read.
 
 TODO: `ids` should be moved to `data` to match other events.
 
-Field | Type     | Description
------ | -------- | ----------------------------------
-event | string   | `read`
-ids   | number[] | id of Notifications which are read
+Field | Type      | Description
+----- | --------- | ----------------------------------
+event | string    | `read`
+ids   | integer[] | id of Notifications which are read
 
 ## chat.channel.join
 

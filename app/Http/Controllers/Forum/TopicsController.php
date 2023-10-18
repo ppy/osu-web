@@ -471,12 +471,12 @@ class TopicsController extends Controller
      * post   | [ForumPost](#forum-post)   | body
      *
      * @bodyParam body string required Content of the topic. Example: hello
-     * @bodyParam forum_id number required Forum to create the topic in. Example: 1
+     * @bodyParam forum_id integer required Forum to create the topic in. Example: 1
      * @bodyParam title string required Title of the topic. Example: untitled
      * @bodyParam with_poll boolean Enable this to also create poll in the topic (default: false). Example: 1
      * @bodyParam forum_topic_poll[hide_results] boolean Enable this to hide result until voting period ends (default: false). No-example
-     * @bodyParam forum_topic_poll[length_days] number Number of days for voting period. 0 means the voting will never ends (default: 0). This parameter is required if `hide_results` option is enabled. No-example
-     * @bodyParam forum_topic_poll[max_options] number Maximum number of votes each user can cast (default: 1). No-example
+     * @bodyParam forum_topic_poll[length_days] integer Number of days for voting period. 0 means the voting will never ends (default: 0). This parameter is required if `hide_results` option is enabled. No-example
+     * @bodyParam forum_topic_poll[max_options] integer Maximum number of votes each user can cast (default: 1). No-example
      * @bodyParam forum_topic_poll[options] string required Newline-separated list of voting options. BBCode is supported. Example: item A...
      * @bodyParam forum_topic_poll[title] string required Title of the poll. Example: my poll
      * @bodyParam forum_topic_poll[vote_change] boolean Enable this to allow user to change their votes (default: false). No-example
