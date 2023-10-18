@@ -36,9 +36,9 @@ class NewsController extends Controller
      *   <a href="#newspost">NewsPost</a> collections queried by year will also include posts published in November and December of the previous year if the current date is the same year and before April.
      * </aside>
      *
+     * @usesCursor
      * @queryParam limit integer Maximum number of posts (12 default, 1 minimum, 21 maximum). No-example
      * @queryParam year integer Year to return posts from. No-example
-     * @queryParam cursor_string [CursorString](#cursorstring) for pagination. No-example
      * @response {
      *   "news_posts": [
      *     {

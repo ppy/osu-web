@@ -285,7 +285,7 @@ class TopicsController extends Controller
      *
      * @urlParam topic integer required Id of the topic. Example: 1
      *
-     * @queryParam cursor_string Parameter for pagination. No-example
+     * @usesCursor
      * @queryParam sort Post sorting option. Valid values are `id_asc` (default) and `id_desc`. No-example
      * @queryParam limit Maximum number of posts to be returned (20 default, 50 at most). No-example
      * @queryParam start First post id to be returned with `sort` set to `id_asc`. This parameter is ignored if `cursor_string` is specified. No-example

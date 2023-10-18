@@ -39,9 +39,9 @@ class ScoresController extends BaseController
      * @urlParam room integer required Id of the room.
      * @urlParam playlist integer required Id of the playlist item.
      *
+     * @usesCursor
      * @queryParam limit Number of scores to be returned.
      * @queryParam sort [MultiplayerScoresSort](#multiplayerscoressort) parameter.
-     * @queryParam cursor_string [CursorString](#cursorstring) parameter.
      */
     public function index($roomId, $playlistId)
     {
