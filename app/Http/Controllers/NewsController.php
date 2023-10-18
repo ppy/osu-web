@@ -28,7 +28,7 @@ class NewsController extends Controller
      * news_posts                | [NewsPost](#newspost)[]       | Includes `preview`.
      * news_sidebar.current_year | integer                       | Year of the first post's publish time, or current year if no posts returned.
      * news_sidebar.news_posts   | [NewsPost](#newspost)[]       | All posts published during `current_year`.
-     * news_sidebar.years        | number[]                      | All years during which posts have been published.
+     * news_sidebar.years        | integer[]                     | All years during which posts have been published.
      * search.limit              | integer                       | Clamped limit input.
      * search.sort               | string                        | Always `published_desc`.
      *
