@@ -100,6 +100,37 @@ class UserScoreAggregate extends Model
         return $this->completed > 0 ? $this->pp / $this->completed : 0;
     }
 
+    public function playlistItemAttempts(): array
+    {
+        $userId = $this->user_id;
+        $roomId = $this->room_id;
+
+        $attempts = [];
+        foreach (PlaylistItem::userAttemptModelBaseQueries() as $query) {
+            $aggs = $query->where(['user_id' => $userId])
+                ->whereHas('playlistItem', fn ($q) => $q->where('room_id', $roomId))
+                ->groupBy('playlist_item_id')
+                ->selectRaw('COUNT(*) AS attempts, playlist_item_id')
+                ->get();
+
+            foreach ($aggs as $agg) {
+                $playlistItemId = $agg->getRawAttribute('playlist_item_id');
+                $attempts[$playlistItemId] ??= 0;
+                $attempts[$playlistItemId] += $agg->getRawAttribute('attempts');
+            }
+        }
+
+        $ret = [];
+        foreach ($attempts as $playlistItemId => $count) {
+            $ret[] = [
+                'attempts' => $count,
+                'id' => $playlistItemId,
+            ];
+        }
+
+        return $ret;
+    }
+
     public function scoreLinks(): Builder
     {
         return ScoreLink
