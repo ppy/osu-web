@@ -1,5 +1,10 @@
 <?php
 
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+declare(strict_types=1);
+
 namespace App\Docs\Strategies;
 
 use Knuckles\Camel\Extraction\ExtractedEndpointData;
@@ -13,16 +18,14 @@ class UsesCursor extends Strategy
         $docBlock = RouteDocBlocker::getDocBlocksFromRoute($endpointData->route)['method'];
         $tags = $docBlock->getTagsByName('usesCursor');
 
-        if (empty($tags)) {
-            return [];
-        }
-
-        return [
-            'cursor_string' => [
-                'description' => '[CursorString](#cursorstring) for pagination.',
-                'required' => false,
-                'example' => null,
-            ],
-        ];
+        return empty($tags)
+            ? []
+            : [
+                'cursor_string' => [
+                    'description' => '[CursorString](#cursorstring) for pagination.',
+                    'required' => false,
+                    'example' => null,
+                ],
+            ];
     }
 }
