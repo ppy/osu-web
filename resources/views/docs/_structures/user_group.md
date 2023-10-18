@@ -4,4 +4,4 @@ Describes a [Group](#group) membership of a [User](#user). It contains all of th
 
 Field     | Type      | Description
 ----------|-----------|------------------------------------------------------------
-playmodes | string[]? | [GameModes](#gamemode) associated with this membership (null if `has_playmodes` is unset).
+playmodes | string[]? | [Rulesets](#ruleset) associated with this membership (null if `has_playmodes` is unset).
