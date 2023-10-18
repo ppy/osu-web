@@ -4,18 +4,18 @@ Score data.
 
 Field            | Type                     | Description
 -----------------|--------------------------|-------------------
-id               | integer                  |  |
-user_id          | integer                  |  |
-room_id          | integer                  |  |
-playlist_item_id | integer                  |  |
-beatmap_id       | integer                  |  |
-rank             | rank                     |  |
-total_score      | integer                  |  |
 accuracy         | float                    |  |
+beatmap_id       | integer                  |  |
+id               | integer                  |  |
 max_combo        | integer                  |  |
 mods             | Mod[]                    |  |
-statistics       | Statistics               |  |
 passed           | boolean                  |  |
+playlist_item_id | integer                  |  |
 position         | integer?                 |  |
+rank             | rank                     |  |
+room_id          | integer                  |  |
+statistics       | Statistics               |  |
 scores_around    | MultiplayerScoresAround? | Scores around the specified score.
+total_score      | integer                  |  |
 user             | User                     |  |
+user_id          | integer                  |  |
