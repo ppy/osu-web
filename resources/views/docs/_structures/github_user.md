@@ -17,7 +17,7 @@ Field           | Type
 display_name    | string
 github_url      | string?
 github_username | string?
-id              | number?
+id              | integer?
 osu_username    | string?
-user_id         | number?
+user_id         | integer?
 user_url        | string?
