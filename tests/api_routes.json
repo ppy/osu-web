@@ -950,7 +950,7 @@
         ]
     },
     {
-        "uri": "api/v2/beatmapsets/search/{filters?}",
+        "uri": "api/v2/beatmapsets/search",
         "methods": [
             "GET",
             "HEAD"
