@@ -8,7 +8,7 @@ availability.download_disabled | boolean                      | |
 availability.more_information  | string?                      | |
 bpm                            | float                        | |
 can_be_hyped                   | boolean                      | |
-deleted_at                     | string?                      | |
+deleted_at                     | [Timestamp](#timestamp)?     | |
 discussion_enabled             | boolean                      | Deprecated, all beatmapsets now have discussion enabled. |
 discussion_locked              | boolean                      | |
 hype.current                   | integer                      | |

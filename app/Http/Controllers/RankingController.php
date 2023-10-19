@@ -111,7 +111,7 @@ class RankingController extends Controller
      *
      * Returns [Rankings](#rankings)
      *
-     * @urlParam mode string required [GameMode](#gamemode). Example: mania
+     * @urlParam mode string required [Ruleset](#ruleset). Example: mania
      * @urlParam type string required [RankingType](#rankingtype). Example: performance
      *
      * @queryParam country Filter ranking by country code. Only available for `type` of `performance`. Example: JP

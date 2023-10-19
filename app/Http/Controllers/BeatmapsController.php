@@ -71,8 +71,8 @@ class BeatmapsController extends Controller
      * Attributes | [DifficultyAttributes](#beatmapdifficultyattributes)
      *
      * @urlParam beatmap integer required Beatmap id. Example: 2
-     * @bodyParam mods number|string[]|Mod[] Mod combination. Can be either a bitset of mods, array of mod acronyms, or array of mods. Defaults to no mods. Example: 1
-     * @bodyParam ruleset GameMode Ruleset of the difficulty attributes. Only valid if it's the beatmap ruleset or the beatmap can be converted to the specified ruleset. Defaults to ruleset of the specified beatmap. Example: osu
+     * @bodyParam mods integer|string[]|Mod[] Mod combination. Can be either a bitset of mods, array of mod acronyms, or array of mods. Defaults to no mods. Example: 1
+     * @bodyParam ruleset Ruleset Ruleset of the difficulty attributes. Only valid if it's the beatmap ruleset or the beatmap can be converted to the specified ruleset. Defaults to ruleset of the specified beatmap. Example: osu
      * @bodyParam ruleset_id integer The same as `ruleset` but in integer form. No-example
      *
      * @response {
@@ -285,7 +285,7 @@ class BeatmapsController extends Controller
      *
      * @urlParam beatmap integer required Id of the [Beatmap](#beatmap).
      *
-     * @queryParam mode The [GameMode](#gamemode) to get scores for.
+     * @queryParam mode The [Ruleset](#ruleset) to get scores for.
      * @queryParam mods An array of matching Mods, or none // TODO.
      * @queryParam type Beatmap score ranking type // TODO.
      */
@@ -354,7 +354,7 @@ class BeatmapsController extends Controller
      *
      * @urlParam beatmap integer required Id of the [Beatmap](#beatmap).
      *
-     * @queryParam mode The [GameMode](#gamemode) to get scores for.
+     * @queryParam mode The [Ruleset](#ruleset) to get scores for.
      * @queryParam mods An array of matching Mods, or none // TODO.
      * @queryParam type Beatmap score ranking type // TODO.
      */
@@ -461,7 +461,7 @@ class BeatmapsController extends Controller
      * @urlParam beatmap integer required Id of the [Beatmap](#beatmap).
      * @urlParam user integer required Id of the [User](#user).
      *
-     * @queryParam mode The [GameMode](#gamemode) to get scores for.
+     * @queryParam mode The [Ruleset](#ruleset) to get scores for.
      * @queryParam mods An array of matching Mods, or none // TODO.
      */
     public function userScore($beatmapId, $userId)
@@ -507,7 +507,7 @@ class BeatmapsController extends Controller
      * @urlParam beatmap integer required Id of the [Beatmap](#beatmap).
      * @urlParam user integer required Id of the [User](#user).
      *
-     * @queryParam mode The [GameMode](#gamemode) to get scores for. Defaults to beatmap mode
+     * @queryParam mode The [Ruleset](#ruleset) to get scores for. Defaults to beatmap mode
      */
     public function userScoreAll($beatmapId, $userId)
     {

@@ -55,8 +55,8 @@ class ChangelogController extends Controller
      * --------------|---------------------------------|------
      * builds        | [Build](#build)[]               | Includes `changelog_entries`, `changelog_entries.github_user`, and changelog entry message in requested formats.
      * search.from   | string?                         | `from` input.
-     * search.limit  | number                          | Always `21`.
-     * search.max_id | number?                         | `max_id` input.
+     * search.limit  | integer                         | Always `21`.
+     * search.max_id | integer?                        | `max_id` input.
      * search.stream | string?                         | `stream` input.
      * search.to     | string?                         | `to` input.
      * streams       | [UpdateStream](#updatestream)[] | Always contains all available streams. Includes `latest_build` and `user_count`.
