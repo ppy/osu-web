@@ -104,14 +104,14 @@ class ForumsController extends Controller
                 ->keyBy('topic_id');
 
         $noindex = !$forum->enable_indexing;
-        $opengraph = $forum->toOpengraph();
+
+        set_opengraph($forum);
 
         return ext_view('forum.forums.show', compact(
             'cover',
             'forum',
             'lastTopics',
             'noindex',
-            'opengraph',
             'pinnedTopics',
             'sort',
             'topicReadStatus',

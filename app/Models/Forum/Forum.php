@@ -5,7 +5,7 @@
 
 namespace App\Models\Forum;
 
-use App\Models\Traits\HasOpengraph;
+use App\Libraries\Opengraph\HasOpengraph;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
@@ -373,24 +373,5 @@ class Forum extends Model implements HasOpengraph
 
             TopicTrack::where('user_id', $user->getKey())->whereIn('forum_id', $forumIds)->delete();
         });
-    }
-
-    public function toOpengraph(?array $options = []): array
-    {
-        $stack = [osu_trans('forum.title')];
-        foreach ($this->forum_parents as $forumId => $forumData) {
-            $stack[] = $forumData[0];
-        }
-
-        $stack[] = $this->forum_name;
-
-        $description = implode(' » ', $stack);
-
-        // Reminder to update Topic::toOpengraph() if these values change.
-        return [
-            'description' => $description,
-            'title' => $this->forum_name,
-            'image' => $this->cover?->fileUrl(),
-        ];
     }
 }

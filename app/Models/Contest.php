@@ -6,7 +6,7 @@
 namespace App\Models;
 
 use App\Exceptions\InvariantException;
-use App\Models\Traits\HasOpengraph;
+use App\Libraries\Opengraph\HasOpengraph;
 use App\Traits\Memoizes;
 use App\Transformers\ContestEntryTransformer;
 use App\Transformers\ContestTransformer;
@@ -329,15 +329,6 @@ class Contest extends Model implements HasOpengraph
             'contest' => $contestJson,
             'userVotes' => ($this->isVotingStarted() ? $this->votesForUser($user) : []),
         ]);
-    }
-
-    public function toOpengraph(?array $options = []): array
-    {
-        return [
-            'description' => strip_tags(markdown($this->currentDescription())),
-            'image' => $this->header_url,
-            'title' => $this->name,
-        ];
     }
 
     public function votesForUser($user = null)

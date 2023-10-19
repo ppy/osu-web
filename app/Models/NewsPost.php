@@ -8,8 +8,8 @@ namespace App\Models;
 use App\Exceptions\GitHubNotFoundException;
 use App\Libraries\Commentable;
 use App\Libraries\Markdown\OsuMarkdown;
+use App\Libraries\Opengraph\HasOpengraph;
 use App\Libraries\OsuWiki;
-use App\Models\Traits\HasOpengraph;
 use App\Traits\Memoizes;
 use Carbon\Carbon;
 use Exception;
@@ -328,15 +328,6 @@ class NewsPost extends Model implements Commentable, HasOpengraph, Wiki\WikiObje
         $this->save();
 
         return $this;
-    }
-
-    public function toOpengraph(?array $options = []): array
-    {
-        return [
-            'description' => blade_safe($this->previewText()),
-            'image' => $this->firstImage(true),
-            'title' => $this->title(),
-        ];
     }
 
     public function pagePublishedAt()

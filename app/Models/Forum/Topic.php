@@ -9,11 +9,11 @@ use App\Jobs\EsDocument;
 use App\Jobs\UpdateUserForumCache;
 use App\Jobs\UpdateUserForumTopicFollows;
 use App\Libraries\BBCodeForDB;
+use App\Libraries\Opengraph\HasOpengraph;
 use App\Libraries\Transactions\AfterCommit;
 use App\Models\Beatmapset;
 use App\Models\Log;
 use App\Models\Notification;
-use App\Models\Traits\HasOpengraph;
 use App\Models\User;
 use App\Traits\Memoizes;
 use App\Traits\Validatable;
@@ -823,17 +823,6 @@ class Topic extends Model implements AfterCommit, HasOpengraph
     public function hasIssueTag($tag)
     {
         return strpos($this->topic_title, "[{$tag}]") !== false;
-    }
-
-    public function toOpengraph(?array $options = []): array
-    {
-        $forumOpengraph = $this->forum->toOpengraph();
-
-        return [
-            'description' => "{$forumOpengraph['description']} » {$this->topic_title}",
-            'image' => $this->cover?->fileUrl() ?? $this->forum->cover?->defaultTopicCover->fileUrl(),
-            'title' => $this->topic_title,
-        ];
     }
 
     public function afterCommit()

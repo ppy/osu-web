@@ -24,8 +24,8 @@ use App\Libraries\BBCodeFromDB;
 use App\Libraries\Commentable;
 use App\Libraries\Elasticsearch\Indexable;
 use App\Libraries\ImageProcessorService;
+use App\Libraries\Opengraph\HasOpengraph;
 use App\Libraries\Transactions\AfterCommit;
-use App\Models\Traits\HasOpengraph;
 use App\Traits\Memoizes;
 use App\Traits\Validatable;
 use Cache;
@@ -1420,18 +1420,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, HasOpengraph
                 'post_text' => $newBody,
                 'post_edit_user' => $user === null ? null : $user->getKey(),
             ]);
-    }
-
-    public function toOpengraph(?array $options = []): array
-    {
-        $section = osu_trans('layout.menu.beatmaps._');
-        $title = "{$this->artist} - {$this->title}"; // opengrah header always intended for guest.
-
-        return [
-            'description' => "osu! » {$section} » {$title}",
-            'image' => $this->coverURL('card'),
-            'title' => $title,
-        ];
     }
 
     private function extractDescription($post)

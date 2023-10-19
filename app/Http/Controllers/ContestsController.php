@@ -42,7 +42,7 @@ class ContestsController extends Controller
             $contests = collect([$contest]);
         }
 
-        $opengraph = $contest->toOpengraph();
+        set_opengraph($contest);
 
         if ($contest->isVotingStarted()) {
             if ($contest->isVotingOpen()) {
@@ -58,13 +58,11 @@ class ContestsController extends Controller
                 'contestMeta' => $contest,
                 'contests' => $contests,
                 'noVoteReason' => $noVoteReason ?? null,
-                'opengraph' => $opengraph,
             ]);
         } else {
             return ext_view('contests.enter', [
                 'contestMeta' => $contest,
                 'contest' => $contests->first(),
-                'opengraph' => $opengraph,
             ]);
         }
     }

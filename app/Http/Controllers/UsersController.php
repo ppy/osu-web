@@ -654,10 +654,9 @@ class UsersController extends Controller
                 'user' => $userArray,
             ];
 
+            set_opengraph($user, $currentMode);
 
-            $opengraph = $user->toOpengraph(['ruleset' => $currentMode]);
-
-            return ext_view('users.show', compact('initialData', 'mode', 'opengraph', 'user'));
+            return ext_view('users.show', compact('initialData', 'mode', 'user'));
         }
     }
 

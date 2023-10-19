@@ -12,6 +12,7 @@ use App\Jobs\EsDocument;
 use App\Libraries\BBCodeForDB;
 use App\Libraries\ChangeUsername;
 use App\Libraries\Elasticsearch\Indexable;
+use App\Libraries\Opengraph\HasOpengraph;
 use App\Libraries\Session\Store as SessionStore;
 use App\Libraries\Transactions\AfterCommit;
 use App\Libraries\User\DatadogLoginAttempt;
@@ -20,7 +21,6 @@ use App\Libraries\User\UsernamesForDbLookup;
 use App\Libraries\UsernameValidation;
 use App\Models\Forum\TopicWatch;
 use App\Models\OAuth\Client;
-use App\Models\Traits\HasOpengraph;
 use App\Traits\Memoizes;
 use App\Traits\Validatable;
 use Cache;
@@ -1815,15 +1815,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->rank?->url;
     }
 
-    public function toOpengraph(?array $options = []): array
-    {
-        return [
-            'description' => blade_safe($this->getOpengraphDescription($options)),
-            'image' => $this->user_avatar,
-            'title' => blade_safe(osu_trans('users.show.title', ['username' => $this->username])),
-        ];
-    }
-
     public function hasProfile()
     {
         return $this->getKey() !== null
@@ -2399,39 +2390,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     private function getDisplayedLastVisit()
     {
         return $this->hide_presence ? null : $this->user_lastvisit;
-    }
-
-    private function getOpengraphDescription(array $options = []): string
-    {
-        static $rankTypes = ['country', 'global'];
-
-        $ruleset = $options['ruleset'] ?? $this->playmode;
-        $stats = $this->statistics($ruleset);
-
-        $replacements['ruleset'] = $ruleset;
-
-        foreach ($rankTypes as $type) {
-            $method = "{$type}Rank";
-            $replacements[$type] = osu_trans("users.ogp.description.{$type}", [
-                'rank' => format_rank($stats?->$method()),
-            ]);
-
-            $variants = Beatmap::VARIANTS[$ruleset] ?? [];
-
-            $variantsTexts = null;
-            foreach ($variants as $variant) {
-                $variantRank = $this->statistics($ruleset, false, $variant)?->$method();
-                if ($variantRank !== null) {
-                    $variantsTexts[] = $variant.' '.format_rank($variantRank);
-                }
-            }
-
-            if (!empty($variantsTexts)) {
-                $replacements[$type] .= ' ('.implode(', ', $variantsTexts).')';
-            }
-        }
-
-        return osu_trans('users.ogp.description._', $replacements);
     }
 
     private function getOsuPlaystyle()

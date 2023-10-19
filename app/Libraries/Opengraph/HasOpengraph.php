@@ -5,9 +5,8 @@
 
 declare(strict_types=1);
 
-namespace App\Models\Traits;
+namespace App\Libraries\Opengraph;
 
 interface HasOpengraph
 {
-    public function toOpengraph(?array $options): array;
 }

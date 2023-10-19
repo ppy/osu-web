@@ -111,6 +111,8 @@ class ArtistsController extends Controller
             }
         }
 
+        set_opengraph($artist);
+
         return ext_view('artists.show', [
             'artist' => $artist,
             'images' => $images,
@@ -120,7 +122,6 @@ class ArtistsController extends Controller
                 'tracks' => json_collection($tracks, new ArtistTrackTransformer()),
             ],
             'links' => $links,
-            'opengraph' => $artist->toOpengraph(),
         ]);
     }
 }
