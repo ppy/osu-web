@@ -7,12 +7,12 @@ declare(strict_types=1);
 
 namespace App\Libraries;
 
-use Illuminate\Contracts\Filesystem\Cloud;
+use Illuminate\Contracts\Filesystem\Filesystem;
 
 class StorageWithUrl
 {
     private string $baseUrl;
-    private Cloud $disk;
+    private Filesystem $disk;
     private string $diskName;
 
     public function __construct(?string $diskName = null)
