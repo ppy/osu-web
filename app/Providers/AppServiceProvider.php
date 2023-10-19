@@ -33,7 +33,6 @@ use Laravel\Octane\SequentialTaskDispatcher;
 use Laravel\Octane\Swoole\SwooleTaskDispatcher;
 use Queue;
 use Swoole\Http\Server;
-use Validator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -63,10 +62,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Relation::morphMap(MorphMap::flippedMap());
-
-        Validator::extend('mixture', function ($attribute, $value, $parameters, $validator) {
-            return preg_match('/[\d]/', $value) === 1 && preg_match('/[^\d\s]/', $value) === 1;
-        });
 
         Queue::after(function (JobProcessed $event) {
             app('OsuAuthorize')->resetCache();
