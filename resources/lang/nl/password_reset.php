@@ -5,7 +5,6 @@
 
 return [
     'button' => [
-        'cancel' => 'Annuleer',
         'resend' => 'Verificatie e-mail opnieuw versturen',
         'set' => 'Wachtwoord instellen',
         'start' => 'Start',

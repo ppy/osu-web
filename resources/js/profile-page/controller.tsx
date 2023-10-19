@@ -113,7 +113,7 @@ export default class Controller {
     return core.currentUser?.id === this.state.user.id;
   }
 
-  constructor(private container: HTMLElement) {
+  constructor(private readonly container: HTMLElement) {
     const initialData = JSON.parse(this.container.dataset.initialData ?? 'null') as InitialData;
 
     const savedStateJson = container.dataset.savedState;

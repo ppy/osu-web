@@ -35,12 +35,12 @@ interface Props {
 export default class BeatmapOwnerEditor extends React.Component<Props> {
   @observable private checkingUser: string | null = null;
   @observable private editing = false;
-  private inputRef = React.createRef<HTMLInputElement>();
+  private readonly inputRef = React.createRef<HTMLInputElement>();
   @observable private inputUsername: string;
   private shouldFocusInputOnNextRender = false;
   @observable private updatingOwner = false;
   private userLookupTimeout?: number;
-  private xhr: Partial<XhrCollection> = {};
+  private readonly xhr: Partial<XhrCollection> = {};
 
   @computed
   private get inputUser() {
@@ -102,33 +102,33 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
   }
 
   @action
-  private handleCancelEditingClick = () => {
+  private readonly handleCancelEditingClick = () => {
     this.editing = false;
   };
 
   @action
-  private handleResetClick = () => {
+  private readonly handleResetClick = () => {
     if (!confirm(trans('beatmap_discussions.owner_editor.reset_confirm'))) return;
 
     this.editing = false;
     this.updateOwner(this.props.beatmapsetUser.id);
   };
 
-  private handleSaveClick = () => {
+  private readonly handleSaveClick = () => {
     if (this.inputUser == null) return;
 
     this.updateOwner(this.inputUser.id);
   };
 
   @action
-  private handleStartEditingClick = () => {
+  private readonly handleStartEditingClick = () => {
     this.editing = true;
     this.shouldFocusInputOnNextRender = true;
     this.inputUsername = this.props.user.username;
   };
 
   @action
-  private handleUsernameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+  private readonly handleUsernameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.inputUsername = e.currentTarget.value;
     const inputUsernameNormalised = normaliseUsername(this.inputUsername);
 
@@ -143,7 +143,7 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
     }
   };
 
-  private handleUsernameInputKeyup = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  private readonly handleUsernameInputKeyup = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') this.handleSaveClick();
   };
 
@@ -230,7 +230,7 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
   }
 
   @action
-  private updateOwner = (userId: number) => {
+  private readonly updateOwner = (userId: number) => {
     this.xhr.updateOwner?.abort();
 
     if (this.props.beatmap.user_id === userId) {
@@ -255,7 +255,7 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
     }));
   };
 
-  private userLookup = () => {
+  private readonly userLookup = () => {
     const currentCheckingUser = this.checkingUser;
 
     if (currentCheckingUser == null) return;

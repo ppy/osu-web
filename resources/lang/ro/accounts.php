@@ -18,6 +18,10 @@ return [
             'new' => 'e-mail nou',
             'new_confirmation' => 'confirmare e-mail',
             'title' => 'E-mail',
+            'locked' => [
+                '_' => 'Vă rugăm să contactați :accounts dacă aveți nevoie să vă actualizați e-mailul.',
+                'accounts' => 'echipa de suport conturi',
+            ],
         ],
 
         'legacy_api' => [
@@ -55,6 +59,19 @@ return [
         'signature' => [
             'title' => 'Semnătură',
             'update' => 'actualizează',
+        ],
+    ],
+
+    'github_user' => [
+        'info' => "",
+        'link' => '',
+        'title' => '',
+        'unlink' => '',
+
+        'error' => [
+            'already_linked' => '',
+            'no_contribution' => '',
+            'unverified_email' => '',
         ],
     ],
 
@@ -102,7 +119,7 @@ return [
         'keyboard' => 'tastatură',
         'mouse' => 'mouse',
         'tablet' => 'tabletă',
-        'title' => 'Stiluri de joc',
+        'title' => 'Stiluri de Joc',
         'touch' => 'ecran tactil',
     ],
 
@@ -114,9 +131,9 @@ return [
 
     'security' => [
         'current_session' => 'actual',
-        'end_session' => 'Încheie sesiunea',
+        'end_session' => 'Încheie Sesiunea',
         'end_session_confirmation' => 'Acest lucru iți va încheia instantaneu sesiunea pe acel dispozitiv. Ești sigur?',
-        'last_active' => 'Ultima conectare:',
+        'last_active' => 'Ultima dată activ:',
         'title' => 'Securitate',
         'web_sessions' => 'sesiuni web',
     ],

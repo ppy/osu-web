@@ -5,14 +5,14 @@
 
 namespace App\Http\Controllers\Multiplayer\Rooms\Playlist;
 
-use App\Exceptions\InvariantException;
 use App\Http\Controllers\Controller as BaseController;
 use App\Libraries\ClientCheck;
 use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\PlaylistItemUserHighScore;
 use App\Models\Multiplayer\Room;
-use App\Transformers\Multiplayer\ScoreTransformer;
-use Carbon\Carbon;
+use App\Models\Multiplayer\ScoreLink;
+use App\Models\Solo\Score;
+use App\Transformers\ScoreTransformer;
 
 /**
  * @group Multiplayer
@@ -39,38 +39,47 @@ class ScoresController extends BaseController
      * @urlParam room integer required Id of the room.
      * @urlParam playlist integer required Id of the playlist item.
      *
+     * @usesCursor
      * @queryParam limit Number of scores to be returned.
      * @queryParam sort [MultiplayerScoresSort](#multiplayerscoressort) parameter.
-     * @queryParam cursor_string [CursorString](#cursorstring) parameter.
      */
     public function index($roomId, $playlistId)
     {
-        $playlist = PlaylistItem::where('room_id', $roomId)->where('id', $playlistId)->firstOrFail();
+        $playlist = PlaylistItem::where('room_id', $roomId)->findOrFail($playlistId);
         $params = request()->all();
         $limit = clamp(get_int($params['limit'] ?? null) ?? 50, 1, 50);
         $cursorHelper = PlaylistItemUserHighScore::makeDbCursorHelper($params['sort'] ?? null);
 
-        [$highScores, $hasMore] = $playlist
-            ->highScores()
+        $highScoresQuery = $playlist->highScores()->whereHas('scoreLink');
+
+        [$highScores, $hasMore] = $highScoresQuery
+            ->clone()
             ->cursorSort($cursorHelper, cursor_from_params($params))
-            ->with(ScoreTransformer::BASE_PRELOAD)
+            ->with(ScoreTransformer::MULTIPLAYER_BASE_PRELOAD)
             ->limit($limit)
             ->getWithHasMore();
 
+        $transformer = ScoreTransformer::newSolo();
         $scoresJson = json_collection(
-            $highScores->pluck('score'),
-            'Multiplayer\Score',
-            ScoreTransformer::BASE_INCLUDES
+            $highScores->pluck('scoreLink'),
+            $transformer,
+            ScoreTransformer::MULTIPLAYER_BASE_INCLUDES
         );
-        $total = $playlist->highScores()->count();
+        $total = $highScoresQuery->count();
 
         $user = auth()->user();
 
         if ($user !== null) {
-            $userHighScore = $playlist->highScores()->where('user_id', $user->getKey())->first();
+            $userHighScoreLink = ScoreLink::whereIn(
+                'id',
+                $playlist
+                    ->highScores()
+                    ->where('user_id', $user->getKey())
+                    ->select('score_link_id'),
+            )->first();
 
-            if ($userHighScore !== null) {
-                $userScoreJson = json_item($userHighScore->score, 'Multiplayer\Score', ScoreTransformer::BASE_INCLUDES);
+            if ($userHighScoreLink !== null) {
+                $userScoreJson = json_item($userHighScoreLink, $transformer, ScoreTransformer::MULTIPLAYER_BASE_INCLUDES);
             }
         }
 
@@ -102,12 +111,16 @@ class ScoresController extends BaseController
     {
         $room = Room::find($roomId) ?? abort(404, 'Invalid room id');
         $playlistItem = $room->playlist()->find($playlistId) ?? abort(404, 'Invalid playlist id');
-        $score = $playlistItem->scores()->findOrFail($id);
+        $scoreLink = $playlistItem->scoreLinks()->findOrFail($id);
 
         return json_item(
-            $score,
-            'Multiplayer\Score',
-            array_merge(['position', 'scores_around'], ScoreTransformer::BASE_INCLUDES)
+            $scoreLink,
+            ScoreTransformer::newSolo(),
+            [
+                ...ScoreTransformer::MULTIPLAYER_BASE_INCLUDES,
+                'position',
+                'scores_around',
+            ],
         );
     }
 
@@ -130,12 +143,16 @@ class ScoresController extends BaseController
     {
         $room = Room::find($roomId) ?? abort(404, 'Invalid room id');
         $playlistItem = $room->playlist()->find($playlistId) ?? abort(404, 'Invalid playlist id');
-        $score = $playlistItem->highScores()->where('user_id', $userId)->firstOrFail()->score ?? abort(404);
+        $scoreLink = $playlistItem->highScores()->where('user_id', $userId)->firstOrFail()->scoreLink ?? abort(404);
 
         return json_item(
-            $score,
-            'Multiplayer\Score',
-            array_merge(['position', 'scores_around'], ScoreTransformer::BASE_INCLUDES)
+            $scoreLink,
+            ScoreTransformer::newSolo(),
+            [
+                ...ScoreTransformer::MULTIPLAYER_BASE_INCLUDES,
+                'position',
+                'scores_around',
+            ],
         );
     }
 
@@ -149,14 +166,12 @@ class ScoresController extends BaseController
         $user = auth()->user();
         $params = request()->all();
 
-        ClientCheck::findBuild($user, $params);
+        $buildId = ClientCheck::findBuild($user, $params)?->getKey()
+            ?? config('osu.client.default_build_id');
 
-        $score = $room->startPlay($user, $playlistItem);
+        $scoreLink = $room->startPlay($user, $playlistItem, $buildId);
 
-        return json_item(
-            $score,
-            'Multiplayer\Score'
-        );
+        return json_item($scoreLink, ScoreTransformer::newSolo());
     }
 
     /**
@@ -164,49 +179,40 @@ class ScoresController extends BaseController
      */
     public function update($roomId, $playlistId, $scoreId)
     {
-        $room = Room::findOrFail($roomId);
+        $scoreLink = \DB::transaction(function () use ($roomId, $playlistId, $scoreId) {
+            $room = Room::findOrFail($roomId);
 
-        $playlistItem = $room->playlist()
-            ->where('id', $playlistId)
-            ->firstOrFail();
+            $scoreLink = $room
+                ->scoreLinks()
+                ->where([
+                    'user_id' => \Auth::id(),
+                    'playlist_item_id' => $playlistId,
+                ])->with('playlistItem')
+                ->lockForUpdate()
+                ->findOrFail($scoreId);
 
-        $roomScore = $playlistItem->scores()
-            ->where('user_id', auth()->user()->getKey())
-            ->where('id', $scoreId)
-            ->firstOrFail();
+            $params = Score::extractParams(\Request::all(), $scoreLink);
 
-        try {
-            $score = $room->completePlay(
-                $roomScore,
-                $this->extractScoreParams(request()->all(), $playlistItem)
-            );
+            $room->completePlay($scoreLink, $params);
 
-            return json_item(
-                $score,
-                'Multiplayer\Score',
-                array_merge(['position', 'scores_around'], ScoreTransformer::BASE_INCLUDES)
-            );
-        } catch (InvariantException $e) {
-            return error_popup($e->getMessage(), $e->getStatusCode());
+            return $scoreLink;
+        });
+
+        $score = $scoreLink->score;
+        $transformer = ScoreTransformer::newSolo();
+        if ($score->wasRecentlyCreated) {
+            $scoreJson = json_item($score, $transformer);
+            $score::queueForProcessing($scoreJson);
         }
-    }
 
-    private function extractScoreParams(array $params, PlaylistItem $playlistItem)
-    {
-        $mods = app('mods')->parseInputArray(
-            $playlistItem->ruleset_id,
-            $params['mods'] ?? [],
+        return json_item(
+            $scoreLink,
+            $transformer,
+            [
+                ...ScoreTransformer::MULTIPLAYER_BASE_INCLUDES,
+                'position',
+                'scores_around',
+            ],
         );
-
-        return [
-            'rank' => $params['rank'] ?? null,
-            'total_score' => get_int($params['total_score'] ?? null),
-            'accuracy' => get_float($params['accuracy'] ?? null),
-            'max_combo' => get_int($params['max_combo'] ?? null),
-            'ended_at' => Carbon::now(),
-            'passed' => get_bool($params['passed'] ?? null),
-            'mods' => $mods,
-            'statistics' => $params['statistics'] ?? null,
-        ];
     }
 }

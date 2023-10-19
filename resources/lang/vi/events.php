@@ -25,4 +25,8 @@ return [
         'qualified' => 'đủ điều kiện',
         'ranked' => 'được xếp hạng',
     ],
+
+    'value' => [
+        'rank' => 'hạng #:rank',
+    ],
 ];

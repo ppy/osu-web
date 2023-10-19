@@ -18,6 +18,10 @@ return [
             'new' => 'nuova email',
             'new_confirmation' => 'conferma email',
             'title' => 'Email',
+            'locked' => [
+                '_' => 'Per favore contatta il :accounts se hai bisogno di aggiornare il tuo indirizzo email.',
+                'accounts' => 'team di supporto account',
+            ],
         ],
 
         'legacy_api' => [
@@ -55,6 +59,19 @@ return [
         'signature' => [
             'title' => 'Firma',
             'update' => 'aggiorna',
+        ],
+    ],
+
+    'github_user' => [
+        'info' => "",
+        'link' => '',
+        'title' => '',
+        'unlink' => '',
+
+        'error' => [
+            'already_linked' => '',
+            'no_contribution' => '',
+            'unverified_email' => '',
         ],
     ],
 

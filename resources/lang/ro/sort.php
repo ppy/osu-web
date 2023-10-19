@@ -8,10 +8,10 @@ return [
 
     'all' => 'Tot',
     'friends' => 'Prieteni',
-    'last_visit' => 'Recent activ',
+    'last_visit' => 'Activ recent',
     'new' => 'Recent',
     'old' => 'Vechi',
-    'rank' => 'Rank',
+    'rank' => 'Rang',
     'top' => 'Top',
     'username' => 'Nume de utilizator',
 

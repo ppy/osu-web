@@ -18,6 +18,10 @@ return [
             'new' => 'novo email',
             'new_confirmation' => 'confirmação do email',
             'title' => 'Email',
+            'locked' => [
+                '_' => 'Entra em contacto com :accounts se precisares de atualizar o teu email.',
+                'accounts' => 'equipa de apoio à conta',
+            ],
         ],
 
         'legacy_api' => [
@@ -55,6 +59,19 @@ return [
         'signature' => [
             'title' => 'Assinatura',
             'update' => 'atualizar',
+        ],
+    ],
+
+    'github_user' => [
+        'info' => "",
+        'link' => '',
+        'title' => '',
+        'unlink' => '',
+
+        'error' => [
+            'already_linked' => '',
+            'no_contribution' => '',
+            'unverified_email' => '',
         ],
     ],
 

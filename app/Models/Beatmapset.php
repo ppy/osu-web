@@ -145,7 +145,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     public $timestamps = false;
 
-    protected $_storage = null;
+    private StorageWithUrl $storage;
     protected $casts = self::CASTS;
     protected $primaryKey = 'beatmapset_id';
     protected $table = 'osu_beatmapsets';
@@ -444,13 +444,9 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         return '//b.ppy.sh/preview/'.$this->beatmapset_id.'.mp3';
     }
 
-    public function storage()
+    public function storage(): StorageWithUrl
     {
-        if ($this->_storage === null) {
-            $this->_storage = new StorageWithUrl();
-        }
-
-        return $this->_storage;
+        return $this->storage ??= new StorageWithUrl();
     }
 
     public function removeCovers()
@@ -558,11 +554,23 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         $approvedState = static::STATES[$state];
         $beatmaps = $this->beatmaps();
 
-        if (isset($beatmapIds)) {
-            if ($beatmaps->whereKey($beatmapIds)->count() === count($beatmapIds)) {
-                $beatmaps = $beatmaps->whereIn('beatmap_id', $beatmapIds);
-            } else {
-                throw new InvariantException('beatmap_ids contains invalid id');
+        if ($beatmapIds !== null) {
+            $beatmaps->whereKey($beatmapIds);
+
+            if ($beatmaps->count() !== count($beatmapIds)) {
+                throw new InvariantException('Invalid beatmap IDs');
+            }
+
+            // If the beatmapset will be scoreable, set all of the unspecified
+            // beatmaps currently "WIP" or "pending" to "graveyard". It doesn't
+            // make sense for any beatmaps to be in those states when they
+            // cannot be updated.
+            if ($approvedState > 0) {
+                $this
+                    ->beatmaps()
+                    ->whereKeyNot($beatmapIds)
+                    ->whereIn('approved', [static::STATES['wip'], static::STATES['pending']])
+                    ->update(['approved' => static::STATES['graveyard']]);
             }
         }
 

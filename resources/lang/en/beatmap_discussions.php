@@ -26,6 +26,7 @@ return [
             'deleted' => 'Include deleted discussions',
             'mode' => 'Beatmap mode',
             'only_unresolved' => 'Show only unresolved discussions',
+            'show_review_embeds' => 'Show review posts',
             'types' => 'Message types',
             'username' => 'Username',
 

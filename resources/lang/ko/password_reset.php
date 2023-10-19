@@ -5,7 +5,6 @@
 
 return [
     'button' => [
-        'cancel' => '취소',
         'resend' => '인증 메일 다시 받기',
         'set' => '비밀번호 설정',
         'start' => '시작',
@@ -18,7 +17,7 @@ return [
         'is_privileged' => '계정을 복구하려면 상위 관리자에게 문의해주세요.',
         'missing_key' => '요구됨.',
         'too_many_tries' => '실패한 횟수가 너무 많습니다.',
-        'user_not_found' => '요청하신 사용자가 존재하지 않습니다.',
+        'user_not_found' => '요청하신 유저가 존재하지 않습니다.',
         'wrong_key' => '잘못된 코드입니다.',
     ],
 

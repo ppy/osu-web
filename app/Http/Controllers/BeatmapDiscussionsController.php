@@ -82,14 +82,15 @@ class BeatmapDiscussionsController extends Controller
      * </aside>
      *
      * Field                     | Type                                            | Description
-     * ------------------------- | ----------------------------------------------- | -----------------------------------------------------------------------
-     * beatmaps                  | [Beatmap](#beatmap)[]                           | List of beatmaps associated with the discussions returned.
+     * ------------------------- | ----------------------------------------------- | -----------
+     * beatmaps                  | [BeatmapExtended](#beatmapextended)[]           | List of beatmaps associated with the discussions returned.
      * cursor_string             | [CursorString](#cursorstring)                   | |
      * discussions               | [BeatmapsetDiscussion](#beatmapsetdiscussion)[] | List of discussions according to `sort` order.
      * included_discussions      | [BeatmapsetDiscussion](#beatmapsetdiscussion)[] | Additional discussions related to `discussions`.
-     * reviews_config.max_blocks | number                                          | Maximum number of blocks allowed in a review.
-     * users                     | [UserCompact](#usercompact)[]                   | List of users associated with the discussions returned.
+     * reviews_config.max_blocks | integer                                         | Maximum number of blocks allowed in a review.
+     * users                     | [User](#user)[]                                 | List of users associated with the discussions returned.
      *
+     * @usesCursor
      * @queryParam beatmap_id `id` of the [Beatmap](#beatmap).
      * @queryParam beatmapset_id `id` of the [Beatmapset](#beatmapset).
      * @queryParam beatmapset_status One of `all`, `ranked`, `qualified`, `disqualified`, `never_qualified`. Defaults to `all`. TODO: better descriptions.

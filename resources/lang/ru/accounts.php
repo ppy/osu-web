@@ -18,6 +18,10 @@ return [
             'new' => 'новая почта',
             'new_confirmation' => 'повторите почту',
             'title' => 'Смена почты',
+            'locked' => [
+                '_' => 'Напишите в :accounts, если хотите изменить адрес электронной почты.',
+                'accounts' => 'службу поддержки',
+            ],
         ],
 
         'legacy_api' => [
@@ -55,6 +59,19 @@ return [
         'signature' => [
             'title' => 'Подпись на форуме',
             'update' => 'сохранить',
+        ],
+    ],
+
+    'github_user' => [
+        'info' => "",
+        'link' => '',
+        'title' => '',
+        'unlink' => '',
+
+        'error' => [
+            'already_linked' => '',
+            'no_contribution' => '',
+            'unverified_email' => '',
         ],
     ],
 

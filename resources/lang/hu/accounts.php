@@ -18,6 +18,10 @@ return [
             'new' => 'új e-mail cím',
             'new_confirmation' => 'e-mail cím megerősítése',
             'title' => 'E-Mail',
+            'locked' => [
+                '_' => 'Kérlek lépj kapcsolatba velük, ha az emailedet akarod frissíteni: :accounts .',
+                'accounts' => 'fiók ügyfélszolgáltatás',
+            ],
         ],
 
         'legacy_api' => [
@@ -55,6 +59,19 @@ return [
         'signature' => [
             'title' => 'Aláírás',
             'update' => 'mentés',
+        ],
+    ],
+
+    'github_user' => [
+        'info' => "",
+        'link' => '',
+        'title' => '',
+        'unlink' => '',
+
+        'error' => [
+            'already_linked' => '',
+            'no_contribution' => '',
+            'unverified_email' => '',
         ],
     ],
 

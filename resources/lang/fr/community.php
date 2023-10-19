@@ -23,7 +23,7 @@ return [
                 'description' => 'Les contributions vont vers les serveurs pour faire fonctionner le site, les services multijoueurs, les classements en ligne, etc.',
             ],
             'featured-artists' => [
-                'title' => 'Featured artists',
+                'title' => 'Featured Artists',
                 'description' => 'Avec votre soutien, nous pouvons réunir encore plus d\'artistes géniaux et obtenir les droits de plus de musiques afin de les utiliser sur osu!',
                 'link_text' => 'Voir la liste actuelle &raquo;',
             ],
@@ -140,7 +140,7 @@ return [
         'supporter_status' => [
             'contribution' => 'Merci beaucoup pour votre soutien ! Vous avez contribué avec un total de :dollars avec :tags achats de tags !',
             'gifted' => "Vous avez offert :giftedTags tags (pour un total de :giftedDollars offerts), quelle générosité !",
-            'not_yet' => "Vous n'avez pas de tag supporter :(",
+            'not_yet' => "Vous n'avez pas de tag osu!supporter :(",
             'valid_until' => 'Votre badge osu!supporter actuel est valable jusqu\'au :date !',
             'was_valid_until' => 'Votre badge osu!supporter était valable jusqu\'au :date.',
         ],

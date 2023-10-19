@@ -18,6 +18,10 @@ return [
             'new' => 'nouvel e-mail',
             'new_confirmation' => 'confirmation de l\'e-mail',
             'title' => 'E-mail',
+            'locked' => [
+                '_' => 'Veuillez contacter l\':accounts: si vous avez besoin de mettre à jour votre adresse e-mail.',
+                'accounts' => 'équipe d\'assistance aux comptes',
+            ],
         ],
 
         'legacy_api' => [
@@ -39,7 +43,7 @@ return [
 
             'country_change' => [
                 '_' => "Il semble que le pays de votre compte ne correspond pas à votre pays de résidence. :update_link.",
-                'update_link' => 'Mettre à jour vers :country',
+                'update_link' => 'Obtenir le drapeau du pays suivant : :country',
             ],
 
             'user' => [
@@ -55,6 +59,19 @@ return [
         'signature' => [
             'title' => 'Signature',
             'update' => 'mettre à jour',
+        ],
+    ],
+
+    'github_user' => [
+        'info' => "",
+        'link' => '',
+        'title' => '',
+        'unlink' => '',
+
+        'error' => [
+            'already_linked' => '',
+            'no_contribution' => '',
+            'unverified_email' => '',
         ],
     ],
 

@@ -4,6 +4,7 @@
 import { DiscussionType, discussionTypeIcons, discussionTypes } from 'beatmap-discussions/discussion-type';
 import BigButton from 'components/big-button';
 import StringWithComponent from 'components/string-with-component';
+import TextareaAutosize from 'components/textarea-autosize';
 import TimeWithTooltip from 'components/time-with-tooltip';
 import UserAvatar from 'components/user-avatar';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
@@ -16,7 +17,6 @@ import { action, computed, makeObservable, observable, runInAction } from 'mobx'
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import TextareaAutosize from 'react-autosize-textarea';
 import { onError } from 'utils/ajax';
 import { canModeratePosts, formatTimestamp, makeUrl, NearbyDiscussion, nearbyDiscussions, parseTimestamp, validMessageLength } from 'utils/beatmapset-discussion-helper';
 import { downloadLimited, nominationsCount } from 'utils/beatmapset-helper';
@@ -45,6 +45,7 @@ interface Props {
   currentDiscussions: CurrentDiscussions;
   innerRef: React.RefObject<HTMLDivElement>;
   mode: DiscussionMode;
+  onFocus?: () => void;
   pinned: boolean;
   setPinned: (flag: boolean) => void;
   stickTo: React.RefObject<HTMLElement>;
@@ -186,7 +187,10 @@ export class NewDiscussion extends React.Component<Props> {
     }
   };
 
-  private readonly onFocus = () => this.setSticky(true);
+  private readonly onFocus = () => {
+    this.setSticky(true);
+    this.props.onFocus?.();
+  };
 
   @action
   private readonly post = (e: React.SyntheticEvent<HTMLElement>) => {
@@ -391,9 +395,9 @@ export class NewDiscussion extends React.Component<Props> {
     return (
       <>
         <TextareaAutosize
-          ref={this.inputBox}
           className={`${bn}__message-area js-hype--input`}
           disabled={this.posting != null || !this.canPost}
+          innerRef={this.inputBox}
           onChange={this.setMessage}
           onFocus={this.onFocus}
           onKeyDown={this.handleKeyDown}

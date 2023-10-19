@@ -18,6 +18,10 @@ return [
             'new' => 'yeni e-posta',
             'new_confirmation' => 'e-posta onayı',
             'title' => 'E-posta',
+            'locked' => [
+                '_' => 'E-postanızı güncellemeniz gerekiyorsa lütfen :accounts ile iletişime geçin.',
+                'accounts' => 'hesap destek birimi',
+            ],
         ],
 
         'legacy_api' => [
@@ -34,11 +38,11 @@ return [
         ],
 
         'profile' => [
-            'country' => '',
+            'country' => 'ülke',
             'title' => 'Profil',
 
             'country_change' => [
-                '_' => "",
+                '_' => "Görünüşe göre hesabınızın ülkesi ikamet ettiğiniz ülkeyle eşleşmiyor.  :update_link.",
                 'update_link' => ':country olarak güncelle',
             ],
 
@@ -55,6 +59,19 @@ return [
         'signature' => [
             'title' => 'İmza',
             'update' => 'güncelle',
+        ],
+    ],
+
+    'github_user' => [
+        'info' => "",
+        'link' => '',
+        'title' => '',
+        'unlink' => '',
+
+        'error' => [
+            'already_linked' => '',
+            'no_contribution' => '',
+            'unverified_email' => '',
         ],
     ],
 

@@ -5,7 +5,6 @@
 
 namespace App\Events;
 
-use App\Libraries\BroadcastsPendingForTests;
 use DB;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
@@ -20,10 +19,6 @@ abstract class BroadcastableEventBase implements ShouldBroadcast
     public function broadcast(bool $afterCommit = false)
     {
         if ($afterCommit) {
-            if (app()->environment('testing')) {
-                app(BroadcastsPendingForTests::class)->add($this);
-            }
-
             DB::afterCommit(fn () => event($this));
         } else {
             event($this);

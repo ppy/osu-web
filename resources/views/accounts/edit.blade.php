@@ -76,7 +76,7 @@
 
             <div class="account-edit__input-groups">
                 <div class="account-edit__input-group">
-                    <div class="account-edit-entry account-edit-entry--avatar js-account-edit-avatar">
+                    <div class="account-edit-entry account-edit-entry--block js-account-edit-avatar">
                         <div class="account-edit-entry__avatar">
                             <div class="avatar avatar--full-rounded js-current-user-avatar"></div>
 
@@ -148,6 +148,10 @@
         @include('accounts._edit_sessions')
 
         @include('accounts._edit_oauth')
+
+        @if (\App\Models\GithubUser::canAuthenticate())
+            @include('accounts._edit_github_user')
+        @endif
 
         @include('accounts._edit_legacy_api')
     </div>

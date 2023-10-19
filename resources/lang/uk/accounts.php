@@ -18,6 +18,10 @@ return [
             'new' => 'нова пошта',
             'new_confirmation' => 'підтвердження пошти',
             'title' => 'Ел. пошта',
+            'locked' => [
+                '_' => 'Будь ласка, зв\'яжіться з :accounts якщо вам необхідно оновити вашу електронну пошту.',
+                'accounts' => 'команда підтримки облікових записів',
+            ],
         ],
 
         'legacy_api' => [
@@ -55,6 +59,19 @@ return [
         'signature' => [
             'title' => 'Підпис на форумі',
             'update' => 'оновити',
+        ],
+    ],
+
+    'github_user' => [
+        'info' => "",
+        'link' => '',
+        'title' => '',
+        'unlink' => '',
+
+        'error' => [
+            'already_linked' => '',
+            'no_contribution' => '',
+            'unverified_email' => '',
         ],
     ],
 

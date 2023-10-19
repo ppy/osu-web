@@ -18,6 +18,10 @@ return [
             'new' => 'nou correu electrònic',
             'new_confirmation' => 'confirmació per correu electrònic',
             'title' => 'Correu electrònic',
+            'locked' => [
+                '_' => 'Si us plau, contacta amb el :accounts si necessites que s\'actualitzi el teu correu electrònic.',
+                'accounts' => 'equip de suport de comptes',
+            ],
         ],
 
         'legacy_api' => [
@@ -38,7 +42,7 @@ return [
             'title' => 'Perfil',
 
             'country_change' => [
-                '_' => "",
+                '_' => "Sembla que el país del teu compte no coincideix amb el teu país de residència. :update_link.",
                 'update_link' => 'Actualitza a :country',
             ],
 
@@ -58,10 +62,23 @@ return [
         ],
     ],
 
+    'github_user' => [
+        'info' => "",
+        'link' => '',
+        'title' => '',
+        'unlink' => '',
+
+        'error' => [
+            'already_linked' => '',
+            'no_contribution' => '',
+            'unverified_email' => '',
+        ],
+    ],
+
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'rebre notificacions de nous problemes en beatmaps qualificats dels següents modes',
         'beatmapset_disqualify' => 'rebre notificacions per quan els beatmaps dels següents modes siguin desqualificats',
-        'comment_reply' => 'rebre notificacions de respostes als vostres comentaris',
+        'comment_reply' => 'rebre notificacions de respostes als teus comentaris',
         'title' => 'Notificacions',
         'topic_auto_subscribe' => 'habilita automàticament les notificacions en els nous temes de fòrum que creeu',
 

@@ -46,15 +46,15 @@ return [
         ],
 
         'teams' => [
-            'blue' => 'Équipe bleue',
-            'red' => 'Équipe rouge',
+            'blue' => 'L\'équipe bleue',
+            'red' => 'L\'équipe rouge',
         ],
     ],
     'game' => [
         'scoring-type' => [
-            'score' => 'Score le plus haut',
-            'accuracy' => 'Précision la plus haute',
-            'combo' => 'Combo le plus haut',
+            'score' => 'Score le plus élevé',
+            'accuracy' => 'Précision la plus élevée',
+            'combo' => 'Combo le plus élevé',
             'scorev2' => 'Score V2',
         ],
     ],

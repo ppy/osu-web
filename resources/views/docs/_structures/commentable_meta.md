@@ -15,8 +15,8 @@ If object is available:
 Field                   | Type                                                               | Description
 ----------------------- | ------------------------------------------------------------------ | ------------------
 current_user_attributes | [CurrentUserAttributes](#commentable-meta-current-user-attributes) | |
-id                      | number                                                             | the ID of the object
-owner_id                | number?                                                            | User ID which owns the object
+id                      | integer                                                            | the ID of the object
+owner_id                | integer?                                                           | User ID which owns the object
 owner_title             | string?                                                            | Object owner type, used for display (`MAPPER` for beatmapset)
 title                   | string                                                             | display title
 type                    | string                                                             | the type of the object

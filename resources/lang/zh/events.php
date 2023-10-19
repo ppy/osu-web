@@ -25,4 +25,8 @@ return [
         'qualified' => '过审 (Qualified)',
         'ranked' => '上架 (Ranked)',
     ],
+
+    'value' => [
+        'rank' => '排名 #:rank',
+    ],
 ];

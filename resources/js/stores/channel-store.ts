@@ -55,7 +55,7 @@ export default class ChannelStore implements DispatchListener {
   lastReceivedMessageId = 0;
 
   // list of channels to temporarily ignore incoming messages from because we just left them.
-  private ignoredChannels = new Set<number>();
+  private readonly ignoredChannels = new Set<number>();
 
   @computed
   get groupedChannels() {

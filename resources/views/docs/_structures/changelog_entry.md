@@ -20,9 +20,9 @@ Field                  | Type
 -----------------------|-----
 category               | string
 created_at             | [Timestamp](#timestamp)?
-github_pull_request_id | number?
+github_pull_request_id | integer?
 github_url             | string?
-id                     | number?
+id                     | integer?
 major                  | boolean
 repository             | string?
 title                  | string?

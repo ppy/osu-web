@@ -61,7 +61,7 @@ return [
         'discussion' => 'Góc Thảo Luận',
 
         'admin' => [
-            'full_size_cover' => '',
+            'full_size_cover' => 'Xem ảnh bìa kích thước đầy đủ',
         ],
 
         'deleted_banner' => [

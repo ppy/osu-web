@@ -71,7 +71,7 @@ interface Props {
 
 @observer
 export class Discussions extends React.Component<Props> {
-  @observable private discussionsState = new DiscussionsState();
+  @observable private readonly discussionsState = new DiscussionsState();
   @observable private sort: Record<DiscussionMode, Sort> = {
     general: 'updated_at',
     generalAll: 'updated_at',
@@ -153,7 +153,7 @@ export class Discussions extends React.Component<Props> {
   };
 
   @action
-  private handleExpandClick = (e: React.SyntheticEvent<HTMLButtonElement>) => {
+  private readonly handleExpandClick = (e: React.SyntheticEvent<HTMLButtonElement>) => {
     this.discussionsState.discussionDefaultCollapsed = e.currentTarget.dataset.type === 'collapse';
     this.discussionsState.discussionCollapsed.clear();
   };
@@ -172,21 +172,17 @@ export class Discussions extends React.Component<Props> {
     const parentDiscussion = discussion.parent_id != null ? this.props.currentDiscussions.byFilter.total.reviews[discussion.parent_id] : null;
 
     return (
-      <div
+      <Discussion
         key={discussion.id}
-        className={`${bn}__discussion`}
-      >
-        <Discussion
-          beatmapset={this.props.beatmapset}
-          currentBeatmap={this.props.currentBeatmap}
-          discussion={discussion}
-          isTimelineVisible={this.isTimelineVisible}
-          parentDiscussion={parentDiscussion}
-          readPostIds={this.props.readPostIds}
-          showDeleted={this.props.showDeleted}
-          users={this.props.users}
-        />
-      </div>
+        beatmapset={this.props.beatmapset}
+        currentBeatmap={this.props.currentBeatmap}
+        discussion={discussion}
+        isTimelineVisible={this.isTimelineVisible}
+        parentDiscussion={parentDiscussion}
+        readPostIds={this.props.readPostIds}
+        showDeleted={this.props.showDeleted}
+        users={this.props.users}
+      />
     );
   };
 

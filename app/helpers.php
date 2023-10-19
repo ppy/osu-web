@@ -84,24 +84,25 @@ function blade_safe($html): HtmlString
 function cache_remember_mutexed(string $key, $seconds, $default, callable $callback, ?callable $exceptionHandler = null)
 {
     static $oneMonthInSeconds = 30 * 24 * 60 * 60;
-    $fullKey = "{$key}:with_fallback";
-    $data = cache()->get($fullKey);
+    $fullKey = "{$key}:with_fallback_v2";
+    $data = Cache::get($fullKey);
 
-    if ($data === null || $data['expires_at']->isPast()) {
+    $now = time();
+    if ($data === null || $data['expires_at'] < $now) {
         $lockKey = "{$key}:lock";
         // this is arbitrary, but you've got other problems if it takes more than 5 minutes.
         // the max is because cache()->add() doesn't work so well with funny values.
         $lockTime = min(max($seconds, 60), 300);
 
         // only the first caller that manages to setnx runs this.
-        if (cache()->add($lockKey, 1, $lockTime)) {
+        if (Cache::add($lockKey, 1, $lockTime)) {
             try {
                 $data = [
-                    'expires_at' => Carbon\Carbon::now()->addSeconds($seconds),
+                    'expires_at' => $now + $seconds,
                     'value' => $callback(),
                 ];
 
-                cache()->put($fullKey, $data, max($oneMonthInSeconds, $seconds * 10));
+                Cache::put($fullKey, $data, max($oneMonthInSeconds, $seconds * 10));
             } catch (Exception $e) {
                 $handled = $exceptionHandler !== null && $exceptionHandler($e);
 
@@ -110,7 +111,7 @@ function cache_remember_mutexed(string $key, $seconds, $default, callable $callb
                     log_error($e);
                 }
             } finally {
-                cache()->forget($lockKey);
+                Cache::forget($lockKey);
             }
         }
     }
@@ -126,14 +127,15 @@ function cache_remember_with_fallback($key, $seconds, $callback)
 {
     static $oneMonthInSeconds = 30 * 24 * 60 * 60;
 
-    $fullKey = "{$key}:with_fallback";
+    $fullKey = "{$key}:with_fallback_v2";
 
     $data = Cache::get($fullKey);
 
-    if ($data === null || $data['expires_at']->isPast()) {
+    $now = time();
+    if ($data === null || $data['expires_at'] < $now) {
         try {
             $data = [
-                'expires_at' => Carbon\Carbon::now()->addSeconds($seconds),
+                'expires_at' => $now + $seconds,
                 'value' => $callback(),
             ];
 
@@ -157,22 +159,27 @@ function cache_remember_with_fallback($key, $seconds, $callback)
  */
 function cache_expire_with_fallback(string $key, int $duration = 2592000)
 {
-    $fullKey = "{$key}:with_fallback";
+    $fullKey = "{$key}:with_fallback_v2";
 
     $data = Cache::get($fullKey);
 
-    if ($data === null || $data['expires_at']->isPast()) {
+    if ($data === null) {
         return;
     }
 
-    $data['expires_at'] = now()->addHours(-1);
+    $now = time();
+    if ($data['expires_at'] < $now) {
+        return;
+    }
+
+    $data['expires_at'] = $now - 3600;
     Cache::put($fullKey, $data, $duration);
 }
 
 // Just normal Cache::forget but with the suffix.
 function cache_forget_with_fallback($key)
 {
-    return Cache::forget("{$key}:with_fallback");
+    return Cache::forget("{$key}:with_fallback_v2");
 }
 
 function captcha_enabled()
@@ -379,6 +386,11 @@ function flag_url($countryCode)
     return "/assets/images/flags/{$baseFileName}.svg";
 }
 
+function format_rank(?int $rank): string
+{
+    return $rank !== null ? '#'.i18n_number_format($rank) : '-';
+}
+
 function get_valid_locale($requestedLocale)
 {
     if (in_array($requestedLocale, config('app.available_locales'), true)) {
@@ -454,13 +466,6 @@ function logout()
     $guard = auth()->guard();
     if ($guard instanceof Illuminate\Contracts\Auth\StatefulGuard) {
         $guard->logout();
-    }
-
-    // FIXME: Temporarily here for cross-site login, nuke after old site is... nuked.
-    foreach (['phpbb3_2cjk5_sid', 'phpbb3_2cjk5_sid_check'] as $key) {
-        foreach (['ppy.sh', 'osu.ppy.sh', ''] as $domain) {
-            cookie()->queueForget($key, null, $domain);
-        }
     }
 
     cleanup_cookies();
@@ -1171,22 +1176,6 @@ function user_color_style($color, $style)
     return sprintf('%s: %s', $style, e($color));
 }
 
-function base62_encode($input)
-{
-    $numbers = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $base = strlen($numbers);
-
-    $output = '';
-    $remaining = $input;
-
-    do {
-        $output = $numbers[$remaining % $base].$output;
-        $remaining = floor($remaining / $base);
-    } while ($remaining > 0);
-
-    return $output;
-}
-
 function display_regdate($user)
 {
     if ($user->user_regdate === null) {
@@ -1309,24 +1298,28 @@ function json_item($model, $transformer, $includes = null)
 
 function fast_imagesize($url)
 {
-    $result = Cache::remember("imageSize:{$url}", Carbon\Carbon::now()->addMonths(1), function () use ($url) {
-        $curl = curl_init($url);
-        curl_setopt_array($curl, [
-            CURLOPT_HTTPHEADER => [
-                'Range: bytes=0-32768',
-            ],
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_MAXREDIRS => 5,
-            CURLOPT_TIMEOUT => 10,
-        ]);
-        $data = curl_exec($curl);
+    static $oneMonthInSeconds = 30 * 24 * 60 * 60;
 
-        // null isn't cached
-        return read_image_properties_from_string($data) ?? false;
-    });
+    return null_if_false(Cache::remember(
+        "imageSize:{$url}",
+        $oneMonthInSeconds,
+        function () use ($url) {
+            $curl = curl_init($url);
+            curl_setopt_array($curl, [
+                CURLOPT_HTTPHEADER => [
+                    'Range: bytes=0-32768',
+                ],
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_MAXREDIRS => 5,
+                CURLOPT_TIMEOUT => 10,
+            ]);
+            $data = curl_exec($curl);
 
-    return null_if_false($result);
+            // null isn't cached
+            return read_image_properties_from_string($data) ?? false;
+        },
+    ));
 }
 
 function get_arr($input, $callback = null)
@@ -1703,18 +1696,6 @@ function first_paragraph($html, $split_on = "\n")
     $match_pos = strpos($text, $split_on);
 
     return $match_pos === false ? $text : substr($text, 0, $match_pos);
-}
-
-function build_icon($prefix)
-{
-    switch ($prefix) {
-        case 'add':
-            return 'plus';
-        case 'fix':
-            return 'wrench';
-        case 'misc':
-            return 'question';
-    }
 }
 
 // clamps $number to be between $min and $max

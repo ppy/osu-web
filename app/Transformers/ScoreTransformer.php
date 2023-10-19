@@ -10,13 +10,24 @@ namespace App\Transformers;
 use App\Models\Beatmap;
 use App\Models\DeletedUser;
 use App\Models\LegacyMatch;
+use App\Models\Multiplayer\PlaylistItemUserHighScore;
+use App\Models\Multiplayer\ScoreLink as MultiplayerScoreLink;
 use App\Models\Score\Best\Model as ScoreBest;
 use App\Models\Score\Model as ScoreModel;
 use App\Models\Solo\Score as SoloScore;
+use App\Models\Traits\SoloScoreInterface;
 use League\Fractal\Resource\Item;
 
 class ScoreTransformer extends TransformerAbstract
 {
+    const MULTIPLAYER_BASE_INCLUDES = ['user.country', 'user.cover'];
+    // warning: the preload is actually for PlaylistItemUserHighScore, not for Score
+    const MULTIPLAYER_BASE_PRELOAD = [
+        'scoreLink.score.performance',
+        'scoreLink.user.country',
+        'scoreLink.user.userProfileCustomization',
+    ];
+
     const TYPE_LEGACY = 'legacy';
     const TYPE_SOLO = 'solo';
 
@@ -38,6 +49,10 @@ class ScoreTransformer extends TransformerAbstract
         'rank_global',
         'user',
         'weight',
+
+        // Only for MultiplayerScoreLink
+        'position',
+        'scores_around',
     ];
 
     protected array $defaultIncludes = [
@@ -45,6 +60,11 @@ class ScoreTransformer extends TransformerAbstract
     ];
 
     private string $transformFunction;
+
+    public static function newSolo(): static
+    {
+        return new static(static::TYPE_SOLO);
+    }
 
     public function __construct(?string $type = null)
     {
@@ -62,14 +82,14 @@ class ScoreTransformer extends TransformerAbstract
         }
     }
 
-    public function transform(LegacyMatch\Score|ScoreModel|SoloScore $score)
+    public function transform(LegacyMatch\Score|ScoreModel|SoloScoreInterface $score)
     {
         $fn = $this->transformFunction;
 
         return $this->$fn($score);
     }
 
-    public function transformSolo(ScoreModel|SoloScore $score)
+    public function transformSolo(ScoreModel|SoloScoreInterface $score)
     {
         if ($score instanceof ScoreModel) {
             $legacyPerfect = $score->perfect;
@@ -80,15 +100,24 @@ class ScoreTransformer extends TransformerAbstract
                 $pp = $best->pp;
                 $hasReplay = $best->replay;
             }
-        } elseif ($score instanceof SoloScore) {
+        } elseif ($score instanceof SoloScoreInterface) {
             $pp = $score->pp;
             $hasReplay = $score->has_replay;
+
+            if ($score instanceof MultiplayerScoreLink) {
+                $multiplayerAttributes = [
+                    'playlist_item_id' => $score->playlist_item_id,
+                    'room_id' => $score->room_id,
+                    'solo_score_id' => $score->score_id,
+                ];
+            }
         }
 
         $hasReplay ??= false;
 
         return [
             ...$score->data->jsonSerialize(),
+            ...($multiplayerAttributes ?? []),
             'best_id' => $bestId ?? null,
             'has_replay' => $hasReplay,
             'id' => $score->getKey(),
@@ -175,7 +204,7 @@ class ScoreTransformer extends TransformerAbstract
         return $this->item($score->beatmap->beatmapset, new BeatmapsetCompactTransformer());
     }
 
-    public function includeCurrentUserAttributes(LegacyMatch\Score|ScoreModel|SoloScore $score): Item
+    public function includeCurrentUserAttributes(LegacyMatch\Score|ScoreModel|SoloScoreInterface $score): Item
     {
         return $this->item($score, new Score\CurrentUserAttributesTransformer());
     }
@@ -189,6 +218,34 @@ class ScoreTransformer extends TransformerAbstract
         ]);
     }
 
+    public function includePosition(MultiplayerScoreLink $scoreLink)
+    {
+        return $this->primitive($scoreLink->position());
+    }
+
+    public function includeScoresAround(MultiplayerScoreLink $scoreLink)
+    {
+        static $limit = 10;
+        static $transformer;
+        $transformer ??= static::newSolo();
+
+        return $this->primitive(array_map(
+            function ($item) use ($limit, $transformer) {
+                [$highScores, $hasMore] = $item['query']
+                    ->with(static::MULTIPLAYER_BASE_PRELOAD)
+                    ->limit($limit)
+                    ->getWithHasMore();
+
+                return [
+                    'scores' => json_collection($highScores->pluck('scoreLink'), $transformer, static::MULTIPLAYER_BASE_INCLUDES),
+                    'params' => ['limit' => $limit, 'sort' => $item['cursorHelper']->getSortName()],
+                    ...cursor_for_response($item['cursorHelper']->next($highScores, $hasMore)),
+                ];
+            },
+            PlaylistItemUserHighScore::scoresAround($scoreLink),
+        ));
+    }
+
     public function includeRankCountry(ScoreBest|SoloScore $score)
     {
         return $this->primitive($score->userRank(['type' => 'country']));
@@ -199,7 +256,7 @@ class ScoreTransformer extends TransformerAbstract
         return $this->primitive($score->userRank([]));
     }
 
-    public function includeUser(LegacyMatch\Score|ScoreModel|SoloScore $score)
+    public function includeUser(LegacyMatch\Score|ScoreModel|SoloScoreInterface $score)
     {
         return $this->item(
             $score->user ?? new DeletedUser(['user_id' => $score->user_id]),

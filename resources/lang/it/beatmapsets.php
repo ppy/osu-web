@@ -61,7 +61,7 @@ return [
         'discussion' => 'Discussione',
 
         'admin' => [
-            'full_size_cover' => '',
+            'full_size_cover' => 'Mostra copertina a grandezza intera',
         ],
 
         'deleted_banner' => [
@@ -119,7 +119,7 @@ return [
             ],
 
             'disqualify' => [
-                '_' => 'Se trovi un errore in questa beatmap, per favore segnalalo :link.',
+                '_' => 'Se trovi un errore in questa beatmap, segnalalo :link.',
             ],
 
             'report' => [

@@ -18,6 +18,10 @@ return [
             'new' => '新電子郵件地址',
             'new_confirmation' => '再次輸入電子郵件地址',
             'title' => '電子郵件',
+            'locked' => [
+                '_' => '如欲修改你的電子郵件地址，請聯絡 :accounts。',
+                'accounts' => '帳戶支援團隊',
+            ],
         ],
 
         'legacy_api' => [
@@ -55,6 +59,19 @@ return [
         'signature' => [
             'title' => '簽名',
             'update' => '更新',
+        ],
+    ],
+
+    'github_user' => [
+        'info' => "",
+        'link' => '',
+        'title' => '',
+        'unlink' => '',
+
+        'error' => [
+            'already_linked' => '',
+            'no_contribution' => '',
+            'unverified_email' => '',
         ],
     ],
 

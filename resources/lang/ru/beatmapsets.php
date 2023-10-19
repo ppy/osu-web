@@ -61,7 +61,7 @@ return [
         'discussion' => 'Обсуждение',
 
         'admin' => [
-            'full_size_cover' => '',
+            'full_size_cover' => 'Открыть обложку в оригинальном размере',
         ],
 
         'deleted_banner' => [

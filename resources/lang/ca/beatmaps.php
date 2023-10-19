@@ -79,15 +79,15 @@ return [
         ],
 
         'message_type_title' => [
-            'disqualify' => '',
-            'hype' => '',
-            'mapper_note' => '',
-            'nomination_reset' => '',
-            'praise' => '',
-            'problem' => '',
-            'problem_warning' => '',
-            'review' => '',
-            'suggestion' => '',
+            'disqualify' => 'Publicar desqualificació',
+            'hype' => 'Publicar Hype!',
+            'mapper_note' => 'Publicar nota',
+            'nomination_reset' => 'Eliminar totes les nominacions',
+            'praise' => 'Publicar elogi',
+            'problem' => 'Publicar problema',
+            'problem_warning' => 'Publicar problema',
+            'review' => 'Publicar revisió',
+            'suggestion' => 'Publicar suggeriment',
         ],
 
         'mode' => [
@@ -104,7 +104,7 @@ return [
         'new' => [
             'pin' => 'Anclar',
             'timestamp' => 'Marca de temps',
-            'timestamp_missing' => 'ctrl-c en mode d\'edició i enganxeu el vostre missatge per afegir una marca de temps!',
+            'timestamp_missing' => 'ctrl-c en mode d\'edició i enganxa el teu missatge per afegir una marca de temps!',
             'title' => 'Nova discusió',
             'unpin' => 'Desanclar',
         ],
@@ -190,7 +190,7 @@ return [
         'already_nominated' => 'Ja has nominat aquest beatmap.',
         'cannot_nominate' => 'No podeu nominar aquest mode de joc del beatmap.',
         'delete' => 'Eliminar',
-        'delete_own_confirm' => 'Estàs segur? El beatmap serà eliminat i se us redirigirà al vostre perfil.',
+        'delete_own_confirm' => 'Estàs segur? El beatmap serà eliminat i seràs redirigit de tornada al teu perfil.',
         'delete_other_confirm' => 'Estàs segur? El beatmap serà eliminat i se us redirigirà al perfil de l\'usuari.
 ',
         'disqualification_prompt' => 'Motiu de la desqualificació?',

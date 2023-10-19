@@ -182,8 +182,11 @@ return [
             'edit' => [
                 'locked' => 'La página de usuario está bloqueada.',
                 'not_owner' => 'Solo puedes editar tu página de usuario.',
-                'require_supporter_tag' => 'Se requiere la etiqueta de osu!supporter.',
+                'require_supporter_tag' => 'Se requiere la etiqueta osu!supporter.',
             ],
+        ],
+        'update_email' => [
+            'locked' => 'la dirección de correo está bloqueada',
         ],
     ],
 ];

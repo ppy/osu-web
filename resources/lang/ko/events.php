@@ -25,4 +25,8 @@ return [
         'qualified' => '퀄리파이',
         'ranked' => '랭크',
     ],
+
+    'value' => [
+        'rank' => '순위 #:rank',
+    ],
 ];

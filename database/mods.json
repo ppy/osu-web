@@ -431,12 +431,6 @@
             "Description": "Scores sliders proportionally to the number of ticks hit."
           },
           {
-            "Name": "no_slider_head_movement",
-            "Type": "boolean",
-            "Label": "No slider head movement",
-            "Description": "Pins slider heads at their starting position, regardless of time."
-          },
-          {
             "Name": "classic_note_lock",
             "Type": "boolean",
             "Label": "Apply classic note lock",

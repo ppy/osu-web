@@ -79,15 +79,15 @@ return [
         ],
 
         'message_type_title' => [
-            'disqualify' => '',
-            'hype' => '',
-            'mapper_note' => '',
-            'nomination_reset' => '',
-            'praise' => '',
-            'problem' => '',
-            'problem_warning' => '',
-            'review' => '',
-            'suggestion' => '',
+            'disqualify' => 'Publicar descalificación',
+            'hype' => '¡Publicar Hype!',
+            'mapper_note' => 'Publicar nota',
+            'nomination_reset' => 'Eliminar todas las nominaciones',
+            'praise' => 'Publicar elogio',
+            'problem' => 'Publicar problema',
+            'problem_warning' => 'Publicar problema',
+            'review' => 'Publicar revisión',
+            'suggestion' => 'Publicar sugerencia',
         ],
 
         'mode' => [
@@ -235,7 +235,7 @@ return [
             'prompt' => 'escriba en palabras clave...',
             'login_required' => 'Inicie sesión para buscar.',
             'options' => 'Más opciones de búsqueda',
-            'supporter_filter' => 'Filtrar por :filters requiere una etiqueta activa de osu!supporter',
+            'supporter_filter' => 'Filtrar por :filters requiere una etiqueta osu!supporter activa',
             'not-found' => 'no hay resultados',
             'not-found-quote' => '... nop, nada encontrado.',
             'filters' => [
@@ -263,7 +263,7 @@ return [
             ],
             'supporter_filter_quote' => [
                 '_' => 'Necesitas un :link activo para filtrar por :filters',
-                'link_text' => 'etiqueta de osu!supporter',
+                'link_text' => 'etiqueta osu!supporter',
             ],
         ],
     ],

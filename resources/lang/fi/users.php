@@ -81,7 +81,7 @@ return [
 
         'reasons' => [
             'compromised' => 'Tilisi on katsottu vaarannetuksi. Se voidaan poistaa käytöstä väliaikaisesti, siihen asti kunnes käyttäjän henkilöllisyys on vahvistettu.',
-            'opening' => 'Tässä pari mahdollista syytä tilisi lukitsemiseen',
+            'opening' => 'Tässä pari mahdollista syytä tilisi lukitsemiseen:',
 
             'tos' => [
                 '_' => 'Olet rikkonut yhtä tai useampaa :community_rules tai :tos.',
@@ -120,6 +120,14 @@ return [
         'beta' => [
             'main' => 'Beta on tällä hetkellä käytössä vain siihen oikeutetuilla käyttäjillä.',
             'small' => '(osu!tukijat tulevat kohta)',
+        ],
+    ],
+
+    'ogp' => [
+        'description' => [
+            '_' => 'Sijoitus (:ruleset): :global | :country',
+            'country' => 'Maakohtainen :rank',
+            'global' => 'Maailmanlaajuinen :rank',
         ],
     ],
 
@@ -165,7 +173,7 @@ return [
     'show' => [
         'age' => ':age vuotta vanha',
         'change_avatar' => 'vaihda profiilikuvasi!',
-        'first_members' => 'Täällä alusta lähtien',
+        'first_members' => 'Täällä alusta alkaen',
         'is_developer' => 'osu!kehittäjä',
         'is_supporter' => 'Tukija',
         'joined_at' => 'Liittyi :date',
@@ -178,7 +186,7 @@ return [
         'title' => ":username:n profiili",
 
         'comments_count' => [
-            '_' => 'Julkaistu :link',
+            '_' => 'Julkaissut :link',
             'count' => ':count_delimited kommentti|:count_delimited kommenttia',
         ],
         'cover' => [
@@ -200,20 +208,20 @@ return [
 
                     'restriction_info' => [
                         '_' => 'Kuvien lähetys käytettävissä vain :link',
-                        'link' => 'osu!kannattajat',
+                        'link' => 'osu!tukijoille',
                     ],
                 ],
             ],
 
             'default_playmode' => [
-                'is_default_tooltip' => 'oletus pelimuoto',
+                'is_default_tooltip' => 'oletuspelimuoto',
                 'set' => 'aseta :mode: profiilin oletetuksi pelimuodoksi',
             ],
         ],
 
         'extra' => [
             'none' => 'ei mitään',
-            'unranked' => 'Ei viimeaikaisia pelejä',
+            'unranked' => 'Ei viimeaikaisia pelauksia',
 
             'achievements' => [
                 'achieved-on' => 'Saavutuspäivä :date',
@@ -268,7 +276,7 @@ return [
                     'title' => 'Pelatuimmat Beatmapit',
                 ],
                 'recent_plays' => [
-                    'accuracy' => 'tarkkuus :percentage',
+                    'accuracy' => 'tarkkuus: :percentage',
                     'title' => 'Viimeisimmät pelaukset (24h)',
                 ],
                 'replays_watched_counts' => [
@@ -378,7 +386,7 @@ return [
                 'vote_count' => ':count_delimited ääni|:count_delimited ääntä',
             ],
             'account_standing' => [
-                'title' => 'Tilin tila',
+                'title' => 'Käyttäjän tilanne',
                 'bad_standing' => "<strong>:username</strong> ei ole käyttäytynyt hyvin :(",
                 'remaining_silence' => '<strong>:username</strong> pystyy puhumaan seuraavan kerran :duration.',
 
@@ -418,7 +426,7 @@ return [
         ],
         'page' => [
             'button' => 'Muokkaa profiilisivua',
-            'description' => '<strong>Minä!</strong> on henkilökohtainen alue profiilisivullasi, jota voit muokata.',
+            'description' => '<strong>minä!</strong> on henkilökohtainen alue profiilisivullasi, jota voit muokata.',
             'edit_big' => 'Muokkaa minua!',
             'placeholder' => 'Kirjoita sivun sisältö tähän',
 
@@ -436,21 +444,21 @@ return [
             'country_simple' => 'Maakohtainen sijoitus',
             'global' => 'Maailmanlaajuinen sijoitus pelimuodossa :mode',
             'global_simple' => 'Maailmanlaajuinen sijoitus',
-            'highest' => 'Korkein sija :rank oli :date',
+            'highest' => 'Paras sijoitus: :rank päivänä :date',
         ],
         'stats' => [
-            'hit_accuracy' => 'Tarkkuus',
+            'hit_accuracy' => 'Osumatarkkuus',
             'level' => 'Taso :level',
-            'level_progress' => 'Eteneminen seuraavalle tasolle',
+            'level_progress' => 'edistyminen seuraavalle tasolle',
             'maximum_combo' => 'Suurin combo',
             'medals' => 'Mitalit',
             'play_count' => 'Pelikertoja',
-            'play_time' => 'Pelattu aika',
+            'play_time' => 'Peliaikaa yhteensä',
             'ranked_score' => 'Tilastoidut pisteet',
             'replays_watched_by_others' => 'Muiden Katsomat Uusinnat',
             'score_ranks' => 'Luokitukset',
-            'total_hits' => 'Osumat',
-            'total_score' => 'Kokonaispisteet',
+            'total_hits' => 'Osumia yhteensä',
+            'total_score' => 'Pisteitä yhteensä',
             // modding stats
             'graveyard_beatmapset_count' => 'Kuopatut Beatmapit',
             'loved_beatmapset_count' => 'Rakastetut Beatmapit',
@@ -467,7 +475,7 @@ return [
     'status' => [
         'all' => 'Kaikki',
         'online' => 'Paikalla',
-        'offline' => 'Poissa',
+        'offline' => 'Ei paikalla',
     ],
     'store' => [
         'from_client' => 'rekisteröidy pelin kautta!',

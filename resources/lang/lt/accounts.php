@@ -18,6 +18,10 @@ return [
             'new' => 'naujas el. paštas',
             'new_confirmation' => 'el. pašto patvirtinimas',
             'title' => 'El. Paštas',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
         ],
 
         'legacy_api' => [
@@ -55,6 +59,19 @@ return [
         'signature' => [
             'title' => 'Parašas',
             'update' => 'išsaugoti',
+        ],
+    ],
+
+    'github_user' => [
+        'info' => "",
+        'link' => '',
+        'title' => '',
+        'unlink' => '',
+
+        'error' => [
+            'already_linked' => '',
+            'no_contribution' => '',
+            'unverified_email' => '',
         ],
     ],
 

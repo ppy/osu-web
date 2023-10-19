@@ -6,7 +6,7 @@ import { random } from 'lodash';
 export default class RetryDelay {
   private current: number;
 
-  constructor(private initialDelay = 7500, private maxDelay = 1800000 /* 30 minutes */) {
+  constructor(private readonly initialDelay = 7500, private readonly maxDelay = 1800000 /* 30 minutes */) {
     this.current = Math.max(initialDelay, 1);
   }
 

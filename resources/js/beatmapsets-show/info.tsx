@@ -25,7 +25,7 @@ interface Props {
 
 @observer
 export default class Info extends React.Component<Props> {
-  private descriptionEditorRef = React.createRef<BbcodeEditor>();
+  private readonly descriptionEditorRef = React.createRef<BbcodeEditor>();
   @observable private isEditingDescription = false;
   @observable private isEditingMetadata = false;
   @observable private saveDescriptionXhr: JQuery.jqXHR<BeatmapsetJsonForShow> | null = null;

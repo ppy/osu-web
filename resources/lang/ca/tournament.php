@@ -23,7 +23,7 @@ return [
     ],
 
     'show' => [
-        'banner' => 'Suporteu el vostre equip',
+        'banner' => 'Dona suport al teu equip',
         'entered' => 'Esteu registrat per a aquest torneig.<br><br>Tingueu en compte que <b>no</b> significa que heu estat assignat a un equip.<br><br>Les instruccions addicionals s\'enviaran per correu electrònic més a prop de la data del torneig, així que assegureu-vos d\'osu! l\'adreça de correu electrònic del compte és vàlida!',
         'info_page' => 'Pàgina d\'informació',
         'login_to_register' => 'Si us plau :login per veure els detalls del registre!',

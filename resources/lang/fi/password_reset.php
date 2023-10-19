@@ -5,7 +5,6 @@
 
 return [
     'button' => [
-        'cancel' => 'Peruuta',
         'resend' => 'Lähetä vahvistussähköposti uudelleen',
         'set' => 'Aseta salasana',
         'start' => 'Aloita',

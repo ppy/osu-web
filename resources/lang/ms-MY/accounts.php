@@ -18,6 +18,10 @@ return [
             'new' => 'e-mel baharu',
             'new_confirmation' => 'pengesahan e-mel',
             'title' => 'E-mel',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
         ],
 
         'legacy_api' => [
@@ -55,6 +59,19 @@ return [
         'signature' => [
             'title' => 'Tanda Tangan',
             'update' => 'kemas kini',
+        ],
+    ],
+
+    'github_user' => [
+        'info' => "",
+        'link' => '',
+        'title' => '',
+        'unlink' => '',
+
+        'error' => [
+            'already_linked' => '',
+            'no_contribution' => '',
+            'unverified_email' => '',
         ],
     ],
 

@@ -45,7 +45,7 @@ const headerLinks = [
 
 @observer
 export default class Main extends React.Component<Props> {
-  @observable private data = JSON.parse(this.props.container.dataset.data ?? '') as Data;
+  @observable private readonly data = JSON.parse(this.props.container.dataset.data ?? '') as Data;
   @observable private isNavigating = false;
   @observable private loadingXhr?: JQuery.jqXHR<ArtistTracksIndex> | null = null;
 
@@ -71,7 +71,7 @@ export default class Main extends React.Component<Props> {
       <>
         <HeaderV4 links={headerLinks} theme='artists' />
 
-        <div className='osu-page osu-page--header'>
+        <div className='osu-page osu-page--generic-compact'>
           <SearchForm
             availableGenres={this.data.availableGenres}
             initialParams={this.data.index.search}

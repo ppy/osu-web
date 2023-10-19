@@ -16,6 +16,7 @@ use App\Libraries\Session\Store as SessionStore;
 use App\Libraries\Transactions\AfterCommit;
 use App\Libraries\User\DatadogLoginAttempt;
 use App\Libraries\User\ProfileBeatmapset;
+use App\Libraries\User\UsernamesForDbLookup;
 use App\Libraries\UsernameValidation;
 use App\Models\Forum\TopicWatch;
 use App\Models\OAuth\Client;
@@ -66,10 +67,11 @@ use Request;
  * @property-read Collection<Follow> $follows
  * @property-read Collection<Forum\Post> $forumPosts
  * @property-read Collection<static> $friends
- * @property-read Collection<GithubUser> $githubUsers
+ * @property-read GithubUser|null $githubUser
  * @property-read Collection<KudosuHistory> $givenKudosu
  * @property int $group_id
  * @property bool $hide_presence
+ * @property bool $lock_email_changes
  * @property-read Collection<UserMonthlyPlaycount> $monthlyPlaycounts
  * @property-read Collection<UserNotificationOption> $notificationOptions
  * @property-read Collection<Client> $oauthClients
@@ -249,6 +251,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         'user_allow_pm' => true,
     ];
     protected $casts = [
+        'lock_email_changes' => 'boolean',
         'osu_subscriber' => 'boolean',
         'user_allow_pm' => 'boolean',
         'user_allow_viewonline' => 'boolean',
@@ -415,7 +418,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     {
         return static::whereIn(
             'username',
-            [str_replace(' ', '_', $username), str_replace('_', ' ', $username)]
+            UsernamesForDbLookup::make($username, trimPrefix: false),
         )->first();
     }
 
@@ -492,15 +495,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
         switch ($type) {
             case 'username':
-                $searchUsername = (string) $usernameOrId;
-                if ($searchUsername[0] === '@') {
-                    $searchUsername = substr($searchUsername, 1);
-                }
-                $searchUsernames = [
-                    $searchUsername,
-                    strtr($searchUsername, ' ', '_'),
-                    strtr($searchUsername, '_', ' '),
-                ];
+                $searchUsernames = UsernamesForDbLookup::make($usernameOrId);
 
                 $user = static::where(fn ($query) => $query
                     ->whereIn('username', $searchUsernames)
@@ -543,8 +538,13 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             return null;
         }
 
+        // also reject looking up history when it's all digit and not explicit username search
+        if ($type !== 'username' && ctype_digit($usernameOrId)) {
+            return null;
+        }
+
         $change = UsernameChangeHistory::visible()
-            ->where('username_last', $usernameOrId)
+            ->whereIn('username_last', UsernamesForDbLookup::make($usernameOrId))
             ->orderBy('change_id', 'desc')
             ->first();
 
@@ -814,7 +814,8 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'username_previous',
             'userpage_post_id' => $this->getRawAttribute($key),
 
-            // boolean
+            // boolean, default to false for null value
+            'lock_email_changes',
             'osu_subscriber',
             'user_allow_pm',
             'user_allow_viewonline',
@@ -880,7 +881,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'follows',
             'forumPosts',
             'friends',
-            'githubUsers',
+            'githubUser',
             'givenKudosu',
             'legacyIrcKey',
             'monthlyPlaycounts',
@@ -914,6 +915,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'scoresMania',
             'scoresOsu',
             'scoresTaiko',
+            'soloScores',
             'statisticsFruits',
             'statisticsMania',
             'statisticsMania4k',
@@ -1037,7 +1039,9 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function isActive()
     {
-        return $this->user_lastvisit > Carbon::now()->subMonths();
+        static $monthInSecond = 30 * 86400;
+
+        return time() - $this->getRawAttribute('user_lastvisit') < $monthInSecond;
     }
 
     /*
@@ -1047,13 +1051,13 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
      */
     public function isInactive(): bool
     {
-        return $this->user_lastvisit->addDays(config('osu.user.inactive_days_verification'))->isPast();
+        return time() - $this->getRawAttribute('user_lastvisit') > config('osu.user.inactive_seconds_verification');
     }
 
     public function isOnline()
     {
         return !$this->hide_presence
-            && $this->user_lastvisit > Carbon::now()->subMinutes(config('osu.user.online_window'));
+            && time() - $this->getRawAttribute('user_lastvisit') < config('osu.user.online_window');
     }
 
     public function isPrivileged()
@@ -1165,9 +1169,9 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->hasMany(UserBadge::class);
     }
 
-    public function githubUsers()
+    public function githubUser(): HasOne
     {
-        return $this->hasMany(GithubUser::class);
+        return $this->hasOne(GithubUser::class);
     }
 
     public function legacyIrcKey(): HasOne
@@ -1325,7 +1329,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function statisticsMania7k()
     {
-        return $this->hasOne(UserStatistics\Mania4k::class);
+        return $this->hasOne(UserStatistics\Mania7k::class);
     }
 
     public function statisticsTaiko()
@@ -1441,6 +1445,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         $relation = 'scoresBest'.studly_case($mode);
 
         return $returnQuery ? $this->$relation() : $this->$relation;
+    }
+
+    public function soloScores(): HasMany
+    {
+        return $this->hasMany(Solo\Score::class);
     }
 
     public function topicWatches()
@@ -1792,6 +1801,18 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return hash('sha256', $this->user_email).':'.hash('sha256', $this->user_password);
     }
 
+    public function recentScoreCount(string $ruleset): int
+    {
+        return $this->soloScores()
+            ->default()
+            ->forRuleset($ruleset)
+            ->includeFails(false)
+            ->select('id')
+            ->limit(100)
+            ->get()
+            ->count();
+    }
+
     public function resetSessions(?string $excludedSessionId = null): void
     {
         SessionStore::destroy($this->getKey(), $excludedSessionId);
@@ -1809,6 +1830,39 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function titleUrl(): ?string
     {
         return $this->rank?->url;
+    }
+
+    public function toMetaDescription(array $options = []): string
+    {
+        static $rankTypes = ['country', 'global'];
+
+        $ruleset = $options['ruleset'] ?? $this->playmode;
+        $stats = $this->statistics($ruleset);
+
+        $replacements['ruleset'] = $ruleset;
+
+        foreach ($rankTypes as $type) {
+            $method = "{$type}Rank";
+            $replacements[$type] = osu_trans("users.ogp.description.{$type}", [
+                'rank' => format_rank($stats?->$method()),
+            ]);
+
+            $variants = Beatmap::VARIANTS[$ruleset] ?? [];
+
+            $variantsTexts = null;
+            foreach ($variants as $variant) {
+                $variantRank = $this->statistics($ruleset, false, $variant)?->$method();
+                if ($variantRank !== null) {
+                    $variantsTexts[] = $variant.' '.format_rank($variantRank);
+                }
+            }
+
+            if (!empty($variantsTexts)) {
+                $replacements[$type] .= ' ('.implode(', ', $variantsTexts).')';
+            }
+        }
+
+        return osu_trans('users.ogp.description._', $replacements);
     }
 
     public function hasProfile()
@@ -1969,7 +2023,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     {
         return $query
             ->where('user_allow_viewonline', true)
-            ->whereRaw('user_lastvisit > UNIX_TIMESTAMP(DATE_SUB(NOW(), INTERVAL '.config('osu.user.online_window').' MINUTE))');
+            ->where('user_lastvisit', '>', time() - config('osu.user.online_window'));
     }
 
     public function scopeEagerloadForListing($query)
@@ -2351,9 +2405,9 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->user_lang;
     }
 
-    public function url()
+    public function url(?string $ruleset = null)
     {
-        return route('users.show', ['user' => $this->getKey()]);
+        return route('users.show', ['mode' => $ruleset, 'user' => $this->getKey()]);
     }
 
     public function validationErrorsTranslationPrefix(): string
