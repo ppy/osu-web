@@ -145,7 +145,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     public $timestamps = false;
 
-    protected $_storage = null;
+    private StorageWithUrl $storage;
     protected $casts = self::CASTS;
     protected $primaryKey = 'beatmapset_id';
     protected $table = 'osu_beatmapsets';
@@ -444,13 +444,9 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         return '//b.ppy.sh/preview/'.$this->beatmapset_id.'.mp3';
     }
 
-    public function storage()
+    public function storage(): StorageWithUrl
     {
-        if ($this->_storage === null) {
-            $this->_storage = new StorageWithUrl();
-        }
-
-        return $this->_storage;
+        return $this->storage ??= new StorageWithUrl();
     }
 
     public function removeCovers()
