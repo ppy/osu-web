@@ -21,7 +21,7 @@ class UserOpengraph
         return [
             'description' => $this->description(),
             'image' => $this->user->user_avatar,
-            'title' => blade_safe(osu_trans('users.show.title', ['username' => $this->user->username])),
+            'title' => blade_safe(str_replace(' ', '&nbsp;', e($this->user->username))).' · '.page_title(),
         ];
     }
 
