@@ -171,7 +171,7 @@ class HomeController extends Controller
      * data  | T[]     | |
      * total | integer | |
      *
-     * @queryParam mode Either `all`, `user`, or `wiki_page`. Default is `all`. Example: all
+     * @queryParam mode string Either `all`, `user`, or `wiki_page`. Default is `all`. Example: all
      * @queryParam query Search keyword. Example: hello
      * @queryParam page Search result page. Ignored for mode `all`. Example: 1
      */
