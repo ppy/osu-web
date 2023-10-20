@@ -5,7 +5,7 @@ The object has different attributes depending on its `type`. Following are attri
 Field      | Type                      | Description
 -----------|---------------------------|------------
 created_at | [Timestamp](#timestamp)   | |
-id         | number                    | |
+id         | integer                   | |
 type       | [Event.Type](#event-type) | |
 
 ### Additional objects
@@ -58,7 +58,7 @@ When a beatmap has been played for certain number of times.
 Field       | Type
 ------------|------------
 beatmap     | [Event.Beatmap](#event-beatmap)
-count       | number
+count       | integer
 
 #### beatmapsetApprove
 
@@ -112,8 +112,8 @@ When a user achieves a certain rank on a beatmap.
 Field     | Type                            | Description
 ----------|---------------------------------|--------------------------------------------
 scoreRank | string                          | (FIXME)
-rank      | number                          | |
-mode      | GameMode                        | |
+rank      | integer                         | |
+mode      | [Ruleset](#ruleset)             | |
 beatmap   | [Event.Beatmap](#event-beatmap) | |
 user      | [Event.User](#event-user)       | |
 
@@ -123,7 +123,7 @@ When a user loses first place to another user.
 
 Field     | Type
 ----------|-------------
-mode      | [GameMode](#gamemode)
+mode      | [Ruleset](#ruleset)
 beatmap   | [Event.Beatmap](#event-beatmap)
 user      | [Event.User](#event-user)
 
