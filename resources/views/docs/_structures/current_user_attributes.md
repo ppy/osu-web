@@ -21,4 +21,4 @@ Name              | Type    | Description
 ----------------- | ------- | --------------
 can_message       | boolean | Can send messages to this channel.
 can_message_error | string? | Reason messages cannot be sent to this channel
-last_read_id      | number  | `message_id` of last message read.
+last_read_id      | integer | `message_id` of last message read.

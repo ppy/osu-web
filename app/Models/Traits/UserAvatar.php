@@ -11,9 +11,9 @@ use ErrorException;
 
 trait UserAvatar
 {
-    private $avatarStorage;
+    private StorageWithUrl $avatarStorage;
 
-    public function avatarStorage()
+    public function avatarStorage(): StorageWithUrl
     {
         return $this->avatarStorage ??= new StorageWithUrl(config('osu.avatar.storage'));
     }

@@ -37,7 +37,7 @@ class BeatmapPacksController extends Controller
      * ------------- | -----------------------------
      * beatmap_packs | [BeatmapPack](#beatmappack)[]
      *
-     * @queryParam cursor_string Parameter for pagination.
+     * @usesCursor
      * @queryParam type string [BeatmapPackType](#beatmappacktype) of the beatmap packs to be returned. Defaults to `standard`.
      */
     public function index()

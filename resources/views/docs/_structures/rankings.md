@@ -63,4 +63,4 @@ beatmapsets    | [BeatmapsetExtended](#beatmapsetextended)[]? | The list of beat
 cursor         | [Cursor](#cursor)                            | A cursor
 ranking        | [UserStatistics](#userstatistics)[]          | Score details ordered by rank in descending order.
 spotlight      | [Spotlight](#spotlight)?                     | Spotlight details; only available if `type` is `charts`
-total          | number                                       | An approximate count of ranks available
+total          | integer                                      | An approximate count of ranks available
