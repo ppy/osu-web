@@ -35,7 +35,7 @@ class EventsController extends Controller
      * cursor_string | [CursorString](#cursorstring)
      * events        | [Event](#event)[]
      *
-     * @queryParam cursor_string Parameter for pagination. No-example
+     * @usesCursor
      * @queryParam sort Sorting option. Valid values are `id_desc` (default) and `id_asc`. No-example
      *
      * @response {

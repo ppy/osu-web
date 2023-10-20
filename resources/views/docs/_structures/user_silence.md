@@ -8,7 +8,7 @@
 
 A record indicating a [User](#user) was silenced.
 
-Field   | Type   | Description
-------- |------- |------------------------------------------------------------
-id      | number | id of this object.
-user_id | number | id of the [User](#user) that was silenced
+Field   | Type    | Description
+------- |-------- |------------------------------------------------------------
+id      | integer | id of this object.
+user_id | integer | id of the [User](#user) that was silenced
