@@ -7,6 +7,7 @@ namespace App\Traits;
 
 use App\Libraries\StorageWithUrl;
 use Illuminate\Http\File;
+use League\Flysystem\Local\LocalFilesystemAdapter;
 
 trait Uploadable
 {
@@ -114,6 +115,20 @@ trait Uploadable
             'ext' => $fileExtension,
         ]);
 
-        $this->storage()->putFileAs($this->fileDir(), new File($filePath), $this->fileName());
+        $storage = $this->storage();
+
+        if ($storage->getAdapter() instanceof LocalFilesystemAdapter) {
+            $options = [
+                'visibility' => 'public',
+                'directory_visibility' => 'public',
+            ];
+        }
+
+        $storage->putFileAs(
+            $this->fileDir(),
+            new File($filePath),
+            $this->fileName(),
+            $options ?? [],
+        );
     }
 }
