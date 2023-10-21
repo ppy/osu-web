@@ -112,7 +112,7 @@ class LocaleMeta
             'flag' => 'BR',
             'html' => 'pt-BR',
             'laravelPlural' => 'pt_BR',
-            'name' => 'português do Brasil',
+            'name' => 'português brasileiro',
         ],
         'ro' => [
             'flag' => 'RO',
