@@ -21,11 +21,14 @@ class Renderer implements NodeRendererInterface
 
         $code = presence($attrs->get('flag', null));
         if ($code !== null) {
-            $country = Country::find($code);
             $attrs->remove('flag');
             $attrs->set('class', 'flag-country flag-country--flat flag-country--wiki');
-            $attrs->set('style', "background-image: url('".flag_url($country->acronym)."')");
-            $attrs->set('title', $country->name);
+            $attrs->set('style', "background-image: url('".flag_url($code)."')");
+
+            $country = Country::find($code);
+            if ($country !== null) {
+                $attrs->set('title', $country->name);
+            }
         }
 
         return new HtmlElement(
