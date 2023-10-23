@@ -19,8 +19,8 @@ return [
             'new_confirmation' => 'потврда имејл адресе',
             'title' => 'Имејл',
             'locked' => [
-                '_' => '',
-                'accounts' => '',
+                '_' => 'Molimo kontaktirajte :accounts ukoliko treba da ažurirate Vašu imejl adresu.',
+                'accounts' => 'tim za podršku naloga',
             ],
         ],
 

@@ -26,7 +26,7 @@ return [
             'deleted' => 'Bao gồm cuộc thảo luận đã xóa',
             'mode' => 'Chế độ Beatmap',
             'only_unresolved' => 'Chỉ hiện các cuộc thảo luận chưa được giải quyết',
-            'show_review_embeds' => '',
+            'show_review_embeds' => 'Hiển thị các bài viết đánh giá',
             'types' => 'Kiểu tin nhắn',
             'username' => 'Tên người dùng',
 

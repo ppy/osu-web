@@ -12,7 +12,7 @@ return [
     'beatmapset_update' => '<strong><em>:user</em></strong> atualizou o beatmap "<em>:beatmapset</em>"',
     'beatmapset_upload' => '<strong><em>:user</em></strong> submeteu um novo beatmap ":beatmapset"',
     'empty' => "Recentemente, este utilizador não tem feito nada de notável!",
-    'rank' => '<strong><em>:user</em></strong> alcançou a categoria de #:rank no <em>:beatmap</em> (:mode)',
+    'rank' => ':user alcançou a :rank no :beatmap (:mode)',
     'rank_lost' => '<strong><em>:user</em></strong> perdeu o primeiro lugar em <em>:beatmap</em> (:mode)',
     'user_support_again' => '<strong>:user</strong> escolheu mais uma vez apoiar o osu! - obrigado pela tua generosidade!',
     'user_support_first' => '<strong>:user</strong> deu apoio ao osu! - obrigado pela tua generosidade!',

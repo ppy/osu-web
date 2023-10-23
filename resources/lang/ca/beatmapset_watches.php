@@ -5,7 +5,7 @@
 
 return [
     'index' => [
-        'description' => 'Aquestes són les discussions de beatmaps que esteu seguint. Se us notificarà quan hi hagi noves publicacions o actualitzacions.',
+        'description' => 'Aquestes són les discussions de beatmaps que estàs seguint. Se\'t notificarà quan hi hagi noves publicacions o actualitzacions.',
         'title_compact' => 'llista de seguiment de modding',
 
         'counts' => [
