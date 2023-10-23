@@ -107,6 +107,8 @@ class WikiController extends Controller
             return json_item($page, 'WikiPage');
         }
 
+        set_opengraph($page);
+
         return ext_view(
             $page->template(),
             ['contentLocale' => $page->locale, 'page' => $page],
