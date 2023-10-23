@@ -6,6 +6,7 @@
 namespace App\Libraries\Markdown\CustomContainerInline;
 
 use App\Models\Country;
+use Illuminate\Support\Facades\Cache;
 use League\CommonMark\Node\Node;
 use League\CommonMark\Renderer\ChildNodeRendererInterface;
 use League\CommonMark\Renderer\NodeRendererInterface;
@@ -25,7 +26,9 @@ class Renderer implements NodeRendererInterface
             $attrs->set('class', 'flag-country flag-country--flat flag-country--wiki');
             $attrs->set('style', "background-image: url('".flag_url($code)."')");
 
-            $country = Country::find($code);
+            $country = Cache::remember("country:$code", 604800, function () use ($code) {
+                return Country::find($code);
+            });
             if ($country !== null) {
                 $attrs->set('title', $country->name);
             }
