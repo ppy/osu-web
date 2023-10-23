@@ -7,6 +7,7 @@ namespace App\Models;
 
 use App\Libraries\MorphMap;
 use App\Libraries\Opengraph\HasOpengraph;
+use App\Traits\Memoizes;
 use App\Traits\Validatable;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
@@ -40,7 +41,7 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class Comment extends Model implements HasOpengraph, Traits\ReportableInterface
 {
-    use Traits\Reportable, Traits\WithDbCursorHelper, Validatable;
+    use Memoizes, Traits\Reportable, Traits\WithDbCursorHelper, Validatable;
 
     const COMMENTABLES = [
         MorphMap::MAP[Beatmapset::class],
@@ -123,6 +124,8 @@ class Comment extends Model implements HasOpengraph, Traits\ReportableInterface
 
     public function setMessageAttribute($value)
     {
+        $this->resetMemoized();
+
         return $this->attributes['message'] = trim(unzalgo($value));
     }
 
@@ -313,6 +316,8 @@ class Comment extends Model implements HasOpengraph, Traits\ReportableInterface
 
     private function getMessageHtml(): ?string
     {
-        return markdown($this->message, 'comment');
+        return $this->memoize(__FUNCTION__, function () {
+            return markdown($this->message, 'comment');
+        });
     }
 }
