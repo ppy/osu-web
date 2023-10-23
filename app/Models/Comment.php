@@ -6,6 +6,7 @@
 namespace App\Models;
 
 use App\Libraries\MorphMap;
+use App\Libraries\Opengraph\HasOpengraph;
 use App\Traits\Validatable;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
@@ -37,7 +38,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @property \Illuminate\Database\Eloquent\Collection $votes CommentVote
  * @property int $votes_count_cache
  */
-class Comment extends Model implements Traits\ReportableInterface
+class Comment extends Model implements HasOpengraph, Traits\ReportableInterface
 {
     use Traits\Reportable, Traits\WithDbCursorHelper, Validatable;
 
@@ -169,6 +170,7 @@ class Comment extends Model implements Traits\ReportableInterface
             'pinned' => (bool) $this->getRawAttribute($key),
 
             'disqus_user_data' => $this->getDisqusUserData(),
+            'message_html' => $this->getMessageHtml(),
 
             'commentable',
             'editor',
@@ -307,5 +309,10 @@ class Comment extends Model implements Traits\ReportableInterface
         $value = $this->getRawAttribute('disqus_user_data');
 
         return $value === null ? null : json_decode($value, true);
+    }
+
+    private function getMessageHtml(): ?string
+    {
+        return markdown($this->message, 'comment');
     }
 }
