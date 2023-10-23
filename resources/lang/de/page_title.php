@@ -38,7 +38,7 @@ return [
             '_' => 'beatmap-diskussion-beiträge',
         ],
         'beatmap_discussions_controller' => [
-            '_' => 'beatmap-diskussionen',
+            '_' => 'Beatmap-Diskussionen',
         ],
         'beatmap_packs_controller' => [
             '_' => 'Beatmap-Pakete',
@@ -50,7 +50,7 @@ return [
             '_' => 'Beatmap-Verlauf',
         ],
         'beatmapsets_controller' => [
-            'discussion' => 'beatmap-diskussion',
+            'discussion' => 'Beatmap-Diskussion',
             'index' => 'Beatmap-Auflistung',
             'show' => 'beatmap-info',
         ],
@@ -92,7 +92,7 @@ return [
             '_' => 'Benachrichtigungsverlauf',
         ],
         'password_reset_controller' => [
-            '_' => 'passwort zurücksetzen',
+            '_' => 'Passwort zurücksetzen',
         ],
         'ranking_controller' => [
             '_' => 'Ranglisten',

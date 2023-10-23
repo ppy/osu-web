@@ -41,7 +41,7 @@ return [
 
     'nominate' => [
         'hybrid_requires_modes' => 'Un beatmap híbrid requereix que seleccioneu almenys un mode de joc per nominar.',
-        'incorrect_mode' => 'No tens permís per nominar per al mode :mode',
+        'incorrect_mode' => 'No tens permís per nominar per al mode: :mode',
         'full_bn_required' => 'Has de ser un Nominador de Beatmaps confirmat per a efectuar aquesta nominació.',
         'too_many' => 'Requisit de nominació ja complert.',
 
@@ -106,7 +106,7 @@ return [
         ],
 
         'hype' => [
-            'action' => 'Hypeja aquest mapa per ajudar al seu progrés a l\'estat <strong>Classificatori</strong>.',
+            'action' => 'Hypeja aquest mapa per ajudar al seu progrés a l\'estat <strong>Classificat</strong>.',
 
             'current' => [
                 '_' => 'Aquest mapa està actualment :status.',

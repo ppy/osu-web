@@ -63,15 +63,15 @@ return [
     ],
 
     'github_user' => [
-        'info' => "",
-        'link' => '',
-        'title' => '',
-        'unlink' => '',
+        'info' => "osu!의 오픈소스 저장소에 기여를 한 사람인 경우, 여기에 GitHub 계정을 연결하면 당신의 변경 사항 항목이 osu! 프로필과 연결됩니다. osu!에 기여를 한 이력 없는 GitHub 계정은 연결할 수 없습니다.",
+        'link' => 'GitHub 계정 연결',
+        'title' => 'GitHub',
+        'unlink' => 'GitHub 계정 해제',
 
         'error' => [
-            'already_linked' => '',
-            'no_contribution' => '',
-            'unverified_email' => '',
+            'already_linked' => '이 GitHub 계정은 이미 다른 유저에게 연결되어 있습니다.',
+            'no_contribution' => 'osu! 저장소에 기여를 한 이력이 없으면 GitHub 계정을 연결할 수 없습니다.',
+            'unverified_email' => 'GitHub에서 주 이메일을 인증한 후에 계정을 다시 연결해보세요.',
         ],
     ],
 

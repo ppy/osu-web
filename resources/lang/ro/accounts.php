@@ -63,15 +63,15 @@ return [
     ],
 
     'github_user' => [
-        'info' => "",
-        'link' => '',
-        'title' => '',
-        'unlink' => '',
+        'info' => "Dacă sunteți un contribuitor la depozitele cu sursă deschisă osu!, legarea contului dvs. de GitHub vă va asocia în istoricul de modificări cu profilul dvs. osu!. Conturile de GitHub fără un istoric de contribuții la osu! nu pot fi legate.",
+        'link' => 'Leagă Cont GitHub',
+        'title' => 'GitHub',
+        'unlink' => 'Dezleagă Cont GitHub',
 
         'error' => [
-            'already_linked' => '',
-            'no_contribution' => '',
-            'unverified_email' => '',
+            'already_linked' => 'Acest cont GitHub este deja legat de un alt utilizator.',
+            'no_contribution' => 'Nu se poate lega contul GitHub fără un istoric de contribuții în depozitele osu!.',
+            'unverified_email' => 'Vă rugăm să verificați adresa de e-mail principală pe GitHub, apoi încercați din nou să legați contul dvs.',
         ],
     ],
 

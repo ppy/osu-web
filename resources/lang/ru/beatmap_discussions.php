@@ -26,7 +26,7 @@ return [
             'deleted' => 'Включая удаленные обсуждения',
             'mode' => 'Режим игры',
             'only_unresolved' => 'Показать только нерешённые обсуждения',
-            'show_review_embeds' => '',
+            'show_review_embeds' => 'Показать посты рецензии',
             'types' => 'Типы сообщений',
             'username' => 'Никнейм',
 
@@ -75,7 +75,7 @@ return [
 
     'review' => [
         'block_count' => ':used / :max блоков использовано',
-        'go_to_parent' => 'Посмотреть отзыв',
+        'go_to_parent' => 'Посмотреть рецензию',
         'go_to_child' => 'Посмотреть обсуждение',
         'validation' => [
             'block_too_large' => 'каждый блок может содержать до :limit символов',

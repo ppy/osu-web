@@ -63,15 +63,15 @@ return [
     ],
 
     'github_user' => [
-        'info' => "",
-        'link' => '',
-        'title' => '',
-        'unlink' => '',
+        'info' => "Si ets un col·laborador dels repositoris de codi obert d'osu!, enllaçant el teu compte de GitHub aquí, s'associarà les entrades del registre de canvis amb el teu perfil d'osu!. Comptes de GitHub sense historial de contribucions a osu! no es poden enllaçar.",
+        'link' => 'Enllaça el compte de GitHub',
+        'title' => 'GitHub',
+        'unlink' => 'Desenllaça el compte de GitHub',
 
         'error' => [
-            'already_linked' => '',
-            'no_contribution' => '',
-            'unverified_email' => '',
+            'already_linked' => 'Aquest compte de GitHub ja està enllaçat a un usuari diferent.',
+            'no_contribution' => 'No es pot enllaçar el compte de GitHub sense cap historial de contribucions als repositoris d\'osu!',
+            'unverified_email' => 'Verifica el teu correu electrònic principal a GitHub i torna a provar d\'enllaçar el teu compte.',
         ],
     ],
 
@@ -108,7 +108,7 @@ return [
         'title' => 'Opcions',
 
         'beatmapset_download' => [
-            '_' => 'tipus de baixada de mapa predeterminat',
+            '_' => 'tipus de baixada de beatmap predeterminat',
             'all' => 'amb vídeo si està disponible',
             'direct' => 'obrir a osu!direct',
             'no_video' => 'sense vídeo',
