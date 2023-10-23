@@ -313,6 +313,7 @@ class BeatmapsetSearch extends RecordSearch
             'drain' => ['field' => 'beatmaps.diff_drain', 'type' => 'range'],
             'hitLength' => ['field' => 'beatmaps.hit_length', 'type' => 'range'],
             'statusRange' => ['field' => 'beatmaps.approved', 'type' => 'range'],
+            'updated' => ['field' => 'last_update', 'type' => 'range'],
             // (unsupported) 'divisor' => ['field' => ???, 'type' => 'range'],
         ];
 

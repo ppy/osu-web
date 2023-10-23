@@ -25,6 +25,9 @@ use Carbon\Carbon;
 use DB;
 use Request;
 
+/**
+ * @group Beatmapsets
+ */
 class BeatmapsetsController extends Controller
 {
     public function __construct()
@@ -112,6 +115,11 @@ class BeatmapsetsController extends Controller
         }
     }
 
+    /**
+     * TODO: documentation
+     *
+     * @usesCursor
+     */
     public function search()
     {
         $response = $this->getSearchResponse();

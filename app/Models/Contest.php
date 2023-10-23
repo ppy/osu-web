@@ -240,14 +240,12 @@ class Contest extends Model implements HasOpengraph
         }
     }
 
-    public function entriesByType($user = null)
+    public function entriesByType($user = null, array $preloads = [])
     {
-        $entries = $this->entries()->with('contest');
+        $entries = $this->entries()->with(['contest', ...$preloads]);
 
         if ($this->show_votes) {
             return Cache::remember("contest_entries_with_votes_{$this->id}", 300, function () use ($entries) {
-                $entries = $entries->with('user');
-
                 if ($this->isBestOf()) {
                     $entries = $entries
                         ->selectRaw('*')
@@ -286,6 +284,7 @@ class Contest extends Model implements HasOpengraph
     public function defaultJson($user = null)
     {
         $includes = [];
+        $preloads = [];
 
         if ($this->type === 'art') {
             $includes[] = 'artMeta';
@@ -297,6 +296,7 @@ class Contest extends Model implements HasOpengraph
         }
         if ($this->showEntryUser()) {
             $includes[] = 'user';
+            $preloads[] = 'user';
         }
 
         $contestJson = json_item(
@@ -305,7 +305,11 @@ class Contest extends Model implements HasOpengraph
             $showVotes ? ['users_voted_count'] : null,
         );
         if ($this->isVotingStarted()) {
-            $contestJson['entries'] = json_collection($this->entriesByType($user), new ContestEntryTransformer(), $includes);
+            $contestJson['entries'] = json_collection(
+                $this->entriesByType($user, $preloads),
+                new ContestEntryTransformer(),
+                $includes,
+            );
         }
 
         if (!empty($contestJson['entries'])) {

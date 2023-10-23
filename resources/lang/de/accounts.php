@@ -63,15 +63,15 @@ return [
     ],
 
     'github_user' => [
-        'info' => "",
-        'link' => '',
-        'title' => '',
-        'unlink' => '',
+        'info' => "Wenn du zu den Open-Source-Repositories von osu! beiträgst, kannst du dein GitHub-Konto hier verlinken, um deine Changelog-Einträge mit deinem osu!-Profil zu verknüpfen. GitHub-Konten ohne Beitragshistorie zu osu! können nicht verknüpft werden.",
+        'link' => 'GitHub-Konto verknüpfen',
+        'title' => 'GitHub',
+        'unlink' => 'GitHub-Konto entkoppeln',
 
         'error' => [
-            'already_linked' => '',
-            'no_contribution' => '',
-            'unverified_email' => '',
+            'already_linked' => 'Dein GitHub-Konto ist bereits mit einem anderen Benutzerkonto verknüpft.',
+            'no_contribution' => 'GitHub-Konto ohne Beitragshistorie in osu!-Repositories kann nicht verknüpft werden.',
+            'unverified_email' => 'Bitte verifiziere deine primäre E-Mail-Adresse auf GitHub und versuche dann, dein Konto erneut zu verknüpfen.',
         ],
     ],
 

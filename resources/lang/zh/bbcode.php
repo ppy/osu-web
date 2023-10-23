@@ -8,9 +8,9 @@ return [
     'heading' => '标题',
     'help' => '帮助',
     'image' => '图片',
-    'imagemap' => '图像映射',
+    'imagemap' => '图片映射',
     'italic' => '斜体',
-    'link' => '超链接',
+    'link' => '链接',
     'list' => '无序列表',
     'list_numbered' => '有序列表',
     'size' => [
@@ -20,6 +20,6 @@ return [
         'normal' => '普通',
         'large' => '大',
     ],
-    'spoilerbox' => '折叠文字',
+    'spoilerbox' => '折叠框',
     'strikethrough' => '删除线',
 ];

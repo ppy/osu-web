@@ -63,15 +63,15 @@ return [
     ],
 
     'github_user' => [
-        'info' => "",
-        'link' => '',
-        'title' => '',
-        'unlink' => '',
+        'info' => "Ha közreműködsz osu! nyílt forráskódjához, itt összekapcsolhatod a GitHub fiókodat. Ez a változtatási naplóban az osu! profilodhoz linkeli a közreműködéseidet. Olyan fiókok amiknek még nincs közreműködési történelmük osu!-val nem csatlakoztathatók.",
+        'link' => 'GitHub fiók csatlakoztatása',
+        'title' => 'GitHub',
+        'unlink' => 'GitHub fiók csatlakoztatásának megszüntetése',
 
         'error' => [
-            'already_linked' => '',
-            'no_contribution' => '',
-            'unverified_email' => '',
+            'already_linked' => 'Ez a Gitahub fiók már csatlakozatva van egy másik felhasználóhoz.',
+            'no_contribution' => 'Nem lehet GitHub fiókot csatlakoztatni, ami még nem tett közreműködést osu! kódtárban.',
+            'unverified_email' => 'Kérlek igazold elsődleges GitHub email címedet és próbáld újra.',
         ],
     ],
 

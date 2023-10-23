@@ -27,7 +27,7 @@ return [
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => 'Només el propietari del beatmap o el nominador/membre del grup NAT pot publicar notes del mapper.',
+            'mapper_note_wrong_user' => 'Només el propietari del beatmap o el nominador/membre del grup NAT pot publicar notes de mapatge.',
         ],
 
         'vote' => [

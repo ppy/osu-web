@@ -25,13 +25,13 @@ use App\Libraries\Commentable;
 use App\Libraries\Elasticsearch\Indexable;
 use App\Libraries\ImageProcessorService;
 use App\Libraries\Opengraph\HasOpengraph;
+use App\Libraries\StorageWithUrl;
 use App\Libraries\Transactions\AfterCommit;
 use App\Traits\Memoizes;
 use App\Traits\Validatable;
 use Cache;
 use Carbon\Carbon;
 use DB;
-use Illuminate\Contracts\Filesystem\Cloud;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -146,7 +146,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, HasOpengraph
 
     public $timestamps = false;
 
-    protected Cloud $_storage;
+    private StorageWithUrl $storage;
     protected $casts = self::CASTS;
     protected $primaryKey = 'beatmapset_id';
     protected $table = 'osu_beatmapsets';
@@ -445,9 +445,9 @@ class Beatmapset extends Model implements AfterCommit, Commentable, HasOpengraph
         return '//b.ppy.sh/preview/'.$this->beatmapset_id.'.mp3';
     }
 
-    public function storage()
+    public function storage(): StorageWithUrl
     {
-        return $this->_storage ??= \Storage::disk();
+        return $this->storage ??= new StorageWithUrl();
     }
 
     public function removeCovers()
