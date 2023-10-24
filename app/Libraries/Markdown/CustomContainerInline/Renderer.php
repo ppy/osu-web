@@ -6,7 +6,7 @@
 namespace App\Libraries\Markdown\CustomContainerInline;
 
 use App\Models\Country;
-use Illuminate\Support\Facades\Cache;
+use App\Traits\Memoizes;
 use League\CommonMark\Node\Node;
 use League\CommonMark\Renderer\ChildNodeRendererInterface;
 use League\CommonMark\Renderer\NodeRendererInterface;
@@ -14,6 +14,8 @@ use League\CommonMark\Util\HtmlElement;
 
 class Renderer implements NodeRendererInterface
 {
+    use Memoizes;
+
     public function render(Node $node, ChildNodeRendererInterface $childRenderer)
     {
         Element::assertInstanceOf($node);
@@ -26,9 +28,7 @@ class Renderer implements NodeRendererInterface
             $attrs->set('class', 'flag-country flag-country--flat flag-country--wiki');
             $attrs->set('style', "background-image: url('".flag_url($code)."')");
 
-            $country = Cache::remember("country:$code", 604800, function () use ($code) {
-                return Country::find($code);
-            });
+            $country = $this->memoize(__FUNCTION__.':'.$code, fn () => Country::find($code));
             if ($country !== null) {
                 $attrs->set('title', $country->name);
             }
