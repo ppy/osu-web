@@ -9,6 +9,7 @@ use App\Exceptions\AuthorizationException;
 use App\Jobs\Notifications\BeatmapsetDisqualify;
 use App\Jobs\Notifications\BeatmapsetResetNominations;
 use App\Models\Beatmap;
+use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapMirror;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetNomination;
@@ -23,9 +24,6 @@ use Tests\TestCase;
 
 class BeatmapsetTest extends TestCase
 {
-    private $fakeGenre;
-    private $fakeLanguage;
-
     public function testLove()
     {
         $user = User::factory()->create();
@@ -161,7 +159,7 @@ class BeatmapsetTest extends TestCase
     }
     public function testNominateWithDefaultMetadata()
     {
-        $beatmapset = $this->beatmapsetFactory([
+        $beatmapset = $this->beatmapsetFactory()->state([
             'genre_id' => Genre::UNSPECIFIED,
             'language_id' => Language::UNSPECIFIED,
         ])->create();
@@ -177,9 +175,7 @@ class BeatmapsetTest extends TestCase
      */
     public function testRank(string $state, bool $success): void
     {
-        $beatmapset = $this->beatmapsetFactory([
-            'approved' => Beatmapset::STATES[$state],
-        ])->create();
+        $beatmapset = $this->beatmapsetFactory()->$state()->create();
 
         $otherUser = User::factory()->create();
 
@@ -206,7 +202,9 @@ class BeatmapsetTest extends TestCase
      */
     public function testRankWithOpenIssue(string $type): void
     {
-        $beatmapset = $this->beatmapsetFactory()->qualified()->withDiscussion($type)->create();
+        $beatmapset = $this->beatmapsetFactory()
+            ->qualified()
+            ->has(BeatmapDiscussion::factory()->general()->messageType($type))->create();
 
         $this->assertTrue($beatmapset->isQualified());
         $this->assertFalse($beatmapset->rank());
@@ -492,24 +490,15 @@ class BeatmapsetTest extends TestCase
     /**
      * @return Factory<Beatmapset>
      */
-    private function beatmapsetFactory($params = []): Factory
+    private function beatmapsetFactory(): Factory
     {
-        $defaultParams = [
-            'approved' => Beatmapset::STATES['pending'],
-            'download_disabled' => true,
-            'genre_id' => $this->fakeGenre->genre_id,
-            'language_id' => $this->fakeLanguage->language_id,
-        ];
-
-        $params['user_id'] ??= User::factory();
-
-        $beatmapset = Beatmapset::factory()
-            ->state([...$defaultParams, ...$params])
-            ->has(Beatmap::factory()->state(fn (array $attr, Beatmapset $set) => ['user_id' => $set->user_id]));
-
         BeatmapMirror::factory()->default()->create();
 
-        return $beatmapset;
+        return Beatmapset::factory()
+            ->owner()
+            ->pending()
+            ->state(['download_disabled' => true])
+            ->has(Beatmap::factory()->state(fn (array $attr, Beatmapset $set) => ['user_id' => $set->user_id]));
     }
 
     private function createHybridBeatmapset($params = [], $playmodes = ['osu', 'taiko']): Beatmapset
@@ -517,8 +506,8 @@ class BeatmapsetTest extends TestCase
         $defaultParams = [
             'approved' => Beatmapset::STATES['pending'],
             'download_disabled' => true,
-            'genre_id' => $this->fakeGenre->genre_id,
-            'language_id' => $this->fakeLanguage->language_id,
+            // 'genre_id' => $this->fakeGenre->genre_id,
+            // 'language_id' => $this->fakeLanguage->language_id,
         ];
 
         $params['user_id'] ??= User::factory();
@@ -547,7 +536,5 @@ class BeatmapsetTest extends TestCase
 
         Genre::factory()->create(['genre_id' => Genre::UNSPECIFIED]);
         Language::factory()->create(['language_id' => Language::UNSPECIFIED]);
-        $this->fakeGenre = Genre::factory()->create();
-        $this->fakeLanguage = Language::factory()->create();
     }
 }
