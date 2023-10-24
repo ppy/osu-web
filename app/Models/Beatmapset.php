@@ -862,7 +862,8 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     public function rank()
     {
-        if (!$this->isQualified()) {
+        if (!$this->isQualified()
+            || $this->beatmapDiscussions()->openIssues()->exists()) {
             return false;
         }
 

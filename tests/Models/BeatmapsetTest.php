@@ -17,15 +17,19 @@ use App\Models\Language;
 use App\Models\Notification;
 use App\Models\User;
 use App\Models\UserNotification;
+use Database\Factories\Factory;
 use Queue;
 use Tests\TestCase;
 
 class BeatmapsetTest extends TestCase
 {
+    private $fakeGenre;
+    private $fakeLanguage;
+
     public function testLove()
     {
         $user = User::factory()->create();
-        $beatmapset = $this->createBeatmapset();
+        $beatmapset = $this->beatmapsetFactory()->create();
 
         $notifications = Notification::count();
         $userNotifications = UserNotification::count();
@@ -44,7 +48,7 @@ class BeatmapsetTest extends TestCase
     public function testLoveBeatmapApprovedStates(): void
     {
         $user = User::factory()->create();
-        $beatmapset = $this->createBeatmapset();
+        $beatmapset = $this->beatmapsetFactory()->create();
 
         $specifiedBeatmap = $beatmapset->beatmaps()->first();
         $beatmapset->beatmaps()->saveMany([
@@ -67,7 +71,7 @@ class BeatmapsetTest extends TestCase
     // region single-playmode beatmap sets
     public function testNominate()
     {
-        $beatmapset = $this->createBeatmapset();
+        $beatmapset = $this->beatmapsetFactory()->create();
         $user = User::factory()->withGroup('bng', $beatmapset->playmodesStr())->create();
 
         $notifications = Notification::count();
@@ -86,7 +90,7 @@ class BeatmapsetTest extends TestCase
 
     public function testNominateNATAnyRuleset(): void
     {
-        $beatmapset = $this->createBeatmapset();
+        $beatmapset = $this->beatmapsetFactory()->create();
         $user = User::factory()->withGroup('nat', [])->create();
 
         $this->expectCountChange(fn () => $beatmapset->nominations, 1);
@@ -98,7 +102,7 @@ class BeatmapsetTest extends TestCase
 
     public function testQualify()
     {
-        $beatmapset = $this->createBeatmapset();
+        $beatmapset = $this->beatmapsetFactory()->create();
         $user = User::factory()->withGroup('bng', $beatmapset->playmodesStr())->create();
 
         $notifications = Notification::count();
@@ -116,7 +120,7 @@ class BeatmapsetTest extends TestCase
 
     public function testLimitedBNGQualifyingNominationBNGNominated()
     {
-        $beatmapset = $this->createBeatmapset();
+        $beatmapset = $this->beatmapsetFactory()->create();
         $this->fillNominationsExceptLastForMode($beatmapset, 'bng', $beatmapset->playmodesStr()[0]);
 
         $nominator = User::factory()->withGroup('bng_limited', $beatmapset->playmodesStr())->create();
@@ -131,7 +135,7 @@ class BeatmapsetTest extends TestCase
 
     public function testLimitedBNGQualifyingNominationNATNominated()
     {
-        $beatmapset = $this->createBeatmapset();
+        $beatmapset = $this->beatmapsetFactory()->create();
         $this->fillNominationsExceptLastForMode($beatmapset, 'nat', $beatmapset->playmodesStr()[0]);
 
         $nominator = User::factory()->withGroup('bng_limited', $beatmapset->playmodesStr())->create();
@@ -146,7 +150,7 @@ class BeatmapsetTest extends TestCase
 
     public function testLimitedBNGQualifyingNominationLimitedBNGNominated()
     {
-        $beatmapset = $this->createBeatmapset();
+        $beatmapset = $this->beatmapsetFactory()->create();
         $this->fillNominationsExceptLastForMode($beatmapset, 'bng_limited', $beatmapset->playmodesStr()[0]);
 
         $nominator = User::factory()->withGroup('bng_limited', $beatmapset->playmodesStr())->create();
@@ -157,10 +161,10 @@ class BeatmapsetTest extends TestCase
     }
     public function testNominateWithDefaultMetadata()
     {
-        $beatmapset = $this->createBeatmapset([
+        $beatmapset = $this->beatmapsetFactory([
             'genre_id' => Genre::UNSPECIFIED,
             'language_id' => Language::UNSPECIFIED,
-        ]);
+        ])->create();
         $nominator = User::factory()->withGroup('bng', $beatmapset->playmodesStr())->create();
 
         $this->expectException(AuthorizationException::class);
@@ -173,9 +177,9 @@ class BeatmapsetTest extends TestCase
      */
     public function testRank(string $state, bool $success): void
     {
-        $beatmapset = $this->createBeatmapset([
+        $beatmapset = $this->beatmapsetFactory([
             'approved' => Beatmapset::STATES[$state],
-        ]);
+        ])->create();
 
         $otherUser = User::factory()->create();
 
@@ -195,6 +199,17 @@ class BeatmapsetTest extends TestCase
 
         $this->assertSame($success, $res);
         $this->assertSame($success, $beatmapset->fresh()->isRanked());
+    }
+
+    /**
+     * @dataProvider rankWithOpenIssueDataProvider
+     */
+    public function testRankWithOpenIssue(string $type): void
+    {
+        $beatmapset = $this->beatmapsetFactory()->qualified()->withDiscussion($type)->create();
+
+        $this->assertTrue($beatmapset->isQualified());
+        $this->assertFalse($beatmapset->rank());
     }
 
     public function testGlobalScopeActive()
@@ -466,7 +481,18 @@ class BeatmapsetTest extends TestCase
         ];
     }
 
-    private function createBeatmapset($params = []): Beatmapset
+    public function rankWithOpenIssueDataProvider()
+    {
+        return [
+            ['problem'],
+            ['suggestion'],
+        ];
+    }
+
+    /**
+     * @return Factory<Beatmapset>
+     */
+    private function beatmapsetFactory($params = []): Factory
     {
         $defaultParams = [
             'approved' => Beatmapset::STATES['pending'],
@@ -477,8 +503,10 @@ class BeatmapsetTest extends TestCase
 
         $params['user_id'] ??= User::factory();
 
-        $beatmapset = Beatmapset::factory()->create(array_merge($defaultParams, $params));
-        $beatmapset->beatmaps()->save(Beatmap::factory()->make());
+        $beatmapset = Beatmapset::factory()
+            ->state([...$defaultParams, ...$params])
+            ->has(Beatmap::factory()->state(fn (array $attr, Beatmapset $set) => ['user_id' => $set->user_id]));
+
         BeatmapMirror::factory()->default()->create();
 
         return $beatmapset;
