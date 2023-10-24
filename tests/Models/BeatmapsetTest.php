@@ -234,7 +234,7 @@ class BeatmapsetTest extends TestCase
     public function testHybridLegacyNominate(): void
     {
         $user = User::factory()->withGroup('bng', ['osu'])->create();
-        $beatmapset = $this->createHybridBeatmapset(null, ['osu', 'taiko']);
+        $beatmapset = $this->createHybridBeatmapset();
 
         // create legacy nomination event to enable legacy nomination mode
         BeatmapsetNomination::factory()->create([
@@ -259,7 +259,7 @@ class BeatmapsetTest extends TestCase
     public function testHybridLegacyQualify(): void
     {
         $user = User::factory()->withGroup('bng', ['osu'])->create();
-        $beatmapset = $this->createHybridBeatmapset(null, ['osu', 'taiko']);
+        $beatmapset = $this->createHybridBeatmapset();
 
         // create legacy nomination event to enable legacy nomination mode
         BeatmapsetNomination::factory()->create([
@@ -311,7 +311,7 @@ class BeatmapsetTest extends TestCase
     public function testHybridNominateWithNoPlaymodePermission(): void
     {
         $user = User::factory()->withGroup('bng', ['osu'])->create();
-        $beatmapset = $this->createHybridBeatmapset(null, ['osu', 'taiko']);
+        $beatmapset = $this->createHybridBeatmapset();
 
         $notifications = Notification::count();
         $userNotifications = UserNotification::count();
@@ -332,7 +332,7 @@ class BeatmapsetTest extends TestCase
     public function testHybridNominateWithPlaymodePermissionSingleMode(): void
     {
         $user = User::factory()->withGroup('bng', ['osu'])->create();
-        $beatmapset = $this->createHybridBeatmapset(null, ['osu', 'taiko']);
+        $beatmapset = $this->createHybridBeatmapset();
 
         $notifications = Notification::count();
         $userNotifications = UserNotification::count();
@@ -351,7 +351,7 @@ class BeatmapsetTest extends TestCase
     public function testHybridNominateWithPlaymodePermissionTooMany(): void
     {
         $user = User::factory()->withGroup('bng', ['osu'])->create();
-        $beatmapset = $this->createHybridBeatmapset(null, ['osu', 'taiko']);
+        $beatmapset = $this->createHybridBeatmapset();
 
         $this->fillNominationsExceptLastForMode($beatmapset, 'bng', 'osu');
 
@@ -368,7 +368,7 @@ class BeatmapsetTest extends TestCase
     public function testHybridNominateWithPlaymodePermissionMultipleModes(): void
     {
         $user = User::factory()->withGroup('bng', ['osu', 'taiko'])->create();
-        $beatmapset = $this->createHybridBeatmapset(null, ['osu', 'taiko']);
+        $beatmapset = $this->createHybridBeatmapset();
 
         $notifications = Notification::count();
         $userNotifications = UserNotification::count();
@@ -501,25 +501,25 @@ class BeatmapsetTest extends TestCase
             ->has(Beatmap::factory()->state(fn (array $attr, Beatmapset $set) => ['user_id' => $set->user_id]));
     }
 
-    private function createHybridBeatmapset($params = [], $playmodes = ['osu', 'taiko']): Beatmapset
+    private function createHybridBeatmapset($playmodes = ['osu', 'taiko']): Beatmapset
     {
-        $defaultParams = [
-            'approved' => Beatmapset::STATES['pending'],
-            'download_disabled' => true,
-            // 'genre_id' => $this->fakeGenre->genre_id,
-            // 'language_id' => $this->fakeLanguage->language_id,
-        ];
-
-        $params['user_id'] ??= User::factory();
-
-        $beatmapset = Beatmapset::factory()->create(array_merge($defaultParams, $params));
-
-        foreach ($playmodes as $playmode) {
-            $beatmapset->beatmaps()->save(Beatmap::factory()->make(['playmode' => Beatmap::modeInt($playmode)]));
-        }
         BeatmapMirror::factory()->default()->create();
 
-        return $beatmapset;
+        $beatmapset = Beatmapset::factory()
+            ->owner()
+            ->pending()
+            ->state(['download_disabled' => true]);
+
+        foreach ($playmodes as $playmode) {
+            $beatmapset = $beatmapset->has(
+                Beatmap::factory()->state(fn (array $attr, Beatmapset $set) => [
+                    'playmode' => Beatmap::modeInt($playmode),
+                    'user_id' => $set->user_id,
+                ])
+            );
+        }
+
+        return $beatmapset->create();
     }
 
     private function fillNominationsExceptLastForMode(Beatmapset $beatmapset, string $group, string $playmode): void
