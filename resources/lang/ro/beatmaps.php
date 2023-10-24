@@ -114,7 +114,7 @@ return [
             'embed' => [
                 'delete' => 'Șterge',
                 'missing' => '[DISCUȚIE ȘTEARSĂ]',
-                'unlink' => 'Dezasociați',
+                'unlink' => 'Dezleagă',
                 'unsaved' => 'Nesalvat',
                 'timestamp' => [
                     'all-diff' => 'Postările de pe "Toate dificultățile" nu pot conține marcaje de timp.',

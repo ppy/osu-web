@@ -63,15 +63,15 @@ return [
     ],
 
     'github_user' => [
-        'info' => "",
-        'link' => '',
-        'title' => '',
-        'unlink' => '',
+        'info' => "Si vous êtes un contributeur des dépôts open-source d'osu!, lier votre compte GitHub ici associera vos entrées changelog à votre profil osu!. Les comptes GitHub sans historique de contribution à osu! ne peuvent pas être liés.",
+        'link' => 'Lier un compte GitHub',
+        'title' => 'GitHub',
+        'unlink' => 'Dissocier le compte GitHub',
 
         'error' => [
-            'already_linked' => '',
-            'no_contribution' => '',
-            'unverified_email' => '',
+            'already_linked' => 'Ce compte GitHub est déjà lié à un autre utilisateur.',
+            'no_contribution' => 'Impossible de lier un compte GitHub sans historique de contribution dans les dépôts osu!',
+            'unverified_email' => 'Veuillez vérifier votre adresse e-mail principale sur GitHub, puis essayez de lier votre compte à nouveau.',
         ],
     ],
 
