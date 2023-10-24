@@ -41,7 +41,7 @@ class BeatmapDiscussionFactory extends Factory
 
     public function mapperNote()
     {
-        return $this->state(['message_type' => 'mapper_note']);
+        return $this->messageType('mapper_note');
     }
 
     public function messageType(string $type)
@@ -51,7 +51,7 @@ class BeatmapDiscussionFactory extends Factory
 
     public function problem()
     {
-        return $this->state(['message_type' => 'problem']);
+        return $this->messageType('problem');
     }
 
     public function review()

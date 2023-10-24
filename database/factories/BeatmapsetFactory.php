@@ -94,11 +94,11 @@ class BeatmapsetFactory extends Factory
         });
     }
 
-    public function withDiscussion(string $type = 'problem')
+    public function withDiscussion()
     {
         return $this
             ->has(Beatmap::factory()->state(fn (array $attr, Beatmapset $set) => ['user_id' => $set->user_id]))
-            ->has(BeatmapDiscussion::factory()->general()->messageType($type)->state(fn (array $attr, Beatmapset $set) => [
+            ->has(BeatmapDiscussion::factory()->general()->state(fn (array $attr, Beatmapset $set) => [
                 'user_id' => $set->user_id,
             ]));
     }
