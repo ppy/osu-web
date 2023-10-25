@@ -6,6 +6,7 @@
     $appUrl = config('app.url');
     $currentLocale = App::getLocale();
     $fallbackLocale = config('app.fallback_locale');
+    $opengraph = Request::instance()->attributes->get('opengraph');
 
     $opengraph['description'] ??= $pageDescription ?? null;
 @endphp

@@ -1695,9 +1695,7 @@ function set_opengraph(HasOpengraph $model, ...$options)
 {
     $className = str_replace('App\Models', 'App\Libraries\Opengraph', $model::class).'Opengraph';
 
-    View::share([
-        'opengraph' => (new $className($model, ...$options))->get(),
-    ]);
+    Request::instance()->attributes->set('opengraph', (new $className($model, ...$options))->get());
 }
 
 function first_paragraph($html, $split_on = "\n")
