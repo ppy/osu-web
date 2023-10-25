@@ -28,26 +28,6 @@ class UserScoreAggregateTest extends TestCase
         $this->assertSame(0, $agg->completed);
     }
 
-    public function testInCompleteScoresAreNotCounted()
-    {
-        $user = User::factory()->create();
-        $playlistItem = $this->playlistItem();
-        $agg = UserScoreAggregate::new($user, $this->room);
-
-        $scoreLink = ScoreLink::factory()
-            ->state([
-                'room_id' => $this->room,
-                'playlist_item_id' => $playlistItem,
-                'user_id' => $user,
-            ])->create();
-
-        $agg->addScoreLink($scoreLink);
-        $result = json_item($agg, 'Multiplayer\UserScoreAggregate');
-
-        $this->assertSame(0, $result['completed']);
-        $this->assertSame(0, $result['total_score']);
-    }
-
     public function testFailedScoresAreAttemptsOnly()
     {
         $user = User::factory()->create();
@@ -58,7 +38,6 @@ class UserScoreAggregateTest extends TestCase
             ScoreLink
                 ::factory()
                 ->state([
-                    'room_id' => $this->room,
                     'playlist_item_id' => $playlistItem,
                     'user_id' => $user,
                 ])->failed()
@@ -68,7 +47,6 @@ class UserScoreAggregateTest extends TestCase
         $agg->addScoreLink(
             ScoreLink::factory()
                 ->state([
-                    'room_id' => $this->room,
                     'playlist_item_id' => $playlistItem,
                     'user_id' => $user,
                 ])->completed([], ['passed' => true, 'total_score' => 1])
@@ -90,7 +68,6 @@ class UserScoreAggregateTest extends TestCase
         $agg->addScoreLink(
             ScoreLink::factory()
                 ->state([
-                    'room_id' => $this->room,
                     'playlist_item_id' => $playlistItem,
                     'user_id' => $user,
                 ])->completed([], ['passed' => true, 'total_score' => 1])
@@ -112,7 +89,6 @@ class UserScoreAggregateTest extends TestCase
         $agg = UserScoreAggregate::new($user, $this->room);
         $agg->addScoreLink(ScoreLink::factory()
             ->state([
-                'room_id' => $this->room,
                 'playlist_item_id' => $playlistItem,
                 'user_id' => $user,
             ])->completed([], [
@@ -122,7 +98,6 @@ class UserScoreAggregateTest extends TestCase
 
         $agg->addScoreLink(ScoreLink::factory()
             ->state([
-                'room_id' => $this->room,
                 'playlist_item_id' => $playlistItem,
                 'user_id' => $user,
             ])->completed([], [
@@ -133,7 +108,6 @@ class UserScoreAggregateTest extends TestCase
 
         $agg->addScoreLink(ScoreLink::factory()
             ->state([
-                'room_id' => $this->room,
                 'playlist_item_id' => $playlistItem,
                 'user_id' => $user,
             ])->completed([], [
@@ -144,7 +118,6 @@ class UserScoreAggregateTest extends TestCase
 
         $agg->addScoreLink(ScoreLink::factory()
             ->state([
-                'room_id' => $this->room,
                 'playlist_item_id' => $playlistItem2,
                 'user_id' => $user,
             ])->completed([], [

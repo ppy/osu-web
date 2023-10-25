@@ -15,7 +15,6 @@ use App\Models\Multiplayer\ScoreLink as MultiplayerScoreLink;
 use App\Models\Score\Best\Model as ScoreBest;
 use App\Models\Score\Model as ScoreModel;
 use App\Models\Solo\Score as SoloScore;
-use App\Models\Traits\SoloScoreInterface;
 use League\Fractal\Resource\Item;
 
 class ScoreTransformer extends TransformerAbstract
@@ -82,14 +81,14 @@ class ScoreTransformer extends TransformerAbstract
         }
     }
 
-    public function transform(LegacyMatch\Score|ScoreModel|SoloScoreInterface $score)
+    public function transform(LegacyMatch\Score|MultiplayerScoreLink|ScoreModel|SoloScore $score)
     {
         $fn = $this->transformFunction;
 
         return $this->$fn($score);
     }
 
-    public function transformSolo(ScoreModel|SoloScoreInterface $score)
+    public function transformSolo(MultiplayerScoreLink|ScoreModel|SoloScore $score)
     {
         if ($score instanceof ScoreModel) {
             $legacyPerfect = $score->perfect;
@@ -100,17 +99,18 @@ class ScoreTransformer extends TransformerAbstract
                 $pp = $best->pp;
                 $hasReplay = $best->replay;
             }
-        } elseif ($score instanceof SoloScoreInterface) {
-            $pp = $score->pp;
-            $hasReplay = $score->has_replay;
-
+        } else {
             if ($score instanceof MultiplayerScoreLink) {
                 $multiplayerAttributes = [
                     'playlist_item_id' => $score->playlist_item_id,
-                    'room_id' => $score->room_id,
+                    'room_id' => $score->playlistItem->room_id,
                     'solo_score_id' => $score->score_id,
                 ];
+                $score = $score->score;
             }
+
+            $pp = $score->pp;
+            $hasReplay = $score->has_replay;
         }
 
         $hasReplay ??= false;
@@ -204,7 +204,7 @@ class ScoreTransformer extends TransformerAbstract
         return $this->item($score->beatmap->beatmapset, new BeatmapsetCompactTransformer());
     }
 
-    public function includeCurrentUserAttributes(LegacyMatch\Score|ScoreModel|SoloScoreInterface $score): Item
+    public function includeCurrentUserAttributes(LegacyMatch\Score|MultiplayerScoreLink|ScoreModel|SoloScore $score): Item
     {
         return $this->item($score, new Score\CurrentUserAttributesTransformer());
     }
@@ -256,7 +256,7 @@ class ScoreTransformer extends TransformerAbstract
         return $this->primitive($score->userRank([]));
     }
 
-    public function includeUser(LegacyMatch\Score|ScoreModel|SoloScoreInterface $score)
+    public function includeUser(LegacyMatch\Score|MultiplayerScoreLink|ScoreModel|SoloScore $score)
     {
         return $this->item(
             $score->user ?? new DeletedUser(['user_id' => $score->user_id]),
