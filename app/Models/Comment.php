@@ -316,8 +316,6 @@ class Comment extends Model implements HasOpengraph, Traits\ReportableInterface
 
     private function getMessageHtml(): ?string
     {
-        return $this->memoize(__FUNCTION__, function () {
-            return markdown($this->message, 'comment');
-        });
+        return $this->memoize(__FUNCTION__, fn () => markdown($this->message, 'comment'));
     }
 }
