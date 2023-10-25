@@ -17,6 +17,10 @@ class PageOpengraph
 
     public function get(): array
     {
+        if (!$this->page->isVisible()) {
+            return [];
+        }
+
         $pageData = $this->page->get();
 
         return [
