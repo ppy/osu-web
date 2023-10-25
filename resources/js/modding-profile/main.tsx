@@ -174,7 +174,9 @@ export default class Main extends React.Component<Props> {
                   <Badges badges={this.props.user.badges} />
                   {!this.props.user.is_bot && (
                     <>
-                      <ProfileTournamentBanner banner={this.props.user.active_tournament_banner} />
+                      {this.props.user.active_tournament_banners.map((banner) => (
+                        <ProfileTournamentBanner key={banner.id} banner={banner} />
+                      ))}
                       <div className='profile-detail'>
                         <Stats user={this.props.user} />
                       </div>

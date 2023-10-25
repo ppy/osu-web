@@ -20,6 +20,7 @@ import UserStatisticsRulesetsJson from './user-statistics-rulesets-json';
 interface UserJsonAvailableIncludes {
   account_history: UserAccountHistoryJson[];
   active_tournament_banner: ProfileBannerJson | null;
+  active_tournament_banners: ProfileBannerJson[];
   badges: UserBadgeJson[];
   beatmap_playcounts_count: number;
   blocks: UserRelationJson[];
@@ -85,7 +86,8 @@ interface UserJsonDefaultAttributes {
 }
 
 export type ProfileHeaderIncludes =
-  'active_tournament_banner'
+  | 'active_tournament_banner'
+  | 'active_tournament_banners'
   | 'badges'
   | 'comments_count'
   | 'follower_count'
