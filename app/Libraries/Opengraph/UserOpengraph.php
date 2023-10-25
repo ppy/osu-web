@@ -39,8 +39,8 @@ class UserOpengraph
         }
 
         return empty($countsText)
-            ? osu_trans("users.ogp.modding_description_empty", ['user' => $this->user->username])
-            : osu_trans("users.ogp.modding_description", [
+            ? osu_trans('users.ogp.modding_description_empty', ['user' => $this->user->username])
+            : osu_trans('users.ogp.modding_description', [
                 'counts' => implode(' | ', $countsText),
                 'user' => $this->user->username,
             ]);
