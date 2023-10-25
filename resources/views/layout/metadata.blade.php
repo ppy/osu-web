@@ -7,7 +7,7 @@
     $currentLocale = App::getLocale();
     $fallbackLocale = config('app.fallback_locale');
 
-    $opengraph['description'] ??= $opengraph['description'] ?? $pageDescription ?? null;
+    $opengraph['description'] ??= $pageDescription ?? null;
 @endphp
 <link rel="apple-touch-icon" sizes="180x180" href="{{ $appUrl }}/images/favicon/apple-touch-icon.png">
 <link rel="icon" sizes="32x32" href="{{ $appUrl }}/images/favicon/favicon-32x32.png">
