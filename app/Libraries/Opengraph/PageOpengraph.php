@@ -17,12 +17,11 @@ class PageOpengraph
 
     public function get(): array
     {
-        $title = $this->page->title();
+        $pageData = $this->page->get();
 
         return [
-            // TODO: need a way to mark which wiki text to use as excerpt; first_paragraph just returns the title on wiki.
-            'description' => html_excerpt($this->page->get()['output']),
-            'title' => $title,
+            'description' => $pageData['excerpt'] ?? html_excerpt($pageData['output']), // html_excerpt fallback
+            'title' => $this->page->title(),
         ];
     }
 }

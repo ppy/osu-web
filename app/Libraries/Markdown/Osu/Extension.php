@@ -30,6 +30,7 @@ class Extension implements ConfigurableExtensionInterface
             'custom_container_inline' => Expect::bool(),
             'fix_wiki_url' => Expect::bool(),
             'generate_toc' => Expect::bool(),
+            'record_excerpt' => Expect::bool(),
             'record_first_image' => Expect::bool(),
             'relative_url_root' => Expect::string()->nullable(),
             'style_block_allowed_classes' => Expect::array()->nullable(),
