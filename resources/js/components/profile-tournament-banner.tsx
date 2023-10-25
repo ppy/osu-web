@@ -11,6 +11,8 @@ interface Props {
 }
 
 export default function ProfileTournamentBanner({ banner }: Props) {
+  if (banner.image == null) return null;
+
   return (
     <a
       className='profile-tournament-banner'
