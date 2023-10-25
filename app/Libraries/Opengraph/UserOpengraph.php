@@ -12,20 +12,41 @@ use App\Models\User;
 
 class UserOpengraph
 {
-    public function __construct(private User $user, private string $ruleset)
+    public function __construct(private User $user, private string $page, private ?string $ruleset = null)
     {
     }
 
     public function get()
     {
         return [
-            'description' => $this->description(),
+            // none for multiplayer, playlist counts seems...not useful?
+            'description' => $this->page === 'modding' ? $this->moddingDescription() : $this->showDescription(),
             'image' => $this->user->user_avatar,
             'title' => blade_safe(str_replace(' ', '&nbsp;', e($this->user->username))).' · '.page_title(),
         ];
     }
 
-    private function description(): string
+    private function moddingDescription(): string
+    {
+        static $statuses = ['ranked', 'loved', 'pending', 'graveyard'];
+
+        $countsText = [];
+        foreach ($statuses as $status) {
+            $count = $this->user->profileBeatmapsetCountByGroupedStatus($status);
+            if ($count > 0) {
+                $countsText[] = osu_trans("beatmapsets.show.status.{$status}").' '.number_format($count);
+            }
+        }
+
+        return empty($countsText)
+            ? osu_trans("users.ogp.modding_description_empty", ['user' => $this->user->username])
+            : osu_trans("users.ogp.modding_description", [
+                'counts' => implode(' | ', $countsText),
+                'user' => $this->user->username,
+            ]);
+    }
+
+    private function showDescription(): string
     {
         static $rankTypes = ['country', 'global'];
 
