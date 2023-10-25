@@ -1693,7 +1693,7 @@ function seeded_shuffle(array &$items, int $seed = 0)
 
 function set_opengraph(HasOpengraph $model, ...$options)
 {
-    $className = 'App\\Libraries\\Opengraph\\'.get_class_basename(get_class($model)).'Opengraph';
+    $className = str_replace('App\Models', 'App\Libraries\Opengraph', $model::class).'Opengraph';
 
     View::share([
         'opengraph' => (new $className($model, ...$options))->get(),

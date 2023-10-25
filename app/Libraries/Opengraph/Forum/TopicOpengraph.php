@@ -5,7 +5,7 @@
 
 declare(strict_types=1);
 
-namespace App\Libraries\Opengraph;
+namespace App\Libraries\Opengraph\Forum;
 
 use App\Models\Forum\Topic;
 
