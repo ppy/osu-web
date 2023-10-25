@@ -7,12 +7,10 @@ import { route } from 'laroute';
 import * as React from 'react';
 
 interface Props {
-  banner?: ProfileBannerJson | null;
+  banner: ProfileBannerJson;
 }
 
 export default function ProfileTournamentBanner({ banner }: Props) {
-  if (banner == null || banner.image == null) return null;
-
   return (
     <a
       className='profile-tournament-banner'

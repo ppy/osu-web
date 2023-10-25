@@ -6,6 +6,7 @@ import ProfileTournamentBanner from 'components/profile-tournament-banner';
 import RoomList from 'components/room-list';
 import UserProfileContainer from 'components/user-profile-container';
 import UserExtendedJson from 'interfaces/user-extended-json';
+import { ProfileHeaderIncludes } from 'interfaces/user-json';
 import { MultiplayerTypeGroup } from 'interfaces/user-multiplayer-history-json';
 import { route } from 'laroute';
 import core from 'osu-core-singleton';
@@ -20,7 +21,7 @@ import { trans } from 'utils/lang';
 interface Props {
   store: RoomListStore;
   typeGroup: MultiplayerTypeGroup;
-  user: UserExtendedJson;
+  user: UserExtendedJson & Required<Pick<UserExtendedJson, ProfileHeaderIncludes>>;
 }
 
 export default function Main(props: Props) {
@@ -37,7 +38,9 @@ export default function Main(props: Props) {
       <div className='osu-page osu-page--generic-compact'>
         <Cover coverUrl={props.user.cover.url} currentMode={props.user.playmode} modifiers='multiplayer' user={props.user} />
 
-        <ProfileTournamentBanner banner={props.user.active_tournament_banner} />
+        {props.user.active_tournament_banners.map((banner) => (
+          <ProfileTournamentBanner key={banner.id} banner={banner} />
+        ))}
 
         <Badges badges={props.user.badges} modifiers='multiplayer' />
 
