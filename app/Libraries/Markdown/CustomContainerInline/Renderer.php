@@ -5,7 +5,6 @@
 
 namespace App\Libraries\Markdown\CustomContainerInline;
 
-use App\Models\Country;
 use App\Traits\Memoizes;
 use League\CommonMark\Node\Node;
 use League\CommonMark\Renderer\ChildNodeRendererInterface;
@@ -28,7 +27,7 @@ class Renderer implements NodeRendererInterface
             $attrs->set('class', 'flag-country flag-country--flat flag-country--wiki');
             $attrs->set('style', "background-image: url('".flag_url($code)."')");
 
-            $country = $this->memoize(__FUNCTION__.':'.$code, fn () => Country::find($code));
+            $country = app('countries')->byCode($code);
             if ($country !== null) {
                 $attrs->set('title', $country->name);
             }
