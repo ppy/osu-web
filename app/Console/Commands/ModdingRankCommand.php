@@ -16,7 +16,7 @@ class ModdingRankCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'modding:rank {--no-wait}';
+    protected $signature = 'modding:rank {--no-wait} {--count-only}';
 
     /**
      * The console command description.
@@ -25,6 +25,7 @@ class ModdingRankCommand extends Command
      */
     protected $description = 'Rank maps in queue.';
 
+    private bool $countOnly = false;
     private bool $noWait = false;
 
     /**
@@ -34,9 +35,14 @@ class ModdingRankCommand extends Command
      */
     public function handle()
     {
+        $this->countOnly = get_bool($this->option('count-only'));
         $this->noWait = get_bool($this->option('no-wait'));
 
-        $this->info('Ranking beatmapsets...');
+        if ($this->countOnly) {
+            $this->info('Number of beatmapsets in queue:');
+        } else {
+            $this->info('Ranking beatmapsets...');
+        }
 
         $modeInts = array_values(Beatmap::MODES);
 
@@ -44,7 +50,13 @@ class ModdingRankCommand extends Command
 
         foreach ($modeInts as $modeInt) {
             $this->waitRandom();
-            $this->rankAll($modeInt);
+
+            if ($this->countOnly) {
+                $count = $this->toBeRankedQuery($modeInt)->count();
+                $this->info(Beatmap::modeStr($modeInt).": {$count}");
+            } else {
+                $this->rankAll($modeInt);
+            }
         }
 
         $this->info('Done');
@@ -70,10 +82,7 @@ class ModdingRankCommand extends Command
 
         $toRankLimit = min(config('osu.beatmapset.rank_per_run'), $rankableQuota);
 
-        $toBeRankedQuery = Beatmapset::qualified()
-            ->withoutTrashed()
-            ->withModesForRanking($modeInt)
-            ->where('queued_at', '<', now()->subDays(config('osu.beatmapset.minimum_days_for_rank')));
+        $toBeRankedQuery = $this->toBeRankedQuery($modeInt);
 
         $rankingQueue = $toBeRankedQuery->count();
         $toBeRanked = $toBeRankedQuery
@@ -91,9 +100,18 @@ class ModdingRankCommand extends Command
         }
     }
 
+    private function toBeRankedQuery(int $modeInt)
+    {
+        return Beatmapset::qualified()
+            ->withoutTrashed()
+            ->withModesForRanking($modeInt)
+            ->where('queued_at', '<', now()->subDays(config('osu.beatmapset.minimum_days_for_rank')))
+            ->whereDoesntHave('beatmapDiscussions', fn ($query) => $query->openIssues());
+    }
+
     private function waitRandom()
     {
-        if ($this->noWait) {
+        if ($this->noWait || $this->countOnly) {
             return;
         }
 

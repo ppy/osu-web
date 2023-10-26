@@ -5,17 +5,12 @@
 
 namespace Tests\Commands;
 
-use App\Exceptions\InvariantException;
 use App\Libraries\Ruleset;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapMirror;
 use App\Models\Beatmapset;
-use App\Models\Solo\Score;
-use Artisan;
-use Carbon\Carbon;
 use Database\Factories\Factory;
-use LaravelRedis;
 use Tests\TestCase;
 
 class ModdingRankCommandTest extends TestCase
@@ -34,13 +29,23 @@ class ModdingRankCommandTest extends TestCase
 
     public function testRankOpenIssue(): void
     {
-        $beatmapset = $this->beatmapset(Ruleset::osu)
+        $this->beatmapset(Ruleset::osu)
             ->has(BeatmapDiscussion::factory()->general()->problem())
             ->create();
 
         $this->expectCountChange(fn () => Beatmapset::ranked()->count(), 0);
 
         $this->artisan('modding:rank', ['--no-wait' => true]);
+    }
+
+    public function testRankOpenIssueCounts(): void
+    {
+        $this->beatmapset(Ruleset::osu)
+            ->has(BeatmapDiscussion::factory()->general()->problem())
+            ->create();
+
+        $command = $this->artisan('modding:rank', ['--count-only' => true]);
+        $command->expectsOutputToContain('osu: 0');
     }
 
     public function testRankQuota(): void
