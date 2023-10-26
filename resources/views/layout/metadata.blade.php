@@ -43,10 +43,6 @@
 
 <meta name="turbolinks-cache-control" content="no-preview">
 
-@if(config("services.ga.tracking_id") !== '')
-    <meta name="ga-tracking-id" content="{{ config("services.ga.tracking_id") }}">
-@endif
-
 @switch($currentLocale)
     @case('vi')
         <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,600,700&display=swap&subset=vietnamese" rel="stylesheet">
