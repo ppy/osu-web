@@ -8,6 +8,7 @@ namespace Tests\Models;
 use App\Exceptions\AuthorizationException;
 use App\Jobs\Notifications\BeatmapsetDisqualify;
 use App\Jobs\Notifications\BeatmapsetResetNominations;
+use App\Libraries\Ruleset;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapMirror;
@@ -501,7 +502,7 @@ class BeatmapsetTest extends TestCase
             ->has(Beatmap::factory()->state(fn (array $attr, Beatmapset $set) => ['user_id' => $set->user_id]));
     }
 
-    private function createHybridBeatmapset($playmodes = ['osu', 'taiko']): Beatmapset
+    private function createHybridBeatmapset($rulesets = [Ruleset::osu, Ruleset::taiko]): Beatmapset
     {
         BeatmapMirror::factory()->default()->create();
 
@@ -510,10 +511,10 @@ class BeatmapsetTest extends TestCase
             ->pending()
             ->state(['download_disabled' => true]);
 
-        foreach ($playmodes as $playmode) {
+        foreach ($rulesets as $ruleset) {
             $beatmapset = $beatmapset->has(
                 Beatmap::factory()->state(fn (array $attr, Beatmapset $set) => [
-                    'playmode' => Beatmap::modeInt($playmode),
+                    'playmode' => $ruleset->value,
                     'user_id' => $set->user_id,
                 ])
             );

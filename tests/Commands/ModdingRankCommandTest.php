@@ -45,7 +45,7 @@ class ModdingRankCommandTest extends TestCase
             ->create();
 
         $command = $this->artisan('modding:rank', ['--count-only' => true]);
-        $command->expectsOutputToContain('osu: 0');
+        $command->expectsOutputToContain(Ruleset::osu->name.': 0');
     }
 
     public function testRankQuota(): void

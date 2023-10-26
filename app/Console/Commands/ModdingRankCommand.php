@@ -5,7 +5,7 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Beatmap;
+use App\Libraries\Ruleset;
 use App\Models\Beatmapset;
 use Illuminate\Console\Command;
 
@@ -44,31 +44,31 @@ class ModdingRankCommand extends Command
             $this->info('Ranking beatmapsets...');
         }
 
-        $modeInts = array_values(Beatmap::MODES);
+        $rulesets = Ruleset::cases();
 
-        shuffle($modeInts);
+        shuffle($rulesets);
 
-        foreach ($modeInts as $modeInt) {
+        foreach ($rulesets as $ruleset) {
             $this->waitRandom();
 
             if ($this->countOnly) {
-                $count = $this->toBeRankedQuery($modeInt)->count();
-                $this->info(Beatmap::modeStr($modeInt).": {$count}");
+                $count = $this->toBeRankedQuery($ruleset)->count();
+                $this->info("{$ruleset->name}: {$count}");
             } else {
-                $this->rankAll($modeInt);
+                $this->rankAll($ruleset);
             }
         }
 
         $this->info('Done');
     }
 
-    private function rankAll($modeInt)
+    private function rankAll(Ruleset $ruleset)
     {
-        $this->info('Ranking beatmapsets with at least mode: '.Beatmap::modeStr($modeInt));
+        $this->info("Ranking beatmapsets with at least mode: {$ruleset->name}");
 
         $rankedTodayCount = Beatmapset::ranked()
             ->withoutTrashed()
-            ->withModesForRanking($modeInt)
+            ->withModesForRanking($ruleset->value)
             ->where('approved_date', '>=', now()->subDays())
             ->count();
 
@@ -82,7 +82,7 @@ class ModdingRankCommand extends Command
 
         $toRankLimit = min(config('osu.beatmapset.rank_per_run'), $rankableQuota);
 
-        $toBeRankedQuery = $this->toBeRankedQuery($modeInt);
+        $toBeRankedQuery = $this->toBeRankedQuery($ruleset);
 
         $rankingQueue = $toBeRankedQuery->count();
         $toBeRanked = $toBeRankedQuery
@@ -100,11 +100,11 @@ class ModdingRankCommand extends Command
         }
     }
 
-    private function toBeRankedQuery(int $modeInt)
+    private function toBeRankedQuery(Ruleset $ruleset)
     {
         return Beatmapset::qualified()
             ->withoutTrashed()
-            ->withModesForRanking($modeInt)
+            ->withModesForRanking($ruleset->value)
             ->where('queued_at', '<', now()->subDays(config('osu.beatmapset.minimum_days_for_rank')))
             ->whereDoesntHave('beatmapDiscussions', fn ($query) => $query->openIssues());
     }
