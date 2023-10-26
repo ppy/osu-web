@@ -5,7 +5,6 @@
 
 namespace App\Libraries\Markdown\CustomContainerInline;
 
-use App\Traits\Memoizes;
 use League\CommonMark\Node\Node;
 use League\CommonMark\Renderer\ChildNodeRendererInterface;
 use League\CommonMark\Renderer\NodeRendererInterface;
@@ -13,8 +12,6 @@ use League\CommonMark\Util\HtmlElement;
 
 class Renderer implements NodeRendererInterface
 {
-    use Memoizes;
-
     public function render(Node $node, ChildNodeRendererInterface $childRenderer)
     {
         Element::assertInstanceOf($node);
