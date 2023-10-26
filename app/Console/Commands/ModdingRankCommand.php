@@ -16,7 +16,7 @@ class ModdingRankCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'modding:rank';
+    protected $signature = 'modding:rank {--no-wait}';
 
     /**
      * The console command description.
@@ -25,6 +25,8 @@ class ModdingRankCommand extends Command
      */
     protected $description = 'Rank maps in queue.';
 
+    private bool $noWait = false;
+
     /**
      * Execute the console command.
      *
@@ -32,6 +34,8 @@ class ModdingRankCommand extends Command
      */
     public function handle()
     {
+        $this->noWait = get_bool($this->option('no-wait'));
+
         $this->info('Ranking beatmapsets...');
 
         $modeInts = array_values(Beatmap::MODES);
@@ -72,7 +76,6 @@ class ModdingRankCommand extends Command
             ->where('queued_at', '<', now()->subDays(config('osu.beatmapset.minimum_days_for_rank')));
 
         $rankingQueue = $toBeRankedQuery->count();
-
         $toBeRanked = $toBeRankedQuery
             ->orderBy('queued_at', 'ASC')
             ->limit($toRankLimit)
@@ -90,6 +93,10 @@ class ModdingRankCommand extends Command
 
     private function waitRandom()
     {
+        if ($this->noWait) {
+            return;
+        }
+
         $delay = rand(5, 120);
         $this->info("Pausing for {$delay} seconds...");
         sleep($delay);

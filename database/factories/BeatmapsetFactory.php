@@ -13,6 +13,7 @@ use App\Models\Forum\Topic;
 use App\Models\Genre;
 use App\Models\Language;
 use App\Models\User;
+use Carbon\Carbon;
 
 class BeatmapsetFactory extends Factory
 {
@@ -70,9 +71,9 @@ class BeatmapsetFactory extends Factory
         ]);
     }
 
-    public function qualified()
+    public function qualified(?Carbon $approvedAt = null)
     {
-        $approvedAt = now();
+        $approvedAt ??= now();
 
         return $this->state([
             'approved' => Beatmapset::STATES['qualified'],
