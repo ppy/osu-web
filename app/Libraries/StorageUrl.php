@@ -7,30 +7,13 @@ declare(strict_types=1);
 
 namespace App\Libraries;
 
-use Illuminate\Contracts\Filesystem\Filesystem;
-
-class StorageWithUrl
+class StorageUrl
 {
-    private string $baseUrl;
-    private Filesystem $disk;
-    private string $diskName;
-
-    public function __construct(?string $diskName = null)
+    public static function make(?string $diskName, string $path): string
     {
-        $this->diskName = $diskName ?? config('filesystems.default');
-    }
+        $diskName ??= config('filesystems.default');
+        $baseUrl = config("filesystems.disks.{$diskName}.base_url");
 
-    public function url(string $path): string
-    {
-        $this->baseUrl ??= config("filesystems.disks.{$this->diskName}.base_url");
-
-        return "{$this->baseUrl}/{$path}";
-    }
-
-    public function __call($method, $parameters)
-    {
-        $this->disk ??= \Storage::disk($this->diskName);
-
-        return $this->disk->$method(...$parameters);
+        return "{$baseUrl}/{$path}";
     }
 }

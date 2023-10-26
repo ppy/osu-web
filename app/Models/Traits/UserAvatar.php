@@ -6,33 +6,27 @@
 namespace App\Models\Traits;
 
 use App\Libraries\ImageProcessor;
-use App\Libraries\StorageWithUrl;
+use App\Libraries\StorageUrl;
 use ErrorException;
 
 trait UserAvatar
 {
-    private StorageWithUrl $avatarStorage;
-
-    public function avatarStorage(): StorageWithUrl
+    private static function avatarDisk(): string
     {
-        return $this->avatarStorage ??= new StorageWithUrl(config('osu.avatar.storage'));
-    }
-
-    public function setUserAvatarAttribute($value)
-    {
-        $this->attributes['user_avatar'] = presence($value) ?? '';
+        return config('osu.avatar.storage');
     }
 
     public function setAvatar($file)
     {
+        $storage = \Storage::disk(static::avatarDisk());
         if ($file === null) {
-            $this->avatarStorage()->delete($this->user_id);
+            $storage->delete($this->user_id);
         } else {
             $filePath = $file->getRealPath();
             $processor = new ImageProcessor($filePath, [256, 256], 100000);
             $processor->process();
 
-            $this->avatarStorage()->put($this->user_id, file_get_contents($filePath), 'public');
+            $storage->put($this->user_id, file_get_contents($filePath), 'public');
 
             $entry = $this->user_id.'_'.time().'.'.$processor->ext();
         }
@@ -59,15 +53,15 @@ trait UserAvatar
             }
         }
 
-        return $this->update(['user_avatar' => $entry ?? null]);
+        return $this->update(['user_avatar' => $entry ?? '']);
     }
 
     protected function getUserAvatar()
     {
-        $value = presence($this->getRawAttribute('user_avatar'));
+        $value = $this->getRawAttribute('user_avatar');
 
-        return $value === null
-            ? config('osu.avatar.default')
-            : $this->avatarStorage()->url(str_replace('_', '?', $value));
+        return present($value)
+            ? StorageUrl::make(static::avatarDisk(), strtr($value, '_', '?'))
+            : config('osu.avatar.default');
     }
 }

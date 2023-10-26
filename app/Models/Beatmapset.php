@@ -24,7 +24,7 @@ use App\Libraries\BBCodeFromDB;
 use App\Libraries\Commentable;
 use App\Libraries\Elasticsearch\Indexable;
 use App\Libraries\ImageProcessorService;
-use App\Libraries\StorageWithUrl;
+use App\Libraries\StorageUrl;
 use App\Libraries\Transactions\AfterCommit;
 use App\Traits\Memoizes;
 use App\Traits\Validatable;
@@ -145,7 +145,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     public $timestamps = false;
 
-    private StorageWithUrl $storage;
     protected $casts = self::CASTS;
     protected $primaryKey = 'beatmapset_id';
     protected $table = 'osu_beatmapsets';
@@ -419,7 +418,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
     {
         $timestamp = $customTimestamp ?? $this->defaultCoverTimestamp();
 
-        return $this->storage()->url($this->coverPath()."{$coverSize}.jpg?{$timestamp}");
+        return StorageUrl::make(null, $this->coverPath()."{$coverSize}.jpg?{$timestamp}");
     }
 
     public function coverPath()
@@ -431,7 +430,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     public function storeCover($target_filename, $source_path)
     {
-        $this->storage()->put($this->coverPath().$target_filename, file_get_contents($source_path));
+        \Storage::put($this->coverPath().$target_filename, file_get_contents($source_path));
     }
 
     public function downloadLimited()
@@ -444,15 +443,10 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         return '//b.ppy.sh/preview/'.$this->beatmapset_id.'.mp3';
     }
 
-    public function storage(): StorageWithUrl
-    {
-        return $this->storage ??= new StorageWithUrl();
-    }
-
     public function removeCovers()
     {
         try {
-            $this->storage()->deleteDirectory($this->coverPath());
+            \Storage::deleteDirectory($this->coverPath());
         } catch (\Exception $e) {
             // ignore errors
         }
