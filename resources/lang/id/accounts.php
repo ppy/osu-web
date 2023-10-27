@@ -62,6 +62,19 @@ return [
         ],
     ],
 
+    'github_user' => [
+        'info' => "Apabila kamu merupakan kontributor repositori open-source osu!, kamu dapat menautkan akun GitHub kamu di sini untuk menghubungkan entrimu pada riwayat perubahan dengan profil osu! milikmu. Akun GitHub yang tidak memiliki riwayat kontribusi terhadap osu! tidak dapat dihubungkan.",
+        'link' => 'Tautkan Akun GitHub',
+        'title' => 'GitHub',
+        'unlink' => 'Lepas Tautan Akun GitHub',
+
+        'error' => [
+            'already_linked' => 'Akun GitHub ini telah terhubung ke pengguna lain.',
+            'no_contribution' => 'Akun GitHub yang tidak memiliki riwayat kontribusi terhadap repositori osu! tidak dapat dihubungkan.',
+            'unverified_email' => 'Silakan verifikasi email utama kamu pada GitHub, lalu cobalah untuk menghubungkan akunmu kembali.',
+        ],
+    ],
+
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'terima notifikasi pada saat terdapat masalah baru pada beatmap yang berstatus Qualified pada mode',
         'beatmapset_disqualify' => 'terima notifikasi pada saat terdapat beatmap yang terdiskualifikasi pada mode',

@@ -5,7 +5,6 @@
 
 return [
     'button' => [
-        'cancel' => 'Batal',
         'resend' => 'Kirim ulang email verifikasi',
         'set' => 'Atur kata sandi',
         'start' => 'Mulai',

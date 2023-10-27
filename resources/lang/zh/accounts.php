@@ -10,7 +10,7 @@ return [
 
         'avatar' => [
             'title' => '头像',
-            'rules' => '请确保你的头像符合 :link。<br/>这意味着头像内容必须是<strong>全年龄的</strong>，即没有裸露、不文明语言或暗示的内容。',
+            'rules' => '请确保你的头像符合 :link。<br/>这意味着头像内容必须是<strong>全年龄的</strong>，即没有裸露、亵渎或暗示的内容。',
             'rules_link' => '社区规则',
         ],
 
@@ -59,6 +59,19 @@ return [
         'signature' => [
             'title' => '个性签名',
             'update' => '更新',
+        ],
+    ],
+
+    'github_user' => [
+        'info' => "如果你是 osu! 开源仓库的贡献者，在这里填写你 GitHub 的账号，可以将你的更新日志条目与 osu! 个人主页绑定起来。如果 GitHub 账号没有历史提交记录，则无法绑定。",
+        'link' => '绑定 GitHub 账号',
+        'title' => 'GitHub',
+        'unlink' => '解绑 GitHub 账号',
+
+        'error' => [
+            'already_linked' => '这个 GitHub 账号已经绑定到另一个玩家账号上。',
+            'no_contribution' => '无法绑定在 osu! 仓库中没有任何贡献纪录的 GitHub 账号。',
+            'unverified_email' => '请在你 GitHub 账号的首选邮箱中完成验证，然后重新绑定账号。',
         ],
     ],
 

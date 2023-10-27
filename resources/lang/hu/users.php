@@ -125,9 +125,9 @@ return [
 
     'ogp' => [
         'description' => [
-            '_' => '',
-            'country' => '',
-            'global' => '',
+            '_' => 'Helyezés (:ruleset): :global | :country',
+            'country' => 'Országos :rank',
+            'global' => 'Globális :rank',
         ],
     ],
 

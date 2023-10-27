@@ -169,12 +169,12 @@ return [
     ],
 
     'popup_login' => [
-        'button' => 'iniciar sesión / registrarse',
+        'button' => 'iniciar sesión / registrarme',
 
         'login' => [
             'forgot' => "He olvidado mis datos",
             'password' => 'contraseña',
-            'title' => 'Iniciar sesión para continuar',
+            'title' => 'Inicia sesión para continuar',
             'username' => 'nombre de usuario',
 
             'error' => [

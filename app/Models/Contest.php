@@ -86,14 +86,14 @@ class Contest extends Model
                 $mustPass = $requirement['must_pass'] ?? true;
                 $beatmapIdsQuery = Multiplayer\PlaylistItem::whereIn('room_id', $roomIds)->select('beatmap_id');
                 $requiredBeatmapsetCount = Beatmap::whereIn('beatmap_id', $beatmapIdsQuery)->distinct('beatmapset_id')->count();
-                $playedBeatmapIdsQuery = Multiplayer\ScoreLink
-                    ::whereIn('room_id', $roomIds)
+                $playedScoreIdsQuery = Multiplayer\ScoreLink
+                    ::whereHas('playlistItem', fn ($q) => $q->whereIn('room_id', $roomIds))
                     ->where(['user_id' => $user->getKey()])
-                    ->completed()
-                    ->select('beatmap_id');
+                    ->select('score_id');
                 if ($mustPass) {
-                    $playedBeatmapIdsQuery->whereHas('playlistItemUserHighScore');
+                    $playedScoreIdsQuery->whereHas('playlistItemUserHighScore');
                 }
+                $playedBeatmapIdsQuery = Solo\Score::whereIn('id', $playedScoreIdsQuery)->select('beatmap_id');
                 $playedBeatmapsetCount = Beatmap::whereIn('beatmap_id', $playedBeatmapIdsQuery)->distinct('beatmapset_id')->count();
 
                 if ($playedBeatmapsetCount !== $requiredBeatmapsetCount) {
@@ -239,14 +239,12 @@ class Contest extends Model
         }
     }
 
-    public function entriesByType($user = null)
+    public function entriesByType($user = null, array $preloads = [])
     {
-        $entries = $this->entries()->with('contest');
+        $entries = $this->entries()->with(['contest', ...$preloads]);
 
         if ($this->show_votes) {
             return Cache::remember("contest_entries_with_votes_{$this->id}", 300, function () use ($entries) {
-                $entries = $entries->with('user');
-
                 if ($this->isBestOf()) {
                     $entries = $entries
                         ->selectRaw('*')
@@ -285,6 +283,7 @@ class Contest extends Model
     public function defaultJson($user = null)
     {
         $includes = [];
+        $preloads = [];
 
         if ($this->type === 'art') {
             $includes[] = 'artMeta';
@@ -296,6 +295,7 @@ class Contest extends Model
         }
         if ($this->showEntryUser()) {
             $includes[] = 'user';
+            $preloads[] = 'user';
         }
 
         $contestJson = json_item(
@@ -304,7 +304,11 @@ class Contest extends Model
             $showVotes ? ['users_voted_count'] : null,
         );
         if ($this->isVotingStarted()) {
-            $contestJson['entries'] = json_collection($this->entriesByType($user), new ContestEntryTransformer(), $includes);
+            $contestJson['entries'] = json_collection(
+                $this->entriesByType($user, $preloads),
+                new ContestEntryTransformer(),
+                $includes,
+            );
         }
 
         if (!empty($contestJson['entries'])) {

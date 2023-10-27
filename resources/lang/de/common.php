@@ -35,7 +35,7 @@ return [
         'edit' => 'Bearbeiten',
         'expand' => 'ausklappen',
         'hide' => 'verbergen',
-        'permalink' => 'permalink',
+        'permalink' => 'Permalink',
         'pin' => 'anheften',
         'post' => 'Senden',
         'read_more' => 'mehr anzeigen',

@@ -10,7 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
-            'rules' => 'Bitte stelle sicher, dass sich dein Avatar an :link hält.<br/>Das heißt, er muss <strong>für alle Altersklassen geeignet</strong> sein und darf keine Nacktheit oder anstößige Inhalte enthalten.',
+            'rules' => 'Bitte stelle sicher, dass sich dein Avatar an :link hält.<br/>Das heißt, er muss <strong>für alle Altersklassen geeignet</strong> sein und darf keine Nacktheit oder anstößigen Inhalte enthalten.',
             'rules_link' => 'die Community-Regeln',
         ],
 
@@ -32,8 +32,8 @@ return [
 
         'password' => [
             'current' => 'Aktuelles Passwort',
-            'new' => 'neues passwort',
-            'new_confirmation' => 'passwort bestätigen',
+            'new' => 'Neues Passwort',
+            'new_confirmation' => 'Passwort bestätigen',
             'title' => 'Passwort',
         ],
 
@@ -62,10 +62,23 @@ return [
         ],
     ],
 
+    'github_user' => [
+        'info' => "Wenn du zu den Open-Source-Repositories von osu! beiträgst, kannst du dein GitHub-Konto hier verlinken, um deine Changelog-Einträge mit deinem osu!-Profil zu verknüpfen. GitHub-Konten ohne Beitragshistorie zu osu! können nicht verknüpft werden.",
+        'link' => 'GitHub-Konto verknüpfen',
+        'title' => 'GitHub',
+        'unlink' => 'GitHub-Konto entkoppeln',
+
+        'error' => [
+            'already_linked' => 'Dein GitHub-Konto ist bereits mit einem anderen Benutzerkonto verknüpft.',
+            'no_contribution' => 'GitHub-Konto ohne Beitragshistorie in osu!-Repositories kann nicht verknüpft werden.',
+            'unverified_email' => 'Bitte verifiziere deine primäre E-Mail-Adresse auf GitHub und versuche dann, dein Konto erneut zu verknüpfen.',
+        ],
+    ],
+
     'notifications' => [
-        'beatmapset_discussion_qualified_problem' => 'erhalte Benachrichtigungen für neue Probleme auf qualifizierten Beatmaps von folgenden Modi',
-        'beatmapset_disqualify' => 'erhalte Benachrichtigungen, wenn Beatmaps der folgenden Modi disqualifiziert werden',
-        'comment_reply' => 'erhalte Benachrichtigungen für Antworten auf deine Kommentare',
+        'beatmapset_discussion_qualified_problem' => 'Erhalte Benachrichtigungen für neue Probleme auf qualifizierten Beatmaps von folgenden Modi',
+        'beatmapset_disqualify' => 'Erhalte Benachrichtigungen, wenn Beatmaps der folgenden Modi disqualifiziert werden',
+        'comment_reply' => 'Erhalte Benachrichtigungen für Antworten auf deine Kommentare',
         'title' => 'Benachrichtigungen',
         'topic_auto_subscribe' => 'Benachrichtigungen zu den von dir erstellten Forenposts immer aktivieren',
 
@@ -73,19 +86,19 @@ return [
             '_' => 'Zustelloptionen',
             'beatmap_owner_change' => 'Guest-Difficulty',
             'beatmapset:modding' => 'Beatmap-Modding',
-            'channel_message' => 'private Chat-Nachrichten',
-            'comment_new' => 'neue Kommentare',
-            'forum_topic_reply' => 'Antwort zum Thema',
+            'channel_message' => 'Private Chat-Nachrichten',
+            'comment_new' => 'Neue Kommentare',
+            'forum_topic_reply' => 'Antwort auf Forenthema',
             'mail' => 'Mail',
             'mapping' => 'Beatmap-Mapper',
-            'push' => 'push',
+            'push' => 'Push',
             'user_achievement_unlock' => 'Medaille freigeschaltet',
         ],
     ],
 
     'oauth' => [
-        'authorized_clients' => 'autorisierte Anwendungen',
-        'own_clients' => 'eigene Anwendungen',
+        'authorized_clients' => 'Autorisierte Anwendungen',
+        'own_clients' => 'Eigene Anwendungen',
         'title' => 'OAuth',
     ],
 
@@ -95,10 +108,10 @@ return [
         'title' => 'Optionen',
 
         'beatmapset_download' => [
-            '_' => 'Bevorzugter Betmap-Download Typ',
+            '_' => 'Bevorzuge Beatmap-Download-Typ',
             'all' => 'mit Video, falls verfügbar',
             'direct' => 'in osu!direct öffnen',
-            'no_video' => 'ohne video',
+            'no_video' => 'ohne Video',
         ],
     ],
 
@@ -107,11 +120,11 @@ return [
         'mouse' => 'Maus',
         'tablet' => 'Tablet',
         'title' => 'Spielstil',
-        'touch' => 'touch',
+        'touch' => 'Touch',
     ],
 
     'privacy' => [
-        'friends_only' => 'blockiere Nachrichten von Benutzern, die nicht in deiner Freundesliste sind',
+        'friends_only' => 'Blockiere Nachrichten von Benutzern, die nicht in deiner Freundesliste sind',
         'hide_online' => 'Online-Status verbergen',
         'title' => 'Privatsphäre',
     ],

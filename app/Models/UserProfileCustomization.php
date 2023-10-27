@@ -41,10 +41,13 @@ class UserProfileCustomization extends Model
         'views' => ['all' => ['card', 'list', 'brick'], 'default' => 'card'],
     ];
 
+    public $incrementing = false;
+
     protected $casts = [
         'cover_json' => 'array',
         'options' => AsArrayObject::class,
     ];
+    protected $primaryKey = 'user_id';
 
     private $cover;
 

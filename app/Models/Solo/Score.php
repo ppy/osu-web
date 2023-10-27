@@ -32,7 +32,7 @@ use Storage;
  * @property User $user
  * @property int $user_id
  */
-class Score extends Model implements Traits\ReportableInterface, Traits\SoloScoreInterface
+class Score extends Model implements Traits\ReportableInterface
 {
     use Traits\Reportable, Traits\WithWeightedPp;
 

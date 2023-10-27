@@ -14,12 +14,12 @@ return [
 
     'scopes' => [
         'bot' => 'Actuar com a bot de xat.',
-        'identify' => 'Identifiqueu-vos i llegiu el vostre perfil públic.',
+        'identify' => 'Identificar-te i llegir el teu perfil públic.',
 
         'chat' => [
-            'read' => '',
-            'write' => 'Enviar missatges en nom vostre.',
-            'write_manage' => '',
+            'read' => 'Llegir missatges en nom teu.',
+            'write' => 'Enviar missatges en nom teu.',
+            'write_manage' => 'Unir-se i abandonar canals en nom teu.',
         ],
 
         'forum' => [

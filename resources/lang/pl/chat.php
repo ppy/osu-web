@@ -43,7 +43,7 @@ return [
     ],
 
     'not_found' => [
-        'message' => 'Nic tu nie ma, być może taki kanał nie istnieje lub do niego nie należysz...',
+        'message' => 'Nic tu nie ma, być może taki kanał nie istnieje lub na nim nie jesteś...',
         'title' => 'nie znaleziono kanału',
     ],
 

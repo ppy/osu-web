@@ -71,13 +71,13 @@ return [
         'local' => [
             'driver' => 'local',
             'root' => public_path().'/uploads',
-            'url' => env('APP_URL', 'http://localhost').'/uploads',
+            'base_url' => env('APP_URL', 'http://localhost').'/uploads',
         ],
 
         'local-avatar' => [
             'driver' => 'local',
             'root' => public_path().'/uploads-avatar',
-            'url' => env('APP_URL', 'http://localhost').'/uploads-avatar',
+            'base_url' => env('APP_URL', 'http://localhost').'/uploads-avatar',
         ],
 
         'local-solo-replay' => [
@@ -87,17 +87,17 @@ return [
 
         's3' => [
             ...$s3Default,
+            'base_url' => env('S3_BASE_URL'),
             'mini_url' => env('S3_MINI_URL') ?? env('S3_BASE_URL'),
-            'url' => env('S3_BASE_URL'),
         ],
 
         's3-avatar' => [
             ...$s3Default,
+            'base_url' => env('S3_AVATAR_BASE_URL'),
             'bucket' => env('S3_AVATAR_BUCKET'),
             'key' => env('S3_AVATAR_KEY'),
             'region' => env('S3_AVATAR_REGION'),
             'secret' => env('S3_AVATAR_SECRET'),
-            'url' => env('S3_AVATAR_BASE_URL'),
         ],
 
         's3-solo-replay' => [

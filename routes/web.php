@@ -90,7 +90,7 @@ Route::group(['middleware' => ['web']], function () {
             Route::apiResource('{beatmapset}/favourites', 'FavouritesController', ['only' => ['store']]);
         });
     });
-    Route::get('beatmapsets/search/{filters?}', 'BeatmapsetsController@search')->name('beatmapsets.search');
+    Route::get('beatmapsets/search', 'BeatmapsetsController@search')->name('beatmapsets.search');
     Route::get('beatmapsets/{beatmapset}/discussion/{beatmap?}/{mode?}/{filter?}', 'BeatmapsetsController@discussion')->name('beatmapsets.discussion');
     Route::post('beatmapsets/{beatmapset}/discussion/review', 'BeatmapDiscussionsController@review')->name('beatmapsets.discussion.review');
     Route::post('beatmapsets/{beatmapset}/discussion-lock', 'BeatmapsetsController@discussionLock')->name('beatmapsets.discussion-lock');
@@ -405,6 +405,8 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
         Route::group(['as' => 'beatmaps.', 'prefix' => 'beatmaps'], function () {
             Route::get('lookup', 'BeatmapsController@lookup')->name('lookup');
 
+            Route::apiResource('packs', 'BeatmapPacksController', ['only' => ['index', 'show']]);
+
             Route::group(['prefix' => '{beatmap}'], function () {
                 Route::get('scores/users/{user}', 'BeatmapsController@userScore');
                 Route::get('scores/users/{user}/all', 'BeatmapsController@userScoreAll');
@@ -496,7 +498,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
 
         // Beatmapsets
         //   GET /api/v2/beatmapsets/search/:filters
-        Route::get('beatmapsets/search/{filters?}', 'BeatmapsetsController@search');
+        Route::get('beatmapsets/search', 'BeatmapsetsController@search');
         //   GET /api/v2/beatmapsets/lookup
         Route::get('beatmapsets/lookup', 'BeatmapsetsController@lookup');
         //   GET /api/v2/beatmapsets/:beatmapset_id

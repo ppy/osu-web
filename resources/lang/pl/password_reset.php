@@ -5,7 +5,6 @@
 
 return [
     'button' => [
-        'cancel' => 'Anuluj',
         'resend' => 'Wyślij ponownie e-mail weryfikacyjny',
         'set' => 'Ustaw hasło',
         'start' => 'Rozpocznij',

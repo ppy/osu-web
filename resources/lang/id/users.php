@@ -125,9 +125,9 @@ return [
 
     'ogp' => [
         'description' => [
-            '_' => '',
-            'country' => '',
-            'global' => '',
+            '_' => 'Peringkat (:ruleset): :global | :country',
+            'country' => 'Negara :rank',
+            'global' => 'Global :rank',
         ],
     ],
 
@@ -452,7 +452,7 @@ return [
             'level_progress' => 'Persentase pencapaian menuju level berikutnya',
             'maximum_combo' => 'Kombo Maksimum',
             'medals' => 'Jumlah Medali',
-            'play_count' => 'Jumlah Main',
+            'play_count' => 'Jumlah Permainan',
             'play_time' => 'Telah Bermain Selama',
             'ranked_score' => 'Skor Ranked',
             'replays_watched_by_others' => 'Jumlah Pemutaran Tayangan Ulang',

@@ -120,7 +120,7 @@ Restricted users can grant authorization like anyone else. If your client should
             'client_id' => [
                 'description' => 'The Client ID you received when you [registered]('.route('account.edit').'#new-oauth-application).',
                 'name' => 'client_id',
-                'type' => 'number',
+                'type' => 'integer',
                 'example' => 1,
             ],
             'redirect_uri' => [
@@ -173,12 +173,12 @@ Restricted users can grant authorization like anyone else. If your client should
 
         Successful requests will be issued an access token:
 
-        Name          | Type   | Description
-        --------------|--------|-----------------------------
-        token_type    | string | The type of token, this should always be `Bearer`.
-        expires_in    | number | The number of seconds the token will be valid for.
-        access_token  | string | The access token.
-        refresh_token | string | The refresh token.
+        Name          | Type    | Description
+        --------------|---------|-----------------------------
+        token_type    | string  | The type of token, this should always be `Bearer`.
+        expires_in    | integer | The number of seconds the token will be valid for.
+        access_token  | string  | The access token.
+        refresh_token | string  | The refresh token.
         EOT;
     $uri = route('oauth.passport.token', null, false);
     $endpoint = new OutputEndpointData([
@@ -258,11 +258,11 @@ Restricted users can grant authorization like anyone else. If your client should
         Successful requests will be issued an access token and a new refresh token:
 
         Name          | Type   | Description
-        --------------|--------|-----------------------------
-        token_type    | string | The type of token, this should always be `Bearer`.
-        expires_in    | number | The number of seconds the token will be valid for.
-        access_token  | string | The access token.
-        refresh_token | string | The refresh token.
+        --------------|---------|-----------------------------
+        token_type    | string  | The type of token, this should always be `Bearer`.
+        expires_in    | integer | The number of seconds the token will be valid for.
+        access_token  | string  | The access token.
+        refresh_token | string  | The refresh token.
         EOT;
     $uri = route('oauth.passport.token', null, false);
     $endpoint = new OutputEndpointData([
@@ -271,7 +271,7 @@ Restricted users can grant authorization like anyone else. If your client should
                 'description' => 'The Client ID you received when you [registered]('.route('account.edit').'#new-oauth-application).',
                 'name' => 'client_id',
                 'required' => true,
-                'type' => 'number',
+                'type' => 'integer',
                 'example' => 1,
             ],
             'client_secret' => [
@@ -345,11 +345,11 @@ Restricted users can grant authorization like anyone else. If your client should
 
         Successful requests will be issued an access token:
 
-        Name          | Type   | Description
-        --------------|--------|-----------------------------
-        token_type    | string | The type of token, this should always be `Bearer`.
-        expires_in    | number | The number of seconds the token will be valid for.
-        access_token  | string | The access token.
+        Name          | Type    | Description
+        --------------|---------|-----------------------------
+        token_type    | string  | The type of token, this should always be `Bearer`.
+        expires_in    | integer | The number of seconds the token will be valid for.
+        access_token  | string  | The access token.
         EOT;
     $uri = route('oauth.passport.token', null, false);
     $endpoint = new OutputEndpointData([
@@ -358,7 +358,7 @@ Restricted users can grant authorization like anyone else. If your client should
                 'description' => 'The Client ID you received when you [registered]('.route('account.edit').'#new-oauth-application).',
                 'name' => 'client_id',
                 'required' => true,
-                'type' => 'number',
+                'type' => 'integer',
                 'example' => 1,
             ],
             'client_secret' => [

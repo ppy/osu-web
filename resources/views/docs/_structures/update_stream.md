@@ -12,7 +12,7 @@
 Field        | Type
 -------------|-----
 display_name | string?
-id           | number
+id           | integer
 is_featured  | boolean
 name         | string
 
@@ -23,4 +23,4 @@ The following are attributes which may be additionally included in responses. Re
 Field        | Type
 -------------|-----
 latest_build | [Build](#build)?
-user_count   | number
+user_count   | integer

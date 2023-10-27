@@ -114,7 +114,7 @@ return [
             'embed' => [
                 'delete' => 'Șterge',
                 'missing' => '[DISCUȚIE ȘTEARSĂ]',
-                'unlink' => 'Dezasociați',
+                'unlink' => 'Dezleagă',
                 'unsaved' => 'Nesalvat',
                 'timestamp' => [
                     'all-diff' => 'Postările de pe "Toate dificultățile" nu pot conține marcaje de timp.',
@@ -269,7 +269,7 @@ return [
     ],
     'general' => [
         'converts' => 'Include beatmap-uri convertite',
-        'featured_artists' => 'Artiști oficiali',
+        'featured_artists' => 'Artiști Oficiali',
         'follows' => 'Creatori beatmap-uri la care sunteți abonat',
         'recommended' => 'Dificultate recomandată',
         'spotlights' => 'Beatmap-uri promovate',
@@ -355,7 +355,7 @@ return [
         'D' => '',
     ],
     'panel' => [
-        'playcount' => 'Număr încercări: :count',
+        'playcount' => 'Încercări: :count',
         'favourites' => 'Favorite: :count',
     ],
     'variant' => [

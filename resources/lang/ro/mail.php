@@ -100,11 +100,11 @@ return [
         'code' => 'Codul tău de verificare este:',
         'code_hint' => 'Poți introduce codul cu sau fără spații.',
         'link' => 'De asemenea, puteți vizita link-ul de mai jos pentru a finaliza verificarea:',
-        'report' => 'Dacă nu ați solicitat acest lucru, vă rugăm să reveniți IMEDIAT cu un răspuns la acest e-mail, altfel contul dvs. poate fi în pericol.',
+        'report' => 'Dacă nu ați solicitat acest lucru, vă rugăm să reveniți IMEDIAT cu un răspuns la acest e-mail, altfel contul dumneavoastră poate fi în pericol.',
         'subject' => 'verificarea contului osu!',
 
         'action_from' => [
-            '_' => 'O acțiune efectuată în contul tău din :country necesită verificare.',
+            '_' => 'O acțiune efectuată asupra contul dumneavoastră din :country necesită verificare.',
             'unknown_country' => 'țară necunoscută',
         ],
     ],

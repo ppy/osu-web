@@ -166,8 +166,8 @@ return [
         'change_username' => [
             'restricted' => 'Nu iți poți schimba numele de utilizator cât timp ești restricționat.',
             'supporter_required' => [
-                '_' => 'Trebuie să :link pentru a-ți schimba numele!',
-                'link_text' => 'fii un suporter osu!',
+                '_' => 'Trebuie să fii :link pentru a-ți schimba numele!',
+                'link_text' => 'un suporter osu!',
             ],
             'username_is_same' => 'Acesta este deja numele tău de utilizator, prostuțule!',
         ],

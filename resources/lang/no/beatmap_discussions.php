@@ -26,6 +26,7 @@ return [
             'deleted' => 'Inkluder slettede diskusjoner',
             'mode' => 'Beatmap modus',
             'only_unresolved' => 'Vis bare uløste tråder',
+            'show_review_embeds' => '',
             'types' => 'Meldingstyper',
             'username' => 'Brukernavn',
 

@@ -125,9 +125,9 @@ return [
 
     'ogp' => [
         'description' => [
-            '_' => '',
-            'country' => '',
-            'global' => '',
+            '_' => 'Рейтинг (:ruleset): :global | :country',
+            'country' => 'В стране :rank',
+            'global' => 'В мире :rank',
         ],
     ],
 
@@ -281,7 +281,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'История просмотров записей игр',
-                    'count_label' => 'Просмотрено записей',
+                    'count_label' => 'Просмотры:',
                 ],
             ],
             'kudosu' => [

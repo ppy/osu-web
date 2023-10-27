@@ -62,6 +62,19 @@ return [
         ],
     ],
 
+    'github_user' => [
+        'info' => "Se contribuisci nei repository open-source di osu!, collegare qui il tuo account GitHub assocerà il profilo osu! alle tue modifiche nelle note di rilascio. Gli account GitHub che non hanno ancora contribuito con osu! non possono essere collegati.",
+        'link' => 'Collega Account GitHub',
+        'title' => 'GitHub',
+        'unlink' => 'Scollega Account GitHub',
+
+        'error' => [
+            'already_linked' => 'Questo account GitHub è già associato a un altro utente.',
+            'no_contribution' => 'Non puoi collegare un account GitHub senza aver contribuito nei repository di osu!.',
+            'unverified_email' => 'Verifica la tua email principale su GitHub, poi riprova a collegare il tuo account.',
+        ],
+    ],
+
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'ricevi notifiche per nuovi problemi sulle beatmap qualificate delle seguenti modalità',
         'beatmapset_disqualify' => 'ricevi notifiche quando le beatmap delle seguenti modalità vengono squalificate',

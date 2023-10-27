@@ -27,7 +27,7 @@ return [
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => 'Només el propietari del beatmap o el nominador/membre del grup NAT pot publicar notes del mapper.',
+            'mapper_note_wrong_user' => 'Només el propietari del beatmap o el nominador/membre del grup NAT pot publicar notes de mapatge.',
         ],
 
         'vote' => [
@@ -40,7 +40,7 @@ return [
 
     'beatmap_discussion_post' => [
         'destroy' => [
-            'not_owner' => 'Només podeu eliminar les vostres publicacions.',
+            'not_owner' => 'Només pots eliminar les teves publicacions.',
             'resolved' => 'No podeu suprimir una publicació d\'una discussió resolta.',
             'system_generated' => 'La publicació generada automàticament no es pot eliminar.',
         ],
@@ -186,7 +186,7 @@ return [
             ],
         ],
         'update_email' => [
-            'locked' => '',
+            'locked' => 'l\'adreça de correu està bloquejada',
         ],
     ],
 ];

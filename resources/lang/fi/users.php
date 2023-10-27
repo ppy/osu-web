@@ -125,9 +125,9 @@ return [
 
     'ogp' => [
         'description' => [
-            '_' => '',
-            'country' => '',
-            'global' => '',
+            '_' => 'Sijoitus (:ruleset): :global | :country',
+            'country' => 'Maakohtainen :rank',
+            'global' => 'Maailmanlaajuinen :rank',
         ],
     ],
 
@@ -186,7 +186,7 @@ return [
         'title' => ":username:n profiili",
 
         'comments_count' => [
-            '_' => 'Julkaistu :link',
+            '_' => 'Julkaissut :link',
             'count' => ':count_delimited kommentti|:count_delimited kommenttia',
         ],
         'cover' => [
@@ -356,7 +356,7 @@ return [
                 'title' => 'Moninpelit',
             ],
             'top_ranks' => [
-                'download_replay' => 'Lataa Replay',
+                'download_replay' => 'Lataa uusinta',
                 'not_ranked' => 'Vain hyväksytyt beatmapit antavat pp:tä.',
                 'pp_weight' => 'painotettu :percentage',
                 'view_details' => 'Tarkemmat tiedot',
@@ -453,7 +453,7 @@ return [
             'maximum_combo' => 'Suurin combo',
             'medals' => 'Mitalit',
             'play_count' => 'Pelikertoja',
-            'play_time' => 'Peliaika yhteensä',
+            'play_time' => 'Peliaikaa yhteensä',
             'ranked_score' => 'Tilastoidut pisteet',
             'replays_watched_by_others' => 'Muiden Katsomat Uusinnat',
             'score_ranks' => 'Luokitukset',

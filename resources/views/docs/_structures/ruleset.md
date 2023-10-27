@@ -1,6 +1,6 @@
-## GameMode
+## Ruleset
 
-Available game modes:
+Available rulesets:
 
 Name   | Description
 ------ | ---------------

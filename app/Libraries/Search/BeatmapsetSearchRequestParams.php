@@ -227,6 +227,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
             'ranked' => 'ranked',
             'stars' => 'difficultyRating',
             'status' => 'statusRange',
+            'updated' => 'updated',
         ];
 
         $parsed = BeatmapsetQueryParser::parse($this->requestQuery);

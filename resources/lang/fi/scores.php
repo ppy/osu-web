@@ -24,7 +24,7 @@ return [
 
     'status' => [
         'non_best' => 'Vain parhaat henkilökohtaiset tulokset antavat pp\'tä',
-        'non_passing' => 'Vain ne tulokset, joissa on päästy rytmikartan loppuun asti, antavat pp\'tä',
+        'non_passing' => 'Vain loppuun asti päässeet tulokset antavat pp:tä',
         'processing' => 'Pisteitä lasketaan ja ne näytetään pian',
     ],
 ];

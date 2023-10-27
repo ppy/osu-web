@@ -62,6 +62,19 @@ return [
         ],
     ],
 
+    'github_user' => [
+        'info' => "",
+        'link' => '',
+        'title' => '',
+        'unlink' => '',
+
+        'error' => [
+            'already_linked' => '',
+            'no_contribution' => '',
+            'unverified_email' => '',
+        ],
+    ],
+
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'دریافت اعلانات مشکلات جدید در بیت مپ های واجد شرایط در نوع های زیر',
         'beatmapset_disqualify' => 'دریافت اعلانات برای وقتی که بیت مپ های نوع زیر، رد صلاحیت میشوند',

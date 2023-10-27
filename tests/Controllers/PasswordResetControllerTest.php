@@ -96,8 +96,17 @@ class PasswordResetControllerTest extends TestCase
         Mail::fake();
         $this->generateKey($user);
 
-        $this->post(route('password-reset.resend-mail', ['username' => $user->user_email]))->assertSuccessful();
+        $this->post(route('password-reset.resend-mail', ['username' => $user->username]))->assertSuccessful();
         Mail::assertQueuedCount(1);
+    }
+
+    public function testResendMailNonexistent()
+    {
+        $user = User::factory()->create();
+
+        Mail::fake();
+        $this->post(route('password-reset.resend-mail', ['username' => $user->username]))->assertRedirect($this->path());
+        Mail::assertQueuedCount(0);
     }
 
     public function testReset()

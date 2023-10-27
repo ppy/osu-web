@@ -64,6 +64,19 @@ return [
         ],
     ],
 
+    'github_user' => [
+        'info' => "",
+        'link' => '',
+        'title' => '',
+        'unlink' => '',
+
+        'error' => [
+            'already_linked' => '',
+            'no_contribution' => '',
+            'unverified_email' => '',
+        ],
+    ],
+
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'tumanggap ng mga notipikasyon sa mga bagong problema sa mga kwalipikadong beatmap sa mga sumusunod na mode',
         'beatmapset_disqualify' => 'tumanggap ng mga notipikasyon kung kailan ang mga beatmap sa mga sumusunod na mode ay na diskwalipika',

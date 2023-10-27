@@ -182,7 +182,7 @@ return [
             'edit' => [
                 'locked' => 'หน้าผู้ใช้ถูกล็อก',
                 'not_owner' => 'สามารถแก้ไขได้แค่ Userpage ของตนเอง',
-                'require_supporter_tag' => 'จำเป็นต้องมี Supporter Tag',
+                'require_supporter_tag' => 'จำเป็นต้องมีแท็กผู้สนับสนุน',
             ],
         ],
         'update_email' => [

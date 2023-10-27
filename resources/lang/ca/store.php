@@ -51,12 +51,12 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Com que el seu pagament va ser un eCheck, si us plau permeti fins a 10 dies addicionals perquè el pagament es faci a través de PayPal!',
-        'hide_from_activity' => 'Les etiquetes d\'osu!supporter en aquesta ordre no es mostren a les vostres activitats recents.',
+        'hide_from_activity' => 'Les etiquetes d\'osu!supporter en aquesta ordre no es mostren a les teves activitats recents.',
         'title_compact' => 'factura',
 
         'status' => [
             'processing' => [
-                'title' => 'El vostre pagament encara no s\'ha confirmat!',
+                'title' => 'El teu pagament encara no s\'ha confirmat!',
                 'line_1' => 'Si ja has pagat, potser volem rebre la confirmació del pagament. Sisplau, refresca aquesta pàgina en un parell de minuts!',
                 'line_2' => [
                     '_' => 'Si heu trobat un problema durant la compra, :link',

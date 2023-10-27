@@ -47,7 +47,7 @@ return [
         ],
     ],
 
-    'discount' => 'salvează :percent%',
+    'discount' => 'economisește :percent%',
 
     'invoice' => [
         'echeck_delay' => 'Pentru că plata ta a fost făcută electronic, te rugăm să aștepți încă 10 zile pentru ca plata să se afișeze prin PayPal!',

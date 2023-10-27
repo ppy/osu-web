@@ -5,7 +5,6 @@
 
 return [
     'button' => [
-        'cancel' => '취소',
         'resend' => '인증 메일 다시 받기',
         'set' => '비밀번호 설정',
         'start' => '시작',
