@@ -35,7 +35,7 @@ function renderChannels(type: SupportedChannelType) {
             <span className='chat-conversation-list__header-icon' title={title}><i className={icons[type]} /></span>
           </div>
           {chunks.map((c, index) => (
-            <div key={index} className='u-own-layer'>
+            <div key={index} className='chat-conversation-list__layer'>
               {c.map((channel) => <ConversationListItem key={channel.channelId} channel={channel} />)}
             </div>
           ))}
