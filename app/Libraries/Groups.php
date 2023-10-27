@@ -7,6 +7,7 @@ namespace App\Libraries;
 
 use App\Models\Group;
 use App\Traits\Memoizes;
+use Ds\Set;
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -61,13 +62,34 @@ class Groups
     /**
      * Get a group by its identifier (e.g. "admin").
      *
-     * If the requested group doesn't exist, a new one is created.
+     * If the requested group doesn't exist and it's one of the privilege
+     * related groups, a new is created.
      */
-    public function byIdentifier(string $id): Group
+    public function byIdentifier(string $id): ?Group
     {
         $group = $this->allByIdentifier()->get($id);
 
         if ($group === null) {
+            static $privGroups;
+            $privGroups ??= new Set([
+                'admin',
+                'alumni',
+                'announce',
+                'bng',
+                'bng_limited',
+                'bot',
+                'default',
+                'dev',
+                'gmt',
+                'loved',
+                'nat',
+                'no_profile',
+            ]);
+
+            if (!$privGroups->contains($id)) {
+                return null;
+            }
+
             try {
                 $group = Group::create([
                     'group_desc' => '',
