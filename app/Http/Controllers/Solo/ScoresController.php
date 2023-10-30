@@ -6,8 +6,8 @@
 namespace App\Http\Controllers\Solo;
 
 use App\Http\Controllers\Controller as BaseController;
+use App\Models\ScoreToken;
 use App\Models\Solo\Score;
-use App\Models\Solo\ScoreToken;
 use App\Transformers\ScoreTransformer;
 use DB;
 
