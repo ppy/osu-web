@@ -20,7 +20,6 @@ use League\Config\ConfigurationInterface;
 
 class DocumentProcessor
 {
-    public ?string $excerpt = null;
     public ?string $firstImage;
     public ?string $title;
     public ?array $toc;
@@ -54,7 +53,6 @@ class DocumentProcessor
         $this->relativeUrlRoot = $relativeUrlRoot === null ? null : urldecode($relativeUrlRoot);
         $fixWikiUrl = $this->config->get('osu_extension/fix_wiki_url');
         $generateToc = $this->config->get('osu_extension/generate_toc');
-        $recordExcerpt = $this->config->get('osu_extension/record_excerpt');
         $recordFirstImage = $this->config->get('osu_extension/record_first_image');
         $titleFromDocument = $this->config->get('osu_extension/title_from_document');
         $withGallery = $this->config->get('osu_extension/with_gallery');
@@ -81,10 +79,6 @@ class DocumentProcessor
 
             if ($recordFirstImage) {
                 $this->recordFirstImage();
-            }
-
-            if ($recordExcerpt) {
-                $this->recordExcerpt();
             }
 
             if ($titleFromDocument) {
@@ -267,15 +261,6 @@ class DocumentProcessor
         if (present($url)) {
             $this->node->setUrl(proxy_media($url));
         }
-    }
-
-    private function recordExcerpt(): void
-    {
-        if ($this->excerpt !== null || !$this->node instanceof Paragraph || !$this->event->isEntering()) {
-            return;
-        }
-
-        $this->excerpt = presence($this->getText($this->node));
     }
 
     private function recordFirstImage()

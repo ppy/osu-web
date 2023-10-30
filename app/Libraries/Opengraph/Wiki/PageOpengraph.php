@@ -21,10 +21,8 @@ class PageOpengraph
             return [];
         }
 
-        $pageData = $this->page->get();
-
         return [
-            'description' => $pageData['excerpt'] ?? blade_safe(html_excerpt($pageData['output'])), // html_excerpt fallback
+            'description' => html_excerpt($this->page->get()['output']),
             'title' => $this->page->title(),
         ];
     }

@@ -44,7 +44,6 @@ class OsuMarkdown
         'custom_container_inline' => false,
         'fix_wiki_url' => false,
         'generate_toc' => false,
-        'record_excerpt' => false,
         'record_first_image' => false,
         'relative_url_root' => null,
         'style_block_allowed_classes' => null,
@@ -126,7 +125,6 @@ class OsuMarkdown
                 'custom_container_inline' => true,
                 'fix_wiki_url' => true,
                 'generate_toc' => true,
-                'record_excerpt' => true,
                 'style_block_allowed_classes' => ['infobox'],
                 'title_from_document' => true,
                 'with_gallery' => true,
@@ -143,7 +141,6 @@ class OsuMarkdown
     private array $osuMarkdownConfig;
 
     private $document = '';
-    private $excerpt;
     private $firstImage;
     private $header;
     private $toc;
@@ -218,7 +215,6 @@ class OsuMarkdown
                 $this->header['title'] = $processor->title;
             }
 
-            $this->excerpt = $processor->excerpt;
             $this->firstImage = $processor->firstImage;
             $this->toc = $processor->toc;
 
@@ -251,7 +247,6 @@ class OsuMarkdown
         $html = $this->html();
 
         return [
-            'excerpt' => $this->excerpt,
             'firstImage' => $this->firstImage,
             'header' => $this->header,
             'output' => $html,
