@@ -4,6 +4,7 @@
 --}}
 @extends('master', [
     'pageDescription' => page_description($user->username),
+    'titlePrepend' => blade_safe(escape_username($user->username)),
 ])
 
 @section('content')

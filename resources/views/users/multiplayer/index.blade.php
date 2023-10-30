@@ -3,6 +3,7 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @extends('master', [
+    'titlePrepend' => blade_safe(escape_username($user->username)),
     'pageDescription' => page_description($user->username),
 ])
 

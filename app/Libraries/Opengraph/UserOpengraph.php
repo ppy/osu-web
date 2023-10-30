@@ -22,7 +22,7 @@ class UserOpengraph
             // none for multiplayer, playlist counts seems...not useful?
             'description' => $this->page === 'modding' ? $this->moddingDescription() : $this->showDescription(),
             'image' => $this->user->user_avatar,
-            'title' => blade_safe(str_replace(' ', '&nbsp;', e($this->user->username))).' · '.page_title(),
+            'title' => blade_safe(escape_username($this->user->username)).' · '.page_title(),
         ];
     }
 

@@ -5,7 +5,7 @@
 
 @extends('master', [
     'canonicalUrl' => $user->url($mode),
-    'titlePrepend' => blade_safe(str_replace(' ', '&nbsp;', e($user->username))),
+    'titlePrepend' => blade_safe(escape_username($user->username)),
 ])
 
 @section('content')

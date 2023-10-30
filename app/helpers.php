@@ -378,6 +378,11 @@ function default_mode()
     return optional(auth()->user())->playmode ?? 'osu';
 }
 
+function escape_username(string $username)
+{
+    return str_replace(' ', '&nbsp;', e($username));
+}
+
 function flag_url($countryCode)
 {
     $chars = str_split($countryCode);
