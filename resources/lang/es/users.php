@@ -136,7 +136,7 @@ return [
     ],
 
     'anonymous' => [
-        'login_link' => 'haga clic para iniciar sesión',
+        'login_link' => 'haz clic para iniciar sesión',
         'login_text' => 'iniciar sesión',
         'username' => 'Invitado',
         'error' => 'Necesitas haber iniciado sesión para hacer esto.',

@@ -12,7 +12,9 @@ use App\Models\Multiplayer\PlaylistItemUserHighScore;
 use App\Models\Multiplayer\Room;
 use App\Models\Multiplayer\ScoreLink;
 use App\Models\Solo\Score;
+use App\Models\Solo\ScoreToken;
 use App\Transformers\ScoreTransformer;
+use App\Transformers\Solo\ScoreTokenTransformer;
 
 /**
  * @group Multiplayer
@@ -71,11 +73,11 @@ class ScoresController extends BaseController
 
         if ($user !== null) {
             $userHighScoreLink = ScoreLink::whereIn(
-                'id',
+                'score_id',
                 $playlist
                     ->highScores()
                     ->where('user_id', $user->getKey())
-                    ->select('score_link_id'),
+                    ->select('score_id'),
             )->first();
 
             if ($userHighScoreLink !== null) {
@@ -169,31 +171,39 @@ class ScoresController extends BaseController
         $buildId = ClientCheck::findBuild($user, $params)?->getKey()
             ?? config('osu.client.default_build_id');
 
-        $scoreLink = $room->startPlay($user, $playlistItem, $buildId);
+        $scoreToken = $room->startPlay($user, $playlistItem, $buildId);
 
-        return json_item($scoreLink, ScoreTransformer::newSolo());
+        return json_item($scoreToken, new ScoreTokenTransformer());
     }
 
     /**
      * @group Undocumented
      */
-    public function update($roomId, $playlistId, $scoreId)
+    public function update($roomId, $playlistItemId, $tokenId)
     {
-        $scoreLink = \DB::transaction(function () use ($roomId, $playlistId, $scoreId) {
+        $scoreLink = \DB::transaction(function () use ($roomId, $playlistItemId, $tokenId) {
             $room = Room::findOrFail($roomId);
 
-            $scoreLink = $room
-                ->scoreLinks()
-                ->where([
+            $scoreToken = ScoreToken
+                ::where([
                     'user_id' => \Auth::id(),
-                    'playlist_item_id' => $playlistId,
-                ])->with('playlistItem')
+                    'playlist_item_id' => $playlistItemId,
+                ])->whereHas('playlistItem')
                 ->lockForUpdate()
-                ->findOrFail($scoreId);
+                ->findOrFail($tokenId);
 
-            $params = Score::extractParams(\Request::all(), $scoreLink);
+            if ($scoreToken->score_id !== null) {
+                return ScoreLink::findOrFail($scoreToken->score_id);
+            }
 
+            $params = Score::extractParams(\Request::all(), $scoreToken);
+
+            $scoreLink = $scoreToken
+                ->playlistItem
+                ->scoreLinks()
+                ->make(['user_id' => $scoreToken->user_id]);
             $room->completePlay($scoreLink, $params);
+            $scoreToken->fill(['score_id' => $scoreLink->score_id])->saveOrExplode();
 
             return $scoreLink;
         });

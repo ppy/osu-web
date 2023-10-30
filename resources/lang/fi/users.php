@@ -356,7 +356,7 @@ return [
                 'title' => 'Moninpelit',
             ],
             'top_ranks' => [
-                'download_replay' => 'Lataa Replay',
+                'download_replay' => 'Lataa uusinta',
                 'not_ranked' => 'Vain hyväksytyt beatmapit antavat pp:tä.',
                 'pp_weight' => 'painotettu :percentage',
                 'view_details' => 'Tarkemmat tiedot',

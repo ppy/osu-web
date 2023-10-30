@@ -277,7 +277,7 @@ return [
                 ],
                 'recent_plays' => [
                     'accuracy' => 'genauigkeit: :percentage',
-                    'title' => 'Neuliche Spiele (24h)',
+                    'title' => 'Zuletzt gespielt (24h)',
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Angeschaute Replays',

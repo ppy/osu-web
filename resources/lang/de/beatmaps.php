@@ -27,7 +27,7 @@ return [
         'reply_notice' => 'Zum Antworten Enter drücken.',
         'reply_placeholder' => 'Antwort hier eingeben',
         'require-login' => 'Zum Posten oder Antworten bitte einloggen',
-        'resolved' => 'Gelöst',
+        'resolved' => 'Erledigt',
         'restore' => 'wiederherstellen',
         'show_deleted' => 'Gelöschte anzeigen',
         'title' => 'Diskussionen',
@@ -122,8 +122,8 @@ return [
                 ],
             ],
             'insert-block' => [
-                'paragraph' => 'absatz einfügen',
-                'praise' => 'lob einfügen',
+                'paragraph' => 'Absatz einfügen',
+                'praise' => 'Lob einfügen',
                 'problem' => 'Problem einfügen',
                 'suggestion' => 'Vorschlag einfügen',
             ],
@@ -145,7 +145,7 @@ return [
             'mine' => 'Meine',
             'pending' => 'Ausstehend',
             'praises' => 'Lob',
-            'resolved' => 'Gelöst',
+            'resolved' => 'Erledigt',
             'total' => 'Alle',
         ],
 

@@ -130,17 +130,17 @@ return [
         'gift_message' => '¡añade un mensaje opcional a tu regalo! (hasta :length caracteres) ',
 
         'require_login' => [
-            '_' => '¡Tienes que :link para obtener una etiqueta osu!supporter!',
-            'link_text' => 'iniciar sesión',
+            '_' => '¡Tienes que tener una :link para obtener una etiqueta osu!supporter!',
+            'link_text' => 'sesión iniciada',
         ],
     ],
 
     'username_change' => [
-        'check' => '¡Escriba un nombre de usuario para revisar su disponibilidad!',
+        'check' => '¡Escribe un nombre de usuario para revisar su disponibilidad!',
         'checking' => 'Revisando la disponibilidad de :username...',
         'require_login' => [
-            '_' => '¡Tienes que :link para cambiar tu nombre de usuario!',
-            'link_text' => 'iniciar sesión',
+            '_' => '¡Tienes que tener una :link para cambiar tu nombre de usuario!',
+            'link_text' => 'seción iniciada',
         ],
     ],
 

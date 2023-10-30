@@ -63,15 +63,15 @@ return [
     ],
 
     'github_user' => [
-        'info' => "",
-        'link' => '',
-        'title' => '',
-        'unlink' => '',
+        'info' => "Nếu bạn là người đóng góp cho kho lưu trữ nguồn mở của osu!, việc liên kết tài khoản GitHub của bạn tại đây sẽ liên kết các mục nhật ký thay đổi với trang cá nhân osu! của bạn. Tài khoản GitHub không có lịch sử đóng góp cho osu! không thể liên kết được.",
+        'link' => 'Liên kết tài khoản GitHub',
+        'title' => 'GitHub',
+        'unlink' => 'Hủy liên kết tài khoản GitHub',
 
         'error' => [
-            'already_linked' => '',
-            'no_contribution' => '',
-            'unverified_email' => '',
+            'already_linked' => 'Tài khoản GitHub này đã được liên kết với một người dùng khác.',
+            'no_contribution' => 'Không thể liên kết tài khoản GitHub mà không có bất kỳ lịch sử đóng góp nào trong kho lưu trữ của osu!.',
+            'unverified_email' => 'Vui lòng xác minh email chính của bạn trên GitHub, sau đó thử liên kết lại tài khoản của bạn.',
         ],
     ],
 

@@ -127,7 +127,7 @@ return [
         'description' => [
             '_' => 'Clasificació (:ruleset): :global | :country',
             'country' => 'País :rank',
-            'global' => '',
+            'global' => 'Global :rank',
         ],
     ],
 
