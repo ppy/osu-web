@@ -20,16 +20,31 @@ class ModdingRankCommandTest extends TestCase
      */
     public function testRank(int $qualifiedDaysAgo, int $expected): void
     {
-        $this->beatmapset(Ruleset::osu, $qualifiedDaysAgo)->create();
+        $this->beatmapset([Ruleset::osu], $qualifiedDaysAgo)->create();
 
         $this->expectCountChange(fn () => Beatmapset::ranked()->count(), $expected);
 
         $this->artisan('modding:rank', ['--no-wait' => true]);
     }
 
+    /**
+     * @dataProvider rankHybridDataProvider
+     */
+    public function testRankHybrid(array $beatmapsetRulesets, array $expectedCounts): void
+    {
+        foreach ($beatmapsetRulesets as $rulesets) {
+            $this->beatmapset($rulesets)->create();
+        }
+
+        $command = $this->artisan('modding:rank', ['--count-only' => true]);
+        foreach (Ruleset::cases() as $ruleset) {
+            $command->expectsOutputToContain("{$ruleset->name}: {$expectedCounts[$ruleset->value]}");
+        }
+    }
+
     public function testRankOpenIssue(): void
     {
-        $this->beatmapset(Ruleset::osu)
+        $this->beatmapset([Ruleset::osu])
             ->has(BeatmapDiscussion::factory()->general()->problem())
             ->create();
 
@@ -40,7 +55,7 @@ class ModdingRankCommandTest extends TestCase
 
     public function testRankOpenIssueCounts(): void
     {
-        $this->beatmapset(Ruleset::osu)
+        $this->beatmapset([Ruleset::osu])
             ->has(BeatmapDiscussion::factory()->general()->problem())
             ->create();
 
@@ -50,7 +65,7 @@ class ModdingRankCommandTest extends TestCase
 
     public function testRankQuota(): void
     {
-        $this->beatmapset(Ruleset::osu)->count(2)->create();
+        $this->beatmapset([Ruleset::osu])->count(2)->create();
 
         $this->expectCountChange(fn () => Beatmapset::qualified()->count(), -2);
         $this->expectCountChange(fn () => Beatmapset::ranked()->count(), 2);
@@ -61,7 +76,7 @@ class ModdingRankCommandTest extends TestCase
     public function testRankQuotaSeparateRuleset(): void
     {
         foreach (Ruleset::cases() as $ruleset) {
-            $this->beatmapset($ruleset)->create();
+            $this->beatmapset([$ruleset])->create();
         }
 
         $this->expectCountChange(fn () => Beatmapset::ranked()->count(), count(Ruleset::cases()));
@@ -79,6 +94,24 @@ class ModdingRankCommandTest extends TestCase
         ];
     }
 
+    public function rankHybridDataProvider()
+    {
+        return [
+            // hybrid counts as ruleset with lowest enum value
+            [[[Ruleset::osu, Ruleset::taiko, Ruleset::catch, Ruleset::mania]], [1, 0, 0, 0]],
+            [[[Ruleset::taiko, Ruleset::catch, Ruleset::mania]], [0, 1, 0, 0]],
+            [[[Ruleset::catch, Ruleset::mania]], [0, 0, 1, 0]],
+            [[[Ruleset::mania]], [0, 0, 0, 1]],
+
+            // not comprehensive
+            [[[Ruleset::osu, Ruleset::taiko], [Ruleset::osu]], [2, 0, 0, 0]],
+            [[[Ruleset::osu, Ruleset::taiko], [Ruleset::taiko]], [1, 1, 0, 0]],
+            [[[Ruleset::mania, Ruleset::taiko], [Ruleset::taiko]], [0, 2, 0, 0]],
+            [[[Ruleset::mania, Ruleset::taiko], [Ruleset::mania]], [0, 1, 0, 1]],
+            [[[Ruleset::catch, Ruleset::taiko], [Ruleset::mania]], [0, 1, 0, 1]],
+        ];
+    }
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -90,14 +123,20 @@ class ModdingRankCommandTest extends TestCase
     }
 
     /**
+     * @param Ruleset[] $rulesets
      * @return Factory<Beatmapset>
      */
-    protected function beatmapset(Ruleset $ruleset, int $qualifiedDaysAgo = 2): Factory
+    protected function beatmapset(array $rulesets, int $qualifiedDaysAgo = 2): Factory
     {
-        return Beatmapset::factory()
+        $factory = Beatmapset::factory()
             ->owner()
             ->qualified(now()->subDays($qualifiedDaysAgo))
-            ->state(['download_disabled' => true])
-            ->has(Beatmap::factory()->ruleset($ruleset));
+            ->state(['download_disabled' => true]);
+
+        foreach ($rulesets as $ruleset) {
+            $factory = $factory->has(Beatmap::factory()->ruleset($ruleset));
+        }
+
+        return $factory;
     }
 }
