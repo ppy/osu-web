@@ -19,7 +19,7 @@ class CommentOpengraph
     {
         $user = $this->comment->user;
 
-        return priv_check('CommentShow', $this->comment)->can()
+        return priv_check_user(null, 'CommentShow', $this->comment)->can()
             ? [
                 'description' => blade_safe(html_excerpt($this->comment->message_html, 100)),
                 'image' => $user->user_avatar,
