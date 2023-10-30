@@ -229,7 +229,7 @@ class Page implements HasOpengraph, WikiObject
     public function esFetch()
     {
         $response = (new BasicSearch(static::esIndexName(), 'wiki_page_lookup'))
-            ->source(['markdown', 'page', 'indexed_at', 'version'])
+            ->source(['markdown', 'page', 'page_text', 'indexed_at', 'version'])
             ->query([
                 'term' => [
                     '_id' => $this->pagePath(),
@@ -250,6 +250,11 @@ class Page implements HasOpengraph, WikiObject
     public function getMarkdown()
     {
         return $this->source['markdown'] ?? null;
+    }
+
+    public function getTextPreview()
+    {
+        return html_excerpt($this->source['page_text']);
     }
 
     public function hasParent()

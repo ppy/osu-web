@@ -22,7 +22,7 @@ class PageOpengraph
         }
 
         return [
-            'description' => html_excerpt($this->page->get()['output']),
+            'description' => $this->page->getTextPreview(),
             'title' => $this->page->title(),
         ];
     }
