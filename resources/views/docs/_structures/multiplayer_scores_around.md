@@ -1,6 +1,6 @@
 ## MultiplayerScoresAround
 
-Field  | Type              | Description
--------|-------------------|------------
-higher | MultiplayerScores |  |
-lower  | MultiplayerScores |  |
+Field  | Type                                    | Description
+------ | --------------------------------------- | -----------
+higher | [MultiplayerScores](#multiplayerscores) |  |
+lower  | [MultiplayerScores](#multiplayerscores) |  |
