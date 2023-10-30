@@ -23,8 +23,8 @@ return [
                 'description' => 'Las contribuciones se destinan a los servidores para el funcionamiento del sitio web, los servicios multijugador, las tablas de clasificación en línea, etc.',
             ],
             'featured-artists' => [
-                'title' => 'Artistas Destacados',
-                'description' => 'Con su apoyo, podemos acercarnos a artistas aún más impresionantes y licenciar más música para su uso en osu!',
+                'title' => 'Artistas destacados',
+                'description' => 'Con tu apoyo, podemos acercarnos a artistas aún más impresionantes y licenciar más música para su uso en osu!',
                 'link_text' => 'Ver la lista actual &raquo;',
             ],
             'ads' => [

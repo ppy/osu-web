@@ -26,7 +26,7 @@ return [
             'deleted' => 'Inclure les discussions supprimées',
             'mode' => 'Mode de jeu',
             'only_unresolved' => 'Afficher uniquement les discussions non résolues',
-            'show_review_embeds' => '',
+            'show_review_embeds' => 'Afficher les posts de review',
             'types' => 'Types de message',
             'username' => 'Nom d’utilisateur',
 

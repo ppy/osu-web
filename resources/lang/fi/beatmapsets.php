@@ -146,7 +146,7 @@ return [
         ],
 
         'nsfw_warning' => [
-            'details' => 'Tämä beatmappi sisältää sopimatonta, loukkaavaa ta järkyttävää sisältöä. Haluatko kuitenkin tarkastella sitä?',
+            'details' => 'Tämä beatmappi sisältää sopimatonta, loukkaavaa tai järkyttävää sisältöä. Haluatko kuitenkin tarkastella sitä?',
             'title' => 'Sopimatonta sisältöä',
 
             'buttons' => [

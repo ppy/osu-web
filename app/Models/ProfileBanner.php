@@ -5,6 +5,8 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
+
 /**
  * @property int $banner_id
  * @property Country $country
@@ -45,6 +47,27 @@ class ProfileBanner extends Model
                 return $last;
             }
         };
+    }
+
+    public function scopeActiveOnly(Builder $query): Builder
+    {
+        $currentTournamentId = config('osu.tournament_banner.current.id');
+        if ($currentTournamentId !== null) {
+            $mayHaveTournamentBanner = true;
+            $query->where('tournament_id', $currentTournamentId);
+        }
+        $previousTournamentId = config('osu.tournament_banner.previous.id');
+        if ($previousTournamentId !== null) {
+            $mayHaveTournamentBanner = true;
+            $query->orWhere(fn ($q) => $q->where([
+                'tournament_id' => $previousTournamentId,
+                'country_acronym' => config('osu.tournament_banner.previous.winner_id'),
+            ]));
+        }
+
+        return $mayHaveTournamentBanner ?? false
+            ? $query
+            : $query->none();
     }
 
     public function image()

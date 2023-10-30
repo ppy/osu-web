@@ -6,7 +6,7 @@
 return [
     'discussion-votes' => [
         'update' => [
-            'error' => 'Error al actualizar los votos.',
+            'error' => 'Error al actualizar los votos',
         ],
     ],
 
@@ -55,8 +55,8 @@ return [
         ],
 
         'message_hint' => [
-            'in_general' => 'Esta publicación irá a la discusión general del set de mapas. Para moddear este mapa, empieza un mensaje con una marca de tiempo (por ejemplo, 00:12:345).',
-            'in_timeline' => 'Para moddear varias marcas de tiempo, publique varias veces (un mensaje por marca de tiempo).',
+            'in_general' => 'Esta publicación irá a la discusión general del mapa. Para modear esta dificultad, empieza un mensaje con una marca de tiempo (por ejemplo, 00:12:345).',
+            'in_timeline' => 'Para modear varias marcas de tiempo, publica varias veces (un mensaje por marca de tiempo).',
         ],
 
         'message_placeholder' => [
@@ -67,7 +67,7 @@ return [
         ],
 
         'message_type' => [
-            'disqualify' => 'Descalificación',
+            'disqualify' => 'Descalificar',
             'hype' => '¡Hype!',
             'mapper_note' => 'Nota',
             'nomination_reset' => 'Restablecimiento de nominación',
@@ -199,7 +199,7 @@ return [
         'incorrect_state' => 'Error al realizar esa acción, intente actualizar la página.',
         'love' => 'Amar',
         'love_choose' => 'Elegir dificultad para el amado',
-        'love_confirm' => '¿Te gusta este mapa?',
+        'love_confirm' => '¿Amar este mapa?',
         'nominate' => 'Nominar',
         'nominate_confirm' => '¿Nominar este mapa?',
         'nominated_by' => 'nominado por :users',
@@ -224,7 +224,7 @@ return [
         ],
 
         'reset_confirm' => [
-            'disqualify' => '¿Está seguro? Esto eliminará el mapa de la calificación y restablecerá el proceso de nominación.',
+            'disqualify' => '¿Estás seguro? Esto eliminará el mapa de la calificación y restablecerá el proceso de nominación.',
             'nomination_reset' => '¿Está seguro? Publicar un nuevo problema restablecerá el proceso de nominación.',
             'problem_warning' => '¿Seguro que deseas reportar de un problema en este mapa? Esto alertará a los Beatmap Nominators.',
         ],
@@ -276,18 +276,18 @@ return [
     ],
     'mode' => [
         'all' => 'Todos',
-        'any' => 'Cualquier',
+        'any' => 'Cualquiera',
         'osu' => '',
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
     ],
     'status' => [
-        'any' => 'Cualquier',
+        'any' => 'Cualquiera',
         'approved' => 'Aprobados',
         'favourites' => 'Favoritos',
         'graveyard' => 'Abandonados',
-        'leaderboard' => 'Tiene tablas de clasificación',
+        'leaderboard' => 'Tiene tabla de clasificación',
         'loved' => 'Amados',
         'mine' => 'Mis mapas',
         'pending' => 'Pendiente',
@@ -296,7 +296,7 @@ return [
         'ranked' => 'Clasificados',
     ],
     'genre' => [
-        'any' => 'Cualquier',
+        'any' => 'Cualquiera',
         'unspecified' => 'No especificado',
         'video-game' => 'Videojuego',
         'anime' => 'Anime',
@@ -335,19 +335,19 @@ return [
     ],
 
     'played' => [
-        'any' => 'Cualquier',
+        'any' => 'Cualquiera',
         'played' => 'Ya jugado',
         'unplayed' => 'No jugado',
     ],
     'extra' => [
-        'video' => 'Contiene vídeo',
-        'storyboard' => 'Contiene storyboard',
+        'video' => 'Tiene vídeo',
+        'storyboard' => 'Tiene storyboard',
     ],
     'rank' => [
-        'any' => 'Cualquier',
-        'XH' => 'SS Plateada',
+        'any' => 'Cualquiera',
+        'XH' => 'SS plateada',
         'X' => '',
-        'SH' => 'S Plateada',
+        'SH' => 'S plateada',
         'S' => '',
         'A' => '',
         'B' => '',

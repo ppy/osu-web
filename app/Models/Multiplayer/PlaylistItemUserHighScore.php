@@ -17,7 +17,7 @@ use App\Models\Traits\WithDbCursorHelper;
  * @property int $id
  * @property int $playlist_item_id
  * @property float|null $pp
- * @property int $score_link_id
+ * @property int $score_id
  * @property ScoreLink $scoreLink
  * @property \Carbon\Carbon $updated_at
  * @property int $user_id
@@ -29,11 +29,11 @@ class PlaylistItemUserHighScore extends Model
     const SORTS = [
         'score_desc' => [
             ['column' => 'total_score', 'order' => 'DESC'],
-            ['column' => 'score_link_id', 'order' => 'ASC'],
+            ['column' => 'score_id', 'order' => 'ASC'],
         ],
         'score_asc' => [
             ['column' => 'total_score', 'order' => 'ASC'],
-            ['column' => 'score_link_id', 'order' => 'DESC'],
+            ['column' => 'score_id', 'order' => 'DESC'],
         ],
     ];
 
@@ -56,8 +56,8 @@ class PlaylistItemUserHighScore extends Model
     public static function scoresAround(ScoreLink $scoreLink): array
     {
         $placeholder = new static([
-            'score_link_id' => $scoreLink->getKey(),
-            'total_score' => $scoreLink->data->totalScore,
+            'score_id' => $scoreLink->getKey(),
+            'total_score' => $scoreLink->score->data->totalScore,
         ]);
 
         static $typeOptions = [
@@ -85,7 +85,7 @@ class PlaylistItemUserHighScore extends Model
 
     public function scoreLink()
     {
-        return $this->belongsTo(ScoreLink::class);
+        return $this->belongsTo(ScoreLink::class, 'score_id');
     }
 
     public function updateWithScoreLink(ScoreLink $scoreLink): void
@@ -95,8 +95,7 @@ class PlaylistItemUserHighScore extends Model
         $this->fill([
             'accuracy' => $score->data->accuracy,
             'pp' => $score->pp,
-            'score_id' => $score->getKey(),
-            'score_link_id' => $scoreLink->getKey(),
+            'score_id' => $scoreLink->getKey(),
             'total_score' => $score->data->totalScore,
         ])->save();
     }

@@ -157,7 +157,7 @@ return [
     ],
 
     'wrong_user' => [
-        '_' => 'Bejelntkezve: :user. :logout_link.',
+        '_' => 'Bejelentkezve: :user. :logout_link.',
         'logout_link' => 'Kattints ide, hogy bejelentkezz más felhasználóként',
     ],
 ];

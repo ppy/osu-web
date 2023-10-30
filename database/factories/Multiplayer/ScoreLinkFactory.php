@@ -21,7 +21,7 @@ class ScoreLinkFactory extends Factory
     {
         return $this->state([
             'score_id' => fn (array $attr) => Score::factory([
-                'beatmap_id' => $attr['beatmap_id'],
+                'beatmap_id' => PlaylistItem::find($attr['playlist_item_id'])->beatmap_id,
                 'user_id' => $attr['user_id'],
                 ...$scoreAttr,
             ])->withData($scoreDataAttr),
@@ -34,9 +34,10 @@ class ScoreLinkFactory extends Factory
             'playlist_item_id' => PlaylistItem::factory(),
             'user_id' => User::factory(),
 
-            // depends on PlaylistItem
-            'beatmap_id' => fn (array $attr) => PlaylistItem::find($attr['playlist_item_id'])->beatmap_id,
-            'room_id' => fn (array $attr) => PlaylistItem::find($attr['playlist_item_id'])->room_id,
+            'score_id' => fn (array $attr) => Score::factory([
+                'beatmap_id' => PlaylistItem::find($attr['playlist_item_id'])->beatmap_id,
+                'user_id' => $attr['user_id'],
+            ]),
         ];
     }
 
