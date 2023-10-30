@@ -21,7 +21,7 @@ class CommentOpengraph
 
         return priv_check('CommentShow', $this->comment)->can()
             ? [
-                'description' => html_excerpt($this->comment->message_html, 100),
+                'description' => blade_safe(html_excerpt($this->comment->message_html, 100)),
                 'image' => $user->user_avatar,
                 'title' => osu_trans('comments.ogp.title', ['user' => $user->username]),
             ] : [];
