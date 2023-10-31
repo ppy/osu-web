@@ -5,7 +5,7 @@
 
 return [
     'countries' => [
-        'all' => 'Tot',
+        'all' => 'Toate',
         'title' => 'Țară',
     ],
 
@@ -25,7 +25,7 @@ return [
 
     'type' => [
         'charts' => 'promovări',
-        'country' => 'pe țară',
+        'country' => 'național',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multiplayer',
         'performance' => 'performanță',

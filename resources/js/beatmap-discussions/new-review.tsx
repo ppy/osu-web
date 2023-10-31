@@ -15,6 +15,7 @@ import Editor from './editor';
 interface Props {
   discussionsState: DiscussionsState;
   innerRef: React.RefObject<HTMLDivElement>;
+  onFocus?: () => void;
   stickTo?: React.RefObject<HTMLDivElement>;
   store: BeatmapsetDiscussions;
 }
@@ -107,7 +108,10 @@ export default class NewReview extends React.Component<Props> {
     );
   }
 
-  private readonly handleFocus = () => this.setSticky(true);
+  private readonly handleFocus = () => {
+    this.setSticky(true);
+    this.props.onFocus?.();
+  };
 
   @action
   private setSticky(sticky: boolean) {

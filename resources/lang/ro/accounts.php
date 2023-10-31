@@ -19,8 +19,8 @@ return [
             'new_confirmation' => 'confirmare e-mail',
             'title' => 'E-mail',
             'locked' => [
-                '_' => '',
-                'accounts' => '',
+                '_' => 'Vă rugăm să contactați :accounts dacă aveți nevoie să vă actualizați e-mailul.',
+                'accounts' => 'echipa de suport conturi',
             ],
         ],
 
@@ -59,6 +59,19 @@ return [
         'signature' => [
             'title' => 'Semnătură',
             'update' => 'actualizează',
+        ],
+    ],
+
+    'github_user' => [
+        'info' => "Dacă sunteți un contribuitor la depozitele cu sursă deschisă osu!, legarea contului dvs. de GitHub vă va asocia în istoricul de modificări cu profilul dvs. osu!. Conturile de GitHub fără un istoric de contribuții la osu! nu pot fi legate.",
+        'link' => 'Leagă Cont GitHub',
+        'title' => 'GitHub',
+        'unlink' => 'Dezleagă Cont GitHub',
+
+        'error' => [
+            'already_linked' => 'Acest cont GitHub este deja legat de un alt utilizator.',
+            'no_contribution' => 'Nu se poate lega contul GitHub fără un istoric de contribuții în depozitele osu!.',
+            'unverified_email' => 'Vă rugăm să verificați adresa de e-mail principală pe GitHub, apoi încercați din nou să legați contul dvs.',
         ],
     ],
 
@@ -106,7 +119,7 @@ return [
         'keyboard' => 'tastatură',
         'mouse' => 'mouse',
         'tablet' => 'tabletă',
-        'title' => 'Stiluri de joc',
+        'title' => 'Stiluri de Joc',
         'touch' => 'ecran tactil',
     ],
 
@@ -118,9 +131,9 @@ return [
 
     'security' => [
         'current_session' => 'actual',
-        'end_session' => 'Încheie sesiunea',
+        'end_session' => 'Încheie Sesiunea',
         'end_session_confirmation' => 'Acest lucru iți va încheia instantaneu sesiunea pe acel dispozitiv. Ești sigur?',
-        'last_active' => 'Ultima conectare:',
+        'last_active' => 'Ultima dată activ:',
         'title' => 'Securitate',
         'web_sessions' => 'sesiuni web',
     ],

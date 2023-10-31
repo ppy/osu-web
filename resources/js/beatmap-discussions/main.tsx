@@ -108,6 +108,7 @@ export default class Main extends React.Component<Props> {
               <NewReview
                 discussionsState={this.discussionsState}
                 innerRef={this.newDiscussionRef}
+                onFocus={this.handleNewDiscussionFocus}
                 stickTo={this.modeSwitcherRef}
                 store={this.store}
               />
@@ -116,6 +117,7 @@ export default class Main extends React.Component<Props> {
                 autoFocus={this.focusNewDiscussion}
                 discussionsState={this.discussionsState}
                 innerRef={this.newDiscussionRef}
+                onFocus={this.handleNewDiscussionFocus}
                 stickTo={this.modeSwitcherRef}
 
               />
@@ -155,6 +157,11 @@ export default class Main extends React.Component<Props> {
 
       this.timeoutCheckNew = window.setTimeout(this.checkNew, this.nextTimeout);
     });
+  };
+
+  private readonly handleNewDiscussionFocus = () => {
+    // Bug with position: sticky and scroll-padding: https://bugs.chromium.org/p/chromium/issues/detail?id=1466472
+    document.documentElement.style.removeProperty('--scroll-padding-top-extra');
   };
 
   @action

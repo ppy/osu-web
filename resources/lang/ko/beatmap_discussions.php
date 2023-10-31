@@ -26,6 +26,7 @@ return [
             'deleted' => '삭제된 토론 포함',
             'mode' => '비트맵 모드',
             'only_unresolved' => '미해결 토론만 보기',
+            'show_review_embeds' => '리뷰 글 표시',
             'types' => '메시지 종류',
             'username' => '아이디',
 

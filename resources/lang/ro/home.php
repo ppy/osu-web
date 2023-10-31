@@ -28,7 +28,7 @@ return [
 
         'beatmapset' => [
             'login_required' => 'Conectați-vă pentru a căuta beatmap-uri',
-            'more' => ':count mai multe rezultate de căutare pentru acest beatmap',
+            'more' => 'Încă :count beatmap-uri rezultate pentru această căutare',
             'more_simple' => 'Vezi mai multe rezultate de căutare pentru acest beatmap',
             'title' => 'Beatmap-uri',
         ],
@@ -59,7 +59,7 @@ return [
 
         'user' => [
             'login_required' => 'Conectați-vă pentru a căuta utilizatori',
-            'more' => ':count mai multe rezultate de căutare pentru acest jucător',
+            'more' => 'Încă :count jucători rezultați pentru această căutare',
             'more_simple' => 'Vezi mai multe rezultate de căutare pentru acest jucător',
             'more_hidden' => 'Căutarea jucătorului este limitată la :max jucători. Încearcă să îți redefinești căutarea.',
             'title' => 'Jucători',

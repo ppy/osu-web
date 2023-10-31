@@ -123,6 +123,14 @@ return [
         ],
     ],
 
+    'ogp' => [
+        'description' => [
+            '_' => '순위 (:ruleset:): :global | :country',
+            'country' => '국가 :rank',
+            'global' => '세계 :rank',
+        ],
+    ],
+
     'posts' => [
         'title' => ':username님의 글',
     ],

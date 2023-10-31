@@ -30,7 +30,7 @@ export default class Discussions extends React.Component<Props> {
           ) : (
             <>
               {this.props.discussions.map((discussion) => this.renderDiscussion(discussion))}
-              <a className='modding-profile-list__show-more' href={route('beatmapsets.discussions.index', { user: this.props.user.id })}>
+              <a className='modding-profile-list__show-more' href={route('beatmapsets.discussions.index', { user: `@${this.props.user.username}` })}>
                 {trans('users.show.extra.discussions.show_more')}
               </a>
             </>

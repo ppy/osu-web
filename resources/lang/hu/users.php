@@ -123,6 +123,14 @@ return [
         ],
     ],
 
+    'ogp' => [
+        'description' => [
+            '_' => 'Helyezés (:ruleset): :global | :country',
+            'country' => 'Országos :rank',
+            'global' => 'Globális :rank',
+        ],
+    ],
+
     'posts' => [
         'title' => ':username hozzászólásai',
     ],

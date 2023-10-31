@@ -19,8 +19,8 @@ return [
             'new_confirmation' => 'potwierdź e-mail',
             'title' => 'E-mail',
             'locked' => [
-                '_' => '',
-                'accounts' => '',
+                '_' => 'Skontaktuj się z :accounts, jeżeli chcesz zaktualizować swój adres e-mail.',
+                'accounts' => 'zespołem obsługi kont',
             ],
         ],
 
@@ -59,6 +59,19 @@ return [
         'signature' => [
             'title' => 'Sygnatura',
             'update' => 'zaktualizuj',
+        ],
+    ],
+
+    'github_user' => [
+        'info' => "",
+        'link' => '',
+        'title' => '',
+        'unlink' => '',
+
+        'error' => [
+            'already_linked' => '',
+            'no_contribution' => '',
+            'unverified_email' => '',
         ],
     ],
 

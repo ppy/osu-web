@@ -17,16 +17,16 @@
 
 Represents a notification object.
 
-Field            | Type    | Description
----------------- | ------- | ------------------------------------------------------------------------
-id               | number  | |
-name             | string  | Name of the event
-created_at       | string  | ISO 8601 date
-object_type      | string  | |
-object_id        | number  | |
-source_user_id   | number? | |
-is_read          | boolean | |
-details          | object  | `message_id` of last known message (only returned in presence responses)
+Field            | Type                    | Description
+---------------- | ----------------------- | ------------------------------------------------------------------------
+id               | integer                 | |
+name             | string                  | Name of the event
+created_at       | [Timestamp](#timestamp) | ISO 8601 date
+object_type      | string                  | |
+object_id        | integer                 | |
+source_user_id   | integer?                | |
+is_read          | boolean                 | |
+details          | object                  | `message_id` of last known message (only returned in presence responses)
 
 ### Event Names
 
@@ -48,11 +48,11 @@ Name                                                                           |
 
 #### `beatmapset_discussion_lock`
 
-Field          | Type   | Description
--------------- | ------ | --------------------------
-object_id      | number | Beatmapset id
-object_type    | string | `beatmapset`
-source_user_id | number | User who locked discussion
+Field          | Type    | Description
+-------------- | ------- | --------------------------
+object_id      | integer | Beatmapset id
+object_type    | string  | `beatmapset`
+source_user_id | integer | User who locked discussion
 
 Details object:
 
@@ -66,32 +66,32 @@ username  | string | Username of `source_user_id`
 
 #### `beatmapset_discussion_post_new`
 
-Field          | Type   | Description
--------------- | ------ | -----------------------------
-object_id      | number | Beatmapset id
-object_type    | string | `beatmapset`
-source_user_id | number | Poster of the discussion
+Field          | Type    | Description
+-------------- | ------- | -----------------------------
+object_id      | integer | Beatmapset id
+object_type    | string  | `beatmapset`
+source_user_id | integer | Poster of the discussion
 
 Details object:
 
-Field         | Type    | Description
-------------- | ------- | ------------------------------
-title         | string  | Beatmap title
-cover_url     | string  | Beatmap cover
-discussion_id | number  | |
-post_id       | number  | |
-beatmap_id    | number? | `null` if posted to general all
-username      | string  | Username of `source_user_id`
+Field         | Type     | Description
+------------- | -------- | ------------------------------
+title         | string   | Beatmap title
+cover_url     | string   | Beatmap cover
+discussion_id | integer  | |
+post_id       | integer  | |
+beatmap_id    | integer? | `null` if posted to general all
+username      | string   | Username of `source_user_id`
 
 <div id="notification-beatmapset_discussion_unlock" data-unique="notification-beatmapset_discussion_unlock"></div>
 
 #### `beatmapset_discussion_unlock`
 
-Field          | Type   | Description
--------------- | ------ | ----------------------------
-object_id      | number | Beatmapset id
-object_type    | string | `beatmapset`
-source_user_id | number | User who unlocked discussion
+Field          | Type    | Description
+-------------- | ------- | ----------------------------
+object_id      | integer | Beatmapset id
+object_type    | string  | `beatmapset`
+source_user_id | integer | User who unlocked discussion
 
 Details object:
 
@@ -105,11 +105,11 @@ username  | string | Username of `source_user_id`
 
 #### `beatmapset_disqualify`
 
-Field          | Type   | Description
--------------- | ------ | --------------------------------
-object_id      | number | Beatmapset id
-object_type    | string | `beatmapset`
-source_user_id | number | User who disqualified beatmapset
+Field          | Type    | Description
+-------------- | ------- | --------------------------------
+object_id      | integer | Beatmapset id
+object_type    | string  | `beatmapset`
+source_user_id | integer | User who disqualified beatmapset
 
 Details object:
 
@@ -124,11 +124,11 @@ username  | string | Username of `source_user_id`
 
 #### `beatmapset_love`
 
-Field          | Type   | Description
--------------- | ------ | -------------------------------------
-object_id      | number | Beatmapset id
-object_type    | string | `beatmapset`
-source_user_id | number | User who promoted beatmapset to loved
+Field          | Type    | Description
+-------------- | ------- | -------------------------------------
+object_id      | integer | Beatmapset id
+object_type    | string  | `beatmapset`
+source_user_id | integer | User who promoted beatmapset to loved
 
 Details object:
 
@@ -142,11 +142,11 @@ username  | string | Username of `source_user_id`
 
 #### `beatmapset_nominate`
 
-Field          | Type   | Description
--------------- | ------ | -----------------------------
-object_id      | number | Beatmapset id
-object_type    | string | `beatmapset`
-source_user_id | number | User who nominated beatmapset
+Field          | Type    | Description
+-------------- | ------- | -----------------------------
+object_id      | integer | Beatmapset id
+object_type    | string  | `beatmapset`
+source_user_id | integer | User who nominated beatmapset
 
 Details object:
 
@@ -160,11 +160,11 @@ username  | string | Username of `source_user_id`
 
 #### `beatmapset_qualify`
 
-Field          | Type   | Description
--------------- | ------ | -------------------------------------------------------
-object_id      | number | Beatmapset id
-object_type    | string | `beatmapset`
-source_user_id | number | User whom beatmapset nomination triggered qualification
+Field          | Type    | Description
+-------------- | ------- | -------------------------------------------------------
+object_id      | integer | Beatmapset id
+object_type    | string  | `beatmapset`
+source_user_id | integer | User whom beatmapset nomination triggered qualification
 
 Details object:
 
@@ -178,11 +178,11 @@ username  | string | Username of `source_user_id`
 
 #### `beatmapset_remove_from_loved`
 
-Field          | Type   | Description
--------------- | ------ | --------------------------------------
-object_id      | number | Beatmapset id
-object_type    | string | `beatmapset`
-source_user_id | number | User who removed beatmapset from Loved
+Field          | Type    | Description
+-------------- | ------- | --------------------------------------
+object_id      | integer | Beatmapset id
+object_type    | string  | `beatmapset`
+source_user_id | integer | User who removed beatmapset from Loved
 
 Details object:
 
@@ -196,11 +196,11 @@ username  | string | Username of `source_user_id`
 
 #### `beatmapset_reset_nominations`
 
-Field          | Type   | Description
--------------- | ------ | -----------------------------------
-object_id      | number | Beatmapset id
-object_type    | string | `beatmapset`
-source_user_id | number | User who triggered nomination reset
+Field          | Type    | Description
+-------------- | ------- | -----------------------------------
+object_id      | integer | Beatmapset id
+object_type    | string  | `beatmapset`
+source_user_id | integer | User who triggered nomination reset
 
 Details object:
 
@@ -214,11 +214,11 @@ username  | string | Username of `source_user_id`
 
 #### `channel_message`
 
-Field          | Type   | Description
--------------- | ------ | -----------------------
-object_id      | number | Channel id
-object_type    | string | `channel`
-source_user_id | number | User who posted message
+Field          | Type    | Description
+-------------- | ------- | -----------------------
+object_id      | integer | Channel id
+object_type    | string  | `channel`
+source_user_id | integer | User who posted message
 
 Details object:
 
@@ -232,11 +232,11 @@ username  | string | Username of `source_user_id`
 
 #### `forum_topic_reply`
 
-Field          | Type   | Description
--------------- | ------ | -----------------------
-object_id      | number | Topic id
-object_type    | string | `forum_topic`
-source_user_id | number | User who posted message
+Field          | Type    | Description
+-------------- | ------- | -----------------------
+object_id      | integer | Topic id
+object_type    | string  | `forum_topic`
+source_user_id | integer | User who posted message
 
 Details object:
 
@@ -244,5 +244,5 @@ Field     | Type    | Description
 --------- | ------- | ----------------------------
 title     | string  | Title of the replied topic
 cover_url | string  | Topic cover
-post_id   | number  | Post id
+post_id   | integer | Post id
 username  | string? | Username of `source_user_id`

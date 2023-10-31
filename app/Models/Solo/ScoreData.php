@@ -87,7 +87,13 @@ class ScoreData implements Castable, JsonSerializable
             public function set($model, $key, $value, $attributes)
             {
                 if (!($value instanceof ScoreData)) {
-                    $value = new ScoreData($value);
+                    $value = new ScoreData([
+                        'beatmap_id' => $attributes['beatmap_id'] ?? null,
+                        'ended_at' => $attributes['created_at'] ?? null,
+                        'ruleset_id' => $attributes['ruleset_id'] ?? null,
+                        'user_id' => $attributes['user_id'] ?? null,
+                        ...$value,
+                    ]);
                 }
 
                 return ['data' => json_encode($value)];

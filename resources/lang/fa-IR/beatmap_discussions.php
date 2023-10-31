@@ -26,6 +26,7 @@ return [
             'deleted' => 'شامل شدن گفتگو های پاک شده',
             'mode' => 'حالت بیت مپ',
             'only_unresolved' => 'فقط نمایش گفتگو های حل نشده',
+            'show_review_embeds' => '',
             'types' => 'نوع پیام',
             'username' => 'نام کاربری',
 

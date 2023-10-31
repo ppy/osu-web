@@ -19,8 +19,8 @@ return [
             'new_confirmation' => 'ยืนยันอีเมล',
             'title' => 'อีเมล',
             'locked' => [
-                '_' => '',
-                'accounts' => '',
+                '_' => 'โปรดติดต่อ :accounts หากคุณต้องการอัปเดตอีเมลของคุณ',
+                'accounts' => 'ทีมสนับสนุนบัญชี',
             ],
         ],
 
@@ -59,6 +59,19 @@ return [
         'signature' => [
             'title' => 'ลายเซ็น',
             'update' => 'อัพเดต',
+        ],
+    ],
+
+    'github_user' => [
+        'info' => "",
+        'link' => '',
+        'title' => '',
+        'unlink' => '',
+
+        'error' => [
+            'already_linked' => '',
+            'no_contribution' => '',
+            'unverified_email' => '',
         ],
     ],
 

@@ -62,6 +62,19 @@ return [
         ],
     ],
 
+    'github_user' => [
+        'info' => "",
+        'link' => '',
+        'title' => '',
+        'unlink' => '',
+
+        'error' => [
+            'already_linked' => '',
+            'no_contribution' => '',
+            'unverified_email' => '',
+        ],
+    ],
+
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'prejmi obvestila o novih težavah na kvalificiranih beatmapah pri naslednjih modifikatorjih',
         'beatmapset_disqualify' => 'prejmi obvestila ko so beatmape pri naslednjih modifikatorjih diskvalificirane',

@@ -55,7 +55,7 @@ return [
             ],
 
             'country_ranking' => [
-                'title' => 'Classificació per Països',
+                'title' => 'Classificació per països',
                 'description' => 'Conquereix el teu país abans de conquerir el món.',
             ],
 
@@ -71,7 +71,7 @@ return [
 
             'upload_more' => [
                 'title' => 'Més espai per pujades',
-                'description' => 'Tindràs espais pendents per a beatmaps (per mapa classificat) fins a un màxim de 10.',
+                'description' => 'Tindràs espais pendents per a beatmaps (per beatmap classificat) fins a un màxim de 10.',
             ],
 
             'early_access' => [
@@ -121,7 +121,7 @@ return [
 
             'more_favourites' => [
                 'title' => 'Més favorits',
-                'description' => 'El nombre màxim de mapes que podeu marcar com a favorit augmenta de :normally &rarr; :supporter',
+                'description' => 'El nombre màxim de beatmaps que pods marcar com a favorit augmenta de :normally &rarr; :supporter',
             ],
             'more_friends' => [
                 'title' => 'Més amics',

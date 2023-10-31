@@ -100,7 +100,7 @@ return [
                 '_' => 'Nuevo anuncio',
 
                 'announce' => [
-                    'channel_announcement' => ':username dice ":title"',
+                    'channel_announcement' => ':username dice «:title»',
                     'channel_announcement_compact' => ':title',
                     'channel_announcement_group' => 'Anuncio de :username',
                 ],
@@ -110,7 +110,7 @@ return [
                 '_' => 'Nuevo mensaje',
 
                 'pm' => [
-                    'channel_message' => ':username dice ":title"',
+                    'channel_message' => ':username dice «:title»',
                     'channel_message_compact' => ':title',
                     'channel_message_group' => 'de :username',
                 ],

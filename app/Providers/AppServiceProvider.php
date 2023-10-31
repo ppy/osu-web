@@ -7,7 +7,6 @@ namespace App\Providers;
 
 use App\Hashing\OsuHashManager;
 use App\Libraries\AssetsManifest;
-use App\Libraries\BroadcastsPendingForTests;
 use App\Libraries\ChatFilters;
 use App\Libraries\CleanHTML;
 use App\Libraries\Groups;
@@ -34,7 +33,6 @@ use Laravel\Octane\SequentialTaskDispatcher;
 use Laravel\Octane\Swoole\SwooleTaskDispatcher;
 use Queue;
 use Swoole\Http\Server;
-use Validator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -64,10 +62,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Relation::morphMap(MorphMap::flippedMap());
-
-        Validator::extend('mixture', function ($attribute, $value, $parameters, $validator) {
-            return preg_match('/[\d]/', $value) === 1 && preg_match('/[^\d\s]/', $value) === 1;
-        });
 
         Queue::after(function (JobProcessed $event) {
             app('OsuAuthorize')->resetCache();
@@ -147,9 +141,6 @@ class AppServiceProvider extends ServiceProvider
         if ($env === 'testing' || $env === 'dusk.local') {
             // This is needed for testing with Dusk.
             $this->app->register(AdditionalDuskServiceProvider::class);
-
-            // This is for testing after commit broadcastable events.
-            $this->app->singleton(BroadcastsPendingForTests::class, fn () => new BroadcastsPendingForTests());
         }
     }
 }

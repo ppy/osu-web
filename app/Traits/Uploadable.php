@@ -7,10 +7,11 @@ namespace App\Traits;
 
 use App\Libraries\StorageWithUrl;
 use Illuminate\Http\File;
+use League\Flysystem\Local\LocalFilesystemAdapter;
 
 trait Uploadable
 {
-    protected $_storage = null;
+    private StorageWithUrl $storage;
 
     /**
      * Returns maximum size of the file in bytes. Defaults to 1 MB.
@@ -59,13 +60,9 @@ trait Uploadable
         $this->ext = $props['ext'] ?? null;
     }
 
-    public function storage()
+    public function storage(): StorageWithUrl
     {
-        if ($this->_storage === null) {
-            $this->_storage = new StorageWithUrl();
-        }
-
-        return $this->_storage;
+        return $this->storage ??= new StorageWithUrl();
     }
 
     public function fileDir()
@@ -118,6 +115,20 @@ trait Uploadable
             'ext' => $fileExtension,
         ]);
 
-        $this->storage()->putFileAs($this->fileDir(), new File($filePath), $this->fileName());
+        $storage = $this->storage();
+
+        if ($storage->getAdapter() instanceof LocalFilesystemAdapter) {
+            $options = [
+                'visibility' => 'public',
+                'directory_visibility' => 'public',
+            ];
+        }
+
+        $storage->putFileAs(
+            $this->fileDir(),
+            new File($filePath),
+            $this->fileName(),
+            $options ?? [],
+        );
     }
 }

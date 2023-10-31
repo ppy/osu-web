@@ -121,10 +121,11 @@ export default class Main extends React.Component<BeatmapsetDiscussionsBundleJso
             <Badges badges={this.user.badges} />
             {!this.user.is_bot && (
               <>
-                <ProfileTournamentBanner banner={this.user.active_tournament_banner} />
+                {this.user.active_tournament_banners.map((banner) => (
+                  <ProfileTournamentBanner key={banner.id} banner={banner} />
+                ))}
                 <div className='profile-detail'>
-
-                  <Stats user={this.user} />
+                  <Stats user={this.props.user} />
                 </div>
               </>
             )}

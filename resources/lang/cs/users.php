@@ -123,6 +123,14 @@ return [
         ],
     ],
 
+    'ogp' => [
+        'description' => [
+            '_' => 'Umístění (:ruleset): :global | :country',
+            'country' => 'Stát :rank',
+            'global' => 'Svět :rank',
+        ],
+    ],
+
     'posts' => [
         'title' => 'příspěvky hráče :username',
     ],

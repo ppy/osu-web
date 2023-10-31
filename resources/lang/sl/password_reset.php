@@ -5,7 +5,6 @@
 
 return [
     'button' => [
-        'cancel' => 'Prekliči',
         'resend' => 'Ponovno pošlji e-pošto za verifikacijo',
         'set' => 'Nastavi geslo',
         'start' => 'Začni',

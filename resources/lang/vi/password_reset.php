@@ -5,7 +5,6 @@
 
 return [
     'button' => [
-        'cancel' => 'Hủy',
         'resend' => 'Gửi lại email xác thực',
         'set' => 'Đặt mật khẩu',
         'start' => 'Bắt đầu',

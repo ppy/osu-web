@@ -123,6 +123,14 @@ return [
         ],
     ],
 
+    'ogp' => [
+        'description' => [
+            '_' => 'Hạng (:ruleset): :global | :country',
+            'country' => 'Quốc gia :rank',
+            'global' => 'Toàn cầu :rank',
+        ],
+    ],
+
     'posts' => [
         'title' => 'Bài đăng của :username',
     ],

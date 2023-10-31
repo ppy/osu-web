@@ -62,6 +62,19 @@ return [
         ],
     ],
 
+    'github_user' => [
+        'info' => "",
+        'link' => '',
+        'title' => '',
+        'unlink' => '',
+
+        'error' => [
+            'already_linked' => '',
+            'no_contribution' => '',
+            'unverified_email' => '',
+        ],
+    ],
+
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'تلقي إشعارات عن مشاكل جديدة في الخرائط المؤهلة على الأنماط التالية',
         'beatmapset_disqualify' => 'تلقي إشعارات عندما تكون الخرائط للأنماط التالية غير مؤهلة',

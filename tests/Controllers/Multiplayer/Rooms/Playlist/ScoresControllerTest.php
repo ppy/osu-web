@@ -7,24 +7,95 @@ namespace Tests\Controllers\Multiplayer\Rooms\Playlist;
 
 use App\Models\Build;
 use App\Models\Multiplayer\PlaylistItem;
-use App\Models\Multiplayer\Score;
+use App\Models\Multiplayer\ScoreLink;
+use App\Models\Multiplayer\UserScoreAggregate;
+use App\Models\ScoreToken;
 use App\Models\User;
 use Tests\TestCase;
 
 class ScoresControllerTest extends TestCase
 {
-    public function testShow()
+    public function testIndex()
     {
-        $score = Score::factory()->create();
+        $playlist = PlaylistItem::factory()->create();
         $user = User::factory()->create();
+        $scoreLinks = [];
+        $scoreLinks[] = ScoreLink
+            ::factory()
+            ->state(['playlist_item_id' => $playlist])
+            ->completed([], ['passed' => true, 'total_score' => 30])
+            ->create();
+        $scoreLinks[] = $userScoreLink = ScoreLink
+            ::factory()
+            ->state([
+                'playlist_item_id' => $playlist,
+                'user_id' => $user,
+            ])->completed([], ['passed' => true, 'total_score' => 20])
+            ->create();
+        $scoreLinks[] = ScoreLink
+            ::factory()
+            ->state(['playlist_item_id' => $playlist])
+            ->completed([], ['passed' => true, 'total_score' => 10])
+            ->create();
+
+        foreach ($scoreLinks as $scoreLink) {
+            UserScoreAggregate::lookupOrDefault($scoreLink->user, $scoreLink->playlistItem->room)->recalculate();
+        }
 
         $this->actAsScopedUser($user, ['*']);
 
-        $this->json('GET', route('api.rooms.playlist.scores.show', [
-            'room' => $score->room_id,
-            'playlist' => $score->playlist_item_id,
-            'score' => $score->getKey(),
+        $resp = $this->json('GET', route('api.rooms.playlist.scores.index', [
+            'room' => $playlist->room_id,
+            'playlist' => $playlist->getKey(),
         ]))->assertSuccessful();
+
+        $json = json_decode($resp->getContent(), true);
+        $this->assertSame(count($scoreLinks), count($json['scores']));
+        foreach ($json['scores'] as $i => $jsonScore) {
+            $this->assertSame($scoreLinks[$i]->getKey(), $jsonScore['id']);
+        }
+        $this->assertSame($json['user_score']['id'], $userScoreLink->getKey());
+    }
+
+    public function testShow()
+    {
+        $playlist = PlaylistItem::factory()->create();
+        $user = User::factory()->create();
+        $scoreLinks = [];
+        $scoreLinks[] = ScoreLink
+            ::factory()
+            ->state(['playlist_item_id' => $playlist])
+            ->completed([], ['passed' => true, 'total_score' => 30])
+            ->create();
+        $scoreLinks[] = $userScoreLink = ScoreLink
+            ::factory()
+            ->state([
+                'playlist_item_id' => $playlist,
+                'user_id' => $user,
+            ])->completed([], ['passed' => true, 'total_score' => 20])
+            ->create();
+        $scoreLinks[] = ScoreLink
+            ::factory()
+            ->state(['playlist_item_id' => $playlist])
+            ->completed([], ['passed' => true, 'total_score' => 10])
+            ->create();
+
+        foreach ($scoreLinks as $scoreLink) {
+            UserScoreAggregate::lookupOrDefault($scoreLink->user, $scoreLink->playlistItem->room)->recalculate();
+        }
+
+        $this->actAsScopedUser($user, ['*']);
+
+        $resp = $this->json('GET', route('api.rooms.playlist.scores.show', [
+            'room' => $userScoreLink->playlistItem->room_id,
+            'playlist' => $userScoreLink->playlist_item_id,
+            'score' => $userScoreLink->getKey(),
+        ]))->assertSuccessful();
+
+        $json = json_decode($resp->getContent(), true);
+        $this->assertSame($json['id'], $userScoreLink->getKey());
+        $this->assertSame($json['scores_around']['higher']['scores'][0]['id'], $scoreLinks[0]->getKey());
+        $this->assertSame($json['scores_around']['lower']['scores'][0]['id'], $scoreLinks[2]->getKey());
     }
 
     /**
@@ -35,7 +106,6 @@ class ScoresControllerTest extends TestCase
         $user = User::factory()->create();
         $playlistItem = PlaylistItem::factory()->create();
         $build = Build::factory()->create(['allow_ranking' => $allowRanking]);
-        $initialScoresCount = Score::count();
 
         $this->actAsScopedUser($user, ['*']);
 
@@ -44,14 +114,13 @@ class ScoresControllerTest extends TestCase
             $params['version_hash'] = $hashParam ? bin2hex($build->hash) : md5('invalid_');
         }
 
+        $countDiff = ((string) $status)[0] === '2' ? 1 : 0;
+        $this->expectCountChange(fn () => ScoreToken::count(), $countDiff);
+
         $this->json('POST', route('api.rooms.playlist.scores.store', [
             'room' => $playlistItem->room_id,
             'playlist' => $playlistItem->getKey(),
         ]), $params)->assertStatus($status);
-
-        $countDiff = ((string) $status)[0] === '2' ? 1 : 0;
-
-        $this->assertSame($initialScoresCount + $countDiff, Score::count());
     }
 
     /**
@@ -63,14 +132,14 @@ class ScoresControllerTest extends TestCase
         $playlistItem = PlaylistItem::factory()->create();
         $room = $playlistItem->room;
         $build = Build::factory()->create(['allow_ranking' => true]);
-        $score = $room->startPlay($user, $playlistItem);
+        $scoreLink = $room->startPlay($user, $playlistItem, 0);
 
         $this->actAsScopedUser($user, ['*']);
 
         $url = route('api.rooms.playlist.scores.update', [
             'room' => $room,
             'playlist' => $playlistItem,
-            'score' => $score,
+            'score' => $scoreLink,
         ]);
 
         $this->json('PUT', $url, $bodyParams)->assertStatus($status);

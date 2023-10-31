@@ -10,7 +10,7 @@ return [
         'peak' => '최다 동시 접속자 수: :count명',
         'players' => '<strong>:count</strong>명이 가입되어 있고',
         'title' => '환영합니다',
-        'see_more_news' => '소식 더 보기',
+        'see_more_news' => '뉴스 더 보기',
 
         'slogan' => [
             'main' => '최고의 무료 리듬 게임',
@@ -123,8 +123,8 @@ return [
     'user' => [
         'title' => '대시보드',
         'news' => [
-            'title' => '소식',
-            'error' => '소식을 불러오는 도중 문제가 발생했습니다, 페이지를 한 번 새로고침 해보시겠어요?...',
+            'title' => '뉴스',
+            'error' => '뉴스를 불러오는 도중 문제가 발생했습니다, 페이지를 한 번 새로고침 해보시겠어요?...',
         ],
         'header' => [
             'stats' => [

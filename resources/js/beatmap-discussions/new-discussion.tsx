@@ -39,6 +39,7 @@ interface Props {
   autoFocus: boolean;
   discussionsState: DiscussionsState;
   innerRef: React.RefObject<HTMLDivElement>;
+  onFocus?: () => void;
   stickTo: React.RefObject<HTMLElement>;
 }
 
@@ -201,7 +202,10 @@ export class NewDiscussion extends React.Component<Props> {
     }
   };
 
-  private readonly onFocus = () => this.setSticky(true);
+  private readonly onFocus = () => {
+    this.setSticky(true);
+    this.props.onFocus?.();
+  };
 
   @action
   private readonly post = (e: React.SyntheticEvent<HTMLElement>) => {

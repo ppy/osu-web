@@ -16,7 +16,7 @@ return [
             'submitted_on' => 'Trimis pe',
 
             'rank' => [
-                'country' => 'Clasament pe țară',
+                'country' => 'Rang Național',
                 'global' => 'Clasament Global',
             ],
         ],

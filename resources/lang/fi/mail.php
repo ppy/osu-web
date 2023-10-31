@@ -15,7 +15,7 @@ return [
         'closing' => 'Terveisin',
         'hello' => 'Hei :user,',
         'report' => 'Vastaa tähän sähköpostiin VÄLITTÖMÄSTI, jos et ole pyytänyt tätä muutosta.',
-        'ignore' => '',
+        'ignore' => 'Jos et pyytänyt tätä, voit turvallisesti jättää tämän sähköpostin huomiotta.',
     ],
 
     'donation_thanks' => [
@@ -41,7 +41,7 @@ return [
     'forum_new_reply' => [
         'new' => 'Tiedoksesi vain, että ":title" on saanut uuden vastauksen poissaolosi aikana.',
         'subject' => '[osu!] Uusi vastaus aiheessa ":title"',
-        'unwatch' => '',
+        'unwatch' => 'Jos et enää halua seurata tätä aihetta, voit napsauttaa "Lopeta aiheen seuraaminen" -linkkiä, joka löytyy yllämainitun aiheen alareunasta tai aihekohtaisten tilausten hallintasivulta:',
         'visit' => 'Siirry viimeiseen vastaukseen käyttämällä seuraavaa linkkiä:',
     ],
 
@@ -64,10 +64,10 @@ return [
     'supporter_gift' => [
         'anonymous_gift' => 'Henkilö, joka lahjoitti sinulle tämän tägin, voi halutessaan pysyä anonyyminä, joten heitä ei ole maininttu tässä ilmoituksessa.',
         'anonymous_gift_maybe_not' => 'Mutta taidat jo tietää kuka se mahtaa olla ;).',
-        'duration' => '',
+        'duration' => 'Kiitos hänen, sinulla on pääsy osu!directiin ja muihin osu!tukija-etuihin seuraavan :duration ajan.',
         'features' => 'Voit saada lisätietoja näistä ominaisuuksista täältä:',
         'gifted' => 'Joku on juuri antanut sinulle osu! -tukijan!',
-        'gift_message' => '',
+        'gift_message' => 'Henkilö, joka lahjoitti sinulle tämän merkin, jätti sinulle viestin:',
         'subject' => 'Sinulle on lahjoitettu osu!tukijatagi!',
     ],
 
@@ -86,7 +86,7 @@ return [
     ],
 
     'user_notification_digest' => [
-        'new' => '',
+        'new' => 'Tiedoksesi vain, että on tullut uusia päivityksiä kohteisiin, joita seuraat.',
         'settings' => 'Muuta sähköposti-ilmoitusten asetuksia:',
         'subject' => 'Uusia osu!-ilmoituksia',
     ],

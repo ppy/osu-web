@@ -5,7 +5,6 @@
 
 return [
     'button' => [
-        'cancel' => 'අවලංගු කරන්න',
         'resend' => '',
         'set' => '',
         'start' => '',

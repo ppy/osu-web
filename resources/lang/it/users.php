@@ -123,6 +123,14 @@ return [
         ],
     ],
 
+    'ogp' => [
+        'description' => [
+            '_' => 'Posizione (:ruleset): :global | :country',
+            'country' => 'Nazionale :rank',
+            'global' => 'Globale :rank',
+        ],
+    ],
+
     'posts' => [
         'title' => 'Post di :username',
     ],

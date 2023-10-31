@@ -16,6 +16,38 @@
         ]
     },
     {
+        "uri": "api/v2/beatmaps/packs",
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "controller": "App\\Http\\Controllers\\BeatmapPacksController@index",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "App\\Http\\Middleware\\RequireScopes:public"
+        ],
+        "scopes": [
+            "public"
+        ]
+    },
+    {
+        "uri": "api/v2/beatmaps/packs/{pack}",
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "controller": "App\\Http\\Controllers\\BeatmapPacksController@show",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "App\\Http\\Middleware\\RequireScopes:public"
+        ],
+        "scopes": [
+            "public"
+        ]
+    },
+    {
         "uri": "api/v2/beatmaps/{beatmap}/scores/users/{user}",
         "methods": [
             "GET",
@@ -84,7 +116,7 @@
         "methods": [
             "POST"
         ],
-        "controller": "App\\Http\\Controllers\\Solo\\ScoreTokensController@store",
+        "controller": "App\\Http\\Controllers\\ScoreTokensController@store",
         "middlewares": [
             "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
             "App\\Http\\Middleware\\RequireScopes",
@@ -918,7 +950,7 @@
         ]
     },
     {
-        "uri": "api/v2/beatmapsets/search/{filters?}",
+        "uri": "api/v2/beatmapsets/search",
         "methods": [
             "GET",
             "HEAD"

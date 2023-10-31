@@ -62,6 +62,19 @@ return [
         ],
     ],
 
+    'github_user' => [
+        'info' => "",
+        'link' => '',
+        'title' => '',
+        'unlink' => '',
+
+        'error' => [
+            'already_linked' => '',
+            'no_contribution' => '',
+            'unverified_email' => '',
+        ],
+    ],
+
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'атрымліваць апавяшчэнні аб новых праблемах кваліфікаваных карт наступных рэжымаў',
         'beatmapset_disqualify' => 'атрымліваць апавяшчэння, калі карты для наступных рэжымаў будуць діскваліфікаваны',

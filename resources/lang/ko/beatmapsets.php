@@ -93,10 +93,10 @@ return [
         ],
 
         'details_date' => [
-            'approved' => ':timeago에 어프루브됨',
-            'loved' => ':timeago에 러브드 상태가 됨',
-            'qualified' => ':timeago에 퀄리파이됨',
-            'ranked' => ':timeago에 랭크됨',
+            'approved' => ':timeago에 Approved 상태가 됨',
+            'loved' => ':timeago에 Loved 상태가 됨',
+            'qualified' => ':timeago에 Qualified 상태가 됨',
+            'ranked' => ':timeago에 Ranked 상태가 됨',
             'submitted' => ':timeago에 제출됨',
             'updated' => ':timeago에 마지막으로 수정',
         ],
@@ -106,14 +106,14 @@ return [
         ],
 
         'hype' => [
-            'action' => '이 맵이 마음에 드신다면 <strong>랭크</strong> 상태가 될 수 있도록 Hype 하여 도움을 주세요.',
+            'action' => '이 맵이 마음에 드신다면 <strong>Ranked</strong> 상태가 될 수 있도록 Hype 하여 도움을 주세요.',
 
             'current' => [
                 '_' => '이 맵은 현재 :status 상태입니다.',
 
                 'status' => [
                     'pending' => '대기',
-                    'qualified' => '퀄리파이',
+                    'qualified' => 'Qualified',
                     'wip' => '제작 중',
                 ],
             ],
@@ -216,9 +216,9 @@ return [
         ],
 
         'status' => [
-            'ranked' => '랭크됨',
-            'approved' => '어프루브 됨',
-            'loved' => '러브드',
+            'ranked' => 'Ranked',
+            'approved' => 'Approved',
+            'loved' => 'Loved',
             'qualified' => '퀄리파이 됨',
             'wip' => '제작 중',
             'pending' => '대기 중',

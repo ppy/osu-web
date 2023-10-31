@@ -123,6 +123,14 @@ return [
         ],
     ],
 
+    'ogp' => [
+        'description' => [
+            '_' => 'Рейтинг (:ruleset): :global | :country',
+            'country' => 'В стране :rank',
+            'global' => 'В мире :rank',
+        ],
+    ],
+
     'posts' => [
         'title' => 'посты :username',
     ],
@@ -273,7 +281,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'История просмотров записей игр',
-                    'count_label' => 'Просмотрено записей',
+                    'count_label' => 'Просмотры:',
                 ],
             ],
             'kudosu' => [
@@ -393,7 +401,7 @@ return [
 
                     'actions' => [
                         'restriction' => 'Бан',
-                        'silence' => 'Без голоса',
+                        'silence' => 'Заглушение',
                         'tournament_ban' => 'Турнирный бан',
                         'note' => 'Заметка',
                     ],

@@ -12,7 +12,7 @@ return [
 
         'blurb' => [
             'important' => 'LLEGEIX AIXÒ ABANS DE DESCARREGAR',
-            'install_instruction' => 'Instal·lació: Un cop descarregat un paquet, extraieu-ne el contingut al directori Songs d\'osu! i aquest farà la resta.',
+            'install_instruction' => 'Instal·lació: Un cop descarregat un paquet, extreu-ne el contingut al directori Songs d\'osu! i aquest farà la resta.',
             'note' => [
                 '_' => 'També tingues en compte que és molt recomanable :scary, ja que els beatmaps més antics són de molta menor qualitat que els beatmaps més recents.',
                 'scary' => 'descarregar els paquets dels més recents als més antics',
@@ -34,7 +34,7 @@ return [
 
     'mode' => [
         'artist' => 'Artista/Àlbum',
-        'chart' => 'Destacats',
+        'chart' => 'Spotlights',
         'featured' => 'Artista Destacat',
         'loved' => 'Project Loved',
         'standard' => 'Standard',

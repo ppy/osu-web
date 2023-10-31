@@ -10,7 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
-            'rules' => 'Por favor asegúrese de que su avatar se adhiere a :link.<br/>Esto significa que debe ser <strong>adecuado para todas las edades</strong>. Es decir, no desnudez, profanidad o contenido sugestivo.',
+            'rules' => 'Por favor, asegúrate de que tu avatar se adhiera a :link.<br/>Esto significa que debe ser <strong>adecuado para todas las edades</strong>. Es decir, sin desnudez, profanidad o contenido sugestivo.',
             'rules_link' => 'las reglas de la comunidad',
         ],
 
@@ -19,8 +19,8 @@ return [
             'new_confirmation' => 'confirmar correo electrónico',
             'title' => 'Correo electrónico',
             'locked' => [
-                '_' => '',
-                'accounts' => '',
+                '_' => 'Ponte en contacto con el :accounts si necesitas actualizar tu correo electrónico.',
+                'accounts' => 'equipo de soporte de cuentas',
             ],
         ],
 
@@ -59,6 +59,19 @@ return [
         'signature' => [
             'title' => 'Firma',
             'update' => 'actualizar',
+        ],
+    ],
+
+    'github_user' => [
+        'info' => "Si eres un contribuidor en los repositorios de código abierto de osu!, vincular tu cuenta de GitHub aquí asociará tus entradas del registro de cambios con tu perfil de osu!. Las cuentas de GitHub sin historial de contribuciones a osu! no pueden ser enlazadas.",
+        'link' => 'Enlazar cuenta de GitHub',
+        'title' => 'GitHub',
+        'unlink' => 'Desenlazar cuenta de GitHub',
+
+        'error' => [
+            'already_linked' => 'Esta cuenta de GitHub ya está vinculada a un usuario diferente.',
+            'no_contribution' => 'No se puede vincular la cuenta de GitHub sin ningún historial de contribuciones en los repositorios de osu!',
+            'unverified_email' => 'Por favor, verifica tu correo principal en GitHub, luego intenta vincular tu cuenta de nuevo.',
         ],
     ],
 

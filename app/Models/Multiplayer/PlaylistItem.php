@@ -6,10 +6,12 @@
 namespace App\Models\Multiplayer;
 
 use App\Exceptions\InvariantException;
-use App\Libraries\Multiplayer\Ruleset;
+use App\Libraries\Ruleset;
 use App\Models\Beatmap;
 use App\Models\Model;
+use App\Models\ScoreToken;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @property json|null $allowed_mods
@@ -23,7 +25,7 @@ use App\Models\User;
  * @property Room $room
  * @property int $room_id
  * @property int|null $ruleset_id
- * @property \Illuminate\Database\Eloquent\Collection $scores Score
+ * @property \Illuminate\Database\Eloquent\Collection $scoreLinks ScoreLink
  * @property \Carbon\Carbon|null $updated_at
  * @property bool expired
  * @property \Carbon\Carbon|null $played_at
@@ -36,6 +38,14 @@ class PlaylistItem extends Model
         'expired' => 'boolean',
         'required_mods' => 'object',
     ];
+
+    public static function userAttemptModelBaseQueries(): array
+    {
+        return [
+            ScoreLink::query(),
+            ScoreToken::whereNull('score_id'),
+        ];
+    }
 
     public static function assertBeatmapsExist(array $playlistItems)
     {
@@ -96,17 +106,36 @@ class PlaylistItem extends Model
         return $this->hasMany(PlaylistItemUserHighScore::class);
     }
 
-    public function scores()
+    public function scoreLinks()
     {
-        return $this->hasMany(Score::class);
+        return $this->hasMany(ScoreLink::class);
+    }
+
+    public function scoreTokens(): HasMany
+    {
+        return $this->hasMany(ScoreToken::class);
     }
 
     public function topScores()
     {
         return $this->highScores()
-            ->with('score')
+            ->with('scoreLink.score')
             ->orderBy('total_score', 'desc')
             ->orderBy('score_id', 'asc');
+    }
+
+    public function userAttempts(int $userId): int
+    {
+        $id = $this->getKey();
+        $ret = 0;
+        foreach (static::userAttemptModelBaseQueries() as $query) {
+            $ret += $query->where([
+                'playlist_item_id' => $id,
+                'user_id' => $userId,
+            ])->count();
+        }
+
+        return $ret;
     }
 
     private function assertValidMaxAttempts()
@@ -124,7 +153,7 @@ class PlaylistItem extends Model
     private function validateRuleset()
     {
         // osu beatmaps can be played in any mode, but non-osu maps can only be played in their specific modes
-        if ($this->beatmap->playmode !== Ruleset::OSU && $this->beatmap->playmode !== $this->ruleset_id) {
+        if ($this->beatmap->playmode !== Ruleset::osu->value && $this->beatmap->playmode !== $this->ruleset_id) {
             throw new InvariantException("invalid ruleset_id for beatmap {$this->beatmap->beatmap_id}");
         }
     }

@@ -5,7 +5,6 @@
 
 return [
     'button' => [
-        'cancel' => 'Batal',
         'resend' => 'Hantar semula e-mel pengesahan',
         'set' => 'Tetap kata laluan',
         'start' => 'Mula',

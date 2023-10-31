@@ -19,8 +19,8 @@ return [
             'new_confirmation' => 'e-posta onayı',
             'title' => 'E-posta',
             'locked' => [
-                '_' => '',
-                'accounts' => '',
+                '_' => 'E-postanızı güncellemeniz gerekiyorsa lütfen :accounts ile iletişime geçin.',
+                'accounts' => 'hesap destek birimi',
             ],
         ],
 
@@ -59,6 +59,19 @@ return [
         'signature' => [
             'title' => 'İmza',
             'update' => 'güncelle',
+        ],
+    ],
+
+    'github_user' => [
+        'info' => "",
+        'link' => '',
+        'title' => 'GitHub',
+        'unlink' => '',
+
+        'error' => [
+            'already_linked' => '',
+            'no_contribution' => '',
+            'unverified_email' => '',
         ],
     ],
 

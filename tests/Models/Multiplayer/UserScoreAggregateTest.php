@@ -7,7 +7,7 @@ namespace Tests\Models\Multiplayer;
 
 use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\Room;
-use App\Models\Multiplayer\Score;
+use App\Models\Multiplayer\ScoreLink;
 use App\Models\Multiplayer\UserScoreAggregate;
 use App\Models\User;
 use Tests\TestCase;
@@ -21,31 +21,11 @@ class UserScoreAggregateTest extends TestCase
         $user = User::factory()->create();
         $playlistItem = $this->playlistItem();
 
-        $this->room->startPlay($user, $playlistItem);
+        $this->room->startPlay($user, $playlistItem, 0);
         $agg = UserScoreAggregate::new($user, $this->room);
 
         $this->assertSame(1, $agg->attempts);
         $this->assertSame(0, $agg->completed);
-    }
-
-    public function testInCompleteScoresAreNotCounted()
-    {
-        $user = User::factory()->create();
-        $playlistItem = $this->playlistItem();
-        $agg = UserScoreAggregate::new($user, $this->room);
-
-        $score = Score::factory()
-            ->create([
-                'room_id' => $this->room,
-                'playlist_item_id' => $playlistItem,
-                'user_id' => $user,
-            ]);
-
-        $agg->addScore($score);
-        $result = json_item($agg, 'Multiplayer\UserScoreAggregate');
-
-        $this->assertSame(0, $result['completed']);
-        $this->assertSame(0, $result['total_score']);
     }
 
     public function testFailedScoresAreAttemptsOnly()
@@ -54,24 +34,23 @@ class UserScoreAggregateTest extends TestCase
         $playlistItem = $this->playlistItem();
         $agg = UserScoreAggregate::new($user, $this->room);
 
-        $agg->addScore(
-            Score::factory()
-                ->failed()
-                ->create([
-                    'room_id' => $this->room,
+        $agg->addScoreLink(
+            ScoreLink
+                ::factory()
+                ->state([
                     'playlist_item_id' => $playlistItem,
                     'user_id' => $user,
-                ])
+                ])->failed()
+                ->create()
         );
 
-        $agg->addScore(
-            Score::factory()
-                ->passed()
-                ->create([
-                    'room_id' => $this->room,
+        $agg->addScoreLink(
+            ScoreLink::factory()
+                ->state([
                     'playlist_item_id' => $playlistItem,
                     'user_id' => $user,
-                ])
+                ])->completed([], ['passed' => true, 'total_score' => 1])
+                ->create()
         );
 
         $result = json_item($agg, 'Multiplayer\UserScoreAggregate');
@@ -86,14 +65,13 @@ class UserScoreAggregateTest extends TestCase
         $playlistItem = $this->playlistItem();
         $agg = UserScoreAggregate::new($user, $this->room);
 
-        $agg->addScore(
-            Score::factory()
-            ->passed()
-            ->create([
-                'room_id' => $this->room,
-                'playlist_item_id' => $playlistItem,
-                'user_id' => $user,
-            ])
+        $agg->addScoreLink(
+            ScoreLink::factory()
+                ->state([
+                    'playlist_item_id' => $playlistItem,
+                    'user_id' => $user,
+                ])->completed([], ['passed' => true, 'total_score' => 1])
+                ->create()
         );
 
         $result = json_item($agg, 'Multiplayer\UserScoreAggregate');
@@ -109,60 +87,47 @@ class UserScoreAggregateTest extends TestCase
         $playlistItem2 = $this->playlistItem();
 
         $agg = UserScoreAggregate::new($user, $this->room);
-        $agg->addScore(
-            Score::factory()
-            ->create([
-                'room_id' => $this->room,
+        $agg->addScoreLink(ScoreLink::factory()
+            ->state([
                 'playlist_item_id' => $playlistItem,
                 'user_id' => $user,
+            ])->completed([], [
                 'total_score' => 1,
-                'pp' => 0.2,
-                'pp' => 0.2,
-            ])
-        );
+                'passed' => false,
+            ])->create());
 
-        $agg->addScore(
-            Score::factory()
-            ->failed()
-            ->create([
-                'room_id' => $this->room,
+        $agg->addScoreLink(ScoreLink::factory()
+            ->state([
                 'playlist_item_id' => $playlistItem,
                 'user_id' => $user,
+            ])->completed([], [
                 'total_score' => 1,
                 'accuracy' => 0.3,
-                'pp' => 0.3,
-            ])
-        );
+                'passed' => false,
+            ])->create());
 
-        $agg->addScore(
-            Score::factory()
-            ->passed()
-            ->create([
-                'room_id' => $this->room,
+        $agg->addScoreLink(ScoreLink::factory()
+            ->state([
                 'playlist_item_id' => $playlistItem,
                 'user_id' => $user,
+            ])->completed([], [
                 'total_score' => 1,
                 'accuracy' => 0.5,
-                'pp' => 0.5,
-            ])
-        );
+                'passed' => true,
+            ])->create());
 
-        $agg->addScore(
-            Score::factory()
-            ->passed()
-            ->create([
-                'room_id' => $this->room,
+        $agg->addScoreLink(ScoreLink::factory()
+            ->state([
                 'playlist_item_id' => $playlistItem2,
                 'user_id' => $user,
+            ])->completed([], [
                 'total_score' => 1,
                 'accuracy' => 0.8,
-                'pp' => 0.8,
-            ])
-        );
+                'passed' => true,
+            ])->create());
 
         $result = json_item($agg, 'Multiplayer\UserScoreAggregate');
 
-        $this->assertSame(0.65, $result['pp']);
         $this->assertSame(0.65, $result['accuracy']);
     }
 
