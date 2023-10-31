@@ -11,10 +11,10 @@ use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\PlaylistItemUserHighScore;
 use App\Models\Multiplayer\Room;
 use App\Models\Multiplayer\ScoreLink;
+use App\Models\ScoreToken;
 use App\Models\Solo\Score;
-use App\Models\Solo\ScoreToken;
+use App\Transformers\ScoreTokenTransformer;
 use App\Transformers\ScoreTransformer;
-use App\Transformers\Solo\ScoreTokenTransformer;
 
 /**
  * @group Multiplayer
