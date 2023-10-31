@@ -20,7 +20,7 @@ class ReplayFile
 
     public function delete(): void
     {
-        $this->storage()->delete($this->filename());
+        $this->storage()->delete($this->path());
     }
 
     /**
@@ -35,7 +35,7 @@ class ReplayFile
 
     public function get(): ?string
     {
-        $body = $this->storage()->get($this->filename());
+        $body = $this->storage()->get($this->path());
 
         return $body === null
             ? null
@@ -100,10 +100,10 @@ class ReplayFile
 
     public function put(string $content): void
     {
-        $this->storage()->put($this->filename(), $content);
+        $this->storage()->put($this->path(), $content);
     }
 
-    private function filename(): string
+    private function path(): string
     {
         return (string) $this->score->getKey();
     }
