@@ -48,9 +48,9 @@ export default class SelectOptions<T extends Option> extends React.Component<Pro
     super(props);
     makeObservable(this);
     disposeOnUnmount(this, reaction(
-      () => this.showingSelector,
-      (showing) => {
-        blackoutToggle(showing, 0.5);
+      () => this.props.blackout && this.showingSelector,
+      (value) => {
+        blackoutToggle(value ?? false, 0.5);
       },
     ));
   }
