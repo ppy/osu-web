@@ -9,7 +9,7 @@ use App\Models\Build;
 use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\ScoreLink;
 use App\Models\Multiplayer\UserScoreAggregate;
-use App\Models\Solo\ScoreToken;
+use App\Models\ScoreToken;
 use App\Models\User;
 use Tests\TestCase;
 

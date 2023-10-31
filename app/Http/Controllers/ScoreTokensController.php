@@ -3,13 +3,14 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-namespace App\Http\Controllers\Solo;
+namespace App\Http\Controllers;
 
 use App\Exceptions\InvariantException;
 use App\Http\Controllers\Controller as BaseController;
 use App\Libraries\ClientCheck;
 use App\Models\Beatmap;
-use App\Models\Solo\ScoreToken;
+use App\Models\ScoreToken;
+use App\Transformers\ScoreTokenTransformer;
 use PDOException;
 
 class ScoreTokensController extends BaseController
@@ -56,6 +57,6 @@ class ScoreTokensController extends BaseController
             throw new InvariantException('failed creating score token');
         }
 
-        return json_item($scoreToken, 'Solo\ScoreToken');
+        return json_item($scoreToken, new ScoreTokenTransformer());
     }
 }

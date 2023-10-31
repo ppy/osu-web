@@ -5,13 +5,12 @@
 
 declare(strict_types=1);
 
-namespace Database\Factories\Solo;
+namespace Database\Factories;
 
 use App\Models\Beatmap;
 use App\Models\Build;
-use App\Models\Solo\ScoreToken;
+use App\Models\ScoreToken;
 use App\Models\User;
-use Database\Factories\Factory;
 
 class ScoreTokenFactory extends Factory
 {

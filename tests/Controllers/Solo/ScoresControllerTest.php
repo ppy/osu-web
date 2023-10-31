@@ -6,8 +6,8 @@
 namespace Tests\Controllers\Solo;
 
 use App\Models\Score as LegacyScore;
+use App\Models\ScoreToken;
 use App\Models\Solo\Score;
-use App\Models\Solo\ScoreToken;
 use App\Models\User;
 use LaravelRedis;
 use Tests\TestCase;
