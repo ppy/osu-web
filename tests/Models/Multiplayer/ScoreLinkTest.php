@@ -138,4 +138,28 @@ class ScoreLinkTest extends TestCase
             ]
         ]);
     }
+
+    public function testUnexpectedModWhenNoModsAreAllowed()
+    {
+        $user = User::factory()->create();
+        $beatmap = Beatmap::factory()->create();
+        $playlistItem = PlaylistItem::factory()->create(); // no required or allowed mods.
+        $scoreLink = ScoreLink::factory()->create([
+            'user_id' => $user,
+            'playlist_item_id' => $playlistItem
+        ]);
+
+        $this->expectException(InvariantException::class);
+        $this->expectExceptionMessage("This play includes mods that are not allowed.");
+        $scoreLink->complete([
+            'beatmap_id' => $beatmap->getKey(),
+            'ruleset_id' => 0,
+            'user_id' => $user->getKey(),
+            'ended_at' => json_date(Carbon::now()),
+            'mods' => [['acronym' => 'HD']],
+            'statistics' => [
+                'great' => 1
+            ]
+        ]);
+    }
 }
