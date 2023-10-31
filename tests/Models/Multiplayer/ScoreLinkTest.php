@@ -23,16 +23,16 @@ class ScoreLinkTest extends TestCase
         $beatmap = Beatmap::factory()->create();
         $playlistItem = PlaylistItem::factory()->create([
             'required_mods' => [[
-                'acronym' => 'HD'
+                'acronym' => 'HD',
             ]],
         ]);
         $scoreLink = ScoreLink::factory()->create([
             'user_id' => $user,
-            'playlist_item_id' => $playlistItem
+            'playlist_item_id' => $playlistItem,
         ]);
 
         $this->expectException(InvariantException::class);
-        $this->expectExceptionMessage("This play does not include the mods required.");
+        $this->expectExceptionMessage('This play does not include the mods required.');
         $scoreLink->complete([
             'beatmap_id' => $beatmap->getKey(),
             'ruleset_id' => 0,
@@ -40,8 +40,8 @@ class ScoreLinkTest extends TestCase
             'ended_at' => json_date(Carbon::now()),
             'mods' => [],
             'statistics' => [
-                'great' => 1
-            ]
+                'great' => 1,
+            ],
         ]);
     }
 
@@ -51,12 +51,12 @@ class ScoreLinkTest extends TestCase
         $beatmap = Beatmap::factory()->create();
         $playlistItem = PlaylistItem::factory()->create([
             'required_mods' => [[
-                'acronym' => 'HD'
+                'acronym' => 'HD',
             ]],
         ]);
         $scoreLink = ScoreLink::factory()->create([
             'user_id' => $user,
-            'playlist_item_id' => $playlistItem
+            'playlist_item_id' => $playlistItem,
         ]);
 
         $this->expectNotToPerformAssertions();
@@ -67,8 +67,8 @@ class ScoreLinkTest extends TestCase
             'ended_at' => json_date(Carbon::now()),
             'mods' => [['acronym' => 'HD']],
             'statistics' => [
-                'great' => 1
-            ]
+                'great' => 1,
+            ],
         ]);
     }
 
@@ -78,15 +78,15 @@ class ScoreLinkTest extends TestCase
         $beatmap = Beatmap::factory()->create();
         $playlistItem = PlaylistItem::factory()->create([
             'required_mods' => [[
-                'acronym' => 'DT'
+                'acronym' => 'DT',
             ]],
             'allowed_mods' => [[
-                'acronym' => 'HD'
+                'acronym' => 'HD',
             ]],
         ]);
         $scoreLink = ScoreLink::factory()->create([
             'user_id' => $user,
-            'playlist_item_id' => $playlistItem
+            'playlist_item_id' => $playlistItem,
         ]);
 
         $this->expectNotToPerformAssertions();
@@ -97,11 +97,11 @@ class ScoreLinkTest extends TestCase
             'ended_at' => json_date(Carbon::now()),
             'mods' => [
                 ['acronym' => 'DT'],
-                ['acronym' => 'HD']
+                ['acronym' => 'HD'],
             ],
             'statistics' => [
-                'great' => 1
-            ]
+                'great' => 1,
+            ],
         ]);
     }
 
@@ -111,19 +111,19 @@ class ScoreLinkTest extends TestCase
         $beatmap = Beatmap::factory()->create();
         $playlistItem = PlaylistItem::factory()->create([
             'required_mods' => [[
-                'acronym' => 'DT'
+                'acronym' => 'DT',
             ]],
             'allowed_mods' => [[
-                'acronym' => 'HR'
+                'acronym' => 'HR',
             ]],
         ]);
         $scoreLink = ScoreLink::factory()->create([
             'user_id' => $user,
-            'playlist_item_id' => $playlistItem
+            'playlist_item_id' => $playlistItem,
         ]);
 
         $this->expectException(InvariantException::class);
-        $this->expectExceptionMessage("This play includes mods that are not allowed.");
+        $this->expectExceptionMessage('This play includes mods that are not allowed.');
         $scoreLink->complete([
             'beatmap_id' => $beatmap->getKey(),
             'ruleset_id' => 0,
@@ -131,11 +131,11 @@ class ScoreLinkTest extends TestCase
             'ended_at' => json_date(Carbon::now()),
             'mods' => [
                 ['acronym' => 'DT'],
-                ['acronym' => 'HD']
+                ['acronym' => 'HD'],
             ],
             'statistics' => [
-                'great' => 1
-            ]
+                'great' => 1,
+            ],
         ]);
     }
 
@@ -146,11 +146,11 @@ class ScoreLinkTest extends TestCase
         $playlistItem = PlaylistItem::factory()->create(); // no required or allowed mods.
         $scoreLink = ScoreLink::factory()->create([
             'user_id' => $user,
-            'playlist_item_id' => $playlistItem
+            'playlist_item_id' => $playlistItem,
         ]);
 
         $this->expectException(InvariantException::class);
-        $this->expectExceptionMessage("This play includes mods that are not allowed.");
+        $this->expectExceptionMessage('This play includes mods that are not allowed.');
         $scoreLink->complete([
             'beatmap_id' => $beatmap->getKey(),
             'ruleset_id' => 0,
@@ -158,8 +158,8 @@ class ScoreLinkTest extends TestCase
             'ended_at' => json_date(Carbon::now()),
             'mods' => [['acronym' => 'HD']],
             'statistics' => [
-                'great' => 1
-            ]
+                'great' => 1,
+            ],
         ]);
     }
 }
