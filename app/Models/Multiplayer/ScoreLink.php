@@ -81,13 +81,13 @@ class ScoreLink extends Model
                 }
             }
 
-            $missingMods = array_diff(
+            $disallowedMods = array_diff(
                 array_column($mods, 'acronym'),
                 array_column($this->playlistItem->required_mods, 'acronym'),
                 array_column($this->playlistItem->allowed_mods, 'acronym')
             );
 
-            if (!empty($missingMods)) {
+            if (!empty($disallowedMods)) {
                 throw new InvariantException('This play includes mods that are not allowed.');
             }
 
