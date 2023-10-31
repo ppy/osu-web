@@ -81,16 +81,14 @@ class ScoreLink extends Model
                 }
             }
 
-            if (!empty($this->playlistItem->allowed_mods)) {
-                $missingMods = array_diff(
-                    array_column($mods, 'acronym'),
-                    array_column($this->playlistItem->required_mods, 'acronym'),
-                    array_column($this->playlistItem->allowed_mods, 'acronym')
-                );
+            $missingMods = array_diff(
+                array_column($mods, 'acronym'),
+                array_column($this->playlistItem->required_mods, 'acronym'),
+                array_column($this->playlistItem->allowed_mods, 'acronym')
+            );
 
-                if (!empty($missingMods)) {
-                    throw new InvariantException('This play includes mods that are not allowed.');
-                }
+            if (!empty($missingMods)) {
+                throw new InvariantException('This play includes mods that are not allowed.');
             }
 
             $this->score()->associate($score);
