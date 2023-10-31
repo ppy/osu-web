@@ -36,11 +36,6 @@ interface Props {
   initial: InitialData;
 }
 
-function parseJson<T>(json?: string) {
-  if (json == null) return;
-  return JSON.parse(json) as T;
-}
-
 @observer
 export default class Main extends React.Component<Props> {
   @observable private readonly discussionsState: DiscussionsState;
@@ -59,9 +54,7 @@ export default class Main extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
 
-    // using DiscussionsState['beatmapset'] as type cast to force errors if it doesn't match with props since the beatmapset is from discussionsState.
-    const existingBeatmapset = parseJson<DiscussionsState['beatmapset']>(props.container.dataset.beatmapset);
-    this.store = new BeatmapsetDiscussionsStore(existingBeatmapset ?? this.props.initial.beatmapset);
+    this.store = new BeatmapsetDiscussionsStore(this.props.initial.beatmapset);
     this.discussionsState = new DiscussionsState(this.store, props.container.dataset.discussionsState);
 
     makeObservable(this);

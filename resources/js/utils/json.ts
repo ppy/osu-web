@@ -55,8 +55,8 @@ export function jsonClone<T>(obj: T) {
  *
  * @param id id of the HTMLScriptElement.
  */
-export function parseJson<T>(id: string): T {
-  const json = parseJsonNullable<T>(id);
+export function parseJson<T>(id: string, remove = false): T {
+  const json = parseJsonNullable<T>(id, remove);
   if (json == null) {
     throw new Error(`script element ${id} is missing or contains nullish value.`);
   }
