@@ -24,7 +24,8 @@ class ScoreLinkTest extends TestCase
                 'acronym' => 'HD',
             ]],
         ]);
-        $scoreLink = ScoreLink::factory()->create([
+        $scoreLink = ScoreLink::factory()->make([
+            'score_id' => null,
             'user_id' => $user,
             'playlist_item_id' => $playlistItem,
         ]);
@@ -51,7 +52,8 @@ class ScoreLinkTest extends TestCase
                 'acronym' => 'HD',
             ]],
         ]);
-        $scoreLink = ScoreLink::factory()->create([
+        $scoreLink = ScoreLink::factory()->make([
+            'score_id' => null,
             'user_id' => $user,
             'playlist_item_id' => $playlistItem,
         ]);
@@ -80,7 +82,8 @@ class ScoreLinkTest extends TestCase
                 'acronym' => 'HD',
             ]],
         ]);
-        $scoreLink = ScoreLink::factory()->create([
+        $scoreLink = ScoreLink::factory()->make([
+            'score_id' => null,
             'user_id' => $user,
             'playlist_item_id' => $playlistItem,
         ]);
@@ -112,7 +115,8 @@ class ScoreLinkTest extends TestCase
                 'acronym' => 'HR',
             ]],
         ]);
-        $scoreLink = ScoreLink::factory()->create([
+        $scoreLink = ScoreLink::factory()->make([
+            'score_id' => null,
             'user_id' => $user,
             'playlist_item_id' => $playlistItem,
         ]);
@@ -138,7 +142,8 @@ class ScoreLinkTest extends TestCase
     {
         $user = User::factory()->create();
         $playlistItem = PlaylistItem::factory()->create(); // no required or allowed mods.
-        $scoreLink = ScoreLink::factory()->create([
+        $scoreLink = ScoreLink::factory()->make([
+            'score_id' => null,
             'user_id' => $user,
             'playlist_item_id' => $playlistItem,
         ]);
