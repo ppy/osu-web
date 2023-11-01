@@ -113,7 +113,7 @@ class UserScoreAggregate extends Model
         foreach ($playlistItemAggs as $agg) {
             $ret[] = [
                 'attempts' => $agg->attempts,
-                'id' => $agg->getKey(),
+                'id' => $agg->playlist_item_id,
             ];
         }
 
