@@ -183,7 +183,7 @@ class Score extends Model implements Traits\ReportableInterface
         return Beatmap::modeStr($this->ruleset_id);
     }
 
-    public function getReplayFile(): string
+    public function getReplayFile(): ?string
     {
         return Storage::disk(config('osu.score_replays.storage').'-solo-replay')
             ->get($this->getKey());
