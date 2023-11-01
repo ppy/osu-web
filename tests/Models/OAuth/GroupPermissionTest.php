@@ -3,56 +3,63 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
 namespace Tests\Models\OAuth;
 
-use App\Models\OAuth\Client;
 use App\Models\User;
 use Tests\TestCase;
 
 class GroupPermissionTest extends TestCase
 {
     /**
-     * TODO: maybe an exclusion list of when groups are allowed with token instead...
-     *
-     * @dataProvider groupsDataProvider
-     *
-     * @return void
+     * @dataProvider booleanDataProvider
      */
-    public function testGroupWithOAuth(string $group, string $method, bool $inGroup)
+    public function testIsBot(bool $useOAuth): void
     {
-        $user = User::factory()->withGroup($group)->create();
-        $client = Client::factory()->create(['user_id' => $user]);
-        $token = $this->createToken($user, ['*'], $client);
-        $this->actAsUserWithToken($token);
+        $user = User::factory()->withGroup('bot')->create();
 
-        $this->assertSame($inGroup, auth()->user()->$method());
+        if ($useOAuth) {
+            $this->actAsScopedUser($user, ['public']);
+        } else {
+            $this->actAsUser($user);
+        }
+
+        $this->assertTrue(auth()->user()->isBot());
     }
 
     /**
-     * @dataProvider groupsDataProvider
-     *
-     * @return void
+     * @dataProvider booleanDataProvider
      */
-    public function testGroupWithoutOAuth(string $group, string $method)
+    public function testIsGroupWithOAuth(bool $allowOAuth): void
     {
-        $user = User::factory()->withGroup($group)->create();
-        $this->actAsUser($user);
+        $group = 'test_group';
 
-        $this->assertTrue(auth()->user()->$method());
+        $this->actAsScopedUser(
+            User::factory()->withGroup($group)->create(),
+            ['public'],
+        );
+
+        $this->assertSame(
+            $allowOAuth,
+            auth()->user()->isGroup($group, allowOAuth: $allowOAuth),
+        );
     }
 
-    public function groupsDataProvider()
+    /**
+     * @dataProvider booleanDataProvider
+     */
+    public function testIsGroupWithoutOAuth(bool $allowOAuth): void
     {
-        return [
-            ['admin', 'isAdmin', false],
-            ['alumni', 'isAlumni', false],
-            ['announce', 'isChatAnnouncer', true],
-            ['bng', 'isBNG', false],
-            ['bot', 'isBot', true],
-            ['dev', 'isDev', false],
-            ['gmt', 'isGMT', false],
-            ['loved', 'isProjectLoved', false],
-            ['nat', 'isNAT', false],
-        ];
+        $group = 'test_group';
+
+        $this->actAsUser(User::factory()->withGroup($group)->create());
+
+        $this->assertTrue(auth()->user()->isGroup($group, allowOAuth: $allowOAuth));
+    }
+
+    public function booleanDataProvider(): array
+    {
+        return [[true], [false]];
     }
 }

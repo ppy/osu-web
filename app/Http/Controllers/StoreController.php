@@ -47,7 +47,7 @@ class StoreController extends Controller
             ->with('items.product')
             ->findOrFail($id);
 
-        if (Auth::user()->user_id !== $order->user_id && !Auth::user()->isAdmin()) {
+        if (Auth::user()->user_id !== $order->user_id && !Auth::user()->isGroup('admin')) {
             abort(403);
         }
 

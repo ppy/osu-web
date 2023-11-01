@@ -15,7 +15,7 @@ abstract class Controller extends BaseController
         $this->middleware('auth');
 
         $this->middleware(function ($request, $next) {
-            if (Auth::check() && !Auth::user()->isAdmin()) {
+            if (Auth::check() && !Auth::user()->isGroup('admin')) {
                 abort(403);
             }
 

@@ -445,7 +445,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     {
         $playCount = $this->playCount();
 
-        $allGroupIds = array_merge([$this->group_id], $this->groupIds()['active']);
+        $allGroupIds = array_merge([$this->group_id], $this->groupIds());
         $allowedGroupIds = array_map(function ($groupIdentifier) {
             return app('groups')->byIdentifier($groupIdentifier)->getKey();
         }, config('osu.user.allowed_rename_groups'));
@@ -567,7 +567,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             throw new InvariantException('Invalid playmodes: '.implode(', ', $invalidPlaymodes));
         }
 
-        $activeUserGroup = $this->findUserGroup($group, true);
+        $activeUserGroup = $this->findUserGroup($group);
 
         if ($activeUserGroup === null) {
             $userGroup = $this
@@ -612,7 +612,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function removeFromGroup(Group $group, ?self $actor = null): void
     {
-        $userGroup = $this->findUserGroup($group, false);
+        $userGroup = $this->findUserGroup($group, includePending: true);
 
         if ($userGroup === null) {
             return;
@@ -637,7 +637,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function setDefaultGroup(Group $group, ?self $actor = null): void
     {
         $this->getConnection()->transaction(function () use ($actor, $group) {
-            if ($this->findUserGroup($group, true) === null) {
+            if (!$this->isGroup($group, allowOAuth: true)) {
                 $this->addToGroup($group, null, $actor);
             }
 
@@ -947,83 +947,51 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     |
     */
 
-    public function inGroupWithPlaymode($groupIdentifier, $playmode = null)
+    /**
+     * Check if the user is in the "bng" or "bng_limited" groups.
+     */
+    public function isBNG(): bool
     {
-        $group = app('groups')->byIdentifier($groupIdentifier);
-        $isGroup = $this->isGroup($group);
-
-        if ($isGroup === false || $playmode === null) {
-            return $isGroup;
-        }
-
-        $groupModes = $this->findUserGroup($group, true)->actualRulesets();
-
-        return in_array($playmode, $groupModes ?? [], true);
+        return $this->isGroup('bng') || $this->isGroup('bng_limited');
     }
 
-    public function isNAT($mode = null)
-    {
-        return $this->inGroupWithPlaymode('nat', $mode);
-    }
-
-    public function isAdmin()
-    {
-        return $this->isGroup(app('groups')->byIdentifier('admin'));
-    }
-
-    public function isChatAnnouncer()
-    {
-        return $this->findUserGroup(app('groups')->byIdentifier('announce'), true) !== null;
-    }
-
-    public function isGMT()
-    {
-        return $this->isGroup(app('groups')->byIdentifier('gmt'));
-    }
-
-    public function isBNG($mode = null)
-    {
-        return $this->isFullBN($mode) || $this->isLimitedBN($mode);
-    }
-
-    public function isFullBN($mode = null)
-    {
-        return $this->inGroupWithPlaymode('bng', $mode);
-    }
-
-    public function isLimitedBN($mode = null)
-    {
-        return $this->inGroupWithPlaymode('bng_limited', $mode);
-    }
-
-    public function isDev()
-    {
-        return $this->isGroup(app('groups')->byIdentifier('dev'));
-    }
-
-    public function isModerator()
-    {
-        return $this->isGMT() || $this->isNAT();
-    }
-
-    public function isAlumni()
-    {
-        return $this->isGroup(app('groups')->byIdentifier('alumni'));
-    }
-
-    public function isRegistered()
-    {
-        return $this->isGroup(app('groups')->byIdentifier('default'));
-    }
-
-    public function isProjectLoved()
-    {
-        return $this->isGroup(app('groups')->byIdentifier('loved'));
-    }
-
-    public function isBot()
+    /**
+     * Check if the user is a bot.
+     *
+     * Note that this checks the user's default group, so it is different from
+     * calling `isGroup('bot')`:
+     *
+     * - Use `isBot()` to check if the user does not represent a real person.
+     * - Use `isGroup('bot')` to check if the user has been given approval to
+     *   run a chat bot on their account.
+     */
+    public function isBot(): bool
     {
         return $this->group_id === app('groups')->byIdentifier('bot')->getKey();
+    }
+
+    /**
+     * Check if the user is in the "gmt" or "nat" groups.
+     */
+    public function isModerator(): bool
+    {
+        return $this->isGroup('gmt') || $this->isGroup('nat');
+    }
+
+    /**
+     * Check if the user is in any groups that give extra permissions.
+     */
+    public function isPrivileged(): bool
+    {
+        static $groups = ['admin', 'bng', 'bng_limited', 'dev', 'gmt', 'loved', 'nat'];
+
+        foreach ($groups as $group) {
+            if ($this->isGroup($group)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public function hasSupported()
@@ -1057,16 +1025,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     {
         return !$this->hide_presence
             && time() - $this->getRawAttribute('user_lastvisit') < config('osu.user.online_window');
-    }
-
-    public function isPrivileged()
-    {
-        return $this->isAdmin()
-            || $this->isDev()
-            || $this->isGMT()
-            || $this->isBNG()
-            || $this->isNAT()
-            || $this->isProjectLoved();
     }
 
     public function isBanned()
@@ -1118,31 +1076,36 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $groups->byId($this->group_id) ?? $groups->byIdentifier('default');
     }
 
-    public function groupIds()
+    /**
+     * Get the group IDs of the user's active usergroups.
+     *
+     * @return array<int, int>
+     */
+    public function groupIds(): array
     {
         return $this->memoize(__FUNCTION__, function () {
-            $ret = [
-                'active' => [],
-                'pending' => [],
-            ];
-
-            foreach ($this->userGroups as $userGroup) {
-                $key = $userGroup->user_pending ? 'pending' : 'active';
-                $ret[$key][] = $userGroup->group_id;
-            }
-
-            return $ret;
+            return $this
+                ->userGroups
+                ->where('user_pending', false)
+                ->pluck('group_id')
+                ->all();
         });
     }
 
-
-    public function findUserGroup($group, bool $activeOnly): ?UserGroup
+    /**
+     * Get the user's usergroup corresponding to a specified group.
+     */
+    public function findUserGroup(Group|string $group, bool $includePending = false): ?UserGroup
     {
         $byGroupId = $this->memoize(__FUNCTION__.':byGroupId', fn () => $this->userGroups->keyBy('group_id'));
 
+        if (is_string($group)) {
+            $group = app('groups')->byIdentifier($group);
+        }
+
         $userGroup = $byGroupId->get($group->getKey());
 
-        if ($userGroup === null || ($activeOnly && $userGroup->user_pending)) {
+        if ($userGroup === null || (!$includePending && $userGroup->user_pending)) {
             return null;
         }
 
@@ -1150,17 +1113,25 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     }
 
     /**
-     * Check if a user is in a specific group.
+     * Check if the user is in a specified group.
      *
-     * This will always return false when called on user authenticated using OAuth.
-     *
-     * @param Group $group
-     *
-     * @return bool
+     * @param \App\Models\Group|string $group
+     * @param string|null $ruleset Additionally check if the usergroup has a specified ruleset.
+     * @param bool $allowOAuth Whether to perform the check if the user was authenticated using OAuth.
      */
-    public function isGroup($group)
+    public function isGroup(Group|string $group, ?string $ruleset = null, bool $allowOAuth = false): bool
     {
-        return $this->findUserGroup($group, true) !== null && $this->token() === null;
+        if (!$allowOAuth && $this->token() !== null) {
+            return false;
+        }
+
+        $userGroup = $this->findUserGroup($group);
+
+        if ($userGroup === null) {
+            return false;
+        }
+
+        return $ruleset === null || in_array($ruleset, $userGroup->actualRulesets(), true);
     }
 
     public function badges()
@@ -1687,8 +1658,8 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             }
 
             return $this->userGroups
-                ->filter(function ($userGroup) {
-                    return optional($userGroup->group)->hasBadge();
+                ->filter(function (UserGroup $userGroup) {
+                    return !$userGroup->user_pending && $userGroup->group->hasBadge();
                 })
                 ->sort(function ($a, $b) {
                     // If the user has a default group, always show it first
@@ -1709,28 +1680,28 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function nominationModes()
     {
         return $this->memoize(__FUNCTION__, function () {
-            if (!$this->isNAT() && !$this->isBNG()) {
+            if (!$this->isGroup('nat') && !$this->isBNG()) {
                 return;
             }
 
             $modes = [];
 
-            if ($this->isLimitedBN()) {
-                $playmodes = $this->findUserGroup(app('groups')->byIdentifier('bng_limited'), true)->actualRulesets();
+            if ($this->isGroup('bng_limited')) {
+                $playmodes = $this->findUserGroup('bng_limited')->actualRulesets();
                 foreach ($playmodes as $playmode) {
                     $modes[$playmode] = 'limited';
                 }
             }
 
-            if ($this->isFullBN()) {
-                $playmodes = $this->findUserGroup(app('groups')->byIdentifier('bng'), true)->actualRulesets();
+            if ($this->isGroup('bng')) {
+                $playmodes = $this->findUserGroup('bng')->actualRulesets();
                 foreach ($playmodes as $playmode) {
                     $modes[$playmode] = 'full';
                 }
             }
 
-            if ($this->isNAT()) {
-                $playmodes = $this->findUserGroup(app('groups')->byIdentifier('nat'), true)->actualRulesets();
+            if ($this->isGroup('nat')) {
+                $playmodes = $this->findUserGroup('nat')->actualRulesets();
                 foreach ($playmodes as $playmode) {
                     $modes[$playmode] = 'full';
                 }

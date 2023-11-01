@@ -108,7 +108,7 @@ class UserGroupsControllerTest extends TestCase
 
         $user->refresh();
 
-        $actualPlaymodes = $user->findUserGroup($group, true)->playmodes;
+        $actualPlaymodes = $user->findUserGroup($group)->playmodes;
 
         $this->assertCount(count($playmodes), $actualPlaymodes);
         $this->assertArraySubset($playmodes, $actualPlaymodes);
@@ -226,7 +226,7 @@ class UserGroupsControllerTest extends TestCase
 
         $user->refresh();
 
-        $actualPlaymodes = $user->findUserGroup($group, true)->playmodes;
+        $actualPlaymodes = $user->findUserGroup($group)->playmodes;
 
         $this->assertCount(count($playmodes), $actualPlaymodes);
         $this->assertArraySubset($playmodes, $actualPlaymodes);

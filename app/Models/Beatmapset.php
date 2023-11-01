@@ -720,10 +720,10 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
                 $canNominate = false;
                 $canFullNominate = false;
                 foreach ($this->playmodesStr() as $mode) {
-                    if ($user->isFullBN($mode) || $user->isNAT($mode)) {
+                    if ($user->isGroup('bng', $mode) || $user->isGroup('nat', $mode)) {
                         $canNominate = true;
                         $canFullNominate = true;
-                    } else if ($user->isLimitedBN($mode)) {
+                    } else if ($user->isGroup('bng_limited', $mode)) {
                         $canNominate = true;
                     }
                 }
@@ -743,8 +743,8 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
                 }
 
                 foreach ($playmodes as $mode) {
-                    if (!$user->isFullBN($mode) && !$user->isNAT($mode)) {
-                        if (!$user->isLimitedBN($mode)) {
+                    if (!$user->isGroup('bng', $mode) && !$user->isGroup('nat', $mode)) {
+                        if (!$user->isGroup('bng_limited', $mode)) {
                             throw new InvariantException(osu_trans('beatmapsets.nominate.incorrect_mode', ['mode' => $mode]));
                         }
 
@@ -1266,7 +1266,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             ->get()
             ->pluck('user')
             ->contains(function ($user) use ($mode) {
-                return $user->isNAT($mode) || $user->isFullBN($mode);
+                return $user->isGroup('nat', $mode) || $user->isGroup('bng', $mode);
             });
     }
 

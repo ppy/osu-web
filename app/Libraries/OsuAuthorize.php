@@ -82,7 +82,7 @@ class OsuAuthorize
         $auth = $authMap->get($cacheKey, null);
 
         if ($auth === null) {
-            if ($user !== null && $user->isAdmin() && !static::alwaysCheck($ability)) {
+            if ($user !== null && $user->isGroup('admin') && !static::alwaysCheck($ability)) {
                 $message = 'ok';
             } else {
                 $function = "check{$ability}";
@@ -141,7 +141,7 @@ class OsuAuthorize
                 Beatmapset::STATES['graveyard'],
                 Beatmapset::STATES['loved'],
             ];
-            if ($user->isProjectLoved() && in_array($status, $lovedModifiable, true)) {
+            if ($user->isGroup('loved') && in_array($status, $lovedModifiable, true)) {
                 return 'ok';
             }
 
@@ -628,7 +628,7 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
 
-        if (!$user->isProjectLoved()) {
+        if (!$user->isGroup('loved')) {
             return 'unauthorized';
         }
 
@@ -648,7 +648,7 @@ class OsuAuthorize
 
         static $prefix = 'beatmap_discussion.nominate.';
 
-        if (!$user->isBNG() && !$user->isNAT()) {
+        if (!$user->isBNG() && !$user->isGroup('nat')) {
             return 'unauthorized';
         }
 
@@ -770,7 +770,7 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
 
-        if (!$user->isFullBN() && !$user->isModerator()) {
+        if (!$user->isGroup('bng') && !$user->isModerator()) {
             return 'unauthorized';
         }
 
@@ -841,7 +841,7 @@ class OsuAuthorize
             Beatmapset::STATES['graveyard'],
             Beatmapset::STATES['loved'],
         ];
-        if ($user->isProjectLoved() && in_array($beatmapset->approved, $lovedEditable, true)) {
+        if ($user->isGroup('loved') && in_array($beatmapset->approved, $lovedEditable, true)) {
             return 'ok';
         }
 
@@ -912,7 +912,7 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user, $prefix);
 
-        if ($user->isModerator() || $user->isChatAnnouncer()) {
+        if ($user->isModerator() || $user->isGroup('announce', allowOAuth: true)) {
             return 'ok';
         }
 
@@ -1363,7 +1363,14 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if ($forum->moderator_groups !== null && !empty(array_intersect($user->groupIds()['active'], $forum->moderator_groups))) {
+        // TODO: If `$user` is the resource owner, authorizing with a
+        //       third-party OAuth client, `$user->groupIds()` should be empty
+        //       here to match the restrictions in `User::isGroup()`.
+        //
+        //       Some third-party clients currently rely on this mistake, so an
+        //       alternative method to request usage of group permissions needs
+        //       to be provided before fixing this.
+        if ($forum->moderator_groups !== null && !empty(array_intersect($user->groupIds(), $forum->moderator_groups))) {
             return 'ok';
         }
 
@@ -1808,8 +1815,7 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
-        // isBot checks user primary group
-        if (!$user->isGroup(app('groups')->byIdentifier('bot')) && $user->playCount() < 100) {
+        if (!$user->isGroup('bot') && $user->playCount() < 100) {
             return 'play_more';
         }
 

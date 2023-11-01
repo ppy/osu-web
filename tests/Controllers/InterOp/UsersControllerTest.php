@@ -119,7 +119,7 @@ class UsersControllerTest extends TestCase
         }
 
         $this->assertStringContainsString("+{$username}@", $user->user_email);
-        $this->assertTrue($user->isGroup(app('groups')->byIdentifier($group)));
+        $this->assertTrue($user->isGroup($group));
     }
 
     public function testStoreUserCopyMissingUsername()

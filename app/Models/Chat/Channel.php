@@ -241,7 +241,7 @@ class Channel extends Model
         return !(
             $targetUser === null
             || $user->hasBlocked($targetUser)
-            && !($targetUser->isBot() || $targetUser->isModerator() || $targetUser->isAdmin())
+            && !($targetUser->isBot() || $targetUser->isModerator() || $targetUser->isGroup('admin'))
         );
     }
 

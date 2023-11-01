@@ -11,7 +11,7 @@ class ClientCheck
 {
     public static function findBuild($user, $params): ?Build
     {
-        $assertValid = config('osu.client.check_version') && $user->findUserGroup(app('groups')->byIdentifier('admin'), true) === null;
+        $assertValid = config('osu.client.check_version') && !$user->isGroup('admin', allowOAuth: true);
 
         $clientHash = presence(get_string($params['version_hash'] ?? null));
         if ($clientHash === null) {
