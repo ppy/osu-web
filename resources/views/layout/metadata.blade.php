@@ -34,6 +34,11 @@
 
 @foreach ($opengraph as $key => $value)
     @if (present($value))
+        @php
+            if ($key === 'title') {
+                $value .= ' · '.page_title();
+            }
+        @endphp
         <meta property="og:{{ $key }}" content="{{ $value }}">
     @endif
 @endforeach
