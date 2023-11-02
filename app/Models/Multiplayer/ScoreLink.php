@@ -44,14 +44,12 @@ class ScoreLink extends Model
                 throw new InvariantException('This play includes mods that are not allowed.');
             }
 
-            $scoreId = $score->getKey();
-            $token->fill(['score_id' => $scoreId])->saveOrExplode();
+            $token->score()->associate($score)->saveOrExplode();
 
-            $ret = new static([
-                'playlist_item_id' => $playlistItem->getKey(),
-                'score_id' => $scoreId,
-                'user_id' => $score->user_id,
-            ]);
+            $ret = (new static())
+                ->playlistItem()->associate($playlistItem)
+                ->score()->associate($score)
+                ->user()->associate($token->user);
             $ret->saveOrExplode();
 
             return $ret;
