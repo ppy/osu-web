@@ -16,7 +16,7 @@ class UserOpengraph
     {
     }
 
-    public function get()
+    public function get(): array
     {
         return [
             // none for multiplayer, playlist counts seems...not useful?
