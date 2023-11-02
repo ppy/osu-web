@@ -33,6 +33,8 @@ class ScoreLink extends Model
             $playlistItem = $token->playlistItem;
             $requiredMods = array_column($playlistItem->required_mods, 'acronym');
             $mods = array_column($score->data->mods, 'acronym');
+            $mods = app('mods')->excludeModsAlwaysValidForSubmission($playlistItem->ruleset_id, $mods);
+
             if (!empty($requiredMods)) {
                 if (!empty(array_diff($requiredMods, $mods))) {
                     throw new InvariantException('This play does not include the mods required.');
