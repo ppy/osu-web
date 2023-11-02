@@ -203,33 +203,37 @@ function captcha_login_triggered()
     return $triggered;
 }
 
-function class_modifiers_each(array $modifiersArray, callable $callback)
+function class_modifiers_flat(array $modifiersArray): array
 {
+    $ret = [];
+
     foreach ($modifiersArray as $modifiers) {
         if (is_array($modifiers)) {
             // either "$modifier => boolean" or "$i => $modifier|null"
             foreach ($modifiers as $k => $v) {
                 if (is_bool($v)) {
                     if ($v) {
-                        $callback($k);
+                        $ret[] = $k;
                     }
                 } elseif ($v !== null) {
-                    $callback($v);
+                    $ret[] = $v;
                 }
             }
         } elseif (is_string($modifiers)) {
-            $callback($modifiers);
+            $ret[] = $modifiers;
         }
     }
+
+    return $ret;
 }
 
-function class_with_modifiers(string $className, ...$modifiersArray)
+function class_with_modifiers(string $className, ...$modifiersArray): string
 {
     $class = $className;
 
-    class_modifiers_each($modifiersArray, function ($m) use (&$class, $className) {
+    foreach (class_modifiers_flat($modifiersArray) as $m) {
         $class .= " {$className}--{$m}";
-    });
+    }
 
     return $class;
 }
