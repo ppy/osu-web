@@ -9,6 +9,7 @@ namespace App\Models\Multiplayer;
 
 use App\Exceptions\InvariantException;
 use App\Models\Model;
+use App\Models\ScoreToken;
 use App\Models\Solo\Score;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -24,6 +25,37 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  */
 class ScoreLink extends Model
 {
+    public static function complete(ScoreToken $token, array $params): static
+    {
+        return \DB::transaction(function () use ($params, $token) {
+            $score = Score::createFromJsonOrExplode($params);
+
+            $playlistItem = $token->playlistItem;
+            $requiredMods = array_column($playlistItem->required_mods, 'acronym');
+            $mods = array_column($score->data->mods, 'acronym');
+            if (!empty($requiredMods)) {
+                if (!empty(array_diff($requiredMods, $mods))) {
+                    throw new InvariantException('This play does not include the mods required.');
+                }
+            }
+
+            $allowedMods = array_column($playlistItem->allowed_mods, 'acronym');
+            if (!empty(array_diff($mods, $requiredMods, $allowedMods))) {
+                throw new InvariantException('This play includes mods that are not allowed.');
+            }
+
+            $token->score()->associate($score)->saveOrExplode();
+
+            $ret = (new static())
+                ->playlistItem()->associate($playlistItem)
+                ->score()->associate($score)
+                ->user()->associate($token->user);
+            $ret->saveOrExplode();
+
+            return $ret;
+        });
+    }
+
     public $incrementing = false;
     public $timestamps = false;
 
@@ -62,38 +94,6 @@ class ScoreLink extends Model
             'score',
             'user' => $this->getRelationValue($key),
         };
-    }
-
-    public function complete(array $params): void
-    {
-        $this->getConnection()->transaction(function () use ($params) {
-            $score = Score::createFromJsonOrExplode($params);
-            $mods = $score->data->mods;
-
-            if (!empty($this->playlistItem->required_mods)) {
-                $missingMods = array_diff(
-                    array_column($this->playlistItem->required_mods, 'acronym'),
-                    array_column($mods, 'acronym')
-                );
-
-                if (!empty($missingMods)) {
-                    throw new InvariantException('This play does not include the mods required.');
-                }
-            }
-
-            $disallowedMods = array_diff(
-                array_column($mods, 'acronym'),
-                array_column($this->playlistItem->required_mods, 'acronym'),
-                array_column($this->playlistItem->allowed_mods, 'acronym')
-            );
-
-            if (!empty($disallowedMods)) {
-                throw new InvariantException('This play includes mods that are not allowed.');
-            }
-
-            $this->score()->associate($score);
-            $this->save();
-        });
     }
 
     public function position(): ?int
