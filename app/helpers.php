@@ -1448,24 +1448,6 @@ function get_class_namespace($className)
     return substr($className, 0, strrpos($className, '\\'));
 }
 
-function ci_file_search($fileName)
-{
-    if (file_exists($fileName)) {
-        return is_file($fileName) ? $fileName : false;
-    }
-
-    $directoryName = dirname($fileName);
-    $fileArray = glob($directoryName.'/*', GLOB_NOSORT);
-    $fileNameLowerCase = strtolower($fileName);
-    foreach ($fileArray as $file) {
-        if (strtolower($file) === $fileNameLowerCase) {
-            return is_file($file) ? $file : false;
-        }
-    }
-
-    return false;
-}
-
 function sanitize_filename($file)
 {
     $file = mb_ereg_replace('[^\w\s\d\-_~,;\[\]\(\).]', '', $file);
@@ -1730,24 +1712,6 @@ function format_percentage($number, $precision = 2)
 {
     // the formatter assumes decimal number while the function receives percentage number.
     return i18n_number_format($number / 100, NumberFormatter::PERCENT, null, $precision);
-}
-
-function group_users_by_online_state($users)
-{
-    $online = $offline = [];
-
-    foreach ($users as $user) {
-        if ($user->isOnline()) {
-            $online[] = $user;
-        } else {
-            $offline[] = $user;
-        }
-    }
-
-    return [
-        'online' => $online,
-        'offline' => $offline,
-    ];
 }
 
 // shorthand to return the filename of an open stream/handle
