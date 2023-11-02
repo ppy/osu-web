@@ -70,8 +70,7 @@ class Groups
         $group = $this->allByIdentifier()->get($id);
 
         if ($group === null) {
-            static $privGroups;
-            $privGroups ??= new Set([
+            static $privGroups = new Set([
                 'admin',
                 'alumni',
                 'announce',
