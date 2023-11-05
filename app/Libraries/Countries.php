@@ -23,7 +23,7 @@ class Countries
             $this->countries = $this->allByCode()->all();
         }
 
-        return array_key_exists($code, $this->countries) ? $this->countries[$code] : null;
+        return $this->countries[$code] ?? null;
     }
 
     protected function fetch(): Collection
