@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace Tests;
 
 use App\Models\Group;
+use Database\Seeders\ModelSeeders\GroupSeeder;
 use PHPUnit\Runner\AfterLastTestHook;
 use PHPUnit\Runner\BeforeFirstTestHook;
 
@@ -23,16 +24,7 @@ class SeederExtension implements AfterLastTestHook, BeforeFirstTestHook
     public function executeBeforeFirstTest(): void
     {
         TestCase::withDbAccess(function () {
-            Group::truncate();
-            foreach (Group::PRIV_IDENTIFIERS as $identifier) {
-                Group::create([
-                    'group_desc' => '',
-                    'group_name' => $identifier,
-                    'group_type' => 2,
-                    'identifier' => $identifier,
-                    'short_name' => $identifier,
-                ]);
-            }
+            (new GroupSeeder())->run();
         });
     }
 }
