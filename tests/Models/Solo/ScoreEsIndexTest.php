@@ -105,7 +105,6 @@ class ScoreEsIndexTest extends TestCase
             Beatmapset::truncate();
             Country::truncate();
             Genre::truncate();
-            Group::truncate();
             Language::truncate();
             Score::truncate();
             User::truncate();

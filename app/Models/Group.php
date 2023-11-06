@@ -35,6 +35,23 @@ use App\Libraries\Transactions\AfterCommit;
  */
 class Group extends Model implements AfterCommit
 {
+    // Identifier of groups which involved in permission checks
+    // and assumed to always exist in database.
+    const PRIV_GROUPS = [
+        'admin',
+        'alumni',
+        'announce',
+        'bng',
+        'bng_limited',
+        'bot',
+        'default',
+        'dev',
+        'gmt',
+        'loved',
+        'nat',
+        'no_profile',
+    ];
+
     public $timestamps = false;
 
     protected $casts = [

@@ -70,7 +70,6 @@ class RemoveBeatmapsetSoloScoresTest extends TestCase
             Beatmapset::truncate();
             Country::truncate();
             Genre::truncate();
-            Group::truncate();
             Language::truncate();
             Score::truncate();
             ScorePerformance::truncate();

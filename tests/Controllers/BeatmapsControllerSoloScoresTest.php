@@ -164,7 +164,6 @@ class BeatmapsControllerSoloScoresTest extends TestCase
             Beatmapset::truncate();
             Country::truncate();
             Genre::truncate();
-            Group::truncate();
             Language::truncate();
             SoloScore::truncate();
             User::truncate();
