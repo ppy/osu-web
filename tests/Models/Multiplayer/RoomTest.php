@@ -111,12 +111,12 @@ class RoomTest extends TestCase
 
         $this->expectCountChange(fn () => $room->participant_count, 1);
         $this->expectCountChange(fn () => $room->userHighScores()->count(), 1);
-        $this->expectCountChange(fn () => $room->scoreLinks()->count(), 1);
+        $this->expectCountChange(fn () => $playlistItem->scoreTokens()->count(), 1);
 
         $room->startPlay($user, $playlistItem, 0);
         $room->refresh();
 
-        $this->assertSame($user->getKey(), $room->scoreLinks()->last()->user_id);
+        $this->assertSame($user->getKey(), $playlistItem->scoreTokens()->last()->user_id);
     }
 
     public function testMaxAttemptsReached()
@@ -149,21 +149,21 @@ class RoomTest extends TestCase
             'max_attempts' => 1,
         ]);
 
-        $initialCount = $room->scoreLinks()->count();
+        $initialCount = $playlistItem1->scoreTokens()->count();
         $room->startPlay($user, $playlistItem1, 0);
-        $this->assertSame($initialCount + 1, $room->scoreLinks()->count());
+        $this->assertSame($initialCount + 1, $playlistItem1->scoreTokens()->count());
 
-        $initialCount = $room->scoreLinks()->count();
+        $initialCount = $playlistItem1->scoreTokens()->count();
         try {
             $room->startPlay($user, $playlistItem1, 0);
         } catch (Exception $ex) {
             $this->assertTrue($ex instanceof InvariantException);
         }
-        $this->assertSame($initialCount, $room->scoreLinks()->count());
+        $this->assertSame($initialCount, $playlistItem1->scoreTokens()->count());
 
-        $initialCount = $room->scoreLinks()->count();
+        $initialCount = $playlistItem2->scoreTokens()->count();
         $room->startPlay($user, $playlistItem2, 0);
-        $this->assertSame($initialCount + 1, $room->scoreLinks()->count());
+        $this->assertSame($initialCount + 1, $playlistItem2->scoreTokens()->count());
     }
 
     public function testCannotStartPlayedItem()

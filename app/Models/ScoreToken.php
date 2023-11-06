@@ -3,12 +3,11 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-namespace App\Models\Solo;
+namespace App\Models;
 
-use App\Models\Beatmap;
-use App\Models\Build;
-use App\Models\Model;
-use App\Models\User;
+use App\Models\Multiplayer\PlaylistItem;
+use App\Models\Solo\Score;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property \App\Models\Beatmap $beatmap
@@ -26,8 +25,6 @@ use App\Models\User;
  */
 class ScoreToken extends Model
 {
-    protected $table = 'solo_score_tokens';
-
     public function beatmap()
     {
         return $this->belongsTo(Beatmap::class, 'beatmap_id');
@@ -36,6 +33,11 @@ class ScoreToken extends Model
     public function build()
     {
         return $this->belongsTo(Build::class, 'build_id');
+    }
+
+    public function playlistItem(): BelongsTo
+    {
+        return $this->belongsTo(PlaylistItem::class);
     }
 
     public function score()
@@ -54,6 +56,7 @@ class ScoreToken extends Model
             'beatmap_id',
             'build_id',
             'id',
+            'playlist_item_id',
             'ruleset_id',
             'score_id',
             'user_id' => $this->getRawAttribute($key),
@@ -66,6 +69,7 @@ class ScoreToken extends Model
 
             'beatmap',
             'build',
+            'playlistItem',
             'score',
             'user' => $this->getRelationValue($key),
         };

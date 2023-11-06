@@ -55,6 +55,12 @@
             "Type": "number",
             "Label": "Speed decrease",
             "Description": "The actual decrease to apply"
+          },
+          {
+            "Name": "adjust_pitch",
+            "Type": "boolean",
+            "Label": "Adjust pitch",
+            "Description": "Should pitch be adjusted with speed"
           }
         ],
         "IncompatibleMods": [
@@ -175,6 +181,12 @@
             "Type": "number",
             "Label": "Speed increase",
             "Description": "The actual increase to apply"
+          },
+          {
+            "Name": "adjust_pitch",
+            "Type": "boolean",
+            "Label": "Adjust pitch",
+            "Description": "Should pitch be adjusted with speed"
           }
         ],
         "IncompatibleMods": [
@@ -1167,6 +1179,12 @@
             "Type": "number",
             "Label": "Speed decrease",
             "Description": "The actual decrease to apply"
+          },
+          {
+            "Name": "adjust_pitch",
+            "Type": "boolean",
+            "Label": "Adjust pitch",
+            "Description": "Should pitch be adjusted with speed"
           }
         ],
         "IncompatibleMods": [
@@ -1283,6 +1301,12 @@
             "Type": "number",
             "Label": "Speed increase",
             "Description": "The actual increase to apply"
+          },
+          {
+            "Name": "adjust_pitch",
+            "Type": "boolean",
+            "Label": "Adjust pitch",
+            "Description": "Should pitch be adjusted with speed"
           }
         ],
         "IncompatibleMods": [
@@ -1772,6 +1796,12 @@
             "Type": "number",
             "Label": "Speed decrease",
             "Description": "The actual decrease to apply"
+          },
+          {
+            "Name": "adjust_pitch",
+            "Type": "boolean",
+            "Label": "Adjust pitch",
+            "Description": "Should pitch be adjusted with speed"
           }
         ],
         "IncompatibleMods": [
@@ -1886,6 +1916,12 @@
             "Type": "number",
             "Label": "Speed increase",
             "Description": "The actual increase to apply"
+          },
+          {
+            "Name": "adjust_pitch",
+            "Type": "boolean",
+            "Label": "Adjust pitch",
+            "Description": "Should pitch be adjusted with speed"
           }
         ],
         "IncompatibleMods": [
@@ -2336,6 +2372,12 @@
             "Type": "number",
             "Label": "Speed decrease",
             "Description": "The actual decrease to apply"
+          },
+          {
+            "Name": "adjust_pitch",
+            "Type": "boolean",
+            "Label": "Adjust pitch",
+            "Description": "Should pitch be adjusted with speed"
           }
         ],
         "IncompatibleMods": [
@@ -2450,6 +2492,12 @@
             "Type": "number",
             "Label": "Speed increase",
             "Description": "The actual increase to apply"
+          },
+          {
+            "Name": "adjust_pitch",
+            "Type": "boolean",
+            "Label": "Adjust pitch",
+            "Description": "Should pitch be adjusted with speed"
           }
         ],
         "IncompatibleMods": [

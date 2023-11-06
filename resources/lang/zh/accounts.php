@@ -63,15 +63,15 @@ return [
     ],
 
     'github_user' => [
-        'info' => "",
-        'link' => '',
-        'title' => '',
-        'unlink' => '',
+        'info' => "如果你是 osu! 开源仓库的贡献者，在这里填写你 GitHub 的账号，可以将你的更新日志条目与 osu! 个人主页绑定起来。如果 GitHub 账号没有历史提交记录，则无法绑定。",
+        'link' => '绑定 GitHub 账号',
+        'title' => 'GitHub',
+        'unlink' => '解绑 GitHub 账号',
 
         'error' => [
-            'already_linked' => '',
-            'no_contribution' => '',
-            'unverified_email' => '',
+            'already_linked' => '这个 GitHub 账号已经绑定到另一个玩家账号上。',
+            'no_contribution' => '无法绑定在 osu! 仓库中没有任何贡献纪录的 GitHub 账号。',
+            'unverified_email' => '请在你 GitHub 账号的首选邮箱中完成验证，然后重新绑定账号。',
         ],
     ],
 

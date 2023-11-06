@@ -63,15 +63,15 @@ return [
     ],
 
     'github_user' => [
-        'info' => "",
-        'link' => '',
-        'title' => '',
-        'unlink' => '',
+        'info' => "Se fores um contribuidor dos repositórios de fonte aberta do osu!, ao associar a tua conta do GitHub, irá associar os teus acessos ao registo de alterações com o teu perfil no osu! As contas do GitHub sem histórico de contribuições ao osu!, não podem ser vinculadas.",
+        'link' => 'Associar conta do GitHub',
+        'title' => 'GitHub',
+        'unlink' => 'Desassociar conta do GitHub',
 
         'error' => [
-            'already_linked' => '',
-            'no_contribution' => '',
-            'unverified_email' => '',
+            'already_linked' => 'Esta conta do GitHub já está associada a um utilizador diferente.',
+            'no_contribution' => 'Não é possível associar uma conta GitHub sem qualquer histórico de contribuições nos repositórios osu!',
+            'unverified_email' => 'Verifica o teu email principal no GitHub e, em seguida, tenta associar a tua conta novamente.',
         ],
     ],
 

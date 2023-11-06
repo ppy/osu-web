@@ -23,8 +23,8 @@ return [
         ],
 
         'button' => [
-            'add' => 'Голосовать',
-            'remove' => 'Отменить голос',
+            'add' => 'Отдать голос',
+            'remove' => 'Забрать голос',
             'used_up' => 'Вы уже использовали все свои голоса',
         ],
 
@@ -57,7 +57,7 @@ return [
         'download' => 'Скачать файлы',
     ],
     'vote' => [
-        'list' => 'голосов',
+        'list' => 'голоса',
         'count' => ':count_delimited голос|:count_delimited голоса|:count_delimited голосов',
         'points' => ':count_delimited очко|:count_delimited очка|:count_delimited очков',
     ],

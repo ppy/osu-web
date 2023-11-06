@@ -203,33 +203,37 @@ function captcha_login_triggered()
     return $triggered;
 }
 
-function class_modifiers_each(array $modifiersArray, callable $callback)
+function class_modifiers_flat(array $modifiersArray): array
 {
+    $ret = [];
+
     foreach ($modifiersArray as $modifiers) {
         if (is_array($modifiers)) {
             // either "$modifier => boolean" or "$i => $modifier|null"
             foreach ($modifiers as $k => $v) {
                 if (is_bool($v)) {
                     if ($v) {
-                        $callback($k);
+                        $ret[] = $k;
                     }
                 } elseif ($v !== null) {
-                    $callback($v);
+                    $ret[] = $v;
                 }
             }
         } elseif (is_string($modifiers)) {
-            $callback($modifiers);
+            $ret[] = $modifiers;
         }
     }
+
+    return $ret;
 }
 
-function class_with_modifiers(string $className, ...$modifiersArray)
+function class_with_modifiers(string $className, ...$modifiersArray): string
 {
     $class = $className;
 
-    class_modifiers_each($modifiersArray, function ($m) use (&$class, $className) {
+    foreach (class_modifiers_flat($modifiersArray) as $m) {
         $class .= " {$className}--{$m}";
-    });
+    }
 
     return $class;
 }
@@ -1448,24 +1452,6 @@ function get_class_namespace($className)
     return substr($className, 0, strrpos($className, '\\'));
 }
 
-function ci_file_search($fileName)
-{
-    if (file_exists($fileName)) {
-        return is_file($fileName) ? $fileName : false;
-    }
-
-    $directoryName = dirname($fileName);
-    $fileArray = glob($directoryName.'/*', GLOB_NOSORT);
-    $fileNameLowerCase = strtolower($fileName);
-    foreach ($fileArray as $file) {
-        if (strtolower($file) === $fileNameLowerCase) {
-            return is_file($file) ? $file : false;
-        }
-    }
-
-    return false;
-}
-
 function sanitize_filename($file)
 {
     $file = mb_ereg_replace('[^\w\s\d\-_~,;\[\]\(\).]', '', $file);
@@ -1730,24 +1716,6 @@ function format_percentage($number, $precision = 2)
 {
     // the formatter assumes decimal number while the function receives percentage number.
     return i18n_number_format($number / 100, NumberFormatter::PERCENT, null, $precision);
-}
-
-function group_users_by_online_state($users)
-{
-    $online = $offline = [];
-
-    foreach ($users as $user) {
-        if ($user->isOnline()) {
-            $online[] = $user;
-        } else {
-            $offline[] = $user;
-        }
-    }
-
-    return [
-        'online' => $online,
-        'offline' => $offline,
-    ];
 }
 
 // shorthand to return the filename of an open stream/handle

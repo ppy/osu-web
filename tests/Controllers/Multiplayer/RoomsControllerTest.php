@@ -40,11 +40,14 @@ class RoomsControllerTest extends TestCase
                 'user_id' => $user,
             ])->completed([], ['passed' => true, 'total_score' => 20])
             ->create();
-        UserScoreAggregate::lookupOrDefault($scoreLink->user, $scoreLink->room)->recalculate();
+        UserScoreAggregate::lookupOrDefault($scoreLink->user, $scoreLink->playlistItem->room)->recalculate();
 
         $this->actAsScopedUser($user, ['*']);
 
-        $this->json('GET', route('api.rooms.show', $room))->assertSuccessful();
+        $this
+            ->json('GET', route('api.rooms.show', $room))
+            ->assertSuccessful()
+            ->assertJsonPath('current_user_score.playlist_item_attempts.0.attempts', 1);
     }
 
     public function testStore()

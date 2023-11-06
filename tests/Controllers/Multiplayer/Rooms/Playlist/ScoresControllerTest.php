@@ -9,6 +9,7 @@ use App\Models\Build;
 use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\ScoreLink;
 use App\Models\Multiplayer\UserScoreAggregate;
+use App\Models\ScoreToken;
 use App\Models\User;
 use Tests\TestCase;
 
@@ -38,7 +39,7 @@ class ScoresControllerTest extends TestCase
             ->create();
 
         foreach ($scoreLinks as $scoreLink) {
-            UserScoreAggregate::lookupOrDefault($scoreLink->user, $scoreLink->room)->recalculate();
+            UserScoreAggregate::lookupOrDefault($scoreLink->user, $scoreLink->playlistItem->room)->recalculate();
         }
 
         $this->actAsScopedUser($user, ['*']);
@@ -80,13 +81,13 @@ class ScoresControllerTest extends TestCase
             ->create();
 
         foreach ($scoreLinks as $scoreLink) {
-            UserScoreAggregate::lookupOrDefault($scoreLink->user, $scoreLink->room)->recalculate();
+            UserScoreAggregate::lookupOrDefault($scoreLink->user, $scoreLink->playlistItem->room)->recalculate();
         }
 
         $this->actAsScopedUser($user, ['*']);
 
         $resp = $this->json('GET', route('api.rooms.playlist.scores.show', [
-            'room' => $userScoreLink->room_id,
+            'room' => $userScoreLink->playlistItem->room_id,
             'playlist' => $userScoreLink->playlist_item_id,
             'score' => $userScoreLink->getKey(),
         ]))->assertSuccessful();
@@ -114,7 +115,7 @@ class ScoresControllerTest extends TestCase
         }
 
         $countDiff = ((string) $status)[0] === '2' ? 1 : 0;
-        $this->expectCountChange(fn () => ScoreLink::count(), $countDiff);
+        $this->expectCountChange(fn () => ScoreToken::count(), $countDiff);
 
         $this->json('POST', route('api.rooms.playlist.scores.store', [
             'room' => $playlistItem->room_id,

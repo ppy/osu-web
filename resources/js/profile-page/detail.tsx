@@ -40,7 +40,9 @@ export default class Detail extends React.Component<Props> {
           user={this.user}
         />
 
-        <ProfileTournamentBanner banner={this.user.active_tournament_banner} />
+        {this.user.active_tournament_banners.map((banner) => (
+          <ProfileTournamentBanner key={banner.id} banner={banner} />
+        ))}
 
         <Badges badges={this.user.badges} />
 
