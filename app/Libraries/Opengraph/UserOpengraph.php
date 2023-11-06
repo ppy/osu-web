@@ -9,7 +9,6 @@ namespace App\Libraries\Opengraph;
 
 use App\Models\Beatmap;
 use App\Models\User;
-use Illuminate\Support\HtmlString;
 
 class UserOpengraph
 {

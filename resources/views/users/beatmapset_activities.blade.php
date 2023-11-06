@@ -4,7 +4,7 @@
 --}}
 @extends('master', [
     'pageDescription' => page_description($user->username),
-    'titlePrepend' => blade_safe(escape_username($user->username)),
+    'titlePrepend' => App\Libraries\Opengraph\UserOpengraph::escapeForTitle($user->username),
 ])
 
 @section('content')

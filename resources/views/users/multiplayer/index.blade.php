@@ -3,7 +3,7 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @extends('master', [
-    'titlePrepend' => \App\Libraries\Opengraph::escapeForTitle($user->username),
+    'titlePrepend' => App\Libraries\Opengraph\UserOpengraph::escapeForTitle($user->username),
     'pageDescription' => page_description($user->username),
 ])
 
