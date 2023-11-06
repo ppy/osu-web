@@ -39,7 +39,6 @@ class Score extends Model implements Traits\ReportableInterface
 
     const PROCESSING_QUEUE = 'osu-queue:score-statistics';
 
-    protected $table = 'solo_scores';
     protected $casts = [
         'data' => ScoreData::class,
         'has_replay' => 'boolean',

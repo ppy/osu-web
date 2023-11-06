@@ -60,7 +60,7 @@ class ScoreLink extends Model
     public $timestamps = false;
 
     protected $primaryKey = 'score_id';
-    protected $table = 'multiplayer_score_links';
+    protected $table = 'multiplayer_playlist_item_scores';
 
     public function playlistItem(): BelongsTo
     {
