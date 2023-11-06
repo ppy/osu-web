@@ -37,7 +37,7 @@ class Group extends Model implements AfterCommit
 {
     // Identifier of groups which involved in permission checks
     // and assumed to always exist in database.
-    const PRIV_GROUPS = [
+    const PRIV_IDENTIFIERS = [
         'admin',
         'alumni',
         'announce',

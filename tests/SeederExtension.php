@@ -24,7 +24,7 @@ class SeederExtension implements AfterLastTestHook, BeforeFirstTestHook
     {
         TestCase::withDbAccess(function () {
             Group::truncate();
-            foreach (Group::PRIV_GROUPS as $identifier) {
+            foreach (Group::PRIV_IDENTIFIERS as $identifier) {
                 Group::create([
                     'group_desc' => '',
                     'group_name' => $identifier,
