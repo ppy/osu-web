@@ -5,7 +5,7 @@
 
 @extends('master', [
     'canonicalUrl' => $user->url($mode),
-    'titlePrepend' => blade_safe(escape_username($user->username)),
+    'titlePrepend' => \App\Libraries\Opengraph::escapeForTitle($user->username),
 ])
 
 @section('content')

@@ -3,6 +3,8 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @php
+    use Illuminate\Support\HtmlString;
+
     $appUrl = config('app.url');
     $currentLocale = App::getLocale();
     $fallbackLocale = config('app.fallback_locale');
@@ -36,7 +38,11 @@
     @if (present($value))
         @php
             if ($key === 'title') {
+                $isHtmlString = $value instanceof HtmlString;
                 $value .= ' · '.page_title();
+                if ($isHtmlString) {
+                    $value = new HtmlString($value);
+                }
             }
         @endphp
         <meta property="og:{{ $key }}" content="{{ $value }}">

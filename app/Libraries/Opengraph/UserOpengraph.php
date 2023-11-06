@@ -9,9 +9,15 @@ namespace App\Libraries\Opengraph;
 
 use App\Models\Beatmap;
 use App\Models\User;
+use Illuminate\Support\HtmlString;
 
 class UserOpengraph
 {
+    public static function escapeForTitle(string $username)
+    {
+        return blade_safe(str_replace(' ', '&nbsp;', e($username)));
+    }
+
     public function __construct(private User $user, private string $page, private ?string $ruleset = null)
     {
     }
@@ -22,7 +28,7 @@ class UserOpengraph
             // none for multiplayer, playlist counts seems...not useful?
             'description' => $this->page === 'modding' ? $this->moddingDescription() : $this->showDescription(),
             'image' => $this->user->user_avatar,
-            'title' => blade_safe(escape_username($this->user->username)),
+            'title' => static::escapeForTitle($this->user->username),
         ];
     }
 
