@@ -13,7 +13,9 @@
 ])
 
 @php
-    $currentUserId = Auth::user()?->getKey();
+    $currentUser = Auth::user();
+    $currentUserId = $currentUser?->getKey();
+    $subforums = $forum->subforums;
 @endphp
 @section('content')
     @include('forum._header', [
@@ -33,7 +35,7 @@
             </p>
         </div>
 
-        @if ($forum->subforums()->exists())
+        @if (count($subforums) > 0)
             <div class="forum-list">
                 <h2 class="title title--forum">{{ osu_trans("forum.subforums") }}</h2>
 
@@ -46,7 +48,7 @@
                             {{ osu_trans('forum.forums.latest_post') }}
                         </div>
                     </li>
-                    @foreach ($forum->subforums as $subforum)
+                    @foreach ($subforums as $subforum)
                         @include('forum.forums._forum', ['currentUserId' => $currentUserId, 'forum' => $subforum])
                     @endforeach
                 </ul>
@@ -132,7 +134,7 @@
         @endif
     </div>
 
-    @if (auth()->check() && auth()->user()->isAdmin())
+    @if ($currentUser !== null && $currentUser->isAdmin())
         <div class="admin-menu">
             <button class="admin-menu__button js-menu" data-menu-target="admin-menu-forums-show">
                 <span class="fas fa-angle-up"></span>
