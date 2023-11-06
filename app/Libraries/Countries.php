@@ -6,28 +6,20 @@
 namespace App\Libraries;
 
 use App\Models\Country;
+use App\Traits\Memoizes;
 use Illuminate\Database\Eloquent\Collection;
 
 class Countries
 {
-    private array $countries;
+    use Memoizes;
 
     private function allByCode(): Collection
     {
-        return $this->fetch()->keyBy('acronym');
+        return $this->memoize(__FUNCTION__, fn () => Country::get(['acronym', 'name'])->keyBy('acronym'));
     }
 
     public function byCode(string $code): ?Country
     {
-        if (!isset($this->countries)) {
-            $this->countries = $this->allByCode()->all();
-        }
-
-        return $this->countries[$code] ?? null;
-    }
-
-    protected function fetch(): Collection
-    {
-        return Country::get(['acronym', 'name']);
+        return $this->allByCode()->get($code);
     }
 }
