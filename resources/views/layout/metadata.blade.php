@@ -36,16 +36,11 @@
 
 @foreach ($opengraph as $key => $value)
     @if (present($value))
-        @php
-            if ($key === 'title') {
-                $isHtmlString = $value instanceof HtmlString;
-                $value .= ' · '.page_title();
-                if ($isHtmlString) {
-                    $value = new HtmlString($value);
-                }
-            }
-        @endphp
-        <meta property="og:{{ $key }}" content="{{ $value }}">
+        @if ($key === 'title')
+            <meta property="og:{{ $key }}" content="{{ $value }} · {{ page_title() }}">
+        @else
+            <meta property="og:{{ $key }}" content="{{ $value }}">
+        @endif
     @endif
 @endforeach
 
