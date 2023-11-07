@@ -1676,6 +1676,13 @@ function seeded_shuffle(array &$items, int $seed = 0)
     mt_srand();
 }
 
+function set_opengraph($model, ...$options)
+{
+    $className = str_replace('App\Models', 'App\Libraries\Opengraph', $model::class).'Opengraph';
+
+    Request::instance()->attributes->set('opengraph', (new $className($model, ...$options))->get());
+}
+
 function first_paragraph($html, $split_on = "\n")
 {
     $text = strip_tags($html);
