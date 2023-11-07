@@ -24,10 +24,10 @@ return [
     ],
 
     'mapping' => [
-        'empty' => 'No hay mapeadores observados.',
+        'empty' => 'No hay mappers observados.',
         'followers' => 'suscriptores de mapeo',
-        'page_title' => 'lista de seguimiento de mapeadores',
-        'title' => 'mapeador',
+        'page_title' => 'lista de seguimiento de mappers',
+        'title' => 'mapper',
         'to_0' => 'dejar de notificarme cuando este usuario suba un nuevo mapa',
         'to_1' => 'notificarme cuando este usuario suba un nuevo mapa',
     ],

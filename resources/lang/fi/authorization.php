@@ -56,7 +56,7 @@ return [
         'discussion_locked' => 'Tämän beatmapin keskustelu on lukittu.',
 
         'metadata' => [
-            'nominated' => 'Et voi muuttaa ehdolle asetetun kartan metatietoja. Ota yhteyttä BN- tai NAT-jäseneen, jos luulet sen olevan virheellinen.',
+            'nominated' => 'Et voi muuttaa ehdolle asetetun kartan kuvailutietoja. Ota yhteyttä BN- tai NAT-jäseneen, jos luulet sen olevan virheellinen.',
         ],
     ],
 

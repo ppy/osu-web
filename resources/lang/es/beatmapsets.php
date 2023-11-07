@@ -70,7 +70,7 @@ return [
         ],
 
         'details' => [
-            'by_artist' => 'por :artist',
+            'by_artist' => 'de :artist',
             'favourite' => 'marcar este mapa como favorito',
             'favourite_login' => 'inicia sesión para marcar este mapa como favorito',
             'logged-out' => '¡necesitas iniciar sesión antes de descargar cualquier mapa!',
@@ -112,7 +112,7 @@ return [
                 '_' => 'Este mapa está actualmente :status.',
 
                 'status' => [
-                    'pending' => 'pendiente',
+                    'pending' => 'pendientes',
                     'qualified' => 'calificado',
                     'wip' => 'en progreso',
                 ],
@@ -200,12 +200,12 @@ return [
         'stats' => [
             'cs' => 'Tamaño del círculo',
             'cs-mania' => 'Cantidad de teclas',
-            'drain' => 'Drenado de HP',
+            'drain' => 'Drenaje de HP',
             'accuracy' => 'Precisión',
-            'ar' => 'Velocidad de aproximación',
+            'ar' => 'Tasa de aproximación',
             'stars' => 'Estrellas de dificultad',
             'total_length' => 'Duración (Duración del drenaje: :hit_length)',
-            'bpm' => 'PPM',
+            'bpm' => 'BPM',
             'count_circles' => 'Número de círculos',
             'count_sliders' => 'Número de sliders',
             'offset' => 'Compensación en línea: :offset',
@@ -221,7 +221,7 @@ return [
             'loved' => 'Amado',
             'qualified' => 'Calificado',
             'wip' => 'WIP',
-            'pending' => 'Pendiente',
+            'pending' => 'Pendientes',
             'graveyard' => 'Abandonado',
         ],
     ],
