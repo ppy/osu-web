@@ -17,13 +17,17 @@ class CommentOpengraph implements OpengraphInterface
 
     public function get(): array
     {
-        $user = $this->comment->user;
+        if (!priv_check_user(null, 'CommentShow', $this->comment)->can()) {
+            return [];
+        }
 
-        return priv_check_user(null, 'CommentShow', $this->comment)->can()
-            ? [
-                'description' => blade_safe(html_excerpt($this->comment->message_html, 100)),
-                'image' => $user->user_avatar,
-                'title' => osu_trans('comments.ogp.title', ['user' => $user->username]),
-            ] : [];
+        $user = $this->comment->user;
+        $username = $user?->username ?? $this->comment->legacyName() ?? osu_trans('users.deleted');
+
+        return [
+            'description' => blade_safe(html_excerpt($this->comment->message_html, 100)),
+            'image' => $user?->user_avatar,
+            'title' => osu_trans('comments.ogp.title', ['user' => $username]),
+        ];
     }
 }
