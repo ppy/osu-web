@@ -7,9 +7,10 @@ declare(strict_types=1);
 
 namespace App\Libraries\Opengraph\Wiki;
 
+use App\Libraries\Opengraph\OpengraphInterface;
 use App\Models\Wiki\Page;
 
-class PageOpengraph
+class PageOpengraph implements OpengraphInterface
 {
     public function __construct(private Page $page)
     {

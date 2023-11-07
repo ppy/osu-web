@@ -9,7 +9,7 @@ namespace App\Libraries\Opengraph;
 
 use App\Models\Contest;
 
-class ContestOpengraph
+class ContestOpengraph implements OpengraphInterface
 {
     public function __construct(private Contest $contest)
     {

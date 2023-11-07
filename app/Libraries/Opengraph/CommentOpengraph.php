@@ -9,7 +9,7 @@ namespace App\Libraries\Opengraph;
 
 use App\Models\Comment;
 
-class CommentOpengraph
+class CommentOpengraph implements OpengraphInterface
 {
     public function __construct(private Comment $comment)
     {

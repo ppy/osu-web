@@ -10,7 +10,7 @@ namespace App\Libraries\Opengraph;
 use App\Models\Beatmap;
 use App\Models\User;
 
-class UserOpengraph
+class UserOpengraph implements OpengraphInterface
 {
     public static function escapeForTitle(string $username)
     {

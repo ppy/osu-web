@@ -9,7 +9,7 @@ namespace App\Libraries\Opengraph;
 
 use App\Models\NewsPost;
 
-class NewsPostOpengraph
+class NewsPostOpengraph implements OpengraphInterface
 {
     public function __construct(private NewsPost $post)
     {

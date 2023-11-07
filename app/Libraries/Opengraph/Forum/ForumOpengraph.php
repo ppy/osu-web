@@ -7,9 +7,10 @@ declare(strict_types=1);
 
 namespace App\Libraries\Opengraph\Forum;
 
+use App\Libraries\Opengraph\OpengraphInterface;
 use App\Models\Forum\Forum;
 
-class ForumOpengraph
+class ForumOpengraph implements OpengraphInterface
 {
     public function __construct(private Forum $forum)
     {

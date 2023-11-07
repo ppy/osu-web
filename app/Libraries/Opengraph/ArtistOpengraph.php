@@ -9,7 +9,7 @@ namespace App\Libraries\Opengraph;
 
 use App\Models\Artist;
 
-class ArtistOpengraph
+class ArtistOpengraph implements OpengraphInterface
 {
     public function __construct(private Artist $artist)
     {

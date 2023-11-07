@@ -9,7 +9,7 @@ namespace App\Libraries\Opengraph;
 
 use App\Models\Beatmapset;
 
-class BeatmapsetOpengraph
+class BeatmapsetOpengraph implements OpengraphInterface
 {
     public function __construct(private Beatmapset $beatmapset)
     {
@@ -18,7 +18,7 @@ class BeatmapsetOpengraph
     public function get(): array
     {
         $section = osu_trans('layout.menu.beatmaps._');
-        $title = "{$this->beatmapset->artist} - {$this->beatmapset->title}"; // opengrah header always intended for guest.
+        $title = "{$this->beatmapset->artist} - {$this->beatmapset->title}"; // opengraph header always intended for guest.
 
         return [
             'description' => "osu! » {$section} » {$title}",
