@@ -166,7 +166,7 @@ class BeatmapsControllerSoloScoresTest extends TestCase
             Genre::truncate();
             Group::truncate();
             Language::truncate();
-            SoloScore::truncate();
+            SoloScore::select()->delete(); // TODO: revert to truncate after the table is actually renamed
             User::truncate();
             UserGroup::truncate();
             UserGroupEvent::truncate();

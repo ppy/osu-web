@@ -5,8 +5,8 @@
 
 namespace Tests\Libraries;
 
+use App\Enums\Ruleset;
 use App\Exceptions\InvariantException;
-use App\Libraries\Ruleset;
 use Tests\TestCase;
 
 class ModsTest extends TestCase

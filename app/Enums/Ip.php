@@ -5,12 +5,10 @@
 
 declare(strict_types=1);
 
-namespace App\Models\Traits;
+namespace App\Enums;
 
-interface SoloScoreInterface
+enum Ip: string
 {
-    // Eloquent attributes
-    // public \App\Models\Solo\ScoreData $data;
-    // public bool $has_replay
-    // public float $pp;
+    case V4 = 'v4';
+    case V6 = 'v6';
 }

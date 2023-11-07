@@ -53,4 +53,13 @@
       align-self: center;
     }
   }
+
+  &__layer {
+    .own-layer();
+
+    @media @mobile {
+      display: flex;
+      flex-direction: row;
+    }
+  }
 }

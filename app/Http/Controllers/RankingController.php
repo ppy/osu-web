@@ -114,7 +114,7 @@ class RankingController extends Controller
      * @urlParam mode string required [Ruleset](#ruleset). Example: mania
      * @urlParam type string required [RankingType](#rankingtype). Example: performance
      *
-     * @queryParam country Filter ranking by country code. Only available for `type` of `performance`. Example: JP
+     * @queryParam country string Filter ranking by country code. Only available for `type` of `performance`. Example: JP
      * @queryParam cursor [Cursor](#cursor). No-example
      * @queryParam filter Either `all` (default) or `friends`. Example: all
      * @queryParam spotlight The id of the spotlight if `type` is `charts`. Ranking for latest spotlight will be returned if not specified. No-example

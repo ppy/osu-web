@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @property int $completed
  * @property \Carbon\Carbon $created_at
  * @property int $id
+ * @property int|null $last_score_id
  * @property bool $in_room
  * @property float|null $pp
  * @property int $room_id
@@ -33,7 +34,7 @@ class UserScoreAggregate extends Model
     const SORTS = [
         'score_asc' => [
             ['column' => 'total_score', 'order' => 'ASC'],
-            ['column' => 'last_score_link_id', 'order' => 'DESC'],
+            ['column' => 'last_score_id', 'order' => 'DESC'],
         ],
     ];
 
@@ -99,10 +100,36 @@ class UserScoreAggregate extends Model
         return $this->completed > 0 ? $this->pp / $this->completed : 0;
     }
 
+    public function playlistItemAttempts(): array
+    {
+        $userId = $this->user_id;
+        $roomId = $this->room_id;
+
+        $attempts = [];
+        foreach (PlaylistItem::userAttemptModelBaseQueries() as $query) {
+            $aggs = $query->where(['user_id' => $userId])
+                ->whereHas('playlistItem', fn ($q) => $q->where('room_id', $roomId))
+                ->groupBy('playlist_item_id')
+                ->selectRaw('COUNT(*) AS attempts, playlist_item_id')
+                ->get();
+
+            foreach ($aggs as $agg) {
+                $playlistItemId = $agg->getRawAttribute('playlist_item_id');
+                $attempts[$playlistItemId] ??= [
+                    'attempts' => 0,
+                    'id' => $playlistItemId,
+                ];
+                $attempts[$playlistItemId]['attempts'] += $agg->getRawAttribute('attempts');
+            }
+        }
+
+        return array_values($attempts);
+    }
+
     public function scoreLinks(): Builder
     {
         return ScoreLink
-            ::where('room_id', $this->room_id)
+            ::whereHas('playlistItem', fn ($q) => $q->where('room_id', $this->room_id))
             ->where('user_id', $this->user_id);
     }
 
@@ -144,7 +171,7 @@ class UserScoreAggregate extends Model
                 $userQuery->default();
             })
             ->orderBy('total_score', 'DESC')
-            ->orderBy('last_score_link_id', 'ASC');
+            ->orderBy('last_score_id', 'ASC');
     }
 
     public function updateUserAttempts()
@@ -159,7 +186,7 @@ class UserScoreAggregate extends Model
 
     public function userRank()
     {
-        if ($this->total_score === null || $this->last_score_link_id === null) {
+        if ($this->total_score === null || $this->last_score_id === null) {
             return;
         }
 
@@ -184,8 +211,7 @@ class UserScoreAggregate extends Model
         $this->accuracy += $current->data->accuracy;
         $this->pp += $current->pp;
         $this->completed++;
-        $this->last_score_id = $current->getKey();
-        $this->last_score_link_id = $currentScoreLink->getKey();
+        $this->last_score_id = $currentScoreLink->getKey();
 
         $this->save();
     }
