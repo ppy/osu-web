@@ -25,7 +25,7 @@
 
 <link rel="search" type="application/opensearchdescription+xml" title="osu! search" href="{{ config('app.url') }}/opensearch.xml">
 
-<meta property="og:site_name" content="osu! » {{ page_title() }}">
+<meta property="og:site_name" content="osu!">
 <meta property="og:type" content="website">
 
 @if (isset($canonicalUrl))
