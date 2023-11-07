@@ -232,21 +232,21 @@ return [
 
     'listing' => [
         'search' => [
-            'prompt' => 'syötä hakusanoja...',
+            'prompt' => 'kirjoita hakusanoja...',
             'login_required' => 'Kirjaudu sisään hakeaksesi.',
             'options' => 'Enemmän Hakuasetuksia',
             'supporter_filter' => 'Tunnisteella :filters rajaaminen vaatii aktiivisen osu!supporter-tagin',
             'not-found' => 'ei tuloksia',
             'not-found-quote' => '... mitään ei löytynyt.',
             'filters' => [
-                'extra' => 'Extra',
+                'extra' => 'Ekstra',
                 'general' => 'Yleinen',
                 'genre' => 'Tyylilaji',
                 'language' => 'Kieli',
-                'mode' => 'Pelitila',
+                'mode' => 'Pelimuoto',
                 'nsfw' => 'Sopimaton sisältö',
-                'played' => 'Pelatut',
-                'rank' => 'Luokitus',
+                'played' => 'Pelattu',
+                'rank' => 'Saavutettu arvosana',
                 'status' => 'Luokat',
             ],
             'sorting' => [
@@ -345,9 +345,9 @@ return [
     ],
     'rank' => [
         'any' => 'Kaikki',
-        'XH' => 'Hopea SS',
+        'XH' => 'Hopea-SS',
         'X' => '',
-        'SH' => 'Hopea S',
+        'SH' => 'Hopea-S',
         'S' => '',
         'A' => '',
         'B' => '',

@@ -79,15 +79,15 @@ return [
         ],
 
         'message_type_title' => [
-            'disqualify' => '',
-            'hype' => '',
-            'mapper_note' => '',
-            'nomination_reset' => '',
-            'praise' => '',
-            'problem' => '',
-            'problem_warning' => '',
-            'review' => '',
-            'suggestion' => '',
+            'disqualify' => 'Post Diskwalificeren',
+            'hype' => 'Post Hype!',
+            'mapper_note' => 'Plaats notitie',
+            'nomination_reset' => 'Verwijder alle Nominaties',
+            'praise' => 'Plaats lof',
+            'problem' => 'Rapporteer Probleem',
+            'problem_warning' => 'Rapporteer Probleem',
+            'review' => 'Beoordeling plaatsen',
+            'suggestion' => 'Plaats suggestie',
         ],
 
         'mode' => [

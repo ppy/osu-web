@@ -37,7 +37,7 @@ return [
     'tracklist' => [
         'title' => 'título',
         'length' => 'duración',
-        'bpm' => 'ppm',
+        'bpm' => 'bpm',
         'genre' => 'género',
     ],
 
@@ -49,8 +49,8 @@ return [
                 'advanced' => 'Búsqueda avanzada',
                 'album' => 'Álbum',
                 'artist' => 'Artista',
-                'bpm_gte' => 'PPM mínimo',
-                'bpm_lte' => 'PPM máximo',
+                'bpm_gte' => 'BPM mínimo',
+                'bpm_lte' => 'BPM máximo',
                 'empty' => 'No se encontraron pistas que coincidieran con ese criterio de búsqueda.',
                 'genre' => 'Género',
                 'genre_all' => 'Todos',

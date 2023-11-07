@@ -5,7 +5,7 @@
 
 return [
     'page_description' => 'Featured Artists in osu!',
-    'title' => 'Featured Artists',
+    'title' => 'Uitgelichte artiesten',
 
     'admin' => [
         'hidden' => 'ARTIEST IS MOMENTEEL VERBORGEN',

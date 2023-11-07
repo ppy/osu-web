@@ -28,7 +28,7 @@ return [
         'info_page' => 'Pàgina d\'informació',
         'login_to_register' => 'Si us plau :login per veure els detalls del registre!',
         'not_yet_entered' => 'No esteu registrat per a aquest torneig.',
-        'rank_too_low' => 'No compliu els requisits de classificació per a aquest torneig!',
+        'rank_too_low' => 'No compleixes els requisits de classificació per a aquest torneig!',
         'registration_ends' => 'Registres tancats el :date',
 
         'button' => [

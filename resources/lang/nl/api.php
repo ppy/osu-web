@@ -17,9 +17,9 @@ return [
         'identify' => 'Identificeer je en lees je openbare profiel.',
 
         'chat' => [
-            'read' => '',
+            'read' => 'Berichten namens jou lezen.',
             'write' => 'Berichten namens jou verzenden.',
-            'write_manage' => '',
+            'write_manage' => 'Doe mee en verlaat kanalen namens jou.',
         ],
 
         'forum' => [

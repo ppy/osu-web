@@ -26,7 +26,7 @@ return [
         'language_edit' => '언어가 :old에서 :new(으)로 변경되었습니다.',
         'love' => ':user님에 의해 Loved 상태가 되었습니다.',
         'nominate' => ':user님에 의해 노미네이트 되었습니다.',
-        'nominate_modes' => ':user (:modes)님에 의해 노미네이트 되었습니다.',
+        'nominate_modes' => ':user (:modes)님에 의해 노미네이트되었습니다.',
         'nomination_reset' => '새로운 문제 :discussion (:text)에 의해 노미네이션이 초기화되었습니다.',
         'nomination_reset_received' => ':user의 노미네이션이 :source_user님에 의해 초기화되었습니다 (:text)',
         'nomination_reset_received_profile' => '노미네이션이 :user에 의해 초기화되었습니다 (:text)',
