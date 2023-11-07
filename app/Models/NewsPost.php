@@ -8,7 +8,6 @@ namespace App\Models;
 use App\Exceptions\GitHubNotFoundException;
 use App\Libraries\Commentable;
 use App\Libraries\Markdown\OsuMarkdown;
-use App\Libraries\Opengraph\HasOpengraph;
 use App\Libraries\OsuWiki;
 use App\Traits\Memoizes;
 use Carbon\Carbon;
@@ -27,7 +26,7 @@ use Exception;
  * @property \Carbon\Carbon|null $updated_at
  * @property string|null $version
  */
-class NewsPost extends Model implements Commentable, HasOpengraph, Wiki\WikiObject
+class NewsPost extends Model implements Commentable, Wiki\WikiObject
 {
     use Memoizes, Traits\CommentableDefaults, Traits\WithDbCursorHelper;
 

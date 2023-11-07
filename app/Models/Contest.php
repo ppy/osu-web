@@ -6,7 +6,6 @@
 namespace App\Models;
 
 use App\Exceptions\InvariantException;
-use App\Libraries\Opengraph\HasOpengraph;
 use App\Traits\Memoizes;
 use App\Transformers\ContestEntryTransformer;
 use App\Transformers\ContestTransformer;
@@ -39,7 +38,7 @@ use Exception;
  * @property \Carbon\Carbon|null $voting_ends_at
  * @property \Carbon\Carbon|null $voting_starts_at
  */
-class Contest extends Model implements HasOpengraph
+class Contest extends Model
 {
     use Memoizes;
 

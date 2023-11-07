@@ -5,7 +5,6 @@
 
 namespace App\Models;
 
-use App\Libraries\Opengraph\HasOpengraph;
 use App\Traits\Memoizes;
 
 /**
@@ -32,7 +31,7 @@ use App\Traits\Memoizes;
  * @property string|null $website
  * @property string|null $youtube
  */
-class Artist extends Model implements HasOpengraph
+class Artist extends Model
 {
     use Memoizes;
 

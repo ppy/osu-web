@@ -12,7 +12,6 @@ use App\Libraries\Elasticsearch\QueryHelper;
 use App\Libraries\Elasticsearch\Sort;
 use App\Libraries\LocaleMeta;
 use App\Libraries\Markdown\OsuMarkdown;
-use App\Libraries\Opengraph\HasOpengraph;
 use App\Libraries\OsuWiki;
 use App\Libraries\Search\BasicSearch;
 use App\Libraries\Wiki\MainPageRenderer;
@@ -24,7 +23,7 @@ use Ds\Set;
 use Exception;
 use Log;
 
-class Page implements HasOpengraph, WikiObject
+class Page implements WikiObject
 {
     use Memoizes, Traits\Es\WikiPageSearch;
 

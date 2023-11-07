@@ -9,7 +9,6 @@ use App\Jobs\EsDocument;
 use App\Jobs\UpdateUserForumCache;
 use App\Jobs\UpdateUserForumTopicFollows;
 use App\Libraries\BBCodeForDB;
-use App\Libraries\Opengraph\HasOpengraph;
 use App\Libraries\Transactions\AfterCommit;
 use App\Models\Beatmapset;
 use App\Models\Log;
@@ -73,7 +72,7 @@ use Illuminate\Database\QueryException;
  * @property \Illuminate\Database\Eloquent\Collection $userTracks TopicTrack
  * @property \Illuminate\Database\Eloquent\Collection $watches TopicWatch
  */
-class Topic extends Model implements AfterCommit, HasOpengraph
+class Topic extends Model implements AfterCommit
 {
     use Memoizes, Validatable;
     use SoftDeletes {

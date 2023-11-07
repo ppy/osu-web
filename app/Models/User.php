@@ -12,7 +12,6 @@ use App\Jobs\EsDocument;
 use App\Libraries\BBCodeForDB;
 use App\Libraries\ChangeUsername;
 use App\Libraries\Elasticsearch\Indexable;
-use App\Libraries\Opengraph\HasOpengraph;
 use App\Libraries\Session\Store as SessionStore;
 use App\Libraries\Transactions\AfterCommit;
 use App\Libraries\User\DatadogLoginAttempt;
@@ -211,7 +210,7 @@ use Request;
  * @method static Builder eagerloadForListing()
  * @method static Builder online()
  */
-class User extends Model implements AfterCommit, AuthenticatableContract, HasLocalePreference, HasOpengraph, Indexable, Traits\ReportableInterface
+class User extends Model implements AfterCommit, AuthenticatableContract, HasLocalePreference, Indexable, Traits\ReportableInterface
 {
     use Authenticatable, HasApiTokens, Memoizes, Traits\Es\UserSearch, Traits\Reportable, Traits\UserAvatar, Traits\UserScoreable, Traits\UserStore, Validatable;
 

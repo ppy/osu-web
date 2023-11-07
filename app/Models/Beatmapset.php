@@ -24,7 +24,6 @@ use App\Libraries\BBCodeFromDB;
 use App\Libraries\Commentable;
 use App\Libraries\Elasticsearch\Indexable;
 use App\Libraries\ImageProcessorService;
-use App\Libraries\Opengraph\HasOpengraph;
 use App\Libraries\StorageWithUrl;
 use App\Libraries\Transactions\AfterCommit;
 use App\Traits\Memoizes;
@@ -105,7 +104,7 @@ use Illuminate\Database\QueryException;
  * @property bool $video
  * @property \Illuminate\Database\Eloquent\Collection $watches BeatmapsetWatch
  */
-class Beatmapset extends Model implements AfterCommit, Commentable, HasOpengraph, Indexable, Traits\ReportableInterface
+class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, Traits\ReportableInterface
 {
     use Memoizes, SoftDeletes, Traits\CommentableDefaults, Traits\Es\BeatmapsetSearch, Traits\Reportable, Validatable;
 

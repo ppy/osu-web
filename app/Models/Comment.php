@@ -6,7 +6,6 @@
 namespace App\Models;
 
 use App\Libraries\MorphMap;
-use App\Libraries\Opengraph\HasOpengraph;
 use App\Traits\Memoizes;
 use App\Traits\Validatable;
 use Carbon\Carbon;
@@ -39,7 +38,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @property \Illuminate\Database\Eloquent\Collection $votes CommentVote
  * @property int $votes_count_cache
  */
-class Comment extends Model implements HasOpengraph, Traits\ReportableInterface
+class Comment extends Model implements Traits\ReportableInterface
 {
     use Memoizes, Traits\Reportable, Traits\WithDbCursorHelper, Validatable;
 

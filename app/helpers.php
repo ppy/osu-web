@@ -4,7 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 use App\Libraries\LocaleMeta;
-use App\Libraries\Opengraph\HasOpengraph;
 use App\Models\LoginAttempt;
 use Egulias\EmailValidator\EmailValidator;
 use Egulias\EmailValidator\Validation\NoRFCWarningsValidation;
@@ -1691,7 +1690,7 @@ function seeded_shuffle(array &$items, int $seed = 0)
     mt_srand();
 }
 
-function set_opengraph(HasOpengraph $model, ...$options)
+function set_opengraph($model, ...$options)
 {
     $className = str_replace('App\Models', 'App\Libraries\Opengraph', $model::class).'Opengraph';
 
