@@ -9,6 +9,7 @@ use App\Hashing\OsuHashManager;
 use App\Libraries\AssetsManifest;
 use App\Libraries\ChatFilters;
 use App\Libraries\CleanHTML;
+use App\Libraries\Countries;
 use App\Libraries\Groups;
 use App\Libraries\Ip2Asn;
 use App\Libraries\LayoutCache;
@@ -38,6 +39,7 @@ class AppServiceProvider extends ServiceProvider
 {
     const LOCAL_CACHE_SINGLETONS = [
         'chat-filters' => ChatFilters::class,
+        'countries' => Countries::class,
         'groups' => Groups::class,
         'layout-cache' => LayoutCache::class,
         'medals' => Medals::class,
