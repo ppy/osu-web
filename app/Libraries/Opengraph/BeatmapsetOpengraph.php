@@ -22,7 +22,7 @@ class BeatmapsetOpengraph implements OpengraphInterface
 
         return [
             'description' => "osu! » {$section} » {$title}",
-            'image' => $this->beatmapset->coverURL('card'),
+            'image' => $this->beatmapset->coverURL('list'),
             'title' => $title,
         ];
     }
