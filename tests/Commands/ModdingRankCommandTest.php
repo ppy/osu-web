@@ -65,7 +65,7 @@ class ModdingRankCommandTest extends TestCase
 
     public function testRankQuota(): void
     {
-        $this->beatmapset([Ruleset::osu])->count(2)->create();
+        $this->beatmapset([Ruleset::osu])->count(3)->create();
 
         $this->expectCountChange(fn () => Beatmapset::qualified()->count(), -2);
         $this->expectCountChange(fn () => Beatmapset::ranked()->count(), 2);
