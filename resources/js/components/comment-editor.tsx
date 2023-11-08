@@ -1,13 +1,13 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import TextareaAutosize from 'components/textarea-autosize';
 import { CommentableMetaJson } from 'interfaces/comment-json';
 import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import Comment from 'models/comment';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import TextareaAutosize from 'react-autosize-textarea';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { InputEventType, makeTextAreaHandler, TextAreaCallback } from 'utils/input-handler';
 import { trans } from 'utils/lang';
@@ -40,9 +40,9 @@ const buttonTextKey: Record<CommentEditMode, string> = {
 export default class CommentEditor extends React.Component<Props> {
   private readonly handleKeyDown;
   @observable private message: string;
-  @observable private posting = false;
+  @observable private readonly posting = false;
   private readonly textarea = React.createRef<HTMLTextAreaElement>();
-  private xhr: JQuery.jqXHR<unknown> | null = null;
+  private readonly xhr: JQuery.jqXHR<unknown> | null = null;
 
   @computed
   private get canComment() {
@@ -115,9 +115,9 @@ export default class CommentEditor extends React.Component<Props> {
         }
 
         <TextareaAutosize
-          ref={this.textarea}
           className={`${bn}__message`}
           disabled={!this.canComment || this.posting}
+          innerRef={this.textarea}
           onChange={this.onChange}
           onKeyDown={this.handleKeyDown}
           placeholder={this.placeholder}
@@ -188,7 +188,7 @@ export default class CommentEditor extends React.Component<Props> {
   };
 
   @action
-  private readonly onChange = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+  private readonly onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     this.message = e.currentTarget.value;
   };
 

@@ -22,7 +22,7 @@ return [
         'benefit_more' => 'A més, amb el temps apareixeran nous beneficis per supporter!',
         'feedback' => "Si tens preguntes o vols donar-nos comentaris, no dubtis en respondre a aquest correu. Ens posarem en contacte amb tu tan ràpid com ens sigui possible!",
         'keep_free' => 'És gràcies a gent com tu que l\'osu! pot mantenir el joc i la comunitat en servei sense anuncis o pagaments forçosos.',
-        'keep_running' => 'El vostre suport manté a osu! funcionant durant :minutes! Potser no sembli gaire, però tot suma :).',
+        'keep_running' => 'El vostre suport manté a osu! funcionant durant :minutes! Potser no sembla gaire, però tot suma :).',
         'subject' => 'Gràcies, l\'osu! et <3',
         'translation' => 'A continuació hi ha una traducció feta per la comunitat:',
 

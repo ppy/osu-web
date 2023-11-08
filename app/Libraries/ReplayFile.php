@@ -7,32 +7,20 @@ namespace App\Libraries;
 
 use App\Exceptions\InvariantException;
 use App\Models\Beatmap;
-use Storage;
+use App\Models\Score\Best\Model as ScoreBest;
+use Illuminate\Contracts\Filesystem\Filesystem;
 
 class ReplayFile
 {
     const DEFAULT_VERSION = 20151228;
 
-    private $diskName;
-    private $filename;
-    private $score;
-
-    public function __construct($score)
+    public function __construct(private ScoreBest $score)
     {
-        $this->filename = $score->getKey();
-        $mode = $score->getMode();
-        $this->diskName = 'replays.'.$mode.'.'.config('osu.score_replays.storage');
-        $this->score = $score;
     }
 
-    public function __call($method, $parameters)
+    public function delete(): void
     {
-        return call_user_func_array([$this->disk(), $method], array_merge([$this->filename], $parameters));
-    }
-
-    public function disk()
-    {
-        return Storage::disk($this->diskName);
+        $this->storage()->delete($this->path());
     }
 
     /**
@@ -45,9 +33,16 @@ class ReplayFile
         return pack('q', $this->score->score_id);
     }
 
-    public function getDiskName()
+    public function get(): ?string
     {
-        return $this->diskName;
+        $body = $this->storage()->get($this->path());
+
+        return $body === null
+            ? null
+            : $this->headerChunk()
+                .pack('i', strlen($body))
+                .$body
+                .$this->endChunk();
     }
 
     public function getVersion()
@@ -101,5 +96,22 @@ class ReplayFile
         ];
 
         return implode('', $components);
+    }
+
+    public function put(string $content): void
+    {
+        $this->storage()->put($this->path(), $content);
+    }
+
+    private function path(): string
+    {
+        return (string) $this->score->getKey();
+    }
+
+    private function storage(): Filesystem
+    {
+        $disk = 'replays.'.$this->score->getMode().'.'.config('osu.score_replays.storage');
+
+        return \Storage::disk($disk);
     }
 }

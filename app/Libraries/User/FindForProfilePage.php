@@ -13,7 +13,6 @@ class FindForProfilePage
     public static function find($id, ?string $type = null, ?bool $assertCanonicalId = null)
     {
         $user = static::fromAuth($id, $type) ?? User::lookupWithHistory($id, $type, true);
-        $request = request();
 
         if ($user === null || !priv_check('UserShow', $user)->can()) {
             throw new UserProfilePageLookupException(function () {
@@ -26,9 +25,15 @@ class FindForProfilePage
         }
 
         if (($assertCanonicalId ?? !is_json_request()) && (string) $user->getKey() !== (string) $id) {
+            $route = \Request::route();
             $redirectTarget = route(
-                $request->route()->getName(),
-                array_merge($request->query(), $request->route()->parameters(), ['user' => $user, 'key' => null])
+                $route->getName(),
+                [
+                    ...\Request::query(),
+                    ...$route->parameters(),
+                    'key' => null,
+                    'user' => $user,
+                ],
             );
 
             throw new UserProfilePageLookupException(fn () => ujs_redirect($redirectTarget));
@@ -37,25 +42,21 @@ class FindForProfilePage
         return $user;
     }
 
-    private static function fromAuth($id, ?string $type): ?User
+    private static function fromAuth($requestId, ?string $type): ?User
     {
-        $user = auth()->user();
+        $user = \Auth::user();
 
         if ($user === null) {
             return null;
         }
 
         $userId = (string) $user->getKey();
-        switch ($type) {
-            case 'id':
-                $isSelf = $id === $userId;
-                break;
-            case 'username':
-                $isSelf = $id === $user->username;
-                break;
-            default:
-                $isSelf = $id === $userId || (!ctype_digit($user->username) && $id === $user->username);
-        }
+        $username = $user->username;
+        $isSelf = match ($type) {
+            'id' => $requestId === $userId,
+            'username' => $requestId === $username || $requestId === "@{$username}",
+            default => $requestId === $userId || $requestId === "@{$username}" || (!ctype_digit($username) && $requestId === $username),
+        };
 
         return $isSelf ? $user : null;
     }

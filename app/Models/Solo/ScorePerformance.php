@@ -17,5 +17,5 @@ class ScorePerformance extends Model
     public $timestamps = false;
 
     protected $primaryKey = 'score_id';
-    protected $table = 'solo_scores_performance';
+    protected $table = 'score_performance';
 }

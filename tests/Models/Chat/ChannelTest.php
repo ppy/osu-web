@@ -9,7 +9,6 @@ namespace Tests\Models\Chat;
 
 use App\Events\ChatChannelEvent;
 use App\Jobs\Notifications\ChannelAnnouncement;
-use App\Libraries\BroadcastsPendingForTests;
 use App\Models\Chat\Channel;
 use App\Models\User;
 use App\Models\UserRelation;
@@ -207,9 +206,8 @@ class ChannelTest extends TestCase
         $this->assertEmpty($channel->users()->diff($users), 'created channel is missing users.');
         $this->assertSame(Channel::TYPES['announce'], $channel->type);
 
-        $broadcastsPending = app(BroadcastsPendingForTests::class)->dispatched(ChatChannelEvent::class, fn (ChatChannelEvent $event) => $event->action === 'join');
-        $this->assertSame(2, count($broadcastsPending));
-        Event::assertNotDispatched(ChatChannelEvent::class);
+        Event::assertDispatched(fn (ChatChannelEvent $event) => $event->action === 'join', 2);
+        Event::assertNotDispatched(fn (ChatChannelEvent $event) => $event->action !== 'join');
     }
 
     public function testGetPMChannelName()

@@ -6,6 +6,7 @@ declare module 'remark-wiki-link' {
 
   interface WikiLinkOptions {
     hrefTemplate(url: string): string;
+    pageResolver(name: string): string[];
   }
 
   const remarkWikiLink: Plugin<[WikiLinkOptions?]>;

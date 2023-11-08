@@ -18,6 +18,10 @@ return [
             'new' => 'nieuwe email',
             'new_confirmation' => 'e-mail bevestiging',
             'title' => 'E-mail',
+            'locked' => [
+                '_' => 'Neem contact op met :accounts als je het e-mailadres wilt updaten.',
+                'accounts' => 'account support team',
+            ],
         ],
 
         'legacy_api' => [
@@ -38,8 +42,8 @@ return [
             'title' => 'Profiel',
 
             'country_change' => [
-                '_' => "",
-                'update_link' => '',
+                '_' => "Het lijkt erop dat het land van uw account niet overeenkomt met uw land van verblijf. :update_link.",
+                'update_link' => 'Bijwerken naar :country',
             ],
 
             'user' => [
@@ -55,6 +59,19 @@ return [
         'signature' => [
             'title' => 'Ondertekening',
             'update' => 'bijwerken',
+        ],
+    ],
+
+    'github_user' => [
+        'info' => "Als je een bijdrager bent aan osu!'s open-source repositories, door het koppelen van je GitHub account hier zal je changelog items koppelen aan je osu! profiel. GitHub accounts zonder bijdrage geschiedenis aan osu! kunnen niet worden gekoppeld.",
+        'link' => 'GitHub-account koppelen',
+        'title' => 'GitHub',
+        'unlink' => 'GitHub-account ontkoppelen',
+
+        'error' => [
+            'already_linked' => 'Dit GitHub account is al gekoppeld aan een andere gebruiker.',
+            'no_contribution' => 'Kan GitHub account niet koppelen zonder bijdragegeschiedenis in osu! repositories.',
+            'unverified_email' => 'Verifieer je primaire e-mailadres op GitHub, probeer dan je account opnieuw te koppelen.',
         ],
     ],
 

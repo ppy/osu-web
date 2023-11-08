@@ -6,7 +6,7 @@
 return [
     'discussion-votes' => [
         'update' => [
-            'error' => 'Error al actualizar los votos.',
+            'error' => 'Error al actualizar los votos',
         ],
     ],
 
@@ -25,7 +25,7 @@ return [
         'message_placeholder_silenced' => "No puede publicar una discusión mientras esté silenciado.",
         'message_type_select' => 'Seleccionar tipo de comentario',
         'reply_notice' => 'Presione enter para responder.',
-        'reply_placeholder' => 'Escriba su respuesta aquí',
+        'reply_placeholder' => 'Escribe tu respuesta aquí',
         'require-login' => 'Inicia sesión para publicar o responder',
         'resolved' => 'Resuelto',
         'restore' => 'restaurar',
@@ -55,19 +55,19 @@ return [
         ],
 
         'message_hint' => [
-            'in_general' => 'Esta publicación irá a la discusión general del set de mapas. Para moddear este mapa, empieza un mensaje con una marca de tiempo (por ejemplo, 00:12:345).',
-            'in_timeline' => 'Para moddear varias marcas de tiempo, publique varias veces (un mensaje por marca de tiempo).',
+            'in_general' => 'Esta publicación irá a la discusión general del mapa. Para modear esta dificultad, empieza un mensaje con una marca de tiempo (por ejemplo, 00:12:345).',
+            'in_timeline' => 'Para modear varias marcas de tiempo, publica varias veces (un mensaje por marca de tiempo).',
         ],
 
         'message_placeholder' => [
-            'general' => 'Escriba aquí para publicar en General (:version)',
-            'generalAll' => 'Escriba aquí para publicar en General (Todas las dificultades)',
-            'review' => 'Escriba aquí para publicar una revisión',
-            'timeline' => 'Escriba aquí para publicar en la Línea de tiempo (:version)',
+            'general' => 'Escribe aquí para publicar en General (:version)',
+            'generalAll' => 'Escribe aquí para publicar en General (Todas las dificultades)',
+            'review' => 'Escribe aquí para publicar una revisión',
+            'timeline' => 'Escribe aquí para publicar en Línea de tiempo (:version)',
         ],
 
         'message_type' => [
-            'disqualify' => 'Descalificación',
+            'disqualify' => 'Descalificar',
             'hype' => '¡Hype!',
             'mapper_note' => 'Nota',
             'nomination_reset' => 'Restablecimiento de nominación',
@@ -79,15 +79,15 @@ return [
         ],
 
         'message_type_title' => [
-            'disqualify' => '',
-            'hype' => '',
-            'mapper_note' => '',
-            'nomination_reset' => '',
-            'praise' => '',
-            'problem' => '',
-            'problem_warning' => '',
-            'review' => '',
-            'suggestion' => '',
+            'disqualify' => 'Publicar descalificación',
+            'hype' => '¡Publicar Hype!',
+            'mapper_note' => 'Publicar nota',
+            'nomination_reset' => 'Eliminar todas las nominaciones',
+            'praise' => 'Publicar elogio',
+            'problem' => 'Publicar problema',
+            'problem_warning' => 'Publicar problema',
+            'review' => 'Publicar revisión',
+            'suggestion' => 'Publicar sugerencia',
         ],
 
         'mode' => [
@@ -143,7 +143,7 @@ return [
             'deleted' => 'Eliminado',
             'mapper_notes' => 'Notas',
             'mine' => 'Mío',
-            'pending' => 'Pendiente',
+            'pending' => 'Pendientes',
             'praises' => 'Elogios',
             'resolved' => 'Resuelto',
             'total' => 'Todo',
@@ -199,7 +199,7 @@ return [
         'incorrect_state' => 'Error al realizar esa acción, intente actualizar la página.',
         'love' => 'Amar',
         'love_choose' => 'Elegir dificultad para el amado',
-        'love_confirm' => '¿Te gusta este mapa?',
+        'love_confirm' => '¿Amar este mapa?',
         'nominate' => 'Nominar',
         'nominate_confirm' => '¿Nominar este mapa?',
         'nominated_by' => 'nominado por :users',
@@ -224,7 +224,7 @@ return [
         ],
 
         'reset_confirm' => [
-            'disqualify' => '¿Está seguro? Esto eliminará el mapa de la calificación y restablecerá el proceso de nominación.',
+            'disqualify' => '¿Estás seguro? Esto eliminará el mapa de la calificación y restablecerá el proceso de nominación.',
             'nomination_reset' => '¿Está seguro? Publicar un nuevo problema restablecerá el proceso de nominación.',
             'problem_warning' => '¿Seguro que deseas reportar de un problema en este mapa? Esto alertará a los Beatmap Nominators.',
         ],
@@ -232,10 +232,10 @@ return [
 
     'listing' => [
         'search' => [
-            'prompt' => 'escriba en palabras clave...',
+            'prompt' => 'escribe en palabras clave...',
             'login_required' => 'Inicie sesión para buscar.',
             'options' => 'Más opciones de búsqueda',
-            'supporter_filter' => 'Filtrar por :filters requiere una etiqueta activa de osu!supporter',
+            'supporter_filter' => 'Filtrar por :filters requiere una etiqueta osu!supporter activa',
             'not-found' => 'no hay resultados',
             'not-found-quote' => '... nop, nada encontrado.',
             'filters' => [
@@ -263,31 +263,31 @@ return [
             ],
             'supporter_filter_quote' => [
                 '_' => 'Necesitas un :link activo para filtrar por :filters',
-                'link_text' => 'etiqueta de osu!supporter',
+                'link_text' => 'etiqueta osu!supporter',
             ],
         ],
     ],
     'general' => [
         'converts' => 'Incluir mapas convertidos',
         'featured_artists' => 'Artistas destacados',
-        'follows' => 'Mapeadores suscritos',
+        'follows' => 'Mappers suscritos',
         'recommended' => 'Dificultades recomendadas',
         'spotlights' => 'Mapas destacados',
     ],
     'mode' => [
         'all' => 'Todos',
-        'any' => 'Cualquier',
+        'any' => 'Cualquiera',
         'osu' => '',
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
     ],
     'status' => [
-        'any' => 'Cualquier',
+        'any' => 'Cualquiera',
         'approved' => 'Aprobados',
         'favourites' => 'Favoritos',
         'graveyard' => 'Abandonados',
-        'leaderboard' => 'Tiene tablas de clasificación',
+        'leaderboard' => 'Tiene tabla de clasificación',
         'loved' => 'Amados',
         'mine' => 'Mis mapas',
         'pending' => 'Pendiente',
@@ -296,7 +296,7 @@ return [
         'ranked' => 'Clasificados',
     ],
     'genre' => [
-        'any' => 'Cualquier',
+        'any' => 'Cualquiera',
         'unspecified' => 'No especificado',
         'video-game' => 'Videojuego',
         'anime' => 'Anime',
@@ -335,19 +335,19 @@ return [
     ],
 
     'played' => [
-        'any' => 'Cualquier',
+        'any' => 'Cualquiera',
         'played' => 'Ya jugado',
         'unplayed' => 'No jugado',
     ],
     'extra' => [
-        'video' => 'Contiene vídeo',
-        'storyboard' => 'Contiene storyboard',
+        'video' => 'Tiene vídeo',
+        'storyboard' => 'Tiene storyboard',
     ],
     'rank' => [
-        'any' => 'Cualquier',
-        'XH' => 'SS Plateada',
+        'any' => 'Cualquiera',
+        'XH' => 'SS plateada',
         'X' => '',
-        'SH' => 'S Plateada',
+        'SH' => 'S plateada',
         'S' => '',
         'A' => '',
         'B' => '',

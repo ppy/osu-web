@@ -171,7 +171,7 @@ return [
 
     'score' => [
         'pin' => [
-            'disabled_type' => "",
+            'disabled_type' => "Kan dit type score niet vastzetten",
             'not_owner' => 'Enkel de eigenaar van de score kan deze vastzetten.',
             'too_many' => 'Te veel scores vastgezet.',
         ],
@@ -184,6 +184,9 @@ return [
                 'not_owner' => 'Je kan alleen je eigen gebruikerspagina bewerken.',
                 'require_supporter_tag' => 'osu!supporter tag is vereist.',
             ],
+        ],
+        'update_email' => [
+            'locked' => 'e-mailadres is vergrendeld',
         ],
     ],
 ];

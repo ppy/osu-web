@@ -26,6 +26,7 @@ return [
             'deleted' => 'Įtraukti ištrintas diskusijas',
             'mode' => 'Beatmap\'o režimas',
             'only_unresolved' => 'Rodyti tiktais neišspręstas diskusijas',
+            'show_review_embeds' => '',
             'types' => 'Žinučių tipai',
             'username' => 'Vartotojo vardas',
 

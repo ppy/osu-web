@@ -16,7 +16,7 @@ return [
     'rank_lost' => '<strong><em>:user</em></strong> <em>:beatmap</em> (:mode) beatmapinde birinciliği kaybetti',
     'user_support_again' => '<strong>:user</strong> bir kez daha osu!\'yu desteklemeyi seçti - cömertliğinden dolayı teşekkürler!',
     'user_support_first' => '<strong>:user</strong> osu! supporter satın aldı - cömertliğinden dolayı teşekkür ederiz!',
-    'user_support_gift' => '<strong>:user</strong> osu! supporter hediyesi aldı!',
+    'user_support_gift' => '<strong>:user</strong> osu!supporter hediyesi aldı!',
     'username_change' => '<strong>:previousUsername</strong> kullanıcı adını <strong><em>:user</strong></em> olarak değiştirdi!',
 
     'beatmapset_status' => [
@@ -24,5 +24,9 @@ return [
         'loved' => 'sevilen',
         'qualified' => 'nitelikli',
         'ranked' => 'dereceli',
+    ],
+
+    'value' => [
+        'rank' => 'sıralama #:rank',
     ],
 ];

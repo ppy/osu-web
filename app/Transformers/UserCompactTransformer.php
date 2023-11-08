@@ -33,6 +33,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     const PROFILE_HEADER_INCLUDES = [
         'active_tournament_banner',
+        'active_tournament_banners',
         'badges',
         'comments_count',
         'follower_count',
@@ -47,6 +48,7 @@ class UserCompactTransformer extends TransformerAbstract
     protected array $availableIncludes = [
         'account_history',
         'active_tournament_banner',
+        'active_tournament_banners',
         'badges',
         'beatmap_playcounts_count',
         'blocks',
@@ -69,6 +71,7 @@ class UserCompactTransformer extends TransformerAbstract
         'is_nat',
         'is_restricted',
         'is_silenced',
+        'kudosu',
         'loved_beatmapset_count',
         'mapping_follower_count',
         'monthly_playcounts',
@@ -151,6 +154,14 @@ class UserCompactTransformer extends TransformerAbstract
         return $banner === null
             ? $this->primitive(null)
             : $this->item($banner, new ProfileBannerTransformer());
+    }
+
+    public function includeActiveTournamentBanners(User $user)
+    {
+        return $this->collection(
+            $user->profileBanners()->activeOnly()->orderBy('banner_id')->get(),
+            new ProfileBannerTransformer(),
+        );
     }
 
     public function includeBadges(User $user)
@@ -285,6 +296,14 @@ class UserCompactTransformer extends TransformerAbstract
         return $this->primitive($user->isSilenced());
     }
 
+    public function includeKudosu(User $user): ResourceInterface
+    {
+        return $this->primitive([
+            'available' => $user->osu_kudosavailable,
+            'total' => $user->osu_kudostotal,
+        ]);
+    }
+
     public function includeLovedBeatmapsetCount(User $user)
     {
         return $this->primitive($user->profileBeatmapsetCountByGroupedStatus('loved'));
@@ -383,7 +402,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeScoresRecentCount(User $user)
     {
-        return $this->primitive($user->scores($this->mode, true)->includeFails(false)->count());
+        return $this->primitive($user->recentScoreCount($this->mode));
     }
 
     public function includeStatistics(User $user)

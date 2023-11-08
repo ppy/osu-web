@@ -26,6 +26,7 @@ return [
             'deleted' => 'Sertakan diskusi yang telah dihapus',
             'mode' => 'Mode beatmap',
             'only_unresolved' => 'Hanya tampilkan topik diskusi yang belum terjawab',
+            'show_review_embeds' => 'Tampilkan pos ulasan',
             'types' => 'Tipe pesan',
             'username' => 'Nama Pengguna',
 

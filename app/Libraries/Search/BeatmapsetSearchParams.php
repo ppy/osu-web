@@ -21,6 +21,7 @@ class BeatmapsetSearchParams extends SearchParams
     public ?array $created = null;
     public ?string $creator = null;
     public ?array $cs = null;
+    public ?string $difficulty = null;
     public ?array $difficultyRating = null;
     public ?array $drain = null;
     public array $extra = [];
@@ -41,6 +42,7 @@ class BeatmapsetSearchParams extends SearchParams
     public ?string $status = null;
     public ?array $statusRange = null;
     public ?array $hitLength = null;
+    public ?array $updated = null;
     public ?User $user = null;
 
     private ?float $recommendedDifficulty = null;

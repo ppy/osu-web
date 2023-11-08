@@ -13,10 +13,10 @@ return [
     ],
 
     'authorized_clients' => [
-        'confirm_revoke' => 'Bist du sicher, dass du die Berechtigungen dieses Gerätes widerrufen möchtest?',
+        'confirm_revoke' => 'Bist du sicher, dass du die Berechtigungen dieser Anwendung widerrufen möchtest?',
         'scopes_title' => 'Diese Anwendung kann:',
         'owned_by' => 'Gehört :user',
-        'none' => 'Keine Geräte',
+        'none' => 'Keine Anwendungen',
 
         'revoked' => [
             'false' => 'Zugriff widerrufen',
@@ -48,10 +48,10 @@ return [
     ],
 
     'own_clients' => [
-        'confirm_delete' => 'Bist du sicher, dass du dieses Gerät löschen willst?',
+        'confirm_delete' => 'Bist du sicher, dass du diese Anwendung entfernen willst?',
         'confirm_reset' => 'Möchtest du das Client-Secret wirklich zurücksetzen? Dadurch werden alle vorhandenen Tokens widerrufen.',
         'new' => 'Neue OAuth-Anwendung',
-        'none' => 'Keine Geräte',
+        'none' => 'Keine Anwendungen',
 
         'revoked' => [
             'false' => 'Löschen',

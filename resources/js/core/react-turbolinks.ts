@@ -12,14 +12,14 @@ import { currentUrl } from 'utils/turbolinks';
 type ElementFn = (container: HTMLElement) => React.ReactElement;
 
 export default class ReactTurbolinks {
-  private components = new Map<string, ElementFn>();
+  private readonly components = new Map<string, ElementFn>();
   private newVisit = true;
   private pageReady = false;
-  private renderedContainers = new Set<HTMLElement>();
+  private readonly renderedContainers = new Set<HTMLElement>();
   private scrolled = false;
   private timeoutScroll?: number;
 
-  constructor(private core: OsuCore, private turbolinksReload: TurbolinksReload) {
+  constructor(private readonly core: OsuCore, private readonly turbolinksReload: TurbolinksReload) {
     $(document).on('turbolinks:before-cache', this.handleBeforeCache);
     $(document).on('turbolinks:before-visit', this.handleBeforeVisit);
     $(document).on('turbolinks:load', this.handleLoad);
@@ -66,7 +66,7 @@ export default class ReactTurbolinks {
     }
   }
 
-  private destroy = () => {
+  private readonly destroy = () => {
     for (const target of this.renderedContainers.values()) {
       if (document.body.contains(target)) continue;
 
@@ -75,12 +75,12 @@ export default class ReactTurbolinks {
     }
   };
 
-  private handleBeforeCache = () => {
+  private readonly handleBeforeCache = () => {
     this.pageReady = false;
     window.clearTimeout(this.timeoutScroll);
   };
 
-  private handleBeforeRender = (e: JQuery.TriggeredEvent) => {
+  private readonly handleBeforeRender = (e: JQuery.TriggeredEvent) => {
     window.newBody = (e.originalEvent as Event & { data: { newBody: HTMLElement } }).data.newBody;
     this.setNewUrl();
     this.pageReady = true;
@@ -90,11 +90,11 @@ export default class ReactTurbolinks {
     this.boot();
   };
 
-  private handleBeforeVisit = () => {
+  private readonly handleBeforeVisit = () => {
     this.newVisit = true;
   };
 
-  private handleLoad = () => {
+  private readonly handleLoad = () => {
     window.newBody ??= document.body;
     window.newUrl = null; // location.href should now be correct
     this.pageReady = true;
@@ -111,7 +111,7 @@ export default class ReactTurbolinks {
     }, 1);
   };
 
-  private handleWindowScroll = () => {
+  private readonly handleWindowScroll = () => {
     this.scrolled = this.scrolled || window.scrollX !== 0 || window.scrollY !== 0;
   };
 
@@ -130,7 +130,7 @@ export default class ReactTurbolinks {
     });
   }
 
-  private scrollOnNewVisit = () => {
+  private readonly scrollOnNewVisit = () => {
     $(window).off('scroll', this.handleWindowScroll);
     const newVisit = this.newVisit;
     this.newVisit = false;

@@ -373,16 +373,4 @@ class Forum extends Model
             TopicTrack::where('user_id', $user->getKey())->whereIn('forum_id', $forumIds)->delete();
         });
     }
-
-    public function toMetaDescription()
-    {
-        $stack = [osu_trans('forum.title')];
-        foreach ($this->forum_parents as $forumId => $forumData) {
-            $stack[] = $forumData[0];
-        }
-
-        $stack[] = $this->forum_name;
-
-        return implode(' » ', $stack);
-    }
 }

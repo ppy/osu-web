@@ -5,7 +5,6 @@
 
 return [
     'button' => [
-        'cancel' => 'Atcelt',
         'resend' => 'Atkārtoti nosūtīt apstiprināšanas e-pastu',
         'set' => 'Ievadīt paroli',
         'start' => 'Sākt',

@@ -18,6 +18,10 @@ return [
             'new' => 'jauns e-pasts',
             'new_confirmation' => 'e-pasta apstiprinājums',
             'title' => 'E-pasts',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
         ],
 
         'legacy_api' => [
@@ -55,6 +59,19 @@ return [
         'signature' => [
             'title' => 'Paraksts',
             'update' => 'atjaunināt',
+        ],
+    ],
+
+    'github_user' => [
+        'info' => "",
+        'link' => '',
+        'title' => '',
+        'unlink' => '',
+
+        'error' => [
+            'already_linked' => '',
+            'no_contribution' => '',
+            'unverified_email' => '',
         ],
     ],
 

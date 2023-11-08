@@ -18,6 +18,10 @@ return [
             'new' => 'דואר אלקטרוני חדש',
             'new_confirmation' => 'אישור דואר אלקטרוני חדש',
             'title' => 'דואר אלקטרוני',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
         ],
 
         'legacy_api' => [
@@ -55,6 +59,19 @@ return [
         'signature' => [
             'title' => 'חותמת',
             'update' => 'עדכן',
+        ],
+    ],
+
+    'github_user' => [
+        'info' => "",
+        'link' => '',
+        'title' => '',
+        'unlink' => '',
+
+        'error' => [
+            'already_linked' => '',
+            'no_contribution' => '',
+            'unverified_email' => '',
         ],
     ],
 

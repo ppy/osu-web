@@ -26,6 +26,7 @@ return [
             'deleted' => 'Include discuțiile șterse',
             'mode' => 'Mod beatmap',
             'only_unresolved' => 'Afișează doar discuții nerezolvate',
+            'show_review_embeds' => 'Afișează recenzii',
             'types' => 'Tipuri de mesaje',
             'username' => 'Nume de utilizator',
 

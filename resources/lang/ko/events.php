@@ -20,9 +20,13 @@ return [
     'username_change' => '<strong>:previousUsername</strong>님이 이름을 <strong><em>:user</em></strong>(으)로 변경했습니다!',
 
     'beatmapset_status' => [
-        'approved' => '어프루브',
-        'loved' => '러브드',
-        'qualified' => '퀄리파이',
-        'ranked' => '랭크',
+        'approved' => 'Approved',
+        'loved' => 'Loved',
+        'qualified' => 'Qualified',
+        'ranked' => 'Ranked',
+    ],
+
+    'value' => [
+        'rank' => '순위 #:rank',
     ],
 ];

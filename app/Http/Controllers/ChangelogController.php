@@ -55,8 +55,8 @@ class ChangelogController extends Controller
      * --------------|---------------------------------|------
      * builds        | [Build](#build)[]               | Includes `changelog_entries`, `changelog_entries.github_user`, and changelog entry message in requested formats.
      * search.from   | string?                         | `from` input.
-     * search.limit  | number                          | Always `21`.
-     * search.max_id | number?                         | `max_id` input.
+     * search.limit  | integer                         | Always `21`.
+     * search.max_id | integer?                        | `max_id` input.
      * search.stream | string?                         | `stream` input.
      * search.to     | string?                         | `to` input.
      * streams       | [UpdateStream](#updatestream)[] | Always contains all available streams. Includes `latest_build` and `user_count`.
@@ -117,9 +117,10 @@ class ChangelogController extends Controller
      *           "major": true,
      *           "created_at": "2021-06-19T08:09:39+00:00",
      *           "github_user": {
-     *             "id": 218,
      *             "display_name": "bdach",
      *             "github_url": "https://github.com/bdach",
+     *             "github_username": "bdach",
+     *             "id": 218,
      *             "osu_username": null,
      *             "user_id": null,
      *             "user_url": null
@@ -318,9 +319,10 @@ class ChangelogController extends Controller
      *       "major": true,
      *       "created_at": "2021-05-20T10:56:49+00:00",
      *       "github_user": {
-     *         "id": null,
      *         "display_name": "peppy",
      *         "github_url": null,
+     *         "github_username": null,
+     *         "id": null,
      *         "osu_username": "peppy",
      *         "user_id": 2,
      *         "user_url": "https://osu.ppy.sh/users/2"

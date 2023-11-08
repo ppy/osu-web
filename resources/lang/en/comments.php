@@ -43,6 +43,10 @@ return [
         'no_comments' => 'no comments found...',
     ],
 
+    'ogp' => [
+        'title' => 'comment by :user',
+    ],
+
     'placeholder' => [
         'edit' => 'Edit the comment here',
         'new' => 'Type new comment here',

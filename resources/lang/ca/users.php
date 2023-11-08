@@ -7,11 +7,11 @@ return [
     'deleted' => '[usuari eliminat]',
 
     'beatmapset_activities' => [
-        'title' => "Historial de Modding de :user",
+        'title' => "Historial de modding de :user",
         'title_compact' => 'Modding',
 
         'discussions' => [
-            'title_recent' => 'Discussions recents',
+            'title_recent' => 'Discussions iniciades recentment',
         ],
 
         'events' => [
@@ -32,24 +32,24 @@ return [
     ],
 
     'blocks' => [
-        'banner_text' => 'Has blocat aquest usuari.',
+        'banner_text' => 'Has bloquejat a aquest usuari.',
         'comment_text' => 'Aquest comentari està ocult.',
         'blocked_count' => 'usuaris bloquejats (:count)',
         'hide_profile' => 'Oculta el perfil',
-        'hide_comment' => 'ocultar',
-        'forum_post_text' => 'La publicació està oculta. ',
-        'not_blocked' => 'Aquest usuari no està blocat.',
+        'hide_comment' => 'amaga',
+        'forum_post_text' => 'La publicació està oculta.',
+        'not_blocked' => 'Aquest usuari no està bloquejat.',
         'show_profile' => 'Mostra el perfil',
         'show_comment' => 'mostra',
-        'too_many' => 'Límit de bloqueigs assolit.',
+        'too_many' => 'Límit de bloquejos assolit.',
         'button' => [
-            'block' => 'Blocar',
+            'block' => 'Bloquejar',
             'unblock' => 'Desbloqueja',
         ],
     ],
 
     'card' => [
-        'gift_supporter' => 'Regalar etiqueta supporter',
+        'gift_supporter' => 'Regalar etiqueta de supporter',
         'loading' => 'Carregant...',
         'send_message' => 'Enviar missatge',
     ],
@@ -64,7 +64,7 @@ return [
             'username' => 'nom d’usuari',
 
             'tos_notice' => [
-                '_' => 'al crear un compte acceptes els :link',
+                '_' => 'en crear un compte acceptes les :link',
                 'link' => 'condicions d\'ús',
             ],
         ],
@@ -72,20 +72,20 @@ return [
 
     'disabled' => [
         'title' => 'Vaja! Sembla que el teu compte ha estat desactivat.',
-        'warning' => "En cas que hi hagi trencat una regla, tingueu en compte que generalment hi ha un període d'espera d'un mes durant el qual no considerarem cap sol·licitud d'amnistia. Després d'aquest període, podeu contactar amb nosaltres si ho considereu necessari. Tingueu en compte que la creació de comptes nous després d'haver tingut un desactivat resultarà en una <strong>extensió d'aquest període d'espera d'un mes</strong>. Si us plau, també tingueu en compte que per <strong>cada compte que creeu, estarà violant més regles</strong>. Us suggerim que no seguiu aquest camí!",
+        'warning' => "En cas que hagis trencat una regla, tingues en compte que generalment hi ha un període d'espera d'un mes durant el qual no considerarem cap sol·licitud d'amnistia. Després d'aquest període, pots contactar amb nosaltres si ho consideres necessari. Tingues en compte que la creació de comptes nous després d'haver tingut una desactivada resultarà en una <strong>extensió d'aquest període d'espera d'un mes</strong>. Si us plau, també tingues en compte que per <strong>cada compte que creïs, estaràs violant més regles</strong>. Et suggerim que no segueixis aquest camí!",
 
         'if_mistake' => [
-            '_' => 'Si creieu que es tracta d\'un error, podeu posar-vos en contacte amb nosaltres (per :email o fent clic al "?" a la part inferior dreta d\'aquesta pàgina). Tingueu en compte que sempre confiem plenament en les nostres accions, ja que es basen en dades molt sòlides. Ens reservem el dret d\'ignorar la vostra petició si considerem que està sent intencionadament deshonest.',
+            '_' => 'Si creus que es tracta d\'un error, pots posar-te en contacte amb nosaltres (per :email o fent clic al "?" a la part inferior dreta d\'aquesta pàgina). Tingues en compte que sempre confiem plenament en les nostres accions, ja que es basen en dades molt sòlides. Ens reservem el dret d\'ignorar la teva petició si considerem que estàs sent intencionadament deshonest.',
             'email' => 'correu electrònic',
         ],
 
         'reasons' => [
-            'compromised' => 'El seu compte es troba compromès. Pot estar deshabilitat temporalment mentre es verifica la seva identitat.',
+            'compromised' => 'El teu compte es troba compromès. Pot estar deshabilitat temporalment mentre es verifica la teva identitat.',
             'opening' => 'Hi ha diversos motius que poden resultar en la desactivació del teu compte:',
 
             'tos' => [
-                '_' => 'Has incomplert una o vàries de les nostres :community_rules o :tos. ',
-                'community_rules' => 'normes de la comunitat',
+                '_' => 'Has incomplert una o vàries de les nostres :community_rules o les :tos. ',
+                'community_rules' => 'regles de la comunitat',
                 'tos' => 'condicions d\'ús',
             ],
         ],
@@ -97,7 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
-            'inactive_different_country' => "El vostre compte no ha estat utilitzat durant molt de temps.",
+            'inactive_different_country' => "El teu compte no s'ha utilitzat durant molt de temps.",
         ],
     ],
 
@@ -118,13 +118,21 @@ return [
         'username' => 'Nom d\'usuari',
 
         'beta' => [
-            'main' => 'L\'accés a la fase Beta està restringit als usuaris privilegiats.',
+            'main' => 'L\'accés a la fase beta està restringit a usuaris privilegiats.',
             'small' => '(els osu!supporters tindran accés aviat)',
         ],
     ],
 
+    'ogp' => [
+        'description' => [
+            '_' => 'Clasificació (:ruleset): :global | :country',
+            'country' => 'País :rank',
+            'global' => 'Global :rank',
+        ],
+    ],
+
     'posts' => [
-        'title' => 'Publicacions de :username ',
+        'title' => 'Publicacions de :username',
     ],
 
     'anonymous' => [
@@ -133,24 +141,24 @@ return [
         'username' => 'Convidat',
         'error' => 'Has d\'haver iniciat sessió per a fer això.',
     ],
-    'logout_confirm' => 'Segur que vols tancar la sessió? :(',
+    'logout_confirm' => 'Estàs segur que vols tancar la sessió? :(',
     'report' => [
         'button_text' => 'Reportar',
         'comments' => 'Comentaris',
-        'placeholder' => 'Si us plau, proporcioni qualsevol informació que pugui ser útil.',
+        'placeholder' => 'Si us plau, proporciona qualsevol informació que pugui ser útil.',
         'reason' => 'Motiu',
-        'thanks' => 'Gràcies pel seu informe!',
+        'thanks' => 'Gràcies pel teu report!',
         'title' => 'Reportar a :username?',
 
         'actions' => [
-            'send' => 'Enviar informe',
+            'send' => 'Enviar report',
             'cancel' => 'Cancel·la',
         ],
 
         'options' => [
             'cheating' => 'Joc brut/trampes',
             'multiple_accounts' => 'Fa servir diversos comptes',
-            'insults' => 'Insulta a mi o a altres',
+            'insults' => 'Insultant-me/insultant als altres',
             'spam' => 'Envia spam',
             'unwanted_content' => 'Enllaça contingut inapropiat',
             'nonsense' => 'Ximpleries',
@@ -159,8 +167,8 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'El teu compte ha estat restringit!',
-        'message' => 'Mentre estigui restringit, no podreu interactuar amb altres jugadors i les vostres puntuacions només seran visibles per a vosaltres. Això és, normalment, el resultat d\'un procés automatitzat i s\'aixeca normalment d\'aquí a 24 hores. Si vols apel·lar a la teva restricció, si us plau <a href="mailto:accounts@ppy.sh">contacta amb el suport</a>.',
-        'message_link' => 'Vegeu aquesta pàgina per a aprendre més.',
+        'message' => 'Mentre estiguis restringit, no podràs interactuar amb altres jugadors i les teves puntuacions només seran visibles per a tu. Això és, normalment, el resultat d\'un procés automatitzat i s\'aixeca normalment d\'aquí a 24 hores. :link',
+        'message_link' => 'Consulta aquesta pàgina per aprendre més.',
     ],
     'show' => [
         'age' => ':age anys',
@@ -171,7 +179,7 @@ return [
         'joined_at' => 'Membre des de :date',
         'lastvisit' => 'Vist per últim cop :date',
         'lastvisit_online' => 'En línia ara mateix',
-        'missingtext' => 'Potser has comès un error tipogràfic! (o l\'usuari pot estar expulsat)',
+        'missingtext' => 'Potser has comès un error tipogràfic! (o l\'usuari pot haver estat prohibit)',
         'origin_country' => 'De :country',
         'previous_usernames' => 'conegut anteriorment com',
         'plays_with' => 'Juga amb :devices',
@@ -183,7 +191,7 @@ return [
         ],
         'cover' => [
             'to_0' => 'Ocultar portada',
-            'to_1' => 'Mostra la portada',
+            'to_1' => 'MostraR portada',
         ],
         'edit' => [
             'cover' => [
@@ -194,7 +202,7 @@ return [
                     'button' => 'Penja una imatge',
                     'dropzone' => 'Deixa anar aquí per penjar',
                     'dropzone_info' => 'També pots deixar anar la imatge aquí per a penjar-la',
-                    'size_info' => 'La portada ha de ser de mida 2400x640',
+                    'size_info' => 'La portada ha de ser de 2400x640',
                     'too_large' => 'El fitxer és massa gran.',
                     'unsupported_format' => 'Format no admès.',
 
@@ -228,22 +236,22 @@ return [
                     'title' => 'Beatmaps preferits',
                 ],
                 'graveyard' => [
-                    'title' => 'Beatmaps Abandonats',
+                    'title' => 'Beatmaps abandonats',
                 ],
                 'guest' => [
                     'title' => 'Beatmaps amb participació de convidats',
                 ],
                 'loved' => [
-                    'title' => 'Beatmaps Estimats',
+                    'title' => 'Beatmaps estimats',
                 ],
                 'nominated' => [
                     'title' => 'Betmaps classificats nominats',
                 ],
                 'pending' => [
-                    'title' => 'Beatmaps Pendents',
+                    'title' => 'Beatmaps pendents',
                 ],
                 'ranked' => [
-                    'title' => 'Beatmaps Classificats',
+                    'title' => 'Beatmaps classificats',
                 ],
             ],
             'discussions' => [
@@ -261,7 +269,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'Historial de joc',
-                    'count_label' => 'Partides',
+                    'count_label' => 'Jugades',
                 ],
                 'most_played' => [
                     'count' => 'vegades jugat',
@@ -269,7 +277,7 @@ return [
                 ],
                 'recent_plays' => [
                     'accuracy' => 'precisió :percentage',
-                    'title' => 'Partides recents (24h)',
+                    'title' => 'Jugades recents (24 h)',
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Historial de repeticions vistes',
@@ -277,7 +285,7 @@ return [
                 ],
             ],
             'kudosu' => [
-                'recent_entries' => 'Historial recent de Kudosu',
+                'recent_entries' => 'Historial de Kudosu recent',
                 'title' => 'Kudosu!',
                 'total' => 'Kudosu total obtingut',
 
@@ -287,41 +295,41 @@ return [
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
-                            'give' => 'Va rebre :amount de revocació de negació de kudosu per la publicació de modding :post',
+                            'give' => 'Ha rebut :amount de revocació de negació de kudosu per la publicació de modding :post',
                         ],
 
                         'deny_kudosu' => [
-                            'reset' => 'S\'ha denegat :amount per la publicació :post',
+                            'reset' => 'S\'ha denegat :amount per la publicació de modding :post',
                         ],
 
                         'delete' => [
-                            'reset' => 'Va perdre :amount per l\'eliminació de la publicació de modding de :post',
+                            'reset' => 'Ha perdut :amount per l\'eliminació de la publicació de modding :post',
                         ],
 
                         'restore' => [
-                            'give' => 'Rebuts :amount pel restabliment de la publicació :post',
+                            'give' => 'Ha rebut :amount pel restabliment de la publicació de modding :post',
                         ],
 
                         'vote' => [
-                            'give' => 'Rebuts :amount gràcies als vots a la publicació de :post',
-                            'reset' => 'Has perdut :amount per perdre vots a la publicació :post',
+                            'give' => 'Rebuts :amount gràcies als vots a la publicació de modding :post',
+                            'reset' => 'Ha perdut :amount per perdre vots a la publicació de modding :post',
                         ],
 
                         'recalculate' => [
-                            'give' => 'Has rebut :amount pels vots en el recàlcul de la publicació :post',
-                            'reset' => 'Has perdut :amount pels vots en el recàlcul de la publicació :post',
+                            'give' => 'Ha rebut :amount pels vots en el recàlcul de la publicació de modding :post',
+                            'reset' => 'Ha perdut :amount pels vots en el recàlcul de la publicació de modding :post',
                         ],
                     ],
 
                     'forum_post' => [
-                        'give' => 'Has rebut :amount de :giver per la publicació :post',
-                        'reset' => 'Kudosu reinciat per :giver pel post :post',
-                        'revoke' => 'S\'han denegat els kudosu de :giver per la publicació :post',
+                        'give' => 'Ha rebut :amount de :giver per una publicació en :post',
+                        'reset' => 'Kudosu reinciat per :giver per la publicació :post',
+                        'revoke' => 'S\'ha denegat kudosu de :giver per la publicació :post',
                     ],
                 ],
 
                 'total_info' => [
-                    '_' => 'Basat en les contribucions que l\'usuari ha fet a la moderació de beatmaps. Vegi :link per a més informació.',
+                    '_' => 'Basat en les contribucions que l\'usuari ha fet a la moderació de beatmaps. Consulta :link per a més informació.',
                     'link' => 'aquesta pàgina',
                 ],
             ],
@@ -338,7 +346,7 @@ return [
             ],
             'posts' => [
                 'title' => 'Publicacions',
-                'title_longer' => 'Publicacions Recents',
+                'title_longer' => 'Publicacions recents',
                 'show_more' => 'veure més publicacions',
             ],
             'recent_activity' => [
@@ -375,7 +383,7 @@ return [
                 'received' => 'Vots rebuts (últims 3 mesos)',
                 'title' => 'Vots',
                 'title_longer' => 'Vots recents',
-                'vote_count' => ':count_delimited vot |:count_delimited vots',
+                'vote_count' => ':count_delimited vot|:count_delimited vots',
             ],
             'account_standing' => [
                 'title' => 'Estat del compte',
@@ -383,18 +391,18 @@ return [
                 'remaining_silence' => ':username podrà tornar a parlar :duration.',
 
                 'recent_infringements' => [
-                    'title' => 'Infraccions Recents',
+                    'title' => 'Infraccions recents',
                     'date' => 'data',
                     'action' => 'acció',
                     'length' => 'durada',
-                    'length_indefinite' => '',
+                    'length_indefinite' => 'Indefinit',
                     'description' => 'descripció',
                     'actor' => 'per :username',
 
                     'actions' => [
-                        'restriction' => 'Restringeix',
-                        'silence' => 'Silencia',
-                        'tournament_ban' => 'Restringeix dels tornejos',
+                        'restriction' => 'Prohibir',
+                        'silence' => 'Silenciar',
+                        'tournament_ban' => 'Prohibició de tornejos',
                         'note' => 'Nota',
                     ],
                 ],
@@ -412,7 +420,7 @@ return [
         'not_found' => [
             'reason_1' => 'Potser ha canviat el seu nom d\'usuari.',
             'reason_2' => 'Per motius de seguretat o d\'abús, el compte pot estar no disponible temporalment.',
-            'reason_3' => 'Potser has fet un error tipogràfic!',
+            'reason_3' => 'Potser has comès un error tipogràfic!',
             'reason_header' => 'Pot ser degut a diversos motius:',
             'title' => 'Usuari no trobat! ;_;',
         ],
@@ -420,20 +428,20 @@ return [
             'button' => 'Editar pàgina de perfil',
             'description' => '<strong>jo!</strong> és una zona personalitzable de la teva pàgina de perfil.',
             'edit_big' => 'Edita\'m!',
-            'placeholder' => 'Escriu els continguts aquí',
+            'placeholder' => 'Escriu el contingut de la pàgina aquí',
 
             'restriction_info' => [
-                '_' => 'Has de ser un :link per a desbloquejar aquesta funció.',
+                '_' => 'Has de ser :link per a desbloquejar aquesta funció.',
                 'link' => 'osu!supporter',
             ],
         ],
         'post_count' => [
             '_' => 'Ha contribuït amb :link',
-            'count' => ':count_delimited publicació|:count_delimited publicacions',
+            'count' => ':count_delimited publicació en el fòrum|:count_delimited publicacions en el fòrum',
         ],
         'rank' => [
-            'country' => 'Classificació per països per :mode',
-            'country_simple' => 'Classificació per Països',
+            'country' => 'Classificació nacional per :mode',
+            'country_simple' => 'Classificació nacional',
             'global' => 'Classifació global per :mode',
             'global_simple' => 'Classificació global',
             'highest' => 'Classificació més alta: :rank el :date',
@@ -442,19 +450,19 @@ return [
             'hit_accuracy' => 'Precisió',
             'level' => 'Nivell :level',
             'level_progress' => 'Progrés al següent nivell',
-            'maximum_combo' => 'Màxim combo',
+            'maximum_combo' => 'Combo màxim',
             'medals' => 'Medalles',
-            'play_count' => 'Nombre de partides',
+            'play_count' => 'Nombre de jugades',
             'play_time' => 'Temps total de joc',
             'ranked_score' => 'Puntuació classificada',
             'replays_watched_by_others' => 'Repeticions vistes per altres',
             'score_ranks' => 'Classificació de les puntuacions',
-            'total_hits' => 'Encerts Totals',
+            'total_hits' => 'Encerts totals',
             'total_score' => 'Puntuació total',
             // modding stats
-            'graveyard_beatmapset_count' => 'Beatmaps Abandonats',
-            'loved_beatmapset_count' => 'Beatmaps Estimats',
-            'pending_beatmapset_count' => 'Beatmaps Pendents',
+            'graveyard_beatmapset_count' => 'Beatmaps abandonats',
+            'loved_beatmapset_count' => 'Beatmaps estimats',
+            'pending_beatmapset_count' => 'Beatmaps pendents',
             'ranked_beatmapset_count' => 'Beatmaps Classificats',
         ],
     ],

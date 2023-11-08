@@ -11,9 +11,12 @@ use App\Libraries\Score\UserRank;
 use App\Libraries\Search\ScoreSearchParams;
 use App\Models\Beatmap;
 use App\Models\Model;
+use App\Models\Multiplayer\ScoreLink as MultiplayerScoreLink;
 use App\Models\Score as LegacyScore;
+use App\Models\ScoreToken;
 use App\Models\Traits;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use LaravelRedis;
 use Storage;
@@ -36,7 +39,6 @@ class Score extends Model implements Traits\ReportableInterface
 
     const PROCESSING_QUEUE = 'osu-queue:score-statistics';
 
-    protected $table = 'solo_scores';
     protected $casts = [
         'data' => ScoreData::class,
         'has_replay' => 'boolean',
@@ -64,6 +66,28 @@ class Score extends Model implements Traits\ReportableInterface
         $score->saveOrExplode();
 
         return $score;
+    }
+
+    public static function extractParams(array $params, ScoreToken|MultiplayerScoreLink $scoreToken): array
+    {
+        return [
+            ...get_params($params, null, [
+                'accuracy:float',
+                'max_combo:int',
+                'maximum_statistics:array',
+                'passed:bool',
+                'rank:string',
+                'statistics:array',
+                'total_score:int',
+            ]),
+            'beatmap_id' => $scoreToken->beatmap_id,
+            'build_id' => $scoreToken->build_id,
+            'ended_at' => json_time(Carbon::now()),
+            'mods' => app('mods')->parseInputArray($scoreToken->ruleset_id, get_arr($params['mods'] ?? null) ?? []),
+            'ruleset_id' => $scoreToken->ruleset_id,
+            'started_at' => $scoreToken->created_at_json,
+            'user_id' => $scoreToken->user_id,
+        ];
     }
 
     /**
@@ -104,6 +128,18 @@ class Score extends Model implements Traits\ReportableInterface
     public function scopeDefault(Builder $query): Builder
     {
         return $query->whereHas('beatmap.beatmapset');
+    }
+
+    public function scopeForRuleset(Builder $query, string $ruleset): Builder
+    {
+        return $query->where('ruleset_id', Beatmap::MODES[$ruleset]);
+    }
+
+    public function scopeIncludeFails(Builder $query, bool $includeFails): Builder
+    {
+        return $includeFails
+            ? $query
+            : $query->where('data->passed', true);
     }
 
     /**
@@ -158,7 +194,7 @@ class Score extends Model implements Traits\ReportableInterface
         return Beatmap::modeStr($this->ruleset_id);
     }
 
-    public function getReplayFile(): string
+    public function getReplayFile(): ?string
     {
         return Storage::disk(config('osu.score_replays.storage').'-solo-replay')
             ->get($this->getKey());

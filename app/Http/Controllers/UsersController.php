@@ -19,6 +19,8 @@ use App\Models\BeatmapDiscussion;
 use App\Models\Country;
 use App\Models\IpBan;
 use App\Models\Log;
+use App\Models\Solo\Score as SoloScore;
+use App\Models\Solo\ScoreLegacyIdMap;
 use App\Models\User;
 use App\Models\UserAccountHistory;
 use App\Models\UserNotFound;
@@ -176,7 +178,7 @@ class UsersController extends Controller
                     'monthly_playcounts' => json_collection($this->user->monthlyPlaycounts, new UserMonthlyPlaycountTransformer()),
                     'recent' => $this->getExtraSection(
                         'scoresRecent',
-                        $this->user->scores($this->mode, true)->includeFails(false)->count()
+                        $this->user->recentScoreCount($this->mode)
                     ),
                     'replays_watched_counts' => json_collection($this->user->replaysWatchedCounts, new UserReplaysWatchedCountTransformer()),
                 ];
@@ -283,7 +285,7 @@ class UsersController extends Controller
      * ### Response format
      *
      * Array of [BeatmapPlaycount](#beatmapplaycount) when `type` is `most_played`;
-     * array of [Beatmapset](#beatmapset), otherwise.
+     * array of [BeatmapsetExtended](#beatmapsetextended), otherwise.
      *
      * @urlParam user integer required Id of the user. Example: 1
      * @urlParam type string required Beatmap type. Example: favourite
@@ -336,9 +338,9 @@ class UsersController extends Controller
      *
      * ### Response format
      *
-     * Field | Type                          | Description
-     * ----- | ----------------------------- | -----------
-     * users | [UserCompact](#usercompact)[] | Includes: country, cover, groups, statistics_rulesets.
+     * Field | Type            | Description
+     * ----- | --------------- | -----------
+     * users | [User](#user)[] | Includes: country, cover, groups, statistics_rulesets.
      *
      * @queryParam ids[] User id to be returned. Specify once for each user id requested. Up to 50 users can be requested at once. Example: 1
      *
@@ -487,7 +489,7 @@ class UsersController extends Controller
      * @urlParam type string required Score type. Must be one of these: `best`, `firsts`, `recent`. Example: best
      *
      * @queryParam include_fails Only for recent scores, include scores of failed plays. Set to 1 to include them. Defaults to 0. Example: 0
-     * @queryParam mode [GameMode](#gamemode) of the scores to be returned. Defaults to the specified `user`'s mode. Example: osu
+     * @queryParam mode [Ruleset](#ruleset) of the scores to be returned. Defaults to the specified `user`'s mode. Example: osu
      * @queryParam limit Maximum number of results.
      * @queryParam offset Result offset for pagination. Example: 1
      *
@@ -542,7 +544,7 @@ class UsersController extends Controller
      *
      * Additionally, `statistics_rulesets` is included, containing statistics for all rulesets.
      *
-     * @urlParam mode string [GameMode](#gamemode). User default mode will be used if not specified. Example: osu
+     * @urlParam mode string [Ruleset](#ruleset). User default mode will be used if not specified. Example: osu
      *
      * @response "See User object section"
      */
@@ -554,6 +556,8 @@ class UsersController extends Controller
         if (!Beatmap::isModeValid($currentMode)) {
             abort(404);
         }
+
+        $user->statistics($currentMode)?->setRelation('user', $user);
 
         return $this->fillDeprecatedDuplicateFields(json_item(
             $user,
@@ -581,8 +585,8 @@ class UsersController extends Controller
      *
      * ### Response format
      *
-     * Returns [User](#user) object.
-     * The following [optional attributes on UserCompact](#usercompact-optionalattributes) are included:
+     * Returns [UserExtended](#userextended) object.
+     * The following [optional attributes on User](#user-optionalattributes) are included:
      *
      * - account_history
      * - active_tournament_banner
@@ -613,7 +617,7 @@ class UsersController extends Controller
      * - user_achievements
      *
      * @urlParam user integer required Id or username of the user. Id lookup is prioritised unless `key` parameter is specified. Previous usernames are also checked in some cases. Example: 1
-     * @urlParam mode string [GameMode](#gamemode). User default mode will be used if not specified. Example: osu
+     * @urlParam mode string [Ruleset](#ruleset). User default mode will be used if not specified. Example: osu
      *
      * @queryParam key Type of `user` passed in url parameter. Can be either `id` or `username` to limit lookup by their respective type. Passing empty or invalid value will result in id lookup followed by username lookup if not found.
      *
@@ -628,6 +632,9 @@ class UsersController extends Controller
         if (!Beatmap::isModeValid($currentMode)) {
             abort(404);
         }
+
+        // preload and set relation for opengraph header and transformer sharing data
+        $user->statistics($currentMode)?->setRelation('user', $user);
 
         $userArray = $this->fillDeprecatedDuplicateFields(json_item(
             $user,
@@ -649,7 +656,9 @@ class UsersController extends Controller
                 'user' => $userArray,
             ];
 
-            return ext_view('users.show', compact('initialData', 'user'));
+            set_opengraph($user, 'show', $currentMode);
+
+            return ext_view('users.show', compact('initialData', 'mode', 'user'));
         }
     }
 
@@ -786,9 +795,16 @@ class UsersController extends Controller
             case 'scoresFirsts':
                 $transformer = new ScoreTransformer();
                 $includes = ScoreTransformer::USER_PROFILE_INCLUDES;
-                $query = $this->user->scoresFirst($this->mode, true)
-                    ->visibleUsers()
-                    ->reorderBy('score_id', 'desc')
+                $scoreQuery = $this->user->scoresFirst($this->mode, true)->unorder();
+                $userFirstsQuery = $scoreQuery->select($scoreQuery->qualifyColumn('score_id'));
+                $soloMappingQuery = ScoreLegacyIdMap
+                    ::where('ruleset_id', Beatmap::MODES[$this->mode])
+                    ->whereIn('old_score_id', $userFirstsQuery)
+                    ->select('score_id');
+                $query = SoloScore
+                    ::whereIn('id', $soloMappingQuery)
+                    ->default()
+                    ->reorderBy('id', 'desc')
                     ->with(ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD);
                 $userRelationColumn = 'user';
                 break;
@@ -807,9 +823,12 @@ class UsersController extends Controller
             case 'scoresRecent':
                 $transformer = new ScoreTransformer();
                 $includes = ScoreTransformer::USER_PROFILE_INCLUDES;
-                $query = $this->user->scores($this->mode, true)
+                $query = $this->user->soloScores()
+                    ->default()
+                    ->forRuleset($this->mode)
                     ->includeFails($options['includeFails'] ?? false)
-                    ->with([...ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD, 'best']);
+                    ->reorderBy('id', 'desc')
+                    ->with(ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD);
                 $userRelationColumn = 'user';
                 break;
         }

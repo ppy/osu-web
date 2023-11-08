@@ -18,6 +18,10 @@ return [
             'new' => 'ایمیل جدید',
             'new_confirmation' => 'تایید ایمیل',
             'title' => 'ایمیل',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
         ],
 
         'legacy_api' => [
@@ -55,6 +59,19 @@ return [
         'signature' => [
             'title' => 'امضا',
             'update' => 'بروز کردن',
+        ],
+    ],
+
+    'github_user' => [
+        'info' => "",
+        'link' => '',
+        'title' => '',
+        'unlink' => '',
+
+        'error' => [
+            'already_linked' => '',
+            'no_contribution' => '',
+            'unverified_email' => '',
         ],
     ],
 

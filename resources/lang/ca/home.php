@@ -111,7 +111,7 @@ return [
                 'description' => 'fes clic al botó de dalt per descarregar l\'instal·lador, després executa-ho!',
             ],
             'beatmaps' => [
-                'title' => 'obtenir mapes',
+                'title' => 'obtenir beatmaps',
                 'description' => [
                     '_' => ':browse la enorme biblioteca de beatmaps creats pels usuaris i comença a jugar!',
                     'browse' => 'fes una ullada',

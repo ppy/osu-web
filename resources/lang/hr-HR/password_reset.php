@@ -5,7 +5,6 @@
 
 return [
     'button' => [
-        'cancel' => 'Poništi',
         'resend' => 'Ponovno pošalji email potvrdu',
         'set' => 'Postavi lozinku',
         'start' => 'Započni',

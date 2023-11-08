@@ -218,6 +218,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
             'created' => 'created',
             'creator' => 'creator',
             'cs' => 'cs',
+            'difficulty' => 'difficulty',
             'dr' => 'drain',
             'featured_artist' => 'featuredArtist',
             'keys' => 'keys',
@@ -226,6 +227,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
             'ranked' => 'ranked',
             'stars' => 'difficultyRating',
             'status' => 'statusRange',
+            'updated' => 'updated',
         ];
 
         $parsed = BeatmapsetQueryParser::parse($this->requestQuery);

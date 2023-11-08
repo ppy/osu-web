@@ -79,15 +79,15 @@ return [
         ],
 
         'message_type_title' => [
-            'disqualify' => '',
-            'hype' => '',
-            'mapper_note' => '',
-            'nomination_reset' => '',
-            'praise' => '',
-            'problem' => '',
-            'problem_warning' => '',
-            'review' => '',
-            'suggestion' => '',
+            'disqualify' => 'โพสต์การตัดสิทธิ์',
+            'hype' => 'โพสต์ Hype!',
+            'mapper_note' => 'โพสต์หมายเหตุ',
+            'nomination_reset' => 'ลบการเสนอชื่อทั้งหมด',
+            'praise' => 'โพสต์การชื่นชม',
+            'problem' => 'โพสต์ปัญหา',
+            'problem_warning' => 'โพสต์ปัญหา',
+            'review' => 'โพสต์รีวิว',
+            'suggestion' => 'โพสต์คำแนะนำ',
         ],
 
         'mode' => [
@@ -235,7 +235,7 @@ return [
             'prompt' => 'พิมพ์คำสำคัญ...',
             'login_required' => 'ลงชื่อเข้าใช้เพื่อค้นหา',
             'options' => 'ตัวเลือกการค้นหาเพิ่มเติม',
-            'supporter_filter' => 'กรองโดย :filters ต้องมี osu!supporter tag ทำงานอยู่',
+            'supporter_filter' => 'การกรองด้วย :filters จำเป็นต้องมีแท็กผู้สนับสนุนที่ทำงานอยู่',
             'not-found' => 'ไม่มีผลการค้นหา',
             'not-found-quote' => '... ไม่อ่ะ ไม่เจออะไรเลย',
             'filters' => [
@@ -263,7 +263,7 @@ return [
             ],
             'supporter_filter_quote' => [
                 '_' => 'กรองโดย :filters ต้องมี :link ทำงานอยู่',
-                'link_text' => 'แท็ก osu!supporter',
+                'link_text' => 'แท็กผู้สนับสนุน osu!',
             ],
         ],
     ],

@@ -67,7 +67,7 @@ return [
         ],
 
         'message_type' => [
-            'disqualify' => '디스퀄리파이',
+            'disqualify' => 'Disqualify',
             'hype' => 'Hype!',
             'mapper_note' => '노트',
             'nomination_reset' => '노미네이션 초기화',
@@ -79,15 +79,15 @@ return [
         ],
 
         'message_type_title' => [
-            'disqualify' => '',
-            'hype' => '',
-            'mapper_note' => '',
-            'nomination_reset' => '',
-            'praise' => '',
-            'problem' => '',
-            'problem_warning' => '',
-            'review' => '',
-            'suggestion' => '',
+            'disqualify' => 'Disqualification 게시',
+            'hype' => 'Hype 게시!',
+            'mapper_note' => '노트 게시',
+            'nomination_reset' => '모든 노미네이션 삭제',
+            'praise' => '칭찬 게시',
+            'problem' => '문제 게시',
+            'problem_warning' => '문제 게시',
+            'review' => '리뷰 게시',
+            'suggestion' => '제안 게시',
         ],
 
         'mode' => [
@@ -118,7 +118,7 @@ return [
                 'unsaved' => '저장되지 않음',
                 'timestamp' => [
                     'all-diff' => '"모든 난이도"의 게시글에는 시간을 달 수 없습니다.',
-                    'diff' => '만약 이 :type 이(가) 시각으로 시작한다면 타임라인 아래에 보여집니다.',
+                    'diff' => '만약 이 게시글이 타임스탬프로 시작한다면, 타임라인 아래에 표시됩니다.',
                 ],
             ],
             'insert-block' => [
@@ -150,10 +150,10 @@ return [
         ],
 
         'status-messages' => [
-            'approved' => '이 비트맵은 :date에 어프루브 되었습니다!',
+            'approved' => '이 비트맵은 :date에 Approved 상태가 되었습니다!',
             'graveyard' => "이 비트맵은 :date 이후로 업데이트되지 않았고, 제작자에게 버려진 것 같습니다..",
-            'loved' => '이 비트맵은 :date에 러브드 되었습니다!',
-            'ranked' => '이 비트맵은 :date에 랭크되었습니다!',
+            'loved' => '이 비트맵은 :date에 Loved 되었습니다!',
+            'ranked' => '이 비트맵은 :date에 Ranked 상태가 되었습니다!',
             'wip' => '안내: 이 비트맵은 제작자가 제작 중으로 표시한 맵입니다.',
         ],
 
@@ -192,35 +192,35 @@ return [
         'delete' => '삭제',
         'delete_own_confirm' => '확실한가요? 비트맵을 제거하고 당신의 프로필로 돌아갑니다.',
         'delete_other_confirm' => '확실한가요? 비트맵을 제거하고 해당 유저의 프로필로 돌아갑니다.',
-        'disqualification_prompt' => '디스퀄리파이 처리하는 이유는 무엇입니까?',
-        'disqualified_at' => ':time_ago에 디스퀄리파이 됨 (:reason).',
+        'disqualification_prompt' => 'Disqualify 처리하는 이유는 무엇입니까?',
+        'disqualified_at' => ':time_ago에 Disqualify 됨 (:reason).',
         'disqualified_no_reason' => '이유가 명시되지 않았습니다',
-        'disqualify' => '디스퀄리파이',
+        'disqualify' => 'Disqualify',
         'incorrect_state' => '해당 작업을 수행하는 중 오류가 발생했습니다, 페이지를 새로 고쳐보세요.',
         'love' => 'Love',
-        'love_choose' => '러브드 비트맵의 난이도 선택',
+        'love_choose' => 'Loved 비트맵의 난이도 선택',
         'love_confirm' => '이 비트맵을 Love 하겠습니까?',
         'nominate' => '노미네이트',
         'nominate_confirm' => '이 비트맵을 노미네이트 하시겠습니까?',
         'nominated_by' => ':users님이 노미네이트 함',
         'not_enough_hype' => "Hype 수가 부족합니다.",
-        'remove_from_loved' => '러브드 상태에서 제거',
-        'remove_from_loved_prompt' => '러브드 상태에서 제거된 이유',
+        'remove_from_loved' => 'Loved 상태에서 제거',
+        'remove_from_loved_prompt' => 'Loved 상태에서 제거된 이유',
         'required_text' => '노미네이션: :current/:required',
         'reset_message_deleted' => '삭제됨',
         'title' => '노미네이션 상태',
         'unresolved_issues' => '먼저 해결되지 않은 토론을 마무리 지어야 합니다.',
 
         'rank_estimate' => [
-            '_' => '이 맵에서 문제가 발견되지 않으면 :date 랭크될 예정입니다. 현재 :queue의 #:position번째 순서입니다.',
+            '_' => '이 맵에서 문제가 발견되지 않으면 :date에 Ranked 상태가 될 예정입니다. 현재 :queue의 #:position번째 순서입니다.',
             'on' => ':date에',
-            'queue' => '랭킹 대기열',
+            'queue' => '랭크 대기열',
             'soon' => '곧',
         ],
 
         'reset_at' => [
             'nomination_reset' => ':time_ago 전 :user님이 노미네이션을 초기화했습니다. :discussion (:message)',
-            'disqualify' => ':time_ago 전 :user님에 의해 디스퀄리파이 되었습니다. :discussion (:message)',
+            'disqualify' => ':time_ago 전 :user님에 의해 Disqualify 되었습니다. :discussion (:message)',
         ],
 
         'reset_confirm' => [
@@ -284,16 +284,16 @@ return [
     ],
     'status' => [
         'any' => '모두',
-        'approved' => '어프루브',
+        'approved' => 'Approved',
         'favourites' => '즐겨찾기',
         'graveyard' => '무덤에 감',
         'leaderboard' => '리더보드 있음',
-        'loved' => '러브드',
+        'loved' => 'Loved',
         'mine' => '내 비트맵',
         'pending' => '대기 중 & 작업 중',
         'wip' => '제작 중',
-        'qualified' => '퀄리파이',
-        'ranked' => '랭크',
+        'qualified' => 'Qualified',
+        'ranked' => 'Ranked',
     ],
     'genre' => [
         'any' => '모두',

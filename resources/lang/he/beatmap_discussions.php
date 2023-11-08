@@ -26,6 +26,7 @@ return [
             'deleted' => 'כלול דיונים שנמחקו',
             'mode' => '',
             'only_unresolved' => 'הצג רק דיונים פתוחים',
+            'show_review_embeds' => '',
             'types' => 'סוגי הודעות',
             'username' => 'שם משתמש',
 

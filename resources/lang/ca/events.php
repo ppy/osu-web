@@ -10,9 +10,9 @@ return [
     'beatmapset_delete' => ':beatmapset s\'ha eliminat.',
     'beatmapset_revive' => ':beatmapset ha estat ressuscitat del somni etern per  <strong>:user</strong>.',
     'beatmapset_update' => '<strong><em>:user</em></strong> ha actualitzat el beatmap "<em>:beatmapset</em>"',
-    'beatmapset_upload' => '<strong><em>:user</em></strong> ha enviat un nou beatmap ":beatmapset"',
+    'beatmapset_upload' => '<strong><em>:user</em></strong> ha enviat un nou beatmap «:beatmapset»',
     'empty' => "Aquest usuari no ha fet res rellevant recentment!",
-    'rank' => '<strong><em>:user</em></strong> ha assolit el rang #:rank a <em>:beatmap</em> (:mode)',
+    'rank' => ':user ha assolit la :rank a :beatmap (:mode)',
     'rank_lost' => '<strong><em>:user</em></strong> ha perdut la primera posició a  <em>:beatmap</em> (:mode)',
     'user_support_again' => '<strong>:user</strong> ha tornat a donar suport a l\'osu! - gràcies per la teva generositat!',
     'user_support_first' => '<strong>:user</strong> s\'ha tornat un osu!supporter - gràcies per la teva generositat!',
@@ -24,5 +24,9 @@ return [
         'loved' => 'estimat',
         'qualified' => 'qualificat',
         'ranked' => 'clasificado',
+    ],
+
+    'value' => [
+        'rank' => 'clasificació #:rank',
     ],
 ];

@@ -52,7 +52,7 @@ export default class ImageLink extends React.Component<Props> {
   }
 
   @action
-  private handleOnLoad = () => {
+  private readonly handleOnLoad = () => {
     this.loaded = true;
   };
 

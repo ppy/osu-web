@@ -79,15 +79,15 @@ return [
         ],
 
         'message_type_title' => [
-            'disqualify' => '',
-            'hype' => '',
-            'mapper_note' => '',
-            'nomination_reset' => '',
-            'praise' => '',
-            'problem' => '',
-            'problem_warning' => '',
-            'review' => '',
-            'suggestion' => '',
+            'disqualify' => 'Дискваліфікаційне повідомлення',
+            'hype' => 'Хайпанути!',
+            'mapper_note' => 'Повідомлення-нотатка',
+            'nomination_reset' => 'Видалити всі Номінації',
+            'praise' => 'Повідомлення-подяка',
+            'problem' => 'Повідомлення-проблема',
+            'problem_warning' => 'Повідомлення-проблема',
+            'review' => 'Повідомлення-відгук',
+            'suggestion' => 'Повідомлення-пропозиція',
         ],
 
         'mode' => [
@@ -105,7 +105,7 @@ return [
             'pin' => 'Закріпити',
             'timestamp' => 'Мітка часу',
             'timestamp_missing' => 'натисніть ctrl-c в редакторі й вставте в ваше повідомлення щоб додати мітку часу!',
-            'title' => 'Нова дискусія',
+            'title' => 'Нове обговорення',
             'unpin' => 'Відкріпити',
         ],
 

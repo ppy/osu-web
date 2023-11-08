@@ -26,6 +26,7 @@ return [
             'deleted' => 'Zahrnúť odstránené diskusie',
             'mode' => 'Režim beatmapy',
             'only_unresolved' => 'Ukázať iba nevyriešené diskusie',
+            'show_review_embeds' => '',
             'types' => 'Typy správ',
             'username' => 'Meno Uživateľa',
 

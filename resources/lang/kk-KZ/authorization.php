@@ -185,5 +185,8 @@ return [
                 'require_supporter_tag' => 'osu!қолдаушысы тегі қажет.',
             ],
         ],
+        'update_email' => [
+            'locked' => '',
+        ],
     ],
 ];

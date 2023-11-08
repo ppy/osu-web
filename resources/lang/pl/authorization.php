@@ -185,5 +185,8 @@ return [
                 'require_supporter_tag' => 'Aby to zrobić, wymagany jest status donatora osu!.',
             ],
         ],
+        'update_email' => [
+            'locked' => 'zmiana adresu e-mail jest zablokowana',
+        ],
     ],
 ];

@@ -72,7 +72,7 @@ return [
 
     'disabled' => [
         'title' => '¡Oh, oh! Parece que su cuenta ha sido desactivada.',
-        'warning' => "En el caso de que haya roto una regla, tenga en cuenta que generalmente hay un período de espera de un mes durante el cual no consideraremos ninguna solicitud de amnistía. Después de este período, puede contactar con nosotros si lo considera necesario. Tenga en cuenta que la creación de nuevas cuentas después de haber tenido una desactivada resultará en una <strong>extensión de este período de espera de un mes</strong>. Por favor, también tenga en cuenta que por <strong>cada cuenta que cree, estará violando más reglas</strong>. ¡Le sugerimos que no siga este camino!",
+        'warning' => "En el caso de que hayas roto una regla, ten en cuenta que generalmente hay un período de espera de un mes durante el cual no consideraremos ninguna solicitud de amnistía. Después de este período, puedes contactar con nosotros si lo consideras necesario. Ten en cuenta que la creación de nuevas cuentas después de haber tenido una desactivada resultará en una <strong>extensión de este período de espera de un mes</strong>. Por favor, también ten en cuenta que por <strong>cada cuenta que crees, estarás violando más reglas</strong>. ¡Te sugerimos que no sigas este camino!",
 
         'if_mistake' => [
             '_' => 'Si cree que se trata de un error, puede ponerse en contacto con nosotros (por :email o haciendo clic en el "?" en la esquina inferior derecha de esta página). Tenga en cuenta que siempre confiamos plenamente en nuestras acciones, ya que se basan en datos muy sólidos. Nos reservamos el derecho de ignorar su petición si consideramos que está siendo intencionadamente deshonesto.',
@@ -80,7 +80,7 @@ return [
         ],
 
         'reasons' => [
-            'compromised' => 'Su cuenta se ha considerado comprometida. Puede ser desactivada temporalmente mientras se confirma su identidad.',
+            'compromised' => 'Tu cuenta se ha considerado comprometida. Puede ser desactivada temporalmente mientras se confirma su identidad.',
             'opening' => 'Hay una serie de razones que pueden resultar en la desactivación de su cuenta:',
 
             'tos' => [
@@ -97,7 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
-            'inactive_different_country' => "Su cuenta no ha sido utilizada en mucho tiempo.",
+            'inactive_different_country' => "Tu cuenta no ha sido usada en mucho tiempo.",
         ],
     ],
 
@@ -105,7 +105,7 @@ return [
         '_' => 'Iniciar sesión',
         'button' => 'Iniciar sesión',
         'button_posting' => 'Iniciando sesión...',
-        'email_login_disabled' => 'El inicio de sesión con correo está actualmente desactivado. Use el nombre de usuario en su lugar.',
+        'email_login_disabled' => 'El inicio de sesión con correo electrónico está actualmente desactivado. Por favor, usa el nombre de usuario en su lugar.',
         'failed' => 'Inicio de sesión incorrecto',
         'forgot' => '¿Olvidaste tu contraseña?',
         'info' => 'Por favor, inicie sesión para continuar',
@@ -123,12 +123,20 @@ return [
         ],
     ],
 
+    'ogp' => [
+        'description' => [
+            '_' => 'Clasificación (:ruleset): :global | :country',
+            'country' => 'País :rank',
+            'global' => 'Global :rank',
+        ],
+    ],
+
     'posts' => [
         'title' => 'Publicaciones de :username',
     ],
 
     'anonymous' => [
-        'login_link' => 'haga clic para iniciar sesión',
+        'login_link' => 'haz clic para iniciar sesión',
         'login_text' => 'iniciar sesión',
         'username' => 'Invitado',
         'error' => 'Necesitas haber iniciado sesión para hacer esto.',
@@ -150,7 +158,7 @@ return [
         'options' => [
             'cheating' => 'Juega sucio o hace trampa',
             'multiple_accounts' => 'Utiliza múltiples cuentas',
-            'insults' => 'Insulta a mí o a otros',
+            'insults' => 'Insultándome/insultando a otros',
             'spam' => 'Envía mensajes spam',
             'unwanted_content' => 'Enlaza contenido inapropiado',
             'nonsense' => 'Sin sentido',
@@ -158,9 +166,9 @@ return [
         ],
     ],
     'restricted_banner' => [
-        'title' => '¡Su cuenta ha sido restringida!',
-        'message' => 'Mientras estás restringido, no podrás interactuar con otros jugadores y tus puntuaciones solo las podrás ver tú. Esto es, normalmente, el resultado de un proceso automatizado, y se levanta normalmente dentro de 24 horas. Si deseas apelar a tu restricción, por favor <a href="mailto:accounts@ppy.sh">contacta con el soporte</a>.',
-        'message_link' => 'Consulte esta página para obtener más información.',
+        'title' => '¡Tu cuenta ha sido restringida!',
+        'message' => 'Mientras estás restringido, no podrás interactuar con otros jugadores y tus puntuaciones solo las podrás ver tú. Normalmente, este es el resultado de un proceso automatizado, y se levanta normalmente dentro de 24 horas. :link',
+        'message_link' => 'Consulta esta página para obtener más información.',
     ],
     'show' => [
         'age' => ':age años',
@@ -171,7 +179,7 @@ return [
         'joined_at' => 'Se unió en :date',
         'lastvisit' => 'Visto :date',
         'lastvisit_online' => 'Actualmente en línea',
-        'missingtext' => '¡Es posible que hayas cometido un error tipográfico! (o el usuario puede haber sido baneado)',
+        'missingtext' => '¡Es posible que hayas cometido un error tipográfico! (o el usuario puede haber sido restringido)',
         'origin_country' => 'De :country',
         'previous_usernames' => 'antes conocido como',
         'plays_with' => 'Juega con :devices',
@@ -221,7 +229,7 @@ return [
                 'title' => 'Logros',
             ],
             'beatmaps' => [
-                'by_artist' => 'por :artist',
+                'by_artist' => 'de :artist',
                 'title' => 'Mapas',
 
                 'favourite' => [
@@ -269,7 +277,7 @@ return [
                 ],
                 'recent_plays' => [
                     'accuracy' => 'precisión: :percentage',
-                    'title' => 'Jugadas recientes (24 h)',
+                    'title' => 'Jugadas recientes (24 h)',
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Historial de repeticiones vistas',
@@ -277,7 +285,7 @@ return [
                 ],
             ],
             'kudosu' => [
-                'recent_entries' => 'Historial de Kudosu Reciente',
+                'recent_entries' => 'Historial de Kudosu reciente',
                 'title' => 'Kudosu!',
                 'total' => 'Total de Kudosu obtenido',
 
@@ -321,7 +329,7 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => 'Según la contribución que el usuario ha hecho al modding de mapas. Vea :link para más información.',
+                    '_' => 'Según la contribución que el usuario ha hecho a la moderación de mapas. Consulta :link para más información.',
                     'link' => 'esta página',
                 ],
             ],
@@ -392,9 +400,9 @@ return [
                     'actor' => 'por :username',
 
                     'actions' => [
-                        'restriction' => 'Restringir',
+                        'restriction' => 'Restricción',
                         'silence' => 'Silenciado',
-                        'tournament_ban' => 'Prohibición de torneo',
+                        'tournament_ban' => 'Restricción de torneos',
                         'note' => 'Nota',
                     ],
                 ],
@@ -420,7 +428,7 @@ return [
             'button' => 'editar página de perfil',
             'description' => '<strong>¡yo!</strong> es una área personal y personalizable en tu perfil.',
             'edit_big' => 'Editar ¡yo!',
-            'placeholder' => 'Escriba el contenido de la página aquí',
+            'placeholder' => 'Escribe el contenido de la página aquí',
 
             'restriction_info' => [
                 '_' => 'Debes ser un :link para desbloquear esta función.',
@@ -432,7 +440,7 @@ return [
             'count' => ':count_delimited publicación en el foro|:count_delimited publicaciones en el foro',
         ],
         'rank' => [
-            'country' => 'Rank nacional para :mode',
+            'country' => 'Clasificación nacional para :mode',
             'country_simple' => 'Clasificación nacional',
             'global' => 'Rank global para :mode',
             'global_simple' => 'Clasificación global',
@@ -444,7 +452,7 @@ return [
             'level_progress' => 'progreso al siguiente nivel',
             'maximum_combo' => 'Combo máximo',
             'medals' => 'Medallas',
-            'play_count' => 'Conteo de jugadas',
+            'play_count' => 'Número de jugadas',
             'play_time' => 'Tiempo de juego total',
             'ranked_score' => 'Puntuación clasificada',
             'replays_watched_by_others' => 'Repeticiones vistas por otros',
@@ -460,7 +468,7 @@ return [
     ],
 
     'silenced_banner' => [
-        'title' => 'Actualmente está silenciado.',
+        'title' => 'Actualmente estás silenciado.',
         'message' => 'Es posible que algunas acciones no estén disponibles.',
     ],
 

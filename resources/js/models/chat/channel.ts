@@ -4,7 +4,7 @@
 import { markAsRead, getChannel, getMessages } from 'chat/chat-api';
 import ChannelJson, { ChannelType, SupportedChannelType, supportedTypeLookup } from 'interfaces/chat/channel-json';
 import MessageJson from 'interfaces/chat/message-json';
-import { minBy, sortBy, throttle } from 'lodash';
+import { sortBy, throttle } from 'lodash';
 import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 import User, { usernameSortAscending } from 'models/user';
 import core from 'osu-core-singleton';
@@ -13,6 +13,18 @@ import Message from './message';
 const hideableChannelTypes: Set<ChannelType> = new Set(['ANNOUNCE', 'PM']);
 
 export const maxMessageLength = 1024;
+
+// TODO: rename minMessageId and also check firstMessageId
+function getMinMessageIdFrom(messages: Message[]) {
+  let minMessageId: number | undefined;
+  for (const message of messages) {
+    if (typeof message.messageId === 'number' && (minMessageId == null || message.messageId < minMessageId)) {
+      minMessageId = message.messageId;
+    }
+  }
+
+  return minMessageId ?? -1;
+}
 
 export default class Channel {
   private static readonly defaultIcon = '/images/layout/chat/channel-default.png'; // TODO: update with channel-specific icons?
@@ -39,7 +51,7 @@ export default class Channel {
   @observable userIds: number[] = [];
 
   private markAsReadLastSent = 0;
-  @observable private messagesMap = new Map<number | string, Message>();
+  @observable private readonly messagesMap = new Map<number | string, Message>();
   private serverLastMessageId?: number;
   @observable private usersLoaded = false;
 
@@ -294,8 +306,8 @@ export default class Channel {
       const messages = await getMessages(this.channelId);
 
       runInAction(() => {
+        const minMessageId = getMinMessageIdFrom(messages);
         // gap in messages, just clear all messages instead of dealing with the gap.
-        const minMessageId = minBy(messages, 'messageId')?.messageId ?? -1;
         if (minMessageId > this.lastMessageId) {
           // TODO: force scroll to the end.
           this.messagesMap.clear();

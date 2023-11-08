@@ -20,7 +20,7 @@ return [
     ],
 
     'featured_artist_badge' => [
-        'label' => 'Featured artist',
+        'label' => 'Featured Artist',
     ],
 
     'index' => [
@@ -35,7 +35,7 @@ return [
             'all' => 'télécharger',
             'video' => 'télécharger avec la vidéo',
             'no_video' => 'télécharger sans la vidéo',
-            'direct' => 'ouvrir dans osu!direct',
+            'direct' => 'ouvrir avec osu!direct',
         ],
     ],
 
@@ -61,7 +61,7 @@ return [
         'discussion' => 'Discussion',
 
         'admin' => [
-            'full_size_cover' => '',
+            'full_size_cover' => 'Afficher la taille réelle de l\'image de couverture',
         ],
 
         'deleted_banner' => [
@@ -76,14 +76,14 @@ return [
             'logged-out' => 'Vous devez vous connecter pour pouvoir télécharger des beatmaps !',
             'mapped_by' => 'mappée par :mapper',
             'mapped_by_guest' => 'guest difficulty par :mapper',
-            'unfavourite' => 'Retirer cette beatmapset des favoris',
+            'unfavourite' => 'Retirer ce beatmapset des favoris',
             'updated_timeago' => 'dernière mise à jour le :timeago',
 
             'download' => [
                 '_' => 'Télécharger',
                 'direct' => '',
-                'no-video' => 'sans Vidéo',
-                'video' => 'avec Vidéo',
+                'no-video' => 'sans vidéo',
+                'video' => 'avec vidéo',
             ],
 
             'login_required' => [
@@ -102,7 +102,7 @@ return [
         ],
 
         'favourites' => [
-            'limit_reached' => 'Vous avez trop de beatmaps favorites ! Veuillez en supprimer quelques-unes avant d\'essayer à nouveau.',
+            'limit_reached' => 'Vous avez trop de beatmaps favorites ! Veuillez en retirer quelques-unes avant d\'essayer à nouveau.',
         ],
 
         'hype' => [
@@ -182,8 +182,8 @@ return [
 
             'no_scores' => [
                 'country' => 'Personne de votre pays n\'a encore fait un score !',
-                'friend' => 'Aucun de vos amis n\'a encore établi de score sur cette map !',
-                'global' => 'Pas de scores. Peut-être devriez vous en faire un ?',
+                'friend' => 'Aucun de vos amis n\'a encore établi de score sur cette beatmap !',
+                'global' => 'Pas de scores. Peut-être devriez-vous en faire un ?',
                 'loading' => 'Chargement des scores...',
                 'unranked' => 'Beatmap non classée.',
             ],

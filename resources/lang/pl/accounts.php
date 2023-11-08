@@ -18,6 +18,10 @@ return [
             'new' => 'nowy e-mail',
             'new_confirmation' => 'potwierdź e-mail',
             'title' => 'E-mail',
+            'locked' => [
+                '_' => 'Skontaktuj się z :accounts, jeżeli chcesz zaktualizować swój adres e-mail.',
+                'accounts' => 'zespołem obsługi kont',
+            ],
         ],
 
         'legacy_api' => [
@@ -55,6 +59,19 @@ return [
         'signature' => [
             'title' => 'Sygnatura',
             'update' => 'zaktualizuj',
+        ],
+    ],
+
+    'github_user' => [
+        'info' => "",
+        'link' => 'Połącz konto GitHub',
+        'title' => 'GitHub',
+        'unlink' => 'Odłącz konto GitHub',
+
+        'error' => [
+            'already_linked' => 'To konto GitHub jest już połączane z innym użytkownikiem.',
+            'no_contribution' => '',
+            'unverified_email' => 'Zweryfikuj swój główny email na GitHub, a następnie spróbuj ponownie połączyć swoje konto.',
         ],
     ],
 

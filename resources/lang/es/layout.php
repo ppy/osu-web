@@ -169,12 +169,12 @@ return [
     ],
 
     'popup_login' => [
-        'button' => 'iniciar sesión / registrarse',
+        'button' => 'iniciar sesión / registrarme',
 
         'login' => [
             'forgot' => "He olvidado mis datos",
             'password' => 'contraseña',
-            'title' => 'Iniciar sesión para continuar',
+            'title' => 'Inicia sesión para continuar',
             'username' => 'nombre de usuario',
 
             'error' => [
@@ -201,7 +201,7 @@ return [
     ],
 
     'popup_search' => [
-        'initial' => '¡Escriba para buscar!',
+        'initial' => '¡Escribe para buscar!',
         'retry' => 'Búsqueda fallida. Haz clic aquí para reintentar.',
     ],
 ];

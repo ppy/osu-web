@@ -18,6 +18,10 @@ return [
             'new' => 'nuova email',
             'new_confirmation' => 'conferma email',
             'title' => 'Email',
+            'locked' => [
+                '_' => 'Per favore contatta il :accounts se hai bisogno di aggiornare il tuo indirizzo email.',
+                'accounts' => 'team di supporto account',
+            ],
         ],
 
         'legacy_api' => [
@@ -55,6 +59,19 @@ return [
         'signature' => [
             'title' => 'Firma',
             'update' => 'aggiorna',
+        ],
+    ],
+
+    'github_user' => [
+        'info' => "Se contribuisci nei repository open-source di osu!, collegare qui il tuo account GitHub assocerà il profilo osu! alle tue modifiche nelle note di rilascio. Gli account GitHub che non hanno ancora contribuito con osu! non possono essere collegati.",
+        'link' => 'Collega Account GitHub',
+        'title' => 'GitHub',
+        'unlink' => 'Scollega Account GitHub',
+
+        'error' => [
+            'already_linked' => 'Questo account GitHub è già associato a un altro utente.',
+            'no_contribution' => 'Non puoi collegare un account GitHub senza aver contribuito nei repository di osu!.',
+            'unverified_email' => 'Verifica la tua email principale su GitHub, poi riprova a collegare il tuo account.',
         ],
     ],
 

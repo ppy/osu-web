@@ -18,6 +18,10 @@ return [
             'new' => 'بريد إلكتروني جديد',
             'new_confirmation' => 'تأكيد البريد الإلكتروني',
             'title' => 'البريد الإلكتروني',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
         ],
 
         'legacy_api' => [
@@ -55,6 +59,19 @@ return [
         'signature' => [
             'title' => 'التوقيع',
             'update' => 'تحديث',
+        ],
+    ],
+
+    'github_user' => [
+        'info' => "",
+        'link' => '',
+        'title' => '',
+        'unlink' => '',
+
+        'error' => [
+            'already_linked' => '',
+            'no_contribution' => '',
+            'unverified_email' => '',
         ],
     ],
 

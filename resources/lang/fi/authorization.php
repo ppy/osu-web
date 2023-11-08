@@ -53,10 +53,10 @@ return [
     ],
 
     'beatmapset' => [
-        'discussion_locked' => 'Tämän rytmikartan keskustelu on lukittu.',
+        'discussion_locked' => 'Tämän beatmapin keskustelu on lukittu.',
 
         'metadata' => [
-            'nominated' => 'Et voi muuttaa ehdolle asetetun kartan metatietoja. Ota yhteyttä BN- tai NAT-jäseneen, jos luulet sen olevan virheellinen.',
+            'nominated' => 'Et voi muuttaa ehdolle asetetun kartan kuvailutietoja. Ota yhteyttä BN- tai NAT-jäseneen, jos luulet sen olevan virheellinen.',
         ],
     ],
 
@@ -184,6 +184,9 @@ return [
                 'not_owner' => 'Voit muokata vain omaa käyttäjäsivuasi.',
                 'require_supporter_tag' => 'Sinun on oltava Tukija.',
             ],
+        ],
+        'update_email' => [
+            'locked' => 'sähköpostiosoite on lukittu',
         ],
     ],
 ];

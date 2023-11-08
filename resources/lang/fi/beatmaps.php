@@ -79,15 +79,15 @@ return [
         ],
 
         'message_type_title' => [
-            'disqualify' => '',
-            'hype' => '',
-            'mapper_note' => '',
-            'nomination_reset' => '',
-            'praise' => '',
-            'problem' => '',
-            'problem_warning' => '',
-            'review' => '',
-            'suggestion' => '',
+            'disqualify' => 'Lähetä hylkäys',
+            'hype' => 'Lähetä hurraus!',
+            'mapper_note' => 'Lähetä merkintä',
+            'nomination_reset' => 'Poista kaikki ehdollepanot',
+            'praise' => 'Lähetä ylistys',
+            'problem' => 'Lähetä ongelma',
+            'problem_warning' => 'Lähetä ongelma',
+            'review' => 'Lähetä arvostelu',
+            'suggestion' => 'Lähetä ehdotus',
         ],
 
         'mode' => [
@@ -187,8 +187,8 @@ return [
     ],
 
     'nominations' => [
-        'already_nominated' => 'Olet jo pannut ehdolle tämän rytmikartan.',
-        'cannot_nominate' => 'Et voi panna ehdolle tähän pelimuotoon kuuluvia rytmikarttoja.',
+        'already_nominated' => 'Olet jo pannut ehdolle tämän beatmapin.',
+        'cannot_nominate' => 'Et voi panna ehdolle tähän pelimuotoon kuuluvia beatmappeja.',
         'delete' => 'Poista',
         'delete_own_confirm' => 'Oletko varma? Tämä beatmap poistetaan ja sinut uudelleenohjataan takaisin profiiliisi.',
         'delete_other_confirm' => 'Oletko varma? Tämä beatmap poistetaan ja sinut uudelleenohjataan käyttäjän profiiliin.',
@@ -232,21 +232,21 @@ return [
 
     'listing' => [
         'search' => [
-            'prompt' => 'syötä hakusana...',
+            'prompt' => 'kirjoita hakusanoja...',
             'login_required' => 'Kirjaudu sisään hakeaksesi.',
             'options' => 'Enemmän Hakuasetuksia',
             'supporter_filter' => 'Tunnisteella :filters rajaaminen vaatii aktiivisen osu!supporter-tagin',
             'not-found' => 'ei tuloksia',
             'not-found-quote' => '... mitään ei löytynyt.',
             'filters' => [
-                'extra' => 'Extra',
+                'extra' => 'Ekstra',
                 'general' => 'Yleinen',
                 'genre' => 'Tyylilaji',
                 'language' => 'Kieli',
-                'mode' => 'Pelitila',
+                'mode' => 'Pelimuoto',
                 'nsfw' => 'Sopimaton sisältö',
-                'played' => 'Pelatut',
-                'rank' => 'Luokitus',
+                'played' => 'Pelattu',
+                'rank' => 'Saavutettu arvosana',
                 'status' => 'Luokat',
             ],
             'sorting' => [
@@ -272,7 +272,7 @@ return [
         'featured_artists' => 'Esitellyt artistit',
         'follows' => 'Tilatut kartoittajat',
         'recommended' => 'Suositeltu vaikeustaso',
-        'spotlights' => 'Kohdevaloissa olevat rytmikartat',
+        'spotlights' => 'Kohdevaloissa olevat beatmapit',
     ],
     'mode' => [
         'all' => 'Kaikki',
@@ -345,9 +345,9 @@ return [
     ],
     'rank' => [
         'any' => 'Kaikki',
-        'XH' => 'Hopea SS',
+        'XH' => 'Hopea-SS',
         'X' => '',
-        'SH' => 'Hopea S',
+        'SH' => 'Hopea-S',
         'S' => '',
         'A' => '',
         'B' => '',

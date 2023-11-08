@@ -49,7 +49,7 @@ return [
     ],
 
     'card' => [
-        'gift_supporter' => 'Hadiahkan supporter tag',
+        'gift_supporter' => 'Hadiahkan tag supporter',
         'loading' => 'Memuat...',
         'send_message' => 'Kirim pesan',
     ],
@@ -120,6 +120,14 @@ return [
         'beta' => [
             'main' => 'Akses beta saat ini hanya tersedia bagi para pengguna dengan hak khusus.',
             'small' => '(para pemilik osu!supporter akan segera masuk)',
+        ],
+    ],
+
+    'ogp' => [
+        'description' => [
+            '_' => 'Peringkat (:ruleset): :global | :country',
+            'country' => 'Negara :rank',
+            'global' => 'Global :rank',
         ],
     ],
 
@@ -444,7 +452,7 @@ return [
             'level_progress' => 'Persentase pencapaian menuju level berikutnya',
             'maximum_combo' => 'Kombo Maksimum',
             'medals' => 'Jumlah Medali',
-            'play_count' => 'Jumlah Main',
+            'play_count' => 'Jumlah Permainan',
             'play_time' => 'Telah Bermain Selama',
             'ranked_score' => 'Skor Ranked',
             'replays_watched_by_others' => 'Jumlah Pemutaran Tayangan Ulang',

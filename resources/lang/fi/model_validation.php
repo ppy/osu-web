@@ -4,11 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid' => '',
+    'invalid' => 'Virheellinen :attribute määritelty.',
     'not_negative' => ':attribute ei voi olla negatiivinen.',
     'required' => ':attribute on pakollinen.',
     'too_long' => ':attribute ylittää maksimipituuden - voi olla enintään :limit merkkiä.',
-    'url' => '',
+    'url' => 'Syötä kelvollinen URL-osoite.',
     'wrong_confirmation' => 'Tarkistus ei täsmää.',
 
     'beatmapset_discussion' => [
@@ -20,12 +20,12 @@ return [
         'locked' => 'Keskustelu on lukittu.',
 
         'attributes' => [
-            'message_type' => '',
-            'timestamp' => '',
+            'message_type' => 'Viestin tyyppi',
+            'timestamp' => 'Aikaleima',
         ],
 
         'hype' => [
-            'discussion_locked' => "",
+            'discussion_locked' => "Tämän beatmapin keskustelu on lukittu eikä sitä voi hurrata",
             'guest' => 'Sinun on kirjauduttava sisään hurrataksesi.',
             'hyped' => 'Hurrasit jo tätä beatmappia.',
             'limit_exceeded' => 'Olet käyttänyt kaikki hurrauksesi.',
@@ -44,21 +44,21 @@ return [
         'first_post' => 'Aloitusviestiä ei voida poistaa.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Viesti',
         ],
     ],
 
     'comment' => [
         'deleted_parent' => 'Poistettuun kommenttiin ei voida vastata.',
-        'top_only' => '',
+        'top_only' => 'Kommentin vastauksen kiinnitys ei ole sallittu.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Viesti',
         ],
     ],
 
     'follow' => [
-        'invalid' => '',
+        'invalid' => 'Virheellinen :attribute määritelty.',
     ],
 
     'forum' => [
@@ -72,14 +72,14 @@ return [
         ],
 
         'post' => [
-            'beatmapset_post_no_delete' => 'Beatmapin metatietoviestiä ei voida poistaa.',
-            'beatmapset_post_no_edit' => 'Beatmapin metatietoviestiä ei voida muokata.',
+            'beatmapset_post_no_delete' => 'Rytmikartan kuvailutietoviestiä ei voida poistaa.',
+            'beatmapset_post_no_edit' => 'Rytmikartan kuvailutietoviestiä ei voida muokata.',
             'first_post_no_delete' => 'Aloitusviestiä ei voi poistaa',
             'missing_topic' => 'Viestissä puuttuu aihe',
             'only_quote' => 'Sinun vastauksesi sisältää ainoastaan lainauksen.',
 
             'attributes' => [
-                'post_text' => '',
+                'post_text' => 'Varsinainen teksti',
             ],
         ],
 
@@ -110,18 +110,18 @@ return [
     ],
 
     'legacy_api_key' => [
-        'exists' => '',
+        'exists' => 'Käyttäjää kohti annetaan tällä hetkellä vain yksi API-avain.',
 
         'attributes' => [
-            'api_key' => '',
-            'app_name' => '',
-            'app_url' => '',
+            'api_key' => 'rajapinta-avain',
+            'app_name' => 'sovelluksen nimi',
+            'app_url' => 'sovelluksen url',
         ],
     ],
 
     'oauth' => [
         'client' => [
-            'too_many' => '',
+            'too_many' => 'Sallittujen OAuth-sovellusten maksimimäärä ylittyi.',
             'url' => 'Syötä kelvollinen URL-osoite.',
 
             'attributes' => [
@@ -174,8 +174,8 @@ return [
     ],
 
     'user_report' => [
-        'no_ranked_beatmapset' => '',
-        'not_in_channel' => '',
+        'no_ranked_beatmapset' => 'Rankattuja beatmappeja ei voi raportoida',
+        'not_in_channel' => 'Et ole tällä kanavalla.',
         'reason_not_valid' => ':reason ei kelpaa tälle ilmoitustyypille.',
         'self' => "Et voi ilmiantaa itseäsi!",
     ],

@@ -18,6 +18,10 @@ return [
             'new' => 'новая эл. пошта',
             'new_confirmation' => 'пацвярдзіце эл. пошту',
             'title' => 'Эл. пошта',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
         ],
 
         'legacy_api' => [
@@ -55,6 +59,19 @@ return [
         'signature' => [
             'title' => 'Подпіс',
             'update' => 'абнавіць',
+        ],
+    ],
+
+    'github_user' => [
+        'info' => "",
+        'link' => '',
+        'title' => '',
+        'unlink' => '',
+
+        'error' => [
+            'already_linked' => '',
+            'no_contribution' => '',
+            'unverified_email' => '',
         ],
     ],
 

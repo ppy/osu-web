@@ -20,6 +20,10 @@ return [
             'new' => 'bagong email',
             'new_confirmation' => 'ikumpirma ang email',
             'title' => 'Email',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
         ],
 
         'legacy_api' => [
@@ -57,6 +61,19 @@ return [
         'signature' => [
             'title' => 'Signatura',
             'update' => 'i-update',
+        ],
+    ],
+
+    'github_user' => [
+        'info' => "",
+        'link' => '',
+        'title' => '',
+        'unlink' => '',
+
+        'error' => [
+            'already_linked' => '',
+            'no_contribution' => '',
+            'unverified_email' => '',
         ],
     ],
 

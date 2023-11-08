@@ -74,7 +74,7 @@ return [
         'minute_short_unit' => 'm | m',
         'minutes' => ':count_delimited minuutti|:count_delimited minuuttia',
         'months' => ':count kuukausi|:count kuukautta',
-        'notifications' => ':count_delimited ilmoitus|:count_delimited ilmoituksia',
+        'notifications' => ':count_delimited ilmoitus|:count_delimited ilmoitusta',
         'plus_others' => '+ :count_delimited muu!|+ :count_delimited muita!',
         'post' => ':count_delimited viesti|:count_delimited viestiä',
         'second_short_unit' => 's|s',
@@ -113,7 +113,7 @@ return [
     ],
 
     'input' => [
-        'search' => 'hae...',
+        'search' => 'etsi...',
     ],
 
     'pagination' => [

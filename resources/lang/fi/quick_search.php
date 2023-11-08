@@ -16,6 +16,6 @@ return [
         'empty' => 'Ei tuloksia',
         'empty_for' => 'Ei tuloksia :modes',
         'more' => 'Lisää :mode Hakutuloksia',
-        'title' => '',
+        'title' => ':mode-hakutulokset',
     ],
 ];

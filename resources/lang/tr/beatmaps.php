@@ -79,15 +79,15 @@ return [
         ],
 
         'message_type_title' => [
-            'disqualify' => '',
-            'hype' => '',
-            'mapper_note' => '',
-            'nomination_reset' => '',
-            'praise' => '',
-            'problem' => '',
-            'problem_warning' => '',
-            'review' => '',
-            'suggestion' => '',
+            'disqualify' => 'Diskalifiye Gönder',
+            'hype' => 'Hype Gönder!',
+            'mapper_note' => 'Not Paylaş',
+            'nomination_reset' => 'Tüm Adaylıkları Kaldır',
+            'praise' => 'Övgü Gönder',
+            'problem' => 'Sorun Bildir',
+            'problem_warning' => 'Sorun Bildir',
+            'review' => 'Değerlendirme Gönder',
+            'suggestion' => 'Öneri Gönder',
         ],
 
         'mode' => [

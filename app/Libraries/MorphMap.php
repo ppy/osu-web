@@ -14,6 +14,7 @@ use App\Models\Chat\Message;
 use App\Models\Comment;
 use App\Models\Forum;
 use App\Models\LegacyMatch;
+use App\Models\Multiplayer\ScoreLink as MultiplayerScoreLink;
 use App\Models\NewsPost;
 use App\Models\Score;
 use App\Models\Solo;
@@ -32,6 +33,7 @@ class MorphMap
         Forum\Topic::class => 'forum_topic',
         LegacyMatch\Score::class => 'legacy_match_score',
         Message::class => 'message',
+        MultiplayerScoreLink::class => 'multiplayer_score_link',
         NewsPost::class => 'news_post',
         Score\Best\Fruits::class => 'score_best_fruits',
         Score\Best\Mania::class => 'score_best_mania',

@@ -9,6 +9,9 @@ use App\Exceptions\InvariantException;
 use App\Jobs\Notifications\BeatmapOwnerChange;
 use App\Libraries\BeatmapDifficultyAttributes;
 use App\Libraries\Score\BeatmapScores;
+use App\Libraries\Score\UserRank;
+use App\Libraries\Search\ScoreSearch;
+use App\Libraries\Search\ScoreSearchParams;
 use App\Models\Beatmap;
 use App\Models\BeatmapsetEvent;
 use App\Models\Score\Best\Model as BestModel;
@@ -131,8 +134,8 @@ class BeatmapsController extends Controller
      * Attributes | [DifficultyAttributes](#beatmapdifficultyattributes)
      *
      * @urlParam beatmap integer required Beatmap id. Example: 2
-     * @bodyParam mods number|string[]|Mod[] Mod combination. Can be either a bitset of mods, array of mod acronyms, or array of mods. Defaults to no mods. Example: 1
-     * @bodyParam ruleset GameMode Ruleset of the difficulty attributes. Only valid if it's the beatmap ruleset or the beatmap can be converted to the specified ruleset. Defaults to ruleset of the specified beatmap. Example: osu
+     * @bodyParam mods integer|string[]|Mod[] Mod combination. Can be either a bitset of mods, array of mod acronyms, or array of mods. Defaults to no mods. Example: 1
+     * @bodyParam ruleset Ruleset Ruleset of the difficulty attributes. Only valid if it's the beatmap ruleset or the beatmap can be converted to the specified ruleset. Defaults to ruleset of the specified beatmap. Example: osu
      * @bodyParam ruleset_id integer The same as `ruleset` but in integer form. No-example
      *
      * @response {
@@ -201,9 +204,9 @@ class BeatmapsController extends Controller
      *
      * ### Response format
      *
-     * Field    | Type                  | Description
-     * -------- | --------------------- | -----------
-     * beatmaps | [Beatmap](#beatmap)[] | Includes `beatmapset` (with `ratings`), `failtimes`, and `max_combo`.
+     * Field    | Type                                  | Description
+     * -------- | ------------------------------------- | -----------
+     * beatmaps | [BeatmapExtended](#beatmapextended)[] | Includes `beatmapset` (with `ratings`), `failtimes`, and `max_combo`.
      *
      * @queryParam ids[] integer Beatmap IDs to be returned. Specify once for each beatmap ID requested. Up to 50 beatmaps can be requested at once. Example: 1
      *
@@ -289,14 +292,14 @@ class BeatmapsController extends Controller
      *
      * ### Response format
      *
-     * Returns [Beatmap](#beatmap) object.
+     * Returns [BeatmapExtended](#beatmapextended) object.
      * Following attributes are included in the response object when applicable,
      *
-     * Attribute                            | Notes
-     * -------------------------------------|------
-     * beatmapset                           | Includes ratings property.
-     * failtimes                            | |
-     * max_combo                            | |
+     * Attribute  | Notes
+     * ---------- | -----
+     * beatmapset | Includes ratings property.
+     * failtimes  | |
+     * max_combo  | |
      *
      * @urlParam beatmap integer required The ID of the beatmap.
      *
@@ -345,7 +348,7 @@ class BeatmapsController extends Controller
      *
      * @urlParam beatmap integer required Id of the [Beatmap](#beatmap).
      *
-     * @queryParam mode The [GameMode](#gamemode) to get scores for.
+     * @queryParam mode The [Ruleset](#ruleset) to get scores for.
      * @queryParam mods An array of matching Mods, or none // TODO.
      * @queryParam type Beatmap score ranking type // TODO.
      */
@@ -367,7 +370,7 @@ class BeatmapsController extends Controller
      *
      * @urlParam beatmap integer required Id of the [Beatmap](#beatmap).
      *
-     * @queryParam mode The [GameMode](#gamemode) to get scores for.
+     * @queryParam mode The [Ruleset](#ruleset) to get scores for.
      * @queryParam mods An array of matching Mods, or none // TODO.
      * @queryParam type Beatmap score ranking type // TODO.
      */
@@ -419,7 +422,7 @@ class BeatmapsController extends Controller
      * @urlParam beatmap integer required Id of the [Beatmap](#beatmap).
      * @urlParam user integer required Id of the [User](#user).
      *
-     * @queryParam mode The [GameMode](#gamemode) to get scores for.
+     * @queryParam mode The [Ruleset](#ruleset) to get scores for.
      * @queryParam mods An array of matching Mods, or none // TODO.
      */
     public function userScore($beatmapId, $userId)
@@ -434,13 +437,25 @@ class BeatmapsController extends Controller
         $mode = presence($params['mode'] ?? null, $beatmap->mode);
         $mods = array_values(array_filter($params['mods'] ?? []));
 
-        $score = static::baseScoreQuery($beatmap, $mode, $mods)
-            ->visibleUsers()
-            ->where('user_id', $userId)
-            ->firstOrFail();
+        $baseParams = ScoreSearchParams::fromArray([
+            'beatmap_ids' => [$beatmap->getKey()],
+            'is_legacy' => true,
+            'limit' => 1,
+            'mods' => $mods,
+            'ruleset_id' => Beatmap::MODES[$mode],
+            'sort' => 'score_desc',
+            'user_id' => (int) $userId,
+        ]);
+        $score = (new ScoreSearch($baseParams))->records()->first();
+        abort_if($score === null, 404);
+
+        $rankParams = clone $baseParams;
+        $rankParams->beforeScore = $score;
+        $rankParams->userId = null;
+        $rank = UserRank::getRank($rankParams);
 
         return [
-            'position' => $score->userRank(compact('mods')),
+            'position' => $rank,
             'score' => json_item(
                 $score,
                 new ScoreTransformer(),
@@ -465,18 +480,20 @@ class BeatmapsController extends Controller
      * @urlParam beatmap integer required Id of the [Beatmap](#beatmap).
      * @urlParam user integer required Id of the [User](#user).
      *
-     * @queryParam mode The [GameMode](#gamemode) to get scores for. Defaults to beatmap mode
+     * @queryParam mode The [Ruleset](#ruleset) to get scores for. Defaults to beatmap mode
      */
     public function userScoreAll($beatmapId, $userId)
     {
         $beatmap = Beatmap::scoreable()->findOrFail($beatmapId);
         $mode = presence(get_string(request('mode'))) ?? $beatmap->mode;
-        $scores = BestModel::getClass($mode)
-            ::default()
-            ->where([
-                'beatmap_id' => $beatmap->getKey(),
-                'user_id' => $userId,
-            ])->get();
+        $params = ScoreSearchParams::fromArray([
+            'beatmap_ids' => [$beatmap->getKey()],
+            'is_legacy' => true,
+            'ruleset_id' => Beatmap::MODES[$mode],
+            'sort' => 'score_desc',
+            'user_id' => (int) $userId,
+        ]);
+        $scores = (new ScoreSearch($params))->records();
 
         return [
             'scores' => json_collection($scores, new ScoreTransformer()),

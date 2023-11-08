@@ -61,7 +61,7 @@ return [
         'discussion' => 'Dyskusja',
 
         'admin' => [
-            'full_size_cover' => '',
+            'full_size_cover' => 'Wyświetl tło w pełnej rozdzielczości',
         ],
 
         'deleted_banner' => [

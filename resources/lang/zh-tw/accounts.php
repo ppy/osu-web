@@ -18,6 +18,10 @@ return [
             'new' => '新電子郵件地址',
             'new_confirmation' => '再次輸入電子郵件地址',
             'title' => '電子郵件',
+            'locked' => [
+                '_' => '如欲修改你的電子郵件地址，請聯絡 :accounts。',
+                'accounts' => '帳戶支援團隊',
+            ],
         ],
 
         'legacy_api' => [
@@ -55,6 +59,19 @@ return [
         'signature' => [
             'title' => '簽名',
             'update' => '更新',
+        ],
+    ],
+
+    'github_user' => [
+        'info' => "如果你是 osu! 開源倉庫的貢獻者，在這裡連結你的 GitHub 帳戶以便使你的更新日誌條目與這個 osu! 個人資料相連結。如果欲連結的 GitHub 帳戶在 osu! 開源倉庫上沒有歷史記錄，則無法連結。",
+        'link' => '連結 GitHub 帳戶',
+        'title' => 'GitHub',
+        'unlink' => '取消連結 GitHub 帳戶',
+
+        'error' => [
+            'already_linked' => '這個 GitHub 帳戶已經連結至另一位玩家的帳戶上。',
+            'no_contribution' => '無法連結在 osu! 開源倉庫中無任何貢獻記錄的 GitHub 帳戶。',
+            'unverified_email' => '請先在 GitHub 上驗證你的首要電子郵件，然後再次嘗試連結帳戶。',
         ],
     ],
 

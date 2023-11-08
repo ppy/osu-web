@@ -18,6 +18,10 @@ return [
             'new' => 'อีเมลใหม่',
             'new_confirmation' => 'ยืนยันอีเมล',
             'title' => 'อีเมล',
+            'locked' => [
+                '_' => 'โปรดติดต่อ :accounts หากคุณต้องการอัปเดตอีเมลของคุณ',
+                'accounts' => 'ทีมสนับสนุนบัญชี',
+            ],
         ],
 
         'legacy_api' => [
@@ -55,6 +59,19 @@ return [
         'signature' => [
             'title' => 'ลายเซ็น',
             'update' => 'อัพเดต',
+        ],
+    ],
+
+    'github_user' => [
+        'info' => "",
+        'link' => '',
+        'title' => '',
+        'unlink' => '',
+
+        'error' => [
+            'already_linked' => '',
+            'no_contribution' => '',
+            'unverified_email' => '',
         ],
     ],
 

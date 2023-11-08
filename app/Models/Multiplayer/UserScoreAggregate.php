@@ -8,6 +8,7 @@ namespace App\Models\Multiplayer;
 use App\Models\Model;
 use App\Models\Traits\WithDbCursorHelper;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * Aggregate root for user multiplayer high scores.
@@ -18,6 +19,7 @@ use App\Models\User;
  * @property int $completed
  * @property \Carbon\Carbon $created_at
  * @property int $id
+ * @property int|null $last_score_id
  * @property bool $in_room
  * @property float|null $pp
  * @property int $room_id
@@ -69,18 +71,19 @@ class UserScoreAggregate extends Model
         return $obj;
     }
 
-    public function addScore(Score $score)
+    public function addScoreLink(ScoreLink $scoreLink)
     {
-        return $this->getConnection()->transaction(function () use ($score) {
-            if (!$score->isCompleted()) {
+        return $this->getConnection()->transaction(function () use ($scoreLink) {
+            $score = $scoreLink->score;
+            if ($score === null) {
                 return false;
             }
 
-            $highestScore = PlaylistItemUserHighScore::lookupOrDefault($score);
+            $highestScore = PlaylistItemUserHighScore::lookupOrDefault($scoreLink);
 
-            if ($score->passed && $score->total_score > $highestScore->total_score) {
-                $this->updateUserTotal($score, $highestScore);
-                $highestScore->updateWithScore($score);
+            if ($score->data->passed && $score->data->totalScore > $highestScore->total_score) {
+                $this->updateUserTotal($scoreLink, $highestScore);
+                $highestScore->updateWithScoreLink($scoreLink);
             }
 
             return true;
@@ -97,23 +100,47 @@ class UserScoreAggregate extends Model
         return $this->completed > 0 ? $this->pp / $this->completed : 0;
     }
 
-    public function getScores()
+    public function playlistItemAttempts(): array
     {
-        return Score
-            ::where('room_id', $this->room_id)
-            ->where('user_id', $this->user_id)
-            ->get();
+        $userId = $this->user_id;
+        $roomId = $this->room_id;
+
+        $attempts = [];
+        foreach (PlaylistItem::userAttemptModelBaseQueries() as $query) {
+            $aggs = $query->where(['user_id' => $userId])
+                ->whereHas('playlistItem', fn ($q) => $q->where('room_id', $roomId))
+                ->groupBy('playlist_item_id')
+                ->selectRaw('COUNT(*) AS attempts, playlist_item_id')
+                ->get();
+
+            foreach ($aggs as $agg) {
+                $playlistItemId = $agg->getRawAttribute('playlist_item_id');
+                $attempts[$playlistItemId] ??= [
+                    'attempts' => 0,
+                    'id' => $playlistItemId,
+                ];
+                $attempts[$playlistItemId]['attempts'] += $agg->getRawAttribute('attempts');
+            }
+        }
+
+        return array_values($attempts);
+    }
+
+    public function scoreLinks(): Builder
+    {
+        return ScoreLink
+            ::whereHas('playlistItem', fn ($q) => $q->where('room_id', $this->room_id))
+            ->where('user_id', $this->user_id);
     }
 
     public function recalculate()
     {
         $this->getConnection()->transaction(function () {
             $this->removeRunningTotals();
-            $this->getScores()->each(function ($score) {
+            foreach ($this->scoreLinks()->with('score.performance')->get() as $scoreLink) {
                 $this->attempts++;
-                $this->addScore($score);
-            });
-
+                $this->addScoreLink($scoreLink);
+            }
             $this->save();
         });
     }
@@ -169,7 +196,7 @@ class UserScoreAggregate extends Model
         return 1 + $query->count();
     }
 
-    private function updateUserTotal(Score $current, PlaylistItemUserHighScore $prev)
+    private function updateUserTotal(ScoreLink $currentScoreLink, PlaylistItemUserHighScore $prev)
     {
         if ($prev->exists) {
             $this->total_score -= $prev->total_score;
@@ -178,11 +205,13 @@ class UserScoreAggregate extends Model
             $this->completed--;
         }
 
-        $this->total_score += $current->total_score;
-        $this->accuracy += $current->accuracy;
+        $current = $currentScoreLink->score;
+
+        $this->total_score += $current->data->totalScore;
+        $this->accuracy += $current->data->accuracy;
         $this->pp += $current->pp;
         $this->completed++;
-        $this->last_score_id = $current->getKey();
+        $this->last_score_id = $currentScoreLink->getKey();
 
         $this->save();
     }

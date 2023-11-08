@@ -114,12 +114,20 @@ return [
         'password' => 'Password',
         'register' => "Non hai un account di osu!? Fanne uno nuovo",
         'remember' => 'Ricorda questo computer',
-        'title' => 'Per favore accedi per procedere',
+        'title' => 'Accedi per poter continuare',
         'username' => 'Nome Utente',
 
         'beta' => [
             'main' => 'L\'accesso alla beta è attualmente limitato ad utenti privilegiati.',
             'small' => '(gli osu!supporter lo avranno a breve)',
+        ],
+    ],
+
+    'ogp' => [
+        'description' => [
+            '_' => 'Posizione (:ruleset): :global | :country',
+            'country' => 'Nazionale :rank',
+            'global' => 'Globale :rank',
         ],
     ],
 

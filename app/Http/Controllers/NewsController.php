@@ -26,19 +26,19 @@ class NewsController extends Controller
      * ------------------------- | ----------------------------- | -----
      * cursor_string             | [CursorString](#cursorstring) | |
      * news_posts                | [NewsPost](#newspost)[]       | Includes `preview`.
-     * news_sidebar.current_year | number                        | Year of the first post's publish time, or current year if no posts returned.
+     * news_sidebar.current_year | integer                       | Year of the first post's publish time, or current year if no posts returned.
      * news_sidebar.news_posts   | [NewsPost](#newspost)[]       | All posts published during `current_year`.
-     * news_sidebar.years        | number[]                      | All years during which posts have been published.
-     * search.limit              | number                        | Clamped limit input.
+     * news_sidebar.years        | integer[]                     | All years during which posts have been published.
+     * search.limit              | integer                       | Clamped limit input.
      * search.sort               | string                        | Always `published_desc`.
      *
      * <aside class="notice">
      *   <a href="#newspost">NewsPost</a> collections queried by year will also include posts published in November and December of the previous year if the current date is the same year and before April.
      * </aside>
      *
+     * @usesCursor
      * @queryParam limit integer Maximum number of posts (12 default, 1 minimum, 21 maximum). No-example
      * @queryParam year integer Year to return posts from. No-example
-     * @queryParam cursor_string [CursorString](#cursorstring) for pagination. No-example
      * @response {
      *   "news_posts": [
      *     {
@@ -193,6 +193,8 @@ class NewsController extends Controller
         if (is_json_request()) {
             return $postJson;
         }
+
+        set_opengraph($post);
 
         return ext_view('news.show', [
             'commentBundle' => CommentBundle::forEmbed($post),

@@ -86,7 +86,7 @@ return [
         'macos-fallback' => 'macOS brugere',
         'mirror' => 'mirror',
         'or' => 'eller',
-        'os_version_or_later' => '',
+        'os_version_or_later' => ':os_version eller nyere',
         'other_os' => 'andre platforme',
         'quick_start_guide' => '',
         'tagline' => "lad os få<br>dig i gang!",

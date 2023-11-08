@@ -25,7 +25,7 @@ return [
 
     'editor' => [
         'textarea_hint' => [
-            '_' => 'Az :action végrehajtásához nyomj entert. Új sorhoz használj shift+entert.',
+            '_' => 'A(z) :action végrehajtásához nyomj entert. Új sorhoz használj shift+entert.',
             'edit' => 'mentés',
             'new' => 'posztolás',
             'reply' => 'válasz',

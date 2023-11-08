@@ -124,6 +124,14 @@ return [
         ],
     ],
 
+    'ogp' => [
+        'description' => [
+            '_' => 'Ранг (:ruleset): :global | :country',
+            'country' => 'Државни :rank',
+            'global' => 'Глобални :rank',
+        ],
+    ],
+
     'posts' => [
         'title' => ':username\'s постови',
     ],

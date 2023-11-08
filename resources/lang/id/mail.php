@@ -27,7 +27,7 @@ return [
         'translation' => 'Sebagai bahan rujukan, tersedia terjemahan dari komunitas di bawah ini:',
 
         'benefit' => [
-            'gift' => 'Para pengguna yang kamu hadiahkan kini dapat menikmati akses osu!direct dan berbagai kelebihan supporter lainnya.',
+            'gift' => 'Para pengguna yang kamu hadiahkan kini akan dapat mengakses osu!direct dan berbagai keutamaan supporter lainnya.',
             'self' => 'Kamu kini dapat menikmati akses osu!direct dan berbagai kelebihan supporter lainnya selama :duration.',
         ],
 
@@ -66,9 +66,9 @@ return [
         'anonymous_gift_maybe_not' => 'Tetapi kamu mungkin sudah tahu siapa itu ;).',
         'duration' => 'Berkat mereka, kamu kini dapat mengakses osu!direct dan berbagai fitur khusus osu!supporter lainnya selama :duration.',
         'features' => 'Kamu dapat membaca rincian lebih lanjut mengenai berbagai fitur ini di sini:',
-        'gifted' => 'Seseorang baru saja menghadiahkanmu osu!supporter tag!',
+        'gifted' => 'Seseorang baru saja menghadiahkanmu tag osu!supporter!',
         'gift_message' => 'Pengguna yang menghadiahkan tag ini menitipkan pesan berikut untukmu:',
-        'subject' => 'Kamu telah dihadiahkan osu!supporter tag!',
+        'subject' => 'Kamu telah dihadiahkan tag osu!supporter!',
     ],
 
     'user_email_updated' => [

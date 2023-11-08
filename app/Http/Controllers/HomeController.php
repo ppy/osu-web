@@ -159,19 +159,19 @@ class HomeController extends Controller
      *
      * ### Response Format
      *
-     * Field     | Type                          | Description
-     * --------- | ----------------------------- | -----------
-     * user      | SearchResult&lt;UserCompact>? | For `all` or `user` mode. Only first 100 results are accessible
-     * wiki_page | SearchResult&lt;WikiPage>?    | For `all` or `wiki_page` mode
+     * Field     | Type                       | Description
+     * --------- | -------------------------- | -----------
+     * user      | SearchResult&lt;User>?     | For `all` or `user` mode. Only first 100 results are accessible
+     * wiki_page | SearchResult&lt;WikiPage>? | For `all` or `wiki_page` mode
      *
      * #### SearchResult&lt;T>
      *
-     * Field | Type   | Description
-     * ----- | ------ | -----------
-     * data  | T[]    | |
-     * total | number | |
+     * Field | Type    | Description
+     * ----- | ------- | -----------
+     * data  | T[]     | |
+     * total | integer | |
      *
-     * @queryParam mode Either `all`, `user`, or `wiki_page`. Default is `all`. Example: all
+     * @queryParam mode string Either `all`, `user`, or `wiki_page`. Default is `all`. Example: all
      * @queryParam query Search keyword. Example: hello
      * @queryParam page Search result page. Ignored for mode `all`. Example: 1
      */

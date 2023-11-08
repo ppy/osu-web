@@ -182,8 +182,11 @@ return [
             'edit' => [
                 'locked' => 'Laman pengguna terkunci.',
                 'not_owner' => 'Hanya dapat menyunting laman pengguna sendiri.',
-                'require_supporter_tag' => 'osu!supporter tag diperlukan.',
+                'require_supporter_tag' => 'tag osu!supporter dibutuhkan.',
             ],
+        ],
+        'update_email' => [
+            'locked' => 'alamat email terkunci',
         ],
     ],
 ];

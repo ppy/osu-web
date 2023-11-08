@@ -4,27 +4,27 @@ Represents a Beatmapset modding discussion.
 
 Field                   | Type                                                     | Description
 ----------------------- | -------------------------------------------------------- | -----------
-beatmap                 | [BeatmapCompact](#beatmapcompact)?                       | |
-beatmap_id              | number?                                                  | |
-beatmapset              | [BeatmapsetCompact](#beatmapsetcompact)?                 | |
-beatmapset_id           | number                                                   | |
+beatmap                 | [Beatmap](#beatmap)?                                     | |
+beatmap_id              | integer?                                                 | |
+beatmapset              | [Beatmapset](#beatmapset)?                               | |
+beatmapset_id           | integer                                                  | |
 can_be_resolved         | boolean                                                  | |
 can_grant_kudosu        | boolean                                                  | |
 created_at              | [Timestamp](#timestamp)                                  | |
 current_user_attributes | [CurrentUserAttributes](#currentuserattributes)          | |
 deleted_at              | [Timestamp](#timestamp)?                                 | |
-deleted_by_id           | number?                                                  | |
-id                      | number                                                   | |
+deleted_by_id           | integer?                                                 | |
+id                      | integer                                                  | |
 kudosu_denied           | boolean                                                  | |
 last_post_at            | [Timestamp](#timestamp)                                  | |
 message_type            | [MessageType](#messagetype)                              | |
-parent_id               | number?                                                  | |
+parent_id               | integer?                                                 | |
 posts                   | [BeatmapsetDiscussionPost](#beatmapsetdiscussionpost)[]? | |
 resolved                | boolean                                                  | |
 starting_post           | [BeatmapsetDiscussionPost](#beatmapsetdiscussionpost)?   | |
-timestamp               | number?                                                  | |
+timestamp               | integer?                                                 | |
 updated_at              | [Timestamp](#timestamp)                                  | |
-user_id                 | number                                                   | |
+user_id                 | integer                                                  | |
 
 ### MessageType
 

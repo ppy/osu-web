@@ -79,15 +79,15 @@ return [
         ],
 
         'message_type_title' => [
-            'disqualify' => '',
-            'hype' => '',
-            'mapper_note' => '',
-            'nomination_reset' => '',
-            'praise' => '',
-            'problem' => '',
-            'problem_warning' => '',
-            'review' => '',
-            'suggestion' => '',
+            'disqualify' => 'Tulis Diskualifikasi',
+            'hype' => 'Tulis Hype!',
+            'mapper_note' => 'Tulis Catatan',
+            'nomination_reset' => 'Hapus seluruh Nominasi',
+            'praise' => 'Tulis Pujian',
+            'problem' => 'Tulis Masalah',
+            'problem_warning' => 'Tulis Masalah',
+            'review' => 'Tulis Kajian',
+            'suggestion' => 'Tulis Saran',
         ],
 
         'mode' => [
@@ -263,7 +263,7 @@ return [
             ],
             'supporter_filter_quote' => [
                 '_' => 'Penyaringan berdasarkan :filters memerlukan :link yang aktif',
-                'link_text' => 'osu!supporter tag',
+                'link_text' => 'tag osu!supporter',
             ],
         ],
     ],

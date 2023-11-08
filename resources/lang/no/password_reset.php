@@ -5,7 +5,6 @@
 
 return [
     'button' => [
-        'cancel' => 'Avbryt',
         'resend' => 'Send verifiserings e-posten på nytt',
         'set' => 'Sett passord',
         'start' => 'Start',

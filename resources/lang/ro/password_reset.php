@@ -5,7 +5,6 @@
 
 return [
     'button' => [
-        'cancel' => 'Anulează',
         'resend' => 'Retrimite e-mailul de verificare',
         'set' => 'Setează parola',
         'start' => 'Începe',

@@ -6,6 +6,7 @@
 namespace App\Models;
 
 use App\Libraries\MorphMap;
+use App\Traits\Memoizes;
 use App\Traits\Validatable;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
@@ -39,7 +40,7 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class Comment extends Model implements Traits\ReportableInterface
 {
-    use Traits\Reportable, Traits\WithDbCursorHelper, Validatable;
+    use Memoizes, Traits\Reportable, Traits\WithDbCursorHelper, Validatable;
 
     const COMMENTABLES = [
         MorphMap::MAP[Beatmapset::class],
@@ -122,6 +123,8 @@ class Comment extends Model implements Traits\ReportableInterface
 
     public function setMessageAttribute($value)
     {
+        $this->resetMemoized();
+
         return $this->attributes['message'] = trim(unzalgo($value));
     }
 
@@ -169,6 +172,7 @@ class Comment extends Model implements Traits\ReportableInterface
             'pinned' => (bool) $this->getRawAttribute($key),
 
             'disqus_user_data' => $this->getDisqusUserData(),
+            'message_html' => $this->getMessageHtml(),
 
             'commentable',
             'editor',
@@ -307,5 +311,10 @@ class Comment extends Model implements Traits\ReportableInterface
         $value = $this->getRawAttribute('disqus_user_data');
 
         return $value === null ? null : json_decode($value, true);
+    }
+
+    private function getMessageHtml(): ?string
+    {
+        return $this->memoize(__FUNCTION__, fn () => markdown($this->message, 'comment'));
     }
 }

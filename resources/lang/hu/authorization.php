@@ -185,5 +185,8 @@ return [
                 'require_supporter_tag' => 'osu!támogatói cím szükséges.',
             ],
         ],
+        'update_email' => [
+            'locked' => 'email cím zárva',
+        ],
     ],
 ];
