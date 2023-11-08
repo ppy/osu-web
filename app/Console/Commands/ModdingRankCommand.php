@@ -28,6 +28,21 @@ class ModdingRankCommand extends Command
     private bool $countOnly = false;
     private bool $noWait = false;
 
+    public static function getStats(Ruleset $ruleset)
+    {
+        $rankedTodayCount = Beatmapset::ranked()
+            ->withoutTrashed()
+            ->withModesForRanking($ruleset->value)
+            ->where('approved_date', '>=', now()->subDays())
+            ->count();
+
+        return [
+            'availableQuota' => config('osu.beatmapset.rank_per_day') - $rankedTodayCount,
+            'inQueue' => Beatmapset::toBeRanked($ruleset)->count(),
+            'rankedToday' => $rankedTodayCount,
+        ];
+    }
+
     /**
      * Execute the console command.
      *
@@ -52,8 +67,12 @@ class ModdingRankCommand extends Command
             $this->waitRandom();
 
             if ($this->countOnly) {
-                $count = Beatmapset::toBeRanked($ruleset)->count();
-                $this->info("{$ruleset->name}: {$count}");
+                $stats = static::getStats($ruleset);
+                $this->info($ruleset->name);
+                foreach ($stats as $key => $value) {
+                    $this->line("{$key}: {$value}");
+                }
+                $this->newLine();
             } else {
                 $this->rankAll($ruleset);
             }
@@ -65,32 +84,22 @@ class ModdingRankCommand extends Command
     private function rankAll(Ruleset $ruleset)
     {
         $this->info("Ranking beatmapsets with at least mode: {$ruleset->name}");
+        $stats = static::getStats($ruleset);
 
-        $rankedTodayCount = Beatmapset::ranked()
-            ->withoutTrashed()
-            ->withModesForRanking($ruleset->value)
-            ->where('approved_date', '>=', now()->subDays())
-            ->count();
+        $this->info("{$stats['rankedToday']} beatmapsets ranked last 24 hours. Can rank {$stats['availableQuota']} more");
 
-        $rankableQuota = config('osu.beatmapset.rank_per_day') - $rankedTodayCount;
-
-        $this->info("{$rankedTodayCount} beatmapsets ranked last 24 hours. Can rank {$rankableQuota} more");
-
-        if ($rankableQuota <= 0) {
+        if ($stats['availableQuota'] <= 0) {
             return;
         }
 
-        $toRankLimit = min(config('osu.beatmapset.rank_per_run'), $rankableQuota);
+        $toRankLimit = min(config('osu.beatmapset.rank_per_run'), $stats['availableQuota']);
 
-        $toBeRankedQuery = Beatmapset::toBeRanked($ruleset);
-
-        $rankingQueue = $toBeRankedQuery->count();
-        $toBeRanked = $toBeRankedQuery
+        $toBeRanked = Beatmapset::tobeRanked($ruleset)
             ->orderBy('queued_at', 'ASC')
             ->limit($toRankLimit)
             ->get();
 
-        $this->info("{$rankingQueue} beatmapset(s) in ranking queue");
+        $this->info("{$stats['inQueue']} beatmapset(s) in ranking queue");
         $this->info("Ranking {$toBeRanked->count()} beatmapset(s)");
 
         foreach ($toBeRanked as $beatmapset) {

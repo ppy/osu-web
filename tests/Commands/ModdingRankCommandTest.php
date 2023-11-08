@@ -5,6 +5,7 @@
 
 namespace Tests\Commands;
 
+use App\Console\Commands\ModdingRankCommand;
 use App\Libraries\Ruleset;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
@@ -15,6 +16,15 @@ use Tests\TestCase;
 
 class ModdingRankCommandTest extends TestCase
 {
+    public function testCountOnly(): void
+    {
+        $this->beatmapset([Ruleset::osu])->create();
+
+        $this->expectCountChange(fn () => Beatmapset::ranked()->count(), 0);
+
+        $this->artisan('modding:rank', ['--count-only' => true]);
+    }
+
     /**
      * @dataProvider rankDataProvider
      */
@@ -36,9 +46,8 @@ class ModdingRankCommandTest extends TestCase
             $this->beatmapset($rulesets)->create();
         }
 
-        $command = $this->artisan('modding:rank', ['--count-only' => true]);
         foreach (Ruleset::cases() as $ruleset) {
-            $command->expectsOutputToContain("{$ruleset->name}: {$expectedCounts[$ruleset->value]}");
+            $this->assertSame($expectedCounts[$ruleset->value], ModdingRankCommand::getStats($ruleset)['inQueue']);
         }
     }
 
@@ -59,8 +68,7 @@ class ModdingRankCommandTest extends TestCase
             ->has(BeatmapDiscussion::factory()->general()->problem())
             ->create();
 
-        $command = $this->artisan('modding:rank', ['--count-only' => true]);
-        $command->expectsOutputToContain(Ruleset::osu->name.': 0');
+        $this->assertSame(0, ModdingRankCommand::getStats(Ruleset::osu)['inQueue']);
     }
 
     public function testRankQuota(): void
