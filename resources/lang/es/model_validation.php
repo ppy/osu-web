@@ -164,7 +164,7 @@ return [
         ],
 
         'change_username' => [
-            'restricted' => 'No puede cambiar su nombre de usuario mientras esté restringido.',
+            'restricted' => 'No puedes cambiar tu nombre de usuario mientras estás restringido.',
             'supporter_required' => [
                 '_' => '¡Debes tener :link para cambiar tu nombre!',
                 'link_text' => 'apoyar a osu!',

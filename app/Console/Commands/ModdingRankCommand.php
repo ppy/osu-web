@@ -5,7 +5,7 @@
 
 namespace App\Console\Commands;
 
-use App\Libraries\Ruleset;
+use App\Enums\Ruleset;
 use App\Models\Beatmapset;
 use Illuminate\Console\Command;
 

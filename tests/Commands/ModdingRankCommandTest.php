@@ -6,7 +6,7 @@
 namespace Tests\Commands;
 
 use App\Console\Commands\ModdingRankCommand;
-use App\Libraries\Ruleset;
+use App\Enums\Ruleset;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapMirror;

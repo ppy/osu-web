@@ -87,7 +87,7 @@ return [
         'new_topic' => 'Nuevo tema',
         'new_topic_login' => 'Inicie sesión para publicar un nuevo tema',
         'post_reply' => 'Publicar',
-        'reply_box_placeholder' => 'Escriba aquí para responder',
+        'reply_box_placeholder' => 'Escribe aquí para responder',
         'reply_title_prefix' => 'Re',
         'started_by' => 'por :user',
         'started_by_verbose' => 'iniciado por :user',
@@ -115,7 +115,7 @@ return [
             ],
 
             'placeholder' => [
-                'body' => 'Escriba el contenido de la publicación aquí',
+                'body' => 'Escribe el contenido de la publicación aquí',
                 'title' => 'Clic aquí para definir un título',
             ],
         ],

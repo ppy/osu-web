@@ -5,10 +5,10 @@
 
 namespace Tests\Models;
 
+use App\Enums\Ruleset;
 use App\Exceptions\AuthorizationException;
 use App\Jobs\Notifications\BeatmapsetDisqualify;
 use App\Jobs\Notifications\BeatmapsetResetNominations;
-use App\Libraries\Ruleset;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapMirror;

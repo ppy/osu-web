@@ -824,11 +824,6 @@ class Topic extends Model implements AfterCommit
         return strpos($this->topic_title, "[{$tag}]") !== false;
     }
 
-    public function toMetaDescription()
-    {
-        return "{$this->forum->toMetaDescription()} » {$this->topic_title}";
-    }
-
     public function afterCommit()
     {
         if ($this->exists && $this->firstPost !== null) {

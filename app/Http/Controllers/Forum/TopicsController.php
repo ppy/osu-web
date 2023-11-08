@@ -429,7 +429,7 @@ class TopicsController extends Controller
 
         $posts->last()->markRead($currentUser);
 
-        $coverModel = $topic->cover()->firstOrNew([]);
+        $coverModel = $topic->cover ?? new TopicCover();
         $coverModel->setRelation('topic', $topic);
         $cover = json_item($coverModel, new TopicCoverTransformer());
 
@@ -437,6 +437,8 @@ class TopicsController extends Controller
 
         $featureVotes = $this->groupFeatureVotes($topic);
         $noindex = !$topic->forum->enable_indexing;
+
+        set_opengraph($topic);
 
         return ext_view('forum.topics.show', compact(
             'canEditPoll',

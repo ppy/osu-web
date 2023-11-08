@@ -7,7 +7,7 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
-use App\Libraries\Ruleset;
+use App\Enums\Ruleset;
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
 

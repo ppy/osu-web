@@ -52,9 +52,9 @@ class UserStatisticsTransformer extends TransformerAbstract
             'is_ranked' => $stats->isRanked(),
             'grade_counts' => [
                 'ss' => $stats->x_rank_count,
-                'ssh' => $stats->xh_rank_count,
+                'ssh' => $stats->xh_rank_count ?? 0, // osu_charts tables don't have the `h` columns
                 's' => $stats->s_rank_count,
-                'sh' => $stats->sh_rank_count,
+                'sh' => $stats->sh_rank_count ?? 0,
                 'a' => $stats->a_rank_count,
             ],
         ];

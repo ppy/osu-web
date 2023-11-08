@@ -70,7 +70,7 @@ return [
 
         'error' => [
             'already_linked' => '这个 GitHub 账号已经绑定到另一个玩家账号上。',
-            'no_contribution' => '无法绑定在 osu! 仓库中没有任何贡献纪录的 GitHub 账号。',
+            'no_contribution' => '无法绑定在 osu! 仓库中没有任何贡献记录的 GitHub 账号。',
             'unverified_email' => '请在你 GitHub 账号的首选邮箱中完成验证，然后重新绑定账号。',
         ],
     ],

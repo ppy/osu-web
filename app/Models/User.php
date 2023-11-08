@@ -1814,39 +1814,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->rank?->url;
     }
 
-    public function toMetaDescription(array $options = []): string
-    {
-        static $rankTypes = ['country', 'global'];
-
-        $ruleset = $options['ruleset'] ?? $this->playmode;
-        $stats = $this->statistics($ruleset);
-
-        $replacements['ruleset'] = $ruleset;
-
-        foreach ($rankTypes as $type) {
-            $method = "{$type}Rank";
-            $replacements[$type] = osu_trans("users.ogp.description.{$type}", [
-                'rank' => format_rank($stats?->$method()),
-            ]);
-
-            $variants = Beatmap::VARIANTS[$ruleset] ?? [];
-
-            $variantsTexts = null;
-            foreach ($variants as $variant) {
-                $variantRank = $this->statistics($ruleset, false, $variant)?->$method();
-                if ($variantRank !== null) {
-                    $variantsTexts[] = $variant.' '.format_rank($variantRank);
-                }
-            }
-
-            if (!empty($variantsTexts)) {
-                $replacements[$type] .= ' ('.implode(', ', $variantsTexts).')';
-            }
-        }
-
-        return osu_trans('users.ogp.description._', $replacements);
-    }
-
     public function hasProfile()
     {
         return $this->getKey() !== null

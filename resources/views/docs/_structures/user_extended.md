@@ -170,7 +170,7 @@ cover_url        | string                             | url of profile cover. De
 discord          | string?                            | |
 has_supported    | boolean                            | whether or not ever being a supporter in the past
 interests        | string?                            | |
-join_date        | Timestamp                          | |
+join_date        | [Timestamp](#timestamp)            | |
 location         | string?                            | |
 max_blocks       | integer                            | maximum number of users allowed to be blocked
 max_friends      | integer                            | maximum number of friends allowed to be added

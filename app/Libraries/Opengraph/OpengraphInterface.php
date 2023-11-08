@@ -5,10 +5,9 @@
 
 declare(strict_types=1);
 
-namespace App\Libraries;
+namespace App\Libraries\Opengraph;
 
-enum Ip: string
+interface OpengraphInterface
 {
-    case V4 = 'v4';
-    case V6 = 'v6';
+    public function get(): array;
 }

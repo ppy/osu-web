@@ -37,7 +37,7 @@ return [
         'title_compact' => 'caja',
 
         'has_pending' => [
-            '_' => 'Tienes pedidos incompletos, haga clic :link para verlos.',
+            '_' => 'Tienes pedidos incompletos, haz clic :link para verlos.',
             'link_text' => 'aquí',
         ],
 
@@ -140,7 +140,7 @@ return [
         'checking' => 'Revisando la disponibilidad de :username...',
         'require_login' => [
             '_' => '¡Tienes que tener una :link para cambiar tu nombre de usuario!',
-            'link_text' => 'seción iniciada',
+            'link_text' => 'sesión iniciada',
         ],
     ],
 

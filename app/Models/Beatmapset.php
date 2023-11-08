@@ -5,6 +5,7 @@
 
 namespace App\Models;
 
+use App\Enums\Ruleset;
 use App\Exceptions\BeatmapProcessorException;
 use App\Exceptions\InvariantException;
 use App\Jobs\CheckBeatmapsetCovers;
@@ -24,7 +25,6 @@ use App\Libraries\BBCodeFromDB;
 use App\Libraries\Commentable;
 use App\Libraries\Elasticsearch\Indexable;
 use App\Libraries\ImageProcessorService;
-use App\Libraries\Ruleset;
 use App\Libraries\StorageWithUrl;
 use App\Libraries\Transactions\AfterCommit;
 use App\Traits\Memoizes;
@@ -1432,13 +1432,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
                 'post_text' => $newBody,
                 'post_edit_user' => $user === null ? null : $user->getKey(),
             ]);
-    }
-
-    public function toMetaDescription()
-    {
-        $section = osu_trans('layout.menu.beatmaps._');
-
-        return "osu! » {$section} » {$this->artist} - {$this->title}";
     }
 
     private function extractDescription($post)
