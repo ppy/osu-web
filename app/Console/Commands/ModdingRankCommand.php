@@ -52,7 +52,7 @@ class ModdingRankCommand extends Command
             $this->waitRandom();
 
             if ($this->countOnly) {
-                $count = $this->toBeRankedQuery($ruleset)->count();
+                $count = Beatmapset::toBeRanked($ruleset)->count();
                 $this->info("{$ruleset->name}: {$count}");
             } else {
                 $this->rankAll($ruleset);
@@ -82,7 +82,7 @@ class ModdingRankCommand extends Command
 
         $toRankLimit = min(config('osu.beatmapset.rank_per_run'), $rankableQuota);
 
-        $toBeRankedQuery = $this->toBeRankedQuery($ruleset);
+        $toBeRankedQuery = Beatmapset::toBeRanked($ruleset);
 
         $rankingQueue = $toBeRankedQuery->count();
         $toBeRanked = $toBeRankedQuery
@@ -98,15 +98,6 @@ class ModdingRankCommand extends Command
             $this->info("Ranking beatmapset: {$beatmapset->getKey()}");
             $beatmapset->rank();
         }
-    }
-
-    private function toBeRankedQuery(Ruleset $ruleset)
-    {
-        return Beatmapset::qualified()
-            ->withoutTrashed()
-            ->withModesForRanking($ruleset->value)
-            ->where('queued_at', '<', now()->subDays(config('osu.beatmapset.minimum_days_for_rank')))
-            ->whereDoesntHave('beatmapDiscussions', fn ($query) => $query->openIssues());
     }
 
     private function waitRandom()

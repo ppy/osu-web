@@ -24,6 +24,7 @@ use App\Libraries\BBCodeFromDB;
 use App\Libraries\Commentable;
 use App\Libraries\Elasticsearch\Indexable;
 use App\Libraries\ImageProcessorService;
+use App\Libraries\Ruleset;
 use App\Libraries\StorageWithUrl;
 use App\Libraries\Transactions\AfterCommit;
 use App\Traits\Memoizes;
@@ -342,6 +343,15 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
     public function scopeScoreable(Builder $query): void
     {
         $query->where('approved', '>', 0);
+    }
+
+    public function scopeToBeRanked(Builder $query, Ruleset $ruleset)
+    {
+        return $query->qualified()
+            ->withoutTrashed()
+            ->withModesForRanking($ruleset->value)
+            ->where('queued_at', '<', now()->subDays(config('osu.beatmapset.minimum_days_for_rank')))
+            ->whereDoesntHave('beatmapDiscussions', fn ($q) => $q->openIssues());
     }
 
     public function scopeWithModesForRanking($query, $modeInts)
