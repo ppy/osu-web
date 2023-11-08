@@ -10,7 +10,7 @@ use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapMirror;
 use App\Models\Beatmapset;
-use Database\Factories\Factory;
+use Database\Factories\BeatmapsetFactory;
 use Tests\TestCase;
 
 class ModdingRankCommandTest extends TestCase
@@ -124,10 +124,10 @@ class ModdingRankCommandTest extends TestCase
 
     /**
      * @param Ruleset[] $rulesets
-     * @return Factory<Beatmapset>
      */
-    protected function beatmapset(array $rulesets, int $qualifiedDaysAgo = 2): Factory
+    protected function beatmapset(array $rulesets, int $qualifiedDaysAgo = 2): BeatmapsetFactory
     {
+        $fa = Beatmapset::factory();
         $factory = Beatmapset::factory()
             ->owner()
             ->qualified(now()->subDays($qualifiedDaysAgo))
