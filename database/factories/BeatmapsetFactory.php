@@ -13,7 +13,6 @@ use App\Models\Forum\Topic;
 use App\Models\Genre;
 use App\Models\Language;
 use App\Models\User;
-use Carbon\Carbon;
 
 class BeatmapsetFactory extends Factory
 {
@@ -71,7 +70,7 @@ class BeatmapsetFactory extends Factory
         ]);
     }
 
-    public function qualified(?Carbon $approvedAt = null)
+    public function qualified(?\DateTimeInterface $approvedAt = null)
     {
         $approvedAt ??= now();
 
