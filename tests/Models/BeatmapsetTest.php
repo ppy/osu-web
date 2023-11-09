@@ -12,7 +12,6 @@ use App\Jobs\Notifications\BeatmapsetDisqualify;
 use App\Jobs\Notifications\BeatmapsetResetNominations;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
-use App\Models\BeatmapMirror;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetNomination;
 use App\Models\Genre;
@@ -22,7 +21,6 @@ use App\Models\User;
 use App\Models\UserNotification;
 use Bus;
 use Database\Factories\BeatmapsetFactory;
-use Database\Factories\Factory;
 use Queue;
 use Tests\TestCase;
 
