@@ -105,7 +105,6 @@ class ScoreEsIndexTest extends TestCase
             Beatmapset::truncate();
             Country::truncate();
             Genre::truncate();
-            Group::truncate();
             Language::truncate();
             Score::select()->delete(); // TODO: revert to truncate after the table is actually renamed
             User::truncate();
