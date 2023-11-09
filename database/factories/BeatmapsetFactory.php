@@ -70,9 +70,9 @@ class BeatmapsetFactory extends Factory
         ]);
     }
 
-    public function qualified()
+    public function qualified(?\DateTimeInterface $approvedAt = null)
     {
-        $approvedAt = now();
+        $approvedAt ??= now();
 
         return $this->state([
             'approved' => Beatmapset::STATES['qualified'],

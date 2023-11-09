@@ -7,7 +7,6 @@ namespace App\Libraries;
 
 use App\Models\Group;
 use App\Traits\Memoizes;
-use Exception;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
@@ -60,36 +59,10 @@ class Groups
 
     /**
      * Get a group by its identifier (e.g. "admin").
-     *
-     * If the requested group doesn't exist, a new one is created.
      */
-    public function byIdentifier(string $id): Group
+    public function byIdentifier(string $id): ?Group
     {
-        $group = $this->allByIdentifier()->get($id);
-
-        if ($group === null) {
-            try {
-                $group = Group::create([
-                    'group_desc' => '',
-                    'group_name' => $id,
-                    'group_type' => 2,
-                    'identifier' => $id,
-                    'short_name' => $id,
-                ])->fresh();
-            } catch (Exception $ex) {
-                if (!is_sql_unique_exception($ex)) {
-                    throw $ex;
-                }
-                $group = Group::firstWhere(['identifier' => $id]);
-            }
-
-            // TODO: This shouldn't have to be called here, since it's already
-            // called by `Group::afterCommit`, but `Group::afterCommit` isn't
-            // running in tests when creating/saving `Group`s.
-            $this->resetMemoized();
-        }
-
-        return $group;
+        return $this->allByIdentifier()->get($id);
     }
 
     protected function fetch(): Collection
