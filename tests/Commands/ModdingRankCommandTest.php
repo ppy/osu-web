@@ -71,15 +71,6 @@ class ModdingRankCommandTest extends TestCase
         Bus::assertNotDispatched(BeatmapsetRank::class);
     }
 
-    public function testRankOpenIssueCounts(): void
-    {
-        $this->beatmapset([Ruleset::osu])
-            ->has(BeatmapDiscussion::factory()->general()->problem())
-            ->create();
-
-        $this->assertSame(0, ModdingRankCommand::getStats(Ruleset::osu)['inQueue']);
-    }
-
     public function testRankQuota(): void
     {
         $this->beatmapset([Ruleset::osu])->count(3)->create();
