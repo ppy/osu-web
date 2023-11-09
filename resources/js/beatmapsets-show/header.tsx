@@ -352,11 +352,23 @@ export default class Header extends React.Component<Props> {
             <span className='fas fa-image' />
           </div>
         }
-        <div className='beatmapset-status beatmapset-status--show'>
-          {trans(`beatmapsets.show.status.${this.controller.currentBeatmap.status}`)}
-        </div>
+        <a href={this.statusToWikiLink(this.controller.currentBeatmap.status)}>
+          <div className='beatmapset-status beatmapset-status--show'>
+            {trans(`beatmapsets.show.status.${this.controller.currentBeatmap.status}`)}
+          </div>
+        </a>
       </div>
     );
+  }
+
+  private statusToWikiLink(status: string): string {
+    let fragment: string;
+    if (status === 'wip' || status === 'pending') {
+      fragment = 'work-in-progress-and-pending';
+    } else {
+      fragment = status;
+    }
+    return wikiUrl(`Beatmap/Category#${fragment}`);
   }
 
   private readonly updateFavouritePopup = () => {
