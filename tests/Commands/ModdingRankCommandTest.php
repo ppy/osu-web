@@ -135,7 +135,6 @@ class ModdingRankCommandTest extends TestCase
      */
     protected function beatmapset(array $rulesets, int $qualifiedDaysAgo = 2): BeatmapsetFactory
     {
-        $fa = Beatmapset::factory();
         $factory = Beatmapset::factory()
             ->owner()
             ->qualified(now()->subDays($qualifiedDaysAgo))
