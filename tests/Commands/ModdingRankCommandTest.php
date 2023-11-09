@@ -11,11 +11,9 @@ use App\Jobs\CheckBeatmapsetCovers;
 use App\Jobs\Notifications\BeatmapsetRank;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
-use App\Models\BeatmapMirror;
 use App\Models\Beatmapset;
 use Bus;
 use Database\Factories\BeatmapsetFactory;
-use Illuminate\Bus\PendingBatch;
 use Tests\TestCase;
 
 class ModdingRankCommandTest extends TestCase
@@ -138,7 +136,7 @@ class ModdingRankCommandTest extends TestCase
         config()->set('osu.beatmapset.minimum_days_for_rank', 1);
         config()->set('osu.beatmapset.rank_per_day', 2);
 
-        Bus::fake();
+        Bus::fake([BeatmapsetRank::class, CheckBeatmapsetCovers::class]);
     }
 
     /**
@@ -148,8 +146,7 @@ class ModdingRankCommandTest extends TestCase
     {
         $factory = Beatmapset::factory()
             ->owner()
-            ->qualified(now()->subDays($qualifiedDaysAgo))
-            ->state(['download_disabled' => true]);
+            ->qualified(now()->subDays($qualifiedDaysAgo));
 
         foreach ($rulesets as $ruleset) {
             $factory = $factory->has(Beatmap::factory()->ruleset($ruleset));
