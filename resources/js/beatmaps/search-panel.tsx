@@ -103,7 +103,7 @@ export class SearchPanel extends React.Component<Props> {
     this.controller.filters.update('query', this.query);
   };
 
-  private readonly onKeyUp = (event: React.KeyboardEvent<HTMLInputElement>) => {
+  private readonly onKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       htmlElementOrNull(event.target)?.blur();
     }
@@ -160,7 +160,7 @@ export class SearchPanel extends React.Component<Props> {
             className='beatmapsets-search__input js-beatmapsets-search-input'
             name='search'
             onChange={this.onChange}
-            onKeyUp={this.onKeyUp}
+            onKeyDown={this.onKeyDown}
             placeholder={trans('beatmaps.listing.search.prompt')}
             type='search'
             value={this.query}
@@ -192,7 +192,7 @@ export class SearchPanel extends React.Component<Props> {
             className='beatmapsets-search__input js-beatmapsets-search-input'
             name='search'
             onChange={this.onChange}
-            onKeyUp={this.onKeyUp}
+            onKeyDown={this.onKeyDown}
             placeholder={trans('beatmaps.listing.search.prompt')}
             type='search'
             value={this.query}
