@@ -111,6 +111,8 @@ class ArtistsController extends Controller
             }
         }
 
+        set_opengraph($artist);
+
         return ext_view('artists.show', [
             'artist' => $artist,
             'images' => $images,

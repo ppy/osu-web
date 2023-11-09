@@ -106,7 +106,7 @@ class ScoreEsIndexTest extends TestCase
             Country::truncate();
             Genre::truncate();
             Language::truncate();
-            Score::truncate();
+            Score::select()->delete(); // TODO: revert to truncate after the table is actually renamed
             User::truncate();
             UserGroup::truncate();
             UserGroupEvent::truncate();

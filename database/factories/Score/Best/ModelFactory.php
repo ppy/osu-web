@@ -49,7 +49,7 @@ abstract class ModelFactory extends Factory
         return $this->state([
             'replay' => true,
         ])->afterCreating(function ($score) {
-            $score->replayFile()->disk()->put($score->getKey(), 'this-is-totally-a-legit-replay');
+            $score->replayFile()->put('this-is-totally-a-legit-replay');
         });
     }
 }

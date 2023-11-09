@@ -5,11 +5,11 @@
 
 declare(strict_types=1);
 
-namespace Tests\Controllers\Solo;
+namespace Tests\Controllers;
 
 use App\Models\Beatmap;
 use App\Models\Build;
-use App\Models\Solo\ScoreToken;
+use App\Models\ScoreToken;
 use App\Models\User;
 use Tests\TestCase;
 

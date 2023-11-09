@@ -37,7 +37,7 @@ return [
         'labels' => [
             'description' => 'descripción',
             'message' => 'mensaje',
-            'name' => 'nombre de sala',
+            'name' => 'nombre de la sala',
             'users' => 'jugadores a agregar',
         ],
     ],
@@ -51,7 +51,7 @@ return [
         'create' => 'Crear',
         'disabled' => 'no se puede enviar el mensaje...',
         'disconnected' => 'Sin conexión',
-        'placeholder' => 'escriba el mensaje...',
+        'placeholder' => 'escribe el mensaje...',
         'send' => 'Enviar',
     ],
 

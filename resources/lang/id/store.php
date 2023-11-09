@@ -130,7 +130,7 @@ return [
         'gift_message' => 'tambahkan pesan untuk melengkapi hadiahmu! (maksimal :length karakter)',
 
         'require_login' => [
-            '_' => 'Kamu harus :link untuk menerima tag osu!supporter!',
+            '_' => 'Kamu harus :link untuk memperoleh tag osu!supporter!',
             'link_text' => 'masuk',
         ],
     ],

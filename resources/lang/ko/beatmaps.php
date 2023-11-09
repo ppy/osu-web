@@ -11,11 +11,11 @@ return [
     ],
 
     'discussions' => [
-        'allow_kudosu' => 'Kudosu 허용하기',
+        'allow_kudosu' => 'kudosu 허용하기',
         'beatmap_information' => '비트맵 페이지',
         'delete' => '삭제',
         'deleted' => ':delete_time에 :editor님에 의해 삭제되었습니다',
-        'deny_kudosu' => 'Kudosu 박탈하기',
+        'deny_kudosu' => 'kudosu 박탈하기',
         'edit' => '수정',
         'edited' => ':update_time에 :editor님에 의해 마지막으로 수정됨',
         'guest' => ':user의 게스트 난이도',

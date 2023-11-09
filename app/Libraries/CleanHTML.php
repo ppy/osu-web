@@ -5,7 +5,6 @@
 
 namespace App\Libraries;
 
-use ErrorException;
 use HTMLPurifier;
 use HTMLPurifier_Config;
 
@@ -15,12 +14,15 @@ class CleanHTML
 
     public function __construct()
     {
-        $cachePath = storage_path().'/htmlpurifier';
-        try {
-            mkdir($cachePath, 0700, true);
-        } catch (ErrorException $e) {
-            if (!is_dir($cachePath)) {
-                throw $e;
+        $cachePath = storage_path('htmlpurifier');
+        if (!is_dir($cachePath)) {
+            try {
+                mkdir($cachePath, 0700, true);
+            } catch (\ErrorException $e) {
+                // There may be race condition between first is_dir and mkdir
+                if (!is_dir($cachePath)) {
+                    throw $e;
+                }
             }
         }
 
