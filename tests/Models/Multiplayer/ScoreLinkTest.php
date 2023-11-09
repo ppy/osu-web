@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace Tests\Models\Multiplayer;
 
 use App\Exceptions\InvariantException;
+use App\Models\Beatmap;
 use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\ScoreLink;
 use App\Models\ScoreToken;
@@ -146,6 +147,34 @@ class ScoreLinkTest extends TestCase
             'user_id' => $scoreToken->user_id,
             'ended_at' => json_date(Carbon::now()),
             'mods' => [['acronym' => 'HD']],
+            'statistics' => [
+                'great' => 1,
+            ],
+        ]);
+    }
+
+    public function testUnexpectedModAcceptedIfAlwaysValidForSubmission()
+    {
+        $beatmap = Beatmap::factory()->create([
+            'playmode' => 0, // must be osu! specifically. no other ruleset currently has an appropriate mod.
+        ]);
+        $playlistItem = PlaylistItem::factory()->create([
+            'ruleset_id' => 0,
+            'beatmap_id' => $beatmap,
+            // no required or allowed mods.
+        ]);
+        $scoreToken = ScoreToken::factory()->create([
+            'beatmap_id' => $playlistItem->beatmap_id,
+            'playlist_item_id' => $playlistItem,
+        ]);
+
+        $this->expectNotToPerformAssertions();
+        ScoreLink::complete($scoreToken, [
+            'beatmap_id' => $playlistItem->beatmap_id,
+            'ruleset_id' => $playlistItem->ruleset_id,
+            'user_id' => $scoreToken->user_id,
+            'ended_at' => json_date(Carbon::now()),
+            'mods' => [['acronym' => 'TD']],
             'statistics' => [
                 'great' => 1,
             ],
