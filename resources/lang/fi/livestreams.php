@@ -5,8 +5,8 @@
 
 return [
     'promote' => [
-        'pin' => 'Oletko varma, että haluat kiinnittää tämän suoralähetyksen?',
-        'unpin' => "Oletko varma, että haluat poistaa tämän suoralähetyksen kiinnityksen?",
+        'pin' => 'Oletko varma, että haluat kiinnittää tämän suoran lähetyksen?',
+        'unpin' => "Oletko varma, että haluat poistaa tämän suoran lähetyksen kiinnityksen?",
     ],
 
     'top-headers' => [

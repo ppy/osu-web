@@ -105,6 +105,8 @@ class ForumsController extends Controller
 
         $noindex = !$forum->enable_indexing;
 
+        set_opengraph($forum);
+
         return ext_view('forum.forums.show', compact(
             'cover',
             'forum',

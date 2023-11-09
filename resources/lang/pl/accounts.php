@@ -64,14 +64,14 @@ return [
 
     'github_user' => [
         'info' => "",
-        'link' => '',
-        'title' => '',
-        'unlink' => '',
+        'link' => 'Połącz konto GitHub',
+        'title' => 'GitHub',
+        'unlink' => 'Odłącz konto GitHub',
 
         'error' => [
-            'already_linked' => '',
+            'already_linked' => 'To konto GitHub jest już połączane z innym użytkownikiem.',
             'no_contribution' => '',
-            'unverified_email' => '',
+            'unverified_email' => 'Zweryfikuj swój główny email na GitHub, a następnie spróbuj ponownie połączyć swoje konto.',
         ],
     ],
 

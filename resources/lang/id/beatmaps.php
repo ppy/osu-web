@@ -263,7 +263,7 @@ return [
             ],
             'supporter_filter_quote' => [
                 '_' => 'Penyaringan berdasarkan :filters memerlukan :link yang aktif',
-                'link_text' => 'osu!supporter tag',
+                'link_text' => 'tag osu!supporter',
             ],
         ],
     ],

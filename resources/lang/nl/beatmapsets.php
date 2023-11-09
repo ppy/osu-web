@@ -61,7 +61,7 @@ return [
         'discussion' => 'Discussie',
 
         'admin' => [
-            'full_size_cover' => '',
+            'full_size_cover' => 'Bekijk afbeelding op volledige grootte',
         ],
 
         'deleted_banner' => [

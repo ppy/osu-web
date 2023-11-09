@@ -1421,13 +1421,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             ]);
     }
 
-    public function toMetaDescription()
-    {
-        $section = osu_trans('layout.menu.beatmaps._');
-
-        return "osu! » {$section} » {$this->artist} - {$this->title}";
-    }
-
     private function extractDescription($post)
     {
         // Any description (after the first match) that matches
