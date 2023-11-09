@@ -7,6 +7,7 @@ namespace Tests\Commands;
 
 use App\Console\Commands\ModdingRankCommand;
 use App\Enums\Ruleset;
+use App\Jobs\CheckBeatmapsetCovers;
 use App\Jobs\Notifications\BeatmapsetRank;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
@@ -27,6 +28,7 @@ class ModdingRankCommandTest extends TestCase
 
         $this->artisan('modding:rank', ['--count-only' => true]);
 
+        Bus::assertNotDispatched(CheckBeatmapsetCovers::class);
         Bus::assertNotDispatched(BeatmapsetRank::class);
     }
 
@@ -41,6 +43,7 @@ class ModdingRankCommandTest extends TestCase
 
         $this->artisan('modding:rank', ['--no-wait' => true]);
 
+        Bus::assertDispatchedTimes(CheckBeatmapsetCovers::class, $expected);
         Bus::assertDispatchedTimes(BeatmapsetRank::class, $expected);
     }
 
@@ -68,6 +71,7 @@ class ModdingRankCommandTest extends TestCase
 
         $this->artisan('modding:rank', ['--no-wait' => true]);
 
+        Bus::assertNotDispatched(CheckBeatmapsetCovers::class);
         Bus::assertNotDispatched(BeatmapsetRank::class);
     }
 
@@ -80,6 +84,7 @@ class ModdingRankCommandTest extends TestCase
 
         $this->artisan('modding:rank', ['--no-wait' => true]);
 
+        Bus::assertDispatched(CheckBeatmapsetCovers::class);
         Bus::assertDispatched(BeatmapsetRank::class);
     }
 
@@ -94,6 +99,7 @@ class ModdingRankCommandTest extends TestCase
 
         $this->artisan('modding:rank', ['--no-wait' => true]);
 
+        Bus::assertDispatchedTimes(CheckBeatmapsetCovers::class, $count);
         Bus::assertDispatchedTimes(BeatmapsetRank::class, $count);
     }
 
