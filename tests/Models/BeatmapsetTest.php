@@ -5,11 +5,13 @@
 
 namespace Tests\Models;
 
+use App\Enums\Ruleset;
 use App\Exceptions\AuthorizationException;
+use App\Jobs\CheckBeatmapsetCovers;
 use App\Jobs\Notifications\BeatmapsetDisqualify;
 use App\Jobs\Notifications\BeatmapsetResetNominations;
 use App\Models\Beatmap;
-use App\Models\BeatmapMirror;
+use App\Models\BeatmapDiscussion;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetNomination;
 use App\Models\Genre;
@@ -17,6 +19,8 @@ use App\Models\Language;
 use App\Models\Notification;
 use App\Models\User;
 use App\Models\UserNotification;
+use Bus;
+use Database\Factories\BeatmapsetFactory;
 use Queue;
 use Tests\TestCase;
 
@@ -25,7 +29,7 @@ class BeatmapsetTest extends TestCase
     public function testLove()
     {
         $user = User::factory()->create();
-        $beatmapset = $this->createBeatmapset();
+        $beatmapset = $this->beatmapsetFactory()->create();
 
         $notifications = Notification::count();
         $userNotifications = UserNotification::count();
@@ -39,12 +43,14 @@ class BeatmapsetTest extends TestCase
         $this->assertSame($userNotifications + 1, UserNotification::count());
         $this->assertTrue($beatmapset->fresh()->isLoved());
         $this->assertSame('loved', $beatmapset->beatmaps()->first()->status());
+
+        Bus::assertDispatched(CheckBeatmapsetCovers::class);
     }
 
     public function testLoveBeatmapApprovedStates(): void
     {
         $user = User::factory()->create();
-        $beatmapset = $this->createBeatmapset();
+        $beatmapset = $this->beatmapsetFactory()->create();
 
         $specifiedBeatmap = $beatmapset->beatmaps()->first();
         $beatmapset->beatmaps()->saveMany([
@@ -62,12 +68,14 @@ class BeatmapsetTest extends TestCase
         $this->assertSame('graveyard', $pendingBeatmap->fresh()->status());
         $this->assertSame('graveyard', $wipBeatmap->fresh()->status());
         $this->assertSame('ranked', $rankedBeatmap->fresh()->status());
+
+        Bus::assertDispatched(CheckBeatmapsetCovers::class);
     }
 
     // region single-playmode beatmap sets
     public function testNominate()
     {
-        $beatmapset = $this->createBeatmapset();
+        $beatmapset = $this->beatmapsetFactory()->create();
         $user = User::factory()->withGroup('bng', $beatmapset->playmodesStr())->create();
 
         $notifications = Notification::count();
@@ -86,7 +94,7 @@ class BeatmapsetTest extends TestCase
 
     public function testNominateNATAnyRuleset(): void
     {
-        $beatmapset = $this->createBeatmapset();
+        $beatmapset = $this->beatmapsetFactory()->create();
         $user = User::factory()->withGroup('nat', [])->create();
 
         $this->expectCountChange(fn () => $beatmapset->nominations, 1);
@@ -98,7 +106,7 @@ class BeatmapsetTest extends TestCase
 
     public function testQualify()
     {
-        $beatmapset = $this->createBeatmapset();
+        $beatmapset = $this->beatmapsetFactory()->create();
         $user = User::factory()->withGroup('bng', $beatmapset->playmodesStr())->create();
 
         $notifications = Notification::count();
@@ -112,11 +120,13 @@ class BeatmapsetTest extends TestCase
         $this->assertSame($notifications + 1, Notification::count());
         $this->assertSame($userNotifications + 1, UserNotification::count());
         $this->assertTrue($beatmapset->fresh()->isQualified());
+
+        Bus::assertDispatched(CheckBeatmapsetCovers::class);
     }
 
     public function testLimitedBNGQualifyingNominationBNGNominated()
     {
-        $beatmapset = $this->createBeatmapset();
+        $beatmapset = $this->beatmapsetFactory()->create();
         $this->fillNominationsExceptLastForMode($beatmapset, 'bng', $beatmapset->playmodesStr()[0]);
 
         $nominator = User::factory()->withGroup('bng_limited', $beatmapset->playmodesStr())->create();
@@ -127,11 +137,13 @@ class BeatmapsetTest extends TestCase
 
         $this->assertTrue($result['result']);
         $this->assertTrue($beatmapset->fresh()->isQualified());
+
+        Bus::assertDispatched(CheckBeatmapsetCovers::class);
     }
 
     public function testLimitedBNGQualifyingNominationNATNominated()
     {
-        $beatmapset = $this->createBeatmapset();
+        $beatmapset = $this->beatmapsetFactory()->create();
         $this->fillNominationsExceptLastForMode($beatmapset, 'nat', $beatmapset->playmodesStr()[0]);
 
         $nominator = User::factory()->withGroup('bng_limited', $beatmapset->playmodesStr())->create();
@@ -142,11 +154,13 @@ class BeatmapsetTest extends TestCase
 
         $this->assertTrue($result['result']);
         $this->assertTrue($beatmapset->fresh()->isQualified());
+
+        Bus::assertDispatched(CheckBeatmapsetCovers::class);
     }
 
     public function testLimitedBNGQualifyingNominationLimitedBNGNominated()
     {
-        $beatmapset = $this->createBeatmapset();
+        $beatmapset = $this->beatmapsetFactory()->create();
         $this->fillNominationsExceptLastForMode($beatmapset, 'bng_limited', $beatmapset->playmodesStr()[0]);
 
         $nominator = User::factory()->withGroup('bng_limited', $beatmapset->playmodesStr())->create();
@@ -154,13 +168,15 @@ class BeatmapsetTest extends TestCase
         $this->assertFalse($beatmapset->isQualified());
         $beatmapset->nominate($nominator);
         $this->assertFalse($beatmapset->isQualified());
+
+        Bus::assertNotDispatched(CheckBeatmapsetCovers::class);
     }
     public function testNominateWithDefaultMetadata()
     {
-        $beatmapset = $this->createBeatmapset([
+        $beatmapset = $this->beatmapsetFactory()->state([
             'genre_id' => Genre::UNSPECIFIED,
             'language_id' => Language::UNSPECIFIED,
-        ]);
+        ])->create();
         $nominator = User::factory()->withGroup('bng', $beatmapset->playmodesStr())->create();
 
         $this->expectException(AuthorizationException::class);
@@ -173,9 +189,7 @@ class BeatmapsetTest extends TestCase
      */
     public function testRank(string $state, bool $success): void
     {
-        $beatmapset = $this->createBeatmapset([
-            'approved' => Beatmapset::STATES[$state],
-        ]);
+        $beatmapset = $this->beatmapsetFactory()->$state()->create();
 
         $otherUser = User::factory()->create();
 
@@ -195,6 +209,27 @@ class BeatmapsetTest extends TestCase
 
         $this->assertSame($success, $res);
         $this->assertSame($success, $beatmapset->fresh()->isRanked());
+
+        if ($success) {
+            Bus::assertDispatched(CheckBeatmapsetCovers::class);
+        } else {
+            Bus::assertNotDispatched(CheckBeatmapsetCovers::class);
+        }
+    }
+
+    /**
+     * @dataProvider rankWithOpenIssueDataProvider
+     */
+    public function testRankWithOpenIssue(string $type): void
+    {
+        $beatmapset = $this->beatmapsetFactory()
+            ->qualified()
+            ->has(BeatmapDiscussion::factory()->general()->messageType($type))->create();
+
+        $this->assertTrue($beatmapset->isQualified());
+        $this->assertFalse($beatmapset->rank());
+
+        Bus::assertNotDispatched(CheckBeatmapsetCovers::class);
     }
 
     public function testGlobalScopeActive()
@@ -221,7 +256,7 @@ class BeatmapsetTest extends TestCase
     public function testHybridLegacyNominate(): void
     {
         $user = User::factory()->withGroup('bng', ['osu'])->create();
-        $beatmapset = $this->createHybridBeatmapset(null, ['osu', 'taiko']);
+        $beatmapset = $this->createHybridBeatmapset();
 
         // create legacy nomination event to enable legacy nomination mode
         BeatmapsetNomination::factory()->create([
@@ -246,7 +281,7 @@ class BeatmapsetTest extends TestCase
     public function testHybridLegacyQualify(): void
     {
         $user = User::factory()->withGroup('bng', ['osu'])->create();
-        $beatmapset = $this->createHybridBeatmapset(null, ['osu', 'taiko']);
+        $beatmapset = $this->createHybridBeatmapset();
 
         // create legacy nomination event to enable legacy nomination mode
         BeatmapsetNomination::factory()->create([
@@ -272,6 +307,8 @@ class BeatmapsetTest extends TestCase
         $this->assertSame($notifications + 1, Notification::count());
         $this->assertSame($userNotifications + 1, UserNotification::count());
         $this->assertTrue($beatmapset->fresh()->isQualified());
+
+        Bus::assertDispatched(CheckBeatmapsetCovers::class);
     }
 
     public function testHybridNominateWithNullPlaymode(): void
@@ -293,12 +330,14 @@ class BeatmapsetTest extends TestCase
         $this->assertSame($notifications, Notification::count());
         $this->assertSame($userNotifications, UserNotification::count());
         $this->assertTrue($beatmapset->fresh()->isPending());
+
+        Bus::assertNotDispatched(CheckBeatmapsetCovers::class);
     }
 
     public function testHybridNominateWithNoPlaymodePermission(): void
     {
         $user = User::factory()->withGroup('bng', ['osu'])->create();
-        $beatmapset = $this->createHybridBeatmapset(null, ['osu', 'taiko']);
+        $beatmapset = $this->createHybridBeatmapset();
 
         $notifications = Notification::count();
         $userNotifications = UserNotification::count();
@@ -314,12 +353,14 @@ class BeatmapsetTest extends TestCase
         $this->assertSame($notifications, Notification::count());
         $this->assertSame($userNotifications, UserNotification::count());
         $this->assertTrue($beatmapset->fresh()->isPending());
+
+        Bus::assertNotDispatched(CheckBeatmapsetCovers::class);
     }
 
     public function testHybridNominateWithPlaymodePermissionSingleMode(): void
     {
         $user = User::factory()->withGroup('bng', ['osu'])->create();
-        $beatmapset = $this->createHybridBeatmapset(null, ['osu', 'taiko']);
+        $beatmapset = $this->createHybridBeatmapset();
 
         $notifications = Notification::count();
         $userNotifications = UserNotification::count();
@@ -333,12 +374,14 @@ class BeatmapsetTest extends TestCase
         $this->assertSame($notifications + 1, Notification::count());
         $this->assertSame($userNotifications + 1, UserNotification::count());
         $this->assertTrue($beatmapset->fresh()->isPending());
+
+        Bus::assertNotDispatched(CheckBeatmapsetCovers::class);
     }
 
     public function testHybridNominateWithPlaymodePermissionTooMany(): void
     {
         $user = User::factory()->withGroup('bng', ['osu'])->create();
-        $beatmapset = $this->createHybridBeatmapset(null, ['osu', 'taiko']);
+        $beatmapset = $this->createHybridBeatmapset();
 
         $this->fillNominationsExceptLastForMode($beatmapset, 'bng', 'osu');
 
@@ -350,12 +393,14 @@ class BeatmapsetTest extends TestCase
         $this->assertFalse($result['result']);
         $this->assertSame($result['message'], osu_trans('beatmaps.nominations.too_many'));
         $this->assertTrue($beatmapset->fresh()->isPending());
+
+        Bus::assertNotDispatched(CheckBeatmapsetCovers::class);
     }
 
     public function testHybridNominateWithPlaymodePermissionMultipleModes(): void
     {
         $user = User::factory()->withGroup('bng', ['osu', 'taiko'])->create();
-        $beatmapset = $this->createHybridBeatmapset(null, ['osu', 'taiko']);
+        $beatmapset = $this->createHybridBeatmapset();
 
         $notifications = Notification::count();
         $userNotifications = UserNotification::count();
@@ -369,6 +414,8 @@ class BeatmapsetTest extends TestCase
         $this->assertSame($notifications + 1, Notification::count());
         $this->assertSame($userNotifications + 1, UserNotification::count());
         $this->assertTrue($beatmapset->fresh()->isPending());
+
+        Bus::assertNotDispatched(CheckBeatmapsetCovers::class);
     }
 
     public function testHybridNominationBNGQualifyingBNGNominatedPartial(): void
@@ -383,6 +430,8 @@ class BeatmapsetTest extends TestCase
 
         $this->assertTrue($result['result']);
         $this->assertFalse($beatmapset->fresh()->isQualified());
+
+        Bus::assertNotDispatched(CheckBeatmapsetCovers::class);
     }
 
     public function testHybridNominationLimitedBNGQualifyingLimitedBNGNominated(): void
@@ -398,6 +447,8 @@ class BeatmapsetTest extends TestCase
         $this->assertFalse($result['result']);
         $this->assertSame($result['message'], osu_trans('beatmapsets.nominate.full_bn_required'));
         $this->assertTrue($beatmapset->fresh()->isPending());
+
+        Bus::assertNotDispatched(CheckBeatmapsetCovers::class);
     }
 
     public function testHybridNominationLimitedBNGQualifyingBNGNominated(): void
@@ -412,6 +463,8 @@ class BeatmapsetTest extends TestCase
 
         $this->assertTrue($result['result']);
         $this->assertTrue($beatmapset->fresh()->isQualified());
+
+        Bus::assertDispatched(CheckBeatmapsetCovers::class);
     }
 
     public function testHybridNominationBNGQualifyingLimitedBNGNominated(): void
@@ -426,6 +479,8 @@ class BeatmapsetTest extends TestCase
 
         $this->assertTrue($result['result']);
         $this->assertTrue($beatmapset->fresh()->isQualified());
+
+        Bus::assertDispatched(CheckBeatmapsetCovers::class);
     }
 
     //end region
@@ -466,43 +521,38 @@ class BeatmapsetTest extends TestCase
         ];
     }
 
-    private function createBeatmapset($params = []): Beatmapset
+    public function rankWithOpenIssueDataProvider()
     {
-        $defaultParams = [
-            'approved' => Beatmapset::STATES['pending'],
-            'download_disabled' => true,
-            'genre_id' => $this->fakeGenre->genre_id,
-            'language_id' => $this->fakeLanguage->language_id,
+        return [
+            ['problem'],
+            ['suggestion'],
         ];
-
-        $params['user_id'] ??= User::factory();
-
-        $beatmapset = Beatmapset::factory()->create(array_merge($defaultParams, $params));
-        $beatmapset->beatmaps()->save(Beatmap::factory()->make());
-        BeatmapMirror::factory()->default()->create();
-
-        return $beatmapset;
     }
 
-    private function createHybridBeatmapset($params = [], $playmodes = ['osu', 'taiko']): Beatmapset
+    private function beatmapsetFactory(): BeatmapsetFactory
     {
-        $defaultParams = [
-            'approved' => Beatmapset::STATES['pending'],
-            'download_disabled' => true,
-            'genre_id' => $this->fakeGenre->genre_id,
-            'language_id' => $this->fakeLanguage->language_id,
-        ];
+        return Beatmapset::factory()
+            ->owner()
+            ->pending()
+            ->has(Beatmap::factory()->state(fn (array $attr, Beatmapset $set) => ['user_id' => $set->user_id]));
+    }
 
-        $params['user_id'] ??= User::factory();
+    private function createHybridBeatmapset($rulesets = [Ruleset::osu, Ruleset::taiko]): Beatmapset
+    {
+        $beatmapset = Beatmapset::factory()
+            ->owner()
+            ->pending();
 
-        $beatmapset = Beatmapset::factory()->create(array_merge($defaultParams, $params));
-
-        foreach ($playmodes as $playmode) {
-            $beatmapset->beatmaps()->save(Beatmap::factory()->make(['playmode' => Beatmap::modeInt($playmode)]));
+        foreach ($rulesets as $ruleset) {
+            $beatmapset = $beatmapset->has(
+                Beatmap::factory()->state(fn (array $attr, Beatmapset $set) => [
+                    'playmode' => $ruleset->value,
+                    'user_id' => $set->user_id,
+                ])
+            );
         }
-        BeatmapMirror::factory()->default()->create();
 
-        return $beatmapset;
+        return $beatmapset->create();
     }
 
     private function fillNominationsExceptLastForMode(Beatmapset $beatmapset, string $group, string $playmode): void
@@ -519,7 +569,7 @@ class BeatmapsetTest extends TestCase
 
         Genre::factory()->create(['genre_id' => Genre::UNSPECIFIED]);
         Language::factory()->create(['language_id' => Language::UNSPECIFIED]);
-        $this->fakeGenre = Genre::factory()->create();
-        $this->fakeLanguage = Language::factory()->create();
+
+        Bus::fake([CheckBeatmapsetCovers::class]);
     }
 }
