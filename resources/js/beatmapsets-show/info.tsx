@@ -158,7 +158,7 @@ export default class Info extends React.Component<Props> {
               </h3>
               <a
                 className='beatmapset-info__link'
-                href={route('beatmapsets.index', { q: `"${this.controller.beatmapset.source}"` })}
+                href={route('beatmapsets.index', { q: `source="${this.controller.beatmapset.source}"` })}
               >
                 {this.controller.beatmapset.source}
               </a>
