@@ -19,6 +19,7 @@ use App\Models\Language;
 use App\Models\Notification;
 use App\Models\User;
 use App\Models\UserNotification;
+use Database\Factories\BeatmapsetFactory;
 use Database\Factories\Factory;
 use Queue;
 use Tests\TestCase;
@@ -488,10 +489,7 @@ class BeatmapsetTest extends TestCase
         ];
     }
 
-    /**
-     * @return Factory<Beatmapset>
-     */
-    private function beatmapsetFactory(): Factory
+    private function beatmapsetFactory(): BeatmapsetFactory
     {
         BeatmapMirror::factory()->default()->create();
 
