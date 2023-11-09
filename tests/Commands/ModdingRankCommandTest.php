@@ -41,7 +41,7 @@ class ModdingRankCommandTest extends TestCase
 
         $this->artisan('modding:rank', ['--no-wait' => true]);
 
-        Bus::assertDispatched(BeatmapsetRank::class, $expected);
+        Bus::assertDispatchedTimes(BeatmapsetRank::class, $expected);
     }
 
     /**
@@ -94,7 +94,7 @@ class ModdingRankCommandTest extends TestCase
 
         $this->artisan('modding:rank', ['--no-wait' => true]);
 
-        Bus::assertDispatched(BeatmapsetRank::class, $count);
+        Bus::assertDispatchedTimes(BeatmapsetRank::class, $count);
     }
 
 
