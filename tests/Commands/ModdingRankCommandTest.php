@@ -7,11 +7,14 @@ namespace Tests\Commands;
 
 use App\Console\Commands\ModdingRankCommand;
 use App\Enums\Ruleset;
+use App\Jobs\Notifications\BeatmapsetRank;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapMirror;
 use App\Models\Beatmapset;
+use Bus;
 use Database\Factories\BeatmapsetFactory;
+use Illuminate\Bus\PendingBatch;
 use Tests\TestCase;
 
 class ModdingRankCommandTest extends TestCase
@@ -23,6 +26,8 @@ class ModdingRankCommandTest extends TestCase
         $this->expectCountChange(fn () => Beatmapset::ranked()->count(), 0);
 
         $this->artisan('modding:rank', ['--count-only' => true]);
+
+        Bus::assertNotDispatched(BeatmapsetRank::class);
     }
 
     /**
@@ -35,6 +40,8 @@ class ModdingRankCommandTest extends TestCase
         $this->expectCountChange(fn () => Beatmapset::ranked()->count(), $expected);
 
         $this->artisan('modding:rank', ['--no-wait' => true]);
+
+        Bus::assertDispatched(BeatmapsetRank::class, $expected);
     }
 
     /**
@@ -60,6 +67,8 @@ class ModdingRankCommandTest extends TestCase
         $this->expectCountChange(fn () => Beatmapset::ranked()->count(), 0);
 
         $this->artisan('modding:rank', ['--no-wait' => true]);
+
+        Bus::assertNotDispatched(BeatmapsetRank::class);
     }
 
     public function testRankOpenIssueCounts(): void
@@ -79,6 +88,8 @@ class ModdingRankCommandTest extends TestCase
         $this->expectCountChange(fn () => Beatmapset::ranked()->count(), 2);
 
         $this->artisan('modding:rank', ['--no-wait' => true]);
+
+        Bus::assertDispatched(BeatmapsetRank::class);
     }
 
     public function testRankQuotaSeparateRuleset(): void
@@ -87,9 +98,12 @@ class ModdingRankCommandTest extends TestCase
             $this->beatmapset([$ruleset])->create();
         }
 
-        $this->expectCountChange(fn () => Beatmapset::ranked()->count(), count(Ruleset::cases()));
+        $count = count(Ruleset::cases());
+        $this->expectCountChange(fn () => Beatmapset::ranked()->count(), $count);
 
         $this->artisan('modding:rank', ['--no-wait' => true]);
+
+        Bus::assertDispatched(BeatmapsetRank::class, $count);
     }
 
 
@@ -127,7 +141,7 @@ class ModdingRankCommandTest extends TestCase
         config()->set('osu.beatmapset.minimum_days_for_rank', 1);
         config()->set('osu.beatmapset.rank_per_day', 2);
 
-        BeatmapMirror::factory()->default()->create();
+        Bus::fake();
     }
 
     /**
