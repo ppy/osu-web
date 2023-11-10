@@ -352,10 +352,8 @@ export default class Header extends React.Component<Props> {
             <span className='fas fa-image' />
           </div>
         }
-        <a href={this.statusToWikiLink(this.controller.currentBeatmap.status)}>
-          <div className='beatmapset-status beatmapset-status--show'>
-            {trans(`beatmapsets.show.status.${this.controller.currentBeatmap.status}`)}
-          </div>
+        <a className='beatmapset-status beatmapset-status--show' href={this.statusToWikiLink(this.controller.currentBeatmap.status)}>
+          {trans(`beatmapsets.show.status.${this.controller.currentBeatmap.status}`)}
         </a>
       </div>
     );
