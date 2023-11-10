@@ -104,7 +104,7 @@ export class SearchPanel extends React.Component<Props> {
   };
 
   private readonly onKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter') {
+    if (!event.nativeEvent.isComposing && event.key === 'Enter') {
       htmlElementOrNull(event.target)?.blur();
     }
   };
