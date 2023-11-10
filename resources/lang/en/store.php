@@ -64,7 +64,7 @@ return [
             'cancelled' => [
                 'title' => 'Your order has been cancelled',
                 'line_1' => [
-                    '_' => "If you didn't request a cancellation please contact :link quoting your order number :order_number.",
+                    '_' => "If you didn't request a cancellation please contact :link quoting your order number (#:order_number).",
                     'link_text' => 'osu!store support',
                 ],
             ],
@@ -107,7 +107,7 @@ return [
         'no_orders' => 'No orders to view.',
         'paid_on' => 'Order placed :date',
         'resume' => 'Resume Checkout',
-        'shipping_and_handling' => 'Shipping &amp; Handling',
+        'shipping_and_handling' => 'Shipping & Handling',
         'shopify_expired' => 'The checkout link for this order has expired.',
         'subtotal' => 'Subtotal',
         'total' => 'Total',
