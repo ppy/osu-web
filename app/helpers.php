@@ -730,7 +730,7 @@ function currency($price, $precision = 2, $zeroShowFree = true)
 {
     $price = round($price, $precision);
     if ($price === 0.00 && $zeroShowFree) {
-        return 'free!';
+        return osu_trans('store.free');
     }
 
     return 'US$'.i18n_number_format($price, null, null, $precision);
