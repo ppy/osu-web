@@ -21,10 +21,10 @@
                 </h1>
 
                 <p>{{ osu_trans('store.cart.empty.text') }}</p>
-                <p>{!! osu_trans('store.cart.empty.return_link._', [
-                    'link' => Html::link(route('store.products.index'), osu_trans('store.cart.empty.return_link.link_text')),
-                    ]) !!}
-                </p>
+                <p>{!! osu_trans('store.cart.empty.return_link._', ['link' => link_to(
+                    route('store.products.index'),
+                    osu_trans('store.cart.empty.return_link.link_text'),
+                )]) !!}</p>
             </div>
         @else
             <div class="store-page">

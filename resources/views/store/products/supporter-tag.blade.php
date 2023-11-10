@@ -16,31 +16,24 @@
     <input type="hidden" name="item[extra_data][target_id]" value="{{ Auth::user()->user_id }}" />
     <div class="store-supporter-tag__user-search">
         <div class="js-react--user-card-store" data-user="null"></div>
-        {!!
-            Form::text(
-                'item[extra_data][username]',
-                get_string(request('target')),
-                [
-                    'id' => 'username',
-                    'class' => 'js-username-input store-supporter-tag__input',
-                    'placeholder' => osu_trans('store.supporter_tag.gift'),
-                    'autocomplete' => 'off'
-                ]
-            )
-        !!}
+        <input
+            autocomplete="off"
+            class="js-username-input store-supporter-tag__input"
+            id="username"
+            name="item[extra_data][username]"
+            placeholder="{{ osu_trans('store.supporter_tag.gift') }}"
+            value="{{ get_string(request('target')) }}"
+        />
         <div class="js-store-supporter-tag-message">
-            {!!
-                Form::textarea(
-                    'item[extra_data][message]',
-                    null,
-                    [
-                        'class' => 'store-supporter-tag__input store-supporter-tag__input--message',
-                        'maxlength' => ExtraDataSupporterTag::MAX_MESSAGE_LENGTH,
-                        'placeholder' => osu_trans('store.supporter_tag.gift_message', ['length' => ExtraDataSupporterTag::MAX_MESSAGE_LENGTH]),
-                        'rows' => 3,
-                    ]
-                )
-            !!}
+            <textarea
+                class="store-supporter-tag__input store-supporter-tag__input--message"
+                maxlength="{{ ExtraDataSupporterTag::MAX_MESSAGE_LENGTH }}"
+                name="item[extra_data][message]"
+                placeholder="{{ osu_trans('store.supporter_tag.gift_message', [
+                    'length' => ExtraDataSupporterTag::MAX_MESSAGE_LENGTH,
+                ]) }}"
+                rows="3"
+            ></textarea>
         </div>
     </div>
     <div class="store-slider">

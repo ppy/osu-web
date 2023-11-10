@@ -16,7 +16,11 @@ class ApidocRouteHelper
     {
         $scopeLower = strtolower($scope);
 
-        return \Html::link("#scope-{$scopeLower}", $scope, ['class' => "badge badge-scope badge-scope-{$scopeLower}"]);
+        return blade_safe(link_to(
+            "#scope-{$scopeLower}",
+            $scope,
+            ['class' => "badge badge-scope badge-scope-{$scopeLower}"],
+        ));
     }
 
 

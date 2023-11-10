@@ -13,7 +13,7 @@
                 <h1 class="store-text store-text--title">{{ osu_trans('store.order.thanks.title') }}</h1>
                 <p>
                     {!! osu_trans('store.order.thanks.line_1._', [
-                        'link' => Html::link('mailto:osustore@ppy.sh', osu_trans('store.order.thanks.line_1.link_text')),
+                        'link' => link_to('mailto:osustore@ppy.sh', osu_trans('store.order.thanks.line_1.link_text')),
                     ]) !!}
                 </p>
             </div>
