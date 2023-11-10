@@ -15,13 +15,13 @@ class Countries
 {
     use Memoizes;
 
-    private function allByCode(): Collection
-    {
-        return $this->memoize(__FUNCTION__, fn () => Country::get(['acronym', 'name'])->keyBy('acronym'));
-    }
-
     public function byCode(string $code): ?Country
     {
         return $this->allByCode()->get($code);
+    }
+
+    private function allByCode(): Collection
+    {
+        return $this->memoize(__FUNCTION__, fn () => Country::get(['acronym', 'name'])->keyBy('acronym'));
     }
 }
