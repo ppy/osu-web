@@ -336,6 +336,7 @@ Route::group(['middleware' => ['web']], function () {
 
             // Store splitting starts here
             Route::get('cart', 'CartController@show')->name('cart.show');
+            Route::delete('cart', 'CartController@empty')->name('cart.empty');
             Route::resource('cart', 'CartController', ['only' => ['store']]);
 
             Route::resource('checkout', 'CheckoutController', ['only' => ['show', 'store']]);
