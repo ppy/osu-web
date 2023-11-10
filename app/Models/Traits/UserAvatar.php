@@ -13,7 +13,7 @@ trait UserAvatar
 {
     private static function avatarDisk(): string
     {
-        return config('osu.avatar.storage');
+        return \Config::get('osu.avatar.storage');
     }
 
     public function setAvatar($file)
@@ -31,17 +31,17 @@ trait UserAvatar
             $entry = $this->user_id.'_'.time().'.'.$processor->ext();
         }
 
-        if (present(config('osu.avatar.cache_purge_prefix'))) {
+        if (present(\Config::get('osu.avatar.cache_purge_prefix'))) {
             try {
                 $ctx = [
                     'http' => [
-                        'method' => config('osu.avatar.cache_purge_method') ?? 'GET',
-                        'header' => present(config('osu.avatar.cache_purge_authorization_key'))
-                            ? 'Authorization: '.config('osu.avatar.cache_purge_authorization_key')
+                        'method' => \Config::get('osu.avatar.cache_purge_method') ?? 'GET',
+                        'header' => present(\Config::get('osu.avatar.cache_purge_authorization_key'))
+                            ? 'Authorization: '.\Config::get('osu.avatar.cache_purge_authorization_key')
                             : null,
                     ],
                 ];
-                $prefix = config('osu.avatar.cache_purge_prefix');
+                $prefix = \Config::get('osu.avatar.cache_purge_prefix');
                 $suffix = $ctx['http']['method'] === 'GET' ? '?'.time() : ''; // Bypass CloudFlare cache if using GET
                 $url = $prefix.$this->user_id.$suffix;
                 file_get_contents($url, false, stream_context_create($ctx));
@@ -62,6 +62,6 @@ trait UserAvatar
 
         return present($value)
             ? StorageUrl::make(static::avatarDisk(), strtr($value, '_', '?'))
-            : config('osu.avatar.default');
+            : \Config::get('osu.avatar.default');
     }
 }
