@@ -105,6 +105,7 @@ export class SearchPanel extends React.Component<Props> {
 
   // TODO: deprecated event. Update to onbeforeinput once safari adds it on normal enter
   // (or maybe change to form and intercept onsubmit instead)
+  // This shouldn't trigger during ime composition
   private readonly onKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       htmlElementOrNull(event.target)?.blur();
