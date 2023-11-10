@@ -103,8 +103,10 @@ export class SearchPanel extends React.Component<Props> {
     this.controller.filters.update('query', this.query);
   };
 
-  private readonly onKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (!event.nativeEvent.isComposing && event.key === 'Enter') {
+  // TODO: deprecated event. Update to onbeforeinput once safari adds it on normal enter
+  // (or maybe change to form and intercept onsubmit instead)
+  private readonly onKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
       htmlElementOrNull(event.target)?.blur();
     }
   };
@@ -160,7 +162,7 @@ export class SearchPanel extends React.Component<Props> {
             className='beatmapsets-search__input js-beatmapsets-search-input'
             name='search'
             onChange={this.onChange}
-            onKeyDown={this.onKeyDown}
+            onKeyPress={this.onKeyPress}
             placeholder={trans('beatmaps.listing.search.prompt')}
             type='search'
             value={this.query}
@@ -192,7 +194,7 @@ export class SearchPanel extends React.Component<Props> {
             className='beatmapsets-search__input js-beatmapsets-search-input'
             name='search'
             onChange={this.onChange}
-            onKeyDown={this.onKeyDown}
+            onKeyPress={this.onKeyPress}
             placeholder={trans('beatmaps.listing.search.prompt')}
             type='search'
             value={this.query}
