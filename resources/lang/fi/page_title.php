@@ -51,7 +51,7 @@ return [
         ],
         'beatmapsets_controller' => [
             'discussion' => 'beatmap-keskustelu',
-            'index' => 'beatmap-listaus',
+            'index' => 'beatmappilistaus',
             'show' => 'beatmap-tiedot',
         ],
         'changelog_controller' => [
@@ -80,7 +80,7 @@ return [
             '_' => 'tiedot',
         ],
         'livestreams_controller' => [
-            '_' => 'suoralähetykset',
+            '_' => 'suorat lähetykset',
         ],
         'matches_controller' => [
             '_' => 'ottelut',

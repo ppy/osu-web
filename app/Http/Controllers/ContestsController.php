@@ -42,6 +42,8 @@ class ContestsController extends Controller
             $contests = collect([$contest]);
         }
 
+        set_opengraph($contest);
+
         if ($contest->isVotingStarted()) {
             if ($contest->isVotingOpen()) {
                 // TODO: add support for $contests requirement instead of at parent

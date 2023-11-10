@@ -43,7 +43,7 @@ return [
         'show_comment' => 'näytä',
         'too_many' => 'Estoraja saavutettu.',
         'button' => [
-            'block' => 'estä',
+            'block' => 'Estä',
             'unblock' => 'poista esto',
         ],
     ],
@@ -51,7 +51,7 @@ return [
     'card' => [
         'gift_supporter' => 'Anna tukijamerkki lahjaksi',
         'loading' => 'Ladataan...',
-        'send_message' => 'lähetä viesti',
+        'send_message' => 'Lähetä viesti',
     ],
 
     'create' => [
@@ -92,7 +92,7 @@ return [
     ],
 
     'filtering' => [
-        'by_game_mode' => 'Jäsenet pelitilan mukaan',
+        'by_game_mode' => 'Jäsenet pelimuodon mukaan',
     ],
 
     'force_reactivation' => [
@@ -277,7 +277,7 @@ return [
                 ],
                 'recent_plays' => [
                     'accuracy' => 'tarkkuus: :percentage',
-                    'title' => 'Viimeisimmät pelaukset (24h)',
+                    'title' => 'Viimeisimmät pelaukset (24t)',
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Katsotut Uusinnat',
@@ -391,7 +391,7 @@ return [
                 'remaining_silence' => '<strong>:username</strong> pystyy puhumaan seuraavan kerran :duration.',
 
                 'recent_infringements' => [
-                    'title' => 'Viimeisimmät Rikkomukset',
+                    'title' => 'Viimeisimmät rikkomukset',
                     'date' => 'päivä',
                     'action' => 'toiminto',
                     'length' => 'pituus',

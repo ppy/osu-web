@@ -125,9 +125,9 @@ return [
 
     'ogp' => [
         'description' => [
-            '_' => '',
-            'country' => '',
-            'global' => '',
+            '_' => 'Rang (:ruleset): :global × :country',
+            'country' => 'Land :rank',
+            'global' => 'Globaal :rank',
         ],
     ],
 
@@ -395,7 +395,7 @@ return [
                     'date' => 'datum',
                     'action' => 'actie',
                     'length' => 'lengte',
-                    'length_indefinite' => '',
+                    'length_indefinite' => 'Onbepaald',
                     'description' => 'omschrijving',
                     'actor' => 'door :username',
 

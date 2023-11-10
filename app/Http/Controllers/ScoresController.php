@@ -9,7 +9,6 @@ use App\Models\Score\Best\Model as ScoreBest;
 use App\Models\Solo\Score as SoloScore;
 use App\Transformers\ScoreTransformer;
 use App\Transformers\UserCompactTransformer;
-use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
 class ScoresController extends Controller
 {
@@ -46,13 +45,8 @@ class ScoresController extends Controller
                 ->firstOrFail();
         }
 
-        try {
-            $file = $score instanceof SoloScore
-                ? $score->getReplayFile()
-                : $this->getLegacyReplayFile($score);
-        } catch (FileNotFoundException $e) {
-            // missing from storage.
-            log_error($e);
+        $file = $score->getReplayFile();
+        if ($file === null) {
             abort(404);
         }
 
@@ -120,20 +114,6 @@ class ScoresController extends Controller
             ])->firstOrFail();
 
         return response()->json($score->userRank(['cached' => false]) - 1);
-    }
-
-    private function getLegacyReplayFile(ScoreBest $score): string
-    {
-        $replayFile = $score->replayFile();
-        if ($replayFile === null) {
-            abort(404);
-        }
-        $body = $replayFile->get();
-
-        return $replayFile->headerChunk()
-            .pack('i', strlen($body))
-            .$body
-            .$replayFile->endChunk();
     }
 
     private function makeReplayFilename(ScoreBest|SoloScore $score): string

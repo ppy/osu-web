@@ -5,6 +5,7 @@
 
 namespace App\Models;
 
+use App\Enums\Ruleset;
 use App\Exceptions\BeatmapProcessorException;
 use App\Exceptions\InvariantException;
 use App\Jobs\CheckBeatmapsetCovers;
@@ -341,6 +342,15 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
     public function scopeScoreable(Builder $query): void
     {
         $query->where('approved', '>', 0);
+    }
+
+    public function scopeToBeRanked(Builder $query, Ruleset $ruleset)
+    {
+        return $query->qualified()
+            ->withoutTrashed()
+            ->withModesForRanking($ruleset->value)
+            ->where('queued_at', '<', now()->subDays(config('osu.beatmapset.minimum_days_for_rank')))
+            ->whereDoesntHave('beatmapDiscussions', fn ($q) => $q->openIssues());
     }
 
     public function scopeWithModesForRanking($query, $modeInts)
@@ -856,7 +866,10 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     public function rank()
     {
-        if (!$this->isQualified()) {
+        if (
+            !$this->isQualified()
+            || $this->beatmapDiscussions()->openIssues()->exists()
+        ) {
             return false;
         }
 
@@ -1413,13 +1426,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
                 'post_text' => $newBody,
                 'post_edit_user' => $user === null ? null : $user->getKey(),
             ]);
-    }
-
-    public function toMetaDescription()
-    {
-        $section = osu_trans('layout.menu.beatmaps._');
-
-        return "osu! » {$section} » {$this->artist} - {$this->title}";
     }
 
     private function extractDescription($post)

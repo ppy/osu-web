@@ -32,6 +32,15 @@ class TestCase extends BaseTestCase
 {
     use ArraySubsetAsserts, CreatesApplication, DatabaseTransactions;
 
+    public static function withDbAccess(callable $callback): void
+    {
+        $db = (new static())->createApplication()->make('db');
+
+        $callback();
+
+        static::resetAppDb($db);
+    }
+
     protected static function reindexScores()
     {
         $search = new ScoreSearch();
@@ -52,15 +61,6 @@ class TestCase extends BaseTestCase
             $connection->rollBack();
             $connection->disconnect();
         }
-    }
-
-    protected static function withDbAccess(callable $callback): void
-    {
-        $db = (new static())->createApplication()->make('db');
-
-        $callback();
-
-        static::resetAppDb($db);
     }
 
     protected $connectionsToTransact = [
