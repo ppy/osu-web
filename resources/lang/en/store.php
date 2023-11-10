@@ -6,6 +6,7 @@
 return [
     'cart' => [
         'checkout' => 'Checkout',
+        'empty_cart' => 'Remove all items from cart',
         'info' => ':count_delimited item in cart ($:subtotal)|:count_delimited items in cart ($:subtotal)',
         'more_goodies' => 'I want to check out more goodies before completing the order',
         'shipping_fees' => 'shipping fees',

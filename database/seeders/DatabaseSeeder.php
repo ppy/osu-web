@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         try {
+            $this->call(ModelSeeders\GroupSeeder::class);
+
             // Miscellaneous Data (e.g. counts)
             $this->call(ModelSeeders\MiscSeeder::class);
 
