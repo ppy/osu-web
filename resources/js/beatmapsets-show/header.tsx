@@ -362,7 +362,7 @@ export default class Header extends React.Component<Props> {
   private statusToWikiLink(status: string): string {
     let fragment: string;
     if (status === 'wip' || status === 'pending') {
-      fragment = 'work-in-progress-and-pending';
+      fragment = 'wip-and-pending';
     } else {
       fragment = status;
     }
