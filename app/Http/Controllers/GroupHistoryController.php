@@ -25,8 +25,7 @@ class GroupHistoryController extends Controller
         $query = UserGroupEvent::visibleForUser(auth()->user());
 
         if ($params['group'] !== null) {
-            // Not `app('groups')->byIdentifier(...)` because that would create the group if not found
-            $groupId = app('groups')->allByIdentifier()->get($params['group'])?->getKey();
+            $groupId = app('groups')->byIdentifier($params['group'])?->getKey();
 
             if ($groupId !== null) {
                 $query->where('group_id', $groupId);

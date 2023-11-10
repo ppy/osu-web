@@ -7,7 +7,7 @@ return [
     'load_failed' => 'Data gagal dimuat.',
     'missing_route' => 'URL yang dituju tidak valid, atau terdapat suatu masalah dalam proses pengambilan data dari server.',
     'no_restricted_access' => 'Kamu tidak dapat melakukan tindakan ini ketika akunmu sedang di-restrict.',
-    'supporter_only' => 'Kamu harus menjadi seorang osu!supporter untuk dapat menggunakan fitur ini.',
+    'supporter_only' => 'Kamu harus menjadi osu!supporter untuk dapat menggunakan fitur ini.',
     'unknown' => 'Terdapat masalah yang tidak diketahui.',
 
     'codes' => [

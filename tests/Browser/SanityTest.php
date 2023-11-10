@@ -100,7 +100,6 @@ class SanityTest extends DuskTestCase
         Authorize::truncate();
         TopicTrack::truncate();
         Genre::truncate();
-        Group::truncate();
         Language::truncate();
         LoginAttempt::truncate();
         NewsPost::truncate();
@@ -111,8 +110,6 @@ class SanityTest extends DuskTestCase
         UserNotification::truncate();
         UserProfileCustomization::truncate();
         UserStatistics\Osu::truncate();
-
-        app('groups')->resetMemoized();
     }
 
     private static function createScaffolding()
@@ -232,7 +229,7 @@ class SanityTest extends DuskTestCase
         ]);
 
         // factory for /g/*
-        self::$scaffolding['group'] = Group::factory()->create();
+        self::$scaffolding['group'] = Group::first();
 
         // factory for comments
         self::$scaffolding['comment'] = Comment::factory()->create([
