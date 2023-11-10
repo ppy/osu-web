@@ -140,7 +140,7 @@ export default class Header extends React.Component<Props> {
           <span className='beatmapset-header__details-text beatmapset-header__details-text--title'>
             <a
               className='beatmapset-header__details-text-link'
-              href={route('beatmapsets.index', { q: `title="${getTitle(this.controller.beatmapset)}"` })}
+              href={route('beatmapsets.index', { q: `title=""${getTitle(this.controller.beatmapset)}""` })}
             >
               {getTitle(this.controller.beatmapset)}
             </a>
@@ -157,7 +157,7 @@ export default class Header extends React.Component<Props> {
           <span className='beatmapset-header__details-text beatmapset-header__details-text--artist'>
             <a
               className='beatmapset-header__details-text-link'
-              href={route('beatmapsets.index', { q: `artist="${getArtist(this.controller.beatmapset)}"` })}
+              href={route('beatmapsets.index', { q: `artist=""${getArtist(this.controller.beatmapset)}""` })}
             >
               {getArtist(this.controller.beatmapset)}
             </a>
