@@ -919,7 +919,7 @@ function timeago($date)
     return "<time class='js-timeago' datetime='{$formatted}'>{$formatted}</time>";
 }
 
-function link_to(string $url, HtmlString|string $text, array $attributes = []): string
+function link_to(string $url, HtmlString|string $text, array $attributes = []): HtmlString
 {
     return blade_safe(tag('a', [...$attributes, 'href' => $url], make_blade_safe($text)));
 }
