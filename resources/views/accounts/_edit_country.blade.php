@@ -12,7 +12,7 @@
     <div class="account-edit-entry__label account-edit-entry__label--top-pinned">
         {{ osu_trans('accounts.edit.profile.country') }}
     </div>
-    <div>
+    <div class="account-edit-entry__group">
         <p>
             @include('objects._flag_country', [
                 'countryCode' => $user->country_acronym,
