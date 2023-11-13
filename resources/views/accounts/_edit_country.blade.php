@@ -24,17 +24,16 @@
         @if ($countryChangeTarget !== null)
             <p>
                 {!! osu_trans('accounts.edit.profile.country_change._', [
-                    'update_link' => tag(
-                        'a',
+                    'update_link' => link_to(
+                        route('account.country', ['country_acronym' => $countryChangeTarget]),
+                        osu_trans('accounts.edit.profile.country_change.update_link', [
+                            'country' => app('countries')->byCode($code)->name,
+                        ]),
                         [
                             'data-confirm' => osu_trans('common.confirmation'),
                             'data-method' => 'PUT',
                             'data-remote' => '1',
-                            'href' => route('account.country', ['country_acronym' => $countryChangeTarget]),
-                        ],
-                        osu_trans('accounts.edit.profile.country_change.update_link', [
-                            'country' => Country::find($countryChangeTarget)->name,
-                        ]),
+                        ]
                     ),
                 ]) !!}
             </p>

@@ -112,7 +112,7 @@
                         </div>
                         <div class="download-page__text download-page__text--description">
                             {!! osu_trans('home.download.steps.beatmaps.description._', [
-                                'browse' => tag(
+                                'browse' => link_to(
                                     'a',
                                     ['href' => route('beatmapsets.index')],
                                     osu_trans('home.download.steps.beatmaps.description.browse')
@@ -125,14 +125,19 @@
                 @if (config('services.enchant.id') !== null)
                     <div class="download-page__help">
                         {!! osu_trans('home.download.help._', [
-                            'support_button' => tag('a', [
-                                'class' => 'js-enchant--show',
-                                'role' => 'button',
-                                'href' => '#',
-                            ], osu_trans('home.download.help.support_button')),
-                            'help_forum_link' => tag('a', [
-                                'href' => route('forum.forums.show', ['forum' => config('osu.forum.help_forum_id')]),
-                            ], osu_trans('home.download.help.help_forum_link')),
+                            'support_button' => link_to(
+                                '#',
+                                osu_trans('home.download.help.support_button'),
+                                [
+                                    'class' => 'js-enchant--show',
+                                    'role' => 'button',
+                                    'href' => '#',
+                                ],
+                            ),
+                            'help_forum_link' => link_to(
+                                route('forum.forums.show', ['forum' => config('osu.forum.help_forum_id')]),
+                                osu_trans('home.download.help.help_forum_link')
+                            )
                         ]) !!}
                     </div>
 
