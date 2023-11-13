@@ -113,8 +113,7 @@
                         <div class="download-page__text download-page__text--description">
                             {!! osu_trans('home.download.steps.beatmaps.description._', [
                                 'browse' => link_to(
-                                    'a',
-                                    ['href' => route('beatmapsets.index')],
+                                    route('beatmapsets.index'),
                                     osu_trans('home.download.steps.beatmaps.description.browse')
                                 )
                             ]) !!}
