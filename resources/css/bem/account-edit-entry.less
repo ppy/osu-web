@@ -17,10 +17,6 @@
   align-items: center;
   flex-wrap: wrap;
 
-  @media @desktop {
-    flex-wrap: nowrap;
-  }
-
   &--block {
     display: block;
 
@@ -195,6 +191,10 @@
     display: grid;
     grid-template-columns: auto auto 1fr;
     grid-gap: 5px;
+  }
+
+  &__group {
+    flex: 1;
   }
 
   &__input {
