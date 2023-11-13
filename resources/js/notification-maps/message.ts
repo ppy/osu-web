@@ -1,12 +1,34 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import * as _ from 'lodash';
 import Notification from 'models/notification';
+import NotificationDetails from 'models/notification-details';
 import { isBeatmapOwnerChangeNotification } from 'models/notification/beatmap-owner-change-notification';
-import { trans, transExists } from 'utils/lang';
+import { trans, transArray, transChoice, transExists } from 'utils/lang';
 
-type Replacements = { title: string } & Partial<Record<string, string>>;
+type Replacements = { title: string } & Partial<Record<string, string|number>>;
+
+function formatBeatmapsetReviewCounts(counts: NonNullable<NotificationDetails['embeds']>, replacements: Replacements) {
+  const translatedCounts = [];
+  for (const type of ['praises', 'problems', 'suggestions'] as const) {
+    const count = counts[type];
+    if (count > 0) {
+      translatedCounts.push(transChoice(
+        `notifications.item.beatmapset.beatmapset_discussion.review_count.${type}`,
+        count,
+      ));
+    }
+    // TODO: remove after all translations are updated to use the :review_counts
+    replacements[type] = count;
+  }
+  if (translatedCounts.length === 0) {
+    translatedCounts.push(transChoice(
+      'notifications.item.beatmapset.beatmapset_discussion.review_count.problems',
+      0,
+    ));
+  }
+  replacements.review_counts = transArray(translatedCounts);
+}
 
 export function formatMessage(item: Notification, compact = false) {
   const replacements: Replacements = {
@@ -20,11 +42,7 @@ export function formatMessage(item: Notification, compact = false) {
   }
 
   if (item.name === 'beatmapset_discussion_review_new' && item.details.embeds != null) {
-    _.merge(replacements, {
-      praises: item.details.embeds.praises,
-      problems: item.details.embeds.problems,
-      suggestions: item.details.embeds.suggestions,
-    });
+    formatBeatmapsetReviewCounts(item.details.embeds, replacements);
   }
 
   let key = `notifications.item.${item.displayType}.${item.category}`;
