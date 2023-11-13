@@ -5,11 +5,11 @@
 
 namespace App\Models\Multiplayer;
 
+use App\Enums\Ruleset;
 use App\Exceptions\InvariantException;
-use App\Libraries\Ruleset;
 use App\Models\Beatmap;
 use App\Models\Model;
-use App\Models\Solo\ScoreToken;
+use App\Models\ScoreToken;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 

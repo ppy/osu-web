@@ -4,6 +4,9 @@
          bootstrap="vendor/autoload.php"
          colors="true"
 >
+    <extensions>
+        <extension class="Tests\SeederExtension" />
+    </extensions>
     <testsuites>
         <testsuite name="Application Test Suite">
             <directory suffix="Test.php">./tests/</directory>

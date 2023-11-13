@@ -8,7 +8,7 @@ return [
     'heading' => 'Kop',
     'help' => 'Help',
     'image' => 'Afbeelding',
-    'imagemap' => '',
+    'imagemap' => 'Afbeelding kaart',
     'italic' => 'Cursief',
     'link' => 'Link',
     'list' => 'Lijst',

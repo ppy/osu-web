@@ -89,6 +89,8 @@ class BeatmapsetSearch extends RecordSearch
         $this->addSimpleFilters($query, $nested);
         $this->addCreatorFilter($query, $nested);
         $this->addTextFilter($query, 'artist', ['artist', 'artist_unicode']);
+        $this->addTextFilter($query, 'source', ['source']);
+        $this->addTextFilter($query, 'title', ['title', 'title_unicode']);
 
         $query->filter([
             'nested' => [

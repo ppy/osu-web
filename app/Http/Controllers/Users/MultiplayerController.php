@@ -36,6 +36,8 @@ class MultiplayerController extends Controller
             return $json;
         }
 
+        set_opengraph($user, 'multiplayer');
+
         $jsonUser = json_item(
             $user,
             (new UserTransformer())->setMode($user->playmode),

@@ -5,7 +5,7 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Beatmap;
+use App\Enums\Ruleset;
 use App\Models\Beatmapset;
 use Illuminate\Console\Command;
 
@@ -16,7 +16,7 @@ class ModdingRankCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'modding:rank';
+    protected $signature = 'modding:rank {--no-wait} {--count-only}';
 
     /**
      * The console command description.
@@ -25,6 +25,24 @@ class ModdingRankCommand extends Command
      */
     protected $description = 'Rank maps in queue.';
 
+    private bool $countOnly = false;
+    private bool $noWait = false;
+
+    public static function getStats(Ruleset $ruleset)
+    {
+        $rankedTodayCount = Beatmapset::ranked()
+            ->withoutTrashed()
+            ->withModesForRanking($ruleset->value)
+            ->where('approved_date', '>=', now()->subDays())
+            ->count();
+
+        return [
+            'availableQuota' => config('osu.beatmapset.rank_per_day') - $rankedTodayCount,
+            'inQueue' => Beatmapset::toBeRanked($ruleset)->count(),
+            'rankedToday' => $rankedTodayCount,
+        ];
+    }
+
     /**
      * Execute the console command.
      *
@@ -32,53 +50,56 @@ class ModdingRankCommand extends Command
      */
     public function handle()
     {
-        $this->info('Ranking beatmapsets...');
+        $this->countOnly = get_bool($this->option('count-only'));
+        $this->noWait = get_bool($this->option('no-wait'));
 
-        $modeInts = array_values(Beatmap::MODES);
+        if ($this->countOnly) {
+            $this->info('Number of beatmapsets in queue:');
+        } else {
+            $this->info('Ranking beatmapsets...');
+        }
 
-        shuffle($modeInts);
+        $rulesets = Ruleset::cases();
 
-        foreach ($modeInts as $modeInt) {
+        shuffle($rulesets);
+
+        foreach ($rulesets as $ruleset) {
             $this->waitRandom();
-            $this->rankAll($modeInt);
+
+            if ($this->countOnly) {
+                $stats = static::getStats($ruleset);
+                $this->info($ruleset->name);
+                foreach ($stats as $key => $value) {
+                    $this->line("{$key}: {$value}");
+                }
+                $this->newLine();
+            } else {
+                $this->rankAll($ruleset);
+            }
         }
 
         $this->info('Done');
     }
 
-    private function rankAll($modeInt)
+    private function rankAll(Ruleset $ruleset)
     {
-        $this->info('Ranking beatmapsets with at least mode: '.Beatmap::modeStr($modeInt));
+        $this->info("Ranking beatmapsets with at least mode: {$ruleset->name}");
+        $stats = static::getStats($ruleset);
 
-        $rankedTodayCount = Beatmapset::ranked()
-            ->withoutTrashed()
-            ->withModesForRanking($modeInt)
-            ->where('approved_date', '>=', now()->subDays())
-            ->count();
+        $this->info("{$stats['rankedToday']} beatmapsets ranked last 24 hours. Can rank {$stats['availableQuota']} more");
 
-        $rankableQuota = config('osu.beatmapset.rank_per_day') - $rankedTodayCount;
-
-        $this->info("{$rankedTodayCount} beatmapsets ranked last 24 hours. Can rank {$rankableQuota} more");
-
-        if ($rankableQuota <= 0) {
+        if ($stats['availableQuota'] <= 0) {
             return;
         }
 
-        $toRankLimit = min(config('osu.beatmapset.rank_per_run'), $rankableQuota);
+        $toRankLimit = min(config('osu.beatmapset.rank_per_run'), $stats['availableQuota']);
 
-        $toBeRankedQuery = Beatmapset::qualified()
-            ->withoutTrashed()
-            ->withModesForRanking($modeInt)
-            ->where('queued_at', '<', now()->subDays(config('osu.beatmapset.minimum_days_for_rank')));
-
-        $rankingQueue = $toBeRankedQuery->count();
-
-        $toBeRanked = $toBeRankedQuery
+        $toBeRanked = Beatmapset::tobeRanked($ruleset)
             ->orderBy('queued_at', 'ASC')
             ->limit($toRankLimit)
             ->get();
 
-        $this->info("{$rankingQueue} beatmapset(s) in ranking queue");
+        $this->info("{$stats['inQueue']} beatmapset(s) in ranking queue");
         $this->info("Ranking {$toBeRanked->count()} beatmapset(s)");
 
         foreach ($toBeRanked as $beatmapset) {
@@ -90,6 +111,10 @@ class ModdingRankCommand extends Command
 
     private function waitRandom()
     {
+        if ($this->noWait || $this->countOnly) {
+            return;
+        }
+
         $delay = rand(5, 120);
         $this->info("Pausing for {$delay} seconds...");
         sleep($delay);

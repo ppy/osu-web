@@ -336,6 +336,7 @@ Route::group(['middleware' => ['web']], function () {
 
             // Store splitting starts here
             Route::get('cart', 'CartController@show')->name('cart.show');
+            Route::delete('cart', 'CartController@empty')->name('cart.empty');
             Route::resource('cart', 'CartController', ['only' => ['store']]);
 
             Route::resource('checkout', 'CheckoutController', ['only' => ['show', 'store']]);
@@ -414,8 +415,9 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
                 Route::get('solo-scores', 'BeatmapsController@soloScores')->name('solo-scores');
 
                 Route::group(['as' => 'solo.', 'prefix' => 'solo'], function () {
+                    Route::post('scores', 'ScoreTokensController@store')->name('score-tokens.store');
+
                     Route::group(['namespace' => 'Solo'], function () {
-                        Route::post('scores', 'ScoreTokensController@store')->name('score-tokens.store');
                         Route::put('scores/{token}', 'ScoresController@store')->name('scores.store');
                     });
                 });

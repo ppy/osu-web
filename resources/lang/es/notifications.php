@@ -157,8 +157,8 @@ return [
             'user_beatmapset_new' => [
                 '_' => 'Nuevo mapa',
 
-                'user_beatmapset_new' => 'Nuevo mapa ":title" por :username',
-                'user_beatmapset_new_compact' => 'Nuevo mapa ":title"',
+                'user_beatmapset_new' => 'Nuevo mapa «:title» por :username',
+                'user_beatmapset_new_compact' => 'Nuevo mapa «:title»',
                 'user_beatmapset_new_group' => 'Nuevos mapas por :username',
 
                 'user_beatmapset_revive' => 'Mapa ":title" revivido por :username',
@@ -205,7 +205,7 @@ return [
             ],
 
             'comment' => [
-                'comment_new' => 'El mapa ":title" tiene nuevos comentarios',
+                'comment_new' => 'El mapa «:title» tiene nuevos comentarios',
             ],
         ],
 

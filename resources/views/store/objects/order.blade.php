@@ -53,7 +53,7 @@
     @if ($checkout && $order->shipping > 0)
         <li class="order-line-items__item order-line-items__item--footer">
             <div class="order-line-items__data order-line-items__data--name">
-                Subtotal
+                {{ osu_trans('store.order.subtotal') }}
             </div>
             <div class="order-line-items__data order-line-items__data--value">
                 {{ currency($order->getSubtotal()) }}
@@ -62,7 +62,7 @@
 
         <li class="order-line-items__item order-line-items__item--footer">
             <div class="order-line-items__data order-line-items__data--name">
-                Shipping &amp; Handling
+                {{ osu_trans('store.order.shipping_and_handling') }}
             </div>
             <div class="order-line-items__data order-line-items__data--value">
                 {{ currency($order->shipping) }}
@@ -73,7 +73,7 @@
     @if (!$checkout)
         <li class="order-line-items__item order-line-items__item--footer order-line-items__item--footer-total">
             <div class="order-line-items__data order-line-items__data--name">
-                Total
+                {{ osu_trans('store.order.total') }}
             </div>
             <div class="order-line-items__data order-line-items__data--value">
                 {{ currency($order->getSubtotal()) }}

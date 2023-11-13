@@ -102,6 +102,8 @@ class BeatmapsetsController extends Controller
 
             $noindex = !$beatmapset->esShouldIndex();
 
+            set_opengraph($beatmapset);
+
             return ext_view('beatmapsets.show', compact(
                 'beatmapset',
                 'commentBundle',

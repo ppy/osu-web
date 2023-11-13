@@ -63,15 +63,15 @@ return [
     ],
 
     'github_user' => [
-        'info' => "",
-        'link' => '',
-        'title' => '',
-        'unlink' => '',
+        'info' => "Jos osallistut osu!n kehitykseen, GitHub-tilin linkittäminen tässä yhdistää muutoslokin merkintäsi osu!-profiiliisi. GitHub-tilit, joilla ei ole osallistumishistoriaa osu!un, ei voida linkittää.",
+        'link' => 'Linkitä GitHub-tili',
+        'title' => 'GitHub',
+        'unlink' => 'Poista GitHub-tilin linkitys',
 
         'error' => [
-            'already_linked' => '',
-            'no_contribution' => '',
-            'unverified_email' => '',
+            'already_linked' => 'Tämä GitHub-tili on jo linkitetty eri käyttäjälle.',
+            'no_contribution' => 'GitHub-tiliä ei voi linkittää, jos sillä ei ole muutoshistoriaa osu!lle.',
+            'unverified_email' => 'Ole hyvä ja vahvista ensisijainen sähköpostiosoitteesi GitHubissa ja yritä sitten yhdistää tilisi uudelleen.',
         ],
     ],
 
@@ -104,7 +104,7 @@ return [
 
     'options' => [
         'beatmapset_show_nsfw' => 'piilota varoitukset sopimattomasta sisällöstä beatmapeissa',
-        'beatmapset_title_show_original' => 'näytä beatmap-metadata alkuperäisellä kielellä',
+        'beatmapset_title_show_original' => 'näytä rytmikarttojen kuvailutiedot alkuperäisellä kielellä',
         'title' => 'Asetukset',
 
         'beatmapset_download' => [

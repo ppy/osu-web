@@ -10,9 +10,9 @@ use App\Exceptions\InvariantException;
 use App\Models\Beatmap;
 use App\Models\Chat\Channel;
 use App\Models\Model;
+use App\Models\ScoreToken;
 use App\Models\Season;
 use App\Models\SeasonRoom;
-use App\Models\Solo\ScoreToken;
 use App\Models\Traits\WithDbCursorHelper;
 use App\Models\User;
 use App\Traits\Memoizes;
@@ -400,14 +400,14 @@ class Room extends Model
         }
     }
 
-    public function completePlay(ScoreLink $scoreLink, array $params)
+    public function completePlay(ScoreToken $scoreToken, array $params): ScoreLink
     {
-        priv_check_user($scoreLink->user, 'MultiplayerScoreSubmit')->ensureCan();
+        priv_check_user($scoreToken->user, 'MultiplayerScoreSubmit')->ensureCan();
 
         $this->assertValidCompletePlay();
 
-        return $scoreLink->getConnection()->transaction(function () use ($params, $scoreLink) {
-            $scoreLink->complete($params);
+        return $this->getConnection()->transaction(function () use ($params, $scoreToken) {
+            $scoreLink = ScoreLink::complete($scoreToken, $params);
             UserScoreAggregate::new($scoreLink->user, $this)->addScoreLink($scoreLink);
 
             return $scoreLink;

@@ -3,13 +3,10 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-namespace App\Models\Solo;
+namespace App\Models;
 
-use App\Models\Beatmap;
-use App\Models\Build;
-use App\Models\Model;
 use App\Models\Multiplayer\PlaylistItem;
-use App\Models\User;
+use App\Models\Solo\Score;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
@@ -28,8 +25,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class ScoreToken extends Model
 {
-    protected $table = 'solo_score_tokens';
-
     public function beatmap()
     {
         return $this->belongsTo(Beatmap::class, 'beatmap_id');

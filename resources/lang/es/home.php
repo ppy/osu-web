@@ -23,7 +23,7 @@ return [
         'button' => 'Buscar',
         'empty_result' => '¡No se ha encontrado nada!',
         'keyword_required' => 'Se requiere una palabra clave de búsqueda',
-        'placeholder' => 'escriba para buscar',
+        'placeholder' => 'escribe para buscar',
         'title' => 'buscar',
 
         'beatmapset' => [

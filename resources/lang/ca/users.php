@@ -440,8 +440,8 @@ return [
             'count' => ':count_delimited publicació en el fòrum|:count_delimited publicacions en el fòrum',
         ],
         'rank' => [
-            'country' => 'Classificació per països per :mode',
-            'country_simple' => 'Classificació per països',
+            'country' => 'Classificació nacional per :mode',
+            'country_simple' => 'Classificació nacional',
             'global' => 'Classifació global per :mode',
             'global_simple' => 'Classificació global',
             'highest' => 'Classificació més alta: :rank el :date',

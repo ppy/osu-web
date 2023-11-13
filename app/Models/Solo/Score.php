@@ -13,6 +13,7 @@ use App\Models\Beatmap;
 use App\Models\Model;
 use App\Models\Multiplayer\ScoreLink as MultiplayerScoreLink;
 use App\Models\Score as LegacyScore;
+use App\Models\ScoreToken;
 use App\Models\Traits;
 use App\Models\User;
 use Carbon\Carbon;
@@ -38,7 +39,6 @@ class Score extends Model implements Traits\ReportableInterface
 
     const PROCESSING_QUEUE = 'osu-queue:score-statistics';
 
-    protected $table = 'solo_scores';
     protected $casts = [
         'data' => ScoreData::class,
         'has_replay' => 'boolean',
@@ -182,7 +182,7 @@ class Score extends Model implements Traits\ReportableInterface
         return Beatmap::modeStr($this->ruleset_id);
     }
 
-    public function getReplayFile(): string
+    public function getReplayFile(): ?string
     {
         return Storage::disk(config('osu.score_replays.storage').'-solo-replay')
             ->get($this->getKey());
