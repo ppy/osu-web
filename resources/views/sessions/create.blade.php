@@ -7,11 +7,13 @@
 ])
 
 @section('content')
-    {!! Form::open([
-        'url' => route('login'),
-        'class' => 'dialog-form js-login-form',
-        'data-remote' => true,
-    ]) !!}
+    <form
+        action="{{ route('login') }}"
+        class="dialog-form js-login-form"
+        data-remote
+        method="POST"
+    >
+        @csrf
         <div class="dialog-form__dialog">
             <div class="dialog-form__row dialog-form__row--header"></div>
 
@@ -83,5 +85,5 @@
                 </a>
             </div>
         </div>
-    {!! Form::close() !!}
+    </form>
 @endsection

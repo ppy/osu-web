@@ -33,13 +33,10 @@
                     'forum.post.posted_by_in',
                     [
                         'username' => link_to_user($user, null, null, ['search-forum-post__sub-link']),
-                        'forum' => tag(
-                            'a',
-                            [
-                                'href' => route('forum.forums.show', ['forum' => $topic->forum_id]),
-                                'class' => 'search-forum-post__sub-link',
-                            ],
+                        'forum' => link_to(
+                            route('forum.forums.show', ['forum' => $topic->forum_id]),
                             $topic->forum->forum_name,
+                            ['class' => 'search-forum-post__sub-link']
                         ),
                     ],
                 ) !!}

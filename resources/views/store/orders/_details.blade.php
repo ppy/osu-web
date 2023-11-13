@@ -5,9 +5,9 @@
 <div class="store-page">
     <div class="store-page__invoice-header">
         <div>
-            <h1 class="store-text store-text--title">Invoice</h1>
+            <h1 class="store-text store-text--title">{{ osu_trans('store.invoice.title') }}</h1>
             <div>
-                Date:
+                {{ osu_trans('store.invoice.date') }}
                 @if($order->shipped_at)
                     {{ $order->shipped_at->toDateString() }}
                 @elseif($order->paid_at)
@@ -23,7 +23,7 @@
                 ACN 163 593 413 a.t.f. Dean Herbert Family Trust
             </p>
 
-            <p>contact: pe@ppy.sh / +81 80 1381 1430</p>
+            <p>{{ osu_trans('store.invoice.contact') }} pe@ppy.sh / +81 80 1381 1430</p>
         </div>
     </div>
 
@@ -32,7 +32,7 @@
     @if($order->address !== null)
         <div class="store-page__address">
             <div>
-                <h4 class="store-text store-text--title store-text--title-small">Sent Via:</h4>
+                <h4 class="store-text store-text--title store-text--title-small">{{ osu_trans('store.invoice.sent_via') }}</h4>
 
                 <div class='address'>
                     osu!store
@@ -40,7 +40,7 @@
             </div>
 
             <div>
-                <h4 class="store-text store-text--title store-text--title-small">Shipping To:</h4>
+                <h4 class="store-text store-text--title store-text--title-small">{{ osu_trans('store.invoice.shipping_to') }}</h4>
 
                 @include('store.objects.address', ['data' => $order->address])
             </div>
@@ -48,7 +48,7 @@
     @endif
 
     <div class="store-page__order-details">
-        <h3 class="store-text store-text--title">Order Details</h3>
+        <h3 class="store-text store-text--title">{{ osu_trans('store.order.details.title') }}</h3>
 
         @include('store.objects.order', [
             'order' => $order,
@@ -66,11 +66,11 @@
             $showTrackingCode = ($order->isShipped() || $order->isDelivered() || Auth::user()->isAdmin()) && $order->tracking_code;
 
             $transactionDetails = [
-                'Salesperson' => 'osu!store',
-                'Order #' => "#{$order->order_id}",
-                'Shipping Method' => $showTrackingCode ? 'EMS ('.trim($order->tracking_code).')' : 'N/A',
-                'Shipping Terms' => 'FOB Japan',
-                'Payment Terms' => studly_case($order->getPaymentProvider()).' ('.$order->getPaymentStatusText().')',
+                osu_trans('store.order.details.salesperson') => 'osu!store',
+                osu_trans('store.order.details.order_number') => "#{$order->order_id}",
+                osu_trans('store.order.details.shipping_method') => $showTrackingCode ? 'EMS ('.trim($order->tracking_code).')' : 'N/A',
+                osu_trans('store.order.details.shipping_terms') => 'FOB Japan',
+                osu_trans('store.order.details.payment_terms') => studly_case($order->getPaymentProvider()).' ('.$order->getPaymentStatusText().')',
             ];
         @endphp
         <dl class="store-transaction-info">

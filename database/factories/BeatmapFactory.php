@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
+use App\Enums\Ruleset;
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
 
@@ -70,6 +71,11 @@ class BeatmapFactory extends Factory
     public function ranked(): static
     {
         return $this->state(['approved' => Beatmapset::STATES['ranked']]);
+    }
+
+    public function ruleset(Ruleset $ruleset): static
+    {
+        return $this->state(['playmode' => $ruleset->value]);
     }
 
     public function wip(): static

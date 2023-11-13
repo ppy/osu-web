@@ -70,10 +70,9 @@
                 'type' => 'alert',
                 'title' => osu_trans('users.restricted_banner.title'),
                 'message' => osu_trans('users.restricted_banner.message', [
-                    'link' => tag(
-                        'a',
-                        ['href' => config('osu.urls.user.restriction')],
-                        osu_trans('users.restricted_banner.message_link'),
+                    'link' => link_to(
+                        config('osu.urls.user.restriction'),
+                        osu_trans('users.restricted_banner.message_link')
                     ),
                 ]),
             ])

@@ -92,14 +92,13 @@
     {{-- Show message if there is a pending checkout and not currently on a checkout page --}}
     @if($showPendingCheckout)
         @php
-            $pendingCheckoutLink = Html::link(
-                route('store.orders.index', ['type' => 'processing']),
-                osu_trans('store.checkout.has_pending.link_text')
-            )
         @endphp
         <div class="store-notice">
             <span>
-                {!! osu_trans('store.checkout.has_pending._', ['link' => $pendingCheckoutLink]) !!}
+                {!! osu_trans('store.checkout.has_pending._', ['link' => link_to(
+                    route('store.orders.index', ['type' => 'processing']),
+                    osu_trans('store.checkout.has_pending.link_text'),
+                )]) !!}
             </span>
         </div>
     @endif
