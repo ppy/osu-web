@@ -4,9 +4,9 @@
 --}}
 <div class="store-page">
     <h4 class="store-text store-text--title store-text--title-small">
-        osu_trans('store.order.tracking_for', [
-            'code' => $code,
-        ])
+        {{ osu_trans('store.order.tracking_for', [
+                'code' => $code,
+        ]) }}
     </h4>
 
     <iframe src="https://trackings.post.japanpost.jp/services/srv/search/direct?searchKind=S004&locale=en&reqCodeNo1={{ $code }}" frameBorder="0" width="100%" height="600px">
