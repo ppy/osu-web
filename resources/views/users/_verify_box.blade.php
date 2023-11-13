@@ -42,10 +42,9 @@
             ),
         ]) !!}
         {!! osu_trans('user_verification.box.info.reissue', [
-            'reissue_link' => link_to_route(
-                'account.reissue-code',
+            'reissue_link' => link_to(
+                route('account.reissue-code'),
                 osu_trans('user_verification.box.info.reissue_link'),
-                [],
                 ['class' => 'js-user-verification--reissue user-verification__link']
             ),
             'logout_link' =>
