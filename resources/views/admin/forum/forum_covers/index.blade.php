@@ -29,10 +29,12 @@
                                 style="background-image:url('{{ $cover['cover']->fileUrl() }}')"
                             ></div>
 
-                            {!! Form::open([
-                                'route' => ['admin.forum.forum-covers.update', $cover['cover']->id],
-                                'method' => 'POST', 'files' => true
-                            ]) !!}
+                            <form
+                                action="{{ route('admin.forum.forum-covers.update', $cover['cover']->id) }}"
+                                enctype="multipart/form-data"
+                                method="POST"
+                            >
+                                @csrf
                                 <input name="_method" value="PUT" type="hidden" />
                                 <input name="forum_cover[{{ $cover['key'] }}][cover_file]" type="file">
 
@@ -41,16 +43,21 @@
                                     {{ osu_trans('admin.forum.forum-covers.index.delete') }}
                                 </label>
                                 <button class="btn-osu-big">{{ osu_trans('admin.forum.forum-covers.index.submit.update') }}</button>
-                            {!! Form::close() !!}
+                            </form>
                         @else
                             {{ osu_trans('admin.forum.forum-covers.index.no-cover') }}
 
-                            {!! Form::open(['url' => route('admin.forum.forum-covers.store'), 'method' => 'POST', 'files' => true]) !!}
+                            <form
+                                action="{{ route('admin.forum.forum-covers.store') }}"
+                                enctype="multipart/form-data"
+                                method="POST"
+                            >
+                                @csrf
                                 <input name="_method" value="POST" type="hidden" />
                                 <input name="forum_cover[forum_id]" value="{{ $forum->forum_id }}" type="hidden" />
                                 <input name="forum_cover[{{ $cover['key'] }}][cover_file]" type="file">
                                 <button class="btn-osu-big">{{ osu_trans('admin.forum.forum-covers.index.submit.save') }}</button>
-                            {!! Form::close() !!}
+                            </form>
                         @endif
                     </div>
                 @endforeach

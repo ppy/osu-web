@@ -32,7 +32,6 @@
     "laravel/passport": "*",
     "laravel/slack-notification-channel": "*",
     "laravel/tinker": "*",
-    "laravelcollective/html": "*",
     "league/commonmark": "^2.0",
     "league/flysystem-aws-s3-v3": "*",
     "league/fractal": "*",
