@@ -5,7 +5,7 @@
 <div class="store-page">
     <h4 class="store-text store-text--title store-text--title-small">
         {{ osu_trans('store.order.tracking_for', [
-                'code' => $code,
+            'code' => $code,
         ]) }}
     </h4>
 
