@@ -2,13 +2,15 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
-{!! Form::open([
-    'route' => 'account.password',
-    'method' => 'PUT',
-    'data-remote' => true,
-    'data-skip-ajax-error-popup' => '1',
-    'class' => 'js-form-clear js-form-error js-account-edit js-password-update account-edit'
-]) !!}
+<form
+    action="{{ route('account.password') }}"
+    class="js-form-clear js-form-error js-account-edit js-password-update account-edit"
+    data-remote
+    data-skip-ajax-error-popup="1"
+    method="POST"
+>
+    @csrf
+    <input name="_method" value="PUT" type="hidden" />
     <div class="account-edit__section">
         <h2 class="account-edit__section-title">
             {{ osu_trans('accounts.edit.password.title') }}
@@ -83,4 +85,4 @@
             </div>
         </div>
     </div>
-{!! Form::close() !!}
+</form>

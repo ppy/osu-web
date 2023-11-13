@@ -613,12 +613,20 @@ function product_quantity_options($product, $selected = null)
 
     $opts = [];
     for ($i = 1; $i <= $max; $i++) {
-        $opts[$i] = osu_trans_choice('common.count.item', $i);
+        $opts[] = [
+            'label' => osu_trans_choice('common.count.item', $i),
+            'selected' => $i === $selected,
+            'value' => $i,
+        ];
     }
 
     // include selected value separately if it's out of range.
-    if ($selected > $max) {
-        $opts[$selected] = osu_trans_choice('common.count.item', $selected);
+    if ($selected !== null && $selected > $max) {
+        $opts[] = [
+            'label' => osu_trans_choice('common.count.item', $selected),
+            'selected' => true,
+            'value' => $selected,
+        ];
     }
 
     return $opts;
@@ -655,13 +663,16 @@ function request_country($request = null)
         : $request->header('CF_IPCOUNTRY');
 }
 
-function require_login($text_key, $link_text_key)
+function require_login($textKey, $linkTextKey)
 {
-    $title = osu_trans('users.anonymous.login_link');
-    $link = Html::link('#', osu_trans($link_text_key), ['class' => 'js-user-link', 'title' => $title]);
-    $text = osu_trans($text_key, ['link' => $link]);
-
-    return $text;
+    return osu_trans($textKey, ['link' => link_to(
+        '#',
+        osu_trans($linkTextKey),
+        [
+            'class' => 'js-user-link',
+            'title' => osu_trans('users.anonymous.login_link'),
+        ],
+    )]);
 }
 
 function spinner(?array $modifiers = null)
@@ -708,22 +719,6 @@ function obscure_email($email)
     }
 
     return mb_substr($email[0], 0, 1).'***'.'@'.$email[1];
-}
-
-function countries_array_for_select()
-{
-    $out = [];
-
-    foreach (App\Models\Country::forStore()->get() as $country) {
-        if (!isset($lastDisplay)) {
-            $lastDisplay = $country->display;
-        } elseif ($lastDisplay !== $country->display) {
-            $out['_disabled'] = '---';
-        }
-        $out[$country->acronym] = $country->name;
-    }
-
-    return $out;
 }
 
 function currency($price, $precision = 2, $zeroShowFree = true)
@@ -924,6 +919,11 @@ function timeago($date)
     return "<time class='js-timeago' datetime='{$formatted}'>{$formatted}</time>";
 }
 
+function link_to(string $url, HtmlString|string $text, array $attributes = []): HtmlString
+{
+    return blade_safe(tag('a', [...$attributes, 'href' => $url], make_blade_safe($text)));
+}
+
 function link_to_user($id, $username = null, $color = null, $classNames = null)
 {
     if ($id instanceof App\Models\User) {
@@ -951,6 +951,11 @@ function link_to_user($id, $username = null, $color = null, $classNames = null)
 
         return "<a class='{$class}' data-user-id='{$id}' href='{$url}' style='{$style}'>{$username}</a>";
     }
+}
+
+function make_blade_safe(HtmlString|string $text): HtmlString
+{
+    return $text instanceof HtmlString ? $text : blade_safe(e($text));
 }
 
 function issue_icon($issue)

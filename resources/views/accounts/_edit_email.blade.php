@@ -2,13 +2,15 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
-{!! Form::open([
-    'route' => 'account.email',
-    'method' => 'PUT',
-    'data-remote' => true,
-    'data-skip-ajax-error-popup' => '1',
-    'class' => 'js-form-error js-form-clear js-account-edit account-edit'
-]) !!}
+<form
+    action="{{ route('account.email') }}"
+    class="js-form-error js-form-clear js-account-edit account-edit"
+    data-remote
+    data-skip-ajax-error-popup="1"
+    method="POST"
+>
+    @csrf
+    <input name="_method" value="PUT" type="hidden" />
     <div class="account-edit__section">
         <h2 class="account-edit__section-title">
             {{ osu_trans('accounts.edit.email.title') }}
@@ -93,4 +95,4 @@
             </div>
         @endif
     </div>
-{!! Form::close() !!}
+</form>

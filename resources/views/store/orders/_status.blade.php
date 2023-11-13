@@ -9,7 +9,7 @@
         <p><em class="store-text store-text--emphasis">{{ osu_trans('store.invoice.status.delivered.title') }}</em></p>
         <p>
             {!! osu_trans('store.invoice.status.delivered.line_1._', [
-                'link' => Html::link('mailto:osustore@ppy.sh', osu_trans('store.invoice.status.delivered.line_1.link_text')),
+                'link' => link_to('mailto:osustore@ppy.sh', osu_trans('store.invoice.status.delivered.line_1.link_text')),
             ]) !!}
         </p>
     @elseif ($order->isPaymentRequested())
@@ -18,15 +18,16 @@
             {{ osu_trans('store.invoice.status.processing.line_1') }}
         </p>
         <p>
-            {!! osu_trans('store.invoice.status.processing.line_2._', [
-                'link' => Html::link(route('store.checkout.show', $order), osu_trans('store.invoice.status.processing.line_2.link_text')),
-            ]) !!}
+            {!! osu_trans('store.invoice.status.processing.line_2._', ['link' => link_to(
+                route('store.checkout.show', $order->getKey()),
+                osu_trans('store.invoice.status.processing.line_2.link_text'),
+            )]) !!}
         </p>
     @elseif ($order->isCancelled())
         <p><em class="store-text store-text--emphasis">{{ osu_trans('store.invoice.status.cancelled.title') }}</em></p>
         <p>
             {!! osu_trans('store.invoice.status.cancelled.line_1._', [
-                'link' => Html::link('mailto:osustore@ppy.sh', osu_trans('store.invoice.status.cancelled.line_1.link_text')),
+                'link' => link_to('mailto:osustore@ppy.sh', osu_trans('store.invoice.status.cancelled.line_1.link_text')),
                 'order_number' => $order->order_id,
             ]) !!}
         </p>
@@ -39,7 +40,7 @@
         @else
             <p>
                 {!! osu_trans('store.invoice.status.shipped.no_tracking_details._', [
-                    'link' => Html::link('mailto:osustore@ppy.sh', osu_trans('store.invoice.status.shipped.no_tracking_details.link_text')),
+                    'link' => link_to('mailto:osustore@ppy.sh', osu_trans('store.invoice.status.shipped.no_tracking_details.link_text')),
                 ]) !!}
             </p>
         @endif

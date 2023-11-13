@@ -194,6 +194,10 @@ return [
     'username_change' => [
         'check' => 'Enter a username to check availability!',
         'checking' => 'Checking availability of :username...',
+        'placeholder' => 'Requested Username',
+        'label' => 'New Username',
+        'current' => 'Your current username is ":username".',
+
         'require_login' => [
             '_' => 'You need to be :link to change your name!',
             'link_text' => 'signed in',

@@ -7,12 +7,14 @@
 @section('content')
     @include('store.header')
 
-    {!! Form::open([
-        'url' => route('store.cart.store', ['add' => true]),
-        'data-remote' => true,
-        'id' => 'product-form',
-        'class' => 'osu-page osu-page--store',
-    ]) !!}
+    <form
+        action="{{ route('store.cart.store', ['add' => true]) }}"
+        class="osu-page osu-page--store"
+        data-remote
+        id="product-form"
+        method="POST"
+    >
+        @csrf
         <div class="product-box product-box--header" {!! background_image($product->header_image) !!}></div>
 
         <div class="store-page">
@@ -94,18 +96,21 @@
                         @if($product->inStock())
                             <div class='form-group'>
                                 <input type="hidden" name="item[product_id]" value="{{ $product->product_id }}" />
-                                {!! Form::label(
-                                    'item[quantity]',
-                                    osu_trans('store.order.item.quantity'),
-                                    ['class' => 'u-uppercase']
-                                ) !!}
+                                <label for="item[quantity]" class="u-uppercase">
+                                    {{ osu_trans('store.order.item.quantity') }}
+                                </label>
 
                                 <div class="form-select">
-                                    {!! Form::select(
-                                        "item[quantity]",
-                                        product_quantity_options($product), 1,
-                                        ['class' => 'js-store-item-quantity form-select__input']
-                                    ) !!}
+                                    <select
+                                        class="js-store-item-quantity form-select__input"
+                                        name="item[quantity]"
+                                    >
+                                        @foreach (product_quantity_options($product) as $option)
+                                            <option value="{{ $option['value'] }}">
+                                                {{ $option['label'] }}
+                                            </option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                         @elseif ($product->inStock(1, true))
@@ -140,17 +145,16 @@
                     <span class="far fa-check-circle store-notification-requested-alert__icon"></span>
                     <p class="store-notification-requested-alert__text">
                         {!! osu_trans('store.product.notification_success', [
-                            'link' => link_to_route(
-                                'store.notification-request',
+                            'link' => link_to(
+                                route('store.notification-request', ['product' => $product->product_id]),
                                 osu_trans('store.product.notification_remove_text'),
-                                ['product' => $product->product_id],
-                                ['data-remote' => 'true', 'data-method' => 'DELETE']
-                            )
+                                ['data-remote' => 'true', 'data-method' => 'DELETE'],
+                            ),
                         ]) !!}
                     </p>
                 </div>
             @endif
         </div>
 
-    {!! Form::close() !!}
+    </form>
 @endsection
