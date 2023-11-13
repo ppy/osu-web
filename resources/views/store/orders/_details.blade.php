@@ -32,7 +32,7 @@
     @if($order->address !== null)
         <div class="store-page__address">
             <div>
-                <h4 class="store-text store-text--title store-text--title-small">Sent Via:</h4>
+                <h4 class="store-text store-text--title store-text--title-small">{{ osu_trans('store.invoice.sent_via') }}</h4>
 
                 <div class='address'>
                     osu!store
@@ -40,7 +40,7 @@
             </div>
 
             <div>
-                <h4 class="store-text store-text--title store-text--title-small">Shipping To:</h4>
+                <h4 class="store-text store-text--title store-text--title-small">{{ osu_trans('store.invoice.shipping_to') }}</h4>
 
                 @include('store.objects.address', ['data' => $order->address])
             </div>
