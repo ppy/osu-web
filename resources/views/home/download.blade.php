@@ -130,7 +130,6 @@
                                 [
                                     'class' => 'js-enchant--show',
                                     'role' => 'button',
-                                    'href' => '#',
                                 ],
                             ),
                             'help_forum_link' => link_to(
