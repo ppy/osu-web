@@ -34,11 +34,14 @@
 
             @if (config('services.enchant.id') !== null)
                 <div>
-                    {!! osu_trans('password_reset.starting.support._', ['button' => tag('a', [
-                        'class' => 'js-enchant--show',
-                        'role' => 'button',
-                        'href' => '#',
-                    ], osu_trans('password_reset.starting.support.button'))]) !!}
+                    {!! osu_trans('password_reset.starting.support._', ['button' => link_to(
+                        '#',
+                        osu_trans('password_reset.starting.support.button'),
+                        [
+                            'class' => 'js-enchant--show',
+                            'role' => 'button',
+                        ]
+                    )]) !!}
                 </div>
 
                 @include('objects._enchant')

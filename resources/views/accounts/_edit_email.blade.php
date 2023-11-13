@@ -22,9 +22,10 @@
             <div class="account-edit__input-group">
                 <div class="account-edit-entry account-edit-entry--no-label">
                     <div>{!! osu_trans('accounts.edit.email.locked._', [
-                        'accounts' => tag('a', [
-                            'href' => 'mailto:'.config('osu.emails.account'),
-                        ], osu_trans('accounts.edit.email.locked.accounts'))
+                        'accounts' => link_to(
+                            'mailto:'.config('osu.emails.account'),
+                            osu_trans('accounts.edit.email.locked.accounts')
+                        )
                     ]) !!}</div>
                 </div>
             </div>
