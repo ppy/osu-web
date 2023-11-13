@@ -27,7 +27,7 @@
                     'update_link' => link_to(
                         route('account.country', ['country_acronym' => $countryChangeTarget]),
                         osu_trans('accounts.edit.profile.country_change.update_link', [
-                            'country' => app('countries')->byCode($code)->name,
+                            'country' => app('countries')->byCode($countryChangeTarget)->name,
                         ]),
                         [
                             'data-confirm' => osu_trans('common.confirmation'),
