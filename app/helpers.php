@@ -203,33 +203,37 @@ function captcha_login_triggered()
     return $triggered;
 }
 
-function class_modifiers_each(array $modifiersArray, callable $callback)
+function class_modifiers_flat(array $modifiersArray): array
 {
+    $ret = [];
+
     foreach ($modifiersArray as $modifiers) {
         if (is_array($modifiers)) {
             // either "$modifier => boolean" or "$i => $modifier|null"
             foreach ($modifiers as $k => $v) {
                 if (is_bool($v)) {
                     if ($v) {
-                        $callback($k);
+                        $ret[] = $k;
                     }
                 } elseif ($v !== null) {
-                    $callback($v);
+                    $ret[] = $v;
                 }
             }
         } elseif (is_string($modifiers)) {
-            $callback($modifiers);
+            $ret[] = $modifiers;
         }
     }
+
+    return $ret;
 }
 
-function class_with_modifiers(string $className, ...$modifiersArray)
+function class_with_modifiers(string $className, ...$modifiersArray): string
 {
     $class = $className;
 
-    class_modifiers_each($modifiersArray, function ($m) use (&$class, $className) {
+    foreach (class_modifiers_flat($modifiersArray) as $m) {
         $class .= " {$className}--{$m}";
-    });
+    }
 
     return $class;
 }
@@ -609,12 +613,20 @@ function product_quantity_options($product, $selected = null)
 
     $opts = [];
     for ($i = 1; $i <= $max; $i++) {
-        $opts[$i] = osu_trans_choice('common.count.item', $i);
+        $opts[] = [
+            'label' => osu_trans_choice('common.count.item', $i),
+            'selected' => $i === $selected,
+            'value' => $i,
+        ];
     }
 
     // include selected value separately if it's out of range.
-    if ($selected > $max) {
-        $opts[$selected] = osu_trans_choice('common.count.item', $selected);
+    if ($selected !== null && $selected > $max) {
+        $opts[] = [
+            'label' => osu_trans_choice('common.count.item', $selected),
+            'selected' => true,
+            'value' => $selected,
+        ];
     }
 
     return $opts;
@@ -651,13 +663,16 @@ function request_country($request = null)
         : $request->header('CF_IPCOUNTRY');
 }
 
-function require_login($text_key, $link_text_key)
+function require_login($textKey, $linkTextKey)
 {
-    $title = osu_trans('users.anonymous.login_link');
-    $link = Html::link('#', osu_trans($link_text_key), ['class' => 'js-user-link', 'title' => $title]);
-    $text = osu_trans($text_key, ['link' => $link]);
-
-    return $text;
+    return osu_trans($textKey, ['link' => link_to(
+        '#',
+        osu_trans($linkTextKey),
+        [
+            'class' => 'js-user-link',
+            'title' => osu_trans('users.anonymous.login_link'),
+        ],
+    )]);
 }
 
 function spinner(?array $modifiers = null)
@@ -706,27 +721,11 @@ function obscure_email($email)
     return mb_substr($email[0], 0, 1).'***'.'@'.$email[1];
 }
 
-function countries_array_for_select()
-{
-    $out = [];
-
-    foreach (App\Models\Country::forStore()->get() as $country) {
-        if (!isset($lastDisplay)) {
-            $lastDisplay = $country->display;
-        } elseif ($lastDisplay !== $country->display) {
-            $out['_disabled'] = '---';
-        }
-        $out[$country->acronym] = $country->name;
-    }
-
-    return $out;
-}
-
 function currency($price, $precision = 2, $zeroShowFree = true)
 {
     $price = round($price, $precision);
     if ($price === 0.00 && $zeroShowFree) {
-        return 'free!';
+        return osu_trans('store.free');
     }
 
     return 'US$'.i18n_number_format($price, null, null, $precision);
@@ -920,6 +919,11 @@ function timeago($date)
     return "<time class='js-timeago' datetime='{$formatted}'>{$formatted}</time>";
 }
 
+function link_to(string $url, HtmlString|string $text, array $attributes = []): HtmlString
+{
+    return blade_safe(tag('a', [...$attributes, 'href' => $url], make_blade_safe($text)));
+}
+
 function link_to_user($id, $username = null, $color = null, $classNames = null)
 {
     if ($id instanceof App\Models\User) {
@@ -947,6 +951,11 @@ function link_to_user($id, $username = null, $color = null, $classNames = null)
 
         return "<a class='{$class}' data-user-id='{$id}' href='{$url}' style='{$style}'>{$username}</a>";
     }
+}
+
+function make_blade_safe(HtmlString|string $text): HtmlString
+{
+    return $text instanceof HtmlString ? $text : blade_safe(e($text));
 }
 
 function issue_icon($issue)
@@ -1448,24 +1457,6 @@ function get_class_namespace($className)
     return substr($className, 0, strrpos($className, '\\'));
 }
 
-function ci_file_search($fileName)
-{
-    if (file_exists($fileName)) {
-        return is_file($fileName) ? $fileName : false;
-    }
-
-    $directoryName = dirname($fileName);
-    $fileArray = glob($directoryName.'/*', GLOB_NOSORT);
-    $fileNameLowerCase = strtolower($fileName);
-    foreach ($fileArray as $file) {
-        if (strtolower($file) === $fileNameLowerCase) {
-            return is_file($file) ? $file : false;
-        }
-    }
-
-    return false;
-}
-
 function sanitize_filename($file)
 {
     $file = mb_ereg_replace('[^\w\s\d\-_~,;\[\]\(\).]', '', $file);
@@ -1690,6 +1681,13 @@ function seeded_shuffle(array &$items, int $seed = 0)
     mt_srand();
 }
 
+function set_opengraph($model, ...$options)
+{
+    $className = str_replace('App\Models', 'App\Libraries\Opengraph', $model::class).'Opengraph';
+
+    Request::instance()->attributes->set('opengraph', (new $className($model, ...$options))->get());
+}
+
 function first_paragraph($html, $split_on = "\n")
 {
     $text = strip_tags($html);
@@ -1730,24 +1728,6 @@ function format_percentage($number, $precision = 2)
 {
     // the formatter assumes decimal number while the function receives percentage number.
     return i18n_number_format($number / 100, NumberFormatter::PERCENT, null, $precision);
-}
-
-function group_users_by_online_state($users)
-{
-    $online = $offline = [];
-
-    foreach ($users as $user) {
-        if ($user->isOnline()) {
-            $online[] = $user;
-        } else {
-            $offline[] = $user;
-        }
-    }
-
-    return [
-        'online' => $online,
-        'offline' => $offline,
-    ];
 }
 
 // shorthand to return the filename of an open stream/handle

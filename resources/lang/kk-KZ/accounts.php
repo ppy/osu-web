@@ -65,7 +65,7 @@ return [
     'github_user' => [
         'info' => "",
         'link' => '',
-        'title' => '',
+        'title' => 'GitHub',
         'unlink' => '',
 
         'error' => [

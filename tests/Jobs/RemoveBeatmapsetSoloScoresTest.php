@@ -70,10 +70,9 @@ class RemoveBeatmapsetSoloScoresTest extends TestCase
             Beatmapset::truncate();
             Country::truncate();
             Genre::truncate();
-            Group::truncate();
             Language::truncate();
-            Score::truncate();
-            ScorePerformance::truncate();
+            Score::select()->delete(); // TODO: revert to truncate after the table is actually renamed
+            ScorePerformance::select()->delete(); // TODO: revert to truncate after the table is actually renamed
             User::truncate();
             UserGroup::truncate();
             UserGroupEvent::truncate();

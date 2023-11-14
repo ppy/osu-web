@@ -18,15 +18,15 @@ return [
     ],
 
     'kudosu' => [
-        'total' => '',
-        'available' => '',
-        'used' => '',
+        'total' => 'Verdiend',
+        'available' => 'Beschikbaar',
+        'used' => 'Uitgegeven',
     ],
 
     'type' => [
         'charts' => 'in de schijnwerpers',
         'country' => 'landelijk',
-        'kudosu' => '',
+        'kudosu' => 'kudosu',
         'multiplayer' => 'multiplayer',
         'performance' => 'prestatie',
         'score' => 'score',

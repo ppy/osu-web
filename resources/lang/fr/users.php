@@ -51,7 +51,7 @@ return [
     'card' => [
         'gift_supporter' => 'Offrir un tag supporter',
         'loading' => 'Chargement...',
-        'send_message' => 'envoyer un message',
+        'send_message' => 'Envoyer un message',
     ],
 
     'create' => [

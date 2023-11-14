@@ -112,6 +112,11 @@ class Mods
         }
     }
 
+    public function excludeModsAlwaysValidForSubmission(int $rulesetId, array $modIds): array
+    {
+        return array_values(array_filter($modIds, fn ($modId) => !$this->mods[$rulesetId][$modId]['AlwaysValidForSubmission']));
+    }
+
     public function idsToBitset($ids): int
     {
         if (!is_array($ids)) {

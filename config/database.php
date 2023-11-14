@@ -132,6 +132,7 @@ return [
             'host' => presence(env('CACHE_REDIS_HOST')) ?? presence(env('REDIS_HOST')) ?? '127.0.0.1',
             'port' => get_int(env('CACHE_REDIS_PORT')) ?? get_int(env('REDIS_PORT')) ?? 6379,
             'database' => get_int(env('CACHE_REDIS_DB')) ?? 0,
+            'password' => presence(env('CACHE_REDIS_PASSWORD')) ?? presence(env('REDIS_PASSWORD')),
             'persistent' => true,
         ],
 
@@ -139,6 +140,7 @@ return [
             'host' => presence(env('REDIS_HOST')) ?? '127.0.0.1',
             'port' => get_int(env('REDIS_PORT')) ?? 6379,
             'database' => get_int(env('REDIS_DB')) ?? 0,
+            'password' => presence(env('REDIS_PASSWORD')),
             'persistent' => true,
         ],
 
@@ -146,6 +148,7 @@ return [
             'host' => presence(env('NOTIFICATION_REDIS_HOST')) ?? '127.0.0.1',
             'port' => get_int(env('NOTIFICATION_REDIS_PORT')) ?? 6379,
             'database' => get_int(env('NOTIFICATION_REDIS_DB')) ?? 0,
+            'password' => presence(env('NOTIFICATION_REDIS_PASSWORD')),
             'persistent' => true,
         ],
 
