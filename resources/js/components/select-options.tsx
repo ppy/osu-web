@@ -52,6 +52,7 @@ export default class SelectOptions<T extends Option> extends React.Component<Pro
       (value) => {
         blackoutToggle(value ?? false, 0.5);
       },
+      { fireImmediately: true },
     ));
   }
 
