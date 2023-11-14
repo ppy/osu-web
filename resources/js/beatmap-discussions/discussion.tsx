@@ -24,21 +24,13 @@ import { UserCard } from './user-card';
 
 const bn = 'beatmap-discussion';
 
-interface PropsBase {
+interface Props {
+  discussion: BeatmapsetDiscussionJsonForBundle | BeatmapsetDiscussionJsonForShow;
   discussionsState: DiscussionsState | null; // TODO: make optional?
   isTimelineVisible: boolean;
   parentDiscussion?: BeatmapsetDiscussionJson | null;
   store: BeatmapsetDiscussionsStore;
 }
-
-// readonly version is used on pages other than the main discussions page.
-type Props = PropsBase & ({
-  discussion: BeatmapsetDiscussionJsonForBundle;
-  readonly: true; // TODO: only for type discrimination, switch to discussionsState == null.
-} | {
-  discussion: BeatmapsetDiscussionJsonForShow;
-  readonly: false;
-});
 
 function DiscussionTypeIcon({ type }: { type: DiscussionType | 'resolved' }) {
   const titleKey = type === 'resolved'
@@ -52,6 +44,10 @@ function DiscussionTypeIcon({ type }: { type: DiscussionType | 'resolved' }) {
       title={trans(titleKey)}
     />
   );
+}
+
+function isBeatmapsetDiscussionJsonForShow(value: Props['discussion']): value is BeatmapsetDiscussionJsonForShow {
+  return 'posts' in value;
 }
 
 @observer
@@ -88,6 +84,10 @@ export class Discussion extends React.Component<Props> {
     return this.props.discussionsState?.highlightedDiscussionId === this.props.discussion.id;
   }
 
+  private get readonly() {
+    return this.props.discussionsState == null;
+  }
+
   private get readPostIds() {
     return this.props.discussionsState?.readPostIds;
   }
@@ -95,7 +95,7 @@ export class Discussion extends React.Component<Props> {
   @computed
   private get resolvedSystemPostId() {
     // TODO: handling resolved status in bundles....?
-    if (this.props.readonly) return -1;
+    if (this.readonly || !isBeatmapsetDiscussionJsonForShow(this.props.discussion)) return -1;
 
     const systemPost = findLast(this.props.discussion.posts, (post) => post.system && post.message.type === 'resolved');
     return systemPost?.id ?? -1;
@@ -137,7 +137,7 @@ export class Discussion extends React.Component<Props> {
       deleted: this.props.discussion.deleted_at != null,
       highlighted: this.highlighted,
       'horizontal-desktop': this.props.discussion.message_type !== 'review',
-      preview: this.props.readonly,
+      preview: this.readonly,
       review: this.props.discussion.message_type === 'review',
       timeline: this.props.discussion.timestamp != null,
       unread: !this.isRead(firstPost),
@@ -191,7 +191,7 @@ export class Discussion extends React.Component<Props> {
   }
 
   private isRead(post: BeatmapsetDiscussionPostJson) {
-    return this.readPostIds?.has(post.id) || this.isOwner(post) || this.props.readonly;
+    return this.readPostIds?.has(post.id) || this.isOwner(post) || this.readonly;
   }
 
   private isVisible(object: BeatmapsetDiscussionJson | BeatmapsetDiscussionPostJson) {
@@ -199,7 +199,7 @@ export class Discussion extends React.Component<Props> {
   }
 
   private postFooter() {
-    if (this.props.readonly) return null;
+    if (this.readonly || !isBeatmapsetDiscussionJsonForShow(this.props.discussion)) return null;
 
     let cssClasses = `${bn}__expanded`;
     if (this.collapsed) {
@@ -237,7 +237,7 @@ export class Discussion extends React.Component<Props> {
         discussionsState={this.props.discussionsState}
         post={post}
         read={this.isRead(post)}
-        readonly={this.props.readonly}
+        readonly={this.readonly}
         resolved={post.id > this.resolvedSystemPostId}
         store={this.props.store}
         type={type}
@@ -247,7 +247,7 @@ export class Discussion extends React.Component<Props> {
   }
 
   private renderPostButtons() {
-    if (this.props.readonly) return null;
+    if (this.readonly || !isBeatmapsetDiscussionJsonForShow(this.props.discussion)) return null;
 
     const user = this.props.store.users.get(this.props.discussion.user_id);
 
