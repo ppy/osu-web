@@ -6,7 +6,7 @@ import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import UserJson from 'interfaces/user-json';
 
-export default interface BeatmapsetDiscussions {
+export default interface BeatmapsetDiscussionsStore {
   beatmaps: Map<number, BeatmapExtendedJson>;
   beatmapsets: Map<number, BeatmapsetExtendedJson>;
   discussions: Map<number | null | undefined, BeatmapsetDiscussionJson>;

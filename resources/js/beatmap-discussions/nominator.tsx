@@ -3,7 +3,7 @@
 
 import BigButton from 'components/big-button';
 import Modal from 'components/modal';
-import BeatmapsetDiscussions from 'interfaces/beatmapset-discussions';
+import BeatmapsetDiscussionsStore from 'interfaces/beatmapset-discussions-store';
 import BeatmapsetEventJson from 'interfaces/beatmapset-event-json';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import GameMode from 'interfaces/game-mode';
@@ -21,7 +21,7 @@ import DiscussionsState from './discussions-state';
 
 interface Props {
   discussionsState: DiscussionsState;
-  store: BeatmapsetDiscussions;
+  store: BeatmapsetDiscussionsStore;
 }
 
 const bn = 'nomination-dialog';

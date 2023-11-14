@@ -4,7 +4,7 @@
 import { Discussion } from 'beatmap-discussions/discussion';
 import BeatmapsetCover from 'components/beatmapset-cover';
 import { BeatmapsetDiscussionJsonForBundle } from 'interfaces/beatmapset-discussion-json';
-import BeatmapsetDiscussions from 'interfaces/beatmapset-discussions';
+import BeatmapsetDiscussionsStore from 'interfaces/beatmapset-discussions-store';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { observer } from 'mobx-react';
@@ -14,7 +14,7 @@ import { trans } from 'utils/lang';
 
 interface Props {
   discussions: BeatmapsetDiscussionJsonForBundle[];
-  store: BeatmapsetDiscussions;
+  store: BeatmapsetDiscussionsStore;
   user: UserJson;
 }
 

@@ -3,7 +3,7 @@
 
 import { EmbedElement } from 'editor';
 import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
-import BeatmapsetDiscussions from 'interfaces/beatmapset-discussions';
+import BeatmapsetDiscussionsStore from 'interfaces/beatmapset-discussions-store';
 import { Observer } from 'mobx-react';
 import * as React from 'react';
 import { Transforms } from 'slate';
@@ -35,7 +35,7 @@ interface Props extends RenderElementProps {
   editMode?: boolean;
   element: EmbedElement;
   readOnly?: boolean;
-  store: BeatmapsetDiscussions;
+  store: BeatmapsetDiscussionsStore;
 }
 
 export default class EditorDiscussionComponent extends React.Component<Props> {

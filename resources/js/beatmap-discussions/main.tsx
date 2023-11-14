@@ -10,7 +10,7 @@ import { action, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import BeatmapsetDiscussionsStore from 'stores/beatmapset-discussions-store';
+import BeatmapsetDiscussionsShowStore from 'stores/beatmapset-discussions-show-store';
 import { defaultFilter, parseUrl, stateFromDiscussion } from 'utils/beatmapset-discussion-helper';
 import { nextVal } from 'utils/seq';
 import { currentUrl } from 'utils/turbolinks';
@@ -54,7 +54,7 @@ export default class Main extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
 
-    this.store = new BeatmapsetDiscussionsStore(this.props.initial.beatmapset);
+    this.store = new BeatmapsetDiscussionsShowStore(this.props.initial.beatmapset);
     this.discussionsState = new DiscussionsState(this.store, props.container.dataset.discussionsState);
 
     makeObservable(this);

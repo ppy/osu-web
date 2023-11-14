@@ -4,7 +4,7 @@
 import { discussionTypeIcons } from 'beatmap-discussions/discussion-type';
 import { BeatmapIcon } from 'components/beatmap-icon';
 import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
-import BeatmapsetDiscussions from 'interfaces/beatmapset-discussions';
+import BeatmapsetDiscussionsStore from 'interfaces/beatmapset-discussions-store';
 import * as React from 'react';
 import { formatTimestamp, makeUrl, startingPost } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers } from 'utils/css';
@@ -15,7 +15,7 @@ interface Props {
   data: {
     discussion_id: number;
   };
-  store: BeatmapsetDiscussions;
+  store: BeatmapsetDiscussionsStore;
 }
 
 export function postEmbedModifiers(discussion: BeatmapsetDiscussionJson) {

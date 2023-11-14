@@ -3,7 +3,7 @@
 
 import IconExpand from 'components/icon-expand';
 import BeatmapsetDiscussionJson, { BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
-import BeatmapsetDiscussions from 'interfaces/beatmapset-discussions';
+import BeatmapsetDiscussionsStore from 'interfaces/beatmapset-discussions-store';
 import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
@@ -53,7 +53,7 @@ type Sort = 'created_at' | 'updated_at' | 'timeline';
 
 interface Props {
   discussionsState: DiscussionsState;
-  store: BeatmapsetDiscussions;
+  store: BeatmapsetDiscussionsStore;
 }
 
 @observer

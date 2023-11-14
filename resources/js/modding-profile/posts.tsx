@@ -3,7 +3,7 @@
 
 import BeatmapsetCover from 'components/beatmapset-cover';
 import { BeatmapsetDiscussionMessagePostJson } from 'interfaces/beatmapset-discussion-post-json';
-import BeatmapsetDiscussions from 'interfaces/beatmapset-discussions';
+import BeatmapsetDiscussionsStore from 'interfaces/beatmapset-discussions-store';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { deletedUserJson } from 'models/user';
@@ -15,7 +15,7 @@ import Post from '../beatmap-discussions/post';
 
 interface Props {
   posts: BeatmapsetDiscussionMessagePostJson[];
-  store: BeatmapsetDiscussions;
+  store: BeatmapsetDiscussionsStore;
   user: UserJson;
 }
 

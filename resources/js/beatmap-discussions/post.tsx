@@ -12,7 +12,7 @@ import TimeWithTooltip from 'components/time-with-tooltip';
 import UserLink from 'components/user-link';
 import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import { BeatmapsetDiscussionMessagePostJson } from 'interfaces/beatmapset-discussion-post-json';
-import BeatmapsetDiscussions from 'interfaces/beatmapset-discussions';
+import BeatmapsetDiscussionsStore from 'interfaces/beatmapset-discussions-store';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
@@ -42,7 +42,7 @@ interface Props {
   read: boolean;
   readonly: boolean;
   resolved: boolean;
-  store: BeatmapsetDiscussions;
+  store: BeatmapsetDiscussionsStore;
   type: string;
   user: UserJson;
 }

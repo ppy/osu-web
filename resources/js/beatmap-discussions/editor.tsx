@@ -6,7 +6,7 @@ import { Spinner } from 'components/spinner';
 import { EmbedElement } from 'editor';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import BeatmapsetDiscussionJson, { BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
-import BeatmapsetDiscussions from 'interfaces/beatmapset-discussions';
+import BeatmapsetDiscussionsStore from 'interfaces/beatmapset-discussions-store';
 import isHotkey from 'is-hotkey';
 import { route } from 'laroute';
 import { observer } from 'mobx-react';
@@ -51,7 +51,7 @@ interface Props {
   editing: boolean;
   onChange?: () => void;
   onFocus?: () => void;
-  store: BeatmapsetDiscussions;
+  store: BeatmapsetDiscussionsStore;
 }
 
 interface State {

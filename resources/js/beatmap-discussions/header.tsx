@@ -13,7 +13,7 @@ import StringWithComponent from 'components/string-with-component';
 import UserLink from 'components/user-link';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import BeatmapJson from 'interfaces/beatmap-json';
-import BeatmapsetDiscussions from 'interfaces/beatmapset-discussions';
+import BeatmapsetDiscussionsStore from 'interfaces/beatmapset-discussions-store';
 import GameMode, { gameModes } from 'interfaces/game-mode';
 import { route } from 'laroute';
 import { kebabCase, snakeCase } from 'lodash';
@@ -36,7 +36,7 @@ import { UserFilter } from './user-filter';
 
 interface Props {
   discussionsState: DiscussionsState;
-  store: BeatmapsetDiscussions;
+  store: BeatmapsetDiscussionsStore;
 }
 
 const statTypes: Filter[] = ['mine', 'mapperNotes', 'resolved', 'pending', 'praises', 'deleted', 'total'];

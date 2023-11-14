@@ -11,7 +11,7 @@ import Modal from 'components/modal';
 import StringWithComponent from 'components/string-with-component';
 import TimeWithTooltip from 'components/time-with-tooltip';
 import UserLink from 'components/user-link';
-import BeatmapsetDiscussions from 'interfaces/beatmapset-discussions';
+import BeatmapsetDiscussionsStore from 'interfaces/beatmapset-discussions-store';
 import BeatmapsetEventJson from 'interfaces/beatmapset-event-json';
 import { BeatmapsetNominationsInterface } from 'interfaces/beatmapset-json';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
@@ -41,7 +41,7 @@ const nominatorsVisibleBeatmapStatuses = Object.freeze(new Set(['wip', 'pending'
 
 interface Props {
   discussionsState: DiscussionsState;
-  store: BeatmapsetDiscussions;
+  store: BeatmapsetDiscussionsStore;
 }
 
 type XhrType = 'delete' | 'discussionLock' | 'removeFromLoved';

@@ -3,7 +3,7 @@
 
 import mapperGroup from 'beatmap-discussions/mapper-group';
 import SelectOptions, { OptionRenderProps } from 'components/select-options';
-import BeatmapsetDiscussions from 'interfaces/beatmapset-discussions';
+import BeatmapsetDiscussionsStore from 'interfaces/beatmapset-discussions-store';
 import UserJson from 'interfaces/user-json';
 import { action, computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
@@ -32,7 +32,7 @@ interface Option {
 
 interface Props {
   discussionsState: DiscussionsState;
-  store: BeatmapsetDiscussions;
+  store: BeatmapsetDiscussionsStore;
 }
 
 function mapUserProperties(user: UserJson): Option {
@@ -95,6 +95,8 @@ export class UserFilter extends React.Component<Props> {
 
   private getGroup(option: Option) {
     if (this.isOwner(option)) return mapperGroup;
+    if (!option.groups) return null;
+
     if (option.groups == null || option.groups.length === 0) return null;
     return option.groups[0];
   }

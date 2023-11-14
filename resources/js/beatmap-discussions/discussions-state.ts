@@ -8,7 +8,7 @@ import { maxBy } from 'lodash';
 import { action, computed, makeObservable, observable, toJS } from 'mobx';
 import moment from 'moment';
 import core from 'osu-core-singleton';
-import BeatmapsetDiscussionsStore from 'stores/beatmapset-discussions-store';
+import BeatmapsetDiscussionsShowStore from 'stores/beatmapset-discussions-show-store';
 import { findDefault, group, sortWithMode } from 'utils/beatmap-helper';
 import { canModeratePosts, makeUrl, parseUrl } from 'utils/beatmapset-discussion-helper';
 import { Filter, filters } from './current-discussions';
@@ -293,7 +293,7 @@ export default class DiscussionsState {
     return this.presentDiscussions.filter((discussion) => discussion.can_be_resolved && !discussion.resolved);
   }
 
-  constructor(private readonly store: BeatmapsetDiscussionsStore, state?: string) {
+  constructor(private readonly store: BeatmapsetDiscussionsShowStore, state?: string) {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const existingState = state == null ? null : parseState(state);
 
