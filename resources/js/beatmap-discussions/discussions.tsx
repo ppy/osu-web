@@ -67,8 +67,9 @@ export class Discussions extends React.Component<Props> {
 
   @computed
   private get currentSort() {
-    if (this.discussionsState.currentPage === 'events') return 'timeline'; // just return any valid mode.
-    return this.sort[this.discussionsState.currentPage];
+    return this.discussionsState.currentPage === 'events'
+      ? 'timeline' // returning any valid mode is fine.
+      : this.sort[this.discussionsState.currentPage];
   }
 
   private get discussionsState() {
