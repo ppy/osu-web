@@ -1168,8 +1168,8 @@
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
-        "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true,
+        "ValidForMultiplayer": false,
+        "ValidForMultiplayerAsFreeMod": false,
         "AlwaysValidForSubmission": true
       },
       {
