@@ -5,6 +5,9 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+
 /**
  * @property string $acronym
  * @property int $display
@@ -35,29 +38,24 @@ class Country extends Model
             ->orderBy('name');
     }
 
+    public function scopeWhereHasRuleset(Builder $query, string $ruleset): Builder
+    {
+        return $query->whereHas(
+            'statistics',
+            fn ($q) => $q
+                ->where('display', true)
+                ->where('mode', Beatmap::MODES[$ruleset]),
+        );
+    }
+
     public function profileBanners()
     {
         return $this->hasMany(ProfileBanner::class, 'country_acronym');
     }
 
-    public function statisticsFruits()
+    public function statistics(): HasOne
     {
-        return $this->hasOne(CountryStatistics::class, 'country_code')->where('mode', Beatmap::MODES['fruits']);
-    }
-
-    public function statisticsMania()
-    {
-        return $this->hasOne(CountryStatistics::class, 'country_code')->where('mode', Beatmap::MODES['mania']);
-    }
-
-    public function statisticsOsu()
-    {
-        return $this->hasOne(CountryStatistics::class, 'country_code')->where('mode', Beatmap::MODES['osu']);
-    }
-
-    public function statisticsTaiko()
-    {
-        return $this->hasOne(CountryStatistics::class, 'country_code')->where('mode', Beatmap::MODES['taiko']);
+        return $this->hasOne(CountryStatistics::class, 'country_code');
     }
 
     public function getAttribute($key)
@@ -73,10 +71,7 @@ class Country extends Model
             'usercount' => $this->getRawAttribute($key),
 
             'profileBanners',
-            'statisticsFruits',
-            'statisticsMania',
-            'statisticsOsu',
-            'statisticsTaiko' => $this->getRelationValue($key),
+            'statistics' => $this->getRelationValue($key),
         };
     }
 }
