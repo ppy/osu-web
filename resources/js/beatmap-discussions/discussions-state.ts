@@ -320,7 +320,6 @@ export default class DiscussionsState {
   }
 
   constructor(private readonly store: BeatmapsetDiscussionsShowStore) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const existingState = parseJsonNullable(jsonId, false, reviver);
 
     if (existingState != null) {
