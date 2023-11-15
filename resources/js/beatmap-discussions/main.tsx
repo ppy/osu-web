@@ -83,6 +83,7 @@ export default class Main extends React.Component<Props> {
     window.clearTimeout(this.timeoutCheckNew);
     this.xhrCheckNew?.abort();
     this.disposers.forEach((disposer) => disposer?.());
+    this.discussionsState.destroy();
   }
 
   render() {
