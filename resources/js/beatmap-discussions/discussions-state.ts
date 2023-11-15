@@ -26,6 +26,7 @@ export interface UpdateOptions {
 }
 
 function replacer(key: string, value: unknown) {
+  // discussionCollapsed and readPostIds
   if (value instanceof Set || value instanceof Map) {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return Array.from(value);
