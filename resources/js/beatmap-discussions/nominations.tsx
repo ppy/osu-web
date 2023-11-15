@@ -308,6 +308,7 @@ export class Nominations extends React.Component<Props> {
       <Modal>
         <BeatmapsOwnerEditor
           beatmapset={this.beatmapset}
+          discussionsState={this.props.discussionsState}
           onClose={this.handleToggleBeatmapsOwnerEditor}
           users={this.props.store.users}
         />
@@ -492,6 +493,7 @@ export class Nominations extends React.Component<Props> {
       <Modal>
         <LoveBeatmapDialog
           beatmapset={this.beatmapset}
+          discussionsState={this.props.discussionsState}
           onClose={this.handleToggleLoveBeatmapDialog}
         />
       </Modal>

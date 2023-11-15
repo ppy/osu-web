@@ -16,7 +16,7 @@ import { parseJson, storeJson } from 'utils/json';
 import { nextVal } from 'utils/seq';
 import { currentUrl } from 'utils/turbolinks';
 import { Discussions } from './discussions';
-import DiscussionsState, { UpdateOptions } from './discussions-state';
+import DiscussionsState from './discussions-state';
 import { Events } from './events';
 import { Header } from './header';
 import { ModeSwitcher } from './mode-switcher';
@@ -63,8 +63,6 @@ export default class Main extends React.Component<Props> {
   }
 
   componentDidMount() {
-    $.subscribe(`beatmapsetDiscussions:update.${this.eventId}`, this.update);
-
     $(document).on(`ajax:success.${this.eventId}`, '.js-beatmapset-discussion-update', this.ujsDiscussionUpdate);
     $(document).on(`click.${this.eventId}`, '.js-beatmap-discussion--jump', this.jumpToClick);
     $(document).on(`turbolinks:before-cache.${this.eventId}`, this.saveState);
@@ -251,10 +249,5 @@ export default class Main extends React.Component<Props> {
   private readonly ujsDiscussionUpdate = (_event: unknown, beatmapset: BeatmapsetWithDiscussionsJson) => {
     // to allow ajax:complete to be run
     window.setTimeout(() => this.discussionsState.update({ beatmapset }), 0);
-  };
-
-  @action
-  private readonly update = (_event: unknown, options: Partial<UpdateOptions>) => {
-    this.discussionsState.update(options);
   };
 }

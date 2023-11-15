@@ -247,7 +247,9 @@ export class Discussion extends React.Component<Props> {
   }
 
   private renderPostButtons() {
-    if (this.readonly || !isBeatmapsetDiscussionJsonForShow(this.props.discussion)) return null;
+    if (this.props.discussionsState == null || !isBeatmapsetDiscussionJsonForShow(this.props.discussion)) {
+      return null;
+    }
 
     const user = this.props.store.users.get(this.props.discussion.user_id);
 
@@ -269,6 +271,7 @@ export class Discussion extends React.Component<Props> {
           <DiscussionVoteButtons
             cannotVote={this.isOwner(this.props.discussion) || (user?.is_bot ?? false) || !this.canBeRepliedTo}
             discussion={this.props.discussion}
+            discussionsState={this.props.discussionsState}
             users={this.users}
           />
           <button

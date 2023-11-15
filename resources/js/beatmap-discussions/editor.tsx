@@ -5,8 +5,9 @@ import { CircularProgress } from 'components/circular-progress';
 import { Spinner } from 'components/spinner';
 import { EmbedElement } from 'editor';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
-import BeatmapsetDiscussionJson, { BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
+import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import BeatmapsetDiscussionsStore from 'interfaces/beatmapset-discussions-store';
+import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import isHotkey from 'is-hotkey';
 import { route } from 'laroute';
 import { observer } from 'mobx-react';
@@ -87,7 +88,7 @@ export default class Editor extends React.Component<Props, State> {
   slateEditor: SlateEditor;
   toolbarRef: React.RefObject<EditorToolbar>;
   private readonly initialValue: SlateElement[] = emptyDocTemplate;
-  private xhr: JQuery.jqXHR<BeatmapsetDiscussionJsonForShow> | null = null;
+  private xhr: JQuery.jqXHR<BeatmapsetWithDiscussionsJson> | null = null;
 
   private get beatmaps() {
     return this.props.store.beatmaps;
@@ -268,7 +269,7 @@ export default class Editor extends React.Component<Props, State> {
 
         this.xhr
           .done((beatmapset) => {
-            $.publish('beatmapsetDiscussions:update', { beatmapset });
+            this.props.discussionsState.update({ beatmapset });
             this.resetInput();
           })
           .fail(onError)

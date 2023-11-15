@@ -10,9 +10,11 @@ import * as React from 'react';
 import { group as groupBeatmaps } from 'utils/beatmap-helper';
 import { trans } from 'utils/lang';
 import BeatmapOwnerEditor from './beatmap-owner-editor';
+import DiscussionsState from './discussions-state';
 
 interface Props {
   beatmapset: BeatmapsetExtendedJson;
+  discussionsState: DiscussionsState;
   onClose: () => void;
   users: Map<number | null | undefined, UserJson>;
 }
@@ -61,6 +63,7 @@ export default class BeatmapsOwnerEditor extends React.Component<Props> {
                 key={beatmap.id}
                 beatmap={beatmap}
                 beatmapsetUser={beatmapsetUser}
+                discussionsState={this.props.discussionsState}
                 user={this.getUser(beatmap.user_id)}
                 userByName={this.userByName}
               />

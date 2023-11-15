@@ -123,7 +123,7 @@ export class Header extends React.Component<Props> {
             />
           </div>
           <div className={`${bn}__details`}>
-            <Subscribe beatmapset={this.beatmapset} />
+            <Subscribe beatmapset={this.beatmapset} discussionsState={this.discussionsState} />
           </div>
           <div className={`${bn}__details`}>
             <BigButton
