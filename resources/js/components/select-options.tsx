@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { action, observable, makeObservable, reaction } from 'mobx';
+import { action, autorun, makeObservable, observable } from 'mobx';
 import { disposeOnUnmount, observer } from 'mobx-react';
 import * as React from 'react';
 import { blackoutToggle } from 'utils/blackout';
@@ -47,13 +47,10 @@ export default class SelectOptions<T extends Option> extends React.Component<Pro
   constructor(props: Props<T>) {
     super(props);
     makeObservable(this);
-    disposeOnUnmount(this, reaction(
-      () => this.props.blackout && this.showingSelector,
-      (value) => {
-        blackoutToggle(value ?? false, 0.5);
-      },
-      { fireImmediately: true },
-    ));
+    disposeOnUnmount(this, autorun(() => {
+      const value = (this.props.blackout ?? false) && this.showingSelector;
+      blackoutToggle(value, 0.5);
+    }));
   }
 
   componentDidMount() {
