@@ -14,6 +14,7 @@ function parseJsonString<T>(json?: string) {
 }
 
 core.reactTurbolinks.register('beatmap-discussions', (container: HTMLElement) => {
+  // TODO: avoid reparsing/loading everything on browser navigation for better performance.
   // using DiscussionsState['beatmapset'] as type cast to force errors if it doesn't match with props since the beatmapset is from discussionsState.
   const beatmapset = parseJsonString<DiscussionsState['beatmapset']>(container.dataset.beatmapset)
     ?? parseJson<BeatmapsetWithDiscussionsJson>('json-beatmapset');
