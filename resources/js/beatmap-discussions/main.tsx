@@ -25,16 +25,16 @@ import { NewDiscussion } from './new-discussion';
 const checkNewTimeoutDefault = 10000;
 const checkNewTimeoutMax = 60000;
 
-export interface InitialData {
-  reviews_config: {
+interface Props {
+  beatmapsetSelectorId: string;
+  container: HTMLElement;
+  reviewsConfig: {
     max_blocks: number;
   };
 }
 
-interface Props {
-  beatmapsetSelectorId: string;
-  container: HTMLElement;
-  initial: InitialData;
+interface UpdateResponseJson {
+  beatmapset: BeatmapsetWithDiscussionsJson;
 }
 
 @observer
@@ -47,10 +47,9 @@ export default class Main extends React.Component<Props> {
   private readonly modeSwitcherRef = React.createRef<HTMLDivElement>();
   private readonly newDiscussionRef = React.createRef<HTMLDivElement>();
   private nextTimeout = checkNewTimeoutDefault;
-  private readonly reviewsConfig = this.props.initial.reviews_config;
   @observable private readonly store;
   private timeoutCheckNew?: number;
-  private xhrCheckNew?: JQuery.jqXHR<InitialData>;
+  private xhrCheckNew?: JQuery.jqXHR<UpdateResponseJson>;
 
   constructor(props: Props) {
     super(props);
@@ -108,7 +107,7 @@ export default class Main extends React.Component<Props> {
             users={this.store.users}
           />
         ) : (
-          <ReviewEditorConfigContext.Provider value={this.reviewsConfig}>
+          <ReviewEditorConfigContext.Provider value={this.props.reviewsConfig}>
             {this.discussionsState.currentPage === 'reviews' ? (
               <NewReview
                 discussionsState={this.discussionsState}

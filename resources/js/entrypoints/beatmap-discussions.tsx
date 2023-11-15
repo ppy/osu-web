@@ -11,8 +11,6 @@ core.reactTurbolinks.register('beatmap-discussions', (container: HTMLElement) =>
   <Main
     beatmapsetSelectorId='json-beatmapset'
     container={container}
-    initial={{
-      reviews_config: parseJson('json-reviews_config'),
-    }}
+    reviewsConfig={parseJson('json-reviews_config')}
   />
 ));
