@@ -7,10 +7,6 @@ import React from 'react';
 import { parseJson } from 'utils/json';
 
 
-core.reactTurbolinks.register('beatmap-discussions', (container: HTMLElement) => (
-  <Main
-    beatmapsetSelectorId='json-beatmapset'
-    container={container}
-    reviewsConfig={parseJson('json-reviews_config')}
-  />
+core.reactTurbolinks.register('beatmap-discussions', () => (
+  <Main reviewsConfig={parseJson('json-reviews_config')} />
 ));

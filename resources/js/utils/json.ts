@@ -71,10 +71,10 @@ export function parseJson<T>(id: string, remove = false): T {
  * @param id id of the HTMLScriptElement.
  * @param remove true to remove the element after parsing; false, otherwise.
  */
-export function parseJsonNullable<T>(id: string, remove = false): T | undefined {
+export function parseJsonNullable<T>(id: string, remove = false, reviver?: (key: string, value: any) => any): T | undefined {
   const element = (window.newBody ?? document.body).querySelector(`#${id}`);
   if (!(element instanceof HTMLScriptElement)) return undefined;
-  const json = JSON.parse(element.text) as T;
+  const json = JSON.parse(element.text, reviver) as T;
 
   if (remove) {
     element.remove();
@@ -89,8 +89,8 @@ export function parseJsonNullable<T>(id: string, remove = false): T | undefined 
  * @param id id of the element to store to. Contents of an existing HTMLScriptElement will be overriden.
  * @param object state to store.
  */
-export function storeJson(id: string, object: unknown) {
-  const json = JSON.stringify(object);
+export function storeJson(id: string, object: unknown, replacer?: (key: string, value: any) => any) {
+  const json = JSON.stringify(object, replacer);
   const maybeElement = document.getElementById(id);
 
   let element: HTMLScriptElement;

@@ -11,9 +11,12 @@ import core from 'osu-core-singleton';
 import BeatmapsetDiscussionsShowStore from 'stores/beatmapset-discussions-show-store';
 import { findDefault, group, sortWithMode } from 'utils/beatmap-helper';
 import { canModeratePosts, makeUrl, parseUrl } from 'utils/beatmapset-discussion-helper';
+import { parseJsonNullable, storeJson } from 'utils/json';
 import { Filter, filters } from './current-discussions';
 import DiscussionMode, { discussionModes } from './discussion-mode';
 import DiscussionPage, { isDiscussionPage } from './discussion-page';
+
+const jsonId = 'json-discussions-state';
 
 export interface UpdateOptions {
   beatmap_discussion_post_ids: number[];
@@ -21,22 +24,34 @@ export interface UpdateOptions {
   watching: boolean;
 }
 
-function parseState(state: string) {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-  return JSON.parse(state, (key, value) => {
-    if (Array.isArray(value)) {
-      if (key === 'discussionCollapsed') {
-        return new Map(value);
-      }
+function replacer(key: string, value: unknown) {
+  // don't serialize constructor dependencies, they'll be handled separately.
+  if (key === 'beatmapset' || key === 'store') {
+    return undefined;
+  }
 
-      if (key === 'readPostIds') {
-        return new Set(value);
-      }
+  if (value instanceof Set || value instanceof Map) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+    return Array.from(value);
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+  return value;
+}
+
+function reviver(key: string, value: unknown) {
+  if (Array.isArray(value)) {
+    if (key === 'discussionCollapsed') {
+      return new Map(value);
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-    return value;
-  });
+    if (key === 'readPostIds') {
+      return new Set(value);
+    }
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+  return value;
 }
 
 function isFilter(value: unknown): value is Filter {
@@ -304,9 +319,9 @@ export default class DiscussionsState {
     });
   }
 
-  constructor(private readonly store: BeatmapsetDiscussionsShowStore, state?: string) {
+  constructor(private readonly store: BeatmapsetDiscussionsShowStore) {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const existingState = state == null ? null : parseState(state);
+    const existingState = parseJsonNullable(jsonId, false, reviver);
 
     if (existingState != null) {
       Object.assign(this, existingState);
@@ -397,21 +412,8 @@ export default class DiscussionsState {
     }
   }
 
-  toJsonString() {
-    return JSON.stringify(toJS(this), (key, value) => {
-      // don't serialize constructor dependencies, they'll be handled separately.
-      if (key === 'beatmapset' || key === 'store') {
-        return undefined;
-      }
-
-      if (value instanceof Set || value instanceof Map) {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-        return Array.from(value);
-      }
-
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-      return value;
-    });
+  saveState() {
+    storeJson(jsonId, toJS(this), replacer);
   }
 
   @action

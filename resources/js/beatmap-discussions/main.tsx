@@ -6,7 +6,7 @@ import { ReviewEditorConfigContext } from 'beatmap-discussions/review-editor-con
 import BackToTop from 'components/back-to-top';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import { route } from 'laroute';
-import { action, makeObservable, observable } from 'mobx';
+import { action, makeObservable, observable, toJS } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -24,10 +24,9 @@ import { NewDiscussion } from './new-discussion';
 
 const checkNewTimeoutDefault = 10000;
 const checkNewTimeoutMax = 60000;
+const beatmapsetJsonId = 'json-beatmapset';
 
 interface Props {
-  beatmapsetSelectorId: string;
-  container: HTMLElement;
   reviewsConfig: {
     max_blocks: number;
   };
@@ -55,10 +54,10 @@ export default class Main extends React.Component<Props> {
     super(props);
 
     // TODO: avoid reparsing/loading everything on browser navigation for better performance.
-    const beatmapset = parseJson<BeatmapsetWithDiscussionsJson>(this.props.beatmapsetSelectorId);
+    const beatmapset = parseJson<BeatmapsetWithDiscussionsJson>(beatmapsetJsonId);
 
     this.store = new BeatmapsetDiscussionsShowStore(beatmapset);
-    this.discussionsState = new DiscussionsState(this.store, props.container.dataset.discussionsState);
+    this.discussionsState = new DiscussionsState(this.store);
 
     makeObservable(this);
   }
@@ -68,7 +67,7 @@ export default class Main extends React.Component<Props> {
 
     $(document).on(`ajax:success.${this.eventId}`, '.js-beatmapset-discussion-update', this.ujsDiscussionUpdate);
     $(document).on(`click.${this.eventId}`, '.js-beatmap-discussion--jump', this.jumpToClick);
-    $(document).on(`turbolinks:before-cache.${this.eventId}`, this.saveStateToContainer);
+    $(document).on(`turbolinks:before-cache.${this.eventId}`, this.saveState);
 
     if (this.discussionsState.jumpToDiscussion) {
       this.disposers.add(core.reactTurbolinks.runAfterPageLoad(this.jumpToDiscussionByHash));
@@ -244,9 +243,9 @@ export default class Main extends React.Component<Props> {
     }
   };
 
-  private readonly saveStateToContainer = () => {
-    storeJson(this.props.beatmapsetSelectorId, this.store.beatmapset);
-    this.props.container.dataset.discussionsState = this.discussionsState.toJsonString();
+  private readonly saveState = () => {
+    storeJson(beatmapsetJsonId, toJS(this.store.beatmapset));
+    this.discussionsState.saveState();
   };
 
   private readonly ujsDiscussionUpdate = (_event: unknown, beatmapset: BeatmapsetWithDiscussionsJson) => {
