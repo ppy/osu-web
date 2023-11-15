@@ -12,6 +12,7 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import BeatmapsetDiscussionsShowStore from 'stores/beatmapset-discussions-show-store';
 import { defaultFilter, parseUrl, stateFromDiscussion } from 'utils/beatmapset-discussion-helper';
+import { parseJson, storeJson } from 'utils/json';
 import { nextVal } from 'utils/seq';
 import { currentUrl } from 'utils/turbolinks';
 import { Discussions } from './discussions';
@@ -25,13 +26,13 @@ const checkNewTimeoutDefault = 10000;
 const checkNewTimeoutMax = 60000;
 
 export interface InitialData {
-  beatmapset: BeatmapsetWithDiscussionsJson;
   reviews_config: {
     max_blocks: number;
   };
 }
 
 interface Props {
+  beatmapsetSelectorId: string;
   container: HTMLElement;
   initial: InitialData;
 }
@@ -54,7 +55,10 @@ export default class Main extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
 
-    this.store = new BeatmapsetDiscussionsShowStore(this.props.initial.beatmapset);
+    // TODO: avoid reparsing/loading everything on browser navigation for better performance.
+    const beatmapset = parseJson<BeatmapsetWithDiscussionsJson>(this.props.beatmapsetSelectorId);
+
+    this.store = new BeatmapsetDiscussionsShowStore(beatmapset);
     this.discussionsState = new DiscussionsState(this.store, props.container.dataset.discussionsState);
 
     makeObservable(this);
@@ -242,7 +246,7 @@ export default class Main extends React.Component<Props> {
   };
 
   private readonly saveStateToContainer = () => {
-    this.props.container.dataset.beatmapset = JSON.stringify(this.store.beatmapset);
+    storeJson(this.props.beatmapsetSelectorId, this.store.beatmapset);
     this.props.container.dataset.discussionsState = this.discussionsState.toJsonString();
   };
 
