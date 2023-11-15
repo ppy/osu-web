@@ -5,9 +5,6 @@
 
 namespace App\Models;
 
-use App\Casts\LegacyFilename;
-use App\Libraries\Uploader;
-use App\Libraries\User\Cover;
 use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 
 /**
@@ -52,8 +49,6 @@ class UserProfileCustomization extends Model
         'options' => AsArrayObject::class,
     ];
     protected $primaryKey = 'user_id';
-
-    private Uploader $customCover;
 
     public static function repairExtrasOrder($value)
     {
@@ -173,19 +168,6 @@ class UserProfileCustomization extends Model
         $this->setOption('comments_sort', $value);
     }
 
-    public function getCustomCoverFilenameAttribute(): ?string
-    {
-        return LegacyFilename::makeFromAttributes($this->cover_json['file'] ?? null);
-    }
-
-    public function setCustomCoverFilenameAttribute(?string $value): void
-    {
-        $this->cover_json = [
-            ...($this->cover_json ?? []),
-            'file' => ['hash' => $value],
-        ];
-    }
-
     public function getForumPostsShowDeletedAttribute()
     {
         return $this->options['forum_posts_show_deleted'] ?? true;
@@ -277,21 +259,6 @@ class UserProfileCustomization extends Model
     public function setProfileCoverExpandedAttribute($value)
     {
         $this->setOption('profile_cover_expanded', get_bool($value));
-    }
-
-    public function customCover()
-    {
-        return $this->customCover ??= new Uploader(
-            'user-profile-covers',
-            $this,
-            'custom_cover_filename',
-            ['image' => ['maxDimensions' => Cover::CUSTOM_COVER_MAX_DIMENSIONS]],
-        );
-    }
-
-    public function cover()
-    {
-        return new Cover($this);
     }
 
     private function setOption($key, $value)
