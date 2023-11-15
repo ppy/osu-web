@@ -29,7 +29,7 @@ interface ComponentOptionRenderProps<T extends Option> {
 }
 
 interface Props<T extends Option> {
-  blackout?: boolean;
+  blackout: boolean;
   modifiers?: Modifiers;
   onChange: (option: T) => void;
   options: T[];
@@ -48,7 +48,7 @@ export default class SelectOptions<T extends Option> extends React.Component<Pro
     super(props);
     makeObservable(this);
     disposeOnUnmount(this, autorun(() => {
-      const value = (this.props.blackout ?? false) && this.showingSelector;
+      const value = this.props.blackout && this.showingSelector;
       blackoutToggle(value, 0.5);
     }));
   }
