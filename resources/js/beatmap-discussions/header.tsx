@@ -16,30 +16,25 @@ import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetDiscussionsStore from 'interfaces/beatmapset-discussions-store';
 import GameMode, { gameModes } from 'interfaces/game-mode';
 import { route } from 'laroute';
-import { kebabCase, snakeCase } from 'lodash';
 import { action, computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import { deletedUserJson } from 'models/user';
-import core from 'osu-core-singleton';
 import * as React from 'react';
 import { makeUrl } from 'utils/beatmapset-discussion-helper';
 import { getArtist, getTitle } from 'utils/beatmapset-helper';
-import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 import BeatmapList from './beatmap-list';
 import Chart from './chart';
-import { Filter } from './current-discussions';
 import DiscussionsState from './discussions-state';
 import { Nominations } from './nominations';
 import { Subscribe } from './subscribe';
+import TypeFilters from './type-filters';
 import { UserFilter } from './user-filter';
 
 interface Props {
   discussionsState: DiscussionsState;
   store: BeatmapsetDiscussionsStore;
 }
-
-const statTypes: Filter[] = ['mine', 'mapperNotes', 'resolved', 'pending', 'praises', 'deleted', 'total'];
 
 @observer
 export class Header extends React.Component<Props> {
@@ -53,23 +48,6 @@ export class Header extends React.Component<Props> {
 
   private get currentBeatmap() {
     return this.discussionsState.currentBeatmap;
-  }
-
-  @computed
-  private get discussionCounts() {
-    const counts: Partial<Record<Filter, number>> = {};
-    const selectedUserId = this.discussionsState.selectedUserId;
-
-    for (const type of statTypes) {
-      let discussions = this.discussionsState.discussionsByFilter[type];
-      if (selectedUserId != null) {
-        discussions = discussions.filter((discussion) => discussion.user_id === selectedUserId);
-      }
-
-      counts[type] = discussions.length;
-    }
-
-    return counts;
   }
 
   private get discussionsState() {
@@ -214,7 +192,7 @@ export class Header extends React.Component<Props> {
                 store={this.props.store}
               />
               <div className={`${bn}__stats`}>
-                {statTypes.map(this.renderType)}
+                <TypeFilters discussionsState={this.discussionsState} />
               </div>
             </div>
           </div>
@@ -243,47 +221,4 @@ export class Header extends React.Component<Props> {
       </div>
     );
   }
-
-  private readonly renderType = (type: Filter) => {
-    if ((type === 'deleted') && !core.currentUser?.is_admin) {
-      return null;
-    }
-
-    const bn = 'counter-box';
-
-    let topClasses = classWithModifiers(bn, 'beatmap-discussions', kebabCase(type));
-    if (this.discussionsState.currentPage !== 'events' && this.discussionsState.currentFilter === type) {
-      topClasses += ' js-active';
-    }
-
-    return (
-      <a
-        key={type}
-        className={topClasses}
-        data-type={type}
-        href={makeUrl({
-          beatmapId: this.currentBeatmap.id,
-          beatmapsetId: this.beatmapset.id,
-          filter: type,
-          mode: this.discussionsState.currentPage,
-        })}
-        onClick={this.setFilter}
-      >
-        <div className={`${bn}__content`}>
-          <div className={`${bn}__title`}>
-            {trans(`beatmaps.discussions.stats.${snakeCase(type)}`)}
-          </div>
-          <div className={`${bn}__count`}>
-            {this.discussionCounts[type]}
-          </div>
-        </div>
-        <div className={`${bn}__line`} />
-      </a>
-    );
-  };
-
-  private readonly setFilter = (event: React.SyntheticEvent<HTMLElement>) => {
-    event.preventDefault();
-    this.discussionsState.changeFilter(event.currentTarget.dataset.type);
-  };
 }
