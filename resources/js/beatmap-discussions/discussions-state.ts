@@ -5,7 +5,7 @@ import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import GameMode from 'interfaces/game-mode';
 import { maxBy } from 'lodash';
-import { action, computed, makeObservable, observable, toJS } from 'mobx';
+import { action, computed, makeObservable, observable, reaction, toJS } from 'mobx';
 import moment from 'moment';
 import core from 'osu-core-singleton';
 import BeatmapsetDiscussionsShowStore from 'stores/beatmapset-discussions-show-store';
@@ -293,6 +293,16 @@ export default class DiscussionsState {
     return this.presentDiscussions.filter((discussion) => discussion.can_be_resolved && !discussion.resolved);
   }
 
+  @computed
+  get url() {
+    return makeUrl({
+      beatmap: this.currentBeatmap,
+      filter: this.currentFilter,
+      mode: this.currentPage,
+      user: this.selectedUserId ?? undefined,
+    });
+  }
+
   constructor(private readonly store: BeatmapsetDiscussionsShowStore, state?: string) {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const existingState = state == null ? null : parseState(state);
@@ -325,18 +335,17 @@ export default class DiscussionsState {
     }
 
     makeObservable(this);
+
+    reaction(() => this.url, (current, prev) => {
+      if (current !== prev) {
+        Turbolinks.controller.advanceHistory(this.url);
+      }
+    });
   }
 
   @action
   changeDiscussionPage(page?: string) {
     if (!isDiscussionPage(page)) return;
-
-    const url = makeUrl({
-      beatmap: this.currentBeatmap,
-      filter: this.currentFilter,
-      mode: page,
-      user: this.selectedUserId ?? undefined,
-    });
 
     if (page === 'events') {
       // record page and filter when switching to events
@@ -348,7 +357,6 @@ export default class DiscussionsState {
     }
 
     this.currentPage = page;
-    Turbolinks.controller.advanceHistory(url);
   }
 
   @action
