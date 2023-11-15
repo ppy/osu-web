@@ -17,6 +17,7 @@ import DiscussionMode, { discussionModes } from './discussion-mode';
 import DiscussionPage, { isDiscussionPage } from './discussion-page';
 
 const jsonId = 'json-discussions-state';
+const serializableSimpleTypes = new Set(['boolean', 'number', 'string']);
 
 export interface UpdateOptions {
   beatmap_discussion_post_ids: number[];
@@ -25,18 +26,18 @@ export interface UpdateOptions {
 }
 
 function replacer(key: string, value: unknown) {
-  // don't serialize constructor dependencies, they'll be handled separately.
-  if (key === 'beatmapset' || key === 'store') {
-    return undefined;
-  }
-
   if (value instanceof Set || value instanceof Map) {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return Array.from(value);
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-  return value;
+  // assumes constructor params are objects and won't be serialized
+  // Also assumes Map and Set only have simple values.
+  if (key === '' || serializableSimpleTypes.has(typeof(value)) || value instanceof Array) {
+    return value;
+  }
+
+  return undefined;
 }
 
 function reviver(key: string, value: unknown) {
@@ -50,7 +51,6 @@ function reviver(key: string, value: unknown) {
     }
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
   return value;
 }
 
