@@ -242,7 +242,7 @@ export default class Main extends React.Component<Props> {
   };
 
   private readonly saveStateToContainer = () => {
-    this.props.container.dataset.beatmapset = JSON.stringify(this.discussionsState.beatmapset);
+    this.props.container.dataset.beatmapset = JSON.stringify(this.store.beatmapset);
     this.props.container.dataset.discussionsState = this.discussionsState.toJsonString();
   };
 
