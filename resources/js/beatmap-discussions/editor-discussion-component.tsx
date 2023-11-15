@@ -4,7 +4,7 @@
 import { EmbedElement } from 'editor';
 import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import BeatmapsetDiscussionsStore from 'interfaces/beatmapset-discussions-store';
-import { Observer } from 'mobx-react';
+import { Observer, observer } from 'mobx-react';
 import * as React from 'react';
 import { Transforms } from 'slate';
 import { RenderElementProps } from 'slate-react';
@@ -38,6 +38,7 @@ interface Props extends RenderElementProps {
   store: BeatmapsetDiscussionsStore;
 }
 
+@observer
 export default class EditorDiscussionComponent extends React.Component<Props> {
   static contextType = SlateContext;
 
