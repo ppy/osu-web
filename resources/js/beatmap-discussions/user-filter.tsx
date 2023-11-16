@@ -9,7 +9,7 @@ import { action, computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import { usernameSortAscending } from 'models/user';
 import * as React from 'react';
-import { arrayGet } from 'utils/array';
+import { mobxArrayGet } from 'utils/array';
 import { makeUrl, parseUrl } from 'utils/beatmapset-discussion-helper';
 import { groupColour } from 'utils/css';
 import { trans } from 'utils/lang';
@@ -97,7 +97,7 @@ export class UserFilter extends React.Component<Props> {
   private getGroup(option: Option) {
     if (this.isOwner(option)) return mapperGroup;
 
-    return arrayGet(option.groups, 0);
+    return mobxArrayGet(option.groups, 0);
   }
 
   @action
