@@ -89,8 +89,8 @@ export function parseJsonNullable<T>(id: string, remove = false, reviver?: (key:
  * @param id id of the element to store to. Contents of an existing HTMLScriptElement will be overriden.
  * @param object state to store.
  */
-export function storeJson(id: string, object: unknown, replacer?: (key: string, value: any) => any) {
-  const json = JSON.stringify(object, replacer);
+export function storeJson(id: string, object: unknown) {
+  const json = JSON.stringify(object);
   const maybeElement = document.getElementById(id);
 
   let element: HTMLScriptElement;

@@ -5,7 +5,7 @@ import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import GameMode from 'interfaces/game-mode';
 import { maxBy } from 'lodash';
-import { action, computed, makeObservable, observable, reaction, toJS } from 'mobx';
+import { action, computed, makeObservable, observable, reaction } from 'mobx';
 import moment from 'moment';
 import core from 'osu-core-singleton';
 import BeatmapsetDiscussionsShowStore from 'stores/beatmapset-discussions-show-store';
@@ -17,28 +17,11 @@ import DiscussionMode, { discussionModes } from './discussion-mode';
 import DiscussionPage, { isDiscussionPage } from './discussion-page';
 
 const jsonId = 'json-discussions-state';
-const serializableSimpleTypes = new Set(['boolean', 'number', 'string']);
 
 export interface UpdateOptions {
   beatmap_discussion_post_ids: number[];
   beatmapset: BeatmapsetWithDiscussionsJson;
   watching: boolean;
-}
-
-function replacer(key: string, value: unknown) {
-  // discussionCollapsed and readPostIds
-  if (value instanceof Set || value instanceof Map) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-    return Array.from(value);
-  }
-
-  // assumes constructor params are objects and won't be serialized
-  // Also assumes Map and Set only have simple values.
-  if (key === '' || serializableSimpleTypes.has(typeof(value)) || value instanceof Array) {
-    return value;
-  }
-
-  return undefined;
 }
 
 function reviver(key: string, value: unknown) {
@@ -413,7 +396,23 @@ export default class DiscussionsState {
   }
 
   saveState() {
-    storeJson(jsonId, toJS(this), replacer);
+    storeJson(jsonId, this.toJson());
+  }
+
+  toJson() {
+    return {
+      currentBeatmapId: this.currentBeatmapId,
+      currentFilter: this.currentFilter,
+      currentPage: this.currentPage,
+      discussionCollapsed: [...this.discussionCollapsed],
+      discussionDefaultCollapsed: this.discussionDefaultCollapsed,
+      highlightedDiscussionId: this.highlightedDiscussionId,
+      jumpToDiscussion: this.jumpToDiscussion,
+      pinnedNewDiscussion: this.pinnedNewDiscussion,
+      readPostIds: [...this.readPostIds],
+      selectedUserId: this.selectedUserId,
+      showDeleted: this.showDeleted,
+    };
   }
 
   @action
