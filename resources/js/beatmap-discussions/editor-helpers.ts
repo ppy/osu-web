@@ -113,7 +113,7 @@ function serializeParagraph(node: ParagraphElement) {
 }
 
 export const slateDocumentContainsNewProblem = (input: SlateElement[]) =>
-  input.some((node) => node.type === 'embed' && node.discussionType === 'problem' && !node.discussionId);
+  input.some((node) => node.type === 'embed' && node.discussionType === 'problem' && node.discussionId == null);
 
 export const serializeSlateDocument = (input: SlateElement[]) => {
   const review: BeatmapDiscussionReview = [];

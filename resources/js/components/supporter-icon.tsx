@@ -17,7 +17,7 @@ export const SupporterIcon = (props: Props) => {
   return (
     <span className={className} title={trans('users.show.is_supporter')}>
       {
-        times(props.level || 1, (n) => <span key={n} className='fas fa-heart' />)
+        times(props.level ?? 1, (n) => <span key={n} className='fas fa-heart' />)
       }
     </span>
   );

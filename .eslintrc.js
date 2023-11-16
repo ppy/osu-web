@@ -128,7 +128,6 @@ module.exports = {
           {
             allowAny: true,
             allowNullableBoolean: true,
-            allowNullableNumber: true,
           },
         ],
         '@typescript-eslint/type-annotation-spacing': 'error',
