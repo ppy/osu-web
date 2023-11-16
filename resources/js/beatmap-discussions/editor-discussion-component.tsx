@@ -187,7 +187,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
     }
 
     return drafts.filter((embed) => {
-      if (!embed.timestamp || embed.beatmapId !== this.props.element.beatmapId) {
+      if (!(embed.timestamp != null) || embed.beatmapId !== this.props.element.beatmapId) {
         return false;
       }
 

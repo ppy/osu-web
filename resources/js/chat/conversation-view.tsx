@@ -19,6 +19,7 @@ import { trans } from 'utils/lang';
 import InputBox from './input-box';
 import { MessageDivider } from './message-divider';
 import MessageGroup from './message-group';
+import { present } from 'utils/string';
 
 type Props = Record<string, never>;
 
@@ -229,7 +230,7 @@ export default class ConversationView extends React.Component<Props> {
               />
             )}
           </div>
-          {channel.description &&
+          {present(channel.description) &&
             <div className='chat-conversation__chat-label'>
               {channel.description}
             </div>
