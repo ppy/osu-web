@@ -3,10 +3,13 @@
 
 import { BeatmapsetDiscussionsBundleJsonForModdingProfile } from 'interfaces/beatmapset-discussions-bundle-json';
 import BeatmapsetDiscussionsStore from 'interfaces/beatmapset-discussions-store';
-import { computed, makeObservable } from 'mobx';
+import { computed, makeObservable, observable } from 'mobx';
 import { mapBy, mapByWithNulls } from 'utils/map';
 
 export default class BeatmapsetDiscussionsBundleForModdingProfileStore implements BeatmapsetDiscussionsStore {
+  /** TODO: accessor; readonly */
+  @observable bundle;
+
   @computed
   get beatmaps() {
     return mapBy(this.bundle.beatmaps, 'id');
@@ -27,7 +30,8 @@ export default class BeatmapsetDiscussionsBundleForModdingProfileStore implement
     return mapByWithNulls(this.bundle.users, 'id');
   }
 
-  constructor(private readonly bundle: BeatmapsetDiscussionsBundleJsonForModdingProfile) {
+  constructor(bundle: BeatmapsetDiscussionsBundleJsonForModdingProfile) {
+    this.bundle = bundle;
     makeObservable(this);
   }
 }
