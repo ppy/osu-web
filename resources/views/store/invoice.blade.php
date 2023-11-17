@@ -22,11 +22,5 @@
         @include('store.orders._details')
 
         @include('store.orders._status')
-
-        @if ($order->isShipped())
-            @foreach($order->trackingCodes() as $code)
-                @include('store.orders._tracking', compact('code'))
-            @endforeach
-        @endif
     </div>
 @endsection
