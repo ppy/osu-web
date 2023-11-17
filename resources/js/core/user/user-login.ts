@@ -15,10 +15,21 @@ declare global {
   }
 }
 
+interface CaptchaTriggeredResponse {
+  captcha_triggered: true;
+  error: string;
+}
+
 interface LoginSuccessJson {
   header: string;
   header_popup: string;
   user: UserJson;
+}
+
+function isCaptchaTriggeredResponse(arg: unknown): arg is CaptchaTriggeredResponse {
+  return typeof arg === 'object'
+    && arg != null
+    && 'captcha_triggered' in arg;
 }
 
 export default class UserLogin {
@@ -77,7 +88,7 @@ export default class UserLogin {
     $('.js-login-form--error').text('');
   };
 
-  private readonly loginError = (e: JQuery.TriggeredEvent, xhr: JQuery.jqXHR) => {
+  private readonly loginError = (e: JQuery.TriggeredEvent, xhr: JQuery.jqXHR<unknown>) => {
     e.preventDefault();
     e.stopPropagation();
     $('.js-login-form--error').text(xhrErrorMessage(xhr));
@@ -87,7 +98,8 @@ export default class UserLogin {
       // Timeout here is to let ujs events fire first, so that the disabling of the submit button
       // in captcha.reset() happens _after_ the button has been re-enabled
       window.setTimeout(() => {
-        if (xhr?.responseJSON?.captcha_triggered === true) {
+        const json = xhr.responseJSON as unknown;
+        if (isCaptchaTriggeredResponse(json) && json.captcha_triggered) {
           this.captcha.trigger(captchaContainer);
         }
         this.captcha.reset(captchaContainer);
