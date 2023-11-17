@@ -6,7 +6,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @property string $acronym
@@ -53,9 +53,9 @@ class Country extends Model
         return $this->hasMany(ProfileBanner::class, 'country_acronym');
     }
 
-    public function statistics(): HasOne
+    public function statistics(): HasMany
     {
-        return $this->hasOne(CountryStatistics::class, 'country_code');
+        return $this->hasMany(CountryStatistics::class, 'country_code');
     }
 
     public function getAttribute($key)
