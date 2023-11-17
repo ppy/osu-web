@@ -87,7 +87,7 @@ export default class UserLogin {
       // Timeout here is to let ujs events fire first, so that the disabling of the submit button
       // in captcha.reset() happens _after_ the button has been re-enabled
       window.setTimeout(() => {
-        if (xhr?.responseJSON?.captcha_triggered != null) {
+        if (xhr?.responseJSON?.captcha_triggered === true) {
           this.captcha.trigger(captchaContainer);
         }
         this.captcha.reset(captchaContainer);
