@@ -21,9 +21,6 @@ class CreateOsuBeatmappacksItemsTable extends Migration
         }
 
         Schema::create('osu_beatmappacks_items', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_general_ci';
-
             $table->unsignedMediumInteger('item_id', true);
             $table->unsignedSmallInteger('pack_id');
             $table->unsignedMediumInteger('beatmapset_id');

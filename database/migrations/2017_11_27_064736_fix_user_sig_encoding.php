@@ -14,7 +14,8 @@ class FixUserSigEncoding extends Migration
      */
     public function up()
     {
-        DB::statement("ALTER TABLE phpbb_users MODIFY user_sig MEDIUMTEXT NOT NULL COLLATE 'utf8mb4_bin'");
+        // Not relevant anymore
+        // DB::statement("ALTER TABLE phpbb_users MODIFY user_sig MEDIUMTEXT NOT NULL COLLATE 'utf8mb4_bin'");
     }
 
     /**
@@ -24,6 +25,6 @@ class FixUserSigEncoding extends Migration
      */
     public function down()
     {
-        DB::statement("ALTER TABLE phpbb_users MODIFY user_sig MEDIUMTEXT NOT NULL COLLATE 'utf8_bin'");
+        // DB::statement("ALTER TABLE phpbb_users MODIFY user_sig MEDIUMTEXT NOT NULL COLLATE 'utf8_bin'");
     }
 }

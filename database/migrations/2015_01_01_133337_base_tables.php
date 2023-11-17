@@ -15,9 +15,6 @@ class BaseTables extends Migration
     public function up()
     {
         Schema::create('osu_achievements', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_general_ci';
-
             $table->mediumIncrements('achievement_id');
             $table->string('name', 40);
             $table->string('image', 50);
@@ -30,12 +27,8 @@ class BaseTables extends Migration
             $table->index(['grouping', 'ordering'], 'display_order');
             $table->index('quest_ordering', 'quest_ordering');
         });
-        $this->setRowFormat('osu_achievements', 'DYNAMIC');
 
         Schema::create('osu_apikeys', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_general_ci';
-
             $table->increments('key');
             $table->unsignedInteger('user_id');
             $table->string('app_name', 100)->default('');
@@ -48,23 +41,16 @@ class BaseTables extends Migration
 
             $table->unique('api_key', 'api_key');
         });
-        $this->setRowFormat('osu_apikeys', 'DYNAMIC');
 
         Schema::create('osu_badges', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_general_ci';
-
             $table->unsignedMediumInteger('user_id');
             $table->string('image', 255);
             $table->string('description', 255);
             $table->timestamp('awarded')->nullable()->useCurrent();
             $table->primary(['user_id', 'image']);
         });
-        $this->setRowFormat('osu_badges', 'DYNAMIC');
 
         Schema::create('osu_beatmap_difficulty', function (Blueprint $table) {
-            $table->charset = 'utf8mb4';
-
             $table->unsignedInteger('beatmap_id');
             $table->tinyInteger('mode')->default(0);
             $table->unsignedInteger('mods');
@@ -87,18 +73,12 @@ class BaseTables extends Migration
         DB::statement('ALTER TABLE osu_beatmap_difficulty_attribs ADD value float null');
 
         Schema::create('osu_beatmaps', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_bin';
-
             $table->mediumIncrements('beatmap_id');
             $table->unsignedMediumInteger('beatmapset_id')->nullable();
             $table->unsignedMediumInteger('user_id')->default('0');
-            $column = $table->string('filename', 150)->nullable();
-            $column->collation = 'utf8_bin';
-            $column = $table->string('checksum', 32)->nullable();
-            $column->charset = 'utf8';
-            $column = $table->string('version', 80)->default('');
-            $column->charset = 'latin1';
+            $table->string('filename', 150)->nullable();
+            $table->string('checksum', 32)->nullable();
+            $table->string('version', 80)->default('');
             $table->UnsignedMediumInteger('total_length')->default(0);
             $table->UnsignedMediumInteger('hit_length')->default(0);
             $table->UnsignedSmallInteger('countTotal')->default(0);
@@ -116,21 +96,15 @@ class BaseTables extends Migration
             $table->UnsignedMediumInteger('playcount')->default(0);
             $table->UnsignedMediumInteger('passcount')->default(0);
             $table->boolean('orphaned')->default(false);
-            $column = $table->string('youtube_preview', 50)->nullable();
-            $column->collation = 'utf8_bin';
-
+            $table->string('youtube_preview', 50)->nullable();
             $table->index('beatmapset_id', 'beatmapset_id');
             $table->index('filename', 'filename');
             $table->index('checksum', 'checksum');
             $table->index('user_id', 'user_id');
         });
 
-        $this->setRowFormat('osu_beatmaps', 'DYNAMIC');
 
         Schema::create('osu_beatmapsets', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_general_ci';
-
             $table->mediumIncrements('beatmapset_id');
             $table->mediumInteger('user_id')->unsigned()->default(0);
             $table->mediumInteger('thread_id')->unsigned()->default(0);
@@ -151,9 +125,7 @@ class BaseTables extends Migration
             $table->dateTime('approved_date')->nullable();
             $table->dateTime('submit_date')->nullable();
             $table->timestamp('last_update')->useCurrent();
-            $column = $table->string('filename', 120)->nullable()->index('filename');
-            $column->charset = 'utf8';
-            $column->collation = 'utf8_bin';
+            $table->string('filename', 120)->nullable()->index('filename');
             $table->boolean('active')->default(1);
             $table->float('rating')->unsigned()->default(0);
             $table->smallInteger('offset')->default(0);
@@ -167,9 +139,7 @@ class BaseTables extends Migration
             // $table->binary('header_hash', 16)->nullable();
             // $table->binary('osz2_hash', 16)->nullable();
             $table->boolean('download_disabled')->unsigned()->default(0);
-            $column = $table->string('download_disabled_url', 100)->nullable();
-            $column->charset = 'utf8';
-            $column->collation = 'utf8_bin';
+            $table->string('download_disabled_url', 100)->nullable();
             $table->dateTime('thread_icon_date')->nullable();
             $table->mediumInteger('favourite_count')->unsigned()->default(0);
             $table->mediumInteger('play_count')->unsigned()->default(0);
@@ -185,7 +155,6 @@ class BaseTables extends Migration
         $this->addBinary('osu_beatmapsets', 'body_hash', 16, true, 'filesize_novideo');
         $this->addBinary('osu_beatmapsets', 'header_hash', 16, true, 'body_hash');
         $this->addBinary('osu_beatmapsets', 'osz2_hash', 16, true, 'header_hash');
-        $this->setRowFormat('osu_beatmapsets', 'DYNAMIC');
 
         Schema::create('osu_user_beatmapset_ratings', function (Blueprint $table) {
             $table->unsignedMediumInteger('user_id');
@@ -199,9 +168,6 @@ class BaseTables extends Migration
         $this->setRowFormat('osu_user_beatmapset_ratings', 'COMPRESSED');
 
         Schema::create('osu_changelog', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_general_ci';
-
             $table->mediumIncrements('changelog_id');
             $table->mediumInteger('user_id')->unsigned();
             $table->char('prefix', 1)->default('*');
@@ -221,12 +187,8 @@ class BaseTables extends Migration
             $table->index(['build', 'date'], 'major_release');
             $table->index(['category', 'changelog_id'], 'category');
         });
-        $this->setRowFormat('osu_changelog', 'DYNAMIC');
 
         Schema::create('osu_charts', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_general_ci';
-
             $table->unsignedSmallInteger('chart_id', true);
             $table->string('acronym', 10)->default('');
             $table->string('name', 50)->default('');
@@ -240,7 +202,6 @@ class BaseTables extends Migration
             $table->index('end_date', 'enddate');
             $table->index(['type', 'chart_month'], 'type');
         });
-        $this->setRowFormat('osu_charts', 'DYNAMIC');
 
         Schema::create('osu_builds', function ($table) {
             $table->mediumIncrements('build_id');
@@ -257,9 +218,6 @@ class BaseTables extends Migration
         DB::statement('ALTER TABLE osu_builds ADD last_hash BINARY(16)');
 
         Schema::create('osu_countries', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_general_ci';
-
             $table->char('acronym', 2)->primary();
             $table->string('name', 150);
             $table->bigInteger('rankedscore');
@@ -272,21 +230,13 @@ class BaseTables extends Migration
             $table->index('playcount', 'playcount');
             $table->index(['display', 'name'], 'display');
         });
-        $this->setRowFormat('osu_countries', 'DYNAMIC');
 
         Schema::create('osu_counts', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_general_ci';
-
             $table->string('name', 200)->primary();
             $table->bigInteger('count')->unsigned();
         });
-        $this->setRowFormat('osu_counts', 'DYNAMIC');
 
         Schema::create('osu_downloads', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_general_ci';
-
             $table->unsignedMediumInteger('user_id');
             $table->integer('timestamp');
             $table->mediumInteger('beatmapset_id');
@@ -295,12 +245,8 @@ class BaseTables extends Migration
 
             $table->index(['user_id', 'timestamp', 'beatmapset_id'], 'user_id');
         });
-        $this->setRowFormat('osu_downloads', 'DYNAMIC');
 
         Schema::create('osu_events', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_general_ci';
-
             $table->increments('event_id');
             $table->string('text', 1000);
             $table->string('text_clean', 8000)->nullable();
@@ -318,29 +264,18 @@ class BaseTables extends Migration
         $this->setRowFormat('osu_events', 'COMPRESSED');
 
         Schema::create('osu_favouritemaps', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_general_ci';
-
             $table->mediumInteger('user_id')->unsigned();
             $table->mediumInteger('beatmapset_id')->unsigned()->index('beatmapset_id');
             $table->timestamp('dateadded')->useCurrent();
             $table->primary(['user_id', 'beatmapset_id']);
         });
-        $this->setRowFormat('osu_favouritemaps', 'DYNAMIC');
 
         Schema::create('osu_genres', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_general_ci';
-
             $table->smallIncrements('genre_id');
             $table->string('name', 200);
         });
-        $this->setRowFormat('osu_genres', 'DYNAMIC');
 
         Schema::create('osu_kudos_exchange', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_general_ci';
-
             $table->mediumIncrements('exchange_id');
             $table->mediumInteger('giver_id')->unsigned();
             $table->mediumInteger('receiver_id')->unsigned();
@@ -355,63 +290,40 @@ class BaseTables extends Migration
         $this->setRowFormat('osu_kudos_exchange', 'COMPRESSED');
 
         Schema::create('osu_languages', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_general_ci';
-
             $table->integer('language_id', true);
             $table->string('name', 50);
             $table->boolean('display_order')->default(0)->index('order');
         });
-        $this->setRowFormat('osu_languages', 'DYNAMIC');
 
         Schema::create('osu_leaders_fruits', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_general_ci';
-
             $table->mediumInteger('beatmap_id')->unsigned()->primary();
             $table->mediumInteger('user_id')->unsigned();
             $table->integer('score_id')->nullable();
             $table->index(['user_id', 'score_id'], 'user_id');
         });
-        $this->setRowFormat('osu_leaders_fruits', 'DYNAMIC');
 
         Schema::create('osu_leaders_mania', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_general_ci';
-
             $table->mediumInteger('beatmap_id')->unsigned()->primary();
             $table->mediumInteger('user_id')->unsigned();
             $table->integer('score_id')->nullable();
             $table->index(['user_id', 'score_id'], 'user_id');
         });
-        $this->setRowFormat('osu_leaders_mania', 'DYNAMIC');
 
         Schema::create('osu_leaders', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_general_ci';
-
             $table->mediumInteger('beatmap_id')->unsigned()->primary();
             $table->mediumInteger('user_id')->unsigned();
             $table->integer('score_id')->nullable();
             $table->index(['user_id', 'score_id'], 'user_id');
         });
-        $this->setRowFormat('osu_leaders', 'DYNAMIC');
 
         Schema::create('osu_leaders_taiko', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_general_ci';
-
             $table->mediumInteger('beatmap_id')->unsigned()->primary();
             $table->mediumInteger('user_id')->unsigned();
             $table->integer('score_id')->nullable();
             $table->index(['user_id', 'score_id'], 'user_id');
         });
-        $this->setRowFormat('osu_leaders_taiko', 'DYNAMIC');
 
         Schema::create('osu_login_attempts', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_general_ci';
-
             $table->string('ip', 128)->primary();
             $table->mediumInteger('failed_attempts')->unsigned()->default(1);
             $table->smallInteger('total_attempts')->unsigned()->default(1);
@@ -420,12 +332,8 @@ class BaseTables extends Migration
             $table->timestamp('last_attempt')->nullable()->useCurrent()->index('last_attempt');
             $table->timestamp('created_date')->useCurrent();
         });
-        $this->setRowFormat('osu_login_attempts', 'DYNAMIC');
 
         Schema::create('osu_scores_fruits', function (Blueprint $table) {
-            $table->charset = 'latin1';
-            $table->collation = 'latin1_swedish_ci';
-
             $table->unsignedInteger('score_id'); // autoincrement is set!
             // $table->binary('scorechecksum', 16)->index('scorechecksum');
             $table->mediumInteger('beatmap_id')->unsigned()->default(0);
@@ -455,9 +363,6 @@ class BaseTables extends Migration
         DB::statement('ALTER TABLE `osu_scores_fruits` MODIFY COLUMN `score_id` INT UNSIGNED AUTO_INCREMENT');
 
         Schema::create('osu_mirrors', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_general_ci';
-
             $table->tinyIncrements('mirror_id');
             $table->string('base_url', 255);
             $table->bigInteger('traffic_used')->default(0);
@@ -466,57 +371,37 @@ class BaseTables extends Migration
             $table->integer('provider_user_id');
             $table->tinyInteger('enabled')->default(1);
             $table->decimal('version', 4, 2)->nullable();
-            $table->string('pending_purge', 8192)->default('');
+            $table->string('pending_purge', 6000)->nullable(true);
             $table->tinyInteger('pending_updates')->default(1);
-            $table->string('regions', 8192)->nullable();
+            $table->string('regions', 6000)->nullable(true);
             $table->bigInteger('disk_space_free')->nullable();
         });
-        $this->setRowFormat('osu_mirrors', 'DYNAMIC');
 
         Schema::create('osu_replays', function (Blueprint $table) {
-            $table->charset = 'latin1';
-            $table->collation = 'latin1_swedish_ci';
-
             $table->unsignedInteger('score_id')->default(0)->primary();
             $table->unsignedInteger('play_count')->default(0);
             $table->integer('version')->nullable();
         });
-        $this->setRowFormat('osu_replays', 'DYNAMIC');
 
         Schema::create('osu_replays_fruits', function (Blueprint $table) {
-            $table->charset = 'latin1';
-            $table->collation = 'latin1_swedish_ci';
-
             $table->unsignedInteger('score_id')->default(0)->primary();
             $table->unsignedInteger('play_count')->default(0);
             $table->integer('version')->nullable();
         });
-        $this->setRowFormat('osu_replays_fruits', 'DYNAMIC');
 
         Schema::create('osu_replays_mania', function (Blueprint $table) {
-            $table->charset = 'latin1';
-            $table->collation = 'latin1_swedish_ci';
-
             $table->unsignedInteger('score_id')->default(0)->primary();
             $table->unsignedInteger('play_count')->default(0);
             $table->integer('version')->nullable();
         });
-        $this->setRowFormat('osu_replays_mania', 'DYNAMIC');
 
         Schema::create('osu_replays_taiko', function (Blueprint $table) {
-            $table->charset = 'latin1';
-            $table->collation = 'latin1_swedish_ci';
-
             $table->unsignedInteger('score_id')->default(0)->primary();
             $table->unsignedInteger('play_count')->default(0);
             $table->integer('version')->nullable();
         });
-        $this->setRowFormat('osu_replays_taiko', 'DYNAMIC');
 
         Schema::create('osu_scores_fruits_high', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_general_ci';
-
             $table->increments('score_id');
             $table->mediumInteger('beatmap_id')->unsigned()->default(0);
             $table->mediumInteger('beatmapset_id')->unsigned()->default(0);
@@ -538,13 +423,8 @@ class BaseTables extends Migration
             $table->index(['beatmap_id', 'score', 'user_id'], 'beatmap_score_lookup');
             $table->index(['user_id', 'beatmap_id', 'rank'], 'user_beatmap_rank');
         });
-        $this->setRowFormat('osu_scores_fruits_high', 'DYNAMIC');
-        $this->setRowFormat('osu_scores_fruits', 'DYNAMIC');
 
         Schema::create('osu_scores_high', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_general_ci';
-
             $table->increments('score_id');
             $table->mediumInteger('beatmap_id')->unsigned()->default(0);
             $table->mediumInteger('beatmapset_id')->unsigned()->default(0);
@@ -566,12 +446,8 @@ class BaseTables extends Migration
             $table->index(['beatmap_id', 'score', 'user_id'], 'beatmap_score_lookup');
             $table->index(['user_id', 'beatmap_id', 'rank'], 'user_beatmap_rank');
         });
-        $this->setRowFormat('osu_scores_high', 'DYNAMIC');
 
         Schema::create('osu_scores_mania_high', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_general_ci';
-
             $table->increments('score_id');
             $table->mediumInteger('beatmap_id')->unsigned()->default(0);
             $table->mediumInteger('beatmapset_id')->unsigned()->default(0);
@@ -593,12 +469,8 @@ class BaseTables extends Migration
             $table->index(['beatmap_id', 'score', 'user_id'], 'beatmap_score_lookup');
             $table->index(['user_id', 'beatmap_id', 'rank'], 'user_beatmap_rank');
         });
-        $this->setRowFormat('osu_scores_mania_high', 'DYNAMIC');
 
         Schema::create('osu_scores_mania', function (Blueprint $table) {
-            $table->charset = 'latin1';
-            $table->collation = 'latin1_swedish_ci';
-
             $table->integer('score_id', false, true);
             // $table->binary('scorechecksum', 16)->index('scorechecksum');
             $table->mediumInteger('beatmap_id')->unsigned()->default(0);
@@ -625,12 +497,8 @@ class BaseTables extends Migration
         DB::statement('ALTER TABLE `osu_scores_mania` ADD KEY (`scorechecksum`)');
         DB::statement('ALTER TABLE `osu_scores_mania` ADD KEY `user_id` (`user_id`, `date`)');
         DB::statement('ALTER TABLE `osu_scores_mania` MODIFY COLUMN `score_id` INT UNSIGNED AUTO_INCREMENT');
-        $this->setRowFormat('osu_scores_mania', 'DYNAMIC');
 
         Schema::create('osu_scores', function (Blueprint $table) {
-            $table->charset = 'latin1';
-            $table->collation = 'latin1_swedish_ci';
-
             $table->unsignedInteger('score_id');
             // $table->binary('scorechecksum', 16)->index('scorechecksum');
             $table->mediumInteger('beatmap_id')->unsigned()->default(0);
@@ -658,12 +526,8 @@ class BaseTables extends Migration
         DB::statement('ALTER TABLE `osu_scores` MODIFY COLUMN `score_id` INT UNSIGNED AUTO_INCREMENT');
         DB::statement('ALTER TABLE `osu_scores` ADD KEY `user_id` (`user_id`, `date`)');
         DB::statement('ALTER TABLE `osu_scores` ADD KEY (`beatmapset_id`)');
-        $this->setRowFormat('osu_scores', 'DYNAMIC');
 
         Schema::create('osu_scores_taiko_high', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_general_ci';
-
             $table->increments('score_id');
             $table->mediumInteger('beatmap_id')->unsigned()->default(0);
             $table->mediumInteger('beatmapset_id')->unsigned()->default(0);
@@ -685,12 +549,8 @@ class BaseTables extends Migration
             $table->index(['beatmap_id', 'score', 'user_id'], 'beatmap_score_lookup');
             $table->index(['user_id', 'beatmap_id', 'rank'], 'user_beatmap_rank');
         });
-        $this->setRowFormat('osu_scores_taiko_high', 'DYNAMIC');
 
         Schema::create('osu_scores_taiko', function (Blueprint $table) {
-            $table->charset = 'latin1';
-            $table->collation = 'latin1_swedish_ci';
-
             $table->integer('score_id', false, true);
             // $table->binary('scorechecksum', 16)->index('scorechecksum');
             $table->mediumInteger('beatmap_id')->unsigned()->default(0);
@@ -717,12 +577,8 @@ class BaseTables extends Migration
         DB::statement('ALTER TABLE `osu_scores_taiko` ADD KEY (`scorechecksum`)');
         DB::statement('ALTER TABLE `osu_scores_taiko` ADD KEY `user_id` (`user_id`, `date`)');
         DB::statement('ALTER TABLE `osu_scores_taiko` MODIFY COLUMN `score_id` INT UNSIGNED AUTO_INCREMENT');
-        $this->setRowFormat('osu_scores_taiko', 'DYNAMIC');
 
         Schema::create('osu_user_achievements', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_general_ci';
-
             $table->mediumInteger('user_id');
             $table->mediumInteger('achievement_id');
             $table->timestamp('date')->useCurrent();
@@ -730,12 +586,8 @@ class BaseTables extends Migration
             $table->primary(['user_id', 'achievement_id']);
             $table->index(['user_id', 'date'], 'user_id');
         });
-        $this->setRowFormat('osu_user_achievements', 'DYNAMIC');
 
         Schema::create('osu_user_banhistory', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_general_ci';
-
             $table->increments('ban_id');
             $table->integer('user_id')->unsigned()->nullable();
             $table->string('reason', 8000)->nullable()->default('Blanket Cheating Action');
@@ -749,9 +601,6 @@ class BaseTables extends Migration
         $this->setRowFormat('osu_user_banhistory', 'COMPRESSED');
 
         Schema::create('osu_user_beatmap_playcount', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_general_ci';
-
             $table->mediumInteger('user_id')->unsigned();
             $table->mediumInteger('beatmap_id')->unsigned();
             $table->smallInteger('playcount')->unsigned();
@@ -760,9 +609,6 @@ class BaseTables extends Migration
         $this->setRowFormat('osu_user_beatmap_playcount', 'COMPRESSED');
 
         Schema::create('osu_user_donations', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_general_ci';
-
             $table->mediumInteger('user_id')->unsigned();
             $table->string('transaction_id', 250);
             $table->mediumInteger('target_user_id')->unsigned()->default(0);
@@ -774,7 +620,6 @@ class BaseTables extends Migration
             $table->index('timestamp', 'timestamp');
             $table->index('transaction_id', 'transaction_id');
         });
-        $this->setRowFormat('osu_user_donations', 'DYNAMIC');
 
         Schema::create('osu_username_change_history', function (Blueprint $table) {
             $table->increments('change_id');
@@ -787,9 +632,6 @@ class BaseTables extends Migration
         $this->comment('osu_username_change_history', 'Stores historical changes to user\'\'s usernames over time.');
 
         Schema::create('osu_user_month_playcount', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_general_ci';
-
             $table->unsignedMediumInteger('user_id');
             $table->char('year_month', 4);
             $table->unsignedSmallInteger('playcount');
@@ -898,12 +740,8 @@ class BaseTables extends Migration
         $partitions .= 'PARTITION p2 VALUES LESS THAN (3),';
         $partitions .= 'PARTITION p3 VALUES LESS THAN (4)';
         DB::statement("ALTER TABLE `osu_user_performance_rank` PARTITION BY RANGE (mode) ({$partitions});");
-        $this->setRowFormat('osu_user_performance_rank', 'DYNAMIC');
 
         Schema::create('osu_user_reports', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_general_ci';
-
             $table->increments('report_id');
             $table->integer('user_id');
             $table->unsignedInteger('score_id')->default(0);
@@ -918,12 +756,8 @@ class BaseTables extends Migration
             $table->index('user_id', 'user_lookup');
         });
 
-        $this->setRowFormat('osu_user_reports', 'DYNAMIC');
 
         Schema::create('osu_user_replayswatched', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_general_ci';
-
             $table->unsignedMediumInteger('user_id');
             $table->char('year_month', 4);
             $table->unsignedMediumInteger('count');
@@ -949,9 +783,6 @@ class BaseTables extends Migration
         });
 
         Schema::create('osu_user_stats_fruits', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_general_ci';
-
             $table->mediumInteger('user_id')->primary();
             $table->integer('count300')->default(0);
             $table->integer('count100')->default(0);
@@ -985,12 +816,8 @@ class BaseTables extends Migration
             $table->index(['country_acronym', 'rank_score'], 'country_acronym');
         });
         DB::statement('ALTER TABLE `osu_user_stats_fruits` ADD COLUMN `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP AFTER `accuracy_new`');
-        $this->setRowFormat('osu_user_stats_fruits', 'DYNAMIC');
 
         Schema::create('osu_user_stats_mania', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_general_ci';
-
             $table->mediumInteger('user_id')->primary();
             $table->integer('count300')->default(0);
             $table->integer('count100')->default(0);
@@ -1024,12 +851,8 @@ class BaseTables extends Migration
             $table->index('playcount', 'playcount');
         });
         DB::statement('ALTER TABLE `osu_user_stats_mania` ADD COLUMN `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP AFTER `accuracy_new`');
-        $this->setRowFormat('osu_user_stats_mania', 'DYNAMIC');
 
         Schema::create('osu_user_stats', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_general_ci';
-
             $table->mediumInteger('user_id')->primary();
             $table->integer('count300')->default(0);
             $table->integer('count100')->default(0);
@@ -1063,12 +886,8 @@ class BaseTables extends Migration
             $table->index('playcount', 'playcount');
         });
         DB::statement('ALTER TABLE `osu_user_stats` ADD COLUMN `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP AFTER `accuracy_new`');
-        $this->setRowFormat('osu_user_stats', 'DYNAMIC');
 
         Schema::create('osu_user_stats_taiko', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_general_ci';
-
             $table->mediumInteger('user_id')->primary();
             $table->integer('count300')->default(0);
             $table->integer('count100')->default(0);
@@ -1102,41 +921,27 @@ class BaseTables extends Migration
             $table->index(['country_acronym', 'rank_score'], 'country_acronym');
         });
         DB::statement('ALTER TABLE `osu_user_stats_taiko` ADD COLUMN `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP AFTER `accuracy_new`');
-        $this->setRowFormat('osu_user_stats_taiko', 'DYNAMIC');
 
         Schema::create('phpbb_acl_groups', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_bin';
-
             $table->mediumInteger('group_id')->unsigned()->default(0)->index('group_id');
             $table->mediumInteger('forum_id')->unsigned()->default(0);
             $table->mediumInteger('auth_option_id')->unsigned()->default(0)->index('auth_opt_id');
             $table->mediumInteger('auth_role_id')->unsigned()->default(0)->index('auth_role_id');
             $table->boolean('auth_setting')->default(0);
         });
-        $this->setRowFormat('phpbb_acl_groups', 'DYNAMIC');
 
         Schema::create('phpbb_acl_options', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_bin';
-
             $table->mediumIncrements('auth_option_id', true);
 
-            $column = $table->string('auth_option', 50)->default('');
-            $column->collation = 'utf8_bin';
-
+            $table->string('auth_option', 50)->default('');
             $table->unsignedTinyInteger('is_global')->default(0);
             $table->unsignedTinyInteger('is_local')->default(0);
             $table->unsignedTinyInteger('founder_only')->default(0);
 
             $table->index('auth_option', 'auth_option');
         });
-        $this->setRowFormat('phpbb_acl_options', 'DYNAMIC');
 
         Schema::create('phpbb_acl_roles_data', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_bin';
-
             $table->unsignedMediumInteger('role_id')->default('0');
             $table->unsignedMediumInteger('auth_option_id')->default(0);
             $table->tinyInteger('auth_setting')->default(0);
@@ -1145,28 +950,18 @@ class BaseTables extends Migration
 
             $table->index('auth_option_id', 'ath_op_id');
         });
-        $this->setRowFormat('phpbb_acl_roles_data', 'DYNAMIC');
 
         Schema::create('phpbb_disallow', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_bin';
-
             $table->mediumIncrements('disallow_id');
-            $column = $table->string('disallow_username')->default('');
-            $column->collation = 'utf8_bin';
+            $table->string('disallow_username')->default('');
         });
-        $this->setRowFormat('phpbb_disallow', 'DYNAMIC');
 
         Schema::create('phpbb_forums', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_bin';
-
             $table->mediumIncrements('forum_id');
             $table->mediumInteger('parent_id')->unsigned()->default(0);
             $table->mediumInteger('left_id')->unsigned()->default(0);
             $table->mediumInteger('right_id')->unsigned()->default(0);
-            $column = $table->mediumText('forum_parents');
-            $column->collation = 'utf8_bin';
+            $table->mediumText('forum_parents');
             $table->string('forum_name')->default('');
             $table->text('forum_desc', 65535);
             $table->string('forum_desc_bitfield')->default('');
@@ -1205,30 +1000,21 @@ class BaseTables extends Migration
             $table->mediumInteger('prune_freq')->unsigned()->default(0);
             $table->index(['left_id', 'right_id'], 'left_right_id');
         });
-        $this->setRowFormat('phpbb_forums', 'DYNAMIC');
 
         Schema::create('phpbb_forums_track', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_bin';
-
             $table->mediumInteger('user_id')->unsigned()->default(0);
             $table->mediumInteger('forum_id')->unsigned()->default(0);
             $table->integer('mark_time')->unsigned()->default(0);
             $table->primary(['user_id', 'forum_id']);
         });
-        $this->setRowFormat('phpbb_forums_track', 'DYNAMIC');
 
         Schema::create('phpbb_posts', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_bin';
-
             $table->mediumIncrements('post_id');
             $table->mediumInteger('topic_id')->unsigned()->default(0);
             $table->mediumInteger('forum_id')->unsigned()->default(0);
             $table->mediumInteger('poster_id')->unsigned()->default(0);
             $table->mediumInteger('icon_id')->unsigned()->default(0);
-            $column = $table->string('poster_ip', 40)->default('');
-            $column->collation = 'utf8_bin';
+            $table->string('poster_ip', 40)->default('');
             $table->integer('post_time')->unsigned()->default(0);
             $table->boolean('post_approved')->unsigned()->default(1);
             $table->boolean('post_reported')->unsigned()->default(0);
@@ -1236,14 +1022,9 @@ class BaseTables extends Migration
             $table->boolean('enable_smilies')->unsigned()->default(1);
             $table->boolean('enable_magic_url')->unsigned()->default(1);
             $table->boolean('enable_sig')->unsigned()->default(1);
-            $column = $table->string('post_username')->default('');
-            $column->collation = 'utf8_bin';
-            $column = $table->string('post_subject', 100)->default('');
-            $column->charset = 'utf8mb4';
-            $column->collation = 'utf8mb4_unicode_ci';
-            $column = $table->mediumText('post_text');
-            $column->charset = 'utf8mb4';
-            $column->collation = 'utf8mb4_unicode_ci';
+            $table->string('post_username')->default('');
+            $table->string('post_subject', 100)->default('');
+            $table->mediumText('post_text');
             $table->boolean('post_attachment')->unsigned()->default(0);
             $table->string('bbcode_bitfield')->default('');
             $table->string('bbcode_uid', 5)->default('');
@@ -1259,52 +1040,34 @@ class BaseTables extends Migration
             $table->index('poster_id', 'poster_id');
             $table->index(['topic_id', 'post_time'], 'tid_post_time');
         });
-        $this->setRowFormat('phpbb_posts', 'DYNAMIC');
 
         Schema::create('phpbb_ranks', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_bin';
-
             $table->mediumIncrements('rank_id');
-            $column = $table->string('rank_title')->default('');
-            $column->collation = 'utf8_bin';
+            $table->string('rank_title')->default('');
             $table->mediumInteger('rank_min')->unsigned()->default(0);
             $table->boolean('rank_special')->unsigned()->default(0);
-            $column = $table->string('rank_image')->default('');
-            $column->collation = 'utf8_bin';
+            $table->string('rank_image')->default('');
         });
-        $this->setRowFormat('phpbb_ranks', 'DYNAMIC');
 
         Schema::create('phpbb_smilies', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_bin';
-
             $table->mediumIncrements('smiley_id');
-            $column = $table->string('code', 50)->default('');
-            $column->collation = 'utf8_bin';
-            $column = $table->string('emotion', 50)->default('');
-            $column->collation = 'utf8_bin';
-            $column = $table->string('smiley_url', 50)->default('');
-            $column->collation = 'utf8_bin';
+            $table->string('code', 50)->default('');
+            $table->string('emotion', 50)->default('');
+            $table->string('smiley_url', 50)->default('');
             $table->smallInteger('smiley_width')->unsigned()->default(0);
             $table->smallInteger('smiley_height')->unsigned()->default(0);
             $table->mediumInteger('smiley_order')->unsigned()->default(0);
             $table->boolean('display_on_posting')->unsigned()->default(1)->index('display_on_post');
         });
-        $this->setRowFormat('phpbb_smilies', 'DYNAMIC');
 
         Schema::create('phpbb_topics', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_bin';
-
             $table->mediumIncrements('topic_id');
             $table->mediumInteger('forum_id')->unsigned()->default(0);
             $table->mediumInteger('icon_id')->unsigned()->default(0);
             $table->boolean('topic_attachment')->unsigned()->default(0);
             $table->boolean('topic_approved')->unsigned()->default(1);
             $table->boolean('topic_reported')->unsigned()->default(0);
-            $column = $table->string('topic_title', 100)->default('');
-            $column->charset = 'utf8mb4';
+            $table->string('topic_title', 100)->default('');
             $table->mediumInteger('topic_poster')->unsigned()->default(0);
             $table->integer('topic_time')->unsigned()->default(0);
             $table->integer('topic_time_limit')->unsigned()->default(0);
@@ -1314,18 +1077,13 @@ class BaseTables extends Migration
             $table->boolean('topic_status')->default(0);
             $table->boolean('topic_type')->default(0);
             $table->mediumInteger('topic_first_post_id')->unsigned()->default(0);
-            $column = $table->string('topic_first_poster_name')->default('');
-            $column->collation = 'utf8_bin';
-            $column = $table->string('topic_first_poster_colour', 6)->default('');
-            $column->collation = 'utf8_bin';
+            $table->string('topic_first_poster_name')->default('');
+            $table->string('topic_first_poster_colour', 6)->default('');
             $table->mediumInteger('topic_last_post_id')->unsigned()->default(0);
             $table->mediumInteger('topic_last_poster_id')->unsigned()->default(0);
-            $column = $table->string('topic_last_poster_name')->default('');
-            $column->collation = 'utf8_bin';
-            $column = $table->string('topic_last_poster_colour', 6)->default('');
-            $column->collation = 'utf8_bin';
-            $column = $table->string('topic_last_post_subject', 100)->default('');
-            $column->collation = 'utf8_bin';
+            $table->string('topic_last_poster_name')->default('');
+            $table->string('topic_last_poster_colour', 6)->default('');
+            $table->string('topic_last_post_subject', 100)->default('');
             $table->integer('topic_last_post_time')->unsigned()->default(0);
             $table->integer('topic_last_view_time')->unsigned()->default(0);
             $table->mediumInteger('topic_moved_id')->unsigned()->default(0);
@@ -1346,12 +1104,8 @@ class BaseTables extends Migration
             $table->index(['forum_id', 'topic_type', 'topic_last_post_time'], 'forum_id_type');
             $table->index(['forum_id', 'topic_type', 'osu_starpriority', 'topic_last_post_time'], 'star_sort');
         });
-        $this->setRowFormat('phpbb_topics', 'DYNAMIC');
 
         Schema::create('phpbb_topics_stars', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_general_ci';
-
             $table->mediumIncrements('star_id');
             $table->unsignedMediumInteger('topic_id');
             $table->unsignedMediumInteger('user_id');
@@ -1361,12 +1115,8 @@ class BaseTables extends Migration
             $table->index(['user_id'], 'user_id');
             $table->index(['topic_id', 'user_id'], 'topic_id');
         });
-        $this->setRowFormat('phpbb_topics_stars', 'DYNAMIC');
 
         Schema::create('phpbb_topics_track', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_bin';
-
             $table->mediumInteger('user_id')->unsigned()->default(0);
             $table->mediumInteger('topic_id')->unsigned()->default(0);
             $table->mediumInteger('forum_id')->unsigned()->default(0);
@@ -1375,34 +1125,24 @@ class BaseTables extends Migration
             $table->index('forum_id', 'forum_id');
             $table->index('topic_id', 'topic_id');
         });
-        $this->setRowFormat('phpbb_topics_track', 'DYNAMIC');
 
         Schema::create('phpbb_user_group', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_bin';
-
             $table->mediumInteger('group_id')->unsigned()->default(0);
             $table->mediumInteger('user_id')->unsigned()->default(0)->index('user_id');
             $table->boolean('group_leader')->unsigned()->default(0);
             $table->boolean('user_pending')->unsigned()->default(1);
             $table->primary(['group_id', 'user_id']);
         });
-        $this->setRowFormat('phpbb_user_group', 'DYNAMIC');
 
         Schema::create('phpbb_users', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_bin';
-
             $table->mediumIncrements('user_id');
             $table->tinyInteger('user_type')->default(0);
             $table->mediumInteger('group_id')->unsigned()->default(2);
-            $column = $table->mediumText('user_permissions');
-            $column->collation = 'utf8_bin';
+            $table->mediumText('user_permissions');
             $table->mediumInteger('user_perm_from')->unsigned()->nullable()->default(0);
             $table->string('user_ip', 50)->default('');
             $table->integer('user_regdate')->unsigned()->default(0);
-            $column = $table->string('username')->default('');
-            $column->charset = 'utf8';
+            $table->string('username')->default('');
             $table->string('username_clean')->default('');
             $table->string('user_password', 64)->default('');
             $table->integer('user_passchg')->unsigned()->default(0);
@@ -1451,8 +1191,7 @@ class BaseTables extends Migration
             $table->boolean('user_avatar_type')->default(0);
             $table->smallInteger('user_avatar_width')->unsigned()->default(0);
             $table->smallInteger('user_avatar_height')->unsigned()->default(0);
-            $column = $table->mediumText('user_sig');
-            $column->collation = 'utf8_bin';
+            $table->mediumText('user_sig');
             $table->string('user_sig_bbcode_uid', 5)->default('');
             $table->string('user_sig_bbcode_bitfield')->default('');
             $table->string('user_from', 100)->default('');
@@ -1483,43 +1222,24 @@ class BaseTables extends Migration
             $table->unique('username_clean', 'username_clean');
             $table->unique(['username', 'user_id'], 'username_id');
         });
-        $this->setRowFormat('phpbb_users', 'DYNAMIC');
 
         Schema::create('phpbb_groups', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_bin';
-
             $table->mediumIncrements('group_id');
             $table->tinyInteger('group_type')->default(1);
             $table->unsignedTinyInteger('group_founder_manage')->default(0);
 
-            $column = $table->string('group_name', 255)->default('');
-            $column->collation = 'utf8_bin';
-
-            $column = $table->text('group_desc');
-            $column->collation = 'utf8_bin';
-
-            $column = $table->string('group_desc_bitfield', 255)->default('');
-            $column->collation = 'utf8_bin';
-
+            $table->string('group_name', 255)->default('');
+            $table->text('group_desc');
+            $table->string('group_desc_bitfield', 255)->default('');
             $table->unsignedInteger('group_desc_options')->default(7);
-
-            $column = $table->string('group_desc_uid', 5)->default('');
-            $column->collation = 'utf8_bin';
-
+            $table->string('group_desc_uid', 5)->default('');
             $table->unsignedTinyInteger('group_display')->default(0);
-
-            $column = $table->string('group_avatar', 255)->default('');
-            $column->collation = 'utf8_bin';
-
+            $table->string('group_avatar', 255)->default('');
             $table->tinyInteger('group_avatar_type')->default(0);
             $table->unsignedSmallInteger('group_avatar_width')->default(0);
             $table->unsignedSmallInteger('group_avatar_height')->default(0);
             $table->unsignedMediumInteger('group_rank')->default(0);
-
-            $column = $table->string('group_colour', 6)->default('');
-            $column->collation = 'utf8_bin';
-
+            $table->string('group_colour', 6)->default('');
             $table->unsignedMediumInteger('group_sig_chars')->default(0);
             $table->unsignedTinyInteger('group_receive_pm')->default(0);
             $table->unsignedMediumInteger('group_message_limit')->default(0);
@@ -1527,30 +1247,18 @@ class BaseTables extends Migration
 
             $table->index('group_legend', 'group_legend');
         });
-        $this->setRowFormat('phpbb_groups', 'DYNAMIC');
 
         Schema::create('phpbb_log', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_bin';
-
             $table->mediumIncrements('log_id');
             $table->tinyInteger('log_type')->default(0);
             $table->unsignedMediumInteger('user_id')->default(0);
             $table->unsignedMediumInteger('forum_id')->default(0);
             $table->unsignedMediumInteger('topic_id')->default(0);
             $table->unsignedMediumInteger('reportee_id')->default(0);
-
-            $column = $table->string('log_ip', 40)->default('');
-            $column->collation = 'utf8_bin';
-
+            $table->string('log_ip', 40)->default('');
             $table->unsignedInteger('log_time')->default(0);
-
-            $column = $table->text('log_operation');
-            $column->collation = 'utf8_bin';
-
-            $column = $table->mediumText('log_data');
-            $column->collation = 'utf8_bin';
-
+            $table->text('log_operation');
+            $table->mediumText('log_data');
             $table->index('log_type', 'log_type');
             $table->index('forum_id', 'forum_id');
             $table->index('topic_id', 'topic_id');
@@ -1560,9 +1268,6 @@ class BaseTables extends Migration
         $this->setRowFormat('phpbb_log', 'COMPRESSED');
 
         Schema::create('phpbb_topics_watch', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_bin';
-
             $table->unsignedMediumInteger('user_id')->default(0);
             $table->unsignedMediumInteger('topic_id')->default(0);
             $table->unsignedTinyInteger('notify_status')->default(0);
@@ -1576,7 +1281,6 @@ class BaseTables extends Migration
         DB::statement('
             CREATE TABLE weak_passwords
             (hash binary(16) NOT NULL, PRIMARY KEY (hash))
-            DEFAULT CHARSET=utf8mb4
         ');
     }
 

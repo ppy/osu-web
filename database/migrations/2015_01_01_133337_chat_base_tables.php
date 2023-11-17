@@ -2,6 +2,7 @@
 
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
@@ -18,11 +19,8 @@ class ChatBaseTables extends Migration
         $connection = DB::connection('mysql-chat');
 
         $builder->create('channels', function (Blueprint $table) {
-            $table->charset = 'utf8mb4';
-
             $table->increments('channel_id');
-            $column = $table->string('name', 50);
-            $column->charset = 'utf8mb4';
+            $table->string('name', 50);
             $table->string('description', 256);
             $table->timestamp('creation_time')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->enum('type', ['Public', 'Private', 'Multiplayer', 'Spectator', 'Temporary'])->default('Temporary');
@@ -34,8 +32,6 @@ class ChatBaseTables extends Migration
         $this->setRowFormat($connection, 'channels', 'DYNAMIC');
 
         $builder->create('messages', function (Blueprint $table) {
-            $table->charset = 'utf8mb4';
-
             $table->increments('message_id');
             $table->integer('user_id')->unsigned();
             $table->integer('channel_id')->unsigned();
@@ -49,8 +45,6 @@ class ChatBaseTables extends Migration
         $this->setRowFormat($connection, 'messages', 'COMPRESSED');
 
         $builder->create('messages_private', function (Blueprint $table) {
-            $table->charset = 'utf8mb4';
-
             $table->increments('message_id');
             $table->integer('user_id')->unsigned();
             $table->integer('target_id')->unsigned();
