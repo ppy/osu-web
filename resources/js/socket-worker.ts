@@ -7,7 +7,7 @@ import SocketStateChangedAction from 'actions/socket-state-changed-action';
 import { dispatch, dispatchListener } from 'app-dispatcher';
 import { route } from 'laroute';
 import { forEach } from 'lodash';
-import { action, computed, makeObservable, observable, reaction, runInAction } from 'mobx';
+import { action, computed, makeObservable, observable, reaction } from 'mobx';
 import { NotificationEventLogoutJson, NotificationEventVerifiedJson } from 'notifications/notification-events';
 import core from 'osu-core-singleton';
 import SocketMessageEvent, { isSocketEventData, SocketEventData } from 'socket-message-event';
@@ -176,14 +176,15 @@ export default class SocketWorker {
 
     this.xhr = $.get(route('notifications.endpoint'));
     this.xhr
-      .always(action(() => {
+      .always(() => {
         this.xhr = null;
-      }))
-      .done((data) => runInAction(() => {
+      })
+      .done((data) => {
         this.retryDelay.reset();
         this.endpoint = data.url;
         this.connectWebSocket();
-      })).fail((xhr) => runInAction(() => {
+      })
+      .fail((xhr) => {
         // Check if the user is logged out.
         // TODO: Add message to the popup.
         if (xhr.status === 401) {
@@ -191,6 +192,6 @@ export default class SocketWorker {
           return;
         }
         this.timeout.startWebSocket = window.setTimeout(this.startWebSocket, this.retryDelay.get());
-      }));
+      });
   };
 }
