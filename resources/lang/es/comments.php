@@ -43,6 +43,10 @@ return [
         'no_comments' => 'no se encontraron comentarios...',
     ],
 
+    'ogp' => [
+        'title' => '',
+    ],
+
     'placeholder' => [
         'edit' => 'Editar el comentario aquí',
         'new' => 'Escribe un nuevo comentario aquí',

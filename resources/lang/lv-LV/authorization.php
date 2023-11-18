@@ -171,7 +171,7 @@ return [
 
     'score' => [
         'pin' => [
-            'disabled_type' => "",
+            'disabled_type' => "Nevar piespraust šāda veida rezultātu",
             'not_owner' => 'Rezultātu var piespraust tikai rezultāta īpašnieks.',
             'too_many' => 'Piesprausti pārāk daudz rezultāti.',
         ],
@@ -186,7 +186,7 @@ return [
             ],
         ],
         'update_email' => [
-            'locked' => '',
+            'locked' => 'e-pasta adrese ir slēgta',
         ],
     ],
 ];

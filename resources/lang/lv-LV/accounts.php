@@ -19,8 +19,8 @@ return [
             'new_confirmation' => 'e-pasta apstiprinājums',
             'title' => 'E-pasts',
             'locked' => [
-                '_' => '',
-                'accounts' => '',
+                '_' => 'Lūdzu, sazinieties ar :accounts ja nepieciešams atjaunināt jūsu e-pasta adresi.',
+                'accounts' => 'kontu atbalsta komanda',
             ],
         ],
 
@@ -42,8 +42,8 @@ return [
             'title' => 'Profils',
 
             'country_change' => [
-                '_' => "",
-                'update_link' => '',
+                '_' => "Izskatās, ka konta valsts nesakrīt ar jūsu dzīvesvietas valsti. :update_link.",
+                'update_link' => 'Atjaunināt uz :country',
             ],
 
             'user' => [
@@ -64,12 +64,12 @@ return [
 
     'github_user' => [
         'info' => "",
-        'link' => '',
-        'title' => '',
-        'unlink' => '',
+        'link' => 'Pievienot GitHub kontu',
+        'title' => 'GitHub',
+        'unlink' => 'Atvienot GitHub kontu',
 
         'error' => [
-            'already_linked' => '',
+            'already_linked' => 'Šis GitHub konts jau ir pievienots citam lietotājam.',
             'no_contribution' => '',
             'unverified_email' => '',
         ],

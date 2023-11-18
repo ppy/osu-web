@@ -43,6 +43,10 @@ return [
         'no_comments' => 'ingen kommentarer endnu...',
     ],
 
+    'ogp' => [
+        'title' => '',
+    ],
+
     'placeholder' => [
         'edit' => 'Rediger kommentaren her',
         'new' => 'Skriv ny kommentar her',

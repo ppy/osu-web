@@ -6,6 +6,7 @@
 return [
     'cart' => [
         'checkout' => 'Afrekenen',
+        'empty_cart' => '',
         'info' => ':count_delimited artikel in winkelwagen ($:subtotal)|:count_delimited artikels in winkelwagen ($:subtotal)',
         'more_goodies' => 'Ik wil meer goodies bekijken voordat ik de bestelling voltooi',
         'shipping_fees' => 'verzendkosten',
@@ -48,19 +49,52 @@ return [
     ],
 
     'discount' => 'bespaar :percent%',
+    'free' => '',
 
     'invoice' => [
+        'contact' => '',
+        'date' => '',
         'echeck_delay' => 'Aangezien uw betaling een eCheck was, Wacht maximaal 10 dagen extra om de betaling veilig via PayPal te laten gaan!',
         'hide_from_activity' => 'osu!supporter tags in deze bestelling worden niet weergegeven in je recente activiteiten.',
+        'sent_via' => '',
+        'shipping_to' => '',
+        'title' => '',
         'title_compact' => 'factuur',
 
         'status' => [
+            'cancelled' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => "",
+                    'link_text' => '',
+                ],
+            ],
+            'delivered' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => '',
+                    'link_text' => '',
+                ],
+            ],
+            'prepared' => [
+                'title' => '',
+                'line_1' => '',
+                'line_2' => '',
+            ],
             'processing' => [
                 'title' => 'Uw betaling is nog niet bevestigd!',
                 'line_1' => 'Als u al betaald hebt, wachten we misschien nog steeds op bevestiging van uw betaling. Vernieuw deze pagina over een minuut of twee!',
                 'line_2' => [
                     '_' => 'Als u een probleem heeft ondervonden tijdens het afrekenen, :link',
                     'link_text' => 'klik hier om uw afrekenen te hervatten',
+                ],
+            ],
+            'shipped' => [
+                'title' => '',
+                'tracking_details' => '',
+                'no_tracking_details' => [
+                    '_' => "",
+                    'link_text' => '',
                 ],
             ],
         ],
@@ -74,7 +108,19 @@ return [
         'no_orders' => 'Geen bestellingen om te bekijken.',
         'paid_on' => 'Bestelling geplaatst :date',
         'resume' => 'Hervat afrekenen',
+        'shipping_and_handling' => '',
         'shopify_expired' => 'De checkout link voor deze bestelling is verlopen.',
+        'subtotal' => '',
+        'total' => '',
+
+        'details' => [
+            'order_number' => '',
+            'payment_terms' => '',
+            'salesperson' => '',
+            'shipping_method' => '',
+            'shipping_terms' => '',
+            'title' => '',
+        ],
 
         'item' => [
             'quantity' => 'Aantal',
@@ -105,6 +151,15 @@ return [
             'paid' => 'Betaald',
             'processing' => 'Wachten op bevestiging',
             'shipped' => 'Verzonden',
+            'title' => '',
+        ],
+
+        'thanks' => [
+            'title' => '',
+            'line_1' => [
+                '_' => '',
+                'link_text' => '',
+            ],
         ],
     ],
 
@@ -138,6 +193,10 @@ return [
     'username_change' => [
         'check' => 'Voer een gebruikersnaam in om de beschikbaarheid te controleren!',
         'checking' => 'Bezig met beschikbaarheid te controleren van :username...',
+        'placeholder' => '',
+        'label' => '',
+        'current' => '',
+
         'require_login' => [
             '_' => 'Je moet :link zijn om je naam te veranderen!',
             'link_text' => 'ingelogd',

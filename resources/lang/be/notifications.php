@@ -55,6 +55,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => 'Новы водгук ад :username, які змяшчае праблемы: :problems, прапановы: :suggestions, хвалы: :praises',
                 'beatmapset_discussion_unlock' => 'Бітмапа ":title" разблакава для абмеркавання.',
                 'beatmapset_discussion_unlock_compact' => 'Абмеркаванне было адкрыта',
+
+                'review_count' => [
+                    'praises' => '',
+                    'problems' => '',
+                    'suggestions' => '',
+                ],
             ],
 
             'beatmapset_problem' => [

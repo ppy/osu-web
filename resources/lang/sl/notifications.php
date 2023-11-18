@@ -55,6 +55,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => 'Nov pregled od :username, ki vsebuje težave: :problems, predloge: :suggestions, pohvale: :praises',
                 'beatmapset_discussion_unlock' => 'Razprava na ":title" je bila odklenjena',
                 'beatmapset_discussion_unlock_compact' => 'Razprava je bila odklenjena',
+
+                'review_count' => [
+                    'praises' => '',
+                    'problems' => '',
+                    'suggestions' => '',
+                ],
             ],
 
             'beatmapset_problem' => [

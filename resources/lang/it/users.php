@@ -124,6 +124,9 @@ return [
     ],
 
     'ogp' => [
+        'modding_description' => '',
+        'modding_description_empty' => '',
+
         'description' => [
             '_' => 'Posizione (:ruleset): :global | :country',
             'country' => 'Nazionale :rank',
@@ -183,7 +186,6 @@ return [
         'origin_country' => 'da :country',
         'previous_usernames' => 'conosciuto in precedenza come',
         'plays_with' => 'Gioca con :devices',
-        'title' => "Profilo di :username",
 
         'comments_count' => [
             '_' => 'Ha postato :link',

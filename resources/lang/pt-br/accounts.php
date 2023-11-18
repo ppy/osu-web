@@ -63,15 +63,15 @@ return [
     ],
 
     'github_user' => [
-        'info' => "",
-        'link' => '',
-        'title' => '',
-        'unlink' => '',
+        'info' => "Se você é um colaborador dos repositórios open-source do osu!, vincular sua conta do GitHub aqui associará suas entradas de changelog ao seu perfil do osu!. Contas do GitHub sem histórico de contribuições para o osu! não podem ser vinculadas.",
+        'link' => 'Conectar conta do GitHub',
+        'title' => 'GitHub',
+        'unlink' => 'Desconectar conta do GitHub',
 
         'error' => [
-            'already_linked' => '',
-            'no_contribution' => '',
-            'unverified_email' => '',
+            'already_linked' => 'Esta conta do GitHub já está conectada a um usuário diferente.',
+            'no_contribution' => 'Não é possível vincular a conta GitHub sem qualquer histórico de contribuição nos repositórios do osu!.',
+            'unverified_email' => 'Por favor, verifique seu e-mail principal no GitHub e tente vincular sua conta novamente.',
         ],
     ],
 

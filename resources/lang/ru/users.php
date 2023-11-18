@@ -124,6 +124,9 @@ return [
     ],
 
     'ogp' => [
+        'modding_description' => '',
+        'modding_description_empty' => '',
+
         'description' => [
             '_' => 'Рейтинг (:ruleset): :global | :country',
             'country' => 'В стране :rank',
@@ -183,7 +186,6 @@ return [
         'origin_country' => 'Проживает в :country',
         'previous_usernames' => 'ранее известный как',
         'plays_with' => 'Играет с :devices',
-        'title' => "Профиль :username",
 
         'comments_count' => [
             '_' => ':link',

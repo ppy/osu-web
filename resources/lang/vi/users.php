@@ -124,6 +124,9 @@ return [
     ],
 
     'ogp' => [
+        'modding_description' => '',
+        'modding_description_empty' => '',
+
         'description' => [
             '_' => 'Hạng (:ruleset): :global | :country',
             'country' => 'Quốc gia :rank',
@@ -183,7 +186,6 @@ return [
         'origin_country' => 'Từ :country',
         'previous_usernames' => 'được biết đến trước đây với',
         'plays_with' => 'Chơi bằng :devices',
-        'title' => "Trang cá nhân của :username",
 
         'comments_count' => [
             '_' => 'Đã đăng :link',

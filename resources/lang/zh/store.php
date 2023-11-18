@@ -6,6 +6,7 @@
 return [
     'cart' => [
         'checkout' => '结账',
+        'empty_cart' => '',
         'info' => '购物车里有 :count_delimited 件商品（$:subtotal）',
         'more_goodies' => '在完成订单之前，我想看看其他商品',
         'shipping_fees' => '运费',
@@ -48,19 +49,52 @@ return [
     ],
 
     'discount' => '节省 :percent%',
+    'free' => '',
 
     'invoice' => [
+        'contact' => '',
+        'date' => '',
         'echeck_delay' => '由于您的支付是通过 eCheck 进行的，请再等待至多 10 天来让 PayPal 完成支付。',
         'hide_from_activity' => '此订单的支持者标签购买未显示在你的个人活动中。',
+        'sent_via' => '',
+        'shipping_to' => '',
+        'title' => '',
         'title_compact' => '账单',
 
         'status' => [
+            'cancelled' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => "",
+                    'link_text' => '',
+                ],
+            ],
+            'delivered' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => '',
+                    'link_text' => '',
+                ],
+            ],
+            'prepared' => [
+                'title' => '',
+                'line_1' => '',
+                'line_2' => '',
+            ],
             'processing' => [
                 'title' => '您的付款信息尚未确认！',
                 'line_1' => '如果您已经支付，请等待我们收到支付信息，稍后再来看看吧。',
                 'line_2' => [
                     '_' => '如果您在结账中遇到问题，请 :link',
                     'link_text' => '点击此处以恢复',
+                ],
+            ],
+            'shipped' => [
+                'title' => '',
+                'tracking_details' => '',
+                'no_tracking_details' => [
+                    '_' => "",
+                    'link_text' => '',
                 ],
             ],
         ],
@@ -74,7 +108,19 @@ return [
         'no_orders' => '没有可显示的订单。',
         'paid_on' => ':date 支付订单',
         'resume' => '恢复结账',
+        'shipping_and_handling' => '',
         'shopify_expired' => '此订单的结账链接已过期。',
+        'subtotal' => '',
+        'total' => '',
+
+        'details' => [
+            'order_number' => '',
+            'payment_terms' => '',
+            'salesperson' => '',
+            'shipping_method' => '',
+            'shipping_terms' => '',
+            'title' => '',
+        ],
 
         'item' => [
             'quantity' => '数量',
@@ -105,6 +151,15 @@ return [
             'paid' => '已付款',
             'processing' => '待确认',
             'shipped' => '运送中',
+            'title' => '',
+        ],
+
+        'thanks' => [
+            'title' => '',
+            'line_1' => [
+                '_' => '',
+                'link_text' => '',
+            ],
         ],
     ],
 
@@ -138,6 +193,10 @@ return [
     'username_change' => [
         'check' => '输入用户名并检查是否可用',
         'checking' => '正在检查 :username 是否可用...',
+        'placeholder' => '',
+        'label' => '',
+        'current' => '',
+
         'require_login' => [
             '_' => '需要 :link 才能改变用户名！',
             'link_text' => '登录',

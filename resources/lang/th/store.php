@@ -6,6 +6,7 @@
 return [
     'cart' => [
         'checkout' => 'ชำระเงิน',
+        'empty_cart' => '',
         'info' => ':count_delimited รายการในตะกร้า ($:subtotal)|:count_delimited รายการในตะกร้า ($:subtotal)',
         'more_goodies' => 'ฉันอยากจะดูของอย่างอื่นก่อนที่จะดําเนินการสั่งซื้อ',
         'shipping_fees' => 'ค่าส่ง',
@@ -48,19 +49,52 @@ return [
     ],
 
     'discount' => 'ถูกลง :percent%',
+    'free' => '',
 
     'invoice' => [
+        'contact' => '',
+        'date' => '',
         'echeck_delay' => 'เนื่องจากการชำระเงินของคุณเป็น eCheck โปรดรอเพิ่มอีก 10 วันเพื่อให้การชำระเงินผ่าน PayPal!',
         'hide_from_activity' => 'แท็กผู้สนับสนุน osu! ในคำสั่งซื้อนี้จะไม่แสดงในกิจกรรมล่าสุดของคุณ',
+        'sent_via' => '',
+        'shipping_to' => '',
+        'title' => '',
         'title_compact' => 'ใบกำกับสินค้า',
 
         'status' => [
+            'cancelled' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => "",
+                    'link_text' => '',
+                ],
+            ],
+            'delivered' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => '',
+                    'link_text' => '',
+                ],
+            ],
+            'prepared' => [
+                'title' => '',
+                'line_1' => '',
+                'line_2' => '',
+            ],
             'processing' => [
                 'title' => 'การชำระเงินของคุณยังไม่ได้รับการยืนยัน!',
                 'line_1' => 'หากคุณชำระเงินไปแล้ว เราอาจยังรอการยืนยันของคุณ โปรดรีเฟรชหน้านี้ใน 1-2 นาที!',
                 'line_2' => [
                     '_' => 'หากคุณประสบปัญหาระหว่างการชำระเงิน :link',
                     'link_text' => 'คลิกที่นี่แล้วดำเนินการชำระเงินต่อ',
+                ],
+            ],
+            'shipped' => [
+                'title' => '',
+                'tracking_details' => '',
+                'no_tracking_details' => [
+                    '_' => "",
+                    'link_text' => '',
                 ],
             ],
         ],
@@ -74,7 +108,19 @@ return [
         'no_orders' => 'ไม่มีรายการให้ดู',
         'paid_on' => 'สั่งซื้อเมื่อ :date',
         'resume' => 'ดำเนินการชำระเงินต่อ',
+        'shipping_and_handling' => '',
         'shopify_expired' => 'ลิงค์ชำระเงินสำหรับคำสั่งซื้อนี้หมดอายุแล้ว',
+        'subtotal' => '',
+        'total' => '',
+
+        'details' => [
+            'order_number' => '',
+            'payment_terms' => '',
+            'salesperson' => '',
+            'shipping_method' => '',
+            'shipping_terms' => '',
+            'title' => '',
+        ],
 
         'item' => [
             'quantity' => 'จำนวน',
@@ -105,6 +151,15 @@ return [
             'paid' => 'ชำระเงินแล้ว',
             'processing' => 'กำลังรอการยืนยัน',
             'shipped' => 'จัดส่งแล้ว',
+            'title' => '',
+        ],
+
+        'thanks' => [
+            'title' => '',
+            'line_1' => [
+                '_' => '',
+                'link_text' => '',
+            ],
         ],
     ],
 
@@ -138,6 +193,10 @@ return [
     'username_change' => [
         'check' => 'ใส่ชื่อผู้ใช้เพื่อตรวจสอบสถานะ!',
         'checking' => 'กำลังตรวจสถานะของ :username...',
+        'placeholder' => '',
+        'label' => '',
+        'current' => '',
+
         'require_login' => [
             '_' => 'คุณจะต้อง:linkจึงจะเปลี่ยนชื่อได้!',
             'link_text' => 'ลงชื่อเข้าใช้แล้ว',

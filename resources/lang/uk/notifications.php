@@ -55,6 +55,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => 'Новий відгук від :username, що містить проблеми: :problems, пропозиції: :suggestions, похвали: :praises',
                 'beatmapset_discussion_unlock' => 'Мапа ":title" розблокована для обговорень',
                 'beatmapset_discussion_unlock_compact' => 'Обговорення відкрито',
+
+                'review_count' => [
+                    'praises' => '',
+                    'problems' => '',
+                    'suggestions' => '',
+                ],
             ],
 
             'beatmapset_problem' => [

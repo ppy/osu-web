@@ -124,6 +124,9 @@ return [
     ],
 
     'ogp' => [
+        'modding_description' => '',
+        'modding_description_empty' => '',
+
         'description' => [
             '_' => '',
             'country' => '',
@@ -183,7 +186,6 @@ return [
         'origin_country' => '所在国 :country',
         'previous_usernames' => '以前の名前',
         'plays_with' => '使用デバイス :devices',
-        'title' => ":usernameのプロフィール",
 
         'comments_count' => [
             '_' => '投稿 :link',

@@ -6,6 +6,7 @@
 return [
     'cart' => [
         'checkout' => 'Fizetés',
+        'empty_cart' => '',
         'info' => ':count_delimited elem a kosárban ($:subtotal)|:count_delimited elem a kosárban ($:subtotal)',
         'more_goodies' => 'Még több cuccot szeretnék megnézni mielőtt befejezném a rendelésem',
         'shipping_fees' => 'szállítási költség',
@@ -48,19 +49,52 @@ return [
     ],
 
     'discount' => ':percent% megtakaritása',
+    'free' => '',
 
     'invoice' => [
+        'contact' => '',
+        'date' => '',
         'echeck_delay' => 'Mivel a fizetésed egy eCheck volt, engedj meg neki legalább 10 napot a PayPal-es feldolgozásra!',
         'hide_from_activity' => 'ebben a vásárlásban szereplő osu!supporter címkék nem jelennek meg a legutóbbi aktivitásaid között.',
+        'sent_via' => '',
+        'shipping_to' => '',
+        'title' => '',
         'title_compact' => 'számla',
 
         'status' => [
+            'cancelled' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => "",
+                    'link_text' => '',
+                ],
+            ],
+            'delivered' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => '',
+                    'link_text' => '',
+                ],
+            ],
+            'prepared' => [
+                'title' => '',
+                'line_1' => '',
+                'line_2' => '',
+            ],
             'processing' => [
                 'title' => 'A fizetésed még nem lett megerősítve!',
                 'line_1' => 'Ha már fizettél, előfordulhat hogy még a megerősítést várjuk róla. Kérlek egy-két percen belül frissítsd az oldalt!',
                 'line_2' => [
                     '_' => 'Ha a fizetés során problémába ütköztél, :link',
                     'link_text' => 'kattints ide a fizetés folytatásához',
+                ],
+            ],
+            'shipped' => [
+                'title' => '',
+                'tracking_details' => '',
+                'no_tracking_details' => [
+                    '_' => "",
+                    'link_text' => '',
                 ],
             ],
         ],
@@ -74,7 +108,19 @@ return [
         'no_orders' => 'Nincs megtekinthető megrendelés.',
         'paid_on' => 'Megrendelés feladva :date',
         'resume' => 'Fizetés Folytatása',
+        'shipping_and_handling' => '',
         'shopify_expired' => 'A rendelés fizetési linkje lejárt.',
+        'subtotal' => '',
+        'total' => '',
+
+        'details' => [
+            'order_number' => '',
+            'payment_terms' => '',
+            'salesperson' => '',
+            'shipping_method' => '',
+            'shipping_terms' => '',
+            'title' => '',
+        ],
 
         'item' => [
             'quantity' => 'Mennyiség',
@@ -105,6 +151,15 @@ return [
             'paid' => 'Fizetett',
             'processing' => 'Megerősítés függőben',
             'shipped' => 'Szállítás alatt',
+            'title' => '',
+        ],
+
+        'thanks' => [
+            'title' => '',
+            'line_1' => [
+                '_' => '',
+                'link_text' => '',
+            ],
         ],
     ],
 
@@ -138,6 +193,10 @@ return [
     'username_change' => [
         'check' => 'Adj meg egy felhasználónevet az elérhetőség ellenőrzéséhez!',
         'checking' => ':username elérhetőségének ellenőrzése...',
+        'placeholder' => '',
+        'label' => '',
+        'current' => '',
+
         'require_login' => [
             '_' => ':link kell lenned a neved megváltoztatásához!',
             'link_text' => 'bejelentkezve',
