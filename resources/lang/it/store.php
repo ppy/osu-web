@@ -6,6 +6,7 @@
 return [
     'cart' => [
         'checkout' => 'Paga',
+        'empty_cart' => '',
         'info' => ':count_delimited articolo nel carrello ($:subtotal)|:count_delimited articoli nel carrello ($:subtotal)',
         'more_goodies' => 'Voglio dare un\'occhiata ad altri elementi prima di completare l\'ordine',
         'shipping_fees' => 'costi di spedizione',
@@ -48,19 +49,52 @@ return [
     ],
 
     'discount' => 'risparmi :percent%',
+    'free' => '',
 
     'invoice' => [
+        'contact' => '',
+        'date' => '',
         'echeck_delay' => 'Visto che il tuo pagamento era un eCheck, dovrai attendere altri 10 giorni per far passare il pagamento attraverso PayPal!',
         'hide_from_activity' => 'I tag osu!supporter in questo ordine non verranno mostrati nella tua attività recente.',
+        'sent_via' => '',
+        'shipping_to' => '',
+        'title' => '',
         'title_compact' => 'ricevuta',
 
         'status' => [
+            'cancelled' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => "",
+                    'link_text' => '',
+                ],
+            ],
+            'delivered' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => '',
+                    'link_text' => '',
+                ],
+            ],
+            'prepared' => [
+                'title' => '',
+                'line_1' => '',
+                'line_2' => '',
+            ],
             'processing' => [
                 'title' => 'Il tuo pagamento non è ancora stato confermato!',
                 'line_1' => 'Se hai già pagato, potremmo ancora essere in attesa di una conferma del tuo pagamento. Ricarica la pagina in un minuto o due!',
                 'line_2' => [
                     '_' => 'Sei hai avuto un problema durante il pagamento, :link',
                     'link_text' => 'clicca qui per riprendere con il pagamento',
+                ],
+            ],
+            'shipped' => [
+                'title' => '',
+                'tracking_details' => '',
+                'no_tracking_details' => [
+                    '_' => "",
+                    'link_text' => '',
                 ],
             ],
         ],
@@ -74,7 +108,19 @@ return [
         'no_orders' => 'Nessun ordine da visualizzare.',
         'paid_on' => 'Ordine effettuato :date',
         'resume' => 'Riprendi Pagamento',
+        'shipping_and_handling' => '',
         'shopify_expired' => 'Il link del pagamento per quest\'ordine è scaduto.',
+        'subtotal' => '',
+        'total' => '',
+
+        'details' => [
+            'order_number' => '',
+            'payment_terms' => '',
+            'salesperson' => '',
+            'shipping_method' => '',
+            'shipping_terms' => '',
+            'title' => '',
+        ],
 
         'item' => [
             'quantity' => 'Quantità',
@@ -105,6 +151,15 @@ return [
             'paid' => 'Pagato',
             'processing' => 'In attesa di conferma',
             'shipped' => 'In Transito',
+            'title' => '',
+        ],
+
+        'thanks' => [
+            'title' => '',
+            'line_1' => [
+                '_' => '',
+                'link_text' => '',
+            ],
         ],
     ],
 
@@ -138,6 +193,10 @@ return [
     'username_change' => [
         'check' => 'Inserisci un nome utente per controllare la disponibilità!',
         'checking' => 'Controllando la disponibilità di :username...',
+        'placeholder' => '',
+        'label' => '',
+        'current' => '',
+
         'require_login' => [
             '_' => 'Devi :link per poter cambiare il tuo nome!',
             'link_text' => 'eseguire l\'accesso',

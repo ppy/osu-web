@@ -124,6 +124,9 @@ return [
     ],
 
     'ogp' => [
+        'modding_description' => '',
+        'modding_description_empty' => '',
+
         'description' => [
             '_' => '',
             'country' => '',
@@ -183,7 +186,6 @@ return [
         'origin_country' => 'Fra :country',
         'previous_usernames' => 'tidligere kjent som',
         'plays_with' => 'Spiller med :devices',
-        'title' => "Profilen til :username",
 
         'comments_count' => [
             '_' => 'La ut :link',

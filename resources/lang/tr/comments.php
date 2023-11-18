@@ -43,6 +43,10 @@ return [
         'no_comments' => 'hiçbir yorum bulunamadı...',
     ],
 
+    'ogp' => [
+        'title' => '',
+    ],
+
     'placeholder' => [
         'edit' => 'Burada yorumu düzenle',
         'new' => 'Buraya yeni yorum yaz',

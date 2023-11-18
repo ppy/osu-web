@@ -124,6 +124,9 @@ return [
     ],
 
     'ogp' => [
+        'modding_description' => '',
+        'modding_description_empty' => '',
+
         'description' => [
             '_' => '',
             'country' => '',
@@ -183,7 +186,6 @@ return [
         'origin_country' => '',
         'previous_usernames' => '',
         'plays_with' => '',
-        'title' => "",
 
         'comments_count' => [
             '_' => '',

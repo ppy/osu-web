@@ -19,7 +19,7 @@ return [
     'index' => [
         'deleted_beatmap' => 'poistettu',
         'none_found' => 'Hakukriteereihin täsmääviä keskusteluja ei löytynyt.',
-        'title' => 'Beatmapkeskustelut',
+        'title' => 'Rytmikarttojen keskustelut',
 
         'form' => [
             '_' => 'Hae',
@@ -33,9 +33,9 @@ return [
             'beatmapset_status' => [
                 '_' => 'Beatmapin tila',
                 'all' => 'Kaikki',
-                'disqualified' => 'Hylätty',
+                'disqualified' => 'Epäkelpuutettu',
                 'never_qualified' => 'Ei koskaan kelpuutettu',
-                'qualified' => 'Hyväksytty',
+                'qualified' => 'Kelpuutettu',
                 'ranked' => 'Hyväksytty',
             ],
 

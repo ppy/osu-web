@@ -80,7 +80,7 @@ return [
         ],
 
         'reasons' => [
-            'compromised' => 'Tu cuenta se ha considerado comprometida. Puede ser desactivada temporalmente mientras se confirma su identidad.',
+            'compromised' => 'Tu cuenta se ha considerado comprometida. Puede ser desactivada temporalmente mientras se confirma tu identidad.',
             'opening' => 'Hay una serie de razones que pueden resultar en la desactivación de su cuenta:',
 
             'tos' => [
@@ -124,6 +124,9 @@ return [
     ],
 
     'ogp' => [
+        'modding_description' => '',
+        'modding_description_empty' => '',
+
         'description' => [
             '_' => 'Clasificación (:ruleset): :global | :country',
             'country' => 'País :rank',
@@ -183,7 +186,6 @@ return [
         'origin_country' => 'De :country',
         'previous_usernames' => 'antes conocido como',
         'plays_with' => 'Juega con :devices',
-        'title' => "Perfil de :username",
 
         'comments_count' => [
             '_' => 'Publicó :link',
@@ -388,7 +390,7 @@ return [
             'account_standing' => [
                 'title' => 'Estado de la cuenta',
                 'bad_standing' => "La cuenta de <strong>:username</strong> no está en buen estado :(",
-                'remaining_silence' => ':username podrá volver a hablar dentro de :duration.',
+                'remaining_silence' => ':username podrá volver a hablar :duration.',
 
                 'recent_infringements' => [
                     'title' => 'Infracciones recientes',

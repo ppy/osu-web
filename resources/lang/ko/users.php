@@ -124,6 +124,9 @@ return [
     ],
 
     'ogp' => [
+        'modding_description' => '',
+        'modding_description_empty' => '',
+
         'description' => [
             '_' => '순위 (:ruleset:): :global | :country',
             'country' => '국가 :rank',
@@ -183,7 +186,6 @@ return [
         'origin_country' => ':country에 거주',
         'previous_usernames' => '이전 아이디',
         'plays_with' => '플레이 장비: :devices',
-        'title' => ":username님의 프로필",
 
         'comments_count' => [
             '_' => ':link 작성됨',

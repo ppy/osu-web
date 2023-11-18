@@ -55,6 +55,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => 'Nauja apžvalga iš :username, kurioje yra problemos: :problems, pasiūlymai: :suggestions, pagyrimai: :praises',
                 'beatmapset_discussion_unlock' => 'Diskusija apie ":title" buvo atrakinta',
                 'beatmapset_discussion_unlock_compact' => 'Diskusija buvo atrakinta',
+
+                'review_count' => [
+                    'praises' => '',
+                    'problems' => '',
+                    'suggestions' => '',
+                ],
             ],
 
             'beatmapset_problem' => [

@@ -26,7 +26,7 @@ return [
             'deleted' => 'Incluir discussões excluídas',
             'mode' => 'Modo de jogo',
             'only_unresolved' => 'Mostrar apenas discussões não resolvidas',
-            'show_review_embeds' => '',
+            'show_review_embeds' => 'Mostrar publicações de revisão',
             'types' => 'Tipos de mensagem',
             'username' => 'Nome de Usuário',
 

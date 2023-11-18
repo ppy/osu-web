@@ -55,6 +55,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => 'Neue Rezension von :username mit Problemen: :problems, Vorschlägen: :suggestions, Lob: :praises',
                 'beatmapset_discussion_unlock' => 'Diskussion auf ":title" wurde freigegeben',
                 'beatmapset_discussion_unlock_compact' => 'Die Diskussion ist freigegeben',
+
+                'review_count' => [
+                    'praises' => '',
+                    'problems' => '',
+                    'suggestions' => '',
+                ],
             ],
 
             'beatmapset_problem' => [
