@@ -24,7 +24,7 @@ import { createAnnouncement, getUpdates } from './chat-api';
 import MainView from './main-view';
 import PingService from './ping-service';
 
-type ChannelId = number | 'create' | null;
+type ChannelId = number | 'create' | 'join' | null;
 
 @dispatchListener
 export default class ChatStateStore implements DispatchListener {
@@ -53,11 +53,15 @@ export default class ChatStateStore implements DispatchListener {
 
   @computed
   get selectedChannel() {
-    return this.selected == null || this.selected === 'create' ? null : this.channelStore.get(this.selected);
+    return typeof this.selected === 'number' ? this.channelStore.get(this.selected) : null;
   }
 
   get showingCreateAnnouncement() {
     return this.selected === 'create';
+  }
+
+  get showingJoinChannel() {
+    return this.selected === 'join';
   }
 
   @computed
@@ -152,12 +156,12 @@ export default class ChatStateStore implements DispatchListener {
 
     this.selected = channelId;
 
-    if (channelId === 'create') {
+    if (typeof channelId === 'string') {
       if (mode != null) {
         Turbolinks.controller[mode](updateQueryString(null, {
           channel_id: null,
           sendto: null,
-        }, 'create'));
+        }, channelId));
       }
 
       return;

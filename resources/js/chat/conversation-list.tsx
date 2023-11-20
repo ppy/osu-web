@@ -9,6 +9,7 @@ import * as React from 'react';
 import { trans } from 'utils/lang';
 import ConversationListItem from './conversation-list-item';
 import CreateAnnouncementButton from './create-announcement-button';
+import JoinChannelButton from './join-channel-button';
 
 const icons: Record<SupportedChannelType, string> = {
   ANNOUNCE: 'fas fa-bullhorn',
@@ -40,6 +41,7 @@ function renderChannels(type: SupportedChannelType) {
             </div>
           ))}
           {type === 'ANNOUNCE' && <CreateAnnouncementButton />}
+          {type === 'PUBLIC' && <JoinChannelButton />}
         </div>
         <div className='chat-conversation-list-separator' />
       </React.Fragment>
