@@ -55,6 +55,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => 'Nieuwe beoordeling door :username die problemen bevat: :problems, suggesties: :suggestions, prijzen: :praises',
                 'beatmapset_discussion_unlock' => 'Beatmap ":title" is ontgrendeld voor discussie.',
                 'beatmapset_discussion_unlock_compact' => 'Discussie is ontgrendeld',
+
+                'review_count' => [
+                    'praises' => '',
+                    'problems' => '',
+                    'suggestions' => '',
+                ],
             ],
 
             'beatmapset_problem' => [
@@ -161,10 +167,8 @@ return [
                 'user_beatmapset_new_compact' => 'Nieuwe beatmap ":title"',
                 'user_beatmapset_new_group' => 'Nieuwe beatmaps door :username',
 
-                'user_beatmapset_revive' => '
-Beatmap ":title" vernieuwd door :username',
-                'user_beatmapset_revive_compact' => '
-Beatmap ":title" vernieuwd',
+                'user_beatmapset_revive' => 'Beatmap ":title" vernieuwd door :username',
+                'user_beatmapset_revive_compact' => 'Beatmap ":title" vernieuwd',
             ],
         ],
 

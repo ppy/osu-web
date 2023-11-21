@@ -124,6 +124,9 @@ return [
     ],
 
     'ogp' => [
+        'modding_description' => '',
+        'modding_description_empty' => '',
+
         'description' => [
             '_' => '',
             'country' => '',
@@ -183,7 +186,6 @@ return [
         'origin_country' => 'Iz :country',
         'previous_usernames' => 'prethodno znan kao',
         'plays_with' => 'Igra sa :devices',
-        'title' => ":username-ov profil",
 
         'comments_count' => [
             '_' => 'Postavio :link',

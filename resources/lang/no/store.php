@@ -6,6 +6,7 @@
 return [
     'cart' => [
         'checkout' => 'Gå til kassen',
+        'empty_cart' => '',
         'info' => ':count_delimited ting i kurven ($:subtotal)|:count_delimited items i vogn ($:subtotal)',
         'more_goodies' => 'Jeg vil se på flere produkter før jeg fullfører bestillingen',
         'shipping_fees' => 'fraktkostnader',
@@ -48,19 +49,52 @@ return [
     ],
 
     'discount' => 'spar :percent%',
+    'free' => '',
 
     'invoice' => [
+        'contact' => '',
+        'date' => '',
         'echeck_delay' => 'Ettersom betalingen din var en eCheck, vennligst tillatt opp til 10 ekstra dager for at betalingen skal kunne komme gjennom PayPal!',
         'hide_from_activity' => 'osu!supporter tag i denne bestillingen vises ikke i dine nylige aktiviteter.',
+        'sent_via' => '',
+        'shipping_to' => '',
+        'title' => '',
         'title_compact' => 'faktura',
 
         'status' => [
+            'cancelled' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => "",
+                    'link_text' => '',
+                ],
+            ],
+            'delivered' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => '',
+                    'link_text' => '',
+                ],
+            ],
+            'prepared' => [
+                'title' => '',
+                'line_1' => '',
+                'line_2' => '',
+            ],
             'processing' => [
                 'title' => 'Din betaling har enda ikke blitt bekreftet!',
                 'line_1' => 'Hvis du allerede har betalt, kan det fortsatt hende at vi venter på en bekreftelse på betalingen din. Vennligst oppdater denne siden om et minutt eller to!',
                 'line_2' => [
                     '_' => 'Hvis du støtte på et problem under utsjekking, :link',
                     'link_text' => 'klikk her for å fortsette utsjekkingen',
+                ],
+            ],
+            'shipped' => [
+                'title' => '',
+                'tracking_details' => '',
+                'no_tracking_details' => [
+                    '_' => "",
+                    'link_text' => '',
                 ],
             ],
         ],
@@ -74,7 +108,19 @@ return [
         'no_orders' => 'Ingen bestillinger å vise.',
         'paid_on' => 'Bestilling plassert den :date',
         'resume' => 'Tilbake til kassen',
+        'shipping_and_handling' => '',
         'shopify_expired' => 'Utsjekkingslenken for denne bestillingen er utløpt.',
+        'subtotal' => '',
+        'total' => '',
+
+        'details' => [
+            'order_number' => '',
+            'payment_terms' => '',
+            'salesperson' => '',
+            'shipping_method' => '',
+            'shipping_terms' => '',
+            'title' => '',
+        ],
 
         'item' => [
             'quantity' => 'Mengde',
@@ -105,6 +151,15 @@ return [
             'paid' => 'Betalt',
             'processing' => 'Avventer bekreftelse',
             'shipped' => 'På vei',
+            'title' => '',
+        ],
+
+        'thanks' => [
+            'title' => '',
+            'line_1' => [
+                '_' => '',
+                'link_text' => '',
+            ],
         ],
     ],
 
@@ -138,6 +193,10 @@ return [
     'username_change' => [
         'check' => 'Oppgi et brukernavn for å sjekke om det er tilgjengelig!',
         'checking' => 'Sjekker om :username er tilgjengelig...',
+        'placeholder' => '',
+        'label' => '',
+        'current' => '',
+
         'require_login' => [
             '_' => 'For å endre navnet ditt, må du være :link!',
             'link_text' => 'logget inn',

@@ -6,6 +6,7 @@
 return [
     'cart' => [
         'checkout' => 'Thanh Toán',
+        'empty_cart' => '',
         'info' => ':count_delimited sản phẩm trong giỏ ($:subtotal)|:count_delimited sản phẩm trong giỏ ($:subtotal)',
         'more_goodies' => 'Tôi muốn xem thêm nhiều mặt hàng nữa trước khi hoàn thành đơn hàng',
         'shipping_fees' => 'phí vận chuyển',
@@ -48,19 +49,52 @@ return [
     ],
 
     'discount' => 'tiết kiệm :percent%',
+    'free' => '',
 
     'invoice' => [
+        'contact' => '',
+        'date' => '',
         'echeck_delay' => 'Vì bạn thanh toán bằng eCheck, hãy chờ thêm tối đa 10 ngày để thanh toán qua khỏi PayPal!',
         'hide_from_activity' => 'thẻ osu!supporter ở trong đơn hàng này sẽ không được hiện lên ở trong hoạt động gần đây của bạn.',
+        'sent_via' => '',
+        'shipping_to' => '',
+        'title' => '',
         'title_compact' => 'hóa đơn',
 
         'status' => [
+            'cancelled' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => "",
+                    'link_text' => '',
+                ],
+            ],
+            'delivered' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => '',
+                    'link_text' => '',
+                ],
+            ],
+            'prepared' => [
+                'title' => '',
+                'line_1' => '',
+                'line_2' => '',
+            ],
             'processing' => [
                 'title' => 'Thanh toán của bạn chưa được xác nhận!',
                 'line_1' => 'Nếu bạn đã thanh toán, chúng tôi có thể vẫn đang đợi xác nhận của thanh toán của bạn. Hãy tải lại trang này trong khoảng một đến hai phút!',
                 'line_2' => [
                     '_' => 'Nếu bạn gặp sự cố trong quá trình thanh toán, :link',
                     'link_text' => 'nhấp vào đây để tiếp tục quá trình thanh toán',
+                ],
+            ],
+            'shipped' => [
+                'title' => '',
+                'tracking_details' => '',
+                'no_tracking_details' => [
+                    '_' => "",
+                    'link_text' => '',
                 ],
             ],
         ],
@@ -74,7 +108,19 @@ return [
         'no_orders' => 'Không có đơn đặt hàng.',
         'paid_on' => 'Đã đặt hàng :date',
         'resume' => 'Tiếp Tục Thanh Toán',
+        'shipping_and_handling' => '',
         'shopify_expired' => 'Link thanh toán cho đơn hàng này đã hết hạn.',
+        'subtotal' => '',
+        'total' => '',
+
+        'details' => [
+            'order_number' => '',
+            'payment_terms' => '',
+            'salesperson' => '',
+            'shipping_method' => '',
+            'shipping_terms' => '',
+            'title' => '',
+        ],
 
         'item' => [
             'quantity' => 'Số lượng',
@@ -105,6 +151,15 @@ return [
             'paid' => 'Đã Thanh Toán',
             'processing' => 'Đang chờ xác nhận',
             'shipped' => 'Đã giao hàng',
+            'title' => '',
+        ],
+
+        'thanks' => [
+            'title' => '',
+            'line_1' => [
+                '_' => '',
+                'link_text' => '',
+            ],
         ],
     ],
 
@@ -138,6 +193,10 @@ return [
     'username_change' => [
         'check' => 'Nhập tên người dùng để kiểm tra tính khả dụng!',
         'checking' => 'Đang kiểm tra tính khả dụng của :username...',
+        'placeholder' => '',
+        'label' => '',
+        'current' => '',
+
         'require_login' => [
             '_' => 'Bạn cần phải :link để đổi tên!',
             'link_text' => 'đăng nhập',

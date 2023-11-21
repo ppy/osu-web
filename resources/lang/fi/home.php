@@ -19,7 +19,7 @@ return [
     ],
 
     'search' => [
-        'advanced_link' => 'Tarkempi haku',
+        'advanced_link' => 'Tarkennettu haku',
         'button' => 'Hae',
         'empty_result' => 'Mitään ei löytynyt!',
         'keyword_required' => 'Syötä hakusana',
@@ -27,7 +27,7 @@ return [
         'title' => 'Hae',
 
         'beatmapset' => [
-            'login_required' => 'Kirjaudu sisään käyttääksesi beatmap-hakua',
+            'login_required' => 'Kirjaudu sisään etsiäksesi rytmikarttoja',
             'more' => ':count lisää hakutulosta',
             'more_simple' => 'Katso lisää hakutuloksia',
             'title' => 'Beatmapit',
@@ -75,11 +75,11 @@ return [
     'download' => [
         'action' => 'Lataa osu!',
         'action_lazer' => 'Lataa osu!(lazer)',
-        'action_lazer_description' => 'seuraava suuri päivitys osu!:un',
+        'action_lazer_description' => 'seuraava suuri päivitys osu!un',
         'action_lazer_info' => 'lisätietoja saat täältä',
-        'action_lazer_title' => 'kokeile osu!(lazer):ia',
+        'action_lazer_title' => 'kokeile osu!(lazer)ia',
         'action_title' => 'lataa osu!',
-        'for_os' => 'käyttöjärjestelmälle :os',
+        'for_os' => ':os -käyttöjärjestelmälle',
         'lazer_note' => 'huomautus: tulostaulukoiden nollaus pätee',
         'macos-fallback' => 'macOS-käyttäjät',
         'mirror' => 'vaihtoehtoinen lataus',
@@ -135,7 +135,7 @@ return [
         ],
         'beatmaps' => [
             'new' => 'Uudet Hyväksytyt Beatmapit',
-            'popular' => 'Suositut Beatmapit',
+            'popular' => 'Suositut rytmikartat',
             'by_user' => 'tehnyt :user',
         ],
         'buttons' => [

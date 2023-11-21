@@ -51,11 +51,17 @@ return [
                 'beatmapset_discussion_post_new_empty' => 'Új poszt a ":title"-on :username:-tol',
                 'beatmapset_discussion_post_new_compact' => 'Új hozzászólás :username által: ":content"',
                 'beatmapset_discussion_post_new_compact_empty' => 'Új poszt :username által',
-                'beatmapset_discussion_review_new' => 'Új hozzászolás problémákat tartalmazó tartalomról :username által, ezen a beatmapen: ":title"
+                'beatmapset_discussion_review_new' => 'Új hozzászolás problémákat tartalmazó tartalomról :username által, ezen a beatmapen: ":title"  
 :problems, javaslat :suggestions, dícséret: :praises',
                 'beatmapset_discussion_review_new_compact' => 'Új hozzászolás problémákat tartalmazó tartalomról :username által: :problems, javaslat :suggestions, dícséret: :praises',
                 'beatmapset_discussion_unlock' => 'A beszélgetést feloldották ezen: ":title"',
                 'beatmapset_discussion_unlock_compact' => 'A beszélgetést feloldották',
+
+                'review_count' => [
+                    'praises' => '',
+                    'problems' => '',
+                    'suggestions' => '',
+                ],
             ],
 
             'beatmapset_problem' => [

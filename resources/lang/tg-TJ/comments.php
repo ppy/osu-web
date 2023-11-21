@@ -43,6 +43,10 @@ return [
         'no_comments' => '',
     ],
 
+    'ogp' => [
+        'title' => '',
+    ],
+
     'placeholder' => [
         'edit' => '',
         'new' => '',

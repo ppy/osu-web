@@ -43,6 +43,10 @@ return [
         'no_comments' => '未找到评论……',
     ],
 
+    'ogp' => [
+        'title' => '',
+    ],
+
     'placeholder' => [
         'edit' => '在此编辑评论',
         'new' => '在此输入新评论',

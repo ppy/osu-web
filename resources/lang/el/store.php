@@ -6,6 +6,7 @@
 return [
     'cart' => [
         'checkout' => 'Ολοκλήρωση αγοράς',
+        'empty_cart' => '',
         'info' => ':count_delimited αντικείμενο στο καλάθι ($:subtotal),:count_delimited αντικείμενα στο καλάθι ($:subtotal)',
         'more_goodies' => 'Θέλω να ελέγξω περισσότερα καλούδια πριν ολοκληρώσω την παραγγελία',
         'shipping_fees' => 'έξοδα αποστολής',
@@ -48,19 +49,52 @@ return [
     ],
 
     'discount' => 'κερδίστε :percent%',
+    'free' => '',
 
     'invoice' => [
+        'contact' => '',
+        'date' => '',
         'echeck_delay' => 'Δεδομένου ότι η πληρωμή σας ήταν μια eCheck, παρακαλώ επιτρέψτε έως και 10ημέρες για την πληρωμή μέσω PayPal!',
         'hide_from_activity' => 'osu!supporter ετικέτες με αυτή τη σειρά δεν εμφανίζονται στις πρόσφατες δραστηριότητές σας.',
+        'sent_via' => '',
+        'shipping_to' => '',
+        'title' => '',
         'title_compact' => 'τιμολόγιο',
 
         'status' => [
+            'cancelled' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => "",
+                    'link_text' => '',
+                ],
+            ],
+            'delivered' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => '',
+                    'link_text' => '',
+                ],
+            ],
+            'prepared' => [
+                'title' => '',
+                'line_1' => '',
+                'line_2' => '',
+            ],
             'processing' => [
                 'title' => 'Δεν έχει ακόμη επιβεβαιωθεί η πληρωμή σας!',
                 'line_1' => 'Αν έχετε ήδη πληρώσει, μπορεί ακόμα να περιμένουμε την επιβεβάιωση της πληρωμής σας. Παρακαλούμε ανανεώστε τη σελίδα σε ένα λεπτό ή δύο!',
                 'line_2' => [
                     '_' => 'Εάν αντιμετωπίσατε κάποιο πρόβλημα κατά τη διάρκεια checkout, :link',
                     'link_text' => 'κάντε κλικ εδώ για να συνεχίσετε την παραγγελία σας',
+                ],
+            ],
+            'shipped' => [
+                'title' => '',
+                'tracking_details' => '',
+                'no_tracking_details' => [
+                    '_' => "",
+                    'link_text' => '',
                 ],
             ],
         ],
@@ -74,7 +108,19 @@ return [
         'no_orders' => 'Δεν υπάρχουν παραγγελίες για προβολή.',
         'paid_on' => 'Παραγγελία ορίστηκε :date',
         'resume' => 'Συνέχιση Αγοράς',
+        'shipping_and_handling' => '',
         'shopify_expired' => 'Ο σύνδεσμος παραγγελίας για αυτήν την παραγγελία έχει λήξει.',
+        'subtotal' => '',
+        'total' => '',
+
+        'details' => [
+            'order_number' => '',
+            'payment_terms' => '',
+            'salesperson' => '',
+            'shipping_method' => '',
+            'shipping_terms' => '',
+            'title' => '',
+        ],
 
         'item' => [
             'quantity' => 'Ποσότητα',
@@ -105,6 +151,15 @@ return [
             'paid' => 'Πληρώθηκε',
             'processing' => 'Προς επιβεβαίωση',
             'shipped' => 'Μεταφέρεται',
+            'title' => '',
+        ],
+
+        'thanks' => [
+            'title' => '',
+            'line_1' => [
+                '_' => '',
+                'link_text' => '',
+            ],
         ],
     ],
 
@@ -138,6 +193,10 @@ return [
     'username_change' => [
         'check' => 'Εισάγετε ένα όνομα χρήστη για να ελέγξετε τη διαθεσιμότητα!',
         'checking' => 'Ελέγχουμε τη διαθεσιμότητα του :username...',
+        'placeholder' => '',
+        'label' => '',
+        'current' => '',
+
         'require_login' => [
             '_' => 'Πρέπει να είστε :link για να αλλάξετε το όνομα χρήστη σας!',
             'link_text' => 'συνδεδεμένος',

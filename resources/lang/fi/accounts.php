@@ -76,8 +76,8 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_qualified_problem' => 'vastaanota ilmoituksia uudesta ongelmasta seuraavien tilojen hyväksytyissä beatmapeissa',
-        'beatmapset_disqualify' => 'vastaanota ilmoituksia kun beatmappeja hylätään seuraavista tiloista',
+        'beatmapset_discussion_qualified_problem' => 'vastaanota ilmoituksia uusista ongelmista seuraavien pelimuotojen hyväksytyissä rytmikartoissa',
+        'beatmapset_disqualify' => 'vastaanota ilmoituksia kun rytmikarttoja hylätään seuraavissa pelimuodoissa',
         'comment_reply' => 'vastaanota ilmoituksia vastauksista kommentteihisi',
         'title' => 'Ilmoitukset',
         'topic_auto_subscribe' => 'ota automaattisesti ilmoitukset käyttöön tekemillesi uusille foorumiaiheille',
@@ -85,12 +85,12 @@ return [
         'options' => [
             '_' => 'toimitusvaihtoehdot',
             'beatmap_owner_change' => 'vieraileva vaikeustaso',
-            'beatmapset:modding' => 'beatmapin modaus',
+            'beatmapset:modding' => 'rytmikartan modaus',
             'channel_message' => 'yksityisviestit',
             'comment_new' => 'uudet kommentit',
             'forum_topic_reply' => 'aihevastaus',
             'mail' => 'posti',
-            'mapping' => 'beatmapin kartoittaja',
+            'mapping' => 'rytmikartan kartoittaja',
             'push' => 'push',
             'user_achievement_unlock' => 'mitali ansaittu',
         ],
@@ -108,9 +108,9 @@ return [
         'title' => 'Asetukset',
 
         'beatmapset_download' => [
-            '_' => 'oletus beatmap-lataus tyyppi',
+            '_' => 'rytmikarttojen oletuslataustyyppi',
             'all' => 'videon kanssa jos saatavilla',
-            'direct' => 'avaa osu!directissä',
+            'direct' => 'avaa osu!-directissä',
             'no_video' => 'ilman videota',
         ],
     ],

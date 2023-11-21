@@ -55,6 +55,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => ':username 发表了新的审阅，问题：:problems，建议：:suggestions，赞：:praises',
                 'beatmapset_discussion_unlock' => '討論於 ":title" 已解鎖',
                 'beatmapset_discussion_unlock_compact' => '討論已被解鎖',
+
+                'review_count' => [
+                    'praises' => '',
+                    'problems' => '',
+                    'suggestions' => '',
+                ],
             ],
 
             'beatmapset_problem' => [
