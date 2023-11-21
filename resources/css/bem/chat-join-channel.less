@@ -2,12 +2,22 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .chat-join-channel {
-  --input-size: @font-size--title-small-3;
-
-  display: flex;
-  flex-direction: column;
   flex: 1;
   background: hsl(var(--hsl-b4));
+
+  &__channel {
+    display: contents;
+    color: hsl(var(--hsl-l3));
+    text-align: left;
+
+    .link-hover({
+      color: hsl(var(--hsl-c1));
+    });
+
+    &--joined {
+      color: hsl(var(--hsl-c1));
+    }
+  }
 
   &__channels {
     display: grid;

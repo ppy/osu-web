@@ -81,6 +81,13 @@ export function getUpdates(since: number, lastHistoryId?: number | null) {
   ) as JQuery.jqXHR<ChatUpdatesJson | null>;
 }
 
+export function joinChannel(channelId: number, userId: number) {
+  return $.ajax({
+    type: 'PUT',
+    url: route('chat.channels.join', { channel: channelId, user: userId }),
+  }) as JQuery.jqXHR<ChannelJson>;
+}
+
 export function markAsRead(channelId: number, messageId: number) {
   return $.ajax({
     type: 'PUT',

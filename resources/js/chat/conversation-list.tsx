@@ -20,7 +20,7 @@ const icons: Record<SupportedChannelType, string> = {
 
 function renderChannels(type: SupportedChannelType) {
   const channels = core.dataStore.channelStore.groupedChannels[type];
-  if (channels.length > 0 || type === 'ANNOUNCE' && core.dataStore.chatState.canChatAnnounce) {
+  if (channels.length > 0 || type ==='PUBLIC' ||type === 'ANNOUNCE' && core.dataStore.chatState.canChatAnnounce) {
     const title = trans(`chat.channels.list.title.${type}`);
 
     // Optimization so that the channel list can be rendered as several smaller layers.

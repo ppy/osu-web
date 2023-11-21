@@ -20,7 +20,7 @@ import { trans } from 'utils/lang';
 import { updateQueryString } from 'utils/url';
 import ChannelJoinEvent from './channel-join-event';
 import ChannelPartEvent from './channel-part-event';
-import { createAnnouncement, getUpdates } from './chat-api';
+import { createAnnouncement, getUpdates, joinChannel } from './chat-api';
 import MainView from './main-view';
 import PingService from './ping-service';
 
@@ -129,18 +129,22 @@ export default class ChatStateStore implements DispatchListener {
   // Only up to one join/create channel operation should be allowed to be running at any time.
   // For consistency, the operation is considered complete when the websocket message arrives, not when the request completes.
   @action
-  joinChannel() {
-    if (!this.createAnnouncement.isValid || this.isJoiningChannel) return;
+  joinChannel(channelId?: number) {
+    if (channelId != null) {
+      joinChannel(channelId, core.currentUserOrFail.id);
+    } else {
+      if (!this.createAnnouncement.isValid || this.isJoiningChannel) return;
 
-    const json = this.createAnnouncement.toJson();
-    this.waitJoinChannelUuid = json.uuid;
-    // TODO: when adding more channel types to join, remember to add separate busy spinner states for them.
+      const json = this.createAnnouncement.toJson();
+      this.waitJoinChannelUuid = json.uuid;
+      // TODO: when adding more channel types to join, remember to add separate busy spinner states for them.
 
-    createAnnouncement(json)
-      .fail(action((xhr: JQueryXHR) => {
-        onError(xhr);
-        this.waitJoinChannelUuid = null;
-      }));
+      createAnnouncement(json)
+        .fail(action((xhr: JQueryXHR) => {
+          onError(xhr);
+          this.waitJoinChannelUuid = null;
+        }));
+    }
   }
 
   @action

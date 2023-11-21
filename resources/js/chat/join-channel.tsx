@@ -7,9 +7,20 @@ import { computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
+import { classWithModifiers } from 'utils/css';
 import { getPublicChannels } from './chat-api';
 
 type Props = Record<string, never>;
+
+function Channel({ channel, joined, onClick }: { channel: ChannelJson; joined: boolean; onClick: (id: number) => void }) {
+  return (
+    <button key={channel.channel_id} className={classWithModifiers('chat-join-channel__channel', { joined })} onClick={() => onClick(channel.channel_id)}>
+      <div>{joined && <i className='fas fa-check' />}</div>
+      <div>{channel.name}</div>
+      <div>{channel.description}</div>
+    </button>
+  );
+}
 
 @observer
 export default class JoinChannel extends React.Component<Props> {
@@ -38,16 +49,16 @@ export default class JoinChannel extends React.Component<Props> {
       <div className='chat-join-channel'>
         <div className='chat-join-channel__channels'>
           {this.channels.map((channel) => (
-            <React.Fragment key={channel.channel_id}>
-              <div>{this.joinedChannelIds.has(channel.channel_id) && <i className='fas fa-check' />}</div>
-              <div>{channel.name}</div>
-              <div>{channel.description}</div>
-            </React.Fragment>
+            <Channel key={channel.channel_id} channel={channel} joined={this.joinedChannelIds.has(channel.channel_id)} onClick={this.handleClick} />
           ))}
         </div>
       </div>
     );
   }
+
+  private readonly handleClick = (channelId: number) => {
+    core.dataStore.chatState.joinChannel(channelId);
+  };
 
   private async loadChannelList() {
     if (this.channels != null) return;
