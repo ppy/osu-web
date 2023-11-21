@@ -71,7 +71,7 @@ function serializeEmbed(node: EmbedElement): DocumentIssueEmbed {
       beatmap_id: node.beatmapId ?? null,
       discussion_type: node.discussionType,
       text: node.children[0].text,
-      timestamp: node.timestamp != null ? parseTimestamp(node.timestamp) : null,
+      timestamp: parseTimestamp(node.timestamp),
       type: 'embed',
     };
   }
