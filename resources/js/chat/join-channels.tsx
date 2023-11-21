@@ -23,7 +23,7 @@ function Channel({ channel, joined, onClick }: { channel: ChannelJson; joined: b
 }
 
 @observer
-export default class JoinChannel extends React.Component<Props> {
+export default class JoinChannels extends React.Component<Props> {
   @observable private channels?: ChannelJson[];
 
 

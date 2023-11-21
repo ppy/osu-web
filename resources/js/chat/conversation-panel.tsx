@@ -8,7 +8,7 @@ import * as React from 'react';
 import { trans } from 'utils/lang';
 import ConversationView from './conversation-view';
 import CreateAnnouncement from './create-announcement';
-import JoinChannel from './join-channel';
+import JoinChannels from './join-channels';
 
 const lazerLink = 'https://github.com/ppy/osu/releases';
 
@@ -22,7 +22,7 @@ export default class ConversationPanel extends React.Component<Record<string, ne
         ) : core.dataStore.chatState.showingCreateAnnouncement ? (
           <CreateAnnouncement />
         ) : core.dataStore.chatState.showingJoinChannel ? (
-          <JoinChannel />
+          <JoinChannels />
         ) : (
           <div className='chat-conversation-panel__no-channel'>
             <Img2x alt='Art by Badou_Rammsteiner' src='/images/layout/chat/none-yet.png' title='Art by Badou_Rammsteiner' />
