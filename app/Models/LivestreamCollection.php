@@ -41,7 +41,7 @@ class LivestreamCollection
 
     public function download($api)
     {
-        $clientId = config('osu.twitch_client_id');
+        $clientId = $GLOBALS['cfg']['osu']['twitch_client_id'];
         if ($clientId === null) {
             return;
         }
@@ -89,8 +89,8 @@ class LivestreamCollection
             try {
                 $response = (new Client(['base_uri' => 'https://id.twitch.tv']))
                     ->request('POST', '/oauth2/token', ['query' => [
-                        'client_id' => config('osu.twitch_client_id'),
-                        'client_secret' => config('osu.twitch_client_secret'),
+                        'client_id' => $GLOBALS['cfg']['osu']['twitch_client_id'],
+                        'client_secret' => $GLOBALS['cfg']['osu']['twitch_client_secret'],
                         'grant_type' => 'client_credentials',
                     ]])
                     ->getBody()

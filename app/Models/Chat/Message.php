@@ -31,7 +31,7 @@ class Message extends Model implements ReportableInterface
             return $messages;
         }
 
-        $minTimestamp = json_time(Carbon::now()->subHours(config('osu.chat.public_backlog_limit')));
+        $minTimestamp = json_time(Carbon::now()->subHours($GLOBALS['cfg']['osu']['chat']['public_backlog_limit']));
         $ret = [];
 
         foreach ($messages as $message) {

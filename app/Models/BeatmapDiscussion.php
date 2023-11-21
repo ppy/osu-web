@@ -302,7 +302,7 @@ class BeatmapDiscussion extends Model
                     ->select('id')
             )->sum('amount');
 
-        $availableKudosu = config('osu.beatmapset.discussion_kudosu_per_user') - $beatmapsetKudosuGranted;
+        $availableKudosu = $GLOBALS['cfg']['osu']['beatmapset']['discussion_kudosu_per_user'] - $beatmapsetKudosuGranted;
         $maxChange = $targetKudosu - $kudosuGranted;
         $change = min($availableKudosu, $maxChange);
 

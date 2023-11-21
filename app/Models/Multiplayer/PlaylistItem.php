@@ -122,7 +122,7 @@ class PlaylistItem extends Model
             return;
         }
 
-        $maxAttemptsLimit = config('osu.multiplayer.max_attempts_limit');
+        $maxAttemptsLimit = $GLOBALS['cfg']['osu']['multiplayer']['max_attempts_limit'];
         if ($this->max_attempts < 1 || $this->max_attempts > $maxAttemptsLimit) {
             throw new InvariantException("field 'max_attempts' must be between 1 and {$maxAttemptsLimit}");
         }

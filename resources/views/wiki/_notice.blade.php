@@ -11,7 +11,7 @@
 @if ($page->isLegalTranslation())
     <div class="wiki-notice wiki-notice--important">
         {!! osu_trans('wiki.show.translation.legal', [
-            'default' => '<a href="'.e(wiki_url($page->path, config('app.fallback_locale'))).'">'.e(osu_trans('wiki.show.translation.default')).'</a>',
+            'default' => '<a href="'.e(wiki_url($page->path, $GLOBALS['cfg']['app']['fallback_locale'])).'">'.e(osu_trans('wiki.show.translation.default')).'</a>',
         ]) !!}
     </div>
 @endif
@@ -19,7 +19,7 @@
 @if ($page->isOutdatedTranslation())
     <div class="wiki-notice">
         {!! osu_trans('wiki.show.translation.outdated', [
-            'default' => '<a href="'.e(wiki_url($page->path, config('app.fallback_locale'))).'">'.e(osu_trans('wiki.show.translation.default')).'</a>',
+            'default' => '<a href="'.e(wiki_url($page->path, $GLOBALS['cfg']['app']['fallback_locale'])).'">'.e(osu_trans('wiki.show.translation.default')).'</a>',
         ]) !!}
     </div>
 @endif

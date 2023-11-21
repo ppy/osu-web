@@ -43,7 +43,7 @@ abstract class Controller extends BaseController
         $session->regenerateToken();
         $session->put('requires_verification', VerifyUserAlways::isRequired($user));
         Auth::login($user, $remember);
-        if (config('osu.user.bypass_verification')) {
+        if ($GLOBALS['cfg']['osu']['user']['bypass_verification']) {
             UserVerificationState::fromCurrentRequest()->markVerified();
         }
         $session->migrate(true);

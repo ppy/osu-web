@@ -207,7 +207,7 @@ abstract class Search extends HasSearch implements Queryable
             'sort' => array_map(function ($sort) {
                 return $sort->toArray();
             }, $this->params->sorts),
-            'timeout' => config('osu.elasticsearch.search_timeout'),
+            'timeout' => $GLOBALS['cfg']['osu']['elasticsearch']['search_timeout'],
         ];
 
         if (isset($this->params->searchAfter)) {
@@ -289,7 +289,7 @@ abstract class Search extends HasSearch implements Queryable
         }
 
         Datadog::increment(
-            config('datadog-helper.prefix_web').'.search.errors',
+            $GLOBALS['cfg']['datadog-helper']['prefix_web'].'.search.errors',
             1,
             $tags
         );
@@ -328,7 +328,7 @@ abstract class Search extends HasSearch implements Queryable
         try {
             return datadog_timing(
                 $callable,
-                config('datadog-helper.prefix_web').'.search.'.$operation,
+                $GLOBALS['cfg']['datadog-helper']['prefix_web'].'.search.'.$operation,
                 $this->getDatadogTags()
             );
         } catch (ElasticsearchException $e) {

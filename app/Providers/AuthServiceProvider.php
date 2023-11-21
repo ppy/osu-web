@@ -34,7 +34,7 @@ class AuthServiceProvider extends ServiceProvider
         // AuthorizationController class.
         $this->app->when(AuthorizationController::class)
             ->needs(StatefulGuard::class)
-            ->give(fn () => Auth::guard(config('passport.guard', null)));
+            ->give(fn () => Auth::guard($GLOBALS['cfg']['passport']['guard']));
     }
 
     public function boot()
@@ -45,7 +45,7 @@ class AuthServiceProvider extends ServiceProvider
         Passport::useTokenModel(Token::class);
         Passport::useClientModel(Client::class);
 
-        if ($path = config('services.passport.path')) {
+        if ($path = $GLOBALS['cfg']['services']['passport']['path']) {
             Passport::keyPath($path);
         }
 

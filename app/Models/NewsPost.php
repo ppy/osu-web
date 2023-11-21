@@ -257,7 +257,7 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
 
         if ($absolute && !starts_with($url, ['https://', 'http://'])) {
             if ($url[0] === '/') {
-                $url = config('app.url').$url;
+                $url = $GLOBALS['cfg']['app']['url'].$url;
             } else {
                 $url = "{$this->url()}/{$url}";
             }

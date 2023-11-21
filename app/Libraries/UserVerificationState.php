@@ -64,7 +64,7 @@ class UserVerificationState
         }
 
         // 1 byte = 2^8 bits = 16^2 bits = 2 hex characters
-        $key = bin2hex(random_bytes(config('osu.user.verification_key_length_hex') / 2));
+        $key = bin2hex(random_bytes($GLOBALS['cfg']['osu']['user']['verification_key_length_hex'] / 2));
         $linkKey = SignedRandomString::create(32);
         $expires = now()->addHours(5);
 
@@ -129,7 +129,7 @@ class UserVerificationState
             throw new UserVerificationException('expired', true);
         }
 
-        if ($tries > config('osu.user.verification_key_tries_limit')) {
+        if ($tries > $GLOBALS['cfg']['osu']['user']['verification_key_tries_limit']) {
             throw new UserVerificationException('retries_exceeded', true);
         }
 

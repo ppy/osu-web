@@ -314,8 +314,8 @@ class CommentsControllerTest extends TestCase
 
     private function prepareForStore()
     {
-        config()->set('osu.user.post_action_verification', false);
-        $this->minPlays = config('osu.user.min_plays_for_posting');
+        config_set('osu.user.post_action_verification', false);
+        $this->minPlays = $GLOBALS['cfg']['osu']['user']['min_plays_for_posting'];
 
         $this->user = User::factory()->withPlays()->create();
 

@@ -4,26 +4,31 @@
 --}}
 @extends('master')
 
+@php
+    $user = Auth::user();
+    $isSupporter = $user?->isSupporter() ?? false;
+    $url = $isSupporter
+        ? osu_url('testflight.supporter')
+        : osu_url('testflight.public');
+@endphp
 @section('content')
     @include('layout._page_header_v4', ['params' => [
         'theme' => 'home',
     ]])
     <div class="osu-page osu-page--generic">
-        @if (Auth::user() && Auth::user()->isSupporter())
-            <p>
+        <p>
+            @if ($isSupporter)
                 This is a private link for osu!supporters. <strong>Please do not share it.</strong><br />
                 If you want to share access to the iOS beta with other users, link them to <a href="{{route('testflight')}}">this page</a> instead.
-            </p>
-            <center><a href="{{config('osu.urls.testflight.supporter')}}" rel="nofollow noreferrer">{{config('osu.urls.testflight.supporter')}}</a></center>
-        @else
-            <p>
+            @else
                 Note that we may reset this link every few months to allow new users to test.<br/>
                 (because Apple has a limit on how many testers can be added)<br/>
-                @if (!Auth::user())
+                @if ($user === null)
                     If you are an osu!supporter, please login for a more permanent link.
                 @endif
-            </p>
-            <center><a href="{{config('osu.urls.testflight.public')}}" rel="nofollow noreferrer">{{config('osu.urls.testflight.public')}}</a></center>
-        @endif
+            @endif
+        </p>
+
+        <center><a href="{{ $url }}" rel="nofollow noreferrer">{{ $url }}</a></center>
     </div>
 @endsection

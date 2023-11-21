@@ -13,7 +13,7 @@ class SeasonalBackgroundsController extends Controller
 {
     public function index()
     {
-        $contest = Contest::find(config('osu.seasonal.contest_id'));
+        $contest = Contest::find($GLOBALS['cfg']['osu']['seasonal']['contest_id']);
 
         if ($contest === null) {
             return response()->json(new stdClass());
@@ -22,7 +22,7 @@ class SeasonalBackgroundsController extends Controller
         $backgrounds = $contest->userContestEntries()->where('show_in_client', true)->get();
 
         return [
-            'ends_at' => json_time(Carbon::parse(config('osu.seasonal.ends_at'))),
+            'ends_at' => json_time(Carbon::parse($GLOBALS['cfg']['osu']['seasonal']['ends_at'])),
 
             'backgrounds' => json_collection($backgrounds, 'SeasonalBackground'),
         ];

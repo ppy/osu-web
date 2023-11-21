@@ -117,7 +117,7 @@ class Build extends Model implements Commentable
 
     public function scopeDefault($query)
     {
-        $query->whereIn('stream_id', config('osu.changelog.update_streams'));
+        $query->whereIn('stream_id', $GLOBALS['cfg']['osu']['changelog']['update_streams']);
     }
 
     public function propagationHistories()

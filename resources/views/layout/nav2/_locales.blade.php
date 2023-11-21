@@ -19,7 +19,7 @@
         data-visibility="hidden"
     >
         <div class="simple-menu__content">
-            @foreach (config('app.available_locales') as $locale)
+            @foreach ($GLOBALS['cfg']['app']['available_locales'] as $locale)
                 @php
                     $localeMeta = locale_meta($locale);
                 @endphp

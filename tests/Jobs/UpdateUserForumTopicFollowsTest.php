@@ -20,7 +20,7 @@ class UpdateUserForumTopicFollowsTest extends TestCase
     public function testRemoveUserWithNoWatchPermission(): void
     {
         $adminForum = Forum::factory()->create();
-        config()->set('osu.forum.admin_forum_id', $adminForum->getKey());
+        config_set('osu.forum.admin_forum_id', $adminForum->getKey());
         $normalForum = Forum::factory()->create();
         $topic = Topic::factory()->create();
         $user = User::factory()->create();

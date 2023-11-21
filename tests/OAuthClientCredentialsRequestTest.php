@@ -75,6 +75,6 @@ class OAuthClientCredentialsRequestTest extends TestCase
         parent::setUp();
 
         // otherwise exceptions won't render the actual view.
-        config()->set('app.debug', false);
+        config_set('app.debug', false);
     }
 }

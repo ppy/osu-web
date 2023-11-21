@@ -62,7 +62,7 @@ class TestCase extends BaseTestCase
 
     protected static function resetAppDb(DatabaseManager $database): void
     {
-        foreach (array_keys(config('database.connections')) as $name) {
+        foreach (array_keys($GLOBALS['cfg']['database']['connections']) as $name) {
             $connection = $database->connection($name);
 
             $connection->rollBack();
@@ -103,7 +103,7 @@ class TestCase extends BaseTestCase
         parent::setUp();
 
         // change config setting because we need more than 1 for the tests.
-        config()->set('osu.oauth.max_user_clients', 100);
+        config_set('osu.oauth.max_user_clients', 100);
 
         // Force connections to reset even if transactional tests were not used.
         // Should fix tests going wonky when different queue drivers are used, or anything that
@@ -183,7 +183,7 @@ class TestCase extends BaseTestCase
         static $privateKey;
 
         if ($privateKey === null) {
-            $privateKey = config('passport.private_key') ?? file_get_contents(Passport::keyPath('oauth-private.key'));
+            $privateKey = $GLOBALS['cfg']['passport']['private_key'] ?? file_get_contents(Passport::keyPath('oauth-private.key'));
         }
 
         $encryptedToken = JWT::encode([
@@ -328,7 +328,7 @@ class TestCase extends BaseTestCase
     protected function withInterOpHeader($url)
     {
         return $this->withHeaders([
-            'X-LIO-Signature' => hash_hmac('sha1', $url, config('osu.legacy.shared_interop_secret')),
+            'X-LIO-Signature' => hash_hmac('sha1', $url, $GLOBALS['cfg']['osu']['legacy']['shared_interop_secret']),
         ]);
     }
 

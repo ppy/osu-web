@@ -11,7 +11,7 @@ class BeatmapDifficultyAttributes
 {
     public static function get(int $beatmapId, int $rulesetId, array $mods)
     {
-        $response = (new Client(['base_uri' => config('osu.beatmaps.difficulty_cache.server_url')]))
+        $response = (new Client(['base_uri' => $GLOBALS['cfg']['osu']['beatmaps']['difficulty_cache']['server_url']]))
             ->request('POST', 'attributes', [
                 'connect_timeout' => 1,
                 'json' => [
