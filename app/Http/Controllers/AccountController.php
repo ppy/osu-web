@@ -308,7 +308,7 @@ class AccountController extends Controller
 
     public function verifyLink()
     {
-        $state = UserVerificationState::fromVerifyLink(request('key'));
+        $state = UserVerificationState::fromVerifyLink(get_string(request('key')) ?? '');
 
         if ($state === null) {
             UserVerification::logAttempt('link', 'fail', 'incorrect_key');
