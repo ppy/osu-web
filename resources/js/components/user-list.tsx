@@ -84,7 +84,7 @@ export class UserList extends React.PureComponent<Props> {
             return x.is_online ? -1 : 1;
           }
 
-          return moment(y.last_visit || 0).diff(moment(x.last_visit || 0));
+          return moment(y.last_visit ?? 0).diff(moment(x.last_visit ?? 0));
         });
     }
   }
