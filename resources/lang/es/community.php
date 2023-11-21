@@ -91,7 +91,7 @@ return [
 
             'yellow_fellow' => [
                 'title' => 'Amigo amarillo',
-                'description' => 'Sé reconocido dentro del juego con tu nuevo color de usuario amarillo brillante en el chat.',
+                'description' => 'Resalta dentro del juego con tu nuevo color de usuario amarillo brillante en el chat.',
             ],
 
             'speedy_downloads' => [

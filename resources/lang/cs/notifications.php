@@ -55,6 +55,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => 'Nová recenze od :username obsahující problémy: :problems, návrhy: :suggestions, ocenění: :praises',
                 'beatmapset_discussion_unlock' => 'Diskuze ":title" byla odemčena',
                 'beatmapset_discussion_unlock_compact' => 'Diskuze byla odemčena',
+
+                'review_count' => [
+                    'praises' => '',
+                    'problems' => '',
+                    'suggestions' => '',
+                ],
             ],
 
             'beatmapset_problem' => [

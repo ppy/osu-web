@@ -6,6 +6,7 @@
 return [
     'cart' => [
         'checkout' => 'Ödeme',
+        'empty_cart' => '',
         'info' => ':count_delimited ürün sepette ($:subtotal)|:count_delimited ürün sepette ($:subtotal)',
         'more_goodies' => 'Ödememi yapmadan önce başka eşyalara göz atmak istiyorum',
         'shipping_fees' => 'kargo ücretleri',
@@ -48,19 +49,52 @@ return [
     ],
 
     'discount' => '%:percent kazanın',
+    'free' => '',
 
     'invoice' => [
+        'contact' => '',
+        'date' => '',
         'echeck_delay' => 'Ödemenizin bir eCheck olması nedeniyle, ödemenizin PayPal\'dan temizlenmesi için 10 ekstra günü göz önüne alın!',
         'hide_from_activity' => 'Bu siparişteki osu!supporter etiketleri yakın zamandaki etkinliklerinizde gösterilmez.',
+        'sent_via' => '',
+        'shipping_to' => '',
+        'title' => '',
         'title_compact' => 'fatura',
 
         'status' => [
+            'cancelled' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => "",
+                    'link_text' => '',
+                ],
+            ],
+            'delivered' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => '',
+                    'link_text' => '',
+                ],
+            ],
+            'prepared' => [
+                'title' => '',
+                'line_1' => '',
+                'line_2' => '',
+            ],
             'processing' => [
                 'title' => 'Ödemeniz henüz onaylanmadı!',
                 'line_1' => 'Eğer çoktan ödemeyi yaptıysanız, biz hala ödemenizin doğrulamasını bekliyor olabiliriz. Lütfen bu sayfayı bir ya da iki dakika sonra yenileyin!',
                 'line_2' => [
                     '_' => 'Eğer ödeme sırasında bir sorun ile karşılaştıysanız, :link',
                     'link_text' => 'ödeme özetini görmek için buraya tıklayın',
+                ],
+            ],
+            'shipped' => [
+                'title' => '',
+                'tracking_details' => '',
+                'no_tracking_details' => [
+                    '_' => "",
+                    'link_text' => '',
                 ],
             ],
         ],
@@ -74,7 +108,19 @@ return [
         'no_orders' => 'Görüntülenecek sipariş yok.',
         'paid_on' => 'Sipariş verme tarihi :date',
         'resume' => 'Sepete Dön',
+        'shipping_and_handling' => '',
         'shopify_expired' => 'Bu sipariş için ödeme bağlantısının süresi doldu.',
+        'subtotal' => '',
+        'total' => '',
+
+        'details' => [
+            'order_number' => '',
+            'payment_terms' => '',
+            'salesperson' => '',
+            'shipping_method' => '',
+            'shipping_terms' => '',
+            'title' => '',
+        ],
 
         'item' => [
             'quantity' => 'Adet',
@@ -105,6 +151,15 @@ return [
             'paid' => 'Ödendi',
             'processing' => 'Onay bekleniyor',
             'shipped' => 'Ulaştırılıyor',
+            'title' => '',
+        ],
+
+        'thanks' => [
+            'title' => '',
+            'line_1' => [
+                '_' => '',
+                'link_text' => '',
+            ],
         ],
     ],
 
@@ -138,6 +193,10 @@ return [
     'username_change' => [
         'check' => 'Geçerliliğini kontrol etmek için bir kullanıcı adı girin!',
         'checking' => ':username geçerliliği kontrol ediliyor...',
+        'placeholder' => '',
+        'label' => '',
+        'current' => '',
+
         'require_login' => [
             '_' => 'İsmini değiştirmek için :link olman gerekiyor!',
             'link_text' => 'giriş yapmış',

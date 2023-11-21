@@ -55,6 +55,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => 'Ny anmeldelse af :username indeholder problemer: :problems, forslag: :suggestions, rose: :praises',
                 'beatmapset_discussion_unlock' => 'Diskussion på ":title" er blevet åbnet',
                 'beatmapset_discussion_unlock_compact' => 'Diskussion er blevet åbnet',
+
+                'review_count' => [
+                    'praises' => '',
+                    'problems' => '',
+                    'suggestions' => '',
+                ],
             ],
 
             'beatmapset_problem' => [

@@ -55,6 +55,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => 'Ny recension av :username som innehåller problem: :problems, förslag: :suggestions, beröm: :praises',
                 'beatmapset_discussion_unlock' => 'Diskussion om ":title" har låsts upp',
                 'beatmapset_discussion_unlock_compact' => 'Diskussionen låstes upp',
+
+                'review_count' => [
+                    'praises' => '',
+                    'problems' => '',
+                    'suggestions' => '',
+                ],
             ],
 
             'beatmapset_problem' => [

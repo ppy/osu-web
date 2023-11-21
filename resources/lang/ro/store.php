@@ -6,6 +6,7 @@
 return [
     'cart' => [
         'checkout' => 'Plată',
+        'empty_cart' => '',
         'info' => 'un obiect în coș ($:subtotal)|:count_delimited obiecte în coș ($:subtotal)|:count_delimited de obiecte în coș ($:subtotal)',
         'more_goodies' => 'Vreau să-mi verific bunătățile înainte de a completa comanda',
         'shipping_fees' => 'taxe de livrare',
@@ -48,19 +49,52 @@ return [
     ],
 
     'discount' => 'economisește :percent%',
+    'free' => '',
 
     'invoice' => [
+        'contact' => '',
+        'date' => '',
         'echeck_delay' => 'Pentru că plata ta a fost făcută electronic, te rugăm să aștepți încă 10 zile pentru ca plata să se afișeze prin PayPal!',
         'hide_from_activity' => 'Statusul de suporter osu! din această comandă nu sunt afișate în activitățile tale recente.',
+        'sent_via' => '',
+        'shipping_to' => '',
+        'title' => '',
         'title_compact' => 'factură fiscală',
 
         'status' => [
+            'cancelled' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => "",
+                    'link_text' => '',
+                ],
+            ],
+            'delivered' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => '',
+                    'link_text' => '',
+                ],
+            ],
+            'prepared' => [
+                'title' => '',
+                'line_1' => '',
+                'line_2' => '',
+            ],
             'processing' => [
                 'title' => 'Plata nu a fost încă confirmată!',
                 'line_1' => 'Dacă ai plătit deja, se poate ca noi încă să așteptăm pentru a primi confirmarea plății. Te rugăm să reîmprospătezi această pagină într-un minut sau două!',
                 'line_2' => [
                     '_' => 'Dacă ai întâmpinat o problemă în timpul plății, :link',
                     'link_text' => 'apasă aici pentru a-ți calcula plata',
+                ],
+            ],
+            'shipped' => [
+                'title' => '',
+                'tracking_details' => '',
+                'no_tracking_details' => [
+                    '_' => "",
+                    'link_text' => '',
                 ],
             ],
         ],
@@ -74,7 +108,19 @@ return [
         'no_orders' => 'Nu sunt comenzi pentru vizualizare.',
         'paid_on' => 'Comandă plasată pe :date',
         'resume' => 'Reia finalizarea comenzii',
+        'shipping_and_handling' => '',
         'shopify_expired' => 'Link-ul de finalizare a comenzii a expirat.',
+        'subtotal' => '',
+        'total' => '',
+
+        'details' => [
+            'order_number' => '',
+            'payment_terms' => '',
+            'salesperson' => '',
+            'shipping_method' => '',
+            'shipping_terms' => '',
+            'title' => '',
+        ],
 
         'item' => [
             'quantity' => 'Cantitate',
@@ -105,6 +151,15 @@ return [
             'paid' => 'Plătit',
             'processing' => 'Confirmarea plății',
             'shipped' => 'Expediat',
+            'title' => '',
+        ],
+
+        'thanks' => [
+            'title' => '',
+            'line_1' => [
+                '_' => '',
+                'link_text' => '',
+            ],
         ],
     ],
 
@@ -138,6 +193,10 @@ return [
     'username_change' => [
         'check' => 'Întrodu un nume de utilizator pentru a verifica disponibilitatea!',
         'checking' => 'Se verifică disponibilitatea lui :username...',
+        'placeholder' => '',
+        'label' => '',
+        'current' => '',
+
         'require_login' => [
             '_' => 'Trebuie să fii :link pentru a îți schimba numele!',
             'link_text' => 'conectat',

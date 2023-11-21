@@ -81,7 +81,7 @@ return [
     ],
 
     'contest' => [
-        'voting_over' => 'No puedes cambiar tu voto después de haber concluido el periodo de votación.',
+        'voting_over' => 'No puedes cambiar tu voto después de que el periodo de votación para este concurso haya finalizado.',
 
         'entry' => [
             'limit_reached' => 'Has alcanzado el límite de entradas para este concurso',

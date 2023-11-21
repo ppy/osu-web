@@ -14,7 +14,7 @@ return [
     'beatmaps' => [
         '_' => 'Beatmapit',
         'download' => 'Lataa Beatmap-Pohja',
-        'download-na' => 'beatmappipohja ei vielä saatavilla',
+        'download-na' => 'rytmikarttapohja ei vielä saatavilla',
     ],
 
     'index' => [
@@ -22,7 +22,7 @@ return [
     ],
 
     'links' => [
-        'beatmaps' => 'osu!-beatmapit',
+        'beatmaps' => 'osu!-rytmikartat',
         'osu' => 'osu!-profiili',
         'site' => 'Virallinen verkkosivusto',
     ],

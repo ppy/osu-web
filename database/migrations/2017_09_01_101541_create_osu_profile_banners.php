@@ -21,9 +21,6 @@ class CreateOsuProfileBanners extends Migration
         }
 
         Schema::create('osu_profile_banners', function (Blueprint $table) {
-            $table->charset = 'utf8mb4';
-            $table->collation = 'utf8mb4_general_ci';
-
             $table->unsignedMediumInteger('banner_id', true);
             $table->unsignedInteger('user_id');
             $table->integer('tournament_id');

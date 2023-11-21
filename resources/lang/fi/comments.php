@@ -17,7 +17,7 @@ return [
     'title' => 'Kommentit',
 
     'commentable_name' => [
-        'beatmapset' => 'Beatmap',
+        'beatmapset' => 'Rytmikartta',
         'build' => 'Muutosloki',
         'news_post' => 'Uutiset',
         '_deleted' => 'Poistettu',
@@ -41,6 +41,10 @@ return [
         'nav_comments' => 'kommentteja',
         'nav_title' => 'listaus',
         'no_comments' => 'mitään kommentteja ei löytynyt...',
+    ],
+
+    'ogp' => [
+        'title' => '',
     ],
 
     'placeholder' => [

@@ -55,6 +55,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => '',
                 'beatmapset_discussion_unlock' => 'Η συζήτηση για το beatmap ":title" ξεκλειδώθηκε.',
                 'beatmapset_discussion_unlock_compact' => '',
+
+                'review_count' => [
+                    'praises' => '',
+                    'problems' => '',
+                    'suggestions' => '',
+                ],
             ],
 
             'beatmapset_problem' => [
