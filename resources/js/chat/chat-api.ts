@@ -66,6 +66,10 @@ export function getMessages(channelId: number, params?: { until?: number }) {
   }));
 }
 
+export function getPublicChannels() {
+  return $.get(route('chat.channels.index')) as JQuery.jqXHR<ChannelJson[]>;
+}
+
 export function getUpdates(since: number, lastHistoryId?: number | null) {
   return $.get(
     route('chat.updates'),

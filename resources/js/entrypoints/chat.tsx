@@ -79,6 +79,8 @@ core.reactTurbolinks.register('chat', action(() => {
 
   if (currentUrl().hash === '#create') {
     core.dataStore.chatState.selectChannel('create', 'replaceHistory');
+  } else if (currentUrl().hash === '#join') {
+    core.dataStore.chatState.selectChannel('join', 'replaceHistory');
   } else {
     const channel = getInitialChannel(initial?.send_to);
 
