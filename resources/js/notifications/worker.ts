@@ -4,9 +4,10 @@
 import DispatcherAction from 'actions/dispatcher-action';
 import { dispatch, dispatchListener } from 'app-dispatcher';
 import DispatchListener from 'dispatch-listener';
+import { isErrorJson } from 'interfaces/error-json';
 import { NotificationBundleJson } from 'interfaces/notification-json';
 import { route } from 'laroute';
-import { action, computed, makeObservable, observable, observe } from 'mobx';
+import { action, computed, makeObservable, observable, observe, runInAction } from 'mobx';
 import SocketMessageEvent, { SocketEventData } from 'socket-message-event';
 import SocketWorker from 'socket-worker';
 import RetryDelay from 'utils/retry-delay';
@@ -38,9 +39,8 @@ export default class Worker implements DispatchListener {
   @observable waitingVerification = false;
   @observable private firstLoadedAt?: Date;
   private readonly retryDelay = new RetryDelay();
-  private readonly timeout: Partial<Record<string, number>> = {};
-  private readonly xhr: Partial<Record<string, JQueryXHR>> = {};
-  private readonly xhrLoadingState: Partial<Record<string, boolean>> = {};
+  private timeout: number | undefined;
+  private xhr: JQuery.jqXHR<NotificationBootJson> | null = null;
 
   @computed
   get hasData() {
@@ -83,7 +83,7 @@ export default class Worker implements DispatchListener {
   }
 
   private delayedRetryInitialLoadMore() {
-    this.timeout.loadMore = window.setTimeout(this.loadMore, this.retryDelay.get());
+    this.timeout = window.setTimeout(this.loadMore, this.retryDelay.get());
   }
 
   @action
@@ -95,24 +95,28 @@ export default class Worker implements DispatchListener {
   }
 
   private readonly loadMore = () => {
-    if (this.xhrLoadingState.loadMore) {
+    if (this.xhr != null) {
       return;
     }
 
-    window.clearTimeout(this.timeout.loadMore);
+    window.clearTimeout(this.timeout);
 
-    this.xhrLoadingState.loadMore = true;
+    this.xhr = $.ajax({
+      dataType: 'json',
+      url: route('notifications.index', { unread: 1 }),
+    });
 
-    this.xhr.loadMore = $.ajax({ dataType: 'json', url: route('notifications.index', { unread: 1 }) })
+    this.xhr
       .always(() => {
-        this.xhrLoadingState.loadMore = false;
-      }).done(action((data: NotificationBootJson) => {
+        this.xhr = null;
+      })
+      .done((data) => runInAction(() => {
         this.waitingVerification = false;
         this.loadBundle(data);
         this.retryDelay.reset();
       }))
-      .fail(action((xhr: JQuery.jqXHR) => {
-        if (xhr.responseJSON != null && xhr.responseJSON.error === 'verification') {
+      .fail((xhr) => runInAction(() => {
+        if (isErrorJson(xhr.responseJSON) && xhr.responseJSON.error === 'verification') {
           this.waitingVerification = true;
 
           return;
