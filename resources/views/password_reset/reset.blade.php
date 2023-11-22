@@ -9,14 +9,16 @@
         'theme' => 'password-reset',
     ]])
     <div class="osu-page osu-page--generic-compact">
-        {!! Form::open([
-            'route' => 'password-reset',
-            'class' => 'password-reset js-form-error',
-            'method' => 'PUT',
-            'data-remote' => true,
-            'data-reload-on-success' => '1',
-            'data-skip-ajax-error-popup' => '1',
-        ]) !!}
+        <form
+            action="{{ route('password-reset') }}"
+            class="password-reset js-form-error"
+            data-reload-on-success="1"
+            data-remote
+            data-skip-ajax-error-popup="1"
+            method="POST"
+        >
+            @csrf
+            <input name="_method" value="PUT" type="hidden" />
             {!! osu_trans('password_reset.started.title', ['username' => e($username)]) !!}
 
             <div class="password-reset__input-group">
@@ -61,6 +63,6 @@
                     {{ osu_trans('password_reset.button.set') }}
                 </button>
             </div>
-        {!! Form::close() !!}
+        </form>
     </div>
 @endsection

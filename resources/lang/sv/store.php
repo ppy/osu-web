@@ -6,6 +6,7 @@
 return [
     'cart' => [
         'checkout' => 'Checka ut',
+        'empty_cart' => '',
         'info' => ':count_delimited föremål i varukorgen ($:subtotal)|:count_delimited föremål i varukorgen ($:subtotal)',
         'more_goodies' => 'Jag vill ta en titt på fler godsaker innan jag fullbordar beställningen',
         'shipping_fees' => 'fraktavgifter',
@@ -48,19 +49,52 @@ return [
     ],
 
     'discount' => 'spara :percent%',
+    'free' => '',
 
     'invoice' => [
+        'contact' => '',
+        'date' => '',
         'echeck_delay' => 'Eftersom din betalning var en eCheck, vänligen tillåt upp till 10 extra dagar för betalningen att accepteras via PayPal! ',
         'hide_from_activity' => 'osu!supporter taggar i denna ordning visas inte i dina senaste aktiviteter.',
+        'sent_via' => '',
+        'shipping_to' => '',
+        'title' => '',
         'title_compact' => 'faktura',
 
         'status' => [
+            'cancelled' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => "",
+                    'link_text' => '',
+                ],
+            ],
+            'delivered' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => '',
+                    'link_text' => '',
+                ],
+            ],
+            'prepared' => [
+                'title' => '',
+                'line_1' => '',
+                'line_2' => '',
+            ],
             'processing' => [
                 'title' => 'Din betalning har ännu inte bekräftats!',
                 'line_1' => 'Om du redan har betalat, kan vi fortfarande vänta på att få bekräftelse på din betalning. Vänligen uppdatera denna sida om en minut eller två!',
                 'line_2' => [
                     '_' => 'Om du stötte på ett problem i kassan, :link',
                     'link_text' => 'klicka här för att återuppta din transaktion',
+                ],
+            ],
+            'shipped' => [
+                'title' => '',
+                'tracking_details' => '',
+                'no_tracking_details' => [
+                    '_' => "",
+                    'link_text' => '',
                 ],
             ],
         ],
@@ -74,7 +108,19 @@ return [
         'no_orders' => 'Inga beställningar att visa.',
         'paid_on' => 'Beställning slutförd :date',
         'resume' => 'Återuppta transaktionen',
+        'shipping_and_handling' => '',
         'shopify_expired' => 'Kassalänken för denna beställning har utgått.',
+        'subtotal' => '',
+        'total' => '',
+
+        'details' => [
+            'order_number' => '',
+            'payment_terms' => '',
+            'salesperson' => '',
+            'shipping_method' => '',
+            'shipping_terms' => '',
+            'title' => '',
+        ],
 
         'item' => [
             'quantity' => 'Antal',
@@ -105,6 +151,15 @@ return [
             'paid' => 'Betalt',
             'processing' => 'Väntar på bekräftelse',
             'shipped' => 'Skickad',
+            'title' => '',
+        ],
+
+        'thanks' => [
+            'title' => '',
+            'line_1' => [
+                '_' => '',
+                'link_text' => '',
+            ],
         ],
     ],
 
@@ -138,6 +193,10 @@ return [
     'username_change' => [
         'check' => 'Skriv in ett användarnamn för att kontrollera tillgänglighet!',
         'checking' => 'Kontrollerar om :username är tillgängligt...',
+        'placeholder' => '',
+        'label' => '',
+        'current' => '',
+
         'require_login' => [
             '_' => 'Du behöver var :link för att ändra ditt namn!',
             'link_text' => 'inloggad',

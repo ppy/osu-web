@@ -57,6 +57,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => ':username 发表了新审阅，问题：:problems，建议：:suggestions，赞：:praises',
                 'beatmapset_discussion_unlock' => '谱面 ":title" 的讨论已解锁。',
                 'beatmapset_discussion_unlock_compact' => '讨论已解锁',
+
+                'review_count' => [
+                    'praises' => '',
+                    'problems' => '',
+                    'suggestions' => '',
+                ],
             ],
 
             'beatmapset_problem' => [

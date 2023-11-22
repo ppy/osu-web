@@ -6,6 +6,7 @@
 return [
     'cart' => [
         'checkout' => 'Оплатить',
+        'empty_cart' => '',
         'info' => ':count_delimited товар в корзине ($:subtotal)|:count_delimited товара в корзине ($:subtotal)|:count_delimited товаров в корзине ($:subtotal)',
         'more_goodies' => 'Я хочу посмотреть другие товары перед завершением заказа',
         'shipping_fees' => 'стоимость доставки',
@@ -48,19 +49,52 @@ return [
     ],
 
     'discount' => 'вы сэкономите :percent%',
+    'free' => '',
 
     'invoice' => [
+        'contact' => '',
+        'date' => '',
         'echeck_delay' => 'Поскольку оплата была через eCheck, ожидание подтверждения оплаты через Paypal может занят до 10 дней!',
         'hide_from_activity' => 'сообщения о тегах osu!supporter после покупки не будут отображены в вашем профиле.',
+        'sent_via' => '',
+        'shipping_to' => '',
+        'title' => '',
         'title_compact' => 'чек',
 
         'status' => [
+            'cancelled' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => "",
+                    'link_text' => '',
+                ],
+            ],
+            'delivered' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => '',
+                    'link_text' => '',
+                ],
+            ],
+            'prepared' => [
+                'title' => '',
+                'line_1' => '',
+                'line_2' => '',
+            ],
             'processing' => [
                 'title' => 'Ваш платеж ещё не подтверждён!',
                 'line_1' => 'Если вы уже заплатили, мы все ещё можем ожидать подтверждения платежа. Пожалуйста, обновите эту страницу через минуту или две!',
                 'line_2' => [
                     '_' => 'Если во время оплаты возникла проблема, :link',
                     'link_text' => 'нажмите здесь, чтобы продолжить оплату',
+                ],
+            ],
+            'shipped' => [
+                'title' => '',
+                'tracking_details' => '',
+                'no_tracking_details' => [
+                    '_' => "",
+                    'link_text' => '',
                 ],
             ],
         ],
@@ -74,7 +108,19 @@ return [
         'no_orders' => 'Вы ничего не заказывали.',
         'paid_on' => 'Заказ размещён :date',
         'resume' => 'Продолжить оплату',
+        'shipping_and_handling' => '',
         'shopify_expired' => 'Срок действия ссылки на чек вашего заказа кончился.',
+        'subtotal' => '',
+        'total' => '',
+
+        'details' => [
+            'order_number' => '',
+            'payment_terms' => '',
+            'salesperson' => '',
+            'shipping_method' => '',
+            'shipping_terms' => '',
+            'title' => '',
+        ],
 
         'item' => [
             'quantity' => 'Количество',
@@ -105,6 +151,15 @@ return [
             'paid' => 'Оплачено',
             'processing' => 'Ожидает подтверждения',
             'shipped' => 'В пути',
+            'title' => '',
+        ],
+
+        'thanks' => [
+            'title' => '',
+            'line_1' => [
+                '_' => '',
+                'link_text' => '',
+            ],
         ],
     ],
 
@@ -138,6 +193,10 @@ return [
     'username_change' => [
         'check' => 'Введите ник, чтобы проверить его доступность!',
         'checking' => 'Проверяем доступность никнейма :username...',
+        'placeholder' => '',
+        'label' => '',
+        'current' => '',
+
         'require_login' => [
             '_' => 'Вы должны :link для смены никнейма!',
             'link_text' => 'войти в аккаунт',

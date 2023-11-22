@@ -23,6 +23,11 @@ class Renderer implements NodeRendererInterface
             $attrs->remove('flag');
             $attrs->set('class', 'flag-country flag-country--flat flag-country--wiki');
             $attrs->set('style', "background-image: url('".flag_url($code)."')");
+
+            $country = app('countries')->byCode($code);
+            if ($country !== null) {
+                $attrs->set('title', $country->name);
+            }
         }
 
         return new HtmlElement(

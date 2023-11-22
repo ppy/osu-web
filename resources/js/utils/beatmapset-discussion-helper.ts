@@ -393,7 +393,7 @@ export function stateFromDiscussion(discussion: BeatmapsetDiscussionJson) {
 }
 
 export function validMessageLength(message?: string | null, isTimeline = false) {
-  if (!message?.length) return false;
+  if (message == null || message.length === 0 ) return false;
 
   return !isTimeline || message.length <= maxLengthTimeline;
 }

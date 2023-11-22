@@ -204,7 +204,6 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
-        Collective\Html\HtmlServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -252,9 +251,6 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // renamed to avoid conflict with PhpRedis
         'LaravelRedis' => Illuminate\Support\Facades\Redis::class,
-
-        'Form' => Collective\Html\FormFacade::class,
-        'Html' => Collective\Html\HtmlFacade::class,
 
         'GitHub' => GrahamCampbell\GitHub\Facades\GitHub::class,
 

@@ -31,7 +31,7 @@
     "@types/timeago": "^1.6.0",
     "@types/unist": "^2.0.6",
     "autoprefixer": "^10.4.15",
-    "autosize": "^6.0.1",
+    "autosize": "5.0.2",
     "blueimp-file-upload": "^9.11.2",
     "bootstrap": "^3.3.6",
     "chokidar": "^3.5.2",

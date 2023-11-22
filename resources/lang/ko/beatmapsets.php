@@ -42,7 +42,7 @@ return [
     'nominate' => [
         'hybrid_requires_modes' => '하이브리드 비트맵 셋은 노미네이트 할 플레이 모드를 하나 이상 선택해야 합니다.',
         'incorrect_mode' => ':mode 모드를 노미네이트 할 권한을 가지고 있지 않습니다.',
-        'full_bn_required' => '정식 노미네이터만 이 맵을 퀄리파이 할 수 있습니다.',
+        'full_bn_required' => '정식 노미네이터만 이 맵을 Qualify할 수 있습니다.',
         'too_many' => '노미네이션 요구 사항을 이미 만족했습니다.',
 
         'dialog' => [
@@ -204,7 +204,7 @@ return [
             'accuracy' => 'Accuracy',
             'ar' => 'Approach Rate',
             'stars' => 'Star Rating',
-            'total_length' => '길이',
+            'total_length' => '길이 (소비 길이: :hit_length)',
             'bpm' => 'BPM',
             'count_circles' => '서클 개수',
             'count_sliders' => '슬라이더 개수',

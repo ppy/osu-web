@@ -4,8 +4,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'page_description' => 'Featured Artists in osu!',
-    'title' => 'Featured Artists',
+    'page_description' => 'Aanbevolen Artiesten op osu!',
+    'title' => 'Uitgelichte artiesten',
 
     'admin' => [
         'hidden' => 'ARTIEST IS MOMENTEEL VERBORGEN',

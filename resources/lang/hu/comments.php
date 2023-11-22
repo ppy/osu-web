@@ -43,6 +43,10 @@ return [
         'no_comments' => 'nem találtunk hozzászólást...',
     ],
 
+    'ogp' => [
+        'title' => '',
+    ],
+
     'placeholder' => [
         'edit' => 'Itt szerkeszd a megjegyzést',
         'new' => 'Ide írd az új hozzászólást',

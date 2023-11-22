@@ -55,6 +55,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => 'Новый отзыв от :username, содержащий проблемы: :problems, предложения: :suggestions, похвалы: :praises',
                 'beatmapset_discussion_unlock' => 'Карта ":title" разблокирована для обсуждений',
                 'beatmapset_discussion_unlock_compact' => 'Обсуждение было разблокировано',
+
+                'review_count' => [
+                    'praises' => '',
+                    'problems' => '',
+                    'suggestions' => '',
+                ],
             ],
 
             'beatmapset_problem' => [

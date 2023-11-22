@@ -11,12 +11,12 @@ return [
     'unread_messages' => 'mensajes no leídos',
 
     'cannot_send' => [
-        'channel' => 'No puede enviar un mensaje a este canal en este momento. Esto puede deberse a cualquiera de las siguientes razones:',
-        'user' => 'No se puede enviar mensajes a este usuario en este momento.',
+        'channel' => 'No puedes enviar mensajes a este canal en este momento.',
+        'user' => 'No puedes enviar mensajes a este usuario en este momento.',
     ],
 
     'channels' => [
-        'confirm_part' => '¿Desea ocultar este canal? Seguirá recibiendo mensajes de este canal.',
+        'confirm_part' => '¿Quieres ocultar este canal? Seguirás recibiendo mensajes de este canal.',
         'create' => 'crear anuncio',
 
         'list' => [
@@ -37,13 +37,13 @@ return [
         'labels' => [
             'description' => 'descripción',
             'message' => 'mensaje',
-            'name' => 'nombre de sala',
+            'name' => 'nombre de la sala',
             'users' => 'jugadores a agregar',
         ],
     ],
 
     'not_found' => [
-        'message' => 'No hay nada aquí, tal vez ha abandonado el canal o no existe...',
+        'message' => 'No hay nada aquí, tal vez has abandonado el canal o no existe...',
         'title' => 'canal no encontrado',
     ],
 
@@ -51,13 +51,13 @@ return [
         'create' => 'Crear',
         'disabled' => 'no se puede enviar el mensaje...',
         'disconnected' => 'Sin conexión',
-        'placeholder' => 'escriba el mensaje...',
+        'placeholder' => 'escribe el mensaje...',
         'send' => 'Enviar',
     ],
 
     'no-conversations' => [
-        'howto' => "Inicie conversaciones desde el perfil de un usuario o desde una tarjeta de usuario emergente.",
-        'lazer' => 'Los canales públicos a los que se una a través de <a href=":link">osu!lazer</a> también serán visibles aquí.',
+        'howto' => "Inicia conversaciones desde el perfil de un usuario o desde una tarjeta de usuario emergente.",
+        'lazer' => 'Los canales públicos a los que se unas a través de <a href=":link">osu!lazer</a> también serán visibles aquí.',
         'title' => 'aún no hay conversaciones',
     ],
 ];

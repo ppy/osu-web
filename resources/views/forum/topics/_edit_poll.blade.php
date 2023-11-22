@@ -3,12 +3,14 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 
-{!! Form::open([
-    'url' => route('forum.topics.edit-poll', $topic),
-    'data-remote' => true,
-    'data-reload-on-success' => '1',
-    'class' => 'js-forum-poll-edit-save forum-poll'
-]) !!}
+<form
+    action="{{ route('forum.topics.edit-poll', $topic) }}"
+    class="js-forum-poll-edit-save forum-poll"
+    data-reload-on-success="1"
+    data-remote
+    method="POST"
+>
+    @csrf
     <div class="forum-poll__row forum-poll__row--title">
         <h2 class="forum-poll__title">
             {{ osu_trans('forum.topics.show.poll.edit') }}
@@ -41,4 +43,4 @@
             </button>
         </div>
     </div>
-{!! Form::close() !!}
+</form>

@@ -6,6 +6,7 @@
 return [
     'cart' => [
         'checkout' => '결제',
+        'empty_cart' => '',
         'info' => '장바구니에 담긴 :count_delimited개의 항목 ($:subtotal)',
         'more_goodies' => '주문을 끝내기 전에 더 둘러볼게요.',
         'shipping_fees' => '배송료',
@@ -48,19 +49,52 @@ return [
     ],
 
     'discount' => ':percent% 절약 가능',
+    'free' => '',
 
     'invoice' => [
+        'contact' => '',
+        'date' => '',
         'echeck_delay' => 'eCheck로 결제하셨다면 10일까지 PayPal을 통해 결제할 수 있도록 허용해주세요.',
         'hide_from_activity' => '이 주문에 포함된 osu! 서포터 내역은 나의 최근 활동에 표시되지 않습니다.',
+        'sent_via' => '',
+        'shipping_to' => '',
+        'title' => '',
         'title_compact' => '청구서',
 
         'status' => [
+            'cancelled' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => "",
+                    'link_text' => '',
+                ],
+            ],
+            'delivered' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => '',
+                    'link_text' => '',
+                ],
+            ],
+            'prepared' => [
+                'title' => '',
+                'line_1' => '',
+                'line_2' => '',
+            ],
             'processing' => [
                 'title' => '당신의 결제가 아직 확인되지 않았습니다!',
                 'line_1' => '당신이 이미 결제하셨다면, 저희는 아직 당신의 결제의 확인을 받는것을 기다리고 있을 수 있습니다. 1~2분 후 이 페이지를 새로고침 해주세요!',
                 'line_2' => [
                     '_' => '결제 도중 문제가 발생하셨다면, :link',
                     'link_text' => '여기를 눌러 결제를 계속하세요',
+                ],
+            ],
+            'shipped' => [
+                'title' => '',
+                'tracking_details' => '',
+                'no_tracking_details' => [
+                    '_' => "",
+                    'link_text' => '',
                 ],
             ],
         ],
@@ -74,7 +108,19 @@ return [
         'no_orders' => '주문 내역이 없습니다.',
         'paid_on' => ':date에 주문함',
         'resume' => '결제 계속하기',
+        'shipping_and_handling' => '',
         'shopify_expired' => '이 주문의 결제 링크가 만료되었습니다.',
+        'subtotal' => '',
+        'total' => '',
+
+        'details' => [
+            'order_number' => '',
+            'payment_terms' => '',
+            'salesperson' => '',
+            'shipping_method' => '',
+            'shipping_terms' => '',
+            'title' => '',
+        ],
 
         'item' => [
             'quantity' => '수량',
@@ -105,6 +151,15 @@ return [
             'paid' => '결제 완료',
             'processing' => '확인 대기 중',
             'shipped' => '운송 중',
+            'title' => '',
+        ],
+
+        'thanks' => [
+            'title' => '',
+            'line_1' => [
+                '_' => '',
+                'link_text' => '',
+            ],
         ],
     ],
 
@@ -138,6 +193,10 @@ return [
     'username_change' => [
         'check' => '사용 가능한 이름인지 확인하려면 입력하세요!',
         'checking' => ':username 사용 가능 여부 확인중..',
+        'placeholder' => '',
+        'label' => '',
+        'current' => '',
+
         'require_login' => [
             '_' => '유저이름을 바꾸려면 :link하셔야 합니다!',
             'link_text' => '로그인',

@@ -55,6 +55,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => 'Terdapat ulasan baharu oleh :username yang menyinggung seputar masalah: :problems, saran: :suggestions, dan pujian berupa: :praises',
                 'beatmapset_discussion_unlock' => 'Perbincangan untuk beatmap ":title" telah dibuka kembali.',
                 'beatmapset_discussion_unlock_compact' => 'Perbincangan beatmap telah dibuka',
+
+                'review_count' => [
+                    'praises' => '',
+                    'problems' => '',
+                    'suggestions' => '',
+                ],
             ],
 
             'beatmapset_problem' => [

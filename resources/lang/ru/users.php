@@ -124,6 +124,9 @@ return [
     ],
 
     'ogp' => [
+        'modding_description' => '',
+        'modding_description_empty' => '',
+
         'description' => [
             '_' => 'Рейтинг (:ruleset): :global | :country',
             'country' => 'В стране :rank',
@@ -183,7 +186,6 @@ return [
         'origin_country' => 'Проживает в :country',
         'previous_usernames' => 'ранее известный как',
         'plays_with' => 'Играет с :devices',
-        'title' => "Профиль :username",
 
         'comments_count' => [
             '_' => ':link',
@@ -196,7 +198,7 @@ return [
         'edit' => [
             'cover' => [
                 'button' => 'Сменить обложку профиля',
-                'defaults_info' => 'Больше вариантов в недалёком будущем',
+                'defaults_info' => 'Скоро будет доступно ещё больше обложек на выбор!',
                 'upload' => [
                     'broken_file' => 'Не удалось обработать изображение. Проверьте загруженное изображение и попробуйте снова.',
                     'button' => 'Загрузить изображение',
@@ -337,7 +339,7 @@ return [
                 'title' => 'обо мне!',
             ],
             'medals' => [
-                'empty' => "Этот пользователь ещё ничего не получил. ;_;",
+                'empty' => "Этот пользователь пока не получил ни одной медали. ;_;",
                 'recent' => 'Последние полученные медали',
                 'title' => 'Медали',
             ],
@@ -444,7 +446,7 @@ return [
             'country_simple' => 'Рейтинг в стране',
             'global' => 'Глобальный рейтинг для :mode',
             'global_simple' => 'Рейтинг в мире',
-            'highest' => 'Наивысший: :rank, :date',
+            'highest' => 'Наивысший: :rank от :date',
         ],
         'stats' => [
             'hit_accuracy' => 'Точность попаданий',

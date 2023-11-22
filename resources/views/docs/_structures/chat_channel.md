@@ -42,5 +42,5 @@ Field                   | Type                                             | Des
 current_user_attributes | [CurrentUserAttributes](#currentuserattributes)? | only present on some responses
 last_read_id            | integer?                                         | Deprecated; use `current_user_attributes.last_read_id`.
 last_message_id         | integer?                                         | `message_id` of last known message (only returned in presence responses)
-recent_messages         | ChatMessage[]?                                   | Deprecated; up to 50 most recent messages
+recent_messages         | [ChatMessage](#chatmessage)[]?                   | Deprecated; up to 50 most recent messages
 users                   | integer[]?                                       | array of `user_id` that are in the channel (not included for `PUBLIC` channels)

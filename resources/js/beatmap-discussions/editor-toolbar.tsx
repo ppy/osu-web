@@ -100,9 +100,7 @@ export class EditorToolbar extends React.Component {
       return;
     }
 
-    if (this.scrollTimer) {
-      window.clearTimeout(this.scrollTimer);
-    }
+    window.clearTimeout(this.scrollTimer);
 
     // we use setTimeout here as a workaround for incorrect bounds sometimes being returned for the selection range,
     // seemingly when called too soon after a scroll event

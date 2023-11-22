@@ -55,6 +55,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => 'مراجعة جديدة من قبل :username تحتوي على مشاكل: :problems, اقتراحات: :suggestions, تشجيع: :praises',
                 'beatmapset_discussion_unlock' => 'تم فتح قفل المناقشة على ":title"',
                 'beatmapset_discussion_unlock_compact' => 'تم الغاء قفل المناقشة',
+
+                'review_count' => [
+                    'praises' => '',
+                    'problems' => '',
+                    'suggestions' => '',
+                ],
             ],
 
             'beatmapset_problem' => [

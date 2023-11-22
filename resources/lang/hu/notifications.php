@@ -56,6 +56,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => 'Új hozzászolás problémákat tartalmazó tartalomról :username által: :problems, javaslat :suggestions, dícséret: :praises',
                 'beatmapset_discussion_unlock' => 'A beszélgetést feloldották ezen: ":title"',
                 'beatmapset_discussion_unlock_compact' => 'A beszélgetést feloldották',
+
+                'review_count' => [
+                    'praises' => '',
+                    'problems' => '',
+                    'suggestions' => '',
+                ],
             ],
 
             'beatmapset_problem' => [

@@ -20,12 +20,7 @@
 
 @extends('master', [
     'titlePrepend' => $artist->name,
-    'pageDescription' => $artist->description,
     'canonicalUrl' => $artist->url(),
-    'opengraph' => [
-        'title' => $artist->name,
-        'image' => $artist->cover_url,
-    ],
 ])
 
 @section('content')

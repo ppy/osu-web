@@ -6,6 +6,7 @@
 return [
     'cart' => [
         'checkout' => 'Pagar',
+        'empty_cart' => '',
         'info' => ':count_delimited producto en el carrito ($:subtotal)|:count_delimited productos en el carrito ($:subtotal)',
         'more_goodies' => 'Deseo revisar más productos antes de completar la orden',
         'shipping_fees' => 'gastos de envío',
@@ -37,7 +38,7 @@ return [
         'title_compact' => 'caja',
 
         'has_pending' => [
-            '_' => 'Tienes pedidos incompletos, haga clic :link para verlos.',
+            '_' => 'Tienes pedidos incompletos, haz clic :link para verlos.',
             'link_text' => 'aquí',
         ],
 
@@ -48,19 +49,52 @@ return [
     ],
 
     'discount' => 'ahorra un :percent%',
+    'free' => '',
 
     'invoice' => [
+        'contact' => '',
+        'date' => '',
         'echeck_delay' => 'Como su pago fue un eCheck, ¡por favor permita hasta 10 días adicionales para que el pago se realice a través de PayPal!',
         'hide_from_activity' => 'las etiquetas osu!supporter en esta orden no se muestran en tus actividades recientes.',
+        'sent_via' => '',
+        'shipping_to' => '',
+        'title' => '',
         'title_compact' => 'factura',
 
         'status' => [
+            'cancelled' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => "",
+                    'link_text' => '',
+                ],
+            ],
+            'delivered' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => '',
+                    'link_text' => '',
+                ],
+            ],
+            'prepared' => [
+                'title' => '',
+                'line_1' => '',
+                'line_2' => '',
+            ],
             'processing' => [
                 'title' => '¡Aún no se ha confirmado tu pago!',
                 'line_1' => 'Si ya ha pagado, puede que aún estemos esperando la confirmación de su pago. ¡Por favor, actualice esta página en un minuto o dos!',
                 'line_2' => [
                     '_' => 'Si ha encontrado un problema durante la compra, :link',
                     'link_text' => 'haz clic aquí para reanudar tu pago',
+                ],
+            ],
+            'shipped' => [
+                'title' => '',
+                'tracking_details' => '',
+                'no_tracking_details' => [
+                    '_' => "",
+                    'link_text' => '',
                 ],
             ],
         ],
@@ -74,7 +108,19 @@ return [
         'no_orders' => 'No hay órdenes para ver.',
         'paid_on' => 'Orden realizada :date',
         'resume' => 'Reanudar pago',
+        'shipping_and_handling' => '',
         'shopify_expired' => 'El enlace de pago de esta orden ha expirado.',
+        'subtotal' => '',
+        'total' => '',
+
+        'details' => [
+            'order_number' => '',
+            'payment_terms' => '',
+            'salesperson' => '',
+            'shipping_method' => '',
+            'shipping_terms' => '',
+            'title' => '',
+        ],
 
         'item' => [
             'quantity' => 'Cantidad',
@@ -105,6 +151,15 @@ return [
             'paid' => 'Pagada',
             'processing' => 'Confirmación pendiente',
             'shipped' => 'En tránsito',
+            'title' => '',
+        ],
+
+        'thanks' => [
+            'title' => '',
+            'line_1' => [
+                '_' => '',
+                'link_text' => '',
+            ],
         ],
     ],
 
@@ -138,9 +193,13 @@ return [
     'username_change' => [
         'check' => '¡Escribe un nombre de usuario para revisar su disponibilidad!',
         'checking' => 'Revisando la disponibilidad de :username...',
+        'placeholder' => '',
+        'label' => '',
+        'current' => '',
+
         'require_login' => [
             '_' => '¡Tienes que tener una :link para cambiar tu nombre de usuario!',
-            'link_text' => 'seción iniciada',
+            'link_text' => 'sesión iniciada',
         ],
     ],
 

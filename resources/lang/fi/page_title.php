@@ -35,24 +35,24 @@ return [
             '_' => 'esitellyt artistit',
         ],
         'beatmap_discussion_posts_controller' => [
-            '_' => 'viestit beatmap-keskustelussa',
+            '_' => 'viestit rytmikarttakeskustelussa',
         ],
         'beatmap_discussions_controller' => [
-            '_' => 'beatmap-keskustelut',
+            '_' => 'rytmikarttakeskustelut',
         ],
         'beatmap_packs_controller' => [
-            '_' => 'beatmappipaketit',
+            '_' => 'rytmikarttapaketit',
         ],
         'beatmapset_discussion_votes_controller' => [
-            '_' => 'beatmapin keskustelun äänestys',
+            '_' => 'äänet rytmikarttakeskusteluissa',
         ],
         'beatmapset_events_controller' => [
-            '_' => 'beatmap-historiikki',
+            '_' => 'rytmikarttahistoria',
         ],
         'beatmapsets_controller' => [
-            'discussion' => 'beatmap-keskustelu',
-            'index' => 'beatmap-listaus',
-            'show' => 'beatmap-tiedot',
+            'discussion' => 'rytmikarttakeskustelu',
+            'index' => 'rytmikarttalistaus',
+            'show' => 'rytmikartan tiedot',
         ],
         'changelog_controller' => [
             '_' => 'muutosloki',
@@ -80,7 +80,7 @@ return [
             '_' => 'tiedot',
         ],
         'livestreams_controller' => [
-            '_' => 'suoralähetykset',
+            '_' => 'suorat lähetykset',
         ],
         'matches_controller' => [
             '_' => 'ottelut',
@@ -128,7 +128,7 @@ return [
             '_' => 'modaajatiedot',
         ],
         'multiplayer_controller' => [
-            '_' => 'moninpelihistoriikki',
+            '_' => 'moninpelihistoria',
         ],
     ],
 ];

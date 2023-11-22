@@ -11,10 +11,10 @@ use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\PlaylistItemUserHighScore;
 use App\Models\Multiplayer\Room;
 use App\Models\Multiplayer\ScoreLink;
+use App\Models\ScoreToken;
 use App\Models\Solo\Score;
-use App\Models\Solo\ScoreToken;
+use App\Transformers\ScoreTokenTransformer;
 use App\Transformers\ScoreTransformer;
-use App\Transformers\Solo\ScoreTokenTransformer;
 
 /**
  * @group Multiplayer
@@ -198,14 +198,7 @@ class ScoresController extends BaseController
 
             $params = Score::extractParams(\Request::all(), $scoreToken);
 
-            $scoreLink = $scoreToken
-                ->playlistItem
-                ->scoreLinks()
-                ->make(['user_id' => $scoreToken->user_id]);
-            $room->completePlay($scoreLink, $params);
-            $scoreToken->fill(['score_id' => $scoreLink->score_id])->saveOrExplode();
-
-            return $scoreLink;
+            return $room->completePlay($scoreToken, $params);
         });
 
         $score = $scoreLink->score;

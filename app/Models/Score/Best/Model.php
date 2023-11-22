@@ -96,11 +96,12 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
 
     public function replayFile(): ?ReplayFile
     {
-        if ($this->replay) {
-            return new ReplayFile($this);
-        }
+        return $this->replay ? new ReplayFile($this) : null;
+    }
 
-        return null;
+    public function getReplayFile(): ?string
+    {
+        return $this->replayFile()?->get();
     }
 
     public function macroForListing()

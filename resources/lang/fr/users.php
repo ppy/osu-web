@@ -51,7 +51,7 @@ return [
     'card' => [
         'gift_supporter' => 'Offrir un tag supporter',
         'loading' => 'Chargement...',
-        'send_message' => 'envoyer un message',
+        'send_message' => 'Envoyer un message',
     ],
 
     'create' => [
@@ -124,6 +124,9 @@ return [
     ],
 
     'ogp' => [
+        'modding_description' => '',
+        'modding_description_empty' => '',
+
         'description' => [
             '_' => 'Rang (:ruleset): :global | :country',
             'country' => 'Pays :rank',
@@ -183,7 +186,6 @@ return [
         'origin_country' => 'De :country',
         'previous_usernames' => 'Anciennement connu en tant que',
         'plays_with' => 'Joue avec :devices',
-        'title' => "Profil de :username",
 
         'comments_count' => [
             '_' => 'A publié :link',

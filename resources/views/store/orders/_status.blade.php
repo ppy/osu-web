@@ -3,12 +3,14 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 <div class="store-page">
-    <h3 class="store-text store-text--title">Order Status</h3>
+    <h3 class="store-text store-text--title">{{ osu_trans('store.order.status.title') }}</h3>
 
     @if ($order->isDelivered())
-        <p><em class="store-text store-text--emphasis">Your order has been delivered! We hope you are enjoying it!</em></p>
+        <p><em class="store-text store-text--emphasis">{{ osu_trans('store.invoice.status.delivered.title') }}</em></p>
         <p>
-            If you have any issues with your purchase, please contact the <a href='mailto:osustore@ppy.sh'>osu!store support</a>.
+            {!! osu_trans('store.invoice.status.delivered.line_1._', [
+                'link' => link_to('mailto:osustore@ppy.sh', osu_trans('store.invoice.status.delivered.line_1.link_text')),
+            ]) !!}
         </p>
     @elseif ($order->isPaymentRequested())
         <p><em class="store-text store-text--emphasis">{{ osu_trans('store.invoice.status.processing.title') }}</em></p>
@@ -16,35 +18,41 @@
             {{ osu_trans('store.invoice.status.processing.line_1') }}
         </p>
         <p>
-            {!! osu_trans('store.invoice.status.processing.line_2._', [
-                'link' => Html::link(route('store.checkout.show', $order), osu_trans('store.invoice.status.processing.line_2.link_text')),
-            ]) !!}
+            {!! osu_trans('store.invoice.status.processing.line_2._', ['link' => link_to(
+                route('store.checkout.show', $order->getKey()),
+                osu_trans('store.invoice.status.processing.line_2.link_text'),
+            )]) !!}
         </p>
     @elseif ($order->isCancelled())
-        <p><em class="store-text store-text--emphasis">Your order has been cancelled</em></p>
+        <p><em class="store-text store-text--emphasis">{{ osu_trans('store.invoice.status.cancelled.title') }}</em></p>
         <p>
-            If you didn't request a cancellation please contact <a href='mailto:osustore@ppy.sh'>osu!store support</a> quoting your order number (#{{$order->order_id}}).
+            {!! osu_trans('store.invoice.status.cancelled.line_1._', [
+                'link' => link_to('mailto:osustore@ppy.sh', osu_trans('store.invoice.status.cancelled.line_1.link_text')),
+                'order_number' => $order->order_id,
+            ]) !!}
         </p>
     @elseif (($order->isShipped() && ($order->last_tracking_state || count($order->trackingCodes()) === 0)) || $order->isDelivered())
-        <p><em class="store-text store-text--emphasis">Your order has been shipped!</em></p>
+        <p><em class="store-text store-text--emphasis">{{ osu_trans('store.invoice.status.shipped.title') }}</em></p>
         @if(count($order->trackingCodes()))
             <p>
-                Tracking details follow:
+                {{ osu_trans('store.invoice.status.shipped.tracking_details') }}
             </p>
         @else
             <p>
-                We don't have tracking details as we sent your package via Air Mail, but you can expect to receive it within 1-3 weeks. For Europe, sometimes customs can delay the order out of our control. If you have any concerns, please reply to the order confirmation email you received (or <a href='mailto:osustore@ppy.sh'>send us an email</a>).
+                {!! osu_trans('store.invoice.status.shipped.no_tracking_details._', [
+                    'link' => link_to('mailto:osustore@ppy.sh', osu_trans('store.invoice.status.shipped.no_tracking_details.link_text')),
+                ]) !!}
             </p>
         @endif
     @else
-        <p><em class="store-text store-text--emphasis">Your order is being prepared!</em></p>
+        <p><em class="store-text store-text--emphasis">{{ osu_trans('store.invoice.status.prepared.title') }}</em></p>
         @if ($order->requiresShipping())
             <p>
-                Please wait a bit longer for it to be shipped. Tracking information will appear here once the order has been processed and sent. This can take up to 5 days (but usually less!) depending on how busy we are.
+                {{ osu_trans('store.invoice.status.prepared.line_1') }}
             </p>
 
             <p>
-                We send all orders from Japan using a variety of shipping services depending on the weight and value. This area will update with specifics once we have shipped the order.
+                {{ osu_trans('store.invoice.status.prepared.line_2') }}
             </p>
         @endif
 
