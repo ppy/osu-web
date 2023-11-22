@@ -7,18 +7,21 @@ namespace App\Models\Multiplayer;
 
 use App\Models\Model;
 use App\Models\Traits\WithDbCursorHelper;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Dumb persistence model for UserScoreAggregate.
  * i.e. should only be modified via UserScoreAggregate.
  *
  * @property float $accuracy
+ * @property int $attempts
  * @property \Carbon\Carbon $created_at
  * @property int $id
  * @property int $playlist_item_id
  * @property float|null $pp
  * @property int $score_id
  * @property ScoreLink $scoreLink
+ * @property int $total_score
  * @property \Carbon\Carbon $updated_at
  * @property int $user_id
  */
@@ -41,16 +44,27 @@ class PlaylistItemUserHighScore extends Model
 
     protected $table = 'multiplayer_scores_high';
 
-    public static function lookupOrDefault(ScoreLink $scoreLink): static
+    public static function lookupOrDefault(int $userId, int $playlistItemId): static
     {
         return static::firstOrNew([
-            'playlist_item_id' => $scoreLink->playlist_item_id,
-            'user_id' => $scoreLink->user_id,
+            'playlist_item_id' => $playlistItemId,
+            'user_id' => $userId,
         ], [
             'accuracy' => 0,
             'pp' => 0,
             'total_score' => 0,
         ]);
+    }
+
+    public static function new(int $userId, int $playlistItemId): static
+    {
+        $ret = static::lookupOrDefault($userId, $playlistItemId);
+
+        if (!$ret->exists) {
+            $ret->save();
+        }
+
+        return $ret;
     }
 
     public static function scoresAround(ScoreLink $scoreLink): array
@@ -83,9 +97,19 @@ class PlaylistItemUserHighScore extends Model
         return $ret;
     }
 
+    public function playlistItem(): BelongsTo
+    {
+        return $this->belongsTo(PlaylistItem::class);
+    }
+
     public function scoreLink()
     {
         return $this->belongsTo(ScoreLink::class, 'score_id');
+    }
+
+    public function updateUserAttempts()
+    {
+        $this->incrementInstance('attempts');
     }
 
     public function updateWithScoreLink(ScoreLink $scoreLink): void
