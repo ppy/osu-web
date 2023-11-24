@@ -24,24 +24,30 @@ class UpdateUserLastvisit
         $user = $this->auth->user();
 
         if ($user !== null) {
-            $isInactive = $user->isInactive();
+            $token = $user->token();
+            $shouldUpdate = $token === null || in_array('*', $token->scopes, true);
 
-            if ($isInactive) {
-                $isVerified = $user->isSessionVerified();
-            }
+            if ($shouldUpdate) {
+                $isInactive = $user->isInactive();
+                if ($isInactive) {
+                    $isVerified = $user->isSessionVerified();
+                }
 
-            if (!$isInactive || $isVerified) {
-                $recordedLastVisit = $user->getRawAttribute('user_lastvisit');
-                $currentLastVisit = time();
+                if (!$isInactive || $isVerified) {
+                    $recordedLastVisit = $user->getRawAttribute('user_lastvisit');
+                    $currentLastVisit = time();
 
-                if ($currentLastVisit - $recordedLastVisit > 300) {
-                    $user->update([
-                        'user_lastvisit' => $currentLastVisit,
-                    ], ['skipValidations' => true]);
+                    if ($currentLastVisit - $recordedLastVisit > 300) {
+                        $user->update([
+                            'user_lastvisit' => $currentLastVisit,
+                        ], ['skipValidations' => true]);
+                    }
+                }
+
+                if ($token === null) {
+                    $this->recordSession($request);
                 }
             }
-
-            $this->recordSession($request);
         }
 
         return $next($request);
