@@ -63,6 +63,8 @@ class Client extends PassportClient
         return null;
     }
 
+    public ?array $scopes = null;
+
     public function refreshTokens()
     {
         return $this->hasManyThrough(
