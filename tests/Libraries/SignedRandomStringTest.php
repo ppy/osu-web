@@ -7,14 +7,14 @@ declare(strict_types=1);
 
 namespace Tests\Libraries;
 
-use App\Libraries\UserVerificationLink;
+use App\Libraries\SignedRandomString;
 use Tests\TestCase;
 
-class UserVerificationLinkTest extends TestCase
+class SignedRandomStringTest extends TestCase
 {
     public function testIsValid(): void
     {
-        $this->assertTrue(UserVerificationLink::isValid(UserVerificationLink::create()));
+        $this->assertTrue(SignedRandomString::isValid(SignedRandomString::create(40)));
     }
 
     /**
@@ -22,7 +22,7 @@ class UserVerificationLinkTest extends TestCase
      */
     public function testIsValidInvalid(string $value): void
     {
-        $this->assertFalse(UserVerificationLink::isValid($value));
+        $this->assertFalse(SignedRandomString::isValid($value));
     }
 
     public function dataProviderForTestIsValidInvalid(): array
@@ -30,7 +30,7 @@ class UserVerificationLinkTest extends TestCase
         return [
             ['invalid'],
             [''],
-            [base64url_encode('')],
+            [base64url_encode('test')],
         ];
     }
 }

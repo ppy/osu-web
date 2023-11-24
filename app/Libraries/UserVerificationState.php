@@ -23,7 +23,7 @@ class UserVerificationState
 
     public static function fromVerifyLink($linkKey)
     {
-        if (!UserVerificationLink::isValid($linkKey)) {
+        if (!SignedRandomString::isValid($linkKey)) {
             return null;
         }
 
@@ -80,7 +80,7 @@ class UserVerificationState
 
         // 1 byte = 2^8 bits = 16^2 bits = 2 hex characters
         $key = bin2hex(random_bytes(config('osu.user.verification_key_length_hex') / 2));
-        $linkKey = UserVerificationLink::create();
+        $linkKey = SignedRandomString::create(32);
         $expires = now()->addHours(5);
 
         $this->session->put('verification_key', $key);

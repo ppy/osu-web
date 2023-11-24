@@ -7,27 +7,26 @@ declare(strict_types=1);
 
 namespace App\Libraries;
 
-class UserVerificationLink
+class SignedRandomString
 {
-    private const KEY_SIZE = 32;
-
-    public static function create(): string
+    public static function create(int $randomSize): string
     {
-        $key = random_bytes(static::KEY_SIZE);
+        $key = random_bytes($randomSize);
         $hmac = static::hmac($key);
 
-        return base64url_encode($key.$hmac);
+        return base64url_encode($hmac.$key);
     }
 
-    public static function isValid(string $link): bool
+    public static function isValid(string $input): bool
     {
-        $linkBin = base64url_decode($link);
-        if ($linkBin === null) {
+        $bin = base64url_decode($input);
+        if ($bin === null) {
             return false;
         }
 
-        $key = substr($linkBin, 0, static::KEY_SIZE);
-        $hmac = substr($linkBin, static::KEY_SIZE);
+        // hmac size for sha1 is 20
+        $hmac = substr($bin, 0, 20);
+        $key = substr($bin, 20);
         $expectedHmac = static::hmac($key);
 
         return hash_equals($expectedHmac, $hmac);
