@@ -268,7 +268,7 @@ class BeatmapsController extends Controller
             $ruleset = (
                 Ruleset::tryFromName($params['ruleset'])
                 ?? Ruleset::tryFromName($params['mode'])
-                ?? Ruleset::tryFrom($params['m'])
+                ?? Ruleset::tryFrom($params['m'] ?? Ruleset::invalid)
             )?->legacyName();
         }
 
