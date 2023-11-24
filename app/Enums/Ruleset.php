@@ -14,16 +14,28 @@ enum Ruleset: int
     case catch = 2;
     case mania = 3;
 
-    public static function fromName(string $ruleset): self
+    public static function tryFromName(?string $ruleset): ?self
     {
+        if ($ruleset === null) {
+            return null;
+        }
+
         static $lookupMap;
         if ($lookupMap === null) {
             $lookupMap = [];
             foreach (self::cases() as $r) {
                 $lookupMap[$r->name] = $r;
             }
+            $lookupMap['fruits'] = self::catch;
         }
 
-        return $lookupMap[$ruleset];
+        return $lookupMap[$ruleset] ?? null;
+    }
+
+    public function legacyName()
+    {
+        return $this === self::catch
+            ? 'fruits'
+            : $this->name;
     }
 }

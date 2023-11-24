@@ -5,6 +5,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Ruleset;
 use App\Exceptions\InvariantException;
 use App\Jobs\Notifications\BeatmapOwnerChange;
 use App\Libraries\BeatmapDifficultyAttributes;
@@ -256,20 +257,24 @@ class BeatmapsController extends Controller
             abort(404);
         }
 
-        if ($beatmap->mode === 'osu') {
+        $beatmapRuleset = $beatmap->mode;
+        if ($beatmapRuleset === 'osu') {
             $params = get_params(request()->all(), null, [
                 'm:int', // legacy parameter
-                'mode:string',
+                'mode', // legacy parameter
+                'ruleset',
             ], ['null_missing' => true]);
 
-            $mode = Beatmap::isModeValid($params['mode'])
-                ? $params['mode']
-                : Beatmap::modeStr($params['m']);
+            $ruleset = (
+                Ruleset::tryFromName($params['ruleset'])
+                ?? Ruleset::tryFromName($params['mode'])
+                ?? Ruleset::tryFrom($params['m'])
+            )?->legacyName();
         }
 
-        $mode ??= $beatmap->mode;
+        $ruleset ??= $beatmapRuleset;
 
-        return ujs_redirect(route('beatmapsets.show', ['beatmapset' => $beatmapset->getKey()]).'#'.$mode.'/'.$beatmap->getKey());
+        return ujs_redirect(route('beatmapsets.show', ['beatmapset' => $beatmapset->getKey()]).'#'.$ruleset.'/'.$beatmap->getKey());
     }
 
     /**
