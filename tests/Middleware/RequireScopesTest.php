@@ -154,7 +154,6 @@ class RequireScopesTest extends TestCase
         };
 
         // so request() works
-        $this->app->instance('request', $this->request);
         \Request::swap($this->request);
 
         // set a fake route resolver
