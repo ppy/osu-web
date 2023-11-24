@@ -25,7 +25,7 @@ class UpdateUserLastvisit
 
         if ($user !== null) {
             $token = $user->token();
-            $shouldUpdate = $token === null || in_array('*', $token->scopes, true);
+            $shouldUpdate = $token === null || $token->client->password_client;
 
             if ($shouldUpdate) {
                 $isInactive = $user->isInactive();
