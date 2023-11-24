@@ -14,6 +14,7 @@ enum Ruleset: int
     case catch = 2;
     case mania = 3;
 
+    // for usage with tryFrom when the parameter may be null.
     public const NULL = -1;
 
     public static function tryFromName(?string $ruleset): ?self
