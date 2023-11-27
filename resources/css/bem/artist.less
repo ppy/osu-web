@@ -3,15 +3,19 @@
 
 .artist {
   @_top: artist;
-  &__index {
-    background-color: @osu-colour-b4;
-    padding: 10px;
-    .default-box-shadow();
-    display: flex;
-    justify-content: space-around;
-    flex-direction: row;
-    flex-wrap: wrap;
-    overflow: hidden;
+
+  &__admin-note {
+    background-color: @osu-colour-h2;
+    color: black;
+    font-weight: bold;
+    padding: 20px;
+    margin-bottom: 10px;
+
+    text-align: center;
+
+    @media @desktop {
+      .default-box-shadow();
+    }
   }
 
   &__badge-wrapper {
@@ -31,38 +35,6 @@
     &--hidden {
       opacity: 0.25;
     }
-  }
-
-  &__admin-note {
-    background-color: @osu-colour-h2;
-    color: black;
-    font-weight: bold;
-    padding: 20px;
-    margin-bottom: 10px;
-
-    text-align: center;
-
-    @media @desktop {
-      .default-box-shadow();
-    }
-  }
-
-  &__name {
-    white-space: nowrap;
-    color: @osu-colour-l1;
-    font-size: @font-size--title-small-3;
-    font-weight: bold;
-    margin-top: 5px;
-    display: block;
-    &:hover {
-      color: white;
-    }
-  }
-
-  &__track-count {
-    color: @osu-colour-f1;
-    font-size: 12px;
-    text-align: center;
   }
 
   &__description {
@@ -88,41 +60,15 @@
     }
   }
 
-  &__portrait-wrapper {
-    width: 200px;
-    height: 200px;
-    position: relative;
-  }
-
-  &__portrait {
-    .at2x-fallback(--artist-portrait, "~@images/layout/artist-noavatar.jpg");
-    width: 250px;
-    height: 250px;
+  &__index {
+    background-color: @osu-colour-b4;
+    padding: 10px;
     .default-box-shadow();
-    .default-border-radius();
-    background-size: cover;
-    background-position: center;
-    display: block;
-
-    margin: 10px auto;
-    position: relative;
-
-    @media @desktop {
-      margin-top: -113px; // approximately aligned to inside of title bar
-    }
-
-    &--index {
-      width: 200px;
-      height: 200px;
-      margin: 0;
-      @media @desktop {
-        margin: 0;
-      }
-    }
-
-    &--new {
-      box-shadow: 25px -10px 50px hsla(var(--hsl-orange-1), 0.2);
-    }
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow: hidden;
   }
 
   &__label-overlay {
@@ -156,6 +102,67 @@
         display: none;
       }
     }
+  }
+
+  &__name {
+    white-space: nowrap;
+    color: @osu-colour-l1;
+    font-size: @font-size--title-small-3;
+    font-weight: bold;
+    margin-top: 5px;
+    display: block;
+    &:hover {
+      color: white;
+    }
+  }
+
+  &__portrait {
+    .at2x-fallback(--artist-portrait, "~@images/layout/artist-noavatar.jpg");
+    width: 250px;
+    height: 250px;
+    .default-box-shadow();
+    .default-border-radius();
+    background-size: cover;
+    background-position: center;
+    display: block;
+
+    margin: 10px auto;
+    position: relative;
+
+    @media @desktop {
+      margin-top: -113px; // approximately aligned to inside of title bar
+    }
+
+    &--index {
+      width: 200px;
+      height: 200px;
+      margin: 0;
+      @media @desktop {
+        margin: 0;
+      }
+    }
+
+    &--new {
+      box-shadow: 25px -10px 50px hsla(var(--hsl-orange-1), 0.2);
+    }
+  }
+
+  &__portrait-wrapper {
+    width: 200px;
+    height: 200px;
+    position: relative;
+  }
+
+  &__track-count {
+    color: @osu-colour-f1;
+    font-size: 12px;
+    text-align: center;
+  }
+
+  &__video {
+    margin: 20px auto 0;
+    border-radius: @border-radius-large;
+    overflow: hidden;
   }
 
   &__white-link {
