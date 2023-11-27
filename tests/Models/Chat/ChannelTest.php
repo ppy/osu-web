@@ -9,6 +9,7 @@ namespace Tests\Models\Chat;
 
 use App\Events\ChatChannelEvent;
 use App\Jobs\Notifications\ChannelAnnouncement;
+use App\Libraries\User\AvatarHelper;
 use App\Models\Chat\Channel;
 use App\Models\User;
 use App\Models\UserRelation;
@@ -254,8 +255,8 @@ class ChannelTest extends TestCase
         $otherUser = User::factory()->create();
 
         $testFile = new SplFileInfo(public_path('images/layout/avatar-guest.png'));
-        $user->setAvatar($testFile);
-        $otherUser->setAvatar($testFile);
+        AvatarHelper::set($user, $testFile);
+        AvatarHelper::set($otherUser, $testFile);
 
         $channel = Channel::factory()->type('pm', [$user, $otherUser])->create();
         $this->assertSame($otherUser->user_avatar, $channel->displayIconFor($user));
