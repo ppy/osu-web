@@ -21,7 +21,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('multiplayer_scores_high', function (Blueprint $table) {
+        Schema::table('artists', function (Blueprint $table) {
             $table->dropColumn('video_url');
         });
     }
