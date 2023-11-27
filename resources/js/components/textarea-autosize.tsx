@@ -61,8 +61,6 @@ export default class TextareaAutosize extends React.Component<Props, State> {
     if (this.ref.current.style.overflowX !== 'hidden') {
       this.ref.current.style.overflowX = 'hidden';
     }
-
-    autosize.update(this.ref.current);
   }
 
   componentWillUnmount() {
