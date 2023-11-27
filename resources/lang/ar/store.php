@@ -6,6 +6,7 @@
 return [
     'cart' => [
         'checkout' => 'إتمام الشراء',
+        'empty_cart' => '',
         'info' => ':count_delimited عنصر في السلة ($:subtotal)|:count_delimited عناصر في السلة ($:subtotal)',
         'more_goodies' => 'أريد أن تحقق من المزيد من الأشياء قبل إتمام الأمر',
         'shipping_fees' => 'رسوم الشحن',
@@ -48,19 +49,52 @@ return [
     ],
 
     'discount' => 'حفظ :percent%',
+    'free' => '',
 
     'invoice' => [
+        'contact' => '',
+        'date' => '',
         'echeck_delay' => 'بما ان دفعتك كانت الكترونية، يرجى السماح لنا حتى 10 أيام إضافية لدفع للمرور عن طريق باي بال!',
         'hide_from_activity' => 'إشارات osu!supporter لن تعرض بهذا الترتيب في نشاطك.',
+        'sent_via' => '',
+        'shipping_to' => '',
+        'title' => '',
         'title_compact' => 'الفاتورة',
 
         'status' => [
+            'cancelled' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => "",
+                    'link_text' => '',
+                ],
+            ],
+            'delivered' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => '',
+                    'link_text' => '',
+                ],
+            ],
+            'prepared' => [
+                'title' => '',
+                'line_1' => '',
+                'line_2' => '',
+            ],
             'processing' => [
                 'title' => 'لم يتم تأكيد الدفع الخاص بك بعد!',
                 'line_1' => 'إذا كنت قد دفعت فعلا، قد لا نزال تنتظر الحصول على تأكيد للدفع الخاص بك. الرجاء تحديث هذه الصفحة خلال دقيقة أو دقيقتين!',
                 'line_2' => [
                     '_' => 'إذا واجهت مشكلة أثناء الدفع, :link',
                     'link_text' => 'انقر هنا لاِستئناف الدفع',
+                ],
+            ],
+            'shipped' => [
+                'title' => '',
+                'tracking_details' => '',
+                'no_tracking_details' => [
+                    '_' => "",
+                    'link_text' => '',
                 ],
             ],
         ],
@@ -74,7 +108,19 @@ return [
         'no_orders' => 'لا طلبات للعرض.',
         'paid_on' => 'تم تعيين الطلب :date',
         'resume' => 'استئناف الدفع',
+        'shipping_and_handling' => '',
         'shopify_expired' => 'انتهت صلاحية رابط الدفع لهذه الطلبية.',
+        'subtotal' => '',
+        'total' => '',
+
+        'details' => [
+            'order_number' => '',
+            'payment_terms' => '',
+            'salesperson' => '',
+            'shipping_method' => '',
+            'shipping_terms' => '',
+            'title' => '',
+        ],
 
         'item' => [
             'quantity' => 'الكمية',
@@ -105,6 +151,15 @@ return [
             'paid' => 'دُفِعَت',
             'processing' => 'بانتظار التأكيد',
             'shipped' => 'تم الشحن',
+            'title' => '',
+        ],
+
+        'thanks' => [
+            'title' => '',
+            'line_1' => [
+                '_' => '',
+                'link_text' => '',
+            ],
         ],
     ],
 
@@ -138,6 +193,10 @@ return [
     'username_change' => [
         'check' => 'أدخل اسم مستخدم للتحقق من توَفُرِه!',
         'checking' => 'التحقق من توافر :username...',
+        'placeholder' => '',
+        'label' => '',
+        'current' => '',
+
         'require_login' => [
             '_' => 'تحتاج إلى أن تكون :link لتغيير اسمك!',
             'link_text' => 'مُسَجَل',

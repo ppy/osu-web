@@ -33,8 +33,7 @@ export default class SocketWorker {
   private readonly retryDelay = new RetryDelay();
   private readonly timeout: Partial<Record<string, number>> = {};
   private ws: WebSocket | null | undefined;
-  private readonly xhr: Partial<Record<string, JQueryXHR>> = {};
-  private readonly xhrLoadingState: Partial<Record<string, boolean>> = {};
+  private xhr: JQuery.jqXHR<NotificationFeedMetaJson> | null = null;
 
   @computed
   get isConnected() {
@@ -113,7 +112,7 @@ export default class SocketWorker {
 
     this.userId = null;
     this.active = false;
-    forEach(this.xhr, (xhr) => xhr?.abort());
+    this.xhr?.abort();
     forEach(this.timeout, (timeout) => window.clearTimeout(timeout));
 
     if (this.ws != null) {
@@ -169,23 +168,23 @@ export default class SocketWorker {
       return this.connectWebSocket();
     }
 
-    if (this.xhrLoadingState.startWebSocket) {
+    if (this.xhr != null) {
       return;
     }
 
     window.clearTimeout(this.timeout.startWebSocket);
 
-    this.xhrLoadingState.startWebSocket = true;
-
-    this.xhr.startWebSocket = $.get(route('notifications.endpoint'))
-      .always(action(() => {
-        this.xhrLoadingState.startWebSocket = false;
-      }))
-      .done(action((data: NotificationFeedMetaJson) => {
+    this.xhr = $.get(route('notifications.endpoint'));
+    this.xhr
+      .always(() => {
+        this.xhr = null;
+      })
+      .done((data) => {
         this.retryDelay.reset();
         this.endpoint = data.url;
         this.connectWebSocket();
-      })).fail(action((xhr: JQuery.jqXHR) => {
+      })
+      .fail((xhr) => {
         // Check if the user is logged out.
         // TODO: Add message to the popup.
         if (xhr.status === 401) {
@@ -193,6 +192,6 @@ export default class SocketWorker {
           return;
         }
         this.timeout.startWebSocket = window.setTimeout(this.startWebSocket, this.retryDelay.get());
-      }));
+      });
   };
 }

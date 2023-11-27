@@ -9,6 +9,7 @@ use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\Chat\UserChannel;
 use App\Models\Multiplayer\PlaylistItem;
+use App\Models\Multiplayer\PlaylistItemUserHighScore;
 use App\Models\Multiplayer\Room;
 use App\Models\Multiplayer\ScoreLink;
 use App\Models\Multiplayer\UserScoreAggregate;
@@ -32,14 +33,15 @@ class RoomsControllerTest extends TestCase
     {
         $room = Room::factory()->create();
         $user = User::factory()->create();
-        $playlist = PlaylistItem::factory()->create(['room_id' => $room]);
+        $playlistItem = PlaylistItem::factory()->create(['room_id' => $room]);
         $scoreLink = ScoreLink
             ::factory()
             ->state([
-                'playlist_item_id' => $playlist,
+                'playlist_item_id' => $playlistItem,
                 'user_id' => $user,
             ])->completed([], ['passed' => true, 'total_score' => 20])
             ->create();
+        PlaylistItemUserHighScore::new($scoreLink->user_id, $scoreLink->playlist_item_id)->update(['attempts' => 1]);
         UserScoreAggregate::lookupOrDefault($scoreLink->user, $scoreLink->playlistItem->room)->recalculate();
 
         $this->actAsScopedUser($user, ['*']);
@@ -47,7 +49,8 @@ class RoomsControllerTest extends TestCase
         $this
             ->json('GET', route('api.rooms.show', $room))
             ->assertSuccessful()
-            ->assertJsonPath('current_user_score.playlist_item_attempts.0.attempts', 1);
+            ->assertJsonPath('current_user_score.playlist_item_attempts.0.attempts', 1)
+            ->assertJsonPath('current_user_score.playlist_item_attempts.0.id', $playlistItem->getKey());
     }
 
     public function testStore()

@@ -12,7 +12,7 @@ export function blackoutShow() {
 }
 
 export function blackoutToggle(state: boolean, opacity?: number) {
-  const el = document.querySelector('.js-blackout');
+  const el = window.newBody?.querySelector('.js-blackout');
 
   if (el instanceof HTMLElement) {
     el.style.opacity = !state || opacity == null ? '' : String(opacity);

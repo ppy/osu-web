@@ -124,6 +124,9 @@ return [
     ],
 
     'ogp' => [
+        'modding_description' => '',
+        'modding_description_empty' => '',
+
         'description' => [
             '_' => 'Clasificació (:ruleset): :global | :country',
             'country' => 'País :rank',
@@ -183,7 +186,6 @@ return [
         'origin_country' => 'De :country',
         'previous_usernames' => 'conegut anteriorment com',
         'plays_with' => 'Juga amb :devices',
-        'title' => "Perfil de :username",
 
         'comments_count' => [
             '_' => 'Ha publicat :link',

@@ -55,6 +55,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => 'Ново ревю от :username, съдържащи проблеми: :problems, предложения: :suggestions, похвали: :praises',
                 'beatmapset_discussion_unlock' => 'Дискусията е отключена за ":title"',
                 'beatmapset_discussion_unlock_compact' => 'Дискусията е отключена',
+
+                'review_count' => [
+                    'praises' => '',
+                    'problems' => '',
+                    'suggestions' => '',
+                ],
             ],
 
             'beatmapset_problem' => [

@@ -6,6 +6,7 @@
 return [
     'cart' => [
         'checkout' => 'Kassa',
+        'empty_cart' => '',
         'info' => ':count_delimited tuote ostoskorissa ($:subtotal)|:count_delimited tuotteet ostoskorissa ($:subtotal)',
         'more_goodies' => 'Tarkastelisin vielä muita tuotteita ennen tilauksen tekemistä',
         'shipping_fees' => 'toimituskulut',
@@ -48,19 +49,52 @@ return [
     ],
 
     'discount' => 'säästä :percent%',
+    'free' => '',
 
     'invoice' => [
+        'contact' => '',
+        'date' => '',
         'echeck_delay' => 'Koska maksusi oli eCheck, anna maksimissaan 10 päivää että maksu pääsee PayPalin läpi!',
         'hide_from_activity' => 'Tämän tilauksen osu!supporter-tägejä ei näytetä profiilisi viimeaikainen toiminta kohdassa.',
+        'sent_via' => '',
+        'shipping_to' => '',
+        'title' => '',
         'title_compact' => 'lasku',
 
         'status' => [
+            'cancelled' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => "",
+                    'link_text' => '',
+                ],
+            ],
+            'delivered' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => '',
+                    'link_text' => '',
+                ],
+            ],
+            'prepared' => [
+                'title' => '',
+                'line_1' => '',
+                'line_2' => '',
+            ],
             'processing' => [
                 'title' => 'Maksuasi ei ole vielä vahvistettu!',
                 'line_1' => 'Jos olet jo maksanut, me saatamme silti odottaa varmistusta maksustasi. Päivitä sivu yhden tai kahden minuutin kuluttua!',
                 'line_2' => [
                     '_' => 'Jos sinulla on ongelmia maksun aikana, :link',
                     'link_text' => 'klikkaa tästä jatkaaksesi maksamista',
+                ],
+            ],
+            'shipped' => [
+                'title' => '',
+                'tracking_details' => '',
+                'no_tracking_details' => [
+                    '_' => "",
+                    'link_text' => '',
                 ],
             ],
         ],
@@ -74,7 +108,19 @@ return [
         'no_orders' => 'Ei tilauksia katsottavissa.',
         'paid_on' => 'Tilaus laitettu :date',
         'resume' => 'Jatka kassalle',
+        'shipping_and_handling' => '',
         'shopify_expired' => 'Tämän tilauksen kassalinkki on vanhentunut.',
+        'subtotal' => '',
+        'total' => '',
+
+        'details' => [
+            'order_number' => '',
+            'payment_terms' => '',
+            'salesperson' => '',
+            'shipping_method' => '',
+            'shipping_terms' => '',
+            'title' => '',
+        ],
 
         'item' => [
             'quantity' => 'Määrä',
@@ -105,6 +151,15 @@ return [
             'paid' => 'Maksettu',
             'processing' => 'Odotetaan varmistusta',
             'shipped' => 'Kuljetuksessa',
+            'title' => '',
+        ],
+
+        'thanks' => [
+            'title' => '',
+            'line_1' => [
+                '_' => '',
+                'link_text' => '',
+            ],
         ],
     ],
 
@@ -138,6 +193,10 @@ return [
     'username_change' => [
         'check' => 'Kirjoita käyttäjänimi saatavuuden tarkistamiseksi!',
         'checking' => 'Tarkistetaan saatavuutta nimelle :username...',
+        'placeholder' => '',
+        'label' => '',
+        'current' => '',
+
         'require_login' => [
             '_' => 'Sinun on oltava :link vaihtaaksesi nimesi!',
             'link_text' => 'kirjautuneena sisään',

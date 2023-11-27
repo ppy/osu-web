@@ -124,6 +124,9 @@ return [
     ],
 
     'ogp' => [
+        'modding_description' => '',
+        'modding_description_empty' => '',
+
         'description' => [
             '_' => 'Umístění (:ruleset): :global | :country',
             'country' => 'Stát :rank',
@@ -183,7 +186,6 @@ return [
         'origin_country' => 'Z :country',
         'previous_usernames' => 'dříve znám jako',
         'plays_with' => 'Hraje s :devices',
-        'title' => "profil uživatele :username",
 
         'comments_count' => [
             '_' => 'Postnul :link',

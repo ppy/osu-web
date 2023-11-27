@@ -17,7 +17,7 @@ return [
         'identify' => 'Identificēt sevi un lasīt savu publisko profilu.',
 
         'chat' => [
-            'read' => '',
+            'read' => 'Lasīt ziņas jūsu vārdā.',
             'write' => 'Sūtīt ziņas jūsu vārdā.',
             'write_manage' => '',
         ],

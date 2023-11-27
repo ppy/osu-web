@@ -124,6 +124,9 @@ return [
     ],
 
     'ogp' => [
+        'modding_description' => '',
+        'modding_description_empty' => '',
+
         'description' => [
             '_' => 'Rank (:regelset): :global | :land',
             'country' => 'Land :rank',
@@ -183,7 +186,6 @@ return [
         'origin_country' => 'Från :country',
         'previous_usernames' => 'tidigare känd som',
         'plays_with' => 'Spelar med :devices',
-        'title' => ":usernames profil",
 
         'comments_count' => [
             '_' => 'Upplagd :link',

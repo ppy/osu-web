@@ -19,9 +19,6 @@ class CreatePollVotesTable extends Migration
         }
 
         Schema::create('phpbb_poll_votes', function ($table) {
-            $table->collation = 'utf8_bin';
-            $table->charset = 'utf8';
-
             $table->mediumInteger('topic_id')->unsigned()->default(0);
             $table->tinyInteger('poll_option_id')->default(0);
             $table->mediumInteger('vote_user_id')->unsigned()->default(0);
@@ -31,8 +28,6 @@ class CreatePollVotesTable extends Migration
             $table->index('vote_user_id', 'vote_user_id');
             $table->index('vote_user_ip', 'vote_user_ip');
         });
-
-        DB::statement('ALTER TABLE phpbb_poll_votes ROW_FORMAT=DYNAMIC');
     }
 
     /**

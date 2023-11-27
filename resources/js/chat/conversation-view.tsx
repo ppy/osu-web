@@ -16,6 +16,7 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
+import { present } from 'utils/string';
 import InputBox from './input-box';
 import { MessageDivider } from './message-divider';
 import MessageGroup from './message-group';
@@ -229,7 +230,7 @@ export default class ConversationView extends React.Component<Props> {
               />
             )}
           </div>
-          {channel.description &&
+          {present(channel.description) &&
             <div className='chat-conversation__chat-label'>
               {channel.description}
             </div>

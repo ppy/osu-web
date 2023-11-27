@@ -124,6 +124,9 @@ return [
     ],
 
     'ogp' => [
+        'modding_description' => '',
+        'modding_description_empty' => '',
+
         'description' => [
             '_' => '',
             'country' => '',
@@ -183,7 +186,6 @@ return [
         'origin_country' => 'من :country',
         'previous_usernames' => 'سابقاََ',
         'plays_with' => 'يستخدم :devices',
-        'title' => "صفحة:username الشخصية",
 
         'comments_count' => [
             '_' => 'نَشَر :link',

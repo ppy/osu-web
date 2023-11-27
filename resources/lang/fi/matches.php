@@ -5,7 +5,7 @@
 
 return [
     'match' => [
-        'beatmap-deleted' => 'poistettu beatmappi',
+        'beatmap-deleted' => 'poistettu rytmikartta',
         'failed' => 'HÄVISI',
         'header' => 'Moninpelit',
         'in-progress' => '(peli meneillään)',

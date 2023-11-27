@@ -39,14 +39,6 @@ class PlaylistItem extends Model
         'required_mods' => 'object',
     ];
 
-    public static function userAttemptModelBaseQueries(): array
-    {
-        return [
-            ScoreLink::query(),
-            ScoreToken::whereNull('score_id'),
-        ];
-    }
-
     public static function assertBeatmapsExist(array $playlistItems)
     {
         $requestedBeatmapIds = array_map(function ($item) {
@@ -122,20 +114,6 @@ class PlaylistItem extends Model
             ->with('scoreLink.score')
             ->orderBy('total_score', 'desc')
             ->orderBy('score_id', 'asc');
-    }
-
-    public function userAttempts(int $userId): int
-    {
-        $id = $this->getKey();
-        $ret = 0;
-        foreach (static::userAttemptModelBaseQueries() as $query) {
-            $ret += $query->where([
-                'playlist_item_id' => $id,
-                'user_id' => $userId,
-            ])->count();
-        }
-
-        return $ret;
     }
 
     private function assertValidMaxAttempts()

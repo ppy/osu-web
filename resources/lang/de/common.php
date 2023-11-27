@@ -50,7 +50,7 @@ return [
         'search' => 'Suchen',
         'see_more' => 'mehr anzeigen',
         'show' => 'anzeigen',
-        'show_deleted' => 'Zeige gelöschtes',
+        'show_deleted' => 'Gelöschte anzeigen',
         'show_less' => 'weniger anzeigen',
         'show_more' => 'mehr anzeigen',
         'show_more_options' => 'mehr Optionen anzeigen',

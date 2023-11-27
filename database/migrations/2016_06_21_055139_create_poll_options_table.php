@@ -19,9 +19,6 @@ class CreatePollOptionsTable extends Migration
         }
 
         Schema::create('phpbb_poll_options', function ($table) {
-            $table->collation = 'utf8_bin';
-            $table->charset = 'utf8';
-
             $table->tinyInteger('poll_option_id')->default(0);
             $table->mediumInteger('topic_id')->unsigned()->default(0);
             $table->text('poll_option_text');
@@ -30,8 +27,6 @@ class CreatePollOptionsTable extends Migration
             $table->index('poll_option_id', 'poll_opt_id');
             $table->index('topic_id', 'topic_id');
         });
-
-        DB::statement('ALTER TABLE phpbb_poll_options ROW_FORMAT=DYNAMIC');
     }
 
     /**
