@@ -61,6 +61,11 @@ class OsuMarkdown
     ];
 
     const PRESETS = [
+        'artist' => [
+            'commonmark' => [
+                'html_input' => 'allow',
+            ],
+        ],
         'changelog_entry' => [
             'commonmark' => [
                 'html_input' => 'allow',

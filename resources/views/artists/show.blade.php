@@ -45,7 +45,7 @@
                 <div class="artist__description">
                     <h1>{{ $artist->name }}</h1>
 
-                    {!! markdown($artist->description) !!}
+                    {!! markdown($artist->description, 'artist') !!}
                 </div>
                 @if (count($json['albums']) > 0)
                     <div class="artist__albums">
