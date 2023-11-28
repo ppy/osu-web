@@ -22,6 +22,7 @@ use App\Libraries\OsuCookieJar;
 use App\Libraries\OsuMessageSelector;
 use App\Libraries\RateLimiter;
 use App\Libraries\RouteSection;
+use App\Libraries\Smilies;
 use App\Libraries\User\ScorePins;
 use Datadog;
 use Illuminate\Database\Eloquent\Relations\Relation;
@@ -43,6 +44,7 @@ class AppServiceProvider extends ServiceProvider
         'groups' => Groups::class,
         'layout-cache' => LayoutCache::class,
         'medals' => Medals::class,
+        'smilies' => Smilies::class,
     ];
 
     const SINGLETONS = [
