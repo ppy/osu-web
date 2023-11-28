@@ -153,7 +153,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
   // FIXME: element should be typed properly instead.
   discussionType = () => this.props.element.discussionType;
 
-  editable = () => !(this.props.editMode && this.props.element.discussionId);
+  editable = () => !(this.props.editMode && this.props.element.discussionId != null);
 
   isRelevantDiscussion = (discussion?: BeatmapsetDiscussionJson): discussion is BeatmapsetDiscussionJson => (
     discussion != null && discussion.beatmap_id === this.selectedBeatmap()
@@ -187,7 +187,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
     }
 
     return drafts.filter((embed) => {
-      if (!embed.timestamp || embed.beatmapId !== this.props.element.beatmapId) {
+      if (embed.timestamp == null || embed.beatmapId !== this.props.element.beatmapId) {
         return false;
       }
 

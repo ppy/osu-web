@@ -8,7 +8,6 @@ namespace App\Models\Multiplayer;
 use App\Models\Model;
 use App\Models\Traits\WithDbCursorHelper;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Builder;
 
 /**
  * Aggregate root for user multiplayer high scores.
@@ -71,15 +70,18 @@ class UserScoreAggregate extends Model
         return $obj;
     }
 
-    public function addScoreLink(ScoreLink $scoreLink)
+    public function addScoreLink(ScoreLink $scoreLink, ?PlaylistItemUserHighScore $highestScore = null)
     {
-        return $this->getConnection()->transaction(function () use ($scoreLink) {
+        return $this->getConnection()->transaction(function () use ($highestScore, $scoreLink) {
             $score = $scoreLink->score;
             if ($score === null) {
                 return false;
             }
 
-            $highestScore = PlaylistItemUserHighScore::lookupOrDefault($scoreLink);
+            $highestScore ??= PlaylistItemUserHighScore::lookupOrDefault(
+                $scoreLink->user_id,
+                $scoreLink->playlist_item_id,
+            );
 
             if ($score->data->passed && $score->data->totalScore > $highestScore->total_score) {
                 $this->updateUserTotal($scoreLink, $highestScore);
@@ -102,44 +104,43 @@ class UserScoreAggregate extends Model
 
     public function playlistItemAttempts(): array
     {
-        $userId = $this->user_id;
-        $roomId = $this->room_id;
+        $playlistItemAggs = PlaylistItemUserHighScore
+            ::whereHas('playlistItem', fn ($q) => $q->where('room_id', $this->room_id))
+            ->where('user_id', $this->user_id)
+            ->get();
 
-        $attempts = [];
-        foreach (PlaylistItem::userAttemptModelBaseQueries() as $query) {
-            $aggs = $query->where(['user_id' => $userId])
-                ->whereHas('playlistItem', fn ($q) => $q->where('room_id', $roomId))
-                ->groupBy('playlist_item_id')
-                ->selectRaw('COUNT(*) AS attempts, playlist_item_id')
-                ->get();
-
-            foreach ($aggs as $agg) {
-                $playlistItemId = $agg->getRawAttribute('playlist_item_id');
-                $attempts[$playlistItemId] ??= [
-                    'attempts' => 0,
-                    'id' => $playlistItemId,
-                ];
-                $attempts[$playlistItemId]['attempts'] += $agg->getRawAttribute('attempts');
-            }
+        $ret = [];
+        foreach ($playlistItemAggs as $agg) {
+            $ret[] = [
+                'attempts' => $agg->attempts,
+                'id' => $agg->playlist_item_id,
+            ];
         }
 
-        return array_values($attempts);
-    }
-
-    public function scoreLinks(): Builder
-    {
-        return ScoreLink
-            ::whereHas('playlistItem', fn ($q) => $q->where('room_id', $this->room_id))
-            ->where('user_id', $this->user_id);
+        return $ret;
     }
 
     public function recalculate()
     {
         $this->getConnection()->transaction(function () {
             $this->removeRunningTotals();
-            foreach ($this->scoreLinks()->with('score.performance')->get() as $scoreLink) {
-                $this->attempts++;
-                $this->addScoreLink($scoreLink);
+            $playlistItemAggs = PlaylistItemUserHighScore
+                ::whereHas('playlistItem', fn ($q) => $q->where('room_id', $this->room_id))
+                ->where('user_id', $this->user_id)
+                ->get()
+                ->keyBy('playlist_item_id');
+            $this->attempts = $playlistItemAggs->reduce(fn ($acc, $agg) => $acc + $agg->attempts, 0);
+
+            $scoreLinks = ScoreLink
+                ::whereHas('playlistItem', fn ($q) => $q->where('room_id', $this->room_id))
+                ->where('user_id', $this->user_id)
+                ->with('score.performance')
+                ->get();
+            foreach ($scoreLinks as $scoreLink) {
+                $this->addScoreLink(
+                    $scoreLink,
+                    $playlistItemAggs[$scoreLink->playlist_item_id] ?? null,
+                );
             }
             $this->save();
         });
@@ -147,10 +148,13 @@ class UserScoreAggregate extends Model
 
     public function removeRunningTotals()
     {
-        PlaylistItemUserHighScore::whereIn(
-            'playlist_item_id',
-            PlaylistItem::where('room_id', $this->room_id)->select('id')
-        )->where('user_id', $this->user_id)->delete();
+        PlaylistItemUserHighScore
+            ::whereHas('playlistItem', fn ($q) => $q->where('room_id', $this->room_id))
+            ->where('user_id', $this->user_id)
+            ->update([
+                'total_score' => 0,
+                'accuracy' => 0,
+            ]);
 
         foreach (['total_score', 'accuracy', 'pp', 'attempts', 'completed'] as $key) {
             // init if required
