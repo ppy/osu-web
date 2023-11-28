@@ -19,7 +19,7 @@ class Smilies
         return $this->memoize(__FUNCTION__, fn () => $this->fetch());
     }
 
-    protected function fetch(): array
+    private function fetch(): array
     {
         return Smiley::orderBy(\DB::raw('LENGTH(code)'), 'desc')->get()->toArray();
     }
