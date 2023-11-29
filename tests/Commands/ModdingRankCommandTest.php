@@ -104,7 +104,7 @@ class ModdingRankCommandTest extends TestCase
     }
 
 
-    public function rankDataProvider()
+    public static function rankDataProvider()
     {
         // 1 day ago isn't used because it might or might not be equal to the cutoff depending on how fast it runs.
         return [
@@ -113,7 +113,7 @@ class ModdingRankCommandTest extends TestCase
         ];
     }
 
-    public function rankHybridDataProvider()
+    public static function rankHybridDataProvider()
     {
         return [
             // hybrid counts as ruleset with lowest enum value

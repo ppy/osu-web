@@ -308,7 +308,7 @@ class SanityTest extends DuskTestCase
         }
     }
 
-    public function routesDataProvider()
+    public static function routesDataProvider()
     {
         static $bypass = [
             '__clockwork',
@@ -321,7 +321,7 @@ class SanityTest extends DuskTestCase
         ];
         static $types = ['user', 'guest'];
 
-        $this->refreshApplication();
+        static::createApp();
         $data = [];
 
         foreach (app()->routes->get('GET') as $uri => $route) {

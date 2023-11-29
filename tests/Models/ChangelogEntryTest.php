@@ -131,7 +131,7 @@ class ChangelogEntryTest extends TestCase
         $this->assertTrue(ChangelogEntry::isPrivate($data));
     }
 
-    public function dataForPublicMessageHtmlVisibility()
+    public static function dataForPublicMessageHtmlVisibility()
     {
         return [
             ['Hidden', null],

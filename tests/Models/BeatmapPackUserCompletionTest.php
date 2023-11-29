@@ -58,7 +58,7 @@ class BeatmapPackUserCompletionTest extends TestCase
         $this->assertSame($completed, $data['completed']);
     }
 
-    public function dataProviderForTestBasic(): array
+    public static function dataProviderForTestBasic(): array
     {
         return [
             ['convertOsu', 'osu', true],

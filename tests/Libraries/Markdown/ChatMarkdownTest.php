@@ -22,9 +22,9 @@ class ChatMarkdownTest extends TestCase
         );
     }
 
-    public function chatExamples()
+    public static function chatExamples()
     {
-        return $this->fileList(__DIR__.'/chat_markdown_examples', '.md');
+        return static::fileList(__DIR__.'/chat_markdown_examples', '.md');
     }
 
     private function loadOutputTest(string $name, string $path)

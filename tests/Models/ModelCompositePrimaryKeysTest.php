@@ -71,7 +71,7 @@ class ModelCompositePrimaryKeysTest extends TestCase
         $this->assertSame($cast($check[2]), $cast($item2->fresh()->$key));
     }
 
-    public function dataProviderBase()
+    public static function dataProviderBase()
     {
         // 0: class name
         // 1: base params

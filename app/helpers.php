@@ -3,6 +3,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+use App\Libraries\Base64Url;
 use App\Libraries\LocaleMeta;
 use App\Models\LoginAttempt;
 use Egulias\EmailValidator\EmailValidator;
@@ -58,18 +59,6 @@ function background_image($url, $proxy = true)
     $url = $proxy ? proxy_media($url) : $url;
 
     return sprintf(' style="background-image:url(\'%s\');" ', e($url));
-}
-
-function base64url_decode(string $value): ?string
-{
-    return null_if_false(base64_decode(strtr($value, '-_', '+/'), true));
-}
-
-function base64url_encode(string $value): string
-{
-    // url safe base64
-    // reference: https://datatracker.ietf.org/doc/html/rfc4648#section-5
-    return rtrim(strtr(base64_encode($value), '+/', '-_'), '=');
 }
 
 function beatmap_timestamp_format($ms)
@@ -310,7 +299,7 @@ function current_locale_meta(): LocaleMeta
 function cursor_decode($cursorString): ?array
 {
     if (is_string($cursorString) && present($cursorString)) {
-        $cursor = json_decode(base64_decode(strtr($cursorString, '-_', '+/'), true), true);
+        $cursor = json_decode(Base64Url::decode($cursorString) ?? '', true);
 
         if (is_array($cursor)) {
             return $cursor;
@@ -324,7 +313,7 @@ function cursor_encode(?array $cursor): ?string
 {
     return $cursor === null
         ? null
-        : base64url_encode(json_encode($cursor));
+        : Base64Url::encode(json_encode($cursor));
 }
 
 function cursor_for_response(?array $cursor): array
