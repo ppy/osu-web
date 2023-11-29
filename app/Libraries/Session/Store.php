@@ -114,6 +114,11 @@ class Store extends \Illuminate\Session\Store
         return false;
     }
 
+    public function instance(): static
+    {
+        return $this;
+    }
+
     /**
      * Return whether the given id matches the current session's id.
      *
