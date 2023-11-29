@@ -12,7 +12,7 @@ export default class CreateAnnouncementButton extends React.Component {
   render() {
     if (!core.dataStore.chatState.canChatAnnounce) return null;
 
-    const modifiers = { selected: core.dataStore.chatState.showingCreateAnnouncement };
+    const modifiers = { selected: core.dataStore.chatState.selectedChannelId === 'create' };
 
     return (
       <div className={classWithModifiers('chat-conversation-list-item', modifiers)}>

@@ -10,7 +10,7 @@ import { trans } from 'utils/lang';
 @observer
 export default class JoinChannelButton extends React.Component {
   render() {
-    const modifiers = { selected: core.dataStore.chatState.showingJoinChannel };
+    const modifiers = { selected: core.dataStore.chatState.selectedChannelId === 'join' };
 
     return (
       <div className={classWithModifiers('chat-conversation-list-item', modifiers)}>

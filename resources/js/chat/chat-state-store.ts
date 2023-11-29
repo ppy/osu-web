@@ -56,12 +56,12 @@ export default class ChatStateStore implements DispatchListener {
     return typeof this.selected === 'number' ? this.channelStore.get(this.selected) : null;
   }
 
-  get showingCreateAnnouncement() {
-    return this.selected === 'create';
+  get selectedChannelId() {
+    return this.selected;
   }
 
-  get showingJoinChannel() {
-    return this.selected === 'join';
+  get showingNonChannel() {
+    return typeof this.selected !== 'number';
   }
 
   @computed
@@ -267,7 +267,7 @@ export default class ChatStateStore implements DispatchListener {
    * Keeps the current channel in focus, unless deleted, then focus on next channel.
    */
   private refocusSelectedChannel() {
-    if (this.showingCreateAnnouncement) return;
+    if (this.showingNonChannel) return;
 
     if (this.selectedChannel != null) {
       this.selectChannel(this.selectedChannel.channelId);

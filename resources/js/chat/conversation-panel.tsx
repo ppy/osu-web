@@ -17,28 +17,40 @@ export default class ConversationPanel extends React.Component<Record<string, ne
   render() {
     return (
       <div className='chat-conversation-panel'>
-        {core.dataStore.chatState.selectedChannel != null ? (
-          <ConversationView />
-        ) : core.dataStore.chatState.showingCreateAnnouncement ? (
-          <CreateAnnouncement />
-        ) : core.dataStore.chatState.showingJoinChannel ? (
-          <JoinChannels />
+        {this.renderContent()}
+      </div>
+    );
+  }
+
+  renderContent() {
+    const chatState = core.dataStore.chatState;
+
+    if (chatState.selectedChannelId === 'create') {
+      return <CreateAnnouncement />;
+    }
+
+    if (chatState.selectedChannelId === 'join') {
+      return <JoinChannels />;
+    }
+
+    if (chatState.selectedChannel != null) {
+      return <ConversationView />;
+    }
+
+    return (
+      <div className='chat-conversation-panel__no-channel'>
+        <Img2x alt='Art by Badou_Rammsteiner' src='/images/layout/chat/none-yet.png' title='Art by Badou_Rammsteiner' />
+        {core.dataStore.channelStore.channels.size > 0 ? (
+          <>
+            <div className='chat-conversation-panel__title'>{trans('chat.not_found.title')}</div>
+            <div className='chat-conversation-panel__instructions'>{trans('chat.not_found.message')}</div>
+          </>
         ) : (
-          <div className='chat-conversation-panel__no-channel'>
-            <Img2x alt='Art by Badou_Rammsteiner' src='/images/layout/chat/none-yet.png' title='Art by Badou_Rammsteiner' />
-            {core.dataStore.channelStore.channels.size > 0 ? (
-              <>
-                <div className='chat-conversation-panel__title'>{trans('chat.not_found.title')}</div>
-                <div className='chat-conversation-panel__instructions'>{trans('chat.not_found.message')}</div>
-              </>
-            ) : (
-              <>
-                <div className='chat-conversation-panel__title'>{trans('chat.no-conversations.title')}</div>
-                <div className='chat-conversation-panel__instructions'>{trans('chat.no-conversations.howto')}</div>
-                <div dangerouslySetInnerHTML={{ __html: trans('chat.no-conversations.lazer', { link: lazerLink }) }} />
-              </>
-            )}
-          </div>
+          <>
+            <div className='chat-conversation-panel__title'>{trans('chat.no-conversations.title')}</div>
+            <div className='chat-conversation-panel__instructions'>{trans('chat.no-conversations.howto')}</div>
+            <div dangerouslySetInnerHTML={{ __html: trans('chat.no-conversations.lazer', { link: lazerLink }) }} />
+          </>
         )}
       </div>
     );
