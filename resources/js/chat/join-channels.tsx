@@ -3,7 +3,7 @@
 
 import { Spinner } from 'components/spinner';
 import ChannelJson from 'interfaces/chat/channel-json';
-import { computed, makeObservable, observable } from 'mobx';
+import { computed, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -74,6 +74,13 @@ export default class JoinChannels extends React.Component<Props> {
   private async loadChannelList() {
     if (this.channels != null) return;
 
-    this.channels = await getPublicChannels();
+    try {
+      const channels = await getPublicChannels();
+      runInAction(() => {
+        this.channels = channels;
+      });
+    } catch {
+      // TODO: show error
+    }
   }
 }
