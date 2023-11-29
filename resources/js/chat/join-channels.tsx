@@ -12,9 +12,20 @@ import { getPublicChannels } from './chat-api';
 
 type Props = Record<string, never>;
 
-function Channel({ channel, joined, onClick }: { channel: ChannelJson; joined: boolean; onClick: (id: number) => void }) {
+interface ChannelProps {
+  channel: ChannelJson;
+  joined: boolean;
+  onClick: (channelId: number) => void;
+}
+
+function Channel({ channel, joined, onClick }: ChannelProps) {
+  const handleClick = React.useCallback(
+    () => onClick(channel.channel_id),
+    [channel.channel_id, onClick],
+  );
+
   return (
-    <button key={channel.channel_id} className={classWithModifiers('chat-join-channel__channel', { joined })} onClick={() => onClick(channel.channel_id)}>
+    <button key={channel.channel_id} className={classWithModifiers('chat-join-channel__channel', { joined })} onClick={handleClick}>
       <div>{joined && <i className='fas fa-check' />}</div>
       <div>{channel.name}</div>
       <div>{channel.description}</div>
