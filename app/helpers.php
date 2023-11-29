@@ -60,6 +60,18 @@ function background_image($url, $proxy = true)
     return sprintf(' style="background-image:url(\'%s\');" ', e($url));
 }
 
+function base64url_decode(string $value): ?string
+{
+    return null_if_false(base64_decode(strtr($value, '-_', '+/'), true));
+}
+
+function base64url_encode(string $value): string
+{
+    // url safe base64
+    // reference: https://datatracker.ietf.org/doc/html/rfc4648#section-5
+    return rtrim(strtr(base64_encode($value), '+/', '-_'), '=');
+}
+
 function beatmap_timestamp_format($ms)
 {
     $s = $ms / 1000;
@@ -310,13 +322,9 @@ function cursor_decode($cursorString): ?array
 
 function cursor_encode(?array $cursor): ?string
 {
-    if ($cursor === null) {
-        return null;
-    }
-
-    // url safe base64
-    // reference: https://datatracker.ietf.org/doc/html/rfc4648#section-5
-    return rtrim(strtr(base64_encode(json_encode($cursor)), '+/', '-_'), '=');
+    return $cursor === null
+        ? null
+        : base64url_encode(json_encode($cursor));
 }
 
 function cursor_for_response(?array $cursor): array
