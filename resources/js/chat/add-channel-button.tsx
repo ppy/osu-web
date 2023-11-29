@@ -7,12 +7,16 @@ import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 
-@observer
-export default class CreateAnnouncementButton extends React.Component {
-  render() {
-    if (!core.dataStore.chatState.canChatAnnounce) return null;
+interface Props {
+  type: 'create' | 'join';
+}
 
-    const modifiers = { selected: core.dataStore.chatState.selectedChannelId === 'create' };
+@observer
+export default class AddChannelButton extends React.Component<Props> {
+  render() {
+    if (this.props.type === 'create' && !core.dataStore.chatState.canChatAnnounce) return null;
+
+    const modifiers = { selected: core.dataStore.chatState.selectedChannelId === this.props.type };
 
     return (
       <div className={classWithModifiers('chat-conversation-list-item', modifiers)}>
@@ -22,13 +26,13 @@ export default class CreateAnnouncementButton extends React.Component {
               <span className='fas fa-plus' />
             </span>
           </div>
-          <div className='chat-conversation-list-item__name'>{trans('chat.channels.create')}</div>
+          <div className='chat-conversation-list-item__name'>{trans(`chat.channels.${this.props.type}`)}</div>
         </button>
       </div>
     );
   }
 
   private readonly handleClick = () => {
-    core.dataStore.chatState.selectChannel('create');
+    core.dataStore.chatState.selectChannel(this.props.type);
   };
 }

@@ -7,9 +7,8 @@ import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { trans } from 'utils/lang';
+import AddChannelButton from './add-channel-button';
 import ConversationListItem from './conversation-list-item';
-import CreateAnnouncementButton from './create-announcement-button';
-import JoinChannelButton from './join-channel-button';
 
 const icons: Record<SupportedChannelType, string> = {
   ANNOUNCE: 'fas fa-bullhorn',
@@ -40,8 +39,8 @@ function renderChannels(type: SupportedChannelType) {
               {c.map((channel) => <ConversationListItem key={channel.channelId} channel={channel} />)}
             </div>
           ))}
-          {type === 'ANNOUNCE' && <CreateAnnouncementButton />}
-          {type === 'PUBLIC' && <JoinChannelButton />}
+          {type === 'ANNOUNCE' && <AddChannelButton type='create' />}
+          {type === 'PUBLIC' && <AddChannelButton type='join' />}
         </div>
         <div className='chat-conversation-list-separator' />
       </React.Fragment>
