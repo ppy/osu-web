@@ -15,7 +15,7 @@ import Channel from 'models/chat/channel';
 import CreateAnnouncement from 'models/chat/create-announcement';
 import core from 'osu-core-singleton';
 import ChannelStore from 'stores/channel-store';
-import { onError } from 'utils/ajax';
+import { isJqXHR, onError } from 'utils/ajax';
 import { trans } from 'utils/lang';
 import { updateQueryString } from 'utils/url';
 import ChannelJoinEvent from './channel-join-event';
@@ -38,7 +38,7 @@ export default class ChatStateStore implements DispatchListener {
   private readonly pingService: PingService;
   @observable private selected: ChannelId = null;
   private selectedIndex = 0;
-  @observable private waitJoinChannelUuid: string | null = null;
+  @observable private waitJoinChannelUuid: string | number | null = null;
 
   @computed
   get isChatMounted() {
@@ -49,6 +49,13 @@ export default class ChatStateStore implements DispatchListener {
   @computed
   get isJoiningChannel() {
     return this.waitJoinChannelUuid != null;
+  }
+
+  get waitJoinChannelType() {
+    if (this.waitJoinChannelUuid == null) return null;
+    return typeof this.waitJoinChannelUuid === 'string'
+      ? 'announce'
+      : 'existing';
   }
 
   @computed
@@ -130,20 +137,21 @@ export default class ChatStateStore implements DispatchListener {
   // For consistency, the operation is considered complete when the websocket message arrives, not when the request completes.
   @action
   joinChannel(channelId?: number) {
+    if (this.isJoiningChannel) return;
+
     if (channelId != null) {
-      joinChannel(channelId, core.currentUserOrFail.id);
+      this.waitJoinChannelUuid = channelId;
+      joinChannel(channelId, core.currentUserOrFail.id)
+        .fail(this.handleJoinChannelFail);
     } else {
-      if (!this.createAnnouncement.isValid || this.isJoiningChannel) return;
+      if (!this.createAnnouncement.isValid) return;
 
       const json = this.createAnnouncement.toJson();
       this.waitJoinChannelUuid = json.uuid;
       // TODO: when adding more channel types to join, remember to add separate busy spinner states for them.
 
       createAnnouncement(json)
-        .fail(action((xhr: JQueryXHR) => {
-          onError(xhr);
-          this.waitJoinChannelUuid = null;
-        }));
+        .fail(this.handleJoinChannelFail);
     }
   }
 
@@ -221,12 +229,15 @@ export default class ChatStateStore implements DispatchListener {
 
   @action
   private handleChatChannelJoinEvent(event: ChannelJoinEvent) {
-    this.channelStore.update(event.json);
+    const json = event.json;
+    this.channelStore.update(json);
 
-    if (this.waitJoinChannelUuid != null && this.waitJoinChannelUuid === event.json.uuid) {
-      this.selectChannel(event.json.channel_id);
+    if (this.waitJoinChannelType === 'announce' && this.waitJoinChannelUuid === json.uuid
+      || this.waitJoinChannelType === 'existing' && this.waitJoinChannelUuid === json.channel_id
+    ) {
+      this.selectChannel(json.channel_id);
       this.waitJoinChannelUuid = null;
-      if (event.json.type === 'ANNOUNCE') {
+      if (json.type === 'ANNOUNCE') {
         this.createAnnouncement.clear();
       }
     }
@@ -252,6 +263,13 @@ export default class ChatStateStore implements DispatchListener {
     const channel = this.channelStore.groupedChannels.PM.find((value) => value.pmTarget === event.userId);
     channel?.loadMetadata();
   }
+
+  @action
+  private readonly handleJoinChannelFail = (error: unknown) => {
+    if (!isJqXHR(error)) throw error;
+    onError(error);
+    this.waitJoinChannelUuid = null;
+  };
 
   @action
   private handleSocketStateChanged(event: SocketStateChangedAction) {
