@@ -19,6 +19,23 @@ class Smilies
         return $this->memoize(__FUNCTION__, fn () => $this->fetch());
     }
 
+    public function replacer(): array
+    {
+        return $this->memoize(__FUNCTION__, function () {
+            $smilies = $this->all();
+
+            $patterns = [];
+            $replacements = [];
+
+            foreach ($smilies as $smiley) {
+                $patterns[] = '#(?<=^|[\n .])'.preg_quote($smiley['code'], '#').'(?![^<>]*>)#';
+                $replacements[] = '<!-- s'.$smiley['code'].' --><img src="{SMILIES_PATH}/'.$smiley['smiley_url'].'" alt="'.$smiley['code'].'" title="'.$smiley['emotion'].'" /><!-- s'.$smiley['code'].' -->';
+            }
+
+            return compact('patterns', 'replacements');
+        });
+    }
+
     private function fetch(): array
     {
         return Smiley::orderBy(\DB::raw('LENGTH(code)'), 'desc')->get()->toArray();
