@@ -123,6 +123,17 @@ return [
         ],
     ],
 
+    'ogp' => [
+        'modding_description' => '',
+        'modding_description_empty' => '',
+
+        'description' => [
+            '_' => 'Rang (:ruleset): :global × :country',
+            'country' => 'Land :rank',
+            'global' => 'Globaal :rank',
+        ],
+    ],
+
     'posts' => [
         'title' => ':username\'s berichten',
     ],
@@ -175,7 +186,6 @@ return [
         'origin_country' => 'Uit :country',
         'previous_usernames' => 'vroeger bekend als',
         'plays_with' => 'Speelt met :devices',
-        'title' => "Profiel van :username",
 
         'comments_count' => [
             '_' => 'Heeft :link gepost',
@@ -387,7 +397,7 @@ return [
                     'date' => 'datum',
                     'action' => 'actie',
                     'length' => 'lengte',
-                    'length_indefinite' => '',
+                    'length_indefinite' => 'Onbepaald',
                     'description' => 'omschrijving',
                     'actor' => 'door :username',
 

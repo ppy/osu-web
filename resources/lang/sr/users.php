@@ -124,6 +124,17 @@ return [
         ],
     ],
 
+    'ogp' => [
+        'modding_description' => '',
+        'modding_description_empty' => '',
+
+        'description' => [
+            '_' => 'Ранг (:ruleset): :global | :country',
+            'country' => 'Државни :rank',
+            'global' => 'Глобални :rank',
+        ],
+    ],
+
     'posts' => [
         'title' => ':username\'s постови',
     ],
@@ -176,7 +187,6 @@ return [
         'origin_country' => 'Из :country',
         'previous_usernames' => 'претходно познати као',
         'plays_with' => 'Игра са :devices',
-        'title' => "Профил :username",
 
         'comments_count' => [
             '_' => 'Постовао :link',

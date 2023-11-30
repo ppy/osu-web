@@ -152,3 +152,8 @@ export function wikiUrl(path: string, locale?: string | null | undefined) {
   return route('wiki.show', { locale: locale ?? currentLocale, path: 'WIKI_PATH' })
     .replace('WIKI_PATH', encodeURI(path));
 }
+
+export function wikiUrlWithoutLocale(path: string) {
+  return route('wiki.show', { path: 'WIKI_PATH' })
+    .replace('/WIKI_PATH', encodeURI(path));
+}

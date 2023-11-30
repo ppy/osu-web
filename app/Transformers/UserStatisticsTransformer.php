@@ -52,9 +52,9 @@ class UserStatisticsTransformer extends TransformerAbstract
             'is_ranked' => $stats->isRanked(),
             'grade_counts' => [
                 'ss' => $stats->x_rank_count,
-                'ssh' => $stats->xh_rank_count,
+                'ssh' => $stats->xh_rank_count ?? 0, // osu_charts tables don't have the `h` columns
                 's' => $stats->s_rank_count,
-                'sh' => $stats->sh_rank_count,
+                'sh' => $stats->sh_rank_count ?? 0,
                 'a' => $stats->a_rank_count,
             ],
         ];
@@ -102,7 +102,8 @@ class UserStatisticsTransformer extends TransformerAbstract
         $data = [];
 
         foreach ($variants as $variant) {
-            $entry = UserStatistics\Model::getClass($mode, $variant)::where('user_id', $stats->user_id)->firstOrNew([]);
+            // User should be preloaded in cases where this is used.
+            $entry = $stats->user->statistics($mode, false, $variant) ?? new (UserStatistics\Model::getClass($mode, $variant));
 
             $data[] = [
                 'mode' => $mode,

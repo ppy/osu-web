@@ -5,7 +5,6 @@
 
 return [
     'button' => [
-        'cancel' => '取消',
         'resend' => '重新發送確認郵件',
         'set' => '設定密碼',
         'start' => '開始',

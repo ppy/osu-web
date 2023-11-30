@@ -5,7 +5,7 @@
 
 return [
     'index' => [
-        'description' => 'Valmiiksi kasattuja rytmikarttakokoelmia, joissa yhdistyy tietty teema.',
+        'description' => 'Valmiiksi pakattuja rytmikarttakokoelmia, joissa yhdistyy tietty teema.',
         'empty' => 'Tulossa pian!',
         'nav_title' => 'listaus',
         'title' => 'Rytmikarttapaketit',
@@ -35,7 +35,7 @@ return [
     'mode' => [
         'artist' => 'Esittäjä/Albumi',
         'chart' => 'Kohdevaloissa',
-        'featured' => 'Suositeltu esittäjä',
+        'featured' => 'Esitelty artisti',
         'loved' => 'Project Loved',
         'standard' => 'Tavallinen',
         'theme' => 'Teema',

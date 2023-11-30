@@ -14,7 +14,7 @@ return [
     'beatmapset_discussion' => [
         'beatmap_missing' => 'Ein Zeitstempel ist angegeben, aber die Beatmapschwierigkeitsstufe fehlt.',
         'beatmapset_no_hype' => "Diese Beatmap kann nicht gehypt werden.",
-        'hype_requires_null_beatmap' => 'Hypen muss in der "Generell"-Sektion (für alle Schwierigkeitsstufen) stattfinden.',
+        'hype_requires_null_beatmap' => 'Hypes werden in der Sektion Allgemein (Alle Difficulties) vergeben.',
         'invalid_beatmap_id' => 'Ungültige Schwierigkeitsstufe gewählt.',
         'invalid_beatmapset_id' => 'Ungültige Beatmap gewählt.',
         'locked' => 'Die Diskussion ist gesperrt.',

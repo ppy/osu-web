@@ -55,6 +55,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => ':username tarafından yeni inceleme, :problems sorun, :suggestions öneri, :praises övgü içeriyor',
                 'beatmapset_discussion_unlock' => '":title" setinin tartışmasının kilidi kaldırıldı',
                 'beatmapset_discussion_unlock_compact' => 'Tartışmanın kilidi kaldırılmış',
+
+                'review_count' => [
+                    'praises' => '',
+                    'problems' => '',
+                    'suggestions' => '',
+                ],
             ],
 
             'beatmapset_problem' => [

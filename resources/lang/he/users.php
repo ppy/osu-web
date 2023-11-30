@@ -123,6 +123,17 @@ return [
         ],
     ],
 
+    'ogp' => [
+        'modding_description' => '',
+        'modding_description_empty' => '',
+
+        'description' => [
+            '_' => '',
+            'country' => '',
+            'global' => '',
+        ],
+    ],
+
     'posts' => [
         'title' => 'פוסטים של :username',
     ],
@@ -175,7 +186,6 @@ return [
         'origin_country' => 'מ- :country',
         'previous_usernames' => 'לשעבר ידוע בתור',
         'plays_with' => 'משחק עם :devices',
-        'title' => "הפרופיל של :username",
 
         'comments_count' => [
             '_' => 'פורסם :link

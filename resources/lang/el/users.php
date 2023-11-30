@@ -123,6 +123,17 @@ return [
         ],
     ],
 
+    'ogp' => [
+        'modding_description' => '',
+        'modding_description_empty' => '',
+
+        'description' => [
+            '_' => '',
+            'country' => '',
+            'global' => '',
+        ],
+    ],
+
     'posts' => [
         'title' => 'Δημοσιεύσεις του :username',
     ],
@@ -175,7 +186,6 @@ return [
         'origin_country' => 'Από :country',
         'previous_usernames' => 'προηγουμένως γνωστός ως',
         'plays_with' => 'Παίζει με :devices',
-        'title' => "Το προφίλ του :username",
 
         'comments_count' => [
             '_' => 'Καταχωρήθηκε :link',

@@ -19,8 +19,8 @@ return [
             'new_confirmation' => 'sähköpostivahvistus',
             'title' => 'Sähköposti',
             'locked' => [
-                '_' => '',
-                'accounts' => '',
+                '_' => 'Ota yhteyttä :accounts, jos sinun tarvitsee päivittää sähköpostiosoitteesi.',
+                'accounts' => 'tilien tukiryhmään',
             ],
         ],
 
@@ -62,9 +62,22 @@ return [
         ],
     ],
 
+    'github_user' => [
+        'info' => "Jos osallistut osu!n kehitykseen, GitHub-tilin linkittäminen tässä yhdistää muutoslokin merkintäsi osu!-profiiliisi. GitHub-tilit, joilla ei ole osallistumishistoriaa osu!un, ei voida linkittää.",
+        'link' => 'Linkitä GitHub-tili',
+        'title' => 'GitHub',
+        'unlink' => 'Poista GitHub-tilin linkitys',
+
+        'error' => [
+            'already_linked' => 'Tämä GitHub-tili on jo linkitetty eri käyttäjälle.',
+            'no_contribution' => 'GitHub-tiliä ei voi linkittää, jos sillä ei ole muutoshistoriaa osu!lle.',
+            'unverified_email' => 'Ole hyvä ja vahvista ensisijainen sähköpostiosoitteesi GitHubissa ja yritä sitten yhdistää tilisi uudelleen.',
+        ],
+    ],
+
     'notifications' => [
-        'beatmapset_discussion_qualified_problem' => 'vastaanota ilmoituksia uudesta ongelmasta seuraavien tilojen hyväksytyissä beatmapeissa',
-        'beatmapset_disqualify' => 'vastaanota ilmoituksia kun beatmappeja hylätään seuraavista tiloista',
+        'beatmapset_discussion_qualified_problem' => 'vastaanota ilmoituksia uusista ongelmista seuraavien pelimuotojen hyväksytyissä rytmikartoissa',
+        'beatmapset_disqualify' => 'vastaanota ilmoituksia kun rytmikarttoja hylätään seuraavissa pelimuodoissa',
         'comment_reply' => 'vastaanota ilmoituksia vastauksista kommentteihisi',
         'title' => 'Ilmoitukset',
         'topic_auto_subscribe' => 'ota automaattisesti ilmoitukset käyttöön tekemillesi uusille foorumiaiheille',
@@ -72,12 +85,12 @@ return [
         'options' => [
             '_' => 'toimitusvaihtoehdot',
             'beatmap_owner_change' => 'vieraileva vaikeustaso',
-            'beatmapset:modding' => 'beatmapin modaus',
+            'beatmapset:modding' => 'rytmikartan modaus',
             'channel_message' => 'yksityisviestit',
             'comment_new' => 'uudet kommentit',
             'forum_topic_reply' => 'aihevastaus',
             'mail' => 'posti',
-            'mapping' => 'beatmapin kartoittaja',
+            'mapping' => 'rytmikartan kartoittaja',
             'push' => 'push',
             'user_achievement_unlock' => 'mitali ansaittu',
         ],
@@ -90,14 +103,14 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => 'piilota varoitukset sopimattomasta sisällöstä rytmikartoissa',
-        'beatmapset_title_show_original' => 'näytä beatmap-metadata alkuperäisellä kielellä',
+        'beatmapset_show_nsfw' => 'piilota varoitukset sopimattomasta sisällöstä beatmapeissa',
+        'beatmapset_title_show_original' => 'näytä rytmikarttojen kuvailutiedot alkuperäisellä kielellä',
         'title' => 'Asetukset',
 
         'beatmapset_download' => [
-            '_' => 'oletus beatmap-lataus tyyppi',
+            '_' => 'rytmikarttojen oletuslataustyyppi',
             'all' => 'videon kanssa jos saatavilla',
-            'direct' => 'avaa osu!directissä',
+            'direct' => 'avaa osu!-directissä',
             'no_video' => 'ilman videota',
         ],
     ],

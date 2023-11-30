@@ -6,6 +6,7 @@
 return [
     'cart' => [
         'checkout' => 'Разплащане',
+        'empty_cart' => '',
         'info' => ':count_delimited артикул в количката ($:subtotal)|:count_delimited артикула в количката ($:subtotal)',
         'more_goodies' => 'Ще проверя още артикули, преди да приключа поръчката си',
         'shipping_fees' => 'транспортни такси',
@@ -48,19 +49,52 @@ return [
     ],
 
     'discount' => 'спести :percent%',
+    'free' => '',
 
     'invoice' => [
+        'contact' => '',
+        'date' => '',
         'echeck_delay' => 'Вие заплатихте чрез eCheck, което може да отнеме до 10 дена от страна на PayPal за потвърждение на плащането!',
         'hide_from_activity' => 'osu!supporter етикетите от тази поръчка не са показани в активността ви.',
+        'sent_via' => '',
+        'shipping_to' => '',
+        'title' => '',
         'title_compact' => 'фактура',
 
         'status' => [
+            'cancelled' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => "",
+                    'link_text' => '',
+                ],
+            ],
+            'delivered' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => '',
+                    'link_text' => '',
+                ],
+            ],
+            'prepared' => [
+                'title' => '',
+                'line_1' => '',
+                'line_2' => '',
+            ],
             'processing' => [
                 'title' => 'Вашето плащане все още не е потвърдено!',
                 'line_1' => 'Ако вече сте платили, тогава все още очакваме потвърждение за плащането. Моля презаредете страницата след минута или две!',
                 'line_2' => [
                     '_' => 'Ако възникне проблем по време на плащането, :link',
                     'link_text' => 'кликнете тук, за да възстановите вашето разплащане',
+                ],
+            ],
+            'shipped' => [
+                'title' => '',
+                'tracking_details' => '',
+                'no_tracking_details' => [
+                    '_' => "",
+                    'link_text' => '',
                 ],
             ],
         ],
@@ -74,7 +108,19 @@ return [
         'no_orders' => 'Нямате поръчки за преглед.',
         'paid_on' => 'Поръчан на :date',
         'resume' => 'Продължи разплащането',
+        'shipping_and_handling' => '',
         'shopify_expired' => 'Връзката за тази поръчката изтече.',
+        'subtotal' => '',
+        'total' => '',
+
+        'details' => [
+            'order_number' => '',
+            'payment_terms' => '',
+            'salesperson' => '',
+            'shipping_method' => '',
+            'shipping_terms' => '',
+            'title' => '',
+        ],
 
         'item' => [
             'quantity' => 'Количество',
@@ -105,6 +151,15 @@ return [
             'paid' => 'Платено',
             'processing' => 'Изчаква одобрение',
             'shipped' => 'Пътува',
+            'title' => '',
+        ],
+
+        'thanks' => [
+            'title' => '',
+            'line_1' => [
+                '_' => '',
+                'link_text' => '',
+            ],
         ],
     ],
 
@@ -138,6 +193,10 @@ return [
     'username_change' => [
         'check' => 'Въведи потребителско име, за да проверите наличността му!',
         'checking' => 'Проверка за наличност на :username...',
+        'placeholder' => '',
+        'label' => '',
+        'current' => '',
+
         'require_login' => [
             '_' => 'Трябва да сте :link , за да промените името си!',
             'link_text' => 'влезли в профила си',

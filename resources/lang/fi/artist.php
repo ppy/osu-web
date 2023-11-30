@@ -5,7 +5,7 @@
 
 return [
     'page_description' => 'osu! Featured artistit',
-    'title' => 'Featured Artistit',
+    'title' => 'Esitellyt artistit',
 
     'admin' => [
         'hidden' => 'ARTISTI ON TÄLLÄ HETKELLÄ PIILOTETTU',
@@ -14,7 +14,7 @@ return [
     'beatmaps' => [
         '_' => 'Beatmapit',
         'download' => 'Lataa Beatmap-Pohja',
-        'download-na' => 'rytmikarttapohja ei ole vielä saatavilla',
+        'download-na' => 'rytmikarttapohja ei vielä saatavilla',
     ],
 
     'index' => [

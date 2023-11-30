@@ -11,7 +11,7 @@ return [
         'issuing' => 'Se trimite un cod nou...',
 
         'info' => [
-            'check_spam' => "Verifică-ți folderul spam dacă nu poți găsi e-mailul.",
+            'check_spam' => "Asigurați-vă că ați verificat și directorul spam dacă nu  puteți găsi e-mailul.",
             'recover' => "Dacă nu-ți poți accesa e-mailul sau ai uitat ce adresă ai folosit, te rugăm să urmezi :link.",
             'recover_link' => 'procesul de recuperare al e-mailului aici',
             'reissue' => 'Poți, de asemenea, :reissue_link sau să :logout_link.',

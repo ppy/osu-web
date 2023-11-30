@@ -46,7 +46,7 @@ class CommentTransformerTest extends TestCase
         }
     }
 
-    public function groupsDataProvider()
+    public static function groupsDataProvider()
     {
         return [
             ['admin', true],

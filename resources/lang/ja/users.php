@@ -37,7 +37,7 @@ return [
         'blocked_count' => 'ブロックしたユーザー(:count)',
         'hide_profile' => 'プロフィールを隠す',
         'hide_comment' => '隠す',
-        'forum_post_text' => '',
+        'forum_post_text' => 'この投稿を隠す。',
         'not_blocked' => 'このユーザーはブロックされていません。',
         'show_profile' => 'プロフィールを表示',
         'show_comment' => '表示',
@@ -123,6 +123,17 @@ return [
         ],
     ],
 
+    'ogp' => [
+        'modding_description' => '',
+        'modding_description_empty' => '',
+
+        'description' => [
+            '_' => '',
+            'country' => '',
+            'global' => '',
+        ],
+    ],
+
     'posts' => [
         'title' => ':usernameの投稿',
     ],
@@ -175,7 +186,6 @@ return [
         'origin_country' => '所在国 :country',
         'previous_usernames' => '以前の名前',
         'plays_with' => '使用デバイス :devices',
-        'title' => ":usernameのプロフィール",
 
         'comments_count' => [
             '_' => '投稿 :link',

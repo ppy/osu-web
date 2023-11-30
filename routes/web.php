@@ -90,7 +90,7 @@ Route::group(['middleware' => ['web']], function () {
             Route::apiResource('{beatmapset}/favourites', 'FavouritesController', ['only' => ['store']]);
         });
     });
-    Route::get('beatmapsets/search/{filters?}', 'BeatmapsetsController@search')->name('beatmapsets.search');
+    Route::get('beatmapsets/search', 'BeatmapsetsController@search')->name('beatmapsets.search');
     Route::get('beatmapsets/{beatmapset}/discussion/{beatmap?}/{mode?}/{filter?}', 'BeatmapsetsController@discussion')->name('beatmapsets.discussion');
     Route::post('beatmapsets/{beatmapset}/discussion/review', 'BeatmapDiscussionsController@review')->name('beatmapsets.discussion.review');
     Route::post('beatmapsets/{beatmapset}/discussion-lock', 'BeatmapsetsController@discussionLock')->name('beatmapsets.discussion-lock');
@@ -216,6 +216,10 @@ Route::group(['middleware' => ['web']], function () {
             Route::get('verify', 'AccountController@verifyLink');
             Route::post('verify', 'AccountController@verify')->name('verify');
             Route::put('/', 'AccountController@update')->name('update');
+
+            Route::get('github-users/callback', 'Account\GithubUsersController@callback')->name('github-users.callback');
+            Route::resource('github-users', 'Account\GithubUsersController', ['only' => ['create']]);
+            Route::delete('github-users', 'Account\GithubUsersController@destroy')->name('github-users.destroy');
         });
 
         Route::get('quick-search', 'HomeController@quickSearch')->name('quick-search');
@@ -229,10 +233,12 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('support', 'HomeController@supportTheGame')->name('support-the-game');
         Route::get('testflight', 'HomeController@testflight')->name('testflight');
 
-        Route::delete('password-reset', 'PasswordResetController@destroy');
         Route::get('password-reset', 'PasswordResetController@index')->name('password-reset');
         Route::post('password-reset', 'PasswordResetController@create');
         Route::put('password-reset', 'PasswordResetController@update');
+        Route::delete('password-reset', 'PasswordResetController@destroy');
+        Route::get('password-reset/reset', 'PasswordResetController@reset')->name('password-reset.reset');
+        Route::post('password-reset/resend-mail', 'PasswordResetController@resendMail')->name('password-reset.resend-mail');
 
         Route::get('download-quota-check', 'HomeController@downloadQuotaCheck')->name('download-quota-check');
 
@@ -334,6 +340,7 @@ Route::group(['middleware' => ['web']], function () {
 
             // Store splitting starts here
             Route::get('cart', 'CartController@show')->name('cart.show');
+            Route::delete('cart', 'CartController@empty')->name('cart.empty');
             Route::resource('cart', 'CartController', ['only' => ['store']]);
 
             Route::resource('checkout', 'CheckoutController', ['only' => ['show', 'store']]);
@@ -403,6 +410,8 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
         Route::group(['as' => 'beatmaps.', 'prefix' => 'beatmaps'], function () {
             Route::get('lookup', 'BeatmapsController@lookup')->name('lookup');
 
+            Route::apiResource('packs', 'BeatmapPacksController', ['only' => ['index', 'show']]);
+
             Route::group(['prefix' => '{beatmap}'], function () {
                 Route::get('scores/users/{user}', 'BeatmapsController@userScore');
                 Route::get('scores/users/{user}/all', 'BeatmapsController@userScoreAll');
@@ -410,8 +419,9 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
                 Route::get('solo-scores', 'BeatmapsController@soloScores')->name('solo-scores');
 
                 Route::group(['as' => 'solo.', 'prefix' => 'solo'], function () {
+                    Route::post('scores', 'ScoreTokensController@store')->name('score-tokens.store');
+
                     Route::group(['namespace' => 'Solo'], function () {
-                        Route::post('scores', 'ScoreTokensController@store')->name('score-tokens.store');
                         Route::put('scores/{token}', 'ScoresController@store')->name('scores.store');
                     });
                 });
@@ -494,7 +504,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
 
         // Beatmapsets
         //   GET /api/v2/beatmapsets/search/:filters
-        Route::get('beatmapsets/search/{filters?}', 'BeatmapsetsController@search');
+        Route::get('beatmapsets/search', 'BeatmapsetsController@search');
         //   GET /api/v2/beatmapsets/lookup
         Route::get('beatmapsets/lookup', 'BeatmapsetsController@lookup');
         //   GET /api/v2/beatmapsets/:beatmapset_id

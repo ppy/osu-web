@@ -19,8 +19,8 @@ return [
             'new_confirmation' => 'confirmar email',
             'title' => 'Email',
             'locked' => [
-                '_' => '',
-                'accounts' => '',
+                '_' => 'Por favor, contate :accounts se precisar atualizar o seu email.',
+                'accounts' => 'equipe de suporte de contas',
             ],
         ],
 
@@ -59,6 +59,19 @@ return [
         'signature' => [
             'title' => 'Assinatura',
             'update' => 'atualizar',
+        ],
+    ],
+
+    'github_user' => [
+        'info' => "Se você é um colaborador dos repositórios open-source do osu!, vincular sua conta do GitHub aqui associará suas entradas de changelog ao seu perfil do osu!. Contas do GitHub sem histórico de contribuições para o osu! não podem ser vinculadas.",
+        'link' => 'Conectar conta do GitHub',
+        'title' => 'GitHub',
+        'unlink' => 'Desconectar conta do GitHub',
+
+        'error' => [
+            'already_linked' => 'Esta conta do GitHub já está conectada a um usuário diferente.',
+            'no_contribution' => 'Não é possível vincular a conta GitHub sem qualquer histórico de contribuição nos repositórios do osu!.',
+            'unverified_email' => 'Por favor, verifique seu e-mail principal no GitHub e tente vincular sua conta novamente.',
         ],
     ],
 

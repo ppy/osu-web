@@ -27,7 +27,7 @@ return [
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => 'Seul le propriétaire de la beatmap, un Beatmap Nominator ou un membre de la NAT peut publier des notes sur le mappeur.',
+            'mapper_note_wrong_user' => 'Seul le propriétaire de la beatmap, un Beatmap Nominator ou un membre de la NAT peut publier des notes sur la beatmap.',
         ],
 
         'vote' => [
@@ -186,7 +186,7 @@ return [
             ],
         ],
         'update_email' => [
-            'locked' => '',
+            'locked' => 'l\'adresse e-mail est verrouillée',
         ],
     ],
 ];

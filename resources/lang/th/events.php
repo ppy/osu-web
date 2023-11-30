@@ -16,7 +16,7 @@ return [
     'rank_lost' => '<strong><em>:user</em></strong> เสียอันดับที่ 1 ในเพลง <em>:beatmap</em> (:mode)',
     'user_support_again' => '<strong>:user</strong> ได้สนับสนุน osu! อีกครั้ง - ขอขอบคุณน้ำใจงาม ๆ ของท่าน',
     'user_support_first' => '<strong>:user</strong> ได้กลายผู้สนับสนุน osu! แล้ว - ขอขอบคุณน้ำใจงาม ๆ ของท่าน',
-    'user_support_gift' => '<strong>:user</strong> ได้รับของขวัญจากเพื่อนที่กลายเป็น osu! supporter!',
+    'user_support_gift' => '<strong>:user</strong> ได้รับแท็กผู้สนับสนุนเป็นของขวัญ!',
     'username_change' => '<strong>:previousUsername</strong> ได้เปลี่ยนชื่อของเขาเป็น <strong><em>:user</em></strong>!',
 
     'beatmapset_status' => [
@@ -27,6 +27,6 @@ return [
     ],
 
     'value' => [
-        'rank' => '',
+        'rank' => 'อันดับ #:rank',
     ],
 ];

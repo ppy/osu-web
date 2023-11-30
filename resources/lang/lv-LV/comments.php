@@ -43,6 +43,10 @@ return [
         'no_comments' => 'nav atrasti komentāri...',
     ],
 
+    'ogp' => [
+        'title' => '',
+    ],
+
     'placeholder' => [
         'edit' => 'Rediģēt komentāru šeit',
         'new' => 'Rakstīt jaunu komentāru šeit',

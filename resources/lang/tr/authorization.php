@@ -186,7 +186,7 @@ return [
             ],
         ],
         'update_email' => [
-            'locked' => '',
+            'locked' => 'e-posta adresi kilitlenmiş durumda',
         ],
     ],
 ];

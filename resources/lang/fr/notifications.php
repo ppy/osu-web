@@ -19,7 +19,7 @@ return [
         'build' => 'versions',
         'channel' => 'tchat',
         'forum_topic' => 'forum',
-        'news_post' => 'actualités',
+        'news_post' => 'news',
         'user' => 'profil',
     ],
 
@@ -38,7 +38,7 @@ return [
             '_' => 'Beatmap',
 
             'beatmap_owner_change' => [
-                '_' => 'Difficultés invités',
+                '_' => 'Guest difficulty',
                 'beatmap_owner_change' => 'Vous êtes maintenant propriétaire de la difficulté ":beatmap" pour la beatmap ":title"',
                 'beatmap_owner_change_compact' => 'Vous êtes maintenant propriétaire de la difficulté ":beatmap"',
             ],
@@ -55,6 +55,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => 'Nouvelle review par :username contenant des problèmes : :problems, suggestions : :suggestions, compliments : :praises',
                 'beatmapset_discussion_unlock' => 'La discussion de la beatmap ":title" a été déverrouillée',
                 'beatmapset_discussion_unlock_compact' => 'La discussion n\'est plus verrouillée',
+
+                'review_count' => [
+                    'praises' => '',
+                    'problems' => '',
+                    'suggestions' => '',
+                ],
             ],
 
             'beatmapset_problem' => [

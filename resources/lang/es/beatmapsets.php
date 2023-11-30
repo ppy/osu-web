@@ -7,7 +7,7 @@ return [
     'availability' => [
         'disabled' => 'Este mapa no está actualmente disponible para su descarga.',
         'parts-removed' => 'Partes de este mapa han sido eliminadas a petición de su creador o un titular de derechos de autor.',
-        'more-info' => 'Haga clic aquí para obtener más información.',
+        'more-info' => 'Haz clic aquí para obtener más información.',
         'rule_violation' => 'Algunos de los elementos contenidos en este mapa han sido eliminados después de ser considerados no aptos para su uso en osu!.',
     ],
 
@@ -16,7 +16,7 @@ return [
     ],
 
     'download' => [
-        'limit_exceeded' => 'Más despacio, juegue un poco.',
+        'limit_exceeded' => 'Más despacio, juega un poco.',
     ],
 
     'featured_artist_badge' => [
@@ -24,7 +24,7 @@ return [
     ],
 
     'index' => [
-        'title' => 'Lista de mapas',
+        'title' => 'Listado de mapas',
         'guest_title' => 'Mapas',
     ],
 
@@ -40,15 +40,15 @@ return [
     ],
 
     'nominate' => [
-        'hybrid_requires_modes' => 'Un set de mapas híbrido requiere que seleccione al menos un modo de juego para nominar.',
-        'incorrect_mode' => 'No tiene permiso para nominar para el modo: :mode',
-        'full_bn_required' => 'Debe ser un nominador completo para realizar esta nominación calificada.',
+        'hybrid_requires_modes' => 'Un mapa híbrido requiere que selecciones al menos un modo de juego para nominar.',
+        'incorrect_mode' => 'No tienes permiso para nominar el modo: :mode',
+        'full_bn_required' => 'Debes ser un nominador completo para realizar esta nominación cualificada.',
         'too_many' => 'Requisito de nominación ya cumplido.',
 
         'dialog' => [
-            'confirmation' => '¿Seguro que desea nominar este mapa?',
+            'confirmation' => '¿Estás seguro de que quieres nominar este mapa?',
             'header' => 'Nominar mapa',
-            'hybrid_warning' => 'nota: solo puede nominar una vez, así que asegúrese de que está nominando para todos los modos de juego que desee',
+            'hybrid_warning' => 'nota: solo puedes nominar una vez, así que asegúrate de que estás nominando para todos los modos de juego que desees',
             'which_modes' => '¿Nominar para qué modos?',
         ],
     ],
@@ -70,13 +70,13 @@ return [
         ],
 
         'details' => [
-            'by_artist' => 'por :artist',
+            'by_artist' => 'de :artist',
             'favourite' => 'marcar este mapa como favorito',
-            'favourite_login' => 'inicie sesión para marcar este mapa como favorito',
-            'logged-out' => '¡debe iniciar sesión para descargar cualquier mapa!',
+            'favourite_login' => 'inicia sesión para marcar este mapa como favorito',
+            'logged-out' => '¡necesitas iniciar sesión antes de descargar cualquier mapa!',
             'mapped_by' => 'mapeado por :mapper',
             'mapped_by_guest' => 'dificultad de invitado por :mapper',
-            'unfavourite' => 'desmarcar como favorito',
+            'unfavourite' => 'desmarcar este mapa como favorito',
             'updated_timeago' => 'actualizado por última vez :timeago',
 
             'download' => [
@@ -112,9 +112,9 @@ return [
                 '_' => 'Este mapa está actualmente :status.',
 
                 'status' => [
-                    'pending' => 'pendiente',
+                    'pending' => 'pendientes',
                     'qualified' => 'calificado',
-                    'wip' => 'en proceso de elaboración',
+                    'wip' => 'en progreso',
                 ],
             ],
 
@@ -146,12 +146,12 @@ return [
         ],
 
         'nsfw_warning' => [
-            'details' => 'Este mapa contiene contenido explícito, ofensivo o perturbador. ¿Desea verlo de todos modos?',
+            'details' => 'Este mapa contiene contenido explícito, ofensivo o perturbador. ¿Quieres verlo de todos modos?',
             'title' => 'Contenido explícito',
 
             'buttons' => [
                 'disable' => 'Desactivar advertencia',
-                'listing' => 'Volver a lista de mapas',
+                'listing' => 'Volver al listado de mapas',
                 'show' => 'Mostrar',
             ],
         ],
@@ -162,8 +162,8 @@ return [
             'error' => 'Error al cargar las clasificaciones',
             'friend' => 'Clasificación entre amigos',
             'global' => 'Clasificación global',
-            'supporter-link' => '¡Clic <a href=":link">aquí</a> para ver todas las características de lujo que ofrece!',
-            'supporter-only' => '¡Debe ser un osu!supporter para acceder a las clasificaciones nacionales y entre amigos!',
+            'supporter-link' => '¡Haz clic <a href=":link">aquí</a> para ver todas las características de lujo que ofrece!',
+            'supporter-only' => '¡Necesitas ser osu!supporter para acceder a las clasificaciones nacionales y entre amigos!',
             'title' => 'Tabla de puntuaciones',
 
             'headers' => [
@@ -181,18 +181,18 @@ return [
             ],
 
             'no_scores' => [
-                'country' => '¡Nadie de tu país ha establecido una puntuación en este mapa aún!',
+                'country' => '¡Nadie de tu país ha marcado una puntuación en este mapa aún!',
                 'friend' => '¡Ninguno de tus amigos ha marcado una puntuación en este mapa aún!',
-                'global' => 'Sin puntuaciones aún. ¿Tal vez deberías intentar establecer alguna?',
+                'global' => 'Sin puntuaciones aún. ¿Tal vez deberías intentar marcar alguna?',
                 'loading' => 'Cargando puntuaciones...',
                 'unranked' => 'Mapa no clasificado.',
             ],
             'score' => [
                 'first' => 'Liderando',
-                'own' => 'Tu mejor puntuación',
+                'own' => 'Tu mejor',
             ],
             'supporter_link' => [
-                '_' => '¡Clic :here para ver todas las características de lujo que ofrece!',
+                '_' => '¡Haz clic :here para ver todas las características de lujo que ofrece!',
                 'here' => 'aquí',
             ],
         ],
@@ -200,9 +200,9 @@ return [
         'stats' => [
             'cs' => 'Tamaño del círculo',
             'cs-mania' => 'Cantidad de teclas',
-            'drain' => 'Drenado de HP',
+            'drain' => 'Drenaje de HP',
             'accuracy' => 'Precisión',
-            'ar' => 'Velocidad de aproximación',
+            'ar' => 'Tasa de aproximación',
             'stars' => 'Estrellas de dificultad',
             'total_length' => 'Duración (Duración del drenaje: :hit_length)',
             'bpm' => 'BPM',
@@ -221,7 +221,7 @@ return [
             'loved' => 'Amado',
             'qualified' => 'Calificado',
             'wip' => 'WIP',
-            'pending' => 'Pendiente',
+            'pending' => 'Pendientes',
             'graveyard' => 'Abandonado',
         ],
     ],

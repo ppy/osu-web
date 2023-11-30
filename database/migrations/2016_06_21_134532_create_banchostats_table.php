@@ -20,9 +20,6 @@ class CreateBanchostatsTable extends Migration
         }
 
         Schema::create('osu_banchostats', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_general_ci';
-
             $table->increments('banchostats_id');
             $table->smallInteger('users_irc');
             $table->smallInteger('users_osu');

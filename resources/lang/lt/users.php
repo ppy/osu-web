@@ -123,6 +123,17 @@ return [
         ],
     ],
 
+    'ogp' => [
+        'modding_description' => '',
+        'modding_description_empty' => '',
+
+        'description' => [
+            '_' => '',
+            'country' => '',
+            'global' => '',
+        ],
+    ],
+
     'posts' => [
         'title' => ':username įrašai',
     ],
@@ -175,7 +186,6 @@ return [
         'origin_country' => 'Iš :country',
         'previous_usernames' => 'buvo žinomas kaip',
         'plays_with' => 'Žaidžia su :devices',
-        'title' => ":username profilis",
 
         'comments_count' => [
             '_' => 'Publikuota :link',

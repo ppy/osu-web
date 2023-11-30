@@ -36,16 +36,17 @@
                 </dl>
             </div>
             <div class="col-md-4 text-right">
-                {!! Form::open([
-                    'data-loading-overlay' => '0',
-                    'method' => 'POST',
-                    'route' => ['admin.contests.get-zip', $contest->id],
-                ]) !!}
+                <form
+                    action="{{ route('admin.contests.get-zip', $contest->id) }}"
+                    data-loading-overlay="0"
+                    method="POST"
+                >
+                    @csrf
                     <button class="btn-osu-big">
                         <i class="fas fa-fw fa-file-archive"></i>
                         Download all entries as ZIP
                     </button>
-                {!! Form::close() !!}
+                </form>
             </div>
         </div>
         <dl>

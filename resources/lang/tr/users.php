@@ -123,6 +123,17 @@ return [
         ],
     ],
 
+    'ogp' => [
+        'modding_description' => '',
+        'modding_description_empty' => '',
+
+        'description' => [
+            '_' => '',
+            'country' => '',
+            'global' => '',
+        ],
+    ],
+
     'posts' => [
         'title' => ':username\'in gönderileri',
     ],
@@ -175,7 +186,6 @@ return [
         'origin_country' => 'Ülke: :country',
         'previous_usernames' => 'nâm-ı diğer',
         'plays_with' => ':devices ile oynuyor',
-        'title' => ":username kullanıcısının profili",
 
         'comments_count' => [
             '_' => ':link gönderdi',

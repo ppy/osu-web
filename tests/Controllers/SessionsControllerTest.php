@@ -30,7 +30,7 @@ class SessionsControllerTest extends TestCase
         $password = 'password1';
         $countryAcronym = (Country::first() ?? Country::factory()->create())->getKey();
         $user = User::factory()->create(['password' => $password, 'country_acronym' => $countryAcronym]);
-        $user->update(['user_lastvisit' => now()->subDays(config('osu.user.inactive_days_verification') + 1)]);
+        $user->update(['user_lastvisit' => time() - config('osu.user.inactive_seconds_verification') - 1]);
 
         $this->post(route('login'), [
             'username' => $user->username,
@@ -48,7 +48,7 @@ class SessionsControllerTest extends TestCase
     {
         $password = 'password1';
         $user = User::factory()->create(compact('password'));
-        $user->update(['user_lastvisit' => now()->subDays(config('osu.user.inactive_days_verification') + 1)]);
+        $user->update(['user_lastvisit' => time() - config('osu.user.inactive_seconds_verification') - 1]);
 
         $this->assertNotSame('', $user->fresh()->user_password);
 

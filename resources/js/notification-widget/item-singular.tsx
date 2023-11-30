@@ -24,7 +24,7 @@ export default class ItemSingular extends React.Component<Props> {
     return (
       <Item
         delete={this.handleDelete}
-        icons={nameToIcons[item.name || '']}
+        icons={nameToIcons[item.name ?? '']}
         isDeleting={item.isDeleting}
         isMarkingAsRead={item.isMarkingAsRead}
         item={item}
@@ -38,11 +38,11 @@ export default class ItemSingular extends React.Component<Props> {
     );
   }
 
-  private handleDelete = () => {
+  private readonly handleDelete = () => {
     this.props.stack.deleteItem(this.props.stack.first);
   };
 
-  private handleMarkAsRead = () => {
+  private readonly handleMarkAsRead = () => {
     this.props.stack.markAsRead(this.props.stack.first);
   };
 }

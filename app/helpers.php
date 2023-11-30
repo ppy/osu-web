@@ -3,6 +3,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+use App\Libraries\Base64Url;
 use App\Libraries\LocaleMeta;
 use App\Models\LoginAttempt;
 use Egulias\EmailValidator\EmailValidator;
@@ -84,24 +85,25 @@ function blade_safe($html): HtmlString
 function cache_remember_mutexed(string $key, $seconds, $default, callable $callback, ?callable $exceptionHandler = null)
 {
     static $oneMonthInSeconds = 30 * 24 * 60 * 60;
-    $fullKey = "{$key}:with_fallback";
-    $data = cache()->get($fullKey);
+    $fullKey = "{$key}:with_fallback_v2";
+    $data = Cache::get($fullKey);
 
-    if ($data === null || $data['expires_at']->isPast()) {
+    $now = time();
+    if ($data === null || $data['expires_at'] < $now) {
         $lockKey = "{$key}:lock";
         // this is arbitrary, but you've got other problems if it takes more than 5 minutes.
         // the max is because cache()->add() doesn't work so well with funny values.
         $lockTime = min(max($seconds, 60), 300);
 
         // only the first caller that manages to setnx runs this.
-        if (cache()->add($lockKey, 1, $lockTime)) {
+        if (Cache::add($lockKey, 1, $lockTime)) {
             try {
                 $data = [
-                    'expires_at' => Carbon\Carbon::now()->addSeconds($seconds),
+                    'expires_at' => $now + $seconds,
                     'value' => $callback(),
                 ];
 
-                cache()->put($fullKey, $data, max($oneMonthInSeconds, $seconds * 10));
+                Cache::put($fullKey, $data, max($oneMonthInSeconds, $seconds * 10));
             } catch (Exception $e) {
                 $handled = $exceptionHandler !== null && $exceptionHandler($e);
 
@@ -110,7 +112,7 @@ function cache_remember_mutexed(string $key, $seconds, $default, callable $callb
                     log_error($e);
                 }
             } finally {
-                cache()->forget($lockKey);
+                Cache::forget($lockKey);
             }
         }
     }
@@ -126,14 +128,15 @@ function cache_remember_with_fallback($key, $seconds, $callback)
 {
     static $oneMonthInSeconds = 30 * 24 * 60 * 60;
 
-    $fullKey = "{$key}:with_fallback";
+    $fullKey = "{$key}:with_fallback_v2";
 
     $data = Cache::get($fullKey);
 
-    if ($data === null || $data['expires_at']->isPast()) {
+    $now = time();
+    if ($data === null || $data['expires_at'] < $now) {
         try {
             $data = [
-                'expires_at' => Carbon\Carbon::now()->addSeconds($seconds),
+                'expires_at' => $now + $seconds,
                 'value' => $callback(),
             ];
 
@@ -157,22 +160,27 @@ function cache_remember_with_fallback($key, $seconds, $callback)
  */
 function cache_expire_with_fallback(string $key, int $duration = 2592000)
 {
-    $fullKey = "{$key}:with_fallback";
+    $fullKey = "{$key}:with_fallback_v2";
 
     $data = Cache::get($fullKey);
 
-    if ($data === null || $data['expires_at']->isPast()) {
+    if ($data === null) {
         return;
     }
 
-    $data['expires_at'] = now()->addHours(-1);
+    $now = time();
+    if ($data['expires_at'] < $now) {
+        return;
+    }
+
+    $data['expires_at'] = $now - 3600;
     Cache::put($fullKey, $data, $duration);
 }
 
 // Just normal Cache::forget but with the suffix.
 function cache_forget_with_fallback($key)
 {
-    return Cache::forget("{$key}:with_fallback");
+    return Cache::forget("{$key}:with_fallback_v2");
 }
 
 function captcha_enabled()
@@ -196,33 +204,37 @@ function captcha_login_triggered()
     return $triggered;
 }
 
-function class_modifiers_each(array $modifiersArray, callable $callback)
+function class_modifiers_flat(array $modifiersArray): array
 {
+    $ret = [];
+
     foreach ($modifiersArray as $modifiers) {
         if (is_array($modifiers)) {
             // either "$modifier => boolean" or "$i => $modifier|null"
             foreach ($modifiers as $k => $v) {
                 if (is_bool($v)) {
                     if ($v) {
-                        $callback($k);
+                        $ret[] = $k;
                     }
                 } elseif ($v !== null) {
-                    $callback($v);
+                    $ret[] = $v;
                 }
             }
         } elseif (is_string($modifiers)) {
-            $callback($modifiers);
+            $ret[] = $modifiers;
         }
     }
+
+    return $ret;
 }
 
-function class_with_modifiers(string $className, ...$modifiersArray)
+function class_with_modifiers(string $className, ...$modifiersArray): string
 {
     $class = $className;
 
-    class_modifiers_each($modifiersArray, function ($m) use (&$class, $className) {
+    foreach (class_modifiers_flat($modifiersArray) as $m) {
         $class .= " {$className}--{$m}";
-    });
+    }
 
     return $class;
 }
@@ -287,7 +299,7 @@ function current_locale_meta(): LocaleMeta
 function cursor_decode($cursorString): ?array
 {
     if (is_string($cursorString) && present($cursorString)) {
-        $cursor = json_decode(base64_decode(strtr($cursorString, '-_', '+/'), true), true);
+        $cursor = json_decode(Base64Url::decode($cursorString) ?? '', true);
 
         if (is_array($cursor)) {
             return $cursor;
@@ -299,13 +311,9 @@ function cursor_decode($cursorString): ?array
 
 function cursor_encode(?array $cursor): ?string
 {
-    if ($cursor === null) {
-        return null;
-    }
-
-    // url safe base64
-    // reference: https://datatracker.ietf.org/doc/html/rfc4648#section-5
-    return rtrim(strtr(base64_encode(json_encode($cursor)), '+/', '-_'), '=');
+    return $cursor === null
+        ? null
+        : Base64Url::encode(json_encode($cursor));
 }
 
 function cursor_for_response(?array $cursor): array
@@ -377,6 +385,11 @@ function flag_url($countryCode)
     $baseFileName = implode('-', $hexEmojiChars);
 
     return "/assets/images/flags/{$baseFileName}.svg";
+}
+
+function format_rank(?int $rank): string
+{
+    return $rank !== null ? '#'.i18n_number_format($rank) : '-';
 }
 
 function get_valid_locale($requestedLocale)
@@ -454,13 +467,6 @@ function logout()
     $guard = auth()->guard();
     if ($guard instanceof Illuminate\Contracts\Auth\StatefulGuard) {
         $guard->logout();
-    }
-
-    // FIXME: Temporarily here for cross-site login, nuke after old site is... nuked.
-    foreach (['phpbb3_2cjk5_sid', 'phpbb3_2cjk5_sid_check'] as $key) {
-        foreach (['ppy.sh', 'osu.ppy.sh', ''] as $domain) {
-            cookie()->queueForget($key, null, $domain);
-        }
     }
 
     cleanup_cookies();
@@ -604,12 +610,20 @@ function product_quantity_options($product, $selected = null)
 
     $opts = [];
     for ($i = 1; $i <= $max; $i++) {
-        $opts[$i] = osu_trans_choice('common.count.item', $i);
+        $opts[] = [
+            'label' => osu_trans_choice('common.count.item', $i),
+            'selected' => $i === $selected,
+            'value' => $i,
+        ];
     }
 
     // include selected value separately if it's out of range.
-    if ($selected > $max) {
-        $opts[$selected] = osu_trans_choice('common.count.item', $selected);
+    if ($selected !== null && $selected > $max) {
+        $opts[] = [
+            'label' => osu_trans_choice('common.count.item', $selected),
+            'selected' => true,
+            'value' => $selected,
+        ];
     }
 
     return $opts;
@@ -646,13 +660,16 @@ function request_country($request = null)
         : $request->header('CF_IPCOUNTRY');
 }
 
-function require_login($text_key, $link_text_key)
+function require_login($textKey, $linkTextKey)
 {
-    $title = osu_trans('users.anonymous.login_link');
-    $link = Html::link('#', osu_trans($link_text_key), ['class' => 'js-user-link', 'title' => $title]);
-    $text = osu_trans($text_key, ['link' => $link]);
-
-    return $text;
+    return osu_trans($textKey, ['link' => link_to(
+        '#',
+        osu_trans($linkTextKey),
+        [
+            'class' => 'js-user-link',
+            'title' => osu_trans('users.anonymous.login_link'),
+        ],
+    )]);
 }
 
 function spinner(?array $modifiers = null)
@@ -701,27 +718,11 @@ function obscure_email($email)
     return mb_substr($email[0], 0, 1).'***'.'@'.$email[1];
 }
 
-function countries_array_for_select()
-{
-    $out = [];
-
-    foreach (App\Models\Country::forStore()->get() as $country) {
-        if (!isset($lastDisplay)) {
-            $lastDisplay = $country->display;
-        } elseif ($lastDisplay !== $country->display) {
-            $out['_disabled'] = '---';
-        }
-        $out[$country->acronym] = $country->name;
-    }
-
-    return $out;
-}
-
 function currency($price, $precision = 2, $zeroShowFree = true)
 {
     $price = round($price, $precision);
     if ($price === 0.00 && $zeroShowFree) {
-        return 'free!';
+        return osu_trans('store.free');
     }
 
     return 'US$'.i18n_number_format($price, null, null, $precision);
@@ -787,14 +788,14 @@ function forum_user_link(int $id, string $username, string|null $colour, int|nul
     return "{$icon} {$link}";
 }
 
-function is_api_request()
+function is_api_request(): bool
 {
-    return request()->is('api/*');
+    return str_starts_with(rawurldecode(Request::getPathInfo()), '/api/');
 }
 
-function is_json_request()
+function is_json_request(): bool
 {
-    return is_api_request() || request()->expectsJson();
+    return is_api_request() || Request::expectsJson();
 }
 
 function is_valid_email_format(?string $email): bool
@@ -915,6 +916,11 @@ function timeago($date)
     return "<time class='js-timeago' datetime='{$formatted}'>{$formatted}</time>";
 }
 
+function link_to(string $url, HtmlString|string $text, array $attributes = []): HtmlString
+{
+    return blade_safe(tag('a', [...$attributes, 'href' => $url], make_blade_safe($text)));
+}
+
 function link_to_user($id, $username = null, $color = null, $classNames = null)
 {
     if ($id instanceof App\Models\User) {
@@ -942,6 +948,11 @@ function link_to_user($id, $username = null, $color = null, $classNames = null)
 
         return "<a class='{$class}' data-user-id='{$id}' href='{$url}' style='{$style}'>{$username}</a>";
     }
+}
+
+function make_blade_safe(HtmlString|string $text): HtmlString
+{
+    return $text instanceof HtmlString ? $text : blade_safe(e($text));
 }
 
 function issue_icon($issue)
@@ -1171,22 +1182,6 @@ function user_color_style($color, $style)
     return sprintf('%s: %s', $style, e($color));
 }
 
-function base62_encode($input)
-{
-    $numbers = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $base = strlen($numbers);
-
-    $output = '';
-    $remaining = $input;
-
-    do {
-        $output = $numbers[$remaining % $base].$output;
-        $remaining = floor($remaining / $base);
-    } while ($remaining > 0);
-
-    return $output;
-}
-
 function display_regdate($user)
 {
     if ($user->user_regdate === null) {
@@ -1309,24 +1304,28 @@ function json_item($model, $transformer, $includes = null)
 
 function fast_imagesize($url)
 {
-    $result = Cache::remember("imageSize:{$url}", Carbon\Carbon::now()->addMonths(1), function () use ($url) {
-        $curl = curl_init($url);
-        curl_setopt_array($curl, [
-            CURLOPT_HTTPHEADER => [
-                'Range: bytes=0-32768',
-            ],
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_MAXREDIRS => 5,
-            CURLOPT_TIMEOUT => 10,
-        ]);
-        $data = curl_exec($curl);
+    static $oneMonthInSeconds = 30 * 24 * 60 * 60;
 
-        // null isn't cached
-        return read_image_properties_from_string($data) ?? false;
-    });
+    return null_if_false(Cache::remember(
+        "imageSize:{$url}",
+        $oneMonthInSeconds,
+        function () use ($url) {
+            $curl = curl_init($url);
+            curl_setopt_array($curl, [
+                CURLOPT_HTTPHEADER => [
+                    'Range: bytes=0-32768',
+                ],
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_MAXREDIRS => 5,
+                CURLOPT_TIMEOUT => 10,
+            ]);
+            $data = curl_exec($curl);
 
-    return null_if_false($result);
+            // null isn't cached
+            return read_image_properties_from_string($data) ?? false;
+        },
+    ));
 }
 
 function get_arr($input, $callback = null)
@@ -1453,24 +1452,6 @@ function get_class_basename($className)
 function get_class_namespace($className)
 {
     return substr($className, 0, strrpos($className, '\\'));
-}
-
-function ci_file_search($fileName)
-{
-    if (file_exists($fileName)) {
-        return is_file($fileName) ? $fileName : false;
-    }
-
-    $directoryName = dirname($fileName);
-    $fileArray = glob($directoryName.'/*', GLOB_NOSORT);
-    $fileNameLowerCase = strtolower($fileName);
-    foreach ($fileArray as $file) {
-        if (strtolower($file) === $fileNameLowerCase) {
-            return is_file($file) ? $file : false;
-        }
-    }
-
-    return false;
 }
 
 function sanitize_filename($file)
@@ -1697,24 +1678,19 @@ function seeded_shuffle(array &$items, int $seed = 0)
     mt_srand();
 }
 
+function set_opengraph($model, ...$options)
+{
+    $className = str_replace('App\Models', 'App\Libraries\Opengraph', $model::class).'Opengraph';
+
+    Request::instance()->attributes->set('opengraph', (new $className($model, ...$options))->get());
+}
+
 function first_paragraph($html, $split_on = "\n")
 {
     $text = strip_tags($html);
     $match_pos = strpos($text, $split_on);
 
     return $match_pos === false ? $text : substr($text, 0, $match_pos);
-}
-
-function build_icon($prefix)
-{
-    switch ($prefix) {
-        case 'add':
-            return 'plus';
-        case 'fix':
-            return 'wrench';
-        case 'misc':
-            return 'question';
-    }
 }
 
 // clamps $number to be between $min and $max
@@ -1749,24 +1725,6 @@ function format_percentage($number, $precision = 2)
 {
     // the formatter assumes decimal number while the function receives percentage number.
     return i18n_number_format($number / 100, NumberFormatter::PERCENT, null, $precision);
-}
-
-function group_users_by_online_state($users)
-{
-    $online = $offline = [];
-
-    foreach ($users as $user) {
-        if ($user->isOnline()) {
-            $online[] = $user;
-        } else {
-            $offline[] = $user;
-        }
-    }
-
-    return [
-        'online' => $online,
-        'offline' => $offline,
-    ];
 }
 
 // shorthand to return the filename of an open stream/handle

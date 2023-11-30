@@ -8,14 +8,14 @@ return [
         'convinced' => [
             'title' => 'Saya yakin! :D',
             'support' => 'dukung osu!',
-            'gift' => 'atau hadiahkan supporter tag kepada pemain lain',
+            'gift' => 'atau hadiahkan tag supporter kepada pemain lain',
             'instructions' => 'klik tombol hati di atas untuk melanjutkan ke osu!store',
         ],
         'why-support' => [
             'title' => 'Mengapa saya harus mendukung osu!? Ke mana saja uangnya akan disalurkan?',
 
             'team' => [
-                'title' => 'Upah Tim Kami',
+                'title' => 'Dukung Tim kami',
                 'description' => 'osu! dikembangkan dan dikelola oleh tim yang berukuran kecil. Dukunganmu akan sangat membantu... keberlangsungan hidup mereka.',
             ],
             'infra' => [
@@ -141,8 +141,8 @@ return [
             'contribution' => 'Terima kasih atas dukunganmu! Kamu telah membeli :tags supporter tag dengan total kontribusi senilai :dollars!',
             'gifted' => "Dari jumlah tersebut, kamu telah menghadiahkan :giftedTags di antaranya (:giftedDollars) kepada para pemain lainnya. Terima kasih atas kemurahan hatimu!",
             'not_yet' => "Kamu belum pernah memiliki supporter tag :(",
-            'valid_until' => 'Supporter tag yang kamu miliki saat ini berlaku hingga :date!',
-            'was_valid_until' => 'Masa berlaku supporter tag milikmu telah berakhir pada :date.',
+            'valid_until' => 'Tag supporter yang kamu miliki saat ini berlaku hingga :date!',
+            'was_valid_until' => 'Masa berlaku tag supporter milikmu telah berakhir pada :date.',
         ],
     ],
 ];

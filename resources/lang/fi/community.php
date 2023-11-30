@@ -51,7 +51,7 @@ return [
 
             'friend_ranking' => [
                 'title' => 'Kavereiden sijoitukset',
-                'description' => "Näe miten pärjäät ystäviesi vastaan beatmappien tulostaulukoissa, sekä pelissä että verkkosivulla.",
+                'description' => "Näe miten pärjäät ystäviäsi vastaan rytmikarttojen tulostaulukoissa, sekä pelissä että verkkosivulla.",
             ],
 
             'country_ranking' => [
@@ -60,7 +60,7 @@ return [
             ],
 
             'mod_filtering' => [
-                'title' => 'Suodata Modien mukaan',
+                'title' => 'Suodata muunnelmien mukaan',
                 'description' => 'Viihdytkö vain HDHR-pelaajien kanssa? Ei hätää!',
             ],
 
@@ -85,7 +85,7 @@ return [
             ],
 
             'beatmap_filters' => [
-                'title' => 'Beatmap Suodattimet',
+                'title' => 'Rytmikarttojen suodattimet',
                 'description' => 'Suodata beatmappien hakua pelatun, pelaamattoman sekä kartassa saavutetun luokituksen mukaan.',
             ],
 
@@ -132,7 +132,7 @@ return [
                 'description' => 'Kuinka monta vireillä olevia beatmappeja sinulla voi olla kerralla, lasketaan yhteen perusarvosta ja lisäbonuksesta kullekin hyväksytyille beatmapeille, mitä sinulla on (tiettyyn rajaan asti).<br/><br/>Normaalitapauksessa tämä on :base plus :bonus per hyväksytty beatmappi (enintään :bonus_max). Jos olet osu!tukija, raja on :supporter_base plus :supporter_bonus per hyväksytty beatmappi (enintään :supporter_bonus_max).',
             ],
             'friend_filtering' => [
-                'title' => 'Ystävien tulostaulukko',
+                'title' => 'Kavereiden tulostaulukot',
                 'description' => 'Kilpaile kaveriasi kanssa ja katso, miten sijoittaudut heitä vastaan!',
             ],
 

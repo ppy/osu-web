@@ -56,6 +56,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => 'Đánh giá mới bởi :username có vấn đề: :problems, gợi ý: :suggestions, ca ngợi: :praises',
                 'beatmapset_discussion_unlock' => 'Cuộc thảo luận trên ":title" đã được mở khóa',
                 'beatmapset_discussion_unlock_compact' => 'Cuộc thảo luận đã được mở khóa',
+
+                'review_count' => [
+                    'praises' => '',
+                    'problems' => '',
+                    'suggestions' => '',
+                ],
             ],
 
             'beatmapset_problem' => [

@@ -123,6 +123,17 @@ return [
         ],
     ],
 
+    'ogp' => [
+        'modding_description' => '',
+        'modding_description_empty' => '',
+
+        'description' => [
+            '_' => '',
+            'country' => '',
+            'global' => '',
+        ],
+    ],
+
     'posts' => [
         'title' => '',
     ],
@@ -175,7 +186,6 @@ return [
         'origin_country' => '',
         'previous_usernames' => '',
         'plays_with' => '',
-        'title' => "",
 
         'comments_count' => [
             '_' => '',

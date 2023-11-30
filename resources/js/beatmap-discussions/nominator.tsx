@@ -29,7 +29,7 @@ const bn = 'nomination-dialog';
 
 @observer
 export class Nominator extends React.Component<Props> {
-  private checkboxContainerRef = React.createRef<HTMLDivElement>();
+  private readonly checkboxContainerRef = React.createRef<HTMLDivElement>();
   @observable private loading = false;
   @observable private selectedModes: GameMode[] = [];
   @observable private visible = false;
@@ -163,7 +163,7 @@ export class Nominator extends React.Component<Props> {
     const req = this.props.beatmapset.nominations.required[mode];
     const curr = this.props.beatmapset.nominations.current[mode] ?? 0;
 
-    if (!req) {
+    if (req == null) {
       return false;
     }
 

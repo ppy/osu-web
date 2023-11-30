@@ -51,7 +51,7 @@ return [
     'card' => [
         'gift_supporter' => 'Offrir un tag supporter',
         'loading' => 'Chargement...',
-        'send_message' => 'envoyer un message',
+        'send_message' => 'Envoyer un message',
     ],
 
     'create' => [
@@ -123,6 +123,17 @@ return [
         ],
     ],
 
+    'ogp' => [
+        'modding_description' => '',
+        'modding_description_empty' => '',
+
+        'description' => [
+            '_' => 'Rang (:ruleset): :global | :country',
+            'country' => 'Pays :rank',
+            'global' => 'Global :rank',
+        ],
+    ],
+
     'posts' => [
         'title' => 'Posts de :username',
     ],
@@ -175,7 +186,6 @@ return [
         'origin_country' => 'De :country',
         'previous_usernames' => 'Anciennement connu en tant que',
         'plays_with' => 'Joue avec :devices',
-        'title' => "Profil de :username",
 
         'comments_count' => [
             '_' => 'A publié :link',
@@ -435,7 +445,7 @@ return [
             'country' => 'Classement national en :mode',
             'country_simple' => 'Classement Pays',
             'global' => 'Classement global en :mode',
-            'global_simple' => 'Classement Global',
+            'global_simple' => 'Classement global',
             'highest' => 'Meilleur rang : :rank le :date',
         ],
         'stats' => [

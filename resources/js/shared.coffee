@@ -63,16 +63,6 @@ $(document).on 'click', '#popup-container, #overlay', (e) ->
 
 
 ###
-#    Add `disabled` attribute to form element with value _disabled.
-#    Currently used to work around Form::select (in store checkout -
-#    new address form - country selection) since it doesn't support
-#    adding a disabled value.
-###
-$(document).on 'turbolinks:load', ->
-  $('[value=_disabled]').attr 'disabled', true
-
-
-###
 #    Click anywhere on row to click the main link!
 #    Usage:
 #    1. add class `clickable-row` to the row

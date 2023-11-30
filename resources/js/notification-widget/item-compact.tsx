@@ -21,7 +21,7 @@ export default class ItemCompact extends React.Component<Props> {
     return (
       <Item
         delete={this.handleDelete}
-        icons={nameToIconsCompact[this.props.item.name || '']}
+        icons={nameToIconsCompact[this.props.item.name ?? '']}
         item={this.props.item}
         markRead={this.handleMarkAsRead}
         message={formatMessage(this.props.item, true)}
@@ -33,11 +33,11 @@ export default class ItemCompact extends React.Component<Props> {
     );
   }
 
-  private handleDelete = () => {
+  private readonly handleDelete = () => {
     this.props.stack.deleteItem(this.props.item);
   };
 
-  private handleMarkAsRead = () => {
+  private readonly handleMarkAsRead = () => {
     this.props.stack.markAsRead(this.props.item);
   };
 }

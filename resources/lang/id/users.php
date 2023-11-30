@@ -49,7 +49,7 @@ return [
     ],
 
     'card' => [
-        'gift_supporter' => 'Hadiahkan supporter tag',
+        'gift_supporter' => 'Hadiahkan tag supporter',
         'loading' => 'Memuat...',
         'send_message' => 'Kirim pesan',
     ],
@@ -123,6 +123,17 @@ return [
         ],
     ],
 
+    'ogp' => [
+        'modding_description' => '',
+        'modding_description_empty' => '',
+
+        'description' => [
+            '_' => 'Peringkat (:ruleset): :global | :country',
+            'country' => 'Negara :rank',
+            'global' => 'Global :rank',
+        ],
+    ],
+
     'posts' => [
         'title' => 'Postingan :username',
     ],
@@ -175,7 +186,6 @@ return [
         'origin_country' => 'Dari :country',
         'previous_usernames' => 'sebelumnya dikenal sebagai',
         'plays_with' => 'Bermain menggunakan :devices',
-        'title' => "profil :username",
 
         'comments_count' => [
             '_' => 'Telah mengirimkan :link',
@@ -444,7 +454,7 @@ return [
             'level_progress' => 'Persentase pencapaian menuju level berikutnya',
             'maximum_combo' => 'Kombo Maksimum',
             'medals' => 'Jumlah Medali',
-            'play_count' => 'Jumlah Main',
+            'play_count' => 'Jumlah Permainan',
             'play_time' => 'Telah Bermain Selama',
             'ranked_score' => 'Skor Ranked',
             'replays_watched_by_others' => 'Jumlah Pemutaran Tayangan Ulang',

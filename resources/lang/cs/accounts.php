@@ -19,8 +19,8 @@ return [
             'new_confirmation' => 'ověření e-mailu',
             'title' => 'E-mail',
             'locked' => [
-                '_' => '',
-                'accounts' => '',
+                '_' => 'Kontaktujte prosím :accounts, pokud potřebujete aktualizovat svoji emailovou adresu.',
+                'accounts' => 'tým podpory pro účty',
             ],
         ],
 
@@ -59,6 +59,19 @@ return [
         'signature' => [
             'title' => 'Podpis',
             'update' => 'aktualizovat',
+        ],
+    ],
+
+    'github_user' => [
+        'info' => "",
+        'link' => '',
+        'title' => 'GitHub',
+        'unlink' => '',
+
+        'error' => [
+            'already_linked' => '',
+            'no_contribution' => '',
+            'unverified_email' => '',
         ],
     ],
 

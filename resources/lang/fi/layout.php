@@ -14,7 +14,7 @@ return [
 
     'header' => [
         'admin' => [
-            'beatmapset' => 'beatmapsetti',
+            'beatmapset' => 'rytmikarttasetti',
             'beatmapset_covers' => 'beatmapsettien kannet',
             'contest' => 'kilpailu',
             'contests' => 'kilpailuja',
@@ -26,8 +26,8 @@ return [
         ],
 
         'beatmapsets' => [
-            'show' => '',
-            'discussions' => '',
+            'show' => 'tiedot',
+            'discussions' => 'keskustelut',
         ],
 
         'changelog' => [
@@ -51,8 +51,8 @@ return [
 
         'users' => [
             'modding' => 'modaus',
-            'playlists' => '',
-            'realtime' => '',
+            'playlists' => 'soittolistat',
+            'realtime' => 'moninpeli',
             'show' => 'tiedot',
         ],
     ],
@@ -60,7 +60,7 @@ return [
     'gallery' => [
         'close' => 'Sulje (Esc)',
         'fullscreen' => 'Vaihda kokoruututila',
-        'zoom' => 'Zoomaa sisään/ulos',
+        'zoom' => 'Lähennä/loitonna',
         'previous' => 'Edellinen (nuoli vasemmalla)',
         'next' => 'Seuraava (nuoli oikealla)',
     ],
@@ -75,8 +75,8 @@ return [
         ],
         'help' => [
             '_' => 'apua',
-            'getAbuse' => 'ilmoita väärinkäyttöstä',
-            'getFaq' => 'ukk',
+            'getAbuse' => 'ilmoita väärinkäytöstä',
+            'getFaq' => 'usein kysytyt',
             'getRules' => 'säännöt',
             'getSupport' => 'tarvitsen siis oikeasti apua!',
         ],
@@ -98,7 +98,7 @@ return [
             '_' => 'Yleiset',
             'home' => 'Etusivu',
             'changelog-index' => 'Muutosloki',
-            'beatmaps' => 'Beatmapit',
+            'beatmaps' => 'Rytmikarttojen listaus',
             'download' => 'Lataa osu!',
         ],
         'help' => [
@@ -111,7 +111,7 @@ return [
         ],
         'legal' => [
             '_' => 'Lakiasiat ja tilanne',
-            'copyright' => 'Copyright (DMCA)',
+            'copyright' => 'Tekijänoikeudet (DMCA)',
             'privacy' => 'Yksityisyys',
             'server_status' => 'Palvelimen tila',
             'source_code' => 'Lähdekoodi',
@@ -172,7 +172,7 @@ return [
         'button' => 'kirjaudu sisään / rekisteröidy',
 
         'login' => [
-            'forgot' => "Olen unohtanut tietoni",
+            'forgot' => "Olen unohtanut kirjatutumistietoni",
             'password' => 'salasana',
             'title' => 'Kirjaudu sisään jatkaaksesi',
             'username' => 'käyttäjänimi',
@@ -185,7 +185,7 @@ return [
 
         'register' => [
             'download' => 'Lataa',
-            'info' => 'Tarvitset käyttäjän hyvä mies. Miksei sinulla ole jo sellaista?',
+            'info' => 'Lataa osu! luodaksesi oman käyttäjätunnuksen!',
             'title' => "Eikö sinulla ole vielä käyttäjää?",
         ],
     ],
@@ -196,12 +196,12 @@ return [
             'follows' => 'Seurantalistat',
             'friends' => 'Kaverit',
             'logout' => 'Kirjaudu ulos',
-            'profile' => 'Profiilini',
+            'profile' => 'Oma profiili',
         ],
     ],
 
     'popup_search' => [
-        'initial' => 'Tee haku kirjoittamalla!',
+        'initial' => 'Kirjoita etsiäksesi!',
         'retry' => 'Haku epäonnistui. Yritä uudelleen napsauttamalla.',
     ],
 ];

@@ -104,7 +104,7 @@ class UserTest extends TestCase
         }
     }
 
-    public function dataProviderForAttributeTwitter(): array
+    public static function dataProviderForAttributeTwitter(): array
     {
         return [
             ['@hello', 'hello'],
@@ -115,7 +115,7 @@ class UserTest extends TestCase
         ];
     }
 
-    public function dataProviderValidDiscordUsername(): array
+    public static function dataProviderValidDiscordUsername(): array
     {
         return [
             ['username', true],

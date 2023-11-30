@@ -45,6 +45,7 @@ interface Props {
   currentDiscussions: CurrentDiscussions;
   innerRef: React.RefObject<HTMLDivElement>;
   mode: DiscussionMode;
+  onFocus?: () => void;
   pinned: boolean;
   setPinned: (flag: boolean) => void;
   stickTo: React.RefObject<HTMLElement>;
@@ -186,7 +187,10 @@ export class NewDiscussion extends React.Component<Props> {
     }
   };
 
-  private readonly onFocus = () => this.setSticky(true);
+  private readonly onFocus = () => {
+    this.setSticky(true);
+    this.props.onFocus?.();
+  };
 
   @action
   private readonly post = (e: React.SyntheticEvent<HTMLElement>) => {

@@ -115,10 +115,12 @@ class BeatmapSeeder extends Seeder
 
     private function createBeatmap($json)
     {
+        $user = $this->randomUser();
+
         return Beatmap::create([
             'beatmap_id' => $json->beatmap_id,
             'beatmapset_id' => $json->beatmapset_id,
-            'filename' => $json->beatmapset_id.' '.$json->artist.' - '.$json->title.'.osz',
+            'filename' => "{$json->artist} - {$json->title} ({$user->username}) [{$json->version}].osu",
             'checksum' => $json->file_md5,
             'version' => $json->version,
             'total_length' => $json->total_length,
@@ -136,7 +138,7 @@ class BeatmapSeeder extends Seeder
             'difficultyrating' => $json->difficultyrating,
             'playcount' => $json->playcount,
             'passcount' => $json->passcount,
-            'user_id' => $this->randomUser()['user_id'],
+            'user_id' => $user->getKey(),
         ]);
     }
 
@@ -159,7 +161,7 @@ class BeatmapSeeder extends Seeder
             'difficulty_names' => '',
             'play_count' => 0,
             'favourite_count' => $json->favourite_count,
-            'user_id' => $this->randomUser()['user_id'],
+            'user_id' => $this->randomUser()->getKey(),
             'submit_date' => Carbon::now(),
         ]);
     }
@@ -245,10 +247,10 @@ class BeatmapSeeder extends Seeder
     {
         static $users;
         if ($users === null) {
-            $users = User::all()->toArray();
+            $users = User::get()->all();
 
             if (count($users) < 1) {
-                $users = [['user_id' => 1]];
+                $users = [User::factory()->create()];
             }
         }
 

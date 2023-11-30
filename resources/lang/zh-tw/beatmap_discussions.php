@@ -26,6 +26,7 @@ return [
             'deleted' => '包括已經刪除的討論',
             'mode' => '圖譜遊戲模式',
             'only_unresolved' => '只顯示未解決的討論',
+            'show_review_embeds' => '顯示評論帖子',
             'types' => '訊息類別',
             'username' => '使用者名稱',
 

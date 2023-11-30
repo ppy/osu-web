@@ -13,7 +13,7 @@
         <div class="account-edit__input-group">
             <div class="account-edit-entry">
                 <div class="account-edit-entry__label account-edit-entry__label--top-pinned">{{ osu_trans('accounts.edit.legacy_api.api') }}</div>
-                <div class="account-edit__input-groups">
+                <div class="account-edit-entry__group">
                     <div
                         class="js-react--legacy-api-key"
                         data-state="{{ json_encode(['legacy_api_key' => $legacyApiKeyJson]) }}"
@@ -25,7 +25,7 @@
         <div class="account-edit__input-group">
             <div class="account-edit-entry">
                 <div class="account-edit-entry__label account-edit-entry__label--top-pinned">{{ osu_trans('accounts.edit.legacy_api.irc') }}</div>
-                <div class="account-edit__input-groups">
+                <div class="account-edit-entry__group">
                     <div
                         class="js-react--legacy-irc-key"
                         data-state="{{ json_encode(['legacy_irc_key' => $legacyIrcKeyJson]) }}"

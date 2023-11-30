@@ -123,6 +123,17 @@ return [
         ],
     ],
 
+    'ogp' => [
+        'modding_description' => '',
+        'modding_description_empty' => '',
+
+        'description' => [
+            '_' => 'Rank (:regelset): :global | :land',
+            'country' => 'Land :rank',
+            'global' => 'Global :rank',
+        ],
+    ],
+
     'posts' => [
         'title' => ':usernames inlägg',
     ],
@@ -169,13 +180,12 @@ return [
         'is_developer' => 'osu!developer',
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Gick med :date',
-        'lastvisit' => 'Senast sedd :date',
+        'lastvisit' => 'Senast sett :date',
         'lastvisit_online' => 'Online just nu',
         'missingtext' => 'Du kanske har stavat fel! (eller så är användaren bannlyst)',
         'origin_country' => 'Från :country',
         'previous_usernames' => 'tidigare känd som',
         'plays_with' => 'Spelar med :devices',
-        'title' => ":usernames profil",
 
         'comments_count' => [
             '_' => 'Upplagd :link',

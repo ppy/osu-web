@@ -6,6 +6,7 @@
 return [
     'cart' => [
         'checkout' => 'Zaplatit',
+        'empty_cart' => '',
         'info' => ':count_delimited položka v košíku ($:subtotal)|:count_delimited položky v košíku ($:subtotal)|:count_delimited položek v košíku ($:subtotal)',
         'more_goodies' => 'Chci se ještě podívat na nějaké dobroty než dokončím objednávku',
         'shipping_fees' => 'poplatky za dopravu',
@@ -48,19 +49,52 @@ return [
     ],
 
     'discount' => 'ušetři :percent%',
+    'free' => '',
 
     'invoice' => [
+        'contact' => '',
+        'date' => '',
         'echeck_delay' => 'Jelikož vaše platba byla prováděna službou eCheck, prosím, dejte nám až 10 dní na to, aby platba úspěšně prošla přes PayPal!',
         'hide_from_activity' => 'osu!supporter tagy v této objednávce se nebudou zobrazovat v nedávných aktivitách.',
+        'sent_via' => '',
+        'shipping_to' => '',
+        'title' => '',
         'title_compact' => 'faktura',
 
         'status' => [
+            'cancelled' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => "",
+                    'link_text' => '',
+                ],
+            ],
+            'delivered' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => '',
+                    'link_text' => '',
+                ],
+            ],
+            'prepared' => [
+                'title' => '',
+                'line_1' => '',
+                'line_2' => '',
+            ],
             'processing' => [
                 'title' => 'Vaše platba nebyla ještě potvrzena!',
                 'line_1' => 'Pokud jste už zaplatil, možná stále čekáme na potvrzení vaší platby. Prosím, dejte nám pár minut a pak zkuste znovu načíst tuto stránku!',
                 'line_2' => [
                     '_' => 'Pokud se vyskytl problém při placení, :link',
                     'link_text' => 'klikněte zde pro pokračování v placení',
+                ],
+            ],
+            'shipped' => [
+                'title' => '',
+                'tracking_details' => '',
+                'no_tracking_details' => [
+                    '_' => "",
+                    'link_text' => '',
                 ],
             ],
         ],
@@ -74,7 +108,19 @@ return [
         'no_orders' => 'Nejsou zde žádné objednávky k zobrazení.',
         'paid_on' => 'Objednávka zadána :date',
         'resume' => 'Obnovit objednávku',
+        'shipping_and_handling' => '',
         'shopify_expired' => 'Odkaz na objednávku pro tuto objednávku vypršel.',
+        'subtotal' => '',
+        'total' => '',
+
+        'details' => [
+            'order_number' => '',
+            'payment_terms' => '',
+            'salesperson' => '',
+            'shipping_method' => '',
+            'shipping_terms' => '',
+            'title' => '',
+        ],
 
         'item' => [
             'quantity' => 'Množství',
@@ -105,6 +151,15 @@ return [
             'paid' => 'Zaplaceno',
             'processing' => 'Očekávající potvrzení',
             'shipped' => 'Na cestě',
+            'title' => '',
+        ],
+
+        'thanks' => [
+            'title' => '',
+            'line_1' => [
+                '_' => '',
+                'link_text' => '',
+            ],
         ],
     ],
 
@@ -138,6 +193,10 @@ return [
     'username_change' => [
         'check' => 'Zadej uživatelské jméno pro kontrolu dostupnosti!',
         'checking' => 'Probíhá kontrola dostupnosti uživatelského jména :username...',
+        'placeholder' => '',
+        'label' => '',
+        'current' => '',
+
         'require_login' => [
             '_' => 'Pro změnu uživatelského jména se musíš :link!',
             'link_text' => 'přihlášený',

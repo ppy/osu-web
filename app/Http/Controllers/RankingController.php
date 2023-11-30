@@ -93,7 +93,10 @@ class RankingController extends Controller
 
             $this->defaultViewVars['country'] = $this->country;
             if ($type === 'performance') {
-                $this->defaultViewVars['countries'] = json_collection($this->getCountries($mode), new SelectOptionTransformer());
+                $this->defaultViewVars['countries'] = json_collection(
+                    Country::whereHasRuleset($mode)->get(),
+                    new SelectOptionTransformer(),
+                );
             }
 
             return $next($request);
@@ -111,10 +114,10 @@ class RankingController extends Controller
      *
      * Returns [Rankings](#rankings)
      *
-     * @urlParam mode string required [GameMode](#gamemode). Example: mania
+     * @urlParam mode string required [Ruleset](#ruleset). Example: mania
      * @urlParam type string required [RankingType](#rankingtype). Example: performance
      *
-     * @queryParam country Filter ranking by country code. Only available for `type` of `performance`. Example: JP
+     * @queryParam country string Filter ranking by country code. Only available for `type` of `performance`. Example: JP
      * @queryParam cursor [Cursor](#cursor). No-example
      * @queryParam filter Either `all` (default) or `friends`. Example: all
      * @queryParam spotlight The id of the spotlight if `type` is `charts`. Ranking for latest spotlight will be returned if not specified. No-example
@@ -320,15 +323,6 @@ class RankingController extends Controller
                 'spotlight',
             ))
         );
-    }
-
-    private function getCountries(string $mode)
-    {
-        $relation = 'statistics'.title_case($mode);
-
-        return Country::whereHas($relation, function ($query) {
-            $query->where('display', true);
-        })->get();
     }
 
     private function maxResults($modeInt, $stats)

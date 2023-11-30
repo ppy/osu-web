@@ -310,6 +310,7 @@ INTRO
             Strategies\QueryParameters\GetFromQueryParamTag::class,
             Strategies\QueryParameters\GetFromFormRequest::class,
             Strategies\QueryParameters\GetFromInlineValidator::class,
+            App\Docs\Strategies\UsesCursor::class,
         ],
         'headers' => [
             Strategies\Headers\GetFromRouteRules::class,

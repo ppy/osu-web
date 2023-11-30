@@ -123,6 +123,17 @@ return [
         ],
     ],
 
+    'ogp' => [
+        'modding_description' => '',
+        'modding_description_empty' => '',
+
+        'description' => [
+            '_' => 'Helyezés (:ruleset): :global | :country',
+            'country' => 'Országos :rank',
+            'global' => 'Globális :rank',
+        ],
+    ],
+
     'posts' => [
         'title' => ':username hozzászólásai',
     ],
@@ -175,7 +186,6 @@ return [
         'origin_country' => 'Innen: :country',
         'previous_usernames' => 'korábbi nevén',
         'plays_with' => 'Ezekkel játszik: :devices',
-        'title' => ":username profilja",
 
         'comments_count' => [
             '_' => ':link posztolva',

@@ -43,6 +43,10 @@ return [
         'no_comments' => 'komentarų nerasta...',
     ],
 
+    'ogp' => [
+        'title' => '',
+    ],
+
     'placeholder' => [
         'edit' => 'Redaguoti komentarą čia',
         'new' => 'Rašyk naują komentarą čia',

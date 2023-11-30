@@ -19,22 +19,23 @@ return [
     'index' => [
         'deleted_beatmap' => 'poistettu',
         'none_found' => 'Hakukriteereihin täsmääviä keskusteluja ei löytynyt.',
-        'title' => 'Beatmapkeskustelut',
+        'title' => 'Rytmikarttojen keskustelut',
 
         'form' => [
             '_' => 'Hae',
             'deleted' => 'Sisällytä poistetut keskustelut',
             'mode' => 'Beatmap-tila',
             'only_unresolved' => 'Näytä vain ratkaisemattomat keskustelut',
+            'show_review_embeds' => 'Näytä arvosteluviestit',
             'types' => 'Viestityypit',
             'username' => 'Käyttäjänimi',
 
             'beatmapset_status' => [
                 '_' => 'Beatmapin tila',
                 'all' => 'Kaikki',
-                'disqualified' => 'Hylätty',
+                'disqualified' => 'Epäkelpuutettu',
                 'never_qualified' => 'Ei koskaan kelpuutettu',
-                'qualified' => 'Hyväksytty',
+                'qualified' => 'Kelpuutettu',
                 'ranked' => 'Hyväksytty',
             ],
 

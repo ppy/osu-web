@@ -105,9 +105,8 @@ class ScoreEsIndexTest extends TestCase
             Beatmapset::truncate();
             Country::truncate();
             Genre::truncate();
-            Group::truncate();
             Language::truncate();
-            Score::truncate();
+            Score::select()->delete(); // TODO: revert to truncate after the table is actually renamed
             User::truncate();
             UserGroup::truncate();
             UserGroupEvent::truncate();
@@ -126,7 +125,7 @@ class ScoreEsIndexTest extends TestCase
         $this->assertSame($rank, $score->userRank($params));
     }
 
-    public function dataProviderForTestUserRank(): array
+    public static function dataProviderForTestUserRank(): array
     {
         return [
             ['user', null, 4],

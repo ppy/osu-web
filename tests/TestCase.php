@@ -8,7 +8,6 @@ namespace Tests;
 use App\Events\NewPrivateNotificationEvent;
 use App\Http\Middleware\AuthApi;
 use App\Jobs\Notifications\BroadcastNotificationBase;
-use App\Libraries\BroadcastsPendingForTests;
 use App\Libraries\Search\ScoreSearch;
 use App\Models\Beatmapset;
 use App\Models\OAuth\Client;
@@ -33,6 +32,23 @@ class TestCase extends BaseTestCase
 {
     use ArraySubsetAsserts, CreatesApplication, DatabaseTransactions;
 
+    public static function withDbAccess(callable $callback): void
+    {
+        $db = static::createApp()->make('db');
+
+        $callback();
+
+        static::resetAppDb($db);
+    }
+
+    protected static function fileList($path, $suffix)
+    {
+        return array_map(
+            fn ($file) => [basename($file, $suffix), $path],
+            glob("{$path}/*{$suffix}"),
+        );
+    }
+
     protected static function reindexScores()
     {
         $search = new ScoreSearch();
@@ -55,15 +71,6 @@ class TestCase extends BaseTestCase
         }
     }
 
-    protected static function withDbAccess(callable $callback): void
-    {
-        $db = (new static())->createApplication()->make('db');
-
-        $callback();
-
-        static::resetAppDb($db);
-    }
-
     protected $connectionsToTransact = [
         'mysql',
         'mysql-chat',
@@ -74,7 +81,7 @@ class TestCase extends BaseTestCase
 
     protected array $expectedCountsCallbacks = [];
 
-    public function regularOAuthScopesDataProvider()
+    public static function regularOAuthScopesDataProvider()
     {
         $data = [];
 
@@ -104,8 +111,6 @@ class TestCase extends BaseTestCase
         // breaks assumptions of object destructor timing.
         $db = $this->app->make('db');
         $this->beforeApplicationDestroyed(fn () => static::resetAppDb($db));
-
-        app(BroadcastsPendingForTests::class)->reset();
     }
 
     protected function tearDown(): void
@@ -268,13 +273,6 @@ class TestCase extends BaseTestCase
             'expected' => $callback() + $change,
             'message' => $message,
         ];
-    }
-
-    protected function fileList($path, $suffix)
-    {
-        return array_map(function ($file) use ($path, $suffix) {
-            return [basename($file, $suffix), $path];
-        }, glob("{$path}/*{$suffix}"));
     }
 
     protected function inReceivers(Model $model, NewPrivateNotificationEvent|BroadcastNotificationBase $obj): bool

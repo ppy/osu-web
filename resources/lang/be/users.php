@@ -123,6 +123,17 @@ return [
         ],
     ],
 
+    'ogp' => [
+        'modding_description' => '',
+        'modding_description_empty' => '',
+
+        'description' => [
+            '_' => '',
+            'country' => '',
+            'global' => '',
+        ],
+    ],
+
     'posts' => [
         'title' => 'допісаў :username',
     ],
@@ -175,7 +186,6 @@ return [
         'origin_country' => 'Адкуль: :country',
         'previous_usernames' => 'таксама вядомы як',
         'plays_with' => 'Гуляе з :devices',
-        'title' => "Профіль :username",
 
         'comments_count' => [
             '_' => 'Апублікавана :link',

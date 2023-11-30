@@ -123,6 +123,17 @@ return [
         ],
     ],
 
+    'ogp' => [
+        'modding_description' => '',
+        'modding_description_empty' => '',
+
+        'description' => [
+            '_' => '',
+            'country' => '',
+            'global' => '',
+        ],
+    ],
+
     'posts' => [
         'title' => 'پست های :username',
     ],
@@ -175,7 +186,6 @@ return [
         'origin_country' => 'از :country',
         'previous_usernames' => 'شناخته شده به',
         'plays_with' => 'با :devices بازی می کند',
-        'title' => "نمایه ی :username",
 
         'comments_count' => [
             '_' => 'پست کرده :link',

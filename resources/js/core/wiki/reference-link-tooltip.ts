@@ -6,7 +6,7 @@ export default class ReferenceLinkTooltip {
     $(document).on('mouseover', '.js-reference-link', this.showTooltip);
   }
 
-  private createTooltip = (element: HTMLElement, content: HTMLElement) => {
+  private readonly createTooltip = (element: HTMLElement, content: HTMLElement) => {
     $(element).qtip({
       content: {
         text: content,
@@ -36,7 +36,7 @@ export default class ReferenceLinkTooltip {
     });
   };
 
-  private showTooltip = (e: JQuery.MouseOverEvent) => {
+  private readonly showTooltip = (e: JQuery.MouseOverEvent) => {
     if (!(e.currentTarget instanceof HTMLAnchorElement)) return;
 
     const el = e.currentTarget;

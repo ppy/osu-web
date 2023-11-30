@@ -5,7 +5,6 @@
 
 return [
     'button' => [
-        'cancel' => 'Atšaukti',
         'resend' => 'Pakartoti patvirtinimo laišką',
         'set' => 'Nustatyti slaptažodį',
         'start' => 'Pradėti',

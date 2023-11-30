@@ -43,6 +43,10 @@ return [
         'no_comments' => 'belum ada komentar...',
     ],
 
+    'ogp' => [
+        'title' => '',
+    ],
+
     'placeholder' => [
         'edit' => 'Sunting komentar di sini',
         'new' => 'Ketik komentar baru di sini',

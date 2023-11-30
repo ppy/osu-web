@@ -81,7 +81,7 @@ return [
     ],
 
     'contest' => [
-        'voting_over' => 'No puedes cambiar tu voto después de haber concluido el periodo de votación.',
+        'voting_over' => 'No puedes cambiar tu voto después de que el periodo de votación para este concurso haya finalizado.',
 
         'entry' => [
             'limit_reached' => 'Has alcanzado el límite de entradas para este concurso',
@@ -182,11 +182,11 @@ return [
             'edit' => [
                 'locked' => 'La página de usuario está bloqueada.',
                 'not_owner' => 'Solo puedes editar tu página de usuario.',
-                'require_supporter_tag' => 'Se requiere la etiqueta osu!supporter.',
+                'require_supporter_tag' => 'Se necesita la etiqueta osu!supporter.',
             ],
         ],
         'update_email' => [
-            'locked' => '',
+            'locked' => 'la dirección de correo está bloqueada',
         ],
     ],
 ];

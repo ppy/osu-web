@@ -161,6 +161,8 @@ class CommentsController extends Controller
             return $commentBundle->toArray();
         }
 
+        set_opengraph($comment);
+
         return ext_view('comments.show', compact('commentBundle'));
     }
 

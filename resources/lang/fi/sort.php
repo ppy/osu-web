@@ -7,7 +7,7 @@ return [
     '_' => 'Lajitteluperuste',
 
     'all' => 'Kaikki',
-    'friends' => 'Ystävät',
+    'friends' => 'Kaverit',
     'last_visit' => 'Viime aikoina aktiivinen',
     'new' => 'Viimeisin',
     'old' => 'Vanha',

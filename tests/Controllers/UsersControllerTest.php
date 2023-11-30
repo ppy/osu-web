@@ -332,7 +332,7 @@ class UsersControllerTest extends TestCase
             ->assertSuccessful();
     }
 
-    public function dataProviderForStoreWebInvalidParams(): array
+    public static function dataProviderForStoreWebInvalidParams(): array
     {
         return [
             ['user1', 'user@email.com', 'user@email.com', 'short', 'short'],

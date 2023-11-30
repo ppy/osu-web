@@ -12,7 +12,7 @@ return [
     'beatmapset_update' => '<strong><em>:user</em></strong> a actualizat beatmap-ul "<em>:beatmapset</em>"',
     'beatmapset_upload' => '<strong><em>:user</em></strong> a postat un beatmap nou ":beatmapset"',
     'empty' => "Acest utilizator nu a realizat nimic notabil în ultimul timp!",
-    'rank' => '<strong><em>:user</em></strong> a obținut locul #:rank pe <em>:beatmap</em> (:mode)',
+    'rank' => ':user a obținut locul #:rank pe :beatmap (:mode)',
     'rank_lost' => '<strong><em>:user</em></strong> a pierdut primul loc pe <em>:beatmap</em> (:mode)',
     'user_support_again' => '<strong>:user</strong> a ales din nou să sprijine osu! - mulțumim pentru generozitatea ta!',
     'user_support_first' => '<strong>:user</strong> a sprijinit osu! - mulțumim pentru generozitatea ta!',
@@ -27,6 +27,6 @@ return [
     ],
 
     'value' => [
-        'rank' => '',
+        'rank' => 'rang #:rank',
     ],
 ];

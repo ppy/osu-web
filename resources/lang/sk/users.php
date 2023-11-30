@@ -123,6 +123,17 @@ return [
         ],
     ],
 
+    'ogp' => [
+        'modding_description' => '',
+        'modding_description_empty' => '',
+
+        'description' => [
+            '_' => '',
+            'country' => '',
+            'global' => '',
+        ],
+    ],
+
     'posts' => [
         'title' => ':username\'s príspevky',
     ],
@@ -175,7 +186,6 @@ return [
         'origin_country' => 'Štát :country',
         'previous_usernames' => 'v minulosti známy ako',
         'plays_with' => 'Hrá s :devices',
-        'title' => "profil používateľa :username",
 
         'comments_count' => [
             '_' => '',

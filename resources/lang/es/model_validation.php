@@ -28,7 +28,7 @@ return [
             'discussion_locked' => "Este mapa está actualmente bloqueado para discusión y no puede ser hypeado",
             'guest' => 'Debes iniciar sesión para hypear.',
             'hyped' => 'Ya hypeaste este mapa.',
-            'limit_exceeded' => 'Ya has utilizado todos tus hype.',
+            'limit_exceeded' => 'Ya has usado todos tus hypes.',
             'not_hypeable' => 'Este mapa no puede ser hypeado',
             'owner' => 'No puedes hypear tu propio mapa.',
         ],
@@ -164,7 +164,7 @@ return [
         ],
 
         'change_username' => [
-            'restricted' => 'No puede cambiar su nombre de usuario mientras esté restringido.',
+            'restricted' => 'No puedes cambiar tu nombre de usuario mientras estás restringido.',
             'supporter_required' => [
                 '_' => '¡Debes tener :link para cambiar tu nombre!',
                 'link_text' => 'apoyar a osu!',

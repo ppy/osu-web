@@ -19,8 +19,8 @@ return [
             'new_confirmation' => 'confirmació per correu electrònic',
             'title' => 'Correu electrònic',
             'locked' => [
-                '_' => '',
-                'accounts' => '',
+                '_' => 'Si us plau, contacta amb el :accounts si necessites que s\'actualitzi el teu correu electrònic.',
+                'accounts' => 'equip de suport de comptes',
             ],
         ],
 
@@ -42,7 +42,7 @@ return [
             'title' => 'Perfil',
 
             'country_change' => [
-                '_' => "",
+                '_' => "Sembla que el país del teu compte no coincideix amb el teu país de residència. :update_link.",
                 'update_link' => 'Actualitza a :country',
             ],
 
@@ -62,10 +62,23 @@ return [
         ],
     ],
 
+    'github_user' => [
+        'info' => "Si ets un col·laborador dels repositoris de codi obert d'osu!, enllaçant el teu compte de GitHub aquí, s'associarà les entrades del registre de canvis amb el teu perfil d'osu!. Comptes de GitHub sense historial de contribucions a osu! no es poden enllaçar.",
+        'link' => 'Enllaça el compte de GitHub',
+        'title' => 'GitHub',
+        'unlink' => 'Desenllaça el compte de GitHub',
+
+        'error' => [
+            'already_linked' => 'Aquest compte de GitHub ja està enllaçat a un usuari diferent.',
+            'no_contribution' => 'No es pot enllaçar el compte de GitHub sense cap historial de contribucions als repositoris d\'osu!',
+            'unverified_email' => 'Verifica el teu correu electrònic principal a GitHub i torna a provar d\'enllaçar el teu compte.',
+        ],
+    ],
+
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'rebre notificacions de nous problemes en beatmaps qualificats dels següents modes',
         'beatmapset_disqualify' => 'rebre notificacions per quan els beatmaps dels següents modes siguin desqualificats',
-        'comment_reply' => 'rebre notificacions de respostes als vostres comentaris',
+        'comment_reply' => 'rebre notificacions de respostes als teus comentaris',
         'title' => 'Notificacions',
         'topic_auto_subscribe' => 'habilita automàticament les notificacions en els nous temes de fòrum que creeu',
 
@@ -95,7 +108,7 @@ return [
         'title' => 'Opcions',
 
         'beatmapset_download' => [
-            '_' => 'tipus de baixada de mapa predeterminat',
+            '_' => 'tipus de baixada de beatmap predeterminat',
             'all' => 'amb vídeo si està disponible',
             'direct' => 'obrir a osu!direct',
             'no_video' => 'sense vídeo',

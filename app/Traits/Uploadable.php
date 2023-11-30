@@ -5,13 +5,12 @@
 
 namespace App\Traits;
 
-use App\Libraries\StorageWithUrl;
+use App\Libraries\StorageUrl;
 use Illuminate\Http\File;
+use League\Flysystem\Local\LocalFilesystemAdapter;
 
 trait Uploadable
 {
-    protected $_storage = null;
-
     /**
      * Returns maximum size of the file in bytes. Defaults to 1 MB.
      */
@@ -59,15 +58,6 @@ trait Uploadable
         $this->ext = $props['ext'] ?? null;
     }
 
-    public function storage()
-    {
-        if ($this->_storage === null) {
-            $this->_storage = new StorageWithUrl();
-        }
-
-        return $this->_storage;
-    }
-
     public function fileDir()
     {
         return $this->getFileRoot().'/'.$this->getFileId();
@@ -89,7 +79,7 @@ trait Uploadable
             return;
         }
 
-        return $this->storage()->url($this->filePath());
+        return StorageUrl::make(null, $this->filePath());
     }
 
     public function deleteWithFile()
@@ -107,7 +97,7 @@ trait Uploadable
 
         $this->setFileProperties(null);
 
-        return $this->storage()->deleteDirectory($this->fileDir());
+        return \Storage::deleteDirectory($this->fileDir());
     }
 
     public function storeFile($filePath, $fileExtension = '')
@@ -118,6 +108,20 @@ trait Uploadable
             'ext' => $fileExtension,
         ]);
 
-        $this->storage()->putFileAs($this->fileDir(), new File($filePath), $this->fileName());
+        $storage = \Storage::disk();
+
+        if ($storage->getAdapter() instanceof LocalFilesystemAdapter) {
+            $options = [
+                'visibility' => 'public',
+                'directory_visibility' => 'public',
+            ];
+        }
+
+        $storage->putFileAs(
+            $this->fileDir(),
+            new File($filePath),
+            $this->fileName(),
+            $options ?? [],
+        );
     }
 }

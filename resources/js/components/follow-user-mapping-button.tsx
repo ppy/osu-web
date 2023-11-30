@@ -28,8 +28,8 @@ interface State {
 const bn = 'user-action-button';
 
 export default class FollowUserMappingButton extends React.Component<Props, State> {
-  private buttonRef = React.createRef<HTMLButtonElement>();
-  private eventId = `follow-user-mapping-button-${nextVal()}`;
+  private readonly buttonRef = React.createRef<HTMLButtonElement>();
+  private readonly eventId = `follow-user-mapping-button-${nextVal()}`;
   private xhr?: JQueryXHR;
 
   constructor(props: Props) {
@@ -94,7 +94,7 @@ export default class FollowUserMappingButton extends React.Component<Props, Stat
     return this.state.followersWithoutSelf + (this.state.following ? 1 : 0);
   }
 
-  private onClick = () => {
+  private readonly onClick = () => {
     this.setState({ loading: true }, () => {
       const params: JQuery.AjaxSettings = {
         data: {
@@ -121,7 +121,7 @@ export default class FollowUserMappingButton extends React.Component<Props, Stat
     });
   };
 
-  private refresh = () => {
+  private readonly refresh = () => {
     this.setState({
       following: core.currentUser?.follow_user_mapping.includes(this.props.userId) ?? false,
     });
@@ -151,7 +151,7 @@ export default class FollowUserMappingButton extends React.Component<Props, Stat
     );
   }
 
-  private updateData = () => {
+  private readonly updateData = () => {
     $.publish('user:followUserMapping:update', { following: !this.state.following, userId: this.props.userId });
   };
 }

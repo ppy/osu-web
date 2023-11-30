@@ -14,8 +14,10 @@ use App\Libraries\ChangeUsername;
 use App\Libraries\Elasticsearch\Indexable;
 use App\Libraries\Session\Store as SessionStore;
 use App\Libraries\Transactions\AfterCommit;
+use App\Libraries\User\AvatarHelper;
 use App\Libraries\User\DatadogLoginAttempt;
 use App\Libraries\User\ProfileBeatmapset;
+use App\Libraries\User\UsernamesForDbLookup;
 use App\Libraries\UsernameValidation;
 use App\Models\Forum\TopicWatch;
 use App\Models\OAuth\Client;
@@ -67,7 +69,7 @@ use Request;
  * @property-read Collection<Follow> $follows
  * @property-read Collection<Forum\Post> $forumPosts
  * @property-read Collection<static> $friends
- * @property-read Collection<GithubUser> $githubUsers
+ * @property-read GithubUser|null $githubUser
  * @property-read Collection<KudosuHistory> $givenKudosu
  * @property int $group_id
  * @property bool $hide_presence
@@ -212,7 +214,7 @@ use Request;
  */
 class User extends Model implements AfterCommit, AuthenticatableContract, HasLocalePreference, Indexable, Traits\ReportableInterface
 {
-    use Authenticatable, HasApiTokens, Memoizes, Traits\Es\UserSearch, Traits\Reportable, Traits\UserAvatar, Traits\UserScoreable, Traits\UserStore, Validatable;
+    use Authenticatable, HasApiTokens, Memoizes, Traits\Es\UserSearch, Traits\Reportable, Traits\UserScoreable, Traits\UserStore, Validatable;
 
     const PLAYSTYLES = [
         'mouse' => 1,
@@ -418,7 +420,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     {
         return static::whereIn(
             'username',
-            [str_replace(' ', '_', $username), str_replace('_', ' ', $username)]
+            UsernamesForDbLookup::make($username, trimPrefix: false),
         )->first();
     }
 
@@ -495,15 +497,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
         switch ($type) {
             case 'username':
-                $searchUsername = (string) $usernameOrId;
-                if ($searchUsername[0] === '@') {
-                    $searchUsername = substr($searchUsername, 1);
-                }
-                $searchUsernames = [
-                    $searchUsername,
-                    strtr($searchUsername, ' ', '_'),
-                    strtr($searchUsername, '_', ' '),
-                ];
+                $searchUsernames = UsernamesForDbLookup::make($usernameOrId);
 
                 $user = static::where(fn ($query) => $query
                     ->whereIn('username', $searchUsernames)
@@ -551,17 +545,8 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             return null;
         }
 
-        $searchUsername = $usernameOrId[0] === '@'
-            ? substr($usernameOrId, 1)
-            : $usernameOrId;
-        $searchUsernames = [
-            $searchUsername,
-            strtr($searchUsername, ' ', '_'),
-            strtr($searchUsername, '_', ' '),
-        ];
-
         $change = UsernameChangeHistory::visible()
-            ->whereIn('username_last', $searchUsernames)
+            ->whereIn('username_last', UsernamesForDbLookup::make($usernameOrId))
             ->orderBy('change_id', 'desc')
             ->first();
 
@@ -854,7 +839,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'displayed_last_visit' => $this->getDisplayedLastVisit(),
             'osu_playstyle' => $this->getOsuPlaystyle(),
             'playmode' => $this->getPlaymode(),
-            'user_avatar' => $this->getUserAvatar(),
+            'user_avatar' => AvatarHelper::url($this),
             'user_colour' => $this->getUserColour(),
             'user_rank' => $this->getUserRank(),
             'user_website' => $this->getUserWebsite(),
@@ -899,7 +884,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'follows',
             'forumPosts',
             'friends',
-            'githubUsers',
+            'githubUser',
             'givenKudosu',
             'legacyIrcKey',
             'monthlyPlaycounts',
@@ -1056,7 +1041,9 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function isActive()
     {
-        return $this->user_lastvisit > Carbon::now()->subMonths();
+        static $monthInSecond = 30 * 86400;
+
+        return time() - $this->getRawAttribute('user_lastvisit') < $monthInSecond;
     }
 
     /*
@@ -1066,13 +1053,13 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
      */
     public function isInactive(): bool
     {
-        return $this->user_lastvisit->addDays(config('osu.user.inactive_days_verification'))->isPast();
+        return time() - $this->getRawAttribute('user_lastvisit') > config('osu.user.inactive_seconds_verification');
     }
 
     public function isOnline()
     {
         return !$this->hide_presence
-            && $this->user_lastvisit > Carbon::now()->subMinutes(config('osu.user.online_window'));
+            && time() - $this->getRawAttribute('user_lastvisit') < config('osu.user.online_window');
     }
 
     public function isPrivileged()
@@ -1184,9 +1171,9 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->hasMany(UserBadge::class);
     }
 
-    public function githubUsers()
+    public function githubUser(): HasOne
     {
-        return $this->hasMany(GithubUser::class);
+        return $this->hasOne(GithubUser::class);
     }
 
     public function legacyIrcKey(): HasOne
@@ -1344,7 +1331,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function statisticsMania7k()
     {
-        return $this->hasOne(UserStatistics\Mania4k::class);
+        return $this->hasOne(UserStatistics\Mania7k::class);
     }
 
     public function statisticsTaiko()
@@ -2000,7 +1987,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     {
         return $query
             ->where('user_allow_viewonline', true)
-            ->whereRaw('user_lastvisit > UNIX_TIMESTAMP(DATE_SUB(NOW(), INTERVAL '.config('osu.user.online_window').' MINUTE))');
+            ->where('user_lastvisit', '>', time() - config('osu.user.online_window'));
     }
 
     public function scopeEagerloadForListing($query)
@@ -2382,9 +2369,9 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->user_lang;
     }
 
-    public function url()
+    public function url(?string $ruleset = null)
     {
-        return route('users.show', ['user' => $this->getKey()]);
+        return route('users.show', ['mode' => $ruleset, 'user' => $this->getKey()]);
     }
 
     public function validationErrorsTranslationPrefix(): string

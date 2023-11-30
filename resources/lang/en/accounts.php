@@ -62,6 +62,19 @@ return [
         ],
     ],
 
+    'github_user' => [
+        'info' => "If you're a contributor to osu!'s open-source repositories, linking your GitHub account here will associate your changelog entries with your osu! profile. GitHub accounts with no contribution history to osu! cannot be linked.",
+        'link' => 'Link GitHub Account',
+        'title' => 'GitHub',
+        'unlink' => 'Unlink GitHub Account',
+
+        'error' => [
+            'already_linked' => 'This GitHub account is already linked to a different user.',
+            'no_contribution' => 'Cannot link GitHub account without any contribution history in osu! repositories.',
+            'unverified_email' => 'Please verify your primary email on GitHub, then try linking your account again.',
+        ],
+    ],
+
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'receive notifications for new problems on qualified beatmaps of the following modes',
         'beatmapset_disqualify' => 'receive notifications for when beatmaps of the following modes are disqualified',

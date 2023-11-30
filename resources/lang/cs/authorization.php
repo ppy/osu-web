@@ -186,7 +186,7 @@ return [
             ],
         ],
         'update_email' => [
-            'locked' => '',
+            'locked' => 'emailová adresa je uzamčená',
         ],
     ],
 ];

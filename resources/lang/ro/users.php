@@ -75,8 +75,8 @@ return [
         'warning' => "În cazul în care ați încălcat o regulă, vă rugăm să notați că în general este o perioadă de răcire de o lună în care vom considera orice cerere de amnesty. După această perioadă, simtete liber să ne contactezi dacă o găsești necesar. Vă rugăm să notați că după creearea unui cont nou ați avut unul dezactivat va rezulta într-un <strong>extesie în acestă răcire de o lună</strong>. Vă rugăm să notați și că pentru <strong>orice cont creat, încalci regulile în continuare</strong>. Vă recomandăm puternic să nu faceți asta!",
 
         'if_mistake' => [
-            '_' => 'Dacă credeți că a fost o greșeală, ești bine venit să ne contactezi (prin :email sau faceți clic pe "?" din colțul din drepta-jos de pe această pagină). Vă rugăm rețineți că suntem foarte siguri pe acțiunile noastre, care sunt bazate pe date concrete. Ne rezervăm dreptul de a vă respinge dacă considerăm că sunteți dezonest.',
-            'email' => 'email',
+            '_' => 'Dacă credeți că a fost o greșeală, ești bine venit să ne contactezi (prin :email sau faceți clic pe "?" din colțul din drepta-jos de pe această pagină). Vă rugăm rețineți că suntem foarte siguri pe acțiunile noastre, care sunt bazate pe date concrete. Ne rezervăm dreptul de a vă respinge dacă considerăm că sunteți necinstit intenționat.',
+            'email' => 'e-mail',
         ],
 
         'reasons' => [
@@ -97,7 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
-            'inactive_different_country' => "Contul dumneavoastră nu a fost folosit într-un timp îndelungat.",
+            'inactive_different_country' => "Contul dumneavoastră nu a fost folosit de mult timp.",
         ],
     ],
 
@@ -105,7 +105,7 @@ return [
         '_' => 'Autentifică-te',
         'button' => 'Autentifică-te',
         'button_posting' => 'Se conectează...',
-        'email_login_disabled' => 'Înregistrarea cu email este momentan dezactivată. Vă rugăm folosiți numele de utilizator în schimb.',
+        'email_login_disabled' => 'Conectarea prin e-mail este momentan dezactivată. Vă rugăm să folosiți numele de utilizator în schimb.',
         'failed' => 'Conectare incorectă',
         'forgot' => 'Ți-ai uitat parola?',
         'info' => 'Pentru a continua, vă rugam să vă autentificaţi',
@@ -120,6 +120,17 @@ return [
         'beta' => [
             'main' => 'Accesul beta este momentan limitat la utilizatorii autorizați.',
             'small' => '(suporterii osu! vor primi acces curând)',
+        ],
+    ],
+
+    'ogp' => [
+        'modding_description' => '',
+        'modding_description_empty' => '',
+
+        'description' => [
+            '_' => 'Rang (:ruleset): :global | :country',
+            'country' => 'Național :rank',
+            'global' => 'Global :rank',
         ],
     ],
 
@@ -175,11 +186,10 @@ return [
         'origin_country' => 'Din :country',
         'previous_usernames' => 'cunoscut anterior ca',
         'plays_with' => 'Joacă cu :devices',
-        'title' => "Profilul lui :username",
 
         'comments_count' => [
             '_' => 'A postat :link',
-            'count' => ':count_delimited comentariu|:count_delimited comentarii|:count_delimited de comentarii',
+            'count' => 'un comentariu|:count_delimited comentarii|:count_delimited de comentarii',
         ],
         'cover' => [
             'to_0' => 'Ascunde fundal',
@@ -228,7 +238,7 @@ return [
                     'title' => 'Beatmap-uri Favorite',
                 ],
                 'graveyard' => [
-                    'title' => 'Beatmap-uri inactive',
+                    'title' => 'Beatmap-uri Inactive',
                 ],
                 'guest' => [
                     'title' => 'Beatmap-uri cu Participare ca Oaspete',
@@ -243,7 +253,7 @@ return [
                     'title' => 'Beatmap-uri în Așteptare',
                 ],
                 'ranked' => [
-                    'title' => 'Beatmap-uri Clasate & Aprobate',
+                    'title' => 'Beatmap-uri Clasate',
                 ],
             ],
             'discussions' => [
@@ -432,11 +442,11 @@ return [
             'count' => 'o postare pe forum|:count_delimited postări pe forum|:count_delimited de postări pe forum',
         ],
         'rank' => [
-            'country' => 'Clasament pe țară pentru :mode',
-            'country_simple' => 'Clasament pe țară',
-            'global' => 'Clasament global pentru :mode',
-            'global_simple' => 'Clasament global',
-            'highest' => 'Clasament maxim :rank atins pe :date',
+            'country' => 'Rang național pentru :mode',
+            'country_simple' => 'Clasament Național',
+            'global' => 'Rang global pentru :mode',
+            'global_simple' => 'Rang Global',
+            'highest' => 'Rang maxim :rank atins pe :date',
         ],
         'stats' => [
             'hit_accuracy' => 'Precizie',
@@ -448,14 +458,14 @@ return [
             'play_time' => 'Timpul total de joc',
             'ranked_score' => 'Scor Clasat',
             'replays_watched_by_others' => 'Reluări Vizionate de Alții',
-            'score_ranks' => 'Clasament de scoruri',
+            'score_ranks' => 'Clasamente Scoruri',
             'total_hits' => 'Număr de Clicuri',
             'total_score' => 'Scor Total',
             // modding stats
             'graveyard_beatmapset_count' => 'Beatmap-uri Inactive',
             'loved_beatmapset_count' => 'Beatmap-uri Iubite',
             'pending_beatmapset_count' => 'Beatmap-uri în Așteptare',
-            'ranked_beatmapset_count' => 'Beatmap-uri Clasate & Aprobate',
+            'ranked_beatmapset_count' => 'Beatmap-uri Clasate',
         ],
     ],
 

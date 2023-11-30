@@ -30,7 +30,7 @@ class ModelTest extends TestCase
         Model::getClass($mode, $variant);
     }
 
-    public function invalidModes()
+    public static function invalidModes()
     {
         return [
             ['does', null],
@@ -41,7 +41,7 @@ class ModelTest extends TestCase
         ];
     }
 
-    public function validModes()
+    public static function validModes()
     {
         $modes = [];
 

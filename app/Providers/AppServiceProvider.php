@@ -7,9 +7,9 @@ namespace App\Providers;
 
 use App\Hashing\OsuHashManager;
 use App\Libraries\AssetsManifest;
-use App\Libraries\BroadcastsPendingForTests;
 use App\Libraries\ChatFilters;
 use App\Libraries\CleanHTML;
+use App\Libraries\Countries;
 use App\Libraries\Groups;
 use App\Libraries\Ip2Asn;
 use App\Libraries\LayoutCache;
@@ -22,6 +22,7 @@ use App\Libraries\OsuCookieJar;
 use App\Libraries\OsuMessageSelector;
 use App\Libraries\RateLimiter;
 use App\Libraries\RouteSection;
+use App\Libraries\Smilies;
 use App\Libraries\User\ScorePins;
 use Datadog;
 use Illuminate\Database\Eloquent\Relations\Relation;
@@ -34,15 +35,16 @@ use Laravel\Octane\SequentialTaskDispatcher;
 use Laravel\Octane\Swoole\SwooleTaskDispatcher;
 use Queue;
 use Swoole\Http\Server;
-use Validator;
 
 class AppServiceProvider extends ServiceProvider
 {
     const LOCAL_CACHE_SINGLETONS = [
         'chat-filters' => ChatFilters::class,
+        'countries' => Countries::class,
         'groups' => Groups::class,
         'layout-cache' => LayoutCache::class,
         'medals' => Medals::class,
+        'smilies' => Smilies::class,
     ];
 
     const SINGLETONS = [
@@ -64,10 +66,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Relation::morphMap(MorphMap::flippedMap());
-
-        Validator::extend('mixture', function ($attribute, $value, $parameters, $validator) {
-            return preg_match('/[\d]/', $value) === 1 && preg_match('/[^\d\s]/', $value) === 1;
-        });
 
         Queue::after(function (JobProcessed $event) {
             app('OsuAuthorize')->resetCache();
@@ -147,9 +145,6 @@ class AppServiceProvider extends ServiceProvider
         if ($env === 'testing' || $env === 'dusk.local') {
             // This is needed for testing with Dusk.
             $this->app->register(AdditionalDuskServiceProvider::class);
-
-            // This is for testing after commit broadcastable events.
-            $this->app->singleton(BroadcastsPendingForTests::class, fn () => new BroadcastsPendingForTests());
         }
     }
 }

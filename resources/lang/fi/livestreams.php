@@ -5,14 +5,14 @@
 
 return [
     'promote' => [
-        'pin' => 'Oletko varma, että haluat kiinnittää tämän suoralähetyksen?',
-        'unpin' => "Oletko varma, että haluat poistaa tämän suoralähetyksen kiinnityksen?",
+        'pin' => 'Oletko varma, että haluat kiinnittää tämän suoran lähetyksen?',
+        'unpin' => "Oletko varma, että haluat poistaa tämän suoran lähetyksen kiinnityksen?",
     ],
 
     'top-headers' => [
         'headline' => 'Suorat lähetykset',
-        'description' => 'Tiedot haetaan twitch.tv:n listauksesta viiden minuutin välein. Voit vapaasti aloittaa striimaamisen ja saada itsesi listalle! Lisää tietoja aloittelemisesta löydät striimaamista käsittelevästä wiki-artikkelista.',
+        'description' => 'Tiedot noudetaan twitch.tv\'n listauksesta viiden minuutin välein. Voit vapaasti aloittaa suoran lähetyksen ja saada itsesi listalle! Lisää tietoja aloittelemisesta löydät :link.',
 
-        'link' => 'wikisivu livestriimaamisesta',
+        'link' => 'suoraa lähetystä käsittelevästä wikiartikkelista',
     ],
 ];

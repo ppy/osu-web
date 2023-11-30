@@ -5,10 +5,10 @@
 
 return [
     'availability' => [
-        'disabled' => 'Beatmap ei ole tällä hetkellä saatavilla.',
+        'disabled' => 'Tätä rytmikarttaa ei voi juuri nyt ladata.',
         'parts-removed' => 'Joitain osia tästä beatmapista on poistettu joko sen tekijän tai kolmannen osapuolen oikeuksien omaavan pyynnöstä.',
         'more-info' => 'Klikkaa nähdäksesi lisätietoja.',
-        'rule_violation' => 'Osa tämän rytmikartan resursseista on poistettu, koska on katsottu, että niiden käyttö ei sovi osu!un.',
+        'rule_violation' => 'Osa tämän beatmapin resursseista on poistettu, koska on katsottu, että niiden käyttö ei sovi osu!un.',
     ],
 
     'cover' => [
@@ -20,12 +20,12 @@ return [
     ],
 
     'featured_artist_badge' => [
-        'label' => 'Suositeltu esittäjä',
+        'label' => 'Esitelty artisti',
     ],
 
     'index' => [
-        'title' => 'Beatmapit',
-        'guest_title' => 'Rytmikartat',
+        'title' => 'Rytmikarttojen listaus',
+        'guest_title' => 'Beatmapit',
     ],
 
     'panel' => [
@@ -61,7 +61,7 @@ return [
         'discussion' => 'Keskustelu',
 
         'admin' => [
-            'full_size_cover' => '',
+            'full_size_cover' => 'Näytä täysikokoinen kansikuva',
         ],
 
         'deleted_banner' => [
@@ -71,12 +71,12 @@ return [
 
         'details' => [
             'by_artist' => 'esittäjältä :artist',
-            'favourite' => 'Lisää tämä beatmap-setti suosikkeihin',
-            'favourite_login' => 'kirjaudu sisään, niin voit lisätä tämän rytmikartan suosikkeihin',
+            'favourite' => 'lisää tämä rytmikartta suosikkeihin',
+            'favourite_login' => 'kirjaudu sisään, niin voit lisätä tämän beatmapin suosikkeihin',
             'logged-out' => 'Sinun täytyy kirjautua sisään ladataksesi beatmappeja!',
             'mapped_by' => 'kartoittanut :mapper',
             'mapped_by_guest' => 'vieraileva vaikeustaso, kartoittanut :mapper',
-            'unfavourite' => 'Poista tämä beatmapkokoelma suosikeista',
+            'unfavourite' => 'poista tämä rytmikartta suosikeista',
             'updated_timeago' => 'päivitetty viimeksi :timeago',
 
             'download' => [
@@ -96,25 +96,25 @@ return [
             'approved' => 'hyväksytty :timeago',
             'loved' => 'rakastettu :timeago',
             'qualified' => 'kelpuutettu :timeago',
-            'ranked' => 'tehty pisteyttäväksi :timeago',
+            'ranked' => 'rankattu :timeago',
             'submitted' => 'lähetetty :timeago',
             'updated' => 'päivitetty viimeksi :timeago',
         ],
 
         'favourites' => [
-            'limit_reached' => 'Sinulla on liian monta lempikappaletta! Poista joitain suosikeistasi ennen uudelleenyrittämistä.',
+            'limit_reached' => 'Sinulla on liian monta lempikappaletta! Poista joitain suosikeistasi ja yritä sitten uudelleen.',
         ],
 
         'hype' => [
-            'action' => 'Jos nautit tästä kartasta, hurraa sitä edistääksesi sen siirtymistä <strong>Hyväksyttyyn</strong> tilaan.',
+            'action' => 'Jos nautit tästä kartasta, hurraa sitä edistääksesi sen siirtymistä <strong>rankatuksi</strong>.',
 
             'current' => [
                 '_' => 'Tämä kartta on :status.',
 
                 'status' => [
                     'pending' => 'vireillä',
-                    'qualified' => 'hyväksytty',
-                    'wip' => 'keskeneräinen',
+                    'qualified' => 'kelpuutettu',
+                    'wip' => 'työn alla',
                 ],
             ],
 
@@ -146,12 +146,12 @@ return [
         ],
 
         'nsfw_warning' => [
-            'details' => 'Tämä rytmikartta sisältää sopimatonta, loukkaavaa ta järkyttävää sisältöä. Haluatko kuitenkin tarkastella sitä?',
+            'details' => 'Tämä rytmikartta sisältää sopimatonta, loukkaavaa tai järkyttävää sisältöä. Haluatko kuitenkin tarkastella sitä?',
             'title' => 'Sopimatonta sisältöä',
 
             'buttons' => [
                 'disable' => 'Poista varoitus käytöstä',
-                'listing' => 'Rytmikarttalista',
+                'listing' => 'Takaisin rytmikarttalistaukseen',
                 'show' => 'Näytä',
             ],
         ],
@@ -163,14 +163,14 @@ return [
             'friend' => 'Kavereiden sijoitukset',
             'global' => 'Maailmanlaajuiset sijoitukset',
             'supporter-link' => 'Klikkaa <a href=":link">tästä</a> nähdäksesi kaikki hienot ominaisuudet mitä saat!',
-            'supporter-only' => 'Sinun täytyy olla Tukija nähdäksesi maa- ja ystäväkohtaiset sijoitukset!',
+            'supporter-only' => 'Sinun täytyy olla osu!-tukija nähdäksesi kaveri-, maa- ja muunnelmakohtaiset sijoitukset!',
             'title' => 'Tulokset',
 
             'headers' => [
                 'accuracy' => 'Tarkkuus',
                 'combo' => 'Maksimikombo',
                 'miss' => 'Ohi',
-                'mods' => 'Modit',
+                'mods' => 'Muunnelmat',
                 'pin' => 'Kiinnitä',
                 'player' => 'Pelaaja',
                 'pp' => '',
@@ -185,7 +185,7 @@ return [
                 'friend' => 'Kukaan kavereistasi ei vielä ole saanut tulosta tässä mapissa!',
                 'global' => 'Tuloksia ei ole. Voisit hankkia niitä.',
                 'loading' => 'Ladataan tuloksia...',
-                'unranked' => 'Beatmap ei ole hyväksytyssä tilassa.',
+                'unranked' => 'Rankkaamaton rytmikartta.',
             ],
             'score' => [
                 'first' => 'Johdossa',
@@ -200,7 +200,7 @@ return [
         'stats' => [
             'cs' => 'Ympyräkoko',
             'cs-mania' => 'Näppäinten määrä',
-            'drain' => 'HP Drain',
+            'drain' => 'Terveyden valutus',
             'accuracy' => 'Tarkkuus',
             'ar' => 'Lähestymisnopeus',
             'stars' => 'Vaikeustaso',
@@ -216,10 +216,10 @@ return [
         ],
 
         'status' => [
-            'ranked' => 'Pisteyttävä',
+            'ranked' => 'Rankattu',
             'approved' => 'Hyväksytty',
             'loved' => 'Rakastettu',
-            'qualified' => 'Esihyväksytty',
+            'qualified' => 'Kelpuutettu',
             'wip' => 'Työn alla',
             'pending' => 'Vireillä',
             'graveyard' => 'Hautausmaa',

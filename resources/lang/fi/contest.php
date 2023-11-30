@@ -54,7 +54,7 @@ return [
         'too_big' => 'Tähän kilpailuun voi lähettää korkeintaan :limit työtä.',
     ],
     'beatmaps' => [
-        'download' => 'Lataa beatmappi',
+        'download' => 'Lataa tuotos',
     ],
     'vote' => [
         'list' => 'äänet',

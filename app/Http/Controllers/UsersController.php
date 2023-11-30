@@ -487,7 +487,7 @@ class UsersController extends Controller
      * @urlParam type string required Score type. Must be one of these: `best`, `firsts`, `recent`. Example: best
      *
      * @queryParam include_fails Only for recent scores, include scores of failed plays. Set to 1 to include them. Defaults to 0. Example: 0
-     * @queryParam mode [GameMode](#gamemode) of the scores to be returned. Defaults to the specified `user`'s mode. Example: osu
+     * @queryParam mode [Ruleset](#ruleset) of the scores to be returned. Defaults to the specified `user`'s mode. Example: osu
      * @queryParam limit Maximum number of results.
      * @queryParam offset Result offset for pagination. Example: 1
      *
@@ -542,7 +542,7 @@ class UsersController extends Controller
      *
      * Additionally, `statistics_rulesets` is included, containing statistics for all rulesets.
      *
-     * @urlParam mode string [GameMode](#gamemode). User default mode will be used if not specified. Example: osu
+     * @urlParam mode string [Ruleset](#ruleset). User default mode will be used if not specified. Example: osu
      *
      * @response "See User object section"
      */
@@ -554,6 +554,8 @@ class UsersController extends Controller
         if (!Beatmap::isModeValid($currentMode)) {
             abort(404);
         }
+
+        $user->statistics($currentMode)?->setRelation('user', $user);
 
         return $this->fillDeprecatedDuplicateFields(json_item(
             $user,
@@ -613,7 +615,7 @@ class UsersController extends Controller
      * - user_achievements
      *
      * @urlParam user integer required Id or username of the user. Id lookup is prioritised unless `key` parameter is specified. Previous usernames are also checked in some cases. Example: 1
-     * @urlParam mode string [GameMode](#gamemode). User default mode will be used if not specified. Example: osu
+     * @urlParam mode string [Ruleset](#ruleset). User default mode will be used if not specified. Example: osu
      *
      * @queryParam key Type of `user` passed in url parameter. Can be either `id` or `username` to limit lookup by their respective type. Passing empty or invalid value will result in id lookup followed by username lookup if not found.
      *
@@ -628,6 +630,9 @@ class UsersController extends Controller
         if (!Beatmap::isModeValid($currentMode)) {
             abort(404);
         }
+
+        // preload and set relation for opengraph header and transformer sharing data
+        $user->statistics($currentMode)?->setRelation('user', $user);
 
         $userArray = $this->fillDeprecatedDuplicateFields(json_item(
             $user,
@@ -649,7 +654,9 @@ class UsersController extends Controller
                 'user' => $userArray,
             ];
 
-            return ext_view('users.show', compact('initialData', 'user'));
+            set_opengraph($user, 'show', $currentMode);
+
+            return ext_view('users.show', compact('initialData', 'mode', 'user'));
         }
     }
 

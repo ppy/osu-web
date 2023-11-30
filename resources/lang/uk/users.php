@@ -123,6 +123,17 @@ return [
         ],
     ],
 
+    'ogp' => [
+        'modding_description' => '',
+        'modding_description_empty' => '',
+
+        'description' => [
+            '_' => 'Ранг (:ruleset): :global | :country',
+            'country' => 'Країна :rank',
+            'global' => 'Глобальний :rank',
+        ],
+    ],
+
     'posts' => [
         'title' => 'Публікації :username',
     ],
@@ -175,7 +186,6 @@ return [
         'origin_country' => 'Проживає в :country',
         'previous_usernames' => 'раніше був відомий як',
         'plays_with' => 'Грає з :devices',
-        'title' => "профіль :username",
 
         'comments_count' => [
             '_' => 'Опубліковано :link',
@@ -393,7 +403,7 @@ return [
 
                     'actions' => [
                         'restriction' => 'Заблокувати',
-                        'silence' => 'Заглушений',
+                        'silence' => 'Сайленс',
                         'tournament_ban' => 'Турнірний бан',
                         'note' => 'Замітка',
                     ],
@@ -460,7 +470,7 @@ return [
     ],
 
     'silenced_banner' => [
-        'title' => 'Наразі вас заглушено.',
+        'title' => 'Ви тимчасово позбавлені можливості спілкуватися.',
         'message' => 'Деякі дії можуть бути недоступними.',
     ],
 

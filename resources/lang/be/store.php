@@ -6,6 +6,7 @@
 return [
     'cart' => [
         'checkout' => 'Завяршэнне пакупкі',
+        'empty_cart' => '',
         'info' => ':count_delimited тавар у кошыку ($:subtotal)|:count_delimited прадметы ў кошыку  ($:subtotal)',
         'more_goodies' => 'Я хачу праглядзець іншыя тавары перад завяршэннем пакупкі',
         'shipping_fees' => 'кошт дастаўкі',
@@ -48,19 +49,52 @@ return [
     ],
 
     'discount' => 'эканомія: :percent%',
+    'free' => '',
 
     'invoice' => [
+        'contact' => '',
+        'date' => '',
         'echeck_delay' => 'Так як аплата была праз eCheck, чаканне пацверджання аплаты праз Paypal можа займаць да 10 дзён!',
         'hide_from_activity' => 'паведамленні аб тэгах osu!supporter пасля куплі не будуць адлюстраваны ў вашым профілі.',
+        'sent_via' => '',
+        'shipping_to' => '',
+        'title' => '',
         'title_compact' => 'рахунак-фактура',
 
         'status' => [
+            'cancelled' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => "",
+                    'link_text' => '',
+                ],
+            ],
+            'delivered' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => '',
+                    'link_text' => '',
+                ],
+            ],
+            'prepared' => [
+                'title' => '',
+                'line_1' => '',
+                'line_2' => '',
+            ],
             'processing' => [
                 'title' => 'Ваша аплата яшчэ не была пацверджана!',
                 'line_1' => 'Калі вы ўжо аплацілі, то мы ўсё яшчэ можам чакаць пацверджання вашай куплі. Каплі ласка, абнавіць старонку праз хвіліну або дзве!',
                 'line_2' => [
                     '_' => 'Калі ўзнікла праблема падчас аплаты, то :link',
                     'link_text' => 'націсніце тут, каб узнавіць аплату',
+                ],
+            ],
+            'shipped' => [
+                'title' => '',
+                'tracking_details' => '',
+                'no_tracking_details' => [
+                    '_' => "",
+                    'link_text' => '',
                 ],
             ],
         ],
@@ -74,7 +108,19 @@ return [
         'no_orders' => 'Няма заказаў для паказу.',
         'paid_on' => 'Заказ размешчаны :date',
         'resume' => 'Працягнуць пакупку',
+        'shipping_and_handling' => '',
         'shopify_expired' => 'Тэрмін дзеяння спасылкі на заказ для гэтага замовы скончыўся.',
+        'subtotal' => '',
+        'total' => '',
+
+        'details' => [
+            'order_number' => '',
+            'payment_terms' => '',
+            'salesperson' => '',
+            'shipping_method' => '',
+            'shipping_terms' => '',
+            'title' => '',
+        ],
 
         'item' => [
             'quantity' => 'Колькасць',
@@ -105,6 +151,15 @@ return [
             'paid' => 'Аплочана',
             'processing' => 'Чаканне пацвярджэння',
             'shipped' => 'У дарозе',
+            'title' => '',
+        ],
+
+        'thanks' => [
+            'title' => '',
+            'line_1' => [
+                '_' => '',
+                'link_text' => '',
+            ],
         ],
     ],
 
@@ -138,6 +193,10 @@ return [
     'username_change' => [
         'check' => 'Увядзіце імя карыстальніка, каб праверыць яго даступнасць!',
         'checking' => 'Ідзе праверка даступнасці :username...',
+        'placeholder' => '',
+        'label' => '',
+        'current' => '',
+
         'require_login' => [
             '_' => 'Вы павінны :link, каб змяніць імя карыстальніка!',
             'link_text' => 'увайсці',

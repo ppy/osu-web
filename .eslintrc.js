@@ -106,6 +106,7 @@ module.exports = {
         '@typescript-eslint/object-curly-spacing': ['error', 'always'],
         '@typescript-eslint/prefer-for-of': 'error',
         '@typescript-eslint/prefer-function-type': 'error',
+        '@typescript-eslint/prefer-readonly': 'error',
         '@typescript-eslint/quotes': [
           'error',
           'single',
@@ -125,10 +126,7 @@ module.exports = {
         '@typescript-eslint/strict-boolean-expressions': [
           'error',
           {
-            allowAny: true,
             allowNullableBoolean: true,
-            allowNullableNumber: true,
-            allowNullableString: true,
           },
         ],
         '@typescript-eslint/type-annotation-spacing': 'error',

@@ -5,7 +5,6 @@
 
 return [
     'button' => [
-        'cancel' => '',
         'resend' => '',
         'set' => '',
         'start' => '',

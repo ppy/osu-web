@@ -5,7 +5,6 @@
 
 return [
     'button' => [
-        'cancel' => '取消',
         'resend' => '重新发送确认邮件',
         'set' => '设置密码',
         'start' => '开始',

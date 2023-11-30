@@ -123,6 +123,17 @@ return [
         ],
     ],
 
+    'ogp' => [
+        'modding_description' => '',
+        'modding_description_empty' => '',
+
+        'description' => [
+            '_' => '',
+            'country' => '',
+            'global' => '',
+        ],
+    ],
+
     'posts' => [
         'title' => 'Mga post ni :username',
     ],
@@ -175,7 +186,6 @@ return [
         'origin_country' => 'Nangganling sa :country',
         'previous_usernames' => 'dating kilala bilang',
         'plays_with' => 'Naglalaro gamit ang :devices',
-        'title' => "Profile ni :username",
 
         'comments_count' => [
             '_' => 'Nag-post sa :link',

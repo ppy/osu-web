@@ -89,6 +89,8 @@ class BeatmapsetSearch extends RecordSearch
         $this->addSimpleFilters($query, $nested);
         $this->addCreatorFilter($query, $nested);
         $this->addTextFilter($query, 'artist', ['artist', 'artist_unicode']);
+        $this->addTextFilter($query, 'source', ['source']);
+        $this->addTextFilter($query, 'title', ['title', 'title_unicode']);
 
         $query->filter([
             'nested' => [
@@ -313,6 +315,7 @@ class BeatmapsetSearch extends RecordSearch
             'drain' => ['field' => 'beatmaps.diff_drain', 'type' => 'range'],
             'hitLength' => ['field' => 'beatmaps.hit_length', 'type' => 'range'],
             'statusRange' => ['field' => 'beatmaps.approved', 'type' => 'range'],
+            'updated' => ['field' => 'last_update', 'type' => 'range'],
             // (unsupported) 'divisor' => ['field' => ???, 'type' => 'range'],
         ];
 

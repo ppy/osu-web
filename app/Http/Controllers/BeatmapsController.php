@@ -5,6 +5,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Ruleset;
 use App\Exceptions\InvariantException;
 use App\Jobs\Notifications\BeatmapOwnerChange;
 use App\Libraries\BeatmapDifficultyAttributes;
@@ -71,8 +72,8 @@ class BeatmapsController extends Controller
      * Attributes | [DifficultyAttributes](#beatmapdifficultyattributes)
      *
      * @urlParam beatmap integer required Beatmap id. Example: 2
-     * @bodyParam mods number|string[]|Mod[] Mod combination. Can be either a bitset of mods, array of mod acronyms, or array of mods. Defaults to no mods. Example: 1
-     * @bodyParam ruleset GameMode Ruleset of the difficulty attributes. Only valid if it's the beatmap ruleset or the beatmap can be converted to the specified ruleset. Defaults to ruleset of the specified beatmap. Example: osu
+     * @bodyParam mods integer|string[]|Mod[] Mod combination. Can be either a bitset of mods, array of mod acronyms, or array of mods. Defaults to no mods. Example: 1
+     * @bodyParam ruleset Ruleset Ruleset of the difficulty attributes. Only valid if it's the beatmap ruleset or the beatmap can be converted to the specified ruleset. Defaults to ruleset of the specified beatmap. Example: osu
      * @bodyParam ruleset_id integer The same as `ruleset` but in integer form. No-example
      *
      * @response {
@@ -256,20 +257,24 @@ class BeatmapsController extends Controller
             abort(404);
         }
 
-        if ($beatmap->mode === 'osu') {
+        $beatmapRuleset = $beatmap->mode;
+        if ($beatmapRuleset === 'osu') {
             $params = get_params(request()->all(), null, [
                 'm:int', // legacy parameter
-                'mode:string',
+                'mode', // legacy parameter
+                'ruleset',
             ], ['null_missing' => true]);
 
-            $mode = Beatmap::isModeValid($params['mode'])
-                ? $params['mode']
-                : Beatmap::modeStr($params['m']);
+            $ruleset = (
+                Ruleset::tryFromName($params['ruleset'])
+                ?? Ruleset::tryFromName($params['mode'])
+                ?? Ruleset::tryFrom($params['m'] ?? Ruleset::NULL)
+            )?->legacyName();
         }
 
-        $mode ??= $beatmap->mode;
+        $ruleset ??= $beatmapRuleset;
 
-        return ujs_redirect(route('beatmapsets.show', ['beatmapset' => $beatmapset->getKey()]).'#'.$mode.'/'.$beatmap->getKey());
+        return ujs_redirect(route('beatmapsets.show', ['beatmapset' => $beatmapset->getKey()]).'#'.$ruleset.'/'.$beatmap->getKey());
     }
 
     /**
@@ -285,7 +290,7 @@ class BeatmapsController extends Controller
      *
      * @urlParam beatmap integer required Id of the [Beatmap](#beatmap).
      *
-     * @queryParam mode The [GameMode](#gamemode) to get scores for.
+     * @queryParam mode The [Ruleset](#ruleset) to get scores for.
      * @queryParam mods An array of matching Mods, or none // TODO.
      * @queryParam type Beatmap score ranking type // TODO.
      */
@@ -354,7 +359,7 @@ class BeatmapsController extends Controller
      *
      * @urlParam beatmap integer required Id of the [Beatmap](#beatmap).
      *
-     * @queryParam mode The [GameMode](#gamemode) to get scores for.
+     * @queryParam mode The [Ruleset](#ruleset) to get scores for.
      * @queryParam mods An array of matching Mods, or none // TODO.
      * @queryParam type Beatmap score ranking type // TODO.
      */
@@ -461,7 +466,7 @@ class BeatmapsController extends Controller
      * @urlParam beatmap integer required Id of the [Beatmap](#beatmap).
      * @urlParam user integer required Id of the [User](#user).
      *
-     * @queryParam mode The [GameMode](#gamemode) to get scores for.
+     * @queryParam mode The [Ruleset](#ruleset) to get scores for.
      * @queryParam mods An array of matching Mods, or none // TODO.
      */
     public function userScore($beatmapId, $userId)
@@ -507,7 +512,7 @@ class BeatmapsController extends Controller
      * @urlParam beatmap integer required Id of the [Beatmap](#beatmap).
      * @urlParam user integer required Id of the [User](#user).
      *
-     * @queryParam mode The [GameMode](#gamemode) to get scores for. Defaults to beatmap mode
+     * @queryParam mode The [Ruleset](#ruleset) to get scores for. Defaults to beatmap mode
      */
     public function userScoreAll($beatmapId, $userId)
     {

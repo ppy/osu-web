@@ -225,8 +225,11 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
             'length' => 'hitLength',
             'od' => 'accuracy',
             'ranked' => 'ranked',
+            'source' => 'source',
             'stars' => 'difficultyRating',
             'status' => 'statusRange',
+            'title' => 'title',
+            'updated' => 'updated',
         ];
 
         $parsed = BeatmapsetQueryParser::parse($this->requestQuery);

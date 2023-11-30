@@ -8,28 +8,25 @@ namespace App\Libraries;
 use App\Events\UserSessionEvent;
 use App\Exceptions\UserVerificationException;
 use App\Libraries\Session\SessionManager;
-use App\Models\LegacySession;
 use App\Models\User;
 
 class UserVerificationState
 {
     protected $user;
 
-    private $legacySession = [];
-    private $legacySessionQueryWhere;
     private $session;
 
     public static function fromCurrentRequest()
     {
-        return new static(
-            auth()->user(),
-            session(),
-            LegacySession::queryWhereFromRequest(request())
-        );
+        return new static(auth()->user(), session());
     }
 
     public static function fromVerifyLink($linkKey)
     {
+        if (!SignedRandomString::isValid($linkKey)) {
+            return null;
+        }
+
         $params = cache()->get("verification:{$linkKey}");
 
         if ($params !== null) {
@@ -48,16 +45,11 @@ class UserVerificationState
         $session->setId($params['sessionId']);
         $session->start();
 
-        return new static(
-            User::find($params['userId']),
-            $session,
-            $params['legacySessionQueryWhere']
-        );
+        return new static(User::find($params['userId']), $session);
     }
 
-    private function __construct($user, $session, $legacySessionQueryWhere)
+    private function __construct($user, $session)
     {
-        $this->legacySessionQueryWhere = $legacySessionQueryWhere;
         $this->session = $session;
         $this->user = $user;
 
@@ -75,7 +67,6 @@ class UserVerificationState
         return [
             'userId' => $this->user->getKey(),
             'sessionId' => $this->session->getId(),
-            'legacySessionQueryWhere' => $this->legacySessionQueryWhere,
         ];
     }
 
@@ -89,7 +80,7 @@ class UserVerificationState
 
         // 1 byte = 2^8 bits = 16^2 bits = 2 hex characters
         $key = bin2hex(random_bytes(config('osu.user.verification_key_length_hex') / 2));
-        $linkKey = bin2hex(random_bytes(32));
+        $linkKey = SignedRandomString::create(32);
         $expires = now()->addHours(5);
 
         $this->session->put('verification_key', $key);
@@ -121,35 +112,7 @@ class UserVerificationState
             return true;
         }
 
-        if ($this->isDoneLegacy()) {
-            $this->markVerified();
-
-            return true;
-        }
-
         return false;
-    }
-
-    public function isDoneLegacy()
-    {
-        return $this->legacySession() !== null
-            && $this->legacySession()->verified;
-    }
-
-    public function legacySession()
-    {
-        if ($this->legacySessionQueryWhere === null) {
-            return;
-        }
-
-        if (!array_key_exists('value', $this->legacySession)) {
-            $this->legacySession['value'] = LegacySession
-                ::where($this->legacySessionQueryWhere)
-                ->where(['session_user_id' => $this->user->getKey()])
-                ->first();
-        }
-
-        return $this->legacySession['value'];
     }
 
     public function markVerified()
@@ -159,10 +122,6 @@ class UserVerificationState
         $this->session->forget('verification_key');
         $this->session->put('verified', true);
         $this->session->save();
-
-        if ($this->legacySession() !== null) {
-            $this->legacySession()->update(['verified' => true]);
-        }
 
         UserSessionEvent::newVerified($this->user->getKey(), $this->session->getKey())->broadcast();
     }

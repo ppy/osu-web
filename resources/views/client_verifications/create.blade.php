@@ -47,10 +47,9 @@
             <div class="dialog-form__row dialog-form__row--wrong-user">
                 {!! osu_trans('common.wrong_user._', [
                     'user' => e($user->username),
-                    'logout_link' => link_to_route(
-                        'logout',
+                    'logout_link' => link_to(
+                        route('logout'),
                         osu_trans('common.wrong_user.logout_link'),
-                        [],
                         [
                             'class' => 'dialog-form__extra-link',
                             'data-confirm' => osu_trans('users.logout_confirm'),
@@ -63,17 +62,18 @@
             </div>
 
             <div class="dialog-form__row dialog-form__row--buttons">
-                {!! Form::open([
-                    'url' => route('client-verifications.store'),
-                    'method' => 'POST',
-                    'data-remote' => 'true',
-                ]) !!}
+                <form
+                    action="{{ route('client-verifications.store') }}"
+                    data-remote
+                    method="POST"
+                >
+                    @csrf
                     <input type="hidden" name="ch" value="{{ $hash }}" />
 
                     <button class="dialog-form__button" data-disable-with="{{ osu_trans('common.buttons.authorising') }}">
                         {{ osu_trans('common.buttons.authorise') }}
                     </button>
-                {!! Form::close() !!}
+                </form>
 
                 <a
                     href="{{ route('home') }}"

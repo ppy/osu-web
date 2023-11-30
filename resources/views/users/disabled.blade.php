@@ -17,12 +17,14 @@
         <ul>
             <li>
                 {!! osu_trans('users.disabled.reasons.tos._', [
-                    'community_rules' => tag('a', [
-                        'href' => osu_url('user.rules'),
-                    ], osu_trans('users.disabled.reasons.tos.community_rules')),
-                    'tos' => tag('a', [
-                        'href' => route('legal', ['locale' => app()->getLocale(), 'path' => 'terms']),
-                    ], osu_trans('users.disabled.reasons.tos.tos')),
+                    'community_rules' => link_to(
+                        osu_url('user.rules'),
+                        osu_trans('users.disabled.reasons.tos.community_rules')
+                    ),
+                    'tos' => link_to(
+                        route('legal', ['locale' => app()->getLocale(), 'path' => 'terms']),
+                        osu_trans('users.disabled.reasons.tos.tos')
+                    ),
                 ]) !!}
             </li>
             <li>
@@ -36,9 +38,9 @@
 
         <p>
             {!! osu_trans('users.disabled.if_mistake._', [
-                'email' => tag('a', [
-                    'href' => 'mailto:'.config('osu.emails.account')
-                ], osu_trans('users.disabled.if_mistake.email')),
+                'email' => link_to(
+                    'mailto:'.config('osu.emails.account'),
+                    osu_trans('users.disabled.if_mistake.email'))
             ]) !!}
         </p>
 

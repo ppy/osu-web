@@ -19,8 +19,8 @@ return [
             'new_confirmation' => 'потвърди нов имейл',
             'title' => 'Имейл',
             'locked' => [
-                '_' => '',
-                'accounts' => '',
+                '_' => 'Моля, свържете се с :accounts за обновяване не имейл.',
+                'accounts' => 'екипа за поддръжка на профили',
             ],
         ],
 
@@ -59,6 +59,19 @@ return [
         'signature' => [
             'title' => 'Подпис',
             'update' => 'обнови',
+        ],
+    ],
+
+    'github_user' => [
+        'info' => "",
+        'link' => '',
+        'title' => '',
+        'unlink' => '',
+
+        'error' => [
+            'already_linked' => '',
+            'no_contribution' => '',
+            'unverified_email' => '',
         ],
     ],
 

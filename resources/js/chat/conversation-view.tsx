@@ -16,6 +16,7 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
+import { present } from 'utils/string';
 import InputBox from './input-box';
 import { MessageDivider } from './message-divider';
 import MessageGroup from './message-group';
@@ -31,11 +32,11 @@ const blankSnapshot = (): Snapshot => ({ chatHeight: 0, chatTop: 0 });
 
 @observer
 export default class ConversationView extends React.Component<Props> {
-  private chatViewRef = React.createRef<HTMLDivElement>();
+  private readonly chatViewRef = React.createRef<HTMLDivElement>();
   private didSwitchChannel = true;
-  private disposers = new Set<(() => void) | undefined>();
+  private readonly disposers = new Set<(() => void) | undefined>();
   private firstMessage?: Message;
-  private unreadMarkerRef = React.createRef<HTMLDivElement>();
+  private readonly unreadMarkerRef = React.createRef<HTMLDivElement>();
 
   @computed
   private get conversationStack() {
@@ -229,7 +230,7 @@ export default class ConversationView extends React.Component<Props> {
               />
             )}
           </div>
-          {channel.description &&
+          {present(channel.description) &&
             <div className='chat-conversation__chat-label'>
               {channel.description}
             </div>
@@ -275,7 +276,7 @@ export default class ConversationView extends React.Component<Props> {
   }
 
   @action
-  private handleOnScroll = () => {
+  private readonly handleOnScroll = () => {
     const chatView = this.chatViewRef.current;
     if (chatView == null || this.currentChannel == null) return;
 
@@ -287,7 +288,7 @@ export default class ConversationView extends React.Component<Props> {
     }
   };
 
-  private loadEarlierMessages = () => {
+  private readonly loadEarlierMessages = () => {
     if (this.currentChannel == null) return;
     core.dataStore.channelStore.loadChannelEarlierMessages(this.currentChannel.channelId);
   };
