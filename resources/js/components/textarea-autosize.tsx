@@ -3,6 +3,7 @@
 
 import autosize from 'autosize';
 import React from 'react';
+import { present } from 'utils/string';
 
 interface Props extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   async: boolean;
@@ -37,7 +38,7 @@ export default class TextareaAutosize extends React.PureComponent<Props, State> 
   componentDidMount() {
     if (this.ref.current == null) return;
 
-    if (this.props.maxRows != null || this.props.async) {
+    if (this.props.maxRows != null || this.props.async || present(this.props.value?.toString())) {
       window.setTimeout(() => {
         if (this.ref.current != null) {
           if (this.props.maxRows != null) {
