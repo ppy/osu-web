@@ -7,6 +7,7 @@ namespace App\Models\OAuth;
 
 use App\Events\UserSessionEvent;
 use App\Exceptions\InvalidScopeException;
+use App\Models\Traits\FasterAttributes;
 use App\Models\User;
 use Ds\Set;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -16,9 +17,19 @@ use Laravel\Passport\Token as PassportToken;
 class Token extends PassportToken
 {
     // PassportToken doesn't have factory
-    use HasFactory;
+    use HasFactory, FasterAttributes;
 
-    public $timestamps = true;
+    private ?Set $scopeSet;
+
+    public function refreshToken()
+    {
+        return $this->hasOne(RefreshToken::class, 'access_token_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 
     /**
      * Whether the resource owner is delegated to the client's owner.
@@ -27,7 +38,28 @@ class Token extends PassportToken
      */
     public function delegatesOwner(): bool
     {
-        return in_array('delegate', $this->scopes, true);
+        return $this->scopeSet()->contains('delegate');
+    }
+
+    public function getAttribute($key)
+    {
+        return match ($key) {
+            'client_id',
+            'id',
+            'name',
+            'user_id' => $this->getRawAttribute($key),
+
+            'revoked' => (bool) $this->getRawAttribute($key),
+            'scopes' => json_decode($this->getRawAttribute($key), true),
+
+            'created_at',
+            'expires_at',
+            'updated_at' => $this->getTimeFast($key),
+
+            'client',
+            'refreshToken',
+            'user' => $this->getRelationValue($key),
+        };
     }
 
     /**
@@ -53,18 +85,15 @@ class Token extends PassportToken
 
     public function isOwnToken(): bool
     {
-        return $this->client->user_id !== null && $this->client->user_id === $this->user_id;
-    }
+        $clientUserId = $this->client->user_id;
 
-    public function refreshToken()
-    {
-        return $this->hasOne(RefreshToken::class, 'access_token_id');
+        return $clientUserId !== null && $clientUserId === $this->user_id;
     }
 
     public function revokeRecursive()
     {
         $result = $this->revoke();
-        optional($this->refreshToken)->revoke();
+        $this->refreshToken?->revoke();
 
         return $result;
     }
@@ -91,23 +120,24 @@ class Token extends PassportToken
             sort($value);
         }
 
+        $this->scopeSet = null;
         $this->attributes['scopes'] = $this->castAttributeAsJson('scopes', $value);
     }
 
-    public function validate()
+    public function validate(): void
     {
-        static $scopesRequireDelegation;
-        $scopesRequireDelegation ??= new Set(['chat.write', 'chat.write_manage', 'delegate']);
+        static $scopesRequireDelegation = new Set(['chat.write', 'chat.write_manage', 'delegate']);
 
-        if (empty($this->scopes)) {
+        $scopes = $this->scopeSet();
+        if ($scopes->isEmpty()) {
             throw new InvalidScopeException('Tokens without scopes are not valid.');
         }
 
-        if ($this->client === null) {
+        $client = $this->client;
+        if ($client === null) {
             throw new InvalidScopeException('The client is not authorized.', 'unauthorized_client');
         }
 
-        $scopes = new Set($this->scopes);
         // no silly scopes.
         if ($scopes->contains('*') && $scopes->count() > 1) {
             throw new InvalidScopeException('* is not valid with other scopes');
@@ -118,7 +148,7 @@ class Token extends PassportToken
                 throw new InvalidScopeException('* is not allowed with Client Credentials');
             }
 
-            if ($this->delegatesOwner() && !$this->client->user->isBot()) {
+            if ($this->delegatesOwner() && !$client->user->isBot()) {
                 throw new InvalidScopeException('Delegation with Client Credentials is only available to chat bots.');
             }
 
@@ -140,18 +170,15 @@ class Token extends PassportToken
 
             // only clients owned by bots are allowed to act on behalf of another user.
             // the user's own client can send messages as themselves for authorization code flows.
-            static $ownClientScopes;
-            $ownClientScopes ??= new Set([
+            static $ownClientScopes = new Set([
                 'chat.read',
                 'chat.write',
                 'chat.write_manage',
             ]);
-            if (!$scopes->intersect($ownClientScopes)->isEmpty() && !($this->isOwnToken() || $this->client->user->isBot())) {
+            if (!$scopes->intersect($ownClientScopes)->isEmpty() && !($this->isOwnToken() || $client->user->isBot())) {
                 throw new InvalidScopeException('This scope is only available for chat bots or your own clients.');
             }
         }
-
-        return true;
     }
 
     public function save(array $options = [])
@@ -162,10 +189,8 @@ class Token extends PassportToken
         return parent::save($options);
     }
 
-    public function user()
+    private function scopeSet(): Set
     {
-        $provider = config('auth.guards.api.provider');
-
-        return $this->belongsTo(config('auth.providers.'.$provider.'.model'), 'user_id');
+        return $this->scopeSet ??= new Set($this->scopes ?? []);
     }
 }
