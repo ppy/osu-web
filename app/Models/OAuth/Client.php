@@ -33,6 +33,8 @@ class Client extends PassportClient
 {
     use Validatable;
 
+    public ?array $scopes = null;
+
     public static function forUser(User $user)
     {
         // Get clients matching non-revoked tokens. Expired tokens should be included.
@@ -62,8 +64,6 @@ class Client extends PassportClient
         // force default factory class name instead of passport
         return null;
     }
-
-    public ?array $scopes = null;
 
     public function refreshTokens()
     {
