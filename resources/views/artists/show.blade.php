@@ -48,11 +48,7 @@
                     {!! markdown($artist->description) !!}
 
                     @if ($artist->video_url !== null)
-                        <div class="artist__video">
-                            <div class="u-embed-wide">
-                                <iframe src="{{ $artist->video_url }}" allowfullscreen></iframe>
-                            </div>
-                        </div>
+                        <video class="artist__video" src="{{ $artist->video_url }}" controls></video>
                     @endif
                 </div>
                 @if (count($json['albums']) > 0)
