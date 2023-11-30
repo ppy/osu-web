@@ -27,6 +27,7 @@ use App\Traits\Memoizes;
  * @property string|null $twitter
  * @property \Carbon\Carbon|null $updated_at
  * @property int|null $user_id
+ * @property string|null $video_url
  * @property int $visible
  * @property string|null $website
  * @property string|null $youtube
