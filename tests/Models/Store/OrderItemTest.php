@@ -104,7 +104,7 @@ class OrderItemTest extends TestCase
         $this->assertSame($product->stock, 0);
     }
 
-    public function deleteDataProvider()
+    public static function deleteDataProvider()
     {
         return [
             ['checkout', InvariantException::class],

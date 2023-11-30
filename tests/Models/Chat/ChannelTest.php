@@ -301,7 +301,7 @@ class ChannelTest extends TestCase
         $this->assertEmpty($memoized);
     }
 
-    public function channelCanMessageModeratedChannelDataProvider()
+    public static function channelCanMessageModeratedChannelDataProvider()
     {
         return [
             [null, false],
@@ -313,7 +313,7 @@ class ChannelTest extends TestCase
         ];
     }
 
-    public function channelCanMessageWhenBlockedDataProvider()
+    public static function channelCanMessageWhenBlockedDataProvider()
     {
         return [
             [null, false],
@@ -325,7 +325,7 @@ class ChannelTest extends TestCase
         ];
     }
 
-    public function channelWithBlockedUserVisibilityDataProvider()
+    public static function channelWithBlockedUserVisibilityDataProvider()
     {
         return [
             [null, false],
@@ -337,7 +337,7 @@ class ChannelTest extends TestCase
         ];
     }
 
-    public function leaveChannelDataProvider()
+    public static function leaveChannelDataProvider()
     {
         return [
             ['announce', true],

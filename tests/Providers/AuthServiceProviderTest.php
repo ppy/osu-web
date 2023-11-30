@@ -37,7 +37,7 @@ class AuthServiceProviderTest extends TestCase
         }
     }
 
-    public function oauthRoutesRegisteredDataProvider()
+    public static function oauthRoutesRegisteredDataProvider()
     {
         return [
             ['oauth/authorize', 'GET', AuthorizationController::class.'@authorize'],

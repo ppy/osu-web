@@ -41,7 +41,7 @@ class GroupPermissionTest extends TestCase
         $this->assertTrue(auth()->user()->$method());
     }
 
-    public function groupsDataProvider()
+    public static function groupsDataProvider()
     {
         return [
             ['admin', 'isAdmin', false],

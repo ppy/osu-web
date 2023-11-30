@@ -594,7 +594,7 @@ class BeatmapsControllerTest extends TestCase
         $this->assertSame($beatmapsetEventCount, BeatmapsetEvent::count());
     }
 
-    public function dataProviderForTestLookupForApi(): array
+    public static function dataProviderForTestLookupForApi(): array
     {
         return [
             'checksum' => ['checksum', fn (Beatmap $b) => $b->checksum],
@@ -603,7 +603,7 @@ class BeatmapsControllerTest extends TestCase
         ];
     }
 
-    public function dataProviderForTestUpdateOwnerLoved(): array
+    public static function dataProviderForTestUpdateOwnerLoved(): array
     {
         return [
             [Beatmapset::STATES['graveyard'], true],

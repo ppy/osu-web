@@ -49,7 +49,7 @@ class OAuthAuthCodeRequestTest extends TestCase
             ->assertStatus(400);
     }
 
-    public function botClientDataProvider()
+    public static function botClientDataProvider()
     {
         return [
             'cannot request delegation with auth_code' => ['delegate', false],

@@ -145,10 +145,11 @@ class LocaleTest extends TestCase
         $this->assertSame('fr', App::getLocale());
     }
 
-    public function availableLocalesProvider()
+    public static function availableLocalesProvider()
     {
-        return array_map(function ($locale) {
-            return [$locale];
-        }, config('app.available_locales'));
+        return array_map(
+            fn ($locale) => [$locale],
+            (require __DIR__.'/../config/app.php')['available_locales'],
+        );
     }
 }

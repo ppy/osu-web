@@ -129,7 +129,7 @@ class ScoresControllerTest extends TestCase
     {
         parent::tearDown();
 
-        $this->refreshApplication();
+        static::createApp();
         LaravelRedis::del(Score::PROCESSING_QUEUE);
     }
 

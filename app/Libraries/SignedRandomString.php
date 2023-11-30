@@ -14,12 +14,12 @@ class SignedRandomString
         $key = random_bytes($randomSize);
         $hmac = static::hmac($key);
 
-        return base64url_encode($hmac.$key);
+        return Base64Url::encode($hmac.$key);
     }
 
     public static function isValid(string $input): bool
     {
-        $bin = base64url_decode($input);
+        $bin = Base64Url::decode($input);
         if ($bin === null) {
             return false;
         }

@@ -145,7 +145,7 @@ class ScoresControllerTest extends TestCase
         $this->json('PUT', $url, $bodyParams)->assertStatus($status);
     }
 
-    public function dataProviderForTestStore()
+    public static function dataProviderForTestStore()
     {
         return [
             'ok' => [true, true, 200],
@@ -155,7 +155,7 @@ class ScoresControllerTest extends TestCase
         ];
     }
 
-    public function dataProviderForTestUpdate()
+    public static function dataProviderForTestUpdate()
     {
         static $validBodyParams = [
             'accuracy' => 1,

@@ -59,7 +59,7 @@ class BeatmapsetSearchRequestParamsTest extends TestCase
         $this->assertSame($expected, $searchAfter);
     }
 
-    public function cursorsDataProvider()
+    public static function cursorsDataProvider()
     {
         return [
             [null, null, false, null],
@@ -74,7 +74,7 @@ class BeatmapsetSearchRequestParamsTest extends TestCase
         ];
     }
 
-    public function cursorsGuestDataProvider()
+    public static function cursorsGuestDataProvider()
     {
         return [
             [null, null, false, null],

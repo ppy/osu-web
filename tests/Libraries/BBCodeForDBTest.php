@@ -72,9 +72,9 @@ class BBCodeForDBTest extends TestCase
         $this->assertSame($expectedOutput, $output);
     }
 
-    public function examples()
+    public static function examples()
     {
-        return $this->fileList(__DIR__.'/bbcode_examples', '.base.txt');
+        return static::fileList(__DIR__.'/bbcode_examples', '.base.txt');
     }
 
     protected function setUp(): void

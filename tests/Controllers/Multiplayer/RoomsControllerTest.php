@@ -15,6 +15,7 @@ use App\Models\Multiplayer\ScoreLink;
 use App\Models\Multiplayer\UserScoreAggregate;
 use App\Models\OAuth\Token;
 use App\Models\User;
+use Illuminate\Support\Arr;
 use Tests\TestCase;
 
 class RoomsControllerTest extends TestCase
@@ -428,10 +429,10 @@ class RoomsControllerTest extends TestCase
         $this->assertSame($initialUserChannelCount + 1, UserChannel::count());
     }
 
-    public function dataProviderForTestStoreWithInvalidPlayableMods(): array
+    public static function dataProviderForTestStoreWithInvalidPlayableMods(): array
     {
         $ret = [];
-        foreach ([array_rand_val(Room::REALTIME_TYPES), Room::PLAYLIST_TYPE] as $type) {
+        foreach ([Arr::random(Room::REALTIME_TYPES), Room::PLAYLIST_TYPE] as $type) {
             foreach (['allowed', 'required'] as $modType) {
                 $ret[] = [$type, $modType];
             }
@@ -440,18 +441,18 @@ class RoomsControllerTest extends TestCase
         return $ret;
     }
 
-    public function dataProviderForTestStoreWithInvalidRealtimeAllowedMods(): array
+    public static function dataProviderForTestStoreWithInvalidRealtimeAllowedMods(): array
     {
         return [
-            [array_rand_val(Room::REALTIME_TYPES), false],
+            [Arr::random(Room::REALTIME_TYPES), false],
             [Room::PLAYLIST_TYPE, true],
         ];
     }
 
-    public function dataProviderForTestStoreWithInvalidRealtimeMods(): array
+    public static function dataProviderForTestStoreWithInvalidRealtimeMods(): array
     {
         return [
-            [array_rand_val(Room::REALTIME_TYPES), false],
+            [Arr::random(Room::REALTIME_TYPES), false],
             [Room::PLAYLIST_TYPE, true],
         ];
     }
