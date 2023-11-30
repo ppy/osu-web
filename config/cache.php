@@ -77,6 +77,6 @@ return [
     |
     */
 
-    'prefix' => 'osu-next',
+    'prefix' => null,
 
 ];

@@ -235,6 +235,17 @@ class TestCase extends BaseTestCase
         return $data;
     }
 
+    protected function createVerifiedSession($user): SessionStore
+    {
+        $ret = SessionStore::findOrCreate();
+        $ret->put(\Auth::getName(), $user->getKey());
+        $ret->put('verified', true);
+        $ret->migrate(false);
+        $ret->save();
+
+        return $ret;
+    }
+
     protected function clearMailFake()
     {
         $mailer = app('mailer');

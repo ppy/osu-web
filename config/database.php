@@ -134,6 +134,7 @@ return [
             'database' => get_int(env('CACHE_REDIS_DB')) ?? 0,
             'password' => presence(env('CACHE_REDIS_PASSWORD')) ?? presence(env('REDIS_PASSWORD')),
             'persistent' => true,
+            'prefix' => 'osu-next:',
         ],
 
         'default' => [
@@ -151,7 +152,6 @@ return [
             'password' => presence(env('NOTIFICATION_REDIS_PASSWORD')),
             'persistent' => true,
         ],
-
     ],
 
 ];

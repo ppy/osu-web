@@ -7,18 +7,18 @@ namespace App\Libraries;
 
 use App\Events\UserSessionEvent;
 use App\Exceptions\UserVerificationException;
-use App\Libraries\Session\SessionManager;
+use App\Libraries\Session\Store as SessionStore;
 use App\Models\User;
 
 class UserVerificationState
 {
-    protected $user;
-
-    private $session;
+    private function __construct(private User $user, private SessionStore $session)
+    {
+    }
 
     public static function fromCurrentRequest()
     {
-        return new static(auth()->user(), session());
+        return new static(\Auth::user(), \Session::instance());
     }
 
     public static function fromVerifyLink($linkKey)
@@ -41,21 +41,10 @@ class UserVerificationState
 
     public static function load($params)
     {
-        return new static(User::find($params['userId']), SessionManager::create($params['sessionId']));
-    }
-
-    private function __construct($user, $session)
-    {
-        $this->session = $session;
-        $this->user = $user;
-
-        $currentSession = session();
-        if ($this->session->getId() === $currentSession->getId()) {
-            // Override passed session if it's the same as current session
-            // otherwise the changes here will be overriden when current
-            // session is saved.
-            $this->session = $currentSession;
-        }
+        return new static(
+            User::find($params['userId']),
+            SessionStore::findOrCreate($params['sessionId']),
+        );
     }
 
     public function dump()
@@ -119,7 +108,7 @@ class UserVerificationState
         $this->session->put('verified', true);
         $this->session->save();
 
-        UserSessionEvent::newVerified($this->user->getKey(), $this->session->getKey())->broadcast();
+        UserSessionEvent::newVerified($this->user->getKey(), $this->session->getId())->broadcast();
     }
 
     public function verify($inputKey)

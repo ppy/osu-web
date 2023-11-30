@@ -67,16 +67,12 @@ class UserTest extends TestCase
 
     public function testResetSessions(): void
     {
-        if (!Store::isUsingRedis()) {
-            $this->markTestSkipped('reset sessions test requires redis based session');
-        }
-
         $user = User::factory()->create();
 
         // create session
         $this->post(route('login'), ['username' => $user->username, 'password' => User::factory()::DEFAULT_PASSWORD]);
         // sanity check
-        $this->assertNotEmpty(Store::keys($user->getKey()));
+        $this->assertNotEmpty(Store::ids($user->getKey()));
 
         // create token
         $token = Token::factory()->create(['user_id' => $user, 'revoked' => false]);
@@ -84,7 +80,7 @@ class UserTest extends TestCase
 
         $user->resetSessions();
 
-        $this->assertEmpty(Store::keys($user->getKey()));
+        $this->assertEmpty(Store::ids($user->getKey()));
         $this->assertTrue($token->fresh()->revoked);
         $this->assertTrue($refreshToken->fresh()->revoked);
     }

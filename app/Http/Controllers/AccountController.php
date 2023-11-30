@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\ImageProcessorException;
 use App\Exceptions\ModelNotSavedException;
+use App\Libraries\Session\Store as SessionStore;
 use App\Libraries\User\AvatarHelper;
 use App\Libraries\User\CountryChange;
 use App\Libraries\User\CountryChangeTarget;
@@ -109,11 +110,8 @@ class AccountController extends Controller
             ->orderBy('username')
             ->get();
 
-        $sessions = Request::session()
-            ->currentUserSessions();
-
-        $currentSessionId = Request::session()
-            ->getIdWithoutKeyPrefix();
+        $sessions = SessionStore::sessions($user->getKey());
+        $currentSessionId = \Session::getId();
 
         $authorizedClients = json_collection(Client::forUser($user), 'OAuth\Client', 'user');
         $ownClients = json_collection($user->oauthClients()->where('revoked', false)->get(), 'OAuth\Client', ['redirect', 'secret']);
@@ -294,7 +292,7 @@ class AccountController extends Controller
                 Mail::to($user)->send(new UserPasswordUpdated($user));
             }
 
-            $user->resetSessions(session()->getKey());
+            $user->resetSessions(\Session::getId());
 
             return response([], 204);
         } else {

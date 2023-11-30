@@ -1798,7 +1798,16 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function resetSessions(?string $excludedSessionId = null): void
     {
-        SessionStore::destroy($this->getKey(), $excludedSessionId);
+        $userId = $this->getKey();
+        $sessionIds = SessionStore::ids($userId);
+        if ($excludedSessionId !== null) {
+            $sessionIds = array_filter(
+                $sessionIds,
+                fn ($sessionId) => $sessionId !== $excludedSessionId,
+            );
+        }
+        SessionStore::batchDelete($userId, $sessionIds);
+
         $this
             ->tokens()
             ->with('refreshToken')
