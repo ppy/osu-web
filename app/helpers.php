@@ -60,6 +60,18 @@ function background_image($url, $proxy = true)
     return sprintf(' style="background-image:url(\'%s\');" ', e($url));
 }
 
+function base64url_decode(string $value): ?string
+{
+    return null_if_false(base64_decode(strtr($value, '-_', '+/'), true));
+}
+
+function base64url_encode(string $value): string
+{
+    // url safe base64
+    // reference: https://datatracker.ietf.org/doc/html/rfc4648#section-5
+    return rtrim(strtr(base64_encode($value), '+/', '-_'), '=');
+}
+
 function beatmap_timestamp_format($ms)
 {
     $s = $ms / 1000;
@@ -310,13 +322,9 @@ function cursor_decode($cursorString): ?array
 
 function cursor_encode(?array $cursor): ?string
 {
-    if ($cursor === null) {
-        return null;
-    }
-
-    // url safe base64
-    // reference: https://datatracker.ietf.org/doc/html/rfc4648#section-5
-    return rtrim(strtr(base64_encode(json_encode($cursor)), '+/', '-_'), '=');
+    return $cursor === null
+        ? null
+        : base64url_encode(json_encode($cursor));
 }
 
 function cursor_for_response(?array $cursor): array
@@ -791,14 +799,14 @@ function forum_user_link(int $id, string $username, string|null $colour, int|nul
     return "{$icon} {$link}";
 }
 
-function is_api_request()
+function is_api_request(): bool
 {
-    return request()->is('api/*');
+    return str_starts_with(rawurldecode(Request::getPathInfo()), '/api/');
 }
 
-function is_json_request()
+function is_json_request(): bool
 {
-    return is_api_request() || request()->expectsJson();
+    return is_api_request() || Request::expectsJson();
 }
 
 function is_valid_email_format(?string $email): bool

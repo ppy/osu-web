@@ -5,7 +5,6 @@
 
 namespace App\Libraries;
 
-use App\Models\Smiley;
 use App\Models\User;
 
 class BBCodeForDB
@@ -329,7 +328,7 @@ class BBCodeForDB
 
     public function parseSmiley($text)
     {
-        $smilies = Smiley::getAll();
+        $smilies = app('smilies')->all();
 
         $match = [];
         $replace = [];

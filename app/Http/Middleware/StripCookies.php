@@ -15,13 +15,7 @@ class StripCookies
 
         if ($request->attributes->get('strip_cookies')) {
             // strip all cookies from response
-            foreach ($result->headers->getCookies() as $cookie) {
-                $result->headers->removeCookie(
-                    $cookie->getName(),
-                    $cookie->getPath(),
-                    $cookie->getDomain()
-                );
-            }
+            $result->headers->remove('set-cookie');
         }
 
         return $result;
