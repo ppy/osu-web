@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\ImageProcessorException;
 use App\Exceptions\ModelNotSavedException;
+use App\Libraries\User\AvatarHelper;
 use App\Libraries\User\CountryChange;
 use App\Libraries\User\CountryChangeTarget;
 use App\Libraries\UserVerification;
@@ -73,7 +74,7 @@ class AccountController extends Controller
         $user = auth()->user();
 
         try {
-            $user->setAvatar(Request::file('avatar_file'));
+            AvatarHelper::set($user, Request::file('avatar_file'));
         } catch (ImageProcessorException $e) {
             return error_popup($e->getMessage());
         }
@@ -308,7 +309,7 @@ class AccountController extends Controller
 
     public function verifyLink()
     {
-        $state = UserVerificationState::fromVerifyLink(request('key'));
+        $state = UserVerificationState::fromVerifyLink(get_string(request('key')) ?? '');
 
         if ($state === null) {
             UserVerification::logAttempt('link', 'fail', 'incorrect_key');

@@ -5,9 +5,6 @@
 
 namespace App\Models;
 
-use Cache;
-use DB;
-
 /**
  * @property string $code
  * @property int $display_on_posting
@@ -21,11 +18,4 @@ use DB;
 class Smiley extends Model
 {
     protected $table = 'phpbb_smilies';
-
-    public static function getAll()
-    {
-        return Cache::rememberForever('smilies', function () {
-            return self::orderBy(DB::raw('LENGTH(code)'), 'desc')->get()->toArray();
-        });
-    }
 }

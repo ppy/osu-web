@@ -3,6 +3,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+use App\Libraries\Base64Url;
 use App\Libraries\LocaleMeta;
 use App\Models\LoginAttempt;
 use Egulias\EmailValidator\EmailValidator;
@@ -298,7 +299,7 @@ function current_locale_meta(): LocaleMeta
 function cursor_decode($cursorString): ?array
 {
     if (is_string($cursorString) && present($cursorString)) {
-        $cursor = json_decode(base64_decode(strtr($cursorString, '-_', '+/'), true), true);
+        $cursor = json_decode(Base64Url::decode($cursorString) ?? '', true);
 
         if (is_array($cursor)) {
             return $cursor;
@@ -310,13 +311,9 @@ function cursor_decode($cursorString): ?array
 
 function cursor_encode(?array $cursor): ?string
 {
-    if ($cursor === null) {
-        return null;
-    }
-
-    // url safe base64
-    // reference: https://datatracker.ietf.org/doc/html/rfc4648#section-5
-    return rtrim(strtr(base64_encode(json_encode($cursor)), '+/', '-_'), '=');
+    return $cursor === null
+        ? null
+        : Base64Url::encode(json_encode($cursor));
 }
 
 function cursor_for_response(?array $cursor): array
@@ -791,14 +788,14 @@ function forum_user_link(int $id, string $username, string|null $colour, int|nul
     return "{$icon} {$link}";
 }
 
-function is_api_request()
+function is_api_request(): bool
 {
-    return request()->is('api/*');
+    return str_starts_with(rawurldecode(Request::getPathInfo()), '/api/');
 }
 
-function is_json_request()
+function is_json_request(): bool
 {
-    return is_api_request() || request()->expectsJson();
+    return is_api_request() || Request::expectsJson();
 }
 
 function is_valid_email_format(?string $email): bool

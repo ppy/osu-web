@@ -79,6 +79,7 @@ class AuthApi
             throw new AuthenticationException('invalid token');
         }
 
+        $token->setRelation('client', $client);
         $token->validate();
 
         $user = $token->getResourceOwner();

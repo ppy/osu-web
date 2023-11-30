@@ -50,7 +50,7 @@ class ZalgoTest extends TestCase
         ];
     }
 
-    public function zalgoExamples()
+    public static function zalgoExamples()
     {
         return [
             ['testing', 0],

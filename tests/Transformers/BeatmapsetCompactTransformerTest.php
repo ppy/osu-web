@@ -64,7 +64,7 @@ class BeatmapsetCompactTransformerTest extends TestCase
         $this->assertArrayHasKey($property, $json);
     }
 
-    public function propertyPermissionsDataProvider()
+    public static function propertyPermissionsDataProvider()
     {
         $data = [];
         $transformer = new BeatmapsetCompactTransformer();

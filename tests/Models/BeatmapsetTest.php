@@ -507,7 +507,7 @@ class BeatmapsetTest extends TestCase
 
     //end region
 
-    public function disqualifyOrResetNominationsDataProvider()
+    public static function disqualifyOrResetNominationsDataProvider()
     {
         return [
             ['pending', BeatmapsetResetNominations::class],
@@ -515,7 +515,7 @@ class BeatmapsetTest extends TestCase
         ];
     }
 
-    public function dataProviderForTestRank(): array
+    public static function dataProviderForTestRank(): array
     {
         return [
             ['pending', false],
@@ -523,7 +523,7 @@ class BeatmapsetTest extends TestCase
         ];
     }
 
-    public function rankWithOpenIssueDataProvider()
+    public static function rankWithOpenIssueDataProvider()
     {
         return [
             ['problem'],

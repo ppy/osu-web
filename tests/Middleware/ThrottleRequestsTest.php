@@ -45,7 +45,7 @@ class ThrottleRequestsTest extends TestCase
             ->assertHeader('X-Ratelimit-Remaining', 58);
     }
 
-    public function throttleDataProvider()
+    public static function throttleDataProvider()
     {
         return [
             'throttle' => [['throttle:60,10'], 59],

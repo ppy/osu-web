@@ -288,7 +288,7 @@ class ChatControllerTest extends TestCase
 
     //endregion
 
-    public function createPmWithAuthorizedGrantDataProvider()
+    public static function createPmWithAuthorizedGrantDataProvider()
     {
         return [
             [['*'], 200],
@@ -297,7 +297,7 @@ class ChatControllerTest extends TestCase
         ];
     }
 
-    public function createPmWithClientCredentialsDataProvider()
+    public static function createPmWithClientCredentialsDataProvider()
     {
         return [
             // TODO: need to add test that validates auth guard calls Token::validate
@@ -305,7 +305,7 @@ class ChatControllerTest extends TestCase
         ];
     }
 
-    public function createPmWithClientCredentialsBotGroupDataProvider()
+    public static function createPmWithClientCredentialsBotGroupDataProvider()
     {
         return [
             [['chat.write', 'delegate'], 200],
