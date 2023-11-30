@@ -72,7 +72,7 @@ class BeatmapsetDescriptionTransformerTest extends TestCase
         $this->assertArrayNotHasKey('bbcode', $json);
     }
 
-    public function groupsDataProvider()
+    public static function groupsDataProvider()
     {
         return [
             ['admin', true],

@@ -3,9 +3,9 @@
 
 import autosize from 'autosize';
 import React from 'react';
+import { present } from 'utils/string';
 
 interface Props extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
-  async: boolean;
   innerRef?: React.RefObject<HTMLTextAreaElement>;
   maxRows?: number;
 }
@@ -14,13 +14,14 @@ interface State {
   lineHeight?: number;
 }
 
-export default class TextareaAutosize extends React.Component<Props, State> {
+export default class TextareaAutosize extends React.PureComponent<Props, State> {
   static readonly defaultProps = {
     async: false,
     rows: 1,
   };
 
   private readonly ref = this.props.innerRef ?? React.createRef<HTMLTextAreaElement>();
+  private shouldUpdate = true;
 
   private get maxHeight() {
     return this.props.maxRows != null && this.state.lineHeight != null
@@ -36,7 +37,7 @@ export default class TextareaAutosize extends React.Component<Props, State> {
   componentDidMount() {
     if (this.ref.current == null) return;
 
-    if (this.props.maxRows != null || this.props.async) {
+    if (this.props.maxRows != null || present(this.props.value?.toString())) {
       window.setTimeout(() => {
         if (this.ref.current != null) {
           if (this.props.maxRows != null) {
@@ -62,7 +63,12 @@ export default class TextareaAutosize extends React.Component<Props, State> {
       this.ref.current.style.overflowX = 'hidden';
     }
 
-    autosize.update(this.ref.current);
+    // Avoid double updating since autosize automatically triggers update on input.
+    if (this.shouldUpdate) {
+      autosize.update(this.ref.current);
+    } else {
+      this.shouldUpdate = true;
+    }
   }
 
   componentWillUnmount() {
@@ -71,16 +77,22 @@ export default class TextareaAutosize extends React.Component<Props, State> {
   }
 
   render() {
-    const { async, innerRef, maxRows, style, ...otherProps } = this.props;
+    const { innerRef, onInput, maxRows, style, ...otherProps } = this.props;
 
     const maxHeight = this.maxHeight;
 
     return (
       <textarea
         ref={this.ref}
+        onInput={this.handleInput}
         style={maxHeight != null ? { ...style, maxHeight } : style}
         {...otherProps}
       />
     );
   }
+
+  private readonly handleInput = (event: React.SyntheticEvent<HTMLTextAreaElement>) => {
+    this.shouldUpdate = false;
+    this.props.onInput?.(event);
+  };
 }

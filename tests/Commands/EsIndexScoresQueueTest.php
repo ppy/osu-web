@@ -63,7 +63,7 @@ class EsIndexScoresQueueTest extends TestCase
         );
     }
 
-    public function dataProviderForTestParameterValidity(): array
+    public static function dataProviderForTestParameterValidity(): array
     {
         return [
             [[], false],
@@ -83,7 +83,7 @@ class EsIndexScoresQueueTest extends TestCase
         ];
     }
 
-    public function dataProviderForTestQueueScores(): array
+    public static function dataProviderForTestQueueScores(): array
     {
         $userId = 0;
         $setUp = function () use ($userId) {

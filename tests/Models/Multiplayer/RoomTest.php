@@ -186,9 +186,10 @@ class RoomTest extends TestCase
         (new Room())->startGame($user, $params);
     }
 
-    public function startGameDurationDataProvider()
+    public static function startGameDurationDataProvider()
     {
         static $dayMinutes = 1440;
+        static::createApp();
 
         $maxDuration = config('osu.user.max_multiplayer_duration');
         $maxDurationSupporter = config('osu.user.max_multiplayer_duration_supporter');

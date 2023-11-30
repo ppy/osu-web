@@ -18,7 +18,7 @@ class Ip2AsnTest extends TestCase
         $this->assertSame((new Ip2Asn())->lookup($ip), $asn);
     }
 
-    public function dataProviderForLookup(): array
+    public static function dataProviderForLookup(): array
     {
         return [
             'cloudflare 1' => ['2606:4700::6810:85e5', '13335'],
