@@ -23,7 +23,7 @@ interface Props {
 
 @observer
 export default class Entry extends React.Component<Props> {
-  @observable private categoryVotes: ContestJudgeCategoryVoteJson[];
+  @observable private readonly categoryVotes: ContestJudgeCategoryVoteJson[];
   @observable private comment: string;
   @observable private posting = false;
   @observable private xhr?: JQuery.jqXHR;
