@@ -14,7 +14,7 @@ interface State {
   lineHeight?: number;
 }
 
-export default class TextareaAutosize extends React.Component<Props, State> {
+export default class TextareaAutosize extends React.PureComponent<Props, State> {
   static readonly defaultProps = {
     async: false,
     rows: 1,
