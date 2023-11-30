@@ -250,7 +250,7 @@ class CommentsControllerTest extends TestCase
             ->assertUnauthorized();
     }
 
-    public function apiRequiresAuthenticationDataProvider()
+    public static function apiRequiresAuthenticationDataProvider()
     {
         return [
             ['DELETE', 'comments.vote'],
@@ -270,7 +270,7 @@ class CommentsControllerTest extends TestCase
      * - Whether the commentable already has a pinned comment
      * - Whether pinning should be allowed
      */
-    public function pinPermissionsDataProvider(): array
+    public static function pinPermissionsDataProvider(): array
     {
         return [
             ['admin', true,  true,  true,  true,  true],

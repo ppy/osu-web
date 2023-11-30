@@ -124,7 +124,7 @@ class ContestTest extends TestCase
         $this->assertSame($result, $contest->showEntryUser());
     }
 
-    public function dataProviderForTestAssertVoteRequirementPlaylistBeatmapsets(): array
+    public static function dataProviderForTestAssertVoteRequirementPlaylistBeatmapsets(): array
     {
         return [
             // when passing is required
@@ -145,7 +145,7 @@ class ContestTest extends TestCase
         ];
     }
 
-    public function dataProviderForTestShowEntryUser(): array
+    public static function dataProviderForTestShowEntryUser(): array
     {
         return [
             [false, null, false],

@@ -265,7 +265,7 @@ class ChatTest extends TestCase
         Chat::sendPrivateMessage($sender, $target, 'test message again', false);
     }
 
-    public function createAnnouncementApiDataProvider()
+    public static function createAnnouncementApiDataProvider()
     {
         return [
             [null, false, false],
@@ -285,7 +285,7 @@ class ChatTest extends TestCase
         ];
     }
 
-    public function minPlaysDataProvider()
+    public static function minPlaysDataProvider()
     {
         return [
             'bot group with minplays' => ['bot', true, true],
@@ -295,7 +295,7 @@ class ChatTest extends TestCase
         ];
     }
 
-    public function sendPmFriendsOnlyGroupsDataProvider()
+    public static function sendPmFriendsOnlyGroupsDataProvider()
     {
         return [
             ['admin', true],
@@ -307,7 +307,7 @@ class ChatTest extends TestCase
         ];
     }
 
-    public function sendPmSenderFriendsOnlyGroupsDataProvider()
+    public static function sendPmSenderFriendsOnlyGroupsDataProvider()
     {
         return [
             // admin skip because OsuAuthorize skips the check when admin.
@@ -319,7 +319,7 @@ class ChatTest extends TestCase
         ];
     }
 
-    public function verifiedDataProvider()
+    public static function verifiedDataProvider()
     {
         return [
             [false, VerificationRequiredException::class],

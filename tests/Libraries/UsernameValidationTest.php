@@ -179,7 +179,7 @@ class UsernameValidationTest extends TestCase
      * - Beatmap or beatmapset state
      * - Whether the username should be available
      */
-    public function usernameAvailabilityWithBeatmapStateDataProvider(): array
+    public static function usernameAvailabilityWithBeatmapStateDataProvider(): array
     {
         return [
             ['graveyard', true],
@@ -197,7 +197,7 @@ class UsernameValidationTest extends TestCase
      * - Username
      * - Whether the username should be valid
      */
-    public function usernameValidationDataProvider(): array
+    public static function usernameValidationDataProvider(): array
     {
         return [
             'alphabetic'                   => ['Username',         true],
@@ -223,7 +223,7 @@ class UsernameValidationTest extends TestCase
      * - Whether the user lookup should have its underscores replaced with spaces
      * - Whether the user lookup should return the user
      */
-    public function usersOfUsernameLookupDataProvider(): array
+    public static function usersOfUsernameLookupDataProvider(): array
     {
         return [
             [true,  true,  false],

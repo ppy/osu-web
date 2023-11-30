@@ -72,10 +72,9 @@ class RouteScopesTest extends TestCase
         }
     }
 
-    public function routesDataProvider()
+    public static function routesDataProvider()
     {
-        // note that $this->app does not carry over to the tests.
-        $this->refreshApplication();
+        static::createApp();
 
         $data = [];
 
@@ -103,14 +102,14 @@ class RouteScopesTest extends TestCase
         return $data;
     }
 
-    public function routeScopesDataProvider()
+    public static function routeScopesDataProvider()
     {
-        // note that $this->app does not carry over to the tests.
-        $this->refreshApplication();
+        static::createApp();
 
-        return array_map(function ($route) {
-            return [$route];
-        }, (new RouteScopesHelper())->toArray());
+        return array_map(
+            fn ($route) => [$route],
+            (new RouteScopesHelper())->toArray(),
+        );
     }
 
     private function importExpectations()

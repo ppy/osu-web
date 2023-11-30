@@ -128,7 +128,7 @@ class BeatmapsetDisqualifyNotificationsTest extends TestCase
     }
     #endregion
 
-    public function booleanDataProvider()
+    public static function booleanDataProvider()
     {
         return [
             [true],
