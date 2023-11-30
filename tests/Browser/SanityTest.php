@@ -75,7 +75,7 @@ class SanityTest extends DuskTestCase
             return;
         }
 
-        (new static())->createApplication();
+        static::createApp();
 
         // Tear down in reverse-order so that dependants get destroyed before their dependencies.
         $nukingOrder = array_reverse(self::$scaffolding);
@@ -118,7 +118,7 @@ class SanityTest extends DuskTestCase
             return;
         }
 
-        (new static())->createApplication();
+        static::createApp();
         self::$scaffolding['country'] = Country::first() ?? Country::factory()->create();
         // user to login as and to use for requests
         self::$scaffolding['user'] = User::factory()->create([
