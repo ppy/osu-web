@@ -378,7 +378,7 @@ class ChannelsControllerTest extends TestCase
 
     //endregion
 
-    public function dataProvider()
+    public static function dataProvider()
     {
         return [
             ['private', false],

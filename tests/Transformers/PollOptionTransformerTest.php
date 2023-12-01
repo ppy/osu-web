@@ -64,7 +64,7 @@ class PollOptionTransformerTest extends TestCase
      * - Authenticated user's group identifier
      * - Whether vote count should be visible
      */
-    public function voteCountPermissionsDataProvider(): array
+    public static function voteCountPermissionsDataProvider(): array
     {
         return [
             [true,  true,  true,  'admin', true],

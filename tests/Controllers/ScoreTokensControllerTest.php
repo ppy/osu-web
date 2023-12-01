@@ -90,7 +90,7 @@ class ScoreTokensControllerTest extends TestCase
         ]);
     }
 
-    public function dataProviderForTestStore(): array
+    public static function dataProviderForTestStore(): array
     {
         return [
             ['deleted', 404],
@@ -101,7 +101,7 @@ class ScoreTokensControllerTest extends TestCase
         ];
     }
 
-    public function dataProviderForTestStoreInvalidParameter(): array
+    public static function dataProviderForTestStoreInvalidParameter(): array
     {
         return [
             'invalid build hash' => ['version_hash', md5('invalid_'), 422],

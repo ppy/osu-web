@@ -112,7 +112,7 @@ class RequireScopesTest extends TestCase
         $this->assertTrue(!oauth_token()->isClientCredentials());
     }
 
-    public function clientCredentialsTestDataProvider()
+    public static function clientCredentialsTestDataProvider()
     {
         return [
             'null is not a valid scope' => [null, MissingScopeException::class],
@@ -132,7 +132,7 @@ class RequireScopesTest extends TestCase
         ];
     }
 
-    public function userScopesTestDataProvider()
+    public static function userScopesTestDataProvider()
     {
         return [
             'All scopes' => [null, ['*'], null],
@@ -154,7 +154,7 @@ class RequireScopesTest extends TestCase
         };
 
         // so request() works
-        $this->app->instance('request', $this->request);
+        \Request::swap($this->request);
 
         // set a fake route resolver
         $this->request->setRouteResolver(function () use ($scopes) {

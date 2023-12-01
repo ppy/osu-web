@@ -100,7 +100,7 @@ class ModsTest extends TestCase
         }
     }
 
-    public function modCombos()
+    public static function modCombos()
     {
         return [
             // valid
@@ -140,7 +140,7 @@ class ModsTest extends TestCase
         ];
     }
 
-    public function modComboExclusives()
+    public static function modComboExclusives()
     {
         return [
             // non-exclusive required mods and no allowed mods

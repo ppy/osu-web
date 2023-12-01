@@ -717,7 +717,7 @@ class ReviewTest extends TestCase
 
     //endregion
 
-    public function dataProviderForQualifiedProblem()
+    public static function dataProviderForQualifiedProblem()
     {
         return [
             ['qualified', true],

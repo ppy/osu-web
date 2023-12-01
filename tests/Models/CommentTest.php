@@ -88,7 +88,7 @@ class CommentTest extends TestCase
         $this->assertFalse($comment->fresh()->pinned);
     }
 
-    public function commentReplyOptionDataProvider()
+    public static function commentReplyOptionDataProvider()
     {
         return [
             [null, true],
@@ -97,7 +97,7 @@ class CommentTest extends TestCase
         ];
     }
 
-    public function dataProviderForSetCommentableInvalid()
+    public static function dataProviderForSetCommentableInvalid()
     {
         return [
             [null, null],

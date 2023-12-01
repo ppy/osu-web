@@ -198,7 +198,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
         $this->assertSame($discussionPostCount + 3, BeatmapDiscussionPost::count());
     }
 
-    public function putVoteDataProvider()
+    public static function putVoteDataProvider()
     {
         return [
             ['graveyard', 403, 0],
@@ -211,7 +211,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
         ];
     }
 
-    public function putVoteAgainDataProvider()
+    public static function putVoteAgainDataProvider()
     {
         return [
             'voting again has no effect' => ['1', 0],
@@ -219,7 +219,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
         ];
     }
 
-    public function putVoteChangeToDownDataProvider()
+    public static function putVoteChangeToDownDataProvider()
     {
         return [
             'bng can change to down vote' => ['bng', 200, -2],
@@ -227,7 +227,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
         ];
     }
 
-    public function putVoteDownDataProvider()
+    public static function putVoteDownDataProvider()
     {
         return [
             'bng can down vote' => ['bng', 200, 1, -1],
