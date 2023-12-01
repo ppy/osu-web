@@ -192,7 +192,7 @@ class TokenTest extends TestCase
         Event::assertDispatched(UserSessionEvent::class, fn (UserSessionEvent $event) => $event->action === 'logout');
     }
 
-    public function authCodeChatWriteRequiresBotGroupDataProvider()
+    public static function authCodeChatWriteRequiresBotGroupDataProvider()
     {
         return [
             [null, InvalidScopeException::class],
@@ -204,7 +204,7 @@ class TokenTest extends TestCase
         ];
     }
 
-    public function delegationNotAllowedScopesDataProvider()
+    public static function delegationNotAllowedScopesDataProvider()
     {
         return Passport::scopes()
             ->pluck('id')
@@ -213,7 +213,7 @@ class TokenTest extends TestCase
             ->values();
     }
 
-    public function delegationRequiredScopesDataProvider()
+    public static function delegationRequiredScopesDataProvider()
     {
         return [
             'chat.write requires delegation' => [['chat.write'], InvalidScopeException::class],
@@ -221,7 +221,7 @@ class TokenTest extends TestCase
         ];
     }
 
-    public function delegationRequiresChatBotDataProvider()
+    public static function delegationRequiresChatBotDataProvider()
     {
         return [
             [null, InvalidScopeException::class],
@@ -233,7 +233,7 @@ class TokenTest extends TestCase
         ];
     }
 
-    public function scopesDataProvider()
+    public static function scopesDataProvider()
     {
         return [
             'null is not a valid scope' => [null, InvalidScopeException::class],
@@ -242,7 +242,7 @@ class TokenTest extends TestCase
         ];
     }
 
-    public function scopesClientCredentialsDataProvider()
+    public static function scopesClientCredentialsDataProvider()
     {
         return [
             'null is not a valid scope' => [null, InvalidScopeException::class],

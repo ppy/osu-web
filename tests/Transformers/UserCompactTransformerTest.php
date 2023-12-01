@@ -109,7 +109,7 @@ class UserCompactTransformerTest extends TestCase
         $this->assertArrayHasKey($property, $json);
     }
 
-    public function groupsDataProvider()
+    public static function groupsDataProvider()
     {
         return [
             ['admin', true],
@@ -120,7 +120,7 @@ class UserCompactTransformerTest extends TestCase
         ];
     }
 
-    public function propertyPermissionsDataProvider()
+    public static function propertyPermissionsDataProvider()
     {
         $data = [];
         $transformer = new UserTransformer();

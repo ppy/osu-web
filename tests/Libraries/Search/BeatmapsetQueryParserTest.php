@@ -19,7 +19,7 @@ class BeatmapsetQueryParserTest extends TestCase
         $this->assertSame(json_encode($expected), json_encode(BeatmapsetQueryParser::parse($query)));
     }
 
-    public function queryDataProvider()
+    public static function queryDataProvider()
     {
         return [
             // basic options

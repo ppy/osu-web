@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace Tests\Libraries;
 
+use App\Libraries\Base64Url;
 use App\Libraries\SignedRandomString;
 use Tests\TestCase;
 
@@ -25,12 +26,12 @@ class SignedRandomStringTest extends TestCase
         $this->assertFalse(SignedRandomString::isValid($value));
     }
 
-    public function dataProviderForTestIsValidInvalid(): array
+    public static function dataProviderForTestIsValidInvalid(): array
     {
         return [
             ['invalid'],
             [''],
-            [base64url_encode('test')],
+            [Base64Url::encode('test')],
         ];
     }
 }

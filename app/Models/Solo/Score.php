@@ -215,7 +215,7 @@ class Score extends Model implements Traits\ReportableInterface
             'enabled_mods' => app('mods')->idsToBitset(array_column($data->mods, 'acronym')),
             'maxcombo' => $data->maxCombo,
             'pass' => $data->passed,
-            'perfect' => $data->passed && $statistics->miss + $statistics->largeTickMiss === 0,
+            'perfect' => $data->passed && $statistics->miss + $statistics->large_tick_miss === 0,
             'rank' => $data->rank,
             'score' => $data->totalScore,
             'scorechecksum' => "\0",
@@ -234,9 +234,9 @@ class Score extends Model implements Traits\ReportableInterface
                 break;
             case 'fruits':
                 $score->count300 = $statistics->great;
-                $score->count100 = $statistics->largeTickHit;
-                $score->countkatu = $statistics->smallTickMiss;
-                $score->count50 = $statistics->smallTickHit;
+                $score->count100 = $statistics->large_tick_hit;
+                $score->countkatu = $statistics->small_tick_miss;
+                $score->count50 = $statistics->small_tick_hit;
                 break;
             case 'mania':
                 $score->countgeki = $statistics->perfect;

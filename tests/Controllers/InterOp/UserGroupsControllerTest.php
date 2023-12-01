@@ -370,7 +370,7 @@ class UserGroupsControllerTest extends TestCase
             ->assertStatus(404);
     }
 
-    public function userGroupRoutesDataProvider(): array
+    public static function userGroupRoutesDataProvider(): array
     {
         return [
             'add' =>

@@ -324,22 +324,13 @@ class BBCodeForDB
         );
     }
 
-    // copied from www/forum/includes/message_parser.php#L1196
-
     public function parseSmiley($text)
     {
-        $smilies = app('smilies')->all();
+        $replacer = app('smilies')->replacer();
 
-        $match = [];
-        $replace = [];
-
-        foreach ($smilies as $smiley) {
-            $match[] = '(?<=^|[\n .])'.preg_quote($smiley['code'], '#').'(?![^<>]*>)';
-            $replace[] = '<!-- s'.$smiley['code'].' --><img src="{SMILIES_PATH}/'.$smiley['smiley_url'].'" alt="'.$smiley['code'].'" title="'.$smiley['emotion'].'" /><!-- s'.$smiley['code'].' -->';
-        }
-        if (count($match)) {
+        if (count($replacer['patterns']) > 0) {
             // Make sure the delimiter # is added in front and at the end of every element within $match
-            $text = trim(preg_replace(explode(chr(0), '#'.implode('#'.chr(0).'#', $match).'#'), $replace, $text));
+            $text = trim(preg_replace($replacer['patterns'], $replacer['replacements'], $text));
         }
 
         return $text;

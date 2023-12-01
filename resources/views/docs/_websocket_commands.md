@@ -27,5 +27,5 @@ webSocket.send(JSON.stringify({ event: 'chat.start' }));
 Send to the websocket to stop receiving chat messages.
 
 ```javascript
-webSocket.send(JSON.stringify({ event: 'chat.start' }));
+webSocket.send(JSON.stringify({ event: 'chat.end' }));
 ```

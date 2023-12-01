@@ -35,11 +35,19 @@ class TestCase extends BaseTestCase
 
     public static function withDbAccess(callable $callback): void
     {
-        $db = (new static())->createApplication()->make('db');
+        $db = static::createApp()->make('db');
 
         $callback();
 
         static::resetAppDb($db);
+    }
+
+    protected static function fileList($path, $suffix)
+    {
+        return array_map(
+            fn ($file) => [basename($file, $suffix), $path],
+            glob("{$path}/*{$suffix}"),
+        );
     }
 
     protected static function reindexScores()
@@ -74,7 +82,7 @@ class TestCase extends BaseTestCase
 
     protected array $expectedCountsCallbacks = [];
 
-    public function regularOAuthScopesDataProvider()
+    public static function regularOAuthScopesDataProvider()
     {
         $data = [];
 
@@ -266,13 +274,6 @@ class TestCase extends BaseTestCase
             'expected' => $callback() + $change,
             'message' => $message,
         ];
-    }
-
-    protected function fileList($path, $suffix)
-    {
-        return array_map(function ($file) use ($path, $suffix) {
-            return [basename($file, $suffix), $path];
-        }, glob("{$path}/*{$suffix}"));
     }
 
     protected function inReceivers(Model $model, NewPrivateNotificationEvent|BroadcastNotificationBase $obj): bool

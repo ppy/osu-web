@@ -202,7 +202,7 @@ class BeatmapsControllerSoloScoresTest extends TestCase
         }
     }
 
-    public function dataProviderForTestQuery(): array
+    public static function dataProviderForTestQuery(): array
     {
         return [
             'no parameters' => [[
