@@ -1,5 +1,41 @@
 [
     {
+        "uri": "api/v2/verify-session",
+        "methods": [
+            "POST"
+        ],
+        "controller": "App\\Http\\Controllers\\AccountController@verify",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "App\\Http\\Middleware\\RequireScopes:identify",
+            "Illuminate\\Auth\\Middleware\\Authenticate",
+            "App\\Http\\Middleware\\VerifyUser",
+            "App\\Http\\Middleware\\ThrottleRequests:60,10"
+        ],
+        "scopes": [
+            "identify"
+        ]
+    },
+    {
+        "uri": "api/v2/verify-session/reissue",
+        "methods": [
+            "POST"
+        ],
+        "controller": "App\\Http\\Controllers\\AccountController@reissueCode",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "App\\Http\\Middleware\\RequireScopes:identify",
+            "Illuminate\\Auth\\Middleware\\Authenticate",
+            "App\\Http\\Middleware\\VerifyUser",
+            "App\\Http\\Middleware\\ThrottleRequests:60,10"
+        ],
+        "scopes": [
+            "identify"
+        ]
+    },
+    {
         "uri": "api/v2/beatmaps/lookup",
         "methods": [
             "GET",

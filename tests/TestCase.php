@@ -245,17 +245,14 @@ class TestCase extends BaseTestCase
      */
     protected function createToken(?User $user, ?array $scopes = null, ?Client $client = null)
     {
-        $client ??= Client::factory()->create();
-
-        $token = $client->tokens()->create([
+        return ($client ?? Client::factory()->create())->tokens()->create([
             'expires_at' => now()->addDays(1),
             'id' => uniqid(),
             'revoked' => false,
             'scopes' => $scopes,
-            'user_id' => optional($user)->getKey(),
+            'user_id' => $user?->getKey(),
+            'verified' => true,
         ]);
-
-        return $token;
     }
 
     protected function expectCountChange(callable $callback, int $change, string $message = '')

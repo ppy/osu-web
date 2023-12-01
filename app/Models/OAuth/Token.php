@@ -7,6 +7,7 @@ namespace App\Models\OAuth;
 
 use App\Events\UserSessionEvent;
 use App\Exceptions\InvalidScopeException;
+use App\Interfaces\SessionVerificationInterface;
 use App\Models\Traits\FasterAttributes;
 use App\Models\User;
 use Ds\Set;
@@ -14,12 +15,24 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Laravel\Passport\RefreshToken;
 use Laravel\Passport\Token as PassportToken;
 
-class Token extends PassportToken
+class Token extends PassportToken implements SessionVerificationInterface
 {
     // PassportToken doesn't have factory
     use HasFactory, FasterAttributes;
 
+    protected $casts = [
+        'expires_at' => 'datetime',
+        'revoked' => 'boolean',
+        'scopes' => 'array',
+        'verified' => 'boolean',
+    ];
+
     private ?Set $scopeSet;
+
+    public static function findForVerification(string $id): ?static
+    {
+        return static::find($id);
+    }
 
     public function refreshToken()
     {
@@ -49,8 +62,10 @@ class Token extends PassportToken
             'name',
             'user_id' => $this->getRawAttribute($key),
 
-            'revoked' => (bool) $this->getRawAttribute($key),
-            'scopes' => json_decode($this->getRawAttribute($key), true),
+            'revoked',
+            'verified' => $this->getNullableBool($key),
+
+            'scopes' => json_decode($this->getRawAttribute($key) ?? 'null', true),
 
             'created_at',
             'expires_at',
@@ -60,6 +75,11 @@ class Token extends PassportToken
             'refreshToken',
             'user' => $this->getRelationValue($key),
         };
+    }
+
+    public function getKeyForEvent(): string
+    {
+        return "oauth:{$this->getKey()}";
     }
 
     /**
@@ -90,6 +110,16 @@ class Token extends PassportToken
         return $clientUserId !== null && $clientUserId === $this->user_id;
     }
 
+    public function isVerified(): bool
+    {
+        return $this->verified;
+    }
+
+    public function markVerified(): void
+    {
+        $this->update(['verified' => true]);
+    }
+
     public function revokeRecursive()
     {
         $result = $this->revoke();
@@ -103,7 +133,7 @@ class Token extends PassportToken
         $saved = parent::revoke();
 
         if ($saved && $this->user_id !== null) {
-            UserSessionEvent::newLogout($this->user_id, ["oauth:{$this->getKey()}"])->broadcast();
+            UserSessionEvent::newLogout($this->user_id, [$this->getKeyForEvent()])->broadcast();
         }
 
         return $saved;
@@ -122,6 +152,11 @@ class Token extends PassportToken
 
         $this->scopeSet = null;
         $this->attributes['scopes'] = $this->castAttributeAsJson('scopes', $value);
+    }
+
+    public function userId(): ?int
+    {
+        return $this->user_id;
     }
 
     public function validate(): void
@@ -185,6 +220,9 @@ class Token extends PassportToken
     {
         // Forces error if passport tries to issue an invalid client_credentials token.
         $this->validate();
+        if (!$this->exists) {
+            $this->setVerifiedState();
+        }
 
         return parent::save($options);
     }
@@ -192,5 +230,10 @@ class Token extends PassportToken
     private function scopeSet(): Set
     {
         return $this->scopeSet ??= new Set($this->scopes ?? []);
+    }
+
+    private function setVerifiedState(): void
+    {
+        $this->verified ??= $this->user === null || !$this->client->password_client;
     }
 }

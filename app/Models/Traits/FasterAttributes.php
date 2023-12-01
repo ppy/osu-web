@@ -16,6 +16,13 @@ trait FasterAttributes
         return $this->attributes[$key] ?? null;
     }
 
+    protected function getNullableBool(string $key)
+    {
+        $raw = $this->getRawAttribute($key);
+
+        return $raw === null ? null : (bool) $raw;
+    }
+
     /**
      * Fast Time Attribute to Json Transformer
      *

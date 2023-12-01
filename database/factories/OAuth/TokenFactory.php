@@ -23,8 +23,9 @@ class TokenFactory extends Factory
             'expires_at' => fn () => now()->addDays(),
             'id' => str_random(40),
             'revoked' => false,
-            'scopes' => ['public'],
+            'scopes' => ['identify', 'public'],
             'user_id' => User::factory(),
+            'verified' => true,
         ];
     }
 }
