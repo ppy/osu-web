@@ -33,10 +33,10 @@ export class Build extends React.PureComponent
 
       if @props.build.youtube_id? && (@props.showVideo ? false)
         div className: 'build__video',
-          div className: 'u-embed-wide',
-            iframe
-              allowFullScreen: true
-              src: "https://www.youtube.com/embed/#{@props.build.youtube_id}?rel=0"
+          iframe
+            className: 'u-embed-wide'
+            allowFullScreen: true
+            src: "https://www.youtube.com/embed/#{@props.build.youtube_id}?rel=0"
       for category in categories
         div
           key: category
