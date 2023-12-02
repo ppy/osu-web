@@ -48,7 +48,9 @@
                     {!! markdown($artist->description) !!}
 
                     @if ($artist->video_url !== null)
-                        <video class="artist__video" src="{{ $artist->video_url }}" controls></video>
+                        <div class="artist__video-wrapper u-embed-wide">
+                            <video class="artist__video" src="{{ $artist->video_url }}" controls></video>
+                        </div>
                     @endif
                 </div>
                 @if (count($json['albums']) > 0)
