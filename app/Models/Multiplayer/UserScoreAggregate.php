@@ -202,7 +202,7 @@ class UserScoreAggregate extends Model
 
     private function updateUserTotal(ScoreLink $currentScoreLink, PlaylistItemUserHighScore $prev)
     {
-        if ($prev->last_score_id !== null) {
+        if ($prev->score_id !== null) {
             $this->total_score -= $prev->total_score;
             $this->accuracy -= $prev->accuracy;
             $this->pp -= $prev->pp;
