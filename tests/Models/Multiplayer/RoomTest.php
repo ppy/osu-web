@@ -49,9 +49,48 @@ class RoomTest extends TestCase
             [...$params, 'accuracy' => 2, 'total_score' => 100],
         );
 
-        $roomHigh = $room->userHighScores()->where(['user_id' => $user->getKey()])->first();
+        $roomHigh->refresh();
         $this->assertSame(1, $roomHigh->completed);
         $this->assertSame(2.0, $roomHigh->accuracy);
+    }
+
+    public function testCompletePlayLowerScore()
+    {
+        $user = User::factory()->create();
+        $playlistItem = PlaylistItem::factory()->create();
+        $room = $playlistItem->room;
+
+        $params = [
+            'accuracy' => 1,
+            'beatmap_id' => $playlistItem->beatmap_id,
+            'ruleset_id' => $playlistItem->ruleset_id,
+            'user_id' => $user->getKey(),
+            'ended_at' => json_time(new \DateTime()),
+            'max_combo' => 10,
+            'passed' => true,
+            'rank' => 'A',
+            'statistics' => ['Good' => 1],
+            'total_score' => 10,
+        ];
+
+        // first play
+        $room->completePlay(
+            $room->startPlay($user, $playlistItem, 0),
+            $params,
+        );
+        $roomHigh = $room->userHighScores()->where(['user_id' => $user->getKey()])->first();
+        $this->assertSame(1, $roomHigh->completed);
+        $this->assertSame(1.0, $roomHigh->accuracy);
+
+        // second, lower score play
+        $room->completePlay(
+            $room->startPlay($user, $playlistItem, 0),
+            [...$params, 'accuracy' => 2, 'total_score' => 1],
+        );
+
+        $roomHigh->refresh();
+        $this->assertSame(1, $roomHigh->completed);
+        $this->assertSame(1.0, $roomHigh->accuracy);
     }
 
     public function testCompletePlayMultiplePlaylistItems()
@@ -98,7 +137,7 @@ class RoomTest extends TestCase
             ],
         );
 
-        $roomHigh = $room->userHighScores()->where(['user_id' => $user->getKey()])->first();
+        $roomHigh->refresh();
         $this->assertSame(2, $roomHigh->completed);
         $this->assertSame(3.0, $roomHigh->accuracy);
         $this->assertSame(1.5, $roomHigh->averageAccuracy());
