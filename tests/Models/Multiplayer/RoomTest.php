@@ -24,14 +24,14 @@ class RoomTest extends TestCase
         $params = [
             'accuracy' => 1,
             'beatmap_id' => $playlistItem->beatmap_id,
-            'ruleset_id' => $playlistItem->ruleset_id,
-            'user_id' => $user->getKey(),
             'ended_at' => json_time(new \DateTime()),
             'max_combo' => 10,
             'passed' => true,
             'rank' => 'A',
+            'ruleset_id' => $playlistItem->ruleset_id,
             'statistics' => ['Good' => 1],
             'total_score' => 10,
+            'user_id' => $user->getKey(),
         ];
 
         // first play
@@ -65,14 +65,14 @@ class RoomTest extends TestCase
         $params = [
             'accuracy' => 1,
             'beatmap_id' => $playlistItem->beatmap_id,
-            'ruleset_id' => $playlistItem->ruleset_id,
-            'user_id' => $user->getKey(),
             'ended_at' => json_time(new \DateTime()),
             'max_combo' => 10,
             'passed' => true,
             'rank' => 'A',
+            'ruleset_id' => $playlistItem->ruleset_id,
             'statistics' => ['Good' => 1],
             'total_score' => 10,
+            'user_id' => $user->getKey(),
         ];
 
         // first play
@@ -109,14 +109,14 @@ class RoomTest extends TestCase
         $params = [
             'accuracy' => 1,
             'beatmap_id' => $playlistItem->beatmap_id,
-            'ruleset_id' => $playlistItem->ruleset_id,
-            'user_id' => $user->getKey(),
             'ended_at' => json_time(new \DateTime()),
             'max_combo' => 10,
             'passed' => true,
             'rank' => 'A',
+            'ruleset_id' => $playlistItem->ruleset_id,
             'statistics' => ['Good' => 1],
             'total_score' => 10,
+            'user_id' => $user->getKey(),
         ];
 
         // first playlist item
@@ -136,9 +136,9 @@ class RoomTest extends TestCase
             [
                 ...$params,
                 'accuracy' => 2,
-                'total_score' => 100,
                 'beatmap_id' => $playlistItem2->beatmap_id,
                 'ruleset_id' => $playlistItem2->ruleset_id,
+                'total_score' => 100,
             ],
         );
 
