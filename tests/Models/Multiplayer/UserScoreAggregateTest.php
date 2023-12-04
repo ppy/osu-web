@@ -245,8 +245,8 @@ class UserScoreAggregateTest extends TestCase
     private function createPlaylistItem(): PlaylistItem
     {
         return PlaylistItem::factory()->create([
-            'room_id' => $this->room,
             'owner_id' => $this->room->host,
+            'room_id' => $this->room,
         ]);
     }
 }
