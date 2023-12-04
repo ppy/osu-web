@@ -9,7 +9,6 @@ env:
   APP_ENV: testing
   APP_KEY: base64:q7U5qyAkedR1F6UhN0SQlUxBpAMDyfHy3NNFkqmiMqA=
   APP_URL: http://localhost:8000
-  CACHE_DRIVER: redis
   DB_HOST: 127.0.0.1
   ES_SOLO_SCORES_HOST: http://localhost:9200
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -87,7 +86,6 @@ env:
     HQZdh/ScL40oDGb6HRdKan0CAwEAAQ==
     -----END PUBLIC KEY-----
   REDIS_HOST: 127.0.0.1
-  SESSION_DRIVER: redis
   SHOPIFY_DOMAIN: notarealdomainortld
   SHOPIFY_STOREFRONT_TOKEN: notreal
   SLACK_ENDPOINT: https://myconan.net/null/
