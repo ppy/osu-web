@@ -42,6 +42,7 @@ class RoomTest extends TestCase
         $roomHigh = $room->userHighScores()->where(['user_id' => $user->getKey()])->first();
         $this->assertSame(1, $roomHigh->completed);
         $this->assertSame(1.0, $roomHigh->accuracy);
+        $this->assertSame(10, $roomHigh->total_score);
 
         // second, higher score play
         $room->completePlay(
@@ -52,6 +53,7 @@ class RoomTest extends TestCase
         $roomHigh->refresh();
         $this->assertSame(1, $roomHigh->completed);
         $this->assertSame(2.0, $roomHigh->accuracy);
+        $this->assertSame(100, $roomHigh->total_score);
     }
 
     public function testCompletePlayLowerScore()
@@ -81,6 +83,7 @@ class RoomTest extends TestCase
         $roomHigh = $room->userHighScores()->where(['user_id' => $user->getKey()])->first();
         $this->assertSame(1, $roomHigh->completed);
         $this->assertSame(1.0, $roomHigh->accuracy);
+        $this->assertSame(10, $roomHigh->total_score);
 
         // second, lower score play
         $room->completePlay(
@@ -91,6 +94,7 @@ class RoomTest extends TestCase
         $roomHigh->refresh();
         $this->assertSame(1, $roomHigh->completed);
         $this->assertSame(1.0, $roomHigh->accuracy);
+        $this->assertSame(10, $roomHigh->total_score);
     }
 
     public function testCompletePlayMultiplePlaylistItems()
@@ -124,6 +128,7 @@ class RoomTest extends TestCase
         $this->assertSame(1, $roomHigh->completed);
         $this->assertSame(1.0, $roomHigh->accuracy);
         $this->assertSame(1.0, $roomHigh->averageAccuracy());
+        $this->assertSame(10, $roomHigh->total_score);
 
         // second playlist item
         $room->completePlay(
@@ -141,6 +146,7 @@ class RoomTest extends TestCase
         $this->assertSame(2, $roomHigh->completed);
         $this->assertSame(3.0, $roomHigh->accuracy);
         $this->assertSame(1.5, $roomHigh->averageAccuracy());
+        $this->assertSame(110, $roomHigh->total_score);
     }
 
     /**
