@@ -9,6 +9,7 @@ use App\Events\NewPrivateNotificationEvent;
 use App\Http\Middleware\AuthApi;
 use App\Jobs\Notifications\BroadcastNotificationBase;
 use App\Libraries\Search\ScoreSearch;
+use App\Libraries\Session\Store as SessionStore;
 use App\Models\Beatmapset;
 use App\Models\OAuth\Client;
 use App\Models\User;
@@ -337,6 +338,15 @@ class TestCase extends BaseTestCase
     {
         return $this->withHeaders([
             'X-LIO-Signature' => hash_hmac('sha1', $url, config('osu.legacy.shared_interop_secret')),
+        ]);
+    }
+
+    protected function withPersistentSession(SessionStore $session): static
+    {
+        $session->save();
+
+        return $this->withCookies([
+            $session->getName() => $session->getId(),
         ]);
     }
 

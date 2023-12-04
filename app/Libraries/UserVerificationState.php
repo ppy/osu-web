@@ -41,11 +41,7 @@ class UserVerificationState
 
     public static function load($params)
     {
-        $session = new SessionManager(app());
-        $session->setId($params['sessionId']);
-        $session->start();
-
-        return new static(User::find($params['userId']), $session);
+        return new static(User::find($params['userId']), SessionManager::create($params['sessionId']));
     }
 
     private function __construct($user, $session)
