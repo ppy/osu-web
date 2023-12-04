@@ -152,11 +152,21 @@ class UserScoreAggregate extends Model
             ::whereHas('playlistItem', fn ($q) => $q->where('room_id', $this->room_id))
             ->where('user_id', $this->user_id)
             ->update([
-                'total_score' => 0,
                 'accuracy' => 0,
+                'score_id' => null,
+                'total_score' => 0,
             ]);
 
-        foreach (['total_score', 'accuracy', 'pp', 'attempts', 'completed'] as $key) {
+        static $resetAttributes = [
+            'accuracy',
+            'attempts',
+            'completed',
+            'last_score_id',
+            'pp',
+            'total_score',
+        ];
+
+        foreach ($resetAttributes as $key) {
             // init if required
             $this->$key = 0;
         }
