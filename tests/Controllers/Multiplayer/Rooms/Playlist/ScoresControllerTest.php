@@ -144,8 +144,8 @@ class ScoresControllerTest extends TestCase
 
         $this->json('PUT', $url, $bodyParams)->assertStatus($status);
 
-        $roomHigh = $room->userHighScores()->where(['user_id' => $user->getKey()])->first();
-        $this->assertSame($status === 200 ? 1 : 0, $roomHigh->completed);
+        $roomAgg = UserScoreAggregate::new($user, $room);
+        $this->assertSame($status === 200 ? 1 : 0, $roomAgg->completed);
     }
 
     public static function dataProviderForTestStore()
