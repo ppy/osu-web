@@ -131,11 +131,44 @@ class UserScoreAggregateTest extends TestCase
         $this->assertSame(0.65, $result['accuracy']);
     }
 
+    public function testRecalculate(): void
+    {
+        $playlistItem = $this->playlistItem();
+        $user = User::factory()->create();
+        $this->addPlay($user, $playlistItem, [
+            'total_score' => 1,
+            'accuracy' => 0.3,
+            'passed' => true,
+        ]);
+        $agg = UserScoreAggregate::new($user, $this->room);
+        $agg->recalculate();
+        $agg->refresh();
+
+        $this->assertSame(1, $agg->total_score);
+        $this->assertSame(1, $agg->attempts);
+        $this->assertSame(0.3, $agg->accuracy);
+        $this->assertSame(1, $agg->completed);
+    }
+
     protected function setUp(): void
     {
         parent::setUp();
 
         $this->room = Room::factory()->create();
+    }
+
+    private function addPlay(User $user, PlaylistItem $playlistItem, array $params): ScoreLink
+    {
+        $token = $playlistItem->room->startPlay($user, $playlistItem, 0);
+
+        return $playlistItem->room->completePlay($token, [
+            ...$params,
+            'beatmap_id' => $playlistItem->beatmap_id,
+            'ended_at' => json_time(new \DateTime()),
+            'ruleset_id' => $playlistItem->ruleset_id,
+            'statistics' => ['good' => 1],
+            'user_id' => $user->getKey(),
+        ]);
     }
 
     private function playlistItem()
