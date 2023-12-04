@@ -19,10 +19,102 @@ class UserScoreAggregateTest extends TestCase
 {
     private Room $room;
 
+    public function testAddingHigherScore(): void
+    {
+        $user = User::factory()->create();
+        $playlistItem = $this->createPlaylistItem();
+
+        // first play
+        $this->addPlay($user, $playlistItem, [
+            'accuracy' => 1,
+            'passed' => true,
+            'total_score' => 10,
+        ]);
+
+        $agg = UserScoreAggregate::new($user, $this->room);
+        $this->assertSame(1, $agg->completed);
+        $this->assertSame(1.0, $agg->accuracy);
+        $this->assertSame(10, $agg->total_score);
+
+        // second, higher score play
+        $this->addPlay($user, $playlistItem, [
+            'accuracy' => 2,
+            'passed' => true,
+            'total_score' => 100,
+        ]);
+
+        $agg->refresh();
+        $this->assertSame(1, $agg->completed);
+        $this->assertSame(2.0, $agg->accuracy);
+        $this->assertSame(100, $agg->total_score);
+    }
+
+    public function testAddingLowerScore(): void
+    {
+        $user = User::factory()->create();
+        $playlistItem = $this->createPlaylistItem();
+
+        // first play
+        $this->addPlay($user, $playlistItem, [
+            'accuracy' => 1,
+            'passed' => true,
+            'total_score' => 10,
+        ]);
+        $agg = UserScoreAggregate::new($user, $this->room);
+        $this->assertSame(1, $agg->completed);
+        $this->assertSame(1.0, $agg->accuracy);
+        $this->assertSame(10, $agg->total_score);
+
+        // second, lower score play
+        $this->addPlay($user, $playlistItem, [
+            'accuracy' => 2,
+            'passed' => true,
+            'total_score' => 1,
+        ]);
+
+        $agg->refresh();
+        $this->assertSame(1, $agg->completed);
+        $this->assertSame(1.0, $agg->accuracy);
+        $this->assertSame(10, $agg->total_score);
+    }
+
+    public function testAddingMultiplePlaylistItems(): void
+    {
+        $user = User::factory()->create();
+        $playlistItem = $this->createPlaylistItem();
+        $playlistItem2 = $this->createPlaylistItem();
+
+        // first playlist item
+        $this->addPlay($user, $playlistItem, [
+            'accuracy' => 1,
+            'passed' => true,
+            'total_score' => 10,
+        ]);
+
+        $agg = UserScoreAggregate::new($user, $this->room);
+        $this->assertSame(1, $agg->completed);
+        $this->assertSame(1.0, $agg->accuracy);
+        $this->assertSame(1.0, $agg->averageAccuracy());
+        $this->assertSame(10, $agg->total_score);
+
+        // second playlist item
+        $this->addPlay($user, $playlistItem2, [
+            'accuracy' => 2,
+            'passed' => true,
+            'total_score' => 100,
+        ]);
+
+        $agg->refresh();
+        $this->assertSame(2, $agg->completed);
+        $this->assertSame(3.0, $agg->accuracy);
+        $this->assertSame(1.5, $agg->averageAccuracy());
+        $this->assertSame(110, $agg->total_score);
+    }
+
     public function testStartingPlayIncreasesAttempts(): void
     {
         $user = User::factory()->create();
-        $playlistItem = $this->playlistItem();
+        $playlistItem = $this->createPlaylistItem();
 
         $this->room->startPlay($user, $playlistItem, 0);
         $agg = UserScoreAggregate::new($user, $this->room);
@@ -34,7 +126,7 @@ class UserScoreAggregateTest extends TestCase
     public function testFailedScoresAreAttemptsOnly(): void
     {
         $user = User::factory()->create();
-        $playlistItem = $this->playlistItem();
+        $playlistItem = $this->createPlaylistItem();
 
         $this->addPlay($user, $playlistItem, [
             'accuracy' => 0.1,
@@ -58,7 +150,7 @@ class UserScoreAggregateTest extends TestCase
     public function testPassedScoresIncrementsCompletedCount(): void
     {
         $user = User::factory()->create();
-        $playlistItem = $this->playlistItem();
+        $playlistItem = $this->createPlaylistItem();
 
         $this->addPlay($user, $playlistItem, [
             'accuracy' => 1,
@@ -75,8 +167,8 @@ class UserScoreAggregateTest extends TestCase
     public function testPassedScoresAreAveragedInTransformer(): void
     {
         $user = User::factory()->create();
-        $playlistItem = $this->playlistItem();
-        $playlistItem2 = $this->playlistItem();
+        $playlistItem = $this->createPlaylistItem();
+        $playlistItem2 = $this->createPlaylistItem();
 
         $this->addPlay($user, $playlistItem, [
             'accuracy' => 0.1,
@@ -111,7 +203,7 @@ class UserScoreAggregateTest extends TestCase
 
     public function testRecalculate(): void
     {
-        $playlistItem = $this->playlistItem();
+        $playlistItem = $this->createPlaylistItem();
         $user = User::factory()->create();
         $this->addPlay($user, $playlistItem, [
             'accuracy' => 0.3,
@@ -137,22 +229,24 @@ class UserScoreAggregateTest extends TestCase
 
     private function addPlay(User $user, PlaylistItem $playlistItem, array $params): ScoreLink
     {
-        $token = $playlistItem->room->startPlay($user, $playlistItem, 0);
-
-        return $playlistItem->room->completePlay($token, [
-            'beatmap_id' => $playlistItem->beatmap_id,
-            'ended_at' => json_time(new \DateTime()),
-            'ruleset_id' => $playlistItem->ruleset_id,
-            'statistics' => ['good' => 1],
-            'user_id' => $user->getKey(),
-            ...$params,
-        ]);
+        return $playlistItem->room->completePlay(
+            $playlistItem->room->startPlay($user, $playlistItem, 0),
+            [
+                'beatmap_id' => $playlistItem->beatmap_id,
+                'ended_at' => json_time(new \DateTime()),
+                'ruleset_id' => $playlistItem->ruleset_id,
+                'statistics' => ['good' => 1],
+                'user_id' => $user->getKey(),
+                ...$params,
+            ],
+        );
     }
 
-    private function playlistItem(): PlaylistItem
+    private function createPlaylistItem(): PlaylistItem
     {
         return PlaylistItem::factory()->create([
             'room_id' => $this->room,
+            'owner_id' => $this->room->host,
         ]);
     }
 }
