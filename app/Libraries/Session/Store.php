@@ -114,6 +114,9 @@ class Store extends \Illuminate\Session\Store
         return false;
     }
 
+    /**
+     * Used to obtain the instance from Session facade or SessionManager instance
+     */
     public function instance(): static
     {
         return $this;
