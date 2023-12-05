@@ -140,15 +140,10 @@ class RouteSection
         ],
     ];
 
-    public function getCurrent($key = null)
+    public function getCurrent(): array
     {
-        $data = \Request::instance()->attributes->get('route_section_error') ?? $this->getOriginal();
-
-        if ($key === null) {
-            return $data;
-        }
-
-        return $data[$key];
+        return \Request::instance()->attributes->get('route_section_error')
+            ?? $this->getOriginal();
     }
 
     public function getOriginal()
