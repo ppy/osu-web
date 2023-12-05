@@ -44,6 +44,7 @@ class OsuAuthorize
         static $set;
 
         $set ??= new Ds\Set([
+            'ContestJudge',
             'IsOwnClient',
             'IsNotOAuth',
             'IsSpecialScope',
