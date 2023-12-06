@@ -16,8 +16,6 @@ class Store extends \Illuminate\Session\Store
 {
     private const PREFIX = 'sessions:';
 
-    private static PhpRedisConnection $redis;
-
     public static function batchDelete(int $userId, ?array $ids = null): void
     {
         $ids ??= static::ids($userId);
@@ -132,7 +130,7 @@ class Store extends \Illuminate\Session\Store
 
     private static function redis(): PhpRedisConnection
     {
-        return static::$redis ??= \LaravelRedis::connection(\Config::get('session.connection'));
+        return \LaravelRedis::connection(\Config::get('session.connection'));
     }
 
     public function delete(): void
