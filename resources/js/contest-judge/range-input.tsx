@@ -14,12 +14,12 @@ interface Props {
 
 @observer
 export default class RangeInput extends React.Component<Props> {
-  @observable private value?: number;
+  @observable private value: number;
 
   constructor(props: Props) {
     super(props);
 
-    this.value = this.props.currentValue;
+    this.value = this.props.currentValue ?? 0;
 
     makeObservable(this);
   }
