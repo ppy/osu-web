@@ -52,7 +52,7 @@ class ContestTransformer extends TransformerAbstract
 
     public function includeJudgeCategories(Contest $contest): Collection
     {
-        return $this->Collection($contest->judgeCategories, new ContestJudgeCategoryTransformer());
+        return $this->collection($contest->judgeCategories, new ContestJudgeCategoryTransformer());
     }
 
     public function includeMaxJudgingScore(Contest $contest): Primitive
