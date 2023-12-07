@@ -34,7 +34,7 @@ class ContestJudgeVote extends Model
         return $this->belongsTo(ContestEntry::class, 'contest_entry_id');
     }
 
-    public function score(): int
+    public function totalScore(): int
     {
         return intval($this->scores()->sum('value'));
     }

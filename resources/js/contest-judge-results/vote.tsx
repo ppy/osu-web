@@ -31,7 +31,7 @@ export default function Vote(props: Props) {
         <ValueDisplay
           label={trans('contest.judge_results.score')}
           modifiers={['score']}
-          value={`${props.vote.score}/${props.contest.max_judging_score}`}
+          value={`${props.vote.total_score}/${props.contest.max_judging_score}`}
         />
       </div>
 

@@ -7,7 +7,7 @@ import UserJson from './user-json';
 export default interface ContestJudgeVoteJson {
   comment: string | null;
   id: number;
-  score?: number;
   scores?: ContestJudgeScoreJson[];
+  total_score?: number;
   user?: UserJson;
 }

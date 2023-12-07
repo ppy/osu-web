@@ -40,7 +40,7 @@ class ContestEntriesController extends Controller
 
         $entryJson = json_item($entry, 'ContestEntry', [
             'judge_votes.user',
-            'judge_votes.score',
+            'judge_votes.total_score',
             'judge_votes.scores.category',
             'results',
             'user',
