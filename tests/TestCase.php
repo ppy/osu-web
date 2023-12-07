@@ -237,7 +237,7 @@ class TestCase extends BaseTestCase
 
     protected function createVerifiedSession($user): SessionStore
     {
-        $ret = SessionStore::findOrCreate();
+        $ret = SessionStore::findOrNew();
         $ret->put(\Auth::getName(), $user->getKey());
         $ret->put('verified', true);
         $ret->migrate(false);

@@ -24,7 +24,7 @@ class SessionsController extends Controller
             // current session
             logout();
         } else {
-            $session = SessionStore::findOrCreate($id);
+            $session = SessionStore::findOrNew($id);
             if ($session->userId() === \Auth::user()->getKey()) {
                 $session->delete();
             } else {

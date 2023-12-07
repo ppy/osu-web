@@ -35,7 +35,7 @@ class Store extends \Illuminate\Session\Store
         UserSessionEvent::newLogout($userId, $ids)->broadcast();
     }
 
-    public static function findOrCreate(?string $id = null): static
+    public static function findOrNew(?string $id = null): static
     {
         if ($id !== null) {
             $currentSession = \Session::instance();

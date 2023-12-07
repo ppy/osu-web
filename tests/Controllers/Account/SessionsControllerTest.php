@@ -28,7 +28,7 @@ class SessionsControllerTest extends TestCase
         $sessionIds = SessionStore::ids($user->getKey());
         $this->assertContains($session->getId(), $sessionIds);
         $this->assertNotContains($oldSessionId, $sessionIds);
-        $this->assertNull(SessionStore::findOrCreate($oldSessionId)->userId());
+        $this->assertNull(SessionStore::findOrNew($oldSessionId)->userId());
     }
 
     public function testDestroyOtherUser(): void
@@ -46,7 +46,7 @@ class SessionsControllerTest extends TestCase
 
         $this->assertSame(
             $otherUser->getKey(),
-            SessionStore::findOrCreate($otherUserSessionId)->userId(),
+            SessionStore::findOrNew($otherUserSessionId)->userId(),
         );
     }
 
@@ -61,6 +61,6 @@ class SessionsControllerTest extends TestCase
             ->delete(route('account.sessions.destroy', ['session' => $sessionId]))
             ->assertSuccessful();
 
-        $this->assertNull(SessionStore::findOrCreate($sessionId)->userId());
+        $this->assertNull(SessionStore::findOrNew($sessionId)->userId());
     }
 }

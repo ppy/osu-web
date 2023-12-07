@@ -69,7 +69,7 @@ class UserVerificationTest extends TestCase
 
         $linkKey = $session->get('verification_link_key');
 
-        $guestSession = SessionStore::findOrCreate();
+        $guestSession = SessionStore::findOrNew();
         $this
             ->withPersistentSession($guestSession)
             ->get(route('account.verify', ['key' => $linkKey]))
@@ -94,7 +94,7 @@ class UserVerificationTest extends TestCase
             ->assertStatus(401)
             ->assertViewIs('users.verify');
 
-        $guestSession = SessionStore::findOrCreate();
+        $guestSession = SessionStore::findOrNew();
         $this
             ->withPersistentSession($guestSession)
             ->get(route('account.verify', ['key' => 'invalid']))

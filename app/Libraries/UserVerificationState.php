@@ -43,7 +43,7 @@ class UserVerificationState
     {
         return new static(
             User::find($params['userId']),
-            SessionStore::findOrCreate($params['sessionId']),
+            SessionStore::findOrNew($params['sessionId']),
         );
     }
 
