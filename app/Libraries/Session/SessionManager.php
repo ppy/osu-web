@@ -7,6 +7,17 @@ namespace App\Libraries\Session;
 
 class SessionManager extends \Illuminate\Session\SessionManager
 {
+    public static function create(?string $sessionId = null): Store
+    {
+        $ret = (new static(app()))->instance();
+        if ($sessionId !== null) {
+            $ret->setId($sessionId);
+        }
+        $ret->start();
+
+        return $ret;
+    }
+
     /**
      * Build the session instance.
      *

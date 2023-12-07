@@ -115,6 +115,14 @@ class Store extends \Illuminate\Session\Store
     }
 
     /**
+     * Used to obtain the instance from Session facade or SessionManager instance
+     */
+    public function instance(): static
+    {
+        return $this;
+    }
+
+    /**
      * Return whether the given id matches the current session's id.
      *
      * @return bool
