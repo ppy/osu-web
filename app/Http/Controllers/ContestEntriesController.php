@@ -8,7 +8,7 @@ namespace App\Http\Controllers;
 use App\Exceptions\InvariantException;
 use App\Models\Contest;
 use App\Models\ContestEntry;
-use App\Models\ContestJudgeCategoryVote;
+use App\Models\ContestJudgeScore;
 use App\Models\ContestJudgeVote;
 use App\Models\UserContestEntry;
 use Auth;
@@ -23,11 +23,11 @@ class ContestEntriesController extends Controller
             ->with('contest.entries')
             ->with('contest.judgeCategories')
             ->with('judgeVotes')
-            ->with('judgeVotes.categoryVotes')
+            ->with('judgeVotes.scores')
             ->with('judgeVotes.user')
-            ->with('judgeVotes.categoryVotes.category')
+            ->with('judgeVotes.scores.category')
             ->with('user')
-            ->withSum('categoryVotes', 'value')
+            ->withSum('scores', 'value')
             ->findOrFail($id);
 
         abort_if(!$entry->contest->isJudged() || !$entry->contest->show_votes, 404);
@@ -41,7 +41,7 @@ class ContestEntriesController extends Controller
         $entryJson = json_item($entry, 'ContestEntry', [
             'judge_votes.user',
             'judge_votes.score',
-            'judge_votes.category_votes.category',
+            'judge_votes.scores.category',
             'results',
             'user',
         ]);
@@ -65,14 +65,14 @@ class ContestEntriesController extends Controller
         priv_check('ContestJudge', $entry->contest)->ensureCan();
 
         $params = get_params(request()->all(), null, [
-            'category_votes:array',
+            'scores:array',
             'comment',
         ]);
 
-        $categoryVotes = collect($params['category_votes']);
+        $scores = collect($params['scores']);
         $comment = $params['comment'];
 
-        DB::transaction(function () use ($categoryVotes, $comment, $entry) {
+        DB::transaction(function () use ($scores, $comment, $entry) {
             $vote = $entry->judgeVotes->where('user_id', auth()->user()->getKey())->first();
 
             if ($vote !== null) {
@@ -88,28 +88,28 @@ class ContestEntriesController extends Controller
             }
 
             foreach ($entry->contest->judgeCategories as $category) {
-                $categoryVote = $categoryVotes
+                $score = $scores
                     ->where('contest_judge_category_id', $category->getKey())
                     ->first();
 
-                if ($categoryVote === null) {
-                    throw new InvariantException(osu_trans('contest.judge.validation.missing_category_vote'));
+                if ($score === null) {
+                    throw new InvariantException(osu_trans('contest.judge.validation.missing_score'));
                 }
 
-                $currentCategoryVote = ContestJudgeCategoryVote::where('contest_judge_vote_id', $vote->getKey())
+                $currentScore = ContestJudgeScore::where('contest_judge_vote_id', $vote->getKey())
                     ->where('contest_judge_category_id', $category->getKey())
                     ->first();
 
-                $value = clamp($categoryVote['value'], 0, $category->max_value);
+                $value = clamp($score['value'], 0, $category->max_value);
 
-                if ($currentCategoryVote !== null) {
-                    $currentValue = $currentCategoryVote->value;
+                if ($currentScore !== null) {
+                    $currentValue = $currentScore->value;
 
                     if ($currentValue !== $value) {
-                        $currentCategoryVote->update(['value' => $value]);
+                        $currentScore->update(['value' => $value]);
                     }
                 } else {
-                    ContestJudgeCategoryVote::create([
+                    ContestJudgeScore::create([
                         'contest_judge_category_id' => $category->getKey(),
                         'contest_judge_vote_id' => $vote->getKey(),
                         'value' => $value,
@@ -119,10 +119,10 @@ class ContestEntriesController extends Controller
         });
 
         $updatedEntry = ContestEntry::with('judgeVotes')
-            ->with('judgeVotes.categoryVotes')
+            ->with('judgeVotes.scores')
             ->findOrFail($id);
 
-        $updatedEntryJson = json_item($updatedEntry, 'ContestEntry', ['current_user_judge_vote.category_votes']);
+        $updatedEntryJson = json_item($updatedEntry, 'ContestEntry', ['current_user_judge_vote.scores']);
 
         return $updatedEntryJson;
     }

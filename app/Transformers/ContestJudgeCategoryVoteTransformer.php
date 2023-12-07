@@ -7,26 +7,26 @@ declare(strict_types=1);
 
 namespace App\Transformers;
 
-use App\Models\ContestJudgeCategoryVote;
+use App\Models\ContestJudgeScore;
 use League\Fractal\Resource\Item;
 
-class ContestJudgeCategoryVoteTransformer extends TransformerAbstract
+class ContestJudgeScoreTransformer extends TransformerAbstract
 {
     protected array $availableIncludes = [
         'category',
     ];
 
-    public function transform(ContestJudgeCategoryVote $categoryVote): array
+    public function transform(ContestJudgeScore $score): array
     {
         return [
-            'contest_judge_category_id' => $categoryVote->contest_judge_category_id,
-            'id' => $categoryVote->getKey(),
-            'value' => $categoryVote->value,
+            'contest_judge_category_id' => $score->contest_judge_category_id,
+            'id' => $score->getKey(),
+            'value' => $score->value,
         ];
     }
 
-    public function includeCategory(ContestJudgeCategoryVote $categoryVote): Item
+    public function includeCategory(ContestJudgeScore $score): Item
     {
-        return $this->item($categoryVote->category, new ContestJudgeCategoryTransformer());
+        return $this->item($score->category, new ContestJudgeCategoryTransformer());
     }
 }

@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 /**
- * @property-read Collection<ContestJudgeCategoryVote> $categoryVotes
  * @property-read Contest $contest
  * @property int $contest_id
  * @property \Carbon\Carbon|null $created_at
@@ -20,6 +19,7 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
  * @property-read Collection<ContestJudgeVote> $judgeVotes
  * @property string $masked_name
  * @property string $name
+ * @property-read Collection<ContestJudgeScore> $scores
  * @property \Carbon\Carbon|null $updated_at
  * @property-read User $user
  * @property int|null $user_id
@@ -27,9 +27,9 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
  */
 class ContestEntry extends Model
 {
-    public function categoryVotes(): HasManyThrough
+    public function scores(): HasManyThrough
     {
-        return $this->hasManyThrough(ContestJudgeCategoryVote::class, ContestJudgeVote::class);
+        return $this->hasManyThrough(ContestJudgeScore::class, ContestJudgeVote::class);
     }
 
     public function contest()

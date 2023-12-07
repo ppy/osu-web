@@ -4,7 +4,7 @@
 import BigButton from 'components/big-button';
 import ContestEntryJson from 'interfaces/contest-entry-json';
 import ContestJudgeCategory from 'interfaces/contest-judge-category-json';
-import ContestJudgeCategoryVoteJson from 'interfaces/contest-judge-category-vote-json';
+import ContestJudgeScoreJson from 'interfaces/contest-judge-score-json';
 import { route } from 'laroute';
 import { action, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
@@ -23,7 +23,7 @@ interface Props {
 
 @observer
 export default class Entry extends React.Component<Props> {
-  @observable private readonly categoryVotes: ContestJudgeCategoryVoteJson[];
+  @observable private readonly scores: ContestJudgeScoreJson[];
   @observable private comment: string;
   @observable private posting = false;
   @observable private xhr?: JQuery.jqXHR;
@@ -31,7 +31,7 @@ export default class Entry extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
 
-    this.categoryVotes = props.entry.current_user_judge_vote?.category_votes ?? [];
+    this.scores = props.entry.current_user_judge_vote?.scores ?? [];
     this.comment = props.entry.current_user_judge_vote?.comment ?? '';
 
     makeObservable(this);
@@ -45,7 +45,7 @@ export default class Entry extends React.Component<Props> {
         </h2>
 
         {this.props.judgeCategories.map((category) => {
-          const currentVote = this.categoryVote(category.id);
+          const currentVote = this.score(category.id);
 
           return (
             <div key={category.id}>
@@ -96,13 +96,13 @@ export default class Entry extends React.Component<Props> {
     );
   }
 
-  private categoryVote(categoryId: number) {
-    return this.categoryVotes.find((x) => x.contest_judge_category_id === categoryId);
+  private score(categoryId: number) {
+    return this.scores.find((x) => x.contest_judge_category_id === categoryId);
   }
 
   private disabled() {
     for (const x of this.props.judgeCategories) {
-      if (this.categoryVote(x.id) == null) return true;
+      if (this.score(x.id) == null) return true;
     }
 
     return false;
@@ -121,8 +121,8 @@ export default class Entry extends React.Component<Props> {
 
     this.xhr = $.ajax(route('contest-entries.judge-vote', { contest_entry: this.props.entry.id }), {
       data: {
-        category_votes: this.categoryVotes,
         comment: this.comment,
+        scores: this.scores,
       },
       method: 'PUT',
     });
@@ -140,16 +140,16 @@ export default class Entry extends React.Component<Props> {
   @action
   private readonly updateValue = (id: number, value: number) => {
     const vote = { contest_judge_category_id: id, value };
-    const { categoryVotes } = this;
+    const { scores } = this;
 
-    if (this.categoryVote(id) == null) {
-      categoryVotes?.push(vote);
+    if (this.score(id) == null) {
+      scores?.push(vote);
     } else {
-      const index = categoryVotes?.findIndex((x) => x.contest_judge_category_id === id);
+      const index = scores?.findIndex((x) => x.contest_judge_category_id === id);
       // that should never happen
       if (index == null) return;
 
-      categoryVotes?.splice(index, 1, vote);
+      scores?.splice(index, 1, vote);
     }
   };
 }

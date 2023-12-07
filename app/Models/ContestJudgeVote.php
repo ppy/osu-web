@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
- * @property-read Collection<ContestJudgeCategoryVote> $categoryVotes
+ * @property-read Collection<ContestJudgeScore> $scores
  * @property string|null $comment
  * @property int $contest_entry_id
  * @property \Carbon\Carbon|null $created_at
@@ -24,9 +24,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class ContestJudgeVote extends Model
 {
-    public function categoryVotes(): HasMany
+    public function scores(): HasMany
     {
-        return $this->hasMany(ContestJudgeCategoryVote::class);
+        return $this->hasMany(ContestJudgeScore::class);
     }
 
     public function entry(): BelongsTo
@@ -36,7 +36,7 @@ class ContestJudgeVote extends Model
 
     public function score(): int
     {
-        return intval($this->categoryVotes()->sum('value'));
+        return intval($this->scores()->sum('value'));
     }
 
     public function user(): BelongsTo

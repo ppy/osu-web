@@ -278,8 +278,8 @@ class Contest extends Model
                         ->selectRaw('(SELECT FLOOR(SUM(`weight`)) FROM `contest_votes` WHERE `contest_entries`.`id` = `contest_votes`.`contest_entry_id`) AS votes_count')
                         ->limit(50); // best of contests tend to have a _lot_ of entries...
                 } else if ($this->isJudged()) {
-                    $entries = $entries->withSum('categoryVotes', 'value');
-                    $orderValue = 'category_votes_sum_value';
+                    $entries = $entries->withSum('scores', 'value');
+                    $orderValue = 'scores_sum_value';
                 } else {
                     $entries = $entries->withCount('votes');
                 }

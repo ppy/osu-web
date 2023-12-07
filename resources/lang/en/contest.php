@@ -19,8 +19,8 @@ return [
         'no_current_vote' => 'you didn\'t vote yet.',
         'update' => 'update',
         'validation' => [
+            'missing_score' => 'missing score',
             'contest_vote_judged' => 'can\'t vote in judged contests',
-            'missing_category_vote' => 'missing category vote',
         ],
     ],
 

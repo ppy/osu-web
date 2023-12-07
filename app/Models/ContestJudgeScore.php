@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $value
  * @property-read ContestJudgeVote $vote
  */
-class ContestJudgeCategoryVote extends Model
+class ContestJudgeScore extends Model
 {
     public function category(): BelongsTo
     {

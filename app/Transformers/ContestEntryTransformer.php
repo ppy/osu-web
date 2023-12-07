@@ -62,7 +62,7 @@ class ContestEntryTransformer extends TransformerAbstract
     public function includeResults(ContestEntry $entry)
     {
         $votes = $entry->contest->isJudged()
-            ? $entry->category_votes_sum_value
+            ? $entry->scores_sum_value
             : $entry->votes_count;
 
         return $this->primitive([

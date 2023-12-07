@@ -3,7 +3,7 @@
 
 import ContestJudgeCategoryJson from './contest-judge-category-json';
 
-export default interface ContestJudgeCategoryVoteJson {
+export default interface ContestJudgeScoreJson {
   category?: ContestJudgeCategoryJson;
   contest_judge_category_id: number;
   id?: number;

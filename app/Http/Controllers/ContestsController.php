@@ -28,7 +28,7 @@ class ContestsController extends Controller
     {
         $contest = Contest::with('entries')
             ->with('entries.judgeVotes')
-            ->with('entries.judgeVotes.categoryVotes')
+            ->with('entries.judgeVotes.scores')
             ->with('judgeCategories')
             ->findOrFail($id);
 
@@ -38,7 +38,7 @@ class ContestsController extends Controller
 
         $contestJson = json_item($contest, 'Contest', ['judge_categories']);
         $entriesJson = json_collection($contest->entries, 'ContestEntry', [
-            'current_user_judge_vote.category_votes',
+            'current_user_judge_vote.scores',
         ]);
 
         return ext_view('contests.judge', [

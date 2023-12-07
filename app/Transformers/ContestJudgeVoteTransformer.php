@@ -15,7 +15,7 @@ use League\Fractal\Resource\Primitive;
 class ContestJudgeVoteTransformer extends TransformerAbstract
 {
     protected array $availableIncludes = [
-        'category_votes',
+        'scores',
         'score',
         'user',
     ];
@@ -28,9 +28,9 @@ class ContestJudgeVoteTransformer extends TransformerAbstract
         ];
     }
 
-    public function includeCategoryVotes(ContestJudgeVote $judgeVote): Collection
+    public function includeScores(ContestJudgeVote $judgeVote): Collection
     {
-        return $this->collection($judgeVote->categoryVotes, new ContestJudgeCategoryVoteTransformer());
+        return $this->collection($judgeVote->scores, new ContestJudgeScoreTransformer());
     }
 
     public function includeScore(ContestJudgeVote $judgeVote): Primitive
