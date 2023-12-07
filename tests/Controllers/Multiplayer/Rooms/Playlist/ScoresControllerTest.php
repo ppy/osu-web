@@ -132,17 +132,20 @@ class ScoresControllerTest extends TestCase
         $playlistItem = PlaylistItem::factory()->create();
         $room = $playlistItem->room;
         $build = Build::factory()->create(['allow_ranking' => true]);
-        $scoreLink = $room->startPlay($user, $playlistItem, 0);
+        $scoreToken = $room->startPlay($user, $playlistItem, 0);
 
         $this->actAsScopedUser($user, ['*']);
 
         $url = route('api.rooms.playlist.scores.update', [
             'room' => $room,
             'playlist' => $playlistItem,
-            'score' => $scoreLink,
+            'score' => $scoreToken,
         ]);
 
         $this->json('PUT', $url, $bodyParams)->assertStatus($status);
+
+        $roomAgg = UserScoreAggregate::new($user, $room);
+        $this->assertSame($status === 200 ? 1 : 0, $roomAgg->completed);
     }
 
     public static function dataProviderForTestStore()

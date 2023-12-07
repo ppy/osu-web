@@ -148,11 +148,10 @@
             <h2 class="title title--page-extra">
                 {{ osu_trans('home.download.video-guide') }}
             </h2>
-            <div class="u-embed-wide">
-                <iframe
-                    src="https://youtube.com/embed/videoseries?list={{ config('osu.urls.youtube-tutorial-playlist') }}"
-                ></iframe>
-            </div>
+            <iframe
+                class="u-embed-wide"
+                src="https://youtube.com/embed/videoseries?list={{ config('osu.urls.youtube-tutorial-playlist') }}"
+            ></iframe>
         </div>
     </div>
 </div>
