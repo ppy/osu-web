@@ -6,7 +6,7 @@ import ContestEntryJson from 'interfaces/contest-entry-json';
 import ContestJudgeCategory from 'interfaces/contest-judge-category-json';
 import ContestJudgeScoreJson from 'interfaces/contest-judge-score-json';
 import { route } from 'laroute';
-import { action, makeObservable, observable, runInAction } from 'mobx';
+import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import { ContestEntry } from 'models/contest-entry';
 import * as React from 'react';
@@ -35,6 +35,15 @@ export default class Entry extends React.Component<Props> {
     this.comment = props.entry.current_user_judge_vote?.comment ?? '';
 
     makeObservable(this);
+  }
+
+  @computed
+  private get disabled() {
+    for (const x of this.props.judgeCategories) {
+      if (this.score(x.id) == null) return true;
+    }
+
+    return false;
   }
 
   render() {
@@ -85,7 +94,7 @@ export default class Entry extends React.Component<Props> {
 
         <div className='contest-judge-entry__button'>
           <BigButton
-            disabled={this.disabled()}
+            disabled={this.disabled}
             icon='fas fa-check'
             isBusy={this.posting}
             props={{ onClick: this.submitVote }}
@@ -98,14 +107,6 @@ export default class Entry extends React.Component<Props> {
 
   private score(categoryId: number) {
     return this.scores.find((x) => x.contest_judge_category_id === categoryId);
-  }
-
-  private disabled() {
-    for (const x of this.props.judgeCategories) {
-      if (this.score(x.id) == null) return true;
-    }
-
-    return false;
   }
 
   @action
