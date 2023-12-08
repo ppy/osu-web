@@ -160,11 +160,9 @@ class Store extends \Illuminate\Session\Store
     }
 
     /**
-     * Generate a new session ID for the session.
+     * Generate a new session id.
      *
-     * @param  bool  $destroy
-     * @param  string  $sessionId
-     * @return bool
+     * Overridden to delete session from redis - both entry and list.
      */
     public function migrate($destroy = false)
     {
