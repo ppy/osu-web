@@ -62,7 +62,7 @@ class Store extends \Illuminate\Session\Store
         );
     }
 
-    public static function sessions($userId): array
+    public static function sessions(int $userId): array
     {
         $ids = static::ids($userId);
         if (empty($ids)) {
