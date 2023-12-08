@@ -24,7 +24,6 @@ return new class extends Migration
             $table->tinyInteger('max_value')->default(10);
             $table->timestamps();
 
-            $table->index('contest_id');
             $table->unique(['contest_id', 'name']);
         });
     }

@@ -23,7 +23,6 @@ return new class extends Migration
             $table->tinyInteger('value');
             $table->timestamps();
 
-            $table->index('contest_judge_vote_id');
             $table->index('contest_judge_category_id');
             $table->unique(['contest_judge_vote_id', 'contest_judge_category_id'], 'vote_category');
         });

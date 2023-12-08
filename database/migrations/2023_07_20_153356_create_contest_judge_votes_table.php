@@ -23,7 +23,6 @@ return new class extends Migration
             $table->text('comment')->nullable();
             $table->timestamps();
 
-            $table->index('user_id');
             $table->index('contest_entry_id');
             $table->unique(['user_id', 'contest_entry_id']);
         });
