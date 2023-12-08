@@ -29,14 +29,15 @@ class Store extends \Illuminate\Session\Store
             $currentSession->flush();
         }
 
-        // Older sessions are stored with connection prefix included.
-        $ids = array_map(
+        // Older sessions are stored in list with connection prefix included
+        // but del automatically adds it.
+        $delIds = array_map(
             fn ($id) => str_starts_with($id, 'osu-next:') ? substr($id, 9) : $id,
             $ids,
         );
 
         $redis = static::redis();
-        $redis->del($ids);
+        $redis->del($delIds);
         if ($userId !== null) {
             $redis->srem(static::listKey($userId), ...$ids);
             UserSessionEvent::newLogout($userId, $ids)->broadcast();
