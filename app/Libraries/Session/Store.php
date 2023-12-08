@@ -71,7 +71,7 @@ class Store extends \Illuminate\Session\Store
             : array_map(
                 // The ids were previously stored with prefix.
                 fn ($id) => str_starts_with($id, 'osu-next:') ? substr($id, 9) : $id,
-                static::redis()->smembers(static::listKey($userId));
+                static::redis()->smembers(static::listKey($userId)),
             );
     }
 
