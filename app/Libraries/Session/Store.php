@@ -16,7 +16,7 @@ class Store extends \Illuminate\Session\Store
 {
     private const PREFIX = 'sessions:';
 
-    public static function batchDelete(int $userId, ?array $ids = null): void
+    public static function batchDelete(?int $userId, ?array $ids = null): void
     {
         $ids ??= static::ids($userId);
 
@@ -29,10 +29,18 @@ class Store extends \Illuminate\Session\Store
             $currentSession->flush();
         }
 
+        // Older sessions are stored with connection prefix included.
+        $ids = array_map(
+            fn ($id) => str_starts_with($id, 'osu-next:') ? substr($id, 9) : $id,
+            $ids,
+        );
+
         $redis = static::redis();
         $redis->del($ids);
-        $redis->srem(static::listKey($userId), ...$ids);
-        UserSessionEvent::newLogout($userId, $ids)->broadcast();
+        if ($userId !== null) {
+            $redis->srem(static::listKey($userId), ...$ids);
+            UserSessionEvent::newLogout($userId, $ids)->broadcast();
+        }
     }
 
     public static function findOrNew(?string $id = null): static
@@ -54,12 +62,11 @@ class Store extends \Illuminate\Session\Store
         return $ret;
     }
 
-    public static function ids(int $userId): array
+    public static function ids(?int $userId): array
     {
-        return array_map(
-            fn ($id) => str_starts_with($id, 'osu-next:') ? substr($id, 9) : $id,
-            static::redis()->smembers(static::listKey($userId)),
-        );
+        return $userId === null
+            ? []
+            : static::redis()->smembers(static::listKey($userId));
     }
 
     public static function sessions(int $userId): array
