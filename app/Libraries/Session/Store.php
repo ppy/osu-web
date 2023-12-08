@@ -205,6 +205,8 @@ class Store extends \Illuminate\Session\Store
         // From `Auth::getName()`.
         // Hardcoded because Auth depends on this class instance which then
         // calls this functions and would otherwise cause circular dependency.
+        // Note that osu-notification-server also checks this key. Make sure
+        // to also update it if the value changes.
         return $this->attributes['login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d'] ?? null;
     }
 
