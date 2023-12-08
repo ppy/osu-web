@@ -29,16 +29,17 @@ class Store extends \Illuminate\Session\Store
             $currentSession->flush();
         }
 
-        // Older sessions are stored in list with connection prefix included
-        // but del automatically adds it.
-        $delIds = array_map(
-            fn ($id) => str_starts_with($id, 'osu-next:') ? substr($id, 9) : $id,
-            $ids,
-        );
-
         $redis = static::redis();
-        $redis->del($delIds);
+        $redis->del($ids);
         if ($userId !== null) {
+            $listIds = [
+                ...$ids,
+                // Also delete ids that were previously stored with prefix.
+                ...array_map(
+                    fn ($id) => "osu-next:{$id}",
+                    $ids,
+                ),
+            ];
             $redis->srem(static::listKey($userId), ...$ids);
             UserSessionEvent::newLogout($userId, $ids)->broadcast();
         }
@@ -67,7 +68,11 @@ class Store extends \Illuminate\Session\Store
     {
         return $userId === null
             ? []
-            : static::redis()->smembers(static::listKey($userId));
+            : array_map(
+                // The ids were previously stored with prefix.
+                fn ($id) => str_starts_with($id, 'osu-next:') ? substr($id, 9) : $id,
+                static::redis()->smembers(static::listKey($userId));
+            );
     }
 
     public static function sessions(int $userId): array
