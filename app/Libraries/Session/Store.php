@@ -208,7 +208,7 @@ class Store extends \Illuminate\Session\Store
         $userId = $this->userId();
 
         return static::PREFIX
-            .($userId === null ? 'guest' : "user:{$userId}")
+            .($userId ?? 'guest')
             .':'
             .parent::generateSessionId();
     }
