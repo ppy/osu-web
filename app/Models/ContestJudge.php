@@ -12,14 +12,17 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 /**
  * @property-read Contest $contest
  * @property int $contest_id
- * @property \Carbon\Carbon|null $created_at
- * @property int $id
- * @property \Carbon\Carbon|null $updated_at
  * @property-read User $user
  * @property int $user_id
  */
 class ContestJudge extends Model
 {
+    public $timestamps = false;
+    public $incrementing = false;
+
+    protected $primaryKey = ':composite';
+    protected $primaryKeys = ['user_id', 'contest_id'];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');

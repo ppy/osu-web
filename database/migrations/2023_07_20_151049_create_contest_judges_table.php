@@ -17,14 +17,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('contest_judges', function (Blueprint $table) {
-            $table->id();
             $table->integer('user_id')->unsigned();
             $table->integer('contest_id')->unsigned();
-            $table->timestamps();
 
-            $table->index('user_id');
+            $table->primary(['user_id', 'contest_id']);
             $table->index('contest_id');
-            $table->unique(['user_id', 'contest_id']);
         });
     }
 
