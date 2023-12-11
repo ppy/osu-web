@@ -13,8 +13,8 @@ import * as React from 'react';
 import ContestEntryStore from 'stores/contest-entry-store';
 import { onError } from 'utils/ajax';
 import { trans } from 'utils/lang';
-import RangeInput from './range-input';
 import ContestJudgeVoteJson from 'interfaces/contest-judge-vote-json';
+import ContestJudgeCategoryJson from 'interfaces/contest-judge-category-json';
 
 interface Props {
   entry: ContestEntry;
@@ -70,7 +70,7 @@ export default class Entry extends React.Component<Props> {
         </div>
 
         {this.props.judgeCategories.map((category) => {
-          const currentVote = this.score(category.id);
+          const currentScore = this.score(category.id);
 
           return (
             <div key={category.id}>
@@ -82,16 +82,12 @@ export default class Entry extends React.Component<Props> {
                 {category.name}
               </div>
 
-              <RangeInput
-                category={category}
-                currentValue={currentVote?.value}
-                updateValue={this.updateValue}
-              />
+              {this.renderRangeInput(category, currentScore?.value ?? 0)}
 
               <div className='contest-judge-entry__value'>
                 {
-                  currentVote != null
-                    ? `${currentVote.value}/${category.max_value}`
+                  currentScore != null
+                    ? `${currentScore.value}/${category.max_value}`
                     : trans('contest.judge.no_current_vote')
                 }
               </div>
@@ -119,6 +115,19 @@ export default class Entry extends React.Component<Props> {
         </div>
       </div>
     );
+  }
+
+  private renderRangeInput(category: ContestJudgeCategoryJson, initialValue: number) {
+      return (
+        <div className='contest-judge-entry__range'>
+          <input
+            max={category.max_value}
+            onChange={(e) => this.updateValue(e, category.id)}
+            type='range'
+            value={initialValue}
+          />
+        </div>
+      );
   }
 
   private score(categoryId: number) {
@@ -155,18 +164,19 @@ export default class Entry extends React.Component<Props> {
   };
 
   @action
-  private readonly updateValue = (id: number, value: number) => {
-    const vote = { contest_judge_category_id: id, value };
+  private readonly updateValue = (e: React.ChangeEvent<HTMLInputElement>, categoryId: number) => {
+    const value = Number(e.currentTarget.value);
+    const score = { contest_judge_category_id: categoryId, value };
     const { scores } = this;
 
-    if (this.score(id) == null) {
-      scores?.push(vote);
+    if (this.score(categoryId) == null) {
+      scores?.push(score);
     } else {
-      const index = scores?.findIndex((x) => x.contest_judge_category_id === id);
+      const index = scores?.findIndex((x) => x.contest_judge_category_id === categoryId);
       // that should never happen
       if (index == -1) return;
 
-      scores?.splice(index, 1, vote);
+      scores?.splice(index, 1, score);
     }
   };
 }
