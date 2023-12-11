@@ -58,11 +58,15 @@ class ContestEntriesController extends Controller
     public function judgeVote($id)
     {
         $entry = ContestEntry::with('contest')
+            ->with('contest.judges')
             ->with('contest.judgeCategories')
             ->with('judgeVotes')
             ->findOrFail($id);
 
         priv_check('ContestJudge', $entry->contest)->ensureCan();
+
+        // so that admin can't submit vote if not judge
+        abort_if($entry->contest->judges->find(auth()->user()->getKey()) === null, 403);
 
         $params = get_params(request()->all(), null, [
             'scores:array',
