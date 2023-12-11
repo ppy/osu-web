@@ -61,7 +61,6 @@ use Request;
  * @property-read Country|null $country
  * @property string|null $country_acronym
  * @property-write string|null $current_password
- * @property-read Collection<ContestJudgeVote> $contestJudgeVotes
  * @property-read Carbon|null $displayed_last_visit
  * @property-read string|null $email
  * @property-read Collection<Event> $events
@@ -877,7 +876,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'channels',
             'clients',
             'comments',
-            'contestJudgeVotes',
             'country',
             'events',
             'favourites',
@@ -1531,11 +1529,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->hasMany(Comment::class);
     }
 
-    public function contestJudgeVotes(): HasMany
-    {
-        return $this->hasMany(ContestJudgeVote::class);
-    }
-
     public function follows()
     {
         return $this->hasMany(Follow::class);
@@ -1677,13 +1670,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function blockedUserIds()
     {
         return $this->blocks->pluck('user_id');
-    }
-
-    public function contestJudgeParticipation(Contest $contest): int
-    {
-        return $this->contestJudgeVotes()
-            ->whereIn('contest_entry_id', $contest->entries->pluck('id'))
-            ->count();
     }
 
     public function userGroupsForBadges()

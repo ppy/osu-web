@@ -23,7 +23,8 @@ class ContestsController extends Controller
     public function show($id)
     {
         $contest = Contest::with('judges')
-            ->with('judges.contestJudgeVotes')
+            ->with('entries')
+            ->with('entries.judgeVotes')
             ->withCount('entries')
             ->findOrFail($id);
 

@@ -158,6 +158,12 @@ class Contest extends Model
         return $this->voting_starts_at !== null && $this->voting_starts_at->isPast();
     }
 
+    public function judgeVotesFrom(User $user): HasMany
+    {
+        return $this->entries()
+            ->whereHas('judgeVotes', fn ($q) => $q->where('user_id', $user->getKey()));
+    }
+
     public function state()
     {
         if ($this->entry_starts_at === null || $this->entry_starts_at->isFuture()) {

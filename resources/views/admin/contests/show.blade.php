@@ -73,7 +73,7 @@
                                 data-user-id="{{$judge->getKey()}}"
                                 href="{{ route('users.show', $judge) }}"
                             >{{ $judge->username }}</a>:
-                            {{ $judge->contestJudgeParticipation($contest) }}/{{ $contest->entries_count }}
+                            {{ $contest->judgeVotesFrom($judge)->count() }}/{{ $contest->entries_count }}
                         @endforeach
                     </div>
                 </dd>
