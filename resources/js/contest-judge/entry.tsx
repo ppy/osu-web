@@ -46,7 +46,6 @@ export default class Entry extends React.Component<Props> {
 
     for (const category of this.props.judgeCategories) {
       const score = this.score(category.id);
-
       if (score == null) return true;
 
       if (!scoresHaveChanged) {
@@ -66,9 +65,9 @@ export default class Entry extends React.Component<Props> {
   render() {
     return (
       <div className='contest-judge-entry'>
-        <h2 className='contest-judge-entry__title'>
+        <div className='contest-judge-entry__title'>
           {this.props.entry.title}
-        </h2>
+        </div>
 
         {this.props.judgeCategories.map((category) => {
           const currentVote = this.score(category.id);
@@ -123,7 +122,7 @@ export default class Entry extends React.Component<Props> {
   }
 
   private score(categoryId: number) {
-    return this.scores.find((x) => x.contest_judge_category_id === categoryId);
+    return this.scores.find(x => x.contest_judge_category_id === categoryId);
   }
 
   @action
@@ -165,7 +164,7 @@ export default class Entry extends React.Component<Props> {
     } else {
       const index = scores?.findIndex((x) => x.contest_judge_category_id === id);
       // that should never happen
-      if (index == null) return;
+      if (index == -1) return;
 
       scores?.splice(index, 1, vote);
     }
