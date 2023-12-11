@@ -119,7 +119,7 @@ export default class Entry extends React.Component<Props> {
 
   private renderRangeInput(category: ContestJudgeCategoryJson, initialValue: number) {
       return (
-        <div className='contest-judge-entry__range'>
+        <div className='contest-judge-entry-range-input'>
           <input
             max={category.max_value}
             onChange={(e) => this.updateValue(e, category.id)}
