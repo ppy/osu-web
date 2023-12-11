@@ -122,14 +122,39 @@ export default class Entry extends React.Component<Props> {
     );
   }
 
+
+  @action
+  private readonly handleCommentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    this.comment = e.currentTarget.value;
+  };
+
+  @action
+  private readonly handleRangeInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = Number(e.currentTarget.value);
+    const categoryId = Number(e.currentTarget.getAttribute('data-category-id'));
+    const score = { contest_judge_category_id: categoryId, value };
+    const { scores } = this;
+
+    if (this.score(categoryId) == null) {
+      scores?.push(score);
+    } else {
+      const index = scores?.findIndex((x) => x.contest_judge_category_id === categoryId);
+      // that should never happen
+      if (index === -1) return;
+
+      scores?.splice(index, 1, score);
+    }
+  };
+
   private renderRangeInput(category: ContestJudgeCategoryJson, initialValue: number) {
     return (
       <div className='contest-judge-entry-range-input'>
         <input
           max={category.max_value}
-          onChange={this.updateValue.bind(this, category.id)}
+          onChange={this.handleRangeInputChange}
           type='range'
           value={initialValue}
+          data-category-id={category.id}
         />
       </div>
     );
@@ -138,11 +163,6 @@ export default class Entry extends React.Component<Props> {
   private score(categoryId: number) {
     return this.scores.find((x) => x.contest_judge_category_id === categoryId);
   }
-
-  @action
-  private readonly handleCommentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    this.comment = e.currentTarget.value;
-  };
 
   @action
   private readonly submitVote = () => {
@@ -166,22 +186,5 @@ export default class Entry extends React.Component<Props> {
         this.posting = false;
         this.xhr = undefined;
       }));
-  };
-
-  @action
-  private readonly updateValue = (categoryId: number, e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = Number(e.currentTarget.value);
-    const score = { contest_judge_category_id: categoryId, value };
-    const { scores } = this;
-
-    if (this.score(categoryId) == null) {
-      scores?.push(score);
-    } else {
-      const index = scores?.findIndex((x) => x.contest_judge_category_id === categoryId);
-      // that should never happen
-      if (index === -1) return;
-
-      scores?.splice(index, 1, score);
-    }
   };
 }
