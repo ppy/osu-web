@@ -17,9 +17,7 @@ class UserSessionEvent extends NotificationEventBase
 
     public static function newLogout($userId, $keys)
     {
-        return new static('logout', $userId, [
-            'keys' => Session\Store::keysForRedis($keys),
-        ]);
+        return new static('logout', $userId, compact('keys'));
     }
 
     public static function newVerificationRequirementChange($userId, $isRequired)
@@ -31,9 +29,7 @@ class UserSessionEvent extends NotificationEventBase
 
     public static function newVerified($userId, $key)
     {
-        return new static('verified', $userId, [
-            'key' => Session\Store::keyForRedis($key),
-        ]);
+        return new static('verified', $userId, compact('key'));
     }
 
     public function broadcastAs()

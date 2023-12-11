@@ -32,12 +32,10 @@ class Store extends \Illuminate\Session\Store
         $redis = self::redis();
         $redis->del($ids);
         if ($userId !== null) {
-            $listIds = [
-                ...$ids,
-                // Also delete ids that were previously stored with prefix.
-                ...self::keysForRedis($ids),
-            ];
-            $redis->srem(self::listKey($userId), ...$listIds);
+            $idsForEvent = self::keysForEvent($ids);
+            // Also delete ids that were previously stored with prefix which is
+            // the full redis key just like for event.
+            $redis->srem(self::listKey($userId), ...[...$ids, ...$idsForEvent]);
             UserSessionEvent::newLogout($userId, $ids)->broadcast();
         }
     }
@@ -72,15 +70,15 @@ class Store extends \Illuminate\Session\Store
             );
     }
 
-    public static function keyForRedis(string $id): string
+    public static function keyForEvent(string $id): string
     {
         // TODO: use config's database.redis.session.prefix (also in notification-server)
         return "osu-next:{$id}";
     }
 
-    public static function keysForRedis(array $ids): array
+    public static function keysForEvent(array $ids): array
     {
-        return array_map(static::keyForRedis(...), $ids);
+        return array_map(static::keyForEvent(...), $ids);
     }
 
     public static function sessions(int $userId): array
@@ -157,6 +155,11 @@ class Store extends \Illuminate\Session\Store
     public function delete(): void
     {
         static::batchDelete($this->userId(), [$this->getId()]);
+    }
+
+    public function getKeyForEvent(): string
+    {
+        return self::keyForEvent($this->getId());
     }
 
     /**

@@ -108,7 +108,7 @@ class UserVerificationState
         $this->session->put('verified', true);
         $this->session->save();
 
-        UserSessionEvent::newVerified($this->user->getKey(), $this->session->getId())->broadcast();
+        UserSessionEvent::newVerified($this->user->getKey(), $this->session->getKeyForEvent())->broadcast();
     }
 
     public function verify($inputKey)
