@@ -130,8 +130,9 @@ export default class Entry extends React.Component<Props> {
 
   @action
   private readonly handleRangeInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = Number(e.currentTarget.value);
     const categoryId = Number(e.currentTarget.getAttribute('data-category-id'));
+    const value = Number(e.currentTarget.value);
+
     const score = { contest_judge_category_id: categoryId, value };
     const { scores } = this;
 
@@ -150,11 +151,11 @@ export default class Entry extends React.Component<Props> {
     return (
       <div className='contest-judge-entry-range-input'>
         <input
+          data-category-id={category.id}
           max={category.max_value}
           onChange={this.handleRangeInputChange}
           type='range'
           value={initialValue}
-          data-category-id={category.id}
         />
       </div>
     );
