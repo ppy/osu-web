@@ -66,6 +66,11 @@ export default class Entry extends React.Component<Props> {
     return (
       <div className='contest-judge-entry'>
         <div className='contest-judge-entry__title'>
+          {this.initialVote != null && (
+            <span className="contest-judge-entry__voted-icon" title={trans('contest.judge.voted')}>
+              <i className='fas fa-check' />
+            </span>
+          )}
           {this.props.entry.title}
         </div>
 

@@ -22,6 +22,7 @@ return [
             'missing_score' => 'missing score',
             'contest_vote_judged' => 'can\'t vote in judged contests',
         ],
+        'voted' => 'You already submitted a vote on this entry.',
     ],
 
     'judge_results' => [
