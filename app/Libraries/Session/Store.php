@@ -40,7 +40,7 @@ class Store extends \Illuminate\Session\Store
                     $ids,
                 ),
             ];
-            $redis->srem(self::listKey($userId), ...$ids);
+            $redis->srem(self::listKey($userId), ...$listIds);
             UserSessionEvent::newLogout($userId, $ids)->broadcast();
         }
     }
