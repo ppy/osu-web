@@ -5,7 +5,6 @@
 
 namespace App\Events;
 
-use App\Libraries\Session;
 use Illuminate\Broadcasting\Channel;
 
 class UserSessionEvent extends NotificationEventBase
