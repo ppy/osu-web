@@ -29,7 +29,7 @@ class Store extends \Illuminate\Session\Store
             $currentSession->flush();
         }
 
-        $redis = static::redis();
+        $redis = self::redis();
         $redis->del($ids);
         if ($userId !== null) {
             $listIds = [
@@ -40,7 +40,7 @@ class Store extends \Illuminate\Session\Store
                     $ids,
                 ),
             ];
-            $redis->srem(static::listKey($userId), ...$ids);
+            $redis->srem(self::listKey($userId), ...$ids);
             UserSessionEvent::newLogout($userId, $ids)->broadcast();
         }
     }
@@ -71,7 +71,7 @@ class Store extends \Illuminate\Session\Store
             : array_map(
                 // The ids were previously stored with prefix.
                 fn ($id) => str_starts_with($id, 'osu-next:') ? substr($id, 9) : $id,
-                static::redis()->smembers(static::listKey($userId)),
+                self::redis()->smembers(self::listKey($userId)),
             );
     }
 
@@ -87,7 +87,7 @@ class Store extends \Illuminate\Session\Store
             // Sessions are stored double-serialized in redis (session serialization + cache backend serialization)
             array_map(
                 fn ($s) => $s === null ? null : unserialize(unserialize($s)),
-                static::redis()->mget($ids),
+                self::redis()->mget($ids),
             ),
         );
 
@@ -202,7 +202,7 @@ class Store extends \Illuminate\Session\Store
 
         // TODO: move this to migrate and validate session id in readFromHandler
         if ($userId !== null) {
-            static::redis()->sadd(static::listKey($userId), $this->getId());
+            self::redis()->sadd(self::listKey($userId), $this->getId());
         }
     }
 
@@ -220,7 +220,7 @@ class Store extends \Illuminate\Session\Store
     {
         $userId = $this->userId();
 
-        return static::PREFIX
+        return self::PREFIX
             .($userId ?? 'guest')
             .':'
             .parent::generateSessionId();
