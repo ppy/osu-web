@@ -464,14 +464,9 @@ function log_error($exception)
 
 function logout()
 {
-    $guard = Auth::guard();
-    if ($guard instanceof Illuminate\Contracts\Auth\StatefulGuard) {
-        $guard->logout();
-    }
-
+    \Session::delete();
+    Auth::logout();
     cleanup_cookies();
-
-    \Session::invalidate();
 }
 
 function markdown($input, $preset = 'default')

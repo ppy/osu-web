@@ -35,10 +35,7 @@ class Store extends \Illuminate\Session\Store
             $listIds = [
                 ...$ids,
                 // Also delete ids that were previously stored with prefix.
-                ...array_map(
-                    fn ($id) => "osu-next:{$id}",
-                    $ids,
-                ),
+                ...self::keysForRedis($ids),
             ];
             $redis->srem(self::listKey($userId), ...$listIds);
             UserSessionEvent::newLogout($userId, $ids)->broadcast();
@@ -73,6 +70,17 @@ class Store extends \Illuminate\Session\Store
                 fn ($id) => str_starts_with($id, 'osu-next:') ? substr($id, 9) : $id,
                 self::redis()->smembers(self::listKey($userId)),
             );
+    }
+
+    public static function keyForRedis(string $id): string
+    {
+        // TODO: use config's database.redis.session.prefix (also in notification-server)
+        return "osu-next:{$id}";
+    }
+
+    public static function keysForRedis(array $ids): array
+    {
+        return array_map(static::keyForRedis(...), $ids);
     }
 
     public static function sessions(int $userId): array

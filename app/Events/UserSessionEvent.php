@@ -5,17 +5,21 @@
 
 namespace App\Events;
 
+use App\Libraries\Session;
 use Illuminate\Broadcasting\Channel;
 
 class UserSessionEvent extends NotificationEventBase
 {
-    public $action;
-    public $data;
-    public $userId;
+    private function __construct(public $action, public $userId, public $data)
+    {
+        parent::__construct();
+    }
 
     public static function newLogout($userId, $keys)
     {
-        return new static('logout', $userId, compact('keys'));
+        return new static('logout', $userId, [
+            'keys' => Session\Store::keysForRedis($keys),
+        ]);
     }
 
     public static function newVerificationRequirementChange($userId, $isRequired)
@@ -27,21 +31,9 @@ class UserSessionEvent extends NotificationEventBase
 
     public static function newVerified($userId, $key)
     {
-        return new static('verified', $userId, compact('key'));
-    }
-
-    /**
-     * Create a new event instance.
-     *
-     * @return void
-     */
-    private function __construct($action, $userId, $data)
-    {
-        parent::__construct();
-
-        $this->action = $action;
-        $this->userId = $userId;
-        $this->data = $data;
+        return new static('verified', $userId, [
+            'key' => Session\Store::keyForRedis($key),
+        ]);
     }
 
     public function broadcastAs()
