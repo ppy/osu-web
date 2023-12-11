@@ -6,7 +6,7 @@ import ContestEntryJson from 'interfaces/contest-entry-json';
 import ContestJudgeCategory from 'interfaces/contest-judge-category-json';
 import ContestJudgeScoreJson from 'interfaces/contest-judge-score-json';
 import { route } from 'laroute';
-import { action, computed, makeObservable, observable, runInAction } from 'mobx';
+import { action, computed, makeObservable, observable, runInAction, toJS } from 'mobx';
 import { observer } from 'mobx-react';
 import { ContestEntry } from 'models/contest-entry';
 import * as React from 'react';
@@ -14,6 +14,7 @@ import ContestEntryStore from 'stores/contest-entry-store';
 import { onError } from 'utils/ajax';
 import { trans } from 'utils/lang';
 import RangeInput from './range-input';
+import ContestJudgeVoteJson from 'interfaces/contest-judge-vote-json';
 
 interface Props {
   entry: ContestEntry;
@@ -27,21 +28,37 @@ export default class Entry extends React.Component<Props> {
   @observable private comment: string;
   @observable private posting = false;
   @observable private xhr?: JQuery.jqXHR;
+  private readonly initialVote?: ContestJudgeVoteJson;
 
   constructor(props: Props) {
     super(props);
 
-    this.scores = props.entry.current_user_judge_vote?.scores ?? [];
     this.comment = props.entry.current_user_judge_vote?.comment ?? '';
+    this.initialVote = toJS(props.entry.current_user_judge_vote);
+    this.scores = props.entry.current_user_judge_vote?.scores ?? [];
 
     makeObservable(this);
   }
 
   @computed
   private get disabled() {
-    for (const x of this.props.judgeCategories) {
-      if (this.score(x.id) == null) return true;
+    let scoresHaveChanged = false;
+
+    for (const category of this.props.judgeCategories) {
+      const score = this.score(category.id);
+
+      if (score == null) return true;
+
+      if (!scoresHaveChanged) {
+        const initialScore = this.initialVote?.scores?.find(x => x.contest_judge_category_id === category.id);
+        if (initialScore?.value != score.value) scoresHaveChanged = true;
+      }
     }
+
+    if (
+      !scoresHaveChanged &&
+      this.comment == (this.initialVote?.comment ?? '')
+    ) return true;
 
     return false;
   }
