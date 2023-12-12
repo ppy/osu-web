@@ -35,7 +35,7 @@ class Store extends \Illuminate\Session\Store
             $idsForEvent = self::keysForEvent($ids);
             // Also delete ids that were previously stored with prefix which is
             // the full redis key just like for event.
-            $redis->srem(self::listKey($userId), ...[...$ids, ...$idsForEvent]);
+            $redis->srem(self::listKey($userId), ...$ids, ...$idsForEvent);
             UserSessionEvent::newLogout($userId, $ids)->broadcast();
         }
     }
