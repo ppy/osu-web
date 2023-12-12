@@ -44,7 +44,7 @@ class ForceReactivation
 
         $this->addHistoryNote();
         $this->user->update(['user_password' => '']);
-        SessionStore::destroy($userId);
+        SessionStore::batchDelete($userId);
         UserClient::where('user_id', $userId)->update(['verified' => false]);
 
         if (!$waitingActivation && is_valid_email_format($this->user->user_email)) {
