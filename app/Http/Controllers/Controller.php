@@ -46,7 +46,7 @@ abstract class Controller extends BaseController
         if (config('osu.user.bypass_verification')) {
             UserVerificationState::fromCurrentRequest()->markVerified();
         }
-        $session->migrate(true, $user->getKey());
+        $session->migrate(true);
     }
 
     protected function logout()

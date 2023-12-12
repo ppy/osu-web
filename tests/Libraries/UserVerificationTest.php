@@ -7,7 +7,7 @@ declare(strict_types=1);
 
 namespace Tests\Libraries;
 
-use App\Libraries\Session\SessionManager;
+use App\Libraries\Session\Store as SessionStore;
 use App\Libraries\UserVerification;
 use App\Libraries\UserVerificationState;
 use App\Models\LoginAttempt;
@@ -69,7 +69,7 @@ class UserVerificationTest extends TestCase
 
         $linkKey = $session->get('verification_link_key');
 
-        $guestSession = SessionManager::create();
+        $guestSession = SessionStore::findOrNew();
         $this
             ->withPersistentSession($guestSession)
             ->get(route('account.verify', ['key' => $linkKey]))
@@ -94,7 +94,7 @@ class UserVerificationTest extends TestCase
             ->assertStatus(401)
             ->assertViewIs('users.verify');
 
-        $guestSession = SessionManager::create();
+        $guestSession = SessionStore::findOrNew();
         $this
             ->withPersistentSession($guestSession)
             ->get(route('account.verify', ['key' => 'invalid']))
