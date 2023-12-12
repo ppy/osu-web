@@ -22,7 +22,7 @@ class EsIndexScoresQueueTest extends TestCase
 
     private static function queueKey(): string
     {
-        return 'osu-queue:score-index-'.static::SCHEMA;
+        return 'osu-queue:'.static::SCHEMA;
     }
 
     private static function queueSize(): int
