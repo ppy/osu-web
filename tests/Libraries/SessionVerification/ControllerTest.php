@@ -16,7 +16,7 @@ use Tests\TestCase;
 
 class ControllerTest extends TestCase
 {
-    public function testIssue()
+    public function testIssue(): void
     {
         $user = User::factory()->create();
 
@@ -54,7 +54,7 @@ class ControllerTest extends TestCase
         $this->assertNotSame($state->key, SessionVerification\State::fromSession($session)->key);
     }
 
-    public function testVerify()
+    public function testVerify(): void
     {
         $user = User::factory()->create();
         $session = \Session::instance();
@@ -128,7 +128,7 @@ class ControllerTest extends TestCase
         $this->assertFalse(SessionStore::findOrNew($sessionId)->isVerified());
     }
 
-    public function testVerifyMismatch()
+    public function testVerifyMismatch(): void
     {
         $user = User::factory()->create();
         $session = \Session::instance();
