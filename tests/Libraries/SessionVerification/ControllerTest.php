@@ -18,6 +18,7 @@ class ControllerTest extends TestCase
 {
     public function testIssue(): void
     {
+        \Mail::fake();
         $user = User::factory()->create();
 
         $this
@@ -28,6 +29,7 @@ class ControllerTest extends TestCase
 
         $record = LoginAttempt::find('127.0.0.1');
 
+        \Mail::assertQueued(UserVerificationMail::class, 1);
         $this->assertTrue($record->containsUser($user, 'verify'));
         $this->assertFalse(\Session::isVerified());
     }
