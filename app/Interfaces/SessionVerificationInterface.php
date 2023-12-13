@@ -12,6 +12,8 @@ interface SessionVerificationInterface
     public static function findForVerification(string $id): ?static;
 
     public function getKey();
+    public function getKeyForEvent();
     public function isVerified(): bool;
     public function markVerified(): void;
+    public function userId(): ?int;
 }
