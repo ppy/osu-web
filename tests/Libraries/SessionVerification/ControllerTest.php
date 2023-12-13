@@ -9,6 +9,7 @@ namespace Tests\Libraries\SessionVerification;
 
 use App\Libraries\Session\Store as SessionStore;
 use App\Libraries\SessionVerification;
+use App\Mail\UserVerification as UserVerificationMail;
 use App\Models\LoginAttempt;
 use App\Models\User;
 use Tests\TestCase;
@@ -29,6 +30,28 @@ class ControllerTest extends TestCase
 
         $this->assertTrue($record->containsUser($user, 'verify'));
         $this->assertFalse(\Session::isVerified());
+    }
+
+    public function testReissue(): void
+    {
+        \Mail::fake();
+        $user = User::factory()->create();
+        $session = \Session::instance();
+
+        $this
+            ->be($user)
+            ->withPersistentSession($session)
+            ->get(route('account.edit'));
+
+        $state = SessionVerification\State::fromSession($session);
+
+        $this
+            ->withPersistentSession($session)
+            ->post(route('account.reissue-code'))
+            ->assertSuccessful();
+
+        \Mail::assertQueued(UserVerificationMail::class, 2);
+        $this->assertNotSame($state->key, SessionVerification\State::fromSession($session)->key);
     }
 
     public function testVerify()
