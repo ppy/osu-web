@@ -7,7 +7,7 @@ import ContestScoringCategoryJson from './contest-scoring-category-json';
 export default interface ContestJson {
   entries?: ContestEntryJson[];
   id: number;
-  scoring_categories?: ContestScoringCategoryJson[];
   max_judging_score?: number;
   name: string;
+  scoring_categories?: ContestScoringCategoryJson[];
 }

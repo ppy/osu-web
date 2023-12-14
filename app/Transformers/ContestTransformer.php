@@ -50,14 +50,14 @@ class ContestTransformer extends TransformerAbstract
         return $this->collection($contest->entriesByType(Auth::user()), new ContestEntryTransformer());
     }
 
-    public function includeScoringCategories(Contest $contest): Collection
-    {
-        return $this->collection($contest->scoringCategories, new ContestScoringCategoryTransformer());
-    }
-
     public function includeMaxJudgingScore(Contest $contest): Primitive
     {
         return $this->primitive((int) $contest->scoring_categories_sum_max_value);
+    }
+
+    public function includeScoringCategories(Contest $contest): Collection
+    {
+        return $this->collection($contest->scoringCategories, new ContestScoringCategoryTransformer());
     }
 
     public function includeUsersVotedCount(Contest $contest): ResourceInterface

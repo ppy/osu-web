@@ -3,9 +3,9 @@
 
 import BigButton from 'components/big-button';
 import ContestEntryJson from 'interfaces/contest-entry-json';
-import ContestScoringCategoryJson from 'interfaces/contest-scoring-category-json';
 import ContestJudgeScoreJson from 'interfaces/contest-judge-score-json';
 import ContestJudgeVoteJson from 'interfaces/contest-judge-vote-json';
+import ContestScoringCategoryJson from 'interfaces/contest-scoring-category-json';
 import { route } from 'laroute';
 import { action, computed, makeObservable, observable, runInAction, toJS } from 'mobx';
 import { observer } from 'mobx-react';
