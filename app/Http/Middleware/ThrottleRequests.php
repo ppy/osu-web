@@ -18,7 +18,7 @@ class ThrottleRequests extends ThrottleRequestsBase
 
     public static function getApiThrottle($group = 'global')
     {
-        return 'throttle:'.config("osu.api.throttle.{$group}").':';
+        return 'throttle:'.$GLOBALS['cfg']['osu']['api']['throttle'][$group].':';
     }
 
     protected function handleRequest($request, Closure $next, array $limits)

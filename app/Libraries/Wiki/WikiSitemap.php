@@ -93,7 +93,7 @@ class WikiSitemap
 
         $this->titles[$key] = $page->title();
 
-        if ($page->locale === config('app.fallback_locale')) {
+        if ($page->locale === $GLOBALS['cfg']['app']['fallback_locale']) {
             static::arraySet($this->sitemap, $page->path, null);
         }
     }

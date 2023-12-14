@@ -17,17 +17,17 @@ class SessionManager extends \Illuminate\Session\SessionManager
      */
     protected function buildSession($handler)
     {
-        return new Store($this->config->get('session.cookie'), $handler);
+        return new Store($GLOBALS['cfg']['session']['cookie'], $handler);
     }
 
     // copied from upstream but with custom CacheBasedSessionHandler
     protected function createCacheHandler($driver)
     {
-        $store = $this->config->get('session.store') ?: $driver;
+        $store = $GLOBALS['cfg']['session']['store'] ?: $driver;
 
         return new CacheBasedSessionHandler(
             clone $this->container->make('cache')->store($store),
-            $this->config->get('session.lifetime')
+            $GLOBALS['cfg']['session']['lifetime'],
         );
     }
 }

@@ -110,7 +110,7 @@ For a full list of changes, see the
 
 ## Base URL
 
-The base URL is: `{{ config('app.url') }}/api/[version]/`
+The base URL is: `{{ $GLOBALS['cfg']['app']['url'] }}/api/[version]/`
 
 ## API Versions
 

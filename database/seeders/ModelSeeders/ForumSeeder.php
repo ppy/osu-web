@@ -24,7 +24,7 @@ class ForumSeeder extends Seeder
             ->has(
                 Forum::factory()->state([
                     'forum_desc' => 'The place to go when you have a problem to report or a question to ask.',
-                    'forum_id' => config('osu.forum.help_forum_id'),
+                    'forum_id' => $GLOBALS['cfg']['osu']['forum']['help_forum_id'],
                     'forum_name' => 'Help',
                 ]),
                 'subforums',
@@ -32,7 +32,7 @@ class ForumSeeder extends Seeder
             ->has(
                 Forum::factory()->state([
                     'forum_desc' => 'Suggest what you would like to see in osu!.',
-                    'forum_id' => config('osu.forum.feature_forum_id'),
+                    'forum_id' => $GLOBALS['cfg']['osu']['forum']['feature_forum_id'],
                     'forum_name' => 'Feature Requests',
                 ]),
                 'subforums',
@@ -53,14 +53,14 @@ class ForumSeeder extends Seeder
             ->has(
                 Forum::factory()->state([
                     'forum_desc' => '',
-                    'forum_id' => config('osu.user.user_page_forum_id'),
+                    'forum_id' => $GLOBALS['cfg']['osu']['user']['user_page_forum_id'],
                     'forum_name' => 'User Pages',
                 ]),
                 'subforums',
             )
             ->create([
                 'forum_desc' => '',
-                'forum_id' => config('osu.forum.admin_forum_id'),
+                'forum_id' => $GLOBALS['cfg']['osu']['forum']['admin_forum_id'],
                 'forum_name' => 'Management',
             ]);
 
@@ -81,7 +81,7 @@ class ForumSeeder extends Seeder
 
         // Forums to be populated, i.e. all open forums except "User Pages"
         $forums = Forum::where('forum_type', 1)
-            ->where('forum_id', '<>', config('osu.user.user_page_forum_id'))
+            ->where('forum_id', '<>', $GLOBALS['cfg']['osu']['user']['user_page_forum_id'])
             ->get();
 
         // Topics and posts

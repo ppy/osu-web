@@ -38,8 +38,8 @@ class PasswordResetData
         $data = new static([
             'authHash' => static::authHash($user),
             'canResendMailAfter' => $now - 1,
-            'key' => bin2hex(random_bytes(config('osu.user.password_reset.key_length') / 2)),
-            'expiresAt' => $now + config('osu.user.password_reset.expires_hour') * 3600,
+            'key' => bin2hex(random_bytes($GLOBALS['cfg']['osu']['user']['password_reset']['key_length'] / 2)),
+            'expiresAt' => $now + $GLOBALS['cfg']['osu']['user']['password_reset']['expires_hour'] * 3600,
             'tries' => 0,
         ], $user, $username);
         $data->sendMail();
@@ -92,7 +92,7 @@ class PasswordResetData
 
     public function hasMoreTries(): bool
     {
-        return $this->attrs['tries'] < config('osu.user.password_reset.tries');
+        return $this->attrs['tries'] < $GLOBALS['cfg']['osu']['user']['password_reset']['tries'];
     }
 
     public function isActive(): bool

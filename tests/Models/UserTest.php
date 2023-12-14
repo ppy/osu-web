@@ -27,7 +27,7 @@ class UserTest extends TestCase
 
     public function testEmailLoginDisabled()
     {
-        config()->set('osu.user.allow_email_login', false);
+        config_set('osu.user.allow_email_login', false);
         User::factory()->create([
             'username' => 'test',
             'user_email' => 'test@example.org',
@@ -38,7 +38,7 @@ class UserTest extends TestCase
 
     public function testEmailLoginEnabled()
     {
-        config()->set('osu.user.allow_email_login', true);
+        config_set('osu.user.allow_email_login', true);
         $user = User::factory()->create([
             'username' => 'test',
             'user_email' => 'test@example.org',
@@ -49,7 +49,7 @@ class UserTest extends TestCase
 
     public function testUsernameAvailableAtForDefaultGroup()
     {
-        config()->set('osu.user.allowed_rename_groups', ['default']);
+        config_set('osu.user.allowed_rename_groups', ['default']);
         $allowedAtUpTo = now()->addYears(5);
         $user = User::factory()->withGroup('default')->create();
 
@@ -58,7 +58,7 @@ class UserTest extends TestCase
 
     public function testUsernameAvailableAtForNonDefaultGroup()
     {
-        config()->set('osu.user.allowed_rename_groups', ['default']);
+        config_set('osu.user.allowed_rename_groups', ['default']);
         $allowedAt = now()->addYears(10);
         $user = User::factory()->withGroup('gmt')->create(['group_id' => app('groups')->byIdentifier('default')]);
 

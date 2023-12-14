@@ -128,7 +128,7 @@ class BeatmapsetSearch extends RecordSearch
     {
         static $fields = ['artist', 'source', 'tags'];
         $params = [
-            'index' => config('osu.elasticsearch.prefix').'blacklist',
+            'index' => $GLOBALS['cfg']['osu']['elasticsearch']['prefix'].'blacklist',
             'id' => 'beatmapsets',
             // can be changed to per-field blacklist as different fields should probably have different restrictions.
             'path' => 'keywords',

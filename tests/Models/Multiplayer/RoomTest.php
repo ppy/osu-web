@@ -191,8 +191,8 @@ class RoomTest extends TestCase
         static $dayMinutes = 1440;
         static::createApp();
 
-        $maxDuration = config('osu.user.max_multiplayer_duration');
-        $maxDurationSupporter = config('osu.user.max_multiplayer_duration_supporter');
+        $maxDuration = $GLOBALS['cfg']['osu']['user']['max_multiplayer_duration'];
+        $maxDurationSupporter = $GLOBALS['cfg']['osu']['user']['max_multiplayer_duration_supporter'];
 
         return [
             '2 weeks' => [$dayMinutes * $maxDuration, false, false],

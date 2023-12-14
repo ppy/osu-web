@@ -255,14 +255,14 @@ class Forum extends Model
     // feature forum shall have extra features like sorting and voting
     public function isFeatureForum()
     {
-        $id = config('osu.forum.feature_forum_id');
+        $id = $GLOBALS['cfg']['osu']['forum']['feature_forum_id'];
 
         return $this->forum_id === $id || isset($this->forum_parents[$id]);
     }
 
     public function isHelpForum()
     {
-        return $this->forum_id === config('osu.forum.help_forum_id');
+        return $this->forum_id === $GLOBALS['cfg']['osu']['forum']['help_forum_id'];
     }
 
     public function topicsAdded($count)

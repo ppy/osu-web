@@ -39,7 +39,7 @@ class UserVerification
     public static function logAttempt(string $source, string $type, string $reason = null): void
     {
         Datadog::increment(
-            config('datadog-helper.prefix_web').'.verification.attempts',
+            $GLOBALS['cfg']['datadog-helper']['prefix_web'].'.verification.attempts',
             1,
             compact('reason', 'source', 'type')
         );

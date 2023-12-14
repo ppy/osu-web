@@ -29,7 +29,7 @@ class TopicTest extends TestCase
     public function testIssueTags()
     {
         $topic = new Topic();
-        $topic->forum_id = config('osu.forum.issue_forum_ids')[0];
+        $topic->forum_id = $GLOBALS['cfg']['osu']['forum']['issue_forum_ids'][0];
 
         $topic->topic_title = '[invalid] herp a derp';
         $this->assertSame(['invalid'], $topic->issueTags());
@@ -38,7 +38,7 @@ class TopicTest extends TestCase
     public function testIssueTagsWithKeywordAsTitle()
     {
         $topic = new Topic();
-        $topic->forum_id = config('osu.forum.issue_forum_ids')[0];
+        $topic->forum_id = $GLOBALS['cfg']['osu']['forum']['issue_forum_ids'][0];
 
         $topic->topic_title = 'invalid herp a derp';
         $this->assertSame([], $topic->issueTags());

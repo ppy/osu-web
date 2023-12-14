@@ -538,7 +538,7 @@ class OsuAuthorize
      */
     public function checkBeatmapsetAdvancedSearch(?User $user): string
     {
-        if (oauth_token() === null && !config('osu.beatmapset.guest_advanced_search')) {
+        if (oauth_token() === null && !$GLOBALS['cfg']['osu']['beatmapset']['guest_advanced_search']) {
             $this->ensureLoggedIn($user);
         }
 
@@ -671,7 +671,7 @@ class OsuAuthorize
             return $prefix.'set_metadata';
         }
 
-        if ($user->beatmapsetNominationsToday() >= config('osu.beatmapset.user_daily_nominations')) {
+        if ($user->beatmapsetNominationsToday() >= $GLOBALS['cfg']['osu']['beatmapset']['user_daily_nominations']) {
             return $prefix.'exhausted';
         }
 
@@ -938,7 +938,7 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user, $prefix);
 
-        if (!config('osu.user.min_plays_allow_verified_bypass')) {
+        if (!$GLOBALS['cfg']['osu']['user']['min_plays_allow_verified_bypass']) {
             $this->ensureHasPlayed($user);
         }
 
@@ -987,7 +987,7 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user, $prefix);
 
-        if (!config('osu.user.min_plays_allow_verified_bypass')) {
+        if (!$GLOBALS['cfg']['osu']['user']['min_plays_allow_verified_bypass']) {
             $this->ensureHasPlayed($user);
         }
 
@@ -1381,7 +1381,7 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if ($forum->categoryId() !== config('osu.forum.admin_forum_id')) {
+        if ($forum->categoryId() !== $GLOBALS['cfg']['osu']['forum']['admin_forum_id']) {
             return 'ok';
         }
 
@@ -1486,14 +1486,14 @@ class OsuAuthorize
         if (!$user->isBot()) {
             $plays = $user->playCount();
             $posts = $user->user_posts;
-            $forInitialHelpForum = in_array($forum->forum_id, config('osu.forum.initial_help_forum_ids'), true);
+            $forInitialHelpForum = in_array($forum->forum_id, $GLOBALS['cfg']['osu']['forum']['initial_help_forum_ids'], true);
 
             if ($forInitialHelpForum) {
                 if ($plays < 10 && $posts > 10) {
                     return $prefix.'too_many_help_posts';
                 }
             } else {
-                if ($plays < config('osu.forum.minimum_plays') && $plays < $posts + 1) {
+                if ($plays < $GLOBALS['cfg']['osu']['forum']['minimum_plays'] && $plays < $posts + 1) {
                     return $prefix.'play_more';
                 }
 
@@ -1756,7 +1756,7 @@ class OsuAuthorize
         }
 
         $plays = $user->playCount();
-        if ($plays < config('osu.forum.minimum_plays')) {
+        if ($plays < $GLOBALS['cfg']['osu']['forum']['minimum_plays']) {
             return $prefix.'play_more';
         }
 
@@ -1903,7 +1903,7 @@ class OsuAuthorize
             return $prefix.'not_owner';
         }
 
-        if ($score instanceof Solo\Score && config('osu.user.hide_pinned_solo_scores')) {
+        if ($score instanceof Solo\Score && $GLOBALS['cfg']['osu']['user']['hide_pinned_solo_scores']) {
             return $prefix.'disabled_type';
         }
 
@@ -2115,13 +2115,13 @@ class OsuAuthorize
             return;
         }
 
-        $minPlays = config('osu.user.min_plays_for_posting');
+        $minPlays = $GLOBALS['cfg']['osu']['user']['min_plays_for_posting'];
 
         if ($user->playCount() >= $minPlays) {
             return;
         }
 
-        if (config('osu.user.min_plays_allow_verified_bypass')) {
+        if ($GLOBALS['cfg']['osu']['user']['min_plays_allow_verified_bypass']) {
             if ($user->isSessionVerified()) {
                 return;
             }

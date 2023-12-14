@@ -23,7 +23,7 @@
                 <div class="account-edit-entry account-edit-entry--no-label">
                     <div>{!! osu_trans('accounts.edit.email.locked._', [
                         'accounts' => link_to(
-                            'mailto:'.config('osu.emails.account'),
+                            "mailto:{$GLOBALS['cfg']['osu']['emails']['account']}",
                             osu_trans('accounts.edit.email.locked.accounts')
                         )
                     ]) !!}</div>

@@ -41,7 +41,7 @@ class UsersControllerTest extends TestCase
                     'password' => 'hunter22',
                 ],
             ], [
-                'HTTP_USER_AGENT' => config('osu.client.user_agent'),
+                'HTTP_USER_AGENT' => $GLOBALS['cfg']['osu']['client']['user_agent'],
             ])->assertJsonFragment([
                 'username' => 'user1',
                 'country_code' => Country::UNKNOWN,
@@ -52,7 +52,7 @@ class UsersControllerTest extends TestCase
 
     public function testStoreRegModeWeb()
     {
-        config()->set('osu.user.registration_mode', 'web');
+        config_set('osu.user.registration_mode', 'web');
         $this->expectCountChange(fn () => User::count(), 0);
 
         $this
@@ -63,7 +63,7 @@ class UsersControllerTest extends TestCase
                     'password' => 'hunter22',
                 ],
             ], [
-                'HTTP_USER_AGENT' => config('osu.client.user_agent'),
+                'HTTP_USER_AGENT' => $GLOBALS['cfg']['osu']['client']['user_agent'],
             ])->assertStatus(403)
             ->assertJsonFragment([
                 'error' => osu_trans('users.store.from_web'),
@@ -86,7 +86,7 @@ class UsersControllerTest extends TestCase
                     'password' => 'hunter22',
                 ],
             ], [
-                'HTTP_USER_AGENT' => config('osu.client.user_agent'),
+                'HTTP_USER_AGENT' => $GLOBALS['cfg']['osu']['client']['user_agent'],
             ])->assertSuccessful();
 
         $this->assertSame($previousCount, User::count());
@@ -108,7 +108,7 @@ class UsersControllerTest extends TestCase
                     'password' => 'hunter22',
                 ],
             ], [
-                'HTTP_USER_AGENT' => config('osu.client.user_agent'),
+                'HTTP_USER_AGENT' => $GLOBALS['cfg']['osu']['client']['user_agent'],
             ])->assertStatus(422)
             ->assertJsonFragment([
                 'form_error' => ['user' => ['username' => ['Username is required.']]],
@@ -122,7 +122,7 @@ class UsersControllerTest extends TestCase
                     'password' => 'hunter22',
                 ],
             ], [
-                'HTTP_USER_AGENT' => config('osu.client.user_agent'),
+                'HTTP_USER_AGENT' => $GLOBALS['cfg']['osu']['client']['user_agent'],
             ])->assertStatus(422)
             ->assertJsonFragment([
                 'form_error' => ['user' => ['username' => ['Username is required.']]],
@@ -149,7 +149,7 @@ class UsersControllerTest extends TestCase
 
     public function testStoreWeb(): void
     {
-        config()->set('osu.user.registration_mode', 'web');
+        config_set('osu.user.registration_mode', 'web');
         $this->expectCountChange(fn () => User::count(), 1);
 
         $this->post(route('users.store-web'), [
@@ -168,7 +168,7 @@ class UsersControllerTest extends TestCase
      */
     public function testStoreWebInvalidParams($username, $email, $emailConfirmation, $password, $passwordConfirmation): void
     {
-        config()->set('osu.user.registration_mode', 'web');
+        config_set('osu.user.registration_mode', 'web');
         $this->expectCountChange(fn () => User::count(), 0);
 
         $this->post(route('users.store-web'), [
@@ -184,7 +184,7 @@ class UsersControllerTest extends TestCase
 
     public function testStoreWebLoggedIn(): void
     {
-        config()->set('osu.user.registration_mode', 'web');
+        config_set('osu.user.registration_mode', 'web');
         $user = User::factory()->create();
 
         $this->expectCountChange(fn () => User::count(), 0);
@@ -214,7 +214,7 @@ class UsersControllerTest extends TestCase
                     'password' => 'hunter22',
                 ],
             ], [
-                'HTTP_USER_AGENT' => config('osu.client.user_agent'),
+                'HTTP_USER_AGENT' => $GLOBALS['cfg']['osu']['client']['user_agent'],
                 'HTTP_CF_IPCOUNTRY' => $country->getKey(),
             ])->assertJsonFragment([
                 'username' => 'user1',
@@ -245,7 +245,7 @@ class UsersControllerTest extends TestCase
                     'password' => 'hunter22',
                 ],
             ], [
-                'HTTP_USER_AGENT' => config('osu.client.user_agent'),
+                'HTTP_USER_AGENT' => $GLOBALS['cfg']['osu']['client']['user_agent'],
             ])->assertStatus(302);
 
         $this->assertSame($previousCount, User::count());

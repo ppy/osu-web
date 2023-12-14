@@ -393,7 +393,7 @@ class Channel extends Model
     {
         return $this->isAnnouncement()
             ? static::ANNOUNCE_MESSAGE_LENGTH_LIMIT
-            : config('osu.chat.message_length_limit');
+            : $GLOBALS['cfg']['osu']['chat']['message_length_limit'];
     }
 
     public function multiplayerMatch()
@@ -430,12 +430,12 @@ class Channel extends Model
         }
 
         if ($this->isPM()) {
-            $limit = config('osu.chat.rate_limits.private.limit');
-            $window = config('osu.chat.rate_limits.private.window');
+            $limit = $GLOBALS['cfg']['osu']['chat']['rate_limits']['private']['limit'];
+            $window = $GLOBALS['cfg']['osu']['chat']['rate_limits']['private']['window'];
             $keySuffix = 'PM';
         } else {
-            $limit = config('osu.chat.rate_limits.public.limit');
-            $window = config('osu.chat.rate_limits.public.window');
+            $limit = $GLOBALS['cfg']['osu']['chat']['rate_limits']['public']['limit'];
+            $window = $GLOBALS['cfg']['osu']['chat']['rate_limits']['public']['window'];
             $keySuffix = 'PUBLIC';
         }
 

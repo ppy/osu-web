@@ -68,7 +68,7 @@ class ClientCheckTest extends TestCase
 
     public function testFindBuildNonexistentWithDisabledAssertion()
     {
-        config()->set('osu.client.check_version', false);
+        config_set('osu.client.check_version', false);
 
         $user = User::factory()->withGroup('default')->create();
 

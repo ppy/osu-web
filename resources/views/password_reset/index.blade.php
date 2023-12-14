@@ -32,7 +32,7 @@
                 </button>
             </div>
 
-            @if (config('services.enchant.id') !== null)
+            @if ($GLOBALS['cfg']['services']['enchant']['id'] !== null)
                 <div>
                     {!! osu_trans('password_reset.starting.support._', ['button' => link_to(
                         '#',

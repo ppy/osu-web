@@ -13,7 +13,7 @@ trait UserSearch
 
     public static function esIndexName()
     {
-        return config('osu.elasticsearch.prefix').'users';
+        return $GLOBALS['cfg']['osu']['elasticsearch']['prefix'].'users';
     }
 
     public static function esIndexingQuery()

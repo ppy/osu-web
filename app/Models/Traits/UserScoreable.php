@@ -16,7 +16,7 @@ trait UserScoreable
 
     public function aggregatedScoresBest(string $mode, int $size): SearchResponse
     {
-        $index = config('osu.elasticsearch.prefix')."high_scores_{$mode}";
+        $index = $GLOBALS['cfg']['osu']['elasticsearch']['prefix']."high_scores_{$mode}";
 
         $search = new BasicSearch($index, "aggregatedScoresBest_{$mode}");
         $search->connectionName = 'scores';
@@ -61,7 +61,7 @@ trait UserScoreable
             // always fetching 100 to cache; we're not supporting beyond 100, either.
             $this->beatmapBestScoreIds[$mode] = cache_remember_mutexed(
                 "search-cache:beatmapBestScores:{$this->getKey()}:{$mode}",
-                config('osu.scores.es_cache_duration'),
+                $GLOBALS['cfg']['osu']['scores']['es_cache_duration'],
                 [],
                 function () use ($mode) {
                     // FIXME: should return some sort of error on error

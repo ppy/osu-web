@@ -732,7 +732,7 @@ class ReviewTest extends TestCase
         Queue::fake();
         Event::fake();
 
-        config()->set('osu.beatmapset.discussion_review_max_blocks', 4);
+        config_set('osu.beatmapset.discussion_review_max_blocks', 4);
 
         $this->user = User::factory()->create();
         $this->beatmapset = Beatmapset::factory()->create([

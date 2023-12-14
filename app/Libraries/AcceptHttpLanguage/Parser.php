@@ -52,7 +52,7 @@ class Parser
 
     public function __construct(?array $availableLanguages = null)
     {
-        $this->availableLanguages = $availableLanguages ?? config('app.available_locales');
+        $this->availableLanguages = $availableLanguages ?? $GLOBALS['cfg']['app']['available_locales'];
     }
 
     /**
