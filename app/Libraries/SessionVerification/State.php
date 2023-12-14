@@ -16,7 +16,7 @@ class State
 {
     private const KEY_VALID_DURATION = 5 * 3600;
 
-    public readonly \DateTimeInterface $expiresAt;
+    public readonly CarbonImmutable $expiresAt;
     public readonly string $key;
     public readonly string $linkKey;
     public int $tries = 0;
