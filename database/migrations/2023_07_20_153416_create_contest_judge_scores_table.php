@@ -19,12 +19,12 @@ return new class extends Migration
         Schema::create('contest_judge_scores', function (Blueprint $table) {
             $table->id();
             $table->integer('contest_judge_vote_id')->unsigned();
-            $table->integer('contest_judge_category_id')->unsigned();
+            $table->integer('contest_scoring_category_id')->unsigned();
             $table->tinyInteger('value');
             $table->timestamps();
 
-            $table->index('contest_judge_category_id');
-            $table->unique(['contest_judge_vote_id', 'contest_judge_category_id'], 'vote_category');
+            $table->index('contest_scoring_category_id');
+            $table->unique(['contest_judge_vote_id', 'contest_scoring_category_id'], 'vote_category');
         });
     }
 

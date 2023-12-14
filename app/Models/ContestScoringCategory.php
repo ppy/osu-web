@@ -16,6 +16,6 @@ namespace App\Models;
  * @property string $name
  * @property \Carbon\Carbon|null $updated_at
  */
-class ContestJudgeCategory extends Model
+class ContestScoringCategory extends Model
 {
 }

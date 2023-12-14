@@ -21,7 +21,7 @@ class ContestEntriesController extends Controller
     {
         $entry = ContestEntry::with('contest')
             ->with('contest.entries')
-            ->with('contest.judgeCategories')
+            ->with('contest.scoringCategories')
             ->with('judgeVotes')
             ->with('judgeVotes.scores')
             ->with('judgeVotes.user')
@@ -33,7 +33,7 @@ class ContestEntriesController extends Controller
         abort_if(!$entry->contest->isJudged() || !$entry->contest->show_votes, 404);
 
         $contestJson = json_item(
-            $entry->contest->loadSum('judgeCategories', 'max_value'),
+            $entry->contest->loadSum('scoringCategories', 'max_value'),
             'Contest',
             ['max_judging_score']
         );
@@ -59,7 +59,7 @@ class ContestEntriesController extends Controller
     {
         $entry = ContestEntry::with('contest')
             ->with('contest.judges')
-            ->with('contest.judgeCategories')
+            ->with('contest.scoringCategories')
             ->with('judgeVotes')
             ->findOrFail($id);
 
@@ -91,9 +91,9 @@ class ContestEntriesController extends Controller
                 ]);
             }
 
-            foreach ($entry->contest->judgeCategories as $category) {
+            foreach ($entry->contest->scoringCategories as $category) {
                 $score = $scores
-                    ->where('contest_judge_category_id', $category->getKey())
+                    ->where('contest_scoring_category_id', $category->getKey())
                     ->first();
 
                 if ($score === null) {
@@ -101,7 +101,7 @@ class ContestEntriesController extends Controller
                 }
 
                 $currentScore = ContestJudgeScore::where('contest_judge_vote_id', $vote->getKey())
-                    ->where('contest_judge_category_id', $category->getKey())
+                    ->where('contest_scoring_category_id', $category->getKey())
                     ->first();
 
                 $value = clamp($score['value'], 0, $category->max_value);
@@ -114,7 +114,7 @@ class ContestEntriesController extends Controller
                     }
                 } else {
                     ContestJudgeScore::create([
-                        'contest_judge_category_id' => $category->getKey(),
+                        'contest_scoring_category_id' => $category->getKey(),
                         'contest_judge_vote_id' => $vote->getKey(),
                         'value' => $value,
                     ]);

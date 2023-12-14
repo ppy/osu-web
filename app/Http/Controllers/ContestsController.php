@@ -29,14 +29,14 @@ class ContestsController extends Controller
         $contest = Contest::with('entries')
             ->with('entries.judgeVotes')
             ->with('entries.judgeVotes.scores')
-            ->with('judgeCategories')
+            ->with('scoringCategories')
             ->findOrFail($id);
 
         abort_if(!$contest->isJudged(), 404);
 
         priv_check('ContestJudge', $contest)->ensureCan();
 
-        $contestJson = json_item($contest, 'Contest', ['judge_categories']);
+        $contestJson = json_item($contest, 'Contest', ['scoring_categories']);
         $entriesJson = json_collection($contest->entries, 'ContestEntry', [
             'current_user_judge_vote.scores',
         ]);

@@ -37,7 +37,7 @@ export default class Main extends React.Component<Props> {
   }
 
   render() {
-    const judgeCategories = this.props.contest?.judge_categories;
+    const scoringCategories = this.props.contest?.scoring_categories;
 
     return (
       <>
@@ -46,11 +46,11 @@ export default class Main extends React.Component<Props> {
         </div>
 
         <div className='contest-judge contest-judge--items'>
-          {judgeCategories && this.filteredEntries.map((entry) => (
+          {scoringCategories && this.filteredEntries.map((entry) => (
             <Entry
               key={entry.id}
               entry={entry}
-              judgeCategories={judgeCategories}
+              scoringCategories={scoringCategories}
               store={this.props.store}
             />
           ))}

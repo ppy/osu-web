@@ -3,8 +3,7 @@
 
 import BigButton from 'components/big-button';
 import ContestEntryJson from 'interfaces/contest-entry-json';
-import ContestJudgeCategory from 'interfaces/contest-judge-category-json';
-import ContestJudgeCategoryJson from 'interfaces/contest-judge-category-json';
+import ContestScoringCategoryJson from 'interfaces/contest-scoring-category-json';
 import ContestJudgeScoreJson from 'interfaces/contest-judge-score-json';
 import ContestJudgeVoteJson from 'interfaces/contest-judge-vote-json';
 import { route } from 'laroute';
@@ -18,7 +17,7 @@ import { trans } from 'utils/lang';
 
 interface Props {
   entry: ContestEntry;
-  judgeCategories: ContestJudgeCategory[];
+  scoringCategories: ContestScoringCategoryJson[];
   store: ContestEntryStore;
 }
 
@@ -44,12 +43,12 @@ export default class Entry extends React.Component<Props> {
   private get disabled() {
     let scoresHaveChanged = false;
 
-    for (const category of this.props.judgeCategories) {
+    for (const category of this.props.scoringCategories) {
       const score = this.score(category.id);
       if (score == null) return true;
 
       if (!scoresHaveChanged) {
-        const initialScore = this.initialVote?.scores?.find((x) => x.contest_judge_category_id === category.id);
+        const initialScore = this.initialVote?.scores?.find((x) => x.contest_scoring_category_id === category.id);
         if (initialScore?.value !== score.value) scoresHaveChanged = true;
       }
     }
@@ -74,7 +73,7 @@ export default class Entry extends React.Component<Props> {
           {this.props.entry.title}
         </div>
 
-        {this.props.judgeCategories.map((category) => {
+        {this.props.scoringCategories.map((category) => {
           const currentScore = this.score(category.id);
 
           return (
@@ -133,13 +132,13 @@ export default class Entry extends React.Component<Props> {
     const categoryId = Number(e.currentTarget.getAttribute('data-category-id'));
     const value = Number(e.currentTarget.value);
 
-    const score = { contest_judge_category_id: categoryId, value };
+    const score: ContestJudgeScoreJson = { contest_scoring_category_id: categoryId, value };
     const { scores } = this;
 
     if (this.score(categoryId) == null) {
       scores?.push(score);
     } else {
-      const index = scores?.findIndex((x) => x.contest_judge_category_id === categoryId);
+      const index = scores?.findIndex((x) => x.contest_scoring_category_id === categoryId);
       // that should never happen
       if (index === -1) return;
 
@@ -147,7 +146,7 @@ export default class Entry extends React.Component<Props> {
     }
   };
 
-  private renderRangeInput(category: ContestJudgeCategoryJson, initialValue: number) {
+  private renderRangeInput(category: ContestScoringCategoryJson, initialValue: number) {
     return (
       <div className='contest-judge-entry-range-input'>
         <input
@@ -162,7 +161,7 @@ export default class Entry extends React.Component<Props> {
   }
 
   private score(categoryId: number) {
-    return this.scores.find((x) => x.contest_judge_category_id === categoryId);
+    return this.scores.find((x) => x.contest_scoring_category_id === categoryId);
   }
 
   @action

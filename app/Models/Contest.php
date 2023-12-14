@@ -28,7 +28,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $header_url
  * @property int $id
  * @property mixed $link_icon
- * @property-read Collection<ContestJudgeCategory> $judgeCategories
  * @property-read Collection<ContestJudge> $judges
  * @property int $max_entries
  * @property int $max_votes
@@ -36,6 +35,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property bool $show_votes
  * @property mixed $type
  * @property mixed $unmasked
+ * @property-read Collection<ContestJudgeCategory> $scoringCategories
  * @property bool $show_names
  * @property \Carbon\Carbon|null $updated_at
  * @property bool $visible
@@ -60,11 +60,6 @@ class Contest extends Model
     public function entries()
     {
         return $this->hasMany(ContestEntry::class);
-    }
-
-    public function judgeCategories(): HasMany
-    {
-        return $this->hasMany(ContestJudgeCategory::class);
     }
 
     public function judges(): BelongsToMany
@@ -167,6 +162,11 @@ class Contest extends Model
     {
         return $this->entries()
             ->whereHas('judgeVotes', fn ($q) => $q->where('user_id', $user->getKey()));
+    }
+
+    public function scoringCategories(): HasMany
+    {
+        return $this->hasMany(ContestScoringCategory::class);
     }
 
     public function state()

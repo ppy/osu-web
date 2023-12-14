@@ -19,7 +19,7 @@ class ContestJudgeScoreTransformer extends TransformerAbstract
     public function transform(ContestJudgeScore $score): array
     {
         return [
-            'contest_judge_category_id' => $score->contest_judge_category_id,
+            'contest_scoring_category_id' => $score->contest_scoring_category_id,
             'id' => $score->getKey(),
             'value' => $score->value,
         ];
@@ -27,6 +27,6 @@ class ContestJudgeScoreTransformer extends TransformerAbstract
 
     public function includeCategory(ContestJudgeScore $score): Item
     {
-        return $this->item($score->category, new ContestJudgeCategoryTransformer());
+        return $this->item($score->category, new ContestScoringCategoryTransformer());
     }
 }

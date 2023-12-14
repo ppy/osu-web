@@ -10,7 +10,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * @property-read ContestJudgeCategory $category
+ * @property-read ContestScoringCategory $category
  * @property int $contest_judge_category_id
  * @property int $contest_judge_vote_id
  * @property \Carbon\Carbon|null $created_at
@@ -23,7 +23,7 @@ class ContestJudgeScore extends Model
 {
     public function category(): BelongsTo
     {
-        return $this->belongsTo(ContestJudgeCategory::class, 'contest_judge_category_id');
+        return $this->belongsTo(ContestScoringCategory::class, 'contest_scoring_category_id');
     }
 
     public function vote(): BelongsTo

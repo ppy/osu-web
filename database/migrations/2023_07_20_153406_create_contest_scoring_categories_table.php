@@ -16,7 +16,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('contest_judge_categories', function (Blueprint $table) {
+        Schema::create('contest_scoring_categories', function (Blueprint $table) {
             $table->id();
             $table->integer('contest_id')->unsigned();
             $table->string('name');
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('contest_judge_categories');
+        Schema::dropIfExists('contest_scoring_categories');
     }
 };

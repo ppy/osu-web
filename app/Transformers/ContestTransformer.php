@@ -15,7 +15,7 @@ class ContestTransformer extends TransformerAbstract
 {
     protected array $availableIncludes = [
         'entries',
-        'judge_categories',
+        'scoring_categories',
         'max_judging_score',
         'users_voted_count',
     ];
@@ -50,14 +50,14 @@ class ContestTransformer extends TransformerAbstract
         return $this->collection($contest->entriesByType(Auth::user()), new ContestEntryTransformer());
     }
 
-    public function includeJudgeCategories(Contest $contest): Collection
+    public function includeScoringCategories(Contest $contest): Collection
     {
-        return $this->collection($contest->judgeCategories, new ContestJudgeCategoryTransformer());
+        return $this->collection($contest->scoringCategories, new ContestScoringCategoryTransformer());
     }
 
     public function includeMaxJudgingScore(Contest $contest): Primitive
     {
-        return $this->primitive((int) $contest->judge_categories_sum_max_value);
+        return $this->primitive((int) $contest->scoring_categories_sum_max_value);
     }
 
     public function includeUsersVotedCount(Contest $contest): ResourceInterface

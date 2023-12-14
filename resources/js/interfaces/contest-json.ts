@@ -2,12 +2,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import ContestEntryJson from './contest-entry-json';
-import ContestJudgeCategoryJson from './contest-judge-category-json';
+import ContestScoringCategoryJson from './contest-scoring-category-json';
 
 export default interface ContestJson {
   entries?: ContestEntryJson[];
   id: number;
-  judge_categories?: ContestJudgeCategoryJson[];
+  scoring_categories?: ContestScoringCategoryJson[];
   max_judging_score?: number;
   name: string;
 }
