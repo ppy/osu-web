@@ -15,6 +15,14 @@ use App\Models\User;
 
 class Helper
 {
+    public static function currentUser(): User
+    {
+        $user = \Auth::user();
+        app('OsuAuthorize')->ensureLoggedIn($user);
+
+        return $user;
+    }
+
     public static function issue(SessionVerificationInterface $session, User $user): void
     {
         if (!is_valid_email_format($user->user_email)) {
