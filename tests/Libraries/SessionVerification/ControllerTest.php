@@ -79,6 +79,7 @@ class ControllerTest extends TestCase
 
         $this->assertFalse($record->containsUser($user, 'verify-mismatch:'));
         $this->assertTrue($session->isVerified());
+        $this->assertNull(SessionVerification\State::fromSession($session));
     }
 
     public function testVerifyLink(): void

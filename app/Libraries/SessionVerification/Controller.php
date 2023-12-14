@@ -80,7 +80,7 @@ class Controller
         }
 
         Helper::logAttempt('input', 'success');
-        Helper::markVerified($session);
+        Helper::markVerified($session, $state);
 
         return response(null, 204);
     }
@@ -99,7 +99,7 @@ class Controller
         // Otherwise pretend everything is okay if session is missing
         if ($session !== null) {
             Helper::logAttempt('link', 'success');
-            Helper::markVerified($session);
+            Helper::markVerified($session, $state);
         }
 
         return ext_view('accounts.verification_completed');

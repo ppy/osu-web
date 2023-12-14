@@ -68,7 +68,7 @@ class State
     public function delete(): void
     {
         \Cache::delete(static::cacheKey($this->sessionClass, $this->sessionId));
-        \Cache::delete(static::cacheLinkKey($state->linkKey));
+        \Cache::delete(static::cacheLinkKey($this->linkKey));
     }
 
     public function findSession(): ?SessionVerificationInterface

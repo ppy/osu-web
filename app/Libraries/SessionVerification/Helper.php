@@ -47,9 +47,10 @@ class Helper
         );
     }
 
-    public static function markVerified(SessionVerificationInterface $session)
+    public static function markVerified(SessionVerificationInterface $session, State $state)
     {
         $session->markVerified();
+        $state->delete();
         UserSessionEvent::newVerified($session->userId(), $session->getKeyForEvent())->broadcast();
     }
 }
