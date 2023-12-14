@@ -15,7 +15,7 @@ use App\Models\User;
 
 class Helper
 {
-    public static function currentUser(): User
+    public static function currentUserOrFail(): User
     {
         $user = \Auth::user();
         app('OsuAuthorize')->ensureLoggedIn($user);

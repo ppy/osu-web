@@ -18,7 +18,7 @@ class Controller
 
         app('route-section')->setError("{$statusCode}-verification");
 
-        $user = Helper::currentUser();
+        $user = Helper::currentUserOrFail();
         $email = $user->user_email;
 
         $session = \Session::instance();
@@ -48,7 +48,7 @@ class Controller
             return response(null, 204);
         }
 
-        Helper::issue($session, Helper::currentUser());
+        Helper::issue($session, Helper::currentUserOrFail());
 
         return response(['message' => osu_trans('user_verification.errors.reissued')], 200);
     }
@@ -56,7 +56,7 @@ class Controller
     public static function verify()
     {
         $key = strtr(get_string(\Request::input('verification_key')) ?? '', [' ' => '']);
-        $user = Helper::currentUser();
+        $user = Helper::currentUserOrFail();
         $session = \Session::instance();
         $state = State::fromSession($session);
 
