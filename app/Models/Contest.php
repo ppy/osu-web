@@ -125,6 +125,11 @@ class Contest extends Model
         return isset($this->getExtraOptions()['best_of']);
     }
 
+    public function isJudge(User $user): bool
+    {
+        return $this->judges->find($user->getKey()) !== null;
+    }
+
     public function isJudged(): bool
     {
         return $this->getExtraOptions()['judged'] ?? false;

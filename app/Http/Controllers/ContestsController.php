@@ -57,7 +57,7 @@ class ContestsController extends Controller
             abort(404);
         }
 
-        $isJudge = $user !== null && $contest->judges->find($user->getKey()) !== null;
+        $isJudge = $user !== null && $contest->isJudge($user);
 
         if ($contest->isVotingStarted() && isset($contest->getExtraOptions()['children'])) {
             $contestIds = $contest->getExtraOptions()['children'];

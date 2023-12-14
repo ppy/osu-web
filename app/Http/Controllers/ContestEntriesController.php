@@ -66,7 +66,7 @@ class ContestEntriesController extends Controller
         priv_check('ContestJudge', $entry->contest)->ensureCan();
 
         // so that admin can't submit vote if not judge
-        abort_if($entry->contest->judges->find(auth()->user()->getKey()) === null, 403);
+        abort_if(!$entry->contest->isJudge(auth()->user()), 403);
 
         $params = get_params(request()->all(), null, [
             'scores:array',
