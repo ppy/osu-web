@@ -8,7 +8,6 @@ namespace App\Http\Controllers;
 use App;
 use App\Http\Middleware\VerifyUserAlways;
 use App\Libraries\LocaleMeta;
-use App\Libraries\UserVerificationState;
 use App\Models\Log;
 use Auth;
 use Carbon\Carbon;
@@ -38,13 +37,13 @@ abstract class Controller extends BaseController
     {
         cleanup_cookies();
 
-        $session = session();
+        $session = \Session::instance();
         $session->flush();
         $session->regenerateToken();
         $session->put('requires_verification', VerifyUserAlways::isRequired($user));
         Auth::login($user, $remember);
         if ($GLOBALS['cfg']['osu']['user']['bypass_verification']) {
-            UserVerificationState::fromCurrentRequest()->markVerified();
+            $session->markVerified();
         }
         $session->migrate(true);
     }

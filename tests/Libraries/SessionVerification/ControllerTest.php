@@ -5,19 +5,20 @@
 
 declare(strict_types=1);
 
-namespace Tests\Libraries;
+namespace Tests\Libraries\SessionVerification;
 
 use App\Libraries\Session\Store as SessionStore;
-use App\Libraries\UserVerification;
-use App\Libraries\UserVerificationState;
+use App\Libraries\SessionVerification;
+use App\Mail\UserVerification as UserVerificationMail;
 use App\Models\LoginAttempt;
 use App\Models\User;
 use Tests\TestCase;
 
-class UserVerificationTest extends TestCase
+class ControllerTest extends TestCase
 {
-    public function testIssue()
+    public function testIssue(): void
     {
+        \Mail::fake();
         $user = User::factory()->create();
 
         $this
@@ -28,30 +29,57 @@ class UserVerificationTest extends TestCase
 
         $record = LoginAttempt::find('127.0.0.1');
 
+        \Mail::assertQueued(UserVerificationMail::class, 1);
         $this->assertTrue($record->containsUser($user, 'verify'));
-        $this->assertFalse(UserVerification::fromCurrentRequest()->isDone());
+        $this->assertFalse(\Session::isVerified());
     }
 
-    public function testVerify()
+    public function testReissue(): void
     {
+        \Mail::fake();
         $user = User::factory()->create();
+        $session = \Session::instance();
 
         $this
             ->be($user)
+            ->withPersistentSession($session)
+            ->get(route('account.edit'));
+
+        $state = SessionVerification\State::fromSession($session);
+
+        $this
+            ->withPersistentSession($session)
+            ->post(route('account.reissue-code'))
+            ->assertSuccessful();
+
+        \Mail::assertQueued(UserVerificationMail::class, 2);
+        $this->assertNotSame($state->key, SessionVerification\State::fromSession($session)->key);
+    }
+
+    public function testVerify(): void
+    {
+        $user = User::factory()->create();
+        $session = \Session::instance();
+
+        $this
+            ->be($user)
+            ->withPersistentSession($session)
             ->get(route('account.edit'))
             ->assertStatus(401)
             ->assertViewIs('users.verify');
 
-        $key = session()->get('verification_key');
+        $key = SessionVerification\State::fromSession($session)->key;
 
         $this
+            ->withPersistentSession($session)
             ->post(route('account.verify'), ['verification_key' => $key])
             ->assertSuccessful();
 
         $record = LoginAttempt::find('127.0.0.1');
 
         $this->assertFalse($record->containsUser($user, 'verify-mismatch:'));
-        $this->assertTrue(UserVerification::fromCurrentRequest()->isDone());
+        $this->assertTrue($session->isVerified());
+        $this->assertNull(SessionVerification\State::fromSession($session));
     }
 
     public function testVerifyLink(): void
@@ -67,7 +95,7 @@ class UserVerificationTest extends TestCase
             ->assertStatus(401)
             ->assertViewIs('users.verify');
 
-        $linkKey = $session->get('verification_link_key');
+        $linkKey = SessionVerification\State::fromSession($session)->linkKey;
 
         $guestSession = SessionStore::findOrNew();
         $this
@@ -78,7 +106,7 @@ class UserVerificationTest extends TestCase
         $record = LoginAttempt::find('127.0.0.1');
 
         $this->assertFalse($record->containsUser($user, 'verify-mismatch:'));
-        $this->assertTrue(UserVerificationState::load(['userId' => $user->getKey(), 'sessionId' => $sessionId])->isDone());
+        $this->assertTrue(SessionStore::findOrNew($sessionId)->isVerified());
     }
 
     public function testVerifyLinkMismatch(): void
@@ -100,15 +128,17 @@ class UserVerificationTest extends TestCase
             ->get(route('account.verify', ['key' => 'invalid']))
             ->assertStatus(404);
 
-        $this->assertFalse(UserVerificationState::load(['userId' => $user->getKey(), 'sessionId' => $sessionId])->isDone());
+        $this->assertFalse(SessionStore::findOrNew($sessionId)->isVerified());
     }
 
-    public function testVerifyMismatch()
+    public function testVerifyMismatch(): void
     {
         $user = User::factory()->create();
+        $session = \Session::instance();
 
         $this
             ->be($user)
+            ->withPersistentSession($session)
             ->get(route('account.edit'))
             ->assertStatus(401)
             ->assertViewIs('users.verify');
@@ -117,12 +147,13 @@ class UserVerificationTest extends TestCase
         $this->assertFalse($record->containsUser($user, 'verify-mismatch:'));
 
         $this
+            ->withPersistentSession($session)
             ->post(route('account.verify'), ['verification_key' => 'invalid'])
             ->assertStatus(422);
 
         $record = LoginAttempt::find('127.0.0.1');
 
         $this->assertTrue($record->containsUser($user, 'verify-mismatch:'));
-        $this->assertFalse(UserVerification::fromCurrentRequest()->isDone());
+        $this->assertFalse($session->isVerified());
     }
 }

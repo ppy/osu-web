@@ -8,11 +8,13 @@ declare(strict_types=1);
 namespace App\Libraries\Session;
 
 use App\Events\UserSessionEvent;
+use App\Interfaces\SessionVerificationInterface;
 use Illuminate\Redis\Connections\PhpRedisConnection;
+use Illuminate\Session\Store as BaseStore;
 use Illuminate\Support\Arr;
 use Jenssegers\Agent\Agent;
 
-class Store extends \Illuminate\Session\Store
+class Store extends BaseStore implements SessionVerificationInterface
 {
     private const PREFIX = 'sessions:';
 
@@ -38,6 +40,11 @@ class Store extends \Illuminate\Session\Store
             $redis->srem(self::listKey($userId), ...$ids, ...$idsForEvent);
             UserSessionEvent::newLogout($userId, $idsForEvent)->broadcast();
         }
+    }
+
+    public static function findForVerification(string $id): static
+    {
+        return static::findOrNew($id);
     }
 
     public static function findOrNew(?string $id = null): static
@@ -157,6 +164,11 @@ class Store extends \Illuminate\Session\Store
         static::batchDelete($this->userId(), [$this->getId()]);
     }
 
+    public function getKey(): string
+    {
+        return $this->getId();
+    }
+
     public function getKeyForEvent(): string
     {
         return self::keyForEvent($this->getId());
@@ -174,6 +186,17 @@ class Store extends \Illuminate\Session\Store
     {
         // Overridden to allow prefixed id
         return is_string($id);
+    }
+
+    public function isVerified(): bool
+    {
+        return $this->attributes['verified'] ?? false;
+    }
+
+    public function markVerified(): void
+    {
+        $this->attributes['verified'] = true;
+        $this->save();
     }
 
     /**
