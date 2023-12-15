@@ -12,7 +12,6 @@ use App\Libraries\Payments\PaymentSignature;
 use App\Libraries\Payments\UnsupportedNotificationTypeException;
 use App\Models\Store\Order;
 use App\Models\Store\OrderItem;
-use Config;
 use Illuminate\Support\Facades\Event;
 use Tests\TestCase;
 
@@ -140,8 +139,8 @@ class CentiliPaymentProcessorTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        Config::set('payments.centili.api_key', 'api_key');
-        Config::set('payments.centili.conversion_rate', 120.00);
+        config_set('payments.centili.api_key', 'api_key');
+        config_set('payments.centili.conversion_rate', 120.00);
         $this->order = Order::factory()->checkout()->create();
     }
 
@@ -150,13 +149,13 @@ class CentiliPaymentProcessorTest extends TestCase
         $base = [
             'reference' => $this->order->getOrderNumber(),
             'country' => 'jp',
-            'enduserprice' => $this->order->getTotal() * config('payments.centili.conversion_rate'),
+            'enduserprice' => $this->order->getTotal() * $GLOBALS['cfg']['payments']['centili']['conversion_rate'],
             'event_type' => 'one_off',
             'mnocode' => 'BADDOG',
             'phone' => 'test@example.org',
             'revenue' => '4.34',
             'revenuecurrency' => 'MONOPOLY',
-            'service' => config('payments.centili.api_key'),
+            'service' => $GLOBALS['cfg']['payments']['centili']['api_key'],
             'status' => 'success',
             'transactionid' => '111222333',
         ];

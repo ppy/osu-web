@@ -24,7 +24,7 @@ class OAuthDeleteExpiredTokens extends Command
 
     public function handle()
     {
-        $this->expiredBefore = now()->subDays(config('osu.oauth.retain_expired_tokens_days'));
+        $this->expiredBefore = now()->subDays($GLOBALS['cfg']['osu']['oauth']['retain_expired_tokens_days']);
         $this->line("Deleting before {$this->expiredBefore}");
 
         $this->deleteAuthCodes();

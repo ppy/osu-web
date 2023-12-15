@@ -71,7 +71,7 @@
                 'title' => osu_trans('users.restricted_banner.title'),
                 'message' => osu_trans('users.restricted_banner.message', [
                     'link' => link_to(
-                        config('osu.urls.user.restriction'),
+                        osu_url('user.restriction'),
                         osu_trans('users.restricted_banner.message_link')
                     ),
                 ]),
@@ -109,7 +109,7 @@
             >
                 @yield('permanent-fixed-footer')
 
-                @if (config('osu.is_development_deploy'))
+                @if ($GLOBALS['cfg']['osu']['is_development_deploy'])
                     <div class="development-deploy-footer">
                         This is a development instance of the <a href="https://osu.ppy.sh" class="development-deploy-footer__link">osu! website</a>. Please do not login with your osu! credentials.
                     </div>

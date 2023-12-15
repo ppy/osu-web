@@ -16,9 +16,9 @@ class UserRankCache
 {
     public static function fetch(array $options, int $beatmapId, int $rulesetId, int $score): ?int
     {
-        $ddPrefix = config('datadog-helper.prefix_web').'.user_rank_cached_lookup';
+        $ddPrefix = $GLOBALS['cfg']['datadog-helper']['prefix_web'].'.user_rank_cached_lookup';
 
-        $server = config('osu.scores.rank_cache.server_url');
+        $server = $GLOBALS['cfg']['osu']['scores']['rank_cache']['server_url'];
 
         if ($server === null || !empty($options['mods']) || ($options['type'] ?? 'global') !== 'global') {
             Datadog::increment("{$ddPrefix}.miss", 1, ['reason' => 'unsupported_mode']);
@@ -37,7 +37,7 @@ class UserRankCache
             return null;
         }
 
-        if ($stats->unique_users < config('osu.scores.rank_cache.min_users')) {
+        if ($stats->unique_users < $GLOBALS['cfg']['osu']['scores']['rank_cache']['min_users']) {
             Datadog::increment("{$ddPrefix}.miss", 1, ['reason' => 'not_enough_unique_users']);
 
             return null;
@@ -47,7 +47,7 @@ class UserRankCache
             $response = (new Client(['base_uri' => $server]))
                 ->request('GET', 'rankLookup', [
                     'connect_timeout' => 1,
-                    'timeout' => config('osu.scores.rank_cache.timeout'),
+                    'timeout' => $GLOBALS['cfg']['osu']['scores']['rank_cache']['timeout'],
                     'query' => compact('beatmapId', 'rulesetId', 'score'),
                 ])
                 ->getBody()

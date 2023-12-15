@@ -118,7 +118,7 @@ abstract class Model extends BaseModel
             $query->getQuery()->offset = null;
             $query->limit(null);
 
-            return min($query->count(), config('osu.pagination.max_count'));
+            return min($query->count(), $GLOBALS['cfg']['osu']['pagination']['max_count']);
         };
     }
 
@@ -224,9 +224,9 @@ abstract class Model extends BaseModel
 
     public function dbName()
     {
-        $connection = $this->connection ?? config('database.default');
+        $connection = $this->connection ?? $GLOBALS['cfg']['database']['default'];
 
-        return config("database.connections.{$connection}.database");
+        return $GLOBALS['cfg']['database']['connections'][$connection]['database'];
     }
 
     public function tableName(bool $includeDbPrefix = false)

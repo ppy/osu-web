@@ -1,10 +1,12 @@
 <?php
 
+$configOsu = include __DIR__.'/osu.php';
+
 return [
     'dsn' => env('APP_SENTRY'),
 
     // capture release as git sha
-    'release' => config('osu.git-sha'),
+    'release' => $configOsu['git-sha'],
 
     // When left empty or `null` the Laravel environment will be used
     'environment' => env('APP_SENTRY_ENVIRONMENT'),

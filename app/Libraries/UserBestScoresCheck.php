@@ -85,7 +85,7 @@ class UserBestScoresCheck
     public function removeFromEs(string $mode, array $ids)
     {
         return Es::getClient('scores')->deleteByQuery([
-            'index' => config('osu.elasticsearch.prefix')."high_scores_{$mode}",
+            'index' => $GLOBALS['cfg']['osu']['elasticsearch']['prefix']."high_scores_{$mode}",
             'body' => ['query' => ['terms' => ['score_id' => $ids]]],
         ]);
     }
@@ -103,7 +103,7 @@ class UserBestScoresCheck
 
     private function newSearch(string $mode): Search
     {
-        $index = config('osu.elasticsearch.prefix')."high_scores_{$mode}";
+        $index = $GLOBALS['cfg']['osu']['elasticsearch']['prefix']."high_scores_{$mode}";
 
         $search = new BasicSearch($index, "user_best_scores_check_{$mode}");
         $search->connectionName = 'scores';

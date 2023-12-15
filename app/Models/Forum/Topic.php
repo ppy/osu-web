@@ -489,7 +489,7 @@ class Topic extends Model implements AfterCommit
             return false;
         }
 
-        return $this->topic_last_post_time < Carbon::now()->subMonths(config('osu.forum.old_months'));
+        return $this->topic_last_post_time < Carbon::now()->subMonths($GLOBALS['cfg']['osu']['forum']['old_months']);
     }
 
     public function isLocked()
@@ -501,7 +501,7 @@ class Topic extends Model implements AfterCommit
 
     public function isActive()
     {
-        return $this->topic_last_post_time > Carbon::now()->subMonths(config('osu.forum.necropost_months'));
+        return $this->topic_last_post_time > Carbon::now()->subMonths($GLOBALS['cfg']['osu']['forum']['necropost_months']);
     }
 
     public function markRead($user, $markTime)
@@ -557,7 +557,7 @@ class Topic extends Model implements AfterCommit
 
     public function isIssue()
     {
-        return in_array($this->forum_id, config('osu.forum.issue_forum_ids'), true);
+        return in_array($this->forum_id, $GLOBALS['cfg']['osu']['forum']['issue_forum_ids'], true);
     }
 
     public function delete()
@@ -756,7 +756,7 @@ class Topic extends Model implements AfterCommit
 
     public function allowsDoublePosting(): bool
     {
-        return in_array($this->forum_id, config('osu.forum.double_post_allowed_forum_ids'), true);
+        return in_array($this->forum_id, $GLOBALS['cfg']['osu']['forum']['double_post_allowed_forum_ids'], true);
     }
 
     public function isDoublePostBy(User $user)
@@ -768,9 +768,9 @@ class Topic extends Model implements AfterCommit
             return false;
         }
         if ($user->user_id === $this->topic_poster) {
-            $minHours = config('osu.forum.double_post_time.author');
+            $minHours = $GLOBALS['cfg']['osu']['forum']['double_post_time']['author'];
         } else {
-            $minHours = config('osu.forum.double_post_time.normal');
+            $minHours = $GLOBALS['cfg']['osu']['forum']['double_post_time']['normal'];
         }
 
         return $this->topic_last_post_time > Carbon::now()->subHours($minHours);

@@ -123,7 +123,7 @@ class ShopifyControllerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        config()->set('payments.shopify.webhook_key', 'magic');
+        config_set('payments.shopify.webhook_key', 'magic');
 
         $this->url = route('payments.shopify.callback');
     }

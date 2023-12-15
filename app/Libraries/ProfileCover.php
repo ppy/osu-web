@@ -97,7 +97,7 @@ class ProfileCover
         $id = $this->id();
 
         if ($id !== null) {
-            return config('app.url').'/images/headers/profile-covers/c'.$id.'.jpg';
+            return $GLOBALS['cfg']['app']['url'].'/images/headers/profile-covers/c'.$id.'.jpg';
         }
     }
 }

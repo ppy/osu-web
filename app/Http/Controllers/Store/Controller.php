@@ -32,6 +32,6 @@ abstract class Controller extends BaseController
 
     protected function isAllowRestrictedUsers()
     {
-        return config('store.allow_restricted_users');
+        return $GLOBALS['cfg']['store']['allow_restricted_users'];
     }
 }

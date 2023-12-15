@@ -99,7 +99,8 @@ class Handler extends ExceptionHandler
             return;
         }
 
-        if (config('sentry.dsn')) {
+        // Fallback in case error happening before config is initialised
+        if ($GLOBALS['cfg']['sentry']['dsn'] ?? false) {
             $this->reportWithSentry($e);
         }
 
@@ -134,7 +135,7 @@ class Handler extends ExceptionHandler
 
         $isJsonRequest = is_json_request();
 
-        if (config('app.debug') || ($isJsonRequest && static::isOAuthServerException($e))) {
+        if ($GLOBALS['cfg']['app']['debug'] || ($isJsonRequest && static::isOAuthServerException($e))) {
             $response = parent::render($request, $e);
         } else {
             $message = static::exceptionMessage($e);

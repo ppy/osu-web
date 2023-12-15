@@ -43,6 +43,6 @@ class DatadogMetrics extends LaravelDatadogMiddleware
 
         $tags = array_merge($tags, app('route-section')->getOriginal());
 
-        Datadog::timing(config('datadog-helper.prefix_web').'.request_time', $duration, 1, $tags);
+        Datadog::timing($GLOBALS['cfg']['datadog-helper']['prefix_web'].'.request_time', $duration, 1, $tags);
     }
 }

@@ -73,6 +73,6 @@ class UserSearch extends RecordSearch
 
     protected function maxResults(): int
     {
-        return config('osu.search.max.user');
+        return $GLOBALS['cfg']['osu']['search']['max']['user'];
     }
 }

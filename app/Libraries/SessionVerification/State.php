@@ -26,7 +26,7 @@ class State
         private readonly string $sessionId,
     ) {
         // 1 byte = 8 bits = 2^8 = 16^2 = 2 hex characters
-        $this->key = bin2hex(random_bytes(\Config::get('osu.user.verification_key_length_hex') / 2));
+        $this->key = bin2hex(random_bytes($GLOBALS['cfg']['osu']['user']['verification_key_length_hex'] / 2));
         $this->linkKey = SignedRandomString::create(32);
         $this->expiresAt = CarbonImmutable::now()->addSeconds(static::KEY_VALID_DURATION);
     }
@@ -85,7 +85,7 @@ class State
         }
 
         if (!hash_equals($this->key, $inputKey)) {
-            if ($this->tries >= \Config::get('osu.user.verification_key_tries_limit')) {
+            if ($this->tries >= $GLOBALS['cfg']['osu']['user']['verification_key_tries_limit']) {
                 throw new UserVerificationException('retries_exceeded', true);
             } else {
                 $this->save(false);

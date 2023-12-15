@@ -23,8 +23,6 @@ use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Support\Testing\Fakes\MailFake;
 use Laravel\Passport\Passport;
 use Laravel\Passport\Token;
-use League\OAuth2\Server\ResourceServer;
-use Mockery;
 use Queue;
 use ReflectionMethod;
 use ReflectionProperty;
@@ -64,7 +62,7 @@ class TestCase extends BaseTestCase
 
     protected static function resetAppDb(DatabaseManager $database): void
     {
-        foreach (array_keys(config('database.connections')) as $name) {
+        foreach (array_keys($GLOBALS['cfg']['database']['connections']) as $name) {
             $connection = $database->connection($name);
 
             $connection->rollBack();
@@ -105,7 +103,7 @@ class TestCase extends BaseTestCase
         parent::setUp();
 
         // change config setting because we need more than 1 for the tests.
-        config()->set('osu.oauth.max_user_clients', 100);
+        config_set('osu.oauth.max_user_clients', 100);
 
         // Force connections to reset even if transactional tests were not used.
         // Should fix tests going wonky when different queue drivers are used, or anything that
@@ -123,34 +121,14 @@ class TestCase extends BaseTestCase
 
     /**
      * Act as a User with OAuth scope permissions.
-     * This is for tests that will run the request middleware stack.
-     *
-     * @param User|null $user User to act as, or null for guest.
-     * @param array|null $scopes OAuth token scopes.
-     * @param string $driver Auth driver to use.
-     * @return void
      */
-    protected function actAsScopedUser(?User $user, ?array $scopes = ['*'], ?Client $client = null, $driver = null)
+    protected function actAsScopedUser(?User $user, ?array $scopes = ['*'], ?Client $client = null): void
     {
-        $client ??= Client::factory()->create();
-
-        // create valid token
-        $token = $this->createToken($user, $scopes, $client);
-
-        // mock the minimal number of things.
-        // this skips the need to form a request with all the headers.
-        $mock = Mockery::mock(ResourceServer::class);
-        $mock->shouldReceive('validateAuthenticatedRequest')
-            ->andReturnUsing(function ($request) use ($token) {
-                return $request->withAttribute('oauth_client_id', $token->client->id)
-                    ->withAttribute('oauth_access_token_id', $token->id)
-                    ->withAttribute('oauth_user_id', $token->user_id);
-            });
-
-        app()->instance(ResourceServer::class, $mock);
-        $this->withHeader('Authorization', 'Bearer tests_using_this_do_not_verify_this_header_because_of_the_mock');
-
-        $this->actAsUserWithToken($token, $driver);
+        $this->actingWithToken($this->createToken(
+            $user,
+            $scopes,
+            $client ?? Client::factory()->create(),
+        ));
     }
 
     protected function actAsUser(?User $user, bool $verified = false, $driver = null)
@@ -205,7 +183,7 @@ class TestCase extends BaseTestCase
         static $privateKey;
 
         if ($privateKey === null) {
-            $privateKey = config('passport.private_key') ?? file_get_contents(Passport::keyPath('oauth-private.key'));
+            $privateKey = $GLOBALS['cfg']['passport']['private_key'] ?? file_get_contents(Passport::keyPath('oauth-private.key'));
         }
 
         $encryptedToken = JWT::encode([
@@ -217,6 +195,8 @@ class TestCase extends BaseTestCase
             'sub' => $token->user_id,
             'scopes' => $token->scopes,
         ], $privateKey, 'RS256');
+
+        $this->actAsUserWithToken($token);
 
         return $this->withHeaders([
             'Authorization' => "Bearer {$encryptedToken}",
@@ -348,7 +328,7 @@ class TestCase extends BaseTestCase
     protected function withInterOpHeader($url)
     {
         return $this->withHeaders([
-            'X-LIO-Signature' => hash_hmac('sha1', $url, config('osu.legacy.shared_interop_secret')),
+            'X-LIO-Signature' => hash_hmac('sha1', $url, $GLOBALS['cfg']['osu']['legacy']['shared_interop_secret']),
         ]);
     }
 

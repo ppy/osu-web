@@ -6,7 +6,6 @@
 namespace Tests\Libraries\Payments;
 
 use App\Libraries\Payments\XsollaSignature;
-use Config;
 use Tests\TestCase;
 
 class XsollaSignatureTest extends TestCase
@@ -22,6 +21,6 @@ class XsollaSignatureTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        Config::set('payments.xsolla.secret_key', 'magic');
+        config_set('payments.xsolla.secret_key', 'magic');
     }
 }

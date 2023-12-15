@@ -156,7 +156,7 @@ class Store extends BaseStore implements SessionVerificationInterface
 
     private static function redis(): PhpRedisConnection
     {
-        return \LaravelRedis::connection(\Config::get('session.connection'));
+        return \LaravelRedis::connection($GLOBALS['cfg']['session']['connection']);
     }
 
     public function delete(): void
@@ -229,7 +229,7 @@ class Store extends BaseStore implements SessionVerificationInterface
         $userId = $this->userId();
 
         if ($this->handler instanceof CacheBasedSessionHandler) {
-            $this->handler->setMinutes($userId === null ? 120 : config('session.lifetime'));
+            $this->handler->setMinutes($userId === null ? 120 : $GLOBALS['cfg']['session']['lifetime']);
         }
 
         parent::save();

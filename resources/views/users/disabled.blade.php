@@ -39,7 +39,7 @@
         <p>
             {!! osu_trans('users.disabled.if_mistake._', [
                 'email' => link_to(
-                    'mailto:'.config('osu.emails.account'),
+                    "mailto:{$GLOBALS['cfg']['osu']['emails']['account']}",
                     osu_trans('users.disabled.if_mistake.email'))
             ]) !!}
         </p>

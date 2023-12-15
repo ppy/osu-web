@@ -31,7 +31,7 @@ class EsCreateSearchBlacklist extends Command
      */
     public function handle()
     {
-        $alias = config('osu.elasticsearch.prefix').'blacklist';
+        $alias = $GLOBALS['cfg']['osu']['elasticsearch']['prefix'].'blacklist';
         $client = Es::getClient();
 
         /** @var array $response The type-hint in the doc is wrong. */
