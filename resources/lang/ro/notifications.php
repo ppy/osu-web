@@ -57,9 +57,9 @@ return [
                 'beatmapset_discussion_unlock_compact' => 'Discuția a fost redeschisă',
 
                 'review_count' => [
-                    'praises' => '',
-                    'problems' => '',
-                    'suggestions' => '',
+                    'praises' => 'o laudă|:count_delimited laude|:count_delimited de laude',
+                    'problems' => 'o problemă|:count_delimited probleme|:count_delimited de probleme',
+                    'suggestions' => 'o sugestie|:count_delimited sugestii|:count_delimited de sugestii',
                 ],
             ],
 

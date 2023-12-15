@@ -19,7 +19,7 @@ return [
         'chat' => [
             'read' => 'Lasīt ziņas jūsu vārdā.',
             'write' => 'Sūtīt ziņas jūsu vārdā.',
-            'write_manage' => '',
+            'write_manage' => 'Pievienoties un pamest kanālus jūsu vietā.',
         ],
 
         'forum' => [

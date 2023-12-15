@@ -44,7 +44,7 @@ return [
     ],
 
     'ogp' => [
-        'title' => '',
+        'title' => ':user 的评论',
     ],
 
     'placeholder' => [

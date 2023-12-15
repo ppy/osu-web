@@ -6,7 +6,7 @@
 return [
     'index' => [
         'description' => 'Seuraat näiden beatmappien keskusteluja. Sinulle huomautetaan uusista viesteistä ja päivityksistä.',
-        'title_compact' => 'rytmikarttakeskustelujen seurantalista',
+        'title_compact' => 'rytmikarttojen keskustelujen seurantalista',
 
         'counts' => [
             'total' => 'Rytmikarttoja seurattu',

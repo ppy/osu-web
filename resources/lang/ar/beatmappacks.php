@@ -39,7 +39,7 @@ return [
         'loved' => '',
         'standard' => 'أساسي',
         'theme' => 'مظهر',
-        'tournament' => '',
+        'tournament' => 'البطولة',
     ],
 
     'require_login' => [

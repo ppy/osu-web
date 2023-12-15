@@ -42,7 +42,7 @@ return [
     ],
 
     'update' => [
-        'button' => '',
-        'ok' => '',
+        'button' => 'Atjaunināt',
+        'ok' => 'Raksts atjaunināts.',
     ],
 ];

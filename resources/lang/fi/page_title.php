@@ -35,23 +35,23 @@ return [
             '_' => 'esitellyt artistit',
         ],
         'beatmap_discussion_posts_controller' => [
-            '_' => 'viestit rytmikarttakeskustelussa',
+            '_' => 'viestit rytmikarttojen keskusteluissa',
         ],
         'beatmap_discussions_controller' => [
-            '_' => 'rytmikarttakeskustelut',
+            '_' => 'rytmikarttojen keskustelut',
         ],
         'beatmap_packs_controller' => [
             '_' => 'rytmikarttapaketit',
         ],
         'beatmapset_discussion_votes_controller' => [
-            '_' => 'äänet rytmikarttakeskusteluissa',
+            '_' => 'äänet rytmikarttojen keskusteluissa',
         ],
         'beatmapset_events_controller' => [
             '_' => 'rytmikarttahistoria',
         ],
         'beatmapsets_controller' => [
-            'discussion' => 'rytmikarttakeskustelu',
-            'index' => 'rytmikarttalistaus',
+            'discussion' => 'rytmikartan keskustelu',
+            'index' => 'rytmikarttojen listaus',
             'show' => 'rytmikartan tiedot',
         ],
         'changelog_controller' => [
@@ -107,7 +107,7 @@ return [
             '_' => 'turnaukset',
         ],
         'users_controller' => [
-            '_' => 'pelaajatiedot',
+            '_' => 'pelaajan tiedot',
             'create' => 'luo tili',
             'disabled' => 'huomautus',
         ],
@@ -125,7 +125,7 @@ return [
     ],
     'users' => [
         'modding_history_controller' => [
-            '_' => 'modaajatiedot',
+            '_' => 'modaajan tiedot',
         ],
         'multiplayer_controller' => [
             '_' => 'moninpelihistoria',

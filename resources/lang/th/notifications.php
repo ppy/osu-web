@@ -57,9 +57,9 @@ return [
                 'beatmapset_discussion_unlock_compact' => 'การสนทนาได้ถูกปลดล๊อค',
 
                 'review_count' => [
-                    'praises' => '',
-                    'problems' => '',
-                    'suggestions' => '',
+                    'praises' => ':count_delimited คำชม|:count_delimited คำชม',
+                    'problems' => ':count_delimited ปัญหา|:count_delimited ปัญหา',
+                    'suggestions' => ':count_delimited คำแนะนำ|:count_delimited คำแนะนำ',
                 ],
             ],
 

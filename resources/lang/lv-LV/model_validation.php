@@ -133,41 +133,41 @@ return [
 
     'user' => [
         'contains_username' => '',
-        'email_already_used' => '',
+        'email_already_used' => 'E-pasta adrese jau tiek lietota.',
         'email_not_allowed' => '',
-        'invalid_country' => '',
+        'invalid_country' => 'Valsts nav datubāzē.',
         'invalid_discord' => '',
         'invalid_email' => "",
         'invalid_twitter' => '',
-        'too_short' => '',
+        'too_short' => 'Jaunā parole ir pārāk īsa.',
         'unknown_duplicate' => '',
         'username_available_in' => '',
         'username_available_soon' => '',
         'username_invalid_characters' => '',
-        'username_in_use' => '',
-        'username_locked' => '', // TODO: language for this should be slightly different.
+        'username_in_use' => 'Lietotājvārds jau tiek lietots!',
+        'username_locked' => 'Lietotājvārds jau tiek lietots!', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => '',
         'username_no_spaces' => "",
         'username_not_allowed' => '',
         'username_too_short' => '',
         'username_too_long' => '',
         'weak' => '',
-        'wrong_current_password' => '',
-        'wrong_email_confirmation' => '',
-        'wrong_password_confirmation' => '',
-        'too_long' => '',
+        'wrong_current_password' => 'Pašreizējā parole ir nepareiza.',
+        'wrong_email_confirmation' => 'E-pasta apstiprinājums nesakrīt.',
+        'wrong_password_confirmation' => 'Paroles apstiprinājums neatbilst.',
+        'too_long' => 'Pārsniedza maksimālo garumu - drīkst būt tikai līdz :limit zīmēm.',
 
         'attributes' => [
-            'username' => '',
-            'user_email' => '',
-            'password' => '',
+            'username' => 'Lietotājvārds',
+            'user_email' => 'E-pasta adrese',
+            'password' => 'Parole',
         ],
 
         'change_username' => [
             'restricted' => '',
             'supporter_required' => [
                 '_' => '',
-                'link_text' => '',
+                'link_text' => 'atbalstīja osu!',
             ],
             'username_is_same' => '',
         ],
@@ -183,8 +183,8 @@ return [
     'store' => [
         'order_item' => [
             'attributes' => [
-                'quantity' => '',
-                'cost' => '',
+                'quantity' => 'Daudzums',
+                'cost' => 'Izmaksas',
             ],
         ],
     ],

@@ -12,7 +12,7 @@ return [
         'in_progress_spinner_label' => 'مباراة في التقدم',
         'loading-events' => 'جارِ تحميل الأحداث...',
         'winner' => ':team فاز',
-        'winner_by' => '',
+        'winner_by' => ':winner فاز بفارق :difference',
 
         'events' => [
             'player-left' => ':user غادر الغرفة',
