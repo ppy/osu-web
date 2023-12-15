@@ -44,7 +44,6 @@ abstract class Controller extends BaseController
         Auth::login($user, $remember);
         if ($GLOBALS['cfg']['osu']['user']['bypass_verification']) {
             $session->markVerified();
-            UserVerificationState::fromCurrentRequest()->markVerified();
         }
         $session->migrate(true);
     }
