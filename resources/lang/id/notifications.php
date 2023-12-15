@@ -57,9 +57,9 @@ return [
                 'beatmapset_discussion_unlock_compact' => 'Diskusi beatmap telah dibuka',
 
                 'review_count' => [
-                    'praises' => '',
-                    'problems' => '',
-                    'suggestions' => '',
+                    'praises' => ':count_delimited pujian|:count_delimited pujian',
+                    'problems' => ':count_delimited masalah|:count_delimited masalah',
+                    'suggestions' => ':count_delimited saran|:count_delimited saran',
                 ],
             ],
 

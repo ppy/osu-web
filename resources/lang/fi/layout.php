@@ -67,7 +67,7 @@ return [
 
     'menu' => [
         'beatmaps' => [
-            '_' => 'beatmapit',
+            '_' => 'rytmikartat',
         ],
         'community' => [
             '_' => 'yhteisö',

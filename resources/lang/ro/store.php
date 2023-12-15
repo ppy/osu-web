@@ -6,7 +6,7 @@
 return [
     'cart' => [
         'checkout' => 'Plată',
-        'empty_cart' => '',
+        'empty_cart' => 'Elimină toate articolele din coș',
         'info' => 'un obiect în coș ($:subtotal)|:count_delimited obiecte în coș ($:subtotal)|:count_delimited de obiecte în coș ($:subtotal)',
         'more_goodies' => 'Vreau să-mi verific bunătățile înainte de a completa comanda',
         'shipping_fees' => 'taxe de livrare',
@@ -49,37 +49,37 @@ return [
     ],
 
     'discount' => 'economisește :percent%',
-    'free' => '',
+    'free' => 'gratuit!',
 
     'invoice' => [
-        'contact' => '',
-        'date' => '',
+        'contact' => 'Contact:',
+        'date' => 'Dată:',
         'echeck_delay' => 'Pentru că plata ta a fost făcută electronic, te rugăm să aștepți încă 10 zile pentru ca plata să se afișeze prin PayPal!',
         'hide_from_activity' => 'Statusul de suporter osu! din această comandă nu sunt afișate în activitățile tale recente.',
-        'sent_via' => '',
-        'shipping_to' => '',
-        'title' => '',
+        'sent_via' => 'Trimis Prin:',
+        'shipping_to' => 'Livrare Către:',
+        'title' => 'Factură',
         'title_compact' => 'factură fiscală',
 
         'status' => [
             'cancelled' => [
-                'title' => '',
+                'title' => 'Comanda ta a fost anulată',
                 'line_1' => [
-                    '_' => "",
-                    'link_text' => '',
+                    '_' => "Dacă nu ai solicitat o anulare, te rugăm să contactezi :link precizând numărul comenzii tale (#:order_number).",
+                    'link_text' => 'echipa de suport pentru magazinul osu!',
                 ],
             ],
             'delivered' => [
-                'title' => '',
+                'title' => 'Comanda ta a fost livrată! Sperăm că vă bucurați de ea!',
                 'line_1' => [
-                    '_' => '',
-                    'link_text' => '',
+                    '_' => 'Dacă întâmpini probleme cu achiziția ta, te rugăm să contactați :link.',
+                    'link_text' => 'echipa de suport pentru magazinul osu!',
                 ],
             ],
             'prepared' => [
-                'title' => '',
-                'line_1' => '',
-                'line_2' => '',
+                'title' => 'Comanda ta este în curs de pregătire!',
+                'line_1' => 'Te rugăm să mai aștepți pentru expediere. Informațiile de urmărire vor apărea aici odată ce comanda a fost procesată și trimisă. Acest lucru poate dura până la 5 zile (dar de obicei mai puțin!) în funcție de cât de ocupați suntem.',
+                'line_2' => 'Toate comenzile sunt expediate din Japonia folosind o varietate de servicii de transport în funcție de greutate și valoare. Această zonă se va actualiza cu mai multe informații odată ce comanda este expediată.',
             ],
             'processing' => [
                 'title' => 'Plata nu a fost încă confirmată!',
@@ -90,11 +90,11 @@ return [
                 ],
             ],
             'shipped' => [
-                'title' => '',
-                'tracking_details' => '',
+                'title' => 'Comanda ta a fost expediată!',
+                'tracking_details' => 'Detalii de urmărire:',
                 'no_tracking_details' => [
-                    '_' => "",
-                    'link_text' => '',
+                    '_' => "Nu avem detalii de urmărire fiindca am trimis coletul tău prin Air Mail, dar te poți aștepta să îl primești in 1-3 săptămâni. Pentru Europa, uneori vămile pot întârzia comenzile fapt care nu este sub controlul nostru. Dacă aveți solicitări adiționale, vă rugăm să răspundeți la e-mailul de confirmare al comenzii pe care l-ați primit :link.",
+                    'link_text' => 'trimiteți-ne un e-mail',
                 ],
             ],
         ],
@@ -108,18 +108,18 @@ return [
         'no_orders' => 'Nu sunt comenzi pentru vizualizare.',
         'paid_on' => 'Comandă plasată pe :date',
         'resume' => 'Reia finalizarea comenzii',
-        'shipping_and_handling' => '',
+        'shipping_and_handling' => 'Livrare și Procesare',
         'shopify_expired' => 'Link-ul de finalizare a comenzii a expirat.',
-        'subtotal' => '',
-        'total' => '',
+        'subtotal' => 'Subtotal',
+        'total' => 'Total',
 
         'details' => [
-            'order_number' => '',
-            'payment_terms' => '',
-            'salesperson' => '',
-            'shipping_method' => '',
-            'shipping_terms' => '',
-            'title' => '',
+            'order_number' => 'Comanda #',
+            'payment_terms' => 'Termeni de plată',
+            'salesperson' => 'Agent de vânzare',
+            'shipping_method' => 'Metoda Livrare',
+            'shipping_terms' => 'Termeni de livrare',
+            'title' => 'Detaliile Comenzii',
         ],
 
         'item' => [
@@ -151,14 +151,14 @@ return [
             'paid' => 'Plătit',
             'processing' => 'Confirmarea plății',
             'shipped' => 'Expediat',
-            'title' => '',
+            'title' => 'Starea Comenzii',
         ],
 
         'thanks' => [
-            'title' => '',
+            'title' => 'Mulțumim pentru comandă!',
             'line_1' => [
-                '_' => '',
-                'link_text' => '',
+                '_' => 'Veți primi în curând un e-mail de confirmare. Dacă aveți solicitări, vă rugăm să :link!',
+                'link_text' => 'ne contactați',
             ],
         ],
     ],
@@ -193,9 +193,9 @@ return [
     'username_change' => [
         'check' => 'Întrodu un nume de utilizator pentru a verifica disponibilitatea!',
         'checking' => 'Se verifică disponibilitatea lui :username...',
-        'placeholder' => '',
-        'label' => '',
-        'current' => '',
+        'placeholder' => 'Nume Utilizator Solicitat',
+        'label' => 'Nume Utilizator Nou',
+        'current' => 'Numele tău de utilizator actual este ":username".',
 
         'require_login' => [
             '_' => 'Trebuie să fii :link pentru a îți schimba numele!',

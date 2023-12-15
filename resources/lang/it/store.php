@@ -6,9 +6,9 @@
 return [
     'cart' => [
         'checkout' => 'Paga',
-        'empty_cart' => '',
+        'empty_cart' => 'Rimuovi tutti gli articoli dal carrello',
         'info' => ':count_delimited articolo nel carrello ($:subtotal)|:count_delimited articoli nel carrello ($:subtotal)',
-        'more_goodies' => 'Voglio dare un\'occhiata ad altri elementi prima di completare l\'ordine',
+        'more_goodies' => 'Voglio controllare altri articoli prima di completare l\'ordine',
         'shipping_fees' => 'costi di spedizione',
         'title' => 'Carrello',
         'total' => 'totale',
@@ -49,35 +49,35 @@ return [
     ],
 
     'discount' => 'risparmi :percent%',
-    'free' => '',
+    'free' => 'gratis!',
 
     'invoice' => [
-        'contact' => '',
-        'date' => '',
+        'contact' => 'Referente:',
+        'date' => 'Data:',
         'echeck_delay' => 'Visto che il tuo pagamento era un eCheck, dovrai attendere altri 10 giorni per far passare il pagamento attraverso PayPal!',
         'hide_from_activity' => 'I tag osu!supporter in questo ordine non verranno mostrati nella tua attività recente.',
         'sent_via' => '',
         'shipping_to' => '',
-        'title' => '',
+        'title' => 'Ricevuta',
         'title_compact' => 'ricevuta',
 
         'status' => [
             'cancelled' => [
-                'title' => '',
+                'title' => 'Il tuo ordine è stato annullato',
                 'line_1' => [
-                    '_' => "",
-                    'link_text' => '',
+                    '_' => "Se non hai richiesto la cancellazione contatta il :link menzionando il tuo numero d'ordine (#:order_number).",
+                    'link_text' => 'supporto di osu!store',
                 ],
             ],
             'delivered' => [
-                'title' => '',
+                'title' => 'Il tuo ordine è stato consegnato! Speriamo ti piaccia!',
                 'line_1' => [
-                    '_' => '',
-                    'link_text' => '',
+                    '_' => 'Se hai problemi con il tuo acquisto, contatta il :link.',
+                    'link_text' => 'supporto di osu!store',
                 ],
             ],
             'prepared' => [
-                'title' => '',
+                'title' => 'Il tuo ordine è in preparazione!',
                 'line_1' => '',
                 'line_2' => '',
             ],
@@ -90,7 +90,7 @@ return [
                 ],
             ],
             'shipped' => [
-                'title' => '',
+                'title' => 'Il tuo ordine è stato spedito!',
                 'tracking_details' => '',
                 'no_tracking_details' => [
                     '_' => "",
@@ -111,22 +111,22 @@ return [
         'shipping_and_handling' => '',
         'shopify_expired' => 'Il link del pagamento per quest\'ordine è scaduto.',
         'subtotal' => '',
-        'total' => '',
+        'total' => 'Totale',
 
         'details' => [
-            'order_number' => '',
-            'payment_terms' => '',
+            'order_number' => 'Ordine #',
+            'payment_terms' => 'Termini di Pagamento',
             'salesperson' => '',
-            'shipping_method' => '',
-            'shipping_terms' => '',
-            'title' => '',
+            'shipping_method' => 'Metodo di Spedizione',
+            'shipping_terms' => 'Termini di Spedizione',
+            'title' => 'Dettagli Ordine',
         ],
 
         'item' => [
             'quantity' => 'Quantità',
 
             'display_name' => [
-                'supporter_tag' => ':name per :username(:duration)',
+                'supporter_tag' => ':name per :username (:duration)',
             ],
 
             'subtext' => [
@@ -151,14 +151,14 @@ return [
             'paid' => 'Pagato',
             'processing' => 'In attesa di conferma',
             'shipped' => 'In Transito',
-            'title' => '',
+            'title' => 'Stato Ordine',
         ],
 
         'thanks' => [
-            'title' => '',
+            'title' => 'Grazie per il tuo ordine!',
             'line_1' => [
-                '_' => '',
-                'link_text' => '',
+                '_' => 'Riceverai presto un\'email di conferma. Per qualsiasi richiesta, :link!',
+                'link_text' => 'contattaci',
             ],
         ],
     ],
@@ -181,7 +181,7 @@ return [
     ],
 
     'supporter_tag' => [
-        'gift' => 'regalo ad un giocatore',
+        'gift' => 'regala ad un giocatore',
         'gift_message' => 'aggiungi un messaggio opzionale al tuo regalo (fino a :length caratteri)',
 
         'require_login' => [
@@ -193,9 +193,9 @@ return [
     'username_change' => [
         'check' => 'Inserisci un nome utente per controllare la disponibilità!',
         'checking' => 'Controllando la disponibilità di :username...',
-        'placeholder' => '',
-        'label' => '',
-        'current' => '',
+        'placeholder' => 'Nome Utente Richiesto',
+        'label' => 'Nuovo Nome Utente',
+        'current' => 'Il tuo nome utente attuale è ":username".',
 
         'require_login' => [
             '_' => 'Devi :link per poter cambiare il tuo nome!',
