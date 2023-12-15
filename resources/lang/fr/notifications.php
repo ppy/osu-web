@@ -57,9 +57,9 @@ return [
                 'beatmapset_discussion_unlock_compact' => 'La discussion n\'est plus verrouillée',
 
                 'review_count' => [
-                    'praises' => '',
-                    'problems' => '',
-                    'suggestions' => '',
+                    'praises' => ':count_delimited compliment|:count_delimited compliments',
+                    'problems' => ':count_delimited problème|:count_delimited problèmes',
+                    'suggestions' => ':count_delimited suggestion|:count_delimited suggestions',
                 ],
             ],
 

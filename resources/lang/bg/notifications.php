@@ -57,9 +57,9 @@ return [
                 'beatmapset_discussion_unlock_compact' => 'Дискусията е отключена',
 
                 'review_count' => [
-                    'praises' => '',
-                    'problems' => '',
-                    'suggestions' => '',
+                    'praises' => ':count_delimited похвала|:count_delimited похвали',
+                    'problems' => ':count_delimited проблем|:count_delimited проблема',
+                    'suggestions' => ':count_delimited предложение|:count_delimited предложения',
                 ],
             ],
 

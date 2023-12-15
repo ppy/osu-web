@@ -6,8 +6,8 @@
 return [
     'cart' => [
         'checkout' => 'Pagar',
-        'empty_cart' => '',
-        'info' => ':count_delimited producto en el carrito ($:subtotal)|:count_delimited productos en el carrito ($:subtotal)',
+        'empty_cart' => 'Eliminar todos los elementos del carrito',
+        'info' => ':count_delimited elemento en el carrito ($:subtotal)|:count_delimited elementos en el carrito ($:subtotal)',
         'more_goodies' => 'Deseo revisar más productos antes de completar la orden',
         'shipping_fees' => 'gastos de envío',
         'title' => 'Carrito de compras',
@@ -49,37 +49,37 @@ return [
     ],
 
     'discount' => 'ahorra un :percent%',
-    'free' => '',
+    'free' => '¡gratis!',
 
     'invoice' => [
-        'contact' => '',
-        'date' => '',
+        'contact' => 'Contacto:',
+        'date' => 'Fecha:',
         'echeck_delay' => 'Como su pago fue un eCheck, ¡por favor permita hasta 10 días adicionales para que el pago se realice a través de PayPal!',
         'hide_from_activity' => 'las etiquetas osu!supporter en esta orden no se muestran en tus actividades recientes.',
-        'sent_via' => '',
-        'shipping_to' => '',
-        'title' => '',
+        'sent_via' => 'Enviado vía:',
+        'shipping_to' => 'Envío a:',
+        'title' => 'Factura',
         'title_compact' => 'factura',
 
         'status' => [
             'cancelled' => [
-                'title' => '',
+                'title' => 'Tu pedido ha sido cancelado',
                 'line_1' => [
-                    '_' => "",
-                    'link_text' => '',
+                    '_' => "Si no has solicitado una cancelación, ponte en contacto con el :link indicando tu número de pedido (n.º :order_number).",
+                    'link_text' => 'soporte de la osu!store',
                 ],
             ],
             'delivered' => [
-                'title' => '',
+                'title' => '¡Tu pedido ha sido entregado! ¡Esperamos que lo estés disfrutando!',
                 'line_1' => [
-                    '_' => '',
-                    'link_text' => '',
+                    '_' => 'Si tienes algún problema con tu compra, ponte en contacto con el :link.',
+                    'link_text' => 'soporte de la osu!store',
                 ],
             ],
             'prepared' => [
-                'title' => '',
-                'line_1' => '',
-                'line_2' => '',
+                'title' => '¡Tu pedido está siendo preparado!',
+                'line_1' => 'Por favor, espera un poco más para que se envíe. La información de seguimiento aparecerá aquí una vez que el pedido haya sido procesado y enviado. Esto puede tardar hasta 5 días (¡pero normalmente menos!) dependiendo de lo ocupados que estemos.',
+                'line_2' => 'Enviamos todos los pedidos desde Japón usando una variedad de servicios de envío dependiendo del peso y el valor. Esta área se actualizará con detalles una vez que hayamos enviado el pedido.',
             ],
             'processing' => [
                 'title' => '¡Aún no se ha confirmado tu pago!',
@@ -90,11 +90,11 @@ return [
                 ],
             ],
             'shipped' => [
-                'title' => '',
-                'tracking_details' => '',
+                'title' => '¡Tu pedido ha sido enviado!',
+                'tracking_details' => 'Detalles de seguimiento:',
                 'no_tracking_details' => [
-                    '_' => "",
-                    'link_text' => '',
+                    '_' => "No tenemos detalles de seguimiento, ya que enviamos tu paquete a través de Air Mail, pero puedes esperar recibirlo en un plazo de 1-3 semanas. Para Europa, a veces las aduanas pueden retrasar el pedido fuera de nuestro control. Si tienes alguna duda, por favor responde al correo electrónico de confirmación del pedido que recibiste :link.",
+                    'link_text' => 'envíanos un correo electrónico',
                 ],
             ],
         ],
@@ -108,18 +108,18 @@ return [
         'no_orders' => 'No hay órdenes para ver.',
         'paid_on' => 'Orden realizada :date',
         'resume' => 'Reanudar pago',
-        'shipping_and_handling' => '',
+        'shipping_and_handling' => 'Envío y manipulación',
         'shopify_expired' => 'El enlace de pago de esta orden ha expirado.',
-        'subtotal' => '',
-        'total' => '',
+        'subtotal' => 'Subtotal',
+        'total' => 'Total',
 
         'details' => [
-            'order_number' => '',
-            'payment_terms' => '',
-            'salesperson' => '',
-            'shipping_method' => '',
-            'shipping_terms' => '',
-            'title' => '',
+            'order_number' => 'Pedido n.º',
+            'payment_terms' => 'Términos de pago',
+            'salesperson' => 'Vendedor',
+            'shipping_method' => 'Método de envío',
+            'shipping_terms' => 'Términos de envío',
+            'title' => 'Detalles del pedido',
         ],
 
         'item' => [
@@ -151,14 +151,14 @@ return [
             'paid' => 'Pagada',
             'processing' => 'Confirmación pendiente',
             'shipped' => 'En tránsito',
-            'title' => '',
+            'title' => 'Estado del pedido',
         ],
 
         'thanks' => [
-            'title' => '',
+            'title' => '¡Muchas gracias por tu pedido!',
             'line_1' => [
-                '_' => '',
-                'link_text' => '',
+                '_' => 'Recibirás un correo electrónico de confirmación pronto. ¡Si tienes alguna pregunta, por favor :link!',
+                'link_text' => 'contáctanos',
             ],
         ],
     ],
@@ -167,8 +167,8 @@ return [
         'name' => 'Nombre',
 
         'stock' => [
-            'out' => 'Este producto está actualmente agotado. ¡Vuelva más tarde!',
-            'out_with_alternative' => 'Lamentablemente, este artículo esta agotado. ¡Usa el menú desplegable para elegir un tipo diferente o vuelve más tarde!',
+            'out' => 'Este elemento está actualmente agotado. ¡Vuelve más tarde!',
+            'out_with_alternative' => 'Desafortunadamente, este elemento está agotado. ¡Usa el menú desplegable para elegir un tipo diferente o vuelve más tarde!',
         ],
 
         'add_to_cart' => 'Agregar al carrito',
@@ -193,9 +193,9 @@ return [
     'username_change' => [
         'check' => '¡Escribe un nombre de usuario para revisar su disponibilidad!',
         'checking' => 'Revisando la disponibilidad de :username...',
-        'placeholder' => '',
-        'label' => '',
-        'current' => '',
+        'placeholder' => 'Nombre de usuario solicitado',
+        'label' => 'Nuevo nombre de usuario',
+        'current' => 'Tu nombre de usuario actual es «:username».',
 
         'require_login' => [
             '_' => '¡Tienes que tener una :link para cambiar tu nombre de usuario!',

@@ -125,8 +125,8 @@ return [
     ],
 
     'ogp' => [
-        'modding_description' => '',
-        'modding_description_empty' => '',
+        'modding_description' => 'บีทแมป: :counts',
+        'modding_description_empty' => 'ผู้ใช้ยังไม่มีบีทแมปใดๆ...',
 
         'description' => [
             '_' => 'อันดับ (:ruleset): :global | :country',

@@ -13,7 +13,7 @@ return [
 
     'beatmaps' => [
         '_' => 'Beatmapit',
-        'download' => 'Lataa Beatmap-Pohja',
+        'download' => 'Lataa rytmikarttapohja',
         'download-na' => 'rytmikarttapohja ei vielä saatavilla',
     ],
 

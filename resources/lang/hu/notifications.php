@@ -58,9 +58,9 @@ return [
                 'beatmapset_discussion_unlock_compact' => 'A beszélgetést feloldották',
 
                 'review_count' => [
-                    'praises' => '',
-                    'problems' => '',
-                    'suggestions' => '',
+                    'praises' => ':count_delimited dicséret|:count_delimited dicséretek',
+                    'problems' => ':count_delimited probléma|:count_delimited problémák',
+                    'suggestions' => ':count_delimited javaslat|:count_delimited javaslatok',
                 ],
             ],
 

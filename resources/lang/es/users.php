@@ -124,8 +124,8 @@ return [
     ],
 
     'ogp' => [
-        'modding_description' => '',
-        'modding_description_empty' => '',
+        'modding_description' => 'Mapas: :counts',
+        'modding_description_empty' => 'El usuario no tiene ningún beatmap...',
 
         'description' => [
             '_' => 'Clasificación (:ruleset): :global | :country',

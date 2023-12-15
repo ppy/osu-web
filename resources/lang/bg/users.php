@@ -124,8 +124,8 @@ return [
     ],
 
     'ogp' => [
-        'modding_description' => '',
-        'modding_description_empty' => '',
+        'modding_description' => 'Бийтмапове: :counts',
+        'modding_description_empty' => 'Потребителят няма бийтмапове...',
 
         'description' => [
             '_' => 'Ранг (:ruleset): :global | :country',

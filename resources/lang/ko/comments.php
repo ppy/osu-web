@@ -44,7 +44,7 @@ return [
     ],
 
     'ogp' => [
-        'title' => '',
+        'title' => ':user님의 댓글',
     ],
 
     'placeholder' => [

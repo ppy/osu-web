@@ -124,8 +124,8 @@ return [
     ],
 
     'ogp' => [
-        'modding_description' => '',
-        'modding_description_empty' => '',
+        'modding_description' => '谱面：:counts',
+        'modding_description_empty' => '玩家没有任何谱面...',
 
         'description' => [
             '_' => '排名 (:ruleset): :global | :country',

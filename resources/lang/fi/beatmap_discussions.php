@@ -31,12 +31,12 @@ return [
             'username' => 'Käyttäjänimi',
 
             'beatmapset_status' => [
-                '_' => 'Beatmapin tila',
+                '_' => 'Rytmikartan tila',
                 'all' => 'Kaikki',
                 'disqualified' => 'Epäkelpuutettu',
                 'never_qualified' => 'Ei koskaan kelpuutettu',
                 'qualified' => 'Kelpuutettu',
-                'ranked' => 'Hyväksytty',
+                'ranked' => 'Pisteytetty',
             ],
 
             'user' => [

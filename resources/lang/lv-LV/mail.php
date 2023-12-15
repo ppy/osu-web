@@ -58,7 +58,7 @@ return [
         'shipping' => '',
         'subject' => '',
         'thank_you' => '',
-        'total' => '',
+        'total' => 'Kopā',
     ],
 
     'supporter_gift' => [
@@ -81,7 +81,7 @@ return [
     'user_force_reactivation' => [
         'main' => '',
         'perform_reset' => '',
-        'reason' => '',
+        'reason' => 'Iemesls:',
         'subject' => '',
     ],
 
@@ -101,7 +101,7 @@ return [
         'code_hint' => '',
         'link' => '',
         'report' => '',
-        'subject' => '',
+        'subject' => 'osu! konta apstiprināšana',
 
         'action_from' => [
             '_' => '',

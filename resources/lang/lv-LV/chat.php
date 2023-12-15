@@ -8,7 +8,7 @@ return [
     'talking_in' => 'runā :channel',
     'talking_with' => 'runā ar :name',
     'title_compact' => 'čats',
-    'unread_messages' => '',
+    'unread_messages' => 'nelasīti ziņojumi',
 
     'cannot_send' => [
         'channel' => 'Šobrīd šajā kanālā nav iespējams nosūtīt ziņojumus.',
@@ -36,7 +36,7 @@ return [
 
         'labels' => [
             'description' => 'apraksts',
-            'message' => '',
+            'message' => 'ziņojumi',
             'name' => 'istabas nosaukums',
             'users' => 'pievienojamie spēlētāji',
         ],
