@@ -6,7 +6,7 @@
 return [
     'cart' => [
         'checkout' => '结账',
-        'empty_cart' => '',
+        'empty_cart' => '清空购物车',
         'info' => '购物车里有 :count_delimited 件商品（$:subtotal）',
         'more_goodies' => '在完成订单之前，我想看看其他商品',
         'shipping_fees' => '运费',
@@ -49,37 +49,37 @@ return [
     ],
 
     'discount' => '节省 :percent%',
-    'free' => '',
+    'free' => '免费！',
 
     'invoice' => [
-        'contact' => '',
-        'date' => '',
+        'contact' => '联系：',
+        'date' => '日期：',
         'echeck_delay' => '由于您的支付是通过 eCheck 进行的，请再等待至多 10 天来让 PayPal 完成支付。',
         'hide_from_activity' => '此订单的支持者标签购买未显示在你的个人活动中。',
-        'sent_via' => '',
-        'shipping_to' => '',
-        'title' => '',
+        'sent_via' => '通过：',
+        'shipping_to' => '送货到：',
+        'title' => '账单',
         'title_compact' => '账单',
 
         'status' => [
             'cancelled' => [
-                'title' => '',
+                'title' => '已取消您的订单',
                 'line_1' => [
-                    '_' => "",
-                    'link_text' => '',
+                    '_' => "如果并不是您本人取消，请联系 :link 并提供您的订单号 (#:order_number)。",
+                    'link_text' => 'osu!store 支持',
                 ],
             ],
             'delivered' => [
-                'title' => '',
+                'title' => '您的订单已经送达！享受这一刻吧！',
                 'line_1' => [
-                    '_' => '',
-                    'link_text' => '',
+                    '_' => '如果您对此次购买有任何疑问，请联系 :link。',
+                    'link_text' => 'osu!store 支持',
                 ],
             ],
             'prepared' => [
-                'title' => '',
-                'line_1' => '',
-                'line_2' => '',
+                'title' => '正在准备您的订单！',
+                'line_1' => '在订单发货前请耐心等待。一旦订单处理完毕并发货，此处将会显示最新的运输信息。取决于我们的繁忙程度，这段时间可能会长达五天（通常不会这么久！）。',
+                'line_2' => '所有订单都将从日本发出，订单会根据商品的重量和价值使用对应的物流运输业务。一旦开始发货，这里将会显示物流的细节。',
             ],
             'processing' => [
                 'title' => '您的付款信息尚未确认！',
@@ -90,11 +90,11 @@ return [
                 ],
             ],
             'shipped' => [
-                'title' => '',
-                'tracking_details' => '',
+                'title' => '您的订单已发货！',
+                'tracking_details' => '物流信息如下：',
                 'no_tracking_details' => [
-                    '_' => "",
-                    'link_text' => '',
+                    '_' => "由于我们使用 Air Mail 发货，所以无法记录物流信息。但您可以在 1-3 周内收到包裹。如果收货地位于欧洲，则海关可能会在这个基础上延长订单的运输时间。如果您有任何问题，请回复您收到的 :link 邮件。",
+                    'link_text' => '给我们发送邮件',
                 ],
             ],
         ],
@@ -108,18 +108,18 @@ return [
         'no_orders' => '没有可显示的订单。',
         'paid_on' => ':date 支付订单',
         'resume' => '恢复结账',
-        'shipping_and_handling' => '',
+        'shipping_and_handling' => '运输和处理',
         'shopify_expired' => '此订单的结账链接已过期。',
-        'subtotal' => '',
-        'total' => '',
+        'subtotal' => '小计',
+        'total' => '总计',
 
         'details' => [
-            'order_number' => '',
-            'payment_terms' => '',
-            'salesperson' => '',
-            'shipping_method' => '',
-            'shipping_terms' => '',
-            'title' => '',
+            'order_number' => '订单 #',
+            'payment_terms' => '支付条款',
+            'salesperson' => '销售员',
+            'shipping_method' => '运输方式',
+            'shipping_terms' => '运输条款',
+            'title' => '订单详情',
         ],
 
         'item' => [
@@ -151,14 +151,14 @@ return [
             'paid' => '已付款',
             'processing' => '待确认',
             'shipped' => '运送中',
-            'title' => '',
+            'title' => '订单状态',
         ],
 
         'thanks' => [
-            'title' => '',
+            'title' => '感谢惠顾！',
             'line_1' => [
-                '_' => '',
-                'link_text' => '',
+                '_' => '您将收到一封确认邮件。如果您有任何疑问，请 :link！',
+                'link_text' => '联系我们',
             ],
         ],
     ],
@@ -193,9 +193,9 @@ return [
     'username_change' => [
         'check' => '输入用户名并检查是否可用',
         'checking' => '正在检查 :username 是否可用...',
-        'placeholder' => '',
-        'label' => '',
-        'current' => '',
+        'placeholder' => '想要使用的玩家名',
+        'label' => '新玩家名',
+        'current' => '您现在的玩家名是 ":username"。',
 
         'require_login' => [
             '_' => '需要 :link 才能改变用户名！',

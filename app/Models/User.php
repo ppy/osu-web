@@ -449,7 +449,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         $allGroupIds = array_merge([$this->group_id], $this->groupIds()['active']);
         $allowedGroupIds = array_map(function ($groupIdentifier) {
             return app('groups')->byIdentifier($groupIdentifier)->getKey();
-        }, config('osu.user.allowed_rename_groups'));
+        }, $GLOBALS['cfg']['osu']['user']['allowed_rename_groups']);
 
         // only users which groups are all in the whitelist can be renamed
         if (count(array_diff($allGroupIds, $allowedGroupIds)) > 0) {
@@ -916,6 +916,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'scoresMania',
             'scoresOsu',
             'scoresTaiko',
+            'soloScores',
             'statisticsFruits',
             'statisticsMania',
             'statisticsMania4k',
@@ -1051,13 +1052,13 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
      */
     public function isInactive(): bool
     {
-        return time() - $this->getRawAttribute('user_lastvisit') > config('osu.user.inactive_seconds_verification');
+        return time() - $this->getRawAttribute('user_lastvisit') > $GLOBALS['cfg']['osu']['user']['inactive_seconds_verification'];
     }
 
     public function isOnline()
     {
         return !$this->hide_presence
-            && time() - $this->getRawAttribute('user_lastvisit') < config('osu.user.online_window');
+            && time() - $this->getRawAttribute('user_lastvisit') < $GLOBALS['cfg']['osu']['user']['online_window'];
     }
 
     public function isPrivileged()
@@ -1292,7 +1293,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function rankHighests(): HasMany
     {
-        return config('osu.scores.experimental_rank_as_default')
+        return $GLOBALS['cfg']['osu']['scores']['experimental_rank_as_default']
             ? $this->hasMany(RankHighest::class, null, 'nonexistent')
             : $this->hasMany(RankHighest::class);
     }
@@ -1447,6 +1448,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $returnQuery ? $this->$relation() : $this->$relation;
     }
 
+    public function soloScores(): HasMany
+    {
+        return $this->hasMany(Solo\Score::class);
+    }
+
     public function topicWatches()
     {
         return $this->hasMany(TopicWatch::class);
@@ -1541,32 +1547,32 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function maxFriends()
     {
-        return $this->isSupporter() ? config('osu.user.max_friends_supporter') : config('osu.user.max_friends');
+        return $this->isSupporter() ? $GLOBALS['cfg']['osu']['user']['max_friends_supporter'] : $GLOBALS['cfg']['osu']['user']['max_friends'];
     }
 
     public function maxMultiplayerDuration()
     {
-        return $this->isSupporter() ? config('osu.user.max_multiplayer_duration_supporter') : config('osu.user.max_multiplayer_duration');
+        return $this->isSupporter() ? $GLOBALS['cfg']['osu']['user']['max_multiplayer_duration_supporter'] : $GLOBALS['cfg']['osu']['user']['max_multiplayer_duration'];
     }
 
     public function maxMultiplayerRooms()
     {
-        return $this->isSupporter() ? config('osu.user.max_multiplayer_rooms_supporter') : config('osu.user.max_multiplayer_rooms');
+        return $this->isSupporter() ? $GLOBALS['cfg']['osu']['user']['max_multiplayer_rooms_supporter'] : $GLOBALS['cfg']['osu']['user']['max_multiplayer_rooms'];
     }
 
     public function maxScorePins()
     {
-        return $this->isSupporter() ? config('osu.user.max_score_pins_supporter') : config('osu.user.max_score_pins');
+        return $this->isSupporter() ? $GLOBALS['cfg']['osu']['user']['max_score_pins_supporter'] : $GLOBALS['cfg']['osu']['user']['max_score_pins'];
     }
 
     public function beatmapsetDownloadAllowance()
     {
-        return $this->isSupporter() ? config('osu.beatmapset.download_limit_supporter') : config('osu.beatmapset.download_limit');
+        return $this->isSupporter() ? $GLOBALS['cfg']['osu']['beatmapset']['download_limit_supporter'] : $GLOBALS['cfg']['osu']['beatmapset']['download_limit'];
     }
 
     public function beatmapsetFavouriteAllowance()
     {
-        return $this->isSupporter() ? config('osu.beatmapset.favourite_limit_supporter') : config('osu.beatmapset.favourite_limit');
+        return $this->isSupporter() ? $GLOBALS['cfg']['osu']['beatmapset']['favourite_limit_supporter'] : $GLOBALS['cfg']['osu']['beatmapset']['favourite_limit'];
     }
 
     public function uncachedFollowerCount()
@@ -1772,7 +1778,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
                 ->where('created_at', '>', Carbon::now()->subWeeks())
                 ->count();
 
-            return config('osu.beatmapset.user_weekly_hype') - $hyped;
+            return $GLOBALS['cfg']['osu']['beatmapset']['user_weekly_hype'] - $hyped;
         });
     }
 
@@ -1796,9 +1802,30 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return hash('sha256', $this->user_email).':'.hash('sha256', $this->user_password);
     }
 
+    public function recentScoreCount(string $ruleset): int
+    {
+        return $this->soloScores()
+            ->default()
+            ->forRuleset($ruleset)
+            ->includeFails(false)
+            ->select('id')
+            ->limit(100)
+            ->get()
+            ->count();
+    }
+
     public function resetSessions(?string $excludedSessionId = null): void
     {
-        SessionStore::destroy($this->getKey(), $excludedSessionId);
+        $userId = $this->getKey();
+        $sessionIds = SessionStore::ids($userId);
+        if ($excludedSessionId !== null) {
+            $sessionIds = array_filter(
+                $sessionIds,
+                fn ($sessionId) => $sessionId !== $excludedSessionId,
+            );
+        }
+        SessionStore::batchDelete($userId, $sessionIds);
+
         $this
             ->tokens()
             ->with('refreshToken')
@@ -1831,7 +1858,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         if ($this->userPage === null) {
             DB::transaction(function () use ($text) {
                 $topic = Forum\Topic::createNew(
-                    Forum\Forum::find(config('osu.user.user_page_forum_id')),
+                    Forum\Forum::find($GLOBALS['cfg']['osu']['user']['user_page_forum_id']),
                     [
                         'title' => "{$this->username}'s user page",
                         'user' => $this,
@@ -1973,7 +2000,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     {
         return $query
             ->where('user_allow_viewonline', true)
-            ->where('user_lastvisit', '>', time() - config('osu.user.online_window'));
+            ->where('user_lastvisit', '>', time() - $GLOBALS['cfg']['osu']['user']['online_window']);
     }
 
     public function scopeEagerloadForListing($query)
@@ -2081,7 +2108,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
         $query = static::where('username', $username);
 
-        if (config('osu.user.allow_email_login') || $allowEmail) {
+        if ($GLOBALS['cfg']['osu']['user']['allow_email_login'] || $allowEmail) {
             $query->orWhere('user_email', strtolower($username));
         }
 

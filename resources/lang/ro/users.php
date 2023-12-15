@@ -124,8 +124,8 @@ return [
     ],
 
     'ogp' => [
-        'modding_description' => '',
-        'modding_description_empty' => '',
+        'modding_description' => 'Beatmap-uri: :counts',
+        'modding_description_empty' => 'Utilizatorul nu are nici un beatmap...',
 
         'description' => [
             '_' => 'Rang (:ruleset): :global | :country',

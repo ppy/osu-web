@@ -57,9 +57,9 @@ return [
                 'beatmapset_discussion_unlock_compact' => 'Обговорення відкрито',
 
                 'review_count' => [
-                    'praises' => '',
-                    'problems' => '',
-                    'suggestions' => '',
+                    'praises' => ':count_delimited похвал|:count_delimited похвали',
+                    'problems' => ':count_delimited проблем|:count_delimited проблеми',
+                    'suggestions' => ':count_delimited пропозиція|:count_delimited пропозицій',
                 ],
             ],
 

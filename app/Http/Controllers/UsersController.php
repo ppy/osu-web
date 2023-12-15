@@ -19,6 +19,8 @@ use App\Models\BeatmapDiscussion;
 use App\Models\Country;
 use App\Models\IpBan;
 use App\Models\Log;
+use App\Models\Solo\Score as SoloScore;
+use App\Models\Solo\ScoreLegacyIdMap;
 use App\Models\User;
 use App\Models\UserAccountHistory;
 use App\Models\UserNotFound;
@@ -116,7 +118,7 @@ class UsersController extends Controller
 
     public function create()
     {
-        if (config('osu.user.registration_mode') !== 'web') {
+        if ($GLOBALS['cfg']['osu']['user']['registration_mode'] !== 'web') {
             return abort(403, osu_trans('users.store.from_client'));
         }
 
@@ -176,7 +178,7 @@ class UsersController extends Controller
                     'monthly_playcounts' => json_collection($this->user->monthlyPlaycounts, new UserMonthlyPlaycountTransformer()),
                     'recent' => $this->getExtraSection(
                         'scoresRecent',
-                        $this->user->scores($this->mode, true)->includeFails(false)->count()
+                        $this->user->recentScoreCount($this->mode)
                     ),
                     'replays_watched_counts' => json_collection($this->user->replaysWatchedCounts, new UserReplaysWatchedCountTransformer()),
                 ];
@@ -210,14 +212,14 @@ class UsersController extends Controller
 
     public function store()
     {
-        if (config('osu.user.registration_mode') !== 'client') {
+        if ($GLOBALS['cfg']['osu']['user']['registration_mode'] !== 'client') {
             return response([
                 'error' => osu_trans('users.store.from_web'),
                 'url' => route('users.create'),
             ], 403);
         }
 
-        if (!starts_with(Request::header('User-Agent'), config('osu.client.user_agent'))) {
+        if (!starts_with(Request::header('User-Agent'), $GLOBALS['cfg']['osu']['client']['user_agent'])) {
             return error_popup(osu_trans('users.store.from_client'), 403);
         }
 
@@ -226,7 +228,7 @@ class UsersController extends Controller
 
     public function storeWeb()
     {
-        if (config('osu.user.registration_mode') !== 'web') {
+        if ($GLOBALS['cfg']['osu']['user']['registration_mode'] !== 'web') {
             return error_popup(osu_trans('users.store.from_client'), 403);
         }
 
@@ -650,7 +652,7 @@ class UsersController extends Controller
             $initialData = [
                 'achievements' => $achievements,
                 'current_mode' => $currentMode,
-                'scores_notice' => config('osu.user.profile_scores_notice'),
+                'scores_notice' => $GLOBALS['cfg']['osu']['user']['profile_scores_notice'],
                 'user' => $userArray,
             ];
 
@@ -793,9 +795,16 @@ class UsersController extends Controller
             case 'scoresFirsts':
                 $transformer = new ScoreTransformer();
                 $includes = ScoreTransformer::USER_PROFILE_INCLUDES;
-                $query = $this->user->scoresFirst($this->mode, true)
-                    ->visibleUsers()
-                    ->reorderBy('score_id', 'desc')
+                $scoreQuery = $this->user->scoresFirst($this->mode, true)->unorder();
+                $userFirstsQuery = $scoreQuery->select($scoreQuery->qualifyColumn('score_id'));
+                $soloMappingQuery = ScoreLegacyIdMap
+                    ::where('ruleset_id', Beatmap::MODES[$this->mode])
+                    ->whereIn('old_score_id', $userFirstsQuery)
+                    ->select('score_id');
+                $query = SoloScore
+                    ::whereIn('id', $soloMappingQuery)
+                    ->default()
+                    ->reorderBy('id', 'desc')
                     ->with(ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD);
                 $userRelationColumn = 'user';
                 break;
@@ -814,9 +823,12 @@ class UsersController extends Controller
             case 'scoresRecent':
                 $transformer = new ScoreTransformer();
                 $includes = ScoreTransformer::USER_PROFILE_INCLUDES;
-                $query = $this->user->scores($this->mode, true)
+                $query = $this->user->soloScores()
+                    ->default()
+                    ->forRuleset($this->mode)
                     ->includeFails($options['includeFails'] ?? false)
-                    ->with([...ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD, 'best']);
+                    ->reorderBy('id', 'desc')
+                    ->with(ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD);
                 $userRelationColumn = 'user';
                 break;
         }
@@ -931,7 +943,7 @@ class UsersController extends Controller
 
     private function storeUser(array $rawParams)
     {
-        if (!config('osu.user.allow_registration')) {
+        if (!$GLOBALS['cfg']['osu']['user']['allow_registration']) {
             return abort(403, 'User registration is currently disabled');
         }
 
@@ -982,7 +994,7 @@ class UsersController extends Controller
                 );
             }
 
-            if (config('osu.user.registration_mode') === 'web') {
+            if ($GLOBALS['cfg']['osu']['user']['registration_mode'] === 'web') {
                 $this->login($user);
                 session()->flash('popup', osu_trans('users.store.saved'));
 

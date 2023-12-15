@@ -113,9 +113,9 @@ return [
         'exists' => '',
 
         'attributes' => [
-            'api_key' => '',
-            'app_name' => '',
-            'app_url' => '',
+            'api_key' => 'مفتاح واجهة برمجة التطبيقات',
+            'app_name' => 'اسم التطبيق',
+            'app_url' => 'رابط التطبيق',
         ],
     ],
 
@@ -175,7 +175,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => 'الخرائط الـ Ranked لا يمكن الإبلاغ عنها',
-        'not_in_channel' => '',
+        'not_in_channel' => 'أنت لست في هذه القناة.',
         'reason_not_valid' => ':reason ليس مقبولا لنوع الأبلاغ هذا.',
         'self' => "لا يمكنك الإبلاغ عن نفسك!",
     ],

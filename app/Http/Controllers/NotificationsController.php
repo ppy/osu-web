@@ -128,7 +128,7 @@ class NotificationsController extends Controller
 
     private function endpointUrl()
     {
-        $url = config('osu.notification.endpoint');
+        $url = $GLOBALS['cfg']['osu']['notification']['endpoint'];
 
         if (($url[0] ?? null) === '/') {
             $host = request()->getHttpHost();

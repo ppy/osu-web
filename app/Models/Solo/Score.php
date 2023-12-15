@@ -130,6 +130,18 @@ class Score extends Model implements Traits\ReportableInterface
         return $query->whereHas('beatmap.beatmapset');
     }
 
+    public function scopeForRuleset(Builder $query, string $ruleset): Builder
+    {
+        return $query->where('ruleset_id', Beatmap::MODES[$ruleset]);
+    }
+
+    public function scopeIncludeFails(Builder $query, bool $includeFails): Builder
+    {
+        return $includeFails
+            ? $query
+            : $query->where('data->passed', true);
+    }
+
     /**
      * This should match the one used in osu-elastic-indexer.
      */
@@ -184,7 +196,7 @@ class Score extends Model implements Traits\ReportableInterface
 
     public function getReplayFile(): ?string
     {
-        return Storage::disk(config('osu.score_replays.storage').'-solo-replay')
+        return Storage::disk($GLOBALS['cfg']['osu']['score_replays']['storage'].'-solo-replay')
             ->get($this->getKey());
     }
 

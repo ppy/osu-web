@@ -475,6 +475,12 @@
             "Type": "boolean",
             "Label": "Fade out hit circles earlier",
             "Description": "Make hit circles fade out into a miss, rather than after it."
+          },
+          {
+            "Name": "classic_health",
+            "Type": "boolean",
+            "Label": "Classic health",
+            "Description": "More closely resembles the original HP drain mechanics."
           }
         ],
         "IncompatibleMods": [

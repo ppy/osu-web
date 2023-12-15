@@ -110,7 +110,7 @@ class ReplayFile
 
     private function storage(): Filesystem
     {
-        $disk = 'replays.'.$this->score->getMode().'.'.config('osu.score_replays.storage');
+        $disk = "replays.{$this->score->getMode()}.{$GLOBALS['cfg']['osu']['score_replays']['storage']}";
 
         return \Storage::disk($disk);
     }

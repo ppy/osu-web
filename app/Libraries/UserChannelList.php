@@ -48,7 +48,7 @@ class UserChannelList
             ->where('hidden', false)
             ->whereHas('channel')
             ->with('channel')
-            ->limit(config('osu.chat.channel_limit'))
+            ->limit($GLOBALS['cfg']['osu']['chat']['channel_limit'])
             ->get();
 
         foreach ($userChannels as $userChannel) {

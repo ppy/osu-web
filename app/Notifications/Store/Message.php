@@ -24,7 +24,7 @@ abstract class Message extends Notification implements ShouldQueue
 
     public function __construct()
     {
-        $this->queue = config('store.queue.notifications');
+        $this->queue = $GLOBALS['cfg']['store']['queue']['notifications'];
         $this->notified_at = Carbon::now();
     }
 
@@ -38,7 +38,7 @@ abstract class Message extends Notification implements ShouldQueue
     {
         // FIXME: remove this after adding the right checks to the tests
         if (
-            config('app.env') === 'testing'
+            $GLOBALS['cfg']['app']['env'] === 'testing'
             && presence(env('STORE_NOTIFICATION_TESTS'), false) === false
         ) {
             return [];

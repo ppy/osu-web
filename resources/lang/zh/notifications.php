@@ -59,9 +59,9 @@ return [
                 'beatmapset_discussion_unlock_compact' => '讨论已解锁',
 
                 'review_count' => [
-                    'praises' => '',
-                    'problems' => '',
-                    'suggestions' => '',
+                    'praises' => ':count_delimited 个赞',
+                    'problems' => ':count_delimited 个问题',
+                    'suggestions' => ':count_delimited 个建议',
                 ],
             ],
 

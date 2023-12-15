@@ -153,7 +153,7 @@ abstract class PaymentProcessor implements \ArrayAccess
         }
 
         Datadog::increment(
-            config('datadog-helper.prefix_web').'.payment_processor.run',
+            $GLOBALS['cfg']['datadog-helper']['prefix_web'].'.payment_processor.run',
             1,
             ['provider' => $this->getPaymentProvider(), 'type' => $type]
         );
@@ -400,7 +400,7 @@ abstract class PaymentProcessor implements \ArrayAccess
 
     private function sandboxAssertion()
     {
-        if ($this->isTest() && !config('payments.sandbox')) {
+        if ($this->isTest() && !$GLOBALS['cfg']['payments']['sandbox']) {
             throw new SandboxException('Trying to run a test transaction in a non-sanboxed environment.');
         }
     }

@@ -31,7 +31,7 @@ class DonationThanks extends Mailable implements ShouldQueue
             'duration' => $length,
             'amount' => $amount,
             'isGift' => $isGift,
-            'minutes' => round($amount / config('payments.running_cost') * 525949, 1), // 365.2425 days
+            'minutes' => round($amount / $GLOBALS['cfg']['payments']['running_cost'] * 525949, 1), // 365.2425 days
         ];
     }
 
@@ -45,8 +45,8 @@ class DonationThanks extends Mailable implements ShouldQueue
         return $this->text('emails.store.donation_thanks')
             ->with($this->params)
             ->from(
-                config('store.mail.donation_thanks.sender_address'),
-                config('store.mail.donation_thanks.sender_name')
+                $GLOBALS['cfg']['store']['mail']['donation_thanks']['sender_address'],
+                $GLOBALS['cfg']['store']['mail']['donation_thanks']['sender_name']
             )
             ->subject(osu_trans('mail.donation_thanks.subject'));
     }

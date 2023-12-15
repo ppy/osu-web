@@ -4,12 +4,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'new' => 'Uusi legacy-rajapinnan avain',
+    'new' => 'Uusi perinnerajapinnan avain',
     'none' => 'Ei avainta.',
 
     'docs' => [
-        '_' => 'Dokumentaatio on saatavilla osoitteessa :github.',
-        'github' => 'GitHub',
+        '_' => 'Dokumentaatio on saatavilla :github.',
+        'github' => 'GitHubissa',
     ],
 
     'form' => [

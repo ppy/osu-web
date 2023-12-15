@@ -191,7 +191,7 @@ class ChangelogController extends Controller
         } else {
             $chartConfig = Cache::remember(
                 'chart_config_global',
-                config('osu.changelog.build_history_interval'),
+                $GLOBALS['cfg']['osu']['changelog']['build_history_interval'],
                 function () {
                     return $this->chartConfig(null);
                 }
@@ -203,7 +203,7 @@ class ChangelogController extends Controller
 
     public function github()
     {
-        $token = config('osu.changelog.github_token');
+        $token = $GLOBALS['cfg']['osu']['changelog']['github_token'];
 
         $signatureHeader = explode('=', request()->header('X-Hub-Signature') ?? '');
 
@@ -371,7 +371,7 @@ class ChangelogController extends Controller
 
         $chartConfig = Cache::remember(
             "chart_config:v2:{$build->updateStream->getKey()}",
-            config('osu.changelog.build_history_interval'),
+            $GLOBALS['cfg']['osu']['changelog']['build_history_interval'],
             function () use ($build) {
                 return $this->chartConfig($build->updateStream);
             }
@@ -400,8 +400,8 @@ class ChangelogController extends Controller
     {
         return $this->updateStreams ??= json_collection(
             UpdateStream::whereHasBuilds()
-                ->orderByField('stream_id', config('osu.changelog.update_streams'))
-                ->find(config('osu.changelog.update_streams'))
+                ->orderByField('stream_id', $GLOBALS['cfg']['osu']['changelog']['update_streams'])
+                ->find($GLOBALS['cfg']['osu']['changelog']['update_streams'])
                 ->sortBy(function ($i) {
                     return $i->isFeatured() ? 0 : 1;
                 }),
@@ -412,7 +412,7 @@ class ChangelogController extends Controller
 
     private function chartConfig($stream)
     {
-        $history = BuildPropagationHistory::changelog(optional($stream)->getKey(), config('osu.changelog.chart_days'))->get();
+        $history = BuildPropagationHistory::changelog(optional($stream)->getKey(), $GLOBALS['cfg']['osu']['changelog']['chart_days'])->get();
 
         if ($stream === null) {
             $chartOrder = array_map(function ($b) {

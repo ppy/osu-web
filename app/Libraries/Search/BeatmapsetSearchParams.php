@@ -53,7 +53,7 @@ class BeatmapsetSearchParams extends SearchParams
     {
         parent::__construct();
 
-        $this->size = config('osu.beatmaps.max');
+        $this->size = $GLOBALS['cfg']['osu']['beatmaps']['max'];
     }
 
     /**

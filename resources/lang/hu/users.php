@@ -124,8 +124,8 @@ return [
     ],
 
     'ogp' => [
-        'modding_description' => '',
-        'modding_description_empty' => '',
+        'modding_description' => 'Beatmapek: :counts',
+        'modding_description_empty' => 'A felhasználónak nincsenek beatmapjai...',
 
         'description' => [
             '_' => 'Helyezés (:ruleset): :global | :country',

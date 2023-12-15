@@ -135,8 +135,8 @@ class ModdingRankCommandTest extends TestCase
     {
         parent::setUp();
 
-        config()->set('osu.beatmapset.minimum_days_for_rank', 1);
-        config()->set('osu.beatmapset.rank_per_day', 2);
+        config_set('osu.beatmapset.minimum_days_for_rank', 1);
+        config_set('osu.beatmapset.rank_per_day', 2);
 
         Bus::fake([BeatmapsetRank::class, CheckBeatmapsetCovers::class]);
     }

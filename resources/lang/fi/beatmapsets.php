@@ -151,7 +151,7 @@ return [
 
             'buttons' => [
                 'disable' => 'Poista varoitus käytöstä',
-                'listing' => 'Takaisin rytmikarttalistaukseen',
+                'listing' => 'Rytmikarttojen listaukseen',
                 'show' => 'Näytä',
             ],
         ],
@@ -168,7 +168,7 @@ return [
 
             'headers' => [
                 'accuracy' => 'Tarkkuus',
-                'combo' => 'Maksimikombo',
+                'combo' => 'Suurin iskuputki',
                 'miss' => 'Ohi',
                 'mods' => 'Muunnelmat',
                 'pin' => 'Kiinnitä',
@@ -185,7 +185,7 @@ return [
                 'friend' => 'Kukaan kavereistasi ei vielä ole saanut tulosta tässä mapissa!',
                 'global' => 'Tuloksia ei ole. Voisit hankkia niitä.',
                 'loading' => 'Ladataan tuloksia...',
-                'unranked' => 'Rankkaamaton rytmikartta.',
+                'unranked' => 'Pisteyttämätön rytmikartta.',
             ],
             'score' => [
                 'first' => 'Johdossa',
@@ -203,7 +203,7 @@ return [
             'drain' => 'Terveyden valutus',
             'accuracy' => 'Tarkkuus',
             'ar' => 'Lähestymisnopeus',
-            'stars' => 'Vaikeustaso',
+            'stars' => 'Tähtiluokitus',
             'total_length' => 'Pituus',
             'bpm' => 'BPM',
             'count_circles' => 'Ympyröiden määrä',

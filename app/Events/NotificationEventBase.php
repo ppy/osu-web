@@ -24,6 +24,6 @@ abstract class NotificationEventBase extends BroadcastableEventBase implements S
 
     public function __construct()
     {
-        $this->broadcastQueue = config('osu.notification.queue_name');
+        $this->broadcastQueue = $GLOBALS['cfg']['osu']['notification']['queue_name'];
     }
 }

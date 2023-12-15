@@ -12,8 +12,8 @@ return [
     'wrong_confirmation' => 'Tarkistus ei täsmää.',
 
     'beatmapset_discussion' => [
-        'beatmap_missing' => 'Aikaleima on määritelty, mutta beatmap puuttuu.',
-        'beatmapset_no_hype' => "Beatmappia ei voi hurrata.",
+        'beatmap_missing' => 'Aikaleima on määritelty, mutta rytmikartta puuttuu.',
+        'beatmapset_no_hype' => "Rytmikarttaa ei voida hurrata.",
         'hype_requires_null_beatmap' => 'Hurraus täytyy tehdä Yleiset (kaikki vaikeustasot) -osiossa.',
         'invalid_beatmap_id' => 'Määritelly vaikeustaso on virheellinen.',
         'invalid_beatmapset_id' => 'Epäkelpo rytmikartta määritelty.',
@@ -25,7 +25,7 @@ return [
         ],
 
         'hype' => [
-            'discussion_locked' => "Tämän beatmapin keskustelu on lukittu eikä sitä voi hurrata",
+            'discussion_locked' => "Tämän rytmikartan keskustelu on lukittu eikä sitä voi hurrata",
             'guest' => 'Sinun on kirjauduttava sisään hurrataksesi.',
             'hyped' => 'Hurrasit jo tätä rytmikarttaa.',
             'limit_exceeded' => 'Olet käyttänyt kaikki hurrauksesi.',
@@ -110,10 +110,10 @@ return [
     ],
 
     'legacy_api_key' => [
-        'exists' => 'Käyttäjää kohti annetaan tällä hetkellä vain yksi API-avain.',
+        'exists' => 'Käyttäjää kohti annetaan tällä hetkellä vain yksi rajapinnan avain.',
 
         'attributes' => [
-            'api_key' => 'rajapinta-avain',
+            'api_key' => 'rajapinnan avain',
             'app_name' => 'sovelluksen nimi',
             'app_url' => 'sovelluksen url',
         ],

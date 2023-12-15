@@ -80,7 +80,7 @@ class HomeController extends Controller
         };
 
         return ext_view('home.download', [
-            'lazerUrl' => config("osu.urls.lazer_dl.{$platform}"),
+            'lazerUrl' => osu_url("lazer_dl.{$platform}"),
             'lazerPlatformName' => $lazerPlatformNames[$platform],
         ]);
     }
@@ -197,7 +197,7 @@ class HomeController extends Controller
 
     public function setLocale()
     {
-        $newLocale = get_valid_locale(Request::input('locale')) ?? config('app.fallback_locale');
+        $newLocale = get_valid_locale(Request::input('locale')) ?? $GLOBALS['cfg']['app']['fallback_locale'];
         App::setLocale($newLocale);
 
         if (Auth::check()) {
@@ -327,12 +327,12 @@ class HomeController extends Controller
                         'more_beatmaps' => [
                             'icons' => ['fas fa-file-upload'],
                             'translation_options' => [
-                                'base' => config('osu.beatmapset.upload_allowed'),
-                                'bonus' => config('osu.beatmapset.upload_bonus_per_ranked'),
-                                'bonus_max' => config('osu.beatmapset.upload_bonus_per_ranked_max'),
-                                'supporter_base' => config('osu.beatmapset.upload_allowed_supporter'),
-                                'supporter_bonus' => config('osu.beatmapset.upload_bonus_per_ranked_supporter'),
-                                'supporter_bonus_max' => config('osu.beatmapset.upload_bonus_per_ranked_max_supporter'),
+                                'base' => $GLOBALS['cfg']['osu']['beatmapset']['upload_allowed'],
+                                'bonus' => $GLOBALS['cfg']['osu']['beatmapset']['upload_bonus_per_ranked'],
+                                'bonus_max' => $GLOBALS['cfg']['osu']['beatmapset']['upload_bonus_per_ranked_max'],
+                                'supporter_base' => $GLOBALS['cfg']['osu']['beatmapset']['upload_allowed_supporter'],
+                                'supporter_bonus' => $GLOBALS['cfg']['osu']['beatmapset']['upload_bonus_per_ranked_supporter'],
+                                'supporter_bonus_max' => $GLOBALS['cfg']['osu']['beatmapset']['upload_bonus_per_ranked_max_supporter'],
                             ],
                         ],
                         'early_access' => [
@@ -351,15 +351,15 @@ class HomeController extends Controller
                         'more_favourites' => [
                             'icons' => ['fas fa-star'],
                             'translation_options' => [
-                                'normally' => config('osu.beatmapset.favourite_limit'),
-                                'supporter' => config('osu.beatmapset.favourite_limit_supporter'),
+                                'normally' => $GLOBALS['cfg']['osu']['beatmapset']['favourite_limit'],
+                                'supporter' => $GLOBALS['cfg']['osu']['beatmapset']['favourite_limit_supporter'],
                             ],
                         ],
                         'more_friends' => [
                             'icons' => ['fas fa-user-friends'],
                             'translation_options' => [
-                                'normally' => config('osu.user.max_friends'),
-                                'supporter' => config('osu.user.max_friends_supporter'),
+                                'normally' => $GLOBALS['cfg']['osu']['user']['max_friends'],
+                                'supporter' => $GLOBALS['cfg']['osu']['user']['max_friends_supporter'],
                             ],
                         ],
                         'friend_filtering' => [

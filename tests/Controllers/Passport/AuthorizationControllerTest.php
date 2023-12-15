@@ -23,7 +23,7 @@ class AuthorizationControllerTest extends TestCase
         $client = Client::factory()->create();
 
         $request = (new Psr17Factory())
-            ->createServerRequest('GET', config('app.url').'/oauth/authorize')
+            ->createServerRequest('GET', $GLOBALS['cfg']['app']['url'].'/oauth/authorize')
             ->withQueryParams(['client_id' => $client->getKey(), 'scope' => 'one two three']);
 
         $actual = $this->invokeMethod($this->controller, 'normalizeRequestScopes', [$request])->getQueryParams()['scope'];

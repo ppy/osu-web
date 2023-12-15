@@ -11,8 +11,8 @@ class StorageUrl
 {
     public static function make(?string $diskName, string $path): string
     {
-        $diskName ??= \Config::get('filesystems.default');
-        $baseUrl = \Config::get("filesystems.disks.{$diskName}.base_url");
+        $diskName ??= $GLOBALS['cfg']['filesystems']['default'];
+        $baseUrl = $GLOBALS['cfg']['filesystems']['disks'][$diskName]['base_url'];
 
         return "{$baseUrl}/{$path}";
     }

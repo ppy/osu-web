@@ -30,7 +30,7 @@ class BBCodeFromDB
         ];
 
         $this->text = $text;
-        $this->uid = presence($uid) ?? config('osu.bbcode.uid');
+        $this->uid = presence($uid) ?? $GLOBALS['cfg']['osu']['bbcode']['uid'];
         $this->options = array_merge($defaultOptions, $options);
 
         if ($this->options['withGallery']) {
@@ -342,12 +342,12 @@ class BBCodeFromDB
         return $text;
     }
 
-    public function parseYoutube($text)
+    public function parseYoutube(string $text): string
     {
-        $text = str_replace("[youtube:{$this->uid}]", "<div class='bbcode__video-box'><div class='u-embed-wide'><iframe src='https://www.youtube.com/embed/", $text);
-        $text = str_replace("[/youtube:{$this->uid}]", "?rel=0' allowfullscreen></iframe></div></div>", $text);
-
-        return $text;
+        return strtr($text, [
+            "[youtube:{$this->uid}]" => "<div class='bbcode__video-box'><iframe class='u-embed-wide' src='https://www.youtube.com/embed/",
+            "[/youtube:{$this->uid}]" => "?rel=0' allowfullscreen></iframe></div>",
+        ]);
     }
 
     public function toHTML()

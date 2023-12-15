@@ -21,7 +21,7 @@ class ScoreSearch extends RecordSearch
     public function __construct(?ScoreSearchParams $params = null)
     {
         parent::__construct(
-            config('osu.elasticsearch.prefix').'solo_scores',
+            $GLOBALS['cfg']['osu']['elasticsearch']['prefix'].'solo_scores',
             $params ?? new ScoreSearchParams(),
             Score::class
         );
@@ -29,7 +29,7 @@ class ScoreSearch extends RecordSearch
 
     public function getActiveSchemas(): array
     {
-        return LaravelRedis::smembers('osu-queue:score-index:'.config('osu.elasticsearch.prefix').'active-schemas');
+        return LaravelRedis::smembers('osu-queue:score-index:'.$GLOBALS['cfg']['osu']['elasticsearch']['prefix'].'active-schemas');
     }
 
     public function getQuery(): BoolQuery
@@ -47,6 +47,9 @@ class ScoreSearch extends RecordSearch
         }
         if ($this->params->userId !== null) {
             $query->filter(['term' => ['user_id' => $this->params->userId]]);
+        }
+        if ($this->params->excludeConverts) {
+            $query->filter(['term' => ['convert' => false]]);
         }
         if ($this->params->excludeMods !== null && count($this->params->excludeMods) > 0) {
             foreach ($this->params->excludeMods as $excludedMod) {
@@ -126,7 +129,7 @@ class ScoreSearch extends RecordSearch
 
     public function setSchema(string $schema): void
     {
-        LaravelRedis::set('osu-queue:score-index:'.config('osu.elasticsearch.prefix').'schema', $schema);
+        LaravelRedis::set('osu-queue:score-index:'.$GLOBALS['cfg']['osu']['elasticsearch']['prefix'].'schema', $schema);
     }
 
     private function addModsFilter(BoolQuery $query): void

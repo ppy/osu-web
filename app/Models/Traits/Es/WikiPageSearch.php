@@ -11,7 +11,7 @@ trait WikiPageSearch
 
     public static function esIndexName()
     {
-        return config('osu.elasticsearch.prefix').'wiki_pages';
+        return $GLOBALS['cfg']['osu']['elasticsearch']['prefix'].'wiki_pages';
     }
 
     public static function esSchemaFile()

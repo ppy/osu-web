@@ -8,7 +8,7 @@
             @php
                 $currentSection = concat_path([$section ?? null, $childSection]);
                 $title = $titles["{$locale}/{$currentSection}"]
-                    ?? $titles[config('app.fallback_locale').'/'.$currentSection]
+                    ?? $titles[$GLOBALS['cfg']['app']['fallback_locale'].'/'.$currentSection]
                     ?? null;
             @endphp
 

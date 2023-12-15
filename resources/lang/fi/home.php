@@ -113,7 +113,7 @@ return [
             'beatmaps' => [
                 'title' => 'hanki beatmappeja',
                 'description' => [
-                    '_' => ':browse käyttäjien luomaa laajaa beatmapkokoelmaa ja ryhdy pelaamaan!',
+                    '_' => ':browse käyttäjien luomaa laajaa rytmikarttakokoelmaa ja ryhdy pelaamaan!',
                     'browse' => 'selaa',
                 ],
             ],
@@ -134,7 +134,7 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => 'Uudet Hyväksytyt Beatmapit',
+            'new' => 'Uudet rankatut rytmikartat',
             'popular' => 'Suositut rytmikartat',
             'by_user' => 'tehnyt :user',
         ],

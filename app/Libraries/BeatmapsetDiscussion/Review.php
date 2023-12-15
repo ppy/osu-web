@@ -37,7 +37,7 @@ class Review
     public static function config()
     {
         return [
-            'max_blocks' => config('osu.beatmapset.discussion_review_max_blocks'),
+            'max_blocks' => $GLOBALS['cfg']['osu']['beatmapset']['discussion_review_max_blocks'],
         ];
     }
 
@@ -178,12 +178,12 @@ class Review
 
         $childIds = array_values(array_filter(array_pluck($output, 'discussion_id')));
 
-        $minIssues = config('osu.beatmapset.discussion_review_min_issues');
+        $minIssues = $GLOBALS['cfg']['osu']['beatmapset']['discussion_review_min_issues'];
         if (empty($childIds) || count($childIds) < $minIssues) {
             throw new InvariantException(osu_trans_choice('beatmap_discussions.review.validation.minimum_issues', $minIssues));
         }
 
-        $maxBlocks = config('osu.beatmapset.discussion_review_max_blocks');
+        $maxBlocks = $GLOBALS['cfg']['osu']['beatmapset']['discussion_review_max_blocks'];
         $blockCount = count($this->document);
         if ($blockCount > $maxBlocks) {
             throw new InvariantException(osu_trans_choice('beatmap_discussions.review.validation.too_many_blocks', $maxBlocks));

@@ -6,20 +6,20 @@
 return [
     'cart' => [
         'checkout' => 'Kassa',
-        'empty_cart' => '',
-        'info' => ':count_delimited tuote ostoskorissa ($:subtotal)|:count_delimited tuotteet ostoskorissa ($:subtotal)',
+        'empty_cart' => 'Poista kaikki tuotteet ostoskärrystä',
+        'info' => ':count_delimited tuote ostoskärryssä ($:subtotal)|:count_delimited tuotetta ostoskärryssä ($:subtotal)',
         'more_goodies' => 'Tarkastelisin vielä muita tuotteita ennen tilauksen tekemistä',
         'shipping_fees' => 'toimituskulut',
-        'title' => 'Ostoskori',
+        'title' => 'Ostoskärry',
         'total' => 'yhteensä',
 
         'errors_no_checkout' => [
-            'line_1' => 'Jassoo... kassalle ei pääse, sillä ostoskorissasi on ongelmia!',
+            'line_1' => 'Jassoo... kassalle ei pääse, sillä ostoskärryssäsi on ongelmia!',
             'line_2' => 'Poista tai päivitä ylläolevat tavarat jatkaaksesi.',
         ],
 
         'empty' => [
-            'text' => 'Ostoskorisi on tyhjä.',
+            'text' => 'Ostoskärrysi on tyhjä.',
             'return_link' => [
                 '_' => 'Palaa takaisin :link tehdäksesi löytöjä!',
                 'link_text' => 'kauppasivulle',
@@ -28,7 +28,7 @@ return [
     ],
 
     'checkout' => [
-        'cart_problems' => 'Oijoi, korisi kanssa on ongelmia!',
+        'cart_problems' => 'Oijoi, ostoskärryssäsi on ongelmia!',
         'cart_problems_edit' => 'Napsauta tästä muokataksesi sitä.',
         'declined' => 'Maksu peruutettiin.',
         'delayed_shipping' => 'Olemme tällä hetkellä hukkumassa tilauksiin! Olet vapaa tilaamaan, mutta ole valmis odottamaan **1-2 viikkoa lisää** kunnes olemme saaneet nykyiset tilaukset lähetettyä.',
@@ -49,37 +49,37 @@ return [
     ],
 
     'discount' => 'säästä :percent%',
-    'free' => '',
+    'free' => 'ilmainen!',
 
     'invoice' => [
-        'contact' => '',
-        'date' => '',
+        'contact' => 'Ota yhteyttä:',
+        'date' => 'Päivämäärä:',
         'echeck_delay' => 'Koska maksusi oli eCheck, anna maksimissaan 10 päivää että maksu pääsee PayPalin läpi!',
-        'hide_from_activity' => 'Tämän tilauksen osu!supporter-tägejä ei näytetä profiilisi viimeaikainen toiminta kohdassa.',
-        'sent_via' => '',
-        'shipping_to' => '',
-        'title' => '',
+        'hide_from_activity' => 'Tämän tilauksen osu!-tukijamerkkejä ei näytetä viimeaikaisessa toiminnassasi.',
+        'sent_via' => 'Lähetetty kautta:',
+        'shipping_to' => 'Toimitetaan kohteeseen:',
+        'title' => 'Lasku',
         'title_compact' => 'lasku',
 
         'status' => [
             'cancelled' => [
-                'title' => '',
+                'title' => 'Tilauksesi on peruutettu',
                 'line_1' => [
-                    '_' => "",
-                    'link_text' => '',
+                    '_' => "Jos et pyytänyt peruutusta, ota yhteyttä :link ja mainitse tilauksesi numero (#:order_number).",
+                    'link_text' => 'osu!-kaupan tukeen',
                 ],
             ],
             'delivered' => [
-                'title' => '',
+                'title' => 'Tilauksesi on toimitettu! Toivottavasti pidät siitä!',
                 'line_1' => [
-                    '_' => '',
-                    'link_text' => '',
+                    '_' => 'Jos sinulla on ongelmia ostoksesi kanssa, ota yhteyttä :link.',
+                    'link_text' => 'osu!-kaupan tukeen',
                 ],
             ],
             'prepared' => [
-                'title' => '',
-                'line_1' => '',
-                'line_2' => '',
+                'title' => 'Tilaustasi valmistellaan!',
+                'line_1' => 'Odota sen lähettämistä vähän pidempään. Seurantatiedot tulevat näkyviin tässä, kun tilaus on käsitelty ja lähetetty. Tämä voi kestää jopa viisi päivää (mutta yleensä vähemmän!) riippuen siitä, kuinka kiireisiä olemme.',
+                'line_2' => 'Lähetämme kaikki tilaukset Japanista käyttämällä erilaisia kuljetuspalveluja riippuen tilauksen painosta ja arvosta. Tämä alue päivittyy yksityiskohdilla, kun olemme lähettäneet tilauksen.',
             ],
             'processing' => [
                 'title' => 'Maksuasi ei ole vielä vahvistettu!',
@@ -90,11 +90,11 @@ return [
                 ],
             ],
             'shipped' => [
-                'title' => '',
-                'tracking_details' => '',
+                'title' => 'Tilauksesi on lähetetty!',
+                'tracking_details' => 'Seurantatiedot ovat seuraavat:',
                 'no_tracking_details' => [
-                    '_' => "",
-                    'link_text' => '',
+                    '_' => "Meillä ei ole seurantatietoja, koska lähetimme pakettisi lentopostin kautta, mutta voit odottaa saavasi sen 1-3 viikon päästä. Euroopan kohdalla tullit voivat joskus viivyttää tilausta, mille emme voi mitään. Jos sinulla herää huolia, ole hyvä ja vastaa sähköpostiin tilausvahvistuksesta, jonka sait :link.",
+                    'link_text' => 'lähetä meille sähköpostia',
                 ],
             ],
         ],
@@ -108,18 +108,18 @@ return [
         'no_orders' => 'Ei tilauksia katsottavissa.',
         'paid_on' => 'Tilaus laitettu :date',
         'resume' => 'Jatka kassalle',
-        'shipping_and_handling' => '',
+        'shipping_and_handling' => 'Toimitus & käsittely',
         'shopify_expired' => 'Tämän tilauksen kassalinkki on vanhentunut.',
-        'subtotal' => '',
-        'total' => '',
+        'subtotal' => 'Välisumma',
+        'total' => 'Yhteensä',
 
         'details' => [
-            'order_number' => '',
-            'payment_terms' => '',
-            'salesperson' => '',
-            'shipping_method' => '',
-            'shipping_terms' => '',
-            'title' => '',
+            'order_number' => 'Tilaus #',
+            'payment_terms' => 'Maksuehdot',
+            'salesperson' => 'Myyjä',
+            'shipping_method' => 'Toimitustapa',
+            'shipping_terms' => 'Toimitusehdot',
+            'title' => 'Tilauksen tiedot',
         ],
 
         'item' => [
@@ -151,14 +151,14 @@ return [
             'paid' => 'Maksettu',
             'processing' => 'Odotetaan varmistusta',
             'shipped' => 'Kuljetuksessa',
-            'title' => '',
+            'title' => 'Tilauksen tilanne',
         ],
 
         'thanks' => [
-            'title' => '',
+            'title' => 'Kiitos tilauksestasi!',
             'line_1' => [
-                '_' => '',
-                'link_text' => '',
+                '_' => 'Saat pian vahvistusviestin sähköpostilla. Jos sinulla on kysyttävää, ole hyvä ja :link!',
+                'link_text' => 'ota yhteyttä meihin',
             ],
         ],
     ],
@@ -182,20 +182,20 @@ return [
 
     'supporter_tag' => [
         'gift' => 'lahjoita pelaajalle',
-        'gift_message' => 'lisää omavalintainen viesti lahjaasi! (max. :length merkkiä)',
+        'gift_message' => 'lisää omavalintainen viesti lahjaasi! (enintään :length merkkiä)',
 
         'require_login' => [
-            '_' => 'Sinun pitää olla :link saadaksesi osu!tukijan!',
-            'link_text' => 'kirjautunut sisään',
+            '_' => 'Sinun pitää olla :link, jotta voit hankkia osu!-tukijamerkin!',
+            'link_text' => 'kirjautuneena sisään',
         ],
     ],
 
     'username_change' => [
         'check' => 'Kirjoita käyttäjänimi saatavuuden tarkistamiseksi!',
         'checking' => 'Tarkistetaan saatavuutta nimelle :username...',
-        'placeholder' => '',
-        'label' => '',
-        'current' => '',
+        'placeholder' => 'Pyydetty käyttäjänimi',
+        'label' => 'Uusi käyttäjänimi',
+        'current' => 'Nykyinen käyttäjänimesi on ":username".',
 
         'require_login' => [
             '_' => 'Sinun on oltava :link vaihtaaksesi nimesi!',

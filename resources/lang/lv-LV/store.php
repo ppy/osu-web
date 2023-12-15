@@ -5,7 +5,7 @@
 
 return [
     'cart' => [
-        'checkout' => '',
+        'checkout' => 'Pirkuma noformēšana',
         'empty_cart' => '',
         'info' => '',
         'more_goodies' => '',

@@ -40,24 +40,24 @@ class AvatarHelper
 
         return present($value)
             ? StorageUrl::make(static::disk(), strtr($value, '_', '?'))
-            : \Config::get('osu.avatar.default');
+            : $GLOBALS['cfg']['osu']['avatar']['default'];
     }
 
     private static function disk(): string
     {
-        return \Config::get('osu.avatar.storage');
+        return $GLOBALS['cfg']['osu']['avatar']['storage'];
     }
 
     private static function purgeCache(int $id): void
     {
-        $prefix = presence(\Config::get('osu.avatar.cache_purge_prefix'));
+        $prefix = presence($GLOBALS['cfg']['osu']['avatar']['cache_purge_prefix']);
 
         if ($prefix === null) {
             return;
         }
 
-        $method = \Config::get('osu.avatar.cache_purge_method') ?? 'GET';
-        $auth = \Config::get('osu.avatar.cache_purge_authorization_key');
+        $method = $GLOBALS['cfg']['osu']['avatar']['cache_purge_method'] ?? 'GET';
+        $auth = $GLOBALS['cfg']['osu']['avatar']['cache_purge_authorization_key'];
         $ctx = [
             'http' => [
                 'method' => $method,

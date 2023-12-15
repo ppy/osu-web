@@ -148,7 +148,7 @@ class RankingController extends Controller
                 });
 
             if ($type === 'performance') {
-                $isExperimentalRank = config('osu.scores.experimental_rank_as_default');
+                $isExperimentalRank = $GLOBALS['cfg']['osu']['scores']['experimental_rank_as_default'];
                 if ($this->country !== null) {
                     $stats->where('country_acronym', $this->country['acronym']);
                     // preferrable to rank_score when filtering by country.
