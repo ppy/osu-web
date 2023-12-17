@@ -62,7 +62,16 @@ class BBCodeFromDB
 
     public function parseBox($text)
     {
-        $text = preg_replace("#\[box=((\\\[\[\]]|[^][]|\[(\\\[\[\]]|[^][]|(?R))*\])*?):{$this->uid}\]\n*#s", $this->parseBoxHelperPrefix('\\1'), $text);
+        $text = preg_replace_callback("#\[box=((\\\[\[\]]|[^][]|\[(\\\[\[\]]|[^][]|(?R))*\])*?):{$this->uid}\]\n*#s", function ($m) {
+            // don't render button in button.
+            $escapedMatch = strtr($m[1], [
+                "[spoilerbox:{$this->uid}]" => '',
+                "[/spoilerbox:{$this->uid}]" => '',
+            ]);
+
+            return $this->parseBoxHelperPrefix($escapedMatch);
+        }, $text);
+
         $text = preg_replace("#\n*\[/box:{$this->uid}]\n?#s", $this->parseBoxHelperSuffix(), $text);
 
         $text = preg_replace("#\[spoilerbox:{$this->uid}\]\n*#s", $this->parseBoxHelperPrefix(), $text);
