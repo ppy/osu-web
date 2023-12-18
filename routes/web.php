@@ -404,8 +404,8 @@ Route::group(['middleware' => ['web']], function () {
 Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', ThrottleRequests::getApiThrottle(), 'require-scopes']], function () {
     Route::group(['prefix' => 'v2'], function () {
         Route::group(['middleware' => ['require-scopes:any']], function () {
-            Route::post('verify-session', 'AccountController@verify')->name('verify');
-            Route::post('verify-session/reissue', 'AccountController@reissueCode')->name('verify.reissue');
+            Route::post('session/verify', 'AccountController@verify')->name('verify');
+            Route::post('session/verify/reissue', 'AccountController@reissueCode')->name('verify.reissue');
         });
 
         Route::group(['as' => 'beatmaps.', 'prefix' => 'beatmaps'], function () {
