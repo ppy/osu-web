@@ -45,7 +45,7 @@ class Controller
     {
         $session = Helper::currentSession();
         if ($session->isVerified()) {
-            return response(null, 204);
+            return response(null, 422);
         }
 
         Helper::issue($session, Helper::currentUserOrFail());
@@ -55,9 +55,13 @@ class Controller
 
     public static function verify()
     {
+        $session = Helper::currentSession();
+        if ($session->isVerified()) {
+            return response(null, 204);
+        }
+
         $key = strtr(get_string(\Request::input('verification_key')) ?? '', [' ' => '']);
         $user = Helper::currentUserOrFail();
-        $session = Helper::currentSession();
         $state = State::fromSession($session);
 
         try {

@@ -58,6 +58,37 @@ class ControllerTest extends TestCase
         $this->assertNotSame($state->key, SessionVerification\State::fromSession($session)->key);
     }
 
+    public function testReissueOAuthVerified(): void
+    {
+        \Mail::fake();
+        $token = Token::factory()->create(['verified' => true]);
+
+        $this
+            ->actingWithToken($token)
+            ->post(route('api.verify.reissue'))
+            ->assertStatus(422);
+
+        \Mail::assertNotQueued(UserVerificationMail::class);
+        $this->assertNull(SessionVerification\State::fromSession($token));
+    }
+
+    public function testReissueVerified(): void
+    {
+        \Mail::fake();
+        $user = User::factory()->create();
+        $session = \Session::instance();
+        $session->markVerified();
+
+        $this
+            ->be($user)
+            ->withPersistentSession($session)
+            ->post(route('account.reissue-code'))
+            ->assertStatus(422);
+
+        \Mail::assertNotQueued(UserVerificationMail::class);
+        $this->assertNull(SessionVerification\State::fromSession($session));
+    }
+
     public function testVerify(): void
     {
         $user = User::factory()->create();
@@ -208,5 +239,36 @@ class ControllerTest extends TestCase
 
         $this->assertFalse($record->containsUser($token->user, 'verify-mismatch:'));
         $this->assertTrue($token->fresh()->isVerified());
+    }
+
+    public function testVerifyOAuthVerified(): void
+    {
+        \Mail::fake();
+        $token = Token::factory()->create(['verified' => true]);
+
+        $this
+            ->actingWithToken($token)
+            ->post(route('api.verify', ['verification_key' => 'invalid']))
+            ->assertSuccessful();
+
+        $this->assertNull(SessionVerification\State::fromSession($token));
+        \Mail::assertNotQueued(UserVerificationMail::class);
+    }
+
+    public function testVerifyVerified(): void
+    {
+        \Mail::fake();
+        $user = User::factory()->create();
+        $session = \Session::instance();
+        $session->markVerified();
+
+        $this
+            ->be($user)
+            ->withPersistentSession($session)
+            ->post(route('account.verify'), ['verification_key' => 'invalid'])
+            ->assertSuccessful();
+
+        $this->assertNull(SessionVerification\State::fromSession($session));
+        \Mail::assertNotQueued(UserVerificationMail::class);
     }
 }
