@@ -39,7 +39,7 @@ class EncodeToken
             'access_token_id' => $accessToken->getKey(),
             'scopes' => $accessToken->scopes,
             'user_id' => $accessToken->user_id,
-            'expire_time' => $refreshToken->expires_at->getTimestamp(),
+            'expire_time' => $refreshToken->expires_at->timestamp,
         ]), \Crypt::getKey());
     }
 }
