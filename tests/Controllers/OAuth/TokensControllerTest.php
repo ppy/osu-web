@@ -5,13 +5,13 @@
 
 namespace Tests\Controllers\OAuth;
 
+use App\Libraries\OAuth\EncodeToken;
 use App\Mail\UserVerification as UserVerificationMail;
 use App\Models\OAuth\Token;
 use App\Models\User;
 use Database\Factories\OAuth\ClientFactory;
 use Database\Factories\OAuth\RefreshTokenFactory;
 use Database\Factories\UserFactory;
-use Defuse\Crypto\Crypto;
 use Tests\TestCase;
 
 class TokensControllerTest extends TestCase
@@ -92,14 +92,7 @@ class TokensControllerTest extends TestCase
         $accessToken->forceFill(['scopes' => ['*'], 'verified' => $verified])->save();
         $client = $accessToken->client;
         $user = $accessToken->user;
-        $refreshTokenString = Crypto::encryptWithPassword(json_encode([
-            'client_id' => (string) $client->getKey(),
-            'refresh_token_id' => $refreshToken->getKey(),
-            'access_token_id' => $accessToken->getKey(),
-            'scopes' => $accessToken->scopes,
-            'user_id' => $user->getKey(),
-            'expire_time' => $refreshToken->expires_at->getTimestamp(),
-        ]), \Crypt::getKey());
+        $refreshTokenString = EncodeToken::encodeRefreshToken($refreshToken, $accessToken);
 
         $this->expectCountChange(fn () => $user->tokens()->count(), 1);
 
