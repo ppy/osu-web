@@ -87,9 +87,13 @@ class TokensControllerTest extends TestCase
     {
         \Mail::fake();
 
-        $refreshToken = (new RefreshTokenFactory())->create();
+        $refreshToken = (new RefreshTokenFactory())->create([
+            'access_token_id' => Token::factory()->create([
+                'scopes' => ['*'],
+                'verified' => $verified,
+            ]),
+        ]);
         $accessToken = $refreshToken->accessToken;
-        $accessToken->forceFill(['scopes' => ['*'], 'verified' => $verified])->save();
         $client = $accessToken->client;
         $user = $accessToken->user;
         $refreshTokenString = EncodeToken::encodeRefreshToken($refreshToken, $accessToken);
