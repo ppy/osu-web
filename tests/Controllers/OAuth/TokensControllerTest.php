@@ -61,22 +61,21 @@ class TokensControllerTest extends TestCase
 
         $this->expectCountChange(fn () => $user->tokens()->count(), 1);
 
-        $tokenResp = $this->json('POST', route('oauth.passport.token'), [
+        $tokenJson = $this->json('POST', route('oauth.passport.token'), [
             'grant_type' => 'password',
             'client_id' => $client->getKey(),
             'client_secret' => $client->secret,
             'scope' => '*',
             'username' => $user->username,
             'password' => UserFactory::DEFAULT_PASSWORD,
-        ])->assertSuccessful();
-        $tokenJson = json_decode($tokenResp->getContent(), true);
+        ])->assertSuccessful()
+        ->decodeResponseJson();
 
-        $meResp = $this->json('GET', route('api.me'), [], [
+        $this->json('GET', route('api.me'), [], [
             'Authorization' => "Bearer {$tokenJson['access_token']}",
-        ])->assertSuccessful();
-        $meJson = json_decode($meResp->getContent(), true);
+        ])->assertSuccessful()
+        ->assertJsonPath('session_verified', false);
 
-        $this->assertFalse($meJson['session_verified']);
         // unverified access to api should trigger this but not necessarily return 401
         \Mail::assertQueued(UserVerificationMail::class);
     }
@@ -104,21 +103,20 @@ class TokensControllerTest extends TestCase
 
         $this->expectCountChange(fn () => $user->tokens()->count(), 1);
 
-        $tokenResp = $this->json('POST', route('oauth.passport.token'), [
+        $tokenJson = $this->json('POST', route('oauth.passport.token'), [
             'grant_type' => 'refresh_token',
             'client_id' => $client->getKey(),
             'client_secret' => $client->secret,
             'refresh_token' => $refreshTokenString,
             'scope' => implode(' ', $accessToken->scopes),
-        ])->assertSuccessful();
-        $tokenJson = json_decode($tokenResp->getContent(), true);
+        ])->assertSuccessful()
+        ->decodeResponseJson();
 
-        $meResp = $this->json('GET', route('api.me'), [], [
+        $this->json('GET', route('api.me'), [], [
             'Authorization' => "Bearer {$tokenJson['access_token']}",
-        ])->assertSuccessful();
-        $meJson = json_decode($meResp->getContent(), true);
+        ])->assertSuccessful()
+        ->assertJsonPath('session_verified', $verified);
 
-        $this->assertSame($meJson['session_verified'], $verified);
         \Mail::assertQueued(UserVerificationMail::class, $verified ? 0 : 1);
     }
 }
