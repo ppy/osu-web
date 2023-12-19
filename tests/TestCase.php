@@ -182,7 +182,7 @@ class TestCase extends BaseTestCase
         $encodedToken = EncodeToken::encodeAccessToken($token);
 
         return $this->withHeaders([
-            'Authorization' => "Bearer {$encryptedToken}",
+            'Authorization' => "Bearer {$encodedToken}",
         ]);
     }
 
