@@ -7,6 +7,7 @@ namespace Tests\Controllers\OAuth;
 
 use App\Libraries\OAuth\EncodeToken;
 use App\Mail\UserVerification as UserVerificationMail;
+use App\Models\OAuth\Client;
 use App\Models\OAuth\Token;
 use App\Models\User;
 use Database\Factories\OAuth\ClientFactory;
@@ -87,16 +88,16 @@ class TokensControllerTest extends TestCase
     {
         \Mail::fake();
 
-        $refreshToken = (new RefreshTokenFactory())->create([
-            'access_token_id' => Token::factory()->create([
-                'scopes' => ['*'],
-                'verified' => $verified,
-            ]),
+        $client = Client::factory()->create(['password_client' => true]);
+        $accessToken = Token::factory()->create([
+            'client_id' => $client,
+            'scopes' => ['*'],
+            'verified' => $verified,
         ]);
-        $accessToken = $refreshToken->accessToken;
-        $client = $accessToken->client;
-        $user = $accessToken->user;
+        $refreshToken = (new RefreshTokenFactory())
+            ->create(['access_token_id' => $accessToken]);
         $refreshTokenString = EncodeToken::encodeRefreshToken($refreshToken, $accessToken);
+        $user = $accessToken->user;
 
         $this->expectCountChange(fn () => $user->tokens()->count(), 1);
 
