@@ -11,7 +11,6 @@ use App\Libraries\Payments\PaymentSignature;
 use App\Libraries\Payments\XsollaPaymentProcessor;
 use App\Models\Store\Order;
 use App\Models\Store\OrderItem;
-use Config;
 use Tests\TestCase;
 
 class XsollaPaymentProcessorTest extends TestCase
@@ -123,7 +122,7 @@ class XsollaPaymentProcessorTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        Config::set('payments.xsolla.api_key', 'api_key');
+        config_set('payments.xsolla.api_key', 'api_key');
         $this->order = Order::factory()->checkout()->create();
     }
 

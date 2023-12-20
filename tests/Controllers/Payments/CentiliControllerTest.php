@@ -8,7 +8,6 @@ namespace Tests\Controllers\Payments;
 use App\Libraries\Payments\CentiliSignature;
 use App\Models\Store\Order;
 use App\Models\Store\OrderItem;
-use Config;
 use Tests\TestCase;
 
 class CentiliControllerTest extends TestCase
@@ -44,9 +43,9 @@ class CentiliControllerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        Config::set('payments.centili.secret_key', 'secret_key');
-        Config::set('payments.centili.api_key', 'api_key');
-        Config::set('payments.centili.conversion_rate', 120.00);
+        config_set('payments.centili.secret_key', 'secret_key');
+        config_set('payments.centili.api_key', 'api_key');
+        config_set('payments.centili.conversion_rate', 120.00);
         $this->order = Order::factory()->checkout()->create();
     }
 
@@ -55,13 +54,13 @@ class CentiliControllerTest extends TestCase
         $base = [
             'reference' => $this->order->getOrderNumber(),
             'country' => 'jp',
-            'enduserprice' => $this->order->getTotal() * config('payments.centili.conversion_rate'),
+            'enduserprice' => $this->order->getTotal() * $GLOBALS['cfg']['payments']['centili']['conversion_rate'],
             'event_type' => 'one_off',
             'mnocode' => 'BADDOG',
             'phone' => 'test@example.org',
             'revenue' => '4.34',
             'revenuecurrency' => 'MONOPOLY',
-            'service' => config('payments.centili.api_key'),
+            'service' => $GLOBALS['cfg']['payments']['centili']['api_key'],
             'status' => 'success',
             'transactionid' => '111222333',
         ];

@@ -9,14 +9,15 @@
         'theme' => 'password-reset',
     ]])
     <div class="osu-page osu-page--generic-compact">
-        {!! Form::open([
-            'route' => 'password-reset',
-            'class' => 'password-reset js-form-error',
-            'method' => 'POST',
-            'data-remote' => true,
-            'data-reload-on-success' => '1',
-            'data-skip-ajax-error-popup' => '1',
-        ]) !!}
+        <form
+            action="{{ route('password-reset') }}"
+            class="password-reset js-form-error"
+            data-reload-on-success="1"
+            data-remote
+            data-skip-ajax-error-popup="1"
+            method="POST"
+        >
+            @csrf
             <label class="password-reset__input-group">
                 {{ osu_trans('password_reset.starting.username') }}
 
@@ -31,17 +32,20 @@
                 </button>
             </div>
 
-            @if (config('services.enchant.id') !== null)
+            @if ($GLOBALS['cfg']['services']['enchant']['id'] !== null)
                 <div>
-                    {!! osu_trans('password_reset.starting.support._', ['button' => tag('a', [
-                        'class' => 'js-enchant--show',
-                        'role' => 'button',
-                        'href' => '#',
-                    ], osu_trans('password_reset.starting.support.button'))]) !!}
+                    {!! osu_trans('password_reset.starting.support._', ['button' => link_to(
+                        '#',
+                        osu_trans('password_reset.starting.support.button'),
+                        [
+                            'class' => 'js-enchant--show',
+                            'role' => 'button',
+                        ]
+                    )]) !!}
                 </div>
 
                 @include('objects._enchant')
             @endif
-        {!! Form::close() !!}
+        </form>
     </div>
 @endsection

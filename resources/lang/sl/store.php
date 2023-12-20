@@ -6,6 +6,7 @@
 return [
     'cart' => [
         'checkout' => 'Plačilo',
+        'empty_cart' => '',
         'info' => ':count_delimited izdelek v košarici ($:subtotal)|:count_delimited izdelkov v košarici ($:subtotal)',
         'more_goodies' => 'Želim si preveriti več dobrot, preden dokončam svoje naročilo',
         'shipping_fees' => 'stroški pošiljanja',
@@ -48,19 +49,52 @@ return [
     ],
 
     'discount' => ':percent% popust',
+    'free' => '',
 
     'invoice' => [
+        'contact' => '',
+        'date' => '',
         'echeck_delay' => 'Ker je bilo tvoje plačilo narejeno z eCheck-om, prosimo počakaj vsaj do 10 dodatnih dni, da se plačilo poravna preko PayPal-a!',
         'hide_from_activity' => 'osu!supporter oznake v tem naročilu ne bodo prikazane v tvojih nedavnih dejavnostih.',
+        'sent_via' => '',
+        'shipping_to' => '',
+        'title' => '',
         'title_compact' => 'račun',
 
         'status' => [
+            'cancelled' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => "",
+                    'link_text' => '',
+                ],
+            ],
+            'delivered' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => '',
+                    'link_text' => '',
+                ],
+            ],
+            'prepared' => [
+                'title' => '',
+                'line_1' => '',
+                'line_2' => '',
+            ],
             'processing' => [
                 'title' => 'Tvoje plačilo še ni bilo potrjeno!',
                 'line_1' => 'Če si že opravil plačilo, je lahko možnost, da še vedno čakamo na potrdilo o tvojem plačilu. Prosimo osveži to stran čez minuto ali dve!',
                 'line_2' => [
                     '_' => 'V primeru, da si naletel na težavo med plačilom, :link',
                     'link_text' => 'za nadaljevanje plačila klikni tukaj',
+                ],
+            ],
+            'shipped' => [
+                'title' => '',
+                'tracking_details' => '',
+                'no_tracking_details' => [
+                    '_' => "",
+                    'link_text' => '',
                 ],
             ],
         ],
@@ -74,7 +108,19 @@ return [
         'no_orders' => 'Ni nobenih naročil.',
         'paid_on' => 'Naročeno :date',
         'resume' => 'Nadaljuj s plačilom',
+        'shipping_and_handling' => '',
         'shopify_expired' => 'Povezava za plačilo tega naročila je potekla.',
+        'subtotal' => '',
+        'total' => '',
+
+        'details' => [
+            'order_number' => '',
+            'payment_terms' => '',
+            'salesperson' => '',
+            'shipping_method' => '',
+            'shipping_terms' => '',
+            'title' => '',
+        ],
 
         'item' => [
             'quantity' => 'Količina',
@@ -105,6 +151,15 @@ return [
             'paid' => 'Plačano',
             'processing' => 'Čakanje na potrditev',
             'shipped' => 'Poslano',
+            'title' => '',
+        ],
+
+        'thanks' => [
+            'title' => '',
+            'line_1' => [
+                '_' => '',
+                'link_text' => '',
+            ],
         ],
     ],
 
@@ -138,6 +193,10 @@ return [
     'username_change' => [
         'check' => 'Vnesi uporabniško ime za preverjanje razpoložljivosti! ',
         'checking' => 'Preverjanje razpoložljivosti uporabniškega imena :username...',
+        'placeholder' => '',
+        'label' => '',
+        'current' => '',
+
         'require_login' => [
             '_' => 'Za spreminjanje uporabniškega imena moraš biti :link!',
             'link_text' => 'vpisan',

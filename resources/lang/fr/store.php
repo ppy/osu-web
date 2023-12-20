@@ -6,6 +6,7 @@
 return [
     'cart' => [
         'checkout' => 'Acheter',
+        'empty_cart' => 'Supprimer tous les articles du panier',
         'info' => ':count_delimited article dans le panier ($:subtotal)|:count_delimited articles dans le panier ($:subtotal)',
         'more_goodies' => 'Je souhaite chercher d\'autres goodies avant de passer commande',
         'shipping_fees' => 'frais de livraison',
@@ -48,19 +49,52 @@ return [
     ],
 
     'discount' => 'économisez :percent%',
+    'free' => 'gratuit !',
 
     'invoice' => [
+        'contact' => 'Contact :',
+        'date' => 'Date :',
         'echeck_delay' => 'Si votre paiement est en eCheck, comptez jusqu\'à 10 jours supplémentaires pour le paiement via PayPal !',
         'hide_from_activity' => 'Les tags osu!supporter dans cette commande ne sont pas affichés dans vos activités récentes.',
+        'sent_via' => 'Envoyé via :',
+        'shipping_to' => 'Expédition à :',
+        'title' => 'Facture',
         'title_compact' => 'facture',
 
         'status' => [
+            'cancelled' => [
+                'title' => 'Votre commande a été annulée',
+                'line_1' => [
+                    '_' => "Si vous n'avez pas demandé d'annulation, veuillez contacter le :link en citant votre numéro de commande (#:order_number).",
+                    'link_text' => 'support de l\'osu!store',
+                ],
+            ],
+            'delivered' => [
+                'title' => 'Votre commande a été livrée ! Nous espérons que vous l\'appréciez !',
+                'line_1' => [
+                    '_' => 'Si vous avez un problème avec votre achat, veuillez contacter le :link.',
+                    'link_text' => 'support de l\'osu!store',
+                ],
+            ],
+            'prepared' => [
+                'title' => 'Votre commande est en cours de préparation !',
+                'line_1' => 'Veuillez patienter un peu plus longtemps avant que la commande ne soit expédiée. Les informations de suivi apparaîtront ici une fois que la commande aura été traitée et envoyée. Cela peut prendre jusqu\'à 5 jours (mais généralement moins !) en fonction de notre activité.',
+                'line_2' => 'Nous envoyons toutes les commandes depuis le Japon en utilisant divers services d\'expédition en fonction du poids et de la valeur. Cette section sera mise à jour une fois que nous aurons expédié la commande.',
+            ],
             'processing' => [
                 'title' => 'Votre paiement n\'a pas encore été confirmé !',
                 'line_1' => 'Si vous avez déjà payé, il se pourrait que nous attendions toujours de recevoir une confirmation de votre paiement. Veuillez rafraîchir cette page dans une minute ou deux !',
                 'line_2' => [
                     '_' => 'Si vous avez rencontré un problème lors de votre commande, :link',
                     'link_text' => 'cliquez ici pour la reprendre',
+                ],
+            ],
+            'shipped' => [
+                'title' => 'Votre commande a été expédiée !',
+                'tracking_details' => 'Détails de suivi :',
+                'no_tracking_details' => [
+                    '_' => "Nous n'avons pas d'informations de suivi puisque nous avons envoyé votre colis par Air Mail, mais vous pouvez vous attendre à le recevoir dans un délai de 1 à 3 semaines. Pour l'Europe, les douanes peuvent parfois retarder la commande hors de notre contrôle. Si vous avez des inquiétudes, veuillez répondre à l'e-mail de confirmation de commande que vous avez reçu :link.",
+                    'link_text' => 'envoyez-nous un email',
                 ],
             ],
         ],
@@ -74,7 +108,19 @@ return [
         'no_orders' => 'Aucune commande à voir.',
         'paid_on' => 'Commande passée :date',
         'resume' => 'Reprendre la commande',
+        'shipping_and_handling' => 'Expédition et traitement',
         'shopify_expired' => 'Le lien de commande pour cette commande a expiré.',
+        'subtotal' => 'Sous-total',
+        'total' => 'Total',
+
+        'details' => [
+            'order_number' => 'Commande #',
+            'payment_terms' => 'Conditions de paiement',
+            'salesperson' => 'Vendeur',
+            'shipping_method' => 'Mode de livraison',
+            'shipping_terms' => 'Conditions d\'expédition',
+            'title' => 'Détails de la commande',
+        ],
 
         'item' => [
             'quantity' => 'Quantité',
@@ -105,6 +151,15 @@ return [
             'paid' => 'Payée',
             'processing' => 'En attente de confirmation',
             'shipped' => 'Expédié',
+            'title' => 'Statut de la commande',
+        ],
+
+        'thanks' => [
+            'title' => 'Merci pour votre commande !',
+            'line_1' => [
+                '_' => 'Vous recevrez bientôt un email de confirmation. Si vous avez des questions, veuillez :link !',
+                'link_text' => 'contactez-nous',
+            ],
         ],
     ],
 
@@ -138,6 +193,10 @@ return [
     'username_change' => [
         'check' => 'Entrez un nom d\'utilisateur pour vérifier sa disponibilité !',
         'checking' => 'Vérification de la disponibilité de :username...',
+        'placeholder' => 'Nom d\'utilisateur demandé',
+        'label' => 'Nouveau nom d\'utilisateur',
+        'current' => 'Votre nom d\'utilisateur actuel est «:username».',
+
         'require_login' => [
             '_' => 'Vous devez être :link pour changer de nom !',
             'link_text' => 'connecté',

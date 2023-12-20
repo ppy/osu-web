@@ -75,7 +75,7 @@ export const ReviewPostEmbed = ({ data }: Props) => {
   );
 
   const parentLink = () => {
-    if (!discussion.parent_id) {
+    if (discussion.parent_id == null) {
       return;
     }
 
@@ -98,7 +98,7 @@ export const ReviewPostEmbed = ({ data }: Props) => {
         <div className={`${bn}__selectors`}>
           <div className='icon-dropdown-menu icon-dropdown-menu--disabled'>
             {beatmap != null && <BeatmapIcon beatmap={beatmap} withTooltip />}
-            {!discussion.beatmap_id &&
+            {discussion.beatmap_id == null &&
               <i className='fas fa-fw fa-star-of-life' title={trans('beatmaps.discussions.mode.scopes.generalAll')} />
             }
           </div>

@@ -6,6 +6,7 @@
 return [
     'cart' => [
         'checkout' => 'Checkout',
+        'empty_cart' => '',
         'info' => ':count_delimited pirasong item sa kariton ($:subtotal)|:count_delimited pirasong mga item sa kariton ($:subtotal)',
         'more_goodies' => 'Gusto kong tingnan ang higit pang mga goodies bago makumpleto ang order',
         'shipping_fees' => 'mga bayarin sa pagpapadala',
@@ -48,19 +49,52 @@ return [
     ],
 
     'discount' => 'makatipid ng :percent%',
+    'free' => '',
 
     'invoice' => [
+        'contact' => '',
+        'date' => '',
         'echeck_delay' => 'Dahil ang pagbayad ay eCheck, maari pong magantay ng 10 araw para dumaan ng PayPal ang iyong bayarin!',
         'hide_from_activity' => 'ang mga tag ng osu!supporter sa pagkakasunud-sunod na ito ay hindi ipinapakita sa iyong kamakailang mga aktibidad.',
+        'sent_via' => '',
+        'shipping_to' => '',
+        'title' => '',
         'title_compact' => 'invoice',
 
         'status' => [
+            'cancelled' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => "",
+                    'link_text' => '',
+                ],
+            ],
+            'delivered' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => '',
+                    'link_text' => '',
+                ],
+            ],
+            'prepared' => [
+                'title' => '',
+                'line_1' => '',
+                'line_2' => '',
+            ],
             'processing' => [
                 'title' => 'Hindi pa kumpirmado ang iyong bayad!',
                 'line_1' => 'Pag nakapagbayad kana, baka inaantay pa namin na makuha ang confirmation ng bayarin. i refresh ang page mamaya!',
                 'line_2' => [
                     '_' => 'Pag nagkaproblema sa checkout, :link',
                     'link_text' => 'click para matuloy ang checkout',
+                ],
+            ],
+            'shipped' => [
+                'title' => '',
+                'tracking_details' => '',
+                'no_tracking_details' => [
+                    '_' => "",
+                    'link_text' => '',
                 ],
             ],
         ],
@@ -74,7 +108,19 @@ return [
         'no_orders' => 'Walang maipakitang order.',
         'paid_on' => 'Ipinasa ang order noong :date',
         'resume' => 'Bumalik sa Checkout',
+        'shipping_and_handling' => '',
         'shopify_expired' => 'Ang link ng checkout para sa order na ito ay nag-expire na.',
+        'subtotal' => '',
+        'total' => '',
+
+        'details' => [
+            'order_number' => '',
+            'payment_terms' => '',
+            'salesperson' => '',
+            'shipping_method' => '',
+            'shipping_terms' => '',
+            'title' => '',
+        ],
 
         'item' => [
             'quantity' => 'Dami',
@@ -105,6 +151,15 @@ return [
             'paid' => 'Paid',
             'processing' => 'Naghihintay ng kumpirmasyon',
             'shipped' => 'Naipadala',
+            'title' => '',
+        ],
+
+        'thanks' => [
+            'title' => '',
+            'line_1' => [
+                '_' => '',
+                'link_text' => '',
+            ],
         ],
     ],
 
@@ -138,6 +193,10 @@ return [
     'username_change' => [
         'check' => 'Mag-type ng username upang suriin ang kakayahang magamit!',
         'checking' => 'Sinusuri ang availability ng :username...',
+        'placeholder' => '',
+        'label' => '',
+        'current' => '',
+
         'require_login' => [
             '_' => 'Kailangan mong maging :link upang baguhin ang iyong pangalan!',
             'link_text' => 'naka-sign in',

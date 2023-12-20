@@ -55,6 +55,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => 'Nova recenzija od :username koji sardži probleme: :problems, sugestije: :suggestions, pohvale: :praises',
                 'beatmapset_discussion_unlock' => 'Rasprava na ":title" je upravo otključana',
                 'beatmapset_discussion_unlock_compact' => 'Rasprava je bila otključana',
+
+                'review_count' => [
+                    'praises' => '',
+                    'problems' => '',
+                    'suggestions' => '',
+                ],
             ],
 
             'beatmapset_problem' => [

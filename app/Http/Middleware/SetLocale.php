@@ -47,6 +47,6 @@ class SetLocale
     private function localeFromHeader(Request $request): string
     {
         return (new Parser())->languageRegionCompatibleFor($request->server('HTTP_ACCEPT_LANGUAGE'))
-            ?? config('app.fallback_locale');
+            ?? $GLOBALS['cfg']['app']['fallback_locale'];
     }
 }

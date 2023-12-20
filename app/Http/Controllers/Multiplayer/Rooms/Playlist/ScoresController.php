@@ -169,7 +169,7 @@ class ScoresController extends BaseController
         $params = request()->all();
 
         $buildId = ClientCheck::findBuild($user, $params)?->getKey()
-            ?? config('osu.client.default_build_id');
+            ?? $GLOBALS['cfg']['osu']['client']['default_build_id'];
 
         $scoreToken = $room->startPlay($user, $playlistItem, $buildId);
 

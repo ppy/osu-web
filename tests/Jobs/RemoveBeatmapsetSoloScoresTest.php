@@ -64,25 +64,19 @@ class RemoveBeatmapsetSoloScoresTest extends TestCase
         $search->indexWait();
 
         $this->beforeApplicationDestroyed(function () use ($search) {
-            $this->refreshApplication();
-            $db = app('db');
-            Beatmap::truncate();
-            Beatmapset::truncate();
-            Country::truncate();
-            Genre::truncate();
-            Group::truncate();
-            Language::truncate();
-            Score::select()->delete(); // TODO: revert to truncate after the table is actually renamed
-            ScorePerformance::select()->delete(); // TODO: revert to truncate after the table is actually renamed
-            User::truncate();
-            UserGroup::truncate();
-            UserGroupEvent::truncate();
-            $search->deleteAll();
-            foreach (config('database.connections') as $name => $_dbConfig) {
-                $conn = $db->connection($name);
-                $conn->rollBack();
-                $conn->disconnect();
-            }
+            static::withDbAccess(function () use ($search) {
+                Beatmap::truncate();
+                Beatmapset::truncate();
+                Country::truncate();
+                Genre::truncate();
+                Language::truncate();
+                Score::select()->delete(); // TODO: revert to truncate after the table is actually renamed
+                ScorePerformance::select()->delete(); // TODO: revert to truncate after the table is actually renamed
+                User::truncate();
+                UserGroup::truncate();
+                UserGroupEvent::truncate();
+                $search->deleteAll();
+            });
         });
     }
 

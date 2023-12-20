@@ -124,6 +124,9 @@ return [
     ],
 
     'ogp' => [
+        'modding_description' => '谱面：:counts',
+        'modding_description_empty' => '玩家没有任何谱面...',
+
         'description' => [
             '_' => '排名 (:ruleset): :global | :country',
             'country' => '地区 :rank',
@@ -183,7 +186,6 @@ return [
         'origin_country' => '来自 :country',
         'previous_usernames' => '曾用名',
         'plays_with' => '用 :devices 游玩',
-        'title' => ":username 的个人资料",
 
         'comments_count' => [
             '_' => '发表了 :link',

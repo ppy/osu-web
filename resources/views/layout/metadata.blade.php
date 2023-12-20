@@ -3,9 +3,9 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @php
-    $appUrl = config('app.url');
+    $appUrl = $GLOBALS['cfg']['app']['url'];
     $currentLocale = App::getLocale();
-    $fallbackLocale = config('app.fallback_locale');
+    $fallbackLocale = $GLOBALS['cfg']['app']['fallback_locale'];
     $opengraph = Request::instance()->attributes->get('opengraph');
 
     $opengraph['description'] ??= $pageDescription ?? null;
@@ -23,7 +23,7 @@
 <meta name="keywords" content="osu, peppy, ouendan, elite, beat, agents, ds, windows, game, taiko, tatsujin, simulator, sim, xna, ddr, beatmania, osu!, osume">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="search" type="application/opensearchdescription+xml" title="osu! search" href="{{ config('app.url') }}/opensearch.xml">
+<link rel="search" type="application/opensearchdescription+xml" title="osu! search" href="{{ $appUrl }}/opensearch.xml">
 
 <meta property="og:site_name" content="osu!">
 <meta property="og:type" content="website">
@@ -89,18 +89,18 @@
 <script>
     var currentLocale = {!! json_encode($currentLocale) !!};
     var fallbackLocale = {!! json_encode($fallbackLocale) !!};
-    var experimentalHost = {!! json_encode(config('osu.urls.experimental_host')) !!}
+    var experimentalHost = {!! json_encode(osu_url('experimental_host')) !!}
 </script>
 
 <script src="{{ unmix('js/runtime.js') }}" data-turbolinks-track="reload"></script>
 <script src="{{ unmix('js/vendor.js') }}" data-turbolinks-track="reload"></script>
 
-@if(config('services.sentry.public_dsn') !== '')
+@if($GLOBALS['cfg']['services']['sentry']['public_dsn'] !== '')
     <script src="https://browser.sentry-cdn.com/5.1.0/bundle.min.js" crossorigin="anonymous"></script>
     <script>
         typeof Sentry !== 'undefined' && Sentry.init({
-            debug: {!! json_encode(config('app.debug')) !!},
-            dsn: {!! json_encode(config('services.sentry.public_dsn')) !!},
+            debug: {!! json_encode($GLOBALS['cfg']['app']['debug']) !!},
+            dsn: {!! json_encode($GLOBALS['cfg']['services']['sentry']['public_dsn']) !!},
             ignoreErrors: [
                 // Random plugins/extensions
                 'top.GLOBALS',
@@ -114,7 +114,7 @@
                 // Errors caused by spyware/adware junk
                 /^\/loaders\//i
             ],
-            release: {!! json_encode(config('osu.git-sha')) !!},
+            release: {!! json_encode($GLOBALS['cfg']['osu']['git-sha']) !!},
             whitelistUrls: [/^{!! preg_quote($appUrl, '/') !!}\/.*\.js(?:\?.*)?$/],
         });
     </script>

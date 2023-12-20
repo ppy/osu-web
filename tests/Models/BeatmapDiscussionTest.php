@@ -184,7 +184,7 @@ class BeatmapDiscussionTest extends TestCase
         $this->assertFalse($discussion->trashed());
     }
 
-    public function validBeatmapsetStatuses()
+    public static function validBeatmapsetStatuses()
     {
         return array_map(function ($status) {
             return [camel_case($status)];

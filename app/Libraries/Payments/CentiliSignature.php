@@ -29,7 +29,7 @@ class CentiliSignature implements PaymentSignature
         // Centili signature is a HMAC of the concatenation of all params values sorted alphabetically by key name.
         $content = static::stringifyInput($params);
 
-        return hash_hmac('sha1', $content, config('payments.centili.secret_key'), false);
+        return hash_hmac('sha1', $content, $GLOBALS['cfg']['payments']['centili']['secret_key'], false);
     }
 
     public static function stringifyInput(array $input)

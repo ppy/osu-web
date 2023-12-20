@@ -14,13 +14,14 @@ class Mb4ForumLastTopic extends Migration
      */
     public function up()
     {
-        DB::statement("
-            ALTER TABLE phpbb_forums MODIFY forum_last_post_subject
-                VARCHAR(100)
-                NOT NULL
-                DEFAULT ''
-                COLLATE 'utf8mb4_bin'
-        ");
+        // Not relevant anymore
+        // DB::statement("
+        //     ALTER TABLE phpbb_forums MODIFY forum_last_post_subject
+        //         VARCHAR(100)
+        //         NOT NULL
+        //         DEFAULT ''
+        //         COLLATE 'utf8mb4_bin'
+        // ");
     }
 
     /**
@@ -30,12 +31,12 @@ class Mb4ForumLastTopic extends Migration
      */
     public function down()
     {
-        DB::statement("
-            ALTER TABLE phpbb_forums MODIFY forum_last_post_subject
-                VARCHAR(100)
-                NOT NULL
-                DEFAULT ''
-                COLLATE 'utf8_bin'
-        ");
+        // DB::statement("
+        //     ALTER TABLE phpbb_forums MODIFY forum_last_post_subject
+        //         VARCHAR(100)
+        //         NOT NULL
+        //         DEFAULT ''
+        //         COLLATE 'utf8_bin'
+        // ");
     }
 }

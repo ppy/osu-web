@@ -6,6 +6,7 @@
 return [
     'cart' => [
         'checkout' => '結帳',
+        'empty_cart' => '',
         'info' => '購物車裡有 :count_delimited 件商品（$:subtotal）|購物車裡有 :count_delimited 件商品（$:subtotal）',
         'more_goodies' => '我想在完成訂單之前查看更多的東西',
         'shipping_fees' => '運費',
@@ -48,19 +49,52 @@ return [
     ],
 
     'discount' => '折扣 :percent%',
+    'free' => '免費！',
 
     'invoice' => [
+        'contact' => '',
+        'date' => '日期：',
         'echeck_delay' => '由於您是用 eCheck 付款，請等待至多 10 天以使該支付通過 PayPal 完成！',
         'hide_from_activity' => '這項 osu! 贊助者訂單未在您的最近活動中顯示。',
+        'sent_via' => '',
+        'shipping_to' => '運送至：',
+        'title' => '',
         'title_compact' => '帳單',
 
         'status' => [
+            'cancelled' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => "",
+                    'link_text' => 'osu!store 支援',
+                ],
+            ],
+            'delivered' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => '',
+                    'link_text' => 'osu!store 支援',
+                ],
+            ],
+            'prepared' => [
+                'title' => '正在準備您的訂單！',
+                'line_1' => '',
+                'line_2' => '',
+            ],
             'processing' => [
                 'title' => '您的付款尚未被確認!',
                 'line_1' => '如果您已經付款，我們可能還在等待收到您付款的確認。請在一兩分鐘內重新載入此頁面！',
                 'line_2' => [
                     '_' => '如果您在結帳時遇到問題，請查看 :link',
                     'link_text' => '點擊這裡繼續您的結帳',
+                ],
+            ],
+            'shipped' => [
+                'title' => '',
+                'tracking_details' => '',
+                'no_tracking_details' => [
+                    '_' => "",
+                    'link_text' => '向我們發送電子郵件',
                 ],
             ],
         ],
@@ -74,7 +108,19 @@ return [
         'no_orders' => '沒有訂單',
         'paid_on' => '下訂單 :date',
         'resume' => '繼續結賬',
+        'shipping_and_handling' => '',
         'shopify_expired' => '此訂單的結帳網址已經過期。',
+        'subtotal' => '小計',
+        'total' => '總計',
+
+        'details' => [
+            'order_number' => '',
+            'payment_terms' => '',
+            'salesperson' => '',
+            'shipping_method' => '運送方式',
+            'shipping_terms' => '',
+            'title' => '',
+        ],
 
         'item' => [
             'quantity' => '數量',
@@ -105,6 +151,15 @@ return [
             'paid' => '已付款',
             'processing' => '待確認',
             'shipped' => '已出貨',
+            'title' => '訂單狀態',
+        ],
+
+        'thanks' => [
+            'title' => '',
+            'line_1' => [
+                '_' => '',
+                'link_text' => '聯絡我們',
+            ],
         ],
     ],
 
@@ -138,6 +193,10 @@ return [
     'username_change' => [
         'check' => '输入使用者名稱並檢查是否可用',
         'checking' => '正在檢查 :username 是否可用。。。',
+        'placeholder' => '',
+        'label' => '新的使用者名稱',
+        'current' => '您目前的使用者名稱是 ":username"。',
+
         'require_login' => [
             '_' => '需要 :link 才能變更使用者名稱！',
             'link_text' => '登入',

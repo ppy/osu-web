@@ -44,7 +44,7 @@ export class CircularProgress extends React.PureComponent<Props, any> {
           warn: percentage >= warnThreshold && percentage < 1,
           [this.props.theme]: present(this.props.theme),
         })}
-        title={this.props.tooltip || `${this.props.current} / ${this.props.max}`}
+        title={this.props.tooltip ?? `${this.props.current} / ${this.props.max}`}
       >
         <div className={`${bn}__label`}>{this.props.max - this.props.current}</div>
         <div className={`${bn}__slice`}>

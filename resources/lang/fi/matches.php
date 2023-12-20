@@ -5,7 +5,7 @@
 
 return [
     'match' => [
-        'beatmap-deleted' => 'poistettu beatmappi',
+        'beatmap-deleted' => 'poistettu rytmikartta',
         'failed' => 'HÄVISI',
         'header' => 'Moninpelit',
         'in-progress' => '(peli meneillään)',
@@ -33,7 +33,7 @@ return [
         'score' => [
             'stats' => [
                 'accuracy' => 'Tarkkuus',
-                'combo' => 'Kombo',
+                'combo' => 'Iskuputki',
                 'score' => 'Pisteet',
             ],
         ],
@@ -54,7 +54,7 @@ return [
         'scoring-type' => [
             'score' => 'Korkeimmat Pisteet',
             'accuracy' => 'Korkein tarkkuus',
-            'combo' => 'Korkein combo',
+            'combo' => 'Korkein iskuputki',
             'scorev2' => 'Pisteytys V2',
         ],
     ],

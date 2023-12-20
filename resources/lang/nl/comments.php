@@ -43,6 +43,10 @@ return [
         'no_comments' => 'geen reacties gevonden...',
     ],
 
+    'ogp' => [
+        'title' => '',
+    ],
+
     'placeholder' => [
         'edit' => 'Wijzig de opmerking hier',
         'new' => 'Typ hier een nieuwe reactie',

@@ -47,14 +47,6 @@ class CleanHTML
             ]
         );
 
-        $def->addElement(
-            'button',
-            'Formctrl',
-            'Optional: #PCDATA | Heading | List | Block | Inline',
-            'Common',
-            ['type' => 'Enum#button'],
-        );
-
         $def->addAttribute('audio', 'preload', 'Text');
 
         $def->addAttribute('img', 'loading', 'Text');

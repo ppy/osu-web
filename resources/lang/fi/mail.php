@@ -6,8 +6,8 @@
 return [
     'beatmapset_update_notice' => [
         'new' => 'Tiedoksesi vain, että ":title" on saanut uuden päivityksen poissaolosi aikana.',
-        'subject' => 'Uusi päivitys beatmappiin ":title"',
-        'unwatch' => 'Jos et enää halua seurata tätä beatmappia, voit joko klikata "Lopeta seuraaminen" -linkkiä edellä mainitussa sivussa tai modiseurantalistassa:',
+        'subject' => 'Uusi päivitys rytmikarttaan ":title"',
+        'unwatch' => 'Jos et enää halua seurata tätä rytmikarttaa, voit joko klikata "Lopeta seuraaminen" -linkkiä edellä mainitussa sivussa tai modausseurantalistassa:',
         'visit' => 'Voit katsoa keskustelua täällä:',
     ],
 
@@ -64,11 +64,11 @@ return [
     'supporter_gift' => [
         'anonymous_gift' => 'Henkilö, joka lahjoitti sinulle tämän tägin, voi halutessaan pysyä anonyyminä, joten heitä ei ole maininttu tässä ilmoituksessa.',
         'anonymous_gift_maybe_not' => 'Mutta taidat jo tietää kuka se mahtaa olla ;).',
-        'duration' => 'Kiitos hänen, sinulla on pääsy osu!directiin ja muihin osu!tukija-etuihin seuraavan :duration ajan.',
+        'duration' => 'Kiitos hänen, sinulla on pääsy osu!-directiin ja muihin osu!-tukijaetuihin seuraavan :duration ajan.',
         'features' => 'Voit saada lisätietoja näistä ominaisuuksista täältä:',
         'gifted' => 'Joku on juuri antanut sinulle osu! -tukijan!',
         'gift_message' => 'Henkilö, joka lahjoitti sinulle tämän merkin, jätti sinulle viestin:',
-        'subject' => 'Sinulle on lahjoitettu osu!tukijatagi!',
+        'subject' => 'Sinulle on lahjoitettu osu!-tukijamerkki!',
     ],
 
     'user_email_updated' => [
@@ -82,7 +82,7 @@ return [
         'main' => 'Tilisi epäillään olevan kompromisoitu, sillä on ollut epäilyttävää toimintaa tai ERITTÄIN heikko salasana. Tämän seurauksena vaadimme, että asetat uuden salasanan. Varmista, että valitset TURVALLISEN salasanan.',
         'perform_reset' => 'Voit suorittaa nollauksen kohteesta :url',
         'reason' => 'Syy:',
-        'subject' => 'osu! Tilin Uudelleenaktivointi Vaaditaan',
+        'subject' => 'osu!-tilin uudelleenaktivointi vaaditaan',
     ],
 
     'user_notification_digest' => [

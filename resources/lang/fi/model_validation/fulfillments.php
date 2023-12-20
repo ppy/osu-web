@@ -10,6 +10,6 @@ return [
         'reverting_username_mismatch' => '',
     ],
     'supporter_tag' => [
-        'insufficient_paid' => 'Lahjoitus on pienempi kuin osu!tukijatagin saamiseen tarvittu määrä (:actual > :expected)',
+        'insufficient_paid' => 'Lahjoitus on pienempi kuin osu!tukijatagin saamiseen tarvittava määrä (:actual > :expected)',
     ],
 ];

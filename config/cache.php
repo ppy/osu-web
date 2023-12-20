@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('CACHE_DRIVER', 'file'),
+    'default' => env('CACHE_DRIVER', 'redis'),
 
     /*
     |--------------------------------------------------------------------------
@@ -77,6 +77,6 @@ return [
     |
     */
 
-    'prefix' => 'osu-next',
+    'prefix' => null,
 
 ];

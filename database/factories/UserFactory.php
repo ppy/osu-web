@@ -142,7 +142,7 @@ class UserFactory extends Factory
     public function withPlays(?int $count = null, ?string $ruleset = 'osu'): static
     {
         $state = [
-            'playcount' => $count ?? config('osu.user.min_plays_for_posting'),
+            'playcount' => $count ?? $GLOBALS['cfg']['osu']['user']['min_plays_for_posting'],
         ];
 
         $ret = $this->has(

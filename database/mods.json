@@ -24,7 +24,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "NF",
@@ -42,7 +43,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "HT",
@@ -75,7 +77,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": false
+        "ValidForMultiplayerAsFreeMod": false,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "DC",
@@ -102,7 +105,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": false
+        "ValidForMultiplayerAsFreeMod": false,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "HR",
@@ -118,7 +122,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "SD",
@@ -143,7 +148,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "PF",
@@ -168,7 +174,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "DT",
@@ -201,7 +208,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": false
+        "ValidForMultiplayerAsFreeMod": false,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "NC",
@@ -228,7 +236,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": false
+        "ValidForMultiplayerAsFreeMod": false,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "HD",
@@ -251,7 +260,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "FL",
@@ -284,7 +294,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "BL",
@@ -298,7 +309,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "ST",
@@ -313,7 +325,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "AC",
@@ -350,7 +363,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "TP",
@@ -382,7 +396,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "DA",
@@ -428,7 +443,8 @@
         "RequiresConfiguration": true,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "CL",
@@ -459,6 +475,12 @@
             "Type": "boolean",
             "Label": "Fade out hit circles earlier",
             "Description": "Make hit circles fade out into a miss, rather than after it."
+          },
+          {
+            "Name": "classic_health",
+            "Type": "boolean",
+            "Label": "Classic health",
+            "Description": "More closely resembles the original HP drain mechanics."
           }
         ],
         "IncompatibleMods": [
@@ -467,7 +489,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "RD",
@@ -494,7 +517,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "MR",
@@ -515,7 +539,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "AL",
@@ -532,7 +557,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "SG",
@@ -549,7 +575,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "AT",
@@ -566,12 +593,14 @@
           "SO",
           "MG",
           "RP",
-          "AS"
+          "AS",
+          "TD"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": false,
         "ValidForMultiplayer": false,
-        "ValidForMultiplayerAsFreeMod": false
+        "ValidForMultiplayerAsFreeMod": false,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "CN",
@@ -589,12 +618,14 @@
           "SO",
           "MG",
           "RP",
-          "AS"
+          "AS",
+          "TD"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": false,
         "ValidForMultiplayer": false,
-        "ValidForMultiplayerAsFreeMod": false
+        "ValidForMultiplayerAsFreeMod": false,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "RX",
@@ -617,7 +648,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "AP",
@@ -635,12 +667,14 @@
           "RX",
           "SO",
           "MG",
-          "RP"
+          "RP",
+          "TD"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "SO",
@@ -657,7 +691,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "TR",
@@ -668,12 +703,14 @@
         "IncompatibleMods": [
           "WG",
           "MG",
-          "RP"
+          "RP",
+          "FR"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "WG",
@@ -696,7 +733,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "SI",
@@ -714,7 +752,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "GR",
@@ -739,7 +778,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "DF",
@@ -764,7 +804,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "WU",
@@ -802,7 +843,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": false
+        "ValidForMultiplayerAsFreeMod": false,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "WD",
@@ -840,7 +882,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": false
+        "ValidForMultiplayerAsFreeMod": false,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "TC",
@@ -858,7 +901,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "BR",
@@ -885,7 +929,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "AD",
@@ -917,7 +962,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "MU",
@@ -954,7 +1000,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "NS",
@@ -973,7 +1020,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "MG",
@@ -1001,7 +1049,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "RP",
@@ -1028,7 +1077,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "AS",
@@ -1062,7 +1112,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": false,
-        "ValidForMultiplayerAsFreeMod": false
+        "ValidForMultiplayerAsFreeMod": false,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "FR",
@@ -1071,12 +1122,14 @@
         "Type": "Fun",
         "Settings": [],
         "IncompatibleMods": [
+          "TR",
           "AD"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "BU",
@@ -1092,7 +1145,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "SY",
@@ -1104,7 +1158,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "TD",
@@ -1112,11 +1167,16 @@
         "Description": "Automatically applied to plays on devices with a touchscreen.",
         "Type": "System",
         "Settings": [],
-        "IncompatibleMods": [],
+        "IncompatibleMods": [
+          "AT",
+          "CN",
+          "AP"
+        ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
-        "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayer": false,
+        "ValidForMultiplayerAsFreeMod": false,
+        "AlwaysValidForSubmission": true
       },
       {
         "Acronym": "SV2",
@@ -1127,8 +1187,9 @@
         "IncompatibleMods": [],
         "RequiresConfiguration": false,
         "UserPlayable": false,
-        "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayer": false,
+        "ValidForMultiplayerAsFreeMod": false,
+        "AlwaysValidForSubmission": false
       }
     ]
   },
@@ -1149,7 +1210,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "NF",
@@ -1166,7 +1228,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "HT",
@@ -1199,7 +1262,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": false
+        "ValidForMultiplayerAsFreeMod": false,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "DC",
@@ -1226,7 +1290,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": false
+        "ValidForMultiplayerAsFreeMod": false,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "HR",
@@ -1241,7 +1306,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "SD",
@@ -1264,7 +1330,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "PF",
@@ -1288,7 +1355,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "DT",
@@ -1321,7 +1389,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": false
+        "ValidForMultiplayerAsFreeMod": false,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "NC",
@@ -1348,7 +1417,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": false
+        "ValidForMultiplayerAsFreeMod": false,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "HD",
@@ -1360,7 +1430,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "FL",
@@ -1385,7 +1456,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "AC",
@@ -1420,7 +1492,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "RD",
@@ -1441,7 +1514,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "DA",
@@ -1481,7 +1555,8 @@
         "RequiresConfiguration": true,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "CL",
@@ -1493,7 +1568,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "SW",
@@ -1507,7 +1583,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "SG",
@@ -1523,7 +1600,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "AT",
@@ -1540,7 +1618,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": false,
         "ValidForMultiplayer": false,
-        "ValidForMultiplayerAsFreeMod": false
+        "ValidForMultiplayerAsFreeMod": false,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "CN",
@@ -1558,7 +1637,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": false,
         "ValidForMultiplayer": false,
-        "ValidForMultiplayerAsFreeMod": false
+        "ValidForMultiplayerAsFreeMod": false,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "RX",
@@ -1578,7 +1658,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "WU",
@@ -1616,7 +1697,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": false
+        "ValidForMultiplayerAsFreeMod": false,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "WD",
@@ -1654,7 +1736,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": false
+        "ValidForMultiplayerAsFreeMod": false,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "MU",
@@ -1691,7 +1774,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "AS",
@@ -1725,7 +1809,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": false,
-        "ValidForMultiplayerAsFreeMod": false
+        "ValidForMultiplayerAsFreeMod": false,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "SV2",
@@ -1736,8 +1821,9 @@
         "IncompatibleMods": [],
         "RequiresConfiguration": false,
         "UserPlayable": false,
-        "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayer": false,
+        "ValidForMultiplayerAsFreeMod": false,
+        "AlwaysValidForSubmission": false
       }
     ]
   },
@@ -1766,7 +1852,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "NF",
@@ -1783,7 +1870,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "HT",
@@ -1815,7 +1903,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": false
+        "ValidForMultiplayerAsFreeMod": false,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "DC",
@@ -1841,7 +1930,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": false
+        "ValidForMultiplayerAsFreeMod": false,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "HR",
@@ -1856,7 +1946,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "SD",
@@ -1879,7 +1970,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "PF",
@@ -1903,7 +1995,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "DT",
@@ -1935,7 +2028,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": false
+        "ValidForMultiplayerAsFreeMod": false,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "NC",
@@ -1961,7 +2055,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": false
+        "ValidForMultiplayerAsFreeMod": false,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "HD",
@@ -1973,7 +2068,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "FL",
@@ -1998,7 +2094,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "AC",
@@ -2034,7 +2131,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "DA",
@@ -2086,7 +2184,8 @@
         "RequiresConfiguration": true,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "CL",
@@ -2098,7 +2197,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "MR",
@@ -2110,7 +2210,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "AT",
@@ -2125,7 +2226,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": false,
         "ValidForMultiplayer": false,
-        "ValidForMultiplayerAsFreeMod": false
+        "ValidForMultiplayerAsFreeMod": false,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "CN",
@@ -2141,7 +2243,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": false,
         "ValidForMultiplayer": false,
-        "ValidForMultiplayerAsFreeMod": false
+        "ValidForMultiplayerAsFreeMod": false,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "RX",
@@ -2160,7 +2263,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "WU",
@@ -2197,7 +2301,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": false
+        "ValidForMultiplayerAsFreeMod": false,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "WD",
@@ -2234,7 +2339,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": false
+        "ValidForMultiplayerAsFreeMod": false,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "FF",
@@ -2246,7 +2352,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "MU",
@@ -2283,7 +2390,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "NS",
@@ -2302,7 +2410,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "SV2",
@@ -2313,8 +2422,9 @@
         "IncompatibleMods": [],
         "RequiresConfiguration": false,
         "UserPlayable": false,
-        "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayer": false,
+        "ValidForMultiplayerAsFreeMod": false,
+        "AlwaysValidForSubmission": false
       }
     ]
   },
@@ -2343,7 +2453,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "NF",
@@ -2359,7 +2470,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "HT",
@@ -2392,7 +2504,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": false
+        "ValidForMultiplayerAsFreeMod": false,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "DC",
@@ -2419,7 +2532,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": false
+        "ValidForMultiplayerAsFreeMod": false,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "HR",
@@ -2434,7 +2548,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "SD",
@@ -2456,7 +2571,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "PF",
@@ -2479,7 +2595,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "DT",
@@ -2512,7 +2629,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": false
+        "ValidForMultiplayerAsFreeMod": false,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "NC",
@@ -2539,7 +2657,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": false
+        "ValidForMultiplayerAsFreeMod": false,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "FI",
@@ -2561,7 +2680,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "HD",
@@ -2583,7 +2703,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "FL",
@@ -2611,7 +2732,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "AC",
@@ -2646,227 +2768,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
-      },
-      {
-        "Acronym": "4K",
-        "Name": "Four Keys",
-        "Description": "Play with four keys.",
-        "Type": "Conversion",
-        "Settings": [],
-        "IncompatibleMods": [
-          "5K",
-          "6K",
-          "7K",
-          "8K",
-          "9K",
-          "10K",
-          "1K",
-          "2K",
-          "3K"
-        ],
-        "RequiresConfiguration": false,
-        "UserPlayable": true,
-        "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
-      },
-      {
-        "Acronym": "5K",
-        "Name": "Five Keys",
-        "Description": "Play with five keys.",
-        "Type": "Conversion",
-        "Settings": [],
-        "IncompatibleMods": [
-          "4K",
-          "6K",
-          "7K",
-          "8K",
-          "9K",
-          "10K",
-          "1K",
-          "2K",
-          "3K"
-        ],
-        "RequiresConfiguration": false,
-        "UserPlayable": true,
-        "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
-      },
-      {
-        "Acronym": "6K",
-        "Name": "Six Keys",
-        "Description": "Play with six keys.",
-        "Type": "Conversion",
-        "Settings": [],
-        "IncompatibleMods": [
-          "4K",
-          "5K",
-          "7K",
-          "8K",
-          "9K",
-          "10K",
-          "1K",
-          "2K",
-          "3K"
-        ],
-        "RequiresConfiguration": false,
-        "UserPlayable": true,
-        "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
-      },
-      {
-        "Acronym": "7K",
-        "Name": "Seven Keys",
-        "Description": "Play with seven keys.",
-        "Type": "Conversion",
-        "Settings": [],
-        "IncompatibleMods": [
-          "4K",
-          "5K",
-          "6K",
-          "8K",
-          "9K",
-          "10K",
-          "1K",
-          "2K",
-          "3K"
-        ],
-        "RequiresConfiguration": false,
-        "UserPlayable": true,
-        "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
-      },
-      {
-        "Acronym": "8K",
-        "Name": "Eight Keys",
-        "Description": "Play with eight keys.",
-        "Type": "Conversion",
-        "Settings": [],
-        "IncompatibleMods": [
-          "4K",
-          "5K",
-          "6K",
-          "7K",
-          "9K",
-          "10K",
-          "1K",
-          "2K",
-          "3K"
-        ],
-        "RequiresConfiguration": false,
-        "UserPlayable": true,
-        "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
-      },
-      {
-        "Acronym": "9K",
-        "Name": "Nine Keys",
-        "Description": "Play with nine keys.",
-        "Type": "Conversion",
-        "Settings": [],
-        "IncompatibleMods": [
-          "4K",
-          "5K",
-          "6K",
-          "7K",
-          "8K",
-          "10K",
-          "1K",
-          "2K",
-          "3K"
-        ],
-        "RequiresConfiguration": false,
-        "UserPlayable": true,
-        "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
-      },
-      {
-        "Acronym": "10K",
-        "Name": "Ten Keys",
-        "Description": "Play with ten keys.",
-        "Type": "Conversion",
-        "Settings": [],
-        "IncompatibleMods": [
-          "4K",
-          "5K",
-          "6K",
-          "7K",
-          "8K",
-          "9K",
-          "1K",
-          "2K",
-          "3K"
-        ],
-        "RequiresConfiguration": false,
-        "UserPlayable": true,
-        "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
-      },
-      {
-        "Acronym": "1K",
-        "Name": "One Key",
-        "Description": "Play with one key.",
-        "Type": "Conversion",
-        "Settings": [],
-        "IncompatibleMods": [
-          "4K",
-          "5K",
-          "6K",
-          "7K",
-          "8K",
-          "9K",
-          "10K",
-          "2K",
-          "3K"
-        ],
-        "RequiresConfiguration": false,
-        "UserPlayable": true,
-        "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
-      },
-      {
-        "Acronym": "2K",
-        "Name": "Two Keys",
-        "Description": "Play with two keys.",
-        "Type": "Conversion",
-        "Settings": [],
-        "IncompatibleMods": [
-          "4K",
-          "5K",
-          "6K",
-          "7K",
-          "8K",
-          "9K",
-          "10K",
-          "1K",
-          "3K"
-        ],
-        "RequiresConfiguration": false,
-        "UserPlayable": true,
-        "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
-      },
-      {
-        "Acronym": "3K",
-        "Name": "Three Keys",
-        "Description": "Play with three keys.",
-        "Type": "Conversion",
-        "Settings": [],
-        "IncompatibleMods": [
-          "4K",
-          "5K",
-          "6K",
-          "7K",
-          "8K",
-          "9K",
-          "10K",
-          "1K",
-          "2K"
-        ],
-        "RequiresConfiguration": false,
-        "UserPlayable": true,
-        "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "RD",
@@ -2885,7 +2788,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "DS",
@@ -2897,7 +2801,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "MR",
@@ -2909,7 +2814,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "DA",
@@ -2943,7 +2849,8 @@
         "RequiresConfiguration": true,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "CL",
@@ -2955,7 +2862,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "IN",
@@ -2969,7 +2877,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "CS",
@@ -2981,7 +2890,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "HO",
@@ -2995,7 +2905,238 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
+      },
+      {
+        "Acronym": "1K",
+        "Name": "One Key",
+        "Description": "Play with one key.",
+        "Type": "Conversion",
+        "Settings": [],
+        "IncompatibleMods": [
+          "2K",
+          "3K",
+          "4K",
+          "5K",
+          "6K",
+          "7K",
+          "8K",
+          "9K",
+          "10K"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
+      },
+      {
+        "Acronym": "2K",
+        "Name": "Two Keys",
+        "Description": "Play with two keys.",
+        "Type": "Conversion",
+        "Settings": [],
+        "IncompatibleMods": [
+          "1K",
+          "3K",
+          "4K",
+          "5K",
+          "6K",
+          "7K",
+          "8K",
+          "9K",
+          "10K"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
+      },
+      {
+        "Acronym": "3K",
+        "Name": "Three Keys",
+        "Description": "Play with three keys.",
+        "Type": "Conversion",
+        "Settings": [],
+        "IncompatibleMods": [
+          "1K",
+          "2K",
+          "4K",
+          "5K",
+          "6K",
+          "7K",
+          "8K",
+          "9K",
+          "10K"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
+      },
+      {
+        "Acronym": "4K",
+        "Name": "Four Keys",
+        "Description": "Play with four keys.",
+        "Type": "Conversion",
+        "Settings": [],
+        "IncompatibleMods": [
+          "1K",
+          "2K",
+          "3K",
+          "5K",
+          "6K",
+          "7K",
+          "8K",
+          "9K",
+          "10K"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
+      },
+      {
+        "Acronym": "5K",
+        "Name": "Five Keys",
+        "Description": "Play with five keys.",
+        "Type": "Conversion",
+        "Settings": [],
+        "IncompatibleMods": [
+          "1K",
+          "2K",
+          "3K",
+          "4K",
+          "6K",
+          "7K",
+          "8K",
+          "9K",
+          "10K"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
+      },
+      {
+        "Acronym": "6K",
+        "Name": "Six Keys",
+        "Description": "Play with six keys.",
+        "Type": "Conversion",
+        "Settings": [],
+        "IncompatibleMods": [
+          "1K",
+          "2K",
+          "3K",
+          "4K",
+          "5K",
+          "7K",
+          "8K",
+          "9K",
+          "10K"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
+      },
+      {
+        "Acronym": "7K",
+        "Name": "Seven Keys",
+        "Description": "Play with seven keys.",
+        "Type": "Conversion",
+        "Settings": [],
+        "IncompatibleMods": [
+          "1K",
+          "2K",
+          "3K",
+          "4K",
+          "5K",
+          "6K",
+          "8K",
+          "9K",
+          "10K"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
+      },
+      {
+        "Acronym": "8K",
+        "Name": "Eight Keys",
+        "Description": "Play with eight keys.",
+        "Type": "Conversion",
+        "Settings": [],
+        "IncompatibleMods": [
+          "1K",
+          "2K",
+          "3K",
+          "4K",
+          "5K",
+          "6K",
+          "7K",
+          "9K",
+          "10K"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
+      },
+      {
+        "Acronym": "9K",
+        "Name": "Nine Keys",
+        "Description": "Play with nine keys.",
+        "Type": "Conversion",
+        "Settings": [],
+        "IncompatibleMods": [
+          "1K",
+          "2K",
+          "3K",
+          "4K",
+          "5K",
+          "6K",
+          "7K",
+          "8K",
+          "10K"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
+      },
+      {
+        "Acronym": "10K",
+        "Name": "Ten Keys",
+        "Description": "Play with ten keys.",
+        "Type": "Conversion",
+        "Settings": [],
+        "IncompatibleMods": [
+          "1K",
+          "2K",
+          "3K",
+          "4K",
+          "5K",
+          "6K",
+          "7K",
+          "8K",
+          "9K"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "AT",
@@ -3010,7 +3151,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": false,
         "ValidForMultiplayer": false,
-        "ValidForMultiplayerAsFreeMod": false
+        "ValidForMultiplayerAsFreeMod": false,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "CN",
@@ -3026,7 +3168,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": false,
         "ValidForMultiplayer": false,
-        "ValidForMultiplayerAsFreeMod": false
+        "ValidForMultiplayerAsFreeMod": false,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "WU",
@@ -3064,7 +3207,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": false
+        "ValidForMultiplayerAsFreeMod": false,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "WD",
@@ -3102,7 +3246,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": false
+        "ValidForMultiplayerAsFreeMod": false,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "MU",
@@ -3139,7 +3284,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "AS",
@@ -3173,7 +3319,8 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": false,
-        "ValidForMultiplayerAsFreeMod": false
+        "ValidForMultiplayerAsFreeMod": false,
+        "AlwaysValidForSubmission": false
       },
       {
         "Acronym": "SV2",
@@ -3184,8 +3331,9 @@
         "IncompatibleMods": [],
         "RequiresConfiguration": false,
         "UserPlayable": false,
-        "ValidForMultiplayer": true,
-        "ValidForMultiplayerAsFreeMod": true
+        "ValidForMultiplayer": false,
+        "ValidForMultiplayerAsFreeMod": false,
+        "AlwaysValidForSubmission": false
       }
     ]
   }

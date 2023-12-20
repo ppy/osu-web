@@ -245,7 +245,7 @@ class ScorePinsControllerTest extends TestCase
 
     public function testStoreLimit()
     {
-        config()->set('osu.user.max_score_pins', 1);
+        config_set('osu.user.max_score_pins', 1);
 
         $user = User::factory()->create([
             'osu_subscriber' => false,
@@ -267,7 +267,7 @@ class ScorePinsControllerTest extends TestCase
 
     public function testStoreLimitDifferentMode()
     {
-        config()->set('osu.user.max_score_pins', 1);
+        config_set('osu.user.max_score_pins', 1);
 
         $user = User::factory()->create([
             'osu_subscriber' => false,

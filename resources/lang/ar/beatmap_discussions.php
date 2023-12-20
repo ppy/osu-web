@@ -26,7 +26,7 @@ return [
             'deleted' => 'شمل المناقشات المحذوفة',
             'mode' => 'نمط الخريطة',
             'only_unresolved' => 'اظهار المناقشات التي لم تحل فقط',
-            'show_review_embeds' => '',
+            'show_review_embeds' => 'إظهار منشورات المراجعات',
             'types' => 'أنواع الرسائل',
             'username' => 'اسم المستخدم',
 

@@ -89,6 +89,8 @@ class BeatmapsetSearch extends RecordSearch
         $this->addSimpleFilters($query, $nested);
         $this->addCreatorFilter($query, $nested);
         $this->addTextFilter($query, 'artist', ['artist', 'artist_unicode']);
+        $this->addTextFilter($query, 'source', ['source']);
+        $this->addTextFilter($query, 'title', ['title', 'title_unicode']);
 
         $query->filter([
             'nested' => [
@@ -126,7 +128,7 @@ class BeatmapsetSearch extends RecordSearch
     {
         static $fields = ['artist', 'source', 'tags'];
         $params = [
-            'index' => config('osu.elasticsearch.prefix').'blacklist',
+            'index' => $GLOBALS['cfg']['osu']['elasticsearch']['prefix'].'blacklist',
             'id' => 'beatmapsets',
             // can be changed to per-field blacklist as different fields should probably have different restrictions.
             'path' => 'keywords',

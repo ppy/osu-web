@@ -55,6 +55,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => 'Nueva revisión por :username que contiene problemas: :problems, sugerencias: :suggestions, elogios: :praises',
                 'beatmapset_discussion_unlock' => 'La discusión en ":title" se ha desbloqueado',
                 'beatmapset_discussion_unlock_compact' => 'La discusión se ha desbloqueado',
+
+                'review_count' => [
+                    'praises' => ':count_delimited elogio|:count_delimited elogios',
+                    'problems' => ':count_delimited problema|:count_delimited problemas',
+                    'suggestions' => ':count_delimited sugerencia|:count_delimited sugerencias',
+                ],
             ],
 
             'beatmapset_problem' => [

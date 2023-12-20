@@ -5,8 +5,9 @@
 
 return [
     'cart' => [
-        'checkout' => 'Realitza la compra',
-        'info' => ':count_delimited producte al cistell ($:subtotal)|:count_delimited productes al cistell ($:subtotal)',
+        'checkout' => 'Pagament',
+        'empty_cart' => 'Eliminar tots els elements del cistell',
+        'info' => ':count_delimited elements al cistell ($:subtotal)|:count_delimited elements al cistell ($:subtotal)',
         'more_goodies' => 'Vull veure més productes abans de completar la compra',
         'shipping_fees' => 'despeses d\'enviament',
         'title' => 'Cistella de compra',
@@ -14,14 +15,14 @@ return [
 
         'errors_no_checkout' => [
             'line_1' => 'Oh, hi ha problemes a la teva cistella que no permeten el pagament!',
-            'line_2' => 'Elimina o canvia els productes de sobre per a continuar. ',
+            'line_2' => 'Elimina o actualitza els elements de dalt per continuar.',
         ],
 
         'empty' => [
             'text' => 'La teva cistella està buida.',
             'return_link' => [
-                '_' => 'Torna a :link per a trobar bons productes!',
-                'link_text' => 'articles',
+                '_' => 'Torna al :link per a trobar bons productes!',
+                'link_text' => 'llistat d\'articles',
             ],
         ],
     ],
@@ -32,7 +33,7 @@ return [
         'declined' => 'El pagament s\'ha cancel·lat.',
         'delayed_shipping' => 'Ara mateix no podem atendre totes les comandes! La teva compra és benvinguda, però considera un **retard addicional de 1-2 setmanes** mentre ens posem al dia amb les comandes actuals.',
         'hide_from_activity' => 'Amaga totes les etiquetes osu!supporter en aquesta ordre de la meva activitat',
-        'old_cart' => 'La vostra cistella sembla desactualitzada i s\'ha reiniciat, torna-ho a intentar.',
+        'old_cart' => 'La teva cistella sembla desactualitzada i s\'ha reiniciat, torna-ho a intentar.',
         'pay' => 'Pagament amb Paypal',
         'title_compact' => 'pagament',
 
@@ -48,19 +49,52 @@ return [
     ],
 
     'discount' => 'estalvia :percent%',
+    'free' => 'de franc!',
 
     'invoice' => [
+        'contact' => 'Contacte:',
+        'date' => 'Data:',
         'echeck_delay' => 'Com que el seu pagament va ser un eCheck, si us plau permeti fins a 10 dies addicionals perquè el pagament es faci a través de PayPal!',
         'hide_from_activity' => 'Les etiquetes d\'osu!supporter en aquesta ordre no es mostren a les teves activitats recents.',
+        'sent_via' => 'Enviat via:',
+        'shipping_to' => 'Enviament a:',
+        'title' => 'Factura',
         'title_compact' => 'factura',
 
         'status' => [
+            'cancelled' => [
+                'title' => 'La teva comanda s\'ha cancel·lat',
+                'line_1' => [
+                    '_' => "Si no has sol·licitat una cancel·lació, posa't en contacte amb el :link indicant el teu número de comanda (núm. :order_number).",
+                    'link_text' => 'suport de la osu!store',
+                ],
+            ],
+            'delivered' => [
+                'title' => 'La teva comanda ha estat lliurada! Esperem que l\'estiguis gaudint!',
+                'line_1' => [
+                    '_' => 'Si tens algun problema amb la teva compra, posa\'t en contacte amb el :link.',
+                    'link_text' => 'suport de la osu!store',
+                ],
+            ],
+            'prepared' => [
+                'title' => 'Estem processant la teva comanda!',
+                'line_1' => 'Si us plau, espera una mica més perquè s\'enviï. La informació de seguiment apareixerà aquí una vegada que la comanda hagi estat processada i enviada. Això pot trigar fins a 5 dies (però normalment menys!) depenent de tan ocupats estiguem.',
+                'line_2' => 'Enviem totes les comandes des del Japó usant una varietat de serveis d\'enviament depenent del pes i el valor. Aquesta àrea s\'actualitzarà amb detalls una vegada hàgim enviat la comanda.',
+            ],
             'processing' => [
                 'title' => 'El teu pagament encara no s\'ha confirmat!',
                 'line_1' => 'Si ja has pagat, potser volem rebre la confirmació del pagament. Sisplau, refresca aquesta pàgina en un parell de minuts!',
                 'line_2' => [
                     '_' => 'Si heu trobat un problema durant la compra, :link',
                     'link_text' => 'fes clic aquí per a continuar la comanda',
+                ],
+            ],
+            'shipped' => [
+                'title' => 'La vostra comanda ha estat enviada!',
+                'tracking_details' => 'Detalls de seguiment:',
+                'no_tracking_details' => [
+                    '_' => "No tenim detalls de seguiment, ja que enviem el teu paquet a través d'Air Mail, però pots esperar rebre'l en un termini d'1-3 setmanes. Per a Europa, de vegades les duanes poden endarrerir la comanda fora del nostre control. Si tens algun dubte, si us plau respon al correu electrònic de confirmació de la comanda que vas rebre :link.",
+                    'link_text' => 'envia\'ns un correu electrònic',
                 ],
             ],
         ],
@@ -74,7 +108,19 @@ return [
         'no_orders' => 'No hi ha comandes per veure.',
         'paid_on' => 'Comanda realitzada :date',
         'resume' => 'Continuar pagament',
+        'shipping_and_handling' => 'Enviament i manipulació',
         'shopify_expired' => 'L\'enllaç de pagament per aquesta comanda ha expirat.',
+        'subtotal' => 'Subtotal',
+        'total' => 'Total',
+
+        'details' => [
+            'order_number' => 'Comanda núm. 4',
+            'payment_terms' => 'Condicions de pagament',
+            'salesperson' => 'Venedor',
+            'shipping_method' => 'Mètode d\'enviament',
+            'shipping_terms' => 'Terminis d\'enviament',
+            'title' => 'Detalls de la comanda',
+        ],
 
         'item' => [
             'quantity' => 'Quantitat',
@@ -105,6 +151,15 @@ return [
             'paid' => 'Pagada',
             'processing' => 'Pendent de confirmació',
             'shipped' => 'Enviada',
+            'title' => 'Estat de la comanda',
+        ],
+
+        'thanks' => [
+            'title' => 'Moltes gràcies per la teva comanda!',
+            'line_1' => [
+                '_' => 'Rebràs un correu electrònic de confirmació aviat. Si tens alguna pregunta, si us plau :link!',
+                'link_text' => 'contacta amb nosaltres',
+            ],
         ],
     ],
 
@@ -112,8 +167,8 @@ return [
         'name' => 'Nom',
 
         'stock' => [
-            'out' => 'Aquest producte està esgotat. Torna més endavant!',
-            'out_with_alternative' => 'Aquest producte està esgotat. Utilitza el desplegable per a seleccionar un altre tipus o torna més endavant!',
+            'out' => 'Aquest element està esgotat. Torna més endavant!',
+            'out_with_alternative' => 'Aquest element està esgotat. Utilitza el desplegable per a seleccionar un altre tipus o torna més endavant!',
         ],
 
         'add_to_cart' => 'Afegeix a la cistella',
@@ -138,6 +193,10 @@ return [
     'username_change' => [
         'check' => 'Escriu un nom d\'usuari per comprovar la disponibilitat!',
         'checking' => 'Comprovant la disponibilitat de :username...',
+        'placeholder' => 'Nom d\'usuari sol·licitat',
+        'label' => 'Nou nom d\'usuari',
+        'current' => 'El teu nom d\'usuari actual és «:username».',
+
         'require_login' => [
             '_' => 'Has de ser :link per a canviar el teu nom!',
             'link_text' => 'sessió iniciada',

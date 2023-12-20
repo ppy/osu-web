@@ -24,7 +24,7 @@ abstract class Model extends BaseModel
     {
         static $ret;
 
-        return $ret ??= config('osu.scores.experimental_rank_as_default')
+        return $ret ??= $GLOBALS['cfg']['osu']['scores']['experimental_rank_as_default']
             ? 'rank_score_exp'
             : 'rank_score';
     }
@@ -185,7 +185,7 @@ abstract class Model extends BaseModel
 
     public function globalRank(): ?int
     {
-        $column = config('osu.scores.experimental_rank_as_default')
+        $column = $GLOBALS['cfg']['osu']['scores']['experimental_rank_as_default']
             ? 'rank_score_index_exp'
             : 'rank_score_index';
 

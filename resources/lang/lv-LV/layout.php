@@ -40,8 +40,8 @@ return [
         ],
 
         'store' => [
-            'cart' => '',
-            'orders' => '',
+            'cart' => 'grozs',
+            'orders' => 'pasūtījumu vēsture',
             'products' => 'produkti',
         ],
 
@@ -50,10 +50,10 @@ return [
         ],
 
         'users' => [
-            'modding' => '',
-            'playlists' => '',
-            'realtime' => '',
-            'show' => '',
+            'modding' => 'modēšana',
+            'playlists' => 'pleiliste',
+            'realtime' => 'daudzspēlētāju režīms',
+            'show' => 'info',
         ],
     ],
 
@@ -67,55 +67,55 @@ return [
 
     'menu' => [
         'beatmaps' => [
-            '_' => '',
+            '_' => 'bītmapes',
         ],
         'community' => [
-            '_' => '',
-            'dev' => '',
+            '_' => 'kopiena',
+            'dev' => 'izstrāde',
         ],
         'help' => [
-            '_' => '',
-            'getAbuse' => '',
-            'getFaq' => '',
-            'getRules' => '',
-            'getSupport' => '',
+            '_' => 'palīdzība',
+            'getAbuse' => 'ziņot par pārkāpumu',
+            'getFaq' => 'bieži uzdoti jautājumi',
+            'getRules' => 'noteikumi',
+            'getSupport' => 'nē, patiešām, man vajag palīdzību!',
         ],
         'home' => [
             '_' => 'sākums',
-            'team' => '',
+            'team' => 'komanda',
         ],
         'rankings' => [
-            '_' => '',
-            'kudosu' => '',
+            '_' => 'rangi',
+            'kudosu' => 'kudosu',
         ],
         'store' => [
-            '_' => '',
+            '_' => 'veikals',
         ],
     ],
 
     'footer' => [
         'general' => [
-            '_' => '',
-            'home' => '',
-            'changelog-index' => '',
+            '_' => 'Vispārīgi',
+            'home' => 'Sākums',
+            'changelog-index' => 'Izmaiņu saraksts',
             'beatmaps' => '',
-            'download' => '',
+            'download' => 'Lejupielādēt osu!',
         ],
         'help' => [
-            '_' => '',
+            '_' => 'Palīdzība & Kopiena',
             'faq' => 'Biežāk Uzdotie Jautājumi',
-            'forum' => '',
-            'livestreams' => '',
-            'report' => '',
-            'wiki' => '',
+            'forum' => 'Kopienas forumi',
+            'livestreams' => 'Tiešraides',
+            'report' => 'Ziņot par problēmu',
+            'wiki' => 'Wiki',
         ],
         'legal' => [
             '_' => '',
-            'copyright' => '',
-            'privacy' => '',
-            'server_status' => '',
-            'source_code' => '',
-            'terms' => '',
+            'copyright' => 'Autortiesības (DMCA)',
+            'privacy' => 'Konfidencialitāte',
+            'server_status' => 'Servera stāvoklis',
+            'source_code' => 'Pirmkods',
+            'terms' => 'Nosacījumi',
         ],
     ],
 
@@ -129,15 +129,15 @@ return [
             'description' => "",
         ],
         '403' => [
-            'error' => "",
-            'description' => '',
+            'error' => "Tev šeit nevajedzētu būt.",
+            'description' => 'Vari mēģināt iet atpakaļ, tomēr.',
         ],
         '401' => [
-            'error' => "",
+            'error' => "Tev šeit nevajedzētu būt.",
             'description' => '',
         ],
         '405' => [
-            'error' => '',
+            'error' => 'Lapas Trūkst',
             'description' => "",
         ],
         '422' => [
@@ -145,15 +145,15 @@ return [
             'description' => '',
         ],
         '429' => [
-            'error' => '',
+            'error' => 'Reitinga limits pārsniegts',
             'description' => '',
         ],
         '500' => [
-            'error' => '',
+            'error' => 'Ak nē! Kaut kas salūza! ;_;',
             'description' => "",
         ],
         'fatal' => [
-            'error' => '',
+            'error' => 'Ak nē! Kaut kas salūza (ļoti)! ;_;',
             'description' => "",
         ],
         '503' => [

@@ -84,14 +84,14 @@ class OrderCheckout
     public function getCentiliPaymentLink()
     {
         $params = [
-            'apikey' => config('payments.centili.api_key'),
+            'apikey' => $GLOBALS['cfg']['payments']['centili']['api_key'],
             'country' => 'jp',
             'countrylock' => 'true',
             'reference' => $this->order->getOrderNumber(),
-            'price' => $this->order->getTotal() * config('payments.centili.conversion_rate'),
+            'price' => $this->order->getTotal() * $GLOBALS['cfg']['payments']['centili']['conversion_rate'],
         ];
 
-        return config('payments.centili.widget_url').'?'.http_build_query($params);
+        return $GLOBALS['cfg']['payments']['centili']['widget_url'].'?'.http_build_query($params);
     }
 
     public function beginCheckout()
@@ -224,7 +224,7 @@ class OrderCheckout
      */
     private function allowCentiliPayment()
     {
-        return config('payments.centili.enabled')
+        return $GLOBALS['cfg']['payments']['centili']['enabled']
             && strcasecmp(request_country(), 'JP') === 0
             && !$this->order->requiresShipping()
             && Request::input('intl') !== '1';

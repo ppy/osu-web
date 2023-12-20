@@ -2,12 +2,14 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
-{!! Form::open([
-    'route' => 'account.update',
-    'method' => 'PUT',
-    'data-remote' => true,
-    'class' => 'account-edit js-account-edit'
-]) !!}
+<form
+    action="{{ route('account.update') }}"
+    class="account-edit js-account-edit"
+    data-remote
+    method="POST"
+>
+    @csrf
+    <input name="_method" value="PUT" type="hidden" />
     <div class="account-edit__section">
         <h2 class="account-edit__section-title">
             {{ osu_trans('accounts.edit.signature.title') }}
@@ -71,4 +73,4 @@
             </div>
         </div>
     </div>
-{!! Form::close() !!}
+</form>

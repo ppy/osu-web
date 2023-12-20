@@ -5,6 +5,7 @@
 
 namespace App\Models;
 
+use App\Enums\Ruleset;
 use App\Exceptions\BeatmapProcessorException;
 use App\Exceptions\InvariantException;
 use App\Jobs\CheckBeatmapsetCovers;
@@ -24,7 +25,7 @@ use App\Libraries\BBCodeFromDB;
 use App\Libraries\Commentable;
 use App\Libraries\Elasticsearch\Indexable;
 use App\Libraries\ImageProcessorService;
-use App\Libraries\StorageWithUrl;
+use App\Libraries\StorageUrl;
 use App\Libraries\Transactions\AfterCommit;
 use App\Traits\Memoizes;
 use App\Traits\Validatable;
@@ -145,7 +146,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     public $timestamps = false;
 
-    private StorageWithUrl $storage;
     protected $casts = self::CASTS;
     protected $primaryKey = 'beatmapset_id';
     protected $table = 'osu_beatmapsets';
@@ -344,6 +344,15 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         $query->where('approved', '>', 0);
     }
 
+    public function scopeToBeRanked(Builder $query, Ruleset $ruleset)
+    {
+        return $query->qualified()
+            ->withoutTrashed()
+            ->withModesForRanking($ruleset->value)
+            ->where('queued_at', '<', now()->subDays($GLOBALS['cfg']['osu']['beatmapset']['minimum_days_for_rank']))
+            ->whereDoesntHave('beatmapDiscussions', fn ($q) => $q->openIssues());
+    }
+
     public function scopeWithModesForRanking($query, $modeInts)
     {
         if (!is_array($modeInts)) {
@@ -419,7 +428,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
     {
         $timestamp = $customTimestamp ?? $this->defaultCoverTimestamp();
 
-        return $this->storage()->url($this->coverPath()."{$coverSize}.jpg?{$timestamp}");
+        return StorageUrl::make(null, $this->coverPath()."{$coverSize}.jpg?{$timestamp}");
     }
 
     public function coverPath()
@@ -431,7 +440,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     public function storeCover($target_filename, $source_path)
     {
-        $this->storage()->put($this->coverPath().$target_filename, file_get_contents($source_path));
+        \Storage::put($this->coverPath().$target_filename, file_get_contents($source_path));
     }
 
     public function downloadLimited()
@@ -444,15 +453,10 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         return '//b.ppy.sh/preview/'.$this->beatmapset_id.'.mp3';
     }
 
-    public function storage(): StorageWithUrl
-    {
-        return $this->storage ??= new StorageWithUrl();
-    }
-
     public function removeCovers()
     {
         try {
-            $this->storage()->deleteDirectory($this->coverPath());
+            \Storage::deleteDirectory($this->coverPath());
         } catch (\Exception $e) {
             // ignore errors
         }
@@ -463,7 +467,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
     public function fetchBeatmapsetArchive()
     {
         $oszFile = tmpfile();
-        $mirrorsToUse = config('osu.beatmap_processor.mirrors_to_use');
+        $mirrorsToUse = $GLOBALS['cfg']['osu']['beatmap_processor']['mirrors_to_use'];
         $url = BeatmapMirror::getRandomFromList($mirrorsToUse)->generateURL($this, true);
 
         if ($url === false) {
@@ -580,7 +584,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             $this->previous_queue_duration = ($this->queued_at ?? $this->approved_date)->diffinSeconds();
             $this->queued_at = null;
         } elseif ($this->isPending() && $state === 'qualified') {
-            $maxAdjustment = (config('osu.beatmapset.minimum_days_for_rank') - 1) * 24 * 3600;
+            $maxAdjustment = ($GLOBALS['cfg']['osu']['beatmapset']['minimum_days_for_rank'] - 1) * 24 * 3600;
             $adjustment = min($this->previous_queue_duration, $maxAdjustment);
             $this->queued_at = $currentTime->copy()->subSeconds($adjustment);
         }
@@ -862,7 +866,10 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     public function rank()
     {
-        if (!$this->isQualified()) {
+        if (
+            !$this->isQualified()
+            || $this->beatmapDiscussions()->openIssues()->exists()
+        ) {
             return false;
         }
 
@@ -1064,7 +1071,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     public function requiredHype()
     {
-        return config('osu.beatmapset.required_hype');
+        return $GLOBALS['cfg']['osu']['beatmapset']['required_hype'];
     }
 
     public function commentLocked(): bool
@@ -1123,8 +1130,8 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
     {
         $playmodeCount = $this->playmodeCount();
         $baseRequirement = $playmodeCount === 1
-            ? config('osu.beatmapset.required_nominations')
-            : config('osu.beatmapset.required_nominations_hybrid');
+            ? $GLOBALS['cfg']['osu']['beatmapset']['required_nominations']
+            : $GLOBALS['cfg']['osu']['beatmapset']['required_nominations_hybrid'];
 
         if ($summary || $this->isLegacyNominationMode()) {
             return $playmodeCount * $baseRequirement;
@@ -1233,9 +1240,9 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             ->withModesForRanking($modes)
             ->where('queued_at', '<', $this->queued_at)
             ->count();
-        $days = ceil($queueSize / config('osu.beatmapset.rank_per_day'));
+        $days = ceil($queueSize / $GLOBALS['cfg']['osu']['beatmapset']['rank_per_day']);
 
-        $minDays = config('osu.beatmapset.minimum_days_for_rank') - $this->queued_at->diffInDays();
+        $minDays = $GLOBALS['cfg']['osu']['beatmapset']['minimum_days_for_rank'] - $this->queued_at->diffInDays();
         $days = max($minDays, $days);
 
         return [

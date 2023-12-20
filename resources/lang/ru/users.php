@@ -124,6 +124,9 @@ return [
     ],
 
     'ogp' => [
+        'modding_description' => 'Карты пользователя: :counts',
+        'modding_description_empty' => 'У пользователя нет своих карт...',
+
         'description' => [
             '_' => 'Рейтинг (:ruleset): :global | :country',
             'country' => 'В стране :rank',
@@ -183,7 +186,6 @@ return [
         'origin_country' => 'Проживает в :country',
         'previous_usernames' => 'ранее известный как',
         'plays_with' => 'Играет с :devices',
-        'title' => "Профиль :username",
 
         'comments_count' => [
             '_' => ':link',
@@ -269,7 +271,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'График игр по месяцам',
-                    'count_label' => 'Игр',
+                    'count_label' => 'Игры:',
                 ],
                 'most_played' => [
                     'count' => 'количество раз сыграно',
@@ -295,7 +297,7 @@ return [
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
-                            'give' => 'Получено :amount за ответ в :post',
+                            'give' => 'Начислено :amount за снятие вето на получение кудосу за отзыв :post',
                         ],
 
                         'deny_kudosu' => [
@@ -307,22 +309,22 @@ return [
                         ],
 
                         'restore' => [
-                            'give' => 'Получено :amount за восстановление ответа в посте :post',
+                            'give' => 'Начислено :amount за восстановление ответа :post',
                         ],
 
                         'vote' => [
-                            'give' => 'Получено :amount за получение голосов в посте :post',
+                            'give' => 'Начислено :amount за получение голосов за отзыв :post',
                             'reset' => 'Потеряно :amount за потерю голосов в посте :post',
                         ],
 
                         'recalculate' => [
-                            'give' => 'Получено :amount за перерасчёт голосов в посте :post',
+                            'give' => 'Начислено :amount за перерасчёт голосов у отзыва :post',
                             'reset' => 'Потеряно :amount за перерасчёт голосов в посте :post',
                         ],
                     ],
 
                     'forum_post' => [
-                        'give' => 'Получено :amount от :giver за сообщение в посте :post',
+                        'give' => 'Начислено :amount от :giver за пост в отзыве :post',
                         'reset' => ':giver сбросил кудосу за ответ в посте :post',
                         'revoke' => ':giver отнял кудосу за ответ в посте :post',
                     ],

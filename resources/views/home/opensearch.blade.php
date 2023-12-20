@@ -3,7 +3,7 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @php
-    $appUrl = config('app.url');
+    $appUrl = $GLOBALS['cfg']['app']['url'];
     $searchUrl = route('search');
 @endphp
 <OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/" xmlns:moz="http://www.mozilla.org/2006/browser/search/">

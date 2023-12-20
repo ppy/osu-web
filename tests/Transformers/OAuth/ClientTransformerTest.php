@@ -48,7 +48,7 @@ class ClientTransformerTest extends TestCase
         $this->assertArrayNotHasKey('secret', $json);
     }
 
-    public function groupsDataProvider()
+    public static function groupsDataProvider()
     {
         return [
             ['admin'],

@@ -13,10 +13,10 @@ class PaypalApiContext
 {
     public static function client()
     {
-        $clientId = config('payments.paypal.client_id');
-        $clientSecret = config('payments.paypal.client_secret');
+        $clientId = $GLOBALS['cfg']['payments']['paypal']['client_id'];
+        $clientSecret = $GLOBALS['cfg']['payments']['paypal']['client_secret'];
 
-        $environment = config('payments.sandbox') === true
+        $environment = $GLOBALS['cfg']['payments']['sandbox'] === true
             ? new SandboxEnvironment($clientId, $clientSecret)
             : new ProductionEnvironment($clientId, $clientSecret);
 

@@ -12,7 +12,6 @@ use App\Libraries\Transactions\AfterRollback;
 use App\Libraries\TransactionStateManager;
 use App\Scopes\MacroableModelScope;
 use App\Traits\Validatable;
-use Carbon\Carbon;
 use Exception;
 use Illuminate\Database\ClassMorphViolationException;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -20,7 +19,7 @@ use Illuminate\Database\Eloquent\Model as BaseModel;
 
 abstract class Model extends BaseModel
 {
-    use HasFactory, Validatable;
+    use HasFactory, Traits\FasterAttributes, Validatable;
 
     const MAX_FIELD_LENGTHS = [];
 
@@ -72,11 +71,6 @@ abstract class Model extends BaseModel
         throw new ClassMorphViolationException($this);
     }
 
-    public function getRawAttribute(string $key)
-    {
-        return $this->attributes[$key] ?? null;
-    }
-
     /**
      * Locks the current model for update with `select for update`.
      *
@@ -124,7 +118,7 @@ abstract class Model extends BaseModel
             $query->getQuery()->offset = null;
             $query->limit(null);
 
-            return min($query->count(), config('osu.pagination.max_count'));
+            return min($query->count(), $GLOBALS['cfg']['osu']['pagination']['max_count']);
         };
     }
 
@@ -230,49 +224,14 @@ abstract class Model extends BaseModel
 
     public function dbName()
     {
-        $connection = $this->connection ?? config('database.default');
+        $connection = $this->connection ?? $GLOBALS['cfg']['database']['default'];
 
-        return config("database.connections.{$connection}.database");
+        return $GLOBALS['cfg']['database']['connections'][$connection]['database'];
     }
 
     public function tableName(bool $includeDbPrefix = false)
     {
         return ($includeDbPrefix ? $this->dbName().'.' : '').$this->getTable();
-    }
-
-    /**
-     * Fast Time Attribute Getter (kind of)
-     *
-     * This is only usable for models with default dateFormat (`Y-m-d H:i:s`).
-     */
-    protected function getTimeFast(string $key): ?Carbon
-    {
-        $value = $this->getRawAttribute($key);
-
-        return $value === null
-            ? null
-            : Carbon::createFromFormat('Y-m-d H:i:s', $value);
-    }
-
-    /**
-     * Fast Time Attribute to Json Transformer
-     *
-     * Key must be suffixed with `_json`.
-     * This is only usable for models with default dateFormat (`Y-m-d H:i:s`).
-     */
-    protected function getJsonTimeFast(string $key): ?string
-    {
-        $value = $this->getRawAttribute(substr($key, 0, -5));
-
-        if ($value === null) {
-            return null;
-        }
-
-        // From: "2020-10-10 10:10:10"
-        // To: "2020-10-10T10:10:10Z"
-        $value[10] = 'T';
-
-        return "{$value}Z";
     }
 
     // Allows save/update/delete to work with composite primary keys.

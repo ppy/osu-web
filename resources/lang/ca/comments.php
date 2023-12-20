@@ -43,6 +43,10 @@ return [
         'no_comments' => 'no s\'han trobat comentaris...',
     ],
 
+    'ogp' => [
+        'title' => 'comentari per :user',
+    ],
+
     'placeholder' => [
         'edit' => 'Edita el comentari aquí',
         'new' => 'Escriu un nou comentari aquí',

@@ -28,11 +28,11 @@ return [
         'followers' => 'kartoittajatilaajat',
         'page_title' => 'seuratut kartoittajat',
         'title' => 'kartoittajat',
-        'to_0' => 'älä ilmoita minulle, kun tämä käyttäjä lataa uuden beatmapin',
-        'to_1' => 'ilmoita minulle, kun tämä käyttäjä lataa uuden beatmapin',
+        'to_0' => 'älä ilmoita minulle, kun tämä käyttäjä lataa uuden rytmikartan',
+        'to_1' => 'ilmoita minulle, kun tämä käyttäjä lataa uuden rytmikartan',
     ],
 
     'modding' => [
-        'title' => 'beatmap-keskustelut',
+        'title' => 'rytmikartan keskustelu',
     ],
 ];

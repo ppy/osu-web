@@ -43,7 +43,7 @@ export default class EditorBeatmapSelector extends React.Component<Props> {
     });
 
     this.props.beatmaps.forEach((beatmap: BeatmapExtendedJson) => {
-      if (beatmap.deleted_at) {
+      if (beatmap.deleted_at != null) {
         return;
       }
 

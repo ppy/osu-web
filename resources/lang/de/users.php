@@ -124,6 +124,9 @@ return [
     ],
 
     'ogp' => [
+        'modding_description' => 'Beatmaps: :counts',
+        'modding_description_empty' => 'Der Nutzer hat keine Beatmaps.',
+
         'description' => [
             '_' => 'Rang (:ruleset): :global | :country',
             'country' => 'Land :rank',
@@ -183,7 +186,6 @@ return [
         'origin_country' => 'Aus :country',
         'previous_usernames' => 'auch bekannt als',
         'plays_with' => 'Spielt mit :devices',
-        'title' => "Profil von :username",
 
         'comments_count' => [
             '_' => ':link abgegeben',

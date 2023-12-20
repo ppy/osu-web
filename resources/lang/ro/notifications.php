@@ -55,6 +55,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => 'Noua recenzie de :username care conține probleme: :problems, sugestii: :suggestions, laude: :praises',
                 'beatmapset_discussion_unlock' => 'Discuția pe ":title" a fost redeschisă',
                 'beatmapset_discussion_unlock_compact' => 'Discuția a fost redeschisă',
+
+                'review_count' => [
+                    'praises' => 'o laudă|:count_delimited laude|:count_delimited de laude',
+                    'problems' => 'o problemă|:count_delimited probleme|:count_delimited de probleme',
+                    'suggestions' => 'o sugestie|:count_delimited sugestii|:count_delimited de sugestii',
+                ],
             ],
 
             'beatmapset_problem' => [

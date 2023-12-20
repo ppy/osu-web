@@ -48,7 +48,7 @@ class OAuthClientCredentialsRequestTest extends TestCase
             ->assertStatus($status);
     }
 
-    public function botRequestingScopeDataProvider()
+    public static function botRequestingScopeDataProvider()
     {
         return [
             '* cannot be requested' => ['*', 400],
@@ -60,7 +60,7 @@ class OAuthClientCredentialsRequestTest extends TestCase
         ];
     }
 
-    public function nonBotRequestingScopeDataProvider()
+    public static function nonBotRequestingScopeDataProvider()
     {
         return [
             '* cannot be requested' => ['*', 400],
@@ -75,6 +75,6 @@ class OAuthClientCredentialsRequestTest extends TestCase
         parent::setUp();
 
         // otherwise exceptions won't render the actual view.
-        config()->set('app.debug', false);
+        config_set('app.debug', false);
     }
 }

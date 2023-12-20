@@ -16,7 +16,7 @@ class DbCreate extends Command
 
     public function handle()
     {
-        $defaultConnection = config('database.connections.mysql');
+        $defaultConnection = $GLOBALS['cfg']['database']['connections']['mysql'];
 
         $dsn = isset($defaultConnection['unix_socket'])
             ? "mysql:unix_socket={$defaultConnection['unix_socket']}"
@@ -24,7 +24,7 @@ class DbCreate extends Command
 
         $pdo = new PDO($dsn, $defaultConnection['username'], $defaultConnection['password']);
 
-        foreach (config('database.connections') as $connection) {
+        foreach ($GLOBALS['cfg']['database']['connections'] as $connection) {
             $db = $connection['database'];
 
             $this->info("Creating database '{$db}'");
