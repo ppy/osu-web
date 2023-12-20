@@ -25,7 +25,7 @@ return [
         'message_placeholder_silenced' => "No puede publicar una discusión mientras esté silenciado.",
         'message_type_select' => 'Seleccionar tipo de comentario',
         'reply_notice' => 'Presione enter para responder.',
-        'reply_placeholder' => 'Escriba su respuesta aquí',
+        'reply_placeholder' => 'Escribe tu respuesta aquí',
         'require-login' => 'Inicia sesión para publicar o responder',
         'resolved' => 'Resuelto',
         'restore' => 'restaurar',
@@ -60,10 +60,10 @@ return [
         ],
 
         'message_placeholder' => [
-            'general' => 'Escriba aquí para publicar en General (:version)',
-            'generalAll' => 'Escriba aquí para publicar en General (Todas las dificultades)',
-            'review' => 'Escriba aquí para publicar una revisión',
-            'timeline' => 'Escriba aquí para publicar en la Línea de tiempo (:version)',
+            'general' => 'Escribe aquí para publicar en General (:version)',
+            'generalAll' => 'Escribe aquí para publicar en General (Todas las dificultades)',
+            'review' => 'Escribe aquí para publicar una revisión',
+            'timeline' => 'Escribe aquí para publicar en Línea de tiempo (:version)',
         ],
 
         'message_type' => [
@@ -232,7 +232,7 @@ return [
 
     'listing' => [
         'search' => [
-            'prompt' => 'escriba en palabras clave...',
+            'prompt' => 'escribe en palabras clave...',
             'login_required' => 'Inicie sesión para buscar.',
             'options' => 'Más opciones de búsqueda',
             'supporter_filter' => 'Filtrar por :filters requiere una etiqueta osu!supporter activa',
@@ -270,7 +270,7 @@ return [
     'general' => [
         'converts' => 'Incluir mapas convertidos',
         'featured_artists' => 'Artistas destacados',
-        'follows' => 'Mapeadores suscritos',
+        'follows' => 'Mappers suscritos',
         'recommended' => 'Dificultades recomendadas',
         'spotlights' => 'Mapas destacados',
     ],
@@ -290,7 +290,7 @@ return [
         'leaderboard' => 'Tiene tabla de clasificación',
         'loved' => 'Amados',
         'mine' => 'Mis mapas',
-        'pending' => 'Pendiente',
+        'pending' => 'Pendientes',
         'wip' => 'WIP',
         'qualified' => 'Calificados',
         'ranked' => 'Clasificados',

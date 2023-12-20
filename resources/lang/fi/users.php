@@ -43,7 +43,7 @@ return [
         'show_comment' => 'näytä',
         'too_many' => 'Estoraja saavutettu.',
         'button' => [
-            'block' => 'estä',
+            'block' => 'Estä',
             'unblock' => 'poista esto',
         ],
     ],
@@ -51,7 +51,7 @@ return [
     'card' => [
         'gift_supporter' => 'Anna tukijamerkki lahjaksi',
         'loading' => 'Ladataan...',
-        'send_message' => 'lähetä viesti',
+        'send_message' => 'Lähetä viesti',
     ],
 
     'create' => [
@@ -92,7 +92,7 @@ return [
     ],
 
     'filtering' => [
-        'by_game_mode' => 'Jäsenet pelitilan mukaan',
+        'by_game_mode' => 'Jäsenet pelimuodon mukaan',
     ],
 
     'force_reactivation' => [
@@ -119,11 +119,14 @@ return [
 
         'beta' => [
             'main' => 'Beta on tällä hetkellä käytössä vain siihen oikeutetuilla käyttäjillä.',
-            'small' => '(osu!tukijat tulevat kohta)',
+            'small' => '(osu!n tukijat tulevat kohta)',
         ],
     ],
 
     'ogp' => [
+        'modding_description' => 'Rytmikarttoja: :counts',
+        'modding_description_empty' => 'Käyttäjällä ei ole rytmikarttoja...',
+
         'description' => [
             '_' => 'Sijoitus (:ruleset): :global | :country',
             'country' => 'Maakohtainen :rank',
@@ -174,8 +177,8 @@ return [
         'age' => ':age vuotta vanha',
         'change_avatar' => 'vaihda profiilikuvasi!',
         'first_members' => 'Täällä alusta alkaen',
-        'is_developer' => 'osu!kehittäjä',
-        'is_supporter' => 'Tukija',
+        'is_developer' => 'osu!n kehittäjä',
+        'is_supporter' => 'osu!n tukija',
         'joined_at' => 'Liittyi :date',
         'lastvisit' => 'Nähty viimeksi :date',
         'lastvisit_online' => 'Tällä hetkellä paikalla',
@@ -183,11 +186,10 @@ return [
         'origin_country' => 'Maasta :country',
         'previous_usernames' => 'tunnettiin aiemmin nimellä',
         'plays_with' => 'Pelityylinä :devices',
-        'title' => ":username:n profiili",
 
         'comments_count' => [
             '_' => 'Julkaissut :link',
-            'count' => ':count_delimited kommentti|:count_delimited kommenttia',
+            'count' => ':count_delimited kommentin|:count_delimited kommenttia',
         ],
         'cover' => [
             'to_0' => 'Piilota kansikuva',
@@ -230,33 +232,33 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'artistilta :artist',
-                'title' => 'Beatmapit',
+                'title' => 'Rytmikartat',
 
                 'favourite' => [
                     'title' => 'Suosikit',
                 ],
                 'graveyard' => [
-                    'title' => 'Kuopatut',
+                    'title' => 'Haudatut rytmikartat',
                 ],
                 'guest' => [
-                    'title' => 'Vierasyhteisön beatmapit',
+                    'title' => 'Vierasyhteisön rytmikartat',
                 ],
                 'loved' => [
-                    'title' => 'Rakastetut beatmapit',
+                    'title' => 'Rakastetut rytmikartat',
                 ],
                 'nominated' => [
-                    'title' => 'Nimitetyt Hyväksytyt Beatmapit',
+                    'title' => 'Ehdollepannut rankatut rytmikartat',
                 ],
                 'pending' => [
-                    'title' => 'Vireillä olevat Beatmapit',
+                    'title' => 'Vireillä olevat rytmikartat',
                 ],
                 'ranked' => [
-                    'title' => 'Hyväksytyt & Vahvistetut Beatmapit',
+                    'title' => 'Rankatut rytmikartat',
                 ],
             ],
             'discussions' => [
                 'title' => 'Keskustelut',
-                'title_longer' => 'Viimeaikaiset Keskustelut',
+                'title_longer' => 'Viimeaikaiset keskustelut',
                 'show_more' => 'nää lisää keskusteluja',
             ],
             'events' => [
@@ -273,19 +275,19 @@ return [
                 ],
                 'most_played' => [
                     'count' => 'pelikertoja: ',
-                    'title' => 'Pelatuimmat Beatmapit',
+                    'title' => 'Pelatuimmat rytmikartat',
                 ],
                 'recent_plays' => [
                     'accuracy' => 'tarkkuus: :percentage',
-                    'title' => 'Viimeisimmät pelaukset (24h)',
+                    'title' => 'Viimeisimmät pelaukset (24t)',
                 ],
                 'replays_watched_counts' => [
-                    'title' => 'Katsotut Uusinnat',
+                    'title' => 'Uusintojen katsomishistoria',
                     'count_label' => 'Uusintoja katsottu',
                 ],
             ],
             'kudosu' => [
-                'recent_entries' => 'Viimeisimmät Kudosut',
+                'recent_entries' => 'Viimeaikainen kudosuhistoria',
                 'title' => 'Kudosu!',
                 'total' => 'Ansaittu Kudosu',
 
@@ -329,8 +331,8 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => 'Näe käyttäjän tekemä vaikutus beatmapin moderoinnissa. Lisätietoja :link',
-                    'link' => 'tämä sivu',
+                    '_' => 'Perustuu käyttäjän tekemään vaikutukseen rytmikarttojen modauksessa. Lisätietoja :link.',
+                    'link' => 'tällä sivulla',
                 ],
             ],
             'me' => [
@@ -342,7 +344,7 @@ return [
                 'title' => 'Mitalit',
             ],
             'playlists' => [
-                'title' => 'Soittolista Pelit',
+                'title' => 'Soittolistapelit',
             ],
             'posts' => [
                 'title' => 'Julkaisut',
@@ -391,7 +393,7 @@ return [
                 'remaining_silence' => '<strong>:username</strong> pystyy puhumaan seuraavan kerran :duration.',
 
                 'recent_infringements' => [
-                    'title' => 'Viimeisimmät Rikkomukset',
+                    'title' => 'Viimeisimmät rikkomukset',
                     'date' => 'päivä',
                     'action' => 'toiminto',
                     'length' => 'pituus',
@@ -402,7 +404,7 @@ return [
                     'actions' => [
                         'restriction' => 'Porttikielto',
                         'silence' => 'Mykistys',
-                        'tournament_ban' => 'Turnaus kielto',
+                        'tournament_ban' => 'Turnauskielto',
                         'note' => 'Muistutus',
                     ],
                 ],
@@ -432,38 +434,38 @@ return [
 
             'restriction_info' => [
                 '_' => 'Sinun täytyy olla :link avataksesi tämän ominaisuuden.',
-                'link' => 'osu!tukija',
+                'link' => 'osu!-tukija',
             ],
         ],
         'post_count' => [
             '_' => 'Mukana toiminnassa :link',
-            'count' => ':count foorumiviestillä|:count foorumiviestillä',
+            'count' => ':count_delimited foorumiviestillä|:count_delimited foorumiviestillä',
         ],
         'rank' => [
             'country' => 'Maakohtainen sijoitus pelimuodossa :mode',
             'country_simple' => 'Maakohtainen sijoitus',
             'global' => 'Maailmanlaajuinen sijoitus pelimuodossa :mode',
             'global_simple' => 'Maailmanlaajuinen sijoitus',
-            'highest' => 'Paras sijoitus: :rank päivänä :date',
+            'highest' => 'Korkein sija :rank oli :date',
         ],
         'stats' => [
-            'hit_accuracy' => 'Osumatarkkuus',
+            'hit_accuracy' => 'Iskutarkkuus',
             'level' => 'Taso :level',
             'level_progress' => 'edistyminen seuraavalle tasolle',
-            'maximum_combo' => 'Suurin combo',
+            'maximum_combo' => 'Suurin iskuputki',
             'medals' => 'Mitalit',
             'play_count' => 'Pelikertoja',
             'play_time' => 'Peliaikaa yhteensä',
             'ranked_score' => 'Tilastoidut pisteet',
-            'replays_watched_by_others' => 'Muiden Katsomat Uusinnat',
+            'replays_watched_by_others' => 'Muiden katsomat uusinnat',
             'score_ranks' => 'Luokitukset',
             'total_hits' => 'Osumia yhteensä',
             'total_score' => 'Pisteitä yhteensä',
             // modding stats
-            'graveyard_beatmapset_count' => 'Kuopatut Beatmapit',
-            'loved_beatmapset_count' => 'Rakastetut Beatmapit',
-            'pending_beatmapset_count' => 'Tulossa olevat Beatmapit',
-            'ranked_beatmapset_count' => 'Hyväksytyt & Vahvistetut Beatmapit',
+            'graveyard_beatmapset_count' => 'Haudatut rytmikartat',
+            'loved_beatmapset_count' => 'Rakastetut rytmikartat',
+            'pending_beatmapset_count' => 'Vireillä olevat rytmikartat',
+            'ranked_beatmapset_count' => 'Rankatut rytmikartat',
         ],
     ],
 

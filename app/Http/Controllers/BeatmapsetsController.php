@@ -102,6 +102,8 @@ class BeatmapsetsController extends Controller
 
             $noindex = !$beatmapset->esShouldIndex();
 
+            set_opengraph($beatmapset);
+
             return ext_view('beatmapsets.show', compact(
                 'beatmapset',
                 'commentBundle',
@@ -369,7 +371,7 @@ class BeatmapsetsController extends Controller
 
         $records = datadog_timing(function () use ($search) {
             return $search->records();
-        }, config('datadog-helper.prefix_web').'.search', ['type' => 'beatmapset']);
+        }, $GLOBALS['cfg']['datadog-helper']['prefix_web'].'.search', ['type' => 'beatmapset']);
 
         $error = $search->getError();
 

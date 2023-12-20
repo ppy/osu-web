@@ -39,7 +39,9 @@ class BeatmapsetSearchParams extends SearchParams
     public bool $showFollows = false;
     public bool $showRecommended = false;
     public bool $showSpotlights = false;
+    public ?string $source = null;
     public ?string $status = null;
+    public ?string $title = null;
     public ?array $statusRange = null;
     public ?array $hitLength = null;
     public ?array $updated = null;
@@ -51,7 +53,7 @@ class BeatmapsetSearchParams extends SearchParams
     {
         parent::__construct();
 
-        $this->size = config('osu.beatmaps.max');
+        $this->size = $GLOBALS['cfg']['osu']['beatmaps']['max'];
     }
 
     /**

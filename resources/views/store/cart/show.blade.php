@@ -21,10 +21,10 @@
                 </h1>
 
                 <p>{{ osu_trans('store.cart.empty.text') }}</p>
-                <p>{!! osu_trans('store.cart.empty.return_link._', [
-                    'link' => Html::link(route('store.products.index'), osu_trans('store.cart.empty.return_link.link_text')),
-                    ]) !!}
-                </p>
+                <p>{!! osu_trans('store.cart.empty.return_link._', ['link' => link_to(
+                    route('store.products.index'),
+                    osu_trans('store.cart.empty.return_link.link_text'),
+                )]) !!}</p>
             </div>
         @else
             <div class="store-page">
@@ -41,9 +41,21 @@
                 </ul>
 
                 <div class="store-cart-footer">
-                    <p>
-                        <a href="{{ route('store.products.index') }}">{{ osu_trans('store.cart.more_goodies') }}</a>
-                    </p>
+                    <div>
+                        <p>
+                            <a href="{{ route('store.products.index') }}">{{ osu_trans('store.cart.more_goodies') }}</a>
+                        </p>
+                        <p>
+                            <a
+                                href="{{ route('store.cart.empty') }}"
+                                data-method="DELETE"
+                                data-remote="1"
+                                data-confirm="{{ osu_trans('common.confirmation') }}"
+                            >
+                                {{ osu_trans('store.cart.empty_cart') }}
+                            </a>
+                        </p>
+                    </div>
 
                     <div class="store-cart-footer__total-box store-cart-footer__total-box--padded">
                         <p class="store-cart-footer__text">{{ osu_trans('store.cart.total') }}</p>

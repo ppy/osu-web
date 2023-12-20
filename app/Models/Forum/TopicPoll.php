@@ -32,7 +32,7 @@ class TopicPoll
 
     public function canEdit()
     {
-        return $this->topic->topic_time > Carbon::now()->subHours(config('osu.forum.poll_edit_hours'));
+        return $this->topic->topic_time > Carbon::now()->subHours($GLOBALS['cfg']['osu']['forum']['poll_edit_hours']);
     }
 
     public function exists()
@@ -100,7 +100,7 @@ class TopicPoll
                 $this->validationErrors()->add(
                     'edit',
                     '.grace_period_expired',
-                    ['limit' => config('osu.forum.poll_edit_hours')]
+                    ['limit' => $GLOBALS['cfg']['osu']['forum']['poll_edit_hours']]
                 );
             }
         }

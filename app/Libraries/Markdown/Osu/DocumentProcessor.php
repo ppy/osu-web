@@ -194,7 +194,7 @@ class DocumentProcessor
             $imageUrl = $image->getUrl();
 
             if (starts_with($imageUrl, route('wiki.show', [], false))) {
-                $imageUrl = config('app.url').$imageUrl;
+                $imageUrl = $GLOBALS['cfg']['app']['url'].$imageUrl;
             }
 
             $imageSize = fast_imagesize($imageUrl);
@@ -236,7 +236,7 @@ class DocumentProcessor
             if (OsuWiki::isImage($path)) {
                 $url = wiki_image_url($path, false);
             } else {
-                $locale ??= $this->wikiLocale ?? config('app.fallback_locale');
+                $locale ??= $this->wikiLocale ?? $GLOBALS['cfg']['app']['fallback_locale'];
                 $url = wiki_url($path, $locale, false, false);
 
                 if (starts_with($url, $this->wikiAbsoluteRootPath)) {

@@ -6,6 +6,7 @@
 return [
     'cart' => [
         'checkout' => 'Ödeme',
+        'empty_cart' => 'Sepetteki tüm ürünleri kaldır',
         'info' => ':count_delimited ürün sepette ($:subtotal)|:count_delimited ürün sepette ($:subtotal)',
         'more_goodies' => 'Ödememi yapmadan önce başka eşyalara göz atmak istiyorum',
         'shipping_fees' => 'kargo ücretleri',
@@ -48,19 +49,52 @@ return [
     ],
 
     'discount' => '%:percent kazanın',
+    'free' => '',
 
     'invoice' => [
+        'contact' => 'İletişim:',
+        'date' => 'Tarih:',
         'echeck_delay' => 'Ödemenizin bir eCheck olması nedeniyle, ödemenizin PayPal\'dan temizlenmesi için 10 ekstra günü göz önüne alın!',
         'hide_from_activity' => 'Bu siparişteki osu!supporter etiketleri yakın zamandaki etkinliklerinizde gösterilmez.',
+        'sent_via' => '',
+        'shipping_to' => '',
+        'title' => 'Fatura',
         'title_compact' => 'fatura',
 
         'status' => [
+            'cancelled' => [
+                'title' => 'Siparişiniz iptal edildi',
+                'line_1' => [
+                    '_' => "",
+                    'link_text' => '',
+                ],
+            ],
+            'delivered' => [
+                'title' => 'Siparişiniz teslim edildi! İyi günlerde kullanmanız dileğiyle!',
+                'line_1' => [
+                    '_' => 'Satın alımınızla ilgili bir problem yaşıyorsanız,lütfen :link ile görüşün.',
+                    'link_text' => '',
+                ],
+            ],
+            'prepared' => [
+                'title' => 'Siparişiniz hazılrlanıyor!',
+                'line_1' => '',
+                'line_2' => '',
+            ],
             'processing' => [
                 'title' => 'Ödemeniz henüz onaylanmadı!',
                 'line_1' => 'Eğer çoktan ödemeyi yaptıysanız, biz hala ödemenizin doğrulamasını bekliyor olabiliriz. Lütfen bu sayfayı bir ya da iki dakika sonra yenileyin!',
                 'line_2' => [
                     '_' => 'Eğer ödeme sırasında bir sorun ile karşılaştıysanız, :link',
                     'link_text' => 'ödeme özetini görmek için buraya tıklayın',
+                ],
+            ],
+            'shipped' => [
+                'title' => 'Siparişiniz kargoya verildi!',
+                'tracking_details' => '',
+                'no_tracking_details' => [
+                    '_' => "",
+                    'link_text' => 'bize bir e-mail yollayın',
                 ],
             ],
         ],
@@ -74,7 +108,19 @@ return [
         'no_orders' => 'Görüntülenecek sipariş yok.',
         'paid_on' => 'Sipariş verme tarihi :date',
         'resume' => 'Sepete Dön',
+        'shipping_and_handling' => '',
         'shopify_expired' => 'Bu sipariş için ödeme bağlantısının süresi doldu.',
+        'subtotal' => 'Ara toplam',
+        'total' => 'Toplam',
+
+        'details' => [
+            'order_number' => '',
+            'payment_terms' => '',
+            'salesperson' => 'Satış Temsilcisi',
+            'shipping_method' => 'Gönderim Yolu',
+            'shipping_terms' => '',
+            'title' => 'Sipariş Detayları',
+        ],
 
         'item' => [
             'quantity' => 'Adet',
@@ -105,6 +151,15 @@ return [
             'paid' => 'Ödendi',
             'processing' => 'Onay bekleniyor',
             'shipped' => 'Ulaştırılıyor',
+            'title' => 'Sipariş Durumu',
+        ],
+
+        'thanks' => [
+            'title' => 'Siparişiniz için teşekkür ederiz!',
+            'line_1' => [
+                '_' => '',
+                'link_text' => 'bizimle iletişime geçin',
+            ],
         ],
     ],
 
@@ -138,6 +193,10 @@ return [
     'username_change' => [
         'check' => 'Geçerliliğini kontrol etmek için bir kullanıcı adı girin!',
         'checking' => ':username geçerliliği kontrol ediliyor...',
+        'placeholder' => '',
+        'label' => 'Yeni kullanıcı adı',
+        'current' => 'Şu anki kullanıcı adınız ":username".',
+
         'require_login' => [
             '_' => 'İsmini değiştirmek için :link olman gerekiyor!',
             'link_text' => 'giriş yapmış',

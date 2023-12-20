@@ -7,11 +7,13 @@
 @section('content')
     @include('forum._header', compact('forum'))
 
-    {!! Form::open([
-        'url' => route('forum.topics.store', ['forum_id' => $forum]),
-        'data-remote' => true,
-        'class' => 'osu-page osu-page--forum-topic js-forum-post-input--form',
-    ]) !!}
+    <form
+        action="{{ route('forum.topics.store', ['forum_id' => $forum->getKey()]) }}"
+        class="osu-page osu-page--forum-topic js-forum-post-input--form"
+        data-remote
+        method="POST"
+    >
+        @csrf
         <input type="hidden" name="cover_id" class="js-forum-cover--input">
 
         <div class="forum-topic-title">
@@ -78,5 +80,5 @@
             'inputId' => "forum:{$forum->getKey()}",
             'type' => 'create',
         ])
-    {!! Form::close() !!}
+    </form>
 @endsection

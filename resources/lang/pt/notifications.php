@@ -55,6 +55,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => 'Uma nova revisão por :username contém :problems problemas, :suggestions sugestões e :praises elogios',
                 'beatmapset_discussion_unlock' => 'A discussão em ":title" foi aberta',
                 'beatmapset_discussion_unlock_compact' => 'A discussão foi aberta',
+
+                'review_count' => [
+                    'praises' => ':count_delimited elogio|:count_delimited elogios',
+                    'problems' => ':count_delimited problema|:count_delimited problemas',
+                    'suggestions' => ':count_delimited sugestão|:count_delimited sugestões',
+                ],
             ],
 
             'beatmapset_problem' => [

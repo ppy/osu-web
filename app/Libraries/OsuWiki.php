@@ -128,17 +128,17 @@ class OsuWiki
 
     public static function branch()
     {
-        return config('osu.wiki.branch');
+        return $GLOBALS['cfg']['osu']['wiki']['branch'];
     }
 
     public static function repository()
     {
-        return config('osu.wiki.repository');
+        return $GLOBALS['cfg']['osu']['wiki']['repository'];
     }
 
     public static function user()
     {
-        return config('osu.wiki.user');
+        return $GLOBALS['cfg']['osu']['wiki']['user'];
     }
 
     public function __construct($path)

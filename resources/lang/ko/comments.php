@@ -43,6 +43,10 @@ return [
         'no_comments' => '댓글이 없습니다...',
     ],
 
+    'ogp' => [
+        'title' => ':user님의 댓글',
+    ],
+
     'placeholder' => [
         'edit' => '여기에서 댓글을 수정하세요.',
         'new' => '여기에 새로운 댓글을 작성하세요.',

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Facade;
+use Illuminate\Support\ServiceProvider;
 
 return [
 
@@ -175,68 +176,24 @@ return [
     |
     */
 
-    'providers' => [
-
-        /*
-         * Laravel Framework Service Providers...
-         */
-        Illuminate\Auth\AuthServiceProvider::class,
-        Illuminate\Broadcasting\BroadcastServiceProvider::class,
-        Illuminate\Bus\BusServiceProvider::class,
-        Illuminate\Cache\CacheServiceProvider::class,
-        Illuminate\Foundation\Providers\ConsoleSupportServiceProvider::class,
-        // Illuminate\Cookie\CookieServiceProvider::class,
-        Illuminate\Database\DatabaseServiceProvider::class,
-        Illuminate\Encryption\EncryptionServiceProvider::class,
-        Illuminate\Filesystem\FilesystemServiceProvider::class,
-        Illuminate\Foundation\Providers\FoundationServiceProvider::class,
-        // Illuminate\Hashing\HashServiceProvider::class,
-        Illuminate\Mail\MailServiceProvider::class,
-        Illuminate\Notifications\NotificationServiceProvider::class,
-        Illuminate\Pagination\PaginationServiceProvider::class,
-        Illuminate\Pipeline\PipelineServiceProvider::class,
-        Illuminate\Queue\QueueServiceProvider::class,
-        Illuminate\Redis\RedisServiceProvider::class,
-        Illuminate\Auth\Passwords\PasswordResetServiceProvider::class,
-        // We're using our own SessionServiceProvider so we can override the session id naming (for redis key namespacing)
-        App\Providers\SessionServiceProvider::class,
-        Illuminate\Translation\TranslationServiceProvider::class,
-        Illuminate\Validation\ValidationServiceProvider::class,
-        Illuminate\View\ViewServiceProvider::class,
-
-        Collective\Html\HtmlServiceProvider::class,
-        /*
-         * Package Service Providers...
-         */
-        GrahamCampbell\GitHub\GitHubServiceProvider::class,
-        Mariuzzo\LaravelJsLocalization\LaravelJsLocalizationServiceProvider::class,
-        Laravel\Tinker\TinkerServiceProvider::class,
-
-        /*
-         * Application Service Providers...
-         */
+    'providers' => ServiceProvider::defaultProviders()->except([
+        Illuminate\Cookie\CookieServiceProvider::class,
+        Illuminate\Hashing\HashServiceProvider::class,
+        Illuminate\Session\SessionServiceProvider::class,
+    ])->merge([
         App\Providers\AppServiceProvider::class,
+        App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
+        // Override default migrate:fresh
+        App\Providers\MigrationServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
-        /*
-         * After DB transaction commit support
-         */
+        // Override the session id naming (for redis key namespacing)
+        App\Providers\SessionServiceProvider::class,
+        // After DB transaction commit support
         App\Providers\TransactionStateServiceProvider::class,
 
-        /*
-         * OAuth2 Setup
-         */
-
-        App\Providers\AuthServiceProvider::class,
-        Laravel\Passport\PassportServiceProvider::class,
-
-        /* Datadog Metrics */
-        ChaseConey\LaravelDatadogHelper\LaravelDatadogHelperServiceProvider::class,
-
-        /* Override default migrate:fresh */
-        App\Providers\MigrationServiceProvider::class,
-    ],
+        Mariuzzo\LaravelJsLocalization\LaravelJsLocalizationServiceProvider::class,
+    ])->toArray(),
 
     /*
     |--------------------------------------------------------------------------
@@ -252,9 +209,6 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // renamed to avoid conflict with PhpRedis
         'LaravelRedis' => Illuminate\Support\Facades\Redis::class,
-
-        'Form' => Collective\Html\FormFacade::class,
-        'Html' => Collective\Html\HtmlFacade::class,
 
         'GitHub' => GrahamCampbell\GitHub\Facades\GitHub::class,
 

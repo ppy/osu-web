@@ -16,7 +16,7 @@ class MigrateFreshAllCommand extends FreshCommand
             return 1;
         }
 
-        $connections = config('database.connections');
+        $connections = $GLOBALS['cfg']['database']['connections'];
 
         $this->warn('This will drop tables in the following databases:');
 

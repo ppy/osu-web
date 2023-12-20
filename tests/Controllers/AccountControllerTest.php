@@ -231,7 +231,7 @@ class AccountControllerTest extends TestCase
             ->assertStatus(422);
     }
 
-    public function dataProviderForUpdateCountry(): array
+    public static function dataProviderForUpdateCountry(): array
     {
         return [
             ['_A', '_A', true],

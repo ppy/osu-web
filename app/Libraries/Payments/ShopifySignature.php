@@ -29,7 +29,7 @@ class ShopifySignature implements PaymentSignature
 
     public static function calculateSignature(string $content)
     {
-        return base64_encode(hash_hmac('sha256', $content, config('payments.shopify.webhook_key'), true));
+        return base64_encode(hash_hmac('sha256', $content, $GLOBALS['cfg']['payments']['shopify']['webhook_key'], true));
     }
 
     private function receivedSignature()

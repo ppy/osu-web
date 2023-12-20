@@ -87,7 +87,7 @@
                             </div>
 
                             <div class="account-edit-entry__overlay-spinner">
-                                @include('objects._spinner')
+                                {!! spinner() !!}
                             </div>
                         </div>
 

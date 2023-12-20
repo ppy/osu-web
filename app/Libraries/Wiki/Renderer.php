@@ -7,20 +7,10 @@ namespace App\Libraries\Wiki;
 
 use App\Models\Wiki\Page;
 
-/**
- * @property Page $page
- * @property string $body
- */
 abstract class Renderer
 {
-    /**
-     * @param Page $page
-     * @param string $body
-     */
-    public function __construct($page, $body)
+    public function __construct(protected Page $page, protected string $body)
     {
-        $this->page = $page;
-        $this->body = $body;
     }
 
     /**

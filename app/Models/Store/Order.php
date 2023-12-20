@@ -142,7 +142,7 @@ class Order extends Model
 
     public function scopeStale($query)
     {
-        return $query->where('updated_at', '<', Carbon::now()->subDays(config('store.order.stale_days')));
+        return $query->where('updated_at', '<', Carbon::now()->subDays($GLOBALS['cfg']['store']['order']['stale_days']));
     }
 
     public function scopeWhereHasInvoice($query)
@@ -154,7 +154,7 @@ class Order extends Model
     {
         if (
             !preg_match(static::ORDER_NUMBER_REGEX, $orderNumber, $matches)
-            || config('store.order.prefix') !== $matches['prefix']
+            || $GLOBALS['cfg']['store']['order']['prefix'] !== $matches['prefix']
         ) {
             // hope there's no order_id 0 :D
             return $query->where('order_id', '=', 0);
@@ -208,7 +208,7 @@ class Order extends Model
 
     public function getOrderNumber()
     {
-        return config('store.order.prefix')."-{$this->user_id}-{$this->order_id}";
+        return $GLOBALS['cfg']['store']['order']['prefix']."-{$this->user_id}-{$this->order_id}";
     }
 
     public function getPaymentProvider()

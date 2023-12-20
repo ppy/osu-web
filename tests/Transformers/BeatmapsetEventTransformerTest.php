@@ -57,7 +57,7 @@ class BeatmapsetEventTransformerTest extends TestCase
         }
     }
 
-    public function dataProvider()
+    public static function dataProvider()
     {
         // one event type of each priviledge type.
         return [

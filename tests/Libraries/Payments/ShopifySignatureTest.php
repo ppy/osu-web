@@ -6,7 +6,6 @@
 namespace Tests\Libraries\Payments;
 
 use App\Libraries\Payments\ShopifySignature;
-use Config;
 use Tests\TestCase;
 
 class ShopifySignatureTest extends TestCase
@@ -22,6 +21,6 @@ class ShopifySignatureTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        Config::set('payments.shopify.webhook_key', 'magic');
+        config_set('payments.shopify.webhook_key', 'magic');
     }
 }

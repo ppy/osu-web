@@ -336,6 +336,7 @@ Route::group(['middleware' => ['web']], function () {
 
             // Store splitting starts here
             Route::get('cart', 'CartController@show')->name('cart.show');
+            Route::delete('cart', 'CartController@empty')->name('cart.empty');
             Route::resource('cart', 'CartController', ['only' => ['store']]);
 
             Route::resource('checkout', 'CheckoutController', ['only' => ['show', 'store']]);
@@ -377,7 +378,7 @@ Route::group(['middleware' => ['web']], function () {
 
     route_redirect('/', 'home');
 
-    if (config('osu.scores.rank_cache.local_server')) {
+    if ($GLOBALS['cfg']['osu']['scores']['rank_cache']['local_server']) {
         Route::get('rankLookup', 'ScoresController@userRankLookup');
     }
 

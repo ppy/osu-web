@@ -32,7 +32,7 @@ class BuildPropagationHistory extends Model
     {
         $buildsTable = (new Build())->getTable();
         $propagationTable = (new self())->getTable();
-        $streamsTable = config('database.connections.mysql-updates.database').'.'.(new UpdateStream())->getTable();
+        $streamsTable = $GLOBALS['cfg']['database']['connections']['mysql-updates']['database'].'.'.(new UpdateStream())->getTable();
 
         $query->join($buildsTable, "{$buildsTable}.build_id", '=', "{$propagationTable}.build_id")
             ->select('created_at')
@@ -46,7 +46,7 @@ class BuildPropagationHistory extends Model
             $query->join($streamsTable, "{$streamsTable}.stream_id", '=', "{$buildsTable}.stream_id")
                 // casting to integer here as the sum aggregate returns a string
                 ->addSelect(DB::raw('cast(sum(user_count) as signed) as user_count, pretty_name as label'))
-                ->whereIn("{$buildsTable}.stream_id", config('osu.changelog.update_streams'))
+                ->whereIn("{$buildsTable}.stream_id", $GLOBALS['cfg']['osu']['changelog']['update_streams'])
                 ->groupBy(['created_at', 'pretty_name']);
         }
     }

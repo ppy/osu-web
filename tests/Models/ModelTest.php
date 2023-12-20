@@ -130,7 +130,7 @@ class ModelTest extends TestCase
         $anotherCountry->refresh();
     }
 
-    public function dataProviderForDecrementInstance(): array
+    public static function dataProviderForDecrementInstance(): array
     {
         return [
             [fn () => Country::factory()->create(), true],

@@ -21,7 +21,7 @@ export default class ItemCompact extends React.Component<Props> {
     return (
       <Item
         delete={this.handleDelete}
-        icons={nameToIconsCompact[this.props.item.name || '']}
+        icons={nameToIconsCompact[this.props.item.name ?? '']}
         item={this.props.item}
         markRead={this.handleMarkAsRead}
         message={formatMessage(this.props.item, true)}

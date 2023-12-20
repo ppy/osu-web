@@ -73,7 +73,7 @@ return [
             'by_artist' => 'di :artist',
             'favourite' => 'Mi piace questa beatmap',
             'favourite_login' => 'Accedi per aggiungere questa beatmap ai preferiti',
-            'logged-out' => 'Devi avere effettuato il login prima di scaricare qualsiasi beatmap!',
+            'logged-out' => 'hai bisogno di accedere per scaricare le beatmap!',
             'mapped_by' => 'mappata da :mapper',
             'mapped_by_guest' => 'difficoltà guest di :mapper',
             'unfavourite' => 'Non mi piace questa beatmap',

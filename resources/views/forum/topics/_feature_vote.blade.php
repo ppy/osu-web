@@ -16,7 +16,7 @@
     <div
         class="
             forum-topic-feature-vote__votes
-            {{ $topic->osu_starpriority > config('osu.forum.feature_topic_small_star_min') ? 'forum-topic-feature-vote__votes--small' : '' }}
+            {{ $topic->osu_starpriority > $GLOBALS['cfg']['osu']['forum']['feature_topic_small_star_min'] ? 'forum-topic-feature-vote__votes--small' : '' }}
         "
     >
         @foreach ($featureVotes as $username => $votes)

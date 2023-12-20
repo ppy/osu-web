@@ -46,7 +46,7 @@ export default class BeatmapListItem extends React.PureComponent<Props> {
 
         <div className='beatmap-list-item__col beatmap-list-item__col--main'>
           <div className={`beatmap-list-item__version ${this.props.inline ? '' : 'u-ellipsis-overflow'}`}>
-            {this.props.beatmapUrl
+            {this.props.beatmapUrl != null
               ? <a className='beatmap-list-item__version-link' href={this.props.beatmapUrl}>{version}</a>
               : version}
             {' '}

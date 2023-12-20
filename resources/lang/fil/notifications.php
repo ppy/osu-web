@@ -55,6 +55,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => 'Bagong review ni :username na may mga problema: :problems, mga mungkahi: :suggestions, mga papuri: :praises',
                 'beatmapset_discussion_unlock' => 'Ang talakayan sa ":title" ay naka-unlock',
                 'beatmapset_discussion_unlock_compact' => 'Ang talakayan ay naka-unlock',
+
+                'review_count' => [
+                    'praises' => '',
+                    'problems' => '',
+                    'suggestions' => '',
+                ],
             ],
 
             'beatmapset_problem' => [

@@ -6,6 +6,7 @@
 return [
     'cart' => [
         'checkout' => 'Afrekenen',
+        'empty_cart' => 'Verwijder alle items uit de winkelwagen',
         'info' => ':count_delimited artikel in winkelwagen ($:subtotal)|:count_delimited artikels in winkelwagen ($:subtotal)',
         'more_goodies' => 'Ik wil meer goodies bekijken voordat ik de bestelling voltooi',
         'shipping_fees' => 'verzendkosten',
@@ -48,19 +49,52 @@ return [
     ],
 
     'discount' => 'bespaar :percent%',
+    'free' => 'gratis!',
 
     'invoice' => [
+        'contact' => 'Contact:',
+        'date' => 'Datum:',
         'echeck_delay' => 'Aangezien uw betaling een eCheck was, Wacht maximaal 10 dagen extra om de betaling veilig via PayPal te laten gaan!',
         'hide_from_activity' => 'osu!supporter tags in deze bestelling worden niet weergegeven in je recente activiteiten.',
+        'sent_via' => 'Gestuurd Via:',
+        'shipping_to' => 'Verzenden Naar:',
+        'title' => 'Factuur',
         'title_compact' => 'factuur',
 
         'status' => [
+            'cancelled' => [
+                'title' => 'Je bestelling is geannuleerd',
+                'line_1' => [
+                    '_' => "Als je geen annulering hebt aangevraagd, neem dan contact op met :link en vermeld je bestelnummer (#:order_number).",
+                    'link_text' => 'osu!store support',
+                ],
+            ],
+            'delivered' => [
+                'title' => 'Je bestelling is geleverd! We hopen dat je ervan geniet!',
+                'line_1' => [
+                    '_' => 'Als je problemen hebt met je aankoop, neem dan contact op met de :link.',
+                    'link_text' => 'osu!store support',
+                ],
+            ],
+            'prepared' => [
+                'title' => 'Je bestelling wordt voorbereid!',
+                'line_1' => '',
+                'line_2' => '',
+            ],
             'processing' => [
                 'title' => 'Uw betaling is nog niet bevestigd!',
                 'line_1' => 'Als u al betaald hebt, wachten we misschien nog steeds op bevestiging van uw betaling. Vernieuw deze pagina over een minuut of twee!',
                 'line_2' => [
                     '_' => 'Als u een probleem heeft ondervonden tijdens het afrekenen, :link',
                     'link_text' => 'klik hier om uw afrekenen te hervatten',
+                ],
+            ],
+            'shipped' => [
+                'title' => 'Je bestelling is verzonden!',
+                'tracking_details' => '',
+                'no_tracking_details' => [
+                    '_' => "",
+                    'link_text' => 'stuur ons een email',
                 ],
             ],
         ],
@@ -74,7 +108,19 @@ return [
         'no_orders' => 'Geen bestellingen om te bekijken.',
         'paid_on' => 'Bestelling geplaatst :date',
         'resume' => 'Hervat afrekenen',
+        'shipping_and_handling' => 'Verzending & Verwerking',
         'shopify_expired' => 'De checkout link voor deze bestelling is verlopen.',
+        'subtotal' => 'Subtotaal',
+        'total' => 'Totaal',
+
+        'details' => [
+            'order_number' => 'Bestelling #',
+            'payment_terms' => '',
+            'salesperson' => '',
+            'shipping_method' => '',
+            'shipping_terms' => '',
+            'title' => '',
+        ],
 
         'item' => [
             'quantity' => 'Aantal',
@@ -105,6 +151,15 @@ return [
             'paid' => 'Betaald',
             'processing' => 'Wachten op bevestiging',
             'shipped' => 'Verzonden',
+            'title' => '',
+        ],
+
+        'thanks' => [
+            'title' => 'Bedankt voor je bestelling!',
+            'line_1' => [
+                '_' => '',
+                'link_text' => 'contacteer ons',
+            ],
         ],
     ],
 
@@ -138,6 +193,10 @@ return [
     'username_change' => [
         'check' => 'Voer een gebruikersnaam in om de beschikbaarheid te controleren!',
         'checking' => 'Bezig met beschikbaarheid te controleren van :username...',
+        'placeholder' => 'Aangevraagde Gebruikersnaam',
+        'label' => 'Nieuwe Gebruikersnaam',
+        'current' => 'Je huidige gebruikersnaam is ":username".',
+
         'require_login' => [
             '_' => 'Je moet :link zijn om je naam te veranderen!',
             'link_text' => 'ingelogd',

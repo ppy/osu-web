@@ -5,7 +5,7 @@
 
 declare(strict_types=1);
 
-namespace App\Libraries;
+namespace App\Enums;
 
 enum Ruleset: int
 {
@@ -14,16 +14,31 @@ enum Ruleset: int
     case catch = 2;
     case mania = 3;
 
-    public static function fromName(string $ruleset): self
+    // for usage with tryFrom when the parameter may be null.
+    public const NULL = -1;
+
+    public static function tryFromName(?string $ruleset): ?self
     {
+        if ($ruleset === null) {
+            return null;
+        }
+
         static $lookupMap;
         if ($lookupMap === null) {
             $lookupMap = [];
             foreach (self::cases() as $r) {
                 $lookupMap[$r->name] = $r;
             }
+            $lookupMap['fruits'] = self::catch;
         }
 
-        return $lookupMap[$ruleset];
+        return $lookupMap[$ruleset] ?? null;
+    }
+
+    public function legacyName()
+    {
+        return $this === self::catch
+            ? 'fruits'
+            : $this->name;
     }
 }

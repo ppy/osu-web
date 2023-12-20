@@ -18,15 +18,15 @@ return [
     ],
 
     'kudosu' => [
-        'total' => '',
-        'available' => '',
-        'used' => '',
+        'total' => 'Nopelnīts',
+        'available' => 'Pieejams',
+        'used' => 'Iztērēts',
     ],
 
     'type' => [
         'charts' => 'Uzmanības centrā',
         'country' => 'Valsts',
-        'kudosu' => '',
+        'kudosu' => 'kudosu',
         'multiplayer' => 'Daudzspēlētāju režīms',
         'performance' => 'Veiktspēja',
         'score' => 'Punktu skaits',
@@ -42,7 +42,7 @@ return [
 
     'spotlight' => [
         'end_date' => 'Beigu datums',
-        'map_count' => '',
+        'map_count' => 'Mapu skaits',
         'participants' => 'Dalībnieki',
         'start_date' => 'Sākuma datums',
     ],
@@ -51,7 +51,7 @@ return [
         'accuracy' => 'Precizināte',
         'active_users' => 'Aktīvie lietotāji',
         'country' => 'Valsts',
-        'play_count' => '',
+        'play_count' => 'Spēļu skaits',
         'performance' => 'Veiktspēja',
         'total_score' => 'Kopējais punktu skaits',
         'ranked_score' => '',

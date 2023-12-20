@@ -93,7 +93,10 @@ class RankingController extends Controller
 
             $this->defaultViewVars['country'] = $this->country;
             if ($type === 'performance') {
-                $this->defaultViewVars['countries'] = json_collection($this->getCountries($mode), new SelectOptionTransformer());
+                $this->defaultViewVars['countries'] = json_collection(
+                    Country::whereHasRuleset($mode)->get(),
+                    new SelectOptionTransformer(),
+                );
             }
 
             return $next($request);
@@ -145,7 +148,7 @@ class RankingController extends Controller
                 });
 
             if ($type === 'performance') {
-                $isExperimentalRank = config('osu.scores.experimental_rank_as_default');
+                $isExperimentalRank = $GLOBALS['cfg']['osu']['scores']['experimental_rank_as_default'];
                 if ($this->country !== null) {
                     $stats->where('country_acronym', $this->country['acronym']);
                     // preferrable to rank_score when filtering by country.
@@ -320,15 +323,6 @@ class RankingController extends Controller
                 'spotlight',
             ))
         );
-    }
-
-    private function getCountries(string $mode)
-    {
-        $relation = 'statistics'.title_case($mode);
-
-        return Country::whereHas($relation, function ($query) {
-            $query->where('display', true);
-        })->get();
     }
 
     private function maxResults($modeInt, $stats)

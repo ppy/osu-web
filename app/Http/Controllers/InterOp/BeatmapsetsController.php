@@ -37,7 +37,7 @@ class BeatmapsetsController extends Controller
     public function destroy($id)
     {
         $beatmapset = Beatmapset::findOrFail($id);
-        $user = User::findOrFail(config('osu.legacy.bancho_bot_user_id'));
+        $user = User::findOrFail($GLOBALS['cfg']['osu']['legacy']['bancho_bot_user_id']);
 
         (new BeatmapsetDelete($beatmapset, $user))->handle();
 
@@ -47,7 +47,7 @@ class BeatmapsetsController extends Controller
     public function disqualify($id)
     {
         $beatmapset = Beatmapset::findOrFail($id);
-        $user = User::findOrFail(config('osu.legacy.bancho_bot_user_id'));
+        $user = User::findOrFail($GLOBALS['cfg']['osu']['legacy']['bancho_bot_user_id']);
 
         $message = request('message') ?? null;
 

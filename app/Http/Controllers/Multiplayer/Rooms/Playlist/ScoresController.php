@@ -169,7 +169,7 @@ class ScoresController extends BaseController
         $params = request()->all();
 
         $buildId = ClientCheck::findBuild($user, $params)?->getKey()
-            ?? config('osu.client.default_build_id');
+            ?? $GLOBALS['cfg']['osu']['client']['default_build_id'];
 
         $scoreToken = $room->startPlay($user, $playlistItem, $buildId);
 
@@ -198,14 +198,7 @@ class ScoresController extends BaseController
 
             $params = Score::extractParams(\Request::all(), $scoreToken);
 
-            $scoreLink = $scoreToken
-                ->playlistItem
-                ->scoreLinks()
-                ->make(['user_id' => $scoreToken->user_id]);
-            $room->completePlay($scoreLink, $params);
-            $scoreToken->fill(['score_id' => $scoreLink->score_id])->saveOrExplode();
-
-            return $scoreLink;
+            return $room->completePlay($scoreToken, $params);
         });
 
         $score = $scoreLink->score;

@@ -115,7 +115,7 @@ return [
         'register' => "osu!계정이 없으신가요? 새로 하나 만들어보세요",
         'remember' => '이 컴퓨터에서 계정 정보 기억하기',
         'title' => '계속하려면 로그인해 주세요',
-        'username' => 'Username',
+        'username' => '아이디',
 
         'beta' => [
             'main' => '베타 엑세스는 현재 권한이 있는 사용자로 제한되어 있습니다.',
@@ -124,6 +124,9 @@ return [
     ],
 
     'ogp' => [
+        'modding_description' => '비트맵: :counts',
+        'modding_description_empty' => '이 유저는 아무런 비트맵이 없어요...',
+
         'description' => [
             '_' => '순위 (:ruleset:): :global | :country',
             'country' => '국가 :rank',
@@ -148,7 +151,7 @@ return [
         'placeholder' => '아시는 정보를 입력해 주세요. 유용하게 쓰일 수 있습니다.',
         'reason' => '이유',
         'thanks' => '신고해 주셔서 감사합니다!',
-        'title' => ':username 님을 신고할까요?',
+        'title' => ':username님을 신고할까요?',
 
         'actions' => [
             'send' => '신고 보내기',
@@ -183,7 +186,6 @@ return [
         'origin_country' => ':country에 거주',
         'previous_usernames' => '이전 아이디',
         'plays_with' => '플레이 장비: :devices',
-        'title' => ":username님의 프로필",
 
         'comments_count' => [
             '_' => ':link 작성됨',
@@ -387,8 +389,8 @@ return [
             ],
             'account_standing' => [
                 'title' => '계정 상태',
-                'bad_standing' => "<strong>:username</strong> 님이 규칙을 위반하셨습니다. :(",
-                'remaining_silence' => '<strong>:username</strong> 님은 :duration 후에 말할 수 있습니다.',
+                'bad_standing' => ":username님이 규칙을 위반하셨습니다. :(",
+                'remaining_silence' => ':username님은 :duration 후에 말할 수 있습니다.',
 
                 'recent_infringements' => [
                     'title' => '최근 사건',

@@ -72,7 +72,7 @@ return [
 
     'disabled' => [
         'title' => '¡Oh, oh! Parece que su cuenta ha sido desactivada.',
-        'warning' => "En el caso de que haya roto una regla, tenga en cuenta que generalmente hay un período de espera de un mes durante el cual no consideraremos ninguna solicitud de amnistía. Después de este período, puede contactar con nosotros si lo considera necesario. Tenga en cuenta que la creación de nuevas cuentas después de haber tenido una desactivada resultará en una <strong>extensión de este período de espera de un mes</strong>. Por favor, también tenga en cuenta que por <strong>cada cuenta que cree, estará violando más reglas</strong>. ¡Le sugerimos que no siga este camino!",
+        'warning' => "En el caso de que hayas roto una regla, ten en cuenta que generalmente hay un período de espera de un mes durante el cual no consideraremos ninguna solicitud de amnistía. Después de este período, puedes contactar con nosotros si lo consideras necesario. Ten en cuenta que la creación de nuevas cuentas después de haber tenido una desactivada resultará en una <strong>extensión de este período de espera de un mes</strong>. Por favor, también ten en cuenta que por <strong>cada cuenta que crees, estarás violando más reglas</strong>. ¡Te sugerimos que no sigas este camino!",
 
         'if_mistake' => [
             '_' => 'Si cree que se trata de un error, puede ponerse en contacto con nosotros (por :email o haciendo clic en el "?" en la esquina inferior derecha de esta página). Tenga en cuenta que siempre confiamos plenamente en nuestras acciones, ya que se basan en datos muy sólidos. Nos reservamos el derecho de ignorar su petición si consideramos que está siendo intencionadamente deshonesto.',
@@ -80,7 +80,7 @@ return [
         ],
 
         'reasons' => [
-            'compromised' => 'Su cuenta se ha considerado comprometida. Puede ser desactivada temporalmente mientras se confirma su identidad.',
+            'compromised' => 'Tu cuenta se ha considerado comprometida. Puede ser desactivada temporalmente mientras se confirma tu identidad.',
             'opening' => 'Hay una serie de razones que pueden resultar en la desactivación de su cuenta:',
 
             'tos' => [
@@ -124,6 +124,9 @@ return [
     ],
 
     'ogp' => [
+        'modding_description' => 'Mapas: :counts',
+        'modding_description_empty' => 'El usuario no tiene ningún beatmap...',
+
         'description' => [
             '_' => 'Clasificación (:ruleset): :global | :country',
             'country' => 'País :rank',
@@ -183,7 +186,6 @@ return [
         'origin_country' => 'De :country',
         'previous_usernames' => 'antes conocido como',
         'plays_with' => 'Juega con :devices',
-        'title' => "Perfil de :username",
 
         'comments_count' => [
             '_' => 'Publicó :link',
@@ -229,7 +231,7 @@ return [
                 'title' => 'Logros',
             ],
             'beatmaps' => [
-                'by_artist' => 'por :artist',
+                'by_artist' => 'de :artist',
                 'title' => 'Mapas',
 
                 'favourite' => [
@@ -388,7 +390,7 @@ return [
             'account_standing' => [
                 'title' => 'Estado de la cuenta',
                 'bad_standing' => "La cuenta de <strong>:username</strong> no está en buen estado :(",
-                'remaining_silence' => ':username podrá volver a hablar dentro de :duration.',
+                'remaining_silence' => ':username podrá volver a hablar :duration.',
 
                 'recent_infringements' => [
                     'title' => 'Infracciones recientes',
@@ -428,7 +430,7 @@ return [
             'button' => 'editar página de perfil',
             'description' => '<strong>¡yo!</strong> es una área personal y personalizable en tu perfil.',
             'edit_big' => 'Editar ¡yo!',
-            'placeholder' => 'Escriba el contenido de la página aquí',
+            'placeholder' => 'Escribe el contenido de la página aquí',
 
             'restriction_info' => [
                 '_' => 'Debes ser un :link para desbloquear esta función.',

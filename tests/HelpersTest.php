@@ -56,7 +56,7 @@ class HelpersTest extends TestCase
         $this->assertTrue(is_sql_unique_exception($exception));
     }
 
-    public function dataForClassWithModifiers(): array
+    public static function dataForClassWithModifiers(): array
     {
         return [
             'no modifiers' =>
@@ -84,7 +84,7 @@ class HelpersTest extends TestCase
         ];
     }
 
-    public function dataForGetStringSplit(): array
+    public static function dataForGetStringSplit(): array
     {
         return [
             ["hello\nworld\n!", ['hello', 'world', '!']],

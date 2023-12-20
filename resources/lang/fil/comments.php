@@ -43,6 +43,10 @@ return [
         'no_comments' => 'walang mga komentong nakita...',
     ],
 
+    'ogp' => [
+        'title' => '',
+    ],
+
     'placeholder' => [
         'edit' => 'I-edit ang komento dito',
         'new' => 'I-type and bagong komento dito',

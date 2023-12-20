@@ -4,7 +4,6 @@ x-env: &x-env
   APP_KEY: "${APP_KEY}"
   BEATMAPS_DIFFICULTY_CACHE_SERVER_URL: http://beatmap-difficulty-lookup-cache
   BROADCAST_DRIVER: redis
-  CACHE_DRIVER: redis
   DB_CONNECTION_STRING: Server=db;Database=osu;Uid=osuweb;
   DB_HOST: db
   ES_HOST: http://elasticsearch:9200
@@ -14,7 +13,6 @@ x-env: &x-env
   NOTIFICATION_REDIS_HOST: redis
   PASSPORT_PUBLIC_KEY: "${PASSPORT_PUBLIC_KEY:-}"
   REDIS_HOST: redis
-  SESSION_DRIVER: redis
 
 x-web: &x-web
   build:

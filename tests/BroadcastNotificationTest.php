@@ -102,12 +102,9 @@ class BroadcastNotificationTest extends TestCase
         }
     }
 
-    public function notificationJobClassesDataProvider()
+    public static function notificationJobClassesDataProvider()
     {
-        $this->refreshApplication();
-
-        $path = app()->path('Jobs/Notifications');
-        $files = Finder::create()->files()->in($path)->sortByName();
+        $files = Finder::create()->files()->in(__DIR__.'/../app/Jobs/Notifications')->sortByName();
         foreach ($files as $file) {
             $baseName = $file->getBasename(".{$file->getExtension()}");
             $classes[] = ["\\App\\Jobs\\Notifications\\{$baseName}"];
@@ -116,7 +113,7 @@ class BroadcastNotificationTest extends TestCase
         return $classes;
     }
 
-    public function notificationNamesDataProvider()
+    public static function notificationNamesDataProvider()
     {
         // TODO: move notification names to different class instead of filtering
         $constants = collect((new ReflectionClass(Notification::class))->getReflectionConstants())
@@ -129,7 +126,7 @@ class BroadcastNotificationTest extends TestCase
         return $constants->map(fn (ReflectionClassConstant $constant) => [$constant->getValue()])->all();
     }
 
-    public function userNotificationDetailsDataProvider()
+    public static function userNotificationDetailsDataProvider()
     {
         return [
             [null], // for testing defaults.

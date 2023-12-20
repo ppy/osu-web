@@ -57,8 +57,8 @@ class RegenerateBeatmapsetCover implements ShouldQueue
         } catch (Exception $e) {
             Datadog::increment(['thumbdonger.processed', 'thumbdonger.error']);
             Log::warning("[beatmapset_id: {$this->beatmapset->beatmapset_id}] Cover regeneration FAILED.");
-            if (config('osu.beatmap_processor.sentry')) {
-                $client = ClientBuilder::create(['dsn' => config('osu.beatmap_processor.sentry')])->getClient();
+            if ($GLOBALS['cfg']['osu']['beatmap_processor']['sentry']) {
+                $client = ClientBuilder::create(['dsn' => $GLOBALS['cfg']['osu']['beatmap_processor']['sentry']])->getClient();
                 $scope = (new Scope())->setTag('beatmapset_id', (string) $this->beatmapset->beatmapset_id);
                 $client->captureException($e, $scope);
                 throw new SilencedException('Silenced Exception: ['.get_class($e).'] '.$e->getMessage());

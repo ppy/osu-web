@@ -124,6 +124,9 @@ return [
     ],
 
     'ogp' => [
+        'modding_description' => 'Beatmaps: :counts',
+        'modding_description_empty' => 'L\'usuari no té cap beatmap...',
+
         'description' => [
             '_' => 'Clasificació (:ruleset): :global | :country',
             'country' => 'País :rank',
@@ -183,7 +186,6 @@ return [
         'origin_country' => 'De :country',
         'previous_usernames' => 'conegut anteriorment com',
         'plays_with' => 'Juga amb :devices',
-        'title' => "Perfil de :username",
 
         'comments_count' => [
             '_' => 'Ha publicat :link',
@@ -440,8 +442,8 @@ return [
             'count' => ':count_delimited publicació en el fòrum|:count_delimited publicacions en el fòrum',
         ],
         'rank' => [
-            'country' => 'Classificació per països per :mode',
-            'country_simple' => 'Classificació per països',
+            'country' => 'Classificació nacional per :mode',
+            'country_simple' => 'Classificació nacional',
             'global' => 'Classifació global per :mode',
             'global_simple' => 'Classificació global',
             'highest' => 'Classificació més alta: :rank el :date',

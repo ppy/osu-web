@@ -9,6 +9,6 @@ trait NotificationQueue
 {
     public function dispatch()
     {
-        return dispatch($this->onQueue(config('osu.notification.queue_name')));
+        return dispatch($this->onQueue($GLOBALS['cfg']['osu']['notification']['queue_name']));
     }
 }

@@ -5,8 +5,8 @@
 
 namespace App\Models\Multiplayer;
 
+use App\Enums\Ruleset;
 use App\Exceptions\InvariantException;
-use App\Libraries\Ruleset;
 use App\Models\Beatmap;
 use App\Models\Model;
 use App\Models\ScoreToken;
@@ -38,14 +38,6 @@ class PlaylistItem extends Model
         'expired' => 'boolean',
         'required_mods' => 'object',
     ];
-
-    public static function userAttemptModelBaseQueries(): array
-    {
-        return [
-            ScoreLink::query(),
-            ScoreToken::whereNull('score_id'),
-        ];
-    }
 
     public static function assertBeatmapsExist(array $playlistItems)
     {
@@ -124,27 +116,13 @@ class PlaylistItem extends Model
             ->orderBy('score_id', 'asc');
     }
 
-    public function userAttempts(int $userId): int
-    {
-        $id = $this->getKey();
-        $ret = 0;
-        foreach (static::userAttemptModelBaseQueries() as $query) {
-            $ret += $query->where([
-                'playlist_item_id' => $id,
-                'user_id' => $userId,
-            ])->count();
-        }
-
-        return $ret;
-    }
-
     private function assertValidMaxAttempts()
     {
         if ($this->max_attempts === null) {
             return;
         }
 
-        $maxAttemptsLimit = config('osu.multiplayer.max_attempts_limit');
+        $maxAttemptsLimit = $GLOBALS['cfg']['osu']['multiplayer']['max_attempts_limit'];
         if ($this->max_attempts < 1 || $this->max_attempts > $maxAttemptsLimit) {
             throw new InvariantException("field 'max_attempts' must be between 1 and {$maxAttemptsLimit}");
         }

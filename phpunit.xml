@@ -4,6 +4,9 @@
          bootstrap="vendor/autoload.php"
          colors="true"
 >
+    <extensions>
+        <extension class="Tests\SeederExtension" />
+    </extensions>
     <testsuites>
         <testsuite name="Application Test Suite">
             <directory suffix="Test.php">./tests/</directory>
@@ -15,9 +18,7 @@
         <env name="APP_ENV" value="testing"/>
         <env name="BEATMAPSET_REQUIRED_HYPE" value="0"/>
         <env name="BROADCAST_DRIVER" value="log"/>
-        <env name="CACHE_DRIVER" value="array"/>
         <env name="CHAT_PRIVATE_LIMIT" value="2"/>
-        <env name="SESSION_DRIVER" value="array"/>
 
         <env name="ADMIN_FORUM_ID" value="0"/>
         <env name="DOUBLE_POST_ALLOWED_FORUM_IDS" value="0"/>

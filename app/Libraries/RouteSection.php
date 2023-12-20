@@ -140,32 +140,27 @@ class RouteSection
         ],
     ];
 
-    public function getCurrent($key = null)
+    public function getCurrent(): array
     {
-        $data = request()->attributes->get('route_section_error') ?? $this->getOriginal();
-
-        if ($key === null) {
-            return $data;
-        }
-
-        return $data[$key];
+        return \Request::instance()->attributes->get('route_section_error')
+            ?? $this->getOriginal();
     }
 
     public function getOriginal()
     {
-        $default = request()->attributes->get('route_section');
+        $request = \Request::instance();
+        $default = $request->attributes->get('route_section');
 
         if ($default === null) {
-            $currentRoute = request()->route();
-            $currentController = optional($currentRoute)->controller;
+            $currentRoute = $request->route();
+            $currentController = $currentRoute?->controller;
 
-            if (isset($currentRoute) && isset($currentController)) {
-                $className = get_class($currentController);
+            if (isset($currentController)) {
+                $className = $currentController::class;
 
                 $namespace = get_class_namespace($className);
-                $namespace = str_replace('App\\Http\\Controllers', '', $namespace);
-                $namespace = snake_case(str_replace('\\', '', $namespace));
-                $namespace = presence($namespace) ?? 'main';
+                $namespace = strtr($namespace, ['\\' => '', 'App\\Http\\Controllers' => '']);
+                $namespace = presence(snake_case($namespace)) ?? 'main';
 
                 $controller = snake_case(get_class_basename($className));
                 $action = snake_case($currentRoute->getActionMethod());
@@ -182,7 +177,7 @@ class RouteSection
                 'namespace' => $namespace ?? 'unknown',
                 'section' => $section ?? 'unknown',
             ];
-            request()->attributes->set('route_section', $default);
+            $request->attributes->set('route_section', $default);
         }
 
         return $default;
@@ -190,7 +185,7 @@ class RouteSection
 
     public function setError($statusCode)
     {
-        request()->attributes->set('route_section_error', [
+        \Request::instance()->attributes->set('route_section_error', [
             'action' => $statusCode,
             'controller' => 'error',
             'namespace' => 'error',

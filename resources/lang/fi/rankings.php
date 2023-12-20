@@ -25,11 +25,11 @@ return [
 
     'type' => [
         'charts' => 'kohdevalot',
-        'country' => 'Maa',
+        'country' => 'maat',
         'kudosu' => 'kudosu',
-        'multiplayer' => 'moninpeli',
-        'performance' => 'Suorituskyky',
-        'score' => 'Piste',
+        'multiplayer' => 'moninpelit',
+        'performance' => 'suorituskyky',
+        'score' => 'pisteet',
         'seasons' => 'kaudet',
     ],
 
@@ -54,9 +54,9 @@ return [
         'play_count' => 'Pelikerrat',
         'performance' => 'Suorituskyky',
         'total_score' => 'Kokonaispisteet',
-        'ranked_score' => 'Tilastoidut pisteet',
+        'ranked_score' => 'Rankatut pisteet',
         'average_score' => 'Keskim. pisteet',
-        'average_performance' => 'Keskim. PP',
+        'average_performance' => 'Keskim. suorituskyky',
         'ss' => '',
         's' => '',
         'a' => '',

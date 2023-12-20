@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { action, observable, makeObservable, reaction } from 'mobx';
+import { action, autorun, makeObservable, observable } from 'mobx';
 import { disposeOnUnmount, observer } from 'mobx-react';
 import * as React from 'react';
 import { blackoutToggle } from 'utils/blackout';
@@ -29,7 +29,7 @@ interface ComponentOptionRenderProps<T extends Option> {
 }
 
 interface Props<T extends Option> {
-  blackout?: boolean;
+  blackout: boolean;
   modifiers?: Modifiers;
   onChange: (option: T) => void;
   options: T[];
@@ -47,12 +47,9 @@ export default class SelectOptions<T extends Option> extends React.Component<Pro
   constructor(props: Props<T>) {
     super(props);
     makeObservable(this);
-    disposeOnUnmount(this, reaction(
-      () => this.showingSelector,
-      (showing) => {
-        blackoutToggle(showing, 0.5);
-      },
-    ));
+    disposeOnUnmount(this, autorun(() => {
+      blackoutToggle(this.props.blackout && this.showingSelector, 0.5);
+    }));
   }
 
   componentDidMount() {

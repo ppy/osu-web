@@ -164,9 +164,8 @@ class BeatmapsControllerSoloScoresTest extends TestCase
             Beatmapset::truncate();
             Country::truncate();
             Genre::truncate();
-            Group::truncate();
             Language::truncate();
-            SoloScore::truncate();
+            SoloScore::select()->delete(); // TODO: revert to truncate after the table is actually renamed
             User::truncate();
             UserGroup::truncate();
             UserGroupEvent::truncate();
@@ -203,7 +202,7 @@ class BeatmapsControllerSoloScoresTest extends TestCase
         }
     }
 
-    public function dataProviderForTestQuery(): array
+    public static function dataProviderForTestQuery(): array
     {
         return [
             'no parameters' => [[

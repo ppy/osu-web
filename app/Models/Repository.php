@@ -34,7 +34,7 @@ class Repository extends Model
 
     public function updateStreams()
     {
-        $bridgeTable = config('database.connections.mysql.database').'.repository_update_stream';
+        $bridgeTable = $GLOBALS['cfg']['database']['connections']['mysql']['database'].'.repository_update_stream';
 
         return $this->belongsToMany(UpdateStream::class, $bridgeTable, null, 'stream_id');
     }

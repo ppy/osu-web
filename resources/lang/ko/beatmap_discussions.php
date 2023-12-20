@@ -33,14 +33,14 @@ return [
             'beatmapset_status' => [
                 '_' => '비트맵 상태',
                 'all' => '전체',
-                'disqualified' => '디스퀄리파이 됨',
-                'never_qualified' => '퀄리파이 된 적 없음',
-                'qualified' => '퀄리파이',
-                'ranked' => '랭크됨',
+                'disqualified' => 'Disqualified',
+                'never_qualified' => 'Qualified 된 적 없음',
+                'qualified' => 'Qualified',
+                'ranked' => 'Ranked',
             ],
 
             'user' => [
-                'label' => '유저',
+                'label' => '사용자',
                 'overview' => '활동 개요',
             ],
         ],
@@ -103,6 +103,6 @@ return [
 
     'user_filter' => [
         'everyone' => '모두',
-        'label' => '유저순 필터링',
+        'label' => '사용자순 필터링',
     ],
 ];

@@ -78,13 +78,13 @@
 @endcomponent
 
 <div class="osu-page no-print">
-    @if (config('osu.store.notice') !== null)
+    @if ($GLOBALS['cfg']['osu']['store']['notice'] !== null)
         <div class="store-notice store-notice--important">
             <h2 class="store-notice__title">
                 {{ osu_trans('common.title.notice') }}
             </h2>
 
-            {!! markdown(config('osu.store.notice')) !!}
+            {!! markdown($GLOBALS['cfg']['osu']['store']['notice']) !!}
         </div>
     @endif
 
@@ -92,14 +92,13 @@
     {{-- Show message if there is a pending checkout and not currently on a checkout page --}}
     @if($showPendingCheckout)
         @php
-            $pendingCheckoutLink = Html::link(
-                route('store.orders.index', ['type' => 'processing']),
-                osu_trans('store.checkout.has_pending.link_text')
-            )
         @endphp
         <div class="store-notice">
             <span>
-                {!! osu_trans('store.checkout.has_pending._', ['link' => $pendingCheckoutLink]) !!}
+                {!! osu_trans('store.checkout.has_pending._', ['link' => link_to(
+                    route('store.orders.index', ['type' => 'processing']),
+                    osu_trans('store.checkout.has_pending.link_text'),
+                )]) !!}
             </span>
         </div>
     @endif
