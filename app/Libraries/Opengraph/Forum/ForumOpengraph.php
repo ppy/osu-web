@@ -35,7 +35,7 @@ class ForumOpengraph implements OpengraphInterface
         return [
             'description' => $this->description(),
             'title' => $this->forum->forum_name,
-            'image' => $this->forum->cover?->file()->Url(),
+            'image' => $this->forum->cover?->file()->url(),
         ];
     }
 }

@@ -22,7 +22,7 @@ class TopicOpengraph implements OpengraphInterface
 
         return [
             'description' => "{$forumDescription} » {$this->topic->topic_title}",
-            'image' => $this->topic->cover?->file()->url() ?? $this->topic->forum->cover?->defaultTopicCover->Url(),
+            'image' => $this->topic->cover?->file()->url() ?? $this->topic->forum->cover?->defaultTopicCover->url(),
             'title' => $this->topic->topic_title,
         ];
     }
