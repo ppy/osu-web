@@ -14,6 +14,8 @@ use League\Flysystem\Local\LocalFilesystemAdapter;
 
 class Uploader
 {
+    private const DEFAULT_MAX_FILESIZE = 10_000_000;
+
     private ?string $filename;
 
     public function __construct(
@@ -29,7 +31,11 @@ class Uploader
     {
         switch ($name) {
             case 'image':
-                $processor = new ImageProcessor($srcPath, $options['maxDimensions'], $options['maxFileSize'] ?? 10_000_000);
+                $processor = new ImageProcessor(
+                    $srcPath,
+                    $options['maxDimensions'],
+                    $options['maxFilesize'] ?? static::DEFAULT_MAX_FILESIZE,
+                );
                 $processor->process();
 
                 return $processor->ext();
