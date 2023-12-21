@@ -64,9 +64,9 @@ return [
 
     'github_user' => [
         'info' => "",
-        'link' => '',
+        'link' => 'GitHub Hesabını Bağla',
         'title' => 'GitHub',
-        'unlink' => '',
+        'unlink' => 'GitHub Hesabının bağlantısını Kaldır',
 
         'error' => [
             'already_linked' => '',

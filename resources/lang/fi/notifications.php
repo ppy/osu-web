@@ -44,7 +44,7 @@ return [
             ],
 
             'beatmapset_discussion' => [
-                '_' => 'Rytmikarttakeskustelu',
+                '_' => 'Rytmikartan keskustelu',
                 'beatmapset_discussion_lock' => 'Keskustelu kohteessa ":title" on lukittu',
                 'beatmapset_discussion_lock_compact' => 'Keskustelu on lukittu',
                 'beatmapset_discussion_post_new' => 'Uusi viesti kohteessa ":title" käyttäjältä :username: ":content"',
@@ -57,9 +57,9 @@ return [
                 'beatmapset_discussion_unlock_compact' => 'Keskustelu on avattu',
 
                 'review_count' => [
-                    'praises' => '',
-                    'problems' => '',
-                    'suggestions' => '',
+                    'praises' => ':count_delimited kehu|:count_delimited kehua',
+                    'problems' => ':count_delimited ongelma|:count_delimited ongelmaa',
+                    'suggestions' => ':count_delimited ehdotus|:count_delimited ehdotusta',
                 ],
             ],
 
@@ -72,7 +72,7 @@ return [
             ],
 
             'beatmapset_state' => [
-                '_' => 'Beatmapin tila muutettu',
+                '_' => 'Rytmikartan tilanne muuttui',
                 'beatmapset_disqualify' => '":title" on hylätty',
                 'beatmapset_disqualify_compact' => 'Rytmikartta epäkelpuutettiin',
                 'beatmapset_love' => '":title" ylennettiin rakastetuksi',

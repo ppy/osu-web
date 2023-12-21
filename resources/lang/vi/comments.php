@@ -44,7 +44,7 @@ return [
     ],
 
     'ogp' => [
-        'title' => '',
+        'title' => 'bình luận bởi :user',
     ],
 
     'placeholder' => [

@@ -57,9 +57,9 @@ return [
                 'beatmapset_discussion_unlock_compact' => 'La discusión se ha desbloqueado',
 
                 'review_count' => [
-                    'praises' => '',
-                    'problems' => '',
-                    'suggestions' => '',
+                    'praises' => ':count_delimited elogio|:count_delimited elogios',
+                    'problems' => ':count_delimited problema|:count_delimited problemas',
+                    'suggestions' => ':count_delimited sugerencia|:count_delimited sugerencias',
                 ],
             ],
 

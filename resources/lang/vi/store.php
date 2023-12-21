@@ -6,7 +6,7 @@
 return [
     'cart' => [
         'checkout' => 'Thanh Toán',
-        'empty_cart' => '',
+        'empty_cart' => 'Xoá tất cả mặt hàng khỏi giỏ hàng',
         'info' => ':count_delimited sản phẩm trong giỏ ($:subtotal)|:count_delimited sản phẩm trong giỏ ($:subtotal)',
         'more_goodies' => 'Tôi muốn xem thêm nhiều mặt hàng nữa trước khi hoàn thành đơn hàng',
         'shipping_fees' => 'phí vận chuyển',
@@ -49,37 +49,37 @@ return [
     ],
 
     'discount' => 'tiết kiệm :percent%',
-    'free' => '',
+    'free' => 'miễn phí!',
 
     'invoice' => [
-        'contact' => '',
-        'date' => '',
+        'contact' => 'Liên hệ:',
+        'date' => 'Ngày:',
         'echeck_delay' => 'Vì bạn thanh toán bằng eCheck, hãy chờ thêm tối đa 10 ngày để thanh toán qua khỏi PayPal!',
         'hide_from_activity' => 'thẻ osu!supporter ở trong đơn hàng này sẽ không được hiện lên ở trong hoạt động gần đây của bạn.',
-        'sent_via' => '',
-        'shipping_to' => '',
-        'title' => '',
+        'sent_via' => 'Đã gửi qua:',
+        'shipping_to' => 'Vận chuyển đến:',
+        'title' => 'Hoá đơn',
         'title_compact' => 'hóa đơn',
 
         'status' => [
             'cancelled' => [
-                'title' => '',
+                'title' => 'Đơn hàng đã bị huỷ',
                 'line_1' => [
-                    '_' => "",
-                    'link_text' => '',
+                    '_' => "Nếu bạn không yêu cầu hủy, vui lòng liên hệ :link trích dẫn số đơn hàng của bạn (#:order_number).",
+                    'link_text' => 'hỗ trợ osu!store',
                 ],
             ],
             'delivered' => [
-                'title' => '',
+                'title' => 'Đơn hàng của bạn đã được giao! Chúng tôi hy vọng bạn thích nó!',
                 'line_1' => [
-                    '_' => '',
-                    'link_text' => '',
+                    '_' => 'Nếu bạn có bất kỳ vấn đề gì khi mua hàng, vui lòng liên hệ :link.',
+                    'link_text' => 'hỗ trợ osu!store',
                 ],
             ],
             'prepared' => [
-                'title' => '',
-                'line_1' => '',
-                'line_2' => '',
+                'title' => 'Đơn hàng của bạn đang được chuẩn bị!',
+                'line_1' => 'Vui lòng chờ thêm một thời gian nữa để hàng được chuyển đi. Thông tin theo dõi sẽ xuất hiện ở đây sau khi đơn hàng được xử lý và gửi. Việc này có thể mất tới 5 ngày (nhưng thường ít hơn!) tùy thuộc vào độ bận rộn của chúng tôi.',
+                'line_2' => 'Chúng tôi gửi tất cả các đơn hàng từ Nhật Bản bằng nhiều dịch vụ vận chuyển tùy theo trọng lượng và giá trị. Khu vực này sẽ cập nhật thông tin cụ thể sau khi chúng tôi gửi đơn đặt hàng.',
             ],
             'processing' => [
                 'title' => 'Thanh toán của bạn chưa được xác nhận!',
@@ -90,11 +90,11 @@ return [
                 ],
             ],
             'shipped' => [
-                'title' => '',
-                'tracking_details' => '',
+                'title' => 'Đơn hàng đã được giao!',
+                'tracking_details' => 'Chi tiết theo dõi như sau:',
                 'no_tracking_details' => [
-                    '_' => "",
-                    'link_text' => '',
+                    '_' => "Chúng tôi không có chi tiết theo dõi vì chúng tôi đã gửi gói hàng của bạn qua Air Mail, nhưng bạn có thể nhận được gói hàng trong vòng 1-3 tuần. Đối với Châu Âu, đôi khi hải quan có thể trì hoãn đơn hàng ngoài tầm kiểm soát của chúng tôi. Nếu bạn có bất kỳ thắc mắc nào, vui lòng trả lời email xác nhận đơn hàng bạn nhận được :link.",
+                    'link_text' => 'gửi email cho chúng tôi',
                 ],
             ],
         ],
@@ -108,18 +108,18 @@ return [
         'no_orders' => 'Không có đơn đặt hàng.',
         'paid_on' => 'Đã đặt hàng :date',
         'resume' => 'Tiếp Tục Thanh Toán',
-        'shipping_and_handling' => '',
+        'shipping_and_handling' => 'Vận chuyển & Xử lí',
         'shopify_expired' => 'Link thanh toán cho đơn hàng này đã hết hạn.',
-        'subtotal' => '',
-        'total' => '',
+        'subtotal' => 'Tổng phụ',
+        'total' => 'Tổng cộng',
 
         'details' => [
-            'order_number' => '',
-            'payment_terms' => '',
-            'salesperson' => '',
-            'shipping_method' => '',
-            'shipping_terms' => '',
-            'title' => '',
+            'order_number' => 'Đơn hàng #',
+            'payment_terms' => 'Điều khoản thanh toán',
+            'salesperson' => 'Người bán hàng',
+            'shipping_method' => 'Phương thức vận chuyển',
+            'shipping_terms' => 'Điều khoản vận chuyển',
+            'title' => 'Chi tiết đơn hàng',
         ],
 
         'item' => [
@@ -151,14 +151,14 @@ return [
             'paid' => 'Đã Thanh Toán',
             'processing' => 'Đang chờ xác nhận',
             'shipped' => 'Đã giao hàng',
-            'title' => '',
+            'title' => 'Trạng thái đơn hàng',
         ],
 
         'thanks' => [
-            'title' => '',
+            'title' => 'Cảm ơn đơn hàng của bạn!',
             'line_1' => [
-                '_' => '',
-                'link_text' => '',
+                '_' => 'Bạn sẽ nhận được một email xác nhận. Nếu bạn có bất kỳ thắc mắc nào, vui lòng :link!',
+                'link_text' => 'liên hệ chúng tôi',
             ],
         ],
     ],
@@ -193,9 +193,9 @@ return [
     'username_change' => [
         'check' => 'Nhập tên người dùng để kiểm tra tính khả dụng!',
         'checking' => 'Đang kiểm tra tính khả dụng của :username...',
-        'placeholder' => '',
-        'label' => '',
-        'current' => '',
+        'placeholder' => 'Tên người dùng được yêu cầu',
+        'label' => 'Tên người dùng mới',
+        'current' => 'Tên người dùng hiện tại của bạn là ":username".',
 
         'require_login' => [
             '_' => 'Bạn cần phải :link để đổi tên!',

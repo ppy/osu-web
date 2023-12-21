@@ -57,9 +57,9 @@ return [
                 'beatmapset_discussion_unlock_compact' => 'La discussione è stata sbloccata',
 
                 'review_count' => [
-                    'praises' => '',
-                    'problems' => '',
-                    'suggestions' => '',
+                    'praises' => ':count_delimited elogio|:count_delimited elogi',
+                    'problems' => ':count_delimited problema|:count_delimited problemi',
+                    'suggestions' => ':count_delimited suggerimento|:count_delimited suggerimenti',
                 ],
             ],
 

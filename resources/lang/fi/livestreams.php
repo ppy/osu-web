@@ -11,7 +11,7 @@ return [
 
     'top-headers' => [
         'headline' => 'Suorat lähetykset',
-        'description' => 'Tiedot noudetaan twitch.tv\'n listauksesta viiden minuutin välein. Voit vapaasti aloittaa suoran lähetyksen ja saada itsesi listalle! Lisää tietoja aloittelemisesta löydät :link.',
+        'description' => 'Tiedot noudetaan twitch.tv\'n listauksesta viiden minuutin välein. Voit vapaasti aloittaa suoran lähetyksen ja päästä listalle! Lisää tietoja aloittelemisesta löydät :link.',
 
         'link' => 'suoraa lähetystä käsittelevästä wikiartikkelista',
     ],

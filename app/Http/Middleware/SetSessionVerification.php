@@ -8,7 +8,6 @@ declare(strict_types=1);
 namespace App\Http\Middleware;
 
 use App\Events\UserSessionEvent;
-use App\Libraries\UserVerificationState;
 use Closure;
 use Illuminate\Http\Request;
 
@@ -16,15 +15,15 @@ class SetSessionVerification
 {
     public function handle(Request $request, Closure $next)
     {
-        $user = auth()->user();
+        $user = \Auth::user();
         if ($user !== null) {
-            $isVerified = UserVerificationState::fromCurrentRequest()->isDone();
+            $session = \Session::instance();
+            $isVerified = $session->isVerified();
 
             if ($isVerified) {
                 $user->markSessionVerified();
             } else {
                 $isRequired = VerifyUserAlways::isRequired($user);
-                $session = session();
                 if ($session->get('requires_verification') !== $isRequired) {
                     $session->put('requires_verification', $isRequired);
                     $session->save();

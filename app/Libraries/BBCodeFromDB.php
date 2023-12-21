@@ -75,7 +75,7 @@ class BBCodeFromDB
     {
         $linkText = presence($linkText) ?? 'SPOILER';
 
-        return "<div class='js-spoilerbox bbcode-spoilerbox'><button class='js-spoilerbox__link bbcode-spoilerbox__link' type='button'><span class='bbcode-spoilerbox__link-icon'></span>{$linkText}</button><div class='bbcode-spoilerbox__body'>";
+        return "<div class='js-spoilerbox bbcode-spoilerbox'><a class='js-spoilerbox__link bbcode-spoilerbox__link' href='#'><span class='bbcode-spoilerbox__link-icon'></span>{$linkText}</a><div class='bbcode-spoilerbox__body'>";
     }
 
     public function parseBoxHelperSuffix()

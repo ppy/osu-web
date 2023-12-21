@@ -58,9 +58,9 @@ return [
                 'beatmapset_discussion_unlock_compact' => 'Cuộc thảo luận đã được mở khóa',
 
                 'review_count' => [
-                    'praises' => '',
-                    'problems' => '',
-                    'suggestions' => '',
+                    'praises' => ':count_delimited lời khen|:count_delimited lời khen',
+                    'problems' => ':count_delimited vấn đề|:count_delimited vấn đề',
+                    'suggestions' => ':count_delimited gợi ý|:count_delimited gợi ý',
                 ],
             ],
 

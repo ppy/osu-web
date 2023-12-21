@@ -28,7 +28,7 @@ return [
         ],
         'no_diff_reduction' => [
             '_' => ':link ei voi käyttää tämän paketin suorittamiseen.',
-            'link' => 'Vaikeusastetta vähentäviä modeja',
+            'link' => 'Vaikeusastetta vähentäviä muunnelmia',
         ],
     ],
 
@@ -36,7 +36,7 @@ return [
         'artist' => 'Esittäjä/Albumi',
         'chart' => 'Kohdevaloissa',
         'featured' => 'Esitelty artisti',
-        'loved' => 'Project Loved',
+        'loved' => 'Project Rakastettu',
         'standard' => 'Tavallinen',
         'theme' => 'Teema',
         'tournament' => 'Turnaus',

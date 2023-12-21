@@ -57,9 +57,9 @@ return [
                 'beatmapset_discussion_unlock_compact' => 'La discussió s\'ha obert',
 
                 'review_count' => [
-                    'praises' => '',
-                    'problems' => '',
-                    'suggestions' => '',
+                    'praises' => ':count_delimited elogi|:count_delimited elogis',
+                    'problems' => ':count_delimited problema|:count_delimited problemes',
+                    'suggestions' => ':count_delimited suggeriment|:count_delimited suggeriments',
                 ],
             ],
 

@@ -57,9 +57,9 @@ return [
                 'beatmapset_discussion_unlock_compact' => '토론이 잠금 해제되었습니다.',
 
                 'review_count' => [
-                    'praises' => '',
-                    'problems' => '',
-                    'suggestions' => '',
+                    'praises' => ':count_delimited개의 칭찬',
+                    'problems' => ':count_delimited개의 문제 제기',
+                    'suggestions' => ':count_delimited개의 제안',
                 ],
             ],
 

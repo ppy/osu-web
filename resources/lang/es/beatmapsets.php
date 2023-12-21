@@ -112,7 +112,7 @@ return [
                 '_' => 'Este mapa está actualmente :status.',
 
                 'status' => [
-                    'pending' => 'pendientes',
+                    'pending' => 'pendiente',
                     'qualified' => 'calificado',
                     'wip' => 'en progreso',
                 ],
@@ -221,7 +221,7 @@ return [
             'loved' => 'Amado',
             'qualified' => 'Calificado',
             'wip' => 'WIP',
-            'pending' => 'Pendientes',
+            'pending' => 'Pendiente',
             'graveyard' => 'Abandonado',
         ],
     ],

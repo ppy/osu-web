@@ -33,6 +33,6 @@ return [
     ],
 
     'modding' => [
-        'title' => 'rytmikarttakeskustelu',
+        'title' => 'rytmikartan keskustelu',
     ],
 ];

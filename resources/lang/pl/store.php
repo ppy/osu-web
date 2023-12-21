@@ -6,7 +6,7 @@
 return [
     'cart' => [
         'checkout' => 'Zapłać',
-        'empty_cart' => '',
+        'empty_cart' => 'Usuń wszystkie produkty z koszyka',
         'info' => ':count_delimited produkt w koszyku (:subtotal$)|:count_delimited produkty w koszyku (:subtotal$)|:count_delimited produktów w koszyku (:subtotal$)',
         'more_goodies' => 'Chcę przejrzeć inne produkty przed zakończeniem zamówienia',
         'shipping_fees' => 'koszt wysyłki',
@@ -63,7 +63,7 @@ return [
 
         'status' => [
             'cancelled' => [
-                'title' => '',
+                'title' => 'Twoje zamówienie zostało anulowane',
                 'line_1' => [
                     '_' => "",
                     'link_text' => '',
