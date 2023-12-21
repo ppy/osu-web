@@ -150,6 +150,7 @@ class Score extends Model implements Traits\ReportableInterface
             'beatmap_id',
             'id',
             'ruleset_id',
+            'unix_updated_at',
             'user_id' => $this->getRawAttribute($key),
 
             'data' => $this->getClassCastableAttributeValue($key, $this->getRawAttribute($key)),
@@ -157,8 +158,6 @@ class Score extends Model implements Traits\ReportableInterface
             'has_replay',
             'preserve',
             'ranked' => (bool) $this->getRawAttribute($key),
-
-            'unix_updated_at' => $this->getRawAttribute($key),
 
             'created_at' => $this->getTimeFast($key),
             'created_at_json' => $this->getJsonTimeFast($key),
