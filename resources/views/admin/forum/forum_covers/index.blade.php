@@ -9,17 +9,21 @@
 
     <div class="osu-page osu-page--admin">
         @foreach ($forums as $forum)
-            <div class="forum-cover-admin-item" id="forum-{{ $forum->forum_id }}">
+            @php
+                $forumId = $forum->getKey();
+                $forumCover = $forum->cover;
+            @endphp
+            <div class="forum-cover-admin-item" id="forum-{{ $forumId }}">
                 <h2>
                     {!! link_to(
-                        route('forum.forums.show', $forum->forum_id),
-                        osu_trans('admin.forum.forum-covers.index.forum-name', ['id' => $forum->forum_id, 'name' => $forum->forum_name])
+                        route('forum.forums.show', $forumId),
+                        osu_trans('admin.forum.forum-covers.index.forum-name', ['id' => $forumId, 'name' => $forum->forum_name])
                     ) !!}
                 </h2>
 
                 @foreach ([
-                    'main' => ['cover' => $forum->cover->file(), 'key' => 'main_cover'],
-                    'default-topic' => ['cover' => $forum->cover->defaultTopicCover ?? null, 'key' => 'default_topic_cover']
+                    'main' => ['cover' => $forumCover?->file(), 'key' => 'main_cover'],
+                    'default-topic' => ['cover' => $forumCover?->defaultTopicCover, 'key' => 'default_topic_cover']
                 ] as $type => $cover)
                     <div class="forum-cover-admin-item__cover">
                         <h3>{{ osu_trans("admin.forum.forum-covers.index.type-title.{$type}") }}</h3>
@@ -54,7 +58,7 @@
                             >
                                 @csrf
                                 <input name="_method" value="POST" type="hidden" />
-                                <input name="forum_cover[forum_id]" value="{{ $forum->forum_id }}" type="hidden" />
+                                <input name="forum_cover[forum_id]" value="{{ $forumId }}" type="hidden" />
                                 <input name="forum_cover[{{ $cover['key'] }}][cover_file]" type="file">
                                 <button class="btn-osu-big">{{ osu_trans('admin.forum.forum-covers.index.submit.save') }}</button>
                             </form>
