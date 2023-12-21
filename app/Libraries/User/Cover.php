@@ -15,6 +15,8 @@ use Illuminate\Http\UploadedFile;
  */
 class Cover
 {
+    const CUSTOM_COVER_MAX_DIMENSIONS = [2400, 640];
+
     private const AVAILABLE_PRESET_IDS = ['1', '2', '3', '4', '5', '6', '7', '8'];
 
     private ?array $json;

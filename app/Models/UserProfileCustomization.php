@@ -273,7 +273,7 @@ class UserProfileCustomization extends Model
             'user-profile-covers',
             $this,
             'custom_cover_filename',
-            ['image' => ['maxDimensions' => [2400, 640]]],
+            ['image' => ['maxDimensions' => Cover::CUSTOM_COVER_MAX_DIMENSIONS]],
         );
     }
 
