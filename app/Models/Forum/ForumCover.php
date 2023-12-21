@@ -5,9 +5,9 @@
 
 namespace App\Models\Forum;
 
-use App\Libraries\ForumDefaultTopicCover;
+use App\Casts\LegacyFilename;
+use App\Libraries\Uploader;
 use App\Models\User;
-use App\Traits\Imageable;
 use DB;
 
 /**
@@ -26,25 +26,16 @@ use DB;
  */
 class ForumCover extends Model
 {
-    use Imageable;
-
-    protected $table = 'forum_forum_covers';
+    const MAX_DIMENSIONS = [2000, 400];
 
     protected $casts = [
         'default_topic_cover_json' => 'array',
+        'filename' => LegacyFilename::class,
     ];
+    protected $table = 'forum_forum_covers';
 
-    private $_defaultTopicCover;
-
-    public function getMaxDimensions()
-    {
-        return [2000, 400];
-    }
-
-    public function getFileRoot()
-    {
-        return 'forum-covers';
-    }
+    private Uploader $defaultTopicCoverUploader;
+    private Uploader $file;
 
     public static function upload($filePath, $user, $forum = null)
     {
@@ -54,7 +45,7 @@ class ForumCover extends Model
             $cover->save(); // get id
             $cover->user()->associate($user);
             $cover->forum()->associate($forum);
-            $cover->storeFile($filePath);
+            $cover->file()->store($filePath);
             $cover->save();
         });
 
@@ -71,41 +62,71 @@ class ForumCover extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function getDefaultTopicCoverAttribute(): Uploader
+    {
+        return $this->defaultTopicCoverUploader ??= new Uploader(
+            'forum-default-topic-covers',
+            $this,
+            'default_topic_cover_filename',
+            ['image' => ['maxDimensions' => TopicCover::MAX_DIMENSIONS]],
+        );
+    }
+
+    public function setDefaultTopicCoverAttribute($value): void
+    {
+        if (($value['_delete'] ?? false) === true) {
+            $this->defaultTopicCover->delete();
+        } elseif (($value['cover_file'] ?? null) !== null) {
+            $this->defaultTopicCover->store($value['cover_file']);
+        }
+    }
+
+    public function getDefaultTopicCoverFilenameAttribute(): ?string
+    {
+        return LegacyFilename::makeFromAttributes($this->default_topic_cover_json);
+    }
+
+    public function setDefaultTopicCoverFilenameAttribute(?string $value): void
+    {
+        $this->default_topic_cover_json = [
+            'ext' => null,
+            'hash' => $value,
+        ];
+    }
+
+    public function setMainCoverAttribute($value): void
+    {
+        if ($value['_delete'] ?? false) {
+            $this->file()->delete();
+        } elseif (isset($value['cover_file'])) {
+            $this->file()->store($value['cover_file']);
+        }
+    }
+
+    public function delete()
+    {
+        $this->file()->delete();
+        $this->defaultTopicCover->delete();
+
+        return parent::delete();
+    }
+
+    public function file(): Uploader
+    {
+        return $this->file ??= new Uploader(
+            'forum-covers',
+            $this,
+            'filename',
+            ['image' => ['maxDimensions' => static::MAX_DIMENSIONS]],
+        );
+    }
+
     public function updateFile($filePath, $user)
     {
         $this->user()->associate($user);
-        $this->storeFile($filePath);
+        $this->file()->store($filePath);
         $this->save();
 
         return $this->fresh();
-    }
-
-    public function getDefaultTopicCoverAttribute()
-    {
-        if ($this->_defaultTopicCover === null) {
-            $this->_defaultTopicCover = new ForumDefaultTopicCover($this->id, $this->default_topic_cover_json);
-        }
-
-        return $this->_defaultTopicCover;
-    }
-
-    public function setMainCoverAttribute($value)
-    {
-        if (($value['_delete'] ?? false) === true) {
-            $this->deleteFile();
-        } elseif (($value['cover_file'] ?? null) !== null) {
-            $this->storeFile($value['cover_file']);
-        }
-    }
-
-    public function setDefaultTopicCoverAttribute($value)
-    {
-        if (($value['_delete'] ?? false) === true) {
-            $this->defaultTopicCover->deleteFile();
-        } elseif (($value['cover_file'] ?? null) !== null) {
-            $this->defaultTopicCover->storeFile($value['cover_file']);
-        }
-
-        $this->default_topic_cover_json = $this->defaultTopicCover->getFileProperties();
     }
 }
