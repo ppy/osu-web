@@ -43,6 +43,8 @@ class UserProfileCustomization extends Model
         'views' => ['all' => ['card', 'list', 'brick'], 'default' => 'card'],
     ];
 
+    private const DEFAULT_LEGACY_ONLY_ATTRIBUTE = true;
+
     public $incrementing = false;
 
     protected $casts = [
@@ -192,6 +194,16 @@ class UserProfileCustomization extends Model
     public function setForumPostsShowDeletedAttribute($value)
     {
         $this->setOption('forum_posts_show_deleted', get_bool($value));
+    }
+
+    public function getLegacyScoreOnlyAttribute(): bool
+    {
+        return $this->options['legacy_score_only'] ?? static::DEFAULT_LEGACY_ONLY_ATTRIBUTE;
+    }
+
+    public function setLegacyScoreOnlyAttribute($value): void
+    {
+        $this->setOption('legacy_score_only', get_bool($value));
     }
 
     public function getUserListFilterAttribute()

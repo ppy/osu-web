@@ -450,6 +450,7 @@ class UserCompactTransformer extends TransformerAbstract
             'beatmapset_title_show_original',
             'comments_show_deleted',
             'forum_posts_show_deleted',
+            'legacy_score_only',
             'profile_cover_expanded',
             'user_list_filter',
             'user_list_sort',
