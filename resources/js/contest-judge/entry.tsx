@@ -24,7 +24,7 @@ interface Props {
 @observer
 export default class Entry extends React.Component<Props> {
   @observable private comment: string;
-  private readonly initialVote?: ContestJudgeVoteJson;
+  @observable private initialVote?: ContestJudgeVoteJson;
   @observable private posting = false;
   @observable private readonly scores: ContestJudgeScoreJson[];
   @observable private xhr?: JQuery.jqXHR;
@@ -182,6 +182,7 @@ export default class Entry extends React.Component<Props> {
       .fail(onError)
       .done((json: ContestEntryJson) => runInAction(() => {
         this.props.store.update(json);
+        this.initialVote = json.current_user_judge_vote;
       })).always(action(() => {
         this.posting = false;
         this.xhr = undefined;
