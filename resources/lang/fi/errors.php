@@ -31,6 +31,6 @@ return [
     'search' => [
         'default' => 'Tuloksia ei saatu, yritä myöhemmin uudelleen.',
         'invalid_cursor_exception' => 'Virheellinen kohdistimen parametri määritetty.',
-        'operation_timeout_exception' => 'Haku on tavallista aktiivisempi. Yritä uudelleen myöhemmin.',
+        'operation_timeout_exception' => 'Haku on tavallista ruuhkaisempi, yritä myöhemmin uudelleen.',
     ],
 ];

@@ -90,8 +90,8 @@ return [
                 ],
             ],
             'shipped' => [
-                'title' => '',
-                'tracking_details' => '',
+                'title' => '您的訂單已出貨!',
+                'tracking_details' => '物流追蹤詳情如下:',
                 'no_tracking_details' => [
                     '_' => "",
                     'link_text' => '向我們發送電子郵件',
@@ -119,7 +119,7 @@ return [
             'salesperson' => '',
             'shipping_method' => '運送方式',
             'shipping_terms' => '',
-            'title' => '',
+            'title' => '訂單詳情:',
         ],
 
         'item' => [

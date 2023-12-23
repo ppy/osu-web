@@ -17,9 +17,9 @@ return [
         'identify' => 'Kim olduğunuzu ve herkese açık profilinizi görüntüleyebilir.',
 
         'chat' => [
-            'read' => 'Sizin adınıza mesajları okuyun.',
-            'write' => 'Sizin adınıza mesaj gönderebilir.',
-            'write_manage' => 'Kanallara sizin adınıza katılın ve ayrılın.',
+            'read' => 'Senin adına mesajları oku.',
+            'write' => 'Senin adına mesaj gönder.',
+            'write_manage' => 'Kanallara senin adına katıl ve ayrıl.',
         ],
 
         'forum' => [
@@ -30,6 +30,6 @@ return [
             'read' => 'Kimi takip ettiğinizi görebilir.',
         ],
 
-        'public' => 'Herkese açık verilerinizi sizin adınıza okuyabilir.',
+        'public' => 'Herkese açık verileri senin adına oku.',
     ],
 ];

@@ -35,24 +35,24 @@ return [
             '_' => 'featured artist\'ler',
         ],
         'beatmap_discussion_posts_controller' => [
-            '_' => 'beatmap tartışma gönderileri',
+            '_' => 'ritimharitası tartışma gönderileri',
         ],
         'beatmap_discussions_controller' => [
-            '_' => 'beatmap tartışmaları',
+            '_' => 'ritimharitası tartışmaları',
         ],
         'beatmap_packs_controller' => [
-            '_' => 'beatmap paketleri',
+            '_' => 'ritimharitası paketleri',
         ],
         'beatmapset_discussion_votes_controller' => [
-            '_' => 'beatmap tartışma oylamaları',
+            '_' => 'ritimharitası tartışma oylamaları',
         ],
         'beatmapset_events_controller' => [
-            '_' => 'beatmap geçmişi',
+            '_' => 'ritimharitası geçmişi',
         ],
         'beatmapsets_controller' => [
-            'discussion' => 'beatmap tartışma',
-            'index' => 'beatmap kataloğu',
-            'show' => 'beatmap bilgisi',
+            'discussion' => 'ritimharitası tartışması',
+            'index' => 'ritimharitası kataloğu',
+            'show' => 'ritimharitası bilgisi',
         ],
         'changelog_controller' => [
             '_' => 'değişiklik kayıtları',

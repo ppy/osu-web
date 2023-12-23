@@ -44,7 +44,7 @@ return [
     ],
 
     'ogp' => [
-        'title' => '',
+        'title' => 'komentaras iš :user',
     ],
 
     'placeholder' => [

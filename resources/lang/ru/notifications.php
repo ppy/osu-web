@@ -201,7 +201,7 @@ return [
             ],
 
             'beatmapset_state' => [
-                'beatmapset_disqualify' => 'Карта ":title" дисквалифицирована',
+                'beatmapset_disqualify' => 'Карта ":title" была дисквалифицирована',
                 'beatmapset_love' => '":title" был повышен до любимого',
                 'beatmapset_nominate' => 'Карта ":title" номинирована',
                 'beatmapset_qualify' => 'Карта ":title" получила достаточно номинаций и вошла в очередь ранкинга',

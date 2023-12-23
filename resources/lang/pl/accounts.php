@@ -66,11 +66,11 @@ return [
         'info' => "",
         'link' => 'Połącz konto GitHub',
         'title' => 'GitHub',
-        'unlink' => 'Odłącz konto GitHub',
+        'unlink' => 'Rozłącz konto GitHub',
 
         'error' => [
-            'already_linked' => 'To konto GitHub jest już połączane z innym użytkownikiem.',
-            'no_contribution' => '',
+            'already_linked' => 'To konto GitHub jest już połączone z innym użytkownikiem.',
+            'no_contribution' => 'Nie można połączyć konta GitHub bez historii wkładu w repozytoriach osu!',
             'unverified_email' => 'Zweryfikuj swój główny email na GitHub, a następnie spróbuj ponownie połączyć swoje konto.',
         ],
     ],

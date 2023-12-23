@@ -6,11 +6,11 @@
 return [
     'index' => [
         'description' => 'Bunlar sizin takip ettiğiniz beatmap tartışmaları. Yeni bir gönderi veya güncelleme olduğunda bildirileceksiniz.',
-        'title_compact' => 'beatmap tartışma izleme listesi',
+        'title_compact' => 'modlama izleme listesi',
 
         'counts' => [
-            'total' => 'İzlenen beatmapler',
-            'unread' => 'Yeni gelişmelere sahip beatmapler',
+            'total' => 'İzlenen ritimharitaları',
+            'unread' => 'Yeni gelişmelere sahip ritimharitaları',
         ],
 
         'table' => [

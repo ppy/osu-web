@@ -124,7 +124,7 @@ return [
     ],
 
     'ogp' => [
-        'modding_description' => '',
+        'modding_description' => '圖譜: :counts',
         'modding_description_empty' => '',
 
         'description' => [
