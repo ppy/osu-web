@@ -97,7 +97,7 @@ class ContestEntriesController extends Controller
 
         priv_check('ContestEntryDestroy', $entry)->ensureCan();
 
-        $entry->deleteWithFile();
+        $entry->delete();
 
         return $contest->userEntries($user);
     }

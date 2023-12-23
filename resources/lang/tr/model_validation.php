@@ -12,11 +12,11 @@ return [
     'wrong_confirmation' => 'Doğrulama eşleşmiyor.',
 
     'beatmapset_discussion' => [
-        'beatmap_missing' => 'Zaman damgası belirtildi, ancak beatmap eksik.',
-        'beatmapset_no_hype' => "Beatmap gazlanamaz.",
+        'beatmap_missing' => 'Zaman damgası belirtildi, ancak ritimharitası eksik.',
+        'beatmapset_no_hype' => "Ritimharitası gazlanamaz.",
         'hype_requires_null_beatmap' => 'Gaz, Genel (tüm zorluklar) sekmesinde verilmelidir.',
         'invalid_beatmap_id' => 'Yanlış zorluk belirtildi.',
-        'invalid_beatmapset_id' => 'Yanlış beatmap belirtildi.',
+        'invalid_beatmapset_id' => 'Yanlış ritimharitası belirtildi.',
         'locked' => 'Tartışma kilitli.',
 
         'attributes' => [
@@ -25,16 +25,16 @@ return [
         ],
 
         'hype' => [
-            'discussion_locked' => "Bu beatmap şu anda tartışmaya kapalıdır ve gazlanamaz",
+            'discussion_locked' => "Bu ritimharitası şu anda tartışmaya kapalıdır ve gazlanamaz",
             'guest' => 'Gazlamak giriş yapmalısın.',
-            'hyped' => 'Bu beatmapi çoktan gazladın.',
+            'hyped' => 'Bu ritimharitasını çoktan gazladın.',
             'limit_exceeded' => 'Bütün gazını kullandın.',
-            'not_hypeable' => 'Bu beatmap gazlanamaz',
-            'owner' => 'Kendi beatmapini gazlayamazsın.',
+            'not_hypeable' => 'Bu ritimharitası gazlanamaz',
+            'owner' => 'Kendi ritimharitanı gazlayamazsın.',
         ],
 
         'timestamp' => [
-            'exceeds_beatmapset_length' => 'Belirtilen zaman damgası beatmap\'in uzunluğunu aşmakta.',
+            'exceeds_beatmapset_length' => 'Belirtilen zaman damgası ritimharitasının uzunluğunu aşmakta.',
             'negative' => "Zaman damgası negatif olamaz.",
         ],
     ],
@@ -72,8 +72,8 @@ return [
         ],
 
         'post' => [
-            'beatmapset_post_no_delete' => 'Beatmap metaveri gönderisinin silinmesi yasaktır.',
-            'beatmapset_post_no_edit' => 'Beatmap metaveri gönderisini düzenlemek yasaktır.',
+            'beatmapset_post_no_delete' => 'Ritimharitası metaveri gönderisinin silinmesi yasaktır.',
+            'beatmapset_post_no_edit' => 'Ritimharitası metaveri gönderisini düzenlemek yasaktır.',
             'first_post_no_delete' => 'Başlangıç gönderisi silinemez',
             'missing_topic' => 'Gönderinin konusu eksik',
             'only_quote' => 'Cevabınız sadece bir alıntı içeriyor.',
@@ -174,7 +174,7 @@ return [
     ],
 
     'user_report' => [
-        'no_ranked_beatmapset' => 'Dereceli beatmapler bildirilemez',
+        'no_ranked_beatmapset' => 'Dereceli ritimharitaları bildirilemez',
         'not_in_channel' => 'Bu kanalda değilsiniz.',
         'reason_not_valid' => ':reason sebebi bu rapor türü için geçerli değil.',
         'self' => "Kendinizi raporlayamazsınız!",

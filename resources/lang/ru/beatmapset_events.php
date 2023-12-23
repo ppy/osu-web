@@ -13,7 +13,7 @@ return [
         'discussion_post_restore' => 'Модератор восстановил пост к отзыву :discussion.',
         'discussion_restore' => 'Модератор восстановил отзыв :discussion.',
         'discussion_unlock' => 'Возможность обсуждения этой карты снова открыта.',
-        'disqualify' => 'Дисквалифицирована :user. Причина: :discussion (:text).',
+        'disqualify' => 'Получена дисквалификация от :user. Причина: :discussion (:text).',
         'disqualify_legacy' => 'Получена дисквалификация от :user. Причина: :text.',
         'genre_edit' => 'Жанр изменен с :old на :new.',
         'issue_reopen' => 'Проблема :discussion, которая была решена пользователем :discussion_user, вновь открыта :user.',

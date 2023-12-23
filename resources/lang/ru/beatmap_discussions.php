@@ -27,7 +27,7 @@ return [
             'mode' => 'Режим игры',
             'only_unresolved' => 'Показать только нерешённые обсуждения',
             'show_review_embeds' => 'Показать посты рецензии',
-            'types' => 'Виды сообщений',
+            'types' => 'Виды отзывов',
             'username' => 'Никнейм',
 
             'beatmapset_status' => [

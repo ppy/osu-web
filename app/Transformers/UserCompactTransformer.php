@@ -199,12 +199,12 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeCover(User $user)
     {
-        $profileCustomization = $this->userProfileCustomization($user);
+        $cover = $this->userProfileCustomization($user)->cover();
 
         return $this->primitive([
-            'custom_url' => $profileCustomization->cover()->fileUrl(),
-            'url' => $profileCustomization->cover()->url(),
-            'id' => $profileCustomization->cover()->id(),
+            'custom_url' => $cover->customUrl(),
+            'url' => $cover->url(),
+            'id' => $cover->presetId(),
         ]);
     }
 

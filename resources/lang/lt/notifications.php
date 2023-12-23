@@ -57,8 +57,8 @@ return [
                 'beatmapset_discussion_unlock_compact' => 'Diskusija buvo atrakinta',
 
                 'review_count' => [
-                    'praises' => '',
-                    'problems' => '',
+                    'praises' => ':count_delimited pagyrimas|:count_delimited pagyrimai',
+                    'problems' => ':count_delimited problema|:count_delimited problemos',
                     'suggestions' => '',
                 ],
             ],

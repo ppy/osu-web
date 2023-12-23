@@ -36,7 +36,7 @@ return [
                 'disqualified' => 'Epäkelpuutettu',
                 'never_qualified' => 'Ei koskaan kelpuutettu',
                 'qualified' => 'Kelpuutettu',
-                'ranked' => 'Pisteytetty',
+                'ranked' => 'Rankattu',
             ],
 
             'user' => [

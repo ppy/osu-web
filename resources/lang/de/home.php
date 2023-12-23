@@ -113,7 +113,7 @@ return [
             'beatmaps' => [
                 'title' => 'Beatmaps runterladen',
                 'description' => [
-                    '_' => ':browse durch die riesige Bibliothek von an Nutzern erstellten Beatmaps und fang an zu spielen!',
+                    '_' => ':browse durch die riesige Bibliothek an von Nutzern erstellten Beatmaps und fang an zu spielen!',
                     'browse' => 'Stöbere',
                 ],
             ],
