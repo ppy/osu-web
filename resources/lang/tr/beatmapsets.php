@@ -12,7 +12,7 @@ return [
     ],
 
     'cover' => [
-        'deleted' => 'Silinmiş ritimharitası',
+        'deleted' => 'Silinmiş beatmap',
     ],
 
     'download' => [
@@ -24,12 +24,12 @@ return [
     ],
 
     'index' => [
-        'title' => 'Ritimharitası Kataloğu',
+        'title' => 'Beatmap Kataloğu',
         'guest_title' => 'Beatmapler',
     ],
 
     'panel' => [
-        'empty' => 'ritimharitası yok',
+        'empty' => 'beatmap yok',
 
         'download' => [
             'all' => 'indir',
@@ -40,14 +40,14 @@ return [
     ],
 
     'nominate' => [
-        'hybrid_requires_modes' => 'Karma bir ritimharitası, adaylık için en az bir oyun modu seçmenizi gerektirir.',
+        'hybrid_requires_modes' => 'Karma bir beatmap seti, adaylık için en az bir oyun modu seçmenizi gerektirir.',
         'incorrect_mode' => ':mode modunu aday göstermek için izniniz yok.',
         'full_bn_required' => 'Bu niteliklendirme aday gösterimini gerçekleştirebilmeniz için asil aday gösterici olmanız gerekmektedir.',
         'too_many' => 'Adaylık şartı zaten yerine getirildi.',
 
         'dialog' => [
-            'confirmation' => 'Bu ritimharitasını aday göstermek istediğinize emin misiniz?',
-            'header' => 'Ritimharitasını aday gösterin',
+            'confirmation' => 'Bu beatmapi aday göstermek istediğinize emin misiniz?',
+            'header' => 'Beatmap aday gösterin',
             'hybrid_warning' => 'not: sadece bir kez aday gösterebilirsiniz, bu yüzden lütfen istediğiniz tüm oyun modlarını aday gösterdiğinizden emin olun',
             'which_modes' => 'Hangi modlar için aday gösterilsin?',
         ],
@@ -65,18 +65,18 @@ return [
         ],
 
         'deleted_banner' => [
-            'title' => 'Bu ritimharitası silindi.',
+            'title' => 'Bu beatmap silindi.',
             'message' => '(bunu sadece moderatörler görebilir)',
         ],
 
         'details' => [
             'by_artist' => ':artist tarafından',
-            'favourite' => 'ritimharitasını favorilere ekle',
-            'favourite_login' => 'ritimharitasını favorilere eklemek için giriş yap',
+            'favourite' => 'Beatmap setini favorilere ekle',
+            'favourite_login' => 'Beatmapi favorilere eklemek için giriş yap',
             'logged-out' => 'Herhangi bir beatmapi indirmeden önce giriş yapmalısınız!',
             'mapped_by' => ':mapper tarafından yapıldı',
             'mapped_by_guest' => ':mapper tarafından konuk zorluk',
-            'unfavourite' => 'ritimharitasını favorilerden çıkar',
+            'unfavourite' => 'Beatmap setini favorilerden çıkar',
             'updated_timeago' => 'son güncelleme: :timeago',
 
             'download' => [
@@ -102,7 +102,7 @@ return [
         ],
 
         'favourites' => [
-            'limit_reached' => 'Favorilerinizde çok fazla ritimharitası var! Lütfen birkaç tanesini çıkarıp tekrar deneyin.',
+            'limit_reached' => 'Favorilerinizde çok fazla beatmap\'iniz var! Lütfen devam etmeden önce birini çıkartın.',
         ],
 
         'hype' => [
@@ -123,7 +123,7 @@ return [
             ],
 
             'report' => [
-                '_' => 'Eğer bu ritimharitasında bir sorun bulduysanız, takımı uyarmak için lütfen :link bildirin.',
+                '_' => 'Eğer bu beatmapte bir sorun bulduysanız, takımı uyarmak için lütfen :link bildirin.',
                 'button' => 'Sorun Bildir',
                 'link' => 'buradan',
             ],
@@ -139,19 +139,19 @@ return [
             'offset' => 'Çevrimiçi ofset',
             'points-of-failure' => 'Başarısız Olunan Kısımlar',
             'source' => 'Kaynak',
-            'storyboard' => 'Bu ritimharitası arkaplan animasyonu içeriyor',
+            'storyboard' => 'Bu beatmap storyboard içeriyor',
             'success-rate' => 'Başarı Oranı',
             'tags' => 'Etiketler',
-            'video' => 'Bu ritimharitası video içeriyor',
+            'video' => 'Bu beatmap video içeriyor',
         ],
 
         'nsfw_warning' => [
-            'details' => 'Bu ritimharitası müstehcen, ofansif, veya rahatsız edici içerik içeriyor. Yine de görüntülemek istiyor musun?',
+            'details' => 'Bu beatmap müstehcen, ofansif, veya rahatsız edici içerik içermektedir. Yine de görüntülemek istiyor musunuz?',
             'title' => 'Müstehcen İçerik',
 
             'buttons' => [
                 'disable' => 'Uyarıyı devre dışı bırak',
-                'listing' => 'Ritimharitası kataloğu',
+                'listing' => 'Beatmap kataloğu',
                 'show' => 'Göster',
             ],
         ],
@@ -185,7 +185,7 @@ return [
                 'friend' => 'Hiçbir arkadaşın henüz bu mapte bir skora sahip değil!',
                 'global' => 'Henüz skor yok. Biraz skor yapmaya ne dersin?',
                 'loading' => 'Skorlar yükleniyor...',
-                'unranked' => 'Derecesiz ritimharitası.',
+                'unranked' => 'Derecelendirilmemiş beatmap.',
             ],
             'score' => [
                 'first' => 'Lider',

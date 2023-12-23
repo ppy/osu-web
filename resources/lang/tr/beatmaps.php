@@ -21,7 +21,7 @@ return [
         'guest' => ':user kullanıcısının konuk zorluğu',
         'kudosu_denied' => 'Kudosu almaktan mahrum bırakıldı.',
         'message_placeholder_deleted_beatmap' => 'Bu zorluk seviyesi silindi o yüzden hakkında daha fazla tartışılamaz.',
-        'message_placeholder_locked' => 'Bu ritimharitası için tartışma devre dışı bırakıldı.',
+        'message_placeholder_locked' => 'Bu beatmap için tartışma devre dışı bırakıldı.',
         'message_placeholder_silenced' => "Susturulduğunuzda tartışma gönderisi gönderemezsiniz.",
         'message_type_select' => 'Yorum Türünü Seçin',
         'reply_notice' => 'Cevaplamak için Enter tuşuna basın.',
@@ -153,8 +153,8 @@ return [
             'approved' => 'Bu beatmap :date tarihinde onaylandı!',
             'graveyard' => "Bu beatmap :date tarihinden beri güncellenmedi ve büyük ihtimalle yaratıcısı tarafından terk edildi...",
             'loved' => 'Bu beatmap :date tarihinde sevilenler kategorisine eklendi!',
-            'ranked' => 'Bu ritimharitası :date tarihinde dereceli oldu!',
-            'wip' => 'Dikkat: Bu ritimharitası yaratıcısı tarafından yapım aşamasında olarak işaretlendi.',
+            'ranked' => 'Bu beatmap :date tarihinde dereceli oldu!',
+            'wip' => 'Dikkat: Bu beatmap yaratıcısı tarafından yapım aşamasında olarak işaretlendi.',
         ],
 
         'votes' => [
@@ -170,11 +170,11 @@ return [
     ],
 
     'hype' => [
-        'button' => 'Ritimharitasını Gazla!',
+        'button' => 'Beatmapi Gazla!',
         'button_done' => 'Çoktan Gazlandı!',
         'confirm' => "Emin misiniz? Bu işlem kalan :n adet gaz hakkından birini kullanacak ve geriye alınamayacak.",
-        'explanation' => 'Bu ritimharitasını, aday gösterilmesi ve dereceli olması için daha görünür yapmak için gazla!',
-        'explanation_guest' => 'Bu ritimharitasının aday gösterilmesi ve dereceli olması için daha görünür yapmak için gazlamak için giriş yap!',
+        'explanation' => 'Bu beatmapi aday gösterilmesi ve dereceli olması için daha görünür yapmak için gazla!',
+        'explanation_guest' => 'Bu beatmapi aday gösterilmesi ve dereceli olması için daha görünür yapmak için gazlamak için giriş yap!',
         'new_time' => "Bir sonraki gaz :new_time tarihinde gelecek.",
         'remaining' => ':remaining gazınız kaldı.',
         'required_text' => 'Gaz: :current/:required',
@@ -187,11 +187,11 @@ return [
     ],
 
     'nominations' => [
-        'already_nominated' => 'Bu ritimharitasını zaten aday gösterdiniz.',
-        'cannot_nominate' => 'Bu ritimharitası oyun modunu aday gösteremezsiniz.',
+        'already_nominated' => 'Bu beatmapi zaten aday gösterdiniz.',
+        'cannot_nominate' => 'Bu beatmap oyun modunu aday gösteremezsiniz.',
         'delete' => 'Sil',
-        'delete_own_confirm' => 'Emin misin? Ritimharitası silinecek ve profiline yönlendirileceksin.',
-        'delete_other_confirm' => 'Emin misin? Ritimharitası silinecek ve kullanıcının profiline yönlendirileceksin.',
+        'delete_own_confirm' => 'Emin misin? Beatmap silinecek ve profiline yönlendirileceksin.',
+        'delete_other_confirm' => 'Emin misin? Beatmap silinecek ve kullanıcının profiline yönlendirileceksin.',
         'disqualification_prompt' => 'Diskalifiye sebebi nedir?',
         'disqualified_at' => ':time_ago: diskalifiye edildi (:reason).',
         'disqualified_no_reason' => 'bir sebep belirtilmedi',
@@ -199,7 +199,7 @@ return [
         'incorrect_state' => 'Bu eylemi gerçekleştirirken bir hata oluştu, sayfayı yenilemeyi deneyin.',
         'love' => 'Sevilenlere ekle',
         'love_choose' => 'Sevilen\'lere eklenecek zorluğu seçin',
-        'love_confirm' => 'Bu ritimharitasını seviyor musun?',
+        'love_confirm' => 'Bu beatmapi seviyor musun?',
         'nominate' => 'Aday Göster',
         'nominate_confirm' => 'Beatmap aday gösterilsin mi?',
         'nominated_by' => ':users tarafından aday gösterildi',
@@ -224,9 +224,9 @@ return [
         ],
 
         'reset_confirm' => [
-            'disqualify' => 'Emin misin? Bu, ritimharitasının nitelikli olmasını önleyecek ve aday gösterme sürecini sıfırlayacak.',
+            'disqualify' => 'Emin misiniz? Bu, beatmapin nitelikli olmasını önleyecek ve aday gösterme sürecini sıfırlayacak.',
             'nomination_reset' => 'Emin misin? Yeni bir sorun bildirmek aday gösterme sürecini sıfırlayacaktır.',
-            'problem_warning' => 'Bu ritimharitasındaki sorunu bildireceğinden emin misin? Bu, ritimharitası adaylarını uyaracaktır.',
+            'problem_warning' => 'Bu beatmap\'teki sorunu bildireceğinizden emin misiniz? Bu, Beatmap adaylarını uyaracaktır.',
         ],
     ],
 
@@ -268,11 +268,11 @@ return [
         ],
     ],
     'general' => [
-        'converts' => 'Dönüştürülmüş ritimharitalarını dahil et',
+        'converts' => 'Dönüştürülmüş beatmapleri dahil et',
         'featured_artists' => 'Featured artist\'ler',
         'follows' => 'Abone olunan mapperlar',
         'recommended' => 'Önerilen zorluk seviyesi',
-        'spotlights' => 'Öne çıkan ritimharitaları',
+        'spotlights' => 'Öne çıkan beatmapler',
     ],
     'mode' => [
         'all' => 'Hepsi',

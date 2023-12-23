@@ -17,7 +17,7 @@ return [
     'title' => 'Yorumlar',
 
     'commentable_name' => [
-        'beatmapset' => 'Ritimharitası',
+        'beatmapset' => 'Beatmap',
         'build' => 'Değişiklik kayıtları',
         'news_post' => 'Haberler',
         '_deleted' => 'Silinmiş Öge',
@@ -44,7 +44,7 @@ return [
     ],
 
     'ogp' => [
-        'title' => 'yorumlayan :user',
+        'title' => '',
     ],
 
     'placeholder' => [

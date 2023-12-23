@@ -5,9 +5,9 @@
 
 return [
     'beatmapset_update_notice' => [
-        'new' => 'Sadece sana son girdiğinden beri ":title" ritimharitarında yeni bir güncelleme olduğunu bildiriyoruz.',
-        'subject' => '":title" ritimharitasında için yeni bir güncelleme',
-        'unwatch' => 'Artık bu ritimharitasını izlemek istemiyorsan, yukarıdaki sayfada veya modlama izleme listesi sayfasında bulunan "İzlemeyi Bırak" bağlantısına tıklayabilirsin:',
+        'new' => 'Sadece sana son girdiğinden beri ":title" beatmap\'inde yeni bir güncelleme olduğunu bildiriyoruz.',
+        'subject' => '":title" beatmapi için yeni bir güncelleme',
+        'unwatch' => 'Artık bu beatmap\'i izlemek istemiyorsan, yukarıdaki sayfada veya modlama izleme listesi sayfasında bulunan "İzlemeyi Bırak" bağlantısına tıklayabilirsin:',
         'visit' => 'Tartışma sayfasını buradan ziyaret edin:',
     ],
 
@@ -15,15 +15,15 @@ return [
         'closing' => 'Saygılarımızla,',
         'hello' => 'Selam :user,',
         'report' => 'Eğer böyle bir değişiklik talep etmediyseniz lütfen DERHAL bu e-postayı yanıtlayın.',
-        'ignore' => 'Eğer bunu isteyen sen değilsen, bu mesajı görmezden gelebilirsin.',
+        'ignore' => 'Eğer bunu isteyen siz değilseniz, bu mesajı görmezden gelebilirsiniz.',
     ],
 
     'donation_thanks' => [
         'benefit_more' => 'Zaman içinde daha fazla yeni supporter ayrıcalığı da eklenecek bu arada!',
-        'feedback' => "Eğer herhangi bir sorun veya geribildirimin varsa, bu e-postaya cevap yazmaktan çekinmeyin; Sana en kısa zamanda geri döneceğim!",
-        'keep_free' => 'Senin gibi insanlar sayesinde osu!, oyunu ve topluluğu akıcı bir şekilde hiçbir reklam veya zorla ödeme olmadan oyunu devam ettirebiliyor.',
+        'feedback' => "Eğer herhangi bir sorunuz veya geribildiriminiz varsa, bu postaya cevap yazmaktan çekinmeyin; Size en kısa zamanda geri döneceğim!",
+        'keep_free' => 'Sizin gibi insanlar sayesinde osu!, oyunu ve topluluğu akıcı bir şekilde hiçbir reklam veya zorla ödeme olmadan oyunu devam ettirebiliyor.',
         'keep_running' => 'Senin katkın osu!\'yu :minutes kadardır ayakta tutuyor. Fazla görünmüyor olabilir ama damlaya damlaya göl olur :).',
-        'subject' => 'Teşekkürler, osu! seni seviyor <3',
+        'subject' => 'Teşekkürler, osu! sizi seviyor <3',
         'translation' => 'Metnin topluluk tarafından sağlanan bilgi amaçlı çevirisi aşağıdaki gibidir:',
 
         'benefit' => [
@@ -66,9 +66,9 @@ return [
         'anonymous_gift_maybe_not' => 'Ama muhtemelen kim olduğunu biliyorsun ;).',
         'duration' => 'Onun sayesinde, sonraki :duration boyunca osu!direct\'e ve diğer osu!supporter ayrıcalıklarına sahip olacaksın.',
         'features' => 'Bu avantajlar hakkında daha fazla detaylı bilgiye buradan ulaşabilirsiniz:',
-        'gifted' => 'Birisi sana az önce bir osu!supporter etiketi hediye etti!',
-        'gift_message' => 'Bu etiketi hediye eden kişi sana bir mesaj bıraktı:',
-        'subject' => 'Sana bir osu!supporter etiketi verildi!',
+        'gifted' => 'Birisi size az önce bir osu!supporter etiketi hediye etti!',
+        'gift_message' => 'Bu etiketi hediye eden kişi size bir mesaj bıraktı:',
+        'subject' => 'Size bir osu! Destekçisi etiketi verildi!',
     ],
 
     'user_email_updated' => [
@@ -100,7 +100,7 @@ return [
         'code' => 'Doğrulama kodun:',
         'code_hint' => 'Kodu boşluk bırakarak ya da bırakmadan girebilirsiniz.',
         'link' => 'Alternatif olarak, doğrulamayı bitirmek için bu bağlantıya da gidebilirsin:',
-        'report' => 'Eğer böyle bir istemde bulunmadıysan, hesabın tehlikede olabilir, lütfen HEMEN YANITLA.',
+        'report' => 'Eğer siz böyle bir istemde bulunmadıysanız, hesabınız tehlikede olabileceğinden lütfen HEMEN YANITLAYIN. ',
         'subject' => 'osu! hesap doğrulama',
 
         'action_from' => [

@@ -63,21 +63,21 @@ return [
     ],
 
     'github_user' => [
-        'info' => "osu!'nun açık kaynak depolarına katkıda bulunuyorsan GitHub hesabını buraya bağlamak, değişiklik günlüğü girişlerini osu! profilinle ilişkilendirecektir. osu!'ya katkı geçmişi olmayan GitHub hesapları bağlanamaz.",
+        'info' => "",
         'link' => 'GitHub Hesabını Bağla',
         'title' => 'GitHub',
         'unlink' => 'GitHub Hesabının bağlantısını Kaldır',
 
         'error' => [
-            'already_linked' => 'Bu GitHub hesabı zaten farklı bir kullanıcıya bağlı.',
-            'no_contribution' => 'osu! depolarında herhangi bir katkı geçmişi olmayan GitHub hesabı bağlanamıyor.',
-            'unverified_email' => 'Lütfen GitHub\'da e-posta adresini doğrula ve ardından hesabını bağlamayı tekrar dene.',
+            'already_linked' => '',
+            'no_contribution' => '',
+            'unverified_email' => '',
         ],
     ],
 
     'notifications' => [
-        'beatmapset_discussion_qualified_problem' => 'doğrulanmış ritimharitalarının belirtilen modlardaki yeni sorunlarının bildirimlerini al',
-        'beatmapset_disqualify' => 'belirtilen modların ritimharitaları diskalifiye edildiğinde bildirim al',
+        'beatmapset_discussion_qualified_problem' => 'Doğrulanmış beatmapler\'in belirtilen modlardaki yeni sorunlarının bildirimlerini al',
+        'beatmapset_disqualify' => 'belirtilen modların beatmapleri diskalifiye edildiğinde bildirim al',
         'comment_reply' => 'yorumlarına yapılan yanıtlar için bildirim al',
         'title' => 'Bildirimler',
         'topic_auto_subscribe' => 'oluşturduğunuz yeni forum başlıklarında bildirimleri otomatik olarak etkinleştir',
@@ -85,12 +85,12 @@ return [
         'options' => [
             '_' => 'bildirim seçenekleri',
             'beatmap_owner_change' => 'konuk zorluk',
-            'beatmapset:modding' => 'ritimharitası modlama',
+            'beatmapset:modding' => 'beatmap modlama',
             'channel_message' => 'özel sohbet mesajları',
             'comment_new' => 'yeni yorumlar',
             'forum_topic_reply' => 'konu yanıtı',
             'mail' => 'posta',
-            'mapping' => 'ritimharitası yaratıcısı',
+            'mapping' => 'beatmap mapper',
             'push' => 'anlık',
             'user_achievement_unlock' => 'kullanıcı madalyası açıldı',
         ],
@@ -98,17 +98,17 @@ return [
 
     'oauth' => [
         'authorized_clients' => 'izin verilen istemciler',
-        'own_clients' => 'sana ait istemciler',
+        'own_clients' => 'size ait istemciler',
         'title' => 'OAuth',
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => 'ritimharitalarındaki müstehcen içerikler için uyarıları gizle',
-        'beatmapset_title_show_original' => 'ritimharitası metaverisini orijinal dilinde göster',
+        'beatmapset_show_nsfw' => 'beatmaplerdeki müstehcen içerikler için uyarıları gizle',
+        'beatmapset_title_show_original' => 'beatmap metaverisini orijinal dilinde göster',
         'title' => 'Seçenekler',
 
         'beatmapset_download' => [
-            '_' => 'varsayılan ritimharitası indirme tipi',
+            '_' => 'varsayılan beatmap indirme tipi',
             'all' => 'eğer varsa video ile beraber',
             'direct' => 'osu!direct\'de aç',
             'no_video' => 'video olmadan',
