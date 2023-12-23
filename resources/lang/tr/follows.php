@@ -28,11 +28,11 @@ return [
         'followers' => 'mapping aboneleri',
         'page_title' => 'mapper izleme listesi',
         'title' => 'mapper',
-        'to_0' => 'bu kullanıcı yeni bir ritimharitası yüklediğinde bana bildirmeyi bırak',
-        'to_1' => 'bu kullanıcı yeni bir ritimharitası yüklediğinde bana bildir',
+        'to_0' => 'bu kullanıcı yeni bir beatmap yüklediğinde bana bildirmeyi bırak',
+        'to_1' => 'bu kullanıcı yeni bir beatmap yüklediğinde bana bildir',
     ],
 
     'modding' => [
-        'title' => 'ritimharitası tartışması',
+        'title' => 'beatmap tartışması',
     ],
 ];

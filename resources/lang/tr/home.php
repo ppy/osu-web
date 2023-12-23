@@ -27,10 +27,10 @@ return [
         'title' => 'Ara',
 
         'beatmapset' => [
-            'login_required' => 'Ritimharitalarını aramak için giriş yapın',
-            'more' => ':count tane daha ritimharitası arama sonucu',
-            'more_simple' => 'Daha fazla ritimharitası arama sonucu gör',
-            'title' => 'Ritimharitaları',
+            'login_required' => 'Beatmapleri aramak için giriş yapın',
+            'more' => ':count tane daha beatmap arama sonucu',
+            'more_simple' => 'Daha fazla beatmap arama sonucu gör',
+            'title' => 'Beatmapler',
         ],
 
         'forum_post' => [
@@ -51,7 +51,7 @@ return [
 
         'mode' => [
             'all' => 'hepsi',
-            'beatmapset' => 'ritimharitası',
+            'beatmapset' => 'beatmap',
             'forum_post' => 'forum',
             'user' => 'oyuncu',
             'wiki_page' => 'wiki',
@@ -111,9 +111,9 @@ return [
                 'description' => 'yükleyiciyi indirmek için yukarıdaki düğmeye tıklayın, sonra çalıştırın!',
             ],
             'beatmaps' => [
-                'title' => 'ritimharitaları edinin',
+                'title' => 'beatmap edinin',
                 'description' => [
-                    '_' => 'Kullanıcılar tarafından oluşturulmuş zengin ritimharitası kütüphanesine:browse göz at ve oynamaya başla!',
+                    '_' => 'Kullanıcılar tarafından oluşturulmuş engin beatmap kütüphanesine :browse ve oynamaya başla!',
                     'browse' => 'göz at',
                 ],
             ],
@@ -134,8 +134,8 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => 'Yeni Dereceli Ritimharitaları',
-            'popular' => 'Popüler Ritimharitaları',
+            'new' => 'Yeni Dereceli Beatmapler',
+            'popular' => 'Popüler Beatmapler',
             'by_user' => ':user tarafından',
         ],
         'buttons' => [

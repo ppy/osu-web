@@ -119,7 +119,7 @@ return [
             'salesperson' => '',
             'shipping_method' => '',
             'shipping_terms' => '',
-            'title' => '',
+            'title' => 'Szczegóły zamówienia',
         ],
 
         'item' => [
@@ -151,7 +151,7 @@ return [
             'paid' => 'Opłacone',
             'processing' => 'Oczekiwanie na potwierdzenie',
             'shipped' => 'W transporcie',
-            'title' => '',
+            'title' => 'Status zamówienia',
         ],
 
         'thanks' => [

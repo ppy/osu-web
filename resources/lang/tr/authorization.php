@@ -27,7 +27,7 @@ return [
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => 'Yalnızca ritimharitası sahibi ya da aday gösterici/NAT grup üyesi ritimharitası yaratıcısı notu gönderebilir.',
+            'mapper_note_wrong_user' => 'Yalnızca beatmap sahibi ya da aday gösterici/NAT grup üyesi mapper notu gönderebilir.',
         ],
 
         'vote' => [
@@ -53,7 +53,7 @@ return [
     ],
 
     'beatmapset' => [
-        'discussion_locked' => 'Bu ritimharitası, tartışma için kilitlenmiştir.',
+        'discussion_locked' => 'Bu harita tartışma için kilitlenmiştir.',
 
         'metadata' => [
             'nominated' => 'Aday gösterilen bir mapin metaverisini değiştiremezsiniz. Hatalı ayarlandığını düşünüyorsanız bir BN ya da NAT üyesiyle iletişime geçiniz.',

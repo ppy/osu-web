@@ -19,7 +19,7 @@ return [
         'show_voted_only' => 'Oy verilenleri göster',
 
         'best_of' => [
-            'none_played' => "Bu yarışma için geçerli olan hiçbir ritimharitasını oynamamışsınız!",
+            'none_played' => "Bu yarışma için geçerli olan hiçbir beatmapi oynamamışsınız!",
         ],
 
         'button' => [
@@ -34,7 +34,7 @@ return [
 
         'requirement' => [
             'playlist_beatmapsets' => [
-                'incomplete_play' => 'Oylama yapabilmen için belirli oynatma listelerindeki bütün ritimharitalarını oynaman gerekiyor',
+                'incomplete_play' => 'Oylama yapabilmek için belirli playlistlerdeki bütün haritaları oynamanız gerekmektedir',
             ],
         ],
     ],

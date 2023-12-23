@@ -5,7 +5,7 @@
 
 return [
     'match' => [
-        'beatmap-deleted' => 'silinmiş ritimharitası',
+        'beatmap-deleted' => 'silinmiş beatmap',
         'failed' => 'BAŞARISIZ',
         'header' => 'Çok Oyunculu Maçlar',
         'in-progress' => '(devam eden maç)',

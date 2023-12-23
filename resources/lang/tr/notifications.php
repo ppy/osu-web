@@ -15,7 +15,7 @@ return [
 
     'action_type' => [
         '_' => 'hepsi',
-        'beatmapset' => 'ritimharitası',
+        'beatmapset' => 'haritalar',
         'build' => 'sürümler',
         'channel' => 'sohbet',
         'forum_topic' => 'forum',
@@ -26,7 +26,7 @@ return [
     'filters' => [
         '_' => 'hepsi',
         'user' => 'profil',
-        'beatmapset' => 'ritimharitaları',
+        'beatmapset' => 'haritalar',
         'forum_topic' => 'forum',
         'news_post' => 'gelişmeler',
         'build' => 'sürümler',
@@ -35,17 +35,17 @@ return [
 
     'item' => [
         'beatmapset' => [
-            '_' => 'Ritimharitası',
+            '_' => 'Harita',
 
             'beatmap_owner_change' => [
-                '_' => 'Konuk zorluğu',
-                'beatmap_owner_change' => 'Artık ":title" ritimharitasındaki ":beatmap" zorluğunun sahibisiniz',
+                '_' => 'Konuk zorluk',
+                'beatmap_owner_change' => 'Artık ":title" beatmapindeki ":beatmap" zorluğunun sahibisiniz',
                 'beatmap_owner_change_compact' => 'Artık ":beatmap" zorluğunun sahibisiniz',
             ],
 
             'beatmapset_discussion' => [
-                '_' => 'Ritimharitası tartışması',
-                'beatmapset_discussion_lock' => '":title" tartışması kilitlendi',
+                '_' => 'Beatmap tartışması',
+                'beatmapset_discussion_lock' => '":title" setinin tartışması kilitlendi',
                 'beatmapset_discussion_lock_compact' => 'Tartışma kilitlenmiş',
                 'beatmapset_discussion_post_new' => '":title" setinde :username tarafından yeni bir gönderi mevcut: ":content"',
                 'beatmapset_discussion_post_new_empty' => '":title" setinde :username tarafından yeni gönderi',
@@ -57,14 +57,14 @@ return [
                 'beatmapset_discussion_unlock_compact' => 'Tartışmanın kilidi kaldırılmış',
 
                 'review_count' => [
-                    'praises' => ':count_delimited övgü|:count_delimited övgüler',
-                    'problems' => ':count_delimited sorun|:count_delimited sorunlar',
-                    'suggestions' => ':count_delimited öneri|:count_delimited öneriler',
+                    'praises' => '',
+                    'problems' => '',
+                    'suggestions' => '',
                 ],
             ],
 
             'beatmapset_problem' => [
-                '_' => 'Nitelikli Ritimharitası sorunu',
+                '_' => 'Nitelikli Beatmap sorunu',
                 'beatmapset_discussion_qualified_problem' => ':username tarafından bildirildi ":title": ":content"',
                 'beatmapset_discussion_qualified_problem_empty' => ':username tarafından bildirildi ":title"',
                 'beatmapset_discussion_qualified_problem_compact' => ':username tarafından rapor edildi: ":content"',
@@ -72,9 +72,9 @@ return [
             ],
 
             'beatmapset_state' => [
-                '_' => 'Ritimharitası durumu değişti',
+                '_' => 'Beatmap durumu değişti',
                 'beatmapset_disqualify' => '":title" diskalifiye edildi',
-                'beatmapset_disqualify_compact' => 'Ritimharitası diskalifiye edildi',
+                'beatmapset_disqualify_compact' => 'Beatmap diskalifiye edildi',
                 'beatmapset_love' => '":title" sevilenlere yükseltildi',
                 'beatmapset_love_compact' => 'Beatmap sevilenlere yükseltildi',
                 'beatmapset_nominate' => '":title" aday gösterildi',
@@ -82,9 +82,9 @@ return [
                 'beatmapset_qualify' => '":title" yeterli aday gösterimi aldı ve derecelendirme sırasına girdi',
                 'beatmapset_qualify_compact' => 'Beatmap derecelendirme sırasına girdi',
                 'beatmapset_rank' => '":title" dereceli oldu',
-                'beatmapset_rank_compact' => 'Ritimharitası dereceli oldu',
+                'beatmapset_rank_compact' => 'Beatmap dereceli oldu',
                 'beatmapset_remove_from_loved' => '":title" Sevilenlerden çıkarıldı',
-                'beatmapset_remove_from_loved_compact' => 'Ritimharitası Sevilenler\'den çıkarıldı',
+                'beatmapset_remove_from_loved_compact' => 'Beatmap Sevilenlerden çıkarıldı',
                 'beatmapset_reset_nominations' => '":title" setinin adaylığı sıfırlandı',
                 'beatmapset_reset_nominations_compact' => 'Adaylık sıfırlandı',
             ],
@@ -161,14 +161,14 @@ return [
 
         'user' => [
             'user_beatmapset_new' => [
-                '_' => 'Yeni ritimharitası',
+                '_' => 'Yeni beatmap',
 
-                'user_beatmapset_new' => ':username tarafından yeni ritimharitası ":title"',
-                'user_beatmapset_new_compact' => 'Yeni ritimharitası ":title"',
-                'user_beatmapset_new_group' => ' :username tarafından yapılmış yeni ritimharitaları',
+                'user_beatmapset_new' => ':username tarafından yeni beatmap ":title"',
+                'user_beatmapset_new_compact' => 'Yeni beatmap ":title"',
+                'user_beatmapset_new_group' => ' :username tarafından yapılmış yeni beatmapler',
 
-                'user_beatmapset_revive' => '":title" adlı ritimharitası :username tarafından hayata geri döndürüldü',
-                'user_beatmapset_revive_compact' => '":title" adlı ritimharitası hayata geri döndürüldü',
+                'user_beatmapset_revive' => '":title" adlı beatmap :username tarafından hayata geri döndürüldü',
+                'user_beatmapset_revive_compact' => '":title" adlı beatmap hayata geri döndürüldü',
             ],
         ],
 
@@ -187,7 +187,7 @@ return [
     'mail' => [
         'beatmapset' => [
             'beatmap_owner_change' => [
-                'beatmap_owner_change' => 'Artık ":title" ritimharitasının bir konuğusunuz',
+                'beatmap_owner_change' => 'Artık ":title" beatmapinin bir konuğusunuz',
             ],
 
             'beatmapset_discussion' => [
@@ -211,7 +211,7 @@ return [
             ],
 
             'comment' => [
-                'comment_new' => '":title" ritimharitasında yeni yorumlar mevcut',
+                'comment_new' => '":title" beatmapinde yeni yorumlar mevcut',
             ],
         ],
 
@@ -250,8 +250,8 @@ return [
             ],
 
             'user_beatmapset_new' => [
-                'user_beatmapset_new' => ':username yeni ritimharitaları yaptı',
-                'user_beatmapset_revive' => ':username ritimharitalarını hayata geri döndürdü',
+                'user_beatmapset_new' => ':username yeni beatmapler yaptı',
+                'user_beatmapset_revive' => ':username beatmap\'leri hayata geri döndürdü',
             ],
         ],
     ],

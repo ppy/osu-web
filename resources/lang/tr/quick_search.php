@@ -5,7 +5,7 @@
 
 return [
     'mode' => [
-        'beatmapset' => 'Ritimharitası',
+        'beatmapset' => 'Beatmap',
         'forum_post' => 'Forum',
         'other' => 'Diğer',
         'user' => 'Oyuncu',

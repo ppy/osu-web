@@ -24,12 +24,12 @@ return [
             ],
             'featured-artists' => [
                 'title' => 'Featured Artist\'ler',
-                'description' => 'Senin desteğinle, daha çok müzisyen ile iletişim kurabilir ve onların güzel şarkılarını osu! için lisanslayabiliriz!',
+                'description' => 'Sizin desteğinizle, daha çok müzisyen ile iletişim kurabilir ve onların güzel şarkılarını osu! için lisanslayabiliriz!',
                 'link_text' => 'Güncel listeyi görüntüleyin &raquo;',
             ],
             'ads' => [
                 'title' => 'osu!\'nun kendi kendine devam etmesini sağlayın',
-                'description' => 'Senin katkıların oyunun özgür, reklamlardan ve sponsorlardan tamamen bağımsız kalmasına yardımcı olur.',
+                'description' => 'Sizin katkılarınız oyunun özgür, reklamlardan ve sponsorlardan tamamen bağımsız kalmasına yardımcı olur.',
             ],
             'tournaments' => [
                 'title' => 'Resmi Turnuvalar',
@@ -46,12 +46,12 @@ return [
             'title' => 'Öyle mi? Neler alacağım?!',
             'osu_direct' => [
                 'title' => 'osu!direct',
-                'description' => 'Oyundan çıkmaya gerek kalmadan hızlıca ritimharitalarını arayıp indirebilirsin.',
+                'description' => 'Oyundan çıkmaya gerek kalmadan hızlıca beatmapleri arayıp indirebilirsin.',
             ],
 
             'friend_ranking' => [
                 'title' => 'Arkadaş Sıralaması',
-                'description' => "Hem oyun içinde hem de websitede, bir ritimharitası sıralamasında arkadaşlarınız ile karşılaştırıldığında nasıl olduğunuzu görün.",
+                'description' => "Hem oyun içinde hem de websitede, bir beatmapin sıralamasında arkadaşlarınız ile karşılaştırıldığında nasıl olduğunuzu görün.",
             ],
 
             'country_ranking' => [
@@ -66,12 +66,12 @@ return [
 
             'auto_downloads' => [
                 'title' => 'Otomatik İndirme',
-                'description' => 'Çok oyunculu oyunlardayken, başkalarını seyrederken, veya sohbetteki linklere tıkladığınızda ritimharitaları otomatik olarak indirilir!',
+                'description' => 'Çok oyunculu oyunlardayken, başkalarını seyrederken, veya sohbetteki linklere tıkladığınızda beatmapler otomatik olarak indirilir!',
             ],
 
             'upload_more' => [
                 'title' => 'Daha Fazla Yükle',
-                'description' => 'Maksimum 10 olmak üzere fazladan (dereceli ritimharitası başına) beklemede ritimharitası yuvası.',
+                'description' => 'Maksimum 10 olmak üzere fazladan (dereceli beatmap başına) beklemede beatmap yuvası.',
             ],
 
             'early_access' => [
@@ -85,8 +85,8 @@ return [
             ],
 
             'beatmap_filters' => [
-                'title' => 'Ritimharitası Filtreleri',
-                'description' => 'Ritimharitası aramalarını oynanmış, oynanmamış ya da elde edilmiş dereceye göre filtreleyebilme.',
+                'title' => 'Beatmap Filtreleri',
+                'description' => 'Beatmap aramalarınızı oynanmış, oynanmamış ya da (eğer varsa) elde edilmiş dereceye göre filtreleme.',
             ],
 
             'yellow_fellow' => [
@@ -101,7 +101,7 @@ return [
 
             'change_username' => [
                 'title' => 'Kullanıcı Adı Değiştirme',
-                'description' => 'Tek seferlik isim değiştirme hakkı ilk supporter satın alımın ile birlikte ücretsiz verilir.',
+                'description' => 'Tek seferlik isim değiştirme hakkı ilk supporter satın alımınız ile birlikte ücretsiz verilir.',
             ],
 
             'skinnables' => [
@@ -116,20 +116,20 @@ return [
 
             'sort_options' => [
                 'title' => 'Sıralama Seçenekleri',
-                'description' => 'Oyun içinde ritimharitalarının ülke/arkadaş/moda göre sıralamalarını görme yeteneği.',
+                'description' => 'Oyun içinde beatmaplerin ülke/arkadaş/moda göre sıralamalarını görme yeteneği.',
             ],
 
             'more_favourites' => [
                 'title' => 'Daha Fazla Favori',
-                'description' => 'Favorine ekleyebileceğin maksimum ritimharitası sayısı :normally &rarr; :supporter olarak yükseltilir.',
+                'description' => 'Favorine ekleyebileceğin maksimum beatmap sayısı :normally &rarr; :supporter olarak yükseltilir.',
             ],
             'more_friends' => [
                 'title' => 'Daha Fazla Arkadaş',
                 'description' => 'Ekleyebileceğin maksimum arkadaş sayısı :normally &rarr; :supporter olarak yükseltilir.',
             ],
             'more_beatmaps' => [
-                'title' => 'Daha Fazla Ritimharitası Yükle',
-                'description' => 'Aynı anda kaç tane bekleyen ritimharitasına sahip olabileceğiniz, temel değer artı halihazırda sahip olduğunuz her dereceli ritimharitası için ek bir bonusla hesaplanır (bir limite kadar).<br/><br/>Normalde bu, dereceli ritimharitası başına :base artı :bonus şeklindedir. (:bonus_max kadar). osu!supporter ile bu, dereceli ritimharitası başına :supporter_base artı :supporter_bonus olur. (:supporter_bonus_max kadar).',
+                'title' => 'Daha Fazla Beatmap Yükle',
+                'description' => 'Ne kadar ranked olmayan beatmaplere sahip olabileceğin, temel bir değere ek olarak, ne kadar ranked beatmap sahip olmuşluğun varsa eklenerek belirlenir (bir sınıra kadar).<br/>Normalde bu her bir ranked map için fazladan 4 tane daha fazla ranked olmayan beatmap hakkına erişirsin (2\'ye kadar). Destekçilik ile bu 1 ranked beatmap için 8 e çıkar (12\'ye kadar).<br/>',
             ],
             'friend_filtering' => [
                 'title' => 'Arkadaş Sıralamaları',

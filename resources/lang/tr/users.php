@@ -84,7 +84,7 @@ return [
             'opening' => 'Hesabını dondurmaya sebebiyet verebilecek birtakım sebepler var:',
 
             'tos' => [
-                '_' => ':community_rules ya da :tos kurallarından bir veya daha fazlasını ihlal ettin.',
+                '_' => 'Siz, :community_rules ya da :tos kurallarından bir veya daha fazlasını ihlal ettiniz.',
                 'community_rules' => 'topluluk kuralları',
                 'tos' => 'hizmet kullanım şartları',
             ],
@@ -109,7 +109,7 @@ return [
         'failed' => 'Hatalı giriş',
         'forgot' => 'Şifrenizi mi unuttunuz?',
         'info' => 'Devam etmek için lütfen giriş yapınız',
-        'invalid_captcha' => 'Çok fazla hatalı giriş denemesi, CAPTCHA\'yı tamamlayıp tekrar dene. (CAPTCHA gözükmüyorsa sayfayı yenile)',
+        'invalid_captcha' => 'Captcha geçersiz, sayfayı yenileyip tekrar deneyin.',
         'locked_ip' => 'IP adresiniz kilitli. Lütfen birkaç dakika bekleyin.',
         'password' => 'Şifre',
         'register' => "osu! hesabınız yok mu? Yeni bir tane oluşturun",
@@ -124,13 +124,13 @@ return [
     ],
 
     'ogp' => [
-        'modding_description' => 'Ritimharitaları: :counts',
-        'modding_description_empty' => 'Kullanıcının herhangi bir ritimharitası yok...',
+        'modding_description' => '',
+        'modding_description_empty' => '',
 
         'description' => [
-            '_' => 'Derece (:ruleset): :global | :country',
-            'country' => 'Ülke :rank',
-            'global' => 'Küresel :rank',
+            '_' => '',
+            'country' => '',
+            'global' => '',
         ],
     ],
 
@@ -170,7 +170,7 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'Hesabınız kısıtlandı!',
-        'message' => 'Kısıtlanmışken, diğer oyuncularla etkileşime geçemezsin ve skorların sadece sana gözükür. Bu genellikle otomatik bir sürecin sonucudur ve genellikle 24 saat içinde kaldırılır. :link',
+        'message' => 'Kısıtlanmışken, diğer oyuncularla etkileşime geçemeyecek ve skorlarınızı sadece siz görebileceksiniz. Bu genellikle otomatik olan bir işlemin sonucudur ve 24 saat içerisinde kalkabilir. Kısıtlamanızın açılması için başvurmak istiyorsanız, lütfen <a href="mailto:accounts@ppy.sh">destek hattıyla</a> iletişime geçin.',
         'message_link' => 'Daha fazla bilgi için bu sayfaya göz atın.',
     ],
     'show' => [
@@ -235,25 +235,25 @@ return [
                 'title' => 'Beatmapler',
 
                 'favourite' => [
-                    'title' => 'Favori Ritimharitaları',
+                    'title' => 'Favori Beatmapler',
                 ],
                 'graveyard' => [
-                    'title' => 'Mezarlıktaki Ritimharitaları',
+                    'title' => 'Mezarlıktaki Beatmapler',
                 ],
                 'guest' => [
-                    'title' => 'Konuk Katılımı Ritimharitaları',
+                    'title' => 'Konuk Olarak Katıldığı Beatmapler',
                 ],
                 'loved' => [
-                    'title' => 'Sevilen Ritimharitaları',
+                    'title' => 'Sevilen Beatmapler',
                 ],
                 'nominated' => [
-                    'title' => 'Aday Gösterilen Dereceli Ritimharitaları',
+                    'title' => 'Aday Gösterilen Dereceli Beatmapler',
                 ],
                 'pending' => [
-                    'title' => 'Beklemedeki Ritimharitaları',
+                    'title' => 'Beklemedeki Beatmapler',
                 ],
                 'ranked' => [
-                    'title' => 'Dereceli Ritimharitaları',
+                    'title' => 'Dereceli & Onaylı Beatmapler',
                 ],
             ],
             'discussions' => [
@@ -331,7 +331,7 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => 'Kullanıcının ritimharitası moderasyonuna yaptığı katkının miktarına bağlıdır. Daha fazla bilgi için :link bakınız.',
+                    '_' => 'Kullanıcının beatmap modlamaya yaptığı katkının miktarına bağlıdır. Daha fazla bilgi için :link bakınız.',
                     'link' => 'bu sayfaya',
                 ],
             ],
@@ -462,10 +462,10 @@ return [
             'total_hits' => 'Toplam Vuruş',
             'total_score' => 'Toplam Skor',
             // modding stats
-            'graveyard_beatmapset_count' => 'Mezarlıktaki Ritimharitaları',
-            'loved_beatmapset_count' => 'Sevilen Ritimharitaları',
-            'pending_beatmapset_count' => 'Onay Bekleyen Ritimharitaları',
-            'ranked_beatmapset_count' => 'Dereceli Ritimharitaları',
+            'graveyard_beatmapset_count' => 'Mezarlıktaki Beatmapler',
+            'loved_beatmapset_count' => 'Sevilen Beatmapler',
+            'pending_beatmapset_count' => 'Onay Bekleyen Beatmapler',
+            'ranked_beatmapset_count' => 'Dereceli ve Onaylanmış Beatmapler',
         ],
     ],
 
