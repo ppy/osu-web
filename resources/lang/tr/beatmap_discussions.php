@@ -24,14 +24,14 @@ return [
         'form' => [
             '_' => 'Ara',
             'deleted' => 'Silinmiş tartışmaları dahil et',
-            'mode' => 'Beatmap modu',
+            'mode' => 'Ritimharitası modu',
             'only_unresolved' => 'Sadece çözülmemiş tartışmaları göster',
-            'show_review_embeds' => '',
+            'show_review_embeds' => 'İnceleme gönderilerini göster',
             'types' => 'Mesaj türü',
             'username' => 'Kullanıcı adı',
 
             'beatmapset_status' => [
-                '_' => 'Beatmap Durumu',
+                '_' => 'Ritimharitası Durumu',
                 'all' => 'Tümü',
                 'disqualified' => 'Diskalifiye edildi',
                 'never_qualified' => 'Niteliklendirilmedi',

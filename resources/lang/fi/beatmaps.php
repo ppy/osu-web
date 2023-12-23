@@ -255,7 +255,7 @@ return [
                 'difficulty' => 'Vaikeustaso',
                 'favourites' => 'Suosikit',
                 'updated' => 'Päivitetty',
-                'ranked' => 'Pisteytetty',
+                'ranked' => 'Rankattu',
                 'rating' => 'Luokitus',
                 'plays' => 'Pelikerrat',
                 'relevance' => 'Osuvuus',
@@ -263,7 +263,7 @@ return [
             ],
             'supporter_filter_quote' => [
                 '_' => 'Rajataksesi tunnisteella :filters sinulla on oltava aktiivinen :link',
-                'link_text' => 'osu!supporter-tagi',
+                'link_text' => 'osu!n tukijan merkki',
             ],
         ],
     ],

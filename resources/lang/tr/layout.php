@@ -14,8 +14,8 @@ return [
 
     'header' => [
         'admin' => [
-            'beatmapset' => 'beatmap seti',
-            'beatmapset_covers' => 'beatmap seti kapakları',
+            'beatmapset' => 'ritimharitası seti',
+            'beatmapset_covers' => 'ritimharitası seti kapakları',
             'contest' => 'yarışma',
             'contests' => 'yarışmalar',
             'root' => 'konsol',
@@ -67,7 +67,7 @@ return [
 
     'menu' => [
         'beatmaps' => [
-            '_' => 'beatmapler',
+            '_' => 'ritimharitaları',
         ],
         'community' => [
             '_' => 'topluluk',
@@ -98,7 +98,7 @@ return [
             '_' => 'Genel',
             'home' => 'Anasayfa',
             'changelog-index' => 'Değişiklikler',
-            'beatmaps' => 'Beatmap Kataloğu',
+            'beatmaps' => 'Ritimharitası Kataloğu',
             'download' => 'osu!\'yu indir!',
         ],
         'help' => [

@@ -61,7 +61,7 @@ return [
     ],
 
     'chat' => [
-        'annnonce_only' => 'Tämä kanava on tarkoitettu vain tiedotuksiin.',
+        'annnonce_only' => 'Tämä kanava on vain tiedotteita varten.',
         'blocked' => 'Et voi lähettää viestejä käyttäjälle, joka on estänyt sinut tai jonka olet estänyt.',
         'friends_only' => 'Käyttäjä on estänyt viestit henkilöiltä, jotka eivät ole hänen kaverilistassaan.',
         'moderated' => 'Tätä kanavaa moderoidaan.',

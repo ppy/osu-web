@@ -22,7 +22,7 @@ return [
     ],
 
     'links' => [
-        'beatmaps' => 'osu! beatmapleri',
+        'beatmaps' => 'osu! Ritimharitaları',
         'osu' => 'osu! profili',
         'site' => 'Resmi Website',
     ],

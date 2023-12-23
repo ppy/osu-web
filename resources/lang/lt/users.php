@@ -124,13 +124,13 @@ return [
     ],
 
     'ogp' => [
-        'modding_description' => '',
-        'modding_description_empty' => '',
+        'modding_description' => 'Beatmap\'ai: :counts',
+        'modding_description_empty' => 'Vartotojas nėra sukūręs beatmap\'ų...',
 
         'description' => [
-            '_' => '',
-            'country' => '',
-            'global' => '',
+            '_' => 'Reitingas (:ruleset): :global | :country',
+            'country' => 'Šalyje :rank',
+            'global' => 'Pasaulyje :rank',
         ],
     ],
 
