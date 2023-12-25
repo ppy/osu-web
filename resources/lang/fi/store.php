@@ -66,14 +66,14 @@ return [
                 'title' => 'Tilauksesi on peruutettu',
                 'line_1' => [
                     '_' => "Jos et pyytänyt peruutusta, ota yhteyttä :link ja mainitse tilauksesi numero (#:order_number).",
-                    'link_text' => 'osu!-kaupan tukeen',
+                    'link_text' => 'osu!kaupan tukeen',
                 ],
             ],
             'delivered' => [
                 'title' => 'Tilauksesi on toimitettu! Toivottavasti pidät siitä!',
                 'line_1' => [
                     '_' => 'Jos sinulla on ongelmia ostoksesi kanssa, ota yhteyttä :link.',
-                    'link_text' => 'osu!-kaupan tukeen',
+                    'link_text' => 'osu!kaupan tukeen',
                 ],
             ],
             'prepared' => [

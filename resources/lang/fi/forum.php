@@ -315,9 +315,9 @@ return [
             'to_1' => 'Kiinnitä aihe',
             'to_1_confirm' => 'Kiinnitä aihe?',
             'to_1_done' => 'Aihe kiinnitetty',
-            'to_2' => 'Kiinnitä aihe ja merkkaa ilmoitukseksi',
-            'to_2_confirm' => 'Kiinnitä aihe ja merkkaa ilmoitukseksi?',
-            'to_2_done' => 'Aihe on kiinnitetty ja merkattu ilmoitukseksi',
+            'to_2' => 'Kiinnitä aihe ja merkitse tiedotteeksi',
+            'to_2_confirm' => 'Kiinnitetäänkö aihe ja merkitään tiedotteeksi?',
+            'to_2_done' => 'Aihe on kiinnitetty ja merkitty tiedotteeksi',
         ],
 
         'moderate_toggle_deleted' => [
