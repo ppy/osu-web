@@ -307,11 +307,12 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         $packItemBeatmapsetIdColumn = (new BeatmapPackItem())->qualifyColumn('beatmapset_id');
         $packQuery = BeatmapPack
             ::selectRaw("GROUP_CONCAT({$packTagColumn} SEPARATOR ',')")
+            ->default()
             ->whereRelation(
                 'items',
-                DB::raw("{$packItemBeatmapsetIdColumn}"),
-                DB::raw("{$idColumn}"),
-            )->toSql();
+                DB::raw($packItemBeatmapsetIdColumn),
+                DB::raw($idColumn),
+            )->toRawSql();
 
         return $query
             ->select('*')
