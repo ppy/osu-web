@@ -37,13 +37,13 @@ class UserProfileCustomization extends Model
 
     const BEATMAPSET_DOWNLOAD = ['all', 'no_video', 'direct'];
 
+    const DEFAULT_LEGACY_ONLY_ATTRIBUTE = true;
+
     const USER_LIST = [
         'filters' => ['all' => ['all', 'online', 'offline'], 'default' => 'all'],
         'sorts' => ['all' => ['last_visit', 'rank', 'username'], 'default' => 'last_visit'],
         'views' => ['all' => ['card', 'list', 'brick'], 'default' => 'card'],
     ];
-
-    private const DEFAULT_LEGACY_ONLY_ATTRIBUTE = true;
 
     public $incrementing = false;
 
