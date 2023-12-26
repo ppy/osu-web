@@ -51,7 +51,7 @@ class BeatmapsController extends Controller
         return $query;
     }
 
-    private static function beatmapScores(string $id, ?string $scoreTransformerType, bool $isLegacy): array
+    private static function beatmapScores(string $id, ?string $scoreTransformerType, ?bool $isLegacy): array
     {
         $beatmap = Beatmap::findOrFail($id);
         if ($beatmap->approved <= 0) {
@@ -338,9 +338,9 @@ class BeatmapsController extends Controller
     }
 
     /**
-     * Get Beatmap scores (legacy)
+     * Get Beatmap scores
      *
-     * Returns the top scores for a beatmap
+     * Returns the top scores for a beatmap. Depending on user preferences, this may only show legacy scores.
      *
      * ---
      *
@@ -356,7 +356,12 @@ class BeatmapsController extends Controller
      */
     public function scores($id)
     {
-        return static::beatmapScores($id, null, true);
+        return static::beatmapScores(
+            $id,
+            null,
+            // TODO: change to imported name after merge with other PRs
+            \App\Libraries\Search\ScoreSearchParams::showLegacyForUser(\Auth::user()),
+        );
     }
 
     /**
