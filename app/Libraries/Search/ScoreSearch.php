@@ -21,7 +21,7 @@ class ScoreSearch extends RecordSearch
     public function __construct(?ScoreSearchParams $params = null)
     {
         parent::__construct(
-            $GLOBALS['cfg']['osu']['elasticsearch']['prefix'].'solo_scores',
+            $GLOBALS['cfg']['osu']['elasticsearch']['prefix'].'scores',
             $params ?? new ScoreSearchParams(),
             Score::class
         );
@@ -122,7 +122,7 @@ class ScoreSearch extends RecordSearch
         );
 
         foreach ($schemas as $schema) {
-            LaravelRedis::lpush("osu-queue:score-index-{$schema}", ...$values);
+            LaravelRedis::lpush("osu-queue:{$schema}", ...$values);
         }
     }
 
