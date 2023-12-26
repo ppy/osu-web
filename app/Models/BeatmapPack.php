@@ -94,7 +94,7 @@ class BeatmapPack extends Model
         return 'tag';
     }
 
-    public function userCompletionData($user)
+    public function userCompletionData($user, bool $legacyOnly)
     {
         if ($user !== null) {
             $userId = $user->getKey();
@@ -110,7 +110,7 @@ class BeatmapPack extends Model
             $params = [
                 'beatmap_ids' => array_keys($beatmapsetIdsByBeatmapId),
                 'exclude_converts' => $this->playmode === null,
-                'is_legacy' => true,
+                'is_legacy' => $legacyOnly,
                 'limit' => 0,
                 'ruleset_id' => $this->playmode,
                 'user_id' => $userId,
