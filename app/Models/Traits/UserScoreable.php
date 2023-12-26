@@ -16,10 +16,10 @@ trait UserScoreable
     private array $beatmapBestScoreIds = [];
     private array $beatmapBestScores = [];
 
-    public function aggregatedScoresBest(string $mode, int $size): array
+    public function aggregatedScoresBest(string $mode, null | true $legacyOnly, int $size): array
     {
         return (new FetchDedupedScores('beatmap_id', ScoreSearchParams::fromArray([
-            'is_legacy' => true,
+            'is_legacy' => $legacyOnly,
             'limit' => $size,
             'ruleset_id' => Beatmap::MODES[$mode],
             'sort' => 'pp_desc',
@@ -27,19 +27,21 @@ trait UserScoreable
         ]), "aggregatedScoresBest_{$mode}"))->all();
     }
 
-    public function beatmapBestScoreIds(string $mode)
+    public function beatmapBestScoreIds(string $mode, null | true $legacyOnly)
     {
-        if (!isset($this->beatmapBestScoreIds[$mode])) {
+        $key = $mode.'-'.($legacyOnly ? '1' : '0');
+
+        if (!isset($this->beatmapBestScoreIds[$key])) {
             // aggregations do not support regular pagination.
             // always fetching 100 to cache; we're not supporting beyond 100, either.
-            $this->beatmapBestScoreIds[$mode] = cache_remember_mutexed(
-                "search-cache:beatmapBestScoresSolo:{$this->getKey()}:{$mode}",
+            $this->beatmapBestScoreIds[$key] = cache_remember_mutexed(
+                "search-cache:beatmapBestScoresSolo:{$this->getKey()}:{$key}",
                 $GLOBALS['cfg']['osu']['scores']['es_cache_duration'],
                 [],
-                function () use ($mode) {
-                    $this->beatmapBestScores[$mode] = $this->aggregatedScoresBest($mode, 100);
+                function () use ($key, $legacyOnly, $mode) {
+                    $this->beatmapBestScores[$key] = $this->aggregatedScoresBest($mode, $legacyOnly, 100);
 
-                    return array_column($this->beatmapBestScores[$mode], 'id');
+                    return array_column($this->beatmapBestScores[$key], 'id');
                 },
                 function () {
                     // TODO: propagate a more useful message back to the client
@@ -49,15 +51,16 @@ trait UserScoreable
             );
         }
 
-        return $this->beatmapBestScoreIds[$mode];
+        return $this->beatmapBestScoreIds[$key];
     }
 
-    public function beatmapBestScores(string $mode, int $limit, int $offset = 0, $with = []): Collection
+    public function beatmapBestScores(string $mode, int $limit, int $offset, array $with, null | true $legacyOnly): Collection
     {
-        $ids = $this->beatmapBestScoreIds($mode);
+        $ids = $this->beatmapBestScoreIds($mode, $legacyOnly);
+        $key = $mode.'-'.($legacyOnly ? '1' : '0');
 
-        if (isset($this->beatmapBestScores[$mode])) {
-            $results = new Collection(array_slice($this->beatmapBestScores[$mode], $offset, $limit));
+        if (isset($this->beatmapBestScores[$key])) {
+            $results = new Collection(array_slice($this->beatmapBestScores[$key], $offset, $limit));
         } else {
             $ids = array_slice($ids, $offset, $limit);
             $results = Score::whereKey($ids)->orderByField('id', $ids)->default()->get();
