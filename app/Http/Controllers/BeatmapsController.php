@@ -486,7 +486,7 @@ class BeatmapsController extends Controller
 
         $baseParams = ScoreSearchParams::fromArray([
             'beatmap_ids' => [$beatmap->getKey()],
-            'is_legacy' => true,
+            'is_legacy' => ScoreSearchParams::showLegacyForUser(\Auth::user()),
             'limit' => 1,
             'mods' => $mods,
             'ruleset_id' => Beatmap::MODES[$mode],
@@ -535,7 +535,7 @@ class BeatmapsController extends Controller
         $mode = presence(get_string(request('mode'))) ?? $beatmap->mode;
         $params = ScoreSearchParams::fromArray([
             'beatmap_ids' => [$beatmap->getKey()],
-            'is_legacy' => true,
+            'is_legacy' => ScoreSearchParams::showLegacyForUser(\Auth::user()),
             'ruleset_id' => Beatmap::MODES[$mode],
             'sort' => 'score_desc',
             'user_id' => (int) $userId,
