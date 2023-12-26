@@ -97,7 +97,7 @@ class BeatmapPackUserCompletionTest extends TestCase
         static::$pack->update(['playmode' => $rulesetId]);
         static::$pack->refresh();
 
-        $data = static::$pack->userCompletionData($user);
+        $data = static::$pack->userCompletionData($user, null);
         $this->assertSame($completed ? 1 : 0, count($data['beatmapset_ids']));
         $this->assertSame($completed, $data['completed']);
     }
