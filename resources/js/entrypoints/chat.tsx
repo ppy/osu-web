@@ -26,6 +26,10 @@ interface SendToJson {
   target: UserJson;
 }
 
+function getChannelHash(hash: string) {
+  return hash.startsWith('#') ? hash.slice(1) : null;
+}
+
 function getParamValue(urlParams: URLSearchParams, key: string) {
   const value = Number(urlParams.get(key));
   return Number.isInteger(value) && value > 0 ? value : null;
@@ -77,10 +81,10 @@ core.reactTurbolinks.register('chat', action(() => {
     core.dataStore.channelStore.lastReceivedMessageId = initial.last_message_id ?? 0;
   }
 
-  if (currentUrl().hash === '#create') {
-    core.dataStore.chatState.selectChannel('create', 'replaceHistory');
-  } else if (currentUrl().hash === '#join') {
-    core.dataStore.chatState.selectChannel('join', 'replaceHistory');
+  const hash = getChannelHash(currentUrl().hash);
+
+  if (hash === 'create' || hash === 'join') {
+    core.dataStore.chatState.selectChannel(hash, 'replaceHistory');
   } else {
     const channel = getInitialChannel(initial?.send_to);
 
