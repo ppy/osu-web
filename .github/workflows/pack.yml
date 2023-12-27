@@ -5,6 +5,7 @@ on:
     branches:
       - master
       - private-staging
+      - private-staging-v2
     tags:
       - '*'
 
