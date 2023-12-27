@@ -13,8 +13,9 @@ use App\Models\ArtistTrack;
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\Follow;
-use App\Models\Score;
+use App\Models\Solo;
 use App\Models\User;
+use Ds\Set;
 
 class BeatmapsetSearch extends RecordSearch
 {
@@ -423,38 +424,36 @@ class BeatmapsetSearch extends RecordSearch
 
     private function getPlayedBeatmapIds(?array $rank = null)
     {
-        $unionQuery = null;
-
-        $select = $rank === null ? 'beatmap_id' : ['beatmap_id', 'score', 'rank'];
-
-        foreach ($this->getSelectedModes() as $mode) {
-            $newQuery = Score\Best\Model::getClassByRulesetId($mode)
-                ::forUser($this->params->user)
-                ->select($select);
-
-            if ($unionQuery === null) {
-                $unionQuery = $newQuery;
-            } else {
-                $unionQuery->union($newQuery);
-            }
-        }
+        $query = Solo\Score
+            ::where('user_id', $this->params->user->getKey())
+            ->whereIn('ruleset_id', $this->getSelectedModes());
 
         if ($rank === null) {
-            return model_pluck($unionQuery, 'beatmap_id');
-        } else {
-            $allScores = $unionQuery->get();
-            $beatmapRank = collect();
-
-            foreach ($allScores as $score) {
-                $prevScore = $beatmapRank[$score->beatmap_id] ?? null;
-
-                if ($prevScore === null || $prevScore->score < $score->score) {
-                    $beatmapRank[$score->beatmap_id] = $score;
-                }
-            }
-
-            return $beatmapRank->whereInStrict('rank', $rank)->pluck('beatmap_id')->all();
+            return $query->distinct('beatmap_id')->pluck('beatmap_id');
         }
+
+        $topScores = [];
+        $scoreField = ScoreSearchParams::showLegacyForUser($this->params->user)
+            ? 'legacyTotalScore'
+            : 'totalScore';
+        foreach ($query->get() as $score) {
+            $prevScore = $topScores[$score->beatmap_id] ?? null;
+
+            $scoreValue = $score->data->$scoreField;
+            if ($scoreValue !== null && ($prevScore === null || $prevScore->data->$scoreField < $scoreValue)) {
+                $topScores[$score->beatmap_id] = $score;
+            }
+        }
+
+        $ret = [];
+        $rankSet = new Set($rank);
+        foreach ($topScores as $beatmapId => $score) {
+            if ($rankSet->contains($score->data->rank)) {
+                $ret[] = $beatmapId;
+            }
+        }
+
+        return $ret;
     }
 
     private function getSelectedModes()

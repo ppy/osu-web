@@ -197,6 +197,16 @@ return [
             'friends' => 'Friends',
             'logout' => 'Sign Out',
             'profile' => 'My Profile',
+
+            'legacy_score_only_toggle' => [
+                0 => 'Lazer mode',
+                1 => 'Legacy mode',
+            ],
+
+            'legacy_score_only_toggle_tooltip' => [
+                0 => 'Lazer scores are currently shown. Click to switch to Legacy mode',
+                1 => 'Lazer scores are currently hidden. Click to switch to Lazer mode',
+            ],
         ],
     ],
 
