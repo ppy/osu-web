@@ -35,6 +35,8 @@
         {{ osu_trans('layout.popup_user.links.account-edit') }}
     </a>
 
+    @include('layout._score_mode_toggle', ['class' => 'simple-menu__item'])
+
     <button
         class="js-logout-link simple-menu__item"
         type="button"

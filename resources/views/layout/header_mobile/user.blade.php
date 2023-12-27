@@ -28,6 +28,8 @@
             {{ osu_trans('layout.popup_user.links.account-edit') }}
         </a>
 
+        @include('layout._score_mode_toggle', ['class' => 'navbar-mobile-item__main'])
+
         <button
             class="js-logout-link navbar-mobile-item__main"
             type="button"
