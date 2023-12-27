@@ -10,23 +10,31 @@ import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { getPublicChannels } from './chat-api';
 
+type JoinedStatus = 'joined' | 'joining' | null;
 type Props = Record<string, never>;
 
 interface ChannelProps {
   channel: ChannelJson;
-  joined: boolean;
   onClick: (channelId: number) => void;
+  status: JoinedStatus;
 }
 
-function Channel({ channel, joined, onClick }: ChannelProps) {
+function Channel({ channel, onClick, status }: ChannelProps) {
   const handleClick = React.useCallback(
     () => onClick(channel.channel_id),
     [channel.channel_id, onClick],
   );
 
+  let statusElement: React.ReactNode | undefined;
+  if (status === 'joined') {
+    statusElement = <i className='fas fa-check' />;
+  } else if (status === 'joining') {
+    statusElement = <Spinner />;
+  }
+
   return (
-    <button key={channel.channel_id} className={classWithModifiers('chat-join-channel__channel', { joined })} onClick={handleClick}>
-      <div>{joined && <i className='fas fa-check' />}</div>
+    <button key={channel.channel_id} className={classWithModifiers('chat-join-channel__channel', { joined: status === 'joined' })} onClick={handleClick}>
+      <div>{statusElement}</div>
       <div>{channel.name}</div>
       <div>{channel.description}</div>
     </button>
@@ -37,9 +45,8 @@ function Channel({ channel, joined, onClick }: ChannelProps) {
 export default class JoinChannels extends React.Component<Props> {
   @observable private channels?: ChannelJson[];
 
-
   @computed
-  get joinedChannelIds() {
+  get joinedPublicChannelIds() {
     return new Set(core.dataStore.channelStore.groupedChannels.PUBLIC.map((channel) => channel.channelId));
   }
 
@@ -59,9 +66,7 @@ export default class JoinChannels extends React.Component<Props> {
     return (
       <div className='chat-join-channel'>
         <div className='chat-join-channel__channels'>
-          {this.channels.map((channel) => (
-            <Channel key={channel.channel_id} channel={channel} joined={this.joinedChannelIds.has(channel.channel_id)} onClick={this.handleClick} />
-          ))}
+          {this.channels.map(this.renderChannel)}
         </div>
       </div>
     );
@@ -83,4 +88,22 @@ export default class JoinChannels extends React.Component<Props> {
       // TODO: show error
     }
   }
+
+  private readonly renderChannel = (channel: ChannelJson) => {
+    let status: JoinedStatus = null;
+    if (this.joinedPublicChannelIds.has(channel.channel_id)) {
+      status = 'joined';
+    } else if (core.dataStore.chatState.joiningChannelId === channel.channel_id) {
+      status = 'joining';
+    }
+
+    return (
+      <Channel
+        key={channel.channel_id}
+        channel={channel}
+        onClick={this.handleClick}
+        status={status}
+      />
+    );
+  };
 }
