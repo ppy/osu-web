@@ -22,7 +22,8 @@
   &__channels {
     display: grid;
     gap: 10px;
-    grid-template-columns: max-content 200px auto;
+    // checkmark is 14px wide
+    grid-template-columns: minmax(14px, max-content) 200px auto;
     overflow-wrap: anywhere;
     padding: 10px;
   }
