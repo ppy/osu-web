@@ -195,8 +195,11 @@ return [
             'account-edit' => 'Settings',
             'follows' => 'Watchlists',
             'friends' => 'Friends',
+            'legacy_score_only_toggle' => 'Lazer mode',
             'logout' => 'Sign Out',
             'profile' => 'My Profile',
+
+            'legacy_score_only_toggle_tooltip' => 'Lazer mode shows scores set from lazer with a new scoring algorithm',
         ],
     ],
 

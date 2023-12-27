@@ -9,6 +9,8 @@
             data-is-current-user="1"
         ></div>
 
+        @include('layout._score_mode_toggle', ['class' => 'navbar-mobile-item__main'])
+
         <a
             class="navbar-mobile-item__main"
             href="{{ route('users.show', Auth::user()) }}"
