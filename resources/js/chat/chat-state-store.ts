@@ -157,16 +157,13 @@ export default class ChatStateStore implements DispatchListener {
 
   @action
   selectChannel(channelId: ChannelId, mode: 'advanceHistory' | 'replaceHistory' | null = 'advanceHistory') {
-    // TODO: enforce location url even if channel doesn't change;
-    // noticeable when navigating via ?sendto= on existing channel.
-    if (this.selected === channelId) return;
-
     // Mark the channel being switched away from as read.
     // Marking as read is done here to avoid constantly sending mark-as-read requests
     // while receiving messages when autoScroll is enabled on the channel.
     this.selectedChannel?.throttledSendMarkAsRead();
-
     this.selected = channelId;
+
+    if (channelId == null) return;
 
     if (typeof channelId === 'string') {
       if (mode != null) {
@@ -178,8 +175,6 @@ export default class ChatStateStore implements DispatchListener {
 
       return;
     }
-
-    if (channelId == null) return;
 
     const channel = this.channelStore.get(channelId);
 
