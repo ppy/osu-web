@@ -3,10 +3,11 @@
 
 import { Spinner } from 'components/spinner';
 import ChannelJson from 'interfaces/chat/channel-json';
-import { computed, makeObservable, observable, runInAction } from 'mobx';
+import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
+import { isJqXHR } from 'utils/ajax';
 import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 import { getPublicChannels } from './chat-api';
@@ -45,6 +46,8 @@ function Channel({ channel, onClick, status }: ChannelProps) {
 @observer
 export default class JoinChannels extends React.Component<Props> {
   @observable private channels?: ChannelJson[];
+  @observable private error = false;
+  private xhr: ReturnType<typeof getPublicChannels> | null= null;
 
   @computed
   get joinedPublicChannelIds() {
@@ -59,13 +62,16 @@ export default class JoinChannels extends React.Component<Props> {
     this.loadChannelList();
   }
 
+  componentWillUnmount() {
+    this.xhr?.abort();
+  }
+
   render() {
     return (
       <div className='chat-join-channel'>
         {this.channels == null ? (
           <div className='chat-join-channel__loading'>
-            <Spinner />
-            {trans('chat.join_channels.loading')}
+            {this.renderLoading()}
           </div>
         ) : (
           <div className='chat-join-channel__channels'>
@@ -80,16 +86,29 @@ export default class JoinChannels extends React.Component<Props> {
     core.dataStore.chatState.joinChannel(channelId);
   };
 
+  private readonly handleRetryClick = () => {
+    this.loadChannelList();
+  };
+
+  @action
   private async loadChannelList() {
-    if (this.channels != null) return;
+    if (this.channels != null || this.xhr != null) return;
+
+    this.error = false;
 
     try {
-      const channels = await getPublicChannels();
+      this.xhr = getPublicChannels();
+      const channels = await this.xhr;
       runInAction(() => {
         this.channels = channels;
       });
-    } catch {
-      // TODO: show error
+    } catch (error) {
+      if (!isJqXHR(error)) throw error;
+      runInAction(() => {
+        this.error = true;
+      });
+    } finally {
+      this.xhr = null;
     }
   }
 
@@ -110,4 +129,24 @@ export default class JoinChannels extends React.Component<Props> {
       />
     );
   };
+
+  private renderLoading() {
+    if (this.error) {
+      return (
+        <>
+          <p>{trans('errors.load_failed')}</p>
+          <button className='btn-osu-big btn-osu-big--rounded-thin' onClick={this.handleRetryClick} type='button'>
+            {trans('common.buttons.retry')}
+          </button>
+        </>
+      );
+    }
+
+    return (
+      <>
+        <Spinner />
+        <p>{trans('chat.join_channels.loading')}</p>
+      </>
+    );
+  }
 }
