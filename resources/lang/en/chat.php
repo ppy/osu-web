@@ -61,4 +61,8 @@ return [
         'lazer' => 'Public channels you join via <a href=":link">osu!lazer</a> will also be visible here.',
         'title' => 'no conversations yet',
     ],
+
+    'join_channels' => [
+        'loading' => 'Loading channel list...',
+    ],
 ];

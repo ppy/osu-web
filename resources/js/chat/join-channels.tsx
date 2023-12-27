@@ -8,6 +8,7 @@ import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
+import { trans } from 'utils/lang';
 import { getPublicChannels } from './chat-api';
 
 type JoinedStatus = 'joined' | 'joining' | null;
@@ -59,15 +60,18 @@ export default class JoinChannels extends React.Component<Props> {
   }
 
   render() {
-    if (this.channels == null) {
-      return <Spinner />;
-    }
-
     return (
       <div className='chat-join-channel'>
-        <div className='chat-join-channel__channels'>
-          {this.channels.map(this.renderChannel)}
-        </div>
+        {this.channels == null ? (
+          <div className='chat-join-channel__loading'>
+            <Spinner />
+            {trans('chat.join_channels.loading')}
+          </div>
+        ) : (
+          <div className='chat-join-channel__channels'>
+            {this.channels.map(this.renderChannel)}
+          </div>
+        )}
       </div>
     );
   }
