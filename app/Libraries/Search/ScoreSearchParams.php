@@ -21,6 +21,7 @@ class ScoreSearchParams extends SearchParams
     public ?array $beatmapIds = null;
     public ?Score $beforeScore = null;
     public ?int $beforeTotalScore = null;
+    public bool $excludeConverts = false;
     public ?array $excludeMods = null;
     public ?bool $isLegacy = null;
     public ?array $mods = null;
@@ -36,6 +37,7 @@ class ScoreSearchParams extends SearchParams
     {
         $params = new static();
         $params->beatmapIds = $rawParams['beatmap_ids'] ?? null;
+        $params->excludeConverts = $rawParams['exclude_converts'] ?? $params->excludeConverts;
         $params->excludeMods = $rawParams['exclude_mods'] ?? null;
         $params->isLegacy = $rawParams['is_legacy'] ?? null;
         $params->mods = $rawParams['mods'] ?? null;
@@ -91,6 +93,12 @@ class ScoreSearchParams extends SearchParams
                 $sortColumn = $this->isLegacy ? 'legacy_total_score' : 'total_score';
                 $this->sorts = [
                     new Sort($sortColumn, 'desc'),
+                    new Sort('id', 'asc'),
+                ];
+                break;
+            case 'pp_desc':
+                $this->sorts = [
+                    new Sort('pp', 'desc'),
                     new Sort('id', 'asc'),
                 ];
                 break;
