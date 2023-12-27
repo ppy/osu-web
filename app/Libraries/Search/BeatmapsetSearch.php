@@ -433,12 +433,14 @@ class BeatmapsetSearch extends RecordSearch
         }
 
         $topScores = [];
+        $scoreField = ScoreSearchParams::showLegacyForUser($this->params->user)
+            ? 'legacyTotalScore'
+            : 'totalScore';
         foreach ($query->get() as $score) {
             $prevScore = $topScores[$score->beatmap_id] ?? null;
 
-            // TODO: change to match user legacy score display preference
-            $scoreValue = $score->data->legacyTotalScore;
-            if ($scoreValue !== null && ($prevScore === null || $prevScore->data->legacyTotalScore < $scoreValue)) {
+            $scoreValue = $score->data->$scoreField;
+            if ($scoreValue !== null && ($prevScore === null || $prevScore->data->$scoreField < $scoreValue)) {
                 $topScores[$score->beatmap_id] = $score;
             }
         }
