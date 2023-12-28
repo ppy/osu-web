@@ -103,15 +103,18 @@ class ScoresControllerTest extends TestCase
      */
     public function testStore($allowRanking, $hashParam, $status)
     {
+        $origClientCheckVersion = $GLOBALS['cfg']['osu']['client']['check_version'];
+        config_set('osu.client.check_version', true);
         $user = User::factory()->create();
         $playlistItem = PlaylistItem::factory()->create();
         $build = Build::factory()->create(['allow_ranking' => $allowRanking]);
 
         $this->actAsScopedUser($user, ['*']);
 
-        $params = [];
         if ($hashParam !== null) {
-            $params['version_hash'] = $hashParam ? bin2hex($build->hash) : md5('invalid_');
+            $this->withHeaders([
+                'x-token' => $hashParam ? static::createClientToken($build) : strtoupper(md5('invalid_')),
+            ]);
         }
 
         $countDiff = ((string) $status)[0] === '2' ? 1 : 0;
@@ -120,7 +123,9 @@ class ScoresControllerTest extends TestCase
         $this->json('POST', route('api.rooms.playlist.scores.store', [
             'room' => $playlistItem->room_id,
             'playlist' => $playlistItem->getKey(),
-        ]), $params)->assertStatus($status);
+        ]))->assertStatus($status);
+
+        config_set('osu.client.check_version', $origClientCheckVersion);
     }
 
     /**

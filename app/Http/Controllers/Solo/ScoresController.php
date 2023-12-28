@@ -6,6 +6,7 @@
 namespace App\Http\Controllers\Solo;
 
 use App\Http\Controllers\Controller as BaseController;
+use App\Libraries\ClientCheck;
 use App\Models\ScoreToken;
 use App\Models\Solo\Score;
 use App\Transformers\ScoreTransformer;
@@ -20,7 +21,9 @@ class ScoresController extends BaseController
 
     public function store($beatmapId, $tokenId)
     {
-        $score = DB::transaction(function () use ($beatmapId, $tokenId) {
+        $request = \Request::instance();
+        $clientTokenData = ClientCheck::parseToken($request);
+        $score = DB::transaction(function () use ($beatmapId, $request, $tokenId) {
             $user = auth()->user();
             $scoreToken = ScoreToken::where([
                 'beatmap_id' => $beatmapId,
@@ -29,7 +32,7 @@ class ScoresController extends BaseController
 
             // return existing score otherwise (assuming duplicated submission)
             if ($scoreToken->score_id === null) {
-                $params = Score::extractParams(\Request::all(), $scoreToken);
+                $params = Score::extractParams($request->all(), $scoreToken);
                 $score = Score::createFromJsonOrExplode($params);
                 $score->createLegacyEntryOrExplode();
                 $scoreToken->fill(['score_id' => $score->getKey()])->saveOrExplode();
@@ -42,6 +45,7 @@ class ScoresController extends BaseController
         });
 
         if ($score->wasRecentlyCreated) {
+            ClientCheck::queueToken($clientTokenData, $score->getKey());
             $score->queueForProcessing();
         }
 

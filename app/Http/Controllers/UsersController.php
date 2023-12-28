@@ -9,6 +9,7 @@ use App\Exceptions\ModelNotSavedException;
 use App\Exceptions\UserProfilePageLookupException;
 use App\Exceptions\ValidationException;
 use App\Http\Middleware\RequestCost;
+use App\Libraries\ClientCheck;
 use App\Libraries\RateLimiter;
 use App\Libraries\Search\ForumSearch;
 use App\Libraries\Search\ForumSearchRequestParams;
@@ -217,11 +218,15 @@ class UsersController extends Controller
             ], 403);
         }
 
-        if (!starts_with(Request::header('User-Agent'), $GLOBALS['cfg']['osu']['client']['user_agent'])) {
+        $request = \Request::instance();
+
+        if (!starts_with($request->header('User-Agent'), $GLOBALS['cfg']['osu']['client']['user_agent'])) {
             return error_popup(osu_trans('users.store.from_client'), 403);
         }
 
-        return $this->storeUser(request()->all());
+        ClientCheck::parseToken($request);
+
+        return $this->storeUser($request->all());
     }
 
     public function storeWeb()
