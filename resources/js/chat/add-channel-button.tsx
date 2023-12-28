@@ -16,7 +16,7 @@ export default class AddChannelButton extends React.Component<Props> {
   render() {
     if (this.props.type === 'create' && !core.dataStore.chatState.canChatAnnounce) return null;
 
-    const modifiers = { selected: core.dataStore.chatState.selectedChannelId === this.props.type };
+    const modifiers = { selected: core.dataStore.chatState.selectedView === this.props.type };
 
     return (
       <div className={classWithModifiers('chat-conversation-list-item', modifiers)}>

@@ -69,12 +69,12 @@ export default class ChatStateStore implements DispatchListener {
     return typeof this.selected === 'number' ? this.channelStore.get(this.selected) : null;
   }
 
-  get selectedChannelId() {
-    return this.selected;
-  }
-
-  get showingNonChannel() {
-    return typeof this.selected !== 'number';
+  // TODO: better name
+  @computed
+  get selectedView() {
+    return typeof this.selected === 'number'
+      ? this.channelStore.get(this.selected)
+      : this.selected;
   }
 
   @computed
@@ -297,10 +297,10 @@ export default class ChatStateStore implements DispatchListener {
    * Keeps the current channel in focus, unless deleted, then focus on next channel.
    */
   private refocusSelectedChannel() {
-    if (this.showingNonChannel) return;
+    if (typeof this.selectedView === 'string') return;
 
-    if (this.selectedChannel != null) {
-      this.selectChannel(this.selectedChannel.channelId);
+    if (this.selectedView != null) {
+      this.selectChannel(this.selectedView.channelId);
     } else {
       this.focusChannelAtIndex(this.selectedIndex);
     }
