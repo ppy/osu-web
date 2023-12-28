@@ -19,13 +19,12 @@ import { isJqXHR, onError } from 'utils/ajax';
 import { trans } from 'utils/lang';
 import { hideLoadingOverlay, showImmediateLoadingOverlay } from 'utils/loading-overlay';
 import { updateQueryString } from 'utils/url';
+import ChannelId from './channel-id';
 import ChannelJoinEvent from './channel-join-event';
 import ChannelPartEvent from './channel-part-event';
 import { createAnnouncement, getUpdates, joinChannel } from './chat-api';
 import MainView from './main-view';
 import PingService from './ping-service';
-
-type ChannelId = number | 'create' | 'join' | null;
 
 @dispatchListener
 export default class ChatStateStore implements DispatchListener {
