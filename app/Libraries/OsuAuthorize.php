@@ -44,6 +44,7 @@ class OsuAuthorize
         static $set;
 
         $set ??= new Ds\Set([
+            'ContestJudge',
             'IsOwnClient',
             'IsNotOAuth',
             'IsSpecialScope',
@@ -1337,6 +1338,27 @@ class OsuAuthorize
      * @throws AuthorizationCheckException
      */
     public function checkContestJudge(?User $user, Contest $contest): string
+    {
+        $this->ensureLoggedIn($user);
+
+        if (!$contest->isJudgingActive()) {
+            return 'contest.judging_not_active';
+        }
+
+        if (!$contest->isJudge($user)) {
+            return 'unauthorized';
+        }
+
+        return 'ok';
+    }
+
+    /**
+     * @param User|null $user
+     * @param Contest $contest
+     * @return string
+     * @throws AuthorizationCheckException
+     */
+    public function checkContestJudgeShow(?User $user, Contest $contest): string
     {
         $this->ensureLoggedIn($user);
 

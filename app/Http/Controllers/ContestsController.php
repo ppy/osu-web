@@ -34,7 +34,7 @@ class ContestsController extends Controller
 
         abort_if(!$contest->isJudged(), 404);
 
-        priv_check('ContestJudge', $contest)->ensureCan();
+        priv_check('ContestJudgeShow', $contest)->ensureCan();
 
         $contestJson = json_item($contest, 'Contest', ['scoring_categories']);
         $entriesJson = json_collection($contest->entries, 'ContestEntry', [
@@ -49,15 +49,12 @@ class ContestsController extends Controller
 
     public function show($id)
     {
-        $contest = Contest::with('judges')
-            ->findOrFail($id);
+        $contest = Contest::findOrFail($id);
 
         $user = Auth::user();
         if (!$contest->visible && (!$user || !$user->isAdmin())) {
             abort(404);
         }
-
-        $isJudge = $user !== null && $contest->isJudge($user);
 
         if ($contest->isVotingStarted() && isset($contest->getExtraOptions()['children'])) {
             $contestIds = $contest->getExtraOptions()['children'];
@@ -83,7 +80,6 @@ class ContestsController extends Controller
             return ext_view('contests.voting', [
                 'contestMeta' => $contest,
                 'contests' => $contests,
-                'isJudge' => $isJudge,
                 'noVoteReason' => $noVoteReason ?? null,
             ]);
         } else {
