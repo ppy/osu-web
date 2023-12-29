@@ -169,7 +169,7 @@ class ScoresController extends BaseController
         $request = \Request::instance();
         $params = $request->all();
 
-        $buildId = ClientCheck::parseToken($request)['build']?->getKey()
+        $buildId = ClientCheck::parseToken($request)['buildId']
             ?? $GLOBALS['cfg']['osu']['client']['default_build_id'];
 
         $scoreToken = $room->startPlay($user, $playlistItem, $buildId);
