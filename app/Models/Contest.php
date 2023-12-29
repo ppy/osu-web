@@ -122,7 +122,9 @@ class Contest extends Model
 
     public function isJudge(User $user): bool
     {
-        return $this->judges->find($user->getKey()) !== null;
+        $judges = $this->judges();
+
+        return $judges->where($judges->qualifyColumn('user_id'), $user->getKey())->exists();
     }
 
     public function isJudged(): bool
