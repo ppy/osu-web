@@ -89,7 +89,7 @@ class ClientCheck
         $len = strlen($token);
 
         return [
-            'clientHash' => substr($token, $len - 90, 40),
+            'clientHash' => substr($token, $len - 82, 32),
             'validTime' => (int) substr($token, $len - 50, 10),
             'expected' => hex2bin(substr($token, $len - 40)),
         ];
