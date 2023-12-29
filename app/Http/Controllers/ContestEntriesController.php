@@ -8,10 +8,10 @@ namespace App\Http\Controllers;
 use App\Exceptions\InvariantException;
 use App\Models\Contest;
 use App\Models\ContestEntry;
-use App\Models\ContestJudgeScore;
-use App\Models\ContestJudgeVote;
 use App\Models\UserContestEntry;
+use App\Transformers\ContestTransformer;
 use Auth;
+use Ds\Set;
 use Illuminate\Support\Facades\DB;
 use Request;
 
@@ -19,22 +19,22 @@ class ContestEntriesController extends Controller
 {
     public function judgeResults($id)
     {
-        $entry = ContestEntry::with('contest')
-            ->with('contest.entries')
-            ->with('contest.scoringCategories')
-            ->with('judgeVotes')
-            ->with('judgeVotes.scores')
-            ->with('judgeVotes.user')
-            ->with('judgeVotes.scores.category')
-            ->with('user')
-            ->withSum('scores', 'value')
-            ->findOrFail($id);
+        $entry = ContestEntry::with('contest')->findOrFail($id);
 
         abort_if(!$entry->contest->isJudged() || !$entry->contest->show_votes, 404);
 
+        $entry->load([
+            'contest.entries',
+            'contest.scoringCategories',
+            'judgeVotes.scores',
+            'judgeVotes.user',
+            'judgeVotes.scores.category',
+            'user'
+        ])->loadSum('scores', 'value');
+
         $contestJson = json_item(
             $entry->contest->loadSum('scoringCategories', 'max_value'),
-            'Contest',
+            new ContestTransformer(),
             ['max_judging_score']
         );
 
@@ -57,78 +57,42 @@ class ContestEntriesController extends Controller
 
     public function judgeVote($id)
     {
-        $entry = ContestEntry::with('contest')
-            ->with('contest.judges')
-            ->with('contest.scoringCategories')
-            ->with('judgeVotes')
-            ->findOrFail($id);
+        $entry = ContestEntry::with('contest.scoringCategories')->findOrFail($id);
 
         priv_check('ContestJudge', $entry->contest)->ensureCan();
-
-        // so that admin can't submit vote if not judge
-        abort_if(!$entry->contest->isJudge(auth()->user()), 403);
 
         $params = get_params(request()->all(), null, [
             'scores:array',
             'comment',
         ]);
 
-        $scores = collect($params['scores']);
-        $comment = $params['comment'];
+        $categoryIds = new Set(array_pluck($params['scores'], 'contest_scoring_category_id'));
+        $categoryIds->intersect(new Set($entry->contest->scoringCategories->pluck('id')));
 
-        DB::transaction(function () use ($scores, $comment, $entry) {
-            $vote = $entry->judgeVotes->where('user_id', auth()->user()->getKey())->first();
+        if ($categoryIds->count() !== $entry->contest->scoringCategories->count()) {
+            throw new InvariantException(osu_trans('contest.judge.validation.missing_score'));
+        }
 
-            if ($vote !== null) {
-                if ($comment !== $vote->comment) {
-                    $vote->update(['comment' => $comment]);
-                }
-            } else {
-                $vote = ContestJudgeVote::create([
-                    'comment' => $comment,
-                    'contest_entry_id' => $entry->getKey(),
-                    'user_id' => auth()->user()->getKey(),
-                ]);
-            }
+        DB::transaction(function () use ($entry, $params) {
+            $vote = $entry->judgeVotes()->firstOrNew(['user_id' => Auth::user()->getKey()]);
+            $vote->fill(['comment' => $params['comment']])->save();
 
-            foreach ($entry->contest->scoringCategories as $category) {
-                $score = $scores
-                    ->where('contest_scoring_category_id', $category->getKey())
-                    ->first();
-
-                if ($score === null) {
-                    throw new InvariantException(osu_trans('contest.judge.validation.missing_score'));
-                }
-
-                $currentScore = ContestJudgeScore::where('contest_judge_vote_id', $vote->getKey())
-                    ->where('contest_scoring_category_id', $category->getKey())
-                    ->first();
+            foreach ($params['scores'] as $score) {
+                $category = $entry->contest->scoringCategories
+                    ->find($score['contest_scoring_category_id']);
 
                 $value = clamp($score['value'], 0, $category->max_value);
 
-                if ($currentScore !== null) {
-                    $currentValue = $currentScore->value;
-
-                    if ($currentValue !== $value) {
-                        $currentScore->update(['value' => $value]);
-                    }
-                } else {
-                    ContestJudgeScore::create([
-                        'contest_scoring_category_id' => $category->getKey(),
-                        'contest_judge_vote_id' => $vote->getKey(),
-                        'value' => $value,
-                    ]);
-                }
+                $vote->scores()->firstOrNew([
+                    'contest_judge_vote_id' => $vote->getKey(),
+                    'contest_scoring_category_id' => $category->getKey(),
+                ])->fill(['value' => $value])->save();
             }
         });
 
-        $updatedEntry = ContestEntry::with('judgeVotes')
-            ->with('judgeVotes.scores')
-            ->findOrFail($id);
+        $updatedEntry = $entry->refresh()->load('judgeVotes.scores');
 
-        $updatedEntryJson = json_item($updatedEntry, 'ContestEntry', ['current_user_judge_vote.scores']);
-
-        return $updatedEntryJson;
+        return json_item($updatedEntry, 'ContestEntry', ['current_user_judge_vote.scores']);
     }
 
     public function vote($id)
