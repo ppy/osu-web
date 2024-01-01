@@ -15,7 +15,7 @@ class ClientCheck
 {
     public static function parseToken(Request $request): array
     {
-        $token = $request->server('HTTP_X_TOKEN');
+        $token = $request->header('x-token');
         $assertValid = $GLOBALS['cfg']['osu']['client']['check_version'];
         $ret = [
             'buildId' => $GLOBALS['cfg']['osu']['client']['default_build_id'],
