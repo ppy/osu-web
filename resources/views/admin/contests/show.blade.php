@@ -75,12 +75,14 @@
                                     ->judge_votes_count ?? 0;
                             @endphp
 
-                            <a
-                                class="js-usercard"
-                                data-user-id="{{$judge->getKey()}}"
-                                href="{{ route('users.show', $judge) }}"
-                            >{{ $judge->username }}</a>:
-                            {{ $judgeVotesCount }}/{{ $contest->entries_count }}
+                            <div>
+                                <a
+                                    class="js-usercard"
+                                    data-user-id="{{$judge->getKey()}}"
+                                    href="{{ route('users.show', $judge) }}"
+                                >{{ $judge->username }}</a>:
+                                {{ $judgeVotesCount }}/{{ $contest->entries_count }}
+                            </div>
                         @endforeach
                     </div>
                 </dd>
