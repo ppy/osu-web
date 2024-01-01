@@ -6,6 +6,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Contest;
+use App\Models\ContestJudgeVote;
 use App\Models\DeletedUser;
 use App\Models\UserContestEntry;
 use GuzzleHttp;
@@ -23,8 +24,6 @@ class ContestsController extends Controller
     public function show($id)
     {
         $contest = Contest::with('judges')
-            ->with('entries')
-            ->with('entries.judgeVotes')
             ->withCount('entries')
             ->findOrFail($id);
 
@@ -33,9 +32,19 @@ class ContestsController extends Controller
             ->with('user')
             ->get();
 
+
+        if ($contest->isJudged()) {
+            $judgeVoteCounts = ContestJudgeVote::whereIn('contest_entry_id', $contest->entries()->pluck('id'))
+                ->groupBy('user_id')
+                ->selectRaw('COUNT(*) as judge_votes_count, user_id')
+                ->get();
+        }
+
+
         return ext_view('admin.contests.show', [
             'contest' => $contest,
             'entries' => json_collection($entries, 'UserContestEntry', ['user']),
+            'judgeVoteCounts' => $judgeVoteCounts ??= null,
         ]);
     }
 

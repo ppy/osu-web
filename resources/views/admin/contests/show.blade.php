@@ -68,12 +68,19 @@
                 <dd class="contest">
                     <div class="contest__description">
                         @foreach ($contest->judges as $judge)
+                            @php
+                                $judgeVotesCount = $judgeVoteCounts
+                                    ->where('user_id', $judge->getKey())
+                                    ->first()
+                                    ->judge_votes_count ?? 0;
+                            @endphp
+
                             <a
                                 class="js-usercard"
                                 data-user-id="{{$judge->getKey()}}"
                                 href="{{ route('users.show', $judge) }}"
                             >{{ $judge->username }}</a>:
-                            {{ $contest->judgeVotesFrom($judge)->count() }}/{{ $contest->entries_count }}
+                            {{ $judgeVotesCount }}/{{ $contest->entries_count }}
                         @endforeach
                     </div>
                 </dd>
