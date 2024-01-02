@@ -30,7 +30,7 @@ class ClientCheck
             $input = static::splitToken($token);
 
             $build = Build::firstWhere([
-                'hash' => hex2bin($input['clientHash']),
+                'hash' => $input['clientHash'],
                 'allow_ranking' => true,
             ]);
 
@@ -42,7 +42,7 @@ class ClientCheck
 
             $computed = hash_hmac(
                 'sha1',
-                $input['clientHash'].$input['validTime'],
+                $input['clientData'],
                 static::getKey($build),
                 true,
             );
@@ -53,7 +53,7 @@ class ClientCheck
 
             $now = time();
             static $maxTime = 15 * 60;
-            if (abs($now - $input['validTime']) > $maxTime) {
+            if (abs($now - $input['clientTime']) > $maxTime) {
                 throw new ClientCheckParseTokenException('expired token');
             }
 
@@ -86,12 +86,14 @@ class ClientCheck
 
     private static function splitToken(string $token): array
     {
-        $len = strlen($token);
+        $data = substr($token, -82);
 
         return [
-            'clientHash' => substr($token, $len - 82, 32),
-            'validTime' => (int) substr($token, $len - 50, 10),
-            'expected' => hex2bin(substr($token, $len - 40)),
+            'clientData' => substr($data, 0, 40),
+            'clientHash' => hex2bin(substr($data, 0, 32)),
+            'clientTime' => unpack("V", hex2bin(substr($data, 32, 8)))[1],
+            'expected' => hex2bin(substr($data, 40, 40)),
+            'version' => substr($data, 80, 2),
         ];
     }
 }
