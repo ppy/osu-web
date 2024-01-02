@@ -11,3 +11,6 @@ export default interface ContestJudgeVoteJson {
   total_score?: number;
   user?: UserJson;
 }
+
+export type ContestJudgeVoteJsonForResults = ContestJudgeVoteJson
+& Required<Pick<ContestJudgeVoteJson, 'scores' | 'total_score'>>;

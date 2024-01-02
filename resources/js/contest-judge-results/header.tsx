@@ -4,16 +4,16 @@
 import BasicSelectOptions from 'components/basic-select-options';
 import UserLink from 'components/user-link';
 import ValueDisplay from 'components/value-display';
-import ContestEntryJson from 'interfaces/contest-entry-json';
-import ContestJson from 'interfaces/contest-json';
+import { ContestEntryJsonForResults } from 'interfaces/contest-entry-json';
+import { ContestJsonForResults } from 'interfaces/contest-json';
 import SelectOptionJson from 'interfaces/select-option-json';
 import * as React from 'react';
 import { trans } from 'utils/lang';
 
 interface Props {
-  contest: ContestJson;
-  entries: ContestEntryJson[];
-  entry: ContestEntryJson;
+  contest: ContestJsonForResults;
+  entries: ContestEntryJsonForResults[];
+  entry: ContestEntryJsonForResults;
 }
 
 export default class Header extends React.PureComponent<Props> {
@@ -30,11 +30,9 @@ export default class Header extends React.PureComponent<Props> {
   render() {
     const { contest, entry } = this.props;
 
-    const score = entry.results?.votes;
-    const maxScore = (contest.max_judging_score ?? 0) * (entry.judge_votes?.length ?? 0);
+    const score = entry.results.votes;
+    const maxScore = contest.max_judging_score * entry.judge_votes.length;
     const totalScore = `${score}/${maxScore}`;
-
-    const userLink = this.renderUserLink();
 
     return (
       <div className='contest-judge-results-header'>
@@ -45,35 +43,28 @@ export default class Header extends React.PureComponent<Props> {
         />
 
         <div className='contest-judge-results-header__values'>
-          {score != null && <ValueDisplay
+          <ValueDisplay
             label={trans('contest.judge_results.total_score')}
             modifiers={'judge-results'}
             value={totalScore}
-          />}
+          />
 
-          {userLink != null && <ValueDisplay
+          <ValueDisplay
             label={trans('contest.judge_results.creator')}
             modifiers={'judge-results'}
-            value={userLink}
-          />}
+            value={
+              <UserLink user={this.props.entry.user} />
+            }
+          />
         </div>
       </div>
     );
   }
 
-  private entryToSelectOption(entry: ContestEntryJson): SelectOptionJson {
+  private entryToSelectOption(entry: ContestEntryJsonForResults): SelectOptionJson {
     return {
       id: entry.id,
       text: entry.title,
     };
-  }
-
-  private renderUserLink() {
-    const { user } = this.props.entry;
-    if (user == null) return;
-
-    return (
-      <UserLink user={user} />
-    );
   }
 }

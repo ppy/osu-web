@@ -4,14 +4,14 @@
 import UserAvatar from 'components/user-avatar';
 import UserLink from 'components/user-link';
 import ValueDisplay from 'components/value-display';
-import ContestJson from 'interfaces/contest-json';
-import ContestJudgeVoteJson from 'interfaces/contest-judge-vote-json';
+import { ContestJsonForResults } from 'interfaces/contest-json';
+import { ContestJudgeVoteJsonForResults } from 'interfaces/contest-judge-vote-json';
 import * as React from 'react';
 import { trans } from 'utils/lang';
 
 interface Props {
-  contest: ContestJson;
-  vote: ContestJudgeVoteJson;
+  contest: ContestJsonForResults;
+  vote: ContestJudgeVoteJsonForResults;
 }
 
 export default function Vote(props: Props) {
@@ -36,7 +36,7 @@ export default function Vote(props: Props) {
       </div>
 
       <div className='contest-judge-results-scores'>
-        {props.vote.scores?.map((score) => (
+        {props.vote.scores.map((score) => (
           <div key={score.id} className='contest-judge-results-scores__row'>
             <div className='contest-judge-results-scores__col'>
               <div className='contest-judge-entry__description-icon' title={score.category?.description}>
