@@ -12,10 +12,6 @@ use League\Fractal\Resource\Item;
 
 class ContestJudgeScoreTransformer extends TransformerAbstract
 {
-    protected array $availableIncludes = [
-        'category',
-    ];
-
     public function transform(ContestJudgeScore $score): array
     {
         return [
@@ -23,10 +19,5 @@ class ContestJudgeScoreTransformer extends TransformerAbstract
             'id' => $score->getKey(),
             'value' => $score->value,
         ];
-    }
-
-    public function includeCategory(ContestJudgeScore $score): Item
-    {
-        return $this->item($score->category, new ContestScoringCategoryTransformer());
     }
 }

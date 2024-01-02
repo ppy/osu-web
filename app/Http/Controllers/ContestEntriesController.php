@@ -28,20 +28,19 @@ class ContestEntriesController extends Controller
             'contest.scoringCategories',
             'judgeVotes.scores',
             'judgeVotes.user',
-            'judgeVotes.scores.category',
             'user'
         ])->loadSum('scores', 'value');
 
         $contestJson = json_item(
             $entry->contest->loadSum('scoringCategories', 'max_value'),
             new ContestTransformer(),
-            ['max_judging_score']
+            ['max_judging_score', 'scoring_categories'],
         );
 
         $entryJson = json_item($entry, 'ContestEntry', [
-            'judge_votes.user',
+            'judge_votes.scores',
             'judge_votes.total_score',
-            'judge_votes.scores.category',
+            'judge_votes.user',
             'results',
             'user',
         ]);
