@@ -5,11 +5,11 @@ import ContestJudgeVoteJson, { ContestJudgeVoteJsonForResults } from './contest-
 
 interface ContestEntryJsonAvailableIncludes {
   current_user_judge_vote: ContestJudgeVoteJson;
+  judge_votes: ContestJudgeVoteJson[];
   results: {
     actual_name: string;
     votes: number;
   };
-  judge_votes: ContestJudgeVoteJson[];
   user: {
     id: number;
     username: string;
