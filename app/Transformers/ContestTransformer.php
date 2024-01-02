@@ -17,6 +17,7 @@ class ContestTransformer extends TransformerAbstract
         'entries',
         'scoring_categories',
         'max_judging_score',
+        'max_total_score',
         'users_voted_count',
     ];
 
@@ -53,6 +54,11 @@ class ContestTransformer extends TransformerAbstract
     public function includeMaxJudgingScore(Contest $contest): Primitive
     {
         return $this->primitive((int) $contest->scoring_categories_sum_max_value);
+    }
+
+    public function includeMaxTotalScore(Contest $contest): Primitive
+    {
+        return $this->primitive((int) $contest->scoring_categories_sum_max_value * $contest->judges_count);
     }
 
     public function includeScoringCategories(Contest $contest): Collection

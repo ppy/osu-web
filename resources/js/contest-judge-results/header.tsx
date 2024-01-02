@@ -28,11 +28,7 @@ export default class Header extends React.PureComponent<Props> {
   }
 
   render() {
-    const { contest, entry } = this.props;
-
-    const score = entry.results.votes;
-    const maxScore = contest.max_judging_score * entry.judge_votes.length;
-    const totalScore = `${score}/${maxScore}`;
+    const totalScore = `${this.props.entry.results.votes}/${this.props.contest.max_total_score}`;
 
     return (
       <div className='contest-judge-results-header'>
