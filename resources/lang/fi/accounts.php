@@ -125,7 +125,7 @@ return [
 
     'privacy' => [
         'friends_only' => 'estä yksityisviestit henkilöiltä jotka eivät ole kaverilistallasi',
-        'hide_online' => 'piilota online-tilasi',
+        'hide_online' => 'piilota paikallaolotilasi',
         'title' => 'Yksityisyys',
     ],
 

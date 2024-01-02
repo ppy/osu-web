@@ -24,12 +24,14 @@ use Storage;
 /**
  * @property int $beatmap_id
  * @property \Carbon\Carbon|null $created_at
- * @property \stdClass $data
- * @property \Carbon\Carbon|null $deleted_at
+ * @property string|null $created_at_json
+ * @property ScoreData $data
+ * @property bool $has_replay
  * @property int $id
  * @property bool $preserve
+ * @property bool $ranked
  * @property int $ruleset_id
- * @property \Carbon\Carbon|null $updated_at
+ * @property int $unix_updated_at
  * @property User $user
  * @property int $user_id
  */
@@ -38,6 +40,8 @@ class Score extends Model implements Traits\ReportableInterface
     use Traits\Reportable, Traits\WithWeightedPp;
 
     const PROCESSING_QUEUE = 'osu-queue:score-statistics';
+
+    public $timestamps = false;
 
     protected $casts = [
         'data' => ScoreData::class,
@@ -146,18 +150,17 @@ class Score extends Model implements Traits\ReportableInterface
             'beatmap_id',
             'id',
             'ruleset_id',
+            'unix_updated_at',
             'user_id' => $this->getRawAttribute($key),
 
             'data' => $this->getClassCastableAttributeValue($key, $this->getRawAttribute($key)),
 
             'has_replay',
-            'preserve' => (bool) $this->getRawAttribute($key),
+            'preserve',
+            'ranked' => (bool) $this->getRawAttribute($key),
 
-            'created_at',
-            'updated_at' => $this->getTimeFast($key),
-
-            'created_at_json',
-            'updated_at_json' => $this->getJsonTimeFast($key),
+            'created_at' => $this->getTimeFast($key),
+            'created_at_json' => $this->getJsonTimeFast($key),
 
             'pp' => $this->performance?->pp,
 
@@ -184,7 +187,7 @@ class Score extends Model implements Traits\ReportableInterface
 
     public function getReplayFile(): ?string
     {
-        return Storage::disk(config('osu.score_replays.storage').'-solo-replay')
+        return Storage::disk($GLOBALS['cfg']['osu']['score_replays']['storage'].'-solo-replay')
             ->get($this->getKey());
     }
 
@@ -215,7 +218,7 @@ class Score extends Model implements Traits\ReportableInterface
             'enabled_mods' => app('mods')->idsToBitset(array_column($data->mods, 'acronym')),
             'maxcombo' => $data->maxCombo,
             'pass' => $data->passed,
-            'perfect' => $data->passed && $statistics->miss + $statistics->largeTickMiss === 0,
+            'perfect' => $data->passed && $statistics->miss + $statistics->large_tick_miss === 0,
             'rank' => $data->rank,
             'score' => $data->totalScore,
             'scorechecksum' => "\0",
@@ -234,9 +237,9 @@ class Score extends Model implements Traits\ReportableInterface
                 break;
             case 'fruits':
                 $score->count300 = $statistics->great;
-                $score->count100 = $statistics->largeTickHit;
-                $score->countkatu = $statistics->smallTickMiss;
-                $score->count50 = $statistics->smallTickHit;
+                $score->count100 = $statistics->large_tick_hit;
+                $score->countkatu = $statistics->small_tick_miss;
+                $score->count50 = $statistics->small_tick_hit;
                 break;
             case 'mania':
                 $score->countgeki = $statistics->perfect;

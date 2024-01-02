@@ -178,8 +178,8 @@ return [
         ],
 
         'post_edit' => [
-            'cancel' => '',
-            'post' => '',
+            'cancel' => 'Atcelt',
+            'post' => 'Saglabāt',
         ],
     ],
 
@@ -297,10 +297,10 @@ return [
         'lock' => [
             'is_locked' => 'Šī tēma ir slēgta un nav iespējams caur to atbildēt',
             'to_0' => 'Atvērt tēmu',
-            'to_0_confirm' => '',
+            'to_0_confirm' => 'Atslēgt tematu?',
             'to_0_done' => 'Tēma tika atvērta',
             'to_1' => 'Slēgt tēmu',
-            'to_1_confirm' => '',
+            'to_1_confirm' => 'Slēgt tematu?',
             'to_1_done' => 'Tēma tika slēgta',
         ],
 
@@ -310,13 +310,13 @@ return [
 
         'moderate_pin' => [
             'to_0' => 'Atspraust tēmu',
-            'to_0_confirm' => '',
+            'to_0_confirm' => 'Atspraust tematu?',
             'to_0_done' => 'Tēma tika atsprausta',
             'to_1' => 'Piespraust tēmu',
-            'to_1_confirm' => '',
+            'to_1_confirm' => 'Piespraust tematu?',
             'to_1_done' => 'Tēma tika piesprausta',
             'to_2' => 'Piespraust tēmu un atzīmēt kā paziņojumu',
-            'to_2_confirm' => '',
+            'to_2_confirm' => 'Piespraust tematu un atzīmēt kā paziņojumu?',
             'to_2_done' => 'Tēma tika piesprausta un atzīmēta kā paziņojums',
         ],
 
@@ -341,7 +341,7 @@ return [
 
                 'user' => [
                     'count' => '{0} nav balsu|{1} :count_delimited balss|[2,*] :count_delimited balsis',
-                    'current' => '',
+                    'current' => 'Jums palikušas :votes balsis.',
                     'not_enough' => "",
                 ],
             ],
@@ -349,7 +349,7 @@ return [
             'poll' => [
                 'edit' => 'Balsošanas Rediģēšana',
                 'edit_warning' => 'Rediģējot balsošanas metodi tiks noņemti visi esošie rezultāti!',
-                'vote' => '',
+                'vote' => 'Balsot',
 
                 'button' => [
                     'change_vote' => 'Mainīt balsi',

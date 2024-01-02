@@ -124,8 +124,8 @@ return [
     ],
 
     'ogp' => [
-        'modding_description' => '',
-        'modding_description_empty' => '',
+        'modding_description' => 'Мап: :counts',
+        'modding_description_empty' => 'Користувач не має жодної мапи...',
 
         'description' => [
             '_' => 'Ранг (:ruleset): :global | :country',

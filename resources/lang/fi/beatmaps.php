@@ -153,7 +153,7 @@ return [
             'approved' => 'Tämä rytmikartta hyväksyttiiin :date!',
             'graveyard' => "Tätä beatmappia ei ole päivitetty sitten :date ja sen tekijä on todennäköisesti hylännyt sen...",
             'loved' => 'Tämä rytmikartta lisättiin rakastettuihin :date!',
-            'ranked' => 'Tämä beatmap hyväksyttiin :date!',
+            'ranked' => 'Tämä rytmikartta rankattiin :date!',
             'wip' => 'Huomaa: Tämän rytmikartan tekijä on merkannut sen keskeneräiseksi.',
         ],
 
@@ -212,7 +212,7 @@ return [
         'unresolved_issues' => 'Vanhat ongelmat on ratkaistava ensin.',
 
         'rank_estimate' => [
-            '_' => 'Tämä kartta tulee arvion perusteella rankatuksi:date, jos ongelmia ei löydy. Se on :position. :queue.',
+            '_' => 'Tämä kartta tulee arvion perusteella rankatuksi :date, jos ongelmia ei löydy. Se on :position. :queue.',
             'on' => ':date',
             'queue' => 'hyväksytysjonossa',
             'soon' => 'pian',
@@ -224,9 +224,9 @@ return [
         ],
 
         'reset_confirm' => [
-            'disqualify' => 'Oletko varma? Tämä poistaa beatmapin esihyväksytyistä ja kumoaa suositusprosessin.',
+            'disqualify' => 'Oletko varma? Tämä poistaa rytmikartan kelpuutetuista ja kumoaa ehdollepanoprosessin.',
             'nomination_reset' => 'Oletko varma? Uuden ongelman lähettäminen kumoaa suositusprosessin.',
-            'problem_warning' => 'Oletko varma rapoitoidaksesi ongelman tässä beatmapissa? Tämä hälyttää Beatmap nimittäjät.',
+            'problem_warning' => 'Oletko varma, että haluat ilmoittaa ongelmasta tässä rytmikartassa? Tämä aiheuttaa hälytyksen rytmikarttojen ehdollepanijoille.',
         ],
     ],
 
@@ -234,7 +234,7 @@ return [
         'search' => [
             'prompt' => 'kirjoita hakusanoja...',
             'login_required' => 'Kirjaudu sisään hakeaksesi.',
-            'options' => 'Enemmän Hakuasetuksia',
+            'options' => 'Lisää hakuvaihtoehtoja',
             'supporter_filter' => 'Tunnisteella :filters rajaaminen vaatii aktiivisen osu!supporter-tagin',
             'not-found' => 'ei tuloksia',
             'not-found-quote' => '... mitään ei löytynyt.',
@@ -255,7 +255,7 @@ return [
                 'difficulty' => 'Vaikeustaso',
                 'favourites' => 'Suosikit',
                 'updated' => 'Päivitetty',
-                'ranked' => 'Hyväksytty',
+                'ranked' => 'Rankattu',
                 'rating' => 'Luokitus',
                 'plays' => 'Pelikerrat',
                 'relevance' => 'Osuvuus',
@@ -263,7 +263,7 @@ return [
             ],
             'supporter_filter_quote' => [
                 '_' => 'Rajataksesi tunnisteella :filters sinulla on oltava aktiivinen :link',
-                'link_text' => 'osu!supporter-tagi',
+                'link_text' => 'osu!n tukijan merkki',
             ],
         ],
     ],
@@ -289,11 +289,11 @@ return [
         'graveyard' => 'Hautausmaa',
         'leaderboard' => 'Tulostaulukollinen',
         'loved' => 'Rakastettu',
-        'mine' => 'Mappini',
+        'mine' => 'Omat kartat',
         'pending' => 'Vireillä',
         'wip' => 'Työn alla',
-        'qualified' => 'Esihyväksytty',
-        'ranked' => 'Hyväksytty',
+        'qualified' => 'Kelpuutettu',
+        'ranked' => 'Pisteytetty',
     ],
     'genre' => [
         'any' => 'Kaikki',

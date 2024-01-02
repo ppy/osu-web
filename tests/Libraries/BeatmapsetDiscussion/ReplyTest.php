@@ -409,7 +409,7 @@ class ReplyTest extends TestCase
         Queue::fake();
         Event::fake();
 
-        config()->set('osu.beatmapset.required_nominations', 1);
+        config_set('osu.beatmapset.required_nominations', 1);
 
         $this->mapper = User::factory()->create()->markSessionVerified();
     }

@@ -11,10 +11,10 @@ return [
     ],
 
     'error' => [
-        'contact_support' => 'Ota yhteyttä tukeen palauttaakesi käyttäjä.',
+        'contact_support' => 'Ota yhteyttä tukeen palauttaaksesi käyttäjäsi.',
         'expired' => 'Vahvistuskoodi on vanhentunut.',
         'invalid' => 'Odottamaton virhe vahvistuskoodissa.',
-        'is_privileged' => 'Ota yhteyttä peppyyn ebin :-D',
+        'is_privileged' => 'Ota yhteyttä ylemmän tason ylläpitäjään tilisi palauttamista varten.',
         'missing_key' => 'Vaaditaan.',
         'too_many_tries' => 'Liian monta epäonnistunutta yritystä.',
         'user_not_found' => 'Käyttäjää ei ole olemassa.',

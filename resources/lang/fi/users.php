@@ -119,13 +119,13 @@ return [
 
         'beta' => [
             'main' => 'Beta on tällä hetkellä käytössä vain siihen oikeutetuilla käyttäjillä.',
-            'small' => '(osu!-tukijat tulevat kohta)',
+            'small' => '(osu!n tukijat tulevat kohta)',
         ],
     ],
 
     'ogp' => [
-        'modding_description' => '',
-        'modding_description_empty' => '',
+        'modding_description' => 'Rytmikarttoja: :counts',
+        'modding_description_empty' => 'Käyttäjällä ei ole rytmikarttoja...',
 
         'description' => [
             '_' => 'Sijoitus (:ruleset): :global | :country',
@@ -178,7 +178,7 @@ return [
         'change_avatar' => 'vaihda profiilikuvasi!',
         'first_members' => 'Täällä alusta alkaen',
         'is_developer' => 'osu!n kehittäjä',
-        'is_supporter' => 'osu!-tukija',
+        'is_supporter' => 'osu!n tukija',
         'joined_at' => 'Liittyi :date',
         'lastvisit' => 'Nähty viimeksi :date',
         'lastvisit_online' => 'Tällä hetkellä paikalla',
@@ -258,7 +258,7 @@ return [
             ],
             'discussions' => [
                 'title' => 'Keskustelut',
-                'title_longer' => 'Viimeaikaiset Keskustelut',
+                'title_longer' => 'Viimeaikaiset keskustelut',
                 'show_more' => 'nää lisää keskusteluja',
             ],
             'events' => [
@@ -344,7 +344,7 @@ return [
                 'title' => 'Mitalit',
             ],
             'playlists' => [
-                'title' => 'Soittolista Pelit',
+                'title' => 'Soittolistapelit',
             ],
             'posts' => [
                 'title' => 'Julkaisut',
@@ -449,10 +449,10 @@ return [
             'highest' => 'Korkein sija :rank oli :date',
         ],
         'stats' => [
-            'hit_accuracy' => 'Osumatarkkuus',
+            'hit_accuracy' => 'Iskutarkkuus',
             'level' => 'Taso :level',
             'level_progress' => 'edistyminen seuraavalle tasolle',
-            'maximum_combo' => 'Suurin combo',
+            'maximum_combo' => 'Suurin iskuputki',
             'medals' => 'Mitalit',
             'play_count' => 'Pelikertoja',
             'play_time' => 'Peliaikaa yhteensä',

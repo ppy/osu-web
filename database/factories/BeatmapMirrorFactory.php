@@ -16,7 +16,7 @@ class BeatmapMirrorFactory extends Factory
     public function default(): static
     {
         return $this->state([
-            'mirror_id' => config('osu.beatmap_processor.mirrors_to_use')[0],
+            'mirror_id' => $GLOBALS['cfg']['osu']['beatmap_processor']['mirrors_to_use'][0],
         ]);
     }
 

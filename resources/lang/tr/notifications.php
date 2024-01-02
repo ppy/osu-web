@@ -26,7 +26,7 @@ return [
     'filters' => [
         '_' => 'hepsi',
         'user' => 'profil',
-        'beatmapset' => 'beatmapler',
+        'beatmapset' => 'haritalar',
         'forum_topic' => 'forum',
         'news_post' => 'gelişmeler',
         'build' => 'sürümler',
@@ -35,7 +35,7 @@ return [
 
     'item' => [
         'beatmapset' => [
-            '_' => 'Beatmap',
+            '_' => 'Harita',
 
             'beatmap_owner_change' => [
                 '_' => 'Konuk zorluk',

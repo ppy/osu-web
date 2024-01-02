@@ -49,15 +49,15 @@ return [
     ],
 
     'discount' => '折扣 :percent%',
-    'free' => '',
+    'free' => '免費！',
 
     'invoice' => [
         'contact' => '',
-        'date' => '',
+        'date' => '日期：',
         'echeck_delay' => '由於您是用 eCheck 付款，請等待至多 10 天以使該支付通過 PayPal 完成！',
         'hide_from_activity' => '這項 osu! 贊助者訂單未在您的最近活動中顯示。',
         'sent_via' => '',
-        'shipping_to' => '',
+        'shipping_to' => '運送至：',
         'title' => '',
         'title_compact' => '帳單',
 
@@ -66,18 +66,18 @@ return [
                 'title' => '',
                 'line_1' => [
                     '_' => "",
-                    'link_text' => '',
+                    'link_text' => 'osu!store 支援',
                 ],
             ],
             'delivered' => [
                 'title' => '',
                 'line_1' => [
                     '_' => '',
-                    'link_text' => '',
+                    'link_text' => 'osu!store 支援',
                 ],
             ],
             'prepared' => [
-                'title' => '',
+                'title' => '正在準備您的訂單！',
                 'line_1' => '',
                 'line_2' => '',
             ],
@@ -90,11 +90,11 @@ return [
                 ],
             ],
             'shipped' => [
-                'title' => '',
-                'tracking_details' => '',
+                'title' => '您的訂單已出貨!',
+                'tracking_details' => '物流追蹤詳情如下:',
                 'no_tracking_details' => [
                     '_' => "",
-                    'link_text' => '',
+                    'link_text' => '向我們發送電子郵件',
                 ],
             ],
         ],
@@ -110,16 +110,16 @@ return [
         'resume' => '繼續結賬',
         'shipping_and_handling' => '',
         'shopify_expired' => '此訂單的結帳網址已經過期。',
-        'subtotal' => '',
-        'total' => '',
+        'subtotal' => '小計',
+        'total' => '總計',
 
         'details' => [
             'order_number' => '',
             'payment_terms' => '',
             'salesperson' => '',
-            'shipping_method' => '',
+            'shipping_method' => '運送方式',
             'shipping_terms' => '',
-            'title' => '',
+            'title' => '訂單詳情:',
         ],
 
         'item' => [
@@ -151,14 +151,14 @@ return [
             'paid' => '已付款',
             'processing' => '待確認',
             'shipped' => '已出貨',
-            'title' => '',
+            'title' => '訂單狀態',
         ],
 
         'thanks' => [
             'title' => '',
             'line_1' => [
                 '_' => '',
-                'link_text' => '',
+                'link_text' => '聯絡我們',
             ],
         ],
     ],
@@ -194,8 +194,8 @@ return [
         'check' => '输入使用者名稱並檢查是否可用',
         'checking' => '正在檢查 :username 是否可用。。。',
         'placeholder' => '',
-        'label' => '',
-        'current' => '',
+        'label' => '新的使用者名稱',
+        'current' => '您目前的使用者名稱是 ":username"。',
 
         'require_login' => [
             '_' => '需要 :link 才能變更使用者名稱！',

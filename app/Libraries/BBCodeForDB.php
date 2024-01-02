@@ -42,7 +42,7 @@ class BBCodeForDB
     public function __construct($text = '')
     {
         $this->text = $text;
-        $this->uid = config('osu.bbcode.uid');
+        $this->uid = $GLOBALS['cfg']['osu']['bbcode']['uid'];
     }
 
     public function parseAudio($text)
@@ -175,7 +175,7 @@ class BBCodeForDB
     public function parseLinks($text)
     {
         $spaces = ['(^|\[.+?\]|\s(?:&lt;|[.:([])*)', "((?:\[.+?\]|&gt;|[.:)\]])*(?:$|\s|\n|\r))"];
-        $internalUrl = rtrim(preg_quote(config('app.url'), '#'), '/');
+        $internalUrl = rtrim(preg_quote($GLOBALS['cfg']['app']['url'], '#'), '/');
 
         // internal url
         $text = preg_replace(

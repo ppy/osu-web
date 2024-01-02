@@ -14,7 +14,7 @@ class ImageProcessorService
 
     public function __construct(?string $endpoint = null)
     {
-        $this->endpoint = $endpoint ?? config('osu.beatmap_processor.thumbnailer');
+        $this->endpoint = $endpoint ?? $GLOBALS['cfg']['osu']['beatmap_processor']['thumbnailer'];
     }
 
     private static function isValidFormat($size)

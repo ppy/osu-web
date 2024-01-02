@@ -37,7 +37,7 @@ class DiscussionTest extends TestCase
      */
     public function testMinPlaysVerification(\Closure $minPlays, bool $verified, bool $success)
     {
-        config()->set('osu.user.post_action_verification', false);
+        config_set('osu.user.post_action_verification', false);
 
         $user = User::factory()->withPlays($minPlays())->create();
         $beatmapset = $this->beatmapsetFactory()->create();
@@ -287,8 +287,8 @@ class DiscussionTest extends TestCase
     public static function minPlaysVerificationDataProvider()
     {
         return [
-            [fn () => config('osu.user.min_plays_for_posting') - 1, false, false],
-            [fn () => config('osu.user.min_plays_for_posting') - 1, true, true],
+            [fn () => $GLOBALS['cfg']['osu']['user']['min_plays_for_posting'] - 1, false, false],
+            [fn () => $GLOBALS['cfg']['osu']['user']['min_plays_for_posting'] - 1, true, true],
             [fn () => null, false, true],
             [fn () => null, true, true],
         ];
@@ -401,7 +401,7 @@ class DiscussionTest extends TestCase
 
         Event::fake();
 
-        config()->set('osu.beatmapset.required_nominations', 1);
+        config_set('osu.beatmapset.required_nominations', 1);
 
         $this->mapper = User::factory()->create()->markSessionVerified();
     }

@@ -111,8 +111,8 @@ class GithubUsersController extends Controller
     private function makeGithubOAuthProvider(): GithubProvider
     {
         return new GithubProvider([
-            'clientId' => config('osu.github.client_id'),
-            'clientSecret' => config('osu.github.client_secret'),
+            'clientId' => $GLOBALS['cfg']['osu']['github']['client_id'],
+            'clientSecret' => $GLOBALS['cfg']['osu']['github']['client_secret'],
         ]);
     }
 }

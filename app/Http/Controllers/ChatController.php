@@ -19,7 +19,7 @@ class ChatController extends Controller
 
         // TODO: notification server and chat client needs some updating
         // to handle verification_requirement_change properly.
-        if (config('osu.user.post_action_verification')) {
+        if ($GLOBALS['cfg']['osu']['user']['post_action_verification']) {
             $this->middleware('verify-user');
         }
 

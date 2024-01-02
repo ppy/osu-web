@@ -14,45 +14,45 @@ return [
 
         'slogan' => [
             'main' => '',
-            'sub' => '',
+            'sub' => 'ritms ir tikai klikšķa attālumā',
         ],
     ],
 
     'search' => [
-        'advanced_link' => '',
-        'button' => '',
-        'empty_result' => '',
+        'advanced_link' => 'Izvērstā meklēšana',
+        'button' => 'Meklēt',
+        'empty_result' => 'Nekas nav atrasts!',
         'keyword_required' => '',
-        'placeholder' => '',
+        'placeholder' => 'rakstiet, lai meklētu',
         'title' => 'meklēt',
 
         'beatmapset' => [
-            'login_required' => '',
+            'login_required' => 'Ielogojieties, lai meklētu bītmapes',
             'more' => '',
             'more_simple' => '',
-            'title' => '',
+            'title' => 'Bītmapes',
         ],
 
         'forum_post' => [
-            'all' => '',
-            'link' => '',
-            'login_required' => '',
+            'all' => 'Visi forumi',
+            'link' => 'Meklēt forumā',
+            'login_required' => 'Ieiet, lai meklētu forumā',
             'more_simple' => '',
-            'title' => '',
+            'title' => 'Forums',
 
             'label' => [
-                'forum' => '',
-                'forum_children' => '',
-                'include_deleted' => '',
+                'forum' => 'meklēšana Forumos',
+                'forum_children' => 'iekļaut apakšforumus',
+                'include_deleted' => 'iekļaut dzēstos rakstus',
                 'topic_id' => '',
-                'username' => '',
+                'username' => 'autors',
             ],
         ],
 
         'mode' => [
-            'all' => '',
-            'beatmapset' => '',
-            'forum_post' => '',
+            'all' => 'visi',
+            'beatmapset' => 'bītmape',
+            'forum_post' => 'forums',
             'user' => 'spēlētājs',
             'wiki_page' => 'wiki',
         ],
@@ -60,7 +60,7 @@ return [
         'user' => [
             'login_required' => 'Ieiet, lai meklētu',
             'more' => ':count vairāki spēlētāji meklēšanas rezultātā',
-            'more_simple' => '',
+            'more_simple' => 'Rādīt vairāk spēlētāju meklēšanas rezultātus',
             'more_hidden' => '',
             'title' => 'Spēlētāji',
         ],

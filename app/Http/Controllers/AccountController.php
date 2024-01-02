@@ -7,11 +7,11 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\ImageProcessorException;
 use App\Exceptions\ModelNotSavedException;
+use App\Libraries\Session\Store as SessionStore;
+use App\Libraries\SessionVerification;
 use App\Libraries\User\AvatarHelper;
 use App\Libraries\User\CountryChange;
 use App\Libraries\User\CountryChangeTarget;
-use App\Libraries\UserVerification;
-use App\Libraries\UserVerificationState;
 use App\Mail\UserEmailUpdated;
 use App\Mail\UserPasswordUpdated;
 use App\Models\GithubUser;
@@ -91,9 +91,9 @@ class AccountController extends Controller
         }
 
         try {
-            $user
-                ->profileCustomization()
-                ->setCover(Request::input('cover_id'), Request::file('cover_file'));
+            $profile = $user->profileCustomization();
+            $profile->cover()->set(Request::input('cover_id'), Request::file('cover_file'));
+            $profile->save();
         } catch (ImageProcessorException $e) {
             return error_popup($e->getMessage());
         }
@@ -109,11 +109,8 @@ class AccountController extends Controller
             ->orderBy('username')
             ->get();
 
-        $sessions = Request::session()
-            ->currentUserSessions();
-
-        $currentSessionId = Request::session()
-            ->getIdWithoutKeyPrefix();
+        $sessions = SessionStore::sessions($user->getKey());
+        $currentSessionId = \Session::getId();
 
         $authorizedClients = json_collection(Client::forUser($user), 'OAuth\Client', 'user');
         $ownClients = json_collection($user->oauthClients()->where('revoked', false)->get(), 'OAuth\Client', ['redirect', 'secret']);
@@ -260,6 +257,7 @@ class AccountController extends Controller
             'comments_sort:string',
             'extras_order:string[]',
             'forum_posts_show_deleted:bool',
+            'legacy_score_only:bool',
             'profile_cover_expanded:bool',
             'user_list_filter:string',
             'user_list_sort:string',
@@ -294,7 +292,7 @@ class AccountController extends Controller
                 Mail::to($user)->send(new UserPasswordUpdated($user));
             }
 
-            $user->resetSessions(session()->getKey());
+            $user->resetSessions(\Session::getId());
 
             return response([], 204);
         } else {
@@ -304,27 +302,16 @@ class AccountController extends Controller
 
     public function verify()
     {
-        return UserVerification::fromCurrentRequest()->verify();
+        return SessionVerification\Controller::verify();
     }
 
     public function verifyLink()
     {
-        $state = UserVerificationState::fromVerifyLink(get_string(request('key')) ?? '');
-
-        if ($state === null) {
-            UserVerification::logAttempt('link', 'fail', 'incorrect_key');
-
-            return ext_view('accounts.verification_invalid', null, null, 404);
-        }
-
-        UserVerification::logAttempt('link', 'success');
-        $state->markVerified();
-
-        return ext_view('accounts.verification_completed');
+        return SessionVerification\Controller::verifyLink();
     }
 
     public function reissueCode()
     {
-        return UserVerification::fromCurrentRequest()->reissue();
+        return SessionVerification\Controller::reissue();
     }
 }

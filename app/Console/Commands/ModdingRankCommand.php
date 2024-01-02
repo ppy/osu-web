@@ -37,7 +37,7 @@ class ModdingRankCommand extends Command
             ->count();
 
         return [
-            'availableQuota' => config('osu.beatmapset.rank_per_day') - $rankedTodayCount,
+            'availableQuota' => $GLOBALS['cfg']['osu']['beatmapset']['rank_per_day'] - $rankedTodayCount,
             'inQueue' => Beatmapset::toBeRanked($ruleset)->count(),
             'rankedToday' => $rankedTodayCount,
         ];
@@ -92,7 +92,7 @@ class ModdingRankCommand extends Command
             return;
         }
 
-        $toRankLimit = min(config('osu.beatmapset.rank_per_run'), $stats['availableQuota']);
+        $toRankLimit = min($GLOBALS['cfg']['osu']['beatmapset']['rank_per_run'], $stats['availableQuota']);
 
         $toBeRanked = Beatmapset::tobeRanked($ruleset)
             ->orderBy('queued_at', 'ASC')

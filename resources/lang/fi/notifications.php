@@ -44,7 +44,7 @@ return [
             ],
 
             'beatmapset_discussion' => [
-                '_' => 'Rytmikarttakeskustelu',
+                '_' => 'Rytmikartan keskustelu',
                 'beatmapset_discussion_lock' => 'Keskustelu kohteessa ":title" on lukittu',
                 'beatmapset_discussion_lock_compact' => 'Keskustelu on lukittu',
                 'beatmapset_discussion_post_new' => 'Uusi viesti kohteessa ":title" käyttäjältä :username: ":content"',
@@ -57,9 +57,9 @@ return [
                 'beatmapset_discussion_unlock_compact' => 'Keskustelu on avattu',
 
                 'review_count' => [
-                    'praises' => '',
-                    'problems' => '',
-                    'suggestions' => '',
+                    'praises' => ':count_delimited kehu|:count_delimited kehua',
+                    'problems' => ':count_delimited ongelma|:count_delimited ongelmaa',
+                    'suggestions' => ':count_delimited ehdotus|:count_delimited ehdotusta',
                 ],
             ],
 
@@ -72,7 +72,7 @@ return [
             ],
 
             'beatmapset_state' => [
-                '_' => 'Beatmapin tila muutettu',
+                '_' => 'Rytmikartan tilanne muuttui',
                 'beatmapset_disqualify' => '":title" on hylätty',
                 'beatmapset_disqualify_compact' => 'Rytmikartta epäkelpuutettiin',
                 'beatmapset_love' => '":title" ylennettiin rakastetuksi',
@@ -108,7 +108,7 @@ return [
                 'announce' => [
                     'channel_announcement' => ':username sanoo ":title"',
                     'channel_announcement_compact' => ':title',
-                    'channel_announcement_group' => 'Ilmoitus :username\'lta',
+                    'channel_announcement_group' => 'Tiedote käyttäjältä :username',
                 ],
             ],
 
@@ -118,7 +118,7 @@ return [
                 'pm' => [
                     'channel_message' => ':username sanoo ":title"',
                     'channel_message_compact' => ':title',
-                    'channel_message_group' => ':username\'lta',
+                    'channel_message_group' => 'käyttäjältä :username',
                 ],
             ],
         ],
@@ -163,9 +163,9 @@ return [
             'user_beatmapset_new' => [
                 '_' => 'Uusi rytmikartta',
 
-                'user_beatmapset_new' => 'Uusi rytmikartta ":title" :username\'lta',
+                'user_beatmapset_new' => 'Uusi rytmikartta ":title" kartoittajalta :username',
                 'user_beatmapset_new_compact' => 'Uusi rytmikartta ":title"',
-                'user_beatmapset_new_group' => 'Uusia rytmikarttoja :username\'lta',
+                'user_beatmapset_new_group' => 'Uusia rytmikarttoja kartoittajalta :username',
 
                 'user_beatmapset_revive' => ':username elvytti rytmikartan ":title"',
                 'user_beatmapset_revive_compact' => 'Rytmikartta ":title" elvytetty',
@@ -217,7 +217,7 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => '":name" on saanut uuden ilmoituksen',
+                'announce' => '":name" on saanut uuden tiedotteen',
             ],
 
             'channel' => [

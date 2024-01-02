@@ -52,7 +52,7 @@ class UserNotificationDigest implements ShouldQueue
         // TODO: catch and log errors?
         Mail::to($this->user)->send(new UserNotificationDigestMail($notifications, $this->user));
 
-        Datadog::increment(config('datadog-helper.prefix_web').'.user_notification_digest.mail', 1);
+        Datadog::increment($GLOBALS['cfg']['datadog-helper']['prefix_web'].'.user_notification_digest.mail', 1);
     }
 
     private function filterNotifications(Collection $notifications)

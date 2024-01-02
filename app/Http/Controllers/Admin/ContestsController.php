@@ -9,7 +9,6 @@ use App\Models\Contest;
 use App\Models\ContestJudgeVote;
 use App\Models\DeletedUser;
 use App\Models\UserContestEntry;
-use GuzzleHttp;
 use ZipStream\ZipStream;
 
 class ContestsController extends Controller
@@ -61,14 +60,11 @@ class ContestsController extends Controller
         return response()->streamDownload(function () use ($entries) {
             $zip = new ZipStream();
 
-            $client = new GuzzleHttp\Client();
-
             $deletedUser = new DeletedUser();
             foreach ($entries as $entry) {
                 $targetDir = ($entry->user ?? $deletedUser)->username." ({$entry->user_id})";
                 $filename = sanitize_filename($entry->original_filename);
-                $file = $client->get($entry->fileUrl())->getBody();
-                $zip->addFileFromPsr7Stream("$targetDir/{$filename}", $file);
+                $zip->addFile("$targetDir/{$filename}", $entry->file()->get());
             }
 
             $zip->finish();

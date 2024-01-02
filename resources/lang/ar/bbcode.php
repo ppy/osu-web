@@ -6,7 +6,7 @@
 return [
     'bold' => 'عريض',
     'heading' => 'عنوان',
-    'help' => '',
+    'help' => 'مساعدة',
     'image' => 'صورة',
     'imagemap' => '',
     'italic' => 'مائل',

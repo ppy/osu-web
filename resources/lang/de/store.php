@@ -6,7 +6,7 @@
 return [
     'cart' => [
         'checkout' => 'Zur Kasse',
-        'empty_cart' => '',
+        'empty_cart' => 'Alle Artikel aus dem Warenkorb entfernen',
         'info' => ':count_delimited Artikel im Warenkorb ($:subtotal)|:count_delimited Artikel im Warenkorb ($:subtotal)',
         'more_goodies' => 'Ich möchte mich vor meiner Bestellung noch etwas umschauen',
         'shipping_fees' => 'Versandkosten',
@@ -49,37 +49,37 @@ return [
     ],
 
     'discount' => 'Spare :percent%',
-    'free' => '',
+    'free' => 'kostenlos!',
 
     'invoice' => [
-        'contact' => '',
-        'date' => '',
+        'contact' => 'Kontakt:',
+        'date' => 'Datum:',
         'echeck_delay' => 'Da es sich bei deiner Zahlung um einen eCheck handelt, kannst du bis zu 10 zusätzliche Tage einplanen, um die Zahlung über PayPal abzuwickeln!',
         'hide_from_activity' => 'osu!supporter-Tags in dieser Bestellung werden nicht in deinen letzten Aktivitäten angezeigt.',
-        'sent_via' => '',
-        'shipping_to' => '',
-        'title' => '',
-        'title_compact' => 'rechnung',
+        'sent_via' => 'Versand durch:',
+        'shipping_to' => 'Lieferung an:',
+        'title' => 'Rechnung',
+        'title_compact' => 'Rechnung',
 
         'status' => [
             'cancelled' => [
-                'title' => '',
+                'title' => 'Deine Bestellung wurde storniert',
                 'line_1' => [
-                    '_' => "",
-                    'link_text' => '',
+                    '_' => "Wenn du keine Stornierung angefordert hast, kontaktiere bitte den :link und nenne deine Bestellnummer (#:order_number).",
+                    'link_text' => 'osu!store-Support',
                 ],
             ],
             'delivered' => [
-                'title' => '',
+                'title' => 'Deine Bestellung wurde zugestellt! Wir hoffen, dass du damit Spaß hast!',
                 'line_1' => [
-                    '_' => '',
-                    'link_text' => '',
+                    '_' => 'Wenn du irgendwelche Probleme mit deinem Kauf hast, kontaktiere bitte den :link.',
+                    'link_text' => 'osu!store-Support',
                 ],
             ],
             'prepared' => [
-                'title' => '',
-                'line_1' => '',
-                'line_2' => '',
+                'title' => 'Deine Bestellung wird derzeit bearbeitet!',
+                'line_1' => 'Bitte warte noch etwas, bis das Paket ausgeliefert wird. Informationen zur Verfolgung erscheinen hier, sobald die Bestellung bearbeitet und versandt wurde. Dies kann bis zu 5 Tage dauern (in der Regel aber weniger!), je nachdem, wie viel wir zu tun haben.',
+                'line_2' => 'Wir versenden alle Bestellungen aus Japan je nach Gewicht und Wert mit verschiedenen Versanddiensten. Dieser Bereich wird aktualisiert, sobald wir die Bestellung ausgeliefert haben.',
             ],
             'processing' => [
                 'title' => 'Deine Zahlung wurde noch nicht bestätigt!',
@@ -90,11 +90,11 @@ return [
                 ],
             ],
             'shipped' => [
-                'title' => '',
-                'tracking_details' => '',
+                'title' => 'Deine Bestellung wurde versandt!',
+                'tracking_details' => 'Hier sind Informationen zur Bestellung:',
                 'no_tracking_details' => [
-                    '_' => "",
-                    'link_text' => '',
+                    '_' => "Uns stehen keine Tracking-Daten zur Verfügung, da wir das Paket per Air Mail versandt haben. Das Paket sollte jedoch innerhalb von 1 bis 3 Wochen ankommen. In Europa kann der Zoll manchmal die Bestellung außerhalb unserer Kontrolle verzögern. Wenn du irgendwelche Bedenken hast, antworte bitte auf die Bestätingsmail, die du erhalten hast (oder :link).",
+                    'link_text' => 'sende uns eine E-Mail',
                 ],
             ],
         ],
@@ -108,18 +108,18 @@ return [
         'no_orders' => 'Keine Bestellungen zum Anzeigen.',
         'paid_on' => 'Bestellung :date aufgegeben',
         'resume' => 'Bezahlung fortsetzen',
-        'shipping_and_handling' => '',
+        'shipping_and_handling' => 'Lieferung und Verarbeitung',
         'shopify_expired' => 'Der Zahlungslink für diese Bestellung ist abgelaufen.',
-        'subtotal' => '',
-        'total' => '',
+        'subtotal' => 'Zwischensumme',
+        'total' => 'Summe',
 
         'details' => [
-            'order_number' => '',
-            'payment_terms' => '',
-            'salesperson' => '',
-            'shipping_method' => '',
-            'shipping_terms' => '',
-            'title' => '',
+            'order_number' => 'Bestellung #',
+            'payment_terms' => 'Zahlungsbedingungen',
+            'salesperson' => 'Verkäufer',
+            'shipping_method' => 'Versandmethode',
+            'shipping_terms' => 'Versandbedingungen',
+            'title' => 'Bestelldetails',
         ],
 
         'item' => [
@@ -151,14 +151,14 @@ return [
             'paid' => 'Bezahlt',
             'processing' => 'Bestätigung ausstehend',
             'shipped' => 'In Bearbeitung',
-            'title' => '',
+            'title' => 'Bestellungsstatus',
         ],
 
         'thanks' => [
-            'title' => '',
+            'title' => 'Vielen Dank für deine Bestellung!',
             'line_1' => [
-                '_' => '',
-                'link_text' => '',
+                '_' => 'Du erhältst bald eine Bestätigungsmail. Wenn du Fragen hast, dann :link bitte!',
+                'link_text' => 'kontaktiere uns',
             ],
         ],
     ],
@@ -193,9 +193,9 @@ return [
     'username_change' => [
         'check' => 'Gib einen Nutzernamen ein, um die Verfügbarkeit zu prüfen!',
         'checking' => 'Prüfe Verfügbarkeit von :username...',
-        'placeholder' => '',
-        'label' => '',
-        'current' => '',
+        'placeholder' => 'Gewünschter Benutzername',
+        'label' => 'Neuer Benutzername',
+        'current' => 'Dein aktueller Benutzername ist ":username".',
 
         'require_login' => [
             '_' => 'Um deinen Namen zu ändern, musst du :link sein!',

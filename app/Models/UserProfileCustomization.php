@@ -5,7 +5,9 @@
 
 namespace App\Models;
 
-use App\Libraries\ProfileCover;
+use App\Casts\LegacyFilename;
+use App\Libraries\Uploader;
+use App\Libraries\User\Cover;
 use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 
 /**
@@ -35,6 +37,8 @@ class UserProfileCustomization extends Model
 
     const BEATMAPSET_DOWNLOAD = ['all', 'no_video', 'direct'];
 
+    const DEFAULT_LEGACY_ONLY_ATTRIBUTE = true;
+
     const USER_LIST = [
         'filters' => ['all' => ['all', 'online', 'offline'], 'default' => 'all'],
         'sorts' => ['all' => ['last_visit', 'rank', 'username'], 'default' => 'last_visit'],
@@ -49,7 +53,7 @@ class UserProfileCustomization extends Model
     ];
     protected $primaryKey = 'user_id';
 
-    private $cover;
+    private Uploader $customCover;
 
     public static function repairExtrasOrder($value)
     {
@@ -65,22 +69,6 @@ class UserProfileCustomization extends Model
                 )
             )
         );
-    }
-
-    public function cover()
-    {
-        if ($this->cover === null) {
-            $this->cover = new ProfileCover($this->user_id, $this->cover_json);
-        }
-
-        return $this->cover;
-    }
-
-    public function setCover($id, $file)
-    {
-        $this->cover_json = $this->cover()->set($id, $file);
-
-        $this->save();
     }
 
     public function getAudioAutoplayAttribute()
@@ -185,6 +173,19 @@ class UserProfileCustomization extends Model
         $this->setOption('comments_sort', $value);
     }
 
+    public function getCustomCoverFilenameAttribute(): ?string
+    {
+        return LegacyFilename::makeFromAttributes($this->cover_json['file'] ?? null);
+    }
+
+    public function setCustomCoverFilenameAttribute(?string $value): void
+    {
+        $this->cover_json = [
+            ...($this->cover_json ?? []),
+            'file' => ['hash' => $value],
+        ];
+    }
+
     public function getForumPostsShowDeletedAttribute()
     {
         return $this->options['forum_posts_show_deleted'] ?? true;
@@ -193,6 +194,16 @@ class UserProfileCustomization extends Model
     public function setForumPostsShowDeletedAttribute($value)
     {
         $this->setOption('forum_posts_show_deleted', get_bool($value));
+    }
+
+    public function getLegacyScoreOnlyAttribute(): bool
+    {
+        return $this->options['legacy_score_only'] ?? static::DEFAULT_LEGACY_ONLY_ATTRIBUTE;
+    }
+
+    public function setLegacyScoreOnlyAttribute($value): void
+    {
+        $this->setOption('legacy_score_only', get_bool($value));
     }
 
     public function getUserListFilterAttribute()
@@ -266,6 +277,21 @@ class UserProfileCustomization extends Model
     public function setProfileCoverExpandedAttribute($value)
     {
         $this->setOption('profile_cover_expanded', get_bool($value));
+    }
+
+    public function customCover()
+    {
+        return $this->customCover ??= new Uploader(
+            'user-profile-covers',
+            $this,
+            'custom_cover_filename',
+            ['image' => ['maxDimensions' => Cover::CUSTOM_COVER_MAX_DIMENSIONS]],
+        );
+    }
+
+    public function cover()
+    {
+        return new Cover($this);
     }
 
     private function setOption($key, $value)

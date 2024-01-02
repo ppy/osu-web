@@ -6,7 +6,7 @@
 return [
     'cart' => [
         'checkout' => 'Zapłać',
-        'empty_cart' => '',
+        'empty_cart' => 'Usuń wszystkie produkty z koszyka',
         'info' => ':count_delimited produkt w koszyku (:subtotal$)|:count_delimited produkty w koszyku (:subtotal$)|:count_delimited produktów w koszyku (:subtotal$)',
         'more_goodies' => 'Chcę przejrzeć inne produkty przed zakończeniem zamówienia',
         'shipping_fees' => 'koszt wysyłki',
@@ -49,21 +49,21 @@ return [
     ],
 
     'discount' => 'zaoszczędź :percent%',
-    'free' => '',
+    'free' => 'bezpłatne!',
 
     'invoice' => [
-        'contact' => '',
-        'date' => '',
+        'contact' => 'Kontakt:',
+        'date' => 'Data:',
         'echeck_delay' => 'Jako że twoja płatność została przesłana czekiem elektronicznym, odczekaj do 10 dni na przetworzenie transakcji przez PayPal.',
         'hide_from_activity' => 'Zakup statusów donatora osu! z tego zamówienia nie zostanie wyświetlony w twojej aktywności.',
-        'sent_via' => '',
+        'sent_via' => 'Wysłane poprzez:',
         'shipping_to' => '',
-        'title' => '',
+        'title' => 'Faktura',
         'title_compact' => 'faktura',
 
         'status' => [
             'cancelled' => [
-                'title' => '',
+                'title' => 'Twoje zamówienie zostało anulowane',
                 'line_1' => [
                     '_' => "",
                     'link_text' => '',
@@ -119,7 +119,7 @@ return [
             'salesperson' => '',
             'shipping_method' => '',
             'shipping_terms' => '',
-            'title' => '',
+            'title' => 'Szczegóły zamówienia',
         ],
 
         'item' => [
@@ -151,7 +151,7 @@ return [
             'paid' => 'Opłacone',
             'processing' => 'Oczekiwanie na potwierdzenie',
             'shipped' => 'W transporcie',
-            'title' => '',
+            'title' => 'Status zamówienia',
         ],
 
         'thanks' => [
@@ -195,7 +195,7 @@ return [
         'checking' => 'Sprawdzanie możliwości zmiany na :username...',
         'placeholder' => '',
         'label' => '',
-        'current' => '',
+        'current' => 'Twoja aktualna nazwa użytkownika to ":username".',
 
         'require_login' => [
             '_' => 'Aby zmienić swoją nazwę użytkownika, musisz się :link!',

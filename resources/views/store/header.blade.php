@@ -78,13 +78,13 @@
 @endcomponent
 
 <div class="osu-page no-print">
-    @if (config('osu.store.notice') !== null)
+    @if ($GLOBALS['cfg']['osu']['store']['notice'] !== null)
         <div class="store-notice store-notice--important">
             <h2 class="store-notice__title">
                 {{ osu_trans('common.title.notice') }}
             </h2>
 
-            {!! markdown(config('osu.store.notice')) !!}
+            {!! markdown($GLOBALS['cfg']['osu']['store']['notice']) !!}
         </div>
     @endif
 

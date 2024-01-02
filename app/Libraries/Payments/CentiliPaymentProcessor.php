@@ -34,7 +34,7 @@ class CentiliPaymentProcessor extends PaymentProcessor
     public function getPaymentAmount()
     {
         // TODO: less floaty
-        return $this['enduserprice'] / config('payments.centili.conversion_rate');
+        return $this['enduserprice'] / $GLOBALS['cfg']['payments']['centili']['conversion_rate'];
     }
 
     public function getPaymentDate()
@@ -76,7 +76,7 @@ class CentiliPaymentProcessor extends PaymentProcessor
             return false;
         }
 
-        if ($this['service'] !== config('payments.centili.api_key')) {
+        if ($this['service'] !== $GLOBALS['cfg']['payments']['centili']['api_key']) {
             $this->validationErrors()->add('service', '.param.invalid', ['param' => 'service']);
         }
 

@@ -85,8 +85,8 @@ class ChatTest extends TestCase
      */
     public function testMinPlaysSendMessage(?string $groupIdentifier, bool $hasMinPlays, bool $successful)
     {
-        config()->set('osu.user.min_plays_allow_verified_bypass', false);
-        config()->set('osu.user.min_plays_for_posting', 2);
+        config_set('osu.user.min_plays_allow_verified_bypass', false);
+        config_set('osu.user.min_plays_for_posting', 2);
 
         $playCount = $hasMinPlays ? null : 1;
 
@@ -110,8 +110,8 @@ class ChatTest extends TestCase
      */
     public function testMinPlaysSendPM(?string $groupIdentifier, bool $hasMinPlays, bool $successful)
     {
-        config()->set('osu.user.min_plays_allow_verified_bypass', false);
-        config()->set('osu.user.min_plays_for_posting', 2);
+        config_set('osu.user.min_plays_allow_verified_bypass', false);
+        config_set('osu.user.min_plays_for_posting', 2);
 
         $playCount = $hasMinPlays ? null : 1;
 
@@ -236,7 +236,7 @@ class ChatTest extends TestCase
         $this->expectCountChange(fn () => Channel::count(), 0);
         $this->expectCountChange(fn () => Message::count(), 0);
 
-        $longMessage = str_repeat('a', config('osu.chat.message_length_limit') + 1);
+        $longMessage = str_repeat('a', $GLOBALS['cfg']['osu']['chat']['message_length_limit'] + 1);
 
         try {
             Chat::sendPrivateMessage($sender, $target, $longMessage, false);

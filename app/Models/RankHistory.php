@@ -111,7 +111,7 @@ class RankHistory extends Model
 
     public function __construct(array $attributes = [])
     {
-        if (config('osu.scores.experimental_rank_as_default')) {
+        if ($GLOBALS['cfg']['osu']['scores']['experimental_rank_as_default']) {
             $this->table = 'osu_user_performance_rank_exp';
         }
 

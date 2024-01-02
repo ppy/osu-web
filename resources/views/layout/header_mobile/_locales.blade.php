@@ -26,7 +26,7 @@
     </button>
 
     <ul class="navbar-mobile-item__submenu js-click-menu" data-click-menu-id="nav-mobile-locale">
-        @foreach (config('app.available_locales') as $locale)
+        @foreach ($GLOBALS['cfg']['app']['available_locales'] as $locale)
             @php
                 $localeMeta = locale_meta($locale);
             @endphp

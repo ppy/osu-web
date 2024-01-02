@@ -3,7 +3,8 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @php
-    $currentActive = app('route-section')->getCurrent('controller').'.'.app('route-section')->getCurrent('action');
+    $currentRoute = app('route-section')->getCurrent();
+    $currentActive = $currentRoute['controller'].'.'.$currentRoute['action'];
 @endphp
 @include('layout._page_header_v4', ['params' => [
     'backgroundExtraClass' => 'js-current-user-cover',

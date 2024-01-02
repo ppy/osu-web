@@ -14,7 +14,7 @@ trait ForumPostSearch
 
     public static function esIndexName()
     {
-        return config('osu.elasticsearch.prefix').'posts';
+        return $GLOBALS['cfg']['osu']['elasticsearch']['prefix'].'posts';
     }
 
     public static function esIndexingQuery()

@@ -206,7 +206,7 @@ class SanityTest extends DuskTestCase
 
         // satisfy minimum playcount for forum posting
         UserStatistics\Osu::factory()->create([
-            'playcount' => config('osu.forum.minimum_plays'),
+            'playcount' => $GLOBALS['cfg']['osu']['forum']['minimum_plays'],
             'user_id' => self::$scaffolding['user'],
         ]);
 
@@ -271,7 +271,7 @@ class SanityTest extends DuskTestCase
 
     private static function filterLog(array $log)
     {
-        $appUrl = config('app.url');
+        $appUrl = $GLOBALS['cfg']['app']['url'];
         $return = [];
 
         foreach ($log as $line) {
@@ -487,7 +487,7 @@ class SanityTest extends DuskTestCase
             }
         }
 
-        $url = str_replace(config('app.url'), '', route($route->getName(), $params));
+        $url = str_replace($GLOBALS['cfg']['app']['url'], '', route($route->getName(), $params));
 
         return $url;
     }

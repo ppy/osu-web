@@ -6,7 +6,7 @@
 return [
     'landing' => [
         'download' => 'Lataa nyt',
-        'online' => '<strong>:players</strong> online-tilassa <strong>:games</strong> pelaamassa',
+        'online' => '<strong>:players</strong> tällä hetkellä paikalla <strong>:games</strong> pelissä',
         'peak' => 'Huipussaan :count käyttäjää paikalla',
         'players' => '<strong>:count</strong> rekisteröitynyttä pelaajaa',
         'title' => 'tervetuloa',
@@ -23,13 +23,13 @@ return [
         'button' => 'Hae',
         'empty_result' => 'Mitään ei löytynyt!',
         'keyword_required' => 'Syötä hakusana',
-        'placeholder' => 'kirjoita etsiäksesi',
+        'placeholder' => 'kirjoita hakeaksesi',
         'title' => 'Hae',
 
         'beatmapset' => [
-            'login_required' => 'Kirjaudu sisään etsiäksesi rytmikarttoja',
+            'login_required' => 'Kirjaudu sisään hakeaksesi rytmikarttoja',
             'more' => ':count lisää hakutulosta',
-            'more_simple' => 'Katso lisää hakutuloksia',
+            'more_simple' => 'Katso lisää rytmikarttojen hakutuloksia',
             'title' => 'Beatmapit',
         ],
 
@@ -113,7 +113,7 @@ return [
             'beatmaps' => [
                 'title' => 'hanki beatmappeja',
                 'description' => [
-                    '_' => ':browse käyttäjien luomaa laajaa beatmapkokoelmaa ja ryhdy pelaamaan!',
+                    '_' => ':browse käyttäjien luomaa laajaa rytmikarttakokoelmaa ja ryhdy pelaamaan!',
                     'browse' => 'selaa',
                 ],
             ],
@@ -134,13 +134,13 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => 'Uudet Hyväksytyt Beatmapit',
+            'new' => 'Uudet rankatut rytmikartat',
             'popular' => 'Suositut rytmikartat',
             'by_user' => 'tehnyt :user',
         ],
         'buttons' => [
             'download' => 'Lataa osu!',
-            'support' => 'Tue osua!',
+            'support' => 'Tue osu!a',
             'store' => 'osu!kauppa',
         ],
     ],

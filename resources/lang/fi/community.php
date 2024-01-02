@@ -7,7 +7,7 @@ return [
     'support' => [
         'convinced' => [
             'title' => 'Vakuutuin! :D',
-            'support' => 'tue osua!',
+            'support' => 'tue osu!a',
             'gift' => 'tai lahjoita Tukija toiselle pelaajalle',
             'instructions' => 'klikkaa sydäntä jatkaaksesi osu!kauppaan',
         ],

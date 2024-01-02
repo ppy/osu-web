@@ -50,7 +50,7 @@ class WikiSuggestions extends Search
             ->should(['constant_score' => [
                 'filter' => [
                     'match' => [
-                        'locale' => config('app.fallback_locale'),
+                        'locale' => $GLOBALS['cfg']['app']['fallback_locale'],
                     ],
                 ],
             ]]);

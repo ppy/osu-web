@@ -13,7 +13,7 @@
 
     <div class="user-verification__row user-verification__row--key">
         <input
-            data-verification-key-length="{{ config('osu.user.verification_key_length_hex') }}"
+            data-verification-key-length="{{ $GLOBALS['cfg']['osu']['user']['verification_key_length_hex'] }}"
             class="user-verification__key js-user-verification--input modal-af"
         />
 

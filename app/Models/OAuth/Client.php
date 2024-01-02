@@ -33,6 +33,8 @@ class Client extends PassportClient
 {
     use Validatable;
 
+    public ?array $scopes = null;
+
     public static function forUser(User $user)
     {
         // Get clients matching non-revoked tokens. Expired tokens should be included.
@@ -83,7 +85,7 @@ class Client extends PassportClient
         $this->validationErrors()->reset();
 
         if (!$this->exists && $this->user !== null) {
-            $max = config('osu.oauth.max_user_clients');
+            $max = $GLOBALS['cfg']['osu']['oauth']['max_user_clients'];
             if ($this->user->oauthClients()->thirdParty()->where('revoked', false)->count() >= $max) {
                 $this->validationErrors()->add('user.oauthClients.count', '.too_many');
             }

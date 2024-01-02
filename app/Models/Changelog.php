@@ -52,7 +52,7 @@ class Changelog extends Model
 
     public function scopeListing($query, $offset = 20)
     {
-        $limit = config('osu.changelog.max', 20);
+        $limit = $GLOBALS['cfg']['osu']['changelog']['max'] ?? 20;
 
         return $query
             ->where('private', 0)
