@@ -8,7 +8,6 @@ declare(strict_types=1);
 namespace App\Transformers;
 
 use App\Models\ContestJudgeScore;
-use League\Fractal\Resource\Item;
 
 class ContestJudgeScoreTransformer extends TransformerAbstract
 {

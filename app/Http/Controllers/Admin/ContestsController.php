@@ -31,14 +31,12 @@ class ContestsController extends Controller
             ->with('user')
             ->get();
 
-
         if ($contest->isJudged()) {
             $judgeVoteCounts = ContestJudgeVote::whereIn('contest_entry_id', $contest->entries()->pluck('id'))
                 ->groupBy('user_id')
                 ->selectRaw('COUNT(*) as judge_votes_count, user_id')
                 ->get();
         }
-
 
         return ext_view('admin.contests.show', [
             'contest' => $contest,
