@@ -26,8 +26,7 @@ class ContestsController extends Controller
 
     public function judge($id)
     {
-        $contest = Contest::with('entries')
-            ->with('entries.judgeVotes')
+        $contest = Contest::with('entries.judgeVotes')
             ->with('entries.judgeVotes.scores')
             ->with('scoringCategories')
             ->findOrFail($id);
