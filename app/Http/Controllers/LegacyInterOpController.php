@@ -323,7 +323,7 @@ class LegacyInterOpController extends Controller
             '--all' => true,
             '--no-interaction' => true,
             '--user' => $user->getKey(),
-        ]);
+        ])->onQueue('scores');
 
         return response(null, 204);
     }

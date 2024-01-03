@@ -47,6 +47,6 @@ class CountryChange
             '--all' => true,
             '--no-interaction' => true,
             '--user' => $user->getKey(),
-        ]);
+        ])->onQueue('scores');
     }
 }
