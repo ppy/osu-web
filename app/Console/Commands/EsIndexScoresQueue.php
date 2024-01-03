@@ -60,6 +60,8 @@ class EsIndexScoresQueue extends Command
             return $this->info('User aborted');
         }
 
+        exit();
+
         $startTimeNs = hrtime(true);
 
         $this->bar = $this->output->createProgressBar();
