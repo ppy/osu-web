@@ -58,6 +58,8 @@ class RemoveBeatmapsetSoloScores implements ShouldQueue
 
     private function deleteScores(Collection $scores): void
     {
+        exit();
+
         $ids = $scores->pluck('id')->all();
 
         $scoresQuery = Score::whereKey($ids);
