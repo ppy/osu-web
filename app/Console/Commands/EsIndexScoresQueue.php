@@ -60,7 +60,8 @@ class EsIndexScoresQueue extends Command
             return $this->info('User aborted');
         }
 
-        exit();
+        return;
+
 
         $startTimeNs = hrtime(true);
 
