@@ -120,7 +120,7 @@
                     </div>
                 @endif
 
-                @include('objects._pagination_v2', [
+                @include('objects._pagination_simple', [
                     'object' => $topics
                         ->fragment('topics')
                         ->appends([
