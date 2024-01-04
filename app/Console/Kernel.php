@@ -106,9 +106,9 @@ class Kernel extends ConsoleKernel
             ->withoutOverlapping()
             ->onOneServer();
 
-        $schedule->command('rankings:recalculate-country-stats')
-            ->cron('25 0,3,6,9,12,15,18,21 * * *')
-            ->onOneServer();
+        // $schedule->command('rankings:recalculate-country-stats')
+        //     ->cron('25 0,3,6,9,12,15,18,21 * * *')
+        //     ->onOneServer();
 
         $schedule->command('modding:rank')
             ->cron('*/20 * * * *')
