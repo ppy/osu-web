@@ -250,7 +250,8 @@
         "IncompatibleMods": [
           "SI",
           "TC",
-          "AD"
+          "AD",
+          "DP"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -384,7 +385,8 @@
           "RD",
           "SO",
           "TC",
-          "AD"
+          "AD",
+          "DP"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -690,7 +692,8 @@
           "WG",
           "MG",
           "RP",
-          "FR"
+          "FR",
+          "DP"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -714,7 +717,8 @@
         "IncompatibleMods": [
           "TR",
           "MG",
-          "RP"
+          "RP",
+          "DP"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -733,7 +737,8 @@
           "GR",
           "DF",
           "TC",
-          "AD"
+          "AD",
+          "DP"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -759,7 +764,8 @@
           "GR",
           "DF",
           "TC",
-          "AD"
+          "AD",
+          "DP"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -785,7 +791,8 @@
           "GR",
           "DF",
           "TC",
-          "AD"
+          "AD",
+          "DP"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -882,7 +889,8 @@
           "TP",
           "SI",
           "GR",
-          "DF"
+          "DF",
+          "DP"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -1030,7 +1038,8 @@
           "TR",
           "WG",
           "RP",
-          "BU"
+          "BU",
+          "DP"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -1058,7 +1067,8 @@
           "TR",
           "WG",
           "MG",
-          "BU"
+          "BU",
+          "DP"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -1109,7 +1119,8 @@
         "Settings": [],
         "IncompatibleMods": [
           "TR",
-          "AD"
+          "AD",
+          "DP"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -1141,6 +1152,45 @@
         "Type": "Fun",
         "Settings": [],
         "IncompatibleMods": [],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
+      },
+      {
+        "Acronym": "DP",
+        "Name": "Depth",
+        "Description": "3D. Almost.",
+        "Type": "Fun",
+        "Settings": [
+          {
+            "Name": "max_depth",
+            "Type": "number",
+            "Label": "Maximum depth",
+            "Description": "How far away objects appear."
+          },
+          {
+            "Name": "show_approach_circles",
+            "Type": "boolean",
+            "Label": "Show Approach Circles",
+            "Description": "Whether approach circles should be visible."
+          }
+        ],
+        "IncompatibleMods": [
+          "HD",
+          "TP",
+          "TR",
+          "WG",
+          "SI",
+          "GR",
+          "DF",
+          "TC",
+          "MG",
+          "RP",
+          "FR",
+          "DP"
+        ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
