@@ -249,10 +249,10 @@ class Build extends Model implements Commentable
     public static function onlineUsers()
     {
         // Lazer builds uses "fake" release rows to track platform-specific builds
-        // In order to not double-count users, we must use the "main" releases which will never have a hash.
+        // In order to not double-count users, we must use the "main" releases which will never have a stream_id.
         return static
             ::where('allow_bancho', 1)
-            ->whereNull('hash')
+            ->whereNull('stream_id')
             ->sum('users');
     }
 }
