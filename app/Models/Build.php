@@ -7,7 +7,6 @@ namespace App\Models;
 
 use App\Libraries\Commentable;
 use Carbon\Carbon;
-use Cache;
 
 /**
  * @property bool $allow_bancho
