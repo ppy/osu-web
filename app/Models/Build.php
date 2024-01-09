@@ -249,7 +249,6 @@ class Build extends Model implements Commentable
 
     public static function onlineUsers()
     {
-        return static::where('allow_bancho', 1)
-            ->sum('users');
+        return static::where('allow_bancho', 1)->sum('users');
     }
 }
