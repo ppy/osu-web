@@ -6,6 +6,7 @@
 namespace App\Libraries;
 
 use App\Models\BanchoStats;
+use App\Models\Build;
 use App\Models\Count;
 use Auth;
 use Cache;
@@ -24,8 +25,10 @@ class CurrentStats
             $stats = BanchoStats::stats();
             $latest = array_last($stats);
 
+            $online_users = Build::onlineUsers();
+
             return [
-                'currentOnline' => $latest['users_osu'] ?? 0,
+                'currentOnline' => $online_users ?? 0,
                 'currentGames' => $latest['multiplayer_games'] ?? 0,
                 'graphData' => array_to_graph_json($stats, 'users_osu'),
                 'totalUsers' => Count::totalUsers()->count,
