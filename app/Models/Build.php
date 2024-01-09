@@ -7,6 +7,7 @@ namespace App\Models;
 
 use App\Libraries\Commentable;
 use Carbon\Carbon;
+use Cache;
 
 /**
  * @property bool $allow_bancho
@@ -244,5 +245,11 @@ class Build extends Model implements Commentable
     public function displayVersion()
     {
         return preg_replace('#[^0-9.]#', '', $this->version);
+    }
+
+    public static function onlineUsers()
+    {
+        return static::where('allow_bancho', 1)
+            ->sum('users');
     }
 }
