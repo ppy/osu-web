@@ -25,10 +25,8 @@ class CurrentStats
             $stats = BanchoStats::stats();
             $latest = array_last($stats);
 
-            $online_users = Build::onlineUsers();
-
             return [
-                'currentOnline' => $online_users ?? 0,
+                'currentOnline' => Build::onlineUsers(),
                 'currentGames' => $latest['multiplayer_games'] ?? 0,
                 'graphData' => array_to_graph_json($stats, 'users_osu'),
                 'totalUsers' => Count::totalUsers()->count,
