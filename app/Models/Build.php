@@ -252,7 +252,7 @@ class Build extends Model implements Commentable
         // In order to not double-count users, we must use the "main" releases which will never have a stream_id.
         return static
             ::where('allow_bancho', 1)
-            ->whereNull('stream_id')
+            ->whereNotNull('stream_id')
             ->sum('users');
     }
 }
