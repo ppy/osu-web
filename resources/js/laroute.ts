@@ -10,6 +10,9 @@ const siteUrl = currentUrl();
 Ziggy.port = +siteUrl.port || null; // either port number or null if empty (converted to 0)
 Ziggy.url = siteUrl.origin;
 
-export function route<T extends keyof RouteList>(name: T, params?: Partial<Record<string, string | number | null>>, absolute?: boolean) {
+type RouteName = keyof RouteList;
+type Params<T extends RouteName> = Parameters<typeof ziggyRoute<T>>[1];
+
+export function route<T extends RouteName>(name: T, params?: Params<T>, absolute?: boolean) {
   return ziggyRoute<T>(name, params, absolute, Ziggy);
 }

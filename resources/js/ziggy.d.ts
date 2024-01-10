@@ -2,23 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 declare module 'ziggy' {
-  // Reduced version of unexported ziggy Config for typing when setting the port and url.
-  // Using Parameters<typeof route>[3] doesn't quite work since route has overloaded parameters.
-  interface ZiggyGlobal {
-    port: number | null;
-    url: string;
-  }
+  import route, { RouteList } from 'ziggy-js';
 
-  export const Ziggy: ZiggyGlobal;
-}
-
-declare module 'ziggy-js' {
-  export default function route<T extends keyof RouteList>(
-    name: T,
-    // Retyping because RouteParams (or RouteName...or all the other useful types) aren't exported.
-    // We can't use Parameters<T> either because it uses the last declared overload.
-    params?: Partial<Record<string, string | number | null>>,
-    absolute?: boolean,
-    config?: import('ziggy').ZiggyGlobal,
-  ): string;
+  export const Ziggy: NonNullable<Parameters<typeof route<keyof RouteList>>[3]>;
 }
