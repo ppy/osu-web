@@ -6483,6 +6483,11 @@ qs@~6.5.2:
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.3.tgz#3aeeffc91967ef6e35c0e488ef46fb296ab76aad"
   integrity sha512-qxXIEh4pCGfHICj1mAJQ2/2XVZkjCDTcEgfoSQxc/fYivUZxTkk7L3bDBJSoNrEzXI17oUO5Dp07ktqE5KzczA==
 
+qs@~6.9.7:
+  version "6.9.7"
+  resolved "https://registry.yarnpkg.com/qs/-/qs-6.9.7.tgz#4610846871485e1e048f44ae3b94033f0e675afe"
+  integrity sha512-IhMFgUmuNpyRfxA90umL7ByLlgRXu6tIfKPpF5TmcfRLlLCckfP/g3IQmju6jjpu+Hh8rA+2p6A27ZSPOOHdKw==
+
 "qtip2@https://github.com/notbakaneko/qTip2.git#cd5f038667d2b23a44f4274c46de01834d704ce6":
   version "3.0.3-jquery3"
   resolved "https://github.com/notbakaneko/qTip2.git#cd5f038667d2b23a44f4274c46de01834d704ce6"
@@ -8244,6 +8249,13 @@ yargs@^16.1.1:
     string-width "^4.2.0"
     y18n "^5.0.5"
     yargs-parser "^20.2.2"
+
+ziggy-js@^1.8.1:
+  version "1.8.1"
+  resolved "https://registry.yarnpkg.com/ziggy-js/-/ziggy-js-1.8.1.tgz#582f4c19424cec0f8b80de2d033d70f953314a94"
+  integrity sha512-fnf30uG0yvUQBPL4T8YPgmkBHUdjYaOFgUb1K1gj0+rclnLTNr9/K/cxC3xkCZyYCZz8oTnXkdf3oJXRPSzavw==
+  dependencies:
+    qs "~6.9.7"
 
 zwitch@^1.0.0:
   version "1.0.5"

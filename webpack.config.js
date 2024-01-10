@@ -218,7 +218,6 @@ const resolve = {
   alias: {
     '@fonts': path.resolve(__dirname, 'resources/fonts'),
     '@images': path.resolve(__dirname, 'public/images'),
-    'ziggy-route': resolvePath('vendor/tightenco/ziggy/dist/index.es.js'),
   },
   extensions: ['*', '.js', '.coffee', '.ts', '.tsx'],
   modules: [
