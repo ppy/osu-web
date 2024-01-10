@@ -293,7 +293,7 @@ const watches = [
   {
     callback: () => spawnSync(
       'php',
-      ['artisan', 'ziggy:generate', 'resources/builds/ziggy.js'],
+      ['artisan', 'ziggy:generate', 'resources/builds/ziggy.js', '--types'],
       { stdio: 'inherit' },
     ),
     path: resolvePath('routes/web.php'),
