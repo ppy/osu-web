@@ -15,7 +15,8 @@ declare module 'ziggy' {
 declare module 'ziggy-js' {
   export default function route<T extends keyof RouteList>(
     name: T,
-    // retyping because RouteParams (or RouteName...or all the other useful types)
+    // Retyping because RouteParams (or RouteName...or all the other useful types) aren't exported.
+    // We can't use Parameters<T> either because it uses the last declared overload.
     params?: Partial<Record<string, string | number | null>>,
     absolute?: boolean,
     config?: import('ziggy').ZiggyGlobal,
