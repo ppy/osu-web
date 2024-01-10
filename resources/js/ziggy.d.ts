@@ -11,3 +11,13 @@ declare module 'ziggy' {
 
   export const Ziggy: ZiggyGlobal;
 }
+
+declare module 'ziggy-js' {
+  export default function route<T extends keyof RouteList>(
+    name: T,
+    // retyping because RouteParams (or RouteName...or all the other useful types)
+    params?: Partial<Record<string, string | number | null>>,
+    absolute?: boolean,
+    config?: import('ziggy').ZiggyGlobal,
+  ): string;
+}

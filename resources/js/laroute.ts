@@ -3,11 +3,13 @@
 
 import { currentUrl } from 'utils/turbolinks';
 import { Ziggy } from 'ziggy';
-import route from 'ziggy-js';
+import ziggyRoute, { RouteList } from 'ziggy-js';
 
 // ensure correct url
 const siteUrl = currentUrl();
 Ziggy.port = +siteUrl.port || null; // either port number or null if empty (converted to 0)
 Ziggy.url = siteUrl.origin;
 
-export { route };
+export function route<T extends keyof RouteList>(name: T, params?: Partial<Record<string, string | number | null>>, absolute?: boolean) {
+  return ziggyRoute<T>(name, params, absolute, Ziggy);
+}
