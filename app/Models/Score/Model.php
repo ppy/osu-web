@@ -5,11 +5,11 @@
 
 namespace App\Models\Score;
 
+use App\Enums\Ruleset;
 use App\Exceptions\ClassNotFoundException;
 use App\Libraries\Mods;
 use App\Models\Beatmap;
 use App\Models\Model as BaseModel;
-use App\Models\Solo\ScoreData;
 use App\Models\Traits\Scoreable;
 use App\Models\User;
 
@@ -161,28 +161,27 @@ abstract class Model extends BaseModel
         return snake_case(get_class_basename(static::class));
     }
 
-    protected function getData()
+    public function statistics(): array
     {
-        $mods = array_map(fn ($m) => ['acronym' => $m, 'settings' => []], $this->enabled_mods);
         $statistics = [
             'miss' => $this->countmiss,
             'great' => $this->count300,
         ];
-        $ruleset = $this->getMode();
+        $ruleset = Ruleset::tryFromName($this->getMode());
         switch ($ruleset) {
-            case 'osu':
+            case Ruleset::osu:
                 $statistics['ok'] = $this->count100;
                 $statistics['meh'] = $this->count50;
                 break;
-            case 'taiko':
+            case Ruleset::taiko:
                 $statistics['ok'] = $this->count100;
                 break;
-            case 'fruits':
+            case Ruleset::catch:
                 $statistics['large_tick_hit'] = $this->count100;
                 $statistics['small_tick_hit'] = $this->count50;
                 $statistics['small_tick_miss'] = $this->countkatu;
                 break;
-            case 'mania':
+            case Ruleset::mania:
                 $statistics['perfect'] = $this->countgeki;
                 $statistics['good'] = $this->countkatu;
                 $statistics['ok'] = $this->count100;
@@ -190,18 +189,6 @@ abstract class Model extends BaseModel
                 break;
         }
 
-        return new ScoreData([
-            'accuracy' => $this->accuracy(),
-            'beatmap_id' => $this->beatmap_id,
-            'ended_at' => $this->date_json,
-            'max_combo' => $this->maxcombo,
-            'mods' => $mods,
-            'passed' => $this->pass,
-            'rank' => $this->rank,
-            'ruleset_id' => Beatmap::modeInt($ruleset),
-            'statistics' => $statistics,
-            'total_score' => $this->score,
-            'user_id' => $this->user_id,
-        ]);
+        return $statistics;
     }
 }

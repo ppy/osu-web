@@ -16,7 +16,6 @@ use App\Models\Genre;
 use App\Models\Group;
 use App\Models\Language;
 use App\Models\Solo\Score;
-use App\Models\Solo\ScorePerformance;
 use App\Models\User;
 use App\Models\UserGroup;
 use App\Models\UserGroupEvent;
@@ -36,9 +35,6 @@ class RemoveBeatmapsetSoloScoresTest extends TestCase
             fn (): Score => $this->createScore($beatmapset),
             array_fill(0, 10, null),
         );
-        foreach ($scores as $i => $score) {
-            $score->performance()->create(['pp' => rand(0, 1000)]);
-        }
         $userAdditionalScores = array_map(
             fn (Score $score) => $this->createScore($beatmapset, $score->user_id, $score->ruleset_id),
             $scores,
@@ -48,12 +44,10 @@ class RemoveBeatmapsetSoloScoresTest extends TestCase
 
         // These scores shouldn't be deleted
         for ($i = 0; $i < 10; $i++) {
-            $score = $this->createScore($beatmapset);
-            $score->performance()->create(['pp' => rand(0, 1000)]);
+            $this->createScore($beatmapset);
         }
 
         $this->expectCountChange(fn () => Score::count(), count($scores) * -2, 'removes scores');
-        $this->expectCountChange(fn () => ScorePerformance::count(), count($scores) * -1, 'removes score performances');
 
         static::reindexScores();
 
@@ -71,7 +65,6 @@ class RemoveBeatmapsetSoloScoresTest extends TestCase
                 Genre::truncate();
                 Language::truncate();
                 Score::select()->delete(); // TODO: revert to truncate after the table is actually renamed
-                ScorePerformance::select()->delete(); // TODO: revert to truncate after the table is actually renamed
                 User::truncate();
                 UserGroup::truncate();
                 UserGroupEvent::truncate();
