@@ -248,6 +248,14 @@ export default class DiscussionsState {
   }
 
   @computed
+  get presentDiscussions() {
+    return canModeratePosts()
+      ? this.discussionsArray
+      : this.discussionsArray.filter((discussion) => discussion.deleted_at == null);
+  }
+
+
+  @computed
   get selectedUser() {
     return this.store.users.get(this.selectedUserId);
   }
@@ -258,13 +266,6 @@ export default class DiscussionsState {
     // filter to only include beatmaps from the current discussion's beatmapset (for the modding profile page)
     // const beatmaps = filter(this.props.beatmaps, this.isCurrentBeatmap);
     return sortWithMode([...this.store.beatmaps.values()]);
-  }
-
-  @computed
-  get presentDiscussions() {
-    return canModeratePosts()
-      ? this.discussionsArray
-      : this.discussionsArray.filter((discussion) => discussion.deleted_at == null);
   }
 
   @computed
