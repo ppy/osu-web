@@ -164,27 +164,6 @@ export default class DiscussionsState {
   }
 
   @computed
-  get discussionsCountByPlaymode() {
-    const counts: Record<GameMode, number> = {
-      fruits: 0,
-      mania: 0,
-      osu: 0,
-      taiko: 0,
-    };
-
-    for (const discussion of this.discussionsArray) {
-      if (discussion.beatmap_id != null) {
-        const mode = this.store.beatmaps.get(discussion.beatmap_id)?.mode;
-        if (mode != null) {
-          counts[mode]++;
-        }
-      }
-    }
-
-    return counts;
-  }
-
-  @computed
   get discussionForSelectedBeatmap() {
     return this.discussionsByBeatmap(this.currentBeatmapId);
   }
@@ -254,7 +233,6 @@ export default class DiscussionsState {
       : this.discussionsArray.filter((discussion) => discussion.deleted_at == null);
   }
 
-
   @computed
   get selectedUser() {
     return this.store.users.get(this.selectedUserId);
@@ -292,6 +270,27 @@ export default class DiscussionsState {
   @computed
   get unresolvedDiscussions() {
     return this.presentDiscussions.filter((discussion) => discussion.can_be_resolved && !discussion.resolved);
+  }
+
+  @computed
+  get unresolvedDiscussionsCountByPlaymode() {
+    const counts: Record<GameMode, number> = {
+      fruits: 0,
+      mania: 0,
+      osu: 0,
+      taiko: 0,
+    };
+
+    for (const discussion of this.discussionsArray) {
+      if (discussion.beatmap_id != null && discussion.can_be_resolved && !discussion.resolved) {
+        const mode = this.store.beatmaps.get(discussion.beatmap_id)?.mode;
+        if (mode != null) {
+          counts[mode]++;
+        }
+      }
+    }
+
+    return counts;
   }
 
   @computed
@@ -414,6 +413,10 @@ export default class DiscussionsState {
       selectedUserId: this.selectedUserId,
       showDeleted: this.showDeleted,
     };
+  }
+
+  unresolvedDiscussionsCountByBeatmap(beatmapId: number) {
+    return this.presentDiscussions.filter((discussion) => (discussion.beatmap_id === beatmapId && discussion.can_be_resolved && !discussion.resolved)).length;
   }
 
   @action

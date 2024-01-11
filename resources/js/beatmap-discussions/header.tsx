@@ -77,7 +77,7 @@ export class Header extends React.Component<Props> {
             <PlaymodeTabs
               currentMode={this.currentBeatmap.mode}
               entries={gameModes.map((mode) => ({
-                count: this.discussionsState.discussionsCountByPlaymode[mode],
+                count: this.discussionsState.unresolvedDiscussionsCountByPlaymode[mode],
                 disabled: (this.discussionsState.groupedBeatmaps.get(mode)?.length ?? 0) === 0,
                 mode,
               }))}
@@ -96,7 +96,11 @@ export class Header extends React.Component<Props> {
   private readonly createLink = (beatmap: BeatmapJson) => makeUrl({ beatmap });
 
   // TODO: does it need to be computed?
-  private readonly getCount = (beatmap: BeatmapExtendedJson) => beatmap.deleted_at == null ? this.discussionsState.discussionsByBeatmap(beatmap.id).length : undefined;
+  private readonly getCount = (beatmap: BeatmapExtendedJson) => (
+    beatmap.deleted_at == null
+      ? this.discussionsState.unresolvedDiscussionsCountByBeatmap(beatmap.id)
+      : undefined
+  );
 
   @action
   private readonly onClickMode = (event: React.MouseEvent<HTMLAnchorElement>, mode: GameMode) => {
