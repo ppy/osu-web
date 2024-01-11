@@ -27,7 +27,7 @@ class UserTest extends TestCase
 
     public function testEmailLoginDisabled()
     {
-        config()->set('osu.user.allow_email_login', false);
+        config_set('osu.user.allow_email_login', false);
         User::factory()->create([
             'username' => 'test',
             'user_email' => 'test@example.org',
@@ -38,7 +38,7 @@ class UserTest extends TestCase
 
     public function testEmailLoginEnabled()
     {
-        config()->set('osu.user.allow_email_login', true);
+        config_set('osu.user.allow_email_login', true);
         $user = User::factory()->create([
             'username' => 'test',
             'user_email' => 'test@example.org',
@@ -49,7 +49,7 @@ class UserTest extends TestCase
 
     public function testUsernameAvailableAtForDefaultGroup()
     {
-        config()->set('osu.user.allowed_rename_groups', ['default']);
+        config_set('osu.user.allowed_rename_groups', ['default']);
         $allowedAtUpTo = now()->addYears(5);
         $user = User::factory()->withGroup('default')->create();
 
@@ -58,7 +58,7 @@ class UserTest extends TestCase
 
     public function testUsernameAvailableAtForNonDefaultGroup()
     {
-        config()->set('osu.user.allowed_rename_groups', ['default']);
+        config_set('osu.user.allowed_rename_groups', ['default']);
         $allowedAt = now()->addYears(10);
         $user = User::factory()->withGroup('gmt')->create(['group_id' => app('groups')->byIdentifier('default')]);
 
@@ -67,16 +67,12 @@ class UserTest extends TestCase
 
     public function testResetSessions(): void
     {
-        if (!Store::isUsingRedis()) {
-            $this->markTestSkipped('reset sessions test requires redis based session');
-        }
-
         $user = User::factory()->create();
 
         // create session
         $this->post(route('login'), ['username' => $user->username, 'password' => User::factory()::DEFAULT_PASSWORD]);
         // sanity check
-        $this->assertNotEmpty(Store::keys($user->getKey()));
+        $this->assertNotEmpty(Store::ids($user->getKey()));
 
         // create token
         $token = Token::factory()->create(['user_id' => $user, 'revoked' => false]);
@@ -84,7 +80,7 @@ class UserTest extends TestCase
 
         $user->resetSessions();
 
-        $this->assertEmpty(Store::keys($user->getKey()));
+        $this->assertEmpty(Store::ids($user->getKey()));
         $this->assertTrue($token->fresh()->revoked);
         $this->assertTrue($refreshToken->fresh()->revoked);
     }
@@ -104,7 +100,7 @@ class UserTest extends TestCase
         }
     }
 
-    public function dataProviderForAttributeTwitter(): array
+    public static function dataProviderForAttributeTwitter(): array
     {
         return [
             ['@hello', 'hello'],
@@ -115,7 +111,7 @@ class UserTest extends TestCase
         ];
     }
 
-    public function dataProviderValidDiscordUsername(): array
+    public static function dataProviderValidDiscordUsername(): array
     {
         return [
             ['username', true],

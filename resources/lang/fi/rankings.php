@@ -54,7 +54,7 @@ return [
         'play_count' => 'Pelikerrat',
         'performance' => 'Suorituskyky',
         'total_score' => 'Kokonaispisteet',
-        'ranked_score' => 'Tilastoidut pisteet',
+        'ranked_score' => 'Rankatut pisteet',
         'average_score' => 'Keskim. pisteet',
         'average_performance' => 'Keskim. suorituskyky',
         'ss' => '',

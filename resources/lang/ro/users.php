@@ -124,6 +124,9 @@ return [
     ],
 
     'ogp' => [
+        'modding_description' => 'Beatmap-uri: :counts',
+        'modding_description_empty' => 'Utilizatorul nu are nici un beatmap...',
+
         'description' => [
             '_' => 'Rang (:ruleset): :global | :country',
             'country' => 'Național :rank',
@@ -183,7 +186,6 @@ return [
         'origin_country' => 'Din :country',
         'previous_usernames' => 'cunoscut anterior ca',
         'plays_with' => 'Joacă cu :devices',
-        'title' => "Profilul lui :username",
 
         'comments_count' => [
             '_' => 'A postat :link',

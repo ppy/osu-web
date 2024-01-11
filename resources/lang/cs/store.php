@@ -6,6 +6,7 @@
 return [
     'cart' => [
         'checkout' => 'Zaplatit',
+        'empty_cart' => 'Odebrat všechny položky z košíku',
         'info' => ':count_delimited položka v košíku ($:subtotal)|:count_delimited položky v košíku ($:subtotal)|:count_delimited položek v košíku ($:subtotal)',
         'more_goodies' => 'Chci se ještě podívat na nějaké dobroty než dokončím objednávku',
         'shipping_fees' => 'poplatky za dopravu',
@@ -48,19 +49,52 @@ return [
     ],
 
     'discount' => 'ušetři :percent%',
+    'free' => 'zdarma!',
 
     'invoice' => [
+        'contact' => 'Kontakt:',
+        'date' => 'Datum:',
         'echeck_delay' => 'Jelikož vaše platba byla prováděna službou eCheck, prosím, dejte nám až 10 dní na to, aby platba úspěšně prošla přes PayPal!',
         'hide_from_activity' => 'osu!supporter tagy v této objednávce se nebudou zobrazovat v nedávných aktivitách.',
+        'sent_via' => '',
+        'shipping_to' => '',
+        'title' => 'Faktura',
         'title_compact' => 'faktura',
 
         'status' => [
+            'cancelled' => [
+                'title' => 'Vaše objednávka byla zrušena',
+                'line_1' => [
+                    '_' => "Pokud jste nepožádali o zrušení, kontaktujte prosím :link se svým číslem objednávky (#:order_number).",
+                    'link_text' => 'podporu osu!store',
+                ],
+            ],
+            'delivered' => [
+                'title' => 'Vaše objednávka byla doručena! Doufáme, že si ji užíváte!',
+                'line_1' => [
+                    '_' => 'Pokud máte nějaké problémy s vaším nákupem, kontaktujte prosím :link.',
+                    'link_text' => 'podporu osu!store',
+                ],
+            ],
+            'prepared' => [
+                'title' => 'Vaše objednávka se připravuje!',
+                'line_1' => '',
+                'line_2' => '',
+            ],
             'processing' => [
                 'title' => 'Vaše platba nebyla ještě potvrzena!',
                 'line_1' => 'Pokud jste už zaplatil, možná stále čekáme na potvrzení vaší platby. Prosím, dejte nám pár minut a pak zkuste znovu načíst tuto stránku!',
                 'line_2' => [
                     '_' => 'Pokud se vyskytl problém při placení, :link',
                     'link_text' => 'klikněte zde pro pokračování v placení',
+                ],
+            ],
+            'shipped' => [
+                'title' => 'Vaše objednávka byla odeslána!',
+                'tracking_details' => '',
+                'no_tracking_details' => [
+                    '_' => "",
+                    'link_text' => '',
                 ],
             ],
         ],
@@ -74,7 +108,19 @@ return [
         'no_orders' => 'Nejsou zde žádné objednávky k zobrazení.',
         'paid_on' => 'Objednávka zadána :date',
         'resume' => 'Obnovit objednávku',
+        'shipping_and_handling' => '',
         'shopify_expired' => 'Odkaz na objednávku pro tuto objednávku vypršel.',
+        'subtotal' => 'Mezisoučet',
+        'total' => 'Celkem',
+
+        'details' => [
+            'order_number' => 'Objednávka č.',
+            'payment_terms' => '',
+            'salesperson' => '',
+            'shipping_method' => '',
+            'shipping_terms' => '',
+            'title' => 'Detail objednávky',
+        ],
 
         'item' => [
             'quantity' => 'Množství',
@@ -105,6 +151,15 @@ return [
             'paid' => 'Zaplaceno',
             'processing' => 'Očekávající potvrzení',
             'shipped' => 'Na cestě',
+            'title' => 'Stav objednávky',
+        ],
+
+        'thanks' => [
+            'title' => 'Děkujeme za Vaši objednávku!',
+            'line_1' => [
+                '_' => 'Brzy obdržíte potvrzovací email. Pokud máte nějaké dotazy, :link prosím!',
+                'link_text' => 'kontaktujte nás',
+            ],
         ],
     ],
 
@@ -138,6 +193,10 @@ return [
     'username_change' => [
         'check' => 'Zadej uživatelské jméno pro kontrolu dostupnosti!',
         'checking' => 'Probíhá kontrola dostupnosti uživatelského jména :username...',
+        'placeholder' => 'Kýžené uživatelské jméno',
+        'label' => 'Nové uživatelské jméno',
+        'current' => 'Tvoje aktuální uživatelské jméno je ":username".',
+
         'require_login' => [
             '_' => 'Pro změnu uživatelského jména se musíš :link!',
             'link_text' => 'přihlášený',

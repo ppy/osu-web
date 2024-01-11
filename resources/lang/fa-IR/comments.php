@@ -43,6 +43,10 @@ return [
         'no_comments' => 'نظری یافت نشد...',
     ],
 
+    'ogp' => [
+        'title' => '',
+    ],
+
     'placeholder' => [
         'edit' => '',
         'new' => '',

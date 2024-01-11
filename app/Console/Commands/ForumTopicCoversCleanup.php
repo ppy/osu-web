@@ -51,7 +51,7 @@ class ForumTopicCoversCleanup extends Command
 
                 $deleted++;
                 $progress->advance();
-                $cover->deleteWithFile();
+                $cover->delete();
             }
         });
 

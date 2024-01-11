@@ -78,7 +78,7 @@ class TopicCoversController extends Controller
         if ($cover !== null) {
             priv_check('ForumTopicCoverEdit', $cover)->ensureCan();
 
-            $cover->deleteWithFile();
+            $cover->delete();
         }
 
         return json_item($cover, new TopicCoverTransformer());

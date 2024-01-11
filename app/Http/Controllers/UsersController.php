@@ -116,7 +116,7 @@ class UsersController extends Controller
 
     public function create()
     {
-        if (config('osu.user.registration_mode') !== 'web') {
+        if ($GLOBALS['cfg']['osu']['user']['registration_mode'] !== 'web') {
             return abort(403, osu_trans('users.store.from_client'));
         }
 
@@ -210,14 +210,14 @@ class UsersController extends Controller
 
     public function store()
     {
-        if (config('osu.user.registration_mode') !== 'client') {
+        if ($GLOBALS['cfg']['osu']['user']['registration_mode'] !== 'client') {
             return response([
                 'error' => osu_trans('users.store.from_web'),
                 'url' => route('users.create'),
             ], 403);
         }
 
-        if (!starts_with(Request::header('User-Agent'), config('osu.client.user_agent'))) {
+        if (!starts_with(Request::header('User-Agent'), $GLOBALS['cfg']['osu']['client']['user_agent'])) {
             return error_popup(osu_trans('users.store.from_client'), 403);
         }
 
@@ -226,7 +226,7 @@ class UsersController extends Controller
 
     public function storeWeb()
     {
-        if (config('osu.user.registration_mode') !== 'web') {
+        if ($GLOBALS['cfg']['osu']['user']['registration_mode'] !== 'web') {
             return error_popup(osu_trans('users.store.from_client'), 403);
         }
 
@@ -650,7 +650,7 @@ class UsersController extends Controller
             $initialData = [
                 'achievements' => $achievements,
                 'current_mode' => $currentMode,
-                'scores_notice' => config('osu.user.profile_scores_notice'),
+                'scores_notice' => $GLOBALS['cfg']['osu']['user']['profile_scores_notice'],
                 'user' => $userArray,
             ];
 
@@ -931,7 +931,7 @@ class UsersController extends Controller
 
     private function storeUser(array $rawParams)
     {
-        if (!config('osu.user.allow_registration')) {
+        if (!$GLOBALS['cfg']['osu']['user']['allow_registration']) {
             return abort(403, 'User registration is currently disabled');
         }
 
@@ -982,7 +982,7 @@ class UsersController extends Controller
                 );
             }
 
-            if (config('osu.user.registration_mode') === 'web') {
+            if ($GLOBALS['cfg']['osu']['user']['registration_mode'] === 'web') {
                 $this->login($user);
                 session()->flash('popup', osu_trans('users.store.saved'));
 

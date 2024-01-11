@@ -6,6 +6,7 @@
 return [
     'cart' => [
         'checkout' => 'Zapłać',
+        'empty_cart' => 'Usuń wszystkie produkty z koszyka',
         'info' => ':count_delimited produkt w koszyku (:subtotal$)|:count_delimited produkty w koszyku (:subtotal$)|:count_delimited produktów w koszyku (:subtotal$)',
         'more_goodies' => 'Chcę przejrzeć inne produkty przed zakończeniem zamówienia',
         'shipping_fees' => 'koszt wysyłki',
@@ -48,19 +49,52 @@ return [
     ],
 
     'discount' => 'zaoszczędź :percent%',
+    'free' => 'bezpłatne!',
 
     'invoice' => [
+        'contact' => 'Kontakt:',
+        'date' => 'Data:',
         'echeck_delay' => 'Jako że twoja płatność została przesłana czekiem elektronicznym, odczekaj do 10 dni na przetworzenie transakcji przez PayPal.',
         'hide_from_activity' => 'Zakup statusów donatora osu! z tego zamówienia nie zostanie wyświetlony w twojej aktywności.',
+        'sent_via' => 'Wysłane poprzez:',
+        'shipping_to' => '',
+        'title' => 'Faktura',
         'title_compact' => 'faktura',
 
         'status' => [
+            'cancelled' => [
+                'title' => 'Twoje zamówienie zostało anulowane',
+                'line_1' => [
+                    '_' => "",
+                    'link_text' => '',
+                ],
+            ],
+            'delivered' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => '',
+                    'link_text' => '',
+                ],
+            ],
+            'prepared' => [
+                'title' => '',
+                'line_1' => '',
+                'line_2' => '',
+            ],
             'processing' => [
                 'title' => 'Twoja płatność nie została jeszcze potwierdzona!',
                 'line_1' => 'Jeśli zamówienie zostało już opłacone, możliwe, że wciąż oczekujemy na potwierdzenie. Odśwież tę stronę za kilka minut!',
                 'line_2' => [
                     '_' => 'Jeśli napotkasz problem podczas realizacji transakcji, :link',
                     'link_text' => 'kliknij tutaj, by kontynuować proces zamówienia',
+                ],
+            ],
+            'shipped' => [
+                'title' => '',
+                'tracking_details' => '',
+                'no_tracking_details' => [
+                    '_' => "",
+                    'link_text' => '',
                 ],
             ],
         ],
@@ -74,7 +108,19 @@ return [
         'no_orders' => 'Brak zamówień do wyświetlenia.',
         'paid_on' => 'Zamówienie złożone :date',
         'resume' => 'Wznów zamówienie',
+        'shipping_and_handling' => '',
         'shopify_expired' => 'Łącze do płatności za to zamówienie wygasło.',
+        'subtotal' => '',
+        'total' => '',
+
+        'details' => [
+            'order_number' => '',
+            'payment_terms' => '',
+            'salesperson' => '',
+            'shipping_method' => '',
+            'shipping_terms' => '',
+            'title' => 'Szczegóły zamówienia',
+        ],
 
         'item' => [
             'quantity' => 'Ilość',
@@ -105,6 +151,15 @@ return [
             'paid' => 'Opłacone',
             'processing' => 'Oczekiwanie na potwierdzenie',
             'shipped' => 'W transporcie',
+            'title' => 'Status zamówienia',
+        ],
+
+        'thanks' => [
+            'title' => '',
+            'line_1' => [
+                '_' => '',
+                'link_text' => '',
+            ],
         ],
     ],
 
@@ -138,6 +193,10 @@ return [
     'username_change' => [
         'check' => 'Wprowadź nazwę użytkownika, aby sprawdzić, czy jest dostępna!',
         'checking' => 'Sprawdzanie możliwości zmiany na :username...',
+        'placeholder' => '',
+        'label' => '',
+        'current' => 'Twoja aktualna nazwa użytkownika to ":username".',
+
         'require_login' => [
             '_' => 'Aby zmienić swoją nazwę użytkownika, musisz się :link!',
             'link_text' => 'zalogować',

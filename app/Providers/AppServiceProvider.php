@@ -22,6 +22,7 @@ use App\Libraries\OsuCookieJar;
 use App\Libraries\OsuMessageSelector;
 use App\Libraries\RateLimiter;
 use App\Libraries\RouteSection;
+use App\Libraries\Smilies;
 use App\Libraries\User\ScorePins;
 use Datadog;
 use Illuminate\Database\Eloquent\Relations\Relation;
@@ -43,6 +44,7 @@ class AppServiceProvider extends ServiceProvider
         'groups' => Groups::class,
         'layout-cache' => LayoutCache::class,
         'medals' => Medals::class,
+        'smilies' => Smilies::class,
     ];
 
     const SINGLETONS = [
@@ -65,12 +67,14 @@ class AppServiceProvider extends ServiceProvider
     {
         Relation::morphMap(MorphMap::flippedMap());
 
+        $GLOBALS['cfg'] = \Config::all();
+
         Queue::after(function (JobProcessed $event) {
             app('OsuAuthorize')->resetCache();
             app('local-cache-manager')->incrementResetTicker();
 
             Datadog::increment(
-                config('datadog-helper.prefix_web').'.queue.run',
+                $GLOBALS['cfg']['datadog-helper']['prefix_web'].'.queue.run',
                 1,
                 [
                     'job' => $event->job->resolveName(),
@@ -81,9 +85,9 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->make('translator')->setSelector(new OsuMessageSelector());
 
-        app('url')->forceScheme(substr(config('app.url'), 0, 5) === 'https' ? 'https' : 'http');
+        app('url')->forceScheme(substr($GLOBALS['cfg']['app']['url'], 0, 5) === 'https' ? 'https' : 'http');
 
-        Request::setTrustedProxies(config('trustedproxy.proxies'), config('trustedproxy.headers'));
+        Request::setTrustedProxies($GLOBALS['cfg']['trustedproxy']['proxies'], $GLOBALS['cfg']['trustedproxy']['headers']);
 
         // newest scribe tries to rename {modelName} parameters to {id}
         // but it kind of doesn't work with our route handlers.
@@ -117,7 +121,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         $this->app->singleton('cookie', function ($app) {
-            $config = $app->make('config')->get('session');
+            $config = $GLOBALS['cfg']['session'];
 
             return (new OsuCookieJar())->setDefaultPathAndDomain(
                 $config['path'],

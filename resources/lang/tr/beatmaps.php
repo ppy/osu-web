@@ -174,7 +174,7 @@ return [
         'button_done' => 'Çoktan Gazlandı!',
         'confirm' => "Emin misiniz? Bu işlem kalan :n adet gaz hakkından birini kullanacak ve geriye alınamayacak.",
         'explanation' => 'Bu beatmapi aday gösterilmesi ve dereceli olması için daha görünür yapmak için gazla!',
-        'explanation_guest' => 'Giriş yap ve bu beatmapi gazlayarak, aday gösterilmesi ve dereceli olması için daha görünür yap!',
+        'explanation_guest' => 'Bu beatmapi aday gösterilmesi ve dereceli olması için daha görünür yapmak için gazlamak için giriş yap!',
         'new_time' => "Bir sonraki gaz :new_time tarihinde gelecek.",
         'remaining' => ':remaining gazınız kaldı.',
         'required_text' => 'Gaz: :current/:required',

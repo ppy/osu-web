@@ -26,7 +26,7 @@ return [
             'deleted' => 'Iekļaut dzēstās diskusijas',
             'mode' => 'Bītmapes mods',
             'only_unresolved' => 'Rādīt tikai neatrisinātās diskusijas',
-            'show_review_embeds' => '',
+            'show_review_embeds' => 'Rādīt apskata rakstus',
             'types' => 'Ziņu tipi',
             'username' => 'Lietotājvārds',
 

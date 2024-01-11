@@ -18,7 +18,7 @@ class UserNotificationsCleanup extends Command
 
     public function handle()
     {
-        $total = config('osu.notification.cleanup.max_delete_per_run');
+        $total = $GLOBALS['cfg']['osu']['notification']['cleanup']['max_delete_per_run'];
 
         if ($total === 0) {
             return;
@@ -27,7 +27,7 @@ class UserNotificationsCleanup extends Command
         $perLoop = min($total, 10000);
         $loops = $total / $perLoop;
 
-        $createdBefore = now()->subDays(config('osu.notification.cleanup.keep_days'));
+        $createdBefore = now()->subDays($GLOBALS['cfg']['osu']['notification']['cleanup']['keep_days']);
         $this->line("Deleting user notifications before {$createdBefore}");
 
         $progress = $this->output->createProgressBar($total);
@@ -59,7 +59,7 @@ class UserNotificationsCleanup extends Command
                 );
                 $deleted = count($notificationIds);
                 $deletedTotal += $deleted;
-                Datadog::increment(config('datadog-helper.prefix_web').'.notifications_cleanup.user_notifications', 1, null, $deleted);
+                Datadog::increment($GLOBALS['cfg']['datadog-helper']['prefix_web'].'.notifications_cleanup.user_notifications', 1, null, $deleted);
                 $progress->advance($deleted);
             }
 

@@ -6,7 +6,7 @@
     use App\Libraries\ApidocRouteHelper;
     use Knuckles\Camel\Output\OutputEndpointData;
 
-    $baseUrl = config('app.url');
+    $baseUrl = $GLOBALS['cfg']['app']['url'];
     $wikiUrl = wiki_url('Bot_account', null, false);
 
     $defaultHeaders = [
@@ -428,14 +428,14 @@ Restricted users can grant authorization like anyone else. If your client should
 <div class="bash-example">
     <pre><code class="language-bash"
 ># With shell, you can just pass the correct header with each request
-curl "{{ config('app.url') }}/api/[version]/[endpoint]"
+curl "{{ $GLOBALS['cfg']['app']['url'] }}/api/[version]/[endpoint]"
   -H "Authorization: Bearer @{{token}}"</code><pre>
 </div>
 
 <div class="javascript-example">
     <pre><code class="language-javascript"
 >// This javascript example uses fetch()
-fetch("{{ config('app.url') }}/api/[version]/[endpoint]", {
+fetch("{{ $GLOBALS['cfg']['app']['url'] }}/api/[version]/[endpoint]", {
     headers: {
       Authorization: 'Bearer @{{token}}'
     }

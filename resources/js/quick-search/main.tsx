@@ -92,7 +92,7 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
 
   private navigateToSelected() {
     const url = this.props.worker.selectedURL;
-    if (url) {
+    if (url != null) {
       navigate(url, false);
     }
   }

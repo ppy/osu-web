@@ -11,11 +11,26 @@ use App\Libraries\Elasticsearch\SearchParams;
 use App\Libraries\Elasticsearch\Sort;
 use App\Models\Solo\Score;
 use App\Models\User;
+use App\Models\UserProfileCustomization;
 
 class ScoreSearchParams extends SearchParams
 {
     const VALID_TYPES = ['global', 'country', 'friend'];
     const DEFAULT_TYPE = 'global';
+
+    public ?array $beatmapIds = null;
+    public ?Score $beforeScore = null;
+    public ?int $beforeTotalScore = null;
+    public ?array $excludeMods = null;
+    public ?bool $isLegacy = null;
+    public ?array $mods = null;
+    public ?int $rulesetId = null;
+    public $size = 50;
+    public ?User $user = null;
+    public ?int $userId = null;
+
+    private ?string $countryCode = null;
+    private string $type = self::DEFAULT_TYPE;
 
     public static function fromArray(array $rawParams): static
     {
@@ -39,19 +54,10 @@ class ScoreSearchParams extends SearchParams
         return $params;
     }
 
-    public ?array $beatmapIds = null;
-    public ?Score $beforeScore = null;
-    public ?int $beforeTotalScore = null;
-    public ?array $excludeMods = null;
-    public ?bool $isLegacy = null;
-    public ?array $mods = null;
-    public ?int $rulesetId = null;
-    public $size = 50;
-    public ?User $user = null;
-    public ?int $userId = null;
-
-    private ?string $countryCode = null;
-    private string $type = self::DEFAULT_TYPE;
+    public static function showLegacyForUser(?User $user): bool
+    {
+        return $user?->userProfileCustomization?->legacy_score_only ?? UserProfileCustomization::DEFAULT_LEGACY_ONLY_ATTRIBUTE;
+    }
 
     public function getCountryCode(): string
     {

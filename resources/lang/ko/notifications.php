@@ -55,6 +55,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => ':username님의 리뷰에 문제가 제시되어 있습니다. 문제: :problems, 제안: :suggestions, 칭찬: :praises',
                 'beatmapset_discussion_unlock' => '비트맵 ":title"의 토론이 잠금 해제되었습니다.',
                 'beatmapset_discussion_unlock_compact' => '토론이 잠금 해제되었습니다.',
+
+                'review_count' => [
+                    'praises' => ':count_delimited개의 칭찬',
+                    'problems' => ':count_delimited개의 문제 제기',
+                    'suggestions' => ':count_delimited개의 제안',
+                ],
             ],
 
             'beatmapset_problem' => [

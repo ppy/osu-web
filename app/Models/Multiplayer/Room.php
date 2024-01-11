@@ -611,6 +611,9 @@ class Room extends Model
 
             $agg->updateUserAttempts();
 
+            $playlistItemAgg = PlaylistItemUserHighScore::new($user->getKey(), $playlistItem->getKey());
+            $playlistItemAgg->updateUserAttempts();
+
             return ScoreToken::create([
                 'beatmap_id' => $playlistItem->beatmap_id,
                 'build_id' => $buildId,
@@ -669,7 +672,7 @@ class Room extends Model
         }
 
         if ($this->max_attempts !== null) {
-            $maxAttemptsLimit = config('osu.multiplayer.max_attempts_limit');
+            $maxAttemptsLimit = $GLOBALS['cfg']['osu']['multiplayer']['max_attempts_limit'];
             if ($this->max_attempts < 1 || $this->max_attempts > $maxAttemptsLimit) {
                 throw new InvariantException("field 'max_attempts' must be between 1 and {$maxAttemptsLimit}");
             }
@@ -684,15 +687,17 @@ class Room extends Model
             throw new InvariantException('Room has already ended.');
         }
 
+        $userId = $user->getKey();
         if ($this->max_attempts !== null) {
-            $roomStats = $this->userHighScores()->where('user_id', $user->getKey())->first();
+            $roomStats = $this->userHighScores()->where('user_id', $userId)->first();
             if ($roomStats !== null && $roomStats->attempts >= $this->max_attempts) {
                 throw new InvariantException('You have reached the maximum number of tries allowed.');
             }
         }
 
         if ($playlistItem->max_attempts !== null) {
-            if ($playlistItem->userAttempts($user->getKey()) >= $playlistItem->max_attempts) {
+            $playlistItemStats = $playlistItem->highScores()->where('user_id', $userId)->first();
+            if ($playlistItemStats !== null && $playlistItemStats->attempts >= $playlistItem->max_attempts) {
                 throw new InvariantException('You have reached the maximum number of tries allowed.');
             }
         }

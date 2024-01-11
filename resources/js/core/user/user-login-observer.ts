@@ -4,6 +4,7 @@
 import { UserLoginAction } from 'actions/user-login-actions';
 import { dispatch } from 'app-dispatcher';
 import { route } from 'laroute';
+import { present } from 'utils/string';
 
 export default class UserLoginObserver {
   constructor() {
@@ -27,7 +28,7 @@ export default class UserLoginObserver {
   };
 
   private readonly handleUserLogout = (event: JQuery.TriggeredEvent<unknown, unknown, HTMLElement, unknown>) => {
-    const redirect = !!(event.currentTarget.dataset.redirectHome);
+    const redirect = present(event.currentTarget.dataset.redirectHome);
     this.logout(redirect);
   };
 }

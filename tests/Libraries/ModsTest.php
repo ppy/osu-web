@@ -100,7 +100,7 @@ class ModsTest extends TestCase
         }
     }
 
-    public function modCombos()
+    public static function modCombos()
     {
         return [
             // valid
@@ -140,7 +140,7 @@ class ModsTest extends TestCase
         ];
     }
 
-    public function modComboExclusives()
+    public static function modComboExclusives()
     {
         return [
             // non-exclusive required mods and no allowed mods
@@ -152,12 +152,12 @@ class ModsTest extends TestCase
             [Ruleset::mania, ['DT'], ['PF'], true],
 
             // conflicting exclusive required mods
-            [Ruleset::osu, ['RX', 'PF'], [], false],
+            [Ruleset::osu, ['HT', 'DT'], [], false],
             [Ruleset::mania, ['FI', 'HD'], [], false],
 
             // allowed mods conflicts with exclusive required mods
-            [Ruleset::osu, ['RX'], ['PF'], false],
-            [Ruleset::taiko, ['RX'], ['PF'], false],
+            [Ruleset::osu, ['HT'], ['DT'], false],
+            [Ruleset::taiko, ['HT'], ['DT'], false],
         ];
     }
 }

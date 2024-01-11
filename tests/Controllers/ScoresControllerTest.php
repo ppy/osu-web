@@ -22,7 +22,7 @@ class ScoresControllerTest extends TestCase
     {
         $this
             ->actingAs($this->user)
-            ->withHeaders(['HTTP_REFERER' => config('app.url').'/'])
+            ->withHeaders(['HTTP_REFERER' => $GLOBALS['cfg']['app']['url'].'/'])
             ->json(
                 'GET',
                 route('scores.download-legacy', $this->params())
@@ -41,7 +41,7 @@ class ScoresControllerTest extends TestCase
 
         $this
             ->actingAs($this->user)
-            ->withHeaders(['HTTP_REFERER' => config('app.url').'/'])
+            ->withHeaders(['HTTP_REFERER' => $GLOBALS['cfg']['app']['url'].'/'])
             ->json(
                 'GET',
                 route('scores.download', $soloScore)
@@ -55,7 +55,7 @@ class ScoresControllerTest extends TestCase
 
         $this
             ->actingAs($this->user)
-            ->withHeaders(['HTTP_REFERER' => config('app.url').'/'])
+            ->withHeaders(['HTTP_REFERER' => $GLOBALS['cfg']['app']['url'].'/'])
             ->get(route('scores.download-legacy', $this->params()))
             ->assertSuccessful();
     }
@@ -66,7 +66,7 @@ class ScoresControllerTest extends TestCase
 
         $this
             ->actingAs($this->user)
-            ->withHeaders(['HTTP_REFERER' => config('app.url').'/'])
+            ->withHeaders(['HTTP_REFERER' => $GLOBALS['cfg']['app']['url'].'/'])
             ->get(route('scores.download-legacy', $this->params()))
             ->assertStatus(422);
     }
@@ -77,7 +77,7 @@ class ScoresControllerTest extends TestCase
 
         $this
             ->actingAs($this->user)
-            ->withHeaders(['HTTP_REFERER' => config('app.url').'/'])
+            ->withHeaders(['HTTP_REFERER' => $GLOBALS['cfg']['app']['url'].'/'])
             ->get(route('scores.download-legacy', $this->params()))
             ->assertStatus(422);
     }
@@ -94,7 +94,7 @@ class ScoresControllerTest extends TestCase
 
         $this
             ->actingAs($this->user)
-            ->withHeaders(['HTTP_REFERER' => rtrim(config('app.url'), '/').'.example.com'])
+            ->withHeaders(['HTTP_REFERER' => rtrim($GLOBALS['cfg']['app']['url'], '/').'.example.com'])
             ->json(
                 'GET',
                 route('scores.download-legacy', $this->params())
@@ -119,8 +119,8 @@ class ScoresControllerTest extends TestCase
 
         // fake all the replay disks
         $disks = [];
-        foreach (array_keys(config('filesystems.disks.replays')) as $key) {
-            foreach (array_keys(config("filesystems.disks.replays.{$key}")) as $type) {
+        foreach (array_keys($GLOBALS['cfg']['filesystems']['disks']['replays']) as $key) {
+            foreach (array_keys($GLOBALS['cfg']['filesystems']['disks']['replays'][$key]) as $type) {
                 $disk = "replays.{$key}.{$type}";
                 $disks[] = $disk;
                 Storage::fake($disk);

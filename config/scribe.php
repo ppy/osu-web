@@ -5,7 +5,7 @@ use Knuckles\Scribe\Extracting\Strategies;
 return [
 
     /*
-     * The HTML <title> for the generated documentation. If this is empty, Scribe will infer it from config('app.name').
+     * The HTML <title> for the generated documentation. If this is empty, Scribe will infer it from $GLOBALS['cfg']['app']['name'].
      */
     'title' => null,
 
@@ -242,7 +242,7 @@ INTRO
     ],
 
     /*
-     * The base URL to be used in examples. If this is empty, Scribe will use the value of config('app.url').
+     * The base URL to be used in examples. If this is empty, Scribe will use the value of $GLOBALS['cfg']['app']['url'].
      */
     'base_url' => null,
 
@@ -351,7 +351,7 @@ INTRO
      * For response calls, api resource responses and transformer responses, Scribe will try to start database transactions, so no changes are persisted to your database.
      * Tell Scribe which connections should be transacted here. If you only use the default db connection, you can leave this as is.
      */
-    'database_connections_to_transact' => [config('database.default')],
+    'database_connections_to_transact' => [],
     'theme' => 'osu',
     'try_it_out' => [
         /**

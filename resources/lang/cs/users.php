@@ -124,6 +124,9 @@ return [
     ],
 
     'ogp' => [
+        'modding_description' => 'Beatmap: :counts',
+        'modding_description_empty' => 'Uživatel nemá žádné beatmapy...',
+
         'description' => [
             '_' => 'Umístění (:ruleset): :global | :country',
             'country' => 'Stát :rank',
@@ -183,7 +186,6 @@ return [
         'origin_country' => 'Z :country',
         'previous_usernames' => 'dříve znám jako',
         'plays_with' => 'Hraje s :devices',
-        'title' => "profil uživatele :username",
 
         'comments_count' => [
             '_' => 'Postnul :link',
@@ -420,7 +422,7 @@ return [
         'not_found' => [
             'reason_1' => 'Možná si změnil uživatelské jméno.',
             'reason_2' => 'Účet může být dočasně nedostupný z důvodu problémů s bezpečností, nebo zneužitím.',
-            'reason_3' => 'Možná jste se přepsal!',
+            'reason_3' => 'Možná jsi se přepsal!',
             'reason_header' => 'Existuje několik možných důvodů:',
             'title' => 'Uživatel nebyl nalezen! ;_;',
         ],

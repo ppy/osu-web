@@ -18,9 +18,6 @@ class CreateOsuUserPerformanceRankHighest extends Migration
     public function up()
     {
         Schema::create('osu_user_performance_rank_highest', function (Blueprint $table) {
-            $table->charset = 'utf8mb4';
-            $table->collation = 'utf8mb4_general_ci';
-
             $table->unsignedInteger('user_id');
             $table->tinyInteger('mode');
             $table->integer('rank')->default(0);
@@ -30,7 +27,6 @@ class CreateOsuUserPerformanceRankHighest extends Migration
         });
         DB::statement('
             ALTER TABLE `osu_user_performance_rank_highest`
-            ROW_FORMAT=DYNAMIC
             PARTITION BY RANGE (`mode`) (
                 PARTITION p0 VALUES LESS THAN (1),
                 PARTITION p1 VALUES LESS THAN (2),

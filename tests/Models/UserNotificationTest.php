@@ -178,7 +178,7 @@ class UserNotificationTest extends TestCase
         );
     }
 
-    public function deliveryMaskDataProvider()
+    public static function deliveryMaskDataProvider()
     {
         return [
             [0, 'mail', false],

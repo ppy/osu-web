@@ -21,7 +21,7 @@ class NotificationsCleanup extends Command
 
     public function handle()
     {
-        $total = config('osu.notification.cleanup.max_delete_per_run');
+        $total = $GLOBALS['cfg']['osu']['notification']['cleanup']['max_delete_per_run'];
 
         if ($total === 0) {
             return;
@@ -46,7 +46,7 @@ class NotificationsCleanup extends Command
 
         for ($i = 0; $i < $loops; $i++) {
             $deleted = Notification::where('id', '<', $maxNotificationId)->limit($perLoop)->delete();
-            Datadog::increment(config('datadog-helper.prefix_web').'.notifications_cleanup.notifications', 1, null, $deleted);
+            Datadog::increment($GLOBALS['cfg']['datadog-helper']['prefix_web'].'.notifications_cleanup.notifications', 1, null, $deleted);
 
             $deletedTotal += $deleted;
         }

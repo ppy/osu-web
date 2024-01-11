@@ -24,24 +24,30 @@ class UpdateUserLastvisit
         $user = $this->auth->user();
 
         if ($user !== null) {
-            $isInactive = $user->isInactive();
+            $token = $user->token();
+            $shouldUpdate = $token === null || $token->client->password_client;
 
-            if ($isInactive) {
-                $isVerified = $user->isSessionVerified();
-            }
+            if ($shouldUpdate) {
+                $isInactive = $user->isInactive();
+                if ($isInactive) {
+                    $isVerified = $user->isSessionVerified();
+                }
 
-            if (!$isInactive || $isVerified) {
-                $recordedLastVisit = $user->getRawAttribute('user_lastvisit');
-                $currentLastVisit = time();
+                if (!$isInactive || $isVerified) {
+                    $recordedLastVisit = $user->getRawAttribute('user_lastvisit');
+                    $currentLastVisit = time();
 
-                if ($currentLastVisit - $recordedLastVisit > 300) {
-                    $user->update([
-                        'user_lastvisit' => $currentLastVisit,
-                    ], ['skipValidations' => true]);
+                    if ($currentLastVisit - $recordedLastVisit > 300) {
+                        $user->update([
+                            'user_lastvisit' => $currentLastVisit,
+                        ], ['skipValidations' => true]);
+                    }
+                }
+
+                if ($token === null) {
+                    $this->recordSession($request);
                 }
             }
-
-            $this->recordSession($request);
         }
 
         return $next($request);
@@ -50,12 +56,13 @@ class UpdateUserLastvisit
     private function recordSession($request)
     {
         // Add metadata to session to help user recognize this login location
-        $countryCode = presence(request_country($request)) ?? Country::UNKNOWN;
+        $countryCode = request_country($request);
+        $country = $countryCode === null ? null : app('countries')->byCode($countryCode);
         $request->session()->put('meta', [
             'agent' => $request->header('User-Agent'),
             'country' => [
-                'code' => $countryCode,
-                'name' => presence(Country::where('acronym', $countryCode)->pluck('name')->first()) ?? 'Unknown',
+                'code' => $country?->acronym ?? Country::UNKNOWN,
+                'name' => presence($country?->name) ?? 'Unknown',
             ],
             'ip' => $request->ip(),
             'last_visit' => Carbon::now(),

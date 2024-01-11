@@ -3,6 +3,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+use App\Libraries\Base64Url;
 use App\Libraries\LocaleMeta;
 use App\Models\LoginAttempt;
 use Egulias\EmailValidator\EmailValidator;
@@ -184,7 +185,7 @@ function cache_forget_with_fallback($key)
 
 function captcha_enabled()
 {
-    return config('captcha.sitekey') !== '' && config('captcha.secret') !== '';
+    return $GLOBALS['cfg']['captcha']['sitekey'] !== '' && $GLOBALS['cfg']['captcha']['secret'] !== '';
 }
 
 function captcha_login_triggered()
@@ -193,11 +194,11 @@ function captcha_login_triggered()
         return false;
     }
 
-    if (config('captcha.threshold') === 0) {
+    if ($GLOBALS['cfg']['captcha']['threshold'] === 0) {
         $triggered = true;
     } else {
         $loginAttempts = LoginAttempt::find(request()->getClientIp());
-        $triggered = $loginAttempts && $loginAttempts->failed_attempts >= config('captcha.threshold');
+        $triggered = $loginAttempts && $loginAttempts->failed_attempts >= $GLOBALS['cfg']['captcha']['threshold'];
     }
 
     return $triggered;
@@ -263,7 +264,7 @@ function cleanup_cookies()
     }
 
     // remove duplicates and current session domain
-    $sessionDomain = presence(ltrim(config('session.domain'), '.')) ?? '';
+    $sessionDomain = presence(ltrim($GLOBALS['cfg']['session']['domain'], '.')) ?? '';
     $domains = array_diff(array_unique($domains), [$sessionDomain]);
 
     foreach (['locale', 'osu_session', 'XSRF-TOKEN'] as $key) {
@@ -271,6 +272,12 @@ function cleanup_cookies()
             cookie()->queueForget($key, null, $domain);
         }
     }
+}
+
+function config_set(string $key, $value): void
+{
+    Config::set($key, $value);
+    $GLOBALS['cfg'] = Config::all();
 }
 
 function css_group_colour($group)
@@ -298,7 +305,7 @@ function current_locale_meta(): LocaleMeta
 function cursor_decode($cursorString): ?array
 {
     if (is_string($cursorString) && present($cursorString)) {
-        $cursor = json_decode(base64_decode(strtr($cursorString, '-_', '+/'), true), true);
+        $cursor = json_decode(Base64Url::decode($cursorString) ?? '', true);
 
         if (is_array($cursor)) {
             return $cursor;
@@ -310,13 +317,9 @@ function cursor_decode($cursorString): ?array
 
 function cursor_encode(?array $cursor): ?string
 {
-    if ($cursor === null) {
-        return null;
-    }
-
-    // url safe base64
-    // reference: https://datatracker.ietf.org/doc/html/rfc4648#section-5
-    return rtrim(strtr(base64_encode(json_encode($cursor)), '+/', '-_'), '=');
+    return $cursor === null
+        ? null
+        : Base64Url::encode(json_encode($cursor));
 }
 
 function cursor_for_response(?array $cursor): array
@@ -397,7 +400,7 @@ function format_rank(?int $rank): string
 
 function get_valid_locale($requestedLocale)
 {
-    if (in_array($requestedLocale, config('app.available_locales'), true)) {
+    if (in_array($requestedLocale, $GLOBALS['cfg']['app']['available_locales'], true)) {
         return $requestedLocale;
     }
 }
@@ -460,21 +463,16 @@ function log_error($exception)
 {
     Log::error($exception);
 
-    if (config('sentry.dsn')) {
+    if ($GLOBALS['cfg']['sentry']['dsn']) {
         Sentry::captureException($exception);
     }
 }
 
 function logout()
 {
-    $guard = auth()->guard();
-    if ($guard instanceof Illuminate\Contracts\Auth\StatefulGuard) {
-        $guard->logout();
-    }
-
+    \Session::delete();
+    Auth::logout();
     cleanup_cookies();
-
-    session()->invalidate();
 }
 
 function markdown($input, $preset = 'default')
@@ -531,7 +529,7 @@ function max_offset($page, $limit)
 {
     $offset = ($page - 1) * $limit;
 
-    return max(0, min($offset, config('osu.pagination.max_count') - $limit));
+    return max(0, min($offset, $GLOBALS['cfg']['osu']['pagination']['max_count'] - $limit));
 }
 
 function mysql_escape_like($string)
@@ -553,7 +551,7 @@ function osu_trans($key = null, $replace = [], $locale = null)
     }
 
     if (!trans_exists($key, $locale)) {
-        $locale = config('app.fallback_locale');
+        $locale = $GLOBALS['cfg']['app']['fallback_locale'];
     }
 
     return $translator->get($key, $replace, $locale, false);
@@ -562,7 +560,7 @@ function osu_trans($key = null, $replace = [], $locale = null)
 function osu_trans_choice($key, $number, array $replace = [], $locale = null)
 {
     if (!trans_exists($key, $locale)) {
-        $locale = config('app.fallback_locale');
+        $locale = $GLOBALS['cfg']['app']['fallback_locale'];
     }
 
     if (is_array($number) || $number instanceof Countable) {
@@ -576,12 +574,12 @@ function osu_trans_choice($key, $number, array $replace = [], $locale = null)
     return app('translator')->choice($key, $number, $replace, $locale);
 }
 
-function osu_url($key)
+function osu_url(string $key): ?string
 {
-    $url = config("osu.urls.{$key}");
+    $url = $GLOBALS['cfg']['osu']['urls'][$key] ?? null;
 
     if (($url[0] ?? null) === '/') {
-        $url = config('osu.urls.base').$url;
+        $url = $GLOBALS['cfg']['osu']['urls']['base'].$url;
     }
 
     return $url;
@@ -773,7 +771,7 @@ function from_app_url()
     // Add trailing slash so people can't just use https://osu.web.domain.com
     // to bypass https://osu.web referrer check.
     // This assumes app.url doesn't contain trailing slash.
-    return starts_with(request()->headers->get('referer'), config('app.url').'/');
+    return starts_with(request()->headers->get('referer'), $GLOBALS['cfg']['app']['url'].'/');
 }
 
 function forum_user_link(int $id, string $username, string|null $colour, int|null $currentUserId): string
@@ -791,14 +789,14 @@ function forum_user_link(int $id, string $username, string|null $colour, int|nul
     return "{$icon} {$link}";
 }
 
-function is_api_request()
+function is_api_request(): bool
 {
-    return request()->is('api/*');
+    return str_starts_with(rawurldecode(Request::getPathInfo()), '/api/');
 }
 
-function is_json_request()
+function is_json_request(): bool
 {
-    return is_api_request() || request()->expectsJson();
+    return is_api_request() || Request::expectsJson();
 }
 
 function is_valid_email_format(?string $email): bool
@@ -845,7 +843,7 @@ function page_description($extra)
 function page_title()
 {
     $currentRoute = app('route-section')->getCurrent();
-    $checkLocale = config('app.fallback_locale');
+    $checkLocale = $GLOBALS['cfg']['app']['fallback_locale'];
 
     $actionKey = "{$currentRoute['namespace']}.{$currentRoute['controller']}.{$currentRoute['action']}";
     $actionKey = match ($actionKey) {
@@ -1052,11 +1050,11 @@ function proxy_media($url)
 
     $url = html_entity_decode_better($url);
 
-    if (config('osu.camo.key') === null) {
+    if ($GLOBALS['cfg']['osu']['camo']['key'] === null) {
         return $url;
     }
 
-    $isProxied = starts_with($url, config('osu.camo.prefix'));
+    $isProxied = starts_with($url, $GLOBALS['cfg']['osu']['camo']['prefix']);
 
     if ($isProxied) {
         return $url;
@@ -1068,14 +1066,14 @@ function proxy_media($url)
         if ($url[0] !== '/') {
             $url = "/{$url}";
         }
-        $url = config('app.url').$url;
+        $url = $GLOBALS['cfg']['app']['url'].$url;
     }
 
 
     $hexUrl = bin2hex($url);
-    $secret = hash_hmac('sha1', $url, config('osu.camo.key'));
+    $secret = hash_hmac('sha1', $url, $GLOBALS['cfg']['osu']['camo']['key']);
 
-    return config('osu.camo.prefix')."{$secret}/{$hexUrl}";
+    return $GLOBALS['cfg']['osu']['camo']['prefix']."{$secret}/{$hexUrl}";
 }
 
 function lazy_load_image($url, $class = '', $alt = '')
@@ -1756,7 +1754,7 @@ function check_url(string $url): bool
 
 function mini_asset(string $url): string
 {
-    return str_replace(config('filesystems.disks.s3.base_url'), config('filesystems.disks.s3.mini_url'), $url);
+    return str_replace($GLOBALS['cfg']['filesystems']['disks']['s3']['base_url'], $GLOBALS['cfg']['filesystems']['disks']['s3']['mini_url'], $url);
 }
 
 function section_to_hue_map($section): int

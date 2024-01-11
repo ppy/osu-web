@@ -19,7 +19,7 @@ return [
         'nominate' => [
             'exhausted' => 'Olet saavuttanut suosittelurajan tälle päivälle, yritä huomenna uudelleen.',
             'incorrect_state' => 'Virhe toiminnon suorittamisessa, kokeile päivittää sivu.',
-            'owner' => "Omaa beatmappia ei voi suositella.",
+            'owner' => "Omaa rytmikarttaa ei voi ehdollepanna.",
             'set_metadata' => 'Sinun täytyy määrittää tyylilaji ja kieli ennen ehdolle asettamista.',
         ],
         'resolve' => [
@@ -53,7 +53,7 @@ return [
     ],
 
     'beatmapset' => [
-        'discussion_locked' => 'Tämän beatmapin keskustelu on lukittu.',
+        'discussion_locked' => 'Tämän rytmikartan keskustelu on lukittu.',
 
         'metadata' => [
             'nominated' => 'Et voi muuttaa ehdolle asetetun kartan kuvailutietoja. Ota yhteyttä BN- tai NAT-jäseneen, jos luulet sen olevan virheellinen.',
@@ -61,12 +61,12 @@ return [
     ],
 
     'chat' => [
-        'annnonce_only' => 'Tämä kanava on tarkoitettu vain tiedotuksiin.',
+        'annnonce_only' => 'Tämä kanava on vain tiedotteita varten.',
         'blocked' => 'Et voi lähettää viestejä käyttäjälle, joka on estänyt sinut tai jonka olet estänyt.',
         'friends_only' => 'Käyttäjä on estänyt viestit henkilöiltä, jotka eivät ole hänen kaverilistassaan.',
         'moderated' => 'Tätä kanavaa moderoidaan.',
         'no_access' => 'Sinulla ei ole oikeuksia tälle kanavalle.',
-        'receive_friends_only' => 'Käyttäjä ei välttämättä pysty vastaamaan, koska hyväksyt viestejä vain ystävälistallasi olevilta henkilöiltä.',
+        'receive_friends_only' => 'Käyttäjä ei välttämättä pysty vastaamaan, koska hyväksyt viestejä vain kaverilistallasi olevilta henkilöiltä.',
         'restricted' => 'Et voi lähettää viestejä mykistettynä, rajoitettuna tai bännättynä.',
         'silenced' => 'Et voi lähettää viestejä mykistettynä, rajoitettuna tai bännättynä.',
     ],
@@ -182,7 +182,7 @@ return [
             'edit' => [
                 'locked' => 'Käyttäjäsivu on lukittu.',
                 'not_owner' => 'Voit muokata vain omaa käyttäjäsivuasi.',
-                'require_supporter_tag' => 'Sinun on oltava Tukija.',
+                'require_supporter_tag' => 'osu!-tukijamerkki vaaditaan.',
             ],
         ],
         'update_email' => [

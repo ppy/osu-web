@@ -5,16 +5,16 @@
 
 return [
     'button' => [
-        'resend' => 'Verificatie e-mail opnieuw versturen',
+        'resend' => 'Verstuur verificatie e-mail opnieuw',
         'set' => 'Wachtwoord instellen',
         'start' => 'Start',
     ],
 
     'error' => [
-        'contact_support' => 'Contakteer support om je account te herstellen.',
+        'contact_support' => 'Contacteer support om je account te herstellen.',
         'expired' => 'Verificatiecode is verlopen.',
         'invalid' => 'Onverwachte fout in verificatiecode.',
-        'is_privileged' => 'Contacteer peppy lol.',
+        'is_privileged' => 'Neem contact op met een beheerder van een hoog niveau om je account te herstellen.',
         'missing_key' => 'Vereist.',
         'too_many_tries' => 'Te veel mislukte pogingen.',
         'user_not_found' => 'Deze gebruiker bestaat niet.',

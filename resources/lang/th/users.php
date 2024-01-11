@@ -125,6 +125,9 @@ return [
     ],
 
     'ogp' => [
+        'modding_description' => 'บีทแมป: :counts',
+        'modding_description_empty' => 'ผู้ใช้ยังไม่มีบีทแมปใดๆ...',
+
         'description' => [
             '_' => 'อันดับ (:ruleset): :global | :country',
             'country' => ':rank ทั้งประเทศ',
@@ -184,7 +187,6 @@ return [
         'origin_country' => 'มาจาก :country',
         'previous_usernames' => 'เคยมีชื่อว่า',
         'plays_with' => 'เล่นด้วย :devices',
-        'title' => "โปรไฟล์ของ :username",
 
         'comments_count' => [
             '_' => 'โพสต์แล้ว :link',

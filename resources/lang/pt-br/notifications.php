@@ -55,6 +55,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => 'Nova revisão por :username contendo problemas: :problems, sugestões: :suggestions, elogios: :praises',
                 'beatmapset_discussion_unlock' => 'A discussão do beatmap ":title" foi destrancada.',
                 'beatmapset_discussion_unlock_compact' => 'A discussão foi destrancada',
+
+                'review_count' => [
+                    'praises' => ':count_delimited elogio|:count_delimited elogios',
+                    'problems' => ':count_delimited problema|:count_delimited problemas',
+                    'suggestions' => ':count_delimited sugestão|:count_delimited sugestões',
+                ],
             ],
 
             'beatmapset_problem' => [

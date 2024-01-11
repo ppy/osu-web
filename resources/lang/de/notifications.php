@@ -51,10 +51,16 @@ return [
                 'beatmapset_discussion_post_new_empty' => 'Neuer Beitrag auf ":title" von :username',
                 'beatmapset_discussion_post_new_compact' => 'Neuer Beitrag von :username: ":content"',
                 'beatmapset_discussion_post_new_compact_empty' => 'Neuer Beitrag von :username',
-                'beatmapset_discussion_review_new' => 'Neue Rezension zu ":title" von :username mit Problemen: :problems, Vorschlägen: :suggestions, Lob: :praises',
-                'beatmapset_discussion_review_new_compact' => 'Neue Rezension von :username mit Problemen: :problems, Vorschlägen: :suggestions, Lob: :praises',
+                'beatmapset_discussion_review_new' => 'Neue Rezension zu ":title" von :username mit :review_counts',
+                'beatmapset_discussion_review_new_compact' => 'Neue Rezension von :username mit :review_counts',
                 'beatmapset_discussion_unlock' => 'Diskussion auf ":title" wurde freigegeben',
                 'beatmapset_discussion_unlock_compact' => 'Die Diskussion ist freigegeben',
+
+                'review_count' => [
+                    'praises' => ':count_delimited Zuspruch|:count_delimited Zusprüchen',
+                    'problems' => ':count_delimited Problem|:count_delimited Problemen',
+                    'suggestions' => ':count_delimited Vorschlag|:count_delimited Vorschlägen',
+                ],
             ],
 
             'beatmapset_problem' => [

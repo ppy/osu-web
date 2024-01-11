@@ -178,7 +178,7 @@ export class Nominator extends React.Component<Props> {
     const req = this.beatmapset.nominations.required[mode];
     const curr = this.beatmapset.nominations.current[mode] ?? 0;
 
-    if (!req) {
+    if (req == null) {
       return false;
     }
 

@@ -23,6 +23,7 @@ class Kernel extends HttpKernel
             Middleware\AuthApi::class,
             Middleware\SetLocaleApi::class,
             Middleware\CheckUserBanStatus::class,
+            Middleware\UpdateUserLastvisit::class,
         ],
         'web' => [
             Middleware\StripCookies::class,

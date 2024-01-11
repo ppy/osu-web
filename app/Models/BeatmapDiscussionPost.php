@@ -29,6 +29,7 @@ class BeatmapDiscussionPost extends Model implements Traits\ReportableInterface
 {
     use Traits\Reportable, Validatable;
 
+    const MESSAGE_LIMIT = 16_000; // column limit for 4 bytes utf8
     const MESSAGE_LIMIT_TIMELINE = 750;
 
     protected $touches = ['beatmapDiscussion'];
@@ -226,9 +227,10 @@ class BeatmapDiscussionPost extends Model implements Traits\ReportableInterface
                 $this->validationErrors()->add('message', 'required');
             }
 
-            if ($this->beatmapDiscussion?->timestamp !== null) {
-                $this->validateDbFieldLength(static::MESSAGE_LIMIT_TIMELINE, 'message');
-            }
+            $limit = $this->beatmapDiscussion?->timestamp === null
+                ? static::MESSAGE_LIMIT
+                : static::MESSAGE_LIMIT_TIMELINE;
+            $this->validateDbFieldLength($limit, 'message');
         }
 
         return $this->validationErrors()->isEmpty();

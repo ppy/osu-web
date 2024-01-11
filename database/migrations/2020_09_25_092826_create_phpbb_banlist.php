@@ -21,9 +21,6 @@ class CreatePhpbbBanlist extends Migration
         }
 
         Schema::create('phpbb_banlist', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_bin';
-
             $table->mediumIncrements('ban_id');
             $table->unsignedMediumInteger('ban_userid')->default(0);
             $table->string('ban_ip', 40)->default('');
@@ -39,8 +36,6 @@ class CreatePhpbbBanlist extends Migration
             $table->index(['ban_email', 'ban_exclude'], 'ban_email');
             $table->index(['ban_ip', 'ban_exclude'], 'ban_ip');
         });
-
-        DB::statement('ALTER TABLE `phpbb_banlist` ROW_FORMAT=DYNAMIC;');
     }
 
     /**
@@ -50,6 +45,6 @@ class CreatePhpbbBanlist extends Migration
      */
     public function down()
     {
-        // no going back =)
+        Schema::drop('phpbb_banlist');
     }
 }

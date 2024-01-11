@@ -192,7 +192,7 @@ class UserReportTest extends TestCase
         $this->assertTrue(true, 'should not fail getting notification routing url');
     }
 
-    public function reportableClasses(): array
+    public static function reportableClasses(): array
     {
         $reportables = [];
 

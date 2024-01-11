@@ -400,7 +400,7 @@ export default class Editor extends React.Component<Props, State> {
       children = <em {...props.attributes}>{children}</em>;
     }
 
-    if (props.leaf.timestamp) {
+    if (props.leaf.timestamp != null) {
       return <span className='beatmap-discussion-timestamp-decoration' {...props.attributes}>{children}</span>;
     }
 

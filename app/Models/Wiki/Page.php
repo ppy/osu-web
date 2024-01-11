@@ -87,7 +87,7 @@ class Page implements WikiObject
         $page = static::lookup($path, $locale)->sync();
 
         if (!$page->isVisible() && $page->isTranslation()) {
-            $page = static::lookup($path, config('app.fallback_locale'), $locale)->sync();
+            $page = static::lookup($path, $GLOBALS['cfg']['app']['fallback_locale'], $locale)->sync();
         }
 
         return $page;
@@ -122,7 +122,7 @@ class Page implements WikiObject
             ['constant_score' => [
                 'filter' => [
                     'match' => [
-                        'locale' => config('app.fallback_locale'),
+                        'locale' => $GLOBALS['cfg']['app']['fallback_locale'],
                     ],
                 ],
             ]];
@@ -311,7 +311,7 @@ class Page implements WikiObject
 
     public function isTranslation(): bool
     {
-        return $this->locale !== config('app.fallback_locale');
+        return $this->locale !== $GLOBALS['cfg']['app']['fallback_locale'];
     }
 
     public function isVisible()

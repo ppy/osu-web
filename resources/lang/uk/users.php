@@ -124,6 +124,9 @@ return [
     ],
 
     'ogp' => [
+        'modding_description' => 'Мап: :counts',
+        'modding_description_empty' => 'Користувач не має жодної мапи...',
+
         'description' => [
             '_' => 'Ранг (:ruleset): :global | :country',
             'country' => 'Країна :rank',
@@ -183,7 +186,6 @@ return [
         'origin_country' => 'Проживає в :country',
         'previous_usernames' => 'раніше був відомий як',
         'plays_with' => 'Грає з :devices',
-        'title' => "профіль :username",
 
         'comments_count' => [
             '_' => 'Опубліковано :link',

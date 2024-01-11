@@ -1,0 +1,1 @@
+[box=button[spoilerbox]in button[/spoilerbox]]best regex[/box]

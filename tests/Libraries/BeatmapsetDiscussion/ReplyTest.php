@@ -341,7 +341,7 @@ class ReplyTest extends TestCase
         $this->assertFalse($discussion->fresh()->resolved);
     }
 
-    public function reopeningProblemDoesNotDisqualifyOrResetNominationsDataProvider()
+    public static function reopeningProblemDoesNotDisqualifyOrResetNominationsDataProvider()
     {
         return [
             ['bng', 'pending'],
@@ -353,7 +353,7 @@ class ReplyTest extends TestCase
         ];
     }
 
-    public function replyQueuesNotificationDataProviderToStarter()
+    public static function replyQueuesNotificationDataProviderToStarter()
     {
         return [
             ['praise', false],
@@ -362,7 +362,7 @@ class ReplyTest extends TestCase
         ];
     }
 
-    public function resolveDiscussionByStarterDataProvider()
+    public static function resolveDiscussionByStarterDataProvider()
     {
         return [
             ['praise', false],
@@ -371,7 +371,7 @@ class ReplyTest extends TestCase
         ];
     }
 
-    public function resolveDiscussionByMapperDataProvider()
+    public static function resolveDiscussionByMapperDataProvider()
     {
         return [
             ['pending', true],
@@ -379,7 +379,7 @@ class ReplyTest extends TestCase
         ];
     }
 
-    public function resolveDiscussionByOtherUsersDataProvider()
+    public static function resolveDiscussionByOtherUsersDataProvider()
     {
         return [
             ['bng', false],
@@ -390,7 +390,7 @@ class ReplyTest extends TestCase
         ];
     }
 
-    public function userGroupsDataProvider()
+    public static function userGroupsDataProvider()
     {
         return [
             ['admin'],
@@ -409,7 +409,7 @@ class ReplyTest extends TestCase
         Queue::fake();
         Event::fake();
 
-        config()->set('osu.beatmapset.required_nominations', 1);
+        config_set('osu.beatmapset.required_nominations', 1);
 
         $this->mapper = User::factory()->create()->markSessionVerified();
     }

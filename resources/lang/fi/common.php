@@ -40,7 +40,7 @@ return [
         'post' => 'Lähetä',
         'read_more' => 'lue lisää',
         'reply' => 'Vastaa',
-        'reply_reopen' => 'Vastaa ja uudelleenavaa',
+        'reply_reopen' => 'Vastaa ja avaa uudelleen',
         'reply_resolve' => 'Vastaa ja merkitse ratkaistuksi',
         'reset' => 'Nollaa',
         'restore' => 'Palauta',
@@ -66,12 +66,12 @@ return [
     ],
 
     'count' => [
-        'badges' => ':count kunniamerkki|:count kunniamerkkiä',
+        'badges' => ':count_delimited kunniamerkki|:count_delimited kunniamerkkiä',
         'days' => ':count päivä|:count päivää',
         'hour_short_unit' => 't|t',
         'hours' => ':count tunti|:count tuntia',
         'item' => ':count kappale|:count kappaletta',
-        'minute_short_unit' => 'm | m',
+        'minute_short_unit' => 'min|min',
         'minutes' => ':count_delimited minuutti|:count_delimited minuuttia',
         'months' => ':count kuukausi|:count kuukautta',
         'notifications' => ':count_delimited ilmoitus|:count_delimited ilmoitusta',
@@ -113,7 +113,7 @@ return [
     ],
 
     'input' => [
-        'search' => 'etsi...',
+        'search' => 'hae...',
     ],
 
     'pagination' => [

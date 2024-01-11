@@ -76,7 +76,7 @@ class LoginAttempt extends Model
             return true;
         }
 
-        return $record->failed_attempts > config('osu.user.max_login_attempts');
+        return $record->failed_attempts > $GLOBALS['cfg']['osu']['user']['max_login_attempts'];
     }
 
     public static function logAttempt($ip, $user, $type, $password = null)

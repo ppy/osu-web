@@ -330,14 +330,14 @@ class BeatmapsetsControllerTest extends TestCase
         $this->assertSame($expectedTags, $beatmapset->fresh()->tags);
     }
 
-    public function beatmapsetStatesDataProvider()
+    public static function beatmapsetStatesDataProvider()
     {
         return array_map(function ($state) {
             return [$state];
         }, array_keys(Beatmapset::STATES));
     }
 
-    public function dataProviderForTestBeatmapsetUpdateOffset(): array
+    public static function dataProviderForTestBeatmapsetUpdateOffset(): array
     {
         return [
             ['admin', true],
@@ -349,7 +349,7 @@ class BeatmapsetsControllerTest extends TestCase
         ];
     }
 
-    public function dataProviderForTestBeatmapsetUpdateTags(): array
+    public static function dataProviderForTestBeatmapsetUpdateTags(): array
     {
         return [
             ['admin', true],
@@ -361,7 +361,7 @@ class BeatmapsetsControllerTest extends TestCase
         ];
     }
 
-    public function dataProviderForTestBeatmapsetUpdateDescriptionAsOwner(): array
+    public static function dataProviderForTestBeatmapsetUpdateDescriptionAsOwner(): array
     {
         return [
             [false, null, true],

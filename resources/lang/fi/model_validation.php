@@ -12,11 +12,11 @@ return [
     'wrong_confirmation' => 'Tarkistus ei täsmää.',
 
     'beatmapset_discussion' => [
-        'beatmap_missing' => 'Aikaleima on määritelty, mutta beatmap puuttuu.',
-        'beatmapset_no_hype' => "Beatmappia ei voi hurrata.",
-        'hype_requires_null_beatmap' => 'Hurraus täytyy tehdä Yleiset -osiossa (kaikki vaikeusasteet).',
+        'beatmap_missing' => 'Aikaleima on määritelty, mutta rytmikartta puuttuu.',
+        'beatmapset_no_hype' => "Rytmikarttaa ei voida hurrata.",
+        'hype_requires_null_beatmap' => 'Hurraus täytyy tehdä Yleiset (kaikki vaikeustasot) -osiossa.',
         'invalid_beatmap_id' => 'Määritelly vaikeustaso on virheellinen.',
-        'invalid_beatmapset_id' => 'Määritelty beatmap on virheellinen.',
+        'invalid_beatmapset_id' => 'Epäkelpo rytmikartta määritelty.',
         'locked' => 'Keskustelu on lukittu.',
 
         'attributes' => [
@@ -25,16 +25,16 @@ return [
         ],
 
         'hype' => [
-            'discussion_locked' => "Tämän beatmapin keskustelu on lukittu eikä sitä voi hurrata",
+            'discussion_locked' => "Tämän rytmikartan keskustelu on lukittu eikä sitä voi hurrata",
             'guest' => 'Sinun on kirjauduttava sisään hurrataksesi.',
-            'hyped' => 'Hurrasit jo tätä beatmappia.',
+            'hyped' => 'Hurrasit jo tätä rytmikarttaa.',
             'limit_exceeded' => 'Olet käyttänyt kaikki hurrauksesi.',
-            'not_hypeable' => 'Tätä beatmappia ei voi hurrata',
-            'owner' => 'Ei omien beatmappien hurraamista.',
+            'not_hypeable' => 'Tätä rytmikarttaa ei voi hurrata',
+            'owner' => 'Ei omien rytmikarttojen hurraamista.',
         ],
 
         'timestamp' => [
-            'exceeds_beatmapset_length' => 'Määritelty aikaleima on beatmapin pituuden ulkopuolella.',
+            'exceeds_beatmapset_length' => 'Määritelty aikaleima on rytmikartan pituuden ulkopuolella.',
             'negative' => "Aikaleima ei voi olla negatiivinen.",
         ],
     ],
@@ -110,10 +110,10 @@ return [
     ],
 
     'legacy_api_key' => [
-        'exists' => 'Käyttäjää kohti annetaan tällä hetkellä vain yksi API-avain.',
+        'exists' => 'Käyttäjää kohti annetaan tällä hetkellä vain yksi rajapinnan avain.',
 
         'attributes' => [
-            'api_key' => 'rajapinta-avain',
+            'api_key' => 'rajapinnan avain',
             'app_name' => 'sovelluksen nimi',
             'app_url' => 'sovelluksen url',
         ],
@@ -174,7 +174,7 @@ return [
     ],
 
     'user_report' => [
-        'no_ranked_beatmapset' => 'Rankattuja beatmappeja ei voi raportoida',
+        'no_ranked_beatmapset' => 'Rankattuja rytmikarttoja ei voi ilmiantaa',
         'not_in_channel' => 'Et ole tällä kanavalla.',
         'reason_not_valid' => ':reason ei kelpaa tälle ilmoitustyypille.',
         'self' => "Et voi ilmiantaa itseäsi!",

@@ -32,8 +32,8 @@ class GithubUser extends Model
      */
     public static function canAuthenticate(): bool
     {
-        return config('osu.github.client_id') !== null
-            && config('osu.github.client_secret') !== null;
+        return $GLOBALS['cfg']['osu']['github']['client_id'] !== null
+            && $GLOBALS['cfg']['osu']['github']['client_secret'] !== null;
     }
 
     /**

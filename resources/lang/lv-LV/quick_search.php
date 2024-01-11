@@ -14,8 +14,8 @@ return [
 
     'result' => [
         'empty' => 'Nav rezultātu',
-        'empty_for' => '',
-        'more' => '',
-        'title' => '',
+        'empty_for' => 'Nav rezultātu priekš :modes',
+        'more' => 'Vairāk :mode meklēšanas rezultātu',
+        'title' => ':mode meklēšanas rezultāti',
     ],
 ];

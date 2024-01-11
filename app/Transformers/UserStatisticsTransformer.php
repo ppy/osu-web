@@ -23,7 +23,7 @@ class UserStatisticsTransformer extends TransformerAbstract
             $stats = new UserStatistics\Osu();
         }
 
-        if (!config('osu.scores.experimental_rank_as_default') && config('osu.scores.experimental_rank_as_extra')) {
+        if (!$GLOBALS['cfg']['osu']['scores']['experimental_rank_as_default'] && $GLOBALS['cfg']['osu']['scores']['experimental_rank_as_extra']) {
             $globalRankExp = $stats->globalRankExp();
             $ppExp = $stats->rank_score_exp;
         }

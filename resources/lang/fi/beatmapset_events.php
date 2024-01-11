@@ -6,14 +6,14 @@
 return [
     'event' => [
         'approve' => 'Vahvistettu.',
-        'beatmap_owner_change' => 'Vaikeuden omistaja levelillä :beatmap muuttui käyttäjäksi :new_user.',
+        'beatmap_owner_change' => 'Vaikeustason :beatmap omistaja vaihtui käyttäjäksi :new_user.',
         'discussion_delete' => 'Moderaattori poisti keskustelun :discussion.',
-        'discussion_lock' => 'Keskustelu tällä beatmapillä on poistettu käytöstä. (:text)',
+        'discussion_lock' => 'Tämän rytmikartan keskustelu on poistettu käytöstä. (:text)',
         'discussion_post_delete' => 'Moderaattori poisti viestin keskustelusta :discussion.',
         'discussion_post_restore' => 'Moderaattori toi viestin takaisin keskusteluun :discussion.',
         'discussion_restore' => 'Moderaattori toi keskustelun :discussion takaisin.',
-        'discussion_unlock' => 'Keskustelu tälle beatmapille on otettu käyttöön.',
-        'disqualify' => 'Hyväksymisen keskeytti :user. Syy: :discussion (:text).',
+        'discussion_unlock' => 'Tämän rytmikartan keskustelu on otettu käyttöön.',
+        'disqualify' => ':user epäkelpuutti. Syy: :discussion (:text).',
         'disqualify_legacy' => ':user keskeytti hyväksymisen. Syy: :text.',
         'genre_edit' => 'Genre :old muutettu genreen :new.',
         'issue_reopen' => 'Ratkaistu ongelma :discussion uudelleenavattu.',
@@ -31,7 +31,7 @@ return [
         'nomination_reset_received' => 'Käyttäjän :user suosituksen oli nollannut :source_user (:text)',
         'nomination_reset_received_profile' => 'Suosituksen oli nollannut :user (:text)',
         'offset_edit' => 'Vastapaino verkossa oli :old ja vaihtui :new.',
-        'qualify' => 'Tämä beatmap sai vaaditun määrän suosituksia hyväksymisvaihetta varten.',
+        'qualify' => 'Tämä rytmikartta on saanut tarvittavan määrän ehdollepanoja ja on kelpuutettu.',
         'rank' => 'Hyväksytty.',
         'remove_from_loved' => ':user poisti Rakastetuista. (:text)',
         'tags_edit' => 'Tunnisteet olivat ":old" ja muutettu nyt ":new".',
@@ -43,7 +43,7 @@ return [
     ],
 
     'index' => [
-        'title' => 'Beatmapin Tapahtumat',
+        'title' => 'Rytmikarttasetin tapahtumat',
 
         'form' => [
             'period' => 'Piste',
@@ -68,8 +68,8 @@ return [
         'genre_edit' => 'Genren muokkaus',
         'issue_reopen' => 'Keskustelun uudelleenavaaminen',
         'issue_resolve' => 'Keskustelun ratkaiseminen',
-        'kudosu_allow' => 'Kusodun hyväksyntä',
-        'kudosu_deny' => 'Kusodun kieltäminen',
+        'kudosu_allow' => 'Kudosun hyväksyntä',
+        'kudosu_deny' => 'Kudosun kieltäminen',
         'kudosu_gain' => 'Kusodun ansaitseminen',
         'kudosu_lost' => 'Kusodun menettäminen',
         'kudosu_recalculate' => 'Kusodun uudelleenlaskenta',

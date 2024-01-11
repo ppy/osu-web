@@ -126,10 +126,7 @@ module.exports = {
         '@typescript-eslint/strict-boolean-expressions': [
           'error',
           {
-            allowAny: true,
             allowNullableBoolean: true,
-            allowNullableNumber: true,
-            allowNullableString: true,
           },
         ],
         '@typescript-eslint/type-annotation-spacing': 'error',

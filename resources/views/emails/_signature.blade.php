@@ -3,4 +3,4 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 --
-osu! | {{ config('app.url') }}
+osu! | {{ $GLOBALS['cfg']['app']['url'] }}

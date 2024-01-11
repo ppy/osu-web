@@ -125,7 +125,7 @@ class ScoreEsIndexTest extends TestCase
         $this->assertSame($rank, $score->userRank($params));
     }
 
-    public function dataProviderForTestUserRank(): array
+    public static function dataProviderForTestUserRank(): array
     {
         return [
             ['user', null, 4],

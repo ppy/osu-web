@@ -31,7 +31,7 @@ class ScoreTest extends TestCase
 
         $score = $score->fresh();
         $this->assertSame(1, json_decode($score->getAttributes()['data'], true)['statistics']['small_tick_hit']);
-        $this->assertSame(1, $score->data->statistics->smallTickHit);
+        $this->assertSame(1, $score->data->statistics->small_tick_hit);
     }
 
     public function testLegacyPassScoreRetainsRank()

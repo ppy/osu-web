@@ -6,6 +6,7 @@
 return [
     'cart' => [
         'checkout' => 'Apmokėti',
+        'empty_cart' => '',
         'info' => ':count_delimited pirkinis krepšelyje ($:subtotal)|:count_delimited pirkiniai krepšelyje ($:subtotal)',
         'more_goodies' => 'Noriu išsirinkti daugiau prekių prieš apmokant',
         'shipping_fees' => 'pristatymo mokesčiai',
@@ -48,19 +49,52 @@ return [
     ],
 
     'discount' => 'sutaupyk :percent%',
+    'free' => '',
 
     'invoice' => [
+        'contact' => '',
+        'date' => 'Data:',
         'echeck_delay' => 'Kadangi jūsų mokėjote el. čekiu, pervedimas gali užtrukti iki 10 dienų kol praeis per PayPal sistemą!',
         'hide_from_activity' => 'osu!rėmėjo žymos šiame užsakyme nerodomos jūsų pastarojoje veikloje.',
+        'sent_via' => '',
+        'shipping_to' => '',
+        'title' => '',
         'title_compact' => 'sąskaita',
 
         'status' => [
+            'cancelled' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => "",
+                    'link_text' => '',
+                ],
+            ],
+            'delivered' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => '',
+                    'link_text' => '',
+                ],
+            ],
+            'prepared' => [
+                'title' => '',
+                'line_1' => '',
+                'line_2' => '',
+            ],
             'processing' => [
                 'title' => 'Jūsų pervedimas dar nepatvirtintas!',
                 'line_1' => 'Net jei jau sumokėjote, mums dar gali būti neatėjęs jūsų pervedimo patvirtinimas. Prašome atnaujinti puslapį už minutės ar dviejų!',
                 'line_2' => [
                     '_' => 'Jei turėjote problemų apmokėjimo metu, :link',
                     'link_text' => 'spauskite čia, kad tęsti apmokėjimą',
+                ],
+            ],
+            'shipped' => [
+                'title' => '',
+                'tracking_details' => '',
+                'no_tracking_details' => [
+                    '_' => "",
+                    'link_text' => '',
                 ],
             ],
         ],
@@ -74,7 +108,19 @@ return [
         'no_orders' => 'Nėra užsakymų.',
         'paid_on' => 'Užsakyta :date',
         'resume' => 'Tęsti Apmokėjimą',
+        'shipping_and_handling' => '',
         'shopify_expired' => 'Ši apmokėjimo nuoroda nebegalioja.',
+        'subtotal' => '',
+        'total' => 'Iš viso',
+
+        'details' => [
+            'order_number' => '',
+            'payment_terms' => '',
+            'salesperson' => '',
+            'shipping_method' => '',
+            'shipping_terms' => '',
+            'title' => 'Užsakymo Informacija',
+        ],
 
         'item' => [
             'quantity' => 'Kiekis',
@@ -105,6 +151,15 @@ return [
             'paid' => 'Apmokėta',
             'processing' => 'Laukiantis patvirtinimo',
             'shipped' => 'Išsiųsta',
+            'title' => 'Užsakymo Būsena',
+        ],
+
+        'thanks' => [
+            'title' => '',
+            'line_1' => [
+                '_' => '',
+                'link_text' => '',
+            ],
         ],
     ],
 
@@ -138,6 +193,10 @@ return [
     'username_change' => [
         'check' => 'Patikrinimui įvesk norimą vartotojo vardą!',
         'checking' => 'Tikrinama ar galimas :username...',
+        'placeholder' => '',
+        'label' => '',
+        'current' => '',
+
         'require_login' => [
             '_' => 'Tau turi būti :link, kad pakeistum vardą!',
             'link_text' => 'prisijungęs',

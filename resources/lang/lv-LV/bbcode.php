@@ -8,7 +8,7 @@ return [
     'heading' => 'Galvene',
     'help' => 'Palīdzība',
     'image' => 'Attēls',
-    'imagemap' => '',
+    'imagemap' => 'Attēla karte',
     'italic' => 'Slīprraksts',
     'link' => 'Saite',
     'list' => 'Saraksts',

@@ -90,12 +90,12 @@ class CountryChangeTarget
 
     public static function maxMixedMonths(): int
     {
-        return config('osu.user.country_change.max_mixed_months');
+        return $GLOBALS['cfg']['osu']['user']['country_change']['max_mixed_months'];
     }
 
     public static function minMonths(): int
     {
-        return config('osu.user.country_change.min_months');
+        return $GLOBALS['cfg']['osu']['user']['country_change']['min_months'];
     }
 
     private static function isUserInTournament(User $user): bool

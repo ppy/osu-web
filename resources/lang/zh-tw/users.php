@@ -124,6 +124,9 @@ return [
     ],
 
     'ogp' => [
+        'modding_description' => '圖譜: :counts',
+        'modding_description_empty' => '',
+
         'description' => [
             '_' => '排名 (:ruleset): :global | :country',
             'country' => '國家 :rank',
@@ -183,7 +186,6 @@ return [
         'origin_country' => '來自 :country',
         'previous_usernames' => '前一個的使用者名稱',
         'plays_with' => '慣用 :devices',
-        'title' => ":username 的個人簡介",
 
         'comments_count' => [
             '_' => '發表了 :link',

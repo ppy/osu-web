@@ -5,7 +5,7 @@
 
 namespace App\Exceptions;
 
-use App\Libraries\UserVerification;
+use App\Libraries\SessionVerification;
 use Auth;
 use Illuminate\Auth\Access\AuthorizationException as LaravelAuthorizationException;
 use Illuminate\Auth\AuthenticationException;
@@ -99,7 +99,8 @@ class Handler extends ExceptionHandler
             return;
         }
 
-        if (config('sentry.dsn')) {
+        // Fallback in case error happening before config is initialised
+        if ($GLOBALS['cfg']['sentry']['dsn'] ?? false) {
             $this->reportWithSentry($e);
         }
 
@@ -121,7 +122,7 @@ class Handler extends ExceptionHandler
         }
 
         if ($e instanceof VerificationRequiredException) {
-            return $this->unverified();
+            return SessionVerification\Controller::initiate();
         }
 
         if ($e instanceof AuthenticationException) {
@@ -134,7 +135,7 @@ class Handler extends ExceptionHandler
 
         $isJsonRequest = is_json_request();
 
-        if (config('app.debug') || ($isJsonRequest && static::isOAuthServerException($e))) {
+        if ($GLOBALS['cfg']['app']['debug'] || ($isJsonRequest && static::isOAuthServerException($e))) {
             $response = parent::render($request, $e);
         } else {
             $message = static::exceptionMessage($e);
@@ -164,11 +165,6 @@ class Handler extends ExceptionHandler
         }
 
         return ext_view('users.login', null, null, 401);
-    }
-
-    protected function unverified()
-    {
-        return UserVerification::fromCurrentRequest()->initiate();
     }
 
     private function reportWithSentry($e)

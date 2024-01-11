@@ -19,7 +19,7 @@ return [
     ],
 
     'show' => [
-        'by' => ':user\'lta',
+        'by' => 'kirjoittanut :user',
 
         'nav' => [
             'newer' => 'Uudempi viesti',

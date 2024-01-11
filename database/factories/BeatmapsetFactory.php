@@ -105,7 +105,7 @@ class BeatmapsetFactory extends Factory
 
     public function withNominations()
     {
-        $count = config('osu.beatmapset.required_nominations');
+        $count = $GLOBALS['cfg']['osu']['beatmapset']['required_nominations'];
 
         return $this
             ->has(BeatmapsetNomination::factory()

@@ -124,6 +124,9 @@ return [
     ],
 
     'ogp' => [
+        'modding_description' => 'Beatmap: :counts',
+        'modding_description_empty' => 'Pengguna ini tidak memiliki beatmap apa pun...',
+
         'description' => [
             '_' => 'Peringkat (:ruleset): :global | :country',
             'country' => 'Negara :rank',
@@ -183,7 +186,6 @@ return [
         'origin_country' => 'Dari :country',
         'previous_usernames' => 'sebelumnya dikenal sebagai',
         'plays_with' => 'Bermain menggunakan :devices',
-        'title' => "profil :username",
 
         'comments_count' => [
             '_' => 'Telah mengirimkan :link',

@@ -12,7 +12,7 @@ class TopicCoverTransformer extends TransformerAbstract
 {
     public function transform(TopicCover $cover)
     {
-        if ($cover->getFileProperties() === null) {
+        if ($cover->file_json === null) {
             $data = [
                 'method' => 'post',
                 'url' => route('forum.topic-covers.store', [
@@ -25,12 +25,12 @@ class TopicCoverTransformer extends TransformerAbstract
                 'method' => 'put',
                 'url' => route('forum.topic-covers.update', [$cover, 'topic_id' => $cover->topic_id]),
 
-                'id' => $cover->id,
-                'fileUrl' => $cover->fileUrl(),
+                'id' => $cover->getKey(),
+                'fileUrl' => $cover->file()->url(),
             ];
         }
 
-        $data['dimensions'] = $cover->getMaxDimensions();
+        $data['dimensions'] = $cover::MAX_DIMENSIONS;
         $data['defaultFileUrl'] = $cover->defaultFileUrl();
 
         return $data;

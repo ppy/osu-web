@@ -62,7 +62,7 @@
                     loop
                     muted
                     playsinline
-                    src="{{ config('osu.landing.video_url') }}"
+                    src="{{ $GLOBALS['cfg']['osu']['landing']['video_url'] }}"
                 ></video>
             </div>
 
@@ -145,7 +145,7 @@
             <a href="{{ route('support-the-game') }}" class="landing-footer-social__icon landing-footer-social__icon--support">
                 <span class="fas fa-heart"></span>
             </a>
-            <a href="{{ osu_url("social.twitter") }}" class="landing-footer-social__icon landing-footer-social__icon--twitter">
+            <a href="{{ osu_url('social.twitter') }}" class="landing-footer-social__icon landing-footer-social__icon--twitter">
                 <span class="fab fa-twitter"></span>
             </a>
         </div>

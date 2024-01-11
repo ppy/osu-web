@@ -55,6 +55,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => 'Nouvelle review par :username contenant des problèmes : :problems, suggestions : :suggestions, compliments : :praises',
                 'beatmapset_discussion_unlock' => 'La discussion de la beatmap ":title" a été déverrouillée',
                 'beatmapset_discussion_unlock_compact' => 'La discussion n\'est plus verrouillée',
+
+                'review_count' => [
+                    'praises' => ':count_delimited compliment|:count_delimited compliments',
+                    'problems' => ':count_delimited problème|:count_delimited problèmes',
+                    'suggestions' => ':count_delimited suggestion|:count_delimited suggestions',
+                ],
             ],
 
             'beatmapset_problem' => [

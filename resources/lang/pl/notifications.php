@@ -55,6 +55,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => 'Nowa recenzja od :username zawierająca problemów: :problems, sugestii: :suggestions, pochwał: :praises.',
                 'beatmapset_discussion_unlock' => 'Tworzenie dyskusji dla beatmapy „:title” zostało odblokowane.',
                 'beatmapset_discussion_unlock_compact' => 'Dyskusja została odblokowana',
+
+                'review_count' => [
+                    'praises' => '',
+                    'problems' => '',
+                    'suggestions' => '',
+                ],
             ],
 
             'beatmapset_problem' => [

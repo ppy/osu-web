@@ -5,20 +5,20 @@
 
 return [
     'match' => [
-        'beatmap-deleted' => '',
+        'beatmap-deleted' => 'izdzēsta bītmape',
         'failed' => '',
         'header' => '',
-        'in-progress' => '',
-        'in_progress_spinner_label' => '',
-        'loading-events' => '',
-        'winner' => '',
-        'winner_by' => '',
+        'in-progress' => '(notiek mačs)',
+        'in_progress_spinner_label' => 'notiek mačs',
+        'loading-events' => 'Ielādē notikumus...',
+        'winner' => ':team uzvar',
+        'winner_by' => ':winner ar starpību :difference',
 
         'events' => [
-            'player-left' => '',
-            'player-joined' => '',
-            'player-kicked' => '',
-            'match-created' => '',
+            'player-left' => ':user pameta maču',
+            'player-joined' => ':user pievienojās mačam',
+            'player-kicked' => ':user tika izraidīts no mača',
+            'match-created' => ':user izveidoja maču',
             'match-disbanded' => '',
             'host-changed' => '',
 

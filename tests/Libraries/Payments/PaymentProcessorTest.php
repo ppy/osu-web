@@ -83,7 +83,7 @@ class PaymentProcessorTest extends TestCase
     {
         parent::setUp();
 
-        config()->set('store.order.prefix', 'test');
+        config_set('store.order.prefix', 'test');
 
         $this->order = Order::factory()->checkout()->create([
             'transaction_id' => 'test-123',

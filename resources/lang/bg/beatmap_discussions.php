@@ -26,7 +26,7 @@ return [
             'deleted' => 'Включи изтрити дискусии',
             'mode' => ' Вид на бийтмап',
             'only_unresolved' => 'Покажи само нерешени дискусии',
-            'show_review_embeds' => '',
+            'show_review_embeds' => 'Покажи ревюта',
             'types' => 'Тип съобщения',
             'username' => 'Потребителско име',
 

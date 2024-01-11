@@ -124,10 +124,13 @@ return [
     ],
 
     'ogp' => [
+        'modding_description' => 'Beatmap\'ai: :counts',
+        'modding_description_empty' => 'Vartotojas nėra sukūręs beatmap\'ų...',
+
         'description' => [
-            '_' => '',
-            'country' => '',
-            'global' => '',
+            '_' => 'Reitingas (:ruleset): :global | :country',
+            'country' => 'Šalyje :rank',
+            'global' => 'Pasaulyje :rank',
         ],
     ],
 
@@ -183,7 +186,6 @@ return [
         'origin_country' => 'Iš :country',
         'previous_usernames' => 'buvo žinomas kaip',
         'plays_with' => 'Žaidžia su :devices',
-        'title' => ":username profilis",
 
         'comments_count' => [
             '_' => 'Publikuota :link',

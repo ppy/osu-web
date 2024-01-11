@@ -26,7 +26,7 @@ return [
     'filters' => [
         '_' => 'hepsi',
         'user' => 'profil',
-        'beatmapset' => 'beatmapler',
+        'beatmapset' => 'haritalar',
         'forum_topic' => 'forum',
         'news_post' => 'gelişmeler',
         'build' => 'sürümler',
@@ -35,7 +35,7 @@ return [
 
     'item' => [
         'beatmapset' => [
-            '_' => 'Beatmap',
+            '_' => 'Harita',
 
             'beatmap_owner_change' => [
                 '_' => 'Konuk zorluk',
@@ -55,6 +55,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => ':username tarafından yeni inceleme, :problems sorun, :suggestions öneri, :praises övgü içeriyor',
                 'beatmapset_discussion_unlock' => '":title" setinin tartışmasının kilidi kaldırıldı',
                 'beatmapset_discussion_unlock_compact' => 'Tartışmanın kilidi kaldırılmış',
+
+                'review_count' => [
+                    'praises' => '',
+                    'problems' => '',
+                    'suggestions' => '',
+                ],
             ],
 
             'beatmapset_problem' => [

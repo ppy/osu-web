@@ -6,6 +6,7 @@
 return [
     'cart' => [
         'checkout' => 'Platba',
+        'empty_cart' => '',
         'info' => '',
         'more_goodies' => 'Chcem sa ešte pozrieť na viac dobrôt než dokončím objednávku',
         'shipping_fees' => 'poplatky za dopravu',
@@ -48,19 +49,52 @@ return [
     ],
 
     'discount' => 'ušetri :percent%',
+    'free' => '',
 
     'invoice' => [
+        'contact' => '',
+        'date' => '',
         'echeck_delay' => '',
         'hide_from_activity' => '',
+        'sent_via' => '',
+        'shipping_to' => '',
+        'title' => '',
         'title_compact' => '',
 
         'status' => [
+            'cancelled' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => "",
+                    'link_text' => '',
+                ],
+            ],
+            'delivered' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => '',
+                    'link_text' => '',
+                ],
+            ],
+            'prepared' => [
+                'title' => '',
+                'line_1' => '',
+                'line_2' => '',
+            ],
             'processing' => [
                 'title' => 'Vaša platba ešte nebola potvrdená!',
                 'line_1' => '',
                 'line_2' => [
                     '_' => 'Ak sa vyskytol problém počas platby, :link',
                     'link_text' => 'kliknutím sem obnovíte vašu platbu',
+                ],
+            ],
+            'shipped' => [
+                'title' => '',
+                'tracking_details' => '',
+                'no_tracking_details' => [
+                    '_' => "",
+                    'link_text' => '',
                 ],
             ],
         ],
@@ -74,7 +108,19 @@ return [
         'no_orders' => 'Žiadne objednávky na zobrazenie.',
         'paid_on' => '',
         'resume' => '',
+        'shipping_and_handling' => '',
         'shopify_expired' => '',
+        'subtotal' => '',
+        'total' => '',
+
+        'details' => [
+            'order_number' => '',
+            'payment_terms' => '',
+            'salesperson' => '',
+            'shipping_method' => '',
+            'shipping_terms' => '',
+            'title' => '',
+        ],
 
         'item' => [
             'quantity' => 'Množstvo',
@@ -105,6 +151,15 @@ return [
             'paid' => 'Zaplatené',
             'processing' => 'Čaká sa na potvrdenie',
             'shipped' => 'Na ceste',
+            'title' => '',
+        ],
+
+        'thanks' => [
+            'title' => '',
+            'line_1' => [
+                '_' => '',
+                'link_text' => '',
+            ],
         ],
     ],
 
@@ -138,6 +193,10 @@ return [
     'username_change' => [
         'check' => 'Zadaj uživatelské meno pre kontrolu dostupnosti!',
         'checking' => 'Prebieha kontrola dostupnosti uživatelského mena :username...',
+        'placeholder' => '',
+        'label' => '',
+        'current' => '',
+
         'require_login' => [
             '_' => 'Pre zmenu uživatelského mena sa musíš :link!',
             'link_text' => 'prihlásený',

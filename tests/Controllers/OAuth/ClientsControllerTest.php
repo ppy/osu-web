@@ -122,7 +122,7 @@ class ClientsControllerTest extends TestCase
         $this->assertSame('https://nowhere.local', $this->client->redirect);
     }
 
-    public function emptyStringsTestDataProvider()
+    public static function emptyStringsTestDataProvider()
     {
         return [
             [null, 'https://nowhere.local'],

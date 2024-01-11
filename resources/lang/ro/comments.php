@@ -43,6 +43,10 @@ return [
         'no_comments' => 'niciun comentariu găsit...',
     ],
 
+    'ogp' => [
+        'title' => 'comentariu de :user',
+    ],
+
     'placeholder' => [
         'edit' => 'Editează comentariul aici',
         'new' => 'Introdu comentariul nou aici',

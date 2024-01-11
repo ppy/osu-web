@@ -5,10 +5,10 @@
 
 return [
     'index' => [
-        'description' => 'Valmiiksi pakattuja kokoelmia beatmappeja, joissa yhdistyy tietty teema.',
+        'description' => 'Valmiiksi pakattuja rytmikarttakokoelmia, joissa yhdistyy tietty teema.',
         'empty' => 'Tulossa pian!',
         'nav_title' => 'listaus',
-        'title' => 'Beatmappipaketit',
+        'title' => 'Rytmikarttapaketit',
 
         'blurb' => [
             'important' => 'LUE TÄMÄ ENNEN LATAAMISTA',
@@ -28,7 +28,7 @@ return [
         ],
         'no_diff_reduction' => [
             '_' => ':link ei voi käyttää tämän paketin suorittamiseen.',
-            'link' => 'Vaikeusastetta vähentäviä modeja',
+            'link' => 'Vaikeusastetta vähentäviä muunnelmia',
         ],
     ],
 
@@ -36,7 +36,7 @@ return [
         'artist' => 'Esittäjä/Albumi',
         'chart' => 'Kohdevaloissa',
         'featured' => 'Esitelty artisti',
-        'loved' => 'Project Loved',
+        'loved' => 'Project Rakastettu',
         'standard' => 'Tavallinen',
         'theme' => 'Teema',
         'tournament' => 'Turnaus',

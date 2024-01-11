@@ -16,7 +16,7 @@ class LocalCacheManager
     public function incrementResetTicker(): void
     {
         $this->resetTicker++;
-        $this->resetTickerLimit ??= config('osu.octane.local_cache_reset_requests');
+        $this->resetTickerLimit ??= $GLOBALS['cfg']['osu']['octane']['local_cache_reset_requests'];
 
         if ($this->resetTicker > $this->resetTickerLimit) {
             $this->resetTicker = 0;

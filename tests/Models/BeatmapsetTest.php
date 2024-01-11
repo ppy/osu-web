@@ -39,6 +39,8 @@ class BeatmapsetTest extends TestCase
         $otherUser = User::factory()->create();
         $beatmapset->watches()->create(['user_id' => $otherUser->getKey()]);
 
+        $this->expectCountChange(fn () => $beatmapset->bssProcessQueues()->count(), 1);
+
         $beatmapset->love($user);
 
         $this->assertSame($notifications + 1, Notification::count());
@@ -116,6 +118,8 @@ class BeatmapsetTest extends TestCase
 
         $otherUser = User::factory()->create();
         $beatmapset->watches()->create(['user_id' => $otherUser->getKey()]);
+
+        $this->expectCountChange(fn () => $beatmapset->bssProcessQueues()->count(), 1);
 
         $beatmapset->qualify($user);
 
@@ -507,7 +511,7 @@ class BeatmapsetTest extends TestCase
 
     //end region
 
-    public function disqualifyOrResetNominationsDataProvider()
+    public static function disqualifyOrResetNominationsDataProvider()
     {
         return [
             ['pending', BeatmapsetResetNominations::class],
@@ -515,7 +519,7 @@ class BeatmapsetTest extends TestCase
         ];
     }
 
-    public function dataProviderForTestRank(): array
+    public static function dataProviderForTestRank(): array
     {
         return [
             ['pending', false],
@@ -523,7 +527,7 @@ class BeatmapsetTest extends TestCase
         ];
     }
 
-    public function rankWithOpenIssueDataProvider()
+    public static function rankWithOpenIssueDataProvider()
     {
         return [
             ['problem'],
