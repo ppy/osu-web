@@ -15,6 +15,7 @@
   },
   "include": [
     "../../resources/js",
+    "../../resources/builds/ziggy.d.ts",
     ".",
   ]
 }
