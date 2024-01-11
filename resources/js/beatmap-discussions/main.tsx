@@ -65,7 +65,7 @@ export default class Main extends React.Component<Props> {
   componentDidMount() {
     $(document).on(`ajax:success.${this.eventId}`, '.js-beatmapset-discussion-update', this.ujsDiscussionUpdate);
     $(document).on(`click.${this.eventId}`, '.js-beatmap-discussion--jump', this.jumpToClick);
-    $(document).on(`turbolinks:before-cache.${this.eventId}`, this.saveState);
+    $(document).on(`turbolinks:before-cache.${this.eventId}`, this.destroy);
 
     if (this.discussionsState.jumpToDiscussion) {
       this.disposers.add(core.reactTurbolinks.runAfterPageLoad(this.jumpToDiscussionByHash));
@@ -77,13 +77,6 @@ export default class Main extends React.Component<Props> {
   componentWillUnmount() {
     $.unsubscribe(`.${this.eventId}`);
     $(document).off(`.${this.eventId}`);
-
-    document.documentElement.style.removeProperty('--scroll-padding-top-extra');
-
-    window.clearTimeout(this.timeoutCheckNew);
-    this.xhrCheckNew?.abort();
-    this.disposers.forEach((disposer) => disposer?.());
-    this.discussionsState.destroy();
   }
 
   render() {
@@ -158,6 +151,18 @@ export default class Main extends React.Component<Props> {
 
       this.timeoutCheckNew = window.setTimeout(this.checkNew, this.nextTimeout);
     });
+  };
+
+  private readonly destroy = () => {
+    document.documentElement.style.removeProperty('--scroll-padding-top-extra');
+    window.clearTimeout(this.timeoutCheckNew);
+    this.xhrCheckNew?.abort();
+
+    storeJson(beatmapsetJsonId, toJS(this.store.beatmapset));
+    this.discussionsState.saveState();
+
+    this.disposers.forEach((disposer) => disposer?.());
+    this.discussionsState.destroy();
   };
 
   private readonly handleNewDiscussionFocus = () => {
@@ -239,11 +244,6 @@ export default class Main extends React.Component<Props> {
     if (target?.discussionId != null) {
       this.jumpTo(target.discussionId, target.postId);
     }
-  };
-
-  private readonly saveState = () => {
-    storeJson(beatmapsetJsonId, toJS(this.store.beatmapset));
-    this.discussionsState.saveState();
   };
 
   private readonly ujsDiscussionUpdate = (_event: unknown, beatmapset: BeatmapsetWithDiscussionsJson) => {
