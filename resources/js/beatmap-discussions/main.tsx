@@ -65,7 +65,7 @@ export default class Main extends React.Component<Props> {
   componentDidMount() {
     $(document).on(`ajax:success.${this.eventId}`, '.js-beatmapset-discussion-update', this.ujsDiscussionUpdate);
     $(document).on(`click.${this.eventId}`, '.js-beatmap-discussion--jump', this.jumpToClick);
-    $(document).on(`turbolinks:before-cache.${this.eventId}`, this.destroy);
+    document.addEventListener('turbolinks:before-cache', this.destroy);
 
     if (this.discussionsState.jumpToDiscussion) {
       this.disposers.add(core.reactTurbolinks.runAfterPageLoad(this.jumpToDiscussionByHash));
@@ -154,6 +154,8 @@ export default class Main extends React.Component<Props> {
   };
 
   private readonly destroy = () => {
+    document.removeEventListener('turbolinks:before-cache', this.destroy);
+
     document.documentElement.style.removeProperty('--scroll-padding-top-extra');
     window.clearTimeout(this.timeoutCheckNew);
     this.xhrCheckNew?.abort();
