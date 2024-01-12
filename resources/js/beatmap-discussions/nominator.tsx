@@ -39,7 +39,7 @@ export class Nominator extends React.Component<Props> {
   }
 
   private get currentHype() {
-    return this.props.discussionsState.totalHype;
+    return this.props.discussionsState.totalHypeCount;
   }
 
   private get mapCanBeNominated() {
@@ -74,7 +74,7 @@ export class Nominator extends React.Component<Props> {
   }
 
   private get unresolvedIssues() {
-    return this.props.discussionsState.unresolvedIssues;
+    return this.props.discussionsState.unresolvedIssueCount;
   }
 
   private get users() {

@@ -54,7 +54,7 @@ export default class DiscussionsState {
 
   @observable readPostIds = new Set<number>();
   @observable selectedUserId: number | null = null;
-  @observable showDeleted = true;
+  @observable showDeleted = true; // this toggle only affects All and deleted discussion filters, other filters don't show deleted
 
   private previousFilter: Filter = 'total';
   private previousPage: DiscussionPage = 'general';
@@ -94,12 +94,13 @@ export default class DiscussionsState {
     const reviewsWithPending = new Set<BeatmapsetDiscussionJson>();
 
     for (const discussion of this.discussionForSelectedBeatmap) {
-      if (currentUser != null && discussion.user_id === currentUser.id) {
-        groups.mine.push(discussion);
-      }
-
       if (discussion.deleted_at != null) {
         groups.deleted.push(discussion);
+        continue;
+      }
+
+      if (currentUser != null && discussion.user_id === currentUser.id) {
+        groups.mine.push(discussion);
       }
 
       if (discussion.message_type === 'hype') {
@@ -227,6 +228,11 @@ export default class DiscussionsState {
   }
 
   @computed
+  get nonDeletedDiscussions() {
+    return this.discussionsArray.filter((discussion) => discussion.deleted_at == null);
+  }
+
+  @computed
   get presentDiscussions() {
     return canModeratePosts()
       ? this.discussionsArray
@@ -240,21 +246,18 @@ export default class DiscussionsState {
 
   @computed
   get sortedBeatmaps() {
-    // TODO
-    // filter to only include beatmaps from the current discussion's beatmapset (for the modding profile page)
-    // const beatmaps = filter(this.props.beatmaps, this.isCurrentBeatmap);
     return sortWithMode([...this.store.beatmaps.values()]);
   }
 
   @computed
-  get totalHype() {
-    return this.presentDiscussions
+  get totalHypeCount() {
+    return this.nonDeletedDiscussions
       .reduce((sum, discussion) => +(discussion.message_type === 'hype') + sum, 0);
   }
 
   @computed
-  get unresolvedIssues() {
-    return this.presentDiscussions
+  get unresolvedIssueCount() {
+    return this.nonDeletedDiscussions
       .reduce((sum, discussion) => {
         if (discussion.can_be_resolved && !discussion.resolved) {
           if (discussion.beatmap_id == null) return sum++;
@@ -277,7 +280,7 @@ export default class DiscussionsState {
       taiko: 0,
     };
 
-    for (const discussion of this.discussionsArray) {
+    for (const discussion of this.nonDeletedDiscussions) {
       if (discussion.beatmap_id != null && discussion.can_be_resolved && !discussion.resolved) {
         byBeatmap[discussion.beatmap_id] = (byBeatmap[discussion.beatmap_id] ?? 0) + 1;
 
@@ -383,6 +386,7 @@ export default class DiscussionsState {
     this.urlStateDisposer();
   }
 
+  // TODO: move to discussionForSelectedBeatmap if nothing else uses this.
   discussionsByBeatmap(beatmapId: number) {
     return this.presentDiscussions.filter((discussion) => (discussion.beatmap_id == null || discussion.beatmap_id === beatmapId));
   }

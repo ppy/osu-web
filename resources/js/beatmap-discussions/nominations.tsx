@@ -433,7 +433,7 @@ export class Nominations extends React.Component<Props> {
     if (!this.beatmapset.can_be_hyped || this.beatmapset.hype == null) return;
 
     const requiredHype = this.beatmapset.hype.required;
-    const hype = this.props.discussionsState.totalHype;
+    const hype = this.props.discussionsState.totalHypeCount;
 
     return (
       <div>
@@ -517,7 +517,7 @@ export class Nominations extends React.Component<Props> {
 
   private renderNominationBar() {
     const requiredHype = this.beatmapset.hype?.required ?? 0; // TODO: skip if null?
-    const hypeRaw = this.props.discussionsState.totalHype;
+    const hypeRaw = this.props.discussionsState.totalHypeCount;
     const mapCanBeNominated = this.beatmapset.status === 'pending' && hypeRaw >= requiredHype;
 
     if (!(mapCanBeNominated || this.isQualified)) return;
