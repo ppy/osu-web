@@ -24,13 +24,19 @@ import { UserCard } from './user-card';
 
 const bn = 'beatmap-discussion';
 
-interface Props {
-  discussion: BeatmapsetDiscussionJsonForBundle | BeatmapsetDiscussionJsonForShow;
-  discussionsState: DiscussionsState | null; // TODO: make optional?
+interface BaseProps {
   isTimelineVisible: boolean;
   parentDiscussion?: BeatmapsetDiscussionJson | null;
   store: BeatmapsetDiscussionsStore;
 }
+
+type Props = BaseProps & ({
+  discussion: BeatmapsetDiscussionJsonForBundle;
+  discussionsState: null; // TODO: make optional?
+} | {
+  discussion: BeatmapsetDiscussionJsonForShow;
+  discussionsState: DiscussionsState;
+});
 
 function DiscussionTypeIcon({ type }: { type: DiscussionType | 'resolved' }) {
   const titleKey = type === 'resolved'
@@ -46,16 +52,8 @@ function DiscussionTypeIcon({ type }: { type: DiscussionType | 'resolved' }) {
   );
 }
 
-function isBeatmapsetDiscussionJsonForShow(value: Props['discussion']): value is BeatmapsetDiscussionJsonForShow {
-  return 'posts' in value;
-}
-
 @observer
 export class Discussion extends React.Component<Props> {
-  static defaultProps = {
-    readonly: false,
-  };
-
   private lastResolvedState = false;
 
   private get beatmapset() {
@@ -95,7 +93,7 @@ export class Discussion extends React.Component<Props> {
   @computed
   private get resolvedSystemPostId() {
     // TODO: handling resolved status in bundles....?
-    if (this.readonly || !isBeatmapsetDiscussionJsonForShow(this.props.discussion)) return -1;
+    if (this.props.discussionsState == null) return -1;
 
     const systemPost = findLast(this.props.discussion.posts, (post) => post.system && post.message.type === 'resolved');
     return systemPost?.id ?? -1;
@@ -199,7 +197,7 @@ export class Discussion extends React.Component<Props> {
   }
 
   private postFooter() {
-    if (this.readonly || !isBeatmapsetDiscussionJsonForShow(this.props.discussion)) return null;
+    if (this.props.discussionsState == null) return null;
 
     let cssClasses = `${bn}__expanded`;
     if (this.collapsed) {
@@ -247,7 +245,7 @@ export class Discussion extends React.Component<Props> {
   }
 
   private renderPostButtons() {
-    if (this.props.discussionsState == null || !isBeatmapsetDiscussionJsonForShow(this.props.discussion)) {
+    if (this.props.discussionsState == null) {
       return null;
     }
 
