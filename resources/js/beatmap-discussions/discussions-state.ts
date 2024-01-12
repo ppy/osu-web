@@ -253,7 +253,7 @@ export default class DiscussionsState {
   }
 
   @computed
-  get unresolvedIssueCount() {
+  get unresolvedDiscussionTotalCount() {
     return this.nonDeletedDiscussions
       .reduce((sum, discussion) => {
         if (discussion.can_be_resolved && !discussion.resolved) {

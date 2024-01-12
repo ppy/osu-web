@@ -73,10 +73,6 @@ export class Nominator extends React.Component<Props> {
       : Object.keys(this.beatmapset.nominations.required) as GameMode[];
   }
 
-  private get unresolvedIssues() {
-    return this.props.discussionsState.unresolvedIssueCount;
-  }
-
   private get users() {
     return this.props.store.users;
   }
@@ -191,7 +187,7 @@ export class Nominator extends React.Component<Props> {
     }
 
     let tooltipText: string | undefined;
-    if (this.unresolvedIssues > 0) {
+    if (this.props.discussionsState.unresolvedDiscussionTotalCount > 0) {
       tooltipText = trans('beatmaps.nominations.unresolved_issues');
     } else if (this.beatmapset.nominations.nominated) {
       tooltipText = trans('beatmaps.nominations.already_nominated');
