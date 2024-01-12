@@ -85,7 +85,7 @@ services:
       <<: *x-env
 
   db:
-    image: mysql/mysql-server:8.0
+    image: mysql:8.0
     volumes:
       - database:/var/lib/mysql
       - ./docker/development/db_user.sql:/docker-entrypoint-initdb.d/db_user.sql
@@ -116,7 +116,7 @@ services:
 
   elasticsearch:
     # Version must be kept up to date with library defined in: composer.json
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.6
+    image: elasticsearch:7.17.16
     ports:
       - "${ES_EXTERNAL_PORT:-9200}:9200"
     volumes:
