@@ -166,7 +166,11 @@ export default class DiscussionsState {
 
   @computed
   get discussionForSelectedBeatmap() {
-    return this.discussionsByBeatmap(this.currentBeatmapId);
+    const discussions = canModeratePosts()
+      ? this.discussionsArray
+      : this.nonDeletedDiscussions;
+
+    return discussions.filter((discussion) => (discussion.beatmap_id == null || discussion.beatmap_id === this.currentBeatmapId));
   }
 
   @computed
@@ -230,13 +234,6 @@ export default class DiscussionsState {
   @computed
   get nonDeletedDiscussions() {
     return this.discussionsArray.filter((discussion) => discussion.deleted_at == null);
-  }
-
-  @computed
-  get presentDiscussions() {
-    return canModeratePosts()
-      ? this.discussionsArray
-      : this.discussionsArray.filter((discussion) => discussion.deleted_at == null);
   }
 
   @computed
@@ -384,11 +381,6 @@ export default class DiscussionsState {
 
   destroy() {
     this.urlStateDisposer();
-  }
-
-  // TODO: move to discussionForSelectedBeatmap if nothing else uses this.
-  discussionsByBeatmap(beatmapId: number) {
-    return this.presentDiscussions.filter((discussion) => (discussion.beatmap_id == null || discussion.beatmap_id === beatmapId));
   }
 
   @action
