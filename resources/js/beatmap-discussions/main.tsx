@@ -150,6 +150,7 @@ export default class Main extends React.Component<Props> {
       this.nextTimeout = Math.min(this.nextTimeout, checkNewTimeoutMax);
 
       this.timeoutCheckNew = window.setTimeout(this.checkNew, this.nextTimeout);
+      this.xhrCheckNew = undefined;
     });
   };
 
