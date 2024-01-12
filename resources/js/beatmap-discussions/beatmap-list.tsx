@@ -4,7 +4,7 @@
 import BeatmapListItem from 'components/beatmap-list-item';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import UserJson from 'interfaces/user-json';
-import { action, computed, makeObservable } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import { deletedUserJson } from 'models/user';
 import * as React from 'react';
@@ -20,13 +20,10 @@ interface Props {
   users: Map<number | null | undefined, UserJson>;
 }
 
-interface State {
-  showingSelector: boolean;
-}
-
 @observer
-export default class BeatmapList extends React.Component<Props, State> {
+export default class BeatmapList extends React.Component<Props> {
   private readonly eventId = `beatmapset-discussions-show-beatmap-list-${nextVal()}`;
+  @observable private showingSelector = false;
 
   @computed
   private get beatmaps() {
@@ -37,16 +34,12 @@ export default class BeatmapList extends React.Component<Props, State> {
     super(props);
 
     makeObservable(this);
-
-    this.state = {
-      showingSelector: false,
-    };
   }
 
   componentDidMount() {
     $(document).on(`click.${this.eventId}`, this.onDocumentClick);
-    $(document).on(`turbolinks:before-cache.${this.eventId}`, this.hideSelector);
-    this.syncBlackout();
+    $(document).on(`turbolinks:before-cache.${this.eventId}`, this.handleBeforeCache);
+    blackoutToggle(this.showingSelector, 0.5);
   }
 
   componentWillUnmount() {
@@ -55,7 +48,7 @@ export default class BeatmapList extends React.Component<Props, State> {
 
   render() {
     return (
-      <div className={classWithModifiers('beatmap-list', { selecting: this.state.showingSelector })}>
+      <div className={classWithModifiers('beatmap-list', { selecting: this.showingSelector })}>
         <div className='beatmap-list__body'>
           <a
             className='beatmap-list__item beatmap-list__item--selected beatmap-list__item--large js-beatmap-list-selector'
@@ -104,12 +97,12 @@ export default class BeatmapList extends React.Component<Props, State> {
     );
   };
 
-  private readonly hideSelector = () => {
-    if (this.state.showingSelector) {
-      this.setSelector(false);
-    }
+  @action
+  private readonly handleBeforeCache = () => {
+    this.setShowingSelector(false);
   };
 
+  @action
   private readonly onDocumentClick = (e: JQuery.ClickEvent) => {
     if (e.button !== 0) return;
 
@@ -117,7 +110,7 @@ export default class BeatmapList extends React.Component<Props, State> {
       return;
     }
 
-    this.hideSelector();
+    this.setShowingSelector(false);
   };
 
   @action
@@ -131,20 +124,17 @@ export default class BeatmapList extends React.Component<Props, State> {
     this.props.discussionsState.changeDiscussionPage('timeline');
   };
 
-  private readonly setSelector = (state: boolean) => {
-    if (this.state.showingSelector !== state) {
-      this.setState({ showingSelector: state }, this.syncBlackout);
-    }
-  };
+  @action
+  private setShowingSelector(state: boolean) {
+    this.showingSelector = state;
+    blackoutToggle(state, 0.5);
+  }
 
-  private readonly syncBlackout = () => {
-    blackoutToggle(this.state.showingSelector, 0.5);
-  };
-
+  @action
   private readonly toggleSelector = (e: React.MouseEvent<HTMLElement>) => {
     if (e.button !== 0) return;
     e.preventDefault();
 
-    this.setSelector(!this.state.showingSelector);
+    this.setShowingSelector(!this.showingSelector);
   };
 }
