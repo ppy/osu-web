@@ -268,11 +268,6 @@ export default class DiscussionsState {
   }
 
   @computed
-  get unresolvedDiscussions() {
-    return this.presentDiscussions.filter((discussion) => discussion.can_be_resolved && !discussion.resolved);
-  }
-
-  @computed
   get unresolvedDiscussionCounts() {
     const byBeatmap: Partial<Record<number, number>> = {};
     const byMode: Record<GameMode, number> = {
