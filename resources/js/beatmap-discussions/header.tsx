@@ -11,8 +11,6 @@ import HeaderV4 from 'components/header-v4';
 import PlaymodeTabs from 'components/playmode-tabs';
 import StringWithComponent from 'components/string-with-component';
 import UserLink from 'components/user-link';
-import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
-import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetDiscussionsStore from 'interfaces/beatmapset-discussions-store';
 import GameMode, { gameModes } from 'interfaces/game-mode';
 import { route } from 'laroute';
@@ -20,7 +18,6 @@ import { action, computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import { deletedUserJson } from 'models/user';
 import * as React from 'react';
-import { makeUrl } from 'utils/beatmapset-discussion-helper';
 import { getArtist, getTitle } from 'utils/beatmapset-helper';
 import { trans } from 'utils/lang';
 import BeatmapList from './beatmap-list';
@@ -38,10 +35,6 @@ interface Props {
 
 @observer
 export class Header extends React.Component<Props> {
-  private get beatmaps() {
-    return this.discussionsState.groupedBeatmaps;
-  }
-
   private get beatmapset() {
     return this.discussionsState.beatmapset;
   }
@@ -93,25 +86,10 @@ export class Header extends React.Component<Props> {
     );
   }
 
-  private readonly createLink = (beatmap: BeatmapJson) => makeUrl({ beatmap });
-
-  // TODO: does it need to be computed?
-  private readonly getCount = (beatmap: BeatmapExtendedJson) => (
-    beatmap.deleted_at == null
-      ? this.discussionsState.unresolvedDiscussionsCountByBeatmap(beatmap.id)
-      : undefined
-  );
-
   @action
   private readonly onClickMode = (event: React.MouseEvent<HTMLAnchorElement>, mode: GameMode) => {
     event.preventDefault();
     this.discussionsState.changeGameMode(mode);
-  };
-
-  @action
-  private readonly onSelectBeatmap = (beatmapId: number) => {
-    this.discussionsState.currentBeatmapId = beatmapId;
-    this.discussionsState.changeDiscussionPage('timeline');
   };
 
   private renderHeaderBottom() {
@@ -181,12 +159,7 @@ export class Header extends React.Component<Props> {
           <div className={`${bn}__filters`}>
             <div className={`${bn}__filter-group`}>
               <BeatmapList
-                beatmaps={this.beatmaps.get(this.currentBeatmap.mode) ?? []}
-                beatmapset={this.beatmapset}
-                createLink={this.createLink}
-                currentBeatmap={this.currentBeatmap}
-                getCount={this.getCount}
-                onSelectBeatmap={this.onSelectBeatmap}
+                discussionsState={this.discussionsState}
                 users={this.users}
               />
             </div>

@@ -3,22 +3,20 @@
 
 import BeatmapListItem from 'components/beatmap-list-item';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
-import BeatmapsetJson from 'interfaces/beatmapset-json';
 import UserJson from 'interfaces/user-json';
+import { action, computed, makeObservable } from 'mobx';
+import { observer } from 'mobx-react';
 import { deletedUserJson } from 'models/user';
 import * as React from 'react';
+import { makeUrl } from 'utils/beatmapset-discussion-helper';
 import { blackoutToggle } from 'utils/blackout';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { nextVal } from 'utils/seq';
+import DiscussionsState from './discussions-state';
 
 interface Props {
-  beatmaps: BeatmapExtendedJson[];
-  beatmapset: BeatmapsetJson;
-  createLink: (beatmap: BeatmapExtendedJson) => string;
-  currentBeatmap: BeatmapExtendedJson;
-  getCount: (beatmap: BeatmapExtendedJson) => number | undefined;
-  onSelectBeatmap: (beatmapId: number) => void;
+  discussionsState: DiscussionsState;
   users: Map<number | null | undefined, UserJson>;
 }
 
@@ -26,11 +24,19 @@ interface State {
   showingSelector: boolean;
 }
 
-export default class BeatmapList extends React.PureComponent<Props, State> {
+@observer
+export default class BeatmapList extends React.Component<Props, State> {
   private readonly eventId = `beatmapset-discussions-show-beatmap-list-${nextVal()}`;
+
+  @computed
+  private get beatmaps() {
+    return this.props.discussionsState.groupedBeatmaps.get(this.props.discussionsState.currentBeatmap.mode) ?? [];
+  }
 
   constructor(props: Props) {
     super(props);
+
+    makeObservable(this);
 
     this.state = {
       showingSelector: false,
@@ -53,10 +59,10 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
         <div className='beatmap-list__body'>
           <a
             className='beatmap-list__item beatmap-list__item--selected beatmap-list__item--large js-beatmap-list-selector'
-            href={this.props.createLink(this.props.currentBeatmap)}
+            href={makeUrl({ beatmap: this.props.discussionsState.currentBeatmap })}
             onClick={this.toggleSelector}
           >
-            <BeatmapListItem beatmap={this.props.currentBeatmap} mapper={null} modifiers='large' />
+            <BeatmapListItem beatmap={this.props.discussionsState.currentBeatmap} mapper={null} modifiers='large' />
             <div className='beatmap-list__item-selector-button'>
               <span className='fas fa-chevron-down' />
             </div>
@@ -64,7 +70,7 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
 
           <div className='beatmap-list__selector-container'>
             <div className='beatmap-list__selector'>
-              {this.props.beatmaps.map(this.beatmapListItem)}
+              {this.beatmaps.map(this.beatmapListItem)}
             </div>
           </div>
         </div>
@@ -73,19 +79,19 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
   }
 
   private readonly beatmapListItem = (beatmap: BeatmapExtendedJson) => {
-    const count = this.props.getCount(beatmap);
+    const count = this.props.discussionsState.unresolvedDiscussionsCountByBeatmap(beatmap.id);
 
     return (
       <div
         key={beatmap.id}
-        className={classWithModifiers('beatmap-list__item', { current: beatmap.id === this.props.currentBeatmap.id })}
+        className={classWithModifiers('beatmap-list__item', { current: beatmap.id === this.props.discussionsState.currentBeatmap.id })}
         data-id={beatmap.id}
         onClick={this.selectBeatmap}
       >
         <BeatmapListItem
           beatmap={beatmap}
-          beatmapUrl={this.props.createLink(beatmap)}
-          beatmapset={this.props.beatmapset}
+          beatmapUrl={makeUrl({ beatmap })}
+          beatmapset={this.props.discussionsState.beatmapset}
           mapper={this.props.users.get(beatmap.user_id) ?? deletedUserJson}
           showNonGuestMapper={false}
         />
@@ -114,12 +120,15 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
     this.hideSelector();
   };
 
+  @action
   private readonly selectBeatmap = (e: React.MouseEvent<HTMLElement>) => {
     if (e.button !== 0) return;
     e.preventDefault();
 
     const beatmapId = parseInt(e.currentTarget.dataset.id ?? '', 10);
-    this.props.onSelectBeatmap(beatmapId);
+
+    this.props.discussionsState.currentBeatmapId = beatmapId;
+    this.props.discussionsState.changeDiscussionPage('timeline');
   };
 
   private readonly setSelector = (state: boolean) => {
