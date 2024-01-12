@@ -294,6 +294,19 @@ export default class DiscussionsState {
   }
 
   @computed
+  get unresolvedDiscussionsCountByBeatmap() {
+    const counts: Partial<Record<number, number>> = {};
+
+    for (const discussion of this.discussionsArray) {
+      if (discussion.beatmap_id != null && discussion.can_be_resolved && !discussion.resolved) {
+        counts[discussion.beatmap_id] = (counts[discussion.beatmap_id] ?? 0) + 1;
+      }
+    }
+
+    return counts;
+  }
+
+  @computed
   get url() {
     return makeUrl({
       beatmap: this.currentBeatmap,
@@ -413,10 +426,6 @@ export default class DiscussionsState {
       selectedUserId: this.selectedUserId,
       showDeleted: this.showDeleted,
     };
-  }
-
-  unresolvedDiscussionsCountByBeatmap(beatmapId: number) {
-    return this.presentDiscussions.filter((discussion) => (discussion.beatmap_id === beatmapId && discussion.can_be_resolved && !discussion.resolved)).length;
   }
 
   @action

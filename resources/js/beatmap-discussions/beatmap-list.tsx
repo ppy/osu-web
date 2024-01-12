@@ -72,7 +72,7 @@ export default class BeatmapList extends React.Component<Props> {
   }
 
   private readonly beatmapListItem = (beatmap: BeatmapExtendedJson) => {
-    const count = this.props.discussionsState.unresolvedDiscussionsCountByBeatmap(beatmap.id);
+    const count = this.props.discussionsState.unresolvedDiscussionsCountByBeatmap[beatmap.id];
 
     return (
       <div
