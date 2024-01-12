@@ -273,8 +273,9 @@ export default class DiscussionsState {
   }
 
   @computed
-  get unresolvedDiscussionsCountByPlaymode() {
-    const counts: Record<GameMode, number> = {
+  get unresolvedDiscussionCounts() {
+    const byBeatmap: Partial<Record<number, number>> = {};
+    const byMode: Record<GameMode, number> = {
       fruits: 0,
       mania: 0,
       osu: 0,
@@ -283,27 +284,19 @@ export default class DiscussionsState {
 
     for (const discussion of this.discussionsArray) {
       if (discussion.beatmap_id != null && discussion.can_be_resolved && !discussion.resolved) {
+        byBeatmap[discussion.beatmap_id] = (byBeatmap[discussion.beatmap_id] ?? 0) + 1;
+
         const mode = this.store.beatmaps.get(discussion.beatmap_id)?.mode;
         if (mode != null) {
-          counts[mode]++;
+          byMode[mode]++;
         }
       }
     }
 
-    return counts;
-  }
-
-  @computed
-  get unresolvedDiscussionsCountByBeatmap() {
-    const counts: Partial<Record<number, number>> = {};
-
-    for (const discussion of this.discussionsArray) {
-      if (discussion.beatmap_id != null && discussion.can_be_resolved && !discussion.resolved) {
-        counts[discussion.beatmap_id] = (counts[discussion.beatmap_id] ?? 0) + 1;
-      }
-    }
-
-    return counts;
+    return {
+      byBeatmap,
+      byMode,
+    };
   }
 
   @computed

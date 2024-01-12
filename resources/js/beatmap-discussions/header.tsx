@@ -70,7 +70,7 @@ export class Header extends React.Component<Props> {
             <PlaymodeTabs
               currentMode={this.currentBeatmap.mode}
               entries={gameModes.map((mode) => ({
-                count: this.discussionsState.unresolvedDiscussionsCountByPlaymode[mode],
+                count: this.discussionsState.unresolvedDiscussionCounts.byMode[mode],
                 disabled: (this.discussionsState.groupedBeatmaps.get(mode)?.length ?? 0) === 0,
                 mode,
               }))}
