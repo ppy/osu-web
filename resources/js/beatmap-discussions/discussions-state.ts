@@ -397,6 +397,9 @@ export default class DiscussionsState {
   }
 
   toJson() {
+    // Convert serialized properties into primitives supported by JSON.stringify.
+    // Values that need conversion should have the appropriate reviver to restore
+    // the original type when deserializing.
     return {
       currentBeatmapId: this.currentBeatmapId,
       currentFilter: this.currentFilter,
