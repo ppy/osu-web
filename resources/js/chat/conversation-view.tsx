@@ -68,7 +68,7 @@ export default class ConversationView extends React.Component<Props> {
       }
 
       // check whether the day-change header needs to be shown
-      if (isEmpty(conversationStack) || (moment(message.timestamp).date() !== currentDay && moment(message.timestamp).month() !== currentMonth && moment(message.timestamp).year() !== currentYear)) {  // is this less dodgy now OwO?
+      if (isEmpty(conversationStack) || (moment(message.timestamp).date() !== currentDay && moment(message.timestamp).month() !== currentMonth && moment(message.timestamp).year() !== currentYear)) {
         if (!isEmpty(currentGroup)) {
           conversationStack.push(<MessageGroup key={currentGroup[0].uuid} messages={currentGroup} />);
           currentGroup = [];
