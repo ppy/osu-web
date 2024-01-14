@@ -46,7 +46,9 @@ export default class ConversationView extends React.Component<Props> {
     const conversationStack: JSX.Element[] = [];
     let currentGroup: Message[] = [];
     let unreadMarkerShown = false;
-    let currentDay: number;
+    let currentDay: number; 
+    let currentMonth: number; 
+    let currentYear: number; 
 
     each(channel.messages, (message: Message, key: number) => {
       // check if the last read indicator needs to be shown
@@ -66,13 +68,15 @@ export default class ConversationView extends React.Component<Props> {
       }
 
       // check whether the day-change header needs to be shown
-      if (isEmpty(conversationStack) || moment(message.timestamp).date() !== currentDay /* TODO: make check less dodgy */) {
+      if (isEmpty(conversationStack) || (moment(message.timestamp).date() !== currentDay && moment(message.timestamp).month() !== currentMonth && moment(message.timestamp).year() !== currentYear)) {  // is this less dodgy now OwO?
         if (!isEmpty(currentGroup)) {
           conversationStack.push(<MessageGroup key={currentGroup[0].uuid} messages={currentGroup} />);
           currentGroup = [];
         }
         conversationStack.push(<MessageDivider key={`day-${message.timestamp}`} timestamp={message.timestamp} type='DAY_MARKER' />);
         currentDay = moment(message.timestamp).date();
+        currentMonth = moment(message.timestamp).month();
+        currentYear = moment(message.timestamp).year();
       }
 
       // add message to current message grouping if the sender is the same, otherwise create a new message grouping
