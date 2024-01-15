@@ -66,13 +66,13 @@ export default class ConversationView extends React.Component<Props> {
       }
 
       // check whether the day-change header needs to be shown
-      if (isEmpty(conversationStack) || !(moment(message.timestamp).isSame(currentDay, 'day'))) {
+      if (isEmpty(conversationStack) || new Date(message.timestamp).toLocaleDateString() !== currentDay) {
         if (!isEmpty(currentGroup)) {
           conversationStack.push(<MessageGroup key={currentGroup[0].uuid} messages={currentGroup} />);
           currentGroup = [];
         }
         conversationStack.push(<MessageDivider key={`day-${message.timestamp}`} timestamp={message.timestamp} type='DAY_MARKER' />);
-        currentDay = moment(message.timestamp).toISOString();
+        currentDay = new Date(message.timestamp).toLocaleDateString();
       }
 
       // add message to current message grouping if the sender is the same, otherwise create a new message grouping
