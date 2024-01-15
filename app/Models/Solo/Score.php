@@ -64,7 +64,7 @@ class Score extends Model implements Traits\ReportableInterface
         // older lazer builds potentially submit incorrect details here (and we still want to
         // accept their scores.
         if (!$score->data->passed) {
-            $score->data->rank = 'D';
+            $score->data->rank = 'F';
         }
 
         $score->saveOrExplode();

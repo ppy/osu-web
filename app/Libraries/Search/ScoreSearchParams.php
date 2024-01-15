@@ -54,9 +54,14 @@ class ScoreSearchParams extends SearchParams
         return $params;
     }
 
-    public static function showLegacyForUser(?User $user): bool
+    /**
+     * This returns value for isLegacy based on user preference
+     */
+    public static function showLegacyForUser(?User $user): null | true
     {
-        return $user?->userProfileCustomization?->legacy_score_only ?? UserProfileCustomization::DEFAULT_LEGACY_ONLY_ATTRIBUTE;
+        return $user?->userProfileCustomization?->legacy_score_only ?? UserProfileCustomization::DEFAULT_LEGACY_ONLY_ATTRIBUTE
+            ? true
+            : null;
     }
 
     public function getCountryCode(): string
