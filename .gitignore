@@ -10,6 +10,9 @@ _ide_helper.php
 /vendor
 composer.phar
 
+# docker related local files
+/compose.override.yml
+
 # OS-specific crud
 .DS_Store
 Thumbs.db

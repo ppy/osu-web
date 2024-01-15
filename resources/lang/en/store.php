@@ -93,7 +93,7 @@ return [
                 'title' => 'Your order has been shipped!',
                 'tracking_details' => 'Tracking details follow:',
                 'no_tracking_details' => [
-                    '_' => "We don't have tracking details as we sent your package via Air Mail, but you can expect to receive it within 1-3 weeks. For Europe, sometimes customs can delay the order out of our control. If you have any concerns, please reply to the order confirmation email you received :link.",
+                    '_' => "We don't have tracking details as we sent your package via Air Mail, but you can expect to receive it within 1-3 weeks. For Europe, sometimes customs can delay the order out of our control. If you have any concerns, please reply to the order confirmation email you received (or :link).",
                     'link_text' => 'send us an email',
                 ],
             ],

@@ -18,7 +18,7 @@ import { trans } from 'utils/lang';
 
 interface Props {
   coverUrl: string | null;
-  currentMode: GameMode | null;
+  currentMode: GameMode;
   editor?: JSX.Element;
   isUpdatingCover?: boolean;
   modifiers?: Modifiers;

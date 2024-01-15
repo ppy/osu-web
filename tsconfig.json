@@ -17,6 +17,7 @@
     "useDefineForClassFields": true
   },
   "include": [
-    "resources/js"
+    "resources/js",
+    "resources/builds/ziggy.d.ts"
   ]
 }
