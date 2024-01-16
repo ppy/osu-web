@@ -35,8 +35,8 @@ return [
     'mode' => [
         'artist' => 'ألبوم/الفنان',
         'chart' => 'تسليط الأضواء',
-        'featured' => 'فنان متميز',
-        'loved' => '',
+        'featured' => 'فنان مميز',
+        'loved' => 'مشروع Loved',
         'standard' => 'أساسي',
         'theme' => 'مظهر',
         'tournament' => 'البطولة',

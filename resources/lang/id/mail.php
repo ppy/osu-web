@@ -22,7 +22,7 @@ return [
         'benefit_more' => 'Di samping itu, para pemilik supporter tag juga akan mendapatkan berbagai keutamaan baru seiring waktunya!',
         'feedback' => "Apabila kamu memiliki pertanyaan atau saran lebih lanjut, jangan sungkan untuk membalas email ini; Saya akan menghubungimu kembali sesegera mungkin!",
         'keep_free' => 'Berkat orang-orang sepertimu, osu! dapat mewujudkan lingkungan permainan dan komunitas yang terbebas dari iklan dan sistem pembayaran yang mengganggu.',
-        'keep_running' => 'Dukunganmu membuat osu! dapat berjalan selama sekitar :minutes! Angka ini mungkin tidak terlihat besar, namun dukungan sekecil apa pun akan tetap berarti bagi kami :).',
+        'keep_running' => 'Dukunganmu membuat osu! terus berjalan selama sekitar :minutes! Angka ini mungkin tidak terlihat besar, namun dukungan sekecil apa pun akan tetap berarti bagi kami :).',
         'subject' => 'Terima kasih, osu! mencintaimu',
         'translation' => 'Sebagai bahan rujukan, tersedia terjemahan dari komunitas di bawah ini:',
 
@@ -98,13 +98,13 @@ return [
 
     'user_verification' => [
         'code' => 'Kode verifikasi kamu adalah:',
-        'code_hint' => 'Kamu dapat memasukkan kode tersebut baik dengan atau tanpa spasi.',
+        'code_hint' => 'Kamu dapat memasukkan kode ini baik dengan atau tanpa spasi.',
         'link' => 'Di samping itu, kamu juga dapat mengunjungi tautan di bawah ini untuk menyelesaikan proses verifikasi:',
         'report' => 'Apabila kamu tidak merasa meminta kode verifikasi dari kami, harap SEGERA BALAS email ini karena akunmu mungkin sedang berada dalam bahaya.',
         'subject' => 'Verifikasi akun osu!',
 
         'action_from' => [
-            '_' => 'Terdapat aktivitas baru dari :country pada akunmu yang memerlukan verifikasi.',
+            '_' => 'Terdapat aktivitas baru pada akunmu dari :country yang memerlukan verifikasi.',
             'unknown_country' => 'negara yang tidak diketahui',
         ],
     ],

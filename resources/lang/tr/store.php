@@ -49,15 +49,15 @@ return [
     ],
 
     'discount' => '%:percent kazanın',
-    'free' => '',
+    'free' => 'ücretsiz!',
 
     'invoice' => [
         'contact' => 'İletişim:',
         'date' => 'Tarih:',
         'echeck_delay' => 'Ödemenizin bir eCheck olması nedeniyle, ödemenizin PayPal\'dan temizlenmesi için 10 ekstra günü göz önüne alın!',
         'hide_from_activity' => 'Bu siparişteki osu!supporter etiketleri yakın zamandaki etkinliklerinizde gösterilmez.',
-        'sent_via' => '',
-        'shipping_to' => '',
+        'sent_via' => 'Kargo şirketi:',
+        'shipping_to' => 'Gönderim adresi:',
         'title' => 'Fatura',
         'title_compact' => 'fatura',
 
@@ -66,14 +66,14 @@ return [
                 'title' => 'Siparişiniz iptal edildi',
                 'line_1' => [
                     '_' => "",
-                    'link_text' => '',
+                    'link_text' => 'osu!store destek',
                 ],
             ],
             'delivered' => [
                 'title' => 'Siparişiniz teslim edildi! İyi günlerde kullanmanız dileğiyle!',
                 'line_1' => [
                     '_' => 'Satın alımınızla ilgili bir problem yaşıyorsanız,lütfen :link ile görüşün.',
-                    'link_text' => '',
+                    'link_text' => 'osu!store destek',
                 ],
             ],
             'prepared' => [
@@ -91,7 +91,7 @@ return [
             ],
             'shipped' => [
                 'title' => 'Siparişiniz kargoya verildi!',
-                'tracking_details' => '',
+                'tracking_details' => 'Kargo takip detayları aşağıdadır:',
                 'no_tracking_details' => [
                     '_' => "",
                     'link_text' => 'bize bir e-mail yollayın',
@@ -108,17 +108,17 @@ return [
         'no_orders' => 'Görüntülenecek sipariş yok.',
         'paid_on' => 'Sipariş verme tarihi :date',
         'resume' => 'Sepete Dön',
-        'shipping_and_handling' => '',
+        'shipping_and_handling' => 'Kargo & Taşıma',
         'shopify_expired' => 'Bu sipariş için ödeme bağlantısının süresi doldu.',
         'subtotal' => 'Ara toplam',
         'total' => 'Toplam',
 
         'details' => [
-            'order_number' => '',
-            'payment_terms' => '',
+            'order_number' => 'Sipariş No.',
+            'payment_terms' => 'Ödeme Koşulları',
             'salesperson' => 'Satış Temsilcisi',
             'shipping_method' => 'Gönderim Yolu',
-            'shipping_terms' => '',
+            'shipping_terms' => 'Teslimat Koşulları',
             'title' => 'Sipariş Detayları',
         ],
 
@@ -193,7 +193,7 @@ return [
     'username_change' => [
         'check' => 'Geçerliliğini kontrol etmek için bir kullanıcı adı girin!',
         'checking' => ':username geçerliliği kontrol ediliyor...',
-        'placeholder' => '',
+        'placeholder' => 'İstenilen Kullanıcı Adı',
         'label' => 'Yeni kullanıcı adı',
         'current' => 'Şu anki kullanıcı adınız ":username".',
 

@@ -63,15 +63,15 @@ return [
     ],
 
     'github_user' => [
-        'info' => "",
-        'link' => '',
+        'info' => "Pokud jste přispěvatelem do repozitářů s otevřeným zdrojovým kódem osu!, propojením vašeho účtu GitHub zde budou vaše záznamy změn spojeny s vaším osu! profilem. Účty GitHub bez historie příspěvků s osu! nelze propojit.",
+        'link' => 'Připojit GitHub účet',
         'title' => 'GitHub',
-        'unlink' => '',
+        'unlink' => 'Odpojit GitHub účet',
 
         'error' => [
-            'already_linked' => '',
-            'no_contribution' => '',
-            'unverified_email' => '',
+            'already_linked' => 'Tento GitHub účet je již propojen s jiným uživatelem.',
+            'no_contribution' => 'Nelze propojit GitHub účet bez historie příspěvků v osu! repozitářích.',
+            'unverified_email' => 'Ověřte prosím svůj primární e-mail na GitHubu a pak zkuste znovu propojit svůj účet.',
         ],
     ],
 

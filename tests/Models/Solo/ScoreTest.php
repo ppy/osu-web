@@ -59,7 +59,7 @@ class ScoreTest extends TestCase
         $this->assertSame($legacy->rank, 'S');
     }
 
-    public function testLegacyFailScoreIsRankD()
+    public function testLegacyFailScoreIsRankF()
     {
         $score = Score::createFromJsonOrExplode([
             'accuracy' => 1,
@@ -76,12 +76,12 @@ class ScoreTest extends TestCase
         ]);
 
         $this->assertFalse($score->data->passed);
-        $this->assertSame($score->data->rank, 'D');
+        $this->assertSame($score->data->rank, 'F');
 
         $legacy = $score->createLegacyEntryOrExplode();
 
         $this->assertFalse($legacy->perfect);
-        $this->assertSame($legacy->rank, 'D');
+        $this->assertSame($legacy->rank, 'F');
     }
 
     public function testLegacyScoreHitCounts()
