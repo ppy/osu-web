@@ -15,8 +15,8 @@ return [
 
     'action_type' => [
         '_' => 'الكل',
-        'beatmapset' => 'خرائط الموسيقى',
-        'build' => '',
+        'beatmapset' => 'الخرائط',
+        'build' => 'النُسَخ',
         'channel' => 'المحادثة',
         'forum_topic' => 'منتدى',
         'news_post' => 'الأخبار',
@@ -57,9 +57,9 @@ return [
                 'beatmapset_discussion_unlock_compact' => 'تم الغاء قفل المناقشة',
 
                 'review_count' => [
-                    'praises' => '',
-                    'problems' => '',
-                    'suggestions' => '',
+                    'praises' => ':count_delimited إشادة|:count_delimited إشادات',
+                    'problems' => ':count_delimited مشكلة|:count_delimited مشاكل',
+                    'suggestions' => ':count_delimited إقتراح|:count_delimited مقترحات',
                 ],
             ],
 

@@ -116,10 +116,10 @@ return [
         'details' => [
             'order_number' => 'Bestelling #',
             'payment_terms' => '',
-            'salesperson' => '',
-            'shipping_method' => '',
-            'shipping_terms' => '',
-            'title' => '',
+            'salesperson' => 'Verkoper',
+            'shipping_method' => 'Verzendmethode',
+            'shipping_terms' => 'Verzendvoorwaarden',
+            'title' => 'Besteldetails',
         ],
 
         'item' => [
@@ -151,7 +151,7 @@ return [
             'paid' => 'Betaald',
             'processing' => 'Wachten op bevestiging',
             'shipped' => 'Verzonden',
-            'title' => '',
+            'title' => 'Bestelstatus',
         ],
 
         'thanks' => [

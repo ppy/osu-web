@@ -18,7 +18,7 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Has alcanzado tu límite de nominaciones diarias, por favor inténtalo de nuevo mañana.',
-            'incorrect_state' => 'Error al realizar esa acción, intente actualizar la página.',
+            'incorrect_state' => 'Error al realizar esa acción, intenta actualizar la página.',
             'owner' => "No puedes nominar tu propio mapa.",
             'set_metadata' => 'Debes establecer el género y el idioma antes de nominar.',
         ],
@@ -182,7 +182,7 @@ return [
             'edit' => [
                 'locked' => 'La página de usuario está bloqueada.',
                 'not_owner' => 'Solo puedes editar tu página de usuario.',
-                'require_supporter_tag' => 'Se necesita la etiqueta osu!supporter.',
+                'require_supporter_tag' => 'Necesitas una etiqueta de osu!supporter.',
             ],
         ],
         'update_email' => [

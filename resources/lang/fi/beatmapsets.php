@@ -163,7 +163,7 @@ return [
             'friend' => 'Kavereiden sijoitukset',
             'global' => 'Maailmanlaajuiset sijoitukset',
             'supporter-link' => 'Klikkaa <a href=":link">tästä</a> nähdäksesi kaikki hienot ominaisuudet mitä saat!',
-            'supporter-only' => 'Sinun täytyy olla osu!-tukija nähdäksesi kaveri-, maa- ja muunnelmakohtaiset sijoitukset!',
+            'supporter-only' => 'Sinun täytyy olla osu!n tukija nähdäksesi kaveri-, maa- ja muunnelmakohtaiset sijoitukset!',
             'title' => 'Tulokset',
 
             'headers' => [

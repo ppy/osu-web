@@ -6,7 +6,7 @@
 return [
     'promote' => [
         'pin' => '¿Seguro que desea promocionar esta transmisión en vivo?',
-        'unpin' => "¿Seguro que desea quitar la promoción de esta transmisión en vivo?",
+        'unpin' => "¿Seguro que quieres quitar la promoción de esta transmisión en vivo?",
     ],
 
     'top-headers' => [

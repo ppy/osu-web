@@ -58,8 +58,8 @@ return [
 
                 'review_count' => [
                     'praises' => '',
-                    'problems' => '',
-                    'suggestions' => '',
+                    'problems' => ':count_delimited probleem|:count_delimited problemen',
+                    'suggestions' => ':count_delimited suggestie|:count_delimited suggesties',
                 ],
             ],
 

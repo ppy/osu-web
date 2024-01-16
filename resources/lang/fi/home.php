@@ -135,7 +135,7 @@ return [
         ],
         'beatmaps' => [
             'new' => 'Uudet rankatut rytmikartat',
-            'popular' => 'Suositut rytmikartat',
+            'popular' => 'Suositut Beatmapit',
             'by_user' => 'tehnyt :user',
         ],
         'buttons' => [
