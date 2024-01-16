@@ -56,8 +56,8 @@ return [
         'date' => 'Datum:',
         'echeck_delay' => 'Jelikož vaše platba byla prováděna službou eCheck, prosím, dejte nám až 10 dní na to, aby platba úspěšně prošla přes PayPal!',
         'hide_from_activity' => 'osu!supporter tagy v této objednávce se nebudou zobrazovat v nedávných aktivitách.',
-        'sent_via' => '',
-        'shipping_to' => '',
+        'sent_via' => 'Odesláno přes:',
+        'shipping_to' => 'Místo doručení:',
         'title' => 'Faktura',
         'title_compact' => 'faktura',
 
@@ -78,8 +78,8 @@ return [
             ],
             'prepared' => [
                 'title' => 'Vaše objednávka se připravuje!',
-                'line_1' => '',
-                'line_2' => '',
+                'line_1' => 'Počkejte prosím o něco déle, než bude zásilka odeslána. Informace pro sledování se zobrazí zde, jakmile bude objednávka zpracována a odeslána. To může trvat až 5 dní (ale obvykle méně!) v závislosti na tom, jak jsme zaneprázdněni.',
+                'line_2' => 'Všechny objednávky zasíláme z Japonska pomocí různých přepravních služeb v závislosti na váze a hodnotě. Tato oblast bude po odeslání objednávky specifikována.',
             ],
             'processing' => [
                 'title' => 'Vaše platba nebyla ještě potvrzena!',
@@ -91,10 +91,10 @@ return [
             ],
             'shipped' => [
                 'title' => 'Vaše objednávka byla odeslána!',
-                'tracking_details' => '',
+                'tracking_details' => 'Detaily o sledování:',
                 'no_tracking_details' => [
-                    '_' => "",
-                    'link_text' => '',
+                    '_' => "Vzhledem k tomu, že jsme vaší zásilku poslali přes Air Mail nemáme detaily o sledování, ale můžete zásilku očekávat během 1-3 týdnů. Pro Evropu někdy může celní správa zpozdit dopravu zásilky o něco déle. Pokud máte obavy, prosím odpovězte na email o potvrzení objednávky, který jste obdrželi :link.",
+                    'link_text' => 'napište nám email',
                 ],
             ],
         ],
@@ -108,17 +108,17 @@ return [
         'no_orders' => 'Nejsou zde žádné objednávky k zobrazení.',
         'paid_on' => 'Objednávka zadána :date',
         'resume' => 'Obnovit objednávku',
-        'shipping_and_handling' => '',
+        'shipping_and_handling' => 'Přepravné a balné',
         'shopify_expired' => 'Odkaz na objednávku pro tuto objednávku vypršel.',
         'subtotal' => 'Mezisoučet',
         'total' => 'Celkem',
 
         'details' => [
             'order_number' => 'Objednávka č.',
-            'payment_terms' => '',
-            'salesperson' => '',
-            'shipping_method' => '',
-            'shipping_terms' => '',
+            'payment_terms' => 'Platební podmínky',
+            'salesperson' => 'Prodejce',
+            'shipping_method' => 'Způsob dopravy',
+            'shipping_terms' => 'Dodací podmínky',
             'title' => 'Detail objednávky',
         ],
 

@@ -66,9 +66,9 @@ return [
         'anonymous_gift_maybe_not' => 'Pero es probable que ya sepas quién es ;).',
         'duration' => 'Gracias a esa persona, tienes acceso a osu!direct y a otros beneficios de osu!supporter durante :duration.',
         'features' => 'Puedes encontrar más detalles acerca de estas características aquí:',
-        'gifted' => '¡Alguien te acaba de regalar una etiqueta osu!supporter!',
+        'gifted' => '¡Alguien te acaba de regalar una etiqueta de osu!supporter!',
         'gift_message' => 'La persona que te regaló esta etiqueta te dejó un mensaje:',
-        'subject' => '¡Te han regalado una etiqueta osu!supporter!',
+        'subject' => '¡Te han regalado una etiqueta de osu!supporter!',
     ],
 
     'user_email_updated' => [

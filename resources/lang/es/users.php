@@ -75,7 +75,7 @@ return [
         'warning' => "En el caso de que hayas roto una regla, ten en cuenta que generalmente hay un período de espera de un mes durante el cual no consideraremos ninguna solicitud de amnistía. Después de este período, puedes contactar con nosotros si lo consideras necesario. Ten en cuenta que la creación de nuevas cuentas después de haber tenido una desactivada resultará en una <strong>extensión de este período de espera de un mes</strong>. Por favor, también ten en cuenta que por <strong>cada cuenta que crees, estarás violando más reglas</strong>. ¡Te sugerimos que no sigas este camino!",
 
         'if_mistake' => [
-            '_' => 'Si cree que se trata de un error, puede ponerse en contacto con nosotros (por :email o haciendo clic en el "?" en la esquina inferior derecha de esta página). Tenga en cuenta que siempre confiamos plenamente en nuestras acciones, ya que se basan en datos muy sólidos. Nos reservamos el derecho de ignorar su petición si consideramos que está siendo intencionadamente deshonesto.',
+            '_' => 'Si crees que se trata de un error, puedes ponerse en contacto con nosotros (por :email o haciendo clic en el «?» de la esquina inferior derecha de esta página). Ten en cuenta que siempre confiamos plenamente en nuestras acciones, ya que se basan en datos muy sólidos. Nos reservamos el derecho de ignorar tu petición si consideramos que estás siendo intencionadamente deshonesto.',
             'email' => 'correo electrónico',
         ],
 
@@ -359,7 +359,7 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Descargar repetición',
-                'not_ranked' => 'Sólo los mapas clasificados dan pp.',
+                'not_ranked' => 'Solo los mapas clasificados dan pp',
                 'pp_weight' => 'valorado :percentage',
                 'view_details' => 'Ver detalles',
                 'title' => 'Rangos',
@@ -481,7 +481,7 @@ return [
     ],
     'store' => [
         'from_client' => '¡por favor regístrese a través del cliente del juego en su lugar!',
-        'from_web' => 'por favor complete el registro usando el sitio web de osu!',
+        'from_web' => 'por favor, completa el registro usando el sitio web de osu!',
         'saved' => 'Usuario creado',
     ],
     'verify' => [

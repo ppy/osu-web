@@ -18,15 +18,15 @@ return [
     ],
 
     'kudosu' => [
-        'total' => '',
-        'available' => '',
-        'used' => '',
+        'total' => 'المُكتسب',
+        'available' => 'متوفر',
+        'used' => 'المُنفق',
     ],
 
     'type' => [
         'charts' => 'منطقة ألأضواء',
         'country' => 'الدولة',
-        'kudosu' => '',
+        'kudosu' => 'كودوسو',
         'multiplayer' => 'متعدد اللاعبين',
         'performance' => 'الأداء',
         'score' => 'النقاط',

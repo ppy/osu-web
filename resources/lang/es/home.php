@@ -27,7 +27,7 @@ return [
         'title' => 'buscar',
 
         'beatmapset' => [
-            'login_required' => 'Inicie sesión para buscar mapas',
+            'login_required' => 'Inicia sesión para buscar mapas',
             'more' => 'Hay :count mapas más en los resultados',
             'more_simple' => 'Ver más resultados de mapas',
             'title' => 'Mapas',
@@ -36,7 +36,7 @@ return [
         'forum_post' => [
             'all' => 'Todos los foros',
             'link' => 'Busca en el foro',
-            'login_required' => 'Inicie sesión para buscar en el foro',
+            'login_required' => 'Inicia sesión para buscar en el foro',
             'more_simple' => 'Ver más resultados de los foros',
             'title' => 'Foro',
 
@@ -58,10 +58,10 @@ return [
         ],
 
         'user' => [
-            'login_required' => 'Inicie sesión para buscar usuarios',
+            'login_required' => 'Inicia sesión para buscar usuarios',
             'more' => ':count jugadores más coinciden con la búsqueda',
             'more_simple' => 'Ver más resultados de jugadores',
-            'more_hidden' => 'La búsqueda de jugadores está limitada a :max jugadores. Intenta refinando tus términos de búsqueda.',
+            'more_hidden' => 'La búsqueda de jugadores está limitada a :max jugadores. Intenta refinar tus términos de búsqueda.',
             'title' => 'Jugadores',
         ],
 
@@ -77,10 +77,10 @@ return [
         'action_lazer' => 'Descargar osu!(lazer)',
         'action_lazer_description' => 'la próxima gran actualización de osu!',
         'action_lazer_info' => 'revisa esta página para más información',
-        'action_lazer_title' => 'prueba osu!(lazer)',
-        'action_title' => 'descarga osu!',
+        'action_lazer_title' => 'probar osu!(lazer)',
+        'action_title' => 'descargar osu!',
         'for_os' => 'para :os',
-        'lazer_note' => 'nota: se aplican reinicios de la tabla de clasificación',
+        'lazer_note' => 'nota: se aplican reinicios a la tabla de clasificación',
         'macos-fallback' => 'usuarios de macOS',
         'mirror' => 'link alternativo',
         'or' => 'o',
@@ -91,9 +91,9 @@ return [
         'video-guide' => 'guía en vídeo',
 
         'help' => [
-            '_' => 'si tiene problemas para iniciar el juego o para obtener una cuenta, :help_forum_link o :support_button.',
-            'help_forum_link' => 'consulte el foro de ayuda',
-            'support_button' => 'contacte al soporte técnico',
+            '_' => 'si tienes problemas para iniciar el juego o para obtener una cuenta, :help_forum_link o :support_button.',
+            'help_forum_link' => 'consulta el foro de ayuda',
+            'support_button' => 'contacta con soporte',
         ],
 
         'os' => [
@@ -107,7 +107,7 @@ return [
                 'description' => 'sigue las instrucciones cuando inicies el juego para iniciar sesión o crear una nueva cuenta',
             ],
             'download' => [
-                'title' => 'descargar el juego',
+                'title' => 'instalar el juego',
                 'description' => 'haz clic en el botón de arriba para descargar el instalador, luego ¡ejecútalo!',
             ],
             'beatmaps' => [
@@ -124,7 +124,7 @@ return [
         'title' => 'panel',
         'news' => [
             'title' => 'Novedades',
-            'error' => 'Error al cargar las novedades, ¿intente actualizar la página?...',
+            'error' => 'Error al cargar las novedades, ¿prueba a actualizar la página?...',
         ],
         'header' => [
             'stats' => [

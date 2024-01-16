@@ -37,7 +37,7 @@ return [
         'blocked_count' => 'المستخدمون المحظورون (:count)',
         'hide_profile' => 'إخفاء الملف الشخصي',
         'hide_comment' => 'إخفاء',
-        'forum_post_text' => '',
+        'forum_post_text' => 'تم إخفاء هذه المشاركة.',
         'not_blocked' => 'هذا المستخدم ليس محظوراََ.',
         'show_profile' => 'عرض الملف الشخصي',
         'show_comment' => 'إظهار',
@@ -49,7 +49,7 @@ return [
     ],
 
     'card' => [
-        'gift_supporter' => '',
+        'gift_supporter' => 'إهداء علامة supporter ',
         'loading' => 'جاري التحميل...',
         'send_message' => 'إرسال رسالة',
     ],
@@ -124,13 +124,13 @@ return [
     ],
 
     'ogp' => [
-        'modding_description' => '',
-        'modding_description_empty' => '',
+        'modding_description' => 'الخرائط: :counts',
+        'modding_description_empty' => 'ليس لدى المستخدم أي خرائط...',
 
         'description' => [
-            '_' => '',
-            'country' => '',
-            'global' => '',
+            '_' => 'الترتيب (:ruleset): :global | :country',
+            'country' => 'الدولة :rank',
+            'global' => 'عالمياََ :rank',
         ],
     ],
 
@@ -397,7 +397,7 @@ return [
                     'date' => 'التاريخ',
                     'action' => 'النشاط',
                     'length' => 'الطول',
-                    'length_indefinite' => '',
+                    'length_indefinite' => 'غير محدد',
                     'description' => 'الوصف',
                     'actor' => 'بواسطة :username',
 

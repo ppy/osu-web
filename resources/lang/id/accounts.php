@@ -27,7 +27,7 @@ return [
         'legacy_api' => [
             'api' => 'api',
             'irc' => 'irc',
-            'title' => 'API Lawas',
+            'title' => 'API lawas',
         ],
 
         'password' => [

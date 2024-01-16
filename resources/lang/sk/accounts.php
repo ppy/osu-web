@@ -10,7 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
-            'rules' => 'Prosím uistite sa že váš avatar sedí s :link.<br/>Toto znamená že musí byť <strong>primeraný pre každý vek</strong>. to znamená žiadna nudita, vulgarizmy alebo sugestívny obsah.',
+            'rules' => 'Prosím uistite sa, že váš avatar sedí s :link.<br/>To znamená, že musí byť <strong>primeraný pre každý vek</strong>. To je žiadna nudita, vulgarizmy alebo sugestívny obsah.',
             'rules_link' => 'pravidlá komunity',
         ],
 
@@ -77,23 +77,23 @@ return [
 
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'dostávať notifikácie pre nové problémy na kvalifikovaných beatmapách pre následujúce módy',
-        'beatmapset_disqualify' => 'prijímať upozornenia, keď sú beatmapy diskvalifikované s týchto módov',
-        'comment_reply' => 'prijímať upozornenia pre odpovede na moje komentáre',
+        'beatmapset_disqualify' => 'prijímať upozornenia, keď sú beatmapy diskvalifikované z týchto módov',
+        'comment_reply' => 'prijímať upozornenia pre odpovede na vaše komentáre',
         'title' => 'Oznámenia',
-        'topic_auto_subscribe' => 'automaticky zapnúť notifikácie pre nové fórove témy ktoré vytvoríte',
+        'topic_auto_subscribe' => 'automaticky zapnúť notifikácie pre nové témy fóra, ktoré vytvoríte',
 
         'options' => [
-            '_' => 'spôsoby doručenia',
+            '_' => 'možnosti doručenia',
             'beatmap_owner_change' => 'obtiažnosť hosťa',
             'beatmapset:modding' => 'módovanie beatmáp',
-            'channel_message' => 'súkromné správy',
+            'channel_message' => 'správy súkromného chatu',
             'comment_new' => 'nové komentáre
 ',
             'forum_topic_reply' => 'odpoveď na tému',
             'mail' => 'pošta',
             'mapping' => 'tvorca beatmapy',
-            'push' => 'upozornenia na stránke',
-            'user_achievement_unlock' => 'hráčska medaila odomknutá',
+            'push' => 'push',
+            'user_achievement_unlock' => 'nová medaila odomknutá',
         ],
     ],
 
@@ -109,7 +109,7 @@ return [
         'title' => 'Možnosti',
 
         'beatmapset_download' => [
-            '_' => 'predvolený druh sťahovania beatmáp',
+            '_' => 'predvolený typ sťahovania beatmáp',
             'all' => 's videom, ak je dostupné',
             'direct' => 'otvoriť v osu!direct',
             'no_video' => 'bez videa',
@@ -133,7 +133,7 @@ return [
     'security' => [
         'current_session' => 'aktuálne',
         'end_session' => 'Koniec relácie',
-        'end_session_confirmation' => 'Toto okamžite vypne reláciu na vybranom zariadení. Ste si istí?',
+        'end_session_confirmation' => 'Toto okamžite ukončí reláciu na vybranom zariadení. Ste si istí?',
         'last_active' => 'Naposledy aktívny:',
         'title' => 'Zabezpečenie',
         'web_sessions' => 'webové relácie',
@@ -148,11 +148,11 @@ return [
     ],
 
     'verification_completed' => [
-        'text' => 'Už môžete túto kartu/okno zatvoriť',
+        'text' => 'Túto kartu/okno už môžete zatvoriť',
         'title' => 'Overenie bolo dokončené',
     ],
 
     'verification_invalid' => [
-        'title' => 'Link už vypršal alebo je neplatný',
+        'title' => 'Link vypršal alebo je neplatný',
     ],
 ];
