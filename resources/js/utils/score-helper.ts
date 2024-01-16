@@ -123,5 +123,7 @@ export function scoreUrl(score: SoloScoreJson) {
 }
 
 export function totalScore(score: SoloScoreJson) {
-  return score.legacy_total_score ?? score.total_score;
+  return core.userPreferences.get('legacy_score_only')
+    ? (score.legacy_total_score ?? score.total_score)
+    : score.total_score;
 }
