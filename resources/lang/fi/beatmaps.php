@@ -153,7 +153,7 @@ return [
             'approved' => 'Tämä rytmikartta hyväksyttiiin :date!',
             'graveyard' => "Tätä beatmappia ei ole päivitetty sitten :date ja sen tekijä on todennäköisesti hylännyt sen...",
             'loved' => 'Tämä rytmikartta lisättiin rakastettuihin :date!',
-            'ranked' => 'Tämä rytmikartta rankattiin :date!',
+            'ranked' => 'Tämä beatmap hyväksyttiin :date!',
             'wip' => 'Huomaa: Tämän rytmikartan tekijä on merkannut sen keskeneräiseksi.',
         ],
 

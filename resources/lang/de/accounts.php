@@ -20,7 +20,7 @@ return [
             'title' => 'E-Mail',
             'locked' => [
                 '_' => 'Bitte kontaktiere das :accounts, wenn du deine E-Mail-Adresse aktualisieren möchtest.',
-                'accounts' => 'Account Support Team',
+                'accounts' => 'Account-Support-Team',
             ],
         ],
 

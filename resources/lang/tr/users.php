@@ -124,13 +124,13 @@ return [
     ],
 
     'ogp' => [
-        'modding_description' => '',
-        'modding_description_empty' => '',
+        'modding_description' => 'Beatmapler: :counts',
+        'modding_description_empty' => 'Kullanıcının hiç beatmapi yok...',
 
         'description' => [
-            '_' => '',
-            'country' => '',
-            'global' => '',
+            '_' => 'Sıralama (:ruleset): :global | :country',
+            'country' => 'Ülke :rank',
+            'global' => 'Küresel :rank',
         ],
     ],
 

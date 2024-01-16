@@ -47,7 +47,7 @@ return [
             '_' => 'votos de discusión del mapa',
         ],
         'beatmapset_events_controller' => [
-            '_' => 'historial del mapa',
+            '_' => 'historial de mapas',
         ],
         'beatmapsets_controller' => [
             'discussion' => 'discusión del mapa',
