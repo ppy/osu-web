@@ -634,32 +634,36 @@ export class Nominations extends React.PureComponent<Props> {
             : formatDate(rankingEta)
           : trans('beatmaps.nominations.rank_estimate.soon');
 
-        const unresolvedProblems = this.props.beatmapset.discussions.filter(d => !d.resolved && ['problem', 'suggestion'].includes(d.message_type));
+        const unresolvedProblems = this.props.beatmapset.discussions.filter((d) => !d.resolved && ['problem', 'suggestion'].includes(d.message_type));
         const rankEstimatePrefixText = unresolvedProblems.length > 0
           ? trans('beatmaps.nominations.rank_estimate.unresolved_problems')
           : trans('beatmaps.nominations.rank_estimate.no_problems');
 
-        const problems = unresolvedProblems.map(problem => {
-          return <a
+        const problems = unresolvedProblems.map((problem) => (
+          <a
+            key={problem.id}
             href={makeUrl({ discussion: problem })}
             rel='noreferrer'
             target='_blank'
           >
             #{problem.id}
           </a>
-        });
+        ));
 
         return (
           <StringWithComponent
             mappings={{
-              prefix: (
-                <StringWithComponent mappings={{
-                  date,
-                  problems: joinComponents(problems)
-                }} pattern={rankEstimatePrefixText} />
-             ),
               // TODO: ranking_queue_position should not be nullable when status is qualified.
               position: formatNumber(this.props.beatmapset.nominations.ranking_queue_position ?? 0),
+              prefix: (
+                <StringWithComponent
+                  mappings={{
+                    date,
+                    problems: joinComponents(problems),
+                  }}
+                  pattern={rankEstimatePrefixText}
+                />
+              ),
               queue: (
                 <a
                   href={wikiUrl('Beatmap_ranking_procedure/Ranking_queue')}
