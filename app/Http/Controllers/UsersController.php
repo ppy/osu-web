@@ -21,7 +21,6 @@ use App\Models\Country;
 use App\Models\IpBan;
 use App\Models\Log;
 use App\Models\Solo\Score as SoloScore;
-use App\Models\Solo\ScoreLegacyIdMap;
 use App\Models\User;
 use App\Models\UserAccountHistory;
 use App\Models\UserNotFound;
@@ -804,12 +803,9 @@ class UsersController extends Controller
                 $includes = ScoreTransformer::USER_PROFILE_INCLUDES;
                 $scoreQuery = $this->user->scoresFirst($this->mode, true)->unorder();
                 $userFirstsQuery = $scoreQuery->select($scoreQuery->qualifyColumn('score_id'));
-                $soloMappingQuery = ScoreLegacyIdMap
-                    ::where('ruleset_id', Beatmap::MODES[$this->mode])
-                    ->whereIn('old_score_id', $userFirstsQuery)
-                    ->select('score_id');
                 $query = SoloScore
-                    ::whereIn('id', $soloMappingQuery)
+                    ::whereIn('legacy_score_id', $userFirstsQuery)
+                    ->where('ruleset_id', Beatmap::MODES[$this->mode])
                     ->default()
                     ->reorderBy('id', 'desc')
                     ->with(ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD);
