@@ -212,7 +212,9 @@ return [
         'unresolved_issues' => 'There are still unresolved issues that must be addressed first.',
 
         'rank_estimate' => [
-            '_' => 'This map is estimated to be ranked :date if no issues are found. It is #:position in the :queue.',
+            '_' => ':prefix. It is #:position in the :queue',
+            'unresolved_problems' => 'This map is currently blocked from leaving the Qualified section until the following discussions are resolved: :problems',
+            'no_problems' => 'This map is estimated to be ranked :date if no issues are found',
             'on' => 'on :date',
             'queue' => 'ranking queue',
             'soon' => 'soon',
