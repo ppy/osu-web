@@ -166,7 +166,7 @@ class ScoreTransformer extends TransformerAbstract
             $soloScore = $score;
             $score = $soloScore->makeLegacyEntry();
             $score->score_id = $soloScore->getKey();
-            $createdAt = $soloScore->created_at_json;
+            $createdAt = $soloScore->ended_at_json;
             $type = $soloScore->getMorphClass();
             $pp = $soloScore->pp;
         } else {
