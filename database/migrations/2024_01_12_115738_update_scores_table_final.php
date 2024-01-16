@@ -19,7 +19,6 @@ return new class extends Migration
     public function up(): void
     {
         Schema::drop('solo_scores');
-        Schema::drop('solo_scores_performance');
         DB::statement("CREATE TABLE `solo_scores` (
             `id` bigint unsigned NOT NULL AUTO_INCREMENT,
             `user_id` int unsigned NOT NULL,
@@ -47,6 +46,12 @@ return new class extends Migration
             KEY `legacy_score_lookup` (`ruleset_id`,`legacy_score_id`)
         )");
 
+        DB::statement('DROP VIEW score_legacy_id_map');
+        Schema::drop('solo_scores_legacy_id_map');
+
+        DB::statement('DROP VIEW score_performance');
+        Schema::drop('solo_scores_performance');
+
         static::resetView();
     }
 
@@ -68,11 +73,21 @@ return new class extends Migration
             KEY `user_ruleset_index` (`user_id`,`ruleset_id`),
             KEY `beatmap_user_index` (`beatmap_id`,`user_id`)
         )");
+
+        DB::statement('CREATE TABLE `solo_scores_legacy_id_map` (
+            `ruleset_id` smallint unsigned NOT NULL,
+            `old_score_id` bigint unsigned NOT NULL,
+            `score_id` bigint unsigned NOT NULL,
+            PRIMARY KEY (`ruleset_id`,`old_score_id`)
+        )');
+        DB::statement('CREATE VIEW score_legacy_id_map AS SELECT * FROM solo_scores_legacy_id_map');
+
         DB::statement('CREATE TABLE `solo_scores_performance` (
             `score_id` bigint unsigned NOT NULL,
             `pp` float DEFAULT NULL,
             PRIMARY KEY (`score_id`)
         )');
+        DB::statement('CREATE VIEW score_performance AS SELECT * FROM solo_scores_performance');
 
         static::resetView();
     }
