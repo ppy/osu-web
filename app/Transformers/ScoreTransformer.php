@@ -135,7 +135,7 @@ class ScoreTransformer extends TransformerAbstract
             $ret['ended_at'] = $score->ended_at_json;
             $ret['has_replay'] = $score->has_replay;
             $ret['legacy_total_score'] = $score->legacy_total_score;
-            $ret['max_combo'] = $score->maxcombo;
+            $ret['max_combo'] = $score->max_combo;
             $ret['pp'] = $score->pp;
             $ret['ruleset_id'] = $score->ruleset_id;
             $ret['started_at'] = $score->started_at_json;
