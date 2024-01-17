@@ -23,15 +23,26 @@ use LaravelRedis;
 use Storage;
 
 /**
+ * @property float $accuracy
  * @property int $beatmap_id
- * @property \Carbon\Carbon|null $created_at
- * @property string|null $created_at_json
+ * @property int $build_id
  * @property ScoreData $data
+ * @property \Carbon\Carbon|null $ended_at
+ * @property string|null $ended_at_json
  * @property bool $has_replay
  * @property int $id
+ * @property int $legacy_score_id
+ * @property int $legacy_total_score
+ * @property int $max_combo
+ * @property bool $passed
+ * @property float $pp
  * @property bool $preserve
+ * @property string $rank
  * @property bool $ranked
  * @property int $ruleset_id
+ * @property \Carbon\Carbon|null $started_at
+ * @property string|null $started_at_json
+ * @property int $total_score
  * @property int $unix_updated_at
  * @property User $user
  * @property int $user_id
