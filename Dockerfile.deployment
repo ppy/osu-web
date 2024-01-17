@@ -14,21 +14,23 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
     build-essential \
     git \
     nodejs \
-    php8.2 \
-    php8.2-common \
-    php8.2-curl \
-    php8.2-ds \
-    php8.2-gd \
-    php8.2-intl \
-    php8.2-mbstring \
-    php8.2-mysql \
-    php8.2-redis \
-    php8.2-sqlite3 \
-    php8.2-swoole \
-    php8.2-tokenizer \
-    php8.2-xml \
-    php8.2-zip \
+    php8.3 \
+    php8.3-common \
+    php8.3-curl \
+    php8.3-dev \
+    php8.3-gd \
+    php8.3-intl \
+    php8.3-mbstring \
+    php8.3-mysql \
+    php8.3-redis \
+    php8.3-sqlite3 \
+    php8.3-swoole \
+    php8.3-tokenizer \
+    php8.3-xml \
+    php8.3-zip \
     zip
+
+RUN pecl install ds && echo "extension=ds.so" > /etc/php/8.3/cli/conf.d/30-ds.ini
 
 RUN npm install -g yarn
 
@@ -55,20 +57,22 @@ RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
     jhead \
     nginx \
-    php8.2 \
-    php8.2-common \
-    php8.2-curl \
-    php8.2-ds \
-    php8.2-gd \
-    php8.2-intl \
-    php8.2-mbstring \
-    php8.2-mysql \
-    php8.2-redis \
-    php8.2-sqlite3 \
-    php8.2-swoole \
-    php8.2-tokenizer \
-    php8.2-xml \
-    php8.2-zip
+    php8.3 \
+    php8.3-common \
+    php8.3-curl \
+    php8.3-dev \
+    php8.3-gd \
+    php8.3-intl \
+    php8.3-mbstring \
+    php8.3-mysql \
+    php8.3-redis \
+    php8.3-sqlite3 \
+    php8.3-swoole \
+    php8.3-tokenizer \
+    php8.3-xml \
+    php8.3-zip
+
+RUN pecl install ds && echo "extension=ds.so" > /etc/php/8.3/cli/conf.d/30-ds.ini
 
 RUN rm -f /var/log/nginx/access.log /var/log/nginx/error.log && \
     ln -s /dev/stdout /var/log/nginx/access.log && \
