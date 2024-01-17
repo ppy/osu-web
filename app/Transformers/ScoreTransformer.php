@@ -115,6 +115,8 @@ class ScoreTransformer extends TransformerAbstract
             $ret['ruleset_id'] = Ruleset::tryFromName($score->getMode())->value;
             $ret['statistics'] = $score->statistics();
             $ret['total_score'] = $score->score;
+
+            $ret['legacy_total_score'] = $ret['total_score'];
         } else {
             if ($score instanceof MultiplayerScoreLink) {
                 $ret['playlist_item_id'] = $score->playlist_item_id;
@@ -124,16 +126,19 @@ class ScoreTransformer extends TransformerAbstract
             }
 
             $data = $score->data;
+            $ret['maximum_statistics'] = $data->maximumStatistics;
+            $ret['mods'] = $data->mods;
+            $ret['statistics'] = $data->statistics;
+
             $ret['accuracy'] = $score->accuracy;
             $ret['build_id'] = $score->build_id;
             $ret['ended_at'] = $score->ended_at_json;
             $ret['has_replay'] = $score->has_replay;
-            $ret['maximum_statistics'] = $data->maximumStatistics;
-            $ret['mods'] = $data->mods;
+            $ret['legacy_total_score'] = $score->legacy_total_score;
+            $ret['max_combo'] = $score->maxcombo;
             $ret['pp'] = $score->pp;
             $ret['ruleset_id'] = $score->ruleset_id;
             $ret['started_at'] = $score->started_at_json;
-            $ret['statistics'] = $data->statistics;
             $ret['total_score'] = $score->total_score;
         }
 
