@@ -116,6 +116,7 @@ class ScoreTransformer extends TransformerAbstract
             $ret['statistics'] = $score->statistics();
             $ret['total_score'] = $score->score;
 
+            $ret['legacy_score_id'] = $score->getKey();
             $ret['legacy_total_score'] = $ret['total_score'];
         } else {
             if ($score instanceof MultiplayerScoreLink) {
@@ -134,8 +135,10 @@ class ScoreTransformer extends TransformerAbstract
             $ret['build_id'] = $score->build_id;
             $ret['ended_at'] = $score->ended_at_json;
             $ret['has_replay'] = $score->has_replay;
+            $ret['legacy_score_id'] = $score->legacy_score_id;
             $ret['legacy_total_score'] = $score->legacy_total_score;
             $ret['max_combo'] = $score->max_combo;
+            $ret['passed'] = $score->passed;
             $ret['pp'] = $score->pp;
             $ret['ruleset_id'] = $score->ruleset_id;
             $ret['started_at'] = $score->started_at_json;
