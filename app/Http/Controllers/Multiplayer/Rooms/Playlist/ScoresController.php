@@ -208,7 +208,7 @@ class ScoresController extends BaseController
 
         return json_item(
             $scoreLink,
-            ScoreTransformer::newSolo();
+            ScoreTransformer::newSolo(),
             [
                 ...ScoreTransformer::MULTIPLAYER_BASE_INCLUDES,
                 'position',
