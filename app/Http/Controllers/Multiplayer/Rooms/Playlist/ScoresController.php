@@ -202,15 +202,13 @@ class ScoresController extends BaseController
         });
 
         $score = $scoreLink->score;
-        $transformer = ScoreTransformer::newSolo();
         if ($score->wasRecentlyCreated) {
-            $scoreJson = json_item($score, $transformer);
-            $score::queueForProcessing($scoreJson);
+            $score->queueForProcessing();
         }
 
         return json_item(
             $scoreLink,
-            $transformer,
+            ScoreTransformer::newSolo();
             [
                 ...ScoreTransformer::MULTIPLAYER_BASE_INCLUDES,
                 'position',

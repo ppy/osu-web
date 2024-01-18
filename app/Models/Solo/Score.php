@@ -122,26 +122,6 @@ class Score extends Model implements Traits\ReportableInterface
         return $params;
     }
 
-    /**
-     * Queue the item for score processing
-     *
-     * @param array $scoreJson JSON of the score generated using ScoreTransformer of type Solo
-     */
-    public static function queueForProcessing(array $scoreJson): void
-    {
-        LaravelRedis::lpush(static::PROCESSING_QUEUE, json_encode([
-            'Score' => [
-                'beatmap_id' => $scoreJson['beatmap_id'],
-                'id' => $scoreJson['id'],
-                'ruleset_id' => $scoreJson['ruleset_id'],
-                'user_id' => $scoreJson['user_id'],
-                // TODO: processor is currently order dependent and requires
-                // this to be located at the end
-                'data' => json_encode($scoreJson),
-            ],
-        ]));
-    }
-
     public function beatmap()
     {
         return $this->belongsTo(Beatmap::class, 'beatmap_id');
@@ -303,6 +283,13 @@ class Score extends Model implements Traits\ReportableInterface
         }
 
         return $score;
+    }
+
+    public function queueForProcessing(): void
+    {
+        LaravelRedis::lpush(static::PROCESSING_QUEUE, json_encode([
+            'Score' => $this->getAttributes(),
+        ]));
     }
 
     public function trashed(): bool
