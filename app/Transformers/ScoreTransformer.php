@@ -7,7 +7,6 @@ declare(strict_types=1);
 
 namespace App\Transformers;
 
-use App\Enums\Ruleset;
 use App\Models\Beatmap;
 use App\Models\DeletedUser;
 use App\Models\LegacyMatch;
@@ -91,68 +90,40 @@ class ScoreTransformer extends TransformerAbstract
 
     public function transformSolo(MultiplayerScoreLink|ScoreModel|SoloScore $score)
     {
-        $ret = [
-            'best_id' => null,
-            'build_id' => null,
-            'has_replay' => false,
-            'legacy_perfect' => null,
-            'pp' => null,
-        ];
-        if ($score instanceof ScoreModel) {
-            $best = $score->best;
-            if ($best !== null) {
-                $ret['best_id'] = $best->getKey();
-                $ret['has_replay'] = $best->replay;
-                $ret['pp'] = $best->pp;
-            }
+        $extraAttributes = [];
 
-            $ret['accuracy'] = $score->accuracy();
-            $ret['ended_at'] = $score->date_json;
-            $ret['legacy_perfect'] = $score->perfect;
-            $ret['max_combo'] = $score->maxcombo;
-            $ret['mods'] = array_map(fn ($m) => ['acronym' => $m, 'settings' => []], $score->enabled_mods);
-            $ret['passed'] = $score->pass;
-            $ret['ruleset_id'] = Ruleset::tryFromName($score->getMode())->value;
-            $ret['statistics'] = $score->statistics();
-            $ret['total_score'] = $score->score;
-
-            $ret['legacy_score_id'] = $score->getKey();
-            $ret['legacy_total_score'] = $ret['total_score'];
-        } else {
-            if ($score instanceof MultiplayerScoreLink) {
-                $ret['playlist_item_id'] = $score->playlist_item_id;
-                $ret['room_id'] = $score->playlistItem->room_id;
-                $ret['solo_score_id'] = $score->score_id;
-                $score = $score->score;
-            }
-
-            $data = $score->data;
-            $ret['maximum_statistics'] = $data->maximumStatistics;
-            $ret['mods'] = $data->mods;
-            $ret['statistics'] = $data->statistics;
-
-            $ret['accuracy'] = $score->accuracy;
-            $ret['build_id'] = $score->build_id;
-            $ret['ended_at'] = $score->ended_at_json;
-            $ret['has_replay'] = $score->has_replay;
-            $ret['legacy_score_id'] = $score->legacy_score_id;
-            $ret['legacy_total_score'] = $score->legacy_total_score;
-            $ret['max_combo'] = $score->max_combo;
-            $ret['passed'] = $score->passed;
-            $ret['pp'] = $score->pp;
-            $ret['ruleset_id'] = $score->ruleset_id;
-            $ret['started_at'] = $score->started_at_json;
-            $ret['total_score'] = $score->total_score;
+        if ($score instanceof MultiplayerScoreLink) {
+            $extraAttributes['playlist_item_id'] = $score->playlist_item_id;
+            $extraAttributes['room_id'] = $score->playlistItem->room_id;
+            $extraAttributes['solo_score_id'] = $score->score_id;
+            $score = $score->score;
         }
 
-        $ret['beatmap_id'] = $score->beatmap_id;
-        $ret['id'] = $score->getKey();
-        $ret['rank'] = $score->rank;
-        $ret['type'] = $score->getMorphClass();
-        $ret['user_id'] = $score->user_id;
+        $hasReplay = $score->has_replay;
 
-        // TODO: remove this redundant field sometime after 2024-02
-        $ret['replay'] = $ret['has_replay'];
+        return [
+            ...$extraAttributes,
+            ...$score->data->jsonSerialize(),
+            'beatmap_id' => $score->beatmap_id,
+            'id' => $score->getKey(),
+            'rank' => $score->rank,
+            'type' => $score->getMorphClass(),
+            'user_id' => $score->user_id,
+            'accuracy' => $score->accuracy,
+            'build_id' => $score->build_id,
+            'ended_at' => $score->ended_at_json,
+            'has_replay' => $hasReplay,
+            'legacy_score_id' => $score->legacy_score_id,
+            'legacy_total_score' => $score->legacy_total_score,
+            'max_combo' => $score->max_combo,
+            'passed' => $score->passed,
+            'pp' => $score->pp,
+            'ruleset_id' => $score->ruleset_id,
+            'started_at' => $score->started_at_json,
+            'total_score' => $score->total_score,
+            // TODO: remove this redundant field sometime after 2024-02
+            'replay' => $hasReplay,
+        ];
 
         return $ret;
     }

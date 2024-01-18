@@ -179,6 +179,8 @@ class Score extends Model implements Traits\ReportableInterface
             'ended_at_json',
             'started_at_json' => $this->getJsonTimeFast($key),
 
+            'legacy_perfect' => null,
+
             'beatmap',
             'performance',
             'reportedIn',

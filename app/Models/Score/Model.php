@@ -10,6 +10,7 @@ use App\Exceptions\ClassNotFoundException;
 use App\Libraries\Mods;
 use App\Models\Beatmap;
 use App\Models\Model as BaseModel;
+use App\Models\Solo\ScoreData;
 use App\Models\Traits\Scoreable;
 use App\Models\User;
 
@@ -146,13 +147,36 @@ abstract class Model extends BaseModel
 
             'date_json' => $this->getJsonTimeFast($key),
 
-            'data' => $this->getData(),
             'enabled_mods' => $this->getEnabledModsAttribute($this->getRawAttribute('enabled_mods')),
+
+            'best_id' => $this->getRawAttribute('high_score_id'),
+            'has_replay' => $this->best?->replay,
+            'pp' => $this->best?->pp,
 
             'beatmap',
             'best',
             'replayViewCount',
             'user' => $this->getRelationValue($key),
+
+            default => $this->getNewScoreAttribute($key),
+        };
+    }
+
+    public function getNewScoreAttribute(string $key)
+    {
+        return match ($key) {
+            'accuracy' => $this->accuracy(),
+            'build_id' => null,
+            'data' => $this->getData(),
+            'ended_at_json' => $this->date_json,
+            'legacy_perfect' => $this->perfect,
+            'legacy_score_id' => $this->getKey(),
+            'legacy_total_score' => $this->score,
+            'max_combo' => $this->maxcombo,
+            'passed' => $this->pass,
+            'ruleset_id' => Ruleset::tryFromName($this->getMode())->value,
+            'started_at_json' => null,
+            'total_score' => $this->score,
         };
     }
 
@@ -161,8 +185,10 @@ abstract class Model extends BaseModel
         return snake_case(get_class_basename(static::class));
     }
 
-    public function statistics(): array
+    public function getData(): ScoreData
     {
+        $mods = array_map(fn ($m) => ['acronym' => $m, 'settings' => []], $this->enabled_mods);
+
         $statistics = [
             'miss' => $this->countmiss,
             'great' => $this->count300,
@@ -189,6 +215,6 @@ abstract class Model extends BaseModel
                 break;
         }
 
-        return $statistics;
+        return new ScoreData(compact('mods', 'statistics'));
     }
 }
