@@ -32,6 +32,14 @@ services:
         condition: on-failure
     shm_size: '2gb' # for chromium
 
+  php-dusk:
+    <<: *x-web
+    command: ['octane', '--watch']
+    environment:
+      <<: *x-env
+      APP_ENV: dusk.local
+      OCTANE_STATE_FILE: /tmp/octane-state.json
+
   assets:
     <<: *x-web
     command: ['watch']
@@ -136,6 +144,7 @@ services:
     image: nginx:latest
     depends_on:
       - php
+      - php-dusk
       - notification-server
       - notification-server-dusk
     volumes:
