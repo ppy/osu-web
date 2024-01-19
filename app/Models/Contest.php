@@ -35,7 +35,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property bool $show_votes
  * @property mixed $type
  * @property mixed $unmasked
- * @property-read Collection<ContestJudgeCategory> $scoringCategories
+ * @property-read Collection<ContestScoringCategory> $scoringCategories
  * @property bool $show_names
  * @property \Carbon\Carbon|null $updated_at
  * @property bool $visible
