@@ -19,7 +19,7 @@ return [
     'index' => [
         'deleted_beatmap' => 'poistettu',
         'none_found' => 'Hakukriteereihin täsmääviä keskusteluja ei löytynyt.',
-        'title' => 'Rytmikarttojen keskustelut',
+        'title' => 'Beatmapkeskustelut',
 
         'form' => [
             '_' => 'Hae',

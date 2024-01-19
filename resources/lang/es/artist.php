@@ -30,7 +30,7 @@ return [
     'songs' => [
         '_' => 'Canciones',
         'count' => ':count_delimited canción|:count_delimited canciones',
-        'original' => 'Original de osu!',
+        'original' => 'osu! original',
         'original_badge' => 'ORIGINAL',
     ],
 

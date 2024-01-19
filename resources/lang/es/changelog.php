@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'generic' => 'Corrección de errores y mejoras menores.',
+    'generic' => 'Corrección de errores y mejoras menores',
 
     'build' => [
         'title' => 'cambios en :version',

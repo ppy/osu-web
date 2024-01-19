@@ -17,6 +17,7 @@ class SessionsControllerTest extends TestCase
         $password = 'password1';
         $user = User::factory()->create(compact('password'));
 
+        $this->expectCountChange(fn () => LoginAttempt::count(), 1);
         $this->post(route('login'), [
             'username' => $user->username,
             'password' => $password,

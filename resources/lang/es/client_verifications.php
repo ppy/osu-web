@@ -7,12 +7,12 @@ return [
     'completed' => [
         'home' => 'Ir al panel de control',
         'logout' => 'Cerrar sesión',
-        'text' => 'Ahora puede cerrar esta ventana',
-        'title' => 'Verificación del cliente osu! completada',
+        'text' => 'Ya puedes cerrar esta pestaña/ventana',
+        'title' => 'Verificación del cliente de osu! completada',
     ],
 
     'create' => [
         'confirm' => 'Haga clic en el botón de autorización de abajo para finalizar la verificación del cliente.',
-        'title' => 'Verificación del cliente osu!',
+        'title' => 'Verificación del cliente de osu!',
     ],
 ];

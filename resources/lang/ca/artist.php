@@ -30,7 +30,7 @@ return [
     'songs' => [
         '_' => 'Cançons',
         'count' => ':count_delimited cançó|:count_delimited cançons',
-        'original' => 'Original d\'osu!',
+        'original' => 'osu! original',
         'original_badge' => 'ORIGINAL',
     ],
 

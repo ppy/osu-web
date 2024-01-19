@@ -16,7 +16,7 @@ export default class Timeago {
     });
   }
 
-  private static readonly handleMutation = (mutation: MutationRecord) => {
+  private static handleMutation(this: void, mutation: MutationRecord) {
     switch (mutation.type) {
       case 'childList':
         $(mutation.addedNodes)
@@ -34,12 +34,12 @@ export default class Timeago {
         }
         break;
     }
-  };
+  }
 
-  private static readonly handleMutations = (mutations: MutationRecord[]) => {
+  private static handleMutations(this: void, mutations: MutationRecord[]) {
     // Third-party scripts may init conflicting versions of jquery
     if ($.fn.timeago == null) return;
 
     mutations.forEach(Timeago.handleMutation);
-  };
+  }
 }

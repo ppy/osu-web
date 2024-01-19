@@ -6,7 +6,7 @@
 return [
     'error' => [
         'chat' => [
-            'empty' => 'Nemôžete posielať prázdne správy.',
+            'empty' => 'Nemôžete poslať prázdnu správu.',
             'limit_exceeded' => 'Posielate správy príliš rýchlo, prosím, počkajte chvíľu než to skúsite znova.',
             'too_long' => 'Správa, ktorú sa snažíte poslať, je príliš dlhá.',
         ],
@@ -14,7 +14,7 @@ return [
 
     'scopes' => [
         'bot' => 'Správať sa ako chat bot.',
-        'identify' => 'Identifikovať vás a prezerať verejný profil.',
+        'identify' => 'Identifikovať vás a prezerať váš verejný profil.',
 
         'chat' => [
             'read' => '',

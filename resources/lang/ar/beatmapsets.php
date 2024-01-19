@@ -61,7 +61,7 @@ return [
         'discussion' => 'مناقشة',
 
         'admin' => [
-            'full_size_cover' => '',
+            'full_size_cover' => 'عرض صورة الغلاف بحجمها الكامل',
         ],
 
         'deleted_banner' => [
