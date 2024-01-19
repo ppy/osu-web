@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "dev": "yarn run development",
-    "development": "cross-env NODE_ENV=development webpack --progress",
+    "development": "cross-env NODE_ENV=development webpack",
     "lint": "eslint --cache 'resources/js/**/*.{js,ts,tsx}' 'tests/karma/**/*.{ts,tsx}' '*.js'",
     "prod": "yarn run production",
     "production": "cross-env NODE_ENV=production webpack",
