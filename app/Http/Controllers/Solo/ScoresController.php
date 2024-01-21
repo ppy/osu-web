@@ -41,11 +41,10 @@ class ScoresController extends BaseController
             return $score;
         });
 
-        $scoreJson = json_item($score, new ScoreTransformer(ScoreTransformer::TYPE_SOLO));
         if ($score->wasRecentlyCreated) {
-            $score::queueForProcessing($scoreJson);
+            $score->queueForProcessing();
         }
 
-        return $scoreJson;
+        return json_item($score, new ScoreTransformer(ScoreTransformer::TYPE_SOLO));
     }
 }

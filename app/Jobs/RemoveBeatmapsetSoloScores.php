@@ -11,7 +11,6 @@ use App\Libraries\Search\ScoreSearch;
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\Solo\Score;
-use App\Models\Solo\ScorePerformance;
 use DB;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -68,7 +67,6 @@ class RemoveBeatmapsetSoloScores implements ShouldQueue
         $scoresQuery->update(['preserve' => false]);
         $this->scoreSearch->queueForIndex($this->schemas, $ids);
         DB::transaction(function () use ($ids, $scoresQuery): void {
-            ScorePerformance::whereKey($ids)->delete();
             $scoresQuery->delete();
         });
     }

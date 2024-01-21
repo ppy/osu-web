@@ -154,7 +154,8 @@ services:
       - "${NGINX_PORT:-8080}:80"
 
   score-indexer:
-    image: pppy/osu-elastic-indexer:master
+    # TODO: switch to main image once updated with support for new score structure
+    image: nanaya/osu-elastic-indexer:v44
     command: ["queue", "watch"]
     depends_on:
       redis:
@@ -168,7 +169,8 @@ services:
       SCHEMA: "${SCHEMA:-1}"
 
   score-indexer-test:
-    image: pppy/osu-elastic-indexer:master
+    # TODO: switch to main image once updated with support for new score structure
+    image: nanaya/osu-elastic-indexer:v44
     command: ["queue", "watch"]
     depends_on:
       redis:

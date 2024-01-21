@@ -14,6 +14,7 @@ use App\Models\Country;
 use App\Models\Genre;
 use App\Models\Group;
 use App\Models\Language;
+use App\Models\OAuth;
 use App\Models\Solo\Score as SoloScore;
 use App\Models\User;
 use App\Models\UserGroup;
@@ -41,108 +42,122 @@ class BeatmapsControllerSoloScoresTest extends TestCase
             $countryAcronym = static::$user->country_acronym;
 
             static::$scores = [];
-            $scoreFactory = SoloScore::factory();
-            foreach (['solo' => 0, 'legacy' => null] as $type => $buildId) {
-                $defaultData = ['build_id' => $buildId];
+            $scoreFactory = SoloScore::factory()->state(['build_id' => 0]);
+            foreach (['solo' => null, 'legacy' => 1] as $type => $legacyScoreId) {
+                $scoreFactory = $scoreFactory->state([
+                    'legacy_score_id' => $legacyScoreId,
+                ]);
+                $makeMods = fn (array $modNames): array => array_map(
+                    fn (string $modName): array => [
+                        'acronym' => $modName,
+                        'settings' => [],
+                    ],
+                    [...$modNames, ...($type === 'legacy' ? ['CL'] : [])],
+                );
 
-                static::$scores = array_merge(static::$scores, [
-                    "{$type}:user" => $scoreFactory->withData($defaultData, ['total_score' => 1100])->create([
+                static::$scores = [
+                    ...static::$scores,
+                    "{$type}:user" => $scoreFactory->create([
                         'beatmap_id' => static::$beatmap,
                         'preserve' => true,
+                        'total_score' => 1100,
                         'user_id' => static::$user,
                     ]),
-                    "{$type}:userMods" => $scoreFactory->withData($defaultData, [
-                        'total_score' => 1050,
-                        'mods' => static::defaultMods(['DT', 'HD']),
+                    "{$type}:userMods" => $scoreFactory->withData([
+                        'mods' => $makeMods(['DT', 'HD']),
                     ])->create([
                         'beatmap_id' => static::$beatmap,
                         'preserve' => true,
+                        'total_score' => 1050,
                         'user_id' => static::$user,
                     ]),
-                    "{$type}:userModsNC" => $scoreFactory->withData($defaultData, [
-                        'total_score' => 1050,
-                        'mods' => static::defaultMods(['NC']),
+                    "{$type}:userModsNC" => $scoreFactory->withData([
+                        'mods' => $makeMods(['NC']),
                     ])->create([
                         'beatmap_id' => static::$beatmap,
                         'preserve' => true,
+                        'total_score' => 1050,
                         'user_id' => static::$user,
                     ]),
-                    "{$type}:otherUserModsNCPFHigherScore" => $scoreFactory->withData($defaultData, [
+                    "{$type}:otherUserModsNCPFHigherScore" => $scoreFactory->withData([
+                        'mods' => $makeMods(['NC', 'PF']),
+                    ])->create([
+                        'beatmap_id' => static::$beatmap,
+                        'preserve' => true,
                         'total_score' => 1010,
-                        'mods' => static::defaultMods(['NC', 'PF']),
-                    ])->create([
-                        'beatmap_id' => static::$beatmap,
-                        'preserve' => true,
                         'user_id' => static::$otherUser,
                     ]),
-                    "{$type}:userModsLowerScore" => $scoreFactory->withData($defaultData, [
-                        'total_score' => 1000,
-                        'mods' => static::defaultMods(['DT', 'HD']),
+                    "{$type}:userModsLowerScore" => $scoreFactory->withData([
+                        'mods' => $makeMods(['DT', 'HD']),
                     ])->create([
                         'beatmap_id' => static::$beatmap,
                         'preserve' => true,
+                        'total_score' => 1000,
                         'user_id' => static::$user,
                     ]),
-                    "{$type}:friend" => $scoreFactory->withData($defaultData, ['total_score' => 1000])->create([
+                    "{$type}:friend" => $scoreFactory->create([
                         'beatmap_id' => static::$beatmap,
                         'preserve' => true,
+                        'total_score' => 1000,
                         'user_id' => $friend,
                     ]),
                     // With preference mods
-                    "{$type}:otherUser" => $scoreFactory->withData($defaultData, [
-                        'total_score' => 1000,
-                        'mods' => static::defaultMods(['PF']),
+                    "{$type}:otherUser" => $scoreFactory->withData([
+                        'mods' => $makeMods(['PF']),
                     ])->create([
                         'beatmap_id' => static::$beatmap,
                         'preserve' => true,
+                        'total_score' => 1000,
                         'user_id' => static::$otherUser,
                     ]),
-                    "{$type}:otherUserMods" => $scoreFactory->withData($defaultData, [
-                        'total_score' => 1000,
-                        'mods' => static::defaultMods(['HD', 'PF', 'NC']),
+                    "{$type}:otherUserMods" => $scoreFactory->withData([
+                        'mods' => $makeMods(['HD', 'PF', 'NC']),
                     ])->create([
                         'beatmap_id' => static::$beatmap,
                         'preserve' => true,
+                        'total_score' => 1000,
                         'user_id' => static::$otherUser,
                     ]),
-                    "{$type}:otherUserModsExtraNonPreferences" => $scoreFactory->withData($defaultData, [
-                        'total_score' => 1000,
-                        'mods' => static::defaultMods(['DT', 'HD', 'HR']),
+                    "{$type}:otherUserModsExtraNonPreferences" => $scoreFactory->withData([
+                        'mods' => $makeMods(['DT', 'HD', 'HR']),
                     ])->create([
                         'beatmap_id' => static::$beatmap,
                         'preserve' => true,
+                        'total_score' => 1000,
                         'user_id' => static::$otherUser,
                     ]),
-                    "{$type}:otherUserModsUnrelated" => $scoreFactory->withData($defaultData, [
-                        'total_score' => 1000,
-                        'mods' => static::defaultMods(['FL']),
+                    "{$type}:otherUserModsUnrelated" => $scoreFactory->withData([
+                        'mods' => $makeMods(['FL']),
                     ])->create([
                         'beatmap_id' => static::$beatmap,
                         'preserve' => true,
+                        'total_score' => 1000,
                         'user_id' => static::$otherUser,
                     ]),
                     // Same total score but achieved later so it should come up after earlier score
-                    "{$type}:otherUser2Later" => $scoreFactory->withData($defaultData, ['total_score' => 1000])->create([
+                    "{$type}:otherUser2Later" => $scoreFactory->create([
                         'beatmap_id' => static::$beatmap,
                         'preserve' => true,
+                        'total_score' => 1000,
                         'user_id' => User::factory()->state(['country_acronym' => Country::factory()]),
                     ]),
-                    "{$type}:otherUser3SameCountry" => $scoreFactory->withData($defaultData, ['total_score' => 1000])->create([
+                    "{$type}:otherUser3SameCountry" => $scoreFactory->create([
                         'beatmap_id' => static::$beatmap,
                         'preserve' => true,
+                        'total_score' => 1000,
                         'user_id' => User::factory()->state(['country_acronym' => $countryAcronym]),
                     ]),
                     // Non-preserved score should be filtered out
-                    "{$type}:nonPreserved" => $scoreFactory->withData($defaultData)->create([
+                    "{$type}:nonPreserved" => $scoreFactory->create([
                         'beatmap_id' => static::$beatmap,
                         'preserve' => false,
                         'user_id' => User::factory()->state(['country_acronym' => Country::factory()]),
                     ]),
                     // Unrelated score
-                    "{$type}:unrelated" => $scoreFactory->withData($defaultData)->create([
+                    "{$type}:unrelated" => $scoreFactory->create([
                         'user_id' => User::factory()->state(['country_acronym' => Country::factory()]),
                     ]),
-                ]);
+                ];
             }
 
             UserRelation::create([
@@ -165,6 +180,8 @@ class BeatmapsControllerSoloScoresTest extends TestCase
             Country::truncate();
             Genre::truncate();
             Language::truncate();
+            OAuth\Client::truncate();
+            OAuth\Token::truncate();
             SoloScore::select()->delete(); // TODO: revert to truncate after the table is actually renamed
             User::truncate();
             UserGroup::truncate();
@@ -174,25 +191,14 @@ class BeatmapsControllerSoloScoresTest extends TestCase
         });
     }
 
-    private static function defaultMods(array $modNames): array
-    {
-        return array_map(
-            fn ($modName) => [
-                'acronym' => $modName,
-                'settings' => [],
-            ],
-            $modNames,
-        );
-    }
-
     /**
      * @dataProvider dataProviderForTestQuery
      * @group RequiresScoreIndexer
      */
-    public function testQuery(array $scoreKeys, array $params)
+    public function testQuery(array $scoreKeys, array $params, string $route)
     {
         $resp = $this->actingAs(static::$user)
-            ->json('GET', route('beatmaps.solo-scores', static::$beatmap), $params)
+            ->json('GET', route("beatmaps.{$route}", static::$beatmap), $params)
             ->assertSuccessful();
 
         $json = json_decode($resp->getContent(), true);
@@ -202,46 +208,91 @@ class BeatmapsControllerSoloScoresTest extends TestCase
         }
     }
 
+    /**
+     * @group RequiresScoreIndexer
+     */
+    public function testUserScore()
+    {
+        $url = route('api.beatmaps.user.score', [
+            'beatmap' => static::$beatmap->getKey(),
+            'mods' => ['DT', 'HD'],
+            'user' => static::$user->getKey(),
+        ]);
+        $this->actAsScopedUser(static::$user);
+        $this
+            ->json('GET', $url)
+            ->assertJsonPath('score.id', static::$scores['legacy:userMods']->getKey());
+    }
+
+    /**
+     * @group RequiresScoreIndexer
+     */
+    public function testUserScoreAll()
+    {
+        $url = route('api.beatmaps.user.scores', [
+            'beatmap' => static::$beatmap->getKey(),
+            'user' => static::$user->getKey(),
+        ]);
+        $this->actAsScopedUser(static::$user);
+        $this
+            ->json('GET', $url)
+            ->assertJsonCount(4, 'scores')
+            ->assertJsonPath(
+                'scores.*.id',
+                array_map(fn (string $key): int => static::$scores[$key]->getKey(), [
+                    'legacy:user',
+                    'legacy:userMods',
+                    'legacy:userModsNC',
+                    'legacy:userModsLowerScore',
+                ])
+            );
+    }
+
     public static function dataProviderForTestQuery(): array
     {
-        return [
-            'no parameters' => [[
-                'solo:user',
-                'solo:otherUserModsNCPFHigherScore',
-                'solo:friend',
-                'solo:otherUser2Later',
-                'solo:otherUser3SameCountry',
-            ], []],
-            'by country' => [[
-                'solo:user',
-                'solo:otherUser3SameCountry',
-            ], ['type' => 'country']],
-            'by friend' => [[
-                'solo:user',
-                'solo:friend',
-            ], ['type' => 'friend']],
-            'mods filter' => [[
-                'solo:userMods',
-                'solo:otherUserMods',
-            ], ['mods' => ['DT', 'HD']]],
-            'mods with implied filter' => [[
-                'solo:userModsNC',
-                'solo:otherUserModsNCPFHigherScore',
-            ], ['mods' => ['NC']]],
-            'mods with nomods' => [[
-                'solo:user',
-                'solo:otherUserModsNCPFHigherScore',
-                'solo:friend',
-                'solo:otherUser2Later',
-                'solo:otherUser3SameCountry',
-            ], ['mods' => ['NC', 'NM']]],
-            'nomods filter' => [[
-                'solo:user',
-                'solo:friend',
-                'solo:otherUser',
-                'solo:otherUser2Later',
-                'solo:otherUser3SameCountry',
-            ], ['mods' => ['NM']]],
-        ];
+        $ret = [];
+        foreach (['solo' => 'solo-scores', 'legacy' => 'scores'] as $type => $route) {
+            $ret = array_merge($ret, [
+                "{$type}: no parameters" => [[
+                    "{$type}:user",
+                    "{$type}:otherUserModsNCPFHigherScore",
+                    "{$type}:friend",
+                    "{$type}:otherUser2Later",
+                    "{$type}:otherUser3SameCountry",
+                ], [], $route],
+                "{$type}: by country" => [[
+                    "{$type}:user",
+                    "{$type}:otherUser3SameCountry",
+                ], ['type' => 'country'], $route],
+                "{$type}: by friend" => [[
+                    "{$type}:user",
+                    "{$type}:friend",
+                ], ['type' => 'friend'], $route],
+                "{$type}: mods filter" => [[
+                    "{$type}:userMods",
+                    "{$type}:otherUserMods",
+                ], ['mods' => ['DT', 'HD']], $route],
+                "{$type}: mods with implied filter" => [[
+                    "{$type}:userModsNC",
+                    "{$type}:otherUserModsNCPFHigherScore",
+                ], ['mods' => ['NC']], $route],
+                "{$type}: mods with nomods" => [[
+                    "{$type}:user",
+                    "{$type}:otherUserModsNCPFHigherScore",
+                    "{$type}:friend",
+                    "{$type}:otherUser2Later",
+                    "{$type}:otherUser3SameCountry",
+                ], ['mods' => ['NC', 'NM']], $route],
+                "{$type}: nomods filter" => [[
+                    "{$type}:user",
+                    "{$type}:friend",
+                    "{$type}:otherUser",
+                    "{$type}:otherUser2Later",
+                    "{$type}:otherUser3SameCountry",
+                ], ['mods' => ['NM']], $route],
+            ]);
+        }
+
+        return $ret;
     }
 }

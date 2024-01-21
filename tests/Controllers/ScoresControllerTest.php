@@ -33,8 +33,8 @@ class ScoresControllerTest extends TestCase
     public function testDownloadSoloScore()
     {
         $soloScore = SoloScore::factory()
-            ->withData(['legacy_score_id' => $this->score->getKey()])
             ->create([
+                'legacy_score_id' => $this->score->getKey(),
                 'ruleset_id' => Beatmap::MODES[$this->score->getMode()],
                 'has_replay' => true,
             ]);
