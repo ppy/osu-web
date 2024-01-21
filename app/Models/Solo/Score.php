@@ -51,7 +51,7 @@ class Score extends Model implements Traits\ReportableInterface
 {
     use Traits\Reportable, Traits\WithWeightedPp;
 
-    const PROCESSING_QUEUE = 'osu-queue:score-statistics';
+    const PROCESSING_QUEUE = 'osu-queue:score-statistics-private';
 
     public $timestamps = false;
 
