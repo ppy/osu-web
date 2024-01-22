@@ -36,6 +36,9 @@ return [
     'starting' => [
         'username' => 'Enter email address or username',
 
+        'reason' => [
+            'inactive_different_country' => "Your account hasn't been used in a long time. To ensure your account security please reset your password.",
+        ],
         'support' => [
             '_' => 'Need further assistance? Contact us via our :button.',
             'button' => 'support system',

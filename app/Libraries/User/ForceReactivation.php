@@ -32,6 +32,11 @@ class ForceReactivation
         }
     }
 
+    public function getReason(): ?string
+    {
+        return $this->reason;
+    }
+
     public function isRequired()
     {
         return $this->reason !== null;
