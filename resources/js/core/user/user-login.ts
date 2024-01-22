@@ -107,7 +107,11 @@ export default class UserLogin {
     }
   };
 
-  private readonly loginSuccess = (event: unknown, data: LoginSuccessJson) => {
+  private readonly loginSuccess = (event: unknown, data: LoginSuccessJson, status: string, xhr: JQuery.jqXHR<unknown>) => {
+    // check if it's a js callback response and should be run instead
+    if (xhr.getResponseHeader('content-type') === 'application/javascript') {
+      return;
+    }
     const callback = this.callback;
 
     if (callback == null) {

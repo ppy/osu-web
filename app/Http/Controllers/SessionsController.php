@@ -79,6 +79,11 @@ class SessionsController extends Controller
             if ($forceReactivation->isRequired()) {
                 $forceReactivation->run();
 
+                \Session::flash('password_reset_start', [
+                    'reason' => $forceReactivation->getReason(),
+                    'username' => $username,
+                ]);
+
                 return ujs_redirect(route('password-reset'));
             }
 

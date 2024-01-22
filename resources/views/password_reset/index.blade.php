@@ -2,6 +2,16 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
+@php
+    $params = [
+        'username' => null,
+        'reason' => null,
+        ...(Session::get('password_reset_start') ?? []),
+    ];
+    if (isset($params['reason'])) {
+        $reason = osu_trans("password_reset.starting.reason.{$params['reason']}");
+    }
+@endphp
 @extends('master')
 
 @section('content')
@@ -18,10 +28,13 @@
             method="POST"
         >
             @csrf
+            @if (isset($reason))
+                <p>{{ $reason }}</p>
+            @endif
             <label class="password-reset__input-group">
                 {{ osu_trans('password_reset.starting.username') }}
 
-                <input name="username" class="password-reset__input" autofocus>
+                <input name="username" class="password-reset__input" value="{{ $params['username'] ?? '' }}" autofocus>
 
                 <span class="password-reset__error js-form-error--error"></span>
             </label>
