@@ -24,7 +24,7 @@ default_group   | string?                   | Identifier of the default [Group](
 id              | integer                   | unique identifier for user
 is_active       | boolean                   | has this account been active in the last x months?
 is_bot          | boolean                   | is this a bot account?
-is_deleted      | boolean                   ||
+is_deleted      | boolean                   | |
 is_online       | boolean                   | is the user currently online? (either on lazer or the new website)
 is_supporter    | boolean                   | does this user have supporter?
 last_visit      | [Timestamp](#timestamp)?  | last access time. `null` if the user hides online presence
