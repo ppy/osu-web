@@ -45,13 +45,13 @@ active_tournament_banner   | [User.ProfileBanner](#user-profilebanner)? | Deprec
 active_tournament_banners  | [User.ProfileBanner](#user-profilebanner)[] | |
 badges                     | [User.UserBadge](#user-userbadge)[] | |
 beatmap_playcounts_count   | integer | |
-blocks                     | | | |
-country                    | | | |
-cover                      | | | |
+blocks                     | | |
+country                    | | |
+cover                      | | |
 favourite_beatmapset_count | integer | |
 follow_user_mapping        | integer[] | |
 follower_count             | integer | |
-friends                    | | | |
+friends                    | | |
 graveyard_beatmapset_count | integer | |
 groups                     | [UserGroup](#usergroup)[] | |
 guest_beatmapset_count     | integer | |
@@ -60,22 +60,22 @@ kudosu                     | [User.Kudosu](#user-kudosu) | |
 loved_beatmapset_count     | integer | |
 mapping_follower_count     | integer | |
 monthly_playcounts         | [UserMonthlyPlaycount](#usermonthlyplaycount)[] | |
-page                       | | | |
-pending_beatmapset_count   | | | |
-previous_usernames         | | | |
+page                       | | |
+pending_beatmapset_count   | | |
+previous_usernames         | | |
 rank_highest               | [User.RankHighest](#user-rankhighest)? | |
-rank_history               | | | |
-ranked_beatmapset_count    | | | |
-replays_watched_counts     | | | |
+rank_history               | | |
+ranked_beatmapset_count    | | |
+replays_watched_counts     | | |
 scores_best_count          | integer | |
 scores_first_count         | integer | |
 scores_recent_count        | integer | |
-statistics                 | | | |
+statistics                 | | |
 statistics_rulesets        | UserStatisticsRulesets | |
-support_level              | | | |
-unread_pm_count            | | | |
-user_achievements          | | | |
-user_preferences           | | | |
+support_level              | | |
+unread_pm_count            | | |
+user_achievements          | | |
+user_preferences           | | |
 
 <div id="user-kudosu" data-unique="user-kudosu"></div>
 
