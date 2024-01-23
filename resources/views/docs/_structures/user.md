@@ -38,44 +38,44 @@ username        | string                    | user's display name
 
 Following are attributes which may be additionally included in the response. Relevant endpoints should list them if applicable.
 
-Field                      | Type
----------------------------|-----
-account_history            | [User.UserAccountHistory](#user-useraccounthistory)[]
-active_tournament_banner   | Deprecated, use `active_tournament_banners` instead. [User.ProfileBanner](#user-profilebanner)?
-active_tournament_banners  | [User.ProfileBanner](#user-profilebanner)[]
-badges                     | [User.UserBadge](#user-userbadge)[]
-beatmap_playcounts_count   | integer
-blocks                     | |
-country                    | |
-cover                      | |
-favourite_beatmapset_count | integer
-follow_user_mapping        | integer[]
-follower_count             | integer
-friends                    | |
-graveyard_beatmapset_count | integer
-groups                     | [UserGroup](#usergroup)[]
-guest_beatmapset_count     | integer
-is_restricted              | boolean?
-kudosu                     | [User.Kudosu](#user-kudosu)
-loved_beatmapset_count     | integer
-mapping_follower_count     | integer
-monthly_playcounts         | [UserMonthlyPlaycount](#usermonthlyplaycount)[]
-page                       | |
-pending_beatmapset_count   | |
-previous_usernames         | |
-rank_highest               | [User.RankHighest](#user-rankhighest)?
-rank_history               | |
-ranked_beatmapset_count    | |
-replays_watched_counts     | |
-scores_best_count          | integer
-scores_first_count         | integer
-scores_recent_count        | integer
-statistics                 | |
-statistics_rulesets        | UserStatisticsRulesets
-support_level              | |
-unread_pm_count            | |
-user_achievements          | |
-user_preferences           | |
+Field                      | Type | Notes
+---------------------------|----- | -----
+account_history            | [User.UserAccountHistory](#user-useraccounthistory)[] | |
+active_tournament_banner   | [User.ProfileBanner](#user-profilebanner)? | Deprecated, use `active_tournament_banners` instead.
+active_tournament_banners  | [User.ProfileBanner](#user-profilebanner)[] | |
+badges                     | [User.UserBadge](#user-userbadge)[] | |
+beatmap_playcounts_count   | integer | |
+blocks                     | | | |
+country                    | | | |
+cover                      | | | |
+favourite_beatmapset_count | integer | |
+follow_user_mapping        | integer[] | |
+follower_count             | integer | |
+friends                    | | | |
+graveyard_beatmapset_count | integer | |
+groups                     | [UserGroup](#usergroup)[] | |
+guest_beatmapset_count     | integer | |
+is_restricted              | boolean? | |
+kudosu                     | [User.Kudosu](#user-kudosu) | |
+loved_beatmapset_count     | integer | |
+mapping_follower_count     | integer | |
+monthly_playcounts         | [UserMonthlyPlaycount](#usermonthlyplaycount)[] | |
+page                       | | | |
+pending_beatmapset_count   | | | |
+previous_usernames         | | | |
+rank_highest               | [User.RankHighest](#user-rankhighest)? | |
+rank_history               | | | |
+ranked_beatmapset_count    | | | |
+replays_watched_counts     | | | |
+scores_best_count          | integer | |
+scores_first_count         | integer | |
+scores_recent_count        | integer | |
+statistics                 | | | |
+statistics_rulesets        | UserStatisticsRulesets | |
+support_level              | | | |
+unread_pm_count            | | | |
+user_achievements          | | | |
+user_preferences           | | | |
 
 <div id="user-kudosu" data-unique="user-kudosu"></div>
 
