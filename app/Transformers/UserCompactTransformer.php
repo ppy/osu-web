@@ -47,7 +47,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     protected array $availableIncludes = [
         'account_history',
-        'active_tournament_banner',
+        'active_tournament_banner', // deprecated
         'active_tournament_banners',
         'badges',
         'beatmap_playcounts_count',

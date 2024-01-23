@@ -41,7 +41,8 @@ Following are attributes which may be additionally included in the response. Rel
 Field                      | Type
 ---------------------------|-----
 account_history            | [User.UserAccountHistory](#user-useraccounthistory)[]
-active_tournament_banner   | [User.ProfileBanner](#user-profilebanner)?
+active_tournament_banner   | Deprecated, use `active_tournament_banners` instead. [User.ProfileBanner](#user-profilebanner)?
+active_tournament_banners  | [User.ProfileBanner](#user-profilebanner)[]
 badges                     | [User.UserBadge](#user-userbadge)[]
 beatmap_playcounts_count   | integer
 blocks                     | |
