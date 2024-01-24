@@ -17,6 +17,8 @@ use Tests\TestCase;
 
 class PasswordResetControllerTest extends TestCase
 {
+    private string $origCacheDefault;
+
     private static function randomPassword(): string
     {
         return str_random(10);
@@ -283,6 +285,15 @@ class PasswordResetControllerTest extends TestCase
     {
         parent::setUp();
         $this->withoutMiddleware(ThrottleRequests::class);
+        // There's no easy way to clear data cache in redis otherwise
+        $this->origCacheDefault = $GLOBALS['cfg']['cache']['default'];
+        config_set('cache.default', 'array');
+    }
+
+    protected function tearDown(): void
+    {
+        parent::tearDown();
+        config_set('cache.default', $this->origCacheDefault);
     }
 
     private function generateKey(User $user): string

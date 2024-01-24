@@ -29,10 +29,8 @@ class ScoreTokensControllerTest extends TestCase
             'beatmap' => $beatmap->getKey(),
             'ruleset_id' => $beatmap->playmode,
         ];
-        $bodyParams = [
-            'beatmap_hash' => $beatmap->checksum,
-            'version_hash' => bin2hex($this->build->hash),
-        ];
+        $bodyParams = ['beatmap_hash' => $beatmap->checksum];
+        $this->withHeaders(['x-token' => static::createClientToken($this->build)]);
 
         $this->expectCountChange(fn () => ScoreToken::count(), $status >= 200 && $status < 300 ? 1 : 0);
 
@@ -49,6 +47,8 @@ class ScoreTokensControllerTest extends TestCase
      */
     public function testStoreInvalidParameter(string $paramKey, ?string $paramValue, int $status): void
     {
+        $origClientCheckVersion = $GLOBALS['cfg']['osu']['client']['check_version'];
+        config_set('osu.client.check_version', true);
         $beatmap = Beatmap::factory()->ranked()->create();
 
         $this->actAsScopedUser($this->user, ['*']);
@@ -56,10 +56,17 @@ class ScoreTokensControllerTest extends TestCase
         $params = [
             'beatmap' => $beatmap->getKey(),
             'ruleset_id' => $beatmap->playmode,
-            'version_hash' => bin2hex($this->build->hash),
             'beatmap_hash' => $beatmap->checksum,
         ];
-        $params[$paramKey] = $paramValue;
+        $this->withHeaders([
+            'x-token' => $paramKey === 'client_token'
+                ? $paramValue
+                : static::createClientToken($this->build),
+        ]);
+
+        if ($paramKey !== 'client_token') {
+            $params[$paramKey] = $paramValue;
+        }
 
         $routeParams = [
             'beatmap' => $params['beatmap'],
@@ -67,16 +74,15 @@ class ScoreTokensControllerTest extends TestCase
         ];
         $bodyParams = [
             'beatmap_hash' => $params['beatmap_hash'],
-            'version_hash' => $params['version_hash'],
         ];
 
         $this->expectCountChange(fn () => ScoreToken::count(), 0);
 
         $errorMessage = $paramValue === null ? 'missing' : 'invalid';
         $errorMessage .= ' ';
-        $errorMessage .= $paramKey === 'version_hash'
+        $errorMessage .= $paramKey === 'client_token'
             ? ($paramValue === null
-                ? 'client version'
+                ? 'token header'
                 : 'client hash'
             ) : $paramKey;
 
@@ -88,6 +94,8 @@ class ScoreTokensControllerTest extends TestCase
         ->assertJson([
             'error' => $errorMessage,
         ]);
+
+        config_set('osu.client.check_version', $origClientCheckVersion);
     }
 
     public static function dataProviderForTestStore(): array
@@ -104,8 +112,8 @@ class ScoreTokensControllerTest extends TestCase
     public static function dataProviderForTestStoreInvalidParameter(): array
     {
         return [
-            'invalid build hash' => ['version_hash', md5('invalid_'), 422],
-            'missing build hash' => ['version_hash', null, 422],
+            'invalid client token' => ['client_token', md5('invalid_'), 422],
+            'missing client token' => ['client_token', null, 422],
 
             'invalid ruleset id' => ['ruleset_id', '5', 422],
             'missing ruleset id' => ['ruleset_id', null, 422],

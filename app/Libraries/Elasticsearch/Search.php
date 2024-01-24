@@ -22,10 +22,8 @@ abstract class Search extends HasSearch implements Queryable
     /**
      * A tag to use when logging timing of fetches.
      * FIXME: context-based tagging would be nicer.
-     *
-     * @var string|null
      */
-    public $loggingTag;
+    public ?string $loggingTag;
 
     protected $aggregations;
     protected $index;

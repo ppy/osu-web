@@ -83,7 +83,7 @@ class UserScoreAggregate extends Model
                 $scoreLink->playlist_item_id,
             );
 
-            if ($score->data->passed && $score->data->totalScore > $highestScore->total_score) {
+            if ($score->passed && $score->total_score > $highestScore->total_score) {
                 $this->updateUserTotal($scoreLink, $highestScore);
                 $highestScore->updateWithScoreLink($scoreLink);
             }
@@ -134,7 +134,7 @@ class UserScoreAggregate extends Model
             $scoreLinks = ScoreLink
                 ::whereHas('playlistItem', fn ($q) => $q->where('room_id', $this->room_id))
                 ->where('user_id', $this->user_id)
-                ->with('score.performance')
+                ->with('score')
                 ->get();
             foreach ($scoreLinks as $scoreLink) {
                 $this->addScoreLink(
@@ -221,8 +221,8 @@ class UserScoreAggregate extends Model
 
         $current = $currentScoreLink->score;
 
-        $this->total_score += $current->data->totalScore;
-        $this->accuracy += $current->data->accuracy;
+        $this->total_score += $current->total_score;
+        $this->accuracy += $current->accuracy;
         $this->pp += $current->pp;
         $this->completed++;
         $this->last_score_id = $currentScoreLink->getKey();
