@@ -9,9 +9,11 @@ use App\Exceptions\ModelNotSavedException;
 use App\Exceptions\UserProfilePageLookupException;
 use App\Exceptions\ValidationException;
 use App\Http\Middleware\RequestCost;
+use App\Libraries\ClientCheck;
 use App\Libraries\RateLimiter;
 use App\Libraries\Search\ForumSearch;
 use App\Libraries\Search\ForumSearchRequestParams;
+use App\Libraries\Search\ScoreSearchParams;
 use App\Libraries\User\FindForProfilePage;
 use App\Libraries\UserRegistration;
 use App\Models\Beatmap;
@@ -19,6 +21,7 @@ use App\Models\BeatmapDiscussion;
 use App\Models\Country;
 use App\Models\IpBan;
 use App\Models\Log;
+use App\Models\Solo\Score as SoloScore;
 use App\Models\User;
 use App\Models\UserAccountHistory;
 use App\Models\UserNotFound;
@@ -176,7 +179,7 @@ class UsersController extends Controller
                     'monthly_playcounts' => json_collection($this->user->monthlyPlaycounts, new UserMonthlyPlaycountTransformer()),
                     'recent' => $this->getExtraSection(
                         'scoresRecent',
-                        $this->user->scores($this->mode, true)->includeFails(false)->count()
+                        $this->user->recentScoreCount($this->mode)
                     ),
                     'replays_watched_counts' => json_collection($this->user->replaysWatchedCounts, new UserReplaysWatchedCountTransformer()),
                 ];
@@ -191,7 +194,7 @@ class UsersController extends Controller
                 return [
                     'best' => $this->getExtraSection(
                         'scoresBest',
-                        count($this->user->beatmapBestScoreIds($this->mode))
+                        count($this->user->beatmapBestScoreIds($this->mode, ScoreSearchParams::showLegacyForUser(\Auth::user())))
                     ),
                     'firsts' => $this->getExtraSection(
                         'scoresFirsts',
@@ -217,11 +220,15 @@ class UsersController extends Controller
             ], 403);
         }
 
-        if (!starts_with(Request::header('User-Agent'), $GLOBALS['cfg']['osu']['client']['user_agent'])) {
+        $request = \Request::instance();
+
+        if (!starts_with($request->header('User-Agent'), $GLOBALS['cfg']['osu']['client']['user_agent'])) {
             return error_popup(osu_trans('users.store.from_client'), 403);
         }
 
-        return $this->storeUser(request()->all());
+        ClientCheck::parseToken($request);
+
+        return $this->storeUser($request->all());
     }
 
     public function storeWeb()
@@ -787,15 +794,25 @@ class UsersController extends Controller
             case 'scoresBest':
                 $transformer = new ScoreTransformer();
                 $includes = [...ScoreTransformer::USER_PROFILE_INCLUDES, 'weight'];
-                $collection = $this->user->beatmapBestScores($this->mode, $perPage, $offset, ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD);
+                $collection = $this->user->beatmapBestScores(
+                    $this->mode,
+                    $perPage,
+                    $offset,
+                    ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD,
+                    ScoreSearchParams::showLegacyForUser(\Auth::user()),
+                );
                 $userRelationColumn = 'user';
                 break;
             case 'scoresFirsts':
                 $transformer = new ScoreTransformer();
                 $includes = ScoreTransformer::USER_PROFILE_INCLUDES;
-                $query = $this->user->scoresFirst($this->mode, true)
-                    ->visibleUsers()
-                    ->reorderBy('score_id', 'desc')
+                $scoreQuery = $this->user->scoresFirst($this->mode, true)->unorder();
+                $userFirstsQuery = $scoreQuery->select($scoreQuery->qualifyColumn('score_id'));
+                $query = SoloScore
+                    ::whereIn('legacy_score_id', $userFirstsQuery)
+                    ->where('ruleset_id', Beatmap::MODES[$this->mode])
+                    ->default()
+                    ->reorderBy('id', 'desc')
                     ->with(ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD);
                 $userRelationColumn = 'user';
                 break;
@@ -814,9 +831,12 @@ class UsersController extends Controller
             case 'scoresRecent':
                 $transformer = new ScoreTransformer();
                 $includes = ScoreTransformer::USER_PROFILE_INCLUDES;
-                $query = $this->user->scores($this->mode, true)
+                $query = $this->user->soloScores()
+                    ->default()
+                    ->forRuleset($this->mode)
                     ->includeFails($options['includeFails'] ?? false)
-                    ->with([...ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD, 'best']);
+                    ->reorderBy('id', 'desc')
+                    ->with(ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD);
                 $userRelationColumn = 'user';
                 break;
         }

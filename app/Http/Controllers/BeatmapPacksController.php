@@ -5,10 +5,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Libraries\Search\ScoreSearchParams;
 use App\Models\Beatmap;
 use App\Models\BeatmapPack;
 use App\Transformers\BeatmapPackTransformer;
-use Auth;
 
 /**
  * @group Beatmap Packs
@@ -100,7 +100,11 @@ class BeatmapPacksController extends Controller
         $pack = $query->where('tag', $idOrTag)->firstOrFail();
         $mode = Beatmap::modeStr($pack->playmode ?? 0);
         $sets = $pack->beatmapsets;
-        $userCompletionData = $pack->userCompletionData(Auth::user());
+        $currentUser = \Auth::user();
+        $userCompletionData = $pack->userCompletionData(
+            $currentUser,
+            ScoreSearchParams::showLegacyForUser($currentUser),
+        );
 
         if (is_api_request()) {
             return json_item(
