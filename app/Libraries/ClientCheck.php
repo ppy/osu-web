@@ -58,6 +58,9 @@ class ClientCheck
             }
 
             $ret['token'] = $token;
+            // to be included in queue
+            $ret['body'] = base64_encode($request->getContent());
+            $ret['url'] = $request->getRequestUri();
         } catch (ClientCheckParseTokenException $e) {
             abort_if($assertValid, 422, $e->getMessage());
         }
@@ -72,8 +75,10 @@ class ClientCheck
         }
 
         \LaravelRedis::lpush($GLOBALS['cfg']['osu']['client']['token_queue'], json_encode([
+            'body' => $tokenData['body'],
             'id' => $scoreId,
             'token' => $tokenData['token'],
+            'url' => $tokenData['url'],
         ]));
     }
 
