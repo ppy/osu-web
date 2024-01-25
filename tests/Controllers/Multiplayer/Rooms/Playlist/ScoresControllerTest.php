@@ -139,6 +139,13 @@ class ScoresControllerTest extends TestCase
         $build = Build::factory()->create(['allow_ranking' => true]);
         $scoreToken = $room->startPlay($user, $playlistItem, 0);
 
+        $this->withHeaders(['x-token' => static::createClientToken($build)]);
+
+        $this->expectCountChange(
+            fn () => \LaravelRedis::llen($GLOBALS['cfg']['osu']['client']['token_queue']),
+            $status === 200 ? 1 : 0,
+        );
+
         $this->actAsScopedUser($user, ['*']);
 
         $url = route('api.rooms.playlist.scores.update', [
