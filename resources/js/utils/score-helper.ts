@@ -7,6 +7,15 @@ import { route } from 'laroute';
 import core from 'osu-core-singleton';
 import { rulesetName } from './beatmap-helper';
 import { trans } from './lang';
+import { legacyAccuracyAndRank } from './legacy-score-helper';
+
+export function accuracy(score: SoloScoreJson) {
+  if (score.legacy_score_id == null || !core.userPreferences.get('legacy_score_only')) {
+    return score.accuracy;
+  }
+
+  return legacyAccuracyAndRank(score).accuracy;
+}
 
 export function canBeReported(score: SoloScoreJson) {
   return (score.best_id != null || score.type === 'solo_score')
@@ -100,6 +109,14 @@ export const modeAttributesMap: Record<GameMode, AttributeData[]> = {
     { attribute: 'miss', label: labelMiss },
   ],
 };
+
+export function rank(score: SoloScoreJson) {
+  if (score.legacy_score_id == null || !core.userPreferences.get('legacy_score_only')) {
+    return score.rank;
+  }
+
+  return legacyAccuracyAndRank(score).rank;
+}
 
 export function scoreDownloadUrl(score: SoloScoreJson) {
   if (score.type === 'solo_score') {
