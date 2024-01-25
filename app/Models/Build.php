@@ -198,6 +198,16 @@ class Build extends Model implements Commentable
         // no image
     }
 
+    public function platform(): string
+    {
+        $version = $this->version;
+        $suffixPos = strpos($version, '-');
+
+        return $suffixPos === false
+            ? ''
+            : substr($version, $suffixPos + 1);
+    }
+
     public function url()
     {
         return build_url($this);
