@@ -8,7 +8,12 @@ interface CacheEntry {
   accuracy: number;
   rank: Rank;
 }
-const cache: Partial<Record<string, CacheEntry>> = {};
+let cache: Partial<Record<string, CacheEntry>> = {};
+
+// reset cache on navigation
+document.addEventListener('turbolinks:load', () => {
+  cache = {};
+});
 
 function shouldHaveHiddenRank(score: SoloScoreJson) {
   return score.mods.some((mod) => mod.acronym === 'FL' || mod.acronym === 'HD');
