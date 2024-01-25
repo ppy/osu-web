@@ -51,8 +51,6 @@ class Score extends Model implements Traits\ReportableInterface
 {
     use Traits\Reportable, Traits\WithWeightedPp;
 
-    const PROCESSING_QUEUE = 'osu-queue:score-statistics';
-
     public $timestamps = false;
 
     protected $casts = [
@@ -290,7 +288,7 @@ class Score extends Model implements Traits\ReportableInterface
 
     public function queueForProcessing(): void
     {
-        LaravelRedis::lpush(static::PROCESSING_QUEUE, json_encode([
+        LaravelRedis::lpush($GLOBALS['cfg']['osu']['scores']['processing_queue'], json_encode([
             'Score' => $this->getAttributes(),
         ]));
     }
