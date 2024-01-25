@@ -219,6 +219,7 @@ class BeatmapsControllerSoloScoresTest extends TestCase
     {
         $url = route('api.beatmaps.user.score', [
             'beatmap' => static::$beatmap->getKey(),
+            'legacy_only' => 1,
             'mods' => ['DT', 'HD'],
             'user' => static::$user->getKey(),
         ]);
@@ -235,6 +236,7 @@ class BeatmapsControllerSoloScoresTest extends TestCase
     {
         $url = route('api.beatmaps.user.scores', [
             'beatmap' => static::$beatmap->getKey(),
+            'legacy_only' => 1,
             'user' => static::$user->getKey(),
         ]);
         $this->actAsScopedUser(static::$user);
