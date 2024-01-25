@@ -14,6 +14,15 @@ export function canBeReported(score: SoloScoreJson) {
     && score.user_id !== core.currentUser.id;
 }
 
+// Removes CL mod on legacy score if user has lazer mode disabled
+export function filterMods(score: SoloScoreJson) {
+  if (score.legacy_score_id == null || !core.userPreferences.get('legacy_score_only')) {
+    return score.mods;
+  }
+
+  return score.mods.filter((mod) => mod.acronym !== 'CL');
+}
+
 // TODO: move to application state repository thingy later
 export function hasMenu(score: SoloScoreJson) {
   return canBeReported(score) || hasReplay(score) || hasShow(score) || core.scorePins.canBePinned(score);
