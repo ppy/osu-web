@@ -38,7 +38,7 @@ class ContestsController extends Controller
 
         $contestJson = json_item($contest, new ContestTransformer(), [
             'entries.current_user_judge_vote.scores',
-            'scoring_categories'
+            'scoring_categories',
         ]);
 
         return ext_view('contests.judge', [
