@@ -307,11 +307,12 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         $packItemBeatmapsetIdColumn = (new BeatmapPackItem())->qualifyColumn('beatmapset_id');
         $packQuery = BeatmapPack
             ::selectRaw("GROUP_CONCAT({$packTagColumn} SEPARATOR ',')")
+            ->default()
             ->whereRelation(
                 'items',
-                DB::raw("{$packItemBeatmapsetIdColumn}"),
-                DB::raw("{$idColumn}"),
-            )->toSql();
+                DB::raw($packItemBeatmapsetIdColumn),
+                DB::raw($idColumn),
+            )->toRawSql();
 
         return $query
             ->select('*')
@@ -687,6 +688,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             $this->events()->create(['type' => BeatmapsetEvent::QUALIFY]);
 
             $this->setApproved('qualified', $user);
+            $this->bssProcessQueues()->create();
 
             // global event
             Event::generate('beatmapsetApprove', ['beatmapset' => $this]);
@@ -828,7 +830,9 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
         $this->getConnection()->transaction(function () use ($user, $beatmapIds) {
             $this->events()->create(['type' => BeatmapsetEvent::LOVE, 'user_id' => $user->user_id]);
+
             $this->setApproved('loved', $user, $beatmapIds);
+            $this->bssProcessQueues()->create();
 
             Event::generate('beatmapsetApprove', ['beatmapset' => $this]);
 

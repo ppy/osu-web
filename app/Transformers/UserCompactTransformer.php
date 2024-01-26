@@ -47,7 +47,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     protected array $availableIncludes = [
         'account_history',
-        'active_tournament_banner',
+        'active_tournament_banner', // deprecated
         'active_tournament_banners',
         'badges',
         'beatmap_playcounts_count',
@@ -200,12 +200,12 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeCover(User $user)
     {
-        $profileCustomization = $this->userProfileCustomization($user);
+        $cover = $this->userProfileCustomization($user)->cover();
 
         return $this->primitive([
-            'custom_url' => $profileCustomization->cover()->fileUrl(),
-            'url' => $profileCustomization->cover()->url(),
-            'id' => $profileCustomization->cover()->id(),
+            'custom_url' => $cover->customUrl(),
+            'url' => $cover->url(),
+            'id' => $cover->presetId(),
         ]);
     }
 
@@ -456,6 +456,7 @@ class UserCompactTransformer extends TransformerAbstract
             'beatmapset_title_show_original',
             'comments_show_deleted',
             'forum_posts_show_deleted',
+            'legacy_score_only',
             'profile_cover_expanded',
             'user_list_filter',
             'user_list_sort',

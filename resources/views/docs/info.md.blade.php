@@ -34,6 +34,9 @@ For a full list of changes, see the
 
 ## Breaking Changes
 
+### 2024-01-23
+- `active_tournament_banner` in [User](#user) has been deprecated, use `active_tournament_banners` instead.
+
 ### 2023-10-17
 - GameMode has been renamed to [Ruleset](#ruleset); existing property names remain unchanged.
 - `number` has been removed from documentation and replaced with `integer` or `float` to better reflect the type of number.

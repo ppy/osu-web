@@ -50,7 +50,7 @@ class ForumTopicReply extends BroadcastNotificationBase
         return [
             'title' => $this->post->topic->topic_title,
             'post_id' => $this->post->getKey(),
-            'cover_url' => optional($this->post->topic->cover)->fileUrl(),
+            'cover_url' => $this->post->topic->cover?->file()->url(),
         ];
     }
 

@@ -32,6 +32,14 @@ services:
         condition: on-failure
     shm_size: '2gb' # for chromium
 
+  php-dusk:
+    <<: *x-web
+    command: ['octane', '--watch']
+    environment:
+      <<: *x-env
+      APP_ENV: dusk.local
+      OCTANE_STATE_FILE: /tmp/octane-state.json
+
   assets:
     <<: *x-web
     command: ['watch']
@@ -85,7 +93,7 @@ services:
       <<: *x-env
 
   db:
-    image: mysql/mysql-server:8.0
+    image: mysql:8.0
     volumes:
       - database:/var/lib/mysql
       - ./docker/development/db_user.sql:/docker-entrypoint-initdb.d/db_user.sql
@@ -116,7 +124,7 @@ services:
 
   elasticsearch:
     # Version must be kept up to date with library defined in: composer.json
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.6
+    image: elasticsearch:7.17.16
     ports:
       - "${ES_EXTERNAL_PORT:-9200}:9200"
     volumes:
@@ -136,6 +144,7 @@ services:
     image: nginx:latest
     depends_on:
       - php
+      - php-dusk
       - notification-server
       - notification-server-dusk
     volumes:
@@ -145,8 +154,8 @@ services:
       - "${NGINX_PORT:-8080}:80"
 
   score-indexer:
-    image: pppy/osu-elastic-indexer
-    command: ["queue", "watch", "--set-current"]
+    image: pppy/osu-elastic-indexer:99cd549c5c5c959ff6b2728b76af603dda4c85cb
+    command: ["queue", "watch"]
     depends_on:
       redis:
         condition: service_healthy
@@ -159,8 +168,8 @@ services:
       SCHEMA: "${SCHEMA:-1}"
 
   score-indexer-test:
-    image: pppy/osu-elastic-indexer
-    command: ["queue", "watch", "--set-current"]
+    image: pppy/osu-elastic-indexer:99cd549c5c5c959ff6b2728b76af603dda4c85cb
+    command: ["queue", "watch"]
     depends_on:
       redis:
         condition: service_healthy

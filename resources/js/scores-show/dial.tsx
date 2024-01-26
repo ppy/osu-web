@@ -17,6 +17,7 @@ const displayRank: Record<Rank, string> = {
   B: 'B',
   C: 'C',
   D: 'D',
+  F: 'F',
   S: 'S',
   SH: 'S',
   X: 'SS',

@@ -434,7 +434,7 @@ return [
 
             'restriction_info' => [
                 '_' => 'Trebuie să fii un :link să deblochezi acest feature.',
-                'link' => 'osu!ajutător',
+                'link' => 'suporter osu!',
             ],
         ],
         'post_count' => [

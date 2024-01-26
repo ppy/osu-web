@@ -10,7 +10,7 @@ type Replacement = string | number;
 export type Replacements = Partial<Record<string, Replacement>>;
 
 export function joinComponents(array: React.ReactElement[], key = 'common.array_and') {
-  const nodes: React.ReactFragment[] = [];
+  const nodes: React.ReactNode[] = [];
 
   if (array.length > 0) {
     nodes.push(array[0]);

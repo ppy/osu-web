@@ -147,7 +147,7 @@ return [
     ],
 
     'verification_completed' => [
-        'text' => '您可以關閉此選項/視窗',
+        'text' => '您現在可以關閉此分頁/視窗',
         'title' => '驗證已經完成',
     ],
 

@@ -113,7 +113,7 @@ return [
     ],
 
     'input' => [
-        'search' => 'etsi...',
+        'search' => 'hae...',
     ],
 
     'pagination' => [

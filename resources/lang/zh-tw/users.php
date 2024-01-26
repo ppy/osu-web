@@ -124,8 +124,8 @@ return [
     ],
 
     'ogp' => [
-        'modding_description' => '',
-        'modding_description_empty' => '',
+        'modding_description' => '圖譜: :counts',
+        'modding_description_empty' => '使用者沒有任何的圖譜...',
 
         'description' => [
             '_' => '排名 (:ruleset): :global | :country',

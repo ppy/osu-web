@@ -11,6 +11,7 @@ use App\Http\Middleware\ThrottleRequests;
 use App\Libraries\User\PasswordResetData;
 use App\Mail\PasswordReset;
 use App\Models\User;
+use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\Mail;
 use Tests\TestCase;
 
@@ -192,6 +193,29 @@ class PasswordResetControllerTest extends TestCase
         ->assertSessionHas('popup', osu_trans('password_reset.error.invalid'));
 
         $this->assertTrue($user->fresh()->checkPassword($newPassword));
+    }
+
+    public function testUpdateFromInactive(): void
+    {
+        $changeTime = CarbonImmutable::now()->subMinutes(1);
+        $user = User::factory()->create(['user_lastvisit' => $changeTime->subYears(10)]);
+
+        $key = $this->generateKey($user);
+
+        $newPassword = static::randomPassword();
+
+        $this->put($this->path(), [
+            'key' => $key,
+            'user' => [
+                'password' => $newPassword,
+                'password_confirmation' => $newPassword,
+            ],
+            'username' => $user->username,
+        ])->assertRedirect(route('home'));
+
+        $user = $user->fresh();
+        $this->assertTrue($user->checkPassword($newPassword));
+        $this->assertTrue($user->user_lastvisit->greaterThan($changeTime));
     }
 
     public function testUpdateInvalidUsername()

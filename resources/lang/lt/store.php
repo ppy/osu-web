@@ -53,7 +53,7 @@ return [
 
     'invoice' => [
         'contact' => '',
-        'date' => '',
+        'date' => 'Data:',
         'echeck_delay' => 'Kadangi jūsų mokėjote el. čekiu, pervedimas gali užtrukti iki 10 dienų kol praeis per PayPal sistemą!',
         'hide_from_activity' => 'osu!rėmėjo žymos šiame užsakyme nerodomos jūsų pastarojoje veikloje.',
         'sent_via' => '',
@@ -111,7 +111,7 @@ return [
         'shipping_and_handling' => '',
         'shopify_expired' => 'Ši apmokėjimo nuoroda nebegalioja.',
         'subtotal' => '',
-        'total' => '',
+        'total' => 'Iš viso',
 
         'details' => [
             'order_number' => '',
@@ -119,7 +119,7 @@ return [
             'salesperson' => '',
             'shipping_method' => '',
             'shipping_terms' => '',
-            'title' => '',
+            'title' => 'Užsakymo Informacija',
         ],
 
         'item' => [
@@ -151,7 +151,7 @@ return [
             'paid' => 'Apmokėta',
             'processing' => 'Laukiantis patvirtinimo',
             'shipped' => 'Išsiųsta',
-            'title' => '',
+            'title' => 'Užsakymo Būsena',
         ],
 
         'thanks' => [

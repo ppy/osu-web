@@ -123,7 +123,7 @@ return [
             ],
 
             'report' => [
-                '_' => 'Jos löydät jonkun ongelman tämän beatmapin kanssa, olmoita siitä :link hälyttääksesi tiimiä.',
+                '_' => 'Jos löydät jonkun ongelman tässä rytmikartassa, ilmoita siitä :link hälyttääksesi tiimin paikalle.',
                 'button' => 'Ilmoita Ongelma',
                 'link' => 'täällä',
             ],
@@ -136,7 +136,7 @@ return [
             'no_scores' => 'Dataa lasketaan...',
             'nominators' => 'Ehdollepanijat',
             'nsfw' => 'Sopimaton sisältö',
-            'offset' => 'Online tasoitus',
+            'offset' => 'Vastapaino verkossa',
             'points-of-failure' => 'Epäonnistumiskohdat',
             'source' => 'Lähde',
             'storyboard' => 'Tämä rytmikartta sisältää taustaesityksen',
@@ -163,7 +163,7 @@ return [
             'friend' => 'Kavereiden sijoitukset',
             'global' => 'Maailmanlaajuiset sijoitukset',
             'supporter-link' => 'Klikkaa <a href=":link">tästä</a> nähdäksesi kaikki hienot ominaisuudet mitä saat!',
-            'supporter-only' => 'Sinun täytyy olla osu!-tukija nähdäksesi kaveri-, maa- ja muunnelmakohtaiset sijoitukset!',
+            'supporter-only' => 'Sinun täytyy olla osu!n tukija nähdäksesi kaveri-, maa- ja muunnelmakohtaiset sijoitukset!',
             'title' => 'Tulokset',
 
             'headers' => [
@@ -208,7 +208,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Ympyröiden määrä',
             'count_sliders' => 'Slidereiden määrä',
-            'offset' => 'Online tasoitus :offset',
+            'offset' => 'Vastapaino verkossa: :offset',
             'user-rating' => 'Käyttäjien arvio',
             'rating-spread' => 'Arvioiden jakauma',
             'nominations' => 'Suositukset',

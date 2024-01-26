@@ -24,12 +24,14 @@ use Storage;
 /**
  * @property int $beatmap_id
  * @property \Carbon\Carbon|null $created_at
- * @property \stdClass $data
- * @property \Carbon\Carbon|null $deleted_at
+ * @property string|null $created_at_json
+ * @property ScoreData $data
+ * @property bool $has_replay
  * @property int $id
  * @property bool $preserve
+ * @property bool $ranked
  * @property int $ruleset_id
- * @property \Carbon\Carbon|null $updated_at
+ * @property int $unix_updated_at
  * @property User $user
  * @property int $user_id
  */
@@ -37,7 +39,7 @@ class Score extends Model implements Traits\ReportableInterface
 {
     use Traits\Reportable, Traits\WithWeightedPp;
 
-    const PROCESSING_QUEUE = 'osu-queue:score-statistics';
+    public $timestamps = false;
 
     protected $casts = [
         'data' => ScoreData::class,
@@ -60,7 +62,7 @@ class Score extends Model implements Traits\ReportableInterface
         // older lazer builds potentially submit incorrect details here (and we still want to
         // accept their scores.
         if (!$score->data->passed) {
-            $score->data->rank = 'D';
+            $score->data->rank = 'F';
         }
 
         $score->saveOrExplode();
@@ -97,7 +99,7 @@ class Score extends Model implements Traits\ReportableInterface
      */
     public static function queueForProcessing(array $scoreJson): void
     {
-        LaravelRedis::lpush(static::PROCESSING_QUEUE, json_encode([
+        LaravelRedis::lpush($GLOBALS['cfg']['osu']['scores']['processing_queue'], json_encode([
             'Score' => [
                 'beatmap_id' => $scoreJson['beatmap_id'],
                 'id' => $scoreJson['id'],
@@ -146,18 +148,17 @@ class Score extends Model implements Traits\ReportableInterface
             'beatmap_id',
             'id',
             'ruleset_id',
+            'unix_updated_at',
             'user_id' => $this->getRawAttribute($key),
 
             'data' => $this->getClassCastableAttributeValue($key, $this->getRawAttribute($key)),
 
             'has_replay',
-            'preserve' => (bool) $this->getRawAttribute($key),
+            'preserve',
+            'ranked' => (bool) $this->getRawAttribute($key),
 
-            'created_at',
-            'updated_at' => $this->getTimeFast($key),
-
-            'created_at_json',
-            'updated_at_json' => $this->getJsonTimeFast($key),
+            'created_at' => $this->getTimeFast($key),
+            'created_at_json' => $this->getJsonTimeFast($key),
 
             'pp' => $this->performance?->pp,
 
@@ -262,13 +263,18 @@ class Score extends Model implements Traits\ReportableInterface
 
     public function userRank(?array $params = null): int
     {
-        return UserRank::getRank(ScoreSearchParams::fromArray(array_merge($params ?? [], [
+        // Non-legacy score always has its rank checked against all score types.
+        if (!$this->isLegacy()) {
+            $params['is_legacy'] = null;
+        }
+
+        return UserRank::getRank(ScoreSearchParams::fromArray([
+            ...($params ?? []),
             'beatmap_ids' => [$this->beatmap_id],
             'before_score' => $this,
-            'is_legacy' => $this->isLegacy(),
             'ruleset_id' => $this->ruleset_id,
             'user' => $this->user,
-        ])));
+        ]));
     }
 
     protected function newReportableExtraParams(): array

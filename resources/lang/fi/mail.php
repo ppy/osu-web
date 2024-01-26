@@ -64,11 +64,11 @@ return [
     'supporter_gift' => [
         'anonymous_gift' => 'Henkilö, joka lahjoitti sinulle tämän tägin, voi halutessaan pysyä anonyyminä, joten heitä ei ole maininttu tässä ilmoituksessa.',
         'anonymous_gift_maybe_not' => 'Mutta taidat jo tietää kuka se mahtaa olla ;).',
-        'duration' => 'Kiitos hänen, sinulla on pääsy osu!-directiin ja muihin osu!-tukijaetuihin seuraavan :duration ajan.',
+        'duration' => 'Kiitos hänen, sinulla on pääsy osu!directiin ja muihin osu!tukijaetuihin seuraavan :duration ajan.',
         'features' => 'Voit saada lisätietoja näistä ominaisuuksista täältä:',
-        'gifted' => 'Joku on juuri antanut sinulle osu! -tukijan!',
+        'gifted' => 'Joku on juuri antanut sinulle osu!tukijamerkin!',
         'gift_message' => 'Henkilö, joka lahjoitti sinulle tämän merkin, jätti sinulle viestin:',
-        'subject' => 'Sinulle on lahjoitettu osu!-tukijamerkki!',
+        'subject' => 'Sinulle on lahjoitettu osu!tukijamerkki!',
     ],
 
     'user_email_updated' => [

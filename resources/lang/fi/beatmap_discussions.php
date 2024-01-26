@@ -19,7 +19,7 @@ return [
     'index' => [
         'deleted_beatmap' => 'poistettu',
         'none_found' => 'Hakukriteereihin täsmääviä keskusteluja ei löytynyt.',
-        'title' => 'Rytmikarttojen keskustelut',
+        'title' => 'Beatmapkeskustelut',
 
         'form' => [
             '_' => 'Hae',
@@ -36,7 +36,7 @@ return [
                 'disqualified' => 'Epäkelpuutettu',
                 'never_qualified' => 'Ei koskaan kelpuutettu',
                 'qualified' => 'Kelpuutettu',
-                'ranked' => 'Pisteytetty',
+                'ranked' => 'Rankattu',
             ],
 
             'user' => [

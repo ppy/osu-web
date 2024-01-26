@@ -37,8 +37,7 @@
           "SD",
           "PF",
           "AC",
-          "RX",
-          "AP"
+          "CN"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -142,8 +141,7 @@
           "NF",
           "PF",
           "TP",
-          "RX",
-          "AP"
+          "CN"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -168,8 +166,7 @@
           "NF",
           "SD",
           "AC",
-          "RX",
-          "AP"
+          "CN"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -255,7 +252,8 @@
         "IncompatibleMods": [
           "SI",
           "TC",
-          "AD"
+          "AD",
+          "DP"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -357,8 +355,7 @@
           "EZ",
           "NF",
           "PF",
-          "RX",
-          "AP"
+          "CN"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -391,7 +388,8 @@
           "RD",
           "SO",
           "TC",
-          "AD"
+          "AD",
+          "DP"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -475,6 +473,12 @@
             "Type": "boolean",
             "Label": "Fade out hit circles earlier",
             "Description": "Make hit circles fade out into a miss, rather than after it."
+          },
+          {
+            "Name": "classic_health",
+            "Type": "boolean",
+            "Label": "Classic health",
+            "Description": "More closely resembles the original HP drain mechanics."
           }
         ],
         "IncompatibleMods": [
@@ -603,6 +607,10 @@
         "Type": "Automation",
         "Settings": [],
         "IncompatibleMods": [
+          "NF",
+          "SD",
+          "PF",
+          "AC",
           "AL",
           "SG",
           "AT",
@@ -628,10 +636,6 @@
         "Type": "Automation",
         "Settings": [],
         "IncompatibleMods": [
-          "NF",
-          "SD",
-          "PF",
-          "AC",
           "AL",
           "SG",
           "AT",
@@ -652,10 +656,6 @@
         "Type": "Automation",
         "Settings": [],
         "IncompatibleMods": [
-          "NF",
-          "SD",
-          "PF",
-          "AC",
           "AT",
           "CN",
           "RX",
@@ -698,7 +698,8 @@
           "WG",
           "MG",
           "RP",
-          "FR"
+          "FR",
+          "DP"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -722,7 +723,8 @@
         "IncompatibleMods": [
           "TR",
           "MG",
-          "RP"
+          "RP",
+          "DP"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -741,7 +743,8 @@
           "GR",
           "DF",
           "TC",
-          "AD"
+          "AD",
+          "DP"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -767,7 +770,8 @@
           "GR",
           "DF",
           "TC",
-          "AD"
+          "AD",
+          "DP"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -793,7 +797,8 @@
           "GR",
           "DF",
           "TC",
-          "AD"
+          "AD",
+          "DP"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -890,7 +895,8 @@
           "TP",
           "SI",
           "GR",
-          "DF"
+          "DF",
+          "DP"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -1038,7 +1044,8 @@
           "TR",
           "WG",
           "RP",
-          "BU"
+          "BU",
+          "DP"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -1066,7 +1073,8 @@
           "TR",
           "WG",
           "MG",
-          "BU"
+          "BU",
+          "DP"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -1117,7 +1125,8 @@
         "Settings": [],
         "IncompatibleMods": [
           "TR",
-          "AD"
+          "AD",
+          "DP"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -1149,6 +1158,45 @@
         "Type": "Fun",
         "Settings": [],
         "IncompatibleMods": [],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
+      },
+      {
+        "Acronym": "DP",
+        "Name": "Depth",
+        "Description": "3D. Almost.",
+        "Type": "Fun",
+        "Settings": [
+          {
+            "Name": "max_depth",
+            "Type": "number",
+            "Label": "Maximum depth",
+            "Description": "How far away objects appear."
+          },
+          {
+            "Name": "show_approach_circles",
+            "Type": "boolean",
+            "Label": "Show Approach Circles",
+            "Description": "Whether approach circles should be visible."
+          }
+        ],
+        "IncompatibleMods": [
+          "HD",
+          "TP",
+          "TR",
+          "WG",
+          "SI",
+          "GR",
+          "DF",
+          "TC",
+          "MG",
+          "RP",
+          "FR",
+          "DP"
+        ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
@@ -1217,7 +1265,7 @@
           "SD",
           "PF",
           "AC",
-          "RX"
+          "CN"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -1319,7 +1367,7 @@
         "IncompatibleMods": [
           "NF",
           "PF",
-          "RX"
+          "CN"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -1344,7 +1392,7 @@
           "NF",
           "SD",
           "AC",
-          "RX"
+          "CN"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -1481,7 +1529,7 @@
         "IncompatibleMods": [
           "NF",
           "PF",
-          "RX"
+          "CN"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -1622,6 +1670,10 @@
         "Type": "Automation",
         "Settings": [],
         "IncompatibleMods": [
+          "NF",
+          "SD",
+          "PF",
+          "AC",
           "SG",
           "AT",
           "CN",
@@ -1641,10 +1693,6 @@
         "Type": "Automation",
         "Settings": [],
         "IncompatibleMods": [
-          "NF",
-          "SD",
-          "PF",
-          "AC",
           "SG",
           "AT",
           "CN"
@@ -1859,7 +1907,7 @@
           "SD",
           "PF",
           "AC",
-          "RX"
+          "CN"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -1959,7 +2007,7 @@
         "IncompatibleMods": [
           "NF",
           "PF",
-          "RX"
+          "CN"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -1984,7 +2032,7 @@
           "NF",
           "SD",
           "AC",
-          "RX"
+          "CN"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -2120,7 +2168,7 @@
           "EZ",
           "NF",
           "PF",
-          "RX"
+          "CN"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -2230,6 +2278,10 @@
         "Type": "Automation",
         "Settings": [],
         "IncompatibleMods": [
+          "NF",
+          "SD",
+          "PF",
+          "AC",
           "AT",
           "CN",
           "RX"
@@ -2247,10 +2299,6 @@
         "Type": "Automation",
         "Settings": [],
         "IncompatibleMods": [
-          "NF",
-          "SD",
-          "PF",
-          "AC",
           "AT",
           "CN"
         ],
@@ -2459,7 +2507,8 @@
         "IncompatibleMods": [
           "SD",
           "PF",
-          "AC"
+          "AC",
+          "CN"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -2560,7 +2609,8 @@
         ],
         "IncompatibleMods": [
           "NF",
-          "PF"
+          "PF",
+          "CN"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -2584,7 +2634,8 @@
         "IncompatibleMods": [
           "NF",
           "SD",
-          "AC"
+          "AC",
+          "CN"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -2757,7 +2808,8 @@
         "IncompatibleMods": [
           "EZ",
           "NF",
-          "PF"
+          "PF",
+          "CN"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -3155,6 +3207,10 @@
         "Type": "Automation",
         "Settings": [],
         "IncompatibleMods": [
+          "NF",
+          "SD",
+          "PF",
+          "AC",
           "AT",
           "CN",
           "AS"
