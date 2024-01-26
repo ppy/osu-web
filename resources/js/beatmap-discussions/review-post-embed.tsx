@@ -4,18 +4,18 @@
 import { discussionTypeIcons } from 'beatmap-discussions/discussion-type';
 import { BeatmapIcon } from 'components/beatmap-icon';
 import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
+import BeatmapsetDiscussionsStore from 'interfaces/beatmapset-discussions-store';
 import * as React from 'react';
 import { formatTimestamp, makeUrl, startingPost } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
-import { BeatmapsContext } from './beatmaps-context';
 import DiscussionMessage from './discussion-message';
-import { DiscussionsContext } from './discussions-context';
 
 interface Props {
   data: {
     discussion_id: number;
   };
+  store: BeatmapsetDiscussionsStore;
 }
 
 export function postEmbedModifiers(discussion: BeatmapsetDiscussionJson) {
@@ -27,13 +27,13 @@ export function postEmbedModifiers(discussion: BeatmapsetDiscussionJson) {
   };
 }
 
-export const ReviewPostEmbed = ({ data }: Props) => {
-  const bn = 'beatmap-discussion-review-post-embed-preview';
-  const discussions = React.useContext(DiscussionsContext);
-  const beatmaps = React.useContext(BeatmapsContext);
-  const discussion = discussions[data.discussion_id];
+const bn = 'beatmap-discussion-review-post-embed-preview';
 
-  if (!discussion) {
+export const ReviewPostEmbed = ({ data, store }: Props) => {
+  const beatmaps = store.beatmaps;
+  const discussion = store.discussions.get(data.discussion_id);
+
+  if (discussion == null) {
     // if a discussion has been deleted or is otherwise missing
     return (
       <div className={classWithModifiers(bn, ['deleted', 'lighter'])}>
@@ -43,12 +43,12 @@ export const ReviewPostEmbed = ({ data }: Props) => {
   }
 
   const post = startingPost(discussion);
-  if (post.system) {
-    console.error('embed should not have system starting post', discussion.id);
+  if (post == null || post.system) {
+    console.error('embed starting post is missing or is system post', discussion.id);
     return null;
   }
 
-  const beatmap = discussion.beatmap_id == null ? undefined : beatmaps[discussion.beatmap_id];
+  const beatmap = discussion.beatmap_id == null ? undefined : beatmaps.get(discussion.beatmap_id);
 
   const messageTypeIcon = () => {
     const type = discussion.message_type;

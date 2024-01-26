@@ -5,11 +5,12 @@ import { CircularProgress } from 'components/circular-progress';
 import { Spinner } from 'components/spinner';
 import { EmbedElement } from 'editor';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
-import BeatmapsetDiscussionJson, { BeatmapsetDiscussionJsonForBundle, BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
-import BeatmapsetJson from 'interfaces/beatmapset-json';
+import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
+import BeatmapsetDiscussionsStore from 'interfaces/beatmapset-discussions-store';
+import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import isHotkey from 'is-hotkey';
 import { route } from 'laroute';
-import { filter } from 'lodash';
+import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { createEditor, Editor as SlateEditor, Element as SlateElement, Node as SlateNode, NodeEntry, Range, Text, Transforms } from 'slate';
@@ -17,11 +18,11 @@ import { withHistory } from 'slate-history';
 import { Editable, ReactEditor, RenderElementProps, RenderLeafProps, Slate, withReact } from 'slate-react';
 import { DOMRange } from 'slate-react/dist/utils/dom';
 import { onError } from 'utils/ajax';
-import { sortWithMode } from 'utils/beatmap-helper';
 import { timestampRegex } from 'utils/beatmapset-discussion-helper';
 import { nominationsCount } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
+import DiscussionsState from './discussions-state';
 import { DraftsContext } from './drafts-context';
 import EditorDiscussionComponent from './editor-discussion-component';
 import {
@@ -45,15 +46,13 @@ interface CacheInterface {
 }
 
 interface Props {
-  beatmaps: Partial<Record<number, BeatmapExtendedJson>>;
-  beatmapset: BeatmapsetJson;
-  currentBeatmap: BeatmapExtendedJson | null;
   discussion?: BeatmapsetDiscussionJson;
-  discussions: Partial<Record<number, BeatmapsetDiscussionJsonForBundle | BeatmapsetDiscussionJsonForShow>>; // passed in via context at parent
+  discussionsState: DiscussionsState;
   document?: string;
   editing: boolean;
   onChange?: () => void;
   onFocus?: () => void;
+  store: BeatmapsetDiscussionsStore;
 }
 
 interface State {
@@ -73,6 +72,7 @@ function isDraftEmbed(block: SlateElement): block is EmbedElement {
   return block.type === 'embed' && block.discussionId == null;
 }
 
+@observer
 export default class Editor extends React.Component<Props, State> {
   static contextType = ReviewEditorConfigContext;
   static defaultProps = {
@@ -88,7 +88,19 @@ export default class Editor extends React.Component<Props, State> {
   slateEditor: SlateEditor;
   toolbarRef: React.RefObject<EditorToolbar>;
   private readonly initialValue: SlateElement[] = emptyDocTemplate;
-  private xhr?: JQueryXHR | null;
+  private xhr: JQuery.jqXHR<BeatmapsetWithDiscussionsJson> | null = null;
+
+  private get beatmaps() {
+    return this.props.store.beatmaps;
+  }
+
+  private get beatmapset() {
+    return this.props.discussionsState.beatmapset;
+  }
+
+  private get discussions() {
+    return this.props.store.discussions;
+  }
 
   private get editMode() {
     return this.props.document != null;
@@ -103,7 +115,7 @@ export default class Editor extends React.Component<Props, State> {
     this.scrollContainerRef = React.createRef();
     this.toolbarRef = React.createRef();
     this.insertMenuRef = React.createRef();
-    this.localStorageKey = `newDiscussion-${this.props.beatmapset.id}`;
+    this.localStorageKey = `newDiscussion-${this.beatmapset.id}`;
 
     if (this.editMode) {
       this.initialValue = this.valueFromProps();
@@ -185,16 +197,6 @@ export default class Editor extends React.Component<Props, State> {
     return ranges;
   };
 
-  /**
-   * Type guard for checking if the beatmap is part of currently selected beatmapset
-   *
-   * @param beatmap
-   * @returns boolean
-   */
-  isCurrentBeatmap = (beatmap?: BeatmapExtendedJson): beatmap is BeatmapExtendedJson => (
-    beatmap != null && beatmap.beatmapset_id === this.props.beatmapset.id
-  );
-
   onChange = (value: SlateElement[]) => {
     // Anything that triggers this needs to be fixed!
     // Slate.value is only used for initial value.
@@ -260,12 +262,14 @@ export default class Editor extends React.Component<Props, State> {
 
     if (this.showConfirmationIfRequired()) {
       this.setState({ posting: true }, () => {
-        this.xhr = $.ajax(route('beatmapsets.discussion.review', { beatmapset: this.props.beatmapset.id }), {
+        this.xhr = $.ajax(route('beatmapsets.discussion.review', { beatmapset: this.beatmapset.id }), {
           data: { document: this.serialize() },
           method: 'POST',
-        })
-          .done((data) => {
-            $.publish('beatmapsetDiscussions:update', { beatmapset: data });
+        });
+
+        this.xhr
+          .done((beatmapset) => {
+            this.props.discussionsState.update({ beatmapset });
             this.resetInput();
           })
           .fail(onError)
@@ -298,7 +302,7 @@ export default class Editor extends React.Component<Props, State> {
             >
               <div ref={this.scrollContainerRef} className={`${editorClass}__input-area`}>
                 <EditorToolbar ref={this.toolbarRef} />
-                <EditorInsertionMenu ref={this.insertMenuRef} currentBeatmap={this.props.currentBeatmap} />
+                <EditorInsertionMenu ref={this.insertMenuRef} currentBeatmap={this.props.discussionsState.currentBeatmap} />
                 <DraftsContext.Provider value={this.cache.draftEmbeds || []}>
                   <Editable
                     decorate={this.decorateTimestamps}
@@ -369,12 +373,11 @@ export default class Editor extends React.Component<Props, State> {
         const { element, ...otherProps } = props; // spreading ..props doesn't use the narrower type.
         el = (
           <EditorDiscussionComponent
-            beatmaps={this.sortedBeatmaps()}
-            beatmapset={this.props.beatmapset}
-            discussions={this.props.discussions}
+            discussionsState={this.props.discussionsState}
             editMode={this.editMode}
             element={element}
             readOnly={this.state.posting}
+            store={this.props.store}
             {...otherProps}
           />
         );
@@ -433,12 +436,12 @@ export default class Editor extends React.Component<Props, State> {
   showConfirmationIfRequired = () => {
     const docContainsProblem = slateDocumentContainsNewProblem(this.state.value);
     const canDisqualify = core.currentUser != null && (core.currentUser.is_admin || core.currentUser.is_moderator || core.currentUser.is_full_bn);
-    const willDisqualify = this.props.beatmapset.status === 'qualified' && docContainsProblem;
+    const willDisqualify = this.beatmapset.status === 'qualified' && docContainsProblem;
     const canReset = core.currentUser != null && (core.currentUser.is_admin || core.currentUser.is_nat || core.currentUser.is_bng);
     const willReset =
-      this.props.beatmapset.status === 'pending' &&
-      this.props.beatmapset.nominations && nominationsCount(this.props.beatmapset.nominations, 'current') > 0 &&
-      docContainsProblem;
+      this.beatmapset.status === 'pending'
+        && nominationsCount(this.beatmapset.nominations, 'current') > 0
+        && docContainsProblem;
 
     if (canDisqualify && willDisqualify) {
       return confirm(trans('beatmaps.nominations.reset_confirm.disqualify'));
@@ -449,16 +452,6 @@ export default class Editor extends React.Component<Props, State> {
     }
 
     return true;
-  };
-
-  sortedBeatmaps = () => {
-    if (this.cache.sortedBeatmaps == null) {
-      // filter to only include beatmaps from the current discussion's beatmapset (for the modding profile page)
-      const beatmaps = filter(this.props.beatmaps, this.isCurrentBeatmap);
-      this.cache.sortedBeatmaps = sortWithMode(beatmaps);
-    }
-
-    return this.cache.sortedBeatmaps;
   };
 
   updateDrafts = () => {
@@ -500,7 +493,7 @@ export default class Editor extends React.Component<Props, State> {
           }
 
           if (node.beatmapId != null) {
-            const beatmap = this.props.beatmaps[node.beatmapId];
+            const beatmap = this.beatmaps.get(node.beatmapId);
             if (beatmap == null || beatmap.deleted_at != null) {
               Transforms.setNodes(editor, { beatmapId: undefined }, { at: path });
             }
@@ -523,10 +516,10 @@ export default class Editor extends React.Component<Props, State> {
   }
 
   private valueFromProps() {
-    if (!this.props.editing || this.props.document == null || this.props.discussions == null) {
+    if (!this.props.editing || this.props.document == null) {
       return [];
     }
 
-    return parseFromJson(this.props.document, this.props.discussions);
+    return parseFromJson(this.props.document, this.discussions);
   }
 }
