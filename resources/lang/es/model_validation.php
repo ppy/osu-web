@@ -91,7 +91,7 @@ return [
 
         'topic_poll' => [
             'duplicate_options' => 'Opciones duplicadas no permitidas.',
-            'grace_period_expired' => 'No se puede editar una encuesta después de :limit horas',
+            'grace_period_expired' => 'No se puede editar una encuesta después de :limit horas.',
             'hiding_results_forever' => 'No se pueden ocultar los resultados de una encuesta que nunca finaliza.',
             'invalid_max_options' => 'Las opciones por usuario no pueden exceder el número de opciones disponibles.',
             'minimum_one_selection' => 'Se requiere un mínimo de una opción por usuario.',

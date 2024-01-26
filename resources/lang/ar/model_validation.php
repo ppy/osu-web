@@ -8,7 +8,7 @@ return [
     'not_negative' => ':attribute لا يمكن ان يكون سلبياََ.',
     'required' => ':attribute مطلوب.',
     'too_long' => ':attribute تجاوز الحد المطلوب - يمكن ان يصل حد :limit حروف فقط.',
-    'url' => '',
+    'url' => 'المرجو إدخال عنوان URL صحيح.',
     'wrong_confirmation' => 'التأكيد لا يتطابق.',
 
     'beatmapset_discussion' => [
@@ -110,7 +110,7 @@ return [
     ],
 
     'legacy_api_key' => [
-        'exists' => '',
+        'exists' => 'يتم توفير مفتاح API واحد فقط لكل مستخدم في الوقت الحالي.',
 
         'attributes' => [
             'api_key' => 'مفتاح واجهة برمجة التطبيقات',

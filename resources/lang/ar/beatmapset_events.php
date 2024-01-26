@@ -34,7 +34,7 @@ return [
         'qualify' => 'هذه الخريطة وصلت إلى العدد المطلوب من الترشيحات وتأهلت.',
         'rank' => 'Ranked.',
         'remove_from_loved' => 'تمت إزالتها من "Loved" من قِبَل :user. (:text)',
-        'tags_edit' => '',
+        'tags_edit' => 'تم تغيير العلامات من ":old" إلى ":new".',
 
         'nsfw_toggle' => [
             'to_0' => 'تصيف "محتوى حساس" مَلغي',

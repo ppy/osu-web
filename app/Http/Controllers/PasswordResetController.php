@@ -11,6 +11,7 @@ use App\Exceptions\User\PasswordResetFailException;
 use App\Libraries\User\PasswordResetData;
 use App\Models\User;
 use App\Models\UserAccountHistory;
+use Carbon\CarbonImmutable;
 
 class PasswordResetController extends Controller
 {
@@ -124,6 +125,7 @@ class PasswordResetController extends Controller
         }
 
         $user->validatePasswordConfirmation();
+        $params['user']['user_lastvisit'] = CarbonImmutable::now();
         if ($user->update($params['user'])) {
             $user->resetSessions();
             $this->login($user);

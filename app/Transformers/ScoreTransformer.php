@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace App\Transformers;
 
+use App\Libraries\Search\ScoreSearchParams;
 use App\Models\Beatmap;
 use App\Models\DeletedUser;
 use App\Models\LegacyMatch;
@@ -248,12 +249,17 @@ class ScoreTransformer extends TransformerAbstract
 
     public function includeRankCountry(ScoreBest|SoloScore $score)
     {
-        return $this->primitive($score->userRank(['type' => 'country']));
+        return $this->primitive($score->userRank([
+            'type' => 'country',
+            'is_legacy' => ScoreSearchParams::showLegacyForUser(\Auth::user()),
+        ]));
     }
 
     public function includeRankGlobal(ScoreBest|SoloScore $score)
     {
-        return $this->primitive($score->userRank([]));
+        return $this->primitive($score->userRank([
+            'is_legacy' => ScoreSearchParams::showLegacyForUser(\Auth::user()),
+        ]));
     }
 
     public function includeUser(LegacyMatch\Score|MultiplayerScoreLink|ScoreModel|SoloScore $score)

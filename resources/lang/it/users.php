@@ -339,7 +339,7 @@ return [
                 'title' => 'io!',
             ],
             'medals' => [
-                'empty' => "Questo utente non ne ha ricevuti ancora. ;_;",
+                'empty' => "Questo utente non ne ha ancora ottenuta una. ;_;",
                 'recent' => 'Più recenti',
                 'title' => 'Medaglie',
             ],
@@ -446,7 +446,7 @@ return [
             'country_simple' => 'Classifica Nazionale',
             'global' => 'Posto globale per :mode',
             'global_simple' => 'Classifica Globale',
-            'highest' => 'Grado più alto: :rank il :date',
+            'highest' => 'Posizione più alta: :rank il :date',
         ],
         'stats' => [
             'hit_accuracy' => 'Precisione dei Colpi',

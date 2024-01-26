@@ -140,7 +140,8 @@
         "IncompatibleMods": [
           "NF",
           "PF",
-          "TP"
+          "TP",
+          "CN"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -164,7 +165,8 @@
         "IncompatibleMods": [
           "NF",
           "SD",
-          "AC"
+          "AC",
+          "CN"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -352,7 +354,8 @@
         "IncompatibleMods": [
           "EZ",
           "NF",
-          "PF"
+          "PF",
+          "CN"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -605,6 +608,9 @@
         "Settings": [],
         "IncompatibleMods": [
           "NF",
+          "SD",
+          "PF",
+          "AC",
           "AL",
           "SG",
           "AT",
@@ -1360,7 +1366,8 @@
         ],
         "IncompatibleMods": [
           "NF",
-          "PF"
+          "PF",
+          "CN"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -1384,7 +1391,8 @@
         "IncompatibleMods": [
           "NF",
           "SD",
-          "AC"
+          "AC",
+          "CN"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -1520,7 +1528,8 @@
         ],
         "IncompatibleMods": [
           "NF",
-          "PF"
+          "PF",
+          "CN"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -1662,6 +1671,9 @@
         "Settings": [],
         "IncompatibleMods": [
           "NF",
+          "SD",
+          "PF",
+          "AC",
           "SG",
           "AT",
           "CN",
@@ -1994,7 +2006,8 @@
         ],
         "IncompatibleMods": [
           "NF",
-          "PF"
+          "PF",
+          "CN"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -2018,7 +2031,8 @@
         "IncompatibleMods": [
           "NF",
           "SD",
-          "AC"
+          "AC",
+          "CN"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -2153,7 +2167,8 @@
         "IncompatibleMods": [
           "EZ",
           "NF",
-          "PF"
+          "PF",
+          "CN"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -2264,6 +2279,9 @@
         "Settings": [],
         "IncompatibleMods": [
           "NF",
+          "SD",
+          "PF",
+          "AC",
           "AT",
           "CN",
           "RX"
@@ -2591,7 +2609,8 @@
         ],
         "IncompatibleMods": [
           "NF",
-          "PF"
+          "PF",
+          "CN"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -2615,7 +2634,8 @@
         "IncompatibleMods": [
           "NF",
           "SD",
-          "AC"
+          "AC",
+          "CN"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -2788,7 +2808,8 @@
         "IncompatibleMods": [
           "EZ",
           "NF",
-          "PF"
+          "PF",
+          "CN"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -3187,6 +3208,9 @@
         "Settings": [],
         "IncompatibleMods": [
           "NF",
+          "SD",
+          "PF",
+          "AC",
           "AT",
           "CN",
           "AS"

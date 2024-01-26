@@ -182,7 +182,7 @@ return [
             'edit' => [
                 'locked' => 'Käyttäjäsivu on lukittu.',
                 'not_owner' => 'Voit muokata vain omaa käyttäjäsivuasi.',
-                'require_supporter_tag' => 'osu!-tukijamerkki vaaditaan.',
+                'require_supporter_tag' => 'osu!tukijamerkki vaaditaan.',
             ],
         ],
         'update_email' => [

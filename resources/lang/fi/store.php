@@ -33,7 +33,7 @@ return [
         'declined' => 'Maksu peruutettiin.',
         'delayed_shipping' => 'Olemme tällä hetkellä hukkumassa tilauksiin! Olet vapaa tilaamaan, mutta ole valmis odottamaan **1-2 viikkoa lisää** kunnes olemme saaneet nykyiset tilaukset lähetettyä.',
         'hide_from_activity' => 'Älä ilmoita osu!supporter tilauksesta profiilissani',
-        'old_cart' => 'Korisi näyttää olevan vanhentunut ja on ladattu uudestaan, yritä uudelleen.',
+        'old_cart' => 'Ostoskärrysi näyttää olevan vanhentunut ja on ladattu uudestaan, ole hyvä ja yritä uudelleen.',
         'pay' => 'Maksa Paypalilla',
         'title_compact' => 'kassa',
 
@@ -55,7 +55,7 @@ return [
         'contact' => 'Ota yhteyttä:',
         'date' => 'Päivämäärä:',
         'echeck_delay' => 'Koska maksusi oli eCheck, anna maksimissaan 10 päivää että maksu pääsee PayPalin läpi!',
-        'hide_from_activity' => 'Tämän tilauksen osu!-tukijamerkkejä ei näytetä viimeaikaisessa toiminnassasi.',
+        'hide_from_activity' => 'Tämän tilauksen osu!tukijamerkkejä ei näytetä viimeaikaisessa toiminnassasi.',
         'sent_via' => 'Lähetetty kautta:',
         'shipping_to' => 'Toimitetaan kohteeseen:',
         'title' => 'Lasku',
@@ -171,7 +171,7 @@ return [
             'out_with_alternative' => 'Valitettavasti tätä tuotetta ei ole enää saatavilla. Käytä valikkoa valitaksesi toinen vaihtoehto tai tarkista myöhemmin uudelleen!',
         ],
 
-        'add_to_cart' => 'Lisää koriin',
+        'add_to_cart' => 'Lisää kärryihin',
         'notify' => 'Ilmoita minulle, kun saatavilla!',
 
         'notification_success' => 'saat ilmoituksen, kun meillä on täydennystä. klikkaa :link peruuttaaksesi',
@@ -185,7 +185,7 @@ return [
         'gift_message' => 'lisää omavalintainen viesti lahjaasi! (enintään :length merkkiä)',
 
         'require_login' => [
-            '_' => 'Sinun pitää olla :link, jotta voit hankkia osu!-tukijamerkin!',
+            '_' => 'Sinun pitää olla :link, jotta voit hankkia osu!tukijamerkin!',
             'link_text' => 'kirjautuneena sisään',
         ],
     ],

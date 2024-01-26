@@ -160,10 +160,13 @@ export class NewDiscussion extends React.Component<Props> {
   }
 
   componentDidMount() {
-    this.updateStickToHeight();
     // watching for height changes on the stickTo element to handle horizontal scrollbars when they appear.
     $(window).on('resize', this.updateStickToHeight);
-    this.disposers.add(core.reactTurbolinks.runAfterPageLoad(action(() => this.mounted = true)));
+    this.disposers.add(core.reactTurbolinks.runAfterPageLoad(action(() => {
+      this.mounted = true;
+      this.updateStickToHeight();
+    })));
+
     if (this.props.autoFocus) {
       this.disposers.add(core.reactTurbolinks.runAfterPageLoad(() => this.inputBox.current?.focus()));
     }

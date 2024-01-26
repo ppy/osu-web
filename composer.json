@@ -44,7 +44,7 @@
     "paypal/paypal-checkout-sdk": "*",
     "sentry/sentry-laravel": "*",
     "symfony/yaml": "*",
-    "tightenco/ziggy": ">=0.8.1",
+    "tightenco/ziggy": "^1.8",
     "xsolla/xsolla-sdk-php": "dev-php81"
   },
   "require-dev": {
