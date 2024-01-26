@@ -1360,17 +1360,8 @@ class OsuAuthorize
      */
     public function checkContestJudgeShow(?User $user, Contest $contest): string
     {
-        $this->ensureLoggedIn($user);
-
-        if (!$contest->isJudgingActive()) {
-            return 'contest.judging_not_active';
-        }
-
-        if (!$contest->isJudge($user)) {
-            return 'unauthorized';
-        }
-
-        return 'ok';
+        // so that admins can show the panel but not vote (ContestJudge is alwaysCheck)
+        return $this->checkContestJudge($user, $contest);
     }
 
     /**
