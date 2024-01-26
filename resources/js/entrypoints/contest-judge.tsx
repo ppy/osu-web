@@ -4,17 +4,12 @@
 import Main from 'contest-judge/main';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import ContestEntryStore from 'stores/contest-entry-store';
+import ContestJudgeStore from 'stores/contest-judge-store';
 import { parseJson } from 'utils/json';
 
 core.reactTurbolinks.register('contest-judge', () => {
-  const store = new ContestEntryStore();
-  store.updateWithJson(parseJson('json-entries'));
+  const store = new ContestJudgeStore();
+  store.updateWithJson(parseJson('json-contest'));
 
-  return (
-    <Main
-      contest={parseJson('json-contest')}
-      store={store}
-    />
-  );
+  return <Main store={store} />;
 });
