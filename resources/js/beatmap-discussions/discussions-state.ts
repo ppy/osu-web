@@ -417,22 +417,16 @@ export default class DiscussionsState {
 
   @action
   update(options: Partial<UpdateOptions>) {
-    const {
-      beatmap_discussion_post_ids,
-      beatmapset,
-      watching,
-    } = options;
-
-    if (beatmap_discussion_post_ids != null) {
-      this.markAsRead(beatmap_discussion_post_ids);
+    if (options.beatmap_discussion_post_ids != null) {
+      this.markAsRead(options.beatmap_discussion_post_ids);
     }
 
-    if (beatmapset != null) {
-      this.store.beatmapset = beatmapset;
+    if (options.beatmapset != null) {
+      this.store.beatmapset = options.beatmapset;
     }
 
-    if (watching != null) {
-      this.beatmapset.current_user_attributes.is_watching = watching;
+    if (options.watching != null) {
+      this.beatmapset.current_user_attributes.is_watching = options.watching;
     }
   }
 }
