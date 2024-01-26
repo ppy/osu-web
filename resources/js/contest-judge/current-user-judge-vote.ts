@@ -1,0 +1,34 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+import ContestJudgeScoreJson from 'interfaces/contest-judge-score-json';
+import ContestJudgeVoteJson from 'interfaces/contest-judge-vote-json';
+import { action, computed, makeObservable, observable } from 'mobx';
+
+export class CurrentUserJudgeVote {
+  @observable comment: string;
+  @observable scores = new Map<number, ContestJudgeScoreJson>();
+
+  @computed
+  get dataForSubmit() {
+    return {
+      comment: this.comment,
+      scores: [...this.scores.values()],
+    };
+  }
+
+  constructor(json: ContestJudgeVoteJson) {
+    this.comment = json.comment ?? '';
+
+    json.scores?.forEach((score) => {
+      this.scores.set(score.contest_scoring_category_id, score);
+    });
+
+    makeObservable(this);
+  }
+
+  @action
+  updateComment(content: string) {
+    this.comment = content;
+  }
+}
