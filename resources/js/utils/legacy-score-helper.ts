@@ -30,6 +30,7 @@ export function legacyAccuracyAndRank(score: SoloScoreJson) {
     let accuracy: number;
     let rank: Rank;
 
+    // Reference: https://github.com/ppy/osu/blob/e3ffea1b127cbd3171010972588a8b07cf049ba0/osu.Game/Scoring/Legacy/LegacyScoreDecoder.cs#L170-L274
     switch (score.ruleset_id) {
       // osu
       case 0: {
