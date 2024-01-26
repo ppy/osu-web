@@ -36,6 +36,9 @@ return [
     'starting' => [
         'username' => 'Zadejte Vaši e-mailovou adresu nebo uživatelské jméno',
 
+        'reason' => [
+            'inactive_different_country' => "",
+        ],
         'support' => [
             '_' => 'Potřebujete další pomoc? Kontaktujte nás prostřednictvím :button.',
             'button' => 'systém podpory',

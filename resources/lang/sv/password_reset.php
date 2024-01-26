@@ -36,6 +36,9 @@ return [
     'starting' => [
         'username' => 'Fyll i din e-postadress eller ditt användarnamn',
 
+        'reason' => [
+            'inactive_different_country' => "",
+        ],
         'support' => [
             '_' => 'Behöver du mer hjälp? Kontakta oss via vår :button.',
             'button' => 'supportsystem',

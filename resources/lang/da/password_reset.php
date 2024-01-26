@@ -36,6 +36,9 @@ return [
     'starting' => [
         'username' => 'Indtast email-adresse eller brugernavn',
 
+        'reason' => [
+            'inactive_different_country' => "",
+        ],
         'support' => [
             '_' => 'Har du brug for yderligere assistance? Kontakt os via vores :button.',
             'button' => 'support system',

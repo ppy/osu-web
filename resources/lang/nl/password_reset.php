@@ -36,6 +36,9 @@ return [
     'starting' => [
         'username' => 'Vul e-mail adres of gebruikersnaam in',
 
+        'reason' => [
+            'inactive_different_country' => "",
+        ],
         'support' => [
             '_' => 'Meer hulp nodig? Neem contact met ons op via onze :button.',
             'button' => 'ondersteuningssysteem',

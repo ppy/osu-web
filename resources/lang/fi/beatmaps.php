@@ -293,7 +293,7 @@ return [
         'pending' => 'Vireillä',
         'wip' => 'Työn alla',
         'qualified' => 'Kelpuutettu',
-        'ranked' => 'Pisteytetty',
+        'ranked' => 'Rankattu',
     ],
     'genre' => [
         'any' => 'Kaikki',

@@ -63,15 +63,15 @@ return [
     ],
 
     'github_user' => [
-        'info' => "",
+        'info' => "Eğer osu!'nun açık kaynaklı repository'lerinde katkılıysanız, GitHub hesabınızı bağlamanız sizin değişim günlüğü girişleriniz, osu! profilinizle ilişkilendirilecektir. osu! repository'lerinde katkı geçmişi olmayan GitHub hesapları bağlanamaz.",
         'link' => 'GitHub Hesabını Bağla',
         'title' => 'GitHub',
         'unlink' => 'GitHub Hesabının bağlantısını Kaldır',
 
         'error' => [
-            'already_linked' => '',
-            'no_contribution' => '',
-            'unverified_email' => '',
+            'already_linked' => 'Bu GitHub hesabı zaten başka bir kullanıcıya bağlı.',
+            'no_contribution' => 'osu! repository\'lerinde katkı geçmişi olmayan GitHub hesabı bağlanamaz.',
+            'unverified_email' => 'Lütfen GitHub\'daki ana e-postanızı doğrulayın, sonra hesabınızı tekrar bağlamayı deneyin.',
         ],
     ],
 
