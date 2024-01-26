@@ -10,11 +10,13 @@ import * as React from 'react';
 import { group as groupBeatmaps } from 'utils/beatmap-helper';
 import { trans } from 'utils/lang';
 import BeatmapOwnerEditor from './beatmap-owner-editor';
+import DiscussionsState from './discussions-state';
 
 interface Props {
   beatmapset: BeatmapsetExtendedJson;
+  discussionsState: DiscussionsState;
   onClose: () => void;
-  users: Partial<Record<number, UserJson>>;
+  users: Map<number | null | undefined, UserJson>;
 }
 
 @observer
@@ -26,7 +28,7 @@ export default class BeatmapsOwnerEditor extends React.Component<Props> {
 
     // this will be outdated on new props but it's fine
     // as there's separate process handling unknown users
-    for (const user of Object.values(props.users)) {
+    for (const user of this.props.users.values()) {
       if (user != null) {
         this.userByName.set(normaliseUsername(user.username), user);
       }
@@ -61,6 +63,7 @@ export default class BeatmapsOwnerEditor extends React.Component<Props> {
                 key={beatmap.id}
                 beatmap={beatmap}
                 beatmapsetUser={beatmapsetUser}
+                discussionsState={this.props.discussionsState}
                 user={this.getUser(beatmap.user_id)}
                 userByName={this.userByName}
               />
@@ -82,6 +85,6 @@ export default class BeatmapsOwnerEditor extends React.Component<Props> {
   }
 
   private getUser(userId: number) {
-    return this.props.users[userId] ?? deletedUserJson;
+    return this.props.users.get(userId) ?? deletedUserJson;
   }
 }

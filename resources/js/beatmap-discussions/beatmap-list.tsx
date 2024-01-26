@@ -3,44 +3,43 @@
 
 import BeatmapListItem from 'components/beatmap-list-item';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
-import BeatmapsetJson from 'interfaces/beatmapset-json';
 import UserJson from 'interfaces/user-json';
-import { deletedUser } from 'models/user';
+import { action, computed, makeObservable, observable } from 'mobx';
+import { observer } from 'mobx-react';
+import { deletedUserJson } from 'models/user';
 import * as React from 'react';
+import { makeUrl } from 'utils/beatmapset-discussion-helper';
 import { blackoutToggle } from 'utils/blackout';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { nextVal } from 'utils/seq';
+import DiscussionsState from './discussions-state';
 
 interface Props {
-  beatmaps: BeatmapExtendedJson[];
-  beatmapset: BeatmapsetJson;
-  createLink: (beatmap: BeatmapExtendedJson) => string;
-  currentBeatmap: BeatmapExtendedJson;
-  getCount: (beatmap: BeatmapExtendedJson) => number | undefined;
-  onSelectBeatmap: (beatmapId: number) => void;
-  users: Partial<Record<number, UserJson>>;
+  discussionsState: DiscussionsState;
+  users: Map<number | null | undefined, UserJson>;
 }
 
-interface State {
-  showingSelector: boolean;
-}
-
-export default class BeatmapList extends React.PureComponent<Props, State> {
+@observer
+export default class BeatmapList extends React.Component<Props> {
   private readonly eventId = `beatmapset-discussions-show-beatmap-list-${nextVal()}`;
+  @observable private showingSelector = false;
+
+  @computed
+  private get beatmaps() {
+    return this.props.discussionsState.groupedBeatmaps.get(this.props.discussionsState.currentBeatmap.mode) ?? [];
+  }
 
   constructor(props: Props) {
     super(props);
 
-    this.state = {
-      showingSelector: false,
-    };
+    makeObservable(this);
   }
 
   componentDidMount() {
     $(document).on(`click.${this.eventId}`, this.onDocumentClick);
-    $(document).on(`turbolinks:before-cache.${this.eventId}`, this.hideSelector);
-    this.syncBlackout();
+    $(document).on(`turbolinks:before-cache.${this.eventId}`, this.handleBeforeCache);
+    blackoutToggle(this.showingSelector, 0.5);
   }
 
   componentWillUnmount() {
@@ -49,14 +48,14 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
 
   render() {
     return (
-      <div className={classWithModifiers('beatmap-list', { selecting: this.state.showingSelector })}>
+      <div className={classWithModifiers('beatmap-list', { selecting: this.showingSelector })}>
         <div className='beatmap-list__body'>
           <a
             className='beatmap-list__item beatmap-list__item--selected beatmap-list__item--large js-beatmap-list-selector'
-            href={this.props.createLink(this.props.currentBeatmap)}
+            href={makeUrl({ beatmap: this.props.discussionsState.currentBeatmap })}
             onClick={this.toggleSelector}
           >
-            <BeatmapListItem beatmap={this.props.currentBeatmap} mapper={null} modifiers='large' />
+            <BeatmapListItem beatmap={this.props.discussionsState.currentBeatmap} mapper={null} modifiers='large' />
             <div className='beatmap-list__item-selector-button'>
               <span className='fas fa-chevron-down' />
             </div>
@@ -64,7 +63,7 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
 
           <div className='beatmap-list__selector-container'>
             <div className='beatmap-list__selector'>
-              {this.props.beatmaps.map(this.beatmapListItem)}
+              {this.beatmaps.map(this.beatmapListItem)}
             </div>
           </div>
         </div>
@@ -73,20 +72,20 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
   }
 
   private readonly beatmapListItem = (beatmap: BeatmapExtendedJson) => {
-    const count = this.props.getCount(beatmap);
+    const count = this.props.discussionsState.unresolvedDiscussionCounts.byBeatmap[beatmap.id];
 
     return (
       <div
         key={beatmap.id}
-        className={classWithModifiers('beatmap-list__item', { current: beatmap.id === this.props.currentBeatmap.id })}
+        className={classWithModifiers('beatmap-list__item', { current: beatmap.id === this.props.discussionsState.currentBeatmap.id })}
         data-id={beatmap.id}
         onClick={this.selectBeatmap}
       >
         <BeatmapListItem
           beatmap={beatmap}
-          beatmapUrl={this.props.createLink(beatmap)}
-          beatmapset={this.props.beatmapset}
-          mapper={this.props.users[beatmap.user_id] ?? deletedUser}
+          beatmapUrl={makeUrl({ beatmap })}
+          beatmapset={this.props.discussionsState.beatmapset}
+          mapper={this.props.users.get(beatmap.user_id) ?? deletedUserJson}
           showNonGuestMapper={false}
         />
         {count != null &&
@@ -98,12 +97,12 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
     );
   };
 
-  private readonly hideSelector = () => {
-    if (this.state.showingSelector) {
-      this.setSelector(false);
-    }
+  @action
+  private readonly handleBeforeCache = () => {
+    this.setShowingSelector(false);
   };
 
+  @action
   private readonly onDocumentClick = (e: JQuery.ClickEvent) => {
     if (e.button !== 0) return;
 
@@ -111,31 +110,31 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
       return;
     }
 
-    this.hideSelector();
+    this.setShowingSelector(false);
   };
 
+  @action
   private readonly selectBeatmap = (e: React.MouseEvent<HTMLElement>) => {
     if (e.button !== 0) return;
     e.preventDefault();
 
     const beatmapId = parseInt(e.currentTarget.dataset.id ?? '', 10);
-    this.props.onSelectBeatmap(beatmapId);
+
+    this.props.discussionsState.currentBeatmapId = beatmapId;
+    this.props.discussionsState.changeDiscussionPage('timeline');
   };
 
-  private readonly setSelector = (state: boolean) => {
-    if (this.state.showingSelector !== state) {
-      this.setState({ showingSelector: state }, this.syncBlackout);
-    }
-  };
+  @action
+  private setShowingSelector(state: boolean) {
+    this.showingSelector = state;
+    blackoutToggle(state, 0.5);
+  }
 
-  private readonly syncBlackout = () => {
-    blackoutToggle(this.state.showingSelector, 0.5);
-  };
-
+  @action
   private readonly toggleSelector = (e: React.MouseEvent<HTMLElement>) => {
     if (e.button !== 0) return;
     e.preventDefault();
 
-    this.setSelector(!this.state.showingSelector);
+    this.setShowingSelector(!this.showingSelector);
   };
 }

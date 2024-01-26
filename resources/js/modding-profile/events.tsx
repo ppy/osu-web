@@ -11,7 +11,7 @@ import { trans } from 'utils/lang';
 interface Props {
   events: BeatmapsetEventJson[];
   user: UserJson;
-  users: Partial<Record<string, UserJson>>;
+  users: Map<number | null | undefined, UserJson>;
 }
 
 export default class Events extends React.Component<Props> {
