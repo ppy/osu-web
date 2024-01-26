@@ -73,21 +73,22 @@ class ContestEntriesController extends Controller
             'comment',
         ]);
 
-        $categoryIds = new Set(array_pluck($params['scores'], 'contest_scoring_category_id'));
-        $categoryIds->intersect(new Set($entry->contest->scoringCategories->pluck('id')));
+        $scoresByCategoryId = collect($params['scores'])
+            ->keyBy('contest_scoring_category_id');
 
-        if ($categoryIds->count() !== $entry->contest->scoringCategories->count()) {
+        $expectedCategoryIds = new Set($entry->contest->scoringCategories->pluck('id'));
+        $givenCategoryIds = new Set($scoresByCategoryId->keys());
+
+        if ($expectedCategoryIds->diff($givenCategoryIds)->count() > 0) {
             throw new InvariantException(osu_trans('contest.judge.validation.missing_score'));
         }
 
-        DB::transaction(function () use ($entry, $params) {
+        DB::transaction(function () use ($entry, $params, $scoresByCategoryId) {
             $vote = $entry->judgeVotes()->firstOrNew(['user_id' => Auth::user()->getKey()]);
             $vote->fill(['comment' => $params['comment']])->save();
 
-            foreach ($params['scores'] as $score) {
-                $category = $entry->contest->scoringCategories
-                    ->find($score['contest_scoring_category_id']);
-
+            foreach ($entry->contest->scoringCategories as $category) {
+                $score = $scoresByCategoryId[$category->getKey()];
                 $value = clamp($score['value'], 0, $category->max_value);
 
                 $vote->scores()->firstOrNew([
