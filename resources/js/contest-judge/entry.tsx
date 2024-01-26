@@ -21,17 +21,18 @@ interface Props {
 
 @observer
 export default class Entry extends React.Component<Props> {
-  @observable private readonly currentVote?: CurrentUserJudgeVote;
-  @observable private initialVote?: CurrentUserJudgeVote;
+  @observable private readonly currentVote = new CurrentUserJudgeVote();
+  @observable private readonly initialVote = new CurrentUserJudgeVote();
   @observable private posting = false;
   @observable private xhr?: JQuery.jqXHR;
 
   constructor(props: Props) {
     super(props);
 
-    if (props.entry.current_user_judge_vote != null) {
-      this.currentVote = new CurrentUserJudgeVote(props.entry.current_user_judge_vote);
-      this.initialVote = new CurrentUserJudgeVote(props.entry.current_user_judge_vote);
+    const voteFromJson = props.entry.current_user_judge_vote;
+    if (voteFromJson != null) {
+      this.currentVote.updateWithJson(voteFromJson);
+      this.initialVote.updateWithJson(voteFromJson);
     }
 
     makeObservable(this);
@@ -40,10 +41,10 @@ export default class Entry extends React.Component<Props> {
   @computed
   private get disabled() {
     const scoresHaveChanged = this.props.store.scoringCategories.some((category) => {
-      const score = this.currentVote?.scores.get(category.id);
+      const score = this.currentVote.scores.get(category.id);
       if (score == null) return false;
 
-      const initialScore = this.initialVote?.scores.get(category.id);
+      const initialScore = this.initialVote.scores.get(category.id);
       if (initialScore?.value !== score.value) return true;
 
       return false;
@@ -51,7 +52,7 @@ export default class Entry extends React.Component<Props> {
 
     if (
       !scoresHaveChanged &&
-      this.currentVote?.comment === this.initialVote?.comment
+      this.currentVote.comment === this.initialVote.comment
     ) return true;
 
     return false;
@@ -61,7 +62,7 @@ export default class Entry extends React.Component<Props> {
     return (
       <div className='contest-judge-entry'>
         <div className='contest-judge-entry__title'>
-          {this.initialVote != null && (
+          {this.props.entry.current_user_judge_vote != null && (
             <span className="contest-judge-entry__voted-icon" title={trans('contest.judge.voted')}>
               <i className='fas fa-check' />
             </span>
@@ -70,7 +71,7 @@ export default class Entry extends React.Component<Props> {
         </div>
 
         {this.props.store.scoringCategories.map((category) => {
-          const currentScore = this.currentVote?.scores.get(category.id);
+          const currentScore = this.currentVote.scores.get(category.id);
 
           return (
             <div key={category.id}>
@@ -100,7 +101,7 @@ export default class Entry extends React.Component<Props> {
             className='contest-judge-entry__textarea'
             onChange={this.handleCommentChange}
             rows={6}
-            value={this.currentVote?.comment}
+            value={this.currentVote.comment}
           />
         </div>
 
@@ -119,7 +120,7 @@ export default class Entry extends React.Component<Props> {
 
   @action
   private readonly handleCommentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    this.currentVote?.updateComment(e.currentTarget.value);
+    this.currentVote.updateComment(e.currentTarget.value);
   };
 
   @action
@@ -128,7 +129,7 @@ export default class Entry extends React.Component<Props> {
     const value = Number(e.currentTarget.value);
 
     const score = { contest_scoring_category_id: categoryId, value };
-    this.currentVote?.scores.set(categoryId, score);
+    this.currentVote.scores.set(categoryId, score);
   };
 
   private renderRangeInput(category: ContestScoringCategoryJson, initialValue: number) {
@@ -152,7 +153,10 @@ export default class Entry extends React.Component<Props> {
     this.posting = true;
 
     this.xhr = $.ajax(route('contest-entries.judge-vote', { contest_entry: this.props.entry.id }), {
-      data: this.currentVote?.dataForSubmit,
+      data: {
+        comment: this.currentVote.comment,
+        scores: [...this.currentVote.scores.values()],
+      },
       method: 'PUT',
     });
 
@@ -162,7 +166,7 @@ export default class Entry extends React.Component<Props> {
         this.props.store.updateEntry(json);
 
         if (json.current_user_judge_vote != null) {
-          this.initialVote = new CurrentUserJudgeVote(json.current_user_judge_vote);
+          this.initialVote.updateWithJson(json.current_user_judge_vote);
         }
       })).always(action(() => {
         this.posting = false;
