@@ -39,6 +39,8 @@ class BeatmapsetTest extends TestCase
         $otherUser = User::factory()->create();
         $beatmapset->watches()->create(['user_id' => $otherUser->getKey()]);
 
+        $this->expectCountChange(fn () => $beatmapset->bssProcessQueues()->count(), 1);
+
         $beatmapset->love($user);
 
         $this->assertSame($notifications + 1, Notification::count());
@@ -116,6 +118,8 @@ class BeatmapsetTest extends TestCase
 
         $otherUser = User::factory()->create();
         $beatmapset->watches()->create(['user_id' => $otherUser->getKey()]);
+
+        $this->expectCountChange(fn () => $beatmapset->bssProcessQueues()->count(), 1);
 
         $beatmapset->qualify($user);
 

@@ -173,8 +173,8 @@ export default class Post extends React.Component<Props> {
 
   private deleteHref(op: 'destroy' | 'restore') {
     const [controller, key] = this.props.type === 'reply'
-      ? ['beatmapsets.discussions.posts', 'post']
-      : ['beatmapsets.discussions', 'discussion'];
+      ? ['beatmapsets.discussions.posts', 'post'] as const
+      : ['beatmapsets.discussions', 'discussion'] as const;
 
     return route(`${controller}.${op}`, { [key]: this.deleteModel.id });
   }

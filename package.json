@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "dev": "yarn run development",
-    "development": "cross-env NODE_ENV=development webpack --progress",
+    "development": "cross-env NODE_ENV=development webpack",
     "lint": "eslint --cache 'resources/js/**/*.{js,ts,tsx}' 'tests/karma/**/*.{ts,tsx}' '*.js'",
     "prod": "yarn run production",
     "production": "cross-env NODE_ENV=production webpack",
@@ -98,7 +98,8 @@
     "webpack-cli": "^5.1.4",
     "webpack-manifest-plugin": "^5.0.0",
     "webpack-sentry-plugin": "^2.0.2",
-    "yargs": "^12.0.5"
+    "yargs": "^12.0.5",
+    "ziggy-js": "^1.8.1"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^6.6.0",

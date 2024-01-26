@@ -7,8 +7,8 @@ declare(strict_types=1);
 
 namespace App\Models\Solo;
 
+use App\Enums\ScoreRank;
 use App\Exceptions\InvariantException;
-use App\Libraries\ScoreRank;
 use Illuminate\Contracts\Database\Eloquent\Castable;
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use JsonSerializable;
@@ -103,7 +103,7 @@ class ScoreData implements Castable, JsonSerializable
 
     public function assertCompleted(): void
     {
-        if (!ScoreRank::isValid($this->rank)) {
+        if (ScoreRank::tryFrom($this->rank) === null) {
             throw new InvariantException("'{$this->rank}' is not a valid rank.");
         }
 

@@ -20,7 +20,7 @@ return [
 
         'destroy' => [
             '_' => 'Eliminar portada',
-            'confirm' => '¿Seguro que desea eliminar la imagen de portada?',
+            'confirm' => '¿Seguro que quieres eliminar la imagen de portada?',
         ],
     ],
 
@@ -145,7 +145,7 @@ return [
                 'fork' => 'de :topic',
                 'pin' => 'tema anclado',
                 'post_operation' => 'publicado por :username',
-                'remove_tag' => 'etiqueta removida ":tag"',
+                'remove_tag' => 'etiqueta «:tag» eliminada',
                 'source_forum_operation' => 'de :forum',
                 'unpin' => 'tema sin fijar',
             ],
@@ -231,7 +231,7 @@ return [
                 'hide_results_info' => 'Solo se mostrarán después de que finalice la encuesta.',
                 'length' => 'Duración de la encuesta',
                 'length_days_suffix' => 'días',
-                'length_info' => 'Dejar en blanco para una encuesta sin fecha límite.',
+                'length_info' => 'Dejar en blanco para una encuesta sin fecha límite',
                 'max_options' => 'Opciones por usuario',
                 'max_options_info' => 'Este es el número de opciones que un usuario puede seleccionar al votar.',
                 'options' => 'Opciones',
@@ -260,37 +260,37 @@ return [
         ],
 
         'issue_tag_assigned' => [
-            'to_0' => 'Eliminar etiqueta "asignado"',
-            'to_0_done' => 'Etiqueta "asignado" eliminada',
-            'to_1' => 'Agregar etiqueta "asignado"',
+            'to_0' => 'Eliminar etiqueta «asignado»',
+            'to_0_done' => 'Etiqueta «asignado» eliminada',
+            'to_1' => 'Añadir etiqueta «asignado»',
             'to_1_done' => 'Etiqueta «asignado» añadida',
         ],
 
         'issue_tag_confirmed' => [
-            'to_0' => 'Eliminar etiqueta "confirmado"',
-            'to_0_done' => 'Etiqueta "confirmado" eliminada',
-            'to_1' => 'Agregar etiqueta "confirmado"',
+            'to_0' => 'Eliminar etiqueta «confirmado»',
+            'to_0_done' => 'Etiqueta «confirmado» eliminada',
+            'to_1' => 'Añadir etiqueta «confirmado»',
             'to_1_done' => 'Etiqueta «confirmado» añadida',
         ],
 
         'issue_tag_duplicate' => [
-            'to_0' => 'Eliminar etiqueta "duplicado"',
-            'to_0_done' => 'Etiqueta "duplicado" eliminada',
-            'to_1' => 'Agregar etiqueta "duplicado"',
+            'to_0' => 'Eliminar etiqueta «duplicado»',
+            'to_0_done' => 'Etiqueta «duplicado» eliminada',
+            'to_1' => 'Añadir etiqueta «duplicado»',
             'to_1_done' => 'Etiqueta «duplicado» añadida',
         ],
 
         'issue_tag_invalid' => [
-            'to_0' => 'Eliminar etiqueta "inválido"',
-            'to_0_done' => 'Etiqueta "inválido" eliminada',
-            'to_1' => 'Agregar etiqueta "inválido"',
+            'to_0' => 'Eliminar etiqueta «inválido»',
+            'to_0_done' => 'Etiqueta «inválido» eliminada',
+            'to_1' => 'Añadir etiqueta «inválido»',
             'to_1_done' => 'Etiqueta «inválido» añadida',
         ],
 
         'issue_tag_resolved' => [
-            'to_0' => 'Eliminar etiqueta "resuelto"',
-            'to_0_done' => 'Etiqueta "resuelto" eliminada',
-            'to_1' => 'Agregar etiqueta "resuelto"',
+            'to_0' => 'Eliminar etiqueta «resuelto»',
+            'to_0_done' => 'Etiqueta «resuelto» eliminada',
+            'to_1' => 'Añadir etiqueta «resuelto»',
             'to_1_done' => 'Etiqueta «resuelto» añadida',
         ],
 

@@ -9,7 +9,7 @@ return [
     'beatmapset_approve' => '¡:beatmapset por <strong>:user</strong> ha sido :approval!',
     'beatmapset_delete' => ':beatmapset ha sido eliminado.',
     'beatmapset_revive' => ':beatmapset ha sido revivido del sueño eterno por <strong>:user</strong>.',
-    'beatmapset_update' => '<strong><em>:user</em></strong> ha actualizado el mapa "<em>:beatmapset</em>"',
+    'beatmapset_update' => '<strong><em>:user</em></strong> ha actualizado el mapa «<em>:beatmapset</em>»',
     'beatmapset_upload' => '<strong><em>:user</em></strong> ha enviado un nuevo mapa «:beatmapset»',
     'empty' => "¡Este usuario no ha hecho nada notable recientemente!",
     'rank' => ':user logró el :rank en :beatmap (:mode)',

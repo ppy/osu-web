@@ -2,14 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 declare module 'ziggy' {
-  interface ZiggyClass {
-    port: number | null;
-    url: string;
-  }
+  import route, { RouteList } from 'ziggy-js';
 
-  export const Ziggy: ZiggyClass;
-}
-
-declare module 'ziggy-route' {
-  export default function route(name: string, params: any, absolute?: boolean, ziggy?: import('ziggy').ZiggyClass): string;
+  export const Ziggy: NonNullable<Parameters<typeof route<keyof RouteList>>[3]>;
 }

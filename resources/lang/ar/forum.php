@@ -48,7 +48,7 @@ return [
         'confirm_restore' => 'اتريد حقاََ اِسترجاع المنشور؟',
         'edited' => 'التعديل الأخير تم بواسطة :user :when، عُدِلَ ::count_delimited مرة في المجموع.|التعديل الأخير تم بواسطة :user:when, عُدِلَ ::count_delimited مرات في المجموع.',
         'posted_at' => 'نُشِر :when',
-        'posted_by_in' => '',
+        'posted_by_in' => 'تم النشر بواسطة :username في :forum',
 
         'actions' => [
             'destroy' => 'منشور محذوف',

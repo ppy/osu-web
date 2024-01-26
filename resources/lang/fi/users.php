@@ -112,7 +112,7 @@ return [
         'invalid_captcha' => 'Liian monta epäonnistunutta kirjautumisyritystä, täytä captcha ja yritä uudelleen. (Päivitä sivu jos captcha ei ole näkyvissä)',
         'locked_ip' => 'IP-osoitteesi on lukittu. Ole hyvä ja odota muutama minuutti.',
         'password' => 'Salasana',
-        'register' => "Eikö sinulla ole osu!-tiliä? Tee yksi",
+        'register' => "Eikö sinulla ole osu!-tiliä? Tee uusi",
         'remember' => 'Muista tämä laite',
         'title' => 'Kirjaudu sisään jatkaaksesi',
         'username' => 'Käyttäjänimi',
@@ -377,7 +377,7 @@ return [
                     'to_1_done' => 'Kiinnitetty tulos',
                 ],
                 'pinned' => [
-                    'title' => 'Kiinnitetyt Tulokset',
+                    'title' => 'Kiinnitetyt tulokset',
                 ],
             ],
             'votes' => [
@@ -434,7 +434,7 @@ return [
 
             'restriction_info' => [
                 '_' => 'Sinun täytyy olla :link avataksesi tämän ominaisuuden.',
-                'link' => 'osu!-tukija',
+                'link' => 'osu!n tukija',
             ],
         ],
         'post_count' => [

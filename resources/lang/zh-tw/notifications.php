@@ -57,9 +57,9 @@ return [
                 'beatmapset_discussion_unlock_compact' => '討論已被解鎖',
 
                 'review_count' => [
-                    'praises' => '',
-                    'problems' => '',
-                    'suggestions' => '',
+                    'praises' => ':count_delimited 個讚',
+                    'problems' => ':count_delimited 個問題',
+                    'suggestions' => ':count_delimited 個建議',
                 ],
             ],
 

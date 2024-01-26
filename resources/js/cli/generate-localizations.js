@@ -43,6 +43,7 @@ function generateTranslations() {
 }
 
 function writeTranslations(languages) {
+  process.stdout.write(`Creating at ${localesPath} for locale:`);
   for (const lang of languages.keys()) {
     const json = languages.get(lang);
     delete json[`${lang}.mail`];
@@ -51,8 +52,9 @@ function writeTranslations(languages) {
     const script = `(function() { 'use strict'; if (window.LangMessages === undefined) window.LangMessages = { messages: {}}; Object.assign(LangMessages, ${jsonString}); })();`;
 
     fs.writeFileSync(filename, script);
-    console.log(`Created: ${filename}`);
+    process.stdout.write(` ${lang}`);
   }
+  console.log(' ...all done');
 }
 
 function generateLocalizations() {

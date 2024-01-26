@@ -4,6 +4,7 @@
 import KudosuHistoryJson from 'interfaces/kudosu-history-json';
 import { route } from 'laroute';
 import { action } from 'mobx';
+import { RouteList } from 'ziggy-js';
 
 type RouteParams = Partial<Record<string, string | number>>;
 
@@ -17,7 +18,7 @@ export interface OffsetPaginatorJson<T> {
   pagination: OffsetPaginationJson;
 }
 
-export const apiShowMore = action(<T>(json: OffsetPaginatorJson<T>, routeName: string, baseRouteParams: RouteParams): JQuery.jqXHR<T[]> => {
+export const apiShowMore = action(<T>(json: OffsetPaginatorJson<T>, routeName: keyof RouteList, baseRouteParams: RouteParams): JQuery.jqXHR<T[]> => {
   json.pagination.loading = true;
 
   let limit = baseRouteParams.limit;
