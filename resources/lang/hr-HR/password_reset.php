@@ -36,6 +36,9 @@ return [
     'starting' => [
         'username' => 'Unesi svoju adresu e-pošte ili korisničko ime',
 
+        'reason' => [
+            'inactive_different_country' => "",
+        ],
         'support' => [
             '_' => 'Trebaš dodatnu pomoć? Kontaktiraj nas putem naše :button.',
             'button' => 'sistema za podršku',

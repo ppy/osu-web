@@ -36,6 +36,9 @@ return [
     'starting' => [
         'username' => 'Masukkan alamat e-mel atau nama pengguna',
 
+        'reason' => [
+            'inactive_different_country' => "",
+        ],
         'support' => [
             '_' => 'Perlukan bantuan lebih lanjut? Hubungi :button kami.',
             'button' => 'layanan dukungan',

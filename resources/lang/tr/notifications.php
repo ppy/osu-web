@@ -57,9 +57,9 @@ return [
                 'beatmapset_discussion_unlock_compact' => 'Tartışmanın kilidi kaldırılmış',
 
                 'review_count' => [
-                    'praises' => '',
-                    'problems' => '',
-                    'suggestions' => '',
+                    'praises' => ':count_delimited övgü|:count_delimited övgü',
+                    'problems' => ':count_delimited sorun|:count_delimited sorun',
+                    'suggestions' => ':count_delimited öneri|:count_delimited öneri',
                 ],
             ],
 

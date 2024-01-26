@@ -32,12 +32,12 @@ return [
                 'description' => 'Lahjoituksesi auttavat pitämään pelin itsenäisenä ja täysin vapaana mainoksista ja ulkopuolisista sponsoreista.',
             ],
             'tournaments' => [
-                'title' => 'Virallisiin turnauksiin',
-                'description' => 'Auta osu! maailmancup -turnausten ylläpidon (sekä palkintojen) rahoituksessa.',
+                'title' => 'Viralliset turnaukset',
+                'description' => 'Auta osu!-maailmancup -turnausten ylläpidon (sekä palkintojen) rahoituksessa.',
                 'link_text' => 'Selaa turnauksia &raquo;',
             ],
             'bounty-program' => [
-                'title' => 'Avoimen lähdekoodin palkkio -ohjelmaan',
+                'title' => 'Avoimen lähdekoodin palkkio -ohjelma',
                 'description' => 'Tue yhteisön osallistujia, jotka ovat käyttäneet aikaansa ja vaivaansa tekemään osu!sta paremman.',
                 'link_text' => 'Lue lisää &raquo;',
             ],
