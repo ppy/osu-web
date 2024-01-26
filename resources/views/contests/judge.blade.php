@@ -28,9 +28,5 @@
         {!! json_encode($contestJson) !!}
     </script>
 
-    <script id="json-entries" type="application/json">
-        {!! json_encode($entriesJson) !!}
-    </script>
-
     @include('layout._react_js', ['src' => 'js/contest-judge.js'])
 @endsection

@@ -9,15 +9,14 @@ import { action, computed, makeObservable, observable, runInAction } from 'mobx'
 import { observer } from 'mobx-react';
 import { ContestEntry } from 'models/contest-entry';
 import * as React from 'react';
-import ContestEntryStore from 'stores/contest-entry-store';
+import ContestJudgeStore from 'stores/contest-judge-store';
 import { onError } from 'utils/ajax';
 import { trans } from 'utils/lang';
 import { CurrentUserJudgeVote } from './current-user-judge-vote';
 
 interface Props {
   entry: ContestEntry;
-  scoringCategories: ContestScoringCategoryJson[];
-  store: ContestEntryStore;
+  store: ContestJudgeStore;
 }
 
 @observer
@@ -42,7 +41,7 @@ export default class Entry extends React.Component<Props> {
   private get disabled() {
     let scoresHaveChanged = false;
 
-    for (const category of this.props.scoringCategories) {
+    for (const category of this.props.store.scoringCategories) {
       const score = this.currentVote?.scores.get(category.id);
       if (score == null) return true;
 
@@ -72,7 +71,7 @@ export default class Entry extends React.Component<Props> {
           {this.props.entry.title}
         </div>
 
-        {this.props.scoringCategories.map((category) => {
+        {this.props.store.scoringCategories.map((category) => {
           const currentScore = this.currentVote?.scores.get(category.id);
 
           return (
@@ -162,7 +161,7 @@ export default class Entry extends React.Component<Props> {
     this.xhr
       .fail(onError)
       .done((json: ContestEntryJson) => runInAction(() => {
-        this.props.store.update(json);
+        this.props.store.updateEntry(json);
 
         if (json.current_user_judge_vote != null) {
           this.initialVote = new CurrentUserJudgeVote(json.current_user_judge_vote);

@@ -2,27 +2,34 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import ContestEntryJson from 'interfaces/contest-entry-json';
+import { ContestJsonForStore } from 'interfaces/contest-json';
+import ContestScoringCategoryJson from 'interfaces/contest-scoring-category-json';
 import { action, makeObservable, observable } from 'mobx';
 import { ContestEntry } from 'models/contest-entry';
 
-export default class ContestEntryStore {
+export default class ContestJudgeStore {
   @observable entries = new Map<number, ContestEntry>();
+  @observable scoringCategories: ContestScoringCategoryJson[] = [];
 
   constructor() {
     makeObservable(this);
   }
 
   @action
-  update(json: ContestEntryJson) {
+  updateEntry(json: ContestEntryJson) {
     const entry = this.entries.get(json.id);
     entry?.updateWithJson(json);
   }
 
   @action
-  updateWithJson(data: ContestEntryJson[]) {
-    data.forEach((json) => {
+  updateWithJson(data: ContestJsonForStore) {
+    data.entries?.forEach((json) => {
       const entry = new ContestEntry(json);
       this.entries.set(entry.id, entry);
     });
+
+    for (const category of data.scoring_categories) {
+      this.scoringCategories.push(category);
+    }
   }
 }

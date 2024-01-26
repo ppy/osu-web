@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\InvariantException;
 use App\Models\Contest;
+use App\Transformers\ContestTransformer;
 use Auth;
 
 class ContestsController extends Controller
@@ -35,14 +36,13 @@ class ContestsController extends Controller
 
         priv_check('ContestJudgeShow', $contest)->ensureCan();
 
-        $contestJson = json_item($contest, 'Contest', ['scoring_categories']);
-        $entriesJson = json_collection($contest->entries, 'ContestEntry', [
-            'current_user_judge_vote.scores',
+        $contestJson = json_item($contest, new ContestTransformer(), [
+            'entries.current_user_judge_vote.scores',
+            'scoring_categories'
         ]);
 
         return ext_view('contests.judge', [
             'contestJson' => $contestJson,
-            'entriesJson' => $entriesJson,
         ]);
     }
 

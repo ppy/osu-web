@@ -1,18 +1,16 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import ContestJson from 'interfaces/contest-json';
 import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
-import ContestEntryStore from 'stores/contest-entry-store';
+import ContestJudgeStore from 'stores/contest-judge-store';
 import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 import Entry from './entry';
 
 interface Props {
-  contest: ContestJson;
-  store: ContestEntryStore;
+  store: ContestJudgeStore;
 }
 
 @observer
@@ -37,8 +35,6 @@ export default class Main extends React.Component<Props> {
   }
 
   render() {
-    const scoringCategories = this.props.contest?.scoring_categories;
-
     return (
       <>
         <div className='contest-judge contest-judge--header'>
@@ -46,11 +42,10 @@ export default class Main extends React.Component<Props> {
         </div>
 
         <div className='contest-judge contest-judge--items'>
-          {scoringCategories && this.filteredEntries.map((entry) => (
+          {this.filteredEntries.map((entry) => (
             <Entry
               key={entry.id}
               entry={entry}
-              scoringCategories={scoringCategories}
               store={this.props.store}
             />
           ))}
@@ -81,6 +76,6 @@ export default class Main extends React.Component<Props> {
 
   @action
   private readonly toggleShowJudged = () => {
-    this.hideJudged = this.hideJudged ? false : true;
+    this.hideJudged = !this.hideJudged;
   };
 }

@@ -24,3 +24,6 @@ export type ContestJsonForResults = ContestJsonDefaultAttributes
 & {
   entires: ContestEntryJsonForResults;
 };
+
+export type ContestJsonForStore = ContestJsonDefaultAttributes
+& Required<Pick<ContestJsonAvailableIncludes, 'entries' | 'scoring_categories'>>;
