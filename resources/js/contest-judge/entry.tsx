@@ -39,17 +39,15 @@ export default class Entry extends React.Component<Props> {
 
   @computed
   private get disabled() {
-    let scoresHaveChanged = false;
-
-    for (const category of this.props.store.scoringCategories) {
+    const scoresHaveChanged = this.props.store.scoringCategories.some((category) => {
       const score = this.currentVote?.scores.get(category.id);
-      if (score == null) return true;
+      if (score == null) return false;
 
-      if (!scoresHaveChanged) {
-        const initialScore = this.initialVote?.scores.get(category.id);
-        if (initialScore?.value !== score.value) scoresHaveChanged = true;
-      }
-    }
+      const initialScore = this.initialVote?.scores.get(category.id);
+      if (initialScore?.value !== score.value) return true;
+
+      return false;
+    });
 
     if (
       !scoresHaveChanged &&
