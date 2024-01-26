@@ -7,7 +7,7 @@ return [
     'landing' => [
         'download' => 'Unduh sekarang',
         'online' => 'dengan <strong>:players</strong> pemain yang saat ini terhubung dalam <strong>:games</strong> ruang permainan',
-        'peak' => 'Jumlah pengguna online terbanyak: :count',
+        'peak' => 'Puncak aktivitas: :count pengguna online',
         'players' => '<strong>:count</strong> pengguna terdaftar',
         'title' => 'selamat datang',
         'see_more_news' => 'lihat lebih banyak berita',

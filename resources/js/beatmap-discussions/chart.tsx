@@ -7,7 +7,7 @@ import { formatTimestamp, makeUrl } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers } from 'utils/css';
 
 interface Props {
-  discussions: Partial<Record<string, BeatmapsetDiscussionJson>>;
+  discussions: BeatmapsetDiscussionJson[];
   duration: number;
 }
 
@@ -22,7 +22,7 @@ export default function Chart(props: Props) {
   const items: React.ReactNode[] = [];
 
   if (props.duration !== 0) {
-    Object.values(props.discussions).forEach((discussion) => {
+    props.discussions.forEach((discussion) => {
       if (discussion == null || discussion.timestamp == null) return;
 
       let className = classWithModifiers('beatmapset-discussions-chart__item', [

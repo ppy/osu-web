@@ -23,7 +23,7 @@ return [
             'title' => [
                 'ANNOUNCE' => 'Annonces',
                 'GROUP' => 'Groupes',
-                'PM' => 'Messages directs',
+                'PM' => 'Messages privés',
                 'PUBLIC' => 'Canaux',
             ],
         ],
@@ -49,7 +49,7 @@ return [
 
     'input' => [
         'create' => 'Créer',
-        'disabled' => 'impossible d\'envoyer un message...',
+        'disabled' => 'impossible d’envoyer le message...',
         'disconnected' => 'Déconnecté',
         'placeholder' => 'saisissez votre message...',
         'send' => 'Envoyer',

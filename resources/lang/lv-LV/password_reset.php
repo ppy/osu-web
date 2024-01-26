@@ -36,6 +36,9 @@ return [
     'starting' => [
         'username' => 'Ievadiet e-pasta adresi vai lietotājvārdu',
 
+        'reason' => [
+            'inactive_different_country' => "",
+        ],
         'support' => [
             '_' => 'Nepieciešams tālāks atbalsts? Sazinieties ar mums caur :button.',
             'button' => 'atbalsta sistēma',

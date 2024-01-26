@@ -21,7 +21,7 @@ return [
         ],
 
         'translation' => [
-            'legal' => 'Terjemahan ini diberikan semata-mata hanya untuk memudahkan. :default dari artikel ini merupakan satu-satunya versi artikel yang mengikat secara hukum.',
+            'legal' => 'Terjemahan ini diberikan semata-mata untuk memudahkan. :default dari artikel ini merupakan satu-satunya versi artikel yang mengikat secara hukum.',
             'outdated' => 'Laman ini mengandung terjemahan yang telah kedaluwarsa dari artikel aslinya. Mohon periksa :default dari artikel ini untuk mendapatkan informasi yang paling akurat (dan apabila kamu berkenan, mohon bantu kami untuk memperbarui terjemahan ini)!',
 
             'default' => 'Versi Bahasa Inggris',

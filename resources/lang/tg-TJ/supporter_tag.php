@@ -4,10 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'months' => '',
+    'months' => 'моҳҳо',
 
     'user_search' => [
-        'searching' => '',
-        'not_found' => "",
+        'searching' => 'чустучуй...',
+        'not_found' => "Ин корбар вуҷуд надорад",
     ],
 ];

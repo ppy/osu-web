@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { BeatmapsetDiscussionJsonForBundle, BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
+import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import remarkParse from 'remark-parse';
 import disableConstructs from 'remark-plugins/disable-constructs';
 import { Element, Text } from 'slate';
@@ -30,7 +30,7 @@ function isText(node: UnistNode): node is TextNode {
   return node.type === 'text';
 }
 
-export function parseFromJson(json: string, discussions: Partial<Record<number, BeatmapsetDiscussionJsonForBundle | BeatmapsetDiscussionJsonForShow>>) {
+export function parseFromJson(json: string, discussions: Map<number | null | undefined, BeatmapsetDiscussionJson>) {
   let srcDoc: BeatmapDiscussionReview;
 
   try {
@@ -87,7 +87,7 @@ export function parseFromJson(json: string, discussions: Partial<Record<number, 
       case 'embed': {
         // embed
         const existingEmbedBlock = block as PersistedDocumentIssueEmbed;
-        const discussion = discussions[existingEmbedBlock.discussion_id];
+        const discussion = discussions.get(existingEmbedBlock.discussion_id);
         if (discussion == null) {
           console.error('unknown/external discussion referenced', existingEmbedBlock.discussion_id);
           break;
@@ -99,8 +99,8 @@ export function parseFromJson(json: string, discussions: Partial<Record<number, 
         }
 
         const post = startingPost(discussion);
-        if (post.system) {
-          console.error('embed should not have system starting post', existingEmbedBlock.discussion_id);
+        if (post == null || post.system) {
+          console.error('embed starting post is missing or is system post', existingEmbedBlock.discussion_id);
           break;
         }
 

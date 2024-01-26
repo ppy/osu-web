@@ -15,7 +15,7 @@ return [
 
         'errors_no_checkout' => [
             'line_1' => 'Uh-oh, terdapat masalah dengan keranjangmu yang menghalangi proses checkout!',
-            'line_2' => 'Hapus atau perbarui item-item di atas untuk melanjutkan.',
+            'line_2' => 'Hapus atau perbarui rangkaian item di atas untuk melanjutkan.',
         ],
 
         'empty' => [
@@ -43,7 +43,7 @@ return [
         ],
 
         'pending_checkout' => [
-            'line_1' => 'Transaksi sebelumnya belum dituntaskan.',
+            'line_1' => 'Terdapat transaksi terdahulu yang belum dituntaskan.',
             'line_2' => 'Lanjutkan pembayaranmu dengan memilih metode pembayaran.',
         ],
     ],
@@ -77,7 +77,7 @@ return [
                 ],
             ],
             'prepared' => [
-                'title' => 'Pesananmu sedang disiapkan!',
+                'title' => 'Pesananmu sedang dipersiapkan!',
                 'line_1' => 'Harap tunggu sedikit lebih lama untuk pengiriman. Informasi pelacakan akan muncul di sini setelah pesanan telah diolah dan dikirim. Ini bisa perlu sampai 5 hari (tetapi biasanya lebih cepat!) tergantung kesibukan kami.',
                 'line_2' => 'Kami mengirim seluruh pesanan dari Jepang dengan berbagai macam layanan pengiriman tergantung berat dan nilai. Bagian ini akan diperbarui dengan perincian setelah kami mengirimkan pesanan.',
             ],
