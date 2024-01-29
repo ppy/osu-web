@@ -12,6 +12,7 @@ use App\Exceptions\InvariantException;
 use App\Libraries\Score\UserRank;
 use App\Libraries\Search\ScoreSearchParams;
 use App\Models\Beatmap;
+use App\Models\Beatmapset;
 use App\Models\Model;
 use App\Models\Multiplayer\ScoreLink as MultiplayerScoreLink;
 use App\Models\Score as LegacyScore;
@@ -116,6 +117,12 @@ class Score extends Model implements Traits\ReportableInterface
         $params['ruleset_id'] = $scoreToken->ruleset_id;
         $params['started_at'] = $scoreToken->created_at;
         $params['user_id'] = $scoreToken->user_id;
+
+        $beatmap = $scoreToken->beatmap;
+        $params['ranked'] = $beatmap !== null && in_array($beatmap->approved, [
+            Beatmapset::STATES['approved'],
+            Beatmapset::STATES['ranked'],
+        ], true);
 
         return $params;
     }
