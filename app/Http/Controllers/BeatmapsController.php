@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 
 use App\Enums\Ruleset;
 use App\Exceptions\InvariantException;
+use App\Http\Middleware\RequestCost;
 use App\Jobs\Notifications\BeatmapOwnerChange;
 use App\Libraries\BeatmapDifficultyAttributes;
 use App\Libraries\Score\BeatmapScores;
@@ -314,6 +315,10 @@ class BeatmapsController extends Controller
         $currentUser = auth()->user();
 
         static::assertSupporterOnlyOptions($currentUser, $type, $mods);
+
+        if ($type === 'country') {
+            RequestCost::setCost(100); // expensive queries
+        }
 
         $query = static::baseScoreQuery($beatmap, $mode, $mods, $type);
 
