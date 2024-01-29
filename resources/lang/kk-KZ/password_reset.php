@@ -36,6 +36,9 @@ return [
     'starting' => [
         'username' => '',
 
+        'reason' => [
+            'inactive_different_country' => "",
+        ],
         'support' => [
             '_' => '',
             'button' => '',

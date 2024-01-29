@@ -36,6 +36,9 @@ return [
     'starting' => [
         'username' => 'Introduceți adresa de e-mail sau numele de utilizator',
 
+        'reason' => [
+            'inactive_different_country' => "",
+        ],
         'support' => [
             '_' => 'Aveți nevoie de asistență suplimentară? Contactați-ne prin intermediul :button.',
             'button' => 'sistem de ajutor',
