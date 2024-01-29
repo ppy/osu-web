@@ -22,6 +22,10 @@ class ScoreTokensController extends BaseController
 
     public function store($beatmapId)
     {
+        if (!$GLOBALS['cfg']['osu']['scores']['submission_enabled']) {
+            abort(422, 'score submission is disabled');
+        }
+
         $beatmap = Beatmap::increasesStatistics()->findOrFail($beatmapId);
         $user = auth()->user();
         $rawParams = request()->all();
