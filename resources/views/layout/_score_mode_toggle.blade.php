@@ -3,15 +3,15 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @php
-    $legacyScoreOnlyValue = App\Libraries\Search\ScoreSearchParams::showLegacyForUser(Auth::user());
-    $icon = $legacyScoreOnlyValue
+    $legacyScoreMode ??= App\Libraries\Search\ScoreSearchParams::showLegacyForUser($currentUser) === true;
+    $icon = $legacyScoreMode
         ? 'far fa-square'
         : 'fas fa-check-square';
 @endphp
 <button
     class="{{ $class }}"
     type="button"
-    data-url="{{ route('account.options', ['user_profile_customization[legacy_score_only]' => !$legacyScoreOnlyValue]) }}"
+    data-url="{{ route('account.options', ['user_profile_customization[legacy_score_only]' => !$legacyScoreMode]) }}"
     data-method="PUT"
     data-remote="1"
     data-reload-on-success="1"
