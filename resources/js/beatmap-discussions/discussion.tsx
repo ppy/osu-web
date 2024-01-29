@@ -236,7 +236,7 @@ export class Discussion extends React.Component<Props> {
         post={post}
         read={this.isRead(post)}
         readonly={this.readonly}
-        resolved={post.id > this.resolvedSystemPostId}
+        resolved={post.id <= this.resolvedSystemPostId}
         store={this.props.store}
         type={type}
         user={user}
