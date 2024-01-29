@@ -11,6 +11,8 @@ use App\Libraries\Session\Store as SessionStore;
 use App\Libraries\SessionVerification;
 use App\Mail\UserVerification as UserVerificationMail;
 use App\Models\LoginAttempt;
+use App\Models\OAuth\Client;
+use App\Models\OAuth\Token;
 use App\Models\User;
 use Tests\TestCase;
 
@@ -54,6 +56,37 @@ class ControllerTest extends TestCase
 
         \Mail::assertQueued(UserVerificationMail::class, 2);
         $this->assertNotSame($state->key, SessionVerification\State::fromSession($session)->key);
+    }
+
+    public function testReissueOAuthVerified(): void
+    {
+        \Mail::fake();
+        $token = Token::factory()->create(['verified' => true]);
+
+        $this
+            ->actingWithToken($token)
+            ->post(route('api.verify.reissue'))
+            ->assertStatus(422);
+
+        \Mail::assertNotQueued(UserVerificationMail::class);
+        $this->assertNull(SessionVerification\State::fromSession($token));
+    }
+
+    public function testReissueVerified(): void
+    {
+        \Mail::fake();
+        $user = User::factory()->create();
+        $session = \Session::instance();
+        $session->markVerified();
+
+        $this
+            ->be($user)
+            ->withPersistentSession($session)
+            ->post(route('account.reissue-code'))
+            ->assertStatus(422);
+
+        \Mail::assertNotQueued(UserVerificationMail::class);
+        $this->assertNull(SessionVerification\State::fromSession($session));
     }
 
     public function testVerify(): void
@@ -131,6 +164,32 @@ class ControllerTest extends TestCase
         $this->assertFalse(SessionStore::findOrNew($sessionId)->isVerified());
     }
 
+    public function testVerifyLinkOAuth(): void
+    {
+        $token = Token::factory()->create([
+            'client_id' => Client::factory()->create(['password_client' => true]),
+            'verified' => false,
+        ]);
+
+        $this
+            ->actingWithToken($token)
+            ->get(route('api.me'))
+            ->assertSuccessful();
+
+        $linkKey = SessionVerification\State::fromSession($token)->linkKey;
+
+        \Auth::logout();
+        $this
+            ->withPersistentSession(SessionStore::findOrNew())
+            ->get(route('account.verify', ['key' => $linkKey]))
+            ->assertSuccessful();
+
+        $record = LoginAttempt::find('127.0.0.1');
+
+        $this->assertFalse($record->containsUser($token->user, 'verify-mismatch:'));
+        $this->assertTrue($token->fresh()->isVerified());
+    }
+
     public function testVerifyMismatch(): void
     {
         $user = User::factory()->create();
@@ -155,5 +214,61 @@ class ControllerTest extends TestCase
 
         $this->assertTrue($record->containsUser($user, 'verify-mismatch:'));
         $this->assertFalse($session->isVerified());
+    }
+
+    public function testVerifyOAuth(): void
+    {
+        $token = Token::factory()->create([
+            'client_id' => Client::factory()->create(['password_client' => true]),
+            'verified' => false,
+        ]);
+
+        $this
+            ->actingWithToken($token)
+            ->get(route('api.me'))
+            ->assertSuccessful();
+
+        $key = SessionVerification\State::fromSession($token)->key;
+
+        $this
+            ->actingWithToken($token)
+            ->post(route('api.verify', ['verification_key' => $key]))
+            ->assertSuccessful();
+
+        $record = LoginAttempt::find('127.0.0.1');
+
+        $this->assertFalse($record->containsUser($token->user, 'verify-mismatch:'));
+        $this->assertTrue($token->fresh()->isVerified());
+    }
+
+    public function testVerifyOAuthVerified(): void
+    {
+        \Mail::fake();
+        $token = Token::factory()->create(['verified' => true]);
+
+        $this
+            ->actingWithToken($token)
+            ->post(route('api.verify', ['verification_key' => 'invalid']))
+            ->assertSuccessful();
+
+        $this->assertNull(SessionVerification\State::fromSession($token));
+        \Mail::assertNotQueued(UserVerificationMail::class);
+    }
+
+    public function testVerifyVerified(): void
+    {
+        \Mail::fake();
+        $user = User::factory()->create();
+        $session = \Session::instance();
+        $session->markVerified();
+
+        $this
+            ->be($user)
+            ->withPersistentSession($session)
+            ->post(route('account.verify'), ['verification_key' => 'invalid'])
+            ->assertSuccessful();
+
+        $this->assertNull(SessionVerification\State::fromSession($session));
+        \Mail::assertNotQueued(UserVerificationMail::class);
     }
 }

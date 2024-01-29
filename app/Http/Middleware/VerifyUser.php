@@ -20,6 +20,7 @@ class VerifyUser
         'notifications_controller@endpoint' => true,
         'sessions_controller@destroy' => true,
         'sessions_controller@store' => true,
+        'users_controller@me' => true,
         'wiki_controller@image' => true,
         'wiki_controller@show' => true,
         'wiki_controller@sitemap' => true,
