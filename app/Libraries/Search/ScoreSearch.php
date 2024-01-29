@@ -68,8 +68,8 @@ class ScoreSearch extends RecordSearch
         $beforeTotalScore = $this->params->beforeTotalScore;
         if ($beforeTotalScore === null && $this->params->beforeScore !== null) {
             $beforeTotalScore = $this->params->beforeScore->isLegacy()
-                ? $this->params->beforeScore->data->legacyTotalScore
-                : $this->params->beforeScore->data->totalScore;
+                ? $this->params->beforeScore->legacy_total_score
+                : $this->params->beforeScore->total_score;
         }
         if ($beforeTotalScore !== null) {
             $scoreQuery = (new BoolQuery())->shouldMatch(1);

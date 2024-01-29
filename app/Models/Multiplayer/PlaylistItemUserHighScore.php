@@ -71,7 +71,7 @@ class PlaylistItemUserHighScore extends Model
     {
         $placeholder = new static([
             'score_id' => $scoreLink->getKey(),
-            'total_score' => $scoreLink->score->data->totalScore,
+            'total_score' => $scoreLink->score->total_score,
         ]);
 
         static $typeOptions = [
@@ -117,10 +117,10 @@ class PlaylistItemUserHighScore extends Model
         $score = $scoreLink->score;
 
         $this->fill([
-            'accuracy' => $score->data->accuracy,
+            'accuracy' => $score->accuracy,
             'pp' => $score->pp,
             'score_id' => $scoreLink->getKey(),
-            'total_score' => $score->data->totalScore,
+            'total_score' => $score->total_score,
         ])->save();
     }
 }
