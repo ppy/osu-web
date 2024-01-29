@@ -1,11 +1,9 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import BeatmapsetDiscussionJson, { BeatmapsetDiscussionJsonForBundle, BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
 import BeatmapsetDiscussionPostJson from 'interfaces/beatmapset-discussion-post-json';
-import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
-import UserJson from 'interfaces/user-json';
+import BeatmapsetDiscussionsStore from 'interfaces/beatmapset-discussions-store';
 import { findLast } from 'lodash';
 import { action, computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
@@ -18,7 +16,7 @@ import { classWithModifiers, groupColour } from 'utils/css';
 import { trans } from 'utils/lang';
 import { DiscussionType, discussionTypeIcons } from './discussion-type';
 import DiscussionVoteButtons from './discussion-vote-buttons';
-import DiscussionsStateContext from './discussions-state-context';
+import DiscussionsState from './discussions-state';
 import { NewReply } from './new-reply';
 import Post from './post';
 import SystemPost from './system-post';
@@ -26,26 +24,18 @@ import { UserCard } from './user-card';
 
 const bn = 'beatmap-discussion';
 
-interface PropsBase {
-  beatmapset: BeatmapsetExtendedJson;
-  currentBeatmap: BeatmapExtendedJson | null;
+interface BaseProps {
   isTimelineVisible: boolean;
   parentDiscussion?: BeatmapsetDiscussionJson | null;
-  readonly: boolean;
-  readPostIds?: Set<number>;
-  showDeleted: boolean;
-  users: Partial<Record<number | string, UserJson>>;
+  store: BeatmapsetDiscussionsStore;
 }
 
-// preview version is used on pages other than the main discussions page.
-type Props = PropsBase & ({
-  // BeatmapsetDiscussionJsonForShow is because editing still returns
-  // BeatmapsetDiscussionJsonForShow which gets merged into the parent discussions blob.
-  discussion: BeatmapsetDiscussionJsonForBundle | BeatmapsetDiscussionJsonForShow;
-  preview: true;
+type Props = BaseProps & ({
+  discussion: BeatmapsetDiscussionJsonForBundle;
+  discussionsState: null; // TODO: make optional?
 } | {
   discussion: BeatmapsetDiscussionJsonForShow;
-  preview: false;
+  discussionsState: DiscussionsState;
 });
 
 function DiscussionTypeIcon({ type }: { type: DiscussionType | 'resolved' }) {
@@ -64,60 +54,79 @@ function DiscussionTypeIcon({ type }: { type: DiscussionType | 'resolved' }) {
 
 @observer
 export class Discussion extends React.Component<Props> {
-  static contextType = DiscussionsStateContext;
-  static defaultProps = {
-    preview: false,
-    readonly: false,
-  };
-
-  declare context: React.ContextType<typeof DiscussionsStateContext>;
   private lastResolvedState = false;
+
+  private get beatmapset() {
+    return this.props.discussionsState?.beatmapset;
+  }
+
+  private get currentBeatmap() {
+    return this.props.discussionsState?.currentBeatmap;
+  }
+
+  @computed
+  private get canBeRepliedTo() {
+    return this.beatmapset != null
+      && !downloadLimited(this.beatmapset)
+      && (!this.beatmapset.discussion_locked || canModeratePosts())
+      && (this.props.discussion.beatmap_id == null || this.currentBeatmap?.deleted_at == null);
+  }
+
+  @computed
+  private get collapsed() {
+    return this.props.discussionsState?.discussionCollapsed.get(this.props.discussion.id) ?? this.props.discussionsState?.discussionDefaultCollapsed ?? false;
+  }
+
+  @computed
+  private get highlighted() {
+    return this.props.discussionsState?.highlightedDiscussionId === this.props.discussion.id;
+  }
+
+  private get readonly() {
+    return this.props.discussionsState == null;
+  }
+
+  private get readPostIds() {
+    return this.props.discussionsState?.readPostIds;
+  }
+
+  @computed
+  private get resolvedSystemPostId() {
+    // TODO: handling resolved status in bundles....?
+    if (this.props.discussionsState == null) return -1;
+
+    const systemPost = findLast(this.props.discussion.posts, (post) => post.system && post.message.type === 'resolved');
+    return systemPost?.id ?? -1;
+  }
+
+  private get showDeleted() {
+    return this.props.discussionsState?.showDeleted ?? true;
+  }
+
+  private get users() {
+    return this.props.store.users;
+  }
 
   constructor(props: Props) {
     super(props);
     makeObservable(this);
   }
 
-  @computed
-  private get canBeRepliedTo() {
-    return !downloadLimited(this.props.beatmapset)
-      && (!this.props.beatmapset.discussion_locked || canModeratePosts())
-      && (this.props.discussion.beatmap_id == null || this.props.currentBeatmap?.deleted_at == null);
-  }
-
-  @computed
-  private get collapsed() {
-    return this.context.discussionCollapsed.get(this.props.discussion.id) ?? this.context.discussionDefaultCollapsed;
-  }
-
-  @computed
-  private get highlighted() {
-    return this.context.highlightedDiscussionId === this.props.discussion.id;
-  }
-
-  @computed
-  private get resolvedSystemPostId() {
-    // TODO: handling resolved status in bundles....?
-    if (this.props.preview) return -1;
-
-    const systemPost = findLast(this.props.discussion.posts, (post) => post != null && post.system && post.message.type === 'resolved');
-    return systemPost?.id ?? -1;
-  }
-
   render() {
     if (!this.isVisible(this.props.discussion)) return null;
     const firstPost = startingPost(this.props.discussion);
-    // TODO: check if possible to have null post...
+    // firstPost shouldn't be null anymore;
+    // just simpler to allow startingPost to return undefined and adding a null check in render.
     if (firstPost == null) return null;
 
     const lineClasses = classWithModifiers(`${bn}__line`, { resolved: this.props.discussion.resolved });
 
     this.lastResolvedState = false;
 
-    const user = this.props.users[this.props.discussion.user_id] ?? deletedUserJson;
+    const user = this.users.get(this.props.discussion.user_id) ?? deletedUserJson;
     const group = badgeGroup({
-      beatmapset: this.props.beatmapset,
-      currentBeatmap: this.props.currentBeatmap,
+      beatmapset: this.beatmapset,
+      currentBeatmap: this.currentBeatmap,
       discussion: this.props.discussion,
       user,
     });
@@ -126,7 +135,7 @@ export class Discussion extends React.Component<Props> {
       deleted: this.props.discussion.deleted_at != null,
       highlighted: this.highlighted,
       'horizontal-desktop': this.props.discussion.message_type !== 'review',
-      preview: this.props.preview,
+      preview: this.readonly,
       review: this.props.discussion.message_type === 'review',
       timeline: this.props.discussion.timestamp != null,
       unread: !this.isRead(firstPost),
@@ -166,13 +175,13 @@ export class Discussion extends React.Component<Props> {
 
   @action
   private readonly handleCollapseClick = () => {
-    this.context.discussionCollapsed.set(this.props.discussion.id, !this.collapsed);
+    this.props.discussionsState?.discussionCollapsed.set(this.props.discussion.id, !this.collapsed);
   };
 
   @action
   private readonly handleSetHighlight = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (e.defaultPrevented) return;
-    this.context.highlightedDiscussionId = this.props.discussion.id;
+    if (e.defaultPrevented || this.props.discussionsState == null) return;
+    this.props.discussionsState.highlightedDiscussionId = this.props.discussion.id;
   };
 
   private isOwner(object: { user_id: number }) {
@@ -180,15 +189,15 @@ export class Discussion extends React.Component<Props> {
   }
 
   private isRead(post: BeatmapsetDiscussionPostJson) {
-    return this.props.readPostIds?.has(post.id) || this.isOwner(post) || this.props.preview;
+    return this.readPostIds?.has(post.id) || this.isOwner(post) || this.readonly;
   }
 
   private isVisible(object: BeatmapsetDiscussionJson | BeatmapsetDiscussionPostJson) {
-    return object != null && (this.props.showDeleted || object.deleted_at == null);
+    return object != null && (this.showDeleted || object.deleted_at == null);
   }
 
   private postFooter() {
-    if (this.props.preview) return null;
+    if (this.props.discussionsState == null) return null;
 
     let cssClasses = `${bn}__expanded`;
     if (this.collapsed) {
@@ -200,11 +209,10 @@ export class Discussion extends React.Component<Props> {
         <div className={`${bn}__replies`}>
           {this.props.discussion.posts.slice(1).map(this.renderReply)}
         </div>
-        {this.canBeRepliedTo && (
+        {this.props.discussionsState != null && this.canBeRepliedTo && (
           <NewReply
-            beatmapset={this.props.beatmapset}
-            currentBeatmap={this.props.currentBeatmap}
             discussion={this.props.discussion}
+            discussionsState={this.props.discussionsState}
           />
         )}
       </div>
@@ -212,7 +220,7 @@ export class Discussion extends React.Component<Props> {
   }
 
   private renderPost(post: BeatmapsetDiscussionPostJson, type: 'discussion' | 'reply') {
-    const user = this.props.users[post.user_id] ?? deletedUserJson;
+    const user = this.users.get(post.user_id) ?? deletedUserJson;
 
     if (post.system) {
       return (
@@ -223,24 +231,25 @@ export class Discussion extends React.Component<Props> {
     return (
       <Post
         key={post.id}
-        beatmap={this.props.currentBeatmap}
-        beatmapset={this.props.beatmapset}
         discussion={this.props.discussion}
+        discussionsState={this.props.discussionsState}
         post={post}
         read={this.isRead(post)}
-        readonly={this.props.readonly}
-        resolvedSystemPostId={this.resolvedSystemPostId}
+        readonly={this.readonly}
+        resolved={post.id > this.resolvedSystemPostId}
+        store={this.props.store}
         type={type}
         user={user}
-        users={this.props.users}
       />
     );
   }
 
   private renderPostButtons() {
-    if (this.props.preview) return null;
+    if (this.props.discussionsState == null) {
+      return null;
+    }
 
-    const user = this.props.users[this.props.discussion.user_id];
+    const user = this.props.store.users.get(this.props.discussion.user_id);
 
     return (
       <div className={`${bn}__top-actions`}>
@@ -260,7 +269,8 @@ export class Discussion extends React.Component<Props> {
           <DiscussionVoteButtons
             cannotVote={this.isOwner(this.props.discussion) || (user?.is_bot ?? false) || !this.canBeRepliedTo}
             discussion={this.props.discussion}
-            users={this.props.users}
+            discussionsState={this.props.discussionsState}
+            users={this.users}
           />
           <button
             className={`${bn}__action ${bn}__action--with-line`}

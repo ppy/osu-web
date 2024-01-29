@@ -44,7 +44,7 @@ return [
     ],
 
     'ogp' => [
-        'title' => '',
+        'title' => '評論者 :user',
     ],
 
     'placeholder' => [

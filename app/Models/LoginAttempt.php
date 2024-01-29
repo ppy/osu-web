@@ -120,15 +120,11 @@ class LoginAttempt extends Model
 
     public static function logLoggedIn($ip, $user)
     {
-        $record = static::find($ip);
-
-        if ($record === null) {
-            return;
-        }
+        $record = static::findOrDefault($ip);
 
         $updates = [];
 
-        if (!$record->containsUser($user, 'success')) {
+        if ($record->failed_attempts > 0 && !$record->containsUser($user, 'success')) {
             $updates['failed_attempts'] = db_unsigned_increment('failed_attempts', -1);
         }
 

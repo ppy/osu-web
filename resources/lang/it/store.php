@@ -78,8 +78,8 @@ return [
             ],
             'prepared' => [
                 'title' => 'Il tuo ordine è in preparazione!',
-                'line_1' => '',
-                'line_2' => '',
+                'line_1' => 'Si prega di attendere ancora un po\' prima che venga spedito. Le informazioni di tracciamento verranno visualizzate qui una volta che l\'ordine è stato elaborato e inviato. Questo può richiedere fino a cinque giorni (ma di solito meno!) a seconda di quanto siamo occupati.',
+                'line_2' => 'Inviamo tutti gli ordini dal Giappone utilizzando una varietà di servizi di spedizione a seconda del peso e del valore. Questa area verrà aggiornata con le specifiche una volta spedito l\'ordine.',
             ],
             'processing' => [
                 'title' => 'Il tuo pagamento non è ancora stato confermato!',
@@ -93,8 +93,8 @@ return [
                 'title' => 'Il tuo ordine è stato spedito!',
                 'tracking_details' => '',
                 'no_tracking_details' => [
-                    '_' => "",
-                    'link_text' => '',
+                    '_' => "Non disponiamo dei dettagli di tracciabilità poiché abbiamo inviato il tuo pacco tramite posta aerea, ma puoi aspettarti di riceverlo entro 1-3 settimane. Per l'Europa, a volte la dogana può ritardare l'ordine senza il nostro controllo. Se hai qualche dubbio, rispondi all'e-mail di conferma dell'ordine che hai ricevuto (o :link).",
+                    'link_text' => 'inviaci un\'email',
                 ],
             ],
         ],
@@ -108,9 +108,9 @@ return [
         'no_orders' => 'Nessun ordine da visualizzare.',
         'paid_on' => 'Ordine effettuato :date',
         'resume' => 'Riprendi Pagamento',
-        'shipping_and_handling' => '',
+        'shipping_and_handling' => 'Spedizione e Trasporto',
         'shopify_expired' => 'Il link del pagamento per quest\'ordine è scaduto.',
-        'subtotal' => '',
+        'subtotal' => 'Subtotale',
         'total' => 'Totale',
 
         'details' => [

@@ -13,7 +13,7 @@ export default class NotificationController {
   @observable currentFilter: NotificationTypeName;
 
   private readonly store: NotificationStackStore;
-  private readonly typeNamesWithoutNull = typeNames.filter((name) => !(name == null || this.isExcluded(name)));
+  private readonly typeNamesWithoutNull;
 
   @computed
   get isMarkingCurrentTypeAsRead() {
@@ -39,6 +39,8 @@ export default class NotificationController {
     protected readonly contextType: NotificationContextData,
     filter?: NotificationTypeName,
   ) {
+    this.typeNamesWithoutNull = typeNames.filter((name) => !(name == null || this.isExcluded(name)));
+
     // TODO: should probably not infer from url here.
     this.currentFilter = filter !== undefined ? filter : this.typeNameFromUrl;
 

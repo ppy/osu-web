@@ -19,7 +19,7 @@ import { rulesetName, shouldShowPp } from 'utils/beatmap-helper';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
-import { isPerfectCombo, modeAttributesMap, scoreUrl, totalScore } from 'utils/score-helper';
+import { filterMods, isPerfectCombo, modeAttributesMap, scoreUrl, totalScore } from 'utils/score-helper';
 
 interface Props {
   beatmap: BeatmapJson;
@@ -182,7 +182,7 @@ export default class TopCard extends React.PureComponent<Props> {
                   {trans('beatmapsets.show.scoreboard.headers.mods')}
                 </div>
                 <div className='beatmap-score-top__stat-value beatmap-score-top__stat-value--mods u-hover'>
-                  {this.props.score.mods.map((mod) => <Mod key={mod.acronym} mod={mod} />)}
+                  {filterMods(this.props.score).map((mod) => <Mod key={mod.acronym} mod={mod} />)}
                 </div>
               </div>
             </div>

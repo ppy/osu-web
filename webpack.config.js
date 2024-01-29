@@ -218,7 +218,6 @@ const resolve = {
   alias: {
     '@fonts': path.resolve(__dirname, 'resources/fonts'),
     '@images': path.resolve(__dirname, 'public/images'),
-    'ziggy-route': resolvePath('vendor/tightenco/ziggy/dist/index.es.js'),
   },
   extensions: ['*', '.js', '.coffee', '.ts', '.tsx'],
   modules: [
@@ -294,7 +293,7 @@ const watches = [
   {
     callback: () => spawnSync(
       'php',
-      ['artisan', 'ziggy:generate', 'resources/builds/ziggy.js'],
+      ['artisan', 'ziggy:generate', 'resources/builds/ziggy.js', '--types'],
       { stdio: 'inherit' },
     ),
     path: resolvePath('routes/web.php'),

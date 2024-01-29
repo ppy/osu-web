@@ -688,6 +688,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             $this->events()->create(['type' => BeatmapsetEvent::QUALIFY]);
 
             $this->setApproved('qualified', $user);
+            $this->bssProcessQueues()->create();
 
             // global event
             Event::generate('beatmapsetApprove', ['beatmapset' => $this]);
@@ -829,7 +830,9 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
         $this->getConnection()->transaction(function () use ($user, $beatmapIds) {
             $this->events()->create(['type' => BeatmapsetEvent::LOVE, 'user_id' => $user->user_id]);
+
             $this->setApproved('loved', $user, $beatmapIds);
+            $this->bssProcessQueues()->create();
 
             Event::generate('beatmapsetApprove', ['beatmapset' => $this]);
 

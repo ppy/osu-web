@@ -36,6 +36,9 @@ return [
     'starting' => [
         'username' => '輸入郵件地址或使用者名稱',
 
+        'reason' => [
+            'inactive_different_country' => "",
+        ],
         'support' => [
             '_' => '需要進一步的幫助？通過我們的 :button 聯繫我們。',
             'button' => '支持系統',

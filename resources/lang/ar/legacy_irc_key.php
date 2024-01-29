@@ -4,20 +4,20 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'confirm_new' => '',
-    'new' => '',
-    'none' => '',
+    'confirm_new' => 'إنشاء كلمة مرور IRC جديدة؟',
+    'new' => 'كلمة مرور IRC كلاسيكية جديدة',
+    'none' => 'لم يتم تعيين كلمة مرور IRC.',
 
     'form' => [
-        'server_host' => '',
-        'server_port' => '',
-        'token' => '',
-        'username' => '',
+        'server_host' => 'الخادم',
+        'server_port' => 'المنفذ',
+        'token' => 'كلمة مرور الخادم',
+        'username' => 'اسم المستخدم',
     ],
 
     'view' => [
-        'hide' => '',
-        'show' => '',
-        'delete' => '',
+        'hide' => 'إخفاء كلمة المرور',
+        'show' => 'إظهار كلمة المرور',
+        'delete' => 'حذف',
     ],
 ];

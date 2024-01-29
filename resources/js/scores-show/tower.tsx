@@ -14,6 +14,7 @@ const rankIntMap: Record<Rank, number> = {
   B: 2,
   C: 1,
   D: 0,
+  F: -1,
   S: 4,
   SH: 4,
   X: 5,

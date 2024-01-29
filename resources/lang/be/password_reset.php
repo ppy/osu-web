@@ -37,6 +37,9 @@ return [
     'starting' => [
         'username' => 'Увядзіце эл. пошту або імя карыстальніка',
 
+        'reason' => [
+            'inactive_different_country' => "",
+        ],
         'support' => [
             '_' => 'Патрэбна дадатковая дапамога? Звяжыцеся з намі :button.',
             'button' => 'сістэма падтрымкі',

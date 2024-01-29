@@ -3,6 +3,7 @@
 
 import UserListPopup, { createTooltip } from 'components/user-list-popup';
 import { BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
+import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { action, computed, makeObservable, observable } from 'mobx';
@@ -14,6 +15,7 @@ import { onError } from 'utils/ajax';
 import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
+import DiscussionsState from './discussions-state';
 
 const voteTypes = ['up', 'down'] as const;
 type VoteType = typeof voteTypes[number];
@@ -21,13 +23,14 @@ type VoteType = typeof voteTypes[number];
 interface Props {
   cannotVote: boolean;
   discussion: BeatmapsetDiscussionJsonForShow;
-  users: Partial<Record<number | string, UserJson>>;
+  discussionsState: DiscussionsState;
+  users: Map<number | null | undefined, UserJson>;
 }
 
 @observer
 export default class DiscussionVoteButtons extends React.Component<Props> {
   private readonly tooltips: Partial<Record<VoteType, JQuery>> = {};
-  @observable private voteXhr: JQuery.jqXHR<BeatmapsetDiscussionJsonForShow> | null = null;
+  @observable private voteXhr: JQuery.jqXHR<BeatmapsetWithDiscussionsJson> | null = null;
 
   @computed
   private get canDownvote() {
@@ -68,7 +71,7 @@ export default class DiscussionVoteButtons extends React.Component<Props> {
       ? trans(`beatmaps.discussions.votes.none.${type}`)
       : `${trans(`beatmaps.discussions.votes.latest.${type}`)}:`;
 
-    const users = this.props.discussion.votes.voters[type].map((id) => this.props.users[id] ?? { id });
+    const users = this.props.discussion.votes.voters[type].map((id) => this.props.users.get(id) ?? { id });
 
     return renderToStaticMarkup(<UserListPopup count={count} title={title} users={users} />);
   }
@@ -89,7 +92,7 @@ export default class DiscussionVoteButtons extends React.Component<Props> {
     });
 
     this.voteXhr
-      .done((beatmapset) => $.publish('beatmapsetDiscussions:update', { beatmapset }))
+      .done((beatmapset) => this.props.discussionsState.update({ beatmapset }))
       .fail(onError)
       .always(action(() => {
         hideLoadingOverlay();

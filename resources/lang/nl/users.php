@@ -125,7 +125,7 @@ return [
 
     'ogp' => [
         'modding_description' => '',
-        'modding_description_empty' => '',
+        'modding_description_empty' => 'Gebruiker heeft geen beatmaps...',
 
         'description' => [
             '_' => 'Rang (:ruleset): :global × :country',

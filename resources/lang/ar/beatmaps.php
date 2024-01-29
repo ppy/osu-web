@@ -79,15 +79,15 @@ return [
         ],
 
         'message_type_title' => [
-            'disqualify' => '',
-            'hype' => '',
-            'mapper_note' => '',
-            'nomination_reset' => '',
-            'praise' => '',
-            'problem' => '',
-            'problem_warning' => '',
-            'review' => '',
-            'suggestion' => '',
+            'disqualify' => 'نشر إلغاء اهلية',
+            'hype' => 'نشر تشجيع!',
+            'mapper_note' => 'نشر ملاحظة',
+            'nomination_reset' => 'إزالة جميع الترشيحات',
+            'praise' => 'نشر ثناء',
+            'problem' => 'نشر مشكلة',
+            'problem_warning' => 'نشر مشكلة',
+            'review' => 'نشر مراجعة',
+            'suggestion' => 'نشر إقتراح',
         ],
 
         'mode' => [
@@ -187,8 +187,8 @@ return [
     ],
 
     'nominations' => [
-        'already_nominated' => '',
-        'cannot_nominate' => '',
+        'already_nominated' => 'لقد قمت بالفعل بترشيح هذه الخريطة.',
+        'cannot_nominate' => 'لا يمكنك ترشيح هذا المود من هذه الخريطة.',
         'delete' => 'حذف',
         'delete_own_confirm' => 'هل انت متأكد؟ سوف تمسح الخريطة وسيتم ارجاعك الى ملفك الشخصي.',
         'delete_other_confirm' => 'هل انت متأكد؟ سوف تمسح الخريطة وسيتم ارجاعك الى ملف المستخدم الشخصي.',

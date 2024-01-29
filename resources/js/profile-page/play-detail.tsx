@@ -13,7 +13,7 @@ import { getArtist, getTitle } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
-import { hasMenu } from 'utils/score-helper';
+import { accuracy, filterMods, hasMenu, rank } from 'utils/score-helper';
 import { beatmapUrl } from 'utils/url';
 
 const bn = 'play-detail';
@@ -52,13 +52,14 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
     }
 
     const scoreWeight = this.props.showPpWeight ? score.weight : null;
+    const scoreRank = rank(score);
 
     return (
       <div className={blockClass} {...additionalAttributes}>
         {this.renderPinSortableHandle()}
         <div className={`${bn}__group ${bn}__group--top`}>
           <div className={`${bn}__icon ${bn}__icon--main`}>
-            <div className={`score-rank score-rank--full score-rank--${score.rank}`} />
+            <div className={`score-rank score-rank--full score-rank--${scoreRank}`} />
           </div>
 
           <div className={`${bn}__detail`}>
@@ -86,12 +87,12 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
         <div className={`${bn}__group ${bn}__group--bottom`}>
           <div className={`${bn}__score-detail ${bn}__score-detail--score`}>
             <div className={`${bn}__icon ${bn}__icon--extra`}>
-              <div className={`score-rank score-rank--full score-rank--${score.rank}`} />
+              <div className={`score-rank score-rank--full score-rank--${scoreRank}`} />
             </div>
             <div className={`${bn}__score-detail-top-right`}>
               <div className={`${bn}__accuracy-and-weighted-pp`}>
                 <span className={`${bn}__accuracy`}>
-                  {formatNumber(score.accuracy * 100, 2)}%
+                  {formatNumber(accuracy(score) * 100, 2)}%
                 </span>
                 {scoreWeight != null && (
                   <span className={`${bn}__weighted-pp`}>
@@ -111,7 +112,7 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
           </div>
 
           <div className={`${bn}__score-detail ${bn}__score-detail--mods`}>
-            {score.mods.map((mod) => <Mod key={mod.acronym} mod={mod} />)}
+            {filterMods(score).map((mod) => <Mod key={mod.acronym} mod={mod} />)}
           </div>
 
           <div className={`${bn}__pp`}>

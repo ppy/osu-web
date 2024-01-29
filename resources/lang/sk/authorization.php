@@ -5,9 +5,9 @@
 
 return [
     'play_more' => 'Čo si tak namiesto toho zahrať osu!?',
-    'require_login' => 'Prosím, prihláste sa, aby ste mohli pokračovať.',
+    'require_login' => 'Prosím, prihláste sa pre pokračovanie.',
     'require_verification' => 'Prosím overte pre pokračovanie.',
-    'restricted' => "Toto nemôžete robiť, kým ste umlčaný.",
+    'restricted' => "Nemôžete to robiť s obmedzeným účtom.",
     'silenced' => "Toto nemôžete robiť, kým ste umlčaný.",
     'unauthorized' => 'Prístup zamietnutý.',
 
@@ -27,7 +27,7 @@ return [
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => 'Iba vlastník mapy alebo nominátor/člen skupiny QAT môžu písať poznámky mappera.',
+            'mapper_note_wrong_user' => 'Iba vlastník mapy alebo nominátor/členu tímu zaručujúceho kvalitu môže pridať autorove pripomienky.',
         ],
 
         'vote' => [
@@ -40,9 +40,9 @@ return [
 
     'beatmap_discussion_post' => [
         'destroy' => [
-            'not_owner' => 'Iba vy môžete odstrániť vaše vlastné príspevky.',
+            'not_owner' => 'Môžete odstrániť iba vaše vlastné príspevky.',
             'resolved' => 'Nemôžete vymazať príspevky vyriešenej diskusie.',
-            'system_generated' => 'Automaticky generovaný príspevok nie je možné upravovať.',
+            'system_generated' => 'Automaticky generovaný príspevok nie je možné odstrániť.',
         ],
 
         'edit' => [
@@ -85,7 +85,7 @@ return [
 
         'entry' => [
             'limit_reached' => 'Dosiahol si limit vstupov pre túto súťaž',
-            'over' => 'Díky za vaše vstupy! Podania boli uzavreté a hlasovanie sa čoskoro otvorí.',
+            'over' => 'Ďakujeme za vaše vstupy! Podania pre túto súťaž  boli uzavreté a hlasovanie sa čoskoro otvorí.',
         ],
     ],
 
@@ -104,15 +104,15 @@ return [
 
             'edit' => [
                 'deleted' => 'Nemôžete upraviť odstránený príspevok.',
-                'locked' => 'Príspevok je uzamknutý od upravovania.',
+                'locked' => 'Príspevok je uzamknutý pre upravovanie.',
                 'no_forum_access' => 'Nemáš prístup k danému fóru.',
                 'not_owner' => 'Upravovať môže iba autor príspevku.',
-                'topic_locked' => 'Nie je možné editovať príspevok zamknutej témy.',
+                'topic_locked' => 'Nie je možné upraviť príspevok zamknutej témy.',
             ],
 
             'store' => [
-                'play_more' => 'Prosím skús si zahrať hru pred písaním na fórum! Ak máš problém s hraním, prosím spýtaj sa na Help and Support fóre.',
-                'too_many_help_posts' => "Musíš hrať viac pred ďalšími príspevkami. Ak tvoj problém s hraním hry pretrváva, napíš na support@ppy.sh", // FIXME: unhardcode email address.
+                'play_more' => 'Predtým, ako pridáte príspevok na fórach, skúste si zahrať, prosím! Ak máte problém s hraním, prosím opýtajte sa na fóre Pomoc a Podpora.',
+                'too_many_help_posts' => "Musíš hrať viac, aby si mohol vytvárať ďalšie príspevky. Ak tvoj problém s hraním hry pretrváva, napíš na email support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 

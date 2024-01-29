@@ -40,7 +40,7 @@ return [
         ],
 
         'store' => [
-            'cart' => 'ostoskori',
+            'cart' => 'ostoskärry',
             'orders' => 'tilaushistoria',
             'products' => 'tuotteet',
         ],
@@ -67,7 +67,7 @@ return [
 
     'menu' => [
         'beatmaps' => [
-            '_' => 'rytmikartat',
+            '_' => 'beatmapit',
         ],
         'community' => [
             '_' => 'yhteisö',
@@ -113,7 +113,7 @@ return [
             '_' => 'Lakiasiat ja tilanne',
             'copyright' => 'Tekijänoikeudet (DMCA)',
             'privacy' => 'Yksityisyys',
-            'server_status' => 'Palvelimen tila',
+            'server_status' => 'Palvelimen tilanne',
             'source_code' => 'Lähdekoodi',
             'terms' => 'Käyttöehdot',
         ],

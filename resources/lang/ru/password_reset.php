@@ -36,6 +36,9 @@ return [
     'starting' => [
         'username' => 'Введите почту или ник',
 
+        'reason' => [
+            'inactive_different_country' => "",
+        ],
         'support' => [
             '_' => 'Нужна дополнительная помощь? Свяжитесь с нами через :button.',
             'button' => 'систему поддержки',

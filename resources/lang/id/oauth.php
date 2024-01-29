@@ -55,7 +55,7 @@ return [
 
         'revoked' => [
             'false' => 'Hapus',
-            'true' => 'Telah dihapus',
+            'true' => 'Dihapus',
         ],
     ],
 ];

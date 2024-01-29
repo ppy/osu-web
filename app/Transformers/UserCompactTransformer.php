@@ -47,7 +47,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     protected array $availableIncludes = [
         'account_history',
-        'active_tournament_banner',
+        'active_tournament_banner', // deprecated
         'active_tournament_banners',
         'badges',
         'beatmap_playcounts_count',
@@ -86,6 +86,7 @@ class UserCompactTransformer extends TransformerAbstract
         'scores_first_count',
         'scores_pinned_count',
         'scores_recent_count',
+        'session_verified',
         'statistics',
         'statistics_rulesets',
         'support_level',
@@ -403,6 +404,11 @@ class UserCompactTransformer extends TransformerAbstract
     public function includeScoresRecentCount(User $user)
     {
         return $this->primitive($user->scores($this->mode, true)->includeFails(false)->count());
+    }
+
+    public function includeSessionVerified(User $user)
+    {
+        return $this->primitive($user->token()?->isVerified() ?? false);
     }
 
     public function includeStatistics(User $user)

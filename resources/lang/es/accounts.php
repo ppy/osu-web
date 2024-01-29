@@ -70,7 +70,7 @@ return [
 
         'error' => [
             'already_linked' => 'Esta cuenta de GitHub ya está vinculada a un usuario diferente.',
-            'no_contribution' => 'No se puede vincular la cuenta de GitHub sin ningún historial de contribuciones en los repositorios de osu!',
+            'no_contribution' => 'No se puede vincular la cuenta de GitHub sin ningún historial de contribuciones en los repositorios de osu!.',
             'unverified_email' => 'Por favor, verifica tu correo principal en GitHub, luego intenta vincular tu cuenta de nuevo.',
         ],
     ],

@@ -11,11 +11,14 @@ use App\Http\Middleware\ThrottleRequests;
 use App\Libraries\User\PasswordResetData;
 use App\Mail\PasswordReset;
 use App\Models\User;
+use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\Mail;
 use Tests\TestCase;
 
 class PasswordResetControllerTest extends TestCase
 {
+    private string $origCacheDefault;
+
     private static function randomPassword(): string
     {
         return str_random(10);
@@ -194,6 +197,29 @@ class PasswordResetControllerTest extends TestCase
         $this->assertTrue($user->fresh()->checkPassword($newPassword));
     }
 
+    public function testUpdateFromInactive(): void
+    {
+        $changeTime = CarbonImmutable::now()->subMinutes(1);
+        $user = User::factory()->create(['user_lastvisit' => $changeTime->subYears(10)]);
+
+        $key = $this->generateKey($user);
+
+        $newPassword = static::randomPassword();
+
+        $this->put($this->path(), [
+            'key' => $key,
+            'user' => [
+                'password' => $newPassword,
+                'password_confirmation' => $newPassword,
+            ],
+            'username' => $user->username,
+        ])->assertRedirect(route('home'));
+
+        $user = $user->fresh();
+        $this->assertTrue($user->checkPassword($newPassword));
+        $this->assertTrue($user->user_lastvisit->greaterThan($changeTime));
+    }
+
     public function testUpdateInvalidUsername()
     {
         $user = User::factory()->create();
@@ -259,6 +285,15 @@ class PasswordResetControllerTest extends TestCase
     {
         parent::setUp();
         $this->withoutMiddleware(ThrottleRequests::class);
+        // There's no easy way to clear data cache in redis otherwise
+        $this->origCacheDefault = $GLOBALS['cfg']['cache']['default'];
+        config_set('cache.default', 'array');
+    }
+
+    protected function tearDown(): void
+    {
+        parent::tearDown();
+        config_set('cache.default', $this->origCacheDefault);
     }
 
     private function generateKey(User $user): string

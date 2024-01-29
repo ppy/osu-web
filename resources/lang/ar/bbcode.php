@@ -8,7 +8,7 @@ return [
     'heading' => 'عنوان',
     'help' => 'مساعدة',
     'image' => 'صورة',
-    'imagemap' => '',
+    'imagemap' => 'خريطة الصورة',
     'italic' => 'مائل',
     'link' => 'الرابط',
     'list' => 'قائمة',
