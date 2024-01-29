@@ -5,7 +5,7 @@ import { Spinner } from 'components/spinner';
 import UserAvatar from 'components/user-avatar';
 import UserLink from 'components/user-link';
 import BeatmapJson from 'interfaces/beatmap-json';
-import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
+import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { action, computed, makeObservable, observable, runInAction } from 'mobx';
@@ -16,17 +16,17 @@ import { onErrorWithCallback } from 'utils/ajax';
 import { classWithModifiers } from 'utils/css';
 import { transparentGif } from 'utils/html';
 import { trans } from 'utils/lang';
-
-type BeatmapsetWithDiscussionJson = BeatmapsetExtendedJson;
+import DiscussionsState from './discussions-state';
 
 interface XhrCollection {
-  updateOwner: JQuery.jqXHR<BeatmapsetWithDiscussionJson>;
+  updateOwner: JQuery.jqXHR<BeatmapsetWithDiscussionsJson>;
   userLookup: JQuery.jqXHR<UserJson>;
 }
 
 interface Props {
   beatmap: BeatmapJson;
   beatmapsetUser: UserJson;
+  discussionsState: DiscussionsState;
   user: UserJson;
   userByName: Map<string, UserJson>;
 }
@@ -245,8 +245,8 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
       data: { beatmap: { user_id: userId } },
       method: 'PUT',
     });
-    this.xhr.updateOwner.done((data) => runInAction(() => {
-      $.publish('beatmapsetDiscussions:update', { beatmapset: data });
+    this.xhr.updateOwner.done((beatmapset) => runInAction(() => {
+      this.props.discussionsState.update({ beatmapset });
       this.editing = false;
     })).fail(onErrorWithCallback(() => {
       this.updateOwner(userId);

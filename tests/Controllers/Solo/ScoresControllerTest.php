@@ -137,11 +137,11 @@ class ScoresControllerTest extends TestCase
         parent::tearDown();
 
         static::createApp();
-        LaravelRedis::del(Score::PROCESSING_QUEUE);
+        LaravelRedis::del($GLOBALS['cfg']['osu']['scores']['processing_queue']);
     }
 
     private function processingQueueCount(): int
     {
-        return LaravelRedis::llen(Score::PROCESSING_QUEUE);
+        return LaravelRedis::llen($GLOBALS['cfg']['osu']['scores']['processing_queue']);
     }
 }

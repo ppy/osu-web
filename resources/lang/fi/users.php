@@ -159,7 +159,7 @@ return [
         ],
 
         'options' => [
-            'cheating' => 'Väärin pelaaminen / Huijaaminen',
+            'cheating' => 'Huijaaminen',
             'multiple_accounts' => 'Käyttää useita tilejä',
             'insults' => 'Loukkaa minua / muita',
             'spam' => 'Spämmii',

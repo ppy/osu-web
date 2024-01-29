@@ -48,7 +48,7 @@ return [
         'edit' => [
             'not_owner' => 'Hanya pemilik topik yang diperbolehkan untuk menyunting kiriman.',
             'resolved' => 'Kamu tidak dapat menyunting postingan pada topik diskusi yang telah terjawab.',
-            'system_generated' => 'Post yang dihasilkan secara otomatis tidak dapat disunting.',
+            'system_generated' => 'Postingan yang dihasilkan secara otomatis tidak dapat disunting.',
         ],
     ],
 

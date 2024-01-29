@@ -15,6 +15,11 @@ use App\Models\User;
 
 class Helper
 {
+    public static function currentSession(): ?SessionVerificationInterface
+    {
+        return is_api_request() ? oauth_token() : \Session::instance();
+    }
+
     public static function currentUserOrFail(): User
     {
         $user = \Auth::user();
@@ -23,8 +28,16 @@ class Helper
         return $user;
     }
 
-    public static function issue(SessionVerificationInterface $session, User $user): void
+    public static function issue(SessionVerificationInterface $session, User $user, bool $initial = false): void
     {
+        if ($initial) {
+            if (State::fromSession($session) === null) {
+                static::logAttempt('input', 'new');
+            } else {
+                return;
+            }
+        }
+
         if (!is_valid_email_format($user->user_email)) {
             return;
         }

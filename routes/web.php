@@ -403,6 +403,11 @@ Route::group(['middleware' => ['web']], function () {
 // There's also a different group which skips throttle middleware.
 Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', ThrottleRequests::getApiThrottle(), 'require-scopes']], function () {
     Route::group(['prefix' => 'v2'], function () {
+        Route::group(['middleware' => ['require-scopes:any']], function () {
+            Route::post('session/verify', 'AccountController@verify')->name('verify');
+            Route::post('session/verify/reissue', 'AccountController@reissueCode')->name('verify.reissue');
+        });
+
         Route::group(['as' => 'beatmaps.', 'prefix' => 'beatmaps'], function () {
             Route::get('lookup', 'BeatmapsController@lookup')->name('lookup');
 

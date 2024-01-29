@@ -51,8 +51,6 @@ class Score extends Model implements Traits\ReportableInterface
 {
     use Traits\Reportable, Traits\WithWeightedPp;
 
-    const PROCESSING_QUEUE = 'osu-queue:score-statistics';
-
     public $timestamps = false;
 
     protected $casts = [
@@ -290,7 +288,7 @@ class Score extends Model implements Traits\ReportableInterface
 
     public function queueForProcessing(): void
     {
-        LaravelRedis::lpush(static::PROCESSING_QUEUE, json_encode([
+        LaravelRedis::lpush($GLOBALS['cfg']['osu']['scores']['processing_queue'], json_encode([
             'Score' => $this->getAttributes(),
         ]));
     }
@@ -307,13 +305,18 @@ class Score extends Model implements Traits\ReportableInterface
 
     public function userRank(?array $params = null): int
     {
-        return UserRank::getRank(ScoreSearchParams::fromArray(array_merge($params ?? [], [
+        // Non-legacy score always has its rank checked against all score types.
+        if (!$this->isLegacy()) {
+            $params['is_legacy'] = null;
+        }
+
+        return UserRank::getRank(ScoreSearchParams::fromArray([
+            ...($params ?? []),
             'beatmap_ids' => [$this->beatmap_id],
             'before_score' => $this,
-            'is_legacy' => $this->isLegacy(),
             'ruleset_id' => $this->ruleset_id,
             'user' => $this->user,
-        ])));
+        ]));
     }
 
     protected function newReportableExtraParams(): array

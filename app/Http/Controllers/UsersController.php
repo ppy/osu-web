@@ -545,6 +545,7 @@ class UsersController extends Controller
      *
      * See [Get User](#get-user).
      *
+     * `session_verified` attribute is included.
      * Additionally, `statistics_rulesets` is included, containing statistics for all rulesets.
      *
      * @urlParam mode string [Ruleset](#ruleset). User default mode will be used if not specified. Example: osu
@@ -553,7 +554,7 @@ class UsersController extends Controller
      */
     public function me($mode = null)
     {
-        $user = auth()->user();
+        $user = \Auth::user();
         $currentMode = $mode ?? $user->playmode;
 
         if (!Beatmap::isModeValid($currentMode)) {
@@ -566,6 +567,7 @@ class UsersController extends Controller
             $user,
             (new UserTransformer())->setMode($currentMode),
             [
+                'session_verified',
                 ...$this->showUserIncludes(),
                 ...array_map(
                     fn (string $ruleset) => "statistics_rulesets.{$ruleset}",
