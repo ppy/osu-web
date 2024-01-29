@@ -21,11 +21,11 @@ class Controller
         $user = Helper::currentUserOrFail();
         $email = $user->user_email;
 
-        $session = \Session::instance();
-        if (State::fromSession($session) === null) {
-            Helper::logAttempt('input', 'new');
+        $session = Helper::currentSession();
+        Helper::issue($session, $user, true);
 
-            Helper::issue($session, $user);
+        if (is_api_request()) {
+            return response(null, $statusCode);
         }
 
         if (\Request::ajax()) {
@@ -43,9 +43,9 @@ class Controller
 
     public static function reissue()
     {
-        $session = \Session::instance();
+        $session = Helper::currentSession();
         if ($session->isVerified()) {
-            return response(null, 204);
+            return response(null, 422);
         }
 
         Helper::issue($session, Helper::currentUserOrFail());
@@ -55,9 +55,13 @@ class Controller
 
     public static function verify()
     {
+        $session = Helper::currentSession();
+        if ($session->isVerified()) {
+            return response(null, 204);
+        }
+
         $key = strtr(get_string(\Request::input('verification_key')) ?? '', [' ' => '']);
         $user = Helper::currentUserOrFail();
-        $session = \Session::instance();
         $state = State::fromSession($session);
 
         try {

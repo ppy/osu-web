@@ -36,6 +36,9 @@ return [
     'starting' => [
         'username' => 'Add meg az e-mail címed vagy felhasználóneved',
 
+        'reason' => [
+            'inactive_different_country' => "",
+        ],
         'support' => [
             '_' => 'Segítség kéne? Lépj kapcsolatba velünk itt :botton.',
             'button' => 'támogatói rendszer',

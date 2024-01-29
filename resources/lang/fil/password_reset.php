@@ -36,6 +36,9 @@ return [
     'starting' => [
         'username' => 'Itala ang email address o username',
 
+        'reason' => [
+            'inactive_different_country' => "",
+        ],
         'support' => [
             '_' => 'Kailangan pa ng tulong? Makipag-usap sa amin sa :button.',
             'button' => 'support system',

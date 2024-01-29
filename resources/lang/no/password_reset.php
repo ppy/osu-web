@@ -36,6 +36,9 @@ return [
     'starting' => [
         'username' => 'Skriv inn e-postadresse eller brukernavn',
 
+        'reason' => [
+            'inactive_different_country' => "",
+        ],
         'support' => [
             '_' => 'Trenger du mer hjelp? Kontakt oss via vårt :button.',
             'button' => 'støttesystem',

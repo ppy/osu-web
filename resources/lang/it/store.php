@@ -93,7 +93,7 @@ return [
                 'title' => 'Il tuo ordine è stato spedito!',
                 'tracking_details' => '',
                 'no_tracking_details' => [
-                    '_' => "Non disponiamo dei dettagli di tracciabilità poiché abbiamo inviato il tuo pacco tramite posta aerea, ma puoi aspettarti di riceverlo entro 1-3 settimane. Per l'Europa, a volte la dogana può ritardare l'ordine senza il nostro controllo. Se hai qualche dubbio, rispondi all'e-mail di conferma dell'ordine che hai ricevuto :link.",
+                    '_' => "Non disponiamo dei dettagli di tracciabilità poiché abbiamo inviato il tuo pacco tramite posta aerea, ma puoi aspettarti di riceverlo entro 1-3 settimane. Per l'Europa, a volte la dogana può ritardare l'ordine senza il nostro controllo. Se hai qualche dubbio, rispondi all'e-mail di conferma dell'ordine che hai ricevuto (o :link).",
                     'link_text' => 'inviaci un\'email',
                 ],
             ],

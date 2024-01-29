@@ -4,8 +4,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'new' => '',
-    'none' => '',
+    'new' => 'Bagong Legacy API Key',
+    'none' => 'Walang key.',
 
     'docs' => [
         '_' => '',

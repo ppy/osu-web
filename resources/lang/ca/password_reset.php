@@ -36,6 +36,9 @@ return [
     'starting' => [
         'username' => 'Adreça electrònica o  nom d\'usuari',
 
+        'reason' => [
+            'inactive_different_country' => "",
+        ],
         'support' => [
             '_' => 'Necessites més assistència? Contacta\'ns a través del nostre :button.',
             'button' => 'sistema de suport',

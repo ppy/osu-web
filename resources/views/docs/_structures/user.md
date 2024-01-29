@@ -70,6 +70,7 @@ replays_watched_counts     | | |
 scores_best_count          | integer | |
 scores_first_count         | integer | |
 scores_recent_count        | integer | |
+session_verified           | boolean | |
 statistics                 | | |
 statistics_rulesets        | UserStatisticsRulesets | |
 support_level              | | |
