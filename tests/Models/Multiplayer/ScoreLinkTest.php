@@ -12,11 +12,26 @@ use App\Models\Beatmap;
 use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\ScoreLink;
 use App\Models\ScoreToken;
-use Carbon\Carbon;
 use Tests\TestCase;
 
 class ScoreLinkTest extends TestCase
 {
+    private static array $commonScoreParams;
+
+    public static function setUpBeforeClass(): void
+    {
+        parent::setUpBeforeClass();
+        static::$commonScoreParams = [
+            'accuracy' => 0.5,
+            'ended_at' => new \DateTime(),
+            'max_combo' => 1,
+            'statistics' => [
+                'great' => 1,
+            ],
+            'total_score' => 1,
+        ];
+    }
+
     public function testRequiredModsMissing()
     {
         $playlistItem = PlaylistItem::factory()->create([
@@ -32,14 +47,10 @@ class ScoreLinkTest extends TestCase
         $this->expectException(InvariantException::class);
         $this->expectExceptionMessage('This play does not include the mods required.');
         ScoreLink::complete($scoreToken, [
+            ...static::$commonScoreParams,
             'beatmap_id' => $playlistItem->beatmap_id,
             'ruleset_id' => $playlistItem->ruleset_id,
             'user_id' => $scoreToken->user_id,
-            'ended_at' => json_date(Carbon::now()),
-            'mods' => [],
-            'statistics' => [
-                'great' => 1,
-            ],
         ]);
     }
 
@@ -57,14 +68,11 @@ class ScoreLinkTest extends TestCase
 
         $this->expectNotToPerformAssertions();
         ScoreLink::complete($scoreToken, [
+            ...static::$commonScoreParams,
             'beatmap_id' => $playlistItem->beatmap_id,
+            'mods' => [['acronym' => 'HD']],
             'ruleset_id' => $playlistItem->ruleset_id,
             'user_id' => $scoreToken->user_id,
-            'ended_at' => json_date(Carbon::now()),
-            'mods' => [['acronym' => 'HD']],
-            'statistics' => [
-                'great' => 1,
-            ],
         ]);
     }
 
@@ -85,17 +93,14 @@ class ScoreLinkTest extends TestCase
 
         $this->expectNotToPerformAssertions();
         ScoreLink::complete($scoreToken, [
+            ...static::$commonScoreParams,
             'beatmap_id' => $playlistItem->beatmap_id,
-            'ruleset_id' => $playlistItem->ruleset_id,
-            'user_id' => $scoreToken->user_id,
-            'ended_at' => json_date(Carbon::now()),
             'mods' => [
                 ['acronym' => 'DT'],
                 ['acronym' => 'HD'],
             ],
-            'statistics' => [
-                'great' => 1,
-            ],
+            'ruleset_id' => $playlistItem->ruleset_id,
+            'user_id' => $scoreToken->user_id,
         ]);
     }
 
@@ -117,17 +122,14 @@ class ScoreLinkTest extends TestCase
         $this->expectException(InvariantException::class);
         $this->expectExceptionMessage('This play includes mods that are not allowed.');
         ScoreLink::complete($scoreToken, [
+            ...static::$commonScoreParams,
             'beatmap_id' => $playlistItem->beatmap_id,
-            'ruleset_id' => $playlistItem->ruleset_id,
-            'user_id' => $scoreToken->user_id,
-            'ended_at' => json_date(Carbon::now()),
             'mods' => [
                 ['acronym' => 'DT'],
                 ['acronym' => 'HD'],
             ],
-            'statistics' => [
-                'great' => 1,
-            ],
+            'ruleset_id' => $playlistItem->ruleset_id,
+            'user_id' => $scoreToken->user_id,
         ]);
     }
 
@@ -142,14 +144,11 @@ class ScoreLinkTest extends TestCase
         $this->expectException(InvariantException::class);
         $this->expectExceptionMessage('This play includes mods that are not allowed.');
         ScoreLink::complete($scoreToken, [
+            ...static::$commonScoreParams,
             'beatmap_id' => $playlistItem->beatmap_id,
+            'mods' => [['acronym' => 'HD']],
             'ruleset_id' => $playlistItem->ruleset_id,
             'user_id' => $scoreToken->user_id,
-            'ended_at' => json_date(Carbon::now()),
-            'mods' => [['acronym' => 'HD']],
-            'statistics' => [
-                'great' => 1,
-            ],
         ]);
     }
 
@@ -170,14 +169,11 @@ class ScoreLinkTest extends TestCase
 
         $this->expectNotToPerformAssertions();
         ScoreLink::complete($scoreToken, [
+            ...static::$commonScoreParams,
             'beatmap_id' => $playlistItem->beatmap_id,
+            'mods' => [['acronym' => 'TD']],
             'ruleset_id' => $playlistItem->ruleset_id,
             'user_id' => $scoreToken->user_id,
-            'ended_at' => json_date(Carbon::now()),
-            'mods' => [['acronym' => 'TD']],
-            'statistics' => [
-                'great' => 1,
-            ],
         ]);
     }
 }

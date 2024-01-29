@@ -5,6 +5,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Libraries\SessionVerification;
 use App\Models\Country;
 use Carbon\Carbon;
 use Closure;
@@ -30,7 +31,7 @@ class UpdateUserLastvisit
             if ($shouldUpdate) {
                 $isInactive = $user->isInactive();
                 if ($isInactive) {
-                    $isVerified = $user->isSessionVerified();
+                    $isVerified = SessionVerification\Helper::currentSession()->isVerified();
                 }
 
                 if (!$isInactive || $isVerified) {

@@ -7,11 +7,29 @@ import { route } from 'laroute';
 import core from 'osu-core-singleton';
 import { rulesetName } from './beatmap-helper';
 import { trans } from './lang';
+import { legacyAccuracyAndRank } from './legacy-score-helper';
+
+export function accuracy(score: SoloScoreJson) {
+  if (score.legacy_score_id == null || !core.userPreferences.get('legacy_score_only')) {
+    return score.accuracy;
+  }
+
+  return legacyAccuracyAndRank(score).accuracy;
+}
 
 export function canBeReported(score: SoloScoreJson) {
   return (score.best_id != null || score.type === 'solo_score')
     && core.currentUser != null
     && score.user_id !== core.currentUser.id;
+}
+
+// Removes CL mod on legacy score if user has lazer mode disabled
+export function filterMods(score: SoloScoreJson) {
+  if (score.legacy_score_id == null || !core.userPreferences.get('legacy_score_only')) {
+    return score.mods;
+  }
+
+  return score.mods.filter((mod) => mod.acronym !== 'CL');
 }
 
 // TODO: move to application state repository thingy later
@@ -92,6 +110,14 @@ export const modeAttributesMap: Record<GameMode, AttributeData[]> = {
   ],
 };
 
+export function rank(score: SoloScoreJson) {
+  if (score.legacy_score_id == null || !core.userPreferences.get('legacy_score_only')) {
+    return score.rank;
+  }
+
+  return legacyAccuracyAndRank(score).rank;
+}
+
 export function scoreDownloadUrl(score: SoloScoreJson) {
   if (score.type === 'solo_score') {
     return route('scores.download', { score: score.id });
@@ -123,5 +149,9 @@ export function scoreUrl(score: SoloScoreJson) {
 }
 
 export function totalScore(score: SoloScoreJson) {
-  return score.legacy_total_score ?? score.total_score;
+  if (score.legacy_score_id == null || !core.userPreferences.get('legacy_score_only')) {
+    return score.total_score;
+  }
+
+  return score.legacy_total_score;
 }

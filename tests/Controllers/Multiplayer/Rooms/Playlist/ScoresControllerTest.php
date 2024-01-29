@@ -23,19 +23,19 @@ class ScoresControllerTest extends TestCase
         $scoreLinks[] = ScoreLink
             ::factory()
             ->state(['playlist_item_id' => $playlist])
-            ->completed([], ['passed' => true, 'total_score' => 30])
+            ->completed(['passed' => true, 'total_score' => 30])
             ->create();
         $scoreLinks[] = $userScoreLink = ScoreLink
             ::factory()
             ->state([
                 'playlist_item_id' => $playlist,
                 'user_id' => $user,
-            ])->completed([], ['passed' => true, 'total_score' => 20])
+            ])->completed(['passed' => true, 'total_score' => 20])
             ->create();
         $scoreLinks[] = ScoreLink
             ::factory()
             ->state(['playlist_item_id' => $playlist])
-            ->completed([], ['passed' => true, 'total_score' => 10])
+            ->completed(['passed' => true, 'total_score' => 10])
             ->create();
 
         foreach ($scoreLinks as $scoreLink) {
@@ -65,19 +65,19 @@ class ScoresControllerTest extends TestCase
         $scoreLinks[] = ScoreLink
             ::factory()
             ->state(['playlist_item_id' => $playlist])
-            ->completed([], ['passed' => true, 'total_score' => 30])
+            ->completed(['passed' => true, 'total_score' => 30])
             ->create();
         $scoreLinks[] = $userScoreLink = ScoreLink
             ::factory()
             ->state([
                 'playlist_item_id' => $playlist,
                 'user_id' => $user,
-            ])->completed([], ['passed' => true, 'total_score' => 20])
+            ])->completed(['passed' => true, 'total_score' => 20])
             ->create();
         $scoreLinks[] = ScoreLink
             ::factory()
             ->state(['playlist_item_id' => $playlist])
-            ->completed([], ['passed' => true, 'total_score' => 10])
+            ->completed(['passed' => true, 'total_score' => 10])
             ->create();
 
         foreach ($scoreLinks as $scoreLink) {
