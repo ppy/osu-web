@@ -174,6 +174,7 @@ abstract class Model extends BaseModel
             'legacy_total_score' => $this->score,
             'max_combo' => $this->maxcombo,
             'passed' => $this->pass,
+            'ranked' => !$this->hidden,
             'ruleset_id' => Ruleset::tryFromName($this->getMode())->value,
             'started_at_json' => null,
             'total_score' => $this->score,
