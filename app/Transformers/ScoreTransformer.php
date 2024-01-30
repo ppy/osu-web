@@ -100,6 +100,10 @@ class ScoreTransformer extends TransformerAbstract
             $score = $score->score;
         }
 
+        if ($score instanceof SoloScore) {
+            $extraAttributes['ranked'] = $score->ranked;
+        }
+
         $hasReplay = $score->has_replay;
 
         return [
