@@ -281,6 +281,9 @@ class SanityTest extends DuskTestCase
             } elseif ($line['message'] === "security - Error with Permissions-Policy header: Unrecognized feature: 'ch-ua-form-factor'.") {
                 // we don't use ch-ua-* crap and this error is thrown by youtube.com as of 2023-05-16
                 continue;
+            } elseif (str_ends_with($line['message'], ' Third-party cookie will be blocked. Learn more in the Issues tab.')) {
+                // thanks, youtube
+                continue;
             }
 
             $return[] = $line;
