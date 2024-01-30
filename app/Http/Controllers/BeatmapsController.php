@@ -10,6 +10,9 @@ use App\Exceptions\InvariantException;
 use App\Jobs\Notifications\BeatmapOwnerChange;
 use App\Libraries\BeatmapDifficultyAttributes;
 use App\Libraries\Score\BeatmapScores;
+use App\Libraries\Score\UserRank;
+use App\Libraries\Search\ScoreSearch;
+use App\Libraries\Search\ScoreSearchParams;
 use App\Models\Beatmap;
 use App\Models\BeatmapsetEvent;
 use App\Models\Score\Best\Model as BestModel;
@@ -445,13 +448,25 @@ class BeatmapsController extends Controller
         $mode = presence($params['mode'] ?? null, $beatmap->mode);
         $mods = array_values(array_filter($params['mods'] ?? []));
 
-        $score = static::baseScoreQuery($beatmap, $mode, $mods)
-            ->visibleUsers()
-            ->where('user_id', $userId)
-            ->firstOrFail();
+        $baseParams = ScoreSearchParams::fromArray([
+            'beatmap_ids' => [$beatmap->getKey()],
+            'is_legacy' => ScoreSearchParams::showLegacyForUser(\Auth::user()),
+            'limit' => 1,
+            'mods' => $mods,
+            'ruleset_id' => Beatmap::MODES[$mode],
+            'sort' => 'score_desc',
+            'user_id' => (int) $userId,
+        ]);
+        $score = (new ScoreSearch($baseParams))->records()->first();
+        abort_if($score === null, 404);
+
+        $rankParams = clone $baseParams;
+        $rankParams->beforeScore = $score;
+        $rankParams->userId = null;
+        $rank = UserRank::getRank($rankParams);
 
         return [
-            'position' => $score->userRank(compact('mods')),
+            'position' => $rank,
             'score' => json_item(
                 $score,
                 new ScoreTransformer(),
@@ -482,12 +497,14 @@ class BeatmapsController extends Controller
     {
         $beatmap = Beatmap::scoreable()->findOrFail($beatmapId);
         $mode = presence(get_string(request('mode'))) ?? $beatmap->mode;
-        $scores = BestModel::getClass($mode)
-            ::default()
-            ->where([
-                'beatmap_id' => $beatmap->getKey(),
-                'user_id' => $userId,
-            ])->get();
+        $params = ScoreSearchParams::fromArray([
+            'beatmap_ids' => [$beatmap->getKey()],
+            'is_legacy' => ScoreSearchParams::showLegacyForUser(\Auth::user()),
+            'ruleset_id' => Beatmap::MODES[$mode],
+            'sort' => 'score_desc',
+            'user_id' => (int) $userId,
+        ]);
+        $scores = (new ScoreSearch($params))->records();
 
         return [
             'scores' => json_collection($scores, new ScoreTransformer()),
