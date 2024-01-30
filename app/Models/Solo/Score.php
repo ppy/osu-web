@@ -223,15 +223,6 @@ class Score extends Model implements Traits\ReportableInterface
         }
     }
 
-    public function createLegacyEntryOrExplode()
-    {
-        $score = $this->makeLegacyEntry();
-
-        $score->saveOrExplode();
-
-        return $score;
-    }
-
     public function getMode(): string
     {
         return Beatmap::modeStr($this->ruleset_id);
