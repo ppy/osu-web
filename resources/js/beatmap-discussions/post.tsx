@@ -41,7 +41,7 @@ interface Props {
   post: BeatmapsetDiscussionMessagePostJson;
   read: boolean;
   readonly: boolean;
-  resolved: boolean;
+  resolvedStateChangedPostId: number;
   store: BeatmapsetDiscussionsStore;
   type: string;
   user: UserJson;
@@ -50,7 +50,7 @@ interface Props {
 @observer
 export default class Post extends React.Component<Props> {
   static defaultProps = {
-    resolved: false,
+    resolvedStateChangedPostId: -1,
   };
 
   @observable private canSave = true; // this isn't computed because Editor's onChange doesn't provide anything to react to.
@@ -85,7 +85,7 @@ export default class Post extends React.Component<Props> {
     return this.isAdmin
       || (!downloadLimited(this.beatmapset)
         && this.isOwn
-        && !this.props.resolved
+        && this.props.post.id > this.props.resolvedStateChangedPostId
         && !this.beatmapset.discussion_locked
       );
   }
