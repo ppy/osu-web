@@ -13,6 +13,7 @@ use App\Libraries\ClientCheck;
 use App\Libraries\RateLimiter;
 use App\Libraries\Search\ForumSearch;
 use App\Libraries\Search\ForumSearchRequestParams;
+use App\Libraries\Search\ScoreSearchParams;
 use App\Libraries\User\FindForProfilePage;
 use App\Libraries\UserRegistration;
 use App\Models\Beatmap;
@@ -20,6 +21,7 @@ use App\Models\BeatmapDiscussion;
 use App\Models\Country;
 use App\Models\IpBan;
 use App\Models\Log;
+use App\Models\Solo\Score as SoloScore;
 use App\Models\User;
 use App\Models\UserAccountHistory;
 use App\Models\UserNotFound;
@@ -201,7 +203,7 @@ class UsersController extends Controller
                 return [
                     'best' => $this->getExtraSection(
                         'scoresBest',
-                        count($this->user->beatmapBestScoreIds($this->mode))
+                        count($this->user->beatmapBestScoreIds($this->mode, ScoreSearchParams::showLegacyForUser(\Auth::user())))
                     ),
                     'firsts' => $this->getExtraSection(
                         'scoresFirsts',
@@ -804,15 +806,25 @@ class UsersController extends Controller
             case 'scoresBest':
                 $transformer = new ScoreTransformer();
                 $includes = [...ScoreTransformer::USER_PROFILE_INCLUDES, 'weight'];
-                $collection = $this->user->beatmapBestScores($this->mode, $perPage, $offset, ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD);
+                $collection = $this->user->beatmapBestScores(
+                    $this->mode,
+                    $perPage,
+                    $offset,
+                    ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD,
+                    ScoreSearchParams::showLegacyForUser(\Auth::user()),
+                );
                 $userRelationColumn = 'user';
                 break;
             case 'scoresFirsts':
                 $transformer = new ScoreTransformer();
                 $includes = ScoreTransformer::USER_PROFILE_INCLUDES;
-                $query = $this->user->scoresFirst($this->mode, true)
-                    ->visibleUsers()
-                    ->reorderBy('score_id', 'desc')
+                $scoreQuery = $this->user->scoresFirst($this->mode, true)->unorder();
+                $userFirstsQuery = $scoreQuery->select($scoreQuery->qualifyColumn('score_id'));
+                $query = SoloScore
+                    ::whereIn('legacy_score_id', $userFirstsQuery)
+                    ->where('ruleset_id', Beatmap::MODES[$this->mode])
+                    ->default()
+                    ->reorderBy('id', 'desc')
                     ->with(ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD);
                 $userRelationColumn = 'user';
                 break;
