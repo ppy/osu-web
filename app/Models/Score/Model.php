@@ -152,7 +152,6 @@ abstract class Model extends BaseModel
             'best_id' => $this->getRawAttribute('high_score_id'),
             'has_replay' => $this->best?->replay,
             'pp' => $this->best?->pp,
-            'ranked' => false,
 
             'beatmap',
             'best',

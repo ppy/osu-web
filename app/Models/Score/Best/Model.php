@@ -85,7 +85,6 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
             'best' => $this,
             'enabled_mods' => $this->getEnabledModsAttribute($this->getRawAttribute('enabled_mods')),
             'pass' => true,
-            'ranked' => true,
 
             'best_id' => $this->getKey(),
             'has_replay' => $this->replay,
