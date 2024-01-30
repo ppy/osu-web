@@ -9,6 +9,7 @@ use App\Exceptions\ModelNotSavedException;
 use App\Exceptions\UserProfilePageLookupException;
 use App\Exceptions\ValidationException;
 use App\Http\Middleware\RequestCost;
+use App\Libraries\ClientCheck;
 use App\Libraries\RateLimiter;
 use App\Libraries\Search\ForumSearch;
 use App\Libraries\Search\ForumSearchRequestParams;
@@ -33,6 +34,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 use NoCaptcha;
 use Request;
 use Sentry\State\Scope;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**
  * @group Users
@@ -103,6 +105,14 @@ class UsersController extends Controller
         parent::__construct();
     }
 
+    private static function storeClientDisabledError()
+    {
+        return response([
+            'error' => osu_trans('users.store.from_web'),
+            'url' => route('users.create'),
+        ], 403);
+    }
+
     public function card($id)
     {
         try {
@@ -116,7 +126,7 @@ class UsersController extends Controller
 
     public function create()
     {
-        if ($GLOBALS['cfg']['osu']['user']['registration_mode'] !== 'web') {
+        if (!$GLOBALS['cfg']['osu']['user']['registration_mode']['web']) {
             return abort(403, osu_trans('users.store.from_client'));
         }
 
@@ -210,23 +220,28 @@ class UsersController extends Controller
 
     public function store()
     {
-        if ($GLOBALS['cfg']['osu']['user']['registration_mode'] !== 'client') {
-            return response([
-                'error' => osu_trans('users.store.from_web'),
-                'url' => route('users.create'),
-            ], 403);
+        if (!$GLOBALS['cfg']['osu']['user']['registration_mode']['client']) {
+            return static::storeClientDisabledError();
         }
 
-        if (!starts_with(Request::header('User-Agent'), $GLOBALS['cfg']['osu']['client']['user_agent'])) {
+        $request = \Request::instance();
+
+        if (!starts_with($request->header('User-Agent'), $GLOBALS['cfg']['osu']['client']['user_agent'])) {
             return error_popup(osu_trans('users.store.from_client'), 403);
         }
 
-        return $this->storeUser(request()->all());
+        try {
+            ClientCheck::parseToken($request);
+        } catch (HttpException $e) {
+            return static::storeClientDisabledError();
+        }
+
+        return $this->storeUser($request->all());
     }
 
     public function storeWeb()
     {
-        if ($GLOBALS['cfg']['osu']['user']['registration_mode'] !== 'web') {
+        if (!$GLOBALS['cfg']['osu']['user']['registration_mode']['web']) {
             return error_popup(osu_trans('users.store.from_client'), 403);
         }
 
@@ -984,13 +999,13 @@ class UsersController extends Controller
                 );
             }
 
-            if ($GLOBALS['cfg']['osu']['user']['registration_mode'] === 'web') {
+            if (is_json_request()) {
+                return json_item($user->fresh(), new CurrentUserTransformer());
+            } else {
                 $this->login($user);
                 session()->flash('popup', osu_trans('users.store.saved'));
 
                 return ujs_redirect(route('home'));
-            } else {
-                return json_item($user->fresh(), new CurrentUserTransformer());
             }
         } catch (ValidationException $e) {
             return ModelNotSavedException::makeResponse($e, [
