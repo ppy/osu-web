@@ -53,7 +53,7 @@ class ScoreTest extends TestCase
         $this->assertTrue($score->passed);
         $this->assertSame($score->rank, 'S');
 
-        $legacy = $score->createLegacyEntryOrExplode();
+        $legacy = $score->makeLegacyEntry();
 
         $this->assertTrue($legacy->perfect);
         $this->assertSame($legacy->rank, 'S');
@@ -78,7 +78,7 @@ class ScoreTest extends TestCase
         $this->assertFalse($score->passed);
         $this->assertSame($score->rank, 'F');
 
-        $legacy = $score->createLegacyEntryOrExplode();
+        $legacy = $score->makeLegacyEntry();
 
         $this->assertFalse($legacy->perfect);
         $this->assertSame($legacy->rank, 'F');
@@ -98,7 +98,7 @@ class ScoreTest extends TestCase
             'statistics' => ['great' => 10, 'ok' => 20, 'meh' => 30, 'miss' => 40],
             'total_score' => 1000,
             'user_id' => 1,
-        ])->createLegacyEntryOrExplode();
+        ])->makeLegacyEntry();
 
         $this->assertFalse($legacy->perfect);
         $this->assertSame($legacy->count300, 10);
@@ -121,7 +121,7 @@ class ScoreTest extends TestCase
             'statistics' => ['Great' => 10, 'Ok' => 20, 'Meh' => 30, 'Miss' => 40],
             'total_score' => 1000,
             'user_id' => 1,
-        ])->createLegacyEntryOrExplode();
+        ])->makeLegacyEntry();
 
         $this->assertFalse($legacy->perfect);
         $this->assertSame($legacy->count300, 10);
