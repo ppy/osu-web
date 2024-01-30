@@ -236,6 +236,8 @@ class Token extends PassportToken implements SessionVerificationInterface
     {
         // client credential doesn't have user attached and auth code is
         // already verified during grant process
-        $this->verified ??= $this->user === null || !$this->client->password_client;
+        $this->verified ??= $GLOBALS['cfg']['osu']['user']['bypass_verification']
+            || $this->user === null
+            || !$this->client->password_client;
     }
 }
