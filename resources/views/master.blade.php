@@ -110,7 +110,7 @@
                 @yield('permanent-fixed-footer')
 
                     <div class="development-deploy-footer">
-                        You are viewing an experimental osu!web deploy with osu!(lazer) scores incorporated in the mix.
+                        This site has been archived.
                         <br>You can choose to return to the <a href="https://osu.ppy.sh" class="js-link-main-host development-deploy-footer__link">normal version</a>.
                     </div>
             </div>

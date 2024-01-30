@@ -5,6 +5,9 @@
 
 namespace App\Http\Middleware;
 
+use Closure;
+use Illuminate\Http\Request;
+
 class VerifyUserAlways extends VerifyUser
 {
     const GET_ACTION_METHODS = [
@@ -18,15 +21,17 @@ class VerifyUserAlways extends VerifyUser
         return $user !== null && ($user->isPrivileged() || $user->isInactive());
     }
 
+    public function handle(Request $request, Closure $next)
+    {
+        if ($this->requiresVerification($request)) {
+            return error_popup('disabled', 403);
+        }
+
+        return $next($request);
+    }
+
     public function requiresVerification($request)
     {
-        $method = $request->getMethod();
-        $isPostAction = $GLOBALS['cfg']['osu']['user']['post_action_verification']
-            ? !isset(static::GET_ACTION_METHODS[$method])
-            : false;
-
-        $isRequired = $isPostAction || $method === 'DELETE' || session()->get('requires_verification');
-
-        return $isRequired;
+        return !isset(static::GET_ACTION_METHODS[$request->getMethod()]);
     }
 }
