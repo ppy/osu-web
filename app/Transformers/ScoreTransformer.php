@@ -121,6 +121,7 @@ class ScoreTransformer extends TransformerAbstract
             'max_combo' => $score->max_combo,
             'passed' => $score->passed,
             'pp' => $score->pp,
+            'ranked' => $score->ranked,
             'ruleset_id' => $score->ruleset_id,
             'started_at' => $score->started_at_json,
             'total_score' => $score->total_score,

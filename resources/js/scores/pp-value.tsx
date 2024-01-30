@@ -21,6 +21,9 @@ export default function PpValue(props: Props) {
   if (!isBest && !isSolo) {
     title = trans('scores.status.non_best');
     content = '-';
+  } else if (!props.score.ranked) {
+    title = trans('scores.status.no_pp');
+    content = '-';
   } else if (props.score.pp == null) {
     if (isSolo && !props.score.passed) {
       title = trans('scores.status.non_passing');
