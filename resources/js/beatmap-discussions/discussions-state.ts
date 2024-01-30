@@ -257,10 +257,10 @@ export default class DiscussionsState {
     return this.nonDeletedDiscussions
       .reduce((sum, discussion) => {
         if (discussion.can_be_resolved && !discussion.resolved) {
-          if (discussion.beatmap_id == null) return ++sum;
+          if (discussion.beatmap_id == null) return sum + 1;
 
           const beatmap = this.store.beatmaps.get(discussion.beatmap_id);
-          if (beatmap != null && beatmap.deleted_at == null) return ++sum;
+          if (beatmap != null && beatmap.deleted_at == null) return sum + 1;
         }
 
         return sum;
