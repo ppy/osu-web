@@ -23,7 +23,7 @@ export default class ContestJudgeStore {
 
   @action
   updateWithJson(data: ContestJsonForStore) {
-    data.entries?.forEach((json) => {
+    data.entries.forEach((json) => {
       const entry = new ContestEntry(json);
       this.entries.set(entry.id, entry);
     });

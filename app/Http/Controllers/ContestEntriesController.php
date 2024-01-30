@@ -71,7 +71,7 @@ class ContestEntriesController extends Controller
         $params = get_params(request()->all(), null, [
             'scores:array',
             'comment',
-        ]);
+        ], ['null_missing' => true]);
 
         $scoresByCategoryId = collect($params['scores'])
             ->keyBy('contest_scoring_category_id');
