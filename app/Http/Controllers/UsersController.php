@@ -188,7 +188,7 @@ class UsersController extends Controller
                     'monthly_playcounts' => json_collection($this->user->monthlyPlaycounts, new UserMonthlyPlaycountTransformer()),
                     'recent' => $this->getExtraSection(
                         'scoresRecent',
-                        $this->user->recentScoreCount($this->mode)
+                        $this->user->soloScores()->recent($this->mode, false)->count(),
                     ),
                     'replays_watched_counts' => json_collection($this->user->replaysWatchedCounts, new UserReplaysWatchedCountTransformer()),
                 ];
@@ -844,11 +844,7 @@ class UsersController extends Controller
                 $transformer = new ScoreTransformer();
                 $includes = ScoreTransformer::USER_PROFILE_INCLUDES;
                 $query = $this->user->soloScores()
-                    ->default()
-                    ->forRuleset($this->mode)
-                    ->includeFails($options['includeFails'] ?? false)
-                    // 2 days (2 * 24 * 3600)
-                    ->where('unix_updated_at', '>', time() - 172_800)
+                    ->recent($this->mode, $options['includeFails'] ?? false)
                     ->reorderBy('unix_updated_at', 'desc')
                     ->with(ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD);
                 $userRelationColumn = 'user';
