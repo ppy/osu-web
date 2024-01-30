@@ -91,7 +91,7 @@ export class Discussion extends React.Component<Props> {
   }
 
   @computed
-  private get resolvedSystemPostId() {
+  private get resolvedStateChangedPostId() {
     // TODO: handling resolved status in bundles....?
     if (this.props.discussionsState == null) return -1;
 
@@ -236,7 +236,7 @@ export class Discussion extends React.Component<Props> {
         post={post}
         read={this.isRead(post)}
         readonly={this.readonly}
-        resolved={post.id <= this.resolvedSystemPostId}
+        resolvedStateChangedPostId={this.resolvedStateChangedPostId}
         store={this.props.store}
         type={type}
         user={user}
