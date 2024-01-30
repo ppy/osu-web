@@ -30,7 +30,7 @@ export default function PpValue(props: Props) {
       content = '-';
     } else {
       title = trans('scores.status.processing');
-      content = <span className='fas fa-exclamation-triangle' />;
+      content = <span className='fas fa-sync' />;
     }
   } else {
     title = formatNumber(props.score.pp);
