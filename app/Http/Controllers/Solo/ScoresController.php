@@ -34,7 +34,6 @@ class ScoresController extends BaseController
             if ($scoreToken->score_id === null) {
                 $params = Score::extractParams($request->all(), $scoreToken);
                 $score = Score::createFromJsonOrExplode($params);
-                $score->createLegacyEntryOrExplode();
                 $scoreToken->fill(['score_id' => $score->getKey()])->saveOrExplode();
             } else {
                 // assume score exists and is valid

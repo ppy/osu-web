@@ -164,6 +164,16 @@ class Score extends Model implements Traits\ReportableInterface
             ->whereHas('user', fn (Builder $q): Builder => $q->default());
     }
 
+    public function scopeRecent(Builder $query, string $ruleset, bool $includeFails): Builder
+    {
+        return $query
+            ->default()
+            ->forRuleset($ruleset)
+            ->includeFails($includeFails)
+            // 2 days (2 * 24 * 3600)
+            ->where('unix_updated_at', '>', time() - 172_800);
+    }
+
     public function getAttribute($key)
     {
         return match ($key) {
@@ -221,15 +231,6 @@ class Score extends Model implements Traits\ReportableInterface
         if ($this->data->statistics->isEmpty()) {
             throw new InvariantException("field cannot be empty: 'statistics'");
         }
-    }
-
-    public function createLegacyEntryOrExplode()
-    {
-        $score = $this->makeLegacyEntry();
-
-        $score->saveOrExplode();
-
-        return $score;
     }
 
     public function getMode(): string
