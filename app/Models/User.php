@@ -1802,18 +1802,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return hash('sha256', $this->user_email).':'.hash('sha256', $this->user_password);
     }
 
-    public function recentScoreCount(string $ruleset): int
-    {
-        return $this->soloScores()
-            ->default()
-            ->forRuleset($ruleset)
-            ->includeFails(false)
-            ->select('id')
-            ->limit(100)
-            ->get()
-            ->count();
-    }
-
     public function resetSessions(?string $excludedSessionId = null): void
     {
         $userId = $this->getKey();

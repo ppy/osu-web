@@ -407,7 +407,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeScoresRecentCount(User $user)
     {
-        return $this->primitive($user->recentScoreCount($this->mode));
+        return $this->primitive($user->soloScores()->recent($this->mode, false)->count());
     }
 
     public function includeSessionVerified(User $user)
