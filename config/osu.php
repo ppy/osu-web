@@ -5,6 +5,14 @@ if ($profileScoresNotice !== null) {
     $profileScoresNotice = markdown_plain($profileScoresNotice);
 }
 
+$clientTokenKeys = [];
+foreach (explode(',', env('CLIENT_TOKEN_KEYS') ?? '') as $entry) {
+    if ($entry !== '') {
+        [$platform, $encodedKey] = explode('=', $entry, 2);
+        $clientTokenKeys[$platform] = hex2bin($encodedKey);
+    }
+}
+
 // osu config~
 return [
     'achievement' => [
@@ -93,6 +101,8 @@ return [
     'client' => [
         'check_version' => get_bool(env('CLIENT_CHECK_VERSION')) ?? true,
         'default_build_id' => get_int(env('DEFAULT_BUILD_ID')) ?? 0,
+        'token_keys' => $clientTokenKeys,
+        'token_queue' => env('CLIENT_TOKEN_QUEUE') ?? 'token-queue',
         'user_agent' => env('CLIENT_USER_AGENT', 'osu!'),
     ],
     'elasticsearch' => [

@@ -28,8 +28,8 @@ class ScoreTokensController extends BaseController
 
         $beatmap = Beatmap::increasesStatistics()->findOrFail($beatmapId);
         $user = auth()->user();
-        $rawParams = request()->all();
-        $params = get_params($rawParams, null, [
+        $request = \Request::instance();
+        $params = get_params($request->all(), null, [
             'beatmap_hash',
             'ruleset_id:int',
         ]);
@@ -47,12 +47,12 @@ class ScoreTokensController extends BaseController
             }
         }
 
-        $build = ClientCheck::findBuild($user, $rawParams);
+        $buildId = ClientCheck::parseToken($request)['buildId'];
 
         try {
             $scoreToken = ScoreToken::create([
                 'beatmap_id' => $beatmap->getKey(),
-                'build_id' => $build?->getKey() ?? $GLOBALS['cfg']['osu']['client']['default_build_id'],
+                'build_id' => $buildId,
                 'ruleset_id' => $params['ruleset_id'],
                 'user_id' => $user->getKey(),
             ]);
