@@ -847,7 +847,9 @@ class UsersController extends Controller
                     ->default()
                     ->forRuleset($this->mode)
                     ->includeFails($options['includeFails'] ?? false)
-                    ->reorderBy('id', 'desc')
+                    // 2 days (2 * 24 * 3600)
+                    ->where('unix_updated_at', '>', time() - 172_800)
+                    ->reorderBy('unix_updated_at', 'desc')
                     ->with(ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD);
                 $userRelationColumn = 'user';
                 break;
