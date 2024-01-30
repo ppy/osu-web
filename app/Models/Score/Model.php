@@ -152,6 +152,7 @@ abstract class Model extends BaseModel
             'best_id' => $this->getRawAttribute('high_score_id'),
             'has_replay' => $this->best?->replay,
             'pp' => $this->best?->pp,
+            'ranked' => false,
 
             'beatmap',
             'best',
@@ -174,7 +175,6 @@ abstract class Model extends BaseModel
             'legacy_total_score' => $this->score,
             'max_combo' => $this->maxcombo,
             'passed' => $this->pass,
-            'ranked' => !$this->hidden,
             'ruleset_id' => Ruleset::tryFromName($this->getMode())->value,
             'started_at_json' => null,
             'total_score' => $this->score,
