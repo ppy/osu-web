@@ -12,6 +12,11 @@
   --selector-max-height: auto;
   --selector-overflow-y: auto;
 
+  &--basic {
+    --selector-max-height: 400px; // arbitrary
+    --selector-overflow-y: scroll;
+  }
+
   &--beatmap-discussions-user-filter {
     --decoration-colour: hsl(var(--hsl-c1));
 
@@ -34,11 +39,6 @@
     z-index: @z-index--blackout-visible;
     position: relative;
     --selector-display: block;
-  }
-
-  &--spotlight {
-    --selector-max-height: 400px; // arbitrary
-    --selector-overflow-y: scroll;
   }
 
   &__decoration {

@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import RankingSelectOptions from 'components/ranking-select-options';
+import BasicSelectOptions from 'components/basic-select-options';
 import RoomList from 'components/room-list';
 import TimeWithTooltip from 'components/time-with-tooltip';
 import SeasonJson from 'interfaces/season-json';
@@ -21,7 +21,7 @@ export default function Main(props: Props) {
   return (
     <>
       <div className='osu-page osu-page--ranking-info'>
-        <RankingSelectOptions
+        <BasicSelectOptions
           currentItem={{
             id: props.currentSeason.id,
             text: props.currentSeason.name,
