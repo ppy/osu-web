@@ -105,6 +105,7 @@ class ScoreTransformer extends TransformerAbstract
         }
 
         $hasReplay = $score->has_replay;
+        $isPerfectCombo = $score->is_perfect_combo;
 
         return [
             ...$extraAttributes,
@@ -119,7 +120,8 @@ class ScoreTransformer extends TransformerAbstract
             'build_id' => $score->build_id,
             'ended_at' => $score->ended_at_json,
             'has_replay' => $hasReplay,
-            'legacy_perfect' => $score->legacy_perfect,
+            'is_perfect_combo' => $isPerfectCombo,
+            'legacy_perfect' => $score->legacy_perfect ?? $isPerfectCombo,
             'legacy_score_id' => $score->legacy_score_id,
             'legacy_total_score' => $score->legacy_total_score,
             'max_combo' => $score->max_combo,
