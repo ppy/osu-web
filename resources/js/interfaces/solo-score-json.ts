@@ -33,6 +33,7 @@ type SoloScoreJsonDefaultAttributes = {
   ended_at: string;
   has_replay: boolean;
   id: number;
+  is_perfect_combo: boolean;
   legacy_score_id: number | null;
   legacy_total_score: number;
   max_combo: number;
