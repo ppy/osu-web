@@ -647,7 +647,7 @@ export class Nominations extends React.Component<Props> {
           : trans('beatmaps.nominations.rank_estimate.no_problems');
 
         const problems = this.props.discussionsState.discussionsByFilter.pending.map((problem) => (
-          <a className='js-beatmap-discussion--jump' href={makeUrl({ discussion: problem })}>#{problem.id}</a>
+          <a key={problem.id} className='js-beatmap-discussion--jump' href={makeUrl({ discussion: problem })}>#{problem.id}</a>
         ));
 
         return (
