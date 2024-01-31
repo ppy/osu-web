@@ -642,7 +642,7 @@ export class Nominations extends React.Component<Props> {
             : formatDate(rankingEta)
           : trans('beatmaps.nominations.rank_estimate.soon');
 
-        const rankEstimatePrefixText = this.props.discussionsState.discussionsByFilter.pending > 0
+        const rankEstimatePrefixText = this.props.discussionsState.discussionsByFilter.pending.length > 0
           ? trans('beatmaps.nominations.rank_estimate.unresolved_problems')
           : trans('beatmaps.nominations.rank_estimate.no_problems');
 
