@@ -52,8 +52,7 @@ class ClientCheck
             }
 
             $now = time();
-            static $maxTime = 15 * 60;
-            if (abs($now - $input['clientTime']) > $maxTime) {
+            if (abs($now - $input['clientTime']) > $GLOBALS['cfg']['osu']['client']['token_lifetime']) {
                 throw new ClientCheckParseTokenException('expired token');
             }
 
