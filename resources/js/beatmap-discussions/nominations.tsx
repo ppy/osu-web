@@ -651,31 +651,49 @@ export class Nominations extends React.Component<Props> {
         ));
 
         return (
-          <StringWithComponent
-            mappings={{
-              // TODO: ranking_queue_position should not be nullable when status is qualified.
-              position: formatNumber(this.beatmapset.nominations.ranking_queue_position ?? 0),
-              prefix: (
+          <>
+            <StringWithComponent
+              mappings={{
+                date,
+                // TODO: ranking_queue_position should not be nullable when status is qualified.
+                position: formatNumber(this.beatmapset.nominations.ranking_queue_position ?? 0),
+                queue: (
+                  <a
+                    href={wikiUrl('Beatmap_ranking_procedure/Ranking_queue')}
+                    rel='noreferrer'
+                    target='_blank'
+                  >
+                    {trans('beatmaps.nominations.rank_estimate.queue')}
+                  </a>
+                ),
+              }}
+              pattern={trans('beatmaps.nominations.rank_estimate._')}
+            />
+            {this.props.discussionsState.discussionsByFilter.pending.length > 0 ?
+              <h5>
                 <StringWithComponent
                   mappings={{
-                    date,
-                    problems: joinComponents(problems),
+                    problems: <a
+                      className='js-beatmap-discussion--jump'
+                      href={makeUrl({
+                        discussion: this.props.discussionsState.discussionsByFilter.pending[0],
+                        filter: "pending",
+                        mode: this.props.discussionsState.currentPage
+                      })}
+                      onClick={(event) => {
+                        event.preventDefault();
+                        this.props.discussionsState.changeFilter("pending");
+                      }}
+                    >
+                      {trans('beatmaps.nominations.rank_estimate.problems')}
+                    </a>
                   }}
-                  pattern={rankEstimatePrefixText}
+                  pattern={trans('beatmaps.nominations.rank_estimate.unresolved_problems')}
                 />
-              ),
-              queue: (
-                <a
-                  href={wikiUrl('Beatmap_ranking_procedure/Ranking_queue')}
-                  rel='noreferrer'
-                  target='_blank'
-                >
-                  {trans('beatmaps.nominations.rank_estimate.queue')}
-                </a>
-              ),
-            }}
-            pattern={trans('beatmaps.nominations.rank_estimate._')}
-          />
+              </h5>
+              : <></>
+            }
+          </>
         );
       }
     }
