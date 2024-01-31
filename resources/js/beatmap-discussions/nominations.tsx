@@ -640,14 +640,7 @@ export class Nominations extends React.PureComponent<Props> {
           : trans('beatmaps.nominations.rank_estimate.no_problems');
 
         const problems = unresolvedProblems.map((problem) => (
-          <a
-            key={problem.id}
-            href={makeUrl({ discussion: problem })}
-            rel='noreferrer'
-            target='_blank'
-          >
-            #{problem.id}
-          </a>
+          <a className='js-beatmap-discussion--jump' href={makeUrl({ discussion: problem })}>#{problem.id}</a>
         ));
 
         return (
