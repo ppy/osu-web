@@ -10,7 +10,7 @@ import { rulesetName, shouldShowPp } from 'utils/beatmap-helper';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
-import { isPerfectCombo, modeAttributesMap } from 'utils/score-helper';
+import { accuracy, isPerfectCombo, modeAttributesMap } from 'utils/score-helper';
 
 interface Props {
   beatmap: BeatmapJson;
@@ -18,6 +18,8 @@ interface Props {
 }
 
 export default function Stats(props: Props) {
+  const scoreAccuracy = accuracy(props.score);
+
   return (
     <div className='score-stats'>
       <div className='score-stats__group score-stats__group--user-card'>
@@ -30,8 +32,8 @@ export default function Stats(props: Props) {
             <div className='score-stats__stat-row score-stats__stat-row--label'>
               {trans('beatmapsets.show.scoreboard.headers.accuracy')}
             </div>
-            <div className={classWithModifiers('score-stats__stat-row', { perfect: props.score.accuracy === 1 })}>
-              {formatNumber(props.score.accuracy * 100, 2)}%
+            <div className={classWithModifiers('score-stats__stat-row', { perfect: scoreAccuracy === 1 })}>
+              {formatNumber(scoreAccuracy * 100, 2)}%
             </div>
           </div>
 
