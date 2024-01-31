@@ -34,12 +34,13 @@ type SoloScoreJsonDefaultAttributes = {
   has_replay: boolean;
   id: number;
   legacy_score_id: number | null;
-  legacy_total_score: number | null;
+  legacy_total_score: number;
   max_combo: number;
   mods: ScoreModJson[];
   passed: boolean;
   pp: number | null;
   rank: Rank;
+  ranked?: boolean;
   ruleset_id: number;
   started_at: string | null;
   statistics: Partial<Record<SoloScoreStatisticsAttribute, number>>;

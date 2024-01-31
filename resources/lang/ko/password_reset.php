@@ -36,6 +36,9 @@ return [
     'starting' => [
         'username' => '아이디나 이메일 주소를 입력하세요.',
 
+        'reason' => [
+            'inactive_different_country' => "",
+        ],
         'support' => [
             '_' => '도움이 필요하신가요? :button을 통해 문의해보세요.',
             'button' => '지원 시스템',

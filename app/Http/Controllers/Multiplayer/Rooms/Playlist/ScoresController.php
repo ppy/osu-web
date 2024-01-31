@@ -166,10 +166,10 @@ class ScoresController extends BaseController
         $room = Room::findOrFail($roomId);
         $playlistItem = $room->playlist()->where('id', $playlistId)->firstOrFail();
         $user = auth()->user();
-        $params = request()->all();
+        $request = \Request::instance();
+        $params = $request->all();
 
-        $buildId = ClientCheck::findBuild($user, $params)?->getKey()
-            ?? $GLOBALS['cfg']['osu']['client']['default_build_id'];
+        $buildId = ClientCheck::parseToken($request)['buildId'];
 
         $scoreToken = $room->startPlay($user, $playlistItem, $buildId);
 
@@ -181,6 +181,8 @@ class ScoresController extends BaseController
      */
     public function update($roomId, $playlistItemId, $tokenId)
     {
+        $request = \Request::instance();
+        $clientTokenData = ClientCheck::parseToken($request);
         $scoreLink = \DB::transaction(function () use ($roomId, $playlistItemId, $tokenId) {
             $room = Room::findOrFail($roomId);
 
@@ -202,15 +204,14 @@ class ScoresController extends BaseController
         });
 
         $score = $scoreLink->score;
-        $transformer = ScoreTransformer::newSolo();
         if ($score->wasRecentlyCreated) {
-            $scoreJson = json_item($score, $transformer);
-            $score::queueForProcessing($scoreJson);
+            ClientCheck::queueToken($clientTokenData, $score->getKey());
+            $score->queueForProcessing();
         }
 
         return json_item(
             $scoreLink,
-            $transformer,
+            ScoreTransformer::newSolo(),
             [
                 ...ScoreTransformer::MULTIPLAYER_BASE_INCLUDES,
                 'position',

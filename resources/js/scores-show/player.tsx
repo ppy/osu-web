@@ -7,7 +7,7 @@ import * as moment from 'moment';
 import * as React from 'react';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
-import { totalScore } from 'utils/score-helper';
+import { filterMods, totalScore } from 'utils/score-helper';
 
 interface Props {
   score: SoloScoreJsonForShow;
@@ -22,7 +22,7 @@ export default function Player(props: Props) {
         </div>
 
         <div className='score-player__mods'>
-          {props.score.mods.map((mod) => (
+          {filterMods(props.score).map((mod) => (
             <div key={mod.acronym} className='score-player__mod'>
               <Mod mod={mod} />
             </div>

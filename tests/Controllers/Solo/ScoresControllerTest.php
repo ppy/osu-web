@@ -5,7 +5,7 @@
 
 namespace Tests\Controllers\Solo;
 
-use App\Models\Score as LegacyScore;
+use App\Models\Build;
 use App\Models\ScoreToken;
 use App\Models\Solo\Score;
 use App\Models\User;
@@ -16,13 +16,17 @@ class ScoresControllerTest extends TestCase
 {
     public function testStore()
     {
-        $scoreToken = ScoreToken::factory()->create();
-        $legacyScoreClass = LegacyScore\Model::getClassByRulesetId($scoreToken->beatmap->playmode);
+        $build = Build::factory()->create(['allow_ranking' => true]);
+        $scoreToken = ScoreToken::factory()->create(['build_id' => $build]);
 
         $this->expectCountChange(fn () => Score::count(), 1);
-        $this->expectCountChange(fn () => $legacyScoreClass::count(), 1);
         $this->expectCountChange(fn () => $this->processingQueueCount(), 1);
+        $this->expectCountChange(
+            fn () => \LaravelRedis::llen($GLOBALS['cfg']['osu']['client']['token_queue']),
+            1,
+        );
 
+        $this->withHeaders(['x-token' => static::createClientToken($build)]);
         $this->actAsScopedUser($scoreToken->user, ['*']);
 
         $this->json(

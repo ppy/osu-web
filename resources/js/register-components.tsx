@@ -19,15 +19,14 @@ import { UserCardStore } from 'components/user-card-store';
 import { startListening, UserCardTooltip } from 'components/user-card-tooltip';
 import { UserCards } from 'components/user-cards';
 import { WikiSearch } from 'components/wiki-search';
-import { keyBy } from 'lodash';
 import { observable } from 'mobx';
-import { deletedUserJson } from 'models/user';
 import NotificationWidget from 'notification-widget/main';
 import core from 'osu-core-singleton';
 import QuickSearch from 'quick-search/main';
 import QuickSearchWorker from 'quick-search/worker';
 import * as React from 'react';
 import { parseJson } from 'utils/json';
+import { mapBy } from 'utils/map';
 
 function reqJson<T>(input: string|undefined): T {
   // This will throw when input is missing and thus parsing empty string.
@@ -54,12 +53,8 @@ core.reactTurbolinks.register('beatmap-discussion-events', () => {
   const props: BeatmapsetEventsProps = {
     events: parseJson('json-events'),
     mode: 'list',
-    users: keyBy(parseJson('json-users'), 'id'),
+    users: mapBy(parseJson('json-users'), 'id'),
   };
-
-  // TODO: move to store?
-  // eslint-disable-next-line id-blacklist
-  props.users.null = props.users.undefined = deletedUserJson;
 
   return <BeatmapsetEvents {...props} />;
 });

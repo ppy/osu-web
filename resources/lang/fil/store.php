@@ -6,7 +6,7 @@
 return [
     'cart' => [
         'checkout' => 'Checkout',
-        'empty_cart' => '',
+        'empty_cart' => 'Tanggalin lahat ng items sa cart',
         'info' => ':count_delimited pirasong item sa kariton ($:subtotal)|:count_delimited pirasong mga item sa kariton ($:subtotal)',
         'more_goodies' => 'Gusto kong tingnan ang higit pang mga goodies bago makumpleto ang order',
         'shipping_fees' => 'mga bayarin sa pagpapadala',
@@ -49,7 +49,7 @@ return [
     ],
 
     'discount' => 'makatipid ng :percent%',
-    'free' => '',
+    'free' => 'free!',
 
     'invoice' => [
         'contact' => '',

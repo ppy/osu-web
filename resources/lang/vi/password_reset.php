@@ -36,6 +36,9 @@ return [
     'starting' => [
         'username' => 'Nhập địa chỉ email hoặc tên tài khoản',
 
+        'reason' => [
+            'inactive_different_country' => "",
+        ],
         'support' => [
             '_' => 'Cần nhiều sự giúp đỡ hơn? Liên hệ với chúng tôi bằng :button.',
             'button' => 'hệ thống hỗ trợ',

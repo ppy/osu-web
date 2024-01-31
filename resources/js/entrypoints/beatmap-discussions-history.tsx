@@ -8,5 +8,5 @@ import React from 'react';
 import { parseJson } from 'utils/json';
 
 core.reactTurbolinks.register('beatmap-discussions-history', () => (
-  <Main bundle={parseJson<BeatmapsetDiscussionsBundleJson>('json-index')} />
+  <Main {...parseJson<BeatmapsetDiscussionsBundleJson>('json-index')} />
 ));

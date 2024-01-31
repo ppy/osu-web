@@ -5,6 +5,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Libraries\SessionVerification;
 use Closure;
 use Illuminate\Auth\AuthenticationException;
 use Laravel\Passport\ClientRepository;
@@ -95,10 +96,14 @@ class AuthApi
         }
 
         if ($user !== null) {
-            auth()->setUser($user);
+            \Auth::setUser($user);
             $user->withAccessToken($token);
-            // this should match osu-notification-server OAuthVerifier
-            $user->markSessionVerified();
+
+            if ($token->isVerified()) {
+                $user->markSessionVerified();
+            } else {
+                SessionVerification\Helper::issue($token, $user, true);
+            }
         }
 
         return $token;

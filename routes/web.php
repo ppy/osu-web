@@ -407,14 +407,19 @@ Route::group(['middleware' => ['web']], function () {
 // There's also a different group which skips throttle middleware.
 Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', ThrottleRequests::getApiThrottle(), 'require-scopes']], function () {
     Route::group(['prefix' => 'v2'], function () {
+        Route::group(['middleware' => ['require-scopes:any']], function () {
+            Route::post('session/verify', 'AccountController@verify')->name('verify');
+            Route::post('session/verify/reissue', 'AccountController@reissueCode')->name('verify.reissue');
+        });
+
         Route::group(['as' => 'beatmaps.', 'prefix' => 'beatmaps'], function () {
             Route::get('lookup', 'BeatmapsController@lookup')->name('lookup');
 
             Route::apiResource('packs', 'BeatmapPacksController', ['only' => ['index', 'show']]);
 
             Route::group(['prefix' => '{beatmap}'], function () {
-                Route::get('scores/users/{user}', 'BeatmapsController@userScore');
-                Route::get('scores/users/{user}/all', 'BeatmapsController@userScoreAll');
+                Route::get('scores/users/{user}', 'BeatmapsController@userScore')->name('user.score');
+                Route::get('scores/users/{user}/all', 'BeatmapsController@userScoreAll')->name('user.scores');
                 Route::get('scores', 'BeatmapsController@scores')->name('scores');
                 Route::get('solo-scores', 'BeatmapsController@soloScores')->name('solo-scores');
 

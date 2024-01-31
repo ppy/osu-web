@@ -36,6 +36,9 @@ return [
     'starting' => [
         'username' => 'Anna sähköposti tai käyttäjänimi',
 
+        'reason' => [
+            'inactive_different_country' => "",
+        ],
         'support' => [
             '_' => 'Tarvitsetko lisäapua? Ota yhteyttä meihin: :button.',
             'button' => 'tukijärjestelmä',

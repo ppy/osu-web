@@ -154,7 +154,7 @@ services:
       - "${NGINX_PORT:-8080}:80"
 
   score-indexer:
-    image: pppy/osu-elastic-indexer:99cd549c5c5c959ff6b2728b76af603dda4c85cb
+    image: pppy/osu-elastic-indexer:master
     command: ["queue", "watch"]
     depends_on:
       redis:
@@ -168,7 +168,7 @@ services:
       SCHEMA: "${SCHEMA:-1}"
 
   score-indexer-test:
-    image: pppy/osu-elastic-indexer:99cd549c5c5c959ff6b2728b76af603dda4c85cb
+    image: pppy/osu-elastic-indexer:master
     command: ["queue", "watch"]
     depends_on:
       redis:

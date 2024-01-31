@@ -25,6 +25,7 @@ return [
     'status' => [
         'non_best' => 'Only personal best scores award pp',
         'non_passing' => 'Only passing scores award pp',
+        'no_pp' => 'pp is not awarded for this score',
         'processing' => 'This score is still being calculated and will be displayed soon',
     ],
 ];
