@@ -62,6 +62,31 @@
                 <dt class="admin-contest__meta-row"><br />Extra Options</dt>
                 <dd><pre>{{json_encode($contest->getExtraOptions(), JSON_PRETTY_PRINT)}}</pre></dd>
             @endif
+
+            @if ($contest->isJudged())
+                <dt class="admin-contest__meta-row"><br />Judge Participation</dt>
+                <dd class="contest">
+                    <div class="contest__description">
+                        @foreach ($contest->judges as $judge)
+                            @php
+                                $judgeVotesCount = $judgeVoteCounts
+                                    ->where('user_id', $judge->getKey())
+                                    ->first()
+                                    ->judge_votes_count ?? 0;
+                            @endphp
+
+                            <div>
+                                <a
+                                    class="js-usercard"
+                                    data-user-id="{{$judge->getKey()}}"
+                                    href="{{ route('users.show', $judge) }}"
+                                >{{ $judge->username }}</a>:
+                                {{ $judgeVotesCount }}/{{ $contest->entries_count }}
+                            </div>
+                        @endforeach
+                    </div>
+                </dd>
+            @endif
         </dl>
         <div class="js-react--admin-contest-user-entry-list"></div>
     </div>

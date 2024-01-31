@@ -7,12 +7,17 @@ namespace App\Transformers;
 
 use App\Models\Contest;
 use Auth;
+use League\Fractal\Resource\Collection;
+use League\Fractal\Resource\Primitive;
 use League\Fractal\Resource\ResourceInterface;
 
 class ContestTransformer extends TransformerAbstract
 {
     protected array $availableIncludes = [
         'entries',
+        'scoring_categories',
+        'max_judging_score',
+        'max_total_score',
         'users_voted_count',
     ];
 
@@ -25,6 +30,7 @@ class ContestTransformer extends TransformerAbstract
             'entry_starts_at' => json_time($contest->entry_starts_at),
             'header_url' => $contest->header_url,
             'id' => $contest->id,
+            'judged' => $contest->isJudged(),
             'link_icon' => $contest->link_icon,
             'max_entries' => $contest->max_entries,
             'max_votes' => $contest->max_votes,
@@ -43,6 +49,21 @@ class ContestTransformer extends TransformerAbstract
     public function includeEntries(Contest $contest)
     {
         return $this->collection($contest->entriesByType(Auth::user()), new ContestEntryTransformer());
+    }
+
+    public function includeMaxJudgingScore(Contest $contest): Primitive
+    {
+        return $this->primitive((int) $contest->scoring_categories_sum_max_value);
+    }
+
+    public function includeMaxTotalScore(Contest $contest): Primitive
+    {
+        return $this->primitive((int) $contest->scoring_categories_sum_max_value * $contest->judges_count);
+    }
+
+    public function includeScoringCategories(Contest $contest): Collection
+    {
+        return $this->collection($contest->scoringCategories, new ContestScoringCategoryTransformer());
     }
 
     public function includeUsersVotedCount(Contest $contest): ResourceInterface

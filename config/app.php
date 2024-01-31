@@ -186,6 +186,7 @@ return [
         App\Providers\EventServiceProvider::class,
         // Override default migrate:fresh
         App\Providers\MigrationServiceProvider::class,
+        App\Providers\PassportServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         // Override the session id naming (for redis key namespacing)
         App\Providers\SessionServiceProvider::class,

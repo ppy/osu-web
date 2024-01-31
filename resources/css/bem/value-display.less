@@ -14,6 +14,10 @@
   min-width: 60px;
   flex: 1;
 
+  &--judge-results {
+    flex: none;
+  }
+
   &--kudosu {
     --value-font-size-desktop: @font-size--large-3;
     --value-font-size: @font-size--large-3;
@@ -44,6 +48,13 @@
     @media @desktop {
       flex: none;
     }
+  }
+
+  &--score {
+    --label-font-size: @font-size--normal;
+    --value-color: hsl(var(--hsl-c2));
+    --value-font-size-desktop: @font-size--new-header-title;
+    --value-font-size: @font-size--new-header-title;
   }
 
   @media @desktop {

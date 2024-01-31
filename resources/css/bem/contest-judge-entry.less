@@ -1,0 +1,72 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+@margin: 10px;
+@max-width: 500px;
+
+.contest-judge-entry {
+  margin-bottom: 20px;
+
+  &__button {
+    display: flex;
+    max-width: @max-width;
+    justify-content: flex-end;
+    text-transform: lowercase;
+  }
+
+  &__description-icon {
+    display: flex;
+    align-items: center;
+    margin-right: 5px;
+    font-size: @font-size--small-2;
+  }
+
+  &__label {
+    display: flex;
+    font-size: @font-size--normal;
+    margin-top: @margin;
+    font-weight: bold;
+  }
+
+  &__title {
+    margin-bottom: @margin;
+    font-size: @font-size--large;
+    font-weight: bold;
+    color: hsl(var(--hsl-l1));
+  }
+
+  &__textarea {
+    .reset-input();
+    .default-border-radius();
+
+    flex: 1;
+    background-color: hsl(var(--hsl-b3));
+    border: 2px solid transparent;
+    color: #fff;
+    padding: 5px;
+
+    &:focus {
+      border-color: hsl(var(--hsl-l1));
+    }
+  }
+
+  &__textarea-wrapper {
+    display: flex;
+    max-width: @max-width;
+    margin: calc(@margin * 2) 0;
+  }
+
+  &__value {
+    margin-top: @margin;
+    max-width: @max-width;
+    display: flex;
+    justify-content: flex-end;
+    color: hsl(var(--hsl-c2));
+    font-size: @font-size--title-small;
+  }
+
+  &__voted-icon {
+    margin-right: 5px;
+    color: hsl(var(--hsl-lime-1));
+  }
+}

@@ -2,6 +2,12 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
+@php
+    if ($contestMeta->isJudgingActive()) {
+        $noVoteReason = trans('contest.voting.judged_notice');
+    }
+@endphp
+
 @extends('contests.base')
 
 @section('contest-content')
@@ -32,6 +38,12 @@
         <div class='contest__voting-notice'>
             {{ $noVoteReason }}
         </div>
+
+        @if ($contestMeta->isJudged() && priv_check('ContestJudge', $contestMeta)->can())
+            <div class='contest__voting-notice'>
+                <a href="{{ route('contests.judge', $contestMeta) }}" target="_blank">{{osu_trans('contest.voting.judge_link')}}</a>
+            </div>
+        @endif
     @endif
 @endsection
 

@@ -10,6 +10,8 @@
 
     $currentUser = Auth::user();
 
+    $legacyScoreMode = App\Libraries\Search\ScoreSearchParams::showLegacyForUser($currentUser) === true;
+
     $titleTree = [];
 
     if (isset($titleOverride)) {
@@ -50,9 +52,8 @@
 
     <body
         class="
-            osu-layout
-            osu-layout--body
             t-section
+            {{ class_with_modifiers('osu-layout', 'body', ['body-lazer' => !$legacyScoreMode]) }}
             {{ $bodyAdditionalClasses ?? '' }}
         "
     >

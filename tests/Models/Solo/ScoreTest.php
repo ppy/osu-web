@@ -50,10 +50,10 @@ class ScoreTest extends TestCase
             'user_id' => 1,
         ]);
 
-        $this->assertTrue($score->data->passed);
-        $this->assertSame($score->data->rank, 'S');
+        $this->assertTrue($score->passed);
+        $this->assertSame($score->rank, 'S');
 
-        $legacy = $score->createLegacyEntryOrExplode();
+        $legacy = $score->makeLegacyEntry();
 
         $this->assertTrue($legacy->perfect);
         $this->assertSame($legacy->rank, 'S');
@@ -75,10 +75,10 @@ class ScoreTest extends TestCase
             'user_id' => 1,
         ]);
 
-        $this->assertFalse($score->data->passed);
-        $this->assertSame($score->data->rank, 'F');
+        $this->assertFalse($score->passed);
+        $this->assertSame($score->rank, 'F');
 
-        $legacy = $score->createLegacyEntryOrExplode();
+        $legacy = $score->makeLegacyEntry();
 
         $this->assertFalse($legacy->perfect);
         $this->assertSame($legacy->rank, 'F');
@@ -98,7 +98,7 @@ class ScoreTest extends TestCase
             'statistics' => ['great' => 10, 'ok' => 20, 'meh' => 30, 'miss' => 40],
             'total_score' => 1000,
             'user_id' => 1,
-        ])->createLegacyEntryOrExplode();
+        ])->makeLegacyEntry();
 
         $this->assertFalse($legacy->perfect);
         $this->assertSame($legacy->count300, 10);
@@ -121,7 +121,7 @@ class ScoreTest extends TestCase
             'statistics' => ['Great' => 10, 'Ok' => 20, 'Meh' => 30, 'Miss' => 40],
             'total_score' => 1000,
             'user_id' => 1,
-        ])->createLegacyEntryOrExplode();
+        ])->makeLegacyEntry();
 
         $this->assertFalse($legacy->perfect);
         $this->assertSame($legacy->count300, 10);
@@ -132,13 +132,15 @@ class ScoreTest extends TestCase
 
     public function testModsPropertyType()
     {
-        $score = new Score(['data' => [
+        $score = new Score([
             'beatmap_id' => 0,
+            'data' => [
+                'mods' => [['acronym' => 'DT']],
+            ],
             'ended_at' => json_time(now()),
-            'mods' => [['acronym' => 'DT']],
             'ruleset_id' => 0,
             'user_id' => 0,
-        ]]);
+        ]);
 
         $this->assertTrue($score->data->mods[0] instanceof stdClass, 'mods entry should be of type stdClass');
     }
@@ -147,8 +149,7 @@ class ScoreTest extends TestCase
     {
         $pp = 10;
         $weight = 0.5;
-        $score = Score::factory()->create();
-        $score->performance()->create(['pp' => $pp]);
+        $score = Score::factory()->create(['pp' => $pp]);
         $score->weight = $weight;
 
         $this->assertSame($score->weightedPp(), $pp * $weight);
@@ -156,7 +157,7 @@ class ScoreTest extends TestCase
 
     public function testWeightedPpWithoutPerformance(): void
     {
-        $score = Score::factory()->create();
+        $score = Score::factory()->create(['pp' => null]);
         $score->weight = 0.5;
 
         $this->assertNull($score->weightedPp());
@@ -164,8 +165,7 @@ class ScoreTest extends TestCase
 
     public function testWeightedPpWithoutWeight(): void
     {
-        $score = Score::factory()->create();
-        $score->performance()->create(['pp' => 10]);
+        $score = Score::factory()->create(['pp' => 10]);
 
         $this->assertNull($score->weightedPp());
     }

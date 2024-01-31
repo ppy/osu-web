@@ -36,6 +36,9 @@ return [
     'starting' => [
         'username' => 'E-posta adresi veya kullanıcı adı girin',
 
+        'reason' => [
+            'inactive_different_country' => "",
+        ],
         'support' => [
             '_' => 'Yardıma mı ihtiyacınız var? :button üzerinden bizimle iletişime geçin.',
             'button' => 'Destek sistemimiz',

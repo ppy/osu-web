@@ -23,7 +23,7 @@ return [
     ],
 
     'warning' => [
-        'line1' => 'Jangan berikan informasi ini pada siapapun.',
+        'line1' => 'Jangan berikan informasi ini kepada siapa pun.',
         'line2' => "Ini sama halnya membagikan akunmu pada yang lain.",
         'line3' => 'Harap untuk tidak membagikan informasi ini.',
     ],

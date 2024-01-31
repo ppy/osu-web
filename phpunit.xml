@@ -21,6 +21,7 @@
         <env name="CHAT_PRIVATE_LIMIT" value="2"/>
 
         <env name="ADMIN_FORUM_ID" value="0"/>
+        <env name="CLIENT_CHECK_VERSION" value="0"/>
         <env name="DOUBLE_POST_ALLOWED_FORUM_IDS" value="0"/>
         <env name="FEATURE_FORUM_ID" value="0"/>
         <env name="HELP_FORUM_ID" value="0"/>

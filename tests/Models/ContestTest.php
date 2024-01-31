@@ -78,7 +78,7 @@ class ContestTest extends TestCase
                 MultiplayerScoreLink::factory()->state([
                     'playlist_item_id' => $playlistItem,
                     'user_id' => $userId,
-                ])->completed([], [
+                ])->completed([
                     'ended_at' => $endedAt,
                     'passed' => $passed,
                 ])->create();
