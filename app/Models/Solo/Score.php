@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace App\Models\Solo;
 
+use App\Enums\Ruleset;
 use App\Enums\ScoreRank;
 use App\Exceptions\InvariantException;
 use App\Libraries\Score\UserRank;
@@ -207,7 +208,9 @@ class Score extends Model implements Traits\ReportableInterface
             'started_at_json' => $this->getJsonTimeFast($key),
 
             'best_id' => null,
-            'legacy_perfect' => null,
+
+            'is_perfect_combo' => $this->isPerfectCombo(),
+            'legacy_perfect' => $this->isPerfectLegacyCombo(),
 
             'beatmap',
             'performance',
@@ -247,6 +250,38 @@ class Score extends Model implements Traits\ReportableInterface
     public function isLegacy(): bool
     {
         return $this->legacy_score_id !== null;
+    }
+
+    public function isPerfectCombo(): bool
+    {
+        return $this->max_combo === $this->maxAchievableCombo();
+    }
+
+    /**
+     * Only returns anything if different from isPerfectCombo
+     */
+    public function isPerfectLegacyCombo(): ?bool
+    {
+        if ($this->ruleset_id === Ruleset::mania->value) {
+            // Reference: https://github.com/ppy/osu/blob/012039ff90a2bf234418caef81792af0ffb4d123/osu.Game/Rulesets/Scoring/HitResult.cs#L279-L299
+            // (in combination with AffectsCombo)
+            static $breaksCombo = [
+                'combo_break',
+                'large_tick_miss',
+                'miss',
+            ];
+
+            $statistics = $this->data->statistics;
+            foreach ($breaksCombo as $field) {
+                if ($statistics->$field !== 0) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        return null;
     }
 
     public function legacyScore(): ?LegacyScore\Best\Model
@@ -304,6 +339,38 @@ class Score extends Model implements Traits\ReportableInterface
         }
 
         return $score;
+    }
+
+    public function maxAchievableCombo(): int
+    {
+        $ret = 0;
+
+        /**
+         * References:
+         * - https://github.com/ppy/osu/wiki/Scoring
+         * - https://github.com/ppy/osu/blob/012039ff90a2bf234418caef81792af0ffb4d123/osu.Game/Scoring/ScoreInfoExtensions.cs#L29-L34
+         * - https://github.com/ppy/osu/blob/012039ff90a2bf234418caef81792af0ffb4d123/osu.Game/Rulesets/Scoring/HitResult.cs#L179-L202
+         */
+        static $affectsCombo = [
+            // 'miss',
+            'meh',
+            'ok',
+            'good',
+            'great',
+            'perfect',
+            'large_tick_hit',
+            // 'large_tick_miss',
+            'legacy_combo_increase',
+            // 'combo_break',
+            'slider_tail_hit',
+        ];
+
+        $maximumStatistics = $this->data->maximumStatistics;
+        foreach ($affectsCombo as $field) {
+            $ret += $maximumStatistics->$field;
+        }
+
+        return $ret;
     }
 
     public function queueForProcessing(): void
