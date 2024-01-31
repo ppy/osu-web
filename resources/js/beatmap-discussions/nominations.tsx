@@ -642,12 +642,11 @@ export class Nominations extends React.Component<Props> {
             : formatDate(rankingEta)
           : trans('beatmaps.nominations.rank_estimate.soon');
 
-        const unresolvedProblems = this.props.beatmapset.discussions.filter((d) => !d.resolved && ['problem', 'suggestion'].includes(d.message_type));
-        const rankEstimatePrefixText = unresolvedProblems.length > 0
+        const rankEstimatePrefixText = this.props.discussionsState.discussionsByFilter.pending > 0
           ? trans('beatmaps.nominations.rank_estimate.unresolved_problems')
           : trans('beatmaps.nominations.rank_estimate.no_problems');
 
-        const problems = unresolvedProblems.map((problem) => (
+        const problems = this.props.discussionsState.discussionsByFilter.pending.map((problem) => (
           <a className='js-beatmap-discussion--jump' href={makeUrl({ discussion: problem })}>#{problem.id}</a>
         ));
 
