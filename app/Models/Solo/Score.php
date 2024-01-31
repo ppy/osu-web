@@ -254,7 +254,7 @@ class Score extends Model implements Traits\ReportableInterface
 
     public function isPerfectCombo(): bool
     {
-        return $this->max_combo === $this->maxAchievableCombo();
+        return $this->passed && $this->max_combo === $this->maxAchievableCombo();
     }
 
     /**
@@ -263,6 +263,10 @@ class Score extends Model implements Traits\ReportableInterface
     public function isPerfectLegacyCombo(): ?bool
     {
         if ($this->ruleset_id === Ruleset::mania->value) {
+            if (!$this->passed) {
+                return false;
+            }
+
             // Reference: https://github.com/ppy/osu/blob/012039ff90a2bf234418caef81792af0ffb4d123/osu.Game/Rulesets/Scoring/HitResult.cs#L279-L299
             // (in combination with AffectsCombo)
             static $breaksCombo = [
