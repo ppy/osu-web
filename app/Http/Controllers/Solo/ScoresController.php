@@ -30,6 +30,11 @@ class ScoresController extends BaseController
                 'user_id' => $user->getKey(),
             ])->lockForUpdate()->findOrFail($tokenId);
 
+            $beatmapsetApprovedAt = $scoreToken->beatmap?->beatmapset?->approved_date;
+            if ($beatmapsetApprovedAt !== null && $scoreToken->created_at->isBefore($beatmapsetApprovedAt)) {
+                abort(422, 'beatmapset state has been updated');
+            }
+
             // return existing score otherwise (assuming duplicated submission)
             if ($scoreToken->score_id === null) {
                 $params = Score::extractParams($request->all(), $scoreToken);

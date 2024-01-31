@@ -104,6 +104,45 @@ class ScoresControllerTest extends TestCase
         )->assertStatus(422);
     }
 
+    public function testStoreUpdatedBeatmap()
+    {
+        $build = Build::factory()->create(['allow_ranking' => true]);
+        $scoreToken = ScoreToken::factory()->create(['build_id' => $build]);
+        $scoreToken->beatmap->beatmapset->update(['approved_date' => $scoreToken->created_at->addMinutes(5)]);
+
+        $this->expectCountChange(fn () => Score::count(), 0);
+        $this->expectCountChange(fn () => $this->processingQueueCount(), 0);
+        $this->expectCountChange(
+            fn () => \LaravelRedis::llen($GLOBALS['cfg']['osu']['client']['token_queue']),
+            0,
+        );
+
+        $this->withHeaders(['x-token' => static::createClientToken($build)]);
+        $this->actAsScopedUser($scoreToken->user, ['*']);
+
+        $this->json(
+            'PUT',
+            route('api.beatmaps.solo.scores.store', [
+                'beatmap' => $scoreToken->beatmap->getKey(),
+                'token' => $scoreToken->getKey(),
+            ]),
+            [
+                'accuracy' => 1,
+                'max_combo' => 10,
+                'mods' => [
+                    ['acronym' => 'DT'],
+                ],
+                'passed' => true,
+                'rank' => 'A',
+                'statistics' => ['Good' => 1],
+                'total_score' => 10,
+            ]
+        )->assertStatus(422);
+
+        $score = $scoreToken->fresh()->score;
+        $this->assertNull($score);
+    }
+
     public function testStoreWrongUser()
     {
         $otherUser = User::factory()->create();
