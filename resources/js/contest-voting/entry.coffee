@@ -7,7 +7,7 @@ import { route } from 'laroute'
 import * as React from 'react'
 import { a,i,div,span } from 'react-dom-factories'
 import { formatNumber } from 'utils/html'
-import { transChoice } from 'utils/lang'
+import { trans, transChoice } from 'utils/lang'
 import { Voter } from './voter'
 
 el = React.createElement
@@ -68,11 +68,12 @@ export class Entry extends React.Component
           div className: 'u-ellipsis-overflow', entry_title
           @renderUserLink()
 
-      div className: "contest__voting-star#{if @props.contest.show_votes then ' contest__voting-star--dark-bg' else ''}",
-        el Voter, key: @props.entry.id, entry: @props.entry, waitingForResponse: @props.waitingForResponse, selected: @props.selected, contest: @props.contest
+      if !@props.contest.judged
+        div className: "contest__voting-star#{if @props.contest.show_votes then ' contest__voting-star--dark-bg' else ''}",
+          el Voter, key: @props.entry.id, entry: @props.entry, waitingForResponse: @props.waitingForResponse, selected: @props.selected, contest: @props.contest
 
       if @props.contest.show_votes
-        if @props.contest.best_of
+        if @props.contest.best_of || @props.contest.judged
           div className:'contest__vote-count contest__vote-count--no-percentages',
             transChoice 'contest.vote.points', @props.entry.results.votes
         else
@@ -80,6 +81,14 @@ export class Entry extends React.Component
             transChoice 'contest.vote.count', @props.entry.results.votes
             if Number.isFinite usersVotedPercentage
               " (#{formatNumber(usersVotedPercentage)}%)"
+
+      if @props.contest.judged
+        div className: 'contest-voting-list__icon contest-voting-list__icon--bg',
+          a
+            className: 'contest-voting-list__link'
+            href: route('contest-entries.judge-results', @props.entry.id)
+            target: '_blank'
+            i className: 'fas fa-fw fa-lg fa-external-link-alt'
 
 
   renderUserLink: ->
