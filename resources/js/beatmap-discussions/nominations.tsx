@@ -278,6 +278,11 @@ export class Nominations extends React.Component<Props> {
     return { discussion, link, message, user };
   }
 
+  private readonly pendingProblemsOnClick = (event: React.SyntheticEvent<HTMLElement>) => {
+    event.preventDefault();
+    this.props.discussionsState.changeFilter('pending');
+  };
+
   @action
   private readonly removeFromLoved = () => {
     if (this.xhr.removeFromLoved != null) return;
@@ -642,14 +647,6 @@ export class Nominations extends React.Component<Props> {
             : formatDate(rankingEta)
           : trans('beatmaps.nominations.rank_estimate.soon');
 
-        const rankEstimatePrefixText = this.props.discussionsState.discussionsByFilter.pending.length > 0
-          ? trans('beatmaps.nominations.rank_estimate.unresolved_problems')
-          : trans('beatmaps.nominations.rank_estimate.no_problems');
-
-        const problems = this.props.discussionsState.discussionsByFilter.pending.map((problem) => (
-          <a key={problem.id} className='js-beatmap-discussion--jump' href={makeUrl({ discussion: problem })}>#{problem.id}</a>
-        ));
-
         return (
           <>
             <StringWithComponent
@@ -677,16 +674,13 @@ export class Nominations extends React.Component<Props> {
                       className='js-beatmap-discussion--jump'
                       href={makeUrl({
                         discussion: this.props.discussionsState.discussionsByFilter.pending[0],
-                        filter: "pending",
-                        mode: this.props.discussionsState.currentPage
+                        filter: 'pending',
+                        mode: this.props.discussionsState.currentPage,
                       })}
-                      onClick={(event) => {
-                        event.preventDefault();
-                        this.props.discussionsState.changeFilter("pending");
-                      }}
+                      onClick={this.pendingProblemsOnClick}
                     >
                       {trans('beatmaps.nominations.rank_estimate.problems')}
-                    </a>
+                    </a>,
                   }}
                   pattern={trans('beatmaps.nominations.rank_estimate.unresolved_problems')}
                 />
