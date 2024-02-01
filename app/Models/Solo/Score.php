@@ -165,9 +165,14 @@ class Score extends Model implements Traits\ReportableInterface
             ->whereHas('user', fn (Builder $q): Builder => $q->default());
     }
 
+    /**
+     * This should only be used for user recent scores, not anything else
+     */
     public function scopeRecent(Builder $query, string $ruleset, bool $includeFails): Builder
     {
         return $query
+            // ensure correct index is used
+            ->from(\DB::raw("{$this->getTable()} FORCE INDEX (user_ruleset_index)"))
             ->default()
             ->forRuleset($ruleset)
             ->includeFails($includeFails)
