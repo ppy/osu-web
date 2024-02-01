@@ -125,7 +125,7 @@ class Score extends Model implements Traits\ReportableInterface
             Beatmapset::STATES['ranked'],
         ], true);
 
-        $params['preserve'] = $params['passed'];
+        $params['preserve'] = $params['passed'] ?? false;
 
         return $params;
     }
