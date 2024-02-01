@@ -140,6 +140,8 @@ class ScoreTransformer extends TransformerAbstract
 
     public function transformLegacy(LegacyMatch\Score|ScoreModel|SoloScore $score)
     {
+        $best = null;
+
         if ($score instanceof ScoreModel) {
             // this `best` relation is also used by `current_user_attributes` include.
             $best = $score->best;
