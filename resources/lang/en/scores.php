@@ -5,6 +5,7 @@
 
 return [
     'show' => [
+        'non_preserved' => 'This score is marked for deletion and will disappear soon.',
         'title' => ':username on :title [:version]',
 
         'beatmap' => [
