@@ -173,6 +173,7 @@ return [
     'score' => [
         'pin' => [
             'disabled_type' => "Can't pin this type of score",
+            'failed' => "Can't pin non-passing score.",
             'not_owner' => 'Only score owner can pin score.',
             'too_many' => 'Pinned too many scores.',
         ],
