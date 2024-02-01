@@ -5,10 +5,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Ruleset;
 use App\Models\Score\Best\Model as ScoreBest;
 use App\Models\Solo\Score as SoloScore;
 use App\Transformers\ScoreTransformer;
 use App\Transformers\UserCompactTransformer;
+use Auth;
 
 class ScoresController extends Controller
 {
@@ -33,6 +35,7 @@ class ScoresController extends Controller
             }
             $soloScore = SoloScore::where('has_replay', true)->findOrFail($rulesetOrSoloId);
 
+            $ruleset = Ruleset::from($soloScore->ruleset_id)->legacyName();
             $score = $soloScore->legacyScore() ?? $soloScore;
         } else {
             if ($shouldRedirect) {
@@ -43,6 +46,8 @@ class ScoresController extends Controller
                 ::where('score_id', $id)
                 ->where('replay', true)
                 ->firstOrFail();
+
+            $ruleset = $score->getMode();
         }
 
         $file = $score->getReplayFile();
@@ -53,6 +58,8 @@ class ScoresController extends Controller
         static $responseHeaders = [
             'Content-Type' => 'application/x-osu-replay',
         ];
+
+        $score->user()->statistics($ruleset, true)->increment('replay_popularity');
 
         return response()->streamDownload(function () use ($file) {
             echo $file;

@@ -28,6 +28,8 @@ class ScoresControllerTest extends TestCase
                 route('scores.download-legacy', $this->params())
             )
             ->assertSuccessful();
+
+        $this->assertEquals(1, $this->score->user()->statistics($this->score->getMode(), true)->replay_popularity);
     }
 
     public function testDownloadSoloScore()
@@ -47,6 +49,8 @@ class ScoresControllerTest extends TestCase
                 route('scores.download', $soloScore)
             )
             ->assertSuccessful();
+
+        $this->assertEquals(1, $this->score->user()->statistics($this->score->getMode(), true)->replay_popularity);
     }
 
     public function testDownloadDeletedBeatmap()
