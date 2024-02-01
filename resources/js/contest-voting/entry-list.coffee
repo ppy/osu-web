@@ -44,9 +44,10 @@ export class EntryList extends BaseEntryList
         div className: 'contest-voting-list__header-wrapper',
           div className: 'contest-voting-list__header-title', trans('contest.entry._')
           if !@state.contest.judged
-            div className: 'contest-voting-list__header-voted-toggle-button',
-              @renderToggleShowVotedOnly()
-            div className: 'contest-voting-list__header-votesummary',
-              div className: 'contest__vote-summary-text', trans('contest.vote.list')
-              el VoteSummary, voteCount: @state.selected.length, maxVotes: @state.contest.max_votes
+            el React.Fragment, null,
+              div className: 'contest-voting-list__header-voted-toggle-button',
+                @renderToggleShowVotedOnly()
+              div className: 'contest-voting-list__header-votesummary',
+                  div className: 'contest__vote-summary-text', trans('contest.vote.list')
+                  el VoteSummary, voteCount: @state.selected.length, maxVotes: @state.contest.max_votes
       div {}, entries
