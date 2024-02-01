@@ -100,6 +100,8 @@ class ScorePinsController extends Controller
                     throw $ex;
                 }
             }
+
+            $score->update(['preserve' => true]);
         }
 
         return response()->noContent();

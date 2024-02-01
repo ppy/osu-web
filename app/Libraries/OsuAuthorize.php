@@ -1937,6 +1937,10 @@ class OsuAuthorize
             return $prefix.'not_owner';
         }
 
+        if (!$score->passed) {
+            return $prefix.'failed';
+        }
+
         if ($score instanceof Solo\Score && $GLOBALS['cfg']['osu']['user']['hide_pinned_solo_scores']) {
             return $prefix.'disabled_type';
         }
