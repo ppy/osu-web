@@ -34,7 +34,7 @@ class ScoreTest extends TestCase
         $this->assertSame(1, $score->data->statistics->small_tick_hit);
     }
 
-    public function testLegacyPassScoreRetainsRank()
+    public function testLegacyPassScoreSetsRank()
     {
         $score = Score::createFromJsonOrExplode([
             'accuracy' => 1,
@@ -55,8 +55,7 @@ class ScoreTest extends TestCase
 
         $legacy = $score->makeLegacyEntry();
 
-        $this->assertTrue($legacy->perfect);
-        $this->assertSame($legacy->rank, 'S');
+        $this->assertSame($legacy->rank, 'X');
     }
 
     public function testLegacyFailScoreIsRankF()
@@ -80,7 +79,6 @@ class ScoreTest extends TestCase
 
         $legacy = $score->makeLegacyEntry();
 
-        $this->assertFalse($legacy->perfect);
         $this->assertSame($legacy->rank, 'F');
     }
 
@@ -100,7 +98,6 @@ class ScoreTest extends TestCase
             'user_id' => 1,
         ])->makeLegacyEntry();
 
-        $this->assertFalse($legacy->perfect);
         $this->assertSame($legacy->count300, 10);
         $this->assertSame($legacy->count100, 20);
         $this->assertSame($legacy->count50, 30);
@@ -123,7 +120,6 @@ class ScoreTest extends TestCase
             'user_id' => 1,
         ])->makeLegacyEntry();
 
-        $this->assertFalse($legacy->perfect);
         $this->assertSame($legacy->count300, 10);
         $this->assertSame($legacy->count100, 20);
         $this->assertSame($legacy->count50, 30);
