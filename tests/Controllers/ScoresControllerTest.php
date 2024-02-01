@@ -9,6 +9,7 @@ use App\Models\Beatmap;
 use App\Models\Score\Best\Osu;
 use App\Models\Solo\Score as SoloScore;
 use App\Models\User;
+use App\Models\UserStatistics;
 use Illuminate\Filesystem\Filesystem;
 use Storage;
 use Tests\TestCase;
@@ -29,7 +30,7 @@ class ScoresControllerTest extends TestCase
             )
             ->assertSuccessful();
 
-        $this->assertEquals(1, $this->score->user()->statistics($this->score->getMode(), true)->replay_popularity);
+        $this->assertEquals(1, $this->score->user->statistics($this->score->getMode())->replay_popularity);
     }
 
     public function testDownloadSoloScore()
@@ -50,7 +51,7 @@ class ScoresControllerTest extends TestCase
             )
             ->assertSuccessful();
 
-        $this->assertEquals(1, $this->score->user()->statistics($this->score->getMode(), true)->replay_popularity);
+        $this->assertEquals(1, $this->score->user->statistics($this->score->getMode())->replay_popularity);
     }
 
     public function testDownloadDeletedBeatmap()
@@ -141,7 +142,8 @@ class ScoresControllerTest extends TestCase
         });
 
         $this->user = User::factory()->create();
-        $this->score = Osu::factory()->withReplay()->create();
+        UserStatistics\Osu::factory()->create(['user_id' => $this->user->user_id]);
+        $this->score = Osu::factory()->withReplay()->create(['user_id' => $this->user->user_id]);
     }
 
     private function params()

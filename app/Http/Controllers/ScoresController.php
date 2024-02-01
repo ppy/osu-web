@@ -58,7 +58,7 @@ class ScoresController extends Controller
             'Content-Type' => 'application/x-osu-replay',
         ];
 
-        $score->user()->statistics($ruleset, true)->increment('replay_popularity');
+        $score->user->statistics($ruleset, true)->increment('replay_popularity');
 
         return response()->streamDownload(function () use ($file) {
             echo $file;
