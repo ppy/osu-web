@@ -314,33 +314,35 @@ class Score extends Model implements Traits\ReportableInterface
             'beatmap_id' => $this->beatmap_id,
             'beatmapset_id' => $this->beatmap?->beatmapset_id ?? 0,
             'countmiss' => $statistics->miss,
+            'date' => $this->ended_at_json,
             'enabled_mods' => app('mods')->idsToBitset(array_column($data->mods, 'acronym')),
             'maxcombo' => $this->max_combo,
             'pass' => $this->passed,
-            'perfect' => $this->passed && $statistics->miss + $statistics->large_tick_miss === 0,
-            'rank' => $this->rank,
-            'score' => $this->total_score,
+            'perfect' => $this->legacy_perfect ?? $this->is_perfect_combo,
+            'pp' => $this->pp,
+            'replay' => $this->has_replay,
+            'score' => $this->legacy_total_score,
             'scorechecksum' => "\0",
             'user_id' => $this->user_id,
         ]);
 
-        switch (Beatmap::modeStr($this->ruleset_id)) {
-            case 'osu':
+        switch (Ruleset::from($this->ruleset_id)) {
+            case Ruleset::osu:
                 $score->count300 = $statistics->great;
                 $score->count100 = $statistics->ok;
                 $score->count50 = $statistics->meh;
                 break;
-            case 'taiko':
+            case Ruleset::taiko:
                 $score->count300 = $statistics->great;
                 $score->count100 = $statistics->ok;
                 break;
-            case 'fruits':
+            case Ruleset::catch:
                 $score->count300 = $statistics->great;
                 $score->count100 = $statistics->large_tick_hit;
                 $score->countkatu = $statistics->small_tick_miss;
                 $score->count50 = $statistics->small_tick_hit;
                 break;
-            case 'mania':
+            case Ruleset::mania:
                 $score->countgeki = $statistics->perfect;
                 $score->count300 = $statistics->great;
                 $score->countkatu = $statistics->good;
@@ -348,6 +350,8 @@ class Score extends Model implements Traits\ReportableInterface
                 $score->count50 = $statistics->meh;
                 break;
         }
+
+        $score->recalculateRank();
 
         return $score;
     }

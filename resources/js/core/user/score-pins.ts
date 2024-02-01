@@ -30,7 +30,7 @@ export default class ScorePins {
   }
 
   canBePinned(score: SoloScoreJson) {
-    return score.current_user_attributes.pin != null;
+    return score.current_user_attributes.pin != null && score.passed;
   }
 
   isPinned(score: SoloScoreJson) {

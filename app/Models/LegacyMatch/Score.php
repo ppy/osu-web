@@ -60,9 +60,19 @@ class Score extends Model
         return Beatmap::modeStr($this->game->play_mode);
     }
 
+    public function getDateJsonAttribute(): ?string
+    {
+        return $this->game?->start_time_json;
+    }
+
     public function getEnabledModsAttribute($value)
     {
         return $this->_getEnabledMods($value | ($this->game->getAttributes()['mods'] ?? 0));
+    }
+
+    public function getRankAttribute($value): string
+    {
+        return $value === '0' ? 'F' : $value;
     }
 
     public function getScoringType()
