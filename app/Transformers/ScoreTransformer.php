@@ -152,6 +152,10 @@ class ScoreTransformer extends TransformerAbstract
 
             if ($soloScore->isLegacy()) {
                 $id = $soloScore->legacy_score_id;
+                if ($id > 0) {
+                    // To be used later for best_id
+                    $score->score_id = $id;
+                }
             } else {
                 $id = $soloScore->getKey();
                 $type = $soloScore->getMorphClass();
