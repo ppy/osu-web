@@ -112,6 +112,7 @@ return [
         'legal' => [
             '_' => 'Legal & Status',
             'copyright' => 'Copyright (DMCA)',
+            'jp_sctl' => '特定商取引法',
             'privacy' => 'Privacy',
             'server_status' => 'Server Status',
             'source_code' => 'Source Code',
