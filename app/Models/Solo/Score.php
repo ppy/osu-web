@@ -309,7 +309,7 @@ class Score extends Model implements Traits\ReportableInterface
         $data = $this->data;
         $statistics = $data->statistics;
         $legacyId = $this->legacy_score_id;
-        $scoreClass = $legacyId === null || $legacyId > 0
+        $scoreClass = ($legacyId === null && $this->passed) || $legacyId > 0
             ? LegacyScore\Best\Model::getClass($this->getMode())
             : LegacyScore\Model::getClass($this->getMode());
 
