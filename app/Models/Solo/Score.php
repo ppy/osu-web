@@ -182,6 +182,11 @@ class Score extends Model implements Traits\ReportableInterface
             ->where('unix_updated_at', '>', time() - 172_800);
     }
 
+    public function scopeVisibleUsers(Builder $query): Builder
+    {
+        return $query->whereHas('user', fn ($userQuery) => $userQuery->default());
+    }
+
     public function getAttribute($key)
     {
         return match ($key) {
