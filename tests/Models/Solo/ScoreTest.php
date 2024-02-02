@@ -34,7 +34,7 @@ class ScoreTest extends TestCase
         $this->assertSame(1, $score->data->statistics->small_tick_hit);
     }
 
-    public function testLegacyPassScoreRetainsRank()
+    public function testLegacyPassScoreSetsRank()
     {
         $score = Score::createFromJsonOrExplode([
             'accuracy' => 1,
@@ -53,10 +53,9 @@ class ScoreTest extends TestCase
         $this->assertTrue($score->passed);
         $this->assertSame($score->rank, 'S');
 
-        $legacy = $score->createLegacyEntryOrExplode();
+        $legacy = $score->makeLegacyEntry();
 
-        $this->assertTrue($legacy->perfect);
-        $this->assertSame($legacy->rank, 'S');
+        $this->assertSame($legacy->rank, 'X');
     }
 
     public function testLegacyFailScoreIsRankF()
@@ -78,9 +77,8 @@ class ScoreTest extends TestCase
         $this->assertFalse($score->passed);
         $this->assertSame($score->rank, 'F');
 
-        $legacy = $score->createLegacyEntryOrExplode();
+        $legacy = $score->makeLegacyEntry();
 
-        $this->assertFalse($legacy->perfect);
         $this->assertSame($legacy->rank, 'F');
     }
 
@@ -98,9 +96,8 @@ class ScoreTest extends TestCase
             'statistics' => ['great' => 10, 'ok' => 20, 'meh' => 30, 'miss' => 40],
             'total_score' => 1000,
             'user_id' => 1,
-        ])->createLegacyEntryOrExplode();
+        ])->makeLegacyEntry();
 
-        $this->assertFalse($legacy->perfect);
         $this->assertSame($legacy->count300, 10);
         $this->assertSame($legacy->count100, 20);
         $this->assertSame($legacy->count50, 30);
@@ -121,9 +118,8 @@ class ScoreTest extends TestCase
             'statistics' => ['Great' => 10, 'Ok' => 20, 'Meh' => 30, 'Miss' => 40],
             'total_score' => 1000,
             'user_id' => 1,
-        ])->createLegacyEntryOrExplode();
+        ])->makeLegacyEntry();
 
-        $this->assertFalse($legacy->perfect);
         $this->assertSame($legacy->count300, 10);
         $this->assertSame($legacy->count100, 20);
         $this->assertSame($legacy->count50, 30);

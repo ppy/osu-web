@@ -16,7 +16,7 @@ import PpValue from 'scores/pp-value';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
-import { filterMods, hasMenu, isPerfectCombo, modeAttributesMap, scoreUrl, totalScore } from 'utils/score-helper';
+import { accuracy, filterMods, hasMenu, isPerfectCombo, modeAttributesMap, rank, scoreUrl, totalScore } from 'utils/score-helper';
 
 const bn = 'beatmap-scoreboard-table';
 
@@ -63,6 +63,7 @@ export default class ScoreboardTableRow extends React.Component<Props> {
 
   render() {
     const score = this.props.score;
+    const scoreAccuracy = accuracy(score);
     const blockClass = classWithModifiers(`${bn}__body-row`,
       this.props.activated ? 'menu-active' : 'highlightable',
       {
@@ -79,15 +80,15 @@ export default class ScoreboardTableRow extends React.Component<Props> {
         </TdLink>
 
         <TdLink href={this.scoreUrl} modifiers='grade'>
-          <div className={classWithModifiers('score-rank', ['tiny', score.rank])} />
+          <div className={classWithModifiers('score-rank', ['tiny', rank(score)])} />
         </TdLink>
 
         <TdLink href={this.scoreUrl} modifiers='score'>
           {formatNumber(totalScore(score))}
         </TdLink>
 
-        <TdLink href={this.scoreUrl} modifiers={{ perfect: score.accuracy === 1 }}>
-          {`${formatNumber(score.accuracy * 100, 2)}%`}
+        <TdLink href={this.scoreUrl} modifiers={{ perfect: scoreAccuracy === 1 }}>
+          {`${formatNumber(scoreAccuracy * 100, 2)}%`}
         </TdLink>
 
         <td className={`${bn}__cell`}>

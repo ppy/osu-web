@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace App\Models\Solo;
 
+use App\Enums\Ruleset;
 use App\Enums\ScoreRank;
 use App\Exceptions\InvariantException;
 use App\Libraries\Score\UserRank;
@@ -124,6 +125,8 @@ class Score extends Model implements Traits\ReportableInterface
             Beatmapset::STATES['ranked'],
         ], true);
 
+        $params['preserve'] = $params['passed'] ?? false;
+
         return $params;
     }
 
@@ -142,6 +145,18 @@ class Score extends Model implements Traits\ReportableInterface
         return $query->whereHas('beatmap.beatmapset');
     }
 
+    public function scopeForRuleset(Builder $query, string $ruleset): Builder
+    {
+        return $query->where('ruleset_id', Beatmap::MODES[$ruleset]);
+    }
+
+    public function scopeIncludeFails(Builder $query, bool $includeFails): Builder
+    {
+        return $includeFails
+            ? $query
+            : $query->where('passed', true);
+    }
+
     /**
      * This should match the one used in osu-elastic-indexer.
      */
@@ -150,6 +165,21 @@ class Score extends Model implements Traits\ReportableInterface
         return $query
             ->where('preserve', true)
             ->whereHas('user', fn (Builder $q): Builder => $q->default());
+    }
+
+    /**
+     * This should only be used for user recent scores, not anything else
+     */
+    public function scopeRecent(Builder $query, string $ruleset, bool $includeFails): Builder
+    {
+        return $query
+            // ensure correct index is used
+            ->from(\DB::raw("{$this->getTable()} FORCE INDEX (user_ruleset_index)"))
+            ->default()
+            ->forRuleset($ruleset)
+            ->includeFails($includeFails)
+            // 2 days (2 * 24 * 3600)
+            ->where('unix_updated_at', '>', time() - 172_800);
     }
 
     public function getAttribute($key)
@@ -185,7 +215,9 @@ class Score extends Model implements Traits\ReportableInterface
             'started_at_json' => $this->getJsonTimeFast($key),
 
             'best_id' => null,
-            'legacy_perfect' => null,
+
+            'is_perfect_combo' => $this->isPerfectCombo(),
+            'legacy_perfect' => $this->isPerfectLegacyCombo(),
 
             'beatmap',
             'performance',
@@ -211,15 +243,6 @@ class Score extends Model implements Traits\ReportableInterface
         }
     }
 
-    public function createLegacyEntryOrExplode()
-    {
-        $score = $this->makeLegacyEntry();
-
-        $score->saveOrExplode();
-
-        return $score;
-    }
-
     public function getMode(): string
     {
         return Beatmap::modeStr($this->ruleset_id);
@@ -236,6 +259,42 @@ class Score extends Model implements Traits\ReportableInterface
         return $this->legacy_score_id !== null;
     }
 
+    public function isPerfectCombo(): bool
+    {
+        return $this->passed && $this->max_combo === $this->maxAchievableCombo();
+    }
+
+    /**
+     * Only returns anything if different from isPerfectCombo
+     */
+    public function isPerfectLegacyCombo(): ?bool
+    {
+        if ($this->ruleset_id === Ruleset::mania->value) {
+            if (!$this->passed) {
+                return false;
+            }
+
+            // Reference: https://github.com/ppy/osu/blob/012039ff90a2bf234418caef81792af0ffb4d123/osu.Game/Rulesets/Scoring/HitResult.cs#L279-L299
+            // (in combination with AffectsCombo)
+            static $breaksCombo = [
+                'combo_break',
+                'large_tick_miss',
+                'miss',
+            ];
+
+            $statistics = $this->data->statistics;
+            foreach ($breaksCombo as $field) {
+                if ($statistics->$field !== 0) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        return null;
+    }
+
     public function legacyScore(): ?LegacyScore\Best\Model
     {
         $id = $this->legacy_score_id;
@@ -249,39 +308,44 @@ class Score extends Model implements Traits\ReportableInterface
     {
         $data = $this->data;
         $statistics = $data->statistics;
-        $scoreClass = LegacyScore\Model::getClass($this->getMode());
+        $legacyId = $this->legacy_score_id;
+        $scoreClass = ($legacyId === null && $this->passed) || $legacyId > 0
+            ? LegacyScore\Best\Model::getClass($this->getMode())
+            : LegacyScore\Model::getClass($this->getMode());
 
         $score = new $scoreClass([
             'beatmap_id' => $this->beatmap_id,
             'beatmapset_id' => $this->beatmap?->beatmapset_id ?? 0,
             'countmiss' => $statistics->miss,
+            'date' => $this->ended_at_json,
             'enabled_mods' => app('mods')->idsToBitset(array_column($data->mods, 'acronym')),
             'maxcombo' => $this->max_combo,
             'pass' => $this->passed,
-            'perfect' => $this->passed && $statistics->miss + $statistics->large_tick_miss === 0,
-            'rank' => $this->rank,
-            'score' => $this->total_score,
+            'perfect' => $this->legacy_perfect ?? $this->is_perfect_combo,
+            'pp' => $this->pp,
+            'replay' => $this->has_replay,
+            'score' => $this->legacy_total_score,
             'scorechecksum' => "\0",
             'user_id' => $this->user_id,
         ]);
 
-        switch (Beatmap::modeStr($this->ruleset_id)) {
-            case 'osu':
+        switch (Ruleset::from($this->ruleset_id)) {
+            case Ruleset::osu:
                 $score->count300 = $statistics->great;
                 $score->count100 = $statistics->ok;
                 $score->count50 = $statistics->meh;
                 break;
-            case 'taiko':
+            case Ruleset::taiko:
                 $score->count300 = $statistics->great;
                 $score->count100 = $statistics->ok;
                 break;
-            case 'fruits':
+            case Ruleset::catch:
                 $score->count300 = $statistics->great;
                 $score->count100 = $statistics->large_tick_hit;
                 $score->countkatu = $statistics->small_tick_miss;
                 $score->count50 = $statistics->small_tick_hit;
                 break;
-            case 'mania':
+            case Ruleset::mania:
                 $score->countgeki = $statistics->perfect;
                 $score->count300 = $statistics->great;
                 $score->countkatu = $statistics->good;
@@ -290,7 +354,41 @@ class Score extends Model implements Traits\ReportableInterface
                 break;
         }
 
+        $score->recalculateRank();
+
         return $score;
+    }
+
+    public function maxAchievableCombo(): int
+    {
+        $ret = 0;
+
+        /**
+         * References:
+         * - https://github.com/ppy/osu/wiki/Scoring
+         * - https://github.com/ppy/osu/blob/012039ff90a2bf234418caef81792af0ffb4d123/osu.Game/Scoring/ScoreInfoExtensions.cs#L29-L34
+         * - https://github.com/ppy/osu/blob/012039ff90a2bf234418caef81792af0ffb4d123/osu.Game/Rulesets/Scoring/HitResult.cs#L179-L202
+         */
+        static $affectsCombo = [
+            // 'miss',
+            'meh',
+            'ok',
+            'good',
+            'great',
+            'perfect',
+            'large_tick_hit',
+            // 'large_tick_miss',
+            'legacy_combo_increase',
+            // 'combo_break',
+            'slider_tail_hit',
+        ];
+
+        $maximumStatistics = $this->data->maximumStatistics;
+        foreach ($affectsCombo as $field) {
+            $ret += $maximumStatistics->$field;
+        }
+
+        return $ret;
     }
 
     public function queueForProcessing(): void

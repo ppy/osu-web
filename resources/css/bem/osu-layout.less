@@ -13,6 +13,9 @@
   transition: filter 200ms ease-in-out, opacity 200ms ease-in-out; // for fading in after &--masked is removed
 
   &--body {
+    --nav-logo: url('~@images/layout/osu-logo-white.svg');
+    --nav-logo-bg: url('~@images/layout/osu-logo-triangles.svg');
+
     background-color: @osu-colour-b6;
   }
 
@@ -33,6 +36,11 @@
       content: " ";
       z-index: @z-index--body-background;
     }
+  }
+
+  &--body-lazer {
+    --nav-logo: url('~@images/layout/osu-lazer-logo-white.svg');
+    --nav-logo-bg: url('~@images/layout/osu-lazer-logo-triangles.svg');
   }
 
   &--full {

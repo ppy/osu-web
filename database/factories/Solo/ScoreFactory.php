@@ -33,6 +33,8 @@ class ScoreFactory extends Factory
 
             // depends on all other attributes
             'data' => fn (array $attr): array => $this->makeData()($attr),
+
+            'legacy_total_score' => fn (array $attr): int => isset($attr['legacy_score_id']) ? $attr['total_score'] : 0,
         ];
     }
 

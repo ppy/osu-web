@@ -169,6 +169,7 @@ abstract class Model extends BaseModel
             'build_id' => null,
             'data' => $this->getData(),
             'ended_at_json' => $this->date_json,
+            'is_perfect_combo' => $this->perfect,
             'legacy_perfect' => $this->perfect,
             'legacy_score_id' => $this->getKey(),
             'legacy_total_score' => $this->score,

@@ -13,7 +13,28 @@ return [
         'nav_title' => 'listing',
     ],
 
+    'judge' => [
+        'hide_judged' => 'hide judged entries',
+        'nav_title' => 'judge',
+        'no_current_vote' => 'you didn\'t vote yet.',
+        'update' => 'update',
+        'validation' => [
+            'missing_score' => 'missing score',
+            'contest_vote_judged' => 'can\'t vote in judged contests',
+        ],
+        'voted' => 'You already submitted a vote on this entry.',
+    ],
+
+    'judge_results' => [
+        '_' => 'Judging results',
+        'creator' => 'creator',
+        'score' => 'Score',
+        'total_score' => 'total score',
+    ],
+
     'voting' => [
+        'judge_link' => 'You are a judge of this contest. Judge the entries here!',
+        'judged_notice' => 'This contest is using the judging system, the judges are currently processing the entries.',
         'login_required' => 'Please sign in to vote.',
         'over' => 'Voting for this contest has ended',
         'show_voted_only' => 'Show voted',
@@ -38,6 +59,7 @@ return [
             ],
         ],
     ],
+
     'entry' => [
         '_' => 'entry',
         'login_required' => 'Please sign in to enter the contest.',
@@ -45,22 +67,27 @@ return [
         'preparation' => 'We are currently preparing this contest. Please wait patiently!',
         'drop_here' => 'Drop your entry here',
         'download' => 'Download .osz',
+
         'wrong_type' => [
             'art' => 'Only .jpg and .png files are accepted for this contest.',
             'beatmap' => 'Only .osu files are accepted for this contest.',
             'music' => 'Only .mp3 files are accepted for this contest.',
         ],
+
         'wrong_dimensions' => 'Entries for this contest must be :widthx:height',
         'too_big' => 'Entries for this contest can only be up to :limit.',
     ],
+
     'beatmaps' => [
         'download' => 'Download Entry',
     ],
+
     'vote' => [
         'list' => 'votes',
         'count' => ':count_delimited vote|:count_delimited votes',
         'points' => ':count_delimited point|:count_delimited points',
     ],
+
     'dates' => [
         'ended' => 'Ended :date',
         'ended_no_date' => 'Ended',
@@ -70,6 +97,7 @@ return [
             'soon' => 'soon™',
         ],
     ],
+
     'states' => [
         'entry' => 'Entry Open',
         'voting' => 'Voting Started',

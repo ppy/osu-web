@@ -9,6 +9,7 @@ use App\Jobs\RenumberUserScorePins;
 use App\Libraries\MorphMap;
 use App\Models\Beatmap;
 use App\Models\ScorePin;
+use App\Models\Solo;
 use Exception;
 
 class ScorePinsController extends Controller
@@ -99,6 +100,10 @@ class ScorePinsController extends Controller
                 if (!is_sql_unique_exception($ex)) {
                     throw $ex;
                 }
+            }
+
+            if ($score instanceof Solo\Score) {
+                $score->update(['preserve' => true]);
             }
         }
 

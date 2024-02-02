@@ -100,7 +100,13 @@ class ScoreTransformer extends TransformerAbstract
             $score = $score->score;
         }
 
+        if ($score instanceof SoloScore) {
+            $extraAttributes['ranked'] = $score->ranked;
+            $extraAttributes['preserve'] = $score->preserve;
+        }
+
         $hasReplay = $score->has_replay;
+        $isPerfectCombo = $score->is_perfect_combo;
 
         return [
             ...$extraAttributes,
@@ -115,7 +121,8 @@ class ScoreTransformer extends TransformerAbstract
             'build_id' => $score->build_id,
             'ended_at' => $score->ended_at_json,
             'has_replay' => $hasReplay,
-            'legacy_perfect' => $score->legacy_perfect,
+            'is_perfect_combo' => $isPerfectCombo,
+            'legacy_perfect' => $score->legacy_perfect ?? $isPerfectCombo,
             'legacy_score_id' => $score->legacy_score_id,
             'legacy_total_score' => $score->legacy_total_score,
             'max_combo' => $score->max_combo,
@@ -133,27 +140,26 @@ class ScoreTransformer extends TransformerAbstract
 
     public function transformLegacy(LegacyMatch\Score|ScoreModel|SoloScore $score)
     {
-        if ($score instanceof ScoreModel) {
-            $createdAt = $score->date_json;
+        $best = null;
 
+        if ($score instanceof ScoreModel) {
             // this `best` relation is also used by `current_user_attributes` include.
             $best = $score->best;
-
-            if ($best !== null) {
-                $bestId = $best->getKey();
-                $pp = $best->pp;
-                $replay = $best->replay ?? false;
-            }
         } elseif ($score instanceof SoloScore) {
             $soloScore = $score;
             $score = $soloScore->makeLegacyEntry();
-            $score->score_id = $soloScore->getKey();
-            $createdAt = $soloScore->ended_at_json;
-            $type = $soloScore->getMorphClass();
-            $pp = $soloScore->pp;
-        } else {
-            // LegacyMatch\Score
-            $createdAt = json_time($score->game->start_time);
+            $best = $score;
+
+            if ($soloScore->isLegacy()) {
+                $id = $soloScore->legacy_score_id;
+                if ($id > 0) {
+                    // To be used later for best_id
+                    $score->score_id = $id;
+                }
+            } else {
+                $id = $soloScore->getKey();
+                $type = $soloScore->getMorphClass();
+            }
         }
 
         $mode = $score->getMode();
@@ -169,19 +175,18 @@ class ScoreTransformer extends TransformerAbstract
 
         return [
             'accuracy' => $score->accuracy(),
-            'best_id' => $bestId ?? null,
-            'created_at' => $createdAt,
-            'id' => $score->getKey(),
+            'best_id' => $best?->getKey(),
+            'created_at' => $score->date_json,
+            'id' => $id ?? $score->getKey(),
             'max_combo' => $score->maxcombo,
             'mode' => $mode,
             'mode_int' => Beatmap::modeInt($mode),
             'mods' => $score->enabled_mods,
             'passed' => $score->pass,
-            'perfect' => $score->perfect,
-            'pp' => $pp ?? null,
-            // Ranks are hardcoded to "0" for legacy match scores atm, return F instead for now.
-            'rank' => $score->rank === '0' ? 'F' : $score->rank,
-            'replay' => $replay ?? false,
+            'perfect' => $perfect ?? $score->perfect,
+            'pp' => $best?->pp,
+            'rank' => $score->rank,
+            'replay' => $best?->has_replay ?? false,
             'score' => $score->score,
             'statistics' => $statistics,
             'type' => $type ?? $score->getMorphClass(),

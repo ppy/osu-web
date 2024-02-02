@@ -12,6 +12,7 @@ use App\Libraries\OAuth\EncodeToken;
 use App\Libraries\Search\ScoreSearch;
 use App\Libraries\Session\Store as SessionStore;
 use App\Models\Beatmapset;
+use App\Models\Build;
 use App\Models\OAuth\Client;
 use App\Models\User;
 use Artisan;
@@ -38,6 +39,14 @@ class TestCase extends BaseTestCase
         $callback();
 
         static::resetAppDb($db);
+    }
+
+    protected static function createClientToken(Build $build, ?int $clientTime = null): string
+    {
+        $data = strtoupper(bin2hex($build->hash).bin2hex(pack('V', $clientTime ?? time())));
+        $expected = hash_hmac('sha1', $data, '');
+
+        return strtoupper(bin2hex(random_bytes(40)).$data.$expected.'00');
     }
 
     protected static function fileList($path, $suffix)

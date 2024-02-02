@@ -10,11 +10,9 @@ import { trans } from './lang';
 import { legacyAccuracyAndRank } from './legacy-score-helper';
 
 export function accuracy(score: SoloScoreJson) {
-  if (score.legacy_score_id == null || !core.userPreferences.get('legacy_score_only')) {
-    return score.accuracy;
-  }
-
-  return legacyAccuracyAndRank(score).accuracy;
+  return shouldReturnLegacyValue(score)
+    ? legacyAccuracyAndRank(score).accuracy
+    : score.accuracy;
 }
 
 export function canBeReported(score: SoloScoreJson) {
@@ -25,11 +23,10 @@ export function canBeReported(score: SoloScoreJson) {
 
 // Removes CL mod on legacy score if user has lazer mode disabled
 export function filterMods(score: SoloScoreJson) {
-  if (score.legacy_score_id == null || !core.userPreferences.get('legacy_score_only')) {
-    return score.mods;
-  }
+  return shouldReturnLegacyValue(score)
+    ? score.mods.filter((mod) => mod.acronym !== 'CL')
+    : score.mods;
 
-  return score.mods.filter((mod) => mod.acronym !== 'CL');
 }
 
 // TODO: move to application state repository thingy later
@@ -45,34 +42,10 @@ export function hasShow(score: SoloScoreJson) {
   return score.best_id != null || score.type === 'solo_score';
 }
 
-const comboHitAttributes = [
-  'good',
-  'great',
-  'large_tick_hit',
-  'legacy_combo_increase',
-  'meh',
-  'ok',
-  'perfect',
-] as const;
-
 export function isPerfectCombo(score: SoloScoreJson) {
-  if (score.legacy_perfect != null) {
-    return score.legacy_perfect;
-  }
-
-  if (rulesetName(score.ruleset_id) === 'mania') {
-    return ([
-      'miss',
-      'large_tick_miss',
-    ] as const).every((attr) => score.statistics[attr] == null || score.statistics[attr] === 0);
-  }
-
-  const maxAchievableCombo = comboHitAttributes.reduce(
-    (acc, attr) => acc + (score.maximum_statistics[attr] ?? 0),
-    0,
-  );
-
-  return maxAchievableCombo !== 0 && score.max_combo === maxAchievableCombo;
+  return shouldReturnLegacyValue(score)
+    ? score.legacy_perfect
+    : score.is_perfect_combo;
 }
 
 interface AttributeData {
@@ -111,11 +84,9 @@ export const modeAttributesMap: Record<GameMode, AttributeData[]> = {
 };
 
 export function rank(score: SoloScoreJson) {
-  if (score.legacy_score_id == null || !core.userPreferences.get('legacy_score_only')) {
-    return score.rank;
-  }
-
-  return legacyAccuracyAndRank(score).rank;
+  return shouldReturnLegacyValue(score)
+    ? legacyAccuracyAndRank(score).rank
+    : score.rank;
 }
 
 export function scoreDownloadUrl(score: SoloScoreJson) {
@@ -148,10 +119,12 @@ export function scoreUrl(score: SoloScoreJson) {
   throw new Error('score json doesn\'t have url');
 }
 
-export function totalScore(score: SoloScoreJson) {
-  if (score.legacy_score_id == null || !core.userPreferences.get('legacy_score_only')) {
-    return score.total_score;
-  }
+function shouldReturnLegacyValue(score: SoloScoreJson) {
+  return score.legacy_score_id !== null && core.userPreferences.get('legacy_score_only');
+}
 
-  return score.legacy_total_score;
+export function totalScore(score: SoloScoreJson) {
+  return shouldReturnLegacyValue(score)
+    ? score.legacy_total_score
+    : score.total_score;
 }

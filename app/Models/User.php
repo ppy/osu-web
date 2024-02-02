@@ -916,6 +916,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'scoresMania',
             'scoresOsu',
             'scoresTaiko',
+            'soloScores',
             'statisticsFruits',
             'statisticsMania',
             'statisticsMania4k',
@@ -1445,6 +1446,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         $relation = 'scoresBest'.studly_case($mode);
 
         return $returnQuery ? $this->$relation() : $this->$relation;
+    }
+
+    public function soloScores(): HasMany
+    {
+        return $this->hasMany(Solo\Score::class);
     }
 
     public function topicWatches()

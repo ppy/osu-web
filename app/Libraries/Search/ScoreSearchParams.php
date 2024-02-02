@@ -21,6 +21,7 @@ class ScoreSearchParams extends SearchParams
     public ?array $beatmapIds = null;
     public ?Score $beforeScore = null;
     public ?int $beforeTotalScore = null;
+    public bool $excludeConverts = false;
     public ?array $excludeMods = null;
     public ?bool $isLegacy = null;
     public ?array $mods = null;
@@ -36,6 +37,7 @@ class ScoreSearchParams extends SearchParams
     {
         $params = new static();
         $params->beatmapIds = $rawParams['beatmap_ids'] ?? null;
+        $params->excludeConverts = $rawParams['exclude_converts'] ?? $params->excludeConverts;
         $params->excludeMods = $rawParams['exclude_mods'] ?? null;
         $params->isLegacy = $rawParams['is_legacy'] ?? null;
         $params->mods = $rawParams['mods'] ?? null;
@@ -55,10 +57,33 @@ class ScoreSearchParams extends SearchParams
     }
 
     /**
-     * This returns value for isLegacy based on user preference
+     * This returns value for isLegacy based on user preference, request type, and `legacy_only` parameter
      */
-    public static function showLegacyForUser(?User $user): null | true
-    {
+    public static function showLegacyForUser(
+        ?User $user = null,
+        ?bool $legacyOnly = null,
+        ?bool $isApiRequest = null
+    ): null | true {
+        $isApiRequest ??= is_api_request();
+        // `null` is actual parameter value for the other two parameters so
+        // only try filling them up if not passed at all.
+        $argLen = func_num_args();
+        if ($argLen < 2) {
+            $legacyOnly = get_bool(Request('legacy_only'));
+
+            if ($argLen < 1) {
+                $user = \Auth::user();
+            }
+        }
+
+        if ($legacyOnly !== null) {
+            return $legacyOnly ? true : null;
+        }
+
+        if ($isApiRequest) {
+            return null;
+        }
+
         return $user?->userProfileCustomization?->legacy_score_only ?? UserProfileCustomization::DEFAULT_LEGACY_ONLY_ATTRIBUTE
             ? true
             : null;
@@ -93,9 +118,15 @@ class ScoreSearchParams extends SearchParams
     {
         switch ($sort) {
             case 'score_desc':
+                $sortColumn = $this->isLegacy ? 'legacy_total_score' : 'total_score';
                 $this->sorts = [
-                    new Sort('is_legacy', 'asc'),
-                    new Sort('total_score', 'desc'),
+                    new Sort($sortColumn, 'desc'),
+                    new Sort('id', 'asc'),
+                ];
+                break;
+            case 'pp_desc':
+                $this->sorts = [
+                    new Sort('pp', 'desc'),
                     new Sort('id', 'asc'),
                 ];
                 break;

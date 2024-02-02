@@ -123,7 +123,11 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::group(['prefix' => 'community'], function () {
         Route::resource('contests', 'ContestsController', ['only' => ['index', 'show']]);
+        Route::get('contests/{contest}/judge', 'ContestsController@judge')->name('contests.judge');
 
+
+        Route::get('contest-entries/{contest_entry}/results', 'ContestEntriesController@judgeResults')->name('contest-entries.judge-results');
+        Route::put('contest-entries/{contest_entry}/judge-vote', 'ContestEntriesController@judgeVote')->name('contest-entries.judge-vote');
         Route::put('contest-entries/{contest_entry}/vote', 'ContestEntriesController@vote')->name('contest-entries.vote');
         Route::resource('contest-entries', 'ContestEntriesController', ['only' => ['store', 'destroy']]);
 
@@ -414,8 +418,8 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
             Route::apiResource('packs', 'BeatmapPacksController', ['only' => ['index', 'show']]);
 
             Route::group(['prefix' => '{beatmap}'], function () {
-                Route::get('scores/users/{user}', 'BeatmapsController@userScore');
-                Route::get('scores/users/{user}/all', 'BeatmapsController@userScoreAll');
+                Route::get('scores/users/{user}', 'BeatmapsController@userScore')->name('user.score');
+                Route::get('scores/users/{user}/all', 'BeatmapsController@userScoreAll')->name('user.scores');
                 Route::get('scores', 'BeatmapsController@scores')->name('scores');
                 Route::get('solo-scores', 'BeatmapsController@soloScores')->name('solo-scores');
 
