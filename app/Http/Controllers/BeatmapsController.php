@@ -445,7 +445,7 @@ class BeatmapsController extends Controller
             'mods:string[]',
         ]);
 
-        $mode = presence($params['mode'] ?? null, $beatmap->mode);
+        $rulesetId = Ruleset::tryFromName($params['mode'] ?? null)?->value ?? $beatmap->playmode;
         $mods = array_values(array_filter($params['mods'] ?? []));
 
         $baseParams = ScoreSearchParams::fromArray([
@@ -453,7 +453,7 @@ class BeatmapsController extends Controller
             'is_legacy' => ScoreSearchParams::showLegacyForUser(\Auth::user()),
             'limit' => 1,
             'mods' => $mods,
-            'ruleset_id' => Beatmap::MODES[$mode],
+            'ruleset_id' => $rulesetId,
             'sort' => 'score_desc',
             'user_id' => (int) $userId,
         ]);
