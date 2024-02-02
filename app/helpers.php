@@ -1151,17 +1151,21 @@ function footer_landing_links()
     ];
 }
 
-function footer_legal_links()
+function footer_legal_links(): array
 {
     $locale = app()->getLocale();
 
-    return [
-        'terms' => route('legal', ['locale' => $locale, 'path' => 'Terms']),
-        'privacy' => route('legal', ['locale' => $locale, 'path' => 'Privacy']),
-        'copyright' => route('legal', ['locale' => $locale, 'path' => 'Copyright']),
-        'server_status' => osu_url('server_status'),
-        'source_code' => osu_url('source_code'),
-    ];
+    $ret = [];
+    $ret['terms'] = route('legal', ['locale' => $locale, 'path' => 'Terms']);
+    if ($locale === 'ja') {
+        $ret['jp_sctl'] = route('legal', ['locale' => $locale, 'path' => 'SCTL']);
+    }
+    $ret['privacy'] = route('legal', ['locale' => $locale, 'path' => 'Privacy']);
+    $ret['copyright'] = route('legal', ['locale' => $locale, 'path' => 'Copyright']);
+    $ret['server_status'] = osu_url('server_status');
+    $ret['source_code'] = osu_url('source_code');
+
+    return $ret;
 }
 
 function presence($string, $valueIfBlank = null)
