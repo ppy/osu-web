@@ -178,8 +178,8 @@ class Score extends Model implements Traits\ReportableInterface
             ->default()
             ->forRuleset($ruleset)
             ->includeFails($includeFails)
-            // 2 days (2 * 24 * 3600)
-            ->where('unix_updated_at', '>', time() - 172_800);
+            // 1 day (24 * 3600)
+            ->where('unix_updated_at', '>', time() - 86_400);
     }
 
     public function scopeVisibleUsers(Builder $query): Builder
