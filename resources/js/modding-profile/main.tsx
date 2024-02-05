@@ -190,7 +190,7 @@ export default class Main extends React.Component<BeatmapsetDiscussionsBundleJso
       case 'posts':
         return <Posts posts={this.props.posts} store={this.store} user={this.user} />;
       case 'votes':
-        return <Votes users={this.props.users} votes={this.props.votes} />;
+        return <Votes users={this.store.users} votes={this.props.votes} />;
       default:
         switchNever(name);
         throw new Error('unsupported extra page');

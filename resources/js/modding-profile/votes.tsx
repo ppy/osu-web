@@ -15,7 +15,7 @@ const directions = ['received', 'given'] as const;
 export type Direction = (typeof directions)[number];
 
 interface Props {
-  users: Partial<Record<number, UserJson>>;
+  users: Map<number | null | undefined, UserJson>;
   votes: Record<Direction, VoteSummary[]>;
 }
 
@@ -38,7 +38,7 @@ export default class Votes extends React.Component<Props> {
             />
             {this.props.votes[direction].length > 0 && (
               <div className='modding-profile-list modding-profile-list--votes'>
-                {this.props.votes[direction].map((vote) => this.renderUser(vote.score, vote.count, this.props.users[vote.user_id]))}
+                {this.props.votes[direction].map((vote) => this.renderUser(vote.score, vote.count, this.props.users.get(vote.user_id)))}
               </div>
             )}
           </React.Fragment>
