@@ -85,7 +85,7 @@ export class BeatmapsetSearchFilters {
 
   @computed
   get supporterRequired() {
-    return keyNames.filter((key) => filtersRequireSupporter.includes(key) && this[key] !== null && this[key] !== this.getDefault(key));
+    return keyNames.filter((key) => filtersRequireSupporter.includes(key) && this[key] != null && this[key] !== this.getDefault(key));
   }
 
   constructor(url: string) {
