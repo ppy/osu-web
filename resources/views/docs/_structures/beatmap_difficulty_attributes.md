@@ -17,6 +17,7 @@ flashlight_difficulty | float
 overall_difficulty    | float
 slider_factor         | float
 speed_difficulty      | float
+speed_note_count      | float
 
 ### taiko
 
