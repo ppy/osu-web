@@ -13,7 +13,28 @@ return [
         'nav_title' => 'список',
     ],
 
+    'judge' => [
+        'hide_judged' => '',
+        'nav_title' => '',
+        'no_current_vote' => '',
+        'update' => '',
+        'validation' => [
+            'missing_score' => '',
+            'contest_vote_judged' => '',
+        ],
+        'voted' => '',
+    ],
+
+    'judge_results' => [
+        '_' => '',
+        'creator' => '',
+        'score' => '',
+        'total_score' => '',
+    ],
+
     'voting' => [
+        'judge_link' => '',
+        'judged_notice' => '',
         'login_required' => 'Пожалуйста, войдите в аккаунт, чтобы проголосовать.',
         'over' => 'Голосование окончено',
         'show_voted_only' => 'Показать проголосованные',
@@ -38,6 +59,7 @@ return [
             ],
         ],
     ],
+
     'entry' => [
         '_' => 'заявка',
         'login_required' => 'Войдите, чтобы участвовать в этом конкурсе.',
@@ -45,22 +67,27 @@ return [
         'preparation' => 'В настоящее время мы готовимся к этому конкурсу! Пожалуйста, немного потерпите.',
         'drop_here' => 'Оставь свою заявку здесь',
         'download' => 'Скачать .osz',
+
         'wrong_type' => [
             'art' => 'Только файлы формата .jpg и .png разрешены для этого конкурса.',
             'beatmap' => 'Только файлы формата .osu разрешены для этого конкурса.',
             'music' => 'Только файлы формата .mp3 разрешены для этого конкурса.',
         ],
+
         'wrong_dimensions' => 'Размеры заявки для этого конкурса должны быть :widthx:height',
         'too_big' => 'Размеры файлов для этого конкурса не могут превышать :limit.',
     ],
+
     'beatmaps' => [
         'download' => 'Скачать файлы',
     ],
+
     'vote' => [
         'list' => 'голоса',
         'count' => ':count_delimited голос|:count_delimited голоса|:count_delimited голосов',
         'points' => ':count_delimited очко|:count_delimited очка|:count_delimited очков',
     ],
+
     'dates' => [
         'ended' => 'Окончен :date',
         'ended_no_date' => 'Окончен',
@@ -70,6 +97,7 @@ return [
             'soon' => 'скоро™',
         ],
     ],
+
     'states' => [
         'entry' => 'Заявки открыты',
         'voting' => 'Голосование началось',

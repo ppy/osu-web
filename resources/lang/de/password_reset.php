@@ -37,7 +37,7 @@ return [
         'username' => 'Benutzername oder E-Mail eingeben',
 
         'reason' => [
-            'inactive_different_country' => "",
+            'inactive_different_country' => "Dein Konto wurde seit langem nicht mehr verwendet. Setze bitte dein Passwort zurück, um die Sicherheit deines Accounts zu gewährleisten.",
         ],
         'support' => [
             '_' => 'Benötigst du weitere Hilfe? Kontaktiere uns über unser :button.',

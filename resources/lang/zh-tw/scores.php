@@ -5,6 +5,7 @@
 
 return [
     'show' => [
+        'non_preserved' => '',
         'title' => ':username 在 :title [:version] 上的成績',
 
         'beatmap' => [
@@ -25,6 +26,7 @@ return [
     'status' => [
         'non_best' => 'pp 只授予個人最佳成績',
         'non_passing' => '僅有過關的成績能獲取 pp',
+        'no_pp' => '',
         'processing' => '成績仍在結算中，不久後就會顯示',
     ],
 ];

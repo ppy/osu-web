@@ -28,7 +28,7 @@ return [
 
         'title' => [
             '_' => 'news',
-            'info' => 'post',
+            'info' => 'Article',
         ],
     ],
 

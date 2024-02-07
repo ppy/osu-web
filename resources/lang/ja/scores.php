@@ -5,6 +5,7 @@
 
 return [
     'show' => [
+        'non_preserved' => '',
         'title' => ':title[:version]の:username',
 
         'beatmap' => [
@@ -25,6 +26,7 @@ return [
     'status' => [
         'non_best' => '個人のベストスコアのみppを与えます。',
         'non_passing' => 'パスしたスコアのみppを付与',
+        'no_pp' => '',
         'processing' => 'このスコアはまだ計算中です。すぐに表示されます。',
     ],
 ];

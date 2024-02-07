@@ -70,7 +70,7 @@ return [
             'disqualify' => 'Hylkää',
             'hype' => 'Hurraus!',
             'mapper_note' => 'Muistiinpano',
-            'nomination_reset' => 'Nollaa Suositus',
+            'nomination_reset' => 'Nollaa ehdollepano',
             'praise' => 'Kehu',
             'problem' => 'Ongelma',
             'problem_warning' => 'Ilmoita ongelmasta',

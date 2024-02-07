@@ -112,6 +112,7 @@ return [
         'legal' => [
             '_' => 'Informações Legais & Estado',
             'copyright' => 'Copyright (DMCA)',
+            'jp_sctl' => '',
             'privacy' => 'Privacidade',
             'server_status' => 'Estado dos Servidores',
             'source_code' => 'Código-fonte',
@@ -195,6 +196,8 @@ return [
             'account-edit' => 'Configurações',
             'follows' => 'Observações',
             'friends' => 'Amigos',
+            'legacy_score_only_toggle' => '',
+            'legacy_score_only_toggle_tooltip' => '',
             'logout' => 'Desconectar',
             'profile' => 'Meu Perfil',
         ],

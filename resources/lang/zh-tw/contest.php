@@ -13,7 +13,28 @@ return [
         'nav_title' => '清單',
     ],
 
+    'judge' => [
+        'hide_judged' => '',
+        'nav_title' => '',
+        'no_current_vote' => '',
+        'update' => '',
+        'validation' => [
+            'missing_score' => '',
+            'contest_vote_judged' => '',
+        ],
+        'voted' => '',
+    ],
+
+    'judge_results' => [
+        '_' => '',
+        'creator' => '',
+        'score' => '',
+        'total_score' => '',
+    ],
+
     'voting' => [
+        'judge_link' => '',
+        'judged_notice' => '',
         'login_required' => '請登入後再投票。',
         'over' => '這場評選的投票已經結束',
         'show_voted_only' => '顯示投票',
@@ -38,6 +59,7 @@ return [
             ],
         ],
     ],
+
     'entry' => [
         '_' => '參加',
         'login_required' => '請登入後再參加評選。',
@@ -45,22 +67,27 @@ return [
         'preparation' => '我們正在準備這場評選，請耐心等待！',
         'drop_here' => '將您的參賽文件拖到此處',
         'download' => '下載 .osz 檔案',
+
         'wrong_type' => [
             'art' => '只接受 .jpg 和 .png 格式的文件.',
             'beatmap' => '只接受 .osu 格式的文件.',
             'music' => '只接受 .mp3 格式的文件.',
         ],
+
         'wrong_dimensions' => '參加競賽的數量必須達到 :widthx:height',
         'too_big' => '參賽文件的大小不能超過 :limit.',
     ],
+
     'beatmaps' => [
         'download' => '下載模板',
     ],
+
     'vote' => [
         'list' => '投票',
         'count' => ':count_delimited 票|:count_delimited 票',
         'points' => ':count_delimited 分|:count_delimited 分',
     ],
+
     'dates' => [
         'ended' => '結束於 :date',
         'ended_no_date' => '已結束',
@@ -70,6 +97,7 @@ return [
             'soon' => 'soon™',
         ],
     ],
+
     'states' => [
         'entry' => '可參加',
         'voting' => '投票中',

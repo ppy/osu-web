@@ -85,7 +85,7 @@ return [
                 'title' => 'Deine Zahlung wurde noch nicht bestätigt!',
                 'line_1' => 'Wenn du bereits bezahlt hast, warten wir möglicherweise auf die Bestätigung deiner Zahlung. Bitte lade diese Seite in ein oder zwei Minuten neu!',
                 'line_2' => [
-                    '_' => 'Wenn du auf Problem während der Zahlung stößt: :link',
+                    '_' => 'Wenn du während der Zahlung auf ein Problem stößt: :link',
                     'link_text' => 'Klicke hier, um deine Zahlung fortzusetzen',
                 ],
             ],

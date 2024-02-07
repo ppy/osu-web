@@ -17,7 +17,7 @@ return [
         'deleted' => 'Supprimé par :editor :delete_time.',
         'deny_kudosu' => 'refuser le kudosu',
         'edit' => 'éditer',
-        'edited' => 'Dernière modification par :editor il y a :update_time.',
+        'edited' => 'Dernière modification par :editor :update_time',
         'guest' => 'Guest difficulty par :user',
         'kudosu_denied' => 'Le kudosu a été refusé pour ce post.',
         'message_placeholder_deleted_beatmap' => 'Cette difficulté a été supprimée, il n\'est plus possible d\'en discuter.',
@@ -55,15 +55,15 @@ return [
         ],
 
         'message_hint' => [
-            'in_general' => 'Ce post sera déplacé vers la discussion générale du beatmapset. Pour modder cette beatmap, indiquez le timestamp (ex. 00:12:345).',
+            'in_general' => 'Ce post sera déplacé vers la discussion générale de la beatmap. Pour modder cette beatmap, veuillez indiquer un horodatage (par exemple 00:12:345).',
             'in_timeline' => 'Pour modder plusieurs sections de cette beatmap, faites plusieurs posts (un post pour chaque section).',
         ],
 
         'message_placeholder' => [
             'general' => 'Écrivez ici pour poster dans Général (:version)',
             'generalAll' => 'Écrivez ici pour poster dans Général (Toutes les difficultés)',
-            'review' => 'Tapez ici pour poster un commentaire',
-            'timeline' => 'Écrivez ici pour poster dans la Chronologie (:version)',
+            'review' => 'Écrivez ici pour poster un avis',
+            'timeline' => 'Écrivez ici pour poster dans Timeline (:version)',
         ],
 
         'message_type' => [
@@ -74,7 +74,7 @@ return [
             'praise' => 'Compliments',
             'problem' => 'Problème',
             'problem_warning' => 'Signaler un problème',
-            'review' => 'Review',
+            'review' => 'Avis',
             'suggestion' => 'Suggestion',
         ],
 
@@ -93,8 +93,8 @@ return [
         'mode' => [
             'events' => 'Historique',
             'general' => 'Général :scope',
-            'reviews' => 'Reviews',
-            'timeline' => 'Chronologie',
+            'reviews' => 'Avis',
+            'timeline' => 'Timeline',
             'scopes' => [
                 'general' => 'Cette difficulté',
                 'generalAll' => 'Toutes les difficultés',
@@ -103,22 +103,22 @@ return [
 
         'new' => [
             'pin' => 'Épingler',
-            'timestamp' => 'Timestamp',
-            'timestamp_missing' => 'ctrl + c en mode édition et collez votre message pour ajouter un timestamp !',
+            'timestamp' => 'Horodatage',
+            'timestamp_missing' => 'Utilisez la combinaison de touches Ctrl + C en mode édition et collez dans votre message pour ajouter un horodatage !',
             'title' => 'Nouvelle Discussion',
             'unpin' => 'Désépingler',
         ],
 
         'review' => [
-            'new' => 'Nouveau commentaire',
+            'new' => 'Nouvel avis',
             'embed' => [
                 'delete' => 'Supprimer',
                 'missing' => '[DISCUSSION SUPPRIMÉE]',
                 'unlink' => 'Dissocier',
                 'unsaved' => 'Non sauvegardé',
                 'timestamp' => [
-                    'all-diff' => 'Les messages sur "Toutes les difficultés" ne peuvent pas être horodatés.',
-                    'diff' => 'Si :type commence par un timestamp, il sera affiché sous la timeline.',
+                    'all-diff' => 'Les posts sur "Toutes les difficultés" ne peuvent pas être horodatés.',
+                    'diff' => 'Si :type commence par un horodatage, il sera affiché sous la timeline.',
                 ],
             ],
             'insert-block' => [
@@ -135,7 +135,7 @@ return [
 
         'sort' => [
             'created_at' => 'Date de création',
-            'timeline' => 'Chronologie',
+            'timeline' => 'Timeline',
             'updated_at' => 'Dernière mise à jour',
         ],
 
@@ -154,7 +154,7 @@ return [
             'graveyard' => "Cette beatmap n'a pas été modifiée depuis le :date et a donc été placée au cimetière...",
             'loved' => 'Cette beatmap a été ajoutée à la catégorie Loved le :date !',
             'ranked' => 'Cette beatmap a été classée le :date !',
-            'wip' => 'Remarque : Cette beatmap a été marquée comme en cours de travail par son créateur.',
+            'wip' => 'Remarque : Cette beatmap a été marquée comme étant en work-in-progress par son créateur.',
         ],
 
         'votes' => [
@@ -171,11 +171,11 @@ return [
 
     'hype' => [
         'button' => 'Hyper la beatmap !',
-        'button_done' => 'Déjà Hypée !',
+        'button_done' => 'Déjà hypée !',
         'confirm' => "Êtes-vous sûr ? Ceci va utiliser un de vos :n hypes restants et l'action ne peut être annulée.",
         'explanation' => 'Hyper cette beatmap permet de la rendre plus visible pour sa nomination et son classement !',
         'explanation_guest' => 'Connectez-vous et hypez cette beatmap afin de la rendre plus visible pour sa nomination et son classement !',
-        'new_time' => "Vous obtiendrez un point de hype dans :new_time.",
+        'new_time' => "Vous obtiendrez un hype supplémentaire dans :new_time.",
         'remaining' => 'Il vous reste :remaining hypes.',
         'required_text' => 'Hype : :current/:required',
         'section_title' => 'Train de la hype',
@@ -188,7 +188,7 @@ return [
 
     'nominations' => [
         'already_nominated' => 'Vous avez déjà nominé cette beatmap.',
-        'cannot_nominate' => 'Vous ne pouvez pas nominer le mode de jeu de cette beatmap.',
+        'cannot_nominate' => 'Vous ne pouvez pas nominer les beatmaps de ce mode de jeu.',
         'delete' => 'Supprimer',
         'delete_own_confirm' => 'Êtes-vous sûr ? La beatmap sera supprimée et vous serez redirigé vers votre profil.',
         'delete_other_confirm' => 'Êtes-vous sûr ? La beatmap sera supprimée et vous serez redirigé vers le profil de l\'utilisateur.',
@@ -197,8 +197,8 @@ return [
         'disqualified_no_reason' => 'aucune raison spécifiée',
         'disqualify' => 'Disqualifier',
         'incorrect_state' => 'Une erreur s\'est produite, essayez de rafraîchir la page.',
-        'love' => 'Love',
-        'love_choose' => 'Choisissez la difficulté pour loved',
+        'love' => 'Ajouter aux loved',
+        'love_choose' => 'Choisissez la difficulté que vous souhaitez ajouter aux loved',
         'love_confirm' => 'Voulez-vous promouvoir cette beatmap à la catégorie Loved ?',
         'nominate' => 'Nominer',
         'nominate_confirm' => 'Nominer cette beatmap ?',
@@ -208,7 +208,7 @@ return [
         'remove_from_loved_prompt' => 'Raison pour laquelle cette beatmap a été retirée de la catégorie Loved :',
         'required_text' => 'Nominations : :current/:required',
         'reset_message_deleted' => 'supprimée',
-        'title' => 'Statut de la nomination',
+        'title' => 'État de la nomination',
         'unresolved_issues' => 'Il y a encore des problèmes non résolus qui doivent être traités en priorité.',
 
         'rank_estimate' => [
@@ -272,7 +272,7 @@ return [
         'featured_artists' => 'Featured Artists',
         'follows' => 'Mappeurs suivis',
         'recommended' => 'Difficulté recommandée',
-        'spotlights' => 'Beatmaps spotlight',
+        'spotlights' => 'Beatmaps spotlights',
     ],
     'mode' => [
         'all' => 'Tous',
@@ -305,7 +305,7 @@ return [
         'other' => 'Autre',
         'novelty' => 'Novelty',
         'hip-hop' => 'Hip Hop',
-        'electronic' => 'Electronique',
+        'electronic' => 'Électronique',
         'metal' => 'Métal',
         'classical' => 'Classique',
         'folk' => 'Folk',

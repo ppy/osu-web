@@ -13,7 +13,28 @@ return [
         'nav_title' => 'бібліотека',
     ],
 
+    'judge' => [
+        'hide_judged' => '',
+        'nav_title' => '',
+        'no_current_vote' => '',
+        'update' => '',
+        'validation' => [
+            'missing_score' => '',
+            'contest_vote_judged' => '',
+        ],
+        'voted' => '',
+    ],
+
+    'judge_results' => [
+        '_' => '',
+        'creator' => '',
+        'score' => '',
+        'total_score' => '',
+    ],
+
     'voting' => [
+        'judge_link' => '',
+        'judged_notice' => '',
         'login_required' => 'Увійдіть, щоб проголосувати.',
         'over' => 'Голосування закінчено',
         'show_voted_only' => 'Показати голоси',
@@ -38,6 +59,7 @@ return [
             ],
         ],
     ],
+
     'entry' => [
         '_' => 'реєстрація',
         'login_required' => 'Увійдіть, щоб брати участь в цьому конкурсі.',
@@ -45,22 +67,27 @@ return [
         'preparation' => 'В даний час ми готуємо цей конкурс! Будь ласка, потерпи трохи!',
         'drop_here' => 'Кинь свою заявку сюди',
         'download' => 'Завантажити .osz',
+
         'wrong_type' => [
             'art' => 'Тільки файли формату .jpg і .png дозволені для цього конкурсу.',
             'beatmap' => 'Тільки файли формату .osu дозволені для цього конкурсу.',
             'music' => 'Тільки файли формату .mp3 дозволені для цього конкурсу.',
         ],
+
         'wrong_dimensions' => 'Заявки для цього конкурсу мають бути :widthx:height',
         'too_big' => 'Розміри файлів для цього конкурсу не можуть перевищувати :limit.',
     ],
+
     'beatmaps' => [
         'download' => 'Завантажити файли',
     ],
+
     'vote' => [
         'list' => 'голосів',
         'count' => ':count_delimited голос|:count_delimited голосів',
         'points' => ':count_delimited очок|:count_delimited очків',
     ],
+
     'dates' => [
         'ended' => 'Завершено :date',
         'ended_no_date' => 'Закінчено',
@@ -70,6 +97,7 @@ return [
             'soon' => 'скоро™',
         ],
     ],
+
     'states' => [
         'entry' => 'Відкриті заявки',
         'voting' => 'Голосування почалося',

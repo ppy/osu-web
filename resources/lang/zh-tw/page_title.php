@@ -63,8 +63,12 @@ return [
         'comments_controller' => [
             '_' => '評論',
         ],
+        'contest_entries_controller' => [
+            'judge_results' => '',
+        ],
         'contests_controller' => [
             '_' => '評選',
+            'judge' => '',
         ],
         'groups_controller' => [
             'show' => '群組',

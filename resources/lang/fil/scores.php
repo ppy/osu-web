@@ -5,6 +5,7 @@
 
 return [
     'show' => [
+        'non_preserved' => '',
         'title' => ':username sa :title [:version]',
 
         'beatmap' => [
@@ -25,6 +26,7 @@ return [
     'status' => [
         'non_best' => 'Ang laro na may pinakamataas na iskor lamang ang bibigyan ng pp',
         'non_passing' => 'Pasado nga mga iskor lang ang magatimpalaan ng pp',
+        'no_pp' => '',
         'processing' => 'Ang iskor ay pinoproseso pa lamang at maipapakita sa mas madaling panahon',
     ],
 ];

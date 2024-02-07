@@ -25,7 +25,7 @@ return [
     ],
 
     'client' => [
-        'id' => 'ID-ul clientului',
+        'id' => 'ID-ul client-ului',
         'name' => 'Numele Aplicației',
         'redirect' => 'URL-ul Callback al Aplicației',
         'reset' => 'Resetează secretul clientului',

@@ -112,6 +112,7 @@ return [
         'legal' => [
             '_' => 'กฎหมายและสถานะ',
             'copyright' => 'ลิขสิทธิ์ (DMCA)',
+            'jp_sctl' => '',
             'privacy' => 'ความเป็นส่วนตัว',
             'server_status' => 'สถานะของเซิร์ฟเวอร์',
             'source_code' => 'ซอร์สโค้ด',
@@ -195,6 +196,8 @@ return [
             'account-edit' => 'การตั้งค่า',
             'follows' => 'รายการการเฝ้าดู',
             'friends' => 'เพื่อน',
+            'legacy_score_only_toggle' => '',
+            'legacy_score_only_toggle_tooltip' => '',
             'logout' => 'ออกจากระบบ',
             'profile' => 'โปรไฟล์ของฉัน',
         ],

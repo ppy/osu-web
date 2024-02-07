@@ -23,7 +23,7 @@ return [
                 'description' => 'Osa avustuksista menee palvelimia varten ja niillä ylläpidetään verkkosivustoa, moninpelipalveluita, verkon pistetaulukoita jne.',
             ],
             'featured-artists' => [
-                'title' => 'Esiteltyjä artisteja varten',
+                'title' => 'Esitellyt artistit',
                 'description' => 'Sinun tuellasi voimme lähestyä vielä lisää mahtavia artisteja ja lisensoida hienoa musiikkia käytettäväksi osu!ssa.',
                 'link_text' => 'Näytä nykyinen lista &raquo;',
             ],

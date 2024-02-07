@@ -13,7 +13,28 @@ return [
         'nav_title' => 'saraksts',
     ],
 
+    'judge' => [
+        'hide_judged' => '',
+        'nav_title' => '',
+        'no_current_vote' => '',
+        'update' => '',
+        'validation' => [
+            'missing_score' => '',
+            'contest_vote_judged' => '',
+        ],
+        'voted' => '',
+    ],
+
+    'judge_results' => [
+        '_' => '',
+        'creator' => '',
+        'score' => '',
+        'total_score' => '',
+    ],
+
     'voting' => [
+        'judge_link' => '',
+        'judged_notice' => '',
         'login_required' => 'Lūdzu, pierakstieties, lai balsotu.',
         'over' => 'Balsošana par šo konkursu ir beigusies',
         'show_voted_only' => 'Rādīt balsotos',
@@ -38,6 +59,7 @@ return [
             ],
         ],
     ],
+
     'entry' => [
         '_' => 'pieteikums',
         'login_required' => 'Lūdzu, pierakstieties, lai piedalītos konkursā.',
@@ -45,22 +67,27 @@ return [
         'preparation' => 'Mēs pašlaik gatavojam šo konkursu. Lūdzu, pacietīgi gaidiet!',
         'drop_here' => 'Iemetiet savu pieteikumu šeit',
         'download' => 'Lejupielādēt .osz',
+
         'wrong_type' => [
             'art' => 'Šajā konkursā pieņem tikai .jpg un .png failus.',
             'beatmap' => 'Šajā konkursā tiek pieņemti tikai .osu faili.',
             'music' => 'Šajā konkursā tiek pieņemti tikai .mp3 faili.',
         ],
+
         'wrong_dimensions' => 'Šajā konkursā pieteikumiem jābūt :widthx:height',
         'too_big' => 'Dalība šajā konkursā var būt tikai līdz :limit.',
     ],
+
     'beatmaps' => [
         'download' => 'Lejupielādēt Pieteikumu',
     ],
+
     'vote' => [
         'list' => 'balsis',
         'count' => ':count_delimited balss|:count_delimited balsis',
         'points' => ':count_delimited punkts|:count_delimited punkti',
     ],
+
     'dates' => [
         'ended' => 'Beidzās :date',
         'ended_no_date' => 'Beidzās',
@@ -70,6 +97,7 @@ return [
             'soon' => 'drīz™',
         ],
     ],
+
     'states' => [
         'entry' => 'Pieteikums Atvērts',
         'voting' => 'Balsošana Sākās',
