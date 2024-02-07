@@ -112,6 +112,7 @@ return [
         'legal' => [
             '_' => '',
             'copyright' => 'Autortiesības (DMCA)',
+            'jp_sctl' => '',
             'privacy' => 'Konfidencialitāte',
             'server_status' => 'Servera stāvoklis',
             'source_code' => 'Pirmkods',
@@ -195,6 +196,8 @@ return [
             'account-edit' => 'Iestatījumi',
             'follows' => '',
             'friends' => 'Draugi',
+            'legacy_score_only_toggle' => '',
+            'legacy_score_only_toggle_tooltip' => '',
             'logout' => 'Iziet',
             'profile' => 'Mans Profils',
         ],

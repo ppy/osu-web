@@ -112,6 +112,7 @@ return [
         'legal' => [
             '_' => 'Νομική Υπόσταση',
             'copyright' => 'Δικαιώματα Πνευματικής Ιδιοκτησίας (DMCA)',
+            'jp_sctl' => '',
             'privacy' => 'Απόρρητο',
             'server_status' => 'Κατάσταση Διακομιστή',
             'source_code' => 'Πηγαίος Κώδικας',
@@ -195,6 +196,8 @@ return [
             'account-edit' => 'Ρυθμίσεις',
             'follows' => 'Λίστες Παρακολούθησης',
             'friends' => 'Φίλοι',
+            'legacy_score_only_toggle' => '',
+            'legacy_score_only_toggle_tooltip' => '',
             'logout' => 'Αποσύνδεση',
             'profile' => 'Το Προφίλ μου',
         ],

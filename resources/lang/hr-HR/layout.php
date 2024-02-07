@@ -116,6 +116,7 @@ return [
         'legal' => [
             '_' => 'Legalno i Status',
             'copyright' => 'Autorska prava (DMCA)',
+            'jp_sctl' => '',
             'privacy' => 'Privatnost',
             'server_status' => 'Status Servera',
             'source_code' => 'Izvorni kȏd',
@@ -199,6 +200,8 @@ return [
             'account-edit' => 'Postavke',
             'follows' => 'Liste gledanja',
             'friends' => 'Prijatelji',
+            'legacy_score_only_toggle' => '',
+            'legacy_score_only_toggle_tooltip' => '',
             'logout' => 'Odjava',
             'profile' => 'Moj profil',
         ],

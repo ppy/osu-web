@@ -152,6 +152,6 @@ return [
     ],
 
     'verification_invalid' => [
-        'title' => 'Tautan verifikasi tidak valid atau sudah tidak berlaku',
+        'title' => 'Tautan verifikasi tidak valid atau telah kedaluwarsa',
     ],
 ];

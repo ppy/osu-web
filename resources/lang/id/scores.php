@@ -5,6 +5,7 @@
 
 return [
     'show' => [
+        'non_preserved' => '',
         'title' => ':username pada :title [:version]',
 
         'beatmap' => [
@@ -25,6 +26,7 @@ return [
     'status' => [
         'non_best' => 'Hanya skor-skor terbaik yang memberikan pp',
         'non_passing' => 'Hanya skor pass yang memberikan pp',
+        'no_pp' => '',
         'processing' => 'Skor ini sedang diproses dan akan ditampilkan kemudian',
     ],
 ];

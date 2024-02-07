@@ -112,6 +112,7 @@ return [
         'legal' => [
             '_' => 'Юридическая информация и статус',
             'copyright' => 'Авторские права (DMCA)',
+            'jp_sctl' => '',
             'privacy' => 'Конфиденциальность',
             'server_status' => 'Статус серверов',
             'source_code' => 'Исходный код',
@@ -195,6 +196,8 @@ return [
             'account-edit' => 'Настройки',
             'follows' => 'Подписки',
             'friends' => 'Друзья',
+            'legacy_score_only_toggle' => '',
+            'legacy_score_only_toggle_tooltip' => '',
             'logout' => 'Выйти',
             'profile' => 'Мой профиль',
         ],

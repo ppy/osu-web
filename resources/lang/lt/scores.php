@@ -5,6 +5,7 @@
 
 return [
     'show' => [
+        'non_preserved' => '',
         'title' => ':username ant :title [:version]',
 
         'beatmap' => [
@@ -25,6 +26,7 @@ return [
     'status' => [
         'non_best' => 'Tik jūsų geriausi rezultatai duoda pp',
         'non_passing' => 'Tik įveikimų rezultatai duoda pp',
+        'no_pp' => '',
         'processing' => 'Šis reultatas dar apskaičiuojamas ir netrukus bus parodytas',
     ],
 ];

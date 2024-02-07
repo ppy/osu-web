@@ -59,8 +59,8 @@ return [
             'password' => 'mot de passe',
             'password_confirmation' => 'confirmation du mot de passe',
             'submit' => 'créer un compte',
-            'user_email' => 'mail',
-            'user_email_confirmation' => 'confirmation de l\'adresse mail',
+            'user_email' => 'e-mail',
+            'user_email_confirmation' => 'confirmation de l\'adresse e-mail',
             'username' => 'nom d\'utilisateur',
 
             'tos_notice' => [
@@ -72,10 +72,10 @@ return [
 
     'disabled' => [
         'title' => 'Oh-oh ! Il semble que votre compte ait été désactivé.',
-        'warning' => "Dans le cas où vous avez enfreint une règle, veuillez noter qu'il y a généralement une période d'un mois pendant laquelle nous n'accepterons aucune demande de réactivation. Après cette période, vous êtes libre de nous contacter si vous le jugez nécessaire. Veuillez noter que la création de nouveaux comptes entraînera une prolongation <strong>de ce délai de récupération d'un mois</strong>. Veuillez également noter que pour <strong>chaque compte que vous créez, vous enfreignez à nouveau les règles</strong>. Nous vous suggérons fortement de ne pas suivre cette voie !",
+        'warning' => "Dans le cas où vous avez enfreint une règle, veuillez noter qu'il y a généralement une période d'un mois pendant laquelle nous n'accepterons aucune demande de réactivation. Après cette période, vous êtes libre de nous contacter si vous le jugez nécessaire. Veuillez noter que la création de nouveaux comptes entraînera une <strong>prolongation de ce délai de récupération d'un mois</strong>. Veuillez également noter que pour <strong>chaque compte que vous créez, vous enfreignez à nouveau les règles</strong>. Nous vous suggérons fortement de ne pas suivre cette voie !",
 
         'if_mistake' => [
-            '_' => 'Si vous pensez qu\'il s\'agit d\'une erreur, vous êtes invités à nous contacter (via :email ou en cliquant sur le "?" dans le coin en bas à droite de cette page). Veuillez noter que nous sommes confiants en nos actions, car elles reposent sur des données solides. Nous nous réservons le droit de ne pas tenir compte de votre demande si nous pensons que vous êtes délibérément malhonnête.',
+            '_' => 'Si vous pensez qu\'il s\'agit d\'une erreur, vous êtes invité à nous contacter (via :email ou en cliquant sur le "?" dans le coin inférieur droit de cette page). Veuillez noter que nous sommes confiants en nos actions, car elles reposent sur des données solides. Nous nous réservons le droit de ne pas tenir compte de votre demande si nous pensons que vous êtes délibérément malhonnête.',
             'email' => 'e-mail',
         ],
 
@@ -84,7 +84,7 @@ return [
             'opening' => 'Il y a plusieurs raisons qui peuvent conduire à la désactivation de votre compte :',
 
             'tos' => [
-                '_' => 'Vous avez enfreint une ou plusieurs de nos :community_rules ou les :tos.',
+                '_' => 'Vous avez enfreint une ou plusieurs de nos :community_rules ou des :tos.',
                 'community_rules' => 'règles de la communauté',
                 'tos' => 'conditions générales d\'utilisation',
             ],
@@ -105,20 +105,20 @@ return [
         '_' => 'Se connecter',
         'button' => 'Se connecter',
         'button_posting' => 'Connexion...',
-        'email_login_disabled' => 'La connexion par email est actuellement désactivée. Veuillez utiliser le nom d\'utilisateur à la place.',
+        'email_login_disabled' => 'La connexion par e-mail est actuellement désactivée. Veuillez utiliser votre nom d\'utilisateur à la place.',
         'failed' => 'Identifiants incorrects',
         'forgot' => 'Mot de passe oublié ?',
         'info' => 'Veuillez vous connecter pour continuer',
-        'invalid_captcha' => 'Trop de tentatives de connexion ont échoué, veuillez compléter le captcha et réessayer. (Rafraîchissez la page si le captcha n\'est pas visible)',
-        'locked_ip' => 'votre adresse IP est bloquée. Merci d\'attendre quelques minutes.',
+        'invalid_captcha' => 'Trop de tentatives de connexion ont échoué, veuillez compléter le captcha et réessayer. (Rafraîchissez la page si vous ne pouvez pas voir le captcha)',
+        'locked_ip' => 'Votre adresse IP est bloquée. Merci d\'attendre quelques minutes.',
         'password' => 'Mot de passe',
         'register' => "Vous n'avez pas de compte osu! ? Inscrivez-vous maintenant",
         'remember' => 'Se souvenir de cet ordinateur',
-        'title' => 'Merci de vous connecter pour continuer',
+        'title' => 'Veuillez vous connecter pour continuer',
         'username' => 'Nom d\'utilisateur',
 
         'beta' => [
-            'main' => 'L\'accès à la version bêta est actuellement réservé aux utilisateurs privilégiés.',
+            'main' => 'L\'accès à la version bêta est actuellement réservé à des utilisateurs privilégiés.',
             'small' => '(les osu!supporters l\'obtiendront bientôt)',
         ],
     ],
@@ -142,13 +142,13 @@ return [
         'login_link' => 'cliquez pour vous connecter',
         'login_text' => 'se connecter',
         'username' => 'Invité',
-        'error' => 'Vous devez être connecté pour faire ça.',
+        'error' => 'Vous devez être connecté pour effectuer cette action.',
     ],
     'logout_confirm' => 'Êtes-vous sûr de vouloir vous déconnecter ? :(',
     'report' => [
         'button_text' => 'Signaler',
-        'comments' => 'Commentaires supplémentaires',
-        'placeholder' => 'Veuillez fournir toute information que vous pensez pouvoir être utile.',
+        'comments' => 'Commentaires',
+        'placeholder' => 'Veuillez fournir toute information que vous pensez utile.',
         'reason' => 'Raison',
         'thanks' => 'Merci pour votre signalement !',
         'title' => 'Signaler :username ?',
@@ -159,13 +159,13 @@ return [
         ],
 
         'options' => [
-            'cheating' => 'Anti-jeu / Tricherie',
+            'cheating' => 'Anti-jeu / Triche',
             'multiple_accounts' => 'Utilisation de plusieurs comptes',
             'insults' => 'M’insulte / insulte les autres',
             'spam' => 'Spam',
             'unwanted_content' => 'Envoi de contenu inapproprié',
-            'nonsense' => 'Non-sens',
-            'other' => 'Autre (écrivez ci-dessous)',
+            'nonsense' => 'Absurdités répétées',
+            'other' => 'Autre (détaillez ci-dessous)',
         ],
     ],
     'restricted_banner' => [
@@ -206,7 +206,7 @@ return [
                     'dropzone_info' => 'Vous pouvez aussi déplacer l\'image ici pour la mettre en ligne',
                     'size_info' => 'La taille de la bannière devrait être de 2400x640',
                     'too_large' => 'Le fichier est trop volumineux.',
-                    'unsupported_format' => 'Format non supporté.',
+                    'unsupported_format' => 'Format non pris en charge.',
 
                     'restriction_info' => [
                         '_' => 'Mise en ligne disponible pour les :link uniquement',
@@ -347,9 +347,9 @@ return [
                 'title' => 'Parties avec playlist',
             ],
             'posts' => [
-                'title' => 'Messages',
-                'title_longer' => 'Messages récents',
-                'show_more' => 'voir plus de messages',
+                'title' => 'Posts',
+                'title_longer' => 'Posts récents',
+                'show_more' => 'voir plus de posts',
             ],
             'recent_activity' => [
                 'title' => 'Activité récente',
@@ -388,8 +388,8 @@ return [
                 'vote_count' => ':count_delimited vote|:count_delimited votes',
             ],
             'account_standing' => [
-                'title' => 'Statut du compte',
-                'bad_standing' => "Le compte de :username ne se tient pas bien :(",
+                'title' => 'État du compte',
+                'bad_standing' => "Le compte de :username n'est pas dans un bon état :(",
                 'remaining_silence' => '<strong>:username</strong> pourra de nouveau parler dans :duration.',
 
                 'recent_infringements' => [
@@ -423,14 +423,14 @@ return [
             'reason_1' => 'Il a peut-être changé de nom d\'utilisateur.',
             'reason_2' => 'Ce compte est peut-être temporairement indisponible pour des raisons de sécurité ou d\'abus.',
             'reason_3' => 'Vous avez peut-être fait une faute de frappe !',
-            'reason_header' => 'Il y a plusieurs raisons possibles pour cela :',
+            'reason_header' => 'Il existe plusieurs raisons possibles à cela :',
             'title' => 'Utilisateur non trouvé ! ;_;',
         ],
         'page' => [
             'button' => 'Modifier le profil',
             'description' => '<strong>moi !</strong> est une zone personnalisable du profil.',
             'edit_big' => 'Éditez-moi !',
-            'placeholder' => 'Tapez le contenu de la page',
+            'placeholder' => 'Tapez ici le contenu de votre page',
 
             'restriction_info' => [
                 '_' => 'Vous devez être un :link pour déverrouiller cette fonctionnalité.',
@@ -439,7 +439,7 @@ return [
         ],
         'post_count' => [
             '_' => 'A contribué à :link',
-            'count' => ':count_delimited post du forum|:count_delimited posts du forum',
+            'count' => ':count_delimited post sur le forum|:count_delimited posts sur le forum',
         ],
         'rank' => [
             'country' => 'Classement national en :mode',
@@ -490,7 +490,7 @@ return [
 
     'view_mode' => [
         'brick' => 'Vue brique',
-        'card' => 'Voir la carte',
-        'list' => 'Voir la liste',
+        'card' => 'Vue en carte',
+        'list' => 'Vue en liste',
     ],
 ];

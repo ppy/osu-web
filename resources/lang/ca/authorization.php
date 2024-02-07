@@ -81,6 +81,7 @@ return [
     ],
 
     'contest' => [
+        'judging_not_active' => '',
         'voting_over' => 'No pots canviar el teu vot després d\'haver acabat el període de votació.',
 
         'entry' => [
@@ -172,6 +173,7 @@ return [
     'score' => [
         'pin' => [
             'disabled_type' => "No es pot fixar aquest tipus de puntuació",
+            'failed' => "",
             'not_owner' => 'Només el propietari de la puntuació pot fixar la puntuació.',
             'too_many' => 'Has fixat massa puntuacions.',
         ],

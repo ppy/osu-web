@@ -81,6 +81,7 @@ return [
     ],
 
     'contest' => [
+        'judging_not_active' => '',
         'voting_over' => 'Anda tidak dapat mengubah pilihan Anda setelah periode pemungutan suara untuk kontes ini telah berakhir.',
 
         'entry' => [
@@ -172,6 +173,7 @@ return [
     'score' => [
         'pin' => [
             'disabled_type' => "Tipe skor ini tidak dapat disematkan",
+            'failed' => "",
             'not_owner' => 'Hanya pemilik skor yang dapat menyematkan skor.',
             'too_many' => 'Skor yang disematkan sudah terlalu banyak.',
         ],

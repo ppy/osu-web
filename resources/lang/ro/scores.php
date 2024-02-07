@@ -5,6 +5,7 @@
 
 return [
     'show' => [
+        'non_preserved' => '',
         'title' => ':username pe :title [:version]',
 
         'beatmap' => [
@@ -25,6 +26,7 @@ return [
     'status' => [
         'non_best' => 'Doar cele mai bune scoruri acordă pp',
         'non_passing' => 'Doar scorurile aprobate acordă pp',
+        'no_pp' => '',
         'processing' => 'Acest scor este încă în calculare și va fi afișat în curând',
     ],
 ];

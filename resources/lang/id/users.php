@@ -443,7 +443,7 @@ return [
         ],
         'rank' => [
             'country' => 'Peringkat negara untuk :mode',
-            'country_simple' => 'Peringkat Negara',
+            'country_simple' => 'Peringkat Nasional',
             'global' => 'Peringkat global untuk :mode',
             'global_simple' => 'Peringkat Global',
             'highest' => 'Peringkat tertinggi: :rank pada :date',

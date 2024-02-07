@@ -13,7 +13,28 @@ return [
         'nav_title' => 'výpis',
     ],
 
+    'judge' => [
+        'hide_judged' => '',
+        'nav_title' => '',
+        'no_current_vote' => '',
+        'update' => '',
+        'validation' => [
+            'missing_score' => '',
+            'contest_vote_judged' => '',
+        ],
+        'voted' => '',
+    ],
+
+    'judge_results' => [
+        '_' => '',
+        'creator' => '',
+        'score' => '',
+        'total_score' => '',
+    ],
+
     'voting' => [
+        'judge_link' => '',
+        'judged_notice' => '',
         'login_required' => 'Pro hlasování se prosím přihlas.',
         'over' => 'Hlasování pro tuto soutěž bylo ukončeno',
         'show_voted_only' => 'Zobrazit odhlasované',
@@ -38,6 +59,7 @@ return [
             ],
         ],
     ],
+
     'entry' => [
         '_' => 'vstup',
         'login_required' => 'Pro vstup do soutěže se prosím přihlas.',
@@ -45,22 +67,27 @@ return [
         'preparation' => 'Tuto soutěž právě připravujeme. Prosím čekej trpělivě!',
         'drop_here' => 'Tvůj vstup přetáhni sem',
         'download' => 'Stáhnout .osz',
+
         'wrong_type' => [
             'art' => 'Pouze .jpg a .png soubory jsou přijímány pro tuto soutěž.',
             'beatmap' => 'Pouze .osu soubory jsou přijímány pro tuto soutěž.',
             'music' => 'Pouze .mp3 soubory jsou přijímány pro tuto soutěž.',
         ],
+
         'wrong_dimensions' => 'Příspěvky do soutěže musí mít rozměry :widthx:height',
         'too_big' => 'Možné vstupy pro tuto soutěž jsou :limit-krát.',
     ],
+
     'beatmaps' => [
         'download' => 'Stáhnout vstup',
     ],
+
     'vote' => [
         'list' => 'hlasy',
         'count' => ':count_delimited hlas|:count_delimited hlasy|:count_delimited hlasů',
         'points' => ':count_delimited bod|:count_delimited body|:count_delimited bodů',
     ],
+
     'dates' => [
         'ended' => 'Ukončeno :date',
         'ended_no_date' => 'Ukončeno',
@@ -70,6 +97,7 @@ return [
             'soon' => 'brzy™',
         ],
     ],
+
     'states' => [
         'entry' => 'Vstup otevřen',
         'voting' => 'Hlasování začalo',
