@@ -231,7 +231,7 @@ return [
                 'title' => 'Saavutukset',
             ],
             'beatmaps' => [
-                'by_artist' => 'artistilta :artist',
+                'by_artist' => 'esittäjältä :artist',
                 'title' => 'Rytmikartat',
 
                 'favourite' => [

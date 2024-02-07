@@ -13,7 +13,28 @@ return [
         'nav_title' => 'Auflistung',
     ],
 
+    'judge' => [
+        'hide_judged' => '',
+        'nav_title' => '',
+        'no_current_vote' => '',
+        'update' => '',
+        'validation' => [
+            'missing_score' => '',
+            'contest_vote_judged' => '',
+        ],
+        'voted' => '',
+    ],
+
+    'judge_results' => [
+        '_' => '',
+        'creator' => '',
+        'score' => '',
+        'total_score' => '',
+    ],
+
     'voting' => [
+        'judge_link' => '',
+        'judged_notice' => '',
         'login_required' => 'Bitte einloggen, um abzustimmen',
         'over' => 'Die Abstimmung für diesen Wettbewerb ist beendet',
         'show_voted_only' => 'Stimmen anzeigen',
@@ -38,6 +59,7 @@ return [
             ],
         ],
     ],
+
     'entry' => [
         '_' => 'Einsendung',
         'login_required' => 'Bitte melde dich an, um am Wettbewerb teilzunehmen.',
@@ -45,22 +67,27 @@ return [
         'preparation' => 'Wir bereiten diesen Wettbewerb gerade vor. Bitte habe Geduld!',
         'drop_here' => 'Lege deine Einsendung hier ab',
         'download' => '.osz herunterladen',
+
         'wrong_type' => [
             'art' => 'Nur .jpg und .png-Dateien werden in diesem Wettbewerb akzeptiert.',
             'beatmap' => 'Nur .osu-Dateien werden in diesem Wettbewerb akzeptiert.',
             'music' => 'Nur .mp3-Dateien werden in diesem Wettbewerb akzeptiert.',
         ],
+
         'wrong_dimensions' => 'Einsendungen für diesen Wettbewerb müssen im Format :widthx:height sein',
         'too_big' => 'Einsendungen in diesem Wettbewerb können nur bis zu :limit groß sein.',
     ],
+
     'beatmaps' => [
         'download' => 'Einsendung herunterladen',
     ],
+
     'vote' => [
         'list' => 'Stimmen',
         'count' => ':count_delimited Stimme|:count_delimited Stimmen',
         'points' => ':count_delimited Punkt|:count_delimited Punkte',
     ],
+
     'dates' => [
         'ended' => 'Endete am :date',
         'ended_no_date' => 'Beendet',
@@ -70,6 +97,7 @@ return [
             'soon' => 'soon™',
         ],
     ],
+
     'states' => [
         'entry' => 'Einsendungen offen',
         'voting' => 'Abstimmung gestartet',

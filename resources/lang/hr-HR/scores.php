@@ -5,6 +5,7 @@
 
 return [
     'show' => [
+        'non_preserved' => '',
         'title' => ':username na :title [:version]',
 
         'beatmap' => [
@@ -25,6 +26,7 @@ return [
     'status' => [
         'non_best' => 'Samo najbolji osobni rezultati nagrađuju pp',
         'non_passing' => 'Samo prolazeći rezultati nagrađuju pp',
+        'no_pp' => '',
         'processing' => 'Ovaj rezultat se još uvijek izračunava i uskoro će biti prikazan',
     ],
 ];

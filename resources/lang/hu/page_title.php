@@ -63,8 +63,12 @@ return [
         'comments_controller' => [
             '_' => 'hozzászolások',
         ],
+        'contest_entries_controller' => [
+            'judge_results' => '',
+        ],
         'contests_controller' => [
             '_' => 'versenyek',
+            'judge' => '',
         ],
         'groups_controller' => [
             'show' => 'csoportok',

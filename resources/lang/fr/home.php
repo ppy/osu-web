@@ -21,7 +21,7 @@ return [
     'search' => [
         'advanced_link' => 'Recherche avancée',
         'button' => 'Rechercher',
-        'empty_result' => 'Rien n\'a été trouvé !',
+        'empty_result' => 'Aucun résultat !',
         'keyword_required' => 'Un mot clé de recherche est requis',
         'placeholder' => 'tapez pour rechercher',
         'title' => 'rechercher',
@@ -29,7 +29,7 @@ return [
         'beatmapset' => [
             'login_required' => 'Connectez-vous pour rechercher des beatmaps',
             'more' => ':count résultats de recherche de beatmap en plus',
-            'more_simple' => 'Voir plus de résultats de la recherche de beatmaps',
+            'more_simple' => 'Voir plus de résultats de recherche de beatmaps',
             'title' => 'Beatmaps',
         ],
 
@@ -37,13 +37,13 @@ return [
             'all' => 'Tous les forums',
             'link' => 'Rechercher sur le forum',
             'login_required' => 'Connectez-vous pour rechercher sur le forum',
-            'more_simple' => 'Voir plus de résultats de la recherche du forum',
+            'more_simple' => 'Voir plus de résultats de recherche sur les forums',
             'title' => 'Forum',
 
             'label' => [
                 'forum' => 'Rechercher dans les forums',
                 'forum_children' => 'inclure les sous-forums',
-                'include_deleted' => 'inclure les messages supprimés',
+                'include_deleted' => 'inclure les posts supprimés',
                 'topic_id' => 'sujet #',
                 'username' => 'auteur',
             ],
@@ -59,15 +59,15 @@ return [
 
         'user' => [
             'login_required' => 'Connectez-vous pour rechercher des utilisateurs',
-            'more' => ':count résultats de la recherche de joueur',
-            'more_simple' => 'Voir plus de résultats de la recherche de joueurs',
-            'more_hidden' => 'La recherche de joueurs est limitée à :max joueurs. Essayez d\'affiner votre recherche.',
+            'more' => ':count résultats de recherche de joueurs',
+            'more_simple' => 'Voir plus de résultats de recherche de joueurs',
+            'more_hidden' => 'La recherche de joueurs est limitée à :max joueurs. Essayez d\'être plus précis.',
             'title' => 'Joueurs',
         ],
 
         'wiki_page' => [
             'link' => 'Rechercher sur le wiki',
-            'more_simple' => 'Voir plus de résultats de la recherche sur le wiki',
+            'more_simple' => 'Voir plus de résultats de recherche sur le wiki',
             'title' => 'Wiki',
         ],
     ],
@@ -80,7 +80,7 @@ return [
         'action_lazer_title' => 'essayez osu!(lazer)',
         'action_title' => 'télécharger osu!',
         'for_os' => 'pour :os',
-        'lazer_note' => 'remarque : il y a des réinitialisations du classement',
+        'lazer_note' => 'attention : les classements peuvent être réinitialisés',
         'macos-fallback' => 'utilisateurs macOS',
         'mirror' => 'miroir',
         'or' => 'ou',
@@ -92,7 +92,7 @@ return [
 
         'help' => [
             '_' => 'si vous avez des problèmes pour démarrer le jeu ou pour créer un compte, :help_forum_link ou :support_button.',
-            'help_forum_link' => 'consultez le forum d\'aide',
+            'help_forum_link' => 'consultez le forum Help',
             'support_button' => 'contactez le support',
         ],
 
@@ -113,8 +113,8 @@ return [
             'beatmaps' => [
                 'title' => 'obtenir des beatmaps',
                 'description' => [
-                    '_' => ':browse la vaste librairie des beatmaps créées par la communauté et commencez à jouer !',
-                    'browse' => 'parcourir',
+                    '_' => ':browse la vaste librairie de beatmaps créées par la communauté et commencez à jouer !',
+                    'browse' => 'parcourez',
                 ],
             ],
         ],

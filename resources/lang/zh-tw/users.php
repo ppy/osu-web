@@ -209,7 +209,7 @@ return [
                     'unsupported_format' => '不支援的檔案格式.',
 
                     'restriction_info' => [
-                        '_' => '上傳可用於 :link 僅',
+                        '_' => '僅有 :link 可上傳自訂圖片',
                         'link' => 'osu! 贊助者',
                     ],
                 ],

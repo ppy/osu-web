@@ -81,6 +81,7 @@ return [
     ],
 
     'contest' => [
+        'judging_not_active' => '',
         'voting_over' => 'Nem változtathatod meg a szavazatod, mert ennek a versenynek a szavazási ideje lejárt.',
 
         'entry' => [
@@ -172,6 +173,7 @@ return [
     'score' => [
         'pin' => [
             'disabled_type' => "Nem lehet ilyen típusú pontszámot kitűzni",
+            'failed' => "",
             'not_owner' => 'Csak eredménnyel rendelkezők tűzhetnek ki eredményeket.',
             'too_many' => 'Túl sok kitűzött eredmény.',
         ],

@@ -13,7 +13,28 @@ return [
         'nav_title' => 'listahan',
     ],
 
+    'judge' => [
+        'hide_judged' => '',
+        'nav_title' => '',
+        'no_current_vote' => '',
+        'update' => '',
+        'validation' => [
+            'missing_score' => '',
+            'contest_vote_judged' => '',
+        ],
+        'voted' => '',
+    ],
+
+    'judge_results' => [
+        '_' => '',
+        'creator' => '',
+        'score' => '',
+        'total_score' => '',
+    ],
+
     'voting' => [
+        'judge_link' => '',
+        'judged_notice' => '',
         'login_required' => 'Paki-sign-in upang bumoto.',
         'over' => 'Ang pagboboto sa paligsahan na ito ay tapos na',
         'show_voted_only' => 'Ipakita ang mga binoto',
@@ -38,6 +59,7 @@ return [
             ],
         ],
     ],
+
     'entry' => [
         '_' => 'entrada',
         'login_required' => 'Paki-sign-in upang makapasok sa paligsahan.',
@@ -45,22 +67,27 @@ return [
         'preparation' => 'Hinahanda pa namin ang pagligsahang ito. Mangyaring maghintay nang matiyaga!',
         'drop_here' => 'Ihulog ang iyong entrada dito',
         'download' => 'I-download ang .osz',
+
         'wrong_type' => [
             'art' => 'Ang mga .jpg at .png na file lamang ang tinatanggap para sa paligsahang ito.',
             'beatmap' => 'Ang mga .osu file lamang ang tinatanggap para sa paligsahang ito.',
             'music' => 'Ang mga .mp3 file lamang ang tinatanggap para sa paligsahang ito.',
         ],
+
         'wrong_dimensions' => 'Ang mga entry para sa patimpalak na ito ay dapat na :widthx:height',
         'too_big' => 'Ang bilang ng pagsumite sa paligsahan na ito ay hanggang :limit.',
     ],
+
     'beatmaps' => [
         'download' => 'I-download Ang Entrada',
     ],
+
     'vote' => [
         'list' => 'mga boto',
         'count' => ':count_delimited boto|:count_delimited mga boto',
         'points' => ':count_delimited puntos|:count_delimited mga puntos',
     ],
+
     'dates' => [
         'ended' => 'Natapos sa :date',
         'ended_no_date' => 'Pagwawakas',
@@ -70,6 +97,7 @@ return [
             'soon' => 'malapit na™',
         ],
     ],
+
     'states' => [
         'entry' => 'Maaaring Magsumite',
         'voting' => 'Nagsimula ang Pagboto',

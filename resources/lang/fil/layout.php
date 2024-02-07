@@ -112,6 +112,7 @@ return [
         'legal' => [
             '_' => 'Legal & Status',
             'copyright' => 'Copyright (DMCA)',
+            'jp_sctl' => '',
             'privacy' => 'Palihim',
             'server_status' => 'Katayuan ng server',
             'source_code' => 'Source Code',
@@ -195,6 +196,8 @@ return [
             'account-edit' => 'Mga Setting',
             'follows' => 'Tala ng mga binabantayan',
             'friends' => 'Mga Kaibigan',
+            'legacy_score_only_toggle' => '',
+            'legacy_score_only_toggle_tooltip' => '',
             'logout' => 'Mag-sign Out',
             'profile' => 'Aking Profile',
         ],

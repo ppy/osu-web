@@ -51,15 +51,15 @@ return [
                 'beatmapset_discussion_post_new_empty' => 'Nowy post od użytkownika :username dla beatmapy „:title”',
                 'beatmapset_discussion_post_new_compact' => 'Nowy post od użytkownika :username',
                 'beatmapset_discussion_post_new_compact_empty' => 'Nowy post od użytkownika :username',
-                'beatmapset_discussion_review_new' => 'Nowa recenzja od :username pod beatmapą „:title” zawierająca problemów: :problems, sugestii: :suggestions, pochwał: :praises.',
-                'beatmapset_discussion_review_new_compact' => 'Nowa recenzja od :username zawierająca problemów: :problems, sugestii: :suggestions, pochwał: :praises.',
+                'beatmapset_discussion_review_new' => 'Nowa recenzja od :username pod beatmapą „:title” zawierająca :review_counts',
+                'beatmapset_discussion_review_new_compact' => 'Nowa recenzja od :username zawierająca :review_counts',
                 'beatmapset_discussion_unlock' => 'Tworzenie dyskusji dla beatmapy „:title” zostało odblokowane.',
                 'beatmapset_discussion_unlock_compact' => 'Dyskusja została odblokowana',
 
                 'review_count' => [
-                    'praises' => '',
-                    'problems' => '',
-                    'suggestions' => '',
+                    'praises' => ':count_delimited pochwała|:count_delimited pochwały|:count_delimited pochwał',
+                    'problems' => ':count_delimited problem|:count_delimited problemy|:count_delimited problemów',
+                    'suggestions' => ':count_delimited sugestia|:count_delimited sugestie|:count_delimited sugestii',
                 ],
             ],
 

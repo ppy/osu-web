@@ -5,6 +5,7 @@
 
 return [
     'show' => [
+        'non_preserved' => '',
         'title' => ':username på :title [:version]',
 
         'beatmap' => [
@@ -25,6 +26,7 @@ return [
     'status' => [
         'non_best' => 'Kun personlige rekorder tilldeler pp',
         'non_passing' => 'Kun gjenomførte kart tilldeler pp',
+        'no_pp' => '',
         'processing' => 'Denne scoren blir fremdeles beregnet og vil vises snart',
     ],
 ];

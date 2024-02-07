@@ -19,8 +19,8 @@ return [
 
     'kudosu' => [
         'total' => 'Cumulés',
-        'available' => 'Disponible',
-        'used' => 'Utilisé',
+        'available' => 'Disponibles',
+        'used' => 'Utilisés',
     ],
 
     'type' => [
@@ -34,8 +34,8 @@ return [
     ],
 
     'seasons' => [
-        'empty' => 'Il n\'y a pas encore de salons pour cette saison.',
-        'ongoing' => 'Cette saison est toujours en cours (il y aura plus de playlists ajoutées).',
+        'empty' => 'Il n\'y a pas encore de salles pour cette saison.',
+        'ongoing' => 'Cette saison est toujours en cours (d\'autres playlists seront ajoutées).',
         'room_count' => 'Nombre de playlists',
         'url' => 'Afficher plus d\'informations sur cette saison.',
     ],

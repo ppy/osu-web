@@ -13,7 +13,28 @@ return [
         'nav_title' => 'listado',
     ],
 
+    'judge' => [
+        'hide_judged' => '',
+        'nav_title' => '',
+        'no_current_vote' => '',
+        'update' => '',
+        'validation' => [
+            'missing_score' => '',
+            'contest_vote_judged' => '',
+        ],
+        'voted' => '',
+    ],
+
+    'judge_results' => [
+        '_' => '',
+        'creator' => '',
+        'score' => '',
+        'total_score' => '',
+    ],
+
     'voting' => [
+        'judge_link' => '',
+        'judged_notice' => '',
         'login_required' => 'Inicie sesión para votar.',
         'over' => 'Las votaciones para este concurso ya han terminado',
         'show_voted_only' => 'Mostrar votado',
@@ -38,6 +59,7 @@ return [
             ],
         ],
     ],
+
     'entry' => [
         '_' => 'entrada',
         'login_required' => 'Inicie sesión para participar en el concurso.',
@@ -45,22 +67,27 @@ return [
         'preparation' => 'Estamos preparando este concurso actualmente. Por favor, ¡Espera pacientemente!',
         'drop_here' => 'Suelta tu entrada aquí',
         'download' => 'Descargar archivo .osz',
+
         'wrong_type' => [
             'art' => 'Solo se aceptan archivos .jpg y .png en este concurso.',
             'beatmap' => 'Solo se aceptan archivos .osu en este concurso.',
             'music' => 'Solo se aceptan archivos .mp3 en este concurso.',
         ],
+
         'wrong_dimensions' => 'Las entradas para este concurso deben ser :widthx:height',
         'too_big' => 'Las entradas para este concurso solo pueden ser de hasta :limit.',
     ],
+
     'beatmaps' => [
         'download' => 'Descargar entrada',
     ],
+
     'vote' => [
         'list' => 'votos',
         'count' => ':count_delimited voto|:count_delimited votos',
         'points' => ':count_delimited punto|:count_delimited puntos',
     ],
+
     'dates' => [
         'ended' => 'Finalizó el :date',
         'ended_no_date' => 'Finalizado',
@@ -70,6 +97,7 @@ return [
             'soon' => 'pronto™',
         ],
     ],
+
     'states' => [
         'entry' => 'Entrada abierta',
         'voting' => 'Votación Iniciada',

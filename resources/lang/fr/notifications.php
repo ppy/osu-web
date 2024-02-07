@@ -45,15 +45,15 @@ return [
 
             'beatmapset_discussion' => [
                 '_' => 'Discussions de beatmaps',
-                'beatmapset_discussion_lock' => 'La discussion de la beatmap ":title" a été verrouillée',
+                'beatmapset_discussion_lock' => 'La discussion de ":title" a été verrouillée',
                 'beatmapset_discussion_lock_compact' => 'La discussion a été verrouillée',
-                'beatmapset_discussion_post_new' => 'Nouveau message sur ":title" par :username : ":content"',
-                'beatmapset_discussion_post_new_empty' => 'Nouveau message sur ":title" par :username',
-                'beatmapset_discussion_post_new_compact' => 'Nouveau message par :username : ":content"',
-                'beatmapset_discussion_post_new_compact_empty' => 'Nouveau message par :username',
-                'beatmapset_discussion_review_new' => 'Nouvelle review sur ":title" par :username contenant des problèmes : :problems, suggestions : :suggestions, encouragements : :praises',
-                'beatmapset_discussion_review_new_compact' => 'Nouvelle review par :username contenant des problèmes : :problems, suggestions : :suggestions, compliments : :praises',
-                'beatmapset_discussion_unlock' => 'La discussion de la beatmap ":title" a été déverrouillée',
+                'beatmapset_discussion_post_new' => 'Nouveau post sur ":title" par :username : ":content"',
+                'beatmapset_discussion_post_new_empty' => 'Nouveau post sur ":title" par :username',
+                'beatmapset_discussion_post_new_compact' => 'Nouveau post par :username : ":content"',
+                'beatmapset_discussion_post_new_compact_empty' => 'Nouveau post par :username',
+                'beatmapset_discussion_review_new' => 'Nouvel avis sur ":title" par :username contenant :review_counts',
+                'beatmapset_discussion_review_new_compact' => 'Nouvel avis par :username contenant :review_counts',
+                'beatmapset_discussion_unlock' => 'La discussion de ":title" a été déverrouillée',
                 'beatmapset_discussion_unlock_compact' => 'La discussion n\'est plus verrouillée',
 
                 'review_count' => [
@@ -72,11 +72,11 @@ return [
             ],
 
             'beatmapset_state' => [
-                '_' => 'Statut de la beatmap modifié',
+                '_' => 'Modification de l\'état de la beatmap',
                 'beatmapset_disqualify' => '":title" a été disqualifiée',
                 'beatmapset_disqualify_compact' => 'La beatmap a été disqualifiée',
                 'beatmapset_love' => '":title" a été ajoutée à la catégorie Loved',
-                'beatmapset_love_compact' => 'La beatmap est passée à la catégorie Loved',
+                'beatmapset_love_compact' => 'La beatmap a été promue à la catégorie Loved',
                 'beatmapset_nominate' => '":title" a été nominée',
                 'beatmapset_nominate_compact' => 'La beatmap a été nominée',
                 'beatmapset_qualify' => '":title" a obtenu suffisamment de nominations et est entrée dans la file d\'attente de classement',
@@ -154,7 +154,7 @@ return [
 
             'forum_topic_reply' => [
                 '_' => 'Nouvelle réponse du forum',
-                'forum_topic_reply' => ':username a répondu au sujet du forum ":title"',
+                'forum_topic_reply' => ':username a répondu à ":title"',
                 'forum_topic_reply_compact' => ':username a répondu',
             ],
         ],
@@ -187,7 +187,7 @@ return [
     'mail' => [
         'beatmapset' => [
             'beatmap_owner_change' => [
-                'beatmap_owner_change' => 'Vous êtes maintenant invité de la beatmap ":title"',
+                'beatmap_owner_change' => 'Vous faites maintenant partie des participants à la beatmap ":title"',
             ],
 
             'beatmapset_discussion' => [
@@ -202,9 +202,9 @@ return [
 
             'beatmapset_state' => [
                 'beatmapset_disqualify' => '":title" a été disqualifiée',
-                'beatmapset_love' => '":title" est passée à la catégorie Loved',
+                'beatmapset_love' => '":title" a été promue à la catégorie Loved',
                 'beatmapset_nominate' => '":title" a été nominée',
-                'beatmapset_qualify' => '":title" a atteint suffisamment de nominations et est entrée dans la file d\'attente de classement',
+                'beatmapset_qualify' => '":title" a obtenu suffisamment de nominations et est entrée dans la file d\'attente de classement',
                 'beatmapset_rank' => '":title" a été classée',
                 'beatmapset_remove_from_loved' => '":title" a été retirée de la catégorie Loved',
                 'beatmapset_reset_nominations' => 'La nomination de ":title" a été réinitialisée',
@@ -251,7 +251,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username a créé de nouvelles beatmaps',
-                'user_beatmapset_revive' => ':username a ressuscité les beatmaps',
+                'user_beatmapset_revive' => ':username a ressuscité des beatmaps',
             ],
         ],
     ],

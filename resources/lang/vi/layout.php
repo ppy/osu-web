@@ -112,6 +112,7 @@ return [
         'legal' => [
             '_' => 'Pháp Lý & Trạng Thái',
             'copyright' => 'Bản Quyền (DMCA)',
+            'jp_sctl' => '',
             'privacy' => 'Quyền Riêng Tư',
             'server_status' => 'Trạng thái máy chủ',
             'source_code' => 'Mã Nguồn',
@@ -195,6 +196,8 @@ return [
             'account-edit' => 'Cài Đặt',
             'follows' => 'Danh sách theo dõi',
             'friends' => 'Bạn bè',
+            'legacy_score_only_toggle' => '',
+            'legacy_score_only_toggle_tooltip' => '',
             'logout' => 'Đăng Xuất',
             'profile' => 'Trang Cá Nhân',
         ],

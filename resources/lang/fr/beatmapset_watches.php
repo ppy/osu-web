@@ -6,7 +6,7 @@
 return [
     'index' => [
         'description' => 'Voici les discussions sur les beatmaps que vous suivez. Vous serez averti lorsqu\'il y aura de nouveaux messages ou des mises à jour.',
-        'title_compact' => 'liste d\'abonnement des modifications',
+        'title_compact' => 'liste de suivi des discussions de beatmaps',
 
         'counts' => [
             'total' => 'Beatmaps suivies',

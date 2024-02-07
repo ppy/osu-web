@@ -444,7 +444,7 @@ return [
         'rank' => [
             'country' => 'Рейтинг стран для :mode',
             'country_simple' => 'Рейтинг в стране',
-            'global' => 'Глобальный рейтинг для :mode',
+            'global' => 'Мировой рейтинг для :mode',
             'global_simple' => 'Рейтинг в мире',
             'highest' => 'Наивысший: :rank от :date',
         ],
