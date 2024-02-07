@@ -28,6 +28,13 @@ class BeatmapsController extends Controller
     const DEFAULT_API_INCLUDES = ['beatmapset.ratings', 'failtimes', 'max_combo'];
     const DEFAULT_SCORE_INCLUDES = ['user', 'user.country', 'user.cover'];
 
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->middleware('require-scopes:public');
+    }
+
     private static function assertSupporterOnlyOptions(?User $currentUser, string $type, array $mods): void
     {
         $isSupporter = $currentUser !== null && $currentUser->isSupporter();
@@ -68,13 +75,7 @@ class BeatmapsController extends Controller
             'type:string',
         ], ['null_missing' => true]);
 
-        if ($params['mode'] !== null) {
-            $rulesetId = Beatmap::MODES[$params['mode']] ?? null;
-            if ($rulesetId === null) {
-                throw new InvariantException('invalid mode specified');
-            }
-        }
-        $rulesetId ??= $beatmap->playmode;
+        $rulesetId = static::getRulesetId($params['mode']) ?? $beatmap->playmode;
         $mods = array_values(array_filter($params['mods'] ?? []));
         $type = presence($params['type'], 'global');
         $currentUser = \Auth::user();
@@ -114,11 +115,14 @@ class BeatmapsController extends Controller
         return $results;
     }
 
-    public function __construct()
+    private static function getRulesetId(?string $rulesetName): ?int
     {
-        parent::__construct();
+        if ($rulesetName === null) {
+            return null;
+        }
 
-        $this->middleware('require-scopes:public');
+        return Ruleset::tryFromName($rulesetName)?->value
+            ?? throw new InvariantException('invalid mode specified');
     }
 
     /**
@@ -445,7 +449,7 @@ class BeatmapsController extends Controller
             'mods:string[]',
         ]);
 
-        $rulesetId = Ruleset::tryFromName($params['mode'] ?? null)?->value ?? $beatmap->playmode;
+        $rulesetId = static::getRulesetId($params['mode'] ?? null) ?? $beatmap->playmode;
         $mods = array_values(array_filter($params['mods'] ?? []));
 
         $baseParams = ScoreSearchParams::fromArray([
