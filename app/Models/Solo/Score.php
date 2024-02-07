@@ -274,24 +274,31 @@ class Score extends Model implements Traits\ReportableInterface
      */
     public function isPerfectLegacyCombo(): ?bool
     {
+        // This is best effort as there's no way to re-generate the correct
+        // value short of checking the source legacy score.
         if ($this->ruleset_id === Ruleset::mania->value) {
             if (!$this->passed) {
                 return false;
             }
 
-            // Reference: https://github.com/ppy/osu/blob/012039ff90a2bf234418caef81792af0ffb4d123/osu.Game/Rulesets/Scoring/HitResult.cs#L279-L299
-            // (in combination with AffectsCombo)
-            static $breaksCombo = [
+            static $noPerfect = [
                 'combo_break',
                 'large_tick_miss',
+                'meh',
                 'miss',
+                'ok',
             ];
 
             $statistics = $this->data->statistics;
-            foreach ($breaksCombo as $field) {
+            foreach ($noPerfect as $field) {
                 if ($statistics->$field !== 0) {
                     return false;
                 }
+            }
+
+            $hits = $statistics->good + $statistics->great + $statistics->perfect;
+            if ($hits !== $this->data->maximumStatistics->perfect) {
+                return false;
             }
 
             return true;
