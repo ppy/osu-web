@@ -226,10 +226,7 @@ class BeatmapsetsController extends Controller
 
         priv_check('BeatmapsetNominate', $beatmapset)->ensureCan();
 
-        $nomination = $beatmapset->nominate(Auth::user(), $params['playmodes'] ?? []);
-        if (!$nomination['result']) {
-            return error_popup($nomination['message']);
-        }
+        $beatmapset->nominate(Auth::user(), $params['playmodes'] ?? []);
 
         BeatmapsetWatch::markRead($beatmapset, Auth::user());
 

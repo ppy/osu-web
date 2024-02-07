@@ -9,6 +9,7 @@ namespace Tests\Models;
 
 use App\Enums\Ruleset;
 use App\Exceptions\AuthorizationException;
+use App\Exceptions\InvariantException;
 use App\Jobs\CheckBeatmapsetCovers;
 use App\Jobs\Notifications\BeatmapsetDisqualify;
 use App\Jobs\Notifications\BeatmapsetResetNominations;
@@ -31,21 +32,18 @@ class BeatmapsetTest extends TestCase
     public function testLove()
     {
         $user = User::factory()->create();
-        $beatmapset = $this->beatmapsetFactory()->create();
-
-        $notifications = Notification::count();
-        $userNotifications = UserNotification::count();
-
+        $beatmapset = $this->beatmapsetFactory()->withBeatmaps()->create();
         $otherUser = User::factory()->create();
         $beatmapset->watches()->create(['user_id' => $otherUser->getKey()]);
 
         $this->expectCountChange(fn () => $beatmapset->bssProcessQueues()->count(), 1);
+        $this->expectCountChange(fn () => Notification::count(), 1);
+        $this->expectCountChange(fn () => UserNotification::count(), 1);
 
         $beatmapset->love($user);
+        $beatmapset->refresh();
 
-        $this->assertSame($notifications + 1, Notification::count());
-        $this->assertSame($userNotifications + 1, UserNotification::count());
-        $this->assertTrue($beatmapset->fresh()->isLoved());
+        $this->assertTrue($beatmapset->isLoved());
         $this->assertSame('loved', $beatmapset->beatmaps()->first()->status());
 
         Bus::assertDispatched(CheckBeatmapsetCovers::class);
@@ -54,7 +52,7 @@ class BeatmapsetTest extends TestCase
     public function testLoveBeatmapApprovedStates(): void
     {
         $user = User::factory()->create();
-        $beatmapset = $this->beatmapsetFactory()->create();
+        $beatmapset = $this->beatmapsetFactory()->withBeatmaps()->create();
 
         $specifiedBeatmap = $beatmapset->beatmaps()->first();
         $beatmapset->beatmaps()->saveMany([
@@ -76,110 +74,143 @@ class BeatmapsetTest extends TestCase
         Bus::assertDispatched(CheckBeatmapsetCovers::class);
     }
 
-    // region single-playmode beatmap sets
-    public function testNominate()
+    public function testMainRulesetSingleBeatmap()
     {
-        $beatmapset = $this->beatmapsetFactory()->create();
-        $user = User::factory()->withGroup('bng', $beatmapset->playmodesStr())->create();
+        $beatmapset = $this->beatmapsetFactory()->withBeatmaps(Ruleset::taiko)->create();
 
-        $notifications = Notification::count();
-        $userNotifications = UserNotification::count();
+        $this->assertSame(Ruleset::taiko, $beatmapset->mainRuleset());
+    }
 
+    public function testMainRulesetHybridBeatmapset()
+    {
+        $beatmapset = $this->beatmapsetFactory()
+            ->withBeatmaps(Ruleset::osu, 1)
+            ->withBeatmaps(Ruleset::taiko, 2)
+            ->withBeatmaps(Ruleset::catch, 3)
+            ->withBeatmaps(Ruleset::mania, 1)
+            ->create();
+
+        $this->assertSame(Ruleset::catch, $beatmapset->mainRuleset());
+    }
+
+    public function testMainRulesetHybridBeatmapsetWithGuestMappers()
+    {
+        $guest = User::factory()->create();
+
+        $beatmapset = $this->beatmapsetFactory()
+            ->withBeatmaps(Ruleset::osu, 1, $guest)
+            ->withBeatmaps(Ruleset::taiko, 3, $guest)
+            ->withBeatmaps(Ruleset::taiko, 1)
+            ->withBeatmaps(Ruleset::catch, 2, $guest)
+            ->withBeatmaps(Ruleset::catch, 2)
+            ->withBeatmaps(Ruleset::mania, 1)
+            ->create();
+
+        $this->assertSame(Ruleset::catch, $beatmapset->mainRuleset());
+    }
+
+    public function testMainRulesetHybridBeatmapsetWithGuestMappersSameCount()
+    {
+        $guest = User::factory()->create();
+
+        $beatmapset = $this->beatmapsetFactory()
+            ->withBeatmaps(Ruleset::osu, 1)
+            ->withBeatmaps(Ruleset::taiko, 1, $guest)
+            ->withBeatmaps(Ruleset::taiko, 1)
+            ->withBeatmaps(Ruleset::catch, 2, $guest)
+            ->withBeatmaps(Ruleset::catch, 2)
+            ->withBeatmaps(Ruleset::mania, 2, $guest)
+            ->withBeatmaps(Ruleset::mania, 2)
+            ->create();
+
+        $this->assertSame(Ruleset::catch, $beatmapset->mainRuleset());
+    }
+
+    public function testNominationsByType()
+    {
+        $beatmapset = $this->beatmapsetFactory()
+            ->withBeatmaps(Ruleset::osu)
+            ->withBeatmaps(Ruleset::taiko)
+            ->withBeatmaps(Ruleset::catch)
+            ->withBeatmaps(Ruleset::mania)
+            ->create();
+
+        $userFactory = User::factory()->withGroup('bng', ['osu', 'taiko', 'fruits', 'mania']);
+        $countFilter = fn ($array, $mode) => array_filter($array, fn ($item) => $item === $mode);
+
+        $beatmapset->nominate($userFactory->create(), ['osu']);
+        $this->assertCount(1, $beatmapset->nominationsByType()['full']);
+        $this->assertCount(1, $countFilter($beatmapset->nominationsByType()['full'], 'osu'));
+
+        $beatmapset->nominate($userFactory->create(), ['taiko']);
+        $this->assertCount(2, $beatmapset->nominationsByType()['full']);
+        $this->assertCount(1, $countFilter($beatmapset->nominationsByType()['full'], 'taiko'));
+
+        $beatmapset->nominate($userFactory->create(), ['fruits']);
+        $this->assertCount(3, $beatmapset->nominationsByType()['full']);
+        $this->assertCount(1, $countFilter($beatmapset->nominationsByType()['full'], 'fruits'));
+
+        $beatmapset->nominate($userFactory->create(), ['mania']);
+        $this->assertCount(4, $beatmapset->nominationsByType()['full']);
+        $this->assertCount(1, $countFilter($beatmapset->nominationsByType()['full'], 'mania'));
+
+        $this->assertCount(0, $beatmapset->nominationsByType()['limited']);
+
+        $beatmapset->nominate(
+            User::factory()->withGroup('bng_limited', ['osu'])->create(),
+            ['osu']
+        );
+
+        $this->assertCount(4, $beatmapset->nominationsByType()['full']);
+        $this->assertCount(1, $beatmapset->nominationsByType()['limited']);
+        $this->assertCount(1, $countFilter($beatmapset->nominationsByType()['limited'], 'osu'));
+    }
+
+    //region single-playmode beatmap sets
+
+    /**
+     * @dataProvider nominateDataProvider
+     */
+    public function testNominate(string $group, array $groupPlaymodes, Ruleset $ruleset, bool $success)
+    {
+        $beatmapset = $this->beatmapsetFactory()->withBeatmaps($ruleset)->create();
+        $user = User::factory()->withGroup($group, $groupPlaymodes)->create();
         $otherUser = User::factory()->create();
         $beatmapset->watches()->create(['user_id' => $otherUser->getKey()]);
 
-        $result = $beatmapset->nominate($user, [$beatmapset->playmodesStr()[0]]);
+        $this->assertNotificationChanges($success);
+        $this->assertNominationChanges($beatmapset, $success);
 
-        $this->assertTrue($result['result']);
-        $this->assertSame($notifications + 1, Notification::count());
-        $this->assertSame($userNotifications + 1, UserNotification::count());
-        $this->assertTrue($beatmapset->fresh()->isPending());
-    }
+        $this->expectExceptionCallable(
+            fn () => $beatmapset->nominate($user, [$ruleset->legacyName()]),
+            $success ? null : InvariantException::class
+        );
 
-    public function testNominateNATAnyRuleset(): void
-    {
-        $beatmapset = $this->beatmapsetFactory()->create();
-        $user = User::factory()->withGroup('nat', [])->create();
-
-        $this->expectCountChange(fn () => $beatmapset->nominations, 1);
-        $this->expectCountChange(fn () => $beatmapset->beatmapsetNominations()->current()->count(), 1);
-
-        $beatmapset->nominate($user, $beatmapset->playmodesStr());
-        $beatmapset->refresh();
+        // Assertions that nomination doesn't qualify
+        $this->assertTrue($beatmapset->isPending());
+        Bus::assertNotDispatched(CheckBeatmapsetCovers::class);
     }
 
     public function testQualify()
     {
-        $beatmapset = $this->beatmapsetFactory()->create();
+        $beatmapset = $this->beatmapsetFactory()->withBeatmaps()->create();
         $user = User::factory()->withGroup('bng', $beatmapset->playmodesStr())->create();
-
-        $notifications = Notification::count();
-        $userNotifications = UserNotification::count();
-
         $otherUser = User::factory()->create();
         $beatmapset->watches()->create(['user_id' => $otherUser->getKey()]);
 
         $this->expectCountChange(fn () => $beatmapset->bssProcessQueues()->count(), 1);
+        $this->assertNotificationChanges();
 
         $beatmapset->qualify($user);
 
-        $this->assertSame($notifications + 1, Notification::count());
-        $this->assertSame($userNotifications + 1, UserNotification::count());
         $this->assertTrue($beatmapset->fresh()->isQualified());
 
         Bus::assertDispatched(CheckBeatmapsetCovers::class);
     }
 
-    public function testLimitedBNGQualifyingNominationBNGNominated()
-    {
-        $beatmapset = $this->beatmapsetFactory()->create();
-        $this->fillNominationsExceptLastForMode($beatmapset, 'bng', $beatmapset->playmodesStr()[0]);
-
-        $nominator = User::factory()->withGroup('bng_limited', $beatmapset->playmodesStr())->create();
-
-        priv_check_user($nominator, 'BeatmapsetNominate', $beatmapset)->ensureCan();
-
-        $result = $beatmapset->nominate($nominator, [$beatmapset->playmodesStr()[0]]);
-
-        $this->assertTrue($result['result']);
-        $this->assertTrue($beatmapset->fresh()->isQualified());
-
-        Bus::assertDispatched(CheckBeatmapsetCovers::class);
-    }
-
-    public function testLimitedBNGQualifyingNominationNATNominated()
-    {
-        $beatmapset = $this->beatmapsetFactory()->create();
-        $this->fillNominationsExceptLastForMode($beatmapset, 'nat', $beatmapset->playmodesStr()[0]);
-
-        $nominator = User::factory()->withGroup('bng_limited', $beatmapset->playmodesStr())->create();
-
-        priv_check_user($nominator, 'BeatmapsetNominate', $beatmapset)->ensureCan();
-
-        $result = $beatmapset->nominate($nominator, [$beatmapset->playmodesStr()[0]]);
-
-        $this->assertTrue($result['result']);
-        $this->assertTrue($beatmapset->fresh()->isQualified());
-
-        Bus::assertDispatched(CheckBeatmapsetCovers::class);
-    }
-
-    public function testLimitedBNGQualifyingNominationLimitedBNGNominated()
-    {
-        $beatmapset = $this->beatmapsetFactory()->create();
-        $this->fillNominationsExceptLastForMode($beatmapset, 'bng_limited', $beatmapset->playmodesStr()[0]);
-
-        $nominator = User::factory()->withGroup('bng_limited', $beatmapset->playmodesStr())->create();
-
-        $this->assertFalse($beatmapset->isQualified());
-        $beatmapset->nominate($nominator);
-        $this->assertFalse($beatmapset->isQualified());
-
-        Bus::assertNotDispatched(CheckBeatmapsetCovers::class);
-    }
     public function testNominateWithDefaultMetadata()
     {
-        $beatmapset = $this->beatmapsetFactory()->state([
+        $beatmapset = $this->beatmapsetFactory()->withBeatmaps()->state([
             'genre_id' => Genre::UNSPECIFIED,
             'language_id' => Language::UNSPECIFIED,
         ])->create();
@@ -191,14 +222,41 @@ class BeatmapsetTest extends TestCase
     }
 
     /**
+     * @dataProvider qualifyingNominationsDataProvider
+     */
+    public function testQualifyingNominations(string $initialGroup, string $qualifyingGroup, bool $success)
+    {
+        $ruleset = array_rand_val(Ruleset::cases());
+        $beatmapset = $this->beatmapsetFactory()->withBeatmaps($ruleset)->create();
+        $this->fillNominationsExceptLastForMainRuleset($beatmapset, $initialGroup);
+
+        $nominator = User::factory()->withGroup($qualifyingGroup, [$ruleset->legacyName()])->create();
+
+        priv_check_user($nominator, 'BeatmapsetNominate', $beatmapset)->ensureCan();
+
+        $this->expectCountChange(fn () => $beatmapset->bssProcessQueues()->count(), $success ? 1 : 0);
+
+        $this->expectExceptionCallable(
+            fn () => $beatmapset->nominate($nominator, [$ruleset->legacyName()]),
+            $success ? null : InvariantException::class
+        );
+
+        $this->assertSame($success, $beatmapset->isQualified());
+
+        if ($success) {
+            Bus::assertDispatched(CheckBeatmapsetCovers::class);
+        } else {
+            Bus::assertNotDispatched(CheckBeatmapsetCovers::class);
+        }
+    }
+
+    /**
      * @dataProvider dataProviderForTestRank
      */
     public function testRank(string $state, bool $success): void
     {
-        $beatmapset = $this->beatmapsetFactory()->$state()->create();
-
+        $beatmapset = $this->beatmapsetFactory()->withBeatmaps()->$state()->create();
         $otherUser = User::factory()->create();
-
         $beatmap = $beatmapset->beatmaps()->first();
         $beatmap->scoresBest()->create([
             'user_id' => $otherUser->getKey(),
@@ -207,9 +265,8 @@ class BeatmapsetTest extends TestCase
         $beatmapset->watches()->create(['user_id' => $otherUser->getKey()]);
 
         $this->expectCountChange(fn () => $beatmapset->bssProcessQueues()->count(), $success ? 1 : 0);
-        $this->expectCountChange(fn () => UserNotification::count(), $success ? 1 : 0);
-        $this->expectCountChange(fn () => Notification::count(), $success ? 1 : 0);
         $this->expectCountChange(fn () => $beatmap->scoresBest()->count(), $success ? -1 : 0);
+        $this->assertNotificationChanges($success);
 
         $res = $beatmapset->rank();
 
@@ -228,12 +285,15 @@ class BeatmapsetTest extends TestCase
      */
     public function testRankWithOpenIssue(string $type): void
     {
-        $beatmapset = $this->beatmapsetFactory()
+        $beatmapset = $this->beatmapsetFactory()->withBeatmaps()
             ->qualified()
             ->has(BeatmapDiscussion::factory()->general()->messageType($type))->create();
 
-        $this->assertTrue($beatmapset->isQualified());
+        $this->expectCountChange(fn () => $beatmapset->bssProcessQueues()->count(), 0);
+        $this->assertNotificationChanges(false);
+
         $this->assertFalse($beatmapset->rank());
+        $this->assertFalse($beatmapset->fresh()->isRanked());
 
         Bus::assertNotDispatched(CheckBeatmapsetCovers::class);
     }
@@ -255,10 +315,9 @@ class BeatmapsetTest extends TestCase
 
         $this->assertNull(Beatmapset::withTrashed()->find($id));
     }
+    //endregion
 
-    // endregion
-
-    // region multi-playmode beatmap sets (aka hybrid)
+    //region multi-playmode beatmap sets (aka hybrid)
     public function testHybridLegacyNominate(): void
     {
         $user = User::factory()->withGroup('bng', ['osu'])->create();
@@ -270,18 +329,17 @@ class BeatmapsetTest extends TestCase
             'user_id' => User::factory()->withGroup('bng', $beatmapset->playmodesStr()),
         ]);
 
-        $notifications = Notification::count();
-        $userNotifications = UserNotification::count();
+        $beatmapset->refreshCache();
 
         $otherUser = User::factory()->create();
         $beatmapset->watches()->create(['user_id' => $otherUser->getKey()]);
 
-        $result = $beatmapset->nominate($user);
+        $this->assertNotificationChanges();
+        $this->assertNominationChanges($beatmapset);
 
-        $this->assertTrue($result['result']);
-        $this->assertSame($notifications + 1, Notification::count());
-        $this->assertSame($userNotifications + 1, UserNotification::count());
-        $this->assertTrue($beatmapset->fresh()->isPending());
+        $beatmapset->nominate($user);
+
+        $this->assertTrue($beatmapset->isPending());
     }
 
     public function testHybridLegacyQualify(): void
@@ -295,48 +353,45 @@ class BeatmapsetTest extends TestCase
             'user_id' => User::factory()->withGroup('bng', $beatmapset->playmodesStr()),
         ]);
 
+        $beatmapset->refreshCache();
+
         // fill with legacy nominations
         $count = $beatmapset->requiredNominationCount() - $beatmapset->currentNominationCount() - 1;
         for ($i = 0; $i < $count; $i++) {
             $beatmapset->nominate(User::factory()->withGroup('bng', ['osu'])->create());
         }
 
-        $notifications = Notification::count();
-        $userNotifications = UserNotification::count();
-
         $otherUser = User::factory()->create();
         $beatmapset->watches()->create(['user_id' => $otherUser->getKey()]);
 
-        $result = $beatmapset->nominate($user);
+        $this->assertNotificationChanges();
+        $this->assertNominationChanges($beatmapset);
+        $this->expectCountChange(fn () => $beatmapset->bssProcessQueues()->count(), 1);
 
-        $this->assertTrue($result['result']);
-        $this->assertSame($notifications + 1, Notification::count());
-        $this->assertSame($userNotifications + 1, UserNotification::count());
-        $this->assertTrue($beatmapset->fresh()->isQualified());
+        $beatmapset->nominate($user);
+
+        $this->assertTrue($beatmapset->isQualified());
 
         Bus::assertDispatched(CheckBeatmapsetCovers::class);
     }
 
     public function testHybridNominateWithNullPlaymode(): void
     {
-        $user = User::factory()->create();
+        $user = User::factory()->withGroup('bng', ['osu'])->create();
         $beatmapset = $this->createHybridBeatmapset();
-
-        $notifications = Notification::count();
-        $userNotifications = UserNotification::count();
-
         $otherUser = User::factory()->create();
         $beatmapset->watches()->create(['user_id' => $otherUser->getKey()]);
 
-        $result = $beatmapset->nominate($user);
+        $this->assertNotificationChanges(false);
+        $this->assertNominationChanges($beatmapset, false);
 
-        $this->assertFalse($result['result']);
-        $this->assertSame($result['message'], osu_trans('beatmapsets.nominate.hybrid_requires_modes'));
+        $this->expectExceptionCallable(
+            fn () => $beatmapset->nominate($user, []),
+            InvariantException::class,
+            osu_trans('beatmapsets.nominate.hybrid_requires_modes')
+        );
 
-        $this->assertSame($notifications, Notification::count());
-        $this->assertSame($userNotifications, UserNotification::count());
-        $this->assertTrue($beatmapset->fresh()->isPending());
-
+        $this->assertTrue($beatmapset->isPending());
         Bus::assertNotDispatched(CheckBeatmapsetCovers::class);
     }
 
@@ -344,22 +399,19 @@ class BeatmapsetTest extends TestCase
     {
         $user = User::factory()->withGroup('bng', ['osu'])->create();
         $beatmapset = $this->createHybridBeatmapset();
-
-        $notifications = Notification::count();
-        $userNotifications = UserNotification::count();
-
         $otherUser = User::factory()->create();
         $beatmapset->watches()->create(['user_id' => $otherUser->getKey()]);
 
-        $result = $beatmapset->nominate($user, ['taiko']);
+        $this->assertNotificationChanges(false);
+        $this->assertNominationChanges($beatmapset, false);
 
-        $this->assertFalse($result['result']);
-        $this->assertSame($result['message'], osu_trans('beatmapsets.nominate.incorrect_mode', ['mode' => 'taiko']));
+        $this->expectExceptionCallable(
+            fn () => $beatmapset->nominate($user, ['taiko']),
+            InvariantException::class,
+            osu_trans('beatmapsets.nominate.incorrect_mode', ['mode' => 'taiko'])
+        );
 
-        $this->assertSame($notifications, Notification::count());
-        $this->assertSame($userNotifications, UserNotification::count());
-        $this->assertTrue($beatmapset->fresh()->isPending());
-
+        $this->assertTrue($beatmapset->isPending());
         Bus::assertNotDispatched(CheckBeatmapsetCovers::class);
     }
 
@@ -367,20 +419,15 @@ class BeatmapsetTest extends TestCase
     {
         $user = User::factory()->withGroup('bng', ['osu'])->create();
         $beatmapset = $this->createHybridBeatmapset();
-
-        $notifications = Notification::count();
-        $userNotifications = UserNotification::count();
-
         $otherUser = User::factory()->create();
         $beatmapset->watches()->create(['user_id' => $otherUser->getKey()]);
 
-        $result = $beatmapset->nominate($user, ['osu']);
+        $this->assertNotificationChanges();
+        $this->assertNominationChanges($beatmapset);
 
-        $this->assertTrue($result['result']);
-        $this->assertSame($notifications + 1, Notification::count());
-        $this->assertSame($userNotifications + 1, UserNotification::count());
-        $this->assertTrue($beatmapset->fresh()->isPending());
+        $beatmapset->nominate($user, ['osu']);
 
+        $this->assertTrue($beatmapset->isPending());
         Bus::assertNotDispatched(CheckBeatmapsetCovers::class);
     }
 
@@ -389,17 +436,25 @@ class BeatmapsetTest extends TestCase
         $user = User::factory()->withGroup('bng', ['osu'])->create();
         $beatmapset = $this->createHybridBeatmapset();
 
-        $this->fillNominationsExceptLastForMode($beatmapset, 'bng', 'osu');
+        $this->fillNominationsExceptLastForMainRuleset($beatmapset, 'bng');
 
-        $result = $beatmapset->nominate(User::factory()->withGroup('bng', ['osu'])->create(), ['osu']);
-        $this->assertTrue($result['result']);
+        $beatmapset->nominate(
+            User::factory()->withGroup('bng', ['osu'])->create(),
+            ['osu']
+        );
 
-        $result = $beatmapset->fresh()->nominate($user, ['osu']);
+        $beatmapset->refreshCache();
 
-        $this->assertFalse($result['result']);
-        $this->assertSame($result['message'], osu_trans('beatmaps.nominations.too_many'));
-        $this->assertTrue($beatmapset->fresh()->isPending());
+        $this->assertNotificationChanges(false);
+        $this->assertNominationChanges($beatmapset, false);
 
+        $this->expectExceptionCallable(
+            fn () => $beatmapset->nominate($user, ['osu']),
+            InvariantException::class,
+            osu_trans('beatmaps.nominations.too_many')
+        );
+
+        $this->assertTrue($beatmapset->isPending());
         Bus::assertNotDispatched(CheckBeatmapsetCovers::class);
     }
 
@@ -407,91 +462,49 @@ class BeatmapsetTest extends TestCase
     {
         $user = User::factory()->withGroup('bng', ['osu', 'taiko'])->create();
         $beatmapset = $this->createHybridBeatmapset();
-
-        $notifications = Notification::count();
-        $userNotifications = UserNotification::count();
-
         $otherUser = User::factory()->create();
         $beatmapset->watches()->create(['user_id' => $otherUser->getKey()]);
 
-        $result = $beatmapset->nominate($user, ['osu', 'taiko']);
+        $this->assertNotificationChanges();
+        $this->assertNominationChanges($beatmapset, ['osu', 'taiko']);
 
-        $this->assertTrue($result['result']);
-        $this->assertSame($notifications + 1, Notification::count());
-        $this->assertSame($userNotifications + 1, UserNotification::count());
-        $this->assertTrue($beatmapset->fresh()->isPending());
+        $beatmapset->nominate($user, ['osu', 'taiko']);
 
+        $this->assertTrue($beatmapset->isPending());
         Bus::assertNotDispatched(CheckBeatmapsetCovers::class);
     }
 
-    public function testHybridNominationBNGQualifyingBNGNominatedPartial(): void
+    /**
+     * @dataProvider qualifyingNominationsHybridDataProvider
+     */
+    public function testQualifyingNominationsHybrid(string $initialGroup, string $qualifyingGroup, bool $success)
     {
-        $user = User::factory()->withGroup('bng_limited', ['osu', 'taiko'])->create();
+        $nominator = User::factory()->withGroup($qualifyingGroup, ['osu', 'taiko'])->create();
         $beatmapset = $this->createHybridBeatmapset();
 
-        $this->fillNominationsExceptLastForMode($beatmapset, 'bng', 'osu');
-        $this->fillNominationsExceptLastForMode($beatmapset, 'bng', 'taiko');
+        $this->fillNominationsExceptLastForMainRuleset($beatmapset, $initialGroup);
 
-        $result = $beatmapset->nominate($user, ['osu']);
+        priv_check_user($nominator, 'BeatmapsetNominate', $beatmapset)->ensureCan();
 
-        $this->assertTrue($result['result']);
-        $this->assertFalse($beatmapset->fresh()->isQualified());
+        $this->expectCountChange(fn () => $beatmapset->bssProcessQueues()->count(), $success ? 1 : 0);
 
-        Bus::assertNotDispatched(CheckBeatmapsetCovers::class);
+        $this->expectExceptionCallable(
+            fn () => $beatmapset->nominate($nominator, ['osu', 'taiko']),
+            $success ? null : InvariantException::class
+        );
+
+        $this->assertSame($success, $beatmapset->isQualified());
+
+        if ($success) {
+            Bus::assertDispatched(CheckBeatmapsetCovers::class);
+        } else {
+            Bus::assertNotDispatched(CheckBeatmapsetCovers::class);
+        }
     }
 
-    public function testHybridNominationLimitedBNGQualifyingLimitedBNGNominated(): void
-    {
-        $user = User::factory()->withGroup('bng_limited', ['osu', 'taiko'])->create();
-        $beatmapset = $this->createHybridBeatmapset();
+    //endregion
 
-        $this->fillNominationsExceptLastForMode($beatmapset, 'bng_limited', 'osu');
-        $this->fillNominationsExceptLastForMode($beatmapset, 'bng_limited', 'taiko');
-
-        $result = $beatmapset->fresh()->nominate($user, ['osu', 'taiko']);
-
-        $this->assertFalse($result['result']);
-        $this->assertSame($result['message'], osu_trans('beatmapsets.nominate.full_bn_required'));
-        $this->assertTrue($beatmapset->fresh()->isPending());
-
-        Bus::assertNotDispatched(CheckBeatmapsetCovers::class);
-    }
-
-    public function testHybridNominationLimitedBNGQualifyingBNGNominated(): void
-    {
-        $user = User::factory()->withGroup('bng', ['osu', 'taiko'])->create();
-        $beatmapset = $this->createHybridBeatmapset();
-
-        $this->fillNominationsExceptLastForMode($beatmapset, 'bng_limited', 'osu');
-        $this->fillNominationsExceptLastForMode($beatmapset, 'bng_limited', 'taiko');
-
-        $result = $beatmapset->nominate($user, ['osu', 'taiko']);
-
-        $this->assertTrue($result['result']);
-        $this->assertTrue($beatmapset->fresh()->isQualified());
-
-        Bus::assertDispatched(CheckBeatmapsetCovers::class);
-    }
-
-    public function testHybridNominationBNGQualifyingLimitedBNGNominated(): void
-    {
-        $user = User::factory()->withGroup('bng_limited', ['osu', 'taiko'])->create();
-        $beatmapset = $this->createHybridBeatmapset();
-
-        $this->fillNominationsExceptLastForMode($beatmapset, 'bng', 'osu');
-        $this->fillNominationsExceptLastForMode($beatmapset, 'bng', 'taiko');
-
-        $result = $beatmapset->nominate($user, ['osu', 'taiko']);
-
-        $this->assertTrue($result['result']);
-        $this->assertTrue($beatmapset->fresh()->isQualified());
-
-        Bus::assertDispatched(CheckBeatmapsetCovers::class);
-    }
-
-    //end region
-
-    // region disqualification
+    //region disqualification
 
     /**
      * @dataProvider disqualifyOrResetNominationsDataProvider
@@ -509,7 +522,39 @@ class BeatmapsetTest extends TestCase
         Queue::assertPushed($pushed);
     }
 
-    //end region
+    //endregion
+
+    public function testChangingOwnerDoesNotQualify()
+    {
+        $guest = User::factory()->create();
+        $bngUser1 = User::factory()->withGroup('bng', ['osu', 'taiko'])->create();
+        $bngUser2 = User::factory()->withGroup('bng', ['osu', 'taiko'])->create();
+        $bngLimitedUser = User::factory()->withGroup('bng_limited', ['osu', 'taiko'])->create();
+
+        // make taiko tha main ruleset
+        $beatmapset = $this->beatmapsetFactory()
+            ->withBeatmaps(Ruleset::taiko, 1)
+            ->withBeatmaps(Ruleset::taiko, 1)
+            ->withBeatmaps(Ruleset::osu, 1)
+            ->withBeatmaps(Ruleset::osu, 1, $guest)
+            ->create();
+
+        $this->assertSame(Ruleset::taiko, $beatmapset->mainRuleset());
+
+        // valid nomination for taiko and osu
+        $beatmapset->nominate($bngLimitedUser, ['taiko']);
+        $beatmapset->nominate($bngUser1, ['osu']);
+
+        // main ruleset should now be osu
+        $beatmapset->beatmaps()->where('playmode', Ruleset::taiko->value)->first()->setOwner($guest->getKey());
+        $this->assertSame(Ruleset::osu, $beatmapset->mainRuleset());
+
+        // nomination should not trigger qualification
+        $beatmapset->nominate($bngUser2, ['osu']);
+
+        $this->assertFalse($beatmapset->isQualified());
+        Bus::assertNotDispatched(CheckBeatmapsetCovers::class);
+    }
 
     public static function disqualifyOrResetNominationsDataProvider()
     {
@@ -527,46 +572,53 @@ class BeatmapsetTest extends TestCase
         ];
     }
 
+    public static function nominateDataProvider()
+    {
+        return [
+            'bng nominate same ruleset' => ['bng', ['osu'], Ruleset::osu, true],
+            'bng nominate different ruleset' => ['bng', ['osu'], Ruleset::taiko, false],
+            'nat defaults to all rulesets' => ['nat', [], Ruleset::osu, true],
+            'nat nominate same ruleset' => ['nat', ['osu'], Ruleset::osu, true],
+            'nat nominate different ruleset' => ['nat', ['osu'], Ruleset::taiko, false],
+        ];
+    }
+
+    public static function qualifyingNominationsDataProvider(): array
+    {
+        // existing nominations, qualifying nomination, expected
+        return [
+            'Nomination requires at least one full nominator' => ['bng_limited', 'bng_limited', false],
+
+            // limited bngs can be the qualifying nomination
+            ['bng', 'bng_limited', true],
+            ['nat', 'bng_limited', true],
+
+            ['bng_limited', 'bng', true],
+            ['bng_limited', 'nat', true],
+        ];
+    }
+
+    public static function qualifyingNominationsHybridDataProvider(): array
+    {
+        // existing nominations, qualifying nomination, expected
+        return [
+            'Nomination requires at least one full nominator' => ['bng_limited', 'bng_limited', false],
+            'Limited BNs cannot nominate the hybrid mode #1' => ['bng', 'bng_limited', false],
+            'Limited BNs cannot nominate the hybrid mode #2' => ['nat', 'bng_limited', false],
+
+            'TODO' => ['bng', 'bng_limited', false, ['osu']],
+
+            ['bng_limited', 'bng', true],
+            ['bng_limited', 'nat', true],
+        ];
+    }
+
     public static function rankWithOpenIssueDataProvider()
     {
         return [
             ['problem'],
             ['suggestion'],
         ];
-    }
-
-    private function beatmapsetFactory(): BeatmapsetFactory
-    {
-        return Beatmapset::factory()
-            ->owner()
-            ->pending()
-            ->has(Beatmap::factory()->state(fn (array $attr, Beatmapset $set) => ['user_id' => $set->user_id]));
-    }
-
-    private function createHybridBeatmapset($rulesets = [Ruleset::osu, Ruleset::taiko]): Beatmapset
-    {
-        $beatmapset = Beatmapset::factory()
-            ->owner()
-            ->pending();
-
-        foreach ($rulesets as $ruleset) {
-            $beatmapset = $beatmapset->has(
-                Beatmap::factory()->state(fn (array $attr, Beatmapset $set) => [
-                    'playmode' => $ruleset->value,
-                    'user_id' => $set->user_id,
-                ])
-            );
-        }
-
-        return $beatmapset->create();
-    }
-
-    private function fillNominationsExceptLastForMode(Beatmapset $beatmapset, string $group, string $playmode): void
-    {
-        $count = $beatmapset->requiredNominationCount()[$playmode] - $beatmapset->currentNominationCount()[$playmode] - 1;
-        for ($i = 0; $i < $count; $i++) {
-            $beatmapset->nominate(User::factory()->withGroup($group, [$playmode])->create(), [$playmode]);
-        }
     }
 
     protected function setUp(): void
@@ -577,5 +629,47 @@ class BeatmapsetTest extends TestCase
         Language::factory()->create(['language_id' => Language::UNSPECIFIED]);
 
         Bus::fake([CheckBeatmapsetCovers::class]);
+    }
+
+    private function beatmapsetFactory(): BeatmapsetFactory
+    {
+        // otherwise they start as null without refresh.
+        return Beatmapset::factory()->owner()->pending()->state(['nominations' => 0]);
+    }
+
+    private function createHybridBeatmapset($rulesets = [Ruleset::osu, Ruleset::taiko]): Beatmapset
+    {
+        $beatmapset = $this->beatmapsetFactory();
+
+        foreach ($rulesets as $ruleset) {
+            $beatmapset = $beatmapset->withBeatmaps($ruleset);
+        }
+
+        return $beatmapset->create();
+    }
+
+    private function fillNominationsExceptLastForMainRuleset(Beatmapset $beatmapset, string $group): void
+    {
+        $mode = $beatmapset->mainRuleset()->legacyName();
+        $count = $beatmapset->requiredNominationCount()[$mode] - 1;
+        for ($i = 0; $i < $count; $i++) {
+            $beatmapset->nominate(User::factory()->withGroup($group, [$mode])->create(), [$mode]);
+        }
+    }
+
+    private function assertNominationChanges(Beatmapset $beatmapset, bool|array $success = true, $modes = null)
+    {
+        $count = is_array($success)
+            ? count($success)
+            : ($success ? 1 : 0);
+
+        $this->expectCountChange(fn () => $beatmapset->nominations, $count, 'nominations');
+        $this->expectCountChange(fn () => $beatmapset->beatmapsetNominations()->current()->count(), $success ? 1 : 0, 'nominations count');
+    }
+
+    private function assertNotificationChanges(bool $success = true)
+    {
+        $this->expectCountChange(fn () => Notification::count(), $success ? 1 : 0, 'Notification count');
+        $this->expectCountChange(fn () => UserNotification::count(), $success ? 1 : 0, 'UserNotification count');
     }
 }

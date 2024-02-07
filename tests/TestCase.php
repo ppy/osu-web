@@ -256,6 +256,30 @@ class TestCase extends BaseTestCase
         ];
     }
 
+    protected function expectExceptionCallable(callable $callable, ?string $exceptionClass, ?string $exceptionMessage = null, ?callable $catchCleanup = null)
+    {
+        try {
+            $callable();
+        } catch (\Throwable $e) {
+            $this->assertSame($exceptionClass, $e::class);
+
+            if ($exceptionMessage !== null) {
+                $this->assertSame($exceptionMessage, $e->getMessage());
+            }
+
+            if ($catchCleanup !== null) {
+                $catchCleanup();
+            }
+
+            return;
+        }
+
+        // trigger fail if expecting exception but doesn't fail.
+        if ($exceptionClass !== null) {
+            static::fail("Did not throw expected {$exceptionClass}");
+        }
+    }
+
     protected function inReceivers(Model $model, NewPrivateNotificationEvent|BroadcastNotificationBase $obj): bool
     {
         return in_array($model->getKey(), $obj->getReceiverIds(), true);
