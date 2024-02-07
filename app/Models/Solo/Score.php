@@ -301,6 +301,11 @@ class Score extends Model implements Traits\ReportableInterface
                 return false;
             }
 
+            $totalHits = $hits + $statistics->meh + $statistics->ok + $statistics->miss;
+            if ($statistics->good / $totalHits >= 0.1) {
+                return false;
+            }
+
             return true;
         }
 
