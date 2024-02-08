@@ -45,8 +45,8 @@ class UsersControllerTest extends TestCase
                     'password' => 'hunter22',
                 ],
             ], [
-                'HTTP_USER_AGENT' => $GLOBALS['cfg']['osu']['client']['user_agent'],
-                'HTTP_ACCEPT_LANGUAGE' => $locale,
+                'accept-language' => $locale,
+                'user-agent' => $GLOBALS['cfg']['osu']['client']['user_agent'],
             ])->assertJsonFragment([
                 'username' => 'user1',
                 'country_code' => Country::UNKNOWN,
