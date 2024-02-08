@@ -7,13 +7,13 @@ namespace Tests\Controllers;
 
 use App\Libraries\User\CountryChangeTarget;
 use App\Models\Beatmap;
+use App\Models\ReplayViewCount;
 use App\Models\Score\Best\Osu;
 use App\Models\Solo\Score as SoloScore;
 use App\Models\User;
 use App\Models\UserCountryHistory;
 use App\Models\UserReplaysWatchedCount;
 use App\Models\UserStatistics;
-use App\Models\ReplayViewCount;
 use Illuminate\Filesystem\Filesystem;
 use Storage;
 use Tests\TestCase;

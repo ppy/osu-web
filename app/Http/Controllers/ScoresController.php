@@ -62,7 +62,7 @@ class ScoresController extends Controller
         ];
 
 
-        if (Auth::user()->user_id != $score->user->user_id) {
+        if (Auth::user()->user_id !== $score->user->user_id) {
             $score->user->statistics($ruleset, true)->increment('replay_popularity');
 
             $currentMonth = UserCountryHistory::formatDate(CountryChangeTarget::currentMonth());
