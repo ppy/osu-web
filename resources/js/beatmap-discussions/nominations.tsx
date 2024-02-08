@@ -278,7 +278,7 @@ export class Nominations extends React.Component<Props> {
     return { discussion, link, message, user };
   }
 
-  private readonly pendingProblemsOnClick = (event: React.SyntheticEvent<HTMLElement>) => {
+  private readonly handlePendingProblemsClick = (event: React.SyntheticEvent<HTMLElement>) => {
     event.preventDefault();
     this.props.discussionsState.changeFilter('pending');
   };
@@ -677,7 +677,7 @@ export class Nominations extends React.Component<Props> {
                         filter: 'pending',
                         mode: this.props.discussionsState.currentPage,
                       })}
-                      onClick={this.pendingProblemsOnClick}
+                      onClick={this.handlePendingProblemsClick}
                     >
                       {trans('beatmaps.nominations.rank_estimate.problems')}
                     </a>,
