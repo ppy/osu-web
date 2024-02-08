@@ -68,8 +68,7 @@ class ScoresController extends Controller
             $currentMonth = UserCountryHistory::formatDate(CountryChangeTarget::currentMonth());
             $score->user->replaysWatchedCounts->where('year_month', $currentMonth)->first()->increment('count');
 
-            if ($score instanceof ScoreBest)
-            {
+            if ($score instanceof ScoreBest) {
                 $score->replayViewCount()->increment('play_count');
             }
         }
