@@ -247,6 +247,11 @@ export class Nominations extends React.Component<Props> {
     }
   };
 
+  private readonly handlePendingProblemsClick = (event: React.SyntheticEvent<HTMLElement>) => {
+    event.preventDefault();
+    this.props.discussionsState.changeFilter('pending');
+  };
+
   @action
   private readonly handleToggleBeatmapsOwnerEditor = () => {
     this.showBeatmapsOwnerEditor = !this.showBeatmapsOwnerEditor;
@@ -277,11 +282,6 @@ export class Nominations extends React.Component<Props> {
 
     return { discussion, link, message, user };
   }
-
-  private readonly handlePendingProblemsClick = (event: React.SyntheticEvent<HTMLElement>) => {
-    event.preventDefault();
-    this.props.discussionsState.changeFilter('pending');
-  };
 
   @action
   private readonly removeFromLoved = () => {
