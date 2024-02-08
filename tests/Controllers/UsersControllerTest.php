@@ -33,6 +33,10 @@ class UsersControllerTest extends TestCase
     {
         $previousCount = User::count();
 
+        $locale = array_rand_val($GLOBALS['cfg']['app']['available_locales']);
+        \App::setLocale($locale);
+
+        $this->expectCountChange(fn () => User::count(), 1);
         $this
             ->json('POST', route('users.store'), [
                 'user' => [
@@ -42,12 +46,14 @@ class UsersControllerTest extends TestCase
                 ],
             ], [
                 'HTTP_USER_AGENT' => $GLOBALS['cfg']['osu']['client']['user_agent'],
+                'HTTP_ACCEPT_LANGUAGE' => $locale,
             ])->assertJsonFragment([
                 'username' => 'user1',
                 'country_code' => Country::UNKNOWN,
             ]);
 
-        $this->assertSame($previousCount + 1, User::count());
+        $user = User::where('username', 'user1')->first();
+        $this->assertSame($locale, $user->user_lang);
     }
 
     public function testStoreRegModeWebOnly()
