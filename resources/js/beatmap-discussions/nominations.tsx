@@ -667,7 +667,7 @@ export class Nominations extends React.Component<Props> {
               pattern={trans('beatmaps.nominations.rank_estimate._')}
             />
             {this.props.discussionsState.discussionsByFilter.pending.length > 0 ?
-              <h5>
+              <div className={`${bn}__problems`}>
                 <StringWithComponent
                   mappings={{
                     problems: <a
@@ -684,7 +684,7 @@ export class Nominations extends React.Component<Props> {
                   }}
                   pattern={trans('beatmaps.nominations.rank_estimate.unresolved_problems')}
                 />
-              </h5>
+              </div>
               : <></>
             }
           </>
