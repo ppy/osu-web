@@ -39,21 +39,6 @@ class BeatmapsController extends Controller
         }
     }
 
-    private static function baseScoreQuery(Beatmap $beatmap, $mode, $mods, $type = null)
-    {
-        $query = BestModel::getClass($mode)
-            ::default()
-            ->where('beatmap_id', $beatmap->getKey())
-            ->with(['beatmap', 'user.country', 'user.userProfileCustomization'])
-            ->withMods($mods);
-
-        if ($type !== null) {
-            $query->withType($type, ['user' => auth()->user()]);
-        }
-
-        return $query;
-    }
-
     private static function beatmapScores(string $id, ?string $scoreTransformerType, ?bool $isLegacy): array
     {
         $beatmap = Beatmap::findOrFail($id);
