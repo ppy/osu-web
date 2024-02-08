@@ -27,8 +27,14 @@ class NominateBeatmapset
     public function __construct(private Beatmapset $beatmapset, private User $user, array $playmodes)
     {
         $this->beatmapRulesets = new Set(array_map(fn ($playmode) => Ruleset::from($playmode), $beatmapset->playmodes()->toArray()));
-        $this->nominatedRulesets = new Set(array_map(fn ($playmode) => Ruleset::tryFromName($playmode), $playmodes));
+        $this->nominatedRulesets = new Set(Ruleset::tryFromNames($playmodes));
     }
+
+    private static function nominationCount(array $nominationsByType, string $type, ?string $mode): int
+    {
+        return count(array_filter($nominationsByType[$type], fn ($item) => $item === $mode));
+    }
+
 
     public function handle()
     {
@@ -38,48 +44,19 @@ class NominateBeatmapset
 
         $this->isLegacyNominationMode = $this->beatmapset->isLegacyNominationMode();
 
-        $playmodes = [];
-
         if ($this->isLegacyNominationMode) {
-            $this->nominateLegacy($this->user);
+            $eventParams = $this->nominateLegacy();
         } else {
-            $rulesets = $this->beatmapRulesets->intersect($this->nominatedRulesets);
-            if ($rulesets->count() === 0) {
-                throw new InvariantException(osu_trans('beatmapsets.nominate.hybrid_requires_modes'));
-            }
-
-            // for the event
-            $playmodes = array_map(fn ($ruleset) => $ruleset->legacyName(), $rulesets->toArray());
-
-            foreach ($rulesets as $ruleset) {
-                $name = $ruleset->legacyName();
-                if (!$this->user->isFullBN($name) && !$this->user->isNAT($name)) {
-                    if (!$this->user->isLimitedBN($name)) {
-                        throw new InvariantException(osu_trans('beatmapsets.nominate.incorrect_mode', ['mode' => $name]));
-                    }
-
-                    if ($this->beatmapset->requiresFullBNNomination($name)) {
-                        throw new InvariantException(osu_trans('beatmapsets.nominate.full_bn_required'));
-                    }
-                }
-            }
+            $eventParams = $this->nominateRulesets();
         }
 
         $nomination = $this->beatmapset->beatmapsetNominations()->current()->where('user_id', $this->user->getKey());
         if (!$nomination->exists()) {
-            $this->beatmapset->getConnection()->transaction(function () use ($playmodes) {
-                $eventParams = [
-                    'type' => BeatmapsetEvent::NOMINATE,
-                    'user_id' => $this->user->getKey(),
-                ];
-                if (!$this->isLegacyNominationMode) {
-                    $eventParams['comment'] = ['modes' => $playmodes];
-                }
-
+            $this->beatmapset->getConnection()->transaction(function () use ($eventParams) {
                 $event = $this->beatmapset->events()->create($eventParams);
                 $this->beatmapset->beatmapsetNominations()->create([
                     'event_id' => $event->getKey(),
-                    'modes' => $this->isLegacyNominationMode ? null : $playmodes,
+                    'modes' => $eventParams['comment']['modes'] ?? null,
                     'user_id' => $this->user->getKey(),
                 ]);
 
@@ -95,7 +72,7 @@ class NominateBeatmapset
         $this->beatmapset->refreshCache();
     }
 
-    private function assertValidState()
+    private function assertValidState(): void
     {
         if (!$this->beatmapset->isPending()) {
             throw new InvariantException(osu_trans('beatmaps.nominations.incorrect_state'));
@@ -111,7 +88,7 @@ class NominateBeatmapset
         }
     }
 
-    private function nominateLegacy(User $user)
+    private function nominateLegacy(): array
     {
         // in legacy mode, we check if a user can nominate for _any_ of the beatmapset's playmodes
         $canNominate = false;
@@ -119,11 +96,11 @@ class NominateBeatmapset
         $playmodesStr = $this->beatmapset->playmodesStr();
 
         foreach ($playmodesStr as $mode) {
-            if ($user->isFullBN($mode) || $user->isNAT($mode)) {
+            if ($this->user->isFullBN($mode) || $this->user->isNAT($mode)) {
                 $canNominate = true;
                 $canFullNominate = true;
                 break;
-            } else if ($user->isLimitedBN($mode)) {
+            } else if ($this->user->isLimitedBN($mode)) {
                 $canNominate = true;
                 break;
             }
@@ -136,22 +113,54 @@ class NominateBeatmapset
         if (!$canFullNominate && $this->beatmapset->requiresFullBNNomination()) {
             throw new InvariantException(osu_trans('beatmapsets.nominate.full_bn_required'));
         }
+
+        return [
+            'type' => BeatmapsetEvent::NOMINATE,
+            'user_id' => $this->user->getKey(),
+        ];
     }
 
-    private function shouldQualify()
+    private function nominateRulesets(): array
+    {
+        $rulesets = $this->beatmapRulesets->intersect($this->nominatedRulesets);
+        if ($rulesets->count() === 0) {
+            throw new InvariantException(osu_trans('beatmapsets.nominate.hybrid_requires_modes'));
+        }
+
+        foreach ($rulesets as $ruleset) {
+            $name = $ruleset->legacyName();
+            if (!$this->user->isFullBN($name) && !$this->user->isNAT($name)) {
+                if (!$this->user->isLimitedBN($name)) {
+                    throw new InvariantException(osu_trans('beatmapsets.nominate.incorrect_mode', ['mode' => $name]));
+                }
+
+                if ($this->beatmapset->requiresFullBNNomination($name)) {
+                    throw new InvariantException(osu_trans('beatmapsets.nominate.full_bn_required'));
+                }
+            }
+        }
+
+        return [
+            'comment' => ['modes' => array_map(fn ($ruleset) => $ruleset->legacyName(), $rulesets->toArray())],
+            'type' => BeatmapsetEvent::NOMINATE,
+            'user_id' => $this->user->getKey(),
+        ];
+    }
+
+    private function shouldQualify(): bool
     {
         $nominationsByType = $this->beatmapset->nominationsByType();
         $requiredNominations = $this->beatmapset->requiredNominationCount();
 
         if ($this->isLegacyNominationMode) {
-            return count(array_filter($nominationsByType['full'], fn ($item) => $item === null))
-                + count(array_filter($nominationsByType['limited'], fn ($item) => $item === null))
+            return static::nominationCount($nominationsByType, 'full', null)
+                + static::nominationCount($nominationsByType, 'limited', null)
                 >= $requiredNominations;
         } else {
             $modesSatisfied = 0;
             foreach ($requiredNominations as $mode => $count) {
-                $fullNominations = count(array_filter($nominationsByType['full'], fn ($item) => $item === $mode));
-                $limitedNominations = count(array_filter($nominationsByType['limited'], fn ($item) => $item === $mode));
+                $fullNominations = static::nominationCount($nominationsByType, 'full', $mode);
+                $limitedNominations = static::nominationCount($nominationsByType, 'limited', $mode);
                 $totalNominations = $fullNominations + $limitedNominations;
 
                 if ($fullNominations === 0) {

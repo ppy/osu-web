@@ -35,6 +35,14 @@ enum Ruleset: int
         return $lookupMap[$ruleset] ?? null;
     }
 
+    /**
+     * @return (static|null)[]
+     */
+    public static function tryFromNames(array $array): array
+    {
+        return array_map(fn ($item) => static::tryFromName($item), $array);
+    }
+
     public function legacyName()
     {
         return $this === self::catch

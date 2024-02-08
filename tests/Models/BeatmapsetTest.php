@@ -606,8 +606,6 @@ class BeatmapsetTest extends TestCase
             'Limited BNs cannot nominate the hybrid mode #1' => ['bng', 'bng_limited', false],
             'Limited BNs cannot nominate the hybrid mode #2' => ['nat', 'bng_limited', false],
 
-            'TODO' => ['bng', 'bng_limited', false, ['osu']],
-
             ['bng_limited', 'bng', true],
             ['bng_limited', 'nat', true],
         ];

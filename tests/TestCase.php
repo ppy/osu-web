@@ -256,7 +256,7 @@ class TestCase extends BaseTestCase
         ];
     }
 
-    protected function expectExceptionCallable(callable $callable, ?string $exceptionClass, ?string $exceptionMessage = null, ?callable $catchCleanup = null)
+    protected function expectExceptionCallable(callable $callable, ?string $exceptionClass, ?string $exceptionMessage = null)
     {
         try {
             $callable();
@@ -265,10 +265,6 @@ class TestCase extends BaseTestCase
 
             if ($exceptionMessage !== null) {
                 $this->assertSame($exceptionMessage, $e->getMessage());
-            }
-
-            if ($catchCleanup !== null) {
-                $catchCleanup();
             }
 
             return;
