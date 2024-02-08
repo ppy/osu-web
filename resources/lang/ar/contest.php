@@ -13,7 +13,28 @@ return [
         'nav_title' => 'الجدولة',
     ],
 
+    'judge' => [
+        'hide_judged' => '',
+        'nav_title' => '',
+        'no_current_vote' => '',
+        'update' => '',
+        'validation' => [
+            'missing_score' => '',
+            'contest_vote_judged' => '',
+        ],
+        'voted' => '',
+    ],
+
+    'judge_results' => [
+        '_' => '',
+        'creator' => '',
+        'score' => '',
+        'total_score' => '',
+    ],
+
     'voting' => [
+        'judge_link' => '',
+        'judged_notice' => '',
         'login_required' => 'يرجى تسجيل الدخول للتصويت.',
         'over' => 'لقد انتهى التصويت لهذه المسابقة',
         'show_voted_only' => 'إظهار التصويت',
@@ -38,6 +59,7 @@ return [
             ],
         ],
     ],
+
     'entry' => [
         '_' => 'مشاركة',
         'login_required' => 'الرجاء تسجيل الدخول للمشاركة في المسابقة.',
@@ -45,22 +67,27 @@ return [
         'preparation' => 'نحن نقوم حاليا بإعداد هذه المسابقة. الرجاء الانتظار بصبر!',
         'drop_here' => 'ضع مشاركتك هنا',
         'download' => 'تحميل .osz',
+
         'wrong_type' => [
             'art' => 'تُقبل ملفات.jpg و.png فقط لهذه المسابقة.',
             'beatmap' => 'تُقبل ملفات .osu فقط لهذه المسابقة.',
             'music' => 'تُقبل ملفات .mp3 فقط لهذه المسابقة.',
         ],
+
         'wrong_dimensions' => 'مشاركات هذه المسابقة يجب ان تكون :widthx:height',
         'too_big' => 'مشاركات هذه المسابقة يمكن ان تصل الى :limit.',
     ],
+
     'beatmaps' => [
         'download' => 'تحميل المشاركة',
     ],
+
     'vote' => [
         'list' => 'الأصوات',
         'count' => ':count_delimited تصويت|:count_delimited الاصوات',
         'points' => ':count_delimited نقطة|:count_delimited نقاط',
     ],
+
     'dates' => [
         'ended' => 'انتهت :date',
         'ended_no_date' => 'انتهت',
@@ -70,6 +97,7 @@ return [
             'soon' => 'قريبا™',
         ],
     ],
+
     'states' => [
         'entry' => 'المشاركة مفتوحة',
         'voting' => 'بدأ التصويت',

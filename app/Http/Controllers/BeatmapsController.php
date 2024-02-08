@@ -15,7 +15,6 @@ use App\Libraries\Search\ScoreSearch;
 use App\Libraries\Search\ScoreSearchParams;
 use App\Models\Beatmap;
 use App\Models\BeatmapsetEvent;
-use App\Models\Score\Best\Model as BestModel;
 use App\Models\User;
 use App\Transformers\BeatmapTransformer;
 use App\Transformers\ScoreTransformer;
@@ -44,21 +43,6 @@ class BeatmapsController extends Controller
         if (!empty($mods) && !is_api_request() && !$isSupporter) {
             throw new InvariantException(osu_trans('errors.supporter_only'));
         }
-    }
-
-    private static function baseScoreQuery(Beatmap $beatmap, $mode, $mods, $type = null)
-    {
-        $query = BestModel::getClass($mode)
-            ::default()
-            ->where('beatmap_id', $beatmap->getKey())
-            ->with(['beatmap', 'user.country', 'user.userProfileCustomization'])
-            ->withMods($mods);
-
-        if ($type !== null) {
-            $query->withType($type, ['user' => auth()->user()]);
-        }
-
-        return $query;
     }
 
     private static function beatmapScores(string $id, ?string $scoreTransformerType, ?bool $isLegacy): array

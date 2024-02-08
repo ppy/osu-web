@@ -5,6 +5,7 @@
 
 return [
     'show' => [
+        'non_preserved' => '',
         'title' => ':username en :title [:version]',
 
         'beatmap' => [
@@ -25,6 +26,7 @@ return [
     'status' => [
         'non_best' => 'Solo las mejores puntuaciones personales otorgan pp',
         'non_passing' => 'Solo las puntuaciones aprobadas dan pp',
+        'no_pp' => '',
         'processing' => 'Esta puntuación aún se está calculando y se mostrará pronto',
     ],
 ];

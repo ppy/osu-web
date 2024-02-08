@@ -11,7 +11,7 @@ return [
     'unknown' => 'Une erreur inconnue est survenue.',
 
     'codes' => [
-        'http-401' => 'Merci de vous connecter pour continuer.',
+        'http-401' => 'Veuillez vous connecter pour continuer.',
         'http-403' => 'Accès refusé.',
         'http-404' => 'Introuvable.',
         'http-429' => 'Trop de tentatives ! Réessayez plus tard.',
@@ -23,14 +23,14 @@ return [
     ],
     'beatmaps' => [
         'invalid_mode' => 'Mode spécifié invalide.',
-        'standard_converts_only' => 'Aucun score n\'est disponible pour le mode sélectionné sur cette difficulté de beatmap.',
+        'standard_converts_only' => 'Aucun score n\'est disponible pour le mode sélectionné sur cette difficulté.',
     ],
     'checkout' => [
         'generic' => 'Une erreur s’est produite lors de votre achat.',
     ],
     'search' => [
         'default' => 'Impossible d\'obtenir des résultats, réessayez plus tard.',
-        'invalid_cursor_exception' => 'Paramètre de curseur non valide spécifié.',
+        'invalid_cursor_exception' => 'Paramètre de curseur invalide spécifié.',
         'operation_timeout_exception' => 'La recherche est actuellement plus chargée que d\'habitude, réessayez plus tard.',
     ],
 ];

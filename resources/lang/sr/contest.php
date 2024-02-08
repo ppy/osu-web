@@ -13,7 +13,28 @@ return [
         'nav_title' => 'листинг',
     ],
 
+    'judge' => [
+        'hide_judged' => '',
+        'nav_title' => '',
+        'no_current_vote' => '',
+        'update' => '',
+        'validation' => [
+            'missing_score' => '',
+            'contest_vote_judged' => '',
+        ],
+        'voted' => '',
+    ],
+
+    'judge_results' => [
+        '_' => '',
+        'creator' => '',
+        'score' => '',
+        'total_score' => '',
+    ],
+
     'voting' => [
+        'judge_link' => '',
+        'judged_notice' => '',
         'login_required' => 'Молимо Вас да се пријавите како би сте гласали.',
         'over' => 'Гласање за ово такмичење се завршило',
         'show_voted_only' => 'Покажите гласове',
@@ -38,6 +59,7 @@ return [
             ],
         ],
     ],
+
     'entry' => [
         '_' => 'пријава',
         'login_required' => 'Молимо Вас да се пријавите да би сте гласали.',
@@ -45,22 +67,27 @@ return [
         'preparation' => 'Тренутно припремамо ово такмичење. Молимо Вас да будете стрпљиви!',
         'drop_here' => 'Превуците овде вашу пријаву',
         'download' => 'Преузмите .osz',
+
         'wrong_type' => [
             'art' => 'Само .jpg и .png су дозвољени за ово такмичење.',
             'beatmap' => 'Само .osu фајлови су дозвољени за ово такмичење.',
             'music' => 'Само .mp3 фајлови су дозвољени за ово такмичење.',
         ],
+
         'wrong_dimensions' => 'Пријаве за ово такмичење морају бити :widthx:height',
         'too_big' => 'Број пријава за ово такмичење може бити до :limit.',
     ],
+
     'beatmaps' => [
         'download' => 'Преузмите Пријаву',
     ],
+
     'vote' => [
         'list' => 'гласови',
         'count' => ':count_delimited глас|:count_delimited гласова',
         'points' => ':count_delimited поен|:count_delimited поени',
     ],
+
     'dates' => [
         'ended' => 'Завршено :date',
         'ended_no_date' => 'Завршено',
@@ -70,6 +97,7 @@ return [
             'soon' => 'ускоро™',
         ],
     ],
+
     'states' => [
         'entry' => 'Пријаве су отворене',
         'voting' => 'Гласање је почело',

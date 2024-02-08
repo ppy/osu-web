@@ -63,8 +63,12 @@ return [
         'comments_controller' => [
             '_' => 'mga komento',
         ],
+        'contest_entries_controller' => [
+            'judge_results' => '',
+        ],
         'contests_controller' => [
             '_' => 'mga paligsahan',
+            'judge' => '',
         ],
         'groups_controller' => [
             'show' => 'mga grupo',

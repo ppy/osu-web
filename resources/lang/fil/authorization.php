@@ -81,6 +81,7 @@ return [
     ],
 
     'contest' => [
+        'judging_not_active' => '',
         'voting_over' => 'Hindi mo maaaring baguhin ang iyong boto pagkatapos ng panahon ng pagboto para sa paligsahang ito ay natapos na.',
 
         'entry' => [
@@ -172,6 +173,7 @@ return [
     'score' => [
         'pin' => [
             'disabled_type' => "",
+            'failed' => "",
             'not_owner' => 'Tanging ang may-ari ng iskor ang maaaring mag-pin ng iskor.',
             'too_many' => 'Nag-pin ng masyadong maraming mga iskor.',
         ],

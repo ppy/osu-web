@@ -50,8 +50,8 @@ return [
     'own_clients' => [
         'confirm_delete' => 'Haluatko varmasti poistaa tämän clientin?',
         'confirm_reset' => 'Haluatko varmasti nollata clientin salaisuuden? Tämä kumoaa kaikki olemassa olevat tokenit.',
-        'new' => 'Uusi OAuth-Sovellus',
-        'none' => 'Ei clienttejä',
+        'new' => 'Uusi OAuth-sovellus',
+        'none' => 'Ei asiakasohjelmia',
 
         'revoked' => [
             'false' => 'Poista',

@@ -81,6 +81,7 @@ return [
     ],
 
     'contest' => [
+        'judging_not_active' => '',
         'voting_over' => 'Bạn không thể đổi phiếu bầu sau khi giai đoạn bầu chọn của cuộc thi này kết thúc.',
 
         'entry' => [
@@ -172,6 +173,7 @@ return [
     'score' => [
         'pin' => [
             'disabled_type' => "Không thể ghim điểm này",
+            'failed' => "",
             'not_owner' => 'Chỉ có người sở hữu có thể ghim điểm.',
             'too_many' => 'Ghim quá nhiều điểm.',
         ],

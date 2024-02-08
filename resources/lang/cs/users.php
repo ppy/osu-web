@@ -274,7 +274,7 @@ return [
                     'count_label' => 'Her',
                 ],
                 'most_played' => [
-                    'count' => 'odehraný čas',
+                    'count' => 'počet zahrání',
                     'title' => 'Nejhranější mapy',
                 ],
                 'recent_plays' => [

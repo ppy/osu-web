@@ -112,6 +112,7 @@ return [
         'legal' => [
             '_' => '法律 & 状态',
             'copyright' => '版权（DMCA）',
+            'jp_sctl' => '',
             'privacy' => '隐私政策',
             'server_status' => '服务器状态',
             'source_code' => '源代码',
@@ -195,6 +196,8 @@ return [
             'account-edit' => '设置',
             'follows' => '订阅',
             'friends' => '好友',
+            'legacy_score_only_toggle' => '',
+            'legacy_score_only_toggle_tooltip' => '',
             'logout' => '登出',
             'profile' => '资料',
         ],

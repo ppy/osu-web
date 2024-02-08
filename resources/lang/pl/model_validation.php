@@ -110,7 +110,7 @@ return [
     ],
 
     'legacy_api_key' => [
-        'exists' => 'Posiadanie kilku kluczy API przez jednego użytkownika jest obecnie niedozwolone.',
+        'exists' => 'Nie możesz aktualnie posiadać więcej niż jeden klucz API.',
 
         'attributes' => [
             'api_key' => 'klucz api',
