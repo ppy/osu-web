@@ -980,6 +980,7 @@ class UsersController extends Controller
         $country = Country::find($countryCode);
         $params['user_ip'] = $ip;
         $params['country_acronym'] = $country === null ? '' : $country->getKey();
+        $params['user_lang'] = \App::getLocale();
 
         $registration = new UserRegistration($params);
 
