@@ -5,11 +5,15 @@
 
 namespace Tests\Controllers;
 
+use App\Libraries\User\CountryChangeTarget;
 use App\Models\Beatmap;
 use App\Models\Score\Best\Osu;
 use App\Models\Solo\Score as SoloScore;
 use App\Models\User;
+use App\Models\UserCountryHistory;
+use App\Models\UserReplaysWatchedCount;
 use App\Models\UserStatistics;
+use App\Models\ReplayViewCount;
 use Illuminate\Filesystem\Filesystem;
 use Storage;
 use Tests\TestCase;
@@ -18,8 +22,9 @@ class ScoresControllerTest extends TestCase
 {
     private $score;
     private $user;
+    private $otherUser;
 
-    public function testDownload()
+    public function testDownloadSameUser()
     {
         $this
             ->actingAs($this->user)
@@ -30,10 +35,15 @@ class ScoresControllerTest extends TestCase
             )
             ->assertSuccessful();
 
-        $this->assertEquals(1, $this->score->user->statistics($this->score->getMode())->replay_popularity);
+        $this->assertEquals(0, $this->score->user->statistics($this->score->getMode())->replay_popularity);
+
+        $currentMonth = UserCountryHistory::formatDate(CountryChangeTarget::currentMonth());
+        $this->assertEquals(0, $this->score->user->replaysWatchedCounts->where('year_month', $currentMonth)->first()->count);
+
+        $this->assertEquals(0, $this->score->replayViewCount()->first()->play_count);
     }
 
-    public function testDownloadSoloScore()
+    public function testDownloadSoloScoreSameUser()
     {
         $soloScore = SoloScore::factory()
             ->create([
@@ -51,7 +61,53 @@ class ScoresControllerTest extends TestCase
             )
             ->assertSuccessful();
 
+        $this->assertEquals(0, $this->score->user->statistics($this->score->getMode())->replay_popularity);
+
+        $currentMonth = UserCountryHistory::formatDate(CountryChangeTarget::currentMonth());
+        $this->assertEquals(0, $this->score->user->replaysWatchedCounts->where('year_month', $currentMonth)->first()->count);
+    }
+
+    public function testDownload()
+    {
+        $this
+            ->actingAs($this->otherUser)
+            ->withHeaders(['HTTP_REFERER' => $GLOBALS['cfg']['app']['url'].'/'])
+            ->json(
+                'GET',
+                route('scores.download-legacy', $this->params())
+            )
+            ->assertSuccessful();
+
         $this->assertEquals(1, $this->score->user->statistics($this->score->getMode())->replay_popularity);
+
+        $currentMonth = UserCountryHistory::formatDate(CountryChangeTarget::currentMonth());
+        $this->assertEquals(1, $this->score->user->replaysWatchedCounts->where('year_month', $currentMonth)->first()->count);
+
+        $this->assertEquals(1, $this->score->replayViewCount()->first()->play_count);
+    }
+
+    public function testDownloadSoloScore()
+    {
+        $soloScore = SoloScore::factory()
+            ->create([
+                'legacy_score_id' => $this->score->getKey(),
+                'ruleset_id' => Beatmap::MODES[$this->score->getMode()],
+                'has_replay' => true,
+            ]);
+
+        $this
+            ->actingAs($this->otherUser)
+            ->withHeaders(['HTTP_REFERER' => $GLOBALS['cfg']['app']['url'].'/'])
+            ->json(
+                'GET',
+                route('scores.download', $soloScore)
+            )
+            ->assertSuccessful();
+
+        $this->assertEquals(1, $this->score->user->statistics($this->score->getMode())->replay_popularity);
+
+        $currentMonth = UserCountryHistory::formatDate(CountryChangeTarget::currentMonth());
+        $this->assertEquals(1, $this->score->user->replaysWatchedCounts->where('year_month', $currentMonth)->first()->count);
     }
 
     public function testDownloadDeletedBeatmap()
@@ -142,8 +198,15 @@ class ScoresControllerTest extends TestCase
         });
 
         $this->user = User::factory()->create();
+        $this->otherUser = User::factory()->create();
+
         UserStatistics\Osu::factory()->create(['user_id' => $this->user->user_id]);
         $this->score = Osu::factory()->withReplay()->create(['user_id' => $this->user->user_id]);
+
+        $currentMonth = UserCountryHistory::formatDate(CountryChangeTarget::currentMonth());
+        UserReplaysWatchedCount::create(['user_id' => $this->user->user_id, 'year_month' => $currentMonth, 'count' => 0]);
+
+        ReplayViewCount\Osu::create(['play_count' => 0, 'score_id' => $this->score->score_id]);
     }
 
     private function params()

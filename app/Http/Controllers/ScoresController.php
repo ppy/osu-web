@@ -6,10 +6,13 @@
 namespace App\Http\Controllers;
 
 use App\Enums\Ruleset;
+use App\Libraries\User\CountryChangeTarget;
 use App\Models\Score\Best\Model as ScoreBest;
 use App\Models\Solo\Score as SoloScore;
+use App\Models\UserCountryHistory;
 use App\Transformers\ScoreTransformer;
 use App\Transformers\UserCompactTransformer;
+use Auth;
 
 class ScoresController extends Controller
 {
@@ -58,7 +61,18 @@ class ScoresController extends Controller
             'Content-Type' => 'application/x-osu-replay',
         ];
 
-        $score->user->statistics($ruleset, true)->increment('replay_popularity');
+
+        if (Auth::user()->user_id != $score->user->user_id) {
+            $score->user->statistics($ruleset, true)->increment('replay_popularity');
+
+            $currentMonth = UserCountryHistory::formatDate(CountryChangeTarget::currentMonth());
+            $score->user->replaysWatchedCounts->where('year_month', $currentMonth)->first()->increment('count');
+
+            if ($score instanceof ScoreBest)
+            {
+                $score->replayViewCount()->increment('play_count');
+            }
+        }
 
         return response()->streamDownload(function () use ($file) {
             echo $file;
