@@ -15,7 +15,6 @@ use App\Libraries\Search\ScoreSearch;
 use App\Libraries\Search\ScoreSearchParams;
 use App\Models\Beatmap;
 use App\Models\BeatmapsetEvent;
-use App\Models\Score\Best\Model as BestModel;
 use App\Models\User;
 use App\Transformers\BeatmapTransformer;
 use App\Transformers\ScoreTransformer;
