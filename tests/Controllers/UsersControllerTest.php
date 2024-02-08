@@ -34,7 +34,6 @@ class UsersControllerTest extends TestCase
         $previousCount = User::count();
 
         $locale = array_rand_val($GLOBALS['cfg']['app']['available_locales']);
-        \App::setLocale($locale);
 
         $this->expectCountChange(fn () => User::count(), 1);
         $this
