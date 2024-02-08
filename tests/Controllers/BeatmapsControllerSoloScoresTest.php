@@ -236,6 +236,24 @@ class BeatmapsControllerSoloScoresTest extends TestCase
     /**
      * @group RequiresScoreIndexer
      */
+    public function testUserScoreInvalidRulesetName()
+    {
+        $url = route('api.beatmaps.user.score', [
+            'beatmap' => static::$beatmap->getKey(),
+            'legacy_only' => 1,
+            'mode' => '_invalid',
+            'mods' => ['DT', 'HD'],
+            'user' => static::$user->getKey(),
+        ]);
+        $this->actAsScopedUser(static::$user);
+        $this
+            ->json('GET', $url)
+            ->assertStatus(422);
+    }
+
+    /**
+     * @group RequiresScoreIndexer
+     */
     public function testUserScoreAll()
     {
         $url = route('api.beatmaps.user.scores', [
