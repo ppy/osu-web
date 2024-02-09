@@ -149,6 +149,7 @@ class NominateBeatmapset
 
     private function shouldQualify(): bool
     {
+        $mainRuleset = $this->beatmapset->mainRuleset();
         $nominationsByType = $this->beatmapset->nominationsByType();
         $requiredNominations = $this->beatmapset->requiredNominationCount();
 
@@ -163,12 +164,17 @@ class NominateBeatmapset
                 $limitedNominations = static::nominationCount($nominationsByType, 'limited', $mode);
                 $totalNominations = $fullNominations + $limitedNominations;
 
-                if ($fullNominations === 0) {
-                    return false;
+                // Prevent maps with invalid nomination state from going into qualified.
+                if (Ruleset::tryFromName($mode) !== $mainRuleset && $limitedNominations > 0) {
+                    throw new InvariantException(osu_trans('beatmapsets.nominate.invalid_limited_nomination'));
                 }
 
                 if ($totalNominations > $count) {
-                    throw new InvariantException(osu_trans('beatmaps.nominations.too_many'));
+                    throw new InvariantException(osu_trans('beatmapsets.nominate.too_many'));
+                }
+
+                if ($fullNominations === 0) {
+                    return false;
                 }
 
                 if ($totalNominations === $count) {

@@ -40,9 +40,10 @@ return [
     ],
 
     'nominate' => [
+        'full_bn_required' => 'You must be a full nominator to perform this qualifying nomination.',
         'hybrid_requires_modes' => 'A hybrid beatmap requires you to select at least one playmode to nominate for.',
         'incorrect_mode' => 'You do not have permission to nominate for mode: :mode',
-        'full_bn_required' => 'You must be a full nominator to perform this qualifying nomination.',
+        'invalid_limited_nomination' => 'This beatmap has invalid nominations and cannot be qualified in this state.',
         'too_many' => 'Nomination requirement already fulfilled.',
 
         'dialog' => [
