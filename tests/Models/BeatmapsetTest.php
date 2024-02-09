@@ -186,6 +186,10 @@ class BeatmapsetTest extends TestCase
             $success ? null : InvariantException::class
         );
 
+        if ($success) {
+            $this->assertSame([$ruleset], Ruleset::tryFromNames($beatmapset->beatmapsetNominations()->current()->first()->modes));
+        }
+
         // Assertions that nomination doesn't qualify
         $this->assertTrue($beatmapset->isPending());
         Bus::assertNotDispatched(CheckBeatmapsetCovers::class);
@@ -659,7 +663,7 @@ class BeatmapsetTest extends TestCase
         }
     }
 
-    private function assertNominationChanges(Beatmapset $beatmapset, bool|array $success = true, $modes = null)
+    private function assertNominationChanges(Beatmapset $beatmapset, bool|array $success = true)
     {
         $count = is_array($success)
             ? count($success)
