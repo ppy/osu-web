@@ -81,6 +81,7 @@ return [
     ],
 
     'contest' => [
+        'judging_not_active' => '',
         'voting_over' => 'コンテストの投票期間終了後に投票先を変更することはできません。',
 
         'entry' => [
@@ -172,6 +173,7 @@ return [
     'score' => [
         'pin' => [
             'disabled_type' => "この種類のスコアはピン留めできません",
+            'failed' => "",
             'not_owner' => 'スコアの所有者のみがピン留めできます。',
             'too_many' => 'ピン留めの数が多すぎます。',
         ],

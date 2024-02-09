@@ -5,6 +5,7 @@
 
 return [
     'show' => [
+        'non_preserved' => '',
         'title' => ':username na :title [:version]',
 
         'beatmap' => [
@@ -25,6 +26,7 @@ return [
     'status' => [
         'non_best' => 'Pouze osobní nejlepší skóre ocenění',
         'non_passing' => 'pp dostávají jen schválené skóre ',
+        'no_pp' => '',
         'processing' => 'Toto skóre se stále počítá a bude brzy zobrazeno',
     ],
 ];

@@ -37,7 +37,7 @@ return [
         'username' => 'Introduceți adresa de e-mail sau numele de utilizator',
 
         'reason' => [
-            'inactive_different_country' => "",
+            'inactive_different_country' => "Contul tău nu a fost folosit de mult timp. Pentru a vă asigura securitatea contului, vă rugăm să vă resetați parola.",
         ],
         'support' => [
             '_' => 'Aveți nevoie de asistență suplimentară? Contactați-ne prin intermediul :button.',

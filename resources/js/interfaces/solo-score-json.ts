@@ -40,6 +40,7 @@ type SoloScoreJsonDefaultAttributes = {
   mods: ScoreModJson[];
   passed: boolean;
   pp: number | null;
+  preserve?: boolean;
   rank: Rank;
   ranked?: boolean;
   ruleset_id: number;

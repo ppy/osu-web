@@ -5,6 +5,7 @@
 
 return [
     'show' => [
+        'non_preserved' => '',
         'title' => ':username з :title [:version]',
 
         'beatmap' => [
@@ -25,6 +26,7 @@ return [
     'status' => [
         'non_best' => 'Лише персональні рекорди приносять pp',
         'non_passing' => 'Лише перевірені рекорди приносять pp',
+        'no_pp' => '',
         'processing' => 'Цей рекорд все ще обчислюється й незабаром буде відображений',
     ],
 ];

@@ -13,7 +13,28 @@ return [
         'nav_title' => 'lista',
     ],
 
+    'judge' => [
+        'hide_judged' => '',
+        'nav_title' => '',
+        'no_current_vote' => '',
+        'update' => '',
+        'validation' => [
+            'missing_score' => '',
+            'contest_vote_judged' => '',
+        ],
+        'voted' => '',
+    ],
+
+    'judge_results' => [
+        '_' => '',
+        'creator' => '',
+        'score' => '',
+        'total_score' => '',
+    ],
+
     'voting' => [
+        'judge_link' => '',
+        'judged_notice' => '',
         'login_required' => 'Kérlek jelentkezz be a szavazáshoz.',
         'over' => 'Erre a versenyre már véget ért a szavazás',
         'show_voted_only' => 'Szavazottak mutatása',
@@ -38,6 +59,7 @@ return [
             ],
         ],
     ],
+
     'entry' => [
         '_' => 'jelentkezés',
         'login_required' => 'Kérlek jelentkezz be a versenyhez való csatlakozáshoz.',
@@ -45,22 +67,27 @@ return [
         'preparation' => 'Ez a verseny előkészítés alatt áll. Kérjük várj türelmesen!',
         'drop_here' => 'Húzd a jelentkezésedet ide',
         'download' => '.osz letöltése',
+
         'wrong_type' => [
             'art' => 'Csak .jpg és .png kiterjesztésű fájlok engedélyezettek erre a versenyre.',
             'beatmap' => 'Csak .osu kiterjesztésű fájlok engedélyezettek erre a versenyre.',
             'music' => 'Csak .mp3 kiterjesztésű fájlok engedélyezettek erre a versenyre.',
         ],
+
         'wrong_dimensions' => 'A beküldéseknek erre a versenyre :widthx:height méretűnek kell lennie',
         'too_big' => 'A jelentkezések száma erre a versenyre csak :limit lehet.',
     ],
+
     'beatmaps' => [
         'download' => 'Jelentkezés letöltése',
     ],
+
     'vote' => [
         'list' => 'szavazatok',
         'count' => ':count szavazat|:count szavazatok',
         'points' => ':count pont|:count pontok',
     ],
+
     'dates' => [
         'ended' => 'Vége: :date',
         'ended_no_date' => 'Befejezve',
@@ -70,6 +97,7 @@ return [
             'soon' => 'hamarosan™',
         ],
     ],
+
     'states' => [
         'entry' => 'Nyitott Jelentkezés',
         'voting' => 'Szavazás Folyamatban',

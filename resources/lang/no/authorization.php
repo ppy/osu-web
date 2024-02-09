@@ -81,6 +81,7 @@ return [
     ],
 
     'contest' => [
+        'judging_not_active' => '',
         'voting_over' => 'Du kan ikke endre stemmen din etter den stemmeberettigede perioden for denne konkurransen har avsluttet.',
 
         'entry' => [
@@ -172,6 +173,7 @@ return [
     'score' => [
         'pin' => [
             'disabled_type' => "Kan ikke feste denne typen score",
+            'failed' => "",
             'not_owner' => 'Kun resultateieren kan festeresultat.',
             'too_many' => 'Festet for mange resultater.',
         ],

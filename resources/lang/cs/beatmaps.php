@@ -244,9 +244,9 @@ return [
                 'genre' => 'Žánr',
                 'language' => 'Jazyk',
                 'mode' => 'Mód',
-                'nsfw' => 'Explicitní mapy',
+                'nsfw' => 'Explicitní obsah',
                 'played' => 'Již hrané',
-                'rank' => 'Dle získaného hodnocení',
+                'rank' => 'Získané hodnocení',
                 'status' => 'Kategorie',
             ],
             'sorting' => [

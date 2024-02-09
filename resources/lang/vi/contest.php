@@ -13,7 +13,28 @@ return [
         'nav_title' => 'danh sách',
     ],
 
+    'judge' => [
+        'hide_judged' => '',
+        'nav_title' => '',
+        'no_current_vote' => '',
+        'update' => '',
+        'validation' => [
+            'missing_score' => '',
+            'contest_vote_judged' => '',
+        ],
+        'voted' => '',
+    ],
+
+    'judge_results' => [
+        '_' => '',
+        'creator' => '',
+        'score' => '',
+        'total_score' => '',
+    ],
+
     'voting' => [
+        'judge_link' => '',
+        'judged_notice' => '',
         'login_required' => 'Hãy đăng nhập để bình chọn.',
         'over' => 'Cuộc bình chọn cho cuộc thi này đã kết thúc',
         'show_voted_only' => 'Hiện bài đã bình chọn',
@@ -38,6 +59,7 @@ return [
             ],
         ],
     ],
+
     'entry' => [
         '_' => 'bài dự thi',
         'login_required' => 'Hãy đăng nhập để tham gia cuộc thi.',
@@ -45,22 +67,27 @@ return [
         'preparation' => 'Chúng tôi đang chuẩn bị cho cuộc thi này. Xin hãy kiên nhẫn chờ đợi!',
         'drop_here' => 'Thả bài dự thi của bạn vào đây',
         'download' => 'Tải xuống .osz',
+
         'wrong_type' => [
             'art' => 'Chỉ những tệp .jpg và .png mới được chấp nhận cho cuộc thi này.',
             'beatmap' => 'Chỉ những tệp .osu mới được chấp nhận cho cuộc thi này.',
             'music' => 'Chỉ những tệp .mp3 mới được chấp nhận cho cuộc thi này.',
         ],
+
         'wrong_dimensions' => 'Bài dự thi cho cuộc thi này phải có :widthx:height',
         'too_big' => 'Số bài dự thi cho cuộc thi này tối đa là :limit.',
     ],
+
     'beatmaps' => [
         'download' => 'Tải Xuống Bài Dự Thi',
     ],
+
     'vote' => [
         'list' => 'phiếu',
         'count' => ':count phiếu',
         'points' => ':count điểm',
     ],
+
     'dates' => [
         'ended' => 'Đã kết thúc :date',
         'ended_no_date' => 'Đã dừng',
@@ -70,6 +97,7 @@ return [
             'soon' => 'soon™',
         ],
     ],
+
     'states' => [
         'entry' => 'Nhận Bài Dự Thi',
         'voting' => 'Bắt Đầu Bình Chọn',

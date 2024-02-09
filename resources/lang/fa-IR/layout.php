@@ -112,6 +112,7 @@ return [
         'legal' => [
             '_' => '',
             'copyright' => 'کپی رایت (DMCA)',
+            'jp_sctl' => '',
             'privacy' => '',
             'server_status' => '',
             'source_code' => '',
@@ -195,6 +196,8 @@ return [
             'account-edit' => 'تنظیمات',
             'follows' => '',
             'friends' => 'دوستان',
+            'legacy_score_only_toggle' => '',
+            'legacy_score_only_toggle_tooltip' => '',
             'logout' => 'خروج',
             'profile' => 'پروفایل من',
         ],

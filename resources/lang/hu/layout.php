@@ -112,6 +112,7 @@ return [
         'legal' => [
             '_' => 'Jogok és Állapot',
             'copyright' => 'Szerzői jog (DMCA)',
+            'jp_sctl' => '',
             'privacy' => 'Adatvédelem',
             'server_status' => 'Szerver Állapot',
             'source_code' => 'Forráskód',
@@ -195,6 +196,8 @@ return [
             'account-edit' => 'Beállítások',
             'follows' => 'Figyelőlisták',
             'friends' => 'Barátok',
+            'legacy_score_only_toggle' => '',
+            'legacy_score_only_toggle_tooltip' => '',
             'logout' => 'Kijelentkezés',
             'profile' => 'Profilom',
         ],

@@ -5,6 +5,7 @@
 
 return [
     'show' => [
+        'non_preserved' => '',
         'title' => ':username в :title [:version]',
 
         'beatmap' => [
@@ -25,6 +26,7 @@ return [
     'status' => [
         'non_best' => 'Само най-добрите лични постижения дават pp',
         'non_passing' => 'Само преминатите постижения дават pp',
+        'no_pp' => '',
         'processing' => 'Резултатът все още се пресмята и ще бъде показан скоро',
     ],
 ];

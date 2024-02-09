@@ -112,6 +112,7 @@ return [
         'legal' => [
             '_' => 'Lakiasiat ja tilanne',
             'copyright' => 'Tekijänoikeudet (DMCA)',
+            'jp_sctl' => '',
             'privacy' => 'Yksityisyys',
             'server_status' => 'Palvelimen tilanne',
             'source_code' => 'Lähdekoodi',
@@ -195,6 +196,8 @@ return [
             'account-edit' => 'Asetukset',
             'follows' => 'Seurantalistat',
             'friends' => 'Kaverit',
+            'legacy_score_only_toggle' => '',
+            'legacy_score_only_toggle_tooltip' => '',
             'logout' => 'Kirjaudu ulos',
             'profile' => 'Oma profiili',
         ],

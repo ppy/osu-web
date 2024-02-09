@@ -216,8 +216,8 @@ return [
             ],
 
             'default_playmode' => [
-                'is_default_tooltip' => 'standard-spielmodus',
-                'set' => 'wähle :mode als standard-spielmodus',
+                'is_default_tooltip' => 'Standard-Spielmodus',
+                'set' => 'Wähle :mode als Standard-Spielmodus',
             ],
         ],
 

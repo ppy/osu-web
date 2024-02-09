@@ -112,6 +112,7 @@ return [
         'legal' => [
             '_' => '',
             'copyright' => '',
+            'jp_sctl' => '',
             'privacy' => '',
             'server_status' => '',
             'source_code' => '',
@@ -195,6 +196,8 @@ return [
             'account-edit' => '',
             'follows' => '',
             'friends' => '',
+            'legacy_score_only_toggle' => '',
+            'legacy_score_only_toggle_tooltip' => '',
             'logout' => '',
             'profile' => '',
         ],

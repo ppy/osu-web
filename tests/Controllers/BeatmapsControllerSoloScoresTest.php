@@ -48,7 +48,7 @@ class BeatmapsControllerSoloScoresTest extends TestCase
             $scoreFactory = SoloScore::factory()->state(['build_id' => 0]);
             foreach (['solo' => false, 'legacy' => true] as $type => $isLegacy) {
                 $scoreFactory = $scoreFactory->state([
-                    'legacy_score_id' => $isLegacy ? 1 : null,
+                    'legacy_score_id' => $isLegacy ? rand() : null,
                 ]);
                 $makeMods = fn (array $modNames): array => array_map(
                     fn (string $modName): array => [
@@ -230,7 +230,25 @@ class BeatmapsControllerSoloScoresTest extends TestCase
         $this->actAsScopedUser(static::$user);
         $this
             ->json('GET', $url)
-            ->assertJsonPath('score.id', static::$scores['legacy:userMods']->getKey());
+            ->assertJsonPath('score.id', static::$scores['legacy:userMods']->legacy_score_id);
+    }
+
+    /**
+     * @group RequiresScoreIndexer
+     */
+    public function testUserScoreInvalidRulesetName()
+    {
+        $url = route('api.beatmaps.user.score', [
+            'beatmap' => static::$beatmap->getKey(),
+            'legacy_only' => 1,
+            'mode' => '_invalid',
+            'mods' => ['DT', 'HD'],
+            'user' => static::$user->getKey(),
+        ]);
+        $this->actAsScopedUser(static::$user);
+        $this
+            ->json('GET', $url)
+            ->assertStatus(422);
     }
 
     /**
@@ -249,7 +267,7 @@ class BeatmapsControllerSoloScoresTest extends TestCase
             ->assertJsonCount(4, 'scores')
             ->assertJsonPath(
                 'scores.*.id',
-                array_map(fn (string $key): int => static::$scores[$key]->getKey(), [
+                array_map(fn (string $key): int => static::$scores[$key]->legacy_score_id, [
                     'legacy:user',
                     'legacy:userMods',
                     'legacy:userModsNC',

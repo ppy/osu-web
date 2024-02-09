@@ -5,6 +5,7 @@
 
 return [
     'show' => [
+        'non_preserved' => '',
         'title' => ':username บน :title [:version]',
 
         'beatmap' => [
@@ -25,6 +26,7 @@ return [
     'status' => [
         'non_best' => 'เฉพาะคะแนนที่ดีที่สุดของผู้เล่น จะให้ pp',
         'non_passing' => 'เฉพาะคะแนนที่ผ่านแล้วเท่านั้น จะให้ pp',
+        'no_pp' => '',
         'processing' => 'คะแนนนี้กำลังถูกคำนวนอยู่ และจะถูกแสดงในไม่ช้า',
     ],
 ];
