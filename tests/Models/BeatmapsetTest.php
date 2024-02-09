@@ -550,7 +550,11 @@ class BeatmapsetTest extends TestCase
         $this->assertSame(Ruleset::osu, $beatmapset->mainRuleset());
 
         // nomination should not trigger qualification
-        $beatmapset->nominate($bngUser2, ['osu']);
+        $this->expectExceptionCallable(
+            fn () => $beatmapset->nominate($bngUser2, ['osu']),
+            InvariantException::class,
+            osu_trans('beatmapsets.nominate.invalid_limited_nomination')
+        );
 
         $this->assertFalse($beatmapset->isQualified());
         Bus::assertNotDispatched(CheckBeatmapsetCovers::class);
