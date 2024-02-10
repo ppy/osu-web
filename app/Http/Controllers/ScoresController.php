@@ -6,13 +6,13 @@
 namespace App\Http\Controllers;
 
 use App\Enums\Ruleset;
-use App\Libraries\User\CountryChangeTarget;
 use App\Models\Score\Best\Model as ScoreBest;
 use App\Models\Solo\Score as SoloScore;
 use App\Models\UserCountryHistory;
 use App\Transformers\ScoreTransformer;
 use App\Transformers\UserCompactTransformer;
 use Auth;
+use Carbon\CarbonImmutable;
 
 class ScoresController extends Controller
 {
@@ -65,7 +65,8 @@ class ScoresController extends Controller
         if (Auth::user()->user_id !== $score->user->user_id) {
             $score->user->statistics($ruleset, true)->increment('replay_popularity');
 
-            $currentMonth = UserCountryHistory::formatDate(CountryChangeTarget::currentMonth());
+            $month = CarbonImmutable::now()->startOfMonth();
+            $currentMonth = UserCountryHistory::formatDate($month);
             $score->user->replaysWatchedCounts()->where('year_month', $currentMonth)->first()->increment('count');
 
             if ($score instanceof ScoreBest) {

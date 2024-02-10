@@ -5,7 +5,6 @@
 
 namespace Tests\Controllers;
 
-use App\Libraries\User\CountryChangeTarget;
 use App\Models\Beatmap;
 use App\Models\ReplayViewCount;
 use App\Models\Score\Best\Osu;
@@ -14,6 +13,7 @@ use App\Models\User;
 use App\Models\UserCountryHistory;
 use App\Models\UserReplaysWatchedCount;
 use App\Models\UserStatistics;
+use Carbon\CarbonImmutable;
 use Illuminate\Filesystem\Filesystem;
 use Storage;
 use Tests\TestCase;
@@ -37,7 +37,8 @@ class ScoresControllerTest extends TestCase
 
         $this->assertEquals(0, $this->score->user->statistics($this->score->getMode())->replay_popularity);
 
-        $currentMonth = UserCountryHistory::formatDate(CountryChangeTarget::currentMonth());
+        $month = CarbonImmutable::now()->startOfMonth();
+        $currentMonth = UserCountryHistory::formatDate($month);
         $this->assertEquals(0, $this->score->user->replaysWatchedCounts()->where('year_month', $currentMonth)->first()->count);
 
         $this->assertEquals(0, $this->score->replayViewCount()->first()->play_count);
@@ -63,7 +64,8 @@ class ScoresControllerTest extends TestCase
 
         $this->assertEquals(0, $this->score->user->statistics($this->score->getMode())->replay_popularity);
 
-        $currentMonth = UserCountryHistory::formatDate(CountryChangeTarget::currentMonth());
+        $month = CarbonImmutable::now()->startOfMonth();
+        $currentMonth = UserCountryHistory::formatDate($month);
         $this->assertEquals(0, $this->score->user->replaysWatchedCounts()->where('year_month', $currentMonth)->first()->count);
     }
 
@@ -80,7 +82,8 @@ class ScoresControllerTest extends TestCase
 
         $this->assertEquals(1, $this->score->user->statistics($this->score->getMode())->replay_popularity);
 
-        $currentMonth = UserCountryHistory::formatDate(CountryChangeTarget::currentMonth());
+        $month = CarbonImmutable::now()->startOfMonth();
+        $currentMonth = UserCountryHistory::formatDate($month);
         $this->assertEquals(1, $this->score->user->replaysWatchedCounts()->where('year_month', $currentMonth)->first()->count);
 
         $this->assertEquals(1, $this->score->replayViewCount()->first()->play_count);
@@ -106,7 +109,8 @@ class ScoresControllerTest extends TestCase
 
         $this->assertEquals(1, $this->score->user->statistics($this->score->getMode())->replay_popularity);
 
-        $currentMonth = UserCountryHistory::formatDate(CountryChangeTarget::currentMonth());
+        $month = CarbonImmutable::now()->startOfMonth();
+        $currentMonth = UserCountryHistory::formatDate($month);
         $this->assertEquals(1, $this->score->user->replaysWatchedCounts()->where('year_month', $currentMonth)->first()->count);
     }
 
@@ -203,7 +207,8 @@ class ScoresControllerTest extends TestCase
         UserStatistics\Osu::factory()->create(['user_id' => $this->user->user_id]);
         $this->score = Osu::factory()->withReplay()->create(['user_id' => $this->user->user_id]);
 
-        $currentMonth = UserCountryHistory::formatDate(CountryChangeTarget::currentMonth());
+        $month = CarbonImmutable::now()->startOfMonth();
+        $currentMonth = UserCountryHistory::formatDate($month);
         UserReplaysWatchedCount::create(['user_id' => $this->user->user_id, 'year_month' => $currentMonth, 'count' => 0]);
 
         ReplayViewCount\Osu::create(['play_count' => 0, 'score_id' => $this->score->score_id]);
