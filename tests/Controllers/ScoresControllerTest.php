@@ -6,12 +6,10 @@
 namespace Tests\Controllers;
 
 use App\Models\Beatmap;
-use App\Models\ReplayViewCount;
 use App\Models\Score\Best\Osu;
 use App\Models\Solo\Score as SoloScore;
 use App\Models\User;
 use App\Models\UserCountryHistory;
-use App\Models\UserReplaysWatchedCount;
 use App\Models\UserStatistics;
 use Carbon\CarbonImmutable;
 use Illuminate\Filesystem\Filesystem;
@@ -20,9 +18,9 @@ use Tests\TestCase;
 
 class ScoresControllerTest extends TestCase
 {
-    private $score;
-    private $user;
-    private $otherUser;
+    private Osu $score;
+    private User $user;
+    private User $otherUser;
 
     public function testDownloadSameUser()
     {
@@ -39,9 +37,9 @@ class ScoresControllerTest extends TestCase
 
         $month = CarbonImmutable::now()->startOfMonth();
         $currentMonth = UserCountryHistory::formatDate($month);
-        $this->assertEquals(0, $this->score->user->replaysWatchedCounts()->where('year_month', $currentMonth)->first()->count);
+        $this->assertNull($this->score->user->replaysWatchedCounts()->where('year_month', $currentMonth)->first());
 
-        $this->assertEquals(0, $this->score->replayViewCount()->first()->play_count);
+        $this->assertNull($this->score->replayViewCount()->first());
     }
 
     public function testDownloadSoloScoreSameUser()
@@ -50,6 +48,7 @@ class ScoresControllerTest extends TestCase
             ->create([
                 'legacy_score_id' => $this->score->getKey(),
                 'ruleset_id' => Beatmap::MODES[$this->score->getMode()],
+                'user_id' => $this->score->user_id,
                 'has_replay' => true,
             ]);
 
@@ -62,11 +61,11 @@ class ScoresControllerTest extends TestCase
             )
             ->assertSuccessful();
 
-        $this->assertEquals(0, $this->score->user->statistics($this->score->getMode())->replay_popularity);
+        $this->assertEquals(0, $soloScore->user->statistics($soloScore->getMode())->replay_popularity);
 
         $month = CarbonImmutable::now()->startOfMonth();
         $currentMonth = UserCountryHistory::formatDate($month);
-        $this->assertEquals(0, $this->score->user->replaysWatchedCounts()->where('year_month', $currentMonth)->first()->count);
+        $this->assertNull($soloScore->user->replaysWatchedCounts()->where('year_month', $currentMonth)->first());
     }
 
     public function testDownload()
@@ -95,6 +94,7 @@ class ScoresControllerTest extends TestCase
             ->create([
                 'legacy_score_id' => $this->score->getKey(),
                 'ruleset_id' => Beatmap::MODES[$this->score->getMode()],
+                'user_id' => $this->score->user_id,
                 'has_replay' => true,
             ]);
 
@@ -107,11 +107,11 @@ class ScoresControllerTest extends TestCase
             )
             ->assertSuccessful();
 
-        $this->assertEquals(1, $this->score->user->statistics($this->score->getMode())->replay_popularity);
+        $this->assertEquals(1, $soloScore->user->statistics($soloScore->getMode())->replay_popularity);
 
         $month = CarbonImmutable::now()->startOfMonth();
         $currentMonth = UserCountryHistory::formatDate($month);
-        $this->assertEquals(1, $this->score->user->replaysWatchedCounts()->where('year_month', $currentMonth)->first()->count);
+        $this->assertEquals(1, $soloScore->user->replaysWatchedCounts()->where('year_month', $currentMonth)->first()->count);
     }
 
     public function testDownloadDeletedBeatmap()
@@ -206,12 +206,6 @@ class ScoresControllerTest extends TestCase
 
         UserStatistics\Osu::factory()->create(['user_id' => $this->user->user_id]);
         $this->score = Osu::factory()->withReplay()->create(['user_id' => $this->user->user_id]);
-
-        $month = CarbonImmutable::now()->startOfMonth();
-        $currentMonth = UserCountryHistory::formatDate($month);
-        UserReplaysWatchedCount::create(['user_id' => $this->user->user_id, 'year_month' => $currentMonth, 'count' => 0]);
-
-        ReplayViewCount\Osu::create(['play_count' => 0, 'score_id' => $this->score->score_id]);
     }
 
     private function params()

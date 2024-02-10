@@ -67,9 +67,17 @@ class ScoresController extends Controller
 
             $month = CarbonImmutable::now()->startOfMonth();
             $currentMonth = UserCountryHistory::formatDate($month);
-            $score->user->replaysWatchedCounts()->where('year_month', $currentMonth)->first()->increment('count');
+
+            $score->user->replaysWatchedCounts()
+                ->where('year_month', $currentMonth)
+                ->firstOrCreate(['year_month' => $currentMonth], ['count' => 0])
+                ->increment('count');
 
             if ($score instanceof ScoreBest) {
+                if (!$score->replayViewCount()->exists()) {
+                    $score->replayViewCount()->create(['play_count' => 0]);
+                }
+
                 $score->replayViewCount()->increment('play_count');
             }
         }
