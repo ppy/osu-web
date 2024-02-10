@@ -50,7 +50,7 @@ export default function Player(props: Props) {
           {trans('scores.show.player.rank.global')}
         </div>
         <div className='score-player__rank score-player__rank--value'>
-          {props.score.rank_global == null ? '-' : `#${formatNumber(props.score.rank_global)}`}
+          {props.score.rank_global == null || props.score.ranked === false || props.score.preserve === false ? '-' : `#${formatNumber(props.score.rank_global)}`}
         </div>
       </div>
     </div>
