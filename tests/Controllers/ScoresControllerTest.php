@@ -38,7 +38,7 @@ class ScoresControllerTest extends TestCase
         $this->assertEquals(0, $this->score->user->statistics($this->score->getMode())->replay_popularity);
 
         $currentMonth = UserCountryHistory::formatDate(CountryChangeTarget::currentMonth());
-        $this->assertEquals(0, $this->score->user->replaysWatchedCounts->where('year_month', $currentMonth)->first()->count);
+        $this->assertEquals(0, $this->score->user->replaysWatchedCounts()->where('year_month', $currentMonth)->first()->count);
 
         $this->assertEquals(0, $this->score->replayViewCount()->first()->play_count);
     }
@@ -64,7 +64,7 @@ class ScoresControllerTest extends TestCase
         $this->assertEquals(0, $this->score->user->statistics($this->score->getMode())->replay_popularity);
 
         $currentMonth = UserCountryHistory::formatDate(CountryChangeTarget::currentMonth());
-        $this->assertEquals(0, $this->score->user->replaysWatchedCounts->where('year_month', $currentMonth)->first()->count);
+        $this->assertEquals(0, $this->score->user->replaysWatchedCounts()->where('year_month', $currentMonth)->first()->count);
     }
 
     public function testDownload()
@@ -81,7 +81,7 @@ class ScoresControllerTest extends TestCase
         $this->assertEquals(1, $this->score->user->statistics($this->score->getMode())->replay_popularity);
 
         $currentMonth = UserCountryHistory::formatDate(CountryChangeTarget::currentMonth());
-        $this->assertEquals(1, $this->score->user->replaysWatchedCounts->where('year_month', $currentMonth)->first()->count);
+        $this->assertEquals(1, $this->score->user->replaysWatchedCounts()->where('year_month', $currentMonth)->first()->count);
 
         $this->assertEquals(1, $this->score->replayViewCount()->first()->play_count);
     }
@@ -107,7 +107,7 @@ class ScoresControllerTest extends TestCase
         $this->assertEquals(1, $this->score->user->statistics($this->score->getMode())->replay_popularity);
 
         $currentMonth = UserCountryHistory::formatDate(CountryChangeTarget::currentMonth());
-        $this->assertEquals(1, $this->score->user->replaysWatchedCounts->where('year_month', $currentMonth)->first()->count);
+        $this->assertEquals(1, $this->score->user->replaysWatchedCounts()->where('year_month', $currentMonth)->first()->count);
     }
 
     public function testDownloadDeletedBeatmap()
