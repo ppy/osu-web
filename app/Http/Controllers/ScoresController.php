@@ -61,7 +61,6 @@ class ScoresController extends Controller
             'Content-Type' => 'application/x-osu-replay',
         ];
 
-
         if (Auth::user()->user_id !== $score->user->user_id) {
             $score->user->statistics($ruleset, true)->increment('replay_popularity');
 
