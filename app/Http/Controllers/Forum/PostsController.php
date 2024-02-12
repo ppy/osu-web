@@ -159,7 +159,7 @@ class PostsController extends Controller
             $text = sprintf("[quote=\"%s\"]\n%s\n[/quote]\n", $post->userNormalized()->username, $text);
         }
 
-        return $text;
+        return response($text)->header('Content-Type', 'text/plain');
     }
 
     public function show($id)
