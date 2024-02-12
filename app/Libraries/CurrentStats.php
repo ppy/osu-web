@@ -26,9 +26,9 @@ class CurrentStats
             $latest = array_last($stats);
 
             return [
-                'currentOnline' => Build::onlineUsers(),
+                'currentOnline' => $latest['users'] ?? 0,
                 'currentGames' => $latest['multiplayer_games'] ?? 0,
-                'graphData' => array_to_graph_json($stats, 'users_osu'),
+                'graphData' => array_to_graph_json($stats, 'users'),
                 'totalUsers' => Count::totalUsers()->count,
             ];
         });
