@@ -35,7 +35,6 @@ class ScoresController extends Controller
             }
             $soloScore = SoloScore::where('has_replay', true)->findOrFail($rulesetOrSoloId);
 
-            $ruleset = Ruleset::from($soloScore->ruleset_id)->legacyName();
             $score = $soloScore->legacyScore() ?? $soloScore;
         } else {
             if ($shouldRedirect) {
@@ -46,8 +45,6 @@ class ScoresController extends Controller
                 ::where('score_id', $id)
                 ->where('replay', true)
                 ->firstOrFail();
-
-            $ruleset = $score->getMode();
         }
 
         $file = $score->getReplayFile();
