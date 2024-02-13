@@ -69,7 +69,7 @@ class ScoresController extends Controller
             $score->user->replaysWatchedCounts()
                 ->where('year_month', $currentMonth)
                 ->firstOrCreate(['year_month' => $currentMonth], ['count' => 0])
-                ->increment('count');
+                ->incrementInstance('count');
 
             if ($score instanceof ScoreBest) {
                 $score->replayViewCount()
