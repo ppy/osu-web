@@ -13,7 +13,28 @@ return [
         'nav_title' => 'конкурси',
     ],
 
+    'judge' => [
+        'hide_judged' => '',
+        'nav_title' => '',
+        'no_current_vote' => '',
+        'update' => '',
+        'validation' => [
+            'missing_score' => '',
+            'contest_vote_judged' => '',
+        ],
+        'voted' => '',
+    ],
+
+    'judge_results' => [
+        '_' => '',
+        'creator' => '',
+        'score' => '',
+        'total_score' => '',
+    ],
+
     'voting' => [
+        'judge_link' => '',
+        'judged_notice' => '',
         'login_required' => 'Моля, влез в профила си, за да гласувате.',
         'over' => 'Гласуването за този конкурс е приключилo',
         'show_voted_only' => 'Моите гласове',
@@ -38,6 +59,7 @@ return [
             ],
         ],
     ],
+
     'entry' => [
         '_' => 'запис',
         'login_required' => 'Моля, влез в профила си, за записване в конкурса.',
@@ -45,22 +67,27 @@ return [
         'preparation' => 'В момента подготвяме този конкурс. Моля, бъдете търпеливи!',
         'drop_here' => 'Пуснете вашия файл тук',
         'download' => 'Изтегляне на .osz',
+
         'wrong_type' => [
             'art' => 'Само файлове с .jpg или .png формат се приемат за този конкурс.',
             'beatmap' => 'Само файл с .osu формат се приема за този конкурс.',
             'music' => 'Само файл с .mp3 формат се приема за този конкурс.',
         ],
+
         'wrong_dimensions' => 'Записите за това състезание трябва да са :widthx:height',
         'too_big' => 'Записите за този конкурс могат да са до :limit пъти.',
     ],
+
     'beatmaps' => [
         'download' => 'Изтегляне на запис',
     ],
+
     'vote' => [
         'list' => 'гласове',
         'count' => ':count_delimited глас|:count_delimited гласa',
         'points' => ':count_delimited точка|:count_delimited точки',
     ],
+
     'dates' => [
         'ended' => 'Приключи на :date',
         'ended_no_date' => 'Приключи',
@@ -70,6 +97,7 @@ return [
             'soon' => 'скоро™',
         ],
     ],
+
     'states' => [
         'entry' => 'Отворено записване',
         'voting' => 'Гласуването започна',

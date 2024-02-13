@@ -63,15 +63,15 @@ return [
     ],
 
     'github_user' => [
-        'info' => "",
+        'info' => "Jeśli jesteś współtwórcą repozytoriów osu!, połączenie Twojego konta GitHub powiąże Twoje działania z twoim profilem osu!. Konta GitHub bez wpisów do repozytoriów osu! nie mogą zostać połączone.",
         'link' => 'Połącz konto GitHub',
         'title' => 'GitHub',
         'unlink' => 'Rozłącz konto GitHub',
 
         'error' => [
             'already_linked' => 'To konto GitHub jest już połączone z innym użytkownikiem.',
-            'no_contribution' => 'Nie można połączyć konta GitHub bez historii wkładu w repozytoriach osu!',
-            'unverified_email' => 'Zweryfikuj swój główny email na GitHub, a następnie spróbuj ponownie połączyć swoje konto.',
+            'no_contribution' => 'Nie możesz połączyć konta GitHub bez historii wkładu w repozytoria osu!.',
+            'unverified_email' => 'Zweryfikuj swój główny adres e-mail na GitHub, a następnie spróbuj połączyć konto ponownie.',
         ],
     ],
 

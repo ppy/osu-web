@@ -13,7 +13,28 @@ return [
         'nav_title' => 'llistat',
     ],
 
+    'judge' => [
+        'hide_judged' => '',
+        'nav_title' => '',
+        'no_current_vote' => '',
+        'update' => '',
+        'validation' => [
+            'missing_score' => '',
+            'contest_vote_judged' => '',
+        ],
+        'voted' => '',
+    ],
+
+    'judge_results' => [
+        '_' => '',
+        'creator' => '',
+        'score' => '',
+        'total_score' => '',
+    ],
+
     'voting' => [
+        'judge_link' => '',
+        'judged_notice' => '',
         'login_required' => 'Sisplau, inicia sessió per a votar.',
         'over' => 'La votació per aquest torneig ha finalitzat',
         'show_voted_only' => 'Mostra els votats',
@@ -38,6 +59,7 @@ return [
             ],
         ],
     ],
+
     'entry' => [
         '_' => 'entrada',
         'login_required' => 'Si us plau, inicieu la sessió per participar al concurs.',
@@ -45,22 +67,27 @@ return [
         'preparation' => 'Estem preparant aquest torneig. Sisplau, espera una mica!',
         'drop_here' => 'Deixa anar la teva inscripció aquí',
         'download' => 'Descarregar .osz',
+
         'wrong_type' => [
             'art' => 'Només fitxers .jpg i .png s\'accepten per aquest torneig.',
             'beatmap' => 'Només fitxers .osu s\'accepten per aquest torneig.',
             'music' => 'Només fitxer .mp3 s\'accepten per aquest torneig.',
         ],
+
         'wrong_dimensions' => 'Les inscripcions per aquest torneig han de ser :widthx:height',
         'too_big' => 'Les inscripcions per aquest torneig només poden ser fins a :limit.',
     ],
+
     'beatmaps' => [
         'download' => 'Descarregar entrada',
     ],
+
     'vote' => [
         'list' => 'vots',
         'count' => ':count_delimited vot |:count_delimited vots',
         'points' => ':count_delimited punt|:count_delimited punts',
     ],
+
     'dates' => [
         'ended' => 'Finalitzat :date',
         'ended_no_date' => 'Finalitzat',
@@ -70,6 +97,7 @@ return [
             'soon' => 'aviat™',
         ],
     ],
+
     'states' => [
         'entry' => 'Entrada oberta',
         'voting' => 'Votació iniciada',

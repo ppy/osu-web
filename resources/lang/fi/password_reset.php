@@ -37,7 +37,7 @@ return [
         'username' => 'Anna sähköposti tai käyttäjänimi',
 
         'reason' => [
-            'inactive_different_country' => "",
+            'inactive_different_country' => "Tiliäsi ei ole käytetty pitkään aikaan. Varmistaaksesi tilisi turvallisuuden, ole hyvä ja nollaa salasanasi.",
         ],
         'support' => [
             '_' => 'Tarvitsetko lisäapua? Ota yhteyttä meihin: :button.',

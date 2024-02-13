@@ -15,7 +15,7 @@ export function usernameSortAscending(x: UserJson | User , y: UserJson | User) {
 }
 
 export default class User {
-  @observable avatarUrl = '/images/layout/avatar-guest.png'; // TODO: move to a global config store?
+  @observable avatarUrl = '/images/layout/avatar-guest@2x.png'; // TODO: move to a global config store?
   @observable countryCode = 'XX';
   @observable defaultGroup = '';
   @observable groups?: UserGroupJson[];

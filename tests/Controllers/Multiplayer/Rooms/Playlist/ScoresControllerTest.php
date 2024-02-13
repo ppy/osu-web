@@ -121,8 +121,9 @@ class ScoresControllerTest extends TestCase
         $this->expectCountChange(fn () => ScoreToken::count(), $countDiff);
 
         $this->json('POST', route('api.rooms.playlist.scores.store', [
-            'room' => $playlistItem->room_id,
+            'beatmap_hash' => $playlistItem->beatmap->checksum,
             'playlist' => $playlistItem->getKey(),
+            'room' => $playlistItem->room_id,
         ]))->assertStatus($status);
 
         config_set('osu.client.check_version', $origClientCheckVersion);

@@ -19,8 +19,8 @@ return [
             'new_confirmation' => 'e-postbekräftelse',
             'title' => 'E-postadress',
             'locked' => [
-                '_' => '',
-                'accounts' => '',
+                '_' => 'Kontakta :accounts: om du behöver uppdatera din email-address.',
+                'accounts' => 'kontosupportteam',
             ],
         ],
 
@@ -63,14 +63,14 @@ return [
     ],
 
     'github_user' => [
-        'info' => "",
-        'link' => '',
-        'title' => '',
-        'unlink' => '',
+        'info' => "Om du är medverkande till osu!'s öppen källkodsarkiv, kommer länkning av ditt GitHub-konto här att associera dina changelog-poster med din osu! profil. GitHub-konton utan medverkningshistorik till osu! kan inte länkas.",
+        'link' => 'Länka GitHub-konto',
+        'title' => 'GitHub',
+        'unlink' => 'Unlink GitHub Account',
 
         'error' => [
-            'already_linked' => '',
-            'no_contribution' => '',
+            'already_linked' => 'Detta GitHub-konto är redan kopplat till en annan användare.',
+            'no_contribution' => 'Kan inte länka GitHub-konto utan någon medverkningshistorik i osu! utvecklingskataloger.',
             'unverified_email' => '',
         ],
     ],

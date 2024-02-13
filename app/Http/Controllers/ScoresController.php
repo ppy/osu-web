@@ -85,12 +85,10 @@ class ScoresController extends Controller
 
     public function show($rulesetOrSoloId, $legacyId = null)
     {
-        $score = $legacyId === null
-            ? SoloScore::whereHas('beatmap.beatmapset')->findOrFail($rulesetOrSoloId)
-            : ScoreBest::getClass($rulesetOrSoloId)
-                ::whereHas('beatmap.beatmapset')
-                ->visibleUsers()
-                ->findOrFail($legacyId);
+        [$scoreClass, $id] = $legacyId === null
+            ? [SoloScore::class, $rulesetOrSoloId]
+            : [ScoreBest::getClass($rulesetOrSoloId), $legacyId];
+        $score = $scoreClass::whereHas('beatmap.beatmapset')->visibleUsers()->findOrFail($id);
 
         $userIncludes = array_map(function ($include) {
             return "user.{$include}";

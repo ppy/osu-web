@@ -13,7 +13,28 @@ return [
         'nav_title' => 'пералік',
     ],
 
+    'judge' => [
+        'hide_judged' => '',
+        'nav_title' => '',
+        'no_current_vote' => '',
+        'update' => '',
+        'validation' => [
+            'missing_score' => '',
+            'contest_vote_judged' => '',
+        ],
+        'voted' => '',
+    ],
+
+    'judge_results' => [
+        '_' => '',
+        'creator' => '',
+        'score' => '',
+        'total_score' => '',
+    ],
+
     'voting' => [
+        'judge_link' => '',
+        'judged_notice' => '',
         'login_required' => 'Увайдзіце, каб прагаласаваць.',
         'over' => 'Галасаванне за гэты конкурс скончылася',
         'show_voted_only' => 'Паказаць прагаласаваўшых',
@@ -38,6 +59,7 @@ return [
             ],
         ],
     ],
+
     'entry' => [
         '_' => 'удзельнікі конкурсу',
         'login_required' => 'Увайдзіце, каб удзельнічаць у гэтым конкурсе.',
@@ -45,22 +67,27 @@ return [
         'preparation' => 'Падрыхтоўваем гэты конкурс. Калі ласка, пачакайце!',
         'drop_here' => 'Перацягніце файл сюды',
         'download' => 'Спампаваць .osz',
+
         'wrong_type' => [
             'art' => 'Толькі .jpg і .png файлы дазволены для гэтага конкурсу.',
             'beatmap' => 'Толькі .osu файлы дазволены для гэтага конкурсу.',
             'music' => 'Толькі .mp3 файлы дазволены для гэтага конкурсу.',
         ],
+
         'wrong_dimensions' => 'Памеры заяўкі для гэтага конкурсу павінны быць :widthx:height',
         'too_big' => 'Памеры файлаў для гэтага конкурсу не могуць быць вышэй за :limit.',
     ],
+
     'beatmaps' => [
         'download' => 'Спампаваць файлы',
     ],
+
     'vote' => [
         'list' => 'галасоў',
         'count' => ':count голас|:count галасы|:count галасоў',
         'points' => ':count ачко|:count ачкі|:count ачкоў',
     ],
+
     'dates' => [
         'ended' => 'Скончыцца :date',
         'ended_no_date' => 'Скончылася',
@@ -70,6 +97,7 @@ return [
             'soon' => 'хутка™',
         ],
     ],
+
     'states' => [
         'entry' => 'Адкрытыя ўдзелы',
         'voting' => 'Пачатае галасаванне',

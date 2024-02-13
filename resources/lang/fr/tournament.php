@@ -5,7 +5,7 @@
 
 return [
     'index' => [
-        'none_running' => 'Il n\'y a pas de tournois en ce moment, vérifiez plus tard !',
+        'none_running' => 'Il n\'y a pas de tournois en ce moment, revenez plus tard !',
         'registration_period' => 'Inscriptions : du :start au :end',
 
         'header' => [
@@ -42,7 +42,7 @@ return [
         ],
 
         'state' => [
-            'before_registration' => 'Les inscriptions pour ce tournoi n\'ont pas encore débuté.',
+            'before_registration' => 'Les inscriptions pour ce tournoi ne sont pas encore ouvertes.',
             'ended' => 'Ce tournoi est terminé. Visitez la page d\'informations pour voir les résultats.',
             'registration_closed' => 'Les inscriptions pour ce tournoi sont closes. Visitez la page d\'informations pour les dernières actualités.',
             'running' => 'Ce tournoi est actuellement en cours. Visitez la page d\'informations pour plus de détails.',

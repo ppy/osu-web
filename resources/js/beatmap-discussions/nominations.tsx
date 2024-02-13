@@ -241,10 +241,18 @@ export class Nominations extends React.Component<Props> {
   private readonly focusNewDiscussionWithModeSwitch = () => {
     // Switch to generalAll tab just in case currently in event tab
     // and thus new discussion box isn't visible.
-    if (this.props.discussionsState.currentPage === 'events') {
+    if (this.props.discussionsState.currentPage === 'events' || this.props.discussionsState.currentPage === 'reviews') {
       this.props.discussionsState.changeDiscussionPage('generalAll');
-      this.focusNewDiscussion();
     }
+
+    window.setTimeout(() => {
+      this.focusNewDiscussion();
+    }, 0);
+  };
+
+  private readonly handlePendingProblemsClick = (event: React.SyntheticEvent<HTMLElement>) => {
+    event.preventDefault();
+    this.props.discussionsState.changeFilter('pending');
   };
 
   @action
@@ -643,23 +651,46 @@ export class Nominations extends React.Component<Props> {
           : trans('beatmaps.nominations.rank_estimate.soon');
 
         return (
-          <StringWithComponent
-            mappings={{
-              date,
-              // TODO: ranking_queue_position should not be nullable when status is qualified.
-              position: formatNumber(this.beatmapset.nominations.ranking_queue_position ?? 0),
-              queue: (
-                <a
-                  href={wikiUrl('Beatmap_ranking_procedure/Ranking_queue')}
-                  rel='noreferrer'
-                  target='_blank'
-                >
-                  {trans('beatmaps.nominations.rank_estimate.queue')}
-                </a>
-              ),
-            }}
-            pattern={trans('beatmaps.nominations.rank_estimate._')}
-          />
+          <>
+            <StringWithComponent
+              mappings={{
+                date,
+                // TODO: ranking_queue_position should not be nullable when status is qualified.
+                position: formatNumber(this.beatmapset.nominations.ranking_queue_position ?? 0),
+                queue: (
+                  <a
+                    href={wikiUrl('Beatmap_ranking_procedure/Ranking_queue')}
+                    rel='noreferrer'
+                    target='_blank'
+                  >
+                    {trans('beatmaps.nominations.rank_estimate.queue')}
+                  </a>
+                ),
+              }}
+              pattern={trans('beatmaps.nominations.rank_estimate._')}
+            />
+            {this.props.discussionsState.discussionsByFilter.pending.length > 0 ?
+              <div className={`${bn}__problems`}>
+                <StringWithComponent
+                  mappings={{
+                    problems: <a
+                      className='js-beatmap-discussion--jump'
+                      href={makeUrl({
+                        discussion: this.props.discussionsState.discussionsByFilter.pending[0],
+                        filter: 'pending',
+                        mode: this.props.discussionsState.currentPage,
+                      })}
+                      onClick={this.handlePendingProblemsClick}
+                    >
+                      {trans('beatmaps.nominations.rank_estimate.problems')}
+                    </a>,
+                  }}
+                  pattern={trans('beatmaps.nominations.rank_estimate.unresolved_problems')}
+                />
+              </div>
+              : <></>
+            }
+          </>
         );
       }
     }

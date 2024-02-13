@@ -129,7 +129,7 @@ trait Scoreable
 
                 break;
 
-            case 'catch':
+            case 'fruits':
                 $this->rank = match (true) {
                     $accuracy === 1 =>
                         $this->shouldHaveHiddenRank() ? 'XH' : 'X',

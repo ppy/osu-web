@@ -112,6 +112,7 @@ return [
         'legal' => [
             '_' => 'Juridisch & Status',
             'copyright' => 'Copyright (DMCA)',
+            'jp_sctl' => '',
             'privacy' => 'Privacy',
             'server_status' => 'Server Status',
             'source_code' => 'Broncode',
@@ -195,6 +196,8 @@ return [
             'account-edit' => 'Instellingen',
             'follows' => 'Volglijsten',
             'friends' => 'Vrienden',
+            'legacy_score_only_toggle' => '',
+            'legacy_score_only_toggle_tooltip' => '',
             'logout' => 'Log Uit',
             'profile' => 'Mijn Profiel',
         ],

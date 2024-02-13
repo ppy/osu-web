@@ -81,6 +81,7 @@ return [
     ],
 
     'contest' => [
+        'judging_not_active' => '',
         'voting_over' => 'Jūs nevarat mainīt savu balsojumu pēc šī konkursa balsošanas perioda beigām.',
 
         'entry' => [
@@ -172,6 +173,7 @@ return [
     'score' => [
         'pin' => [
             'disabled_type' => "Nevar piespraust šāda veida rezultātu",
+            'failed' => "",
             'not_owner' => 'Rezultātu var piespraust tikai rezultāta īpašnieks.',
             'too_many' => 'Piesprausti pārāk daudz rezultāti.',
         ],

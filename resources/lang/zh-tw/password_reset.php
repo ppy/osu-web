@@ -37,7 +37,7 @@ return [
         'username' => '輸入郵件地址或使用者名稱',
 
         'reason' => [
-            'inactive_different_country' => "",
+            'inactive_different_country' => "您的帳戶已長時間未使用。為確保帳戶安全，請重設您的密碼。",
         ],
         'support' => [
             '_' => '需要進一步的幫助？通過我們的 :button 聯繫我們。',

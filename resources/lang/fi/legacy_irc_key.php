@@ -5,7 +5,7 @@
 
 return [
     'confirm_new' => 'Luo uusi IRC-salasana?',
-    'new' => 'Uusi IRC\'n perinnesalasana',
+    'new' => 'Uusi IRC:n perinnesalasana',
     'none' => 'IRC-salasanaa ei asetettu.',
 
     'form' => [

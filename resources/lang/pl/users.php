@@ -124,11 +124,11 @@ return [
     ],
 
     'ogp' => [
-        'modding_description' => '',
-        'modding_description_empty' => '',
+        'modding_description' => 'Beatmapy: :counts',
+        'modding_description_empty' => 'Użytkownik nie posiada beatmap...',
 
         'description' => [
-            '_' => 'Pozycja (:ruleset): :global | :country',
+            '_' => 'Pozycja w rankingu (:ruleset): :global | :country',
             'country' => 'Krajowy :rank',
             'global' => 'Globalny :rank
 ',

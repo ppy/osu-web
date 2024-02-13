@@ -63,8 +63,12 @@ return [
         'comments_controller' => [
             '_' => 'kommentit',
         ],
+        'contest_entries_controller' => [
+            'judge_results' => '',
+        ],
         'contests_controller' => [
             '_' => 'kilpailut',
+            'judge' => '',
         ],
         'groups_controller' => [
             'show' => 'ryhmät',

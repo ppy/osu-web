@@ -5,6 +5,7 @@
 
 return [
     'show' => [
+        'non_preserved' => '',
         'title' => ':username\'n tulos: :title [:version]',
 
         'beatmap' => [
@@ -25,6 +26,7 @@ return [
     'status' => [
         'non_best' => 'Vain parhaat henkilökohtaiset tulokset antavat pp:tä',
         'non_passing' => 'Vain loppuun asti päässeet tulokset antavat pp:tä',
+        'no_pp' => '',
         'processing' => 'Pisteitä lasketaan ja ne näytetään pian',
     ],
 ];
