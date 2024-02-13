@@ -7,8 +7,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Score\Best\Model as ScoreBest;
 use App\Models\Solo\Score as SoloScore;
+use App\Models\UserCountryHistory;
 use App\Transformers\ScoreTransformer;
 use App\Transformers\UserCompactTransformer;
+use Carbon\CarbonImmutable;
 
 class ScoresController extends Controller
 {
@@ -48,6 +50,23 @@ class ScoresController extends Controller
         $file = $score->getReplayFile();
         if ($file === null) {
             abort(404);
+        }
+
+        if (\Auth::user()->getKey() !== $score->user_id) {
+            $score->user->statistics($score->getMode(), true)->increment('replay_popularity');
+
+            $month = CarbonImmutable::now();
+            $currentMonth = UserCountryHistory::formatDate($month);
+
+            $score->user->replaysWatchedCounts()
+                ->firstOrCreate(['year_month' => $currentMonth], ['count' => 0])
+                ->incrementInstance('count');
+
+            if ($score instanceof ScoreBest) {
+                $score->replayViewCount()
+                    ->firstOrCreate([], ['play_count' => 0])
+                    ->incrementInstance('play_count');
+            }
         }
 
         static $responseHeaders = [
