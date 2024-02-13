@@ -5,6 +5,7 @@
 
 namespace App\Http\Controllers\Multiplayer\Rooms\Playlist;
 
+use App\Exceptions\InvariantException;
 use App\Http\Controllers\Controller as BaseController;
 use App\Libraries\ClientCheck;
 use App\Models\Multiplayer\PlaylistItem;
@@ -163,11 +164,19 @@ class ScoresController extends BaseController
      */
     public function store($roomId, $playlistId)
     {
+        if (!$GLOBALS['cfg']['osu']['scores']['submission_enabled']) {
+            abort(422, osu_trans('score_tokens.create.submission_disabled'));
+        }
+
         $room = Room::findOrFail($roomId);
-        $playlistItem = $room->playlist()->where('id', $playlistId)->firstOrFail();
-        $user = auth()->user();
+        $playlistItem = $room->playlist()->findOrFail($playlistId);
+        $user = \Auth::user();
         $request = \Request::instance();
         $params = $request->all();
+
+        if (get_string($params['beatmap_hash'] ?? null) !== $playlistItem->beatmap->checksum) {
+            throw new InvariantException(osu_trans('score_tokens.create.beatmap_hash_invalid'));
+        }
 
         $buildId = ClientCheck::parseToken($request)['buildId'];
 
