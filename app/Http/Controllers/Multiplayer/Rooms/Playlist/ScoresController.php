@@ -5,6 +5,7 @@
 
 namespace App\Http\Controllers\Multiplayer\Rooms\Playlist;
 
+use App\Exceptions\InvariantException;
 use App\Http\Controllers\Controller as BaseController;
 use App\Libraries\ClientCheck;
 use App\Models\Multiplayer\PlaylistItem;
@@ -164,10 +165,14 @@ class ScoresController extends BaseController
     public function store($roomId, $playlistId)
     {
         $room = Room::findOrFail($roomId);
-        $playlistItem = $room->playlist()->where('id', $playlistId)->firstOrFail();
-        $user = auth()->user();
+        $playlistItem = $room->playlist()->findOrFail($playlistId);
+        $user = \Auth::user();
         $request = \Request::instance();
         $params = $request->all();
+
+        if (get_string($params['beatmap_hash'] ?? null) !== $playlistItem->beatmap->checksum) {
+            throw new InvariantException('missing or invalid beatmap_hash');
+        }
 
         $buildId = ClientCheck::parseToken($request)['buildId'];
 
