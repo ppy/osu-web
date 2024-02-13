@@ -55,10 +55,7 @@ class ScoresController extends Controller
         if (\Auth::user()->getKey() !== $score->user_id) {
             $score->user->statistics($score->getMode(), true)->increment('replay_popularity');
 
-        if (Auth::user()->user_id !== $score->user->user_id) {
-            $score->user->statistics($ruleset, true)->increment('replay_popularity');
-
-            $month = CarbonImmutable::now()->startOfMonth();
+            $month = CarbonImmutable::now();
             $currentMonth = UserCountryHistory::formatDate($month);
 
             $score->user->replaysWatchedCounts()
