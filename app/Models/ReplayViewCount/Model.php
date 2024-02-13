@@ -13,6 +13,7 @@ abstract class Model extends BaseModel
     protected $primaryKey = 'score_id';
 
     public $timestamps = false;
+    public $incrementing = false;
 
     protected static function suffix()
     {

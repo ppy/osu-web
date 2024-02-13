@@ -73,11 +73,9 @@ class ScoresController extends Controller
                 ->increment('count');
 
             if ($score instanceof ScoreBest) {
-                if (!$score->replayViewCount()->exists()) {
-                    $score->replayViewCount()->create(['play_count' => 0]);
-                }
-
-                $score->replayViewCount()->increment('play_count');
+                $score->replayViewCount()
+                    ->firstOrCreate([], ['play_count' => 0])
+                    ->incrementInstance('play_count');
             }
         }
 
