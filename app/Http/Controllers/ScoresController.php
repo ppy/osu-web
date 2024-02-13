@@ -57,9 +57,8 @@ class ScoresController extends Controller
             abort(404);
         }
 
-        static $responseHeaders = [
-            'Content-Type' => 'application/x-osu-replay',
-        ];
+        if (\Auth::user()->getKey() !== $score->user_id) {
+            $score->user->statistics($score->getMode(), true)->increment('replay_popularity');
 
         if (Auth::user()->user_id !== $score->user->user_id) {
             $score->user->statistics($ruleset, true)->increment('replay_popularity');
@@ -78,6 +77,10 @@ class ScoresController extends Controller
                     ->incrementInstance('play_count');
             }
         }
+
+        static $responseHeaders = [
+            'Content-Type' => 'application/x-osu-replay',
+        ];
 
         return response()->streamDownload(function () use ($file) {
             echo $file;
