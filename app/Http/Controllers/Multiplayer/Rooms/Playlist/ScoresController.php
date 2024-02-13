@@ -164,6 +164,10 @@ class ScoresController extends BaseController
      */
     public function store($roomId, $playlistId)
     {
+        if (!$GLOBALS['cfg']['osu']['scores']['submission_enabled']) {
+            abort(422, 'score submission is disabled');
+        }
+
         $room = Room::findOrFail($roomId);
         $playlistItem = $room->playlist()->findOrFail($playlistId);
         $user = \Auth::user();
