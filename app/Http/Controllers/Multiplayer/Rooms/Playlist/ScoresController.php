@@ -165,7 +165,7 @@ class ScoresController extends BaseController
     public function store($roomId, $playlistId)
     {
         if (!$GLOBALS['cfg']['osu']['scores']['submission_enabled']) {
-            abort(422, 'score submission is disabled');
+            abort(422, osu_trans('score_tokens.create.submission_disabled'));
         }
 
         $room = Room::findOrFail($roomId);
@@ -175,7 +175,7 @@ class ScoresController extends BaseController
         $params = $request->all();
 
         if (get_string($params['beatmap_hash'] ?? null) !== $playlistItem->beatmap->checksum) {
-            throw new InvariantException('missing or invalid beatmap_hash');
+            throw new InvariantException(osu_trans('score_tokens.create.beatmap_hash_invalid'));
         }
 
         $buildId = ClientCheck::parseToken($request)['buildId'];
