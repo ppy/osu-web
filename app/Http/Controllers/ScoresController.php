@@ -67,7 +67,6 @@ class ScoresController extends Controller
             $currentMonth = UserCountryHistory::formatDate($month);
 
             $score->user->replaysWatchedCounts()
-                ->where('year_month', $currentMonth)
                 ->firstOrCreate(['year_month' => $currentMonth], ['count' => 0])
                 ->incrementInstance('count');
 
