@@ -24,6 +24,8 @@ class ScoresControllerTest extends TestCase
 
     public function testDownloadSameUser()
     {
+        $this->expectCountChange(fn () => $this->score->user->statistics($this->score->getMode())->replay_popularity, 0);
+
         $this
             ->actingAs($this->user)
             ->withHeaders(['HTTP_REFERER' => $GLOBALS['cfg']['app']['url'].'/'])
@@ -33,9 +35,7 @@ class ScoresControllerTest extends TestCase
             )
             ->assertSuccessful();
 
-        $this->assertEquals(0, $this->score->user->statistics($this->score->getMode())->replay_popularity);
-
-        $month = CarbonImmutable::now()->startOfMonth();
+        $month = CarbonImmutable::now();
         $currentMonth = UserCountryHistory::formatDate($month);
         $this->assertNull($this->score->user->replaysWatchedCounts()->where('year_month', $currentMonth)->first());
 
@@ -52,6 +52,8 @@ class ScoresControllerTest extends TestCase
                 'has_replay' => true,
             ]);
 
+        $this->expectCountChange(fn () => $this->score->user->statistics($this->score->getMode())->replay_popularity, 0);
+
         $this
             ->actingAs($this->user)
             ->withHeaders(['HTTP_REFERER' => $GLOBALS['cfg']['app']['url'].'/'])
@@ -61,11 +63,9 @@ class ScoresControllerTest extends TestCase
             )
             ->assertSuccessful();
 
-        $this->assertEquals(0, $soloScore->user->statistics($soloScore->getMode())->replay_popularity);
-
-        $month = CarbonImmutable::now()->startOfMonth();
+        $month = CarbonImmutable::now();
         $currentMonth = UserCountryHistory::formatDate($month);
-        $this->assertNull($soloScore->user->replaysWatchedCounts()->where('year_month', $currentMonth)->first());
+        $this->assertNull($this->score->user->replaysWatchedCounts()->where('year_month', $currentMonth)->first());
     }
 
     public function testDownload()
@@ -79,13 +79,13 @@ class ScoresControllerTest extends TestCase
             )
             ->assertSuccessful();
 
-        $this->assertEquals(1, $this->score->user->statistics($this->score->getMode())->replay_popularity);
+        $this->assertEquals($this->score->user->statistics($this->score->getMode())->replay_popularity, 1);
 
-        $month = CarbonImmutable::now()->startOfMonth();
+        $month = CarbonImmutable::now();
         $currentMonth = UserCountryHistory::formatDate($month);
-        $this->assertEquals(1, $this->score->user->replaysWatchedCounts()->where('year_month', $currentMonth)->first()->count);
+        $this->assertEquals($this->score->user->replaysWatchedCounts()->where('year_month', $currentMonth)->first()->count, 1);
 
-        $this->assertEquals(1, $this->score->replayViewCount()->first()->play_count);
+        $this->assertEquals($this->score->replayViewCount()->first()->play_count, 1);
     }
 
     public function testDownloadSoloScore()
@@ -107,11 +107,11 @@ class ScoresControllerTest extends TestCase
             )
             ->assertSuccessful();
 
-        $this->assertEquals(1, $soloScore->user->statistics($soloScore->getMode())->replay_popularity);
+        $this->assertEquals($soloScore->user->statistics($soloScore->getMode())->replay_popularity, 1);
 
-        $month = CarbonImmutable::now()->startOfMonth();
+        $month = CarbonImmutable::now();
         $currentMonth = UserCountryHistory::formatDate($month);
-        $this->assertEquals(1, $soloScore->user->replaysWatchedCounts()->where('year_month', $currentMonth)->first()->count);
+        $this->assertEquals($soloScore->user->replaysWatchedCounts()->where('year_month', $currentMonth)->first()->count, 1);
     }
 
     public function testDownloadDeletedBeatmap()
