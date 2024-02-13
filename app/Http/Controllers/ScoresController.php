@@ -5,13 +5,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\Ruleset;
 use App\Models\Score\Best\Model as ScoreBest;
 use App\Models\Solo\Score as SoloScore;
 use App\Models\UserCountryHistory;
 use App\Transformers\ScoreTransformer;
 use App\Transformers\UserCompactTransformer;
-use Auth;
 use Carbon\CarbonImmutable;
 
 class ScoresController extends Controller
