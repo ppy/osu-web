@@ -47,7 +47,7 @@ class Hit implements \ArrayAccess
                 $cap = mb_strrpos($text, '</em>');
                 $cap = $cap === false ? false : $cap + 5;
 
-                return truncate($text, $cap === false ? $limit : max($cap, $limit));
+                return truncate_inclusive($text, $cap === false ? $limit : max($cap, $limit));
             }, $highlights);
         }
 
