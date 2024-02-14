@@ -17,9 +17,6 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
     git \
     gosu \
     jhead \
-    libglib2.0-0 \
-    libnss3 \
-    netcat-openbsd \
     nodejs \
     php8.3 \
     php8.3-common \
