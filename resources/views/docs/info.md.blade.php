@@ -128,6 +128,8 @@ v1      | _legacy api provided by the old site, will be deprecated soon_
 
 Sometimes API response needs updating in non-backward compatible ways. In such cases, `x-api-version` header is used to determine which version of the response will be returned.
 
+Version 0 is assumed when the header is omitted.
+
 Version  | Change
 -------- | ------
 20220705 | [Score](#score) object with different set of fields.
