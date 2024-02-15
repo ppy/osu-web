@@ -44,9 +44,10 @@ class Hit implements \ArrayAccess
             return array_map(function ($text) use ($limit) {
                 // ensure cutoff is after the end of the highlight, if any.
                 // TODO: look at storing offsets in index and using those to build highlights instead?
-                $cap = strpos($text, '</em>') + 5;
+                $cap = mb_strrpos($text, '</em>');
+                $cap = $cap === false ? false : $cap + 5;
 
-                return str_limit($text, $cap === false ? $limit : max($cap, $limit));
+                return truncate_inclusive($text, $cap === false ? $limit : max($cap, $limit));
             }, $highlights);
         }
 
