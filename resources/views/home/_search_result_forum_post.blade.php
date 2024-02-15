@@ -28,7 +28,7 @@
             'user' => $user,
             'title' => $title,
             'link' => $postUrl,
-            'excerpt' => $search->getHighlights($entry, 'search_content') ?? str_limit($entry->source('search_content'), 100),
+            'excerpt' => $search->getHighlights($entry, 'search_content') ?? truncate($entry->source('search_content'), 100),
             'postId' => $postId,
             'time' => $entry->source('post_time'),
             'topic' => $topic,
