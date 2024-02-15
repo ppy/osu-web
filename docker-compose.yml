@@ -18,6 +18,7 @@ x-web: &x-web
   build:
     context: ./docker/development
     dockerfile: ../../Dockerfile.development
+  init: true
   volumes:
     - .:/app
   environment:
