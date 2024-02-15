@@ -76,6 +76,9 @@ services:
       - ./storage/oauth-public.key:/app/oauth-public.key
     environment:
       <<: *x-env
+    ports:
+      # used by GitHub Actions test
+      - "${NOTIFICATION_EXTERNAL_PORT:-127.0.0.1:2345}:2345"
 
   notification-server-dusk:
     image: pppy/osu-notification-server
