@@ -449,6 +449,15 @@ function truncate(string $text, $limit = 100, $ellipsis = '...')
     return $text;
 }
 
+function truncate_inclusive(string $text, int $limit): string
+{
+    if (mb_strlen($text) > $limit) {
+        return mb_substr($text, 0, $limit).'...';
+    }
+
+    return $text;
+}
+
 function json_date(?DateTime $date): ?string
 {
     return $date === null ? null : $date->format('Y-m-d');
