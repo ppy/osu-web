@@ -51,6 +51,8 @@ interface UserExtendedAdditionalAttributes {
   title_url: string | null;
   twitter: string | null;
   website: string | null;
+  changelog_entries_count: number | null;
+  github_url: string | null;
 }
 
 type UserExtendedJson = UserJson & Required<Pick<UserJson, UserExtendedDefaultIncludes>> & UserExtendedAdditionalAttributes;

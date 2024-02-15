@@ -48,6 +48,8 @@ class UserTransformer extends UserCompactTransformer
             'title_url' => $user->titleUrl(),
             'twitter' => $user->user_twitter,
             'website' => $user->user_website,
+            'changelog_entries_count' => $user->githubUser?->changelogEntries->count(),
+            'github_url' => $user->githubUser?->githubUrl(),
         ]);
     }
 }

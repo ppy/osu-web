@@ -14,7 +14,7 @@ import { classWithModifiers } from 'utils/css';
 import { trans, transChoice } from 'utils/lang';
 
 // these are ordered in the order they appear in.
-const textKeys = ['join_date', 'last_visit', 'playstyle', 'post_count', 'comments_count'] as const;
+const textKeys = ['join_date', 'last_visit', 'playstyle', 'post_count', 'comments_count', 'changelog_entries_count'] as const;
 type TextKey = (typeof textKeys)[number];
 
 const bioKeys = ['location', 'interests', 'occupation'] as const;
@@ -133,6 +133,14 @@ const textMapping: Record<TextKey, (user: UserExtendedJson) => StringWithCompone
     return {
       mappings: { link: <a className={classWithModifiers('profile-links__value', 'link')} href={url}>{count}</a> },
       pattern: trans('users.show.post_count._'),
+    };
+  },
+  changelog_entries_count: (user: UserExtendedJson) => {
+    const count = transChoice('users.show.changelog_entries_count.count', user.changelog_entries_count ?? 0);
+
+    return {
+      mappings: { link: <a className={classWithModifiers('profile-links__value', 'link')} href={user.github_url!}>{count}</a> },
+      pattern: trans('users.show.changelog_entries_count._'),
     };
   },
 };
