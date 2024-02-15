@@ -1,5 +1,3 @@
-version: '3.4'
-
 x-env: &x-env
   APP_KEY: "${APP_KEY}"
   BEATMAPS_DIFFICULTY_CACHE_SERVER_URL: http://beatmap-difficulty-lookup-cache
@@ -18,6 +16,7 @@ x-web: &x-web
   build:
     context: ./docker/development
     dockerfile: ../../Dockerfile.development
+  init: true
   volumes:
     - .:/app
   environment:
@@ -114,6 +113,7 @@ services:
       start_period: 60s
 
   redis:
+    command: ['redis-server', '--save', '60', '1', '--loglevel', 'warning']
     image: redis:latest
     ports:
       - "${REDIS_EXTERNAL_PORT:-127.0.0.1:6379}:6379"
@@ -122,6 +122,8 @@ services:
       interval: 1s
       timeout: 60s
       start_period: 60s
+    volumes:
+      - redis:/data
 
   elasticsearch:
     # Version must be kept up to date with library defined in: composer.json
@@ -188,3 +190,4 @@ services:
 volumes:
   database:
   elasticsearch:
+  redis:
