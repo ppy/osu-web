@@ -66,6 +66,14 @@ const linkMapping: Record<LinkKey, (user: UserExtendedJson) => LinkProps> = {
 };
 
 const textMapping: Record<TextKey, (user: UserExtendedJson) => StringWithComponentProps> = {
+  changelog_entries_count: (user: UserExtendedJson) => {
+    const count = transChoice('users.show.changelog_entries_count.count', user.changelog_entries_count ?? 0);
+
+    return {
+      mappings: { link: <a className={classWithModifiers('profile-links__value', 'link')} href={user.github_url!}>{count}</a> },
+      pattern: trans('users.show.changelog_entries_count._'),
+    };
+  },
   comments_count: (user: UserExtendedJson) => {
     const count = transChoice('users.show.comments_count.count', user.comments_count ?? 0);
     const url = route('comments.index', { user_id: user.id });
@@ -133,14 +141,6 @@ const textMapping: Record<TextKey, (user: UserExtendedJson) => StringWithCompone
     return {
       mappings: { link: <a className={classWithModifiers('profile-links__value', 'link')} href={url}>{count}</a> },
       pattern: trans('users.show.post_count._'),
-    };
-  },
-  changelog_entries_count: (user: UserExtendedJson) => {
-    const count = transChoice('users.show.changelog_entries_count.count', user.changelog_entries_count ?? 0);
-
-    return {
-      mappings: { link: <a className={classWithModifiers('profile-links__value', 'link')} href={user.github_url!}>{count}</a> },
-      pattern: trans('users.show.changelog_entries_count._'),
     };
   },
 };
