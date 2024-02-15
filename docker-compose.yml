@@ -62,7 +62,7 @@ services:
   beatmap-difficulty-lookup-cache:
     image: pppy/osu-beatmap-difficulty-lookup-cache
     ports:
-      - "${BEATMAPS_DIFFICULTY_CACHE_EXTERNAL_PORT:-5001}:80"
+      - "${BEATMAPS_DIFFICULTY_CACHE_EXTERNAL_PORT:-127.0.0.1:5001}:80"
 
   notification-server:
     image: pppy/osu-notification-server
@@ -76,8 +76,6 @@ services:
       - ./storage/oauth-public.key:/app/oauth-public.key
     environment:
       <<: *x-env
-    ports:
-      - "${NOTIFICATION_EXTERNAL_PORT:-2345}:2345"
 
   notification-server-dusk:
     image: pppy/osu-notification-server
@@ -101,7 +99,7 @@ services:
       <<: *x-env
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
     ports:
-      - "${MYSQL_EXTERNAL_PORT:-3306}:3306"
+      - "${MYSQL_EXTERNAL_PORT:-127.0.0.1:3306}:3306"
     command: --default-authentication-plugin=mysql_native_password
     healthcheck:
       # important to use 127.0.0.1 instead of localhost as mysql starts twice.
@@ -115,7 +113,7 @@ services:
   redis:
     image: redis:latest
     ports:
-      - "${REDIS_EXTERNAL_PORT:-6379}:6379"
+      - "${REDIS_EXTERNAL_PORT:-127.0.0.1:6379}:6379"
     healthcheck:
       test: ["CMD", "redis-cli", "--raw", "incr", "ping"]
       interval: 1s
@@ -126,7 +124,7 @@ services:
     # Version must be kept up to date with library defined in: composer.json
     image: elasticsearch:7.17.16
     ports:
-      - "${ES_EXTERNAL_PORT:-9200}:9200"
+      - "${ES_EXTERNAL_PORT:-127.0.0.1:9200}:9200"
     volumes:
       - elasticsearch:/usr/share/elasticsearch/data
     environment:
