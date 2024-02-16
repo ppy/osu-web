@@ -18,7 +18,7 @@ export default function Player(props: Props) {
   let content: React.ReactNode;
 
   if (props.score.rank_global == null || props.score.ranked === false || props.score.preserve === false) {
-    title = trans('scores.show.player.no_rank');
+    title = trans('scores.status.no_rank');
     content = '-';
   } else {
     title = '';
