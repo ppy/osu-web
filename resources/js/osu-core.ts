@@ -129,7 +129,6 @@ export default class OsuCore {
     if (!isLoading) {
       this.updateCurrentUser();
     }
-
   }
 
   readonly updateCurrentUser = () => {
