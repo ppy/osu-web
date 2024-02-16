@@ -17,13 +17,10 @@ export default function Player(props: Props) {
   let title: string;
   let content: React.ReactNode;
 
-  if (props.score.ranked === false || props.score.preserve === false)
-  {
+  if (props.score.ranked === false || props.score.preserve === false) {
     title = trans('scores.show.player.no_rank');
     content = '-';
-  }
-  else
-  {
+  } else {
     title = '';
     content = <>#{formatNumber(props.score.rank_global)}</>;
   }
