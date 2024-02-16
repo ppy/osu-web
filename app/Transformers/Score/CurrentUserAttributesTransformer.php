@@ -17,9 +17,7 @@ class CurrentUserAttributesTransformer extends TransformerAbstract
 {
     public function transform(LegacyMatch\Score|MultiplayerScoreLink|ScoreModel|SoloScore $score): array
     {
-        if ($score instanceof ScoreModel) {
-            $pinnable = $score->best;
-        } elseif ($score instanceof SoloScore) {
+        if ($score instanceof SoloScore) {
             $pinnable = $score;
         } elseif ($score instanceof MultiplayerScoreLink) {
             $pinnable = $score->score;
@@ -32,7 +30,6 @@ class CurrentUserAttributesTransformer extends TransformerAbstract
                 ? [
                     'is_pinned' => app('score-pins')->isPinned($pinnable),
                     'score_id' => $pinnable->getKey(),
-                    'score_type' => $pinnable->getMorphClass(),
                 ] : null,
         ];
     }
