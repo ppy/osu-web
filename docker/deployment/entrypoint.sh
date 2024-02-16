@@ -5,7 +5,7 @@ set -e
 # exit on unassigned variable
 set -u
 
-command=php
+command=octane
 if [ "$#" -gt 0 ]; then
     command="$1"
     shift
