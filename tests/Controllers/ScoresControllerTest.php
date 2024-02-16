@@ -9,17 +9,23 @@ use App\Models\Beatmap;
 use App\Models\Score\Best\Osu;
 use App\Models\Solo\Score as SoloScore;
 use App\Models\User;
+use App\Models\UserCountryHistory;
+use App\Models\UserStatistics;
+use Carbon\CarbonImmutable;
 use Illuminate\Filesystem\Filesystem;
 use Storage;
 use Tests\TestCase;
 
 class ScoresControllerTest extends TestCase
 {
-    private $score;
-    private $user;
+    private Osu $score;
+    private User $user;
+    private User $otherUser;
 
-    public function testDownload()
+    public function testDownloadSameUser()
     {
+        $this->expectCountChange(fn () => $this->score->user->statistics($this->score->getMode())->replay_popularity, 0);
+
         $this
             ->actingAs($this->user)
             ->withHeaders(['HTTP_REFERER' => $GLOBALS['cfg']['app']['url'].'/'])
@@ -28,16 +34,25 @@ class ScoresControllerTest extends TestCase
                 route('scores.download-legacy', $this->params())
             )
             ->assertSuccessful();
+
+        $month = CarbonImmutable::now();
+        $currentMonth = UserCountryHistory::formatDate($month);
+        $this->assertNull($this->score->user->replaysWatchedCounts()->where('year_month', $currentMonth)->first());
+
+        $this->assertNull($this->score->replayViewCount()->first());
     }
 
-    public function testDownloadSoloScore()
+    public function testDownloadSoloScoreSameUser()
     {
         $soloScore = SoloScore::factory()
             ->create([
                 'legacy_score_id' => $this->score->getKey(),
                 'ruleset_id' => Beatmap::MODES[$this->score->getMode()],
+                'user_id' => $this->score->user_id,
                 'has_replay' => true,
             ]);
+
+        $this->expectCountChange(fn () => $this->score->user->statistics($this->score->getMode())->replay_popularity, 0);
 
         $this
             ->actingAs($this->user)
@@ -47,6 +62,56 @@ class ScoresControllerTest extends TestCase
                 route('scores.download', $soloScore)
             )
             ->assertSuccessful();
+
+        $month = CarbonImmutable::now();
+        $currentMonth = UserCountryHistory::formatDate($month);
+        $this->assertNull($this->score->user->replaysWatchedCounts()->where('year_month', $currentMonth)->first());
+    }
+
+    public function testDownload()
+    {
+        $this
+            ->actingAs($this->otherUser)
+            ->withHeaders(['HTTP_REFERER' => $GLOBALS['cfg']['app']['url'].'/'])
+            ->json(
+                'GET',
+                route('scores.download-legacy', $this->params())
+            )
+            ->assertSuccessful();
+
+        $this->assertEquals($this->score->user->statistics($this->score->getMode())->replay_popularity, 1);
+
+        $month = CarbonImmutable::now();
+        $currentMonth = UserCountryHistory::formatDate($month);
+        $this->assertEquals($this->score->user->replaysWatchedCounts()->where('year_month', $currentMonth)->first()->count, 1);
+
+        $this->assertEquals($this->score->replayViewCount()->first()->play_count, 1);
+    }
+
+    public function testDownloadSoloScore()
+    {
+        $soloScore = SoloScore::factory()
+            ->create([
+                'legacy_score_id' => $this->score->getKey(),
+                'ruleset_id' => Beatmap::MODES[$this->score->getMode()],
+                'user_id' => $this->score->user_id,
+                'has_replay' => true,
+            ]);
+
+        $this
+            ->actingAs($this->otherUser)
+            ->withHeaders(['HTTP_REFERER' => $GLOBALS['cfg']['app']['url'].'/'])
+            ->json(
+                'GET',
+                route('scores.download', $soloScore)
+            )
+            ->assertSuccessful();
+
+        $this->assertEquals($soloScore->user->statistics($soloScore->getMode())->replay_popularity, 1);
+
+        $month = CarbonImmutable::now();
+        $currentMonth = UserCountryHistory::formatDate($month);
+        $this->assertEquals($soloScore->user->replaysWatchedCounts()->where('year_month', $currentMonth)->first()->count, 1);
     }
 
     public function testDownloadDeletedBeatmap()
@@ -137,7 +202,10 @@ class ScoresControllerTest extends TestCase
         });
 
         $this->user = User::factory()->create();
-        $this->score = Osu::factory()->withReplay()->create();
+        $this->otherUser = User::factory()->create();
+
+        UserStatistics\Osu::factory()->create(['user_id' => $this->user->user_id]);
+        $this->score = Osu::factory()->withReplay()->create(['user_id' => $this->user->user_id]);
     }
 
     private function params()
