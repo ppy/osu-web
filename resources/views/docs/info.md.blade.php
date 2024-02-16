@@ -126,7 +126,7 @@ v1      | _legacy api provided by the old site, will be deprecated soon_
 
 ### API Response Version
 
-Sometimes API response needs updating in non-backward compatible ways. In such cases, `x-api-version` header is used to determine which version of the response will be returned.
+Sometimes, an API response need to be updated in non-backward compatible ways. In such cases, the `x-api-version` header is used to determine which version of the response will be returned.
 
 Version 0 is assumed when the header is omitted.
 
