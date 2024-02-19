@@ -127,6 +127,20 @@ class NominateBeatmapset
             throw new InvariantException(osu_trans('beatmapsets.nominate.hybrid_requires_modes'));
         }
 
+        // Only one ruleset is allowed to have more than one nomination.
+        // This needs to be enforced for Beatmapset::mainRuleset()
+        $nominationCount = $this->beatmapset->currentNominationCount();
+
+        foreach ($rulesets as $ruleset) {
+            $nominationCount[$ruleset->legacyName()]++;
+        }
+
+        arsort($nominationCount);
+        // We can ignore the first highest count, other rulesets need to be no more than 1.
+        if (count($nominationCount) > 1 && array_values($nominationCount)[1] > 1) {
+            throw new InvariantException(osu_trans('beatmapsets.nominate.too_many_non_main_ruleset'));
+        }
+
         foreach ($rulesets as $ruleset) {
             $name = $ruleset->legacyName();
             if (!$this->user->isFullBN($name) && !$this->user->isNAT($name)) {

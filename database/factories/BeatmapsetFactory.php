@@ -121,14 +121,17 @@ class BeatmapsetFactory extends Factory
         );
     }
 
-    public function withNominations()
+    public function withNominations(?array $modes = null, ?int $count = null)
     {
-        $count = $GLOBALS['cfg']['osu']['beatmapset']['required_nominations'];
+        $count ??= $GLOBALS['cfg']['osu']['beatmapset']['required_nominations'];
 
         return $this
             ->has(BeatmapsetNomination::factory()
                 ->count($count)
-                ->state(['user_id' => User::factory()->withGroup('bng', array_keys(Beatmap::MODES))]));
+                ->state([
+                    'modes' => $modes,
+                    'user_id' => User::factory()->withGroup('bng', array_keys(Beatmap::MODES))
+                ]));
     }
 
     public function withBeatmaps(?Ruleset $ruleset = null, int $count = 1, ?User $guestMapper = null)

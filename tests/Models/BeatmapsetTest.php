@@ -195,6 +195,28 @@ class BeatmapsetTest extends TestCase
         Bus::assertNotDispatched(CheckBeatmapsetCovers::class);
     }
 
+    public function testNominateMainRulsetInvariant()
+    {
+        $beatmapset = $this->beatmapsetFactory()
+            ->withBeatmaps(Ruleset::osu)
+            ->withBeatmaps(Ruleset::taiko)
+            ->withNominations(['osu', 'taiko'], 1)
+            ->create();
+
+        $user = User::factory()->withGroup('bng', ['osu', 'taiko'])->create();
+
+        $this->assertNominationChanges($beatmapset, false);
+
+        $this->expectExceptionCallable(
+            fn () => $beatmapset->nominate($user, ['osu', 'taiko']),
+            InvariantException::class,
+            osu_trans('beatmapsets.nominate.too_many_non_main_ruleset')
+        );
+
+        $this->assertTrue($beatmapset->isPending());
+        Bus::assertNotDispatched(CheckBeatmapsetCovers::class);
+    }
+
     public function testQualify()
     {
         $beatmapset = $this->beatmapsetFactory()->withBeatmaps()->create();
