@@ -83,7 +83,7 @@ export default class BeatmapList extends React.Component<Props> {
       >
         <BeatmapListItem
           beatmap={beatmap}
-          beatmapUrl={makeUrl({ beatmap })}
+          beatmapUrl={makeUrl({ beatmap, filter: this.props.discussionsState.currentFilter })}
           beatmapset={this.props.discussionsState.beatmapset}
           mapper={this.props.users.get(beatmap.user_id) ?? deletedUserJson}
           showNonGuestMapper={false}
