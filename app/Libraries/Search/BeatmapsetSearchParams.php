@@ -43,7 +43,7 @@ class BeatmapsetSearchParams extends SearchParams
     public ?string $status = null;
     public ?string $title = null;
     public ?array $statusRange = null;
-    public ?array $hitLength = null;
+    public ?array $totalLength = null;
     public ?array $updated = null;
     public ?User $user = null;
 
