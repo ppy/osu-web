@@ -22,12 +22,12 @@ export default class AddChannelButton extends React.Component<Props> {
     return (
       <div className={classWithModifiers('chat-conversation-list-item', modifiers)}>
         <button className='chat-conversation-list-item__tile' onClick={this.handleClick}>
-          <div className='chat-conversation-list-item__avatar'>
+          <span className='chat-conversation-list-item__avatar'>
             <span className='avatar avatar--join-channel'>
               <span className='fas fa-plus' />
             </span>
-          </div>
-          <div className='chat-conversation-list-item__name'>{trans(`chat.channels.${this.props.type}`)}</div>
+          </span>
+          <span className='chat-conversation-list-item__name'>{trans(`chat.channels.${this.props.type}`)}</span>
         </button>
       </div>
     );
