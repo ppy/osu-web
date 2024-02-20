@@ -36,9 +36,9 @@ function Channel({ channel, onClick, status }: ChannelProps) {
 
   return (
     <button key={channel.channel_id} className={classWithModifiers('chat-join-channel__channel', { joined: status === 'joined' })} onClick={handleClick}>
-      <div>{statusElement}</div>
-      <div>{channel.name}</div>
-      <div>{channel.description}</div>
+      <span>{statusElement}</span>
+      <span>{channel.name}</span>
+      <span>{channel.description}</span>
     </button>
   );
 }
