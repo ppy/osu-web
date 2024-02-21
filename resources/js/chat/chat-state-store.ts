@@ -38,7 +38,7 @@ export default class ChatStateStore implements DispatchListener {
   private readonly pingService: PingService;
   @observable private selected: ChannelId = null;
   private selectedIndex = 0;
-  @observable private waitJoinChannelId: string | number | null = null;
+  @observable private waitAddChannelId: string | number | null = null;
 
   @computed
   get isChatMounted() {
@@ -47,14 +47,14 @@ export default class ChatStateStore implements DispatchListener {
 
   // Should not join/create another channel if still waiting for a pending request.
   @computed
-  get isJoiningChannel() {
-    return this.waitJoinChannelId != null;
+  get isAddingChannel() {
+    return this.waitAddChannelId != null;
   }
 
   @computed
   get joiningChannelId() {
-    return typeof this.waitJoinChannelId === 'number'
-      ? this.waitJoinChannelId
+    return typeof this.waitAddChannelId === 'number'
+      ? this.waitAddChannelId
       : null;
   }
 
@@ -81,9 +81,9 @@ export default class ChatStateStore implements DispatchListener {
     return supportedChannelTypes.flatMap((type) => this.channelStore.groupedChannels[type]);
   }
 
-  private get waitJoinChannelType() {
-    if (this.waitJoinChannelId == null) return null;
-    return typeof this.waitJoinChannelId === 'string'
+  private get waitAddChannelType() {
+    if (this.waitAddChannelId == null) return null;
+    return typeof this.waitAddChannelId === 'string'
       ? 'announce'
       : 'existing';
   }
@@ -130,6 +130,38 @@ export default class ChatStateStore implements DispatchListener {
     });
   }
 
+  // Only up to one join/create channel operation should be allowed to be running at any time.
+  // For consistency, the operation is considered complete when the websocket message arrives, not when the request completes.
+  // TODO: allow user cancelling operation from UI?
+  @action
+  async addChannel(channelId?: number) {
+    if (this.isAddingChannel) return;
+
+    showImmediateLoadingOverlay();
+
+    try {
+      if (channelId != null) {
+        this.waitAddChannelId = channelId;
+        await joinChannel(channelId, core.currentUserOrFail.id);
+      } else {
+        if (!this.createAnnouncement.isValid) return;
+
+        const json = this.createAnnouncement.toJson();
+        this.waitAddChannelId = json.uuid;
+        await createAnnouncement(json);
+      }
+    } catch (error) {
+      if (!isJqXHR(error)) throw error;
+
+      onError(error);
+      runInAction(() => {
+        this.waitAddChannelId = null;
+      });
+    }
+
+    hideLoadingOverlay();
+  }
+
   handleDispatchAction(event: DispatcherAction) {
     if (event instanceof ChannelJoinEvent) {
       this.handleChatChannelJoinEvent(event);
@@ -142,38 +174,6 @@ export default class ChatStateStore implements DispatchListener {
     } else if (event instanceof SocketStateChangedAction) {
       this.handleSocketStateChanged(event);
     }
-  }
-
-  // Only up to one join/create channel operation should be allowed to be running at any time.
-  // For consistency, the operation is considered complete when the websocket message arrives, not when the request completes.
-  // TODO: allow user cancelling operation from UI?
-  @action
-  async joinChannel(channelId?: number) {
-    if (this.isJoiningChannel) return;
-
-    showImmediateLoadingOverlay();
-
-    try {
-      if (channelId != null) {
-        this.waitJoinChannelId = channelId;
-        await joinChannel(channelId, core.currentUserOrFail.id);
-      } else {
-        if (!this.createAnnouncement.isValid) return;
-
-        const json = this.createAnnouncement.toJson();
-        this.waitJoinChannelId = json.uuid;
-        await createAnnouncement(json);
-      }
-    } catch (error) {
-      if (!isJqXHR(error)) throw error;
-
-      onError(error);
-      runInAction(() => {
-        this.waitJoinChannelId = null;
-      });
-    }
-
-    hideLoadingOverlay();
   }
 
   @action
@@ -248,13 +248,13 @@ export default class ChatStateStore implements DispatchListener {
     const json = event.json;
     this.channelStore.update(json);
 
-    if (this.waitJoinChannelType === 'announce' && this.waitJoinChannelId === json.uuid
-      || this.waitJoinChannelType === 'existing' && this.waitJoinChannelId === json.channel_id
+    if (this.waitAddChannelType === 'announce' && this.waitAddChannelId === json.uuid
+      || this.waitAddChannelType === 'existing' && this.waitAddChannelId === json.channel_id
     ) {
       // hide overlay before changing channel if we're waiting for a change to remove it from history navigation.
       hideLoadingOverlay();
       this.selectChannel(json.channel_id);
-      this.waitJoinChannelId = null;
+      this.waitAddChannelId = null;
       if (json.type === 'ANNOUNCE') {
         this.createAnnouncement.clear();
       }

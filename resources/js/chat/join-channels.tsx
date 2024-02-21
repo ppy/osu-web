@@ -83,7 +83,7 @@ export default class JoinChannels extends React.Component<Props> {
   }
 
   private readonly handleClick = (channelId: number) => {
-    core.dataStore.chatState.joinChannel(channelId);
+    core.dataStore.chatState.addChannel(channelId);
   };
 
   private readonly handleRetryClick = () => {
