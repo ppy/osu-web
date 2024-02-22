@@ -3,14 +3,12 @@
 
 import { Spinner } from 'components/spinner';
 import ChannelJson from 'interfaces/chat/channel-json';
-import { action, computed, makeObservable, observable, runInAction } from 'mobx';
+import { computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import { isJqXHR } from 'utils/ajax';
 import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
-import { getPublicChannels } from './chat-api';
 
 type JoinedStatus = 'joined' | 'joining' | null;
 type Props = Record<string, never>;
@@ -45,9 +43,13 @@ function Channel({ channel, onClick, status }: ChannelProps) {
 
 @observer
 export default class JoinChannels extends React.Component<Props> {
-  @observable private channels?: ChannelJson[];
-  @observable private error = false;
-  private xhr: ReturnType<typeof getPublicChannels> | null= null;
+  get channels() {
+    return core.dataStore.chatState.publicChannels;
+  }
+
+  get error() {
+    return core.dataStore.chatState.publicChannelsXhrError;
+  }
 
   @computed
   get joinedPublicChannelIds() {
@@ -58,12 +60,6 @@ export default class JoinChannels extends React.Component<Props> {
     super(props);
 
     makeObservable(this);
-
-    this.loadChannelList();
-  }
-
-  componentWillUnmount() {
-    this.xhr?.abort();
   }
 
   render() {
@@ -87,30 +83,8 @@ export default class JoinChannels extends React.Component<Props> {
   };
 
   private readonly handleRetryClick = () => {
-    this.loadChannelList();
+    core.dataStore.chatState.loadPublicChannelList();
   };
-
-  @action
-  private async loadChannelList() {
-    if (this.channels != null || this.xhr != null) return;
-
-    this.error = false;
-
-    try {
-      this.xhr = getPublicChannels();
-      const channels = await this.xhr;
-      runInAction(() => {
-        this.channels = channels;
-      });
-    } catch (error) {
-      if (!isJqXHR(error)) throw error;
-      runInAction(() => {
-        this.error = true;
-      });
-    } finally {
-      this.xhr = null;
-    }
-  }
 
   private readonly renderChannel = (channel: ChannelJson) => {
     let status: JoinedStatus = null;
