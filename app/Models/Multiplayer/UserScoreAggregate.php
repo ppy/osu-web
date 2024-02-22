@@ -72,20 +72,14 @@ class UserScoreAggregate extends Model
 
     public function addScoreLink(ScoreLink $scoreLink, ?PlaylistItemUserHighScore $highestScore = null)
     {
-        return $this->getConnection()->transaction(function () use ($highestScore, $scoreLink) {
-            $score = $scoreLink->score;
-            if ($score === null) {
-                return false;
-            }
-
-            $highestScore ??= PlaylistItemUserHighScore::lookupOrDefault(
+        return $this->getConnection()->transaction(function () use ($scoreLink) {
+            $isNewHighScore = PlaylistItemUserHighScore::lookupOrDefault(
                 $scoreLink->user_id,
                 $scoreLink->playlist_item_id,
-            );
+            )->updateWithScoreLink($scoreLink);
 
-            if ($score->passed && $score->total_score > $highestScore->total_score) {
-                $this->updateUserTotal($scoreLink, $highestScore);
-                $highestScore->updateWithScoreLink($scoreLink);
+            if ($isNewHighScore) {
+                $this->refreshStatistics();
             }
 
             return true;
@@ -137,11 +131,14 @@ class UserScoreAggregate extends Model
                 ->with('score')
                 ->get();
             foreach ($scoreLinks as $scoreLink) {
-                $this->addScoreLink(
-                    $scoreLink,
-                    $playlistItemAggs[$scoreLink->playlist_item_id] ?? null,
-                );
+                ($playlistItemAggs[$scoreLink->playlist_item_id]
+                    ?? PlaylistItemUserHighScore::lookupOrDefault(
+                        $scoreLink->user_id,
+                        $scoreLink->playlist_item_id,
+                    )
+                )->updateWithScoreLink($scoreLink);
             }
+            $this->refreshStatistics();
             $this->save();
         });
     }
@@ -210,23 +207,22 @@ class UserScoreAggregate extends Model
         return 1 + $query->count();
     }
 
-    private function updateUserTotal(ScoreLink $currentScoreLink, PlaylistItemUserHighScore $prev)
+    private function refreshStatistics(): void
     {
-        if ($prev->score_id !== null) {
-            $this->total_score -= $prev->total_score;
-            $this->accuracy -= $prev->accuracy;
-            $this->pp -= $prev->pp;
-            $this->completed--;
-        }
+        $agg = PlaylistItemUserHighScore
+            ::whereHas('playlistItem', fn ($q) => $q->where('room_id', $this->room_id))
+            ->selectRaw('
+                SUM(accuracy) AS accuracy_sum,
+                SUM(total_score) AS total_score_sum,
+                COUNT(*) AS completed,
+                MAX(score_id) AS last_score_id
+            ')->firstWhere('user_id', $this->user_id);
 
-        $current = $currentScoreLink->score;
-
-        $this->total_score += $current->total_score;
-        $this->accuracy += $current->accuracy;
-        $this->pp += $current->pp;
-        $this->completed++;
-        $this->last_score_id = $currentScoreLink->getKey();
-
-        $this->save();
+        $this->fill([
+            'accuracy' => $agg->getRawAttribute('accuracy_sum') ?? 0,
+            'completed' => $agg->getRawAttribute('completed') ?? 0,
+            'last_score_id' => $agg->getRawAttribute('last_score_id'),
+            'total_score' => $agg->getRawAttribute('total_score_sum') ?? 0,
+        ])->save();
     }
 }
