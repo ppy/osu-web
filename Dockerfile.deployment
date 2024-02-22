@@ -109,4 +109,3 @@ EXPOSE 8000
 EXPOSE 8080
 
 ENTRYPOINT ["/app/docker/deployment/entrypoint.sh"]
-CMD ["octane"]
