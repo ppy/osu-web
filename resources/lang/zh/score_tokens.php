@@ -5,7 +5,7 @@
 
 return [
     'create' => [
-        'beatmap_hash_invalid' => '',
-        'submission_disabled' => '',
+        'beatmap_hash_invalid' => '谱面哈希值无效或丢失',
+        'submission_disabled' => '分数提交已禁用',
     ],
 ];
