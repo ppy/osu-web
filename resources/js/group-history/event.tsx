@@ -28,7 +28,7 @@ export default class Event extends React.PureComponent<Props> {
     };
 
     if ('playmodes' in event && event.playmodes != null) {
-      mappings.playmodes = transArray(
+      mappings.rulesets = transArray(
         event.playmodes.map((mode) => trans(`beatmaps.mode.${mode}`)),
       );
     }
