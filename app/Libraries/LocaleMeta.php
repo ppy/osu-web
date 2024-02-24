@@ -9,7 +9,8 @@ namespace App\Libraries;
 
 class LocaleMeta
 {
-    // Keep keys in sync with app.available_locales config
+    // Keys must be a superset of app.available_locales. Additional locales are
+    // available for use only in wiki articles
     const MAPPINGS = [
         'ar' => [
             'flag' => 'SA',
