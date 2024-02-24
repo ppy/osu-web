@@ -14,27 +14,27 @@ return [
     ],
 
     'judge' => [
-        'hide_judged' => '',
-        'nav_title' => '',
-        'no_current_vote' => '',
-        'update' => '',
+        'hide_judged' => 'сховати оцінені заявки',
+        'nav_title' => 'суддя',
+        'no_current_vote' => 'ви ще не голосували.',
+        'update' => 'оновити',
         'validation' => [
-            'missing_score' => '',
-            'contest_vote_judged' => '',
+            'missing_score' => 'результат відсутній',
+            'contest_vote_judged' => 'не можна голосувати в конкурсі який ви судили',
         ],
-        'voted' => '',
+        'voted' => 'Ви вже виставили бали за цю заявку.',
     ],
 
     'judge_results' => [
-        '_' => '',
-        'creator' => '',
-        'score' => '',
-        'total_score' => '',
+        '_' => 'Судові результати',
+        'creator' => 'автор',
+        'score' => 'Бали',
+        'total_score' => 'загальний бал',
     ],
 
     'voting' => [
-        'judge_link' => '',
-        'judged_notice' => '',
+        'judge_link' => 'Ви - суддя цього конкурсу. Натисніть сюди, щоб почати оцінювати заявки!',
+        'judged_notice' => 'Цей конкурс використовує систему суддівства, судді нині обробляють заявки.',
         'login_required' => 'Увійдіть, щоб проголосувати.',
         'over' => 'Голосування закінчено',
         'show_voted_only' => 'Показати голоси',

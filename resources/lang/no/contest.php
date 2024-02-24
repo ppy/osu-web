@@ -14,27 +14,27 @@ return [
     ],
 
     'judge' => [
-        'hide_judged' => '',
-        'nav_title' => '',
-        'no_current_vote' => '',
-        'update' => '',
+        'hide_judged' => 'skjul dømmede innslag',
+        'nav_title' => 'dommer',
+        'no_current_vote' => 'du har ikke stemt enda.',
+        'update' => 'oppdater',
         'validation' => [
-            'missing_score' => '',
-            'contest_vote_judged' => '',
+            'missing_score' => 'manglende score',
+            'contest_vote_judged' => 'kan ikke stemme i dømmede konkurranser',
         ],
-        'voted' => '',
+        'voted' => 'Du har allerede sendt inn en stemme på dette innslaget.',
     ],
 
     'judge_results' => [
-        '_' => '',
-        'creator' => '',
-        'score' => '',
-        'total_score' => '',
+        '_' => 'Resultatene fra juryen',
+        'creator' => 'skaper',
+        'score' => 'Score',
+        'total_score' => 'total score',
     ],
 
     'voting' => [
-        'judge_link' => '',
-        'judged_notice' => '',
+        'judge_link' => 'Du er en dommer i denne konkurransen. Døm innslagene her!',
+        'judged_notice' => 'Denne konkurransen bruker dommersystemet, dommerne dømmer innslagene for øyeblikket.',
         'login_required' => 'Vennligst logg inn for å stemme.',
         'over' => 'Avstemmingen for denne konkurransen har avsluttet',
         'show_voted_only' => 'Vis stemte',

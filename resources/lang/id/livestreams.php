@@ -13,6 +13,6 @@ return [
         'headline' => 'Siaran Langsung',
         'description' => 'Data siaran langsung berikut diperbarui setiap lima menit sekali berdasarkan direktori twitch.tv yang tersedia. Jangan ragu untuk menyiarkan dirimu ke mata dunia! Untuk informasi lebih lanjut seputar cara menyiarkan osu! secara langsung, kunjungi :link.',
 
-        'link' => 'laman wiki berikut',
+        'link' => 'halaman wiki berikut',
     ],
 ];

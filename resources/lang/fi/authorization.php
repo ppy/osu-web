@@ -81,7 +81,7 @@ return [
     ],
 
     'contest' => [
-        'judging_not_active' => '',
+        'judging_not_active' => 'Tuomarointi tälle kilpailulle ei ole avoinna.',
         'voting_over' => 'Et voi muuttaa ääntäsi tälle kilpailulle äänestysajan loppumisen jälkeen.',
 
         'entry' => [
@@ -173,7 +173,7 @@ return [
     'score' => [
         'pin' => [
             'disabled_type' => "Ei voida kiinnittää tämäntyyppistä pisteytystä",
-            'failed' => "",
+            'failed' => "Ei läpäistyä suoritusta ei voida kiinnittää.",
             'not_owner' => 'Vain tuloksen omistaja voi kiinnittää tuloksen.',
             'too_many' => 'Kiinnitit liian monta tulosta.',
         ],

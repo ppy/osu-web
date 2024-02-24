@@ -213,6 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => '若沒找到問題，該圖譜將於 :date 進榜。位於 :queue 中的 #:position。',
+            'unresolved_problems' => '',
+            'problems' => '',
             'on' => '在:date',
             'queue' => 'ranking 列隊',
             'soon' => '不久後',

@@ -14,27 +14,27 @@ return [
     ],
 
     'judge' => [
-        'hide_judged' => '',
-        'nav_title' => '',
-        'no_current_vote' => '',
-        'update' => '',
+        'hide_judged' => 'itago ang hinuhusgahang mga entry',
+        'nav_title' => 'maghusga',
+        'no_current_vote' => 'hindi ka pa nakaboto.',
+        'update' => 'i-update',
         'validation' => [
-            'missing_score' => '',
-            'contest_vote_judged' => '',
+            'missing_score' => 'nawawalang iskor',
+            'contest_vote_judged' => 'hindi maaaring bumoto sa hinuhusgahang mga paligsahan',
         ],
-        'voted' => '',
+        'voted' => 'Ikaw ay nakapagpasa na ng boto sa kalahok na ito.',
     ],
 
     'judge_results' => [
-        '_' => '',
-        'creator' => '',
-        'score' => '',
-        'total_score' => '',
+        '_' => 'Mga resulta sa paghuhusga',
+        'creator' => 'tagagawa',
+        'score' => 'Puntos',
+        'total_score' => 'kabuuang puntos',
     ],
 
     'voting' => [
-        'judge_link' => '',
-        'judged_notice' => '',
+        'judge_link' => 'Ikaw ay isang tagahatol ng paligsahang ito. Hatulan ang mga kalahok dito!',
+        'judged_notice' => 'Ang patimpalak na ito ay gumagamit ng sistema ng paghusga, ang mga hukom ay kasalukuyang nagpoproseso ng mga entry.',
         'login_required' => 'Paki-sign-in upang bumoto.',
         'over' => 'Ang pagboboto sa paligsahan na ito ay tapos na',
         'show_voted_only' => 'Ipakita ang mga binoto',

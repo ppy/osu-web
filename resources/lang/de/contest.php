@@ -17,7 +17,7 @@ return [
         'hide_judged' => '',
         'nav_title' => '',
         'no_current_vote' => '',
-        'update' => '',
+        'update' => 'aktualisieren',
         'validation' => [
             'missing_score' => '',
             'contest_vote_judged' => '',
@@ -28,8 +28,8 @@ return [
     'judge_results' => [
         '_' => '',
         'creator' => '',
-        'score' => '',
-        'total_score' => '',
+        'score' => 'Ergebnis',
+        'total_score' => 'Gesamtergebnis',
     ],
 
     'voting' => [

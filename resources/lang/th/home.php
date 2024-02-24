@@ -80,7 +80,6 @@ return [
         'action_lazer_title' => 'ลอง osu!(lazer)',
         'action_title' => 'ดาวน์โหลด osu!',
         'for_os' => 'สำหรับ :os',
-        'lazer_note' => 'หมายเหตุ: ใช้การรีเซ็ตกระดานอันดับ',
         'macos-fallback' => 'ผู้ใช้ macOS',
         'mirror' => 'สำรอง',
         'or' => 'หรือ',

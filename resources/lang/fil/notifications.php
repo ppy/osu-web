@@ -15,12 +15,12 @@ return [
 
     'action_type' => [
         '_' => 'lahat',
-        'beatmapset' => '',
-        'build' => '',
-        'channel' => '',
-        'forum_topic' => '',
-        'news_post' => '',
-        'user' => '',
+        'beatmapset' => 'mga beatmap',
+        'build' => 'mga build',
+        'channel' => 'chat',
+        'forum_topic' => 'forum',
+        'news_post' => 'mga balita',
+        'user' => 'profile',
     ],
 
     'filters' => [
@@ -57,9 +57,9 @@ return [
                 'beatmapset_discussion_unlock_compact' => 'Ang talakayan ay naka-unlock',
 
                 'review_count' => [
-                    'praises' => '',
-                    'problems' => '',
-                    'suggestions' => '',
+                    'praises' => ':count_delimited na papuri|:count_delimited na mga papuri',
+                    'problems' => ':count_delimited na problema|:count_delimited na mga problema',
+                    'suggestions' => ':count_delimited na mungkahi|:count_delimited mga mungkahi',
                 ],
             ],
 
