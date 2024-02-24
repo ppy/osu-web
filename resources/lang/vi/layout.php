@@ -5,7 +5,7 @@
 
 return [
     'audio' => [
-        'autoplay' => 'Chơi bản nhạc tiếp theo tự động',
+        'autoplay' => 'Tự động phát bài tiếp theo',
     ],
 
     'defaults' => [
@@ -78,7 +78,7 @@ return [
             'getAbuse' => 'báo cáo lạm dụng',
             'getFaq' => 'faq',
             'getRules' => 'quy tắc',
-            'getSupport' => 'không, thật đó, tôi cần giúp đỡ!',
+            'getSupport' => 'không, thật sự, tôi cần giúp đỡ!',
         ],
         'home' => [
             '_' => 'trang chủ',
@@ -196,8 +196,8 @@ return [
             'account-edit' => 'Cài Đặt',
             'follows' => 'Danh sách theo dõi',
             'friends' => 'Bạn bè',
-            'legacy_score_only_toggle' => '',
-            'legacy_score_only_toggle_tooltip' => '',
+            'legacy_score_only_toggle' => 'Chế độ lazer',
+            'legacy_score_only_toggle_tooltip' => 'Chế độ lazer hiển thị các điểm cá nhân từ lazer cùng thuật toán tính điểm mới',
             'logout' => 'Đăng Xuất',
             'profile' => 'Trang Cá Nhân',
         ],

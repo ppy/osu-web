@@ -14,27 +14,27 @@ return [
     ],
 
     'judge' => [
-        'hide_judged' => '',
-        'nav_title' => '',
-        'no_current_vote' => '',
-        'update' => '',
+        'hide_judged' => 'ascunde intrările evaluate',
+        'nav_title' => 'evaluator',
+        'no_current_vote' => 'nu ai votat încă.',
+        'update' => 'actualizează',
         'validation' => [
-            'missing_score' => '',
-            'contest_vote_judged' => '',
+            'missing_score' => 'scor lipsă',
+            'contest_vote_judged' => 'nu poți vota în concursuri evaluate',
         ],
-        'voted' => '',
+        'voted' => 'Ați depus deja un vot pentru această intrare.',
     ],
 
     'judge_results' => [
-        '_' => '',
-        'creator' => '',
-        'score' => '',
-        'total_score' => '',
+        '_' => 'Rezultate evaluare',
+        'creator' => 'creator',
+        'score' => 'Scor',
+        'total_score' => 'scor total',
     ],
 
     'voting' => [
-        'judge_link' => '',
-        'judged_notice' => '',
+        'judge_link' => 'Sunteți un evaluator al acestui concurs. Evaluați intrările aici!',
+        'judged_notice' => 'Acest concurs folosește sistemul prin evaluări. Evaluatorii procesează intrările momentan.',
         'login_required' => 'Te rugăm să te autentifici pentru a vota.',
         'over' => 'Votarea pentru acest concurs s-a încheiat',
         'show_voted_only' => 'Afișare voturi',

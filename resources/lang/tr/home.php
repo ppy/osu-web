@@ -80,7 +80,6 @@ return [
         'action_lazer_title' => 'osu!(lazer)\'i dene',
         'action_title' => 'osu! indir',
         'for_os' => ':os için',
-        'lazer_note' => 'not: lider tablosu sıfırlanabilir',
         'macos-fallback' => 'macOS kullanıcıları',
         'mirror' => 'alternatif',
         'or' => 'ya da',

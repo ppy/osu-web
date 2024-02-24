@@ -213,6 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => '이 맵에서 문제가 발견되지 않으면 :date Ranked 상태가 될 예정입니다. 현재 :queue의 #:position번째 순서입니다.',
+            'unresolved_problems' => '',
+            'problems' => '',
             'on' => ':date에',
             'queue' => '랭크 대기열',
             'soon' => '곧',

@@ -213,6 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => '',
+            'unresolved_problems' => '',
+            'problems' => '',
             'on' => '',
             'queue' => '',
             'soon' => '',

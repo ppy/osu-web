@@ -28,5 +28,6 @@ return [
         'non_passing' => 'Només les puntuacions aprovades atorguen pp',
         'no_pp' => '',
         'processing' => 'Aquesta puntuació encara s\'està calculant i es mostrarà aviat',
+        'no_rank' => '',
     ],
 ];

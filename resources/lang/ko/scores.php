@@ -5,7 +5,7 @@
 
 return [
     'show' => [
-        'non_preserved' => '',
+        'non_preserved' => '이 점수는 삭제 될 예정입니다.',
         'title' => ':title에서의 :username님 [:version]',
 
         'beatmap' => [
@@ -26,7 +26,8 @@ return [
     'status' => [
         'non_best' => '개인 최고 점수만 pp를 얻습니다.',
         'non_passing' => '통과한 점수만 pp를 얻습니다',
-        'no_pp' => '',
+        'no_pp' => '이 점수에는 pp가 부여되지 않습니다.',
         'processing' => '이 점수는 아직 계산 중이며 곧 표시될 예정입니다.',
+        'no_rank' => '',
     ],
 ];
