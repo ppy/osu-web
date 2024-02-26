@@ -44,20 +44,24 @@ function Channel({ channel, onClick, status }: ChannelProps) {
 @observer
 export default class JoinChannels extends React.Component<Props> {
   get channels() {
-    return core.dataStore.chatState.publicChannels;
+    return core.dataStore.chatState.publicChannels.channels;
   }
 
   get isLoading() {
-    return core.dataStore.chatState.publicChannelsXhr != null;
+    return core.dataStore.chatState.publicChannels.xhr != null;
   }
 
   get error() {
-    return core.dataStore.chatState.publicChannelsXhrError;
+    return core.dataStore.chatState.publicChannels.error;
   }
 
   @computed
   get joinedPublicChannelIds() {
     return new Set(core.dataStore.channelStore.groupedChannels.PUBLIC.map((channel) => channel.channelId));
+  }
+
+  private get buttonModifiers() {
+    return classWithModifiers('btn-osu-big', 'rounded-thin', { disabled: this.isLoading });
   }
 
   constructor(props: Props) {
@@ -70,7 +74,7 @@ export default class JoinChannels extends React.Component<Props> {
     return (
       <div className='chat-join-channel'>
         <div className='chat-join-channel__toolbar'>
-          <button className='btn-osu-big btn-osu-big--rounded-thin' onClick={this.handleRefreshClick} type='button'>
+          <button className={this.buttonModifiers} onClick={this.handleRefreshClick} type='button'>
             {trans('common.buttons.refresh')}
           </button>
         </div>
@@ -92,7 +96,7 @@ export default class JoinChannels extends React.Component<Props> {
   };
 
   private readonly handleRefreshClick = () => {
-    core.dataStore.chatState.loadPublicChannelList();
+    core.dataStore.chatState.publicChannels.load();
   };
 
   private readonly renderChannel = (channel: ChannelJson) => {
@@ -118,7 +122,7 @@ export default class JoinChannels extends React.Component<Props> {
       return (
         <>
           <p>{trans('errors.load_failed')}</p>
-          <button className='btn-osu-big btn-osu-big--rounded-thin' onClick={this.handleRefreshClick} type='button'>
+          <button className={this.buttonModifiers} onClick={this.handleRefreshClick} type='button'>
             {trans('common.buttons.refresh')}
           </button>
         </>

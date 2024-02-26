@@ -8,7 +8,7 @@ import SocketMessageSendAction from 'actions/socket-message-send-action';
 import SocketStateChangedAction from 'actions/socket-state-changed-action';
 import { dispatch, dispatchListener } from 'app-dispatcher';
 import DispatchListener from 'dispatch-listener';
-import ChannelJson, { supportedChannelTypes } from 'interfaces/chat/channel-json';
+import { supportedChannelTypes } from 'interfaces/chat/channel-json';
 import { clamp, maxBy } from 'lodash';
 import { action, autorun, computed, makeObservable, observable, observe, runInAction } from 'mobx';
 import Channel from 'models/chat/channel';
@@ -22,18 +22,17 @@ import { updateQueryString } from 'utils/url';
 import ChannelId from './channel-id';
 import ChannelJoinEvent from './channel-join-event';
 import ChannelPartEvent from './channel-part-event';
-import { createAnnouncement, getPublicChannels, getUpdates, joinChannel } from './chat-api';
+import { createAnnouncement, getUpdates, joinChannel } from './chat-api';
 import MainView from './main-view';
 import PingService from './ping-service';
+import PublicChannels from './public-channels';
 
 @dispatchListener
 export default class ChatStateStore implements DispatchListener {
   @observable canChatAnnounce = false;
   @observable createAnnouncement = new CreateAnnouncement();
   @observable isReady = false;
-  @observable publicChannels?: ChannelJson[];
-  @observable publicChannelsXhr: ReturnType<typeof getPublicChannels> | null= null;
-  @observable publicChannelsXhrError = false;
+  readonly publicChannels = new PublicChannels();
   skipRefresh = false;
   @observable viewsMounted = new Set<MainView>();
   @observable private isConnected = false;
@@ -134,8 +133,8 @@ export default class ChatStateStore implements DispatchListener {
     });
 
     autorun(() => {
-      if (this.selected === 'join' && this.publicChannels == null && !this.publicChannelsXhrError) {
-        this.loadPublicChannelList();
+      if (this.selected === 'join' && this.publicChannels.channels == null && !this.publicChannels.error) {
+        this.publicChannels.load();
       }
     });
   }
@@ -183,28 +182,6 @@ export default class ChatStateStore implements DispatchListener {
       this.handleFriendUpdated(event);
     } else if (event instanceof SocketStateChangedAction) {
       this.handleSocketStateChanged(event);
-    }
-  }
-
-  @action
-  async loadPublicChannelList() {
-    if (this.publicChannelsXhr != null) return;
-
-    try {
-      this.publicChannelsXhr = getPublicChannels();
-      const channels = await this.publicChannelsXhr;
-      runInAction(() => {
-        this.publicChannels = channels;
-      });
-    } catch (error) {
-      if (!isJqXHR(error)) throw error;
-      runInAction(() => {
-        this.publicChannelsXhrError = true;
-      });
-    } finally {
-      runInAction(() => {
-        this.publicChannelsXhr = null;
-      });
     }
   }
 
