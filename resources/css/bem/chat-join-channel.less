@@ -2,9 +2,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .chat-join-channel {
-  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
   background: hsl(var(--hsl-b4));
-  overflow-y: auto;
 
   &__channel {
     display: contents;
@@ -23,10 +25,13 @@
   &__channels {
     display: grid;
     gap: 10px;
+    padding: 10px;
+
     // checkmark is 14px wide
     grid-template-columns: minmax(14px, max-content) 200px auto;
+
     overflow-wrap: anywhere;
-    padding: 10px;
+    overflow-y: auto;
   }
 
   &__loading {
@@ -34,5 +39,9 @@
     display: flex;
     flex-direction: column;
     height: 100%;
+  }
+
+  &__toolbar {
+
   }
 }

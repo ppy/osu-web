@@ -47,6 +47,10 @@ export default class JoinChannels extends React.Component<Props> {
     return core.dataStore.chatState.publicChannels;
   }
 
+  get isLoading() {
+    return core.dataStore.chatState.publicChannelsXhr != null;
+  }
+
   get error() {
     return core.dataStore.chatState.publicChannelsXhrError;
   }
@@ -65,13 +69,18 @@ export default class JoinChannels extends React.Component<Props> {
   render() {
     return (
       <div className='chat-join-channel'>
-        {this.channels == null ? (
+        <div className='chat-join-channel__toolbar'>
+          <button className='btn-osu-big btn-osu-big--rounded-thin' onClick={this.handleRefreshClick} type='button'>
+            {trans('common.buttons.refresh')}
+          </button>
+        </div>
+        {this.isLoading ? (
           <div className='chat-join-channel__loading'>
             {this.renderLoading()}
           </div>
         ) : (
           <div className='chat-join-channel__channels'>
-            {this.channels.map(this.renderChannel)}
+            {this.channels?.map(this.renderChannel)}
           </div>
         )}
       </div>
@@ -82,7 +91,7 @@ export default class JoinChannels extends React.Component<Props> {
     core.dataStore.chatState.addChannel(channelId);
   };
 
-  private readonly handleRetryClick = () => {
+  private readonly handleRefreshClick = () => {
     core.dataStore.chatState.loadPublicChannelList();
   };
 
@@ -109,8 +118,8 @@ export default class JoinChannels extends React.Component<Props> {
       return (
         <>
           <p>{trans('errors.load_failed')}</p>
-          <button className='btn-osu-big btn-osu-big--rounded-thin' onClick={this.handleRetryClick} type='button'>
-            {trans('common.buttons.retry')}
+          <button className='btn-osu-big btn-osu-big--rounded-thin' onClick={this.handleRefreshClick} type='button'>
+            {trans('common.buttons.refresh')}
           </button>
         </>
       );

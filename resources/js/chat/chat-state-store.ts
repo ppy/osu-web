@@ -32,6 +32,7 @@ export default class ChatStateStore implements DispatchListener {
   @observable createAnnouncement = new CreateAnnouncement();
   @observable isReady = false;
   @observable publicChannels?: ChannelJson[];
+  @observable publicChannelsXhr: ReturnType<typeof getPublicChannels> | null= null;
   @observable publicChannelsXhrError = false;
   skipRefresh = false;
   @observable viewsMounted = new Set<MainView>();
@@ -39,7 +40,6 @@ export default class ChatStateStore implements DispatchListener {
 
   private lastHistoryId: number | null = null;
   private readonly pingService: PingService;
-  private publicChannelsXhr: ReturnType<typeof getPublicChannels> | null= null;
   @observable private selected: ChannelId = null;
   private selectedIndex = 0;
   @observable private waitAddChannelId: string | number | null = null;
@@ -105,14 +105,6 @@ export default class ChatStateStore implements DispatchListener {
     });
 
     autorun(() => {
-      if (this.isChatMounted) {
-        document.addEventListener('turbolinks:before-cache', this.handleBeforeCache);
-      } else {
-        document.removeEventListener('turbolinks:before-cache', this.handleBeforeCache);
-      }
-    });
-
-    autorun(() => {
       if (this.isReady && this.isChatMounted) {
         this.pingService.start();
         dispatch(new SocketMessageSendAction({ event: 'chat.start' }));
@@ -142,7 +134,7 @@ export default class ChatStateStore implements DispatchListener {
     });
 
     autorun(() => {
-      if (this.selected === 'join') {
+      if (this.selected === 'join' && this.publicChannels == null && !this.publicChannelsXhrError) {
         this.loadPublicChannelList();
       }
     });
@@ -194,7 +186,10 @@ export default class ChatStateStore implements DispatchListener {
     }
   }
 
+  @action
   async loadPublicChannelList() {
+    if (this.publicChannelsXhr != null) return;
+
     try {
       this.publicChannelsXhr = getPublicChannels();
       const channels = await this.publicChannelsXhr;
@@ -207,7 +202,9 @@ export default class ChatStateStore implements DispatchListener {
         this.publicChannelsXhrError = true;
       });
     } finally {
-      this.publicChannelsXhr = null;
+      runInAction(() => {
+        this.publicChannelsXhr = null;
+      });
     }
   }
 
@@ -277,12 +274,6 @@ export default class ChatStateStore implements DispatchListener {
 
     this.selectChannel(channel.channelId);
   }
-
-  @action
-  private readonly handleBeforeCache = () => {
-    // clear out channel list
-    this.publicChannels = undefined;
-  };
 
   @action
   private handleChatChannelJoinEvent(event: ChannelJoinEvent) {
