@@ -1,5 +1,3 @@
-version: '3.4'
-
 x-env: &x-env
   APP_KEY: "${APP_KEY}"
   BEATMAPS_DIFFICULTY_CACHE_SERVER_URL: http://beatmap-difficulty-lookup-cache
@@ -18,6 +16,7 @@ x-web: &x-web
   build:
     context: ./docker/development
     dockerfile: ../../Dockerfile.development
+  init: true
   volumes:
     - .:/app
   environment:
@@ -31,6 +30,14 @@ services:
       restart_policy:
         condition: on-failure
     shm_size: '2gb' # for chromium
+
+  php-dusk:
+    <<: *x-web
+    command: ['octane', '--watch']
+    environment:
+      <<: *x-env
+      APP_ENV: dusk.local
+      OCTANE_STATE_FILE: /tmp/octane-state.json
 
   assets:
     <<: *x-web
@@ -54,7 +61,7 @@ services:
   beatmap-difficulty-lookup-cache:
     image: pppy/osu-beatmap-difficulty-lookup-cache
     ports:
-      - "${BEATMAPS_DIFFICULTY_CACHE_EXTERNAL_PORT:-5001}:80"
+      - "${BEATMAPS_DIFFICULTY_CACHE_EXTERNAL_PORT:-127.0.0.1:5001}:80"
 
   notification-server:
     image: pppy/osu-notification-server
@@ -69,7 +76,8 @@ services:
     environment:
       <<: *x-env
     ports:
-      - "${NOTIFICATION_EXTERNAL_PORT:-2345}:2345"
+      # used by GitHub Actions test
+      - "${NOTIFICATION_EXTERNAL_PORT:-127.0.0.1:2345}:2345"
 
   notification-server-dusk:
     image: pppy/osu-notification-server
@@ -85,7 +93,7 @@ services:
       <<: *x-env
 
   db:
-    image: mysql/mysql-server:8.0
+    image: mysql:8.0
     volumes:
       - database:/var/lib/mysql
       - ./docker/development/db_user.sql:/docker-entrypoint-initdb.d/db_user.sql
@@ -93,7 +101,7 @@ services:
       <<: *x-env
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
     ports:
-      - "${MYSQL_EXTERNAL_PORT:-3306}:3306"
+      - "${MYSQL_EXTERNAL_PORT:-127.0.0.1:3306}:3306"
     command: --default-authentication-plugin=mysql_native_password
     healthcheck:
       # important to use 127.0.0.1 instead of localhost as mysql starts twice.
@@ -105,20 +113,23 @@ services:
       start_period: 60s
 
   redis:
+    command: ['redis-server', '--save', '60', '1', '--loglevel', 'warning']
     image: redis:latest
     ports:
-      - "${REDIS_EXTERNAL_PORT:-6379}:6379"
+      - "${REDIS_EXTERNAL_PORT:-127.0.0.1:6379}:6379"
     healthcheck:
       test: ["CMD", "redis-cli", "--raw", "incr", "ping"]
       interval: 1s
       timeout: 60s
       start_period: 60s
+    volumes:
+      - redis:/data
 
   elasticsearch:
     # Version must be kept up to date with library defined in: composer.json
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.6
+    image: elasticsearch:7.17.16
     ports:
-      - "${ES_EXTERNAL_PORT:-9200}:9200"
+      - "${ES_EXTERNAL_PORT:-127.0.0.1:9200}:9200"
     volumes:
       - elasticsearch:/usr/share/elasticsearch/data
     environment:
@@ -136,6 +147,7 @@ services:
     image: nginx:latest
     depends_on:
       - php
+      - php-dusk
       - notification-server
       - notification-server-dusk
     volumes:
@@ -178,3 +190,4 @@ services:
 volumes:
   database:
   elasticsearch:
+  redis:

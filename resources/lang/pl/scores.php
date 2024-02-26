@@ -5,6 +5,7 @@
 
 return [
     'show' => [
+        'non_preserved' => 'Ten wynik jest oznaczony do usunięcia i wkrótce zniknie.',
         'title' => 'wynik gracza :username na :title [:version]',
 
         'beatmap' => [
@@ -25,6 +26,8 @@ return [
     'status' => [
         'non_best' => 'Tylko twoje najlepsze wyniki przyznają pp',
         'non_passing' => 'Tylko zagrania niezakończone porażką przyznają pp',
+        'no_pp' => '',
         'processing' => 'Ten wynik jest nadal obliczany i zostanie wyświetlony wkrótce.',
+        'no_rank' => '',
     ],
 ];

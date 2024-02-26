@@ -36,6 +36,9 @@ return [
     'starting' => [
         'username' => 'Zadejte Vaši e-mailovou adresu nebo uživatelské jméno',
 
+        'reason' => [
+            'inactive_different_country' => "Váš účet již nebyl dlouhou dobu použit. Pro zajištění bezpečnosti vašeho účtu si prosím obnovte vaše heslo.",
+        ],
         'support' => [
             '_' => 'Potřebujete další pomoc? Kontaktujte nás prostřednictvím :button.',
             'button' => 'systém podpory',

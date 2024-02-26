@@ -36,10 +36,10 @@ return [
         'artist' => 'Artista/Album',
         'chart' => 'Spotlights',
         'featured' => 'Mga Tampok na Artista',
-        'loved' => '',
+        'loved' => 'Proyektong Loved',
         'standard' => 'Standard',
         'theme' => 'Tema',
-        'tournament' => '',
+        'tournament' => 'Paligsahan',
     ],
 
     'require_login' => [

@@ -49,15 +49,15 @@ return [
     ],
 
     'discount' => '%:percent kazanın',
-    'free' => '',
+    'free' => 'ücretsiz!',
 
     'invoice' => [
         'contact' => 'İletişim:',
         'date' => 'Tarih:',
         'echeck_delay' => 'Ödemenizin bir eCheck olması nedeniyle, ödemenizin PayPal\'dan temizlenmesi için 10 ekstra günü göz önüne alın!',
         'hide_from_activity' => 'Bu siparişteki osu!supporter etiketleri yakın zamandaki etkinliklerinizde gösterilmez.',
-        'sent_via' => '',
-        'shipping_to' => '',
+        'sent_via' => 'Kargo şirketi:',
+        'shipping_to' => 'Gönderim adresi:',
         'title' => 'Fatura',
         'title_compact' => 'fatura',
 
@@ -65,21 +65,21 @@ return [
             'cancelled' => [
                 'title' => 'Siparişiniz iptal edildi',
                 'line_1' => [
-                    '_' => "",
-                    'link_text' => '',
+                    '_' => "Eğer iptal edilmesini talep etmediyseniz lütfen :link yoluyla sipariş numaranızı bahsederek ulaşınız. (#:order_number).",
+                    'link_text' => 'osu!store destek',
                 ],
             ],
             'delivered' => [
                 'title' => 'Siparişiniz teslim edildi! İyi günlerde kullanmanız dileğiyle!',
                 'line_1' => [
                     '_' => 'Satın alımınızla ilgili bir problem yaşıyorsanız,lütfen :link ile görüşün.',
-                    'link_text' => '',
+                    'link_text' => 'osu!store destek',
                 ],
             ],
             'prepared' => [
                 'title' => 'Siparişiniz hazılrlanıyor!',
-                'line_1' => '',
-                'line_2' => '',
+                'line_1' => 'Lütfen kargolanması için az daha bekleyiniz. Takip bilgisi, siparişiniz işlenip gönderildiğinde burada belirecektir. Meşgullük durumumuza göre 5 güne kadar sürebilir (ama genellikle daha az!).',
+                'line_2' => 'Siparişleri, ağırlığı ve değerine bağlı olarak çeşitli kargo şirketleri kullanarak gönderiyoruz. Bu alan, siparişi gönderdiğimizde detaylarla güncellenecektir.',
             ],
             'processing' => [
                 'title' => 'Ödemeniz henüz onaylanmadı!',
@@ -91,9 +91,9 @@ return [
             ],
             'shipped' => [
                 'title' => 'Siparişiniz kargoya verildi!',
-                'tracking_details' => '',
+                'tracking_details' => 'Kargo takip detayları aşağıdadır:',
                 'no_tracking_details' => [
-                    '_' => "",
+                    '_' => "Paketinizi uçak kargosu yoluyla gönderdiğimiz için takip ayrıntılarına sahip değiliz, ancak paketinizi 1-3 hafta içinde almayı bekleyebilirsiniz. Avrupa'da bazen gümrükler bizim kontrolümüz dışında siparişi geciktirebilir. Herhangi bir endişeniz varsa lütfen sana gelen sipariş onay e-postasını yanıtlayınız (ya da :link).",
                     'link_text' => 'bize bir e-mail yollayın',
                 ],
             ],
@@ -108,17 +108,17 @@ return [
         'no_orders' => 'Görüntülenecek sipariş yok.',
         'paid_on' => 'Sipariş verme tarihi :date',
         'resume' => 'Sepete Dön',
-        'shipping_and_handling' => '',
+        'shipping_and_handling' => 'Kargo & Taşıma',
         'shopify_expired' => 'Bu sipariş için ödeme bağlantısının süresi doldu.',
         'subtotal' => 'Ara toplam',
         'total' => 'Toplam',
 
         'details' => [
-            'order_number' => '',
-            'payment_terms' => '',
+            'order_number' => 'Sipariş No.',
+            'payment_terms' => 'Ödeme Koşulları',
             'salesperson' => 'Satış Temsilcisi',
             'shipping_method' => 'Gönderim Yolu',
-            'shipping_terms' => '',
+            'shipping_terms' => 'Teslimat Koşulları',
             'title' => 'Sipariş Detayları',
         ],
 
@@ -157,7 +157,7 @@ return [
         'thanks' => [
             'title' => 'Siparişiniz için teşekkür ederiz!',
             'line_1' => [
-                '_' => '',
+                '_' => 'Yakında bir onay e-postası alacaksınız. Sorunuz varsa, lütfen :link!',
                 'link_text' => 'bizimle iletişime geçin',
             ],
         ],
@@ -193,7 +193,7 @@ return [
     'username_change' => [
         'check' => 'Geçerliliğini kontrol etmek için bir kullanıcı adı girin!',
         'checking' => ':username geçerliliği kontrol ediliyor...',
-        'placeholder' => '',
+        'placeholder' => 'İstenilen Kullanıcı Adı',
         'label' => 'Yeni kullanıcı adı',
         'current' => 'Şu anki kullanıcı adınız ":username".',
 

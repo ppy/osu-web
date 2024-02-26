@@ -44,6 +44,7 @@ class OsuAuthorize
         static $set;
 
         $set ??= new Ds\Set([
+            'ContestJudge',
             'IsOwnClient',
             'IsNotOAuth',
             'IsSpecialScope',
@@ -1336,6 +1337,39 @@ class OsuAuthorize
      * @return string
      * @throws AuthorizationCheckException
      */
+    public function checkContestJudge(?User $user, Contest $contest): string
+    {
+        $this->ensureLoggedIn($user);
+
+        if (!$contest->isJudgingActive()) {
+            return 'contest.judging_not_active';
+        }
+
+        if (!$contest->isJudge($user)) {
+            return 'unauthorized';
+        }
+
+        return 'ok';
+    }
+
+    /**
+     * @param User|null $user
+     * @param Contest $contest
+     * @return string
+     * @throws AuthorizationCheckException
+     */
+    public function checkContestJudgeShow(?User $user, Contest $contest): string
+    {
+        // so that admins can show the panel but not vote (ContestJudge is alwaysCheck)
+        return $this->checkContestJudge($user, $contest);
+    }
+
+    /**
+     * @param User|null $user
+     * @param Contest $contest
+     * @return string
+     * @throws AuthorizationCheckException
+     */
     public function checkContestVote(?User $user, Contest $contest): string
     {
         $this->ensureLoggedIn($user);
@@ -1901,6 +1935,10 @@ class OsuAuthorize
 
         if ($score->user_id !== $user->getKey()) {
             return $prefix.'not_owner';
+        }
+
+        if (!$score->passed) {
+            return $prefix.'failed';
         }
 
         if ($score instanceof Solo\Score && $GLOBALS['cfg']['osu']['user']['hide_pinned_solo_scores']) {

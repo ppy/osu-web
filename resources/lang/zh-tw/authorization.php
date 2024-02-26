@@ -81,6 +81,7 @@ return [
     ],
 
     'contest' => [
+        'judging_not_active' => '此次競賽尚未進入評分階段。',
         'voting_over' => '投票已結束，禁止重新投票。',
 
         'entry' => [
@@ -172,6 +173,7 @@ return [
     'score' => [
         'pin' => [
             'disabled_type' => "無法置頂這類分數。",
+            'failed' => "無法置頂未過關的成績。",
             'not_owner' => '只有擁有者才可置頂成績。',
             'too_many' => '置頂過多成績。',
         ],

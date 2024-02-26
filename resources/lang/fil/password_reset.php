@@ -36,6 +36,9 @@ return [
     'starting' => [
         'username' => 'Itala ang email address o username',
 
+        'reason' => [
+            'inactive_different_country' => "Ang iyong account ay hindi nagamit sa loob ng mahabang panahon. Upang matiyak ang seguridad ng iyong account, paki-reset ng iyong password.",
+        ],
         'support' => [
             '_' => 'Kailangan pa ng tulong? Makipag-usap sa amin sa :button.',
             'button' => 'support system',

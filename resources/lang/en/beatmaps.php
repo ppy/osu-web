@@ -213,6 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'This map is estimated to be ranked :date if no issues are found. It is #:position in the :queue.',
+            'unresolved_problems' => 'This map is currently blocked from leaving the Qualified section until :problems are resolved.',
+            'problems' => 'these problems',
             'on' => 'on :date',
             'queue' => 'ranking queue',
             'soon' => 'soon',

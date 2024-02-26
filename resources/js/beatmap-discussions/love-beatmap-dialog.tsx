@@ -13,9 +13,11 @@ import { onError } from 'utils/ajax';
 import { group as groupBeatmaps } from 'utils/beatmap-helper';
 import { trans } from 'utils/lang';
 import { hideLoadingOverlay, showImmediateLoadingOverlay } from 'utils/loading-overlay';
+import DiscussionsState from './discussions-state';
 
 interface Props {
   beatmapset: BeatmapsetExtendedJson & Required<Pick<BeatmapsetExtendedJson, 'beatmaps'>>;
+  discussionsState: DiscussionsState;
   onClose: () => void;
 }
 
@@ -128,7 +130,7 @@ export default class LoveBeatmapDialog extends React.Component<Props> {
 
     this.xhr = $.ajax(url, params);
     this.xhr.done((beatmapset) => {
-      $.publish('beatmapsetDiscussions:update', { beatmapset });
+      this.props.discussionsState.update({ beatmapset });
       this.props.onClose();
     }).fail(onError)
       .always(action(() => {

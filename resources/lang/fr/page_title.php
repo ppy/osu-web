@@ -5,16 +5,16 @@
 
 return [
     'admin' => [
-        '_' => 'administrateur',
+        '_' => 'admin',
     ],
     'error' => [
         'error' => [
             '400' => 'requête invalide',
-            '404' => 'manquant',
+            '404' => 'introuvable',
             '403' => 'interdit',
             '401' => 'non autorisé',
             '401-verification' => 'vérification du compte',
-            '405' => 'manquant',
+            '405' => 'introuvable',
             '422' => 'requête invalide',
             '429' => 'trop de requêtes',
             '500' => 'quelque chose s\'est mal passé',
@@ -50,7 +50,7 @@ return [
             '_' => 'historique des beatmaps',
         ],
         'beatmapsets_controller' => [
-            'discussion' => 'discussion de la beatmap',
+            'discussion' => 'discussion sur la beatmap',
             'index' => 'liste des beatmaps',
             'show' => 'informations sur la beatmap',
         ],
@@ -63,8 +63,12 @@ return [
         'comments_controller' => [
             '_' => 'commentaires',
         ],
+        'contest_entries_controller' => [
+            'judge_results' => 'résultats du jugement du concours',
+        ],
         'contests_controller' => [
             '_' => 'concours',
+            'judge' => 'jugement du concours',
         ],
         'groups_controller' => [
             'show' => 'groupes',
@@ -121,11 +125,11 @@ return [
         ],
     ],
     'store' => [
-        '_' => 'osu!store',
+        '_' => 'magasin',
     ],
     'users' => [
         'modding_history_controller' => [
-            '_' => 'informations du moddeur',
+            '_' => 'informations sur le moddeur',
         ],
         'multiplayer_controller' => [
             '_' => 'historique multijoueur',

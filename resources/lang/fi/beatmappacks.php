@@ -8,13 +8,13 @@ return [
         'description' => 'Valmiiksi pakattuja rytmikarttakokoelmia, joissa yhdistyy tietty teema.',
         'empty' => 'Tulossa pian!',
         'nav_title' => 'listaus',
-        'title' => 'Rytmikarttapaketit',
+        'title' => 'Beatmappipaketit',
 
         'blurb' => [
             'important' => 'LUE TÄMÄ ENNEN LATAAMISTA',
             'install_instruction' => 'Asennus: Kun paketti on latautunut, pura sen sisältö osu!n "Songs"-tiedostohakemistoon ja osu! hoitaa loput.',
             'note' => [
-                '_' => 'Huomaa myös, että on erittäin suositeltavaa :scary, koska vanhemmat mapit ovat paljon huonompia kuin uudet.',
+                '_' => 'Huomaa myös, että on erittäin suositeltavaa :scary, koska vanhemmat kartat ovat yleisellä tasolla heikompilaatuisia kuin uudemmat.',
                 'scary' => 'ladata uusimpia kokoelmia vanhojen sijaan',
             ],
         ],
@@ -36,7 +36,7 @@ return [
         'artist' => 'Esittäjä/Albumi',
         'chart' => 'Kohdevaloissa',
         'featured' => 'Esitelty artisti',
-        'loved' => 'Project Rakastettu',
+        'loved' => 'Projekti Rakastettu',
         'standard' => 'Tavallinen',
         'theme' => 'Teema',
         'tournament' => 'Turnaus',

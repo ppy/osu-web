@@ -7,12 +7,16 @@ namespace App\Transformers;
 
 use App\Models\ContestEntry;
 use App\Models\DeletedUser;
+use League\Fractal\Resource\Collection;
+use League\Fractal\Resource\Item;
 use Sentry\State\Scope;
 
 class ContestEntryTransformer extends TransformerAbstract
 {
     protected array $availableIncludes = [
         'artMeta',
+        'current_user_judge_vote',
+        'judge_votes',
         'results',
         'user',
     ];
@@ -20,7 +24,8 @@ class ContestEntryTransformer extends TransformerAbstract
     public function transform(ContestEntry $entry)
     {
         $return = [
-            'id' => $entry->id,
+            'contest_id' => $entry->contest_id,
+            'id' => $entry->getKey(),
             'title' => $entry->contest->unmasked ? $entry->name : $entry->masked_name,
             'preview' => $entry->entry_url,
         ];
@@ -32,11 +37,37 @@ class ContestEntryTransformer extends TransformerAbstract
         return $return;
     }
 
+    public function includeCurrentUserJudgeVote(ContestEntry $entry): ?Item
+    {
+        $currentUser = auth()->user();
+
+        if ($currentUser === null) {
+            return null;
+        }
+
+        $judgeVote = $entry->judgeVotes->where('user_id', $currentUser->getKey())->first();
+
+        if ($judgeVote === null) {
+            return null;
+        }
+
+        return $this->item($judgeVote, new ContestJudgeVoteTransformer());
+    }
+
+    public function includeJudgeVotes(ContestEntry $entry): Collection
+    {
+        return $this->collection($entry->judgeVotes, new ContestJudgeVoteTransformer());
+    }
+
     public function includeResults(ContestEntry $entry)
     {
+        $votes = $entry->contest->isJudged()
+            ? $entry->scores_sum_value
+            : $entry->votes_count;
+
         return $this->primitive([
             'actual_name' => $entry->name,
-            'votes' => (int) $entry->votes_count,
+            'votes' => (int) $votes,
         ]);
     }
 

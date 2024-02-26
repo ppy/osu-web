@@ -21,5 +21,9 @@
         {!! json_encode($scoreJson) !!}
     </script>
 
+    <script id="json-raw" type="application/json">
+        {!! json_encode($score->getAttributes()) !!}
+    </script>
+
     @include('layout._react_js', ['src' => 'js/scores-show.js'])
 @endsection

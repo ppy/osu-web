@@ -188,9 +188,9 @@ return [
         'composer.lock*',
         'config',
         'database',
-        'public/**/*.php',
         'public/assets/manifest.json*',
-        'resources/**/*.php',
+        'resources/lang',
+        'resources/views',
         'routes',
     ],
 

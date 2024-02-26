@@ -449,6 +449,15 @@ function truncate(string $text, $limit = 100, $ellipsis = '...')
     return $text;
 }
 
+function truncate_inclusive(string $text, int $limit): string
+{
+    if (mb_strlen($text) > $limit) {
+        return mb_substr($text, 0, $limit).'...';
+    }
+
+    return $text;
+}
+
 function json_date(?DateTime $date): ?string
 {
     return $date === null ? null : $date->format('Y-m-d');
@@ -539,7 +548,7 @@ function mysql_escape_like($string)
 
 function oauth_token(): ?App\Models\OAuth\Token
 {
-    return request()->attributes->get(App\Http\Middleware\AuthApi::REQUEST_OAUTH_TOKEN_KEY);
+    return Request::instance()->attributes->get(App\Http\Middleware\AuthApi::REQUEST_OAUTH_TOKEN_KEY);
 }
 
 function osu_trans($key = null, $replace = [], $locale = null)
@@ -1089,7 +1098,7 @@ function nav_links()
     $links['home'] = [
         '_' => route('home'),
         'page_title.main.news_controller._' => route('news.index'),
-        'layout.menu.home.team' => wiki_url('Team'),
+        'layout.menu.home.team' => wiki_url('People/osu!_team'),
         'page_title.main.changelog_controller._' => route('changelog.index'),
         'page_title.main.home_controller.get_download' => route('download'),
         'page_title.main.home_controller.search' => route('search'),
@@ -1151,17 +1160,21 @@ function footer_landing_links()
     ];
 }
 
-function footer_legal_links()
+function footer_legal_links(): array
 {
     $locale = app()->getLocale();
 
-    return [
-        'terms' => route('legal', ['locale' => $locale, 'path' => 'Terms']),
-        'privacy' => route('legal', ['locale' => $locale, 'path' => 'Privacy']),
-        'copyright' => route('legal', ['locale' => $locale, 'path' => 'Copyright']),
-        'server_status' => osu_url('server_status'),
-        'source_code' => osu_url('source_code'),
-    ];
+    $ret = [];
+    $ret['terms'] = route('legal', ['locale' => $locale, 'path' => 'Terms']);
+    if ($locale === 'ja') {
+        $ret['jp_sctl'] = route('legal', ['locale' => $locale, 'path' => 'SCTL']);
+    }
+    $ret['privacy'] = route('legal', ['locale' => $locale, 'path' => 'Privacy']);
+    $ret['copyright'] = route('legal', ['locale' => $locale, 'path' => 'Copyright']);
+    $ret['server_status'] = osu_url('server_status');
+    $ret['source_code'] = osu_url('source_code');
+
+    return $ret;
 }
 
 function presence($string, $valueIfBlank = null)

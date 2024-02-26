@@ -5,25 +5,41 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+
 /**
- * @property Contest $contest
+ * @property-read Contest $contest
  * @property int $contest_id
  * @property \Carbon\Carbon|null $created_at
  * @property string|null $entry_url
  * @property string|null $thumbnail_url
  * @property int $id
+ * @property-read Collection<ContestJudgeVote> $judgeVotes
  * @property string $masked_name
  * @property string $name
+ * @property-read Collection<ContestJudgeScore> $scores
  * @property \Carbon\Carbon|null $updated_at
- * @property User $user
+ * @property-read User $user
  * @property int|null $user_id
- * @property \Illuminate\Database\Eloquent\Collection $votes ContestVote
+ * @property-read Collection<ContestVote> $votes
  */
 class ContestEntry extends Model
 {
+    public function scores(): HasManyThrough
+    {
+        return $this->hasManyThrough(ContestJudgeScore::class, ContestJudgeVote::class);
+    }
+
     public function contest()
     {
         return $this->belongsTo(Contest::class);
+    }
+
+    public function judgeVotes(): HasMany
+    {
+        return $this->hasMany(ContestJudgeVote::class);
     }
 
     public function user()

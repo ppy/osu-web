@@ -81,6 +81,7 @@ return [
     ],
 
     'contest' => [
+        'judging_not_active' => '这场竞赛还没有进入打分环节。',
         'voting_over' => '投票已结束，无法修改投票。',
 
         'entry' => [
@@ -172,6 +173,7 @@ return [
     'score' => [
         'pin' => [
             'disabled_type' => "无法置顶这类分数",
+            'failed' => "无法置顶未通过的分数。",
             'not_owner' => '只有获得此成绩的玩家才可以置顶它。',
             'too_many' => '已置顶的成绩过多',
         ],

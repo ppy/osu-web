@@ -5,6 +5,7 @@
 
 return [
     'show' => [
+        'non_preserved' => '',
         'title' => ':username på :title [:version]',
 
         'beatmap' => [
@@ -25,6 +26,8 @@ return [
     'status' => [
         'non_best' => 'Kun personlige bedste scorer giver pp',
         'non_passing' => '',
+        'no_pp' => '',
         'processing' => 'Denne score bliver stadig beregnet og vil snart blive vist',
+        'no_rank' => '',
     ],
 ];

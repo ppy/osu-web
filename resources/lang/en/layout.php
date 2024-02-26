@@ -112,6 +112,7 @@ return [
         'legal' => [
             '_' => 'Legal & Status',
             'copyright' => 'Copyright (DMCA)',
+            'jp_sctl' => '特定商取引法',
             'privacy' => 'Privacy',
             'server_status' => 'Server Status',
             'source_code' => 'Source Code',
@@ -195,6 +196,8 @@ return [
             'account-edit' => 'Settings',
             'follows' => 'Watchlists',
             'friends' => 'Friends',
+            'legacy_score_only_toggle' => 'Lazer mode',
+            'legacy_score_only_toggle_tooltip' => 'Lazer mode shows scores set from lazer with a new scoring algorithm',
             'logout' => 'Sign Out',
             'profile' => 'My Profile',
         ],

@@ -66,7 +66,7 @@ return [
     ],
 
     'count' => [
-        'badges' => ':count abzeichen|:count abzeichen',
+        'badges' => ':count_delimited Abzeichen|:count_delimited Abzeichen',
         'days' => ':count Tag|:count Tage',
         'hour_short_unit' => 'std.|std.',
         'hours' => ':count Stunde|:count Stunden',

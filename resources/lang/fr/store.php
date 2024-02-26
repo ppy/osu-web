@@ -5,40 +5,40 @@
 
 return [
     'cart' => [
-        'checkout' => 'Acheter',
+        'checkout' => 'Paiement',
         'empty_cart' => 'Supprimer tous les articles du panier',
         'info' => ':count_delimited article dans le panier ($:subtotal)|:count_delimited articles dans le panier ($:subtotal)',
-        'more_goodies' => 'Je souhaite chercher d\'autres goodies avant de passer commande',
+        'more_goodies' => 'Je souhaite chercher d\'autres articles avant de passer commande',
         'shipping_fees' => 'frais de livraison',
         'title' => 'Panier',
         'total' => 'total',
 
         'errors_no_checkout' => [
-            'line_1' => 'Uh oh, des problèmes avec votre panier empêchent le paiement !',
+            'line_1' => 'Il semblerait que des problèmes avec votre panier empêchent le paiement !',
             'line_2' => 'Supprimez ou mettez à jour les articles ci-dessus pour continuer.',
         ],
 
         'empty' => [
             'text' => 'Votre panier est vide.',
             'return_link' => [
-                '_' => 'Retournez à la page :link pour trouver quelques goodies !',
+                '_' => 'Retournez à la page :link pour trouver quelques articles !',
                 'link_text' => 'articles',
             ],
         ],
     ],
 
     'checkout' => [
-        'cart_problems' => 'Oh oh, il y a quelques problèmes avec votre panier !',
+        'cart_problems' => 'On dirait qu\'il y a quelques problèmes avec votre panier !',
         'cart_problems_edit' => 'Cliquez ici pour l\'éditer.',
         'declined' => 'Le paiement a été annulé.',
         'delayed_shipping' => 'Nous sommes actuellement submergés de commandes ! Vous pouvez tout de même commander, mais attendez-vous à **une à deux semaines de délai supplémentaire** le temps que nous puissions traiter toutes ces commandes.',
-        'hide_from_activity' => 'Masquer tous les tags osu!supporter dans cette commande de mon activité',
+        'hide_from_activity' => 'Masquer tous les tags osu!supporter de mon activité dans cette commande',
         'old_cart' => 'Votre panier semble être obsolète et a donc été actualisé, merci de réessayer.',
         'pay' => 'Payer avec PayPal',
         'title_compact' => 'commander',
 
         'has_pending' => [
-            '_' => 'Vous avez un paiement en attente, cliquez sur :link pour y accéder.',
+            '_' => 'Vous avez des paiements en attente, cliquez sur :link pour y accéder.',
             'link_text' => 'ici',
         ],
 
@@ -54,8 +54,8 @@ return [
     'invoice' => [
         'contact' => 'Contact :',
         'date' => 'Date :',
-        'echeck_delay' => 'Si votre paiement est en eCheck, comptez jusqu\'à 10 jours supplémentaires pour le paiement via PayPal !',
-        'hide_from_activity' => 'Les tags osu!supporter dans cette commande ne sont pas affichés dans vos activités récentes.',
+        'echeck_delay' => 'Votre paiement était en eCheck, veuillez alors prévoir jusqu\'à 10 jours supplémentaires pour que le paiement soit effectué via PayPal !',
+        'hide_from_activity' => 'Les tags osu!supporter achetés dans cette commande ne sont pas affichés dans vos activités récentes.',
         'sent_via' => 'Envoyé via :',
         'shipping_to' => 'Expédition à :',
         'title' => 'Facture',
@@ -78,7 +78,7 @@ return [
             ],
             'prepared' => [
                 'title' => 'Votre commande est en cours de préparation !',
-                'line_1' => 'Veuillez patienter un peu plus longtemps avant que la commande ne soit expédiée. Les informations de suivi apparaîtront ici une fois que la commande aura été traitée et envoyée. Cela peut prendre jusqu\'à 5 jours (mais généralement moins !) en fonction de notre activité.',
+                'line_1' => 'Veuillez patienter un peu plus longtemps avant que la commande ne soit expédiée. Les informations de suivi apparaîtront ici une fois que la commande aura été traitée et envoyée. Cela peut prendre jusqu\'à 5 jours (mais généralement moins !) en fonction de nos disponibilités.',
                 'line_2' => 'Nous envoyons toutes les commandes depuis le Japon en utilisant divers services d\'expédition en fonction du poids et de la valeur. Cette section sera mise à jour une fois que nous aurons expédié la commande.',
             ],
             'processing' => [
@@ -86,15 +86,15 @@ return [
                 'line_1' => 'Si vous avez déjà payé, il se pourrait que nous attendions toujours de recevoir une confirmation de votre paiement. Veuillez rafraîchir cette page dans une minute ou deux !',
                 'line_2' => [
                     '_' => 'Si vous avez rencontré un problème lors de votre commande, :link',
-                    'link_text' => 'cliquez ici pour la reprendre',
+                    'link_text' => 'cliquez ici pour reprendre votre commande',
                 ],
             ],
             'shipped' => [
                 'title' => 'Votre commande a été expédiée !',
                 'tracking_details' => 'Détails de suivi :',
                 'no_tracking_details' => [
-                    '_' => "Nous n'avons pas d'informations de suivi puisque nous avons envoyé votre colis par Air Mail, mais vous pouvez vous attendre à le recevoir dans un délai de 1 à 3 semaines. Pour l'Europe, les douanes peuvent parfois retarder la commande hors de notre contrôle. Si vous avez des inquiétudes, veuillez répondre à l'e-mail de confirmation de commande que vous avez reçu :link.",
-                    'link_text' => 'envoyez-nous un email',
+                    '_' => "Nous n'avons pas d'informations de suivi puisque nous avons envoyé votre colis par Air Mail, mais vous pouvez vous attendre à le recevoir dans un délai de 1 à 3 semaines. En Europe, les douanes peuvent parfois retarder la commande. Si vous avez des inquiétudes, veuillez répondre à l'e-mail de confirmation de commande que vous avez reçu (sinon, :link).",
+                    'link_text' => 'envoyez-nous un e-mail',
                 ],
             ],
         ],
@@ -109,7 +109,7 @@ return [
         'paid_on' => 'Commande passée :date',
         'resume' => 'Reprendre la commande',
         'shipping_and_handling' => 'Expédition et traitement',
-        'shopify_expired' => 'Le lien de commande pour cette commande a expiré.',
+        'shopify_expired' => 'Le lien pour cette commande a expiré.',
         'subtotal' => 'Sous-total',
         'total' => 'Total',
 
@@ -135,30 +135,30 @@ return [
         ],
 
         'not_modifiable_exception' => [
-            'cancelled' => 'Vous ne pouvez pas modifier votre commande, puisqu\'elle a été annulée.',
+            'cancelled' => 'Vous ne pouvez pas modifier votre commande : elle a été annulée.',
             'checkout' => 'Vous ne pouvez pas modifier votre commande lorsqu\'elle est en préparation.', // checkout and processing should have the same message.
-            'default' => 'La commande n\'est pas modifiable',
-            'delivered' => 'Vous ne pouvez pas modifier votre commande puisqu\'elle a été expédiée.',
-            'paid' => 'Vous ne pouvez pas modifier votre commande puisqu\'elle a déjà été payée.',
+            'default' => 'Cette commande n\'est pas modifiable',
+            'delivered' => 'Vous ne pouvez pas modifier votre commande : elle a déjà été expédiée.',
+            'paid' => 'Vous ne pouvez pas modifier votre commande : elle a déjà été payée.',
             'processing' => 'Vous ne pouvez pas modifier votre commande lorsqu\'elle est en préparation.',
-            'shipped' => 'Vous ne pouvez pas modifier votre commande puisqu\'elle a été expédiée.',
+            'shipped' => 'Vous ne pouvez pas modifier votre commande : elle a déjà été expédiée. ',
         ],
 
         'status' => [
             'cancelled' => 'Annulée',
             'checkout' => 'Préparation',
-            'delivered' => 'Livrée',
+            'delivered' => 'Expédiée',
             'paid' => 'Payée',
             'processing' => 'En attente de confirmation',
             'shipped' => 'Expédié',
-            'title' => 'Statut de la commande',
+            'title' => 'État de votre commande',
         ],
 
         'thanks' => [
             'title' => 'Merci pour votre commande !',
             'line_1' => [
-                '_' => 'Vous recevrez bientôt un email de confirmation. Si vous avez des questions, veuillez :link !',
-                'link_text' => 'contactez-nous',
+                '_' => 'Vous recevrez bientôt un e-mail de confirmation. Si vous avez des questions, veuillez :link !',
+                'link_text' => 'nous contacter',
             ],
         ],
     ],
@@ -182,7 +182,7 @@ return [
 
     'supporter_tag' => [
         'gift' => 'offrir à un joueur',
-        'gift_message' => 'ajouter un message optionnel à votre cadeau ! (jusqu\'à :length caractères)',
+        'gift_message' => 'ajoutez un message optionnel à votre cadeau ! (jusqu\'à :length caractères)',
 
         'require_login' => [
             '_' => 'Vous devez être :link pour obtenir un tag osu!supporter !',

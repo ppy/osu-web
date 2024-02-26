@@ -13,7 +13,7 @@ return [
     ],
 
     'events' => [
-        'empty' => 'Belum ada hal apapun yang terjadi... hingga saat ini.',
+        'empty' => 'Belum ada hal apa pun yang terjadi... hingga saat ini.',
     ],
 
     'index' => [

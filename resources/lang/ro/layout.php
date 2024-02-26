@@ -112,6 +112,7 @@ return [
         'legal' => [
             '_' => 'Legalitate & Statut',
             'copyright' => 'Drepturi de autor (DMCA)',
+            'jp_sctl' => '',
             'privacy' => 'Confidențialitate',
             'server_status' => 'Starea server-ului',
             'source_code' => 'Cod Sursă',
@@ -195,6 +196,8 @@ return [
             'account-edit' => 'Setări',
             'follows' => 'Pagini Abonate',
             'friends' => 'Prieteni',
+            'legacy_score_only_toggle' => 'Mod lazer',
+            'legacy_score_only_toggle_tooltip' => 'Modul lazer afișează scoruri obținute din lazer folosind un algoritm nou de scor',
             'logout' => 'Deconectare',
             'profile' => 'Profilul Meu',
         ],

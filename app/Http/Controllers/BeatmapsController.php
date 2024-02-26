@@ -10,9 +10,11 @@ use App\Exceptions\InvariantException;
 use App\Jobs\Notifications\BeatmapOwnerChange;
 use App\Libraries\BeatmapDifficultyAttributes;
 use App\Libraries\Score\BeatmapScores;
+use App\Libraries\Score\UserRank;
+use App\Libraries\Search\ScoreSearch;
+use App\Libraries\Search\ScoreSearchParams;
 use App\Models\Beatmap;
 use App\Models\BeatmapsetEvent;
-use App\Models\Score\Best\Model as BestModel;
 use App\Models\User;
 use App\Transformers\BeatmapTransformer;
 use App\Transformers\ScoreTransformer;
@@ -25,6 +27,13 @@ class BeatmapsController extends Controller
     const DEFAULT_API_INCLUDES = ['beatmapset.ratings', 'failtimes', 'max_combo'];
     const DEFAULT_SCORE_INCLUDES = ['user', 'user.country', 'user.cover'];
 
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->middleware('require-scopes:public');
+    }
+
     private static function assertSupporterOnlyOptions(?User $currentUser, string $type, array $mods): void
     {
         $isSupporter = $currentUser !== null && $currentUser->isSupporter();
@@ -36,26 +45,68 @@ class BeatmapsController extends Controller
         }
     }
 
-    private static function baseScoreQuery(Beatmap $beatmap, $mode, $mods, $type = null)
+    private static function beatmapScores(string $id, ?string $scoreTransformerType, ?bool $isLegacy): array
     {
-        $query = BestModel::getClass($mode)
-            ::default()
-            ->where('beatmap_id', $beatmap->getKey())
-            ->with(['beatmap', 'user.country', 'user.userProfileCustomization'])
-            ->withMods($mods);
-
-        if ($type !== null) {
-            $query->withType($type, ['user' => auth()->user()]);
+        $beatmap = Beatmap::findOrFail($id);
+        if ($beatmap->approved <= 0) {
+            return ['scores' => []];
         }
 
-        return $query;
+        $params = get_params(request()->all(), null, [
+            'limit:int',
+            'mode',
+            'mods:string[]',
+            'type:string',
+        ], ['null_missing' => true]);
+
+        $rulesetId = static::getRulesetId($params['mode']) ?? $beatmap->playmode;
+        $mods = array_values(array_filter($params['mods'] ?? []));
+        $type = presence($params['type'], 'global');
+        $currentUser = \Auth::user();
+
+        static::assertSupporterOnlyOptions($currentUser, $type, $mods);
+
+        $esFetch = new BeatmapScores([
+            'beatmap_ids' => [$beatmap->getKey()],
+            'is_legacy' => $isLegacy,
+            'limit' => $params['limit'],
+            'mods' => $mods,
+            'ruleset_id' => $rulesetId,
+            'type' => $type,
+            'user' => $currentUser,
+        ]);
+        $scores = $esFetch->all()->loadMissing(['beatmap', 'user.country', 'user.userProfileCustomization']);
+        $userScore = $esFetch->userBest();
+        $scoreTransformer = new ScoreTransformer($scoreTransformerType);
+
+        $results = [
+            'scores' => json_collection(
+                $scores,
+                $scoreTransformer,
+                static::DEFAULT_SCORE_INCLUDES
+            ),
+        ];
+
+        if (isset($userScore)) {
+            $results['user_score'] = [
+                'position' => $esFetch->rank($userScore),
+                'score' => json_item($userScore, $scoreTransformer, static::DEFAULT_SCORE_INCLUDES),
+            ];
+            // TODO: remove this old camelCased json field
+            $results['userScore'] = $results['user_score'];
+        }
+
+        return $results;
     }
 
-    public function __construct()
+    private static function getRulesetId(?string $rulesetName): ?int
     {
-        parent::__construct();
+        if ($rulesetName === null) {
+            return null;
+        }
 
-        $this->middleware('require-scopes:public');
+        return Ruleset::tryFromName($rulesetName)?->value
+            ?? throw new InvariantException('invalid mode specified');
     }
 
     /**
@@ -280,7 +331,7 @@ class BeatmapsController extends Controller
     /**
      * Get Beatmap scores
      *
-     * Returns the top scores for a beatmap
+     * Returns the top scores for a beatmap. Depending on user preferences, this may only show legacy scores.
      *
      * ---
      *
@@ -290,66 +341,25 @@ class BeatmapsController extends Controller
      *
      * @urlParam beatmap integer required Id of the [Beatmap](#beatmap).
      *
+     * @queryParam legacy_only integer Whether or not to exclude lazer scores. Defaults to 0. Example: 0
      * @queryParam mode The [Ruleset](#ruleset) to get scores for.
      * @queryParam mods An array of matching Mods, or none // TODO.
      * @queryParam type Beatmap score ranking type // TODO.
      */
     public function scores($id)
     {
-        $beatmap = Beatmap::findOrFail($id);
-        if ($beatmap->approved <= 0) {
-            return ['scores' => []];
-        }
-
-        $params = get_params(request()->all(), null, [
-            'limit:int',
-            'mode:string',
-            'mods:string[]',
-            'type:string',
-        ], ['null_missing' => true]);
-
-        $mode = presence($params['mode']) ?? $beatmap->mode;
-        $mods = array_values(array_filter($params['mods'] ?? []));
-        $type = presence($params['type']) ?? 'global';
-        $currentUser = auth()->user();
-
-        static::assertSupporterOnlyOptions($currentUser, $type, $mods);
-
-        $query = static::baseScoreQuery($beatmap, $mode, $mods, $type);
-
-        if ($currentUser !== null) {
-            // own score shouldn't be filtered by visibleUsers()
-            $userScore = (clone $query)->where('user_id', $currentUser->user_id)->first();
-        }
-
-        $scoreTransformer = new ScoreTransformer();
-
-        $results = [
-            'scores' => json_collection(
-                $query->visibleUsers()->forListing($params['limit']),
-                $scoreTransformer,
-                static::DEFAULT_SCORE_INCLUDES
-            ),
-        ];
-
-        if (isset($userScore)) {
-            $results['user_score'] = [
-                'position' => $userScore->userRank(compact('type', 'mods')),
-                'score' => json_item($userScore, $scoreTransformer, static::DEFAULT_SCORE_INCLUDES),
-            ];
-            // TODO: remove this old camelCased json field
-            $results['userScore'] = $results['user_score'];
-        }
-
-        return $results;
+        return static::beatmapScores(
+            $id,
+            null,
+            // TODO: change to imported name after merge with other PRs
+            \App\Libraries\Search\ScoreSearchParams::showLegacyForUser(\Auth::user()),
+        );
     }
 
     /**
-     * Get Beatmap scores (temp)
+     * Get Beatmap scores (non-legacy)
      *
-     * Returns the top scores for a beatmap from newer client.
-     *
-     * This is a temporary endpoint.
+     * Returns the top scores for a beatmap.
      *
      * ---
      *
@@ -365,62 +375,7 @@ class BeatmapsController extends Controller
      */
     public function soloScores($id)
     {
-        $beatmap = Beatmap::findOrFail($id);
-        if ($beatmap->approved <= 0) {
-            return ['scores' => []];
-        }
-
-        $params = get_params(request()->all(), null, [
-            'limit:int',
-            'mode',
-            'mods:string[]',
-            'type:string',
-        ], ['null_missing' => true]);
-
-        if ($params['mode'] !== null) {
-            $rulesetId = Beatmap::MODES[$params['mode']] ?? null;
-            if ($rulesetId === null) {
-                throw new InvariantException('invalid mode specified');
-            }
-        }
-        $rulesetId ??= $beatmap->playmode;
-        $mods = array_values(array_filter($params['mods'] ?? []));
-        $type = presence($params['type'], 'global');
-        $currentUser = auth()->user();
-
-        static::assertSupporterOnlyOptions($currentUser, $type, $mods);
-
-        $esFetch = new BeatmapScores([
-            'beatmap_ids' => [$beatmap->getKey()],
-            'is_legacy' => false,
-            'limit' => $params['limit'],
-            'mods' => $mods,
-            'ruleset_id' => $rulesetId,
-            'type' => $type,
-            'user' => $currentUser,
-        ]);
-        $scores = $esFetch->all()->loadMissing(['beatmap', 'performance', 'user.country', 'user.userProfileCustomization']);
-        $userScore = $esFetch->userBest();
-        $scoreTransformer = new ScoreTransformer(ScoreTransformer::TYPE_SOLO);
-
-        $results = [
-            'scores' => json_collection(
-                $scores,
-                $scoreTransformer,
-                static::DEFAULT_SCORE_INCLUDES
-            ),
-        ];
-
-        if (isset($userScore)) {
-            $results['user_score'] = [
-                'position' => $esFetch->rank($userScore),
-                'score' => json_item($userScore, $scoreTransformer, static::DEFAULT_SCORE_INCLUDES),
-            ];
-            // TODO: remove this old camelCased json field
-            $results['userScore'] = $results['user_score'];
-        }
-
-        return $results;
+        return static::beatmapScores($id, ScoreTransformer::TYPE_SOLO, null);
     }
 
     public function updateOwner($id)
@@ -466,6 +421,7 @@ class BeatmapsController extends Controller
      * @urlParam beatmap integer required Id of the [Beatmap](#beatmap).
      * @urlParam user integer required Id of the [User](#user).
      *
+     * @queryParam legacy_only integer Whether or not to exclude lazer scores. Defaults to 0. Example: 0
      * @queryParam mode The [Ruleset](#ruleset) to get scores for.
      * @queryParam mods An array of matching Mods, or none // TODO.
      */
@@ -478,16 +434,28 @@ class BeatmapsController extends Controller
             'mods:string[]',
         ]);
 
-        $mode = presence($params['mode'] ?? null, $beatmap->mode);
+        $rulesetId = static::getRulesetId($params['mode'] ?? null) ?? $beatmap->playmode;
         $mods = array_values(array_filter($params['mods'] ?? []));
 
-        $score = static::baseScoreQuery($beatmap, $mode, $mods)
-            ->visibleUsers()
-            ->where('user_id', $userId)
-            ->firstOrFail();
+        $baseParams = ScoreSearchParams::fromArray([
+            'beatmap_ids' => [$beatmap->getKey()],
+            'is_legacy' => ScoreSearchParams::showLegacyForUser(\Auth::user()),
+            'limit' => 1,
+            'mods' => $mods,
+            'ruleset_id' => $rulesetId,
+            'sort' => 'score_desc',
+            'user_id' => (int) $userId,
+        ]);
+        $score = (new ScoreSearch($baseParams))->records()->first();
+        abort_if($score === null, 404);
+
+        $rankParams = clone $baseParams;
+        $rankParams->beforeScore = $score;
+        $rankParams->userId = null;
+        $rank = UserRank::getRank($rankParams);
 
         return [
-            'position' => $score->userRank(compact('mods')),
+            'position' => $rank,
             'score' => json_item(
                 $score,
                 new ScoreTransformer(),
@@ -512,18 +480,21 @@ class BeatmapsController extends Controller
      * @urlParam beatmap integer required Id of the [Beatmap](#beatmap).
      * @urlParam user integer required Id of the [User](#user).
      *
+     * @queryParam legacy_only integer Whether or not to exclude lazer scores. Defaults to 0. Example: 0
      * @queryParam mode The [Ruleset](#ruleset) to get scores for. Defaults to beatmap mode
      */
     public function userScoreAll($beatmapId, $userId)
     {
         $beatmap = Beatmap::scoreable()->findOrFail($beatmapId);
         $mode = presence(get_string(request('mode'))) ?? $beatmap->mode;
-        $scores = BestModel::getClass($mode)
-            ::default()
-            ->where([
-                'beatmap_id' => $beatmap->getKey(),
-                'user_id' => $userId,
-            ])->get();
+        $params = ScoreSearchParams::fromArray([
+            'beatmap_ids' => [$beatmap->getKey()],
+            'is_legacy' => ScoreSearchParams::showLegacyForUser(\Auth::user()),
+            'ruleset_id' => Beatmap::MODES[$mode],
+            'sort' => 'score_desc',
+            'user_id' => (int) $userId,
+        ]);
+        $scores = (new ScoreSearch($params))->records();
 
         return [
             'scores' => json_collection($scores, new ScoreTransformer()),

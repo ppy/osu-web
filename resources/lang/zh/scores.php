@@ -5,6 +5,7 @@
 
 return [
     'show' => [
+        'non_preserved' => '已标记删除此分数，不久后它将消失。',
         'title' => ':username 在 :title [:version] 上的成绩',
 
         'beatmap' => [
@@ -25,6 +26,8 @@ return [
     'status' => [
         'non_best' => '只有个人最好成绩才能获取到 pp',
         'non_passing' => '只能在通过的成绩上获取 pp',
+        'no_pp' => '该分数没有 pp',
         'processing' => '此分数仍在计算中，即将显示',
+        'no_rank' => '',
     ],
 ];

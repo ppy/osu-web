@@ -257,6 +257,7 @@ class AccountController extends Controller
             'comments_sort:string',
             'extras_order:string[]',
             'forum_posts_show_deleted:bool',
+            'legacy_score_only:bool',
             'profile_cover_expanded:bool',
             'user_list_filter:string',
             'user_list_sort:string',

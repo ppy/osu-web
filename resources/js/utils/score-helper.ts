@@ -7,11 +7,26 @@ import { route } from 'laroute';
 import core from 'osu-core-singleton';
 import { rulesetName } from './beatmap-helper';
 import { trans } from './lang';
+import { legacyAccuracyAndRank } from './legacy-score-helper';
+
+export function accuracy(score: SoloScoreJson) {
+  return shouldReturnLegacyValue(score)
+    ? legacyAccuracyAndRank(score).accuracy
+    : score.accuracy;
+}
 
 export function canBeReported(score: SoloScoreJson) {
   return (score.best_id != null || score.type === 'solo_score')
     && core.currentUser != null
     && score.user_id !== core.currentUser.id;
+}
+
+// Removes CL mod on legacy score if user has lazer mode disabled
+export function filterMods(score: SoloScoreJson) {
+  return shouldReturnLegacyValue(score)
+    ? score.mods.filter((mod) => mod.acronym !== 'CL')
+    : score.mods;
+
 }
 
 // TODO: move to application state repository thingy later
@@ -27,34 +42,10 @@ export function hasShow(score: SoloScoreJson) {
   return score.best_id != null || score.type === 'solo_score';
 }
 
-const comboHitAttributes = [
-  'good',
-  'great',
-  'large_tick_hit',
-  'legacy_combo_increase',
-  'meh',
-  'ok',
-  'perfect',
-] as const;
-
 export function isPerfectCombo(score: SoloScoreJson) {
-  if (score.legacy_perfect != null) {
-    return score.legacy_perfect;
-  }
-
-  if (rulesetName(score.ruleset_id) === 'mania') {
-    return ([
-      'miss',
-      'large_tick_miss',
-    ] as const).every((attr) => score.statistics[attr] == null || score.statistics[attr] === 0);
-  }
-
-  const maxAchievableCombo = comboHitAttributes.reduce(
-    (acc, attr) => acc + (score.maximum_statistics[attr] ?? 0),
-    0,
-  );
-
-  return maxAchievableCombo !== 0 && score.max_combo === maxAchievableCombo;
+  return shouldReturnLegacyValue(score)
+    ? score.legacy_perfect
+    : score.is_perfect_combo;
 }
 
 interface AttributeData {
@@ -92,6 +83,12 @@ export const modeAttributesMap: Record<GameMode, AttributeData[]> = {
   ],
 };
 
+export function rank(score: SoloScoreJson) {
+  return shouldReturnLegacyValue(score)
+    ? legacyAccuracyAndRank(score).rank
+    : score.rank;
+}
+
 export function scoreDownloadUrl(score: SoloScoreJson) {
   if (score.type === 'solo_score') {
     return route('scores.download', { score: score.id });
@@ -122,6 +119,12 @@ export function scoreUrl(score: SoloScoreJson) {
   throw new Error('score json doesn\'t have url');
 }
 
+function shouldReturnLegacyValue(score: SoloScoreJson) {
+  return score.legacy_score_id !== null && core.userPreferences.get('legacy_score_only');
+}
+
 export function totalScore(score: SoloScoreJson) {
-  return score.legacy_total_score ?? score.total_score;
+  return shouldReturnLegacyValue(score)
+    ? score.legacy_total_score
+    : score.total_score;
 }

@@ -57,7 +57,7 @@ return [
         'echeck_delay' => 'Jako że twoja płatność została przesłana czekiem elektronicznym, odczekaj do 10 dni na przetworzenie transakcji przez PayPal.',
         'hide_from_activity' => 'Zakup statusów donatora osu! z tego zamówienia nie zostanie wyświetlony w twojej aktywności.',
         'sent_via' => 'Wysłane poprzez:',
-        'shipping_to' => '',
+        'shipping_to' => 'Wysyłka do:',
         'title' => 'Faktura',
         'title_compact' => 'faktura',
 
@@ -65,21 +65,21 @@ return [
             'cancelled' => [
                 'title' => 'Twoje zamówienie zostało anulowane',
                 'line_1' => [
-                    '_' => "",
-                    'link_text' => '',
+                    '_' => "Jeśli nie prosiłeś o anulowanie, skontaktuj się na :link uwzględniając swój numer zamówienia (#:order_number).",
+                    'link_text' => 'pomoc sklepu osu!',
                 ],
             ],
             'delivered' => [
-                'title' => '',
+                'title' => 'Twoje zamówienie zostało dostarczone! Mamy nadzieję, że Ci się spodoba!',
                 'line_1' => [
-                    '_' => '',
-                    'link_text' => '',
+                    '_' => 'Jeśli masz problem z twoim zamówieniem, skontaktuj się na :link.',
+                    'link_text' => 'pomoc sklepu osu!',
                 ],
             ],
             'prepared' => [
-                'title' => '',
-                'line_1' => '',
-                'line_2' => '',
+                'title' => 'Twoje zamówienie jest w trakcie realizacji!',
+                'line_1' => 'Proszę, zaczekaj trochę dłużej, aż twoja przesyłka zostanie wysłana. Śledzenie przesyłki będzie możliwe, gdy zostanie ona przygotowana i wysłana. Może to potrwać do 5 dni (ale zazwyczaj mniej!) w zależności od tego, jak bardzo jesteśmy zajęci.',
+                'line_2' => 'Realizujemy nasze zamówienia w Japonii, korzystając z różnych opcji wysyłek w zależności od wagi i wartości. Tutaj znajdziesz szczegóły dotyczące twojej przesyłki, gdy ją wyślemy.',
             ],
             'processing' => [
                 'title' => 'Twoja płatność nie została jeszcze potwierdzona!',
@@ -90,11 +90,11 @@ return [
                 ],
             ],
             'shipped' => [
-                'title' => '',
+                'title' => 'Twoje zamówienie zostało wysłane!',
                 'tracking_details' => '',
                 'no_tracking_details' => [
-                    '_' => "",
-                    'link_text' => '',
+                    '_' => "Nie posiadamy szczegółów śledzenia, ponieważ wysłaliśmy Twoją paczkę przez Air Mail, ale możesz się jej spodziewać w ciągu 1-3 tygodni. Czasami europejskie służby celne mogą opóźnić paczkę, na co nie mamy wpływu. Jeśli masz jakieś wątpliwości, odpowiedz na e-mail z potwierdzeniem zamówienia, który otrzymałeś (lub :link).",
+                    'link_text' => 'wyślij nam maila',
                 ],
             ],
         ],
@@ -110,15 +110,15 @@ return [
         'resume' => 'Wznów zamówienie',
         'shipping_and_handling' => '',
         'shopify_expired' => 'Łącze do płatności za to zamówienie wygasło.',
-        'subtotal' => '',
-        'total' => '',
+        'subtotal' => 'Suma częściowa',
+        'total' => 'Suma',
 
         'details' => [
-            'order_number' => '',
-            'payment_terms' => '',
-            'salesperson' => '',
-            'shipping_method' => '',
-            'shipping_terms' => '',
+            'order_number' => 'Zamówienie #',
+            'payment_terms' => 'Warunki płatności',
+            'salesperson' => 'Sprzedawca',
+            'shipping_method' => 'Sposób wysyłki',
+            'shipping_terms' => 'Warunki dostawy',
             'title' => 'Szczegóły zamówienia',
         ],
 
@@ -155,10 +155,10 @@ return [
         ],
 
         'thanks' => [
-            'title' => '',
+            'title' => 'Dziękujemy za złożenie zamówienia!',
             'line_1' => [
-                '_' => '',
-                'link_text' => '',
+                '_' => 'Wkrótce otrzymasz e-mail z potwierdzeniem. Jeśli masz jakieś pytania, proszę :link!',
+                'link_text' => 'skontaktuj się z nami',
             ],
         ],
     ],
@@ -193,8 +193,8 @@ return [
     'username_change' => [
         'check' => 'Wprowadź nazwę użytkownika, aby sprawdzić, czy jest dostępna!',
         'checking' => 'Sprawdzanie możliwości zmiany na :username...',
-        'placeholder' => '',
-        'label' => '',
+        'placeholder' => 'Żądana nazwa użytkownika',
+        'label' => 'Nowa nazwa użytkownika',
         'current' => 'Twoja aktualna nazwa użytkownika to ":username".',
 
         'require_login' => [

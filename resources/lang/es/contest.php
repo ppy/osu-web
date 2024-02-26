@@ -13,7 +13,28 @@ return [
         'nav_title' => 'listado',
     ],
 
+    'judge' => [
+        'hide_judged' => 'ocultar entradas evaluadas',
+        'nav_title' => 'evaluar',
+        'no_current_vote' => 'aún no has votado.',
+        'update' => 'actualizar',
+        'validation' => [
+            'missing_score' => 'puntuación faltante',
+            'contest_vote_judged' => 'no puedes votar en concursos ya evaluados',
+        ],
+        'voted' => 'Ya has enviado un voto en esta entrada.',
+    ],
+
+    'judge_results' => [
+        '_' => 'Resultados de la evaluación',
+        'creator' => 'creador',
+        'score' => 'Puntuación',
+        'total_score' => 'puntuación total',
+    ],
+
     'voting' => [
+        'judge_link' => 'Eres un evaluador de este concurso. ¡Evalúa las entradas aquí!',
+        'judged_notice' => 'Este concurso está usando el sistema de evaluación, los evaluadores actualmente están procesando las entradas.',
         'login_required' => 'Inicie sesión para votar.',
         'over' => 'Las votaciones para este concurso ya han terminado',
         'show_voted_only' => 'Mostrar votado',
@@ -38,6 +59,7 @@ return [
             ],
         ],
     ],
+
     'entry' => [
         '_' => 'entrada',
         'login_required' => 'Inicie sesión para participar en el concurso.',
@@ -45,22 +67,27 @@ return [
         'preparation' => 'Estamos preparando este concurso actualmente. Por favor, ¡Espera pacientemente!',
         'drop_here' => 'Suelta tu entrada aquí',
         'download' => 'Descargar archivo .osz',
+
         'wrong_type' => [
             'art' => 'Solo se aceptan archivos .jpg y .png en este concurso.',
             'beatmap' => 'Solo se aceptan archivos .osu en este concurso.',
             'music' => 'Solo se aceptan archivos .mp3 en este concurso.',
         ],
+
         'wrong_dimensions' => 'Las entradas para este concurso deben ser :widthx:height',
         'too_big' => 'Las entradas para este concurso solo pueden ser de hasta :limit.',
     ],
+
     'beatmaps' => [
         'download' => 'Descargar entrada',
     ],
+
     'vote' => [
         'list' => 'votos',
         'count' => ':count_delimited voto|:count_delimited votos',
         'points' => ':count_delimited punto|:count_delimited puntos',
     ],
+
     'dates' => [
         'ended' => 'Finalizó el :date',
         'ended_no_date' => 'Finalizado',
@@ -70,6 +97,7 @@ return [
             'soon' => 'pronto™',
         ],
     ],
+
     'states' => [
         'entry' => 'Entrada abierta',
         'voting' => 'Votación Iniciada',

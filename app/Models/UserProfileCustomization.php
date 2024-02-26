@@ -37,6 +37,8 @@ class UserProfileCustomization extends Model
 
     const BEATMAPSET_DOWNLOAD = ['all', 'no_video', 'direct'];
 
+    const DEFAULT_LEGACY_ONLY_ATTRIBUTE = true;
+
     const USER_LIST = [
         'filters' => ['all' => ['all', 'online', 'offline'], 'default' => 'all'],
         'sorts' => ['all' => ['last_visit', 'rank', 'username'], 'default' => 'last_visit'],
@@ -192,6 +194,16 @@ class UserProfileCustomization extends Model
     public function setForumPostsShowDeletedAttribute($value)
     {
         $this->setOption('forum_posts_show_deleted', get_bool($value));
+    }
+
+    public function getLegacyScoreOnlyAttribute(): bool
+    {
+        return $this->options['legacy_score_only'] ?? static::DEFAULT_LEGACY_ONLY_ATTRIBUTE;
+    }
+
+    public function setLegacyScoreOnlyAttribute($value): void
+    {
+        $this->setOption('legacy_score_only', get_bool($value));
     }
 
     public function getUserListFilterAttribute()

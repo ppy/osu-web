@@ -81,6 +81,7 @@ return [
     ],
 
     'contest' => [
+        'judging_not_active' => 'Il n\'est pas possible de juger pour ce concours.',
         'voting_over' => 'Vous ne pouvez plus modifier votre vote une fois la période de vote passée.',
 
         'entry' => [
@@ -172,6 +173,7 @@ return [
     'score' => [
         'pin' => [
             'disabled_type' => "Impossible d'épingler ce type de score",
+            'failed' => "Impossible d'épingler un échec.",
             'not_owner' => 'Seul le propriétaire du score peut épingler ce score.',
             'too_many' => 'Trop de scores épinglés.',
         ],

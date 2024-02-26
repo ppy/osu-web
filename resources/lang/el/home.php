@@ -80,7 +80,6 @@ return [
         'action_lazer_title' => 'δοκίμασε το osu!(lazer)',
         'action_title' => 'κατέβασε το osu!',
         'for_os' => 'για :os',
-        'lazer_note' => 'σημείωση: ισχύουν επαναλήψεις leaderboard',
         'macos-fallback' => 'χρήστες macOS',
         'mirror' => 'mirror',
         'or' => 'ή',

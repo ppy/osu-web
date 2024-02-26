@@ -16,14 +16,14 @@ return [
     'username' => 'שם משתמש',
 
     'artist_tracks' => [
-        'album' => '',
-        'artist' => '',
-        'bpm' => '',
-        'genre' => '',
-        'length' => '',
-        'relevance' => '',
-        'title' => '',
-        'update' => '',
+        'album' => 'אלבום',
+        'artist' => 'אמן',
+        'bpm' => 'פעימות בדקה',
+        'genre' => 'ז\'אנר',
+        'length' => 'אורך',
+        'relevance' => 'רלוונטיות',
+        'title' => 'כותרת',
+        'update' => 'עדכן',
     ],
 
     'forum_posts' => [
@@ -32,13 +32,13 @@ return [
     ],
 
     'forum_topics' => [
-        'created' => '',
+        'created' => 'נוצר',
         'feature_votes' => 'עדיפות כוכב',
         'new' => 'תגובה אחרונה',
     ],
 
     'users' => [
-        'relevance' => '',
-        'username' => '',
+        'relevance' => 'רלוונטיות',
+        'username' => 'שם',
     ],
 ];

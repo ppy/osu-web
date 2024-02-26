@@ -63,8 +63,12 @@ return [
         'comments_controller' => [
             '_' => 'kommentare',
         ],
+        'contest_entries_controller' => [
+            'judge_results' => '',
+        ],
         'contests_controller' => [
             '_' => 'Wettbewerbe',
+            'judge' => '',
         ],
         'groups_controller' => [
             'show' => 'gruppen',
@@ -107,7 +111,7 @@ return [
             '_' => 'Turniere',
         ],
         'users_controller' => [
-            '_' => 'spieler-info',
+            '_' => 'Spielerinfo',
             'create' => 'account erstellen',
             'disabled' => 'notiz',
         ],

@@ -163,7 +163,7 @@ return [
             'friend' => 'Kavereiden sijoitukset',
             'global' => 'Maailmanlaajuiset sijoitukset',
             'supporter-link' => 'Klikkaa <a href=":link">tästä</a> nähdäksesi kaikki hienot ominaisuudet mitä saat!',
-            'supporter-only' => 'Sinun täytyy olla osu!-tukija nähdäksesi kaveri-, maa- ja muunnelmakohtaiset sijoitukset!',
+            'supporter-only' => 'Sinun täytyy olla osu!n tukija nähdäksesi kaveri-, maa- ja muunnelmakohtaiset sijoitukset!',
             'title' => 'Tulokset',
 
             'headers' => [
@@ -185,7 +185,7 @@ return [
                 'friend' => 'Kukaan kavereistasi ei vielä ole saanut tulosta tässä mapissa!',
                 'global' => 'Tuloksia ei ole. Voisit hankkia niitä.',
                 'loading' => 'Ladataan tuloksia...',
-                'unranked' => 'Pisteyttämätön rytmikartta.',
+                'unranked' => 'Rankkaamaton rytmikartta.',
             ],
             'score' => [
                 'first' => 'Johdossa',

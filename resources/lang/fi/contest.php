@@ -13,7 +13,28 @@ return [
         'nav_title' => 'listaus',
     ],
 
+    'judge' => [
+        'hide_judged' => 'piilota arvioidut tuotokset',
+        'nav_title' => 'arvioi',
+        'no_current_vote' => 'et ole äänestänyt vielä.',
+        'update' => 'päivitä',
+        'validation' => [
+            'missing_score' => 'puuttuva pisteytys',
+            'contest_vote_judged' => 'et voi äänestää tuomaroiduissa kilpailuissa',
+        ],
+        'voted' => 'Olet jo äänestänyt tätä tuotosta.',
+    ],
+
+    'judge_results' => [
+        '_' => 'Tuomaroinnin tulokset',
+        'creator' => 'tekijä',
+        'score' => 'Pisteet',
+        'total_score' => 'kokonaispisteet',
+    ],
+
     'voting' => [
+        'judge_link' => 'Olet tämän kilpailun tuomari. Arvostele tuotoksia täällä!',
+        'judged_notice' => 'Tämä kilpailu käyttää tuomarointijärjestelmää, tuomarit käsittelevät tuotoksia parhaillaan.',
         'login_required' => 'Kirjaudu sisään äänestääksesi.',
         'over' => 'Äänestys tälle kilpailulle on päättynyt',
         'show_voted_only' => 'Näytä äänestetyt',
@@ -38,6 +59,7 @@ return [
             ],
         ],
     ],
+
     'entry' => [
         '_' => 'ehdokas',
         'login_required' => 'Kirjaudu sisään osallistuaksesi kilpailuun.',
@@ -45,22 +67,27 @@ return [
         'preparation' => 'Valmistelemme tätä kilpailua. Odota rauhassa!',
         'drop_here' => 'Pudota työsi tähän',
         'download' => 'Lataa .osz-tiedosto',
+
         'wrong_type' => [
             'art' => 'Tähän kilpailuun sallitaan ainoastaan .jpg- ja -png-tiedostot.',
             'beatmap' => 'Tähän kilpailuun sallitaan ainoastaan .osu-tiedostot.',
             'music' => 'Tähän kilpailuun sallitaan ainoastaan .mp3-tiedostot.',
         ],
+
         'wrong_dimensions' => 'Tämän kilpailun kohteiden on oltava :widthx:height',
         'too_big' => 'Tähän kilpailuun voi lähettää korkeintaan :limit työtä.',
     ],
+
     'beatmaps' => [
         'download' => 'Lataa tuotos',
     ],
+
     'vote' => [
         'list' => 'äänet',
         'count' => ':count_delimited ääni|:count_delimited ääntä',
         'points' => ':count piste|:count pistettä',
     ],
+
     'dates' => [
         'ended' => 'Loppui :date',
         'ended_no_date' => 'Päättyi',
@@ -70,6 +97,7 @@ return [
             'soon' => 'pian™',
         ],
     ],
+
     'states' => [
         'entry' => 'Avoinna',
         'voting' => 'Äänestys Alkanut',

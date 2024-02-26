@@ -112,6 +112,7 @@ return [
         'legal' => [
             '_' => 'Юридическая информация и статус',
             'copyright' => 'Авторские права (DMCA)',
+            'jp_sctl' => '',
             'privacy' => 'Конфиденциальность',
             'server_status' => 'Статус серверов',
             'source_code' => 'Исходный код',
@@ -195,6 +196,8 @@ return [
             'account-edit' => 'Настройки',
             'follows' => 'Подписки',
             'friends' => 'Друзья',
+            'legacy_score_only_toggle' => 'Lazer-рекорды',
+            'legacy_score_only_toggle_tooltip' => 'Режим отображения, который показывает рекорды, поставленные в клиенте lazer с новым алгоритмом подсчета очков',
             'logout' => 'Выйти',
             'profile' => 'Мой профиль',
         ],

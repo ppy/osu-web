@@ -36,6 +36,9 @@ return [
     'starting' => [
         'username' => '아이디나 이메일 주소를 입력하세요.',
 
+        'reason' => [
+            'inactive_different_country' => "계정이 오랫동안 사용되지 않았습니다. 계정 보안을 위해 비밀번호를 재설정하세요.",
+        ],
         'support' => [
             '_' => '도움이 필요하신가요? :button을 통해 문의해보세요.',
             'button' => '지원 시스템',

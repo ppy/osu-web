@@ -5,6 +5,7 @@
 
 return [
     'show' => [
+        'non_preserved' => '',
         'title' => ':username на :title [:version]',
 
         'beatmap' => [
@@ -25,6 +26,8 @@ return [
     'status' => [
         'non_best' => 'Толькі вашы лепшыя вынікі даюць pp',
         'non_passing' => 'Толькі пройдзеныя карты прыносяць pp',
+        'no_pp' => '',
         'processing' => 'Гэты скор усё яшчэ разлічваецца і будзе адлюстраваны ў бліжэйшы час',
+        'no_rank' => '',
     ],
 ];

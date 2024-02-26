@@ -63,8 +63,12 @@ return [
         'comments_controller' => [
             '_' => 'komentar',
         ],
+        'contest_entries_controller' => [
+            'judge_results' => 'hasil penjurian kontes',
+        ],
         'contests_controller' => [
             '_' => 'kontes',
+            'judge' => 'penjurian kontes',
         ],
         'groups_controller' => [
             'show' => 'grup',

@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'new' => 'Kunci API Lawas Baru',
+    'new' => 'Kunci API lawas Baru',
     'none' => 'Tidak ada kunci.',
 
     'docs' => [
@@ -23,8 +23,8 @@ return [
     ],
 
     'warning' => [
-        'line1' => 'Jangan berikan informasi ini kepada orang lain.',
-        'line2' => "Tindakan ini sama halnya dengan membocorkan kata sandimu.",
-        'line3' => 'Apabila kamu gegabah, akunmu akan dapat disusupi.',
+        'line1' => 'Jangan berikan informasi ini kepada siapa pun.',
+        'line2' => "Ini sama halnya membagikan akunmu pada yang lain.",
+        'line3' => 'Harap untuk tidak membagikan informasi ini.',
     ],
 ];

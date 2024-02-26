@@ -32,7 +32,7 @@ return [
         'cart_problems_edit' => 'Haz clic aquí para editarlo.',
         'declined' => 'El pago ha sido cancelado.',
         'delayed_shipping' => '¡Ahora mismo estamos sobresaturados de pedidos! Eres bienvenido a solicitar tu orden, pero considera un **retraso adicional de 1-2 semanas** mientras nos ponemos al día con órdenes ya existentes.',
-        'hide_from_activity' => 'Ocultar todas las etiquetas osu!supporter en esta orden de mi actividad',
+        'hide_from_activity' => 'Ocultar todas las etiquetas de osu!supporter en esta orden de mi actividad',
         'old_cart' => 'Tu carrito parecía estar desactualizado y fue reiniciado, por favor intenta de nuevo.',
         'pay' => 'Pagar con PayPal',
         'title_compact' => 'caja',
@@ -55,7 +55,7 @@ return [
         'contact' => 'Contacto:',
         'date' => 'Fecha:',
         'echeck_delay' => 'Como su pago fue un eCheck, ¡por favor permita hasta 10 días adicionales para que el pago se realice a través de PayPal!',
-        'hide_from_activity' => 'las etiquetas osu!supporter en esta orden no se muestran en tus actividades recientes.',
+        'hide_from_activity' => 'las etiquetas de osu!supporter en esta orden no se muestran en tus actividades recientes.',
         'sent_via' => 'Enviado vía:',
         'shipping_to' => 'Envío a:',
         'title' => 'Factura',
@@ -182,10 +182,10 @@ return [
 
     'supporter_tag' => [
         'gift' => 'regalar al jugador',
-        'gift_message' => '¡añade un mensaje opcional a tu regalo! (hasta :length caracteres) ',
+        'gift_message' => '¡añade un mensaje opcional a tu regalo! (hasta :length caracteres)',
 
         'require_login' => [
-            '_' => '¡Tienes que tener una :link para obtener una etiqueta osu!supporter!',
+            '_' => '¡Tienes que tener la :link para obtener una etiqueta de osu!supporter!',
             'link_text' => 'sesión iniciada',
         ],
     ],

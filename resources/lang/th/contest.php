@@ -13,7 +13,28 @@ return [
         'nav_title' => 'รายการ',
     ],
 
+    'judge' => [
+        'hide_judged' => '',
+        'nav_title' => '',
+        'no_current_vote' => '',
+        'update' => '',
+        'validation' => [
+            'missing_score' => '',
+            'contest_vote_judged' => '',
+        ],
+        'voted' => '',
+    ],
+
+    'judge_results' => [
+        '_' => '',
+        'creator' => '',
+        'score' => '',
+        'total_score' => '',
+    ],
+
     'voting' => [
+        'judge_link' => '',
+        'judged_notice' => '',
         'login_required' => 'กรุณาเข้าสู่ระบบเพื่อทำการโหวต',
         'over' => 'การโหวตนั้นได้สิ้นสุดลงแล้ว',
         'show_voted_only' => 'แสดงโหวต',
@@ -38,6 +59,7 @@ return [
             ],
         ],
     ],
+
     'entry' => [
         '_' => 'รายการ',
         'login_required' => 'กรุณาเข้าสู่ระบบเพื่อร่วมเข้าประกวด',
@@ -45,22 +67,27 @@ return [
         'preparation' => 'ทางเรากำลังเตรียมการประกวดอยู่ กรุณารออีกสักพัก',
         'drop_here' => 'ส่งงานของคุณตรงนี้',
         'download' => 'ดาวน์โหลด .osz',
+
         'wrong_type' => [
             'art' => 'เฉพาะไฟล์นามสกุล .jpg และ .png เท่านั้นที่สามารถส่งเข้าประกวดได้',
             'beatmap' => 'เฉพาะไฟล์นามสกุล .osu เท่านั้นที่สามารถส่งเข้าประกวดได้',
             'music' => 'เฉพาะไฟล์นามสกุล .mp3 เท่านั้นที่สามารถส่งเข้าประกวดได้',
         ],
+
         'wrong_dimensions' => 'รายการสำหรับการแข่งขันนี้ต้องมีขนาด :widthx:height',
         'too_big' => 'งานประกวดครั้งนี้สามารถส่งได้มากสุด :limit งาน',
     ],
+
     'beatmaps' => [
         'download' => 'ดาวน์โหลดผลงาน',
     ],
+
     'vote' => [
         'list' => 'โหวต',
         'count' => ':count_delimited โหวต|:count_delimited โหวตทั้งหมด',
         'points' => ':count_delimited แต้ม|:count_delimited แต้มทั้งหมด',
     ],
+
     'dates' => [
         'ended' => 'สิ้นสุดเมื่อวันที่ :date',
         'ended_no_date' => 'จบแล้ว',
@@ -70,6 +97,7 @@ return [
             'soon' => 'เร็วๆ นี้™',
         ],
     ],
+
     'states' => [
         'entry' => 'เปิดรับงาน',
         'voting' => 'เริ่มเปิดโหวต',
