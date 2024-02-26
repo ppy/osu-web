@@ -144,7 +144,9 @@ export default class ChatStateStore implements DispatchListener {
   // TODO: allow user cancelling operation from UI?
   @action
   async addChannel(channelId?: number) {
-    if (this.isAddingChannel) return;
+    if (this.isAddingChannel
+      || channelId != null && this.channelStore.channels.has(channelId)
+    ) return;
 
     showImmediateLoadingOverlay();
 
