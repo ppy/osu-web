@@ -43,16 +43,17 @@ function Channel({ channel, onClick, status }: ChannelProps) {
 
 @observer
 export default class JoinChannels extends React.Component<Props> {
+  @computed
   get channels() {
-    return core.dataStore.chatState.publicChannels.channels;
+    return this.publicChannels.channels?.slice().sort((x, y) => x.name.localeCompare(y.name)) ?? [];
+  }
+
+  get publicChannels() {
+    return core.dataStore.chatState.publicChannels;
   }
 
   get isLoading() {
-    return core.dataStore.chatState.publicChannels.xhr != null;
-  }
-
-  get error() {
-    return core.dataStore.chatState.publicChannels.error;
+    return this.publicChannels.xhr != null;
   }
 
   @computed
@@ -84,7 +85,7 @@ export default class JoinChannels extends React.Component<Props> {
           </div>
         ) : (
           <div className='chat-join-channel__channels'>
-            {this.channels?.map(this.renderChannel)}
+            {this.channels.map(this.renderChannel)}
           </div>
         )}
       </div>
@@ -96,7 +97,7 @@ export default class JoinChannels extends React.Component<Props> {
   };
 
   private readonly handleRefreshClick = () => {
-    core.dataStore.chatState.publicChannels.load();
+    this.publicChannels.load();
   };
 
   private readonly renderChannel = (channel: ChannelJson) => {
@@ -118,7 +119,7 @@ export default class JoinChannels extends React.Component<Props> {
   };
 
   private renderLoading() {
-    if (this.error) {
+    if (this.publicChannels.error) {
       return (
         <>
           <p>{trans('errors.load_failed')}</p>

@@ -6,10 +6,22 @@ import ChannelJson from 'interfaces/chat/channel-json';
 import { action, makeObservable, observable, runInAction } from 'mobx';
 import { isJqXHR } from 'utils/ajax';
 
+const refreshDelayMs = 30_000;
+
 export default class PublicChannels {
   @observable channels?: ChannelJson[];
   @observable error = false;
   @observable xhr: ReturnType<typeof getPublicChannels> | null= null;
+
+  private lastRefreshTime?: Date;
+
+  private get canRefresh() {
+    if (this.lastRefreshTime == null) {
+      return true;
+    }
+
+    return new Date().getTime() - this.lastRefreshTime.getTime() > refreshDelayMs;
+  }
 
   constructor() {
     makeObservable(this);
@@ -17,13 +29,14 @@ export default class PublicChannels {
 
   @action
   async load() {
-    if (this.xhr != null) return;
+    if (this.xhr != null || !this.canRefresh) return;
 
     try {
       this.xhr = getPublicChannels();
       const channels = await this.xhr;
 
       runInAction(() => {
+        this.lastRefreshTime = new Date();
         this.channels = channels;
       });
     } catch (error) {
