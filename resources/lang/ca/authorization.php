@@ -81,7 +81,7 @@ return [
     ],
 
     'contest' => [
-        'judging_not_active' => '',
+        'judging_not_active' => 'L\'avaluació per a aquest concurs està desactivada.',
         'voting_over' => 'No pots canviar el teu vot després d\'haver acabat el període de votació.',
 
         'entry' => [
@@ -173,7 +173,7 @@ return [
     'score' => [
         'pin' => [
             'disabled_type' => "No es pot fixar aquest tipus de puntuació",
-            'failed' => "",
+            'failed' => "No pots fixar una puntuació fallida.",
             'not_owner' => 'Només el propietari de la puntuació pot fixar la puntuació.',
             'too_many' => 'Has fixat massa puntuacions.',
         ],

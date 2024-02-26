@@ -213,6 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'Map này ước tính sẽ được Xếp Hạng :date nếu không tìm ra lỗi nào. Nó đang ở #:position trong :queue.',
+            'unresolved_problems' => '',
+            'problems' => '',
             'on' => 'vào ngày :date',
             'queue' => 'hàng chờ xếp hạng',
             'soon' => 'sớm',

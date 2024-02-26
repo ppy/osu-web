@@ -213,6 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'Ця мапа стане рейтинговою :date, якщо ніяких проблем не буде знайдено. Вона #:position в :queue.',
+            'unresolved_problems' => '',
+            'problems' => '',
             'on' => 'з :date',
             'queue' => 'черзі на рейтинг',
             'soon' => 'дуже скоро',

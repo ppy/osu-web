@@ -80,7 +80,6 @@ return [
         'action_lazer_title' => 'poskusi osu!(lazer)',
         'action_title' => 'prenesi osu!',
         'for_os' => 'za :os',
-        'lazer_note' => 'obvestilo: vključuje ponastavitev lestvic',
         'macos-fallback' => 'macOS uporabniki',
         'mirror' => 'mirror',
         'or' => 'ali',

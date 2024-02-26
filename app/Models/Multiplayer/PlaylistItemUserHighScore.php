@@ -112,14 +112,18 @@ class PlaylistItemUserHighScore extends Model
         $this->incrementInstance('attempts');
     }
 
-    public function updateWithScoreLink(ScoreLink $scoreLink): void
+    public function updateWithScoreLink(ScoreLink $scoreLink): bool
     {
         $score = $scoreLink->score;
 
-        $this->fill([
+        if ($score === null || !$score->passed || $score->total_score < $this->total_score) {
+            return false;
+        }
+
+        return $this->fill([
             'accuracy' => $score->accuracy,
             'pp' => $score->pp,
-            'score_id' => $scoreLink->getKey(),
+            'score_id' => $score->getKey(),
             'total_score' => $score->total_score,
         ])->save();
     }

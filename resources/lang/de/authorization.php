@@ -173,7 +173,7 @@ return [
     'score' => [
         'pin' => [
             'disabled_type' => "Dieser Score-Typ kann nicht angepinnt werden",
-            'failed' => "",
+            'failed' => "Nicht abgeschlossene Scores können nicht angepinnt werden",
             'not_owner' => 'Nur der Spieler, der den Score eingereicht hat, kann ihn anpinnen.',
             'too_many' => 'Zu viele Scores angepinnt.',
         ],

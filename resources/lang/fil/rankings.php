@@ -18,15 +18,15 @@ return [
     ],
 
     'kudosu' => [
-        'total' => '',
-        'available' => '',
-        'used' => '',
+        'total' => 'Nakuha',
+        'available' => 'Magagamit',
+        'used' => 'Nagastos',
     ],
 
     'type' => [
         'charts' => 'Mga Spotlight',
         'country' => 'Bansa',
-        'kudosu' => '',
+        'kudosu' => 'kudosu',
         'multiplayer' => 'multiplayer',
         'performance' => 'Performance',
         'score' => 'Iskor',
@@ -34,10 +34,10 @@ return [
     ],
 
     'seasons' => [
-        'empty' => '',
-        'ongoing' => '',
-        'room_count' => '',
-        'url' => '',
+        'empty' => 'Wala pang mga kwarto sa season na ito.',
+        'ongoing' => 'Ang season na ito ay nagpapatuloy pa rin (magkakaroon pa ng mga playlist na idaragdag).',
+        'room_count' => 'Bilang ng playlist',
+        'url' => 'Magpakita ng higit pang mga impormasyon sa season na iyon.',
     ],
 
     'spotlight' => [
