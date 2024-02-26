@@ -80,7 +80,6 @@ return [
         'action_lazer_title' => 'coba osu!(lazer)',
         'action_title' => 'unduh osu!',
         'for_os' => 'untuk :os',
-        'lazer_note' => 'catatan: papan peringkat dapat diatur ulang sewaktu-waktu',
         'macos-fallback' => 'osu! versi macOS',
         'mirror' => 'tautan alternatif',
         'or' => 'atau',

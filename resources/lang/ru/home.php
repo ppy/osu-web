@@ -80,7 +80,6 @@ return [
         'action_lazer_title' => 'попробовать osu!(lazer)',
         'action_title' => 'скачать osu!',
         'for_os' => 'для :os',
-        'lazer_note' => 'примечание: ваши рекорды могут быть удалены',
         'macos-fallback' => 'для macOS',
         'mirror' => 'зеркало',
         'or' => 'или',

@@ -213,6 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'Ez a pálya rangsorolt lesz :date, ha nem merülnek fel további problémák. Jelenleg a #:position helyen áll: :queue.',
+            'unresolved_problems' => '',
+            'problems' => '',
             'on' => ':date',
             'queue' => 'ranglistázási sor',
             'soon' => 'hamarosan',

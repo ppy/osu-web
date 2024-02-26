@@ -213,6 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'Diese Map wird voraussichtlich am :date ranked. Sie befindet sich aktuell an Position :position der :queue.',
+            'unresolved_problems' => '',
+            'problems' => '',
             'on' => 'am :date',
             'queue' => 'Warteschlange',
             'soon' => 'bald',

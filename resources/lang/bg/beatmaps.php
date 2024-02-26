@@ -213,6 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'Този бийтмап ще бъде класиран на :date ако не открием проблеми. Той е #:position на :queue.',
+            'unresolved_problems' => '',
+            'problems' => '',
             'on' => 'на :date',
             'queue' => 'опашката',
             'soon' => 'скоро',

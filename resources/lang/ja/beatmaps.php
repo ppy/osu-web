@@ -213,6 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'このマップは、問題が見つからなければ :date にrankedされると推定されます。:queue 内の #:position ',
+            'unresolved_problems' => '',
+            'problems' => '',
             'on' => '',
             'queue' => 'ランキングキュー',
             'soon' => '間もなく',

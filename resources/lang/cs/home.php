@@ -80,7 +80,6 @@ return [
         'action_lazer_title' => 'zkusit osu!(lazer)',
         'action_title' => 'stáhnout osu!',
         'for_os' => 'pro :os',
-        'lazer_note' => 'poznámka: resetuje žebříčky',
         'macos-fallback' => 'macOS uživatelé',
         'mirror' => 'mirror',
         'or' => 'nebo',

@@ -12,7 +12,7 @@ return [
         'in_progress_spinner_label' => 'laban na nag-uunlad',
         'loading-events' => 'Naglo-load ng mga pangyayari...',
         'winner' => 'Nanalo ang :team',
-        'winner_by' => '',
+        'winner_by' => ':winner sa pamamagitan ng :difference',
 
         'events' => [
             'player-left' => 'Umalis si:user sa laro',

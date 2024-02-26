@@ -14,27 +14,27 @@ return [
     ],
 
     'judge' => [
-        'hide_judged' => '',
-        'nav_title' => '',
-        'no_current_vote' => '',
-        'update' => '',
+        'hide_judged' => 'elrejteni az elbírált bejegyzéseket',
+        'nav_title' => 'bíró',
+        'no_current_vote' => 'még nem szavaztál.',
+        'update' => 'frissités',
         'validation' => [
-            'missing_score' => '',
-            'contest_vote_judged' => '',
+            'missing_score' => 'hiányzó pontszám',
+            'contest_vote_judged' => 'bírált versenyeken nem szavazhat',
         ],
-        'voted' => '',
+        'voted' => 'Már leadott szavazatot erről a bejegyzésről.',
     ],
 
     'judge_results' => [
-        '_' => '',
-        'creator' => '',
-        'score' => '',
-        'total_score' => '',
+        '_' => 'Eredmények elbírálása',
+        'creator' => 'készítő',
+        'score' => 'Pontszám',
+        'total_score' => 'összpontszám',
     ],
 
     'voting' => [
-        'judge_link' => '',
-        'judged_notice' => '',
+        'judge_link' => 'Ennek a versenynek a bírája vagy. Itt bírálhatod el a bejegyzéseket!',
+        'judged_notice' => 'Ez a verseny a bírálati rendszerrel zajlik, a bírálók jelenleg dolgoznak a bejegyzéseken.',
         'login_required' => 'Kérlek jelentkezz be a szavazáshoz.',
         'over' => 'Erre a versenyre már véget ért a szavazás',
         'show_voted_only' => 'Szavazottak mutatása',
