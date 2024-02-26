@@ -6,7 +6,7 @@ import { sortBy } from 'lodash';
 import { action, computed, makeObservable, observable } from 'mobx';
 
 class GroupStore {
-  @observable byId = observable.map<number, GroupJson>();
+  @observable byId = new Map<number, GroupJson>();
 
   @computed
   get all() {
