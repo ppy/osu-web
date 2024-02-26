@@ -45,6 +45,7 @@ class UserAchievementUnlock extends BroadcastNotificationBase
             'cover_url' => $this->achievement->iconUrl(),
             'slug' => $this->achievement->slug,
             'title' => $this->achievement->name,
+            'description' => $this->achievement->description,
             'user_id' => $this->source->getKey(),
         ];
     }
