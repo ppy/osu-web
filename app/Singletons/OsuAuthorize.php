@@ -3,9 +3,11 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-namespace App\Libraries;
+namespace App\Singletons;
 
 use App\Exceptions\AuthorizationCheckException;
+use App\Libraries\AuthorizationResult;
+use App\Libraries\Commentable;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
