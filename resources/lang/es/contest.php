@@ -14,27 +14,27 @@ return [
     ],
 
     'judge' => [
-        'hide_judged' => '',
-        'nav_title' => '',
-        'no_current_vote' => '',
-        'update' => '',
+        'hide_judged' => 'ocultar entradas evaluadas',
+        'nav_title' => 'evaluar',
+        'no_current_vote' => 'aún no has votado.',
+        'update' => 'actualizar',
         'validation' => [
-            'missing_score' => '',
-            'contest_vote_judged' => '',
+            'missing_score' => 'puntuación faltante',
+            'contest_vote_judged' => 'no puedes votar en concursos ya evaluados',
         ],
-        'voted' => '',
+        'voted' => 'Ya has enviado un voto en esta entrada.',
     ],
 
     'judge_results' => [
-        '_' => '',
-        'creator' => '',
-        'score' => '',
-        'total_score' => '',
+        '_' => 'Resultados de la evaluación',
+        'creator' => 'creador',
+        'score' => 'Puntuación',
+        'total_score' => 'puntuación total',
     ],
 
     'voting' => [
-        'judge_link' => '',
-        'judged_notice' => '',
+        'judge_link' => 'Eres un evaluador de este concurso. ¡Evalúa las entradas aquí!',
+        'judged_notice' => 'Este concurso está usando el sistema de evaluación, los evaluadores actualmente están procesando las entradas.',
         'login_required' => 'Inicie sesión para votar.',
         'over' => 'Las votaciones para este concurso ya han terminado',
         'show_voted_only' => 'Mostrar votado',

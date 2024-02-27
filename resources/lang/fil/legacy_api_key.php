@@ -8,23 +8,23 @@ return [
     'none' => 'Walang key.',
 
     'docs' => [
-        '_' => '',
-        'github' => '',
+        '_' => 'Ang dokumentasyon ay makukuha sa :github.',
+        'github' => 'GitHub',
     ],
 
     'form' => [
-        'create' => '',
+        'create' => 'Lumikha ng Susi',
     ],
 
     'view' => [
-        'hide' => '',
-        'show' => '',
-        'delete' => '',
+        'hide' => 'Itago ang Susi',
+        'show' => 'Ipakita ang Susi',
+        'delete' => 'Burahin',
     ],
 
     'warning' => [
-        'line1' => '',
-        'line2' => "",
-        'line3' => '',
+        'line1' => 'Huwag ibigay ito sa iba.',
+        'line2' => "Ito ay katumbas ng pagbibigay ng iyong password.",
+        'line3' => 'Ang iyong account ay maaaring nakompromiso.',
     ],
 ];

@@ -80,7 +80,6 @@ return [
         'action_lazer_title' => 'pröva osu!(lazer)',
         'action_title' => 'installera osu!',
         'for_os' => 'för :os',
-        'lazer_note' => 'obs. rankningsliståterställningar tillämpas',
         'macos-fallback' => 'macOS-användare',
         'mirror' => 'mirror',
         'or' => 'eller',

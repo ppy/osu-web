@@ -28,5 +28,6 @@ return [
         'non_passing' => 'Alleen geslaagde scores leveren pp op',
         'no_pp' => '',
         'processing' => 'Deze score wordt nog berekend en zal zo dadelijk getoond worden',
+        'no_rank' => '',
     ],
 ];

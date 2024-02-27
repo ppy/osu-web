@@ -83,7 +83,7 @@ return [
             ],
             'processing' => [
                 'title' => 'Pembayaranmu belum terkonfirmasi!',
-                'line_1' => 'Apabila kamu telah membayar sebelumnya, ada kemungkinan sistem kami masih menunggu konfirmasi atas pembayaranmu. Silakan muat ulang halaman ini dalam beberapa menit!',
+                'line_1' => 'Apabila kamu telah membayar, ada kemungkinan sistem kami masih menunggu konfirmasi atas pembayaranmu. Silakan muat ulang halaman ini dalam beberapa menit!',
                 'line_2' => [
                     '_' => 'Apabila kamu menemui masalah dalam proses checkout, :link',
                     'link_text' => 'klik di sini untuk melanjutkan proses checkout',

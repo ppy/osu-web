@@ -213,6 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'Denna beatmap uppskattas vara rankad :date, så länge inga fel uppstår. Den är #:position i :queue.',
+            'unresolved_problems' => '',
+            'problems' => '',
             'on' => 'den :date',
             'queue' => 'rankkö',
             'soon' => 'snart',
