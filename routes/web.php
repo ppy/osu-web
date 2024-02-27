@@ -103,7 +103,7 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::group(['prefix' => 'scores', 'as' => 'scores.'], function () {
         Route::get('{score}/download', 'ScoresController@download')->name('download');
-        Route::get('{rulesetOrScore}/{score}/download', 'ScoresController@downloadLegacy')->name('download-legacy');
+        Route::get('{rulesetOrScore}/{score}/download', 'ScoresController@download')->name('download-legacy');
 
         Route::get('{rulesetOrScore}/{score?}', 'ScoresController@show')->name('show');
     });
@@ -502,7 +502,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
 
         Route::group(['prefix' => 'scores', 'as' => 'scores.'], function () {
             Route::get('{score}/download', 'ScoresController@download')->middleware(ThrottleRequests::getApiThrottle('scores_download'))->name('download');
-            Route::get('{rulesetOrScore}/{score}/download', 'ScoresController@downloadLegacy')->middleware(ThrottleRequests::getApiThrottle('scores_download'))->name('download-legacy');
+            Route::get('{rulesetOrScore}/{score}/download', 'ScoresController@download')->middleware(ThrottleRequests::getApiThrottle('scores_download'))->name('download-legacy');
 
             Route::get('{rulesetOrScore}/{score?}', 'ScoresController@show')->name('show');
         });

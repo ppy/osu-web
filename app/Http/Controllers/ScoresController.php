@@ -78,11 +78,6 @@ class ScoresController extends Controller
         }, $this->makeReplayFilename($score), $responseHeaders);
     }
 
-    public function downloadLegacy($ruleset, $id)
-    {
-        return $this->download($ruleset, $id);
-    }
-
     public function show($rulesetOrSoloId, $legacyId = null)
     {
         [$scoreClass, $id] = $legacyId === null
