@@ -5,7 +5,7 @@
 
 return [
     'show' => [
-        'non_preserved' => '',
+        'non_preserved' => 'Tämä suoritus on merkitty poistettavaksi ja se katoaa pian.',
         'title' => ':username\'n tulos: :title [:version]',
 
         'beatmap' => [
@@ -26,7 +26,8 @@ return [
     'status' => [
         'non_best' => 'Vain parhaat henkilökohtaiset tulokset antavat pp:tä',
         'non_passing' => 'Vain loppuun asti päässeet tulokset antavat pp:tä',
-        'no_pp' => '',
+        'no_pp' => 'pp:tä ei myönnetä tälle suoritukselle',
         'processing' => 'Pisteitä lasketaan ja ne näytetään pian',
+        'no_rank' => '',
     ],
 ];

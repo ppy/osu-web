@@ -213,6 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'Ο χάρτης υπολογίζεται σε κατάταξη :date εάν δεν βρεθούν προβλήματα. Είναι #:position στο :queue.',
+            'unresolved_problems' => '',
+            'problems' => '',
             'on' => 'στο :date',
             'queue' => 'ουρά κατάταξης',
             'soon' => 'σύντομα',

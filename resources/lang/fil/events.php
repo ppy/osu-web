@@ -15,7 +15,7 @@ return [
     'rank' => 'Nakapag-kamit ng :rank sa :beatmap (:mode) si :user',
     'rank_lost' => 'Si <strong><em>:user</em></strong> ay nawala sa unang rank sa <em>:beatmap</em> (:mode)',
     'user_support_again' => 'Si <strong>:user</strong> ay nagsuporta muli ang osu! - salamat sa iyong henerosidad!',
-    'user_support_first' => 'Si <strong>:user</strong> ay naging isang osu! supporter - salamat sa iyong henerosidad!',
+    'user_support_first' => '<strong>:user</strong> ay sumuporta sa osu! - salamat sa iyong henerosidad!',
     'user_support_gift' => 'Natanggap ni <strong>:user</strong> ang regalo ng osu! supporter!',
     'username_change' => 'Pinalitan ni <strong>:previousUsername</strong> ang username niya sa <strong><em>:user</strong></em>!',
 
@@ -27,6 +27,6 @@ return [
     ],
 
     'value' => [
-        'rank' => '',
+        'rank' => 'ranggo #:rank',
     ],
 ];

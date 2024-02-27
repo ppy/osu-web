@@ -14,27 +14,27 @@ return [
     ],
 
     'judge' => [
-        'hide_judged' => '',
-        'nav_title' => '',
-        'no_current_vote' => '',
-        'update' => '',
+        'hide_judged' => 'sembunyikan entri yang telah dinilai',
+        'nav_title' => 'juri',
+        'no_current_vote' => 'kamu belum memilih entri mana pun.',
+        'update' => 'perbarui',
         'validation' => [
-            'missing_score' => '',
-            'contest_vote_judged' => '',
+            'missing_score' => 'skor hilang',
+            'contest_vote_judged' => 'tidak dapat memilih dalam kontes berjuri',
         ],
-        'voted' => '',
+        'voted' => 'Kamu telah memberikan pilihan untuk entri ini.',
     ],
 
     'judge_results' => [
-        '_' => '',
-        'creator' => '',
-        'score' => '',
-        'total_score' => '',
+        '_' => 'Hasil penjurian',
+        'creator' => 'pembuat',
+        'score' => 'Skor',
+        'total_score' => 'jumlah skor',
     ],
 
     'voting' => [
-        'judge_link' => '',
-        'judged_notice' => '',
+        'judge_link' => 'Kamu adalah juri pada kontes ini. Nilai entri yang masuk di sini!',
+        'judged_notice' => 'Kontes ini menggunakan sistem penjurian, dan para juri saat ini sedang menilai entri yang masuk.',
         'login_required' => 'Silakan masuk untuk memberikan suara.',
         'over' => 'Pemungutan suara untuk kontes ini telah berakhir',
         'show_voted_only' => 'Tampilkan pilihan',

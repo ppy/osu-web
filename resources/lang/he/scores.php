@@ -28,5 +28,6 @@ return [
         'non_passing' => '',
         'no_pp' => '',
         'processing' => '',
+        'no_rank' => '',
     ],
 ];

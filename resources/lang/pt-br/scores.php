@@ -28,5 +28,6 @@ return [
         'non_passing' => 'Apenas pontuações bem sucedidas dão pp',
         'no_pp' => '',
         'processing' => 'Esta pontuação ainda está sendo calculada e será exibida em breve',
+        'no_rank' => '',
     ],
 ];

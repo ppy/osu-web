@@ -14,27 +14,27 @@ return [
     ],
 
     'judge' => [
-        'hide_judged' => '',
-        'nav_title' => '',
-        'no_current_vote' => '',
-        'update' => '',
+        'hide_judged' => 'ẩn các bài thi đã được đánh giá',
+        'nav_title' => 'đánh giá',
+        'no_current_vote' => 'bạn vẫn chưa bầu chọn.',
+        'update' => 'cập nhật',
         'validation' => [
-            'missing_score' => '',
-            'contest_vote_judged' => '',
+            'missing_score' => 'chưa có điểm',
+            'contest_vote_judged' => 'không thể bầu chọn trong các cuộc thi được đánh giá',
         ],
-        'voted' => '',
+        'voted' => 'Bạn đã bình chọn cho bài dự thi này.',
     ],
 
     'judge_results' => [
-        '_' => '',
-        'creator' => '',
-        'score' => '',
-        'total_score' => '',
+        '_' => 'Kết quả đánh giá',
+        'creator' => 'tác giả',
+        'score' => 'Điểm',
+        'total_score' => 'tổng điểm',
     ],
 
     'voting' => [
-        'judge_link' => '',
-        'judged_notice' => '',
+        'judge_link' => 'Bạn là giám khảo của cuộc thi này. Đánh giá các bài thi ở đây!',
+        'judged_notice' => 'Cuộc thi này sử dụng hệ thống đánh giá, các giám khảo đang xử lý các bài thi.',
         'login_required' => 'Hãy đăng nhập để bình chọn.',
         'over' => 'Cuộc bình chọn cho cuộc thi này đã kết thúc',
         'show_voted_only' => 'Hiện bài đã bình chọn',

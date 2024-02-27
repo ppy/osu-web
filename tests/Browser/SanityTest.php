@@ -5,6 +5,8 @@
 
 namespace Tests\Browser;
 
+use App\Libraries\Session;
+use App\Libraries\SessionVerification;
 use App\Models\Artist;
 use App\Models\ArtistTrack;
 use App\Models\Beatmap;
@@ -305,15 +307,14 @@ class SanityTest extends DuskTestCase
         return $return;
     }
 
-    private static function getVerificationCode()
+    private static function getVerificationCode(Browser $browser): string
     {
-        $log = file_get_contents('storage/logs/laravel.log');
-        $matches = [];
-        $count = preg_match_all('/Your verification code is: ([0-9a-f]{8})/im', $log, $matches);
+        $sessionId = $browser->cookie($GLOBALS['cfg']['session']['cookie'])
+            ?? throw new \Exception('failed locating session cookie');
 
-        if ($count > 0) {
-            return $matches[1][count($matches[1]) - 1];
-        }
+        $session = Session\Store::findOrNew($sessionId);
+
+        return SessionVerification\State::fromSession($session)->key;
     }
 
     private static function output($text)
@@ -547,7 +548,7 @@ class SanityTest extends DuskTestCase
         if (in_array($route->getName(), $verificationExpected, true)) {
             $browser->assertSee('Account Verification');
 
-            $verificationCode = self::getVerificationCode();
+            $verificationCode = static::getVerificationCode($browser);
 
             $browser
                 ->type('.user-verification__key', $verificationCode)

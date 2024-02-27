@@ -28,5 +28,6 @@ return [
         'non_passing' => 'Samo uspešni rezultati se nagrajujejo s pp',
         'no_pp' => '',
         'processing' => 'Ta rezultat se še preračunava in bo prikazan kmalu ',
+        'no_rank' => '',
     ],
 ];

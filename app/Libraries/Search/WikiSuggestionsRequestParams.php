@@ -11,6 +11,6 @@ class WikiSuggestionsRequestParams extends WikiSuggestionsParams
     {
         parent::__construct();
 
-        $this->queryString = trim($request['query'] ?? null);
+        $this->queryString = trim(get_string($request['query'] ?? null) ?? '');
     }
 }
