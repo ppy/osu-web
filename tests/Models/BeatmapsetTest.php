@@ -123,7 +123,93 @@ class BeatmapsetTest extends TestCase
             ->withBeatmaps(Ruleset::mania, 2)
             ->create();
 
-        $this->assertSame(Ruleset::catch, $beatmapset->mainRuleset());
+        $this->assertSame(null, $beatmapset->mainRuleset());
+    }
+
+    public function testMainRulesetHybridBeatmapsetSameCount()
+    {
+        $userFactory = User::factory()->withGroup('bng', ['osu', 'taiko']);
+
+        $beatmapset = $this->beatmapsetFactory()
+            ->withBeatmaps(Ruleset::osu)
+            ->withBeatmaps(Ruleset::taiko)
+            ->create();
+
+        $this->assertSame(null, $beatmapset->mainRuleset());
+
+        $beatmapset->nominate($userFactory->create(), ['osu', 'taiko']);
+
+        $this->assertSame(null, $beatmapset->mainRuleset());
+
+        $beatmapset->nominate($userFactory->create(), ['taiko']);
+
+        $this->assertSame(Ruleset::taiko, $beatmapset->mainRuleset());
+    }
+
+    public function testMainRulesetHybridBeatmapsetSameCount2()
+    {
+        $userFactory = User::factory()->withGroup('bng', ['osu', 'taiko', 'fruits', 'mania']);
+
+        $beatmapset = $this->beatmapsetFactory()
+            ->withBeatmaps(Ruleset::osu)
+            ->withBeatmaps(Ruleset::taiko)
+            ->withBeatmaps(Ruleset::catch)
+            ->withBeatmaps(Ruleset::mania)
+            ->create();
+
+        $this->assertSame(null, $beatmapset->mainRuleset());
+
+        $beatmapset->nominate($userFactory->create(), ['osu', 'taiko']);
+
+        $this->assertSame(null, $beatmapset->mainRuleset());
+
+        $beatmapset->nominate($userFactory->create(), ['taiko', 'fruits']);
+
+        $this->assertSame(Ruleset::taiko, $beatmapset->mainRuleset());
+    }
+
+    public function testMainRulesetHybridBeatmapsetSameCount3()
+    {
+        $userFactory = User::factory()->withGroup('bng', ['osu', 'taiko', 'fruits', 'mania']);
+
+        $beatmapset = $this->beatmapsetFactory()
+            ->withBeatmaps(Ruleset::osu)
+            ->withBeatmaps(Ruleset::taiko)
+            ->withBeatmaps(Ruleset::catch)
+            ->withBeatmaps(Ruleset::mania)
+            ->create();
+
+        $this->assertSame(null, $beatmapset->mainRuleset());
+
+        $beatmapset->nominate($userFactory->create(), ['osu', 'taiko']);
+
+        $this->assertSame(null, $beatmapset->mainRuleset());
+
+        $beatmapset->nominate($userFactory->create(), ['fruits', 'mania']);
+
+        $this->assertSame(null, $beatmapset->mainRuleset());
+    }
+
+    public function testMainRulesetHybridBeatmapsetSameCount4()
+    {
+        $userFactory = User::factory()->withGroup('bng', ['osu', 'taiko', 'fruits', 'mania']);
+
+        $beatmapset = $this->beatmapsetFactory()
+            ->withBeatmaps(Ruleset::osu)
+            ->withBeatmaps(Ruleset::taiko)
+            ->withBeatmaps(Ruleset::catch)
+            ->withBeatmaps(Ruleset::mania)
+            ->create();
+
+        $this->assertSame(null, $beatmapset->mainRuleset());
+
+        $beatmapset->nominate($userFactory->create(), ['taiko']);
+
+        $this->assertSame(Ruleset::taiko, $beatmapset->mainRuleset());
+
+        $beatmapset->nominate($userFactory->create(), ['osu']);
+
+        $this->assertSame(Ruleset::taiko, $beatmapset->mainRuleset());
     }
 
     public function testNominationsByType()
@@ -347,7 +433,7 @@ class BeatmapsetTest extends TestCase
     public function testHybridLegacyNominate(): void
     {
         $user = User::factory()->withGroup('bng', ['osu'])->create();
-        $beatmapset = $this->createHybridBeatmapset();
+        $beatmapset = $this->createHybridBeatmapsetTaiko();
 
         // create legacy nomination event to enable legacy nomination mode
         BeatmapsetNomination::factory()->create([
@@ -371,7 +457,7 @@ class BeatmapsetTest extends TestCase
     public function testHybridLegacyQualify(): void
     {
         $user = User::factory()->withGroup('bng', ['osu'])->create();
-        $beatmapset = $this->createHybridBeatmapset();
+        $beatmapset = $this->createHybridBeatmapsetTaiko();
 
         // create legacy nomination event to enable legacy nomination mode
         BeatmapsetNomination::factory()->create([
@@ -404,7 +490,7 @@ class BeatmapsetTest extends TestCase
     public function testHybridNominateWithNullPlaymode(): void
     {
         $user = User::factory()->withGroup('bng', ['osu'])->create();
-        $beatmapset = $this->createHybridBeatmapset();
+        $beatmapset = $this->createHybridBeatmapsetTaiko();
         $otherUser = User::factory()->create();
         $beatmapset->watches()->create(['user_id' => $otherUser->getKey()]);
 
@@ -424,7 +510,7 @@ class BeatmapsetTest extends TestCase
     public function testHybridNominateWithNoPlaymodePermission(): void
     {
         $user = User::factory()->withGroup('bng', ['osu'])->create();
-        $beatmapset = $this->createHybridBeatmapset();
+        $beatmapset = $this->createHybridBeatmapsetTaiko();
         $otherUser = User::factory()->create();
         $beatmapset->watches()->create(['user_id' => $otherUser->getKey()]);
 
@@ -444,7 +530,7 @@ class BeatmapsetTest extends TestCase
     public function testHybridNominateWithPlaymodePermissionSingleMode(): void
     {
         $user = User::factory()->withGroup('bng', ['osu'])->create();
-        $beatmapset = $this->createHybridBeatmapset();
+        $beatmapset = $this->createHybridBeatmapsetTaiko();
         $otherUser = User::factory()->create();
         $beatmapset->watches()->create(['user_id' => $otherUser->getKey()]);
 
@@ -460,7 +546,7 @@ class BeatmapsetTest extends TestCase
     public function testHybridNominateWithPlaymodePermissionTooMany(): void
     {
         $user = User::factory()->withGroup('bng', ['osu'])->create();
-        $beatmapset = $this->createHybridBeatmapset();
+        $beatmapset = $this->createHybridBeatmapsetTaiko();
 
         $this->fillNominationsExceptLastForMainRuleset($beatmapset, 'bng');
 
@@ -487,7 +573,7 @@ class BeatmapsetTest extends TestCase
     public function testHybridNominateWithPlaymodePermissionMultipleModes(): void
     {
         $user = User::factory()->withGroup('bng', ['osu', 'taiko'])->create();
-        $beatmapset = $this->createHybridBeatmapset();
+        $beatmapset = $this->createHybridBeatmapsetTaiko();
         $otherUser = User::factory()->create();
         $beatmapset->watches()->create(['user_id' => $otherUser->getKey()]);
 
@@ -506,7 +592,7 @@ class BeatmapsetTest extends TestCase
     public function testQualifyingNominationsHybrid(string $initialGroup, string $qualifyingGroup, bool $success)
     {
         $nominator = User::factory()->withGroup($qualifyingGroup, ['osu', 'taiko'])->create();
-        $beatmapset = $this->createHybridBeatmapset();
+        $beatmapset = $this->createHybridBeatmapsetTaiko();
 
         $this->fillNominationsExceptLastForMainRuleset($beatmapset, $initialGroup);
 
@@ -665,20 +751,21 @@ class BeatmapsetTest extends TestCase
         return Beatmapset::factory()->owner()->pending()->state(['nominations' => 0]);
     }
 
-    private function createHybridBeatmapset($rulesets = [Ruleset::osu, Ruleset::taiko]): Beatmapset
+    private function createHybridBeatmapsetTaiko(): Beatmapset
     {
-        $beatmapset = $this->beatmapsetFactory();
-
-        foreach ($rulesets as $ruleset) {
-            $beatmapset = $beatmapset->withBeatmaps($ruleset);
-        }
-
-        return $beatmapset->create();
+        return $this->beatmapsetFactory()
+            ->withBeatmaps(Ruleset::osu)
+            ->withBeatmaps(Ruleset::taiko, 2)
+            ->create();
     }
 
     private function fillNominationsExceptLastForMainRuleset(Beatmapset $beatmapset, string $group): void
     {
-        $mode = $beatmapset->mainRuleset()->legacyName();
+        $mode = $beatmapset->mainRuleset()?->legacyName();
+        if ($mode === null) {
+            throw new \Exception('Cannot fill nominations without main ruleset.');
+        }
+
         $count = $beatmapset->requiredNominationCount()[$mode] - 1;
         for ($i = 0; $i < $count; $i++) {
             $beatmapset->nominate(User::factory()->withGroup($group, [$mode])->create(), [$mode]);

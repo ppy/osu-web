@@ -164,6 +164,10 @@ class NominateBeatmapset
     private function shouldQualify(): bool
     {
         $mainRuleset = $this->beatmapset->mainRuleset();
+        if ($mainRuleset === null) {
+            return false;
+        }
+
         $nominationsByType = $this->beatmapset->nominationsByType();
         $requiredNominations = $this->beatmapset->requiredNominationCount();
 

@@ -1034,6 +1034,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             return $baseRequirement + $playmodeCount - 1;
         }
 
+        // TODO: need to do something about undetermined mode
         $mainPlaymode = $this->mainRuleset()->legacyName();
         $requiredNominations = [];
         foreach ($this->playmodesStr() as $playmode) {
@@ -1096,7 +1097,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         return $this->beatmapsetNominations()->current()->exists();
     }
 
-    public function mainRuleset(): Ruleset
+    public function mainRuleset(): ?Ruleset
     {
         $baseQuery = $this->beatmaps()
             ->groupBy('playmode')
@@ -1114,10 +1115,51 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         // maps by host mapper
         $groupedHostOnly = $baseQuery->where('user_id', $this->user_id)->get();
 
-        // most playmodes by host mapper; otherwise, pick the first one if no clear winner.
-        return $groupedHostOnly->count() > 0
-            ? Ruleset::from($groupedHostOnly[0]->playmode)
-            : Ruleset::from($groups[0]->playmode); // no maps by the host, wtf?
+        if ($groupedHostOnly->count() === 1 || $groupedHostOnly[0]->getRawAttribute('total') > $groupedHostOnly[1]->getRawAttribute('total')) {
+            return Ruleset::from($groupedHostOnly[0]->playmode);
+        }
+
+        // First mode with more nominations that others becomes main mode.
+        // Implicity implies that limited BN nominations because main mode.
+        //
+        $nominations = $this->beatmapsetNominations()->current()->get();
+        $nominationsByRuleset = [];
+
+        foreach ($nominations as $nomination) {
+            $rulesets = Ruleset::tryFromNames($nomination->modes);
+            foreach ($rulesets as $ruleset) {
+                $nominationsByRuleset[$ruleset->name] ??= 0;
+                $nominationsByRuleset[$ruleset->name]++;
+            }
+
+            // bailout as soon as there is a clear winner
+            $nominatedRulesetsCount = count($nominationsByRuleset);
+            if ($nominatedRulesetsCount === 1) {
+                return Ruleset::tryFromName(array_keys($nominationsByRuleset)[0]);
+            } else if ($nominatedRulesetsCount > 1) {
+                arsort($nominationsByRuleset);
+                $values = array_values($nominationsByRuleset);
+                if ($values[0] > $values[1]) {
+                    return Ruleset::tryFromName(array_keys($nominationsByRuleset)[0]);
+                }
+            }
+        }
+
+        return null;
+    }
+
+    public function currentNominationsByRuleset()
+    {
+        $nominations = $this->beatmapsetNominations()->current()->get();
+        $nominationsByRuleset = [];
+
+        foreach ($nominations as $nomination) {
+            $rulesets = Ruleset::tryFromNames($nomination->modes);
+            foreach ($rulesets as $ruleset) {
+                $nominationsByRuleset[$ruleset->name] ??= 0;
+                $nominationsByRuleset[$ruleset->name]++;
+            }
+        }
     }
 
     /**
