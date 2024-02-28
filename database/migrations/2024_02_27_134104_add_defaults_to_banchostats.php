@@ -14,20 +14,20 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('osu_banchostats', function (Blueprint $table) {
-            $table->unsignedMediumInteger('users_irc')->default(0)->change();
+            $table->unsignedSmallInteger('users_irc')->default(0)->change();
             $table->unsignedMediumInteger('users_osu')->default(0)->change();
             $table->unsignedMediumInteger('users_lazer')->default(0)->change();
-            $table->unsignedMediumInteger('multiplayer_games')->default(0)->change();
+            $table->unsignedSmallInteger('multiplayer_games')->default(0)->change();
         });
     }
 
     public function down(): void
     {
         Schema::table('osu_banchostats', function (Blueprint $table) {
-            $table->unsignedMediumInteger('users_irc')->change();
+            $table->unsignedSmallInteger('users_irc')->change();
             $table->unsignedMediumInteger('users_osu')->change();
             $table->unsignedMediumInteger('users_lazer')->change();
-            $table->unsignedMediumInteger('multiplayer_games')->change();
+            $table->unsignedSmallInteger('multiplayer_games')->change();
         });
     }
 };
