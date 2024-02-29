@@ -427,6 +427,10 @@ class Score extends Model implements Traits\ReportableInterface
 
     public function userRank(?array $params = null): int
     {
+        if (!$this->ranked || !$this->preserve) {
+            return 0;
+        }
+
         // Non-legacy score always has its rank checked against all score types.
         if (!$this->isLegacy()) {
             $params['is_legacy'] = null;
