@@ -164,6 +164,7 @@ class Score extends Model implements Traits\ReportableInterface
     {
         return $query
             ->where('preserve', true)
+            ->where('ranked', true)
             ->whereHas('user', fn (Builder $q): Builder => $q->default());
     }
 
