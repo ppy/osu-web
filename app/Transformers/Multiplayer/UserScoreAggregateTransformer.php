@@ -23,7 +23,7 @@ class UserScoreAggregateTransformer extends TransformerAbstract
             'accuracy' => $score->averageAccuracy(),
             'attempts' => $score->attempts,
             'completed' => $score->completed,
-            'pp' => $score->averagePp(),
+            'pp' => 0,
             'room_id' => $score->room_id,
             'total_score' => $score->total_score,
             'user_id' => $score->user_id,
