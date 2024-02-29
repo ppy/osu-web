@@ -126,27 +126,10 @@ class BeatmapsetTest extends TestCase
         $this->assertSame(null, $beatmapset->mainRuleset());
     }
 
-    public function testMainRulesetHybridBeatmapsetSameCount()
-    {
-        $userFactory = User::factory()->withGroup('bng', ['osu', 'taiko']);
-
-        $beatmapset = $this->beatmapsetFactory()
-            ->withBeatmaps(Ruleset::osu)
-            ->withBeatmaps(Ruleset::taiko)
-            ->create();
-
-        $this->assertSame(null, $beatmapset->mainRuleset());
-
-        $beatmapset->nominate($userFactory->create(), ['osu', 'taiko']);
-
-        $this->assertSame(null, $beatmapset->mainRuleset());
-
-        $beatmapset->nominate($userFactory->create(), ['taiko']);
-
-        $this->assertSame(Ruleset::taiko, $beatmapset->mainRuleset());
-    }
-
-    public function testMainRulesetHybridBeatmapsetSameCount2()
+    /**
+     * @dataProvider mainRulesetHybridBeatmapsetSameCountDataProvider
+     */
+    public function testMainRulesetHybridBeatmapsetSameCount(array $steps)
     {
         $userFactory = User::factory()->withGroup('bng', ['osu', 'taiko', 'fruits', 'mania']);
 
@@ -159,57 +142,14 @@ class BeatmapsetTest extends TestCase
 
         $this->assertSame(null, $beatmapset->mainRuleset());
 
-        $beatmapset->nominate($userFactory->create(), ['osu', 'taiko']);
+        foreach ($steps as $step) {
+            $nominatedRulesets = $step[0];
+            $expectedMainRuleset = $step[1];
 
-        $this->assertSame(null, $beatmapset->mainRuleset());
+            $beatmapset->nominate($userFactory->create(), $nominatedRulesets);
 
-        $beatmapset->nominate($userFactory->create(), ['taiko', 'fruits']);
-
-        $this->assertSame(Ruleset::taiko, $beatmapset->mainRuleset());
-    }
-
-    public function testMainRulesetHybridBeatmapsetSameCount3()
-    {
-        $userFactory = User::factory()->withGroup('bng', ['osu', 'taiko', 'fruits', 'mania']);
-
-        $beatmapset = $this->beatmapsetFactory()
-            ->withBeatmaps(Ruleset::osu)
-            ->withBeatmaps(Ruleset::taiko)
-            ->withBeatmaps(Ruleset::catch)
-            ->withBeatmaps(Ruleset::mania)
-            ->create();
-
-        $this->assertSame(null, $beatmapset->mainRuleset());
-
-        $beatmapset->nominate($userFactory->create(), ['osu', 'taiko']);
-
-        $this->assertSame(null, $beatmapset->mainRuleset());
-
-        $beatmapset->nominate($userFactory->create(), ['fruits', 'mania']);
-
-        $this->assertSame(null, $beatmapset->mainRuleset());
-    }
-
-    public function testMainRulesetHybridBeatmapsetSameCount4()
-    {
-        $userFactory = User::factory()->withGroup('bng', ['osu', 'taiko', 'fruits', 'mania']);
-
-        $beatmapset = $this->beatmapsetFactory()
-            ->withBeatmaps(Ruleset::osu)
-            ->withBeatmaps(Ruleset::taiko)
-            ->withBeatmaps(Ruleset::catch)
-            ->withBeatmaps(Ruleset::mania)
-            ->create();
-
-        $this->assertSame(null, $beatmapset->mainRuleset());
-
-        $beatmapset->nominate($userFactory->create(), ['taiko']);
-
-        $this->assertSame(Ruleset::taiko, $beatmapset->mainRuleset());
-
-        $beatmapset->nominate($userFactory->create(), ['osu']);
-
-        $this->assertSame(Ruleset::taiko, $beatmapset->mainRuleset());
+            $this->assertSame($expectedMainRuleset, $beatmapset->mainRuleset());
+        }
     }
 
     public function testNominationsByType()
@@ -685,6 +625,28 @@ class BeatmapsetTest extends TestCase
         return [
             ['pending', false],
             ['qualified', true],
+        ];
+    }
+
+    public static function mainRulesetHybridBeatmapsetSameCountDataProvider()
+    {
+        return [
+            [[
+                [['osu', 'taiko'], null],
+                [['taiko'], Ruleset::taiko],
+            ]],
+            [[
+                [['osu', 'taiko'], null],
+                [['taiko', 'fruits'], Ruleset::taiko],
+            ]],
+            [[
+                [['osu', 'taiko'], null],
+                [['fruits', 'mania'], null],
+            ]],
+            [[
+                [['fruits'], Ruleset::catch],
+                [['osu'], Ruleset::catch],
+            ]],
         ];
     }
 
