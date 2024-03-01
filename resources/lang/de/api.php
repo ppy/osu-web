@@ -30,6 +30,10 @@ return [
             'read' => 'Sehen, wem du folgst.',
         ],
 
+        'beatmapset_discussion' => [
+            'write' => 'Beatmap-Diskussionen in deinem Namen erstellen und bearbeiten.',
+        ],
+
         'public' => 'In deinem Namen öffentliche Daten auslesen.',
     ],
 ];
