@@ -1071,18 +1071,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         return $currentNominations;
     }
 
-    // TODO: update for requiredNominationCount
-    public function nominationsMeta()
-    {
-        return $this->memoize(__FUNCTION__, function () {
-            return [
-                'legacy_mode' => $this->isLegacyNominationMode(),
-                'current' => $this->currentNominationCount(),
-                'required' => $this->requiredNominationCount(),
-            ];
-        });
-    }
-
     public function isLegacyNominationMode()
     {
         return $this->memoize(__FUNCTION__, function () {

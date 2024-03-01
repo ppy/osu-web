@@ -184,7 +184,11 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
 
     public function includeNominations(Beatmapset $beatmapset)
     {
-        $result = $beatmapset->nominationsMeta();
+        $result = [
+            'legacy_mode' => $beatmapset->isLegacyNominationMode(),
+            'current' => $beatmapset->currentNominationCount(),
+            'required' => $beatmapset->requiredNominationCount(),
+        ];
 
         if ($beatmapset->isPending()) {
             $currentUser = Auth::user();
