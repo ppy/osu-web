@@ -31,7 +31,7 @@ return [
         ],
 
         'beatmapset_discussion' => [
-            'write' => 'Create, edit and delete beatmap discussions on your behalf',
+            'write' => 'Create and edit beatmap discussion posts on your behalf',
         ],
 
         'public' => 'Read public data on your behalf.',
