@@ -28,6 +28,7 @@ interface BeatmapsetDescription {
   description: string | null;
 }
 
+// #region nominations interfaces
 interface BaseNominationsInterface {
   disqualification?: BeatmapsetEventJson;
   nominated?: boolean;
@@ -51,6 +52,7 @@ export interface LegacyNominationsInterface extends BaseNominationsInterface {
 
 export type BeatmapsetNominationsInterface =
   NominationsInterface | LegacyNominationsInterface;
+// #endregion
 
 export type BeatmapsetStatus =
   'graveyard' | 'wip' | 'pending' | 'ranked' | 'approved' | 'qualified' | 'loved';
