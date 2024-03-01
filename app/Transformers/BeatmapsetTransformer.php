@@ -29,7 +29,7 @@ class BeatmapsetTransformer extends BeatmapsetCompactTransformer
             'is_scoreable' => $beatmapset->isScoreable(),
             'last_updated' => $beatmapset->last_update_json,
             'legacy_thread_url' => ($beatmapset->thread_id ?? 0) !== 0 ? route('forum.topics.show', ['topic' => $beatmapset->thread_id]) : null,
-            'nominations_summary' => $beatmapset->nominationsSummaryMeta(),
+            'nominations_summary' => $beatmapset->nominationsSummaryMeta(), // for BeatmapPanel
             'ranked' => $beatmapset->approved,
             'ranked_date' => $beatmapset->approved_date_json,
             'storyboard' => $beatmapset->storyboard,

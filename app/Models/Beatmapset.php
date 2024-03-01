@@ -1018,7 +1018,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         }
     }
 
-    public function requiredNominationCount($summary = false)
+    public function requiredNominationCount(): array
     {
         $playmodeCount = $this->playmodeCount();
         $baseRequirement = $playmodeCount === 1
@@ -1026,24 +1026,29 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             : $GLOBALS['cfg']['osu']['beatmapset']['required_nominations_hybrid'];
 
         if ($this->isLegacyNominationMode()) {
-            return $playmodeCount * $baseRequirement;
+            return [
+                'total' => $playmodeCount * $baseRequirement,
+                'type' => 'legacy',
+            ];
         }
 
-        if ($summary) {
-            // 2 for main, 1 for others
-            return $baseRequirement + $playmodeCount - 1;
-        }
+        $mainRulesetLegacyName = $this->mainRuleset()?->legacyName();
+        $requiredNominations = [
+            'main_ruleset' => $mainRulesetLegacyName,
+            'type' => 'ruleset', // completely arbitrary.
+        ];
 
-        // TODO: need to do something about undetermined mode
-        $mainPlaymode = $this->mainRuleset()->legacyName();
-        $requiredNominations = [];
+        // TODO: switch to Ruleset
         foreach ($this->playmodesStr() as $playmode) {
-            $requiredNominations[$playmode] = $playmode === $mainPlaymode ? $baseRequirement : 1;
+            $requiredNominations[$playmode] = $mainRulesetLegacyName === null || $playmode === $mainRulesetLegacyName
+                ? $baseRequirement
+                : 1;
         }
 
         return $requiredNominations;
     }
 
+    // TODO: update for requiredNominationCount
     public function currentNominationCount()
     {
         if ($this->isLegacyNominationMode()) {
@@ -1066,6 +1071,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         return $currentNominations;
     }
 
+    // TODO: update for requiredNominationCount
     public function nominationsMeta()
     {
         return $this->memoize(__FUNCTION__, function () {
@@ -1077,11 +1083,14 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         });
     }
 
+    // TODO: update for requiredNominationCount
+    // only for showing in BeatmapPanel.
     public function nominationsSummaryMeta()
     {
         return [
             'current' => $this->nominations,
-            'required' => $this->requiredNominationCount(true),
+            // TODO: this is a placeholder value for now.
+            'required' => $this->playmodeCount() * $GLOBALS['cfg']['osu']['beatmapset']['required_nominations'], // $this->requiredNominationCount(),
         ];
     }
 
@@ -1115,7 +1124,11 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         // maps by host mapper
         $groupedHostOnly = $baseQuery->where('user_id', $this->user_id)->get();
 
-        if ($groupedHostOnly->count() === 1 || $groupedHostOnly[0]->getRawAttribute('total') > $groupedHostOnly[1]->getRawAttribute('total')) {
+        if (
+            $groupedHostOnly->count() === 1
+                || $groupedHostOnly->count() > 1
+                    && $groupedHostOnly[0]->getRawAttribute('total') > $groupedHostOnly[1]->getRawAttribute('total')
+        ) {
             return Ruleset::from($groupedHostOnly[0]->playmode);
         }
 

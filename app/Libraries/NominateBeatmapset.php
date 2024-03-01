@@ -171,10 +171,11 @@ class NominateBeatmapset
         $nominationsByType = $this->beatmapset->nominationsByType();
         $requiredNominations = $this->beatmapset->requiredNominationCount();
 
+        // TODO: can check requiredNominations['type']?
         if ($this->isLegacyNominationMode) {
             return static::nominationCount($nominationsByType, 'full', null)
                 + static::nominationCount($nominationsByType, 'limited', null)
-                >= $requiredNominations;
+                >= $requiredNominations['total'];
         } else {
             $modesSatisfied = 0;
             foreach ($requiredNominations as $mode => $count) {
