@@ -30,6 +30,10 @@ return [
             'read' => 'See who you are following.',
         ],
 
+        'beatmapset_discussion' => [
+            'write' => 'Create, edit and delete beatmap discussions on your behalf',
+        ],
+
         'public' => 'Read public data on your behalf.',
     ],
 ];
