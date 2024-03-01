@@ -1083,17 +1083,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         });
     }
 
-    // TODO: update for requiredNominationCount
-    // only for showing in BeatmapPanel.
-    public function nominationsSummaryMeta()
-    {
-        return [
-            'current' => $this->nominations,
-            // TODO: this is a placeholder value for now.
-            'required' => $this->playmodeCount() * $GLOBALS['cfg']['osu']['beatmapset']['required_nominations'], // $this->requiredNominationCount(),
-        ];
-    }
-
     public function isLegacyNominationMode()
     {
         return $this->memoize(__FUNCTION__, function () {
