@@ -61,4 +61,7 @@ Turbolinks.Controller::replaceHistory = (url) ->
 Turbolinks.Snapshot::hasAnchor = -> true
 
 Turbolinks.Controller::locationIsVisitable = (location) ->
-  location.isPrefixedBy(@view.getRootLocation()) && isHTML(location)
+  location.isPrefixedBy(@view.getRootLocation()) &&
+    # old website pages
+    !location.getPath().startsWith('/p/') &&
+    isHTML(location)
