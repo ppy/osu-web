@@ -17,7 +17,7 @@ export default function Player(props: Props) {
   let title: string;
   let content: React.ReactNode;
 
-  if (props.score.rank_global == null || props.score.ranked === false || props.score.preserve === false) {
+  if (props.score.rank_global == null || props.score.rank_global === 0 || props.score.ranked === false || props.score.preserve === false) {
     title = trans('scores.status.no_rank');
     content = '-';
   } else {

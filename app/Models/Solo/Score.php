@@ -164,6 +164,7 @@ class Score extends Model implements Traits\ReportableInterface
     {
         return $query
             ->where('preserve', true)
+            ->where('ranked', true)
             ->whereHas('user', fn (Builder $q): Builder => $q->default());
     }
 
@@ -427,6 +428,10 @@ class Score extends Model implements Traits\ReportableInterface
 
     public function userRank(?array $params = null): int
     {
+        if (!$this->ranked || !$this->preserve) {
+            return 0;
+        }
+
         // Non-legacy score always has its rank checked against all score types.
         if (!$this->isLegacy()) {
             $params['is_legacy'] = null;

@@ -20,7 +20,6 @@ use App\Models\User;
  * @property int $id
  * @property int|null $last_score_id
  * @property bool $in_room
- * @property float|null $pp
  * @property int $room_id
  * @property int $total_score
  * @property \Carbon\Carbon $updated_at
@@ -53,7 +52,6 @@ class UserScoreAggregate extends Model
             'accuracy' => 0,
             'attempts' => 0,
             'completed' => 0,
-            'pp' => 0,
             'total_score' => 0,
         ]);
     }
@@ -89,11 +87,6 @@ class UserScoreAggregate extends Model
     public function averageAccuracy()
     {
         return $this->completed > 0 ? $this->accuracy / $this->completed : 0;
-    }
-
-    public function averagePp()
-    {
-        return $this->completed > 0 ? $this->pp / $this->completed : 0;
     }
 
     public function playlistItemAttempts(): array
@@ -159,7 +152,6 @@ class UserScoreAggregate extends Model
             'attempts',
             'completed',
             'last_score_id',
-            'pp',
             'total_score',
         ];
 
