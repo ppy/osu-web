@@ -88,3 +88,6 @@ composer-installer
 
 /database/ip2asn/*.idx
 /database/ip2asn/*.tsv
+
+# Closed-source components
+/hush-hush-medals/

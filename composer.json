@@ -64,13 +64,15 @@
   "autoload": {
     "psr-4": {
       "App\\": "app/",
+      "App\\Listeners\\MedalUnlocks\\HushHush\\": "hush-hush-medals/src/",
       "Database\\Factories\\": "database/factories/",
       "Database\\Seeders\\": "database/seeders/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Tests\\": "tests/"
+      "Tests\\": "tests/",
+      "Tests\\MedalUnlocks\\HushHush\\": "hush-hush-medals/tests/"
     }
   },
   "scripts": {

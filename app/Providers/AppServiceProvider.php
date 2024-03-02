@@ -15,6 +15,7 @@ use App\Libraries\Ip2Asn;
 use App\Libraries\LayoutCache;
 use App\Libraries\LocalCacheManager;
 use App\Libraries\Medals;
+use App\Libraries\MedalUnlockHelpers;
 use App\Libraries\Mods;
 use App\Libraries\MorphMap;
 use App\Libraries\OsuAuthorize;
@@ -82,6 +83,8 @@ class AppServiceProvider extends ServiceProvider
                 ]
             );
         });
+
+        MedalUnlockHelpers::registerQueueCreatePayloadHook();
 
         $this->app->make('translator')->setSelector(new OsuMessageSelector());
 

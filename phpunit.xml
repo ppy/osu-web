@@ -3,14 +3,18 @@
          xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd"
          bootstrap="vendor/autoload.php"
          colors="true"
+         defaultTestSuite="app"
 >
     <extensions>
         <extension class="Tests\SeederExtension" />
     </extensions>
     <testsuites>
-        <testsuite name="Application Test Suite">
+        <testsuite name="app">
             <directory suffix="Test.php">./tests/</directory>
             <exclude>./tests/Browser</exclude>
+        </testsuite>
+        <testsuite name="hush-hush-medals">
+            <directory suffix="Test.php">./hush-hush-medals/tests/</directory>
         </testsuite>
     </testsuites>
     <php>
