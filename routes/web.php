@@ -378,9 +378,10 @@ Route::group(['middleware' => ['web']], function () {
         });
     });
 
-    Route::get('/home', 'HomeController@index')->name('home');
+    // TODO: update to redirect to root later
+    Route::get('/home', 'HomeController@index');
 
-    route_redirect('/', 'home');
+    Route::get('/', 'HomeController@index')->name('home');
 
     if ($GLOBALS['cfg']['osu']['scores']['rank_cache']['local_server']) {
         Route::get('rankLookup', 'ScoresController@userRankLookup');
