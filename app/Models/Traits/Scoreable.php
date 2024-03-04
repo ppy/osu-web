@@ -170,7 +170,7 @@ trait Scoreable
     private function shouldHaveHiddenRank(): bool
     {
         foreach ($this->enabled_mods as $mod) {
-            if ($mod === 'FL' || $mod === 'HD') {
+            if ($mod === 'FI' || $mod === 'FL' || $mod === 'HD') {
                 return true;
             }
         }

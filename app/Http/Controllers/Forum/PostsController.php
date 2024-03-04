@@ -143,12 +143,12 @@ class PostsController extends Controller
     {
         $post = Post::withTrashed()->findOrFail($id);
 
-        if ($post->trashed()) {
-            priv_check('ForumModerate', $post->forum)->ensureCan();
-        }
-
         if ($post->forum === null || $post->topic === null) {
             abort(404);
+        }
+
+        if ($post->trashed() || $post->topic->trashed()) {
+            priv_check('ForumModerate', $post->forum)->ensureCan();
         }
 
         priv_check('ForumView', $post->forum)->ensureCan();
