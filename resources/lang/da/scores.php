@@ -28,5 +28,6 @@ return [
         'non_passing' => '',
         'no_pp' => '',
         'processing' => 'Denne score bliver stadig beregnet og vil snart blive vist',
+        'no_rank' => '',
     ],
 ];

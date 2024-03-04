@@ -1,6 +1,7 @@
 .docker/
 .env*
 .git/
+.webpack-build-notifier-config.js
 Dockerfile
 bootstrap/cache/
 bootstrap/compiler.php

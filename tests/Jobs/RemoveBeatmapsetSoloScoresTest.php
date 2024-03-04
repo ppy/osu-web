@@ -47,7 +47,7 @@ class RemoveBeatmapsetSoloScoresTest extends TestCase
             $this->createScore($beatmapset);
         }
 
-        $this->expectCountChange(fn () => Score::count(), count($scores) * -2, 'removes scores');
+        $this->expectCountChange(fn () => Score::indexable()->count(), count($scores) * -2, 'removes scores');
 
         static::reindexScores();
 

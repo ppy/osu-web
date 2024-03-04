@@ -80,7 +80,6 @@ return [
         'action_lazer_title' => 'prøv osu!(lazer)',
         'action_title' => 'last ned osu!',
         'for_os' => 'for :os',
-        'lazer_note' => 'merknad: tilbakestilling av rangeringsliste gjelder',
         'macos-fallback' => 'macOS brukere',
         'mirror' => 'alternativ link',
         'or' => 'eller',

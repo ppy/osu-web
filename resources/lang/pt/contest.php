@@ -16,20 +16,20 @@ return [
     'judge' => [
         'hide_judged' => '',
         'nav_title' => '',
-        'no_current_vote' => '',
-        'update' => '',
+        'no_current_vote' => 'Ainda não votaste.',
+        'update' => 'atualizar',
         'validation' => [
-            'missing_score' => '',
-            'contest_vote_judged' => '',
+            'missing_score' => 'pontuação em falta',
+            'contest_vote_judged' => 'Não podes votar em concursos apreciados.',
         ],
-        'voted' => '',
+        'voted' => 'Já votaste nesta inscrição.',
     ],
 
     'judge_results' => [
-        '_' => '',
-        'creator' => '',
-        'score' => '',
-        'total_score' => '',
+        '_' => 'Resultados da apreciação',
+        'creator' => 'criador',
+        'score' => 'Pontuação',
+        'total_score' => 'pontuação total',
     ],
 
     'voting' => [

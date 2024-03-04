@@ -28,5 +28,6 @@ return [
         'non_passing' => 'パスしたスコアのみppを付与',
         'no_pp' => '',
         'processing' => 'このスコアはまだ計算中です。すぐに表示されます。',
+        'no_rank' => '',
     ],
 ];

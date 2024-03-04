@@ -5,7 +5,7 @@
 
 return [
     'show' => [
-        'non_preserved' => '',
+        'non_preserved' => 'Ez a pontszám törlésre van megjelölve, és hamarosan eltűnik.',
         'title' => ':username ezen :title [:version]',
 
         'beatmap' => [
@@ -26,7 +26,8 @@ return [
     'status' => [
         'non_best' => 'Csak a legjobb személyes pontszámok adnak pp-t',
         'non_passing' => 'Csak sikeres eredmények jutalmaznak pp-t',
-        'no_pp' => '',
+        'no_pp' => 'pp nem jár ezért a pontszámért',
         'processing' => 'Ez a pontszám még értékelés alatt van és hamarosan mutatva lesz',
+        'no_rank' => '',
     ],
 ];

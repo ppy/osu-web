@@ -80,7 +80,6 @@ return [
         'action_lazer_title' => 'probeer osu!(lazer)',
         'action_title' => 'download osu!',
         'for_os' => 'voor :os',
-        'lazer_note' => 'opmerking: leaderboard resets zijn van toepassing',
         'macos-fallback' => 'macOS gebruikers',
         'mirror' => 'mirror',
         'or' => 'of',

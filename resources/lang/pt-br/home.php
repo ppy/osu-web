@@ -80,7 +80,6 @@ return [
         'action_lazer_title' => 'experimente osu!(lazer)',
         'action_title' => 'baixar osu!',
         'for_os' => 'para :os',
-        'lazer_note' => 'nota: redefinições do placar se aplicam',
         'macos-fallback' => 'usuários de macOS',
         'mirror' => 'link alternativo',
         'or' => 'ou',

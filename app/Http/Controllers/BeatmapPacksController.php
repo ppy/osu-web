@@ -86,6 +86,8 @@ class BeatmapPacksController extends Controller
      * user_completion_data |
      *
      * @urlParam pack string required The tag of the beatmap pack to be returned.
+     *
+     * @queryParam legacy_only integer Whether or not to consider lazer scores for user completion data. Defaults to 0. Example: 0
      */
     public function show($idOrTag)
     {

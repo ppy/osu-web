@@ -80,7 +80,6 @@ return [
         'action_lazer_title' => 'جرب osu!(lazer)',
         'action_title' => 'تحميل osu!',
         'for_os' => 'ل :os',
-        'lazer_note' => 'ملاحظة: تطبق إعادة تعيين لوحة المتصدرين',
         'macos-fallback' => 'مستخدمين MacOS',
         'mirror' => 'مُباشر',
         'or' => 'أو',

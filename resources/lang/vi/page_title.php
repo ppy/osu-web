@@ -64,11 +64,11 @@ return [
             '_' => 'bình luận',
         ],
         'contest_entries_controller' => [
-            'judge_results' => '',
+            'judge_results' => 'kết quả đánh giá bài thi',
         ],
         'contests_controller' => [
             '_' => 'cuộc thi',
-            'judge' => '',
+            'judge' => 'đánh giá bài thi',
         ],
         'groups_controller' => [
             'show' => 'nhóm',

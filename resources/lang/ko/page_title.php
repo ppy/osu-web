@@ -64,11 +64,11 @@ return [
             '_' => '댓글',
         ],
         'contest_entries_controller' => [
-            'judge_results' => '',
+            'judge_results' => '콘테스트 심사 결과',
         ],
         'contests_controller' => [
             '_' => '콘테스트',
-            'judge' => '',
+            'judge' => '콘테스트 심사',
         ],
         'groups_controller' => [
             'show' => '그룹',

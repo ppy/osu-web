@@ -81,7 +81,7 @@ return [
     ],
 
     'contest' => [
-        'judging_not_active' => '',
+        'judging_not_active' => 'Evaluarea pentru acest concurs nu este în desfășurare.',
         'voting_over' => 'Nu îți poți schimba votul după ce perioada de vot pentru această competiție s-a încheiat.',
 
         'entry' => [
@@ -173,7 +173,7 @@ return [
     'score' => [
         'pin' => [
             'disabled_type' => "Nu se poate fixa acest tip de scor",
-            'failed' => "",
+            'failed' => "Nu se pot fixa scoruri eșuate",
             'not_owner' => 'Numai creatorul scorului poate fixa acest scor.',
             'too_many' => 'Ai fixat prea multe scoruri.',
         ],

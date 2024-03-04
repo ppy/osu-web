@@ -340,7 +340,7 @@ return [
                 ],
 
                 'user' => [
-                    'count' => '{0} žádné hlasy | {1} :count hlas | [2,*] :count hlasů',
+                    'count' => '{0} nula hlasů|{1} :count_delimited hlas|[2,4] :count_delimited hlasy|[5,*] :count_delimited hlasů',
                     'current' => 'Zbývá vám :votes.',
                     'not_enough' => "Nemáte žádné další hlasy",
                 ],

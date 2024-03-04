@@ -28,5 +28,6 @@ return [
         'non_passing' => 'Endast godkända poäng ger pp',
         'no_pp' => '',
         'processing' => 'Poängsiffran räknas ännu ut och kommer snart att visas',
+        'no_rank' => '',
     ],
 ];

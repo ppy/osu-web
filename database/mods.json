@@ -2710,16 +2710,11 @@
         "Name": "Fade In",
         "Description": "Keys appear out of nowhere!",
         "Type": "DifficultyIncrease",
-        "Settings": [
-          {
-            "Name": "coverage",
-            "Type": "number",
-            "Label": "Coverage",
-            "Description": "The proportion of playfield height that notes will be hidden for."
-          }
-        ],
+        "Settings": [],
         "IncompatibleMods": [
+          "FI",
           "HD",
+          "CO",
           "FL"
         ],
         "RequiresConfiguration": false,
@@ -2733,16 +2728,40 @@
         "Name": "Hidden",
         "Description": "Keys fade out before you hit them!",
         "Type": "DifficultyIncrease",
+        "Settings": [],
+        "IncompatibleMods": [
+          "FI",
+          "CO",
+          "FL"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
+      },
+      {
+        "Acronym": "CO",
+        "Name": "Cover",
+        "Description": "Decrease the playfield's viewing area.",
+        "Type": "DifficultyIncrease",
         "Settings": [
           {
             "Name": "coverage",
             "Type": "number",
             "Label": "Coverage",
             "Description": "The proportion of playfield height that notes will be hidden for."
+          },
+          {
+            "Name": "direction",
+            "Type": "string",
+            "Label": "Direction",
+            "Description": "The direction on which the cover is applied"
           }
         ],
         "IncompatibleMods": [
           "FI",
+          "HD",
           "FL"
         ],
         "RequiresConfiguration": false,
@@ -2772,7 +2791,8 @@
         ],
         "IncompatibleMods": [
           "FI",
-          "HD"
+          "HD",
+          "CO"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,

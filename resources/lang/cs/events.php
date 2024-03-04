@@ -12,7 +12,7 @@ return [
     'beatmapset_update' => '<strong><em>:user</em></strong> aktualizoval mapu "<em>:beatmapset</em>"',
     'beatmapset_upload' => '<strong><em>:user</em></strong> zveřejnil novou mapu ":beatmapset"',
     'empty' => "Tento uživatel neudělal v nejbližší minulosti nic pozoruhodného!",
-    'rank' => '<strong><em>:user</em></strong> získal pozici #:rank na mapě <em>:beatmap</em> (:mode)',
+    'rank' => ':user získal :rank na mapě :beatmap (:mode)',
     'rank_lost' => '<strong><em>:user</em></strong> ztratil první místo na mapě <em>:beatmap</em> (:mode)',
     'user_support_again' => '<strong>:user</strong> se opět rozhodl podpořit osu! - díky za tvou štědrost!',
     'user_support_first' => '<strong>:user</strong> podpořil osu! - díky za tvou štědrost!',
@@ -27,6 +27,6 @@ return [
     ],
 
     'value' => [
-        'rank' => 'hodnocení #:rank',
+        'rank' => 'pozici #:rank',
     ],
 ];

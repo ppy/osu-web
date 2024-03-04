@@ -19,6 +19,7 @@ class BanchoStatsFactory extends Factory
         return [
             'users_irc' => fn() => 100 + $this->faker->randomNumber(2),
             'users_osu' => fn() => 10000 + $this->faker->randomNumber(4),
+            'users_lazer' => fn() => 1000 + $this->faker->randomNumber(3),
             'multiplayer_games' => fn() => 200 + $this->faker->randomNumber(3),
             'date' => fn() => Carbon::now(),
         ];

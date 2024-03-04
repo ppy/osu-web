@@ -14,27 +14,27 @@ return [
     ],
 
     'judge' => [
-        'hide_judged' => '',
-        'nav_title' => '',
-        'no_current_vote' => '',
-        'update' => '',
+        'hide_judged' => '隱藏已評分的項目',
+        'nav_title' => '評分',
+        'no_current_vote' => '您尚未投票',
+        'update' => '更新',
         'validation' => [
-            'missing_score' => '',
-            'contest_vote_judged' => '',
+            'missing_score' => '缺失成績',
+            'contest_vote_judged' => '無法在已評分的競賽中投票',
         ],
-        'voted' => '',
+        'voted' => '您已經提交過此項目的投票',
     ],
 
     'judge_results' => [
-        '_' => '',
-        'creator' => '',
-        'score' => '',
-        'total_score' => '',
+        '_' => '評分結果',
+        'creator' => '作者',
+        'score' => '分數',
+        'total_score' => '總分',
     ],
 
     'voting' => [
-        'judge_link' => '',
-        'judged_notice' => '',
+        'judge_link' => '您是此競賽的評委。請在此處評分。',
+        'judged_notice' => '本競賽使用評分系統，評委正在進行評分。',
         'login_required' => '請登入後再投票。',
         'over' => '這場評選的投票已經結束',
         'show_voted_only' => '顯示投票',

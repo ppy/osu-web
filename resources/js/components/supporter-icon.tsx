@@ -3,22 +3,23 @@
 
 import { times } from 'lodash';
 import * as React from 'react';
-import { classWithModifiers } from 'utils/css';
+import { classWithModifiers, Modifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 
 interface Props {
   level?: number;
-  modifiers?: string[];
+  modifiers?: Modifiers;
 }
 
-export const SupporterIcon = (props: Props) => {
-  const className = classWithModifiers('supporter-icon', props.modifiers);
-
+export default function SupporterIcon(props: Props) {
   return (
-    <span className={className} title={trans('users.show.is_supporter')}>
+    <span
+      className={classWithModifiers('supporter-icon', props.modifiers)}
+      title={trans('users.show.is_supporter')}
+    >
       {
         times(props.level ?? 1, (n) => <span key={n} className='fas fa-heart' />)
       }
     </span>
   );
-};
+}

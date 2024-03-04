@@ -80,7 +80,6 @@ return [
         'action_lazer_title' => 'osu!(lazer) 체험하기',
         'action_title' => 'osu! 다운로드',
         'for_os' => ':os 전용',
-        'lazer_note' => '참고: 점수가 초기화될 수 있습니다',
         'macos-fallback' => 'macOS 유저',
         'mirror' => '미러',
         'or' => '혹은',

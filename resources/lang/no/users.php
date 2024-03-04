@@ -49,7 +49,7 @@ return [
     ],
 
     'card' => [
-        'gift_supporter' => '',
+        'gift_supporter' => 'Gi osu!supporter i gave',
         'loading' => 'Laster...',
         'send_message' => 'send melding',
     ],
@@ -124,13 +124,13 @@ return [
     ],
 
     'ogp' => [
-        'modding_description' => '',
-        'modding_description_empty' => '',
+        'modding_description' => 'Beatmaps: :counts',
+        'modding_description_empty' => 'Brukeren har ikke noen beatmaps...',
 
         'description' => [
-            '_' => '',
-            'country' => '',
-            'global' => '',
+            '_' => 'Rang (:ruleset): :global | :country',
+            'country' => 'Landsrangering :rank',
+            'global' => 'Global :rank',
         ],
     ],
 
@@ -397,7 +397,7 @@ return [
                     'date' => 'dato',
                     'action' => 'handling',
                     'length' => 'lengde',
-                    'length_indefinite' => '',
+                    'length_indefinite' => 'Ubestemt',
                     'description' => 'beskrivelse',
                     'actor' => 'av :username',
 

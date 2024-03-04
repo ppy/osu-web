@@ -17,9 +17,9 @@ return [
         'identify' => 'Identifiser deg selv og les din offentlige profil.',
 
         'chat' => [
-            'read' => '',
+            'read' => 'Les meldinger på dine vegne.',
             'write' => 'Send meldinger på dine vegne.',
-            'write_manage' => '',
+            'write_manage' => 'Bli med og forlat kanaler på dine vegne.',
         ],
 
         'forum' => [

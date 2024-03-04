@@ -39,7 +39,6 @@ class UserNotificationOption extends Model
         Notification::CHANNEL_MESSAGE,
         Notification::COMMENT_NEW,
         self::FORUM_TOPIC_REPLY,
-        Notification::USER_ACHIEVEMENT_UNLOCK,
     ];
 
     const SUPPORTS_NOTIFICATIONS = [

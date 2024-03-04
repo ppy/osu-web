@@ -213,6 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'Ta beatmapa bo približno rankirana :date če ne bo najdenih težav. Trenutno je #:position v :queue.',
+            'unresolved_problems' => '',
+            'problems' => '',
             'on' => 'na :date',
             'queue' => 'čakalna vrsta rankiranja',
             'soon' => 'kmalu',

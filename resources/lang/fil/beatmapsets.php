@@ -61,12 +61,12 @@ return [
         'discussion' => 'Diskusyon',
 
         'admin' => [
-            'full_size_cover' => '',
+            'full_size_cover' => 'Tingnan ang buong laki ng cover sa larawan',
         ],
 
         'deleted_banner' => [
-            'title' => '',
-            'message' => '',
+            'title' => 'Ang beatmap na ito ay binura na.',
+            'message' => '(mga moderator lang ang makakakita nito)',
         ],
 
         'details' => [

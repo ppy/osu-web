@@ -213,6 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'Гэтая карта cможа маць рэйтынг :date, калі праблем не знойдзена. Гэта #:position у :queue.',
+            'unresolved_problems' => '',
+            'problems' => '',
             'on' => ':date',
             'queue' => 'чаргу ў рэйтынг',
             'soon' => 'хутка',

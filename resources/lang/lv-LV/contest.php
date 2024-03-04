@@ -14,27 +14,27 @@ return [
     ],
 
     'judge' => [
-        'hide_judged' => '',
-        'nav_title' => '',
-        'no_current_vote' => '',
-        'update' => '',
+        'hide_judged' => 'paslēpt vērtētos ierakstus',
+        'nav_title' => 'tiesāt',
+        'no_current_vote' => 'tu vēl nebalsoji.',
+        'update' => 'atjaunināt',
         'validation' => [
-            'missing_score' => '',
-            'contest_vote_judged' => '',
+            'missing_score' => 'trūkst rezultāts',
+            'contest_vote_judged' => 'nevar balsot vērtētos konkursos',
         ],
-        'voted' => '',
+        'voted' => 'Tu jau esi balsojis par šo ierakstu.',
     ],
 
     'judge_results' => [
-        '_' => '',
-        'creator' => '',
-        'score' => '',
-        'total_score' => '',
+        '_' => 'Vērtēšanas rezultāti',
+        'creator' => 'autors',
+        'score' => 'Rezultāts',
+        'total_score' => 'Kopējais rezultāts',
     ],
 
     'voting' => [
-        'judge_link' => '',
-        'judged_notice' => '',
+        'judge_link' => 'Tu esi šī konkursa tiesnesis. Iesniegtos ierakstus vērtē šeit!',
+        'judged_notice' => 'Šajā konkursā tiek izmantota vērtēšanas sistēma, vērtētāji pašlaik apstrādā iesniegtos darbus.',
         'login_required' => 'Lūdzu, pierakstieties, lai balsotu.',
         'over' => 'Balsošana par šo konkursu ir beigusies',
         'show_voted_only' => 'Rādīt balsotos',

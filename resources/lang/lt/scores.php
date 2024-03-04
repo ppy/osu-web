@@ -28,5 +28,6 @@ return [
         'non_passing' => 'Tik įveikimų rezultatai duoda pp',
         'no_pp' => '',
         'processing' => 'Šis reultatas dar apskaičiuojamas ir netrukus bus parodytas',
+        'no_rank' => '',
     ],
 ];

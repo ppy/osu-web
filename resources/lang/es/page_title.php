@@ -64,11 +64,11 @@ return [
             '_' => 'comentarios',
         ],
         'contest_entries_controller' => [
-            'judge_results' => '',
+            'judge_results' => 'resultados de la evaluación del concurso',
         ],
         'contests_controller' => [
             '_' => 'concursos',
-            'judge' => '',
+            'judge' => 'evaluación del concurso',
         ],
         'groups_controller' => [
             'show' => 'grupos',

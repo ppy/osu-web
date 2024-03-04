@@ -6,7 +6,7 @@
 return [
     'cart' => [
         'checkout' => 'Gå til kassen',
-        'empty_cart' => '',
+        'empty_cart' => 'Fjern alle varer fra handlevognen',
         'info' => ':count_delimited ting i kurven ($:subtotal)|:count_delimited items i vogn ($:subtotal)',
         'more_goodies' => 'Jeg vil se på flere produkter før jeg fullfører bestillingen',
         'shipping_fees' => 'fraktkostnader',
@@ -49,37 +49,37 @@ return [
     ],
 
     'discount' => 'spar :percent%',
-    'free' => '',
+    'free' => 'gratis!',
 
     'invoice' => [
-        'contact' => '',
-        'date' => '',
+        'contact' => 'Kontakt:',
+        'date' => 'Dato:',
         'echeck_delay' => 'Ettersom betalingen din var en eCheck, vennligst tillatt opp til 10 ekstra dager for at betalingen skal kunne komme gjennom PayPal!',
         'hide_from_activity' => 'osu!supporter tag i denne bestillingen vises ikke i dine nylige aktiviteter.',
-        'sent_via' => '',
-        'shipping_to' => '',
-        'title' => '',
+        'sent_via' => 'Sendt Via:',
+        'shipping_to' => 'Frakt til:',
+        'title' => 'Faktura',
         'title_compact' => 'faktura',
 
         'status' => [
             'cancelled' => [
-                'title' => '',
+                'title' => 'Bestillingen din er kansellert',
                 'line_1' => [
-                    '_' => "",
-                    'link_text' => '',
+                    '_' => "Hvis du ikke forespurte en kansellering, vennligst kontakt :link med ordrenummeret ditt (#:order_number).",
+                    'link_text' => 'osu!store støtte',
                 ],
             ],
             'delivered' => [
-                'title' => '',
+                'title' => 'Bestillingen din har blitt levert! Vi håper du liker den!',
                 'line_1' => [
-                    '_' => '',
-                    'link_text' => '',
+                    '_' => 'Hvis du har problemer med kjøpet, vennligst kontakt :link.',
+                    'link_text' => 'osu!store støtte',
                 ],
             ],
             'prepared' => [
-                'title' => '',
-                'line_1' => '',
-                'line_2' => '',
+                'title' => 'Bestillingen din behandles for øyeblikket!',
+                'line_1' => 'Vennligst vent litt lenger på frakt. Sporingsinformasjon vises her når bestillingen er behandlet og sendt. Dette kan ta opptil 5 dager (men vanligvis mindre!) avhengig av hvor opptatt vi er.',
+                'line_2' => 'Vi sender alle bestillinger fra Japan med ulike frakttjenester ut ifra vekt og verdi. Denne siden vil oppdateres med detaljer når vi har sendt bestillingen.',
             ],
             'processing' => [
                 'title' => 'Din betaling har enda ikke blitt bekreftet!',
@@ -90,11 +90,11 @@ return [
                 ],
             ],
             'shipped' => [
-                'title' => '',
-                'tracking_details' => '',
+                'title' => 'Bestillingen din har blitt sendt!',
+                'tracking_details' => 'Sporingsdetaljer følger:',
                 'no_tracking_details' => [
-                    '_' => "",
-                    'link_text' => '',
+                    '_' => "Vi har ikke sporingsdetaljer da vi sendte pakken din via Air Mail, men du kan forvente å motta pakken i løpet av 1-3 uker. For Europa kan toll noen ganger forsinke bestillingen utenfor vår kontroll. Hvis du har noen bekymringer, vennligst svar på ordrebekreftelsen du mottok på e-post (eller på :link).",
+                    'link_text' => 'send oss en e-post',
                 ],
             ],
         ],
@@ -108,18 +108,18 @@ return [
         'no_orders' => 'Ingen bestillinger å vise.',
         'paid_on' => 'Bestilling plassert den :date',
         'resume' => 'Tilbake til kassen',
-        'shipping_and_handling' => '',
+        'shipping_and_handling' => 'Frakt & Håndtering',
         'shopify_expired' => 'Utsjekkingslenken for denne bestillingen er utløpt.',
-        'subtotal' => '',
-        'total' => '',
+        'subtotal' => 'Delsum',
+        'total' => 'Sum',
 
         'details' => [
-            'order_number' => '',
-            'payment_terms' => '',
-            'salesperson' => '',
-            'shipping_method' => '',
-            'shipping_terms' => '',
-            'title' => '',
+            'order_number' => 'Ordre #',
+            'payment_terms' => 'Betalingsbetingelser',
+            'salesperson' => 'Salgsperson',
+            'shipping_method' => 'Fraktmetode',
+            'shipping_terms' => 'Fraktbetingelser',
+            'title' => 'Ordre Detaljer',
         ],
 
         'item' => [
@@ -151,14 +151,14 @@ return [
             'paid' => 'Betalt',
             'processing' => 'Avventer bekreftelse',
             'shipped' => 'På vei',
-            'title' => '',
+            'title' => 'Ordre Status',
         ],
 
         'thanks' => [
-            'title' => '',
+            'title' => 'Takk for bestillingen din!',
             'line_1' => [
-                '_' => '',
-                'link_text' => '',
+                '_' => 'Du vil snart motta en bekreftelse på e-post. Hvis du har noen henvendelser, vennligst :link!',
+                'link_text' => 'kontakt oss',
             ],
         ],
     ],
@@ -193,9 +193,9 @@ return [
     'username_change' => [
         'check' => 'Oppgi et brukernavn for å sjekke om det er tilgjengelig!',
         'checking' => 'Sjekker om :username er tilgjengelig...',
-        'placeholder' => '',
-        'label' => '',
-        'current' => '',
+        'placeholder' => 'Forespurt Brukernavn',
+        'label' => 'Nytt Brukernavn',
+        'current' => 'Ditt nåværende brukernavn er ":username".',
 
         'require_login' => [
             '_' => 'For å endre navnet ditt, må du være :link!',

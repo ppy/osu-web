@@ -80,7 +80,6 @@ return [
         'action_lazer_title' => 'спробуйте osu!(lazer)',
         'action_title' => 'завантажити osu!',
         'for_os' => 'для :os',
-        'lazer_note' => 'примітка: таблиці лідерів можуть бути скинуті',
         'macos-fallback' => 'для macOS',
         'mirror' => 'дзеркало',
         'or' => 'або',

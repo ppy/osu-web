@@ -71,7 +71,7 @@ return [
 
             'upload_more' => [
                 'title' => 'Lataa enemmän',
-                'description' => 'Lisäpaikkoja vireillä oleville beatmapeille jokaista hyväksyttyä beatmappiä vastaan. (Max. 10)',
+                'description' => 'Vireillä olevien rytmikarttojen lisäpaikkoja jokaista rankattua rytmikarttaa kohden, enintään 10 kappaletta.',
             ],
 
             'early_access' => [

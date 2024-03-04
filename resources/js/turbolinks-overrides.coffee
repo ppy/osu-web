@@ -2,7 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { currentUrl } from 'utils/turbolinks'
-import { isHTML, isInternal } from 'utils/url'
+import { isHTML } from 'utils/url'
 
 # Anchor navigation with turbolinks. Works around [1].
 # [1] https://github.com/turbolinks/turbolinks/issues/75
@@ -61,4 +61,7 @@ Turbolinks.Controller::replaceHistory = (url) ->
 Turbolinks.Snapshot::hasAnchor = -> true
 
 Turbolinks.Controller::locationIsVisitable = (location) ->
-  location.isPrefixedBy(@view.getRootLocation()) && isInternal(location) && isHTML(location)
+  location.isPrefixedBy(@view.getRootLocation()) &&
+    # old website pages
+    !location.getPath().startsWith('/p/') &&
+    isHTML(location)

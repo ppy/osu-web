@@ -8,7 +8,7 @@ return [
     'not_negative' => ':attribute ay bawal maging negatibo.',
     'required' => ':attribute ay kinakailangan.',
     'too_long' => ':attribute ay lumampas sa maksimum na haba - maaaring lamang maging hanggang :limit na character.',
-    'url' => '',
+    'url' => 'Pakilaan ng isang wastong URL.',
     'wrong_confirmation' => 'Ang kumpirmasyon ay hindi tugma.',
 
     'beatmapset_discussion' => [
@@ -110,12 +110,12 @@ return [
     ],
 
     'legacy_api_key' => [
-        'exists' => '',
+        'exists' => 'Isang susi sa API lang ang ibinibigay sa bawat user sa ngayon.',
 
         'attributes' => [
-            'api_key' => '',
-            'app_name' => '',
-            'app_url' => '',
+            'api_key' => 'susi sa api',
+            'app_name' => 'pangalan ng aplikasyon',
+            'app_url' => 'url ng aplikasyon',
         ],
     ],
 
@@ -175,7 +175,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => 'Hindi pwede i-report ang mga Ranked beatmaps',
-        'not_in_channel' => '',
+        'not_in_channel' => 'Wala ka sa channel na ito.',
         'reason_not_valid' => 'Ang rason na:reason ay hindi akma sa ganitong uri ng report.',
         'self' => "Hindi mo maaaring i-report ang sarili mo!",
     ],

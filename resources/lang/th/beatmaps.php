@@ -213,6 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'แมพนี้จะถูก ranked  ใน :date ถ้าไม่พบเจอปัญหาเพิ่มเติม แมพนี้อยู่ที่ #:position ใน :queue',
+            'unresolved_problems' => '',
+            'problems' => '',
             'on' => 'เมื่อ :date',
             'queue' => 'คิวการจัดอันดับ',
             'soon' => 'เร็วๆ นี้',

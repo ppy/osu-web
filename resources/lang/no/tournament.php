@@ -5,7 +5,7 @@
 
 return [
     'index' => [
-        'none_running' => 'Det er ingen turneringer som pågår for øyeblikket, vennligst sjekk tilbake senere!',
+        'none_running' => 'Det er ingen turneringer som pågår for øyeblikket, vennligst sjekk igjen senere!',
         'registration_period' => 'Registrering: :start til :end',
 
         'header' => [
@@ -24,10 +24,10 @@ return [
 
     'show' => [
         'banner' => 'Støtt laget ditt',
-        'entered' => 'Du er registret for denne turneringen.<br><br>Merk at dette betyr <b>ikke</b> at du har blitt tildelt et lag.<br><br>Videre instruksjoner vil bli sendt til deg via e-post når vi nærmer oss starten på turneringen, så vennligst kontroller at osu! e-mailen din er gyldig!',
+        'entered' => 'Du er registrert for denne turneringen.<br><br>Merk at dette betyr <b>ikke</b> at du har blitt tildelt et lag.<br><br>Videre instruksjoner vil bli sendt til deg via e-post når vi nærmer oss starten på turneringen, så vennligst kontroller at osu! e-mailen din er gyldig!',
         'info_page' => 'Informasjonsside',
         'login_to_register' => 'Vennligst :login for å se registreringsdetaljene!',
-        'not_yet_entered' => 'Du er ikke registret for denne turneringen.',
+        'not_yet_entered' => 'Du er ikke registrert for denne turneringen.',
         'rank_too_low' => 'Beklager, men du møter ikke rangeringskravene for denne turneringen!',
         'registration_ends' => 'Registreringer lukkes på den :date',
 
@@ -43,7 +43,7 @@ return [
 
         'state' => [
             'before_registration' => 'Registrering for denne turneringen har enda ikke åpnet.',
-            'ended' => 'Denne turneringen har konkludert. Sjekk informasjonssiden for resultater.',
+            'ended' => 'Denne turneringen har konkludert. Sjekk informasjonssiden for resultatene.',
             'registration_closed' => 'Registreringen for denne turneringen er lukket. Sjekk informasjonssiden for de siste oppdateringene.',
             'running' => 'Denne turneringen pågår. Sjekk informasjonssiden for flere detaljer.',
         ],

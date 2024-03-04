@@ -80,7 +80,6 @@ return [
         'action_lazer_title' => 'kokeile osu!(lazer)ia',
         'action_title' => 'lataa osu!',
         'for_os' => ':os -käyttöjärjestelmälle',
-        'lazer_note' => 'huomautus: tulostaulukoiden nollaus pätee',
         'macos-fallback' => 'macOS-käyttäjät',
         'mirror' => 'vaihtoehtoinen lataus',
         'or' => 'tai',

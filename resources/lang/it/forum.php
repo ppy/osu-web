@@ -360,7 +360,7 @@ return [
 
                 'detail' => [
                     'end_time' => 'Il sondaggio scade tra :time',
-                    'ended' => 'Il sondaggio è finito :time',
+                    'ended' => 'Il sondaggio è finito il giorno :time',
                     'results_hidden' => 'I risultati saranno mostrati dopo il termine della votazione.',
                     'total' => 'Voti totali: :count',
                 ],

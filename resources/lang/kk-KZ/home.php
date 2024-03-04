@@ -80,7 +80,6 @@ return [
         'action_lazer_title' => '',
         'action_title' => '',
         'for_os' => '',
-        'lazer_note' => '',
         'macos-fallback' => '',
         'mirror' => '',
         'or' => '',

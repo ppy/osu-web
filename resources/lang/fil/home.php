@@ -81,11 +81,10 @@ return [
         'action_title' => 'i-download ang osu!
 ',
         'for_os' => 'para sa :os',
-        'lazer_note' => 'tandaan: ang mga pag-reset ng leaderboard ay nalalapat',
         'macos-fallback' => 'mga gumagamit ng macOS',
         'mirror' => 'mirror',
         'or' => 'o',
-        'os_version_or_later' => '',
+        'os_version_or_later' => ':os_version o mas bago',
         'other_os' => 'iba pang mga platform',
         'quick_start_guide' => 'gabay sa mabilis na pagsisimula',
         'tagline' => "tayo nang<br>simulan ito!",

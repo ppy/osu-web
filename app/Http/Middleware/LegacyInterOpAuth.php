@@ -5,7 +5,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Libraries\OsuAuthorize;
+use App\Singletons\OsuAuthorize;
 use Carbon\Carbon;
 use Closure;
 

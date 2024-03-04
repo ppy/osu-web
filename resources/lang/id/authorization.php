@@ -56,7 +56,7 @@ return [
         'discussion_locked' => 'Diskusi pada beatmap ini telah dikunci.',
 
         'metadata' => [
-            'nominated' => 'Kamu tidak dapat mengubah metadata beatmap yang telah dinominasikan. Mohon hubungi anggota BN atau NAT apabila kamu merasa terdapat kesalahan pada metadata beatmap ini.',
+            'nominated' => 'Kamu tidak dapat mengubah metadata beatmap yang telah dinominasikan. Hubungi anggota BN atau NAT apabila kamu merasa metadata beatmap ini tidak diatur dengan benar.',
         ],
     ],
 
@@ -81,7 +81,7 @@ return [
     ],
 
     'contest' => [
-        'judging_not_active' => '',
+        'judging_not_active' => 'Penjurian kontes ini sedang tidak aktif.',
         'voting_over' => 'Anda tidak dapat mengubah pilihan Anda setelah periode pemungutan suara untuk kontes ini telah berakhir.',
 
         'entry' => [
@@ -173,7 +173,7 @@ return [
     'score' => [
         'pin' => [
             'disabled_type' => "Tipe skor ini tidak dapat disematkan",
-            'failed' => "",
+            'failed' => "Skor yang tidak pass tidak dapat disematkan.",
             'not_owner' => 'Hanya pemilik skor yang dapat menyematkan skor.',
             'too_many' => 'Skor yang disematkan sudah terlalu banyak.',
         ],

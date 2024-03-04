@@ -14,7 +14,7 @@ return [
 
         'title' => [
             '_' => 'berita',
-            'info' => 'laman utama',
+            'info' => 'beranda',
         ],
     ],
 

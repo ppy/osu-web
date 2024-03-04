@@ -80,7 +80,6 @@ return [
         'action_lazer_title' => 'изпробвайте osu!(lazer)',
         'action_title' => 'изтеглете osu!',
         'for_os' => 'за :os',
-        'lazer_note' => 'внимание: прилага се рестарт на класирането',
         'macos-fallback' => 'macOS потребители',
         'mirror' => 'алтернативна връзка',
         'or' => 'или',

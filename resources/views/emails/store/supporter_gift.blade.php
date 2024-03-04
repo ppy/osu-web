@@ -18,7 +18,7 @@
 @else
 {!! osu_trans('mail.supporter_gift.gift_message') !!}
 @foreach ($messages as $message)
-{{ $message }}
+{!! $message !!}
 @endforeach
 @endif
 

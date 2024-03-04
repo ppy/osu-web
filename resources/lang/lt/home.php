@@ -80,7 +80,6 @@ return [
         'action_lazer_title' => 'išbandyk osu!(lazer)',
         'action_title' => 'atsisiųsti osu!',
         'for_os' => 'skirtas :os',
-        'lazer_note' => 'pastaba: rezultatų lentos atstatymai galioja',
         'macos-fallback' => 'macOS vartotojams',
         'mirror' => 'dubliavimas',
         'or' => 'arba',

@@ -14,27 +14,27 @@ return [
     ],
 
     'judge' => [
-        'hide_judged' => '',
-        'nav_title' => '',
-        'no_current_vote' => '',
-        'update' => '',
+        'hide_judged' => 'nascondi le voci valutate',
+        'nav_title' => 'giudice',
+        'no_current_vote' => 'non hai ancora votato.',
+        'update' => 'aggiorna',
         'validation' => [
-            'missing_score' => '',
-            'contest_vote_judged' => '',
+            'missing_score' => 'punteggio mancante',
+            'contest_vote_judged' => 'non puoi votare nei concorsi con valutazione',
         ],
-        'voted' => '',
+        'voted' => 'Hai già presentato un voto per questa voce.',
     ],
 
     'judge_results' => [
-        '_' => '',
-        'creator' => '',
-        'score' => '',
-        'total_score' => '',
+        '_' => 'Risultati della valutazione',
+        'creator' => 'autore',
+        'score' => 'Punteggio',
+        'total_score' => 'punteggio totale',
     ],
 
     'voting' => [
-        'judge_link' => '',
-        'judged_notice' => '',
+        'judge_link' => 'Sei un giudice di questo concorso. Valuta qui le iscrizioni!',
+        'judged_notice' => 'Questo concorso sta utilizzando il sistema di valutazione, i giudici stanno attualmente analizzando le voci.',
         'login_required' => 'Effettua il login per poter votare.',
         'over' => 'Le votazioni per questo contest sono terminate',
         'show_voted_only' => 'Mostra votati',
@@ -89,7 +89,7 @@ return [
     ],
 
     'dates' => [
-        'ended' => 'Terminato :date',
+        'ended' => 'Terminato il giorno :date',
         'ended_no_date' => 'Terminato',
 
         'starts' => [

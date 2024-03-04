@@ -80,7 +80,6 @@ return [
         'action_lazer_title' => 'пробајте osu!(lazer)',
         'action_title' => 'преузмите osu!',
         'for_os' => 'за :os',
-        'lazer_note' => 'напомена: постоје ресетовања ранг листе',
         'macos-fallback' => 'macOS корисници',
         'mirror' => 'алтернативни линк',
         'or' => 'или',

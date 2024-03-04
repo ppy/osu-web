@@ -64,11 +64,11 @@ return [
             '_' => 'kommentarer',
         ],
         'contest_entries_controller' => [
-            'judge_results' => '',
+            'judge_results' => 'konkurransedømmingsresultater',
         ],
         'contests_controller' => [
             '_' => 'konkurranser',
-            'judge' => '',
+            'judge' => 'konkurransedømming',
         ],
         'groups_controller' => [
             'show' => 'grupper',

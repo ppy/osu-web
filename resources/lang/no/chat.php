@@ -36,7 +36,7 @@ return [
 
         'labels' => [
             'description' => 'beskrivelse',
-            'message' => '',
+            'message' => 'melding',
             'name' => 'romnavn',
             'users' => 'spillere å legge til',
         ],

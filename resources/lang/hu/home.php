@@ -80,7 +80,6 @@ return [
         'action_lazer_title' => 'próbáld ki osu!lazer-t',
         'action_title' => 'osu! letöltése',
         'for_os' => ':os operációs rendszerhez',
-        'lazer_note' => 'megjegyzés: ranglista visszaállítások történnek',
         'macos-fallback' => 'macOS használók',
         'mirror' => 'tükör',
         'or' => 'vagy',

@@ -213,6 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'Ta beatmapa uzyska status rankingowy :date, jeżeli nie zostaną zgłoszone żadne problemy. Obecnie jest ona na :position. miejscu w :queue.',
+            'unresolved_problems' => '',
+            'problems' => '',
             'on' => ':date',
             'queue' => 'kolejce rankingowej',
             'soon' => 'wkrótce',

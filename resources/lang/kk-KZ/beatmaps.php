@@ -213,6 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'Мәселе табылмаса, бұл картаның рейтингі :date күні беріледі. Бұл :queue ішінде #:position тұр.',
+            'unresolved_problems' => '',
+            'problems' => '',
             'on' => ':date күні',
             'queue' => 'рейтинг беру кезегі',
             'soon' => 'жуырда',

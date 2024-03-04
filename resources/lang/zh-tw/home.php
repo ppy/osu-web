@@ -80,7 +80,6 @@ return [
         'action_lazer_title' => '試用 osu!(lazer)',
         'action_title' => '下載 osu!',
         'for_os' => ':os 版',
-        'lazer_note' => '注意: 排行榜及分數將會重置',
         'macos-fallback' => 'macOS 使用者',
         'mirror' => '鏡像站',
         'or' => '或',

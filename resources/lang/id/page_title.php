@@ -64,11 +64,11 @@ return [
             '_' => 'komentar',
         ],
         'contest_entries_controller' => [
-            'judge_results' => '',
+            'judge_results' => 'hasil penjurian kontes',
         ],
         'contests_controller' => [
             '_' => 'kontes',
-            'judge' => '',
+            'judge' => 'penjurian kontes',
         ],
         'groups_controller' => [
             'show' => 'grup',
