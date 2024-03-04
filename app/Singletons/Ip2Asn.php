@@ -5,9 +5,10 @@
 
 declare(strict_types=1);
 
-namespace App\Libraries;
+namespace App\Singletons;
 
 use App\Enums\Ip;
+use App\Libraries\Ip2AsnUpdater;
 use Exception;
 use WeakMap;
 

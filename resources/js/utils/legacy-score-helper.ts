@@ -16,7 +16,7 @@ document.addEventListener('turbolinks:load', () => {
 });
 
 function shouldHaveHiddenRank(score: SoloScoreJson) {
-  return score.mods.some((mod) => mod.acronym === 'FL' || mod.acronym === 'HD');
+  return score.mods.some((mod) => mod.acronym === 'FI' || mod.acronym === 'FL' || mod.acronym === 'HD');
 }
 
 export function legacyAccuracyAndRank(score: SoloScoreJson) {

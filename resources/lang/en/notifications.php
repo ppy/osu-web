@@ -244,11 +244,6 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':username has unlocked a new medal, ":title"!',
-                'user_achievement_unlock_self' => 'You\'ve unlocked a new medal, ":title"!',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username has created new beatmaps',
                 'user_beatmapset_revive' => ':username has revived beatmaps',

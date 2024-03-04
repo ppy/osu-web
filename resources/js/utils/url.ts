@@ -10,33 +10,6 @@ import { TurbolinksLocation } from 'turbolinks';
 import { generate } from './beatmapset-page-hash';
 import { currentUrl } from './turbolinks';
 
-const internalUrls = [
-  'admin',
-  'api/v2',
-  'beatmaps',
-  'beatmapsets',
-  'client-verifications',
-  'comments',
-  'community',
-  'help',
-  'home',
-  'groups',
-  'legal',
-  'multiplayer',
-  'news',
-  'notifications',
-  'oauth',
-  'rankings',
-  'scores',
-  'seasons',
-  'session',
-  'store',
-  'users',
-  'wiki',
-].join('|');
-
-const internalUrlRegExp = RegExp(`^/(?:${internalUrls})(?:$|/|#)`);
-
 interface OsuLinkOptions {
   classNames?: string[];
   isRemote?: boolean;
@@ -68,10 +41,6 @@ export function giftSupporterTagUrl(user: { username: string }) {
 export function isHTML(location: TurbolinksLocation): boolean {
   // Some changelog builds have `.` in their version, failing turbolinks' check.
   return location.isHTML() || startsWith(location.getPath(), '/home/changelog/');
-}
-
-export function isInternal(location: TurbolinksLocation): boolean {
-  return internalUrlRegExp.test(location.getPath());
 }
 
 // external link
