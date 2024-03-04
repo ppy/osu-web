@@ -5,7 +5,7 @@
 
 declare(strict_types=1);
 
-namespace App\Libraries\User;
+namespace App\Singletons;
 
 use App\Libraries\MorphMap;
 use App\Models\Beatmap;
@@ -13,7 +13,7 @@ use App\Models\Score;
 use App\Models\ScorePin;
 use App\Models\Solo;
 
-class ScorePins
+class UserScorePins
 {
     const REQUEST_ATTRIBUTE_KEY_PREFIX = 'current_user_score_pins:';
 

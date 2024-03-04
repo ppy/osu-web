@@ -5,7 +5,7 @@
 
 declare(strict_types=1);
 
-namespace App\Libraries;
+namespace App\Singletons;
 
 use App\Models\Country;
 use App\Traits\Memoizes;
