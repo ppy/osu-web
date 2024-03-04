@@ -8,7 +8,7 @@ import { ContainerContext, KeyContext } from 'stateful-activation-context';
 import { shouldShowPp } from 'utils/beatmap-helper';
 import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
-import { modeAttributesMap } from 'utils/score-helper';
+import { attributeDisplayLabels } from 'utils/score-helper';
 import Controller from './controller';
 import TableRow from './table-row';
 
@@ -62,10 +62,10 @@ export default class Table extends React.Component<Props> {
                 <th className={`${bn}__header ${bn}__header--maxcombo`}>
                   {trans('beatmapsets.show.scoreboard.headers.combo')}
                 </th>
-                {modeAttributesMap[this.props.controller.beatmap.mode].map((stat) => (
+                {attributeDisplayLabels(this.props.controller.beatmap.mode).map((stat) => (
                   <th
-                    key={stat.attribute}
-                    className={classWithModifiers(`${bn}__header`, ['hitstat', `hitstat-${stat.attribute}`])}
+                    key={stat.key}
+                    className={classWithModifiers(`${bn}__header`, ['hitstat', `hitstat-${stat.key}`])}
                   >
                     {stat.label}
                   </th>
