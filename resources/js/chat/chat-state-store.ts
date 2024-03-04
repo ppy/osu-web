@@ -79,13 +79,6 @@ export default class ChatStateStore implements DispatchListener {
     return supportedChannelTypes.flatMap((type) => this.channelStore.groupedChannels[type]);
   }
 
-  private get waitAddChannelType() {
-    if (this.waitAddChannelId == null) return null;
-    return typeof this.waitAddChannelId === 'string'
-      ? 'announce'
-      : 'existing';
-  }
-
   constructor(protected channelStore: ChannelStore) {
     this.pingService = new PingService(channelStore);
 
@@ -254,8 +247,8 @@ export default class ChatStateStore implements DispatchListener {
     const json = event.json;
     this.channelStore.update(json);
 
-    if (this.waitAddChannelType === 'announce' && this.waitAddChannelId === json.uuid
-      || this.waitAddChannelType === 'existing' && this.waitAddChannelId === json.channel_id
+    if (typeof this.waitAddChannelId === 'string' && this.waitAddChannelId === json.uuid
+      || typeof this.waitAddChannelId === 'number' && this.waitAddChannelId === json.channel_id
     ) {
       // hide overlay before changing channel if we're waiting for a change to remove it from history navigation.
       hideLoadingOverlay();
