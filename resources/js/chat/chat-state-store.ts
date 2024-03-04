@@ -43,18 +43,15 @@ export default class ChatStateStore implements DispatchListener {
   private selectedIndex = 0;
   @observable private waitAddChannelId: string | number | null = null;
 
-  @computed
   get isChatMounted() {
     return this.viewsMounted.size > 0;
   }
 
   // Should not join/create another channel if still waiting for a pending request.
-  @computed
   get isAddingChannel() {
     return this.waitAddChannelId != null;
   }
 
-  @computed
   get joiningChannelId() {
     return typeof this.waitAddChannelId === 'number'
       ? this.waitAddChannelId
@@ -66,13 +63,11 @@ export default class ChatStateStore implements DispatchListener {
     return new Set(this.channelStore.groupedChannels.PUBLIC.map((channel) => channel.channelId));
   }
 
-  @computed
   get selectedChannel() {
     return typeof this.selected === 'number' ? this.channelStore.get(this.selected) : null;
   }
 
   // TODO: better name
-  @computed
   get selectedView() {
     return typeof this.selected === 'number'
       ? this.channelStore.get(this.selected)
