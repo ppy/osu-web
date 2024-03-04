@@ -6,11 +6,8 @@ import GameMode from './game-mode';
 interface UserGroupEventBase {
   actor?: {
     id: number;
-    name: string;
-  } | {
-    id: null;
-    name: null;
-  };
+    username: string;
+  } | null;
   created_at: string;
   group_id: number;
   group_name: string;
