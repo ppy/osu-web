@@ -74,11 +74,6 @@ export default class JoinChannels extends React.Component<Props> {
   render() {
     return (
       <div className='chat-join-channel'>
-        <div className='chat-join-channel__toolbar'>
-          <button className={this.buttonModifiers} onClick={this.handleRefreshClick} type='button'>
-            {trans('common.buttons.refresh')}
-          </button>
-        </div>
         {this.isLoading ? (
           <div className='chat-join-channel__loading'>
             {this.renderLoading()}
