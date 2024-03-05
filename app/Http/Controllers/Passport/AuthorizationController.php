@@ -8,7 +8,6 @@ namespace App\Http\Controllers\Passport;
 use Illuminate\Http\Request;
 use Laravel\Passport\ClientRepository;
 use Laravel\Passport\Exceptions\AuthenticationException;
-use Laravel\Passport\Exceptions\OAuthServerException;
 use Laravel\Passport\Http\Controllers\AuthorizationController as PassportAuthorizationController;
 use Laravel\Passport\Passport;
 use Laravel\Passport\TokenRepository;
