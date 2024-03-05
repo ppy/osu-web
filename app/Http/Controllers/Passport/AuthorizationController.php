@@ -7,6 +7,8 @@ namespace App\Http\Controllers\Passport;
 
 use Illuminate\Http\Request;
 use Laravel\Passport\ClientRepository;
+use Laravel\Passport\Exceptions\AuthenticationException;
+use Laravel\Passport\Exceptions\OAuthServerException;
 use Laravel\Passport\Http\Controllers\AuthorizationController as PassportAuthorizationController;
 use Laravel\Passport\Passport;
 use Laravel\Passport\TokenRepository;
@@ -35,21 +37,20 @@ class AuthorizationController extends PassportAuthorizationController
         ClientRepository $clients,
         TokenRepository $tokens
     ) {
-        $redirectUri = presence(trim(get_string($request['redirect_uri']) ?? ''));
-
-        abort_if($redirectUri === null, 400, osu_trans('model_validation.required', ['attribute' => 'redirect_uri']));
-
-        if (!auth()->check()) {
-            // Breaks when url contains hash ("#").
-            $separator = strpos($redirectUri, '?') === false ? '?' : '&';
-            $cancelUrl = "{$redirectUri}{$separator}error=access_denied";
+        try {
+            \Log::debug($request->get('prompt'));
+            return parent::authorize($this->normalizeRequestScopes($psrRequest), $request, $clients, $tokens);
+        } catch (AuthenticationException $_e) {
+            $cancelUrl = $request->fullUrl();
+            $cancelUrl .= strpos($cancelUrl, '?') === false ? '?' : '&';
+            $cancelUrl .= 'prompt=none';
 
             return ext_view('sessions.create', [
                 'cancelUrl' => $cancelUrl,
             ]);
+        } catch (OAuthServerException $e) {
+            return $e->render($request);
         }
-
-        return parent::authorize($this->normalizeRequestScopes($psrRequest), $request, $clients, $tokens);
     }
 
     /**
