@@ -71,8 +71,6 @@ class Handler extends ExceptionHandler
             return 401;
         } elseif ($e instanceof AuthorizationException || $e instanceof MissingScopeException) {
             return 403;
-        } elseif (static::isOAuthServerException($e)) {
-            return $e->getPrevious()->getHttpStatusCode();
         } else {
             return 500;
         }
@@ -117,6 +115,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $e)
     {
+        if (static::isOAuthServerException($e)) {
+            return parent::render($request, $e);
+        }
+
         if ($e instanceof HttpResponseException || $e instanceof UserProfilePageLookupException) {
             return $e->getResponse();
         }
@@ -135,7 +137,7 @@ class Handler extends ExceptionHandler
 
         $isJsonRequest = is_json_request();
 
-        if ($GLOBALS['cfg']['app']['debug'] || ($isJsonRequest && static::isOAuthServerException($e))) {
+        if ($GLOBALS['cfg']['app']['debug']) {
             $response = parent::render($request, $e);
         } else {
             $message = static::exceptionMessage($e);
