@@ -82,7 +82,7 @@ class Handler extends ExceptionHandler
         return ($e instanceof PassportOAuthServerException) && ($e->getPrevious() instanceof OAuthServerException);
     }
 
-    private static function unwrapViewException(Throwable $e)
+    private static function unwrapViewException(Throwable $e): Throwable
     {
         if ($e instanceof ViewException) {
             $i = 0;
