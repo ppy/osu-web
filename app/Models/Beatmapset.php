@@ -468,8 +468,9 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
     public function fetchBeatmapsetArchive()
     {
         $oszFile = tmpfile();
-        $mirrorsToUse = $GLOBALS['cfg']['osu']['beatmap_processor']['mirrors_to_use'];
-        $url = BeatmapMirror::getRandomFromList($mirrorsToUse)->generateURL($this, true);
+        $mirror = BeatmapMirror::getRandomFromList($GLOBALS['cfg']['osu']['beatmap_processor']['mirrors_to_use'])
+            ?? throw new \Exception('no available mirror');
+        $url = $mirror->generateURL($this, true);
 
         if ($url === false) {
             return false;
