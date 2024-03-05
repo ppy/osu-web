@@ -47,8 +47,6 @@ class AuthorizationController extends PassportAuthorizationController
             return ext_view('sessions.create', [
                 'cancelUrl' => $cancelUrl,
             ]);
-        } catch (OAuthServerException $e) {
-            return $e->render($request);
         }
     }
 
