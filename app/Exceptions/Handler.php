@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Session\TokenMismatchException;
+use Illuminate\View\ViewException;
 use Laravel\Passport\Exceptions\MissingScopeException;
 use Laravel\Passport\Exceptions\OAuthServerException as PassportOAuthServerException;
 use League\OAuth2\Server\Exception\OAuthServerException;
@@ -81,6 +82,21 @@ class Handler extends ExceptionHandler
         return ($e instanceof PassportOAuthServerException) && ($e->getPrevious() instanceof OAuthServerException);
     }
 
+    private static function unwrapViewException(Throwable $e)
+    {
+        if ($e instanceof ViewException) {
+            $i = 0;
+            while ($e instanceof ViewException) {
+                $e = $e->getPrevious();
+                if (++$i > 10) {
+                    break;
+                }
+            }
+        }
+
+        return $e;
+    }
+
     /**
      * Report or log an exception.
      *
@@ -115,6 +131,8 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $e)
     {
+        $e = static::unwrapViewException($e);
+
         if (static::isOAuthServerException($e)) {
             return parent::render($request, $e);
         }
@@ -157,7 +175,7 @@ class Handler extends ExceptionHandler
 
     protected function shouldntReport(Throwable $e)
     {
-        return parent::shouldntReport($e) || $this->isOAuthServerException($e);
+        return parent::shouldntReport(static::unwrapViewException($e)) || $this->isOAuthServerException($e);
     }
 
     protected function unauthenticated($request, AuthenticationException $exception)
