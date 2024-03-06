@@ -3,6 +3,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+use App\Exceptions\FastImagesizeFetchException;
 use App\Libraries\Base64Url;
 use App\Libraries\LocaleMeta;
 use App\Models\LoginAttempt;
@@ -1338,14 +1339,14 @@ function json_item($model, $transformer, $includes = null)
     return json_collection([$model], $transformer, $includes)[0] ?? null;
 }
 
-function fast_imagesize($url)
+function fast_imagesize($url, ?string $logErrorId = null)
 {
     static $oneMonthInSeconds = 30 * 24 * 60 * 60;
 
     return null_if_false(Cache::remember(
         "imageSize:{$url}",
         $oneMonthInSeconds,
-        function () use ($url) {
+        function () use ($logErrorId, $url) {
             $curl = curl_init($url);
             curl_setopt_array($curl, [
                 CURLOPT_HTTPHEADER => [
@@ -1357,6 +1358,15 @@ function fast_imagesize($url)
                 CURLOPT_TIMEOUT => 10,
             ]);
             $data = curl_exec($curl);
+
+            $errorCode = curl_errno($curl);
+            if ($errorCode !== 0 && $logErrorId !== null) {
+                log_error(new FastImagesizeFetchException(), [
+                    'curl_error_code' => $errorCode,
+                    'curl_error_message' => curl_error($curl),
+                    'error_id' => $logErrorId,
+                ]);
+            }
 
             // null isn't cached
             return read_image_properties_from_string($data) ?? false;
