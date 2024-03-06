@@ -45,6 +45,7 @@ return [
         'incorrect_mode' => 'You do not have permission to nominate for mode: :mode',
         'invalid_limited_nomination' => 'This beatmap has invalid nominations and cannot be qualified in this state.',
         'too_many' => 'Nomination requirement already fulfilled.',
+        'too_many_non_main_ruleset' => 'Nomination requirement for non-main ruleset already fulfilled.',
 
         'dialog' => [
             'confirmation' => 'Are you sure you want to nominate this beatmap?',

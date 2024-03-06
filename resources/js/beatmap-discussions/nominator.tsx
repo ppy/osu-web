@@ -9,7 +9,7 @@ import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussion
 import GameMode from 'interfaces/game-mode';
 import { route } from 'laroute';
 import { forEachRight, map, uniq } from 'lodash';
-import { action, computed, makeObservable, observable, runInAction } from 'mobx';
+import { action, computed, makeObservable, observable, runInAction, toJS } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -40,6 +40,12 @@ export class Nominator extends React.Component<Props> {
 
   private get currentHype() {
     return this.props.discussionsState.totalHypeCount;
+  }
+
+  private get hasModeWithMorethanOneNomination() {
+    if (this.playmodes == null) return false;
+
+    return this.playmodes.some((mode) => this.potentialNominationCount(mode) > 1);
   }
 
   private get mapCanBeNominated() {
@@ -181,6 +187,15 @@ export class Nominator extends React.Component<Props> {
     return curr >= req;
   }
 
+  private potentialNominationCount(mode: GameMode) {
+    if (typeof this.beatmapset.nominations.current === 'number') {
+      throw new Error();
+    }
+
+    return (this.beatmapset.nominations.current[mode] ?? 0)
+      + (this.selectedModes.includes(mode) ? 1 : 0);
+  }
+
   private renderButton() {
     if (!this.mapCanBeNominated || !this.userHasNominatePermission) {
       return;
@@ -242,9 +257,12 @@ export class Nominator extends React.Component<Props> {
   }
 
   private renderModalContentHybrid() {
+    const currentMode = this.beatmapset.nominations_summary.main_ruleset ?? 'undefined';
+
     return (
       <>
         {trans('beatmapsets.nominate.dialog.which_modes')}
+        <span>The main ruleset is currently: {trans(`beatmaps.mode.${currentMode}`)}</span>
         <div ref={this.checkboxContainerRef} className={`${bn}__checkboxes`}>
           {this.playmodes?.map((mode: GameMode) => {
             const disabled = !this.userCanNominateMode(mode);
@@ -308,8 +326,15 @@ export class Nominator extends React.Component<Props> {
   };
 
   private userCanNominateMode(mode: GameMode) {
+    // Always enable the selected one so it can be unselected.
+    if (this.selectedModes.includes(mode)) return true;
+
     if (!this.userHasNominatePermission || this.nominationCountMet(mode)) {
       return false;
+    }
+
+    if (this.beatmapset.nominations_summary.main_ruleset == null) {
+      return !this.hasModeWithMorethanOneNomination();
     }
 
     const userNominatable = this.userNominatableModes;
