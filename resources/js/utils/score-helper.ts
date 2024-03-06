@@ -54,18 +54,15 @@ interface AttributeDisplayMapping {
   label: string;
 }
 
-interface AttributeDisplay {
+interface AttributeDisplayTotal {
   key: string;
   label: string;
-}
-
-interface AttributeDisplayTotal extends AttributeDisplay {
   total: number;
 }
 
 const labelMiss = trans('beatmapsets.show.scoreboard.headers.miss');
 
-const modeAttributesMap: Record<GameMode, AttributeDisplayMapping[]> = {
+export const modeAttributesMap: Record<GameMode, AttributeDisplayMapping[]> = {
   fruits: [
     { attributes: ['great'], key: 'great', label: 'fruits' },
     { attributes: ['large_tick_hit'], key: 'ticks', label: 'ticks' },
@@ -94,19 +91,11 @@ const modeAttributesMap: Record<GameMode, AttributeDisplayMapping[]> = {
   ],
 };
 
-export function attributeDisplayLabels(ruleset: GameMode): AttributeDisplay[] {
+export function attributeDisplayTotals(ruleset: GameMode, score: SoloScoreJson): AttributeDisplayTotal[] {
   return modeAttributesMap[ruleset].map((mapping) => ({
     key: mapping.key,
     label: mapping.label,
-  }));
-}
-
-export function attributeDisplayTotals(ruleset: GameMode, score: SoloScoreJson): AttributeDisplayTotal[] {
-  const modeMapping = modeAttributesMap[ruleset];
-  return modeMapping.map((mapping) => ({
-    key: mapping.key,
-    label: mapping.label,
-    total: mapping.attributes.map((attribute) => score.statistics[attribute] ?? 0).reduce((sum, elem) => sum + elem, 0),
+    total: mapping.attributes.reduce((sum, attribute) => sum + (score.statistics[attribute] ?? 0), 0),
   }));
 }
 
