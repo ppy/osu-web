@@ -1004,7 +1004,7 @@ class UsersController extends Controller
             $user = $registration->user();
 
             // report unknown country code but ignore non-country from cloudflare
-            if ($country === null && $countryCode !== 'T1') {
+            if ($countryCode !== null && $country === null && $countryCode !== 'T1') {
                 app('sentry')->getClient()->captureMessage(
                     'User registered from unknown country',
                     null,
