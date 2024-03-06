@@ -48,40 +48,56 @@ export function isPerfectCombo(score: SoloScoreJson) {
     : score.is_perfect_combo;
 }
 
-interface AttributeData {
-  attribute: SoloScoreStatisticsAttribute;
+interface AttributeDisplayMapping {
+  attributes: SoloScoreStatisticsAttribute[];
+  key: string;
   label: string;
+}
+
+interface AttributeDisplayTotal {
+  key: string;
+  label: string;
+  total: number;
 }
 
 const labelMiss = trans('beatmapsets.show.scoreboard.headers.miss');
 
-export const modeAttributesMap: Record<GameMode, AttributeData[]> = {
+export const modeAttributesMap: Record<GameMode, AttributeDisplayMapping[]> = {
   fruits: [
-    { attribute: 'great', label: 'fruits' },
-    { attribute: 'large_tick_hit', label: 'ticks' },
-    { attribute: 'small_tick_miss', label: 'drp miss' },
-    { attribute: 'miss', label: labelMiss },
+    { attributes: ['great'], key: 'great', label: 'fruits' },
+    { attributes: ['large_tick_hit'], key: 'ticks', label: 'ticks' },
+    { attributes: ['small_tick_miss'], key: 'drp_miss', label: 'drp miss' },
+    // legacy/stable scores merge miss and large_tick_miss into one number
+    { attributes: ['miss', 'large_tick_miss'], key: 'miss', label: labelMiss },
   ],
   mania: [
-    { attribute: 'perfect', label: 'max' },
-    { attribute: 'great', label: '300' },
-    { attribute: 'good', label: '200' },
-    { attribute: 'ok', label: '100' },
-    { attribute: 'meh', label: '50' },
-    { attribute: 'miss', label: labelMiss },
+    { attributes: ['perfect'], key: 'perfect', label: 'max' },
+    { attributes: ['great'], key: 'great', label: '300' },
+    { attributes: ['good'], key: 'good', label: '200' },
+    { attributes: ['ok'], key: 'ok', label: '100' },
+    { attributes: ['meh'], key: 'meh', label: '50' },
+    { attributes: ['miss'], key: 'miss', label: labelMiss },
   ],
   osu: [
-    { attribute: 'great', label: '300' },
-    { attribute: 'ok', label: '100' },
-    { attribute: 'meh', label: '50' },
-    { attribute: 'miss', label: labelMiss },
+    { attributes: ['great'], key: 'great', label: '300' },
+    { attributes: ['ok'], key: 'ok', label: '100' },
+    { attributes: ['meh'], key: 'meh', label: '50' },
+    { attributes: ['miss'], key: 'miss', label: labelMiss },
   ],
   taiko: [
-    { attribute: 'great', label: 'great' },
-    { attribute: 'ok', label: 'good' },
-    { attribute: 'miss', label: labelMiss },
+    { attributes: ['great'], key: 'great', label: 'great' },
+    { attributes: ['ok'], key: 'ok', label: 'good' },
+    { attributes: ['miss'], key: 'miss', label: labelMiss },
   ],
 };
+
+export function attributeDisplayTotals(ruleset: GameMode, score: SoloScoreJson): AttributeDisplayTotal[] {
+  return modeAttributesMap[ruleset].map((mapping) => ({
+    key: mapping.key,
+    label: mapping.label,
+    total: mapping.attributes.reduce((sum, attribute) => sum + (score.statistics[attribute] ?? 0), 0),
+  }));
+}
 
 export function rank(score: SoloScoreJson) {
   return shouldReturnLegacyValue(score)
