@@ -72,6 +72,8 @@ class Handler extends ExceptionHandler
             return 401;
         } elseif ($e instanceof AuthorizationException || $e instanceof MissingScopeException) {
             return 403;
+        } elseif (static::isOAuthSessionException($e)) {
+            return 422;
         } else {
             return 500;
         }
@@ -80,6 +82,12 @@ class Handler extends ExceptionHandler
     private static function isOAuthServerException($e)
     {
         return ($e instanceof PassportOAuthServerException) && ($e->getPrevious() instanceof OAuthServerException);
+    }
+
+    private static function isOAuthSessionException(Throwable $e): bool
+    {
+        return ($e instanceof \Exception)
+            && $e->getMessage() === 'Authorization request was not present in the session.';
     }
 
     private static function unwrapViewException(Throwable $e): Throwable
@@ -175,7 +183,9 @@ class Handler extends ExceptionHandler
 
     protected function shouldntReport(Throwable $e)
     {
-        return parent::shouldntReport(static::unwrapViewException($e)) || $this->isOAuthServerException($e);
+        $e = static::unwrapViewException($e);
+
+        return parent::shouldntReport($e) || static::isOAuthServerException($e) || static::isOAuthSessionException($e);
     }
 
     protected function unauthenticated($request, AuthenticationException $exception)
