@@ -33,6 +33,7 @@ class Handler extends ExceptionHandler
         ModelNotFoundException::class,
         TokenMismatchException::class,
         \Illuminate\Validation\ValidationException::class,
+        \Laravel\Octane\Exceptions\DdException::class,
         \Symfony\Component\HttpKernel\Exception\HttpException::class,
 
         // local
