@@ -16,8 +16,12 @@ class OsuWiki
 {
     const CACHE_DURATION = 60;
 
-    public $path;
-    public $data;
+    public array $data;
+
+    public function __construct(public string $path)
+    {
+        $this->data = static::fetch($this->path);
+    }
 
     public static function cleanPath($path)
     {
@@ -139,12 +143,6 @@ class OsuWiki
     public static function user()
     {
         return $GLOBALS['cfg']['osu']['wiki']['user'];
-    }
-
-    public function __construct($path)
-    {
-        $this->path = $path;
-        $this->data = static::fetch($this->path);
     }
 
     public function content()
