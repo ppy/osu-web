@@ -1133,11 +1133,11 @@ function nav_links()
     ];
     $links['rankings'] = [
         'rankings.type.performance' => route('rankings', ['mode' => $defaultMode, 'type' => 'performance']),
-        'rankings.type.charts' => route('rankings', ['mode' => $defaultMode, 'type' => 'charts']),
         'rankings.type.score' => route('rankings', ['mode' => $defaultMode, 'type' => 'score']),
         'rankings.type.country' => route('rankings', ['mode' => $defaultMode, 'type' => 'country']),
         'rankings.type.multiplayer' => route('multiplayer.rooms.show', ['room' => 'latest']),
         'rankings.type.seasons' => route('seasons.show', ['season' => 'latest']),
+        'rankings.type.charts' => route('rankings', ['mode' => $defaultMode, 'type' => 'charts']),
         'layout.menu.rankings.kudosu' => route('rankings.kudosu'),
     ];
     $links['community'] = [

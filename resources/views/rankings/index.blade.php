@@ -24,7 +24,7 @@
     ];
 
     $links = [];
-    foreach (['performance', 'charts', 'score', 'country', 'multiplayer', 'seasons', 'kudosu'] as $tab) {
+    foreach (['performance', 'score', 'country', 'multiplayer', 'seasons', 'charts', 'kudosu'] as $tab) {
         $links[] = [
             'active' => $tab === $type,
             'title' => osu_trans("rankings.type.{$tab}"),
