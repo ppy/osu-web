@@ -5,6 +5,7 @@
 
 namespace App\Libraries;
 
+use App\Exceptions\GitHubInvalidDataException;
 use App\Exceptions\GitHubNotFoundException;
 use App\Exceptions\GitHubTooLargeException;
 use App\Jobs\UpdateWiki;
@@ -44,12 +45,19 @@ class OsuWiki
         return GitHub::gitData()->trees()->show(static::user(), static::repository(), $sha ?? static::branch(), $recursive);
     }
 
-    public static function fetch($path)
+    public static function fetch($path): array
     {
         try {
-            return GitHub::repo()
+            $ret = GitHub::repo()
                 ->contents()
                 ->show(static::user(), static::repository(), $path, static::branch());
+
+            if (!is_array($ret) || !isset($ret['content'])) {
+                $json = json_encode($ret);
+                throw new GitHubInvalidDataException("Received object for '{$path}' is missing content field: {$json}");
+            }
+
+            return $ret;
         } catch (GithubException $e) {
             $message = $e->getMessage();
 
