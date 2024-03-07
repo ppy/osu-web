@@ -3,37 +3,25 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @php
+    use App\Http\Controllers\RankingController;
+
     $mode ??= default_mode();
-    $selectorParams = [
-        'type' => $type,
-        'mode' => $mode,
-        'route' => fn ($routeMode, $routeType) => (
-            match ($routeType) {
-                'country' => route('rankings', ['mode' => $routeMode, 'type' => $routeType]),
-                'multiplayer' => route('multiplayer.rooms.show', ['room' => 'latest']),
-                'seasons' => route('seasons.show', ['season' => 'latest']),
-                'kudosu' => route('rankings.kudosu'),
-                default => trim(route('rankings', [
-                    'mode' => $routeMode,
-                    'type' => $routeType,
-                    'spotlight' => $routeType === 'charts' ? $spotlight ?? null : null,
-                    'country' => $routeType === 'performance' ? ($country['acronym'] ?? null) : null,
-                ]), '?')
-            }
-        )
-    ];
+    $country ??= null;
+    $spotlight ??= null;
+    $rankingUrl = fn (string $type, string $rulesetName) =>
+        RankingController::url($type, $rulesetName, $country, $spotlight);
 
     $links = [];
-    foreach (['performance', 'score', 'country', 'multiplayer', 'seasons', 'charts', 'kudosu'] as $tab) {
+    foreach (RankingController::TYPES as $tab) {
         $links[] = [
             'active' => $tab === $type,
             'title' => osu_trans("rankings.type.{$tab}"),
-            'url' => $selectorParams['route']($mode, $tab),
+            'url' => $rankingUrl($tab, $mode),
         ];
     }
 
-    $hasMode = $hasMode ?? true;
-    $hasScores = $hasScores ?? true;
+    $hasMode ??= true;
+    $hasScores ??= true;
 @endphp
 
 @extends('master', ['titlePrepend' => $titlePrepend ?? osu_trans("rankings.type.{$type}")])
@@ -45,7 +33,7 @@
     ]])
         @slot('linksAppend')
             @if($hasMode)
-                @include('rankings._mode_selector', $selectorParams)
+                @include('rankings._mode_selector')
             @endif
 
             @yield('additionalHeaderLinks')
