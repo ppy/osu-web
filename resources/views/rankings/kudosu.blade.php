@@ -41,7 +41,7 @@
                                 'countryCode' => $user->country_acronym,
                                 'modifiers' => 'medium',
                             ])
-                            {!!  link_to_user($user, null, '', ['ranking-page-table__user-link-text']) !!}
+                            {!! link_to_user($user, null, '', ['ranking-page-table__user-link-text']) !!}
                         </div>
                     </td>
                     <td class="ranking-page-table__column ranking-page-table__column--focused">
