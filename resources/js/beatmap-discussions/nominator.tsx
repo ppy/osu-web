@@ -9,7 +9,7 @@ import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussion
 import GameMode from 'interfaces/game-mode';
 import { route } from 'laroute';
 import { forEachRight, map, uniq } from 'lodash';
-import { action, computed, makeObservable, observable, runInAction, toJS } from 'mobx';
+import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -40,12 +40,6 @@ export class Nominator extends React.Component<Props> {
 
   private get currentHype() {
     return this.props.discussionsState.totalHypeCount;
-  }
-
-  private get hasModeWithMorethanOneNomination() {
-    if (this.playmodes == null) return false;
-
-    return this.playmodes.some((mode) => this.potentialNominationCount(mode) > 1);
   }
 
   private get mapCanBeNominated() {
@@ -134,6 +128,12 @@ export class Nominator extends React.Component<Props> {
     );
   }
 
+  private get calculatedMode() {
+    return this.beatmapset.nominations_summary.main_ruleset
+      // TODO: document
+      ?? (this.selectedModes.length === 1 ? this.selectedModes[0] : null);
+  }
+
   private hasFullNomination(mode: GameMode) {
     return this.nominationEvents.some((event) => {
       const user = this.users.get(event.user_id);
@@ -184,11 +184,12 @@ export class Nominator extends React.Component<Props> {
       return false;
     }
 
-    return curr >= req;
+    return curr >= req
+      || this.calculatedMode != null && this.calculatedMode !== mode && this.nominationCountWithSelections(mode) > 0;
   }
 
-  private potentialNominationCount(mode: GameMode) {
-    if (typeof this.beatmapset.nominations.current === 'number') {
+  private nominationCountWithSelections(mode: GameMode) {
+    if (this.beatmapset.nominations.legacy_mode) {
       throw new Error();
     }
 
@@ -331,10 +332,6 @@ export class Nominator extends React.Component<Props> {
 
     if (!this.userHasNominatePermission || this.nominationCountMet(mode)) {
       return false;
-    }
-
-    if (this.beatmapset.nominations_summary.main_ruleset == null) {
-      return !this.hasModeWithMorethanOneNomination();
     }
 
     const userNominatable = this.userNominatableModes;
