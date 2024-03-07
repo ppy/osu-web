@@ -468,13 +468,35 @@ function json_time(?DateTime $time): ?string
     return $time === null ? null : $time->format(DateTime::ATOM);
 }
 
-function log_error($exception)
+function log_error($exception, ?array $sentryTags = null): void
 {
     Log::error($exception);
+    log_error_sentry($exception, $sentryTags);
+}
 
-    if ($GLOBALS['cfg']['sentry']['dsn']) {
-        Sentry::captureException($exception);
+function log_error_sentry(Throwable $exception, ?array $tags = null): ?string
+{
+    // Fallback in case error happening before config is initialised
+    if (!($GLOBALS['cfg']['sentry']['dsn'] ?? false)) {
+        return null;
     }
+
+    return Sentry\withScope(function ($scope) use ($exception, $tags) {
+        $currentUser = Auth::user();
+        $userContext = $currentUser === null
+            ? ['id' => null]
+            : [
+                'id' => $currentUser->getKey(),
+                'username' => $currentUser->username,
+            ];
+
+        $scope->setUser($userContext);
+        foreach ($tags ?? [] as $key => $value) {
+            $scope->setTag($key, $value);
+        }
+
+        return Sentry\captureException($exception);
+    });
 }
 
 function logout()
@@ -1110,11 +1132,11 @@ function nav_links()
     ];
     $links['rankings'] = [
         'rankings.type.performance' => route('rankings', ['mode' => $defaultMode, 'type' => 'performance']),
-        'rankings.type.charts' => route('rankings', ['mode' => $defaultMode, 'type' => 'charts']),
         'rankings.type.score' => route('rankings', ['mode' => $defaultMode, 'type' => 'score']),
         'rankings.type.country' => route('rankings', ['mode' => $defaultMode, 'type' => 'country']),
         'rankings.type.multiplayer' => route('multiplayer.rooms.show', ['room' => 'latest']),
         'rankings.type.seasons' => route('seasons.show', ['season' => 'latest']),
+        'rankings.type.charts' => route('rankings', ['mode' => $defaultMode, 'type' => 'charts']),
         'layout.menu.rankings.kudosu' => route('rankings.kudosu'),
     ];
     $links['community'] = [

@@ -24,7 +24,7 @@ return [
     ],
 
     'type' => [
-        'charts' => 'spotlights',
+        'charts' => 'spotlights (old)',
         'country' => 'country',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multiplayer',
