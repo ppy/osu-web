@@ -259,8 +259,6 @@ class RankingController extends Controller
             )];
         }
 
-        $scores->loadMissing('country');
-
         return ext_view('rankings.kudosu', compact('scores'));
     }
 
