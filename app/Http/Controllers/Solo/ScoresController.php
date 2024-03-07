@@ -6,6 +6,7 @@
 namespace App\Http\Controllers\Solo;
 
 use App\Http\Controllers\Controller as BaseController;
+use App\Libraries\ClientCheck;
 use App\Models\ScoreToken;
 use App\Models\Solo\Score;
 use App\Transformers\ScoreTransformer;
@@ -20,18 +21,24 @@ class ScoresController extends BaseController
 
     public function store($beatmapId, $tokenId)
     {
-        $score = DB::transaction(function () use ($beatmapId, $tokenId) {
+        $request = \Request::instance();
+        $clientTokenData = ClientCheck::parseToken($request);
+        $score = DB::transaction(function () use ($beatmapId, $request, $tokenId) {
             $user = auth()->user();
             $scoreToken = ScoreToken::where([
                 'beatmap_id' => $beatmapId,
                 'user_id' => $user->getKey(),
             ])->lockForUpdate()->findOrFail($tokenId);
 
+            $beatmapsetApprovedAt = $scoreToken->beatmap?->beatmapset?->approved_date;
+            if ($beatmapsetApprovedAt !== null && $scoreToken->created_at->isBefore($beatmapsetApprovedAt)) {
+                abort(422, 'beatmapset state has been updated');
+            }
+
             // return existing score otherwise (assuming duplicated submission)
             if ($scoreToken->score_id === null) {
-                $params = Score::extractParams(\Request::all(), $scoreToken);
+                $params = Score::extractParams($request->all(), $scoreToken);
                 $score = Score::createFromJsonOrExplode($params);
-                $score->createLegacyEntryOrExplode();
                 $scoreToken->fill(['score_id' => $score->getKey()])->saveOrExplode();
             } else {
                 // assume score exists and is valid
@@ -41,11 +48,11 @@ class ScoresController extends BaseController
             return $score;
         });
 
-        $scoreJson = json_item($score, new ScoreTransformer(ScoreTransformer::TYPE_SOLO));
         if ($score->wasRecentlyCreated) {
-            $score::queueForProcessing($scoreJson);
+            ClientCheck::queueToken($clientTokenData, $score->getKey());
+            $score->queueForProcessing();
         }
 
-        return $scoreJson;
+        return json_item($score, new ScoreTransformer(ScoreTransformer::TYPE_SOLO));
     }
 }

@@ -7,8 +7,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Score\Best\Model as ScoreBest;
 use App\Models\Solo\Score as SoloScore;
+use App\Models\UserCountryHistory;
 use App\Transformers\ScoreTransformer;
 use App\Transformers\UserCompactTransformer;
+use Carbon\CarbonImmutable;
 
 class ScoresController extends Controller
 {
@@ -50,6 +52,23 @@ class ScoresController extends Controller
             abort(404);
         }
 
+        if (\Auth::user()->getKey() !== $score->user_id) {
+            $score->user->statistics($score->getMode(), true)->increment('replay_popularity');
+
+            $month = CarbonImmutable::now();
+            $currentMonth = UserCountryHistory::formatDate($month);
+
+            $score->user->replaysWatchedCounts()
+                ->firstOrCreate(['year_month' => $currentMonth], ['count' => 0])
+                ->incrementInstance('count');
+
+            if ($score instanceof ScoreBest) {
+                $score->replayViewCount()
+                    ->firstOrCreate([], ['play_count' => 0])
+                    ->incrementInstance('play_count');
+            }
+        }
+
         static $responseHeaders = [
             'Content-Type' => 'application/x-osu-replay',
         ];
@@ -66,12 +85,10 @@ class ScoresController extends Controller
 
     public function show($rulesetOrSoloId, $legacyId = null)
     {
-        $score = $legacyId === null
-            ? SoloScore::whereHas('beatmap.beatmapset')->findOrFail($rulesetOrSoloId)
-            : ScoreBest::getClass($rulesetOrSoloId)
-                ::whereHas('beatmap.beatmapset')
-                ->visibleUsers()
-                ->findOrFail($legacyId);
+        [$scoreClass, $id] = $legacyId === null
+            ? [SoloScore::class, $rulesetOrSoloId]
+            : [ScoreBest::getClass($rulesetOrSoloId), $legacyId];
+        $score = $scoreClass::whereHas('beatmap.beatmapset')->visibleUsers()->findOrFail($id);
 
         $userIncludes = array_map(function ($include) {
             return "user.{$include}";

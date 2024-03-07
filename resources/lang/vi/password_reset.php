@@ -36,6 +36,9 @@ return [
     'starting' => [
         'username' => 'Nhập địa chỉ email hoặc tên tài khoản',
 
+        'reason' => [
+            'inactive_different_country' => "Tài khoản của bạn đã không được sử dụng trong một thời gian dài. Để đảm bảo an toàn cho tài khoản của bạn, vui lòng đặt lại mật khẩu.",
+        ],
         'support' => [
             '_' => 'Cần nhiều sự giúp đỡ hơn? Liên hệ với chúng tôi bằng :button.',
             'button' => 'hệ thống hỗ trợ',

@@ -13,7 +13,28 @@ return [
         'nav_title' => 'lijst',
     ],
 
+    'judge' => [
+        'hide_judged' => '',
+        'nav_title' => '',
+        'no_current_vote' => '',
+        'update' => '',
+        'validation' => [
+            'missing_score' => '',
+            'contest_vote_judged' => '',
+        ],
+        'voted' => '',
+    ],
+
+    'judge_results' => [
+        '_' => '',
+        'creator' => '',
+        'score' => '',
+        'total_score' => '',
+    ],
+
     'voting' => [
+        'judge_link' => '',
+        'judged_notice' => '',
         'login_required' => 'Log in om te kunnen stemmen.',
         'over' => 'Je kan niet meer stemmen in deze wedstrijd',
         'show_voted_only' => 'Toon gestemde stemmen',
@@ -38,6 +59,7 @@ return [
             ],
         ],
     ],
+
     'entry' => [
         '_' => 'inzending',
         'login_required' => 'Log in om aan de wedstrijd mee te doen.',
@@ -45,22 +67,27 @@ return [
         'preparation' => 'We zijn nog bezig met de voorbereidingen van deze wedstrijd. Heb nog even geduld alsjeblieft!',
         'drop_here' => 'Sleep je inzending hier',
         'download' => 'Download .osz',
+
         'wrong_type' => [
             'art' => 'Alleen .jpg en .png bestanden worden geaccepteerd voor deze wedstrijd.',
             'beatmap' => 'Alleen .osu bestanden worden geaccepteerd voor deze wedstrijd.',
             'music' => 'Alleen .mp3 bestanden worden geaccepteerd voor deze wedstrijd.',
         ],
+
         'wrong_dimensions' => 'Inzendingen voor deze wedstrijd moeten :widthx:height zijn',
         'too_big' => 'Inzendingen voor deze wedstrijd kunnen maar :limit zijn.',
     ],
+
     'beatmaps' => [
         'download' => 'Download Inzending',
     ],
+
     'vote' => [
         'list' => 'stemmen',
         'count' => ':count_delimited stem|:count_delimited stemmen',
         'points' => ':count_delimited punt|:count_delimited punten',
     ],
+
     'dates' => [
         'ended' => 'Gesloten :date',
         'ended_no_date' => 'Afgelopen',
@@ -70,6 +97,7 @@ return [
             'soon' => 'binnenkort™',
         ],
     ],
+
     'states' => [
         'entry' => 'Inzendingen Open',
         'voting' => 'Stemmen Gestard',

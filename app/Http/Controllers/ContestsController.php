@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\InvariantException;
 use App\Models\Contest;
+use App\Transformers\ContestTransformer;
 use Auth;
 
 class ContestsController extends Controller
@@ -21,6 +22,27 @@ class ContestsController extends Controller
 
         return ext_view('contests.index', [
             'contests' => $contests->get(),
+        ]);
+    }
+
+    public function judge($id)
+    {
+        $contest = Contest::with('entries.judgeVotes')
+            ->with('entries.judgeVotes.scores')
+            ->with('scoringCategories')
+            ->findOrFail($id);
+
+        abort_if(!$contest->isJudged(), 404);
+
+        priv_check('ContestJudgeShow', $contest)->ensureCan();
+
+        $contestJson = json_item($contest, new ContestTransformer(), [
+            'entries.current_user_judge_vote.scores',
+            'scoring_categories',
+        ]);
+
+        return ext_view('contests.judge', [
+            'contestJson' => $contestJson,
         ]);
     }
 

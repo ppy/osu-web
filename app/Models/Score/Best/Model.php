@@ -83,14 +83,18 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
             'date_json' => $this->getJsonTimeFast($key),
 
             'best' => $this,
-            'data' => $this->getData(),
             'enabled_mods' => $this->getEnabledModsAttribute($this->getRawAttribute('enabled_mods')),
             'pass' => true,
+
+            'best_id' => $this->getKey(),
+            'has_replay' => $this->replay,
 
             'beatmap',
             'replayViewCount',
             'reportedIn',
             'user' => $this->getRelationValue($key),
+
+            default => $this->getNewScoreAttribute($key),
         };
     }
 

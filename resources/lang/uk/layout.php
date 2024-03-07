@@ -112,6 +112,7 @@ return [
         'legal' => [
             '_' => 'Юридичні права і статус',
             'copyright' => 'Авторські права (DMCA)',
+            'jp_sctl' => '',
             'privacy' => 'Політика конфіденційності',
             'server_status' => 'Статус серверів',
             'source_code' => 'Вихідний код',
@@ -195,6 +196,8 @@ return [
             'account-edit' => 'Налаштування',
             'follows' => 'Перелік підписок',
             'friends' => 'Друзі',
+            'legacy_score_only_toggle' => 'Режим Lazer',
+            'legacy_score_only_toggle_tooltip' => 'Режим відображення, який показує результати, поставлені у клієнті lazer з новим алгоритмом підрахунку очок',
             'logout' => 'Вийти',
             'profile' => 'Мій профіль',
         ],

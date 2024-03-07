@@ -13,7 +13,28 @@ return [
         'nav_title' => 'listagem',
     ],
 
+    'judge' => [
+        'hide_judged' => '',
+        'nav_title' => '',
+        'no_current_vote' => 'Ainda não votaste.',
+        'update' => 'atualizar',
+        'validation' => [
+            'missing_score' => 'pontuação em falta',
+            'contest_vote_judged' => 'Não podes votar em concursos apreciados.',
+        ],
+        'voted' => 'Já votaste nesta inscrição.',
+    ],
+
+    'judge_results' => [
+        '_' => 'Resultados da apreciação',
+        'creator' => 'criador',
+        'score' => 'Pontuação',
+        'total_score' => 'pontuação total',
+    ],
+
     'voting' => [
+        'judge_link' => '',
+        'judged_notice' => '',
         'login_required' => 'Por favor inicia sessão para votar.',
         'over' => 'A votação para este concurso terminou',
         'show_voted_only' => 'Mostrar votados',
@@ -38,6 +59,7 @@ return [
             ],
         ],
     ],
+
     'entry' => [
         '_' => 'inscrição',
         'login_required' => 'Por favor inicia sessão para entrar no concurso.',
@@ -45,22 +67,27 @@ return [
         'preparation' => 'Estamos de momento a preparar este concurso. Por favor, espera pacientemente!',
         'drop_here' => 'Larga a tua inscrição aqui',
         'download' => 'Transferir .osz',
+
         'wrong_type' => [
             'art' => 'Somente ficheiros .jpg e .png são aceites para este concurso.',
             'beatmap' => 'Somente ficheiros .osu são aceites para este concurso.',
             'music' => 'Somente ficheiros .mp3 são aceites para este concurso.',
         ],
+
         'wrong_dimensions' => 'As entradas para este concurso devem ser :widthx:height',
         'too_big' => 'As inscrições para este concurso só podem ser até :limit.',
     ],
+
     'beatmaps' => [
         'download' => 'Transferir inscrição',
     ],
+
     'vote' => [
         'list' => 'votos',
         'count' => ':count voto|:count votos',
         'points' => ':count ponto|:count pontos',
     ],
+
     'dates' => [
         'ended' => 'Terminou em :date',
         'ended_no_date' => 'Concluído',
@@ -70,6 +97,7 @@ return [
             'soon' => 'em breve™',
         ],
     ],
+
     'states' => [
         'entry' => 'Entrada aberta',
         'voting' => 'A votação começou',

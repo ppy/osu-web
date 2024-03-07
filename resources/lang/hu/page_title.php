@@ -63,8 +63,12 @@ return [
         'comments_controller' => [
             '_' => 'hozzászolások',
         ],
+        'contest_entries_controller' => [
+            'judge_results' => 'verseny zsűrizési eredményei',
+        ],
         'contests_controller' => [
             '_' => 'versenyek',
+            'judge' => 'verseny zsűrizése',
         ],
         'groups_controller' => [
             'show' => 'csoportok',

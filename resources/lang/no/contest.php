@@ -13,7 +13,28 @@ return [
         'nav_title' => 'liste',
     ],
 
+    'judge' => [
+        'hide_judged' => 'skjul dømmede innslag',
+        'nav_title' => 'dommer',
+        'no_current_vote' => 'du har ikke stemt enda.',
+        'update' => 'oppdater',
+        'validation' => [
+            'missing_score' => 'manglende score',
+            'contest_vote_judged' => 'kan ikke stemme i dømmede konkurranser',
+        ],
+        'voted' => 'Du har allerede sendt inn en stemme på dette innslaget.',
+    ],
+
+    'judge_results' => [
+        '_' => 'Resultatene fra juryen',
+        'creator' => 'skaper',
+        'score' => 'Score',
+        'total_score' => 'total score',
+    ],
+
     'voting' => [
+        'judge_link' => 'Du er en dommer i denne konkurransen. Døm innslagene her!',
+        'judged_notice' => 'Denne konkurransen bruker dommersystemet, dommerne dømmer innslagene for øyeblikket.',
         'login_required' => 'Vennligst logg inn for å stemme.',
         'over' => 'Avstemmingen for denne konkurransen har avsluttet',
         'show_voted_only' => 'Vis stemte',
@@ -38,6 +59,7 @@ return [
             ],
         ],
     ],
+
     'entry' => [
         '_' => 'deltager',
         'login_required' => 'Vennligst logg inn for å delta i konkurransen.',
@@ -45,22 +67,27 @@ return [
         'preparation' => 'Vi driver for tiden å forbereder denne konkurransen. Vennligst vent tålmodig!',
         'drop_here' => 'Slipp bidraget ditt her',
         'download' => 'Last ned .osz',
+
         'wrong_type' => [
             'art' => 'Bare .jpg og .png filer er akseptert for denne konkurransen.',
             'beatmap' => 'Bare .osu filer er akseptert for denne konkurransen.',
             'music' => 'Bare .mp3 filer er akseptert for denne konkurransen.',
         ],
+
         'wrong_dimensions' => 'Innsendinger for denne konkurransen må være :widthx:height',
         'too_big' => 'Bidrag til denne konkurransen kan maks være :limit.',
     ],
+
     'beatmaps' => [
         'download' => 'Last ned bidraget',
     ],
+
     'vote' => [
         'list' => 'stemmer',
         'count' => ':count_delimited stemme|:count_delimited stemmer',
         'points' => ':count_delimited poeng|:count_delimited poeng',
     ],
+
     'dates' => [
         'ended' => 'Avsluttet :date',
         'ended_no_date' => 'Avsluttet',
@@ -70,6 +97,7 @@ return [
             'soon' => 'snart™',
         ],
     ],
+
     'states' => [
         'entry' => 'Påmelding åpen',
         'voting' => 'Avstemningen har begynt',

@@ -18,7 +18,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property \Carbon\Carbon $created_at
  * @property int $id
  * @property int $playlist_item_id
- * @property float|null $pp
  * @property int $score_id
  * @property ScoreLink $scoreLink
  * @property int $total_score
@@ -51,7 +50,6 @@ class PlaylistItemUserHighScore extends Model
             'user_id' => $userId,
         ], [
             'accuracy' => 0,
-            'pp' => 0,
             'total_score' => 0,
         ]);
     }
@@ -71,7 +69,7 @@ class PlaylistItemUserHighScore extends Model
     {
         $placeholder = new static([
             'score_id' => $scoreLink->getKey(),
-            'total_score' => $scoreLink->score->data->totalScore,
+            'total_score' => $scoreLink->score->total_score,
         ]);
 
         static $typeOptions = [
@@ -112,15 +110,18 @@ class PlaylistItemUserHighScore extends Model
         $this->incrementInstance('attempts');
     }
 
-    public function updateWithScoreLink(ScoreLink $scoreLink): void
+    public function updateWithScoreLink(ScoreLink $scoreLink): bool
     {
         $score = $scoreLink->score;
 
-        $this->fill([
-            'accuracy' => $score->data->accuracy,
-            'pp' => $score->pp,
-            'score_id' => $scoreLink->getKey(),
-            'total_score' => $score->data->totalScore,
+        if ($score === null || !$score->passed || $score->total_score < $this->total_score) {
+            return false;
+        }
+
+        return $this->fill([
+            'accuracy' => $score->accuracy,
+            'score_id' => $score->getKey(),
+            'total_score' => $score->total_score,
         ])->save();
     }
 }

@@ -8,14 +8,15 @@ namespace Tests;
 use App\Events\NewPrivateNotificationEvent;
 use App\Http\Middleware\AuthApi;
 use App\Jobs\Notifications\BroadcastNotificationBase;
+use App\Libraries\OAuth\EncodeToken;
 use App\Libraries\Search\ScoreSearch;
 use App\Libraries\Session\Store as SessionStore;
 use App\Models\Beatmapset;
+use App\Models\Build;
 use App\Models\OAuth\Client;
 use App\Models\User;
 use Artisan;
 use DMS\PHPUnitExtensions\ArraySubset\ArraySubsetAsserts;
-use Firebase\JWT\JWT;
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -38,6 +39,14 @@ class TestCase extends BaseTestCase
         $callback();
 
         static::resetAppDb($db);
+    }
+
+    protected static function createClientToken(Build $build, ?int $clientTime = null): string
+    {
+        $data = strtoupper(bin2hex($build->hash).bin2hex(pack('V', $clientTime ?? time())));
+        $expected = hash_hmac('sha1', $data, '');
+
+        return strtoupper(bin2hex(random_bytes(40)).$data.$expected.'00');
     }
 
     protected static function fileList($path, $suffix)
@@ -175,31 +184,14 @@ class TestCase extends BaseTestCase
         return $this;
     }
 
-    // FIXME: figure out how to generate the encrypted token without doing it
-    //        manually here. Or alternatively some other way to authenticate
-    //        with token.
     protected function actingWithToken($token)
     {
-        static $privateKey;
-
-        if ($privateKey === null) {
-            $privateKey = $GLOBALS['cfg']['passport']['private_key'] ?? file_get_contents(Passport::keyPath('oauth-private.key'));
-        }
-
-        $encryptedToken = JWT::encode([
-            'aud' => $token->client_id,
-            'exp' => $token->expires_at->timestamp,
-            'iat' => $token->created_at->timestamp, // issued at
-            'jti' => $token->getKey(),
-            'nbf' => $token->created_at->timestamp, // valid after
-            'sub' => $token->user_id,
-            'scopes' => $token->scopes,
-        ], $privateKey, 'RS256');
-
         $this->actAsUserWithToken($token);
 
+        $encodedToken = EncodeToken::encodeAccessToken($token);
+
         return $this->withHeaders([
-            'Authorization' => "Bearer {$encryptedToken}",
+            'Authorization' => "Bearer {$encodedToken}",
         ]);
     }
 
@@ -245,17 +237,14 @@ class TestCase extends BaseTestCase
      */
     protected function createToken(?User $user, ?array $scopes = null, ?Client $client = null)
     {
-        $client ??= Client::factory()->create();
-
-        $token = $client->tokens()->create([
+        return ($client ?? Client::factory()->create())->tokens()->create([
             'expires_at' => now()->addDays(1),
             'id' => uniqid(),
             'revoked' => false,
             'scopes' => $scopes,
-            'user_id' => optional($user)->getKey(),
+            'user_id' => $user?->getKey(),
+            'verified' => true,
         ]);
-
-        return $token;
     }
 
     protected function expectCountChange(callable $callback, int $change, string $message = '')

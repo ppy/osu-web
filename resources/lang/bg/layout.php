@@ -112,6 +112,7 @@ return [
         'legal' => [
             '_' => 'Правила & Състояние',
             'copyright' => 'Авторски права (DMCA)',
+            'jp_sctl' => '',
             'privacy' => 'Поверителност',
             'server_status' => 'Състояние на сървърите',
             'source_code' => 'Програмен код',
@@ -195,6 +196,8 @@ return [
             'account-edit' => 'Настройки',
             'follows' => 'Следвани',
             'friends' => 'Приятели',
+            'legacy_score_only_toggle' => 'Lazer стил',
+            'legacy_score_only_toggle_tooltip' => 'Lazer стилът показва резултатите от lazer по нов точков алгоритъм',
             'logout' => 'Изход',
             'profile' => 'Моят профил',
         ],

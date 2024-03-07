@@ -112,6 +112,7 @@ return [
         'legal' => [
             '_' => 'Legal & Status',
             'copyright' => '著作権 (DMCA)',
+            'jp_sctl' => '特定商取引法',
             'privacy' => 'プライバシー',
             'server_status' => 'サーバー状態',
             'source_code' => 'ソースコード',
@@ -195,6 +196,8 @@ return [
             'account-edit' => '設定',
             'follows' => 'ウォッチリスト',
             'friends' => 'フレンド',
+            'legacy_score_only_toggle' => '',
+            'legacy_score_only_toggle_tooltip' => '',
             'logout' => 'ログアウト',
             'profile' => 'プロフィール',
         ],

@@ -5,6 +5,14 @@ if ($profileScoresNotice !== null) {
     $profileScoresNotice = markdown_plain($profileScoresNotice);
 }
 
+$clientTokenKeys = [];
+foreach (explode(',', env('CLIENT_TOKEN_KEYS') ?? '') as $entry) {
+    if ($entry !== '') {
+        [$platform, $encodedKey] = explode('=', $entry, 2);
+        $clientTokenKeys[$platform] = hex2bin($encodedKey);
+    }
+}
+
 // osu config~
 return [
     'achievement' => [
@@ -24,7 +32,7 @@ return [
         'cache_purge_prefix' => env('AVATAR_CACHE_PURGE_PREFIX'),
         'cache_purge_method' => env('AVATAR_CACHE_PURGE_METHOD'),
         'cache_purge_authorization_key' => env('AVATAR_CACHE_PURGE_AUTHORIZATION_KEY'),
-        'default' => env('DEFAULT_AVATAR', env('APP_URL', 'http://localhost').'/images/layout/avatar-guest.png'),
+        'default' => env('DEFAULT_AVATAR', env('APP_URL', 'http://localhost').'/images/layout/avatar-guest@2x.png'),
         'storage' => env('AVATAR_STORAGE', 'local-avatar'),
     ],
 
@@ -93,6 +101,9 @@ return [
     'client' => [
         'check_version' => get_bool(env('CLIENT_CHECK_VERSION')) ?? true,
         'default_build_id' => get_int(env('DEFAULT_BUILD_ID')) ?? 0,
+        'token_keys' => $clientTokenKeys,
+        'token_lifetime' => (get_float(env('CLIENT_TOKEN_LIFETIME_HOUR')) ?? 0.25) * 3600,
+        'token_queue' => env('CLIENT_TOKEN_QUEUE') ?? 'token-queue',
         'user_agent' => env('CLIENT_USER_AGENT', 'osu!'),
     ],
     'elasticsearch' => [
@@ -172,6 +183,9 @@ return [
         'es_cache_duration' => 60 * (get_float(env('SCORES_ES_CACHE_DURATION')) ?? 0.5), // in minutes, converted to seconds
         'experimental_rank_as_default' => get_bool(env('SCORES_EXPERIMENTAL_RANK_AS_DEFAULT')) ?? false,
         'experimental_rank_as_extra' => get_bool(env('SCORES_EXPERIMENTAL_RANK_AS_EXTRA')) ?? false,
+        'processing_queue' => presence(env('SCORES_PROCESSING_QUEUE')) ?? 'osu-queue:score-statistics',
+        'submission_enabled' => get_bool(env('SCORES_SUBMISSION_ENABLED')) ?? true,
+
         'rank_cache' => [
             'local_server' => get_bool(env('SCORES_RANK_CACHE_LOCAL_SERVER')) ?? false,
             'min_users' => get_int(env('SCORES_RANK_CACHE_MIN_USERS')) ?? 35000,
@@ -257,13 +271,17 @@ return [
             'key_length' => 8,
             'tries' => 8,
         ],
-        'registration_mode' => presence(env('REGISTRATION_MODE')) ?? 'client',
         'super_friendly' => array_map('intval', explode(' ', env('SUPER_FRIENDLY', '3'))),
         'ban_persist_days' => get_int(env('BAN_PERSIST_DAYS')) ?? 28,
 
         'country_change' => [
             'max_mixed_months' => get_int(env('USER_COUNTRY_CHANGE_MAX_MIXED_MONTHS')) ?? 2,
             'min_months' => get_int(env('USER_COUNTRY_CHANGE_MIN_MONTHS')) ?? 6,
+        ],
+
+        'registration_mode' => [
+            'client' => get_bool(env('REGISTRATION_MODE_CLIENT')) ?? true,
+            'web' => get_bool(env('REGISTRATION_MODE_WEB')) ?? false,
         ],
     ],
     'user_report_notification' => [

@@ -18,7 +18,7 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Has alcanzado tu límite de nominaciones diarias, por favor inténtalo de nuevo mañana.',
-            'incorrect_state' => 'Error al realizar esa acción, intente actualizar la página.',
+            'incorrect_state' => 'Error al realizar esa acción, intenta actualizar la página.',
             'owner' => "No puedes nominar tu propio mapa.",
             'set_metadata' => 'Debes establecer el género y el idioma antes de nominar.',
         ],
@@ -81,6 +81,7 @@ return [
     ],
 
     'contest' => [
+        'judging_not_active' => 'La evaluación para este concurso no está activa.',
         'voting_over' => 'No puedes cambiar tu voto después de que el periodo de votación para este concurso haya finalizado.',
 
         'entry' => [
@@ -172,6 +173,7 @@ return [
     'score' => [
         'pin' => [
             'disabled_type' => "No se puede anclar este tipo de puntuación",
+            'failed' => "No se puede fijar una puntuación fallida.",
             'not_owner' => 'Solo el propietario puede anclar la puntuación.',
             'too_many' => 'Se han anclado demasiadas puntuaciones.',
         ],
@@ -182,7 +184,7 @@ return [
             'edit' => [
                 'locked' => 'La página de usuario está bloqueada.',
                 'not_owner' => 'Solo puedes editar tu página de usuario.',
-                'require_supporter_tag' => 'Se necesita la etiqueta osu!supporter.',
+                'require_supporter_tag' => 'Necesitas una etiqueta de osu!supporter.',
             ],
         ],
         'update_email' => [

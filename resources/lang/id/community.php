@@ -15,12 +15,12 @@ return [
             'title' => 'Mengapa saya harus mendukung osu!? Ke mana saja uangnya akan disalurkan?',
 
             'team' => [
-                'title' => 'Dukung Tim kami',
+                'title' => 'Mendukung Tim Kami',
                 'description' => 'osu! dikembangkan dan dikelola oleh tim yang berukuran kecil. Dukunganmu akan sangat membantu... keberlangsungan hidup mereka.',
             ],
             'infra' => [
                 'title' => 'Prasarana Server',
-                'description' => 'Kontribusimu akan digunakan untuk memenuhi biaya operasional server kami dan menjalankan berbagai fasilitas yang kami miliki seperti situs web, multiplayer, papan peringkat, dan lain sebagainya.',
+                'description' => 'Kontribusimu akan digunakan untuk menutupi biaya server yang menjalankan fasilitas seperti situs web, layanan multiplayer, papan peringkat online, dan lain sebagainya.',
             ],
             'featured-artists' => [
                 'title' => 'Featured Artist',
@@ -28,8 +28,8 @@ return [
                 'link_text' => 'Lihat daftar Featured Artist saat ini &raquo;',
             ],
             'ads' => [
-                'title' => 'Bantu osu! Untuk Tetap Mandiri',
-                'description' => 'Kontribusimu memungkinkan osu! untuk dapat sepenuhnya berjalan secara mandiri tanpa harus bergantung pada iklan maupun sponsor dari luar.',
+                'title' => 'Membantu osu! Tetap Mandiri',
+                'description' => 'Kontribusimu membantu osu! untuk tetap mandiri dan sepenuhnya terbebas dari iklan maupun sponsor.',
             ],
             'tournaments' => [
                 'title' => 'Pendanaan Turnamen',
@@ -138,7 +138,7 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution' => 'Terima kasih atas dukunganmu! Kamu telah membeli :tags supporter tag dengan total kontribusi senilai :dollars!',
+            'contribution' => 'Terima kasih atas dukunganmu! Kamu telah membeli :tags tag supporter dengan total kontribusi senilai :dollars!',
             'gifted' => "Dari jumlah tersebut, kamu telah menghadiahkan :giftedTags di antaranya (:giftedDollars) kepada para pemain lainnya. Terima kasih atas kemurahan hatimu!",
             'not_yet' => "Kamu belum pernah memiliki supporter tag :(",
             'valid_until' => 'Tag supporter yang kamu miliki saat ini berlaku hingga :date!',

@@ -112,6 +112,7 @@ return [
         'legal' => [
             '_' => 'Prawne i status',
             'copyright' => 'Prawa Autorskie (DMCA)',
+            'jp_sctl' => '',
             'privacy' => 'Prywatność',
             'server_status' => 'Status serwera',
             'source_code' => 'Kod źródłowy',
@@ -195,6 +196,8 @@ return [
             'account-edit' => 'Ustawienia',
             'follows' => 'Listy obserwowanych',
             'friends' => 'Znajomi',
+            'legacy_score_only_toggle' => 'Tryb lazer',
+            'legacy_score_only_toggle_tooltip' => '',
             'logout' => 'Wyloguj się',
             'profile' => 'Mój profil',
         ],

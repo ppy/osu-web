@@ -6,7 +6,7 @@
 return [
     'cart' => [
         'checkout' => 'Checkout',
-        'empty_cart' => '',
+        'empty_cart' => 'Tanggalin lahat ng items sa cart',
         'info' => ':count_delimited pirasong item sa kariton ($:subtotal)|:count_delimited pirasong mga item sa kariton ($:subtotal)',
         'more_goodies' => 'Gusto kong tingnan ang higit pang mga goodies bago makumpleto ang order',
         'shipping_fees' => 'mga bayarin sa pagpapadala',
@@ -49,37 +49,37 @@ return [
     ],
 
     'discount' => 'makatipid ng :percent%',
-    'free' => '',
+    'free' => 'free!',
 
     'invoice' => [
-        'contact' => '',
-        'date' => '',
+        'contact' => 'Kontak:',
+        'date' => 'Petsa:',
         'echeck_delay' => 'Dahil ang pagbayad ay eCheck, maari pong magantay ng 10 araw para dumaan ng PayPal ang iyong bayarin!',
         'hide_from_activity' => 'ang mga tag ng osu!supporter sa pagkakasunud-sunod na ito ay hindi ipinapakita sa iyong kamakailang mga aktibidad.',
-        'sent_via' => '',
-        'shipping_to' => '',
-        'title' => '',
+        'sent_via' => 'Naipadala sa pamamagitan ng:',
+        'shipping_to' => 'Ipapadala sa:',
+        'title' => 'Invoice',
         'title_compact' => 'invoice',
 
         'status' => [
             'cancelled' => [
-                'title' => '',
+                'title' => 'Ang iyong order ay kinansela',
                 'line_1' => [
-                    '_' => "",
-                    'link_text' => '',
+                    '_' => "Kung hindi ka humiling ng pagkansela, pakikontak sa :link na nakasipi ang numero ng iyong order (#:order_number).",
+                    'link_text' => 'suporta ng osu!store',
                 ],
             ],
             'delivered' => [
-                'title' => '',
+                'title' => 'Ang iyong order ay naihatid na! Umaasa kami na natutuwa ka nito!',
                 'line_1' => [
-                    '_' => '',
-                    'link_text' => '',
+                    '_' => 'Kung mayroon kang anumang mga isyu sa iyong pagbili, pakikontak sa :link.',
+                    'link_text' => 'suporta ng osu!store',
                 ],
             ],
             'prepared' => [
-                'title' => '',
-                'line_1' => '',
-                'line_2' => '',
+                'title' => 'Ang iyong order ay inihahanda!',
+                'line_1' => 'Pakihintay ng kaunti pa upang maipadala ito. Ang impormasyon sa pagsubaybay ay lalabas dito kapag naproseso at naipadala na ang order. Ito ay maaaring tumagal ng hanggang 5 araw (ngunit kadalasang mas kaunti!) depende sa kung gaano kami ka-busy.',
+                'line_2' => 'Ipinapadala namin ang lahat ng mga order mula sa Japan gamit ang iba\'t ibang serbisyo sa pagpapadala depende sa bigat at halaga. Ang lugar na ito ay mag-a-update ng mga espesipiko kapag naipadala na namin ang order.',
             ],
             'processing' => [
                 'title' => 'Hindi pa kumpirmado ang iyong bayad!',
@@ -90,11 +90,11 @@ return [
                 ],
             ],
             'shipped' => [
-                'title' => '',
-                'tracking_details' => '',
+                'title' => 'Ang iyong order ay naipadala na!',
+                'tracking_details' => 'Ang mga detalye ng pagsubaybay ay ang sumusunod:',
                 'no_tracking_details' => [
-                    '_' => "",
-                    'link_text' => '',
+                    '_' => "Wala kaming mga detalye sa pagsubaybay habang ipinadala namin ang iyong package sa pamamagitan ng Air Mail, ngunit maaari mong asahan na matatanggap ito sa loob ng 1-3 linggo. Para sa Europa, kung minsan ang customs ay maaaring magpabagal ng order sa labas ng aming kontrol. Kung mayroon kang anumang mga alalahanin, pakitugon sa email ng kumpirmasyon ng order na natanggap mo (o :link).",
+                    'link_text' => 'magpadala sa amin ng isang email',
                 ],
             ],
         ],
@@ -108,18 +108,18 @@ return [
         'no_orders' => 'Walang maipakitang order.',
         'paid_on' => 'Ipinasa ang order noong :date',
         'resume' => 'Bumalik sa Checkout',
-        'shipping_and_handling' => '',
+        'shipping_and_handling' => 'Pagpapadala at Pangangasiwa',
         'shopify_expired' => 'Ang link ng checkout para sa order na ito ay nag-expire na.',
-        'subtotal' => '',
-        'total' => '',
+        'subtotal' => 'Subtotal',
+        'total' => 'Kabuuan',
 
         'details' => [
-            'order_number' => '',
-            'payment_terms' => '',
-            'salesperson' => '',
-            'shipping_method' => '',
-            'shipping_terms' => '',
-            'title' => '',
+            'order_number' => 'Order #',
+            'payment_terms' => 'Mga tuntunin sa Pagbabayad',
+            'salesperson' => 'Salesperson',
+            'shipping_method' => 'Pamamaraan sa Pagpapadala',
+            'shipping_terms' => 'Mga tuntunin sa Pagpapadala',
+            'title' => 'Mga Detalye ng Pag-order',
         ],
 
         'item' => [
@@ -151,14 +151,14 @@ return [
             'paid' => 'Paid',
             'processing' => 'Naghihintay ng kumpirmasyon',
             'shipped' => 'Naipadala',
-            'title' => '',
+            'title' => 'Status ng Order',
         ],
 
         'thanks' => [
-            'title' => '',
+            'title' => 'Salamat sa iyong order!',
             'line_1' => [
-                '_' => '',
-                'link_text' => '',
+                '_' => 'Makakatanggap ka ng email ng kumpirmasyon sa lalong madaling panahon. Kung mayroon kang anumang mga katanungan, paki :link!',
+                'link_text' => 'kontakin kami',
             ],
         ],
     ],
@@ -193,9 +193,9 @@ return [
     'username_change' => [
         'check' => 'Mag-type ng username upang suriin ang kakayahang magamit!',
         'checking' => 'Sinusuri ang availability ng :username...',
-        'placeholder' => '',
-        'label' => '',
-        'current' => '',
+        'placeholder' => 'Hiniling na Username',
+        'label' => 'Bago na Username',
+        'current' => 'Ang iyong kasalukuyang username ay ":username".',
 
         'require_login' => [
             '_' => 'Kailangan mong maging :link upang baguhin ang iyong pangalan!',

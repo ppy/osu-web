@@ -112,6 +112,7 @@ return [
         'legal' => [
             '_' => 'Hukum & Status',
             'copyright' => 'Hak Cipta (DMCA)',
+            'jp_sctl' => '',
             'privacy' => 'Privasi',
             'server_status' => 'Status Server',
             'source_code' => 'Kode Sumber',
@@ -195,6 +196,8 @@ return [
             'account-edit' => 'Pengaturan',
             'follows' => 'Daftar Pengamatan',
             'friends' => 'Teman',
+            'legacy_score_only_toggle' => 'Mode lazer',
+            'legacy_score_only_toggle_tooltip' => 'Mode lazer menampilkan skor yang diraih dari lazer dengan algoritma perhitungan skor baru',
             'logout' => 'Keluar',
             'profile' => 'Profil Saya',
         ],

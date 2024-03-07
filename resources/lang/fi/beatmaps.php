@@ -70,7 +70,7 @@ return [
             'disqualify' => 'Hylkää',
             'hype' => 'Hurraus!',
             'mapper_note' => 'Muistiinpano',
-            'nomination_reset' => 'Nollaa Suositus',
+            'nomination_reset' => 'Nollaa ehdollepano',
             'praise' => 'Kehu',
             'problem' => 'Ongelma',
             'problem_warning' => 'Ilmoita ongelmasta',
@@ -153,7 +153,7 @@ return [
             'approved' => 'Tämä rytmikartta hyväksyttiiin :date!',
             'graveyard' => "Tätä beatmappia ei ole päivitetty sitten :date ja sen tekijä on todennäköisesti hylännyt sen...",
             'loved' => 'Tämä rytmikartta lisättiin rakastettuihin :date!',
-            'ranked' => 'Tämä rytmikartta rankattiin :date!',
+            'ranked' => 'Tämä beatmap hyväksyttiin :date!',
             'wip' => 'Huomaa: Tämän rytmikartan tekijä on merkannut sen keskeneräiseksi.',
         ],
 
@@ -213,6 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'Tämä kartta tulee arvion perusteella rankatuksi :date, jos ongelmia ei löydy. Se on :position. :queue.',
+            'unresolved_problems' => '',
+            'problems' => '',
             'on' => ':date',
             'queue' => 'hyväksytysjonossa',
             'soon' => 'pian',
@@ -293,7 +295,7 @@ return [
         'pending' => 'Vireillä',
         'wip' => 'Työn alla',
         'qualified' => 'Kelpuutettu',
-        'ranked' => 'Pisteytetty',
+        'ranked' => 'Rankattu',
     ],
     'genre' => [
         'any' => 'Kaikki',

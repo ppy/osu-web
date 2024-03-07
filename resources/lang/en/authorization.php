@@ -81,6 +81,7 @@ return [
     ],
 
     'contest' => [
+        'judging_not_active' => 'Judging for this contest isn\'t active.',
         'voting_over' => 'You cannot change your vote after the voting period for this contest has ended.',
 
         'entry' => [
@@ -172,6 +173,7 @@ return [
     'score' => [
         'pin' => [
             'disabled_type' => "Can't pin this type of score",
+            'failed' => "Can't pin non-passing score.",
             'not_owner' => 'Only score owner can pin score.',
             'too_many' => 'Pinned too many scores.',
         ],

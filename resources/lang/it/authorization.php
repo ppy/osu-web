@@ -81,6 +81,7 @@ return [
     ],
 
     'contest' => [
+        'judging_not_active' => 'La valutazione per questo concorso non è attiva.',
         'voting_over' => 'Non puoi cambiare il tuo voto quando il periodo di votazione per questo contest è finito.',
 
         'entry' => [
@@ -172,6 +173,7 @@ return [
     'score' => [
         'pin' => [
             'disabled_type' => "Impossibile fissare questo tipo di punteggio",
+            'failed' => "Non puoi fissare un punteggio incompleto.",
             'not_owner' => 'Solo il proprietario del punteggio può fissarlo.',
             'too_many' => 'Hai già fissato troppi punteggi.',
         ],

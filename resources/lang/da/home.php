@@ -82,7 +82,6 @@ return [
         'action_lazer_title' => 'prøv osu!(lazer)',
         'action_title' => 'hent osu!',
         'for_os' => 'for :os',
-        'lazer_note' => '',
         'macos-fallback' => 'macOS brugere',
         'mirror' => 'mirror',
         'or' => 'eller',

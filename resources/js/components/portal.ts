@@ -1,11 +1,10 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { PureComponent, ReactNode } from 'react';
+import { PropsWithChildren, PureComponent } from 'react';
 import { createPortal } from 'react-dom';
 
 interface Props {
-  children: ReactNode;
   root?: Element;
 }
 
@@ -17,7 +16,7 @@ export function removeLeftoverPortalContainers() {
   }
 }
 
-export default class Portal extends PureComponent<Props> {
+export default class Portal extends PureComponent<PropsWithChildren<Props>> {
   private readonly container: HTMLDivElement;
 
   constructor(props: Props) {

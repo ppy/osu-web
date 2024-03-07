@@ -213,6 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'Odhaduje se, že tato mapa bude schválena :date, pokud nejsou nalezeny žádné problémy. Aktuálně je #:position ve :queue.',
+            'unresolved_problems' => '',
+            'problems' => '',
             'on' => 'dne :date',
             'queue' => 'frontě schválení',
             'soon' => 'brzy',
@@ -244,9 +246,9 @@ return [
                 'genre' => 'Žánr',
                 'language' => 'Jazyk',
                 'mode' => 'Mód',
-                'nsfw' => 'Explicitní mapy',
+                'nsfw' => 'Explicitní obsah',
                 'played' => 'Již hrané',
-                'rank' => 'Dle získaného hodnocení',
+                'rank' => 'Získané hodnocení',
                 'status' => 'Kategorie',
             ],
             'sorting' => [

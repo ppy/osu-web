@@ -27,7 +27,7 @@ class LoginTest extends DuskTestCase
                 ->type('password', 'password') // User factory generates users with the password hardcoded as 'password'
                 ->press('Sign in')
                 ->waitFor('.user-home')
-                ->assertPathIs('/home')
+                ->assertPathIs('/')
                 ->assertSee('dashboard')
                 ->assertSee('account settings')
                 ->assertDontSee('Incorrect sign in');
@@ -50,7 +50,7 @@ class LoginTest extends DuskTestCase
                 ->click('.js-user-header-popup .js-logout-link') // click the logout 'button'
                 ->acceptDialog()
                 ->waitFor('.landing-hero__bg-container')
-                ->assertPathIs('/home')
+                ->assertPathIs('/')
                 ->assertVisible('.landing-hero');
         });
     }

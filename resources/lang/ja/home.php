@@ -80,7 +80,6 @@ return [
         'action_lazer_title' => 'osu!(lazer)を試す',
         'action_title' => 'osu!をダウンロード',
         'for_os' => ':os 版',
-        'lazer_note' => '注意: リーダーボードのリセットが適用されます',
         'macos-fallback' => 'macOSユーザー',
         'mirror' => 'ミラー',
         'or' => 'または',

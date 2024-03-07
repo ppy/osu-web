@@ -9,6 +9,7 @@ import * as React from 'react'
 import { div, a, span, h1, h2 } from 'react-dom-factories'
 import { getArtist, getTitle } from 'utils/beatmapset-helper'
 import { trans } from 'utils/lang'
+import { filterMods } from 'utils/score-helper'
 
 el = React.createElement
 

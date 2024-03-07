@@ -112,6 +112,7 @@ return [
         'legal' => [
             '_' => 'Легално и Статус',
             'copyright' => 'Ауторска права (DMCA)',
+            'jp_sctl' => '',
             'privacy' => 'Приватност',
             'server_status' => 'Статус сервера',
             'source_code' => 'Изворни код',
@@ -195,6 +196,8 @@ return [
             'account-edit' => 'Подешавања',
             'follows' => 'Листа за гледање',
             'friends' => 'Пријатељи',
+            'legacy_score_only_toggle' => '',
+            'legacy_score_only_toggle_tooltip' => '',
             'logout' => 'Одјавите се',
             'profile' => 'Мој профил',
         ],

@@ -112,6 +112,7 @@ return [
         'legal' => [
             '_' => '法律 & 狀態',
             'copyright' => '版權（DMCA）',
+            'jp_sctl' => '',
             'privacy' => '隱私政策',
             'server_status' => '伺服器狀態',
             'source_code' => '原始碼',
@@ -195,6 +196,8 @@ return [
             'account-edit' => '設定',
             'follows' => '追蹤清單',
             'friends' => '好友',
+            'legacy_score_only_toggle' => 'Lazer 模式',
+            'legacy_score_only_toggle_tooltip' => 'Lazer 模式透過使用 Lazer 客戶端中新評分演算法來顯示您的成績。',
             'logout' => '登出',
             'profile' => '我的資料',
         ],

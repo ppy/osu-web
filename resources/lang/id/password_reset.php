@@ -11,10 +11,10 @@ return [
     ],
 
     'error' => [
-        'contact_support' => 'Mohon hubungi layanan dukungan untuk memulihkan akun.',
-        'expired' => 'Masa berlaku kode verifikasi telah berakhir.',
+        'contact_support' => 'Silakan hubungi layanan dukungan untuk memulihkan akun.',
+        'expired' => 'Kode verifikasi telah kedaluwarsa.',
         'invalid' => 'Terdapat kesalahan dalam proses pengecekan kode verifikasi.',
-        'is_privileged' => 'Mohon hubungi admin yang memiliki akses perizinan tingkat tinggi untuk memulihkan akun.',
+        'is_privileged' => 'Silakan hubungi admin dengan izin akses tingkat tinggi untuk memulihkan akun.',
         'missing_key' => 'Wajib.',
         'too_many_tries' => 'Terlalu banyak percobaan yang gagal.',
         'user_not_found' => 'Pengguna yang diminta tidak ditemukan.',
@@ -22,8 +22,8 @@ return [
     ],
 
     'notice' => [
-        'sent' => 'Periksa emailmu untuk menerima kode verifikasi.',
-        'saved' => 'Kata sandi baru berhasil disimpan!',
+        'sent' => 'Periksa emailmu untuk memperoleh kode verifikasi.',
+        'saved' => 'Kata sandi baru disimpan!',
     ],
 
     'started' => [
@@ -36,6 +36,9 @@ return [
     'starting' => [
         'username' => 'Masukkan alamat email atau nama pengguna',
 
+        'reason' => [
+            'inactive_different_country' => "Akunmu tidak digunakan dalam waktu lama. Untuk memastikan keamanan akun, mohon atur ulang kata sandimu.",
+        ],
         'support' => [
             '_' => 'Butuh bantuan lebih lanjut? Hubungi :button kami.',
             'button' => 'layanan dukungan',

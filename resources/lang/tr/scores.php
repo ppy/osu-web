@@ -5,6 +5,7 @@
 
 return [
     'show' => [
+        'non_preserved' => '',
         'title' => ':title\'da :username [:version]',
 
         'beatmap' => [
@@ -25,6 +26,8 @@ return [
     'status' => [
         'non_best' => 'Yalnızca en iyi bireysel skorlar pp kazandırır',
         'non_passing' => 'Yalnızca geçilen en iyi skorlar pp kazandırır',
+        'no_pp' => '',
         'processing' => 'Bu skor halen daha hesaplanıyor ve çok yakında gösterilecek',
+        'no_rank' => '',
     ],
 ];

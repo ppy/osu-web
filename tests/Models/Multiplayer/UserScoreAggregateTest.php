@@ -240,8 +240,9 @@ class UserScoreAggregateTest extends TestCase
             [
                 'beatmap_id' => $playlistItem->beatmap_id,
                 'ended_at' => json_time(new \DateTime()),
-                'ruleset_id' => $playlistItem->ruleset_id,
+                'max_combo' => 1,
                 'statistics' => ['good' => 1],
+                'ruleset_id' => $playlistItem->ruleset_id,
                 'user_id' => $user->getKey(),
                 ...$params,
             ],

@@ -7,13 +7,24 @@ import * as moment from 'moment';
 import * as React from 'react';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
-import { totalScore } from 'utils/score-helper';
+import { filterMods, totalScore } from 'utils/score-helper';
 
 interface Props {
   score: SoloScoreJsonForShow;
 }
 
 export default function Player(props: Props) {
+  let title: string;
+  let content: React.ReactNode;
+
+  if (props.score.rank_global == null || props.score.rank_global === 0 || props.score.ranked === false || props.score.preserve === false) {
+    title = trans('scores.status.no_rank');
+    content = '-';
+  } else {
+    title = '';
+    content = <>#{formatNumber(props.score.rank_global)}</>;
+  }
+
   return (
     <div className='score-player'>
       <div className='score-player__row score-player__row--score'>
@@ -22,7 +33,7 @@ export default function Player(props: Props) {
         </div>
 
         <div className='score-player__mods'>
-          {props.score.mods.map((mod) => (
+          {filterMods(props.score).map((mod) => (
             <div key={mod.acronym} className='score-player__mod'>
               <Mod mod={mod} />
             </div>
@@ -50,7 +61,7 @@ export default function Player(props: Props) {
           {trans('scores.show.player.rank.global')}
         </div>
         <div className='score-player__rank score-player__rank--value'>
-          {props.score.rank_global == null ? '-' : `#${formatNumber(props.score.rank_global)}`}
+          <span title={title}>{content}</span>
         </div>
       </div>
     </div>

@@ -40,7 +40,7 @@ return [
         ],
 
         'store' => [
-            'cart' => 'ostoskori',
+            'cart' => 'ostoskärry',
             'orders' => 'tilaushistoria',
             'products' => 'tuotteet',
         ],
@@ -67,7 +67,7 @@ return [
 
     'menu' => [
         'beatmaps' => [
-            '_' => 'rytmikartat',
+            '_' => 'beatmapit',
         ],
         'community' => [
             '_' => 'yhteisö',
@@ -112,8 +112,9 @@ return [
         'legal' => [
             '_' => 'Lakiasiat ja tilanne',
             'copyright' => 'Tekijänoikeudet (DMCA)',
+            'jp_sctl' => '',
             'privacy' => 'Yksityisyys',
-            'server_status' => 'Palvelimen tila',
+            'server_status' => 'Palvelimen tilanne',
             'source_code' => 'Lähdekoodi',
             'terms' => 'Käyttöehdot',
         ],
@@ -195,6 +196,8 @@ return [
             'account-edit' => 'Asetukset',
             'follows' => 'Seurantalistat',
             'friends' => 'Kaverit',
+            'legacy_score_only_toggle' => 'Lazer-tila',
+            'legacy_score_only_toggle_tooltip' => 'Lazer-tila näyttää uuden pisteytysalgoritmin avulla saadut tulokset',
             'logout' => 'Kirjaudu ulos',
             'profile' => 'Oma profiili',
         ],

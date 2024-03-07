@@ -27,7 +27,7 @@ return [
         'legacy_api' => [
             'api' => 'api',
             'irc' => 'irc',
-            'title' => 'API Lawas',
+            'title' => 'API lawas',
         ],
 
         'password' => [
@@ -152,6 +152,6 @@ return [
     ],
 
     'verification_invalid' => [
-        'title' => 'Tautan verifikasi tidak valid atau sudah tidak berlaku',
+        'title' => 'Tautan verifikasi tidak valid atau telah kedaluwarsa',
     ],
 ];

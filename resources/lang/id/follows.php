@@ -24,7 +24,7 @@ return [
     ],
 
     'mapping' => [
-        'empty' => 'Kamu tidak sedang mengikuti siapapun.',
+        'empty' => 'Kamu tidak sedang mengikuti siapa pun.',
         'followers' => 'pengikut mapping',
         'page_title' => 'mapper yang diikuti',
         'title' => 'mapper',
@@ -33,6 +33,6 @@ return [
     ],
 
     'modding' => [
-        'title' => 'laman diskusi beatmap',
+        'title' => 'halaman diskusi beatmap',
     ],
 ];

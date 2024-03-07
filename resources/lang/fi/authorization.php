@@ -81,6 +81,7 @@ return [
     ],
 
     'contest' => [
+        'judging_not_active' => 'Tuomarointi tälle kilpailulle ei ole avoinna.',
         'voting_over' => 'Et voi muuttaa ääntäsi tälle kilpailulle äänestysajan loppumisen jälkeen.',
 
         'entry' => [
@@ -172,6 +173,7 @@ return [
     'score' => [
         'pin' => [
             'disabled_type' => "Ei voida kiinnittää tämäntyyppistä pisteytystä",
+            'failed' => "Ei läpäistyä suoritusta ei voida kiinnittää.",
             'not_owner' => 'Vain tuloksen omistaja voi kiinnittää tuloksen.',
             'too_many' => 'Kiinnitit liian monta tulosta.',
         ],
@@ -182,7 +184,7 @@ return [
             'edit' => [
                 'locked' => 'Käyttäjäsivu on lukittu.',
                 'not_owner' => 'Voit muokata vain omaa käyttäjäsivuasi.',
-                'require_supporter_tag' => 'osu!-tukijamerkki vaaditaan.',
+                'require_supporter_tag' => 'osu!tukijamerkki vaaditaan.',
             ],
         ],
         'update_email' => [

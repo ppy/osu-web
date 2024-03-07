@@ -58,9 +58,9 @@ return [
                 'beatmapset_discussion_unlock_compact' => 'Diskusjon var ulåst',
 
                 'review_count' => [
-                    'praises' => '',
-                    'problems' => '',
-                    'suggestions' => '',
+                    'praises' => ':count_delimited ros|:count_delimited roser',
+                    'problems' => ':count_delimited problem|:count_delimited problemer',
+                    'suggestions' => ':count_delimited forslag|:count_delimited forslag',
                 ],
             ],
 

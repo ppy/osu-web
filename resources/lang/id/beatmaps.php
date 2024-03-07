@@ -26,7 +26,7 @@ return [
         'message_type_select' => 'Pilih Jenis Komentar',
         'reply_notice' => 'Tekan enter untuk membalas.',
         'reply_placeholder' => 'Ketik balasanmu di sini',
-        'require-login' => 'Silakan masuk untuk membuka topik bahasan baru atau mengirimkan balasan',
+        'require-login' => 'Silakan masuk untuk membuka topik diskusi baru atau membalas',
         'resolved' => 'Terjawab',
         'restore' => 'pulihkan',
         'show_deleted' => 'Tampilkan yang telah dihapus',
@@ -114,11 +114,11 @@ return [
             'embed' => [
                 'delete' => 'Hapus',
                 'missing' => '[TOPIK DISKUSI DIHAPUS]',
-                'unlink' => 'Hapus Tautan',
+                'unlink' => 'Lepas Tautan',
                 'unsaved' => 'Belum Tersimpan',
                 'timestamp' => [
                     'all-diff' => 'Kamu tidak dapat membubuhkan keterangan waktu pada topik diskusi yang tertuju pada "Umum (Seluruh tingkat kesulitan)".',
-                    'diff' => 'Apabila terdapat keterangan waktu pada :type ini, topik diskusi yang bersangkutan akan muncul pada Linimasa.',
+                    'diff' => 'Apabila post ini dimulai dengan keterangan waktu, post yang bersangkutan akan muncul pada tab Linimasa.',
                 ],
             ],
             'insert-block' => [
@@ -213,6 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'Map ini akan berstatus Ranked pada :date apabila tidak terdapat masalah baru yang ditemukan. Map ini berada pada urutan ke-:position dalam :queue yang ada.',
+            'unresolved_problems' => '',
+            'problems' => '',
             'on' => 'pada :date',
             'queue' => 'antrian ranking',
             'soon' => 'segera',

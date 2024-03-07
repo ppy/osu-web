@@ -5,6 +5,8 @@
 
 namespace Tests\Browser;
 
+use App\Libraries\Session;
+use App\Libraries\SessionVerification;
 use App\Models\Artist;
 use App\Models\ArtistTrack;
 use App\Models\Beatmap;
@@ -19,6 +21,8 @@ use App\Models\Chat\Channel;
 use App\Models\Chat\UserChannel;
 use App\Models\Comment;
 use App\Models\Contest;
+use App\Models\ContestEntry;
+use App\Models\ContestJudge;
 use App\Models\Count;
 use App\Models\Country;
 use App\Models\Forum\AuthOption;
@@ -153,7 +157,18 @@ class SanityTest extends DuskTestCase
         self::$scaffolding['pack'] = BeatmapPack::factory()->create();
 
         // factories for /community/contests/*
-        self::$scaffolding['contest'] = Contest::factory()->entry()->create();
+        self::$scaffolding['contest'] = Contest::factory()->voting()->judged()->create();
+
+        // user needs to be a judge in order to access contest judge panel
+        ContestJudge::factory()->create([
+            'contest_id' => self::$scaffolding['contest']->getKey(),
+            'user_id' => self::$scaffolding['user']->getKey(),
+        ]);
+
+        self::$scaffolding['contest_entry'] = ContestEntry::factory()->create([
+            // need to use separate contest for judge results route since it has to be completed
+            'contest_id' => Contest::factory()->completed()->judged()->create()->getKey(),
+        ]);
 
         // factories for /community/tournaments/*
         self::$scaffolding['tournament'] = Tournament::factory()->create();
@@ -281,6 +296,9 @@ class SanityTest extends DuskTestCase
             } elseif ($line['message'] === "security - Error with Permissions-Policy header: Unrecognized feature: 'ch-ua-form-factor'.") {
                 // we don't use ch-ua-* crap and this error is thrown by youtube.com as of 2023-05-16
                 continue;
+            } elseif (str_ends_with($line['message'], ' Third-party cookie will be blocked. Learn more in the Issues tab.')) {
+                // thanks, youtube
+                continue;
             }
 
             $return[] = $line;
@@ -289,15 +307,14 @@ class SanityTest extends DuskTestCase
         return $return;
     }
 
-    private static function getVerificationCode()
+    private static function getVerificationCode(Browser $browser): string
     {
-        $log = file_get_contents('storage/logs/laravel.log');
-        $matches = [];
-        $count = preg_match_all('/Your verification code is: ([0-9a-f]{8})/im', $log, $matches);
+        $sessionId = $browser->cookie($GLOBALS['cfg']['session']['cookie'])
+            ?? throw new \Exception('failed locating session cookie');
 
-        if ($count > 0) {
-            return $matches[1][count($matches[1]) - 1];
-        }
+        $session = Session\Store::findOrNew($sessionId);
+
+        return SessionVerification\State::fromSession($session)->key;
     }
 
     private static function output($text)
@@ -531,7 +548,7 @@ class SanityTest extends DuskTestCase
         if (in_array($route->getName(), $verificationExpected, true)) {
             $browser->assertSee('Account Verification');
 
-            $verificationCode = self::getVerificationCode();
+            $verificationCode = static::getVerificationCode($browser);
 
             $browser
                 ->type('.user-verification__key', $verificationCode)

@@ -5,6 +5,7 @@
 
 return [
     'show' => [
+        'non_preserved' => 'Skor ini ditandai untuk dihapus dan akan menghilang dalam waktu dekat.',
         'title' => ':username pada :title [:version]',
 
         'beatmap' => [
@@ -25,6 +26,8 @@ return [
     'status' => [
         'non_best' => 'Hanya skor-skor terbaik yang memberikan pp',
         'non_passing' => 'Hanya skor pass yang memberikan pp',
+        'no_pp' => 'pp tidak diberikan untuk skor ini',
         'processing' => 'Skor ini sedang diproses dan akan ditampilkan kemudian',
+        'no_rank' => '',
     ],
 ];

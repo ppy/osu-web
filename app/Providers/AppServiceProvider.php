@@ -6,24 +6,11 @@
 namespace App\Providers;
 
 use App\Hashing\OsuHashManager;
-use App\Libraries\AssetsManifest;
-use App\Libraries\ChatFilters;
-use App\Libraries\CleanHTML;
-use App\Libraries\Countries;
-use App\Libraries\Groups;
-use App\Libraries\Ip2Asn;
-use App\Libraries\LayoutCache;
-use App\Libraries\LocalCacheManager;
-use App\Libraries\Medals;
-use App\Libraries\Mods;
 use App\Libraries\MorphMap;
-use App\Libraries\OsuAuthorize;
 use App\Libraries\OsuCookieJar;
 use App\Libraries\OsuMessageSelector;
 use App\Libraries\RateLimiter;
-use App\Libraries\RouteSection;
-use App\Libraries\Smilies;
-use App\Libraries\User\ScorePins;
+use App\Singletons;
 use Datadog;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Http\Request;
@@ -39,23 +26,23 @@ use Swoole\Http\Server;
 class AppServiceProvider extends ServiceProvider
 {
     const LOCAL_CACHE_SINGLETONS = [
-        'chat-filters' => ChatFilters::class,
-        'countries' => Countries::class,
-        'groups' => Groups::class,
-        'layout-cache' => LayoutCache::class,
-        'medals' => Medals::class,
-        'smilies' => Smilies::class,
+        'chat-filters' => Singletons\ChatFilters::class,
+        'countries' => Singletons\Countries::class,
+        'groups' => Singletons\Groups::class,
+        'layout-cache' => Singletons\LayoutCache::class,
+        'medals' => Singletons\Medals::class,
+        'smilies' => Singletons\Smilies::class,
     ];
 
     const SINGLETONS = [
-        'OsuAuthorize' => OsuAuthorize::class,
-        'assets-manifest' => AssetsManifest::class,
-        'clean-html' => CleanHTML::class,
-        'ip2asn' => Ip2Asn::class,
-        'local-cache-manager' => LocalCacheManager::class,
-        'mods' => Mods::class,
-        'route-section' => RouteSection::class,
-        'score-pins' => ScorePins::class,
+        'OsuAuthorize' => Singletons\OsuAuthorize::class,
+        'assets-manifest' => Singletons\AssetsManifest::class,
+        'clean-html' => Singletons\CleanHTML::class,
+        'ip2asn' => Singletons\Ip2Asn::class,
+        'local-cache-manager' => Singletons\LocalCacheManager::class,
+        'mods' => Singletons\Mods::class,
+        'route-section' => Singletons\RouteSection::class,
+        'score-pins' => Singletons\UserScorePins::class,
     ];
 
     /**

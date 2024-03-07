@@ -72,7 +72,7 @@ return [
 
     'disabled' => [
         'title' => 'Uh, oh! Anscheinend wurde dein Konto deaktiviert.',
-        'warning' => "Falls Du gegen eine Regel verstoßen hast, beachte bitte, dass es in der Regel eine Frist von einem Monat gibt, in der wir keine Anträge berücksichtigen. Nach diesem Zeitraum kannst Du uns jederzeit kontaktieren, falls Du dies für erforderlich hältst. Beachte, dass das Erstellen neuer Konten nach dem Deaktivieren eines Kontos zu einer <strong>Verlängerung dieser einmonatigen Frist</strong> führt. Bitte beachte auch, dass du für <strong>jedes Konto, das du erstellst, weitere Regeln verletzt</strong>. Wir empfehlen Dir dringend, diesen Weg nicht zu gehen!",
+        'warning' => "Falls Du gegen eine Regel verstoßen hast, beachte bitte, dass es in der Regel eine Bedenkzeit von einem Monat gibt, in der wir keine Anträge berücksichtigen. Nach diesem Zeitraum kannst Du uns jederzeit kontaktieren, falls Du dies für erforderlich hältst. Beachte, dass das Erstellen neuer Konten nach dem Deaktivieren eines Kontos zu einer <strong>Verlängerung dieser einmonatigen Bedenkzeit</strong> führt. Bitte beachte auch, dass du für <strong>jedes Konto, das du erstellst, weitere Regeln verletzt</strong>. Wir raten Dir dringend davon ab, diesen Weg einzuschlagen!",
 
         'if_mistake' => [
             '_' => 'Wenn du der Meinung bist, dass dies ein Fehler ist, kannst du uns gerne kontaktieren (per :email oder durch Klicken auf das "?" in der rechten unteren Ecke dieser Seite). Bitte beachte, dass wir bei unseren Handlungen immer volles Vertrauen haben, da sie auf sehr soliden Daten beruhen. Wir behalten uns das Recht vor, deine Anfrage zu ignorieren, wenn wir das Gefühl haben, dass du absichtlich unehrlich bist.',
@@ -216,8 +216,8 @@ return [
             ],
 
             'default_playmode' => [
-                'is_default_tooltip' => 'standard-spielmodus',
-                'set' => 'wähle :mode als standard-spielmodus',
+                'is_default_tooltip' => 'Standard-Spielmodus',
+                'set' => 'Wähle :mode als Standard-Spielmodus',
             ],
         ],
 

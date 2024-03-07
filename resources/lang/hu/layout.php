@@ -112,6 +112,7 @@ return [
         'legal' => [
             '_' => 'Jogok és Állapot',
             'copyright' => 'Szerzői jog (DMCA)',
+            'jp_sctl' => '',
             'privacy' => 'Adatvédelem',
             'server_status' => 'Szerver Állapot',
             'source_code' => 'Forráskód',
@@ -195,6 +196,8 @@ return [
             'account-edit' => 'Beállítások',
             'follows' => 'Figyelőlisták',
             'friends' => 'Barátok',
+            'legacy_score_only_toggle' => 'Lazer mód',
+            'legacy_score_only_toggle_tooltip' => 'A Lazer mód a Lazer által beállított pontszámokat mutatja egy új pontozási algoritmussal',
             'logout' => 'Kijelentkezés',
             'profile' => 'Profilom',
         ],

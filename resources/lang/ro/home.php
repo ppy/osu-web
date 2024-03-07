@@ -80,7 +80,6 @@ return [
         'action_lazer_title' => 'încearcă osu!(lazer)',
         'action_title' => 'descarcă osu!',
         'for_os' => 'pentru :os',
-        'lazer_note' => 'observație: resetarea clasamentului este posibilă',
         'macos-fallback' => 'utilizatori macOS',
         'mirror' => 'sursă alternativă',
         'or' => 'sau',

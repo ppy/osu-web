@@ -33,6 +33,9 @@ class UsersControllerTest extends TestCase
     {
         $previousCount = User::count();
 
+        $locale = array_rand_val($GLOBALS['cfg']['app']['available_locales']);
+
+        $this->expectCountChange(fn () => User::count(), 1);
         $this
             ->json('POST', route('users.store'), [
                 'user' => [
@@ -41,18 +44,21 @@ class UsersControllerTest extends TestCase
                     'password' => 'hunter22',
                 ],
             ], [
-                'HTTP_USER_AGENT' => $GLOBALS['cfg']['osu']['client']['user_agent'],
+                'accept-language' => $locale,
+                'user-agent' => $GLOBALS['cfg']['osu']['client']['user_agent'],
             ])->assertJsonFragment([
                 'username' => 'user1',
                 'country_code' => Country::UNKNOWN,
             ]);
 
-        $this->assertSame($previousCount + 1, User::count());
+        $user = User::where('username', 'user1')->first();
+        $this->assertSame($locale, $user->user_lang);
     }
 
-    public function testStoreRegModeWeb()
+    public function testStoreRegModeWebOnly()
     {
-        config_set('osu.user.registration_mode', 'web');
+        config_set('osu.user.registration_mode.client', false);
+        config_set('osu.user.registration_mode.web', true);
         $this->expectCountChange(fn () => User::count(), 0);
 
         $this
@@ -131,8 +137,11 @@ class UsersControllerTest extends TestCase
         $this->assertSame($previousCount, User::count());
     }
 
-    public function testStoreWebRegModeClient()
+    public function testStoreWebRegModeClientOnly()
     {
+        config_set('osu.user.registration_mode.client', true);
+        config_set('osu.user.registration_mode.web', false);
+
         $this->expectCountChange(fn () => User::count(), 0);
 
         $this->post(route('users.store'), [
@@ -149,7 +158,7 @@ class UsersControllerTest extends TestCase
 
     public function testStoreWeb(): void
     {
-        config_set('osu.user.registration_mode', 'web');
+        config_set('osu.user.registration_mode.web', true);
         $this->expectCountChange(fn () => User::count(), 1);
 
         $this->post(route('users.store-web'), [
@@ -168,7 +177,7 @@ class UsersControllerTest extends TestCase
      */
     public function testStoreWebInvalidParams($username, $email, $emailConfirmation, $password, $passwordConfirmation): void
     {
-        config_set('osu.user.registration_mode', 'web');
+        config_set('osu.user.registration_mode.web', true);
         $this->expectCountChange(fn () => User::count(), 0);
 
         $this->post(route('users.store-web'), [
@@ -184,7 +193,7 @@ class UsersControllerTest extends TestCase
 
     public function testStoreWebLoggedIn(): void
     {
-        config_set('osu.user.registration_mode', 'web');
+        config_set('osu.user.registration_mode.web', true);
         $user = User::factory()->create();
 
         $this->expectCountChange(fn () => User::count(), 0);

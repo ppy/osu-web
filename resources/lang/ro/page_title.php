@@ -63,8 +63,12 @@ return [
         'comments_controller' => [
             '_' => 'comentarii',
         ],
+        'contest_entries_controller' => [
+            'judge_results' => 'rezultate evaluare concurs',
+        ],
         'contests_controller' => [
             '_' => 'concursuri',
+            'judge' => 'evaluare concurs',
         ],
         'groups_controller' => [
             'show' => 'grupuri',

@@ -24,7 +24,7 @@ default_group   | string?                   | Identifier of the default [Group](
 id              | integer                   | unique identifier for user
 is_active       | boolean                   | has this account been active in the last x months?
 is_bot          | boolean                   | is this a bot account?
-is_deleted      | boolean                   ||
+is_deleted      | boolean                   | |
 is_online       | boolean                   | is the user currently online? (either on lazer or the new website)
 is_supporter    | boolean                   | does this user have supporter?
 last_visit      | [Timestamp](#timestamp)?  | last access time. `null` if the user hides online presence
@@ -38,43 +38,45 @@ username        | string                    | user's display name
 
 Following are attributes which may be additionally included in the response. Relevant endpoints should list them if applicable.
 
-Field                      | Type
----------------------------|-----
-account_history            | [User.UserAccountHistory](#user-useraccounthistory)[]
-active_tournament_banner   | [User.ProfileBanner](#user-profilebanner)?
-badges                     | [User.UserBadge](#user-userbadge)[]
-beatmap_playcounts_count   | integer
-blocks                     | |
-country                    | |
-cover                      | |
-favourite_beatmapset_count | integer
-follow_user_mapping        | integer[]
-follower_count             | integer
-friends                    | |
-graveyard_beatmapset_count | integer
-groups                     | [UserGroup](#usergroup)[]
-guest_beatmapset_count     | integer
-is_restricted              | boolean?
-kudosu                     | [User.Kudosu](#user-kudosu)
-loved_beatmapset_count     | integer
-mapping_follower_count     | integer
-monthly_playcounts         | [UserMonthlyPlaycount](#usermonthlyplaycount)[]
-page                       | |
-pending_beatmapset_count   | |
-previous_usernames         | |
-rank_highest               | [User.RankHighest](#user-rankhighest)?
-rank_history               | |
-ranked_beatmapset_count    | |
-replays_watched_counts     | |
-scores_best_count          | integer
-scores_first_count         | integer
-scores_recent_count        | integer
-statistics                 | |
-statistics_rulesets        | UserStatisticsRulesets
-support_level              | |
-unread_pm_count            | |
-user_achievements          | |
-user_preferences           | |
+Field                      | Type | Notes
+---------------------------|----- | -----
+account_history            | [User.UserAccountHistory](#user-useraccounthistory)[] | |
+active_tournament_banner   | [User.ProfileBanner](#user-profilebanner)? | Deprecated, use `active_tournament_banners` instead.
+active_tournament_banners  | [User.ProfileBanner](#user-profilebanner)[] | |
+badges                     | [User.UserBadge](#user-userbadge)[] | |
+beatmap_playcounts_count   | integer | |
+blocks                     | | |
+country                    | | |
+cover                      | | |
+favourite_beatmapset_count | integer | |
+follow_user_mapping        | integer[] | |
+follower_count             | integer | |
+friends                    | | |
+graveyard_beatmapset_count | integer | |
+groups                     | [UserGroup](#usergroup)[] | |
+guest_beatmapset_count     | integer | |
+is_restricted              | boolean? | |
+kudosu                     | [User.Kudosu](#user-kudosu) | |
+loved_beatmapset_count     | integer | |
+mapping_follower_count     | integer | |
+monthly_playcounts         | [UserMonthlyPlaycount](#usermonthlyplaycount)[] | |
+page                       | | |
+pending_beatmapset_count   | | |
+previous_usernames         | | |
+rank_highest               | [User.RankHighest](#user-rankhighest)? | |
+rank_history               | | |
+ranked_beatmapset_count    | | |
+replays_watched_counts     | | |
+scores_best_count          | integer | |
+scores_first_count         | integer | |
+scores_recent_count        | integer | |
+session_verified           | boolean | |
+statistics                 | | |
+statistics_rulesets        | UserStatisticsRulesets | |
+support_level              | | |
+unread_pm_count            | | |
+user_achievements          | | |
+user_preferences           | | |
 
 <div id="user-kudosu" data-unique="user-kudosu"></div>
 

@@ -213,6 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'Numatoma, kad šis bitmapas bus reitinguotas :date, jei nebus rasta problemų. Jis yra #:position tarp :queue.',
+            'unresolved_problems' => '',
+            'problems' => '',
             'on' => ':date',
             'queue' => 'reitingavimo eilės',
             'soon' => 'greitai',

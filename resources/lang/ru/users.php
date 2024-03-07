@@ -297,29 +297,29 @@ return [
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
-                            'give' => 'Начислено :amount за снятие вето на получение кудосу за отзыв :post',
+                            'give' => 'Начислено :amount за снятие вето на получение кудосу за отзыв о карте :post',
                         ],
 
                         'deny_kudosu' => [
-                            'reset' => 'Отнято :amount за ответ в :post',
+                            'reset' => 'Снято :amount за отзыв о карте :post',
                         ],
 
                         'delete' => [
-                            'reset' => 'Потеряно :amount за удаление ответа в посте :post',
+                            'reset' => 'Списано :amount за удаление отзыва о карте :post',
                         ],
 
                         'restore' => [
-                            'give' => 'Начислено :amount за восстановление ответа :post',
+                            'give' => 'Начислено :amount за восстановление отзыва в :post',
                         ],
 
                         'vote' => [
-                            'give' => 'Начислено :amount за получение голосов за отзыв :post',
-                            'reset' => 'Потеряно :amount за потерю голосов в посте :post',
+                            'give' => 'Начислено :amount за получение голосов за отзыв о карте :post',
+                            'reset' => 'Списано :amount за потерю голосов за отзыв о карте :post',
                         ],
 
                         'recalculate' => [
-                            'give' => 'Начислено :amount за перерасчёт голосов у отзыва :post',
-                            'reset' => 'Потеряно :amount за перерасчёт голосов в посте :post',
+                            'give' => 'Начислено :amount за перерасчёт голосов у отзыва о карте :post',
+                            'reset' => 'Списано :amount за перерасчёт голосов за отзыв о карте :post',
                         ],
                     ],
 
@@ -390,7 +390,7 @@ return [
             'account_standing' => [
                 'title' => 'Нарушения',
                 'bad_standing' => "С аккаунтом :username не всё хорошо :(",
-                'remaining_silence' => ':username сможет общаться снова через :duration.',
+                'remaining_silence' => ':username снова сможет общаться :duration.',
 
                 'recent_infringements' => [
                     'title' => 'Недавние',
@@ -444,7 +444,7 @@ return [
         'rank' => [
             'country' => 'Рейтинг стран для :mode',
             'country_simple' => 'Рейтинг в стране',
-            'global' => 'Глобальный рейтинг для :mode',
+            'global' => 'Мировой рейтинг для :mode',
             'global_simple' => 'Рейтинг в мире',
             'highest' => 'Наивысший: :rank от :date',
         ],

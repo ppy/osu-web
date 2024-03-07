@@ -44,7 +44,7 @@
     "paypal/paypal-checkout-sdk": "*",
     "sentry/sentry-laravel": "*",
     "symfony/yaml": "*",
-    "tightenco/ziggy": ">=0.8.1",
+    "tightenco/ziggy": "^1.8",
     "xsolla/xsolla-sdk-php": "dev-php81"
   },
   "require-dev": {
@@ -90,7 +90,7 @@
     "sort-packages": true,
     "optimize-autoloader": true,
     "platform": {
-      "php": "8.2.0"
+      "php": "8.3.0"
     },
     "allow-plugins": {
       "composer/package-versions-deprecated": true,

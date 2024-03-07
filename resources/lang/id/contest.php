@@ -13,7 +13,28 @@ return [
         'nav_title' => 'daftar',
     ],
 
+    'judge' => [
+        'hide_judged' => 'sembunyikan entri yang telah dinilai',
+        'nav_title' => 'juri',
+        'no_current_vote' => 'kamu belum memilih entri mana pun.',
+        'update' => 'perbarui',
+        'validation' => [
+            'missing_score' => 'skor hilang',
+            'contest_vote_judged' => 'tidak dapat memilih dalam kontes berjuri',
+        ],
+        'voted' => 'Kamu telah memberikan pilihan untuk entri ini.',
+    ],
+
+    'judge_results' => [
+        '_' => 'Hasil penjurian',
+        'creator' => 'pembuat',
+        'score' => 'Skor',
+        'total_score' => 'jumlah skor',
+    ],
+
     'voting' => [
+        'judge_link' => 'Kamu adalah juri pada kontes ini. Nilai entri yang masuk di sini!',
+        'judged_notice' => 'Kontes ini menggunakan sistem penjurian, dan para juri saat ini sedang menilai entri yang masuk.',
         'login_required' => 'Silakan masuk untuk memberikan suara.',
         'over' => 'Pemungutan suara untuk kontes ini telah berakhir',
         'show_voted_only' => 'Tampilkan pilihan',
@@ -38,6 +59,7 @@ return [
             ],
         ],
     ],
+
     'entry' => [
         '_' => 'entri',
         'login_required' => 'Silakan masuk untuk mengikuti kontes.',
@@ -45,22 +67,27 @@ return [
         'preparation' => 'Kami sedang mempersiapkan kontes ini. Mohon bersabar!',
         'drop_here' => 'Letakkan entrimu di sini',
         'download' => 'Unduh .osz',
+
         'wrong_type' => [
             'art' => 'Kontes ini hanya menerima berkas dengan ekstensi .jpg dan .png.',
             'beatmap' => 'Kontes ini hanya menerima berkas dengan ekstensi .osu.',
             'music' => 'Kontes ini hanya menerima berkas dengan ekstensi .mp3.',
         ],
+
         'wrong_dimensions' => 'Entri untuk kontes ini harus berukuran :widthx:height',
         'too_big' => 'Berkas yang diikutsertakan untuk kontes ini tidak boleh melebihi batas ukuran :limit.',
     ],
+
     'beatmaps' => [
         'download' => 'Unduh Entri',
     ],
+
     'vote' => [
         'list' => 'suara',
         'count' => ':count_delimited suara|:count_delimited suara',
         'points' => ':count_delimited poin|:count_delimited poin',
     ],
+
     'dates' => [
         'ended' => 'Telah Berakhir Pada :date',
         'ended_no_date' => 'Telah Berakhir',
@@ -70,6 +97,7 @@ return [
             'soon' => 'segera™',
         ],
     ],
+
     'states' => [
         'entry' => 'Menerima Entri',
         'voting' => 'Dalam Tahap Pemungutan Suara',

@@ -13,7 +13,28 @@ return [
         'nav_title' => 'listning',
     ],
 
+    'judge' => [
+        'hide_judged' => '',
+        'nav_title' => '',
+        'no_current_vote' => '',
+        'update' => '',
+        'validation' => [
+            'missing_score' => '',
+            'contest_vote_judged' => '',
+        ],
+        'voted' => '',
+    ],
+
+    'judge_results' => [
+        '_' => '',
+        'creator' => '',
+        'score' => '',
+        'total_score' => '',
+    ],
+
     'voting' => [
+        'judge_link' => '',
+        'judged_notice' => '',
         'login_required' => 'Var vänlig logga in för att rösta.',
         'over' => 'Möjligheten att rösta i denna tävling har avslutats',
         'show_voted_only' => 'Visa röstade',
@@ -38,6 +59,7 @@ return [
             ],
         ],
     ],
+
     'entry' => [
         '_' => 'bidrag',
         'login_required' => 'Var vänlig logga in för att gå med i tävlingen.',
@@ -45,22 +67,27 @@ return [
         'preparation' => 'Vi håller på att förbereda denna tävling. Ha tålamod!',
         'drop_here' => 'Släpp ditt bidrag här',
         'download' => 'Ladda ner .osz',
+
         'wrong_type' => [
             'art' => 'Endast .jpg- och .png-filer är tillåtna i denna tävling.',
             'beatmap' => 'Endast .osu-filer är tillåtna i denna tävling.',
             'music' => 'Endast .mp3-filer är tillåtna i denna tävling.',
         ],
+
         'wrong_dimensions' => 'Bidrag för denna tävling måste vara :widthx:height',
         'too_big' => 'Bidrag till denna tävling får vara högst :limit.',
     ],
+
     'beatmaps' => [
         'download' => 'Ladda ner bidrag',
     ],
+
     'vote' => [
         'list' => 'röster',
         'count' => ':count_delimited rösta|:count_delimited röster ',
         'points' => ':count_delimited poäng|:count_delimited poäng',
     ],
+
     'dates' => [
         'ended' => 'Avslutad :date',
         'ended_no_date' => 'Avslutad',
@@ -70,6 +97,7 @@ return [
             'soon' => 'snart™',
         ],
     ],
+
     'states' => [
         'entry' => 'Öppen för bidrag',
         'voting' => 'Röstning startad',

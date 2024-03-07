@@ -204,7 +204,7 @@ return [
                     'button' => 'Încarcă imaginea',
                     'dropzone' => 'Plasați fișiere aici pentru a le încărca',
                     'dropzone_info' => 'Poți, de asemenea, să-ți plasezi imaginea aici pentru a o încărca',
-                    'size_info' => 'Dimensiunea coperții trebuie să fie de 2400x620',
+                    'size_info' => 'Dimensiunea coperții trebuie să fie de 2400x640',
                     'too_large' => 'Fișierul încărcat este prea mare.',
                     'unsupported_format' => 'Format nesuportat.',
 
@@ -434,7 +434,7 @@ return [
 
             'restriction_info' => [
                 '_' => 'Trebuie să fii un :link să deblochezi acest feature.',
-                'link' => 'osu!ajutător',
+                'link' => 'suporter osu!',
             ],
         ],
         'post_count' => [

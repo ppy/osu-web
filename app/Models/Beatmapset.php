@@ -468,8 +468,9 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
     public function fetchBeatmapsetArchive()
     {
         $oszFile = tmpfile();
-        $mirrorsToUse = $GLOBALS['cfg']['osu']['beatmap_processor']['mirrors_to_use'];
-        $url = BeatmapMirror::getRandomFromList($mirrorsToUse)->generateURL($this, true);
+        $mirror = BeatmapMirror::getRandomFromList($GLOBALS['cfg']['osu']['beatmap_processor']['mirrors_to_use'])
+            ?? throw new \Exception('no available mirror');
+        $url = $mirror->generateURL($this, true);
 
         if ($url === false) {
             return false;
@@ -688,6 +689,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             $this->events()->create(['type' => BeatmapsetEvent::QUALIFY]);
 
             $this->setApproved('qualified', $user);
+            $this->bssProcessQueues()->create();
 
             // global event
             Event::generate('beatmapsetApprove', ['beatmapset' => $this]);
@@ -829,7 +831,9 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
         $this->getConnection()->transaction(function () use ($user, $beatmapIds) {
             $this->events()->create(['type' => BeatmapsetEvent::LOVE, 'user_id' => $user->user_id]);
+
             $this->setApproved('loved', $user, $beatmapIds);
+            $this->bssProcessQueues()->create();
 
             Event::generate('beatmapsetApprove', ['beatmapset' => $this]);
 

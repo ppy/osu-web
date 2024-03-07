@@ -36,6 +36,9 @@ return [
     'starting' => [
         'username' => 'Skriv inn e-postadresse eller brukernavn',
 
+        'reason' => [
+            'inactive_different_country' => "Brukeren din har ikke blitt brukt på en lang tid. For å sikre kontoen din, vennligst tilbakestill passordet ditt.",
+        ],
         'support' => [
             '_' => 'Trenger du mer hjelp? Kontakt oss via vårt :button.',
             'button' => 'støttesystem',

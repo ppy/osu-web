@@ -81,6 +81,7 @@ return [
     ],
 
     'contest' => [
+        'judging_not_active' => 'Ang paghusga para sa paligsahan na ito ay hindi aktibo.',
         'voting_over' => 'Hindi mo maaaring baguhin ang iyong boto pagkatapos ng panahon ng pagboto para sa paligsahang ito ay natapos na.',
 
         'entry' => [
@@ -171,7 +172,8 @@ return [
 
     'score' => [
         'pin' => [
-            'disabled_type' => "",
+            'disabled_type' => "Hindi ma-pin ang ganitong uri ng iskor",
+            'failed' => "Hindi ma-pin ang hindi pumasa na iskor.",
             'not_owner' => 'Tanging ang may-ari ng iskor ang maaaring mag-pin ng iskor.',
             'too_many' => 'Nag-pin ng masyadong maraming mga iskor.',
         ],
@@ -186,7 +188,7 @@ return [
             ],
         ],
         'update_email' => [
-            'locked' => '',
+            'locked' => 'ang email address ay naka-lock',
         ],
     ],
 ];

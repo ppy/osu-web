@@ -63,8 +63,12 @@ return [
         'comments_controller' => [
             '_' => '评论',
         ],
+        'contest_entries_controller' => [
+            'judge_results' => '竞赛打分结果',
+        ],
         'contests_controller' => [
             '_' => '评选',
+            'judge' => '竞赛打分',
         ],
         'groups_controller' => [
             'show' => '用户组',
