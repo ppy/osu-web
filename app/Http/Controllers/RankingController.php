@@ -266,11 +266,11 @@ class RankingController extends Controller
 
     public function spotlight($mode)
     {
-        $chartId = $this->params['spotlight'] ?? null;
+        $chartId = get_int($this->params['spotlight'] ?? null);
 
         $spotlights = Spotlight::orderBy('chart_id', 'desc')->get();
         if ($chartId === null) {
-            $spotlight = $spotlights->first();
+            $spotlight = $spotlights->first() ?? abort(404);
         } else {
             $spotlight = Spotlight::findOrFail($chartId);
         }
