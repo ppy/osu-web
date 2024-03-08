@@ -8,11 +8,9 @@
     $selectOptionTransformer = new SelectOptionTransformer();
 @endphp
 @extends('rankings.index', [
-    'country' => null,
     'hasFilter' => false,
     'hasMode' => false,
     'hasPager' => true,
-    'spotlight' => null,
     'titlePrepend' => osu_trans('rankings.type.multiplayer').': '.$room->name,
     'type' => 'multiplayer',
 ])

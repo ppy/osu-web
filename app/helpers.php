@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 use App\Exceptions\FastImagesizeFetchException;
+use App\Http\Controllers\RankingController;
 use App\Libraries\Base64Url;
 use App\Libraries\LocaleMeta;
 use App\Models\LoginAttempt;
@@ -1131,15 +1132,9 @@ function nav_links()
         'page_title.main.artists_controller._' => route('artists.index'),
         'page_title.main.beatmap_packs_controller._' => route('packs.index'),
     ];
-    $links['rankings'] = [
-        'rankings.type.performance' => route('rankings', ['mode' => $defaultMode, 'type' => 'performance']),
-        'rankings.type.score' => route('rankings', ['mode' => $defaultMode, 'type' => 'score']),
-        'rankings.type.country' => route('rankings', ['mode' => $defaultMode, 'type' => 'country']),
-        'rankings.type.multiplayer' => route('multiplayer.rooms.show', ['room' => 'latest']),
-        'rankings.type.seasons' => route('seasons.show', ['season' => 'latest']),
-        'rankings.type.charts' => route('rankings', ['mode' => $defaultMode, 'type' => 'charts']),
-        'layout.menu.rankings.kudosu' => route('rankings.kudosu'),
-    ];
+    foreach (RankingController::TYPES as $rankingType) {
+        $links['rankings']["rankings.type.{$rankingType}"] = RankingController::url($rankingType, $defaultMode);
+    }
     $links['community'] = [
         'page_title.forum._' => route('forum.forums.index'),
         'page_title.main.chat_controller._' => route('chat.index'),
