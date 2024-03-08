@@ -34,7 +34,7 @@ import { presence } from 'utils/string';
 import { wikiUrl } from 'utils/url';
 import DiscussionsState from './discussions-state';
 
-const bn = 'beatmap-discussion-nomination';
+const bn = 'beatmap-discussion-nominations';
 const flashClass = 'js-flash-border--on';
 export const hypeExplanationClass = 'js-hype--explanation';
 const nominatorsVisibleBeatmapStatuses = Object.freeze(new Set(['wip', 'pending', 'ranked', 'qualified']));
