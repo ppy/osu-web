@@ -6,7 +6,6 @@
 namespace App\Exceptions;
 
 use App\Libraries\SessionVerification;
-use Auth;
 use Illuminate\Auth\Access\AuthorizationException as LaravelAuthorizationException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -34,6 +33,7 @@ class Handler extends ExceptionHandler
         ModelNotFoundException::class,
         TokenMismatchException::class,
         \Illuminate\Validation\ValidationException::class,
+        \Laravel\Octane\Exceptions\DdException::class,
         \Symfony\Component\HttpKernel\Exception\HttpException::class,
 
         // local
@@ -90,6 +90,15 @@ class Handler extends ExceptionHandler
             && $e->getMessage() === 'Authorization request was not present in the session.';
     }
 
+    private static function reportWithSentry(Throwable $e): void
+    {
+        $ref = log_error_sentry($e, ['http_code' => (string) static::statusCode($e)]);
+
+        if ($ref !== null) {
+            \Request::instance()->attributes->set('ref', $ref);
+        }
+    }
+
     private static function unwrapViewException(Throwable $e): Throwable
     {
         if ($e instanceof ViewException) {
@@ -121,10 +130,7 @@ class Handler extends ExceptionHandler
             return;
         }
 
-        // Fallback in case error happening before config is initialised
-        if ($GLOBALS['cfg']['sentry']['dsn'] ?? false) {
-            $this->reportWithSentry($e);
-        }
+        static::reportWithSentry($e);
 
         parent::report($e);
     }
@@ -195,26 +201,5 @@ class Handler extends ExceptionHandler
         }
 
         return ext_view('users.login', null, null, 401);
-    }
-
-    private function reportWithSentry($e)
-    {
-        if (Auth::check()) {
-            $userContext = [
-                'id' => Auth::user()->user_id,
-                'username' => Auth::user()->username_clean,
-            ];
-        } else {
-            $userContext = [
-                'id' => null,
-            ];
-        }
-
-        app('sentry')->configureScope(function ($scope) use ($e, $userContext) {
-            $scope->setUser($userContext);
-            $scope->setTag('http_code', (string) static::statusCode($e));
-        });
-
-        request()->attributes->set('ref', app('sentry')->captureException($e));
     }
 }

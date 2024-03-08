@@ -3,6 +3,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+use App\Exceptions\FastImagesizeFetchException;
 use App\Http\Controllers\RankingController;
 use App\Libraries\Base64Url;
 use App\Libraries\LocaleMeta;
@@ -469,13 +470,35 @@ function json_time(?DateTime $time): ?string
     return $time === null ? null : $time->format(DateTime::ATOM);
 }
 
-function log_error($exception)
+function log_error($exception, ?array $sentryTags = null): void
 {
     Log::error($exception);
+    log_error_sentry($exception, $sentryTags);
+}
 
-    if ($GLOBALS['cfg']['sentry']['dsn']) {
-        Sentry::captureException($exception);
+function log_error_sentry(Throwable $exception, ?array $tags = null): ?string
+{
+    // Fallback in case error happening before config is initialised
+    if (!($GLOBALS['cfg']['sentry']['dsn'] ?? false)) {
+        return null;
     }
+
+    return Sentry\withScope(function ($scope) use ($exception, $tags) {
+        $currentUser = Auth::user();
+        $userContext = $currentUser === null
+            ? ['id' => null]
+            : [
+                'id' => $currentUser->getKey(),
+                'username' => $currentUser->username,
+            ];
+
+        $scope->setUser($userContext);
+        foreach ($tags ?? [] as $key => $value) {
+            $scope->setTag($key, $value);
+        }
+
+        return Sentry\captureException($exception);
+    });
 }
 
 function logout()
@@ -1311,14 +1334,14 @@ function json_item($model, $transformer, $includes = null)
     return json_collection([$model], $transformer, $includes)[0] ?? null;
 }
 
-function fast_imagesize($url)
+function fast_imagesize($url, ?string $logErrorId = null)
 {
     static $oneMonthInSeconds = 30 * 24 * 60 * 60;
 
     return null_if_false(Cache::remember(
         "imageSize:{$url}",
         $oneMonthInSeconds,
-        function () use ($url) {
+        function () use ($logErrorId, $url) {
             $curl = curl_init($url);
             curl_setopt_array($curl, [
                 CURLOPT_HTTPHEADER => [
@@ -1330,6 +1353,15 @@ function fast_imagesize($url)
                 CURLOPT_TIMEOUT => 10,
             ]);
             $data = curl_exec($curl);
+
+            $errorCode = curl_errno($curl);
+            if ($errorCode !== 0 && $logErrorId !== null) {
+                log_error(new FastImagesizeFetchException(), [
+                    'curl_error_code' => $errorCode,
+                    'curl_error_message' => curl_error($curl),
+                    'error_id' => $logErrorId,
+                ]);
+            }
 
             // null isn't cached
             return read_image_properties_from_string($data) ?? false;
