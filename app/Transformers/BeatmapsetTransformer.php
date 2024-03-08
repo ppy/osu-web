@@ -23,7 +23,6 @@ class BeatmapsetTransformer extends BeatmapsetCompactTransformer
         // only for showing in BeatmapPanel.
         $nominationsSummary = [
             'current' => $beatmapset->nominations,
-            'main_ruleset' => $beatmapset->mainRuleset()?->legacyName(),
             // TODO: this is a placeholder value for now.
             'required' => $beatmapset->playmodeCount() * $GLOBALS['cfg']['osu']['beatmapset']['required_nominations'], // $this->requiredNominationCount(),
         ];

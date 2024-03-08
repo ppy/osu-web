@@ -129,8 +129,9 @@ export class Nominator extends React.Component<Props> {
   }
 
   private get calculatedMode() {
-    return this.beatmapset.nominations_summary.main_ruleset
-      // TODO: document
+    return this.beatmapset.main_ruleset
+      // The main ruleset not being set yet implies there are either no nominations
+      // or an equal number of nominations for each ruleset, so the next selection should make it the main ruleset.
       ?? (this.selectedModes.length === 1 ? this.selectedModes[0] : null);
   }
 
@@ -258,7 +259,7 @@ export class Nominator extends React.Component<Props> {
   }
 
   private renderModalContentHybrid() {
-    const currentMode = this.beatmapset.nominations_summary.main_ruleset ?? 'undefined';
+    const currentMode = this.calculatedMode ?? 'undefined';
 
     return (
       <>

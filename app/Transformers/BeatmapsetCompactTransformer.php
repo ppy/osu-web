@@ -33,6 +33,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
         'has_favourited',
         'language',
         'pack_tags',
+        'main_ruleset',
         'nominations',
         'ratings',
         'recent_favourites',
@@ -180,6 +181,11 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
     public function includeLanguage(Beatmapset $beatmapset)
     {
         return $this->item($beatmapset->language, new LanguageTransformer());
+    }
+
+    public function includeMainRuleset(Beatmapset $beatmapset)
+    {
+        return $this->primitive($beatmapset->mainRuleset()?->legacyName());
     }
 
     public function includeNominations(Beatmapset $beatmapset)
