@@ -30,12 +30,15 @@ const bn = 'nomination-dialog';
 export class Nominator extends React.Component<Props> {
   private readonly checkboxContainerRef = React.createRef<HTMLDivElement>();
   @observable private loading = false;
-  @observable private selectedModes: GameMode[] = [];
   @observable private visible = false;
   private xhr?: JQuery.jqXHR<BeatmapsetWithDiscussionsJson>;
 
   private get beatmapset() {
     return this.props.discussionsState.beatmapset;
+  }
+
+  private get calculatedMainRuleset() {
+    return this.props.discussionsState.calculatedMainRuleset;
   }
 
   private get currentHype() {
@@ -71,6 +74,10 @@ export class Nominator extends React.Component<Props> {
     return this.beatmapset.nominations.legacy_mode
       ? null
       : Object.keys(this.beatmapset.nominations.required) as GameMode[];
+  }
+
+  private get selectedModes() {
+    return this.props.discussionsState.selectedNominatedRulesets;
   }
 
   private get users() {
@@ -128,13 +135,6 @@ export class Nominator extends React.Component<Props> {
     );
   }
 
-  private get calculatedMode() {
-    return this.beatmapset.main_ruleset
-      // The main ruleset not being set yet implies there are either no nominations
-      // or an equal number of nominations for each ruleset, so the next selection should make it the main ruleset.
-      ?? (this.selectedModes.length === 1 ? this.selectedModes[0] : null);
-  }
-
   private hasFullNomination(mode: GameMode) {
     return this.nominationEvents.some((event) => {
       const user = this.users.get(event.user_id);
@@ -186,7 +186,7 @@ export class Nominator extends React.Component<Props> {
     }
 
     return curr >= req
-      || this.calculatedMode != null && this.calculatedMode !== mode && this.nominationCountWithSelections(mode) > 0;
+      || this.calculatedMainRuleset != null && this.calculatedMainRuleset !== mode && this.nominationCountWithSelections(mode) > 0;
   }
 
   private nominationCountWithSelections(mode: GameMode) {
@@ -259,7 +259,7 @@ export class Nominator extends React.Component<Props> {
   }
 
   private renderModalContentHybrid() {
-    const currentMode = this.calculatedMode ?? 'undefined';
+    const currentMode = this.calculatedMainRuleset ?? 'undefined';
 
     return (
       <>
@@ -324,7 +324,7 @@ export class Nominator extends React.Component<Props> {
   @action
   private readonly updateCheckboxes = () => {
     const checkedBoxes = map(this.checkboxContainerRef.current?.querySelectorAll<HTMLInputElement>('input[type=checkbox]:checked'), (node) => node.value);
-    this.selectedModes = checkedBoxes as GameMode[];
+    this.props.discussionsState.selectedNominatedRulesets = checkedBoxes as GameMode[];
   };
 
   private userCanNominateMode(mode: GameMode) {

@@ -53,6 +53,7 @@ export default class DiscussionsState {
   @observable pinnedNewDiscussion = false;
 
   @observable readPostIds = new Set<number>();
+  @observable selectedNominatedRulesets: GameMode[] = [];
   @observable selectedUserId: number | null = null;
   @observable showDeleted = true; // this toggle only affects All and deleted discussion filters, other filters don't show deleted
 
@@ -229,6 +230,13 @@ export default class DiscussionsState {
     );
 
     return moment(maxLastUpdate).unix();
+  }
+
+  get calculatedMainRuleset() {
+    return this.beatmapset.main_ruleset
+      // The main ruleset not being set yet implies there are either no nominations
+      // or an equal number of nominations for each ruleset, so the next selection should make it the main ruleset.
+      ?? (this.selectedNominatedRulesets.length === 1 ? this.selectedNominatedRulesets[0] : null);
   }
 
   @computed

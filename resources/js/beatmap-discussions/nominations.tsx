@@ -487,7 +487,9 @@ export class Nominations extends React.Component<Props> {
             current={nominations.current[ruleset] ?? 0}
             label={hybrid ? <i className={`fal fa-extra-mode-${ruleset}`} /> : null}
             modifiers={{ 'beatmapset-nomination-hybrid' : hybrid }}
-            total={required}
+            // set all non-main ruleset to 1
+            // TODO: add main/non-main required to response
+            total={this.props.discussionsState.calculatedMainRuleset == null || this.props.discussionsState.calculatedMainRuleset === ruleset ? required : 1}
           />
         ))}
       </div>
