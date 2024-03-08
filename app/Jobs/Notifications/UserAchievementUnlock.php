@@ -11,7 +11,10 @@ use App\Models\User;
 
 class UserAchievementUnlock extends BroadcastNotificationBase
 {
-    const NOTIFICATION_OPTION_NAME = Notification::USER_ACHIEVEMENT_UNLOCK;
+    // Mainly to ensure client always getting the event.
+    // Also it probably doesn't really make sense to mail the event
+    // in the first place.
+    const DELIVERY_MODE_DEFAULTS = ['mail' => false, 'push' => true];
 
     protected $achievement;
 

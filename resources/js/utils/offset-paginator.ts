@@ -5,6 +5,7 @@ import KudosuHistoryJson from 'interfaces/kudosu-history-json';
 import { route } from 'laroute';
 import { action } from 'mobx';
 import { RouteList } from 'ziggy-js';
+import { getInt } from './math';
 
 type RouteParams = Partial<Record<string, string | number>>;
 
@@ -21,10 +22,7 @@ export interface OffsetPaginatorJson<T> {
 export const apiShowMore = action(<T>(json: OffsetPaginatorJson<T>, routeName: keyof RouteList, baseRouteParams: RouteParams): JQuery.jqXHR<T[]> => {
   json.pagination.loading = true;
 
-  let limit = baseRouteParams.limit;
-  if (typeof limit !== 'number' || !Number.isFinite(limit)) {
-    limit = 50;
-  }
+  const limit = getInt(baseRouteParams.limit) ?? 50;
   const fetchLimit = limit + 1;
   const params = {
     ...baseRouteParams,

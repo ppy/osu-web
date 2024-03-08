@@ -29,7 +29,7 @@
                         <div class="gallery-previews">
                             @foreach($product->images() as $i => $image)
                                 @php
-                                    $imageSize = fast_imagesize($image[1]);
+                                    $imageSize = fast_imagesize($image[1], "store_product:{$product->getKey()}");
                                 @endphp
                                 <a
                                     class="gallery-previews__item js-gallery"
