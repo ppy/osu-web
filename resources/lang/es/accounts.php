@@ -92,7 +92,6 @@ return [
             'mail' => 'correo',
             'mapping' => 'creadores de mapas',
             'push' => 'push',
-            'user_achievement_unlock' => 'medallas desbloqueadas',
         ],
     ],
 

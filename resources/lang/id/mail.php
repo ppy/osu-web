@@ -7,8 +7,8 @@ return [
     'beatmapset_update_notice' => [
         'new' => 'Kami ingin memberitahukan bahwa beatmap ":title" telah diperbarui sejak kunjungan terakhirmu.',
         'subject' => 'Pembaruan baru untuk beatmap ":title"',
-        'unwatch' => 'Apabila kamu tidak lagi ingin mengikuti beatmap ini, kamu dapat memberhentikan pengamatan Anda melalui tautan "Berhenti Ikuti" yang tertera di atas atau melalui laman Daftar Pengamatan berikut:',
-        'visit' => 'Kunjungi laman diskusi beatmap ini di sini:',
+        'unwatch' => 'Apabila kamu tidak lagi ingin mengikuti beatmap ini, kamu dapat mengeklik tombol "Berhenti Ikuti" yang dapat kamu temukan pada tautan di atas atau pada halaman daftar pengamatan berikut:',
+        'visit' => 'Kunjungi halaman diskusi beatmap ini di sini:',
     ],
 
     'common' => [
@@ -41,7 +41,7 @@ return [
     'forum_new_reply' => [
         'new' => 'Kami ingin memberitahukan bahwa terdapat balasan baru pada ":title" sejak kunjungan terakhirmu.',
         'subject' => '[osu!] Balasan baru pada topik ":title"',
-        'unwatch' => 'Apabila kamu tidak lagi ingin mengikuti topik forum ini, Anda dapat memberhentikan pengamatanmu melalui tautan "Berhenti Ikuti" yang tertera di atas atau melalui laman Daftar Pengamatan berikut:',
+        'unwatch' => 'Apabila kamu tidak lagi ingin mengikuti topik ini, kamu dapat mengeklik tombol "Berhenti Ikuti" yang dapat kamu temukan pada tautan di atas atau pada halaman daftar pengamatan berikut:',
         'visit' => 'Kamu dapat segera melihat balasan terbaru melalui link berikut:',
     ],
 

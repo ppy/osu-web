@@ -33,6 +33,6 @@ return [
     ],
 
     'modding' => [
-        'title' => 'halaman diskusi beatmap',
+        'title' => 'diskusi beatmap',
     ],
 ];

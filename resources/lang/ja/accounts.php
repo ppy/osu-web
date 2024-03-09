@@ -92,7 +92,6 @@ return [
             'mail' => 'メール',
             'mapping' => 'ビートマップマッパー',
             'push' => 'プッシュ通知',
-            'user_achievement_unlock' => 'ユーザーメダルのアンロック',
         ],
     ],
 

@@ -93,7 +93,6 @@ return [
             'mail' => 'pošta',
             'mapping' => 'tvorca beatmapy',
             'push' => 'push',
-            'user_achievement_unlock' => 'nová medaila odomknutá',
         ],
     ],
 

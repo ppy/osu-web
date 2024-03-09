@@ -92,7 +92,6 @@ return [
             'mail' => 'mail',
             'mapping' => 'creator beatmap',
             'push' => 'push',
-            'user_achievement_unlock' => 'medalie de utilizator deblocată',
         ],
     ],
 

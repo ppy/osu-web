@@ -213,8 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'Acest beatmap este estimat a fi clasificat în data de :date dacă nu sunt găsite probleme. Este #:position în :queue.',
-            'unresolved_problems' => '',
-            'problems' => '',
+            'unresolved_problems' => 'Acest beatmap este momentan blocat din a părăsi secțiunea „Calificat” până când :problems sunt rezolvate.',
+            'problems' => 'aceste probleme',
             'on' => 'pe :date',
             'queue' => 'lista de așteptare pentru clasament',
             'soon' => 'în curând',

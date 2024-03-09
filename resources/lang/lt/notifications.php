@@ -244,11 +244,6 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':username atrakino naują medalį ":title"!',
-                'user_achievement_unlock_self' => 'Tu atrakinai naują medalį ":title"!',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username sukūrė naujų beatmap\'ų',
                 'user_beatmapset_revive' => ':username atgaivino beatmap\'us',

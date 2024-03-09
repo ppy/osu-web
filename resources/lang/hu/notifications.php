@@ -245,11 +245,6 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':username feloldott egy új medált! ":title"',
-                'user_achievement_unlock_self' => 'Feloldottál egy új medált! ":title"',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username új beatmapeket hozott létre',
                 'user_beatmapset_revive' => ':username újraélesztett beatmepeket',

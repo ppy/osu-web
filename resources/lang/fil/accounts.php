@@ -94,7 +94,6 @@ return [
             'mail' => 'koreo',
             'mapping' => 'mapper ng beatmap',
             'push' => 'push',
-            'user_achievement_unlock' => 'na-unlock na medalya ng user',
         ],
     ],
 

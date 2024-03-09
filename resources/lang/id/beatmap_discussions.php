@@ -7,7 +7,7 @@ return [
     'authorizations' => [
         'update' => [
             'null_user' => 'Kamu harus masuk untuk menyunting.',
-            'system_generated' => 'Post yang dibuat secara otomatis tidak dapat disunting.',
+            'system_generated' => 'Postingan yang dihasilkan oleh sistem tidak dapat disunting.',
             'wrong_user' => 'Hanya pembuat post yang diperbolehkan untuk menyunting post.',
         ],
     ],
@@ -19,7 +19,7 @@ return [
     'index' => [
         'deleted_beatmap' => 'telah dihapus',
         'none_found' => 'Tidak ada topik diskusi yang sesuai dengan kriteria pencarian.',
-        'title' => 'Laman Diskusi Beatmap',
+        'title' => 'Diskusi Beatmap',
 
         'form' => [
             '_' => 'Cari',
@@ -78,7 +78,7 @@ return [
         'go_to_parent' => 'Lihat Kajian',
         'go_to_child' => 'Lihat Topik Diskusi',
         'validation' => [
-            'block_too_large' => 'masing-masing poin yang dikaji terbatas pada :limit karakter',
+            'block_too_large' => 'masing-masing blok kajian terbatas pada :limit karakter',
             'external_references' => 'kajian mengandung poin yang merujuk pada isu yang tidak berasal dari kajian ini',
             'invalid_block_type' => 'tipe blok tidak valid',
             'invalid_document' => 'kajian tidak valid',

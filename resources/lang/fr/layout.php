@@ -86,7 +86,6 @@ return [
         ],
         'rankings' => [
             '_' => 'classements',
-            'kudosu' => 'kudosu',
         ],
         'store' => [
             '_' => 'magasin',

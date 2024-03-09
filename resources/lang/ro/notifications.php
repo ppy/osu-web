@@ -244,11 +244,6 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':username a deblocat o nouă medalie, ":title"!',
-                'user_achievement_unlock_self' => 'Ați deblocat o nouă medalie, ":title"!',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username a creat beatmap-uri noi',
                 'user_beatmapset_revive' => ':username a reînviat beatmap-uri',

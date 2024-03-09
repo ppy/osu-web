@@ -24,7 +24,7 @@ return [
     ],
 
     'type' => [
-        'charts' => 'wyróżnionych',
+        'charts' => 'Wyróżnionych',
         'country' => 'krajowy',
         'kudosu' => 'kudosu',
         'multiplayer' => 'wieloosobowy',

@@ -12,7 +12,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'izinkan kudosu',
-        'beatmap_information' => 'Laman Beatmap',
+        'beatmap_information' => 'Halaman Beatmap',
         'delete' => 'hapus',
         'deleted' => 'Dihapus oleh :editor :delete_time.',
         'deny_kudosu' => 'tolak kudosu',
@@ -190,13 +190,13 @@ return [
         'already_nominated' => 'Kamu telah menominasikan beatmap ini.',
         'cannot_nominate' => 'Kamu tidak dapat memberikan nominasi untuk mode permainan ini.',
         'delete' => 'Hapus',
-        'delete_own_confirm' => 'Apakah kamu yakin? Beatmap yang dipilih akan dihapus dan kamu akan dialihkan kembali ke laman profilmu.',
-        'delete_other_confirm' => 'Apakah kamu yakin? Beatmap yang dipilih akan dihapus dan kamu akan dialihkan kembali ke laman profil pengguna yang bersangkutan.',
+        'delete_own_confirm' => 'Apakah kamu yakin? Beatmap yang dipilih akan dihapus dan kamu akan dialihkan kembali ke halaman profilmu.',
+        'delete_other_confirm' => 'Apakah kamu yakin? Beatmap yang dipilih akan dihapus dan kamu akan dialihkan kembali ke halaman profil pengguna yang bersangkutan.',
         'disqualification_prompt' => 'Alasan diskualifikasi?',
         'disqualified_at' => 'Didiskualifikasi pada :time_ago (:reason).',
         'disqualified_no_reason' => 'tidak ada alasan yang diberikan',
         'disqualify' => 'Diskualifikasi',
-        'incorrect_state' => 'Terdapat kesalahan pada saat melakukan tindakan ini. Cobalah untuk memuat ulang laman.',
+        'incorrect_state' => 'Terdapat kesalahan dalam melangsungkan tindakan ini. Cobalah untuk memuat ulang halaman.',
         'love' => 'Love',
         'love_choose' => 'Pilih tingkat kesulitan untuk diangkat ke kategori Loved',
         'love_confirm' => 'Love beatmap ini?',
@@ -213,8 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'Map ini akan berstatus Ranked pada :date apabila tidak terdapat masalah baru yang ditemukan. Map ini berada pada urutan ke-:position dalam :queue yang ada.',
-            'unresolved_problems' => '',
-            'problems' => '',
+            'unresolved_problems' => 'Beatmap ini sedang diblokir untuk dapat melewati kategori Qualified hingga :problems terselesaikan.',
+            'problems' => 'masalah berikut',
             'on' => 'pada :date',
             'queue' => 'antrian ranking',
             'soon' => 'segera',

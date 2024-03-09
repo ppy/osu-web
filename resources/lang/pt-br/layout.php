@@ -86,7 +86,6 @@ return [
         ],
         'rankings' => [
             '_' => 'colocações',
-            'kudosu' => 'kudosu',
         ],
         'store' => [
             '_' => 'loja',
@@ -196,8 +195,8 @@ return [
             'account-edit' => 'Configurações',
             'follows' => 'Observações',
             'friends' => 'Amigos',
-            'legacy_score_only_toggle' => '',
-            'legacy_score_only_toggle_tooltip' => '',
+            'legacy_score_only_toggle' => 'Modo Lazer',
+            'legacy_score_only_toggle_tooltip' => 'Modo Lazer mostra as pontuações definidas pelo lazer com um novo algoritmo de pontuação',
             'logout' => 'Desconectar',
             'profile' => 'Meu Perfil',
         ],
