@@ -22,7 +22,7 @@ return [
             'missing_score' => '',
             'contest_vote_judged' => '',
         ],
-        'voted' => '',
+        'voted' => 'Již jsi pro tuto položku hlasoval.',
     ],
 
     'judge_results' => [

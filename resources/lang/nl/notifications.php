@@ -244,11 +244,6 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':username heeft een nieuwe medaille ontgrendeld, ":title"!',
-                'user_achievement_unlock_self' => 'Je hebt een nieuwe medaille, ":title"!',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username heeft nieuwe beatmaps aangemaakt',
                 'user_beatmapset_revive' => ':username heeft beatmaps vernieuwd',

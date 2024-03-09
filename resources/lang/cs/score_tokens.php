@@ -5,7 +5,7 @@
 
 return [
     'create' => [
-        'beatmap_hash_invalid' => '',
-        'submission_disabled' => '',
+        'beatmap_hash_invalid' => 'neplatný nebo chybějící beatmap_hash',
+        'submission_disabled' => 'odesílání skóre je vypnuto',
     ],
 ];

@@ -92,7 +92,6 @@ return [
             'mail' => 'пошта',
             'mapping' => 'автор бітмапи',
             'push' => 'push',
-            'user_achievement_unlock' => 'медаль користувача розблоковано',
         ],
     ],
 

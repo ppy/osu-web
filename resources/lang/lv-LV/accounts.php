@@ -92,7 +92,6 @@ return [
             'mail' => 'pasts',
             'mapping' => 'bītmapes kartētājs',
             'push' => 'push',
-            'user_achievement_unlock' => 'lietotāja medaļa atklāta',
         ],
     ],
 

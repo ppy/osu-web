@@ -92,7 +92,6 @@ return [
             'mail' => 'correio',
             'mapping' => 'mapeador de beatmaps',
             'push' => 'push',
-            'user_achievement_unlock' => 'medalha de usuário foi desbloqueada',
         ],
     ],
 

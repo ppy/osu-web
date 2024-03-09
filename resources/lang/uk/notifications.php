@@ -244,11 +244,6 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':username розблокував нову медаль, ":title"!',
-                'user_achievement_unlock_self' => 'Ви розблокували нову медаль, ":title"!',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username створив нову бітмапу',
                 'user_beatmapset_revive' => ':username відновив бітмапи',

@@ -244,11 +244,6 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':username је откључао/ла нову медаљу, ":title"!',
-                'user_achievement_unlock_self' => 'Откључали сте нову медаљу, ":title"!',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username је направио/ла нове мапе',
                 'user_beatmapset_revive' => ':username је оживео мапе',

@@ -244,11 +244,6 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':username 解鎖了新成就，":title"！',
-                'user_achievement_unlock_self' => '您已解鎖了新成就 ":title"！',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username 建立了新圖譜',
                 'user_beatmapset_revive' => ':username 復原了圖譜',

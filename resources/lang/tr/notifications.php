@@ -244,11 +244,6 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':username yeni bir madalya açtı, ":title"!',
-                'user_achievement_unlock_self' => 'Yeni bir madalya açtınız, ":title"!',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username yeni beatmapler yaptı',
                 'user_beatmapset_revive' => ':username beatmap\'leri hayata geri döndürdü',

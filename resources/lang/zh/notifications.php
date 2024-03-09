@@ -247,11 +247,6 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':username 解锁了 “:title”！',
-                'user_achievement_unlock_self' => '您已解锁 “:title”！',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username 创建了一张新谱面',
                 'user_beatmapset_revive' => ':username 恢复了一张谱面',

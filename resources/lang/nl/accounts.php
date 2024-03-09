@@ -92,7 +92,6 @@ return [
             'mail' => 'e-mail',
             'mapping' => 'beatmap mapper',
             'push' => 'push',
-            'user_achievement_unlock' => 'medaille verdiend',
         ],
     ],
 

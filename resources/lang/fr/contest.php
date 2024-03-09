@@ -33,7 +33,7 @@ return [
     ],
 
     'voting' => [
-        'judge_link' => 'Vous êtes juge de concours. Jugez les entrées ici !',
+        'judge_link' => 'Vous êtes juge de ce concours. Jugez les entrées ici !',
         'judged_notice' => 'Ce concours utilise le système de jugement, les juges s\'occupent actuellement des entrées.',
         'login_required' => 'Veuillez vous connecter pour voter.',
         'over' => 'Le vote pour ce concours est terminé',

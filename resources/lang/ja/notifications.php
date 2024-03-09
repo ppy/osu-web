@@ -244,11 +244,6 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':usernameが新しいメダル「:title」をアンロックしました！',
-                'user_achievement_unlock_self' => '新しいメダル「:title」をアンロックしました！',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':usernameがビートマップを作成しました',
                 'user_beatmapset_revive' => ':username がビートマップを復活させました',

@@ -244,11 +244,6 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':username отключи нов медал, ":title"!',
-                'user_achievement_unlock_self' => 'Отключихте нов медал, ":title"!',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username създаде нов бийтмап',
                 'user_beatmapset_revive' => ':username съживи бийтмап',

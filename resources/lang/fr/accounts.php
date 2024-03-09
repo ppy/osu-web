@@ -92,7 +92,6 @@ return [
             'mail' => 'mail',
             'mapping' => 'créateur de beatmap',
             'push' => 'push',
-            'user_achievement_unlock' => 'médaille utilisateur déverrouillée',
         ],
     ],
 

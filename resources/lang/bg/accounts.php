@@ -92,7 +92,6 @@ return [
             'mail' => 'поща',
             'mapping' => 'бийтмап създател',
             'push' => 'сайт',
-            'user_achievement_unlock' => 'нов отключен медал',
         ],
     ],
 

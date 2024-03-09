@@ -201,7 +201,7 @@ return [
         'topic_buttons' => [
             'remove' => [
                 'confirmation' => 'Berhenti berlangganan dari topik?',
-                'title' => 'Berhenti Berlangganan',
+                'title' => 'Berhenti ikuti',
             ],
         ],
     ],

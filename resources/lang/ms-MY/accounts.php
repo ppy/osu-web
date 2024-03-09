@@ -92,7 +92,6 @@ return [
             'mail' => 'e-mel',
             'mapping' => 'pembuat beatmap',
             'push' => 'web',
-            'user_achievement_unlock' => 'pingat baharu terbuka',
         ],
     ],
 

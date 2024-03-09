@@ -92,7 +92,6 @@ return [
             'mail' => 'paštas',
             'mapping' => 'beatmap\'o kūrėjas',
             'push' => 'push',
-            'user_achievement_unlock' => 'žaidėjo medalis atrakintas',
         ],
     ],
 

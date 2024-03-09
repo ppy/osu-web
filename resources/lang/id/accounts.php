@@ -19,7 +19,7 @@ return [
             'new_confirmation' => 'konfirmasi email',
             'title' => 'Email',
             'locked' => [
-                '_' => 'Harap hubungi :accounts jika kamu ingin memperbarui email.',
+                '_' => 'Silakan hubungi :accounts apabila kamu ingin memperbarui alamat emailmu.',
                 'accounts' => 'tim bantuan akun',
             ],
         ],
@@ -92,7 +92,6 @@ return [
             'mail' => 'email',
             'mapping' => 'pembuat beatmap',
             'push' => 'web',
-            'user_achievement_unlock' => 'terbukanya medali baru',
         ],
     ],
 

@@ -244,11 +244,6 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':username desbloqueou uma nova medalha, ":title"!',
-                'user_achievement_unlock_self' => 'Desbloqueaste uma nova medalha: ":title"!',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username criou novos beatmaps',
                 'user_beatmapset_revive' => ':username ressuscitou beatmaps',

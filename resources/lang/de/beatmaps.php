@@ -213,8 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'Diese Map wird voraussichtlich am :date ranked. Sie befindet sich aktuell an Position :position der :queue.',
-            'unresolved_problems' => '',
-            'problems' => '',
+            'unresolved_problems' => 'Diese Beatmap verbleibt im Qualified-Abschnitt, bis :problems behoben wurden.',
+            'problems' => 'diese Probleme',
             'on' => 'am :date',
             'queue' => 'Warteschlange',
             'soon' => 'bald',
