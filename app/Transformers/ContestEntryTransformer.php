@@ -9,7 +9,6 @@ use App\Models\ContestEntry;
 use App\Models\DeletedUser;
 use League\Fractal\Resource\Collection;
 use League\Fractal\Resource\Item;
-use Sentry\State\Scope;
 
 class ContestEntryTransformer extends TransformerAbstract
 {
@@ -88,20 +87,10 @@ class ContestEntryTransformer extends TransformerAbstract
         $thumbnailUrl = $entry->thumbnail();
         // suffix urls when contests are made live to ensure image dimensions are forcibly rechecked
         if ($entry->contest->visible) {
-            $urlSuffix = str_contains($thumbnailUrl, '?') ? '&live' : '?live';
+            $thumbnailUrl .= str_contains($thumbnailUrl, '?') ? '&live' : '?live';
         }
 
-        $size = fast_imagesize($thumbnailUrl.($urlSuffix ?? ''));
-
-        if ($size === null) {
-            app('sentry')->getClient()->captureMessage(
-                'Failed fetching image size of contest entry',
-                null,
-                (new Scope())
-                    ->setExtra('id', $entry->getKey())
-                    ->setExtra('url', $thumbnailUrl),
-            );
-        }
+        $size = fast_imagesize($thumbnailUrl, "contest_entry:{$entry->getKey()}");
 
         return $this->primitive([
             'width' => $size[0] ?? 0,

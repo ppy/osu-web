@@ -10,7 +10,7 @@ import { rulesetName, shouldShowPp } from 'utils/beatmap-helper';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
-import { accuracy, isPerfectCombo, modeAttributesMap } from 'utils/score-helper';
+import { accuracy, isPerfectCombo, attributeDisplayTotals } from 'utils/score-helper';
 
 interface Props {
   beatmap: BeatmapJson;
@@ -58,13 +58,13 @@ export default function Stats(props: Props) {
           )}
         </div>
         <div className='score-stats__group-row'>
-          {modeAttributesMap[rulesetName(props.score.ruleset_id)].map((attr) => (
-            <div key={attr.attribute} className='score-stats__stat'>
+          {attributeDisplayTotals(rulesetName(props.score.ruleset_id), props.score).map((attr) => (
+            <div key={attr.key} className='score-stats__stat'>
               <div className='score-stats__stat-row score-stats__stat-row--label'>
                 {attr.label}
               </div>
               <div className='score-stats__stat-row'>
-                {formatNumber(props.score.statistics[attr.attribute] ?? 0)}
+                {formatNumber(attr.total)}
               </div>
             </div>
           ))}

@@ -13,7 +13,6 @@ use App\Exceptions\InvariantException;
 use App\Libraries\Score\UserRank;
 use App\Libraries\Search\ScoreSearchParams;
 use App\Models\Beatmap;
-use App\Models\Beatmapset;
 use App\Models\Model;
 use App\Models\Multiplayer\ScoreLink as MultiplayerScoreLink;
 use App\Models\Score as LegacyScore;
@@ -120,10 +119,8 @@ class Score extends Model implements Traits\ReportableInterface
         $params['user_id'] = $scoreToken->user_id;
 
         $beatmap = $scoreToken->beatmap;
-        $params['ranked'] = $beatmap !== null && in_array($beatmap->approved, [
-            Beatmapset::STATES['approved'],
-            Beatmapset::STATES['ranked'],
-        ], true);
+        // anything that have leaderboard
+        $params['ranked'] = $beatmap !== null && $beatmap->approved > 0;
 
         $params['preserve'] = $params['passed'] ?? false;
 
@@ -164,6 +161,7 @@ class Score extends Model implements Traits\ReportableInterface
     {
         return $query
             ->where('preserve', true)
+            ->where('ranked', true)
             ->whereHas('user', fn (Builder $q): Builder => $q->default());
     }
 
@@ -427,6 +425,10 @@ class Score extends Model implements Traits\ReportableInterface
 
     public function userRank(?array $params = null): int
     {
+        if (!$this->ranked || !$this->preserve) {
+            return 0;
+        }
+
         // Non-legacy score always has its rank checked against all score types.
         if (!$this->isLegacy()) {
             $params['is_legacy'] = null;

@@ -957,7 +957,7 @@
             "GET",
             "HEAD"
         ],
-        "controller": "App\\Http\\Controllers\\ScoresController@downloadLegacy",
+        "controller": "App\\Http\\Controllers\\ScoresController@download",
         "middlewares": [
             "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
             "App\\Http\\Middleware\\RequireScopes",

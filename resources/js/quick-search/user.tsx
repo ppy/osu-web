@@ -3,7 +3,7 @@
 
 import FlagCountry from 'components/flag-country';
 import FriendButton from 'components/friend-button';
-import { SupporterIcon } from 'components/supporter-icon';
+import SupporterIcon from 'components/supporter-icon';
 import UserGroupBadges from 'components/user-group-badges';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
@@ -33,7 +33,7 @@ export default function User({ user, modifiers = [] }: { modifiers?: string[]; u
           {user.is_supporter
             ? (
               <div className='user-search-card__col user-search-card__col--icon u-hidden-narrow'>
-                <SupporterIcon level={user.support_level} modifiers={['quick-search']} />
+                <SupporterIcon level={user.support_level} modifiers='quick-search' />
               </div>
             ) : null}
 

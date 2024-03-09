@@ -27,10 +27,12 @@ class RankingController extends Controller
     private $params;
     private $friendsOnly;
 
-    const PAGE_SIZE = 50;
     const MAX_RESULTS = 10000;
+    const PAGE_SIZE = 50;
     const RANKING_TYPES = ['performance', 'charts', 'score', 'country'];
     const SPOTLIGHT_TYPES = ['charts'];
+    // in display order
+    const TYPES = ['performance', 'score', 'country', 'multiplayer', 'seasons', 'charts', 'kudosu'];
 
     public function __construct()
     {
@@ -101,6 +103,26 @@ class RankingController extends Controller
 
             return $next($request);
         }, ['except' => ['kudosu']]);
+    }
+
+    public static function url(
+        string $type,
+        string $rulesetName,
+        ?Country $country = null,
+        ?Spotlight $spotlight = null,
+    ): string {
+        return match ($type) {
+            'country' => route('rankings', ['mode' => $rulesetName, 'type' => $type]),
+            'kudosu' => route('rankings.kudosu'),
+            'multiplayer' => route('multiplayer.rooms.show', ['room' => 'latest']),
+            'seasons' => route('seasons.show', ['season' => 'latest']),
+            default => route('rankings', [
+                'country' => $country !== null && $type === 'performance' ? $country->getKey() : null,
+                'mode' => $rulesetName,
+                'spotlight' => $spotlight !== null && $type === 'charts' ? $spotlight->getKey() : null,
+                'type' => $type,
+            ]),
+        };
     }
 
     /**
@@ -259,18 +281,16 @@ class RankingController extends Controller
             )];
         }
 
-        $scores->loadMissing('country');
-
         return ext_view('rankings.kudosu', compact('scores'));
     }
 
     public function spotlight($mode)
     {
-        $chartId = $this->params['spotlight'] ?? null;
+        $chartId = get_int($this->params['spotlight'] ?? null);
 
         $spotlights = Spotlight::orderBy('chart_id', 'desc')->get();
         if ($chartId === null) {
-            $spotlight = $spotlights->first();
+            $spotlight = $spotlights->first() ?? abort(404);
         } else {
             $spotlight = Spotlight::findOrFail($chartId);
         }
