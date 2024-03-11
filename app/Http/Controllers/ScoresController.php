@@ -52,7 +52,7 @@ class ScoresController extends Controller
             abort(404);
         }
 
-        if (\Auth::user()->getKey() !== $score->user_id) {
+        if (\Auth::user()->getKey() !== $score->user_id && !is_api_request()) {
             $score->user->statistics($score->getMode(), true)->increment('replay_popularity');
 
             $month = CarbonImmutable::now();
