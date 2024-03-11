@@ -257,21 +257,21 @@ export default class DiscussionsState {
   @computed
   get totalHypeCount() {
     return this.nonDeletedDiscussions
-      .reduce((sum, discussion) => +(discussion.message_type === 'hype') + sum, 0);
+      .reduce((total, discussion) => +(discussion.message_type === 'hype') + total, 0);
   }
 
   @computed
   get unresolvedDiscussionTotalCount() {
     return this.nonDeletedDiscussions
-      .reduce((sum, discussion) => {
+      .reduce((total, discussion) => {
         if (discussion.can_be_resolved && !discussion.resolved) {
-          if (discussion.beatmap_id == null) return sum + 1;
+          if (discussion.beatmap_id == null) return total + 1;
 
           const beatmap = this.store.beatmaps.get(discussion.beatmap_id);
-          if (beatmap != null && beatmap.deleted_at == null) return sum + 1;
+          if (beatmap != null && beatmap.deleted_at == null) return total + 1;
         }
 
-        return sum;
+        return total;
       }, 0);
   }
 
@@ -413,7 +413,7 @@ export default class DiscussionsState {
     let total = 0;
 
     Object.entries(nominations[type]).forEach(([ruleset, count]) =>
-      ruleset === this.calculatedMainRuleset ? total = total + count : ++total,
+      ruleset === this.calculatedMainRuleset ? total = total + count : total + 1,
     );
 
     return total;
