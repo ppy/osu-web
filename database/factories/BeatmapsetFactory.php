@@ -130,7 +130,7 @@ class BeatmapsetFactory extends Factory
                 ->count($count)
                 ->state([
                     'modes' => $modes,
-                    'user_id' => User::factory()->withGroup('bng', array_keys(Beatmap::MODES))
+                    'user_id' => User::factory()->withGroup('bng', array_keys(Beatmap::MODES)),
                 ]));
     }
 

@@ -1104,7 +1104,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
         // First mode with more nominations that others becomes main mode.
         // Implicity implies that limited BN nominations because main mode.
-        //
         $nominations = $this->beatmapsetNominations()->current()->get();
         $nominationsByRuleset = [];
 
