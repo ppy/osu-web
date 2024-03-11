@@ -194,6 +194,11 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
             'legacy_mode' => $beatmapset->isLegacyNominationMode(),
             'current' => $beatmapset->currentNominationCount(),
             'required' => $beatmapset->requiredNominationCount(),
+            'required_meta' => [
+                'base' => $GLOBALS['cfg']['osu']['beatmapset']['required_nominations'],
+                'main_ruleset' => $GLOBALS['cfg']['osu']['beatmapset']['required_nominations_hybrid'],
+                'non_main_ruleset' => 1,
+            ],
         ];
 
         if ($beatmapset->isPending()) {

@@ -474,21 +474,21 @@ export class Nominations extends React.Component<Props> {
   private renderLightsForNominations(nominations?: BeatmapsetNominationsInterface) {
     if (nominations == null) return;
 
-    const hybrid = !this.beatmapset.nominations.legacy_mode;
+    const hybrid = !nominations.legacy_mode;
 
     return (
       <div className={classWithModifiers(`${bn}__discrete-bar-group`, { hybrid })}>
         {nominations.legacy_mode ? (
           <DiscreteBar current={nominations.current} total={nominations.required} />
-        ) : Object.entries(nominations.required).map(([ruleset, required]: [GameMode, number]) => (
+        ) : Object.keys(nominations.required).map((ruleset: GameMode) => (
           <DiscreteBar
             key={ruleset}
             current={nominations.current[ruleset] ?? 0}
             label={hybrid ? <i className={`fal fa-extra-mode-${ruleset}`} /> : null}
             modifiers={{ 'beatmapset-nomination-hybrid' : hybrid }}
-            // set all non-main ruleset to 1
-            // TODO: add main/non-main required to response
-            total={this.props.discussionsState.calculatedMainRuleset == null || this.props.discussionsState.calculatedMainRuleset === ruleset ? required : 1}
+            total={this.props.discussionsState.calculatedMainRuleset == null || this.props.discussionsState.calculatedMainRuleset === ruleset
+              ? nominations.required_meta.main_ruleset
+              : nominations.required_meta.non_main_ruleset}
           />
         ))}
       </div>

@@ -412,8 +412,10 @@ export default class DiscussionsState {
 
     let total = 0;
 
-    Object.entries(nominations[type]).forEach(([ruleset, count]) =>
-      ruleset === this.calculatedMainRuleset ? total = total + count : total + 1,
+    Object.keys(nominations[type]).forEach((ruleset) =>
+      ruleset === this.calculatedMainRuleset
+        ? total += nominations.required_meta.main_ruleset
+        : total += nominations.required_meta.non_main_ruleset,
     );
 
     return total;
