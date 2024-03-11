@@ -9,7 +9,7 @@ The browser-facing portion of [osu!](https://osu.ppy.sh/home).
 
 ## Requirements
 
-- A PHP 8.2 environment
+- A PHP 8.3 environment
 - MySQL 8.0+
 - Elasticsearch
 
