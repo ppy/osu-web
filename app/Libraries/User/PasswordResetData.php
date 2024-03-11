@@ -74,7 +74,7 @@ class PasswordResetData
 
     private static function authHash(User $user): string
     {
-        return hash('sha256', $user->user_email).':'.hash('sha256', $user->user_password);
+        return hash('sha256', $user->user_email ?? '').':'.hash('sha256', $user->user_password);
     }
 
     private function __construct(
