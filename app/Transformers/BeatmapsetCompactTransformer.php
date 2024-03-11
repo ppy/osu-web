@@ -195,8 +195,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
             'current' => $beatmapset->currentNominationCount(),
             'required' => $beatmapset->requiredNominationCount(),
             'required_meta' => [
-                'base' => $GLOBALS['cfg']['osu']['beatmapset']['required_nominations'],
-                'main_ruleset' => $GLOBALS['cfg']['osu']['beatmapset']['required_nominations_hybrid'],
+                'main_ruleset' => $GLOBALS['cfg']['osu']['beatmapset']['required_nominations'],
                 'non_main_ruleset' => 1,
             ],
         ];

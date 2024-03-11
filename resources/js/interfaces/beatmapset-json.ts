@@ -43,7 +43,6 @@ export interface NominationsInterface extends BaseNominationsInterface {
   legacy_mode: false;
   required: Partial<Record<GameMode, number>>;
   required_meta: {
-    base: number;
     main_ruleset: number;
     non_main_ruleset: number;
   };

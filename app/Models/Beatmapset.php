@@ -1021,9 +1021,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
     public function requiredNominationCount(): int | array
     {
         $playmodeCount = $this->playmodeCount();
-        $baseRequirement = $playmodeCount === 1
-            ? $GLOBALS['cfg']['osu']['beatmapset']['required_nominations']
-            : $GLOBALS['cfg']['osu']['beatmapset']['required_nominations_hybrid'];
+        $baseRequirement = $GLOBALS['cfg']['osu']['beatmapset']['required_nominations'];
 
         if ($this->isLegacyNominationMode()) {
             return $playmodeCount * $baseRequirement;
