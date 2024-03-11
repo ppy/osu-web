@@ -26,7 +26,6 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import { onError } from 'utils/ajax';
 import { canModeratePosts, makeUrl, startingPost } from 'utils/beatmapset-discussion-helper';
-import { nominationsCount } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { joinComponents, trans, transExists } from 'utils/lang';
@@ -538,7 +537,7 @@ export class Nominations extends React.Component<Props> {
       <div>
         <div className={`${bn}__header`}>
           <span className={`${bn}__title`}>{trans('beatmaps.nominations.title')}</span>
-          <span>{formatNumber(nominationsCount(nominations, 'current'))} / {formatNumber(nominationsCount(nominations, 'required', this.props.discussionsState.calculatedMainRuleset))}</span>
+          <span>{formatNumber(this.props.discussionsState.nominationsCount('current'))} / {this.props.discussionsState.nominationsCount('required')}</span>
         </div>
         {this.renderLightsForNominations(nominations)}
       </div>

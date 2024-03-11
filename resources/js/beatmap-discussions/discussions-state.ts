@@ -4,7 +4,7 @@
 import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import GameMode from 'interfaces/game-mode';
-import { maxBy } from 'lodash';
+import { maxBy, sum } from 'lodash';
 import { action, computed, makeObservable, observable, reaction } from 'mobx';
 import moment from 'moment';
 import core from 'osu-core-singleton';
@@ -398,6 +398,25 @@ export default class DiscussionsState {
     } else {
       this.readPostIds.add(ids);
     }
+  }
+
+  nominationsCount(type: 'current' | 'required') {
+    const nominations = this.beatmapset.nominations;
+    if (nominations.legacy_mode) {
+      return nominations[type];
+    }
+
+    if (type === 'current' || this.calculatedMainRuleset == null) {
+      return sum(Object.values(nominations[type]));
+    }
+
+    let total = 0;
+
+    Object.entries(nominations[type]).forEach(([ruleset, count]) =>
+      ruleset === this.calculatedMainRuleset ? total = total + count : ++total,
+    );
+
+    return total;
   }
 
   saveState() {
