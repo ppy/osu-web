@@ -440,7 +440,7 @@ export default class Editor extends React.Component<Props, State> {
     const canReset = core.currentUser != null && (core.currentUser.is_admin || core.currentUser.is_nat || core.currentUser.is_bng);
     const willReset =
       this.beatmapset.status === 'pending'
-        && nominationsCount(this.beatmapset.nominations, 'current') > 0
+        && nominationsCount(this.beatmapset.nominations, 'current', this.props.discussionsState.calculatedMainRuleset) > 0
         && docContainsProblem;
 
     if (canDisqualify && willDisqualify) {

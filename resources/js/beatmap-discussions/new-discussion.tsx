@@ -270,7 +270,7 @@ export class NewDiscussion extends React.Component<Props> {
     if (canDisqualify && willDisqualify) return 'disqualify';
 
     const canReset = core.currentUser?.is_admin || core.currentUser?.is_nat || core.currentUser?.is_bng;
-    const currentNominations = nominationsCount(this.beatmapset.nominations, 'current');
+    const currentNominations = nominationsCount(this.beatmapset.nominations, 'current', this.props.discussionsState.calculatedMainRuleset);
     const willReset = this.beatmapset.status === 'pending' && currentNominations > 0;
 
     if (canReset && willReset) return 'nomination_reset';

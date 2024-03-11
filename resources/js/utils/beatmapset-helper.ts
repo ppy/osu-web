@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapsetJson, { BeatmapsetNominationsInterface } from 'interfaces/beatmapset-json';
+import GameMode from 'interfaces/game-mode';
 import { route } from 'laroute';
 import { sum } from 'lodash';
 import { action, runInAction } from 'mobx';
@@ -35,12 +36,22 @@ export function getTitle(beatmapset: BeatmapsetJson) {
   return beatmapset.title;
 }
 
-export function nominationsCount(nominations: BeatmapsetNominationsInterface, type: 'current' | 'required'): number {
+export function nominationsCount(nominations: BeatmapsetNominationsInterface, type: 'current' | 'required', mainRuleset?: GameMode | null): number {
   if (nominations.legacy_mode) {
     return nominations[type];
   }
 
-  return sum(Object.values(nominations[type]));
+  if (type === 'current' || mainRuleset == null) {
+    return sum(Object.values(nominations[type]));
+  }
+
+  let total = 0;
+
+  Object.entries(nominations[type]).forEach(([ruleset, count]) =>
+    ruleset === mainRuleset ? total = total + count : ++total,
+  );
+
+  return total;
 }
 
 export function showVisual(beatmapset: BeatmapsetJson) {

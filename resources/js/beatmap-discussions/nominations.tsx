@@ -475,7 +475,7 @@ export class Nominations extends React.Component<Props> {
   private renderLightsForNominations(nominations?: BeatmapsetNominationsInterface) {
     if (nominations == null) return;
 
-    const hybrid = Object.keys(this.beatmapset.nominations.required).length > 1;
+    const hybrid = !this.beatmapset.nominations.legacy_mode;
 
     return (
       <div className={classWithModifiers(`${bn}__discrete-bar-group`, { hybrid })}>
@@ -538,7 +538,7 @@ export class Nominations extends React.Component<Props> {
       <div>
         <div className={`${bn}__header`}>
           <span className={`${bn}__title`}>{trans('beatmaps.nominations.title')}</span>
-          <span>{formatNumber(nominationsCount(nominations, 'current'))} / {formatNumber(nominationsCount(nominations, 'required'))}</span>
+          <span>{formatNumber(nominationsCount(nominations, 'current'))} / {formatNumber(nominationsCount(nominations, 'required', this.props.discussionsState.calculatedMainRuleset))}</span>
         </div>
         {this.renderLightsForNominations(nominations)}
       </div>
