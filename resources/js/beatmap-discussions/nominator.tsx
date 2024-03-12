@@ -264,7 +264,7 @@ export class Nominator extends React.Component<Props> {
     return (
       <>
         {trans('beatmapsets.nominate.dialog.which_modes')}
-        <span>The main ruleset is currently: {trans(`beatmaps.mode.${currentMode}`)}</span>
+        <span>{trans('beatmapsets.nominate.dialog.current_main_ruleset', { ruleset: trans(`beatmaps.mode.${currentMode}`) })}</span>
         <div ref={this.checkboxContainerRef} className={`${bn}__checkboxes`}>
           {this.playmodes?.map((mode: GameMode) => {
             const disabled = !this.userCanNominateMode(mode);

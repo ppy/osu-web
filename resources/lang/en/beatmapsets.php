@@ -51,6 +51,7 @@ return [
             'confirmation' => 'Are you sure you want to nominate this beatmap?',
             'header' => 'Nominate Beatmap',
             'hybrid_warning' => 'note: you may only nominate once, so please ensure that you are nominating for all game modes you intend to',
+            'current_main_ruleset' => 'The main ruleset is currently: :ruleset',
             'which_modes' => 'Nominate for which modes?',
         ],
     ],
