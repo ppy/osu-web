@@ -117,6 +117,13 @@ class BeatmapPack extends Model
             ];
             if ($this->no_diff_reduction) {
                 $params['exclude_mods'] = app('mods')->difficultyReductionIds->toArray();
+                if ($isLegacy !== true) {
+                    // the intended meaning of this check is that the scores should not include mods
+                    // that disqualify them from granting pp.
+                    // mods are not the only reason why pp might be missing, but it's the best that we have for now.
+                    // see also: https://github.com/ppy/osu-queue-score-statistics/pull/234
+                    $params['exclude_scores_without_pp'] = true;
+                }
             }
 
             static $aggName = 'by_beatmap';
