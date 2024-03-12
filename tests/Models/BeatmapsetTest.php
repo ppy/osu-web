@@ -599,6 +599,8 @@ class BeatmapsetTest extends TestCase
 
         // main ruleset should now be osu
         $beatmapset->beatmaps()->where('playmode', Ruleset::taiko->value)->first()->setOwner($guest->getKey());
+        $beatmapset->refresh();
+
         $this->assertSame(Ruleset::osu, $beatmapset->mainRuleset());
 
         // nomination should not trigger qualification

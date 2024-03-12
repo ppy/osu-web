@@ -144,6 +144,8 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         'loved' => 4,
     ];
 
+    const UNDEFINED_MAIN_RULESET = -1;
+
     public $timestamps = false;
 
     protected $casts = self::CASTS;
@@ -1074,60 +1076,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         return $this->beatmapsetNominations()->current()->exists();
     }
 
-    public function mainRuleset(): ?Ruleset
-    {
-        $baseQuery = $this->beatmaps()
-            ->groupBy('playmode')
-            ->select('playmode', DB::raw('count(*) as total'))
-            ->orderBy('total', 'desc')
-            ->orderBy('playmode', 'asc');
-
-        $groups = $baseQuery->get();
-
-        // clear winner in playmode counts exists.
-        if ($groups->count() === 1 || $groups[0]->getRawAttribute('total') > $groups[1]->getRawAttribute('total')) {
-            return Ruleset::from($groups[0]->playmode);
-        }
-
-        // maps by host mapper
-        $groupedHostOnly = $baseQuery->where('user_id', $this->user_id)->get();
-
-        if (
-            $groupedHostOnly->count() === 1
-                || $groupedHostOnly->count() > 1
-                    && $groupedHostOnly[0]->getRawAttribute('total') > $groupedHostOnly[1]->getRawAttribute('total')
-        ) {
-            return Ruleset::from($groupedHostOnly[0]->playmode);
-        }
-
-        // First mode with more nominations that others becomes main mode.
-        // Implicity implies that limited BN nominations because main mode.
-        $nominations = $this->beatmapsetNominations()->current()->get();
-        $nominationsByRuleset = [];
-
-        foreach ($nominations as $nomination) {
-            $rulesets = Ruleset::tryFromNames($nomination->modes);
-            foreach ($rulesets as $ruleset) {
-                $nominationsByRuleset[$ruleset->name] ??= 0;
-                $nominationsByRuleset[$ruleset->name]++;
-            }
-
-            // bailout as soon as there is a clear winner
-            $nominatedRulesetsCount = count($nominationsByRuleset);
-            if ($nominatedRulesetsCount === 1) {
-                return Ruleset::tryFromName(array_keys($nominationsByRuleset)[0]);
-            } else if ($nominatedRulesetsCount > 1) {
-                arsort($nominationsByRuleset);
-                $values = array_values($nominationsByRuleset);
-                if ($values[0] > $values[1]) {
-                    return Ruleset::tryFromName(array_keys($nominationsByRuleset)[0]);
-                }
-            }
-        }
-
-        return null;
-    }
-
     public function currentNominationsByRuleset()
     {
         $nominations = $this->beatmapsetNominations()->current()->get();
@@ -1170,6 +1118,20 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             },
             $this->playmodes()->toArray()
         );
+    }
+
+    public function mainRuleset()
+    {
+        $mainRuleset = $this->getRawAttribute('main_ruleset');
+
+        if ($mainRuleset === null) {
+            $ruleset = $this->calculateMainRuleset();
+            $this->update(['main_ruleset' => $ruleset?->value ?? static::UNDEFINED_MAIN_RULESET]);
+
+            return $ruleset;
+        }
+
+        return Ruleset::tryFrom($mainRuleset);
     }
 
     public function rankingQueueStatus()
@@ -1475,7 +1437,15 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
     {
         return $this->update([
             'hype' => $this->freshHype(),
+            'main_ruleset' => $this->calculateMainRuleset()?->value ?? static::UNDEFINED_MAIN_RULESET,
             'nominations' => $this->isLegacyNominationMode() ? $this->currentNominationCount() : array_sum(array_values($this->currentNominationCount())),
+        ]);
+    }
+
+    public function refreshHype()
+    {
+        return $this->update([
+            'hype' => $this->freshHype(),
         ]);
     }
 
@@ -1536,6 +1506,60 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         static::addGlobalScope('active', function ($builder) {
             $builder->active();
         });
+    }
+
+    private function calculateMainRuleset(): ?Ruleset
+    {
+        $baseQuery = $this->beatmaps()
+            ->groupBy('playmode')
+            ->select('playmode', DB::raw('count(*) as total'))
+            ->orderBy('total', 'desc')
+            ->orderBy('playmode', 'asc');
+
+        $groups = $baseQuery->get();
+
+        // clear winner in playmode counts exists.
+        if ($groups->count() === 1 || $groups[0]->getRawAttribute('total') > $groups[1]->getRawAttribute('total')) {
+            return Ruleset::from($groups[0]->playmode);
+        }
+
+        // maps by host mapper
+        $groupedHostOnly = $baseQuery->where('user_id', $this->user_id)->get();
+
+        if (
+            $groupedHostOnly->count() === 1
+                || $groupedHostOnly->count() > 1
+                    && $groupedHostOnly[0]->getRawAttribute('total') > $groupedHostOnly[1]->getRawAttribute('total')
+        ) {
+            return Ruleset::from($groupedHostOnly[0]->playmode);
+        }
+
+        // First mode with more nominations that others becomes main mode.
+        // Implicity implies that limited BN nominations because main mode.
+        $nominations = $this->beatmapsetNominations()->current()->get();
+        $nominationsByRuleset = [];
+
+        foreach ($nominations as $nomination) {
+            $rulesets = Ruleset::tryFromNames($nomination->modes);
+            foreach ($rulesets as $ruleset) {
+                $nominationsByRuleset[$ruleset->name] ??= 0;
+                $nominationsByRuleset[$ruleset->name]++;
+            }
+
+            // bailout as soon as there is a clear winner
+            $nominatedRulesetsCount = count($nominationsByRuleset);
+            if ($nominatedRulesetsCount === 1) {
+                return Ruleset::tryFromName(array_keys($nominationsByRuleset)[0]);
+            } else if ($nominatedRulesetsCount > 1) {
+                arsort($nominationsByRuleset);
+                $values = array_values($nominationsByRuleset);
+                if ($values[0] > $values[1]) {
+                    return Ruleset::tryFromName(array_keys($nominationsByRuleset)[0]);
+                }
+            }
+        }
+
+        return null;
     }
 
     private function defaultCoverTimestamp(): string
