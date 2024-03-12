@@ -11,11 +11,11 @@ export function blackoutToggle(element: unknown, state: boolean) {
   } else {
     elements.delete(element);
   }
-  const el = window.newBody?.querySelector('.js-blackout');
 
-  if (el instanceof HTMLElement) {
-    fadeToggle(el, blackoutVisible());
-  }
+  fadeToggle(
+    window.newBody?.querySelector('.js-blackout'),
+    blackoutVisible(),
+  );
 }
 
 export function blackoutVisible() {
