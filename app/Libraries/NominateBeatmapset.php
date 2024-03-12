@@ -61,7 +61,13 @@ class NominateBeatmapset
                 ]);
 
                 if ($this->shouldQualify()) {
-                    $this->beatmapset->lockForUpdate()->find($this->beatmapset->getKey())->qualify($this->user);
+                    $beatmapset = $this->beatmapset->lockForUpdate()->find($this->beatmapset->getKey());
+                    // Sanity check: something changed main ruleset after the qualify check.
+                    if ($beatmapset->getRawAttribute('main_ruleset') !== $this->beatmapset->mainRuleset()?->value) {
+                        throw new InvariantException('main ruleset has changed.');
+                    }
+
+                    $beatmapset->qualify($this->user);
                 } else {
                     (new BeatmapsetNominate($this->beatmapset, $this->user))->dispatch();
                 }
