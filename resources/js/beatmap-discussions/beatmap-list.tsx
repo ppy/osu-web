@@ -4,8 +4,8 @@
 import BeatmapListItem from 'components/beatmap-list-item';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import UserJson from 'interfaces/user-json';
-import { action, computed, makeObservable, observable } from 'mobx';
-import { observer } from 'mobx-react';
+import { action, autorun, computed, makeObservable, observable } from 'mobx';
+import { disposeOnUnmount, observer } from 'mobx-react';
 import { deletedUserJson } from 'models/user';
 import * as React from 'react';
 import { makeUrl } from 'utils/beatmapset-discussion-helper';
@@ -34,12 +34,14 @@ export default class BeatmapList extends React.Component<Props> {
     super(props);
 
     makeObservable(this);
+    disposeOnUnmount(this, autorun(() => {
+      blackoutToggle(this, this.showingSelector);
+    }));
   }
 
   componentDidMount() {
     $(document).on(`click.${this.eventId}`, this.onDocumentClick);
     $(document).on(`turbolinks:before-cache.${this.eventId}`, this.handleBeforeCache);
-    blackoutToggle(this, this.showingSelector);
   }
 
   componentWillUnmount() {
@@ -128,7 +130,6 @@ export default class BeatmapList extends React.Component<Props> {
   @action
   private setShowingSelector(state: boolean) {
     this.showingSelector = state;
-    blackoutToggle(this, state);
   }
 
   @action
