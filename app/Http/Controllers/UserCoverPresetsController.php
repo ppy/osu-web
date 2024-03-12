@@ -57,7 +57,7 @@ class UserCoverPresetsController extends Controller
                 $hash ??= "#cover-{$item->getKey()}";
             }
             \Session::flash('popup', 'Covers created');
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             \Session::flash('popup', "Failed creating some covers. Error: {$e->getMessage()}");
         }
 
