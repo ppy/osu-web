@@ -214,6 +214,19 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         return preg_replace($pattern, '', $text);
     }
 
+    public static function isValidBackgroundImage(string $path): bool
+    {
+        $dimensions = read_image_properties($path);
+
+        static $validTypes = [
+            IMAGETYPE_GIF,
+            IMAGETYPE_JPEG,
+            IMAGETYPE_PNG,
+        ];
+
+        return isset($dimensions[2]) && in_array($dimensions[2], $validTypes, true);
+    }
+
     public function beatmapDiscussions()
     {
         return $this->hasMany(BeatmapDiscussion::class);
@@ -521,6 +534,9 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             $bytesWritten = fwrite($tmpFile, $osz->readFile($backgroundFilename));
             fseek($tmpFile, 0); // reset file position cursor, required for storeCover below
             $backgroundImage = get_stream_filename($tmpFile);
+            if (!static::isValidBackgroundImage($backgroundImage)) {
+                return false;
+            }
 
             // upload original image
             $this->storeCover('raw.jpg', $backgroundImage);
