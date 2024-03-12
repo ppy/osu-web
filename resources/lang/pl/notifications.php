@@ -244,11 +244,6 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => 'Użytkownik :username odblokował nowy medal - „:title”!',
-                'user_achievement_unlock_self' => 'Odblokowano nowy medal - „:title”!',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => 'Użytkownik :username przesłał nowe beatmapy',
                 'user_beatmapset_revive' => 'Użytkownik :username ożywił beatmapy',

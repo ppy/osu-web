@@ -6,13 +6,13 @@
 namespace App\Exceptions;
 
 use App\Libraries\SessionVerification;
-use Auth;
 use Illuminate\Auth\Access\AuthorizationException as LaravelAuthorizationException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Session\TokenMismatchException;
+use Illuminate\View\ViewException;
 use Laravel\Passport\Exceptions\MissingScopeException;
 use Laravel\Passport\Exceptions\OAuthServerException as PassportOAuthServerException;
 use League\OAuth2\Server\Exception\OAuthServerException;
@@ -33,6 +33,7 @@ class Handler extends ExceptionHandler
         ModelNotFoundException::class,
         TokenMismatchException::class,
         \Illuminate\Validation\ValidationException::class,
+        \Laravel\Octane\Exceptions\DdException::class,
         \Symfony\Component\HttpKernel\Exception\HttpException::class,
 
         // local
@@ -71,8 +72,8 @@ class Handler extends ExceptionHandler
             return 401;
         } elseif ($e instanceof AuthorizationException || $e instanceof MissingScopeException) {
             return 403;
-        } elseif (static::isOAuthServerException($e)) {
-            return $e->getPrevious()->getHttpStatusCode();
+        } elseif (static::isOAuthSessionException($e)) {
+            return 422;
         } else {
             return 500;
         }
@@ -81,6 +82,36 @@ class Handler extends ExceptionHandler
     private static function isOAuthServerException($e)
     {
         return ($e instanceof PassportOAuthServerException) && ($e->getPrevious() instanceof OAuthServerException);
+    }
+
+    private static function isOAuthSessionException(Throwable $e): bool
+    {
+        return ($e instanceof \Exception)
+            && $e->getMessage() === 'Authorization request was not present in the session.';
+    }
+
+    private static function reportWithSentry(Throwable $e): void
+    {
+        $ref = log_error_sentry($e, ['http_code' => (string) static::statusCode($e)]);
+
+        if ($ref !== null) {
+            \Request::instance()->attributes->set('ref', $ref);
+        }
+    }
+
+    private static function unwrapViewException(Throwable $e): Throwable
+    {
+        if ($e instanceof ViewException) {
+            $i = 0;
+            while ($e instanceof ViewException) {
+                $e = $e->getPrevious();
+                if (++$i > 10) {
+                    break;
+                }
+            }
+        }
+
+        return $e;
     }
 
     /**
@@ -99,10 +130,7 @@ class Handler extends ExceptionHandler
             return;
         }
 
-        // Fallback in case error happening before config is initialised
-        if ($GLOBALS['cfg']['sentry']['dsn'] ?? false) {
-            $this->reportWithSentry($e);
-        }
+        static::reportWithSentry($e);
 
         parent::report($e);
     }
@@ -117,6 +145,12 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $e)
     {
+        $e = static::unwrapViewException($e);
+
+        if (static::isOAuthServerException($e)) {
+            return parent::render($request, $e);
+        }
+
         if ($e instanceof HttpResponseException || $e instanceof UserProfilePageLookupException) {
             return $e->getResponse();
         }
@@ -135,7 +169,7 @@ class Handler extends ExceptionHandler
 
         $isJsonRequest = is_json_request();
 
-        if ($GLOBALS['cfg']['app']['debug'] || ($isJsonRequest && static::isOAuthServerException($e))) {
+        if ($GLOBALS['cfg']['app']['debug']) {
             $response = parent::render($request, $e);
         } else {
             $message = static::exceptionMessage($e);
@@ -155,7 +189,9 @@ class Handler extends ExceptionHandler
 
     protected function shouldntReport(Throwable $e)
     {
-        return parent::shouldntReport($e) || $this->isOAuthServerException($e);
+        $e = static::unwrapViewException($e);
+
+        return parent::shouldntReport($e) || static::isOAuthServerException($e) || static::isOAuthSessionException($e);
     }
 
     protected function unauthenticated($request, AuthenticationException $exception)
@@ -165,26 +201,5 @@ class Handler extends ExceptionHandler
         }
 
         return ext_view('users.login', null, null, 401);
-    }
-
-    private function reportWithSentry($e)
-    {
-        if (Auth::check()) {
-            $userContext = [
-                'id' => Auth::user()->user_id,
-                'username' => Auth::user()->username_clean,
-            ];
-        } else {
-            $userContext = [
-                'id' => null,
-            ];
-        }
-
-        app('sentry')->configureScope(function ($scope) use ($e, $userContext) {
-            $scope->setUser($userContext);
-            $scope->setTag('http_code', (string) static::statusCode($e));
-        });
-
-        request()->attributes->set('ref', app('sentry')->captureException($e));
     }
 }

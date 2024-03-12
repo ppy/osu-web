@@ -244,11 +244,6 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':username님이 ":title" 메달을 획득하셨습니다!',
-                'user_achievement_unlock_self' => '":title" 메달을 획득하셨습니다!',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username님이 새 비트맵을 제작했습니다',
                 'user_beatmapset_revive' => ':username님이 비트맵을 되살렸습니다',

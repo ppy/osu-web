@@ -92,7 +92,6 @@ return [
             'mail' => 'e-mail',
             'mapping' => 'twórca',
             'push' => 'push',
-            'user_achievement_unlock' => 'odblokowanie medalu',
         ],
     ],
 

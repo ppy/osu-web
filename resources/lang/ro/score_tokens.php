@@ -5,7 +5,7 @@
 
 return [
     'create' => [
-        'beatmap_hash_invalid' => '',
-        'submission_disabled' => '',
+        'beatmap_hash_invalid' => 'beatmap_hash invalid sau lipsă',
+        'submission_disabled' => 'adăugarea scorurilor este dezactivată',
     ],
 ];

@@ -20,7 +20,7 @@ return [
 
         'revoked' => [
             'false' => 'Cabut Akses',
-            'true' => 'Akses Telah Dicabut',
+            'true' => 'Akses Dicabut',
         ],
     ],
 

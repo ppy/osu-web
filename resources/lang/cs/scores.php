@@ -28,6 +28,6 @@ return [
         'non_passing' => 'Pouze procházející skóre udělují pp',
         'no_pp' => 'pp není za toto skóre uděleno',
         'processing' => 'Toto skóre se stále počítá a bude brzy zobrazeno',
-        'no_rank' => '',
+        'no_rank' => 'Toto skóre nemá žádné získané hodnocení, protože je nehodnocené nebo označené pro smazání',
     ],
 ];

@@ -244,11 +244,6 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':username ได้ปลดล็อกเหรียญตรา ":title"!',
-                'user_achievement_unlock_self' => 'คุณได้ปลดล็อกเหรียญตรา ":title"!',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username ได้สร้างบีทแมพใหม่',
                 'user_beatmapset_revive' => ':username ได้กู้คืนบีทแมพแล้ว',

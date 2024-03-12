@@ -109,7 +109,7 @@ return [
         'failed' => 'Rincian masuk salah',
         'forgot' => 'Lupa kata sandi?',
         'info' => 'Silakan masuk untuk melanjutkan',
-        'invalid_captcha' => 'Terlalu banyak upaya login yang gagal. Mohon selesaikan captcha yang muncul dan coba lagi. (Muat ulang laman ini apabila captcha tidak terlihat)',
+        'invalid_captcha' => 'Terlalu banyak upaya login yang gagal. Silakan selesaikan captcha yang muncul dan coba lagi. (Muat ulang halaman ini apabila captcha tidak terlihat)',
         'locked_ip' => 'Alamat IP-mu dikunci. Silakan tunggu beberapa menit.',
         'password' => 'Kata Sandi',
         'register' => "Belum memiliki akun osu!? Buat sekarang",
@@ -171,7 +171,7 @@ return [
     'restricted_banner' => [
         'title' => 'Akunmu telah di-restrict!',
         'message' => 'Selama di-restrict, kamu tidak dapat berinteraksi dengan pengguna lain dan skormu hanya akan dapat dilihat oleh dirimu sendiri. Hal ini biasanya terproses secara otomatis dan akan diangkat dalam 24 jam. :link',
-        'message_link' => 'Kunjungi laman ini untuk keterangan lebih lanjut.',
+        'message_link' => 'Kunjungi halaman ini untuk informasi lebih lanjut.',
     ],
     'show' => [
         'age' => ':age tahun',
@@ -332,7 +332,7 @@ return [
 
                 'total_info' => [
                     '_' => 'Berdasarkan seberapa besar kontribusi yang telah diberikan oleh pengguna ini dalam hal moderasi beatmap. Kunjungi :link untuk informasi lebih lanjut.',
-                    'link' => 'laman ini',
+                    'link' => 'halaman ini',
                 ],
             ],
             'me' => [
@@ -427,10 +427,10 @@ return [
             'title' => 'Pengguna tidak ditemukan! ;_;',
         ],
         'page' => [
-            'button' => 'Sunting laman profil',
-            'description' => '<strong>saya!</strong> merupakan area pada laman profilmu yang dapat kamu modifikasi sesuka hati.',
+            'button' => 'sunting halaman profil',
+            'description' => '<strong>saya!</strong> merupakan area pada halaman profilmu yang dapat kamu modifikasi sesuka hati.',
             'edit_big' => 'Sunting saya!',
-            'placeholder' => 'Ketik konten laman di sini',
+            'placeholder' => 'Ketik konten halaman di sini',
 
             'restriction_info' => [
                 '_' => 'Kamu harus menjadi seorang :link untuk menggunakan fitur ini.',

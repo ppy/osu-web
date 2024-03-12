@@ -244,11 +244,6 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':username ha sbloccato una nuova medaglia, ":title"!',
-                'user_achievement_unlock_self' => 'Hai sbloccato una nuova medaglia, ":title"!',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username ha creato nuove beatmap',
                 'user_beatmapset_revive' => ':username ha resuscitato delle beatmap',

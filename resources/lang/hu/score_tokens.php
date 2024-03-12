@@ -5,7 +5,7 @@
 
 return [
     'create' => [
-        'beatmap_hash_invalid' => '',
-        'submission_disabled' => '',
+        'beatmap_hash_invalid' => 'érvénytelen vagy hiányzó beatmap_hash',
+        'submission_disabled' => 'pontszám beküldés jelenleg kikapcsolva',
     ],
 ];

@@ -28,6 +28,6 @@ return [
         'non_passing' => 'Doar scorurile aprobate acordă pp',
         'no_pp' => 'pp nu este acordat pentru acest scor',
         'processing' => 'Acest scor este încă în calculare și va fi afișat în curând',
-        'no_rank' => '',
+        'no_rank' => 'Acest scor nu este în clasament deoarece este neclasificat sau marcat pentru ștergere',
     ],
 ];

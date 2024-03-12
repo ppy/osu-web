@@ -44,7 +44,7 @@ return [
             ],
 
             'beatmapset_discussion' => [
-                '_' => 'Laman diskusi beatmap',
+                '_' => 'Diskusi beatmap',
                 'beatmapset_discussion_lock' => 'Diskusi pada beatmap ":title" telah dikunci',
                 'beatmapset_discussion_lock_compact' => 'Diskusi beatmap telah dikunci',
                 'beatmapset_discussion_post_new' => 'Postingan baru pada ":title" oleh :username: ":content"',
@@ -244,11 +244,6 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':username telah membuka medali baru, ":title"!',
-                'user_achievement_unlock_self' => 'Kamu telah membuka medali baru, ":title"!',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username telah mengunggah beatmap baru',
                 'user_beatmapset_revive' => ':username memiliki beatmap yang dipulihkan dari Graveyard',

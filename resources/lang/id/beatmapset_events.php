@@ -8,11 +8,11 @@ return [
         'approve' => 'Approved.',
         'beatmap_owner_change' => 'Kepemilikan atas tingkat kesulitan :beatmap dipindahtangankan kepada :new_user.',
         'discussion_delete' => 'Moderator menghapus topik diskusi :discussion.',
-        'discussion_lock' => 'Laman diskusi pada beatmap ini dikunci. (:text)',
+        'discussion_lock' => 'Diskusi pada beatmap ini telah dinonaktifkan. (:text)',
         'discussion_post_delete' => 'Moderator menghapus balasan pada topik diskusi :discussion.',
         'discussion_post_restore' => 'Moderator memulihkan balasan pada topik diskusi :discussion.',
         'discussion_restore' => 'Moderator memulihkan topik diskusi :discussion.',
-        'discussion_unlock' => 'Laman diskusi pada beatmap ini kembali dibuka.',
+        'discussion_unlock' => 'Diskusi pada beatmap ini telah kembali dibuka.',
         'disqualify' => 'Didiskualifikasi oleh :user. Alasan: :discussion (:text).',
         'disqualify_legacy' => 'Didiskualifikasi oleh :user. Alasan: :text.',
         'genre_edit' => 'Aliran beatmap diubah dari :old menjadi :new.',
@@ -43,7 +43,7 @@ return [
     ],
 
     'index' => [
-        'title' => 'Laman Peristiwa Beatmapset',
+        'title' => 'Peristiwa Beatmapset',
 
         'form' => [
             'period' => 'Rentang Waktu',

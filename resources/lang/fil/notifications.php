@@ -244,11 +244,6 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => 'Si :username ay nakakuha ng bagong medalya, ang ":title"!',
-                'user_achievement_unlock_self' => 'Ikaw ay nakakuha ng bagong medalya, ang ":title"!',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => 'Si :username ay gumawa ng mga bagong beatmap',
                 'user_beatmapset_revive' => 'Muling binuhay ni :username ang mga beatmap',

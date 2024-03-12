@@ -103,7 +103,7 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::group(['prefix' => 'scores', 'as' => 'scores.'], function () {
         Route::get('{score}/download', 'ScoresController@download')->name('download');
-        Route::get('{rulesetOrScore}/{score}/download', 'ScoresController@downloadLegacy')->name('download-legacy');
+        Route::get('{rulesetOrScore}/{score}/download', 'ScoresController@download')->name('download-legacy');
 
         Route::get('{rulesetOrScore}/{score?}', 'ScoresController@show')->name('show');
     });
@@ -378,9 +378,10 @@ Route::group(['middleware' => ['web']], function () {
         });
     });
 
-    Route::get('/home', 'HomeController@index')->name('home');
+    // TODO: update to redirect to root later
+    Route::get('/home', 'HomeController@index');
 
-    route_redirect('/', 'home');
+    Route::get('/', 'HomeController@index')->name('home');
 
     if ($GLOBALS['cfg']['osu']['scores']['rank_cache']['local_server']) {
         Route::get('rankLookup', 'ScoresController@userRankLookup');
@@ -502,7 +503,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
 
         Route::group(['prefix' => 'scores', 'as' => 'scores.'], function () {
             Route::get('{score}/download', 'ScoresController@download')->middleware(ThrottleRequests::getApiThrottle('scores_download'))->name('download');
-            Route::get('{rulesetOrScore}/{score}/download', 'ScoresController@downloadLegacy')->middleware(ThrottleRequests::getApiThrottle('scores_download'))->name('download-legacy');
+            Route::get('{rulesetOrScore}/{score}/download', 'ScoresController@download')->middleware(ThrottleRequests::getApiThrottle('scores_download'))->name('download-legacy');
 
             Route::get('{rulesetOrScore}/{score?}', 'ScoresController@show')->name('show');
         });

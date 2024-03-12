@@ -92,7 +92,6 @@ return [
             'mail' => 'ایمیل',
             'mapping' => 'سازنده بیت مپ',
             'push' => 'اعلان push',
-            'user_achievement_unlock' => 'مدال کاربر باز شد',
         ],
     ],
 

@@ -213,8 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => '이 맵에서 문제가 발견되지 않으면 :date Ranked 상태가 될 예정입니다. 현재 :queue의 #:position번째 순서입니다.',
-            'unresolved_problems' => '',
-            'problems' => '',
+            'unresolved_problems' => '이 맵은 :problems가 해결되기 전까지 Qualified 섹션에서 넘어갈 수 없습니다.',
+            'problems' => '이 문제',
             'on' => ':date에',
             'queue' => '랭크 대기열',
             'soon' => '곧',

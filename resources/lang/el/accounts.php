@@ -92,7 +92,6 @@ return [
             'mail' => 'mail',
             'mapping' => 'beatmap mapper',
             'push' => 'push',
-            'user_achievement_unlock' => 'το μετάλλιο χρήστη ξεκλειδώθηκε',
         ],
     ],
 

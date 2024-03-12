@@ -5,7 +5,7 @@
 
 return [
     'create' => [
-        'beatmap_hash_invalid' => '',
-        'submission_disabled' => '',
+        'beatmap_hash_invalid' => 'beatmap_hash không hợp lệ hoặc bị thiếu',
+        'submission_disabled' => 'tính năng gửi điểm bị vô hiệu hoá',
     ],
 ];

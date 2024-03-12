@@ -244,11 +244,6 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => '',
-                'user_achievement_unlock_self' => '',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => '',
                 'user_beatmapset_revive' => '',

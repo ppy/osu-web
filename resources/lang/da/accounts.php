@@ -92,7 +92,6 @@ return [
             'mail' => 'post',
             'mapping' => 'beatmap mapper',
             'push' => 'push',
-            'user_achievement_unlock' => 'bruger medalje låst op',
         ],
     ],
 

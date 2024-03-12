@@ -11,7 +11,6 @@ use App\Libraries\Search\ScoreSearch;
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\Solo\Score;
-use DB;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Database\Eloquent\Collection;
@@ -59,15 +58,7 @@ class RemoveBeatmapsetSoloScores implements ShouldQueue
     {
         $ids = $scores->pluck('id')->all();
 
-        $scoresQuery = Score::whereKey($ids);
-        // Queue delete ahead of time in case process is stopped right after
-        // db delete is committed. It's fine queuing deleted score ahead of
-        // time as best score check doesn't use index.
-        // Set the flag first so indexer will correctly delete it.
-        $scoresQuery->update(['preserve' => false]);
+        Score::whereKey($ids)->update(['ranked' => false]);
         $this->scoreSearch->queueForIndex($this->schemas, $ids);
-        DB::transaction(function () use ($ids, $scoresQuery): void {
-            $scoresQuery->delete();
-        });
     }
 }

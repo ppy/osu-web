@@ -244,11 +244,6 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':username a déverrouillé une nouvelle médaille, ":title" !',
-                'user_achievement_unlock_self' => 'Vous avez déverrouillé une nouvelle médaille, ":title" !',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username a créé de nouvelles beatmaps',
                 'user_beatmapset_revive' => ':username a ressuscité des beatmaps',
