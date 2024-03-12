@@ -39,11 +39,12 @@ export default class BeatmapList extends React.Component<Props> {
   componentDidMount() {
     $(document).on(`click.${this.eventId}`, this.onDocumentClick);
     $(document).on(`turbolinks:before-cache.${this.eventId}`, this.handleBeforeCache);
-    blackoutToggle(this.showingSelector, 0.5);
+    blackoutToggle(this, this.showingSelector);
   }
 
   componentWillUnmount() {
     $(document).off(`.${this.eventId}`);
+    blackoutToggle(this, false);
   }
 
   render() {
@@ -127,7 +128,7 @@ export default class BeatmapList extends React.Component<Props> {
   @action
   private setShowingSelector(state: boolean) {
     this.showingSelector = state;
-    blackoutToggle(state, 0.5);
+    blackoutToggle(this, state);
   }
 
   @action

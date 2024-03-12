@@ -1,7 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { blackoutHide, blackoutShow } from 'utils/blackout'
+import { blackoutToggle } from 'utils/blackout'
 import { fadeToggle } from 'utils/fade'
 
 export default class Nav2
@@ -50,9 +50,9 @@ export default class Nav2
 
     if @showingMobileNav
       document.body.classList.add('js-nav2--active')
-      blackoutShow()
+      blackoutToggle(this, true)
     else if previousTree.indexOf('mobile-menu') != -1
-      blackoutHide()
+      blackoutToggle(this, false)
       Timeout.set 0, =>
         $(@clickMenu.menu('mobile-menu')).finish().slideUp 150, =>
           # use actual state instead of always removing the class in case
