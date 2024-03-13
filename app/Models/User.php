@@ -14,7 +14,9 @@ use App\Libraries\ChangeUsername;
 use App\Libraries\Elasticsearch\Indexable;
 use App\Libraries\Session\Store as SessionStore;
 use App\Libraries\Transactions\AfterCommit;
+use App\Libraries\Uploader;
 use App\Libraries\User\AvatarHelper;
+use App\Libraries\User\Cover;
 use App\Libraries\User\DatadogLoginAttempt;
 use App\Libraries\User\ProfileBeatmapset;
 use App\Libraries\User\UsernamesForDbLookup;
@@ -267,6 +269,8 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     protected $primaryKey = 'user_id';
     protected $table = 'phpbb_users';
 
+    private Cover $cover;
+    private Uploader $customCover;
     private $validateCurrentPassword = false;
     private $validatePasswordConfirmation = false;
     private $passwordConfirmation = null;
@@ -730,11 +734,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->user_id !== null && present($this->user_colour);
     }
 
-    public function cover()
-    {
-        return $this->userProfileCustomization ? $this->userProfileCustomization->cover()->url() : null;
-    }
-
     public function setUserTwitterAttribute($value)
     {
         $this->attributes['user_twitter'] = trim(ltrim($value, '@'));
@@ -754,6 +753,8 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function getAttribute($key)
     {
         return match ($key) {
+            'cover_preset_id',
+            'custom_cover_filename',
             'group_id',
             'osu_featurevotes',
             'osu_kudosavailable',
@@ -2113,6 +2114,21 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         }
 
         throw OAuthServerException::invalidGrant($authError);
+    }
+
+    public function cover(): Cover
+    {
+        return $this->cover ??= new Cover($this);
+    }
+
+    public function customCover(): Uploader
+    {
+        return $this->customCover ??= new Uploader(
+            'user-profile-covers',
+            $this,
+            'custom_cover_filename',
+            ['image' => ['maxDimensions' => Cover::CUSTOM_COVER_MAX_DIMENSIONS]],
+        );
     }
 
     public function playCount()

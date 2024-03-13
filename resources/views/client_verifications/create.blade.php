@@ -15,7 +15,7 @@
         <div class="dialog-form__dialog">
             <div
                 class="dialog-form__row dialog-form__row--header"
-                style="background-image: url('{{ $user->profileCustomization()->cover()->url() }}')"
+                style="background-image: url('{{ $user->cover()->url() }}')"
             >
                 <div class="dialog-form__header-overlay"></div>
                 <a
