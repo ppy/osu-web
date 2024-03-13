@@ -23,7 +23,6 @@ class UserCompactTransformer extends TransformerAbstract
     const CARD_INCLUDES_PRELOAD = [
         'country',
         'userGroups',
-        'userProfileCustomization',
     ];
 
     const LIST_INCLUDES = [
@@ -111,8 +110,6 @@ class UserCompactTransformer extends TransformerAbstract
         'is_restricted' => 'UserShowRestrictedStatus',
         'is_silenced' => 'IsNotOAuth',
     ];
-
-    protected $userProfileCustomization = [];
 
     public function transform(User $user)
     {
@@ -448,7 +445,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeUserPreferences(User $user)
     {
-        $customization = $this->userProfileCustomization($user);
+        $customization = $user->userProfileCustomization ?? new UserProfileCustomization();
 
         return $this->primitive($customization->only([
             'audio_autoplay',
@@ -473,14 +470,5 @@ class UserCompactTransformer extends TransformerAbstract
         $this->mode = $mode;
 
         return $this;
-    }
-
-    protected function userProfileCustomization(User $user): UserProfileCustomization
-    {
-        if (!isset($this->userProfileCustomization[$user->getKey()])) {
-            $this->userProfileCustomization[$user->getKey()] = $user->userProfileCustomization ?? $user->userProfileCustomization()->make();
-        }
-
-        return $this->userProfileCustomization[$user->getKey()];
     }
 }
