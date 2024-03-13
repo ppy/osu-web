@@ -36,16 +36,16 @@ interface BaseNominationsInterface {
   ranking_eta?: string;
   ranking_queue_position?: number;
   required_hype: number;
+  required_meta: {
+    main_ruleset: number;
+    non_main_ruleset: number;
+  };
 }
 
 export interface NominationsInterface extends BaseNominationsInterface {
   current: Partial<Record<GameMode, number>>;
   legacy_mode: false;
   required: Partial<Record<GameMode, number>>;
-  required_meta: {
-    main_ruleset: number;
-    non_main_ruleset: number;
-  };
 }
 
 export interface LegacyNominationsInterface extends BaseNominationsInterface {

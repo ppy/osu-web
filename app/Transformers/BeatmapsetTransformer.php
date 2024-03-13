@@ -5,6 +5,8 @@
 
 namespace App\Transformers;
 
+use App\Enums\Ruleset;
+use App\Libraries\NominateBeatmapset;
 use App\Models\Beatmapset;
 
 class BeatmapsetTransformer extends BeatmapsetCompactTransformer
@@ -23,8 +25,8 @@ class BeatmapsetTransformer extends BeatmapsetCompactTransformer
         // only for showing in BeatmapPanel.
         $nominationsSummary = [
             'current' => $beatmapset->nominations,
-            // TODO: this is a placeholder value for now.
-            'required' => $beatmapset->playmodeCount() * $GLOBALS['cfg']['osu']['beatmapset']['required_nominations'], // $this->requiredNominationCount(),
+            'main_ruleset' => Ruleset::tryFrom($beatmapset->getRawAttribute('main_ruleset') ?? -1)?->legacyName(), // use cached value
+            'required_meta' => NominateBeatmapset::requiredNominationsConfig(),
         ];
 
         return array_merge(parent::transform($beatmapset), [

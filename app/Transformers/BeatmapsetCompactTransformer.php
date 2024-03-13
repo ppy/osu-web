@@ -5,6 +5,7 @@
 
 namespace App\Transformers;
 
+use App\Libraries\NominateBeatmapset;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\Beatmapset;
@@ -194,10 +195,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
             'legacy_mode' => $beatmapset->isLegacyNominationMode(),
             'current' => $beatmapset->currentNominationCount(),
             'required' => $beatmapset->requiredNominationCount(),
-            'required_meta' => [
-                'main_ruleset' => $GLOBALS['cfg']['osu']['beatmapset']['required_nominations'],
-                'non_main_ruleset' => 1,
-            ],
+            'required_meta' => NominateBeatmapset::requiredNominationsConfig(),
         ];
 
         if ($beatmapset->isPending()) {

@@ -30,11 +30,18 @@ class NominateBeatmapset
         $this->nominatedRulesets = new Set(Ruleset::tryFromNames($playmodes));
     }
 
+    public static function requiredNominationsConfig()
+    {
+        return [
+            'main_ruleset' => $GLOBALS['cfg']['osu']['beatmapset']['required_nominations'],
+            'non_main_ruleset' => 1,
+        ];
+    }
+
     private static function nominationCount(array $nominationsByType, string $type, ?string $mode): int
     {
         return count(array_filter($nominationsByType[$type], fn ($item) => $item === $mode));
     }
-
 
     public function handle()
     {
