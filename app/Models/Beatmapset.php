@@ -1481,22 +1481,20 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     public function getDisplayArtist(?User $user)
     {
-        $profileCustomization = $user->userProfileCustomization ?? new UserProfileCustomization();
-        if ($profileCustomization->beatmapset_title_show_original) {
-            return $this->artist_unicode;
-        }
+        $profileCustomization = $user->userProfileCustomization ?? UserProfileCustomization::DEFAULTS;
 
-        return $this->artist;
+        return $profileCustomization['beatmapset_title_show_original']
+            ? $this->artist_unicode
+            : $this->artist;
     }
 
     public function getDisplayTitle(?User $user)
     {
-        $profileCustomization = $user->userProfileCustomization ?? new UserProfileCustomization();
-        if ($profileCustomization->beatmapset_title_show_original) {
-            return $this->title_unicode;
-        }
+        $profileCustomization = $user->userProfileCustomization ?? UserProfileCustomization::DEFAULTS;
 
-        return $this->title;
+        return $profileCustomization['beatmapset_title_show_original']
+            ? $this->title_unicode
+            : $this->title;
     }
 
     public function freshHype()
