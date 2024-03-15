@@ -39,8 +39,8 @@ export default class ChatStateStore implements DispatchListener {
 
   private lastHistoryId: number | null = null;
   private readonly pingService: PingService;
+  private refocusToIndex = 0; // For refocusing to a channel next to the previously selected one when channel is removed from the list.
   @observable private selected: ChannelId = null;
-  private selectedIndex = 0;
   @observable private waitAddChannelId: string | number | null = null;
 
   get isChatMounted() {
@@ -203,7 +203,7 @@ export default class ChatStateStore implements DispatchListener {
       return;
     }
 
-    this.selectedIndex = this.channelList.indexOf(channel);
+    this.refocusToIndex = this.channelList.indexOf(channel);
 
     // TODO: should this be here or have something else figure out if channel needs to be loaded?
     this.channelStore.loadChannel(channelId);
@@ -300,7 +300,7 @@ export default class ChatStateStore implements DispatchListener {
     if (this.selectedView != null) {
       this.selectChannel(this.selectedView.channelId);
     } else {
-      this.focusChannelAtIndex(this.selectedIndex);
+      this.focusChannelAtIndex(this.refocusToIndex);
     }
   }
 
