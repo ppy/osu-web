@@ -19,7 +19,7 @@ import { isJqXHR, onError } from 'utils/ajax';
 import { trans } from 'utils/lang';
 import { hideLoadingOverlay, showImmediateLoadingOverlay } from 'utils/loading-overlay';
 import { updateQueryString } from 'utils/url';
-import ChannelId from './channel-id';
+import ChannelId, { AddChannelType } from './channel-id';
 import ChannelJoinEvent from './channel-join-event';
 import ChannelPartEvent from './channel-part-event';
 import { createAnnouncement, getUpdates, joinChannel } from './chat-api';
@@ -183,39 +183,21 @@ export default class ChatStateStore implements DispatchListener {
     this.selectedChannel?.throttledSendMarkAsRead();
     this.selected = channelId;
 
-    if (channelId == null) return;
-
     if (typeof channelId === 'string') {
-      if (mode != null) {
-        Turbolinks.controller[mode](updateQueryString(null, {
-          channel_id: null,
-          sendto: null,
-        }, channelId));
-      }
-
+      this.updateUrl(channelId, mode);
       return;
     }
 
+    if (channelId == null) return;
     const channel = this.channelStore.get(channelId);
-
-    if (channel == null) {
-      console.error(`Trying to switch to non-existent channel ${channelId}`);
-      return;
-    }
+    if (channel == null) return;
 
     this.refocusToIndex = this.channelList.indexOf(channel);
 
     // TODO: should this be here or have something else figure out if channel needs to be loaded?
     this.channelStore.loadChannel(channelId);
 
-    if (mode != null) {
-      const params = channel.newPmChannel
-        ? { channel_id: null, sendto: channel.pmTarget?.toString() }
-        : { channel_id: channel.channelId.toString(), sendto: null };
-
-      Turbolinks.controller[mode](updateQueryString(null, params, ''));
-    }
-    core.browserTitleWithNotificationCount.title = `${channel.name} · ${trans('page_title.main.chat_controller._')}`;
+    this.updateUrl(channel, mode);
   }
 
   @action
@@ -318,5 +300,28 @@ export default class ChatStateStore implements DispatchListener {
 
       this.channelStore.updateWithChatUpdates(json);
     });
+  }
+
+  private updateUrl(channel: Channel | AddChannelType, mode: 'advanceHistory' | 'replaceHistory' | null) {
+    if (mode == null) return;
+
+    let channelName: string;
+    let hash = '';
+    let params: Record<'channel_id' | 'sendto', string | null | undefined>;
+
+    if (typeof channel === 'string') {
+      channelName = trans(`chat.channels.${channel}`);
+      hash = channel;
+      params = { channel_id: null, sendto: null };
+    } else {
+      channelName = channel.name;
+      params = channel.newPmChannel
+        ? { channel_id: null, sendto: channel.pmTarget?.toString() }
+        : { channel_id: channel.channelId.toString(), sendto: null };
+
+    }
+
+    Turbolinks.controller[mode](updateQueryString(null, params, hash));
+    core.browserTitleWithNotificationCount.title = `${channelName} · ${trans('page_title.main.chat_controller._')}`;
   }
 }
