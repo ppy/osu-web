@@ -110,10 +110,7 @@ export default class ChatStateStore implements DispatchListener {
         }
 
         runInAction(() => {
-          // TODO: use selectChannel?
-          if (typeof this.selected === 'number') {
-            this.channelStore.loadChannel(this.selected);
-          }
+          this.selectedChannel?.load();
 
           this.isReady = true;
         });
@@ -207,7 +204,7 @@ export default class ChatStateStore implements DispatchListener {
     this.refocusToIndex = this.channelList.indexOf(channel);
 
     // TODO: should this be here or have something else figure out if channel needs to be loaded?
-    this.channelStore.loadChannel(channelId);
+    channel.load();
 
     this.updateUrl(channel, mode);
   }

@@ -125,12 +125,6 @@ export default class ChannelStore implements DispatchListener {
     }
   }
 
-  // TODO: load is async, needs to be reflected somewhere.
-  @action
-  loadChannel(channelId: number) {
-    this.channels.get(channelId)?.load();
-  }
-
   @action
   loadChannelEarlierMessages(channelId: number) {
     this.get(channelId)?.loadEarlierMessages();
