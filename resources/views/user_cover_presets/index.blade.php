@@ -15,18 +15,18 @@
         >
             @csrf
             <h2 class="simple-form__row simple-form__row--title">
-                Upload
+                {{ osu_trans('user_cover_presets.index.create_form.title') }}
             </h2>
             <div class="simple-form__row">
                 <div class="simple-form__label">
-                    Files
+                    {{ osu_trans('user_cover_presets.index.create_form.files') }}
                 </div>
                 <input class="simple-form__input" type="file" multiple="1" name="files[]" accept="image/*" />
             </div>
 
             <div class="simple-form__row simple-form__row--no-label">
                 <button class="btn-osu-big btn-osu-big--rounded-thin">
-                    Create
+                    {{ osu_trans('user_cover_presets.index.create_form.submit') }}
                 </button>
             </div>
         </form>
@@ -49,7 +49,7 @@
                         data-action="enable-selected"
                         type="button"
                     >
-                        Enable Selected
+                        {{ osu_trans('user_cover_presets.index.batch_enable') }}
                     </button>
 
                     <button
@@ -57,7 +57,7 @@
                         data-action="disable-selected"
                         type="button"
                     >
-                        Disable Selected
+                        {{ osu_trans('user_cover_presets.index.batch_disable') }}
                     </button>
                 </div>
             </div>
@@ -98,14 +98,16 @@
                                 data-method="PUT"
                                 data-reload-on-success="1"
                                 data-remote="1"
-                                title="{{ $isActive ? 'Click to disable' : 'Click to enable' }}"
+                                title="{{ osu_trans('user_cover_presets.index.item.'.(
+                                    $isActive ? 'click_to_disable' : 'click_to_enable'
+                                )) }}"
                             >
                                 @if ($isActive)
                                     <span class="fas fa-circle"></span>
-                                    Enabled
+                                    {{ osu_trans('user_cover_presets.index.item.enabled') }}
                                 @else
                                     <span class="far fa-circle"></span>
-                                    Disabled
+                                    {{ osu_trans('user_cover_presets.index.item.disabled') }}
                                 @endif
                             </button>
                         </p>
@@ -120,16 +122,18 @@
                                 <input type="hidden" name="_method" value="PUT" />
                                 <input type="file" name="file" accept="image/*" required />
                                 <button class="btn-osu-big btn-osu-big--rounded-small">
-                                    {{ $imageUrl === null ? 'Set Image' : 'Replace Image' }}
+                                    {{ osu_trans('user_cover_presets.index.item.'.(
+                                        $imageUrl === null ? 'image_store' : 'image_update'
+                                    )) }}
                                 </button>
                             </form>
                         </p>
                     </div>
 
                     @if ($imageUrl === null)
-                        <p>No Image</p>
+                        <p>{{ osu_trans('user_cover_presets.index.item.no_image') }}</p>
                     @else
-                        <img class="user-cover-preset-table__image" src="{{ $imageUrl }}" alt="cover preset #{{ $id }}" />
+                        <img class="user-cover-preset-table__image" src="{{ $imageUrl }}" alt="" />
                     @endif
                 </div>
             @endforeach

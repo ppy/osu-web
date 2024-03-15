@@ -56,9 +56,9 @@ class UserCoverPresetsController extends Controller
                 });
                 $hash ??= "#cover-{$item->getKey()}";
             }
-            \Session::flash('popup', 'Covers created');
+            \Session::flash('popup', osu_trans('user_cover_presets.store.ok'));
         } catch (\Throwable $e) {
-            \Session::flash('popup', "Failed creating some covers. Error: {$e->getMessage()}");
+            \Session::flash('popup', osu_trans('user_cover_presets.store.failed', ['error' => $e->getMessage()]));
         }
 
         return ujs_redirect(route('user-cover-presets.index').($hash ?? ''));

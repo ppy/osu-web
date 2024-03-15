@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { route } from 'laroute';
+import { trans, transChoice } from 'utils/lang';
 import { popup } from 'utils/popup';
 import { reloadPage } from 'utils/turbolinks';
 
@@ -28,7 +29,10 @@ export default class UserCoverPresetBatchActivate {
       return;
     }
 
-    if (!confirm(`${active ? 'Enable' : 'Disable'} ${count} cover${count === 1 ? '' : 's'}?`)) {
+    if (!confirm(trans('user_cover_presets.index.batch_confirm._', {
+      action: trans(`user_cover_presets.index.batch_confirm.${active ? 'enable' : 'disable'}`),
+      items: transChoice('user_cover_presets.index.batch_confirm.items', count),
+    }))) {
       return;
     }
 
