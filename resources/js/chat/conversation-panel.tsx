@@ -23,7 +23,7 @@ export default class ConversationPanel extends React.Component<Record<string, ne
   }
 
   renderContent() {
-    const selected = core.dataStore.chatState.selectedView;
+    const selected = core.dataStore.chatState.selectedChannelOrType;
 
     if (selected === 'create') {
       return <CreateAnnouncement />;

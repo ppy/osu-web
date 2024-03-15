@@ -67,8 +67,8 @@ export default class ChatStateStore implements DispatchListener {
     return typeof this.selected === 'number' ? this.channelStore.get(this.selected) : null;
   }
 
-  // TODO: better name
-  get selectedView() {
+  // In most cases we want the Channel or create/add channel type, not the channel id itself.
+  get selectedChannelOrType() {
     return typeof this.selected === 'number'
       ? this.channelStore.get(this.selected)
       : this.selected;
@@ -277,10 +277,10 @@ export default class ChatStateStore implements DispatchListener {
    * Keeps the current channel in focus, unless deleted, then focus on next channel.
    */
   private refocusSelectedChannel() {
-    if (typeof this.selectedView === 'string') return;
+    if (typeof this.selectedChannelOrType === 'string') return;
 
-    if (this.selectedView != null) {
-      this.selectChannel(this.selectedView.channelId);
+    if (this.selectedChannelOrType != null) {
+      this.selectChannel(this.selectedChannelOrType.channelId);
     } else {
       this.focusChannelAtIndex(this.refocusToIndex);
     }
