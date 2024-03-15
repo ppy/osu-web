@@ -8,21 +8,15 @@ declare(strict_types=1);
 namespace App\Libraries\User;
 
 use App\Models\User;
+use App\Models\UserCoverPreset;
 
 class Cover
 {
     const CUSTOM_COVER_MAX_DIMENSIONS = [2400, 640];
 
-    private const AVAILABLE_PRESET_IDS = ['1', '2', '3', '4', '5', '6', '7', '8'];
-
     public function __construct(private User $user)
     {
-    }
-
-    public static function isValidPresetId(int|null|string $presetId): bool
-    {
-        return $presetId !== null
-            && in_array((string) $presetId, static::AVAILABLE_PRESET_IDS, true);
+        $this->setDefaultPresetId();
     }
 
     public function customUrl(): ?string
@@ -30,23 +24,20 @@ class Cover
         return $this->user->customCover()->url();
     }
 
-    public function defaultPresetId(): string
+    public function presetId(): ?int
     {
-        $id = max(0, $this->user->getKey() ?? 0);
+        if ($this->hasCustomCover()) {
+            return null;
+        }
 
-        return static::AVAILABLE_PRESET_IDS[$id % count(static::AVAILABLE_PRESET_IDS)];
+        return $this->user->cover_preset_id;
     }
 
-    public function presetId(): ?string
+    public function set(?int $presetId, ?string $filePath): void
     {
-        return $this->hasCustomCover()
-            ? null
-            : (string) ($this->user->cover_preset_id ?? $this->defaultPresetId());
-    }
-
-    public function set(?string $presetId, ?string $filePath): void
-    {
-        $this->user->cover_preset_id = static::isValidPresetId($presetId) ? $presetId : null;
+        $this->user->cover_preset_id = isset($presetId)
+            ? UserCoverPreset::active()->find($presetId)?->getKey()
+            : null;
 
         if ($filePath !== null) {
             $this->user->customCover()->store($filePath);
@@ -69,8 +60,18 @@ class Cover
     {
         $presetId = $this->presetId();
 
-        return $presetId === null
-            ? null
-            : "{$GLOBALS['cfg']['app']['url']}/images/headers/profile-covers/c{$presetId}.jpg";
+        return isset($presetId)
+            ? app('user-cover-presets')->find($presetId)?->file()->url()
+            : null;
+    }
+
+    private function setDefaultPresetId(): void
+    {
+        if (!$this->user->exists || isset($this->user->cover_preset_id) || isset($this->user->custom_cover_filename)) {
+            return;
+        }
+
+        $id = app('user-cover-presets')->defaultForUser($this->user)->getKey();
+        $this->user->update(['cover_preset_id' => $id]);
     }
 }

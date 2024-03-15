@@ -14,6 +14,7 @@ import Controller from './controller';
 import CoverSelection from './cover-selection';
 
 interface Props {
+  confirmUpdate: boolean;
   controller: Controller;
   dropzoneRef: React.RefObject<HTMLDivElement>;
 }
@@ -34,11 +35,11 @@ export default class CoverUploader extends React.Component<Props> {
     return (
       <div className='profile-cover-uploader'>
         <CoverSelection
+          confirmUpdate={this.props.confirmUpdate}
           controller={this.props.controller}
+          id={-1}
           isSelected={this.props.controller.state.user.cover.id == null}
           modifiers='custom'
-          name='-1'
-          thumbUrl={this.props.controller.state.user.cover.custom_url}
           url={this.props.controller.state.user.cover.custom_url}
         />
 
@@ -114,8 +115,11 @@ export default class CoverUploader extends React.Component<Props> {
       dropZone: this.props.dropzoneRef.current ?? undefined,
       fail: fileuploadFailCallback,
       submit: action(() => {
-        this.props.controller.isUpdatingCover = true;
         $.publish('dragendGlobal');
+        if (this.props.confirmUpdate && !confirm(trans('users.show.edit.cover.holdover_remove_confirm'))) {
+          return false;
+        }
+        this.props.controller.isUpdatingCover = true;
       }),
       url: route('account.cover'),
     });

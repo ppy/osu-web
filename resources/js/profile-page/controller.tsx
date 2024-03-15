@@ -11,6 +11,7 @@ import KudosuHistoryJson from 'interfaces/kudosu-history-json';
 import { ScoreCurrentUserPinJson } from 'interfaces/score-json';
 import SoloScoreJson, { isSoloScoreJsonForUser, SoloScoreJsonForUser } from 'interfaces/solo-score-json';
 import UserCoverJson from 'interfaces/user-cover-json';
+import UserCoverPresetJson from 'interfaces/user-cover-preset-json';
 import { ProfileExtraPage, profileExtraPages } from 'interfaces/user-extended-json';
 import UserMonthlyPlaycountJson from 'interfaces/user-monthly-playcount-json';
 import UserReplaysWatchedCountJson from 'interfaces/user-replays-watched-count-json';
@@ -67,6 +68,7 @@ interface InitialData {
   current_mode: GameMode;
   scores_notice: string | null;
   user: ProfilePageUserJson;
+  user_cover_presets: UserCoverPresetJson[];
 }
 
 interface LazyPages {
@@ -103,6 +105,7 @@ export default class Controller {
   @observable isUpdatingCover = false;
   readonly scoresNotice: string | null;
   @observable readonly state: State;
+  readonly userCoverPresets;
   private xhr: Partial<Record<string, JQuery.jqXHR<unknown>>> = {};
 
   get canUploadCover() {
@@ -137,6 +140,7 @@ export default class Controller {
     this.currentMode = initialData.current_mode;
     this.scoresNotice = initialData.scores_notice;
     this.displayCoverUrl = this.state.user.cover.url;
+    this.userCoverPresets = initialData.user_cover_presets;
 
     makeObservable(this);
 
@@ -191,7 +195,7 @@ export default class Controller {
   }
 
   @action
-  apiSetCover(id: string) {
+  apiSetCover(id: number) {
     this.isUpdatingCover = true;
 
     this.xhr.setCover?.abort();

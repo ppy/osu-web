@@ -199,6 +199,8 @@ return [
             'cover' => [
                 'button' => 'Change Profile Cover',
                 'defaults_info' => 'More cover options will be available in the future',
+                'holdover_remove_confirm' => "The previously selected cover is not available for selection anymore. You can't select it back after switching to a different cover. Proceed?",
+
                 'upload' => [
                     'broken_file' => 'Failed processing image. Verify uploaded image and try again.',
                     'button' => 'Upload image',
