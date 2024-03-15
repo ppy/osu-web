@@ -123,6 +123,7 @@ export default class ChatStateStore implements DispatchListener {
       }
     });
 
+    // This should really go in ConversationPanel expect the whole double mounted thing wuth turbolinks breaks it when navigating.
     autorun(() => {
       if (this.isChatMounted) {
         const selectedChannelOrType = this.selectedChannelOrType;
@@ -130,9 +131,7 @@ export default class ChatStateStore implements DispatchListener {
           ? selectedChannelOrType.name
           : trans(`chat.channels.${selectedChannelOrType ?? 'none'}`);
 
-        const newTitle = `${channelName} · ${trans('page_title.main.chat_controller._')}`;
-        document.title = newTitle; // initial page load resets to document.title.
-        core.browserTitleWithNotificationCount.title = newTitle;
+        core.browserTitleWithNotificationCount.title = `${channelName} · ${trans('page_title.main.chat_controller._')}`;
       }
     });
   }
