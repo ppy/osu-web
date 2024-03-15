@@ -316,16 +316,16 @@ export default class ChatStateStore implements DispatchListener {
     if (mode == null) return;
 
     let hash = '';
-    let params: Record<'channel_id' | 'sendto', string | null | undefined>;
+    const params: Record<'channel_id' | 'sendto', string | null | undefined> = { channel_id: null, sendto: null };
 
     if (typeof channel === 'string') {
       hash = channel;
-      params = { channel_id: null, sendto: null };
     } else {
-      params = channel.newPmChannel
-        ? { channel_id: null, sendto: channel.pmTarget?.toString() }
-        : { channel_id: channel.channelId.toString(), sendto: null };
-
+      if (channel.newPmChannel) {
+        params.sendto = channel.pmTarget?.toString();
+      } else {
+        params.channel_id = channel.channelId.toString();
+      }
     }
 
     Turbolinks.controller[mode](updateQueryString(null, params, hash));
