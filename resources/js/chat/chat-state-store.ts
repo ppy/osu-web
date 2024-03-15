@@ -125,6 +125,18 @@ export default class ChatStateStore implements DispatchListener {
         this.publicChannels.load();
       }
     });
+
+    autorun(() => {
+      if (this.isChatMounted) {
+        const selectedChannelOrType = this.selectedChannelOrType;
+        const channelName = selectedChannelOrType instanceof Channel
+          ? selectedChannelOrType.name
+          : trans(`chat.channels.${selectedChannelOrType ?? 'none'}`);
+
+        // FIXME: channelName on sendto=
+        core.browserTitleWithNotificationCount.title = `${channelName} · ${trans('page_title.main.chat_controller._')}`;
+      }
+    });
   }
 
   // Only up to one join/create channel operation should be allowed to be running at any time.
@@ -305,16 +317,13 @@ export default class ChatStateStore implements DispatchListener {
   private updateUrl(channel: Channel | AddChannelType, mode: 'advanceHistory' | 'replaceHistory' | null) {
     if (mode == null) return;
 
-    let channelName: string;
     let hash = '';
     let params: Record<'channel_id' | 'sendto', string | null | undefined>;
 
     if (typeof channel === 'string') {
-      channelName = trans(`chat.channels.${channel}`);
       hash = channel;
       params = { channel_id: null, sendto: null };
     } else {
-      channelName = channel.name;
       params = channel.newPmChannel
         ? { channel_id: null, sendto: channel.pmTarget?.toString() }
         : { channel_id: channel.channelId.toString(), sendto: null };
@@ -322,6 +331,5 @@ export default class ChatStateStore implements DispatchListener {
     }
 
     Turbolinks.controller[mode](updateQueryString(null, params, hash));
-    core.browserTitleWithNotificationCount.title = `${channelName} · ${trans('page_title.main.chat_controller._')}`;
   }
 }
