@@ -130,8 +130,9 @@ export default class ChatStateStore implements DispatchListener {
           ? selectedChannelOrType.name
           : trans(`chat.channels.${selectedChannelOrType ?? 'none'}`);
 
-        // FIXME: channelName on sendto=
-        core.browserTitleWithNotificationCount.title = `${channelName} · ${trans('page_title.main.chat_controller._')}`;
+        const newTitle = `${channelName} · ${trans('page_title.main.chat_controller._')}`;
+        document.title = newTitle; // initial page load resets to document.title.
+        core.browserTitleWithNotificationCount.title = newTitle;
       }
     });
   }
