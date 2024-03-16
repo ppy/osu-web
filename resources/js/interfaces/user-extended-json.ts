@@ -31,7 +31,9 @@ type UserExtendedDefaultIncludes =
   | 'is_silenced';
 
 interface UserExtendedAdditionalAttributes {
+  changelog_entries_count: number | null;
   discord: string | null;
+  github_url: string | null;
   has_supported: boolean;
   interests: string | null;
   join_date: string;

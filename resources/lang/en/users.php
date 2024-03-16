@@ -441,6 +441,10 @@ return [
             '_' => 'Contributed :link',
             'count' => ':count_delimited forum post|:count_delimited forum posts',
         ],
+        'changelog_entries_count' => [
+            '_' => 'Contributed :link',
+            'count' => ':count_delimited changelog entry|:count_delimited changelog entries',
+        ],
         'rank' => [
             'country' => 'Country rank for :mode',
             'country_simple' => 'Country Ranking',
