@@ -16,7 +16,6 @@ import CreateAnnouncement from 'models/chat/create-announcement';
 import core from 'osu-core-singleton';
 import ChannelStore from 'stores/channel-store';
 import { isJqXHR, onError } from 'utils/ajax';
-import { trans } from 'utils/lang';
 import { hideLoadingOverlay, showImmediateLoadingOverlay } from 'utils/loading-overlay';
 import { updateQueryString } from 'utils/url';
 import ChannelId, { AddChannelType } from './channel-id';
@@ -120,20 +119,6 @@ export default class ChatStateStore implements DispatchListener {
     autorun(() => {
       if (this.selected === 'join' && this.publicChannels.channels == null && !this.publicChannels.error) {
         this.publicChannels.load();
-      }
-    });
-
-    // This should really go in ConversationPanel expect the whole double mounted thing wuth turbolinks breaks it when navigating.
-    autorun(() => {
-      if (this.isChatMounted) {
-        const selectedChannelOrType = this.selectedChannelOrType;
-        const channelName = selectedChannelOrType instanceof Channel
-          ? selectedChannelOrType.name
-          : trans(`chat.channels.${selectedChannelOrType ?? 'none'}`);
-
-        core.browserTitleWithNotificationCount.title = `${channelName} · ${trans('page_title.main.chat_controller._')}`;
-      } else {
-        core.browserTitleWithNotificationCount.title = null;
       }
     });
   }

@@ -2,7 +2,9 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import Img2x from 'components/img2x';
+import { autorun } from 'mobx';
 import { observer } from 'mobx-react';
+import Channel from 'models/chat/channel';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { trans } from 'utils/lang';
@@ -14,6 +16,41 @@ const lazerLink = 'https://github.com/ppy/osu/releases';
 
 @observer
 export default class ConversationPanel extends React.Component<Record<string, never>> {
+  private readonly disposer: ReturnType<typeof autorun>;
+  private navigatingAway = false;
+
+  constructor(props: Record<string, never>) {
+    super(props);
+
+    document.addEventListener('turbolinks:before-cache', this.handleBeforeCache);
+
+    this.disposer = autorun(() => {
+      // Don't set title if this is on the document that is going away.
+      // before-cache should be running before the autorun.
+      if (!this.navigatingAway) {
+        const selectedChannelOrType = core.dataStore.chatState.selectedChannelOrType;
+        const channelName = selectedChannelOrType instanceof Channel
+          ? selectedChannelOrType.name
+          : trans(`chat.channels.${selectedChannelOrType ?? 'none'}`);
+
+        core.browserTitleWithNotificationCount.title = `${channelName} · ${trans('page_title.main.chat_controller._')}`;
+      }
+    });
+  }
+
+  componentWillUnmount() {
+    this.disposer();
+    document.removeEventListener('turbolinks:before-cache', this.handleBeforeCache);
+
+    if (!core.dataStore.chatState.isChatMounted) {
+      core.browserTitleWithNotificationCount.title = null;
+    }
+  }
+
+  readonly handleBeforeCache = () => {
+    this.navigatingAway = true;
+  };
+
   render() {
     return (
       <div className='chat-conversation-panel'>
