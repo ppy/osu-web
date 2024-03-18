@@ -6,6 +6,7 @@
 namespace App\Transformers;
 
 use App\Models\User;
+use App\Models\UserProfileCustomization;
 
 class UserTransformer extends UserCompactTransformer
 {
@@ -28,7 +29,8 @@ class UserTransformer extends UserCompactTransformer
     {
         $result = parent::transform($user);
 
-        $profileCustomization = $this->userProfileCustomization($user);
+        $profileOrder = $user->userProfileCustomization->extras_order
+            ?? UserProfileCustomization::SECTIONS;
 
         return array_merge($result, [
             'cover_url' => $user->cover()->url(), // TODO: deprecated.
@@ -43,7 +45,7 @@ class UserTransformer extends UserCompactTransformer
             'playmode' => $user->playmode,
             'playstyle' => $user->osu_playstyle,
             'post_count' => $user->user_posts,
-            'profile_order' => $profileCustomization->extras_order,
+            'profile_order' => $profileOrder,
             'title' => $user->title(),
             'title_url' => $user->titleUrl(),
             'twitter' => $user->user_twitter,

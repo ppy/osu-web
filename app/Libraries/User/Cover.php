@@ -7,7 +7,6 @@ declare(strict_types=1);
 
 namespace App\Libraries\User;
 
-use App\Casts\LegacyFilename;
 use App\Models\User;
 
 class Cover
@@ -20,7 +19,6 @@ class Cover
 
     public function __construct(private User $user)
     {
-        $this->migrateFromProfileCustomization();
     }
 
     public static function isValidPresetId(int|null|string $presetId): bool
@@ -72,23 +70,6 @@ class Cover
     private function hasCustomCover(): bool
     {
         return !isset($this->user->cover_preset_id) && isset($this->user->custom_cover_filename);
-    }
-
-    private function migrateFromProfileCustomization(): void
-    {
-        $userProfileCustomization = $this->user->userProfileCustomization;
-        $oldCoverJson = $userProfileCustomization?->cover_json;
-
-        // Migrate from userProfileCustomization if exists
-        if ($oldCoverJson !== null) {
-            \DB::transaction(function () use ($oldCoverJson, $userProfileCustomization) {
-                $this->user->fill([
-                    'cover_preset_id' => $oldCoverJson['id'] ?? null,
-                    'custom_cover_filename' => LegacyFilename::makeFromAttributes($oldCoverJson['file'] ?? null),
-                ])->saveOrExplode();
-                $userProfileCustomization->fill(['cover_json' => null])->saveOrExplode();
-            });
-        }
     }
 
     private function presetUrl(): ?string
