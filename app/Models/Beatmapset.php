@@ -501,6 +501,10 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         }
 
         $statusCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+        // archive file is gone, nothing to do for now
+        if ($statusCode === 302) {
+            return false;
+        }
         if ($statusCode !== 200) {
             throw new BeatmapProcessorException('Failed downloading osz: HTTP Error '.$statusCode);
         }
