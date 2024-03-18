@@ -132,6 +132,8 @@ export default class ChatStateStore implements DispatchListener {
           : trans(`chat.channels.${selectedChannelOrType ?? 'none'}`);
 
         core.browserTitleWithNotificationCount.title = `${channelName} · ${trans('page_title.main.chat_controller._')}`;
+      } else {
+        core.browserTitleWithNotificationCount.title = null;
       }
     });
   }
