@@ -7,13 +7,10 @@
 
     $isNsfw = $beatmapset->nsfw;
     if ($isNsfw) {
-        $attributesBag = request()->attributes;
+        $attributesBag = Request::instance()->attributes;
         $userShowNsfw = $attributesBag->get('user_beatmapset_show_nsfw');
         if ($userShowNsfw === null) {
-            $user = auth()->user();
-            $userShowNsfw = $user !== null
-                ? ($user->userProfileCustomization ?? $user->userProfileCustomization()->make())->beatmapset_show_nsfw
-                : false;
+            $userShowNsfw = (Auth::user()->userProfileCustomization ?? UserProfileCustomization::DEFAULTS)['beatmapset_show_nsfw'];
             $attributesBag->set('user_beatmapset_show_nsfw', $userShowNsfw);
         }
     }

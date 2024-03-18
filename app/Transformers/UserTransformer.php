@@ -29,10 +29,10 @@ class UserTransformer extends UserCompactTransformer
     {
         $result = parent::transform($user);
 
-        $profileOrder = $user->userProfileCustomization->extras_order
-            ?? UserProfileCustomization::SECTIONS;
+        $profileOrder = ($user->userProfileCustomization ?? UserProfileCustomization::DEFAULTS)['extras_order'];
 
-        return array_merge($result, [
+        return [
+            ...$result,
             'cover_url' => $user->cover()->url(), // TODO: deprecated.
             'discord' => $user->user_discord,
             'has_supported' => $user->hasSupported(),
@@ -50,6 +50,6 @@ class UserTransformer extends UserCompactTransformer
             'title_url' => $user->titleUrl(),
             'twitter' => $user->user_twitter,
             'website' => $user->user_website,
-        ]);
+        ];
     }
 }

@@ -10,6 +10,7 @@ use App\Libraries\Search\ScoreSearchParams;
 use App\Models\Beatmap;
 use App\Models\User;
 use App\Models\UserProfileCustomization;
+use Illuminate\Support\Arr;
 use League\Fractal\Resource\ResourceInterface;
 
 class UserCompactTransformer extends TransformerAbstract
@@ -445,9 +446,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeUserPreferences(User $user)
     {
-        $customization = $user->userProfileCustomization ?? new UserProfileCustomization();
-
-        return $this->primitive($customization->only([
+        static $fields = [
             'audio_autoplay',
             'audio_muted',
             'audio_volume',
@@ -462,7 +461,13 @@ class UserCompactTransformer extends TransformerAbstract
             'user_list_filter',
             'user_list_sort',
             'user_list_view',
-        ]));
+        ];
+
+        $customization = $user->userProfileCustomization;
+
+        return $this->primitive($customization === null
+            ? Arr::only(UserProfileCustomization::DEFAULTS, $fields)
+            : $customization->only($fields));
     }
 
     public function setMode(string $mode)

@@ -16,6 +16,7 @@ use App\Models\Forum\Topic;
 use App\Models\Forum\TopicCover;
 use App\Models\Forum\TopicPoll;
 use App\Models\Forum\TopicWatch;
+use App\Models\Forum\UserProfileCustomization;
 use App\Transformers\Forum\TopicCoverTransformer;
 use Auth;
 use DB;
@@ -625,7 +626,7 @@ class TopicsController extends Controller
         $params['limit'] = clamp($params['limit'] ?? 20, 1, 50);
 
         if ($userCanModerate) {
-            $params['with_deleted'] = $params['with_deleted'] ?? $currentUser->profileCustomization()->forum_posts_show_deleted;
+            $params['with_deleted'] ??= ($currentUser->userProfileCustomization ?? UserProfileCustomization::DEFAULTS)['forum_posts_show_deleted'];
         } else {
             $params['with_deleted'] = false;
         }
