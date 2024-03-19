@@ -128,18 +128,23 @@ export default class ChatStateStore implements DispatchListener {
   // TODO: allow user cancelling operation from UI?
   @action
   async addChannel(channelId?: number) {
-    if (this.isAddingChannel
-      || channelId != null && this.channelStore.channels.has(channelId)
-    ) return;
-
-    showImmediateLoadingOverlay();
+    if (this.isAddingChannel) return;
 
     try {
       if (channelId != null) {
+        if (this.channelStore.channels.has(channelId)) {
+          this.selectChannel(channelId);
+          return;
+        }
+
+        showImmediateLoadingOverlay();
+
         this.waitAddChannelId = channelId;
         await joinChannel(channelId, core.currentUserOrFail.id);
       } else {
         if (!this.createAnnouncement.isValid) return;
+
+        showImmediateLoadingOverlay();
 
         const json = this.createAnnouncement.toJson();
         this.waitAddChannelId = json.uuid;
@@ -152,9 +157,9 @@ export default class ChatStateStore implements DispatchListener {
       runInAction(() => {
         this.waitAddChannelId = null;
       });
+    } finally {
+      hideLoadingOverlay();
     }
-
-    hideLoadingOverlay();
   }
 
   handleDispatchAction(event: DispatcherAction) {
