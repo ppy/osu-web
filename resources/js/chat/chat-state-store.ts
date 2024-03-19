@@ -16,7 +16,7 @@ import CreateAnnouncement from 'models/chat/create-announcement';
 import core from 'osu-core-singleton';
 import ChannelStore from 'stores/channel-store';
 import { isJqXHR, onError } from 'utils/ajax';
-import { hideLoadingOverlay, showImmediateLoadingOverlay } from 'utils/loading-overlay';
+import { hideLoadingOverlay } from 'utils/loading-overlay';
 import { updateQueryString } from 'utils/url';
 import ChannelId, { AddChannelType } from './channel-id';
 import ChannelJoinEvent from './channel-join-event';
@@ -83,6 +83,8 @@ export default class ChatStateStore implements DispatchListener {
 
     makeObservable(this);
 
+    document.addEventListener('turbolinks:before-cache', this.handleBeforeCache);
+
     observe(channelStore.channels, (changes) => {
       // refocus channels if any gets removed
       if (changes.type === 'delete') {
@@ -137,28 +139,22 @@ export default class ChatStateStore implements DispatchListener {
           return;
         }
 
-        showImmediateLoadingOverlay();
-
         this.waitAddChannelId = channelId;
         await joinChannel(channelId, core.currentUserOrFail.id);
       } else {
         if (!this.createAnnouncement.isValid) return;
-
-        showImmediateLoadingOverlay();
 
         const json = this.createAnnouncement.toJson();
         this.waitAddChannelId = json.uuid;
         await createAnnouncement(json);
       }
     } catch (error) {
-      if (!isJqXHR(error)) throw error;
-
-      onError(error);
       runInAction(() => {
         this.waitAddChannelId = null;
       });
-    } finally {
-      hideLoadingOverlay();
+
+      if (!isJqXHR(error)) throw error;
+      onError(error);
     }
   }
 
@@ -178,6 +174,7 @@ export default class ChatStateStore implements DispatchListener {
 
   @action
   selectChannel(channelId: ChannelId, mode: 'advanceHistory' | 'replaceHistory' | null = 'advanceHistory') {
+    this.waitAddChannelId = null; // reset any waiting for channel.
     // Mark the channel being switched away from as read.
     // Marking as read is done here to avoid constantly sending mark-as-read requests
     // while receiving messages when autoScroll is enabled on the channel.
@@ -224,6 +221,14 @@ export default class ChatStateStore implements DispatchListener {
 
     this.selectChannel(channel.channelId);
   }
+
+  @action
+  private readonly handleBeforeCache = () => {
+    // anything that needs to be reset when navigating away.
+    // TODO: split the wait for channel/busy and xhr, or maybe use a placeholder channel instead
+    // of blocking the UI.
+    this.waitAddChannelId = null;
+  };
 
   @action
   private handleChatChannelJoinEvent(event: ChannelJoinEvent) {
