@@ -9,12 +9,18 @@
   background: hsl(var(--hsl-b4));
 
   &__channel {
-    display: contents;
+    .reset-input();
+
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-column: span 3;
     color: hsl(var(--hsl-l3));
     text-align: left;
+    padding: 5px 10px;
 
     .link-hover({
       color: hsl(var(--hsl-c1));
+      background-color: hsl(var(--hsl-b3));
     });
 
     &--joined {
@@ -24,8 +30,7 @@
 
   &__channels {
     display: grid;
-    gap: 10px;
-    padding: 10px;
+    column-gap: 10px;
 
     // checkmark is 14px wide
     grid-template-columns: minmax(14px, max-content) 200px auto;
