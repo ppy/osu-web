@@ -41,6 +41,7 @@ class RoomTransformer extends TransformerAbstract
             'has_password' => $room->password !== null,
             'queue_mode' => $room->queue_mode,
             'auto_skip' => $room->auto_skip,
+            'no_score_multiplier' => $room->no_score_multiplier
         ];
     }
 
