@@ -15,8 +15,6 @@ class Cover
 
     private const AVAILABLE_PRESET_IDS = ['1', '2', '3', '4', '5', '6', '7', '8'];
 
-    private ?array $json;
-
     public function __construct(private User $user)
     {
     }
