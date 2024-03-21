@@ -540,8 +540,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
         if ($backgroundFilename !== false) {
             $tmpFile = tmpfile();
-            $bytesWritten = fwrite($tmpFile, $osz->readFile($backgroundFilename));
-            fseek($tmpFile, 0); // reset file position cursor, required for storeCover below
+            fwrite($tmpFile, $osz->readFile($backgroundFilename));
             $backgroundImage = get_stream_filename($tmpFile);
             if (!static::isValidBackgroundImage($backgroundImage)) {
                 return false;
