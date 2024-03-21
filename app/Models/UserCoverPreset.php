@@ -19,11 +19,6 @@ class UserCoverPreset extends Model
 {
     private Uploader $file;
 
-    public function scopeActive(Builder $query): Builder
-    {
-        return $query->where('active', true)->whereNotNull('filename');
-    }
-
     public function file(): Uploader
     {
         return $this->file ??= new Uploader(
