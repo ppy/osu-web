@@ -509,7 +509,12 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             throw new BeatmapProcessorException('Failed downloading osz: HTTP Error '.$statusCode);
         }
 
-        return new BeatmapsetArchive(get_stream_filename($oszFile));
+        try {
+            return new BeatmapsetArchive(get_stream_filename($oszFile));
+        } catch (BeatmapProcessorException $e) {
+            // zip file is broken, nothing to do for now
+            return false;
+        }
     }
 
     public function regenerateCovers(array $sizesToRegenerate = null)
