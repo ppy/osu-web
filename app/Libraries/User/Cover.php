@@ -32,23 +32,18 @@ class Cover
         return $this->user->customCover()->url();
     }
 
+    public function defaultPresetId(): string
+    {
+        $id = $this->user->getKey() ?? 0;
+
+        return static::AVAILABLE_PRESET_IDS[$id % count(static::AVAILABLE_PRESET_IDS)];
+    }
+
     public function presetId(): ?string
     {
-        if ($this->hasCustomCover()) {
-            return null;
-        }
-
-        $id = $this->user->getKey();
-
-        if ($id === null || $id < 1) {
-            return null;
-        }
-
-        $presetId = (string) $this->user->cover_preset_id;
-
-        return static::isValidPresetId($presetId)
-            ? $presetId
-            : static::AVAILABLE_PRESET_IDS[$id % count(static::AVAILABLE_PRESET_IDS)];
+        return $this->hasCustomCover()
+            ? null
+            : (string) ($this->user->cover_preset_id ?? $this->defaultPresetId());
     }
 
     public function set(?string $presetId, ?string $filePath): void
