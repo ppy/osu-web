@@ -26,7 +26,7 @@ return [
             'deleted' => 'Isama ang mga tinanggal na talakayan',
             'mode' => 'Mode ng beatmap',
             'only_unresolved' => 'Ipakita lamang ang diskusyon na hindi pa nalulutas',
-            'show_review_embeds' => '',
+            'show_review_embeds' => 'Ipakita ang mga post ng pagsusuri',
             'types' => 'Mga uri ng mensahe',
             'username' => 'Username',
 

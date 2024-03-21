@@ -86,7 +86,6 @@ return [
         ],
         'rankings' => [
             '_' => 'classements',
-            'kudosu' => 'kudosu',
         ],
         'store' => [
             '_' => 'magasin',
@@ -196,8 +195,8 @@ return [
             'account-edit' => 'Paramètres',
             'follows' => 'Listes de suivi',
             'friends' => 'Amis',
-            'legacy_score_only_toggle' => '',
-            'legacy_score_only_toggle_tooltip' => '',
+            'legacy_score_only_toggle' => 'Mode lazer',
+            'legacy_score_only_toggle_tooltip' => 'Le mode lazer permet d\'afficher les scores réalisés sur lazer. Ces scores utilisent un nouvel algorithme de calcul du score.',
             'logout' => 'Se déconnecter',
             'profile' => 'Mon profil',
         ],

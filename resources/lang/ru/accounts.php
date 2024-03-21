@@ -92,7 +92,6 @@ return [
             'mail' => 'почта',
             'mapping' => 'маппер',
             'push' => 'пуши',
-            'user_achievement_unlock' => 'новые медали',
         ],
     ],
 

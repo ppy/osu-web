@@ -92,7 +92,6 @@ return [
             'mail' => '',
             'mapping' => '',
             'push' => '',
-            'user_achievement_unlock' => '',
         ],
     ],
 

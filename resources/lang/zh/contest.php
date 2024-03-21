@@ -14,27 +14,27 @@ return [
     ],
 
     'judge' => [
-        'hide_judged' => '',
-        'nav_title' => '',
-        'no_current_vote' => '',
-        'update' => '',
+        'hide_judged' => '隐藏已打分的项目',
+        'nav_title' => '打分',
+        'no_current_vote' => '你尚未投票。',
+        'update' => '更新',
         'validation' => [
-            'missing_score' => '',
-            'contest_vote_judged' => '',
+            'missing_score' => '缺失分数',
+            'contest_vote_judged' => '不能在已打分的竞赛中投票。',
         ],
-        'voted' => '',
+        'voted' => '你已经提交了该项目的投票。',
     ],
 
     'judge_results' => [
-        '_' => '',
-        'creator' => '',
-        'score' => '',
-        'total_score' => '',
+        '_' => '打分结果',
+        'creator' => '谱师',
+        'score' => '分数',
+        'total_score' => '总分',
     ],
 
     'voting' => [
-        'judge_link' => '',
-        'judged_notice' => '',
+        'judge_link' => '你是此竞赛的评委。请在这里打分！',
+        'judged_notice' => '此竞赛使用了打分系统。评委正在打分。',
         'login_required' => '请登录后再投票.',
         'over' => '这场评选的投票已经结束',
         'show_voted_only' => '仅显示已投票的',

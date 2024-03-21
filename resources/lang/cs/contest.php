@@ -16,20 +16,20 @@ return [
     'judge' => [
         'hide_judged' => '',
         'nav_title' => '',
-        'no_current_vote' => '',
-        'update' => '',
+        'no_current_vote' => 'ještě jsi nehlasoval.',
+        'update' => 'aktualizovat',
         'validation' => [
             'missing_score' => '',
             'contest_vote_judged' => '',
         ],
-        'voted' => '',
+        'voted' => 'Již jsi pro tuto položku hlasoval.',
     ],
 
     'judge_results' => [
         '_' => '',
-        'creator' => '',
-        'score' => '',
-        'total_score' => '',
+        'creator' => 'autor',
+        'score' => 'Skóre',
+        'total_score' => 'celkové skóre',
     ],
 
     'voting' => [

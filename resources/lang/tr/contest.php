@@ -14,15 +14,15 @@ return [
     ],
 
     'judge' => [
-        'hide_judged' => '',
-        'nav_title' => '',
-        'no_current_vote' => '',
-        'update' => '',
+        'hide_judged' => 'değerlendirilen girişleri gizle',
+        'nav_title' => 'yargıç',
+        'no_current_vote' => 'henüz oy vermedin.',
+        'update' => 'güncelle',
         'validation' => [
-            'missing_score' => '',
-            'contest_vote_judged' => '',
+            'missing_score' => 'eksik skor',
+            'contest_vote_judged' => 'değerlendirilen girişlere oy veremezsiniz',
         ],
-        'voted' => '',
+        'voted' => 'Bu girişe zaten oy verdiniz.',
     ],
 
     'judge_results' => [

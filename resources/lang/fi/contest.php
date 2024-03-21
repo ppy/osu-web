@@ -14,27 +14,27 @@ return [
     ],
 
     'judge' => [
-        'hide_judged' => '',
-        'nav_title' => '',
-        'no_current_vote' => '',
-        'update' => '',
+        'hide_judged' => 'piilota arvioidut tuotokset',
+        'nav_title' => 'arvioi',
+        'no_current_vote' => 'et ole äänestänyt vielä.',
+        'update' => 'päivitä',
         'validation' => [
-            'missing_score' => '',
-            'contest_vote_judged' => '',
+            'missing_score' => 'puuttuva pisteytys',
+            'contest_vote_judged' => 'et voi äänestää tuomaroiduissa kilpailuissa',
         ],
-        'voted' => '',
+        'voted' => 'Olet jo äänestänyt tätä tuotosta.',
     ],
 
     'judge_results' => [
-        '_' => '',
-        'creator' => '',
-        'score' => '',
-        'total_score' => '',
+        '_' => 'Tuomaroinnin tulokset',
+        'creator' => 'tekijä',
+        'score' => 'Pisteet',
+        'total_score' => 'kokonaispisteet',
     ],
 
     'voting' => [
-        'judge_link' => '',
-        'judged_notice' => '',
+        'judge_link' => 'Olet tämän kilpailun tuomari. Arvostele tuotoksia täällä!',
+        'judged_notice' => 'Tämä kilpailu käyttää tuomarointijärjestelmää, tuomarit käsittelevät tuotoksia parhaillaan.',
         'login_required' => 'Kirjaudu sisään äänestääksesi.',
         'over' => 'Äänestys tälle kilpailulle on päättynyt',
         'show_voted_only' => 'Näytä äänestetyt',

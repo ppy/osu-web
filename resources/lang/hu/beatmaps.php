@@ -213,6 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'Ez a pálya rangsorolt lesz :date, ha nem merülnek fel további problémák. Jelenleg a #:position helyen áll: :queue.',
+            'unresolved_problems' => 'Ez a map jelenleg blokkolva van a Kvalifált állapot elhagyásából ameddig :problems meg nem vannak oldva.',
+            'problems' => 'ezek a problémák',
             'on' => ':date',
             'queue' => 'ranglistázási sor',
             'soon' => 'hamarosan',

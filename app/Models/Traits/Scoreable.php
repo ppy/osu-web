@@ -93,7 +93,7 @@ trait Scoreable
                 $this->rank = match (true) {
                     $ratio300 === 1 =>
                         $this->shouldHaveHiddenRank() ? 'XH' : 'X',
-                    $ratio300 > 0.9 && $ratio50 < 0.01 && $countMiss === 0 =>
+                    $ratio300 > 0.9 && $ratio50 <= 0.01 && $countMiss === 0 =>
                         $this->shouldHaveHiddenRank() ? 'SH' : 'S',
                     ($ratio300 > 0.8 && $countMiss === 0) || $ratio300 > 0.9 =>
                         'A',
@@ -170,7 +170,7 @@ trait Scoreable
     private function shouldHaveHiddenRank(): bool
     {
         foreach ($this->enabled_mods as $mod) {
-            if ($mod === 'FL' || $mod === 'HD') {
+            if ($mod === 'FI' || $mod === 'FL' || $mod === 'HD') {
                 return true;
             }
         }

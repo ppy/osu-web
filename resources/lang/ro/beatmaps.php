@@ -213,6 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'Acest beatmap este estimat a fi clasificat în data de :date dacă nu sunt găsite probleme. Este #:position în :queue.',
+            'unresolved_problems' => 'Acest beatmap este momentan blocat din a părăsi secțiunea „Calificat” până când :problems sunt rezolvate.',
+            'problems' => 'aceste probleme',
             'on' => 'pe :date',
             'queue' => 'lista de așteptare pentru clasament',
             'soon' => 'în curând',
@@ -245,7 +247,7 @@ return [
                 'language' => 'Limbă',
                 'mode' => 'Mod',
                 'nsfw' => 'Conținut Obscen',
-                'played' => 'Jucat',
+                'played' => 'Jucate',
                 'rank' => 'Grad Obținut',
                 'status' => 'Categorii',
             ],
@@ -257,7 +259,7 @@ return [
                 'updated' => 'Actualizat',
                 'ranked' => 'Clasat',
                 'rating' => 'Evaluare',
-                'plays' => 'Jocuri',
+                'plays' => 'Încercări',
                 'relevance' => 'Relevanţă',
                 'nominations' => 'Nominalizări',
             ],
@@ -336,8 +338,8 @@ return [
 
     'played' => [
         'any' => 'Oricare',
-        'played' => 'Jucat',
-        'unplayed' => 'Nejucat',
+        'played' => 'Jucate',
+        'unplayed' => 'Nejucate',
     ],
     'extra' => [
         'video' => 'Cu video',

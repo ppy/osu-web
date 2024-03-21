@@ -8,7 +8,7 @@
 
 @section('content')
     @include('layout._page_header_v4', ['params' => [
-        'backgroundImage' => $user->profileCustomization()->cover()->url(),
+        'backgroundImage' => $user->cover()->url(),
     ]])
     <form action="{{ route('users.posts', request()->route('user')) }}">
         <div class="osu-page">

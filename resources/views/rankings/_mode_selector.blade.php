@@ -8,7 +8,7 @@
         <li>
             <a
                 class="{{ class_with_modifiers('game-mode-link', ['active' => $mode === $tab ]) }}"
-                href="{{ $route($tab, $type) }}"
+                href="{{ $rankingUrl($type, $tab) }}"
             >
                 <span
                     class="fal fa-extra-mode-{{ $tab }}"

@@ -86,7 +86,6 @@ return [
         ],
         'rankings' => [
             '_' => 'класации',
-            'kudosu' => 'kudosu',
         ],
         'store' => [
             '_' => 'магазин',
@@ -196,8 +195,8 @@ return [
             'account-edit' => 'Настройки',
             'follows' => 'Следвани',
             'friends' => 'Приятели',
-            'legacy_score_only_toggle' => '',
-            'legacy_score_only_toggle_tooltip' => '',
+            'legacy_score_only_toggle' => 'Lazer стил',
+            'legacy_score_only_toggle_tooltip' => 'Lazer стилът показва резултатите от lazer по нов точков алгоритъм',
             'logout' => 'Изход',
             'profile' => 'Моят профил',
         ],

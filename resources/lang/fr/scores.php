@@ -5,7 +5,7 @@
 
 return [
     'show' => [
-        'non_preserved' => '',
+        'non_preserved' => 'Ce score doit être supprimé et disparaîtra bientôt.',
         'title' => ':username sur :title [:version]',
 
         'beatmap' => [
@@ -26,7 +26,8 @@ return [
     'status' => [
         'non_best' => 'Seul vos meilleurs scores vous rapportent des pp',
         'non_passing' => 'Seuls les scores que vous avez terminés sans échouer vous rapporteront des pp',
-        'no_pp' => '',
+        'no_pp' => 'Ce score n\'attribue pas de pp',
         'processing' => 'Ce score est toujours en cours de calcul et sera bientôt affiché',
+        'no_rank' => 'Ce score n\'a pas de rang : il est soit non classé, soit destiné à être supprimé',
     ],
 ];

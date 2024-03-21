@@ -4,8 +4,8 @@
 import BeatmapListItem from 'components/beatmap-list-item';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import UserJson from 'interfaces/user-json';
-import { action, computed, makeObservable, observable } from 'mobx';
-import { observer } from 'mobx-react';
+import { action, autorun, computed, makeObservable, observable } from 'mobx';
+import { disposeOnUnmount, observer } from 'mobx-react';
 import { deletedUserJson } from 'models/user';
 import * as React from 'react';
 import { makeUrl } from 'utils/beatmapset-discussion-helper';
@@ -34,16 +34,19 @@ export default class BeatmapList extends React.Component<Props> {
     super(props);
 
     makeObservable(this);
+    disposeOnUnmount(this, autorun(() => {
+      blackoutToggle(this, this.showingSelector);
+    }));
   }
 
   componentDidMount() {
     $(document).on(`click.${this.eventId}`, this.onDocumentClick);
     $(document).on(`turbolinks:before-cache.${this.eventId}`, this.handleBeforeCache);
-    blackoutToggle(this.showingSelector, 0.5);
   }
 
   componentWillUnmount() {
     $(document).off(`.${this.eventId}`);
+    blackoutToggle(this, false);
   }
 
   render() {
@@ -83,7 +86,7 @@ export default class BeatmapList extends React.Component<Props> {
       >
         <BeatmapListItem
           beatmap={beatmap}
-          beatmapUrl={makeUrl({ beatmap })}
+          beatmapUrl={makeUrl({ beatmap, filter: this.props.discussionsState.currentFilter })}
           beatmapset={this.props.discussionsState.beatmapset}
           mapper={this.props.users.get(beatmap.user_id) ?? deletedUserJson}
           showNonGuestMapper={false}
@@ -127,7 +130,6 @@ export default class BeatmapList extends React.Component<Props> {
   @action
   private setShowingSelector(state: boolean) {
     this.showingSelector = state;
-    blackoutToggle(state, 0.5);
   }
 
   @action

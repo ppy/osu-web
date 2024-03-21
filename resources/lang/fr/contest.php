@@ -14,30 +14,30 @@ return [
     ],
 
     'judge' => [
-        'hide_judged' => '',
-        'nav_title' => '',
-        'no_current_vote' => '',
-        'update' => '',
+        'hide_judged' => 'masquer les entrées jugées',
+        'nav_title' => 'juger',
+        'no_current_vote' => 'vous n\'avez pas encore voté.',
+        'update' => 'enregistrer',
         'validation' => [
-            'missing_score' => '',
-            'contest_vote_judged' => '',
+            'missing_score' => 'score manquant',
+            'contest_vote_judged' => 'vous ne pouvez pas voter dans un concours qui utilise le système de jugement',
         ],
-        'voted' => '',
+        'voted' => 'Vous avez déjà voté pour cette entrée.',
     ],
 
     'judge_results' => [
-        '_' => '',
-        'creator' => '',
-        'score' => '',
-        'total_score' => '',
+        '_' => 'Résultats du jugement',
+        'creator' => 'créateur',
+        'score' => 'Score',
+        'total_score' => 'score total',
     ],
 
     'voting' => [
-        'judge_link' => '',
-        'judged_notice' => '',
+        'judge_link' => 'Vous êtes juge de ce concours. Jugez les entrées ici !',
+        'judged_notice' => 'Ce concours utilise le système de jugement, les juges s\'occupent actuellement des entrées.',
         'login_required' => 'Veuillez vous connecter pour voter.',
         'over' => 'Le vote pour ce concours est terminé',
-        'show_voted_only' => 'Voir les votes',
+        'show_voted_only' => 'Voir vos votes',
 
         'best_of' => [
             'none_played' => "Il semble que vous n'ayez joué aucune beatmap qualifiée pour ce concours !",

@@ -86,7 +86,6 @@ return [
         ],
         'rankings' => [
             '_' => '순위',
-            'kudosu' => 'kudosu',
         ],
         'store' => [
             '_' => '상점',
@@ -112,7 +111,7 @@ return [
         'legal' => [
             '_' => '법률 & 상태',
             'copyright' => '저작권 (DMCA)',
-            'jp_sctl' => '',
+            'jp_sctl' => '특정상거래법',
             'privacy' => '개인 정보 보호 정책',
             'server_status' => '서버 상태 확인',
             'source_code' => '소스 코드',
@@ -196,8 +195,8 @@ return [
             'account-edit' => '설정',
             'follows' => '관심 목록',
             'friends' => '친구',
-            'legacy_score_only_toggle' => '',
-            'legacy_score_only_toggle_tooltip' => '',
+            'legacy_score_only_toggle' => 'Lazer 모드',
+            'legacy_score_only_toggle_tooltip' => 'Lazer 모드는 osu!lazer에서 새로운 점수 알고리즘으로 등록한 점수를 표시합니다',
             'logout' => '로그아웃',
             'profile' => '내 프로필',
         ],

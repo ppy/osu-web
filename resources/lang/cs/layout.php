@@ -86,7 +86,6 @@ return [
         ],
         'rankings' => [
             '_' => 'žebříček',
-            'kudosu' => 'kudosu',
         ],
         'store' => [
             '_' => 'obchod',
@@ -196,8 +195,8 @@ return [
             'account-edit' => 'Nastavení',
             'follows' => 'Sledované položky',
             'friends' => 'Přátelé',
-            'legacy_score_only_toggle' => '',
-            'legacy_score_only_toggle_tooltip' => '',
+            'legacy_score_only_toggle' => 'Lazer režim',
+            'legacy_score_only_toggle_tooltip' => 'Lazer režim zobrazuje skóre zahraná na lazeru s novým skórovacím algoritmem',
             'logout' => 'Odhlásit se',
             'profile' => 'Můj profil',
         ],

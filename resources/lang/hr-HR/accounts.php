@@ -92,7 +92,6 @@ return [
             'mail' => 'pošta',
             'mapping' => 'autor beatmape',
             'push' => 'push',
-            'user_achievement_unlock' => 'otključanje korisničke medalje',
         ],
     ],
 

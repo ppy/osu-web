@@ -9,6 +9,8 @@ namespace App\Libraries;
 
 class LocaleMeta
 {
+    // Keys must be a superset of app.available_locales. Additional locales are
+    // available for use only in wiki articles
     const MAPPINGS = [
         'ar' => [
             'flag' => 'SA',
@@ -143,10 +145,6 @@ class LocaleMeta
             'flag' => 'TH',
             'name' => 'ไทย',
         ],
-        'tl' => [
-            'flag' => 'PH',
-            'name' => 'Tagalog',
-        ],
         'tr' => [
             'flag' => 'TR',
             'name' => 'Türkçe',
@@ -163,12 +161,6 @@ class LocaleMeta
             'flag' => 'CN',
             'moment' => 'zh-cn',
             'name' => '简体中文',
-        ],
-        'zh-hk' => [
-            'flag' => 'HK',
-            'html' => 'zh-HK',
-            'laravelPlural' => 'zh_HK',
-            'name' => '繁體中文（香港）',
         ],
         'zh-tw' => [
             'flag' => 'TW',

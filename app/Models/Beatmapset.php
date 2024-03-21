@@ -214,6 +214,19 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         return preg_replace($pattern, '', $text);
     }
 
+    public static function isValidBackgroundImage(string $path): bool
+    {
+        $dimensions = read_image_properties($path);
+
+        static $validTypes = [
+            IMAGETYPE_GIF,
+            IMAGETYPE_JPEG,
+            IMAGETYPE_PNG,
+        ];
+
+        return isset($dimensions[2]) && in_array($dimensions[2], $validTypes, true);
+    }
+
     public function beatmapDiscussions()
     {
         return $this->hasMany(BeatmapDiscussion::class);
@@ -468,8 +481,9 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
     public function fetchBeatmapsetArchive()
     {
         $oszFile = tmpfile();
-        $mirrorsToUse = $GLOBALS['cfg']['osu']['beatmap_processor']['mirrors_to_use'];
-        $url = BeatmapMirror::getRandomFromList($mirrorsToUse)->generateURL($this, true);
+        $mirror = BeatmapMirror::getRandomFromList($GLOBALS['cfg']['osu']['beatmap_processor']['mirrors_to_use'])
+            ?? throw new \Exception('no available mirror');
+        $url = $mirror->generateURL($this, true);
 
         if ($url === false) {
             return false;
@@ -487,6 +501,10 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         }
 
         $statusCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+        // archive file is gone, nothing to do for now
+        if ($statusCode === 302) {
+            return false;
+        }
         if ($statusCode !== 200) {
             throw new BeatmapProcessorException('Failed downloading osz: HTTP Error '.$statusCode);
         }
@@ -520,6 +538,9 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             $bytesWritten = fwrite($tmpFile, $osz->readFile($backgroundFilename));
             fseek($tmpFile, 0); // reset file position cursor, required for storeCover below
             $backgroundImage = get_stream_filename($tmpFile);
+            if (!static::isValidBackgroundImage($backgroundImage)) {
+                return false;
+            }
 
             // upload original image
             $this->storeCover('raw.jpg', $backgroundImage);
@@ -1464,22 +1485,20 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     public function getDisplayArtist(?User $user)
     {
-        $profileCustomization = $user->userProfileCustomization ?? new UserProfileCustomization();
-        if ($profileCustomization->beatmapset_title_show_original) {
-            return $this->artist_unicode;
-        }
+        $profileCustomization = $user->userProfileCustomization ?? UserProfileCustomization::DEFAULTS;
 
-        return $this->artist;
+        return $profileCustomization['beatmapset_title_show_original']
+            ? $this->artist_unicode
+            : $this->artist;
     }
 
     public function getDisplayTitle(?User $user)
     {
-        $profileCustomization = $user->userProfileCustomization ?? new UserProfileCustomization();
-        if ($profileCustomization->beatmapset_title_show_original) {
-            return $this->title_unicode;
-        }
+        $profileCustomization = $user->userProfileCustomization ?? UserProfileCustomization::DEFAULTS;
 
-        return $this->title;
+        return $profileCustomization['beatmapset_title_show_original']
+            ? $this->title_unicode
+            : $this->title;
     }
 
     public function freshHype()

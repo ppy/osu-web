@@ -92,7 +92,6 @@ return [
             'mail' => 'posti',
             'mapping' => 'rytmikartan kartoittaja',
             'push' => 'push',
-            'user_achievement_unlock' => 'mitali ansaittu',
         ],
     ],
 

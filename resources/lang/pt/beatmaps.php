@@ -214,6 +214,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'Este mapa está estimado a ser classificado em :date se não forem descobertos quaisquer problemas. Está em #:position na :queue.',
+            'unresolved_problems' => 'Este mapa está de momento impedido de sair da secção Qualificado até que os :problems sejam resolvidos.',
+            'problems' => 'estes problemas',
             'on' => 'em :date',
             'queue' => 'fila de classificação',
             'soon' => 'em breve',

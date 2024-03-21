@@ -6,7 +6,7 @@
 return [
     'play_more' => 'Mengapa kamu tidak mencoba untuk bermain terlebih dahulu?',
     'require_login' => 'Silakan masuk untuk melanjutkan.',
-    'require_verification' => 'Silakan verifikasi untuk melanjutkan.',
+    'require_verification' => 'Silakan verifikasi akunmu untuk melanjutkan.',
     'restricted' => "Tidak dapat melakukan hal itu saat dibatasi.",
     'silenced' => "Tidak dapat melakukan hal itu saat dibungkam.",
     'unauthorized' => 'Akses ditolak.',
@@ -27,7 +27,7 @@ return [
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => 'Hanya pembuat beatmap atau anggota BN/NAT yang dapat membubuhkan catatan pada laman diskusi beatmap.',
+            'mapper_note_wrong_user' => 'Hanya pembuat beatmap atau anggota BN/NAT yang dapat membubuhkan catatan pada halaman diskusi beatmap.',
         ],
 
         'vote' => [
@@ -42,7 +42,7 @@ return [
         'destroy' => [
             'not_owner' => 'Kamu hanya dapat menghapus postingan milik diri sendiri.',
             'resolved' => 'Kamu tidak dapat menghapus postingan pada topik diskusi yang telah terjawab.',
-            'system_generated' => 'Postingan yang dibuat otomatis tidak dapat dihapus.',
+            'system_generated' => 'Postingan yang dihasilkan secara otomatis tidak dapat dihapus.',
         ],
 
         'edit' => [
@@ -56,14 +56,14 @@ return [
         'discussion_locked' => 'Diskusi pada beatmap ini telah dikunci.',
 
         'metadata' => [
-            'nominated' => 'Kamu tidak dapat mengubah metadata beatmap yang telah dinominasikan. Mohon hubungi anggota BN atau NAT apabila kamu merasa terdapat kesalahan pada metadata beatmap ini.',
+            'nominated' => 'Kamu tidak dapat mengubah metadata beatmap yang telah dinominasikan. Hubungi anggota BN atau NAT apabila kamu merasa metadata beatmap ini tidak diatur dengan benar.',
         ],
     ],
 
     'chat' => [
         'annnonce_only' => 'Kanal ini hanya dikhususkan untuk pengumuman.',
         'blocked' => 'Pesan tidak dapat dikirim kepada pengguna yang kamu blokir atau memblokir dirimu.',
-        'friends_only' => 'Pengguna memblokir pesan dari orang yang tidak dalam daftar temannya.',
+        'friends_only' => 'Pengguna ini memblokir pesan dari pengguna lain yang tidak berada dalam daftar temannya.',
         'moderated' => 'Kanal percakapan ini sedang dimoderasi.',
         'no_access' => 'Kamu tidak memiliki akses ke kanal percakapan ini.',
         'receive_friends_only' => 'Pengguna ini tidak akan dapat membalas pesanmu karena kamu hanya menerima pesan dari nama-nama yang tertera pada daftar temanmu.',
@@ -81,18 +81,18 @@ return [
     ],
 
     'contest' => [
-        'judging_not_active' => '',
+        'judging_not_active' => 'Penjurian kontes ini sedang tidak aktif.',
         'voting_over' => 'Anda tidak dapat mengubah pilihan Anda setelah periode pemungutan suara untuk kontes ini telah berakhir.',
 
         'entry' => [
             'limit_reached' => 'Kamu telah mencapai batas entri untuk kontes ini',
-            'over' => 'Terima kasih telah mengirimkan entrimu! Submisi untuk kontes ini telah ditutup dan pemungutan suara akan segera berlangsung.',
+            'over' => 'Terima kasih telah mengirimkan entrimu! Pengumpulan entri untuk kontes ini telah ditutup dan pemungutan suara akan segera berlangsung.',
         ],
     ],
 
     'forum' => [
         'moderate' => [
-            'no_permission' => 'Tidak memiliki izin untuk mengelola forum ini.',
+            'no_permission' => 'Kamu tdak memiliki izin untuk memoderasi forum ini.',
         ],
 
         'post' => [
@@ -105,7 +105,7 @@ return [
 
             'edit' => [
                 'deleted' => 'Tidak dapat menyunting postingan yang telah dihapus.',
-                'locked' => 'Topik telah dikunci, sehingga penyuntingan kiriman tidak lagi dapat dilakukan.',
+                'locked' => 'Penyuntingan pada postingan ini telah dikunci.',
                 'no_forum_access' => 'Kamu tidak memiliki akses ke forum yang dituju.',
                 'not_owner' => 'Hanya pemilik topik yang dapat menyunting kiriman.',
                 'topic_locked' => 'Tidak dapat menyunting kiriman di topik yang telah dikunci.',
@@ -173,7 +173,7 @@ return [
     'score' => [
         'pin' => [
             'disabled_type' => "Tipe skor ini tidak dapat disematkan",
-            'failed' => "",
+            'failed' => "Skor yang tidak pass tidak dapat disematkan.",
             'not_owner' => 'Hanya pemilik skor yang dapat menyematkan skor.',
             'too_many' => 'Skor yang disematkan sudah terlalu banyak.',
         ],

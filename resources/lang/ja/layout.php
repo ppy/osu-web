@@ -86,7 +86,6 @@ return [
         ],
         'rankings' => [
             '_' => 'ランキング',
-            'kudosu' => 'kudosu',
         ],
         'store' => [
             '_' => 'ストア',
@@ -112,7 +111,7 @@ return [
         'legal' => [
             '_' => 'Legal & Status',
             'copyright' => '著作権 (DMCA)',
-            'jp_sctl' => '',
+            'jp_sctl' => '特定商取引法',
             'privacy' => 'プライバシー',
             'server_status' => 'サーバー状態',
             'source_code' => 'ソースコード',

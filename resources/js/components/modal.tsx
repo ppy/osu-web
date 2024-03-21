@@ -49,9 +49,7 @@ export default class Modal extends React.PureComponent<React.PropsWithChildren<P
 
   private readonly close = () => {
     modals.delete(this);
-    if (modals.size === 0) {
-      blackoutToggle(false);
-    }
+    blackoutToggle(this, false);
   };
 
   private readonly handleBeforeCache = () => {
@@ -91,6 +89,6 @@ export default class Modal extends React.PureComponent<React.PropsWithChildren<P
 
   private readonly open = () => {
     modals.add(this);
-    blackoutToggle(true, 0.5);
+    blackoutToggle(this, true);
   };
 }

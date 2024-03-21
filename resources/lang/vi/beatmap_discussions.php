@@ -33,9 +33,9 @@ return [
             'beatmapset_status' => [
                 '_' => 'Tình trạng Beatmap',
                 'all' => 'Tất cả',
-                'disqualified' => 'Disqualified ',
-                'never_qualified' => 'Chưa bao giờ Qualified',
-                'qualified' => 'Qualified',
+                'disqualified' => 'Không đủ tư cách',
+                'never_qualified' => 'Không bao giờ đủ tư cách',
+                'qualified' => 'Đủ tư cách',
                 'ranked' => 'Xếp Hạng',
             ],
 

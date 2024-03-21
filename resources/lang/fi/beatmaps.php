@@ -213,6 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'Tämä kartta tulee arvion perusteella rankatuksi :date, jos ongelmia ei löydy. Se on :position. :queue.',
+            'unresolved_problems' => 'Tätä karttaa estetään tällä hetkellä poistumasta kelpuutettu-osiosta, kunnes :problems on ratkaistu.',
+            'problems' => 'nämä ongelmat',
             'on' => ':date',
             'queue' => 'hyväksytysjonossa',
             'soon' => 'pian',

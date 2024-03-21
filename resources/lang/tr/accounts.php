@@ -92,7 +92,6 @@ return [
             'mail' => 'posta',
             'mapping' => 'beatmap mapper',
             'push' => 'anlık',
-            'user_achievement_unlock' => 'kullanıcı madalyası açıldı',
         ],
     ],
 

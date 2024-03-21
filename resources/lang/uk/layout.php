@@ -86,7 +86,6 @@ return [
         ],
         'rankings' => [
             '_' => 'рейтинги',
-            'kudosu' => 'кудосу',
         ],
         'store' => [
             '_' => 'крамниця',
@@ -196,8 +195,8 @@ return [
             'account-edit' => 'Налаштування',
             'follows' => 'Перелік підписок',
             'friends' => 'Друзі',
-            'legacy_score_only_toggle' => '',
-            'legacy_score_only_toggle_tooltip' => '',
+            'legacy_score_only_toggle' => 'Режим Lazer',
+            'legacy_score_only_toggle_tooltip' => 'Режим відображення, який показує результати, поставлені у клієнті lazer з новим алгоритмом підрахунку очок',
             'logout' => 'Вийти',
             'profile' => 'Мій профіль',
         ],

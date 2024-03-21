@@ -80,7 +80,6 @@ return [
         'action_lazer_title' => 'wypróbuj osu!(lazer)',
         'action_title' => 'pobierz osu!',
         'for_os' => 'dla systemu :os',
-        'lazer_note' => 'uwaga: ustanowione wyniki mogą zostać usunięte',
         'macos-fallback' => 'użytkownicy macOS',
         'mirror' => 'serwer lustrzany',
         'or' => 'lub',

@@ -5,7 +5,7 @@
 
 return [
     'show' => [
-        'non_preserved' => '',
+        'non_preserved' => '已標記刪除此成績，其不久後就會消失。',
         'title' => ':username 在 :title [:version] 上的成績',
 
         'beatmap' => [
@@ -26,7 +26,8 @@ return [
     'status' => [
         'non_best' => 'pp 只授予個人最佳成績',
         'non_passing' => '僅有過關的成績能獲取 pp',
-        'no_pp' => '',
+        'no_pp' => '此成績沒有 pp',
         'processing' => '成績仍在結算中，不久後就會顯示',
+        'no_rank' => '由於該成績不參與排名或已標記為待刪除，因此其沒有排名。',
     ],
 ];

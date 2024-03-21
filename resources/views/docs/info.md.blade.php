@@ -124,6 +124,16 @@ Version | Status
 v2      | current
 v1      | _legacy api provided by the old site, will be deprecated soon_
 
+### API Response Version
+
+Sometimes, an API response need to be updated in non-backward compatible ways. In such cases, the `x-api-version` header is used to determine which version of the response will be returned.
+
+Version 0 is assumed when the header is omitted.
+
+Version  | Change
+-------- | ------
+20220705 | [Score](#score) object with different set of fields.
+
 ## Language
 
 Language for the response is determined by `Accept-Language` header when specified. Specifying `*` or not setting the header will set the language to user configured language when accessing API as a user.

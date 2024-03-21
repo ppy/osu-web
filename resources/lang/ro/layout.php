@@ -86,7 +86,6 @@ return [
         ],
         'rankings' => [
             '_' => 'clasamente',
-            'kudosu' => 'kudosu',
         ],
         'store' => [
             '_' => 'magazin',
@@ -196,8 +195,8 @@ return [
             'account-edit' => 'Setări',
             'follows' => 'Pagini Abonate',
             'friends' => 'Prieteni',
-            'legacy_score_only_toggle' => '',
-            'legacy_score_only_toggle_tooltip' => '',
+            'legacy_score_only_toggle' => 'Mod lazer',
+            'legacy_score_only_toggle_tooltip' => 'Modul lazer afișează scoruri obținute din lazer folosind un algoritm nou de scor',
             'logout' => 'Deconectare',
             'profile' => 'Profilul Meu',
         ],

@@ -244,11 +244,6 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':username har oplåst en ny medalje, ":title"!',
-                'user_achievement_unlock_self' => 'Du har oplåst en ny medalje, ":title"!',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username har oprettet nye beatmaps',
                 'user_beatmapset_revive' => '',

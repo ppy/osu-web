@@ -80,7 +80,6 @@ return [
         'action_lazer_title' => 'prova osu!(lazer)',
         'action_title' => 'descarrega osu!',
         'for_os' => 'per :os',
-        'lazer_note' => 'nota: s\'apliquen restabliments de les taules de classificació',
         'macos-fallback' => 'usuaris de macOS',
         'mirror' => 'enllaç alternatiu',
         'or' => 'o',

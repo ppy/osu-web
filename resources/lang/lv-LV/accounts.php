@@ -9,7 +9,7 @@ return [
         'username' => 'lietotājvārds',
 
         'avatar' => [
-            'title' => 'Profila attēls',
+            'title' => 'Avatārs',
             'rules' => 'Lūdzu, pārliecinieties, ka jūsu profila attēls atbilst :link.<br/>Tas nozīmē, ka attēlam jābūt <strong>piemērotam visiem vecumiem</strong>, t.i., bez kailuma, rupjībām vai ierosinoša satura.',
             'rules_link' => 'kopienas noteikumi',
         ],
@@ -63,15 +63,15 @@ return [
     ],
 
     'github_user' => [
-        'info' => "",
+        'info' => "Ja esat ieguldītājs osu! atvērtā koda repozitorijos, sasaistot savu GitHub kontu šeit un jūsu izmaiņu žurnāla ieraksti tiks saistīti ar jūsu osu! profilu. GitHub kontus, kuriem nav ieguldījumu vēstures osu!, nevar sasaistīt.",
         'link' => 'Pievienot GitHub kontu',
         'title' => 'GitHub',
         'unlink' => 'Atvienot GitHub kontu',
 
         'error' => [
             'already_linked' => 'Šis GitHub konts jau ir pievienots citam lietotājam.',
-            'no_contribution' => '',
-            'unverified_email' => '',
+            'no_contribution' => 'Nevar sasaistīt GitHub kontu bez jebkādas ieguldījumu vēstures osu! repozitorijos.',
+            'unverified_email' => 'Lūdzu, apstriprinā savu primāro e-pasta adresi GitHub un pēc tam mēģiniet vēlreiz sasaistīt kontu.',
         ],
     ],
 
@@ -92,7 +92,6 @@ return [
             'mail' => 'pasts',
             'mapping' => 'bītmapes kartētājs',
             'push' => 'push',
-            'user_achievement_unlock' => 'lietotāja medaļa atklāta',
         ],
     ],
 

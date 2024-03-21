@@ -86,7 +86,6 @@ return [
         ],
         'rankings' => [
             '_' => 'rangering',
-            'kudosu' => 'kudosu',
         ],
         'store' => [
             '_' => 'butikk',
@@ -196,8 +195,8 @@ return [
             'account-edit' => 'Innstillinger',
             'follows' => 'Overvåkningslister',
             'friends' => 'Venner',
-            'legacy_score_only_toggle' => '',
-            'legacy_score_only_toggle_tooltip' => '',
+            'legacy_score_only_toggle' => 'Lazer modus',
+            'legacy_score_only_toggle_tooltip' => 'Lazer modus viser scorer satt fra lazer med en ny scoringsalgoritme',
             'logout' => 'Logg Ut',
             'profile' => 'Min Profil',
         ],

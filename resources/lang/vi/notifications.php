@@ -246,11 +246,6 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':username đã mở khóa một huy chương mới, ":title"!',
-                'user_achievement_unlock_self' => 'Bạn đã mở khóa một huân chương mới, ":title"!',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username đã tạo beatmap mới',
                 'user_beatmapset_revive' => ':username đã hồi sinh một số beatmap',

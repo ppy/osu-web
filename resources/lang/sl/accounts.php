@@ -92,7 +92,6 @@ return [
             'mail' => 'e-pošta',
             'mapping' => 'ustvarjalec beatmap',
             'push' => 'potisno',
-            'user_achievement_unlock' => 'uporabniška medalja odklenjena',
         ],
     ],
 

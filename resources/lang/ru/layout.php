@@ -86,7 +86,6 @@ return [
         ],
         'rankings' => [
             '_' => 'рейтинг',
-            'kudosu' => 'по кудосу',
         ],
         'store' => [
             '_' => 'магазин',
@@ -196,8 +195,8 @@ return [
             'account-edit' => 'Настройки',
             'follows' => 'Подписки',
             'friends' => 'Друзья',
-            'legacy_score_only_toggle' => '',
-            'legacy_score_only_toggle_tooltip' => '',
+            'legacy_score_only_toggle' => 'Lazer-рекорды',
+            'legacy_score_only_toggle_tooltip' => 'Режим отображения, который показывает рекорды, поставленные в клиенте lazer с новым алгоритмом подсчёта очков',
             'logout' => 'Выйти',
             'profile' => 'Мой профиль',
         ],

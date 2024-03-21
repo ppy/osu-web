@@ -503,6 +503,7 @@ class UsersController extends Controller
      * @urlParam user integer required Id of the user. Example: 1
      * @urlParam type string required Score type. Must be one of these: `best`, `firsts`, `recent`. Example: best
      *
+     * @queryParam legacy_only integer Whether or not to exclude lazer scores. Defaults to 0. Example: 0
      * @queryParam include_fails Only for recent scores, include scores of failed plays. Set to 1 to include them. Defaults to 0. Example: 0
      * @queryParam mode [Ruleset](#ruleset) of the scores to be returned. Defaults to the specified `user`'s mode. Example: osu
      * @queryParam limit Maximum number of results.
@@ -1002,12 +1003,13 @@ class UsersController extends Controller
 
             $user = $registration->user();
 
-            if ($country === null) {
+            // report unknown country code but ignore non-country from cloudflare
+            if ($countryCode !== null && $country === null && $countryCode !== 'T1') {
                 app('sentry')->getClient()->captureMessage(
-                    'User registered from unknown country: '.$countryCode,
+                    'User registered from unknown country',
                     null,
                     (new Scope())
-                        ->setExtra('country', $countryCode)
+                        ->setTag('country', $countryCode)
                         ->setExtra('ip', $ip)
                         ->setExtra('user_id', $user->getKey())
                 );

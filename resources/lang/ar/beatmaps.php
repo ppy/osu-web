@@ -213,6 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'هذه الخريطة مقدرة بأن تصبح Ranked في :date إذا لم يتم العثور على أي مشاكل. انها#:position في :queue.',
+            'unresolved_problems' => '',
+            'problems' => '',
             'on' => 'في :date',
             'queue' => 'قائمة انتظار الترتيب',
             'soon' => 'قريبًا',

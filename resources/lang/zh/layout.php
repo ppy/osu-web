@@ -86,7 +86,6 @@ return [
         ],
         'rankings' => [
             '_' => '排名',
-            'kudosu' => 'kudosu',
         ],
         'store' => [
             '_' => '商店',
@@ -196,8 +195,8 @@ return [
             'account-edit' => '设置',
             'follows' => '订阅',
             'friends' => '好友',
-            'legacy_score_only_toggle' => '',
-            'legacy_score_only_toggle_tooltip' => '',
+            'legacy_score_only_toggle' => 'Lazer 模式',
+            'legacy_score_only_toggle_tooltip' => 'Lazer 模式使用来自 Lazer 客户端的新记分算法显示您的分数',
             'logout' => '登出',
             'profile' => '资料',
         ],

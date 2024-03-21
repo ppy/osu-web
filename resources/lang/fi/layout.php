@@ -86,7 +86,6 @@ return [
         ],
         'rankings' => [
             '_' => 'tilastot',
-            'kudosu' => 'kudosu',
         ],
         'store' => [
             '_' => 'kauppa',
@@ -196,8 +195,8 @@ return [
             'account-edit' => 'Asetukset',
             'follows' => 'Seurantalistat',
             'friends' => 'Kaverit',
-            'legacy_score_only_toggle' => '',
-            'legacy_score_only_toggle_tooltip' => '',
+            'legacy_score_only_toggle' => 'Lazer-tila',
+            'legacy_score_only_toggle_tooltip' => 'Lazer-tila näyttää uuden pisteytysalgoritmin avulla saadut tulokset',
             'logout' => 'Kirjaudu ulos',
             'profile' => 'Oma profiili',
         ],

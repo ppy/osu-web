@@ -15,12 +15,12 @@ return [
 
     'action_type' => [
         '_' => 'lahat',
-        'beatmapset' => '',
-        'build' => '',
-        'channel' => '',
-        'forum_topic' => '',
-        'news_post' => '',
-        'user' => '',
+        'beatmapset' => 'mga beatmap',
+        'build' => 'mga build',
+        'channel' => 'chat',
+        'forum_topic' => 'forum',
+        'news_post' => 'mga balita',
+        'user' => 'profile',
     ],
 
     'filters' => [
@@ -57,9 +57,9 @@ return [
                 'beatmapset_discussion_unlock_compact' => 'Ang talakayan ay naka-unlock',
 
                 'review_count' => [
-                    'praises' => '',
-                    'problems' => '',
-                    'suggestions' => '',
+                    'praises' => ':count_delimited na papuri|:count_delimited na mga papuri',
+                    'problems' => ':count_delimited na problema|:count_delimited na mga problema',
+                    'suggestions' => ':count_delimited na mungkahi|:count_delimited mga mungkahi',
                 ],
             ],
 
@@ -244,11 +244,6 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => 'Si :username ay nakakuha ng bagong medalya, ang ":title"!',
-                'user_achievement_unlock_self' => 'Ikaw ay nakakuha ng bagong medalya, ang ":title"!',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => 'Si :username ay gumawa ng mga bagong beatmap',
                 'user_beatmapset_revive' => 'Muling binuhay ni :username ang mga beatmap',

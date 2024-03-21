@@ -92,7 +92,6 @@ return [
             'mail' => 'email',
             'mapping' => 'карта маппері',
             'push' => 'push',
-            'user_achievement_unlock' => 'жаңа медальдар',
         ],
     ],
 

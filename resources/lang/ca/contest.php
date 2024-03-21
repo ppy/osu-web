@@ -14,27 +14,27 @@ return [
     ],
 
     'judge' => [
-        'hide_judged' => '',
-        'nav_title' => '',
-        'no_current_vote' => '',
-        'update' => '',
+        'hide_judged' => 'amagar entrades avaluades',
+        'nav_title' => 'avaluar',
+        'no_current_vote' => 'encara no has votat.',
+        'update' => 'actualitzar',
         'validation' => [
-            'missing_score' => '',
-            'contest_vote_judged' => '',
+            'missing_score' => 'puntuació faltant',
+            'contest_vote_judged' => 'no pots votar en concursos avaluats',
         ],
-        'voted' => '',
+        'voted' => 'Ja has enviat un vot en aquesta entrada.',
     ],
 
     'judge_results' => [
-        '_' => '',
-        'creator' => '',
-        'score' => '',
-        'total_score' => '',
+        '_' => 'Resultats de l\'avaluació',
+        'creator' => 'creador',
+        'score' => 'Puntuació',
+        'total_score' => 'puntuació total',
     ],
 
     'voting' => [
-        'judge_link' => '',
-        'judged_notice' => '',
+        'judge_link' => 'Ets un avaluador d\'aquest concurs. Avalua les entrades aquí!',
+        'judged_notice' => 'Aquest concurs està utilitzant el sistema d\'avaluació, els avaluadors actualment estan processant les entrades.',
         'login_required' => 'Sisplau, inicia sessió per a votar.',
         'over' => 'La votació per aquest torneig ha finalitzat',
         'show_voted_only' => 'Mostra els votats',

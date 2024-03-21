@@ -75,7 +75,7 @@ class BeatmapsController extends Controller
             'type' => $type,
             'user' => $currentUser,
         ]);
-        $scores = $esFetch->all()->loadMissing(['beatmap', 'user.country', 'user.userProfileCustomization']);
+        $scores = $esFetch->all()->loadMissing(['beatmap', 'user.country']);
         $userScore = $esFetch->userBest();
         $scoreTransformer = new ScoreTransformer($scoreTransformerType);
 
@@ -341,6 +341,7 @@ class BeatmapsController extends Controller
      *
      * @urlParam beatmap integer required Id of the [Beatmap](#beatmap).
      *
+     * @queryParam legacy_only integer Whether or not to exclude lazer scores. Defaults to 0. Example: 0
      * @queryParam mode The [Ruleset](#ruleset) to get scores for.
      * @queryParam mods An array of matching Mods, or none // TODO.
      * @queryParam type Beatmap score ranking type // TODO.
@@ -368,7 +369,6 @@ class BeatmapsController extends Controller
      *
      * @urlParam beatmap integer required Id of the [Beatmap](#beatmap).
      *
-     * @queryParam legacy_only Set to true to only return legacy scores. Example: 0
      * @queryParam mode The [Ruleset](#ruleset) to get scores for.
      * @queryParam mods An array of matching Mods, or none // TODO.
      * @queryParam type Beatmap score ranking type // TODO.
@@ -421,6 +421,7 @@ class BeatmapsController extends Controller
      * @urlParam beatmap integer required Id of the [Beatmap](#beatmap).
      * @urlParam user integer required Id of the [User](#user).
      *
+     * @queryParam legacy_only integer Whether or not to exclude lazer scores. Defaults to 0. Example: 0
      * @queryParam mode The [Ruleset](#ruleset) to get scores for.
      * @queryParam mods An array of matching Mods, or none // TODO.
      */
@@ -479,6 +480,7 @@ class BeatmapsController extends Controller
      * @urlParam beatmap integer required Id of the [Beatmap](#beatmap).
      * @urlParam user integer required Id of the [User](#user).
      *
+     * @queryParam legacy_only integer Whether or not to exclude lazer scores. Defaults to 0. Example: 0
      * @queryParam mode The [Ruleset](#ruleset) to get scores for. Defaults to beatmap mode
      */
     public function userScoreAll($beatmapId, $userId)

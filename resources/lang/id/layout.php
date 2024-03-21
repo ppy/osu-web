@@ -86,7 +86,6 @@ return [
         ],
         'rankings' => [
             '_' => 'peringkat',
-            'kudosu' => 'kudosu',
         ],
         'store' => [
             '_' => 'toko',
@@ -126,8 +125,8 @@ return [
             'description' => '',
         ],
         '404' => [
-            'error' => 'Laman Tidak Ditemukan',
-            'description' => "Maaf, namun laman yang kamu minta tidak ada di sini!",
+            'error' => 'Halaman Tidak Ditemukan',
+            'description' => "Maaf, namun halaman yang kamu minta tidak ada di sini!",
         ],
         '403' => [
             'error' => "Kamu tidak seharusnya berada di sini.",
@@ -138,8 +137,8 @@ return [
             'description' => 'Kamu dapat mencoba untuk kembali ke halaman sebelumnya. Atau mungkin coba untuk masuk terlebih dahulu.',
         ],
         '405' => [
-            'error' => 'Laman Tidak Ditemukan',
-            'description' => "Maaf, namun laman yang kamu minta tidak ada di sini!",
+            'error' => 'Halaman Tidak Ditemukan',
+            'description' => "Maaf, namun halaman yang kamu minta tidak ada di sini!",
         ],
         '422' => [
             'error' => 'Parameter yang diminta tidak valid',
@@ -196,8 +195,8 @@ return [
             'account-edit' => 'Pengaturan',
             'follows' => 'Daftar Pengamatan',
             'friends' => 'Teman',
-            'legacy_score_only_toggle' => '',
-            'legacy_score_only_toggle_tooltip' => '',
+            'legacy_score_only_toggle' => 'Mode lazer',
+            'legacy_score_only_toggle_tooltip' => 'Mode lazer menampilkan skor yang diraih dari lazer dengan algoritma perhitungan skor baru',
             'logout' => 'Keluar',
             'profile' => 'Profil Saya',
         ],

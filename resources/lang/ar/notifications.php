@@ -244,11 +244,6 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':username فتح ميدالية جديدة، ":title"!',
-                'user_achievement_unlock_self' => 'لقد فتحت ميدالية جديدة، ":title"!',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => 'قام :username بإنشاء خرائط جديدة',
                 'user_beatmapset_revive' => ':username قام بإحياء الخرائط',

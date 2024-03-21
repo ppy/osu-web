@@ -173,7 +173,7 @@ return [
     'score' => [
         'pin' => [
             'disabled_type' => "Nelze připnout tento typ skóre",
-            'failed' => "",
+            'failed' => "Nelze připnout neprocházející skóre.",
             'not_owner' => 'Pouze vlastník skóre může připnout skóre.',
             'too_many' => 'Připnuto příliš mnoho skóre.',
         ],

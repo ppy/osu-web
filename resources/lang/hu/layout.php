@@ -86,7 +86,6 @@ return [
         ],
         'rankings' => [
             '_' => 'rangsor',
-            'kudosu' => 'kudosu',
         ],
         'store' => [
             '_' => 'áruház',
@@ -196,8 +195,8 @@ return [
             'account-edit' => 'Beállítások',
             'follows' => 'Figyelőlisták',
             'friends' => 'Barátok',
-            'legacy_score_only_toggle' => '',
-            'legacy_score_only_toggle_tooltip' => '',
+            'legacy_score_only_toggle' => 'Lazer mód',
+            'legacy_score_only_toggle_tooltip' => 'A Lazer mód a Lazer által beállított pontszámokat mutatja egy új pontozási algoritmussal',
             'logout' => 'Kijelentkezés',
             'profile' => 'Profilom',
         ],

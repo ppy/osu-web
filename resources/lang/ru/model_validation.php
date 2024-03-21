@@ -159,7 +159,7 @@ return [
 
         'attributes' => [
             'username' => 'Ник',
-            'user_email' => 'E-mail адрес',
+            'user_email' => 'Почта',
             'password' => 'Пароль',
         ],
 

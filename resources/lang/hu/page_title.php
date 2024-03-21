@@ -64,11 +64,11 @@ return [
             '_' => 'hozzászolások',
         ],
         'contest_entries_controller' => [
-            'judge_results' => '',
+            'judge_results' => 'verseny zsűrizési eredményei',
         ],
         'contests_controller' => [
             '_' => 'versenyek',
-            'judge' => '',
+            'judge' => 'verseny zsűrizése',
         ],
         'groups_controller' => [
             'show' => 'csoportok',

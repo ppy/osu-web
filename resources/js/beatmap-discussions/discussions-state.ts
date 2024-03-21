@@ -351,7 +351,7 @@ export default class DiscussionsState {
       // record page and filter when switching to events
       this.previousPage = this.currentPage;
       this.previousFilter = this.currentFilter;
-    } else if (this.currentFilter !== this.previousFilter) {
+    } else if (this.currentPage === 'events' && this.currentFilter !== this.previousFilter) {
       // restore previous filter when switching away from events
       this.currentFilter = this.previousFilter;
     }

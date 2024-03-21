@@ -7,12 +7,8 @@ declare(strict_types=1);
 
 namespace App\Libraries\User;
 
-use App\Models\UserProfileCustomization;
-use Illuminate\Http\UploadedFile;
+use App\Models\User;
 
-/**
- * This class doesn't sync with underlying model to save attribute casting time
- */
 class Cover
 {
     const CUSTOM_COVER_MAX_DIMENSIONS = [2400, 640];
@@ -21,20 +17,19 @@ class Cover
 
     private ?array $json;
 
-    public function __construct(private UserProfileCustomization $userProfileCustomization)
+    public function __construct(private User $user)
     {
-        $this->json = $this->userProfileCustomization->cover_json;
     }
 
-    public static function isValidPresetId(?string $presetId): bool
+    public static function isValidPresetId(int|null|string $presetId): bool
     {
         return $presetId !== null
-            && in_array($presetId, static::AVAILABLE_PRESET_IDS, true);
+            && in_array((string) $presetId, static::AVAILABLE_PRESET_IDS, true);
     }
 
     public function customUrl(): ?string
     {
-        return $this->userProfileCustomization->customCover()->url();
+        return $this->user->customCover()->url();
     }
 
     public function presetId(): ?string
@@ -43,31 +38,26 @@ class Cover
             return null;
         }
 
-        $id = $this->userProfileCustomization->getKey();
+        $id = $this->user->getKey();
 
         if ($id === null || $id < 1) {
             return null;
         }
 
-        $presetId = $this->json['id'] ?? null;
+        $presetId = (string) $this->user->cover_preset_id;
 
         return static::isValidPresetId($presetId)
             ? $presetId
             : static::AVAILABLE_PRESET_IDS[$id % count(static::AVAILABLE_PRESET_IDS)];
     }
 
-    public function set(?string $presetId, ?UploadedFile $file)
+    public function set(?string $presetId, ?string $filePath): void
     {
-        $this->userProfileCustomization->cover_json = [
-            ...($this->json ?? []),
-            'id' => static::isValidPresetId($presetId) ? $presetId : null,
-        ];
+        $this->user->cover_preset_id = static::isValidPresetId($presetId) ? $presetId : null;
 
-        if ($file !== null) {
-            $this->userProfileCustomization->customCover()->store($file->getRealPath());
+        if ($filePath !== null) {
+            $this->user->customCover()->store($filePath);
         }
-
-        $this->json = $this->userProfileCustomization->cover_json;
     }
 
     public function url(): ?string
@@ -79,7 +69,7 @@ class Cover
 
     private function hasCustomCover(): bool
     {
-        return !isset($this->json['id']) && isset($this->json['file']);
+        return !isset($this->user->cover_preset_id) && isset($this->user->custom_cover_filename);
     }
 
     private function presetUrl(): ?string
