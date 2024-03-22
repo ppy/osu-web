@@ -120,7 +120,7 @@
                             >
                                 @csrf
                                 <input type="hidden" name="_method" value="PUT" />
-                                <input type="file" name="file" accept="image/*" required />
+                                <input class="user-cover-preset-replace__input" type="file" name="file" accept="image/*" required />
                                 <button class="btn-osu-big btn-osu-big--rounded-small">
                                     {{ osu_trans('user_cover_presets.index.item.'.(
                                         $imageUrl === null ? 'image_store' : 'image_update'
