@@ -32,7 +32,7 @@ class Cover
 
     public function defaultPresetId(): string
     {
-        $id = $this->user->getKey() ?? 0;
+        $id = max(0, $this->user->getKey() ?? 0);
 
         return static::AVAILABLE_PRESET_IDS[$id % count(static::AVAILABLE_PRESET_IDS)];
     }
