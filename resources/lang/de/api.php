@@ -30,7 +30,7 @@ return [
             'read' => 'Sehen, wem du folgst.',
         ],
 
-        'beatmapset_discussion' => [
+        'beatmap_discussion' => [
             'write' => 'Beatmap-Diskussionen in deinem Namen erstellen und bearbeiten.',
         ],
 

@@ -25,7 +25,7 @@ class BeatmapDiscussionPostsController extends Controller
     {
         $this->middleware('auth', ['except' => ['index', 'show']]);
         $this->middleware('require-scopes:public', ['only' => ['index']]);
-        $this->middleware('require-scopes:beatmapset_discussion.write', ['only' => [
+        $this->middleware('require-scopes:beatmap_discussion.write', ['only' => [
             'store',
             'update'
         ]]);

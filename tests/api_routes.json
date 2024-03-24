@@ -262,10 +262,10 @@
             "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
             "App\\Http\\Middleware\\RequireScopes",
             "Illuminate\\Auth\\Middleware\\Authenticate",
-            "App\\Http\\Middleware\\RequireScopes:beatmapset_discussion.write"
+            "App\\Http\\Middleware\\RequireScopes:beatmap_discussion.write"
         ],
         "scopes": [
-            "beatmapset_discussion.write"
+            "beatmap_discussion.write"
         ]
     },
     {
@@ -279,10 +279,10 @@
             "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
             "App\\Http\\Middleware\\RequireScopes",
             "Illuminate\\Auth\\Middleware\\Authenticate",
-            "App\\Http\\Middleware\\RequireScopes:beatmapset_discussion.write"
+            "App\\Http\\Middleware\\RequireScopes:beatmap_discussion.write"
         ],
         "scopes": [
-            "beatmapset_discussion.write"
+            "beatmap_discussion.write"
         ]
     },
     {
