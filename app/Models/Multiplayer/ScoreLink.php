@@ -28,11 +28,8 @@ class ScoreLink extends Model
     public static function complete(ScoreToken $token, array $params): static
     {
         return \DB::transaction(function () use ($params, $token) {
-            $score = Score::createFromJsonOrExplode($params);
-            
             // multiplayer scores are always preserved.
-            $score->preserve = true;
-            $score->saveOrExplode();
+            $score = Score::createFromJsonOrExplode([...$params, 'preserve' => true]);
 
             $playlistItem = $token->playlistItem;
             $requiredMods = array_column($playlistItem->required_mods, 'acronym');
