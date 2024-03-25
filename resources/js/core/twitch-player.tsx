@@ -1,49 +1,77 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-import { fadeOut } from 'utils/fade'
+import { fadeOut } from 'utils/fade';
+import TurbolinksReload from './turbolinks-reload';
 
-export default class TwitchPlayer
-  constructor: (@turbolinksReload) ->
-    @playerDivs = document.getElementsByClassName('js-twitch-player')
+declare global {
+  interface TwitchPlayerConstructor {
+    new (id: string, options: Record<string, unknown>): TwitchPlayerClass;
+    PLAY: string;
+  }
 
-    addEventListener 'turbolinks:load', @startAll
+  interface TwitchPlayerClass {
+    addEventListener(action: string, callback: () => void): void;
+  }
 
+  interface Window {
+    Twitch?: {
+      Embed: unknown; // don't care.
+      Player: TwitchPlayerConstructor;
+    };
+  }
+}
 
-  initializeEmbed: =>
-    @turbolinksReload
-      .load 'https://player.twitch.tv/js/embed/v1.js'
-      ?.then @startAll
+export default class TwitchPlayer {
+  private readonly playerDivs = document.getElementsByClassName('js-twitch-player');
 
+  constructor(private readonly turbolinksReload: TurbolinksReload) {
+    document.addEventListener('turbolinks:load', this.startAll);
+  }
 
-  startAll: =>
-    return if @playerDivs.length == 0
+  initializeEmbed() {
+    this.turbolinksReload
+      .load('https://player.twitch.tv/js/embed/v1.js')
+      ?.then(this.startAll);
+  }
 
-    if !Twitch?
-      @initializeEmbed()
-    else
-      @start(div) for div in @playerDivs
+  noCookieDiv(playerDivId: string) {
+    return document.querySelector<HTMLElement>(`.js-twitch-player--no-cookie[data-player-id='${playerDivId}']`);
+  }
 
+  openPlayer(div: HTMLElement) {
+    if (!div.classList.contains('hidden')) return;
 
-  start: (div) =>
-    return if div.dataset.twitchPlayerStarted
+    div.classList.remove('hidden');
+    fadeOut(this.noCookieDiv(div.id));
+  }
 
-    div.dataset.twitchPlayerStarted = true
-    options =
-      width: '100%'
-      height: '100%'
-      channel: div.dataset.channel
+  start(div: HTMLElement) {
+    if (window.Twitch == null
+      || div.dataset.twitchPlayerStarted === 'true') return;
 
-    player = new Twitch.Player(div.id, options)
-    player.addEventListener Twitch.Player.PLAY, => @openPlayer(div)
+    div.dataset.twitchPlayerStarted = 'true';
+    const options = {
+      channel: div.dataset.channel,
+      height: '100%',
+      width: '100%',
+    };
 
+    const player = new window.Twitch.Player(div.id, options);
+    player.addEventListener(window.Twitch.Player.PLAY, () => this.openPlayer(div));
+  }
 
-  noCookieDiv: (playerDivId) =>
-    document.querySelector(".js-twitch-player--no-cookie[data-player-id='#{playerDivId}']")
+  startAll = () => {
+    if (this.playerDivs.length === 0) return;
 
-
-  openPlayer: (div) =>
-    return unless div.classList.contains 'hidden'
-
-    div.classList.remove 'hidden'
-    fadeOut @noCookieDiv(div.id)
+    if (window.Twitch == null) {
+      this.initializeEmbed();
+    } else {
+      for (const div of this.playerDivs) {
+        if (div instanceof HTMLElement) {
+          this.start(div);
+        }
+      }
+    }
+  };
+}
