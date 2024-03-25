@@ -33,11 +33,12 @@ function Channel({ channel, onClick, status }: ChannelProps) {
   }
 
   return (
-    <button className={classWithModifiers('chat-join-channel__channel', { joined: status === 'joined' })} onClick={handleClick}>
+    // anchor instead of button due to Firefox having an issue with button padding in subgrid.
+    <a className={classWithModifiers('chat-join-channel__channel', { joined: status === 'joined' })} onClick={handleClick}>
       <span>{statusElement}</span>
       <span>{channel.name}</span>
       <span>{channel.description}</span>
-    </button>
+    </a>
   );
 }
 
