@@ -7,7 +7,7 @@ namespace App\Hashing;
 
 use Illuminate\Contracts\Hashing\Hasher;
 
-class OsuHasher implements Hasher
+class OsuBcryptHasher implements Hasher
 {
     /**
      * The number of rounds to hash, as 2^n.
@@ -37,12 +37,10 @@ class OsuHasher implements Hasher
      */
     public function make($value, array $options = [])
     {
-        $cost = array_get($options, 'cost', $this->rounds);
-
         // When we originally moved to bcrypt (quite a few years ago),
         // we had to migrate everything without waiting for every user to
         // change their passwords, hence the md5 still being there.
-        $hash = password_hash(md5($value), PASSWORD_BCRYPT, ['cost' => $cost]);
+        $hash = password_hash(md5($value), PASSWORD_BCRYPT, ['cost' => $this->cost($options)]);
 
         // see static::check()
         return str_replace('$2y$', '$2a$', $hash);
@@ -83,9 +81,13 @@ class OsuHasher implements Hasher
      */
     public function needsRehash($hashedValue, array $options = [])
     {
-        $cost = array_get($options, 'cost', $this->rounds);
         $hashedValue = str_replace('$2a$', '$2y$', $hashedValue);
 
-        return password_needs_rehash($hashedValue, PASSWORD_BCRYPT, ['cost' => $cost]);
+        return password_needs_rehash($hashedValue, PASSWORD_BCRYPT, ['cost' => $this->cost($options)]);
+    }
+
+    protected function cost(array $options): int
+    {
+        return $options['rounds'] ?? $this->rounds;
     }
 }

@@ -178,7 +178,6 @@ return [
 
     'providers' => ServiceProvider::defaultProviders()->except([
         Illuminate\Cookie\CookieServiceProvider::class,
-        Illuminate\Hashing\HashServiceProvider::class,
         Illuminate\Session\SessionServiceProvider::class,
     ])->merge([
         App\Providers\AppServiceProvider::class,
