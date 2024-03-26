@@ -35,7 +35,7 @@ return [
             'all' => '下載',
             'video' => '下載並包含影片',
             'no_video' => '下載並不包含影片',
-            'direct' => '在osu!direct中查看',
+            'direct' => '在 osu!direct 中查看',
         ],
     ],
 

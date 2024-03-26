@@ -64,11 +64,11 @@ return [
             '_' => 'komentáře',
         ],
         'contest_entries_controller' => [
-            'judge_results' => '',
+            'judge_results' => 'výsledky hodnocení soutěže',
         ],
         'contests_controller' => [
             '_' => 'soutěže',
-            'judge' => '',
+            'judge' => 'hodnocení soutěže',
         ],
         'groups_controller' => [
             'show' => 'skupiny',
