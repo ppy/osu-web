@@ -78,8 +78,8 @@ return [
             ],
             'prepared' => [
                 'title' => 'Je bestelling wordt voorbereid!',
-                'line_1' => '',
-                'line_2' => '',
+                'line_1' => 'Wacht alsjeblieft iets langer voor de verzending. Tracking-informatie zal hier verschijnen zodra de bestelling is verwerkt en verzonden. Dit kan tot 5 dagen duren (maar vaak minder!) afhankelijk van hoe druk we zijn.',
+                'line_2' => 'We verzenden alle bestellingen vanuit Japan d.m.v. een aantal bezorgdiensten afhankelijk van het gewicht en de waarde. Dit gebied zal worden bijgewerkt met details zodra we de bestelling hebben verzonden.',
             ],
             'processing' => [
                 'title' => 'Uw betaling is nog niet bevestigd!',
@@ -91,9 +91,9 @@ return [
             ],
             'shipped' => [
                 'title' => 'Je bestelling is verzonden!',
-                'tracking_details' => '',
+                'tracking_details' => 'Tracking-details volgen:',
                 'no_tracking_details' => [
-                    '_' => "",
+                    '_' => "We hebben geen tracking-details omdat we jouw pakket via Air Mail verzonden hebben, maar je kunt deze verwachten binnen 1-3 weken. In Europa kan de douane soms vertraging buiten onze controle veroorzaken. Als je vragen hebt, antwoord op de bestelbevestigings-e-mail die je hebt ontvangen (of :link).",
                     'link_text' => 'stuur ons een email',
                 ],
             ],
@@ -157,7 +157,7 @@ return [
         'thanks' => [
             'title' => 'Bedankt voor je bestelling!',
             'line_1' => [
-                '_' => '',
+                '_' => 'Je zal binnenkort een bevestigings-e-mail ontvangen. Als je vragen hebt, :link!',
                 'link_text' => 'contacteer ons',
             ],
         ],
