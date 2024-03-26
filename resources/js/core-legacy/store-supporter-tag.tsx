@@ -6,6 +6,7 @@ import { route } from 'laroute';
 import { debounce } from 'lodash';
 import { fadeToggle } from 'utils/fade';
 import { toggleCart } from 'utils/store-cart';
+import StoreSupporterTagPrice, { durationToPrice } from 'utils/store-supporter-tag-price';
 import { present } from 'utils/string';
 
 const maxValue = 52;
@@ -13,7 +14,7 @@ const minValue = 4;
 const resolution = 8;
 
 export default class StoreSupporterTag {
-  private cost = 0;
+  private cost;
   private readonly debouncedGetUser;
 
 
@@ -51,7 +52,7 @@ export default class StoreSupporterTag {
       }
     });
 
-    this.cost = this.calculate(this.initializeSlider().slider('value'));
+    this.cost = this.calculate(+this.initializeSlider().slider('value'));
     this.initializeSliderPresets();
     this.initializeUsernameInput();
     this.updateCostDisplay();
@@ -73,8 +74,8 @@ export default class StoreSupporterTag {
     }
   }
 
-  private calculate(position: number): number {
-    return new window.StoreSupporterTagPrice(Math.floor(position / resolution));
+  private calculate(position: number) {
+    return new StoreSupporterTagPrice(Math.floor(position / resolution));
   }
 
   private readonly getUser = (username: string) => {
@@ -121,7 +122,7 @@ export default class StoreSupporterTag {
   private initializeSliderPresets() {
     $(this.sliderPresets).on('click', (event) => {
       const target = event.currentTarget;
-      const price = StoreSupporterTagPrice.durationToPrice(target.dataset.months) as (number | undefined);
+      const price = durationToPrice(+(target.dataset?.months ?? 0));
       if (price != null) {
         $(this.slider).slider('value', this.sliderValue(price));
       }
@@ -152,10 +153,10 @@ export default class StoreSupporterTag {
   }
 
   private updateCostDisplay() {
-    this.el.querySelector('input[name="item[cost]"]').value = this.cost.price();
-    this.priceElement.textContent = `USD ${this.cost.price()}`;
-    this.durationElement.textContent = this.cost.durationText();
-    this.discountElement.textContent = this.cost.discountText();
+    this.el.querySelector<HTMLElement>('input[name="item[cost]"]').value = this.cost.price;
+    this.priceElement.textContent = `USD ${this.cost.price}`;
+    this.durationElement.textContent = this.cost.durationText;
+    this.discountElement.textContent = this.cost.discountText;
     for (const elem of this.sliderPresets) {
       this.updateSliderPreset(elem, this.cost);
     }
@@ -167,8 +168,8 @@ export default class StoreSupporterTag {
     this.updateUserInteraction();
   };
 
-  private updateSliderPreset(elem: HTMLElement, cost: number) {
-    $(elem).toggleClass('js-slider-preset--active', cost.duration() >= +elem.dataset.months);
+  private updateSliderPreset(elem: HTMLElement, cost: StoreSupporterTagPrice) {
+    $(elem).toggleClass('js-slider-preset--active', cost.duration >= +elem.dataset.months);
   }
 
   private updateTargetId() {
@@ -177,7 +178,7 @@ export default class StoreSupporterTag {
 
   private updateUserInteraction() {
     const enabled = this.user?.id != null && Number.isFinite(this.user.id) && this.user.id > 0;
-    const messageInputVisible = enabled && this.user?.id != window.currentUser.id;
+    const messageInputVisible = enabled && this.user?.id !== window.currentUser.id;
     fadeToggle(this.messageInput, messageInputVisible);
 
     toggleCart(enabled);
