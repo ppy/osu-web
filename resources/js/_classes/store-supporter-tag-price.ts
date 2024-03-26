@@ -1,62 +1,78 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-import { trans, transChoice } from 'utils/lang'
+import { trans, transChoice } from 'utils/lang';
 
-class window.StoreSupporterTagPrice
-  @durationToPrice: (duration) ->
-    duration = +duration
-    switch
-      when duration >= 12 then Math.ceil(duration / 12.0 * 26)
-      when duration == 10 then 24
-      when duration == 9 then 22
-      when duration == 8 then 20
-      when duration == 6 then 16
-      when duration == 4 then 12
-      when duration == 2 then 8
-      when duration == 1 then 4
+export function durationToPrice(duration: number) {
+  switch (true) {
+    case duration >= 12: return Math.ceil(duration / 12.0 * 26);
+    case duration === 10: return 24;
+    case duration === 9: return 22;
+    case duration === 8: return 20;
+    case duration === 6: return 16;
+    case duration === 4: return 12;
+    case duration === 2: return 8;
+    case duration === 1: return 4;
+  }
+}
 
-  constructor: (price) ->
-    @_price = price
+export default class StoreSupporterTagPrice {
+  constructor(private readonly _price: number) {
+    // empty
+  }
 
-  price: ->
-    @_price
+  get duration() {
+    switch (true) {
+      case this.price >= 26: return Math.floor(this.price / 26.0 * 12);
+      case this.price >= 24: return 10;
+      case this.price >= 22: return 9;
+      case this.price >= 20: return 8;
+      case this.price >= 16: return 6;
+      case this.price >= 12: return 4;
+      case this.price >= 8: return 2;
+      case this.price >= 4: return 1;
+      default: return 0;
+    }
+  }
 
-  duration: ->
-    @_duration ?= switch
-      when @_price >= 26 then Math.floor(@_price / 26.0 * 12)
-      when @_price >= 24 then 10
-      when @_price >= 22 then 9
-      when @_price >= 20 then 8
-      when @_price >= 16 then 6
-      when @_price >= 12 then 4
-      when @_price >= 8 then 2
-      when @_price >= 4 then 1
-      else 0
+  get price() {
+    return this._price;
+  }
 
-  discount: ->
-    if @duration() >= 12
-      46
-    else
-      raw = ((1 - (@_price / @duration()) / 4) * 100)
-      Math.max(0, Math.round(raw, 0))
+  get discount() {
+    if (this.duration >= 12) {
+      return 46;
+    }
 
-  discountText: ->
-    trans('store.discount', percent: @discount())
+    const raw = ((1 - (this.price / this.duration) / 4) * 100);
+    return Math.max(0, Math.round(raw));
+  }
 
-  durationInYears: ->
-    years: Math.floor(@duration() / 12)
-    months: Math.floor(@duration() % 12)
+  get discountText() {
+    return trans('store.discount', { percent: this.discount });
+  }
 
-  durationText: ->
-    # don't forget to update SupporterTag::getDurationText() in php
-    duration = @durationInYears()
-    texts = []
+  get durationInYears() {
+    const duration = this.duration;
+    return {
+      months: Math.floor(duration % 12),
+      years: Math.floor(duration / 12),
+    };
+  }
 
-    if duration.years > 0
-      texts.push transChoice('common.count.years', duration.years)
+  get durationText() {
+    // don't forget to update SupporterTag::getDurationText() in php
+    const duration = this.durationInYears;
+    const texts: string[] = [];
 
-    if duration.months > 0
-      texts.push transChoice('common.count.months', duration.months)
+    if (duration.years > 0) {
+      texts.push(transChoice('common.count.years', duration.years));
+    }
 
-    texts.join(', ')
+    if (duration.months > 0) {
+      texts.push(transChoice('common.count.months', duration.months));
+    }
+
+    return texts.join(', ');
+  }
+}
