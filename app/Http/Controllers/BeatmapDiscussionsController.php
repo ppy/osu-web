@@ -120,7 +120,7 @@ class BeatmapDiscussionsController extends Controller
 
     public function mediaUrl()
     {
-        $url = get_string(request('url'));
+        $url = presence(get_string(request('url'))) ?? abort(422);
 
         // Tell browser not to request url for a while.
         return redirect(proxy_media($url))->header('Cache-Control', 'max-age=600');
