@@ -56,7 +56,7 @@ class ScoreSearch extends RecordSearch
                 $query->mustNot(['term' => ['mods' => $excludedMod]]);
             }
         }
-        if ($this->params->excludeWithoutPP === true) {
+        if ($this->params->excludeWithoutPp === true) {
             $query->filter(['exists' => ['field' => 'pp']]);
         }
 
