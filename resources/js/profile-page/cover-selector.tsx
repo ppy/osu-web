@@ -1,12 +1,13 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { times } from 'lodash';
-import { action, observable, makeObservable } from 'mobx';
+import UserCoverPresetJson from 'interfaces/user-cover-preset-json';
+import { action, computed, observable, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
+import { getInt } from 'utils/math';
 import { nextVal } from 'utils/seq';
 import Controller from './controller';
 import CoverSelection from './cover-selection';
@@ -14,8 +15,6 @@ import CoverUploader from './cover-uploader';
 
 type DropOverlayState = 'hover' | undefined;
 type DropOverlayVisibility = 'hidden' | undefined;
-
-const coverIndexes = times(8, (i) => (i + 1).toString());
 
 interface Props {
   controller: Controller;
@@ -28,6 +27,23 @@ export default class CoverSelector extends React.Component<Props> {
   private readonly dropzoneRef = React.createRef<HTMLDivElement>();
   private readonly eventId = `users-show-cover-selector-${nextVal()}`;
   private readonly uploaderRef = React.createRef<CoverUploader>();
+
+  @computed
+  private get holdoverCoverPreset(): UserCoverPresetJson|null {
+    const id = getInt(this.props.controller.state.user.cover.id);
+
+    if (id == null) return null;
+
+    const isActive = this.props.controller.userCoverPresets.some((preset) => preset.id === id);
+
+    return isActive
+      ? null
+      : {
+        active: false,
+        id,
+        url: this.props.controller.state.user.cover.url,
+      };
+  }
 
   constructor(props: Props) {
     super(props);
@@ -47,26 +63,42 @@ export default class CoverSelector extends React.Component<Props> {
   }
 
   render() {
+    const holdoverCoverPreset = this.holdoverCoverPreset;
+    const currentPresetId = getInt(this.props.controller.state.user.cover.id);
+    const confirmUpdate = holdoverCoverPreset != null;
+
     return (
       <div ref={this.dropzoneRef} className='profile-cover-change-popup'>
         <div className='profile-cover-change-popup__defaults'>
-          {coverIndexes.map((i) =>
-            (<div key={i} className='profile-cover-change-popup__selection'>
+          {this.props.controller.userCoverPresets.map((preset) =>
+            (<div key={preset.id} className='profile-cover-change-popup__selection'>
               <CoverSelection
+                confirmUpdate={confirmUpdate}
                 controller={this.props.controller}
-                isSelected={this.props.controller.state.user.cover.id === i}
-                name={i}
-                thumbUrl={`/images/headers/profile-covers/c${i}t.jpg`}
-                url={`/images/headers/profile-covers/c${i}.jpg`}
+                id={preset.id}
+                isSelected={currentPresetId === preset.id}
+                url={preset.url}
               />
             </div>),
           )}
+          {holdoverCoverPreset != null &&
+            <div className='profile-cover-change-popup__selection'>
+              <CoverSelection
+                confirmUpdate={confirmUpdate}
+                controller={this.props.controller}
+                id={holdoverCoverPreset.id}
+                isSelected
+                url={holdoverCoverPreset.url}
+              />
+            </div>
+          }
           <p className='profile-cover-change-popup__selections-info'>
             {trans('users.show.edit.cover.defaults_info')}
           </p>
         </div>
         <CoverUploader
           ref={this.uploaderRef}
+          confirmUpdate={confirmUpdate}
           controller={this.props.controller}
           dropzoneRef={this.dropzoneRef}
         />
