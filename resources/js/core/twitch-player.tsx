@@ -1,23 +1,15 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import type TwitchEmbedPlayer from 'twitch-embed-player';
 import { fadeOut } from 'utils/fade';
 import TurbolinksReload from './turbolinks-reload';
 
 declare global {
-  interface TwitchPlayerConstructor {
-    new (id: string, options: Record<string, unknown>): TwitchPlayerClass;
-    PLAY: string;
-  }
-
-  interface TwitchPlayerClass {
-    addEventListener(action: string, callback: () => void): void;
-  }
-
   interface Window {
     Twitch?: {
       Embed: unknown; // don't care.
-      Player: TwitchPlayerConstructor;
+      Player: typeof TwitchEmbedPlayer;
     };
   }
 }
