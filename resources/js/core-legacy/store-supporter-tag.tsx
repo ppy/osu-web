@@ -1,155 +1,188 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@.ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-import { route } from 'laroute'
-import { fadeToggle } from 'utils/fade'
-import { toggleCart } from 'utils/store-cart'
+import UserJson from 'interfaces/user-json';
+import { route } from 'laroute';
+import { debounce } from 'lodash';
+import { fadeToggle } from 'utils/fade';
+import { toggleCart } from 'utils/store-cart';
+import { present } from 'utils/string';
 
-export default class StoreSupporterTag
-  RESOLUTION: 8
-  MIN_VALUE: 4
-  MAX_VALUE: 52
+const maxValue = 52;
+const minValue = 4;
+const resolution = 8;
 
-  @initialize: ->
-    new StoreSupporterTag(elem) for elem in document.getElementsByClassName('js-store-supporter-tag')
-
-  constructor: (rootElement) ->
-    @debouncedGetUser = _.debounce @getUser, 300
-    @el = rootElement
-    @searching = false
-
-    # Everything should be scoped under the root @el
-    @priceElement = @el.querySelector('.js-price')
-    @durationElement = @el.querySelector('.js-duration')
-    @discountElement = @el.querySelector('.js-discount')
-    @messageInput = @el.querySelector('.js-store-supporter-tag-message')
-    @slider = @el.querySelector('.js-slider')
-    @sliderPresets = @el.querySelectorAll('.js-slider-preset')
-    @targetIdElement = @el.querySelector('input[name="item[extra_data][target_id]"]')
-    @usernameInput = @el.querySelector('.js-username-input')
-
-    @reactElement = @el.querySelector('.js-react--user-card-store')
-    @user = JSON.parse(@reactElement.dataset.user)
-    if !@user?
-      @user = currentUser
-      @reactElement.dataset.user = JSON.stringify(@user)
-
-    $(document).one 'turbolinks:before-cache', =>
-      @reactElement.dataset.user = JSON.stringify(@user)
-
-    @cost = @calculate(@initializeSlider().slider('value'))
-    @initializeSliderPresets()
-    @initializeUsernameInput()
-    @updateCostDisplay()
-
-    # force initial values for consistency.
-    @updateSearchResult()
-
-    $(@usernameInput).trigger('input') if @usernameInput.value != ''
+export default class StoreSupporterTag {
+  private cost = 0;
+  private readonly debouncedGetUser;
 
 
-  initializeSlider: =>
-    # remove leftover from previous initialization
-    $(@slider).find('.ui-slider-range').remove()
+  private readonly discountElement = this.el.querySelector<HTMLElement>('.js-discount');
+  private readonly durationElement = this.el.querySelector<HTMLElement>('.js-duration');
+  private readonly messageInput = this.el.querySelector<HTMLElement>('.js-store-supporter-tag-message');
+  private readonly priceElement = this.el.querySelector<HTMLElement>('.js-price');
+  private readonly reactElement = this.el.querySelector<HTMLElement>('.js-react--user-card-store');
+  private searching = false;
+  private readonly slider = this.el.querySelector<HTMLElement>('.js-slider');
+  private readonly sliderPresets = this.el.querySelectorAll<HTMLElement>('.js-slider-preset');
+  private readonly targetIdElement = this.el.querySelector<HTMLElement>('input[name="item[extra_data][target_id]"]');
+  private user: UserJson;
+  private readonly usernameInput = this.el.querySelector<HTMLElement>('.js-username-input');
 
-    $(@slider).slider
-      range: 'min'
-      value: @slider.dataset.lastValue ? @sliderValue(@MIN_VALUE)
-      min: @sliderValue(@MIN_VALUE)
-      max: @sliderValue(@MAX_VALUE)
-      step: 1
-      animate: true
-      slide: @onSliderValueChanged
-      change: @onSliderValueChanged
+  // Everything should be scoped under the root this.el
+  constructor(private readonly el: HTMLElement) {
+    if (window.currentUser.id == null) {
+      throw new Error('StoreSupporterTag requires a logged in user.');
+    }
 
+    this.debouncedGetUser = debounce(this.getUser, 300);
 
-  initializeSliderPresets: =>
-    $(@sliderPresets).on 'click', (event) =>
-      target = event.currentTarget
-      price = StoreSupporterTagPrice.durationToPrice(target.dataset.months)
-      $(@slider).slider('value', @sliderValue(price)) if price
+    this.user = JSON.parse(this.reactElement?.dataset.user ?? '') as UserJson;
+    if (this.user == null) {
+      this.user = window.currentUser;
+      if (this.reactElement != null) {
+        this.reactElement.dataset.user = JSON.stringify(this.user);
+      }
+    }
 
+    $(document).one('turbolinks:before-cache', () => {
+      if (this.reactElement != null) {
+        this.reactElement.dataset.user = JSON.stringify(this.user);
+      }
+    });
 
-  initializeUsernameInput: =>
-    $(@usernameInput).on 'input', @onInput
+    this.cost = this.calculate(this.initializeSlider().slider('value'));
+    this.initializeSliderPresets();
+    this.initializeUsernameInput();
+    this.updateCostDisplay();
 
+    // force initial values for consistency.
+    this.updateSearchResult();
 
-  getUser: (username) =>
-    if !username # reset to current user on empty
-      @user = window.currentUser
-      @searching = false
-      @updateSearchResult()
-      return
+    if (this.usernameInput != null && this.usernameInput.value !== '') {
+      $(this.usernameInput).trigger('input');
+    }
 
-    $.ajax
-      data:
-        username: username
+  }
+
+  static initialize() {
+    for (const elem of document.getElementsByClassName('js-store-supporter-tag')) {
+      if (elem instanceof HTMLElement) {
+        new StoreSupporterTag(elem);
+      }
+    }
+  }
+
+  private calculate(position: number): number {
+    return new window.StoreSupporterTagPrice(Math.floor(position / resolution));
+  }
+
+  private readonly getUser = (username: string) => {
+    if (!present(username)) { // reset to current user on empty
+      this.user = window.currentUser;
+      this.searching = false;
+      this.updateSearchResult();
+      return;
+    }
+
+    $.ajax({
+      data: { username },
       dataType: 'json',
-      type: 'POST'
-      url: route('users.check-username-exists')
-    .done (data) =>
-      @user = data
+      type: 'POST',
+      url: route('users.check-username-exists'),
+    }).done((data) => {
+      this.user = data;
+    }).fail((xhr, status) => {
+      $(this.usernameInput)
+        .trigger('ajax:error', [xhr, status])
+        .one('click', this.onInput);
+    }).always(() => {
+      this.searching = false;
+      this.updateSearchResult();
+    });
+  };
 
-    .fail (xhr, status) =>
-      $(@usernameInput)
-        .trigger 'ajax:error', [xhr, status]
-        .one 'click', @onInput
+  private initializeSlider() {
+    // remove leftover from previous initialization
+    $(this.slider).find('.ui-slider-range').remove();
 
-    .always =>
-      @searching = false
-      @updateSearchResult()
+    return $(this.slider).slider({
+      range: 'min',
+      value: this.slider.dataset.lastValue ?? this.sliderValue(minValue),
+      min: this.sliderValue(minValue),
+      max: this.sliderValue(maxValue),
+      step: 1,
+      animate: true,
+      slide: this.onSliderValueChanged,
+      change: this.onSliderValueChanged,
+    });
+  }
 
+  private initializeSliderPresets() {
+    $(this.sliderPresets).on('click', (event) => {
+      const target = event.currentTarget;
+      const price = StoreSupporterTagPrice.durationToPrice(target.dataset.months) as (number | undefined);
+      if (price != null) {
+        $(this.slider).slider('value', this.sliderValue(price));
+      }
+    });
+  }
 
-  calculate: (position) =>
-    new StoreSupporterTagPrice(Math.floor(position / @RESOLUTION))
+  private initializeUsernameInput() {
+    $(this.usernameInput).on('input', this.onInput);
+  }
 
+  private readonly onInput = (event) => {
+    if (!this.searching) {
+      this.searching = true;
+      this.user = null;
+      this.updateSearchResult();
+    }
+    this.debouncedGetUser(event.currentTarget.value);
+  };
 
-  onSliderValueChanged: (event, ui) =>
-    @slider.dataset.lastValue = ui.value
-    @cost = @calculate(ui.value)
-    @updateCostDisplay()
+  private readonly onSliderValueChanged = (event, ui) => {
+    this.slider.dataset.lastValue = ui.value;
+    this.cost = this.calculate(ui.value);
+    this.updateCostDisplay();
+  };
 
+  private sliderValue(price) {
+    return price * resolution;
+  }
 
-  onInput: (event) =>
-    if !@searching
-      @searching = true
-      @user = null
-      @updateSearchResult()
-    @debouncedGetUser(event.currentTarget.value)
+  private updateCostDisplay() {
+    this.el.querySelector('input[name="item[cost]"]').value = this.cost.price();
+    this.priceElement.textContent = `USD ${this.cost.price()}`;
+    this.durationElement.textContent = this.cost.durationText();
+    this.discountElement.textContent = this.cost.discountText();
+    for (const elem of this.sliderPresets) {
+      this.updateSliderPreset(elem, this.cost);
+    }
+  }
 
+  private readonly updateSearchResult = () => {
+    $.publish('store-supporter-tag:update-user', this.user);
+    this.updateTargetId();
+    this.updateUserInteraction();
+  };
 
-  sliderValue: (price) ->
-    price * @RESOLUTION
+  private updateSliderPreset(elem: HTMLElement, cost: number) {
+    $(elem).toggleClass('js-slider-preset--active', cost.duration() >= +elem.dataset.months);
+  }
 
+  private updateTargetId() {
+    this.targetIdElement.value = this.user?.id;
+  }
 
-  updateCostDisplay: =>
-    @el.querySelector('input[name="item[cost]"]').value = @cost.price()
-    @priceElement.textContent = "USD #{@cost.price()}"
-    @durationElement.textContent = @cost.durationText()
-    @discountElement.textContent = @cost.discountText()
-    @updateSliderPreset(elem, @cost) for elem in @sliderPresets
+  private updateUserInteraction() {
+    const enabled = this.user?.id != null && Number.isFinite(this.user.id) && this.user.id > 0;
+    const messageInputVisible = enabled && this.user?.id != window.currentUser.id;
+    fadeToggle(this.messageInput, messageInputVisible);
 
-
-  updateSearchResult: =>
-    $.publish 'store-supporter-tag:update-user', @user
-    @updateTargetId()
-    @updateUserInteraction()
-
-
-  updateSliderPreset: (elem, cost) ->
-    $(elem).toggleClass('js-slider-preset--active', cost.duration() >= +elem.dataset.months)
-
-
-  updateTargetId: =>
-    @targetIdElement.value = @user?.id
-
-
-  updateUserInteraction: =>
-    enabled = @user?.id? && Number.isFinite(@user.id) && @user.id > 0
-    messageInputVisible = enabled && @user?.id != window.currentUser.id
-    fadeToggle(@messageInput, messageInputVisible)
-
-    toggleCart(enabled)
-    # TODO: need to elevate this element when switching over to new store design.
-    $(@el).toggleClass('js-store--disabled', !enabled)
-    $('.js-slider').slider('disabled': !enabled)
+    toggleCart(enabled);
+    // TODO: need to elevate this element when switching over to new store design.
+    $(this.el).toggleClass('js-store--disabled', !enabled);
+    $('.js-slider').slider({ disabled: !enabled });
+  }
+}
