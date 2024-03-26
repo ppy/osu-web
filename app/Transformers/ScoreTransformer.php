@@ -25,7 +25,6 @@ class ScoreTransformer extends TransformerAbstract
     const MULTIPLAYER_BASE_PRELOAD = [
         'scoreLink.score',
         'scoreLink.user.country',
-        'scoreLink.user.userProfileCustomization',
     ];
 
     const TYPE_LEGACY = 'legacy';

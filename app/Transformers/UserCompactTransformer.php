@@ -10,6 +10,7 @@ use App\Libraries\Search\ScoreSearchParams;
 use App\Models\Beatmap;
 use App\Models\User;
 use App\Models\UserProfileCustomization;
+use Illuminate\Support\Arr;
 use League\Fractal\Resource\ResourceInterface;
 
 class UserCompactTransformer extends TransformerAbstract
@@ -23,7 +24,6 @@ class UserCompactTransformer extends TransformerAbstract
     const CARD_INCLUDES_PRELOAD = [
         'country',
         'userGroups',
-        'userProfileCustomization',
     ];
 
     const LIST_INCLUDES = [
@@ -111,8 +111,6 @@ class UserCompactTransformer extends TransformerAbstract
         'is_restricted' => 'UserShowRestrictedStatus',
         'is_silenced' => 'IsNotOAuth',
     ];
-
-    protected $userProfileCustomization = [];
 
     public function transform(User $user)
     {
@@ -448,9 +446,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeUserPreferences(User $user)
     {
-        $customization = $this->userProfileCustomization($user);
-
-        return $this->primitive($customization->only([
+        static $fields = [
             'audio_autoplay',
             'audio_muted',
             'audio_volume',
@@ -465,7 +461,13 @@ class UserCompactTransformer extends TransformerAbstract
             'user_list_filter',
             'user_list_sort',
             'user_list_view',
-        ]));
+        ];
+
+        $customization = $user->userProfileCustomization;
+
+        return $this->primitive($customization === null
+            ? Arr::only(UserProfileCustomization::DEFAULTS, $fields)
+            : $customization->only($fields));
     }
 
     public function setMode(string $mode)
@@ -473,14 +475,5 @@ class UserCompactTransformer extends TransformerAbstract
         $this->mode = $mode;
 
         return $this;
-    }
-
-    protected function userProfileCustomization(User $user): UserProfileCustomization
-    {
-        if (!isset($this->userProfileCustomization[$user->getKey()])) {
-            $this->userProfileCustomization[$user->getKey()] = $user->userProfileCustomization ?? $user->userProfileCustomization()->make();
-        }
-
-        return $this->userProfileCustomization[$user->getKey()];
     }
 }
