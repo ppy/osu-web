@@ -8,7 +8,7 @@ import TurbolinksReload from './turbolinks-reload';
 declare global {
   interface Window {
     Twitch?: {
-      Embed: unknown; // don't care.
+      Embed: unknown; // unused
       Player: typeof TwitchEmbedPlayer;
     };
   }
