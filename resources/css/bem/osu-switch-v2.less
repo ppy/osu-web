@@ -59,9 +59,12 @@
     }
 
     .@{_top}__input[type=checkbox][data-indeterminate='true'] + & {
+      color: hsl(var(--hsl-h1));
+
       &::after {
         .fas();
         content: '\f068';
+        opacity: 1;
       }
     }
 
