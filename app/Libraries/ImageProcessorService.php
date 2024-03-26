@@ -45,9 +45,9 @@ class ImageProcessorService
             $bytesWritten = fwrite($tmpFile, file_get_contents($this->endpoint."/{$method}/{$src}"));
         } catch (\ErrorException $e) {
             if (strpos($e->getMessage(), 'HTTP request failed!') !== false) {
-                throw new ImageProcessorServiceException('HTTP request failed!');
+                throw new ImageProcessorServiceException('HTTP request failed!', 0, $e);
             } elseif (strpos($e->getMessage(), 'Connection refused') !== false) {
-                throw new ImageProcessorServiceException('Connection refused.');
+                throw new ImageProcessorServiceException('Connection refused.', 0, $e);
             } else {
                 throw $e;
             }
