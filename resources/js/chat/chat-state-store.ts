@@ -15,49 +15,62 @@ import Channel from 'models/chat/channel';
 import CreateAnnouncement from 'models/chat/create-announcement';
 import core from 'osu-core-singleton';
 import ChannelStore from 'stores/channel-store';
-import { onError } from 'utils/ajax';
-import { trans } from 'utils/lang';
+import { isJqXHR, onError } from 'utils/ajax';
+import { hideLoadingOverlay } from 'utils/loading-overlay';
 import { updateQueryString } from 'utils/url';
+import ChannelId, { AddChannelType } from './channel-id';
 import ChannelJoinEvent from './channel-join-event';
 import ChannelPartEvent from './channel-part-event';
-import { createAnnouncement, getUpdates } from './chat-api';
+import { createAnnouncement, getUpdates, joinChannel } from './chat-api';
 import MainView from './main-view';
 import PingService from './ping-service';
-
-type ChannelId = number | 'create' | null;
+import PublicChannels from './public-channels';
 
 @dispatchListener
 export default class ChatStateStore implements DispatchListener {
   @observable canChatAnnounce = false;
   @observable createAnnouncement = new CreateAnnouncement();
   @observable isReady = false;
+  readonly publicChannels = new PublicChannels();
   skipRefresh = false;
   @observable viewsMounted = new Set<MainView>();
   @observable private isConnected = false;
+
   private lastHistoryId: number | null = null;
   private readonly pingService: PingService;
+  private refocusToIndex = 0; // For refocusing to a channel next to the previously selected one when channel is removed from the list.
   @observable private selected: ChannelId = null;
-  private selectedIndex = 0;
-  @observable private waitJoinChannelUuid: string | null = null;
+  @observable private waitAddChannelId: string | number | null = null;
 
-  @computed
   get isChatMounted() {
     return this.viewsMounted.size > 0;
   }
 
   // Should not join/create another channel if still waiting for a pending request.
-  @computed
-  get isJoiningChannel() {
-    return this.waitJoinChannelUuid != null;
+  get isAddingChannel() {
+    return this.waitAddChannelId != null;
+  }
+
+  get joiningChannelId() {
+    return typeof this.waitAddChannelId === 'number'
+      ? this.waitAddChannelId
+      : null;
   }
 
   @computed
+  get joinedPublicChannelIds() {
+    return new Set(this.channelStore.groupedChannels.PUBLIC.map((channel) => channel.channelId));
+  }
+
   get selectedChannel() {
-    return this.selected == null || this.selected === 'create' ? null : this.channelStore.get(this.selected);
+    return typeof this.selected === 'number' ? this.channelStore.get(this.selected) : null;
   }
 
-  get showingCreateAnnouncement() {
-    return this.selected === 'create';
+  // In most cases we want the Channel or create/add channel type, not the channel id itself.
+  get selectedChannelOrType() {
+    return typeof this.selected === 'number'
+      ? this.channelStore.get(this.selected)
+      : this.selected;
   }
 
   @computed
@@ -69,6 +82,8 @@ export default class ChatStateStore implements DispatchListener {
     this.pingService = new PingService(channelStore);
 
     makeObservable(this);
+
+    document.addEventListener('turbolinks:before-cache', this.handleBeforeCache);
 
     observe(channelStore.channels, (changes) => {
       // refocus channels if any gets removed
@@ -96,15 +111,51 @@ export default class ChatStateStore implements DispatchListener {
         }
 
         runInAction(() => {
-          // TODO: use selectChannel?
-          if (typeof this.selected === 'number') {
-            this.channelStore.loadChannel(this.selected);
-          }
+          this.selectedChannel?.load();
 
           this.isReady = true;
         });
       }
     });
+
+    autorun(() => {
+      if (this.selected === 'join' && this.publicChannels.channels == null && !this.publicChannels.error) {
+        this.publicChannels.load();
+      }
+    });
+  }
+
+  // Only up to one join/create channel operation should be allowed to be running at any time.
+  // For consistency, the operation is considered complete when the websocket message arrives, not when the request completes.
+  // TODO: allow user cancelling operation from UI?
+  @action
+  async addChannel(channelId?: number) {
+    if (this.isAddingChannel) return;
+
+    try {
+      if (channelId != null) {
+        if (this.channelStore.channels.has(channelId)) {
+          this.selectChannel(channelId);
+          return;
+        }
+
+        this.waitAddChannelId = channelId;
+        await joinChannel(channelId, core.currentUserOrFail.id);
+      } else {
+        if (!this.createAnnouncement.isValid) return;
+
+        const json = this.createAnnouncement.toJson();
+        this.waitAddChannelId = json.uuid;
+        await createAnnouncement(json);
+      }
+    } catch (error) {
+      runInAction(() => {
+        this.waitAddChannelId = null;
+      });
+
+      if (!isJqXHR(error)) throw error;
+      onError(error);
+    }
   }
 
   handleDispatchAction(event: DispatcherAction) {
@@ -121,70 +172,30 @@ export default class ChatStateStore implements DispatchListener {
     }
   }
 
-  // TODO: This will support the other types of joining channels in the future
-  // Only up to one join/create channel operation should be allowed to be running at any time.
-  // For consistency, the operation is considered complete when the websocket message arrives, not when the request completes.
-  @action
-  joinChannel() {
-    if (!this.createAnnouncement.isValid || this.isJoiningChannel) return;
-
-    const json = this.createAnnouncement.toJson();
-    this.waitJoinChannelUuid = json.uuid;
-    // TODO: when adding more channel types to join, remember to add separate busy spinner states for them.
-
-    createAnnouncement(json)
-      .fail(action((xhr: JQueryXHR) => {
-        onError(xhr);
-        this.waitJoinChannelUuid = null;
-      }));
-  }
-
   @action
   selectChannel(channelId: ChannelId, mode: 'advanceHistory' | 'replaceHistory' | null = 'advanceHistory') {
-    // TODO: enforce location url even if channel doesn't change;
-    // noticeable when navigating via ?sendto= on existing channel.
-    if (this.selected === channelId) return;
-
+    this.waitAddChannelId = null; // reset any waiting for channel.
     // Mark the channel being switched away from as read.
     // Marking as read is done here to avoid constantly sending mark-as-read requests
     // while receiving messages when autoScroll is enabled on the channel.
     this.selectedChannel?.throttledSendMarkAsRead();
-
     this.selected = channelId;
 
-    if (channelId === 'create') {
-      if (mode != null) {
-        Turbolinks.controller[mode](updateQueryString(null, {
-          channel_id: null,
-          sendto: null,
-        }, 'create'));
-      }
-
+    if (typeof channelId === 'string') {
+      this.updateUrl(channelId, mode);
       return;
     }
 
     if (channelId == null) return;
-
     const channel = this.channelStore.get(channelId);
+    if (channel == null) return;
 
-    if (channel == null) {
-      console.error(`Trying to switch to non-existent channel ${channelId}`);
-      return;
-    }
-
-    this.selectedIndex = this.channelList.indexOf(channel);
+    this.refocusToIndex = this.channelList.indexOf(channel);
 
     // TODO: should this be here or have something else figure out if channel needs to be loaded?
-    this.channelStore.loadChannel(channelId);
+    channel.load();
 
-    if (mode != null) {
-      const params = channel.newPmChannel
-        ? { channel_id: null, sendto: channel.pmTarget?.toString() }
-        : { channel_id: channel.channelId.toString(), sendto: null };
-
-      Turbolinks.controller[mode](updateQueryString(null, params, ''));
-    }
-    core.browserTitleWithNotificationCount.title = `${channel.name} · ${trans('page_title.main.chat_controller._')}`;
+    this.updateUrl(channel, mode);
   }
 
   @action
@@ -212,13 +223,26 @@ export default class ChatStateStore implements DispatchListener {
   }
 
   @action
-  private handleChatChannelJoinEvent(event: ChannelJoinEvent) {
-    this.channelStore.update(event.json);
+  private readonly handleBeforeCache = () => {
+    // anything that needs to be reset when navigating away.
+    // TODO: split the wait for channel/busy and xhr, or maybe use a placeholder channel instead
+    // of blocking the UI.
+    this.waitAddChannelId = null;
+  };
 
-    if (this.waitJoinChannelUuid != null && this.waitJoinChannelUuid === event.json.uuid) {
-      this.selectChannel(event.json.channel_id);
-      this.waitJoinChannelUuid = null;
-      if (event.json.type === 'ANNOUNCE') {
+  @action
+  private handleChatChannelJoinEvent(event: ChannelJoinEvent) {
+    const json = event.json;
+    this.channelStore.update(json);
+
+    if (typeof this.waitAddChannelId === 'string' && this.waitAddChannelId === json.uuid
+      || typeof this.waitAddChannelId === 'number' && this.waitAddChannelId === json.channel_id
+    ) {
+      // hide overlay before changing channel if we're waiting for a change to remove it from history navigation.
+      hideLoadingOverlay();
+      this.selectChannel(json.channel_id);
+      this.waitAddChannelId = null;
+      if (json.type === 'ANNOUNCE') {
         this.createAnnouncement.clear();
       }
     }
@@ -259,12 +283,12 @@ export default class ChatStateStore implements DispatchListener {
    * Keeps the current channel in focus, unless deleted, then focus on next channel.
    */
   private refocusSelectedChannel() {
-    if (this.showingCreateAnnouncement) return;
+    if (typeof this.selectedChannelOrType === 'string') return;
 
-    if (this.selectedChannel != null) {
-      this.selectChannel(this.selectedChannel.channelId);
+    if (this.selectedChannelOrType != null) {
+      this.selectChannel(this.selectedChannelOrType.channelId);
     } else {
-      this.focusChannelAtIndex(this.selectedIndex);
+      this.focusChannelAtIndex(this.refocusToIndex);
     }
   }
 
@@ -282,5 +306,24 @@ export default class ChatStateStore implements DispatchListener {
 
       this.channelStore.updateWithChatUpdates(json);
     });
+  }
+
+  private updateUrl(channel: Channel | AddChannelType, mode: 'advanceHistory' | 'replaceHistory' | null) {
+    if (mode == null) return;
+
+    let hash = '';
+    const params: Record<'channel_id' | 'sendto', string | null | undefined> = { channel_id: null, sendto: null };
+
+    if (typeof channel === 'string') {
+      hash = channel;
+    } else {
+      if (channel.newPmChannel) {
+        params.sendto = channel.pmTarget?.toString();
+      } else {
+        params.channel_id = channel.channelId.toString();
+      }
+    }
+
+    Turbolinks.controller[mode](updateQueryString(null, params, hash));
   }
 }

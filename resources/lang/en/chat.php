@@ -18,6 +18,8 @@ return [
     'channels' => [
         'confirm_part' => 'Do you want to hide this channel? You will still receive messages from this channel.',
         'create' => 'create announcement',
+        'join' => 'join channel',
+        'none' => 'no channel',
 
         'list' => [
             'title' => [
@@ -59,5 +61,9 @@ return [
         'howto' => "Start conversations from a user's profile or a usercard popup.",
         'lazer' => 'Public channels you join via <a href=":link">osu!lazer</a> will also be visible here.',
         'title' => 'no conversations yet',
+    ],
+
+    'join_channels' => [
+        'loading' => 'Loading channel list...',
     ],
 ];

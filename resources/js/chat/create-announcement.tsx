@@ -25,7 +25,7 @@ const BusySpinner = ({ busy }: { busy: boolean }) => (
 export default class CreateAnnouncement extends React.Component<Props> {
   @computed
   private get canSend() {
-    return core.dataStore.chatState.isReady && !core.dataStore.chatState.isJoiningChannel && this.model.isValid;
+    return core.dataStore.chatState.isReady && !core.dataStore.chatState.isAddingChannel && this.model.isValid;
   }
 
   @computed
@@ -124,7 +124,7 @@ export default class CreateAnnouncement extends React.Component<Props> {
             <BigButton
               disabled={!this.canSend}
               icon='fas fa-bullhorn'
-              isBusy={core.dataStore.chatState.isJoiningChannel}
+              isBusy={core.dataStore.chatState.isAddingChannel}
               modifiers='chat-send'
               props={{ onClick: this.handleButtonClick }}
               text={trans(core.dataStore.chatState.isReady ? 'chat.input.create' : 'chat.input.disconnected')}
@@ -146,7 +146,7 @@ export default class CreateAnnouncement extends React.Component<Props> {
 
   @action
   private readonly handleButtonClick = () => {
-    core.dataStore.chatState.joinChannel();
+    core.dataStore.chatState.addChannel();
   };
 
   @action

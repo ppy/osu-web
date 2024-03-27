@@ -52,8 +52,14 @@ Turbolinks.Controller::advanceHistory = (url) ->
 Turbolinks.Controller::replaceHistory = (url) ->
   return if url == currentUrl().href
 
-  history.replaceState history.state, '', url
   @lastRenderedLocation = Turbolinks.Location.wrap(url)
+
+  if window.newUrl?
+    # replaceState needs to run after turbolinks:load to override the correct url
+    Timeout.set 0, ->
+      history.replaceState history.state, '', url
+  else
+    history.replaceState history.state, '', url
 
 
 # Ignore anchor check on loading snapshot to prevent repeating requesting page

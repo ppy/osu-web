@@ -39,6 +39,7 @@ return [
         'pin' => 'pin',
         'post' => 'Post',
         'read_more' => 'read more',
+        'refresh' => 'Refresh',
         'reply' => 'Reply',
         'reply_reopen' => 'Reply and Reopen',
         'reply_resolve' => 'Reply and Resolve',
