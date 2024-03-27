@@ -7,6 +7,7 @@ namespace App\Models;
 
 use App\Enums\Ruleset;
 use App\Exceptions\BeatmapProcessorException;
+use App\Exceptions\ImageProcessorServiceException;
 use App\Exceptions\InvariantException;
 use App\Jobs\CheckBeatmapsetCovers;
 use App\Jobs\EsDocument;
@@ -553,7 +554,14 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             $processor = new ImageProcessorService();
 
             // upload optimized full-size version
-            $optimized = $processor->optimize($this->coverURL('raw', $timestamp));
+            try {
+                $optimized = $processor->optimize($this->coverURL('raw', $timestamp));
+            } catch (ImageProcessorServiceException $e) {
+                if ($e->getCode() === ImageProcessorServiceException::INVALID_IMAGE) {
+                    return false;
+                }
+                throw $e;
+            }
             $this->storeCover('fullsize.jpg', get_stream_filename($optimized));
 
             // use thumbnailer to generate (and then upload) all our variants
