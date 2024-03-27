@@ -91,9 +91,16 @@ class ScorePinsController extends Controller
             $rulesetId = Beatmap::MODES[$score->getMode()];
             $currentMinDisplayOrder = $user->scorePins()->where('ruleset_id', $rulesetId)->min('display_order') ?? 2500;
 
+            $soloScore = $score instanceof Solo\Score
+                ? $score
+                : Solo\Score::firstWhere(['ruleset_id' => $rulesetId, 'legacy_score_id' => $score->getKey()]);
+
             try {
-                (new ScorePin(['display_order' => $currentMinDisplayOrder - 100, 'ruleset_id' => $rulesetId]))
-                    ->user()->associate($user)
+                (new ScorePin([
+                    'display_order' => $currentMinDisplayOrder - 100,
+                    'ruleset_id' => $rulesetId,
+                    'new_score_id' => $soloScore?->getKey(),
+                ]))->user()->associate($user)
                     ->score()->associate($score)
                     ->saveOrExplode();
             } catch (Exception $ex) {
