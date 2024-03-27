@@ -283,6 +283,7 @@ return [
         'taiko' => 'osu!taiko',
         'fruits' => 'osu!catch',
         'mania' => 'osu!mania',
+        'undefined' => 'not set',
     ],
     'status' => [
         'any' => 'Any',

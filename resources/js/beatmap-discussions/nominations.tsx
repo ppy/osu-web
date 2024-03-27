@@ -26,7 +26,6 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import { onError } from 'utils/ajax';
 import { canModeratePosts, makeUrl, startingPost } from 'utils/beatmapset-discussion-helper';
-import { nominationsCount } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { joinComponents, trans, transExists } from 'utils/lang';
@@ -34,7 +33,7 @@ import { presence } from 'utils/string';
 import { wikiUrl } from 'utils/url';
 import DiscussionsState from './discussions-state';
 
-const bn = 'beatmap-discussion-nomination';
+const bn = 'beatmap-discussion-nominations';
 const flashClass = 'js-flash-border--on';
 export const hypeExplanationClass = 'js-hype--explanation';
 const nominatorsVisibleBeatmapStatuses = Object.freeze(new Set(['wip', 'pending', 'ranked', 'qualified']));
@@ -475,19 +474,21 @@ export class Nominations extends React.Component<Props> {
   private renderLightsForNominations(nominations?: BeatmapsetNominationsInterface) {
     if (nominations == null) return;
 
-    const hybrid = Object.keys(this.beatmapset.nominations.required).length > 1;
+    const hybrid = !nominations.legacy_mode;
 
     return (
       <div className={classWithModifiers(`${bn}__discrete-bar-group`, { hybrid })}>
         {nominations.legacy_mode ? (
           <DiscreteBar current={nominations.current} total={nominations.required} />
-        ) : Object.entries(nominations.required).map(([ruleset, required]: [GameMode, number]) => (
+        ) : Object.keys(nominations.required).map((ruleset: GameMode) => (
           <DiscreteBar
             key={ruleset}
             current={nominations.current[ruleset] ?? 0}
             label={hybrid ? <i className={`fal fa-extra-mode-${ruleset}`} /> : null}
             modifiers={{ 'beatmapset-nomination-hybrid' : hybrid }}
-            total={required}
+            total={this.props.discussionsState.calculatedMainRuleset == null || this.props.discussionsState.calculatedMainRuleset === ruleset
+              ? nominations.required_meta.main_ruleset
+              : nominations.required_meta.non_main_ruleset}
           />
         ))}
       </div>
@@ -536,7 +537,7 @@ export class Nominations extends React.Component<Props> {
       <div>
         <div className={`${bn}__header`}>
           <span className={`${bn}__title`}>{trans('beatmaps.nominations.title')}</span>
-          <span>{formatNumber(nominationsCount(nominations, 'current'))} / {formatNumber(nominationsCount(nominations, 'required'))}</span>
+          <span>{formatNumber(this.props.discussionsState.nominationsCount('current'))} / {this.props.discussionsState.nominationsCount('required')}</span>
         </div>
         {this.renderLightsForNominations(nominations)}
       </div>

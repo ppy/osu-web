@@ -201,20 +201,43 @@ export default class BeatmapsetPanel extends React.Component<Props> {
 
   @computed
   private get nominations() {
+    const mainRuleset = this.props.beatmapset.main_ruleset ?? this.props.beatmapset.nominations_summary.main_ruleset;
+    let current = 0;
+    let countMainRuleset = 0;
+    let countNonMainRuleset = 0;
+
     if (this.props.beatmapset.nominations_summary != null) {
-      return this.props.beatmapset.nominations_summary;
+      const summary = this.props.beatmapset.nominations_summary;
+
+      current = summary.current;
+      countMainRuleset = summary.required_meta.main_ruleset;
+      countNonMainRuleset = summary.required_meta.non_main_ruleset;
+    } else if (this.props.beatmapset.nominations != null) {
+      current = sum(values(this.props.beatmapset.nominations.current));
+      countMainRuleset = this.props.beatmapset.nominations.required_meta.main_ruleset;
+      countNonMainRuleset = this.props.beatmapset.nominations.required_meta.non_main_ruleset;
+    } else {
+      return null;
     }
 
-    if (this.props.beatmapset.nominations != null) {
-      if (this.props.beatmapset.nominations.legacy_mode) {
-        return this.props.beatmapset.nominations;
+    const groupedBeatmaps = this.groupedBeatmaps;
+    const rulesets: GameMode[] = [];
+    [...this.groupedBeatmaps.keys()].forEach((ruleset) => {
+      if ((groupedBeatmaps.get(ruleset)?.length ?? 0) > 0) {
+        rulesets.push(ruleset);
       }
+    });
 
-      return {
-        current: sum(values(this.props.beatmapset.nominations.current)),
-        required: sum(values(this.props.beatmapset.nominations.required)),
-      };
-    }
+    const required = rulesets.reduce((total, ruleset) =>
+      mainRuleset == null || mainRuleset === ruleset
+        ? total + countMainRuleset
+        : total + countNonMainRuleset
+    , 0);
+
+    return {
+      current,
+      required,
+    };
   }
 
   @computed

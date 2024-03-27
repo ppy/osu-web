@@ -4,7 +4,7 @@
 import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import GameMode from 'interfaces/game-mode';
-import { maxBy } from 'lodash';
+import { maxBy, sum } from 'lodash';
 import { action, computed, makeObservable, observable, reaction } from 'mobx';
 import moment from 'moment';
 import core from 'osu-core-singleton';
@@ -53,6 +53,7 @@ export default class DiscussionsState {
   @observable pinnedNewDiscussion = false;
 
   @observable readPostIds = new Set<number>();
+  @observable selectedNominatedRulesets: GameMode[] = [];
   @observable selectedUserId: number | null = null;
   @observable showDeleted = true; // this toggle only affects All and deleted discussion filters, other filters don't show deleted
 
@@ -231,6 +232,13 @@ export default class DiscussionsState {
     return moment(maxLastUpdate).unix();
   }
 
+  get calculatedMainRuleset() {
+    return this.beatmapset.main_ruleset
+      // The main ruleset not being set yet implies there are either no nominations
+      // or an equal number of nominations for each ruleset, so the next selection should make it the main ruleset.
+      ?? (this.selectedNominatedRulesets.length === 1 ? this.selectedNominatedRulesets[0] : null);
+  }
+
   @computed
   get nonDeletedDiscussions() {
     return this.discussionsArray.filter((discussion) => discussion.deleted_at == null);
@@ -249,21 +257,21 @@ export default class DiscussionsState {
   @computed
   get totalHypeCount() {
     return this.nonDeletedDiscussions
-      .reduce((sum, discussion) => +(discussion.message_type === 'hype') + sum, 0);
+      .reduce((total, discussion) => +(discussion.message_type === 'hype') + total, 0);
   }
 
   @computed
   get unresolvedDiscussionTotalCount() {
     return this.nonDeletedDiscussions
-      .reduce((sum, discussion) => {
+      .reduce((total, discussion) => {
         if (discussion.can_be_resolved && !discussion.resolved) {
-          if (discussion.beatmap_id == null) return sum + 1;
+          if (discussion.beatmap_id == null) return total + 1;
 
           const beatmap = this.store.beatmaps.get(discussion.beatmap_id);
-          if (beatmap != null && beatmap.deleted_at == null) return sum + 1;
+          if (beatmap != null && beatmap.deleted_at == null) return total + 1;
         }
 
-        return sum;
+        return total;
       }, 0);
   }
 
@@ -390,6 +398,27 @@ export default class DiscussionsState {
     } else {
       this.readPostIds.add(ids);
     }
+  }
+
+  nominationsCount(type: 'current' | 'required') {
+    const nominations = this.beatmapset.nominations;
+    if (nominations.legacy_mode) {
+      return nominations[type];
+    }
+
+    if (type === 'current' || this.calculatedMainRuleset == null) {
+      return sum(Object.values(nominations[type]));
+    }
+
+    let total = 0;
+
+    Object.keys(nominations[type]).forEach((ruleset) =>
+      ruleset === this.calculatedMainRuleset
+        ? total += nominations.required_meta.main_ruleset
+        : total += nominations.required_meta.non_main_ruleset,
+    );
+
+    return total;
   }
 
   saveState() {

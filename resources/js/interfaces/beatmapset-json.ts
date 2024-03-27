@@ -28,6 +28,7 @@ interface BeatmapsetDescription {
   description: string | null;
 }
 
+// #region nominations interfaces
 interface BaseNominationsInterface {
   disqualification?: BeatmapsetEventJson;
   nominated?: boolean;
@@ -35,6 +36,10 @@ interface BaseNominationsInterface {
   ranking_eta?: string;
   ranking_queue_position?: number;
   required_hype: number;
+  required_meta: {
+    main_ruleset: number;
+    non_main_ruleset: number;
+  };
 }
 
 export interface NominationsInterface extends BaseNominationsInterface {
@@ -51,6 +56,7 @@ export interface LegacyNominationsInterface extends BaseNominationsInterface {
 
 export type BeatmapsetNominationsInterface =
   NominationsInterface | LegacyNominationsInterface;
+// #endregion
 
 export type BeatmapsetStatus =
   'graveyard' | 'wip' | 'pending' | 'ranked' | 'approved' | 'qualified' | 'loved';
@@ -83,6 +89,7 @@ interface BeatmapsetJsonAvailableIncludes {
   genre: GenreJson;
   has_favourited: boolean;
   language: LanguageJson;
+  main_ruleset: GameMode | null;
   nominations: BeatmapsetNominationsInterface;
   ratings: number[];
   recent_favourites: UserJson[];

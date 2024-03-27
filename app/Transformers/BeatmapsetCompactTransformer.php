@@ -5,6 +5,7 @@
 
 namespace App\Transformers;
 
+use App\Libraries\NominateBeatmapset;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\Beatmapset;
@@ -33,6 +34,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
         'has_favourited',
         'language',
         'pack_tags',
+        'main_ruleset',
         'nominations',
         'ratings',
         'recent_favourites',
@@ -182,9 +184,19 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
         return $this->item($beatmapset->language, new LanguageTransformer());
     }
 
+    public function includeMainRuleset(Beatmapset $beatmapset)
+    {
+        return $this->primitive($beatmapset->mainRuleset()?->legacyName());
+    }
+
     public function includeNominations(Beatmapset $beatmapset)
     {
-        $result = $beatmapset->nominationsMeta();
+        $result = [
+            'legacy_mode' => $beatmapset->isLegacyNominationMode(),
+            'current' => $beatmapset->currentNominationCount(),
+            'required' => $beatmapset->requiredNominationCount(),
+            'required_meta' => NominateBeatmapset::requiredNominationsConfig(),
+        ];
 
         if ($beatmapset->isPending()) {
             $currentUser = Auth::user();

@@ -17,7 +17,7 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import { onError } from 'utils/ajax';
 import { canModeratePosts, formatTimestamp, makeUrl, NearbyDiscussion, nearbyDiscussions, parseTimestamp, validMessageLength } from 'utils/beatmapset-discussion-helper';
-import { downloadLimited, nominationsCount } from 'utils/beatmapset-helper';
+import { downloadLimited } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
 import { InputEventType, makeTextAreaHandler } from 'utils/input-handler';
 import { joinComponents, trans } from 'utils/lang';
@@ -270,7 +270,7 @@ export class NewDiscussion extends React.Component<Props> {
     if (canDisqualify && willDisqualify) return 'disqualify';
 
     const canReset = core.currentUser?.is_admin || core.currentUser?.is_nat || core.currentUser?.is_bng;
-    const currentNominations = nominationsCount(this.beatmapset.nominations, 'current');
+    const currentNominations = this.props.discussionsState.nominationsCount('current');
     const willReset = this.beatmapset.status === 'pending' && currentNominations > 0;
 
     if (canReset && willReset) return 'nomination_reset';

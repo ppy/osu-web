@@ -19,7 +19,6 @@ import { Editable, ReactEditor, RenderElementProps, RenderLeafProps, Slate, with
 import { DOMRange } from 'slate-react/dist/utils/dom';
 import { onError } from 'utils/ajax';
 import { timestampRegex } from 'utils/beatmapset-discussion-helper';
-import { nominationsCount } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 import DiscussionsState from './discussions-state';
@@ -440,7 +439,7 @@ export default class Editor extends React.Component<Props, State> {
     const canReset = core.currentUser != null && (core.currentUser.is_admin || core.currentUser.is_nat || core.currentUser.is_bng);
     const willReset =
       this.beatmapset.status === 'pending'
-        && nominationsCount(this.beatmapset.nominations, 'current') > 0
+        && this.props.discussionsState.nominationsCount('current') > 0
         && docContainsProblem;
 
     if (canDisqualify && willDisqualify) {

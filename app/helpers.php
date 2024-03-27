@@ -1581,6 +1581,11 @@ function get_params($input, $namespace, $keys, $options = [])
     return $params;
 }
 
+/**
+ * @template T
+ * @param T[]|Illuminate\Support\Collection<T> $array
+ * @return T|null
+ */
 function array_rand_val($array)
 {
     if ($array instanceof Illuminate\Support\Collection) {
@@ -1588,7 +1593,7 @@ function array_rand_val($array)
     }
 
     if (count($array) === 0) {
-        return;
+        return null;
     }
 
     return $array[array_rand($array)];

@@ -679,7 +679,7 @@ class BeatmapDiscussion extends Model
         }
 
         $ret = parent::save($options);
-        $this->beatmapset->refreshCache();
+        $this->beatmapset->refreshHype();
 
         return $ret;
     }
