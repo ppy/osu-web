@@ -6,6 +6,7 @@
 namespace Tests\Controllers;
 
 use App\Models\Beatmap;
+use App\Models\OAuth\Client;
 use App\Models\Score\Best\Osu;
 use App\Models\Solo\Score as SoloScore;
 use App\Models\User;
@@ -22,16 +23,15 @@ class ScoresControllerTest extends TestCase
     private User $user;
     private User $otherUser;
 
-    public function testDownloadSameUser()
+    public function testDownloadApiSameUser()
     {
         $this->expectCountChange(fn () => $this->score->user->statistics($this->score->getMode())->replay_popularity, 0);
 
         $this
-            ->actingAs($this->user)
-            ->withHeaders(['HTTP_REFERER' => $GLOBALS['cfg']['app']['url'].'/'])
+            ->actAsPasswordClientUser($this->user)
             ->json(
                 'GET',
-                route('scores.download-legacy', $this->params())
+                route('api.scores.download-legacy', $this->params())
             )
             ->assertSuccessful();
 
@@ -42,7 +42,7 @@ class ScoresControllerTest extends TestCase
         $this->assertNull($this->score->replayViewCount()->first());
     }
 
-    public function testDownloadSoloScoreSameUser()
+    public function testDownloadApiSoloScoreSameUser()
     {
         $soloScore = SoloScore::factory()
             ->create([
@@ -55,11 +55,10 @@ class ScoresControllerTest extends TestCase
         $this->expectCountChange(fn () => $this->score->user->statistics($this->score->getMode())->replay_popularity, 0);
 
         $this
-            ->actingAs($this->user)
-            ->withHeaders(['HTTP_REFERER' => $GLOBALS['cfg']['app']['url'].'/'])
+            ->actAsPasswordClientUser($this->user)
             ->json(
                 'GET',
-                route('scores.download', $soloScore)
+                route('api.scores.download', $soloScore)
             )
             ->assertSuccessful();
 
@@ -79,12 +78,43 @@ class ScoresControllerTest extends TestCase
             )
             ->assertSuccessful();
 
-        $this->assertEquals($this->score->user->statistics($this->score->getMode())->replay_popularity, 1);
+        $this->assertEquals($this->score->user->statistics($this->score->getMode())->replay_popularity, 0);
 
         $month = CarbonImmutable::now();
         $currentMonth = UserCountryHistory::formatDate($month);
-        $this->assertEquals($this->score->user->replaysWatchedCounts()->where('year_month', $currentMonth)->first()->count, 1);
+        $this->assertFalse($this->score->user->replaysWatchedCounts()->where('year_month', $currentMonth)->exists());
 
+        $this->assertFalse($this->score->replayViewCount()->exists());
+    }
+
+    public function testDownloadApi(): void
+    {
+        $this
+            ->actAsPasswordClientUser($this->otherUser)
+            ->json(
+                'GET',
+                route('api.scores.download-legacy', $this->params())
+            )
+            ->assertSuccessful();
+
+        $month = CarbonImmutable::now();
+        $currentMonth = UserCountryHistory::formatDate($month);
+
+        $this->assertEquals($this->score->user->statistics($this->score->getMode())->replay_popularity, 1);
+        $this->assertEquals($this->score->user->replaysWatchedCounts()->where('year_month', $currentMonth)->first()->count, 1);
+        $this->assertEquals($this->score->replayViewCount()->first()->play_count, 1);
+
+        // again, for no count change
+        $this
+            ->actAsPasswordClientUser($this->otherUser)
+            ->json(
+                'GET',
+                route('api.scores.download-legacy', $this->params())
+            )
+            ->assertSuccessful();
+
+        $this->assertEquals($this->score->user->statistics($this->score->getMode())->fresh()->replay_popularity, 1);
+        $this->assertEquals($this->score->user->replaysWatchedCounts()->where('year_month', $currentMonth)->first()->count, 1);
         $this->assertEquals($this->score->replayViewCount()->first()->play_count, 1);
     }
 
@@ -107,11 +137,11 @@ class ScoresControllerTest extends TestCase
             )
             ->assertSuccessful();
 
-        $this->assertEquals($soloScore->user->statistics($soloScore->getMode())->replay_popularity, 1);
-
         $month = CarbonImmutable::now();
         $currentMonth = UserCountryHistory::formatDate($month);
-        $this->assertEquals($soloScore->user->replaysWatchedCounts()->where('year_month', $currentMonth)->first()->count, 1);
+
+        $this->assertEquals($soloScore->user->statistics($soloScore->getMode())->replay_popularity, 0);
+        $this->assertFalse($soloScore->user->replaysWatchedCounts()->where('year_month', $currentMonth)->exists());
     }
 
     public function testDownloadDeletedBeatmap()
@@ -206,6 +236,13 @@ class ScoresControllerTest extends TestCase
 
         UserStatistics\Osu::factory()->create(['user_id' => $this->user->user_id]);
         $this->score = Osu::factory()->withReplay()->create(['user_id' => $this->user->user_id]);
+    }
+
+    private function actAsPasswordClientUser(User $user): static
+    {
+        $this->actAsScopedUser($user, ['*'], Client::factory()->create(['password_client' => true]));
+
+        return $this;
     }
 
     private function params()

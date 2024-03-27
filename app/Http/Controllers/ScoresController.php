@@ -14,6 +14,8 @@ use Carbon\CarbonImmutable;
 
 class ScoresController extends Controller
 {
+    const REPLAY_COUNT_INTERVAL = 86400; // 1 day
+
     public function __construct()
     {
         parent::__construct();
@@ -52,20 +54,28 @@ class ScoresController extends Controller
             abort(404);
         }
 
-        if (\Auth::user()->getKey() !== $score->user_id) {
-            $score->user->statistics($score->getMode(), true)->increment('replay_popularity');
+        $currentUser = \Auth::user();
+        if ($currentUser->getKey() !== $score->user_id && ($currentUser->token()?->client->password_client ?? false)) {
+            $countLock = \Cache::lock(
+                "view:score_replay:{$score->getKey()}:{$currentUser->getKey()}",
+                static::REPLAY_COUNT_INTERVAL,
+            );
 
-            $month = CarbonImmutable::now();
-            $currentMonth = UserCountryHistory::formatDate($month);
+            if ($countLock->get()) {
+                $score->user->statistics($score->getMode(), true)->increment('replay_popularity');
 
-            $score->user->replaysWatchedCounts()
-                ->firstOrCreate(['year_month' => $currentMonth], ['count' => 0])
-                ->incrementInstance('count');
+                $month = CarbonImmutable::now();
+                $currentMonth = UserCountryHistory::formatDate($month);
 
-            if ($score instanceof ScoreBest) {
-                $score->replayViewCount()
-                    ->firstOrCreate([], ['play_count' => 0])
-                    ->incrementInstance('play_count');
+                $score->user->replaysWatchedCounts()
+                    ->firstOrCreate(['year_month' => $currentMonth], ['count' => 0])
+                    ->incrementInstance('count');
+
+                if ($score instanceof ScoreBest) {
+                    $score->replayViewCount()
+                        ->firstOrCreate([], ['play_count' => 0])
+                        ->incrementInstance('play_count');
+                }
             }
         }
 
