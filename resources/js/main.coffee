@@ -32,7 +32,6 @@ import PostPreview from 'core-legacy/post-preview'
 import Search from 'core-legacy/search'
 import StickyFooter from 'core-legacy/sticky-footer'
 import { StoreCheckout } from 'core-legacy/store-checkout'
-import StoreSupporterTag from 'core-legacy/store-supporter-tag'
 import SyncHeight from 'core-legacy/sync-height'
 import TooltipDefault from 'core-legacy/tooltip-default'
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
@@ -60,7 +59,7 @@ $(document).on 'submit', 'form', (e) ->
 
 $(document).on 'turbolinks:load', ->
   BeatmapPack.initialize()
-  StoreSupporterTag.initialize()
+  # StoreSupporterTag.initialize()
   StoreCheckout.initialize()
 
 # ensure currentUser is updated early enough.
