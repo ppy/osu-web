@@ -53,7 +53,11 @@ class ScoresController extends Controller
         }
 
         $currentUser = \Auth::user();
-        if ($currentUser->getKey() !== $score->user_id && ($currentUser->token()?->client->password_client ?? false)) {
+        if (
+            !$currentUser->isRestricted()
+            && $currentUser->getKey() !== $score->user_id
+            && ($currentUser->token()?->client->password_client ?? false)
+        ) {
             $countLock = \Cache::lock(
                 "view:score_replay:{$score->getKey()}:{$currentUser->getKey()}",
                 static::REPLAY_COUNT_INTERVAL,
