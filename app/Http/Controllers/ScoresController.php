@@ -7,10 +7,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Score\Best\Model as ScoreBest;
 use App\Models\Solo\Score as SoloScore;
-use App\Models\UserCountryHistory;
 use App\Transformers\ScoreTransformer;
 use App\Transformers\UserCompactTransformer;
-use Carbon\CarbonImmutable;
 
 class ScoresController extends Controller
 {
@@ -64,9 +62,7 @@ class ScoresController extends Controller
             if ($countLock->get()) {
                 $score->user->statistics($score->getMode(), true)->increment('replay_popularity');
 
-                $month = CarbonImmutable::now();
-                $currentMonth = UserCountryHistory::formatDate($month);
-
+                $currentMonth = format_month_column(new \DateTime());
                 $score->user->replaysWatchedCounts()
                     ->firstOrCreate(['year_month' => $currentMonth], ['count' => 0])
                     ->incrementInstance('count');
