@@ -103,6 +103,8 @@ class Topic extends Model implements AfterCommit
         'topic_title' => 100,
     ];
 
+    const VIEW_COUNT_INTERVAL = 86400; // 1 day
+
     protected $table = 'phpbb_topics';
     protected $primaryKey = 'topic_id';
 
@@ -541,8 +543,6 @@ class Topic extends Model implements AfterCommit
 
                 throw $ex;
             }
-
-            $this->incrementInstance('topic_views');
         } elseif ($status->mark_time < $markTime) {
             $status->update(['mark_time' => $markTime]);
         }
@@ -553,6 +553,18 @@ class Topic extends Model implements AfterCommit
         }
 
         DB::commit();
+    }
+
+    public function incrementViewCount(?User $user, string $ipAddr): void
+    {
+        $lockKey = "view:forum_topic:{$this->getKey()}:";
+        $lockKey .= $user === null
+            ? "guest:{$ipAddr}"
+            : "user:{$user->getKey()}";
+
+        if (\Cache::lock($lockKey, static::VIEW_COUNT_INTERVAL)->get()) {
+            $this->incrementInstance('topic_views');
+        }
     }
 
     public function isIssue()
