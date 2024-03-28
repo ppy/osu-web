@@ -7,13 +7,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Score\Best\Model as ScoreBest;
 use App\Models\Solo\Score as SoloScore;
-use App\Models\UserCountryHistory;
 use App\Transformers\ScoreTransformer;
 use App\Transformers\UserCompactTransformer;
-use Carbon\CarbonImmutable;
 
 class ScoresController extends Controller
 {
+    const REPLAY_DOWNLOAD_COUNT_INTERVAL = 86400; // 1 day
+
     public function __construct()
     {
         parent::__construct();
@@ -52,20 +52,30 @@ class ScoresController extends Controller
             abort(404);
         }
 
-        if (\Auth::user()->getKey() !== $score->user_id) {
-            $score->user->statistics($score->getMode(), true)->increment('replay_popularity');
+        $currentUser = \Auth::user();
+        if (
+            !$currentUser->isRestricted()
+            && $currentUser->getKey() !== $score->user_id
+            && ($currentUser->token()?->client->password_client ?? false)
+        ) {
+            $countLock = \Cache::lock(
+                "view:score_replay:{$score->getKey()}:{$currentUser->getKey()}",
+                static::REPLAY_DOWNLOAD_COUNT_INTERVAL,
+            );
 
-            $month = CarbonImmutable::now();
-            $currentMonth = UserCountryHistory::formatDate($month);
+            if ($countLock->get()) {
+                $score->user->statistics($score->getMode(), true)->increment('replay_popularity');
 
-            $score->user->replaysWatchedCounts()
-                ->firstOrCreate(['year_month' => $currentMonth], ['count' => 0])
-                ->incrementInstance('count');
+                $currentMonth = format_month_column(new \DateTime());
+                $score->user->replaysWatchedCounts()
+                    ->firstOrCreate(['year_month' => $currentMonth], ['count' => 0])
+                    ->incrementInstance('count');
 
-            if ($score instanceof ScoreBest) {
-                $score->replayViewCount()
-                    ->firstOrCreate([], ['play_count' => 0])
-                    ->incrementInstance('play_count');
+                if ($score instanceof ScoreBest) {
+                    $score->replayViewCount()
+                        ->firstOrCreate([], ['play_count' => 0])
+                        ->incrementInstance('play_count');
+                }
             }
         }
 

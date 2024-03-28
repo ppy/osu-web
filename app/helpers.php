@@ -395,6 +395,11 @@ function flag_url($countryCode)
     return "/assets/images/flags/{$baseFileName}.svg";
 }
 
+function format_month_column(\DateTimeInterface $date): string
+{
+    return $date->format('ym');
+}
+
 function format_rank(?int $rank): string
 {
     return $rank !== null ? '#'.i18n_number_format($rank) : '-';
