@@ -18,23 +18,6 @@ class Image implements WikiObject
 
     private $cache;
 
-    public static function lookupForController($path, $url = null, $referrer = null)
-    {
-        $url = presence($url);
-        $referrer = presence($referrer);
-        $image = (new static($path))->sync();
-
-        if (!$image->isVisible()) {
-            if ($url !== null && $referrer !== null && starts_with($url, $referrer)) {
-                $newPath = 'shared/'.substr($url, strlen($referrer));
-
-                return (new static($newPath))->sync();
-            }
-        }
-
-        return $image;
-    }
-
     public function __construct($path)
     {
         $this->path = OsuWiki::cleanPath($path);

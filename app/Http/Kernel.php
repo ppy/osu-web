@@ -27,7 +27,6 @@ class Kernel extends HttpKernel
             Middleware\VerifyUserAlways::class,
         ],
         'web' => [
-            Middleware\StripCookies::class,
             Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,

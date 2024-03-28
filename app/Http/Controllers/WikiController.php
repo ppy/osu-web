@@ -123,16 +123,16 @@ class WikiController extends Controller
             return response('Invalid file format', 422);
         }
 
-        $image = Wiki\Image::lookupForController($path, Request::url(), Request::header('referer'));
-
-        request()->attributes->set('strip_cookies', true);
+        $image = (new Wiki\Image($path))->sync();
 
         if (!$image->isVisible()) {
             return response('Not found', 404);
         }
 
-        return response($image->get()['content'], 200)
-            ->header('Content-Type', $image->get()['type'])
+        $imageData = $image->get();
+
+        return response($imageData['content'], 200)
+            ->header('Content-Type', $imageData['type'])
             // 10 years max-age
             ->header('Cache-Control', 'max-age=315360000, public');
     }
