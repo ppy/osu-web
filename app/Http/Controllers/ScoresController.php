@@ -12,7 +12,7 @@ use App\Transformers\UserCompactTransformer;
 
 class ScoresController extends Controller
 {
-    const REPLAY_COUNT_INTERVAL = 86400; // 1 day
+    const REPLAY_DOWNLOAD_COUNT_INTERVAL = 86400; // 1 day
 
     public function __construct()
     {
@@ -60,7 +60,7 @@ class ScoresController extends Controller
         ) {
             $countLock = \Cache::lock(
                 "view:score_replay:{$score->getKey()}:{$currentUser->getKey()}",
-                static::REPLAY_COUNT_INTERVAL,
+                static::REPLAY_DOWNLOAD_COUNT_INTERVAL,
             );
 
             if ($countLock->get()) {
