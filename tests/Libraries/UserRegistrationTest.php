@@ -17,17 +17,17 @@ class UserRegistrationTest extends TestCase
     {
         $attrs = $this->basicAttributes();
 
-        $origCount = User::count();
-        $origCountCache = Count::totalUsers()->count;
+        $this->expectCountChange(fn () => User::count(), 1);
+        $this->expectCountChange(fn () => Count::totalUsers()->count, 1);
         $reg = new UserRegistration($attrs);
         $thrown = $this->runSubject($reg);
 
         $this->assertFalse($thrown);
-        $this->assertSame($origCount + 1, User::count());
-        $this->assertTrue($reg->user()->userGroups->every(function ($userGroup) {
-            return $userGroup->user_pending === false;
-        }));
-        $this->assertSame($origCountCache + 1, Count::totalUsers()->count);
+
+        $user = $reg->user()->fresh();
+        $this->assertNotNull($user->cover_preset_id);
+        $this->assertTrue($user->userGroups->every(fn ($userGroup) =>
+            $userGroup->user_pending === false));
     }
 
     public function testRequiresUsername()

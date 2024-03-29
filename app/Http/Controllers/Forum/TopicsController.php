@@ -16,7 +16,7 @@ use App\Models\Forum\Topic;
 use App\Models\Forum\TopicCover;
 use App\Models\Forum\TopicPoll;
 use App\Models\Forum\TopicWatch;
-use App\Models\Forum\UserProfileCustomization;
+use App\Models\UserProfileCustomization;
 use App\Transformers\Forum\TopicCoverTransformer;
 use Auth;
 use DB;

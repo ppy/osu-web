@@ -14,27 +14,27 @@ return [
     ],
 
     'judge' => [
-        'hide_judged' => '',
-        'nav_title' => '',
-        'no_current_vote' => '',
+        'hide_judged' => 'bewertete Einträge ausblenden',
+        'nav_title' => 'Bewerten',
+        'no_current_vote' => 'Du hast noch nicht abgestimmt.',
         'update' => 'aktualisieren',
         'validation' => [
-            'missing_score' => '',
-            'contest_vote_judged' => '',
+            'missing_score' => 'fehlende Punktzahl',
+            'contest_vote_judged' => 'Abstimmen bei bewerteten Wettbewerben nicht möglich',
         ],
-        'voted' => '',
+        'voted' => 'Du hast für diesen Eintrag bereits abgestimmt.',
     ],
 
     'judge_results' => [
-        '_' => '',
-        'creator' => '',
+        '_' => 'Jury-Ergebnisse',
+        'creator' => 'Ersteller',
         'score' => 'Ergebnis',
         'total_score' => 'Gesamtergebnis',
     ],
 
     'voting' => [
-        'judge_link' => '',
-        'judged_notice' => '',
+        'judge_link' => 'Du bist ein Juror bei diesem Wettbewerb. Bewerte die Beiträge hier!',
+        'judged_notice' => 'Dieser Wettbewerb läuft über das Bewertungssystem, die Jury bearbeitet derzeit die Beiträge.',
         'login_required' => 'Bitte einloggen, um abzustimmen',
         'over' => 'Die Abstimmung für diesen Wettbewerb ist beendet',
         'show_voted_only' => 'Stimmen anzeigen',

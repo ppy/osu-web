@@ -43,7 +43,7 @@ return [
 
             'country_change' => [
                 '_' => "",
-                'update_link' => '',
+                'update_link' => 'Promjeni na :country',
             ],
 
             'user' => [
@@ -65,11 +65,11 @@ return [
     'github_user' => [
         'info' => "",
         'link' => '',
-        'title' => '',
+        'title' => 'GitHub',
         'unlink' => '',
 
         'error' => [
-            'already_linked' => '',
+            'already_linked' => 'Ovaj GitHub nalog je vec povezan drugom korisniku.',
             'no_contribution' => '',
             'unverified_email' => '',
         ],

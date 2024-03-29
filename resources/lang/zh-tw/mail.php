@@ -14,7 +14,7 @@ return [
     'common' => [
         'closing' => '祝順，',
         'hello' => '嗨 :user,',
-        'report' => '如果您沒有進行此項操作，請「立刻」回覆此信件!',
+        'report' => '如果您沒有進行此項操作，請「立刻」回覆此信件！',
         'ignore' => '若您未請求，則可以安全忽略這封信。',
     ],
 
@@ -92,19 +92,19 @@ return [
     ],
 
     'user_password_updated' => [
-        'confirmation' => '提醒您，您的osu!密碼已被修改',
+        'confirmation' => '提醒您，您的 osu! 密碼已被修改。',
         'subject' => 'osu! 帳號密碼變更',
     ],
 
     'user_verification' => [
         'code' => '您的驗證碼是:',
-        'code_hint' => '你可以帶或不帶空格地輸入該驗證碼',
-        'link' => '或者，你也可以點擊下列連結以完成認證:',
+        'code_hint' => '你可以帶或不帶空格地輸入該驗證碼。',
+        'link' => '或者，你也可以點擊下列連結以完成認證：',
         'report' => '如果您並沒有進行此項操作，請「立刻」回覆此信件，您的帳戶可能有危險。',
         'subject' => 'osu! 帳號驗證',
 
         'action_from' => [
-            '_' => '有一項來自 :country 對您的帳戶所執行的操作需要認證',
+            '_' => '有一項來自 :country 對您的帳戶所執行的操作需要認證。',
             'unknown_country' => '未知國家',
         ],
     ],

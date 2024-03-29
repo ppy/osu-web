@@ -14,27 +14,27 @@ return [
     ],
 
     'judge' => [
-        'hide_judged' => '',
-        'nav_title' => '',
-        'no_current_vote' => '',
-        'update' => '',
+        'hide_judged' => 'verberg beoordeelde items',
+        'nav_title' => 'beoordeel',
+        'no_current_vote' => 'je hebt nog niet gestemd.',
+        'update' => 'werk bij',
         'validation' => [
-            'missing_score' => '',
-            'contest_vote_judged' => '',
+            'missing_score' => 'ontbrekende score',
+            'contest_vote_judged' => 'kan niet stemmen in beoordeelde wedstrijden',
         ],
-        'voted' => '',
+        'voted' => 'Je hebt al een stem ingediend voor dit item.',
     ],
 
     'judge_results' => [
-        '_' => '',
-        'creator' => '',
-        'score' => '',
-        'total_score' => '',
+        '_' => 'Beoordelingsresultaten',
+        'creator' => 'maker',
+        'score' => 'Score',
+        'total_score' => 'totale score',
     ],
 
     'voting' => [
-        'judge_link' => '',
-        'judged_notice' => '',
+        'judge_link' => 'Jij bent een jurylid voor deze wedstrijd. Beoordeel de inzendingen hier!',
+        'judged_notice' => 'Deze wedstrijd maakt gebruik van het jurysysteem, de jury verwerkt momenteel de inzendingen.',
         'login_required' => 'Log in om te kunnen stemmen.',
         'over' => 'Je kan niet meer stemmen in deze wedstrijd',
         'show_voted_only' => 'Toon gestemde stemmen',

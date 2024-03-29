@@ -20,10 +20,10 @@ return [
     'username_change' => '',
 
     'beatmapset_status' => [
-        'approved' => '',
+        'approved' => 'odobreno',
         'loved' => 'voljeno',
-        'qualified' => '',
-        'ranked' => '',
+        'qualified' => 'kvalificiran/a',
+        'ranked' => 'rangirano',
     ],
 
     'value' => [
