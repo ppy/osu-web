@@ -113,7 +113,9 @@ core.reactTurbolinks.register('store-supporter-tag', (container) => {
     throw new Error('missing productId');
   }
 
-  return <StoreSupporterTag productId={productId} />;
+  const maxMessageLength = getInt(container.dataset.maxMessageLength) ?? 0;
+
+  return <StoreSupporterTag maxMessageLength={maxMessageLength} productId={productId} />;
 });
 
 core.reactTurbolinks.register('user-card', (container) => (

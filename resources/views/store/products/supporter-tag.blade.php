@@ -9,5 +9,9 @@
 @if(!Auth::user())
     {!! require_login('store.supporter_tag.require_login._', 'store.supporter_tag.require_login.link_text') !!}
 @else
-    <div class="js-react--store-supporter-tag" data-product-id={{ $product->product_id }}/>
+    <div
+        class="js-react--store-supporter-tag"
+        data-product-id={{ $product->product_id }}
+        data-max-message-length={{ ExtraDataSupporterTag::MAX_MESSAGE_LENGTH }}
+    />
 @endif

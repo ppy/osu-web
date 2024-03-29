@@ -19,9 +19,8 @@ const maxValue = 52;
 const minValue = 4;
 const resolution = 8;
 
-const messageMaxLength = 100;
-
 interface Props {
+  maxMessageLength: number;
   productId: number;
 }
 
@@ -176,9 +175,9 @@ export default class StoreSupporterTag extends React.Component<Props> {
             <div data-visibility={!this.isValidUser || this.isGiftingSelf ? 'hidden' : 'visible'}>
               <textarea
                 className='store-supporter-tag__input store-supporter-tag__input--message'
-                maxLength={messageMaxLength}
+                maxLength={this.props.maxMessageLength}
                 name='item[extra_data][message]'
-                placeholder={trans('store.supporter_tag.gift_message', { length: messageMaxLength })}
+                placeholder={trans('store.supporter_tag.gift_message', { length: this.props.maxMessageLength })}
                 rows={3}
               />
             </div>
