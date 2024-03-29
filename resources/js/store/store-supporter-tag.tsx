@@ -11,9 +11,12 @@ import core from 'osu-core-singleton';
 import React from 'react';
 import { onError } from 'utils/ajax';
 import { classWithModifiers } from 'utils/css';
+import { parseJsonNullable, storeJson } from 'utils/json';
 import { trans, transChoice } from 'utils/lang';
 import { toggleCart } from 'utils/store-cart';
 import { currentUrlParams } from 'utils/turbolinks';
+
+const jsonId = 'json-store-supporter-tag';
 
 const maxValue = 52;
 const minValue = 4;
@@ -22,6 +25,12 @@ const resolution = 8;
 interface Props {
   maxMessageLength: number;
   productId: number;
+}
+
+interface SavedState {
+  giftMessage: string;
+  sliderValue: number;
+  username: string;
 }
 
 interface SliderUIParams {
@@ -52,6 +61,8 @@ function sliderValueFrom(value: number) {
 @observer
 export default class StoreSupporterTag extends React.Component<Props> {
   private readonly debouncedGetUser;
+  private readonly giftMessage: string = '';
+  private readonly giftMessageRef = React.createRef<HTMLTextAreaElement>();
   private readonly sliderRef = React.createRef<HTMLDivElement>();
   @observable private sliderValue = sliderValueFrom(minValue);
   @observable private user: UserJson | null;
@@ -62,8 +73,16 @@ export default class StoreSupporterTag extends React.Component<Props> {
     super(props);
 
     this.debouncedGetUser = debounce(this.getUser, 300);
+    document.addEventListener('turbolinks:before-cache', this.handleBeforeCache);
 
     makeObservable(this);
+
+    const json = parseJsonNullable<SavedState>(jsonId, true);
+    if (json != null) {
+      this.giftMessage = json.giftMessage;
+      this.sliderValue = json.sliderValue;
+      this.username = json.username;
+    }
 
     if (this.username !== '') {
       this.user = null;
@@ -150,6 +169,7 @@ export default class StoreSupporterTag extends React.Component<Props> {
   }
 
   componentWillUnmount() {
+    document.removeEventListener('turbolinks:before-cache', this.handleBeforeCache);
     this.xhr?.abort();
   }
 
@@ -174,7 +194,9 @@ export default class StoreSupporterTag extends React.Component<Props> {
             />
             <div data-visibility={!this.isValidUser || this.isGiftingSelf ? 'hidden' : 'visible'}>
               <textarea
+                ref={this.giftMessageRef}
                 className='store-supporter-tag__input store-supporter-tag__input--message'
+                defaultValue={this.giftMessage}
                 maxLength={this.props.maxMessageLength}
                 name='item[extra_data][message]'
                 placeholder={trans('store.supporter_tag.gift_message', { length: this.props.maxMessageLength })}
@@ -234,6 +256,14 @@ export default class StoreSupporterTag extends React.Component<Props> {
       .always(() => {
         this.xhr = null;
       });
+  };
+
+  private readonly handleBeforeCache = () => {
+    storeJson(jsonId, {
+      giftMessage: this.giftMessageRef.current?.value ?? '',
+      sliderValue: this.sliderValue,
+      username: this.username,
+    });
   };
 
   private readonly handlePresetClick = (event: React.SyntheticEvent<HTMLElement>) => {
