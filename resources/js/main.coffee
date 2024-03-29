@@ -59,7 +59,6 @@ $(document).on 'submit', 'form', (e) ->
 
 $(document).on 'turbolinks:load', ->
   BeatmapPack.initialize()
-  # StoreSupporterTag.initialize()
   StoreCheckout.initialize()
 
 # ensure currentUser is updated early enough.
