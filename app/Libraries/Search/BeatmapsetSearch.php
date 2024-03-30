@@ -426,7 +426,7 @@ class BeatmapsetSearch extends RecordSearch
     {
         $query = Solo\Score
             ::indexable()
-            ::where('user_id', $this->params->user->getKey())
+            ->where('user_id', $this->params->user->getKey())
             ->whereIn('ruleset_id', $this->getSelectedModes());
 
         if ($rank === null) {
