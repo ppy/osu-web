@@ -20,7 +20,12 @@
     font-size: @font-size--wiki-search;
     background-color: @osu-colour-b6;
 
-    border: @_border-size solid @osu-colour-orange-1;
+    border: @_border-size solid @osu-colour-b6;
+    
+    &:focus-within {
+      box-shadow: 0 0 10px @osu-colour-orange-1;
+      border: @_border-size solid @osu-colour-orange-1
+    }
   }
 
   &__input {
