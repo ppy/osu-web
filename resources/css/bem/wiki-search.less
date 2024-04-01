@@ -12,7 +12,6 @@
   position: relative;
 
   &__bar {
-    .default-border-radius();
     display: flex;
     flex-direction: row;
 
@@ -20,11 +19,11 @@
     font-size: @font-size--wiki-search;
     background-color: @osu-colour-b6;
 
-    border: @_border-size solid @osu-colour-b6;
+    border: 1px solid @osu-colour-b6;
     
     &:focus-within {
-      box-shadow: 0 0 10px @osu-colour-orange-1;
-      border: @_border-size solid @osu-colour-orange-1
+      box-shadow: 0 0 10px @osu-colour-h2;
+      border: 1px solid @osu-colour-h2;
     }
   }
 
