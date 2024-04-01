@@ -57,7 +57,7 @@ return [
                 'beatmapset_discussion_unlock_compact' => 'Discussie is ontgrendeld',
 
                 'review_count' => [
-                    'praises' => '',
+                    'praises' => ':count_delimited lof|:count_delimited lof',
                     'problems' => ':count_delimited probleem|:count_delimited problemen',
                     'suggestions' => ':count_delimited suggestie|:count_delimited suggesties',
                 ],

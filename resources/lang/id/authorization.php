@@ -92,7 +92,7 @@ return [
 
     'forum' => [
         'moderate' => [
-            'no_permission' => 'Kamu tdak memiliki izin untuk memoderasi forum ini.',
+            'no_permission' => 'Kamu tidak memiliki izin untuk memoderasi forum ini.',
         ],
 
         'post' => [

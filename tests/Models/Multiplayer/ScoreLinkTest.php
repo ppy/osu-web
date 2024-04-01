@@ -176,4 +176,22 @@ class ScoreLinkTest extends TestCase
             'user_id' => $scoreToken->user_id,
         ]);
     }
+
+    public function testFailedMultiplayerScoresArePreserved()
+    {
+        $playlistItem = PlaylistItem::factory()->create();
+        $scoreToken = ScoreToken::factory()->create([
+            'beatmap_id' => $playlistItem->beatmap_id,
+            'playlist_item_id' => $playlistItem,
+        ]);
+
+        $scoreLink = ScoreLink::complete($scoreToken, [
+            ...static::$commonScoreParams,
+            'beatmap_id' => $playlistItem->beatmap_id,
+            'ruleset_id' => $playlistItem->ruleset_id,
+            'user_id' => $scoreToken->user_id,
+            'passed' => false,
+        ]);
+        $this->assertTrue($scoreLink->score->preserve);
+    }
 }

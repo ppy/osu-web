@@ -106,7 +106,7 @@ return [
         'cancel_not_allowed' => 'Tätä tilausta ei voi peruuttaa tällä hetkellä.',
         'invoice' => 'Näytä lasku',
         'no_orders' => 'Ei tilauksia katsottavissa.',
-        'paid_on' => 'Tilaus laitettu :date',
+        'paid_on' => 'Tilaus tehty :date',
         'resume' => 'Jatka kassalle',
         'shipping_and_handling' => 'Toimitus & käsittely',
         'shopify_expired' => 'Tämän tilauksen kassalinkki on vanhentunut.',
@@ -136,11 +136,11 @@ return [
 
         'not_modifiable_exception' => [
             'cancelled' => 'Et voi muokata tilaustasi, sillä se on peruuntunut.',
-            'checkout' => 'Et voi muokata tilaustasi, koska sitä käsitellään vielä.', // checkout and processing should have the same message.
+            'checkout' => 'Et voi muokata tilaustasi silloin kun sitä käsitellään.', // checkout and processing should have the same message.
             'default' => 'Tilausta ei voi muokata',
             'delivered' => 'Et voi muokata tilaustasi, sillä se on jo toimitettu.',
             'paid' => 'Et voi muokata tilaustasi, sillä se on jo maksettu.',
-            'processing' => 'Et voi muokata tilaustasi, koska sitä käsitellään vielä.',
+            'processing' => 'Et voi muokata tilaustasi silloin kun sitä käsitellään.',
             'shipped' => 'Et voi muokata tilaustasi, sillä se on jo matkalla.',
         ],
 

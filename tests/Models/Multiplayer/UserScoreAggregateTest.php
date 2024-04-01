@@ -140,7 +140,8 @@ class UserScoreAggregateTest extends TestCase
             'total_score' => 10,
         ]);
 
-        $this->addPlay($user, $playlistItem, [
+        $playlistItem2 = $this->createPlaylistItem();
+        $this->addPlay($user, $playlistItem2, [
             'accuracy' => 1,
             'passed' => true,
             'total_score' => 1,
@@ -150,6 +151,7 @@ class UserScoreAggregateTest extends TestCase
 
         $this->assertSame(2, $agg->attempts);
         $this->assertSame(1, $agg->completed);
+        $this->assertSame(1.0, $agg->averageAccuracy());
         $this->assertSame(1, $agg->total_score);
     }
 
