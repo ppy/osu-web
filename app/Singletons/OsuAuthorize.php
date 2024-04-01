@@ -2087,6 +2087,11 @@ class OsuAuthorize
         return 'unauthorized';
     }
 
+    public function checkUserCoverPresetManage(?User $user): ?string
+    {
+        return null;
+    }
+
     /**
      * @param User|null $user
      * @return string
