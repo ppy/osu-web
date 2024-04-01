@@ -302,7 +302,7 @@ class Comment extends Model implements Traits\ReportableInterface
     {
         return [
             'reason' => 'Spam',
-            'user_id' => $this->user_id,
+            'user_id' => $this->user_id ?? 0,
         ];
     }
 
