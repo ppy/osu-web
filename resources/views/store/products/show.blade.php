@@ -125,15 +125,11 @@
 
         <div class="store-page store-page--footer" id="add-to-cart">
             @if ($product->inStock())
-                @php
-                    $buttonClass = 'btn-osu-big btn-osu-big--store-action js-login-required--click';
-                    // workaround the button getting hidden from supporter tag page due to component not being rendered yet.
-                    // supporter-tag is always going to be 1 item anyway.
-                    if ($product->custom_class !== App\Models\Store\Product::SUPPORTER_TAG_NAME) {
-                        $buttonClass .= ' js-store-add-to-cart';
-                    }
-                @endphp
-                <button type="submit" class="{{ $buttonClass }}">
+                <button
+                    class="btn-osu-big btn-osu-big--store-action js-login-required--click js-store-add-to-cart"
+                    type="submit"
+                    {{ $product->custom_class === App\Models\Store\Product::SUPPORTER_TAG_NAME ? 'disabled' : '' }}
+                >
                     {{ osu_trans('store.product.add_to_cart') }}
                 </button>
             @elseif (!$requestedNotification)
