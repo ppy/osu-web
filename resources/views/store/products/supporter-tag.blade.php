@@ -13,5 +13,5 @@
         class="js-react--store-supporter-tag"
         data-product-id={{ $product->product_id }}
         data-max-message-length={{ ExtraDataSupporterTag::MAX_MESSAGE_LENGTH }}
-    />
+    ></div>
 @endif
