@@ -68,39 +68,6 @@ export default class StoreSupporterTag extends React.Component<Props> {
   @observable private username = currentUrlParams().get('target') ?? '';
   private xhr: JQuery.jqXHR<UserJson> | null = null;
 
-  constructor(props: Props) {
-    super(props);
-
-    this.debouncedGetUser = debounce(this.getUser, 300);
-    document.addEventListener('turbolinks:before-cache', this.handleBeforeCache);
-
-    makeObservable(this);
-
-    const json = parseJsonNullable<SavedState>(jsonId, true);
-    if (json != null) {
-      this.giftMessage = json.giftMessage;
-      this.sliderValue = json.sliderValue;
-      this.username = json.username;
-    }
-
-    if (this.username !== '') {
-      this.user = null;
-      this.debouncedGetUser(this.username);
-    } else {
-      this.user = core.currentUserOrFail;
-    }
-
-    disposeOnUnmount(
-      this,
-      autorun(() => {
-        toggleCart(this.isValidUser);
-        if (this.sliderRef.current != null) {
-          $(this.sliderRef.current).slider({ disabled: !this.isValidUser });
-        }
-      }),
-    );
-  }
-
   @computed
   get cost() {
     return Math.floor(this.sliderValue / resolution);
@@ -159,6 +126,39 @@ export default class StoreSupporterTag extends React.Component<Props> {
 
   get isValidUser() {
     return this.user != null && Number.isFinite(this.user.id) && this.user.id > 0;
+  }
+
+  constructor(props: Props) {
+    super(props);
+
+    this.debouncedGetUser = debounce(this.getUser, 300);
+    document.addEventListener('turbolinks:before-cache', this.handleBeforeCache);
+
+    makeObservable(this);
+
+    const json = parseJsonNullable<SavedState>(jsonId, true);
+    if (json != null) {
+      this.giftMessage = json.giftMessage;
+      this.sliderValue = json.sliderValue;
+      this.username = json.username;
+    }
+
+    if (this.username !== '') {
+      this.user = null;
+      this.debouncedGetUser(this.username);
+    } else {
+      this.user = core.currentUserOrFail;
+    }
+
+    disposeOnUnmount(
+      this,
+      autorun(() => {
+        toggleCart(this.isValidUser);
+        if (this.sliderRef.current != null) {
+          $(this.sliderRef.current).slider({ disabled: !this.isValidUser });
+        }
+      }),
+    );
   }
 
   componentDidMount() {
