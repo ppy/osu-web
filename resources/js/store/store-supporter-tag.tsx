@@ -252,7 +252,7 @@ export default class StoreSupporterTag extends React.Component<Props> {
   };
 
   private readonly handleBeforeCache = () => {
-    storeJson(jsonId, {
+    storeJson<SavedState>(jsonId, {
       giftMessage: this.giftMessageRef.current?.value ?? '',
       sliderValue: this.sliderValue,
       username: this.username,
