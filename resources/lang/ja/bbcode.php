@@ -6,7 +6,7 @@
 return [
     'bold' => '太字',
     'heading' => 'ヘッダー',
-    'help' => '',
+    'help' => 'ヘルプ',
     'image' => '画像',
     'imagemap' => '',
     'italic' => '斜体',

@@ -5,7 +5,7 @@
 
 return [
     'create' => [
-        'beatmap_hash_invalid' => '',
-        'submission_disabled' => '',
+        'beatmap_hash_invalid' => 'beatmap_hash가 잘못되었거나 누락되었습니다',
+        'submission_disabled' => '점수 등록이 비활성화되어 있습니다',
     ],
 ];

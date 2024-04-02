@@ -86,7 +86,6 @@ return [
         ],
         'rankings' => [
             '_' => 'sıralama',
-            'kudosu' => 'kudosu',
         ],
         'store' => [
             '_' => 'mağaza',
@@ -196,8 +195,8 @@ return [
             'account-edit' => 'Ayarlar',
             'follows' => 'İzleme listeleri',
             'friends' => 'Arkadaşlar',
-            'legacy_score_only_toggle' => '',
-            'legacy_score_only_toggle_tooltip' => '',
+            'legacy_score_only_toggle' => 'Lazer modu',
+            'legacy_score_only_toggle_tooltip' => 'Lazer modu yeni bir puanlama algoritmasıyla lazerden belirnenen skorları gösterir',
             'logout' => 'Çıkış Yap',
             'profile' => 'Profilim',
         ],

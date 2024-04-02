@@ -246,6 +246,7 @@ return [
         'allowed_rename_groups' => explode(' ', env('USER_ALLOWED_RENAME_GROUPS', 'default')),
         'bypass_verification' => get_bool(env('USER_BYPASS_VERIFICATION')) ?? false,
         'hide_pinned_solo_scores' => get_bool(env('USER_HIDE_PINNED_SOLO_SCORES')) ?? true,
+        'inactive_force_password_reset' => get_bool(env('USER_INACTIVE_FORCE_PASSWORD_RESET') ?? false),
         'inactive_seconds_verification' => (get_int(env('USER_INACTIVE_DAYS_VERIFICATION')) ?? 180) * 86400,
         'min_plays_for_posting' => get_int(env('USER_MIN_PLAYS_FOR_POSTING')) ?? 10,
         'min_plays_allow_verified_bypass' => get_bool(env('USER_MIN_PLAYS_ALLOW_VERIFIED_BYPASS')) ?? true,

@@ -14,8 +14,8 @@ return [
     ],
 
     'judge' => [
-        'hide_judged' => '',
-        'nav_title' => '',
+        'hide_judged' => 'esconder inscrições avaliadas',
+        'nav_title' => 'avaliar',
         'no_current_vote' => 'Ainda não votaste.',
         'update' => 'atualizar',
         'validation' => [
@@ -33,8 +33,8 @@ return [
     ],
 
     'voting' => [
-        'judge_link' => '',
-        'judged_notice' => '',
+        'judge_link' => 'Tu fazes parte do júri deste concurso. Avalia aqui as participações!',
+        'judged_notice' => 'Este concurso está a usar o sistema de apreciação. O júri está neste momento a tratar das participações.',
         'login_required' => 'Por favor inicia sessão para votar.',
         'over' => 'A votação para este concurso terminou',
         'show_voted_only' => 'Mostrar votados',

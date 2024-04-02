@@ -92,7 +92,6 @@ return [
             'mail' => '메일',
             'mapping' => '비트맵 제작자',
             'push' => '푸시 알림',
-            'user_achievement_unlock' => '메달 획득',
         ],
     ],
 

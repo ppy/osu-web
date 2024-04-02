@@ -213,8 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'È stimato che questa mappa verrà classificata in data :date se non vengono trovati problemi. È in posizione #:position nella :queue.',
-            'unresolved_problems' => '',
-            'problems' => '',
+            'unresolved_problems' => 'Questa mappa è attualmente bloccata dal lasciare la sezione Qualificata fino alla risoluzione di :problems.',
+            'problems' => 'questi problemi',
             'on' => 'il giorno :date',
             'queue' => 'coda per la classifica',
             'soon' => 'molto vicina',

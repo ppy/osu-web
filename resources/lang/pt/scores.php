@@ -26,8 +26,8 @@ return [
     'status' => [
         'non_best' => 'Apenas as melhores pontuações pessoais dão pp',
         'non_passing' => 'Apenas as pontuações aprovadas recompensam pp',
-        'no_pp' => '',
+        'no_pp' => 'pp não é concedido a esta pontuação',
         'processing' => 'Esta pontuação ainda está a ser calculada e será exibida em breve',
-        'no_rank' => '',
+        'no_rank' => 'Esta pontuação não tem classificação porque não está classificada ou está marcada para eliminação.',
     ],
 ];

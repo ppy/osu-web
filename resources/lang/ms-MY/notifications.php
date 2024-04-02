@@ -244,11 +244,6 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':username telah memperolehi pingat baharu, ":title"!',
-                'user_achievement_unlock_self' => 'Kamu telah memperolehi pingat baharu, ":title"!',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username telah mencipta beatmap baru',
                 'user_beatmapset_revive' => ':username memiliki beatmap yang dipulihkan dari Perkuburan',

@@ -244,11 +244,6 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':username on ansainnut uuden mitalin, ":title"!',
-                'user_achievement_unlock_self' => 'Olet avannut uuden mitalin, ":title"!',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username on luonut uusia rytmikarttoja',
                 'user_beatmapset_revive' => ':username on elvyttänyt rytmikarttoja',

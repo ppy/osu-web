@@ -79,8 +79,8 @@ return [
                 'beatmapset_love_compact' => 'Карте была присвоена категория Любимая',
                 'beatmapset_nominate' => 'Карта ":title" была номинирована',
                 'beatmapset_nominate_compact' => 'Карта была номинирована',
-                'beatmapset_qualify' => 'Карта ":title" получила достаточно номинаций и вошла в очередь ранкинга',
-                'beatmapset_qualify_compact' => 'Карта поставлена в очередь ранкинга',
+                'beatmapset_qualify' => 'Карта ":title" получила достаточно номинаций и вошла в очередь получения рейтинга',
+                'beatmapset_qualify_compact' => 'Карта поставлена в очередь получения рейтинга',
                 'beatmapset_rank' => 'Карта ":title" стала Рейтинговой',
                 'beatmapset_rank_compact' => 'Карта стала Рейтинговой',
                 'beatmapset_remove_from_loved' => '":title" была удалена из категории Любимая',
@@ -204,7 +204,7 @@ return [
                 'beatmapset_disqualify' => 'Карта ":title" была дисквалифицирована',
                 'beatmapset_love' => '":title" был повышен до любимого',
                 'beatmapset_nominate' => 'Карта ":title" номинирована',
-                'beatmapset_qualify' => 'Карта ":title" получила достаточно номинаций и вошла в очередь ранкинга',
+                'beatmapset_qualify' => 'Карта ":title" получила достаточно номинаций и вошла в очередь получения рейтинга',
                 'beatmapset_rank' => 'Карта ":title" получила категорию Рейтинговая',
                 'beatmapset_remove_from_loved' => '":title" была удалена из категории Любимая',
                 'beatmapset_reset_nominations' => 'Номинация ":title" была сброшена',
@@ -244,11 +244,6 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':username открыл новую медаль: ":title"!',
-                'user_achievement_unlock_self' => 'Вы открыли новую медаль: ":title"!',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username создал новую карту',
                 'user_beatmapset_revive' => ':username обновил карты',

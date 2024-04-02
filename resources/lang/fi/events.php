@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'achievement' => '<strong><em>:user</em></strong> on saanut "<strong>:achievement</strong>" mitalin!',
+    'achievement' => '<strong><em>:user</em></strong> on saanut "<strong>:achievement</strong>" -mitalin!',
     'beatmap_playcount' => 'Karttaa :beatmap on pelattu :count kertaa!',
     'beatmapset_approve' => ':beatmapset käyttäjältä <strong>:user</strong> on nyt :approval',
     'beatmapset_delete' => ':beatmapset on poistettu.',

@@ -244,11 +244,6 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':username je odklenil novo medaljo, ":title"!',
-                'user_achievement_unlock_self' => 'Odklenil si novo medaljo, ":title"!',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username je ustvaril nove beatmape',
                 'user_beatmapset_revive' => ':username je oživel beatmape',

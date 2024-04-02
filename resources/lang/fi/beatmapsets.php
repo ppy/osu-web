@@ -182,7 +182,7 @@ return [
 
             'no_scores' => [
                 'country' => 'Kartasta ei vielä löydy maansisäisiä tuloksia!',
-                'friend' => 'Kukaan kavereistasi ei vielä ole saanut tulosta tässä mapissa!',
+                'friend' => 'Kukaan kavereistasi ei vielä ole saanut tulosta tässä kartassa!',
                 'global' => 'Tuloksia ei ole. Voisit hankkia niitä.',
                 'loading' => 'Ladataan tuloksia...',
                 'unranked' => 'Rankkaamaton rytmikartta.',

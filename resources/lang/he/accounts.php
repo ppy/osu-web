@@ -92,7 +92,6 @@ return [
             'mail' => 'דואר אלקטרוני',
             'mapping' => '',
             'push' => 'דחיפה',
-            'user_achievement_unlock' => 'המדליות הפתוחות שלך',
         ],
     ],
 

@@ -244,11 +244,6 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':username hat eine neue Medaille freigeschaltet, ":title"!',
-                'user_achievement_unlock_self' => 'Du hast eine neue Medaille freigeschaltet, ":title"!',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username hat neue Beatmaps erstellt',
                 'user_beatmapset_revive' => ':username hat Beatmaps wiederbelebt',

@@ -92,7 +92,6 @@ return [
             'mail' => '邮件',
             'mapping' => '谱师',
             'push' => '推送',
-            'user_achievement_unlock' => '成就解锁',
         ],
     ],
 

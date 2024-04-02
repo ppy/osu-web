@@ -213,8 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'Herhangi bir sorun bulunmazsa mapin tahminen dereceli olacağı vakit :date. :queue :position. sırada bulunuyor.',
-            'unresolved_problems' => '',
-            'problems' => '',
+            'unresolved_problems' => 'Bu map şuanda :problems çözülene kadar nitelikli bölümünden çıkması engellenmiştir.',
+            'problems' => 'bu problemler',
             'on' => ':date tarihinde',
             'queue' => 'Derecelendirme sırasında',
             'soon' => 'çok yakın',

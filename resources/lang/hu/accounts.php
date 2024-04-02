@@ -92,7 +92,6 @@ return [
             'mail' => 'e-mail',
             'mapping' => 'beatmap készítő',
             'push' => 'Elöjövő',
-            'user_achievement_unlock' => 'felhasználói medál feloldva',
         ],
     ],
 

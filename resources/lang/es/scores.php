@@ -28,6 +28,6 @@ return [
         'non_passing' => 'Solo las puntuaciones aprobadas dan pp',
         'no_pp' => 'no se concede pp para esta puntuación',
         'processing' => 'Esta puntuación aún se está calculando y se mostrará pronto',
-        'no_rank' => '',
+        'no_rank' => 'Esta puntuación no tiene una clasificación, ya que no está clasificada o está marcada para ser eliminada',
     ],
 ];

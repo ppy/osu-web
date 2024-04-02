@@ -92,7 +92,6 @@ return [
             'mail' => '郵箱',
             'mapping' => '圖譜製作者',
             'push' => '推送',
-            'user_achievement_unlock' => '成就解鎖',
         ],
     ],
 
