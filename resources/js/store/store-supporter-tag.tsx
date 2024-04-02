@@ -278,7 +278,6 @@ export default class StoreSupporterTag extends React.Component<Props> {
 
     this.debouncedGetUser.cancel();
     this.xhr?.abort();
-    this.xhr = null;
 
     // reset to current user on empty
     if (this.username === '') {
