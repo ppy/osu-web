@@ -20,7 +20,6 @@ const jsonId = 'json-store-supporter-tag';
 
 const maxValue = 52;
 const minValue = 4;
-const resolution = 8;
 
 interface Props {
   maxMessageLength: number;
@@ -53,24 +52,20 @@ function durationToPrice(duration: number) {
   }
 }
 
-function sliderValueFrom(value: number) {
-  return value * resolution;
-}
-
 @observer
 export default class StoreSupporterTag extends React.Component<Props> {
   private readonly debouncedGetUser;
   private readonly giftMessageRef = React.createRef<HTMLTextAreaElement>();
   private readonly savedGiftMessage: string = '';
   private readonly sliderRef = React.createRef<HTMLDivElement>();
-  @observable private sliderValue = sliderValueFrom(minValue);
+  @observable private sliderValue = minValue;
   @observable private user: UserJson | null;
   @observable private username = currentUrlParams().get('target') ?? '';
   private xhr: JQuery.jqXHR<UserJson> | null = null;
 
   @computed
   get cost() {
-    return Math.floor(this.sliderValue / resolution);
+    return Math.floor(this.sliderValue);
   }
 
   get discount() {
@@ -262,7 +257,7 @@ export default class StoreSupporterTag extends React.Component<Props> {
   private readonly handlePresetClick = (event: React.SyntheticEvent<HTMLElement>) => {
     const price = durationToPrice(+(event.currentTarget.dataset?.months ?? 0));
     if (price != null && this.sliderRef.current != null) {
-      $(this.sliderRef.current).slider('value', sliderValueFrom(price));
+      $(this.sliderRef.current).slider('value', price);
     }
   };
 
@@ -295,11 +290,11 @@ export default class StoreSupporterTag extends React.Component<Props> {
     return $(slider).slider({
       animate: true,
       change: this.handleSliderValueChanged,
-      max: sliderValueFrom(maxValue),
-      min: sliderValueFrom(minValue),
+      max: maxValue,
+      min: minValue,
       range: 'min',
       slide: this.handleSliderValueChanged,
-      step: 1,
+      step: 0.125,
       value: this.sliderValue,
     });
   }
