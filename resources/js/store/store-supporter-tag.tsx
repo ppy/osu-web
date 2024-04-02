@@ -164,8 +164,6 @@ export default class StoreSupporterTag extends React.Component<Props> {
 
   componentDidMount() {
     this.initializeSlider();
-    // wworkaround for add to cart button getting hidden on page load because the component hasn't rendered yet.
-    $('js-store-add-to-cart').show();
   }
 
   componentWillUnmount() {
@@ -176,7 +174,7 @@ export default class StoreSupporterTag extends React.Component<Props> {
   render() {
     return (
       <>
-        <div className='js-store store-supporter-tag'>
+        <div className='store-supporter-tag'>
           <input name='item[product_id]' type='hidden' value={this.props.productId} />
           <input className='js-store-item-quantity' name='item[quantity]' type='hidden' value='1' />
           <input defaultValue={this.cost} id='supporter-tag-form-price' name='item[cost]' type='hidden' />
