@@ -371,6 +371,7 @@ function datadog_timing(callable $callable, $stat, array $tag = null)
 
 function db_unsigned_increment($column, $count)
 {
+    $column = "COALESCE($column, 0)";
     if ($count >= 0) {
         $value = "{$column} + {$count}";
     } else {

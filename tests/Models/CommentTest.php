@@ -80,6 +80,69 @@ class CommentTest extends TestCase
         $this->assertNull($comment->commentable);
     }
 
+    public function testReply(): void
+    {
+        $user = User::factory()->create();
+        $commentable = Build::factory()->create();
+        $parentComment = $commentable->comments()->create([
+            'message' => 'Test',
+            'user_id' => $user->getKey(),
+        ]);
+
+        $this->expectCountChange(fn () => $parentComment->fresh()->replies()->count(), 1);
+        $this->expectCountChange(fn () => $parentComment->fresh()->replies_count_cache, 1);
+        $this->expectCountChange(fn () => $parentComment->fresh()->visible_replies_count_cache, 1);
+
+        $commentable->comments()->create([
+            'message' => 'Hello',
+            'parent_id' => $parentComment->getKey(),
+            'user_id' => $user->getKey(),
+        ]);
+    }
+
+    public function testReplyRestore(): void
+    {
+        $user = User::factory()->create();
+        $commentable = Build::factory()->create();
+        $parentComment = $commentable->comments()->create([
+            'message' => 'Test',
+            'user_id' => $user->getKey(),
+        ]);
+        $reply = $commentable->comments()->create([
+            'message' => 'Hello',
+            'parent_id' => $parentComment->getKey(),
+            'user_id' => $user->getKey(),
+        ]);
+        $reply->softDelete($user);
+
+        $this->expectCountChange(fn () => $parentComment->fresh()->replies()->count(), 0);
+        $this->expectCountChange(fn () => $parentComment->fresh()->replies_count_cache, 0);
+        $this->expectCountChange(fn () => $parentComment->fresh()->visible_replies_count_cache, 1);
+
+        $reply->restore();
+    }
+
+    public function testReplySoftDelete(): void
+    {
+        $user = User::factory()->create();
+        $commentable = Build::factory()->create();
+        $parentComment = $commentable->comments()->create([
+            'message' => 'Test',
+            'user_id' => $user->getKey(),
+        ]);
+        $reply = $commentable->comments()->create([
+            'message' => 'Hello',
+            'parent_id' => $parentComment->getKey(),
+            'user_id' => $user->getKey(),
+        ]);
+
+        $this->expectCountChange(fn () => $parentComment->fresh()->replies()->count(), 0);
+        $this->expectCountChange(fn () => $parentComment->fresh()->replies_count_cache, 0);
+        $this->expectCountChange(fn () => $parentComment->fresh()->visible_replies_count_cache, -1);
+
+        $reply->softDelete($user);
+    }
+
     public function testUnpinOnDelete()
     {
         $comment = Comment::factory(['pinned' => true])->create();

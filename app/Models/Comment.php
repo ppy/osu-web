@@ -157,6 +157,7 @@ class Comment extends Model implements Traits\ReportableInterface
             'parent_id',
             'replies_count_cache',
             'user_id',
+            'visible_replies_count_cache',
             'votes_count_cache' => $this->getRawAttribute($key),
 
             'created_at',
@@ -257,10 +258,7 @@ class Comment extends Model implements Traits\ReportableInterface
         }
 
         return $this->getConnection()->transaction(function () use ($options) {
-            if (!$this->exists && $this->parent_id !== null && $this->parent !== null) {
-                // skips validation and everything
-                $this->parent->incrementInstance('replies_count_cache', 1, ['updated_at' => Carbon::now()]);
-            }
+            $this->updateParentReplyCounts();
 
             if ($this->isDirty('deleted_at')) {
                 if (isset($this->deleted_at)) {
@@ -316,5 +314,32 @@ class Comment extends Model implements Traits\ReportableInterface
     private function getMessageHtml(): ?string
     {
         return $this->memoize(__FUNCTION__, fn () => markdown($this->message, 'comment'));
+    }
+
+    private function updateParentReplyCounts(): void
+    {
+        if ($this->parent_id === null) {
+            return;
+        }
+
+        $updates = [];
+        $visibleRepliesChange = 0;
+        if ($this->exists) {
+            if ($this->isDirty('deleted_at')) {
+                $visibleRepliesChange = $this->getAttribute('deleted_at') === null ? 1 : -1;
+            }
+        } else {
+            $updates['replies_count_cache'] = db_unsigned_increment('replies_count_cache', 1);
+            $visibleRepliesChange = $this->getAttribute('deleted_at') === null ? 1 : 0;
+        }
+        if ($visibleRepliesChange !== 0) {
+            $updates['visible_replies_count_cache'] = db_unsigned_increment(
+                'visible_replies_count_cache',
+                $visibleRepliesChange,
+            );
+        }
+        if (!empty($updates)) {
+            $this->parent()->update([...$updates, 'updated_at' => Carbon::now()]);
+        }
     }
 }
