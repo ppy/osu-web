@@ -27,7 +27,7 @@ interface Props {
 }
 
 interface SavedState {
-  giftMessage: string;
+  savedGiftMessage: string;
   sliderValue: number;
   username: string;
 }
@@ -60,8 +60,8 @@ function sliderValueFrom(value: number) {
 @observer
 export default class StoreSupporterTag extends React.Component<Props> {
   private readonly debouncedGetUser;
-  private readonly giftMessage: string = '';
   private readonly giftMessageRef = React.createRef<HTMLTextAreaElement>();
+  private readonly savedGiftMessage: string = '';
   private readonly sliderRef = React.createRef<HTMLDivElement>();
   @observable private sliderValue = sliderValueFrom(minValue);
   @observable private user: UserJson | null;
@@ -138,7 +138,7 @@ export default class StoreSupporterTag extends React.Component<Props> {
 
     const json = parseJsonNullable<SavedState>(jsonId, true);
     if (json != null) {
-      this.giftMessage = json.giftMessage;
+      this.savedGiftMessage = json.savedGiftMessage;
       this.sliderValue = json.sliderValue;
       this.username = json.username;
     }
@@ -190,7 +190,7 @@ export default class StoreSupporterTag extends React.Component<Props> {
             <textarea
               ref={this.giftMessageRef}
               className='store-supporter-tag__input store-supporter-tag__input--message'
-              defaultValue={this.giftMessage}
+              defaultValue={this.savedGiftMessage}
               maxLength={this.props.maxMessageLength}
               name='item[extra_data][message]'
               placeholder={trans('store.supporter_tag.gift_message', { length: this.props.maxMessageLength })}
@@ -253,7 +253,7 @@ export default class StoreSupporterTag extends React.Component<Props> {
 
   private readonly handleBeforeCache = () => {
     storeJson<SavedState>(jsonId, {
-      giftMessage: this.giftMessageRef.current?.value ?? '',
+      savedGiftMessage: this.giftMessageRef.current?.value ?? '',
       sliderValue: this.sliderValue,
       username: this.username,
     });
