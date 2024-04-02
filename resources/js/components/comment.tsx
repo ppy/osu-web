@@ -8,6 +8,7 @@ import { truncate } from 'lodash';
 import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import CommentModel from 'models/comment';
+import { canModerateComments } from 'models/comment';
 import { deletedUserJson } from 'models/user';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -107,10 +108,37 @@ export default class Comment extends React.Component<Props> {
     return this.props.controller.isVoting(this.props.comment);
   }
 
+  @computed
   private get replies() {
-    const ids = this.props.controller.state.commentIdsByParentId[this.props.comment.id];
+    return this.props.controller.getReplies(this.props.comment);
+  }
 
-    return this.props.controller.getComments(ids);
+  @computed
+  private get shouldRender() {
+    if (!this.props.comment.isDeleted) {
+      return true;
+    }
+
+    if (canModerateComments() && core.userPreferences.get('comments_show_deleted')) {
+      return true;
+    }
+
+    const replies = this.replies;
+
+    return replies.length > 0 && replies.some((reply) => reply.isVisible);
+  }
+
+  @computed
+  private get shouldRenderContent() {
+    if (this.props.comment.messageHtml == null) {
+      return false;
+    }
+
+    if (canModerateComments() && core.userPreferences.get('comments_show_deleted')) {
+      return true;
+    }
+
+    return !this.props.comment.isDeleted;
   }
 
   @computed
@@ -138,6 +166,10 @@ export default class Comment extends React.Component<Props> {
   }
 
   render() {
+    if (!this.shouldRender) {
+      return null;
+    }
+
     return (
       <div className={classWithModifiers(
         'comment',
@@ -250,22 +282,16 @@ export default class Comment extends React.Component<Props> {
     );
   }
 
-  private readonly renderComment = (comment: CommentModel) => {
-    if (comment == null || (comment.isDeleted && !core.userPreferences.get('comments_show_deleted'))) {
-      return;
-    }
-
-    return (
-      <Comment
-        key={comment.id}
-        comment={comment}
-        controller={this.props.controller}
-        depth={this.props.depth + 1}
-        expandReplies={this.props.expandReplies}
-        modifiers={this.props.modifiers}
-      />
-    );
-  };
+  private readonly renderComment = (comment: CommentModel) => (
+    <Comment
+      key={comment.id}
+      comment={comment}
+      controller={this.props.controller}
+      depth={this.props.depth + 1}
+      expandReplies={this.props.expandReplies}
+      modifiers={this.props.modifiers}
+    />
+  );
 
   private renderCommentableMeta() {
     if (!this.props.showCommentableMeta) return;
@@ -476,12 +502,12 @@ export default class Comment extends React.Component<Props> {
                   modifiers={this.props.modifiers}
                 />
               </div>
-              : this.props.comment.messageHtml != null &&
+              : this.shouldRenderContent &&
               <>
                 <div
                   className='comment__message'
                   dangerouslySetInnerHTML={{
-                    __html: this.props.comment.messageHtml,
+                    __html: this.props.comment.messageHtml ?? '',
                   }}
                 />
                 {this.isLongContent && this.renderToggleClipButton()}
@@ -494,7 +520,7 @@ export default class Comment extends React.Component<Props> {
           </div>
         </div>
 
-        {this.props.comment.repliesCount > 0 &&
+        {this.props.comment.visibleReplyCount > 0 &&
           <div className={classWithModifiers('comment__replies', {
             hidden: !this.expandReplies,
             indented: this.props.depth < maxDepth,
@@ -510,7 +536,7 @@ export default class Comment extends React.Component<Props> {
               label={this.replies.length === 0 ? trans('comments.load_replies') : undefined}
               modifiers={this.props.modifiers}
               parent={this.props.comment}
-              total={this.props.comment.repliesCount}
+              total={this.props.comment.visibleReplyCount}
             />
           </div>
         }
@@ -595,7 +621,7 @@ export default class Comment extends React.Component<Props> {
   }
 
   private renderRepliesText() {
-    if (this.props.comment.repliesCount === 0) return;
+    if (this.props.comment.visibleReplyCount === 0) return;
 
     let label: string;
     let callback: () => void;
@@ -715,6 +741,7 @@ export default class Comment extends React.Component<Props> {
 
   private renderToolbar() {
     if (!this.props.showToolbar) return;
+    if (!canModerateComments()) return;
 
     return (
       <div className='comment__toolbar'>
