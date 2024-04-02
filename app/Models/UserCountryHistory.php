@@ -28,11 +28,6 @@ class UserCountryHistory extends Model
     protected $primaryKeys = ['user_id', 'year_month', 'country_acronym'];
     protected $table = 'user_country_history';
 
-    public static function formatDate(\DateTimeInterface $date): string
-    {
-        return $date->format('ym');
-    }
-
     public function country(): BelongsTo
     {
         return $this->belongsTo(Country::class, 'country_acronym');
@@ -46,7 +41,7 @@ class UserCountryHistory extends Model
     public function setYearMonthAttribute(\DateTimeInterface|string $value): void
     {
         $this->attributes['year_month'] = $value instanceof \DateTimeInterface
-            ? static::formatDate($value)
+            ? format_month_column($value)
             : $value;
     }
 }

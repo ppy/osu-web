@@ -665,8 +665,6 @@ class UsersController extends Controller
         } else {
             $achievements = json_collection(app('medals')->all(), 'Achievement');
 
-            $extras = [];
-
             $initialData = [
                 'achievements' => $achievements,
                 'current_mode' => $currentMode,

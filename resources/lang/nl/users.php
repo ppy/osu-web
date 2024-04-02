@@ -124,7 +124,7 @@ return [
     ],
 
     'ogp' => [
-        'modding_description' => '',
+        'modding_description' => 'Beatmaps: :counts',
         'modding_description_empty' => 'Gebruiker heeft geen beatmaps...',
 
         'description' => [

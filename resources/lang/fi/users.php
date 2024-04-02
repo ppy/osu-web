@@ -259,12 +259,12 @@ return [
             'discussions' => [
                 'title' => 'Keskustelut',
                 'title_longer' => 'Viimeaikaiset keskustelut',
-                'show_more' => 'nää lisää keskusteluja',
+                'show_more' => 'katso lisää keskusteluja',
             ],
             'events' => [
                 'title' => 'Tapahtumat',
-                'title_longer' => 'Viimeisimmät tapahtumat',
-                'show_more' => 'nää lisää tapahtumia',
+                'title_longer' => 'Viimeaikaiset tapahtumat',
+                'show_more' => 'katso lisää tapahtumia',
             ],
             'historical' => [
                 'title' => 'Historialliset',
@@ -279,7 +279,7 @@ return [
                 ],
                 'recent_plays' => [
                     'accuracy' => 'tarkkuus: :percentage',
-                    'title' => 'Viimeisimmät pelaukset (24t)',
+                    'title' => 'Viimeaikaiset pelaukset (24t)',
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Uusintojen katsomishistoria',
@@ -348,8 +348,8 @@ return [
             ],
             'posts' => [
                 'title' => 'Julkaisut',
-                'title_longer' => 'Viimeisimmät julkaisut',
-                'show_more' => 'Katso lisää julkaisuja',
+                'title_longer' => 'Viimeaikaiset julkaisut',
+                'show_more' => 'katso lisää julkaisuja',
             ],
             'recent_activity' => [
                 'title' => 'Viimeisimmät',
@@ -384,7 +384,7 @@ return [
                 'given' => 'Annetut äänet (viimeiset 3 kuukautta)',
                 'received' => 'Saadut äänet (viimeiset 3 kuukautta)',
                 'title' => 'Äänet',
-                'title_longer' => 'Viimeisimmät Äänet',
+                'title_longer' => 'Viimeaikaiset äänet',
                 'vote_count' => ':count_delimited ääni|:count_delimited ääntä',
             ],
             'account_standing' => [
@@ -393,7 +393,7 @@ return [
                 'remaining_silence' => '<strong>:username</strong> pystyy puhumaan seuraavan kerran :duration.',
 
                 'recent_infringements' => [
-                    'title' => 'Viimeisimmät rikkomukset',
+                    'title' => 'Viimeaikaiset rikkomukset',
                     'date' => 'päivä',
                     'action' => 'toiminto',
                     'length' => 'pituus',
@@ -421,13 +421,13 @@ return [
         ],
         'not_found' => [
             'reason_1' => 'Käyttäjänimi saattaa olla vaihtunut.',
-            'reason_2' => 'Käyttäjä voi olla tilapaisesti poissa käytöstä tietoturvasyistä tai väärinkäytön seurauksena.',
+            'reason_2' => 'Käyttäjätunnus voi olla tilapäisesti pois käytöstä tietoturvasyistä tai väärinkäytön seurauksena.',
             'reason_3' => 'Teit mahdollisesti kirjoitusvirheen!',
-            'reason_header' => 'Tähän on lukuisia mahdollisia syitä:',
+            'reason_header' => 'Tähän on muutama mahdollinen syy:',
             'title' => 'Käyttäjää ei löytynyt! ;_;',
         ],
         'page' => [
-            'button' => 'Muokkaa profiilisivua',
+            'button' => 'muokkaa profiilisivua',
             'description' => '<strong>minä!</strong> on henkilökohtainen alue profiilisivullasi, jota voit muokata.',
             'edit_big' => 'Muokkaa minua!',
             'placeholder' => 'Kirjoita sivun sisältö tähän',
