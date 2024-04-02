@@ -292,8 +292,6 @@ export default class StoreSupporterTag extends React.Component<Props> {
     const slider = this.sliderRef.current;
     if (slider == null) return;
 
-    $(slider).find('.ui-slider-range').remove();
-
     return $(slider).slider({
       animate: true,
       change: this.handleSliderValueChanged,
