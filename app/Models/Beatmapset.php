@@ -21,6 +21,7 @@ use App\Jobs\Notifications\BeatmapsetResetNominations;
 use App\Jobs\RemoveBeatmapsetBestScores;
 use App\Jobs\RemoveBeatmapsetSoloScores;
 use App\Libraries\BBCodeFromDB;
+use App\Libraries\BeatmapsetMainRuleset;
 use App\Libraries\Commentable;
 use App\Libraries\Elasticsearch\Indexable;
 use App\Libraries\ImageProcessorService;
@@ -32,6 +33,7 @@ use App\Traits\Validatable;
 use Cache;
 use Carbon\Carbon;
 use DB;
+use Ds\Set;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -1149,7 +1151,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         $mainRuleset = $this->getRawAttribute('main_ruleset');
 
         if ($mainRuleset === null) {
-            $ruleset = $this->calculateMainRuleset();
+            $ruleset = (new BeatmapsetMainRuleset($this))->mainRuleset();
             $this->update(['main_ruleset' => $ruleset?->value ?? static::UNDEFINED_MAIN_RULESET]);
 
             return $ruleset;
@@ -1459,7 +1461,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
     {
         return $this->update([
             'hype' => $this->freshHype(),
-            'main_ruleset' => $this->calculateMainRuleset()?->value ?? static::UNDEFINED_MAIN_RULESET,
+            'main_ruleset' => (new BeatmapsetMainRuleset($this))->mainRuleset()?->value ?? static::UNDEFINED_MAIN_RULESET,
             'nominations' => $this->isLegacyNominationMode() ? $this->currentNominationCount() : array_sum(array_values($this->currentNominationCount())),
         ]);
     }
@@ -1530,58 +1532,13 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         });
     }
 
-    private function calculateMainRuleset(): ?Ruleset
+    public function groupedBeatmapsQuery()
     {
-        $baseQuery = $this->beatmaps()
+        return $this->beatmaps()
             ->groupBy('playmode')
             ->select('playmode', DB::raw('count(*) as total'))
             ->orderBy('total', 'desc')
             ->orderBy('playmode', 'asc');
-
-        $groups = $baseQuery->get();
-
-        // clear winner in playmode counts exists.
-        if ($groups->count() === 1 || $groups[0]->getRawAttribute('total') > $groups[1]->getRawAttribute('total')) {
-            return Ruleset::from($groups[0]->playmode);
-        }
-
-        // maps by host mapper
-        $groupedHostOnly = $baseQuery->where('user_id', $this->user_id)->get();
-
-        if (
-            $groupedHostOnly->count() === 1
-                || $groupedHostOnly->count() > 1
-                    && $groupedHostOnly[0]->getRawAttribute('total') > $groupedHostOnly[1]->getRawAttribute('total')
-        ) {
-            return Ruleset::from($groupedHostOnly[0]->playmode);
-        }
-
-        // First mode with more nominations that others becomes main mode.
-        // Implicity implies that limited BN nominations because main mode.
-        $nominations = $this->beatmapsetNominations()->current()->get();
-        $nominationsByRuleset = [];
-
-        foreach ($nominations as $nomination) {
-            $rulesets = Ruleset::tryFromNames($nomination->modes);
-            foreach ($rulesets as $ruleset) {
-                $nominationsByRuleset[$ruleset->name] ??= 0;
-                $nominationsByRuleset[$ruleset->name]++;
-            }
-
-            // bailout as soon as there is a clear winner
-            $nominatedRulesetsCount = count($nominationsByRuleset);
-            if ($nominatedRulesetsCount === 1) {
-                return Ruleset::tryFromName(array_keys($nominationsByRuleset)[0]);
-            } else if ($nominatedRulesetsCount > 1) {
-                arsort($nominationsByRuleset);
-                $values = array_values($nominationsByRuleset);
-                if ($values[0] > $values[1]) {
-                    return Ruleset::tryFromName(array_keys($nominationsByRuleset)[0]);
-                }
-            }
-        }
-
-        return null;
     }
 
     private function defaultCoverTimestamp(): string

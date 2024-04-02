@@ -93,39 +93,6 @@ class BeatmapsetTest extends TestCase
         $this->assertSame(Ruleset::catch, $beatmapset->mainRuleset());
     }
 
-    public function testMainRulesetHybridBeatmapsetWithGuestMappers()
-    {
-        $guest = User::factory()->create();
-
-        $beatmapset = $this->beatmapsetFactory()
-            ->withBeatmaps(Ruleset::osu, 1, $guest)
-            ->withBeatmaps(Ruleset::taiko, 3, $guest)
-            ->withBeatmaps(Ruleset::taiko, 1)
-            ->withBeatmaps(Ruleset::catch, 2, $guest)
-            ->withBeatmaps(Ruleset::catch, 2)
-            ->withBeatmaps(Ruleset::mania, 1)
-            ->create();
-
-        $this->assertSame(Ruleset::catch, $beatmapset->mainRuleset());
-    }
-
-    public function testMainRulesetHybridBeatmapsetWithGuestMappersSameCount()
-    {
-        $guest = User::factory()->create();
-
-        $beatmapset = $this->beatmapsetFactory()
-            ->withBeatmaps(Ruleset::osu, 1)
-            ->withBeatmaps(Ruleset::taiko, 1, $guest)
-            ->withBeatmaps(Ruleset::taiko, 1)
-            ->withBeatmaps(Ruleset::catch, 2, $guest)
-            ->withBeatmaps(Ruleset::catch, 2)
-            ->withBeatmaps(Ruleset::mania, 2, $guest)
-            ->withBeatmaps(Ruleset::mania, 2)
-            ->create();
-
-        $this->assertSame(null, $beatmapset->mainRuleset());
-    }
-
     /**
      * @dataProvider mainRulesetHybridBeatmapsetSameCountDataProvider
      */
@@ -145,6 +112,59 @@ class BeatmapsetTest extends TestCase
         foreach ($steps as $step) {
             $nominatedRulesets = $step[0];
             $expectedMainRuleset = $step[1];
+
+            $beatmapset->nominate($userFactory->create(), $nominatedRulesets);
+
+            $this->assertSame($expectedMainRuleset, $beatmapset->mainRuleset());
+        }
+    }
+
+    public function testMainRulesetHybridBeatmapsetWithGuestMappers()
+    {
+        $guest = User::factory()->create();
+
+        $beatmapset = $this->beatmapsetFactory()
+            ->withBeatmaps(Ruleset::osu, 1, $guest)
+            ->withBeatmaps(Ruleset::taiko, 3, $guest)
+            ->withBeatmaps(Ruleset::taiko, 1)
+            ->withBeatmaps(Ruleset::catch, 2, $guest)
+            ->withBeatmaps(Ruleset::catch, 2)
+            ->withBeatmaps(Ruleset::mania, 1)
+            ->create();
+
+        $this->assertSame(Ruleset::catch, $beatmapset->mainRuleset());
+    }
+
+    /**
+     * @dataProvider mainRulesetHybridBeatmapsetWithGuestMappersSameCountDataProvider
+     */
+    public function testMainRulesetHybridBeatmapsetWithGuestMappersSameCount(array $steps)
+    {
+        $userFactory = User::factory()->withGroup('bng', ['osu', 'taiko', 'fruits', 'mania']);
+        $guest = User::factory()->create();
+
+        // possible main ruleset will be catch or mania.
+        $beatmapset = $this->beatmapsetFactory()
+            ->withBeatmaps(Ruleset::osu, 1)
+            ->withBeatmaps(Ruleset::taiko, 1, $guest)
+            ->withBeatmaps(Ruleset::taiko, 1)
+            ->withBeatmaps(Ruleset::catch, 2, $guest)
+            ->withBeatmaps(Ruleset::catch, 2)
+            ->withBeatmaps(Ruleset::mania, 2, $guest)
+            ->withBeatmaps(Ruleset::mania, 2)
+            ->create();
+
+        $this->assertSame(null, $beatmapset->mainRuleset());
+
+        foreach ($steps as $step) {
+            $nominatedRulesets = $step[0];
+            $expectedMainRuleset = $step[1];
+            $expectedErrorMessage = $step[2] ?? null;
+
+            if ($expectedErrorMessage !== null) {
+                $this->expectException(InvariantException::class);
+                $this->expectExceptionMessage(osu_trans("beatmapsets.nominate.{$expectedErrorMessage}"));
+            }
 
             $beatmapset->nominate($userFactory->create(), $nominatedRulesets);
 
@@ -490,7 +510,7 @@ class BeatmapsetTest extends TestCase
         $this->expectExceptionCallable(
             fn () => $beatmapset->nominate($user, ['osu']),
             InvariantException::class,
-            osu_trans('beatmapsets.nominate.too_many')
+            osu_trans('beatmapsets.nominate.too_many_ineligible_main_ruleset')
         );
 
         $this->assertTrue($beatmapset->isPending());
@@ -635,6 +655,29 @@ class BeatmapsetTest extends TestCase
             [[
                 [['fruits'], Ruleset::catch],
                 [['osu'], Ruleset::catch],
+            ]],
+        ];
+    }
+
+    public static function mainRulesetHybridBeatmapsetWithGuestMappersSameCountDataProvider()
+    {
+        return [
+            [[
+                [['osu', 'taiko'], null],
+                [['taiko'], null, 'too_many_ineligible_main_ruleset'],
+            ]],
+            [[
+                [['osu', 'taiko'], null],
+                [['taiko', 'fruits'], null, 'too_many_ineligible_main_ruleset'],
+            ]],
+            [[
+                [['osu', 'taiko'], null],
+                [['fruits', 'mania'], null],
+                [['fruits'], Ruleset::catch],
+            ]],
+            [[
+                [['fruits'], Ruleset::catch],
+                [['mania'], Ruleset::catch],
             ]],
         ];
     }

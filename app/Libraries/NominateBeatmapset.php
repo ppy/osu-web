@@ -108,14 +108,26 @@ class NominateBeatmapset
         // This needs to be enforced for Beatmapset::mainRuleset()
         $nominationCount = $this->beatmapset->currentNominationCount();
 
+        // add potential counts
         foreach ($rulesets as $ruleset) {
             $nominationCount[$ruleset->legacyName()]++;
         }
 
-        arsort($nominationCount);
-        // We can ignore the first highest count, other rulesets need to be no more than 1.
-        if (count($nominationCount) > 1 && array_values($nominationCount)[1] > 1) {
-            throw new InvariantException(osu_trans('beatmapsets.nominate.too_many_non_main_ruleset'));
+        $eligibleRulesets = (new BeatmapsetMainRuleset($this->beatmapset))->eligible();
+
+        $maybeHasMainRuleset = false;
+        foreach ($nominationCount as $legacyName => $count) {
+            if ($count > 1) {
+                if ($maybeHasMainRuleset) {
+                    throw new InvariantException(osu_trans('beatmapsets.nominate.too_many_non_main_ruleset'));
+                }
+
+                if (!$eligibleRulesets->contains(Ruleset::tryFromName($legacyName))) {
+                    throw new InvariantException(osu_trans('beatmapsets.nominate.too_many_ineligible_main_ruleset'));
+                }
+
+                $maybeHasMainRuleset = true;
+            }
         }
 
         foreach ($rulesets as $ruleset) {
