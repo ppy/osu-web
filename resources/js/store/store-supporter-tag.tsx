@@ -24,7 +24,6 @@ const resolution = 8;
 
 interface Props {
   maxMessageLength: number;
-  productId: number;
 }
 
 interface SavedState {
@@ -173,67 +172,63 @@ export default class StoreSupporterTag extends React.Component<Props> {
 
   render() {
     return (
-      <>
-        <div className='store-supporter-tag'>
-          <input name='item[product_id]' type='hidden' value={this.props.productId} />
-          <input className='js-store-item-quantity' name='item[quantity]' type='hidden' value='1' />
-          <input defaultValue={this.cost} id='supporter-tag-form-price' name='item[cost]' type='hidden' />
-          <input defaultValue={this.user?.id} name='item[extra_data][target_id]' type='hidden' />
-          <div className='store-supporter-tag__user-search'>
-            <UserCard user={this.user} />
-            <input
-              autoComplete='off'
-              className='store-supporter-tag__input'
-              id='username'
-              name='item[extra_data][username]'
-              onChange={this.handleUsernameChange}
-              placeholder={trans('store.supporter_tag.gift')}
-              value={this.username}
+      <div className='store-supporter-tag'>
+        <input defaultValue={this.cost} id='supporter-tag-form-price' name='item[cost]' type='hidden' />
+        <input defaultValue={this.user?.id} name='item[extra_data][target_id]' type='hidden' />
+        <div className='store-supporter-tag__user-search'>
+          <UserCard user={this.user} />
+          <input
+            autoComplete='off'
+            className='store-supporter-tag__input'
+            id='username'
+            name='item[extra_data][username]'
+            onChange={this.handleUsernameChange}
+            placeholder={trans('store.supporter_tag.gift')}
+            value={this.username}
+          />
+          <div data-visibility={!this.isValidUser || this.isGiftingSelf ? 'hidden' : 'visible'}>
+            <textarea
+              ref={this.giftMessageRef}
+              className='store-supporter-tag__input store-supporter-tag__input--message'
+              defaultValue={this.giftMessage}
+              maxLength={this.props.maxMessageLength}
+              name='item[extra_data][message]'
+              placeholder={trans('store.supporter_tag.gift_message', { length: this.props.maxMessageLength })}
+              rows={3}
             />
-            <div data-visibility={!this.isValidUser || this.isGiftingSelf ? 'hidden' : 'visible'}>
-              <textarea
-                ref={this.giftMessageRef}
-                className='store-supporter-tag__input store-supporter-tag__input--message'
-                defaultValue={this.giftMessage}
-                maxLength={this.props.maxMessageLength}
-                name='item[extra_data][message]'
-                placeholder={trans('store.supporter_tag.gift_message', { length: this.props.maxMessageLength })}
-                rows={3}
-              />
-            </div>
           </div>
-          <div className='store-slider'>
-            <div ref={this.sliderRef} className={`${classWithModifiers('ui-slider', { disabled: !this.isValidUser })} ui-slider-horizontal`}>
-              <div className='ui-slider-handle'>
-                <div className='store-slider__fake-callout'>
-                  <div className='store-slider__callout'>
-                    <div className='store-slider__bigtext'>USD {this.cost}</div>
-                    <div>{this.durationText}</div>
-                    <div className='store-slider__subtext'>{trans('store.discount', { percent: this.discount })}</div>
-                  </div>
+        </div>
+        <div className='store-slider'>
+          <div ref={this.sliderRef} className={`${classWithModifiers('ui-slider', { disabled: !this.isValidUser })} ui-slider-horizontal`}>
+            <div className='ui-slider-handle'>
+              <div className='store-slider__fake-callout'>
+                <div className='store-slider__callout'>
+                  <div className='store-slider__bigtext'>USD {this.cost}</div>
+                  <div>{this.durationText}</div>
+                  <div className='store-slider__subtext'>{trans('store.discount', { percent: this.discount })}</div>
                 </div>
               </div>
             </div>
-            <div className='store-slider__presets'>
-              <span className='store-slider__presets-blurb'>{trans('supporter_tag.months')}</span>
-              {monthPresets.map((preset) => (
-                // TODO: button
-                <div
-                  key={preset}
-                  className={classWithModifiers('store-slider__preset', {
-                    active: this.duration >= preset,
-                    disabled: !this.isValidUser,
-                  })}
-                  data-months={preset}
-                  onClick={this.handlePresetClick}
-                >
-                  {preset}
-                </div>
-              ))}
-            </div>
+          </div>
+          <div className='store-slider__presets'>
+            <span className='store-slider__presets-blurb'>{trans('supporter_tag.months')}</span>
+            {monthPresets.map((preset) => (
+              // TODO: button
+              <div
+                key={preset}
+                className={classWithModifiers('store-slider__preset', {
+                  active: this.duration >= preset,
+                  disabled: !this.isValidUser,
+                })}
+                data-months={preset}
+                onClick={this.handlePresetClick}
+              >
+                {preset}
+              </div>
+            ))}
           </div>
         </div>
-      </>
+      </div>
     );
   }
 

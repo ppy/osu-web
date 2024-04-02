@@ -11,7 +11,8 @@
 @else
     <div
         class="js-react--store-supporter-tag"
-        data-product-id={{ $product->product_id }}
         data-max-message-length={{ ExtraDataSupporterTag::MAX_MESSAGE_LENGTH }}
     ></div>
+    <input name="item[product_id]" type="hidden" value={{ $product->product_id }} />
+    <input class="js-store-item-quantity" name="item[quantity]" type="hidden" value="1" />
 @endif

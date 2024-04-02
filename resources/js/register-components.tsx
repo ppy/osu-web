@@ -108,14 +108,12 @@ core.reactTurbolinks.register('ranking-variant-filter', () => (
 ));
 
 core.reactTurbolinks.register('store-supporter-tag', (container) => {
-  const productId = getInt(container.dataset.productId);
-  if (productId == null) {
-    throw new Error('missing productId');
+  const maxMessageLength = getInt(container.dataset.maxMessageLength);
+  if (maxMessageLength == null) {
+    throw new Error('missing maxMessageLength');
   }
 
-  const maxMessageLength = getInt(container.dataset.maxMessageLength) ?? 0;
-
-  return <StoreSupporterTag maxMessageLength={maxMessageLength} productId={productId} />;
+  return <StoreSupporterTag maxMessageLength={maxMessageLength} />;
 });
 
 core.reactTurbolinks.register('user-card', (container) => (
