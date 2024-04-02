@@ -15,7 +15,6 @@ import RankingUserFilter from 'components/ranking-user-filter';
 import RankingVariantFilter from 'components/ranking-variant-filter';
 import SpotlightSelectOptions from 'components/spotlight-select-options';
 import { UserCard } from 'components/user-card';
-import { UserCardStore } from 'components/user-card-store';
 import { startListening, UserCardTooltip } from 'components/user-card-tooltip';
 import { UserCards } from 'components/user-cards';
 import { WikiSearch } from 'components/wiki-search';
@@ -25,8 +24,10 @@ import core from 'osu-core-singleton';
 import QuickSearch from 'quick-search/main';
 import QuickSearchWorker from 'quick-search/worker';
 import * as React from 'react';
+import StoreSupporterTag from 'store/store-supporter-tag';
 import { parseJson } from 'utils/json';
 import { mapBy } from 'utils/map';
+import { getInt } from 'utils/math';
 
 function reqJson<T>(input: string|undefined): T {
   // This will throw when input is missing and thus parsing empty string.
@@ -106,15 +107,20 @@ core.reactTurbolinks.register('ranking-variant-filter', () => (
   <RankingVariantFilter {...parseJson('json-variant-filter')} />
 ));
 
+core.reactTurbolinks.register('store-supporter-tag', (container) => {
+  const maxMessageLength = getInt(container.dataset.maxMessageLength);
+  if (maxMessageLength == null) {
+    throw new Error('missing maxMessageLength');
+  }
+
+  return <StoreSupporterTag maxMessageLength={maxMessageLength} />;
+});
+
 core.reactTurbolinks.register('user-card', (container) => (
   <UserCard
     modifiers={reqJson(container.dataset.modifiers ?? 'null')}
     user={container.dataset.isCurrentUser === '1' ? core.currentUser : reqJson(container.dataset.user ?? 'null')}
   />
-));
-
-core.reactTurbolinks.register('user-card-store', (container) => (
-  <UserCardStore user={reqJson(container.dataset.user)} />
 ));
 
 core.reactTurbolinks.register('user-card-tooltip', (container) => (
