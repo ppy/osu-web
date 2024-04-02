@@ -17,8 +17,6 @@ use Ds\Set;
 
 class NominateBeatmapset
 {
-    private bool $isLegacyNominationMode;
-
     /** @var Set<Ruleset> */
     private Set $beatmapRulesets;
     /** @var Set<Ruleset|null> */
@@ -49,13 +47,11 @@ class NominateBeatmapset
 
         $this->assertValidState();
 
-        $this->isLegacyNominationMode = $this->beatmapset->isLegacyNominationMode();
-
-        if ($this->isLegacyNominationMode) {
-            $eventParams = $this->nominateLegacy();
-        } else {
-            $eventParams = $this->nominateRulesets();
+        if ($this->beatmapset->isLegacyNominationMode()) {
+            throw new InvariantException();
         }
+
+        $eventParams = $this->nominateRulesets();
 
         $nomination = $this->beatmapset->beatmapsetNominations()->current()->where('user_id', $this->user->getKey());
         if (!$nomination->exists()) {
@@ -99,38 +95,6 @@ class NominateBeatmapset
         if ($this->beatmapset->beatmapDiscussions()->openIssues()->count() > 0) {
             throw new InvariantException(osu_trans('beatmaps.nominations.unresolved_issues'));
         }
-    }
-
-    private function nominateLegacy(): array
-    {
-        // in legacy mode, we check if a user can nominate for _any_ of the beatmapset's playmodes
-        $canNominate = false;
-        $canFullNominate = false;
-        $playmodesStr = $this->beatmapset->playmodesStr();
-
-        foreach ($playmodesStr as $mode) {
-            if ($this->user->isFullBN($mode) || $this->user->isNAT($mode)) {
-                $canNominate = true;
-                $canFullNominate = true;
-                break;
-            } else if ($this->user->isLimitedBN($mode)) {
-                $canNominate = true;
-                break;
-            }
-        }
-
-        if (!$canNominate) {
-            throw new InvariantException(osu_trans('beatmapsets.nominate.incorrect_mode', ['mode' => implode(', ', $playmodesStr)]));
-        }
-
-        if (!$canFullNominate && $this->beatmapset->requiresFullBNNomination()) {
-            throw new InvariantException(osu_trans('beatmapsets.nominate.full_bn_required'));
-        }
-
-        return [
-            'type' => BeatmapsetEvent::NOMINATE,
-            'user_id' => $this->user->getKey(),
-        ];
     }
 
     private function nominateRulesets(): array
@@ -184,36 +148,30 @@ class NominateBeatmapset
         $nominationsByType = $this->beatmapset->nominationsByType();
         $requiredNominations = $this->beatmapset->requiredNominationCount();
 
-        if ($this->isLegacyNominationMode) {
-            return static::nominationCount($nominationsByType, 'full', null)
-                + static::nominationCount($nominationsByType, 'limited', null)
-                >= $requiredNominations;
-        } else {
-            $modesSatisfied = 0;
-            foreach ($requiredNominations as $mode => $count) {
-                $fullNominations = static::nominationCount($nominationsByType, 'full', $mode);
-                $limitedNominations = static::nominationCount($nominationsByType, 'limited', $mode);
-                $totalNominations = $fullNominations + $limitedNominations;
+        $modesSatisfied = 0;
+        foreach ($requiredNominations as $mode => $count) {
+            $fullNominations = static::nominationCount($nominationsByType, 'full', $mode);
+            $limitedNominations = static::nominationCount($nominationsByType, 'limited', $mode);
+            $totalNominations = $fullNominations + $limitedNominations;
 
-                // Prevent maps with invalid nomination state from going into qualified.
-                if (Ruleset::tryFromName($mode) !== $mainRuleset && $limitedNominations > 0) {
-                    throw new InvariantException(osu_trans('beatmapsets.nominate.invalid_limited_nomination'));
-                }
-
-                if ($totalNominations > $count) {
-                    throw new InvariantException(osu_trans('beatmapsets.nominate.too_many'));
-                }
-
-                if ($fullNominations === 0) {
-                    return false;
-                }
-
-                if ($totalNominations === $count) {
-                    $modesSatisfied++;
-                }
+            // Prevent maps with invalid nomination state from going into qualified.
+            if (Ruleset::tryFromName($mode) !== $mainRuleset && $limitedNominations > 0) {
+                throw new InvariantException(osu_trans('beatmapsets.nominate.invalid_limited_nomination'));
             }
 
-            return $modesSatisfied >= $this->beatmapset->playmodeCount();
+            if ($totalNominations > $count) {
+                throw new InvariantException(osu_trans('beatmapsets.nominate.too_many'));
+            }
+
+            if ($fullNominations === 0) {
+                return false;
+            }
+
+            if ($totalNominations === $count) {
+                $modesSatisfied++;
+            }
         }
+
+        return $modesSatisfied >= $this->beatmapset->playmodeCount();
     }
 }

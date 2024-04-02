@@ -386,12 +386,11 @@ class BeatmapsetTest extends TestCase
         $otherUser = User::factory()->create();
         $beatmapset->watches()->create(['user_id' => $otherUser->getKey()]);
 
-        $this->assertNotificationChanges();
-        $this->assertNominationChanges($beatmapset);
+        $this->assertNotificationChanges(false);
+        $this->assertNominationChanges($beatmapset, false);
+        $this->expectException(InvariantException::class);
 
         $beatmapset->nominate($user);
-
-        $this->assertTrue($beatmapset->isPending());
     }
 
     public function testHybridLegacyQualify(): void
@@ -407,24 +406,12 @@ class BeatmapsetTest extends TestCase
 
         $beatmapset->refreshCache();
 
+        $this->expectException(InvariantException::class);
         // fill with legacy nominations
         $count = $beatmapset->requiredNominationCount() - $beatmapset->currentNominationCount() - 1;
         for ($i = 0; $i < $count; $i++) {
             $beatmapset->nominate(User::factory()->withGroup('bng', ['osu'])->create());
         }
-
-        $otherUser = User::factory()->create();
-        $beatmapset->watches()->create(['user_id' => $otherUser->getKey()]);
-
-        $this->assertNotificationChanges();
-        $this->assertNominationChanges($beatmapset);
-        $this->expectCountChange(fn () => $beatmapset->bssProcessQueues()->count(), 1);
-
-        $beatmapset->nominate($user);
-
-        $this->assertTrue($beatmapset->isQualified());
-
-        Bus::assertDispatched(CheckBeatmapsetCovers::class);
     }
 
     public function testHybridNominateWithNullPlaymode(): void
