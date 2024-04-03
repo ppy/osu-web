@@ -21,7 +21,7 @@ class ScorePinsController extends Controller
 
     public function destroy()
     {
-        \Auth::user()->scorePins()->whereKey(get_int(Request('score_id')))->delete();
+        \Auth::user()->scorePins()->whereKey(get_int(request('score_id')))->delete();
 
         return response()->noContent();
     }
@@ -73,7 +73,7 @@ class ScorePinsController extends Controller
 
     public function store()
     {
-        $id = get_int(Request('score_id'));
+        $id = get_int(request('score_id'));
         $score = Solo\Score::find($id);
 
         abort_if($score === null, 422, "specified score couldn't be found");
