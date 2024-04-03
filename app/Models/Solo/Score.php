@@ -118,11 +118,12 @@ class Score extends Model implements Traits\ReportableInterface
         $params['started_at'] = $scoreToken->created_at;
         $params['user_id'] = $scoreToken->user_id;
 
+        $params['passed'] ??= false;
+        $params['preserve'] = $params['passed'];
+
         $beatmap = $scoreToken->beatmap;
         // anything that have leaderboard
-        $params['ranked'] = $beatmap !== null && $beatmap->approved > 0;
-
-        $params['preserve'] = $params['passed'] ?? false;
+        $params['ranked'] = $params['passed'] && $beatmap !== null && $beatmap->approved > 0;
 
         return $params;
     }
