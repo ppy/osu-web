@@ -20,16 +20,15 @@ class BeatmapsetDisqualify extends BeatmapsetNotification
             return Beatmap::modeStr($modeInt);
         }, $modes);
 
-        $notificationOptions = UserNotificationOption
-            ::where(['name' => Notification::BEATMAPSET_DISQUALIFY])
+        UserNotificationOption::where(['name' => Notification::BEATMAPSET_DISQUALIFY])
             ->whereNotNull('details')
-            ->get();
-
-        foreach ($notificationOptions as $notificationOption) {
-            if (count(array_intersect($notificationOption->details['modes'] ?? [], $modes)) > 0) {
-                $ids[] = $notificationOption->user_id;
-            }
-        }
+            ->chunkById(1000, function ($options) use (&$ids, $modes) {
+                foreach ($options as $option) {
+                    if (count(array_intersect($option->details['modes'] ?? [], $modes)) > 0) {
+                        $ids[] = $option->user_id;
+                    }
+                }
+            });
 
         return $ids;
     }

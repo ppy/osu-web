@@ -64,11 +64,11 @@ return [
             '_' => 'opmerkingen',
         ],
         'contest_entries_controller' => [
-            'judge_results' => '',
+            'judge_results' => 'wedstrijd beoordelingsresultaten',
         ],
         'contests_controller' => [
             '_' => 'wedstrijden',
-            'judge' => '',
+            'judge' => 'wedstrijd beoordeling',
         ],
         'groups_controller' => [
             'show' => 'groepen',

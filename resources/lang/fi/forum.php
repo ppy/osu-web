@@ -331,12 +331,12 @@ return [
 
             'feature_vote' => [
                 'current' => 'Tärkeys tällä hetkellä: +:count',
-                'do' => 'Ehdota tätä',
+                'do' => 'Ehdota tätä pyyntöä',
 
                 'info' => [
                     '_' => 'Tämä on :feature_request. :supporters voivat äänestää ominaisuuspyyntöjä.',
                     'feature_request' => 'ominaisuuspyyntö',
-                    'supporters' => 'tukijat',
+                    'supporters' => 'Tukijat',
                 ],
 
                 'user' => [

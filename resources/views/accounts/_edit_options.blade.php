@@ -3,7 +3,7 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @php
-    $customization = auth()->user()->profileCustomization();
+    $customization = Auth::user()->profileCustomization();
 @endphp
 <div class="account-edit">
     <div class="account-edit__section">

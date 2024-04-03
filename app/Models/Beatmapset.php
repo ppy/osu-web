@@ -501,11 +501,20 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         }
 
         $statusCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+        // archive file is gone, nothing to do for now
+        if ($statusCode === 302) {
+            return false;
+        }
         if ($statusCode !== 200) {
             throw new BeatmapProcessorException('Failed downloading osz: HTTP Error '.$statusCode);
         }
 
-        return new BeatmapsetArchive(get_stream_filename($oszFile));
+        try {
+            return new BeatmapsetArchive(get_stream_filename($oszFile));
+        } catch (BeatmapProcessorException $e) {
+            // zip file is broken, nothing to do for now
+            return false;
+        }
     }
 
     public function regenerateCovers(array $sizesToRegenerate = null)
@@ -531,8 +540,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
         if ($backgroundFilename !== false) {
             $tmpFile = tmpfile();
-            $bytesWritten = fwrite($tmpFile, $osz->readFile($backgroundFilename));
-            fseek($tmpFile, 0); // reset file position cursor, required for storeCover below
+            fwrite($tmpFile, $osz->readFile($backgroundFilename));
             $backgroundImage = get_stream_filename($tmpFile);
             if (!static::isValidBackgroundImage($backgroundImage)) {
                 return false;
@@ -1481,22 +1489,20 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     public function getDisplayArtist(?User $user)
     {
-        $profileCustomization = $user->userProfileCustomization ?? new UserProfileCustomization();
-        if ($profileCustomization->beatmapset_title_show_original) {
-            return $this->artist_unicode;
-        }
+        $profileCustomization = $user->userProfileCustomization ?? UserProfileCustomization::DEFAULTS;
 
-        return $this->artist;
+        return $profileCustomization['beatmapset_title_show_original']
+            ? $this->artist_unicode
+            : $this->artist;
     }
 
     public function getDisplayTitle(?User $user)
     {
-        $profileCustomization = $user->userProfileCustomization ?? new UserProfileCustomization();
-        if ($profileCustomization->beatmapset_title_show_original) {
-            return $this->title_unicode;
-        }
+        $profileCustomization = $user->userProfileCustomization ?? UserProfileCustomization::DEFAULTS;
 
-        return $this->title;
+        return $profileCustomization['beatmapset_title_show_original']
+            ? $this->title_unicode
+            : $this->title;
     }
 
     public function freshHype()

@@ -45,6 +45,15 @@ class ScoreFactory extends Factory
         ]);
     }
 
+    public function withReplay(): static
+    {
+        return $this
+            ->state(['has_replay' => true])
+            ->afterCreating(function ($score) {
+                Score::replayFileStorage()->put($score->getKey(), 'placeholder replay file');
+            });
+    }
+
     private function makeData(?array $overrides = null): callable
     {
         return fn (array $attr): array => array_map(

@@ -213,8 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'Deze map staat gepland om ranked te worden op :date als er geen problemen worden gevonden. Het is #:position in de :queue.',
-            'unresolved_problems' => '',
-            'problems' => '',
+            'unresolved_problems' => 'Deze map is momenteel geblokkeerd om de Gekwalificeerde sectie te verlaten totdat :problems zijn opgelost.',
+            'problems' => 'deze problemen',
             'on' => 'op :date',
             'queue' => 'ranking wachtlijst',
             'soon' => 'binnenkort',

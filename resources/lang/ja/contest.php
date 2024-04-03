@@ -27,9 +27,9 @@ return [
 
     'judge_results' => [
         '_' => '',
-        'creator' => '',
-        'score' => '',
-        'total_score' => '',
+        'creator' => '作成者',
+        'score' => 'スコア',
+        'total_score' => '合計スコア',
     ],
 
     'voting' => [
