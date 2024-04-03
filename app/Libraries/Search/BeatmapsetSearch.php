@@ -425,7 +425,8 @@ class BeatmapsetSearch extends RecordSearch
     private function getPlayedBeatmapIds(?array $rank = null)
     {
         $query = Solo\Score
-            ::where('user_id', $this->params->user->getKey())
+            ::indexable()
+            ->where('user_id', $this->params->user->getKey())
             ->whereIn('ruleset_id', $this->getSelectedModes());
 
         if ($rank === null) {
