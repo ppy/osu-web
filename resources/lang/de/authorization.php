@@ -81,7 +81,7 @@ return [
     ],
 
     'contest' => [
-        'judging_not_active' => '',
+        'judging_not_active' => 'Bewertung für diesen Wettbewerb ist nicht aktiv.',
         'voting_over' => 'Stimmen können nach dem Abstimmungsende nicht mehr geändert werden.',
 
         'entry' => [

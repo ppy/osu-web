@@ -6,7 +6,7 @@
 return [
     'index' => [
         'description' => '共通のテーマを有するビートマップを集めたパックです。',
-        'empty' => '',
+        'empty' => '近日公開！',
         'nav_title' => '一覧',
         'title' => 'ビートマップパック',
 

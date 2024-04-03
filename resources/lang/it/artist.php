@@ -13,8 +13,8 @@ return [
 
     'beatmaps' => [
         '_' => 'Beatmap',
-        'download' => 'Scarica il Template della Beatmap',
-        'download-na' => 'Template della Beatmap non ancora disponibile',
+        'download' => 'scarica il template della beatmap',
+        'download-na' => 'template della beatmap non ancora disponibile',
     ],
 
     'index' => [

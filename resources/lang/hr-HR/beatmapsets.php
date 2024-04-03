@@ -65,8 +65,8 @@ return [
         ],
 
         'deleted_banner' => [
-            'title' => '',
-            'message' => '',
+            'title' => 'Ovaj beatmap je obrisan.',
+            'message' => '(samo moderatori mogu ovo da vide)',
         ],
 
         'details' => [
@@ -134,7 +134,7 @@ return [
             'genre' => 'Žanr',
             'language' => 'Jezik',
             'no_scores' => 'Podaci se još kalkuliraju...',
-            'nominators' => '',
+            'nominators' => 'Nominatori',
             'nsfw' => 'Eksplicitni sadržaj',
             'offset' => 'Online razmak',
             'points-of-failure' => 'Točke neuspjeha',
