@@ -85,11 +85,11 @@ interface BeatmapsetJsonAvailableIncludes {
   current_user_attributes: CurrentUserAttributes;
   description: BeatmapsetDescription;
   discussions: BeatmapsetDiscussionJson[];
+  eligible_main_rulesets: GameMode[];
   events: BeatmapsetEventJson[];
   genre: GenreJson;
   has_favourited: boolean;
   language: LanguageJson;
-  main_ruleset: GameMode | null;
   nominations: BeatmapsetNominationsInterface;
   ratings: number[];
   recent_favourites: UserJson[];

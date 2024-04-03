@@ -34,8 +34,14 @@ class BeatmapsetMainRuleset
             ->orderBy('playmode', 'asc');
     }
 
+    // TODO: cache eligible main ruleset, also
     public function eligible()
     {
+        // TODO: memoize or something
+        if ($this->eligibleRulesets->count() > 0) {
+            return $this->eligibleRulesets;
+        }
+
         $groups = $this->baseQuery()->get();
 
         // clear winner in playmode counts exists.

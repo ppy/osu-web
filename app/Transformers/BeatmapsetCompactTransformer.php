@@ -5,6 +5,8 @@
 
 namespace App\Transformers;
 
+use App\Enums\Ruleset;
+use App\Libraries\BeatmapsetMainRuleset;
 use App\Libraries\NominateBeatmapset;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
@@ -29,6 +31,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
         'current_user_attributes',
         'description',
         'discussions',
+        'eligible_main_rulesets',
         'events',
         'genre',
         'has_favourited',
@@ -182,6 +185,11 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
     public function includeLanguage(Beatmapset $beatmapset)
     {
         return $this->item($beatmapset->language, new LanguageTransformer());
+    }
+
+    public function includeEligibleMainRulesets(Beatmapset $beatmapset)
+    {
+        return $this->primitive(array_map(fn (Ruleset $ruleset) => $ruleset->legacyName(), $beatmapset->eligibleMainRulesets()));
     }
 
     public function includeMainRuleset(Beatmapset $beatmapset)

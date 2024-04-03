@@ -1146,6 +1146,17 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         );
     }
 
+    /**
+     * @return Ruleset[]
+     */
+    public function eligibleMainRulesets(): array
+    {
+        $beatmapsetMainRulesets = new BeatmapsetMainRuleset($this);
+        $ruleset = $beatmapsetMainRulesets->mainRuleset();
+
+        return $ruleset === null ? $beatmapsetMainRulesets->eligible()->toArray() : [$ruleset];
+    }
+
     public function mainRuleset()
     {
         $mainRuleset = $this->getRawAttribute('main_ruleset');
@@ -1283,8 +1294,8 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
                 'discussions.current_user_attributes',
                 'discussions.posts',
                 'discussions.votes',
+                'eligible_main_rulesets',
                 'events',
-                'main_ruleset',
                 'nominations',
                 'related_users',
                 'related_users.groups',

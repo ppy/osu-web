@@ -6,6 +6,7 @@
 namespace App\Transformers;
 
 use App\Enums\Ruleset;
+use App\Libraries\BeatmapsetMainRuleset;
 use App\Libraries\NominateBeatmapset;
 use App\Models\Beatmapset;
 
@@ -25,7 +26,7 @@ class BeatmapsetTransformer extends BeatmapsetCompactTransformer
         // only for showing in BeatmapPanel.
         $nominationsSummary = [
             'current' => $beatmapset->nominations,
-            'main_ruleset' => Ruleset::tryFrom($beatmapset->getRawAttribute('main_ruleset') ?? -1)?->legacyName(), // use cached value
+            'eligible_main_rulesets' => array_map(fn (Ruleset $ruleset) => $ruleset->legacyName(), $beatmapset->eligibleMainRulesets()),
             'required_meta' => NominateBeatmapset::requiredNominationsConfig(),
         ];
 

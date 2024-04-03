@@ -4,7 +4,7 @@
 import { BeatmapsetDiscussionJsonForShow } from './beatmapset-discussion-json';
 import BeatmapsetExtendedJson from './beatmapset-extended-json';
 
-type DiscussionsRequiredAttributes = 'beatmaps' | 'current_user_attributes' | 'events' | 'main_ruleset' | 'nominations' | 'related_users';
+type DiscussionsRequiredAttributes = 'beatmaps' | 'current_user_attributes' | 'eligible_main_rulesets' | 'events' | 'nominations' | 'related_users';
 type BeatmapsetWithDiscussionsJson =
   Omit<BeatmapsetExtendedJson, keyof OverrideIncludes>
   & OverrideIncludes

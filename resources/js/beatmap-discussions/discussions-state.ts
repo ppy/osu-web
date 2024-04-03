@@ -4,7 +4,7 @@
 import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import GameMode from 'interfaces/game-mode';
-import { maxBy, sum } from 'lodash';
+import { intersectionWith, maxBy, sum } from 'lodash';
 import { action, computed, makeObservable, observable, reaction } from 'mobx';
 import moment from 'moment';
 import core from 'osu-core-singleton';
@@ -233,10 +233,20 @@ export default class DiscussionsState {
   }
 
   get calculatedMainRuleset() {
-    return this.beatmapset.main_ruleset
-      // The main ruleset not being set yet implies there are either no nominations
-      // or an equal number of nominations for each ruleset, so the next selection should make it the main ruleset.
-      ?? (this.selectedNominatedRulesets.length === 1 ? this.selectedNominatedRulesets[0] : null);
+    if (this.beatmapset.eligible_main_rulesets.length === 1) {
+      return this.beatmapset.eligible_main_rulesets[0];
+    }
+
+    // If there's more than eligible main ruleset, the next selection of an eligible ruleset should make it the main ruleset.
+    // TODO: replace with Set.intersection, intersection is currently too new.
+    const intersection = intersectionWith(this.selectedNominatedRulesets, this.beatmapset.eligible_main_rulesets);
+
+    return intersection.length === 1 ? intersection[0] : null;
+  }
+
+  @computed
+  get eligibleMainRulesets() {
+    return new Set(this.beatmapset.eligible_main_rulesets);
   }
 
   @computed
