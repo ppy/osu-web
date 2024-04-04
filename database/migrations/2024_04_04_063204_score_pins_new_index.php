@@ -14,7 +14,6 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('score_pins', function (Blueprint $table) {
-            $table->unsignedBigInteger('score_id')->nullable(true)->change();
             $table->index(['user_id', 'new_score_id']);
         });
     }
@@ -22,7 +21,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('score_pins', function (Blueprint $table) {
-            $table->unsignedBigInteger('score_id')->nullable(true)->change();
             $table->dropIndex(['user_id', 'new_score_id']);
         });
     }
