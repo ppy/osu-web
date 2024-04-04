@@ -10,15 +10,13 @@ namespace App\Singletons;
 class LocalCacheManager
 {
     private int $resetTicker = 0;
-    private int $resetTickerLimit;
     private array $singletons = [];
 
     public function incrementResetTicker(): void
     {
         $this->resetTicker++;
-        $this->resetTickerLimit ??= $GLOBALS['cfg']['osu']['octane']['local_cache_reset_requests'];
 
-        if ($this->resetTicker > $this->resetTickerLimit) {
+        if ($this->resetTicker > $GLOBALS['cfg']['osu']['octane']['local_cache_reset_requests']) {
             $this->resetTicker = 0;
             $this->resetCache();
         }

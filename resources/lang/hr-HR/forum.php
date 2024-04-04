@@ -5,7 +5,7 @@
 
 return [
     'pinned_topics' => '',
-    'slogan' => "",
+    'slogan' => "opasno je igrati sam.",
     'subforums' => '',
     'title' => 'Forumi',
 
@@ -51,15 +51,15 @@ return [
         'posted_by_in' => '',
 
         'actions' => [
-            'destroy' => '',
-            'edit' => '',
-            'report' => '',
-            'restore' => '',
+            'destroy' => 'Obrisi objavu',
+            'edit' => 'Izmeni objavu',
+            'report' => 'Prijavi objavu',
+            'restore' => 'Povrati objavu',
         ],
 
         'create' => [
             'title' => [
-                'reply' => '',
+                'reply' => 'Novi odgovor',
             ],
         ],
 
@@ -86,7 +86,7 @@ return [
         'latest_reply_by' => '',
         'new_topic' => '',
         'new_topic_login' => '',
-        'post_reply' => '',
+        'post_reply' => 'Objava',
         'reply_box_placeholder' => '',
         'reply_title_prefix' => 'Re',
         'started_by' => 'od :user',
@@ -102,7 +102,7 @@ return [
             'preview' => 'Pretpregled',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
-            'preview_hide' => '',
+            'preview_hide' => 'Izmjeni',
             'submit' => '',
 
             'necropost' => [
@@ -167,7 +167,7 @@ return [
                 'restore_post' => '',
                 'restore_topic' => '',
                 'split_destination' => '',
-                'split_source' => '',
+                'split_source' => 'Podijeli objave',
                 'topic_type' => '',
                 'topic_type_changed' => '',
                 'unlock' => '',
@@ -210,8 +210,8 @@ return [
         '_' => '',
 
         'actions' => [
-            'login_reply' => '',
-            'reply' => '',
+            'login_reply' => 'Prijavi se da odgovoriš',
+            'reply' => 'Odgovori',
             'reply_with_quote' => '',
             'search' => 'Pretraži',
         ],
@@ -222,7 +222,7 @@ return [
             'preview' => '',
 
             'create_poll_button' => [
-                'add' => '',
+                'add' => 'Napravi anketu',
                 'remove' => '',
             ],
 
@@ -236,19 +236,19 @@ return [
                 'max_options_info' => '',
                 'options' => 'Opcije',
                 'options_info' => '',
-                'title' => '',
+                'title' => 'Pitanje',
                 'vote_change' => '',
                 'vote_change_info' => '',
             ],
         ],
 
         'edit_title' => [
-            'start' => '',
+            'start' => 'Uredi naslov',
         ],
 
         'index' => [
-            'feature_votes' => '',
-            'replies' => '',
+            'feature_votes' => 'prioritet zvijezda',
+            'replies' => 'odgovori',
             'views' => '',
         ],
 

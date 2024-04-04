@@ -77,6 +77,7 @@ class SessionsController extends Controller
             $forceReactivation = new ForceReactivation($user, $request);
 
             if ($forceReactivation->isRequired()) {
+                DatadogLoginAttempt::log('password_reset');
                 $forceReactivation->run();
 
                 \Session::flash('password_reset_start', [
@@ -87,6 +88,7 @@ class SessionsController extends Controller
                 return ujs_redirect(route('password-reset'));
             }
 
+            DatadogLoginAttempt::log(null);
             $this->login($user, $remember);
 
             return [

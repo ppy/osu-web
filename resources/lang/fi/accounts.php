@@ -102,14 +102,14 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => 'piilota varoitukset sopimattomasta sisällöstä beatmapeissa',
+        'beatmapset_show_nsfw' => 'piilota varoitukset sopimattomasta sisällöstä rytmikartoissa',
         'beatmapset_title_show_original' => 'näytä rytmikarttojen kuvailutiedot alkuperäisellä kielellä',
         'title' => 'Asetukset',
 
         'beatmapset_download' => [
             '_' => 'rytmikarttojen oletuslataustyyppi',
             'all' => 'videon kanssa jos saatavilla',
-            'direct' => 'avaa osu!-directissä',
+            'direct' => 'avaa osu!directissä',
             'no_video' => 'ilman videota',
         ],
     ],

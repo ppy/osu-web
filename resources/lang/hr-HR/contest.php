@@ -17,7 +17,7 @@ return [
         'hide_judged' => '',
         'nav_title' => '',
         'no_current_vote' => '',
-        'update' => '',
+        'update' => 'azuriraj',
         'validation' => [
             'missing_score' => '',
             'contest_vote_judged' => '',

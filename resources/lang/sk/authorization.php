@@ -81,7 +81,7 @@ return [
     ],
 
     'contest' => [
-        'judging_not_active' => '',
+        'judging_not_active' => 'Hodnotenie tejto súťaže nie je aktívne.',
         'voting_over' => 'Po tom, čo sa hlasovacie obdobie pre túto súťaž ukončilo, svoj hlas nemôžete zmeniť.',
 
         'entry' => [
@@ -172,7 +172,7 @@ return [
 
     'score' => [
         'pin' => [
-            'disabled_type' => "",
+            'disabled_type' => "Tento typ skóre sa nedá pripnúť",
             'failed' => "",
             'not_owner' => 'Skóre môže pripnúť iba pôvodný hráč.',
             'too_many' => 'Už bolo pripnuté maximum skóre.',
