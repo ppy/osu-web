@@ -19,6 +19,7 @@ use App\Models\Score as LegacyScore;
 use App\Models\ScoreToken;
 use App\Models\Traits;
 use App\Models\User;
+use Carbon\CarbonImmutable;
 use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Database\Eloquent\Builder;
 use LaravelRedis;
@@ -181,14 +182,18 @@ class Score extends Model implements Traits\ReportableInterface
      */
     public function scopeRecent(Builder $query, string $ruleset, bool $includeFails): Builder
     {
+        $minTime = CarbonImmutable::now()->subDays(1);
+
         return $query
             // ensure correct index is used
             ->from(\DB::raw("{$this->getTable()} FORCE INDEX (user_ruleset_index)"))
             ->default()
             ->forRuleset($ruleset)
             ->includeFails($includeFails)
-            // 1 day (24 * 3600)
-            ->where('unix_updated_at', '>', time() - 86_400);
+            ->where('ended_at', '>', $minTime)
+            ->where('unix_updated_at', '>', $minTime->getTimestamp())
+            // ensure correct partition in production
+            ->where('preserve', '>=', 0);
     }
 
     public function scopeVisibleUsers(Builder $query): Builder
