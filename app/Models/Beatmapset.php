@@ -33,7 +33,6 @@ use App\Traits\Validatable;
 use Cache;
 use Carbon\Carbon;
 use DB;
-use Ds\Set;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -66,6 +65,7 @@ use Illuminate\Database\QueryException;
  * @property string $displaytitle
  * @property bool $download_disabled
  * @property string|null $download_disabled_url
+ * @property string[]|null $eligible_main_rulesets
  * @property bool $epilepsy
  * @property \Illuminate\Database\Eloquent\Collection $events BeatmapsetEvent
  * @property int $favourite_count
@@ -119,6 +119,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         'deleted_at' => 'datetime',
         'discussion_locked' => 'boolean',
         'download_disabled' => 'boolean',
+        'eligible_main_rulesets' => 'array',
         'epilepsy' => 'boolean',
         'last_update' => 'datetime',
         'nsfw' => 'boolean',
@@ -145,8 +146,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         'qualified' => 3,
         'loved' => 4,
     ];
-
-    const UNDEFINED_MAIN_RULESET = -1;
 
     public $timestamps = false;
 
@@ -934,6 +933,8 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             'user_id',
             'versions_available' => $this->getRawAttribute($key),
 
+            'eligible_main_rulesets' => $this->getArray($key),
+
             'approved_date',
             'cover_updated_at',
             'deleted_at',
@@ -1151,24 +1152,27 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
      */
     public function eligibleMainRulesets(): array
     {
-        $beatmapsetMainRulesets = new BeatmapsetMainRuleset($this);
-        $ruleset = $beatmapsetMainRulesets->mainRuleset();
+        $rulesets = $this->eligible_main_rulesets;
 
-        return $ruleset === null ? $beatmapsetMainRulesets->eligible()->toArray() : [$ruleset];
-    }
+        if ($rulesets === null) {
+            $beatmapsetMainRuleset = new BeatmapsetMainRuleset($this);
+            $rulesets = $beatmapsetMainRuleset->currentEligible()->toArray();
 
-    public function mainRuleset()
-    {
-        $mainRuleset = $this->getRawAttribute('main_ruleset');
+            $this->update([
+                'eligible_main_rulesets' => array_map(fn (Ruleset $ruleset) => $ruleset->legacyName(), $rulesets)
+            ]);
 
-        if ($mainRuleset === null) {
-            $ruleset = (new BeatmapsetMainRuleset($this))->mainRuleset();
-            $this->update(['main_ruleset' => $ruleset?->value ?? static::UNDEFINED_MAIN_RULESET]);
-
-            return $ruleset;
+            return $rulesets;
         }
 
-        return Ruleset::tryFrom($mainRuleset);
+        return Ruleset::tryFromNames($rulesets);
+    }
+
+    public function mainRuleset(): ?Ruleset
+    {
+        $eligible = $this->eligibleMainRulesets();
+
+        return count($eligible) === 1 ? $eligible[0] : null;
     }
 
     public function rankingQueueStatus()
@@ -1470,9 +1474,11 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     public function refreshCache()
     {
+        $rulesets = (new BeatmapsetMainRuleset($this))->currentEligible()->toArray();
+
         return $this->update([
+            'eligible_main_rulesets' => array_map(fn (Ruleset $ruleset) => $ruleset->legacyName(), $rulesets),
             'hype' => $this->freshHype(),
-            'main_ruleset' => (new BeatmapsetMainRuleset($this))->mainRuleset()?->value ?? static::UNDEFINED_MAIN_RULESET,
             'nominations' => $this->isLegacyNominationMode() ? $this->currentNominationCount() : array_sum(array_values($this->currentNominationCount())),
         ]);
     }

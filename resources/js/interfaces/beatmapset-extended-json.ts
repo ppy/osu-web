@@ -7,7 +7,7 @@ import GameMode from './game-mode';
 
 interface NominationsSummary {
   current: number;
-  eligible_main_rulesets: GameMode[];
+  eligible_main_rulesets: GameMode[] | null;
   required_meta: {
     main_ruleset: number;
     non_main_ruleset: number;

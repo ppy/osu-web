@@ -199,9 +199,8 @@ export default class BeatmapsetPanel extends React.Component<Props> {
     return this.beatmapsPopupHover || this.mobileExpanded;
   }
 
-  @computed
   private get nominations() {
-    const mainRulesets = new Set(this.props.beatmapset.eligible_main_rulesets ?? this.props.beatmapset.nominations_summary.eligible_main_rulesets);
+    const mainRulesets = new Set(this.props.beatmapset.eligible_main_rulesets ?? this.props.beatmapset.nominations_summary.eligible_main_rulesets ?? []);
     let current = 0;
     let countMainRuleset = 0;
     let countNonMainRuleset = 0;

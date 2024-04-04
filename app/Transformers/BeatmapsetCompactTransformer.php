@@ -6,7 +6,6 @@
 namespace App\Transformers;
 
 use App\Enums\Ruleset;
-use App\Libraries\BeatmapsetMainRuleset;
 use App\Libraries\NominateBeatmapset;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
@@ -190,11 +189,6 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
     public function includeEligibleMainRulesets(Beatmapset $beatmapset)
     {
         return $this->primitive(array_map(fn (Ruleset $ruleset) => $ruleset->legacyName(), $beatmapset->eligibleMainRulesets()));
-    }
-
-    public function includeMainRuleset(Beatmapset $beatmapset)
-    {
-        return $this->primitive($beatmapset->mainRuleset()?->legacyName());
     }
 
     public function includeNominations(Beatmapset $beatmapset)

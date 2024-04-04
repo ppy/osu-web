@@ -14,14 +14,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('osu_beatmapsets', function (Blueprint $table) {
-            $table->smallInteger('main_ruleset')->nullable(); // negative number for undetermined main_ruleset.
+            $table->json('eligible_main_rulesets')->nullable();
         });
     }
 
     public function down(): void
     {
         Schema::table('osu_beatmapsets', function (Blueprint $table) {
-            $table->dropColumn('main_ruleset');
+            $table->dropColumn('eligible_main_rulesets');
         });
     }
 };

@@ -8,24 +8,31 @@ declare(strict_types=1);
 namespace App\Libraries;
 
 use App\Enums\Ruleset;
-use App\Exceptions\InvariantException;
-use App\Jobs\Notifications\BeatmapsetNominate;
 use App\Models\Beatmapset;
-use App\Models\BeatmapsetEvent;
-use App\Models\User;
 use Ds\Set;
 
 class BeatmapsetMainRuleset
 {
-    /** @var Set<Ruleset> $eligibleRulesets */
-    private Set $eligibleRulesets;
+    /** @var ?Set<Ruleset> $eligibleRulesets */
+    private ?Set $eligibleRulesets = null;
 
     public function __construct(private Beatmapset $beatmapset)
     {
-        $this->eligibleRulesets = new Set();
+        $cachedValue = $beatmapset->eligible_main_rulesets;
+
+        if ($cachedValue !== null) {
+            $this->eligibleRulesets = new Set(Ruleset::tryFromNames($cachedValue));
+        }
     }
 
-    public function baseQuery()
+    public function currentEligible(): Set
+    {
+        $mainRuleset = $this->mainRuleset();
+
+        return $mainRuleset === null ? $this->eligibleRulesets : new Set([$mainRuleset]);
+    }
+
+    private function baseQuery()
     {
         return $this->beatmapset->beatmaps()
             ->groupBy('playmode')
@@ -34,52 +41,10 @@ class BeatmapsetMainRuleset
             ->orderBy('playmode', 'asc');
     }
 
-    // TODO: cache eligible main ruleset, also
-    public function eligible()
+    private function mainRuleset(): ?Ruleset
     {
-        // TODO: memoize or something
-        if ($this->eligibleRulesets->count() > 0) {
-            return $this->eligibleRulesets;
-        }
-
-        $groups = $this->baseQuery()->get();
-
-        // clear winner in playmode counts exists.
-        if ($groups->count() === 1 || $groups[0]->getRawAttribute('total') > $groups[1]->getRawAttribute('total')) {
-            $this->eligibleRulesets->add(Ruleset::from($groups[0]->playmode));
-
-            return $this->eligibleRulesets;
-        }
-
-        // maps by host mapper
-        $groupedHostOnly = $this->baseQuery()->where('user_id', $this->beatmapset->user_id)->get();
-
-        // clear mode with most maps by host
-        if (
-            $groupedHostOnly->count() === 1
-                || $groupedHostOnly->count() > 1
-                    && $groupedHostOnly[0]->getRawAttribute('total') > $groupedHostOnly[1]->getRawAttribute('total')
-        ) {
-            $this->eligibleRulesets->add(Ruleset::from($groupedHostOnly[0]->playmode));
-
-            return $this->eligibleRulesets;
-        }
-
-        // filter out to only modes with same highest counts.
-        $this->eligibleRulesets->add(
-            ...$groupedHostOnly
-                ->filter(fn ($group) => $group->getRawAttribute('total') === $groupedHostOnly[0]->getRawAttribute('total'))
-                ->map(fn ($group) => Ruleset::from($group->playmode))
-                ->toArray()
-        );
-
-        return $this->eligibleRulesets;
-    }
-
-    public function mainRuleset(): ?Ruleset
-    {
-        if ($this->eligibleRulesets->count() === 0) {
-            $this->eligible();
+        if ($this->eligibleRulesets === null) {
+            $this->populateEligibleRulesets();
         }
 
         if ($this->eligibleRulesets->count() === 1) {
@@ -114,5 +79,39 @@ class BeatmapsetMainRuleset
         }
 
         return null;
+    }
+
+    private function populateEligibleRulesets()
+    {
+        $groups = $this->baseQuery()->get();
+
+        // clear winner in playmode counts exists.
+        if ($groups->count() === 1 || $groups[0]->getRawAttribute('total') > $groups[1]->getRawAttribute('total')) {
+            $this->eligibleRulesets = new Set([Ruleset::from($groups[0]->playmode)]);
+
+            return;
+        }
+
+        // maps by host mapper
+        $groupedHostOnly = $this->baseQuery()->where('user_id', $this->beatmapset->user_id)->get();
+
+        // clear mode with most maps by host
+        if (
+            $groupedHostOnly->count() === 1
+                || $groupedHostOnly->count() > 1
+                    && $groupedHostOnly[0]->getRawAttribute('total') > $groupedHostOnly[1]->getRawAttribute('total')
+        ) {
+            $this->eligibleRulesets = new Set([Ruleset::from($groupedHostOnly[0]->playmode)]);
+
+            return;
+        }
+
+        // filter out to only modes with same highest counts.
+        $this->eligibleRulesets = new Set(
+            $groupedHostOnly
+                ->filter(fn ($group) => $group->getRawAttribute('total') === $groupedHostOnly[0]->getRawAttribute('total'))
+                ->map(fn ($group) => Ruleset::from($group->playmode))
+                ->toArray()
+        );
     }
 }

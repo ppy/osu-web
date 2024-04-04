@@ -66,7 +66,11 @@ class NominateBeatmapset
                 if ($this->shouldQualify()) {
                     $beatmapset = $this->beatmapset->lockForUpdate()->find($this->beatmapset->getKey());
                     // Sanity check: something changed main ruleset after the qualify check.
-                    if ($beatmapset->getRawAttribute('main_ruleset') !== $this->beatmapset->mainRuleset()?->value) {
+                    if (
+                        $beatmapset->eligible_main_rulesets === null
+                            || count($beatmapset->eligible_main_rulesets) !== 1
+                            || $beatmapset->eligible_main_rulesets[0] !== $this->beatmapset->mainRuleset()?->legacyName()
+                    ) {
                         throw new InvariantException('main ruleset has changed.');
                     }
 
@@ -113,7 +117,7 @@ class NominateBeatmapset
             $nominationCount[$ruleset->legacyName()]++;
         }
 
-        $eligibleRulesets = (new BeatmapsetMainRuleset($this->beatmapset))->eligible();
+        $eligibleRulesets = (new BeatmapsetMainRuleset($this->beatmapset))->currentEligible();
 
         $maybeHasMainRuleset = false;
         foreach ($nominationCount as $legacyName => $count) {
