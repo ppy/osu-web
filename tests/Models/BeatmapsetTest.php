@@ -510,7 +510,7 @@ class BeatmapsetTest extends TestCase
         $this->expectExceptionCallable(
             fn () => $beatmapset->nominate($user, ['osu']),
             InvariantException::class,
-            osu_trans('beatmapsets.nominate.too_many_ineligible_main_ruleset')
+            osu_trans('beatmapsets.nominate.too_many_non_main_ruleset')
         );
 
         $this->assertTrue($beatmapset->isPending());
@@ -664,11 +664,11 @@ class BeatmapsetTest extends TestCase
         return [
             [[
                 [['osu', 'taiko'], null],
-                [['taiko'], null, 'too_many_ineligible_main_ruleset'],
+                [['taiko'], null, 'too_many_non_main_ruleset'],
             ]],
             [[
                 [['osu', 'taiko'], null],
-                [['taiko', 'fruits'], null, 'too_many_ineligible_main_ruleset'],
+                [['taiko', 'fruits'], null, 'too_many_non_main_ruleset'],
             ]],
             [[
                 [['osu', 'taiko'], null],

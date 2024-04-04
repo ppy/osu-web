@@ -122,12 +122,8 @@ class NominateBeatmapset
         $maybeHasMainRuleset = false;
         foreach ($nominationCount as $legacyName => $count) {
             if ($count > 1) {
-                if ($maybeHasMainRuleset) {
+                if ($maybeHasMainRuleset || !$eligibleRulesets->contains(Ruleset::tryFromName($legacyName))) {
                     throw new InvariantException(osu_trans('beatmapsets.nominate.too_many_non_main_ruleset'));
-                }
-
-                if (!$eligibleRulesets->contains(Ruleset::tryFromName($legacyName))) {
-                    throw new InvariantException(osu_trans('beatmapsets.nominate.too_many_ineligible_main_ruleset'));
                 }
 
                 $maybeHasMainRuleset = true;
