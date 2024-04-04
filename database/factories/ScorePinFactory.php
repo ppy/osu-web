@@ -8,7 +8,6 @@ declare(strict_types=1);
 namespace Database\Factories;
 
 use App\Models\Beatmap;
-use App\Models\Score\Best\Model as ScoreBestModel;
 use App\Models\ScorePin;
 use App\Models\Solo;
 use App\Models\User;
@@ -25,11 +24,13 @@ class ScorePinFactory extends Factory
         ];
     }
 
-    public function withScore(ScoreBestModel|Solo\Score $score): static
+    public function withScore(Solo\Score $score): static
     {
         return $this
             ->state([
                 'ruleset_id' => Beatmap::MODES[$score->getMode()],
+                'score_id' => $score->getKey(),
+                'score_type' => $score->getMorphClass(),
                 'user_id' => $score->user,
             ])->for($score, 'score');
     }
