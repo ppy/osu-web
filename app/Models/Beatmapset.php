@@ -1159,7 +1159,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             $rulesets = $beatmapsetMainRuleset->currentEligible()->toArray();
 
             $this->update([
-                'eligible_main_rulesets' => array_map(fn (Ruleset $ruleset) => $ruleset->legacyName(), $rulesets)
+                'eligible_main_rulesets' => array_map(fn (Ruleset $ruleset) => $ruleset->legacyName(), $rulesets),
             ]);
 
             return $rulesets;
