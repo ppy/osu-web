@@ -16,7 +16,7 @@ trait FasterAttributes
         return $this->attributes[$key] ?? null;
     }
 
-    protected function getArray(string $key)
+    protected function getArray(string $key): ?array
     {
         $value = $this->getRawAttribute($key);
 
