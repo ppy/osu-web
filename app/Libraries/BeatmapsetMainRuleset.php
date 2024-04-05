@@ -63,20 +63,20 @@ class BeatmapsetMainRuleset
             $rulesets = Ruleset::tryFromNames($nomination->modes);
             foreach ($rulesets as $ruleset) {
                 if ($this->eligibleRulesets->contains($ruleset)) {
-                    $nominationsByRuleset[$ruleset->name] ??= 0;
-                    $nominationsByRuleset[$ruleset->name]++;
+                    $nominationsByRuleset[$ruleset->value] ??= 0;
+                    $nominationsByRuleset[$ruleset->value]++;
                 }
             }
 
             // bailout as soon as there is a clear winner
             $nominatedRulesetsCount = count($nominationsByRuleset);
             if ($nominatedRulesetsCount === 1) {
-                return Ruleset::tryFromName(array_keys($nominationsByRuleset)[0]);
+                return Ruleset::from(array_keys($nominationsByRuleset)[0]);
             } else if ($nominatedRulesetsCount > 1) {
                 arsort($nominationsByRuleset);
                 $values = array_values($nominationsByRuleset);
                 if ($values[0] > $values[1]) {
-                    return Ruleset::tryFromName(array_keys($nominationsByRuleset)[0]);
+                    return Ruleset::from(array_keys($nominationsByRuleset)[0]);
                 }
             }
         }
@@ -84,7 +84,7 @@ class BeatmapsetMainRuleset
         return null;
     }
 
-    private function populateEligibleRulesets()
+    private function populateEligibleRulesets(): void
     {
         $this->eligibleRulesets = new Set();
         $groups = $this->baseQuery()->get();
