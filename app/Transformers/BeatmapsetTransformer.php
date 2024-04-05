@@ -25,10 +25,10 @@ class BeatmapsetTransformer extends BeatmapsetCompactTransformer
         // only for showing in BeatmapPanel.
         $nominationsSummary = [
             'current' => $beatmapset->nominations,
-            'eligible_main_rulesets' => array_map(
+            'eligible_main_rulesets' => $beatmapset->eligible_main_rulesets !== null ? array_map(
                 fn ($ruleset) => $ruleset->legacyName(),
                 Ruleset::fromValues($beatmapset->eligible_main_rulesets)
-            ),
+            ) : null,
             'required_meta' => NominateBeatmapset::requiredNominationsConfig(),
         ];
 
