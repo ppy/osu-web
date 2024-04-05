@@ -7,10 +7,10 @@ declare(strict_types=1);
 
 namespace Tests\Controllers;
 
+use App\Models\Beatmap;
 use App\Models\ScorePin;
 use App\Models\Solo\Score;
 use App\Models\User;
-use App\Models\Beatmap;
 use Tests\TestCase;
 
 class ScorePinsControllerTest extends TestCase
