@@ -69,7 +69,7 @@ class NominateBeatmapset
                     if (
                         $beatmapset->eligible_main_rulesets === null
                             || count($beatmapset->eligible_main_rulesets) !== 1
-                            || $beatmapset->eligible_main_rulesets[0] !== $this->beatmapset->mainRuleset()?->legacyName()
+                            || $beatmapset->eligible_main_rulesets[0] !== $this->beatmapset->mainRuleset()?->value
                     ) {
                         throw new InvariantException('main ruleset has changed.');
                     }

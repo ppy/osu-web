@@ -65,7 +65,7 @@ use Illuminate\Database\QueryException;
  * @property string $displaytitle
  * @property bool $download_disabled
  * @property string|null $download_disabled_url
- * @property string[]|null $eligible_main_rulesets
+ * @property int[]|null $eligible_main_rulesets
  * @property bool $epilepsy
  * @property \Illuminate\Database\Eloquent\Collection $events BeatmapsetEvent
  * @property int $favourite_count
@@ -1152,20 +1152,16 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
      */
     public function eligibleMainRulesets(): array
     {
-        $rulesets = $this->eligible_main_rulesets;
+        $values = $this->eligible_main_rulesets;
 
-        if ($rulesets === null) {
-            $beatmapsetMainRuleset = new BeatmapsetMainRuleset($this);
-            $rulesets = $beatmapsetMainRuleset->currentEligible()->toArray();
-
-            $this->update([
-                'eligible_main_rulesets' => array_map(fn (Ruleset $ruleset) => $ruleset->legacyName(), $rulesets),
-            ]);
+        if ($values === null) {
+            $rulesets = (new BeatmapsetMainRuleset($this))->currentEligible()->toArray();
+            $this->update(['eligible_main_rulesets' => Ruleset::toValues($rulesets)]);
 
             return $rulesets;
         }
 
-        return Ruleset::tryFromNames($rulesets);
+        return Ruleset::fromValues($values);
     }
 
     public function mainRuleset(): ?Ruleset
@@ -1477,7 +1473,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         $rulesets = (new BeatmapsetMainRuleset($this))->currentEligible()->toArray();
 
         return $this->update([
-            'eligible_main_rulesets' => array_map(fn (Ruleset $ruleset) => $ruleset->legacyName(), $rulesets),
+            'eligible_main_rulesets' => Ruleset::toValues($rulesets),
             'hype' => $this->freshHype(),
             'nominations' => $this->isLegacyNominationMode() ? $this->currentNominationCount() : array_sum(array_values($this->currentNominationCount())),
         ]);

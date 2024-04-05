@@ -18,13 +18,16 @@ class BeatmapsetMainRuleset
 
     public function __construct(private Beatmapset $beatmapset)
     {
-        $cachedValue = $beatmapset->eligible_main_rulesets;
+        $values = $beatmapset->eligible_main_rulesets;
 
-        if ($cachedValue !== null) {
-            $this->eligibleRulesets = new Set(Ruleset::tryFromNames($cachedValue));
+        if ($values !== null) {
+            $this->eligibleRulesets = new Set(Ruleset::fromValues($values));
         }
     }
 
+    /**
+     * @return Set<Ruleset>
+     */
     public function currentEligible(): Set
     {
         $mainRuleset = $this->mainRuleset();
@@ -84,6 +87,14 @@ class BeatmapsetMainRuleset
     private function populateEligibleRulesets()
     {
         $groups = $this->baseQuery()->get();
+        $groupsCount = $groups->count();
+
+        // where's the beatmaps???
+        if ($groupsCount === 0) {
+            $this->eligibleRulesets = new Set();
+
+            return;
+        }
 
         // clear winner in playmode counts exists.
         if ($groups->count() === 1 || $groups[0]->getRawAttribute('total') > $groups[1]->getRawAttribute('total')) {
