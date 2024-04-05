@@ -55,7 +55,7 @@ class BeatmapsetMainRuleset
         }
 
         // First mode with more nominations that others becomes main mode.
-        // Implicity implies that limited BN nominations because main mode.
+        // Implicity implies that limited BN nominations becomes main mode.
         $nominations = $this->beatmapset->beatmapsetNominations()->current()->get();
         $nominationsByRuleset = [];
 
@@ -86,19 +86,18 @@ class BeatmapsetMainRuleset
 
     private function populateEligibleRulesets()
     {
+        $this->eligibleRulesets = new Set();
         $groups = $this->baseQuery()->get();
         $groupsCount = $groups->count();
 
         // where's the beatmaps???
         if ($groupsCount === 0) {
-            $this->eligibleRulesets = new Set();
-
             return;
         }
 
         // clear winner in playmode counts exists.
         if ($groups->count() === 1 || $groups[0]->getRawAttribute('total') > $groups[1]->getRawAttribute('total')) {
-            $this->eligibleRulesets = new Set([Ruleset::from($groups[0]->playmode)]);
+            $this->eligibleRulesets->add(Ruleset::from($groups[0]->playmode));
 
             return;
         }
@@ -112,14 +111,14 @@ class BeatmapsetMainRuleset
                 || $groupedHostOnly->count() > 1
                     && $groupedHostOnly[0]->getRawAttribute('total') > $groupedHostOnly[1]->getRawAttribute('total')
         ) {
-            $this->eligibleRulesets = new Set([Ruleset::from($groupedHostOnly[0]->playmode)]);
+            $this->eligibleRulesets->add(Ruleset::from($groupedHostOnly[0]->playmode));
 
             return;
         }
 
         // filter out to only modes with same highest counts.
-        $this->eligibleRulesets = new Set(
-            $groupedHostOnly
+        $this->eligibleRulesets->add(
+            ...$groupedHostOnly
                 ->filter(fn ($group) => $group->getRawAttribute('total') === $groupedHostOnly[0]->getRawAttribute('total'))
                 ->map(fn ($group) => Ruleset::from($group->playmode))
                 ->toArray()
