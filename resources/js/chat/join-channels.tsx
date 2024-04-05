@@ -3,6 +3,7 @@
 
 import { Spinner } from 'components/spinner';
 import ChannelJson from 'interfaces/chat/channel-json';
+import { route } from 'laroute';
 import { computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
@@ -21,7 +22,12 @@ interface ChannelProps {
 
 function Channel({ channel, onClick, status }: ChannelProps) {
   const handleClick = React.useCallback(
-    () => onClick(channel.channel_id),
+    (event: React.MouseEvent<HTMLAnchorElement>) => {
+      // prevent navigation and new tab, it's supposed to be a button plus new tab doesn't join the channel.
+      // context menu is still a problem...
+      event.preventDefault();
+      onClick(channel.channel_id);
+    },
     [channel.channel_id, onClick],
   );
 
@@ -34,7 +40,12 @@ function Channel({ channel, onClick, status }: ChannelProps) {
 
   return (
     // anchor instead of button due to Firefox having an issue with button padding in subgrid.
-    <a className={classWithModifiers('chat-join-channel__channel', { joined: status === 'joined' })} onClick={handleClick}>
+    <a
+      className={classWithModifiers('chat-join-channel__channel', { joined: status === 'joined' })}
+      href={route('chat.index', { channel_id: channel.channel_id })}
+      onAuxClick={handleClick}
+      onClick={handleClick}
+    >
       <span>{statusElement}</span>
       <span>{channel.name}</span>
       <span>{channel.description}</span>
