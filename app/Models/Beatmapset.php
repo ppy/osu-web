@@ -1147,6 +1147,9 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
     }
 
     /**
+     * Returns all the Rulesets that are eligible to be the main ruleset.
+     * This will _not_ query the current beatmapset nominations if there is an existing value in `eligible_main_rulesets`
+     *
      * @return Ruleset[]
      */
     public function eligibleMainRulesets(): array
@@ -1163,6 +1166,12 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         return Ruleset::fromValues($values);
     }
 
+    /**
+     * Returns the main Ruleset.
+     * This calls `eligibleMainRulesets()` and has the same nomination querying behaviour.
+     *
+     * @return Ruleset|null returns the main Ruleset if there is one eligible Rulset; `null`, otherwise.
+     */
     public function mainRuleset(): ?Ruleset
     {
         $eligible = $this->eligibleMainRulesets();

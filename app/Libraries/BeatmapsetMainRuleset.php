@@ -26,6 +26,9 @@ class BeatmapsetMainRuleset
     }
 
     /**
+     * Gets all the Rulesets that are eligible to be the main ruleset.
+     * This will additionally query the current beatmapset nominations if necessary.
+     *
      * @return Set<Ruleset>
      */
     public function currentEligible(): Set
