@@ -38,10 +38,10 @@
                     <td class="ranking-page-table__column">
                         <div class="ranking-page-table__user-link">
                             @include('objects._flag_country', [
-                                'countryCode' => $user->country->acronym,
+                                'countryCode' => $user->country_acronym,
                                 'modifiers' => 'medium',
                             ])
-                            {!!  link_to_user($user, null, '', ['ranking-page-table__user-link-text']) !!}
+                            {!! link_to_user($user, null, '', ['ranking-page-table__user-link-text']) !!}
                         </div>
                     </td>
                     <td class="ranking-page-table__column ranking-page-table__column--focused">

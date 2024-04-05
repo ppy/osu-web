@@ -244,11 +244,6 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':username odemkl novou medaili, ":title"!',
-                'user_achievement_unlock_self' => 'Odemkli jste novou medaili, ":title"!',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username vytvořil nové beatmapy',
                 'user_beatmapset_revive' => ':username obnovil beatmapy',

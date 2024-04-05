@@ -92,7 +92,6 @@ return [
             'mail' => 'البريد',
             'mapping' => 'مُنشئ خرائط',
             'push' => 'دفع',
-            'user_achievement_unlock' => 'تم فتح ميدالية المستخدم',
         ],
     ],
 

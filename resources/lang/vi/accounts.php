@@ -92,7 +92,6 @@ return [
             'mail' => 'thư',
             'mapping' => 'người tạo beatmap',
             'push' => 'đẩy',
-            'user_achievement_unlock' => 'đã mở khoá huy chương',
         ],
     ],
 

@@ -213,8 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'Cette beatmap devrait être classée le :date si aucun problème n\'est trouvé. Elle est #:position dans la :queue.',
-            'unresolved_problems' => '',
-            'problems' => '',
+            'unresolved_problems' => 'Cette beatmap ne peut actuellement pas être classée car :problems ne sont pas résolus.',
+            'problems' => 'ces problèmes',
             'on' => 'le :date',
             'queue' => 'file d\'attente de classement',
             'soon' => 'bientôt',

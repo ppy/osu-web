@@ -90,7 +90,6 @@ return [
         ],
         'rankings' => [
             '_' => 'ljestvice',
-            'kudosu' => 'kudosu',
         ],
         'store' => [
             '_' => 'trgovina',

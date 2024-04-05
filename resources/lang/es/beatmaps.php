@@ -213,8 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'Se estima que este mapa se clasificará :date si no se encuentran problemas. Es el número :position en la :queue.',
-            'unresolved_problems' => '',
-            'problems' => '',
+            'unresolved_problems' => 'Este mapa no puede salir de la sección de calificados hasta que se resuelvan :problems.',
+            'problems' => 'estos problemas',
             'on' => 'el :date',
             'queue' => 'cola de clasificación',
             'soon' => 'pronto',

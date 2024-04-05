@@ -86,7 +86,6 @@ return [
         ],
         'rankings' => [
             '_' => 'rankings',
-            'kudosu' => 'kudosu',
         ],
         'store' => [
             '_' => 'winkel',
@@ -196,8 +195,8 @@ return [
             'account-edit' => 'Instellingen',
             'follows' => 'Volglijsten',
             'friends' => 'Vrienden',
-            'legacy_score_only_toggle' => '',
-            'legacy_score_only_toggle_tooltip' => '',
+            'legacy_score_only_toggle' => 'Lazermodus',
+            'legacy_score_only_toggle_tooltip' => 'Lazermodus toont scores gezet op lazer met een nieuw scoringsalgoritme',
             'logout' => 'Log Uit',
             'profile' => 'Mijn Profiel',
         ],

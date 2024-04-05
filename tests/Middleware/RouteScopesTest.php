@@ -25,7 +25,7 @@ class RouteScopesTest extends TestCase
     {
         $this->importExpectations();
 
-        $key = RouteScopesHelper::keyForMethods($route['methods']).'@'.$route['controller'];
+        $key = RouteScopesHelper::keyForMethods($route['methods']).'@'.$route['uri'];
 
         $this->assertSame(static::$expectations[$key], $route, $key);
     }
@@ -91,10 +91,9 @@ class RouteScopesTest extends TestCase
                 }
 
                 $url = app('url')->toRoute($route, $parameters, false);
-                $action = $route->getAction('controller');
                 $middlewares = $route->gatherMiddleware();
 
-                $key = "{$method}@{$action}"; // give data set a name.
+                $key = "{$method}@{$route->uri}"; // give data set a name.
                 $data[$key] = [$url, $method, $middlewares];
             }
         }
@@ -124,7 +123,7 @@ class RouteScopesTest extends TestCase
         $helper->fromJson('tests/api_routes.json');
         $routes = $helper->routes;
         foreach ($routes as $route) {
-            $key = RouteScopesHelper::keyForMethods($route['methods']).'@'.$route['controller'];
+            $key = RouteScopesHelper::keyForMethods($route['methods']).'@'.$route['uri'];
             static::$expectations[$key] = $route;
         }
     }

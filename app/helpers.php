@@ -3,6 +3,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+use App\Exceptions\FastImagesizeFetchException;
+use App\Http\Controllers\RankingController;
 use App\Libraries\Base64Url;
 use App\Libraries\LocaleMeta;
 use App\Models\LoginAttempt;
@@ -393,6 +395,11 @@ function flag_url($countryCode)
     return "/assets/images/flags/{$baseFileName}.svg";
 }
 
+function format_month_column(\DateTimeInterface $date): string
+{
+    return $date->format('ym');
+}
+
 function format_rank(?int $rank): string
 {
     return $rank !== null ? '#'.i18n_number_format($rank) : '-';
@@ -468,13 +475,35 @@ function json_time(?DateTime $time): ?string
     return $time === null ? null : $time->format(DateTime::ATOM);
 }
 
-function log_error($exception)
+function log_error($exception, ?array $sentryTags = null): void
 {
     Log::error($exception);
+    log_error_sentry($exception, $sentryTags);
+}
 
-    if ($GLOBALS['cfg']['sentry']['dsn']) {
-        Sentry::captureException($exception);
+function log_error_sentry(Throwable $exception, ?array $tags = null): ?string
+{
+    // Fallback in case error happening before config is initialised
+    if (!($GLOBALS['cfg']['sentry']['dsn'] ?? false)) {
+        return null;
     }
+
+    return Sentry\withScope(function ($scope) use ($exception, $tags) {
+        $currentUser = Auth::user();
+        $userContext = $currentUser === null
+            ? ['id' => null]
+            : [
+                'id' => $currentUser->getKey(),
+                'username' => $currentUser->username,
+            ];
+
+        $scope->setUser($userContext);
+        foreach ($tags ?? [] as $key => $value) {
+            $scope->setTag($key, $value);
+        }
+
+        return Sentry\captureException($exception);
+    });
 }
 
 function logout()
@@ -1108,15 +1137,9 @@ function nav_links()
         'page_title.main.artists_controller._' => route('artists.index'),
         'page_title.main.beatmap_packs_controller._' => route('packs.index'),
     ];
-    $links['rankings'] = [
-        'rankings.type.performance' => route('rankings', ['mode' => $defaultMode, 'type' => 'performance']),
-        'rankings.type.charts' => route('rankings', ['mode' => $defaultMode, 'type' => 'charts']),
-        'rankings.type.score' => route('rankings', ['mode' => $defaultMode, 'type' => 'score']),
-        'rankings.type.country' => route('rankings', ['mode' => $defaultMode, 'type' => 'country']),
-        'rankings.type.multiplayer' => route('multiplayer.rooms.show', ['room' => 'latest']),
-        'rankings.type.seasons' => route('seasons.show', ['season' => 'latest']),
-        'layout.menu.rankings.kudosu' => route('rankings.kudosu'),
-    ];
+    foreach (RankingController::TYPES as $rankingType) {
+        $links['rankings']["rankings.type.{$rankingType}"] = RankingController::url($rankingType, $defaultMode);
+    }
     $links['community'] = [
         'page_title.forum._' => route('forum.forums.index'),
         'page_title.main.chat_controller._' => route('chat.index'),
@@ -1316,14 +1339,14 @@ function json_item($model, $transformer, $includes = null)
     return json_collection([$model], $transformer, $includes)[0] ?? null;
 }
 
-function fast_imagesize($url)
+function fast_imagesize($url, ?string $logErrorId = null)
 {
     static $oneMonthInSeconds = 30 * 24 * 60 * 60;
 
     return null_if_false(Cache::remember(
         "imageSize:{$url}",
         $oneMonthInSeconds,
-        function () use ($url) {
+        function () use ($logErrorId, $url) {
             $curl = curl_init($url);
             curl_setopt_array($curl, [
                 CURLOPT_HTTPHEADER => [
@@ -1336,8 +1359,20 @@ function fast_imagesize($url)
             ]);
             $data = curl_exec($curl);
 
+            $ret = read_image_properties_from_string($data);
+
+            if ($ret === null && $logErrorId !== null) {
+                log_error(new FastImagesizeFetchException(), [
+                    'curl_error_code' => curl_errno($curl),
+                    'curl_error_message' => presence(curl_error($curl)) ?? 'ok',
+                    'curl_status_code' => curl_getinfo($curl, CURLINFO_HTTP_CODE),
+                    'error_id' => $logErrorId,
+                    'url' => $url,
+                ]);
+            }
+
             // null isn't cached
-            return read_image_properties_from_string($data) ?? false;
+            return $ret ?? false;
         },
     ));
 }

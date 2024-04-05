@@ -92,7 +92,6 @@ return [
             'mail' => 'e-mail',
             'mapping' => 'tvůrce beatmapy',
             'push' => 'push',
-            'user_achievement_unlock' => 'odemčení nové medaile',
         ],
     ],
 

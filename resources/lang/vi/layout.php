@@ -86,7 +86,6 @@ return [
         ],
         'rankings' => [
             '_' => 'xếp hạng',
-            'kudosu' => 'kudosu',
         ],
         'store' => [
             '_' => 'cửa hàng',

@@ -665,8 +665,6 @@ class UsersController extends Controller
         } else {
             $achievements = json_collection(app('medals')->all(), 'Achievement');
 
-            $extras = [];
-
             $initialData = [
                 'achievements' => $achievements,
                 'current_mode' => $currentMode,
@@ -1003,12 +1001,13 @@ class UsersController extends Controller
 
             $user = $registration->user();
 
-            if ($country === null) {
+            // report unknown country code but ignore non-country from cloudflare
+            if ($countryCode !== null && $country === null && $countryCode !== 'T1') {
                 app('sentry')->getClient()->captureMessage(
-                    'User registered from unknown country: '.$countryCode,
+                    'User registered from unknown country',
                     null,
                     (new Scope())
-                        ->setExtra('country', $countryCode)
+                        ->setTag('country', $countryCode)
                         ->setExtra('ip', $ip)
                         ->setExtra('user_id', $user->getKey())
                 );

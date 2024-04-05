@@ -92,7 +92,6 @@ return [
             'mail' => 'пошта',
             'mapping' => 'креатор мапе',
             'push' => 'push',
-            'user_achievement_unlock' => 'корисничка медаља откључана',
         ],
     ],
 

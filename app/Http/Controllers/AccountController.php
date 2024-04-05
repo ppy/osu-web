@@ -84,16 +84,19 @@ class AccountController extends Controller
 
     public function cover()
     {
-        $user = auth()->user();
+        $user = \Auth::user();
+        $params = get_params(\Request::all(), null, [
+            'cover_file:file',
+            'cover_id:int',
+        ], ['null_missing' => true]);
 
-        if (Request::hasFile('cover_file') && !$user->osu_subscriber) {
+        if ($params['cover_file'] !== null && !$user->osu_subscriber) {
             return error_popup(osu_trans('errors.supporter_only'));
         }
 
         try {
-            $profile = $user->profileCustomization();
-            $profile->cover()->set(Request::input('cover_id'), Request::file('cover_file'));
-            $profile->save();
+            $user->cover()->set($params['cover_id'], $params['cover_file']);
+            $user->save();
         } catch (ImageProcessorException $e) {
             return error_popup($e->getMessage());
         }

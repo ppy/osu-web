@@ -19,14 +19,14 @@ return [
             'new_confirmation' => 'potvrdenie emailu',
             'title' => 'Email',
             'locked' => [
-                '_' => '',
-                'accounts' => '',
+                '_' => 'Prosím kontaktuje :accounts ak potrebujete aktualizovať svoj email.',
+                'accounts' => 'tím podpory účtu',
             ],
         ],
 
         'legacy_api' => [
-            'api' => '',
-            'irc' => '',
+            'api' => 'api',
+            'irc' => 'irc',
             'title' => '',
         ],
 
@@ -38,12 +38,12 @@ return [
         ],
 
         'profile' => [
-            'country' => '',
+            'country' => 'krajina',
             'title' => 'Profil',
 
             'country_change' => [
-                '_' => "",
-                'update_link' => '',
+                '_' => "Krajina vášho účtu nezodpovedá krajine vášho bydliska. :update_link.",
+                'update_link' => 'Aktualizovať na :country',
             ],
 
             'user' => [
@@ -63,15 +63,15 @@ return [
     ],
 
     'github_user' => [
-        'info' => "",
-        'link' => '',
-        'title' => '',
-        'unlink' => '',
+        'info' => "Ak ste prispievateľom do úložisiek s otvoreným zdrojovým kódom osu!, prepojenie účtu GitHub tu priradí vaše záznamy z denníku zmien k vášmu osu! profilu. Účty GitHub bez histórie príspevkov do osu! nemožno prepojiť.",
+        'link' => 'Prepoj GitHub účet',
+        'title' => 'GitHub',
+        'unlink' => 'Preruš prepojenie GitHub účtu',
 
         'error' => [
-            'already_linked' => '',
-            'no_contribution' => '',
-            'unverified_email' => '',
+            'already_linked' => 'Tento GitHub účet je už prepojený na iného užívateľa.',
+            'no_contribution' => 'GitHub účet bez histórie príspevkov do úložisiek osu! nemožno prepojiť.',
+            'unverified_email' => 'Prosím skontrolujte svoj primárny email v GitHub, potom skúste znova prepojiť svoj účet.',
         ],
     ],
 
@@ -93,7 +93,6 @@ return [
             'mail' => 'pošta',
             'mapping' => 'tvorca beatmapy',
             'push' => 'push',
-            'user_achievement_unlock' => 'nová medaila odomknutá',
         ],
     ],
 

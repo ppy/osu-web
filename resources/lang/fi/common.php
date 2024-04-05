@@ -79,7 +79,7 @@ return [
         'post' => ':count_delimited viesti|:count_delimited viestiä',
         'second_short_unit' => 's|s',
         'star_priority' => ':count_delimited tähtitaso|:count_delimited tähtitasoja',
-        'update' => ':count_delimited päivitys|:count_delimited päivityksiä',
+        'update' => ':count_delimited päivitys|:count_delimited päivitystä',
         'view' => ':count_delimited katselukerta|:count_delimited katselukertaa',
         'years' => ':count vuosi|:count vuotta',
     ],

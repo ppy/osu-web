@@ -16,10 +16,10 @@ return [
     'judge' => [
         'hide_judged' => '',
         'nav_title' => '',
-        'no_current_vote' => '',
-        'update' => '',
+        'no_current_vote' => 'você ainda não votou.',
+        'update' => 'atualizar',
         'validation' => [
-            'missing_score' => '',
+            'missing_score' => 'pontuação faltando',
             'contest_vote_judged' => '',
         ],
         'voted' => '',
@@ -27,9 +27,9 @@ return [
 
     'judge_results' => [
         '_' => '',
-        'creator' => '',
-        'score' => '',
-        'total_score' => '',
+        'creator' => 'criador',
+        'score' => 'Pontuação',
+        'total_score' => 'pontuação total',
     ],
 
     'voting' => [

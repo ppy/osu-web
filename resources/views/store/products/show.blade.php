@@ -29,7 +29,7 @@
                         <div class="gallery-previews">
                             @foreach($product->images() as $i => $image)
                                 @php
-                                    $imageSize = fast_imagesize($image[1]);
+                                    $imageSize = fast_imagesize($image[1], "store_product:{$product->getKey()}");
                                 @endphp
                                 <a
                                     class="gallery-previews__item js-gallery"
@@ -124,12 +124,15 @@
         </div>
 
         <div class="store-page store-page--footer" id="add-to-cart">
-            @if($product->inStock())
-                <button type="submit" class="btn-osu-big btn-osu-big--store-action js-store-add-to-cart js-login-required--click">
+            @if ($product->inStock())
+                <button
+                    class="btn-osu-big btn-osu-big--store-action js-login-required--click js-store-add-to-cart"
+                    type="submit"
+                    {{ $product->custom_class === App\Models\Store\Product::SUPPORTER_TAG_NAME ? 'disabled' : '' }}
+                >
                     {{ osu_trans('store.product.add_to_cart') }}
                 </button>
-
-            @elseif(!$requestedNotification)
+            @elseif (!$requestedNotification)
                 <a
                     class="btn-osu-big btn-osu-big--store-action js-login-required--click"
                     href="{{ route('store.notification-request', ['product' => $product->product_id]) }}"

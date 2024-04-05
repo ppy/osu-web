@@ -69,5 +69,5 @@ Turbolinks.Snapshot::hasAnchor = -> true
 Turbolinks.Controller::locationIsVisitable = (location) ->
   location.isPrefixedBy(@view.getRootLocation()) &&
     # old website pages
-    !location.getPath().startsWith('/p/') &&
+    location.getPath().match(/^\/(api|osu|p|ss|web)\//) == null &&
     isHTML(location)

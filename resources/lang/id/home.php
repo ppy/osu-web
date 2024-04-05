@@ -76,7 +76,7 @@ return [
         'action' => 'Unduh osu!',
         'action_lazer' => 'Unduh osu!(lazer)',
         'action_lazer_description' => 'versi utama osu! yang akan datang',
-        'action_lazer_info' => 'kunjungi laman ini untuk informasi lebih lanjut',
+        'action_lazer_info' => 'kunjungi halaman ini untuk informasi lebih lanjut',
         'action_lazer_title' => 'coba osu!(lazer)',
         'action_title' => 'unduh osu!',
         'for_os' => 'untuk :os',
@@ -123,7 +123,7 @@ return [
         'title' => 'dasbor',
         'news' => [
             'title' => 'Berita',
-            'error' => 'Terdapat kesalahan dalam memuat berita. Coba untuk memuat ulang laman?...',
+            'error' => 'Terdapat kesalahan dalam memuat berita. Cobalah untuk memuat ulang halaman?...',
         ],
         'header' => [
             'stats' => [

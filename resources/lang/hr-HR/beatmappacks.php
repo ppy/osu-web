@@ -6,7 +6,7 @@
 return [
     'index' => [
         'description' => 'Unaprijed zapakirane zbirke beatmapa temeljenih na zajedničkoj temi.',
-        'empty' => '',
+        'empty' => 'Dolazi uskoro!',
         'nav_title' => 'popis',
         'title' => 'Paketi beatmapa',
 
@@ -39,7 +39,7 @@ return [
         'loved' => '',
         'standard' => 'Standardni',
         'theme' => 'Tema',
-        'tournament' => '',
+        'tournament' => 'Turnir',
     ],
 
     'require_login' => [

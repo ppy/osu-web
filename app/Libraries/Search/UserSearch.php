@@ -8,6 +8,7 @@ namespace App\Libraries\Search;
 use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Elasticsearch\RecordSearch;
 use App\Models\User;
+use App\Transformers\UserCompactTransformer;
 
 class UserSearch extends RecordSearch
 {
@@ -22,7 +23,7 @@ class UserSearch extends RecordSearch
 
     public function records()
     {
-        return $this->response()->records()->with(['country', 'userProfileCustomization', 'userGroups'])->get();
+        return $this->response()->records()->with(UserCompactTransformer::CARD_INCLUDES_PRELOAD)->get();
     }
 
     /**

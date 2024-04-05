@@ -16,6 +16,14 @@ class PasswordResetData
 
     private string $cacheKey;
 
+    private function __construct(
+        public array $attrs,
+        private readonly User $user,
+        string $username
+    ) {
+        $this->cacheKey = static::cacheKey($this->user, $username);
+    }
+
     public static function create(?User $user, string $username): ?string
     {
         if ($user === null) {
@@ -74,15 +82,7 @@ class PasswordResetData
 
     private static function authHash(User $user): string
     {
-        return hash('sha256', $user->user_email).':'.hash('sha256', $user->user_password);
-    }
-
-    private function __construct(
-        public array $attrs,
-        private readonly User $user,
-        string $username
-    ) {
-        $this->cacheKey = static::cacheKey($this->user, $username);
+        return hash('sha256', $user->user_email ?? '').':'.hash('sha256', $user->user_password);
     }
 
     public function delete(): void

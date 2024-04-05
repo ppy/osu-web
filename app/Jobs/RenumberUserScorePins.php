@@ -15,7 +15,7 @@ class RenumberUserScorePins implements ShouldQueue
 {
     use InteractsWithQueue, Queueable;
 
-    public function __construct(private int $userId, private string $scoreType)
+    public function __construct(private int $userId, private int $rulesetId)
     {
     }
 
@@ -24,7 +24,7 @@ class RenumberUserScorePins implements ShouldQueue
         DB::transaction(function () {
             $pins = ScorePin
                 ::where([
-                    'score_type' => $this->scoreType,
+                    'ruleset_id' => $this->rulesetId,
                     'user_id' => $this->userId,
                 ])->orderBy('display_order', 'asc')
                 ->lockForUpdate()
