@@ -7,18 +7,18 @@ declare(strict_types=1);
 
 namespace Tests\Controllers;
 
-use App\Enums\Ruleset;
 use App\Models\ScorePin;
 use App\Models\Solo\Score;
 use App\Models\User;
+use App\Models\Beatmap;
 use Tests\TestCase;
 
 class ScorePinsControllerTest extends TestCase
 {
-    private static function createScore(?User $user = null, ?Ruleset $ruleset = null, ?bool $passed = null): Score
+    private static function createScore(?User $user = null, ?int $rulesetId = null, ?bool $passed = null): Score
     {
-        if ($ruleset !== null) {
-            $params['ruleset_id'] = $ruleset->value;
+        if ($rulesetId !== null) {
+            $params['ruleset_id'] = $rulesetId;
         }
         if ($user !== null) {
             $params['user_id'] = $user;
@@ -79,7 +79,7 @@ class ScorePinsControllerTest extends TestCase
         $user = User::factory()->create();
         $pins = collect([0, 1])->map(fn ($order) => ScorePin
             ::factory(['display_order' => $order])
-            ->withScore(static::createScore($user, Ruleset::osu))
+            ->withScore(static::createScore($user, Beatmap::MODES['osu']))
             ->create());
 
         $this->actAsUser($user, true);
@@ -99,7 +99,7 @@ class ScorePinsControllerTest extends TestCase
         $user = User::factory()->create();
         $pins = collect([0, 1, 2])->map(fn ($order) => ScorePin
             ::factory(['display_order' => $order])
-            ->withScore(static::createScore($user, Ruleset::osu))
+            ->withScore(static::createScore($user, Beatmap::MODES['osu']))
             ->create());
 
         $this->actAsUser($user, true);
@@ -120,7 +120,7 @@ class ScorePinsControllerTest extends TestCase
         $user = User::factory()->create();
         $pins = collect([0, 1])->map(fn ($order) => ScorePin
             ::factory(['display_order' => $order])
-            ->withScore(static::createScore($user, Ruleset::osu))
+            ->withScore(static::createScore($user, Beatmap::MODES['osu']))
             ->create());
 
         $this->actAsUser($user, true);
@@ -140,7 +140,7 @@ class ScorePinsControllerTest extends TestCase
         $user = User::factory()->create();
         $pins = collect([0, 1, 2])->map(fn ($order) => ScorePin
             ::factory(['display_order' => $order])
-            ->withScore(static::createScore($user, Ruleset::osu))
+            ->withScore(static::createScore($user, Beatmap::MODES['osu']))
             ->create());
 
         $this->actAsUser($user, true);
@@ -199,8 +199,8 @@ class ScorePinsControllerTest extends TestCase
         $user = User::factory()->create([
             'osu_subscriber' => false,
         ]);
-        $score1 = static::createScore($user, Ruleset::osu);
-        $score2 = static::createScore($user, Ruleset::osu);
+        $score1 = static::createScore($user, Beatmap::MODES['osu']);
+        $score2 = static::createScore($user, Beatmap::MODES['osu']);
         $pin1 = ScorePin::factory()->withScore($score1)->create();
 
         $this->actAsUser($user, true);
@@ -247,8 +247,8 @@ class ScorePinsControllerTest extends TestCase
         $user = User::factory()->create([
             'osu_subscriber' => false,
         ]);
-        $score1 = static::createScore($user, Ruleset::osu);
-        $score2 = static::createScore($user, Ruleset::osu);
+        $score1 = static::createScore($user, Beatmap::MODES['osu']);
+        $score2 = static::createScore($user, Beatmap::MODES['osu']);
         $pin1 = ScorePin::factory()->withScore($score1)->create();
 
         $this->expectCountChange(fn () => ScorePin::count(), 0);
@@ -267,8 +267,8 @@ class ScorePinsControllerTest extends TestCase
         $user = User::factory()->create([
             'osu_subscriber' => false,
         ]);
-        $score1 = static::createScore($user, Ruleset::osu);
-        $score2 = static::createScore($user, Ruleset::taiko);
+        $score1 = static::createScore($user, Beatmap::MODES['osu']);
+        $score2 = static::createScore($user, Beatmap::MODES['taiko']);
         $pin1 = ScorePin::factory()->withScore($score1)->create();
 
         $this->expectCountChange(fn () => ScorePin::count(), 1);
