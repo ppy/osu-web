@@ -6,7 +6,7 @@
 return [
     'support' => [
         'convinced' => [
-            'title' => '',
+            'title' => 'Ubjedjen/a sam! :D',
             'support' => '',
             'gift' => '',
             'instructions' => '',
@@ -45,7 +45,7 @@ return [
         'perks' => [
             'title' => '',
             'osu_direct' => [
-                'title' => '',
+                'title' => 'osu!direct',
                 'description' => '',
             ],
 
@@ -60,7 +60,7 @@ return [
             ],
 
             'mod_filtering' => [
-                'title' => '',
+                'title' => 'Filtriraj prema Modovima',
                 'description' => '',
             ],
 
@@ -95,12 +95,12 @@ return [
             ],
 
             'speedy_downloads' => [
-                'title' => '',
+                'title' => 'Brza preuzimanja',
                 'description' => '',
             ],
 
             'change_username' => [
-                'title' => '',
+                'title' => 'Promjeni korisnicko ime',
                 'description' => '',
             ],
 
@@ -124,7 +124,7 @@ return [
                 'description' => '',
             ],
             'more_friends' => [
-                'title' => '',
+                'title' => 'Vise prijatelja',
                 'description' => '',
             ],
             'more_beatmaps' => [

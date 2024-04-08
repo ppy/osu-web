@@ -5,25 +5,25 @@
 
 return [
     'index' => [
-        'title_page' => '',
+        'title_page' => 'osu!jaunumi',
 
         'nav' => [
-            'newer' => '',
-            'older' => '',
+            'newer' => 'Jaunākie raksti',
+            'older' => 'Vecāki raksti',
         ],
 
         'title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'jaunumi',
+            'info' => 'sākumlapa',
         ],
     ],
 
     'show' => [
-        'by' => '',
+        'by' => 'no :user',
 
         'nav' => [
-            'newer' => '',
-            'older' => '',
+            'newer' => 'Jaunāks raksts',
+            'older' => 'Vecāks raksts',
         ],
 
         'title' => [

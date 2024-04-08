@@ -8,11 +8,11 @@ return [
         'home' => 'Siirry yleiskatsaukseen',
         'logout' => 'Kirjaudu ulos',
         'text' => 'Voit nyt sulkea tämän välilehden/ikkunan',
-        'title' => 'osu!-klientin vahvistaminen on valmis',
+        'title' => 'osu!-asiakasohjelman vahvistaminen on valmis',
     ],
 
     'create' => [
-        'confirm' => 'Klikkaa allaolevaa valtuutuspainiketta viimeistelläksesi klientin vahvistamisen.',
-        'title' => 'osu!-klientin vahvistaminen',
+        'confirm' => 'Napsauta allaolevaa valtuutuspainiketta viimeistelläksesi asiakasohjelman vahvistamisen.',
+        'title' => 'osu!-asiakasohjelman vahvistaminen',
     ],
 ];

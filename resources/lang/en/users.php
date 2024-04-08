@@ -97,6 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
+            'inactive' => "Your account hasn't been used in a long time.",
             'inactive_different_country' => "Your account hasn't been used in a long time.",
         ],
     ],

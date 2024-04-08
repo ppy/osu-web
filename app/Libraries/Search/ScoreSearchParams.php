@@ -24,6 +24,7 @@ class ScoreSearchParams extends SearchParams
     public bool $excludeConverts = false;
     public ?array $excludeMods = null;
     public ?bool $isLegacy = null;
+    public bool $excludeWithoutPp = false;
     public ?array $mods = null;
     public ?int $rulesetId = null;
     public $size = 50;
@@ -39,6 +40,7 @@ class ScoreSearchParams extends SearchParams
         $params->beatmapIds = $rawParams['beatmap_ids'] ?? null;
         $params->excludeConverts = $rawParams['exclude_converts'] ?? $params->excludeConverts;
         $params->excludeMods = $rawParams['exclude_mods'] ?? null;
+        $params->excludeWithoutPp = $rawParams['exclude_without_pp'] ?? $params->excludeWithoutPp;
         $params->isLegacy = $rawParams['is_legacy'] ?? null;
         $params->mods = $rawParams['mods'] ?? null;
         $params->rulesetId = $rawParams['ruleset_id'] ?? null;

@@ -19,6 +19,7 @@ import ReactTurbolinks from 'core/react-turbolinks';
 import StickyHeader from 'core/sticky-header';
 import Timeago from 'core/timeago';
 import TurbolinksReload from 'core/turbolinks-reload';
+import TwitchPlayer from 'core/twitch-player';
 import ScorePins from 'core/user/score-pins';
 import UserLogin from 'core/user/user-login';
 import UserLoginObserver from 'core/user/user-login-observer';
@@ -62,6 +63,7 @@ export default class OsuCore {
   readonly stickyHeader;
   readonly timeago;
   readonly turbolinksReload;
+  readonly twitchPlayer;
   readonly userLogin;
   readonly userLoginObserver;
   readonly userPreferences;
@@ -112,6 +114,8 @@ export default class OsuCore {
     this.enchant = new Enchant(this.turbolinksReload);
     this.osuAudio = new OsuAudio(this.userPreferences);
     this.reactTurbolinks = new ReactTurbolinks(this, this.turbolinksReload);
+    this.twitchPlayer = new TwitchPlayer(this.turbolinksReload);
+
     this.userLogin = new UserLogin(this.captcha);
     // should probably figure how to conditionally or lazy initialize these so they don't all init when not needed.
     // TODO: requires dynamic imports to lazy load modules.

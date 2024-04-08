@@ -37,7 +37,7 @@ return [
         'username' => 'Vul e-mail adres of gebruikersnaam in',
 
         'reason' => [
-            'inactive_different_country' => "",
+            'inactive_different_country' => "Uw account is een lange tijd niet gebruikt. Om uw accountbeveiliging te verzekeren, reset uw wachtwoord.",
         ],
         'support' => [
             '_' => 'Meer hulp nodig? Neem contact met ons op via onze :button.',

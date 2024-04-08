@@ -19,9 +19,9 @@ use App\Models\Score as LegacyScore;
 use App\Models\ScoreToken;
 use App\Models\Traits;
 use App\Models\User;
+use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Database\Eloquent\Builder;
 use LaravelRedis;
-use Storage;
 
 /**
  * @property float $accuracy
@@ -118,13 +118,24 @@ class Score extends Model implements Traits\ReportableInterface
         $params['started_at'] = $scoreToken->created_at;
         $params['user_id'] = $scoreToken->user_id;
 
+        $params['passed'] ??= false;
+        $params['preserve'] = $params['passed'];
+
         $beatmap = $scoreToken->beatmap;
         // anything that have leaderboard
-        $params['ranked'] = $beatmap !== null && $beatmap->approved > 0;
-
-        $params['preserve'] = $params['passed'] ?? false;
+        $params['ranked'] = $params['passed'] && $beatmap !== null && $beatmap->approved > 0;
 
         return $params;
+    }
+
+    public static function replayFileDiskName(): string
+    {
+        return "{$GLOBALS['cfg']['osu']['score_replays']['storage']}-solo-replay";
+    }
+
+    public static function replayFileStorage(): Filesystem
+    {
+        return \Storage::disk(static::replayFileDiskName());
     }
 
     public function beatmap()
@@ -253,8 +264,7 @@ class Score extends Model implements Traits\ReportableInterface
 
     public function getReplayFile(): ?string
     {
-        return Storage::disk($GLOBALS['cfg']['osu']['score_replays']['storage'].'-solo-replay')
-            ->get($this->getKey());
+        return static::replayFileStorage()->get($this->getKey());
     }
 
     public function isLegacy(): bool

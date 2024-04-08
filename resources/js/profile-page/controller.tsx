@@ -81,7 +81,7 @@ interface LazyPages {
 
 export type Page = ProfileExtraPage | 'main';
 
-type ScorePinReorderParamsBase = Pick<ScoreCurrentUserPinJson, 'score_id' | 'score_type'>;
+type ScorePinReorderParamsBase = Pick<ScoreCurrentUserPinJson, 'score_id'>;
 
 interface ScorePinReorderParams extends ScorePinReorderParamsBase {
   order1?: ScorePinReorderParamsBase;
