@@ -27,6 +27,7 @@ class ArtistTrackSearchParams extends SearchParams
     public ?string $album;
     public ?string $artist;
     public ?array $bpm;
+    public bool $exclusiveOnly = false;
     public ?string $genre;
     public bool $isDefaultSort = false;
     public ?array $length;
