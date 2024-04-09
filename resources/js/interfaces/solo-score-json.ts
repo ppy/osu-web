@@ -43,6 +43,7 @@ type SoloScoreJsonDefaultAttributes = {
   preserve?: boolean;
   rank: Rank;
   ranked?: boolean;
+  processed?: boolean;
   ruleset_id: number;
   started_at: string | null;
   statistics: Partial<Record<SoloScoreStatisticsAttribute, number>>;

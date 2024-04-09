@@ -102,6 +102,7 @@ class ScoreTransformer extends TransformerAbstract
         if ($score instanceof SoloScore) {
             $extraAttributes['ranked'] = $score->ranked;
             $extraAttributes['preserve'] = $score->preserve;
+            $extraAttributes['processed'] = $score->processHistory()->first() !== null;
         }
 
         $hasReplay = $score->has_replay;
