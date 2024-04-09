@@ -45,6 +45,11 @@ return [
         'index' => [
             '_' => 'kappalehaku',
 
+            'exclusive_only' => [
+                'all' => '',
+                'exclusive_only' => '',
+            ],
+
             'form' => [
                 'advanced' => 'Laajennettu haku',
                 'album' => 'Albumi',
@@ -52,6 +57,7 @@ return [
                 'bpm_gte' => 'BPM vähintään',
                 'bpm_lte' => 'BPM enintään',
                 'empty' => 'Hakukriteerejä vastaavia kappaleita ei löytynyt.',
+                'exclusive_only' => '',
                 'genre' => 'Tyylilaji',
                 'genre_all' => 'Kaikki',
                 'length_gte' => 'Vähimmäispituus',

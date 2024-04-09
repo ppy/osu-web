@@ -40,13 +40,13 @@ return [
 
     'beatmap_discussion_post' => [
         'destroy' => [
-            'not_owner' => 'Kamu hanya dapat menghapus postingan milik diri sendiri.',
+            'not_owner' => 'Kamu hanya dapat menghapus postingan milikmu sendiri.',
             'resolved' => 'Kamu tidak dapat menghapus postingan pada topik diskusi yang telah terjawab.',
             'system_generated' => 'Postingan yang dihasilkan secara otomatis tidak dapat dihapus.',
         ],
 
         'edit' => [
-            'not_owner' => 'Hanya pemilik topik yang diperbolehkan untuk menyunting kiriman.',
+            'not_owner' => 'Postingan ini hanya dapat disunting oleh pengirimnya.',
             'resolved' => 'Kamu tidak dapat menyunting postingan pada topik diskusi yang telah terjawab.',
             'system_generated' => 'Postingan yang dihasilkan secara otomatis tidak dapat disunting.',
         ],
@@ -76,7 +76,7 @@ return [
             'disabled' => 'Komentar dinonaktifkan',
         ],
         'update' => [
-            'deleted' => "Tidak dapat menyunting post yang telah dihapus.",
+            'deleted' => "Postingan yang telah dihapus tidak dapat disunting.",
         ],
     ],
 
@@ -86,7 +86,7 @@ return [
 
         'entry' => [
             'limit_reached' => 'Kamu telah mencapai batas entri untuk kontes ini',
-            'over' => 'Terima kasih telah mengirimkan entrimu! Pengumpulan entri untuk kontes ini telah ditutup dan pemungutan suara akan segera berlangsung.',
+            'over' => 'Terima kasih atas entrimu! Pengumpulan entri untuk kontes ini telah ditutup dan pemungutan suara akan segera dibuka.',
         ],
     ],
 
@@ -97,23 +97,23 @@ return [
 
         'post' => [
             'delete' => [
-                'only_last_post' => 'Hanya kiriman terakhir yang dapat dihapus.',
-                'locked' => 'Tidak dapat menghapus kiriman di topik yang telah dikunci.',
+                'only_last_post' => 'Hanya postingan terakhir yang dapat dihapus.',
+                'locked' => 'Postingan pada topik yang telah dikunci tidak dapat dihapus.',
                 'no_forum_access' => 'Kamu tidak memiliki akses ke forum yang dituju.',
-                'not_owner' => 'Hanya pemilik topik yang dapat menghapus kiriman.',
+                'not_owner' => 'Postingan ini hanya dapat dihapus oleh pengirimnya.',
             ],
 
             'edit' => [
-                'deleted' => 'Tidak dapat menyunting postingan yang telah dihapus.',
+                'deleted' => 'Postingan yang telah dihapus tidak dapat disunting.',
                 'locked' => 'Penyuntingan pada postingan ini telah dikunci.',
                 'no_forum_access' => 'Kamu tidak memiliki akses ke forum yang dituju.',
-                'not_owner' => 'Hanya pemilik topik yang dapat menyunting kiriman.',
-                'topic_locked' => 'Tidak dapat menyunting kiriman di topik yang telah dikunci.',
+                'not_owner' => 'Postingan ini hanya dapat disunting oleh pengirimnya.',
+                'topic_locked' => 'Postingan pada topik yang telah dikunci tidak dapat disunting.',
             ],
 
             'store' => [
                 'play_more' => 'Kamu harus terlebih dahulu bermain sebelum kamu dapat membuat postingan pada forum! Apabila kamu mengalami masalah saat bermain, silakan kunjungi forum Help & Support.',
-                'too_many_help_posts' => "Kamu harus lebih banyak bermain sebelum kamu dapat membuat postingan tambahan. Apabila kamu masih memerlukan bantuan lebih lanjut, silakan kirim email ke support@ppy.sh", // FIXME: unhardcode email address.
+                'too_many_help_posts' => "Kamu perlu untuk bermain lebih banyak sebelum kamu dapat membuat postingan tambahan. Apabila kamu masih menemui masalah dalam bermain, silakan kirim email ke support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 
@@ -134,7 +134,7 @@ return [
             'store' => [
                 'no_forum_access' => 'Kamu tidak memiliki akses ke forum yang dituju.',
                 'no_permission' => 'Tidak memiliki izin untuk membuat topik baru.',
-                'forum_closed' => 'Forum ditutup sehingga tidak dapat membuat postingan.',
+                'forum_closed' => 'Forum ini telah ditutup dan tidak lagi dapat ditulis.',
             ],
 
             'vote' => [

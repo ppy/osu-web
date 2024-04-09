@@ -110,6 +110,9 @@ return [
         'tournaments_controller' => [
             '_' => '官方比賽',
         ],
+        'user_cover_presets_controller' => [
+            '_' => '',
+        ],
         'users_controller' => [
             '_' => '玩家資訊',
             'create' => '註冊帳號',

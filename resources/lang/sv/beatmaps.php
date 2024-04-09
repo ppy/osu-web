@@ -82,7 +82,7 @@ return [
             'disqualify' => '',
             'hype' => '',
             'mapper_note' => '',
-            'nomination_reset' => '',
+            'nomination_reset' => 'Ta bort alla Nomineringar',
             'praise' => '',
             'problem' => '',
             'problem_warning' => '',

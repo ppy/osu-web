@@ -45,6 +45,11 @@ return [
         'index' => [
             '_' => 'sporsøk',
 
+            'exclusive_only' => [
+                'all' => '',
+                'exclusive_only' => '',
+            ],
+
             'form' => [
                 'advanced' => 'Avansert Søk',
                 'album' => 'Album',
@@ -52,6 +57,7 @@ return [
                 'bpm_gte' => 'Minste BPM',
                 'bpm_lte' => 'Maks BPM',
                 'empty' => 'Fant ingen spor som samsvarer med søkekriteriene.',
+                'exclusive_only' => '',
                 'genre' => 'Sjanger',
                 'genre_all' => 'Alle',
                 'length_gte' => 'Minste Lengde',

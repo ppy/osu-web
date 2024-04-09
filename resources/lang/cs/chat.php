@@ -18,6 +18,8 @@ return [
     'channels' => [
         'confirm_part' => 'Chceš skrýt tento kanál? Stále budeš dostávat zprávy z tohoto kanálu.',
         'create' => 'vytvořit oznámení',
+        'join' => '',
+        'none' => '',
 
         'list' => [
             'title' => [
@@ -59,5 +61,9 @@ return [
         'howto' => "Začněte konverzce z profilu uživatele nebo z popup karty uživatele.",
         'lazer' => 'Veřejné místnosti, do kterých se připojíte skrz <a href=":link">osu!lazer</a>, zde budete moct taky vidět.',
         'title' => 'zatím žádné konverzace',
+    ],
+
+    'join_channels' => [
+        'loading' => '',
     ],
 ];

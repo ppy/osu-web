@@ -45,6 +45,11 @@ return [
         'index' => [
             '_' => 'البحث عن الإغاني',
 
+            'exclusive_only' => [
+                'all' => '',
+                'exclusive_only' => '',
+            ],
+
             'form' => [
                 'advanced' => 'بحث متقدم',
                 'album' => 'ألبوم',
@@ -52,6 +57,7 @@ return [
                 'bpm_gte' => 'الحد الأدنى لـ BPM',
                 'bpm_lte' => 'الحد الأقصى لـ BPM',
                 'empty' => 'لم تم العثور على أي اغاني تطابق معايير البحث.',
+                'exclusive_only' => '',
                 'genre' => 'الصنف',
                 'genre_all' => 'الكل',
                 'length_gte' => 'ادنى للطول',

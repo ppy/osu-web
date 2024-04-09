@@ -110,6 +110,9 @@ return [
         'tournaments_controller' => [
             '_' => 'турніри',
         ],
+        'user_cover_presets_controller' => [
+            '_' => '',
+        ],
         'users_controller' => [
             '_' => 'інформація про гравця',
             'create' => 'створити обліковий запис',

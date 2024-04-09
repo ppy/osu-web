@@ -39,6 +39,7 @@ return [
         'pin' => 'vastzetten',
         'post' => 'Plaatsen',
         'read_more' => 'lees meer',
+        'refresh' => '',
         'reply' => 'Beantwoord',
         'reply_reopen' => 'Beantwoord en Heropen',
         'reply_resolve' => 'Beantwoord en Los op',

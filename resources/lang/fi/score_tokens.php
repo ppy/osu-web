@@ -6,6 +6,6 @@
 return [
     'create' => [
         'beatmap_hash_invalid' => 'virheellinen tai puuttuva rytmikartan tiiviste (beatmap_hash)',
-        'submission_disabled' => 'pisteiden lähetys on pois käytöstä',
+        'submission_disabled' => 'pisteiden lähetys on poissa käytöstä',
     ],
 ];

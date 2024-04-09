@@ -110,6 +110,9 @@ return [
         'tournaments_controller' => [
             '_' => 'turnaje',
         ],
+        'user_cover_presets_controller' => [
+            '_' => '',
+        ],
         'users_controller' => [
             '_' => 'informace o hráči',
             'create' => 'vytvořit účet',

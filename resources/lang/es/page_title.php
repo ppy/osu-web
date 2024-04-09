@@ -110,6 +110,9 @@ return [
         'tournaments_controller' => [
             '_' => 'torneos',
         ],
+        'user_cover_presets_controller' => [
+            '_' => '',
+        ],
         'users_controller' => [
             '_' => 'información del jugador',
             'create' => 'crear una cuenta',

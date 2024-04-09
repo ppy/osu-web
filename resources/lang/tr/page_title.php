@@ -110,6 +110,9 @@ return [
         'tournaments_controller' => [
             '_' => 'turnuvalar',
         ],
+        'user_cover_presets_controller' => [
+            '_' => '',
+        ],
         'users_controller' => [
             '_' => 'oyuncu bilgisi',
             'create' => 'hesap oluştur',

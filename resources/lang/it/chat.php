@@ -18,6 +18,8 @@ return [
     'channels' => [
         'confirm_part' => 'Vuoi nascondere questo canale? Riceverai ancora messaggi da questo canale.',
         'create' => 'crea un annuncio',
+        'join' => '',
+        'none' => '',
 
         'list' => [
             'title' => [
@@ -59,5 +61,9 @@ return [
         'howto' => "Inizia le conversazioni dal profilo di un utente o dal popup della sua carta utente.",
         'lazer' => 'I canali pubblici in cui entri attraverso <a href=":link">osu!lazer</a> saranno visibili anche qui.',
         'title' => 'nessuna conversazione al momento',
+    ],
+
+    'join_channels' => [
+        'loading' => '',
     ],
 ];

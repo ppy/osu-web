@@ -39,6 +39,7 @@ return [
         'pin' => 'kiinnitä',
         'post' => 'Lähetä',
         'read_more' => 'lue lisää',
+        'refresh' => '',
         'reply' => 'Vastaa',
         'reply_reopen' => 'Vastaa ja avaa uudelleen',
         'reply_resolve' => 'Vastaa ja merkitse ratkaistuksi',

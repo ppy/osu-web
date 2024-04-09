@@ -45,6 +45,11 @@ return [
         'index' => [
             '_' => 'carian lagu',
 
+            'exclusive_only' => [
+                'all' => '',
+                'exclusive_only' => '',
+            ],
+
             'form' => [
                 'advanced' => 'Carian Lanjutan',
                 'album' => 'Album',
@@ -52,6 +57,7 @@ return [
                 'bpm_gte' => 'BPM Minimum',
                 'bpm_lte' => 'BPM Maksimum',
                 'empty' => 'Tiada lagu yang sesuai dengan ukur tara pencarian yang ditentukan.',
+                'exclusive_only' => '',
                 'genre' => 'Aliran',
                 'genre_all' => 'Semua',
                 'length_gte' => 'Tempoh Minimum',
