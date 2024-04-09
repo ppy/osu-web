@@ -1943,10 +1943,6 @@ class OsuAuthorize
             return $prefix.'failed';
         }
 
-        if ($score instanceof Solo\Score && $GLOBALS['cfg']['osu']['user']['hide_pinned_solo_scores']) {
-            return $prefix.'disabled_type';
-        }
-
         $pinned = $user->scorePins()->forRuleset($score->getMode())->withVisibleScore()->count();
 
         if ($pinned >= $user->maxScorePins()) {
