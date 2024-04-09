@@ -97,6 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
+            'inactive' => "",
             'inactive_different_country' => "Ditt konto har inte använts på länge.",
         ],
     ],
@@ -124,8 +125,8 @@ return [
     ],
 
     'ogp' => [
-        'modding_description' => '',
-        'modding_description_empty' => '',
+        'modding_description' => 'Beatmaps: :counts',
+        'modding_description_empty' => 'Användare har inga beatmaps...',
 
         'description' => [
             '_' => 'Rank (:regelset): :global | :land',

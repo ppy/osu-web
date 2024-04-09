@@ -18,6 +18,8 @@ return [
     'channels' => [
         'confirm_part' => 'Ar norite paslėpti šį kanalą? Jūs toliau gausite žinutes iš šio kanalo.',
         'create' => 'kurti skelbimą',
+        'join' => '',
+        'none' => '',
 
         'list' => [
             'title' => [
@@ -59,5 +61,9 @@ return [
         'howto' => "Pradėkite pokalbį iš vartotojo profilio arba iššokančios kortelės.",
         'lazer' => 'Vieši kanalai prisijungti per <a href=":link">osu!lazer</a> bus matomi ir čia.',
         'title' => 'kol kas pokalbių nėra',
+    ],
+
+    'join_channels' => [
+        'loading' => '',
     ],
 ];

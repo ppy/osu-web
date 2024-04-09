@@ -97,6 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
+            'inactive' => "您已经很长时间没有使用您的账户了。",
             'inactive_different_country' => "您已经很长时间没有使用您的账户了。",
         ],
     ],
@@ -424,7 +425,7 @@ return [
             'reason_2' => '该账号由于安全或滥用问题暂时不可用。',
             'reason_3' => '你可能输错用户名了！',
             'reason_header' => '可能是由于以下原因：',
-            'title' => '找不到指定的用户',
+            'title' => '找不到指定的用户！;_;',
         ],
         'page' => [
             'button' => '修改资料页面',

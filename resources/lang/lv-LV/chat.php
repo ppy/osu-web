@@ -18,6 +18,8 @@ return [
     'channels' => [
         'confirm_part' => 'Vai vēlaties paslēpt šo kanālu? Jūs joprojām saņemsiet ziņas no šī kanāla.',
         'create' => 'izveidot paziņojumu',
+        'join' => '',
+        'none' => '',
 
         'list' => [
             'title' => [
@@ -59,5 +61,9 @@ return [
         'howto' => "Sākt sarunas no lietotāja profila vai lietotāja kartes uznirstošā loga.",
         'lazer' => 'Publiskie kanāli, kuriem pievienojaties, izmantojot <a href=":link">osu!lazer</a>, būs redzami arī šeit.',
         'title' => 'pagaidām nav sarunu',
+    ],
+
+    'join_channels' => [
+        'loading' => '',
     ],
 ];

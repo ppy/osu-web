@@ -39,6 +39,7 @@ return [
         'pin' => 'épingler',
         'post' => 'Poster',
         'read_more' => 'lire plus',
+        'refresh' => '',
         'reply' => 'Répondre',
         'reply_reopen' => 'Répondre et rouvrir',
         'reply_resolve' => 'Répondre et résoudre',

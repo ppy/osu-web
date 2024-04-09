@@ -18,6 +18,8 @@ return [
     'channels' => [
         'confirm_part' => 'Želiš li sakriti ovaj kanal? I dalje ćeš primati poruke iz ovog kanala.',
         'create' => 'napravi obavijest',
+        'join' => '',
+        'none' => '',
 
         'list' => [
             'title' => [
@@ -59,5 +61,9 @@ return [
         'howto' => "Započni razgovore iz korisničkog profila ili skočnog prozora korisničke kartice.",
         'lazer' => 'Ovdje će također biti vidljivi javni kanali kojima se pridružiš putem <a href=":link">osu!lazera</a>.',
         'title' => 'još nema razgovora',
+    ],
+
+    'join_channels' => [
+        'loading' => '',
     ],
 ];

@@ -39,6 +39,7 @@ return [
         'pin' => 'prikvači',
         'post' => 'Objavi',
         'read_more' => 'pročitaj više',
+        'refresh' => '',
         'reply' => 'Odgovori',
         'reply_reopen' => 'Odgovori i ponovno otvori',
         'reply_resolve' => 'Odgovori i riješi',

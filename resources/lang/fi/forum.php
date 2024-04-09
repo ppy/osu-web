@@ -372,7 +372,7 @@ return [
             'to_watching' => 'Kirjanmerkkeihin',
             'to_watching_mail' => 'Kirjanmerkkeihin ilmoituksella',
             'tooltip_mail_disable' => 'Ilmoitus on päällä. Klikkaa poistaaksesi käytöstä',
-            'tooltip_mail_enable' => 'Ilmoitus on pois käytöstä. Klikkaa laittaaksesi päälle',
+            'tooltip_mail_enable' => 'Ilmoitus on poissa käytöstä. Klikkaa laittaaksesi päälle',
         ],
     ],
 ];
