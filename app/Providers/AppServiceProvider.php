@@ -5,7 +5,7 @@
 
 namespace App\Providers;
 
-use App\Hashing\OsuHashManager;
+use App\Hashing\OsuBcryptHasher;
 use App\Libraries\MorphMap;
 use App\Libraries\OsuCookieJar;
 use App\Libraries\OsuMessageSelector;
@@ -79,6 +79,8 @@ class AppServiceProvider extends ServiceProvider
         // newest scribe tries to rename {modelName} parameters to {id}
         // but it kind of doesn't work with our route handlers.
         Scribe::normalizeEndpointUrlUsing(fn ($url) => $url);
+
+        \Hash::extend('osubcrypt', fn () => new OsuBcryptHasher());
     }
 
     /**
@@ -98,14 +100,6 @@ class AppServiceProvider extends ServiceProvider
         foreach (static::LOCAL_CACHE_SINGLETONS as $name => $_class) {
             $localCacheManager->registerSingleton(app($name));
         }
-
-        $this->app->singleton('hash', function ($app) {
-            return new OsuHashManager($app);
-        });
-
-        $this->app->singleton('hash.driver', function ($app) {
-            return $app['hash']->driver();
-        });
 
         $this->app->singleton('cookie', function ($app) {
             $config = $GLOBALS['cfg']['session'];
