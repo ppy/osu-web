@@ -17,9 +17,10 @@ return [
         'identify' => 'Identifikovať vás a prezerať váš verejný profil.',
 
         'chat' => [
-            'read' => '',
+            'read' => 'Prečítajte si správy vo vašom mene.
+',
             'write' => 'Posielajte správy vo vašom mene.',
-            'write_manage' => '',
+            'write_manage' => 'Pripojte sa a opustite kanály vo vašom mene.',
         ],
 
         'forum' => [

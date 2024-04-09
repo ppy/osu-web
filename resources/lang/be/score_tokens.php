@@ -5,7 +5,7 @@
 
 return [
     'create' => [
-        'beatmap_hash_invalid' => '',
-        'submission_disabled' => '',
+        'beatmap_hash_invalid' => 'няслушны ці адсутны beatmap_hash',
+        'submission_disabled' => 'адпраўка рэкордаў на сервер адключана',
     ],
 ];

@@ -7,48 +7,31 @@ declare(strict_types=1);
 
 namespace App\Singletons;
 
-use App\Libraries\MorphMap;
-use App\Models\Beatmap;
-use App\Models\Score;
-use App\Models\ScorePin;
 use App\Models\Solo;
+use Ds\Set;
 
 class UserScorePins
 {
-    const REQUEST_ATTRIBUTE_KEY_PREFIX = 'current_user_score_pins:';
+    const REQUEST_ATTRIBUTE_KEY = 'current_user_score_pins';
 
-    public function isPinned(Score\Best\Model|Solo\Score $score): bool
+    public function isPinned(Solo\Score $score): bool
     {
-        $type = $score->getMorphClass();
-        $key = static::REQUEST_ATTRIBUTE_KEY_PREFIX.$type;
-        $pins = request()->attributes->get($key);
+        $attributes = \Request::instance()->attributes;
+        $pins = $attributes->get(static::REQUEST_ATTRIBUTE_KEY);
 
         if ($pins === null) {
-            $user = auth()->user();
-            $pins = $user === null
-                ? []
-                : $user->scorePins()
-                ->select('score_id')
-                ->where(['score_type' => $type])
-                ->get()
-                ->keyBy(fn (ScorePin $p) => $p->score_id);
+            $pins = new Set(\Auth::user()?->scorePins()->pluck('new_score_id') ?? []);
 
-            request()->attributes->set($key, $pins);
+            $attributes->set(static::REQUEST_ATTRIBUTE_KEY, $pins);
         }
 
-        return isset($pins[$score->getKey()]);
+        return $pins->contains($score->getKey());
     }
 
     public function reset(): void
     {
-        $prefix = static::REQUEST_ATTRIBUTE_KEY_PREFIX;
-        $attributes = request()->attributes;
-
-        $attributes->remove($prefix.MorphMap::getType(Solo\Score::class));
-
-        foreach (Beatmap::MODES as $ruleset => $rulesetId) {
-            $type = MorphMap::getType(Score\Best\Model::getClass($ruleset));
-            $attributes->remove("{$prefix}{$type}");
-        }
+        \Request::instance()
+            ->attributes
+            ->remove(static::REQUEST_ATTRIBUTE_KEY);
     }
 }

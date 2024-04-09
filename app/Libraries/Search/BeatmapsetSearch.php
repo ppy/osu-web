@@ -425,7 +425,8 @@ class BeatmapsetSearch extends RecordSearch
     private function getPlayedBeatmapIds(?array $rank = null)
     {
         $query = Solo\Score
-            ::where('user_id', $this->params->user->getKey())
+            ::indexable()
+            ->where('user_id', $this->params->user->getKey())
             ->whereIn('ruleset_id', $this->getSelectedModes());
 
         if ($rank === null) {
@@ -433,15 +434,20 @@ class BeatmapsetSearch extends RecordSearch
         }
 
         $topScores = [];
-        $scoreField = ScoreSearchParams::showLegacyForUser($this->params->user)
-            ? 'legacy_total_score'
-            : 'total_score';
+        $showLegacyOnly = ScoreSearchParams::showLegacyForUser($this->params->user) ?? false;
+        $scoreField = $showLegacyOnly ? 'legacy_total_score' : 'total_score';
         foreach ($query->get() as $score) {
             $prevScore = $topScores[$score->beatmap_id] ?? null;
 
             $scoreValue = $score->$scoreField;
             if ($scoreValue !== null && ($prevScore === null || $prevScore->$scoreField < $scoreValue)) {
                 $topScores[$score->beatmap_id] = $score;
+            }
+        }
+
+        if ($showLegacyOnly) {
+            foreach ($topScores as $beatmapId => $score) {
+                $topScores[$beatmapId] = $score->makeLegacyEntry();
             }
         }
 

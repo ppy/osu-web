@@ -8,7 +8,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 
 /**
- * @property array|null $cover_json
  * @property \Carbon\Carbon $created_at
  * @property string|null $extras_order
  * @property int $id
@@ -17,6 +16,25 @@ use Illuminate\Database\Eloquent\Casts\AsArrayObject;
  */
 class UserProfileCustomization extends Model
 {
+    const DEFAULTS = [
+        'audio_autoplay' => false,
+        'audio_muted' => false,
+        'audio_volume' => 0.45,
+        'beatmapset_card_size' => self::BEATMAPSET_CARD_SIZES[0],
+        'beatmapset_download' => self::BEATMAPSET_DOWNLOAD[0],
+        'beatmapset_show_nsfw' => false,
+        'beatmapset_title_show_original' => false,
+        'comments_show_deleted' => false,
+        'comments_sort' => Comment::DEFAULT_SORT,
+        'extras_order' => self::SECTIONS,
+        'forum_posts_show_deleted' => true,
+        'legacy_score_only' => true,
+        'profile_cover_expanded' => true,
+        'user_list_filter' => self::USER_LIST['filters']['default'],
+        'user_list_sort' => self::USER_LIST['sorts']['default'],
+        'user_list_view' => self::USER_LIST['views']['default'],
+    ];
+
     /**
      * An array of all possible profile sections, also in their default order.
      */
@@ -34,8 +52,6 @@ class UserProfileCustomization extends Model
 
     const BEATMAPSET_DOWNLOAD = ['all', 'no_video', 'direct'];
 
-    const DEFAULT_LEGACY_ONLY_ATTRIBUTE = true;
-
     const USER_LIST = [
         'filters' => ['all' => ['all', 'online', 'offline'], 'default' => 'all'],
         'sorts' => ['all' => ['last_visit', 'rank', 'username'], 'default' => 'last_visit'],
@@ -45,7 +61,6 @@ class UserProfileCustomization extends Model
     public $incrementing = false;
 
     protected $casts = [
-        'cover_json' => 'array',
         'options' => AsArrayObject::class,
     ];
     protected $primaryKey = 'user_id';
@@ -68,7 +83,7 @@ class UserProfileCustomization extends Model
 
     public function getAudioAutoplayAttribute()
     {
-        return $this->options['audio_autoplay'] ?? false;
+        return $this->options['audio_autoplay'] ?? static::DEFAULTS['audio_autoplay'];
     }
 
     public function setAudioAutoplayAttribute($value)
@@ -78,7 +93,7 @@ class UserProfileCustomization extends Model
 
     public function getAudioMutedAttribute()
     {
-        return $this->options['audio_muted'] ?? false;
+        return $this->options['audio_muted'] ?? static::DEFAULTS['audio_muted'];
     }
 
     public function setAudioMutedAttribute($value)
@@ -88,7 +103,7 @@ class UserProfileCustomization extends Model
 
     public function getAudioVolumeAttribute()
     {
-        return $this->options['audio_volume'] ?? 0.45;
+        return $this->options['audio_volume'] ?? static::DEFAULTS['audio_volume'];
     }
 
     public function setAudioVolumeAttribute($value)
@@ -98,7 +113,7 @@ class UserProfileCustomization extends Model
 
     public function getBeatmapsetCardSizeAttribute()
     {
-        return $this->options['beatmapset_card_size'] ?? static::BEATMAPSET_CARD_SIZES[0];
+        return $this->options['beatmapset_card_size'] ?? static::DEFAULTS['beatmapset_card_size'];
     }
 
     public function setBeatmapsetCardSizeAttribute($value)
@@ -112,7 +127,7 @@ class UserProfileCustomization extends Model
 
     public function getBeatmapsetDownloadAttribute()
     {
-        return $this->options['beatmapset_download'] ?? static::BEATMAPSET_DOWNLOAD[0];
+        return $this->options['beatmapset_download'] ?? static::DEFAULTS['beatmapset_download'];
     }
 
     public function setBeatmapsetDownloadAttribute($value)
@@ -126,7 +141,7 @@ class UserProfileCustomization extends Model
 
     public function getBeatmapsetShowNsfwAttribute()
     {
-        return $this->options['beatmapset_show_nsfw'] ?? false;
+        return $this->options['beatmapset_show_nsfw'] ?? static::DEFAULTS['beatmapset_show_nsfw'];
     }
 
     public function setBeatmapsetShowNsfwAttribute($value)
@@ -136,7 +151,7 @@ class UserProfileCustomization extends Model
 
     public function getBeatmapsetTitleShowOriginalAttribute()
     {
-        return $this->options['beatmapset_title_show_original'] ?? false;
+        return $this->options['beatmapset_title_show_original'] ?? static::DEFAULTS['beatmapset_title_show_original'];
     }
 
     public function setBeatmapsetTitleShowOriginalAttribute($value)
@@ -146,7 +161,7 @@ class UserProfileCustomization extends Model
 
     public function getCommentsShowDeletedAttribute()
     {
-        return $this->options['comments_show_deleted'] ?? false;
+        return $this->options['comments_show_deleted'] ?? static::DEFAULTS['comments_show_deleted'];
     }
 
     public function setCommentsShowDeletedAttribute($value)
@@ -156,7 +171,7 @@ class UserProfileCustomization extends Model
 
     public function getCommentsSortAttribute()
     {
-        return $this->options['comments_sort'] ?? Comment::DEFAULT_SORT;
+        return $this->options['comments_sort'] ?? static::DEFAULTS['comments_sort'];
     }
 
     public function setCommentsSortAttribute($value)
@@ -170,7 +185,7 @@ class UserProfileCustomization extends Model
 
     public function getForumPostsShowDeletedAttribute()
     {
-        return $this->options['forum_posts_show_deleted'] ?? true;
+        return $this->options['forum_posts_show_deleted'] ?? static::DEFAULTS['forum_posts_show_deleted'];
     }
 
     public function setForumPostsShowDeletedAttribute($value)
@@ -180,7 +195,7 @@ class UserProfileCustomization extends Model
 
     public function getLegacyScoreOnlyAttribute(): bool
     {
-        return $this->options['legacy_score_only'] ?? static::DEFAULT_LEGACY_ONLY_ATTRIBUTE;
+        return $this->options['legacy_score_only'] ?? static::DEFAULTS['legacy_score_only'];
     }
 
     public function setLegacyScoreOnlyAttribute($value): void
@@ -190,7 +205,7 @@ class UserProfileCustomization extends Model
 
     public function getUserListFilterAttribute()
     {
-        return $this->options['user_list_filter'] ?? static::USER_LIST['filters']['default'];
+        return $this->options['user_list_filter'] ?? static::DEFAULTS['user_list_filter'];
     }
 
     public function setUserListFilterAttribute($value)
@@ -204,7 +219,7 @@ class UserProfileCustomization extends Model
 
     public function getUserListSortAttribute()
     {
-        return $this->options['user_list_sort'] ?? static::USER_LIST['sorts']['default'];
+        return $this->options['user_list_sort'] ?? static::DEFAULTS['user_list_sort'];
     }
 
     public function setUserListSortAttribute($value)
@@ -218,7 +233,7 @@ class UserProfileCustomization extends Model
 
     public function getUserListViewAttribute()
     {
-        return $this->options['user_list_view'] ?? static::USER_LIST['views']['default'];
+        return $this->options['user_list_view'] ?? static::DEFAULTS['user_list_view'];
     }
 
     public function setUserListViewAttribute($value)
@@ -239,7 +254,7 @@ class UserProfileCustomization extends Model
         }
 
         if ($newValue === null) {
-            return static::SECTIONS;
+            return static::DEFAULTS['extras_order'];
         }
 
         return static::repairExtrasOrder($newValue);
@@ -253,7 +268,7 @@ class UserProfileCustomization extends Model
 
     public function getProfileCoverExpandedAttribute()
     {
-        return $this->options['profile_cover_expanded'] ?? true;
+        return $this->options['profile_cover_expanded'] ?? static::DEFAULTS['profile_cover_expanded'];
     }
 
     public function setProfileCoverExpandedAttribute($value)

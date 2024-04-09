@@ -395,6 +395,11 @@ function flag_url($countryCode)
     return "/assets/images/flags/{$baseFileName}.svg";
 }
 
+function format_month_column(\DateTimeInterface $date): string
+{
+    return $date->format('ym');
+}
+
 function format_rank(?int $rank): string
 {
     return $rank !== null ? '#'.i18n_number_format($rank) : '-';
@@ -1354,17 +1359,20 @@ function fast_imagesize($url, ?string $logErrorId = null)
             ]);
             $data = curl_exec($curl);
 
-            $errorCode = curl_errno($curl);
-            if ($errorCode !== 0 && $logErrorId !== null) {
+            $ret = read_image_properties_from_string($data);
+
+            if ($ret === null && $logErrorId !== null) {
                 log_error(new FastImagesizeFetchException(), [
-                    'curl_error_code' => $errorCode,
-                    'curl_error_message' => curl_error($curl),
+                    'curl_error_code' => curl_errno($curl),
+                    'curl_error_message' => presence(curl_error($curl)) ?? 'ok',
+                    'curl_status_code' => curl_getinfo($curl, CURLINFO_HTTP_CODE),
                     'error_id' => $logErrorId,
+                    'url' => $url,
                 ]);
             }
 
             // null isn't cached
-            return read_image_properties_from_string($data) ?? false;
+            return $ret ?? false;
         },
     ));
 }

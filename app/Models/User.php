@@ -2078,9 +2078,9 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             }
         }
 
-        DatadogLoginAttempt::log($authError);
 
         if ($authError !== null) {
+            DatadogLoginAttempt::log($authError);
             LoginAttempt::logAttempt($ip, $user, 'fail', $password);
 
             return osu_trans('users.login.failed');
@@ -2398,6 +2398,10 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function save(array $options = [])
     {
+        if (!$this->exists) {
+            $this->cover_preset_id ??= $this->cover()->defaultPresetId();
+        }
+
         if ($options['skipValidations'] ?? false) {
             return parent::save($options);
         }

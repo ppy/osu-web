@@ -21,12 +21,15 @@ class ScoreFactory extends Factory
     {
         return [
             'accuracy' => fn (): float => $this->faker->randomFloat(1, 0, 1),
-            'beatmap_id' => Beatmap::factory()->ranked(),
             'ended_at' => new \DateTime(),
             'pp' => fn (): float => $this->faker->randomFloat(4, 0, 1000),
             'rank' => fn () => array_rand_val(ScoreRank::cases())->value,
             'total_score' => fn (): int => $this->faker->randomNumber(7),
             'user_id' => User::factory(),
+
+            'beatmap_id' => fn (array $attr) => is_int($attr['ruleset_id'] ?? null)
+                ? Beatmap::factory()->state(['playmode' => $attr['ruleset_id']])->ranked()
+                : Beatmap::factory()->ranked(),
 
             // depends on beatmap_id
             'ruleset_id' => fn (array $attr) => Beatmap::find($attr['beatmap_id'])->playmode,
@@ -43,6 +46,15 @@ class ScoreFactory extends Factory
         return $this->state([
             'data' => $this->makeData(array_merge(...$overrides)),
         ]);
+    }
+
+    public function withReplay(): static
+    {
+        return $this
+            ->state(['has_replay' => true])
+            ->afterCreating(function ($score) {
+                Score::replayFileStorage()->put($score->getKey(), 'placeholder replay file');
+            });
     }
 
     private function makeData(?array $overrides = null): callable
