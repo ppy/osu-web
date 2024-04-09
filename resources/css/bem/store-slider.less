@@ -11,7 +11,6 @@
 
   // inset slider to prevent overflows making the page wider.
   // the 2px is to add a gap between the callout and the page edge.
-  padding: 0 ((@callout-extension / 2) - (@callout-padding * 2) + 2px);
   padding: 0 (@slider-callout--width / 2 - @gutter-v2 + 2px);
 
   @media @desktop {
@@ -76,17 +75,14 @@
     text-align: center;
     border-radius: 10px;
 
-    .js-store--disabled & {
+    &--active {
+      background-color: @osu-colour-pink-1;
+    }
+
+    &--disabled {
       background-color: @osu-colour-b1;
       pointer-events: none;
       cursor: default;
-    }
-
-    &.js-slider-preset--active {
-      background-color: @osu-colour-pink-1;
-      .js-store--disabled & {
-        background-color: @osu-colour-b1;
-      }
     }
   }
 
@@ -108,16 +104,19 @@
 
   .ui-slider {
     background-color: @osu-colour-b3;
-    .js-store--disabled & {
-      .ui-slider-handle, .ui-slider-range {
-        background-color: @osu-colour-b1;
-      }
-    }
+
     .ui-slider-handle {
       background-color: @osu-colour-pink-1;
     }
+
     .ui-slider-range {
       background-color: @osu-colour-pink-1;
+    }
+
+    &--disabled {
+      .ui-slider-handle, .ui-slider-range {
+        background-color: @osu-colour-b1;
+      }
     }
   }
 }

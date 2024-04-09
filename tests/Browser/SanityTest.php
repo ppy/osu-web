@@ -508,7 +508,7 @@ class SanityTest extends DuskTestCase
 
     private function checkAdminPermission(Browser $browser, LaravelRoute $route)
     {
-        $adminRestricted = ['chat.users.index', 'forum.topics.logs.index'];
+        $adminRestricted = ['chat.users.index', 'forum.topics.logs.index', 'user-cover-presets.index'];
 
         if (starts_with($route->uri, 'admin') || in_array($route->getName(), $adminRestricted, true)) {
             // TODO: retry and check page as admin? (will affect subsequent tests though, so figure out how to deal with that..)

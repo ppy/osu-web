@@ -249,6 +249,12 @@ class TestCase extends BaseTestCase
 
     protected function expectCountChange(callable $callback, int $change, string $message = '')
     {
+        $traceEntry = debug_backtrace(0, 1)[0];
+        if ($message !== '') {
+            $message .= "\n";
+        }
+        $message .= "{$traceEntry['file']}:{$traceEntry['line']}";
+
         $this->expectedCountsCallbacks[] = [
             'callback' => $callback,
             'expected' => $callback() + $change,
