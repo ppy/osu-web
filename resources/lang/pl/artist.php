@@ -46,8 +46,8 @@ return [
             '_' => 'wyszukiwarka utworów',
 
             'exclusive_only' => [
-                'all' => '',
-                'exclusive_only' => '',
+                'all' => 'Wszystkie',
+                'exclusive_only' => 'osu! original',
             ],
 
             'form' => [
@@ -57,7 +57,7 @@ return [
                 'bpm_gte' => 'Minimalne BPM',
                 'bpm_lte' => 'Maksymalne BPM',
                 'empty' => 'Brak utworów spełniających wybrane kryteria wyszukiwania.',
-                'exclusive_only' => '',
+                'exclusive_only' => 'Typ',
                 'genre' => 'Gatunek',
                 'genre_all' => 'Wszystkie',
                 'length_gte' => 'Minimalna długość',

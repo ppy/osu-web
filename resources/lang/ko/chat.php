@@ -18,8 +18,8 @@ return [
     'channels' => [
         'confirm_part' => '이 채널을 숨길까요? 채널을 숨기더라도 메시지는 계속 수신받습니다.',
         'create' => '공지사항 작성',
-        'join' => '',
-        'none' => '',
+        'join' => '채널 입장',
+        'none' => '채널이 없습니다',
 
         'list' => [
             'title' => [
@@ -64,6 +64,6 @@ return [
     ],
 
     'join_channels' => [
-        'loading' => '',
+        'loading' => '채널 목록 불러오는 중...',
     ],
 ];

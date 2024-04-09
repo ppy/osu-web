@@ -18,8 +18,8 @@ return [
     'channels' => [
         'confirm_part' => 'Voulez-vous masquer ce canal ? Vous recevrez toujours des messages de ce canal.',
         'create' => 'créer une annonce',
-        'join' => '',
-        'none' => '',
+        'join' => 'rejoindre un canal',
+        'none' => 'aucun canal',
 
         'list' => [
             'title' => [
@@ -64,6 +64,6 @@ return [
     ],
 
     'join_channels' => [
-        'loading' => '',
+        'loading' => 'Chargement de la liste des canaux...',
     ],
 ];

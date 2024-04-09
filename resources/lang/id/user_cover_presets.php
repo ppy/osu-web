@@ -12,7 +12,7 @@ return [
             '_' => '',
             'disable' => '',
             'enable' => '',
-            'items' => '',
+            'items' => ':count_delimited sampul|:count_delimited sampul',
         ],
 
         'create_form' => [

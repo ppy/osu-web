@@ -97,7 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
-            'inactive' => "",
+            'inactive' => "Akunmu telah tidak digunakan dalam jangka waktu yang lama.",
             'inactive_different_country' => "Akunmu telah lama tidak digunakan.",
         ],
     ],

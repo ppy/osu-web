@@ -97,7 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
-            'inactive' => "",
+            'inactive' => "A fiókod hosszú ideje nem volt használva.",
             'inactive_different_country' => "A fiókod hosszú ideje nem volt használva.",
         ],
     ],

@@ -46,8 +46,8 @@ return [
             '_' => 'recherche de titres',
 
             'exclusive_only' => [
-                'all' => '',
-                'exclusive_only' => '',
+                'all' => 'Tout',
+                'exclusive_only' => 'osu! original',
             ],
 
             'form' => [
@@ -57,7 +57,7 @@ return [
                 'bpm_gte' => 'BPM Minimum',
                 'bpm_lte' => 'BPM Maximum',
                 'empty' => 'Aucune musique correspondant aux critères de recherche n\'a été trouvée.',
-                'exclusive_only' => '',
+                'exclusive_only' => 'Type',
                 'genre' => 'Genre',
                 'genre_all' => 'Tous',
                 'length_gte' => 'Durée minimale',

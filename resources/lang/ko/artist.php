@@ -46,8 +46,8 @@ return [
             '_' => '트랙 검색',
 
             'exclusive_only' => [
-                'all' => '',
-                'exclusive_only' => '',
+                'all' => '전체',
+                'exclusive_only' => 'osu! 오리지널',
             ],
 
             'form' => [
@@ -57,7 +57,7 @@ return [
                 'bpm_gte' => '최소 BPM',
                 'bpm_lte' => '최대 BPM',
                 'empty' => '검색 조건에 맞는 트랙을 찾을 수 없습니다.',
-                'exclusive_only' => '',
+                'exclusive_only' => '타입',
                 'genre' => '장르',
                 'genre_all' => '전체',
                 'length_gte' => '최소 길이',

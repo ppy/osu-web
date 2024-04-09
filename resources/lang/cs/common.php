@@ -39,7 +39,7 @@ return [
         'pin' => 'připnout',
         'post' => 'Přidat příspěvek',
         'read_more' => 'číst více',
-        'refresh' => '',
+        'refresh' => 'Aktualizovat',
         'reply' => 'Odpovědět',
         'reply_reopen' => 'Odpovědět a znovu otevřít',
         'reply_resolve' => 'Odpovědět a archivovat',

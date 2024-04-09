@@ -111,7 +111,7 @@ return [
             '_' => 'tournois',
         ],
         'user_cover_presets_controller' => [
-            '_' => '',
+            '_' => 'préréglages de bannières',
         ],
         'users_controller' => [
             '_' => 'informations du joueur',
