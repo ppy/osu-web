@@ -17,9 +17,9 @@ return [
         'hide_judged' => '',
         'nav_title' => '',
         'no_current_vote' => '',
-        'update' => '',
+        'update' => 'абнавіць',
         'validation' => [
-            'missing_score' => '',
+            'missing_score' => 'адсутны вынік',
             'contest_vote_judged' => '',
         ],
         'voted' => '',
@@ -28,7 +28,7 @@ return [
     'judge_results' => [
         '_' => '',
         'creator' => '',
-        'score' => '',
+        'score' => 'Вынік',
         'total_score' => '',
     ],
 

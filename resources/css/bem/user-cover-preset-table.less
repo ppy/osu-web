@@ -1,0 +1,38 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.user-cover-preset-table {
+  display: grid;
+  grid-template-columns: auto 150px 1fr;
+
+  &__image {
+    width: 100%;
+  }
+
+  &__toolbar {
+    grid-column-start: 2;
+    grid-column-end: 4;
+  }
+
+  &__row {
+    padding: 10px;
+    gap: 10px;
+
+    display: grid;
+    grid-column: ~"1 / 4";
+    grid-template-columns: subgrid;
+
+    &--item {
+      background: var(--row-bg);
+      --row-bg: hsl(var(--hsl-b4));
+
+      &:hover {
+        background: hsl(var(--hsl-b2));
+      }
+
+      &:nth-child(even) {
+        --row-bg: hsl(var(--hsl-b3));
+      }
+    }
+  }
+}

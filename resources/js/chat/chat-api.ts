@@ -66,6 +66,10 @@ export function getMessages(channelId: number, params?: { until?: number }) {
   }));
 }
 
+export function getPublicChannels() {
+  return $.get(route('chat.channels.index')) as JQuery.jqXHR<ChannelJson[]>;
+}
+
 export function getUpdates(since: number, lastHistoryId?: number | null) {
   return $.get(
     route('chat.updates'),
@@ -75,6 +79,13 @@ export function getUpdates(since: number, lastHistoryId?: number | null) {
       since,
     },
   ) as JQuery.jqXHR<ChatUpdatesJson | null>;
+}
+
+export function joinChannel(channelId: number, userId: number) {
+  return $.ajax({
+    type: 'PUT',
+    url: route('chat.channels.join', { channel: channelId, user: userId }),
+  }) as JQuery.jqXHR<ChannelJson>;
 }
 
 export function markAsRead(channelId: number, messageId: number) {

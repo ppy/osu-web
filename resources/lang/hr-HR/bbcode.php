@@ -6,7 +6,7 @@
 return [
     'bold' => 'Podebljano',
     'heading' => 'Zaglavlje',
-    'help' => '',
+    'help' => 'Pomoc',
     'image' => 'Fotografija',
     'imagemap' => '',
     'italic' => 'Ukošen',

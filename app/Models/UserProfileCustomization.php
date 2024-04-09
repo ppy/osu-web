@@ -8,7 +8,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 
 /**
- * @property array|null $cover_json
  * @property \Carbon\Carbon $created_at
  * @property string|null $extras_order
  * @property int $id
@@ -62,7 +61,6 @@ class UserProfileCustomization extends Model
     public $incrementing = false;
 
     protected $casts = [
-        'cover_json' => 'array',
         'options' => AsArrayObject::class,
     ];
     protected $primaryKey = 'user_id';

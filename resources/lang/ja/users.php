@@ -124,13 +124,13 @@ return [
     ],
 
     'ogp' => [
-        'modding_description' => '',
-        'modding_description_empty' => '',
+        'modding_description' => 'ビートマップ: :counts',
+        'modding_description_empty' => 'このユーザーにはビートマップがありません...',
 
         'description' => [
-            '_' => '',
-            'country' => '',
-            'global' => '',
+            '_' => 'ランク (:ruleset): :global | :country',
+            'country' => '国 :rank',
+            'global' => '世界 :rank',
         ],
     ],
 

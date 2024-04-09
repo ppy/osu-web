@@ -2078,9 +2078,9 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             }
         }
 
-        DatadogLoginAttempt::log($authError);
 
         if ($authError !== null) {
+            DatadogLoginAttempt::log($authError);
             LoginAttempt::logAttempt($ip, $user, 'fail', $password);
 
             return osu_trans('users.login.failed');
