@@ -3,15 +3,6 @@
 
 import { getInt } from 'utils/math';
 
-// checkout checks
-function checkCheckoutConfirmations() {
-  const $checkboxes = $('.js-checkout-confirmation-step');
-  return $checkboxes.filter(':checked');
-}
-
-$(document).on('turbolinks:load', checkCheckoutConfirmations);
-$(document).on('change', '.js-checkout-confirmation-step', checkCheckoutConfirmations);
-
 $(document).on('turbolinks:load', function() {
   const quantity = getInt($('.js-store-item-quantity').val()) ?? 0;
 
@@ -20,6 +11,3 @@ $(document).on('turbolinks:load', function() {
   return $('.js-store-add-to-cart').hide();
 });
 
-$(document).on('turbolinks:load', () => { // delegating doesn't work because of timing.
-  $('#product-form').submit((e) => !($(e.target).data('disabled') as boolean));
-});
