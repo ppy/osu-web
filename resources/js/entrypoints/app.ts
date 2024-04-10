@@ -8,7 +8,7 @@ import 'jquery-pubsub.coffee';
 import '_classes/timeout.coffee';
 
 import 'spoilerbox.coffee';
-import 'store-legacy.coffee';
+import 'store-legacy';
 import 'store-username-change.coffee';
 import 'forum/post-box.coffee';
 import 'ujs-common.coffee';
