@@ -32,7 +32,6 @@ import PostPreview from 'core-legacy/post-preview'
 import Search from 'core-legacy/search'
 import StickyFooter from 'core-legacy/sticky-footer'
 import { StoreCheckout } from 'core-legacy/store-checkout'
-import SyncHeight from 'core-legacy/sync-height'
 import TooltipDefault from 'core-legacy/tooltip-default'
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
 import { navigate } from 'utils/turbolinks'
@@ -63,7 +62,6 @@ $(document).on 'turbolinks:load', ->
 
 # ensure currentUser is updated early enough.
 window.currentUserObserver ?= new CurrentUserObserver
-window.syncHeight ?= new SyncHeight
 
 window.accountEdit ?= new AccountEdit
 window.accountEditAvatar ?= new AccountEditAvatar

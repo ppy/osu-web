@@ -17,6 +17,7 @@ import MobileToggle from 'core/mobile-toggle';
 import OsuAudio from 'core/osu-audio/main';
 import ReactTurbolinks from 'core/react-turbolinks';
 import StickyHeader from 'core/sticky-header';
+import SyncHeight from 'core/sync-height';
 import Timeago from 'core/timeago';
 import TurbolinksReload from 'core/turbolinks-reload';
 import TwitchPlayer from 'core/twitch-player';
@@ -61,6 +62,7 @@ export default class OsuCore {
   readonly scorePins;
   readonly socketWorker;
   readonly stickyHeader;
+  readonly syncHeight;
   readonly timeago;
   readonly turbolinksReload;
   readonly twitchPlayer;
@@ -105,6 +107,7 @@ export default class OsuCore {
     this.referenceLinkTooltip = new ReferenceLinkTooltip();
     this.scorePins = new ScorePins();
     this.stickyHeader = new StickyHeader();
+    this.syncHeight = new SyncHeight();
     this.timeago = new Timeago();
     this.turbolinksReload = new TurbolinksReload();
     this.userPreferences = new UserPreferences();
