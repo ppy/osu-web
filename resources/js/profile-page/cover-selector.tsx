@@ -29,7 +29,7 @@ export default class CoverSelector extends React.Component<Props> {
   private readonly uploaderRef = React.createRef<CoverUploader>();
 
   @computed
-  private get holdoverCoverPreset(): UserCoverPresetJson|null {
+  private get holdoverCoverPreset(): UserCoverPresetJson | null {
     const id = getInt(this.props.controller.state.user.cover.id);
 
     if (id == null) return null;
