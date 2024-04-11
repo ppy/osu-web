@@ -190,7 +190,10 @@ class Score extends Model implements Traits\ReportableInterface
             ->default()
             ->forRuleset($ruleset)
             ->includeFails($includeFails)
+            // unix_updated_at may be updated arbitrarily, so also filter by `ended_at` to ensure
+            // only recent scores are returned.
             ->where('ended_at', '>', $minTime)
+            // we still want to filter by `unix_updated_at` to make the query efficient (is in the PK).
             ->where('unix_updated_at', '>', $minTime->getTimestamp())
             // ensure correct partition in production
             ->where('preserve', '>=', 0);
