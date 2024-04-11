@@ -9,9 +9,4 @@ export function toggleCart(flag: boolean) {
   if (button != null) {
     button.disabled = !flag;
   }
-
-  const form = body.querySelector<HTMLFormElement>('#product-form');
-  if (form != null) {
-    $(form).data('disabled', !flag);
-  }
 }
