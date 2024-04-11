@@ -45,6 +45,11 @@ return [
         'index' => [
             '_' => '트랙 검색',
 
+            'exclusive_only' => [
+                'all' => '',
+                'exclusive_only' => '',
+            ],
+
             'form' => [
                 'advanced' => '고급 검색',
                 'album' => '앨범',
@@ -52,6 +57,7 @@ return [
                 'bpm_gte' => '최소 BPM',
                 'bpm_lte' => '최대 BPM',
                 'empty' => '검색 조건에 맞는 트랙을 찾을 수 없습니다.',
+                'exclusive_only' => '',
                 'genre' => '장르',
                 'genre_all' => '전체',
                 'length_gte' => '최소 길이',

@@ -63,7 +63,7 @@ return [
     ],
 
     'github_user' => [
-        'info' => "Apabila kamu merupakan kontributor repositori open-source osu!, kamu dapat menautkan akun GitHub kamu di sini untuk menghubungkan entrimu pada riwayat perubahan dengan profil osu! milikmu. Akun GitHub yang tidak memiliki riwayat kontribusi terhadap osu! tidak dapat dihubungkan.",
+        'info' => "Apabila kamu merupakan kontributor repositori open-source osu!, kamu dapat menautkan akun GitHub kamu di sini untuk menghubungkan entrimu pada riwayat perubahan dengan profil osu! milikmu. Akun GitHub yang tidak memiliki riwayat kontribusi terhadap osu! tidak dapat ditautkan.",
         'link' => 'Tautkan Akun GitHub',
         'title' => 'GitHub',
         'unlink' => 'Lepas Tautan Akun GitHub',

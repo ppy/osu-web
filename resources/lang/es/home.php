@@ -81,7 +81,7 @@ return [
         'action_title' => 'descargar osu!',
         'for_os' => 'para :os',
         'macos-fallback' => 'usuarios de macOS',
-        'mirror' => 'link alternativo',
+        'mirror' => 'enlace alternativo',
         'or' => 'o',
         'os_version_or_later' => ':os_version o posterior',
         'other_os' => 'otras plataformas',
@@ -92,7 +92,7 @@ return [
         'help' => [
             '_' => 'si tienes problemas para iniciar el juego o para obtener una cuenta, :help_forum_link o :support_button.',
             'help_forum_link' => 'consulta el foro de ayuda',
-            'support_button' => 'contacta con soporte',
+            'support_button' => 'contacta al soporte',
         ],
 
         'os' => [

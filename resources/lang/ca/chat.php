@@ -18,6 +18,8 @@ return [
     'channels' => [
         'confirm_part' => 'Vols amagar aquest canal? Encara rebràs missatges d\'aquest canal.',
         'create' => 'crear un anunci',
+        'join' => '',
+        'none' => '',
 
         'list' => [
             'title' => [
@@ -59,5 +61,9 @@ return [
         'howto' => "Comença conversacions des del perfil d'un usuari o des de la targeta d'usuari emergent.",
         'lazer' => 'Els canals públics als quals t\'uneixis per  <a href=":link">osu!lazer</a> també seran visibles aquí.',
         'title' => 'encara no tens conversacions',
+    ],
+
+    'join_channels' => [
+        'loading' => '',
     ],
 ];

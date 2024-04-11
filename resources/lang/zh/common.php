@@ -39,6 +39,7 @@ return [
         'pin' => '置顶',
         'post' => '发表',
         'read_more' => '阅读更多',
+        'refresh' => '刷新',
         'reply' => '回复',
         'reply_reopen' => '回复并要求重审',
         'reply_resolve' => '回复并标记为已解决',

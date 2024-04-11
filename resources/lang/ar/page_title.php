@@ -110,6 +110,9 @@ return [
         'tournaments_controller' => [
             '_' => 'البطولات',
         ],
+        'user_cover_presets_controller' => [
+            '_' => '',
+        ],
         'users_controller' => [
             '_' => 'معلومات اللاعب',
             'create' => 'إنشاء حساب',

@@ -45,6 +45,11 @@ return [
         'index' => [
             '_' => 'dziesmu meklēšana',
 
+            'exclusive_only' => [
+                'all' => '',
+                'exclusive_only' => '',
+            ],
+
             'form' => [
                 'advanced' => 'Paplašināta Meklēšana',
                 'album' => 'Albums',
@@ -52,6 +57,7 @@ return [
                 'bpm_gte' => 'BPM Minimums',
                 'bpm_lte' => 'BPM Maksimums',
                 'empty' => 'Netika atrasta neviena dziesma, kas atbilstu meklēšanas kritērijiem.',
+                'exclusive_only' => '',
                 'genre' => 'Žanrs',
                 'genre_all' => 'Viss',
                 'length_gte' => 'Minimālais Garums',

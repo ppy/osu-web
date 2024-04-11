@@ -5,6 +5,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Ruleset;
 use App\Models\Score\Best\Model as ScoreBest;
 use App\Models\Solo\Score as SoloScore;
 use App\Transformers\ScoreTransformer;
@@ -90,10 +91,13 @@ class ScoresController extends Controller
 
     public function show($rulesetOrSoloId, $legacyId = null)
     {
-        [$scoreClass, $id] = $legacyId === null
-            ? [SoloScore::class, $rulesetOrSoloId]
-            : [ScoreBest::getClass($rulesetOrSoloId), $legacyId];
-        $score = $scoreClass::whereHas('beatmap.beatmapset')->visibleUsers()->findOrFail($id);
+        $scoreQuery = $legacyId === null
+            ? SoloScore::whereKey($rulesetOrSoloId)
+            : SoloScore::where([
+                'ruleset_id' => Ruleset::tryFromName($rulesetOrSoloId) ?? abort(404, 'unknown ruleset name'),
+                'legacy_score_id' => $legacyId,
+            ]);
+        $score = $scoreQuery->whereHas('beatmap.beatmapset')->visibleUsers()->firstOrFail();
 
         $userIncludes = array_map(function ($include) {
             return "user.{$include}";
