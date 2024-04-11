@@ -18,7 +18,7 @@ export default class SyncHeight {
     });
   }
 
-  onResize = (mutations: MutationRecord[]) => {
+  private readonly onResize = (mutations: MutationRecord[]) => {
     for (const mutation of mutations) {
       if (mutation.target instanceof HTMLTextAreaElement) {
         this.sync();
@@ -27,7 +27,7 @@ export default class SyncHeight {
     }
   };
 
-  sync = () => {
+  private readonly sync = () => {
     const heights: Partial<Record<string, number>> = {};
 
     for (const reference of this.references) {
