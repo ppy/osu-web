@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 export default class SyncHeight {
-  private observer?: MutationObserver;
+  private readonly observer;
   private readonly references = document.getElementsByClassName('js-sync-height--reference');
   private readonly targets = document.getElementsByClassName('js-sync-height--target');
 
@@ -11,10 +11,6 @@ export default class SyncHeight {
     $.subscribe('sync-height:force', this.sync);
     $(window).on('resize', this.sync);
 
-    this.observe();
-  }
-
-  observe() {
     this.observer = new MutationObserver(this.onResize);
     this.observer.observe(document, {
       attributes: true,
