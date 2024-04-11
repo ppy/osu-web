@@ -1,41 +1,58 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-export default class SyncHeight
-  constructor: ->
-    @targets = document.getElementsByClassName('js-sync-height--target')
-    @references = document.getElementsByClassName('js-sync-height--reference')
-    @throttledSync = _.throttle @sync, 100
+export default class SyncHeight {
+  private observer?: MutationObserver;
+  private readonly references = document.getElementsByClassName('js-sync-height--reference');
+  private readonly targets = document.getElementsByClassName('js-sync-height--target');
 
-    $(document).on 'turbolinks:load', @sync
-    $.subscribe 'sync-height:force', @sync
-    $(window).on 'resize', @sync
+  constructor() {
+    $(document).on('turbolinks:load', this.sync);
+    $.subscribe('sync-height:force', this.sync);
+    $(window).on('resize', this.sync);
 
-    @observe()
+    this.observe();
+  }
 
-  observe: =>
-    config =
-      attributes: true
-      subtree: true
+  observe() {
+    this.observer = new MutationObserver(this.onResize);
+    this.observer.observe(document, {
+      attributes: true,
+      subtree: true,
+    });
+  }
 
-    @observer = new MutationObserver(@onResize)
-    @observer.observe document, config
+  onResize = (mutations: MutationRecord[]) => {
+    for (const mutation of mutations) {
+      if (mutation.target instanceof HTMLTextAreaElement) {
+        this.sync();
+        return;
+      }
+    }
+  };
 
+  sync = () => {
+    const heights: Partial<Record<string, number>> = {};
 
-  onResize: (mutations) =>
-    for mutation in mutations
-      return @sync() if mutation.target.tagName == 'TEXTAREA'
+    for (const reference of this.references) {
+      if (!(reference instanceof HTMLElement)) continue;
 
+      const id = reference.dataset.syncHeightTarget;
+      if (id != null) {
+        heights[id] = reference.offsetHeight;
+      }
+    }
 
-  sync: =>
-    heights = {}
+    for (const target of this.targets) {
+      if (!(target instanceof HTMLElement)) continue;
 
-    for reference in @references
-      id = reference.getAttribute('data-sync-height-target')
-      heights[id] = reference.offsetHeight
-
-    for target in @targets
-      height = heights[target.getAttribute('data-sync-height-id')]
-
-      if height?
-        target.style.minHeight = "#{height}px"
+      const id = target.dataset.syncHeightId;
+      if (id != null) {
+        const height = heights[id];
+        if (height != null) {
+          target.style.minHeight = `${height}px`;
+        }
+      }
+    }
+  };
+}
