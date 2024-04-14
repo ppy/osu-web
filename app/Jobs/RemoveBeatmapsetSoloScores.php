@@ -19,7 +19,7 @@ class RemoveBeatmapsetSoloScores implements ShouldQueue
 {
     use Queueable;
 
-    public $timeout = 10800;
+    public $timeout = 36000;
 
     private int $beatmapsetId;
     private int $maxScoreId;

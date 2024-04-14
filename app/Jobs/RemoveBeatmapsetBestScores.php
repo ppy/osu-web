@@ -18,7 +18,7 @@ class RemoveBeatmapsetBestScores implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
-    public $timeout = 10800;
+    public $timeout = 36000;
     public $beatmapset;
     public $maxScoreIds = null;
 
