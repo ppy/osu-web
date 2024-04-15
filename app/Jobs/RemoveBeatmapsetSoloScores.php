@@ -37,6 +37,11 @@ class RemoveBeatmapsetSoloScores implements ShouldQueue
         $this->maxScoreId = Score::max('id') ?? 0;
     }
 
+    public function displayName()
+    {
+        return static::class." (Beatmapset {$this->beatmapsetId})";
+    }
+
     /**
      * Execute the job.
      *

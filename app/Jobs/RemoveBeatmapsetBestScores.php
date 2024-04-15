@@ -36,6 +36,11 @@ class RemoveBeatmapsetBestScores implements ShouldQueue
         }
     }
 
+    public function displayName()
+    {
+        return static::class." (Beatmapset {$this->beatmapset->getKey()})";
+    }
+
     /**
      * Execute the job.
      *
