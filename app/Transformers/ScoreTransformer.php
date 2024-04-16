@@ -24,6 +24,7 @@ class ScoreTransformer extends TransformerAbstract
     // warning: the preload is actually for PlaylistItemUserHighScore, not for Score
     const MULTIPLAYER_BASE_PRELOAD = [
         'scoreLink.score',
+        'scoreLink.score.processHistory',
         'scoreLink.user.country',
     ];
 
@@ -37,6 +38,7 @@ class ScoreTransformer extends TransformerAbstract
         'beatmap.beatmapset',
         // it's for user profile so the user is already available
         // 'user',
+        'processHistory',
     ];
 
     protected array $availableIncludes = [
