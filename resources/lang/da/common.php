@@ -39,6 +39,7 @@ return [
         'pin' => 'fastgør',
         'post' => 'Slå op',
         'read_more' => 'læs mere',
+        'refresh' => '',
         'reply' => 'Svar',
         'reply_reopen' => 'Svar og Genåben',
         'reply_resolve' => 'Svar og Markér som Løst',

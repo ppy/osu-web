@@ -97,6 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
+            'inactive' => "",
             'inactive_different_country' => "당신의 계정은 오랫동안 사용되지 않았네요.",
         ],
     ],

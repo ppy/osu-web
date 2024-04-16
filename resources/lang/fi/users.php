@@ -97,6 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
+            'inactive' => "",
             'inactive_different_country' => "Käyttäjätiliäsi ei ole käytetty pitkään aikaan.",
         ],
     ],
@@ -420,8 +421,8 @@ return [
             'website' => 'Verkkosivu',
         ],
         'not_found' => [
-            'reason_1' => 'Käyttäjänimi saattaa olla vaihtunut.',
-            'reason_2' => 'Käyttäjätunnus voi olla tilapäisesti pois käytöstä tietoturvasyistä tai väärinkäytön seurauksena.',
+            'reason_1' => 'Hän on saattanut vaihtaa käyttäjänimensä.',
+            'reason_2' => 'Käyttäjätunnus voi olla tilapäisesti poissa käytöstä turvallisuussyistä tai väärinkäytön seurauksena.',
             'reason_3' => 'Teit mahdollisesti kirjoitusvirheen!',
             'reason_header' => 'Tähän on muutama mahdollinen syy:',
             'title' => 'Käyttäjää ei löytynyt! ;_;',

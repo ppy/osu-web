@@ -111,6 +111,9 @@ return [
         'tournaments_controller' => [
             '_' => 'giải đấu',
         ],
+        'user_cover_presets_controller' => [
+            '_' => '',
+        ],
         'users_controller' => [
             '_' => 'thông tin người chơi',
             'create' => 'tạo tài khoản',

@@ -39,6 +39,7 @@ return [
         'pin' => 'נעץ',
         'post' => 'פרסם',
         'read_more' => 'קרא עוד',
+        'refresh' => '',
         'reply' => 'השב',
         'reply_reopen' => 'השב ופתח מחדש',
         'reply_resolve' => 'השב ופתור',

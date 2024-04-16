@@ -33,6 +33,11 @@ class EsDocument implements ShouldQueue
         ];
     }
 
+    public function displayName()
+    {
+        return static::class." ({$this->modelMeta['class']} {$this->modelMeta['id']})";
+    }
+
     /**
      * Execute the job.
      *

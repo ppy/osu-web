@@ -18,6 +18,8 @@ return [
     'channels' => [
         'confirm_part' => '您想要隐藏此频道吗？您仍然会收到来自此频道的消息。',
         'create' => '创建公告',
+        'join' => '加入频道',
+        'none' => '无频道',
 
         'list' => [
             'title' => [
@@ -59,5 +61,9 @@ return [
         'howto' => "点击用户的个人资料/卡片上的信封图标以开始聊天",
         'lazer' => '在 <a href=":link">osu!lazer</a> 中加入的频道将在这里显示。',
         'title' => '暂无对话',
+    ],
+
+    'join_channels' => [
+        'loading' => '正在加载频道列表......',
     ],
 ];

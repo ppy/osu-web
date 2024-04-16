@@ -45,6 +45,11 @@ return [
         'index' => [
             '_' => '曲目搜索',
 
+            'exclusive_only' => [
+                'all' => '全部',
+                'exclusive_only' => 'osu! 原创',
+            ],
+
             'form' => [
                 'advanced' => '高级搜索',
                 'album' => '专辑',
@@ -52,6 +57,7 @@ return [
                 'bpm_gte' => '最低 BPM',
                 'bpm_lte' => '最高 BPM',
                 'empty' => '未找到符合条件的曲目。',
+                'exclusive_only' => '类型',
                 'genre' => '流派',
                 'genre_all' => '全部',
                 'length_gte' => '时长下限',
