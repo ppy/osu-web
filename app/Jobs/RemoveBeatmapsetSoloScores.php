@@ -33,6 +33,8 @@ class RemoveBeatmapsetSoloScores implements ShouldQueue
      */
     public function __construct(Beatmapset $beatmapset)
     {
+        $this->onConnection('remove_scores');
+
         $this->beatmapsetId = $beatmapset->getKey();
         $this->maxScoreId = Score::max('id') ?? 0;
     }

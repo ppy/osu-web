@@ -42,11 +42,19 @@ return [
             'retry_after' => 305,
         ],
 
+        // retry_after has to be longer than the job timeout; 5s added to allow time for workers to be killed.
         'redis' => [
             'driver' => 'redis',
             'queue' => 'default',
-            'retry_after' => 305, // our longest job timeout is 5m, plus 5s to allow time for workers to be killed
+            'retry_after' => 305, // RegenerateBeatmapsetCover (300s),
         ],
+
+        'remove_scores' => [
+            'driver' => 'redis',
+            'queue' => 'remove_scores',
+            'retry_after' => 36005,
+        ],
+
     ],
 
     /*

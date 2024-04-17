@@ -29,6 +29,8 @@ class RemoveBeatmapsetBestScores implements ShouldQueue
      */
     public function __construct(Beatmapset $beatmapset)
     {
+        $this->onConnection('remove_scores');
+
         $this->beatmapset = $beatmapset;
 
         foreach (Beatmap::MODES as $mode => $_modeInt) {
