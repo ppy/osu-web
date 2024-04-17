@@ -50,7 +50,7 @@ return [
         ],
 
         'remove_scores' => [
-            'driver' => 'redis',
+            'driver' => env('APP_ENV') === 'testing' ? 'sync' : 'redis',
             'queue' => 'remove_scores',
             'retry_after' => 36005,
         ],
