@@ -248,6 +248,7 @@ class Score extends Model implements Traits\ReportableInterface
 
             'beatmap',
             'performance',
+            'processHistory',
             'reportedIn',
             'user' => $this->getRelationValue($key),
         };
