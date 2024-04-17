@@ -71,11 +71,13 @@ class Score extends Model implements Traits\ReportableInterface
             'maximum_statistics' => $params['maximum_statistics'] ?? [],
             'mods' => $params['mods'] ?? [],
             'statistics' => $params['statistics'] ?? [],
+            'total_score_without_mods' => $params['total_score_without_mods'] ?? null,
         ];
         unset(
             $params['maximum_statistics'],
             $params['mods'],
             $params['statistics'],
+            $params['total_score_without_mods'],
         );
 
         $score = new static($params);
@@ -105,6 +107,7 @@ class Score extends Model implements Traits\ReportableInterface
             'rank:string',
             'statistics:array',
             'total_score:int',
+            'total_score_without_mods:int',
         ]);
 
         $params['maximum_statistics'] ??= [];
