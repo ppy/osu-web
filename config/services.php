@@ -42,8 +42,4 @@ return [
     'passport' => [
         'path' => env('PASSPORT_KEY_PATH'),
     ],
-
-    'sentry' => [
-        'public_dsn' => env('APP_SENTRY_PUBLIC', ''),
-    ],
 ];

@@ -20,7 +20,6 @@ const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const Watchpack = require('watchpack');
 const webpack = require('webpack');
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
-const SentryPlugin = require('webpack-sentry-plugin');
 const generateLocalizations = require('./resources/js/cli/generate-localizations');
 const modNamesGenerator = require('./resources/js/cli/mod-names-generator');
 
@@ -133,22 +132,6 @@ if (writeManifest) {
 // TODO: should have a different flag for this
 if (!inProduction) {
   plugins.push(new CleanWebpackPlugin());
-}
-
-if (process.env.SENTRY_RELEASE === '1') {
-  plugins.push(
-    new SentryPlugin({
-      apiKey: process.env.SENTRY_API_KEY,
-      deleteAfterCompile: true,
-      exclude: /\.css(\.map)?$/,
-      filenameTransform(filename) {
-        return path.join('~', filename);
-      },
-      organisation: process.env.SENTRY_ORG,
-      project: process.env.SENTRY_PROJ,
-      release: process.env.GIT_SHA,
-    }),
-  );
 }
 
 const notifierConfigPath = resolvePath('.webpack-build-notifier-config.js');
