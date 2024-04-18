@@ -6,6 +6,7 @@ import ChatWorker from 'chat/chat-worker';
 import BrowserTitleWithNotificationCount from 'core/browser-title-with-notification-count';
 import Captcha from 'core/captcha';
 import ClickMenu from 'core/click-menu';
+import CurrentUserObserver from 'core/current-user-observer';
 import Enchant from 'core/enchant';
 import FixRelativeLink from 'core/fix-relative-link';
 import ForumPoll from 'core/forum/forum-poll';
@@ -45,6 +46,7 @@ export default class OsuCore {
   readonly clickMenu;
   @observable currentUser?: CurrentUserJson;
   readonly currentUserModel;
+  readonly currentUserObserver;
   readonly dataStore;
   readonly enchant;
   readonly fixRelativeLink;
@@ -89,6 +91,8 @@ export default class OsuCore {
       document.addEventListener('DOMContentLoaded', this.updateCurrentUser);
     }
     $.subscribe('user:update', this.onCurrentUserUpdate);
+    // ensure currentUser is updated early enough.
+    this.currentUserObserver = new CurrentUserObserver();
 
     this.captcha = new Captcha();
     this.chatWorker = new ChatWorker();
