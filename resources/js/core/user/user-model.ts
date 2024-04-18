@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { pull } from 'lodash';
-import { action, computed, makeObservable, toJS } from 'mobx';
+import { action, computed, makeObservable } from 'mobx';
 import OsuCore from 'osu-core';
 
 export default class UserModel {
@@ -50,11 +50,6 @@ export default class UserModel {
       currentUser.follow_user_mapping.push(userId);
     } else {
       pull(currentUser.follow_user_mapping, userId);
-    }
-
-    // TODO: remove currentUser from window.
-    if (window.currentUser.id != null) {
-      window.currentUser.follow_user_mapping = toJS(currentUser.follow_user_mapping);
     }
 
     $.publish('user:followUserMapping:refresh');
