@@ -10,24 +10,20 @@ export default class CurrentUserObserver {
   private readonly covers = document.getElementsByClassName('js-current-user-cover');
 
   constructor() {
-    $(document).on('turbolinks:load', this.reinit);
+    $(document).on('turbolinks:load', this.setAvatars);
 
     // one time setup to monitor cover url variable. No disposer because nothing destroys this object.
     $(() => reaction(() => core.currentUser?.cover.url, this.setCovers));
   }
 
-  readonly reinit = () => {
-    this.setAvatars();
-  };
-
-  private setAvatars() {
+  readonly setAvatars = () => {
     const bgImage = urlPresence(core.currentUser?.avatar_url) ?? '';
     for (const el of this.avatars) {
       if (el instanceof HTMLElement) {
         el.style.backgroundImage = bgImage;
       }
     }
-  }
+  };
 
   private readonly setCovers = () => {
     const bgImage = urlPresence(core.currentUser?.cover.url) ?? '';
