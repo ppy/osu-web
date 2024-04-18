@@ -4,30 +4,31 @@
 import core from 'osu-core-singleton';
 import { trans } from 'utils/lang';
 
-const element = '.block-list__content';
-const jsClass = '.js-account-edit-blocklist';
+const contentClass = '.js-account-edit-blocklist-content';
+const countClass = '.js-account-edit-blocklist-count';
+const labelClass = '.js-account-edit-blocklist';
 
 export default class AccountEditBlocklist {
   constructor() {
-    $(document).on('click', jsClass, this.toggle);
+    $(document).on('click', labelClass, this.toggle);
     $.subscribe('user:update', this.updateBlockCount);
   }
 
   private readonly toggle = (e: JQuery.ClickEvent) => {
     e.preventDefault();
 
-    $(element).toggleClass('hidden');
+    $(contentClass).toggleClass('hidden');
 
-    const label = $(element).hasClass('hidden')
+    const label = $(contentClass).hasClass('hidden')
       ? trans('common.buttons.show')
       : trans('common.buttons.hide');
 
-    $(jsClass).text(label);
+    $(labelClass).text(label);
   };
 
   private readonly updateBlockCount = () => {
     if (core.currentUser == null) return;
 
-    $(`${jsClass}-count`).text(trans('users.blocks.blocked_count', { count: core.currentUser.blocks.length ?? 0 }));
+    $(countClass).text(trans('users.blocks.blocked_count', { count: core.currentUser.blocks.length ?? 0 }));
   };
 }
