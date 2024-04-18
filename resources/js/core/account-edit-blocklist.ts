@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { reaction } from 'mobx';
 import core from 'osu-core-singleton';
 import { trans } from 'utils/lang';
 
@@ -11,7 +12,7 @@ const labelClass = '.js-account-edit-blocklist';
 export default class AccountEditBlocklist {
   constructor() {
     $(document).on('click', labelClass, this.toggle);
-    $.subscribe('user:update', this.updateBlockCount);
+    $(() => reaction(() => core.currentUser?.blocks, this.updateBlockCount));
   }
 
   private readonly toggle = (e: JQuery.ClickEvent) => {
