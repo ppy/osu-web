@@ -1,7 +1,6 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import CurrentUserJson from 'interfaces/current-user-json';
 import { pull } from 'lodash';
 import { reaction, toJS } from 'mobx';
 import core from 'osu-core-singleton';
@@ -12,7 +11,7 @@ export default class CurrentUserObserver {
   private readonly covers = document.getElementsByClassName('js-current-user-cover');
 
   constructor() {
-    $.subscribe('user:update', this.setData);
+    $.subscribe('user:update', this.reinit);
     $(document).on('turbolinks:load', this.reinit);
     $.subscribe('user:followUserMapping:update', this.updateFollowUserMapping);
 
@@ -40,11 +39,6 @@ export default class CurrentUserObserver {
         el.style.backgroundImage = bgImage;
       }
     }
-  };
-
-  private readonly setData = (_event: unknown, data: CurrentUserJson) => {
-    window.currentUser = data;
-    this.reinit();
   };
 
   private readonly updateFollowUserMapping = (_event: unknown, data: { following: boolean; userId: number }) => {

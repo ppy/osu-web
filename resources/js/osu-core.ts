@@ -162,6 +162,7 @@ export default class OsuCore {
     }
     this.socketWorker.setUserId(user?.id ?? null);
     this.currentUser = user;
+    window.currentUser = userOrEmpty;
     this.userPreferences.setUser(this.currentUser);
   };
 }
