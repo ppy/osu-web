@@ -1,8 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { pull } from 'lodash';
-import { reaction, toJS } from 'mobx';
+import { reaction } from 'mobx';
 import core from 'osu-core-singleton';
 import { urlPresence } from 'utils/css';
 
@@ -12,7 +11,6 @@ export default class CurrentUserObserver {
 
   constructor() {
     $(document).on('turbolinks:load', this.reinit);
-    $.subscribe('user:followUserMapping:update', this.updateFollowUserMapping);
 
     // one time setup to monitor cover url variable. No disposer because nothing destroys this object.
     $(() => reaction(() => core.currentUser?.cover.url, this.setCovers));
@@ -38,22 +36,5 @@ export default class CurrentUserObserver {
         el.style.backgroundImage = bgImage;
       }
     }
-  };
-
-  private readonly updateFollowUserMapping = (_event: unknown, data: { following: boolean; userId: number }) => {
-    const currentUser = core.currentUser;
-    if (currentUser == null) return;
-
-    if (data.following) {
-      currentUser.follow_user_mapping.push(data.userId);
-    } else {
-      pull(currentUser.follow_user_mapping, data.userId);
-    }
-
-    if (window.currentUser.id != null) {
-      window.currentUser.follow_user_mapping = toJS(currentUser.follow_user_mapping);
-    }
-
-    $.publish('user:followUserMapping:refresh');
   };
 }

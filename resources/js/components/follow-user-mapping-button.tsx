@@ -152,6 +152,6 @@ export default class FollowUserMappingButton extends React.Component<Props, Stat
   }
 
   private readonly updateData = () => {
-    $.publish('user:followUserMapping:update', { following: !this.state.following, userId: this.props.userId });
+    core.currentUserModel.updateFollowUserMapping(!this.state.following, this.props.userId);
   };
 }

@@ -1,7 +1,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { computed, makeObservable } from 'mobx';
+import { pull } from 'lodash';
+import { action, computed, makeObservable, toJS } from 'mobx';
 import OsuCore from 'osu-core';
 
 export default class UserModel {
@@ -29,5 +30,24 @@ export default class UserModel {
 
   isFriendWith(id: number) {
     return this.friends.get(id) != null;
+  }
+
+  @action
+  updateFollowUserMapping(following: boolean, userId: number) {
+    const currentUser = this.core.currentUser;
+    if (currentUser == null) return;
+
+    if (following) {
+      currentUser.follow_user_mapping.push(userId);
+    } else {
+      pull(currentUser.follow_user_mapping, userId);
+    }
+
+    // TODO: remove currentUser from window.
+    if (window.currentUser.id != null) {
+      window.currentUser.follow_user_mapping = toJS(currentUser.follow_user_mapping);
+    }
+
+    $.publish('user:followUserMapping:refresh');
   }
 }
