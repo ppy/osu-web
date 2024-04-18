@@ -147,8 +147,7 @@ export default class OsuCore {
     const currentUser = parseJsonNullable<typeof window.currentUser>('json-current-user', true);
 
     if (currentUser != null) {
-      window.currentUser = currentUser;
-      this.setCurrentUser(window.currentUser);
+      this.setCurrentUser(currentUser);
     }
   };
 
