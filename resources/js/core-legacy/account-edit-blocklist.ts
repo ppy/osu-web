@@ -1,32 +1,33 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-import { trans } from 'utils/lang'
+import core from 'osu-core-singleton';
+import { trans } from 'utils/lang';
 
-export default class AccountEditBlocklist
-  element: 'block-list__content'
-  jsClass: '.js-account-edit-blocklist'
+const element = '.block-list__content';
+const jsClass = '.js-account-edit-blocklist';
 
-  constructor: ->
-    $(document).on 'click', @jsClass, @toggle
-    $.subscribe 'user:update', @updateBlockCount
+export default class AccountEditBlocklist {
+  constructor() {
+    $(document).on('click', jsClass, this.toggle);
+    $.subscribe('user:update', this.updateBlockCount);
+  }
 
+  private readonly toggle = (e: JQuery.ClickEvent) => {
+    e.preventDefault();
 
-  updateBlockCount: =>
-    return unless currentUser.id?
+    $(element).toggleClass('hidden');
 
-    $("#{@jsClass}-count").text trans('users.blocks.blocked_count', count: currentUser.blocks?.length ? 0)
+    const label = $(element).hasClass('hidden')
+      ? trans('common.buttons.show')
+      : trans('common.buttons.hide');
 
+    $(jsClass).text(label);
+  };
 
-  toggle: (e) =>
-    e.preventDefault()
+  private readonly updateBlockCount = () => {
+    if (core.currentUser == null) return;
 
-    $(".#{@element}").toggleClass('hidden')
-
-    label =
-      if $(".#{@element}").hasClass('hidden')
-        trans 'common.buttons.show'
-      else
-        trans 'common.buttons.hide'
-
-    $(@jsClass).text label
+    $(`${jsClass}-count`).text(trans('users.blocks.blocked_count', { count: core.currentUser.blocks.length ?? 0 }));
+  };
+}
