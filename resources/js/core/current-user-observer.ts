@@ -11,7 +11,6 @@ export default class CurrentUserObserver {
   private readonly covers = document.getElementsByClassName('js-current-user-cover');
 
   constructor() {
-    $.subscribe('user:update', this.reinit);
     $(document).on('turbolinks:load', this.reinit);
     $.subscribe('user:followUserMapping:update', this.updateFollowUserMapping);
 
@@ -19,7 +18,7 @@ export default class CurrentUserObserver {
     $(() => reaction(() => core.currentUser?.cover.url, this.setCovers));
   }
 
-  private readonly reinit = () => {
+  readonly reinit = () => {
     this.setAvatars();
   };
 
