@@ -2,7 +2,6 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import AccountEditAvatar from 'core-legacy/account-edit-avatar'
-import AccountEditBlocklist from 'core-legacy/account-edit-blocklist'
 import AccountEdit from 'core-legacy/account-edit'
 import BbcodePreview from 'core-legacy/bbcode-preview'
 import BeatmapPack from 'core-legacy/beatmap-pack'
@@ -64,7 +63,6 @@ window.syncHeight ?= new SyncHeight
 
 window.accountEdit ?= new AccountEdit
 window.accountEditAvatar ?= new AccountEditAvatar
-window.accountEditBlocklist ?= new AccountEditBlocklist
 window.bbcodePreview ?= new BbcodePreview
 window.changelogChartLoader ?= new ChangelogChartLoader
 window.checkboxValidation ?= new CheckboxValidation

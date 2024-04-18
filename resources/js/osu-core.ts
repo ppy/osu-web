@@ -3,6 +3,7 @@
 
 import { BeatmapsetSearchController } from 'beatmaps/beatmapset-search-controller';
 import ChatWorker from 'chat/chat-worker';
+import AccountEditBlocklist from 'core/account-edit-blocklist';
 import BrowserTitleWithNotificationCount from 'core/browser-title-with-notification-count';
 import Captcha from 'core/captcha';
 import ClickMenu from 'core/click-menu';
@@ -39,6 +40,7 @@ import { parseJsonNullable } from 'utils/json';
 
 // will this replace main.coffee eventually?
 export default class OsuCore {
+  readonly accountEditBlocklist;
   readonly beatmapsetSearchController;
   readonly browserTitleWithNotificationCount;
   readonly captcha;
@@ -124,6 +126,7 @@ export default class OsuCore {
     // should probably figure how to conditionally or lazy initialize these so they don't all init when not needed.
     // TODO: requires dynamic imports to lazy load modules.
     this.dataStore = new RootDataStore();
+    this.accountEditBlocklist = new AccountEditBlocklist();
     this.userLoginObserver = new UserLoginObserver();
     this.windowFocusObserver = new WindowFocusObserver();
 
