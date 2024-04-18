@@ -16,6 +16,15 @@ export default class UserModel {
   }
 
   @computed
+  get following() {
+    if (this.core.currentUser == null) {
+      return new Set();
+    }
+
+    return new Set(this.core.currentUser.follow_user_mapping);
+  }
+
+  @computed
   get friends() {
     if (this.core.currentUser == null) {
       return new Map<number, undefined>();

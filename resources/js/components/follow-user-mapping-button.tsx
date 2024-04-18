@@ -27,6 +27,7 @@ interface State {
 
 const bn = 'user-action-button';
 
+// TODO: mobx and turn to observer
 export default class FollowUserMappingButton extends React.Component<Props, State> {
   private readonly buttonRef = React.createRef<HTMLButtonElement>();
   private readonly eventId = `follow-user-mapping-button-${nextVal()}`;
@@ -35,7 +36,7 @@ export default class FollowUserMappingButton extends React.Component<Props, Stat
   constructor(props: Props) {
     super(props);
 
-    const following = core.currentUser?.follow_user_mapping.includes(this.props.userId) ?? false;
+    const following = core.currentUserModel.following.has(this.props.userId);
     let followersWithoutSelf = this.props.followers ?? 0;
 
     if (following !== false) followersWithoutSelf -= 1;
@@ -123,7 +124,7 @@ export default class FollowUserMappingButton extends React.Component<Props, Stat
 
   private readonly refresh = () => {
     this.setState({
-      following: core.currentUser?.follow_user_mapping.includes(this.props.userId) ?? false,
+      following: core.currentUserModel.following.has(this.props.userId),
     });
   };
 

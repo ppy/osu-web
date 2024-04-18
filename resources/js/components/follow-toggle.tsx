@@ -20,6 +20,7 @@ interface State {
   toggling: boolean;
 }
 
+// TODO: mobx and turn to observer
 export default class FollowToggle extends React.PureComponent<Props, State> {
   static defaultProps = {
     following: true,
@@ -94,7 +95,7 @@ export default class FollowToggle extends React.PureComponent<Props, State> {
   private readonly refresh = () => {
     if (this.props.follow.subtype === 'mapping') {
       this.setState({
-        following: core.currentUser != null && core.currentUser.follow_user_mapping.includes(this.props.follow.notifiable_id),
+        following: core.currentUserModel.following.has(this.props.follow.notifiable_id),
       });
     }
   };
