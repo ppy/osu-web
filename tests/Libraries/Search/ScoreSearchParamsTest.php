@@ -10,7 +10,7 @@ use App\Models\Solo\Score;
 use App\Models\User;
 use Tests\TestCase;
 
-class ScoresSearchParamsTest extends TestCase
+class ScoreSearchParamsTest extends TestCase
 {
     /**
      * @dataProvider showLegacyForUserAndGuestDataProvider
