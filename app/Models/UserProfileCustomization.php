@@ -28,7 +28,7 @@ class UserProfileCustomization extends Model
         'comments_sort' => Comment::DEFAULT_SORT,
         'extras_order' => self::SECTIONS,
         'forum_posts_show_deleted' => true,
-        'legacy_score_only' => true,
+        'legacy_score_only' => false,
         'profile_cover_expanded' => true,
         'user_list_filter' => self::USER_LIST['filters']['default'],
         'user_list_sort' => self::USER_LIST['sorts']['default'],
@@ -195,7 +195,20 @@ class UserProfileCustomization extends Model
 
     public function getLegacyScoreOnlyAttribute(): bool
     {
-        return $this->options['legacy_score_only'] ?? static::DEFAULTS['legacy_score_only'];
+        $option = $this->options['legacy_score_only'] ?? null;
+        if ($option === null) {
+            $lastScore = $this->user->soloScores()->last();
+            $legacyOnly = $lastScore !== null
+                ? $lastScore->legacy_score_id !== null
+                : static::DEFAULTS['legacy_score_only'];
+
+            $this->setOption('legacy_score_only', $legacyOnly);
+            $this->save();
+
+            return $legacyOnly;
+        }
+
+        return $option;
     }
 
     public function setLegacyScoreOnlyAttribute($value): void
@@ -274,6 +287,11 @@ class UserProfileCustomization extends Model
     public function setProfileCoverExpandedAttribute($value)
     {
         $this->setOption('profile_cover_expanded', get_bool($value));
+    }
+
+    public function user()
+    {
+        return $this->hasOne(User::class);
     }
 
     private function setOption($key, $value)

@@ -59,8 +59,8 @@ class ScoresSearchParamsTest extends TestCase
     public function showLegacyForGuestDataSource()
     {
         return [
-            [null, null, true],
-            [null, false, true],
+            [null, null, null],
+            [null, false, null],
             [null, true, null],
             [false, null, null],
             [false, false, null],
@@ -74,8 +74,8 @@ class ScoresSearchParamsTest extends TestCase
     public function showLegacyForUserDataSource()
     {
         return [
-            [null, null, true],
-            [null, false, true],
+            [null, null, null],
+            [null, false, null],
             [null, true, null],
             [false, null, null],
             [false, false, null],
@@ -89,7 +89,7 @@ class ScoresSearchParamsTest extends TestCase
     public function showLegacyForUserSettingDataSource()
     {
         return [
-            [null, true],
+            [null, null],
             [false, null],
             [true, true],
         ];
