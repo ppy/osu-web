@@ -14,7 +14,7 @@ use Tests\TestCase;
 class ScoresSearchParamsTest extends TestCase
 {
     /**
-     * @dataProvider showLegacyForUserDataSource
+     * @dataProvider showLegacyForUserAndGuestDataProvider
      */
     public function testShowLegacyForGuest(?bool $legacyOnly, ?bool $isApiRequest, ?bool $expected)
     {
@@ -25,7 +25,7 @@ class ScoresSearchParamsTest extends TestCase
     }
 
     /**
-     * @dataProvider showLegacyForUserDataSource
+     * @dataProvider showLegacyForUserAndGuestDataProvider
      */
     public function testShowLegacyForUser(?bool $legacyOnly, ?bool $isApiRequest, ?bool $expected)
     {
@@ -38,7 +38,7 @@ class ScoresSearchParamsTest extends TestCase
     }
 
     /**
-     * @dataProvider showLegacyForUserSettingDataSource
+     * @dataProvider showLegacyForUserSettingDataProvider
      */
     public function testShowLegacyForUserSetting(?bool $setting, ?bool $expected)
     {
@@ -56,7 +56,7 @@ class ScoresSearchParamsTest extends TestCase
         );
     }
 
-    public function showLegacyForGuestDataSource()
+    public function showLegacyForUserAndGuestDataProvider()
     {
         return [
             [null, null, null],
@@ -71,22 +71,7 @@ class ScoresSearchParamsTest extends TestCase
         ];
     }
 
-    public function showLegacyForUserDataSource()
-    {
-        return [
-            [null, null, null],
-            [null, false, null],
-            [null, true, null],
-            [false, null, null],
-            [false, false, null],
-            [false, true, null],
-            [true, null, true],
-            [true, false, true],
-            [true, true, true],
-        ];
-    }
-
-    public function showLegacyForUserSettingDataSource()
+    public function showLegacyForUserSettingDataProvider()
     {
         return [
             [null, null],
