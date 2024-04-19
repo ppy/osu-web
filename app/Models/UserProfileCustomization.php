@@ -198,9 +198,7 @@ class UserProfileCustomization extends Model
         $option = $this->options['legacy_score_only'] ?? null;
         if ($option === null) {
             $lastScore = $this->user->soloScores()->last();
-            $legacyOnly = $lastScore !== null
-                ? $lastScore->legacy_score_id !== null
-                : static::DEFAULTS['legacy_score_only'];
+            $legacyOnly = $lastScore?->isLegacy() ?? static::DEFAULTS['legacy_score_only'];
 
             $this->setOption('legacy_score_only', $legacyOnly);
             $this->save();

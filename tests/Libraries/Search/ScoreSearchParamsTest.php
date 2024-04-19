@@ -6,8 +6,7 @@
 namespace Tests\Libraries\Search;
 
 use App\Libraries\Search\ScoreSearchParams;
-use App\Libraries\Search\UserSearch;
-use App\Libraries\Search\UserSearchParams;
+use App\Models\Solo\Score;
 use App\Models\User;
 use Tests\TestCase;
 
@@ -38,6 +37,30 @@ class ScoresSearchParamsTest extends TestCase
     }
 
     /**
+     * @dataProvider showLegacyForUserFromScoreDataProvider
+     */
+    public function testShowLegacyForUserFromScore(?bool $legacyScore, ?bool $expected)
+    {
+        $factory = User::factory();
+
+        if ($legacyScore !== null) {
+            $factory = $factory->has(Score::factory()->state([
+                'legacy_score_id' => $legacyScore ? 1 : null,
+            ]), 'soloScores');
+        }
+
+        $user = $factory->create();
+
+        $this->assertSame(
+            $expected,
+            ScoreSearchParams::showLegacyForUser($user, null, null)
+        );
+
+        // also test the setting was saved.
+        $this->assertSame($legacyScore ?? false, $user->userProfileCustomization->legacy_score_only);
+    }
+
+    /**
      * @dataProvider showLegacyForUserSettingDataProvider
      */
     public function testShowLegacyForUserSetting(?bool $setting, ?bool $expected)
@@ -46,7 +69,7 @@ class ScoresSearchParamsTest extends TestCase
 
         if ($setting !== null) {
             $user->userProfileCustomization()->create([
-                'legacy_score_only' => $setting
+                'legacy_score_only' => $setting,
             ]);
         }
 
@@ -68,6 +91,15 @@ class ScoresSearchParamsTest extends TestCase
             [true, null, true],
             [true, false, true],
             [true, true, true],
+        ];
+    }
+
+    public function showLegacyForUserFromScoreDataProvider()
+    {
+        return [
+            [null, null],
+            [false, null],
+            [true, true],
         ];
     }
 
