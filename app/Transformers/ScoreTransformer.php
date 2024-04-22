@@ -36,9 +36,9 @@ class ScoreTransformer extends TransformerAbstract
     const USER_PROFILE_INCLUDES_PRELOAD = [
         'beatmap',
         'beatmap.beatmapset',
+        'processHistory',
         // it's for user profile so the user is already available
         // 'user',
-        'processHistory',
     ];
 
     protected array $availableIncludes = [
