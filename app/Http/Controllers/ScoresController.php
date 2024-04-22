@@ -98,8 +98,9 @@ class ScoresController extends Controller
             // which correspond to rows from `osu_scores_*` (non-high) tables.
             // do not attempt to perform lookups for zero to avoid weird results.
             // negative IDs should never occur (ID columns in score tables are all `bigint unsigned`).
-            if ($legacyId <= 0)
+            if ($legacyId <= 0) {
                 abort(404, 'invalid score ID');
+            }
 
             $scoreQuery = SoloScore::where([
                 'ruleset_id' => Ruleset::tryFromName($rulesetOrSoloId) ?? abort(404, 'unknown ruleset name'),
