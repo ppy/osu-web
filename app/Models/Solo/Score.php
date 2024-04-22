@@ -149,6 +149,11 @@ class Score extends Model implements Traits\ReportableInterface
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function processHistory()
+    {
+        return $this->hasOne(ScoreProcessHistory::class, 'score_id');
+    }
+
     public function scopeDefault(Builder $query): Builder
     {
         return $query->whereHas('beatmap.beatmapset');
@@ -243,6 +248,7 @@ class Score extends Model implements Traits\ReportableInterface
 
             'beatmap',
             'performance',
+            'processHistory',
             'reportedIn',
             'user' => $this->getRelationValue($key),
         };
