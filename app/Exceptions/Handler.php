@@ -103,14 +103,7 @@ class Handler extends ExceptionHandler
                 : trim(strtr($model, ['App\Models\\' => '']), '\\'),
         ];
 
-        if (empty($ids)) {
-            $key = 'models.not_found_no_ids';
-        } else {
-            $key = 'models.not_found';
-            $params['ids'] = implode(', ', $ids);
-        }
-
-        return osu_trans($key, $params);
+        return osu_trans('models.not_found', $params);
     }
 
     private static function reportWithSentry(Throwable $e): void
