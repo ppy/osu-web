@@ -94,7 +94,7 @@ export default class OsuCore {
     }
     $.subscribe('user:update', this.onCurrentUserUpdate);
     // ensure currentUser is updated early enough.
-    this.currentUserObserver = new CurrentUserObserver();
+    this.currentUserObserver = new CurrentUserObserver(this);
 
     this.captcha = new Captcha();
     this.chatWorker = new ChatWorker();
