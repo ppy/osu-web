@@ -30,7 +30,6 @@ import NavButton from 'core-legacy/nav-button'
 import Nav2 from 'core-legacy/nav2'
 import PostPreview from 'core-legacy/post-preview'
 import Search from 'core-legacy/search'
-import StickyFooter from 'core-legacy/sticky-footer'
 import { StoreCheckout } from 'core-legacy/store-checkout'
 import SyncHeight from 'core-legacy/sync-height'
 import TooltipDefault from 'core-legacy/tooltip-default'
@@ -87,13 +86,12 @@ window.menu ?= new Menu
 window.navButton ?= new NavButton
 window.postPreview ?= new PostPreview
 window.search ?= new Search
-window.stickyFooter ?= new StickyFooter
 window.tooltipDefault ?= new TooltipDefault
 
 window.formConfirmation ?= new FormConfirmation(window.formError)
 window.forumPostsSeek ?= new ForumPostsSeek(window.forum)
 window.forumTopicPostJump ?= new ForumTopicPostJump(window.forum)
-window.forumTopicReply ?= new ForumTopicReply(bbcodePreview: window.bbcodePreview, forum: window.forum, stickyFooter: window.stickyFooter)
+window.forumTopicReply ?= new ForumTopicReply(bbcodePreview: window.bbcodePreview, forum: window.forum, stickyFooter: osuCore.stickyFooter)
 window.nav2 ?= new Nav2(osuCore.clickMenu)
 
 
