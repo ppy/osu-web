@@ -93,12 +93,11 @@ export default class OsuCore {
       document.addEventListener('DOMContentLoaded', this.updateCurrentUser);
     }
     $.subscribe('user:update', this.onCurrentUserUpdate);
-    // ensure currentUser is updated early enough.
-    this.currentUserObserver = new CurrentUserObserver(this);
 
     this.captcha = new Captcha();
     this.chatWorker = new ChatWorker();
     this.clickMenu = new ClickMenu();
+    this.currentUserObserver = new CurrentUserObserver(this);
     this.currentUserModel = new UserModel(this);
     this.fixRelativeLink = new FixRelativeLink();
     this.forumPoll = new ForumPoll();
