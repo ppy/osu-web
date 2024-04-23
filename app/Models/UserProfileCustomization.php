@@ -200,14 +200,12 @@ class UserProfileCustomization extends Model
         if ($option === null) {
             $lastScore = Score::where('user_id', $this->getKey())->last();
             if ($lastScore === null) {
-                return static::DEFAULTS['legacy_score_only'];
+                $option = static::DEFAULTS['legacy_score_only'];
+            } else {
+                $option = $lastScore->isLegacy();
+                $this->setOption('legacy_score_only', $option);
+                $this->save();
             }
-
-            $legacyOnly = $lastScore->isLegacy();
-            $this->setOption('legacy_score_only', $legacyOnly);
-            $this->save();
-
-            return $legacyOnly;
         }
 
         return $option;
