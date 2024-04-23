@@ -22,7 +22,6 @@ export default class CurrentUserObserver
 
   reinit: =>
     @setAvatars()
-    @setSentryUser()
 
 
   setAvatars: (elements) =>
@@ -43,13 +42,6 @@ export default class CurrentUserObserver
     window.currentUser = data
 
     @reinit()
-
-
-  setSentryUser: ->
-    return unless Sentry?
-
-    Sentry.configureScope (scope) ->
-      scope.setUser id: currentUser.id, username: currentUser.username
 
 
   updateFollowUserMapping: (_e, data) =>
