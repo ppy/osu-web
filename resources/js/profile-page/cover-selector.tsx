@@ -1,13 +1,11 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import UserCoverPresetJson from 'interfaces/user-cover-preset-json';
-import { action, computed, observable, makeObservable } from 'mobx';
+import { action, observable, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
-import { getInt } from 'utils/math';
 import { nextVal } from 'utils/seq';
 import Controller from './controller';
 import CoverSelection from './cover-selection';
@@ -28,23 +26,6 @@ export default class CoverSelector extends React.Component<Props> {
   private readonly eventId = `users-show-cover-selector-${nextVal()}`;
   private readonly uploaderRef = React.createRef<CoverUploader>();
 
-  @computed
-  private get holdoverCoverPreset(): UserCoverPresetJson | null {
-    const id = getInt(this.props.controller.state.user.cover.id);
-
-    if (id == null) return null;
-
-    const isActive = this.props.controller.userCoverPresets.some((preset) => preset.id === id);
-
-    return isActive
-      ? null
-      : {
-        active: false,
-        id,
-        url: this.props.controller.state.user.cover.url,
-      };
-  }
-
   constructor(props: Props) {
     super(props);
 
@@ -63,9 +44,7 @@ export default class CoverSelector extends React.Component<Props> {
   }
 
   render() {
-    const holdoverCoverPreset = this.holdoverCoverPreset;
-    const currentPresetId = getInt(this.props.controller.state.user.cover.id);
-    const confirmUpdate = holdoverCoverPreset != null;
+    const holdoverCoverPreset = this.props.controller.holdoverCoverPreset;
 
     return (
       <div ref={this.dropzoneRef} className='profile-cover-change-popup'>
@@ -73,22 +52,16 @@ export default class CoverSelector extends React.Component<Props> {
           {this.props.controller.userCoverPresets.map((preset) =>
             (<div key={preset.id} className='profile-cover-change-popup__selection'>
               <CoverSelection
-                confirmUpdate={confirmUpdate}
                 controller={this.props.controller}
-                id={preset.id}
-                isSelected={currentPresetId === preset.id}
-                url={preset.url}
+                preset={preset}
               />
             </div>),
           )}
           {holdoverCoverPreset != null &&
             <div className='profile-cover-change-popup__selection'>
               <CoverSelection
-                confirmUpdate={confirmUpdate}
                 controller={this.props.controller}
-                id={holdoverCoverPreset.id}
-                isSelected
-                url={holdoverCoverPreset.url}
+                preset={holdoverCoverPreset}
               />
             </div>
           }
@@ -98,7 +71,6 @@ export default class CoverSelector extends React.Component<Props> {
         </div>
         <CoverUploader
           ref={this.uploaderRef}
-          confirmUpdate={confirmUpdate}
           controller={this.props.controller}
           dropzoneRef={this.dropzoneRef}
         />

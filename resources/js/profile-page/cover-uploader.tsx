@@ -4,7 +4,7 @@
 import StringWithComponent from 'components/string-with-component';
 import UserExtendedJson from 'interfaces/user-extended-json';
 import { route } from 'laroute';
-import { action } from 'mobx';
+import { action, computed } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { fileuploadFailCallback } from 'utils/ajax';
@@ -14,7 +14,6 @@ import Controller from './controller';
 import CoverSelection from './cover-selection';
 
 interface Props {
-  confirmUpdate: boolean;
   controller: Controller;
   dropzoneRef: React.RefObject<HTMLDivElement>;
 }
@@ -22,6 +21,11 @@ interface Props {
 @observer
 export default class CoverUploader extends React.Component<Props> {
   private readonly uploadButtonContainer = React.createRef<HTMLLabelElement>();
+
+  @computed
+  private get preset() {
+    return { url: this.props.controller.state.user.cover.custom_url };
+  }
 
   private get $uploadButton() {
     return $(this.uploadButtonContainer.current ?? {}).find('.js-profile-cover-upload');
@@ -35,12 +39,9 @@ export default class CoverUploader extends React.Component<Props> {
     return (
       <div className='profile-cover-uploader'>
         <CoverSelection
-          confirmUpdate={this.props.confirmUpdate}
           controller={this.props.controller}
-          id={-1}
-          isSelected={this.props.controller.state.user.cover.id == null}
           modifiers='custom'
-          url={this.props.controller.state.user.cover.custom_url}
+          preset={this.preset}
         />
 
         <div className='profile-cover-uploader__button'>
@@ -116,7 +117,7 @@ export default class CoverUploader extends React.Component<Props> {
       fail: fileuploadFailCallback,
       submit: action(() => {
         $.publish('dragendGlobal');
-        if (this.props.confirmUpdate && !confirm(trans('users.show.edit.cover.holdover_remove_confirm'))) {
+        if (this.props.controller.holdoverCoverPreset != null && !confirm(trans('users.show.edit.cover.holdover_remove_confirm'))) {
           return false;
         }
         this.props.controller.isUpdatingCover = true;
