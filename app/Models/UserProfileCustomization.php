@@ -5,6 +5,7 @@
 
 namespace App\Models;
 
+use App\Models\Solo\Score;
 use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 
 /**
@@ -197,9 +198,12 @@ class UserProfileCustomization extends Model
     {
         $option = $this->options['legacy_score_only'] ?? null;
         if ($option === null) {
-            $lastScore = $this->user->soloScores()->last();
-            $legacyOnly = $lastScore?->isLegacy() ?? static::DEFAULTS['legacy_score_only'];
+            $lastScore = Score::where('user_id', $this->getKey())->last();
+            if ($lastScore === null) {
+                return static::DEFAULTS['legacy_score_only'];
+            }
 
+            $legacyOnly = $lastScore->isLegacy();
             $this->setOption('legacy_score_only', $legacyOnly);
             $this->save();
 
@@ -285,11 +289,6 @@ class UserProfileCustomization extends Model
     public function setProfileCoverExpandedAttribute($value)
     {
         $this->setOption('profile_cover_expanded', get_bool($value));
-    }
-
-    public function user()
-    {
-        return $this->hasOne(User::class);
     }
 
     private function setOption($key, $value)

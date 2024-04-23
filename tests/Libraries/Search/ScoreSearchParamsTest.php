@@ -51,13 +51,15 @@ class ScoreSearchParamsTest extends TestCase
 
         $user = $factory->create();
 
+        $this->assertNull($user->fresh()->userProfileCustomization);
+
         $this->assertSame(
             $expected,
             ScoreSearchParams::showLegacyForUser($user, null, null)
         );
 
-        // also test the setting was saved.
-        $this->assertSame($legacyScore ?? false, $user->userProfileCustomization->legacy_score_only);
+        // also test the setting was saved if there is a score and not just returning the default value.
+        $this->assertSame($legacyScore, $user->fresh()->userProfileCustomization->options['legacy_score_only'] ?? null);
     }
 
     /**
