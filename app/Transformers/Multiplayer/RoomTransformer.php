@@ -21,7 +21,6 @@ class RoomTransformer extends TransformerAbstract
         'playlist',
         'playlist_item_stats',
         'recent_participants',
-        'scores',
     ];
 
     public function transform(Room $room)
@@ -93,13 +92,5 @@ class RoomTransformer extends TransformerAbstract
     public function includePlaylistItemStats(Room $room)
     {
         return $this->primitive($room->playlistItemStats());
-    }
-
-    public function includeScores(Room $room)
-    {
-        return $this->collection(
-            $room->scores()->completed()->get(),
-            new ScoreTransformer()
-        );
     }
 }
