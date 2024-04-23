@@ -92,8 +92,6 @@ class Handler extends ExceptionHandler
 
     private static function modelNotFoundMessage(ModelNotFoundException $e): string
     {
-        $ids = $e->getIds();
-
         $model = $e->getModel();
         $modelTransKey = "models.name.{$model}";
 
