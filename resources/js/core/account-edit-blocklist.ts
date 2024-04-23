@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { reaction } from 'mobx';
-import core from 'osu-core-singleton';
+import OsuCore from 'osu-core';
 import { trans } from 'utils/lang';
 
 const contentClass = '.js-account-edit-blocklist-content';
@@ -10,9 +10,9 @@ const countClass = '.js-account-edit-blocklist-count';
 const labelClass = '.js-account-edit-blocklist';
 
 export default class AccountEditBlocklist {
-  constructor() {
+  constructor(private readonly core: OsuCore) {
     $(document).on('click', labelClass, this.toggle);
-    $(() => reaction(() => core.currentUser?.blocks, this.updateBlockCount));
+    $(() => reaction(() => this.core.currentUser?.blocks, this.updateBlockCount));
   }
 
   private readonly toggle = (e: JQuery.ClickEvent) => {
@@ -28,8 +28,8 @@ export default class AccountEditBlocklist {
   };
 
   private readonly updateBlockCount = () => {
-    if (core.currentUser == null) return;
+    if (this.core.currentUser == null) return;
 
-    $(countClass).text(trans('users.blocks.blocked_count', { count: core.currentUser.blocks.length ?? 0 }));
+    $(countClass).text(trans('users.blocks.blocked_count', { count: this.core.currentUser.blocks.length ?? 0 }));
   };
 }

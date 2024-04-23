@@ -126,7 +126,7 @@ export default class OsuCore {
     // should probably figure how to conditionally or lazy initialize these so they don't all init when not needed.
     // TODO: requires dynamic imports to lazy load modules.
     this.dataStore = new RootDataStore();
-    this.accountEditBlocklist = new AccountEditBlocklist();
+    this.accountEditBlocklist = new AccountEditBlocklist(this);
     this.userLoginObserver = new UserLoginObserver();
     this.windowFocusObserver = new WindowFocusObserver();
 
