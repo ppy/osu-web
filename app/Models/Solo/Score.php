@@ -19,9 +19,10 @@ use App\Models\Score as LegacyScore;
 use App\Models\ScoreToken;
 use App\Models\Traits;
 use App\Models\User;
+use Carbon\CarbonImmutable;
+use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Database\Eloquent\Builder;
 use LaravelRedis;
-use Storage;
 
 /**
  * @property float $accuracy
@@ -118,13 +119,24 @@ class Score extends Model implements Traits\ReportableInterface
         $params['started_at'] = $scoreToken->created_at;
         $params['user_id'] = $scoreToken->user_id;
 
+        $params['passed'] ??= false;
+        $params['preserve'] = $params['passed'];
+
         $beatmap = $scoreToken->beatmap;
         // anything that have leaderboard
-        $params['ranked'] = $beatmap !== null && $beatmap->approved > 0;
-
-        $params['preserve'] = $params['passed'] ?? false;
+        $params['ranked'] = $params['passed'] && $beatmap !== null && $beatmap->approved > 0;
 
         return $params;
+    }
+
+    public static function replayFileDiskName(): string
+    {
+        return "{$GLOBALS['cfg']['osu']['score_replays']['storage']}-solo-replay";
+    }
+
+    public static function replayFileStorage(): Filesystem
+    {
+        return \Storage::disk(static::replayFileDiskName());
     }
 
     public function beatmap()
@@ -135,6 +147,11 @@ class Score extends Model implements Traits\ReportableInterface
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function processHistory()
+    {
+        return $this->hasOne(ScoreProcessHistory::class, 'score_id');
     }
 
     public function scopeDefault(Builder $query): Builder
@@ -170,14 +187,21 @@ class Score extends Model implements Traits\ReportableInterface
      */
     public function scopeRecent(Builder $query, string $ruleset, bool $includeFails): Builder
     {
+        $minTime = CarbonImmutable::now()->subDays(1);
+
         return $query
             // ensure correct index is used
             ->from(\DB::raw("{$this->getTable()} FORCE INDEX (user_ruleset_index)"))
             ->default()
             ->forRuleset($ruleset)
             ->includeFails($includeFails)
-            // 1 day (24 * 3600)
-            ->where('unix_updated_at', '>', time() - 86_400);
+            // unix_updated_at may be updated arbitrarily, so also filter by `ended_at` to ensure
+            // only recent scores are returned.
+            ->where('ended_at', '>', $minTime)
+            // we still want to filter by `unix_updated_at` to make the query efficient (is in the PK).
+            ->where('unix_updated_at', '>', $minTime->getTimestamp())
+            // ensure correct partition in production
+            ->where('preserve', '>=', 0);
     }
 
     public function scopeVisibleUsers(Builder $query): Builder
@@ -224,6 +248,7 @@ class Score extends Model implements Traits\ReportableInterface
 
             'beatmap',
             'performance',
+            'processHistory',
             'reportedIn',
             'user' => $this->getRelationValue($key),
         };
@@ -253,8 +278,7 @@ class Score extends Model implements Traits\ReportableInterface
 
     public function getReplayFile(): ?string
     {
-        return Storage::disk($GLOBALS['cfg']['osu']['score_replays']['storage'].'-solo-replay')
-            ->get($this->getKey());
+        return static::replayFileStorage()->get($this->getKey());
     }
 
     public function isLegacy(): bool

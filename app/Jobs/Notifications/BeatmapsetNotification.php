@@ -28,6 +28,11 @@ abstract class BeatmapsetNotification extends BroadcastNotificationBase
         $this->beatmapset = $beatmapset;
     }
 
+    public function displayName()
+    {
+        return static::class." (Beatmapset {$this->beatmapset->getKey()})";
+    }
+
     public function getDetails(): array
     {
         return [

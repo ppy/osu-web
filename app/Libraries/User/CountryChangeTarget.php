@@ -10,7 +10,6 @@ namespace App\Libraries\User;
 use App\Models\Tournament;
 use App\Models\TournamentRegistration;
 use App\Models\User;
-use App\Models\UserCountryHistory;
 use Carbon\CarbonImmutable;
 
 class CountryChangeTarget
@@ -38,8 +37,8 @@ class CountryChangeTarget
             ->userCountryHistory()
             ->whereBetween('year_month', [
                 // one year maximum range. Offset by 1 because the range is inclusive
-                UserCountryHistory::formatDate($until->subMonths(11)),
-                UserCountryHistory::formatDate($until),
+                format_month_column($until->subMonths(11)),
+                format_month_column($until),
             ])->distinct()
             ->orderBy('year_month', 'DESC')
             ->limit($minMonths)

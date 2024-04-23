@@ -71,7 +71,7 @@ return [
         'error' => [
             'already_linked' => 'Detta GitHub-konto är redan kopplat till en annan användare.',
             'no_contribution' => 'Kan inte länka GitHub-konto utan någon medverkningshistorik i osu! utvecklingskataloger.',
-            'unverified_email' => '',
+            'unverified_email' => 'Vänligen verifiera din primära e-postadress på GitHub, försök sedan att länka ditt konto igen.',
         ],
     ],
 

@@ -5,5 +5,16 @@ import { route } from 'laroute';
 import { ArtistTrackSearch } from './search-form';
 
 export default function makeLink(params: ArtistTrackSearch) {
-  return `${route('artists.tracks.index')}?${$.param(params)}`;
+  const urlParams: Partial<ArtistTrackSearch> = { ...params };
+  if (!urlParams.exclusive_only) {
+    delete urlParams.exclusive_only;
+  }
+  if (urlParams.is_default_sort) {
+    // no need to set sort params if default
+    delete urlParams.sort;
+  }
+  // backend automatically determines this
+  delete urlParams.is_default_sort;
+
+  return route('artists.tracks.index', urlParams);
 }

@@ -39,6 +39,7 @@ return [
         'pin' => 'fäst',
         'post' => 'Lägg upp',
         'read_more' => 'läs mer',
+        'refresh' => '',
         'reply' => 'Svara',
         'reply_reopen' => 'Svara och öppna igen',
         'reply_resolve' => 'Svara och lös',

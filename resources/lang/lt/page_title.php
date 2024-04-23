@@ -110,6 +110,9 @@ return [
         'tournaments_controller' => [
             '_' => 'turnyrai',
         ],
+        'user_cover_presets_controller' => [
+            '_' => '',
+        ],
         'users_controller' => [
             '_' => 'žaidėjo informacija',
             'create' => 'kurti paskyrą',

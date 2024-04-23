@@ -39,6 +39,7 @@ return [
         'pin' => 'fixează',
         'post' => 'Postează',
         'read_more' => 'citește mai mult',
+        'refresh' => 'Actualizează',
         'reply' => 'Răspunde',
         'reply_reopen' => 'Răspundeți și deschideți din nou',
         'reply_resolve' => 'Răspunde și rezolvă',

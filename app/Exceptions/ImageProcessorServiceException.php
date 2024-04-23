@@ -9,5 +9,5 @@ use Exception;
 
 class ImageProcessorServiceException extends Exception
 {
-    // doesn't really contain anything
+    const INVALID_IMAGE = 1;
 }

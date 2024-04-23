@@ -32,10 +32,8 @@ import PostPreview from 'core-legacy/post-preview'
 import Search from 'core-legacy/search'
 import StickyFooter from 'core-legacy/sticky-footer'
 import { StoreCheckout } from 'core-legacy/store-checkout'
-import StoreSupporterTag from 'core-legacy/store-supporter-tag'
 import SyncHeight from 'core-legacy/sync-height'
 import TooltipDefault from 'core-legacy/tooltip-default'
-import TwitchPlayer from 'core-legacy/twitch-player'
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
 import { navigate } from 'utils/turbolinks'
 
@@ -61,7 +59,6 @@ $(document).on 'submit', 'form', (e) ->
 
 $(document).on 'turbolinks:load', ->
   BeatmapPack.initialize()
-  StoreSupporterTag.initialize()
   StoreCheckout.initialize()
 
 # ensure currentUser is updated early enough.
@@ -98,7 +95,6 @@ window.forumPostsSeek ?= new ForumPostsSeek(window.forum)
 window.forumTopicPostJump ?= new ForumTopicPostJump(window.forum)
 window.forumTopicReply ?= new ForumTopicReply(bbcodePreview: window.bbcodePreview, forum: window.forum, stickyFooter: window.stickyFooter)
 window.nav2 ?= new Nav2(osuCore.clickMenu)
-window.twitchPlayer ?= new TwitchPlayer(osuCore.turbolinksReload)
 
 
 $(document).on 'change', '.js-url-selector', (e) ->

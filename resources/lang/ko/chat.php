@@ -18,6 +18,8 @@ return [
     'channels' => [
         'confirm_part' => '이 채널을 숨길까요? 채널을 숨기더라도 메시지는 계속 수신받습니다.',
         'create' => '공지사항 작성',
+        'join' => '',
+        'none' => '',
 
         'list' => [
             'title' => [
@@ -59,5 +61,9 @@ return [
         'howto' => "유저의 프로필 혹은 유저 카드 팝업에서 대화를 시작할 수 있습니다.",
         'lazer' => '<a href=":link">osu!lazer</a>에서 참가하는 공개 채널이 여기서도 보입니다.',
         'title' => '아직 아무런 대화가 없습니다',
+    ],
+
+    'join_channels' => [
+        'loading' => '',
     ],
 ];

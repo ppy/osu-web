@@ -1,0 +1,34 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.artist-track-search-form-switches {
+  display: grid;
+  gap: 5px;
+  grid-template-columns: repeat(auto-fill, minmax(125px, 1fr));
+
+  &__link {
+    .link-plain();
+    font-size: @font-size--normal;
+    font-weight: bold;
+    background: hsl(var(--hsl-b3));
+    color: hsl(var(--hsl-c1));
+    padding: 2px 15px 3px; // slightly more on the bottom to compensate font vertical alignment
+    border-radius: 10000px;
+    transition: none;
+    text-align: center;
+    white-space: nowrap;
+
+    &:focus, &:active {
+      color: hsl(var(--hsl-c1));
+    }
+
+    &:hover {
+      background: hsl(var(--hsl-l1));
+      color: hsl(var(--hsl-b6));
+    }
+
+    &--active {
+      background: hsl(var(--hsl-b1));
+    }
+  }
+}
