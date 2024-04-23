@@ -12,11 +12,12 @@ export default class CurrentUserObserver {
   constructor() {
     $(document).on('turbolinks:load', this.setAvatars);
 
-    // one time setup to monitor cover url variable. No disposer because nothing destroys this object.
+    // one time setup to monitor user url variables. No disposer because nothing destroys this object.
+    $(() => reaction(() => core.currentUser?.avatar_url, this.setAvatars));
     $(() => reaction(() => core.currentUser?.cover.url, this.setCovers));
   }
 
-  readonly setAvatars = () => {
+  private readonly setAvatars = () => {
     const bgImage = urlPresence(core.currentUser?.avatar_url) ?? '';
     for (const el of this.avatars) {
       if (el instanceof HTMLElement) {

@@ -153,7 +153,6 @@ export default class OsuCore {
 
   private readonly onCurrentUserUpdate = (event: unknown, user: CurrentUserJson) => {
     this.setCurrentUser(user);
-    this.currentUserObserver.setAvatars();
   };
 
   @action
