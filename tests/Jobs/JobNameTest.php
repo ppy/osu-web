@@ -11,7 +11,7 @@ use Illuminate\Queue\Events\JobProcessed;
 use Queue;
 use Tests\TestCase;
 
-class JobDisplayNameTest extends TestCase
+class JobNameTest extends TestCase
 {
     public function testDisplayName()
     {
