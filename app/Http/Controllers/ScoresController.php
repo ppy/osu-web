@@ -91,12 +91,22 @@ class ScoresController extends Controller
 
     public function show($rulesetOrSoloId, $legacyId = null)
     {
-        $scoreQuery = $legacyId === null
-            ? SoloScore::whereKey($rulesetOrSoloId)
-            : SoloScore::where([
+        if ($legacyId === null) {
+            $scoreQuery = SoloScore::whereKey($rulesetOrSoloId);
+        } else {
+            // `SoloScore` tables can have records with `legacy_score_id = 0`
+            // which correspond to rows from `osu_scores_*` (non-high) tables.
+            // do not attempt to perform lookups for zero to avoid weird results.
+            // negative IDs should never occur (ID columns in score tables are all `bigint unsigned`).
+            if ($legacyId <= 0) {
+                abort(404, 'invalid score ID');
+            }
+
+            $scoreQuery = SoloScore::where([
                 'ruleset_id' => Ruleset::tryFromName($rulesetOrSoloId) ?? abort(404, 'unknown ruleset name'),
                 'legacy_score_id' => $legacyId,
             ]);
+        }
         $score = $scoreQuery->whereHas('beatmap.beatmapset')->visibleUsers()->firstOrFail();
 
         $userIncludes = array_map(function ($include) {
