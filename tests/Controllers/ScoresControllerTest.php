@@ -170,7 +170,7 @@ class ScoresControllerTest extends TestCase
         $this->score->user->delete();
 
         $this
-            ->actingAs($this->user)
+            ->actingAs($this->otherUser)
             ->withHeaders(['HTTP_REFERER' => $GLOBALS['cfg']['app']['url'].'/'])
             ->get(route('scores.download-legacy', $this->params()))
             ->assertStatus(422);
