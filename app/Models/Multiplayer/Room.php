@@ -520,6 +520,7 @@ class Room extends Model
 
         $this->fill([
             'max_attempts' => $params['max_attempts'],
+            'name' => app('chat-filters')->filter($params['name']),
             'starts_at' => now(),
             'type' => $params['type'],
             'queue_mode' => $params['queue_mode'],
@@ -527,15 +528,6 @@ class Room extends Model
             'auto_skip' => $params['auto_skip'] ?? false,
             'user_id' => $host->getKey(),
         ]);
-
-        $name = $params['name'];
-        $filters = app('chat-filters')->all();
-
-        foreach ($filters as $filter) {
-            $name = str_replace($filter->match, $filter->replacement, $name);
-        }
-
-        $this->name = $name;
 
         $this->setRelation('host', $host);
 
