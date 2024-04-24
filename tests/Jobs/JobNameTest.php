@@ -18,11 +18,11 @@ class JobDisplayNameTest extends TestCase
         $job = new TestJob('test');
 
         Queue::after(function (JobProcessed $event) use ($job) {
-            $this->assertSame($job::class, $event->job->payload()['data']['commandName']);
+            $payload = $event->job->payload();
+            $this->assertSame($job::class, $payload['data']['commandName']);
+            $this->assertSame($job->displayName(), $payload['displayName']);
         });
 
         dispatch($job);
-
-        $this->assertSame('test', $job->displayName());
     }
 }
