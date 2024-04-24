@@ -29,7 +29,6 @@ import Nav2 from 'core-legacy/nav2'
 import PostPreview from 'core-legacy/post-preview'
 import Search from 'core-legacy/search'
 import { StoreCheckout } from 'core-legacy/store-checkout'
-import SyncHeight from 'core-legacy/sync-height'
 import TooltipDefault from 'core-legacy/tooltip-default'
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
 import { navigate } from 'utils/turbolinks'
@@ -57,8 +56,6 @@ $(document).on 'submit', 'form', (e) ->
 $(document).on 'turbolinks:load', ->
   BeatmapPack.initialize()
   StoreCheckout.initialize()
-
-window.syncHeight ?= new SyncHeight
 
 window.accountEdit ?= new AccountEdit
 window.accountEditAvatar ?= new AccountEditAvatar
