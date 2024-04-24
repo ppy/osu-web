@@ -18,6 +18,7 @@ import Localtime from 'core/localtime';
 import MobileToggle from 'core/mobile-toggle';
 import OsuAudio from 'core/osu-audio/main';
 import ReactTurbolinks from 'core/react-turbolinks';
+import StickyFooter from 'core/sticky-footer';
 import StickyHeader from 'core/sticky-header';
 import Timeago from 'core/timeago';
 import TurbolinksReload from 'core/turbolinks-reload';
@@ -64,6 +65,7 @@ export default class OsuCore {
   readonly referenceLinkTooltip;
   readonly scorePins;
   readonly socketWorker;
+  readonly stickyFooter;
   readonly stickyHeader;
   readonly timeago;
   readonly turbolinksReload;
@@ -109,6 +111,7 @@ export default class OsuCore {
     this.browserTitleWithNotificationCount = new BrowserTitleWithNotificationCount(this);
     this.referenceLinkTooltip = new ReferenceLinkTooltip();
     this.scorePins = new ScorePins();
+    this.stickyFooter = new StickyFooter();
     this.stickyHeader = new StickyHeader();
     this.timeago = new Timeago();
     this.turbolinksReload = new TurbolinksReload();
