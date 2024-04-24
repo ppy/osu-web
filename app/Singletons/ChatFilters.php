@@ -7,19 +7,22 @@ namespace App\Singletons;
 
 use App\Models\ChatFilter;
 use App\Traits\Memoizes;
-use Illuminate\Database\Eloquent\Collection;
 
 class ChatFilters
 {
     use Memoizes;
 
-    public function all()
+    public function filter(string $text): string
     {
-        return $this->memoize(__FUNCTION__, fn () => $this->fetch());
-    }
+        $replacements = $this->memoize(__FUNCTION__, function () {
+            $ret = [];
+            foreach (ChatFilter::all() as $entry) {
+                $ret[$entry->match] = $entry->replacement;
+            }
 
-    protected function fetch(): Collection
-    {
-        return ChatFilter::all();
+            return $ret;
+        });
+
+        return strtr($text, $replacements);
     }
 }
