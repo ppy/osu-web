@@ -20,6 +20,7 @@ interface State {
   toggling: boolean;
 }
 
+// TODO: mobx and turn to observer
 export default class FollowToggle extends React.PureComponent<Props, State> {
   static defaultProps = {
     following: true,
@@ -81,10 +82,7 @@ export default class FollowToggle extends React.PureComponent<Props, State> {
       this.toggleXhr = $.ajax(route('follows.store'), { data: params, method })
         .done(() => {
           if (this.props.follow.subtype === 'mapping') {
-            $.publish('user:followUserMapping:update', {
-              following: !this.state.following,
-              userId: this.props.follow.notifiable_id,
-            });
+            core.currentUserModel.updateFollowUserMapping(!this.state.following, this.props.follow.notifiable_id);
           } else {
             this.setState({ following: !this.state.following });
           }
@@ -97,7 +95,7 @@ export default class FollowToggle extends React.PureComponent<Props, State> {
   private readonly refresh = () => {
     if (this.props.follow.subtype === 'mapping') {
       this.setState({
-        following: core.currentUser != null && core.currentUser.follow_user_mapping.includes(this.props.follow.notifiable_id),
+        following: core.currentUserModel.following.has(this.props.follow.notifiable_id),
       });
     }
   };
