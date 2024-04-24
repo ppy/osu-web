@@ -19,7 +19,7 @@ class RemoveBeatmapsetSoloScores implements ShouldQueue
 {
     use Queueable;
 
-    public $timeout = 3600;
+    public $timeout = 36000;
 
     private int $beatmapsetId;
     private int $maxScoreId;
@@ -35,6 +35,11 @@ class RemoveBeatmapsetSoloScores implements ShouldQueue
     {
         $this->beatmapsetId = $beatmapset->getKey();
         $this->maxScoreId = Score::max('id') ?? 0;
+    }
+
+    public function displayName()
+    {
+        return static::class." (Beatmapset {$this->beatmapsetId})";
     }
 
     /**

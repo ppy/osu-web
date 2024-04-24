@@ -41,6 +41,7 @@ type SoloScoreJsonDefaultAttributes = {
   passed: boolean;
   pp: number | null;
   preserve?: boolean;
+  processed?: boolean;
   rank: Rank;
   ranked?: boolean;
   ruleset_id: number;

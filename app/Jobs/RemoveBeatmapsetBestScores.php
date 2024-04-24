@@ -18,7 +18,7 @@ class RemoveBeatmapsetBestScores implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
-    public $timeout = 3600;
+    public $timeout = 36000;
     public $beatmapset;
     public $maxScoreIds = null;
 
@@ -34,6 +34,11 @@ class RemoveBeatmapsetBestScores implements ShouldQueue
         foreach (Beatmap::MODES as $mode => $_modeInt) {
             $this->maxScoreIds[$mode] = Model::getClass($mode)::max('score_id');
         }
+    }
+
+    public function displayName()
+    {
+        return static::class." (Beatmapset {$this->beatmapset->getKey()})";
     }
 
     /**

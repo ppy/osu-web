@@ -24,6 +24,7 @@ class ScoreTransformer extends TransformerAbstract
     // warning: the preload is actually for PlaylistItemUserHighScore, not for Score
     const MULTIPLAYER_BASE_PRELOAD = [
         'scoreLink.score',
+        'scoreLink.score.processHistory',
         'scoreLink.user.country',
     ];
 
@@ -35,6 +36,7 @@ class ScoreTransformer extends TransformerAbstract
     const USER_PROFILE_INCLUDES_PRELOAD = [
         'beatmap',
         'beatmap.beatmapset',
+        'processHistory',
         // it's for user profile so the user is already available
         // 'user',
     ];
@@ -102,6 +104,7 @@ class ScoreTransformer extends TransformerAbstract
         if ($score instanceof SoloScore) {
             $extraAttributes['ranked'] = $score->ranked;
             $extraAttributes['preserve'] = $score->preserve;
+            $extraAttributes['processed'] = $score->legacy_score_id !== null || $score->processHistory !== null;
         }
 
         $hasReplay = $score->has_replay;
