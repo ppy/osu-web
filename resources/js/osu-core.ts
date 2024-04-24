@@ -3,9 +3,11 @@
 
 import { BeatmapsetSearchController } from 'beatmaps/beatmapset-search-controller';
 import ChatWorker from 'chat/chat-worker';
+import AccountEditBlocklist from 'core/account-edit-blocklist';
 import BrowserTitleWithNotificationCount from 'core/browser-title-with-notification-count';
 import Captcha from 'core/captcha';
 import ClickMenu from 'core/click-menu';
+import CurrentUserObserver from 'core/current-user-observer';
 import Enchant from 'core/enchant';
 import FixRelativeLink from 'core/fix-relative-link';
 import ForumPoll from 'core/forum/forum-poll';
@@ -16,6 +18,7 @@ import Localtime from 'core/localtime';
 import MobileToggle from 'core/mobile-toggle';
 import OsuAudio from 'core/osu-audio/main';
 import ReactTurbolinks from 'core/react-turbolinks';
+import StickyFooter from 'core/sticky-footer';
 import StickyHeader from 'core/sticky-header';
 import Timeago from 'core/timeago';
 import TurbolinksReload from 'core/turbolinks-reload';
@@ -38,6 +41,7 @@ import { parseJsonNullable } from 'utils/json';
 
 // will this replace main.coffee eventually?
 export default class OsuCore {
+  readonly accountEditBlocklist;
   readonly beatmapsetSearchController;
   readonly browserTitleWithNotificationCount;
   readonly captcha;
@@ -45,6 +49,7 @@ export default class OsuCore {
   readonly clickMenu;
   @observable currentUser?: CurrentUserJson;
   readonly currentUserModel;
+  readonly currentUserObserver;
   readonly dataStore;
   readonly enchant;
   readonly fixRelativeLink;
@@ -60,6 +65,7 @@ export default class OsuCore {
   readonly referenceLinkTooltip;
   readonly scorePins;
   readonly socketWorker;
+  readonly stickyFooter;
   readonly stickyHeader;
   readonly timeago;
   readonly turbolinksReload;
@@ -93,6 +99,7 @@ export default class OsuCore {
     this.captcha = new Captcha();
     this.chatWorker = new ChatWorker();
     this.clickMenu = new ClickMenu();
+    this.currentUserObserver = new CurrentUserObserver(this);
     this.currentUserModel = new UserModel(this);
     this.fixRelativeLink = new FixRelativeLink();
     this.forumPoll = new ForumPoll();
@@ -104,6 +111,7 @@ export default class OsuCore {
     this.browserTitleWithNotificationCount = new BrowserTitleWithNotificationCount(this);
     this.referenceLinkTooltip = new ReferenceLinkTooltip();
     this.scorePins = new ScorePins();
+    this.stickyFooter = new StickyFooter();
     this.stickyHeader = new StickyHeader();
     this.timeago = new Timeago();
     this.turbolinksReload = new TurbolinksReload();
@@ -120,6 +128,7 @@ export default class OsuCore {
     // should probably figure how to conditionally or lazy initialize these so they don't all init when not needed.
     // TODO: requires dynamic imports to lazy load modules.
     this.dataStore = new RootDataStore();
+    this.accountEditBlocklist = new AccountEditBlocklist(this);
     this.userLoginObserver = new UserLoginObserver();
     this.windowFocusObserver = new WindowFocusObserver();
 
@@ -140,8 +149,7 @@ export default class OsuCore {
     const currentUser = parseJsonNullable<typeof window.currentUser>('json-current-user', true);
 
     if (currentUser != null) {
-      window.currentUser = currentUser;
-      this.setCurrentUser(window.currentUser);
+      this.setCurrentUser(currentUser);
     }
   };
 
@@ -158,6 +166,7 @@ export default class OsuCore {
     }
     this.socketWorker.setUserId(user?.id ?? null);
     this.currentUser = user;
+    window.currentUser = userOrEmpty;
     this.userPreferences.setUser(this.currentUser);
   };
 }
