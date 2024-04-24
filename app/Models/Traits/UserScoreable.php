@@ -19,6 +19,7 @@ trait UserScoreable
     public function aggregatedScoresBest(string $mode, null | true $legacyOnly, int $size): array
     {
         return (new FetchDedupedScores('beatmap_id', ScoreSearchParams::fromArray([
+            'exclude_without_pp' => true,
             'is_legacy' => $legacyOnly,
             'limit' => $size,
             'ruleset_id' => Beatmap::MODES[$mode],

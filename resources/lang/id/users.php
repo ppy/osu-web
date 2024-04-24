@@ -97,6 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
+            'inactive' => "",
             'inactive_different_country' => "Akunmu telah lama tidak digunakan.",
         ],
     ],
@@ -347,9 +348,9 @@ return [
                 'title' => 'Permainan Playlist',
             ],
             'posts' => [
-                'title' => 'Posting',
+                'title' => 'Postingan',
                 'title_longer' => 'Postingan Terkini',
-                'show_more' => 'lihat lebih banyak post',
+                'show_more' => 'lihat lebih banyak postingan',
             ],
             'recent_activity' => [
                 'title' => 'Aktivitas Terkini',

@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'achievement' => '¡<strong><em>:user</em></strong> ha desbloqueado el logro «<strong>:achievement</strong>»!',
+    'achievement' => '<strong>¡<strong><em>:user</em></strong> ha desbloqueado la medalla «<strong>:achievement</strong>»!',
     'beatmap_playcount' => '¡:beatmap ha sido jugado :count veces!',
     'beatmapset_approve' => '¡:beatmapset por <strong>:user</strong> ha sido :approval!',
     'beatmapset_delete' => ':beatmapset ha sido eliminado.',

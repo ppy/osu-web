@@ -2,13 +2,11 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import AccountEditAvatar from 'core-legacy/account-edit-avatar'
-import AccountEditBlocklist from 'core-legacy/account-edit-blocklist'
 import AccountEdit from 'core-legacy/account-edit'
 import BbcodePreview from 'core-legacy/bbcode-preview'
 import BeatmapPack from 'core-legacy/beatmap-pack'
 import ChangelogChartLoader from 'core-legacy/changelog-chart-loader'
 import CheckboxValidation from 'core-legacy/checkbox-validation'
-import CurrentUserObserver from 'core-legacy/current-user-observer'
 import FancyGraph from 'core-legacy/fancy-graph'
 import FormClear from 'core-legacy/form-clear'
 import FormConfirmation from 'core-legacy/form-confirmation'
@@ -61,13 +59,10 @@ $(document).on 'turbolinks:load', ->
   BeatmapPack.initialize()
   StoreCheckout.initialize()
 
-# ensure currentUser is updated early enough.
-window.currentUserObserver ?= new CurrentUserObserver
 window.syncHeight ?= new SyncHeight
 
 window.accountEdit ?= new AccountEdit
 window.accountEditAvatar ?= new AccountEditAvatar
-window.accountEditBlocklist ?= new AccountEditBlocklist
 window.bbcodePreview ?= new BbcodePreview
 window.changelogChartLoader ?= new ChangelogChartLoader
 window.checkboxValidation ?= new CheckboxValidation

@@ -40,8 +40,10 @@ use Carbon\Carbon;
  */
 class Product extends Model
 {
+    const BUTTON_DISABLED = [self::SUPPORTER_TAG_NAME, self::USERNAME_CHANGE];
     const REDIRECT_PLACEHOLDER = 'redirect';
     const SUPPORTER_TAG_NAME = 'supporter-tag';
+    const USERNAME_CHANGE = 'username-change';
 
     protected $primaryKey = 'product_id';
 

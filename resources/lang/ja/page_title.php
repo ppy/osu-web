@@ -110,6 +110,9 @@ return [
         'tournaments_controller' => [
             '_' => 'トーナメント',
         ],
+        'user_cover_presets_controller' => [
+            '_' => '',
+        ],
         'users_controller' => [
             '_' => 'プレイヤー情報',
             'create' => 'アカウント作成',

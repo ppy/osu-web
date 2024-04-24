@@ -110,6 +110,9 @@ return [
         'tournaments_controller' => [
             '_' => '토너먼트',
         ],
+        'user_cover_presets_controller' => [
+            '_' => '',
+        ],
         'users_controller' => [
             '_' => '플레이어 정보',
             'create' => '계정 만들기',

@@ -45,6 +45,11 @@ return [
         'index' => [
             '_' => 'iskanje pesmi',
 
+            'exclusive_only' => [
+                'all' => '',
+                'exclusive_only' => '',
+            ],
+
             'form' => [
                 'advanced' => 'Napredno iskanje',
                 'album' => 'Album',
@@ -52,6 +57,7 @@ return [
                 'bpm_gte' => 'Minimalni BPM',
                 'bpm_lte' => 'Maksimalni BPM',
                 'empty' => 'Najdena ni bila nobena pesem, ki bi ustrezala iskalnim kriterijem.',
+                'exclusive_only' => '',
                 'genre' => 'Žanr',
                 'genre_all' => 'Vse',
                 'length_gte' => 'Minimalno trajanje',

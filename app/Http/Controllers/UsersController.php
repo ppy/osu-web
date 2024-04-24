@@ -844,7 +844,7 @@ class UsersController extends Controller
                 $includes = ScoreTransformer::USER_PROFILE_INCLUDES;
                 $query = $this->user->soloScores()
                     ->recent($this->mode, $options['includeFails'] ?? false)
-                    ->reorderBy('unix_updated_at', 'desc')
+                    ->reorderBy('ended_at', 'desc')
                     ->with(ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD);
                 $userRelationColumn = 'user';
                 break;

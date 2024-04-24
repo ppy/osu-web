@@ -18,6 +18,8 @@ return [
     'channels' => [
         'confirm_part' => 'Apakah kamu ingin menyembunyikan kanal percakapan ini? Kamu akan tetap menerima pesan dari kanal percakapan ini.',
         'create' => 'buat pengumuman',
+        'join' => '',
+        'none' => '',
 
         'list' => [
             'title' => [
@@ -59,5 +61,9 @@ return [
         'howto' => "Mulailah percakapan baru melalui tombol yang tertera pada laman profil atau kartu pop-up pengguna.",
         'lazer' => 'Kanal percakapan publik yang kamu buka melalui <a href=":link">osu!lazer</a> juga akan terlihat di sini.',
         'title' => 'belum ada percakapan',
+    ],
+
+    'join_channels' => [
+        'loading' => '',
     ],
 ];

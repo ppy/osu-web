@@ -110,6 +110,9 @@ return [
         'tournaments_controller' => [
             '_' => 'tournaments',
         ],
+        'user_cover_presets_controller' => [
+            '_' => '',
+        ],
         'users_controller' => [
             '_' => 'player info',
             'create' => 'maglikha ng account',

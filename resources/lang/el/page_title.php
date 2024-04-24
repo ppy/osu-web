@@ -110,6 +110,9 @@ return [
         'tournaments_controller' => [
             '_' => 'πρωταθλήματα',
         ],
+        'user_cover_presets_controller' => [
+            '_' => '',
+        ],
         'users_controller' => [
             '_' => 'πληροφορίες παίκτη',
             'create' => 'δημιούργησε λογαριασμό',

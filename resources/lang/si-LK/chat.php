@@ -18,6 +18,8 @@ return [
     'channels' => [
         'confirm_part' => '',
         'create' => '',
+        'join' => '',
+        'none' => '',
 
         'list' => [
             'title' => [
@@ -59,5 +61,9 @@ return [
         'howto' => "",
         'lazer' => '',
         'title' => '',
+    ],
+
+    'join_channels' => [
+        'loading' => '',
     ],
 ];

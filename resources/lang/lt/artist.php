@@ -45,6 +45,11 @@ return [
         'index' => [
             '_' => 'takelių paieška',
 
+            'exclusive_only' => [
+                'all' => '',
+                'exclusive_only' => '',
+            ],
+
             'form' => [
                 'advanced' => 'Išplėstinė paieška',
                 'album' => 'Albumas',
@@ -52,6 +57,7 @@ return [
                 'bpm_gte' => 'Minimalus BPM',
                 'bpm_lte' => 'Maksimalus BPM',
                 'empty' => 'Takelių atitinkančių paieškos kriterijus nerasta.',
+                'exclusive_only' => '',
                 'genre' => 'Žanras',
                 'genre_all' => 'Visi',
                 'length_gte' => 'Minimali Trukmė',

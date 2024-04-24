@@ -18,6 +18,8 @@ return [
     'channels' => [
         'confirm_part' => 'Queres ocultar este canal? Ainda vais receber mensagens deste canal.',
         'create' => 'criar notícia',
+        'join' => '',
+        'none' => '',
 
         'list' => [
             'title' => [
@@ -59,5 +61,9 @@ return [
         'howto' => "Começa a conversar a partir do perfil dum utilizador ou dum popup cartão de utilizador.",
         'lazer' => 'Canais públicos que te juntes via <a href=":link">osu!lazer</a> também serão visíveis aqui.',
         'title' => 'ainda sem conversações',
+    ],
+
+    'join_channels' => [
+        'loading' => '',
     ],
 ];

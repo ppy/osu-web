@@ -45,6 +45,11 @@ return [
         'index' => [
             '_' => 'Liedersuche',
 
+            'exclusive_only' => [
+                'all' => '',
+                'exclusive_only' => '',
+            ],
+
             'form' => [
                 'advanced' => 'Erweiterte Suche',
                 'album' => 'Album',
@@ -52,6 +57,7 @@ return [
                 'bpm_gte' => 'Mindest-BPM',
                 'bpm_lte' => 'Maximal-BPM',
                 'empty' => 'Keine Lieder mit den gegebenen Suchkriterien gefunden.',
+                'exclusive_only' => '',
                 'genre' => 'Genre',
                 'genre_all' => 'Alle',
                 'length_gte' => 'Mindestlänge',
