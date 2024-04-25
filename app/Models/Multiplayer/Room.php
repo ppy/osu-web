@@ -6,7 +6,11 @@
 namespace App\Models\Multiplayer;
 
 use App\Casts\PresentString;
+use App\Exceptions\ContentModerationException;
 use App\Exceptions\InvariantException;
+use App\Exceptions\ModelNotSavedException;
+use App\Exceptions\SilencedException;
+use App\Exceptions\ValidationException;
 use App\Models\Beatmap;
 use App\Models\Chat\Channel;
 use App\Models\Model;
@@ -500,6 +504,11 @@ class Room extends Model
             ->all();
     }
 
+    /**
+     * @throws InvariantException
+     * @throws ContentModerationException
+     * @throws \Throwable
+     */
     public function startGame(User $host, array $rawParams)
     {
         priv_check_user($host, 'MultiplayerRoomCreate')->ensureCan();

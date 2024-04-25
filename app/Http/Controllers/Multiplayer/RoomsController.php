@@ -5,6 +5,7 @@
 
 namespace App\Http\Controllers\Multiplayer;
 
+use App\Exceptions\ContentModerationException;
 use App\Exceptions\InvariantException;
 use App\Http\Controllers\Controller as BaseController;
 use App\Models\Multiplayer\Room;
@@ -207,6 +208,8 @@ class RoomsController extends BaseController
             );
         } catch (InvariantException $e) {
             return error_popup($e->getMessage(), $e->getStatusCode());
+        } catch (ContentModerationException) {
+            abort(422);
         }
     }
 }

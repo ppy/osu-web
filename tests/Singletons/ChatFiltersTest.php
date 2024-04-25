@@ -5,7 +5,7 @@
 
 namespace Tests\Singletons;
 
-use App\Exceptions\ValidationException;
+use App\Exceptions\ContentModerationException;
 use App\Models\ChatFilter;
 use Tests\TestCase;
 
@@ -45,7 +45,7 @@ class ChatFiltersTest extends TestCase
      */
     public function testBlockingFilter($input)
     {
-        $this->expectException(ValidationException::class);
+        $this->expectException(ContentModerationException::class);
         app('chat-filters')->filter($input);
     }
 

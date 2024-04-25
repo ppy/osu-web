@@ -5,7 +5,7 @@
 
 namespace App\Singletons;
 
-use App\Exceptions\ValidationException;
+use App\Exceptions\ContentModerationException;
 use App\Models\ChatFilter;
 use App\Traits\Memoizes;
 
@@ -13,6 +13,13 @@ class ChatFilters
 {
     use Memoizes;
 
+    /**
+     * Applies all active chat filters to the provided text.
+     * @param string $text The text to filter.
+     * @return string The text after filtering.
+     * @throws ContentModerationException If the text matches one of the filters which indicate that the input
+     * should be discarded entirely.
+     */
     public function filter(string $text): string
     {
         $filters = $this->memoize(__FUNCTION__, function () {
@@ -26,9 +33,9 @@ class ChatFilters
 
 
         $blockingFilters = array_where($filters, fn ($filter) => $filter->block);
-        // blocking filters (finding any of these phrases throws validation exceptions)
+        // blocking filters (finding any of these phrases throws moderation exceptions)
         if (preg_match(self::combinedFilterRegex($blockingFilters), $text)) {
-            throw new ValidationException();
+            throw new ContentModerationException();
         }
 
         // non-blocking filters (phrases are allowed to be replaced)

@@ -6,7 +6,9 @@
 namespace App\Libraries;
 
 use App\Exceptions\API;
+use App\Exceptions\ContentModerationException;
 use App\Exceptions\InvariantException;
+use App\Exceptions\SilencedException;
 use App\Models\Chat\Channel;
 use App\Models\User;
 use LaravelRedis as Redis;
@@ -96,6 +98,8 @@ class Chat
             abort(422, $e->getMessage());
         } catch (API\ChatMessageTooLongException $e) {
             abort(422, $e->getMessage());
+        } catch (ContentModerationException) {
+            abort(422);
         } catch (API\ExcessiveChatMessagesException $e) {
             abort(429, $e->getMessage());
         }
