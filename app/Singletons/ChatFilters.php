@@ -5,6 +5,7 @@
 
 namespace App\Singletons;
 
+use App\Exceptions\ValidationException;
 use App\Models\ChatFilter;
 use App\Traits\Memoizes;
 
@@ -14,15 +15,51 @@ class ChatFilters
 
     public function filter(string $text): string
     {
-        $replacements = $this->memoize(__FUNCTION__, function () {
+        $filters = $this->memoize(__FUNCTION__, function () {
             $ret = [];
             foreach (ChatFilter::all() as $entry) {
-                $ret[$entry->match] = $entry->replacement;
+                $ret[$entry->match] = $entry;
             }
 
             return $ret;
         });
 
-        return strtr($text, $replacements);
+
+        $blockingFilters = array_where($filters, fn ($filter) => $filter->block);
+        // blocking filters (finding any of these phrases throws validation exceptions)
+        if (preg_match(self::combinedFilterRegex($blockingFilters), $text)) {
+            throw new ValidationException();
+        }
+
+        // non-blocking filters (phrases are allowed to be replaced)
+        $replaceFilters = array_where($filters, fn ($filter) => !$filter->block);
+
+        $whitespaceFilters = array_where($replaceFilters, fn ($filter) => $filter->whitespace_delimited);
+        $nonWhitespaceFilters = array_where($replaceFilters, fn ($filter) => !$filter->whitespace_delimited);
+
+        $text = strtr($text, array_reduce($nonWhitespaceFilters, function ($map, $filter) {
+            $map[$filter->match] = $filter->replacement;
+            return $map;
+        }, []));
+        return preg_replace(
+            array_map(fn ($filter) => self::singleFilterRegex($filter), $whitespaceFilters),
+            array_map(fn ($filter) => $filter->replacement, $whitespaceFilters),
+            $text
+        );
+    }
+
+    public static function singleFilterRegex(ChatFilter $filter): string
+    {
+        $term = preg_quote($filter->match);
+        if ($filter->whitespace_delimited) {
+            $term = '\b'.$term.'\b';
+        }
+        return '('.$term.')';
+    }
+
+    private static function combinedFilterRegex($filters): string
+    {
+        $regex = implode('|', array_map(fn ($filter) => '('.self::singleFilterRegex($filter).')', $filters));
+        return '/'.$regex.'/';
     }
 }
