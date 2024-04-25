@@ -9,8 +9,6 @@ use App\Events\ChatChannelEvent;
 use App\Exceptions\API;
 use App\Exceptions\ContentModerationException;
 use App\Exceptions\InvariantException;
-use App\Exceptions\SilencedException;
-use App\Exceptions\ValidationException;
 use App\Jobs\Notifications\ChannelAnnouncement;
 use App\Jobs\Notifications\ChannelMessage;
 use App\Libraries\AuthorizationResult;

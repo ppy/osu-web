@@ -8,7 +8,6 @@ namespace App\Libraries;
 use App\Exceptions\API;
 use App\Exceptions\ContentModerationException;
 use App\Exceptions\InvariantException;
-use App\Exceptions\SilencedException;
 use App\Models\Chat\Channel;
 use App\Models\User;
 use LaravelRedis as Redis;
