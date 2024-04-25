@@ -34,6 +34,7 @@ class ChatFiltersTest extends TestCase
         ChatFilter::factory()->createMany([
             ['match' => 'bad', 'replacement' => 'good'],
             ['match' => 'fullword', 'replacement' => 'okay', 'whitespace_delimited' => true],
+            ['match' => 'fullword2', 'replacement' => 'great', 'whitespace_delimited' => true],
             ['match' => 'absolutely forbidden', 'replacement' => '', 'block' => true],
         ]);
 
@@ -83,6 +84,8 @@ class ChatFiltersTest extends TestCase
             ['at the end is fullword', 'at the end is okay'],
             ['middle is where the fullword is', 'middle is where the okay is'],
             ['anotherfullword is not replaced', 'anotherfullword is not replaced'],
+            ['fullword fullword2', 'okay great'],
+            ['fullwordfullword2', 'fullwordfullword2'],
         ];
     }
 
