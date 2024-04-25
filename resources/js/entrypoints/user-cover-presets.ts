@@ -9,4 +9,4 @@ declare global {
   }
 }
 
-window.userCoverPresetBatchActivate = new UserCoverPresetBatchActivate();
+window.userCoverPresetBatchActivate ??= new UserCoverPresetBatchActivate();
