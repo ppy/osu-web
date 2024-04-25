@@ -32,9 +32,9 @@ class ChatFilters
         });
 
 
-        $blockingFilters = array_where($filters, fn ($filter) => $filter->block);
         // blocking filters (finding any of these phrases throws moderation exceptions)
-        if (preg_match(self::combinedFilterRegex($blockingFilters), $text)) {
+        $blockingFilters = array_where($filters, fn ($filter) => $filter->block);
+        if (!empty($blockingFilters) && preg_match(self::combinedFilterRegex($blockingFilters), $text)) {
             throw new ContentModerationException();
         }
 
