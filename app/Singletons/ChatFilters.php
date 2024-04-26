@@ -46,12 +46,13 @@ class ChatFilters
             throw new ContentModerationException();
         }
 
-        $text = strtr(
-            $text,
-            $filters['non_whitespace_delimited_replaces']->mapWithKeys(fn ($filter) => [$filter->match => $filter->replacement])->all()
+        $text = str_ireplace(
+            $filters['non_whitespace_delimited_replaces']->map(fn ($filter) => $filter->match)->toArray(),
+            $filters['non_whitespace_delimited_replaces']->map(fn ($filter) => $filter->replacement)->toArray(),
+            $text
         );
         return preg_replace(
-            $filters['whitespace_delimited_replaces']->map(fn ($filter) => '/'.self::singleFilterRegex($filter, '/').'/')->toArray(),
+            $filters['whitespace_delimited_replaces']->map(fn ($filter) => '/'.self::singleFilterRegex($filter, '/').'/i')->toArray(),
             $filters['whitespace_delimited_replaces']->map(fn ($filter) => $filter->replacement)->toArray(),
             $text
         );
@@ -69,6 +70,6 @@ class ChatFilters
     private static function combinedFilterRegex($filters): string
     {
         $regex = implode('|', $filters->map(fn ($filter) => '('.self::singleFilterRegex($filter, '/').')')->toArray());
-        return '/'.$regex.'/';
+        return '/'.$regex.'/i';
     }
 }
