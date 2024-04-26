@@ -83,6 +83,6 @@ class RemoveBeatmapsetBestScores implements ShouldQueue
 
     public function middleware(): array
     {
-        return [new WithoutOverlapping($this->beatmapset->getKey(), $this->timeout, $this->timeout)];
+        return [new WithoutOverlapping((string) $this->beatmapset->getKey(), $this->timeout, $this->timeout)];
     }
 }
