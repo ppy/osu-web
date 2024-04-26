@@ -270,7 +270,7 @@ export default class DiscussionsState {
   @computed
   get unresolvedDiscussionCounts() {
     const byBeatmap: Partial<Record<number, number>> = {};
-    const byMode: Partial<Record<GameMode, number | null>> = {};
+    const byMode: Partial<Record<GameMode, number>> = {};
     // show at least 0 for available rulesets
     this.store.beatmaps.forEach((beatmap) => {
       byMode[beatmap.mode] ??= 0;
