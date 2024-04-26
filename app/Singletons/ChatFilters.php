@@ -55,7 +55,7 @@ class ChatFilters
         );
     }
 
-    public static function singleFilterRegex(ChatFilter $filter): string
+    private static function singleFilterRegex(ChatFilter $filter): string
     {
         $term = preg_quote($filter->match);
         if ($filter->whitespace_delimited) {
