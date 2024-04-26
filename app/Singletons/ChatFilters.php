@@ -24,33 +24,35 @@ class ChatFilters
     {
         $filters = $this->memoize(__FUNCTION__, function () {
             $ret = [];
-            foreach (ChatFilter::all() as $entry) {
-                $ret[$entry->match] = $entry;
+
+            $allFilters = ChatFilter::all();
+
+            // blocking filters (finding any of these phrases throws moderation exceptions)
+            $blockingFilters = $allFilters->where('block', true);
+            if (!$blockingFilters->isEmpty()) {
+                $ret['block_regex'] = self::combinedFilterRegex($blockingFilters);
             }
+
+            // non-blocking filters (phrases are allowed to be replaced)
+            $replaceFilters = $allFilters->where('block', false);
+
+            $ret['whitespace_delimited_replaces'] = $replaceFilters->where('whitespace_delimited', true)->collect();
+            $ret['non_whitespace_delimited_replaces'] = $replaceFilters->where('whitespace_delimited', false)->collect();
 
             return $ret;
         });
 
-
-        // blocking filters (finding any of these phrases throws moderation exceptions)
-        $blockingFilters = array_where($filters, fn ($filter) => $filter->block);
-        if (!empty($blockingFilters) && preg_match(self::combinedFilterRegex($blockingFilters), $text)) {
+        if (isset($filters['block_regex']) && preg_match($filters['block_regex'], $text)) {
             throw new ContentModerationException();
         }
 
-        // non-blocking filters (phrases are allowed to be replaced)
-        $replaceFilters = array_where($filters, fn ($filter) => !$filter->block);
-
-        $whitespaceFilters = array_where($replaceFilters, fn ($filter) => $filter->whitespace_delimited);
-        $nonWhitespaceFilters = array_where($replaceFilters, fn ($filter) => !$filter->whitespace_delimited);
-
-        $text = strtr($text, array_reduce($nonWhitespaceFilters, function ($map, $filter) {
-            $map[$filter->match] = $filter->replacement;
-            return $map;
-        }, []));
+        $text = strtr(
+            $text,
+            $filters['non_whitespace_delimited_replaces']->mapWithKeys(fn ($filter) => [$filter->match => $filter->replacement])->all()
+        );
         return preg_replace(
-            array_map(fn ($filter) => self::singleFilterRegex($filter), $whitespaceFilters),
-            array_map(fn ($filter) => $filter->replacement, $whitespaceFilters),
+            $filters['whitespace_delimited_replaces']->map(fn ($filter) => self::singleFilterRegex($filter))->toArray(),
+            $filters['whitespace_delimited_replaces']->map(fn ($filter) => $filter->replacement)->toArray(),
             $text
         );
     }
@@ -66,7 +68,7 @@ class ChatFilters
 
     private static function combinedFilterRegex($filters): string
     {
-        $regex = implode('|', array_map(fn ($filter) => '('.self::singleFilterRegex($filter).')', $filters));
+        $regex = implode('|', $filters->map(fn ($filter) => '('.self::singleFilterRegex($filter).')')->toArray());
         return '/'.$regex.'/';
     }
 }
