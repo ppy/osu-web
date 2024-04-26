@@ -12,6 +12,39 @@ use Tests\TestCase;
 
 class ScoreSearchParamsTest extends TestCase
 {
+    public static function showLegacyForUserAndGuestDataProvider()
+    {
+        return [
+            [null, null, null],
+            [null, false, null],
+            [null, true, null],
+            [false, null, null],
+            [false, false, null],
+            [false, true, null],
+            [true, null, true],
+            [true, false, true],
+            [true, true, true],
+        ];
+    }
+
+    public static function showLegacyForUserFromScoreDataProvider()
+    {
+        return [
+            [null, null],
+            [false, null],
+            [true, true],
+        ];
+    }
+
+    public static function showLegacyForUserSettingDataProvider()
+    {
+        return [
+            [null, null],
+            [false, null],
+            [true, true],
+        ];
+    }
+
     /**
      * @dataProvider showLegacyForUserAndGuestDataProvider
      */
@@ -79,38 +112,5 @@ class ScoreSearchParamsTest extends TestCase
             $expected,
             ScoreSearchParams::showLegacyForUser($user, null, null)
         );
-    }
-
-    public static function showLegacyForUserAndGuestDataProvider()
-    {
-        return [
-            [null, null, null],
-            [null, false, null],
-            [null, true, null],
-            [false, null, null],
-            [false, false, null],
-            [false, true, null],
-            [true, null, true],
-            [true, false, true],
-            [true, true, true],
-        ];
-    }
-
-    public static function showLegacyForUserFromScoreDataProvider()
-    {
-        return [
-            [null, null],
-            [false, null],
-            [true, true],
-        ];
-    }
-
-    public static function showLegacyForUserSettingDataProvider()
-    {
-        return [
-            [null, null],
-            [false, null],
-            [true, true],
-        ];
     }
 }
