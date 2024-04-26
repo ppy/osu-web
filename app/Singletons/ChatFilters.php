@@ -51,15 +51,15 @@ class ChatFilters
             $filters['non_whitespace_delimited_replaces']->mapWithKeys(fn ($filter) => [$filter->match => $filter->replacement])->all()
         );
         return preg_replace(
-            $filters['whitespace_delimited_replaces']->map(fn ($filter) => '/'.self::singleFilterRegex($filter).'/')->toArray(),
+            $filters['whitespace_delimited_replaces']->map(fn ($filter) => '/'.self::singleFilterRegex($filter, '/').'/')->toArray(),
             $filters['whitespace_delimited_replaces']->map(fn ($filter) => $filter->replacement)->toArray(),
             $text
         );
     }
 
-    private static function singleFilterRegex(ChatFilter $filter): string
+    private static function singleFilterRegex(ChatFilter $filter, string $delimiter): string
     {
-        $term = preg_quote($filter->match);
+        $term = preg_quote($filter->match, $delimiter);
         if ($filter->whitespace_delimited) {
             $term = '\b'.$term.'\b';
         }
@@ -68,7 +68,7 @@ class ChatFilters
 
     private static function combinedFilterRegex($filters): string
     {
-        $regex = implode('|', $filters->map(fn ($filter) => '('.self::singleFilterRegex($filter).')')->toArray());
+        $regex = implode('|', $filters->map(fn ($filter) => '('.self::singleFilterRegex($filter, '/').')')->toArray());
         return '/'.$regex.'/';
     }
 }
