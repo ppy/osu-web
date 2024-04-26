@@ -36,8 +36,14 @@ class ChatFilters
             // non-blocking filters (phrases are allowed to be replaced)
             $replaceFilters = $allFilters->where('block', false);
 
-            $ret['whitespace_delimited_replaces'] = $replaceFilters->where('whitespace_delimited', true)->collect();
-            $ret['non_whitespace_delimited_replaces'] = $replaceFilters->where('whitespace_delimited', false)->collect();
+            $ret['whitespace_delimited_replaces'] = $replaceFilters
+                ->where('whitespace_delimited', true)
+                ->mapWithKeys(fn ($filter) => ['/'.self::singleFilterRegex($filter, '/').'/i' => $filter->replacement])
+                ->all();
+            $ret['non_whitespace_delimited_replaces'] = $replaceFilters
+                ->where('whitespace_delimited', false)
+                ->mapWithKeys(fn ($filter) => [$filter->match => $filter->replacement])
+                ->all();
 
             return $ret;
         });
@@ -47,13 +53,13 @@ class ChatFilters
         }
 
         $text = str_ireplace(
-            $filters['non_whitespace_delimited_replaces']->map(fn ($filter) => $filter->match)->toArray(),
-            $filters['non_whitespace_delimited_replaces']->map(fn ($filter) => $filter->replacement)->toArray(),
+            array_keys($filters['non_whitespace_delimited_replaces']),
+            array_values($filters['non_whitespace_delimited_replaces']),
             $text
         );
         return preg_replace(
-            $filters['whitespace_delimited_replaces']->map(fn ($filter) => '/'.self::singleFilterRegex($filter, '/').'/i')->toArray(),
-            $filters['whitespace_delimited_replaces']->map(fn ($filter) => $filter->replacement)->toArray(),
+            array_keys($filters['whitespace_delimited_replaces']),
+            array_values($filters['whitespace_delimited_replaces']),
             $text
         );
     }
