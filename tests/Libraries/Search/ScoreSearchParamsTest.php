@@ -81,7 +81,7 @@ class ScoreSearchParamsTest extends TestCase
         );
     }
 
-    public function showLegacyForUserAndGuestDataProvider()
+    public static function showLegacyForUserAndGuestDataProvider()
     {
         return [
             [null, null, null],
@@ -96,7 +96,7 @@ class ScoreSearchParamsTest extends TestCase
         ];
     }
 
-    public function showLegacyForUserFromScoreDataProvider()
+    public static function showLegacyForUserFromScoreDataProvider()
     {
         return [
             [null, null],
@@ -105,7 +105,7 @@ class ScoreSearchParamsTest extends TestCase
         ];
     }
 
-    public function showLegacyForUserSettingDataProvider()
+    public static function showLegacyForUserSettingDataProvider()
     {
         return [
             [null, null],
