@@ -457,7 +457,7 @@ class Channel extends Model
         }
 
         $message = new Message([
-            'content' => app('chat-filters')->filter($content),
+            'content' => $this->isAnnouncement() ? $content : app('chat-filters')->filter($content),
             'is_action' => $isAction,
             'timestamp' => $now,
         ]);
