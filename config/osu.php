@@ -164,6 +164,7 @@ return [
         'max_user_clients' => get_int(env('OAUTH_MAX_USER_CLIENTS')) ?? 1,
     ],
     'octane' => [
+        'local_cache_expire_second' => get_int(env('OCTANE_LOCAL_CACHE_EXPIRE_SECOND')) ?? 60,
         'local_cache_reset_requests' => get_int(env('OCTANE_LOCAL_CACHE_RESET_REQUESTS')) ?? 100,
     ],
     'pagination' => [
