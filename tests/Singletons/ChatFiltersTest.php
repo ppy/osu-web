@@ -35,6 +35,7 @@ class ChatFiltersTest extends TestCase
             ['match' => 'bad', 'replacement' => 'good'],
             ['match' => 'fullword', 'replacement' => 'okay', 'whitespace_delimited' => true],
             ['match' => 'fullword2', 'replacement' => 'great', 'whitespace_delimited' => true],
+            ['match' => 'delimiter/inside', 'replacement' => 'nice try', 'whitespace_delimited' => true],
             ['match' => 'absolutely forbidden', 'replacement' => '', 'block' => true],
         ]);
 
@@ -86,6 +87,7 @@ class ChatFiltersTest extends TestCase
             ['anotherfullword is not replaced', 'anotherfullword is not replaced'],
             ['fullword fullword2', 'okay great'],
             ['fullwordfullword2', 'fullwordfullword2'],
+            ['i do a delimiter/inside', 'i do a nice try'],
         ];
     }
 
