@@ -6,7 +6,6 @@
 namespace App\Libraries;
 
 use App\Exceptions\API;
-use App\Exceptions\ContentModerationException;
 use App\Exceptions\InvariantException;
 use App\Models\Chat\Channel;
 use App\Models\User;
@@ -97,7 +96,7 @@ class Chat
             abort(422, $e->getMessage());
         } catch (API\ChatMessageTooLongException $e) {
             abort(422, $e->getMessage());
-        } catch (ContentModerationException) {
+        } catch (InvariantException) {
             abort(422);
         } catch (API\ExcessiveChatMessagesException $e) {
             abort(429, $e->getMessage());

@@ -9,6 +9,6 @@ namespace App\Exceptions;
  * Exception thrown on user-supplied input that fails to clear automated moderation checks.
  * It is generally fine to not provide any user-facing message to indicate that this is the case.
  */
-class ContentModerationException extends SilencedException
+class ContentModerationException extends InvariantException
 {
 }

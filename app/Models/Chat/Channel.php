@@ -7,7 +7,6 @@ namespace App\Models\Chat;
 
 use App\Events\ChatChannelEvent;
 use App\Exceptions\API;
-use App\Exceptions\ContentModerationException;
 use App\Exceptions\InvariantException;
 use App\Jobs\Notifications\ChannelAnnouncement;
 use App\Jobs\Notifications\ChannelMessage;
@@ -415,13 +414,6 @@ class Channel extends Model
         });
     }
 
-    /**
-     * @throws API\ChatMessageEmptyException
-     * @throws API\ChatMessageTooLongException
-     * @throws API\ExcessiveChatMessagesException
-     * @throws ContentModerationException
-     * @throws \Throwable
-     */
     public function receiveMessage(User $sender, ?string $content, bool $isAction = false, ?string $uuid = null)
     {
         if (!$this->isAnnouncement()) {
