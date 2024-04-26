@@ -33,6 +33,11 @@ abstract class Model extends BaseModel
 
     public $timestamps = false;
     public $incrementing = false;
+    /**
+     * allows preloading the value if it's known through other means
+     * (for use in RankingController)
+     */
+    public int $countryRank;
 
     const UPDATED_AT = 'last_update';
 
@@ -160,7 +165,7 @@ abstract class Model extends BaseModel
 
     public function countryRank()
     {
-        return $this->memoize(__FUNCTION__, function () {
+        return $this->countryRank ?? $this->memoize(__FUNCTION__, function () {
             if (!$this->isRanked()) {
                 return;
             }
