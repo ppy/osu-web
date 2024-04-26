@@ -73,6 +73,7 @@ class ChatFiltersTest extends TestCase
     {
         return [
             ['bad phrase', 'good phrase'],
+            ['WHAT HAPPENS IF I SAY BAD THING IN CAPS', 'WHAT HAPPENS IF I SAY good THING IN CAPS'],
             ['thing is bad', 'thing is good'],
             ['look at this badness', 'look at this goodness'],
         ];
@@ -82,6 +83,7 @@ class ChatFiltersTest extends TestCase
     {
         return [
             ['fullword at the start', 'okay at the start'],
+            ['FULLWORD IN CAPS!!', 'okay IN CAPS!!'],
             ['at the end is fullword', 'at the end is okay'],
             ['middle is where the fullword is', 'middle is where the okay is'],
             ['anotherfullword is not replaced', 'anotherfullword is not replaced'],
@@ -95,6 +97,7 @@ class ChatFiltersTest extends TestCase
     {
         return [
             ['absolutely forbidden'],
+            ['sPoNGeBoB SaYS aBSolUtElY FoRbIdDeN'],
             ['this is absolutely forbidden full stop!!!'],
         ];
     }
