@@ -10,16 +10,29 @@ namespace App\Singletons;
 class LocalCacheManager
 {
     private int $resetTicker = 0;
+    private int $resetTime;
     private array $singletons = [];
+
+    public function __construct()
+    {
+        $this->resetTime = time();
+    }
 
     public function incrementResetTicker(): void
     {
-        $this->resetTicker++;
+        $currentTime = time();
+        // Always reset cache after 1 minute.
+        if ($currentTime - $this->resetTime < $GLOBALS['cfg']['osu']['octane']['local_cache_expire_second']) {
+            $this->resetTicker++;
 
-        if ($this->resetTicker > $GLOBALS['cfg']['osu']['octane']['local_cache_reset_requests']) {
-            $this->resetTicker = 0;
-            $this->resetCache();
+            if ($this->resetTicker < $GLOBALS['cfg']['osu']['octane']['local_cache_reset_requests']) {
+                return;
+            }
         }
+
+        $this->resetTime = $currentTime;
+        $this->resetTicker = 0;
+        $this->resetCache();
     }
 
     public function registerSingleton($singleton): void
