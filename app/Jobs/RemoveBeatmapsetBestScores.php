@@ -12,11 +12,13 @@ use App\Models\Beatmapset;
 use App\Models\Score\Best\Model;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\Middleware\WithoutOverlapping;
 use Illuminate\Queue\SerializesModels;
 
 class RemoveBeatmapsetBestScores implements ShouldQueue
 {
-    use Queueable, SerializesModels;
+    use InteractsWithQueue, Queueable, SerializesModels;
 
     public $timeout = 36000;
     public $beatmapset;
@@ -29,8 +31,6 @@ class RemoveBeatmapsetBestScores implements ShouldQueue
      */
     public function __construct(Beatmapset $beatmapset)
     {
-        $this->onConnection('remove_scores');
-
         $this->beatmapset = $beatmapset;
 
         foreach (Beatmap::MODES as $mode => $_modeInt) {
@@ -79,5 +79,10 @@ class RemoveBeatmapsetBestScores implements ShouldQueue
                 $scores = $query->get();
             }
         }
+    }
+
+    public function middleware(): array
+    {
+        return [new WithoutOverlapping($this->beatmapset->getKey(), $this->timeout, $this->timeout)];
     }
 }

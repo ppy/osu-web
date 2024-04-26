@@ -30,7 +30,6 @@ return [
     */
 
     'connections' => [
-
         'sync' => [
             'driver' => 'sync',
         ],
@@ -48,13 +47,6 @@ return [
             'queue' => 'default',
             'retry_after' => 305, // RegenerateBeatmapsetCover (300s),
         ],
-
-        'remove_scores' => [
-            'driver' => env('APP_ENV') === 'testing' ? 'sync' : 'redis',
-            'queue' => 'remove_scores',
-            'retry_after' => 36005,
-        ],
-
     ],
 
     /*

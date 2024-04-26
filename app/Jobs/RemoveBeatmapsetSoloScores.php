@@ -14,10 +14,12 @@ use App\Models\Solo\Score;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\Middleware\WithoutOverlapping;
 
 class RemoveBeatmapsetSoloScores implements ShouldQueue
 {
-    use Queueable;
+    use InteractsWithQueue, Queueable;
 
     public $timeout = 36000;
 
@@ -33,8 +35,6 @@ class RemoveBeatmapsetSoloScores implements ShouldQueue
      */
     public function __construct(Beatmapset $beatmapset)
     {
-        $this->onConnection('remove_scores');
-
         $this->beatmapsetId = $beatmapset->getKey();
         $this->maxScoreId = Score::max('id') ?? 0;
     }
@@ -59,6 +59,11 @@ class RemoveBeatmapsetSoloScores implements ShouldQueue
             ::whereIn('beatmap_id', $beatmapIds)
             ->where('id', '<=', $this->maxScoreId)
             ->chunkById(1000, fn ($scores) => $this->deleteScores($scores));
+    }
+
+    public function middleware(): array
+    {
+        return [new WithoutOverlapping((string) $this->beatmapsetId, $this->timeout, $this->timeout)];
     }
 
     private function deleteScores(Collection $scores): void
