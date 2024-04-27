@@ -95,31 +95,6 @@
 <script src="{{ unmix('js/runtime.js') }}" data-turbolinks-track="reload"></script>
 <script src="{{ unmix('js/vendor.js') }}" data-turbolinks-track="reload"></script>
 
-@if($GLOBALS['cfg']['services']['sentry']['public_dsn'] !== '')
-    <script src="https://browser.sentry-cdn.com/5.1.0/bundle.min.js" crossorigin="anonymous"></script>
-    <script>
-        typeof Sentry !== 'undefined' && Sentry.init({
-            debug: {!! json_encode($GLOBALS['cfg']['app']['debug']) !!},
-            dsn: {!! json_encode($GLOBALS['cfg']['services']['sentry']['public_dsn']) !!},
-            ignoreErrors: [
-                // Random plugins/extensions
-                'top.GLOBALS',
-                /class is a reserved identifier$/
-            ],
-            ignoreUrls: [
-                // Chrome/Firefox extensions
-                /extensions\//i,
-                /^chrome:\/\//i,
-                /^resource:\/\//i,
-                // Errors caused by spyware/adware junk
-                /^\/loaders\//i
-            ],
-            release: {!! json_encode($GLOBALS['cfg']['osu']['git-sha']) !!},
-            whitelistUrls: [/^{!! preg_quote($appUrl, '/') !!}\/.*\.js(?:\?.*)?$/],
-        });
-    </script>
-@endif
-
 <script src="{{ unmix("js/locales/{$currentLocale}.js") }}" data-turbolinks-track="reload"></script>
 @if ($fallbackLocale !== $currentLocale)
     <script src="{{ unmix("js/locales/{$fallbackLocale}.js") }}" data-turbolinks-track="reload"></script>

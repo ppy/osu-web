@@ -456,14 +456,8 @@ class Channel extends Model
             throw new API\ExcessiveChatMessagesException(osu_trans('api.error.chat.limit_exceeded'));
         }
 
-        $chatFilters = app('chat-filters')->all();
-
-        foreach ($chatFilters as $filter) {
-            $content = str_replace($filter->match, $filter->replacement, $content);
-        }
-
         $message = new Message([
-            'content' => $content,
+            'content' => $this->isAnnouncement() ? $content : app('chat-filters')->filter($content),
             'is_action' => $isAction,
             'timestamp' => $now,
         ]);

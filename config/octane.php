@@ -70,10 +70,10 @@ return [
         RequestReceived::class => [
             ...Octane::prepareApplicationForNextOperation(),
             ...Octane::prepareApplicationForNextRequest(),
+            OctaneResetLocalCache::class,
         ],
 
         RequestHandled::class => [
-            OctaneResetLocalCache::class,
         ],
 
         RequestTerminated::class => [

@@ -21,12 +21,12 @@ export default function PpValue(props: Props) {
   if (!isBest && !isSolo) {
     title = trans('scores.status.non_best');
     content = '-';
-  } else if (props.score.ranked === false) {
+  } else if (props.score.ranked === false || props.score.preserve === false) {
     title = trans('scores.status.no_pp');
     content = '-';
   } else if (props.score.pp == null) {
-    if (isSolo && !props.score.passed) {
-      title = trans('scores.status.non_passing');
+    if (isSolo && props.score.processed === true) {
+      title = trans('scores.status.no_pp');
       content = '-';
     } else {
       title = trans('scores.status.processing');
