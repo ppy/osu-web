@@ -13,6 +13,21 @@ class ChatFilters
 {
     use Memoizes;
 
+    private static function singleFilterRegex(ChatFilter $filter, string $delimiter): string
+    {
+        $term = preg_quote($filter->match, $delimiter);
+        if ($filter->whitespace_delimited) {
+            $term = '\b'.$term.'\b';
+        }
+        return $term;
+    }
+
+    private static function combinedFilterRegex($filters): string
+    {
+        $regex = implode('|', $filters->map(fn ($filter) => '('.self::singleFilterRegex($filter, '/').')')->toArray());
+        return '/'.$regex.'/i';
+    }
+
     /**
      * Applies all active chat filters to the provided text.
      * @param string $text The text to filter.
@@ -62,20 +77,5 @@ class ChatFilters
             array_values($filters['whitespace_delimited_replaces']),
             $text
         );
-    }
-
-    private static function singleFilterRegex(ChatFilter $filter, string $delimiter): string
-    {
-        $term = preg_quote($filter->match, $delimiter);
-        if ($filter->whitespace_delimited) {
-            $term = '\b'.$term.'\b';
-        }
-        return $term;
-    }
-
-    private static function combinedFilterRegex($filters): string
-    {
-        $regex = implode('|', $filters->map(fn ($filter) => '('.self::singleFilterRegex($filter, '/').')')->toArray());
-        return '/'.$regex.'/i';
     }
 }

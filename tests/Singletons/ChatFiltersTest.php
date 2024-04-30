@@ -11,64 +11,6 @@ use Tests\TestCase;
 
 class ChatFiltersTest extends TestCase
 {
-    /**
-     * @dataProvider plainFilterTests
-     */
-    public function testPlainFilterReplacement($input, $expected_output)
-    {
-        ChatFilter::factory()->createMany([
-            ['match' => 'bad', 'replacement' => 'good'],
-            ['match' => 'fullword', 'replacement' => 'okay', 'whitespace_delimited' => true],
-            ['match' => 'absolutely forbidden', 'replacement' => '', 'block' => true],
-        ]);
-
-        $result = app('chat-filters')->filter($input);
-        $this->assertSame($expected_output, $result);
-    }
-
-    /**
-     * @dataProvider fullWordFilterTests
-     */
-    public function testWhitespaceDelimitedFilterReplacement($input, $expected_output)
-    {
-        ChatFilter::factory()->createMany([
-            ['match' => 'bad', 'replacement' => 'good'],
-            ['match' => 'fullword', 'replacement' => 'okay', 'whitespace_delimited' => true],
-            ['match' => 'fullword2', 'replacement' => 'great', 'whitespace_delimited' => true],
-            ['match' => 'delimiter/inside', 'replacement' => 'nice try', 'whitespace_delimited' => true],
-            ['match' => 'absolutely forbidden', 'replacement' => '', 'block' => true],
-        ]);
-
-        $result = app('chat-filters')->filter($input);
-        $this->assertSame($expected_output, $result);
-    }
-
-    /**
-     * @dataProvider blockingFilterTests
-     */
-    public function testBlockingFilter($input)
-    {
-        ChatFilter::factory()->createMany([
-            ['match' => 'bad', 'replacement' => 'good'],
-            ['match' => 'fullword', 'replacement' => 'okay', 'whitespace_delimited' => true],
-            ['match' => 'absolutely forbidden', 'replacement' => '', 'block' => true],
-        ]);
-
-        $this->expectException(ContentModerationException::class);
-        app('chat-filters')->filter($input);
-    }
-
-    public function testLackOfBlockingFilters()
-    {
-        ChatFilter::factory()->createMany([
-            ['match' => 'bad', 'replacement' => 'good'],
-            ['match' => 'fullword', 'replacement' => 'okay', 'whitespace_delimited' => true],
-        ]);
-
-        $this->expectNotToPerformAssertions();
-        app('chat-filters')->filter('this should be completely fine');
-    }
-
     public static function plainFilterTests()
     {
         return [
@@ -100,5 +42,63 @@ class ChatFiltersTest extends TestCase
             ['sPoNGeBoB SaYS aBSolUtElY FoRbIdDeN'],
             ['this is absolutely forbidden full stop!!!'],
         ];
+    }
+
+    /**
+     * @dataProvider plainFilterTests
+     */
+    public function testPlainFilterReplacement($input, $expectedOutput)
+    {
+        ChatFilter::factory()->createMany([
+            ['match' => 'bad', 'replacement' => 'good'],
+            ['match' => 'fullword', 'replacement' => 'okay', 'whitespace_delimited' => true],
+            ['match' => 'absolutely forbidden', 'replacement' => '', 'block' => true],
+        ]);
+
+        $result = app('chat-filters')->filter($input);
+        $this->assertSame($expectedOutput, $result);
+    }
+
+    /**
+     * @dataProvider fullWordFilterTests
+     */
+    public function testWhitespaceDelimitedFilterReplacement($input, $expectedOutput)
+    {
+        ChatFilter::factory()->createMany([
+            ['match' => 'bad', 'replacement' => 'good'],
+            ['match' => 'fullword', 'replacement' => 'okay', 'whitespace_delimited' => true],
+            ['match' => 'fullword2', 'replacement' => 'great', 'whitespace_delimited' => true],
+            ['match' => 'delimiter/inside', 'replacement' => 'nice try', 'whitespace_delimited' => true],
+            ['match' => 'absolutely forbidden', 'replacement' => '', 'block' => true],
+        ]);
+
+        $result = app('chat-filters')->filter($input);
+        $this->assertSame($expectedOutput, $result);
+    }
+
+    /**
+     * @dataProvider blockingFilterTests
+     */
+    public function testBlockingFilter($input)
+    {
+        ChatFilter::factory()->createMany([
+            ['match' => 'bad', 'replacement' => 'good'],
+            ['match' => 'fullword', 'replacement' => 'okay', 'whitespace_delimited' => true],
+            ['match' => 'absolutely forbidden', 'replacement' => '', 'block' => true],
+        ]);
+
+        $this->expectException(ContentModerationException::class);
+        app('chat-filters')->filter($input);
+    }
+
+    public function testLackOfBlockingFilters()
+    {
+        ChatFilter::factory()->createMany([
+            ['match' => 'bad', 'replacement' => 'good'],
+            ['match' => 'fullword', 'replacement' => 'okay', 'whitespace_delimited' => true],
+        ]);
+
+        $this->expectNotToPerformAssertions();
+        app('chat-filters')->filter('this should be completely fine');
     }
 }
