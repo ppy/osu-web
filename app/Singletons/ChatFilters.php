@@ -24,7 +24,7 @@ class ChatFilters
 
     private static function combinedFilterRegex($filters): string
     {
-        $regex = implode('|', $filters->map(fn ($filter) => '('.self::singleFilterRegex($filter, '/').')')->toArray());
+        $regex = $filters->map(fn ($filter) => self::singleFilterRegex($filter, '/'))->join('|');
         return '/'.$regex.'/i';
     }
 
