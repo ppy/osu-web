@@ -520,7 +520,7 @@ class Room extends Model
 
         $this->fill([
             'max_attempts' => $params['max_attempts'],
-            'name' => $params['name'],
+            'name' => app('chat-filters')->filter($params['name']),
             'starts_at' => now(),
             'type' => $params['type'],
             'queue_mode' => $params['queue_mode'],

@@ -64,7 +64,7 @@ class AppServiceProvider extends ServiceProvider
                 $GLOBALS['cfg']['datadog-helper']['prefix_web'].'.queue.run',
                 1,
                 [
-                    'job' => $event->job->resolveName(),
+                    'job' => $event->job->payload()['data']['commandName'],
                     'queue' => $event->job->getQueue(),
                 ]
             );
