@@ -96,8 +96,6 @@ class Chat
             abort(422, $e->getMessage());
         } catch (API\ChatMessageTooLongException $e) {
             abort(422, $e->getMessage());
-        } catch (InvariantException) {
-            abort(422);
         } catch (API\ExcessiveChatMessagesException $e) {
             abort(429, $e->getMessage());
         }
