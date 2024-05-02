@@ -18,6 +18,8 @@ return [
     'channels' => [
         'confirm_part' => '',
         'create' => '',
+        'join' => '',
+        'none' => '',
 
         'list' => [
             'title' => [
@@ -59,5 +61,9 @@ return [
         'howto' => "התחל שיחות מפרופיל של משתמש או כרטיס משתמש קופץ.",
         'lazer' => 'ערוצים ציבוריים שאתה מצטרף אליהם דרך <a href=":link">osu!lazer</a> יהיו כאן.',
         'title' => 'אין שיחות עדיין',
+    ],
+
+    'join_channels' => [
+        'loading' => '',
     ],
 ];

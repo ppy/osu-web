@@ -18,6 +18,8 @@ return [
     'channels' => [
         'confirm_part' => 'Haluatko piilottaa tämän kanavan? Tulet yhä saamaan viestejä tältä kanavalta.',
         'create' => 'luo tiedote',
+        'join' => '',
+        'none' => '',
 
         'list' => [
             'title' => [
@@ -59,5 +61,9 @@ return [
         'howto' => "Aloita keskusteluja käyttäjän profiilista tai käyttäjäkortti-ikkunasta.",
         'lazer' => 'Julkiset kanavat joihin olet liittynyt <a href=":link">osu!lazerilla</a> näkyvät myös täällä.',
         'title' => 'ei keskusteluja...',
+    ],
+
+    'join_channels' => [
+        'loading' => '',
     ],
 ];

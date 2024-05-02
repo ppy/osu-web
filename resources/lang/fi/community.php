@@ -20,7 +20,7 @@ return [
             ],
             'infra' => [
                 'title' => 'Palvelininfrastruktuuri',
-                'description' => 'Osa avustuksista menee palvelimia varten ja niillä ylläpidetään verkkosivustoa, moninpelipalveluita, verkon pistetaulukoita jne.',
+                'description' => 'Osa avustuksista menee palvelimia varten ja niillä ylläpidetään verkkosivustoa, moninpelipalveluita, verkon tulostauluja jne.',
             ],
             'featured-artists' => [
                 'title' => 'Esitellyt artistit',

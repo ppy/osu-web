@@ -110,6 +110,9 @@ return [
         'tournaments_controller' => [
             '_' => 'турніры',
         ],
+        'user_cover_presets_controller' => [
+            '_' => '',
+        ],
         'users_controller' => [
             '_' => 'інфармацыя пра гульца',
             'create' => 'стварыць акаўнт',

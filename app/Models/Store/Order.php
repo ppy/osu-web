@@ -694,7 +694,7 @@ class Order extends Model
                 $params['extra_data'] = ExtraDataSupporterTag::fromOrderItemParams($params, $this->user);
                 break;
             // TODO: look at migrating to extra_data
-            case 'username-change':
+            case Product::USERNAME_CHANGE:
                 // ignore received cost
                 $params['cost'] = $this->user->usernameChangeCost();
                 break;

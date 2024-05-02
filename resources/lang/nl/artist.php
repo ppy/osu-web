@@ -45,6 +45,11 @@ return [
         'index' => [
             '_' => 'nummers zoeken',
 
+            'exclusive_only' => [
+                'all' => '',
+                'exclusive_only' => '',
+            ],
+
             'form' => [
                 'advanced' => 'Geavanceerd Zoeken',
                 'album' => 'Album',
@@ -52,6 +57,7 @@ return [
                 'bpm_gte' => 'Minimale BPM',
                 'bpm_lte' => 'Maximale BPM',
                 'empty' => 'Er zijn geen nummers gevonden die aan de zoekcriteria voldoen.',
+                'exclusive_only' => '',
                 'genre' => 'Genre',
                 'genre_all' => 'Alles',
                 'length_gte' => 'Minimale Lengte',

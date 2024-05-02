@@ -200,7 +200,6 @@ export default class CreateAnnouncement implements FormWithErrors<InputKey> {
     try {
       this.xhrLookupUsers = $.getJSON(route('chat.users.index'), { ids: userIds });
       const response = await this.xhrLookupUsers;
-
       this.extractValidUsers(response.users);
     } catch (error) {
       onError(error);

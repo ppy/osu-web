@@ -45,6 +45,11 @@ return [
         'index' => [
             '_' => 'търсене на песен',
 
+            'exclusive_only' => [
+                'all' => '',
+                'exclusive_only' => '',
+            ],
+
             'form' => [
                 'advanced' => 'Разширено търсене',
                 'album' => 'Албум',
@@ -52,6 +57,7 @@ return [
                 'bpm_gte' => 'Минимален BPM',
                 'bpm_lte' => 'Максимален BPM',
                 'empty' => 'Не са намерени резултати по критерия за търсене.',
+                'exclusive_only' => '',
                 'genre' => 'Жанр',
                 'genre_all' => 'Всеки',
                 'length_gte' => 'Минимална продължителност',

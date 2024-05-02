@@ -45,6 +45,11 @@ return [
         'index' => [
             '_' => 'өлең іздеу',
 
+            'exclusive_only' => [
+                'all' => '',
+                'exclusive_only' => '',
+            ],
+
             'form' => [
                 'advanced' => 'Кең ауқымды Іздеу',
                 'album' => 'Альбом',
@@ -52,6 +57,7 @@ return [
                 'bpm_gte' => 'Минималды BPM',
                 'bpm_lte' => 'Максималды BPM',
                 'empty' => 'Іздеу критерийлеріне келетін өлеңдер табылмады.',
+                'exclusive_only' => '',
                 'genre' => 'Жанры',
                 'genre_all' => 'Бәрі',
                 'length_gte' => 'Минималды Ұзақтығы',

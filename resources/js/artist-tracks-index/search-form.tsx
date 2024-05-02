@@ -43,6 +43,7 @@ const artistTrackSearchNumberRangeParams = ['bpm', 'length'] as const;
 type ArtistTrackSearchNumberRangeParam = typeof artistTrackSearchNumberRangeParams[number];
 
 export type ArtistTrackSearch = {
+  exclusive_only: boolean;
   genre?: Nullable<string>;
   is_default_sort: boolean;
   sort: ArtistTrackSort;
@@ -63,12 +64,13 @@ export default class SearchForm extends React.Component<Props> {
 
   @computed
   private get url() {
-    return this.makeLink();
+    return makeLink(this.params);
   }
 
   @computed
   private get emptySearch() {
     return {
+      exclusive_only: false,
       is_default_sort: this.params.is_default_sort,
       sort: this.params.sort,
     };
@@ -172,9 +174,27 @@ export default class SearchForm extends React.Component<Props> {
             </InputContainer>
 
             <InputContainer labelKey='artist.tracks.index.form.genre' modifiers={['4', 'genre']}>
-              <div className='artist-track-search-form__genres'>
+              <div className='artist-track-search-form-switches'>
                 {this.renderGenreLink(trans('artist.tracks.index.form.genre_all'), null)}
                 {this.props.availableGenres.map((genre) => this.renderGenreLink(genre, genre))}
+              </div>
+            </InputContainer>
+
+            <InputContainer labelKey='artist.tracks.index.form.exclusive_only' modifiers={['4', 'genre']}>
+              <div className='artist-track-search-form-switches'>
+                {([['all', false], ['exclusive_only', true]] as const).map(([label, value]) => (
+                  <a
+                    key={label}
+                    className={classWithModifiers('artist-track-search-form-switches__link', {
+                      active: this.params.exclusive_only === value,
+                    })}
+                    data-value={value}
+                    href={makeLink({ ...this.params, exclusive_only: value })}
+                    onClick={this.handleExclusiveOnlyLinkClick}
+                  >
+                    {trans(`artist.tracks.index.exclusive_only.${label}`)}
+                  </a>
+                ))}
               </div>
             </InputContainer>
           </div>
@@ -182,7 +202,7 @@ export default class SearchForm extends React.Component<Props> {
         <div className='artist-track-search-form__content artist-track-search-form__content--buttons'>
           <BigButton
             disabled={this.isEmptySearch}
-            href={this.makeLink(this.emptySearch)}
+            href={makeLink(this.emptySearch)}
             modifiers={['artist-track-search', 'rounded-thin']}
             props={{ onClick: this.handleReset }}
             text={trans('common.buttons.reset')}
@@ -248,6 +268,13 @@ export default class SearchForm extends React.Component<Props> {
   };
 
   @action
+  private readonly handleExclusiveOnlyLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    this.params.exclusive_only = e.currentTarget.dataset.value === '1';
+    this.props.onNewSearch(e.currentTarget.href);
+  };
+
+  @action
   private readonly handleGenreLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     this.params.genre = presence(e.currentTarget.dataset.value);
@@ -278,19 +305,15 @@ export default class SearchForm extends React.Component<Props> {
     }
   };
 
-  private makeLink(params: ArtistTrackSearch = this.params) {
-    return makeLink(params);
-  }
-
   private renderGenreLink(name: string, value: Nullable<string>) {
     return (
       <a
         key={name}
-        className={classWithModifiers('artist-track-search-form__genre-link', {
+        className={classWithModifiers('artist-track-search-form-switches__link', {
           active: presence(this.params.genre) === value,
         })}
         data-value={value ?? ''}
-        href={this.makeLink({ ...this.params, genre: value })}
+        href={makeLink({ ...this.params, genre: value })}
         onClick={this.handleGenreLinkClick}
       >
         {name}

@@ -39,6 +39,7 @@ return [
         'pin' => 'fixar',
         'post' => 'Enviar',
         'read_more' => 'leia mais',
+        'refresh' => '',
         'reply' => 'Responder',
         'reply_reopen' => 'Responder e Reabrir',
         'reply_resolve' => 'Responder e Resolver',

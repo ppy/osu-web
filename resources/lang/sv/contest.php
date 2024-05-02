@@ -14,27 +14,27 @@ return [
     ],
 
     'judge' => [
-        'hide_judged' => '',
-        'nav_title' => '',
-        'no_current_vote' => '',
-        'update' => '',
+        'hide_judged' => 'dölj bedömda bidrag',
+        'nav_title' => 'bedöm',
+        'no_current_vote' => 'du har inte röstat ännu.',
+        'update' => 'uppdatera',
         'validation' => [
             'missing_score' => '',
-            'contest_vote_judged' => '',
+            'contest_vote_judged' => 'kan inte rösta i bedömda tävlingar',
         ],
-        'voted' => '',
+        'voted' => 'Du har redan röstat på detta bidrag.',
     ],
 
     'judge_results' => [
-        '_' => '',
-        'creator' => '',
-        'score' => '',
-        'total_score' => '',
+        '_' => 'Bedömningsresultat',
+        'creator' => 'skapare',
+        'score' => 'Poäng',
+        'total_score' => 'total poäng',
     ],
 
     'voting' => [
-        'judge_link' => '',
-        'judged_notice' => '',
+        'judge_link' => 'Du är domare i denna tävling. Bedöm bidragen här!',
+        'judged_notice' => 'Denna tävling använder bedömningssystemet, bedömarna bearbetar för närvarande bidragen.',
         'login_required' => 'Var vänlig logga in för att rösta.',
         'over' => 'Möjligheten att rösta i denna tävling har avslutats',
         'show_voted_only' => 'Visa röstade',

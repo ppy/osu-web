@@ -5,10 +5,10 @@
 
 namespace App\Models;
 
+use App\Models\Solo\Score;
 use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 
 /**
- * @property array|null $cover_json
  * @property \Carbon\Carbon $created_at
  * @property string|null $extras_order
  * @property int $id
@@ -29,7 +29,7 @@ class UserProfileCustomization extends Model
         'comments_sort' => Comment::DEFAULT_SORT,
         'extras_order' => self::SECTIONS,
         'forum_posts_show_deleted' => true,
-        'legacy_score_only' => true,
+        'legacy_score_only' => false,
         'profile_cover_expanded' => true,
         'user_list_filter' => self::USER_LIST['filters']['default'],
         'user_list_sort' => self::USER_LIST['sorts']['default'],
@@ -62,7 +62,6 @@ class UserProfileCustomization extends Model
     public $incrementing = false;
 
     protected $casts = [
-        'cover_json' => 'array',
         'options' => AsArrayObject::class,
     ];
     protected $primaryKey = 'user_id';
@@ -197,7 +196,19 @@ class UserProfileCustomization extends Model
 
     public function getLegacyScoreOnlyAttribute(): bool
     {
-        return $this->options['legacy_score_only'] ?? static::DEFAULTS['legacy_score_only'];
+        $option = $this->options['legacy_score_only'] ?? null;
+        if ($option === null) {
+            $lastScore = Score::where('user_id', $this->getKey())->last();
+            if ($lastScore === null) {
+                $option = static::DEFAULTS['legacy_score_only'];
+            } else {
+                $option = $lastScore->isLegacy();
+                $this->setOption('legacy_score_only', $option);
+                $this->save();
+            }
+        }
+
+        return $option;
     }
 
     public function setLegacyScoreOnlyAttribute($value): void

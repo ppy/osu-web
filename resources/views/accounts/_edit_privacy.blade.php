@@ -63,7 +63,7 @@
                     </div>
                     <div class="block-list">
                         <a class='block-list__toggle js-account-edit-blocklist' href='#'>{{osu_trans('common.buttons.show')}}</a>
-                        <div class="block-list__content hidden">
+                        <div class="block-list__content hidden js-account-edit-blocklist-content">
                             @foreach ($blocks as $block)
                                 <div class="block-list-item">
                                     <a class="block-list-item__link" href='{{route('users.show', $block->user_id)}}'>{{ $block->username }}</a>

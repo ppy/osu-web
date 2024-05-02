@@ -39,6 +39,7 @@ return [
         'pin' => 'aspile',
         'post' => 'Post',
         'read_more' => 'magbasa pa',
+        'refresh' => '',
         'reply' => 'Sumagot',
         'reply_reopen' => 'Sagutin at Muling Buksan',
         'reply_resolve' => 'Sagutin at Lutasin',

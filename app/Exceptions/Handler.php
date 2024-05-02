@@ -48,7 +48,7 @@ class Handler extends ExceptionHandler
     public static function exceptionMessage($e)
     {
         if ($e instanceof ModelNotFoundException) {
-            return;
+            return static::modelNotFoundMessage($e);
         }
 
         if (static::statusCode($e) >= 500) {
@@ -88,6 +88,20 @@ class Handler extends ExceptionHandler
     {
         return ($e instanceof \Exception)
             && $e->getMessage() === 'Authorization request was not present in the session.';
+    }
+
+    private static function modelNotFoundMessage(ModelNotFoundException $e): string
+    {
+        $model = $e->getModel();
+        $modelTransKey = "models.name.{$model}";
+
+        $params = [
+            'model' => trans_exists($modelTransKey, $GLOBALS['cfg']['app']['fallback_locale'])
+                ? osu_trans($modelTransKey)
+                : trim(strtr($model, ['App\Models\\' => '']), '\\'),
+        ];
+
+        return osu_trans('models.not_found', $params);
     }
 
     private static function reportWithSentry(Throwable $e): void

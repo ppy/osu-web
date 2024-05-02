@@ -5,15 +5,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Ruleset;
 use App\Models\Score\Best\Model as ScoreBest;
 use App\Models\Solo\Score as SoloScore;
-use App\Models\UserCountryHistory;
 use App\Transformers\ScoreTransformer;
 use App\Transformers\UserCompactTransformer;
-use Carbon\CarbonImmutable;
 
 class ScoresController extends Controller
 {
+    const REPLAY_DOWNLOAD_COUNT_INTERVAL = 86400; // 1 day
+
     public function __construct()
     {
         parent::__construct();
@@ -52,20 +53,30 @@ class ScoresController extends Controller
             abort(404);
         }
 
-        if (\Auth::user()->getKey() !== $score->user_id) {
-            $score->user->statistics($score->getMode(), true)->increment('replay_popularity');
+        $currentUser = \Auth::user();
+        if (
+            !$currentUser->isRestricted()
+            && $currentUser->getKey() !== $score->user_id
+            && ($currentUser->token()?->client->password_client ?? false)
+        ) {
+            $countLock = \Cache::lock(
+                "view:score_replay:{$score->getKey()}:{$currentUser->getKey()}",
+                static::REPLAY_DOWNLOAD_COUNT_INTERVAL,
+            );
 
-            $month = CarbonImmutable::now();
-            $currentMonth = UserCountryHistory::formatDate($month);
+            if ($countLock->get()) {
+                $score->user->statistics($score->getMode(), true)->increment('replay_popularity');
 
-            $score->user->replaysWatchedCounts()
-                ->firstOrCreate(['year_month' => $currentMonth], ['count' => 0])
-                ->incrementInstance('count');
+                $currentMonth = format_month_column(new \DateTime());
+                $score->user->replaysWatchedCounts()
+                    ->firstOrCreate(['year_month' => $currentMonth], ['count' => 0])
+                    ->incrementInstance('count');
 
-            if ($score instanceof ScoreBest) {
-                $score->replayViewCount()
-                    ->firstOrCreate([], ['play_count' => 0])
-                    ->incrementInstance('play_count');
+                if ($score instanceof ScoreBest) {
+                    $score->replayViewCount()
+                        ->firstOrCreate([], ['play_count' => 0])
+                        ->incrementInstance('play_count');
+                }
             }
         }
 
@@ -80,10 +91,23 @@ class ScoresController extends Controller
 
     public function show($rulesetOrSoloId, $legacyId = null)
     {
-        [$scoreClass, $id] = $legacyId === null
-            ? [SoloScore::class, $rulesetOrSoloId]
-            : [ScoreBest::getClass($rulesetOrSoloId), $legacyId];
-        $score = $scoreClass::whereHas('beatmap.beatmapset')->visibleUsers()->findOrFail($id);
+        if ($legacyId === null) {
+            $scoreQuery = SoloScore::whereKey($rulesetOrSoloId);
+        } else {
+            // `SoloScore` tables can have records with `legacy_score_id = 0`
+            // which correspond to rows from `osu_scores_*` (non-high) tables.
+            // do not attempt to perform lookups for zero to avoid weird results.
+            // negative IDs should never occur (ID columns in score tables are all `bigint unsigned`).
+            if ($legacyId <= 0) {
+                abort(404, 'invalid score ID');
+            }
+
+            $scoreQuery = SoloScore::where([
+                'ruleset_id' => Ruleset::tryFromName($rulesetOrSoloId) ?? abort(404, 'unknown ruleset name'),
+                'legacy_score_id' => $legacyId,
+            ]);
+        }
+        $score = $scoreQuery->whereHas('beatmap.beatmapset')->visibleUsers()->firstOrFail();
 
         $userIncludes = array_map(function ($include) {
             return "user.{$include}";

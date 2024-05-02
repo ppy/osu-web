@@ -18,6 +18,8 @@ return [
     'channels' => [
         'confirm_part' => 'Vill du dölja denna kanal? Du kommer fortfarande ta emot meddelanden från denna kanal.',
         'create' => 'skapa meddelande',
+        'join' => '',
+        'none' => '',
 
         'list' => [
             'title' => [
@@ -59,5 +61,9 @@ return [
         'howto' => "Starta konversationer från en användares profil eller en usercard popup.",
         'lazer' => 'Offentliga kanaler du går med i via <a href=":link">osu!lazer</a> kommer också att synas här.',
         'title' => 'inga konversationer ännu',
+    ],
+
+    'join_channels' => [
+        'loading' => '',
     ],
 ];

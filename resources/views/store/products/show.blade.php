@@ -124,12 +124,15 @@
         </div>
 
         <div class="store-page store-page--footer" id="add-to-cart">
-            @if($product->inStock())
-                <button type="submit" class="btn-osu-big btn-osu-big--store-action js-store-add-to-cart js-login-required--click">
+            @if ($product->inStock())
+                <button
+                    class="btn-osu-big btn-osu-big--store-action js-login-required--click js-store-add-to-cart"
+                    type="submit"
+                    {{ in_array($product->custom_class, App\Models\Store\Product::BUTTON_DISABLED, true) ? 'disabled' : '' }}
+                >
                     {{ osu_trans('store.product.add_to_cart') }}
                 </button>
-
-            @elseif(!$requestedNotification)
+            @elseif (!$requestedNotification)
                 <a
                     class="btn-osu-big btn-osu-big--store-action js-login-required--click"
                     href="{{ route('store.notification-request', ['product' => $product->product_id]) }}"

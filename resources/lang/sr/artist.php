@@ -45,6 +45,11 @@ return [
         'index' => [
             '_' => 'тражење песме',
 
+            'exclusive_only' => [
+                'all' => '',
+                'exclusive_only' => '',
+            ],
+
             'form' => [
                 'advanced' => 'Напредна претрага',
                 'album' => 'Албум',
@@ -52,6 +57,7 @@ return [
                 'bpm_gte' => 'BPM Минимум',
                 'bpm_lte' => 'BPM Максимум',
                 'empty' => 'Не постоји која песма која одговара вашем критеријуму.',
+                'exclusive_only' => '',
                 'genre' => 'Жанр',
                 'genre_all' => 'Све',
                 'length_gte' => 'Минимална Дужина',

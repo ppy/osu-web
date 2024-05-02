@@ -18,6 +18,8 @@ return [
     'channels' => [
         'confirm_part' => '您是否要隱藏本頻道？您仍然會收到這個頻道的訊息。',
         'create' => '建立公告',
+        'join' => '',
+        'none' => '',
 
         'list' => [
             'title' => [
@@ -59,5 +61,9 @@ return [
         'howto' => "在使用者個人資料或卡片的彈出方塊上點擊信封圖案以開始聊天。",
         'lazer' => '您通過 <a href=":link">osu! lazer</a> 加入的公開頻道也會顯示在這裡。',
         'title' => '還沒有聊天過',
+    ],
+
+    'join_channels' => [
+        'loading' => '',
     ],
 ];

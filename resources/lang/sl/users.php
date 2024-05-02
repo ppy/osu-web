@@ -97,6 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
+            'inactive' => "",
             'inactive_different_country' => "Tvoj račun že dlje časa ni bil uporabljen.",
         ],
     ],

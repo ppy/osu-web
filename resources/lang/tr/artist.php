@@ -45,6 +45,11 @@ return [
         'index' => [
             '_' => 'parça arama',
 
+            'exclusive_only' => [
+                'all' => '',
+                'exclusive_only' => '',
+            ],
+
             'form' => [
                 'advanced' => 'Gelişmiş Arama',
                 'album' => 'Albüm',
@@ -52,6 +57,7 @@ return [
                 'bpm_gte' => 'Minimum BPM',
                 'bpm_lte' => 'Maksimum BPM',
                 'empty' => 'Arama kriterine uyan parça bulunamadı.',
+                'exclusive_only' => '',
                 'genre' => 'Tür',
                 'genre_all' => 'Tümü',
                 'length_gte' => 'Minimum Uzunluk',
