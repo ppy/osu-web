@@ -460,19 +460,14 @@ export default class CommentsController {
   @action
   private loadBundle(bundle: CommentBundleJson, append = true, initial = false) {
     if (initial) {
-      this.state.commentIdsByParentId[0] = [];
-      const comments = this.state.commentIdsByParentId[0];
-      bundle.comments.forEach((comment) => {
-        comments.push(comment.id);
-        this.addComment(comment);
-      });
-      this.state.sort = bundle.sort;
-    } else {
-      bundle.comments.forEach((comment) => {
-        this.addCommentId(comment, append);
-        this.addComment(comment);
-      });
+      // for initial page of CommentsIndex
+      this.state.commentIdsByParentId[-1] = bundle.comments.map((comment) => comment.id);
     }
+
+    bundle.comments.forEach((comment) => {
+      this.addCommentId(comment, append);
+      this.addComment(comment);
+    });
 
     bundle.included_comments.forEach((comment) => {
       this.addCommentId(comment, true);
