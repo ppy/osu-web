@@ -87,8 +87,8 @@ trait Scoreable
         switch ($this->getMode()) {
             case 'osu':
                 $totalHitCount = $totalHits / 300;
-                $ratio300 = $totalHits === 0 ? 1 : $this->count300 / $totalHitCount;
-                $ratio50 = $totalHits === 0 ? 1 : $this->count50 / $totalHitCount;
+                $ratio300 = (float) ($totalHits === 0 ? 1 : $this->count300 / $totalHitCount);
+                $ratio50 = (float) ($totalHits === 0 ? 1 : $this->count50 / $totalHitCount);
 
                 $this->rank = match (true) {
                     $ratio300 === 1.0 =>
@@ -109,8 +109,8 @@ trait Scoreable
 
             case 'taiko':
                 $totalHitCount = $totalHits / 300;
-                $ratio300 = $totalHits === 0 ? 1 : $this->count300 / $totalHitCount;
-                $ratio50 = $totalHits === 0 ? 1 : $this->count50 / $totalHitCount;
+                $ratio300 = (float) ($totalHits === 0 ? 1 : $this->count300 / $totalHitCount);
+                $ratio50 = (float) ($totalHits === 0 ? 1 : $this->count50 / $totalHitCount);
 
                 $this->rank = match (true) {
                     $ratio300 === 1.0 =>
