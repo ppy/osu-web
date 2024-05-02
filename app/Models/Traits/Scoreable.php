@@ -91,7 +91,7 @@ trait Scoreable
                 $ratio50 = $totalHits === 0 ? 1 : $this->count50 / $totalHitCount;
 
                 $this->rank = match (true) {
-                    $ratio300 === 1 =>
+                    $ratio300 === 1.0 =>
                         $this->shouldHaveHiddenRank() ? 'XH' : 'X',
                     $ratio300 > 0.9 && $ratio50 <= 0.01 && $countMiss === 0 =>
                         $this->shouldHaveHiddenRank() ? 'SH' : 'S',
@@ -113,7 +113,7 @@ trait Scoreable
                 $ratio50 = $totalHits === 0 ? 1 : $this->count50 / $totalHitCount;
 
                 $this->rank = match (true) {
-                    $ratio300 === 1 =>
+                    $ratio300 === 1.0 =>
                         $this->shouldHaveHiddenRank() ? 'XH' : 'X',
                     $ratio300 > 0.9 && $ratio50 < 0.01 && $countMiss === 0 =>
                         $this->shouldHaveHiddenRank() ? 'SH' : 'S',
@@ -131,7 +131,7 @@ trait Scoreable
 
             case 'fruits':
                 $this->rank = match (true) {
-                    $accuracy === 1 =>
+                    $accuracy === 1.0 =>
                         $this->shouldHaveHiddenRank() ? 'XH' : 'X',
                     $accuracy > 0.98 =>
                         $this->shouldHaveHiddenRank() ? 'SH' : 'S',
@@ -149,7 +149,7 @@ trait Scoreable
 
             case 'mania':
                 $this->rank = match (true) {
-                    $accuracy === 1 =>
+                    $accuracy === 1.0 =>
                         $this->shouldHaveHiddenRank() ? 'XH' : 'X',
                     $accuracy > 0.95 =>
                         $this->shouldHaveHiddenRank() ? 'SH' : 'S',
