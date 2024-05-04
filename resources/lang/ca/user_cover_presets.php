@@ -5,33 +5,33 @@
 
 return [
     'index' => [
-        'batch_disable' => '',
-        'batch_enable' => '',
+        'batch_disable' => 'Desactivar la selecció',
+        'batch_enable' => 'Activar la selecció',
 
         'batch_confirm' => [
-            '_' => '',
-            'disable' => '',
-            'enable' => '',
-            'items' => '',
+            '_' => ':action :items?',
+            'disable' => 'Deshabilitar',
+            'enable' => 'Habilitar',
+            'items' => ':count_delimited portada|:count_delimited portades',
         ],
 
         'create_form' => [
-            'files' => '',
-            'submit' => '',
-            'title' => '',
+            'files' => 'Fitxers',
+            'submit' => 'Guardar',
+            'title' => 'Afegir nova',
         ],
 
         'item' => [
-            'click_to_disable' => '',
-            'click_to_enable' => '',
-            'enabled' => '',
-            'disabled' => '',
-            'image_store' => '',
-            'image_update' => '',
+            'click_to_disable' => 'Fes clic per a desactivar',
+            'click_to_enable' => 'Fes clic per a desactivar',
+            'enabled' => 'Habilitat',
+            'disabled' => 'Deshabilitat',
+            'image_store' => 'Establir imatge',
+            'image_update' => 'Reemplaçar imatge',
         ],
     ],
     'store' => [
-        'failed' => '',
-        'ok' => '',
+        'failed' => 'S\'ha produït un error en crear la portada: :error',
+        'ok' => 'Portades creades',
     ],
 ];

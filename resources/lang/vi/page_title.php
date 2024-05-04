@@ -112,7 +112,7 @@ return [
             '_' => 'giải đấu',
         ],
         'user_cover_presets_controller' => [
-            '_' => '',
+            '_' => 'ảnh bìa người dùng mặc định',
         ],
         'users_controller' => [
             '_' => 'thông tin người chơi',

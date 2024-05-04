@@ -18,8 +18,8 @@ return [
     'channels' => [
         'confirm_part' => 'Vols amagar aquest canal? Encara rebràs missatges d\'aquest canal.',
         'create' => 'crear un anunci',
-        'join' => '',
-        'none' => '',
+        'join' => 'unir-me al canal',
+        'none' => 'no hi ha canals',
 
         'list' => [
             'title' => [
@@ -64,6 +64,6 @@ return [
     ],
 
     'join_channels' => [
-        'loading' => '',
+        'loading' => 'Carregant la llista de canals...',
     ],
 ];

@@ -97,7 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
-            'inactive' => "",
+            'inactive' => "Akunmu telah tidak digunakan dalam jangka waktu yang lama.",
             'inactive_different_country' => "Akunmu telah lama tidak digunakan.",
         ],
     ],
@@ -171,7 +171,7 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'Akunmu telah di-restrict!',
-        'message' => 'Selama di-restrict, kamu tidak dapat berinteraksi dengan pengguna lain dan skormu hanya akan dapat dilihat oleh dirimu sendiri. Hal ini biasanya terproses secara otomatis dan akan diangkat dalam 24 jam. :link',
+        'message' => 'Selama di-restrict, kamu tidak akan dapat berinteraksi dengan para pengguna lain dan skormu hanya akan dapat dilihat oleh dirimu sendiri. Hal ini biasanya terproses secara otomatis dan akan diangkat dalam 24 jam. :link',
         'message_link' => 'Kunjungi halaman ini untuk informasi lebih lanjut.',
     ],
     'show' => [
@@ -204,13 +204,13 @@ return [
                     'broken_file' => 'Gambar gagal diproses. Periksa keabsahan gambar yang diunggah dan coba lagi.',
                     'button' => 'Unggah gambar',
                     'dropzone' => 'Letakkan di sini untuk mengunggah',
-                    'dropzone_info' => 'Kamu juga dapat meletakkan gambar di sini untuk mengunggah',
+                    'dropzone_info' => 'Kamu juga dapat meletakkan gambarmu di sini untuk mengunggahnya',
                     'size_info' => 'Ukuran gambar sampul yang disarankan adalah 2400x640',
                     'too_large' => 'Berkas yang diunggah terlalu besar.',
                     'unsupported_format' => 'Format tidak didukung.',
 
                     'restriction_info' => [
-                        '_' => 'Layanan unggah tersedia hanya untuk :link',
+                        '_' => 'Pengunggahan gambar sampul hanya tersedia bagi para pemilik :link',
                         'link' => 'osu!supporter',
                     ],
                 ],

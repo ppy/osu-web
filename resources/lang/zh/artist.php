@@ -28,7 +28,7 @@ return [
     ],
 
     'songs' => [
-        '_' => '单曲',
+        '_' => '歌曲',
         'count' => ':count_delimited 首音乐',
         'original' => 'osu! 原创',
         'original_badge' => '原创',

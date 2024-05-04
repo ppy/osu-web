@@ -4,8 +4,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'deleted' => '',
-    'deleted_by' => '',
+    'deleted' => 'жойылған',
+    'deleted_by' => ':user :timeago жойды',
     'deleted_by_system' => '',
     'deleted_count' => '',
     'edited' => '',
@@ -26,20 +26,20 @@ return [
     'editor' => [
         'textarea_hint' => [
             '_' => '',
-            'edit' => '',
+            'edit' => 'сақтау',
             'new' => '',
-            'reply' => '',
+            'reply' => 'жауап беру',
         ],
     ],
 
     'guest_button' => [
-        'new' => '',
-        'reply' => '',
+        'new' => 'Пікірлеу үшін аккаунтыңызға кіріңіз',
+        'reply' => 'Жауап беру үшін аккаунтқа кіріңіз',
     ],
 
     'index' => [
         'nav_comments' => '',
-        'nav_title' => '',
+        'nav_title' => 'тізім',
         'no_comments' => '',
     ],
 

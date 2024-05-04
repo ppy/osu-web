@@ -19,8 +19,8 @@ return [
             'new_confirmation' => 'email-ды растаңыз',
             'title' => 'Email',
             'locked' => [
-                '_' => '',
-                'accounts' => '',
+                '_' => 'Поштаны өзгерту үшін :accounts-қа жазыңыз.',
+                'accounts' => 'аккаунтты қолдау тобы',
             ],
         ],
 

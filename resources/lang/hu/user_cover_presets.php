@@ -5,33 +5,33 @@
 
 return [
     'index' => [
-        'batch_disable' => '',
-        'batch_enable' => '',
+        'batch_disable' => 'Kijelöltek letiltása',
+        'batch_enable' => 'Kijelöltek engedélyezése',
 
         'batch_confirm' => [
-            '_' => '',
-            'disable' => '',
-            'enable' => '',
-            'items' => '',
+            '_' => ':items :action?',
+            'disable' => 'Letiltás',
+            'enable' => 'Engedélyezés',
+            'items' => ':count_delimited borító|:count_delimited borító',
         ],
 
         'create_form' => [
-            'files' => '',
-            'submit' => '',
-            'title' => '',
+            'files' => 'Fájlok',
+            'submit' => 'Mentés',
+            'title' => 'Új hozzáadása',
         ],
 
         'item' => [
-            'click_to_disable' => '',
-            'click_to_enable' => '',
-            'enabled' => '',
-            'disabled' => '',
-            'image_store' => '',
-            'image_update' => '',
+            'click_to_disable' => 'Kattints ide a kikapcsoláshoz',
+            'click_to_enable' => 'Kattintson az engedélyezésért',
+            'enabled' => 'Engedélyezve',
+            'disabled' => 'Letiltás',
+            'image_store' => 'Kép beállítása',
+            'image_update' => 'Kép cseréje',
         ],
     ],
     'store' => [
-        'failed' => '',
-        'ok' => '',
+        'failed' => 'A(z) :error hiba történt borító létrehozásakor.',
+        'ok' => 'Borító létrehozva',
     ],
 ];

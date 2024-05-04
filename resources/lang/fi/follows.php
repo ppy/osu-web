@@ -28,7 +28,7 @@ return [
         'followers' => 'kartoittajatilaajat',
         'page_title' => 'seuratut kartoittajat',
         'title' => 'kartoittajat',
-        'to_0' => 'älä ilmoita minulle, kun tämä käyttäjä lataa uuden rytmikartan',
+        'to_0' => 'lopeta ilmoitusten lähettäminen minulle, kun tämä käyttäjä lataa uuden rytmikartan',
         'to_1' => 'ilmoita minulle, kun tämä käyttäjä lataa uuden rytmikartan',
     ],
 

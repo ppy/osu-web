@@ -72,8 +72,8 @@ return [
         ],
 
         'post' => [
-            'beatmapset_post_no_delete' => 'Rytmikartan kuvailutietoviestiä ei voida poistaa.',
-            'beatmapset_post_no_edit' => 'Rytmikartan kuvailutietoviestiä ei voida muokata.',
+            'beatmapset_post_no_delete' => 'Rytmikartan kuvailutietoviestin poistaminen ei ole sallittua.',
+            'beatmapset_post_no_edit' => 'Rytmikartan kuvailutietoviesin muokkaaminen ei ole sallittua.',
             'first_post_no_delete' => 'Aloitusviestiä ei voi poistaa',
             'missing_topic' => 'Viestissä puuttuu aihe',
             'only_quote' => 'Sinun vastauksesi sisältää ainoastaan lainauksen.',

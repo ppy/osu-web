@@ -39,7 +39,7 @@ return [
         'pin' => 'anclar',
         'post' => 'Publicar',
         'read_more' => 'leer más',
-        'refresh' => '',
+        'refresh' => 'Actualizar',
         'reply' => 'Responder',
         'reply_reopen' => 'Responder y reabrir',
         'reply_resolve' => 'Responder y resolver',

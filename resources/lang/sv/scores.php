@@ -25,7 +25,6 @@ return [
 
     'status' => [
         'non_best' => 'Endast personbästa resultat ger pp',
-        'non_passing' => 'Endast godkända resultat ger pp',
         'no_pp' => 'pp tilldelas inte för detta resultat',
         'processing' => 'Detta resultat räknas ännu ut och kommer snart att visas',
         'no_rank' => 'Detta resultat har ingen rank eftersom den är orankad eller markerad för borttagning',

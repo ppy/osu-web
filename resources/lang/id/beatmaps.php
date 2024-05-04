@@ -150,10 +150,10 @@ return [
         ],
 
         'status-messages' => [
-            'approved' => 'Beatmap ini telah di-approve pada :date!',
+            'approved' => 'Beatmap ini telah di-approve pada tanggal :date!',
             'graveyard' => "Beatmap ini belum diperbarui sejak :date dan sepertinya telah diabaikan oleh pembuatnya...",
-            'loved' => 'Beatmap ini telah ditambahkan pada kategori Loved pada :date!',
-            'ranked' => 'Beatmap ini telah di-rank pada :date!',
+            'loved' => 'Beatmap ini telah ditambahkan pada kategori Loved pada tanggal :date!',
+            'ranked' => 'Beatmap ini telah di-rank pada tanggal :date!',
             'wip' => 'Catatan: Beatmap ini ditandai dengan status dalam pengerjaan (work-in-progress) oleh pembuatnya.',
         ],
 
@@ -178,7 +178,7 @@ return [
         'new_time' => "Kamu akan memperoleh lebih banyak hype :new_time.",
         'remaining' => 'Kamu memiliki :remaining hype tersisa.',
         'required_text' => 'Hype: :current/:required',
-        'section_title' => 'Hype Train',
+        'section_title' => 'Perolehan Hype',
         'title' => 'Hype',
     ],
 
@@ -212,10 +212,10 @@ return [
         'unresolved_issues' => 'Terdapat satu atau lebih masalah yang belum terjawab dan harus ditangani terlebih dahulu.',
 
         'rank_estimate' => [
-            '_' => 'Map ini akan berstatus Ranked pada :date apabila tidak terdapat masalah baru yang ditemukan. Map ini berada pada urutan ke-:position dalam :queue yang ada.',
+            '_' => 'Map ini akan berstatus Ranked :date apabila tidak terdapat masalah baru yang ditemukan. Map ini berada pada urutan ke-:position dalam :queue yang ada.',
             'unresolved_problems' => 'Beatmap ini sedang diblokir untuk dapat melewati kategori Qualified hingga :problems terselesaikan.',
             'problems' => 'masalah berikut',
-            'on' => 'pada :date',
+            'on' => 'pada tanggal :date',
             'queue' => 'antrian ranking',
             'soon' => 'segera',
         ],

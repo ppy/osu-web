@@ -46,8 +46,8 @@ return [
             '_' => 'pesquisa de faixas',
 
             'exclusive_only' => [
-                'all' => '',
-                'exclusive_only' => '',
+                'all' => 'Todos',
+                'exclusive_only' => 'original do osu!',
             ],
 
             'form' => [
@@ -57,7 +57,7 @@ return [
                 'bpm_gte' => 'BPM mínimos',
                 'bpm_lte' => 'BPM máximos',
                 'empty' => 'Não foram encontradas faixas que correspondessem aos critérios de pesquisa.',
-                'exclusive_only' => '',
+                'exclusive_only' => 'Típo',
                 'genre' => 'Género',
                 'genre_all' => 'Todas',
                 'length_gte' => 'Duração mínima',

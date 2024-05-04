@@ -10,16 +10,16 @@ return [
     ],
 
     'index' => [
-        'nav_title' => '',
+        'nav_title' => 'тізім',
     ],
 
     'judge' => [
         'hide_judged' => '',
-        'nav_title' => '',
+        'nav_title' => 'төреші',
         'no_current_vote' => '',
-        'update' => '',
+        'update' => 'жаңарту',
         'validation' => [
-            'missing_score' => '',
+            'missing_score' => 'ұпай жоқ',
             'contest_vote_judged' => '',
         ],
         'voted' => '',
@@ -28,14 +28,14 @@ return [
     'judge_results' => [
         '_' => '',
         'creator' => '',
-        'score' => '',
+        'score' => 'Ұпай',
         'total_score' => '',
     ],
 
     'voting' => [
         'judge_link' => '',
         'judged_notice' => '',
-        'login_required' => '',
+        'login_required' => 'Дауыс беру үшін аккаунтыңызға кіріңіз.',
         'over' => '',
         'show_voted_only' => '',
 
@@ -44,13 +44,13 @@ return [
         ],
 
         'button' => [
-            'add' => '',
-            'remove' => '',
-            'used_up' => '',
+            'add' => 'Дауыс беру',
+            'remove' => 'Дауыс бермеу',
+            'used_up' => 'Сіздің барлық даусыңыз қолданылған',
         ],
 
         'progress' => [
-            '_' => '',
+            '_' => ':used / :max дауыс берілген',
         ],
 
         'requirement' => [
@@ -61,46 +61,46 @@ return [
     ],
 
     'entry' => [
-        '_' => '',
-        'login_required' => '',
+        '_' => 'өтінім',
+        'login_required' => 'Жарыста қатысу үшін аккаунтыңызға кіріңіз.',
         'silenced_or_restricted' => '',
-        'preparation' => '',
-        'drop_here' => '',
-        'download' => '',
+        'preparation' => 'Осы жарыс дайындық үстінде. Күтуіңізді сұраймыз!',
+        'drop_here' => 'Өтініміңізді осы жерге тастаңыз',
+        'download' => '.osz жүктеу',
 
         'wrong_type' => [
-            'art' => '',
-            'beatmap' => '',
-            'music' => '',
+            'art' => 'Осы жарысқа тек .jpg және .png файлдары қабылданады.',
+            'beatmap' => 'Осы жарысқа тек .osu файлдары қабылданады.',
+            'music' => 'Осы жарысқа тек .mp3 файлдары қабылданады.',
         ],
 
-        'wrong_dimensions' => '',
-        'too_big' => '',
+        'wrong_dimensions' => 'Файлдың өлшемдері :widthx:height болуы керек',
+        'too_big' => 'Файлдардың саны :limit-дейін болуы керек.',
     ],
 
     'beatmaps' => [
-        'download' => '',
+        'download' => 'Өтінімді Жүктеу',
     ],
 
     'vote' => [
-        'list' => '',
-        'count' => '',
-        'points' => '',
+        'list' => 'дауыс',
+        'count' => ':count_delimited дауыс|:count_delimited дауыс',
+        'points' => ':count_delimited ұпай|:count_delimited ұпай',
     ],
 
     'dates' => [
-        'ended' => '',
-        'ended_no_date' => '',
+        'ended' => 'Аяқталған уақыты :date',
+        'ended_no_date' => 'Аяқталған уақыты',
 
         'starts' => [
-            '_' => '',
+            '_' => 'Басталу уақыты :date',
             'soon' => '',
         ],
     ],
 
     'states' => [
-        'entry' => '',
-        'voting' => '',
-        'results' => '',
+        'entry' => 'Өтінімдерді қабылдау ашық',
+        'voting' => 'Дауыс беру басталды',
+        'results' => 'Нәтиже шықты',
     ],
 ];

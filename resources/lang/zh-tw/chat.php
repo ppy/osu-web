@@ -18,8 +18,8 @@ return [
     'channels' => [
         'confirm_part' => '您是否要隱藏本頻道？您仍然會收到這個頻道的訊息。',
         'create' => '建立公告',
-        'join' => '',
-        'none' => '',
+        'join' => '加入頻道',
+        'none' => '沒有頻道',
 
         'list' => [
             'title' => [
@@ -64,6 +64,6 @@ return [
     ],
 
     'join_channels' => [
-        'loading' => '',
+        'loading' => '正在載入頻道列表...',
     ],
 ];

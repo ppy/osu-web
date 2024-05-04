@@ -299,7 +299,7 @@ return [
     ],
     'genre' => [
         'any' => '全部',
-        'unspecified' => '尚未指定',
+        'unspecified' => '不限',
         'video-game' => '电子游戏',
         'anime' => '动漫',
         'rock' => '摇滚',
@@ -328,7 +328,7 @@ return [
         'polish' => '波兰语',
         'instrumental' => '器乐',
         'other' => '其他',
-        'unspecified' => '尚未指定',
+        'unspecified' => '不限',
     ],
 
     'nsfw' => [

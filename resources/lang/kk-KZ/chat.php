@@ -7,7 +7,7 @@ return [
     'loading_users' => '',
     'talking_in' => '',
     'talking_with' => '',
-    'title_compact' => '',
+    'title_compact' => 'чат',
     'unread_messages' => '',
 
     'cannot_send' => [
@@ -26,7 +26,7 @@ return [
                 'ANNOUNCE' => '',
                 'GROUP' => '',
                 'PM' => '',
-                'PUBLIC' => '',
+                'PUBLIC' => 'Арна',
             ],
         ],
     ],
@@ -50,11 +50,11 @@ return [
     ],
 
     'input' => [
-        'create' => '',
+        'create' => 'Жасау',
         'disabled' => '',
         'disconnected' => '',
         'placeholder' => '',
-        'send' => '',
+        'send' => 'Жіберу',
     ],
 
     'no-conversations' => [
@@ -64,6 +64,6 @@ return [
     ],
 
     'join_channels' => [
-        'loading' => '',
+        'loading' => 'Арналар тізімі жүктелуде...',
     ],
 ];
