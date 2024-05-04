@@ -121,7 +121,7 @@
                         <div class="account-edit-entry__rules">
                             {!! osu_trans('accounts.edit.avatar.rules', [
                                 'link' => link_to(
-                                    wiki_url('Rules'),
+                                    wiki_url('Rules/Visual_content_considerations'),
                                     osu_trans('accounts.edit.avatar.rules_link')
                                 )
                             ]) !!}
