@@ -7,32 +7,32 @@ return [
     'generic' => '',
 
     'build' => [
-        'title' => '',
+        'title' => ':version-де өзгерістер',
     ],
 
     'builds' => [
-        'users_online' => '',
+        'users_online' => ':count_delimited ойыншы онлайн',
     ],
 
     'entry' => [
-        'by' => '',
+        'by' => ':user жасады',
     ],
 
     'index' => [
         'page_title' => [
-            '_' => '',
-            '_from' => '',
-            '_from_to' => '',
-            '_stream' => '',
-            '_stream_from' => '',
-            '_stream_from_to' => '',
-            '_stream_to' => '',
-            '_to' => '',
+            '_' => 'өзгертулер тізімі',
+            '_from' => ':from кейін өзгертулер',
+            '_from_to' => ':from және :to аралығында өзгертулер',
+            '_stream' => ':stream-де өзгертулер',
+            '_stream_from' => ':from кейін :stream-да өзгерістер',
+            '_stream_from_to' => ':from және :to аралығында :stream-да өзгерістер',
+            '_stream_to' => ':to дейін :stream-да өзгерістер',
+            '_to' => ':to дейін өзгерістер',
         ],
     ],
 
     'support' => [
-        'heading' => '',
+        'heading' => 'Жаңарту ұнады ма?',
         'text_1' => '',
         'text_1_link' => '',
         'text_2' => '',

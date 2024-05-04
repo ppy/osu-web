@@ -111,7 +111,7 @@ return [
             '_' => 'турнири',
         ],
         'user_cover_presets_controller' => [
-            '_' => '',
+            '_' => 'предстройки на корицата',
         ],
         'users_controller' => [
             '_' => 'инфо за играч',

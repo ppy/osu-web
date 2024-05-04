@@ -7,7 +7,7 @@ return [
     'deleted' => '[törölt felhasználó]',
 
     'beatmapset_activities' => [
-        'title' => ":user modolási történelme",
+        'title' => ":user Modolási Előzményei",
         'title_compact' => 'Modolás',
 
         'discussions' => [

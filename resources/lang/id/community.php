@@ -24,7 +24,7 @@ return [
             ],
             'featured-artists' => [
                 'title' => 'Featured Artist',
-                'description' => 'Berkat dukunganmu, kami dapat melisensi berbagai lagu karya para musisi berbakat untuk dapat dipergunakan secara legal di dalam lingkungan osu!.',
+                'description' => 'Berkat dukunganmu, kami dapat menghubungi lebih banyak musisi berbakat dan melisensi lebih banyak lagu untuk digunakan di osu!.',
                 'link_text' => 'Lihat daftar Featured Artist saat ini &raquo;',
             ],
             'ads' => [
@@ -32,13 +32,13 @@ return [
                 'description' => 'Kontribusimu membantu osu! untuk tetap mandiri dan sepenuhnya terbebas dari iklan maupun sponsor.',
             ],
             'tournaments' => [
-                'title' => 'Pendanaan Turnamen',
+                'title' => 'Pendanaan Turnamen Resmi',
                 'description' => 'Dukungan yang kamu berikan akan digunakan untuk memenuhi biaya operasional (serta menambah pundi-pundi hadiah) turnamen World Cup resmi yang kami selenggarakan.',
                 'link_text' => 'Jelajahi rangkaian turnamen resmi kami &raquo;',
             ],
             'bounty-program' => [
                 'title' => 'Program Open Source Bounty',
-                'description' => 'Sebagian dari dana yang kamu salurkan juga akan disumbangkan kepada para kontributor yang telah menyisihkan waktu dan upaya mereka untuk membuat osu! menjadi lebih istimewa.',
+                'description' => 'Sebagian dari dana ini juga akan disalurkan kepada para kontributor komunitas yang telah menyisihkan waktu dan upaya mereka untuk membuat osu! menjadi lebih istimewa.',
                 'link_text' => 'Cari tahu lebih lanjut seputar program Open Source Bounty &raquo;',
             ],
         ],
@@ -46,12 +46,12 @@ return [
             'title' => 'Menarik! Keuntungan apa saja yang akan saya dapatkan?',
             'osu_direct' => [
                 'title' => 'osu!direct',
-                'description' => 'Telusuri beatmap yang kamu kehendaki secara cepat dan mudah tanpa harus meninggalkan permainan.',
+                'description' => 'Telusuri dan unduh berbagai beatmap secara cepat dan mudah tanpa harus meninggalkan permainan.',
             ],
 
             'friend_ranking' => [
                 'title' => 'Papan Peringkat Teman',
-                'description' => "Bandingkan skor yang kamu peroleh dengan skor teman-temanmu baik di dalam permainan maupun di situs web.",
+                'description' => "Bandingkan skor yang kamu peroleh dengan skor teman-temanmu baik di dalam permainan maupun pada situs web.",
             ],
 
             'country_ranking' => [
@@ -75,8 +75,8 @@ return [
             ],
 
             'early_access' => [
-                'title' => 'Akses Pra-Rilis',
-                'description' => 'Dapatkan akses ke versi osu! terbaru lebih awal, di mana kamu dapat mencoba berbagai fitur yang bahkan belum kami rilis secara luas!',
+                'title' => 'Akses Dini',
+                'description' => 'Dapatkan akses dini ke versi rilisan terkini dengan berbagai fitur baru yang belum dirilis secara publik!<br/><br/>Hal ini juga meliputi akses dini ke berbagai fitur baru pada situs web kami!',
             ],
 
             'customisation' => [
@@ -91,7 +91,7 @@ return [
 
             'yellow_fellow' => [
                 'title' => 'Pesona Kuning Cemerlang',
-                'description' => 'Buat dirimu lebih tersorot dengan nama pengguna yang berwarna kuning cerah di dalam chat.',
+                'description' => 'Buat dirimu lebih tersorot dengan nama pengguna yang berwarna kuning merona di dalam kolom chat.',
             ],
 
             'speedy_downloads' => [
@@ -138,10 +138,10 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution' => 'Terima kasih atas dukunganmu! Kamu telah membeli :tags tag supporter dengan total kontribusi senilai :dollars!',
-            'gifted' => "Dari jumlah tersebut, kamu telah menghadiahkan :giftedTags di antaranya (:giftedDollars) kepada para pemain lainnya. Terima kasih atas kemurahan hatimu!",
+            'contribution' => 'Terima kasih atas dukunganmu sejauh ini! Kamu telah berkontribusi senilai :dollars melalui pembelian :tags tag supporter!',
+            'gifted' => "Dari jumlah tersebut, kamu telah menghadiahkan :giftedTags tag di antaranya (:giftedDollars) kepada para pemain lainnya. Terima kasih atas kemurahan hatimu!",
             'not_yet' => "Kamu belum pernah memiliki supporter tag :(",
-            'valid_until' => 'Tag supporter yang kamu miliki saat ini berlaku hingga :date!',
+            'valid_until' => 'Tag supporter yang kamu miliki saat ini berlaku hingga tanggal :date!',
             'was_valid_until' => 'Masa berlaku tag supporter milikmu telah berakhir pada :date.',
         ],
     ],

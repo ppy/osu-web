@@ -36,7 +36,7 @@ return [
         'comment_text' => '',
         'blocked_count' => '',
         'hide_profile' => '',
-        'hide_comment' => '',
+        'hide_comment' => 'жасыру',
         'forum_post_text' => '',
         'not_blocked' => '',
         'show_profile' => '',
@@ -61,7 +61,7 @@ return [
             'submit' => '',
             'user_email' => '',
             'user_email_confirmation' => '',
-            'username' => '',
+            'username' => 'пайдаланушы аты',
 
             'tos_notice' => [
                 '_' => '',
@@ -103,20 +103,20 @@ return [
     ],
 
     'login' => [
-        '_' => '',
-        'button' => '',
-        'button_posting' => '',
+        '_' => 'Кіру',
+        'button' => 'Кіру',
+        'button_posting' => 'Кіруде...',
         'email_login_disabled' => '',
         'failed' => '',
         'forgot' => '',
-        'info' => '',
+        'info' => 'Жалғастыру үшін аккаунтыңызға кіріңіз',
         'invalid_captcha' => '',
         'locked_ip' => '',
-        'password' => '',
+        'password' => 'Құпиясөз',
         'register' => "",
         'remember' => '',
-        'title' => '',
-        'username' => '',
+        'title' => 'Жалғастыру үшін аккаунтыңызға кіріңіз',
+        'username' => 'Пайдаланушы аты',
 
         'beta' => [
             'main' => '',
@@ -140,10 +140,10 @@ return [
     ],
 
     'anonymous' => [
-        'login_link' => '',
-        'login_text' => '',
-        'username' => '',
-        'error' => '',
+        'login_link' => 'аккаунтқа кіру үшін басыңыз',
+        'login_text' => 'кіру',
+        'username' => 'Қонақ',
+        'error' => 'Жалғастыру үшін аккаунтыңызға кіріңіз.',
     ],
     'logout_confirm' => '',
     'report' => [
@@ -178,11 +178,11 @@ return [
         'age' => '',
         'change_avatar' => '',
         'first_members' => '',
-        'is_developer' => '',
-        'is_supporter' => '',
+        'is_developer' => 'osu!developer',
+        'is_supporter' => 'osu!supporter',
         'joined_at' => '',
         'lastvisit' => '',
-        'lastvisit_online' => '',
+        'lastvisit_online' => 'Қазір онлайн',
         'missingtext' => '',
         'origin_country' => '',
         'previous_usernames' => '',
@@ -272,7 +272,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => '',
-                    'count_label' => '',
+                    'count_label' => 'Ойындар',
                 ],
                 'most_played' => [
                     'count' => '',
@@ -289,11 +289,11 @@ return [
             ],
             'kudosu' => [
                 'recent_entries' => '',
-                'title' => '',
+                'title' => 'Kudosu!',
                 'total' => '',
 
                 'entry' => [
-                    'amount' => '',
+                    'amount' => ':amount кудосу',
                     'empty' => "",
 
                     'beatmap_discussion' => [
@@ -337,7 +337,7 @@ return [
                 ],
             ],
             'me' => [
-                'title' => '',
+                'title' => 'мен!',
             ],
             'medals' => [
                 'empty' => "",
@@ -366,15 +366,15 @@ return [
                 'title' => '',
 
                 'best' => [
-                    'title' => '',
+                    'title' => 'Үздік Өнімділік',
                 ],
                 'first' => [
                     'title' => '',
                 ],
                 'pin' => [
-                    'to_0' => '',
+                    'to_0' => 'Шешу',
                     'to_0_done' => '',
-                    'to_1' => '',
+                    'to_1' => 'Бекіту',
                     'to_1_done' => '',
                 ],
                 'pinned' => [
@@ -384,9 +384,9 @@ return [
             'votes' => [
                 'given' => '',
                 'received' => '',
-                'title' => '',
-                'title_longer' => '',
-                'vote_count' => '',
+                'title' => 'Дауыс',
+                'title_longer' => 'Соңғы дауыстар',
+                'vote_count' => ':count_delimited дауыс',
             ],
             'account_standing' => [
                 'title' => '',
@@ -396,11 +396,11 @@ return [
                 'recent_infringements' => [
                     'title' => '',
                     'date' => '',
-                    'action' => '',
-                    'length' => '',
-                    'length_indefinite' => '',
+                    'action' => 'әрекет',
+                    'length' => 'ұзақтығы',
+                    'length_indefinite' => 'Мерзімсіз',
                     'description' => '',
-                    'actor' => '',
+                    'actor' => ':username жасады',
 
                     'actions' => [
                         'restriction' => '',
@@ -414,7 +414,7 @@ return [
 
         'info' => [
             'discord' => '',
-            'interests' => '',
+            'interests' => 'Қызығушылықтары',
             'location' => '',
             'occupation' => '',
             'twitter' => '',
@@ -425,12 +425,12 @@ return [
             'reason_2' => '',
             'reason_3' => '',
             'reason_header' => '',
-            'title' => '',
+            'title' => 'Ойыншы табылмады! ;_;',
         ],
         'page' => [
             'button' => '',
             'description' => '',
-            'edit_big' => '',
+            'edit_big' => 'Мені өзгерт!',
             'placeholder' => '',
 
             'restriction_info' => [
@@ -476,9 +476,9 @@ return [
     ],
 
     'status' => [
-        'all' => '',
-        'online' => '',
-        'offline' => '',
+        'all' => 'Бәрі',
+        'online' => 'Онлайн',
+        'offline' => 'Офлайн',
     ],
     'store' => [
         'from_client' => '',

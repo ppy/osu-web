@@ -46,8 +46,8 @@ return [
             '_' => 'пошук треків',
 
             'exclusive_only' => [
-                'all' => '',
-                'exclusive_only' => '',
+                'all' => 'Всі',
+                'exclusive_only' => 'ексклюзив для osu!',
             ],
 
             'form' => [
@@ -57,7 +57,7 @@ return [
                 'bpm_gte' => 'Мінімальний BPM',
                 'bpm_lte' => 'Максимальний BPM',
                 'empty' => 'Не знайдено жодного треку, що відповідає критеріям пошуку.',
-                'exclusive_only' => '',
+                'exclusive_only' => 'Тип',
                 'genre' => 'Жанр ',
                 'genre_all' => 'Всі ',
                 'length_gte' => 'Мінімальна Тривалість',

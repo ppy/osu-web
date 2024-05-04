@@ -9,24 +9,24 @@ return [
         'batch_enable' => '',
 
         'batch_confirm' => [
-            '_' => '',
-            'disable' => '',
-            'enable' => '',
-            'items' => '',
+            '_' => ':action :items?',
+            'disable' => 'Disabilitare',
+            'enable' => 'Abilitare',
+            'items' => ':count_delimited cover',
         ],
 
         'create_form' => [
-            'files' => '',
-            'submit' => '',
-            'title' => '',
+            'files' => 'File',
+            'submit' => 'Salva',
+            'title' => 'Aggiungi Nuova',
         ],
 
         'item' => [
-            'click_to_disable' => '',
-            'click_to_enable' => '',
-            'enabled' => '',
-            'disabled' => '',
-            'image_store' => '',
+            'click_to_disable' => 'Clicca per disabilitare',
+            'click_to_enable' => 'Clicca per abilitare',
+            'enabled' => 'Abilitato',
+            'disabled' => 'Disabilitato',
+            'image_store' => 'Imposta Immagine',
             'image_update' => '',
         ],
     ],

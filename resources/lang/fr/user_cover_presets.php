@@ -12,12 +12,12 @@ return [
             '_' => ':action :items ?',
             'disable' => 'Désactiver',
             'enable' => 'Activer',
-            'items' => ':count_delimited couverture|:count_delimited couvertures',
+            'items' => ':count_delimited bannière|:count_delimited bannières',
         ],
 
         'create_form' => [
             'files' => 'Fichiers',
-            'submit' => 'Sauvegarder',
+            'submit' => 'Enregistrer',
             'title' => 'Ajouter une bannière',
         ],
 

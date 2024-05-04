@@ -12,7 +12,7 @@ return [
             '_' => ':action :items?',
             'disable' => 'Tắt',
             'enable' => 'Bật',
-            'items' => '',
+            'items' => ':count_delimited biểu ngữ|:count_delimited biểu ngữ',
         ],
 
         'create_form' => [
@@ -31,7 +31,7 @@ return [
         ],
     ],
     'store' => [
-        'failed' => '',
-        'ok' => '',
+        'failed' => 'Lỗi xảy ra khi tạo biểu ngữ: :error',
+        'ok' => 'Đã tạo biểu ngữ',
     ],
 ];

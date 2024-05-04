@@ -5,11 +5,11 @@
 
 return [
     'index' => [
-        'description' => 'Seuraat näiden beatmappien keskusteluja. Sinulle huomautetaan uusista viesteistä ja päivityksistä.',
+        'description' => 'Seuraat näiden rytmikarttojen keskusteluja. Sinulle huomautetaan uusista viesteistä ja päivityksistä.',
         'title_compact' => 'rytmikarttojen keskustelujen seurantalista',
 
         'counts' => [
-            'total' => 'Rytmikarttoja seurattu',
+            'total' => 'Seurattuja rytmikarttoja',
             'unread' => 'Rytmikarttoja, joissa on uusia tapahtumia',
         ],
 

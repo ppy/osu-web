@@ -185,11 +185,11 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title_compact' => 'seuratut foorumiaiheet',
+            'title_compact' => 'foorumiaiheiden seurantalista',
 
             'box' => [
                 'total' => 'Seurattuja aiheita',
-                'unread' => 'Aiheita joissa uusia vastauksia',
+                'unread' => 'Aiheita, joissa on uusia vastauksia',
             ],
 
             'info' => [
