@@ -22,7 +22,7 @@ return [
             'missing_score' => 'pontuação faltando',
             'contest_vote_judged' => '',
         ],
-        'voted' => '',
+        'voted' => 'Você já enviou um voto nesta entrada.',
     ],
 
     'judge_results' => [
@@ -33,8 +33,8 @@ return [
     ],
 
     'voting' => [
-        'judge_link' => '',
-        'judged_notice' => '',
+        'judge_link' => 'Você é um juiz deste concurso. Avalie as entradas aqui!',
+        'judged_notice' => 'Este concurso está utilizando o sistema de julgamento, os juízes estão atualmente avaliando as entradas.',
         'login_required' => 'Por favor, conecte-se para votar.',
         'over' => 'A votação deste concurso já foi encerrada',
         'show_voted_only' => 'Mostrar votados',

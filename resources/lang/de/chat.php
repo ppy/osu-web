@@ -18,8 +18,8 @@ return [
     'channels' => [
         'confirm_part' => 'Möchtest du diesen Channel ausblenden? Du erhältst weiterhin Nachrichten aus diesem Channel.',
         'create' => 'Ankündigung erstellen',
-        'join' => '',
-        'none' => '',
+        'join' => 'Kanal beitreten',
+        'none' => 'Kein Kanal',
 
         'list' => [
             'title' => [
@@ -64,6 +64,6 @@ return [
     ],
 
     'join_channels' => [
-        'loading' => '',
+        'loading' => 'Kanäle werden geladen...',
     ],
 ];

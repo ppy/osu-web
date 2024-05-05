@@ -8,6 +8,8 @@ namespace App\Models;
 /**
  * @property string $match
  * @property string $replacement
+ * @property bool $block
+ * @property bool $whitespace_delimited
  */
 class ChatFilter extends Model
 {

@@ -352,7 +352,7 @@ return [
                 'vote' => 'Voter',
 
                 'button' => [
-                    'change_vote' => 'Changer le vote',
+                    'change_vote' => 'Changer de vote',
                     'edit' => 'Modifier le sondage',
                     'view_results' => 'Voir les résultats',
                     'vote' => 'Voter',

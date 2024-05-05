@@ -46,8 +46,8 @@ return [
             '_' => 'търсене на песен',
 
             'exclusive_only' => [
-                'all' => '',
-                'exclusive_only' => '',
+                'all' => 'Всички',
+                'exclusive_only' => 'osu! original',
             ],
 
             'form' => [
@@ -57,7 +57,7 @@ return [
                 'bpm_gte' => 'Минимален BPM',
                 'bpm_lte' => 'Максимален BPM',
                 'empty' => 'Не са намерени резултати по критерия за търсене.',
-                'exclusive_only' => '',
+                'exclusive_only' => 'Вид',
                 'genre' => 'Жанр',
                 'genre_all' => 'Всеки',
                 'length_gte' => 'Минимална продължителност',

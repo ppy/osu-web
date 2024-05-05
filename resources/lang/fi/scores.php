@@ -9,7 +9,7 @@ return [
         'title' => ':username\'n tulos: :title [:version]',
 
         'beatmap' => [
-            'by' => 'esittäjä :artist',
+            'by' => 'artisti: :artist',
         ],
 
         'player' => [
@@ -25,7 +25,6 @@ return [
 
     'status' => [
         'non_best' => 'Vain parhaat henkilökohtaiset suoritukset myöntävät pp:tä',
-        'non_passing' => 'Vain loppuun asti päässeet suoritukset myöntävät pp:tä',
         'no_pp' => 'pp:tä ei myönnetä tälle suoritukselle',
         'processing' => 'Pisteitä lasketaan ja ne näytetään pian',
         'no_rank' => 'Tällä suorituksella ei ole sijoitusta, koska se ei ole rankattu tai se on merkitty poistettavaksi',

@@ -39,7 +39,7 @@ return [
             'bounty-program' => [
                 'title' => 'Open-Source-Prämien-Programm',
                 'description' => 'Unterstütze Mitwirkende der Community, die ihre Zeit und Mühe investiert haben, um osu! besser zu machen.',
-                'link_text' => 'Finde mehr heraus &raquo;',
+                'link_text' => 'Erfahre mehr &raquo;',
             ],
         ],
         'perks' => [

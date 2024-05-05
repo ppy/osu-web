@@ -5,33 +5,33 @@
 
 return [
     'index' => [
-        'batch_disable' => '',
-        'batch_enable' => '',
+        'batch_disable' => 'Désactiver les éléments sélectionnés',
+        'batch_enable' => 'Activer les éléments sélectionnés',
 
         'batch_confirm' => [
-            '_' => '',
-            'disable' => '',
-            'enable' => '',
-            'items' => '',
+            '_' => ':action :items ?',
+            'disable' => 'Désactiver',
+            'enable' => 'Activer',
+            'items' => ':count_delimited bannière|:count_delimited bannières',
         ],
 
         'create_form' => [
-            'files' => '',
-            'submit' => '',
-            'title' => '',
+            'files' => 'Fichiers',
+            'submit' => 'Enregistrer',
+            'title' => 'Ajouter une bannière',
         ],
 
         'item' => [
-            'click_to_disable' => '',
-            'click_to_enable' => '',
-            'enabled' => '',
-            'disabled' => '',
-            'image_store' => '',
-            'image_update' => '',
+            'click_to_disable' => 'Cliquez pour désactiver',
+            'click_to_enable' => 'Cliquez pour activer',
+            'enabled' => 'Activé',
+            'disabled' => 'Désactivé',
+            'image_store' => 'Définir l\'image',
+            'image_update' => 'Remplacer l\'image',
         ],
     ],
     'store' => [
-        'failed' => '',
-        'ok' => '',
+        'failed' => 'Une erreur s\'est produite lors de la création de la bannière : :error',
+        'ok' => 'Bannières créées',
     ],
 ];

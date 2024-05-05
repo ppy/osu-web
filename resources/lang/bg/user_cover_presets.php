@@ -5,33 +5,33 @@
 
 return [
     'index' => [
-        'batch_disable' => '',
-        'batch_enable' => '',
+        'batch_disable' => 'Изключи избраните',
+        'batch_enable' => 'Включи избраните',
 
         'batch_confirm' => [
-            '_' => '',
-            'disable' => '',
-            'enable' => '',
-            'items' => '',
+            '_' => ':action :items?',
+            'disable' => 'Изключи',
+            'enable' => 'Включи',
+            'items' => ':count_delimited корица|:count_delimited корици',
         ],
 
         'create_form' => [
-            'files' => '',
-            'submit' => '',
-            'title' => '',
+            'files' => 'Файлове',
+            'submit' => 'Запази',
+            'title' => 'Добави',
         ],
 
         'item' => [
-            'click_to_disable' => '',
-            'click_to_enable' => '',
-            'enabled' => '',
-            'disabled' => '',
-            'image_store' => '',
-            'image_update' => '',
+            'click_to_disable' => 'Кликнете за изключване',
+            'click_to_enable' => 'Кликнете за включване',
+            'enabled' => 'Включено',
+            'disabled' => 'Изключено',
+            'image_store' => 'Задай изображение',
+            'image_update' => 'Замени изображение',
         ],
     ],
     'store' => [
-        'failed' => '',
-        'ok' => '',
+        'failed' => 'Възникна грешка при създаването на корица: :error',
+        'ok' => 'Корицата е създадена',
     ],
 ];

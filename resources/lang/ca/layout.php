@@ -196,7 +196,7 @@ return [
             'follows' => 'Llistes de seguiment',
             'friends' => 'Amics',
             'legacy_score_only_toggle' => 'Mode lazer',
-            'legacy_score_only_toggle_tooltip' => '',
+            'legacy_score_only_toggle_tooltip' => 'El mode lazer mostra les puntuacions enviades des de lazer amb un nou algoritme de puntuació',
             'logout' => 'Tanca la sessió',
             'profile' => 'El meu perfil',
         ],

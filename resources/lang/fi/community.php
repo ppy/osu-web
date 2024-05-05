@@ -24,7 +24,7 @@ return [
             ],
             'featured-artists' => [
                 'title' => 'Esitellyt artistit',
-                'description' => 'Sinun tuellasi voimme lähestyä vielä lisää mahtavia artisteja ja lisensoida hienoa musiikkia käytettäväksi osu!ssa.',
+                'description' => 'Tuellasi voimme lähestyä mahtavia artisteja vielä enemmän ja lisensoida lisää hienoa musiikkia osu!ssa käytettäväksi',
                 'link_text' => 'Näytä nykyinen lista &raquo;',
             ],
             'ads' => [
@@ -121,11 +121,11 @@ return [
 
             'more_favourites' => [
                 'title' => 'Lisää suosikkeja',
-                'description' => 'Montako rytmikarttaa voit lisätä suosikkeihin nousee: :normally &rarr; :supporter',
+                'description' => 'Voit lisätä enemmän rytmikarttoja suosikkeihin. :normally &rarr; :supporter',
             ],
             'more_friends' => [
                 'title' => 'Lisää kavereita',
-                'description' => 'Montako kaveria sinulla voi olla nousee: :normally &rarr; :supporter',
+                'description' => 'Voit lisätä enemmän kavereita. :normally &rarr; :supporter',
             ],
             'more_beatmaps' => [
                 'title' => 'Lähetä lisää rytmikarttoja',
@@ -138,7 +138,7 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution' => 'Kiitos tuestasi tähän saakka! Olet tukenut kokonaisuudessaan :dollars :tags tukijaostoksella!',
+            'contribution' => 'Kiitos tuestasi tähän asti! Olet tukenut :tags tukijaostoksella yhteensä :dollars arvosta!',
             'gifted' => "Tukijamerkkiostoksistasi :giftedTags on annettu lahjaksi (yhteensä :giftedDollars arvosta), kuinka anteliasta!",
             'not_yet' => "Sinulla ei vielä ole ollut tukijamerkkiä :(",
             'valid_until' => 'Nykyinen tukijamerkkisi on voimassa :date asti!',

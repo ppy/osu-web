@@ -16,7 +16,7 @@ return [
             'recover_link' => '',
             'reissue' => '',
             'reissue_link' => '',
-            'logout_link' => '',
+            'logout_link' => 'шығу',
         ],
     ],
 

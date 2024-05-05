@@ -46,8 +46,8 @@ return [
             '_' => 'tìm nhạc',
 
             'exclusive_only' => [
-                'all' => '',
-                'exclusive_only' => '',
+                'all' => 'Tất cả',
+                'exclusive_only' => 'osu! original',
             ],
 
             'form' => [
@@ -57,7 +57,7 @@ return [
                 'bpm_gte' => 'BPM tối thiểu',
                 'bpm_lte' => 'BPM tối đa',
                 'empty' => 'Không có bài hát nào khớp với bộ lọc tìm kiếm.',
-                'exclusive_only' => '',
+                'exclusive_only' => 'Loại',
                 'genre' => 'Thể loại',
                 'genre_all' => 'Tất cả',
                 'length_gte' => 'Độ dài tối thiểu',

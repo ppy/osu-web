@@ -23,7 +23,7 @@ return [
         'approved' => 'aprobado',
         'loved' => 'estimat',
         'qualified' => 'qualificat',
-        'ranked' => 'clasificado',
+        'ranked' => 'classificat',
     ],
 
     'value' => [

@@ -5,29 +5,29 @@
 
 return [
     'index' => [
-        'batch_disable' => '',
-        'batch_enable' => '',
+        'batch_disable' => 'Zakázat vybrané',
+        'batch_enable' => 'Povolit vybrané',
 
         'batch_confirm' => [
-            '_' => '',
-            'disable' => '',
-            'enable' => '',
+            '_' => ':action :items?',
+            'disable' => 'Zakázat',
+            'enable' => 'Povolit',
             'items' => '',
         ],
 
         'create_form' => [
-            'files' => '',
-            'submit' => '',
-            'title' => '',
+            'files' => 'Soubory',
+            'submit' => 'Uložit',
+            'title' => 'Přidat nové',
         ],
 
         'item' => [
-            'click_to_disable' => '',
-            'click_to_enable' => '',
-            'enabled' => '',
-            'disabled' => '',
-            'image_store' => '',
-            'image_update' => '',
+            'click_to_disable' => 'Kliknutím zakážete',
+            'click_to_enable' => 'Kliknutím povolíte',
+            'enabled' => 'Povoleno',
+            'disabled' => 'Zakázáno',
+            'image_store' => 'Nastavit Obrázek',
+            'image_update' => 'Nahradit Obrázek',
         ],
     ],
     'store' => [

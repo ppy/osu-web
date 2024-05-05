@@ -16,7 +16,7 @@ return [
     'judge' => [
         'hide_judged' => 'piilota arvioidut tuotokset',
         'nav_title' => 'arvioi',
-        'no_current_vote' => 'et ole äänestänyt vielä.',
+        'no_current_vote' => 'et äänestänyt vielä.',
         'update' => 'päivitä',
         'validation' => [
             'missing_score' => 'puuttuva pisteytys',
@@ -29,7 +29,7 @@ return [
         '_' => 'Tuomaroinnin tulokset',
         'creator' => 'tekijä',
         'score' => 'Pisteet',
-        'total_score' => 'kokonaispisteet',
+        'total_score' => 'yhteispisteet',
     ],
 
     'voting' => [
