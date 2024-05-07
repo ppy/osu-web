@@ -354,7 +354,6 @@ class Score extends Model implements Traits\ReportableInterface
 
         $score = new $scoreClass([
             'beatmap_id' => $this->beatmap_id,
-            'beatmapset_id' => $this->beatmap?->beatmapset_id ?? 0,
             'countmiss' => $statistics->miss,
             'date' => $this->ended_at_json,
             'enabled_mods' => app('mods')->idsToBitset(array_column($data->mods, 'acronym')),
