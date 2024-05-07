@@ -352,7 +352,7 @@ class Score extends Model implements Traits\ReportableInterface
             ? LegacyScore\Best\Model::getClass($this->getMode())
             : LegacyScore\Model::getClass($this->getMode());
 
-        // Only attributes available to best model.
+        // Only attributes available to best model (and `pass`).
         $score = new $scoreClass([
             'beatmap_id' => $this->beatmap_id,
             'countmiss' => $statistics->miss,
