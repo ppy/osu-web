@@ -460,7 +460,7 @@ export default class CommentsController {
   @action
   private loadBundle(bundle: CommentBundleJson, append = true, initial = false) {
     if (initial) {
-      // for initial page of CommentsIndex
+      // for initial page of comment index and show
       this.state.commentIdsByParentId[-1] = bundle.comments.map((comment) => comment.id);
     }
 
