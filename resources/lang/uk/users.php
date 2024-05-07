@@ -97,7 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
-            'inactive' => "",
+            'inactive' => "Ваш обліковий запис вже давно не використовується.",
             'inactive_different_country' => "Ваш обліковий запис вже давно не використовується.",
         ],
     ],

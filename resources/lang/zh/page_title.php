@@ -111,7 +111,7 @@ return [
             '_' => '比赛',
         ],
         'user_cover_presets_controller' => [
-            '_' => '',
+            '_' => '用户封面图预设',
         ],
         'users_controller' => [
             '_' => '玩家信息',

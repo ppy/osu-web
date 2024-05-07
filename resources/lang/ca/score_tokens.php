@@ -5,7 +5,7 @@
 
 return [
     'create' => [
-        'beatmap_hash_invalid' => '',
-        'submission_disabled' => '',
+        'beatmap_hash_invalid' => 'beatmap_hash no vàlid o no disponible',
+        'submission_disabled' => 'l\'enviament de puntuacions està desactivada',
     ],
 ];

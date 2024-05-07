@@ -37,7 +37,7 @@ return [
         'username' => 'Adreça electrònica o  nom d\'usuari',
 
         'reason' => [
-            'inactive_different_country' => "",
+            'inactive_different_country' => "Fa molt de temps que el teu compte no s'utilitza. Per garantir la seguretat del teu compte, si us plau, restableix la teva contrasenya.",
         ],
         'support' => [
             '_' => 'Necessites més assistència? Contacta\'ns a través del nostre :button.',

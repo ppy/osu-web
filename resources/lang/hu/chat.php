@@ -18,8 +18,8 @@ return [
     'channels' => [
         'confirm_part' => 'Szeretnéd elrejteni a csatornát? Továbbra is kapni fogsz üzeneteket ebből a csatornáról.',
         'create' => 'közlemény készítése',
-        'join' => '',
-        'none' => '',
+        'join' => 'csatlakozz a csatornához',
+        'none' => 'nincs csatorna',
 
         'list' => [
             'title' => [
@@ -64,6 +64,6 @@ return [
     ],
 
     'join_channels' => [
-        'loading' => '',
+        'loading' => 'Csatornalista betöltése...',
     ],
 ];

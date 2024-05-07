@@ -24,7 +24,7 @@ return [
     ],
 
     'type' => [
-        'charts' => 'kohdevalot',
+        'charts' => 'kohdevalot (vanha)',
         'country' => 'maat',
         'kudosu' => 'kudosu',
         'multiplayer' => 'moninpelit',
@@ -42,7 +42,7 @@ return [
 
     'spotlight' => [
         'end_date' => 'Päättymispäivä',
-        'map_count' => 'Kappalekerrat',
+        'map_count' => 'Karttojen määrä',
         'participants' => 'Osallistujat',
         'start_date' => 'Aloituspäivä',
     ],

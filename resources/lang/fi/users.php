@@ -97,7 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
-            'inactive' => "",
+            'inactive' => "Käyttäjätiliäsi ei ole käytetty pitkään aikaan.",
             'inactive_different_country' => "Käyttäjätiliäsi ei ole käytetty pitkään aikaan.",
         ],
     ],
@@ -171,7 +171,7 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'Tilisi on rajoitettu!',
-        'message' => 'Kun olet rajoitetussa tilassa, et näe muita pelaajia ja tuloksesi ovat näkyvissä vain sinulle. Tämä on yleensä automatisoitu prosessi ja poistuu useimmiten 24 tunnin sisällä. Jos haluat tehdä valituksen <a href="mailto:accounts@ppy.sh">ota yhteyttä tukeen</a>.',
+        'message' => 'Rajoitettuna et voi olla vuorovaikutuksessa muiden pelaajien kanssa ja tuloksesi näkyvät vain itsellesi. Tämä johtuu yleensä automaattisesta prosessista ja poistuu useimmiten 24 tunnin aikana. :link',
         'message_link' => 'Katso tämä sivu saadaksesi lisätietoja.',
     ],
     'show' => [
@@ -180,13 +180,13 @@ return [
         'first_members' => 'Täällä alusta alkaen',
         'is_developer' => 'osu!n kehittäjä',
         'is_supporter' => 'osu!n tukija',
-        'joined_at' => 'Liittyi :date',
+        'joined_at' => 'Liittyi: :date',
         'lastvisit' => 'Nähty viimeksi :date',
         'lastvisit_online' => 'Tällä hetkellä paikalla',
         'missingtext' => 'Taisit tehdä kirjoitusvirheen! (tai käyttäjällä on porttikielto)',
         'origin_country' => 'Maasta :country',
         'previous_usernames' => 'tunnettiin aiemmin nimellä',
-        'plays_with' => 'Pelityylinä :devices',
+        'plays_with' => 'Pelityyli: :devices',
 
         'comments_count' => [
             '_' => 'Julkaissut :link',
@@ -232,7 +232,7 @@ return [
                 'title' => 'Saavutukset',
             ],
             'beatmaps' => [
-                'by_artist' => 'esittäjältä :artist',
+                'by_artist' => 'artisti: :artist',
                 'title' => 'Rytmikartat',
 
                 'favourite' => [
@@ -360,13 +360,13 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Lataa uusinta',
-                'not_ranked' => 'Vain hyväksytyt beatmapit antavat pp:tä.',
+                'not_ranked' => 'Vain rankatut rytmikartat myöntävät pp:tä',
                 'pp_weight' => 'painotettu :percentage',
                 'view_details' => 'Tarkemmat tiedot',
                 'title' => 'Suoritukset',
 
                 'best' => [
-                    'title' => 'Parhaat Suoritukset',
+                    'title' => 'Paras suorituskyky',
                 ],
                 'first' => [
                     'title' => 'Kärkisijat',

@@ -10,24 +10,24 @@ return [
 
         'batch_confirm' => [
             '_' => '',
-            'disable' => '',
-            'enable' => '',
+            'disable' => 'Өшіру',
+            'enable' => 'Қосу',
             'items' => '',
         ],
 
         'create_form' => [
-            'files' => '',
-            'submit' => '',
+            'files' => 'Файлдар',
+            'submit' => 'Сақтау',
             'title' => '',
         ],
 
         'item' => [
-            'click_to_disable' => '',
-            'click_to_enable' => '',
-            'enabled' => '',
-            'disabled' => '',
-            'image_store' => '',
-            'image_update' => '',
+            'click_to_disable' => 'Өшіру үшін басыңыз',
+            'click_to_enable' => 'Қосу үшін басыңыз',
+            'enabled' => 'Қосылған',
+            'disabled' => 'Өшірілген',
+            'image_store' => 'Сүрет таңдау',
+            'image_update' => 'Сүретті алмастыру',
         ],
     ],
     'store' => [

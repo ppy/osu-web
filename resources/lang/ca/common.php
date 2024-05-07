@@ -39,7 +39,7 @@ return [
         'pin' => 'fixar',
         'post' => 'Publica',
         'read_more' => 'llegir més',
-        'refresh' => '',
+        'refresh' => 'Actualitzar',
         'reply' => 'Respondre',
         'reply_reopen' => 'Respondre i reobrir',
         'reply_resolve' => 'Respondre i resoldre',

@@ -25,7 +25,6 @@ return [
 
     'status' => [
         'non_best' => 'Chỉ điểm cá nhân tốt nhất thưởng pp',
-        'non_passing' => 'Chỉ điểm cá nhân tốt nhất thưởng pp',
         'no_pp' => 'không được thưởng pp cho điểm cá nhân này',
         'processing' => 'Điểm vẫn đang được tính toán và sẽ được hiển thị sớm',
         'no_rank' => 'Điểm này không có hạng hoặc nó bị đánh dấu xoá',

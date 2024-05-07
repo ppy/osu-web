@@ -18,8 +18,8 @@ return [
     'channels' => [
         'confirm_part' => 'Chceš skrýt tento kanál? Stále budeš dostávat zprávy z tohoto kanálu.',
         'create' => 'vytvořit oznámení',
-        'join' => '',
-        'none' => '',
+        'join' => 'připojit se ke kanálu',
+        'none' => 'žádný kanál',
 
         'list' => [
             'title' => [
@@ -64,6 +64,6 @@ return [
     ],
 
     'join_channels' => [
-        'loading' => '',
+        'loading' => 'Načítání seznamu kanálů...',
     ],
 ];

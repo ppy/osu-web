@@ -46,8 +46,8 @@ return [
             '_' => 'búsqueda de pistas',
 
             'exclusive_only' => [
-                'all' => '',
-                'exclusive_only' => '',
+                'all' => 'Todos',
+                'exclusive_only' => 'osu! original',
             ],
 
             'form' => [
@@ -57,7 +57,7 @@ return [
                 'bpm_gte' => 'BPM mínimo',
                 'bpm_lte' => 'BPM máximo',
                 'empty' => 'No se encontraron pistas que coincidieran con ese criterio de búsqueda.',
-                'exclusive_only' => '',
+                'exclusive_only' => 'Tipo',
                 'genre' => 'Género',
                 'genre_all' => 'Todos',
                 'length_gte' => 'Duración mínima',

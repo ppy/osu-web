@@ -5,9 +5,9 @@
 
 return [
     'play_more' => '为何不先玩几局 osu! 呢？',
-    'require_login' => '请先登录以继续。',
+    'require_login' => '请先登录。',
     'require_verification' => '请验证以继续。',
-    'restricted' => "账户处于限制模式，无法进行该操作。",
+    'restricted' => "账户受限，无法进行该操作。",
     'silenced' => "账户被禁言，无法进行该操作。",
     'unauthorized' => '拒绝访问。',
 

@@ -18,8 +18,8 @@ return [
     'channels' => [
         'confirm_part' => 'Apakah kamu ingin menyembunyikan kanal percakapan ini? Kamu akan tetap menerima pesan dari kanal percakapan ini.',
         'create' => 'buat pengumuman',
-        'join' => '',
-        'none' => '',
+        'join' => 'gabung ke kanal percakapan',
+        'none' => 'tidak ada kanal percakapan',
 
         'list' => [
             'title' => [
@@ -45,7 +45,7 @@ return [
     ],
 
     'not_found' => [
-        'message' => 'Tidak ada apa-apa di sini. Mungkin kamu telah meninggalkan kanal percakapan ini atau kanal yang ingin kamu tuju sudah tidak ada...',
+        'message' => 'Tidak ada apa-apa di sini. Mungkin kamu telah meninggalkan kanal percakapan ini, atau kanal yang ingin kamu tuju sudah tidak ada...',
         'title' => 'kanal percakapan tidak ditemukan',
     ],
 
@@ -64,6 +64,6 @@ return [
     ],
 
     'join_channels' => [
-        'loading' => '',
+        'loading' => 'Memuat daftar kanal percakapan...',
     ],
 ];

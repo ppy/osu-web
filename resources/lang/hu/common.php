@@ -39,7 +39,7 @@ return [
         'pin' => 'kitűzés',
         'post' => 'Küldés',
         'read_more' => 'több megjelenítése',
-        'refresh' => '',
+        'refresh' => 'Frissítés',
         'reply' => 'Válasz',
         'reply_reopen' => 'Válaszolás és újranyitás',
         'reply_resolve' => 'Válaszolás és megoldás',

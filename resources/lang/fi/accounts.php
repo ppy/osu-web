@@ -10,7 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
-            'rules' => 'Pidä huoli, ettei profiilikuvasi riko :link.<br/>Tämä tarkoittaa sitä, että kuvan on <strong>sovittava kaikenikäisille</strong>, eli ei alastomuutta tai muita hävyttömyyksiä.',
+            'rules' => 'Pidäthän huolen, että profiilikuvasi noudattaa :link.<br/>Tämä tarkoittaa sitä, että sen on <strong>sovittava kaikenikäisille</strong>, eli ei alastomuutta tai muita hävyttömyyksiä.',
             'rules_link' => 'yhteisön sääntöjä',
         ],
 
@@ -69,15 +69,15 @@ return [
         'unlink' => 'Poista GitHub-tilin linkitys',
 
         'error' => [
-            'already_linked' => 'Tämä GitHub-tili on jo linkitetty eri käyttäjälle.',
+            'already_linked' => 'Tämä GitHub-tili on jo linkitetty toiselle käyttäjälle.',
             'no_contribution' => 'GitHub-tiliä ei voi linkittää, jos sillä ei ole muutoshistoriaa osu!lle.',
             'unverified_email' => 'Ole hyvä ja vahvista ensisijainen sähköpostiosoitteesi GitHubissa ja yritä sitten yhdistää tilisi uudelleen.',
         ],
     ],
 
     'notifications' => [
-        'beatmapset_discussion_qualified_problem' => 'vastaanota ilmoituksia uusista ongelmista seuraavien pelimuotojen hyväksytyissä rytmikartoissa',
-        'beatmapset_disqualify' => 'vastaanota ilmoituksia kun rytmikarttoja hylätään seuraavissa pelimuodoissa',
+        'beatmapset_discussion_qualified_problem' => 'vastaanota ilmoituksia uusista ongelmista seuraavien pelimuotojen kelpuutetuissa rytmikartoissa',
+        'beatmapset_disqualify' => 'vastaanota ilmoituksia, kun rytmikarttoja hylätään seuraavissa pelimuodoissa',
         'comment_reply' => 'vastaanota ilmoituksia vastauksista kommentteihisi',
         'title' => 'Ilmoitukset',
         'topic_auto_subscribe' => 'ota automaattisesti ilmoitukset käyttöön tekemillesi uusille foorumiaiheille',
@@ -131,8 +131,8 @@ return [
     'security' => [
         'current_session' => 'nykyinen',
         'end_session' => 'Sulje istunto',
-        'end_session_confirmation' => 'Suljetaanko istuntosi kyseisellä laitteella?',
-        'last_active' => 'Viimeksi aktiivisena',
+        'end_session_confirmation' => 'Tämä lopettaa istuntosi välittömästi kyseisellä laitteella. Oletko varma?',
+        'last_active' => 'Viimeksi aktiivisena:',
         'title' => 'Turvallisuus',
         'web_sessions' => 'aktiiviset istunnot',
     ],

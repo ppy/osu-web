@@ -102,7 +102,7 @@ return [
         ],
         'help' => [
             '_' => 'Bantuan & Komunitas',
-            'faq' => 'Pertanyaan yang Umum Diajukan (FAQ)',
+            'faq' => 'Pertanyaan Umum (FAQ)',
             'forum' => 'Forum Komunitas',
             'livestreams' => 'Siaran Langsung',
             'report' => 'Laporkan Masalah',

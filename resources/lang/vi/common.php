@@ -40,7 +40,7 @@ return [
         'pin' => 'ghim',
         'post' => 'Đăng',
         'read_more' => 'hiển thị thêm',
-        'refresh' => '',
+        'refresh' => 'Làm mới',
         'reply' => 'Trả lời',
         'reply_reopen' => 'Trả lời và mở lại',
         'reply_resolve' => 'Trả lời và giải quyết',

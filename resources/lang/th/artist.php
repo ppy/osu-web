@@ -46,7 +46,7 @@ return [
             '_' => 'ค้นหาแทร็ก',
 
             'exclusive_only' => [
-                'all' => '',
+                'all' => 'ทั้งหมด',
                 'exclusive_only' => '',
             ],
 
@@ -57,7 +57,7 @@ return [
                 'bpm_gte' => 'BPM ต่ำสุด',
                 'bpm_lte' => 'BPM สูงสุด',
                 'empty' => 'ไม่พบแทร็กที่ตรงกับเกณฑ์การค้นหา',
-                'exclusive_only' => '',
+                'exclusive_only' => 'ประเภท',
                 'genre' => 'ประเภท',
                 'genre_all' => 'ทั้งหมด',
                 'length_gte' => 'ความยาวต่ำสุด',

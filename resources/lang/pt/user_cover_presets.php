@@ -5,33 +5,33 @@
 
 return [
     'index' => [
-        'batch_disable' => '',
-        'batch_enable' => '',
+        'batch_disable' => 'Desativar a seleção',
+        'batch_enable' => 'Ativar a seleção',
 
         'batch_confirm' => [
-            '_' => '',
-            'disable' => '',
-            'enable' => '',
-            'items' => '',
+            '_' => ':action :items?',
+            'disable' => 'Desativar',
+            'enable' => 'Ativar',
+            'items' => ':count_delimited capa|:count_delimited capas',
         ],
 
         'create_form' => [
-            'files' => '',
-            'submit' => '',
-            'title' => '',
+            'files' => 'Ficheiros',
+            'submit' => 'Guardar',
+            'title' => 'Adicionar novo',
         ],
 
         'item' => [
-            'click_to_disable' => '',
-            'click_to_enable' => '',
-            'enabled' => '',
-            'disabled' => '',
-            'image_store' => '',
-            'image_update' => '',
+            'click_to_disable' => 'Clica para desativar',
+            'click_to_enable' => 'Clicar para ativar',
+            'enabled' => 'Ativado',
+            'disabled' => 'Desativado',
+            'image_store' => 'Definir imagem',
+            'image_update' => 'Substituir imagem',
         ],
     ],
     'store' => [
-        'failed' => '',
-        'ok' => '',
+        'failed' => 'Ocorreu um erro ao criar a capa: :error',
+        'ok' => 'Capas criadas',
     ],
 ];

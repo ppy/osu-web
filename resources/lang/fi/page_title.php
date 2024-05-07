@@ -111,7 +111,7 @@ return [
             '_' => 'turnaukset',
         ],
         'user_cover_presets_controller' => [
-            '_' => '',
+            '_' => 'käyttäjän kansikuvan esiasetukset',
         ],
         'users_controller' => [
             '_' => 'pelaajan tiedot',

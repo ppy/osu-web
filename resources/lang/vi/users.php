@@ -97,7 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
-            'inactive' => "",
+            'inactive' => "Tài khoản của bạn đã không sử dụng trong một thời gian dài.",
             'inactive_different_country' => "Tài khoản của bạn đã không sử dụng trong một thời gian dài.",
         ],
     ],

@@ -5,7 +5,7 @@
 
 return [
     'index' => [
-        'description' => 'Colecciones preempaquetadas de mapas basadas en un tema común.',
+        'description' => 'Colecciones preempaquetadas de mapas basados en un tema común.',
         'empty' => '¡Próximamente!',
         'nav_title' => 'listado',
         'title' => 'Paquetes de mapas',

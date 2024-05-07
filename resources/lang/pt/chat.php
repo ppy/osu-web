@@ -18,8 +18,8 @@ return [
     'channels' => [
         'confirm_part' => 'Queres ocultar este canal? Ainda vais receber mensagens deste canal.',
         'create' => 'criar notícia',
-        'join' => '',
-        'none' => '',
+        'join' => 'juntar-se a um canal',
+        'none' => 'sem canal',
 
         'list' => [
             'title' => [
@@ -64,6 +64,6 @@ return [
     ],
 
     'join_channels' => [
-        'loading' => '',
+        'loading' => 'A carregar lista de canais...',
     ],
 ];

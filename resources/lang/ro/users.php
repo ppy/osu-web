@@ -199,7 +199,7 @@ return [
         'edit' => [
             'cover' => [
                 'button' => 'Schimbă coperta de profil',
-                'defaults_info' => 'Mai multe opțiuni pentru coperte vor fi disponibile în viitor',
+                'defaults_info' => 'Mai multe opțiuni pentru coperți vor fi disponibile în viitor',
                 'upload' => [
                     'broken_file' => 'Imposibil de procesat imaginea. Verifică imaginea încărcată și încearcă din nou.',
                     'button' => 'Încarcă imaginea',

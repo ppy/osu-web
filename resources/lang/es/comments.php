@@ -33,8 +33,8 @@ return [
     ],
 
     'guest_button' => [
-        'new' => 'Inicie sesión para comentar',
-        'reply' => 'Inicie sesión para responder',
+        'new' => 'Inicia sesión para comentar',
+        'reply' => 'Inicia sesión para responder',
     ],
 
     'index' => [

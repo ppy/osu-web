@@ -46,8 +46,8 @@ return [
             '_' => 'өлең іздеу',
 
             'exclusive_only' => [
-                'all' => '',
-                'exclusive_only' => '',
+                'all' => 'Бәрі',
+                'exclusive_only' => 'osu!-ға арнайы',
             ],
 
             'form' => [
@@ -57,7 +57,7 @@ return [
                 'bpm_gte' => 'Минималды BPM',
                 'bpm_lte' => 'Максималды BPM',
                 'empty' => 'Іздеу критерийлеріне келетін өлеңдер табылмады.',
-                'exclusive_only' => '',
+                'exclusive_only' => 'Түрі',
                 'genre' => 'Жанры',
                 'genre_all' => 'Бәрі',
                 'length_gte' => 'Минималды Ұзақтығы',

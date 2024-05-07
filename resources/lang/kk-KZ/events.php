@@ -5,9 +5,9 @@
 
 return [
     'achievement' => '',
-    'beatmap_playcount' => '',
-    'beatmapset_approve' => '',
-    'beatmapset_delete' => '',
+    'beatmap_playcount' => ':beatmap :count рет ойналған!',
+    'beatmapset_approve' => '<strong>:user</strong>-ның :beatmapset-cы :approval!',
+    'beatmapset_delete' => ':beatmapset жойылды.',
     'beatmapset_revive' => '',
     'beatmapset_update' => '',
     'beatmapset_upload' => '',
@@ -20,10 +20,10 @@ return [
     'username_change' => '',
 
     'beatmapset_status' => [
-        'approved' => '',
-        'loved' => '',
-        'qualified' => '',
-        'ranked' => '',
+        'approved' => 'қабылданған',
+        'loved' => 'ұнамды',
+        'qualified' => 'квалификацияланған',
+        'ranked' => 'рейтингілік',
     ],
 
     'value' => [

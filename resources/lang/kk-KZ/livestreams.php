@@ -13,6 +13,6 @@ return [
         'headline' => '',
         'description' => '',
 
-        'link' => '',
+        'link' => 'тікелеу эфир туралы wiki парақшасы',
     ],
 ];

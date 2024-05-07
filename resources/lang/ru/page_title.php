@@ -111,7 +111,7 @@ return [
             '_' => 'турниры',
         ],
         'user_cover_presets_controller' => [
-            '_' => '',
+            '_' => 'пресеты обложек',
         ],
         'users_controller' => [
             '_' => 'информация об игроке',
