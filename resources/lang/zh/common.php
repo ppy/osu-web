@@ -35,10 +35,11 @@ return [
         'edit' => '编辑',
         'expand' => '展开',
         'hide' => '隐藏',
-        'permalink' => '静态链接',
+        'permalink' => '永久链接',
         'pin' => '置顶',
         'post' => '发表',
         'read_more' => '阅读更多',
+        'refresh' => '刷新',
         'reply' => '回复',
         'reply_reopen' => '回复并要求重审',
         'reply_resolve' => '回复并标记为已解决',
@@ -109,7 +110,7 @@ return [
     ],
 
     'dropzone' => [
-        'target' => '拖动到此处以上传',
+        'target' => '拖到此处上传',
     ],
 
     'input' => [

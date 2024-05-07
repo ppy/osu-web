@@ -110,6 +110,9 @@ return [
         'tournaments_controller' => [
             '_' => 'turnirji',
         ],
+        'user_cover_presets_controller' => [
+            '_' => '',
+        ],
         'users_controller' => [
             '_' => 'informacije o igralcu',
             'create' => 'ustvari račun',

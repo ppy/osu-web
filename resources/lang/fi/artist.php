@@ -45,13 +45,19 @@ return [
         'index' => [
             '_' => 'kappalehaku',
 
+            'exclusive_only' => [
+                'all' => 'Kaikki',
+                'exclusive_only' => 'osu!-alkuperäinen',
+            ],
+
             'form' => [
                 'advanced' => 'Laajennettu haku',
                 'album' => 'Albumi',
-                'artist' => 'Esittäjä',
+                'artist' => 'Artisti',
                 'bpm_gte' => 'BPM vähintään',
                 'bpm_lte' => 'BPM enintään',
                 'empty' => 'Hakukriteerejä vastaavia kappaleita ei löytynyt.',
+                'exclusive_only' => 'Tyyppi',
                 'genre' => 'Tyylilaji',
                 'genre_all' => 'Kaikki',
                 'length_gte' => 'Vähimmäispituus',

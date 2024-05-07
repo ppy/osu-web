@@ -97,6 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
+            'inactive' => "Váš účet nebyl využíván dlouhou dobu.",
             'inactive_different_country' => "Váš účet nebyl využíván dlouhou dobu.",
         ],
     ],

@@ -45,6 +45,11 @@ return [
         'index' => [
             '_' => 'pencarian lagu',
 
+            'exclusive_only' => [
+                'all' => 'Semua',
+                'exclusive_only' => 'osu! original',
+            ],
+
             'form' => [
                 'advanced' => 'Pencarian Lanjutan',
                 'album' => 'Album',
@@ -52,6 +57,7 @@ return [
                 'bpm_gte' => 'BPM Minimal',
                 'bpm_lte' => 'BPM Maksimal',
                 'empty' => 'Tidak ada lagu yang sesuai dengan kriteria pencarian yang ditentukan.',
+                'exclusive_only' => 'Jenis',
                 'genre' => 'Aliran',
                 'genre_all' => 'Semua',
                 'length_gte' => 'Durasi Minimal',

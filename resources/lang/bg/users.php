@@ -97,6 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
+            'inactive' => "В профилът ви не е влизано от доста време.",
             'inactive_different_country' => "Вашият акаунт не е ползван от дълго време.",
         ],
     ],

@@ -66,7 +66,7 @@ return [
         'friends_only' => 'Este usuario está bloqueando los mensajes de personas que no están en su lista de amigos.',
         'moderated' => 'Este canal está actualmente siendo moderado.',
         'no_access' => 'No tienes acceso a ese canal.',
-        'receive_friends_only' => 'Es posible que el usuario no pueda responder porque solo acepta mensajes de personas de su lista de amigos.',
+        'receive_friends_only' => 'Es posible que el usuario no pueda responder porque solo aceptas mensajes de las personas en tu lista de amigos.',
         'restricted' => 'No puedes enviar mensajes mientras estás silenciado, restringido o baneado.',
         'silenced' => 'No puedes enviar mensajes mientras estás silenciado, restringido o baneado.',
     ],
@@ -112,7 +112,7 @@ return [
             ],
 
             'store' => [
-                'play_more' => '¡Intenta jugar antes de publicar en los foros, por favor! Si tiene un problema jugando, publícalo en el foro de Ayuda y Soporte.',
+                'play_more' => '¡Por favor, intenta jugar antes de escribir en los foros! Si tienes algún problema jugando, publícalo en el foro de ayuda y soporte.',
                 'too_many_help_posts' => "Necesitas jugar más el juego antes de poder hacer publicaciones adicionales. Si sigues teniendo problemas para jugar, envía un correo a support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
@@ -126,8 +126,8 @@ return [
 
                 'user' => [
                     'require_login' => 'Por favor, inicia sesión para responder.',
-                    'restricted' => "No puede responder mientras esté restringido.",
-                    'silenced' => "No puede responder mientras esté silenciado.",
+                    'restricted' => "No puedes responder mientras estés restringido.",
+                    'silenced' => "No puedes responder mientras estés silenciado.",
                 ],
             ],
 
@@ -144,9 +144,9 @@ return [
                 'voted' => 'Cambiar el voto no está permitido.',
 
                 'user' => [
-                    'require_login' => 'Inicie sesión para votar.',
+                    'require_login' => 'Inicia sesión para votar.',
                     'restricted' => "No puede votar mientras esté restringido.",
-                    'silenced' => "No puede votar mientras esté silenciado.",
+                    'silenced' => "No puedes votar mientras estés silenciado.",
                 ],
             ],
 

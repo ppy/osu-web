@@ -25,7 +25,6 @@ return [
 
     'status' => [
         'non_best' => 'Kun personlige rekorder tilldeler pp',
-        'non_passing' => 'Kun gjenomførte kart tilldeler pp',
         'no_pp' => 'pp er ikke tildelt for denne scoren',
         'processing' => 'Denne scoren blir fremdeles beregnet og vil vises snart',
         'no_rank' => '',

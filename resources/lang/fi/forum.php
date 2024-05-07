@@ -185,11 +185,11 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title_compact' => 'seuratut foorumiaiheet',
+            'title_compact' => 'foorumiaiheiden seurantalista',
 
             'box' => [
                 'total' => 'Seurattuja aiheita',
-                'unread' => 'Aiheita joissa uusia vastauksia',
+                'unread' => 'Aiheita, joissa on uusia vastauksia',
             ],
 
             'info' => [
@@ -372,7 +372,7 @@ return [
             'to_watching' => 'Kirjanmerkkeihin',
             'to_watching_mail' => 'Kirjanmerkkeihin ilmoituksella',
             'tooltip_mail_disable' => 'Ilmoitus on päällä. Klikkaa poistaaksesi käytöstä',
-            'tooltip_mail_enable' => 'Ilmoitus on pois käytöstä. Klikkaa laittaaksesi päälle',
+            'tooltip_mail_enable' => 'Ilmoitus on poissa käytöstä. Klikkaa laittaaksesi päälle',
         ],
     ],
 ];

@@ -110,6 +110,9 @@ return [
         'tournaments_controller' => [
             '_' => 'turnaukset',
         ],
+        'user_cover_presets_controller' => [
+            '_' => 'käyttäjän kansikuvan esiasetukset',
+        ],
         'users_controller' => [
             '_' => 'pelaajan tiedot',
             'create' => 'luo tili',

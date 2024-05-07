@@ -28,16 +28,14 @@ export default function Player(props: Props) {
   return (
     <div className='score-player'>
       <div className='score-player__row score-player__row--score'>
-        <div className='score-player__score'>
-          {formatNumber(totalScore(props.score))}
-        </div>
-
         <div className='score-player__mods'>
           {filterMods(props.score).map((mod) => (
-            <div key={mod.acronym} className='score-player__mod'>
-              <Mod mod={mod} />
-            </div>
+            <Mod key={mod.acronym} mod={mod} />
           ))}
+        </div>
+
+        <div className='score-player__score'>
+          {formatNumber(totalScore(props.score))}
         </div>
       </div>
 

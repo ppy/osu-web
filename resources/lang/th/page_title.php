@@ -111,6 +111,9 @@ return [
             '_' => '
 ทัวร์นาเมนต์',
         ],
+        'user_cover_presets_controller' => [
+            '_' => '',
+        ],
         'users_controller' => [
             '_' => 'ข้อมูลผู้เล่น',
             'create' => 'สร้างบัญชี',

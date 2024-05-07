@@ -45,6 +45,11 @@ return [
         'index' => [
             '_' => 'トラック検索',
 
+            'exclusive_only' => [
+                'all' => '',
+                'exclusive_only' => '',
+            ],
+
             'form' => [
                 'advanced' => '高度な検索',
                 'album' => 'アルバム',
@@ -52,6 +57,7 @@ return [
                 'bpm_gte' => '最低BPM',
                 'bpm_lte' => '最高BPM',
                 'empty' => '条件に当てはまるトラックが見つかりませんでした。',
+                'exclusive_only' => '',
                 'genre' => 'ジャンル',
                 'genre_all' => '全て',
                 'length_gte' => '最短の再生時間',

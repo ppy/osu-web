@@ -42,6 +42,11 @@ class RegenerateBeatmapsetCover implements ShouldQueue
         $this->sizesToRegenerate = $sizesToRegenerate;
     }
 
+    public function displayName()
+    {
+        return static::class." (Beatmapset {$this->beatmapset->getKey()})";
+    }
+
     /**
      * Execute the job.
      *

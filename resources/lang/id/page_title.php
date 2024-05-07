@@ -110,6 +110,9 @@ return [
         'tournaments_controller' => [
             '_' => 'turnamen',
         ],
+        'user_cover_presets_controller' => [
+            '_' => 'preset sampul pengguna',
+        ],
         'users_controller' => [
             '_' => 'info pemain',
             'create' => 'buat akun',

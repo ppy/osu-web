@@ -18,6 +18,8 @@ return [
     'channels' => [
         'confirm_part' => 'Bu kanalı gizlemek istiyor musunuz? Bu kanaldan mesaj almaya devam edeceksiniz.',
         'create' => 'duyuru oluştur',
+        'join' => '',
+        'none' => '',
 
         'list' => [
             'title' => [
@@ -59,5 +61,9 @@ return [
         'howto' => "Kullanıcının profilinden veya kullanıcı kartı popup'ından konuşma başlatın.",
         'lazer' => '<a href=":link">osu!lazer</a> aracılığıyla katıldığınız herkese açık kanallar burada da görünür olacak.',
         'title' => 'henüz konuşma yok',
+    ],
+
+    'join_channels' => [
+        'loading' => '',
     ],
 ];

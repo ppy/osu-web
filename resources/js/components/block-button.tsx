@@ -120,7 +120,6 @@ export default class BlockButton extends React.Component<Props> {
     if (core.currentUser != null) {
       core.currentUser.blocks = data.filter((d) => d.relation_type === 'block');
       core.currentUser.friends = data.filter((d) => d.relation_type === 'friend');
-      $.publish('user:update', core.currentUser);
     }
 
     this.props.onClick?.();

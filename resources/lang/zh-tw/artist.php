@@ -45,6 +45,11 @@ return [
         'index' => [
             '_' => '歌曲搜尋',
 
+            'exclusive_only' => [
+                'all' => '全部',
+                'exclusive_only' => 'osu! 原創',
+            ],
+
             'form' => [
                 'advanced' => '進階搜尋',
                 'album' => '專輯',
@@ -52,6 +57,7 @@ return [
                 'bpm_gte' => 'BPM 最小值',
                 'bpm_lte' => 'BPM 最大值',
                 'empty' => '找不到符合條件的歌曲。',
+                'exclusive_only' => '類別',
                 'genre' => '曲風',
                 'genre_all' => '全部',
                 'length_gte' => '長度最小值',

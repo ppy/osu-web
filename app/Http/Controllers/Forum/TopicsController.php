@@ -428,6 +428,7 @@ class TopicsController extends Controller
 
         $pollSummary = PollOption::summary($topic, $currentUser);
 
+        $topic->incrementViewCount($currentUser, \Request::ip());
         $posts->last()->markRead($currentUser);
 
         $coverModel = $topic->cover ?? new TopicCover();

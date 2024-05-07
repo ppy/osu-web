@@ -39,6 +39,7 @@ return [
         'pin' => 'fissa',
         'post' => 'Posta',
         'read_more' => 'leggi di più',
+        'refresh' => 'Aggiorna',
         'reply' => 'Rispondi',
         'reply_reopen' => 'Rispondi e Riapri',
         'reply_resolve' => 'Rispondi e Risolvi',

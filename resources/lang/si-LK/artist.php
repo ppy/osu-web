@@ -45,6 +45,11 @@ return [
         'index' => [
             '_' => '',
 
+            'exclusive_only' => [
+                'all' => '',
+                'exclusive_only' => '',
+            ],
+
             'form' => [
                 'advanced' => '',
                 'album' => '',
@@ -52,6 +57,7 @@ return [
                 'bpm_gte' => '',
                 'bpm_lte' => '',
                 'empty' => '',
+                'exclusive_only' => '',
                 'genre' => '',
                 'genre_all' => '',
                 'length_gte' => '',

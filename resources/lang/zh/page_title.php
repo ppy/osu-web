@@ -110,6 +110,9 @@ return [
         'tournaments_controller' => [
             '_' => '比赛',
         ],
+        'user_cover_presets_controller' => [
+            '_' => '用户封面图预设',
+        ],
         'users_controller' => [
             '_' => '玩家信息',
             'create' => '创建账户',

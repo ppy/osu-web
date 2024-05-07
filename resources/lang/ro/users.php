@@ -97,6 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
+            'inactive' => "Contul tău nu a fost folosit de mult timp.",
             'inactive_different_country' => "Contul dumneavoastră nu a fost folosit de mult timp.",
         ],
     ],
@@ -192,13 +193,13 @@ return [
             'count' => 'un comentariu|:count_delimited comentarii|:count_delimited de comentarii',
         ],
         'cover' => [
-            'to_0' => 'Ascunde fundal',
-            'to_1' => 'Afișează fundal',
+            'to_0' => 'Ascunde coperta',
+            'to_1' => 'Afișează coperta',
         ],
         'edit' => [
             'cover' => [
                 'button' => 'Schimbă coperta de profil',
-                'defaults_info' => 'Mai multe opțiuni de coperte vor fi disponibile în viitor',
+                'defaults_info' => 'Mai multe opțiuni pentru coperți vor fi disponibile în viitor',
                 'upload' => [
                     'broken_file' => 'Imposibil de procesat imaginea. Verifică imaginea încărcată și încearcă din nou.',
                     'button' => 'Încarcă imaginea',

@@ -16,7 +16,7 @@ export const defaultUserPreferencesJson: UserPreferencesJson = {
   comments_show_deleted: false,
   comments_sort: 'new',
   forum_posts_show_deleted: true,
-  legacy_score_only: true,
+  legacy_score_only: false,
   profile_cover_expanded: true,
   user_list_filter: 'all',
   user_list_sort: 'last_visit',

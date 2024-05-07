@@ -10,11 +10,11 @@ return [
     'error' => [
         'error' => [
             '400' => '',
-            '404' => '',
-            '403' => '',
+            '404' => 'табылмады',
+            '403' => 'тыйым салынған',
             '401' => '',
             '401-verification' => '',
-            '405' => '',
+            '405' => 'табылмады',
             '422' => '',
             '429' => '',
             '500' => '',
@@ -41,7 +41,7 @@ return [
             '_' => '',
         ],
         'beatmap_packs_controller' => [
-            '_' => '',
+            '_' => 'карталар жинағы',
         ],
         'beatmapset_discussion_votes_controller' => [
             '_' => '',
@@ -51,14 +51,14 @@ return [
         ],
         'beatmapsets_controller' => [
             'discussion' => '',
-            'index' => '',
+            'index' => 'карталар тізімі',
             'show' => '',
         ],
         'changelog_controller' => [
             '_' => '',
         ],
         'chat_controller' => [
-            '_' => '',
+            '_' => 'чат',
         ],
         'comments_controller' => [
             '_' => '',
@@ -67,17 +67,17 @@ return [
             'judge_results' => '',
         ],
         'contests_controller' => [
-            '_' => '',
+            '_' => 'сайыстар',
             'judge' => '',
         ],
         'groups_controller' => [
             'show' => '',
         ],
         'home_controller' => [
-            'get_download' => '',
+            'get_download' => 'жүктеу',
             'index' => '',
-            'search' => '',
-            'support_the_game' => '',
+            'search' => 'іздеу',
+            'support_the_game' => 'ойынды қолдаңыз ',
             'testflight' => '',
         ],
         'legal_controller' => [
@@ -102,21 +102,24 @@ return [
             '_' => '',
         ],
         'scores_controller' => [
-            '_' => '',
+            '_' => 'өнімділік',
         ],
         'seasons_controller' => [
             '_' => '',
         ],
         'tournaments_controller' => [
+            '_' => 'жарыстар',
+        ],
+        'user_cover_presets_controller' => [
             '_' => '',
         ],
         'users_controller' => [
-            '_' => '',
+            '_' => 'ойыншы туралы ақпарат',
             'create' => '',
             'disabled' => '',
         ],
         'wiki_controller' => [
-            '_' => '',
+            '_' => 'wiki',
         ],
     ],
     'passport' => [
@@ -125,7 +128,7 @@ return [
         ],
     ],
     'store' => [
-        '_' => '',
+        '_' => 'дүкен',
     ],
     'users' => [
         'modding_history_controller' => [

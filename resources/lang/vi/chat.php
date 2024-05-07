@@ -18,6 +18,8 @@ return [
     'channels' => [
         'confirm_part' => 'Bạn có muốn ẩn kênh này không? Bạn vẫn sẽ nhận được tin nhắn từ kênh này.',
         'create' => 'tạo thông báo ',
+        'join' => 'tham gia kênh',
+        'none' => 'không có kênh',
 
         'list' => [
             'title' => [
@@ -59,5 +61,9 @@ return [
         'howto' => "Bắt đầu cuộc trò chuyện từ trang cá nhân hoặc usercard của họ.",
         'lazer' => 'Những kênh công khai bạn tham gia qua <a href=":link">osu!lazer</a> cũng sẽ hiển thị tại đây.',
         'title' => 'chưa có cuộc trò chuyện nào',
+    ],
+
+    'join_channels' => [
+        'loading' => 'Đang tải danh sách kênh...',
     ],
 ];
