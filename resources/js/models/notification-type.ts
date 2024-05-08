@@ -90,7 +90,12 @@ export default class NotificationType implements NotificationReadable, Notificat
   @action
   removeStack(stack: NotificationStack) {
     const exists = this.stacks.delete(stack.id);
-    if (exists) this.total -= stack.total;
+    if (exists) {
+      this.total -= stack.total;
+
+      if (this.isEmpty) this.total = 0;
+    }
+
     return exists;
   }
 

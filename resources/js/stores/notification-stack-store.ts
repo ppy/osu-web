@@ -217,6 +217,8 @@ export default class NotificationStackStore implements DispatchListener {
 
       this.total--;
     }
+
+    if (this.isEmpty) this.total = 0;
   };
 
   private removeByStack(identity: NotificationIdentity, readCount: number) {
@@ -227,6 +229,8 @@ export default class NotificationStackStore implements DispatchListener {
       if (!this.deletedStacks.has(key)) {
         this.deletedStacks.add(key);
         this.total -= readCount;
+
+        if (this.isEmpty) this.total = 0;
       }
 
       return;
@@ -236,6 +240,8 @@ export default class NotificationStackStore implements DispatchListener {
 
     this.allStacks.delete(key);
     this.total -= stack.total;
+
+    if (this.isEmpty) this.total = 0;
 
     const type = this.getOrCreateType(identity);
     type.removeStack(stack);
