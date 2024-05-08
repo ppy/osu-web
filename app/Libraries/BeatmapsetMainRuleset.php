@@ -7,13 +7,12 @@ declare(strict_types=1);
 
 namespace App\Libraries;
 
-use App\Enums\Ruleset;
 use App\Models\Beatmapset;
 use Ds\Set;
 
 class BeatmapsetMainRuleset
 {
-    /** @var ?Set<Ruleset> $eligibleRulesets */
+    /** @var ?Set<int> $eligibleRulesets */
     private ?Set $eligibleRulesets = null;
 
     public function __construct(private Beatmapset $beatmapset)
@@ -21,7 +20,7 @@ class BeatmapsetMainRuleset
         $values = $beatmapset->eligible_main_rulesets;
 
         if ($values !== null) {
-            $this->eligibleRulesets = new Set(Ruleset::fromValues($values));
+            $this->eligibleRulesets = new Set($values);
         }
     }
 
@@ -29,11 +28,11 @@ class BeatmapsetMainRuleset
      * Gets all the Rulesets that are eligible to be the main ruleset.
      * This will additionally query the current beatmapset nominations if necessary.
      *
-     * @return Set<Ruleset>
+     * @return Set<int>
      */
     public function currentEligible(): Set
     {
-        $mainRuleset = $this->mainRuleset();
+        $mainRuleset = $this->mainRulesetId();
 
         return $mainRuleset === null ? $this->eligibleRulesets : new Set([$mainRuleset]);
     }
@@ -47,7 +46,7 @@ class BeatmapsetMainRuleset
             ->orderBy('playmode', 'asc');
     }
 
-    private function mainRuleset(): ?Ruleset
+    private function mainRulesetId(): ?int
     {
         if ($this->eligibleRulesets === null) {
             $this->populateEligibleRulesets();
@@ -63,23 +62,23 @@ class BeatmapsetMainRuleset
         $nominationsByRuleset = [];
 
         foreach ($nominations as $nomination) {
-            $rulesets = Ruleset::tryFromNames($nomination->modes);
-            foreach ($rulesets as $ruleset) {
-                if ($this->eligibleRulesets->contains($ruleset)) {
-                    $nominationsByRuleset[$ruleset->value] ??= 0;
-                    $nominationsByRuleset[$ruleset->value]++;
+            $rulesetIds = $nomination->rulesetIds();
+            foreach ($rulesetIds as $rulesetId) {
+                if ($this->eligibleRulesets->contains($rulesetId)) {
+                    $nominationsByRuleset[$rulesetId] ??= 0;
+                    $nominationsByRuleset[$rulesetId]++;
                 }
             }
 
             // bailout as soon as there is a clear winner
             $nominatedRulesetsCount = count($nominationsByRuleset);
             if ($nominatedRulesetsCount === 1) {
-                return Ruleset::from(array_keys($nominationsByRuleset)[0]);
+                return array_keys($nominationsByRuleset)[0];
             } else if ($nominatedRulesetsCount > 1) {
                 arsort($nominationsByRuleset);
                 $values = array_values($nominationsByRuleset);
                 if ($values[0] > $values[1]) {
-                    return Ruleset::from(array_keys($nominationsByRuleset)[0]);
+                    return array_keys($nominationsByRuleset)[0];
                 }
             }
         }
@@ -100,7 +99,7 @@ class BeatmapsetMainRuleset
 
         // clear winner in playmode counts exists.
         if ($groups->count() === 1 || $groups[0]->getRawAttribute('total') > $groups[1]->getRawAttribute('total')) {
-            $this->eligibleRulesets->add(Ruleset::from($groups[0]->playmode));
+            $this->eligibleRulesets->add($groups[0]->playmode);
 
             return;
         }
@@ -114,7 +113,7 @@ class BeatmapsetMainRuleset
                 || $groupedHostOnly->count() > 1
                     && $groupedHostOnly[0]->getRawAttribute('total') > $groupedHostOnly[1]->getRawAttribute('total')
         ) {
-            $this->eligibleRulesets->add(Ruleset::from($groupedHostOnly[0]->playmode));
+            $this->eligibleRulesets->add($groupedHostOnly[0]->playmode);
 
             return;
         }
@@ -123,7 +122,7 @@ class BeatmapsetMainRuleset
         $this->eligibleRulesets->add(
             ...$groupedHostOnly
                 ->filter(fn ($group) => $group->getRawAttribute('total') === $groupedHostOnly[0]->getRawAttribute('total'))
-                ->map(fn ($group) => Ruleset::from($group->playmode))
+                ->map(fn ($group) => $group->playmode)
                 ->toArray()
         );
     }

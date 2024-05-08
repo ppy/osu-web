@@ -76,21 +76,21 @@ class BeatmapsetTest extends TestCase
 
     public function testMainRulesetSingleBeatmap()
     {
-        $beatmapset = $this->beatmapsetFactory()->withBeatmaps(Ruleset::taiko)->create();
+        $beatmapset = $this->beatmapsetFactory()->withBeatmaps(1)->create();
 
-        $this->assertSame(Ruleset::taiko, $beatmapset->mainRuleset());
+        $this->assertSame(1, $beatmapset->mainRulesetId());
     }
 
     public function testMainRulesetHybridBeatmapset()
     {
         $beatmapset = $this->beatmapsetFactory()
-            ->withBeatmaps(Ruleset::osu, 1)
-            ->withBeatmaps(Ruleset::taiko, 2)
-            ->withBeatmaps(Ruleset::catch, 3)
-            ->withBeatmaps(Ruleset::mania, 1)
+            ->withBeatmaps(0, 1)
+            ->withBeatmaps(1, 2)
+            ->withBeatmaps(2, 3)
+            ->withBeatmaps(3, 1)
             ->create();
 
-        $this->assertSame(Ruleset::catch, $beatmapset->mainRuleset());
+        $this->assertSame(2, $beatmapset->mainRulesetId());
     }
 
     /**
@@ -101,13 +101,13 @@ class BeatmapsetTest extends TestCase
         $userFactory = User::factory()->withGroup('bng', ['osu', 'taiko', 'fruits', 'mania']);
 
         $beatmapset = $this->beatmapsetFactory()
-            ->withBeatmaps(Ruleset::osu)
-            ->withBeatmaps(Ruleset::taiko)
-            ->withBeatmaps(Ruleset::catch)
-            ->withBeatmaps(Ruleset::mania)
+            ->withBeatmaps(0)
+            ->withBeatmaps(1)
+            ->withBeatmaps(2)
+            ->withBeatmaps(3)
             ->create();
 
-        $this->assertSame(null, $beatmapset->mainRuleset());
+        $this->assertSame(null, $beatmapset->mainRulesetId());
 
         foreach ($steps as $step) {
             $nominatedRulesets = $step[0];
@@ -115,7 +115,7 @@ class BeatmapsetTest extends TestCase
 
             $beatmapset->nominate($userFactory->create(), $nominatedRulesets);
 
-            $this->assertSame($expectedMainRuleset, $beatmapset->mainRuleset());
+            $this->assertSame($expectedMainRuleset, $beatmapset->mainRulesetId());
         }
     }
 
@@ -124,15 +124,15 @@ class BeatmapsetTest extends TestCase
         $guest = User::factory()->create();
 
         $beatmapset = $this->beatmapsetFactory()
-            ->withBeatmaps(Ruleset::osu, 1, $guest)
-            ->withBeatmaps(Ruleset::taiko, 3, $guest)
-            ->withBeatmaps(Ruleset::taiko, 1)
-            ->withBeatmaps(Ruleset::catch, 2, $guest)
-            ->withBeatmaps(Ruleset::catch, 2)
-            ->withBeatmaps(Ruleset::mania, 1)
+            ->withBeatmaps(0, 1, $guest)
+            ->withBeatmaps(1, 3, $guest)
+            ->withBeatmaps(1, 1)
+            ->withBeatmaps(2, 2, $guest)
+            ->withBeatmaps(2, 2)
+            ->withBeatmaps(3, 1)
             ->create();
 
-        $this->assertSame(Ruleset::catch, $beatmapset->mainRuleset());
+        $this->assertSame(2, $beatmapset->mainRulesetId());
     }
 
     /**
@@ -145,16 +145,16 @@ class BeatmapsetTest extends TestCase
 
         // possible main ruleset will be catch or mania.
         $beatmapset = $this->beatmapsetFactory()
-            ->withBeatmaps(Ruleset::osu, 1)
-            ->withBeatmaps(Ruleset::taiko, 1, $guest)
-            ->withBeatmaps(Ruleset::taiko, 1)
-            ->withBeatmaps(Ruleset::catch, 2, $guest)
-            ->withBeatmaps(Ruleset::catch, 2)
-            ->withBeatmaps(Ruleset::mania, 2, $guest)
-            ->withBeatmaps(Ruleset::mania, 2)
+            ->withBeatmaps(0, 1)
+            ->withBeatmaps(1, 1, $guest)
+            ->withBeatmaps(1, 1)
+            ->withBeatmaps(2, 2, $guest)
+            ->withBeatmaps(2, 2)
+            ->withBeatmaps(3, 2, $guest)
+            ->withBeatmaps(3, 2)
             ->create();
 
-        $this->assertSame(null, $beatmapset->mainRuleset());
+        $this->assertSame(null, $beatmapset->mainRulesetId());
 
         foreach ($steps as $step) {
             $nominatedRulesets = $step[0];
@@ -168,17 +168,17 @@ class BeatmapsetTest extends TestCase
 
             $beatmapset->nominate($userFactory->create(), $nominatedRulesets);
 
-            $this->assertSame($expectedMainRuleset, $beatmapset->mainRuleset());
+            $this->assertSame($expectedMainRuleset, $beatmapset->mainRulesetId());
         }
     }
 
     public function testNominationsByType()
     {
         $beatmapset = $this->beatmapsetFactory()
-            ->withBeatmaps(Ruleset::osu)
-            ->withBeatmaps(Ruleset::taiko)
-            ->withBeatmaps(Ruleset::catch)
-            ->withBeatmaps(Ruleset::mania)
+            ->withBeatmaps(0)
+            ->withBeatmaps(1)
+            ->withBeatmaps(2)
+            ->withBeatmaps(3)
             ->create();
 
         $userFactory = User::factory()->withGroup('bng', ['osu', 'taiko', 'fruits', 'mania']);
@@ -217,23 +217,24 @@ class BeatmapsetTest extends TestCase
     /**
      * @dataProvider nominateDataProvider
      */
-    public function testNominate(string $group, array $groupPlaymodes, Ruleset $ruleset, bool $success)
+    public function testNominate(string $group, array $groupPlaymodes, int $rulesetId, bool $success)
     {
-        $beatmapset = $this->beatmapsetFactory()->withBeatmaps($ruleset)->create();
+        $beatmapset = $this->beatmapsetFactory()->withBeatmaps($rulesetId)->create();
         $user = User::factory()->withGroup($group, $groupPlaymodes)->create();
         $otherUser = User::factory()->create();
         $beatmapset->watches()->create(['user_id' => $otherUser->getKey()]);
+        $nominatedModes = [Beatmap::modeStr($rulesetId)];
 
         $this->assertNotificationChanges($success);
         $this->assertNominationChanges($beatmapset, $success);
 
         $this->expectExceptionCallable(
-            fn () => $beatmapset->nominate($user, [$ruleset->legacyName()]),
+            fn () => $beatmapset->nominate($user, $nominatedModes),
             $success ? null : InvariantException::class
         );
 
         if ($success) {
-            $this->assertSame([$ruleset], Ruleset::tryFromNames($beatmapset->beatmapsetNominations()->current()->first()->modes));
+            $this->assertSame($nominatedModes, $beatmapset->beatmapsetNominations()->current()->first()->modes);
         }
 
         // Assertions that nomination doesn't qualify
@@ -244,8 +245,8 @@ class BeatmapsetTest extends TestCase
     public function testNominateMainRulsetInvariant()
     {
         $beatmapset = $this->beatmapsetFactory()
-            ->withBeatmaps(Ruleset::osu)
-            ->withBeatmaps(Ruleset::taiko)
+            ->withBeatmaps(0)
+            ->withBeatmaps(1)
             ->withNominations(['osu', 'taiko'], 1)
             ->create();
 
@@ -298,18 +299,19 @@ class BeatmapsetTest extends TestCase
      */
     public function testQualifyingNominations(string $initialGroup, string $qualifyingGroup, bool $success)
     {
-        $ruleset = array_rand_val(Ruleset::cases());
-        $beatmapset = $this->beatmapsetFactory()->withBeatmaps($ruleset)->create();
+        $rulesetName = array_rand(Beatmap::MODES);
+        $rulesetId = Beatmap::modeInt($rulesetName);
+        $beatmapset = $this->beatmapsetFactory()->withBeatmaps($rulesetId)->create();
         $this->fillNominationsExceptLastForMainRuleset($beatmapset, $initialGroup);
 
-        $nominator = User::factory()->withGroup($qualifyingGroup, [$ruleset->legacyName()])->create();
+        $nominator = User::factory()->withGroup($qualifyingGroup, [$rulesetName])->create();
 
         priv_check_user($nominator, 'BeatmapsetNominate', $beatmapset)->ensureCan();
 
         $this->expectCountChange(fn () => $beatmapset->bssProcessQueues()->count(), $success ? 1 : 0);
 
         $this->expectExceptionCallable(
-            fn () => $beatmapset->nominate($nominator, [$ruleset->legacyName()]),
+            fn () => $beatmapset->nominate($nominator, [$rulesetName]),
             $success ? null : InvariantException::class
         );
 
@@ -592,23 +594,23 @@ class BeatmapsetTest extends TestCase
 
         // make taiko tha main ruleset
         $beatmapset = $this->beatmapsetFactory()
-            ->withBeatmaps(Ruleset::taiko, 1)
-            ->withBeatmaps(Ruleset::taiko, 1)
-            ->withBeatmaps(Ruleset::osu, 1)
-            ->withBeatmaps(Ruleset::osu, 1, $guest)
+            ->withBeatmaps(1, 1)
+            ->withBeatmaps(1, 1)
+            ->withBeatmaps(0, 1)
+            ->withBeatmaps(0, 1, $guest)
             ->create();
 
-        $this->assertSame(Ruleset::taiko, $beatmapset->mainRuleset());
+        $this->assertSame(1, $beatmapset->mainRulesetId());
 
         // valid nomination for taiko and osu
         $beatmapset->nominate($bngLimitedUser, ['taiko']);
         $beatmapset->nominate($bngUser1, ['osu']);
 
         // main ruleset should now be osu
-        $beatmapset->beatmaps()->where('playmode', Ruleset::taiko->value)->first()->setOwner($guest->getKey());
+        $beatmapset->beatmaps()->where('playmode', 1)->first()->setOwner($guest->getKey());
         $beatmapset->refresh();
 
-        $this->assertSame(Ruleset::osu, $beatmapset->mainRuleset());
+        $this->assertSame(0, $beatmapset->mainRulesetId());
 
         // nomination should not trigger qualification
         $this->expectExceptionCallable(
@@ -642,19 +644,19 @@ class BeatmapsetTest extends TestCase
         return [
             [[
                 [['osu', 'taiko'], null],
-                [['taiko'], Ruleset::taiko],
+                [['taiko'], 1],
             ]],
             [[
                 [['osu', 'taiko'], null],
-                [['taiko', 'fruits'], Ruleset::taiko],
+                [['taiko', 'fruits'], 1],
             ]],
             [[
                 [['osu', 'taiko'], null],
                 [['fruits', 'mania'], null],
             ]],
             [[
-                [['fruits'], Ruleset::catch],
-                [['osu'], Ruleset::catch],
+                [['fruits'], 2],
+                [['osu'], 2],
             ]],
         ];
     }
@@ -673,11 +675,11 @@ class BeatmapsetTest extends TestCase
             [[
                 [['osu', 'taiko'], null],
                 [['fruits', 'mania'], null],
-                [['fruits'], Ruleset::catch],
+                [['fruits'], 2],
             ]],
             [[
-                [['fruits'], Ruleset::catch],
-                [['mania'], Ruleset::catch],
+                [['fruits'], 2],
+                [['mania'], 2],
             ]],
         ];
     }
@@ -685,11 +687,11 @@ class BeatmapsetTest extends TestCase
     public static function nominateDataProvider()
     {
         return [
-            'bng nominate same ruleset' => ['bng', ['osu'], Ruleset::osu, true],
-            'bng nominate different ruleset' => ['bng', ['osu'], Ruleset::taiko, false],
-            'nat defaults to all rulesets' => ['nat', [], Ruleset::osu, true],
-            'nat nominate same ruleset' => ['nat', ['osu'], Ruleset::osu, true],
-            'nat nominate different ruleset' => ['nat', ['osu'], Ruleset::taiko, false],
+            'bng nominate same ruleset' => ['bng', ['osu'], 0, true],
+            'bng nominate different ruleset' => ['bng', ['osu'], 1, false],
+            'nat defaults to all rulesets' => ['nat', [], 0, true],
+            'nat nominate same ruleset' => ['nat', ['osu'], 0, true],
+            'nat nominate different ruleset' => ['nat', ['osu'], 1, false],
         ];
     }
 
@@ -748,18 +750,19 @@ class BeatmapsetTest extends TestCase
     private function createHybridBeatmapsetTaiko(): Beatmapset
     {
         return $this->beatmapsetFactory()
-            ->withBeatmaps(Ruleset::osu)
-            ->withBeatmaps(Ruleset::taiko, 2)
+            ->withBeatmaps(0)
+            ->withBeatmaps(1, 2)
             ->create();
     }
 
     private function fillNominationsExceptLastForMainRuleset(Beatmapset $beatmapset, string $group): void
     {
-        $mode = $beatmapset->mainRuleset()?->legacyName();
-        if ($mode === null) {
+        $rulesetId = $beatmapset->mainRulesetId();
+        if ($rulesetId === null) {
             throw new \Exception('Cannot fill nominations without main ruleset.');
         }
 
+        $mode = Beatmap::modeStr($rulesetId);
         $count = $beatmapset->requiredNominationCount()[$mode] - 1;
         for ($i = 0; $i < $count; $i++) {
             $beatmapset->nominate(User::factory()->withGroup($group, [$mode])->create(), [$mode]);

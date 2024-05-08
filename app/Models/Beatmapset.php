@@ -1064,9 +1064,9 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             return $playmodeCount * $baseRequirement;
         }
 
-        $mainRulesetLegacyName = $this->mainRuleset()?->legacyName();
+        $mainRulesetLegacyName = Beatmap::modeStr($this->mainRulesetId());
         $requiredNominations = [];
-        // TODO: switch to Ruleset
+        // TODO: switch to ruleset ids
         foreach ($this->playmodesStr() as $playmode) {
             $requiredNominations[$playmode] = $mainRulesetLegacyName === null || $playmode === $mainRulesetLegacyName
                 ? $baseRequirement
@@ -1158,31 +1158,30 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
      * Returns all the Rulesets that are eligible to be the main ruleset.
      * This will _not_ query the current beatmapset nominations if there is an existing value in `eligible_main_rulesets`
      *
-     * @return Ruleset[]
+     * @return int[]
      */
-    public function eligibleMainRulesets(): array
+    public function eligibleMainRulesetIds(): array
     {
-        $values = $this->eligible_main_rulesets;
+        $rulesetIds = $this->eligible_main_rulesets;
 
-        if ($values === null) {
-            $rulesets = (new BeatmapsetMainRuleset($this))->currentEligible()->toArray();
-            $this->update(['eligible_main_rulesets' => Ruleset::toValues($rulesets)]);
-
-            return $rulesets;
+        if ($rulesetIds === null) {
+            $rulesetIds = (new BeatmapsetMainRuleset($this))->currentEligible()->toArray();
+            sort($rulesetIds);
+            $this->update(['eligible_main_rulesets' => $rulesetIds]);
         }
 
-        return Ruleset::fromValues($values);
+        return $rulesetIds;
     }
 
     /**
      * Returns the main Ruleset.
-     * This calls `eligibleMainRulesets()` and has the same nomination querying behaviour.
+     * This calls `eligibleMainRulesetIds()` and has the same nomination querying behaviour.
      *
-     * @return Ruleset|null returns the main Ruleset if there is one eligible Rulset; `null`, otherwise.
+     * @return int|null returns the main Ruleset if there is one eligible Rulset; `null`, otherwise.
      */
-    public function mainRuleset(): ?Ruleset
+    public function mainRulesetId(): ?int
     {
-        $eligible = $this->eligibleMainRulesets();
+        $eligible = $this->eligibleMainRulesetIds();
 
         return count($eligible) === 1 ? $eligible[0] : null;
     }
@@ -1486,10 +1485,11 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     public function refreshCache()
     {
-        $rulesets = (new BeatmapsetMainRuleset($this))->currentEligible()->toArray();
+        $rulesetIds = (new BeatmapsetMainRuleset($this))->currentEligible()->toArray();
+        sort($rulesetIds);
 
         return $this->update([
-            'eligible_main_rulesets' => Ruleset::toValues($rulesets),
+            'eligible_main_rulesets' => $rulesetIds,
             'hype' => $this->freshHype(),
             'nominations' => $this->isLegacyNominationMode() ? $this->currentNominationCount() : array_sum(array_values($this->currentNominationCount())),
         ]);

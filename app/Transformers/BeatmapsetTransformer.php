@@ -5,8 +5,8 @@
 
 namespace App\Transformers;
 
-use App\Enums\Ruleset;
 use App\Libraries\NominateBeatmapset;
+use App\Models\Beatmap;
 use App\Models\Beatmapset;
 
 class BeatmapsetTransformer extends BeatmapsetCompactTransformer
@@ -26,8 +26,8 @@ class BeatmapsetTransformer extends BeatmapsetCompactTransformer
         $nominationsSummary = [
             'current' => $beatmapset->nominations,
             'eligible_main_rulesets' => $beatmapset->eligible_main_rulesets !== null ? array_map(
-                fn ($ruleset) => $ruleset->legacyName(),
-                Ruleset::fromValues($beatmapset->eligible_main_rulesets)
+                fn ($rulesetId) => Beatmap::modeStr($rulesetId),
+                $beatmapset->eligible_main_rulesets
             ) : null,
             'required_meta' => NominateBeatmapset::requiredNominationsConfig(),
         ];

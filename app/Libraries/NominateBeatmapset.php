@@ -7,9 +7,10 @@ declare(strict_types=1);
 
 namespace App\Libraries;
 
-use App\Enums\Ruleset;
+// use App\Enums\Ruleset;
 use App\Exceptions\InvariantException;
 use App\Jobs\Notifications\BeatmapsetNominate;
+use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
 use App\Models\User;
@@ -17,15 +18,15 @@ use Ds\Set;
 
 class NominateBeatmapset
 {
-    /** @var Set<Ruleset> */
-    private Set $beatmapRulesets;
-    /** @var Set<Ruleset|null> */
-    private Set $nominatedRulesets;
+    /** @var Set<int> */
+    private Set $beatmapRulesetIds;
+    /** @var Set<int|null> */
+    private Set $nominatedRulesetIds;
 
     public function __construct(private Beatmapset $beatmapset, private User $user, array $playmodes)
     {
-        $this->beatmapRulesets = new Set(array_map(fn ($playmode) => Ruleset::from($playmode), $beatmapset->playmodes()->toArray()));
-        $this->nominatedRulesets = new Set(Ruleset::tryFromNames($playmodes));
+        $this->beatmapRulesetIds = new Set($beatmapset->playmodes()->toArray());
+        $this->nominatedRulesetIds = new Set(array_map(fn (string $name) => Beatmap::MODES[$name] ?? null, $playmodes));
     }
 
     public static function requiredNominationsConfig()
@@ -69,7 +70,7 @@ class NominateBeatmapset
                     if (
                         $beatmapset->eligible_main_rulesets === null
                             || count($beatmapset->eligible_main_rulesets) !== 1
-                            || $beatmapset->eligible_main_rulesets[0] !== $this->beatmapset->mainRuleset()?->value
+                            || $beatmapset->eligible_main_rulesets[0] !== $this->beatmapset->mainRulesetId()
                     ) {
                         throw new InvariantException('main ruleset has changed.');
                     }
@@ -103,26 +104,26 @@ class NominateBeatmapset
 
     private function nominateRulesets(): array
     {
-        $rulesets = $this->beatmapRulesets->intersect($this->nominatedRulesets);
-        if ($rulesets->count() === 0) {
+        $rulesetIds = $this->beatmapRulesetIds->intersect($this->nominatedRulesetIds);
+        if ($rulesetIds->count() === 0) {
             throw new InvariantException(osu_trans('beatmapsets.nominate.hybrid_requires_modes'));
         }
 
         // Only one ruleset is allowed to have more than one nomination.
-        // This needs to be enforced for Beatmapset::mainRuleset()
+        // This needs to be enforced for Beatmapset::mainRulesetId()
         $nominationCount = $this->beatmapset->currentNominationCount();
 
         // add potential counts
-        foreach ($rulesets as $ruleset) {
-            $nominationCount[$ruleset->legacyName()]++;
+        foreach ($rulesetIds as $rulesetId) {
+            $nominationCount[Beatmap::modeStr($rulesetId)]++;
         }
 
-        $eligibleRulesets = (new BeatmapsetMainRuleset($this->beatmapset))->currentEligible();
+        $eligibleRulesetIds = (new BeatmapsetMainRuleset($this->beatmapset))->currentEligible();
 
         $maybeHasMainRuleset = false;
-        foreach ($nominationCount as $legacyName => $count) {
+        foreach ($nominationCount as $name => $count) {
             if ($count > 1) {
-                if ($maybeHasMainRuleset || !$eligibleRulesets->contains(Ruleset::tryFromName($legacyName))) {
+                if ($maybeHasMainRuleset || !$eligibleRulesetIds->contains(Beatmap::modeInt($name))) {
                     throw new InvariantException(osu_trans('beatmapsets.nominate.too_many_non_main_ruleset'));
                 }
 
@@ -130,8 +131,8 @@ class NominateBeatmapset
             }
         }
 
-        foreach ($rulesets as $ruleset) {
-            $name = $ruleset->legacyName();
+        foreach ($rulesetIds as $rulesetId) {
+            $name = Beatmap::modeStr($rulesetId);
             if (!$this->user->isFullBN($name) && !$this->user->isNAT($name)) {
                 if (!$this->user->isLimitedBN($name)) {
                     throw new InvariantException(osu_trans('beatmapsets.nominate.incorrect_mode', ['mode' => $name]));
@@ -144,7 +145,7 @@ class NominateBeatmapset
         }
 
         return [
-            'comment' => ['modes' => array_map(fn ($ruleset) => $ruleset->legacyName(), $rulesets->toArray())],
+            'comment' => ['modes' => array_map(fn ($rulesetId) => Beatmap::modeStr($rulesetId), $rulesetIds->toArray())],
             'type' => BeatmapsetEvent::NOMINATE,
             'user_id' => $this->user->getKey(),
         ];
@@ -152,8 +153,8 @@ class NominateBeatmapset
 
     private function shouldQualify(): bool
     {
-        $mainRuleset = $this->beatmapset->mainRuleset();
-        if ($mainRuleset === null) {
+        $mainRulesetId = $this->beatmapset->mainRulesetId();
+        if ($mainRulesetId === null) {
             return false;
         }
 
@@ -167,7 +168,7 @@ class NominateBeatmapset
             $totalNominations = $fullNominations + $limitedNominations;
 
             // Prevent maps with invalid nomination state from going into qualified.
-            if (Ruleset::tryFromName($mode) !== $mainRuleset && $limitedNominations > 0) {
+            if (Beatmap::modeInt($mode) !== $mainRulesetId && $limitedNominations > 0) {
                 throw new InvariantException(osu_trans('beatmapsets.nominate.invalid_limited_nomination'));
             }
 
