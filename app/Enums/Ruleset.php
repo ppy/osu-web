@@ -25,14 +25,6 @@ enum Ruleset: int
         return array_map(fn ($value) => Ruleset::from($value), $values);
     }
 
-    public static function toValues(array $rulesets): array
-    {
-        $values = array_map(fn (Ruleset $ruleset) => $ruleset->value, $rulesets);
-        sort($values);
-
-        return $values;
-    }
-
     public static function tryFromName(?string $ruleset): ?self
     {
         if ($ruleset === null) {
@@ -49,14 +41,6 @@ enum Ruleset: int
         }
 
         return $lookupMap[$ruleset] ?? null;
-    }
-
-    /**
-     * @return (static|null)[]
-     */
-    public static function tryFromNames(array $array): array
-    {
-        return array_map(fn ($item) => static::tryFromName($item), $array);
     }
 
     public function legacyName()

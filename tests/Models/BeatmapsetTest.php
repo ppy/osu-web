@@ -7,7 +7,6 @@ declare(strict_types=1);
 
 namespace Tests\Models;
 
-use App\Enums\Ruleset;
 use App\Exceptions\AuthorizationException;
 use App\Exceptions\InvariantException;
 use App\Jobs\CheckBeatmapsetCovers;

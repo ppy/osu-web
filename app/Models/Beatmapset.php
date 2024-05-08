@@ -1110,20 +1110,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         return $this->beatmapsetNominations()->current()->exists();
     }
 
-    public function currentNominationsByRuleset()
-    {
-        $nominations = $this->beatmapsetNominations()->current()->get();
-        $nominationsByRuleset = [];
-
-        foreach ($nominations as $nomination) {
-            $rulesets = Ruleset::tryFromNames($nomination->modes);
-            foreach ($rulesets as $ruleset) {
-                $nominationsByRuleset[$ruleset->name] ??= 0;
-                $nominationsByRuleset[$ruleset->name]++;
-            }
-        }
-    }
-
     /**
      * This will cause additional query if `difficulty_names` column is blank and beatmaps relation isn't preloaded.
      */

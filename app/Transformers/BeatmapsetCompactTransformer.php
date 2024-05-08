@@ -5,7 +5,6 @@
 
 namespace App\Transformers;
 
-use App\Enums\Ruleset;
 use App\Libraries\NominateBeatmapset;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
