@@ -21,7 +21,7 @@ return [
         'empty' => [
             'text' => 'Keranjang belanjamu masih kosong.',
             'return_link' => [
-                '_' => 'Kembalilah ke halaman :link untuk menelusuri berbagai cindera mata!',
+                '_' => 'Kembalilah ke halaman :link untuk menelusuri berbagai cendera mata yang tersedia!',
                 'link_text' => 'etalase toko',
             ],
         ],

@@ -58,7 +58,7 @@ return [
         'shipping' => '',
         'subject' => '',
         'thank_you' => '',
-        'total' => '',
+        'total' => 'Барлығы',
     ],
 
     'supporter_gift' => [
@@ -81,7 +81,7 @@ return [
     'user_force_reactivation' => [
         'main' => '',
         'perform_reset' => '',
-        'reason' => '',
+        'reason' => 'Себеп:',
         'subject' => '',
     ],
 

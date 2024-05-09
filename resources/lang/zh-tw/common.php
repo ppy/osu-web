@@ -39,7 +39,7 @@ return [
         'pin' => '置頂',
         'post' => '發表',
         'read_more' => '查看詳情',
-        'refresh' => '',
+        'refresh' => '刷新',
         'reply' => '回覆',
         'reply_reopen' => '回覆並重新打開',
         'reply_resolve' => '回覆並標記為已解決',

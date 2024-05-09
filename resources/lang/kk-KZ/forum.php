@@ -7,7 +7,7 @@ return [
     'pinned_topics' => '',
     'slogan' => "",
     'subforums' => '',
-    'title' => '',
+    'title' => 'Форум',
 
     'covers' => [
         'edit' => '',
@@ -33,7 +33,7 @@ return [
         ],
 
         'topics' => [
-            'empty' => '',
+            'empty' => 'Тақырып жоқ!',
         ],
     ],
 
@@ -44,34 +44,34 @@ return [
     ],
 
     'post' => [
-        'confirm_destroy' => '',
-        'confirm_restore' => '',
+        'confirm_destroy' => 'Жазбаны жою?',
+        'confirm_restore' => 'Жазбаны қалпына келтіру?',
         'edited' => '',
         'posted_at' => '',
         'posted_by_in' => '',
 
         'actions' => [
-            'destroy' => '',
-            'edit' => '',
+            'destroy' => 'Постты жою',
+            'edit' => 'Постты өзгерту',
             'report' => '',
-            'restore' => '',
+            'restore' => 'Постты қалпына келтіру',
         ],
 
         'create' => [
             'title' => [
-                'reply' => '',
+                'reply' => 'Жаңа жауап',
             ],
         ],
 
         'info' => [
-            'post_count' => '',
-            'topic_starter' => '',
+            'post_count' => ':count_delimited жазба',
+            'topic_starter' => 'Тақырып авторы',
         ],
     ],
 
     'search' => [
-        'go_to_post' => '',
-        'post_number_input' => '',
+        'go_to_post' => 'Жазбаға өту',
+        'post_number_input' => 'жазба номерін жазыңыз ',
         'total_posts' => '',
     ],
 
@@ -84,29 +84,29 @@ return [
         'in_forum' => '',
         'latest_post' => '',
         'latest_reply_by' => '',
-        'new_topic' => '',
-        'new_topic_login' => '',
-        'post_reply' => '',
-        'reply_box_placeholder' => '',
-        'reply_title_prefix' => '',
-        'started_by' => '',
-        'started_by_verbose' => '',
+        'new_topic' => 'Жаңа тақырып',
+        'new_topic_login' => 'Жаңа жазба жасау үшін аккаунтыңызға кіріңіз',
+        'post_reply' => 'Жариялау',
+        'reply_box_placeholder' => 'Жауап беру',
+        'reply_title_prefix' => 'Жауап',
+        'started_by' => ':user жасады',
+        'started_by_verbose' => ':user бастады',
 
         'actions' => [
-            'destroy' => '',
-            'restore' => '',
+            'destroy' => 'Тақырыпты өшіру ',
+            'restore' => 'Тақырыпты қалпына келтіру',
         ],
 
         'create' => [
-            'close' => '',
+            'close' => 'Жабу',
             'preview' => '',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
-            'preview_hide' => '',
-            'submit' => '',
+            'preview_hide' => 'Өзгерту',
+            'submit' => 'Жариялау',
 
             'necropost' => [
-                'default' => '',
+                'default' => 'Бұл тақырып біраз уақыттан бері белсенді емес. Осы жерге нақты себеп болса ғана жазыңыз.',
 
                 'new_topic' => [
                     '_' => "",
@@ -122,8 +122,8 @@ return [
 
         'jump' => [
             'enter' => '',
-            'first' => '',
-            'last' => '',
+            'first' => 'бірінші жазбаға бару',
+            'last' => 'соңғы жазбаға бару',
             'next' => '',
             'previous' => '',
         ],
@@ -133,18 +133,18 @@ return [
             'button' => '',
 
             'columns' => [
-                'action' => '',
-                'date' => '',
-                'user' => '',
+                'action' => 'Әрекет',
+                'date' => 'Күні',
+                'user' => 'Пайдаланушы',
             ],
 
             'data' => [
                 'add_tag' => '',
                 'announcement' => '',
-                'edit_topic' => '',
-                'fork' => '',
-                'pin' => '',
-                'post_operation' => '',
+                'edit_topic' => ':title-ға',
+                'fork' => ':topic-ден',
+                'pin' => 'бекітілген тақырып',
+                'post_operation' => 'жариялаған :username',
                 'remove_tag' => '',
                 'source_forum_operation' => '',
                 'unpin' => '',
@@ -153,8 +153,8 @@ return [
             'no_results' => '',
 
             'operations' => [
-                'delete_post' => '',
-                'delete_topic' => '',
+                'delete_post' => 'Жойылған жазба',
+                'delete_topic' => 'Жойылған тақырып',
                 'edit_topic' => '',
                 'edit_poll' => '',
                 'fork' => '',
@@ -210,10 +210,10 @@ return [
         '_' => '',
 
         'actions' => [
-            'login_reply' => '',
-            'reply' => '',
+            'login_reply' => 'Жауап беру үшін аккаунтыңызға кіріңіз',
+            'reply' => 'Жауап беру',
             'reply_with_quote' => '',
-            'search' => '',
+            'search' => 'Іздеу',
         ],
 
         'create' => [
@@ -222,7 +222,7 @@ return [
             'preview' => '',
 
             'create_poll_button' => [
-                'add' => '',
+                'add' => 'Сауалнама жасау',
                 'remove' => '',
             ],
 
@@ -230,25 +230,25 @@ return [
                 'hide_results' => '',
                 'hide_results_info' => '',
                 'length' => '',
-                'length_days_suffix' => '',
+                'length_days_suffix' => 'күн',
                 'length_info' => '',
                 'max_options' => '',
                 'max_options_info' => '',
-                'options' => '',
+                'options' => 'Баптау',
                 'options_info' => '',
-                'title' => '',
+                'title' => 'Сұрақ',
                 'vote_change' => '',
                 'vote_change_info' => '',
             ],
         ],
 
         'edit_title' => [
-            'start' => '',
+            'start' => 'Атын өзгерту',
         ],
 
         'index' => [
             'feature_votes' => '',
-            'replies' => '',
+            'replies' => 'жауап',
             'views' => '',
         ],
 
@@ -299,7 +299,7 @@ return [
             'to_0' => '',
             'to_0_confirm' => '',
             'to_0_done' => '',
-            'to_1' => '',
+            'to_1' => 'Тақырыпты жабу',
             'to_1_confirm' => '',
             'to_1_done' => '',
         ],
@@ -309,11 +309,11 @@ return [
         ],
 
         'moderate_pin' => [
-            'to_0' => '',
+            'to_0' => 'Тақырыпты шешу',
             'to_0_confirm' => '',
             'to_0_done' => '',
-            'to_1' => '',
-            'to_1_confirm' => '',
+            'to_1' => 'Тақырыпты бекіту',
+            'to_1_confirm' => 'Тақырыпты бекіту?',
             'to_1_done' => '',
             'to_2' => '',
             'to_2_confirm' => '',
@@ -347,15 +347,15 @@ return [
             ],
 
             'poll' => [
-                'edit' => '',
+                'edit' => 'Сауалнаманы өзгерту',
                 'edit_warning' => '',
-                'vote' => '',
+                'vote' => 'Дауыс беру',
 
                 'button' => [
-                    'change_vote' => '',
-                    'edit' => '',
+                    'change_vote' => 'Дауыс өзгерту',
+                    'edit' => 'Сауалнаманы өзгерту',
                     'view_results' => '',
-                    'vote' => '',
+                    'vote' => 'Дауыс беру',
                 ],
 
                 'detail' => [

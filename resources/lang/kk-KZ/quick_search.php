@@ -5,15 +5,15 @@
 
 return [
     'mode' => [
-        'beatmapset' => '',
+        'beatmapset' => 'Карта',
         'forum_post' => '',
-        'other' => '',
-        'user' => '',
-        'wiki_page' => '',
+        'other' => 'Басқалар',
+        'user' => 'Ойыншы',
+        'wiki_page' => 'Wiki',
     ],
 
     'result' => [
-        'empty' => '',
+        'empty' => 'Нәтиже жоқ',
         'empty_for' => '',
         'more' => '',
         'title' => '',

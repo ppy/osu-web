@@ -39,7 +39,7 @@ return [
         'pin' => 'sematkan',
         'post' => 'Kirim',
         'read_more' => 'baca selengkapnya',
-        'refresh' => '',
+        'refresh' => 'Muat ulang',
         'reply' => 'Balas',
         'reply_reopen' => 'Balas dan Buka Kembali',
         'reply_resolve' => 'Balas dan Tutup',

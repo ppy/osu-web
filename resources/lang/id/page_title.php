@@ -111,7 +111,7 @@ return [
             '_' => 'turnamen',
         ],
         'user_cover_presets_controller' => [
-            '_' => '',
+            '_' => 'preset sampul pengguna',
         ],
         'users_controller' => [
             '_' => 'info pemain',

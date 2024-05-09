@@ -46,8 +46,8 @@ return [
             '_' => 'zeneszám keresés',
 
             'exclusive_only' => [
-                'all' => '',
-                'exclusive_only' => '',
+                'all' => 'Összes',
+                'exclusive_only' => 'osu! eredeti',
             ],
 
             'form' => [
@@ -57,7 +57,7 @@ return [
                 'bpm_gte' => 'Minimum BPM',
                 'bpm_lte' => 'Maximum BPM',
                 'empty' => 'Nem található a keresési feltételeknek megfelelő zeneszám.',
-                'exclusive_only' => '',
+                'exclusive_only' => 'Típus',
                 'genre' => 'Műfaj',
                 'genre_all' => 'Mind',
                 'length_gte' => 'Minimum hossz',

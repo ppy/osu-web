@@ -7,7 +7,7 @@ return [
     'button' => [
         'resend' => '',
         'set' => '',
-        'start' => '',
+        'start' => 'Бастау',
     ],
 
     'error' => [

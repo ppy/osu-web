@@ -33,7 +33,7 @@ return [
     ],
 
     'mode' => [
-        'artist' => 'Esittäjä/Albumi',
+        'artist' => 'Artisti/Albumi',
         'chart' => 'Kohdevaloissa',
         'featured' => 'Esitelty artisti',
         'loved' => 'Projekti Rakastettu',

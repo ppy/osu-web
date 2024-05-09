@@ -49,16 +49,16 @@ return [
     ],
 
     'discount' => ':percent% үнемдеу',
-    'free' => '',
+    'free' => 'тегін!',
 
     'invoice' => [
-        'contact' => '',
+        'contact' => 'Байланыс желілері:',
         'date' => '',
         'echeck_delay' => 'Төлеміңіз eCheck арқылы жүргізілгендіктен төлемнің Paypal арқылы расталуы 10 күнге дейін созылуы мүмкін!',
         'hide_from_activity' => 'Осы тапсырыстағы osu!supporter тегтері сіздің соңғы әрекеттеріңізде көрсетілмеген.',
         'sent_via' => '',
         'shipping_to' => '',
-        'title' => '',
+        'title' => 'Чек',
         'title_compact' => 'чек',
 
         'status' => [
@@ -94,7 +94,7 @@ return [
                 'tracking_details' => '',
                 'no_tracking_details' => [
                     '_' => "",
-                    'link_text' => '',
+                    'link_text' => 'бізге электронды хатты жіберіңіз ',
                 ],
             ],
         ],
@@ -104,14 +104,14 @@ return [
         'cancel' => 'Тапсырысты жою',
         'cancel_confirm' => '',
         'cancel_not_allowed' => '',
-        'invoice' => '',
+        'invoice' => 'Чекті қарау',
         'no_orders' => '',
         'paid_on' => '',
         'resume' => '',
         'shipping_and_handling' => '',
         'shopify_expired' => '',
         'subtotal' => '',
-        'total' => '',
+        'total' => 'Барлығы',
 
         'details' => [
             'order_number' => '',
@@ -123,14 +123,14 @@ return [
         ],
 
         'item' => [
-            'quantity' => '',
+            'quantity' => 'Саны',
 
             'display_name' => [
-                'supporter_tag' => '',
+                'supporter_tag' => ':username-ге :name (:duration)',
             ],
 
             'subtext' => [
-                'supporter_tag' => '',
+                'supporter_tag' => 'Хабар: :message',
             ],
         ],
 
@@ -148,7 +148,7 @@ return [
             'cancelled' => '',
             'checkout' => '',
             'delivered' => '',
-            'paid' => '',
+            'paid' => 'Төленген',
             'processing' => '',
             'shipped' => '',
             'title' => '',
@@ -164,7 +164,7 @@ return [
     ],
 
     'product' => [
-        'name' => '',
+        'name' => 'Аты',
 
         'stock' => [
             'out' => '',
@@ -186,7 +186,7 @@ return [
 
         'require_login' => [
             '_' => '',
-            'link_text' => '',
+            'link_text' => 'аккаунтқа кірілген',
         ],
     ],
 
@@ -199,7 +199,7 @@ return [
 
         'require_login' => [
             '_' => '',
-            'link_text' => '',
+            'link_text' => 'аккаунтқа кірілген',
         ],
     ],
 

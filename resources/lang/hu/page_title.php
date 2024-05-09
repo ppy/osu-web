@@ -111,7 +111,7 @@ return [
             '_' => 'bajnokságok',
         ],
         'user_cover_presets_controller' => [
-            '_' => '',
+            '_' => 'felhasználó borító minták',
         ],
         'users_controller' => [
             '_' => 'játékos információi',

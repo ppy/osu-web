@@ -5,33 +5,33 @@
 
 return [
     'index' => [
-        'batch_disable' => '',
-        'batch_enable' => '',
+        'batch_disable' => 'Nonaktifkan yang Dipilih',
+        'batch_enable' => 'Aktifkan yang Dipilih',
 
         'batch_confirm' => [
-            '_' => '',
-            'disable' => '',
-            'enable' => '',
-            'items' => '',
+            '_' => ':action :items?',
+            'disable' => 'Nonaktifkan',
+            'enable' => 'Aktifkan',
+            'items' => ':count_delimited sampul|:count_delimited sampul',
         ],
 
         'create_form' => [
-            'files' => '',
-            'submit' => '',
-            'title' => '',
+            'files' => 'Berkas',
+            'submit' => 'Simpan',
+            'title' => 'Tambah Baru',
         ],
 
         'item' => [
-            'click_to_disable' => '',
-            'click_to_enable' => '',
-            'enabled' => '',
-            'disabled' => '',
-            'image_store' => '',
-            'image_update' => '',
+            'click_to_disable' => 'Klik untuk menonaktifkan',
+            'click_to_enable' => 'Klik untuk mengaktifkan',
+            'enabled' => 'Diaktifkan',
+            'disabled' => 'Dinonaktifkan',
+            'image_store' => 'Pasang Gambar',
+            'image_update' => 'Ubah Gambar',
         ],
     ],
     'store' => [
-        'failed' => '',
-        'ok' => '',
+        'failed' => 'Terdapat masalah pada saat menghasilkan sampul: :error',
+        'ok' => 'Sampul dihasilkan',
     ],
 ];

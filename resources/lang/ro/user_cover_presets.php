@@ -9,21 +9,21 @@ return [
         'batch_enable' => 'Activează Selecția',
 
         'batch_confirm' => [
-            '_' => '',
-            'disable' => '',
-            'enable' => '',
+            '_' => ':action :items?',
+            'disable' => 'Dezactivează',
+            'enable' => 'Activează',
             'items' => 'o copertă|:count_delimited coperți|:count_delimited de coperți',
         ],
 
         'create_form' => [
-            'files' => '',
-            'submit' => '',
-            'title' => '',
+            'files' => 'Fișiere',
+            'submit' => 'Salvează',
+            'title' => 'Adaugă Nou',
         ],
 
         'item' => [
-            'click_to_disable' => '',
-            'click_to_enable' => '',
+            'click_to_disable' => 'Apasă pentru a dezactiva',
+            'click_to_enable' => 'Apasă pentru a activa',
             'enabled' => 'Activat',
             'disabled' => 'Dezactivat',
             'image_store' => 'Setează Imaginea',

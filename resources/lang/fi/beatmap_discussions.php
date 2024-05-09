@@ -33,7 +33,7 @@ return [
             'beatmapset_status' => [
                 '_' => 'Rytmikartan tila',
                 'all' => 'Kaikki',
-                'disqualified' => 'Epäkelpuutettu',
+                'disqualified' => 'Hylätty',
                 'never_qualified' => 'Ei koskaan kelpuutettu',
                 'qualified' => 'Kelpuutettu',
                 'ranked' => 'Rankattu',

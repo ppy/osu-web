@@ -111,7 +111,7 @@ return [
             '_' => 'torneios',
         ],
         'user_cover_presets_controller' => [
-            '_' => '',
+            '_' => 'capas predefinidas',
         ],
         'users_controller' => [
             '_' => 'informação do jogador',

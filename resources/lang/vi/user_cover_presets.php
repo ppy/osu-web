@@ -5,33 +5,33 @@
 
 return [
     'index' => [
-        'batch_disable' => '',
-        'batch_enable' => '',
+        'batch_disable' => 'Đã chọn tắt',
+        'batch_enable' => 'Đã chọn bật',
 
         'batch_confirm' => [
-            '_' => '',
-            'disable' => '',
-            'enable' => '',
-            'items' => '',
+            '_' => ':action :items?',
+            'disable' => 'Tắt',
+            'enable' => 'Bật',
+            'items' => ':count_delimited biểu ngữ|:count_delimited biểu ngữ',
         ],
 
         'create_form' => [
-            'files' => '',
-            'submit' => '',
-            'title' => '',
+            'files' => 'Tập tin',
+            'submit' => 'Lưu',
+            'title' => 'Thêm mới',
         ],
 
         'item' => [
-            'click_to_disable' => '',
-            'click_to_enable' => '',
-            'enabled' => '',
-            'disabled' => '',
-            'image_store' => '',
-            'image_update' => '',
+            'click_to_disable' => 'Nhấp để tắt',
+            'click_to_enable' => 'Nhấp để bật',
+            'enabled' => 'Đã bật',
+            'disabled' => 'Đã tắt',
+            'image_store' => 'Đặt ảnh',
+            'image_update' => 'Thay ảnh',
         ],
     ],
     'store' => [
-        'failed' => '',
-        'ok' => '',
+        'failed' => 'Lỗi xảy ra khi tạo biểu ngữ: :error',
+        'ok' => 'Đã tạo biểu ngữ',
     ],
 ];

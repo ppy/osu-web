@@ -24,7 +24,7 @@ export default class CommentsShow extends React.Component<Props> {
   }
 
   render() {
-    const comment = this.controller.getComments(this.controller.state.commentIdsByParentId[0])[0];
+    const comment = this.controller.getComments(this.controller.state.commentIdsByParentId[-1])[0];
 
     if (comment == null) {
       throw new Error('missing comment');
