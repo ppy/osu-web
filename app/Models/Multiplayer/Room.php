@@ -62,7 +62,7 @@ class Room extends Model
 
     const DEFAULT_SORT = 'created';
 
-    const CATEGORIES = ['normal', 'spotlight', 'featured_artist'];
+    const CATEGORIES = ['normal', 'spotlight', 'featured_artist', 'beatmap_of_the_day'];
     const TYPE_GROUPS = [
         'playlists' => [self::PLAYLIST_TYPE],
         'realtime' => self::REALTIME_TYPES,
