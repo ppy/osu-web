@@ -33,8 +33,8 @@ use App\Transformers\UserReplaysWatchedCountTransformer;
 use App\Transformers\UserTransformer;
 use Auth;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
-use NoCaptcha;
 use Request;
+use romanzipp\Turnstile\Validator as TurnstileValidator;
 use Sentry\State\Scope;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
@@ -253,7 +253,7 @@ class UsersController extends Controller
             static $captchaField = 'g-recaptcha-response';
             $token = $rawParams[$captchaField] ?? null;
 
-            $validCaptcha = NoCaptcha::verifyResponse($token);
+            $validCaptcha = (new TurnstileValidator())->validate($token)->isValid();
 
             if (!$validCaptcha) {
                 return abort(422, 'invalid captcha');
