@@ -462,6 +462,7 @@ export default class CommentsController {
     if (initial) {
       // for initial page of comment index and show
       this.state.commentIdsByParentId[-1] = bundle.comments.map((comment) => comment.id);
+      this.state.sort = bundle.sort;
     }
 
     bundle.comments.forEach((comment) => {
