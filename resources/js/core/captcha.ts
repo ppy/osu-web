@@ -47,6 +47,8 @@ export default class Captcha {
 
   render = (container: HTMLDivElement) => {
     if (this.isEnabled(container) && !this.isLoaded(container)) {
+      // turnstile specific option
+      container.dataset.language = window.currentLocale;
       const disableSubmit = () => this.disableSubmit(container);
       const id = grecaptcha.render(container, {
         callback: () => this.enableSubmit(container),

@@ -6,6 +6,6 @@
     use turbolinks initialiser
 --}}
 <script>
-    osuCore.turbolinksReload.load('https://challenges.cloudflare.com/turnstile/v0/api.js?compat=recaptcha&render=explicit&onload=initCaptcha&language={{ Lang::getLocale() }}');
+    osuCore.turbolinksReload.load('https://challenges.cloudflare.com/turnstile/v0/api.js?compat=recaptcha&render=explicit&onload=initCaptcha');
     function initCaptcha() { osuCore.captcha.init('{{ $GLOBALS['cfg']['turnstile']['site_key'] }}'); }
 </script>
