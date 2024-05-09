@@ -247,7 +247,7 @@ class Room extends Model
     public function scopeActive($query)
     {
         return $query
-            ->where('starts_at', '<', Carbon::now())
+            ->where('starts_at', '<=', Carbon::now())
             ->where(function ($q) {
                 $q->where('ends_at', '>', Carbon::now())->orWhereNull('ends_at');
             });
