@@ -187,7 +187,7 @@ function cache_forget_with_fallback($key)
 
 function captcha_enabled()
 {
-    return $GLOBALS['cfg']['captcha']['sitekey'] !== '' && $GLOBALS['cfg']['captcha']['secret'] !== '';
+    return $GLOBALS['cfg']['turnstile']['site_key'] !== '' && $GLOBALS['cfg']['turnstile']['secret_key'] !== '';
 }
 
 function captcha_login_triggered()
@@ -196,11 +196,11 @@ function captcha_login_triggered()
         return false;
     }
 
-    if ($GLOBALS['cfg']['captcha']['threshold'] === 0) {
+    if ($GLOBALS['cfg']['osu']['captcha']['threshold'] === 0) {
         $triggered = true;
     } else {
         $loginAttempts = LoginAttempt::find(request()->getClientIp());
-        $triggered = $loginAttempts && $loginAttempts->failed_attempts >= $GLOBALS['cfg']['captcha']['threshold'];
+        $triggered = $loginAttempts && $loginAttempts->failed_attempts >= $GLOBALS['cfg']['osu']['captcha']['threshold'];
     }
 
     return $triggered;

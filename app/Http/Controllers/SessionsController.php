@@ -10,7 +10,7 @@ use App\Libraries\User\ForceReactivation;
 use App\Models\User;
 use App\Transformers\CurrentUserTransformer;
 use Auth;
-use NoCaptcha;
+use romanzipp\Turnstile\Validator as TurnstileValidator;
 
 class SessionsController extends Controller
 {
@@ -49,7 +49,7 @@ class SessionsController extends Controller
             $validCaptcha = false;
 
             if ($token !== null) {
-                $validCaptcha = NoCaptcha::verifyResponse($token);
+                $validCaptcha = (new TurnstileValidator())->validate($token)->isValid();
             }
 
             if (!$validCaptcha) {
