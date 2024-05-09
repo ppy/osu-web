@@ -23,6 +23,7 @@ class ScoreTransformer extends TransformerAbstract
     const MULTIPLAYER_BASE_INCLUDES = ['user.country', 'user.cover'];
     // warning: the preload is actually for PlaylistItemUserHighScore, not for Score
     const MULTIPLAYER_BASE_PRELOAD = [
+        'scoreLink.playlistItem',
         'scoreLink.score',
         'scoreLink.score.processHistory',
         'scoreLink.user.country',

@@ -5,33 +5,33 @@
 
 return [
     'index' => [
-        'batch_disable' => '',
-        'batch_enable' => '',
+        'batch_disable' => 'Вимкнути вибрані',
+        'batch_enable' => 'Увімкнути вибрані',
 
         'batch_confirm' => [
-            '_' => '',
-            'disable' => '',
-            'enable' => '',
-            'items' => '',
+            '_' => ':action :items?',
+            'disable' => 'Вимкнути',
+            'enable' => 'Увімкнути',
+            'items' => ':count_delimited обкладинка |:count_delimited обкладинок',
         ],
 
         'create_form' => [
-            'files' => '',
-            'submit' => '',
-            'title' => '',
+            'files' => 'Файли',
+            'submit' => 'Зберегти',
+            'title' => 'Додати нову',
         ],
 
         'item' => [
-            'click_to_disable' => '',
-            'click_to_enable' => '',
-            'enabled' => '',
-            'disabled' => '',
-            'image_store' => '',
-            'image_update' => '',
+            'click_to_disable' => 'Натисніть, щоб вимкнути',
+            'click_to_enable' => 'Натисніть, щоб увімкнути',
+            'enabled' => 'Увімкнено',
+            'disabled' => 'Вимкнено',
+            'image_store' => 'Встановити зображення',
+            'image_update' => 'Замінити зображення',
         ],
     ],
     'store' => [
-        'failed' => '',
-        'ok' => '',
+        'failed' => 'Сталась помилка при створенні обкладинки: :error',
+        'ok' => 'Обкладинки створено',
     ],
 ];

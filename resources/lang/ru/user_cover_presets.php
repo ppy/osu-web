@@ -5,33 +5,33 @@
 
 return [
     'index' => [
-        'batch_disable' => '',
-        'batch_enable' => '',
+        'batch_disable' => 'Отключить выбранные',
+        'batch_enable' => 'Включить выбранные',
 
         'batch_confirm' => [
-            '_' => '',
-            'disable' => '',
-            'enable' => '',
-            'items' => '',
+            '_' => ':action :items?',
+            'disable' => 'Отключить',
+            'enable' => 'Включить',
+            'items' => ':count_delimited обложка|:count_delimited обложки|:count_delimited обложек',
         ],
 
         'create_form' => [
-            'files' => '',
-            'submit' => '',
-            'title' => '',
+            'files' => 'Файлы',
+            'submit' => 'Сохранить',
+            'title' => 'Добавить новую',
         ],
 
         'item' => [
-            'click_to_disable' => '',
-            'click_to_enable' => '',
-            'enabled' => '',
-            'disabled' => '',
-            'image_store' => '',
-            'image_update' => '',
+            'click_to_disable' => 'Нажмите, чтобы выключить',
+            'click_to_enable' => 'Нажмите, чтобы включить',
+            'enabled' => 'Включена',
+            'disabled' => 'Выключена',
+            'image_store' => 'Выбрать изображение',
+            'image_update' => 'Заменить изображение',
         ],
     ],
     'store' => [
-        'failed' => '',
-        'ok' => '',
+        'failed' => 'При создании обложки произошла ошибка: :error',
+        'ok' => 'Обложки созданы',
     ],
 ];

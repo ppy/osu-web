@@ -111,7 +111,7 @@ return [
             '_' => 'torneos',
         ],
         'user_cover_presets_controller' => [
-            '_' => '',
+            '_' => 'preselecciones de portadas de usuario',
         ],
         'users_controller' => [
             '_' => 'información del jugador',

@@ -17,7 +17,7 @@ return [
             'has_reply' => 'Keskustelua, jossa on vastauksia, ei voi poistaa',
         ],
         'nominate' => [
-            'exhausted' => 'Olet saavuttanut suosittelurajan tälle päivälle, yritä huomenna uudelleen.',
+            'exhausted' => 'Olet saavuttanut päivän ehdollepanorajan, yritä uudelleen huomenna.',
             'incorrect_state' => 'Virhe toiminnon suorittamisessa, kokeile päivittää sivu.',
             'owner' => "Omaa rytmikarttaa ei voi ehdollepanna.",
             'set_metadata' => 'Sinun täytyy määrittää tyylilaji ja kieli ennen ehdolle asettamista.',
@@ -34,7 +34,7 @@ return [
             'bot' => "Et voi äänestää botin tekemässä keskustelussa",
             'limit_exceeded' => 'Odota hetki ennen uusien äänien antamista',
             'owner' => "Omia keskusteluja ei voi äänestää.",
-            'wrong_beatmapset_state' => 'Voit äänestää vain vireillä olevien beatmappien keskusteluissa.',
+            'wrong_beatmapset_state' => 'Vain vireillä olevien rytmikarttojen keskusteluja voi äänestää.',
         ],
     ],
 

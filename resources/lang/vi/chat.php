@@ -18,8 +18,8 @@ return [
     'channels' => [
         'confirm_part' => 'Bạn có muốn ẩn kênh này không? Bạn vẫn sẽ nhận được tin nhắn từ kênh này.',
         'create' => 'tạo thông báo ',
-        'join' => '',
-        'none' => '',
+        'join' => 'tham gia kênh',
+        'none' => 'không có kênh',
 
         'list' => [
             'title' => [
@@ -64,6 +64,6 @@ return [
     ],
 
     'join_channels' => [
-        'loading' => '',
+        'loading' => 'Đang tải danh sách kênh...',
     ],
 ];

@@ -19,7 +19,7 @@ return [
     ],
 
     'search' => [
-        'advanced_link' => 'Tarkennettu haku',
+        'advanced_link' => 'Edistynyt haku',
         'button' => 'Hae',
         'empty_result' => 'Mitään ei löytynyt!',
         'keyword_required' => 'Syötä hakusana',
@@ -79,7 +79,7 @@ return [
         'action_lazer_info' => 'lisätietoja saat täältä',
         'action_lazer_title' => 'kokeile osu!(lazer)ia',
         'action_title' => 'lataa osu!',
-        'for_os' => ':os -käyttöjärjestelmälle',
+        'for_os' => 'käyttöjärjestelmälle: :os',
         'macos-fallback' => 'macOS-käyttäjät',
         'mirror' => 'vaihtoehtoinen lataus',
         'or' => 'tai',
@@ -107,7 +107,7 @@ return [
             ],
             'download' => [
                 'title' => 'lataa peli',
-                'description' => 'klikkaa ylläolevaa painiketta ladataksesi asennusohjelman ja suorita se!',
+                'description' => 'napsauta yllä olevaa painiketta ladataksesi asennusohjelman ja käynnistä se!',
             ],
             'beatmaps' => [
                 'title' => 'hanki beatmappeja',
@@ -123,7 +123,7 @@ return [
         'title' => 'yleiskatsaus',
         'news' => [
             'title' => 'Uutiset',
-            'error' => 'Virhe ladattaessa uutisia. Kokeile sivun päivittämistä.',
+            'error' => 'Virhe uutisten lataamisessa, kokeile päivittää sivu?...',
         ],
         'header' => [
             'stats' => [

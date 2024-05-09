@@ -5,33 +5,33 @@
 
 return [
     'index' => [
-        'batch_disable' => '',
-        'batch_enable' => '',
+        'batch_disable' => 'Poista valitut käytöstä',
+        'batch_enable' => 'Ota valitut käyttöön',
 
         'batch_confirm' => [
-            '_' => '',
-            'disable' => '',
-            'enable' => '',
-            'items' => '',
+            '_' => ':action :items?',
+            'disable' => 'Poista käytöstä',
+            'enable' => 'Ota käyttöön',
+            'items' => ':count_delimited kansikuva|:count_delimited kansikuvaa',
         ],
 
         'create_form' => [
-            'files' => '',
-            'submit' => '',
-            'title' => '',
+            'files' => 'Tiedostot',
+            'submit' => 'Tallenna',
+            'title' => 'Lisää uusi',
         ],
 
         'item' => [
-            'click_to_disable' => '',
-            'click_to_enable' => '',
-            'enabled' => '',
-            'disabled' => '',
-            'image_store' => '',
-            'image_update' => '',
+            'click_to_disable' => 'Poista käytöstä napsauttamalla',
+            'click_to_enable' => 'Ota käyttöön napsauttamalla',
+            'enabled' => 'Käytössä',
+            'disabled' => 'Poissa käytöstä',
+            'image_store' => 'Aseta kuva',
+            'image_update' => 'Korvaa kuva',
         ],
     ],
     'store' => [
-        'failed' => '',
-        'ok' => '',
+        'failed' => 'Kansikuvan luomisessa tapahtui virhe: :error',
+        'ok' => 'Kansikuvat luotu',
     ],
 ];

@@ -17,7 +17,7 @@ return [
 
     'artist_tracks' => [
         'album' => 'Albumi',
-        'artist' => 'Esittäjä',
+        'artist' => 'Artisti',
         'bpm' => 'BPM',
         'genre' => 'Tyylilaji',
         'length' => 'Pituus',

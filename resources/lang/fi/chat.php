@@ -18,8 +18,8 @@ return [
     'channels' => [
         'confirm_part' => 'Haluatko piilottaa tämän kanavan? Tulet yhä saamaan viestejä tältä kanavalta.',
         'create' => 'luo tiedote',
-        'join' => '',
-        'none' => '',
+        'join' => 'liity kanavalle',
+        'none' => 'ei kanavaa',
 
         'list' => [
             'title' => [
@@ -64,6 +64,6 @@ return [
     ],
 
     'join_channels' => [
-        'loading' => '',
+        'loading' => 'Ladataan kanavaluetteloa...',
     ],
 ];

@@ -6,24 +6,24 @@
 return [
     'support' => [
         'convinced' => [
-            'title' => '',
-            'support' => '',
-            'gift' => '',
-            'instructions' => '',
+            'title' => 'Маған ұнады! :D',
+            'support' => 'osu!-ды қолдау',
+            'gift' => 'немесе басқа ойыншыларға қолдау сыйлау',
+            'instructions' => 'osu!store-ға өту үшін жүрек түймесін басыңыз',
         ],
         'why-support' => [
             'title' => '',
 
             'team' => [
-                'title' => '',
+                'title' => 'Команданы Қолдау',
                 'description' => '',
             ],
             'infra' => [
-                'title' => '',
+                'title' => 'Сервер инфрақұрылымы',
                 'description' => '',
             ],
             'featured-artists' => [
-                'title' => '',
+                'title' => 'Таңдаулы Әртістер',
                 'description' => '',
                 'link_text' => '',
             ],
@@ -32,9 +32,9 @@ return [
                 'description' => '',
             ],
             'tournaments' => [
-                'title' => '',
+                'title' => 'Ресми жарыстар',
                 'description' => '',
-                'link_text' => '',
+                'link_text' => 'Жарыс туралы зерттеу &raquo;',
             ],
             'bounty-program' => [
                 'title' => '',
@@ -45,23 +45,23 @@ return [
         'perks' => [
             'title' => '',
             'osu_direct' => [
-                'title' => '',
+                'title' => 'osu!direct',
                 'description' => '',
             ],
 
             'friend_ranking' => [
-                'title' => '',
+                'title' => 'Достар арасындағы рейтинг',
                 'description' => "",
             ],
 
             'country_ranking' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Ел бойынша рейтинг',
+                'description' => 'Әлемді бағындырмас бұрын алдымен өз еліңізді бағындырыңыз.',
             ],
 
             'mod_filtering' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Модтар бойынша іріктеу',
+                'description' => 'Тек HDHR ойнайтын адамдармен сәйкестендіру керек пе? Еш қиындықсыз!',
             ],
 
             'auto_downloads' => [
@@ -70,7 +70,7 @@ return [
             ],
 
             'upload_more' => [
-                'title' => '',
+                'title' => 'Көбірек жүктеңіз',
                 'description' => '',
             ],
 
@@ -90,17 +90,17 @@ return [
             ],
 
             'yellow_fellow' => [
-                'title' => '',
+                'title' => 'Алтын Адам',
                 'description' => '',
             ],
 
             'speedy_downloads' => [
-                'title' => '',
+                'title' => 'Тезірек жүктеулер',
                 'description' => '',
             ],
 
             'change_username' => [
-                'title' => '',
+                'title' => 'Пайдаланушы атын өзгерту',
                 'description' => '',
             ],
 
@@ -124,7 +124,7 @@ return [
                 'description' => '',
             ],
             'more_friends' => [
-                'title' => '',
+                'title' => 'Көбірек достар',
                 'description' => '',
             ],
             'more_beatmaps' => [
@@ -132,7 +132,7 @@ return [
                 'description' => '',
             ],
             'friend_filtering' => [
-                'title' => '',
+                'title' => 'Достар Көшбасшылар Тақтасы',
                 'description' => '',
             ],
 

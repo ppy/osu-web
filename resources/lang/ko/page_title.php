@@ -111,7 +111,7 @@ return [
             '_' => '토너먼트',
         ],
         'user_cover_presets_controller' => [
-            '_' => '',
+            '_' => '유저 커버 프리셋',
         ],
         'users_controller' => [
             '_' => '플레이어 정보',

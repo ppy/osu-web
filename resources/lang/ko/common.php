@@ -39,7 +39,7 @@ return [
         'pin' => '고정',
         'post' => '게시하기',
         'read_more' => '자세히 보기',
-        'refresh' => '',
+        'refresh' => '새로고침',
         'reply' => '답변하기',
         'reply_reopen' => '답변하고 토론 재개하기',
         'reply_resolve' => '답변하고 토론 마무리하기',

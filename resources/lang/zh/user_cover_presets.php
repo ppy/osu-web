@@ -5,33 +5,33 @@
 
 return [
     'index' => [
-        'batch_disable' => '',
-        'batch_enable' => '',
+        'batch_disable' => '禁用所选',
+        'batch_enable' => '启用所选',
 
         'batch_confirm' => [
-            '_' => '',
-            'disable' => '',
-            'enable' => '',
-            'items' => '',
+            '_' => ':action :items？',
+            'disable' => '禁用',
+            'enable' => '启用',
+            'items' => ':count_delimited 封面图',
         ],
 
         'create_form' => [
-            'files' => '',
-            'submit' => '',
-            'title' => '',
+            'files' => '文件',
+            'submit' => '保存',
+            'title' => '新增',
         ],
 
         'item' => [
-            'click_to_disable' => '',
-            'click_to_enable' => '',
-            'enabled' => '',
-            'disabled' => '',
-            'image_store' => '',
-            'image_update' => '',
+            'click_to_disable' => '点此禁用',
+            'click_to_enable' => '点此启用',
+            'enabled' => '已启用',
+            'disabled' => '已禁用',
+            'image_store' => '设置图片',
+            'image_update' => '替换图片',
         ],
     ],
     'store' => [
-        'failed' => '',
-        'ok' => '',
+        'failed' => '创建封面图时发生错误: :error',
+        'ok' => '封面图已创建',
     ],
 ];
