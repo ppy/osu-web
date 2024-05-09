@@ -3,6 +3,17 @@
 
 import { htmlElementOrNull } from 'utils/html';
 
+function isVisible(el: HTMLElement) {
+  const rect = el.getBoundingClientRect();
+  if (rect.x === 0 && rect.y === 0 && rect.width === 0 && rect.height === 0) {
+    return false;
+  }
+
+  const style = window.getComputedStyle(el);
+
+  return style.pointerEvents !== 'none';
+}
+
 export default class Captcha {
   private sitekey = '';
 
@@ -46,6 +57,9 @@ export default class Captcha {
   isTriggered = (container: HTMLDivElement) => container.dataset.captchaTriggered === '1';
 
   render = (container: HTMLDivElement) => {
+    if (!isVisible(container)) {
+      return;
+    }
     if (this.isEnabled(container) && !this.isLoaded(container)) {
       // turnstile specific option
       container.dataset.language = window.currentLocale;

@@ -5,7 +5,7 @@ import { blackoutToggle } from 'utils/blackout'
 import { fadeToggle } from 'utils/fade'
 
 export default class Nav2
-  constructor: (@clickMenu) ->
+  constructor: (@clickMenu, @captcha) ->
     @menuBg = document.getElementsByClassName('js-nav2--menu-bg')
 
     $.subscribe 'click-menu:current', @autoCenterPopup
@@ -30,6 +30,7 @@ export default class Nav2
       popup.classList.remove 'hidden'
       currentPopup = popup
       link = document.querySelector(".js-click-menu[data-click-menu-target='#{@currentMenu}']")
+      @captcha.renderAll()
 
     return if !currentPopup?
 
