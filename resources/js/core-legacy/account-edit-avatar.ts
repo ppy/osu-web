@@ -1,84 +1,84 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-import { route } from 'laroute'
-import { fileuploadFailCallback } from 'utils/ajax'
+import { route } from 'laroute';
+import { fileuploadFailCallback } from 'utils/ajax';
 
-export default class AccountEditAvatar
-  constructor: ->
-    $(document).on 'turbolinks:load', @initialize
-    $(document).on 'turbolinks:before-cache', @rollback
+export default class AccountEditAvatar {
+  private dragging = false;
+  private isAvailable = false;
+  private readonly main = document.getElementsByClassName('js-account-edit-avatar');
+  private overlayLeaveTimeout?: number;
 
-    $.subscribe 'dragenterGlobal', @overlayStart
-    $.subscribe 'dragendGlobal', @overlayEnd
-    $(document).on 'dragenter', '.js-account-edit-avatar', @overlayEnter
-    $(document).on 'dragover', '.js-account-edit-avatar', @overlayHover
+  constructor() {
+    $(document).on('turbolinks:load', this.initialize);
+    $(document).on('turbolinks:before-cache', this.rollback);
 
-    @main = document.getElementsByClassName('js-account-edit-avatar')
+    $.subscribe('dragenterGlobal', this.overlayStart);
+    $.subscribe('dragendGlobal', this.overlayEnd);
+    $(document).on('dragenter', '.js-account-edit-avatar', this.overlayEnter);
+    $(document).on('dragover', '.js-account-edit-avatar', this.overlayHover);
+  }
 
+  initialize = () => {
+    if (!(this.main[0] instanceof HTMLElement)) return;
 
-  $button: ->
-    $('.js-account-edit-avatar__button')
+    this.isAvailable = true;
 
+    $('.js-account-edit-avatar__button').fileupload({
+      complete: () => {
+        this.main[0].classList.remove('js-account-edit-avatar--saving');
+      },
+      dataType: 'json',
+      done: (_e, data) => {
+        $.publish('user:update', data.result);
+      },
+      dropZone: $(this.main),
+      fail: fileuploadFailCallback,
+      submit: () => {
+        this.main[0].classList.add('js-account-edit-avatar--saving');
+        $.publish('dragendGlobal');
+      },
+      url: route('account.avatar'),
+    });
+  };
 
-  initialize: =>
-    return if !@main[0]?
+  overlayEnd = () => {
+    if (!this.isAvailable) return;
 
-    @isAvailable = true
+    this.main[0].classList.remove('js-account-edit-avatar--start');
+  };
 
-    @$main = $(@main)
+  overlayEnter = () => {
+    this.dragging = true;
+  };
 
-    @$button().fileupload
-      url: route('account.avatar')
-      dataType: 'json'
-      dropZone: @$main
+  overlayHover = () => {
+    if (!this.dragging) return;
 
-      submit: =>
-        @main[0].classList.add 'js-account-edit-avatar--saving'
-        $.publish 'dragendGlobal'
+    this.main[0].classList.add('js-account-edit-avatar--hover');
 
-      done: (_e, data) =>
-        $.publish 'user:update', data.result
-
-      fail: fileuploadFailCallback
-
-      complete: =>
-        @main[0].classList.remove 'js-account-edit-avatar--saving'
-
-
-  overlayEnd: =>
-    return if !@isAvailable
-
-    @main[0].classList.remove 'js-account-edit-avatar--start'
-
-
-  overlayEnter: =>
-    @dragging ?= true
-
-
-  overlayHover: =>
-    return if !@dragging
-
-    @main[0].classList.add 'js-account-edit-avatar--hover'
-
-    # see GlobalDrag
-    Timeout.clear @overlayLeaveTimeout
-    @overlayLeaveTimeout = Timeout.set 100, @overlayLeave
+    // see GlobalDrag
+    window.clearTimeout(this.overlayLeaveTimeout);
+    this.overlayLeaveTimeout = window.setTimeout(this.overlayLeave, 100);
+  };
 
 
-  overlayLeave: =>
-    @dragging = null
-    @main[0].classList.remove 'js-account-edit-avatar--hover'
+  overlayLeave = () => {
+    this.dragging = false;
+    this.main[0].classList.remove('js-account-edit-avatar--hover');
+  };
 
+  overlayStart = () => {
+    if (!this.isAvailable) return;
 
-  overlayStart: =>
-    return if !@isAvailable
+    this.main[0].classList.add('js-account-edit-avatar--start');
+  };
 
-    @main[0].classList.add 'js-account-edit-avatar--start'
+  rollback = () => {
+    if (!this.isAvailable) return;
 
-
-  rollback: =>
-    return if !@isAvailable
-
-    @isAvailable = false
-    @$button().fileupload 'destroy'
+    this.isAvailable = false;
+    $('.js-account-edit-avatar__button').fileupload('destroy');
+  };
+}
