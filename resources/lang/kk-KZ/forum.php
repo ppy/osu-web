@@ -4,29 +4,29 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'pinned_topics' => '',
-    'slogan' => "",
+    'pinned_topics' => 'Бекітілген тақырыптар',
+    'slogan' => "жалғыз ойнау қауіпті. ",
     'subforums' => '',
     'title' => 'Форум',
 
     'covers' => [
-        'edit' => '',
+        'edit' => 'Мұқабаны өзгерту',
 
         'create' => [
-            '_' => '',
-            'button' => '',
+            '_' => 'Мұқаба сүретін қою',
+            'button' => 'Мұқабаны жүктеу',
             'info' => '',
         ],
 
         'destroy' => [
-            '_' => '',
+            '_' => 'Мұқабаны жою',
             'confirm' => '',
         ],
     ],
 
     'forums' => [
-        'forums' => '',
-        'latest_post' => '',
+        'forums' => 'Форум',
+        'latest_post' => 'Соңғы жазба',
 
         'index' => [
             'title' => '',
@@ -46,9 +46,9 @@ return [
     'post' => [
         'confirm_destroy' => 'Жазбаны жою?',
         'confirm_restore' => 'Жазбаны қалпына келтіру?',
-        'edited' => '',
-        'posted_at' => '',
-        'posted_by_in' => '',
+        'edited' => 'Соңғы рет :user :when өзгертті, жалпы :count_delimited рет өзгертілген.',
+        'posted_at' => ':when жарияланған ',
+        'posted_by_in' => ':forum-да :username жариялаған',
 
         'actions' => [
             'destroy' => 'Постты жою',
@@ -72,16 +72,16 @@ return [
     'search' => [
         'go_to_post' => 'Жазбаға өту',
         'post_number_input' => 'жазба номерін жазыңыз ',
-        'total_posts' => '',
+        'total_posts' => 'барлығы :posts_count жазба',
     ],
 
     'topic' => [
         'confirm_destroy' => '',
         'confirm_restore' => '',
-        'deleted' => '',
-        'go_to_latest' => '',
-        'has_replied' => '',
-        'in_forum' => '',
+        'deleted' => 'жойылған тақырып',
+        'go_to_latest' => 'соңғы жазбаны қарау',
+        'has_replied' => 'Сіз осы тақырыпқа жауап бердіңіз',
+        'in_forum' => ':forum-да',
         'latest_post' => '',
         'latest_reply_by' => '',
         'new_topic' => 'Жаңа тақырып',

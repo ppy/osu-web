@@ -5,205 +5,205 @@
 
 return [
     'audio' => [
-        'autoplay' => '',
+        'autoplay' => 'Reproducir la siguiente pista automáticamente',
     ],
 
     'defaults' => [
-        'page_description' => '',
+        'page_description' => 'osu! - ¡El ritmo está a un solo *clic* de distancia! Con Ouendan/EBA, Taiko y modos de juego originales, así como un editor de niveles totalmente funcional.',
     ],
 
     'header' => [
         'admin' => [
-            'beatmapset' => '',
-            'beatmapset_covers' => '',
-            'contest' => '',
-            'contests' => '',
-            'root' => '',
+            'beatmapset' => 'conjunto de mapas',
+            'beatmapset_covers' => 'portadas del conjunto de mapas',
+            'contest' => 'concurso',
+            'contests' => 'concursos',
+            'root' => 'consola',
         ],
 
         'artists' => [
-            'index' => '',
+            'index' => 'listado',
         ],
 
         'beatmapsets' => [
-            'show' => '',
-            'discussions' => '',
+            'show' => 'información',
+            'discussions' => 'discusión',
         ],
 
         'changelog' => [
-            'index' => '',
+            'index' => 'listado',
         ],
 
         'help' => [
-            'index' => '',
-            'sitemap' => '',
+            'index' => 'índice',
+            'sitemap' => 'Mapa del sitio',
         ],
 
         'store' => [
-            'cart' => '',
-            'orders' => '',
-            'products' => '',
+            'cart' => 'carrito',
+            'orders' => 'historial de pedidos',
+            'products' => 'productos',
         ],
 
         'tournaments' => [
-            'index' => '',
+            'index' => 'listado',
         ],
 
         'users' => [
-            'modding' => '',
-            'playlists' => '',
-            'realtime' => '',
-            'show' => '',
+            'modding' => 'modding',
+            'playlists' => 'listas de juego',
+            'realtime' => 'multijugador',
+            'show' => 'información',
         ],
     ],
 
     'gallery' => [
-        'close' => '',
-        'fullscreen' => '',
-        'zoom' => '',
-        'previous' => '',
-        'next' => '',
+        'close' => 'Cerrar (Esc)',
+        'fullscreen' => 'Activar/desactivar pantalla completa',
+        'zoom' => 'Acercar/alejar',
+        'previous' => 'Anterior (flecha izquierda)',
+        'next' => 'Siguiente (flecha derecha)',
     ],
 
     'menu' => [
         'beatmaps' => [
-            '_' => '',
+            '_' => 'mapas',
         ],
         'community' => [
-            '_' => '',
-            'dev' => '',
+            '_' => 'comunidad',
+            'dev' => 'desarrollo',
         ],
         'help' => [
-            '_' => '',
-            'getAbuse' => '',
-            'getFaq' => '',
-            'getRules' => '',
-            'getSupport' => '',
+            '_' => 'ayuda',
+            'getAbuse' => 'reportar abuso',
+            'getFaq' => 'preguntas frecuentes',
+            'getRules' => 'reglas',
+            'getSupport' => 'no, en serio, ¡necesito ayuda!',
         ],
         'home' => [
-            '_' => '',
-            'team' => '',
+            '_' => 'inicio',
+            'team' => 'equipo',
         ],
         'rankings' => [
-            '_' => '',
+            '_' => 'clasificaciones',
         ],
         'store' => [
-            '_' => '',
+            '_' => 'tienda',
         ],
     ],
 
     'footer' => [
         'general' => [
-            '_' => '',
-            'home' => '',
-            'changelog-index' => '',
-            'beatmaps' => '',
-            'download' => '',
+            '_' => 'General',
+            'home' => 'Inicio',
+            'changelog-index' => 'Registro de cambios',
+            'beatmaps' => 'Lista de mapas',
+            'download' => 'Descargar osu!',
         ],
         'help' => [
-            '_' => '',
-            'faq' => '',
-            'forum' => '',
-            'livestreams' => '',
-            'report' => '',
-            'wiki' => '',
+            '_' => 'Ayuda y comunidad',
+            'faq' => 'Preguntas frecuentes',
+            'forum' => 'Foros de la comunidad',
+            'livestreams' => 'Transmisiones en vivo',
+            'report' => 'Reportar un problema',
+            'wiki' => 'Wiki',
         ],
         'legal' => [
-            '_' => '',
-            'copyright' => '',
+            '_' => 'Legal y estado',
+            'copyright' => 'Derechos de autor (DMCA)',
             'jp_sctl' => '',
-            'privacy' => '',
-            'server_status' => '',
-            'source_code' => '',
-            'terms' => '',
+            'privacy' => 'Privacidad',
+            'server_status' => 'Estado del servidor',
+            'source_code' => 'Código fuente',
+            'terms' => 'Términos',
         ],
     ],
 
     'errors' => [
         '400' => [
-            'error' => '',
+            'error' => 'Parámetro de solicitud no válido',
             'description' => '',
         ],
         '404' => [
-            'error' => '',
-            'description' => "",
+            'error' => 'Página no encontrada',
+            'description' => "¡Lo sentimos, la página que has solicitado no está aquí!",
         ],
         '403' => [
-            'error' => "",
-            'description' => '',
+            'error' => "No deberías estar aquí.",
+            'description' => 'Aunque podrías intentar volver atrás.',
         ],
         '401' => [
-            'error' => "",
-            'description' => '',
+            'error' => "No deberías estar aquí.",
+            'description' => 'Aunque podrías intentar volver atrás. O tal vez iniciar sesión.',
         ],
         '405' => [
-            'error' => '',
-            'description' => "",
+            'error' => 'Página no encontrada',
+            'description' => "¡Lo sentimos, la página que has solicitado no está aquí!",
         ],
         '422' => [
-            'error' => '',
+            'error' => 'Parámetro de solicitud no válido',
             'description' => '',
         ],
         '429' => [
-            'error' => '',
+            'error' => 'Se ha superado el límite de frecuencia',
             'description' => '',
         ],
         '500' => [
-            'error' => '',
-            'description' => "",
+            'error' => '¡Oh no! ¡Algo se ha roto! ;_;',
+            'description' => "Se nos notifica automáticamente de cada error.",
         ],
         'fatal' => [
-            'error' => '',
-            'description' => "",
+            'error' => '¡Oh no! ¡Algo se ha roto (gravemente)! ;_;',
+            'description' => "Se nos notifica automáticamente de cada error.",
         ],
         '503' => [
-            'error' => '',
-            'description' => "",
+            'error' => '¡Fuera de servicio por mantenimiento!',
+            'description' => "El mantenimiento suele durar entre 5 segundos y 10 minutos. Si permanecemos fuera de servicio durante más tiempo, consulta :link para obtener más información.",
             'link' => [
                 'text' => '',
                 'href' => '',
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => "",
+        'reference' => "Por si acaso, ¡aquí tienes un código que le puedes dar al soporte técnico!",
     ],
 
     'popup_login' => [
-        'button' => '',
+        'button' => 'iniciar sesión / registrarme',
 
         'login' => [
-            'forgot' => "",
-            'password' => '',
-            'title' => '',
-            'username' => '',
+            'forgot' => "He olvidado mis datos",
+            'password' => 'contraseña',
+            'title' => 'Inicia sesión para continuar',
+            'username' => 'nombre de usuario',
 
             'error' => [
-                'email' => "",
-                'password' => '',
+                'email' => "El nombre de usuario o la dirección de correo electrónico no existen",
+                'password' => 'Contraseña incorrecta',
             ],
         ],
 
         'register' => [
-            'download' => '',
-            'info' => '',
-            'title' => "",
+            'download' => 'Descargar',
+            'info' => '¡Descarga osu! para crear tu propia cuenta!',
+            'title' => "¿No tienes una cuenta?",
         ],
     ],
 
     'popup_user' => [
         'links' => [
-            'account-edit' => '',
-            'follows' => '',
-            'friends' => '',
-            'legacy_score_only_toggle' => '',
-            'legacy_score_only_toggle_tooltip' => '',
-            'logout' => '',
-            'profile' => '',
+            'account-edit' => 'Configuración',
+            'follows' => 'Listas de seguimiento',
+            'friends' => 'Amigos',
+            'legacy_score_only_toggle' => 'Modo lazer',
+            'legacy_score_only_toggle_tooltip' => 'El modo lazer muestra las puntuaciones establecidas desde lazer con un nuevo algoritmo de puntuación',
+            'logout' => 'Cerrar sesión',
+            'profile' => 'Mi perfil',
         ],
     ],
 
     'popup_search' => [
-        'initial' => '',
-        'retry' => '',
+        'initial' => '¡Escribe para buscar!',
+        'retry' => 'Búsqueda fallida. Haz clic aquí para reintentar.',
     ],
 ];

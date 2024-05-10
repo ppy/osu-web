@@ -5,34 +5,34 @@
 
 return [
     'comment' => [
-        'empty' => '',
-        'page_title' => '',
-        'title' => '',
+        'empty' => 'No hay comentarios observados.',
+        'page_title' => 'lista de seguimiento de comentarios',
+        'title' => 'comentarios',
 
         'table' => [
-            'latest_comment_empty' => '',
-            'latest_comment_value' => '',
+            'latest_comment_empty' => 'sin comentarios',
+            'latest_comment_value' => ':time por :username',
         ],
     ],
 
     'forum_topic' => [
-        'title' => '',
+        'title' => 'temas del foro',
     ],
 
     'index' => [
-        'title_compact' => '',
+        'title_compact' => 'listas de seguimiento',
     ],
 
     'mapping' => [
-        'empty' => '',
-        'followers' => '',
-        'page_title' => '',
-        'title' => '',
-        'to_0' => '',
-        'to_1' => '',
+        'empty' => 'No hay mappers observados.',
+        'followers' => 'suscriptores de mapeo',
+        'page_title' => 'lista de seguimiento de mappers',
+        'title' => 'mappers',
+        'to_0' => 'dejar de notificarme cuando este usuario suba un nuevo mapa',
+        'to_1' => 'notificarme cuando este usuario suba un nuevo mapa',
     ],
 
     'modding' => [
-        'title' => '',
+        'title' => 'discusiones de mapas',
     ],
 ];

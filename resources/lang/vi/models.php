@@ -4,10 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'not_found' => "",
+    'not_found' => "Không thể tìm thấy :model được chỉ định.",
 
     'name' => [
-        'App\Models\Beatmap' => '',
-        'App\Models\Beatmapset' => '',
+        'App\Models\Beatmap' => 'độ khó beatmap',
+        'App\Models\Beatmapset' => 'beatmap',
     ],
 ];
