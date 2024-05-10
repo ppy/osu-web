@@ -30,7 +30,7 @@ export default class AccountEditAvatar {
     if (element == null) return;
 
     $('.js-account-edit-avatar__button').fileupload({
-      complete: () => {
+      always: () => {
         element.classList.remove('js-account-edit-avatar--saving');
       },
       dataType: 'json',
