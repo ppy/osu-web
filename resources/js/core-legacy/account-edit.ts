@@ -1,126 +1,165 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-import { route } from 'laroute'
+import CurrentUserJson from 'interfaces/current-user-json';
+import { route } from 'laroute';
+import { debounce } from 'lodash';
 
-export default class AccountEdit
-  constructor: ->
-    $(document).on 'input change', '.js-account-edit', @initializeUpdate
+export default class AccountEdit {
+  constructor() {
+    $(document).on('input change', '.js-account-edit', this.initializeUpdate);
 
-    $(document).on 'ajax:error', '.js-account-edit', @ajaxError
-    $(document).on 'ajax:send', '.js-account-edit', @ajaxSaving
-    $(document).on 'ajax:success', '.js-account-edit', @ajaxSaved
-    $(document).on 'ajax:success', '.js-user-preferences-update', @ajaxUserPreferencesUpdate
+    $(document).on('ajax:error', '.js-account-edit', this.ajaxError);
+    $(document).on('ajax:send', '.js-account-edit', this.ajaxSaving);
+    $(document).on('ajax:success', '.js-account-edit', this.ajaxSaved);
+    $(document).on('ajax:success', '.js-user-preferences-update', this.ajaxUserPreferencesUpdate);
+  }
 
+  private abortUpdate(form: HTMLElement) {
+    window.clearTimeout(form.savedTimeout);
+    if (form.updating != null) {
+      form.updating.abort();
+    }
 
-  initializeUpdate: (e) =>
-    form = e.currentTarget
+    this.clearState(form);
+  }
 
-    return if form.dataset.accountEditAutoSubmit != '1'
+  private readonly ajaxError = (e: JQuery.Event) => this.clearState(e.currentTarget);
 
-    @abortUpdate form
-    @saving form
-    form.debouncedUpdate ?= _.debounce @update, 1000
-    form.debouncedUpdate form
+  private readonly ajaxSaved = (e: JQuery.Event) => this.saved(e.currentTarget);
 
+  private readonly ajaxSaving = (e: JQuery.Event) => this.saving(e.currentTarget);
 
-  ajaxError: (e) =>
-    @clearState e.currentTarget
-
-
-  ajaxSaving: (e) =>
-    @saving e.currentTarget
-
-
-  ajaxSaved: (e) =>
-    @saved e.currentTarget
+  private readonly ajaxUserPreferencesUpdate = (_e: unknown, user: CurrentUserJson) => $.publish('user:update', user);
 
 
-  ajaxUserPreferencesUpdate: (_e, user) ->
-    $.publish 'user:update', user
+  private clearState(el: HTMLElement) {
+    el.dataset.accountEditState = '';
+  }
 
+  private getFieldName(form: HTMLElement) {
+    if (form.dataset.field != null) {
+      return form.dataset.field;
+    }
 
-  clearState: (el) =>
-    el.dataset.accountEditState = ''
+    const input = form.querySelector<HTMLInputElement>('.js-account-edit__input');
+    if (input == null) {
+      throw new Error('missing input name');
+    }
 
+    return input.name;
+  }
 
-  getValue: (form) ->
-    if form.dataset.accountEditType == 'array'
-      prevValue = null
+  private getMultiValue(form: HTMLElement) {
+    const data: Partial<Record<string, boolean>> = {};
 
-      value = ['']
-      for checkbox in form.querySelectorAll('input')
-        value.push(checkbox.value) if checkbox.checked
-    else if form.dataset.accountEditType == 'radio'
-      prevValue = form.dataset.lastValue
+    for (const checkbox of form.querySelectorAll<HTMLInputElement>('.js-account-edit__input')) {
+      data[checkbox.name] = checkbox.checked;
+    }
 
-      for checkbox in form.querySelectorAll('input[type="radio"]')
-        if checkbox.checked
-          value = checkbox.value
-          break
-    else
-      prevValue = form.dataset.lastValue
+    return data;
+  }
 
-      input = form.querySelector('.js-account-edit__input')
-      if input.type == 'checkbox'
-        value = input.checked
-      else
-        value = input.value
+  private getValue(form: HTMLElement) {
+    let value: string | string[] | undefined;
+    let prevValue: string | undefined;
 
-    { value, prevValue }
+    if (form.dataset.accountEditType === 'array') {
+      prevValue = undefined;
+      value = [];
 
+      for (const checkbox of form.querySelectorAll('input')) {
+        if (checkbox.checked) {
+          value.push(checkbox.value);
+        }
+      }
+    } else if (form.dataset.accountEditType === 'radio') {
+      prevValue = form.dataset.lastValue;
 
-  getMultiValue: (form) ->
-    data = {}
+      // TODO: require name?
+      for (const checkbox of form.querySelectorAll<HTMLInputElement>('input[type="radio"]')) {
+        if (checkbox.checked) {
+          value = checkbox.value;
+          break;
+        }
+      }
+    } else {
+      prevValue = form.dataset.lastValue;
 
-    for checkbox in form.querySelectorAll('.js-account-edit__input')
-      data[checkbox.name] = checkbox.checked
+      const input = form.querySelector<HTMLInputElement>('.js-account-edit__input');
+      if (input == null) {
+        throw new Error('missing input');
+      }
 
-    data
+      value = input.type === 'checkbox' ? input.checked : input.value;
+    }
 
+    return { prevValue, value };
+  }
 
-  saved: (el) =>
-    el.dataset.accountEditState = 'saved'
+  private readonly initializeUpdate = (e: JQuery.TriggeredEvent<unknown, unknown, HTMLElement, unknown>) => {
+    const form = e.currentTarget;
 
-    el.savedTimeout = Timeout.set 3000, =>
-      @clearState el
+    if (form.dataset.accountEditAutoSubmit !== '1') {
+      return;
+    }
 
+    this.abortUpdate(form);
+    this.saving(form);
 
-  saving: (el) =>
-    el.dataset.accountEditState = 'saving'
+    if (form.debouncedUpdate == null) {
+      form.debouncedUpdate = debounce(this.update, 1000);
+    }
 
+    form.debouncedUpdate(form);
+  };
 
-  abortUpdate: (form) =>
-    Timeout.clear form.savedTimeout
-    form.updating?.abort()
-    @clearState form
+  private saved(el: HTMLElement) {
+    el.dataset.accountEditState = 'saved';
 
+    el.savedTimeout = window.setTimeout(() => this.clearState(el), 3000);
+  }
 
-  update: (form) =>
-    if form.dataset.accountEditType == 'multi'
-      data = @getMultiValue(form)
-    else
-      { value, prevValue } = @getValue(form)
+  private saving(el: HTMLElement) {
+    el.dataset.accountEditState = 'saving';
+  }
 
-      return @clearState(form) if value == prevValue
-      input = form.querySelector('.js-account-edit__input')
-      field = form.dataset.field ? input.name
-      form.dataset.lastValue = value
-      data = "#{field}": value
+  private readonly update = (form: HTMLElement) => {
+    let data: Partial<Record<string, boolean | string | string[]>>;
 
-    url = form.dataset.url ? route('account.update')
+    if (form.dataset.accountEditType === 'multi') {
+      data = this.getMultiValue(form);
+    } else {
+      const { prevValue, value } = this.getValue(form);
 
-    form.updating = $.ajax url,
-      method: 'PUT'
-      data: data
+      if (value === prevValue) {
+        // TODO: don't clear? could still be saving...
+        this.clearState(form);
+        return;
+      }
 
-    .done (data) =>
-      @saved form
-      $(form).trigger 'ajax:success', data
+      const field = this.getFieldName(form);
 
-    .fail (xhr, status) =>
-      return if status == 'abort'
+      // dataset autoconverts to string but the typing doesn't accept array.
+      form.dataset.lastValue = Array.isArray(value) ? value.join(',') : value;
+      data = { [field]: value };
+    }
 
-      form.lastValue = prevValue
-      @clearState form
-      $(form).trigger 'ajax:error', [xhr, status]
+    const url = form.dataset.url != null ? form.dataset.url : route('account.update');
+
+    form.updating = $.ajax(url, {
+      data,
+      method: 'PUT',
+    }).done((response: CurrentUserJson | undefined) => {
+      this.saved(form);
+      $(form).trigger('ajax:success', response);
+    }).fail((xhr: JQuery.jqXHR, status: string) => {
+      if (status === 'abort') {
+        return;
+      }
+
+      this.clearState(form);
+      $(form).trigger('ajax:error', [xhr, status]);
+    });
+  };
+}
