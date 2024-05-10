@@ -4,6 +4,10 @@
 import { route } from 'laroute';
 import { fileuploadFailCallback } from 'utils/ajax';
 
+const hoverClass = 'js-account-edit-avatar--hover';
+const savingClass = 'js-account-edit-avatar--saving';
+const startClass = 'js-account-edit-avatar--start';
+
 export default class AccountEditAvatar {
   private dragging = false;
   private readonly main = document.getElementsByClassName('js-account-edit-avatar');
@@ -31,7 +35,7 @@ export default class AccountEditAvatar {
 
     $('.js-account-edit-avatar__button').fileupload({
       always: () => {
-        element.classList.remove('js-account-edit-avatar--saving');
+        element.classList.remove(savingClass);
       },
       dataType: 'json',
       done: (_e, data) => {
@@ -40,7 +44,7 @@ export default class AccountEditAvatar {
       dropZone: $(element),
       fail: fileuploadFailCallback,
       submit: () => {
-        element.classList.add('js-account-edit-avatar--saving');
+        element.classList.add(savingClass);
         $.publish('dragendGlobal');
       },
       url: route('account.avatar'),
@@ -48,7 +52,7 @@ export default class AccountEditAvatar {
   };
 
   overlayEnd = () => {
-    this.element?.classList.remove('js-account-edit-avatar--start');
+    this.element?.classList.remove(startClass);
   };
 
   overlayEnter = () => {
@@ -58,21 +62,20 @@ export default class AccountEditAvatar {
   overlayHover = () => {
     if (!this.dragging) return;
 
-    this.element?.classList.add('js-account-edit-avatar--hover');
+    this.element?.classList.add(hoverClass);
 
     // see GlobalDrag
     window.clearTimeout(this.overlayLeaveTimeout);
     this.overlayLeaveTimeout = window.setTimeout(this.overlayLeave, 100);
   };
 
-
   overlayLeave = () => {
     this.dragging = false;
-    this.element?.classList.remove('js-account-edit-avatar--hover');
+    this.element?.classList.remove(hoverClass);
   };
 
   overlayStart = () => {
-    this.element?.classList.add('js-account-edit-avatar--start');
+    this.element?.classList.add(startClass);
   };
 
   rollback = () => {
