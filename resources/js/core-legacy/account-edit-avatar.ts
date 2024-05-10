@@ -6,9 +6,14 @@ import { fileuploadFailCallback } from 'utils/ajax';
 
 export default class AccountEditAvatar {
   private dragging = false;
-  private isAvailable = false;
   private readonly main = document.getElementsByClassName('js-account-edit-avatar');
   private overlayLeaveTimeout?: number;
+
+  private get element() {
+    const elem = this.main[0];
+
+    return elem instanceof HTMLElement ? elem : null;
+  }
 
   constructor() {
     $(document).on('turbolinks:load', this.initialize);
@@ -21,22 +26,21 @@ export default class AccountEditAvatar {
   }
 
   initialize = () => {
-    if (!(this.main[0] instanceof HTMLElement)) return;
-
-    this.isAvailable = true;
+    const element = this.element;
+    if (element == null) return;
 
     $('.js-account-edit-avatar__button').fileupload({
       complete: () => {
-        this.main[0].classList.remove('js-account-edit-avatar--saving');
+        element.classList.remove('js-account-edit-avatar--saving');
       },
       dataType: 'json',
       done: (_e, data) => {
         $.publish('user:update', data.result);
       },
-      dropZone: $(this.main),
+      dropZone: $(element),
       fail: fileuploadFailCallback,
       submit: () => {
-        this.main[0].classList.add('js-account-edit-avatar--saving');
+        element.classList.add('js-account-edit-avatar--saving');
         $.publish('dragendGlobal');
       },
       url: route('account.avatar'),
@@ -44,9 +48,7 @@ export default class AccountEditAvatar {
   };
 
   overlayEnd = () => {
-    if (!this.isAvailable) return;
-
-    this.main[0].classList.remove('js-account-edit-avatar--start');
+    this.element?.classList.remove('js-account-edit-avatar--start');
   };
 
   overlayEnter = () => {
@@ -56,7 +58,7 @@ export default class AccountEditAvatar {
   overlayHover = () => {
     if (!this.dragging) return;
 
-    this.main[0].classList.add('js-account-edit-avatar--hover');
+    this.element?.classList.add('js-account-edit-avatar--hover');
 
     // see GlobalDrag
     window.clearTimeout(this.overlayLeaveTimeout);
@@ -66,19 +68,15 @@ export default class AccountEditAvatar {
 
   overlayLeave = () => {
     this.dragging = false;
-    this.main[0].classList.remove('js-account-edit-avatar--hover');
+    this.element?.classList.remove('js-account-edit-avatar--hover');
   };
 
   overlayStart = () => {
-    if (!this.isAvailable) return;
-
-    this.main[0].classList.add('js-account-edit-avatar--start');
+    this.element?.classList.add('js-account-edit-avatar--start');
   };
 
   rollback = () => {
-    if (!this.isAvailable) return;
-
-    this.isAvailable = false;
+    if (this.element == null) return;
     $('.js-account-edit-avatar__button').fileupload('destroy');
   };
 }
