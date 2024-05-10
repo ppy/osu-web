@@ -250,8 +250,7 @@ class UsersController extends Controller
         $rawParams = request()->all();
 
         if (captcha_enabled()) {
-            static $captchaField = 'g-recaptcha-response';
-            $token = $rawParams[$captchaField] ?? null;
+            $token = get_string($rawParams['cf-turnstile-response'] ?? null) ?? '';
 
             $validCaptcha = (new TurnstileValidator())->validate($token)->isValid();
 
