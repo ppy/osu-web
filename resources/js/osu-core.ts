@@ -147,6 +147,19 @@ export default class OsuCore {
     }
   }
 
+  @action
+  readonly setCurrentUser = (userOrEmpty: typeof window.currentUser) => {
+    const user = userOrEmpty.id == null ? undefined : userOrEmpty;
+
+    if (user != null) {
+      this.dataStore.userStore.update(user);
+    }
+    this.socketWorker.setUserId(user?.id ?? null);
+    this.currentUser = user;
+    window.currentUser = userOrEmpty;
+    this.userPreferences.setUser(this.currentUser);
+  };
+
   readonly updateCurrentUser = () => {
     // Remove from DOM so only new data is parsed on navigation.
     const currentUser = parseJsonNullable<typeof window.currentUser>('json-current-user', true);
@@ -158,18 +171,5 @@ export default class OsuCore {
 
   private readonly onCurrentUserUpdate = (event: unknown, user: CurrentUserJson) => {
     this.setCurrentUser(user);
-  };
-
-  @action
-  private readonly setCurrentUser = (userOrEmpty: typeof window.currentUser) => {
-    const user = userOrEmpty.id == null ? undefined : userOrEmpty;
-
-    if (user != null) {
-      this.dataStore.userStore.update(user);
-    }
-    this.socketWorker.setUserId(user?.id ?? null);
-    this.currentUser = user;
-    window.currentUser = userOrEmpty;
-    this.userPreferences.setUser(this.currentUser);
   };
 }

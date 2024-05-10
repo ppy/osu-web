@@ -1,7 +1,9 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import CurrentUserJson from 'interfaces/current-user-json';
 import { route } from 'laroute';
+import core from 'osu-core-singleton';
 import { fileuploadFailCallback } from 'utils/ajax';
 
 const hoverClass = 'js-account-edit-avatar--hover';
@@ -39,7 +41,8 @@ export default class AccountEditAvatar {
       },
       dataType: 'json',
       done: (_e, data) => {
-        $.publish('user:update', data.result);
+        const json = data.result as CurrentUserJson;
+        core.setCurrentUser(json);
       },
       dropZone: $(element),
       fail: fileuploadFailCallback,
