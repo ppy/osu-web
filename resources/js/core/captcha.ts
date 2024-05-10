@@ -3,6 +3,17 @@
 
 import { htmlElementOrNull } from 'utils/html';
 
+function isVisible(el: HTMLElement) {
+  const rect = el.getBoundingClientRect();
+  if (rect.x === 0 && rect.y === 0 && rect.width === 0 && rect.height === 0) {
+    return false;
+  }
+
+  const style = window.getComputedStyle(el);
+
+  return style.pointerEvents !== 'none';
+}
+
 export default class Captcha {
   private sitekey = '';
 
@@ -37,8 +48,8 @@ export default class Captcha {
   };
 
   isEnabled = (container: HTMLDivElement) => this.isTriggered(container) &&
-      typeof(grecaptcha) === 'object' &&
-      typeof(grecaptcha.render) === 'function' &&
+      typeof(turnstile) === 'object' &&
+      typeof(turnstile.render) === 'function' &&
       this.sitekey !== '';
 
   isLoaded = (container: HTMLDivElement) => container.innerHTML !== '';
@@ -46,18 +57,24 @@ export default class Captcha {
   isTriggered = (container: HTMLDivElement) => container.dataset.captchaTriggered === '1';
 
   render = (container: HTMLDivElement) => {
+    if (!isVisible(container)) {
+      return;
+    }
     if (this.isEnabled(container) && !this.isLoaded(container)) {
-      // turnstile specific option
-      container.dataset.language = window.currentLocale;
       const disableSubmit = () => this.disableSubmit(container);
-      const id = grecaptcha.render(container, {
+      const id = turnstile.render(container, {
         callback: () => this.enableSubmit(container),
         'error-callback': disableSubmit,
         'expired-callback': disableSubmit,
+        language: window.currentLocale,
         sitekey: this.sitekey,
         theme: 'dark',
       });
-      container.dataset.captchaId = id.toString();
+      if (id == null) {
+        throw new Error('failed setting up turnstile widget');
+      }
+      container.dataset.captchaId = id;
+      $(document).one('turbolinks:before-cache', () => this.remove(container));
 
       disableSubmit();
     }
@@ -65,7 +82,7 @@ export default class Captcha {
 
   reset = (container: HTMLDivElement) => {
     if (this.isEnabled(container)) {
-      grecaptcha.reset(+(container.dataset.captchaId ?? ''));
+      turnstile.reset(container.dataset.captchaId ?? '');
       this.disableSubmit(container);
     }
   };
@@ -79,6 +96,12 @@ export default class Captcha {
 
     container.dataset.captchaTriggered = '1';
     this.render(container);
+  };
+
+  private readonly remove = (container: HTMLDivElement) => {
+    const id = container.dataset.captchaId;
+    delete(container.dataset.captchaId);
+    turnstile.remove(id ?? '');
   };
 
   private readonly renderAll = () => {
