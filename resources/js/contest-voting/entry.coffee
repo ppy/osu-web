@@ -100,7 +100,6 @@ export class Entry extends React.Component
 
 
   renderUserLink: ->
-    console.log(@props);
     return null unless @props.entry.user?.id?
 
     el UserLink,
