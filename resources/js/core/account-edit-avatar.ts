@@ -3,7 +3,7 @@
 
 import CurrentUserJson from 'interfaces/current-user-json';
 import { route } from 'laroute';
-import core from 'osu-core-singleton';
+import OsuCore from 'osu-core';
 import { fileuploadFailCallback } from 'utils/ajax';
 
 const hoverClass = 'js-account-edit-avatar--hover';
@@ -21,7 +21,7 @@ export default class AccountEditAvatar {
     return elem instanceof HTMLElement ? elem : null;
   }
 
-  constructor() {
+  constructor(private readonly core: OsuCore) {
     $(document).on('turbolinks:load', this.initialize);
     $(document).on('turbolinks:before-cache', this.rollback);
 
@@ -42,7 +42,7 @@ export default class AccountEditAvatar {
       dataType: 'json',
       done: (_e, data) => {
         const json = data.result as CurrentUserJson;
-        core.setCurrentUser(json);
+        this.core.setCurrentUser(json);
       },
       dropZone: $(element),
       fail: fileuploadFailCallback,

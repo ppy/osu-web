@@ -4,7 +4,7 @@
 import CurrentUserJson from 'interfaces/current-user-json';
 import { route } from 'laroute';
 import { debounce } from 'lodash';
-import core from 'osu-core-singleton';
+import OsuCore from 'osu-core';
 import { onError } from 'utils/ajax';
 
 type ContainerEvent = JQuery.TriggeredEvent<unknown, unknown, AccountHTMLElement, unknown>;
@@ -16,7 +16,7 @@ interface AccountHTMLElement extends HTMLElement {
 }
 
 export default class AccountEdit {
-  constructor() {
+  constructor(private readonly core: OsuCore) {
     $(document).on('input change', '.js-account-edit', this.handleInputChange);
     $(document).on('ajax:success', '.js-user-preferences-update', this.ajaxUserPreferencesUpdate);
   }
@@ -30,7 +30,7 @@ export default class AccountEdit {
   }
 
   private readonly ajaxUserPreferencesUpdate = (_e: unknown, user: CurrentUserJson) => {
-    core.setCurrentUser(user);
+    this.core.setCurrentUser(user);
   };
 
   private clearState(el: AccountHTMLElement) {
