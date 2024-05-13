@@ -5,23 +5,23 @@
 
 return [
     'beatmapset_update_notice' => [
-        'new' => '',
-        'subject' => '',
-        'unwatch' => '',
-        'visit' => '',
+        'new' => 'Te informamos de que ha habido una nueva actualización en el mapa «:title» desde tu última visita.',
+        'subject' => 'Nueva actualización en el mapa «:title»',
+        'unwatch' => 'Si ya no quieres recibir más notificaciones de este mapa, puedes hacer clic en el enlace «Dejar de ver» que se encuentra en la página de arriba, o desde la página de la lista de seguimiento de modding:',
+        'visit' => 'Visita la página de discusión aquí:',
     ],
 
     'common' => [
-        'closing' => '',
-        'hello' => '',
-        'report' => '',
-        'ignore' => '',
+        'closing' => 'Saludos,',
+        'hello' => 'Hola :user,',
+        'report' => 'Responde a este correo INMEDIATAMENTE si no has solicitado este cambio.',
+        'ignore' => 'Si no solicitaste esto, puedes ignorar este correo.',
     ],
 
     'donation_thanks' => [
-        'benefit_more' => '',
-        'feedback' => "",
-        'keep_free' => '',
+        'benefit_more' => '¡Además, con el tiempo aparecerán nuevas ventajas para los supporters!',
+        'feedback' => "Si tienes alguna pregunta o comentario, no dudes en responder a este correo; ¡te responderé lo antes posible!",
+        'keep_free' => 'Es gracias a personas como tú que osu! es capaz de mantener el juego y la comunidad funcionando sin ningún tipo de anuncios ni pagos forzados.',
         'keep_running' => '',
         'subject' => '',
         'translation' => '',

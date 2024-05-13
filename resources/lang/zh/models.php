@@ -4,10 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'not_found' => "",
+    'not_found' => "无法找到指定的 :model。",
 
     'name' => [
-        'App\Models\Beatmap' => '',
-        'App\Models\Beatmapset' => '',
+        'App\Models\Beatmap' => '谱面难度',
+        'App\Models\Beatmapset' => '谱面',
     ],
 ];

@@ -11,7 +11,7 @@ return [
         'in-progress' => '',
         'in_progress_spinner_label' => '',
         'loading-events' => '',
-        'winner' => '',
+        'winner' => ':team жеңді',
         'winner_by' => '',
 
         'events' => [

@@ -151,7 +151,7 @@ export default class CommentsController {
     } else {
       this.state = initialState();
       const initialBundle = JSON.parse(stateEl.text) as CommentBundleJson;
-      this.loadBundle(initialBundle, false, true);
+      this.loadBundle(initialBundle, true, true);
     }
 
     makeObservable(this);
@@ -305,7 +305,7 @@ export default class CommentsController {
         this.state = initialState();
         this.nextState = {};
         this.xhr = {};
-        this.loadBundle(bundle, false, true);
+        this.loadBundle(bundle, true, true);
         core.userPreferences.set('comments_sort', this.state.sort);
       }));
   }
@@ -462,6 +462,8 @@ export default class CommentsController {
     if (initial) {
       // for initial page of comment index and show
       this.state.commentIdsByParentId[-1] = bundle.comments.map((comment) => comment.id);
+      this.state.sort = bundle.sort;
+      append = true;
     }
 
     bundle.comments.forEach((comment) => {

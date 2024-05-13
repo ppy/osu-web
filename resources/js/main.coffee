@@ -84,7 +84,7 @@ window.formConfirmation ?= new FormConfirmation(window.formError)
 window.forumPostsSeek ?= new ForumPostsSeek(window.forum)
 window.forumTopicPostJump ?= new ForumTopicPostJump(window.forum)
 window.forumTopicReply ?= new ForumTopicReply(bbcodePreview: window.bbcodePreview, forum: window.forum, stickyFooter: osuCore.stickyFooter)
-window.nav2 ?= new Nav2(osuCore.clickMenu)
+window.nav2 ?= new Nav2(osuCore.clickMenu, osuCore.captcha)
 
 
 $(document).on 'change', '.js-url-selector', (e) ->
