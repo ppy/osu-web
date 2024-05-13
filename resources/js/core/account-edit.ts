@@ -18,7 +18,6 @@ interface AccountHTMLElement extends HTMLElement {
 export default class AccountEdit {
   constructor(private readonly core: OsuCore) {
     $(document).on('input change', '.js-account-edit', this.handleInputChange);
-    $(document).on('ajax:success', '.js-user-preferences-update', this.ajaxUserPreferencesUpdate);
   }
 
   private abortUpdate(form: AccountHTMLElement) {
@@ -28,10 +27,6 @@ export default class AccountEdit {
 
     this.clearState(form);
   }
-
-  private readonly ajaxUserPreferencesUpdate = (_e: unknown, user: CurrentUserJson) => {
-    this.core.setCurrentUser(user);
-  };
 
   private clearState(el: AccountHTMLElement) {
     window.clearTimeout(el.savedTimeout);
@@ -143,7 +138,11 @@ export default class AccountEdit {
     form.updating = $.ajax(url, {
       data,
       method: 'PUT',
-    }).done(() => {
+    }).done((response: CurrentUserJson | null) => {
+      if (form.dataset.userPreferencesUpdate === '1' && response != null) {
+        this.core.setCurrentUser(response);
+      }
+
       window.clearTimeout(form.savedTimeout);
       form.dataset.accountEditState = 'saved';
       form.savedTimeout = window.setTimeout(() => this.clearState(form), 3000);
