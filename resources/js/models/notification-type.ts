@@ -30,7 +30,7 @@ export default class NotificationType implements NotificationReadable, Notificat
   @observable isLoading = false;
   @observable isMarkingAsRead = false;
   @observable stacks = new Map<string, NotificationStack>();
-  @observable total = 0;
+  @observable _total = 0;
 
   @computed get hasMore() {
     // undefined means not loaded yet.
@@ -49,6 +49,15 @@ export default class NotificationType implements NotificationReadable, Notificat
 
   @computed get isEmpty() {
     return this.total <= 0;
+  }
+
+  @computed get total() {
+    // combination of latency and delays processing marking as read can cause the display count to go negative.
+    return this._total > 0 ? this._total : 0;
+  }
+
+  set total(val: number) {
+      this._total = val
   }
 
   @computed get stackNotificationCount() {

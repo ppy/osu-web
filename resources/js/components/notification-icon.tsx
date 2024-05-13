@@ -13,8 +13,7 @@ interface Props {
 }
 
 function format(count: number) {
-  // combination of latency and delays processing marking as read can cause the display count to go negative.
-  return formatNumber(count > 0 ? count : 0);
+  return formatNumber(count);
 }
 
 export default function NotificationIcon(props: Props) {
