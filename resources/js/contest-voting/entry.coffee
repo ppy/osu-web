@@ -62,14 +62,14 @@ export class Entry extends React.Component
         div className: 'contest-voting-list__title contest-voting-list__title--show-votes',
           div className: 'contest-voting-list__votes-bar', style: { width: "#{relativeVotePercentage}%" }
           a
-            className: 'contest-voting-list__title--link u-relative u-ellipsis-overflow u-block',
+            className: 'contest-voting-list__title-link',
             href: route('beatmapsets.show', beatmapset: @props.entry.preview)
             entry_title
           @renderUserLink()
       else
         div className: 'contest-voting-list__title',
           a
-            className: 'contest-voting-list__title--link u-ellipsis-overflow',
+            className: 'contest-voting-list__title-link',
             href: route('beatmapsets.show', beatmapset: @props.entry.preview)
             entry_title
           @renderUserLink()

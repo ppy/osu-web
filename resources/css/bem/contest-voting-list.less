@@ -123,12 +123,13 @@
       width: 100%;
       padding: 2px 10px;
     }
+  }
 
-    &--link {
-      display: block;
-      color: white;
-      .link-hover({ color: white });
-    }
+  &__title-link {
+    .u-ellipsis-overflow();
+    .link--white();
+
+    display: block;
   }
 
   &__votes-bar {
