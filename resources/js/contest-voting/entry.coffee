@@ -49,7 +49,7 @@ export class Entry extends React.Component
         if @props.contest.submitted_beatmaps
           a href: route('beatmapsets.show', beatmapset: @props.entry.preview), className: 'contest-voting-list__icon contest-voting-list__icon--submitted-beatmaps', style: { background: "url(https://b.ppy.sh/thumb/#{@props.entry.preview}.jpg)" },
             span className: 'contest-voting-list__link contest-voting-list__link--shadowed',
-              i className: "fal fa-fw fa-lg fa-#{@props.contest.link_icon}"
+              i className: "fas fa-fw fa-lg fa-#{@props.contest.link_icon}"
         else
           div className: 'contest-voting-list__icon contest-voting-list__icon--bg',
             a
