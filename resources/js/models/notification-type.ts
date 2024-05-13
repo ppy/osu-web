@@ -25,12 +25,12 @@ export function getValidName(value: unknown) {
 }
 
 export default class NotificationType implements NotificationReadable, NotificationDeletable {
+  @observable _total = 0;
   @observable cursor?: NotificationCursor | null;
   @observable isDeleting = false;
   @observable isLoading = false;
   @observable isMarkingAsRead = false;
   @observable stacks = new Map<string, NotificationStack>();
-  @observable _total = 0;
 
   @computed get hasMore() {
     // undefined means not loaded yet.
@@ -57,7 +57,7 @@ export default class NotificationType implements NotificationReadable, Notificat
   }
 
   set total(val: number) {
-      this._total = val
+    this._total = val;
   }
 
   @computed get stackNotificationCount() {
