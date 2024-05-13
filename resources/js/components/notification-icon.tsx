@@ -12,10 +12,6 @@ interface Props {
   type?: string;
 }
 
-function format(count: number) {
-  return formatNumber(count);
-}
-
 export default function NotificationIcon(props: Props) {
   const modifiers = {
     glow: props.count > 0,
@@ -26,7 +22,7 @@ export default function NotificationIcon(props: Props) {
     <span className={classWithModifiers('notification-icon', modifiers)}>
       <i className={props.iconClassName} />
       <span className='notification-icon__count'>
-        {props.ready ? format(props.count) : '...'}
+        {props.ready ? formatNumber(props.count) : '...'}
       </span>
     </span>
   );
