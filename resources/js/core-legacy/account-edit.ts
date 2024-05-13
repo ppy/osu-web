@@ -7,7 +7,13 @@ import { debounce } from 'lodash';
 import core from 'osu-core-singleton';
 import { onError } from 'utils/ajax';
 
-type ContainerEvent = JQuery.TriggeredEvent<unknown, unknown, HTMLElement, unknown>;
+type ContainerEvent = JQuery.TriggeredEvent<unknown, unknown, AccountHTMLElement, unknown>;
+
+interface AccountHTMLElement extends HTMLElement {
+  debouncedUpdate: ReturnType<typeof debounce>;
+  savedTimeout?: number;
+  updating: JQuery.jqXHR;
+}
 
 export default class AccountEdit {
   constructor() {
@@ -15,7 +21,7 @@ export default class AccountEdit {
     $(document).on('ajax:success', '.js-user-preferences-update', this.ajaxUserPreferencesUpdate);
   }
 
-  private abortUpdate(form: HTMLElement) {
+  private abortUpdate(form: AccountHTMLElement) {
     if (form.updating != null) {
       form.updating.abort();
     }
@@ -27,7 +33,7 @@ export default class AccountEdit {
     core.setCurrentUser(user);
   };
 
-  private clearState(el: HTMLElement) {
+  private clearState(el: AccountHTMLElement) {
     window.clearTimeout(el.savedTimeout);
     el.dataset.accountEditState = '';
   }
@@ -113,7 +119,7 @@ export default class AccountEdit {
     el.dataset.accountEditState = 'saving';
   }
 
-  private readonly update = (form: HTMLElement) => {
+  private readonly update = (form: AccountHTMLElement) => {
     let data: Partial<Record<string, boolean | string | string[]>>;
 
     if (form.dataset.accountEditType === 'multi') {
