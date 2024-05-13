@@ -264,7 +264,12 @@ class Score extends Model implements Traits\ReportableInterface
             throw new InvariantException('Invalid accuracy.');
         }
 
-        foreach (['total_score', 'max_combo', 'passed'] as $field) {
+        // unsigned int (as per the column)
+        if ($this->total_score === null || $this->total_score < 0 || $this->total_score > 4294967295) {
+            throw new InvariantException('Invalid total_score.');
+        }
+
+        foreach (['max_combo', 'passed'] as $field) {
             if (!present($this->$field)) {
                 throw new InvariantException("field missing: '{$field}'");
             }
