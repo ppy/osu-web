@@ -86,7 +86,7 @@ export default class AccountEdit {
         throw new Error('missing input');
       }
 
-      value = input.type === 'checkbox' ? input.checked : input.value;
+      value = input.type === 'checkbox' ? String(input.checked) : input.value;
     }
 
     return { prevValue, value };
