@@ -4,8 +4,6 @@
 import OsuCore from 'osu-core';
 import AccountEditAutoSubmit from './account-edit-auto-submit';
 
-type ContainerEvent = JQuery.TriggeredEvent<unknown, unknown, AccountEditHTMLElement, unknown>;
-
 interface AccountEditHTMLElement extends HTMLElement {
   autoSubmit?: AccountEditAutoSubmit;
 }
@@ -15,7 +13,7 @@ export default class AccountEditBootstrap {
     $(document).on('input change', '.js-account-edit', this.handleInputChange);
   }
 
-  private readonly handleInputChange = (e: ContainerEvent) => {
+  private readonly handleInputChange = (e: JQuery.TriggeredEvent<unknown, unknown, AccountEditHTMLElement, unknown>) => {
     const container = e.currentTarget;
 
     if (container.dataset.accountEditAutoSubmit !== '1') {
