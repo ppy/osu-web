@@ -4,6 +4,7 @@
 import CurrentUserJson from 'interfaces/current-user-json';
 import { route } from 'laroute';
 import { debounce } from 'lodash';
+import core from 'osu-core-singleton';
 import { onError } from 'utils/ajax';
 
 type ContainerEvent = JQuery.TriggeredEvent<unknown, unknown, HTMLElement, unknown>;
@@ -22,8 +23,9 @@ export default class AccountEdit {
     this.clearState(form);
   }
 
-  private readonly ajaxUserPreferencesUpdate = (_e: unknown, user: CurrentUserJson) => $.publish('user:update', user);
-
+  private readonly ajaxUserPreferencesUpdate = (_e: unknown, user: CurrentUserJson) => {
+    core.setCurrentUser(user);
+  };
 
   private clearState(el: HTMLElement) {
     window.clearTimeout(el.savedTimeout);
