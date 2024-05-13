@@ -16,6 +16,14 @@ export default class AccountEditAutoSubmit {
     this.debouncedUpdate = debounce(this.update, 1000);
   }
 
+  private get data() {
+    if (this.dataset.accountEditType === 'multi') {
+      return this.getMultiValue();
+    } else {
+      return { [this.fieldName]: this.getValue() };
+    }
+  }
+
   private get dataset() {
     return this.container.dataset;
   }
@@ -53,10 +61,8 @@ export default class AccountEditAutoSubmit {
 
   private getValue() {
     let value: string | string[] | undefined;
-    let prevValue: string | undefined;
 
     if (this.dataset.accountEditType === 'array') {
-      prevValue = undefined;
       value = [];
 
       for (const checkbox of this.container.querySelectorAll('input')) {
@@ -65,8 +71,6 @@ export default class AccountEditAutoSubmit {
         }
       }
     } else if (this.dataset.accountEditType === 'radio') {
-      prevValue = this.dataset.lastValue;
-
       // TODO: require name?
       for (const checkbox of this.container.querySelectorAll<HTMLInputElement>('input[type="radio"]')) {
         if (checkbox.checked) {
@@ -75,8 +79,6 @@ export default class AccountEditAutoSubmit {
         }
       }
     } else {
-      prevValue = this.dataset.lastValue;
-
       const input = this.container.querySelector<HTMLInputElement>('.js-account-edit__input');
       if (input == null) {
         throw new Error('missing input');
@@ -85,31 +87,12 @@ export default class AccountEditAutoSubmit {
       value = input.type === 'checkbox' ? String(input.checked) : input.value;
     }
 
-    return { prevValue, value };
+    return value;
   }
 
   private readonly update = () => {
-    let data: Partial<Record<string, boolean | string | string[]>>;
-
-    if (this.dataset.accountEditType === 'multi') {
-      data = this.getMultiValue();
-    } else {
-      const { prevValue, value } = this.getValue();
-
-      if (value === prevValue) {
-        this.dataset.accountEditState = '';
-        return;
-      }
-
-      // dataset autoconverts to string but the typing doesn't accept array.
-      this.dataset.lastValue = Array.isArray(value) ? value.join(',') : value;
-      data = { [this.fieldName]: value };
-    }
-
-    const url = this.dataset.url ?? route('account.update');
-
-    this.xhr = $.ajax(url, {
-      data,
+    this.xhr = $.ajax(this.dataset.url ?? route('account.update'), {
+      data: this.data,
       method: 'PUT',
     });
 
