@@ -272,6 +272,14 @@ class Score extends Model implements Traits\ReportableInterface
             throw new InvariantException('Invalid total_score.');
         }
 
+        // unsigned int (no data type enforcement as this goes into the json, but just to match total_score)
+        if (
+            $this->data->totalScoreWithoutMods !== null
+            && ($this->data->totalScoreWithoutMods < 0 || $this->data->totalScoreWithoutMods > 4294967295)
+        ) {
+            throw new InvariantException('Invalid total_score_without_mods.');
+        }
+
         foreach (['max_combo', 'passed'] as $field) {
             if (!present($this->$field)) {
                 throw new InvariantException("field missing: '{$field}'");
