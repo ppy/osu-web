@@ -260,7 +260,11 @@ class Score extends Model implements Traits\ReportableInterface
             throw new InvariantException("'{$this->rank}' is not a valid rank.");
         }
 
-        foreach (['total_score', 'accuracy', 'max_combo', 'passed'] as $field) {
+        if ($this->accuracy === null || $this->accuracy < 0 || $this->accuracy > 1) {
+            throw new InvariantException('Invalid accuracy.');
+        }
+
+        foreach (['total_score', 'max_combo', 'passed'] as $field) {
             if (!present($this->$field)) {
                 throw new InvariantException("field missing: '{$field}'");
             }
