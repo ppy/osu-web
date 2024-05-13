@@ -145,7 +145,7 @@ export default class AccountEdit {
       data = { [field]: value };
     }
 
-    const url = form.dataset.url != null ? form.dataset.url : route('account.update');
+    const url = form.dataset.url ?? route('account.update');
 
     form.updating = $.ajax(url, {
       data,
