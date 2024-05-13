@@ -4,19 +4,17 @@
 import CurrentUserJson from 'interfaces/current-user-json';
 import { route } from 'laroute';
 import { debounce } from 'lodash';
+import { onError } from 'utils/ajax';
+
+type ContainerEvent = JQuery.TriggeredEvent<unknown, unknown, HTMLElement, unknown>;
 
 export default class AccountEdit {
   constructor() {
-    $(document).on('input change', '.js-account-edit', this.initializeUpdate);
-
-    $(document).on('ajax:error', '.js-account-edit', this.ajaxError);
-    $(document).on('ajax:send', '.js-account-edit', this.ajaxSaving);
-    $(document).on('ajax:success', '.js-account-edit', this.ajaxSaved);
+    $(document).on('input change', '.js-account-edit', this.handleInputChange);
     $(document).on('ajax:success', '.js-user-preferences-update', this.ajaxUserPreferencesUpdate);
   }
 
   private abortUpdate(form: HTMLElement) {
-    window.clearTimeout(form.savedTimeout);
     if (form.updating != null) {
       form.updating.abort();
     }
@@ -24,16 +22,11 @@ export default class AccountEdit {
     this.clearState(form);
   }
 
-  private readonly ajaxError = (e: JQuery.Event) => this.clearState(e.currentTarget);
-
-  private readonly ajaxSaved = (e: JQuery.Event) => this.saved(e.currentTarget);
-
-  private readonly ajaxSaving = (e: JQuery.Event) => this.saving(e.currentTarget);
-
   private readonly ajaxUserPreferencesUpdate = (_e: unknown, user: CurrentUserJson) => $.publish('user:update', user);
 
 
   private clearState(el: HTMLElement) {
+    window.clearTimeout(el.savedTimeout);
     el.dataset.accountEditState = '';
   }
 
@@ -97,7 +90,7 @@ export default class AccountEdit {
     return { prevValue, value };
   }
 
-  private readonly initializeUpdate = (e: JQuery.TriggeredEvent<unknown, unknown, HTMLElement, unknown>) => {
+  private readonly handleInputChange = (e: ContainerEvent) => {
     const form = e.currentTarget;
 
     if (form.dataset.accountEditAutoSubmit !== '1') {
@@ -114,12 +107,6 @@ export default class AccountEdit {
     form.debouncedUpdate(form);
   };
 
-  private saved(el: HTMLElement) {
-    el.dataset.accountEditState = 'saved';
-
-    el.savedTimeout = window.setTimeout(() => this.clearState(el), 3000);
-  }
-
   private saving(el: HTMLElement) {
     el.dataset.accountEditState = 'saving';
   }
@@ -133,8 +120,6 @@ export default class AccountEdit {
       const { prevValue, value } = this.getValue(form);
 
       if (value === prevValue) {
-        // TODO: don't clear? could still be saving...
-        this.clearState(form);
         return;
       }
 
@@ -150,16 +135,13 @@ export default class AccountEdit {
     form.updating = $.ajax(url, {
       data,
       method: 'PUT',
-    }).done((response: CurrentUserJson | undefined) => {
-      this.saved(form);
-      $(form).trigger('ajax:success', response);
-    }).fail((xhr: JQuery.jqXHR, status: string) => {
-      if (status === 'abort') {
-        return;
-      }
-
+    }).done(() => {
+      window.clearTimeout(form.savedTimeout);
+      form.dataset.accountEditState = 'saved';
+      form.savedTimeout = window.setTimeout(() => this.clearState(form), 3000);
+    }).fail((xhr) => {
       this.clearState(form);
-      $(form).trigger('ajax:error', [xhr, status]);
+      onError(xhr);
     });
   };
 }
