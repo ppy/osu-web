@@ -9,33 +9,20 @@ import { onError } from 'utils/ajax';
 
 export default class AccountEditAutoSubmit {
   readonly debouncedUpdate;
-  private savedTimeout?: number;
-  private updating?: JQuery.jqXHR<CurrentUserJson | null>;
+  private timeout?: number;
+  private xhr?: JQuery.jqXHR<CurrentUserJson | null>;
 
   constructor(private readonly container: HTMLElement, private readonly core: OsuCore) {
     this.debouncedUpdate = debounce(this.update, 1000);
   }
 
-  abortUpdate() {
-    if (this.updating != null) {
-      this.updating.abort();
-    }
-
-    this.clearState();
+  private get dataset() {
+    return this.container.dataset;
   }
 
-  saving() {
-    this.container.dataset.accountEditState = 'saving';
-  }
-
-  private clearState() {
-    window.clearTimeout(this.savedTimeout);
-    this.container.dataset.accountEditState = '';
-  }
-
-  private getFieldName() {
-    if (this.container.dataset.field != null) {
-      return this.container.dataset.field;
+  private get fieldName() {
+    if (this.dataset.field != null) {
+      return this.dataset.field;
     }
 
     const input = this.container.querySelector<HTMLInputElement>('.js-account-edit__input');
@@ -44,6 +31,14 @@ export default class AccountEditAutoSubmit {
     }
 
     return input.name;
+  }
+
+  onInput() {
+    this.xhr?.abort();
+    window.clearTimeout(this.timeout);
+
+    this.dataset.accountEditState = 'saving';
+    this.debouncedUpdate();
   }
 
   private getMultiValue() {
@@ -60,7 +55,7 @@ export default class AccountEditAutoSubmit {
     let value: string | string[] | undefined;
     let prevValue: string | undefined;
 
-    if (this.container.dataset.accountEditType === 'array') {
+    if (this.dataset.accountEditType === 'array') {
       prevValue = undefined;
       value = [];
 
@@ -69,8 +64,8 @@ export default class AccountEditAutoSubmit {
           value.push(checkbox.value);
         }
       }
-    } else if (this.container.dataset.accountEditType === 'radio') {
-      prevValue = this.container.dataset.lastValue;
+    } else if (this.dataset.accountEditType === 'radio') {
+      prevValue = this.dataset.lastValue;
 
       // TODO: require name?
       for (const checkbox of this.container.querySelectorAll<HTMLInputElement>('input[type="radio"]')) {
@@ -80,7 +75,7 @@ export default class AccountEditAutoSubmit {
         }
       }
     } else {
-      prevValue = this.container.dataset.lastValue;
+      prevValue = this.dataset.lastValue;
 
       const input = this.container.querySelector<HTMLInputElement>('.js-account-edit__input');
       if (input == null) {
@@ -96,37 +91,40 @@ export default class AccountEditAutoSubmit {
   private readonly update = () => {
     let data: Partial<Record<string, boolean | string | string[]>>;
 
-    if (this.container.dataset.accountEditType === 'multi') {
+    if (this.dataset.accountEditType === 'multi') {
       data = this.getMultiValue();
     } else {
       const { prevValue, value } = this.getValue();
 
       if (value === prevValue) {
+        this.dataset.accountEditState = '';
         return;
       }
 
-      const field = this.getFieldName();
-
       // dataset autoconverts to string but the typing doesn't accept array.
-      this.container.dataset.lastValue = Array.isArray(value) ? value.join(',') : value;
-      data = { [field]: value };
+      this.dataset.lastValue = Array.isArray(value) ? value.join(',') : value;
+      data = { [this.fieldName]: value };
     }
 
-    const url = this.container.dataset.url ?? route('account.update');
+    const url = this.dataset.url ?? route('account.update');
 
-    this.updating = $.ajax(url, {
+    this.xhr = $.ajax(url, {
       data,
       method: 'PUT',
-    }).done((response: CurrentUserJson | null) => {
-      if (this.container.dataset.userPreferencesUpdate === '1' && response != null) {
+    });
+
+    this.xhr.done((response) => {
+      if (this.dataset.userPreferencesUpdate === '1' && response != null) {
         this.core.setCurrentUser(response);
       }
 
-      window.clearTimeout(this.savedTimeout);
-      this.container.dataset.accountEditState = 'saved';
-      this.savedTimeout = window.setTimeout(() => this.clearState(), 3000);
+      window.clearTimeout(this.timeout);
+      this.dataset.accountEditState = 'saved';
+      this.timeout = window.setTimeout(() => {
+        this.dataset.accountEditState = '';
+      }, 3000);
     }).fail((xhr) => {
-      this.clearState();
+      this.dataset.accountEditState = '';
       onError(xhr);
     });
   };

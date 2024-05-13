@@ -23,9 +23,6 @@ export default class AccountEditBootstrap {
     }
 
     container.autoSubmit ??= new AccountEditAutoSubmit(container, this.core);
-
-    container.autoSubmit.abortUpdate();
-    container.autoSubmit.saving();
-    container.autoSubmit.debouncedUpdate();
+    container.autoSubmit.onInput();
   };
 }
