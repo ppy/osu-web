@@ -185,7 +185,7 @@ return [
 
         'register' => [
             'download' => 'Descargar',
-            'info' => '¡Descargue osu! para crear su propia cuenta!',
+            'info' => '¡Descarga osu! para crear tu propia cuenta!',
             'title' => "¿No tienes una cuenta?",
         ],
     ],

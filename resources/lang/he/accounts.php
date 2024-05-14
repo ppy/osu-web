@@ -38,7 +38,7 @@ return [
         ],
 
         'profile' => [
-            'country' => '',
+            'country' => 'מדינה',
             'title' => 'פרופיל',
 
             'country_change' => [
@@ -65,7 +65,7 @@ return [
     'github_user' => [
         'info' => "",
         'link' => '',
-        'title' => '',
+        'title' => 'גיטהאב',
         'unlink' => '',
 
         'error' => [

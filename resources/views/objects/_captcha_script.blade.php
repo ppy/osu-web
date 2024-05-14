@@ -3,10 +3,9 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 {{--
-    we're explicitly avoiding NoCaptcha::renderJs here in order to use recaptcha.net instead of google.com (as the latter is blocked in mainland china)
-    see: https://developers.google.com/recaptcha/docs/faq#can-i-use-recaptcha-globally
+    use turbolinks initialiser
 --}}
 <script>
-    osuCore.turbolinksReload.load('https://www.recaptcha.net/recaptcha/api.js?render=explicit&onload=initCaptcha&hl={{Lang::getLocale()}}');
-    function initCaptcha() { osuCore.captcha.init('{{$GLOBALS['cfg']['captcha']['sitekey']}}'); }
+    osuCore.turbolinksReload.load('https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=initCaptcha');
+    function initCaptcha() { osuCore.captcha.init('{{ $GLOBALS['cfg']['turnstile']['site_key'] }}'); }
 </script>

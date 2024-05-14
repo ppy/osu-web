@@ -13,7 +13,7 @@ return [
         'see_more_news' => 'mehr Neuigkeiten anzeigen',
 
         'slogan' => [
-            'main' => 'das beste free-to-play Rhythmusspiel',
+            'main' => 'das besteste free-to-play rhythmusspiel',
             'sub' => 'Rhythmus ist nur ein Klick entfernt',
         ],
     ],

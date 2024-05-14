@@ -260,7 +260,16 @@ class Score extends Model implements Traits\ReportableInterface
             throw new InvariantException("'{$this->rank}' is not a valid rank.");
         }
 
-        foreach (['total_score', 'accuracy', 'max_combo', 'passed'] as $field) {
+        if ($this->accuracy === null || $this->accuracy < 0 || $this->accuracy > 1) {
+            throw new InvariantException('Invalid accuracy.');
+        }
+
+        // unsigned int (as per the column)
+        if ($this->total_score === null || $this->total_score < 0 || $this->total_score > 4294967295) {
+            throw new InvariantException('Invalid total_score.');
+        }
+
+        foreach (['max_combo', 'passed'] as $field) {
             if (!present($this->$field)) {
                 throw new InvariantException("field missing: '{$field}'");
             }
@@ -352,9 +361,9 @@ class Score extends Model implements Traits\ReportableInterface
             ? LegacyScore\Best\Model::getClass($this->getMode())
             : LegacyScore\Model::getClass($this->getMode());
 
+        // Only attributes available to best model (and `pass`).
         $score = new $scoreClass([
             'beatmap_id' => $this->beatmap_id,
-            'beatmapset_id' => $this->beatmap?->beatmapset_id ?? 0,
             'countmiss' => $statistics->miss,
             'date' => $this->ended_at_json,
             'enabled_mods' => app('mods')->idsToBitset(array_column($data->mods, 'acronym')),
@@ -364,7 +373,6 @@ class Score extends Model implements Traits\ReportableInterface
             'pp' => $this->pp,
             'replay' => $this->has_replay,
             'score' => $this->legacy_total_score,
-            'scorechecksum' => "\0",
             'user_id' => $this->user_id,
         ]);
 
