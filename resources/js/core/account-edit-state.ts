@@ -7,7 +7,7 @@ import { debounce } from 'lodash';
 import OsuCore from 'osu-core';
 import { onError } from 'utils/ajax';
 
-export default class AccountEditAutoSubmit {
+export default class AccountEditState {
   readonly debouncedUpdate;
   private timeout?: number;
   private xhr?: JQuery.jqXHR<CurrentUserJson | null>;

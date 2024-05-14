@@ -2,14 +2,14 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import OsuCore from 'osu-core';
-import AccountEditAutoSubmit from './account-edit-auto-submit';
+import AccountEditState from './account-edit-state';
 
 type ContainerEvent = JQuery.TriggeredEvent<unknown, unknown, AccountEditHTMLElement, unknown>;
 
 const containerClassSelector = '.js-account-edit';
 
 interface AccountEditHTMLElement extends HTMLElement {
-  autoSubmit?: AccountEditAutoSubmit;
+  state?: AccountEditState;
 }
 
 export default class AccountEditBootstrap {
@@ -23,21 +23,21 @@ export default class AccountEditBootstrap {
   private readonly handleAjaxError = (e: ContainerEvent) => {
     if (e.currentTarget.dataset.accountEditAutoSubmit === '1') return;
 
-    e.currentTarget.autoSubmit?.errored();
+    e.currentTarget.state?.errored();
   };
 
   private readonly handleAjaxSend = (e: ContainerEvent) => {
     const container = e.currentTarget;
     if (container.dataset.accountEditAutoSubmit === '1') return;
 
-    container.autoSubmit ??= new AccountEditAutoSubmit(container, this.core);
-    container.autoSubmit.saving();
+    container.state ??= new AccountEditState(container, this.core);
+    container.state.saving();
   };
 
   private readonly handleAjaxSuccess = (e: ContainerEvent) => {
     if (e.currentTarget.dataset.accountEditAutoSubmit === '1') return;
 
-    e.currentTarget.autoSubmit?.saved();
+    e.currentTarget.state?.saved();
   };
 
   private readonly handleInputChange = (e: ContainerEvent) => {
@@ -47,10 +47,10 @@ export default class AccountEditBootstrap {
       return;
     }
 
-    container.autoSubmit ??= new AccountEditAutoSubmit(container, this.core);
+    container.state ??= new AccountEditState(container, this.core);
 
     if (container.dataset.accountEditAutoSubmit === '1') {
-      container.autoSubmit.onInput();
+      container.state.onInput();
     }
   };
 }
