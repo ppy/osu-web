@@ -35,7 +35,7 @@ export default class AccountEditState {
   }
 
   private get isSingleValue() {
-    return this.dataset.accountEditType == null;
+    return this.dataset.accountEditAutoSubmit === '1' && this.dataset.accountEditType == null;
   }
 
   private get data() {
