@@ -41,12 +41,29 @@ export default class AccountEditAutoSubmit {
     return input.name;
   }
 
+  errored() {
+    window.clearTimeout(this.timeout);
+    this.dataset.accountEditState = '';
+  }
+
   onInput() {
     this.xhr?.abort();
-    window.clearTimeout(this.timeout);
 
-    this.dataset.accountEditState = 'saving';
+    this.saving();
     this.debouncedUpdate();
+  }
+
+  saved() {
+    window.clearTimeout(this.timeout);
+    this.dataset.accountEditState = 'saved';
+    this.timeout = window.setTimeout(() => {
+      this.dataset.accountEditState = '';
+    }, 3000);
+  }
+
+  saving() {
+    window.clearTimeout(this.timeout);
+    this.dataset.accountEditState = 'saving';
   }
 
   private getMultiValue() {
@@ -101,13 +118,9 @@ export default class AccountEditAutoSubmit {
         this.core.setCurrentUser(response);
       }
 
-      window.clearTimeout(this.timeout);
-      this.dataset.accountEditState = 'saved';
-      this.timeout = window.setTimeout(() => {
-        this.dataset.accountEditState = '';
-      }, 3000);
+      this.saved();
     }).fail((xhr) => {
-      this.dataset.accountEditState = '';
+      this.errored();
       onError(xhr);
     });
   };
