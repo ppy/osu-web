@@ -119,6 +119,11 @@ export default class Comment extends React.Component<Props> {
       return true;
     }
 
+    // always render in single comment page
+    if (this.props.showToolbar) {
+      return true;
+    }
+
     if (canModerateComments() && core.userPreferences.get('comments_show_deleted')) {
       return true;
     }
