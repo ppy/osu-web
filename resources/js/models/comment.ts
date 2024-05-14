@@ -6,6 +6,10 @@ import CommentJson from 'interfaces/comment-json';
 import { computed, makeObservable } from 'mobx';
 import core from 'osu-core-singleton';
 
+export function canModerateComments(): boolean {
+  return core.currentUser != null && (core.currentUser.is_admin || core.currentUser.is_moderator);
+}
+
 export type CommentSort = 'new' | 'old' | 'top';
 
 export default class Comment {
@@ -66,7 +70,7 @@ export default class Comment {
 
   @computed
   get canModerate() {
-    return core.currentUser != null && (core.currentUser.is_admin || core.currentUser.is_moderator);
+    return canModerateComments();
   }
 
   @computed
@@ -125,8 +129,25 @@ export default class Comment {
   }
 
   @computed
+  get isVisible(): boolean {
+    return !this.isDeleted || this.visibleReplyCount > 0;
+  }
+
+  @computed
   get isOwner() {
     return core.currentUser != null && this.userId === core.currentUser.id;
+  }
+
+  @computed
+  get visibleReplyCount() {
+    const baseCount = this.repliesCount;
+    if (canModerateComments()) {
+      return baseCount;
+    }
+
+    const deletedCount = this.controller.getReplies(this).filter((reply) => !reply.isVisible).length;
+
+    return Math.max(0, baseCount - deletedCount);
   }
 
   toJson(): CommentJson {
