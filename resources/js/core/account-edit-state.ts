@@ -7,13 +7,35 @@ import { debounce } from 'lodash';
 import OsuCore from 'osu-core';
 import { onError } from 'utils/ajax';
 
+const inputSelector = '.js-account-edit__input';
+
 export default class AccountEditState {
   readonly debouncedUpdate;
+
+  private defaultValue?: string;
   private timeout?: number;
   private xhr?: JQuery.jqXHR<CurrentUserJson | null>;
 
   constructor(private readonly container: HTMLElement, private readonly core: OsuCore) {
     this.debouncedUpdate = debounce(this.update, 1000);
+
+    if (this.isSingleValue) {
+      const input = this.inputElement;
+      this.defaultValue = input.type === 'checkbox' ? String(input.checked) : input.defaultValue;
+    }
+  }
+
+  private get inputElement() {
+    const input = this.container.querySelector<HTMLInputElement>(inputSelector);
+    if (input == null) {
+      throw new Error('missing input');
+    }
+
+    return input;
+  }
+
+  private get isSingleValue() {
+    return this.dataset.accountEditType == null;
   }
 
   private get data() {
@@ -33,7 +55,7 @@ export default class AccountEditState {
       return this.dataset.field;
     }
 
-    const input = this.container.querySelector<HTMLInputElement>('.js-account-edit__input');
+    const input = this.container.querySelector<HTMLInputElement>(inputSelector);
     if (input == null) {
       throw new Error('missing input name');
     }
@@ -41,7 +63,7 @@ export default class AccountEditState {
     return input.name;
   }
 
-  errored() {
+  clear() {
     window.clearTimeout(this.timeout);
     this.dataset.accountEditState = '';
   }
@@ -69,7 +91,7 @@ export default class AccountEditState {
   private getMultiValue() {
     const data: Partial<Record<string, boolean>> = {};
 
-    for (const checkbox of this.container.querySelectorAll<HTMLInputElement>('.js-account-edit__input')) {
+    for (const checkbox of this.container.querySelectorAll<HTMLInputElement>(inputSelector)) {
       data[checkbox.name] = checkbox.checked;
     }
 
@@ -96,7 +118,7 @@ export default class AccountEditState {
         }
       }
     } else {
-      const input = this.container.querySelector<HTMLInputElement>('.js-account-edit__input');
+      const input = this.container.querySelector<HTMLInputElement>(inputSelector);
       if (input == null) {
         throw new Error('missing input');
       }
@@ -108,8 +130,22 @@ export default class AccountEditState {
   }
 
   private readonly update = () => {
+    let value: string | string[] | undefined;
+
+    if (this.isSingleValue) {
+      value = this.getValue();
+      if (this.xhr == null && this.defaultValue === value) {
+        this.clear();
+        return;
+      }
+    }
+
+    const data = value != null
+      ? { [this.fieldName]: this.getValue() }
+      :  this.data;
+
     this.xhr = $.ajax(this.dataset.url ?? route('account.update'), {
-      data: this.data,
+      data,
       method: 'PUT',
     });
 
@@ -118,9 +154,15 @@ export default class AccountEditState {
         this.core.setCurrentUser(response);
       }
 
+      // update default initial value.
+      if (this.isSingleValue && typeof value === 'string') {
+        this.defaultValue = value;
+      }
+
       this.saved();
+      this.xhr = undefined;
     }).fail((xhr) => {
-      this.errored();
+      this.clear();
       onError(xhr);
     });
   };

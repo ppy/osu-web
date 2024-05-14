@@ -23,7 +23,7 @@ export default class AccountEditBootstrap {
   private readonly handleAjaxError = (e: ContainerEvent) => {
     if (e.currentTarget.dataset.accountEditAutoSubmit === '1') return;
 
-    e.currentTarget.state?.errored();
+    e.currentTarget.state?.clear();
   };
 
   private readonly handleAjaxSend = (e: ContainerEvent) => {
