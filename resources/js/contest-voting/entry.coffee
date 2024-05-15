@@ -61,29 +61,10 @@ export class Entry extends React.Component
       if @props.contest.show_votes
         div className: 'contest-voting-list__title contest-voting-list__title--show-votes',
           div className: 'contest-voting-list__votes-bar', style: { width: "#{relativeVotePercentage}%" }
-          if @props.options.showLink && @props.entry.preview && @props.contest.submitted_beatmaps
-            el React.Fragment, null,
-              a
-                className: 'contest-voting-list__title-link',
-                href: route('beatmapsets.show', beatmapset: @props.entry.preview)
-                entry_title
-              @renderUserLink()
-          else
-            el React.Fragment, null,
-              div className: 'u-relative u-ellipsis-overflow', entry_title
+          @renderTitle(entry_title)
       else
         div className: 'contest-voting-list__title',
-        if @props.options.showLink && @props.entry.preview && @props.contest.submitted_beatmaps
-          el React.Fragment, null,
-            a
-              className: 'contest-voting-list__title-link',
-              href: route('beatmapsets.show', beatmapset: @props.entry.preview)
-              entry_title
-            @renderUserLink()
-        else
-          el React.Fragment, null,
-            div className: 'u-ellipsis-overflow', entry_title
-            @renderUserLink()
+        @renderTitle(entry_title)
 
 
       if !@props.contest.judged
@@ -107,6 +88,19 @@ export class Entry extends React.Component
             href: route('contest-entries.judge-results', @props.entry.id)
             target: '_blank'
             i className: 'fas fa-fw fa-lg fa-external-link-alt'
+
+  renderTitle: (entry_title) ->
+    if @props.options.showLink && @props.entry.preview && @props.contest.submitted_beatmaps
+      el React.Fragment, null,
+        a
+          className: 'contest-voting-list__title-link',
+          href: route('beatmapsets.show', beatmapset: @props.entry.preview)
+          entry_title
+        @renderUserLink()
+    else
+      el React.Fragment, null,
+        div className: 'u-relative u-ellipsis-overflow', entry_title
+        @renderUserLink()
 
 
   renderUserLink: ->
