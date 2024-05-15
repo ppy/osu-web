@@ -93,7 +93,7 @@ export class Entry extends React.Component
     if @props.options.showLink && @props.entry.preview && @props.contest.submitted_beatmaps
       el React.Fragment, null,
         a
-          className: 'contest-voting-list__title-link',
+          className: 'contest-voting-list__title-link u-ellipsis-overflow',
           href: route('beatmapsets.show', beatmapset: @props.entry.preview)
           entry_title
         @renderUserLink()
