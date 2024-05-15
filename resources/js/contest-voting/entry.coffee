@@ -20,15 +20,8 @@ export class Entry extends React.Component
 
     if @props.contest.type == 'external'
       link_icon = 'fa-external-link-alt'
-      entry_title =
-        a
-          rel: 'nofollow noreferrer'
-          target: '_blank'
-          href: @props.entry.preview,
-          @props.entry.title
     else
       link_icon = 'fa-download'
-      entry_title = @props.entry.title
 
     if @props.contest.show_votes
       relativeVotePercentage = _.round((@props.entry.results.votes / @props.winnerVotes)*100, 2)
@@ -61,10 +54,10 @@ export class Entry extends React.Component
       if @props.contest.show_votes
         div className: 'contest-voting-list__title contest-voting-list__title--show-votes',
           div className: 'contest-voting-list__votes-bar', style: { width: "#{relativeVotePercentage}%" }
-          @renderTitle(entry_title)
+          @renderTitle()
       else
         div className: 'contest-voting-list__title',
-        @renderTitle(entry_title)
+        @renderTitle()
 
 
       if !@props.contest.judged
@@ -89,19 +82,22 @@ export class Entry extends React.Component
             target: '_blank'
             i className: 'fas fa-fw fa-lg fa-external-link-alt'
 
-  renderTitle: (entry_title) ->
-    if @props.options.showLink && @props.entry.preview && @props.contest.submitted_beatmaps
-      el React.Fragment, null,
+  renderTitle: ->
+    el React.Fragment, null,
+      if @props.contest.type == 'external'
         a
-          className: 'contest-voting-list__title-link u-ellipsis-overflow',
+          rel: 'nofollow noreferrer'
+          target: '_blank'
+          href: @props.entry.preview,
+          @props.entry.title
+      else if @props.options.showLink && @props.entry.preview && @props.contest.submitted_beatmaps
+        a
+          className: 'contest-voting-list__title-link u-ellipsis-overflow link-white',
           href: route('beatmapsets.show', beatmapset: @props.entry.preview)
-          entry_title
-        @renderUserLink()
-    else
-      el React.Fragment, null,
-        div className: 'u-relative u-ellipsis-overflow', entry_title
-        @renderUserLink()
-
+          @props.entry.title
+      else
+        div className: 'u-relative u-ellipsis-overflow', @props.entry.title
+      @renderUserLink()
 
   renderUserLink: ->
     return null unless @props.entry.user?.id?
