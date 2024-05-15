@@ -61,18 +61,30 @@ export class Entry extends React.Component
       if @props.contest.show_votes
         div className: 'contest-voting-list__title contest-voting-list__title--show-votes',
           div className: 'contest-voting-list__votes-bar', style: { width: "#{relativeVotePercentage}%" }
-          a
-            className: 'contest-voting-list__title-link',
-            href: route('beatmapsets.show', beatmapset: @props.entry.preview)
-            entry_title
-          @renderUserLink()
+          if @props.options.showLink && @props.entry.preview && @props.contest.submitted_beatmaps
+            el React.Fragment, null,
+              a
+                className: 'contest-voting-list__title-link',
+                href: route('beatmapsets.show', beatmapset: @props.entry.preview)
+                entry_title
+              @renderUserLink()
+          else
+            el React.Fragment, null,
+              div className: 'u-relative u-ellipsis-overflow', entry_title
       else
         div className: 'contest-voting-list__title',
-          a
-            className: 'contest-voting-list__title-link',
-            href: route('beatmapsets.show', beatmapset: @props.entry.preview)
-            entry_title
-          @renderUserLink()
+        if @props.options.showLink && @props.entry.preview && @props.contest.submitted_beatmaps
+          el React.Fragment, null,
+            a
+              className: 'contest-voting-list__title-link',
+              href: route('beatmapsets.show', beatmapset: @props.entry.preview)
+              entry_title
+            @renderUserLink()
+        else
+          el React.Fragment, null,
+            div className: 'u-ellipsis-overflow', entry_title
+            @renderUserLink()
+
 
       if !@props.contest.judged
         div className: "contest__voting-star#{if @props.contest.show_votes then ' contest__voting-star--dark-bg' else ''}",
