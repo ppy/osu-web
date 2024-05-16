@@ -89,7 +89,7 @@ export class Entry extends React.Component
           @props.entry.title
       else if @props.options.showLink && @props.entry.preview && @props.contest.submitted_beatmaps
         a
-          className: 'contest-voting-list__title-link u-ellipsis-overflow',
+          className: 'contest-voting-list__title-link u-ellipsis-overflow u-relative',
           href: route('beatmapsets.show', beatmapset: @props.entry.preview)
           @props.entry.title
       else
