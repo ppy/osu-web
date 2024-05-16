@@ -25,7 +25,7 @@ const bn = 'user-action-button';
 @observer
 export default class FollowUserMappingButton extends React.Component<Props> {
   private readonly buttonRef = React.createRef<HTMLButtonElement>();
-  private readonly followerCountWithoutSelf;
+  private readonly followerCountWithoutSelf: number = 0;
   @observable private xhr?: JQuery.jqXHR;
 
   private get following() {
@@ -45,8 +45,10 @@ export default class FollowUserMappingButton extends React.Component<Props> {
     super(props);
     makeObservable(this);
 
-    this.followerCountWithoutSelf = this.props.followers ?? 0;
-    if (this.following) this.followerCountWithoutSelf -= 1;
+    if (this.props.showFollowerCounter) {
+      this.followerCountWithoutSelf = this.props.followers ?? 0;
+      if (this.following) this.followerCountWithoutSelf -= 1;
+    }
   }
 
   componentWillUnmount() {
