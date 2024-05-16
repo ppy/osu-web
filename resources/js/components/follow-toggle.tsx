@@ -3,10 +3,11 @@
 
 import FollowJson from 'interfaces/follow-json';
 import { route } from 'laroute';
+import { action, makeObservable, observable } from 'mobx';
+import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers, Modifiers } from 'utils/css';
-import { nextVal } from 'utils/seq';
 import { Spinner } from './spinner';
 
 interface Props {
@@ -15,46 +16,37 @@ interface Props {
   modifiers?: Modifiers;
 }
 
-interface State {
-  following: boolean;
-  toggling: boolean;
-}
-
-// TODO: mobx and turn to observer
-export default class FollowToggle extends React.PureComponent<Props, State> {
+@observer
+export default class FollowToggle extends React.PureComponent<Props> {
   static defaultProps = {
     following: true,
   };
 
-  state: State;
+  @observable _following: boolean;
+  @observable private xhr?: JQuery.jqXHR;
 
-  private readonly eventId = `follow-toggle-${nextVal()}`;
-  private toggleXhr: null | JQueryXHR = null;
+  private get following() {
+    return this.props.follow.subtype === 'mapping'
+      ? core.currentUserModel.following.has(this.props.follow.notifiable_id)
+      : this._following;
+  }
+
+  private get toggling() {
+    return this.xhr != null;
+  }
 
   constructor(props: Props) {
     super(props);
+    makeObservable(this);
 
-    this.state = {
-      following: this.props.following,
-      toggling: false,
-    };
-  }
-
-  componentDidMount() {
-    if (this.props.follow.subtype === 'mapping') {
-      $.subscribe(`user:followUserMapping:refresh.${this.eventId}`, this.refresh);
-    }
-  }
-
-  componentWillUnmount() {
-    $.unsubscribe(`.${this.eventId}`);
+    this._following = this.props.following;
   }
 
   render() {
     return (
       <button
         className={classWithModifiers('btn-circle', this.props.modifiers)}
-        disabled={this.state.toggling}
+        disabled={this.toggling}
         onClick={this.onClick}
         type='button'
       >
@@ -65,6 +57,7 @@ export default class FollowToggle extends React.PureComponent<Props, State> {
     );
   }
 
+  @action
   private readonly onClick = () => {
     const params = {
       follow: {
@@ -74,34 +67,24 @@ export default class FollowToggle extends React.PureComponent<Props, State> {
       },
     };
 
-    const method = this.state.following ? 'DELETE' : 'POST';
+    const method = this.following ? 'DELETE' : 'POST';
 
-    this.toggleXhr?.abort();
+    this.xhr?.abort();
 
-    this.setState({ toggling: true }, () => {
-      this.toggleXhr = $.ajax(route('follows.store'), { data: params, method })
-        .done(() => {
-          if (this.props.follow.subtype === 'mapping') {
-            core.currentUserModel.updateFollowUserMapping(!this.state.following, this.props.follow.notifiable_id);
-          } else {
-            this.setState({ following: !this.state.following });
-          }
-        }).always(() => {
-          this.setState({ toggling: false });
-        });
-    });
-  };
-
-  private readonly refresh = () => {
-    if (this.props.follow.subtype === 'mapping') {
-      this.setState({
-        following: core.currentUserModel.following.has(this.props.follow.notifiable_id),
-      });
-    }
+    this.xhr = $.ajax(route('follows.store'), { data: params, method })
+      .done(action(() => {
+        if (this.props.follow.subtype === 'mapping') {
+          core.currentUserModel.updateFollowUserMapping(!this.following, this.props.follow.notifiable_id);
+        } else {
+          this._following = !this.following;
+        }
+      })).always(action(() => {
+        this.xhr = undefined;
+      }));
   };
 
   private renderToggleIcon() {
-    if (this.state.toggling) {
+    if (this.toggling) {
       return (
         <span className='btn-circle__icon'>
           <Spinner />
@@ -112,7 +95,7 @@ export default class FollowToggle extends React.PureComponent<Props, State> {
     let hoverIcon: string;
     let normalIcon: string;
 
-    if (this.state.following) {
+    if (this.following) {
       normalIcon = 'fas fa-bell';
       hoverIcon = 'fas fa-bell-slash';
     } else {
