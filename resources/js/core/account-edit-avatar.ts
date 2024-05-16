@@ -12,14 +12,8 @@ const startClass = 'js-account-edit-avatar--start';
 
 export default class AccountEditAvatar {
   private dragging = false;
-  private readonly main = document.getElementsByClassName('js-account-edit-avatar');
+  private element: HTMLElement | null = null;
   private overlayLeaveTimeout?: number;
-
-  private get element() {
-    const elem = this.main[0];
-
-    return elem instanceof HTMLElement ? elem : null;
-  }
 
   constructor(private readonly core: OsuCore) {
     $(document).on('turbolinks:load', this.initialize);
@@ -31,7 +25,8 @@ export default class AccountEditAvatar {
     $(document).on('dragover', '.js-account-edit-avatar', this.overlayHover);
   }
 
-  initialize = () => {
+  private readonly initialize = () => {
+    this.element = document.querySelector('.js-account-edit-avatar');
     const element = this.element;
     if (element == null) return;
 
