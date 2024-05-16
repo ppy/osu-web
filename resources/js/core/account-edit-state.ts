@@ -80,34 +80,35 @@ export default class AccountEditState {
   }
 
   private getValue() {
-    let value: string | string[] | undefined;
+    switch (this.dataset.accountEditType) {
+      case 'array': {
+        const value = [''];
 
-    if (this.dataset.accountEditType === 'array') {
-      value = [''];
-
-      for (const checkbox of this.container.querySelectorAll('input')) {
-        if (checkbox.checked) {
-          value.push(checkbox.value);
+        for (const checkbox of this.container.querySelectorAll('input')) {
+          if (checkbox.checked) {
+            value.push(checkbox.value);
+          }
         }
+        return value;
       }
-    } else if (this.dataset.accountEditType === 'radio') {
-      // TODO: require name?
-      for (const checkbox of this.container.querySelectorAll<HTMLInputElement>('input[type="radio"]')) {
-        if (checkbox.checked) {
-          value = checkbox.value;
-          break;
+      case 'radio':
+        // TODO: require name?
+        for (const checkbox of this.container.querySelectorAll<HTMLInputElement>('input[type="radio"]')) {
+          if (checkbox.checked) {
+            return checkbox.value;
+          }
         }
-      }
-    } else {
-      const input = this.container.querySelector<HTMLInputElement>(inputSelector);
-      if (input == null) {
-        throw new Error('missing input');
-      }
+        throw new Error('missing radio value');
 
-      value = input.type === 'checkbox' ? String(input.checked) : input.value;
+      default: {
+        const input = this.container.querySelector<HTMLInputElement>(inputSelector);
+        if (input == null) {
+          throw new Error('missing input');
+        }
+
+        return input.type === 'checkbox' ? String(input.checked) : input.value;
+      }
     }
-
-    return value;
   }
 
   private readonly update = () => {
