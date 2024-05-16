@@ -49,15 +49,15 @@ export default class AccountEditAvatar {
     });
   };
 
-  overlayEnd = () => {
+  private readonly overlayEnd = () => {
     this.element?.classList.remove(startClass);
   };
 
-  overlayEnter = () => {
+  private readonly overlayEnter = () => {
     this.dragging = true;
   };
 
-  overlayHover = () => {
+  private readonly overlayHover = () => {
     if (!this.dragging) return;
 
     this.element?.classList.add(hoverClass);
@@ -67,16 +67,16 @@ export default class AccountEditAvatar {
     this.overlayLeaveTimeout = window.setTimeout(this.overlayLeave, 100);
   };
 
-  overlayLeave = () => {
+  private readonly overlayLeave = () => {
     this.dragging = false;
     this.element?.classList.remove(hoverClass);
   };
 
-  overlayStart = () => {
+  private readonly overlayStart = () => {
     this.element?.classList.add(startClass);
   };
 
-  rollback = () => {
+  private readonly rollback = () => {
     if (this.element == null) return;
     $('.js-account-edit-avatar__button').fileupload('destroy');
   };
