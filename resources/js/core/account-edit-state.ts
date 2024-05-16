@@ -51,9 +51,7 @@ export default class AccountEditState {
   saved() {
     window.clearTimeout(this.timeout);
     this.dataset.accountEditState = 'saved';
-    this.timeout = window.setTimeout(() => {
-      this.dataset.accountEditState = '';
-    }, 3000);
+    this.timeout = window.setTimeout(() => this.clear(), 3000);
   }
 
   saving() {
