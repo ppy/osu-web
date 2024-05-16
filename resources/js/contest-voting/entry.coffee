@@ -18,7 +18,7 @@ export class Entry extends React.Component
 
     return null if @props.hideIfNotVoted && !selected
 
-    if @props.contest.type == 'external' then link_icon = 'fa-external-link-alt' else link_icon = 'fa-download'
+    link_icon = if @props.contest.type == 'external' then 'fa-external-link-alt' else 'fa-download'
 
     if @props.contest.show_votes
       relativeVotePercentage = _.round((@props.entry.results.votes / @props.winnerVotes)*100, 2)
@@ -53,9 +53,7 @@ export class Entry extends React.Component
           div className: 'contest-voting-list__votes-bar', style: { width: "#{relativeVotePercentage}%" }
           @renderTitle()
       else
-        div className: 'contest-voting-list__title',
-        @renderTitle()
-
+        div className: 'contest-voting-list__title', @renderTitle()
 
       if !@props.contest.judged
         div className: "contest__voting-star#{if @props.contest.show_votes then ' contest__voting-star--dark-bg' else ''}",
@@ -83,6 +81,7 @@ export class Entry extends React.Component
     el React.Fragment, null,
       if @props.contest.type == 'external'
         a
+          className: 'contest-voting-list__title-link'
           rel: 'nofollow noreferrer'
           target: '_blank'
           href: @props.entry.preview,
