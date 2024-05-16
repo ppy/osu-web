@@ -6,7 +6,8 @@ import AccountEditState from './account-edit-state';
 
 type ContainerEvent = JQuery.TriggeredEvent<unknown, unknown, AccountEditHTMLElement, unknown>;
 
-const containerClassSelector = '.js-account-edit';
+const autoSubmitClassSelector = '.js-account-edit-auto-submit';
+const classSelector = '.js-account-edit';
 
 interface AccountEditHTMLElement extends HTMLElement {
   state?: AccountEditState;
@@ -14,43 +15,31 @@ interface AccountEditHTMLElement extends HTMLElement {
 
 export default class AccountEditBootstrap {
   constructor(private readonly core: OsuCore) {
-    $(document).on('input change', containerClassSelector, this.handleInputChange);
-    $(document).on('ajax:error', containerClassSelector, this.handleAjaxError);
-    $(document).on('ajax:send', containerClassSelector, this.handleAjaxSend);
-    $(document).on('ajax:success', containerClassSelector, this.handleAjaxSuccess);
+    $(document).on('input change', autoSubmitClassSelector, this.handleInputChange);
+    $(document).on('ajax:error', classSelector, this.handleAjaxError);
+    $(document).on('ajax:send', classSelector, this.handleAjaxSend);
+    $(document).on('ajax:success', classSelector, this.handleAjaxSuccess);
   }
 
   private readonly handleAjaxError = (e: ContainerEvent) => {
-    if (e.currentTarget.dataset.accountEditAutoSubmit === '1') return;
-
     e.currentTarget.state?.clear();
   };
 
   private readonly handleAjaxSend = (e: ContainerEvent) => {
     const container = e.currentTarget;
-    if (container.dataset.accountEditAutoSubmit === '1') return;
 
     container.state ??= new AccountEditState(container, this.core);
     container.state.saving();
   };
 
   private readonly handleAjaxSuccess = (e: ContainerEvent) => {
-    if (e.currentTarget.dataset.accountEditAutoSubmit === '1') return;
-
     e.currentTarget.state?.saved();
   };
 
   private readonly handleInputChange = (e: ContainerEvent) => {
     const container = e.currentTarget;
 
-    if (container.dataset.accountEditAutoSubmit !== '1') {
-      return;
-    }
-
     container.state ??= new AccountEditState(container, this.core);
-
-    if (container.dataset.accountEditAutoSubmit === '1') {
-      container.state.onInput();
-    }
+    container.state.onInput();
   };
 }
