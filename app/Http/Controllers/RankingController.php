@@ -215,7 +215,15 @@ class RankingController extends Controller
                     break;
 
                 default:
-                    $ranking = json_collection($stats, 'UserStatistics', ['user', 'user.cover', 'user.country']);
+                    $includes = ['user', 'user.cover', 'user.country'];
+                    if ($this->country !== null) {
+                        $includes[] = 'country_rank';
+                        $startRank = (max($page, 1) - 1) * static::PAGE_SIZE + 1;
+                        foreach ($stats as $index => $entry) {
+                            $entry->countryRank = $startRank + $index;
+                        }
+                    }
+                    $ranking = json_collection($stats, 'UserStatistics', $includes);
                     break;
             }
 

@@ -26,27 +26,27 @@ class UserScoreAggregateTest extends TestCase
 
         // first play
         $scoreLink = $this->addPlay($user, $playlistItem, [
-            'accuracy' => 1,
+            'accuracy' => 0.5,
             'passed' => true,
             'total_score' => 10,
         ]);
 
         $agg = UserScoreAggregate::new($user, $this->room);
         $this->assertSame(1, $agg->completed);
-        $this->assertSame(1.0, $agg->accuracy);
+        $this->assertSame(0.5, $agg->accuracy);
         $this->assertSame(10, $agg->total_score);
         $this->assertSame($scoreLink->getKey(), $agg->last_score_id);
 
         // second, higher score play
         $scoreLink2 = $this->addPlay($user, $playlistItem, [
-            'accuracy' => 2,
+            'accuracy' => 1,
             'passed' => true,
             'total_score' => 100,
         ]);
 
         $agg->refresh();
         $this->assertSame(1, $agg->completed);
-        $this->assertSame(2.0, $agg->accuracy);
+        $this->assertSame(1.0, $agg->accuracy);
         $this->assertSame(100, $agg->total_score);
         $this->assertSame($scoreLink2->getKey(), $agg->last_score_id);
     }
@@ -58,27 +58,27 @@ class UserScoreAggregateTest extends TestCase
 
         // first play
         $scoreLink = $this->addPlay($user, $playlistItem, [
-            'accuracy' => 1,
+            'accuracy' => 0.5,
             'passed' => true,
             'total_score' => 10,
         ]);
 
         $agg = UserScoreAggregate::new($user, $this->room);
         $this->assertSame(1, $agg->completed);
-        $this->assertSame(1.0, $agg->accuracy);
+        $this->assertSame(0.5, $agg->accuracy);
         $this->assertSame(10, $agg->total_score);
         $this->assertSame($scoreLink->getKey(), $agg->last_score_id);
 
         // second, lower score play
         $this->addPlay($user, $playlistItem, [
-            'accuracy' => 2,
+            'accuracy' => 1,
             'passed' => true,
             'total_score' => 1,
         ]);
 
         $agg->refresh();
         $this->assertSame(1, $agg->completed);
-        $this->assertSame(1.0, $agg->accuracy);
+        $this->assertSame(0.5, $agg->accuracy);
         $this->assertSame(10, $agg->total_score);
         $this->assertSame($scoreLink->getKey(), $agg->last_score_id);
     }
@@ -91,28 +91,28 @@ class UserScoreAggregateTest extends TestCase
 
         // first playlist item
         $this->addPlay($user, $playlistItem, [
-            'accuracy' => 1,
+            'accuracy' => 0.5,
             'passed' => true,
             'total_score' => 10,
         ]);
 
         $agg = UserScoreAggregate::new($user, $this->room);
         $this->assertSame(1, $agg->completed);
-        $this->assertSame(1.0, $agg->accuracy);
-        $this->assertSame(1.0, $agg->averageAccuracy());
+        $this->assertSame(0.5, $agg->accuracy);
+        $this->assertSame(0.5, $agg->averageAccuracy());
         $this->assertSame(10, $agg->total_score);
 
         // second playlist item
         $scoreLink = $this->addPlay($user, $playlistItem2, [
-            'accuracy' => 2,
+            'accuracy' => 1,
             'passed' => true,
             'total_score' => 100,
         ]);
 
         $agg->refresh();
         $this->assertSame(2, $agg->completed);
-        $this->assertSame(3.0, $agg->accuracy);
-        $this->assertSame(1.5, $agg->averageAccuracy());
+        $this->assertSame(1.5, $agg->accuracy);
+        $this->assertSame(0.75, $agg->averageAccuracy());
         $this->assertSame(110, $agg->total_score);
         $this->assertSame($scoreLink->getKey(), $agg->last_score_id);
     }

@@ -4,10 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'not_found' => "",
+    'not_found' => "Danou :model se nepodařilo najít.",
 
     'name' => [
-        'App\Models\Beatmap' => '',
-        'App\Models\Beatmapset' => '',
+        'App\Models\Beatmap' => 'obtížnost beatmapy',
+        'App\Models\Beatmapset' => 'beatmapu',
     ],
 ];

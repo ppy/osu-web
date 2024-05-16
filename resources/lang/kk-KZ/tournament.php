@@ -23,7 +23,7 @@ return [
     ],
 
     'show' => [
-        'banner' => '',
+        'banner' => 'Командаңызды қолдаңыз',
         'entered' => '',
         'info_page' => '',
         'login_to_register' => '',
