@@ -18,10 +18,7 @@ export class Entry extends React.Component
 
     return null if @props.hideIfNotVoted && !selected
 
-    if @props.contest.type == 'external'
-      link_icon = 'fa-external-link-alt'
-    else
-      link_icon = 'fa-download'
+    if @props.contest.type == 'external' then link_icon = 'fa-external-link-alt' else link_icon = 'fa-download'
 
     if @props.contest.show_votes
       relativeVotePercentage = _.round((@props.entry.results.votes / @props.winnerVotes)*100, 2)
@@ -92,7 +89,7 @@ export class Entry extends React.Component
           @props.entry.title
       else if @props.options.showLink && @props.entry.preview && @props.contest.submitted_beatmaps
         a
-          className: 'contest-voting-list__title-link u-ellipsis-overflow link-white',
+          className: 'contest-voting-list__title-link u-ellipsis-overflow',
           href: route('beatmapsets.show', beatmapset: @props.entry.preview)
           @props.entry.title
       else
