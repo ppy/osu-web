@@ -5,33 +5,33 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Multiplayer\BeatmapOfTheDayQueueItem;
+use App\Models\Multiplayer\DailyChallengeQueueItem;
 use App\Models\Multiplayer\Room;
 use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 
-class BeatmapOfTheDayQueueNext extends Command
+class DailyChallengeQueueNext extends Command
 {
-    protected $signature = 'beatmap-of-the-day:queue-next';
+    protected $signature = 'daily-challenge:queue-next';
 
-    protected $description = 'Creates a new "beatmap of the day" multiplayer room for the first item in queue.';
+    protected $description = 'Creates a new "daily challenge" multiplayer room for the first item in queue.';
 
     public function handle()
     {
-        $nextQueueItem = BeatmapOfTheDayQueueItem::whereNull('multiplayer_room_id')
+        $nextQueueItem = DailyChallengeQueueItem::whereNull('multiplayer_room_id')
             ->orderBy('order', 'asc')
             ->orderBy('id', 'asc')
             ->first();
 
         if ($nextQueueItem === null) {
-            $this->error('Beatmap of the day queue is empty.');
+            $this->error('"Daily challenge" queue is empty.');
             return 1;
         }
 
-        $existing = Room::where('category', 'beatmap_of_the_day')->active()->first();
+        $existing = Room::where('category', 'daily_challenge')->active()->first();
         if ($existing !== null) {
-            $this->error("Another 'beatmap of the day' room is open (id {$existing->id}).");
+            $this->error("Another \"daily challenge\" room is open (id {$existing->id}).");
             return 1;
         }
 
@@ -43,7 +43,7 @@ class BeatmapOfTheDayQueueNext extends Command
                 User::lookup($ownerId),
                 [
                     'ends_at' => today()->addDay(),
-                    'name' => "Beatmap of the Day: {$startTime->toFormattedDateString()}",
+                    'name' => "Daily Challenge: {$startTime->toFormattedDateString()}",
                     'type' => 'playlists',
                     'playlist' => [[
                         'beatmap_id' => $nextQueueItem->beatmap_id,
@@ -53,7 +53,7 @@ class BeatmapOfTheDayQueueNext extends Command
                     ]],
                 ]
             );
-            $room->update(['category' => 'beatmap_of_the_day']);
+            $room->update(['category' => 'daily_challenge']);
 
             $nextQueueItem->multiplayer_room_id = $room->id;
             $nextQueueItem->save();

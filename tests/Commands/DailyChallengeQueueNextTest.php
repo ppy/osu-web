@@ -5,20 +5,20 @@
 
 namespace Tests\Commands;
 
-use App\Models\Multiplayer\BeatmapOfTheDayQueueItem;
+use App\Models\Multiplayer\DailyChallengeQueueItem;
 use App\Models\Multiplayer\Room;
 use App\Models\User;
 use Tests\TestCase;
 
-class BeatmapOfTheDayQueueNextTest extends TestCase
+class DailyChallengeQueueNextTest extends TestCase
 {
     private int $originalUtilityUserId;
 
     public function testBasicItem()
     {
-        $queueItem = BeatmapOfTheDayQueueItem::factory()->create();
+        $queueItem = DailyChallengeQueueItem::factory()->create();
 
-        $this->artisan('beatmap-of-the-day:queue-next')->assertOk();
+        $this->artisan('daily-challenge:queue-next')->assertOk();
 
         $room = $queueItem->fresh()->multiplayerRoom()->first();
 
@@ -35,13 +35,13 @@ class BeatmapOfTheDayQueueNextTest extends TestCase
 
     public function testItemWithRequiredMods()
     {
-        $queueItem = BeatmapOfTheDayQueueItem::factory()->create([
+        $queueItem = DailyChallengeQueueItem::factory()->create([
             'required_mods' => [[
                 'acronym' => 'DT',
             ]],
         ]);
 
-        $this->artisan('beatmap-of-the-day:queue-next')->assertOk();
+        $this->artisan('daily-challenge:queue-next')->assertOk();
 
         $room = $queueItem->fresh()->multiplayerRoom()->first();
 
@@ -58,10 +58,10 @@ class BeatmapOfTheDayQueueNextTest extends TestCase
 
     public function testQueueOrderIsRespected()
     {
-        $secondItem = BeatmapOfTheDayQueueItem::factory()->create(['order' => 2]);
-        $firstItem = BeatmapOfTheDayQueueItem::factory()->create(['order' => 1]);
+        $secondItem = DailyChallengeQueueItem::factory()->create(['order' => 2]);
+        $firstItem = DailyChallengeQueueItem::factory()->create(['order' => 1]);
 
-        $this->artisan('beatmap-of-the-day:queue-next')->assertOk();
+        $this->artisan('daily-challenge:queue-next')->assertOk();
 
         $this->assertNotNull($firstItem->fresh()->multiplayerRoom()->first());
         $this->assertNull($secondItem->fresh()->multiplayerRoom()->first());
@@ -69,10 +69,10 @@ class BeatmapOfTheDayQueueNextTest extends TestCase
 
     public function testPrimaryKeyIsTiebreakerWhenNoSpecifiedOrder()
     {
-        $firstItem = BeatmapOfTheDayQueueItem::factory()->create();
-        $secondItem = BeatmapOfTheDayQueueItem::factory()->create();
+        $firstItem = DailyChallengeQueueItem::factory()->create();
+        $secondItem = DailyChallengeQueueItem::factory()->create();
 
-        $this->artisan('beatmap-of-the-day:queue-next')->assertOk();
+        $this->artisan('daily-challenge:queue-next')->assertOk();
 
         $this->assertNotNull($firstItem->fresh()->multiplayerRoom()->first());
         $this->assertNull($secondItem->fresh()->multiplayerRoom()->first());
@@ -80,26 +80,26 @@ class BeatmapOfTheDayQueueNextTest extends TestCase
 
     public function testNothingDoneOnEmptyQueue()
     {
-        $this->artisan('beatmap-of-the-day:queue-next')
-            ->expectsOutputToContain('Beatmap of the day queue is empty')
+        $this->artisan('daily-challenge:queue-next')
+            ->expectsOutputToContain('"Daily challenge" queue is empty')
             ->assertFailed();
         $this->assertSame(0, Room::all()->count());
     }
 
-    public function testConfirmationRequiredIfAnotherRoomOpen()
+    public function testCommandFailsIfAnotherDailyChallengeRoomOpen()
     {
-        $secondItem = BeatmapOfTheDayQueueItem::factory()->create(['order' => 2]);
-        $firstItem = BeatmapOfTheDayQueueItem::factory()->create(['order' => 1]);
+        $secondItem = DailyChallengeQueueItem::factory()->create(['order' => 2]);
+        $firstItem = DailyChallengeQueueItem::factory()->create(['order' => 1]);
 
-        $this->artisan('beatmap-of-the-day:queue-next')->assertOk();
+        $this->artisan('daily-challenge:queue-next')->assertOk();
 
         $this->assertNotNull($firstItem->fresh()->multiplayerRoom()->first());
         $this->assertNull($secondItem->fresh()->multiplayerRoom()->first());
 
-        $this->assertNotNull(Room::where('category', 'beatmap_of_the_day')->first());
+        $this->assertNotNull(Room::where('category', 'daily_challenge')->first());
 
-        $this->artisan('beatmap-of-the-day:queue-next')
-            ->expectsOutputToContain("Another 'beatmap of the day' room is open")
+        $this->artisan('daily-challenge:queue-next')
+            ->expectsOutputToContain('Another "daily challenge" room is open')
             ->assertFailed();
 
         $this->assertNotNull($firstItem->fresh()->multiplayerRoom()->first());

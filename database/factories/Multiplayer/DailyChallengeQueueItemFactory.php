@@ -8,12 +8,12 @@ declare(strict_types=1);
 namespace Database\Factories\Multiplayer;
 
 use App\Models\Beatmap;
-use App\Models\Multiplayer\BeatmapOfTheDayQueueItem;
+use App\Models\Multiplayer\DailyChallengeQueueItem;
 use Database\Factories\Factory;
 
-class BeatmapOfTheDayQueueItemFactory extends Factory
+class DailyChallengeQueueItemFactory extends Factory
 {
-    protected $model = BeatmapOfTheDayQueueItem::class;
+    protected $model = DailyChallengeQueueItem::class;
 
     public function definition(): array
     {

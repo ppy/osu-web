@@ -16,7 +16,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('beatmap_of_the_day_queue', function (Blueprint $table) {
+        Schema::create('daily_challenge_queue', function (Blueprint $table) {
             $table->id();
 
             $table->unsignedMediumInteger('beatmap_id');
@@ -32,7 +32,7 @@ return new class extends Migration
             'normal',
             'spotlight',
             'featured_artist',
-            'beatmap_of_the_day'
+            'daily_challenge'
         ) NOT NULL DEFAULT 'normal'");
     }
 
@@ -41,7 +41,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('beatmap_of_the_day_queue');
+        Schema::dropIfExists('daily_challenge');
 
         DB::statement("ALTER TABLE `multiplayer_rooms` MODIFY `category` ENUM(
             'normal',

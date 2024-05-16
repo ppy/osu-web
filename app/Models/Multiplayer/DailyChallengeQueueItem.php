@@ -16,11 +16,11 @@ use App\Models\Model;
  * @property json|null $required_mods
  * @property int $ruleset_id
  */
-class BeatmapOfTheDayQueueItem extends Model
+class DailyChallengeQueueItem extends Model
 {
     public $timestamps = false;
 
-    protected $table = 'beatmap_of_the_day_queue';
+    protected $table = 'daily_challenge_queue';
     protected $casts = [
         'allowed_mods' => 'array',
         'required_mods' => 'array',
