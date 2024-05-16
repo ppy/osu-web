@@ -19,14 +19,6 @@ export default class AccountEditState {
     this.debouncedUpdate = debounce(this.update, 1000);
   }
 
-  private get data() {
-    if (this.dataset.accountEditType === 'multi') {
-      return this.getMultiValue();
-    } else {
-      return { [this.fieldName]: this.getValue() };
-    }
-  }
-
   private get dataset() {
     return this.container.dataset;
   }
@@ -69,36 +61,38 @@ export default class AccountEditState {
     this.dataset.accountEditState = 'saving';
   }
 
-  private getMultiValue() {
-    const data: Partial<Record<string, boolean>> = {};
+  private getData() {
+    let value: string | string[] | undefined;
 
-    for (const checkbox of this.container.querySelectorAll<HTMLInputElement>(inputSelector)) {
-      data[checkbox.name] = checkbox.checked;
-    }
-
-    return data;
-  }
-
-  private getValue() {
     switch (this.dataset.accountEditType) {
-      case 'array': {
-        const value = [''];
+      case 'multi': {
+        const data: Partial<Record<string, boolean>> = {};
+
+        for (const checkbox of this.container.querySelectorAll<HTMLInputElement>(inputSelector)) {
+          data[checkbox.name] = checkbox.checked;
+        }
+
+        return data;
+      }
+      case 'array':
+        value = [''];
 
         for (const checkbox of this.container.querySelectorAll('input')) {
           if (checkbox.checked) {
             value.push(checkbox.value);
           }
         }
-        return value;
-      }
+        break;
+
       case 'radio':
         // TODO: require name?
         for (const checkbox of this.container.querySelectorAll<HTMLInputElement>('input[type="radio"]')) {
           if (checkbox.checked) {
-            return checkbox.value;
+            value = checkbox.value;
+            break;
           }
         }
-        throw new Error('missing radio value');
+        break;
 
       default: {
         const input = this.container.querySelector<HTMLInputElement>(inputSelector);
@@ -106,14 +100,20 @@ export default class AccountEditState {
           throw new Error('missing input');
         }
 
-        return input.type === 'checkbox' ? String(input.checked) : input.value;
+        value = input.type === 'checkbox' ? String(input.checked) : input.value;
       }
     }
+
+    if (value == null) {
+      throw new Error('missing radio value');
+    }
+
+    return { [this.fieldName]: value };
   }
 
   private readonly update = () => {
     this.xhr = $.ajax(this.dataset.url ?? route('account.update'), {
-      data: this.data,
+      data: this.getData(),
       method: 'PUT',
     });
 
