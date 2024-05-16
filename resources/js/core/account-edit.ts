@@ -13,7 +13,7 @@ interface AccountEditHTMLElement extends HTMLElement {
   state?: AccountEditState;
 }
 
-export default class AccountEditBootstrap {
+export default class AccountEdit {
   constructor(private readonly core: OsuCore) {
     $(document).on('input change', autoSubmitClassSelector, this.handleInputChange);
     $(document).on('ajax:error', classSelector, this.handleAjaxError);
