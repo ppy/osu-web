@@ -83,7 +83,7 @@ export default class AccountEditState {
     let value: string | string[] | undefined;
 
     if (this.dataset.accountEditType === 'array') {
-      value = [];
+      value = [''];
 
       for (const checkbox of this.container.querySelectorAll('input')) {
         if (checkbox.checked) {
