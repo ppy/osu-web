@@ -8,6 +8,7 @@ import OsuCore from 'osu-core';
 import { onError } from 'utils/ajax';
 
 const inputSelector = '.js-account-edit__input';
+const requiresName = new Set(['array', 'radio']) as Set<unknown>;
 
 export default class AccountEditState {
   readonly debouncedUpdate;
@@ -17,6 +18,9 @@ export default class AccountEditState {
 
   constructor(private readonly container: HTMLElement, private readonly core: OsuCore) {
     this.debouncedUpdate = debounce(this.update, 1000);
+    if (requiresName.has(this.dataset.accountEditType) && this.dataset.field == null) {
+      throw new Error('data-field required');
+    }
   }
 
   private get dataset() {
@@ -83,7 +87,6 @@ export default class AccountEditState {
         break;
 
       case 'radio':
-        // TODO: require name?
         for (const checkbox of this.container.querySelectorAll<HTMLInputElement>('input[type="radio"]')) {
           if (checkbox.checked) {
             value = checkbox.value;
