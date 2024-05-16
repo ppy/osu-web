@@ -21,25 +21,23 @@ export default class AccountEdit {
     $(document).on('ajax:success', classSelector, this.handleAjaxSuccess);
   }
 
+  private getState(e: ContainerEvent) {
+    return e.currentTarget.state ??= new AccountEditState(e.currentTarget, this.core);
+  }
+
   private readonly handleAjaxError = (e: ContainerEvent) => {
-    e.currentTarget.state?.clear();
+    this.getState(e).clear();
   };
 
   private readonly handleAjaxSend = (e: ContainerEvent) => {
-    const container = e.currentTarget;
-
-    container.state ??= new AccountEditState(container, this.core);
-    container.state.saving();
+    this.getState(e).saving();
   };
 
   private readonly handleAjaxSuccess = (e: ContainerEvent) => {
-    e.currentTarget.state?.saved();
+    this.getState(e).saved();
   };
 
   private readonly handleInputChange = (e: ContainerEvent) => {
-    const container = e.currentTarget;
-
-    container.state ??= new AccountEditState(container, this.core);
-    container.state.onInput();
+    this.getState(e).onInput();
   };
 }
