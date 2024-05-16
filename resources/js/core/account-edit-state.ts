@@ -93,6 +93,11 @@ export default class AccountEditState {
             break;
           }
         }
+
+        if (value == null) {
+          throw new Error('missing radio value');
+        }
+
         break;
 
       default: {
@@ -103,10 +108,6 @@ export default class AccountEditState {
 
         value = input.type === 'checkbox' ? String(input.checked) : input.value;
       }
-    }
-
-    if (value == null) {
-      throw new Error('missing radio value');
     }
 
     return { [this.fieldName]: value };
