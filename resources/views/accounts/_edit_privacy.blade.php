@@ -12,8 +12,7 @@
     <div class="account-edit__input-groups">
         <div class="account-edit__input-group">
             <div
-                class="account-edit-entry account-edit-entry--no-label js-account-edit"
-                data-account-edit-auto-submit="1"
+                class="account-edit-entry account-edit-entry--no-label js-account-edit js-account-edit-auto-submit"
                 data-url="{{ route('account.options') }}"
             >
                 <label class="account-edit-entry__checkbox">
@@ -34,8 +33,7 @@
             </div>
 
             <div
-                class="account-edit-entry account-edit-entry--no-label js-account-edit"
-                data-account-edit-auto-submit="1"
+                class="account-edit-entry account-edit-entry--no-label js-account-edit js-account-edit-auto-submit"
                 data-url="{{ route('account.options') }}"
             >
                 <label class="account-edit-entry__checkbox">
