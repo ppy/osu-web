@@ -23,14 +23,12 @@
 }
 
 .u-ellipsis-overflow {
-  white-space: nowrap !important;
-  text-overflow: ellipsis !important;
-  overflow: hidden !important;
+  .ellipsis-overflow() !important;
 }
 
 .u-ellipsis-overflow-desktop {
   @media @desktop {
-    .u-ellipsis-overflow();
+    .ellipsis-overflow() !important;
   }
 }
 
