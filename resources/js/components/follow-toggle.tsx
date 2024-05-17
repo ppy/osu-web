@@ -23,13 +23,16 @@ interface SavedState {
 @observer
 export default class FollowToggle extends React.PureComponent<Props> {
   @observable private _following = true;
-  private readonly jsonId = `json-follow-toggle-${this.props.follow.subtype}-${this.props.follow.notifiable_type}-${this.props.follow.notifiable_id}`;
   @observable private xhr?: JQuery.jqXHR;
 
   private get following() {
     return this.props.follow.subtype === 'mapping'
       ? core.currentUserModel.followUserMapping.has(this.props.follow.notifiable_id)
       : this._following;
+  }
+
+  private get jsonId() {
+    return `json-follow-toggle-${this.props.follow.subtype}-${this.props.follow.notifiable_type}-${this.props.follow.notifiable_id}`;
   }
 
   private get toggling() {
