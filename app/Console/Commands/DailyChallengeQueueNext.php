@@ -40,7 +40,7 @@ class DailyChallengeQueueNext extends Command
             $ownerId = $GLOBALS['cfg']['osu']['legacy']['bancho_bot_user_id'];
 
             $room = (new Room())->startGame(
-                User::lookup($ownerId),
+                User::findOrFail($ownerId),
                 [
                     'ends_at' => today()->addDay(),
                     'name' => "Daily Challenge: {$startTime->toFormattedDateString()}",
