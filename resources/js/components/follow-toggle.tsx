@@ -8,6 +8,7 @@ import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers, Modifiers } from 'utils/css';
+import { parseJsonNullable, storeJson } from 'utils/json';
 import { Spinner } from './spinner';
 
 interface Props {
@@ -15,9 +16,14 @@ interface Props {
   modifiers?: Modifiers;
 }
 
+interface SavedState {
+  following: boolean;
+}
+
 @observer
 export default class FollowToggle extends React.PureComponent<Props> {
   @observable private _following = true;
+  private readonly jsonId = `json-follow-toggle-${this.props.follow.subtype}-${this.props.follow.notifiable_type}-${this.props.follow.notifiable_id}`;
   @observable private xhr?: JQuery.jqXHR;
 
   private get following() {
@@ -33,6 +39,7 @@ export default class FollowToggle extends React.PureComponent<Props> {
   constructor(props: Props) {
     super(props);
     makeObservable(this);
+    this._following = parseJsonNullable<SavedState>(this.jsonId, true)?.following ?? true;
   }
 
   render() {
@@ -71,6 +78,7 @@ export default class FollowToggle extends React.PureComponent<Props> {
           core.currentUserModel.updateFollowUserMapping(!this.following, this.props.follow.notifiable_id);
         } else {
           this._following = !this.following;
+          storeJson<SavedState>(this.jsonId, { following: this.following });
         }
       })).always(action(() => {
         this.xhr = undefined;
