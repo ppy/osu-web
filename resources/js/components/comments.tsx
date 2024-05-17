@@ -3,6 +3,7 @@
 
 import { observer } from 'mobx-react';
 import CommentModel from 'models/comment';
+import { canModerateComments } from 'models/comment';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers, mergeModifiers, Modifiers } from 'utils/css';
@@ -109,10 +110,6 @@ export default class Comments extends React.Component<Props> {
   }
 
   private renderComment(comment: CommentModel, expandReplies?: boolean) {
-    if (comment.isDeleted && !core.userPreferences.get('comments_show_deleted')) {
-      return;
-    }
-
     return (
       <Comment
         key={comment.id}
@@ -161,6 +158,10 @@ export default class Comments extends React.Component<Props> {
   }
 
   private renderShowDeletedToggle() {
+    if (!canModerateComments()) {
+      return null;
+    }
+
     const iconClass = core.userPreferences.get('comments_show_deleted')
       ? 'fas fa-check-square'
       : 'far fa-square';

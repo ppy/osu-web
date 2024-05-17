@@ -4,29 +4,29 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'achievement' => '',
-    'beatmap_playcount' => '',
-    'beatmapset_approve' => '',
-    'beatmapset_delete' => '',
-    'beatmapset_revive' => '',
-    'beatmapset_update' => '',
-    'beatmapset_upload' => '',
-    'empty' => "",
-    'rank' => '',
-    'rank_lost' => '',
-    'user_support_again' => '',
-    'user_support_first' => '',
-    'user_support_gift' => '',
-    'username_change' => '',
+    'achievement' => '<strong>¡<strong><em>:user</em></strong> ha desbloqueado la medalla «<strong>:achievement</strong>»!',
+    'beatmap_playcount' => '¡:beatmap ha sido jugado :count veces!',
+    'beatmapset_approve' => '¡:beatmapset por <strong>:user</strong> ha sido :approval!',
+    'beatmapset_delete' => ':beatmapset ha sido eliminado.',
+    'beatmapset_revive' => ':beatmapset ha sido revivido del sueño eterno por <strong>:user</strong>.',
+    'beatmapset_update' => '<strong><em>:user</em></strong> ha actualizado el mapa «<em>:beatmapset</em>»',
+    'beatmapset_upload' => '<strong><em>:user</em></strong> ha enviado un nuevo mapa «:beatmapset»',
+    'empty' => "¡Este usuario no ha hecho nada notable recientemente!",
+    'rank' => ':user consiguió el :rank en :beatmap (:mode)',
+    'rank_lost' => '<strong><em>:user</em></strong> ha perdido el primer puesto en <em>:beatmap</em> (:mode)',
+    'user_support_again' => '<strong>:user</strong> ha elegido apoyar a osu! una vez más - ¡gracias por tu generosidad!',
+    'user_support_first' => '<strong>:user</strong> ha apoyado a osu! - ¡gracias por tu generosidad!',
+    'user_support_gift' => '¡<strong>:user</strong> ha recibido un osu!supporter! como regalo!',
+    'username_change' => '¡<strong>:previousUsername</strong> ha cambiado su nombre de usuario a <strong><em>:user</em></strong>!',
 
     'beatmapset_status' => [
-        'approved' => '',
-        'loved' => '',
-        'qualified' => '',
-        'ranked' => '',
+        'approved' => 'aprobado',
+        'loved' => 'amado',
+        'qualified' => 'calificado',
+        'ranked' => 'clasificado',
     ],
 
     'value' => [
-        'rank' => '',
+        'rank' => 'puesto #:rank',
     ],
 ];

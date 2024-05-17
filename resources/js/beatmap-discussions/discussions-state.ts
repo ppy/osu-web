@@ -288,12 +288,11 @@ export default class DiscussionsState {
   @computed
   get unresolvedDiscussionCounts() {
     const byBeatmap: Partial<Record<number, number>> = {};
-    const byMode: Record<GameMode, number> = {
-      fruits: 0,
-      mania: 0,
-      osu: 0,
-      taiko: 0,
-    };
+    const byMode: Partial<Record<GameMode, number>> = {};
+    // show at least 0 for available rulesets
+    this.store.beatmaps.forEach((beatmap) => {
+      byMode[beatmap.mode] ??= 0;
+    });
 
     for (const discussion of this.nonDeletedDiscussions) {
       if (discussion.beatmap_id != null && discussion.can_be_resolved && !discussion.resolved) {
@@ -301,7 +300,7 @@ export default class DiscussionsState {
 
         const mode = this.store.beatmaps.get(discussion.beatmap_id)?.mode;
         if (mode != null) {
-          byMode[mode]++;
+          byMode[mode] = (byMode[mode] ?? 0) + 1;
         }
       }
     }

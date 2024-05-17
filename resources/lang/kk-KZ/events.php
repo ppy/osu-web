@@ -10,14 +10,14 @@ return [
     'beatmapset_delete' => ':beatmapset жойылды.',
     'beatmapset_revive' => '',
     'beatmapset_update' => '',
-    'beatmapset_upload' => '',
-    'empty' => "",
-    'rank' => '',
-    'rank_lost' => '',
-    'user_support_again' => '',
-    'user_support_first' => '',
-    'user_support_gift' => '',
-    'username_change' => '',
+    'beatmapset_upload' => '<strong><em>:user</em></strong> жаңа ":beatmapset" картаны жүктеді',
+    'empty' => "Осы пайдаланушы жақында маңызды ештеңе жасаған жоқ!",
+    'rank' => ':beatmap (:mode) картасында :user :rank алды',
+    'rank_lost' => '<strong><em>:user</em></strong> <em>:beatmap</em> (:mode) картасында бірінші орынды жоғалтты',
+    'user_support_again' => '<strong>:user</strong> тағы да osu!-ды қолдады - колдауыңызға рахмет!',
+    'user_support_first' => '<strong>:user</strong> osu!-ды қолдады - қолдауыңызға рахмет!',
+    'user_support_gift' => '<strong>:user</strong> osu!supporter сыйлық ретінде алды!',
+    'username_change' => '<strong>:previousUsername</strong> пайдаланушы атын <strong><em>:user</em></strong>-ға өзгертті!',
 
     'beatmapset_status' => [
         'approved' => 'қабылданған',
@@ -27,6 +27,6 @@ return [
     ],
 
     'value' => [
-        'rank' => '',
+        'rank' => '#:rank орын',
     ],
 ];

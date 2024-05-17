@@ -6,7 +6,7 @@
 return [
     'support' => [
         'convinced' => [
-            'title' => '¡me has convencido! :D',
+            'title' => '¡Me has convencido! :D',
             'support' => 'apoyar a osu!',
             'gift' => 'o regalar supporter a otros jugadores',
             'instructions' => 'haz clic al botón del corazón para proceder a la osu!store',
@@ -37,8 +37,8 @@ return [
                 'link_text' => 'Explorar torneos &raquo;',
             ],
             'bounty-program' => [
-                'title' => 'Programa de tecompensas de código abierto',
-                'description' => 'Apoya a los contribuyentes de la comunidad que han dado su tiempo y esfuerzo para ayudar a hacer que osu! sea mejor.',
+                'title' => 'Programa de recompensas de código abierto',
+                'description' => 'Apoya a los contribuidores de la comunidad que han dado su tiempo y esfuerzo para ayudar a hacer que osu! sea mejor.',
                 'link_text' => 'Descubre más &raquo;',
             ],
         ],
@@ -61,7 +61,7 @@ return [
 
             'mod_filtering' => [
                 'title' => 'Filtrar por mods',
-                'description' => '¿Asociarte solo con personas que juegan con mods HDHR? ¡No hay problema!',
+                'description' => '¿Asociarte solo con personas que juegan con HDHR? ¡No hay problema!',
             ],
 
             'auto_downloads' => [
