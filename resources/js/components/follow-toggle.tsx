@@ -12,17 +12,12 @@ import { Spinner } from './spinner';
 
 interface Props {
   follow: FollowJson;
-  following: boolean;
   modifiers?: Modifiers;
 }
 
 @observer
 export default class FollowToggle extends React.PureComponent<Props> {
-  static defaultProps = {
-    following: true,
-  };
-
-  @observable _following: boolean;
+  @observable private _following = true;
   @observable private xhr?: JQuery.jqXHR;
 
   private get following() {
@@ -38,8 +33,6 @@ export default class FollowToggle extends React.PureComponent<Props> {
   constructor(props: Props) {
     super(props);
     makeObservable(this);
-
-    this._following = this.props.following;
   }
 
   render() {
