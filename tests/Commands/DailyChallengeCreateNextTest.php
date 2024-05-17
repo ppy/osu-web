@@ -81,7 +81,7 @@ class DailyChallengeCreateNextTest extends TestCase
         $this->artisan('daily-challenge:create-next')
             ->expectsOutputToContain('"Daily challenge" queue is empty')
             ->assertFailed();
-        $this->assertSame(0, Room::all()->count());
+        $this->expectCountChange(fn () => Room::all()->count(), 0);
     }
 
     public function testCommandFailsIfAnotherDailyChallengeRoomOpen()
