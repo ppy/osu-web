@@ -31,7 +31,7 @@ class DailyChallengeCreateNext extends Command
 
         $existing = Room::where('category', 'daily_challenge')->active()->first();
         if ($existing !== null) {
-            $this->error("Another \"daily challenge\" room is open (id {$existing->id}).");
+            $this->error("Another \"daily challenge\" room is open (id {$existing->getKey()}).");
             return 1;
         }
 
@@ -55,10 +55,10 @@ class DailyChallengeCreateNext extends Command
             );
             $room->update(['category' => 'daily_challenge']);
 
-            $nextQueueItem->multiplayer_room_id = $room->id;
+            $nextQueueItem->multiplayer_room_id = $room->getKey();
             $nextQueueItem->save();
 
-            $this->info("Created room {$room->name} (id {$room->id})");
+            $this->info("Created room {$room->name} (id {$room->getKey()})");
         });
     }
 }
