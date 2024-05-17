@@ -33,6 +33,6 @@ class DailyChallengeQueueItem extends Model
 
     public function multiplayerRoom()
     {
-        return $this->hasOne(Room::class, 'id', 'multiplayer_room_id');
+        return $this->belongsTo(Room::class);
     }
 }
