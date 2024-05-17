@@ -51,7 +51,5 @@ export default class UserModel {
     } else {
       pull(currentUser.follow_user_mapping, userId);
     }
-
-    $.publish('user:followUserMapping:refresh');
   }
 }
