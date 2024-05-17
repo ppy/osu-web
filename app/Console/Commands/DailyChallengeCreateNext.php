@@ -37,10 +37,10 @@ class DailyChallengeCreateNext extends Command
 
         DB::transaction(function () use ($nextQueueItem) {
             $startTime = today();
-            $ownerId = $GLOBALS['cfg']['osu']['legacy']['bancho_bot_user_id'];
+            $hostId = $GLOBALS['cfg']['osu']['legacy']['bancho_bot_user_id'];
 
             $room = (new Room())->startGame(
-                User::findOrFail($ownerId),
+                User::findOrFail($hostId),
                 [
                     'ends_at' => today()->addDay(),
                     'name' => "Daily Challenge: {$startTime->toFormattedDateString()}",
