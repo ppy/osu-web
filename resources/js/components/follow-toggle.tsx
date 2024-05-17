@@ -59,6 +59,8 @@ export default class FollowToggle extends React.PureComponent<Props> {
 
   @action
   private readonly onClick = () => {
+    if (this.xhr != null) return;
+
     const params = {
       follow: {
         notifiable_id: this.props.follow.notifiable_id,
@@ -68,8 +70,6 @@ export default class FollowToggle extends React.PureComponent<Props> {
     };
 
     const method = this.following ? 'DELETE' : 'POST';
-
-    this.xhr?.abort();
 
     this.xhr = $.ajax(route('follows.store'), { data: params, method })
       .done(action(() => {
