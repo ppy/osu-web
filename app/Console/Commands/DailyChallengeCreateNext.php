@@ -11,11 +11,11 @@ use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 
-class DailyChallengeQueueNext extends Command
+class DailyChallengeCreateNext extends Command
 {
     protected $description = 'Creates a new "daily challenge" multiplayer room for the first item in queue.';
 
-    protected $signature = 'daily-challenge:queue-next';
+    protected $signature = 'daily-challenge:create-next';
 
     public function handle()
     {

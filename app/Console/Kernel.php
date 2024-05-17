@@ -79,7 +79,7 @@ class Kernel extends ConsoleKernel
 
         Commands\BeatmapLeadersRefresh::class,
 
-        Commands\DailyChallengeQueueNext::class,
+        Commands\DailyChallengeCreateNext::class,
     ];
 
     /**

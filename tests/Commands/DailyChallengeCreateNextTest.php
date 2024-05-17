@@ -10,13 +10,13 @@ use App\Models\Multiplayer\Room;
 use App\Models\User;
 use Tests\TestCase;
 
-class DailyChallengeQueueNextTest extends TestCase
+class DailyChallengeCreateNextTest extends TestCase
 {
     public function testBasicItem()
     {
         $queueItem = DailyChallengeQueueItem::factory()->create();
 
-        $this->artisan('daily-challenge:queue-next')->assertOk();
+        $this->artisan('daily-challenge:create-next')->assertOk();
 
         $room = $queueItem->fresh()->multiplayerRoom()->first();
 
@@ -39,7 +39,7 @@ class DailyChallengeQueueNextTest extends TestCase
             ]],
         ]);
 
-        $this->artisan('daily-challenge:queue-next')->assertOk();
+        $this->artisan('daily-challenge:create-next')->assertOk();
 
         $room = $queueItem->fresh()->multiplayerRoom()->first();
 
@@ -59,7 +59,7 @@ class DailyChallengeQueueNextTest extends TestCase
         $secondItem = DailyChallengeQueueItem::factory()->create(['order' => 2]);
         $firstItem = DailyChallengeQueueItem::factory()->create(['order' => 1]);
 
-        $this->artisan('daily-challenge:queue-next')->assertOk();
+        $this->artisan('daily-challenge:create-next')->assertOk();
 
         $this->assertNotNull($firstItem->fresh()->multiplayerRoom()->first());
         $this->assertNull($secondItem->fresh()->multiplayerRoom()->first());
@@ -70,7 +70,7 @@ class DailyChallengeQueueNextTest extends TestCase
         $firstItem = DailyChallengeQueueItem::factory()->create();
         $secondItem = DailyChallengeQueueItem::factory()->create();
 
-        $this->artisan('daily-challenge:queue-next')->assertOk();
+        $this->artisan('daily-challenge:create-next')->assertOk();
 
         $this->assertNotNull($firstItem->fresh()->multiplayerRoom()->first());
         $this->assertNull($secondItem->fresh()->multiplayerRoom()->first());
@@ -78,7 +78,7 @@ class DailyChallengeQueueNextTest extends TestCase
 
     public function testNothingDoneOnEmptyQueue()
     {
-        $this->artisan('daily-challenge:queue-next')
+        $this->artisan('daily-challenge:create-next')
             ->expectsOutputToContain('"Daily challenge" queue is empty')
             ->assertFailed();
         $this->assertSame(0, Room::all()->count());
@@ -89,14 +89,14 @@ class DailyChallengeQueueNextTest extends TestCase
         $secondItem = DailyChallengeQueueItem::factory()->create(['order' => 2]);
         $firstItem = DailyChallengeQueueItem::factory()->create(['order' => 1]);
 
-        $this->artisan('daily-challenge:queue-next')->assertOk();
+        $this->artisan('daily-challenge:create-next')->assertOk();
 
         $this->assertNotNull($firstItem->fresh()->multiplayerRoom()->first());
         $this->assertNull($secondItem->fresh()->multiplayerRoom()->first());
 
         $this->assertNotNull(Room::where('category', 'daily_challenge')->first());
 
-        $this->artisan('daily-challenge:queue-next')
+        $this->artisan('daily-challenge:create-next')
             ->expectsOutputToContain('Another "daily challenge" room is open')
             ->assertFailed();
 
