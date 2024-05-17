@@ -61,7 +61,7 @@ export default class FollowToggle extends React.PureComponent<Props> {
   private readonly onClick = () => {
     if (this.xhr != null) return;
 
-    const params = {
+    const data = {
       follow: {
         notifiable_id: this.props.follow.notifiable_id,
         notifiable_type: this.props.follow.notifiable_type,
@@ -71,7 +71,7 @@ export default class FollowToggle extends React.PureComponent<Props> {
 
     const method = this.following ? 'DELETE' : 'POST';
 
-    this.xhr = $.ajax(route('follows.store'), { data: params, method })
+    this.xhr = $.ajax(route('follows.store'), { data, method })
       .done(action(() => {
         if (this.props.follow.subtype === 'mapping') {
           core.currentUserModel.updateFollowUserMapping(!this.following, this.props.follow.notifiable_id);
