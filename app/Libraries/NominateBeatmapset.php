@@ -19,14 +19,14 @@ use Ds\Set;
 class NominateBeatmapset
 {
     /** @var Set<int> */
-    private Set $beatmapRulesetIds;
-    /** @var Set<int|null> */
-    private Set $nominatedRulesetIds;
+    private Set $beatmapRulesets;
+    /** @var Set<string> */
+    private Set $nominatedRulesets;
 
     public function __construct(private Beatmapset $beatmapset, private User $user, array $playmodes)
     {
-        $this->beatmapRulesetIds = new Set($beatmapset->playmodes()->toArray());
-        $this->nominatedRulesetIds = new Set(array_map(fn (string $name) => Beatmap::MODES[$name] ?? null, $playmodes));
+        $this->beatmapRulesets = new Set($beatmapset->playmodesStr());
+        $this->nominatedRulesets = new Set($playmodes);
     }
 
     public static function requiredNominationsConfig()
@@ -104,8 +104,8 @@ class NominateBeatmapset
 
     private function nominateRulesets(): array
     {
-        $rulesetIds = $this->beatmapRulesetIds->intersect($this->nominatedRulesetIds);
-        if ($rulesetIds->count() === 0) {
+        $rulesets = $this->beatmapRulesets->intersect($this->nominatedRulesets);
+        if ($rulesets->count() === 0) {
             throw new InvariantException(osu_trans('beatmapsets.nominate.hybrid_requires_modes'));
         }
 
@@ -114,8 +114,8 @@ class NominateBeatmapset
         $nominationCount = $this->beatmapset->currentNominationCount();
 
         // add potential counts
-        foreach ($rulesetIds as $rulesetId) {
-            $nominationCount[Beatmap::modeStr($rulesetId)]++;
+        foreach ($rulesets as $ruleset) {
+            $nominationCount[$ruleset]++;
         }
 
         $eligibleRulesetIds = (new BeatmapsetMainRuleset($this->beatmapset))->currentEligible();
@@ -131,21 +131,20 @@ class NominateBeatmapset
             }
         }
 
-        foreach ($rulesetIds as $rulesetId) {
-            $name = Beatmap::modeStr($rulesetId);
-            if (!$this->user->isFullBN($name) && !$this->user->isNAT($name)) {
-                if (!$this->user->isLimitedBN($name)) {
-                    throw new InvariantException(osu_trans('beatmapsets.nominate.incorrect_mode', ['mode' => $name]));
+        foreach ($rulesets as $ruleset) {
+            if (!$this->user->isFullBN($ruleset) && !$this->user->isNAT($ruleset)) {
+                if (!$this->user->isLimitedBN($ruleset)) {
+                    throw new InvariantException(osu_trans('beatmapsets.nominate.incorrect_mode', ['mode' => $ruleset]));
                 }
 
-                if ($this->beatmapset->requiresFullBNNomination($name)) {
+                if ($this->beatmapset->requiresFullBNNomination($ruleset)) {
                     throw new InvariantException(osu_trans('beatmapsets.nominate.full_bn_required'));
                 }
             }
         }
 
         return [
-            'comment' => ['modes' => array_map(fn ($rulesetId) => Beatmap::modeStr($rulesetId), $rulesetIds->toArray())],
+            'comment' => ['modes' => $rulesets->toArray()],
             'type' => BeatmapsetEvent::NOMINATE,
             'user_id' => $this->user->getKey(),
         ];
