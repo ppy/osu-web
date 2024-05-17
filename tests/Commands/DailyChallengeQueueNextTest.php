@@ -12,8 +12,6 @@ use Tests\TestCase;
 
 class DailyChallengeQueueNextTest extends TestCase
 {
-    private int $originalUtilityUserId;
-
     public function testBasicItem()
     {
         $queueItem = DailyChallengeQueueItem::factory()->create();
@@ -111,14 +109,6 @@ class DailyChallengeQueueNextTest extends TestCase
         parent::setUp();
 
         $utilityUser = User::factory()->create();
-        $this->originalUtilityUserId = $GLOBALS['cfg']['osu']['legacy']['bancho_bot_user_id'];
         config_set('osu.legacy.bancho_bot_user_id', $utilityUser->getKey());
-    }
-
-    protected function tearDown(): void
-    {
-        parent::tearDown();
-
-        config_set('osu.legacy.bancho_bot_user_id', $this->originalUtilityUserId);
     }
 }
