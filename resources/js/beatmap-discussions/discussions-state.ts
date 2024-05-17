@@ -245,7 +245,7 @@ export default class DiscussionsState {
   }
 
   @computed
-  get eligibleMainRulesets() {
+  get eligibleMainRulesetIds() {
     return new Set(this.beatmapset.eligible_main_rulesets);
   }
 

@@ -17,7 +17,7 @@ class BeatmapsetMainRuleset
 
     public function __construct(private Beatmapset $beatmapset)
     {
-        $values = $beatmapset->eligible_main_rulesets;
+        $values = $beatmapset->eligible_main_ruleset_ids;
 
         if ($values !== null) {
             $this->eligibleRulesets = new Set($values);

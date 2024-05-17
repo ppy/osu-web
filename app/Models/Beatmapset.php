@@ -66,7 +66,7 @@ use Illuminate\Database\QueryException;
  * @property string $displaytitle
  * @property bool $download_disabled
  * @property string|null $download_disabled_url
- * @property int[]|null $eligible_main_rulesets
+ * @property int[]|null $eligible_main_ruleset_ids
  * @property bool $epilepsy
  * @property \Illuminate\Database\Eloquent\Collection $events BeatmapsetEvent
  * @property int $favourite_count
@@ -120,7 +120,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         'deleted_at' => 'datetime',
         'discussion_locked' => 'boolean',
         'download_disabled' => 'boolean',
-        'eligible_main_rulesets' => 'array',
+        'eligible_main_ruleset_ids' => 'array',
         'epilepsy' => 'boolean',
         'last_update' => 'datetime',
         'nsfw' => 'boolean',
@@ -941,7 +941,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             'user_id',
             'versions_available' => $this->getRawAttribute($key),
 
-            'eligible_main_rulesets' => $this->getArray($key),
+            'eligible_main_ruleset_ids' => $this->getArray($key),
 
             'approved_date',
             'cover_updated_at',
@@ -1142,18 +1142,18 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     /**
      * Returns all the Rulesets that are eligible to be the main ruleset.
-     * This will _not_ query the current beatmapset nominations if there is an existing value in `eligible_main_rulesets`
+     * This will _not_ query the current beatmapset nominations if there is an existing value in `eligible_main_ruleset_ids`
      *
      * @return int[]
      */
     public function eligibleMainRulesetIds(): array
     {
-        $rulesetIds = $this->eligible_main_rulesets;
+        $rulesetIds = $this->eligible_main_ruleset_ids;
 
         if ($rulesetIds === null) {
             $rulesetIds = (new BeatmapsetMainRuleset($this))->currentEligible()->toArray();
             sort($rulesetIds);
-            $this->update(['eligible_main_rulesets' => $rulesetIds]);
+            $this->update(['eligible_main_ruleset_ids' => $rulesetIds]);
         }
 
         return $rulesetIds;
@@ -1475,7 +1475,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         sort($rulesetIds);
 
         return $this->update([
-            'eligible_main_rulesets' => $rulesetIds,
+            'eligible_main_ruleset_ids' => $rulesetIds,
             'hype' => $this->freshHype(),
             'nominations' => $this->isLegacyNominationMode() ? $this->currentNominationCount() : array_sum(array_values($this->currentNominationCount())),
         ]);

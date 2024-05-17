@@ -14,14 +14,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('osu_beatmapsets', function (Blueprint $table) {
-            $table->json('eligible_main_rulesets')->nullable();
+            $table->json('eligible_main_ruleset_ids')->nullable();
         });
     }
 
     public function down(): void
     {
         Schema::table('osu_beatmapsets', function (Blueprint $table) {
-            $table->dropColumn('eligible_main_rulesets');
+            $table->dropColumn('eligible_main_ruleset_ids');
         });
     }
 };
