@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\DB;
 
 class DailyChallengeQueueNext extends Command
 {
-    protected $signature = 'daily-challenge:queue-next';
-
     protected $description = 'Creates a new "daily challenge" multiplayer room for the first item in queue.';
+
+    protected $signature = 'daily-challenge:queue-next';
 
     public function handle()
     {
