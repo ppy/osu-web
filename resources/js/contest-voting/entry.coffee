@@ -81,7 +81,7 @@ export class Entry extends React.Component
     el React.Fragment, null,
       if @props.contest.type == 'external'
         a
-          className: 'contest-voting-list__title-link'
+          className: 'contest-voting-list__title-link u-ellipsis-overflow u-relative'
           rel: 'nofollow noreferrer'
           target: '_blank'
           href: @props.entry.preview,
