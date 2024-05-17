@@ -16,7 +16,7 @@ export default class UserModel {
   }
 
   @computed
-  get following() {
+  get followUserMapping() {
     if (this.core.currentUser == null) {
       return new Set();
     }

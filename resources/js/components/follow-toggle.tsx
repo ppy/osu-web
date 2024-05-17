@@ -27,7 +27,7 @@ export default class FollowToggle extends React.PureComponent<Props> {
 
   private get following() {
     return this.props.follow.subtype === 'mapping'
-      ? core.currentUserModel.following.has(this.props.follow.notifiable_id)
+      ? core.currentUserModel.followUserMapping.has(this.props.follow.notifiable_id)
       : this._following;
   }
 

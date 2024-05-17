@@ -29,7 +29,7 @@ export default class FollowUserMappingButton extends React.Component<Props> {
   @observable private xhr?: JQuery.jqXHR;
 
   private get following() {
-    return core.currentUserModel.following.has(this.props.userId);
+    return core.currentUserModel.followUserMapping.has(this.props.userId);
   }
 
   @computed
