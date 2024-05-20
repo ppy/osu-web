@@ -1547,15 +1547,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         });
     }
 
-    public function groupedBeatmapsQuery()
-    {
-        return $this->beatmaps()
-            ->groupBy('playmode')
-            ->select('playmode', DB::raw('count(*) as total'))
-            ->orderBy('total', 'desc')
-            ->orderBy('playmode', 'asc');
-    }
-
     private function defaultCoverTimestamp(): string
     {
         return $this->cover_updated_at?->format('U') ?? '0';
