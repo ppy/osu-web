@@ -21,6 +21,8 @@ class BeatmapsetMainRuleset
 
         if ($values !== null) {
             $this->eligibleRulesets = new Set($values);
+        } else {
+            $this->populateEligibleRulesets();
         }
     }
 
@@ -48,10 +50,6 @@ class BeatmapsetMainRuleset
 
     private function mainRulesetId(): ?int
     {
-        if ($this->eligibleRulesets === null) {
-            $this->populateEligibleRulesets();
-        }
-
         if ($this->eligibleRulesets->count() === 1) {
             return $this->eligibleRulesets->first();
         }
