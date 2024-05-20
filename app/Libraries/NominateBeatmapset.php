@@ -7,7 +7,6 @@ declare(strict_types=1);
 
 namespace App\Libraries;
 
-// use App\Enums\Ruleset;
 use App\Exceptions\InvariantException;
 use App\Jobs\Notifications\BeatmapsetNominate;
 use App\Models\Beatmap;
@@ -23,10 +22,10 @@ class NominateBeatmapset
     /** @var Set<string> */
     private Set $nominatedRulesets;
 
-    public function __construct(private Beatmapset $beatmapset, private User $user, array $playmodes)
+    public function __construct(private Beatmapset $beatmapset, private User $user, array $rulesets)
     {
         $this->beatmapRulesets = new Set($beatmapset->playmodesStr());
-        $this->nominatedRulesets = new Set($playmodes);
+        $this->nominatedRulesets = new Set($rulesets);
     }
 
     public static function requiredNominationsConfig()
@@ -37,9 +36,9 @@ class NominateBeatmapset
         ];
     }
 
-    private static function nominationCount(array $nominationsByType, string $type, ?string $mode): int
+    private static function nominationCount(array $nominationsByType, string $type, string $ruleset): int
     {
-        return count(array_filter($nominationsByType[$type], fn ($item) => $item === $mode));
+        return count(array_filter($nominationsByType[$type], fn ($item) => $item === $ruleset));
     }
 
     public function handle()
@@ -160,14 +159,14 @@ class NominateBeatmapset
         $nominationsByType = $this->beatmapset->nominationsByType();
         $requiredNominations = $this->beatmapset->requiredNominationCount();
 
-        $modesSatisfied = 0;
-        foreach ($requiredNominations as $mode => $count) {
-            $fullNominations = static::nominationCount($nominationsByType, 'full', $mode);
-            $limitedNominations = static::nominationCount($nominationsByType, 'limited', $mode);
+        $rulesetsSatisfied = 0;
+        foreach ($requiredNominations as $ruleset => $count) {
+            $fullNominations = static::nominationCount($nominationsByType, 'full', $ruleset);
+            $limitedNominations = static::nominationCount($nominationsByType, 'limited', $ruleset);
             $totalNominations = $fullNominations + $limitedNominations;
 
             // Prevent maps with invalid nomination state from going into qualified.
-            if (Beatmap::modeInt($mode) !== $mainRulesetId && $limitedNominations > 0) {
+            if (Beatmap::modeInt($ruleset) !== $mainRulesetId && $limitedNominations > 0) {
                 throw new InvariantException(osu_trans('beatmapsets.nominate.invalid_limited_nomination'));
             }
 
@@ -180,10 +179,10 @@ class NominateBeatmapset
             }
 
             if ($totalNominations === $count) {
-                $modesSatisfied++;
+                $rulesetsSatisfied++;
             }
         }
 
-        return $modesSatisfied >= $this->beatmapset->playmodeCount();
+        return $rulesetsSatisfied >= $this->beatmapset->playmodeCount();
     }
 }
