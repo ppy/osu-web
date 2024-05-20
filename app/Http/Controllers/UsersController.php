@@ -383,7 +383,11 @@ class UsersController extends Controller
 
             foreach (Beatmap::MODES as $modeStr => $modeInt) {
                 $includes[] = "statistics_rulesets.{$modeStr}.variants";
-                $preload[] = camel_case("statistics_{$modeStr}");
+                $preload[] = User::statisticsRelationName($modeStr);
+
+                foreach (Beatmap::VARIANTS[$modeStr] ?? [] as $variant) {
+                    $preload[] = User::statisticsRelationName($modeStr, $variant);
+                }
             }
 
             $users = User
@@ -391,6 +395,14 @@ class UsersController extends Controller
                 ->default()
                 ->with($preload)
                 ->get();
+
+            // Preload user on statistics relations that have variants.
+            // See `UserStatisticsTransformer::includeVariants()`
+            foreach ($users as $user) {
+                foreach (Beatmap::VARIANTS as $ruleset => $_variants) {
+                    $user->statistics($ruleset)?->setRelation('user', $user);
+                }
+            }
         }
 
         return [
