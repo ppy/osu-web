@@ -55,9 +55,12 @@ class RankingControllerTest extends TestCase
             'r0' => 10001,
         ]);
 
-        // Set the start of the rank history table to r31, so that the recent
-        // rank change is taking the difference between current rank and r0
-        Count::currentRankStart($ruleset)->update(['count' => 31]);
+        // Set the start of the rank history table such that the recent rank
+        // change is taking the difference between current rank and r0
+        Count::updateOrCreate(
+            ['name' => Count::currentRankStartName($ruleset)],
+            ['count' => 30],
+        );
 
         $this->actAsScopedUser(null, ['public']);
 
