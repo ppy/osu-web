@@ -1430,13 +1430,18 @@ function get_int($string)
     }
 }
 
-function get_length($string): ?array
+function get_length_seconds($string): ?float
 {
     static $scales = [
-        'ms' => 0.001,
         's' => 1,
         'm' => 60,
         'h' => 3600,
+    ];
+
+    static $patterns = [
+        '/^((?P<hours>\d+):)?(?P<minutes>\d+):(?P<seconds>\d+)$/',
+        '/^((?P<hours>\d+(\.\d+)?)h)?((?P<minutes>\d+(\.\d+)?)m)?((?P<seconds>\d+(\.\d+)?)s)?$/',
+        '/^(?P<seconds>\d+(\.\d+)?)$/',
     ];
 
     $string = get_string($string);
@@ -1445,30 +1450,32 @@ function get_length($string): ?array
         return null;
     }
 
-    $scaleKey = substr($string, -2);
+    $time = null;
 
-    if (!isset($scales[$scaleKey])) {
-        $scaleKey = substr($scaleKey, -1);
+    foreach ($patterns as $pattern) {
+        $match = preg_match($pattern, $string, $matches);
+        if ($match === 0 || $match === false) {
+            continue;
+        }
+
+        $time ??= 0;
+
+        if (isset($matches['hours'])) {
+            $time += get_float($matches['hours']) * $scales['h'];
+        }
+
+        if (isset($matches['minutes'])) {
+            $time += get_float($matches['minutes']) * $scales['m'];
+        }
+
+        if (isset($matches['seconds'])) {
+            $time += get_float($matches['seconds']) * $scales['s'];
+        }
+
+        break;
     }
 
-    if (!isset($scales[$scaleKey])) {
-        $scaleKey = 's';
-        $string .= $scaleKey;
-    }
-
-    $value = get_float(substr($string, 0, -strlen($scaleKey)));
-
-    if ($value === null) {
-        return null;
-    }
-
-    $scale = $scales[$scaleKey] ?? 1;
-    $value *= $scale;
-
-    return [
-        'scale' => $scale,
-        'value' => $value,
-    ];
+    return $time;
 }
 
 function get_file($input)
