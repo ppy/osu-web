@@ -13,7 +13,7 @@ import TimeWithTooltip from 'components/time-with-tooltip';
 import UserLink from 'components/user-link';
 import BeatmapsetDiscussionsStore from 'interfaces/beatmapset-discussions-store';
 import BeatmapsetEventJson from 'interfaces/beatmapset-event-json';
-import { BeatmapsetNominationsInterface } from 'interfaces/beatmapset-json';
+import { BeatmapsetNominationsInterface, NominationsInterface } from 'interfaces/beatmapset-json';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import GameMode from 'interfaces/game-mode';
 import UserJson from 'interfaces/user-json';
@@ -471,6 +471,32 @@ export class Nominations extends React.Component<Props> {
     );
   }
 
+  private renderLightsForHybridNominations(nominations: NominationsInterface) {
+    const mainRuleset = this.props.discussionsState.calculatedMainRuleset;
+
+    return (
+      <>
+        {Object.keys(nominations.required).map((ruleset: GameMode) => (
+          <DiscreteBar
+            key={ruleset}
+            current={nominations.current[ruleset] ?? 0}
+            label={<i className={`fal fa-extra-mode-${ruleset}`} />}
+            modifiers='contents'
+            total={mainRuleset === ruleset ? nominations.required_meta.main_ruleset : nominations.required_meta.non_main_ruleset}
+          />
+        ))}
+        {mainRuleset == null && (
+          <DiscreteBar
+            key='free'
+            current={0}
+            modifiers='contents'
+            total={nominations.required_meta.main_ruleset - nominations.required_meta.non_main_ruleset}
+          />
+        )}
+      </>
+    );
+  }
+
   private renderLightsForNominations(nominations?: BeatmapsetNominationsInterface) {
     if (nominations == null) return;
 
@@ -480,17 +506,7 @@ export class Nominations extends React.Component<Props> {
       <div className={classWithModifiers(`${bn}__discrete-bar-group`, { hybrid })}>
         {nominations.legacy_mode ? (
           <DiscreteBar current={nominations.current} modifiers='contents' total={nominations.required} />
-        ) : Object.keys(nominations.required).map((ruleset: GameMode) => (
-          <DiscreteBar
-            key={ruleset}
-            current={nominations.current[ruleset] ?? 0}
-            label={hybrid ? <i className={`fal fa-extra-mode-${ruleset}`} /> : null}
-            modifiers='contents'
-            total={this.props.discussionsState.calculatedMainRuleset == null || this.props.discussionsState.calculatedMainRuleset === ruleset
-              ? nominations.required_meta.main_ruleset
-              : nominations.required_meta.non_main_ruleset}
-          />
-        ))}
+        ) : this.renderLightsForHybridNominations(nominations)}
       </div>
     );
   }

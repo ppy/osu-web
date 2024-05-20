@@ -200,7 +200,6 @@ export default class BeatmapsetPanel extends React.Component<Props> {
   }
 
   private get nominations() {
-    const mainRulesets = new Set(this.props.beatmapset.eligible_main_rulesets ?? this.props.beatmapset.nominations_summary.eligible_main_rulesets ?? []);
     let current = 0;
     let countMainRuleset = 0;
     let countNonMainRuleset = 0;
@@ -227,11 +226,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
       }
     });
 
-    const required = rulesets.reduce((total, ruleset) =>
-      mainRulesets.has(ruleset)
-        ? total + countMainRuleset
-        : total + countNonMainRuleset
-    , 0);
+    const required = countMainRuleset + countNonMainRuleset * (rulesets.length - 1);
 
     return {
       current,

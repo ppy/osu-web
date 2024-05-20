@@ -415,19 +415,12 @@ export default class DiscussionsState {
       return nominations[type];
     }
 
-    if (type === 'current' || this.calculatedMainRuleset == null) {
+    if (type === 'current') {
       return sum(Object.values(nominations[type]));
     }
 
-    let total = 0;
-
-    Object.keys(nominations[type]).forEach((ruleset) =>
-      ruleset === this.calculatedMainRuleset
-        ? total += nominations.required_meta.main_ruleset
-        : total += nominations.required_meta.non_main_ruleset,
-    );
-
-    return total;
+    return nominations.required_meta.main_ruleset
+      + nominations.required_meta.non_main_ruleset * (Object.keys(nominations[type]).length - 1);
   }
 
   saveState() {
