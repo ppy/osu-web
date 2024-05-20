@@ -42,7 +42,7 @@ return [
     'nominate' => [
         'hybrid_requires_modes' => '하이브리드 비트맵 셋은 노미네이트 할 플레이 모드를 하나 이상 선택해야 합니다.',
         'incorrect_mode' => ':mode 모드를 노미네이트 할 권한을 가지고 있지 않습니다.',
-        'full_bn_required' => '정식 노미네이터만 이 맵을 퀄리파이 할 수 있습니다.',
+        'full_bn_required' => '정식 노미네이터만 이 맵을 Qualify할 수 있습니다.',
         'too_many' => '노미네이션 요구 사항을 이미 만족했습니다.',
 
         'dialog' => [
@@ -93,10 +93,10 @@ return [
         ],
 
         'details_date' => [
-            'approved' => ':timeago에 어프루브됨',
-            'loved' => ':timeago에 러브드 상태가 됨',
-            'qualified' => ':timeago에 퀄리파이됨',
-            'ranked' => ':timeago에 랭크됨',
+            'approved' => ':timeago에 Approved 상태가 됨',
+            'loved' => ':timeago에 Loved 상태가 됨',
+            'qualified' => ':timeago에 Qualified 상태가 됨',
+            'ranked' => ':timeago에 Ranked 상태가 됨',
             'submitted' => ':timeago에 제출됨',
             'updated' => ':timeago에 마지막으로 수정',
         ],
@@ -106,14 +106,14 @@ return [
         ],
 
         'hype' => [
-            'action' => '이 맵이 마음에 드신다면 <strong>랭크</strong> 상태가 될 수 있도록 Hype 하여 도움을 주세요.',
+            'action' => '이 맵이 마음에 드신다면 <strong>Ranked</strong> 상태가 될 수 있도록 Hype 하여 도움을 주세요.',
 
             'current' => [
                 '_' => '이 맵은 현재 :status 상태입니다.',
 
                 'status' => [
                     'pending' => '대기',
-                    'qualified' => '퀄리파이',
+                    'qualified' => 'Qualified',
                     'wip' => '제작 중',
                 ],
             ],
@@ -204,7 +204,7 @@ return [
             'accuracy' => 'Accuracy',
             'ar' => 'Approach Rate',
             'stars' => 'Star Rating',
-            'total_length' => '길이',
+            'total_length' => '길이 (소비 길이: :hit_length)',
             'bpm' => 'BPM',
             'count_circles' => '서클 개수',
             'count_sliders' => '슬라이더 개수',
@@ -216,9 +216,9 @@ return [
         ],
 
         'status' => [
-            'ranked' => '랭크됨',
-            'approved' => '어프루브 됨',
-            'loved' => '러브드',
+            'ranked' => 'Ranked',
+            'approved' => 'Approved',
+            'loved' => 'Loved',
             'qualified' => '퀄리파이 됨',
             'wip' => '제작 중',
             'pending' => '대기 중',

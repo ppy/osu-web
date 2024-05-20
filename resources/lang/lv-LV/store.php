@@ -5,7 +5,8 @@
 
 return [
     'cart' => [
-        'checkout' => '',
+        'checkout' => 'Pirkuma noformēšana',
+        'empty_cart' => '',
         'info' => '',
         'more_goodies' => '',
         'shipping_fees' => 'piegādes maksas',
@@ -48,18 +49,51 @@ return [
     ],
 
     'discount' => 'atlaide :percent %',
+    'free' => '',
 
     'invoice' => [
+        'contact' => '',
+        'date' => '',
         'echeck_delay' => '',
         'hide_from_activity' => 'osu!supporter tagi šajā pasūtījumā netiek rādīti jūsu nesenajās aktivitātēs.',
+        'sent_via' => '',
+        'shipping_to' => '',
+        'title' => '',
         'title_compact' => '',
 
         'status' => [
+            'cancelled' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => "",
+                    'link_text' => '',
+                ],
+            ],
+            'delivered' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => '',
+                    'link_text' => '',
+                ],
+            ],
+            'prepared' => [
+                'title' => '',
+                'line_1' => '',
+                'line_2' => '',
+            ],
             'processing' => [
                 'title' => '',
                 'line_1' => '',
                 'line_2' => [
                     '_' => '',
+                    'link_text' => '',
+                ],
+            ],
+            'shipped' => [
+                'title' => '',
+                'tracking_details' => '',
+                'no_tracking_details' => [
+                    '_' => "",
                     'link_text' => '',
                 ],
             ],
@@ -74,7 +108,19 @@ return [
         'no_orders' => '',
         'paid_on' => '',
         'resume' => '',
+        'shipping_and_handling' => '',
         'shopify_expired' => '',
+        'subtotal' => '',
+        'total' => '',
+
+        'details' => [
+            'order_number' => '',
+            'payment_terms' => '',
+            'salesperson' => '',
+            'shipping_method' => '',
+            'shipping_terms' => '',
+            'title' => '',
+        ],
 
         'item' => [
             'quantity' => 'Daudzums',
@@ -105,6 +151,15 @@ return [
             'paid' => 'Samaksāts',
             'processing' => 'Gaida apstiprinājumu',
             'shipped' => 'Izsūtīts',
+            'title' => '',
+        ],
+
+        'thanks' => [
+            'title' => '',
+            'line_1' => [
+                '_' => '',
+                'link_text' => '',
+            ],
         ],
     ],
 
@@ -138,6 +193,10 @@ return [
     'username_change' => [
         'check' => '',
         'checking' => '',
+        'placeholder' => '',
+        'label' => '',
+        'current' => '',
+
         'require_login' => [
             '_' => '',
             'link_text' => '',

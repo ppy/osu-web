@@ -93,12 +93,12 @@ commentable_meta  | [CommentableMeta](#commentablemeta)[] | ID of the object the
 comments          | [Comment](#comment)[]                 | Array of comments ordered according to `sort`;
 cursor            | [Cursor](#cursor)                     |
 has_more          | boolean                               | If there are more comments or replies available
-has_more_id       | number?                               |
+has_more_id       | integer?                              |
 included_comments | [Comment](#comment)[]                 | Related comments; e.g. parent comments and nested replies
 pinned_comments   | [Comment](#comment)[]?                | Pinned comments
 sort              | string                                | one of the [CommentSort](#commentsort) types
-top_level_count   | number?                               | Number of comments at the top level. Not returned for replies.
-total             | number?                               | Total number of comments. Not retuned for replies.
+top_level_count   | integer?                              | Number of comments at the top level. Not returned for replies.
+total             | integer?                              | Total number of comments. Not retuned for replies.
 user_follow       | boolean                               | is the current user watching the comment thread?
-user_votes        | number[]                              | IDs of the comments in the bundle the current user has upvoted
+user_votes        | integer[]                             | IDs of the comments in the bundle the current user has upvoted
 users             | [User](#user)[]                       | array of users related to the comments

@@ -19,8 +19,8 @@ return [
             'new_confirmation' => 'e-postbekräftelse',
             'title' => 'E-postadress',
             'locked' => [
-                '_' => '',
-                'accounts' => '',
+                '_' => 'Kontakta :accounts: om du behöver uppdatera din email-address.',
+                'accounts' => 'kontosupportteam',
             ],
         ],
 
@@ -62,6 +62,19 @@ return [
         ],
     ],
 
+    'github_user' => [
+        'info' => "Om du är medverkande till osu!'s öppen källkodsarkiv, kommer länkning av ditt GitHub-konto här att associera dina changelog-poster med din osu! profil. GitHub-konton utan medverkningshistorik till osu! kan inte länkas.",
+        'link' => 'Länka GitHub-konto',
+        'title' => 'GitHub',
+        'unlink' => 'Unlink GitHub Account',
+
+        'error' => [
+            'already_linked' => 'Detta GitHub-konto är redan kopplat till en annan användare.',
+            'no_contribution' => 'Kan inte länka GitHub-konto utan någon medverkningshistorik i osu! utvecklingskataloger.',
+            'unverified_email' => 'Vänligen verifiera din primära e-postadress på GitHub, försök sedan att länka ditt konto igen.',
+        ],
+    ],
+
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'ta emot aviseringar om nya problem på kvalificerade beatmaps i följande spellägen',
         'beatmapset_disqualify' => 'ta emot aviseringar när beatmaps för följande lägen diskvalificeras',
@@ -79,7 +92,6 @@ return [
             'mail' => 'e-post',
             'mapping' => 'beatmap-ägare',
             'push' => 'push',
-            'user_achievement_unlock' => 'användarmedalj upplåst',
         ],
     ],
 

@@ -7,7 +7,7 @@ return [
     'deleted' => '[törölt felhasználó]',
 
     'beatmapset_activities' => [
-        'title' => ":user modolási történelme",
+        'title' => ":user Modolási Előzményei",
         'title_compact' => 'Modolás',
 
         'discussions' => [
@@ -97,6 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
+            'inactive' => "A fiókod hosszú ideje nem volt használva.",
             'inactive_different_country' => "A fiókod hosszú ideje nem volt használva.",
         ],
     ],
@@ -120,6 +121,17 @@ return [
         'beta' => [
             'main' => 'Beta hozzáférés jelenleg csak kiváltságos felhasználóknak elérhető.',
             'small' => '(osu!támogatók hamarosan bejutnak)',
+        ],
+    ],
+
+    'ogp' => [
+        'modding_description' => 'Beatmapek: :counts',
+        'modding_description_empty' => 'A felhasználónak nincsenek beatmapjai...',
+
+        'description' => [
+            '_' => 'Helyezés (:ruleset): :global | :country',
+            'country' => 'Országos :rank',
+            'global' => 'Globális :rank',
         ],
     ],
 
@@ -175,7 +187,6 @@ return [
         'origin_country' => 'Innen: :country',
         'previous_usernames' => 'korábbi nevén',
         'plays_with' => 'Ezekkel játszik: :devices',
-        'title' => ":username profilja",
 
         'comments_count' => [
             '_' => ':link posztolva',

@@ -63,8 +63,12 @@ return [
         'comments_controller' => [
             '_' => 'komentáře',
         ],
+        'contest_entries_controller' => [
+            'judge_results' => 'výsledky hodnocení soutěže',
+        ],
         'contests_controller' => [
             '_' => 'soutěže',
+            'judge' => 'hodnocení soutěže',
         ],
         'groups_controller' => [
             'show' => 'skupiny',
@@ -105,6 +109,9 @@ return [
         ],
         'tournaments_controller' => [
             '_' => 'turnaje',
+        ],
+        'user_cover_presets_controller' => [
+            '_' => '',
         ],
         'users_controller' => [
             '_' => 'informace o hráči',

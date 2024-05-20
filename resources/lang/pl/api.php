@@ -19,7 +19,7 @@ return [
         'chat' => [
             'read' => 'czytać wiadomości w twoim imieniu.',
             'write' => 'wysyłać wiadomości w twoim imieniu.',
-            'write_manage' => 'dołączać i opuszczać kanały w twoim imieniu.',
+            'write_manage' => 'dołączać do kanałów i opuszczać je w twoim imieniu.',
         ],
 
         'forum' => [

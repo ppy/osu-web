@@ -79,15 +79,15 @@ return [
         ],
 
         'message_type_title' => [
-            'disqualify' => '',
+            'disqualify' => 'Publicēt diskvalifikāciju',
             'hype' => '',
-            'mapper_note' => '',
+            'mapper_note' => 'Publicēt piezīmi',
             'nomination_reset' => '',
-            'praise' => '',
-            'problem' => '',
-            'problem_warning' => '',
-            'review' => '',
-            'suggestion' => '',
+            'praise' => 'Publicēt slavējumu',
+            'problem' => 'Publicēt problēmu',
+            'problem_warning' => 'Publicēt problēmu',
+            'review' => 'Publicēt atsauksmi',
+            'suggestion' => 'Publicēt ieteikumu',
         ],
 
         'mode' => [
@@ -213,6 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'Tiek paredzēts, ka šī mape tiks ierindota :date, ja netiks konstatētas problēmas. Tā ir #:position :queue.',
+            'unresolved_problems' => '',
+            'problems' => '',
             'on' => ':date',
             'queue' => 'ierindošanas rinda',
             'soon' => 'drīz',

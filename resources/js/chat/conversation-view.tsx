@@ -11,11 +11,11 @@ import { each, isEmpty, last, throttle } from 'lodash';
 import { action, computed, makeObservable, reaction } from 'mobx';
 import { disposeOnUnmount, observer } from 'mobx-react';
 import Message from 'models/chat/message';
-import * as moment from 'moment';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
+import { present } from 'utils/string';
 import InputBox from './input-box';
 import { MessageDivider } from './message-divider';
 import MessageGroup from './message-group';
@@ -45,7 +45,7 @@ export default class ConversationView extends React.Component<Props> {
     const conversationStack: JSX.Element[] = [];
     let currentGroup: Message[] = [];
     let unreadMarkerShown = false;
-    let currentDay: number;
+    let currentDay: string;
 
     each(channel.messages, (message: Message, key: number) => {
       // check if the last read indicator needs to be shown
@@ -65,13 +65,13 @@ export default class ConversationView extends React.Component<Props> {
       }
 
       // check whether the day-change header needs to be shown
-      if (isEmpty(conversationStack) || moment(message.timestamp).date() !== currentDay /* TODO: make check less dodgy */) {
+      if (isEmpty(conversationStack) || new Date(message.timestamp).toLocaleDateString() !== currentDay) {
         if (!isEmpty(currentGroup)) {
           conversationStack.push(<MessageGroup key={currentGroup[0].uuid} messages={currentGroup} />);
           currentGroup = [];
         }
         conversationStack.push(<MessageDivider key={`day-${message.timestamp}`} timestamp={message.timestamp} type='DAY_MARKER' />);
-        currentDay = moment(message.timestamp).date();
+        currentDay = new Date(message.timestamp).toLocaleDateString();
       }
 
       // add message to current message grouping if the sender is the same, otherwise create a new message grouping
@@ -229,7 +229,7 @@ export default class ConversationView extends React.Component<Props> {
               />
             )}
           </div>
-          {channel.description &&
+          {present(channel.description) &&
             <div className='chat-conversation__chat-label'>
               {channel.description}
             </div>

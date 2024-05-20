@@ -5,10 +5,11 @@
 
 return [
     'show' => [
+        'non_preserved' => '',
         'title' => '',
 
         'beatmap' => [
-            'by' => '',
+            'by' => 'аз ҷониби :artist',
         ],
 
         'player' => [
@@ -24,7 +25,8 @@ return [
 
     'status' => [
         'non_best' => '',
-        'non_passing' => '',
+        'no_pp' => '',
         'processing' => '',
+        'no_rank' => '',
     ],
 ];

@@ -49,7 +49,7 @@ return [
     ],
 
     'card' => [
-        'gift_supporter' => 'Hadiahkan supporter tag',
+        'gift_supporter' => 'Hadiahkan tag supporter',
         'loading' => 'Memuat...',
         'send_message' => 'Kirim pesan',
     ],
@@ -97,6 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
+            'inactive' => "Akunmu telah tidak digunakan dalam jangka waktu yang lama.",
             'inactive_different_country' => "Akunmu telah lama tidak digunakan.",
         ],
     ],
@@ -109,7 +110,7 @@ return [
         'failed' => 'Rincian masuk salah',
         'forgot' => 'Lupa kata sandi?',
         'info' => 'Silakan masuk untuk melanjutkan',
-        'invalid_captcha' => 'Terlalu banyak upaya login yang gagal. Mohon selesaikan captcha yang muncul dan coba lagi. (Muat ulang laman ini apabila captcha tidak terlihat)',
+        'invalid_captcha' => 'Terlalu banyak upaya login yang gagal. Silakan selesaikan captcha yang muncul dan coba lagi. (Muat ulang halaman ini apabila captcha tidak terlihat)',
         'locked_ip' => 'Alamat IP-mu dikunci. Silakan tunggu beberapa menit.',
         'password' => 'Kata Sandi',
         'register' => "Belum memiliki akun osu!? Buat sekarang",
@@ -120,6 +121,17 @@ return [
         'beta' => [
             'main' => 'Akses beta saat ini hanya tersedia bagi para pengguna dengan hak khusus.',
             'small' => '(para pemilik osu!supporter akan segera masuk)',
+        ],
+    ],
+
+    'ogp' => [
+        'modding_description' => 'Beatmap: :counts',
+        'modding_description_empty' => 'Pengguna ini tidak memiliki beatmap apa pun...',
+
+        'description' => [
+            '_' => 'Peringkat (:ruleset): :global | :country',
+            'country' => 'Negara :rank',
+            'global' => 'Global :rank',
         ],
     ],
 
@@ -159,8 +171,8 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'Akunmu telah di-restrict!',
-        'message' => 'Selama di-restrict, kamu tidak dapat berinteraksi dengan pengguna lain dan skormu hanya akan dapat dilihat oleh dirimu sendiri. Hal ini biasanya terproses secara otomatis dan akan diangkat dalam 24 jam. :link',
-        'message_link' => 'Kunjungi laman ini untuk keterangan lebih lanjut.',
+        'message' => 'Selama di-restrict, kamu tidak akan dapat berinteraksi dengan para pengguna lain dan skormu hanya akan dapat dilihat oleh dirimu sendiri. Hal ini biasanya terproses secara otomatis dan akan diangkat dalam 24 jam. :link',
+        'message_link' => 'Kunjungi halaman ini untuk informasi lebih lanjut.',
     ],
     'show' => [
         'age' => ':age tahun',
@@ -175,7 +187,6 @@ return [
         'origin_country' => 'Dari :country',
         'previous_usernames' => 'sebelumnya dikenal sebagai',
         'plays_with' => 'Bermain menggunakan :devices',
-        'title' => "profil :username",
 
         'comments_count' => [
             '_' => 'Telah mengirimkan :link',
@@ -193,13 +204,13 @@ return [
                     'broken_file' => 'Gambar gagal diproses. Periksa keabsahan gambar yang diunggah dan coba lagi.',
                     'button' => 'Unggah gambar',
                     'dropzone' => 'Letakkan di sini untuk mengunggah',
-                    'dropzone_info' => 'Kamu juga dapat meletakkan gambar di sini untuk mengunggah',
+                    'dropzone_info' => 'Kamu juga dapat meletakkan gambarmu di sini untuk mengunggahnya',
                     'size_info' => 'Ukuran gambar sampul yang disarankan adalah 2400x640',
                     'too_large' => 'Berkas yang diunggah terlalu besar.',
                     'unsupported_format' => 'Format tidak didukung.',
 
                     'restriction_info' => [
-                        '_' => 'Layanan unggah tersedia hanya untuk :link',
+                        '_' => 'Pengunggahan gambar sampul hanya tersedia bagi para pemilik :link',
                         'link' => 'osu!supporter',
                     ],
                 ],
@@ -322,7 +333,7 @@ return [
 
                 'total_info' => [
                     '_' => 'Berdasarkan seberapa besar kontribusi yang telah diberikan oleh pengguna ini dalam hal moderasi beatmap. Kunjungi :link untuk informasi lebih lanjut.',
-                    'link' => 'laman ini',
+                    'link' => 'halaman ini',
                 ],
             ],
             'me' => [
@@ -337,9 +348,9 @@ return [
                 'title' => 'Permainan Playlist',
             ],
             'posts' => [
-                'title' => 'Posting',
+                'title' => 'Postingan',
                 'title_longer' => 'Postingan Terkini',
-                'show_more' => 'lihat lebih banyak post',
+                'show_more' => 'lihat lebih banyak postingan',
             ],
             'recent_activity' => [
                 'title' => 'Aktivitas Terkini',
@@ -417,10 +428,10 @@ return [
             'title' => 'Pengguna tidak ditemukan! ;_;',
         ],
         'page' => [
-            'button' => 'Sunting laman profil',
-            'description' => '<strong>saya!</strong> merupakan area pada laman profilmu yang dapat kamu modifikasi sesuka hati.',
+            'button' => 'sunting halaman profil',
+            'description' => '<strong>saya!</strong> merupakan area pada halaman profilmu yang dapat kamu modifikasi sesuka hati.',
             'edit_big' => 'Sunting saya!',
-            'placeholder' => 'Ketik konten laman di sini',
+            'placeholder' => 'Ketik konten halaman di sini',
 
             'restriction_info' => [
                 '_' => 'Kamu harus menjadi seorang :link untuk menggunakan fitur ini.',
@@ -433,7 +444,7 @@ return [
         ],
         'rank' => [
             'country' => 'Peringkat negara untuk :mode',
-            'country_simple' => 'Peringkat Negara',
+            'country_simple' => 'Peringkat Nasional',
             'global' => 'Peringkat global untuk :mode',
             'global_simple' => 'Peringkat Global',
             'highest' => 'Peringkat tertinggi: :rank pada :date',
@@ -444,7 +455,7 @@ return [
             'level_progress' => 'Persentase pencapaian menuju level berikutnya',
             'maximum_combo' => 'Kombo Maksimum',
             'medals' => 'Jumlah Medali',
-            'play_count' => 'Jumlah Main',
+            'play_count' => 'Jumlah Permainan',
             'play_time' => 'Telah Bermain Selama',
             'ranked_score' => 'Skor Ranked',
             'replays_watched_by_others' => 'Jumlah Pemutaran Tayangan Ulang',

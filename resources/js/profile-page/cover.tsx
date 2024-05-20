@@ -18,7 +18,7 @@ import { trans } from 'utils/lang';
 
 interface Props {
   coverUrl: string | null;
-  currentMode: GameMode | null;
+  currentMode: GameMode;
   editor?: JSX.Element;
   isUpdatingCover?: boolean;
   modifiers?: Modifiers;
@@ -126,9 +126,9 @@ export default class Cover extends React.Component<Props> {
     return (
       <>
         {this.props.user.is_supporter &&
-          <span className='profile-info__icon profile-info__icon--supporter' title={trans('users.show.is_supporter')}>
+          <a className='profile-info__icon profile-info__icon--supporter' href={route('support-the-game')} title={trans('users.show.is_supporter')}>
             {times(this.props.user.support_level ?? 0, (i) => <span key={i} className='fas fa-heart' />)}
-          </span>
+          </a>
         }
         <UserGroupBadges groups={this.props.user.groups} modifiers='profile-page' wrapper='profile-info__icon' />
       </>

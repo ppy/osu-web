@@ -19,8 +19,8 @@ return [
             'new_confirmation' => 'email-ды растаңыз',
             'title' => 'Email',
             'locked' => [
-                '_' => '',
-                'accounts' => '',
+                '_' => 'Поштаны өзгерту үшін :accounts-қа жазыңыз.',
+                'accounts' => 'аккаунтты қолдау тобы',
             ],
         ],
 
@@ -62,6 +62,19 @@ return [
         ],
     ],
 
+    'github_user' => [
+        'info' => "",
+        'link' => '',
+        'title' => 'GitHub',
+        'unlink' => '',
+
+        'error' => [
+            'already_linked' => '',
+            'no_contribution' => '',
+            'unverified_email' => '',
+        ],
+    ],
+
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'келесі режимдердің білікті карталарындағы жаңа мәселелерге байланысты хабарландырулар алу',
         'beatmapset_disqualify' => 'келесі режимдердің карталары дисквалификацияланған жағдайда хабарландырулар алу',
@@ -79,7 +92,6 @@ return [
             'mail' => 'email',
             'mapping' => 'карта маппері',
             'push' => 'push',
-            'user_achievement_unlock' => 'жаңа медальдар',
         ],
     ],
 

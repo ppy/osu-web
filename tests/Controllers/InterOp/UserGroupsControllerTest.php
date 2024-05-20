@@ -320,10 +320,73 @@ class UserGroupsControllerTest extends TestCase
             ->assertStatus(422);
     }
 
-    private function eventCount(string $type, User $user, Group $group): int
+    /**
+     * @dataProvider userGroupRoutesDataProvider
+     */
+    public function testWithActor(string $type, string $method, string $route): void
+    {
+        $user = User::factory()->create();
+        $group = app('groups')->byIdentifier('gmt');
+        $actor = User::factory()->create();
+        $url = route($route, [
+            'actor_id' => $actor->getKey(),
+            'group' => $group->getKey(),
+            'timestamp' => time(),
+            'user' => $user->getKey(),
+        ]);
+
+        if ($type === UserGroupEvent::USER_REMOVE) {
+            $user->addToGroup($group);
+        }
+
+        $this->expectCountChange(
+            fn () => $this->eventCount($type, $user, $group, $actor),
+            1,
+        );
+
+        $this
+            ->withInterOpHeader($url)
+            ->$method($url)
+            ->assertStatus(204);
+    }
+
+    /**
+     * @dataProvider userGroupRoutesDataProvider
+     */
+    public function testWithInvalidActor(string $type, string $method, string $route): void
+    {
+        $user = User::factory()->create();
+        $group = app('groups')->byIdentifier('gmt');
+        $url = route($route, [
+            'actor_id' => $user->getKey() + 1,
+            'group' => $group->getKey(),
+            'timestamp' => time(),
+            'user' => $user->getKey(),
+        ]);
+
+        $this
+            ->withInterOpHeader($url)
+            ->$method($url)
+            ->assertStatus(404);
+    }
+
+    public static function userGroupRoutesDataProvider(): array
+    {
+        return [
+            'add' =>
+                [UserGroupEvent::USER_ADD, 'put', 'interop.user-group.update'],
+            'remove' =>
+                [UserGroupEvent::USER_REMOVE, 'delete', 'interop.user-group.destroy'],
+            'set default' =>
+                [UserGroupEvent::USER_SET_DEFAULT, 'post', 'interop.user-group.set-default'],
+        ];
+    }
+
+    private function eventCount(string $type, User $user, Group $group, ?User $actor = null): int
     {
         return UserGroupEvent
             ::where([
+                'actor_id' => $actor?->getKey(),
                 'group_id' => $group->getKey(),
                 'type' => $type,
                 'user_id' => $user->getKey(),

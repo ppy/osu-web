@@ -39,15 +39,7 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
-    'ga' => [
-        'tracking_id' => env('GA_TRACKING_ID', ''),
-    ],
-
     'passport' => [
         'path' => env('PASSPORT_KEY_PATH'),
-    ],
-
-    'sentry' => [
-        'public_dsn' => env('APP_SENTRY_PUBLIC', ''),
     ],
 ];

@@ -13,8 +13,7 @@
         <div class="account-edit__input-group">
             <div class="account-edit-entry account-edit-entry--no-label">
                 <form
-                    class="account-edit-entry__checkboxes js-account-edit"
-                    data-account-edit-auto-submit="1"
+                    class="account-edit-entry__checkboxes js-account-edit js-account-edit-auto-submit"
                     data-account-edit-type="array"
                     data-url="{{ route('account.options') }}"
                     data-field="user[osu_playstyle]"

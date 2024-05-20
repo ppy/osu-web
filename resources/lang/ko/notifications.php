@@ -19,7 +19,7 @@ return [
         'build' => '빌드',
         'channel' => '채팅',
         'forum_topic' => '포럼',
-        'news_post' => '소식',
+        'news_post' => '뉴스',
         'user' => '프로필',
     ],
 
@@ -28,7 +28,7 @@ return [
         'user' => '프로필',
         'beatmapset' => '비트맵',
         'forum_topic' => '포럼',
-        'news_post' => '소식',
+        'news_post' => '뉴스',
         'build' => '빌드 버전',
         'channel' => '채팅',
     ],
@@ -55,6 +55,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => ':username님의 리뷰에 문제가 제시되어 있습니다. 문제: :problems, 제안: :suggestions, 칭찬: :praises',
                 'beatmapset_discussion_unlock' => '비트맵 ":title"의 토론이 잠금 해제되었습니다.',
                 'beatmapset_discussion_unlock_compact' => '토론이 잠금 해제되었습니다.',
+
+                'review_count' => [
+                    'praises' => ':count_delimited개의 칭찬',
+                    'problems' => ':count_delimited개의 문제 제기',
+                    'suggestions' => ':count_delimited개의 제안',
+                ],
             ],
 
             'beatmapset_problem' => [
@@ -131,7 +137,7 @@ return [
         ],
 
         'news_post' => [
-            '_' => '소식',
+            '_' => '뉴스',
 
             'comment' => [
                 '_' => '새 댓글',
@@ -238,11 +244,6 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':username님이 ":title" 메달을 획득하셨습니다!',
-                'user_achievement_unlock_self' => '":title" 메달을 획득하셨습니다!',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username님이 새 비트맵을 제작했습니다',
                 'user_beatmapset_revive' => ':username님이 비트맵을 되살렸습니다',

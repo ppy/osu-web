@@ -1,63 +1,35 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { BeatmapsContext } from 'beatmap-discussions/beatmaps-context';
-import { BeatmapsetsContext } from 'beatmap-discussions/beatmapsets-context';
-import { DiscussionsContext } from 'beatmap-discussions/discussions-context';
 import HeaderV4 from 'components/header-v4';
 import ProfilePageExtraTab from 'components/profile-page-extra-tab';
 import ProfileTournamentBanner from 'components/profile-tournament-banner';
 import UserProfileContainer from 'components/user-profile-container';
-import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
-import { BeatmapsetDiscussionJsonForBundle } from 'interfaces/beatmapset-discussion-json';
-import { BeatmapsetDiscussionMessagePostJson } from 'interfaces/beatmapset-discussion-post-json';
-import BeatmapsetEventJson from 'interfaces/beatmapset-event-json';
-import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
-import KudosuHistoryJson from 'interfaces/kudosu-history-json';
-import UserJson from 'interfaces/user-json';
-import UserModdingProfileJson from 'interfaces/user-modding-profile-json';
-import { first, isEmpty, keyBy, last, throttle } from 'lodash';
+import { BeatmapsetDiscussionsBundleJsonForModdingProfile } from 'interfaces/beatmapset-discussions-bundle-json';
+import { first, last, throttle } from 'lodash';
 import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import Kudosu from 'modding-profile/kudosu';
-import { deletedUserJson } from 'models/user';
 import core from 'osu-core-singleton';
 import Badges from 'profile-page/badges';
 import Cover from 'profile-page/cover';
 import DetailBar from 'profile-page/detail-bar';
 import headerLinks from 'profile-page/header-links';
 import * as React from 'react';
+import BeatmapsetDiscussionsBundleForModdingProfileStore from 'stores/beatmapset-discussions-for-modding-profile-store';
 import { bottomPage } from 'utils/html';
 import { nextVal } from 'utils/seq';
 import { switchNever } from 'utils/switch-never';
 import { currentUrl } from 'utils/turbolinks';
 import Discussions from './discussions';
 import Events from './events';
-import { Posts } from './posts';
+import Posts from './posts';
 import Stats from './stats';
-import Votes, { Direction, VoteSummary } from './votes';
+import Votes from './votes';
 
 // in display order.
 const moddingExtraPages = ['events', 'discussions', 'posts', 'votes', 'kudosu'] as const;
 type ModdingExtraPage = (typeof moddingExtraPages)[number];
-
-interface Props {
-  beatmaps: BeatmapExtendedJson[];
-  beatmapsets: BeatmapsetExtendedJson[];
-  discussions: BeatmapsetDiscussionJsonForBundle[];
-  events: BeatmapsetEventJson[];
-  extras: {
-    recentlyReceivedKudosu: KudosuHistoryJson[];
-  };
-  perPage: {
-    recentlyReceivedKudosu: number;
-  };
-  posts: BeatmapsetDiscussionMessagePostJson[];
-  user: UserModdingProfileJson;
-  users: UserJson[];
-  votes: Record<Direction, VoteSummary[]>;
-}
-
 type Page = ModdingExtraPage | 'main';
 
 function validPage(page: unknown) {
@@ -69,7 +41,7 @@ function validPage(page: unknown) {
 }
 
 @observer
-export default class Main extends React.Component<Props> {
+export default class Main extends React.Component<BeatmapsetDiscussionsBundleJsonForModdingProfile> {
   @observable private currentPage: Page = 'main';
   private readonly disposers = new Set<(() => void) | undefined>();
   private readonly eventId = `users-modding-history-index-${nextVal()}`;
@@ -84,25 +56,8 @@ export default class Main extends React.Component<Props> {
   };
   private readonly pages = React.createRef<HTMLDivElement>();
   private readonly pagesOffsetRef = React.createRef<HTMLDivElement>();
+  @observable private readonly store = new BeatmapsetDiscussionsBundleForModdingProfileStore(this.props);
   private readonly tabs = React.createRef<HTMLDivElement>();
-
-  @computed
-  private get beatmaps() {
-    return keyBy(this.props.beatmaps, 'id');
-  }
-
-  @computed
-  private get beatmapsets() {
-    return keyBy(this.props.beatmapsets, 'id');
-  }
-
-  @computed
-  private get discussions() {
-    // skipped discussions
-    // - not privileged (deleted discussion)
-    // - deleted beatmap
-    return keyBy(this.props.discussions.filter((d) => !isEmpty(d)), 'id');
-  }
 
   private get pagesOffset() {
     return this.pagesOffsetRef.current;
@@ -112,21 +67,16 @@ export default class Main extends React.Component<Props> {
     return core.stickyHeader.headerHeight + (this.pagesOffset?.getBoundingClientRect().height ?? 0);
   }
 
+  private get user() {
+    return this.props.user;
+  }
+
   @computed
   private get userDiscussions() {
-    return this.props.discussions.filter((d) => d.user_id === this.props.user.id);
+    return [...this.store.discussions.values()].filter((d) => d.user_id === this.props.user.id);
   }
 
-  @computed
-  private get users() {
-    const values = keyBy(this.props.users, 'id');
-    // eslint-disable-next-line id-blacklist
-    values.null = values.undefined = deletedUserJson;
-
-    return values;
-  }
-
-  constructor(props: Props) {
+  constructor(props: BeatmapsetDiscussionsBundleJsonForModdingProfile) {
     super(props);
 
     makeObservable(this);
@@ -155,96 +105,92 @@ export default class Main extends React.Component<Props> {
 
   render() {
     return (
-      <DiscussionsContext.Provider value={this.discussions}>
-        <BeatmapsetsContext.Provider value={this.beatmapsets}>
-          <BeatmapsContext.Provider value={this.beatmaps}>
-            <UserProfileContainer user={this.props.user}>
-              <HeaderV4
-                backgroundImage={this.props.user.cover.url}
-                links={headerLinks(this.props.user, 'modding')}
-                theme='users'
-              />
-              <div className='osu-page osu-page--generic-compact'>
-                <div ref={this.pageRefs.main} data-page-id='main'>
-                  <Cover
-                    coverUrl={this.props.user.cover.url}
-                    currentMode={this.props.user.playmode}
-                    user={this.props.user}
-                  />
-                  <Badges badges={this.props.user.badges} />
-                  {!this.props.user.is_bot && (
-                    <>
-                      <ProfileTournamentBanner banner={this.props.user.active_tournament_banner} />
-                      <div className='profile-detail'>
-                        <Stats user={this.props.user} />
-                      </div>
-                    </>
-                  )}
-                  <DetailBar user={this.props.user} />
+      <UserProfileContainer user={this.user}>
+        <HeaderV4
+          backgroundImage={this.user.cover.url}
+          links={headerLinks(this.user, 'modding')}
+          theme='users'
+        />
+        <div className='osu-page osu-page--generic-compact'>
+          <div ref={this.pageRefs.main} data-page-id='main'>
+            <Cover
+              coverUrl={this.user.cover.url}
+              currentMode={this.user.playmode}
+              user={this.user}
+            />
+            <Badges badges={this.user.badges} />
+            {!this.user.is_bot && (
+              <>
+                {this.user.active_tournament_banners.map((banner) => (
+                  <ProfileTournamentBanner key={banner.id} banner={banner} />
+                ))}
+                <div className='profile-detail'>
+                  <Stats user={this.props.user} />
                 </div>
-                <div
-                  ref={this.pagesOffsetRef}
-                  className='page-extra-tabs page-extra-tabs--profile-page'
+              </>
+            )}
+            <DetailBar user={this.user} />
+          </div>
+          <div
+            ref={this.pagesOffsetRef}
+            className='page-extra-tabs page-extra-tabs--profile-page'
+          >
+            <div
+              ref={this.tabs}
+              className='page-mode page-mode--profile-page-extra'
+            >
+              {moddingExtraPages.map((page) => (
+                <a
+                  key={page}
+                  className='page-mode__item'
+                  data-page-id={page}
+                  href={`#${page}`}
+                  onClick={this.tabClick}
                 >
-                  <div
-                    ref={this.tabs}
-                    className='page-mode page-mode--profile-page-extra'
-                  >
-                    {moddingExtraPages.map((page) => (
-                      <a
-                        key={page}
-                        className='page-mode__item'
-                        data-page-id={page}
-                        href={`#${page}`}
-                        onClick={this.tabClick}
-                      >
-                        <ProfilePageExtraTab
-                          currentPage={this.currentPage}
-                          page={page}
-                        />
-                      </a>
-                    ))}
-                  </div>
-                </div>
-                <div ref={this.pages} className='user-profile-pages'>
-                  {moddingExtraPages.map((name) => (
-                    <div
-                      key={name}
-                      ref={this.pageRefs[name]}
-                      data-page-id={name}
-                    >
-                      {this.extraPage(name)}
-                    </div>
-                  ))}
-                </div>
+                  <ProfilePageExtraTab
+                    currentPage={this.currentPage}
+                    page={page}
+                  />
+                </a>
+              ))}
+            </div>
+          </div>
+          <div ref={this.pages} className='user-profile-pages'>
+            {moddingExtraPages.map((name) => (
+              <div
+                key={name}
+                ref={this.pageRefs[name]}
+                data-page-id={name}
+              >
+                {this.extraPage(name)}
               </div>
-            </UserProfileContainer>
-          </BeatmapsContext.Provider>
-        </BeatmapsetsContext.Provider>
-      </DiscussionsContext.Provider>
+            ))}
+          </div>
+        </div>
+      </UserProfileContainer>
     );
   }
 
   private readonly extraPage = (name: ModdingExtraPage) => {
     switch (name) {
       case 'discussions':
-        return <Discussions discussions={this.userDiscussions} user={this.props.user} users={this.users} />;
+        return <Discussions discussions={this.userDiscussions} store={this.store} user={this.user} />;
       case 'events':
-        return <Events events={this.props.events} user={this.props.user} users={this.users} />;
+        return <Events events={this.props.events} user={this.user} users={this.store.users} />;
       case 'kudosu':
         return (
           <Kudosu
             expectedInitialCount={this.props.perPage.recentlyReceivedKudosu}
             initialKudosu={this.props.extras.recentlyReceivedKudosu}
             name={name}
-            total={this.props.user.kudosu.total}
-            userId={this.props.user.id}
+            total={this.user.kudosu.total}
+            userId={this.user.id}
           />
         );
       case 'posts':
-        return <Posts posts={this.props.posts} user={this.props.user} users={this.users} />;
+        return <Posts posts={this.props.posts} store={this.store} user={this.user} />;
       case 'votes':
-        return <Votes users={this.users} votes={this.props.votes} />;
+        return <Votes users={this.store.users} votes={this.props.votes} />;
       default:
         switchNever(name);
         throw new Error('unsupported extra page');

@@ -1,10 +1,7 @@
-version: '3.4'
-
 x-env: &x-env
   APP_KEY: "${APP_KEY}"
   BEATMAPS_DIFFICULTY_CACHE_SERVER_URL: http://beatmap-difficulty-lookup-cache
   BROADCAST_DRIVER: redis
-  CACHE_DRIVER: redis
   DB_CONNECTION_STRING: Server=db;Database=osu;Uid=osuweb;
   DB_HOST: db
   ES_HOST: http://elasticsearch:9200
@@ -14,12 +11,12 @@ x-env: &x-env
   NOTIFICATION_REDIS_HOST: redis
   PASSPORT_PUBLIC_KEY: "${PASSPORT_PUBLIC_KEY:-}"
   REDIS_HOST: redis
-  SESSION_DRIVER: redis
 
 x-web: &x-web
   build:
     context: ./docker/development
     dockerfile: ../../Dockerfile.development
+  init: true
   volumes:
     - .:/app
   environment:
@@ -33,6 +30,14 @@ services:
       restart_policy:
         condition: on-failure
     shm_size: '2gb' # for chromium
+
+  php-dusk:
+    <<: *x-web
+    command: ['octane', '--watch']
+    environment:
+      <<: *x-env
+      APP_ENV: dusk.local
+      OCTANE_STATE_FILE: /tmp/octane-state.json
 
   assets:
     <<: *x-web
@@ -56,7 +61,7 @@ services:
   beatmap-difficulty-lookup-cache:
     image: pppy/osu-beatmap-difficulty-lookup-cache
     ports:
-      - "${BEATMAPS_DIFFICULTY_CACHE_EXTERNAL_PORT:-5001}:80"
+      - "${BEATMAPS_DIFFICULTY_CACHE_EXTERNAL_PORT:-127.0.0.1:5001}:80"
 
   notification-server:
     image: pppy/osu-notification-server
@@ -71,7 +76,8 @@ services:
     environment:
       <<: *x-env
     ports:
-      - "${NOTIFICATION_EXTERNAL_PORT:-2345}:2345"
+      # used by GitHub Actions test
+      - "${NOTIFICATION_EXTERNAL_PORT:-127.0.0.1:2345}:2345"
 
   notification-server-dusk:
     image: pppy/osu-notification-server
@@ -87,7 +93,7 @@ services:
       <<: *x-env
 
   db:
-    image: mysql/mysql-server:8.0
+    image: mysql:8.0
     volumes:
       - database:/var/lib/mysql
       - ./docker/development/db_user.sql:/docker-entrypoint-initdb.d/db_user.sql
@@ -95,32 +101,35 @@ services:
       <<: *x-env
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
     ports:
-      - "${MYSQL_EXTERNAL_PORT:-3306}:3306"
+      - "${MYSQL_EXTERNAL_PORT:-127.0.0.1:3306}:3306"
     command: --default-authentication-plugin=mysql_native_password
     healthcheck:
       # important to use 127.0.0.1 instead of localhost as mysql starts twice.
       # the first time it listens on sockets but isn't actually ready
       # see https://github.com/docker-library/mysql/issues/663
-      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1"]
-      interval: 1s
-      timeout: 60s
+      start_interval: 1s
       start_period: 60s
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1"]
+      timeout: 60s
 
   redis:
+    command: ['redis-server', '--save', '60', '1', '--loglevel', 'warning']
     image: redis:latest
     ports:
-      - "${REDIS_EXTERNAL_PORT:-6379}:6379"
+      - "${REDIS_EXTERNAL_PORT:-127.0.0.1:6379}:6379"
     healthcheck:
-      test: ["CMD", "redis-cli", "--raw", "incr", "ping"]
-      interval: 1s
-      timeout: 60s
+      start_interval: 1s
       start_period: 60s
+      test: ["CMD", "redis-cli", "--raw", "incr", "ping"]
+      timeout: 60s
+    volumes:
+      - redis:/data
 
   elasticsearch:
     # Version must be kept up to date with library defined in: composer.json
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.6
+    image: elasticsearch:7.17.16
     ports:
-      - "${ES_EXTERNAL_PORT:-9200}:9200"
+      - "${ES_EXTERNAL_PORT:-127.0.0.1:9200}:9200"
     volumes:
       - elasticsearch:/usr/share/elasticsearch/data
     environment:
@@ -129,15 +138,16 @@ services:
       ES_JAVA_OPTS: "-Xms512m -Xmx512m" # less OOM on default settings.
       ingest.geoip.downloader.enabled: false
     healthcheck:
-      test: curl -s http://localhost:9200/_cluster/health?wait_for_status=yellow >/dev/null || exit 1
-      interval: 1s
-      timeout: 60s
+      start_interval: 1s
       start_period: 60s
+      test: curl -s http://localhost:9200/_cluster/health?wait_for_status=yellow >/dev/null || exit 1
+      timeout: 60s
 
   nginx:
     image: nginx:latest
     depends_on:
       - php
+      - php-dusk
       - notification-server
       - notification-server-dusk
     volumes:
@@ -147,8 +157,8 @@ services:
       - "${NGINX_PORT:-8080}:80"
 
   score-indexer:
-    image: pppy/osu-elastic-indexer
-    command: ["queue", "watch", "--set-current"]
+    image: pppy/osu-elastic-indexer:master
+    command: ["queue", "watch"]
     depends_on:
       redis:
         condition: service_healthy
@@ -161,8 +171,8 @@ services:
       SCHEMA: "${SCHEMA:-1}"
 
   score-indexer-test:
-    image: pppy/osu-elastic-indexer
-    command: ["queue", "watch", "--set-current"]
+    image: pppy/osu-elastic-indexer:master
+    command: ["queue", "watch"]
     depends_on:
       redis:
         condition: service_healthy
@@ -180,3 +190,4 @@ services:
 volumes:
   database:
   elasticsearch:
+  redis:

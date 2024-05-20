@@ -18,6 +18,8 @@ return [
     'channels' => [
         'confirm_part' => 'Czy na pewno chcesz ukryć ten kanał? Wciąż będziesz otrzymywać z niego wiadomości.',
         'create' => 'utwórz ogłoszenie',
+        'join' => '',
+        'none' => '',
 
         'list' => [
             'title' => [
@@ -43,7 +45,7 @@ return [
     ],
 
     'not_found' => [
-        'message' => 'Nic tu nie ma, być może taki kanał nie istnieje lub do niego nie należysz...',
+        'message' => 'Nic tu nie ma, być może taki kanał nie istnieje lub na nim nie jesteś...',
         'title' => 'nie znaleziono kanału',
     ],
 
@@ -59,5 +61,9 @@ return [
         'howto' => "Rozpocznij konwersację poprzez profil lub kartę użytkownika.",
         'lazer' => 'Publiczne kanały, do których dołączysz poprzez <a href=":link">osu!lazer</a>, także będą tutaj widoczne.',
         'title' => 'brak konwersacji',
+    ],
+
+    'join_channels' => [
+        'loading' => '',
     ],
 ];

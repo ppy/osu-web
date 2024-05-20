@@ -25,7 +25,7 @@ export default class CommentsIndex extends React.Component<Props> {
   }
 
   render() {
-    const comments = this.controller.getComments(this.controller.state.commentIdsByParentId[0] ?? []);
+    const comments = this.controller.getComments(this.controller.state.commentIdsByParentId[-1] ?? []);
 
     return comments.length === 0
       ? (

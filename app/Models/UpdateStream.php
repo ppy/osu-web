@@ -82,6 +82,6 @@ class UpdateStream extends Model
 
     public function isFeatured()
     {
-        return $this->getKey() === config('osu.changelog.featured_stream');
+        return $this->getKey() === $GLOBALS['cfg']['osu']['changelog']['featured_stream'];
     }
 }

@@ -97,6 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
+            'inactive' => "您已经很长时间没有使用您的账户了。",
             'inactive_different_country' => "您已经很长时间没有使用您的账户了。",
         ],
     ],
@@ -120,6 +121,17 @@ return [
         'beta' => [
             'main' => 'Beta 仅限于特定用户访问',
             'small' => '（在不久后将对 osu! 支持者开放）',
+        ],
+    ],
+
+    'ogp' => [
+        'modding_description' => '谱面：:counts',
+        'modding_description_empty' => '玩家没有任何谱面...',
+
+        'description' => [
+            '_' => '排名 (:ruleset): :global | :country',
+            'country' => '地区 :rank',
+            'global' => '全球 :rank',
         ],
     ],
 
@@ -175,7 +187,6 @@ return [
         'origin_country' => '来自 :country',
         'previous_usernames' => '曾用名',
         'plays_with' => '用 :devices 游玩',
-        'title' => ":username 的个人资料",
 
         'comments_count' => [
             '_' => '发表了 :link',
@@ -193,13 +204,13 @@ return [
                     'broken_file' => '上传失败。请检查上传的图片然后重试。',
                     'button' => '上传图片',
                     'dropzone' => '拖拽到此处',
-                    'dropzone_info' => '将图片拖动到这里也可以上传',
+                    'dropzone_info' => '或者将图片拖到这里上传',
                     'size_info' => '图片尺寸最好是 2400x620 像素',
                     'too_large' => '上传的图片过大。',
                     'unsupported_format' => '不支持的格式。',
 
                     'restriction_info' => [
-                        '_' => '自定义封面只有 :link 可用',
+                        '_' => '自定义头图只有 :link 可用',
                         'link' => 'osu! 支持者',
                     ],
                 ],
@@ -322,7 +333,7 @@ return [
 
                 'total_info' => [
                     '_' => '取决于你对制谱的贡献如何。查看 :link 获得更多信息。',
-                    'link' => '这个页面',
+                    'link' => '此页面',
                 ],
             ],
             'me' => [
@@ -403,7 +414,7 @@ return [
 
         'info' => [
             'discord' => '',
-            'interests' => '兴趣爱好',
+            'interests' => '兴趣',
             'location' => '所在地',
             'occupation' => '职业',
             'twitter' => '',
@@ -414,11 +425,11 @@ return [
             'reason_2' => '该账号由于安全或滥用问题暂时不可用。',
             'reason_3' => '你可能输错用户名了！',
             'reason_header' => '可能是由于以下原因：',
-            'title' => '找不到指定的用户',
+            'title' => '找不到指定的用户！;_;',
         ],
         'page' => [
             'button' => '修改资料页面',
-            'description' => '<strong>个人介绍</strong> 是您可以自定义的展示区.',
+            'description' => '<strong>个人介绍</strong> 是可以自定义内容的展示区.',
             'edit_big' => '编辑',
             'placeholder' => '在这里编辑',
 

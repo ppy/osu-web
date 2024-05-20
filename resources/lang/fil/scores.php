@@ -5,6 +5,7 @@
 
 return [
     'show' => [
+        'non_preserved' => 'Ang markang ito ay minarkahan para sa pagtanggal at mawawala sa lalong madaling panahon.',
         'title' => ':username sa :title [:version]',
 
         'beatmap' => [
@@ -24,7 +25,8 @@ return [
 
     'status' => [
         'non_best' => 'Ang laro na may pinakamataas na iskor lamang ang bibigyan ng pp',
-        'non_passing' => 'Pasado nga mga iskor lang ang magatimpalaan ng pp',
+        'no_pp' => 'pp ay hindi iginawad para sa iskor na ito',
         'processing' => 'Ang iskor ay pinoproseso pa lamang at maipapakita sa mas madaling panahon',
+        'no_rank' => '',
     ],
 ];

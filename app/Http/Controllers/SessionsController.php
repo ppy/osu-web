@@ -10,7 +10,7 @@ use App\Libraries\User\ForceReactivation;
 use App\Models\User;
 use App\Transformers\CurrentUserTransformer;
 use Auth;
-use NoCaptcha;
+use romanzipp\Turnstile\Validator as TurnstileValidator;
 
 class SessionsController extends Controller
 {
@@ -27,7 +27,7 @@ class SessionsController extends Controller
     {
         $request = request();
 
-        $params = get_params($request->all(), null, ['username:string', 'password:string', 'remember:bool', 'g-recaptcha-response:string']);
+        $params = get_params($request->all(), null, ['username:string', 'password:string', 'remember:bool', 'cf-turnstile-response:string']);
         $username = presence(trim($params['username'] ?? null));
         $password = presence($params['password'] ?? null);
         $remember = $params['remember'] ?? false;
@@ -45,11 +45,11 @@ class SessionsController extends Controller
         }
 
         if (captcha_login_triggered()) {
-            $token = presence($params['g-recaptcha-response'] ?? null);
+            $token = presence($params['cf-turnstile-response'] ?? null);
             $validCaptcha = false;
 
             if ($token !== null) {
-                $validCaptcha = NoCaptcha::verifyResponse($token);
+                $validCaptcha = (new TurnstileValidator())->validate($token)->isValid();
             }
 
             if (!$validCaptcha) {
@@ -67,7 +67,7 @@ class SessionsController extends Controller
 
         $user = User::findForLogin($username);
 
-        if ($user === null && strpos($username, '@') !== false && !config('osu.user.allow_email_login')) {
+        if ($user === null && strpos($username, '@') !== false && !$GLOBALS['cfg']['osu']['user']['allow_email_login']) {
             $authError = osu_trans('users.login.email_login_disabled');
         } else {
             $authError = User::attemptLogin($user, $password, $ip);
@@ -77,11 +77,18 @@ class SessionsController extends Controller
             $forceReactivation = new ForceReactivation($user, $request);
 
             if ($forceReactivation->isRequired()) {
+                DatadogLoginAttempt::log('password_reset');
                 $forceReactivation->run();
+
+                \Session::flash('password_reset_start', [
+                    'reason' => $forceReactivation->getReason(),
+                    'username' => $username,
+                ]);
 
                 return ujs_redirect(route('password-reset'));
             }
 
+            DatadogLoginAttempt::log(null);
             $this->login($user, $remember);
 
             return [

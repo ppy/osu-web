@@ -13,8 +13,9 @@ use App\Models\ArtistTrack;
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\Follow;
-use App\Models\Score;
+use App\Models\Solo;
 use App\Models\User;
+use Ds\Set;
 
 class BeatmapsetSearch extends RecordSearch
 {
@@ -89,6 +90,8 @@ class BeatmapsetSearch extends RecordSearch
         $this->addSimpleFilters($query, $nested);
         $this->addCreatorFilter($query, $nested);
         $this->addTextFilter($query, 'artist', ['artist', 'artist_unicode']);
+        $this->addTextFilter($query, 'source', ['source']);
+        $this->addTextFilter($query, 'title', ['title', 'title_unicode']);
 
         $query->filter([
             'nested' => [
@@ -126,7 +129,7 @@ class BeatmapsetSearch extends RecordSearch
     {
         static $fields = ['artist', 'source', 'tags'];
         $params = [
-            'index' => config('osu.elasticsearch.prefix').'blacklist',
+            'index' => $GLOBALS['cfg']['osu']['elasticsearch']['prefix'].'blacklist',
             'id' => 'beatmapsets',
             // can be changed to per-field blacklist as different fields should probably have different restrictions.
             'path' => 'keywords',
@@ -311,8 +314,9 @@ class BeatmapsetSearch extends RecordSearch
             'cs' => ['field' => 'beatmaps.diff_size', 'type' => 'range'],
             'difficultyRating' => ['field' => 'beatmaps.difficultyrating', 'type' => 'range'],
             'drain' => ['field' => 'beatmaps.diff_drain', 'type' => 'range'],
-            'hitLength' => ['field' => 'beatmaps.hit_length', 'type' => 'range'],
+            'totalLength' => ['field' => 'beatmaps.total_length', 'type' => 'range'],
             'statusRange' => ['field' => 'beatmaps.approved', 'type' => 'range'],
+            'updated' => ['field' => 'last_update', 'type' => 'range'],
             // (unsupported) 'divisor' => ['field' => ???, 'type' => 'range'],
         ];
 
@@ -420,38 +424,48 @@ class BeatmapsetSearch extends RecordSearch
 
     private function getPlayedBeatmapIds(?array $rank = null)
     {
-        $unionQuery = null;
+        $query = Solo\Score
+            ::indexable()
+            ->where('user_id', $this->params->user->getKey())
+            ->whereIn('ruleset_id', $this->getSelectedModes());
 
-        $select = $rank === null ? 'beatmap_id' : ['beatmap_id', 'score', 'rank'];
-
-        foreach ($this->getSelectedModes() as $mode) {
-            $newQuery = Score\Best\Model::getClassByRulesetId($mode)
-                ::forUser($this->params->user)
-                ->select($select);
-
-            if ($unionQuery === null) {
-                $unionQuery = $newQuery;
-            } else {
-                $unionQuery->union($newQuery);
-            }
+        $showLegacyOnly = ScoreSearchParams::showLegacyForUser($this->params->user) ?? false;
+        if ($showLegacyOnly) {
+            $scoreField = 'legacy_total_score';
+            $query->where('legacy_score_id', '>', 0);
+        } else {
+            $scoreField = 'total_score';
         }
 
         if ($rank === null) {
-            return model_pluck($unionQuery, 'beatmap_id');
-        } else {
-            $allScores = $unionQuery->get();
-            $beatmapRank = collect();
-
-            foreach ($allScores as $score) {
-                $prevScore = $beatmapRank[$score->beatmap_id] ?? null;
-
-                if ($prevScore === null || $prevScore->score < $score->score) {
-                    $beatmapRank[$score->beatmap_id] = $score;
-                }
-            }
-
-            return $beatmapRank->whereInStrict('rank', $rank)->pluck('beatmap_id')->all();
+            return $query->distinct('beatmap_id')->pluck('beatmap_id');
         }
+
+        $topScores = [];
+        foreach ($query->get() as $score) {
+            $prevScore = $topScores[$score->beatmap_id] ?? null;
+
+            $scoreValue = $score->$scoreField;
+            if ($scoreValue !== null && ($prevScore === null || $prevScore->$scoreField < $scoreValue)) {
+                $topScores[$score->beatmap_id] = $score;
+            }
+        }
+
+        if ($showLegacyOnly) {
+            foreach ($topScores as $beatmapId => $score) {
+                $topScores[$beatmapId] = $score->makeLegacyEntry();
+            }
+        }
+
+        $ret = [];
+        $rankSet = new Set($rank);
+        foreach ($topScores as $beatmapId => $score) {
+            if ($rankSet->contains($score->rank)) {
+                $ret[] = $beatmapId;
+            }
+        }
+
+        return $ret;
     }
 
     private function getSelectedModes()

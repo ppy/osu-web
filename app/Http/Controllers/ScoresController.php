@@ -5,14 +5,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Ruleset;
 use App\Models\Score\Best\Model as ScoreBest;
 use App\Models\Solo\Score as SoloScore;
 use App\Transformers\ScoreTransformer;
 use App\Transformers\UserCompactTransformer;
-use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
 class ScoresController extends Controller
 {
+    const REPLAY_DOWNLOAD_COUNT_INTERVAL = 86400; // 1 day
+
     public function __construct()
     {
         parent::__construct();
@@ -46,14 +48,36 @@ class ScoresController extends Controller
                 ->firstOrFail();
         }
 
-        try {
-            $file = $score instanceof SoloScore
-                ? $score->getReplayFile()
-                : $this->getLegacyReplayFile($score);
-        } catch (FileNotFoundException $e) {
-            // missing from storage.
-            log_error($e);
+        $file = $score->getReplayFile();
+        if ($file === null) {
             abort(404);
+        }
+
+        $currentUser = \Auth::user();
+        if (
+            !$currentUser->isRestricted()
+            && $currentUser->getKey() !== $score->user_id
+            && ($currentUser->token()?->client->password_client ?? false)
+        ) {
+            $countLock = \Cache::lock(
+                "view:score_replay:{$score->getKey()}:{$currentUser->getKey()}",
+                static::REPLAY_DOWNLOAD_COUNT_INTERVAL,
+            );
+
+            if ($countLock->get()) {
+                $score->user->statistics($score->getMode(), true)->increment('replay_popularity');
+
+                $currentMonth = format_month_column(new \DateTime());
+                $score->user->replaysWatchedCounts()
+                    ->firstOrCreate(['year_month' => $currentMonth], ['count' => 0])
+                    ->incrementInstance('count');
+
+                if ($score instanceof ScoreBest) {
+                    $score->replayViewCount()
+                        ->firstOrCreate([], ['play_count' => 0])
+                        ->incrementInstance('play_count');
+                }
+            }
         }
 
         static $responseHeaders = [
@@ -65,19 +89,25 @@ class ScoresController extends Controller
         }, $this->makeReplayFilename($score), $responseHeaders);
     }
 
-    public function downloadLegacy($ruleset, $id)
-    {
-        return $this->download($ruleset, $id);
-    }
-
     public function show($rulesetOrSoloId, $legacyId = null)
     {
-        $score = $legacyId === null
-            ? SoloScore::whereHas('beatmap.beatmapset')->findOrFail($rulesetOrSoloId)
-            : ScoreBest::getClass($rulesetOrSoloId)
-                ::whereHas('beatmap.beatmapset')
-                ->visibleUsers()
-                ->findOrFail($legacyId);
+        if ($legacyId === null) {
+            $scoreQuery = SoloScore::whereKey($rulesetOrSoloId);
+        } else {
+            // `SoloScore` tables can have records with `legacy_score_id = 0`
+            // which correspond to rows from `osu_scores_*` (non-high) tables.
+            // do not attempt to perform lookups for zero to avoid weird results.
+            // negative IDs should never occur (ID columns in score tables are all `bigint unsigned`).
+            if ($legacyId <= 0) {
+                abort(404, 'invalid score ID');
+            }
+
+            $scoreQuery = SoloScore::where([
+                'ruleset_id' => Ruleset::tryFromName($rulesetOrSoloId) ?? abort(404, 'unknown ruleset name'),
+                'legacy_score_id' => $legacyId,
+            ]);
+        }
+        $score = $scoreQuery->whereHas('beatmap.beatmapset')->visibleUsers()->firstOrFail();
 
         $userIncludes = array_map(function ($include) {
             return "user.{$include}";
@@ -120,20 +150,6 @@ class ScoresController extends Controller
             ])->firstOrFail();
 
         return response()->json($score->userRank(['cached' => false]) - 1);
-    }
-
-    private function getLegacyReplayFile(ScoreBest $score): string
-    {
-        $replayFile = $score->replayFile();
-        if ($replayFile === null) {
-            abort(404);
-        }
-        $body = $replayFile->get();
-
-        return $replayFile->headerChunk()
-            .pack('i', strlen($body))
-            .$body
-            .$replayFile->endChunk();
     }
 
     private function makeReplayFilename(ScoreBest|SoloScore $score): string

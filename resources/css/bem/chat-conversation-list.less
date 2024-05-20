@@ -4,6 +4,7 @@
 .chat-conversation-list {
   width: 270px;
   overflow-y: auto;
+  // not needed for inertial scrolling but draws the scrollbar in front of the icons when scrolling on mobile safari.
   -webkit-overflow-scrolling: touch;
 
   @media @desktop {
@@ -51,6 +52,15 @@
   &__header-icon {
     @media @mobile {
       align-self: center;
+    }
+  }
+
+  &__layer {
+    .own-layer();
+
+    @media @mobile {
+      display: flex;
+      flex-direction: row;
     }
   }
 }

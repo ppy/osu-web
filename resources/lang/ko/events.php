@@ -12,7 +12,7 @@ return [
     'beatmapset_update' => '<strong><em>:user</em></strong>님이 "<em>:beatmapset</em>" 맵셋을 업데이트했습니다.',
     'beatmapset_upload' => '<strong><em>:user</em></strong>님이 새 비트맵 ":beatmapset"을 제출했습니다.',
     'empty' => "최근에 눈에 띄는 활동이 없네요!",
-    'rank' => '<strong><em>:user</em></strong>님이 <em>:beatmap</em> (:mode)맵에서 #:rank등을 기록했습니다',
+    'rank' => ':user님이 :beatmap (:mode) 맵에서 :rank등을 기록했습니다.',
     'rank_lost' => '<strong><em>:user</em></strong>님이 <em>:beatmap</em> (:mode)맵에서 1등 자리를 빼앗겼습니다.',
     'user_support_again' => '<strong>:user</strong>님이 다시 한번 osu!를 지원하기로 결정하셨습니다. - 감사합니다!',
     'user_support_first' => '<strong>:user</strong>님이 osu! 서포터가 되셨습니다. - 감사합니다!',
@@ -20,13 +20,13 @@ return [
     'username_change' => '<strong>:previousUsername</strong>님이 이름을 <strong><em>:user</em></strong>(으)로 변경했습니다!',
 
     'beatmapset_status' => [
-        'approved' => '어프루브',
-        'loved' => '러브드',
-        'qualified' => '퀄리파이',
-        'ranked' => '랭크',
+        'approved' => 'Approved',
+        'loved' => 'Loved',
+        'qualified' => 'Qualified',
+        'ranked' => 'Ranked',
     ],
 
     'value' => [
-        'rank' => '',
+        'rank' => '순위 #:rank',
     ],
 ];

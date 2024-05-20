@@ -97,6 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
+            'inactive' => "",
             'inactive_different_country' => "Tvoj račun že dlje časa ni bil uporabljen.",
         ],
     ],
@@ -120,6 +121,17 @@ return [
         'beta' => [
             'main' => 'Dostop do beta različice je trenutno omejen na uporabnike z določenimi pravicami.',
             'small' => '(osu!supporterji bodo kmalu imeli dostop)',
+        ],
+    ],
+
+    'ogp' => [
+        'modding_description' => '',
+        'modding_description_empty' => '',
+
+        'description' => [
+            '_' => '',
+            'country' => '',
+            'global' => '',
         ],
     ],
 
@@ -175,7 +187,6 @@ return [
         'origin_country' => 'Iz :country',
         'previous_usernames' => 'prej znan kot',
         'plays_with' => 'Igra z :devices',
-        'title' => "profil :username",
 
         'comments_count' => [
             '_' => 'Objavil :link',

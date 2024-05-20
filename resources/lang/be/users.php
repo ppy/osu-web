@@ -97,6 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
+            'inactive' => "",
             'inactive_different_country' => "Ваш акаўнт не выкарыстоўваўся доўгі час.",
         ],
     ],
@@ -120,6 +121,17 @@ return [
         'beta' => [
             'main' => 'Доступ да бэта-версіі абмежаваны.',
             'small' => '(osu!supporters хутка атрымаць доступ)',
+        ],
+    ],
+
+    'ogp' => [
+        'modding_description' => '',
+        'modding_description_empty' => '',
+
+        'description' => [
+            '_' => '',
+            'country' => '',
+            'global' => '',
         ],
     ],
 
@@ -175,7 +187,6 @@ return [
         'origin_country' => 'Адкуль: :country',
         'previous_usernames' => 'таксама вядомы як',
         'plays_with' => 'Гуляе з :devices',
-        'title' => "Профіль :username",
 
         'comments_count' => [
             '_' => 'Апублікавана :link',

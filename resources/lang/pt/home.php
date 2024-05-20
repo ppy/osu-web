@@ -80,7 +80,6 @@ return [
         'action_lazer_title' => 'experimenta osu!(lazer)',
         'action_title' => 'descarregar o osu!',
         'for_os' => 'para :os',
-        'lazer_note' => 'nota: as redefinições da tabela de liderança aplicam-se',
         'macos-fallback' => 'utilizadores de macOS',
         'mirror' => 'link alternativo',
         'or' => 'ou',

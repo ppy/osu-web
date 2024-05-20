@@ -18,6 +18,7 @@ class ArtistTrackSearchParamsFromRequest
             'album',
             'artist',
             'bpm:array',
+            'exclusive_only:bool',
             'genre',
             'is_default_sort:bool',
             'length:array',
@@ -37,6 +38,10 @@ class ArtistTrackSearchParamsFromRequest
         $params->parseSort($paramsArray['sort'], $paramsArray['is_default_sort']);
         $params->searchAfter = SearchAfterParam::make($params, cursor_from_params($rawParams)); // TODO: enforce value types
 
+        if (isset($paramsArray['exclusive_only'])) {
+            $params->exclusiveOnly = $paramsArray['exclusive_only'];
+        }
+
         return $params;
     }
 
@@ -46,6 +51,7 @@ class ArtistTrackSearchParamsFromRequest
             'album' => $params->album,
             'artist' => $params->artist,
             'bpm' => $params->bpmInput,
+            'exclusive_only' => $params->exclusiveOnly,
             'genre' => $params->genre,
             'is_default_sort' => $params->isDefaultSort,
             'length' => $params->lengthInput,

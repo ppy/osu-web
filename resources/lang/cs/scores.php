@@ -5,6 +5,7 @@
 
 return [
     'show' => [
+        'non_preserved' => 'Toto skóre je označeno pro smazání a brzy zmizí.',
         'title' => ':username na :title [:version]',
 
         'beatmap' => [
@@ -24,7 +25,8 @@ return [
 
     'status' => [
         'non_best' => 'Pouze osobní nejlepší skóre ocenění',
-        'non_passing' => 'pp dostávají jen schválené skóre ',
+        'no_pp' => 'pp není za toto skóre uděleno',
         'processing' => 'Toto skóre se stále počítá a bude brzy zobrazeno',
+        'no_rank' => 'Toto skóre nemá žádné získané hodnocení, protože je nehodnocené nebo označené pro smazání',
     ],
 ];

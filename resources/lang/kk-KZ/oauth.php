@@ -54,8 +54,8 @@ return [
         'none' => '',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Жою',
+            'true' => 'Жойылған',
         ],
     ],
 ];

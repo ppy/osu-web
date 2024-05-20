@@ -2,12 +2,13 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { SupportedChannelType, supportedChannelTypes } from 'interfaces/chat/channel-json';
+import { chunk } from 'lodash';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { trans } from 'utils/lang';
+import AddChannelButton from './add-channel-button';
 import ConversationListItem from './conversation-list-item';
-import CreateAnnouncementButton from './create-announcement-button';
 
 const icons: Record<SupportedChannelType, string> = {
   ANNOUNCE: 'fas fa-bullhorn',
@@ -18,8 +19,13 @@ const icons: Record<SupportedChannelType, string> = {
 
 function renderChannels(type: SupportedChannelType) {
   const channels = core.dataStore.channelStore.groupedChannels[type];
-  if (channels.length > 0 || type === 'ANNOUNCE' && core.dataStore.chatState.canChatAnnounce) {
+  if (channels.length > 0 || type === 'PUBLIC' || type === 'ANNOUNCE' && core.dataStore.chatState.canChatAnnounce) {
     const title = trans(`chat.channels.list.title.${type}`);
+
+    // Optimization so that the channel list can be rendered as several smaller layers.
+    // This shouldn't be too large, otherwise, Safari can't handle the layer; it also can't be
+    // too small, otherwise there'll be too many layout recalculations.
+    const chunks = chunk(channels, 100);
 
     return (
       <React.Fragment key={type}>
@@ -28,8 +34,13 @@ function renderChannels(type: SupportedChannelType) {
             <span className='chat-conversation-list__header-text'>{title}</span>
             <span className='chat-conversation-list__header-icon' title={title}><i className={icons[type]} /></span>
           </div>
-          {channels.map((channel) => <ConversationListItem key={channel.channelId} channel={channel} />)}
-          {type === 'ANNOUNCE' && <CreateAnnouncementButton />}
+          {chunks.map((c, index) => (
+            <div key={index} className='chat-conversation-list__layer'>
+              {c.map((channel) => <ConversationListItem key={channel.channelId} channel={channel} />)}
+            </div>
+          ))}
+          {type === 'ANNOUNCE' && <AddChannelButton type='create' />}
+          {type === 'PUBLIC' && <AddChannelButton type='join' />}
         </div>
         <div className='chat-conversation-list-separator' />
       </React.Fragment>

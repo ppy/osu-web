@@ -21,17 +21,17 @@
                 </div>
 
                 <div>
-                    <a class="btn-osu-big btn-osu-big--download" href="{{ config('osu.urls.installer') }}">
+                    <a class="btn-osu-big btn-osu-big--download" href="{{ osu_url('installer') }}">
                         <span class="btn-osu-big__text-top">{{ osu_trans('home.download.action') }}</span>
                         <span class="btn-osu-big__text-bottom">{{ osu_trans('home.download.os.windows') }}</span>
                     </a>
 
                     <div class="download-page-header__extra-links">
-                        <a class="download-page-header__extra-link" href="{{ config('osu.urls.installer-mirror') }}">
+                        <a class="download-page-header__extra-link" href="{{ osu_url('installer-mirror') }}">
                             {{ osu_trans('home.download.mirror') }}
                         </a>
                         <span class="download-page-header__extra-link download-page-header__extra-link--separator"></span>
-                        <a class="download-page-header__extra-link" href="{{ config('osu.urls.osx') }}">
+                        <a class="download-page-header__extra-link" href="{{ osu_url('osx') }}">
                             {{ osu_trans('home.download.macos-fallback') }}
                         </a>
                     </div>
@@ -48,7 +48,7 @@
                         <div>
                             {{ osu_trans('home.download.action_lazer_description') }}
                         </div>
-                        @if (($lazerInfoUrl = config('osu.urls.lazer_info')) !== null)
+                        @if (($lazerInfoUrl = osu_url('lazer_info')) !== null)
                             <a href="{{ $lazerInfoUrl }}">
                                 {{ osu_trans('home.download.action_lazer_info') }}
                             </a>
@@ -69,13 +69,10 @@
                     </a>
 
                     <div class="download-page-header__extra-links">
-                        <a class="download-page-header__extra-link" href="{{ config('osu.urls.lazer_dl_other') }}">
+                        <a class="download-page-header__extra-link" href="{{ osu_url('lazer_dl_other') }}">
                             {{ osu_trans('home.download.other_os') }}
                         </a>
                     </div>
-                </div>
-                <div class="download-page-header__note">
-                    {{ osu_trans('home.download.lazer_note') }}
                 </div>
             </div>
         </div>
@@ -112,9 +109,8 @@
                         </div>
                         <div class="download-page__text download-page__text--description">
                             {!! osu_trans('home.download.steps.beatmaps.description._', [
-                                'browse' => tag(
-                                    'a',
-                                    ['href' => route('beatmapsets.index')],
+                                'browse' => link_to(
+                                    route('beatmapsets.index'),
                                     osu_trans('home.download.steps.beatmaps.description.browse')
                                 )
                             ]) !!}
@@ -122,17 +118,21 @@
                     </div>
                 </div>
 
-                @if (config('services.enchant.id') !== null)
+                @if ($GLOBALS['cfg']['services']['enchant']['id'] !== null)
                     <div class="download-page__help">
                         {!! osu_trans('home.download.help._', [
-                            'support_button' => tag('a', [
-                                'class' => 'js-enchant--show',
-                                'role' => 'button',
-                                'href' => '#',
-                            ], osu_trans('home.download.help.support_button')),
-                            'help_forum_link' => tag('a', [
-                                'href' => route('forum.forums.show', ['forum' => config('osu.forum.help_forum_id')]),
-                            ], osu_trans('home.download.help.help_forum_link')),
+                            'support_button' => link_to(
+                                '#',
+                                osu_trans('home.download.help.support_button'),
+                                [
+                                    'class' => 'js-enchant--show',
+                                    'role' => 'button',
+                                ],
+                            ),
+                            'help_forum_link' => link_to(
+                                route('forum.forums.show', ['forum' => $GLOBALS['cfg']['osu']['forum']['help_forum_id']]),
+                                osu_trans('home.download.help.help_forum_link')
+                            )
                         ]) !!}
                     </div>
 
@@ -145,11 +145,10 @@
             <h2 class="title title--page-extra">
                 {{ osu_trans('home.download.video-guide') }}
             </h2>
-            <div class="u-embed-wide">
-                <iframe
-                    src="https://youtube.com/embed/videoseries?list={{ config('osu.urls.youtube-tutorial-playlist') }}"
-                ></iframe>
-            </div>
+            <iframe
+                class="u-embed-wide"
+                src="https://youtube.com/embed/videoseries?list={{ $GLOBALS['cfg']['osu']['urls']['youtube-tutorial-playlist'] }}"
+            ></iframe>
         </div>
     </div>
 </div>

@@ -21,7 +21,12 @@
         <div class="modal-dialog modal-dialog@sm">
             <div class="modal-content">
                 <div class="modal-body modal-body--page">
-                    {!! Form::open(['url' => route('forum.topics.move', $topic->topic_id), 'data-remote' => true]) !!}
+                    <form
+                        action="{{ route('forum.topics.move', $topic->getKey()) }}"
+                        data-remote
+                        method="POST"
+                    >
+                        @csrf
                         <h1 class="modal-body__title">
                             {{ osu_trans('forum.topics.moderate_move.title') }}
                         </h1>
@@ -45,7 +50,7 @@
                         <p class="text-right">
                             <button class="btn-osu-big btn-osu-big--forum-primary">{{ osu_trans('common.buttons.save') }}</button>
                         </p>
-                    {!! Form::close() !!}
+                    </form>
                 </div>
             </div>
         </div>

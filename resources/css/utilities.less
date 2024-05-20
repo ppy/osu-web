@@ -23,14 +23,12 @@
 }
 
 .u-ellipsis-overflow {
-  white-space: nowrap !important;
-  text-overflow: ellipsis !important;
-  overflow: hidden !important;
+  .ellipsis-overflow() !important;
 }
 
 .u-ellipsis-overflow-desktop {
   @media @desktop {
-    .u-ellipsis-overflow();
+    .ellipsis-overflow() !important;
   }
 }
 
@@ -41,14 +39,9 @@
 }
 
 .u-embed-wide {
-  // this trick maintains the video's aspect ratio while resizing
-  // see: http://alistapart.com/article/creating-intrinsic-ratios-for-video
-  padding-bottom: 56.25%; /* 16:9 */
-  position: relative;
-
-  > iframe {
-    .full-size();
-  }
+  display: block;
+  aspect-ratio: 16 / 9;
+  width: 100%;
 }
 
 .u-fancy-scrollbar {
@@ -59,6 +52,10 @@
   &:focus::placeholder {
     opacity: 0;
   }
+}
+
+.u-full-size {
+  .full-size();
 }
 
 .u-hidden {
@@ -83,10 +80,6 @@
 
 .u-nav-float {
   z-index: @z-index--nav-float !important;
-}
-
-.u-full-size {
-  .full-size();
 }
 
 .u-relative {

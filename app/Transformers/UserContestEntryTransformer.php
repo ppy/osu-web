@@ -16,12 +16,14 @@ class UserContestEntryTransformer extends TransformerAbstract
 
     public function transform(UserContestEntry $entry)
     {
+        $url = $entry->file()->url();
+
         return [
             'id' => $entry->id,
             'filename' => $entry->original_filename,
             'filesize' => $entry->filesize,
-            'url' => $entry->fileUrl(),
-            'thumb' => mini_asset($entry->fileUrl()),
+            'url' => $url,
+            'thumb' => mini_asset($url),
             'created_at' => json_time($entry->created_at),
             'deleted' => $entry->deleted_at !== null,
         ];

@@ -97,6 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
+            'inactive' => "",
             'inactive_different_country' => "Il tuo account non è stato utilizzato per molto tempo.",
         ],
     ],
@@ -120,6 +121,17 @@ return [
         'beta' => [
             'main' => 'L\'accesso alla beta è attualmente limitato ad utenti privilegiati.',
             'small' => '(gli osu!supporter lo avranno a breve)',
+        ],
+    ],
+
+    'ogp' => [
+        'modding_description' => 'Beatmap: :counts',
+        'modding_description_empty' => 'L\'utente non ha beatmap...',
+
+        'description' => [
+            '_' => 'Posizione (:ruleset): :global | :country',
+            'country' => 'Nazionale :rank',
+            'global' => 'Globale :rank',
         ],
     ],
 
@@ -175,7 +187,6 @@ return [
         'origin_country' => 'da :country',
         'previous_usernames' => 'conosciuto in precedenza come',
         'plays_with' => 'Gioca con :devices',
-        'title' => "Profilo di :username",
 
         'comments_count' => [
             '_' => 'Ha postato :link',
@@ -329,7 +340,7 @@ return [
                 'title' => 'io!',
             ],
             'medals' => [
-                'empty' => "Questo utente non ne ha ricevuti ancora. ;_;",
+                'empty' => "Questo utente non ne ha ancora ottenuta una. ;_;",
                 'recent' => 'Più recenti',
                 'title' => 'Medaglie',
             ],
@@ -436,7 +447,7 @@ return [
             'country_simple' => 'Classifica Nazionale',
             'global' => 'Posto globale per :mode',
             'global_simple' => 'Classifica Globale',
-            'highest' => 'Grado più alto: :rank il :date',
+            'highest' => 'Posizione più alta: :rank il :date',
         ],
         'stats' => [
             'hit_accuracy' => 'Precisione dei Colpi',

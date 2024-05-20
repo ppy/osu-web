@@ -25,7 +25,7 @@ class UserStatisticsTransformer extends TransformerAbstract
             $stats = new UserStatistics\Osu();
         }
 
-        if (!config('osu.scores.experimental_rank_as_default') && config('osu.scores.experimental_rank_as_extra')) {
+        if (!$GLOBALS['cfg']['osu']['scores']['experimental_rank_as_default'] && $GLOBALS['cfg']['osu']['scores']['experimental_rank_as_extra']) {
             $globalRankExp = $stats->globalRankExp();
             $ppExp = $stats->rank_score_exp;
         }
@@ -54,9 +54,9 @@ class UserStatisticsTransformer extends TransformerAbstract
             'is_ranked' => $stats->isRanked(),
             'grade_counts' => [
                 'ss' => $stats->x_rank_count,
-                'ssh' => $stats->xh_rank_count,
+                'ssh' => $stats->xh_rank_count ?? 0, // osu_charts tables don't have the `h` columns
                 's' => $stats->s_rank_count,
-                'sh' => $stats->sh_rank_count,
+                'sh' => $stats->sh_rank_count ?? 0,
                 'a' => $stats->a_rank_count,
             ],
         ];

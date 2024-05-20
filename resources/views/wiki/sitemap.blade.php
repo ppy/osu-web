@@ -5,7 +5,7 @@
 @php
     $urlFn = fn (string $locale): string => route('wiki.sitemap', compact('locale'));
     $sitemapUrl = $urlFn($locale);
-    $availableLocales = new Ds\Set(config('app.available_locales'));
+    $availableLocales = new Ds\Set($GLOBALS['cfg']['app']['available_locales']);
 @endphp
 
 @extends('wiki.layout', [

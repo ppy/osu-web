@@ -62,6 +62,19 @@ return [
         ],
     ],
 
+    'github_user' => [
+        'info' => "",
+        'link' => '',
+        'title' => '',
+        'unlink' => '',
+
+        'error' => [
+            'already_linked' => '',
+            'no_contribution' => '',
+            'unverified_email' => '',
+        ],
+    ],
+
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => '次のモードのQualifiedビートマップで新しい問題の通知を受け取る',
         'beatmapset_disqualify' => '次のモードのビートマップがDisqualifiedになった場合に通知を受け取る',
@@ -79,7 +92,6 @@ return [
             'mail' => 'メール',
             'mapping' => 'ビートマップマッパー',
             'push' => 'プッシュ通知',
-            'user_achievement_unlock' => 'ユーザーメダルのアンロック',
         ],
     ],
 

@@ -10,8 +10,8 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
-            'rules' => 'Por favor asegúrese de que su avatar se adhiere a :link.<br/>Esto significa que debe ser <strong>adecuado para todas las edades</strong>. Es decir, no desnudez, profanidad o contenido sugestivo.',
-            'rules_link' => 'las reglas de la comunidad',
+            'rules' => 'Por favor, asegúrate de que tu avatar se adhiera a :link.<br/>Esto significa que debe ser <strong>adecuado para todas las edades</strong>. Es decir, sin desnudez, contenido ofensivo o sugerente.',
+            'rules_link' => 'las consideraciones de contenido visual',
         ],
 
         'email' => [
@@ -19,8 +19,8 @@ return [
             'new_confirmation' => 'confirmar correo electrónico',
             'title' => 'Correo electrónico',
             'locked' => [
-                '_' => '',
-                'accounts' => '',
+                '_' => 'Ponte en contacto con el :accounts si necesitas actualizar tu correo electrónico.',
+                'accounts' => 'equipo de soporte de cuentas',
             ],
         ],
 
@@ -62,10 +62,23 @@ return [
         ],
     ],
 
+    'github_user' => [
+        'info' => "Si eres un contribuidor en los repositorios de código abierto de osu!, vincular tu cuenta de GitHub aquí asociará tus entradas del registro de cambios con tu perfil de osu!. Las cuentas de GitHub sin historial de contribuciones a osu! no pueden ser enlazadas.",
+        'link' => 'Enlazar cuenta de GitHub',
+        'title' => 'GitHub',
+        'unlink' => 'Desenlazar cuenta de GitHub',
+
+        'error' => [
+            'already_linked' => 'Esta cuenta de GitHub ya está vinculada a un usuario diferente.',
+            'no_contribution' => 'No se puede vincular la cuenta de GitHub sin ningún historial de contribuciones en los repositorios de osu!.',
+            'unverified_email' => 'Por favor, verifica tu correo principal en GitHub, luego intenta vincular tu cuenta de nuevo.',
+        ],
+    ],
+
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'recibir notificaciones de nuevos problemas en mapas calificados de los siguientes modos',
         'beatmapset_disqualify' => 'recibir notificaciones para cuando se descalifiquen los mapas de los siguientes modos',
-        'comment_reply' => 'recibir notificaciones de respuestas a sus comentarios',
+        'comment_reply' => 'recibir notificaciones de respuestas a tus comentarios',
         'title' => 'Notificaciones',
         'topic_auto_subscribe' => 'activar automáticamente las notificaciones en nuevos temas del foro que cree',
 
@@ -79,7 +92,6 @@ return [
             'mail' => 'correo',
             'mapping' => 'creadores de mapas',
             'push' => 'push',
-            'user_achievement_unlock' => 'medallas desbloqueadas',
         ],
     ],
 
@@ -111,15 +123,15 @@ return [
     ],
 
     'privacy' => [
-        'friends_only' => 'bloquear los mensajes privados de personas que no están en la lista de amigos',
-        'hide_online' => 'mostrarse como desconectado',
+        'friends_only' => 'bloquear los mensajes privados de personas que no están en tu lista de amigos',
+        'hide_online' => 'ocultar tu presencia en línea',
         'title' => 'Privacidad',
     ],
 
     'security' => [
         'current_session' => 'actual',
         'end_session' => 'Cerrar sesión',
-        'end_session_confirmation' => 'Esto cerrará inmediatamente su sesión en ese dispositivo. ¿Está seguro?',
+        'end_session_confirmation' => 'Esto cerrará inmediatamente tu sesión en ese dispositivo. ¿Estás seguro?',
         'last_active' => 'Última conexión:',
         'title' => 'Seguridad',
         'web_sessions' => 'sesiones web',

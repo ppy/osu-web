@@ -203,7 +203,7 @@ return [
             'drain' => 'HP-Drain',
             'accuracy' => 'Präzision',
             'ar' => 'Approach-Rate',
-            'stars' => 'Star-Difficulty',
+            'stars' => 'Sternebewertung',
             'total_length' => 'Länge (Drain length: :hit_length)',
             'bpm' => 'BPM',
             'count_circles' => 'Circle-Anzahl',

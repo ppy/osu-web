@@ -13,7 +13,7 @@ return [
         'info' => [
             'check_spam' => "Veuillez vérifier votre dossier spam si vous ne voyez pas le mail.",
             'recover' => "Si vous ne pouvez pas accéder à votre boîte mail ou si vous ne savez plus laquelle vous avez utilisée, cliquez sur ce lien : :link.",
-            'recover_link' => 'processus de récupération de mail ici',
+            'recover_link' => 'processus de récupération d\'e-mail ici',
             'reissue' => 'Vous pouvez :reissue_link ou :logout_link.',
             'reissue_link' => 'demander un autre code',
             'logout_link' => 'se déconnecter',

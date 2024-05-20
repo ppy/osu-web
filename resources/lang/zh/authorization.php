@@ -5,9 +5,9 @@
 
 return [
     'play_more' => '为何不先玩几局 osu! 呢？',
-    'require_login' => '请先登录以继续。',
+    'require_login' => '请先登录。',
     'require_verification' => '请验证以继续。',
-    'restricted' => "账户处于限制模式，无法进行该操作。",
+    'restricted' => "账户受限，无法进行该操作。",
     'silenced' => "账户被禁言，无法进行该操作。",
     'unauthorized' => '拒绝访问。',
 
@@ -81,6 +81,7 @@ return [
     ],
 
     'contest' => [
+        'judging_not_active' => '这场竞赛还没有进入打分环节。',
         'voting_over' => '投票已结束，无法修改投票。',
 
         'entry' => [
@@ -172,6 +173,7 @@ return [
     'score' => [
         'pin' => [
             'disabled_type' => "无法置顶这类分数",
+            'failed' => "无法置顶未通过的分数。",
             'not_owner' => '只有获得此成绩的玩家才可以置顶它。',
             'too_many' => '已置顶的成绩过多',
         ],
@@ -186,7 +188,7 @@ return [
             ],
         ],
         'update_email' => [
-            'locked' => '',
+            'locked' => '邮箱地址已锁定',
         ],
     ],
 ];

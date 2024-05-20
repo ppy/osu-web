@@ -5,7 +5,7 @@
 
 return [
     'mode' => [
-        'beatmapset' => 'Beatmappi',
+        'beatmapset' => 'Rytmikartta',
         'forum_post' => 'Foorumi',
         'other' => 'Muu',
         'user' => 'Pelaaja',
@@ -14,8 +14,8 @@ return [
 
     'result' => [
         'empty' => 'Ei tuloksia',
-        'empty_for' => 'Ei tuloksia :modes',
-        'more' => 'Lisää :mode Hakutuloksia',
-        'title' => '',
+        'empty_for' => 'Ei :modes-hakutuloksia',
+        'more' => 'Lisää :mode-hakutuloksia',
+        'title' => ':mode-hakutulokset',
     ],
 ];

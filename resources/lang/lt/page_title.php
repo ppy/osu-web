@@ -63,8 +63,12 @@ return [
         'comments_controller' => [
             '_' => 'komentarai',
         ],
+        'contest_entries_controller' => [
+            'judge_results' => '',
+        ],
         'contests_controller' => [
             '_' => 'konkursai',
+            'judge' => '',
         ],
         'groups_controller' => [
             'show' => 'grupės',
@@ -105,6 +109,9 @@ return [
         ],
         'tournaments_controller' => [
             '_' => 'turnyrai',
+        ],
+        'user_cover_presets_controller' => [
+            '_' => '',
         ],
         'users_controller' => [
             '_' => 'žaidėjo informacija',

@@ -37,7 +37,7 @@ return [
         'blocked_count' => 'ブロックしたユーザー(:count)',
         'hide_profile' => 'プロフィールを隠す',
         'hide_comment' => '隠す',
-        'forum_post_text' => '',
+        'forum_post_text' => 'この投稿を隠す。',
         'not_blocked' => 'このユーザーはブロックされていません。',
         'show_profile' => 'プロフィールを表示',
         'show_comment' => '表示',
@@ -97,6 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
+            'inactive' => "",
             'inactive_different_country' => "あなたのアカウントは長期間使用されていません。",
         ],
     ],
@@ -120,6 +121,17 @@ return [
         'beta' => [
             'main' => 'ベータアクセスは権限があるユーザーのみに付与されます。',
             'small' => '(osu!サポーターはすぐ手に入ります)',
+        ],
+    ],
+
+    'ogp' => [
+        'modding_description' => 'ビートマップ: :counts',
+        'modding_description_empty' => 'このユーザーにはビートマップがありません...',
+
+        'description' => [
+            '_' => 'ランク (:ruleset): :global | :country',
+            'country' => '国 :rank',
+            'global' => '世界 :rank',
         ],
     ],
 
@@ -175,7 +187,6 @@ return [
         'origin_country' => '所在国 :country',
         'previous_usernames' => '以前の名前',
         'plays_with' => '使用デバイス :devices',
-        'title' => ":usernameのプロフィール",
 
         'comments_count' => [
             '_' => '投稿 :link',

@@ -55,6 +55,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => 'บทวิจารณ์โดย :username มีปัญหาอยู่ :problems ปัญหา, คำแนะนำอยู่ :suggestions คำแนะนำ, คำชม :praises คำชม  ',
                 'beatmapset_discussion_unlock' => 'บีทแมพ ":title" ได้ถูกเปิดการใช้งานในการสนทนาแล้ว',
                 'beatmapset_discussion_unlock_compact' => 'การสนทนาได้ถูกปลดล๊อค',
+
+                'review_count' => [
+                    'praises' => ':count_delimited คำชม|:count_delimited คำชม',
+                    'problems' => ':count_delimited ปัญหา|:count_delimited ปัญหา',
+                    'suggestions' => ':count_delimited คำแนะนำ|:count_delimited คำแนะนำ',
+                ],
             ],
 
             'beatmapset_problem' => [
@@ -238,11 +244,6 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':username ได้ปลดล็อกเหรียญตรา ":title"!',
-                'user_achievement_unlock_self' => 'คุณได้ปลดล็อกเหรียญตรา ":title"!',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username ได้สร้างบีทแมพใหม่',
                 'user_beatmapset_revive' => ':username ได้กู้คืนบีทแมพแล้ว',

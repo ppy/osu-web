@@ -19,13 +19,14 @@ return [
     'index' => [
         'deleted_beatmap' => 'supprimé',
         'none_found' => 'Aucune discussion ne correspond à ce critère de recherche.',
-        'title' => 'Discussions de Beatmap',
+        'title' => 'Discussions de beatmaps',
 
         'form' => [
             '_' => 'Rechercher',
             'deleted' => 'Inclure les discussions supprimées',
             'mode' => 'Mode de jeu',
             'only_unresolved' => 'Afficher uniquement les discussions non résolues',
+            'show_review_embeds' => 'Afficher les posts d\'avis',
             'types' => 'Types de message',
             'username' => 'Nom d’utilisateur',
 
@@ -55,7 +56,7 @@ return [
     'nearby_posts' => [
         'confirm' => 'Aucun des posts ne parle de mon problème',
         'notice' => 'Il y a des posts pour :timestamp (:existing_timestamps). Merci de les vérifier avant de poster.',
-        'unsaved' => ':count dans cette review',
+        'unsaved' => ':count dans cet avis',
     ],
 
     'owner_editor' => [
@@ -74,15 +75,15 @@ return [
 
     'review' => [
         'block_count' => ':used / :max blocs utilisés',
-        'go_to_parent' => 'Afficher le commentaire',
+        'go_to_parent' => 'Afficher l\'avis',
         'go_to_child' => 'Voir la discussion',
         'validation' => [
             'block_too_large' => 'chaque bloc peut contenir jusqu\'à :limit caractères',
             'external_references' => 'l\'avis contient des références à des problèmes qui n\'appartiennent pas à cet avis',
             'invalid_block_type' => 'type de bloc invalide',
-            'invalid_document' => 'review invalide',
+            'invalid_document' => 'avis invalide',
             'invalid_discussion_type' => 'type de discussion invalide',
-            'minimum_issues' => 'la review doit contenir un minimum de :count problème|la review doit contenir un minimum de :count problèmes',
+            'minimum_issues' => 'l\'avis doit contenir un minimum de :count problème|l\'avis doit contenir un minimum de :count problèmes',
             'missing_text' => 'le bloc n\'a pas de texte',
             'too_many_blocks' => 'les avis ne doivent contenir que :count paragraphe/problème|les revues doivent contenir jusqu\'à :count paragraphes/problèmes',
         ],

@@ -5,7 +5,6 @@
 
 return [
     'button' => [
-        'cancel' => 'Annulla',
         'resend' => 'Rimanda email di verifica',
         'set' => 'Imposta password',
         'start' => 'Inizia',
@@ -37,6 +36,9 @@ return [
     'starting' => [
         'username' => 'Inserisci l\'indirizzo email o il nome utente',
 
+        'reason' => [
+            'inactive_different_country' => "Il tuo account non è stato utilizzato per parecchio tempo. Per garantire la sicurezza del tuo account, reimposta la password.",
+        ],
         'support' => [
             '_' => 'Hai bisogno di ulteriore assistenza? Contattaci col nostro :button.',
             'button' => 'sistema di supporto',

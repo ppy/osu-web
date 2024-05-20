@@ -55,6 +55,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => 'Nov pregled od :username, ki vsebuje težave: :problems, predloge: :suggestions, pohvale: :praises',
                 'beatmapset_discussion_unlock' => 'Razprava na ":title" je bila odklenjena',
                 'beatmapset_discussion_unlock_compact' => 'Razprava je bila odklenjena',
+
+                'review_count' => [
+                    'praises' => '',
+                    'problems' => '',
+                    'suggestions' => '',
+                ],
             ],
 
             'beatmapset_problem' => [
@@ -238,11 +244,6 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':username je odklenil novo medaljo, ":title"!',
-                'user_achievement_unlock_self' => 'Odklenil si novo medaljo, ":title"!',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username je ustvaril nove beatmape',
                 'user_beatmapset_revive' => ':username je oživel beatmape',

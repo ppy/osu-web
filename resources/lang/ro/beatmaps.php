@@ -114,7 +114,7 @@ return [
             'embed' => [
                 'delete' => 'Șterge',
                 'missing' => '[DISCUȚIE ȘTEARSĂ]',
-                'unlink' => 'Dezasociați',
+                'unlink' => 'Dezleagă',
                 'unsaved' => 'Nesalvat',
                 'timestamp' => [
                     'all-diff' => 'Postările de pe "Toate dificultățile" nu pot conține marcaje de timp.',
@@ -151,7 +151,7 @@ return [
 
         'status-messages' => [
             'approved' => 'Acest beatmap a fost aprobat pe :date!',
-            'graveyard' => "Acest beatmap nu a fost actualizat din :date și este cel mai probabil abandonat de către creator...",
+            'graveyard' => "Acest beatmap nu a fost actualizat din :date așa că a fost marcat ca și inactiv...",
             'loved' => 'Acest beatmap a fost adăugat la Iubit pe :date!',
             'ranked' => 'Acest beatmap a fost clasat pe :date!',
             'wip' => 'Notă: Acest beatmap este marcat ca fiind în lucru de către creator.',
@@ -213,6 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'Acest beatmap este estimat a fi clasificat în data de :date dacă nu sunt găsite probleme. Este #:position în :queue.',
+            'unresolved_problems' => 'Acest beatmap este momentan blocat din a părăsi secțiunea „Calificat” până când :problems sunt rezolvate.',
+            'problems' => 'aceste probleme',
             'on' => 'pe :date',
             'queue' => 'lista de așteptare pentru clasament',
             'soon' => 'în curând',
@@ -245,8 +247,8 @@ return [
                 'language' => 'Limbă',
                 'mode' => 'Mod',
                 'nsfw' => 'Conținut Obscen',
-                'played' => 'Jucat',
-                'rank' => 'Clasament Obținut',
+                'played' => 'Jucate',
+                'rank' => 'Grad Obținut',
                 'status' => 'Categorii',
             ],
             'sorting' => [
@@ -257,7 +259,7 @@ return [
                 'updated' => 'Actualizat',
                 'ranked' => 'Clasat',
                 'rating' => 'Evaluare',
-                'plays' => 'Jocuri',
+                'plays' => 'Încercări',
                 'relevance' => 'Relevanţă',
                 'nominations' => 'Nominalizări',
             ],
@@ -269,7 +271,7 @@ return [
     ],
     'general' => [
         'converts' => 'Include beatmap-uri convertite',
-        'featured_artists' => 'Artiști oficiali',
+        'featured_artists' => 'Artiști Oficiali',
         'follows' => 'Creatori beatmap-uri la care sunteți abonat',
         'recommended' => 'Dificultate recomandată',
         'spotlights' => 'Beatmap-uri promovate',
@@ -336,8 +338,8 @@ return [
 
     'played' => [
         'any' => 'Oricare',
-        'played' => 'Jucat',
-        'unplayed' => 'Nejucat',
+        'played' => 'Jucate',
+        'unplayed' => 'Nejucate',
     ],
     'extra' => [
         'video' => 'Cu video',
@@ -355,7 +357,7 @@ return [
         'D' => '',
     ],
     'panel' => [
-        'playcount' => 'Număr încercări: :count',
+        'playcount' => 'Încercări: :count',
         'favourites' => 'Favorite: :count',
     ],
     'variant' => [

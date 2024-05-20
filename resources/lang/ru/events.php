@@ -12,7 +12,7 @@ return [
     'beatmapset_update' => '<strong><em>:user</em></strong> обновил(а) карту "<em>:beatmapset</em>"',
     'beatmapset_upload' => '<strong><em>:user</em></strong> опубликовал(а) карту ":beatmapset"',
     'empty' => "Этот пользователь за последнее время не сделал ничего интересного!",
-    'rank' => '<strong><em>:user</em></strong> занял #:rank место на карте <em>:beatmap</em> (:mode)',
+    'rank' => ':user занял(а) :rank на карте :beatmap (:mode)',
     'rank_lost' => '<strong><em>:user</em></strong> потерял(а) первенство на карте <em>:beatmap</em> (:mode)',
     'user_support_again' => '<strong>:user</strong> снова поддержал(а) osu! — спасибо за щедрость!',
     'user_support_first' => '<strong>:user</strong> поддержал(а) osu! — спасибо за щедрость!',
@@ -27,6 +27,6 @@ return [
     ],
 
     'value' => [
-        'rank' => '',
+        'rank' => '#:rank место',
     ],
 ];

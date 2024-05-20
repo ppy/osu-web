@@ -55,6 +55,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => 'Nauja apžvalga iš :username, kurioje yra problemos: :problems, pasiūlymai: :suggestions, pagyrimai: :praises',
                 'beatmapset_discussion_unlock' => 'Diskusija apie ":title" buvo atrakinta',
                 'beatmapset_discussion_unlock_compact' => 'Diskusija buvo atrakinta',
+
+                'review_count' => [
+                    'praises' => ':count_delimited pagyrimas|:count_delimited pagyrimai',
+                    'problems' => ':count_delimited problema|:count_delimited problemos',
+                    'suggestions' => '',
+                ],
             ],
 
             'beatmapset_problem' => [
@@ -238,11 +244,6 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':username atrakino naują medalį ":title"!',
-                'user_achievement_unlock_self' => 'Tu atrakinai naują medalį ":title"!',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username sukūrė naujų beatmap\'ų',
                 'user_beatmapset_revive' => ':username atgaivino beatmap\'us',

@@ -12,12 +12,15 @@ use App\Transformers\ContestTransformer;
 use App\Transformers\UserContestEntryTransformer;
 use Cache;
 use Exception;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @property \Carbon\Carbon|null $created_at
  * @property string $description_enter
  * @property string|null $description_voting
- * @property \Illuminate\Database\Eloquent\Collection $entries ContestEntry
+ * @property-read Collection<ContestEntry> $entries
  * @property \Carbon\Carbon|null $entry_ends_at
  * @property mixed $thumbnail_shape
  * @property \Carbon\Carbon|null $entry_starts_at
@@ -25,16 +28,18 @@ use Exception;
  * @property string $header_url
  * @property int $id
  * @property mixed $link_icon
+ * @property-read Collection<ContestJudge> $judges
  * @property int $max_entries
  * @property int $max_votes
  * @property string $name
  * @property bool $show_votes
  * @property mixed $type
  * @property mixed $unmasked
+ * @property-read Collection<ContestScoringCategory> $scoringCategories
  * @property bool $show_names
  * @property \Carbon\Carbon|null $updated_at
  * @property bool $visible
- * @property \Illuminate\Database\Eloquent\Collection $votes ContestVote
+ * @property-read Collection<ContestVote> $votes
  * @property \Carbon\Carbon|null $voting_ends_at
  * @property \Carbon\Carbon|null $voting_starts_at
  */
@@ -55,6 +60,11 @@ class Contest extends Model
     public function entries()
     {
         return $this->hasMany(ContestEntry::class);
+    }
+
+    public function judges(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, ContestJudge::class);
     }
 
     public function userContestEntries()
@@ -86,14 +96,14 @@ class Contest extends Model
                 $mustPass = $requirement['must_pass'] ?? true;
                 $beatmapIdsQuery = Multiplayer\PlaylistItem::whereIn('room_id', $roomIds)->select('beatmap_id');
                 $requiredBeatmapsetCount = Beatmap::whereIn('beatmap_id', $beatmapIdsQuery)->distinct('beatmapset_id')->count();
-                $playedBeatmapIdsQuery = Multiplayer\Score
-                    ::whereIn('room_id', $roomIds)
+                $playedScoreIdsQuery = Multiplayer\ScoreLink
+                    ::whereHas('playlistItem', fn ($q) => $q->whereIn('room_id', $roomIds))
                     ->where(['user_id' => $user->getKey()])
-                    ->completed()
-                    ->select('beatmap_id');
+                    ->select('score_id');
                 if ($mustPass) {
-                    $playedBeatmapIdsQuery->where('passed', true);
+                    $playedScoreIdsQuery->whereHas('playlistItemUserHighScore');
                 }
+                $playedBeatmapIdsQuery = Solo\Score::whereIn('id', $playedScoreIdsQuery)->select('beatmap_id');
                 $playedBeatmapsetCount = Beatmap::whereIn('beatmap_id', $playedBeatmapIdsQuery)->distinct('beatmapset_id')->count();
 
                 if ($playedBeatmapsetCount !== $requiredBeatmapsetCount) {
@@ -108,6 +118,23 @@ class Contest extends Model
     public function isBestOf(): bool
     {
         return isset($this->getExtraOptions()['best_of']);
+    }
+
+    public function isJudge(User $user): bool
+    {
+        $judges = $this->judges();
+
+        return $judges->where($judges->qualifyColumn('user_id'), $user->getKey())->exists();
+    }
+
+    public function isJudged(): bool
+    {
+        return $this->getExtraOptions()['judged'] ?? false;
+    }
+
+    public function isJudgingActive(): bool
+    {
+        return $this->isJudged() && $this->isVotingStarted() && !$this->show_votes;
     }
 
     public function isSubmittedBeatmaps(): bool
@@ -131,6 +158,11 @@ class Contest extends Model
     {
         //the react page handles both voting and results display.
         return $this->voting_starts_at !== null && $this->voting_starts_at->isPast();
+    }
+
+    public function scoringCategories(): HasMany
+    {
+        return $this->hasMany(ContestScoringCategory::class);
     }
 
     public function state()
@@ -239,24 +271,27 @@ class Contest extends Model
         }
     }
 
-    public function entriesByType($user = null)
+    public function entriesByType($user = null, array $preloads = [])
     {
-        $entries = $this->entries()->with('contest');
+        $entries = $this->entries()->with(['contest', ...$preloads]);
 
         if ($this->show_votes) {
             return Cache::remember("contest_entries_with_votes_{$this->id}", 300, function () use ($entries) {
-                $entries = $entries->with('user');
+                $orderValue = 'votes_count';
 
                 if ($this->isBestOf()) {
                     $entries = $entries
                         ->selectRaw('*')
                         ->selectRaw('(SELECT FLOOR(SUM(`weight`)) FROM `contest_votes` WHERE `contest_entries`.`id` = `contest_votes`.`contest_entry_id`) AS votes_count')
                         ->limit(50); // best of contests tend to have a _lot_ of entries...
+                } else if ($this->isJudged()) {
+                    $entries = $entries->withSum('scores', 'value');
+                    $orderValue = 'scores_sum_value';
                 } else {
                     $entries = $entries->withCount('votes');
                 }
 
-                return $entries->orderBy('votes_count', 'desc')->get();
+                return $entries->orderBy($orderValue, 'desc')->get();
             });
         } else {
             if ($this->isBestOf()) {
@@ -285,6 +320,7 @@ class Contest extends Model
     public function defaultJson($user = null)
     {
         $includes = [];
+        $preloads = [];
 
         if ($this->type === 'art') {
             $includes[] = 'artMeta';
@@ -296,6 +332,7 @@ class Contest extends Model
         }
         if ($this->showEntryUser()) {
             $includes[] = 'user';
+            $preloads[] = 'user';
         }
 
         $contestJson = json_item(
@@ -304,7 +341,11 @@ class Contest extends Model
             $showVotes ? ['users_voted_count'] : null,
         );
         if ($this->isVotingStarted()) {
-            $contestJson['entries'] = json_collection($this->entriesByType($user), new ContestEntryTransformer(), $includes);
+            $contestJson['entries'] = json_collection(
+                $this->entriesByType($user, $preloads),
+                new ContestEntryTransformer(),
+                $includes,
+            );
         }
 
         if (!empty($contestJson['entries'])) {

@@ -18,6 +18,8 @@ return [
     'channels' => [
         'confirm_part' => 'Dorești să ascunzi acest canal? Vei primi în continuare mesaje de pe acest canal.',
         'create' => 'creează anunţ',
+        'join' => 'alătură-te canalului',
+        'none' => 'nu există canale',
 
         'list' => [
             'title' => [
@@ -59,5 +61,9 @@ return [
         'howto' => "Începe conversații din profilul unui utilizator sau din fereastra unui utilizator.",
         'lazer' => 'Canalele publice cărora li te alături prin <a href=":link">osu!lazer</a> vor fi vizibile aici.',
         'title' => 'nu sunt conversații încă',
+    ],
+
+    'join_channels' => [
+        'loading' => 'Se încarcă canalele...',
     ],
 ];

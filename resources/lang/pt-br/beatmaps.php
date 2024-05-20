@@ -213,6 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'Este mapa é estimado a ser ranqueado em :date se nenhum problema for encontrado. É o #:position na :queue.',
+            'unresolved_problems' => 'Este beatmap está bloqueado de sair da seção de Qualificados até que :problems sejam resolvidos.',
+            'problems' => 'estes problemas',
             'on' => 'em :date',
             'queue' => 'fila de ranqueamento',
             'soon' => 'em breve',

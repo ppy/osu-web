@@ -11,7 +11,7 @@ return [
 
     'top-headers' => [
         'headline' => 'Streams en direct',
-        'description' => 'Les données sont extraites de twitch.tv toutes les cinq minutes en fonction de la liste de l\'annuaire. N\'hésitez pas à commencer à diffuser et à vous faire référencer ! Pour plus d\'informations sur la façon de s\'installer, veuillez consulter :link.',
+        'description' => 'Les données sont extraites de twitch.tv toutes les cinq minutes en fonction de la liste des streams. N\'hésitez pas à commencer à diffuser votre jeu et à vous faire référencer ! Pour plus d\'informations sur comment tout mettre en place, veuillez consulter :link.',
 
         'link' => 'la page wiki consacrée au streaming en direct',
     ],

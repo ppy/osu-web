@@ -43,6 +43,10 @@ return [
         'no_comments' => 'nenalezeny žádné komentáře...',
     ],
 
+    'ogp' => [
+        'title' => 'komentář od :user',
+    ],
+
     'placeholder' => [
         'edit' => 'Upravte komentář zde',
         'new' => 'Sem napište nový komentář',

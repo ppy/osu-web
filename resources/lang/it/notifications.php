@@ -55,6 +55,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => 'Nuova revisione da :username contenente problemi: :problems, suggerimenti: :suggestions, elogi: :praises',
                 'beatmapset_discussion_unlock' => 'La discussione su ":title" è stata sbloccata',
                 'beatmapset_discussion_unlock_compact' => 'La discussione è stata sbloccata',
+
+                'review_count' => [
+                    'praises' => ':count_delimited elogio|:count_delimited elogi',
+                    'problems' => ':count_delimited problema|:count_delimited problemi',
+                    'suggestions' => ':count_delimited suggerimento|:count_delimited suggerimenti',
+                ],
             ],
 
             'beatmapset_problem' => [
@@ -238,11 +244,6 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':username ha sbloccato una nuova medaglia, ":title"!',
-                'user_achievement_unlock_self' => 'Hai sbloccato una nuova medaglia, ":title"!',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username ha creato nuove beatmap',
                 'user_beatmapset_revive' => ':username ha resuscitato delle beatmap',

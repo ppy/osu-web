@@ -43,6 +43,10 @@ return [
         'no_comments' => 'không tìm thấy bình luận nào...',
     ],
 
+    'ogp' => [
+        'title' => 'bình luận bởi :user',
+    ],
+
     'placeholder' => [
         'edit' => 'Chỉnh sửa bình luận tại đây',
         'new' => 'Nhập bình luận mới tại đây',

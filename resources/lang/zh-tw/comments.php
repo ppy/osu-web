@@ -43,6 +43,10 @@ return [
         'no_comments' => '未找到留言...',
     ],
 
+    'ogp' => [
+        'title' => '評論者 :user',
+    ],
+
     'placeholder' => [
         'edit' => '在此編輯評論',
         'new' => '在此輸入新評論',

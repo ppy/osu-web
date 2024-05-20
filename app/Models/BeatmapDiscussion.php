@@ -156,6 +156,11 @@ class BeatmapDiscussion extends Model
             $query->withoutTrashed();
         }
 
+        $params['show_review_embeds'] = get_bool($rawParams['show_review_embeds'] ?? null) ?? false;
+        if (!$params['show_review_embeds']) {
+            $query->whereNull('parent_id');
+        }
+
         return ['query' => $query, 'params' => $params];
     }
 
@@ -297,7 +302,7 @@ class BeatmapDiscussion extends Model
                     ->select('id')
             )->sum('amount');
 
-        $availableKudosu = config('osu.beatmapset.discussion_kudosu_per_user') - $beatmapsetKudosuGranted;
+        $availableKudosu = $GLOBALS['cfg']['osu']['beatmapset']['discussion_kudosu_per_user'] - $beatmapsetKudosuGranted;
         $maxChange = $targetKudosu - $kudosuGranted;
         $change = min($availableKudosu, $maxChange);
 

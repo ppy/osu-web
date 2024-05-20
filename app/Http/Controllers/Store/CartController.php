@@ -26,6 +26,13 @@ class CartController extends Controller
         parent::__construct();
     }
 
+    public function empty()
+    {
+            $this->userCart()?->items->each->delete();
+
+            return ext_view('layout.ujs-reload', [], 'js');
+    }
+
     public function show()
     {
         $order = $this->userCart();

@@ -7,7 +7,7 @@ return [
     'cancel' => 'Cancel·lar',
 
     'authorise' => [
-        'request' => 'està sol·licitant permís per accedir al vostre compte.',
+        'request' => 'estàs sol·licitant permís per accedir al teu compte.',
         'scopes_title' => 'Aquesta aplicació serà capaç de:',
         'title' => 'Sol·licitud d\'autorització',
     ],

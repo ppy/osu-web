@@ -37,7 +37,7 @@ return [
         'blocked_count' => 'المستخدمون المحظورون (:count)',
         'hide_profile' => 'إخفاء الملف الشخصي',
         'hide_comment' => 'إخفاء',
-        'forum_post_text' => '',
+        'forum_post_text' => 'تم إخفاء هذه المشاركة.',
         'not_blocked' => 'هذا المستخدم ليس محظوراََ.',
         'show_profile' => 'عرض الملف الشخصي',
         'show_comment' => 'إظهار',
@@ -49,7 +49,7 @@ return [
     ],
 
     'card' => [
-        'gift_supporter' => '',
+        'gift_supporter' => 'إهداء علامة supporter ',
         'loading' => 'جاري التحميل...',
         'send_message' => 'إرسال رسالة',
     ],
@@ -97,6 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
+            'inactive' => "",
             'inactive_different_country' => "لم تستعمل حسابك منذ وقتِِ طويل.",
         ],
     ],
@@ -120,6 +121,17 @@ return [
         'beta' => [
             'main' => 'وصول البيتا مقيد حالياََ للمستخدمين ذوي الاِمتيازات فقط.',
             'small' => '(سوف يحصل عليه osu!supporters قريبا)',
+        ],
+    ],
+
+    'ogp' => [
+        'modding_description' => 'الخرائط: :counts',
+        'modding_description_empty' => 'ليس لدى المستخدم أي خرائط...',
+
+        'description' => [
+            '_' => 'الترتيب (:ruleset): :global | :country',
+            'country' => 'الدولة :rank',
+            'global' => 'عالمياََ :rank',
         ],
     ],
 
@@ -175,7 +187,6 @@ return [
         'origin_country' => 'من :country',
         'previous_usernames' => 'سابقاََ',
         'plays_with' => 'يستخدم :devices',
-        'title' => "صفحة:username الشخصية",
 
         'comments_count' => [
             '_' => 'نَشَر :link',
@@ -387,7 +398,7 @@ return [
                     'date' => 'التاريخ',
                     'action' => 'النشاط',
                     'length' => 'الطول',
-                    'length_indefinite' => '',
+                    'length_indefinite' => 'غير محدد',
                     'description' => 'الوصف',
                     'actor' => 'بواسطة :username',
 

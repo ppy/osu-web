@@ -5,6 +5,7 @@
 
 return [
     'show' => [
+        'non_preserved' => '',
         'title' => ':username على :title [:version]',
 
         'beatmap' => [
@@ -24,7 +25,8 @@ return [
 
     'status' => [
         'non_best' => 'فقط أفضل الدرجات الشخصية تعود عليك بـ pp',
-        'non_passing' => 'فقط أفضل الدرجات الشخصية تعود عليك بـ pp',
+        'no_pp' => '',
         'processing' => 'لا تزال النتائج قيد الحساب, وسوف تُعرض قريباََ',
+        'no_rank' => '',
     ],
 ];

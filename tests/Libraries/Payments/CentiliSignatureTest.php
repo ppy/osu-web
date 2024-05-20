@@ -6,7 +6,6 @@
 namespace Tests\Libraries\Payments;
 
 use App\Libraries\Payments\CentiliSignature;
-use Config;
 use Tests\TestCase;
 
 class CentiliSignatureTest extends TestCase
@@ -52,6 +51,6 @@ class CentiliSignatureTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        Config::set('payments.centili.secret_key', 'magic');
+        config_set('payments.centili.secret_key', 'magic');
     }
 }

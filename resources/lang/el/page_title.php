@@ -63,8 +63,12 @@ return [
         'comments_controller' => [
             '_' => 'σχόλια',
         ],
+        'contest_entries_controller' => [
+            'judge_results' => '',
+        ],
         'contests_controller' => [
             '_' => 'διαγωνισμοί',
+            'judge' => '',
         ],
         'groups_controller' => [
             'show' => 'ομάδες',
@@ -105,6 +109,9 @@ return [
         ],
         'tournaments_controller' => [
             '_' => 'πρωταθλήματα',
+        ],
+        'user_cover_presets_controller' => [
+            '_' => '',
         ],
         'users_controller' => [
             '_' => 'πληροφορίες παίκτη',

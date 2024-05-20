@@ -13,7 +13,28 @@ return [
         'nav_title' => 'listă',
     ],
 
+    'judge' => [
+        'hide_judged' => 'ascunde intrările evaluate',
+        'nav_title' => 'evaluator',
+        'no_current_vote' => 'nu ai votat încă.',
+        'update' => 'actualizează',
+        'validation' => [
+            'missing_score' => 'scor lipsă',
+            'contest_vote_judged' => 'nu poți vota în concursuri evaluate',
+        ],
+        'voted' => 'Ați depus deja un vot pentru această intrare.',
+    ],
+
+    'judge_results' => [
+        '_' => 'Rezultate evaluare',
+        'creator' => 'creator',
+        'score' => 'Scor',
+        'total_score' => 'scor total',
+    ],
+
     'voting' => [
+        'judge_link' => 'Sunteți un evaluator al acestui concurs. Evaluați intrările aici!',
+        'judged_notice' => 'Acest concurs folosește sistemul prin evaluări. Evaluatorii procesează intrările momentan.',
         'login_required' => 'Te rugăm să te autentifici pentru a vota.',
         'over' => 'Votarea pentru acest concurs s-a încheiat',
         'show_voted_only' => 'Afișare voturi',
@@ -38,6 +59,7 @@ return [
             ],
         ],
     ],
+
     'entry' => [
         '_' => 'intrare',
         'login_required' => 'Te rugăm să te conectezi pentru a intra în concurs.',
@@ -45,22 +67,27 @@ return [
         'preparation' => 'Încă pregătim acest concurs. Te rugăm să aștepți cu răbdare!',
         'drop_here' => 'Trage intrarea ta aici',
         'download' => 'Descarcă .osz',
+
         'wrong_type' => [
             'art' => 'Numai fișierele de tip .jpg și .png sunt acceptate pentru acest concurs.',
             'beatmap' => 'Numai fișierele de tip .osu sunt acceptate pentru acest concurs.',
             'music' => 'Numai fișierele de tip .mp3 sunt acceptate pentru acest concurs.',
         ],
+
         'wrong_dimensions' => 'Intrările pentru acest concurs trebuie să fie :widthx:height',
         'too_big' => 'Întrările pentru acest concurs pot fi numai până la :limit.',
     ],
+
     'beatmaps' => [
         'download' => 'Descarcă intrarea',
     ],
+
     'vote' => [
         'list' => 'voturi',
         'count' => 'un vot|:count_delimited voturi|:count_delimited de voturi',
         'points' => 'un punct|:count_delimited puncte|:count_delimited de puncte',
     ],
+
     'dates' => [
         'ended' => 'S-a terminat pe :date',
         'ended_no_date' => 'Încheiat',
@@ -70,6 +97,7 @@ return [
             'soon' => 'în curând™',
         ],
     ],
+
     'states' => [
         'entry' => 'Înscriere Deschisă',
         'voting' => 'Votarea a început',

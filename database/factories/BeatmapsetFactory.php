@@ -70,9 +70,9 @@ class BeatmapsetFactory extends Factory
         ]);
     }
 
-    public function qualified()
+    public function qualified(?\DateTimeInterface $approvedAt = null)
     {
-        $approvedAt = now();
+        $approvedAt ??= now();
 
         return $this->state([
             'approved' => Beatmapset::STATES['qualified'],
@@ -105,7 +105,7 @@ class BeatmapsetFactory extends Factory
 
     public function withNominations()
     {
-        $count = config('osu.beatmapset.required_nominations');
+        $count = $GLOBALS['cfg']['osu']['beatmapset']['required_nominations'];
 
         return $this
             ->has(BeatmapsetNomination::factory()

@@ -6,6 +6,7 @@
 return [
     'cart' => [
         'checkout' => 'תשלום',
+        'empty_cart' => '',
         'info' => ':count_delimited פריטים בעגלה ($:subtotal)|:count_delimited פריטים בעגלה ($:subtotal)',
         'more_goodies' => 'אני רוצה להוסיף עוד דברים לפני השלמת ההזמנה',
         'shipping_fees' => 'עלות משלוח',
@@ -48,19 +49,52 @@ return [
     ],
 
     'discount' => 'שמור :percent%',
+    'free' => '',
 
     'invoice' => [
+        'contact' => '',
+        'date' => '',
         'echeck_delay' => 'מכיוון שהתשלום שלך היה eCheck, נא אפשר עד ל-- 10 ימים נוספים לתשלום לעבור דרך PayPal!',
         'hide_from_activity' => '',
+        'sent_via' => '',
+        'shipping_to' => '',
+        'title' => '',
         'title_compact' => 'חשבונית',
 
         'status' => [
+            'cancelled' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => "",
+                    'link_text' => '',
+                ],
+            ],
+            'delivered' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => '',
+                    'link_text' => '',
+                ],
+            ],
+            'prepared' => [
+                'title' => '',
+                'line_1' => '',
+                'line_2' => '',
+            ],
             'processing' => [
                 'title' => 'התשלום שלך עדיין לא אושר!',
                 'line_1' => 'אם כבר שילמת, יכול להיות שאנחנו עדיין מחכים לקבל אישור על התשלום שלך. נא רענן דף זה עוד דקה או שתיים!',
                 'line_2' => [
                     '_' => 'אם נתקלת בבעיה בעת התשלום, :link',
                     'link_text' => 'לחץ כאן כדי להמשיך את התשלום',
+                ],
+            ],
+            'shipped' => [
+                'title' => '',
+                'tracking_details' => '',
+                'no_tracking_details' => [
+                    '_' => "",
+                    'link_text' => '',
                 ],
             ],
         ],
@@ -74,7 +108,19 @@ return [
         'no_orders' => 'אין הזמנות.',
         'paid_on' => 'הזמנה בוצעה ב- :date',
         'resume' => 'המשך תשלום',
+        'shipping_and_handling' => '',
         'shopify_expired' => 'לינק התשלום עבור המשלוח הזה לא בתוקף.',
+        'subtotal' => '',
+        'total' => '',
+
+        'details' => [
+            'order_number' => '',
+            'payment_terms' => '',
+            'salesperson' => '',
+            'shipping_method' => '',
+            'shipping_terms' => '',
+            'title' => '',
+        ],
 
         'item' => [
             'quantity' => 'כמות',
@@ -105,6 +151,15 @@ return [
             'paid' => 'שולם',
             'processing' => 'מחכה לאישור',
             'shipped' => 'נשלח',
+            'title' => '',
+        ],
+
+        'thanks' => [
+            'title' => '',
+            'line_1' => [
+                '_' => '',
+                'link_text' => '',
+            ],
         ],
     ],
 
@@ -138,6 +193,10 @@ return [
     'username_change' => [
         'check' => 'הזן שם משתמש כדי לבדוק זמינות!',
         'checking' => 'בודק זמינות :username...',
+        'placeholder' => '',
+        'label' => '',
+        'current' => '',
+
         'require_login' => [
             '_' => 'הינך חייב להיות :link כדי לשנות את השם שלך!',
             'link_text' => 'מחובר',

@@ -48,7 +48,7 @@ class BuildsUpdatePropagationHistory extends Command
             $date = Carbon::now();
 
             $builds = Build::propagationHistory()
-                ->whereIn('stream_id', config('osu.changelog.update_streams'))
+                ->whereIn('stream_id', $GLOBALS['cfg']['osu']['changelog']['update_streams'])
                 ->get();
 
             foreach ($builds as $build) {

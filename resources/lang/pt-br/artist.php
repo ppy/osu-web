@@ -45,6 +45,11 @@ return [
         'index' => [
             '_' => 'pesquisa de faixas',
 
+            'exclusive_only' => [
+                'all' => 'Tudo',
+                'exclusive_only' => 'osu! original',
+            ],
+
             'form' => [
                 'advanced' => 'Pesquisa Avançada',
                 'album' => 'Álbum',
@@ -52,6 +57,7 @@ return [
                 'bpm_gte' => 'BPM Mínimo',
                 'bpm_lte' => 'BPM Máximo',
                 'empty' => 'Não foram encontradas músicas dentro do critério específico.',
+                'exclusive_only' => 'Tipo',
                 'genre' => 'Gênero',
                 'genre_all' => 'Todos',
                 'length_gte' => 'Duração Mínima ',

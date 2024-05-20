@@ -43,6 +43,10 @@ return [
         'no_comments' => 'nessun commento trovato...',
     ],
 
+    'ogp' => [
+        'title' => 'commento di :user',
+    ],
+
     'placeholder' => [
         'edit' => 'Modifica il commento qui',
         'new' => 'Scrivi un commento qui',

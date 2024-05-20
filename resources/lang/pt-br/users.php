@@ -97,6 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
+            'inactive' => "",
             'inactive_different_country' => "Sua conta não foi usada há muito tempo.",
         ],
     ],
@@ -120,6 +121,17 @@ return [
         'beta' => [
             'main' => 'Acesso Beta está restrito apenas para usuários privilegiados.',
             'small' => '(osu!supporters terão acesso em breve)',
+        ],
+    ],
+
+    'ogp' => [
+        'modding_description' => 'Beatmaps: :counts',
+        'modding_description_empty' => 'O usuário não possui nenhum beatmap...',
+
+        'description' => [
+            '_' => 'Rank (:ruleset): :global | :country',
+            'country' => 'País :rank',
+            'global' => 'Global :rank',
         ],
     ],
 
@@ -175,7 +187,6 @@ return [
         'origin_country' => 'Morando em :country',
         'previous_usernames' => 'anteriormente conhecido como',
         'plays_with' => 'Joga com :devices',
-        'title' => "Perfil de :username",
 
         'comments_count' => [
             '_' => 'Publicado :link',

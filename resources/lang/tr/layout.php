@@ -86,7 +86,6 @@ return [
         ],
         'rankings' => [
             '_' => 'sıralama',
-            'kudosu' => 'kudosu',
         ],
         'store' => [
             '_' => 'mağaza',
@@ -112,6 +111,7 @@ return [
         'legal' => [
             '_' => 'Yasal & Durum',
             'copyright' => 'Telif Hakkı (DMCA)',
+            'jp_sctl' => '',
             'privacy' => 'Gizlilik',
             'server_status' => 'Sunucu Durumu',
             'source_code' => 'Kaynak Kodu',
@@ -195,6 +195,8 @@ return [
             'account-edit' => 'Ayarlar',
             'follows' => 'İzleme listeleri',
             'friends' => 'Arkadaşlar',
+            'legacy_score_only_toggle' => 'Lazer modu',
+            'legacy_score_only_toggle_tooltip' => 'Lazer modu yeni bir puanlama algoritmasıyla lazerden belirnenen skorları gösterir',
             'logout' => 'Çıkış Yap',
             'profile' => 'Profilim',
         ],

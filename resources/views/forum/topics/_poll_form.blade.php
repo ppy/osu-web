@@ -2,18 +2,19 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
-{!! Form::open([
-    'route' => ['forum.topics.vote', $topic->topic_id],
-    'method' => 'POST',
-    'data-remote' => true,
-    'data-checkbox-validation' => json_encode([
+<form
+    action="{{ route('forum.topics.vote', $topic->getKey()) }}"
+    class="js-checkbox-validation js-forum-poll forum-poll"
+    data-checkbox-validation="{{ json_encode([
         'forum_topic_vote[option_ids][]' => [
             'min' => 1,
             'max' => $topic->poll_max_options,
         ],
-    ]),
-    'class' => 'js-checkbox-validation js-forum-poll forum-poll',
-]) !!}
+    ]) }}"
+    data-remote
+    method="POST"
+>
+    @csrf
     <div class="forum-poll__row forum-poll__row--title">
         <h2 class="forum-poll__title">
             {!! $topic->pollTitleHTML() !!}
@@ -75,4 +76,4 @@
             @endif
         </div>
     @endif
-{!! Form::close() !!}
+</form>

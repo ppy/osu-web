@@ -70,10 +70,19 @@ class BeatmapsetQueryParser
                 case 'artist':
                     $option = static::makeTextOption($op, $m['value']);
                     break;
+                case 'source':
+                    $option = static::makeTextOption($op, $m['value']);
+                    break;
+                case 'title':
+                    $option = static::makeTextOption($op, $m['value']);
+                    break;
                 case 'created':
                     $option = static::makeDateRangeOption($op, $m['value']);
                     break;
                 case 'ranked':
+                    $option = static::makeDateRangeOption($op, $m['value']);
+                    break;
+                case 'updated':
                     $option = static::makeDateRangeOption($op, $m['value']);
                     break;
             }
@@ -221,11 +230,11 @@ class BeatmapsetQueryParser
         }
     }
 
-    private static function makeTextOption($operator, $value)
+    private static function makeTextOption(string $operator, string $value): ?string
     {
-        if ($operator === '=') {
-            return presence(trim($value, '"'));
-        }
+        return $operator === '='
+            ? presence(preg_replace('/^"(.*)"$/', '$1', $value))
+            : null;
     }
 
     private static function statePrefixSearch($value): ?int

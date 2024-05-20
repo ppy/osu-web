@@ -5,6 +5,9 @@
 
 use App\Http\Middleware\ThrottleRequests;
 
+Route::get('wiki/images/{path}', 'WikiController@image')->name('wiki.image')->where('path', '.+');
+Route::get('beatmapsets/discussions/media-url', 'BeatmapDiscussionsController@mediaUrl')->name('beatmapsets.discussions.media-url');
+
 Route::group(['middleware' => ['web']], function () {
     Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::get('/beatmapsets/{beatmapset}/covers', 'BeatmapsetsController@covers')->name('beatmapsets.covers');
@@ -70,7 +73,6 @@ Route::group(['middleware' => ['web']], function () {
         Route::resource('watches', 'BeatmapsetWatchesController', ['only' => ['update', 'destroy']]);
 
         Route::group(['prefix' => 'discussions', 'as' => 'discussions.'], function () {
-            Route::get('media-url', 'BeatmapDiscussionsController@mediaUrl')->name('media-url');
             Route::put('{discussion}/vote', 'BeatmapDiscussionsController@vote')->name('vote');
             Route::post('{discussion}/restore', 'BeatmapDiscussionsController@restore')->name('restore');
             Route::post('{discussion}/deny-kudosu', 'BeatmapDiscussionsController@denyKudosu')->name('deny-kudosu');
@@ -90,7 +92,7 @@ Route::group(['middleware' => ['web']], function () {
             Route::apiResource('{beatmapset}/favourites', 'FavouritesController', ['only' => ['store']]);
         });
     });
-    Route::get('beatmapsets/search/{filters?}', 'BeatmapsetsController@search')->name('beatmapsets.search');
+    Route::get('beatmapsets/search', 'BeatmapsetsController@search')->name('beatmapsets.search');
     Route::get('beatmapsets/{beatmapset}/discussion/{beatmap?}/{mode?}/{filter?}', 'BeatmapsetsController@discussion')->name('beatmapsets.discussion');
     Route::post('beatmapsets/{beatmapset}/discussion/review', 'BeatmapDiscussionsController@review')->name('beatmapsets.discussion.review');
     Route::post('beatmapsets/{beatmapset}/discussion-lock', 'BeatmapsetsController@discussionLock')->name('beatmapsets.discussion-lock');
@@ -103,7 +105,7 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::group(['prefix' => 'scores', 'as' => 'scores.'], function () {
         Route::get('{score}/download', 'ScoresController@download')->name('download');
-        Route::get('{rulesetOrScore}/{score}/download', 'ScoresController@downloadLegacy')->name('download-legacy');
+        Route::get('{rulesetOrScore}/{score}/download', 'ScoresController@download')->name('download-legacy');
 
         Route::get('{rulesetOrScore}/{score?}', 'ScoresController@show')->name('show');
     });
@@ -123,7 +125,11 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::group(['prefix' => 'community'], function () {
         Route::resource('contests', 'ContestsController', ['only' => ['index', 'show']]);
+        Route::get('contests/{contest}/judge', 'ContestsController@judge')->name('contests.judge');
 
+
+        Route::get('contest-entries/{contest_entry}/results', 'ContestEntriesController@judgeResults')->name('contest-entries.judge-results');
+        Route::put('contest-entries/{contest_entry}/judge-vote', 'ContestEntriesController@judgeVote')->name('contest-entries.judge-vote');
         Route::put('contest-entries/{contest_entry}/vote', 'ContestEntriesController@vote')->name('contest-entries.vote');
         Route::resource('contest-entries', 'ContestEntriesController', ['only' => ['store', 'destroy']]);
 
@@ -212,6 +218,10 @@ Route::group(['middleware' => ['web']], function () {
             Route::get('verify', 'AccountController@verifyLink');
             Route::post('verify', 'AccountController@verify')->name('verify');
             Route::put('/', 'AccountController@update')->name('update');
+
+            Route::get('github-users/callback', 'Account\GithubUsersController@callback')->name('github-users.callback');
+            Route::resource('github-users', 'Account\GithubUsersController', ['only' => ['create']]);
+            Route::delete('github-users', 'Account\GithubUsersController@destroy')->name('github-users.destroy');
         });
 
         Route::get('quick-search', 'HomeController@quickSearch')->name('quick-search');
@@ -225,10 +235,12 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('support', 'HomeController@supportTheGame')->name('support-the-game');
         Route::get('testflight', 'HomeController@testflight')->name('testflight');
 
-        Route::delete('password-reset', 'PasswordResetController@destroy');
         Route::get('password-reset', 'PasswordResetController@index')->name('password-reset');
         Route::post('password-reset', 'PasswordResetController@create');
         Route::put('password-reset', 'PasswordResetController@update');
+        Route::delete('password-reset', 'PasswordResetController@destroy');
+        Route::get('password-reset/reset', 'PasswordResetController@reset')->name('password-reset.reset');
+        Route::post('password-reset/resend-mail', 'PasswordResetController@resendMail')->name('password-reset.resend-mail');
 
         Route::get('download-quota-check', 'HomeController@downloadQuotaCheck')->name('download-quota-check');
 
@@ -280,6 +292,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('session', 'SessionsController@store')->name('login');
     Route::delete('session', 'SessionsController@destroy')->name('logout');
 
+    Route::post('user-cover-presets/batch-activate', 'UserCoverPresetsController@batchActivate')->name('user-cover-presets.batch-activate');
+    Route::resource('user-cover-presets', 'UserCoverPresetsController', ['only' => ['index', 'store', 'update']]);
+
     Route::post('users/check-username-availability', 'UsersController@checkUsernameAvailability')->name('users.check-username-availability');
     Route::post('users/check-username-exists', 'UsersController@checkUsernameExists')->name('users.check-username-exists');
     Route::get('users/disabled', 'UsersController@disabled')->name('users.disabled');
@@ -312,7 +327,6 @@ Route::group(['middleware' => ['web']], function () {
     Route::resource('users', 'UsersController', ['only' => ['store']]);
 
     Route::get('wiki/{locale}/Sitemap', 'WikiController@sitemap')->name('wiki.sitemap');
-    Route::get('wiki/images/{path}', 'WikiController@image')->name('wiki.image')->where('path', '.+');
     Route::get('wiki/{locale?}/{path?}', 'WikiController@show')->name('wiki.show')->where('path', '.+');
     Route::put('wiki/{locale}/{path}', 'WikiController@update')->where('path', '.+');
     Route::get('wiki-suggestions', 'WikiController@suggestions')->name('wiki-suggestions');
@@ -330,6 +344,7 @@ Route::group(['middleware' => ['web']], function () {
 
             // Store splitting starts here
             Route::get('cart', 'CartController@show')->name('cart.show');
+            Route::delete('cart', 'CartController@empty')->name('cart.empty');
             Route::resource('cart', 'CartController', ['only' => ['store']]);
 
             Route::resource('checkout', 'CheckoutController', ['only' => ['show', 'store']]);
@@ -367,11 +382,12 @@ Route::group(['middleware' => ['web']], function () {
         });
     });
 
-    Route::get('/home', 'HomeController@index')->name('home');
+    // TODO: update to redirect to root later
+    Route::get('/home', 'HomeController@index');
 
-    route_redirect('/', 'home');
+    Route::get('/', 'HomeController@index')->name('home');
 
-    if (config('osu.scores.rank_cache.local_server')) {
+    if ($GLOBALS['cfg']['osu']['scores']['rank_cache']['local_server']) {
         Route::get('rankLookup', 'ScoresController@userRankLookup');
     }
 
@@ -396,18 +412,26 @@ Route::group(['middleware' => ['web']], function () {
 // There's also a different group which skips throttle middleware.
 Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', ThrottleRequests::getApiThrottle(), 'require-scopes']], function () {
     Route::group(['prefix' => 'v2'], function () {
+        Route::group(['middleware' => ['require-scopes:any']], function () {
+            Route::post('session/verify', 'AccountController@verify')->name('verify');
+            Route::post('session/verify/reissue', 'AccountController@reissueCode')->name('verify.reissue');
+        });
+
         Route::group(['as' => 'beatmaps.', 'prefix' => 'beatmaps'], function () {
             Route::get('lookup', 'BeatmapsController@lookup')->name('lookup');
 
+            Route::apiResource('packs', 'BeatmapPacksController', ['only' => ['index', 'show']]);
+
             Route::group(['prefix' => '{beatmap}'], function () {
-                Route::get('scores/users/{user}', 'BeatmapsController@userScore');
-                Route::get('scores/users/{user}/all', 'BeatmapsController@userScoreAll');
+                Route::get('scores/users/{user}', 'BeatmapsController@userScore')->name('user.score');
+                Route::get('scores/users/{user}/all', 'BeatmapsController@userScoreAll')->name('user.scores');
                 Route::get('scores', 'BeatmapsController@scores')->name('scores');
                 Route::get('solo-scores', 'BeatmapsController@soloScores')->name('solo-scores');
 
                 Route::group(['as' => 'solo.', 'prefix' => 'solo'], function () {
+                    Route::post('scores', 'ScoreTokensController@store')->name('score-tokens.store');
+
                     Route::group(['namespace' => 'Solo'], function () {
-                        Route::post('scores', 'ScoreTokensController@store')->name('score-tokens.store');
                         Route::put('scores/{token}', 'ScoresController@store')->name('scores.store');
                     });
                 });
@@ -483,14 +507,14 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
 
         Route::group(['prefix' => 'scores', 'as' => 'scores.'], function () {
             Route::get('{score}/download', 'ScoresController@download')->middleware(ThrottleRequests::getApiThrottle('scores_download'))->name('download');
-            Route::get('{rulesetOrScore}/{score}/download', 'ScoresController@downloadLegacy')->middleware(ThrottleRequests::getApiThrottle('scores_download'))->name('download-legacy');
+            Route::get('{rulesetOrScore}/{score}/download', 'ScoresController@download')->middleware(ThrottleRequests::getApiThrottle('scores_download'))->name('download-legacy');
 
             Route::get('{rulesetOrScore}/{score?}', 'ScoresController@show')->name('show');
         });
 
         // Beatmapsets
         //   GET /api/v2/beatmapsets/search/:filters
-        Route::get('beatmapsets/search/{filters?}', 'BeatmapsetsController@search');
+        Route::get('beatmapsets/search', 'BeatmapsetsController@search');
         //   GET /api/v2/beatmapsets/lookup
         Route::get('beatmapsets/lookup', 'BeatmapsetsController@lookup');
         //   GET /api/v2/beatmapsets/:beatmapset_id

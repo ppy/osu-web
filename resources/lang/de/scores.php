@@ -5,6 +5,7 @@
 
 return [
     'show' => [
+        'non_preserved' => 'Dieser Score wird bald gelöscht.',
         'title' => ':username auf :title [:version]',
 
         'beatmap' => [
@@ -24,7 +25,8 @@ return [
 
     'status' => [
         'non_best' => 'Nur persönliche Bestwerte geben pp',
-        'non_passing' => 'Nur erfolgreiche Scores geben pp',
+        'no_pp' => 'Für diesen Score werden keine pp vergeben',
         'processing' => 'Dieser Score wird noch berechnet und in Kürze angezeigt',
+        'no_rank' => 'Diese Punktzahl hat keinen Rang, da sie unranked oder zum Löschen markiert ist',
     ],
 ];

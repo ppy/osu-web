@@ -78,7 +78,7 @@ export default class Details extends React.Component<Props> {
         <div className='legacy-api-details__actions'>
           <BigButton
             icon={this.keyVisible ? 'fas fa-eye-slash' : 'fas fa-eye'}
-            modifiers={['account-edit', 'settings-oauth']}
+            modifiers={['account-edit', 'account-edit-small']}
             props={{
               onClick: this.onClickToggleKeyVisibility,
             }}
@@ -87,7 +87,7 @@ export default class Details extends React.Component<Props> {
           <BigButton
             icon='fas fa-trash'
             isBusy={this.props.controller.isDeleting}
-            modifiers={['account-edit', 'danger', 'settings-oauth']}
+            modifiers={['account-edit', 'account-edit-small', 'danger']}
             props={{
               onClick: this.deleteClicked,
             }}

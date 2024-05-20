@@ -5,13 +5,15 @@
 @php
     $subtext = $item->getSubtext()
 @endphp
-{!! Form::open([
-    'class' => 'store-order-item js-store-order-item',
-    'url' => route('store.cart.store'),
-    'data-remote' => true,
-    'data-shopify-id'=> $item->product->shopify_id,
-    'data-quantity'=> $item->quantity,
-]) !!}
+<form
+    action="{{ route('store.cart.store') }}"
+    class="store-order-item js-store-order-item"
+    data-quantity="{{ $item->quantity }}"
+    data-remote
+    data-shopify-id="{{ $item->product->shopify_id }}"
+    method="POST"
+>
+    @csrf
     <input type="hidden" name="item[product_id]" value="{{ $item->product_id }}">
     <input type="hidden" name="item[id]" value="{{ $item->id }}">
 
@@ -31,12 +33,21 @@
             </span>
         @else
             <div class="form-select">
-                {!! Form::select(
-                    "item[quantity]",
-                    product_quantity_options($item->product, $item->quantity),
-                    $item->quantity,
-                    ['class' => 'form-select__input js-auto-submit']
-                ) !!}
+                <select
+                    class="form-select__input js-auto-submit"
+                    name="item[quantity]"
+                >
+                    @foreach (product_quantity_options($item->product, $item->quantity) as $option)
+                        <option
+                            @if ($option['selected'])
+                                selected
+                            @endif
+                            value="{{ $option['value'] }}"
+                        >
+                            {{ $option['label'] }}
+                        </option>
+                    @endforeach
+                </select>
             </div>
         @endif
     </div>
@@ -61,4 +72,4 @@
             @endforeach
         </ul>
     @endif
-{!! Form::close() !!}
+</form>

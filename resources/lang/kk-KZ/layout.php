@@ -17,12 +17,12 @@ return [
             'beatmapset' => '',
             'beatmapset_covers' => '',
             'contest' => '',
-            'contests' => '',
-            'root' => '',
+            'contests' => 'сайыс',
+            'root' => 'консоль',
         ],
 
         'artists' => [
-            'index' => '',
+            'index' => 'тізім',
         ],
 
         'beatmapsets' => [
@@ -31,7 +31,7 @@ return [
         ],
 
         'changelog' => [
-            'index' => '',
+            'index' => 'тізім',
         ],
 
         'help' => [
@@ -46,7 +46,7 @@ return [
         ],
 
         'tournaments' => [
-            'index' => '',
+            'index' => 'тізім',
         ],
 
         'users' => [
@@ -58,7 +58,7 @@ return [
     ],
 
     'gallery' => [
-        'close' => '',
+        'close' => 'Жабу (Esc)',
         'fullscreen' => '',
         'zoom' => '',
         'previous' => '',
@@ -74,45 +74,45 @@ return [
             'dev' => '',
         ],
         'help' => [
-            '_' => '',
+            '_' => 'көмек',
             'getAbuse' => '',
-            'getFaq' => '',
-            'getRules' => '',
-            'getSupport' => '',
+            'getFaq' => 'faq',
+            'getRules' => 'ережелер',
+            'getSupport' => 'маған шыныңда көмек керек!',
         ],
         'home' => [
-            '_' => '',
-            'team' => '',
+            '_' => 'басты бет',
+            'team' => 'команда',
         ],
         'rankings' => [
             '_' => '',
-            'kudosu' => '',
         ],
         'store' => [
-            '_' => '',
+            '_' => 'дүкен',
         ],
     ],
 
     'footer' => [
         'general' => [
             '_' => '',
-            'home' => '',
+            'home' => 'Басты бет',
             'changelog-index' => '',
-            'beatmaps' => '',
-            'download' => '',
+            'beatmaps' => 'Карталар тізімі',
+            'download' => 'osu! жүктеу',
         ],
         'help' => [
             '_' => '',
             'faq' => '',
             'forum' => '',
-            'livestreams' => '',
+            'livestreams' => 'Тікелей эфир',
             'report' => '',
-            'wiki' => '',
+            'wiki' => 'Wiki',
         ],
         'legal' => [
             '_' => '',
-            'copyright' => '',
-            'privacy' => '',
+            'copyright' => 'Авторлық құқық (DMCA)',
+            'jp_sctl' => '',
+            'privacy' => 'Құпиялық',
             'server_status' => '',
             'source_code' => '',
             'terms' => '',
@@ -169,13 +169,13 @@ return [
     ],
 
     'popup_login' => [
-        'button' => '',
+        'button' => 'кіру / тіркелу',
 
         'login' => [
             'forgot' => "",
             'password' => '',
-            'title' => '',
-            'username' => '',
+            'title' => 'Жалғастыру үшін аккаунтыңызға кіріңіз',
+            'username' => 'пайдаланушы аты',
 
             'error' => [
                 'email' => "",
@@ -184,7 +184,7 @@ return [
         ],
 
         'register' => [
-            'download' => '',
+            'download' => 'Жүктеу',
             'info' => '',
             'title' => "",
         ],
@@ -192,10 +192,12 @@ return [
 
     'popup_user' => [
         'links' => [
-            'account-edit' => '',
+            'account-edit' => 'Параметрлер',
             'follows' => '',
             'friends' => '',
-            'logout' => '',
+            'legacy_score_only_toggle' => '',
+            'legacy_score_only_toggle_tooltip' => '',
+            'logout' => 'Шығу',
             'profile' => '',
         ],
     ],

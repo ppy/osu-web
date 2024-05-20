@@ -1,13 +1,12 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { ScoreCurrentUserPinJson } from 'interfaces/score-json';
 import SoloScoreJson from 'interfaces/solo-score-json';
 import { route } from 'laroute';
 import { action, makeObservable, observable, runInAction } from 'mobx';
 
 export default class ScorePins {
-  @observable pins = new Map<string, boolean>();
+  @observable pins = new Map<SoloScoreJson['id'], boolean>();
 
   constructor() {
     makeObservable(this);
@@ -30,7 +29,7 @@ export default class ScorePins {
   }
 
   canBePinned(score: SoloScoreJson) {
-    return score.current_user_attributes.pin != null;
+    return score.current_user_attributes.pin != null && score.passed;
   }
 
   isPinned(score: SoloScoreJson) {
@@ -40,15 +39,13 @@ export default class ScorePins {
       return false;
     }
 
-    const mapKey = this.mapKey(pin);
-
-    if (!this.pins.has(mapKey)) {
+    if (!this.pins.has(pin.score_id)) {
       runInAction(() => {
-        this.pins.set(mapKey, pin.is_pinned);
+        this.pins.set(pin.score_id, pin.is_pinned);
       });
     }
 
-    return this.pins.get(mapKey);
+    return this.pins.get(pin.score_id);
   }
 
   @action
@@ -56,16 +53,6 @@ export default class ScorePins {
     const pin = score.current_user_attributes.pin;
     if (pin == null) return;
 
-    const mapKey = this.mapKey(pin);
-
-    if (mapKey == null) {
-      return null;
-    }
-
-    this.pins.set(mapKey, isPinned);
-  }
-
-  private mapKey(pin: ScoreCurrentUserPinJson) {
-    return `${pin.score_type}:${pin.score_id}`;
+    this.pins.set(pin.score_id, isPinned);
   }
 }

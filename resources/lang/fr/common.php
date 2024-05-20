@@ -19,29 +19,30 @@ return [
     ],
 
     'buttons' => [
-        'admin' => 'Administrateur',
+        'admin' => 'Admin',
         'authorise' => 'Autoriser',
         'authorising' => 'Autorisation en cours...',
         'back_to_previous' => 'Retour à la position précédente',
-        'back_to_top' => 'Retour en haut',
+        'back_to_top' => 'Haut de page',
         'cancel' => 'Annuler',
-        'change' => 'changer',
+        'change' => 'modifier',
         'clear' => 'Effacer',
-        'click_to_copy' => 'cliquez pour copier dans le presse-papier',
-        'click_to_copy_copied' => 'copié dans le presse-papier !',
+        'click_to_copy' => 'cliquez pour copier dans le presse-papiers',
+        'click_to_copy_copied' => 'copié dans le presse-papiers !',
         'close' => 'Fermer',
         'collapse' => 'réduire',
         'delete' => 'Supprimer',
         'edit' => 'Éditer',
         'expand' => 'agrandir',
         'hide' => 'masquer',
-        'permalink' => 'permalink',
+        'permalink' => 'permalien',
         'pin' => 'épingler',
         'post' => 'Poster',
         'read_more' => 'lire plus',
+        'refresh' => 'Actualiser',
         'reply' => 'Répondre',
-        'reply_reopen' => 'Répondre et réouvrir',
-        'reply_resolve' => 'Répondre et Résoudre',
+        'reply_reopen' => 'Répondre et rouvrir',
+        'reply_resolve' => 'Répondre et résoudre',
         'reset' => 'Réinitialiser',
         'restore' => 'Restaurer',
         'retry' => 'Réessayer',
@@ -56,8 +57,8 @@ return [
         'show_more_options' => 'afficher plus d’options',
         'submit' => 'Envoyer',
         'unpin' => 'désépingler',
-        'update' => 'Modifier',
-        'upload_image' => 'uploader une image',
+        'update' => 'Enregistrer',
+        'upload_image' => 'mettre en ligne une image',
 
         'watch' => [
             'to_0' => 'Ne plus suivre',
@@ -68,7 +69,7 @@ return [
     'count' => [
         'badges' => ':count_delimited badge|:count_delimited badges',
         'days' => ':count_delimited jour|:count_delimited jours',
-        'hour_short_unit' => 'hr|hrs',
+        'hour_short_unit' => 'h|h',
         'hours' => ':count_delimited heure|:count_delimited heures',
         'item' => ':count_delimited objet|:count_delimited objets',
         'minute_short_unit' => 'min|mins',
@@ -76,9 +77,9 @@ return [
         'months' => ':count_delimited mois|:count_delimited mois',
         'notifications' => ':count_delimited notification|:count_delimited notifications',
         'plus_others' => '+ :count_delimited autre !|+ :count_delimited autres !',
-        'post' => ':count_delimited discussion|:count_delimited discussions',
+        'post' => ':count_delimited post|:count_delimited posts',
         'second_short_unit' => 'sec|secs',
-        'star_priority' => ':count_delimited star priority|:count_delimited star priorities',
+        'star_priority' => ':count_delimited étoile|:count_delimited étoiles',
         'update' => ':count_delimited mise à jour|:count_delimited mises à jour',
         'view' => ':count_delimited vue|:count_delimited vues',
         'years' => ':count_delimited an|:count_delimited ans',
@@ -109,7 +110,7 @@ return [
     ],
 
     'dropzone' => [
-        'target' => 'déplacez ici pour uploader',
+        'target' => 'déplacez ici pour mettre en ligne',
     ],
 
     'input' => [
@@ -153,7 +154,7 @@ return [
     ],
 
     'title' => [
-        'notice' => 'Remarque',
+        'notice' => 'Information',
     ],
 
     'wrong_user' => [

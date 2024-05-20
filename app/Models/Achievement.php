@@ -40,7 +40,7 @@ class Achievement extends Model
 
     public function iconUrl()
     {
-        return config('osu.achievement.icon_prefix').e($this->slug).'.png';
+        return $GLOBALS['cfg']['osu']['achievement']['icon_prefix'].e($this->slug).'.png';
     }
 
     public function getAttribute($key)

@@ -13,7 +13,28 @@ return [
         'nav_title' => 'llistat',
     ],
 
+    'judge' => [
+        'hide_judged' => 'amagar entrades avaluades',
+        'nav_title' => 'avaluar',
+        'no_current_vote' => 'encara no has votat.',
+        'update' => 'actualitzar',
+        'validation' => [
+            'missing_score' => 'puntuació faltant',
+            'contest_vote_judged' => 'no pots votar en concursos avaluats',
+        ],
+        'voted' => 'Ja has enviat un vot en aquesta entrada.',
+    ],
+
+    'judge_results' => [
+        '_' => 'Resultats de l\'avaluació',
+        'creator' => 'creador',
+        'score' => 'Puntuació',
+        'total_score' => 'puntuació total',
+    ],
+
     'voting' => [
+        'judge_link' => 'Ets un avaluador d\'aquest concurs. Avalua les entrades aquí!',
+        'judged_notice' => 'Aquest concurs està utilitzant el sistema d\'avaluació, els avaluadors actualment estan processant les entrades.',
         'login_required' => 'Sisplau, inicia sessió per a votar.',
         'over' => 'La votació per aquest torneig ha finalitzat',
         'show_voted_only' => 'Mostra els votats',
@@ -38,6 +59,7 @@ return [
             ],
         ],
     ],
+
     'entry' => [
         '_' => 'entrada',
         'login_required' => 'Si us plau, inicieu la sessió per participar al concurs.',
@@ -45,22 +67,27 @@ return [
         'preparation' => 'Estem preparant aquest torneig. Sisplau, espera una mica!',
         'drop_here' => 'Deixa anar la teva inscripció aquí',
         'download' => 'Descarregar .osz',
+
         'wrong_type' => [
             'art' => 'Només fitxers .jpg i .png s\'accepten per aquest torneig.',
             'beatmap' => 'Només fitxers .osu s\'accepten per aquest torneig.',
             'music' => 'Només fitxer .mp3 s\'accepten per aquest torneig.',
         ],
+
         'wrong_dimensions' => 'Les inscripcions per aquest torneig han de ser :widthx:height',
         'too_big' => 'Les inscripcions per aquest torneig només poden ser fins a :limit.',
     ],
+
     'beatmaps' => [
         'download' => 'Descarregar entrada',
     ],
+
     'vote' => [
         'list' => 'vots',
         'count' => ':count_delimited vot |:count_delimited vots',
         'points' => ':count_delimited punt|:count_delimited punts',
     ],
+
     'dates' => [
         'ended' => 'Finalitzat :date',
         'ended_no_date' => 'Finalitzat',
@@ -70,6 +97,7 @@ return [
             'soon' => 'aviat™',
         ],
     ],
+
     'states' => [
         'entry' => 'Entrada oberta',
         'voting' => 'Votació iniciada',

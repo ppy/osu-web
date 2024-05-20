@@ -69,7 +69,7 @@ abstract class SearchParams
 
     public function isQueryStringTooShort()
     {
-        return mb_strlen($this->queryString) < config('osu.search.minimum_length');
+        return mb_strlen($this->queryString) < $GLOBALS['cfg']['osu']['search']['minimum_length'];
     }
 
     public function isLoginRequired(): bool

@@ -6,6 +6,7 @@
 return [
     'cart' => [
         'checkout' => 'Checka ut',
+        'empty_cart' => '',
         'info' => ':count_delimited föremål i varukorgen ($:subtotal)|:count_delimited föremål i varukorgen ($:subtotal)',
         'more_goodies' => 'Jag vill ta en titt på fler godsaker innan jag fullbordar beställningen',
         'shipping_fees' => 'fraktavgifter',
@@ -48,19 +49,52 @@ return [
     ],
 
     'discount' => 'spara :percent%',
+    'free' => 'gratis!',
 
     'invoice' => [
+        'contact' => 'Kontakt:',
+        'date' => 'Datum:',
         'echeck_delay' => 'Eftersom din betalning var en eCheck, vänligen tillåt upp till 10 extra dagar för betalningen att accepteras via PayPal! ',
         'hide_from_activity' => 'osu!supporter taggar i denna ordning visas inte i dina senaste aktiviteter.',
+        'sent_via' => 'Skickat Via:',
+        'shipping_to' => 'Levereras Till:',
+        'title' => 'Faktura',
         'title_compact' => 'faktura',
 
         'status' => [
+            'cancelled' => [
+                'title' => 'Din beställning har avbrutits',
+                'line_1' => [
+                    '_' => "",
+                    'link_text' => 'osu!store support',
+                ],
+            ],
+            'delivered' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => 'Om du har några problem med ditt köp, vänligen kontakta :link.',
+                    'link_text' => 'osu!store support',
+                ],
+            ],
+            'prepared' => [
+                'title' => 'Din beställning förbereds!',
+                'line_1' => 'Vänligen vänta lite längre på att den ska skickas. Spårningsinformation kommer att visas här när beställningen har behandlats och skickats. Detta kan ta upp till 5 dagar (men oftast mindre!) beroende på hur upptagna vi är.',
+                'line_2' => '',
+            ],
             'processing' => [
                 'title' => 'Din betalning har ännu inte bekräftats!',
                 'line_1' => 'Om du redan har betalat, kan vi fortfarande vänta på att få bekräftelse på din betalning. Vänligen uppdatera denna sida om en minut eller två!',
                 'line_2' => [
                     '_' => 'Om du stötte på ett problem i kassan, :link',
                     'link_text' => 'klicka här för att återuppta din transaktion',
+                ],
+            ],
+            'shipped' => [
+                'title' => 'Din beställning har skickats!',
+                'tracking_details' => 'Spårningsinformation följer:',
+                'no_tracking_details' => [
+                    '_' => "",
+                    'link_text' => 'skicka oss ett e-post',
                 ],
             ],
         ],
@@ -74,7 +108,19 @@ return [
         'no_orders' => 'Inga beställningar att visa.',
         'paid_on' => 'Beställning slutförd :date',
         'resume' => 'Återuppta transaktionen',
+        'shipping_and_handling' => 'Frakt & Hantering',
         'shopify_expired' => 'Kassalänken för denna beställning har utgått.',
+        'subtotal' => 'Delsumma',
+        'total' => 'Summa',
+
+        'details' => [
+            'order_number' => 'Beställning #',
+            'payment_terms' => 'Betalningsvillkor',
+            'salesperson' => 'Försäljare',
+            'shipping_method' => 'Leveransmetod',
+            'shipping_terms' => 'Leveransvillkor',
+            'title' => 'Beställningsinformation',
+        ],
 
         'item' => [
             'quantity' => 'Antal',
@@ -105,6 +151,15 @@ return [
             'paid' => 'Betalt',
             'processing' => 'Väntar på bekräftelse',
             'shipped' => 'Skickad',
+            'title' => 'Beställningsstatus',
+        ],
+
+        'thanks' => [
+            'title' => 'Tack för din beställning!',
+            'line_1' => [
+                '_' => 'Du kommer att få ett bekräftelsemail snart. Om du har några frågor, vänligen :link!',
+                'link_text' => 'kontakta oss',
+            ],
         ],
     ],
 
@@ -138,6 +193,10 @@ return [
     'username_change' => [
         'check' => 'Skriv in ett användarnamn för att kontrollera tillgänglighet!',
         'checking' => 'Kontrollerar om :username är tillgängligt...',
+        'placeholder' => 'Begärt Användarnamn',
+        'label' => 'Nytt Användarnamn',
+        'current' => 'Ditt nuvarande användarnamn är ":username".',
+
         'require_login' => [
             '_' => 'Du behöver var :link för att ändra ditt namn!',
             'link_text' => 'inloggad',

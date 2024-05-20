@@ -29,13 +29,13 @@ return [
             'guest' => '登录后才能推荐。',
             'hyped' => '你已经推荐了这张谱面。',
             'limit_exceeded' => '你已经用光了推荐次数。',
-            'not_hypeable' => '这张谱面无法推荐',
+            'not_hypeable' => '这张谱面无法被推荐',
             'owner' => '不能推荐你自己的谱面。',
         ],
 
         'timestamp' => [
             'exceeds_beatmapset_length' => '指定的时间戳不在谱面范围内。',
-            'negative' => "无法定位时间戳。",
+            'negative' => "时间戳的值不能为负。",
         ],
     ],
 

@@ -80,7 +80,6 @@ return [
         'action_lazer_title' => 'prova osu!(lazer)',
         'action_title' => 'scarica osu!',
         'for_os' => 'per :os',
-        'lazer_note' => 'attenzione: si applicano reset alle classifiche',
         'macos-fallback' => 'utenti macOS',
         'mirror' => 'mirror',
         'or' => 'oppure',

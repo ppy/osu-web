@@ -63,8 +63,12 @@ return [
         'comments_controller' => [
             '_' => 'комментарии',
         ],
+        'contest_entries_controller' => [
+            'judge_results' => 'результаты судейства конкурса',
+        ],
         'contests_controller' => [
             '_' => 'конкурсы',
+            'judge' => 'судейство конкурса',
         ],
         'groups_controller' => [
             'show' => 'группы',
@@ -105,6 +109,9 @@ return [
         ],
         'tournaments_controller' => [
             '_' => 'турниры',
+        ],
+        'user_cover_presets_controller' => [
+            '_' => 'пресеты обложек',
         ],
         'users_controller' => [
             '_' => 'информация об игроке',

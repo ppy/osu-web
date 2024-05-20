@@ -55,6 +55,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => 'Nova revisió per :username que conté problemes: :problems, suggeriments :suggestions, elogis: :praises',
                 'beatmapset_discussion_unlock' => 'La discussió de ":title" s\'ha obert',
                 'beatmapset_discussion_unlock_compact' => 'La discussió s\'ha obert',
+
+                'review_count' => [
+                    'praises' => ':count_delimited elogi|:count_delimited elogis',
+                    'problems' => ':count_delimited problema|:count_delimited problemes',
+                    'suggestions' => ':count_delimited suggeriment|:count_delimited suggeriments',
+                ],
             ],
 
             'beatmapset_problem' => [
@@ -238,11 +244,6 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':username ha desbloquejat una nova medalla, ":title"!',
-                'user_achievement_unlock_self' => 'Has desbloquejat una nova medalla, ":title"!',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username ha creat nous beatmaps',
                 'user_beatmapset_revive' => ':username ha restaurat beatmaps',

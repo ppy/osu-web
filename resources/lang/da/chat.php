@@ -18,6 +18,8 @@ return [
     'channels' => [
         'confirm_part' => 'Vil du skjule denne kanal? Du vil stadig modtage beskeder fra denne kanal.',
         'create' => 'opret annoncering',
+        'join' => '',
+        'none' => '',
 
         'list' => [
             'title' => [
@@ -59,5 +61,9 @@ return [
         'howto' => "Start samtaler fra en brugers profil eller et brugerkort-popup.",
         'lazer' => 'Offentlige kanaler du joiner via <a href=":link">osu!lazer</a> vil også vises her.',
         'title' => 'ingen samtaler "endnu"',
+    ],
+
+    'join_channels' => [
+        'loading' => '',
     ],
 ];

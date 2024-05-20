@@ -7,56 +7,70 @@ declare(strict_types=1);
 
 namespace Tests\Controllers;
 
-use App\Models\Score\Best\Osu;
-use App\Models\Score\Best\Taiko;
+use App\Models\Beatmap;
 use App\Models\ScorePin;
+use App\Models\Solo\Score;
 use App\Models\User;
 use Tests\TestCase;
 
 class ScorePinsControllerTest extends TestCase
 {
+    private static function createScore(?User $user = null, ?int $rulesetId = null, ?bool $passed = null): Score
+    {
+        if ($rulesetId !== null) {
+            $params['ruleset_id'] = $rulesetId;
+        }
+        if ($user !== null) {
+            $params['user_id'] = $user;
+        }
+        $params['passed'] = $passed ?? true;
+
+        return Score::factory()->create($params);
+    }
+
+    private static function makeParams(Score $score): array
+    {
+        return [
+            'score_id' => $score->getKey(),
+        ];
+    }
+
     public function testDestroy()
     {
-        $pin = ScorePin::factory()->withScore(Osu::factory()->create())->create();
+        $pin = ScorePin::factory()->withScore(static::createScore())->create();
 
-        $initialPinCount = ScorePin::count();
+        $this->expectCountChange(fn () => ScorePin::count(), -1);
 
         $this->actAsUser($pin->user, true);
 
         $this
-            ->delete(route('score-pins.destroy', $this->makeParams($pin->score)))
+            ->delete(route('score-pins.destroy', static::makeParams($pin->score)))
             ->assertSuccessful();
-
-        $this->assertSame(ScorePin::count(), $initialPinCount - 1);
     }
 
     public function testDestroyAsDifferentUser()
     {
-        $pin = ScorePin::factory()->withScore(Osu::factory()->create())->create();
+        $pin = ScorePin::factory()->withScore(static::createScore())->create();
         $otherUser = User::factory()->create();
 
-        $initialPinCount = ScorePin::count();
+        $this->expectCountChange(fn () => ScorePin::count(), 0);
 
         $this->actAsUser($otherUser, true);
 
         $this
-            ->delete(route('score-pins.destroy', $this->makeParams($pin->score)))
+            ->delete(route('score-pins.destroy', static::makeParams($pin->score)))
             ->assertSuccessful();
-
-        $this->assertSame(ScorePin::count(), $initialPinCount);
     }
 
     public function testDestroyAsGuest()
     {
-        $pin = ScorePin::factory()->withScore(Osu::factory()->create())->create();
+        $pin = ScorePin::factory()->withScore(static::createScore())->create();
 
-        $initialPinCount = ScorePin::count();
+        $this->expectCountChange(fn () => ScorePin::count(), 0);
 
         $this
-            ->delete(route('score-pins.destroy', $this->makeParams($pin->score)))
+            ->delete(route('score-pins.destroy', static::makeParams($pin->score)))
             ->assertStatus(401);
-
-        $this->assertSame(ScorePin::count(), $initialPinCount);
     }
 
     // moving: [0]. expected order: [1] < [0]
@@ -65,13 +79,15 @@ class ScorePinsControllerTest extends TestCase
         $user = User::factory()->create();
         $pins = collect([0, 1])->map(fn ($order) => ScorePin
             ::factory(['display_order' => $order])
-            ->withScore(Osu::factory(['user_id' => $user])->create())
+            ->withScore(static::createScore($user, Beatmap::MODES['osu']))
             ->create());
 
         $this->actAsUser($user, true);
         $this
-            ->put(route('score-pins.reorder'), array_merge($this->makeParams($pins[0]->score), ['order1' => $this->makeParams($pins[1]->score)]))
-            ->assertSuccessful();
+            ->put(route('score-pins.reorder'), [
+                ...static::makeParams($pins[0]->score),
+                'order1' => static::makeParams($pins[1]->score),
+            ])->assertSuccessful();
 
         $pins->map->refresh();
         $this->assertTrue($pins[1]->display_order < $pins[0]->display_order);
@@ -83,13 +99,15 @@ class ScorePinsControllerTest extends TestCase
         $user = User::factory()->create();
         $pins = collect([0, 1, 2])->map(fn ($order) => ScorePin
             ::factory(['display_order' => $order])
-            ->withScore(Osu::factory(['user_id' => $user])->create())
+            ->withScore(static::createScore($user, Beatmap::MODES['osu']))
             ->create());
 
         $this->actAsUser($user, true);
         $this
-            ->put(route('score-pins.reorder'), array_merge($this->makeParams($pins[0]->score), ['order1' => $this->makeParams($pins[1]->score)]))
-            ->assertSuccessful();
+            ->put(route('score-pins.reorder'), [
+                ...static::makeParams($pins[0]->score),
+                'order1' => static::makeParams($pins[1]->score),
+            ])->assertSuccessful();
 
         $pins->map->refresh();
         $this->assertTrue($pins[1]->display_order < $pins[0]->display_order);
@@ -102,13 +120,15 @@ class ScorePinsControllerTest extends TestCase
         $user = User::factory()->create();
         $pins = collect([0, 1])->map(fn ($order) => ScorePin
             ::factory(['display_order' => $order])
-            ->withScore(Osu::factory(['user_id' => $user])->create())
+            ->withScore(static::createScore($user, Beatmap::MODES['osu']))
             ->create());
 
         $this->actAsUser($user, true);
         $this
-            ->put(route('score-pins.reorder'), array_merge($this->makeParams($pins[1]->score), ['order3' => $this->makeParams($pins[0]->score)]))
-            ->assertSuccessful();
+            ->put(route('score-pins.reorder'), [
+                ...static::makeParams($pins[1]->score),
+                'order3' => static::makeParams($pins[0]->score),
+            ])->assertSuccessful();
 
         $pins->map->refresh();
         $this->assertTrue($pins[1]->display_order < $pins[0]->display_order);
@@ -120,13 +140,15 @@ class ScorePinsControllerTest extends TestCase
         $user = User::factory()->create();
         $pins = collect([0, 1, 2])->map(fn ($order) => ScorePin
             ::factory(['display_order' => $order])
-            ->withScore(Osu::factory(['user_id' => $user])->create())
+            ->withScore(static::createScore($user, Beatmap::MODES['osu']))
             ->create());
 
         $this->actAsUser($user, true);
         $this
-            ->put(route('score-pins.reorder'), array_merge($this->makeParams($pins[2]->score), ['order1' => $this->makeParams($pins[0]->score)]))
-            ->assertSuccessful();
+            ->put(route('score-pins.reorder'), [
+                ...static::makeParams($pins[2]->score),
+                'order1' => static::makeParams($pins[0]->score),
+            ])->assertSuccessful();
 
         $pins->map->refresh();
         $this->assertTrue($pins[0]->display_order < $pins[2]->display_order);
@@ -135,46 +157,40 @@ class ScorePinsControllerTest extends TestCase
 
     public function testStore()
     {
-        $score = Osu::factory()->create();
+        $score = static::createScore();
 
-        $initialPinCont = ScorePin::count();
+        $this->expectCountChange(fn () => $score->user->scorePins()->count(), 1);
 
         $this->actAsUser($score->user, true);
 
         $this
-            ->post(route('score-pins.store'), $this->makeParams($score))
+            ->post(route('score-pins.store'), static::makeParams($score))
             ->assertSuccessful();
-
-        $this->assertSame(ScorePin::count(), $initialPinCont + 1);
     }
 
     public function testStoreAsGuest()
     {
-        $score = Osu::factory()->create();
+        $score = static::createScore();
 
-        $initialPinCont = ScorePin::count();
+        $this->expectCountChange(fn () => ScorePin::count(), 0);
 
         $this
-            ->post(route('score-pins.store'), $this->makeParams($score))
+            ->post(route('score-pins.store'), static::makeParams($score))
             ->assertStatus(401);
-
-        $this->assertSame(ScorePin::count(), $initialPinCont);
     }
 
     public function testStoreAsNonOwner()
     {
-        $score = Osu::factory()->create();
+        $score = static::createScore();
         $otherUser = User::factory()->create();
 
-        $initialPinCont = ScorePin::count();
+        $this->expectCountChange(fn () => ScorePin::count(), 0);
 
         $this->actAsUser($otherUser, true);
 
         $this
-            ->post(route('score-pins.store'), $this->makeParams($score))
+            ->post(route('score-pins.store'), static::makeParams($score))
             ->assertStatus(403);
-
-        $this->assertSame(ScorePin::count(), $initialPinCont);
     }
 
     // new score pin should always be above existing ones
@@ -183,115 +199,84 @@ class ScorePinsControllerTest extends TestCase
         $user = User::factory()->create([
             'osu_subscriber' => false,
         ]);
-        $score1 = Osu::factory()->create(['user_id' => $user]);
-        $score2 = Osu::factory()->create(['user_id' => $user]);
-        $pin1 = ScorePin::factory()->withScore($score1, 'score')->create();
+        $score1 = static::createScore($user, Beatmap::MODES['osu']);
+        $score2 = static::createScore($user, Beatmap::MODES['osu']);
+        $pin1 = ScorePin::factory()->withScore($score1)->create();
 
         $this->actAsUser($user, true);
 
         $this
-            ->post(route('score-pins.store'), $this->makeParams($score2))
+            ->post(route('score-pins.store'), static::makeParams($score2))
             ->assertSuccessful();
 
-        $responsePin = $user->scorePins()->whereMorphedTo('score', $score2)->first();
-        $this->assertTrue($pin1->display_order > $responsePin->display_order);
+        $pin2 = $user->scorePins()->find($score2->getKey());
+        $this->assertTrue($pin1->display_order > $pin2->display_order);
     }
 
     public function testStoreDuplicate()
     {
-        $score = Osu::factory()->create();
-        $pin = ScorePin::factory()->withScore($score, 'score')->create();
+        $score = static::createScore();
+        $pin = ScorePin::factory()->withScore($score)->create();
 
-        $initialPinCont = ScorePin::count();
+        $this->expectCountChange(fn () => ScorePin::count(), 0);
 
         $this->actAsUser($score->user, true);
 
         $this
-            ->post(route('score-pins.store'), $this->makeParams($score))
+            ->post(route('score-pins.store'), static::makeParams($score))
             ->assertSuccessful();
-
-        $this->assertSame(ScorePin::count(), $initialPinCont);
     }
 
     public function testStoreInvalidScoreId()
     {
-        Osu::find(1)?->destroy();
+        Score::whereKey(1)->delete();
 
-        $initialPinCont = ScorePin::count();
-
-        $this->actAsUser(User::factory()->create(), true);
-
-        $this
-            ->post(route('score-pins.store'), ['score_type' => 'score_best_osu', 'score_id' => 1])
-            ->assertStatus(422);
-
-        $this->assertSame(ScorePin::count(), $initialPinCont);
-    }
-
-    public function testStoreInvalidScoreMode()
-    {
-        $score = Osu::factory()->create();
-
-        $initialPinCont = ScorePin::count();
+        $this->expectCountChange(fn () => ScorePin::count(), 0);
 
         $this->actAsUser(User::factory()->create(), true);
 
         $this
-            ->post(route('score-pins.store'), ['score_type' => '_invalid', 'score_id' => $score->getKey()])
+            ->post(route('score-pins.store'), ['score_id' => 1])
             ->assertStatus(422);
-
-        $this->assertSame(ScorePin::count(), $initialPinCont);
     }
 
     public function testStoreLimit()
     {
-        config()->set('osu.user.max_score_pins', 1);
+        config_set('osu.user.max_score_pins', 1);
 
         $user = User::factory()->create([
             'osu_subscriber' => false,
         ]);
-        $score1 = Osu::factory()->create(['user_id' => $user]);
-        $score2 = Osu::factory()->create(['user_id' => $user]);
-        $pin1 = ScorePin::factory()->withScore($score1, 'score')->create();
+        $score1 = static::createScore($user, Beatmap::MODES['osu']);
+        $score2 = static::createScore($user, Beatmap::MODES['osu']);
+        $pin1 = ScorePin::factory()->withScore($score1)->create();
 
-        $initialPinCont = ScorePin::count();
+        $this->expectCountChange(fn () => ScorePin::count(), 0);
 
         $this->actAsUser($user, true);
 
         $this
-            ->post(route('score-pins.store'), $this->makeParams($score2))
+            ->post(route('score-pins.store'), static::makeParams($score2))
             ->assertStatus(403);
-
-        $this->assertSame(ScorePin::count(), $initialPinCont);
     }
 
     public function testStoreLimitDifferentMode()
     {
-        config()->set('osu.user.max_score_pins', 1);
+        config_set('osu.user.max_score_pins', 1);
 
         $user = User::factory()->create([
             'osu_subscriber' => false,
         ]);
-        $score1 = Osu::factory()->create(['user_id' => $user]);
-        $score2 = Taiko::factory()->create(['user_id' => $user]);
-        $pin1 = ScorePin::factory()->withScore($score1, 'score')->create();
+        $score1 = static::createScore($user, Beatmap::MODES['osu']);
+        $score2 = static::createScore($user, Beatmap::MODES['taiko']);
+        $pin1 = ScorePin::factory()->withScore($score1)->create();
 
-        $initialPinCont = ScorePin::count();
+        $this->expectCountChange(fn () => ScorePin::count(), 1);
 
         $this->actAsUser($user, true);
 
         $this
-            ->post(route('score-pins.store'), $this->makeParams($score2))
+            ->post(route('score-pins.store'), static::makeParams($score2))
             ->assertSuccessful();
-
-        $this->assertSame(ScorePin::count(), $initialPinCont + 1);
-    }
-
-    private function makeParams($score)
-    {
-        return [
-            'score_id' => $score->getKey(),
-            'score_type' => $score->getMorphClass(),
-        ];
     }
 }

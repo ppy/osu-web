@@ -5,7 +5,7 @@
 
 return [
     'page_description' => 'osu! Featured artistit',
-    'title' => 'Featured Artistit',
+    'title' => 'Esitellyt artistit',
 
     'admin' => [
         'hidden' => 'ARTISTI ON TÄLLÄ HETKELLÄ PIILOTETTU',
@@ -13,8 +13,8 @@ return [
 
     'beatmaps' => [
         '_' => 'Beatmapit',
-        'download' => 'Lataa Beatmap-Pohja',
-        'download-na' => 'rytmikarttapohja ei ole vielä saatavilla',
+        'download' => 'Lataa rytmikarttapohja',
+        'download-na' => 'rytmikarttapohja ei vielä saatavilla',
     ],
 
     'index' => [
@@ -45,13 +45,19 @@ return [
         'index' => [
             '_' => 'kappalehaku',
 
+            'exclusive_only' => [
+                'all' => 'Kaikki',
+                'exclusive_only' => 'osu!-alkuperäinen',
+            ],
+
             'form' => [
                 'advanced' => 'Laajennettu haku',
                 'album' => 'Albumi',
-                'artist' => 'Esittäjä',
+                'artist' => 'Artisti',
                 'bpm_gte' => 'BPM vähintään',
                 'bpm_lte' => 'BPM enintään',
                 'empty' => 'Hakukriteerejä vastaavia kappaleita ei löytynyt.',
+                'exclusive_only' => 'Tyyppi',
                 'genre' => 'Tyylilaji',
                 'genre_all' => 'Kaikki',
                 'length_gte' => 'Vähimmäispituus',

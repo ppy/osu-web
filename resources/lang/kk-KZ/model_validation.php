@@ -26,7 +26,7 @@ return [
 
         'hype' => [
             'discussion_locked' => "",
-            'guest' => '',
+            'guest' => 'Хайптау үшін аккаунтыңызға кіру керек.',
             'hyped' => '',
             'limit_exceeded' => '',
             'not_hypeable' => '',
@@ -113,7 +113,7 @@ return [
         'exists' => '',
 
         'attributes' => [
-            'api_key' => '',
+            'api_key' => 'api кілт',
             'app_name' => '',
             'app_url' => '',
         ],
@@ -158,7 +158,7 @@ return [
         'too_long' => '',
 
         'attributes' => [
-            'username' => '',
+            'username' => 'Пайдаланушы аты',
             'user_email' => '',
             'password' => '',
         ],

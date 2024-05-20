@@ -5,10 +5,9 @@
 
 return [
     'button' => [
-        'cancel' => '',
         'resend' => '',
         'set' => '',
-        'start' => '',
+        'start' => 'Бастау',
     ],
 
     'error' => [
@@ -37,6 +36,9 @@ return [
     'starting' => [
         'username' => '',
 
+        'reason' => [
+            'inactive_different_country' => "",
+        ],
         'support' => [
             '_' => '',
             'button' => '',

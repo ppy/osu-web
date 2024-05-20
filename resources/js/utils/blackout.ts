@@ -3,25 +3,21 @@
 
 import { fadeToggle } from './fade';
 
-export function blackoutHide() {
-  blackoutToggle(false);
-}
+const elements = new Set<unknown>();
 
-export function blackoutShow() {
-  blackoutToggle(true);
-}
-
-export function blackoutToggle(state: boolean, opacity?: number) {
-  const el = document.querySelector('.js-blackout');
-
-  if (el instanceof HTMLElement) {
-    el.style.opacity = !state || opacity == null ? '' : String(opacity);
-    fadeToggle(el, state);
+export function blackoutToggle(element: unknown, state: boolean) {
+  if (state) {
+    elements.add(element);
+  } else {
+    elements.delete(element);
   }
+
+  fadeToggle(
+    window.newBody?.querySelector('.js-blackout'),
+    blackoutVisible(),
+  );
 }
 
 export function blackoutVisible() {
-  const el = document.querySelector('.js-blackout');
-
-  return el instanceof HTMLElement && el.style.opacity !== '';
+  return elements.size > 0;
 }

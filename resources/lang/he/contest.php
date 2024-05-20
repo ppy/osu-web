@@ -13,7 +13,28 @@ return [
         'nav_title' => 'רשימה',
     ],
 
+    'judge' => [
+        'hide_judged' => '',
+        'nav_title' => '',
+        'no_current_vote' => '',
+        'update' => '',
+        'validation' => [
+            'missing_score' => '',
+            'contest_vote_judged' => '',
+        ],
+        'voted' => '',
+    ],
+
+    'judge_results' => [
+        '_' => '',
+        'creator' => '',
+        'score' => '',
+        'total_score' => '',
+    ],
+
     'voting' => [
+        'judge_link' => '',
+        'judged_notice' => '',
         'login_required' => 'אנא התחבר כדי להצביע.',
         'over' => 'הצבעה לתחרות זו הסתיימה',
         'show_voted_only' => '',
@@ -38,6 +59,7 @@ return [
             ],
         ],
     ],
+
     'entry' => [
         '_' => 'ערך',
         'login_required' => 'נא התחבר כדי להיכנס לתחרות.',
@@ -45,22 +67,27 @@ return [
         'preparation' => 'אנו כרגע מכינים תחרות זאת. נא חכה בסבלנות!',
         'drop_here' => 'זרוק את שליחתך לפה',
         'download' => 'הורד .osz',
+
         'wrong_type' => [
             'art' => 'רק קבצי .jpg ו- .png מתקבלים לתחרות זו.',
             'beatmap' => 'רק קבצי .osu מתקבלים לתחרות זו.',
             'music' => 'רק קבצי .mp3 מתקבלים לתחרות זו.',
         ],
+
         'wrong_dimensions' => '',
         'too_big' => 'שליחות לתחרות זו יכולות להיות עד :limit.',
     ],
+
     'beatmaps' => [
         'download' => 'הורד שליחה',
     ],
+
     'vote' => [
         'list' => 'הצבעות',
         'count' => ':count_delimited הצבעה|:count_delimited הצבעות',
         'points' => ':count_delimited נקודה|:count_delimited נקודות',
     ],
+
     'dates' => [
         'ended' => 'נגמר ב- :date',
         'ended_no_date' => 'הסתיים',
@@ -70,6 +97,7 @@ return [
             'soon' => 'בקרוב™',
         ],
     ],
+
     'states' => [
         'entry' => 'שליחה פתוחה',
         'voting' => 'הצבעה התחילה',

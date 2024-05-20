@@ -86,7 +86,6 @@ return [
         ],
         'rankings' => [
             '_' => 'reitingai',
-            'kudosu' => 'kudosu',
         ],
         'store' => [
             '_' => 'parduotuvė',
@@ -112,6 +111,7 @@ return [
         'legal' => [
             '_' => 'Teisė ir Būsena',
             'copyright' => 'Autorinės teisės (DMCA)',
+            'jp_sctl' => '',
             'privacy' => 'Privatumas',
             'server_status' => 'Serverio būsena',
             'source_code' => 'Pirminis Kodas',
@@ -195,6 +195,8 @@ return [
             'account-edit' => 'Nustatymai',
             'follows' => 'Stebėjimo sąrašai',
             'friends' => 'Draugai',
+            'legacy_score_only_toggle' => '',
+            'legacy_score_only_toggle_tooltip' => '',
             'logout' => 'Atsijungti',
             'profile' => 'Mano Profilis',
         ],

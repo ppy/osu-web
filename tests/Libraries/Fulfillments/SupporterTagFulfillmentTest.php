@@ -291,7 +291,7 @@ class SupporterTagFulfillmentTest extends TestCase
         (new SupporterTagFulfillment($this->order))->run();
     }
 
-    public function boolDataProvider()
+    public static function boolDataProvider()
     {
         return [
             [true],

@@ -55,6 +55,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => '',
                 'beatmapset_discussion_unlock' => '',
                 'beatmapset_discussion_unlock_compact' => '',
+
+                'review_count' => [
+                    'praises' => '',
+                    'problems' => '',
+                    'suggestions' => '',
+                ],
             ],
 
             'beatmapset_problem' => [
@@ -238,11 +244,6 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => '',
-                'user_achievement_unlock_self' => '',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => '',
                 'user_beatmapset_revive' => '',

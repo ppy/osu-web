@@ -38,7 +38,7 @@ return [
             '_' => 'beatmap-diskussion-beiträge',
         ],
         'beatmap_discussions_controller' => [
-            '_' => 'beatmap-diskussionen',
+            '_' => 'Beatmap-Diskussionen',
         ],
         'beatmap_packs_controller' => [
             '_' => 'Beatmap-Pakete',
@@ -50,7 +50,7 @@ return [
             '_' => 'Beatmap-Verlauf',
         ],
         'beatmapsets_controller' => [
-            'discussion' => 'beatmap-diskussion',
+            'discussion' => 'Beatmap-Diskussion',
             'index' => 'Beatmap-Auflistung',
             'show' => 'beatmap-info',
         ],
@@ -63,8 +63,12 @@ return [
         'comments_controller' => [
             '_' => 'kommentare',
         ],
+        'contest_entries_controller' => [
+            'judge_results' => 'Ergebnisse der Wettbewerbsbewertung',
+        ],
         'contests_controller' => [
             '_' => 'Wettbewerbe',
+            'judge' => 'Wettbewerbsbewertung',
         ],
         'groups_controller' => [
             'show' => 'gruppen',
@@ -92,7 +96,7 @@ return [
             '_' => 'Benachrichtigungsverlauf',
         ],
         'password_reset_controller' => [
-            '_' => 'passwort zurücksetzen',
+            '_' => 'Passwort zurücksetzen',
         ],
         'ranking_controller' => [
             '_' => 'Ranglisten',
@@ -106,8 +110,11 @@ return [
         'tournaments_controller' => [
             '_' => 'Turniere',
         ],
+        'user_cover_presets_controller' => [
+            '_' => '',
+        ],
         'users_controller' => [
-            '_' => 'spieler-info',
+            '_' => 'Spielerinfo',
             'create' => 'account erstellen',
             'disabled' => 'notiz',
         ],
@@ -121,7 +128,7 @@ return [
         ],
     ],
     'store' => [
-        '_' => 'shop',
+        '_' => 'Shop',
     ],
     'users' => [
         'modding_history_controller' => [

@@ -18,7 +18,7 @@ return [
     ],
 
     'index' => [
-        'description' => 'Los artistas destacados son artistas con los que colaboramos para brindarle música nueva y original a osu!. Estos artistas y una selección de sus trabajos han sido escogidos por el equipo de osu! por ser geniales y adecuados para mapeo. Algunos de estos artistas destacados también crearon nuevas canciones exclusivas para su uso en osu!.<br><br>Todas las canciones en esta sección son proporcionadas como archivos .osz con ritmo previamente calculado y han sido licenciadas oficialmente para su uso en osu! y contenido relacionado con osu!.',
+        'description' => 'Los artistas destacados son artistas con los que colaboramos para brindarle música nueva y original a osu!. Estos artistas y una selección de sus trabajos han sido escogidos por el equipo de osu! por ser geniales y adecuados para el mapping. Algunos de estos artistas destacados también crearon nuevas canciones exclusivas para su uso en osu!.<br><br>Todas las canciones en esta sección son proporcionadas como archivos .osz con ritmo previamente calculado y han sido licenciadas oficialmente para su uso en osu! y contenido relacionado con osu!.',
     ],
 
     'links' => [
@@ -29,15 +29,15 @@ return [
 
     'songs' => [
         '_' => 'Canciones',
-        'count' => ':count canción|:count canciones',
-        'original' => 'Original de osu!',
+        'count' => ':count_delimited canción|:count_delimited canciones',
+        'original' => 'osu! original',
         'original_badge' => 'ORIGINAL',
     ],
 
     'tracklist' => [
         'title' => 'título',
         'length' => 'duración',
-        'bpm' => 'ppm',
+        'bpm' => 'bpm',
         'genre' => 'género',
     ],
 
@@ -45,13 +45,19 @@ return [
         'index' => [
             '_' => 'búsqueda de pistas',
 
+            'exclusive_only' => [
+                'all' => 'Todos',
+                'exclusive_only' => 'osu! original',
+            ],
+
             'form' => [
                 'advanced' => 'Búsqueda avanzada',
                 'album' => 'Álbum',
                 'artist' => 'Artista',
-                'bpm_gte' => 'PPM mínimo',
-                'bpm_lte' => 'PPM máximo',
+                'bpm_gte' => 'BPM mínimo',
+                'bpm_lte' => 'BPM máximo',
                 'empty' => 'No se encontraron pistas que coincidieran con ese criterio de búsqueda.',
+                'exclusive_only' => 'Tipo',
                 'genre' => 'Género',
                 'genre_all' => 'Todos',
                 'length_gte' => 'Duración mínima',

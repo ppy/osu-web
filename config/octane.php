@@ -70,10 +70,10 @@ return [
         RequestReceived::class => [
             ...Octane::prepareApplicationForNextOperation(),
             ...Octane::prepareApplicationForNextRequest(),
+            OctaneResetLocalCache::class,
         ],
 
         RequestHandled::class => [
-            OctaneResetLocalCache::class,
         ],
 
         RequestTerminated::class => [
@@ -188,9 +188,9 @@ return [
         'composer.lock*',
         'config',
         'database',
-        'public/**/*.php',
         'public/assets/manifest.json*',
-        'resources/**/*.php',
+        'resources/lang',
+        'resources/views',
         'routes',
     ],
 

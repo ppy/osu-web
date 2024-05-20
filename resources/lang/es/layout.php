@@ -86,7 +86,6 @@ return [
         ],
         'rankings' => [
             '_' => 'clasificaciones',
-            'kudosu' => 'kudosu',
         ],
         'store' => [
             '_' => 'tienda',
@@ -112,6 +111,7 @@ return [
         'legal' => [
             '_' => 'Legal y estado',
             'copyright' => 'Derechos de autor (DMCA)',
+            'jp_sctl' => 'SCTL',
             'privacy' => 'Privacidad',
             'server_status' => 'Estado del servidor',
             'source_code' => 'Código fuente',
@@ -169,12 +169,12 @@ return [
     ],
 
     'popup_login' => [
-        'button' => 'iniciar sesión / registrarse',
+        'button' => 'iniciar sesión / registrarme',
 
         'login' => [
             'forgot' => "He olvidado mis datos",
             'password' => 'contraseña',
-            'title' => 'Iniciar sesión para continuar',
+            'title' => 'Inicia sesión para continuar',
             'username' => 'nombre de usuario',
 
             'error' => [
@@ -185,7 +185,7 @@ return [
 
         'register' => [
             'download' => 'Descargar',
-            'info' => '¡Descargue osu! para crear su propia cuenta!',
+            'info' => '¡Descarga osu! para crear tu propia cuenta!',
             'title' => "¿No tienes una cuenta?",
         ],
     ],
@@ -195,13 +195,15 @@ return [
             'account-edit' => 'Configuración',
             'follows' => 'Listas de seguimiento',
             'friends' => 'Amigos',
+            'legacy_score_only_toggle' => 'Modo lazer',
+            'legacy_score_only_toggle_tooltip' => 'El modo lazer muestra las puntuaciones enviadas desde lazer con un nuevo algoritmo de puntuación',
             'logout' => 'Cerrar sesión',
             'profile' => 'Mi perfil',
         ],
     ],
 
     'popup_search' => [
-        'initial' => '¡Escriba para buscar!',
+        'initial' => '¡Escribe para buscar!',
         'retry' => 'Búsqueda fallida. Haz clic aquí para reintentar.',
     ],
 ];

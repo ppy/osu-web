@@ -7,7 +7,6 @@ namespace Tests\Controllers\Payments;
 
 use App\Libraries\Payments\XsollaSignature;
 use App\Models\Store\Order;
-use Config;
 use Tests\TestCase;
 
 class XsollaControllerTest extends TestCase
@@ -65,7 +64,7 @@ class XsollaControllerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        Config::set('payments.xsolla.secret_key', 'magic');
+        config_set('payments.xsolla.secret_key', 'magic');
         $this->order = Order::factory()->checkout()->create();
     }
 

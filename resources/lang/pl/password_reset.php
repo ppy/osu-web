@@ -5,7 +5,6 @@
 
 return [
     'button' => [
-        'cancel' => 'Anuluj',
         'resend' => 'Wyślij ponownie e-mail weryfikacyjny',
         'set' => 'Ustaw hasło',
         'start' => 'Rozpocznij',
@@ -37,6 +36,9 @@ return [
     'starting' => [
         'username' => 'Wprowadź e-mail lub nazwę użytkownika',
 
+        'reason' => [
+            'inactive_different_country' => "Twoje konto nie było używane przez długi czas. Zresetuj hasło, aby zapewnić bezpieczeństwo konta.",
+        ],
         'support' => [
             '_' => 'Potrzebujesz pomocy? Skontaktuj się z :button.',
             'button' => 'pomocą techniczną',

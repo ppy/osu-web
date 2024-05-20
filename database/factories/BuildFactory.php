@@ -16,8 +16,8 @@ class BuildFactory extends Factory
     {
         return [
             'date' => fn () => $this->faker->dateTimeBetween('-5 years'),
-            'hash' => fn () => md5($this->faker->word(), true),
-            'stream_id' => fn () => array_rand_val(config('osu.changelog.update_streams')),
+            'hash' => fn () => md5(rand(), true),
+            'stream_id' => fn () => array_rand_val($GLOBALS['cfg']['osu']['changelog']['update_streams']),
             'users' => rand(100, 10000),
 
             // the default depends on date

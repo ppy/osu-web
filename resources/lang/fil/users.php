@@ -37,7 +37,7 @@ return [
         'blocked_count' => 'mga na-block na user (:count)',
         'hide_profile' => 'Itago ang profile',
         'hide_comment' => 'itago',
-        'forum_post_text' => '',
+        'forum_post_text' => 'Ang post na ito ay nakatago.',
         'not_blocked' => 'Hindi naka-block ang user na ito.',
         'show_profile' => 'Ipakita ang profile',
         'show_comment' => 'ipakita',
@@ -49,7 +49,7 @@ return [
     ],
 
     'card' => [
-        'gift_supporter' => '',
+        'gift_supporter' => 'Magregalo ng tag sa tagasuporta',
         'loading' => 'Nag lo-load...',
         'send_message' => 'Ipadala ang mensahe',
     ],
@@ -97,6 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
+            'inactive' => "",
             'inactive_different_country' => "Ang iyong account ay hindi nagamit ng mahabang panahon.",
         ],
     ],
@@ -120,6 +121,17 @@ return [
         'beta' => [
             'main' => 'Ang beta access ay para lang sa mga users na may pribilehiyo.',
             'small' => '(Makakapasok rin ang mga osu!supporter)',
+        ],
+    ],
+
+    'ogp' => [
+        'modding_description' => 'Mga beatmap :counts',
+        'modding_description_empty' => 'Ang user ay walang anumang mga beatmap...',
+
+        'description' => [
+            '_' => 'Ranggo (:ruleset): :global | :country',
+            'country' => 'Bansa :rank',
+            'global' => 'Pandaigdigan :rank',
         ],
     ],
 
@@ -159,8 +171,8 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'Naging limitado ang iyong account!',
-        'message' => 'Habang restricted ang account, ikaw ay hindi maaaring makihalubilo sa kapwa kalaro at ang iyong mga iskor ay ikaw lamang ang makakakita. Ito ay madalas ng resulta ng isang automated na proseso at kadalasang ipinapawalang bisa pagkatapos ng 24 oras. Kung nais mong mag-apela sa iyong restriction, <a href="mailto:accounts@ppy.sh">i-contact ang support</a>.',
-        'message_link' => '',
+        'message' => 'Habang na-restrict, hindi mo magagawang makipag-ugnayan sa ibang mga manlalaro at ikaw lang ang makakakita ng iyong mga iskor. Ito ay kadalasang resulta ng isang awtomatikong proseso at kadalasang maalis sa loob ng 24 na oras. :link',
+        'message_link' => 'Suriin ang pahinang ito upang matuto nang higit pa.',
     ],
     'show' => [
         'age' => ':age taong gulang',
@@ -175,7 +187,6 @@ return [
         'origin_country' => 'Nangganling sa :country',
         'previous_usernames' => 'dating kilala bilang',
         'plays_with' => 'Naglalaro gamit ang :devices',
-        'title' => "Profile ni :username",
 
         'comments_count' => [
             '_' => 'Nag-post sa :link',
@@ -387,7 +398,7 @@ return [
                     'date' => 'petsa',
                     'action' => 'aksyon',
                     'length' => 'tagal',
-                    'length_indefinite' => '',
+                    'length_indefinite' => 'Walang katiyakan',
                     'description' => 'deskripsyon',
                     'actor' => 'ni :username',
 

@@ -63,8 +63,12 @@ return [
         'comments_controller' => [
             '_' => 'コメント',
         ],
+        'contest_entries_controller' => [
+            'judge_results' => '',
+        ],
         'contests_controller' => [
             '_' => 'コンテスト',
+            'judge' => '',
         ],
         'groups_controller' => [
             'show' => 'グループ',
@@ -105,6 +109,9 @@ return [
         ],
         'tournaments_controller' => [
             '_' => 'トーナメント',
+        ],
+        'user_cover_presets_controller' => [
+            '_' => '',
         ],
         'users_controller' => [
             '_' => 'プレイヤー情報',

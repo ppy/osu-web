@@ -3,11 +3,17 @@
 
 import mapperGroup from 'beatmap-discussions/mapper-group';
 import SelectOptions, { OptionRenderProps } from 'components/select-options';
+import BeatmapsetDiscussionsStore from 'interfaces/beatmapset-discussions-store';
 import UserJson from 'interfaces/user-json';
+import { action, computed, makeObservable } from 'mobx';
+import { observer } from 'mobx-react';
+import { usernameSortAscending } from 'models/user';
 import * as React from 'react';
+import { mobxArrayGet } from 'utils/array';
 import { makeUrl, parseUrl } from 'utils/beatmapset-discussion-helper';
 import { groupColour } from 'utils/css';
 import { trans } from 'utils/lang';
+import DiscussionsState from './discussions-state';
 
 const allUsers = Object.freeze({
   id: null,
@@ -21,14 +27,13 @@ const noSelection = Object.freeze({
 
 interface Option {
   groups: UserJson['groups'];
-  id: UserJson['id'];
+  id: UserJson['id'] | null;
   text: UserJson['username'];
 }
 
 interface Props {
-  ownerId: number;
-  selectedUser?: UserJson | null;
-  users: UserJson[];
+  discussionsState: DiscussionsState;
+  store: BeatmapsetDiscussionsStore;
 }
 
 function mapUserProperties(user: UserJson): Option {
@@ -39,15 +44,42 @@ function mapUserProperties(user: UserJson): Option {
   };
 }
 
+@observer
 export class UserFilter extends React.Component<Props> {
+  private get ownerId() {
+    return this.props.discussionsState.beatmapset.user_id;
+  }
+
+  @computed
   private get selected() {
-    return this.props.selectedUser != null
-      ? mapUserProperties(this.props.selectedUser)
+    return this.props.discussionsState.selectedUser != null
+      ? mapUserProperties(this.props.discussionsState.selectedUser)
       : noSelection;
   }
 
+  @computed
   private get options() {
-    return [allUsers, ...this.props.users.map(mapUserProperties)];
+    const usersWithDicussions = new Map<number, UserJson>();
+    for (const [, discussion] of this.props.store.discussions) {
+      if (discussion.message_type === 'hype') continue;
+
+      const user = this.props.store.users.get(discussion.user_id);
+      if (user != null && !usersWithDicussions.has(user.id)) {
+        usersWithDicussions.set(user.id, user);
+      }
+    }
+
+    return [
+      allUsers,
+      ...[...usersWithDicussions.values()]
+        .sort(usernameSortAscending)
+        .map(mapUserProperties),
+    ];
+  }
+
+  constructor(props: Props) {
+    super(props);
+    makeObservable(this);
   }
 
   render() {
@@ -62,27 +94,34 @@ export class UserFilter extends React.Component<Props> {
     );
   }
 
+  private getGroup(option: Option) {
+    if (this.isOwner(option)) return mapperGroup;
+
+    return mobxArrayGet(option.groups, 0);
+  }
+
+  @action
   private readonly handleChange = (option: Option) => {
-    $.publish('beatmapsetDiscussions:update', { selectedUserId: option.id });
+    this.props.discussionsState.selectedUserId = option.id;
   };
 
   private isOwner(user?: Option) {
-    return user != null && user.id === this.props.ownerId;
+    return user != null && user.id === this.ownerId;
   }
 
   private readonly renderOption = ({ cssClasses, children, onClick, option }: OptionRenderProps<Option>) => {
-    const group = this.isOwner(option) ? mapperGroup : option.groups?.[0];
+    const group = this.getGroup(option);
     const style = groupColour(group);
 
     const urlOptions = parseUrl();
     // means it doesn't work on non-beatmapset discussion paths
     if (urlOptions == null) return null;
 
-    urlOptions.user = option?.id;
+    urlOptions.user = option.id ?? undefined;
 
     return (
       <a
-        key={option?.id}
+        key={option.id}
         className={cssClasses}
         href={makeUrl(urlOptions)}
         onClick={onClick}

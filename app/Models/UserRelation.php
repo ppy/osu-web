@@ -50,12 +50,7 @@ class UserRelation extends Model
 
     public function scopeOnline($query)
     {
-        return $query->whereExists(function ($query) {
-            $query->select(DB::raw(1))
-                ->from('phpbb_users')
-                ->whereRaw('phpbb_users.user_id = phpbb_zebra.zebra_id')
-                ->whereRaw('phpbb_users.user_lastvisit > UNIX_TIMESTAMP(DATE_SUB(NOW(), INTERVAL '.config('osu.user.online_window').' MINUTE))');
-        });
+        return $query->whereHas('target', fn ($q) => $q->online());
     }
 
     public function scopeVisible($query)
@@ -76,8 +71,8 @@ class UserRelation extends Model
                 AND z.friend = 1
             ), 0)';
 
-        if (count(config('osu.user.super_friendly')) > 0) {
-            $friendlyIds = implode(',', config('osu.user.super_friendly'));
+        if (count($GLOBALS['cfg']['osu']['user']['super_friendly']) > 0) {
+            $friendlyIds = implode(',', $GLOBALS['cfg']['osu']['user']['super_friendly']);
             $raw = DB::raw(
                 "CASE WHEN phpbb_zebra.zebra_id IN ({$friendlyIds})
                     THEN 1
@@ -90,16 +85,5 @@ class UserRelation extends Model
         }
 
         return $query->addSelect('*', $raw);
-    }
-
-    public function scopeWithOnline($query)
-    {
-        return $query->addSelect(DB::raw(
-            '(
-                SELECT phpbb_users.user_lastvisit > UNIX_TIMESTAMP(DATE_SUB(NOW(), INTERVAL '.config('osu.user.online_window').' MINUTE))
-                FROM phpbb_users
-                WHERE phpbb_users.user_id = phpbb_zebra.zebra_id
-            ) as online'
-        ));
     }
 }

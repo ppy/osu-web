@@ -19,7 +19,7 @@ class BeatmapsetQueryParserTest extends TestCase
         $this->assertSame(json_encode($expected), json_encode(BeatmapsetQueryParser::parse($query)));
     }
 
-    public function queryDataProvider()
+    public static function queryDataProvider()
     {
         return [
             // basic options
@@ -92,6 +92,7 @@ class BeatmapsetQueryParserTest extends TestCase
             ['find me songs by artist=singer please', ['keywords' => 'find me songs by  please', 'options' => ['artist' => 'singer']]],
             ['really like artist="name with space" yes', ['keywords' => 'really like  yes', 'options' => ['artist' => 'name with space']]],
             ['weird artist=double"quote', ['keywords' => 'weird', 'options' => ['artist' => 'double"quote']]],
+            ['weird artist="nested "quote"" thing', ['keywords' => 'weird  thing', 'options' => ['artist' => 'nested "quote"']]],
             ['artist=><something', ['keywords' => null, 'options' => ['artist' => '><something']]],
             ['unrecognised=keyword', ['keywords' => 'unrecognised=keyword', 'options' => []]],
             ['cs=nope', ['keywords' => 'cs=nope', 'options' => []]],

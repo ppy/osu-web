@@ -86,7 +86,6 @@ return [
         ],
         'rankings' => [
             '_' => 'דירוגים',
-            'kudosu' => 'kudosu',
         ],
         'store' => [
             '_' => 'חנות',
@@ -112,6 +111,7 @@ return [
         'legal' => [
             '_' => 'חוקי & סטטוס',
             'copyright' => 'זכויות יוצרים (DMCA)',
+            'jp_sctl' => '',
             'privacy' => 'פרטיות',
             'server_status' => 'מצב השרת',
             'source_code' => 'קוד מקור',
@@ -195,6 +195,8 @@ return [
             'account-edit' => 'הגדרות',
             'follows' => 'רשימת מעקב',
             'friends' => 'חברים',
+            'legacy_score_only_toggle' => '',
+            'legacy_score_only_toggle_tooltip' => '',
             'logout' => 'התנתק',
             'profile' => 'הפרופיל שלי',
         ],

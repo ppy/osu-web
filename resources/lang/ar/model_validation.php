@@ -8,7 +8,7 @@ return [
     'not_negative' => ':attribute لا يمكن ان يكون سلبياََ.',
     'required' => ':attribute مطلوب.',
     'too_long' => ':attribute تجاوز الحد المطلوب - يمكن ان يصل حد :limit حروف فقط.',
-    'url' => '',
+    'url' => 'المرجو إدخال عنوان URL صحيح.',
     'wrong_confirmation' => 'التأكيد لا يتطابق.',
 
     'beatmapset_discussion' => [
@@ -110,12 +110,12 @@ return [
     ],
 
     'legacy_api_key' => [
-        'exists' => '',
+        'exists' => 'يتم توفير مفتاح API واحد فقط لكل مستخدم في الوقت الحالي.',
 
         'attributes' => [
-            'api_key' => '',
-            'app_name' => '',
-            'app_url' => '',
+            'api_key' => 'مفتاح واجهة برمجة التطبيقات',
+            'app_name' => 'اسم التطبيق',
+            'app_url' => 'رابط التطبيق',
         ],
     ],
 
@@ -175,7 +175,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => 'الخرائط الـ Ranked لا يمكن الإبلاغ عنها',
-        'not_in_channel' => '',
+        'not_in_channel' => 'أنت لست في هذه القناة.',
         'reason_not_valid' => ':reason ليس مقبولا لنوع الأبلاغ هذا.',
         'self' => "لا يمكنك الإبلاغ عن نفسك!",
     ],

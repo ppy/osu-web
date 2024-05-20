@@ -5,7 +5,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Libraries\OsuAuthorize;
+use App\Singletons\OsuAuthorize;
 use Carbon\Carbon;
 use Closure;
 
@@ -25,7 +25,7 @@ class LegacyInterOpAuth
         $signature = $request->header('X-LIO-Signature');
         // don't use $request->fullUrl() because it returns normalised url.
         $fullUrl = $request->getSchemeAndHttpHost().$request->getRequestUri();
-        $expected = hash_hmac('sha1', $fullUrl, config('osu.legacy.shared_interop_secret'));
+        $expected = hash_hmac('sha1', $fullUrl, $GLOBALS['cfg']['osu']['legacy']['shared_interop_secret']);
 
         if (!present($signature) || !present($timestamp) || $diff > 300 || !hash_equals($expected, $signature)) {
             $reason = match (true) {

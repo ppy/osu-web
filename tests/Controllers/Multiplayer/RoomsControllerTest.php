@@ -9,9 +9,13 @@ use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\Chat\UserChannel;
 use App\Models\Multiplayer\PlaylistItem;
+use App\Models\Multiplayer\PlaylistItemUserHighScore;
 use App\Models\Multiplayer\Room;
+use App\Models\Multiplayer\ScoreLink;
+use App\Models\Multiplayer\UserScoreAggregate;
 use App\Models\OAuth\Token;
 use App\Models\User;
+use Illuminate\Support\Arr;
 use Tests\TestCase;
 
 class RoomsControllerTest extends TestCase
@@ -24,6 +28,30 @@ class RoomsControllerTest extends TestCase
         $this->actAsScopedUser($user, ['*']);
 
         $this->json('GET', route('api.rooms.index'))->assertSuccessful();
+    }
+
+    public function testShow()
+    {
+        $room = Room::factory()->create();
+        $user = User::factory()->create();
+        $playlistItem = PlaylistItem::factory()->create(['room_id' => $room]);
+        $scoreLink = ScoreLink
+            ::factory()
+            ->state([
+                'playlist_item_id' => $playlistItem,
+                'user_id' => $user,
+            ])->completed([], ['passed' => true, 'total_score' => 20])
+            ->create();
+        PlaylistItemUserHighScore::new($scoreLink->user_id, $scoreLink->playlist_item_id)->update(['attempts' => 1]);
+        UserScoreAggregate::lookupOrDefault($scoreLink->user, $scoreLink->playlistItem->room)->recalculate();
+
+        $this->actAsScopedUser($user, ['*']);
+
+        $this
+            ->json('GET', route('api.rooms.show', $room))
+            ->assertSuccessful()
+            ->assertJsonPath('current_user_score.playlist_item_attempts.0.attempts', 1)
+            ->assertJsonPath('current_user_score.playlist_item_attempts.0.id', $playlistItem->getKey());
     }
 
     public function testStore()
@@ -401,10 +429,10 @@ class RoomsControllerTest extends TestCase
         $this->assertSame($initialUserChannelCount + 1, UserChannel::count());
     }
 
-    public function dataProviderForTestStoreWithInvalidPlayableMods(): array
+    public static function dataProviderForTestStoreWithInvalidPlayableMods(): array
     {
         $ret = [];
-        foreach ([array_rand_val(Room::REALTIME_TYPES), Room::PLAYLIST_TYPE] as $type) {
+        foreach ([Arr::random(Room::REALTIME_TYPES), Room::PLAYLIST_TYPE] as $type) {
             foreach (['allowed', 'required'] as $modType) {
                 $ret[] = [$type, $modType];
             }
@@ -413,18 +441,18 @@ class RoomsControllerTest extends TestCase
         return $ret;
     }
 
-    public function dataProviderForTestStoreWithInvalidRealtimeAllowedMods(): array
+    public static function dataProviderForTestStoreWithInvalidRealtimeAllowedMods(): array
     {
         return [
-            [array_rand_val(Room::REALTIME_TYPES), false],
+            [Arr::random(Room::REALTIME_TYPES), false],
             [Room::PLAYLIST_TYPE, true],
         ];
     }
 
-    public function dataProviderForTestStoreWithInvalidRealtimeMods(): array
+    public static function dataProviderForTestStoreWithInvalidRealtimeMods(): array
     {
         return [
-            [array_rand_val(Room::REALTIME_TYPES), false],
+            [Arr::random(Room::REALTIME_TYPES), false],
             [Room::PLAYLIST_TYPE, true],
         ];
     }
