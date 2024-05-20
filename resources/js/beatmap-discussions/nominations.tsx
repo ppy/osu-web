@@ -449,7 +449,7 @@ export class Nominations extends React.Component<Props> {
           <span>{formatNumber(hype)} / {formatNumber(requiredHype)}</span>
         </div>
         <div className={`${bn}__discrete-bar-group`}>
-          <DiscreteBar current={hype} total={requiredHype} />
+          <DiscreteBar current={hype} modifiers='contents' total={requiredHype} />
         </div>
       </div>
     );
@@ -479,13 +479,13 @@ export class Nominations extends React.Component<Props> {
     return (
       <div className={classWithModifiers(`${bn}__discrete-bar-group`, { hybrid })}>
         {nominations.legacy_mode ? (
-          <DiscreteBar current={nominations.current} total={nominations.required} />
+          <DiscreteBar current={nominations.current} modifiers='contents' total={nominations.required} />
         ) : Object.keys(nominations.required).map((ruleset: GameMode) => (
           <DiscreteBar
             key={ruleset}
             current={nominations.current[ruleset] ?? 0}
             label={hybrid ? <i className={`fal fa-extra-mode-${ruleset}`} /> : null}
-            modifiers={{ 'beatmapset-nomination-hybrid' : hybrid }}
+            modifiers='contents'
             total={this.props.discussionsState.calculatedMainRuleset == null || this.props.discussionsState.calculatedMainRuleset === ruleset
               ? nominations.required_meta.main_ruleset
               : nominations.required_meta.non_main_ruleset}
