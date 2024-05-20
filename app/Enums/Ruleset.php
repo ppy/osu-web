@@ -17,14 +17,6 @@ enum Ruleset: int
     // for usage with tryFrom when the parameter may be null.
     public const NULL = -1;
 
-    /**
-     * @return Ruleset[]
-     */
-    public static function fromValues(array $values): array
-    {
-        return array_map(fn ($value) => Ruleset::from($value), $values);
-    }
-
     public static function tryFromName(?string $ruleset): ?self
     {
         if ($ruleset === null) {
