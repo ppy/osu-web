@@ -381,12 +381,12 @@ class UsersController extends Controller
             RequestCost::setCost(count($params['ids']));
             $preload = UserCompactTransformer::CARD_INCLUDES_PRELOAD;
 
-            foreach (Beatmap::MODES as $modeStr => $modeInt) {
-                $includes[] = "statistics_rulesets.{$modeStr}.variants";
-                $preload[] = User::statisticsRelationName($modeStr);
+            foreach (Beatmap::MODES as $ruleset => $_rulesetId) {
+                $includes[] = "statistics_rulesets.{$ruleset}.variants";
+                $preload[] = User::statisticsRelationName($ruleset);
 
-                foreach (Beatmap::VARIANTS[$modeStr] ?? [] as $variant) {
-                    $preload[] = User::statisticsRelationName($modeStr, $variant);
+                foreach (Beatmap::VARIANTS[$ruleset] ?? [] as $variant) {
+                    $preload[] = User::statisticsRelationName($ruleset, $variant);
                 }
             }
 
