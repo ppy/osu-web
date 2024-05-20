@@ -218,6 +218,7 @@ class RankingController extends Controller
         if ($showRankChange) {
             $stats->loadMissing([
                 'user.rankHistories' => fn (Relation $query) => $query->where('mode', $modeInt),
+                'user.rankHistories.currentStart',
             ]);
 
             foreach ($stats as $stat) {
