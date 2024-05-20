@@ -354,7 +354,7 @@ class UsersController extends Controller
      *
      * Field | Type            | Description
      * ----- | --------------- | -----------
-     * users | [User](#user)[] | Includes: country, cover, groups, statistics_rulesets.
+     * users | [User](#user)[] | Includes `country`, `cover`, `groups`, `statistics_rulesets`, and `statistics_rulesets.variants`.
      *
      * @queryParam ids[] User id to be returned. Specify once for each user id requested. Up to 50 users can be requested at once. Example: 1
      *
