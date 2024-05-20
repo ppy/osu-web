@@ -1920,7 +1920,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     {
         $data = $this
             ->rankHistories
-            ->firstWhere('mode', $ruleset)
+            ->firstWhere('ruleset', $ruleset)
             ?->data;
 
         if ($data === null) {
