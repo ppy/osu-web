@@ -56,6 +56,28 @@ class HelpersTest extends TestCase
         $this->assertTrue(is_sql_unique_exception($exception));
     }
 
+    /**
+     * @dataProvider dataForGetLengthSeconds
+     */
+    public function testGetLengthSeconds(string $input, float $expected): void
+    {
+        $this->assertSame($expected, get_length_seconds($input));
+    }
+
+    public static function dataForGetLengthSeconds(): array
+    {
+        return [
+            ['23s', 23],
+            ['9m', 9 * 60],
+            ['0.25h', 15 * 60],
+            ['1h20s', (60 * 60) + 20],
+            ['6h5m', (60 * 60 * 6) + (5 * 60)],
+            ['6', 6],
+            ['1:2:3', (60 * 60) + (2 * 60) + 3],
+            ['1h2m3.5s', (60 * 60) + (2 * 60) + 3.5],
+        ];
+    }
+
     public static function dataForClassWithModifiers(): array
     {
         return [
