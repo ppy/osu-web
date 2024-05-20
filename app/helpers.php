@@ -1430,9 +1430,10 @@ function get_int($string)
     }
 }
 
-function get_length_seconds($string): ?float
+function get_length_seconds($string): ?array
 {
     static $scales = [
+        'ms' => 0.001,
         's' => 1,
         'm' => 60,
         'h' => 3600,
@@ -1440,7 +1441,7 @@ function get_length_seconds($string): ?float
 
     static $patterns = [
         '/^((?P<hours>\d+):)?(?P<minutes>\d+):(?P<seconds>\d+)$/',
-        '/^((?P<hours>\d+(\.\d+)?)h)?((?P<minutes>\d+(\.\d+)?)m)?((?P<seconds>\d+(\.\d+)?)s)?$/',
+        '/^((?P<hours>\d+(\.\d+)?)h)?((?P<minutes>\d+(\.\d+)?)m)?((?P<seconds>\d+(\.\d+)?)s)?((?P<milliseconds>\d+(\.\d+)?)ms)?$/',
         '/^(?P<seconds>\d+(\.\d+)?)$/',
     ];
 
@@ -1451,31 +1452,44 @@ function get_length_seconds($string): ?float
     }
 
     $time = null;
+    $minScale = 3600000;
 
     foreach ($patterns as $pattern) {
         $match = preg_match($pattern, $string, $matches);
-        if ($match !== 1) {
+        if ($match === 0 || $match === false) {
             continue;
         }
 
         $time ??= 0;
 
-        if (isset($matches['hours'])) {
-            $time += get_float($matches['hours']) * $scales['h'];
-        }
-
-        if (isset($matches['minutes'])) {
-            $time += get_float($matches['minutes']) * $scales['m'];
+        if (isset($matches['milliseconds'])) {
+            $scale = $scales['ms'];
+            $minScale = min($minScale, $scale);
+            $time += get_float($matches['milliseconds']) * $scale;
         }
 
         if (isset($matches['seconds'])) {
-            $time += get_float($matches['seconds']) * $scales['s'];
+            $scale = $scales['s'];
+            $minScale = min($minScale, $scale);
+            $time += get_float($matches['seconds']) * $scale;
+        }
+
+        if (isset($matches['minutes'])) {
+            $scale = $scales['m'];
+            $minScale = min($minScale, $scale);
+            $time += get_float($matches['minutes']) * $scale;
+        }
+
+        if (isset($matches['hours'])) {
+            $scale = $scales['h'];
+            $minScale = min($minScale, $scale);
+            $time += get_float($matches['hours']) * $scale;
         }
 
         break;
     }
 
-    return $time;
+    return ['value' => $time, 'min_scale' => $minScale];
 }
 
 function get_file($input)
@@ -1546,7 +1560,7 @@ function get_param_value($input, $type)
         case 'float':
             return get_float($input);
         case 'length':
-            return get_length_seconds($input);
+            return get_length($input);
         case 'string':
             return get_string($input);
         case 'string_split':

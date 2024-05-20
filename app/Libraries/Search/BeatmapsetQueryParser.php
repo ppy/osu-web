@@ -44,7 +44,7 @@ class BeatmapsetQueryParser
                 case 'length':
                     $parsed = get_length_seconds($m['value']);
                     if ($parsed !== null) {
-                        $option = static::makeFloatRangeOption($op, $parsed, 1.0 / 2);
+                        $option = static::makeFloatRangeOption($op, $parsed['value'], $parsed['min_scale'] / 2);
                     }
                     break;
                 case 'featured_artist':
