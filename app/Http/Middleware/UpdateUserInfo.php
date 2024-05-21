@@ -11,7 +11,7 @@ use Carbon\Carbon;
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 
-class UpdateUserLastvisit
+class UpdateUserInfo
 {
     protected $auth;
 
@@ -42,6 +42,13 @@ class UpdateUserLastvisit
                         $user->update([
                             'user_lastvisit' => $currentLastVisit,
                         ], ['skipValidations' => true]);
+
+                        if ($token !== null) {
+                            $user->userCountryHistory()->createOrFirst([
+                                'country_acronym' => request_country($request) ?? Country::UNKNOWN,
+                                'year_month' => format_month_column(new \DateTime()),
+                            ]);
+                        }
                     }
                 }
 
