@@ -5,7 +5,7 @@
 
 declare(strict_types=1);
 
-namespace App\Libraries;
+namespace App\Libraries\Beatmapset;
 
 use App\Exceptions\InvariantException;
 use App\Jobs\Notifications\BeatmapsetNominate;
