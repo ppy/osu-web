@@ -237,8 +237,8 @@ export default class DiscussionsState {
       return this.beatmapset.eligible_main_rulesets[0];
     }
 
-    // If there's more than eligible main ruleset, the next selection of an eligible ruleset should make it the main ruleset.
-    // TODO: replace with Set.intersection, intersection is currently too new.
+    // If there's more than one eligible main ruleset, the next selection of an eligible ruleset should make it the main ruleset.
+    // TODO: swith to Set.intersection in the future; it is currently too new.
     const intersection = intersectionWith(this.selectedNominatedRulesets, this.beatmapset.eligible_main_rulesets);
 
     return intersection.length === 1 ? intersection[0] : null;

@@ -17,7 +17,7 @@ use Ds\Set;
 
 class NominateBeatmapset
 {
-    /** @var Set<int> */
+    /** @var Set<string> */
     private Set $beatmapRulesets;
     /** @var Set<string> */
     private Set $nominatedRulesets;
@@ -124,14 +124,14 @@ class NominateBeatmapset
         $eligibleRulesetIds = (new BeatmapsetMainRuleset($this->beatmapset))->currentEligible();
 
         // assert counts
-        $maybeHasMainRuleset = false;
-        foreach ($nominationCount as $name => $count) {
+        $mainRulesetFound = false;
+        foreach ($nominationCount as $ruleset => $count) {
             if ($count > 1) {
-                if ($maybeHasMainRuleset || !$eligibleRulesetIds->contains(Beatmap::modeInt($name))) {
+                if ($mainRulesetFound || !$eligibleRulesetIds->contains(Beatmap::modeInt($ruleset))) {
                     throw new InvariantException(osu_trans('beatmapsets.nominate.too_many_non_main_ruleset'));
                 }
 
-                $maybeHasMainRuleset = true;
+                $mainRulesetFound = true;
             }
         }
 
