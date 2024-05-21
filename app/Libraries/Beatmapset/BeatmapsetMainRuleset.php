@@ -87,7 +87,7 @@ class BeatmapsetMainRuleset
     private function populateEligibleRulesets(): void
     {
         $this->eligibleRulesets = new Set();
-        $groups = $this->baseQuery()->get();
+        $groups = $this->baseQuery()->get()->map->getAttributes();
         $groupsCount = $groups->count();
 
         // where's the beatmaps???
@@ -96,22 +96,22 @@ class BeatmapsetMainRuleset
         }
 
         // clear winner in playmode counts exists.
-        if ($groups->count() === 1 || $groups[0]->getRawAttribute('total') > $groups[1]->getRawAttribute('total')) {
-            $this->eligibleRulesets->add($groups[0]->playmode);
+        if ($groups->count() === 1 || $groups[0]['total'] > $groups[1]['total']) {
+            $this->eligibleRulesets->add($groups[0]['playmode']);
 
             return;
         }
 
         // maps by host mapper
-        $groupedHostOnly = $this->baseQuery()->where('user_id', $this->beatmapset->user_id)->get();
+        $groupedHostOnly = $this->baseQuery()->where('user_id', $this->beatmapset->user_id)->get()->map->getAttributes();
 
         // clear mode with most maps by host
         if (
             $groupedHostOnly->count() === 1
                 || $groupedHostOnly->count() > 1
-                    && $groupedHostOnly[0]->getRawAttribute('total') > $groupedHostOnly[1]->getRawAttribute('total')
+                    && $groupedHostOnly[0]['total'] > $groupedHostOnly[1]['total']
         ) {
-            $this->eligibleRulesets->add($groupedHostOnly[0]->playmode);
+            $this->eligibleRulesets->add($groupedHostOnly[0]['playmode']);
 
             return;
         }
@@ -119,8 +119,8 @@ class BeatmapsetMainRuleset
         // filter out to only modes with same highest counts.
         $this->eligibleRulesets->add(
             ...$groupedHostOnly
-                ->filter(fn ($group) => $group->getRawAttribute('total') === $groupedHostOnly[0]->getRawAttribute('total'))
-                ->map(fn ($group) => $group->playmode)
+                ->filter(fn ($group) => $group['total'] === $groupedHostOnly[0]['total'])
+                ->map(fn ($group) => $group['playmode'])
                 ->toArray()
         );
     }
