@@ -43,8 +43,6 @@ class NominateBeatmapset
 
     public function handle()
     {
-        $this->beatmapset->resetMemoized(); // ensure we're not using cached/stale event data
-
         $this->assertValidState();
 
         if ($this->beatmapset->isLegacyNominationMode()) {
