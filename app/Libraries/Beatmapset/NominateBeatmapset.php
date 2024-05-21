@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace App\Libraries\Beatmapset;
 
 use App\Exceptions\InvariantException;
+use App\Exceptions\UnsupportedNominationException;
 use App\Jobs\Notifications\BeatmapsetNominate;
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
@@ -46,7 +47,7 @@ class NominateBeatmapset
         $this->assertValidState();
 
         if ($this->beatmapset->isLegacyNominationMode()) {
-            throw new InvariantException();
+            throw new UnsupportedNominationException();
         }
 
         $eventParams = $this->nominateRulesets();

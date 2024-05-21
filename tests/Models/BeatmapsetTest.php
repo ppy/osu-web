@@ -9,6 +9,7 @@ namespace Tests\Models;
 
 use App\Exceptions\AuthorizationException;
 use App\Exceptions\InvariantException;
+use App\Exceptions\UnsupportedNominationException;
 use App\Jobs\CheckBeatmapsetCovers;
 use App\Jobs\Notifications\BeatmapsetDisqualify;
 use App\Jobs\Notifications\BeatmapsetResetNominations;
@@ -409,7 +410,7 @@ class BeatmapsetTest extends TestCase
 
         $this->assertNotificationChanges(false);
         $this->assertNominationChanges($beatmapset, false);
-        $this->expectException(InvariantException::class);
+        $this->expectException(UnsupportedNominationException::class);
 
         $beatmapset->nominate($user);
     }
@@ -427,7 +428,7 @@ class BeatmapsetTest extends TestCase
 
         $beatmapset->refreshCache();
 
-        $this->expectException(InvariantException::class);
+        $this->expectException(UnsupportedNominationException::class);
         // fill with legacy nominations
         $count = $beatmapset->requiredNominationCount() - $beatmapset->currentNominationCount() - 1;
         for ($i = 0; $i < $count; $i++) {
