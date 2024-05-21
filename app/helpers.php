@@ -372,10 +372,10 @@ function datadog_timing(callable $callable, $stat, array $tag = null)
 function db_unsigned_increment($column, $count)
 {
     if ($count >= 0) {
-        $value = "{$column} + {$count}";
+        $value = "`{$column}` + {$count}";
     } else {
         $change = -$count;
-        $value = "IF({$column} < {$change}, 0, {$column} - {$change})";
+        $value = "IF(`{$column}` < {$change}, 0, `{$column}` - {$change})";
     }
 
     return DB::raw($value);
