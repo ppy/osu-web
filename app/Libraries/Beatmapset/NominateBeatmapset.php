@@ -108,6 +108,12 @@ class NominateBeatmapset
             throw new InvariantException(osu_trans('beatmapsets.nominate.hybrid_requires_modes'));
         }
 
+        // LimitedBNs cannot be the only nominator for a non-ruleset and since they only require 1 nomination,
+        // it implies LimitedBNs can only nominate one ruleset (effectively the main).
+        if ($this->user->isLimitedBN() && $this->nominatedRulesets->count() > 1) {
+            throw new InvariantException(osu_trans('beatmapsets.nominate.bng_limited_too_many_rulesets'));
+        }
+
         // Only one ruleset is allowed to have more than one nomination.
         // This needs to be enforced for Beatmapset::mainRulesetId()
         $nominationCount = $this->beatmapset->currentNominationCount();
@@ -119,6 +125,7 @@ class NominateBeatmapset
 
         $eligibleRulesetIds = (new BeatmapsetMainRuleset($this->beatmapset))->currentEligible();
 
+        // assert counts
         $maybeHasMainRuleset = false;
         foreach ($nominationCount as $name => $count) {
             if ($count > 1) {
@@ -130,6 +137,7 @@ class NominateBeatmapset
             }
         }
 
+        // assert rulesets have correct nominators
         foreach ($rulesets as $ruleset) {
             if (!$this->user->isFullBN($ruleset) && !$this->user->isNAT($ruleset)) {
                 if (!$this->user->isLimitedBN($ruleset)) {

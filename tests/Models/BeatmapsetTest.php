@@ -435,6 +435,26 @@ class BeatmapsetTest extends TestCase
         }
     }
 
+    public function testHybridNominateWithBngLimitedMultipleRulsets(): void
+    {
+        $user = User::factory()->withGroup('bng_limited', ['osu', 'taiko'])->create();
+        $beatmapset = $this->createHybridBeatmapsetTaiko();
+        $otherUser = User::factory()->create();
+        $beatmapset->watches()->create(['user_id' => $otherUser->getKey()]);
+
+        $this->assertNotificationChanges(false);
+        $this->assertNominationChanges($beatmapset, false);
+
+        $this->expectExceptionCallable(
+            fn () => $beatmapset->nominate($user, ['osu', 'taiko']),
+            InvariantException::class,
+            osu_trans('beatmapsets.nominate.bng_limited_too_many_rulesets')
+        );
+
+        $this->assertTrue($beatmapset->isPending());
+        Bus::assertNotDispatched(CheckBeatmapsetCovers::class);
+    }
+
     public function testHybridNominateWithNullPlaymode(): void
     {
         $user = User::factory()->withGroup('bng', ['osu'])->create();
