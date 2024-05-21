@@ -55,6 +55,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => 'Новы водгук ад :username, які змяшчае праблемы: :problems, прапановы: :suggestions, хвалы: :praises',
                 'beatmapset_discussion_unlock' => 'Бітмапа ":title" разблакава для абмеркавання.',
                 'beatmapset_discussion_unlock_compact' => 'Абмеркаванне было адкрыта',
+
+                'review_count' => [
+                    'praises' => '',
+                    'problems' => '',
+                    'suggestions' => '',
+                ],
             ],
 
             'beatmapset_problem' => [
@@ -238,11 +244,6 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':username разблакаваў нову медаль, ":title"!',
-                'user_achievement_unlock_self' => 'Вы разблакавалі нову медаль, ":title"!',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username стварыў новыя бітмапы',
                 'user_beatmapset_revive' => ':username абнавіў карты',

@@ -8,7 +8,7 @@ return [
     'talking_in' => 'runā :channel',
     'talking_with' => 'runā ar :name',
     'title_compact' => 'čats',
-    'unread_messages' => '',
+    'unread_messages' => 'nelasīti ziņojumi',
 
     'cannot_send' => [
         'channel' => 'Šobrīd šajā kanālā nav iespējams nosūtīt ziņojumus.',
@@ -18,6 +18,8 @@ return [
     'channels' => [
         'confirm_part' => 'Vai vēlaties paslēpt šo kanālu? Jūs joprojām saņemsiet ziņas no šī kanāla.',
         'create' => 'izveidot paziņojumu',
+        'join' => '',
+        'none' => '',
 
         'list' => [
             'title' => [
@@ -36,7 +38,7 @@ return [
 
         'labels' => [
             'description' => 'apraksts',
-            'message' => '',
+            'message' => 'ziņojumi',
             'name' => 'istabas nosaukums',
             'users' => 'pievienojamie spēlētāji',
         ],
@@ -59,5 +61,9 @@ return [
         'howto' => "Sākt sarunas no lietotāja profila vai lietotāja kartes uznirstošā loga.",
         'lazer' => 'Publiskie kanāli, kuriem pievienojaties, izmantojot <a href=":link">osu!lazer</a>, būs redzami arī šeit.',
         'title' => 'pagaidām nav sarunu',
+    ],
+
+    'join_channels' => [
+        'loading' => '',
     ],
 ];

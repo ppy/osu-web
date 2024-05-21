@@ -39,6 +39,7 @@ return [
         'pin' => 'prisegti',
         'post' => 'Publikuoti',
         'read_more' => 'skaityti daugiau',
+        'refresh' => '',
         'reply' => 'Atsakymai',
         'reply_reopen' => 'Atsakyti ir atidaryti',
         'reply_resolve' => 'Atsakyti ir išspręsti',

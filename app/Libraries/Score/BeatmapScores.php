@@ -19,7 +19,7 @@ class BeatmapScores
 
     public function __construct(private array $rawParams)
     {
-        $rawParams['limit'] = clamp($rawParams['limit'] ?? 50, 1, config('osu.beatmaps.max_scores'));
+        $rawParams['limit'] = clamp($rawParams['limit'] ?? 50, 1, $GLOBALS['cfg']['osu']['beatmaps']['max_scores']);
         $rawParams['sort'] ??= 'score_desc';
         $this->baseParams = ScoreSearchParams::fromArray($rawParams);
     }

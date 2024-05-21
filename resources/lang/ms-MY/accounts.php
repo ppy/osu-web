@@ -62,6 +62,19 @@ return [
         ],
     ],
 
+    'github_user' => [
+        'info' => "",
+        'link' => '',
+        'title' => '',
+        'unlink' => '',
+
+        'error' => [
+            'already_linked' => '',
+            'no_contribution' => '',
+            'unverified_email' => '',
+        ],
+    ],
+
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'terima notifikasi untuk masalah baru pada beatmap berkelayakan pada mod tersebut ',
         'beatmapset_disqualify' => 'terima notifikasi apabila beatmap bagi mod tersebut telah didisqualifikasi ',
@@ -79,7 +92,6 @@ return [
             'mail' => 'e-mel',
             'mapping' => 'pembuat beatmap',
             'push' => 'web',
-            'user_achievement_unlock' => 'pingat baharu terbuka',
         ],
     ],
 

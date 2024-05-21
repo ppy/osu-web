@@ -45,6 +45,11 @@ return [
         'index' => [
             '_' => 'paghahanap ng mga track',
 
+            'exclusive_only' => [
+                'all' => '',
+                'exclusive_only' => '',
+            ],
+
             'form' => [
                 'advanced' => 'Advanced na Paghahanap',
                 'album' => 'Album',
@@ -52,6 +57,7 @@ return [
                 'bpm_gte' => 'Pinakamababang BPM',
                 'bpm_lte' => 'Pinakamataasang PM',
                 'empty' => 'Walang mga track na nakitang tumutugma sa pamantayan sa paghahanap.',
+                'exclusive_only' => '',
                 'genre' => 'Dyanra',
                 'genre_all' => 'Lahat',
                 'length_gte' => 'Pinakamababang Haba',

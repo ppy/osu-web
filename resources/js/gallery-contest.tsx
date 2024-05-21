@@ -8,8 +8,8 @@ import { render, unmountComponentAtNode } from 'react-dom';
 import { nextVal } from 'utils/seq';
 
 export default class GalleryContest {
-  private eventId: string;
-  private root: HTMLElement;
+  private readonly eventId: string;
+  private readonly root: HTMLElement;
 
   constructor(container: HTMLElement, pswp: any) {
     this.root = container.querySelector('.js-pswp-buttons') as HTMLElement;

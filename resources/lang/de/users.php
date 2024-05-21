@@ -72,10 +72,10 @@ return [
 
     'disabled' => [
         'title' => 'Uh, oh! Anscheinend wurde dein Konto deaktiviert.',
-        'warning' => "Falls Du gegen eine Regel verstoßen hast, beachte bitte, dass es in der Regel eine Frist von einem Monat gibt, in der wir keine Anträge berücksichtigen. Nach diesem Zeitraum kannst Du uns jederzeit kontaktieren, falls Du dies für erforderlich hältst. Beachte, dass das Erstellen neuer Konten nach dem Deaktivieren eines Kontos zu einer <strong>Verlängerung dieser einmonatigen Frist</strong> führt. Bitte beachte auch, dass du für <strong>jedes Konto, das du erstellst, weitere Regeln verletzt</strong>. Wir empfehlen Dir dringend, diesen Weg nicht zu gehen!",
+        'warning' => "Falls Du gegen eine Regel verstoßen hast, beachte bitte, dass es in der Regel eine Bedenkzeit von einem Monat gibt, in der wir keine Anträge berücksichtigen. Nach diesem Zeitraum kannst Du uns jederzeit kontaktieren, falls Du dies für erforderlich hältst. Beachte, dass das Erstellen neuer Konten nach dem Deaktivieren eines Kontos zu einer <strong>Verlängerung dieser einmonatigen Bedenkzeit</strong> führt. Bitte beachte auch, dass du für <strong>jedes Konto, das du erstellst, weitere Regeln verletzt</strong>. Wir raten Dir dringend davon ab, diesen Weg einzuschlagen!",
 
         'if_mistake' => [
-            '_' => 'Wenn Du der Meinung bist, dass dies ein Fehler ist, kannst Du uns gerne kontaktieren (per :email oder durch Klicken auf das "?" in der rechten unteren Ecke dieser Seite). Bitte beachte, dass wir bei unseren Handlungen immer volles Vertrauen haben, da sie auf sehr soliden Daten beruhen. Wir behalten uns das Recht vor, Deine Anfrage zu ignorieren, wenn wir das Gefühl haben, dass Du absichtlich unehrlich bist.',
+            '_' => 'Wenn du der Meinung bist, dass dies ein Fehler ist, kannst du uns gerne kontaktieren (per :email oder durch Klicken auf das "?" in der rechten unteren Ecke dieser Seite). Bitte beachte, dass wir bei unseren Handlungen immer volles Vertrauen haben, da sie auf sehr soliden Daten beruhen. Wir behalten uns das Recht vor, deine Anfrage zu ignorieren, wenn wir das Gefühl haben, dass du absichtlich unehrlich bist.',
             'email' => 'E-Mail',
         ],
 
@@ -97,6 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
+            'inactive' => "Dein Account wurde längere Zeit nicht benutzt.",
             'inactive_different_country' => "Dein Konto wurde längere Zeit nicht benutzt.",
         ],
     ],
@@ -123,6 +124,17 @@ return [
         ],
     ],
 
+    'ogp' => [
+        'modding_description' => 'Beatmaps: :counts',
+        'modding_description_empty' => 'Der Nutzer hat keine Beatmaps.',
+
+        'description' => [
+            '_' => 'Rang (:ruleset): :global | :country',
+            'country' => 'Land :rank',
+            'global' => 'Global :rank',
+        ],
+    ],
+
     'posts' => [
         'title' => 'Posts von :username',
     ],
@@ -135,7 +147,7 @@ return [
     ],
     'logout_confirm' => 'Sicher, dass du dich ausloggen willst? :(',
     'report' => [
-        'button_text' => 'melden',
+        'button_text' => 'Melden',
         'comments' => 'Weitere Kommentare',
         'placeholder' => 'Bitte stelle jegliche Infomationen zur Verfügung, die nützlich sein könnten.',
         'reason' => 'Grund',
@@ -175,7 +187,6 @@ return [
         'origin_country' => 'Aus :country',
         'previous_usernames' => 'auch bekannt als',
         'plays_with' => 'Spielt mit :devices',
-        'title' => "Profil von :username",
 
         'comments_count' => [
             '_' => ':link abgegeben',
@@ -206,8 +217,8 @@ return [
             ],
 
             'default_playmode' => [
-                'is_default_tooltip' => 'standard-spielmodus',
-                'set' => 'wähle :mode als standard-spielmodus',
+                'is_default_tooltip' => 'Standard-Spielmodus',
+                'set' => 'Wähle :mode als Standard-Spielmodus',
             ],
         ],
 
@@ -269,7 +280,7 @@ return [
                 ],
                 'recent_plays' => [
                     'accuracy' => 'genauigkeit: :percentage',
-                    'title' => 'Neuliche Spiele (24h)',
+                    'title' => 'Zuletzt gespielt (24h)',
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Angeschaute Replays',

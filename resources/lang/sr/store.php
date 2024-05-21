@@ -6,6 +6,7 @@
 return [
     'cart' => [
         'checkout' => 'Завршите куповину',
+        'empty_cart' => '',
         'info' => ':count_delimited производа у колицима ($:subtotal)|:count_delimited производа у колицима ($:subtotal)',
         'more_goodies' => 'Желим да погледам још ствари пре него што завршим куповину',
         'shipping_fees' => 'накнада за отпрему',
@@ -48,19 +49,52 @@ return [
     ],
 
     'discount' => 'сачувајте :percent%',
+    'free' => '',
 
     'invoice' => [
+        'contact' => '',
+        'date' => '',
         'echeck_delay' => 'Зато што је Ваша куповина плаћена eCheck-ом, молимо Вас да дозволите до 10 додатних дана док се куповина не потврди преко PayPal-а!',
         'hide_from_activity' => 'osu!supporter ознаке овим редоследом се не приказују у вашим недавним активностима.',
+        'sent_via' => '',
+        'shipping_to' => '',
+        'title' => '',
         'title_compact' => 'рачун',
 
         'status' => [
+            'cancelled' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => "",
+                    'link_text' => '',
+                ],
+            ],
+            'delivered' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => '',
+                    'link_text' => '',
+                ],
+            ],
+            'prepared' => [
+                'title' => '',
+                'line_1' => '',
+                'line_2' => '',
+            ],
             'processing' => [
                 'title' => 'Ваша куповина још увек није потврђена!',
                 'line_1' => 'Ако сте већ платили, могуће је да и даље чекамо потврду Вашег плаћања. Молимо Вас да освежите страницу за минут!',
                 'line_2' => [
                     '_' => 'Ако сте наишли на проблем у току завршавања куповине, :link',
                     'link_text' => 'кликните овде да наставите са куповином',
+                ],
+            ],
+            'shipped' => [
+                'title' => '',
+                'tracking_details' => '',
+                'no_tracking_details' => [
+                    '_' => "",
+                    'link_text' => '',
                 ],
             ],
         ],
@@ -74,7 +108,19 @@ return [
         'no_orders' => 'Нема наруџбина.',
         'paid_on' => 'Наруџбина извршена :date',
         'resume' => 'Наставите са куповином',
+        'shipping_and_handling' => '',
         'shopify_expired' => 'Линк за ову наруџбину је истекао.',
+        'subtotal' => '',
+        'total' => '',
+
+        'details' => [
+            'order_number' => '',
+            'payment_terms' => '',
+            'salesperson' => '',
+            'shipping_method' => '',
+            'shipping_terms' => '',
+            'title' => '',
+        ],
 
         'item' => [
             'quantity' => 'Количина',
@@ -105,6 +151,15 @@ return [
             'paid' => 'Плаћено',
             'processing' => 'Чека се потврда',
             'shipped' => 'Послато',
+            'title' => '',
+        ],
+
+        'thanks' => [
+            'title' => '',
+            'line_1' => [
+                '_' => '',
+                'link_text' => '',
+            ],
         ],
     ],
 
@@ -138,6 +193,10 @@ return [
     'username_change' => [
         'check' => 'Укуцајте име да би сте проверили доступност!',
         'checking' => 'Проверите доступност :username...',
+        'placeholder' => '',
+        'label' => '',
+        'current' => '',
+
         'require_login' => [
             '_' => 'Морате бити :link да би сте променили ваше име!',
             'link_text' => 'пријављени',

@@ -10,6 +10,7 @@ use App\Exceptions\InvariantException;
 use App\Models\Beatmap;
 use App\Models\Chat\Channel;
 use App\Models\Model;
+use App\Models\ScoreToken;
 use App\Models\Season;
 use App\Models\SeasonRoom;
 use App\Models\Traits\WithDbCursorHelper;
@@ -36,7 +37,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $name
  * @property int $participant_count
  * @property \Illuminate\Database\Eloquent\Collection $playlist PlaylistItem
- * @property \Illuminate\Database\Eloquent\Collection $scores Score
+ * @property \Illuminate\Database\Eloquent\Collection $scoreLinks ScoreLink
  * @property-read Collection<\App\Models\Season> $seasons
  * @property \Carbon\Carbon $starts_at
  * @property \Carbon\Carbon|null $updated_at
@@ -228,9 +229,9 @@ class Room extends Model
         return $this->hasMany(PlaylistItem::class);
     }
 
-    public function scores()
+    public function scoreLinks()
     {
-        return $this->hasMany(Score::class);
+        return $this->hasMany(ScoreLink::class);
     }
 
     public function seasons()
@@ -264,11 +265,9 @@ class Room extends Model
 
     public function scopeHasParticipated($query, User $user)
     {
-        return $query->whereIn(
-            'id',
-            // SoftDelete scope is ignored, fixed in 5.8:
-            // https://github.com/laravel/framework/pull/26198
-            Score::withoutTrashed()->where('user_id', $user->getKey())->select('room_id')
+        return $query->whereHas(
+            'userHighScores',
+            fn ($q) => $q->where('user_id', $user->getKey()),
         );
     }
 
@@ -392,23 +391,26 @@ class Room extends Model
     public function calculateMissingTopScores()
     {
         // just run through all the users, UserScoreAggregate::new will calculate and persist if necessary.
-        $users = User::whereIn('user_id', Score::where('room_id', $this->getKey())->select('user_id'));
-        $users->each(function ($user) {
+        $scoreLinkQuery = ScoreLink
+            ::whereHas('playlistItem', fn ($q) => $q->where('room_id', $this->getKey()))
+            ->select('user_id');
+
+        foreach (User::whereIn('user_id', $scoreLinkQuery)->get() as $user) {
             UserScoreAggregate::new($user, $this);
-        });
+        }
     }
 
-    public function completePlay(Score $score, array $params)
+    public function completePlay(ScoreToken $scoreToken, array $params): ScoreLink
     {
-        priv_check_user($score->user, 'MultiplayerScoreSubmit')->ensureCan();
+        priv_check_user($scoreToken->user, 'MultiplayerScoreSubmit')->ensureCan();
 
         $this->assertValidCompletePlay();
 
-        return $score->getConnection()->transaction(function () use ($params, $score) {
-            $score->complete($params);
-            UserScoreAggregate::new($score->user, $this)->addScore($score);
+        return $this->getConnection()->transaction(function () use ($params, $scoreToken) {
+            $scoreLink = ScoreLink::complete($scoreToken, $params);
+            UserScoreAggregate::new($scoreLink->user, $this)->addScoreLink($scoreLink);
 
-            return $score;
+            return $scoreLink;
         });
     }
 
@@ -518,7 +520,7 @@ class Room extends Model
 
         $this->fill([
             'max_attempts' => $params['max_attempts'],
-            'name' => $params['name'],
+            'name' => app('chat-filters')->filter($params['name']),
             'starts_at' => now(),
             'type' => $params['type'],
             'queue_mode' => $params['queue_mode'],
@@ -595,13 +597,13 @@ class Room extends Model
         return $this->fresh();
     }
 
-    public function startPlay(User $user, PlaylistItem $playlistItem)
+    public function startPlay(User $user, PlaylistItem $playlistItem, int $buildId)
     {
         priv_check_user($user, 'MultiplayerScoreSubmit')->ensureCan();
 
         $this->assertValidStartPlay($user, $playlistItem);
 
-        return $this->getConnection()->transaction(function () use ($user, $playlistItem) {
+        return $this->getConnection()->transaction(function () use ($buildId, $user, $playlistItem) {
             $agg = UserScoreAggregate::new($user, $this);
             if ($agg->wasRecentlyCreated) {
                 $this->incrementInstance('participant_count');
@@ -609,11 +611,15 @@ class Room extends Model
 
             $agg->updateUserAttempts();
 
-            return Score::start([
-                'user_id' => $user->getKey(),
-                'room_id' => $this->getKey(),
-                'playlist_item_id' => $playlistItem->getKey(),
+            $playlistItemAgg = PlaylistItemUserHighScore::new($user->getKey(), $playlistItem->getKey());
+            $playlistItemAgg->updateUserAttempts();
+
+            return ScoreToken::create([
                 'beatmap_id' => $playlistItem->beatmap_id,
+                'build_id' => $buildId,
+                'playlist_item_id' => $playlistItem->getKey(),
+                'ruleset_id' => $playlistItem->ruleset_id,
+                'user_id' => $user->getKey(),
             ]);
         });
     }
@@ -666,7 +672,7 @@ class Room extends Model
         }
 
         if ($this->max_attempts !== null) {
-            $maxAttemptsLimit = config('osu.multiplayer.max_attempts_limit');
+            $maxAttemptsLimit = $GLOBALS['cfg']['osu']['multiplayer']['max_attempts_limit'];
             if ($this->max_attempts < 1 || $this->max_attempts > $maxAttemptsLimit) {
                 throw new InvariantException("field 'max_attempts' must be between 1 and {$maxAttemptsLimit}");
             }
@@ -681,16 +687,17 @@ class Room extends Model
             throw new InvariantException('Room has already ended.');
         }
 
+        $userId = $user->getKey();
         if ($this->max_attempts !== null) {
-            $roomStats = $this->userHighScores()->where('user_id', $user->getKey())->first();
+            $roomStats = $this->userHighScores()->where('user_id', $userId)->first();
             if ($roomStats !== null && $roomStats->attempts >= $this->max_attempts) {
                 throw new InvariantException('You have reached the maximum number of tries allowed.');
             }
         }
 
         if ($playlistItem->max_attempts !== null) {
-            $playlistAttempts = $playlistItem->scores()->where('user_id', $user->getKey())->count();
-            if ($playlistAttempts >= $playlistItem->max_attempts) {
+            $playlistItemStats = $playlistItem->highScores()->where('user_id', $userId)->first();
+            if ($playlistItemStats !== null && $playlistItemStats->attempts >= $playlistItem->max_attempts) {
                 throw new InvariantException('You have reached the maximum number of tries allowed.');
             }
         }

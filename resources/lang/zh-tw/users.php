@@ -97,6 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
+            'inactive' => "你的帳號有一段時間沒有登入了",
             'inactive_different_country' => "你的帳號已經一段時間沒有登入了",
         ],
     ],
@@ -120,6 +121,17 @@ return [
         'beta' => [
             'main' => 'Beta 版僅限於特定使用者存取',
             'small' => '(osu!贊助者將在不久後開放)',
+        ],
+    ],
+
+    'ogp' => [
+        'modding_description' => '圖譜: :counts',
+        'modding_description_empty' => '使用者沒有任何的圖譜...',
+
+        'description' => [
+            '_' => '排名 (:ruleset): :global | :country',
+            'country' => '國家 :rank',
+            'global' => '全球 :rank',
         ],
     ],
 
@@ -159,7 +171,7 @@ return [
     ],
     'restricted_banner' => [
         'title' => '您的帳號已受到限制!',
-        'message' => '當您的帳號受到系統自動限制時，您將無法與其他玩家互動，且您的遊戲分數僅供自己查閱。系統將在24小時內解除限制。如果您需要申訴？請<a href="mailto:accounts@ppy.sh">聯繫支援服務</a>.',
+        'message' => '當你的帳戶受到限制時，你將無法與其他玩家互動，且你的成績僅供自己查閱。限制通常是由系統自動給予的，並在24小時內解除。:link',
         'message_link' => '點擊此頁了解更多',
     ],
     'show' => [
@@ -175,7 +187,6 @@ return [
         'origin_country' => '來自 :country',
         'previous_usernames' => '前一個的使用者名稱',
         'plays_with' => '慣用 :devices',
-        'title' => ":username 的個人簡介",
 
         'comments_count' => [
             '_' => '發表了 :link',
@@ -199,7 +210,7 @@ return [
                     'unsupported_format' => '不支援的檔案格式.',
 
                     'restriction_info' => [
-                        '_' => '上傳可用於 :link 僅',
+                        '_' => '僅有 :link 可上傳自訂圖片',
                         'link' => 'osu! 贊助者',
                     ],
                 ],

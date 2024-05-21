@@ -14,7 +14,7 @@ return [
     'common' => [
         'closing' => '祝順，',
         'hello' => '嗨 :user,',
-        'report' => '如果您沒有進行此項操作，請「立刻」回覆此信件!',
+        'report' => '如果您沒有進行此項操作，請「立刻」回覆此信件！',
         'ignore' => '若您未請求，則可以安全忽略這封信。',
     ],
 
@@ -28,7 +28,7 @@ return [
 
         'benefit' => [
             'gift' => '您的收禮者現在可以使用 osu!direct 和許多其他支持者獨享的福利。',
-            'self' => '您可以在接下來的 :duration 內享受 osu!direct 和其他 osu! 支持者享有的特權。',
+            'self' => '您可以在接下來的 :duration 內享受 osu!direct 和其他贊助者享有的特權。',
         ],
 
         'support' => [
@@ -64,7 +64,7 @@ return [
     'supporter_gift' => [
         'anonymous_gift' => '贈送您贊助者標籤的人想要保持匿名，所以在這則通知中並沒有提到他(們)。',
         'anonymous_gift_maybe_not' => '但您可能已經知道它是誰 ; )。',
-        'duration' => '因為他們，您可以在接下來的 :duration 內享受 osu!direct 和其他 osu! 支持者享有的特權。',
+        'duration' => '因為他們，您可以在接下來的 :duration 內享受 osu!direct 和其他贊助者享有的特權。',
         'features' => '您可以在此處找到這些功能的更多資訊：',
         'gifted' => '有人剛剛送給你了一份osu!贊助者標籤!',
         'gift_message' => '向您贈送此贊助者標籤的人為您寫了如下留言:',
@@ -92,19 +92,19 @@ return [
     ],
 
     'user_password_updated' => [
-        'confirmation' => '提醒您，您的osu!密碼已被修改',
+        'confirmation' => '提醒您，您的 osu! 密碼已被修改。',
         'subject' => 'osu! 帳號密碼變更',
     ],
 
     'user_verification' => [
         'code' => '您的驗證碼是:',
-        'code_hint' => '你可以帶或不帶空格地輸入該驗證碼',
-        'link' => '或者，你也可以點擊下列連結以完成認證:',
+        'code_hint' => '你可以帶或不帶空格地輸入該驗證碼。',
+        'link' => '或者，你也可以點擊下列連結以完成認證：',
         'report' => '如果您並沒有進行此項操作，請「立刻」回覆此信件，您的帳戶可能有危險。',
         'subject' => 'osu! 帳號驗證',
 
         'action_from' => [
-            '_' => '有一項來自 :country 對您的帳戶所執行的操作需要認證',
+            '_' => '有一項來自 :country 對您的帳戶所執行的操作需要認證。',
             'unknown_country' => '未知國家',
         ],
     ],

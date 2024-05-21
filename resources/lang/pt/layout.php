@@ -86,7 +86,6 @@ return [
         ],
         'rankings' => [
             '_' => 'classificações',
-            'kudosu' => 'kudosu',
         ],
         'store' => [
             '_' => 'loja',
@@ -112,6 +111,7 @@ return [
         'legal' => [
             '_' => 'Legalidade e Situação Jurídica',
             'copyright' => 'Direitos de autor (DMCA)',
+            'jp_sctl' => '',
             'privacy' => 'Privacidade',
             'server_status' => 'Estado do servidor',
             'source_code' => 'Código-fonte',
@@ -195,6 +195,8 @@ return [
             'account-edit' => 'Definições',
             'follows' => 'Listas de observação',
             'friends' => 'Amigos',
+            'legacy_score_only_toggle' => 'Modo lazer',
+            'legacy_score_only_toggle_tooltip' => 'O modo Lazer mostra as pontuações estabelecidas a partir do lazer com um novo algoritmo de pontuações.',
             'logout' => 'Terminar sessão',
             'profile' => 'O meu perfil',
         ],

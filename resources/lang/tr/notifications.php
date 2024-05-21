@@ -26,7 +26,7 @@ return [
     'filters' => [
         '_' => 'hepsi',
         'user' => 'profil',
-        'beatmapset' => 'beatmapler',
+        'beatmapset' => 'haritalar',
         'forum_topic' => 'forum',
         'news_post' => 'gelişmeler',
         'build' => 'sürümler',
@@ -35,7 +35,7 @@ return [
 
     'item' => [
         'beatmapset' => [
-            '_' => 'Beatmap',
+            '_' => 'Harita',
 
             'beatmap_owner_change' => [
                 '_' => 'Konuk zorluk',
@@ -55,6 +55,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => ':username tarafından yeni inceleme, :problems sorun, :suggestions öneri, :praises övgü içeriyor',
                 'beatmapset_discussion_unlock' => '":title" setinin tartışmasının kilidi kaldırıldı',
                 'beatmapset_discussion_unlock_compact' => 'Tartışmanın kilidi kaldırılmış',
+
+                'review_count' => [
+                    'praises' => ':count_delimited övgü|:count_delimited övgü',
+                    'problems' => ':count_delimited sorun|:count_delimited sorun',
+                    'suggestions' => ':count_delimited öneri|:count_delimited öneri',
+                ],
             ],
 
             'beatmapset_problem' => [
@@ -238,11 +244,6 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':username yeni bir madalya açtı, ":title"!',
-                'user_achievement_unlock_self' => 'Yeni bir madalya açtınız, ":title"!',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username yeni beatmapler yaptı',
                 'user_beatmapset_revive' => ':username beatmap\'leri hayata geri döndürdü',

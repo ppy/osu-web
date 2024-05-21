@@ -20,12 +20,7 @@
 
 @extends('master', [
     'titlePrepend' => $artist->name,
-    'pageDescription' => $artist->description,
     'canonicalUrl' => $artist->url(),
-    'opengraph' => [
-        'title' => $artist->name,
-        'image' => $artist->cover_url,
-    ],
 ])
 
 @section('content')
@@ -51,6 +46,10 @@
                     <h1>{{ $artist->name }}</h1>
 
                     {!! markdown($artist->description) !!}
+
+                    @if ($artist->video_url !== null)
+                        <video class="artist__video" src="{{ $artist->video_url }}" controls></video>
+                    @endif
                 </div>
                 @if (count($json['albums']) > 0)
                     <div class="artist__albums">

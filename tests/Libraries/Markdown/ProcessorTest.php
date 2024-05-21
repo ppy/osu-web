@@ -52,14 +52,14 @@ class ProcessorTest extends TestCase
         $this->assertSame('some header', $parsed['toc']['some-header']['title']);
     }
 
-    public function htmlExamples()
+    public static function htmlExamples()
     {
-        return $this->fileList(__DIR__.'/html_markdown_examples', '.md');
+        return static::fileList(__DIR__.'/html_markdown_examples', '.md');
     }
 
-    public function indexableExamples()
+    public static function indexableExamples()
     {
-        return $this->fileList(__DIR__.'/indexable_markdown_examples', '.md');
+        return static::fileList(__DIR__.'/indexable_markdown_examples', '.md');
     }
 
     private function loadOutputTest(string $name, string $path, string $extension)

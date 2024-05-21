@@ -16,7 +16,7 @@ export class EditorToolbar extends React.Component {
   static contextType = SlateContext;
   declare context: React.ContextType<typeof SlateContext>;
   private readonly eventId = `editor-toolbar-${nextVal()}`;
-  private ref = React.createRef<HTMLDivElement>();
+  private readonly ref = React.createRef<HTMLDivElement>();
   private scrollContainer?: HTMLElement;
   private scrollTimer?: number;
   private readonly throttledUpdate = throttle(() => this.updatePosition(), 100);
@@ -100,9 +100,7 @@ export class EditorToolbar extends React.Component {
       return;
     }
 
-    if (this.scrollTimer) {
-      window.clearTimeout(this.scrollTimer);
-    }
+    window.clearTimeout(this.scrollTimer);
 
     // we use setTimeout here as a workaround for incorrect bounds sometimes being returned for the selection range,
     // seemingly when called too soon after a scroll event

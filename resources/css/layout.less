@@ -53,12 +53,17 @@
   --forum-bg: hsl(var(--hsl-h1));
   --forum-text: @link-color;
   --forum-text: @link-hover-color;
+  --forum-item-background-color: hsl(var(--hsl-b4));
+  --forum-item-background-color-hover: hsl(var(--hsl-b3));
+
 
   --navbar-height: @navbar-height;
   --scroll-padding-top: calc(var(--navbar-height) + 1em + var(--scroll-padding-top-extra, 0px));
+  --page-gutter: @gutter-v2;
 
   @media @desktop {
     --navbar-height: @nav2-height--pinned;
+    --page-gutter: @gutter-v2-desktop;
   }
 }
 

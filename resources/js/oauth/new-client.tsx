@@ -22,8 +22,8 @@ const uiState = core.dataStore.uiState;
 export class NewClient extends React.Component {
   private static readonly inputFields = ['name', 'redirect'] as const;
 
-  private errors = new FormErrors();
-  @observable private params = {
+  private readonly errors = new FormErrors();
+  @observable private readonly params = {
     name: '',
     redirect: '',
   };
@@ -63,7 +63,6 @@ export class NewClient extends React.Component {
               {trans('oauth.client.redirect')}
             </div>
             <TextareaAutosize
-              async
               className={classWithModifiers(
                 'oauth-client-details__input',
                 'textarea',

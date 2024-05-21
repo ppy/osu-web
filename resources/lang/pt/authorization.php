@@ -81,6 +81,7 @@ return [
     ],
 
     'contest' => [
+        'judging_not_active' => 'A apreciação deste concurso não está ativa.',
         'voting_over' => 'Não podes mudar o teu voto depois do período de votação deste concurso ter terminado.',
 
         'entry' => [
@@ -172,6 +173,7 @@ return [
     'score' => [
         'pin' => [
             'disabled_type' => "Não é possível afixar este tipo de pontuação",
+            'failed' => "Não é possível afixar uma pontuação reprovada.",
             'not_owner' => 'Só o dono da pontuação é que a pode fixar.',
             'too_many' => 'Afixaste demasiadas pontuações.',
         ],
@@ -186,7 +188,7 @@ return [
             ],
         ],
         'update_email' => [
-            'locked' => '',
+            'locked' => 'o endereço de email está bloqueado',
         ],
     ],
 ];

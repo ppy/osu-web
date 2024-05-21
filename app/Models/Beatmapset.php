@@ -5,7 +5,9 @@
 
 namespace App\Models;
 
+use App\Enums\Ruleset;
 use App\Exceptions\BeatmapProcessorException;
+use App\Exceptions\ImageProcessorServiceException;
 use App\Exceptions\InvariantException;
 use App\Jobs\CheckBeatmapsetCovers;
 use App\Jobs\EsDocument;
@@ -24,7 +26,7 @@ use App\Libraries\BBCodeFromDB;
 use App\Libraries\Commentable;
 use App\Libraries\Elasticsearch\Indexable;
 use App\Libraries\ImageProcessorService;
-use App\Libraries\StorageWithUrl;
+use App\Libraries\StorageUrl;
 use App\Libraries\Transactions\AfterCommit;
 use App\Traits\Memoizes;
 use App\Traits\Validatable;
@@ -145,7 +147,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     public $timestamps = false;
 
-    protected $_storage = null;
     protected $casts = self::CASTS;
     protected $primaryKey = 'beatmapset_id';
     protected $table = 'osu_beatmapsets';
@@ -212,6 +213,19 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         static $pattern = '/^(.*?)-{15}/s';
 
         return preg_replace($pattern, '', $text);
+    }
+
+    public static function isValidBackgroundImage(string $path): bool
+    {
+        $dimensions = read_image_properties($path);
+
+        static $validTypes = [
+            IMAGETYPE_GIF,
+            IMAGETYPE_JPEG,
+            IMAGETYPE_PNG,
+        ];
+
+        return isset($dimensions[2]) && in_array($dimensions[2], $validTypes, true);
     }
 
     public function beatmapDiscussions()
@@ -307,11 +321,12 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         $packItemBeatmapsetIdColumn = (new BeatmapPackItem())->qualifyColumn('beatmapset_id');
         $packQuery = BeatmapPack
             ::selectRaw("GROUP_CONCAT({$packTagColumn} SEPARATOR ',')")
+            ->default()
             ->whereRelation(
                 'items',
-                DB::raw("{$packItemBeatmapsetIdColumn}"),
-                DB::raw("{$idColumn}"),
-            )->toSql();
+                DB::raw($packItemBeatmapsetIdColumn),
+                DB::raw($idColumn),
+            )->toRawSql();
 
         return $query
             ->select('*')
@@ -342,6 +357,15 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
     public function scopeScoreable(Builder $query): void
     {
         $query->where('approved', '>', 0);
+    }
+
+    public function scopeToBeRanked(Builder $query, Ruleset $ruleset)
+    {
+        return $query->qualified()
+            ->withoutTrashed()
+            ->withModesForRanking($ruleset->value)
+            ->where('queued_at', '<', now()->subDays($GLOBALS['cfg']['osu']['beatmapset']['minimum_days_for_rank']))
+            ->whereDoesntHave('beatmapDiscussions', fn ($q) => $q->openIssues());
     }
 
     public function scopeWithModesForRanking($query, $modeInts)
@@ -419,7 +443,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
     {
         $timestamp = $customTimestamp ?? $this->defaultCoverTimestamp();
 
-        return $this->storage()->url($this->coverPath()."{$coverSize}.jpg?{$timestamp}");
+        return StorageUrl::make(null, $this->coverPath()."{$coverSize}.jpg?{$timestamp}");
     }
 
     public function coverPath()
@@ -431,7 +455,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     public function storeCover($target_filename, $source_path)
     {
-        $this->storage()->put($this->coverPath().$target_filename, file_get_contents($source_path));
+        \Storage::put($this->coverPath().$target_filename, file_get_contents($source_path));
     }
 
     public function downloadLimited()
@@ -444,19 +468,10 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         return '//b.ppy.sh/preview/'.$this->beatmapset_id.'.mp3';
     }
 
-    public function storage()
-    {
-        if ($this->_storage === null) {
-            $this->_storage = new StorageWithUrl();
-        }
-
-        return $this->_storage;
-    }
-
     public function removeCovers()
     {
         try {
-            $this->storage()->deleteDirectory($this->coverPath());
+            \Storage::deleteDirectory($this->coverPath());
         } catch (\Exception $e) {
             // ignore errors
         }
@@ -467,8 +482,9 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
     public function fetchBeatmapsetArchive()
     {
         $oszFile = tmpfile();
-        $mirrorsToUse = config('osu.beatmap_processor.mirrors_to_use');
-        $url = BeatmapMirror::getRandomFromList($mirrorsToUse)->generateURL($this, true);
+        $mirror = BeatmapMirror::getRandomFromList($GLOBALS['cfg']['osu']['beatmap_processor']['mirrors_to_use'])
+            ?? throw new \Exception('no available mirror');
+        $url = $mirror->generateURL($this, true);
 
         if ($url === false) {
             return false;
@@ -486,11 +502,20 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         }
 
         $statusCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+        // archive file is gone, nothing to do for now
+        if ($statusCode === 302) {
+            return false;
+        }
         if ($statusCode !== 200) {
             throw new BeatmapProcessorException('Failed downloading osz: HTTP Error '.$statusCode);
         }
 
-        return new BeatmapsetArchive(get_stream_filename($oszFile));
+        try {
+            return new BeatmapsetArchive(get_stream_filename($oszFile));
+        } catch (BeatmapProcessorException $e) {
+            // zip file is broken, nothing to do for now
+            return false;
+        }
     }
 
     public function regenerateCovers(array $sizesToRegenerate = null)
@@ -516,9 +541,11 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
         if ($backgroundFilename !== false) {
             $tmpFile = tmpfile();
-            $bytesWritten = fwrite($tmpFile, $osz->readFile($backgroundFilename));
-            fseek($tmpFile, 0); // reset file position cursor, required for storeCover below
+            fwrite($tmpFile, $osz->readFile($backgroundFilename));
             $backgroundImage = get_stream_filename($tmpFile);
+            if (!static::isValidBackgroundImage($backgroundImage)) {
+                return false;
+            }
 
             // upload original image
             $this->storeCover('raw.jpg', $backgroundImage);
@@ -527,7 +554,14 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             $processor = new ImageProcessorService();
 
             // upload optimized full-size version
-            $optimized = $processor->optimize($this->coverURL('raw', $timestamp));
+            try {
+                $optimized = $processor->optimize($this->coverURL('raw', $timestamp));
+            } catch (ImageProcessorServiceException $e) {
+                if ($e->getCode() === ImageProcessorServiceException::INVALID_IMAGE) {
+                    return false;
+                }
+                throw $e;
+            }
             $this->storeCover('fullsize.jpg', get_stream_filename($optimized));
 
             // use thumbnailer to generate (and then upload) all our variants
@@ -584,7 +618,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             $this->previous_queue_duration = ($this->queued_at ?? $this->approved_date)->diffinSeconds();
             $this->queued_at = null;
         } elseif ($this->isPending() && $state === 'qualified') {
-            $maxAdjustment = (config('osu.beatmapset.minimum_days_for_rank') - 1) * 24 * 3600;
+            $maxAdjustment = ($GLOBALS['cfg']['osu']['beatmapset']['minimum_days_for_rank'] - 1) * 24 * 3600;
             $adjustment = min($this->previous_queue_duration, $maxAdjustment);
             $this->queued_at = $currentTime->copy()->subSeconds($adjustment);
         }
@@ -687,6 +721,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             $this->events()->create(['type' => BeatmapsetEvent::QUALIFY]);
 
             $this->setApproved('qualified', $user);
+            $this->bssProcessQueues()->create();
 
             // global event
             Event::generate('beatmapsetApprove', ['beatmapset' => $this]);
@@ -828,7 +863,9 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
         $this->getConnection()->transaction(function () use ($user, $beatmapIds) {
             $this->events()->create(['type' => BeatmapsetEvent::LOVE, 'user_id' => $user->user_id]);
+
             $this->setApproved('loved', $user, $beatmapIds);
+            $this->bssProcessQueues()->create();
 
             Event::generate('beatmapsetApprove', ['beatmapset' => $this]);
 
@@ -866,7 +903,10 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     public function rank()
     {
-        if (!$this->isQualified()) {
+        if (
+            !$this->isQualified()
+            || $this->beatmapDiscussions()->openIssues()->exists()
+        ) {
             return false;
         }
 
@@ -1068,7 +1108,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     public function requiredHype()
     {
-        return config('osu.beatmapset.required_hype');
+        return $GLOBALS['cfg']['osu']['beatmapset']['required_hype'];
     }
 
     public function commentLocked(): bool
@@ -1127,8 +1167,8 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
     {
         $playmodeCount = $this->playmodeCount();
         $baseRequirement = $playmodeCount === 1
-            ? config('osu.beatmapset.required_nominations')
-            : config('osu.beatmapset.required_nominations_hybrid');
+            ? $GLOBALS['cfg']['osu']['beatmapset']['required_nominations']
+            : $GLOBALS['cfg']['osu']['beatmapset']['required_nominations_hybrid'];
 
         if ($summary || $this->isLegacyNominationMode()) {
             return $playmodeCount * $baseRequirement;
@@ -1237,9 +1277,9 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             ->withModesForRanking($modes)
             ->where('queued_at', '<', $this->queued_at)
             ->count();
-        $days = ceil($queueSize / config('osu.beatmapset.rank_per_day'));
+        $days = ceil($queueSize / $GLOBALS['cfg']['osu']['beatmapset']['rank_per_day']);
 
-        $minDays = config('osu.beatmapset.minimum_days_for_rank') - $this->queued_at->diffInDays();
+        $minDays = $GLOBALS['cfg']['osu']['beatmapset']['minimum_days_for_rank'] - $this->queued_at->diffInDays();
         $days = max($minDays, $days);
 
         return [
@@ -1425,13 +1465,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             ]);
     }
 
-    public function toMetaDescription()
-    {
-        $section = osu_trans('layout.menu.beatmaps._');
-
-        return "osu! » {$section} » {$this->artist} - {$this->title}";
-    }
-
     private function extractDescription($post)
     {
         // Any description (after the first match) that matches
@@ -1464,22 +1497,20 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     public function getDisplayArtist(?User $user)
     {
-        $profileCustomization = $user->userProfileCustomization ?? new UserProfileCustomization();
-        if ($profileCustomization->beatmapset_title_show_original) {
-            return $this->artist_unicode;
-        }
+        $profileCustomization = $user->userProfileCustomization ?? UserProfileCustomization::DEFAULTS;
 
-        return $this->artist;
+        return $profileCustomization['beatmapset_title_show_original']
+            ? $this->artist_unicode
+            : $this->artist;
     }
 
     public function getDisplayTitle(?User $user)
     {
-        $profileCustomization = $user->userProfileCustomization ?? new UserProfileCustomization();
-        if ($profileCustomization->beatmapset_title_show_original) {
-            return $this->title_unicode;
-        }
+        $profileCustomization = $user->userProfileCustomization ?? UserProfileCustomization::DEFAULTS;
 
-        return $this->title;
+        return $profileCustomization['beatmapset_title_show_original']
+            ? $this->title_unicode
+            : $this->title;
     }
 
     public function freshHype()

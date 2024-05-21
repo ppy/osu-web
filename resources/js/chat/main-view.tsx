@@ -6,6 +6,7 @@ import { action, autorun, makeObservable, runInAction } from 'mobx';
 import { disposeOnUnmount, observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
+import { hideLoadingOverlay, showImmediateLoadingOverlay } from 'utils/loading-overlay';
 import ConversationList from './conversation-list';
 import ConversationPanel from './conversation-panel';
 
@@ -25,6 +26,17 @@ export default class MainView extends React.Component<Record<string, never>> {
           document.documentElement.classList.add('u-chat');
         } else {
           document.documentElement.classList.remove('u-chat');
+        }
+      }),
+    );
+
+    disposeOnUnmount(
+      this,
+      autorun(() => {
+        if (core.dataStore.chatState.isAddingChannel) {
+          showImmediateLoadingOverlay();
+        } else {
+          hideLoadingOverlay();
         }
       }),
     );

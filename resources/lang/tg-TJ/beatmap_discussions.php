@@ -26,6 +26,7 @@ return [
             'deleted' => '',
             'mode' => '',
             'only_unresolved' => '',
+            'show_review_embeds' => '',
             'types' => '',
             'username' => '',
 

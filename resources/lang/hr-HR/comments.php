@@ -43,6 +43,10 @@ return [
         'no_comments' => 'nema pronađenih komentara...',
     ],
 
+    'ogp' => [
+        'title' => '',
+    ],
+
     'placeholder' => [
         'edit' => 'Ovdje uredi komentar',
         'new' => 'Ovdje upiši novi komentar',

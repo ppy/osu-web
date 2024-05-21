@@ -63,8 +63,12 @@ return [
         'comments_controller' => [
             '_' => 'comentários',
         ],
+        'contest_entries_controller' => [
+            'judge_results' => 'resultados da apreciação de prova',
+        ],
         'contests_controller' => [
             '_' => 'concursos',
+            'judge' => 'apreciação de prova',
         ],
         'groups_controller' => [
             'show' => 'grupos',
@@ -74,7 +78,7 @@ return [
             'index' => 'painel de controlo',
             'search' => 'pesquisar',
             'support_the_game' => 'apoia o jogo',
-            'testflight' => 'testes beta',
+            'testflight' => 'testflight',
         ],
         'legal_controller' => [
             '_' => 'informação',
@@ -105,6 +109,9 @@ return [
         ],
         'tournaments_controller' => [
             '_' => 'torneios',
+        ],
+        'user_cover_presets_controller' => [
+            '_' => 'capas predefinidas',
         ],
         'users_controller' => [
             '_' => 'informação do jogador',

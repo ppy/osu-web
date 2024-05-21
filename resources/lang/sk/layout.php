@@ -86,7 +86,6 @@ return [
         ],
         'rankings' => [
             '_' => 'rebríčky',
-            'kudosu' => 'kudosu',
         ],
         'store' => [
             '_' => 'obchod',
@@ -112,6 +111,7 @@ return [
         'legal' => [
             '_' => 'Právne záležitosti & Stav serveru',
             'copyright' => 'Autorské práva (DMCA)',
+            'jp_sctl' => '',
             'privacy' => 'Súkromie',
             'server_status' => 'Stav Serveru',
             'source_code' => 'Zdrojový Kód',
@@ -195,6 +195,8 @@ return [
             'account-edit' => 'Nastavenia',
             'follows' => '',
             'friends' => 'Priatelia',
+            'legacy_score_only_toggle' => '',
+            'legacy_score_only_toggle_tooltip' => '',
             'logout' => 'Odhlásiť Sa',
             'profile' => 'Môj Profil',
         ],

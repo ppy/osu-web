@@ -26,6 +26,7 @@ return [
             'deleted' => 'Verwijderde discussies toevoegen',
             'mode' => 'Beatmap modus',
             'only_unresolved' => 'Alleen niet-afgehandelde discussies weergeven',
+            'show_review_embeds' => 'Toon beoordelingsberichten',
             'types' => 'Berichttypen',
             'username' => 'Gebruikersnaam',
 

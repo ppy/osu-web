@@ -17,6 +17,7 @@ class SessionsControllerTest extends TestCase
         $password = 'password1';
         $user = User::factory()->create(compact('password'));
 
+        $this->expectCountChange(fn () => LoginAttempt::count(), 1);
         $this->post(route('login'), [
             'username' => $user->username,
             'password' => $password,
@@ -30,7 +31,7 @@ class SessionsControllerTest extends TestCase
         $password = 'password1';
         $countryAcronym = (Country::first() ?? Country::factory()->create())->getKey();
         $user = User::factory()->create(['password' => $password, 'country_acronym' => $countryAcronym]);
-        $user->update(['user_lastvisit' => now()->subDays(config('osu.user.inactive_days_verification') + 1)]);
+        $user->update(['user_lastvisit' => time() - $GLOBALS['cfg']['osu']['user']['inactive_seconds_verification'] - 1]);
 
         $this->post(route('login'), [
             'username' => $user->username,
@@ -44,11 +45,30 @@ class SessionsControllerTest extends TestCase
         $this->get(route('home'))->assertStatus(401);
     }
 
+    public function testLoginInactiveUserForceReset(): void
+    {
+        config_set('osu.user.inactive_force_password_reset', true);
+
+        $password = 'password1';
+        $countryAcronym = (Country::first() ?? Country::factory()->create())->getKey();
+        $user = User::factory()->create(['password' => $password, 'country_acronym' => $countryAcronym]);
+        $user->update(['user_lastvisit' => time() - $GLOBALS['cfg']['osu']['user']['inactive_seconds_verification'] - 1]);
+
+        $this->post(route('login'), [
+            'username' => $user->username,
+            'password' => $password,
+        ], [
+            'CF_IPCOUNTRY' => $countryAcronym,
+        ])->assertStatus(302);
+
+        $this->assertGuest();
+    }
+
     public function testLoginInactiveUserDifferentCountry()
     {
         $password = 'password1';
         $user = User::factory()->create(compact('password'));
-        $user->update(['user_lastvisit' => now()->subDays(config('osu.user.inactive_days_verification') + 1)]);
+        $user->update(['user_lastvisit' => time() - $GLOBALS['cfg']['osu']['user']['inactive_seconds_verification'] - 1]);
 
         $this->assertNotSame('', $user->fresh()->user_password);
 

@@ -18,6 +18,8 @@ return [
     'channels' => [
         'confirm_part' => 'Wil je dit kanaal verbergen? Je ontvangt nog steeds berichten van dit kanaal.',
         'create' => 'aankondiging maken',
+        'join' => '',
+        'none' => '',
 
         'list' => [
             'title' => [
@@ -59,5 +61,9 @@ return [
         'howto' => "Start gesprekken vanuit het profiel van een gebruiker of een pop-up usercard.",
         'lazer' => 'Publieke kanalen die je kan joinen via <a href=":link">osu!lazer</a> zullen hier ook zichtbaar zijn.',
         'title' => 'nog geen gesprekken',
+    ],
+
+    'join_channels' => [
+        'loading' => '',
     ],
 ];

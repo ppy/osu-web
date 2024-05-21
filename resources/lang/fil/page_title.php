@@ -63,8 +63,12 @@ return [
         'comments_controller' => [
             '_' => 'mga komento',
         ],
+        'contest_entries_controller' => [
+            'judge_results' => 'mga resulta ng paghuhuga sa paligsahan',
+        ],
         'contests_controller' => [
             '_' => 'mga paligsahan',
+            'judge' => 'paghuhuga sa paligsahan',
         ],
         'groups_controller' => [
             'show' => 'mga grupo',
@@ -101,10 +105,13 @@ return [
             '_' => 'performance',
         ],
         'seasons_controller' => [
-            '_' => '',
+            '_' => 'mga ranggo',
         ],
         'tournaments_controller' => [
             '_' => 'tournaments',
+        ],
+        'user_cover_presets_controller' => [
+            '_' => '',
         ],
         'users_controller' => [
             '_' => 'player info',

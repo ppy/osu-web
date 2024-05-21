@@ -97,6 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
+            'inactive' => "Váš účet nebyl využíván dlouhou dobu.",
             'inactive_different_country' => "Váš účet nebyl využíván dlouhou dobu.",
         ],
     ],
@@ -120,6 +121,17 @@ return [
         'beta' => [
             'main' => 'Beta přístup je momentálně omezen na oprávněné uživatele.',
             'small' => '(brzy pro podporovatele)',
+        ],
+    ],
+
+    'ogp' => [
+        'modding_description' => 'Beatmap: :counts',
+        'modding_description_empty' => 'Uživatel nemá žádné beatmapy...',
+
+        'description' => [
+            '_' => 'Umístění (:ruleset): :global | :country',
+            'country' => 'Stát :rank',
+            'global' => 'Svět :rank',
         ],
     ],
 
@@ -175,7 +187,6 @@ return [
         'origin_country' => 'Z :country',
         'previous_usernames' => 'dříve znám jako',
         'plays_with' => 'Hraje s :devices',
-        'title' => "profil uživatele :username",
 
         'comments_count' => [
             '_' => 'Postnul :link',
@@ -264,7 +275,7 @@ return [
                     'count_label' => 'Her',
                 ],
                 'most_played' => [
-                    'count' => 'odehraný čas',
+                    'count' => 'počet zahrání',
                     'title' => 'Nejhranější mapy',
                 ],
                 'recent_plays' => [
@@ -412,7 +423,7 @@ return [
         'not_found' => [
             'reason_1' => 'Možná si změnil uživatelské jméno.',
             'reason_2' => 'Účet může být dočasně nedostupný z důvodu problémů s bezpečností, nebo zneužitím.',
-            'reason_3' => 'Možná jste se přepsal!',
+            'reason_3' => 'Možná jsi se přepsal!',
             'reason_header' => 'Existuje několik možných důvodů:',
             'title' => 'Uživatel nebyl nalezen! ;_;',
         ],

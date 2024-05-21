@@ -5,8 +5,8 @@
 
 return [
     'loading_users' => 'chargement des utilisateurs...',
-    'talking_in' => 'parler dans :channel',
-    'talking_with' => 'parler avec :name',
+    'talking_in' => 'discuter dans :channel',
+    'talking_with' => 'discuter avec :name',
     'title_compact' => 'tchat',
     'unread_messages' => 'messages non lus',
 
@@ -18,12 +18,14 @@ return [
     'channels' => [
         'confirm_part' => 'Voulez-vous masquer ce canal ? Vous recevrez toujours des messages de ce canal.',
         'create' => 'créer une annonce',
+        'join' => 'rejoindre un canal',
+        'none' => 'aucun canal',
 
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Annonces',
                 'GROUP' => 'Groupes',
-                'PM' => 'Messages directs',
+                'PM' => 'Messages privés',
                 'PUBLIC' => 'Canaux',
             ],
         ],
@@ -31,13 +33,13 @@ return [
 
     'form' => [
         'title' => [
-            'announcement' => 'Créer une Nouvelle Annonce',
+            'announcement' => 'Créer une nouvelle annonce',
         ],
 
         'labels' => [
             'description' => 'description',
             'message' => 'message',
-            'name' => 'nom du salon',
+            'name' => 'nom de la salle',
             'users' => 'joueurs à ajouter',
         ],
     ],
@@ -57,7 +59,11 @@ return [
 
     'no-conversations' => [
         'howto' => "Commencez à discuter depuis un profil utilisateur ou un popup de carte utilisateur.",
-        'lazer' => 'Les salons de discussion que vous rejoignez via <a href=":link">osu!lazer</a> seront aussi visibles ici.',
+        'lazer' => 'Les canaux de discussion que vous rejoignez via <a href=":link">osu!lazer</a> seront aussi visibles ici.',
         'title' => 'aucune conversation',
+    ],
+
+    'join_channels' => [
+        'loading' => 'Chargement de la liste des canaux...',
     ],
 ];

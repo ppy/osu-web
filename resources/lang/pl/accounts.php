@@ -19,8 +19,8 @@ return [
             'new_confirmation' => 'potwierdź e-mail',
             'title' => 'E-mail',
             'locked' => [
-                '_' => '',
-                'accounts' => '',
+                '_' => 'Skontaktuj się z :accounts, jeżeli chcesz zaktualizować swój adres e-mail.',
+                'accounts' => 'zespołem obsługi kont',
             ],
         ],
 
@@ -62,6 +62,19 @@ return [
         ],
     ],
 
+    'github_user' => [
+        'info' => "Jeśli jesteś współtwórcą repozytoriów osu!, połączenie Twojego konta GitHub powiąże Twoje działania z twoim profilem osu!. Konta GitHub bez wpisów do repozytoriów osu! nie mogą zostać połączone.",
+        'link' => 'Połącz konto GitHub',
+        'title' => 'GitHub',
+        'unlink' => 'Rozłącz konto GitHub',
+
+        'error' => [
+            'already_linked' => 'To konto GitHub jest już połączone z innym użytkownikiem.',
+            'no_contribution' => 'Nie możesz połączyć konta GitHub bez historii wkładu w repozytoria osu!.',
+            'unverified_email' => 'Zweryfikuj swój główny adres e-mail na GitHub, a następnie spróbuj połączyć konto ponownie.',
+        ],
+    ],
+
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'otrzymuj powiadomienia o nowych problemach z zakwalifikowanymi beatmapami dla następujących trybów',
         'beatmapset_disqualify' => 'otrzymuj powiadomienia o dyskwalifikacjach beatmap następujących trybów',
@@ -79,7 +92,6 @@ return [
             'mail' => 'e-mail',
             'mapping' => 'twórca',
             'push' => 'push',
-            'user_achievement_unlock' => 'odblokowanie medalu',
         ],
     ],
 

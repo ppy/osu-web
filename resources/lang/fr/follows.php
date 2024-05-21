@@ -26,7 +26,7 @@ return [
     'mapping' => [
         'empty' => 'Pas de mappeurs suivis.',
         'followers' => 'abonnés au mapping',
-        'page_title' => 'liste de suivi du mappeur',
+        'page_title' => 'liste des mappeurs suivis',
         'title' => 'mappeur',
         'to_0' => 'arrêter de me notifier lorsque cet utilisateur met en ligne une nouvelle beatmap',
         'to_1' => 'me notifier lorsque cet utilisateur met en ligne une nouvelle beatmap',

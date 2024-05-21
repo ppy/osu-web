@@ -38,19 +38,19 @@ return [
             '_' => 'postingan diskusi beatmap',
         ],
         'beatmap_discussions_controller' => [
-            '_' => 'laman diskusi beatmap',
+            '_' => 'diskusi beatmap',
         ],
         'beatmap_packs_controller' => [
             '_' => 'paket beatmap',
         ],
         'beatmapset_discussion_votes_controller' => [
-            '_' => 'laman diskusi voting beatmap',
+            '_' => 'perolehan suara diskusi beatmap',
         ],
         'beatmapset_events_controller' => [
             '_' => 'riwayat beatmap',
         ],
         'beatmapsets_controller' => [
-            'discussion' => 'laman diskusi beatmap',
+            'discussion' => 'diskusi beatmap',
             'index' => 'daftar beatmap',
             'show' => 'info beatmap',
         ],
@@ -63,8 +63,12 @@ return [
         'comments_controller' => [
             '_' => 'komentar',
         ],
+        'contest_entries_controller' => [
+            'judge_results' => 'hasil penjurian kontes',
+        ],
         'contests_controller' => [
             '_' => 'kontes',
+            'judge' => 'penjurian kontes',
         ],
         'groups_controller' => [
             'show' => 'grup',
@@ -72,7 +76,7 @@ return [
         'home_controller' => [
             'get_download' => 'unduh',
             'index' => 'dasbor',
-            'search' => 'cari',
+            'search' => 'pencarian',
             'support_the_game' => 'dukung permainan ini',
             'testflight' => 'testflight',
         ],
@@ -105,6 +109,9 @@ return [
         ],
         'tournaments_controller' => [
             '_' => 'turnamen',
+        ],
+        'user_cover_presets_controller' => [
+            '_' => 'preset sampul pengguna',
         ],
         'users_controller' => [
             '_' => 'info pemain',

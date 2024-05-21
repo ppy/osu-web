@@ -81,6 +81,7 @@ return [
     ],
 
     'contest' => [
+        'judging_not_active' => '',
         'voting_over' => 'Ne morete spremeniti glasu, potem ko se je glasovanje za to tekmovanje končalo.',
 
         'entry' => [
@@ -172,6 +173,7 @@ return [
     'score' => [
         'pin' => [
             'disabled_type' => "",
+            'failed' => "",
             'not_owner' => 'Samo lastnik rezultata lahko pripne rezultat.',
             'too_many' => 'Pripeto je preveč rezultatov.',
         ],

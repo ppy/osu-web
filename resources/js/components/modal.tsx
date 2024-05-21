@@ -8,13 +8,12 @@ import Portal from './portal';
 export const isModalOpen = () => modals.size !==  0;
 
 interface Props {
-  children: React.ReactNode;
   onClose?: () => void;
 }
 
 const modals = new Set<Modal>();
 
-export default class Modal extends React.PureComponent<Props> {
+export default class Modal extends React.PureComponent<React.PropsWithChildren<Props>> {
   private clickEndTarget: undefined | EventTarget;
   private clickStartTarget: undefined | EventTarget;
   private readonly ref = React.createRef<HTMLDivElement>();
@@ -50,9 +49,7 @@ export default class Modal extends React.PureComponent<Props> {
 
   private readonly close = () => {
     modals.delete(this);
-    if (modals.size === 0) {
-      blackoutToggle(false);
-    }
+    blackoutToggle(this, false);
   };
 
   private readonly handleBeforeCache = () => {
@@ -92,6 +89,6 @@ export default class Modal extends React.PureComponent<Props> {
 
   private readonly open = () => {
     modals.add(this);
-    blackoutToggle(true, 0.5);
+    blackoutToggle(this, true);
   };
 }

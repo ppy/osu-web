@@ -32,7 +32,7 @@ class DatadogMetrics extends LaravelDatadogMiddleware
         $duration = microtime(true) - $startTime;
         $tags = [
             'action' => 'error_page',
-            'api' => $request->is('api/*') ? 'true' : 'false',
+            'api' => is_api_request() ? 'true' : 'false',
             'controller' => 'error',
             'namespace' => 'error',
             'pod_name' => $hostname,
@@ -43,6 +43,6 @@ class DatadogMetrics extends LaravelDatadogMiddleware
 
         $tags = array_merge($tags, app('route-section')->getOriginal());
 
-        Datadog::timing(config('datadog-helper.prefix_web').'.request_time', $duration, 1, $tags);
+        Datadog::timing($GLOBALS['cfg']['datadog-helper']['prefix_web'].'.request_time', $duration, 1, $tags);
     }
 }

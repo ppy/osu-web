@@ -13,7 +13,28 @@ return [
         'nav_title' => '',
     ],
 
+    'judge' => [
+        'hide_judged' => '',
+        'nav_title' => '',
+        'no_current_vote' => '',
+        'update' => '',
+        'validation' => [
+            'missing_score' => '',
+            'contest_vote_judged' => '',
+        ],
+        'voted' => '',
+    ],
+
+    'judge_results' => [
+        '_' => '',
+        'creator' => '',
+        'score' => '',
+        'total_score' => '',
+    ],
+
     'voting' => [
+        'judge_link' => '',
+        'judged_notice' => '',
         'login_required' => '',
         'over' => '',
         'show_voted_only' => '',
@@ -38,6 +59,7 @@ return [
             ],
         ],
     ],
+
     'entry' => [
         '_' => '',
         'login_required' => '',
@@ -45,22 +67,27 @@ return [
         'preparation' => '',
         'drop_here' => '',
         'download' => '',
+
         'wrong_type' => [
             'art' => '',
             'beatmap' => '',
             'music' => '',
         ],
+
         'wrong_dimensions' => '',
         'too_big' => '',
     ],
+
     'beatmaps' => [
         'download' => '',
     ],
+
     'vote' => [
         'list' => '',
         'count' => '',
         'points' => '',
     ],
+
     'dates' => [
         'ended' => '',
         'ended_no_date' => '',
@@ -70,6 +97,7 @@ return [
             'soon' => '',
         ],
     ],
+
     'states' => [
         'entry' => '',
         'voting' => '',

@@ -143,7 +143,7 @@ export default class CommentsController {
     return this.getComments(this.state.commentIdsByParentId[0] ?? []);
   }
 
-  constructor(private stateSelector: string, private baseCommentableMeta?: BaseCommentableMeta) {
+  constructor(private readonly stateSelector: string, private readonly baseCommentableMeta?: BaseCommentableMeta) {
     const stateEl = this.stateEl;
     const savedStateJson = stateEl.dataset.savedState;
     if (savedStateJson != null) {
@@ -151,7 +151,7 @@ export default class CommentsController {
     } else {
       this.state = initialState();
       const initialBundle = JSON.parse(stateEl.text) as CommentBundleJson;
-      this.loadBundle(initialBundle, false, true);
+      this.loadBundle(initialBundle, true, true);
     }
 
     makeObservable(this);
@@ -305,7 +305,7 @@ export default class CommentsController {
         this.state = initialState();
         this.nextState = {};
         this.xhr = {};
-        this.loadBundle(bundle, false, true);
+        this.loadBundle(bundle, true, true);
         core.userPreferences.set('comments_sort', this.state.sort);
       }));
   }
@@ -414,6 +414,12 @@ export default class CommentsController {
     return ret;
   }
 
+  getReplies(comment: Comment) {
+    const ids = this.state.commentIdsByParentId[comment.id];
+
+    return this.getComments(ids);
+  }
+
   getUser(id: number | null | undefined) {
     return id == null ? undefined : this.state.users[id];
   }
@@ -460,19 +466,16 @@ export default class CommentsController {
   @action
   private loadBundle(bundle: CommentBundleJson, append = true, initial = false) {
     if (initial) {
-      this.state.commentIdsByParentId[0] = [];
-      const comments = this.state.commentIdsByParentId[0];
-      bundle.comments.forEach((comment) => {
-        comments.push(comment.id);
-        this.addComment(comment);
-      });
+      // for initial page of comment index and show
+      this.state.commentIdsByParentId[-1] = bundle.comments.map((comment) => comment.id);
       this.state.sort = bundle.sort;
-    } else {
-      bundle.comments.forEach((comment) => {
-        this.addCommentId(comment, append);
-        this.addComment(comment);
-      });
+      append = true;
     }
+
+    bundle.comments.forEach((comment) => {
+      this.addCommentId(comment, append);
+      this.addComment(comment);
+    });
 
     bundle.included_comments.forEach((comment) => {
       this.addCommentId(comment, true);

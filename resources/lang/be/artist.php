@@ -45,6 +45,11 @@ return [
         'index' => [
             '_' => 'пошук трэкаў',
 
+            'exclusive_only' => [
+                'all' => '',
+                'exclusive_only' => '',
+            ],
+
             'form' => [
                 'advanced' => 'Пашыраны пошук',
                 'album' => 'Альбом',
@@ -52,6 +57,7 @@ return [
                 'bpm_gte' => 'BPM Мінімум',
                 'bpm_lte' => 'BPM Максімум',
                 'empty' => 'Не знойдзена трэкаў, супадаючых з гэтымі крытэрыямі пошука.',
+                'exclusive_only' => '',
                 'genre' => 'Жанр',
                 'genre_all' => 'Усё',
                 'length_gte' => 'Мінімальная даўжыня',

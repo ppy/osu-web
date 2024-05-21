@@ -98,7 +98,7 @@ class LegacyApiKeyControllerTest extends TestCase
         $this->post(route('legacy-api-key.store'))->assertStatus(401);
     }
 
-    public function dataProviderForStoreWithInvalidParams(): array
+    public static function dataProviderForStoreWithInvalidParams(): array
     {
         return [
             [[

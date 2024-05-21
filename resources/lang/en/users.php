@@ -97,6 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
+            'inactive' => "Your account hasn't been used in a long time.",
             'inactive_different_country' => "Your account hasn't been used in a long time.",
         ],
     ],
@@ -124,6 +125,9 @@ return [
     ],
 
     'ogp' => [
+        'modding_description' => 'Beatmaps: :counts',
+        'modding_description_empty' => 'User doesn\'t have any beatmaps...',
+
         'description' => [
             '_' => 'Rank (:ruleset): :global | :country',
             'country' => 'Country :rank',
@@ -183,7 +187,6 @@ return [
         'origin_country' => 'From :country',
         'previous_usernames' => 'formerly known as',
         'plays_with' => 'Plays with :devices',
-        'title' => ":username's profile",
 
         'comments_count' => [
             '_' => 'Posted :link',

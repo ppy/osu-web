@@ -77,7 +77,7 @@ export default class RecentActivity extends React.Component<ExtraPageProps> {
     );
   }
 
-  private renderEntry = (event: EventJson) => {
+  private readonly renderEntry = (event: EventJson) => {
     const { badge, iconModifiers, mappings } = parseEvent(event, 'recent-activity');
     if (mappings == null) return null;
 

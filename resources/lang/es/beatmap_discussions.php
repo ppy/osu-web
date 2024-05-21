@@ -26,6 +26,7 @@ return [
             'deleted' => 'Incluir discusiones eliminadas',
             'mode' => 'Modo del mapa',
             'only_unresolved' => 'Mostrar solo discusiones no resueltas',
+            'show_review_embeds' => 'Mostrar publicaciones de revisión',
             'types' => 'Tipos de mensaje',
             'username' => 'Nombre de usuario',
 

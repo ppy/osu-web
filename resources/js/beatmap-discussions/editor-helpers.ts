@@ -71,7 +71,7 @@ function serializeEmbed(node: EmbedElement): DocumentIssueEmbed {
       beatmap_id: node.beatmapId ?? null,
       discussion_type: node.discussionType,
       text: node.children[0].text,
-      timestamp: node.timestamp ? parseTimestamp(node.timestamp) : null,
+      timestamp: parseTimestamp(node.timestamp),
       type: 'embed',
     };
   }
@@ -113,7 +113,7 @@ function serializeParagraph(node: ParagraphElement) {
 }
 
 export const slateDocumentContainsNewProblem = (input: SlateElement[]) =>
-  input.some((node) => node.type === 'embed' && node.discussionType === 'problem' && !node.discussionId);
+  input.some((node) => node.type === 'embed' && node.discussionType === 'problem' && node.discussionId == null);
 
 export const serializeSlateDocument = (input: SlateElement[]) => {
   const review: BeatmapDiscussionReview = [];

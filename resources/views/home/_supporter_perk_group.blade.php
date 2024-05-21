@@ -28,7 +28,8 @@
                         @if (isset($options['link']))
                             {!! link_to(
                                 $options['link'],
-                                osu_trans("community.support.{$section}.{$name}.link_text"),
+                                // Translation text is pre-escaped for some reason
+                                blade_safe(osu_trans("community.support.{$section}.{$name}.link_text")),
                                 [
                                     'class' => 'supporter-perk-list-group__link',
                                     'rel' => 'nofollow noreferrer',

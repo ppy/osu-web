@@ -5,14 +5,14 @@
 
 return [
     'index' => [
-        'description' => 'Colecciones preempaquetadas de mapas basadas en un tema común.',
+        'description' => 'Colecciones preempaquetadas de mapas basados en un tema común.',
         'empty' => '¡Próximamente!',
         'nav_title' => 'listado',
-        'title' => 'Paquetes de Mapas',
+        'title' => 'Paquetes de mapas',
 
         'blurb' => [
             'important' => 'LEE ESTO ANTES DE DESCARGAR',
-            'install_instruction' => 'Instalación: Una vez descargado un paquete, extraiga el contenido del mismo en su directorio Songs de osu! y este hará el resto.',
+            'install_instruction' => 'Instalación: Una vez el paquete se haya descargado, extrae su contenido en tu directorio Songs de osu! y osu! hará el resto.',
             'note' => [
                 '_' => 'También ten en cuenta que es muy recomendable :scary, ya que los mapas más antiguos son de mucha menor calidad que los mapas más recientes.',
                 'scary' => 'descargar los paquetes de los más recientes a los más antiguos',

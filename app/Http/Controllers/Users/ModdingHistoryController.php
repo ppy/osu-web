@@ -47,6 +47,8 @@ class ModdingHistoryController extends Controller
 
         $jsonChunks = ModdingHistoryEventsBundle::forProfile($user, $this->searchParams)->toArray();
 
+        set_opengraph($this->user, 'modding');
+
         return ext_view('users.beatmapset_activities', compact(
             'jsonChunks',
             'user'

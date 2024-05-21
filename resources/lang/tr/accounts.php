@@ -19,8 +19,8 @@ return [
             'new_confirmation' => 'e-posta onayı',
             'title' => 'E-posta',
             'locked' => [
-                '_' => '',
-                'accounts' => '',
+                '_' => 'E-postanızı güncellemeniz gerekiyorsa lütfen :accounts ile iletişime geçin.',
+                'accounts' => 'hesap destek birimi',
             ],
         ],
 
@@ -62,8 +62,21 @@ return [
         ],
     ],
 
+    'github_user' => [
+        'info' => "Eğer osu!'nun açık kaynaklı repository'lerinde katkılıysanız, GitHub hesabınızı bağlamanız sizin değişim günlüğü girişleriniz, osu! profilinizle ilişkilendirilecektir. osu! repository'lerinde katkı geçmişi olmayan GitHub hesapları bağlanamaz.",
+        'link' => 'GitHub Hesabını Bağla',
+        'title' => 'GitHub',
+        'unlink' => 'GitHub Hesabının bağlantısını Kaldır',
+
+        'error' => [
+            'already_linked' => 'Bu GitHub hesabı zaten başka bir kullanıcıya bağlı.',
+            'no_contribution' => 'osu! repository\'lerinde katkı geçmişi olmayan GitHub hesabı bağlanamaz.',
+            'unverified_email' => 'Lütfen GitHub\'daki ana e-postanızı doğrulayın, sonra hesabınızı tekrar bağlamayı deneyin.',
+        ],
+    ],
+
     'notifications' => [
-        'beatmapset_discussion_qualified_problem' => 'belirtilen modlardaki nitelikli maplerin yeni sorunlarında bildirim al ',
+        'beatmapset_discussion_qualified_problem' => 'Doğrulanmış beatmapler\'in belirtilen modlardaki yeni sorunlarının bildirimlerini al',
         'beatmapset_disqualify' => 'belirtilen modların beatmapleri diskalifiye edildiğinde bildirim al',
         'comment_reply' => 'yorumlarına yapılan yanıtlar için bildirim al',
         'title' => 'Bildirimler',
@@ -79,7 +92,6 @@ return [
             'mail' => 'posta',
             'mapping' => 'beatmap mapper',
             'push' => 'anlık',
-            'user_achievement_unlock' => 'kullanıcı madalyası açıldı',
         ],
     ],
 

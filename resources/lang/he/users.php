@@ -97,6 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
+            'inactive' => "",
             'inactive_different_country' => "החשבון שלך לא שומש הרבה זמן.",
         ],
     ],
@@ -120,6 +121,17 @@ return [
         'beta' => [
             'main' => 'גישת בטא כרגע מוגבלת למשתמשים נבחרים.',
             'small' => '(osu!supporters ייכנסו בקרוב)',
+        ],
+    ],
+
+    'ogp' => [
+        'modding_description' => '',
+        'modding_description_empty' => '',
+
+        'description' => [
+            '_' => '',
+            'country' => '',
+            'global' => '',
         ],
     ],
 
@@ -175,7 +187,6 @@ return [
         'origin_country' => 'מ- :country',
         'previous_usernames' => 'לשעבר ידוע בתור',
         'plays_with' => 'משחק עם :devices',
-        'title' => "הפרופיל של :username",
 
         'comments_count' => [
             '_' => 'פורסם :link

@@ -5,7 +5,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Libraries\UserVerification;
+use App\Libraries\SessionVerification;
 use Closure;
 use Illuminate\Contracts\Auth\Guard as AuthGuard;
 use Illuminate\Http\Request;
@@ -20,6 +20,7 @@ class VerifyUser
         'notifications_controller@endpoint' => true,
         'sessions_controller@destroy' => true,
         'sessions_controller@store' => true,
+        'users_controller@me' => true,
         'wiki_controller@image' => true,
         'wiki_controller@show' => true,
         'wiki_controller@sitemap' => true,
@@ -40,7 +41,7 @@ class VerifyUser
             && !$this->alwaysSkipVerification()
             && $this->requiresVerification($request)
         ) {
-            return UserVerification::fromCurrentRequest()->initiate();
+            return SessionVerification\Controller::initiate();
         }
 
         return $next($request);

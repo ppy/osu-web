@@ -97,6 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
+            'inactive' => "Twoje konto nie było aktywne przez długi czas.",
             'inactive_different_country' => "Brak aktywności przez długi czas.",
         ],
     ],
@@ -120,6 +121,18 @@ return [
         'beta' => [
             'main' => 'Beta jest obecnie dostępna tylko dla wybranych użytkowników.',
             'small' => '(donatorzy osu! otrzymają ją wkrótce)',
+        ],
+    ],
+
+    'ogp' => [
+        'modding_description' => 'Beatmapy: :counts',
+        'modding_description_empty' => 'Użytkownik nie posiada beatmap...',
+
+        'description' => [
+            '_' => 'Pozycja w rankingu (:ruleset): :global | :country',
+            'country' => 'Krajowy :rank',
+            'global' => 'Globalny :rank
+',
         ],
     ],
 
@@ -175,7 +188,6 @@ return [
         'origin_country' => 'Pochodzi z :country',
         'previous_usernames' => 'poprzednie nazwy użytkownika',
         'plays_with' => 'Gra za pomocą :devices',
-        'title' => "Profil :username",
 
         'comments_count' => [
             '_' => ':link',

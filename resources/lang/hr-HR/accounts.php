@@ -43,7 +43,7 @@ return [
 
             'country_change' => [
                 '_' => "",
-                'update_link' => '',
+                'update_link' => 'Promjeni na :country',
             ],
 
             'user' => [
@@ -59,6 +59,19 @@ return [
         'signature' => [
             'title' => 'Potpis',
             'update' => 'ažuriraj',
+        ],
+    ],
+
+    'github_user' => [
+        'info' => "",
+        'link' => '',
+        'title' => 'GitHub',
+        'unlink' => '',
+
+        'error' => [
+            'already_linked' => 'Ovaj GitHub nalog je vec povezan drugom korisniku.',
+            'no_contribution' => '',
+            'unverified_email' => '',
         ],
     ],
 
@@ -79,7 +92,6 @@ return [
             'mail' => 'pošta',
             'mapping' => 'autor beatmape',
             'push' => 'push',
-            'user_achievement_unlock' => 'otključanje korisničke medalje',
         ],
     ],
 

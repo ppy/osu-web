@@ -22,8 +22,9 @@ Current rate limit is set at an insanely high 1200 requests per minute, with bur
 
 Below is a list of some language-specific wrappers maintained by the community. Your mileage may vary when using them – please report any issues to the wrapper first before reporting back to us.
 
-- [ossapi](https://github.com/circleguard/ossapi) (python)
+- [ossapi](https://github.com/tybug/ossapi) (python)
 - [aiosu](https://github.com/NiceAesth/aiosu) (python)
+- [osu.py](https://github.com/sheppsu/osu.py) (python)
 - [rosu-v2](https://github.com/MaxOhn/rosu-v2) (rust)
 - [osu.js](https://github.com/L-Mario564/osu.js) (javascript/typescript)
 
@@ -33,6 +34,13 @@ For a full list of changes, see the
 [Changelog on the site]({{ route('changelog.show', ['changelog' => 'web']) }}).
 
 ## Breaking Changes
+
+### 2024-01-23
+- `active_tournament_banner` in [User](#user) has been deprecated, use `active_tournament_banners` instead.
+
+### 2023-10-17
+- GameMode has been renamed to [Ruleset](#ruleset); existing property names remain unchanged.
+- `number` has been removed from documentation and replaced with `integer` or `float` to better reflect the type of number.
 
 ### 2023-09-11
 - object structures with two main variants (Beatmap, Beatmapset, and User) have their naming changed. The base object which previously has `Compact` suffix has their suffix removed and the previously extended object with no suffix now has `Extended` suffix instead. This matches existing TypeScript interface.
@@ -106,7 +114,7 @@ For a full list of changes, see the
 
 ## Base URL
 
-The base URL is: `{{ config('app.url') }}/api/[version]/`
+The base URL is: `{{ $GLOBALS['cfg']['app']['url'] }}/api/[version]/`
 
 ## API Versions
 
@@ -116,6 +124,16 @@ Version | Status
 ------- | ---------------------------------------------------------------
 v2      | current
 v1      | _legacy api provided by the old site, will be deprecated soon_
+
+### API Response Version
+
+Sometimes, an API response need to be updated in non-backward compatible ways. In such cases, the `x-api-version` header is used to determine which version of the response will be returned.
+
+Version 0 is assumed when the header is omitted.
+
+Version  | Change
+-------- | ------
+20220705 | [Score](#score) object with different set of fields.
 
 ## Language
 

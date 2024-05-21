@@ -157,8 +157,6 @@ Start docker in background:
 
 ```
 bin/docker_dev.sh -d
-# alternatively
-# docker compose up -d
 ```
 
 Start single docker service:
@@ -188,12 +186,8 @@ docker compose run --rm php mysql
 Docker images need to be occasionally updated to make sure they're running latest version of the packages.
 
 ```
-docker compose down --rmi all
-docker compose pull
-docker compose build --pull
+docker compose build --no-cache
 ```
-
-(don't use `build --no-cache` as it'll end up rebuilding `php` image multiple times)
 
 #### Faster php commands
 

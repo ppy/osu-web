@@ -11,7 +11,7 @@ return [
     'edited' => 'na-edit :timeago ni :user',
     'pinned' => 'nakabaral',
     'empty' => 'Walang pang kumento.',
-    'empty_other' => '',
+    'empty_other' => 'Wala pang ibang mga komento.',
     'load_replies' => 'ipakita ang mga tugon',
     'replies_count' => ':count_delimited tugon|:count_delimited mga tugon',
     'title' => 'Mga komento',
@@ -41,6 +41,10 @@ return [
         'nav_comments' => 'mga komento',
         'nav_title' => 'listahan',
         'no_comments' => 'walang mga komentong nakita...',
+    ],
+
+    'ogp' => [
+        'title' => 'komento ni :user',
     ],
 
     'placeholder' => [

@@ -355,7 +355,7 @@ class Post extends Model implements AfterCommit, Indexable, Traits\ReportableInt
             }
         }
 
-        $this->validateDbFieldLength(config('osu.forum.max_post_length'), 'post_text', 'body_raw');
+        $this->validateDbFieldLength($GLOBALS['cfg']['osu']['forum']['max_post_length'], 'post_text', 'body_raw');
 
         if (!$this->skipBeatmapPostRestrictions) {
             // don't forget to sync with views.forum.topics._posts

@@ -9,7 +9,7 @@ return [
     'require_verification' => 'Esegui la verifica per poter continuare.',
     'restricted' => "Non puoi farlo mentre sei limitato.",
     'silenced' => "Non puoi farlo mentre sei silenziato.",
-    'unauthorized' => 'Accesso Negato.',
+    'unauthorized' => 'Accesso negato.',
 
     'beatmap_discussion' => [
         'destroy' => [
@@ -34,7 +34,7 @@ return [
             'bot' => "Non puoi votare in una discussione creata da un bot",
             'limit_exceeded' => 'Attendi un po\' prima di aggiungere più voti',
             'owner' => "Non puoi votare la tua discussione.",
-            'wrong_beatmapset_state' => 'Puoi votare solo su discussioni di beatmap in attesa.',
+            'wrong_beatmapset_state' => 'Puoi votare solo sulle discussioni di beatmap in attesa.',
         ],
     ],
 
@@ -81,6 +81,7 @@ return [
     ],
 
     'contest' => [
+        'judging_not_active' => 'La valutazione per questo concorso non è attiva.',
         'voting_over' => 'Non puoi cambiare il tuo voto quando il periodo di votazione per questo contest è finito.',
 
         'entry' => [
@@ -172,6 +173,7 @@ return [
     'score' => [
         'pin' => [
             'disabled_type' => "Impossibile fissare questo tipo di punteggio",
+            'failed' => "Non puoi fissare un punteggio incompleto.",
             'not_owner' => 'Solo il proprietario del punteggio può fissarlo.',
             'too_many' => 'Hai già fissato troppi punteggi.',
         ],
@@ -186,7 +188,7 @@ return [
             ],
         ],
         'update_email' => [
-            'locked' => '',
+            'locked' => 'l\'indirizzo email è bloccato',
         ],
     ],
 ];

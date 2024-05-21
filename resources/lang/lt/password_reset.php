@@ -5,7 +5,6 @@
 
 return [
     'button' => [
-        'cancel' => 'Atšaukti',
         'resend' => 'Pakartoti patvirtinimo laišką',
         'set' => 'Nustatyti slaptažodį',
         'start' => 'Pradėti',
@@ -37,6 +36,9 @@ return [
     'starting' => [
         'username' => 'Įrašykite el. pašto adresą arba naudotojo vardą',
 
+        'reason' => [
+            'inactive_different_country' => "",
+        ],
         'support' => [
             '_' => 'Reikia tolimesnės pagalbos? Susisiekite su mumis per :button.',
             'button' => 'pagalbos sistemą',

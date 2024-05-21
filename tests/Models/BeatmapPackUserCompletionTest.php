@@ -7,58 +7,102 @@ declare(strict_types=1);
 
 namespace Tests\Models;
 
+use App\Libraries\Search\ScoreSearch;
 use App\Models\Beatmap;
 use App\Models\BeatmapPack;
-use App\Models\Score\Best as ScoreBest;
+use App\Models\BeatmapPackItem;
+use App\Models\Beatmapset;
+use App\Models\Country;
+use App\Models\Genre;
+use App\Models\Group;
+use App\Models\Language;
+use App\Models\Solo\Score;
 use App\Models\User;
+use App\Models\UserGroup;
+use App\Models\UserGroupEvent;
 use Tests\TestCase;
 
+/**
+ * @group RequiresScoreIndexer
+ */
 class BeatmapPackUserCompletionTest extends TestCase
 {
+    private static array $users;
+    private static BeatmapPack $pack;
+
+    public static function setUpBeforeClass(): void
+    {
+        parent::setUpBeforeClass();
+
+        static::withDbAccess(function () {
+            $beatmap = Beatmap::factory()->ranked()->state([
+                'playmode' => Beatmap::MODES['taiko'],
+            ])->create();
+            static::$pack = BeatmapPack::factory()->create();
+            static::$pack->items()->create(['beatmapset_id' => $beatmap->beatmapset_id]);
+
+            static::$users = [
+                'convertOsu' => User::factory()->create(),
+                'default' => User::factory()->create(),
+                'null' => null,
+                'unrelated' => User::factory()->create(),
+            ];
+
+            Score::factory()->create([
+                'beatmap_id' => $beatmap,
+                'ruleset_id' => Beatmap::MODES['osu'],
+                'preserve' => true,
+                'user_id' => static::$users['convertOsu'],
+            ]);
+            Score::factory()->create([
+                'beatmap_id' => $beatmap,
+                'preserve' => true,
+                'user_id' => static::$users['default'],
+            ]);
+
+            static::reindexScores();
+        });
+    }
+
+    public static function tearDownAfterClass(): void
+    {
+        static::withDbAccess(function () {
+            Beatmap::truncate();
+            BeatmapPack::truncate();
+            BeatmapPackItem::truncate();
+            Beatmapset::truncate();
+            Country::truncate();
+            Genre::truncate();
+            Language::truncate();
+            Score::select()->delete(); // TODO: revert to truncate after the table is actually renamed
+            User::truncate();
+            UserGroup::truncate();
+            UserGroupEvent::truncate();
+            (new ScoreSearch())->deleteAll();
+        });
+
+        parent::tearDownAfterClass();
+    }
+
+    protected $connectionsToTransact = [];
+
     /**
      * @dataProvider dataProviderForTestBasic
      */
     public function testBasic(string $userType, ?string $packRuleset, bool $completed): void
     {
-        $beatmap = Beatmap::factory()->ranked()->state([
-            'playmode' => Beatmap::MODES['taiko'],
-        ])->create();
-        $pack = BeatmapPack::factory()->create();
-        $pack->items()->create(['beatmapset_id' => $beatmap->beatmapset_id]);
-
-        $scoreUser = User::factory()->create();
-        $scoreClass = ScoreBest\Taiko::class;
-        switch ($userType) {
-            case 'convertOsu':
-                $checkUser = $scoreUser;
-                $scoreClass = ScoreBest\Osu::class;
-                break;
-            case 'default':
-                $checkUser = $scoreUser;
-                break;
-            case 'null':
-                $checkUser = null;
-                break;
-            case 'unrelated':
-                $checkUser = User::factory()->create();
-                break;
-        }
-
-        $scoreClass::factory()->create([
-            'beatmap_id' => $beatmap,
-            'user_id' => $scoreUser->getKey(),
-        ]);
+        $user = static::$users[$userType];
 
         $rulesetId = $packRuleset === null ? null : Beatmap::MODES[$packRuleset];
-        $pack->update(['playmode' => $rulesetId]);
-        $pack->refresh();
+        static::$pack->update(['playmode' => $rulesetId]);
+        static::$pack->refresh();
 
-        $data = $pack->userCompletionData($checkUser);
+        $data = static::$pack->userCompletionData($user, null);
         $this->assertSame($completed ? 1 : 0, count($data['beatmapset_ids']));
         $this->assertSame($completed, $data['completed']);
     }
 
-    public function dataProviderForTestBasic(): array
+    public static function dataProviderForTestBasic(): array
     {
         return [
             ['convertOsu', 'osu', true],

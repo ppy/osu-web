@@ -55,6 +55,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => 'Новий відгук від :username, що містить проблеми: :problems, пропозиції: :suggestions, похвали: :praises',
                 'beatmapset_discussion_unlock' => 'Мапа ":title" розблокована для обговорень',
                 'beatmapset_discussion_unlock_compact' => 'Обговорення відкрито',
+
+                'review_count' => [
+                    'praises' => ':count_delimited похвал|:count_delimited похвали',
+                    'problems' => ':count_delimited проблем|:count_delimited проблеми',
+                    'suggestions' => ':count_delimited пропозиція|:count_delimited пропозицій',
+                ],
             ],
 
             'beatmapset_problem' => [
@@ -238,11 +244,6 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':username розблокував нову медаль, ":title"!',
-                'user_achievement_unlock_self' => 'Ви розблокували нову медаль, ":title"!',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username створив нову бітмапу',
                 'user_beatmapset_revive' => ':username відновив бітмапи',

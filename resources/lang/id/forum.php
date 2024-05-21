@@ -26,14 +26,14 @@ return [
 
     'forums' => [
         'forums' => 'Forum',
-        'latest_post' => 'Kiriman Terbaru',
+        'latest_post' => 'Postingan Terkini',
 
         'index' => [
             'title' => 'Indeks Forum',
         ],
 
         'topics' => [
-            'empty' => 'Tidak ada topik!',
+            'empty' => 'Tidak ada topik apa pun di sini!',
         ],
     ],
 
@@ -44,17 +44,17 @@ return [
     ],
 
     'post' => [
-        'confirm_destroy' => 'Apakah kamu yakin untuk menghapus post ini?',
-        'confirm_restore' => 'Apakah kamu yakin untuk memulihkan post ini?',
+        'confirm_destroy' => 'Apakah kamu yakin untuk menghapus postingan ini?',
+        'confirm_restore' => 'Apakah kamu yakin untuk memulihkan postingan ini?',
         'edited' => 'Terakhir disunting oleh :user :when, dengan total penyuntingan sebanyak :count_delimited kali.|Terakhir disunting oleh :user :when, dengan total penyuntingan sebanyak :count_delimited kali.',
         'posted_at' => 'diposting :when',
         'posted_by_in' => 'diposting oleh :username pada :forum',
 
         'actions' => [
             'destroy' => 'Hapus post',
-            'edit' => 'Sunting post',
-            'report' => 'Laporkan post',
-            'restore' => 'Pulihkan post',
+            'edit' => 'Sunting postingan',
+            'report' => 'Laporkan postingan',
+            'restore' => 'Pulihkan postingan',
         ],
 
         'create' => [
@@ -70,8 +70,8 @@ return [
     ],
 
     'search' => [
-        'go_to_post' => 'Tuju post',
-        'post_number_input' => 'masukkan nomor post',
+        'go_to_post' => 'Tuju postingan',
+        'post_number_input' => 'masukkan nomor postingan',
         'total_posts' => ':posts_count total postingan',
     ],
 
@@ -106,22 +106,22 @@ return [
             'submit' => 'Kirim',
 
             'necropost' => [
-                'default' => 'Topik ini sudah tidak lagi aktif. Harap untuk tidak membuka balasan baru pada topik ini kecuali apabila kamu memiliki alasan khusus untuk melakukannya.',
+                'default' => 'Topik ini sudah tidak lagi aktif. Mohon untuk tidak membuka balasan baru pada topik ini kecuali apabila kamu memiliki alasan tertentu untuk melakukannya.',
 
                 'new_topic' => [
-                    '_' => "Topik ini sudah tidak lagi aktif. Apabila kamu tidak memiliki alasan khusus untuk membuka balasan baru pada topik ini, mohon :create.",
+                    '_' => "Topik ini sudah tidak lagi aktif. Apabila kamu tidak memiliki alasan tertentu untuk membuka balasan baru pada topik ini, silakan :create.",
                     'create' => 'buat topik baru',
                 ],
             ],
 
             'placeholder' => [
-                'body' => 'Ketik konten post di sini',
+                'body' => 'Ketik konten postingan di sini',
                 'title' => 'Klik di sini untuk mengatur judul',
             ],
         ],
 
         'jump' => [
-            'enter' => 'klik untuk memasukkan nomor post tertentu',
+            'enter' => 'klik untuk memasukkan nomor postingan tertentu',
             'first' => 'tuju postingan pertama',
             'last' => 'tuju postingan terakhir',
             'next' => 'lewati 10 postingan berikutnya',
@@ -141,7 +141,7 @@ return [
             'data' => [
                 'add_tag' => 'tag ":tag" disematkan',
                 'announcement' => 'topik disematkan dan ditandai sebagai pengumuman',
-                'edit_topic' => 'menuju :title',
+                'edit_topic' => 'menjadi :title',
                 'fork' => 'dari :topic',
                 'pin' => 'topik yang disematkan',
                 'post_operation' => 'di-post oleh :username',
@@ -167,8 +167,8 @@ return [
                 'restore_post' => 'Postingan dipulihkan',
                 'restore_topic' => 'Topik dipulihkan',
                 'split_destination' => 'Postingan-postingan yang telah dipisah dipindahkan',
-                'split_source' => 'Pisahkan post-post yang ada',
-                'topic_type' => 'Tentukan tipe topik',
+                'split_source' => 'Pisahkan postingan',
+                'topic_type' => 'Jenis topik ditentukan',
                 'topic_type_changed' => 'Tipe topik diubah',
                 'unlock' => 'Kunci topik dibuka',
                 'unpin' => 'Sematan topik dilepas',
@@ -201,7 +201,7 @@ return [
         'topic_buttons' => [
             'remove' => [
                 'confirmation' => 'Berhenti berlangganan dari topik?',
-                'title' => 'Berhenti Berlangganan',
+                'title' => 'Berhenti ikuti',
             ],
         ],
     ],
@@ -296,9 +296,9 @@ return [
 
         'lock' => [
             'is_locked' => 'Topik ini telah dikunci dan tidak dapat dibalas',
-            'to_0' => 'Buka topik',
+            'to_0' => 'Buka kunci topik',
             'to_0_confirm' => 'Buka kunci topik?',
-            'to_0_done' => 'Topik telah dibuka',
+            'to_0_done' => 'Kunci topik telah dibuka',
             'to_1' => 'Kunci topik',
             'to_1_confirm' => 'Kunci topik?',
             'to_1_done' => 'Topik telah dikunci',
@@ -327,7 +327,7 @@ return [
 
         'show' => [
             'deleted-posts' => 'Postingan yang Dihapus',
-            'total_posts' => 'Jumlah Post',
+            'total_posts' => 'Jumlah Postingan',
 
             'feature_vote' => [
                 'current' => 'Prioritas Saat Ini: +:count',

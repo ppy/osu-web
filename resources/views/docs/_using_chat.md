@@ -33,7 +33,7 @@ e.g. `GET` `/chat/updates?includes[]=presence`
 
 ## Creating a channel
 
-Make a request to the [Create Channel](#create-channel) endpoint
+Make a request to the [Create Channel](#create-channel) endpoint.
 
 Only `PM` and `ANNOUNCE` type channels may be created. Creating a channel will automatically join it.
 Re-creating a `PM` channel will simply rejoin the existing channel.
@@ -42,7 +42,7 @@ Re-creating a `PM` channel will simply rejoin the existing channel.
 
 Make a request to the [Join Channel](#join-channel) endpoint where `channel` is the `channel_id`.
 
-A [chat.channel.join](#chatchanneljoin) event is sent when the over the websocket when the user joins a channel.
+A [chat.channel.join](#chatchanneljoin) event is sent over the websocket when the user joins a channel.
 
 ## Leaving a channel
 
@@ -55,7 +55,7 @@ A [chat.channel.part](#chatchannelpart) event is sent over the websocket when th
 ## Sending messages
 
 Channels should be [joined](#joining-a-channel) or [created](#creating-a-channel) before messages are sent to them.
-To send a message a channel, make a request to the [Send Message to Channel](#send-message-to-channel) endpoint.
+To send a message to a channel, make a request to the [Send Message to Channel](#send-message-to-channel) endpoint.
 
 A [chat.message.new](#chatmessagenew) event is sent over the websocket when the user receives a message.
 

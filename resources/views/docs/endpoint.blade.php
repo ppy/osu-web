@@ -15,7 +15,7 @@
 
     $isApiUri = substr($uri, 0, 6) === 'api/v2';
     // either remove api/v2 prefix or add full url
-    $displayUri = $isApiUri ? substr($uri, 6) : config('app.url').$uri;
+    $displayUri = $isApiUri ? substr($uri, 6) : $GLOBALS['cfg']['app']['url'].$uri;
 
     $helper = ApidocRouteHelper::instance();
 @endphp

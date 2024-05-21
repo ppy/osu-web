@@ -46,6 +46,13 @@ class ContestFactory extends Factory
         ]);
     }
 
+    public function judged(): static
+    {
+        return $this->state([
+            'extra_options' => ['judged' => true],
+        ]);
+    }
+
     public function pending(): static
     {
         return $this->state([

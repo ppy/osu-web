@@ -63,8 +63,12 @@ return [
         'comments_controller' => [
             '_' => '댓글',
         ],
+        'contest_entries_controller' => [
+            'judge_results' => '콘테스트 심사 결과',
+        ],
         'contests_controller' => [
             '_' => '콘테스트',
+            'judge' => '콘테스트 심사',
         ],
         'groups_controller' => [
             'show' => '그룹',
@@ -86,7 +90,7 @@ return [
             '_' => '경기',
         ],
         'news_controller' => [
-            '_' => '소식',
+            '_' => '뉴스',
         ],
         'notifications_controller' => [
             '_' => '알림 기록',
@@ -105,6 +109,9 @@ return [
         ],
         'tournaments_controller' => [
             '_' => '토너먼트',
+        ],
+        'user_cover_presets_controller' => [
+            '_' => '유저 커버 프리셋',
         ],
         'users_controller' => [
             '_' => '플레이어 정보',

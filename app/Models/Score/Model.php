@@ -5,6 +5,7 @@
 
 namespace App\Models\Score;
 
+use App\Enums\Ruleset;
 use App\Exceptions\ClassNotFoundException;
 use App\Libraries\Mods;
 use App\Models\Beatmap;
@@ -27,7 +28,7 @@ abstract class Model extends BaseModel
         'date' => 'datetime',
         'pass' => 'bool',
         'perfect' => 'bool',
-        'replay' => 'bool',
+        'replay' => 'bool', // for best model
     ];
     protected $primaryKey = 'score_id';
 
@@ -146,13 +147,37 @@ abstract class Model extends BaseModel
 
             'date_json' => $this->getJsonTimeFast($key),
 
-            'data' => $this->getData(),
             'enabled_mods' => $this->getEnabledModsAttribute($this->getRawAttribute('enabled_mods')),
+
+            'best_id' => $this->getRawAttribute('high_score_id'),
+            'has_replay' => $this->best?->replay,
+            'pp' => $this->best?->pp,
 
             'beatmap',
             'best',
             'replayViewCount',
             'user' => $this->getRelationValue($key),
+
+            default => $this->getNewScoreAttribute($key),
+        };
+    }
+
+    public function getNewScoreAttribute(string $key)
+    {
+        return match ($key) {
+            'accuracy' => $this->accuracy(),
+            'build_id' => null,
+            'data' => $this->getData(),
+            'ended_at_json' => $this->date_json,
+            'is_perfect_combo' => $this->perfect,
+            'legacy_perfect' => $this->perfect,
+            'legacy_score_id' => $this->getKey(),
+            'legacy_total_score' => $this->score,
+            'max_combo' => $this->maxcombo,
+            'passed' => $this->pass,
+            'ruleset_id' => Ruleset::tryFromName($this->getMode())->value,
+            'started_at_json' => null,
+            'total_score' => $this->score,
         };
     }
 
@@ -161,28 +186,29 @@ abstract class Model extends BaseModel
         return snake_case(get_class_basename(static::class));
     }
 
-    protected function getData()
+    public function getData(): ScoreData
     {
         $mods = array_map(fn ($m) => ['acronym' => $m, 'settings' => []], $this->enabled_mods);
+
         $statistics = [
             'miss' => $this->countmiss,
             'great' => $this->count300,
         ];
-        $ruleset = $this->getMode();
+        $ruleset = Ruleset::tryFromName($this->getMode());
         switch ($ruleset) {
-            case 'osu':
+            case Ruleset::osu:
                 $statistics['ok'] = $this->count100;
                 $statistics['meh'] = $this->count50;
                 break;
-            case 'taiko':
+            case Ruleset::taiko:
                 $statistics['ok'] = $this->count100;
                 break;
-            case 'fruits':
+            case Ruleset::catch:
                 $statistics['large_tick_hit'] = $this->count100;
                 $statistics['small_tick_hit'] = $this->count50;
                 $statistics['small_tick_miss'] = $this->countkatu;
                 break;
-            case 'mania':
+            case Ruleset::mania:
                 $statistics['perfect'] = $this->countgeki;
                 $statistics['good'] = $this->countkatu;
                 $statistics['ok'] = $this->count100;
@@ -190,18 +216,6 @@ abstract class Model extends BaseModel
                 break;
         }
 
-        return new ScoreData([
-            'accuracy' => $this->accuracy(),
-            'beatmap_id' => $this->beatmap_id,
-            'ended_at' => $this->date_json,
-            'max_combo' => $this->maxcombo,
-            'mods' => $mods,
-            'passed' => $this->pass,
-            'rank' => $this->rank,
-            'ruleset_id' => Beatmap::modeInt($ruleset),
-            'statistics' => $statistics,
-            'total_score' => $this->score,
-            'user_id' => $this->user_id,
-        ]);
+        return new ScoreData(compact('mods', 'statistics'));
     }
 }

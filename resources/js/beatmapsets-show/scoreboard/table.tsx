@@ -64,8 +64,8 @@ export default class Table extends React.Component<Props> {
                 </th>
                 {modeAttributesMap[this.props.controller.beatmap.mode].map((stat) => (
                   <th
-                    key={stat.attribute}
-                    className={classWithModifiers(`${bn}__header`, ['hitstat', `hitstat-${stat.attribute}`])}
+                    key={stat.key}
+                    className={classWithModifiers(`${bn}__header`, ['hitstat', `hitstat-${stat.key}`])}
                   >
                     {stat.label}
                   </th>
@@ -105,7 +105,7 @@ export default class Table extends React.Component<Props> {
   }
 
   @action
-  private activeKeyDidChange = (key: number | null) => {
+  private readonly activeKeyDidChange = (key: number | null) => {
     this.activeKey = key;
   };
 }

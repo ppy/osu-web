@@ -86,7 +86,6 @@ return [
         ],
         'rankings' => [
             '_' => 'rangering',
-            'kudosu' => 'kudosu',
         ],
         'store' => [
             '_' => 'butikk',
@@ -112,6 +111,7 @@ return [
         'legal' => [
             '_' => 'Juridisk & Status',
             'copyright' => 'Opphavsrett (DMCA)',
+            'jp_sctl' => '',
             'privacy' => 'Personvern',
             'server_status' => 'Serverstatus',
             'source_code' => 'Kildekode',
@@ -195,6 +195,8 @@ return [
             'account-edit' => 'Innstillinger',
             'follows' => 'Overvåkningslister',
             'friends' => 'Venner',
+            'legacy_score_only_toggle' => 'Lazer modus',
+            'legacy_score_only_toggle_tooltip' => 'Lazer modus viser scorer satt fra lazer med en ny scoringsalgoritme',
             'logout' => 'Logg Ut',
             'profile' => 'Min Profil',
         ],

@@ -83,30 +83,35 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
             'date_json' => $this->getJsonTimeFast($key),
 
             'best' => $this,
-            'data' => $this->getData(),
             'enabled_mods' => $this->getEnabledModsAttribute($this->getRawAttribute('enabled_mods')),
             'pass' => true,
+
+            'best_id' => $this->getKey(),
+            'has_replay' => $this->replay,
 
             'beatmap',
             'replayViewCount',
             'reportedIn',
             'user' => $this->getRelationValue($key),
+
+            default => $this->getNewScoreAttribute($key),
         };
     }
 
     public function replayFile(): ?ReplayFile
     {
-        if ($this->replay) {
-            return new ReplayFile($this);
-        }
+        return $this->replay ? new ReplayFile($this) : null;
+    }
 
-        return null;
+    public function getReplayFile(): ?string
+    {
+        return $this->replayFile()?->get();
     }
 
     public function macroForListing()
     {
         return function ($query, $limit) {
-            $limit = clamp($limit ?? 50, 1, config('osu.beatmaps.max_scores'));
+            $limit = clamp($limit ?? 50, 1, $GLOBALS['cfg']['osu']['beatmaps']['max_scores']);
             $newQuery = (clone $query)->with('user')->limit($limit + 100);
 
             $result = [];

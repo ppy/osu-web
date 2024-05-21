@@ -8,18 +8,18 @@ artist          | string                       | |
 artist_unicode  | string                       | |
 covers          | [Covers](#beatmapset-covers) | |
 creator         | string                       | |
-favourite_count | number                       | |
-id              | number                       | |
+favourite_count | integer                      | |
+id              | integer                      | |
 nsfw            | boolean                      | |
-offset          | number                       | |
-play_count      | number                       | |
+offset          | integer                      | |
+play_count      | integer                      | |
 preview_url     | string                       | |
 source          | string                       | |
 status          | string                       | |
 spotlight       | boolean                      | |
 title           | string                       | |
 title_unicode   | string                       | |
-user_id         | number                       | |
+user_id         | integer                      | |
 video           | boolean                      | |
 
 Those fields are optional.
@@ -42,7 +42,7 @@ ratings                 |                                                       
 recent_favourites       |                                                              | |
 related_users           |                                                              | |
 user                    |                                                              | |
-track_id                | number                                                       | |
+track_id                | integer                                                      | |
 
 <div id="beatmapset-covers" data-unique="beatmapset-covers"></div>
 

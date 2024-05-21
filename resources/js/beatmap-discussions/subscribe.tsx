@@ -9,9 +9,11 @@ import { observer } from 'mobx-react';
 import * as React from 'react';
 import { onError } from 'utils/ajax';
 import { trans } from 'utils/lang';
+import DiscussionsState from './discussions-state';
 
 interface Props {
   beatmapset: BeatmapsetJson;
+  discussionsState: DiscussionsState;
 }
 
 @observer
@@ -60,7 +62,7 @@ export class Subscribe extends React.Component<Props> {
     });
 
     this.xhr.done(() => {
-      $.publish('beatmapsetDiscussions:update', { watching: !this.isWatching });
+      this.props.discussionsState.update({ watching: !this.isWatching });
     })
       .fail(onError)
       .always(action(() => this.xhr = null));

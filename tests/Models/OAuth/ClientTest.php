@@ -166,7 +166,7 @@ class ClientTest extends TestCase
 
     public function testNumberOfClientsIsLimited()
     {
-        config()->set('osu.oauth.max_user_clients', 1);
+        config_set('osu.oauth.max_user_clients', 1);
 
         $client = Client::factory()
             ->allowUnsaved()
@@ -177,7 +177,7 @@ class ClientTest extends TestCase
 
     public function testNumberOfClientsLimitDoesNotIncludeRevokedClients()
     {
-        config()->set('osu.oauth.max_user_clients', 1);
+        config_set('osu.oauth.max_user_clients', 1);
         $this->client->update(['revoked' => true]);
 
         $client = Client::factory()->create(['user_id' => $this->owner]);

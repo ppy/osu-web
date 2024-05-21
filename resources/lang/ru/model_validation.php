@@ -132,7 +132,7 @@ return [
     ],
 
     'user' => [
-        'contains_username' => 'Пароль не должен содержать никнейм.',
+        'contains_username' => 'Пароль не должен содержать ник.',
         'email_already_used' => 'Эта почта занята.',
         'email_not_allowed' => 'Недопустимый адрес электронной почты.',
         'invalid_country' => 'Вашей страны нет в базе данных.',
@@ -140,15 +140,15 @@ return [
         'invalid_email' => "Кажется, эта почта недействительна.",
         'invalid_twitter' => 'Неверное имя пользователя Twitter.',
         'too_short' => 'Новый пароль слишком короткий.',
-        'unknown_duplicate' => 'Никнейм или почта уже занята.',
+        'unknown_duplicate' => 'Ник или почта уже занята.',
         'username_available_in' => 'Этот никнейм будет доступен через :duration.',
         'username_available_soon' => 'Этот никнейм будет доступен в любой момент!',
-        'username_invalid_characters' => 'Введённый никнейм содержит недопустимые символы.',
-        'username_in_use' => 'Этот никнейм занят!',
-        'username_locked' => 'Этот никнейм занят!', // TODO: language for this should be slightly different.
+        'username_invalid_characters' => 'Введённый ник содержит недопустимые символы.',
+        'username_in_use' => 'Этот ник уже занят!',
+        'username_locked' => 'Этот ник уже занят!', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => 'Пожалуйста не используйте пробелы и подчёркивания одновременно!',
         'username_no_spaces' => "Никнейм не может начинаться или заканчиваться пробелами!",
-        'username_not_allowed' => 'Этот никнейм запрещён.',
+        'username_not_allowed' => 'Этот ник запрещён к регистрации.',
         'username_too_short' => 'Введённый никнейм слишком короткий.',
         'username_too_long' => 'Введённый никнейм слишком длинный.',
         'weak' => 'Введённый пароль находится в чёрном списке.',
@@ -158,15 +158,15 @@ return [
         'too_long' => 'Превышено максимальное количество символов - можно использовать только до :limit characters символов.',
 
         'attributes' => [
-            'username' => 'Никнейм',
-            'user_email' => 'E-mail адрес',
+            'username' => 'Ник',
+            'user_email' => 'Почта',
             'password' => 'Пароль',
         ],
 
         'change_username' => [
-            'restricted' => 'Вы не можете сменить свой никнейм, пока ваш аккаунт ограничен.',
+            'restricted' => 'Вы не можете сменить свой ник, пока ваш аккаунт ограничен.',
             'supporter_required' => [
-                '_' => 'Вы должны :link , чтобы изменить свой никнейм!',
+                '_' => 'Вы должны :link , чтобы изменить свой ник!',
                 'link_text' => 'поддержать osu!',
             ],
             'username_is_same' => 'Это уже и есть Ваш никнейм!',

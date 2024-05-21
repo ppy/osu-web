@@ -23,13 +23,13 @@ return [
         ],
 
         'forum' => [
-            'write' => 'Crear y editar temas y publicaciones del foro en su nombre.',
+            'write' => 'Crear y editar temas y publicaciones del foro en tu nombre.',
         ],
 
         'friends' => [
             'read' => 'Ver a quién sigues.',
         ],
 
-        'public' => 'Leer datos públicos en su nombre.',
+        'public' => 'Leer datos públicos en tu nombre.',
     ],
 ];

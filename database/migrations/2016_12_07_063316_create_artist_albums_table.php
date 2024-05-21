@@ -17,9 +17,6 @@ class CreateArtistAlbumsTable extends Migration
     public function up()
     {
         Schema::create('artist_albums', function (Blueprint $table) {
-            $table->charset = 'utf8mb4';
-            $table->collation = 'utf8mb4_general_ci';
-
             $table->increments('id');
             $table->integer('artist_id')->unsigned()->nullable();
             $table->foreign('artist_id')

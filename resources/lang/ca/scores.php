@@ -5,6 +5,7 @@
 
 return [
     'show' => [
+        'non_preserved' => 'Aquesta puntuació està marcada per a eliminació i desapareixerà aviat.',
         'title' => ':username en :title [:version]',
 
         'beatmap' => [
@@ -24,7 +25,8 @@ return [
 
     'status' => [
         'non_best' => 'Només les millors puntuacions personals atorguen pp',
-        'non_passing' => 'Només les puntuacions aprovades atorguen pp',
+        'no_pp' => 'no es concedeix pp per aquesta puntuació',
         'processing' => 'Aquesta puntuació encara s\'està calculant i es mostrarà aviat',
+        'no_rank' => 'Aquesta puntuació no té una classificació, ja que no està classificada o està marcada per a ser eliminada',
     ],
 ];

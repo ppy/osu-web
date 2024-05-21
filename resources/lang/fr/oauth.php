@@ -28,28 +28,28 @@ return [
         'id' => 'ID du client',
         'name' => 'Nom de l\'application',
         'redirect' => 'Callback URL de l\'application',
-        'reset' => 'Réinitialiser le secret du client',
-        'reset_failed' => 'Impossible de réinitialiser le secret du client',
+        'reset' => 'Réinitialiser le Client Secret',
+        'reset_failed' => 'La réinitialisation du Client Secret a échoué.',
         'secret' => 'Client Secret',
 
         'secret_visible' => [
-            'false' => 'Afficher le secret du client',
-            'true' => 'Masquer le secret du client',
+            'false' => 'Afficher le Client Secret',
+            'true' => 'Masquer le Client Secret',
         ],
     ],
 
     'new_client' => [
-        'header' => 'Inscrire une nouvelle application OAuth',
-        'register' => 'Créer une application',
+        'header' => 'Ajouter une nouvelle application via OAuth',
+        'register' => 'Ajouter une application',
         'terms_of_use' => [
-            '_' => 'En utilisant cette API vous acceptez :link.',
+            '_' => 'En utilisant cette API, vous acceptez les :link.',
             'link' => 'Conditions d’Utilisations',
         ],
     ],
 
     'own_clients' => [
         'confirm_delete' => 'Êtes-vous sûr de vouloir supprimer ce client ?',
-        'confirm_reset' => 'Êtes-vous sûr de vouloir réinitialiser le secret du client ? Cela révoquera tous les tokens existants.',
+        'confirm_reset' => 'Êtes-vous sûr de vouloir réinitialiser le Client Secret ? Cela révoquera tous les tokens existants.',
         'new' => 'Nouvelle application OAuth',
         'none' => 'Aucun client',
 

@@ -5,7 +5,6 @@
 
 return [
     'button' => [
-        'cancel' => 'בטל',
         'resend' => 'שלח מחדש דוא"ל אימות',
         'set' => 'הגדר סיסמה',
         'start' => 'התחל',
@@ -37,6 +36,9 @@ return [
     'starting' => [
         'username' => 'הכנס אימייל או שם משתמש',
 
+        'reason' => [
+            'inactive_different_country' => "",
+        ],
         'support' => [
             '_' => 'צריך עזרה נוספת? צור איתנו קשר דרך ה:button שלנו.',
             'button' => 'מערכת תמיכה',

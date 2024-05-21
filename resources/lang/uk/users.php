@@ -97,6 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
+            'inactive' => "Ваш обліковий запис вже давно не використовується.",
             'inactive_different_country' => "Ваш обліковий запис вже давно не використовується.",
         ],
     ],
@@ -120,6 +121,17 @@ return [
         'beta' => [
             'main' => 'На даний час доступ до бета-версії обмежена привілейованими користувачами.',
             'small' => '(гравці з osu!прихильником отримають доступ раніше)',
+        ],
+    ],
+
+    'ogp' => [
+        'modding_description' => 'Мап: :counts',
+        'modding_description_empty' => 'Користувач не має жодної мапи...',
+
+        'description' => [
+            '_' => 'Ранг (:ruleset): :global | :country',
+            'country' => 'Країна :rank',
+            'global' => 'Глобальний :rank',
         ],
     ],
 
@@ -175,7 +187,6 @@ return [
         'origin_country' => 'Проживає в :country',
         'previous_usernames' => 'раніше був відомий як',
         'plays_with' => 'Грає з :devices',
-        'title' => "профіль :username",
 
         'comments_count' => [
             '_' => 'Опубліковано :link',
@@ -393,7 +404,7 @@ return [
 
                     'actions' => [
                         'restriction' => 'Заблокувати',
-                        'silence' => 'Заглушений',
+                        'silence' => 'Сайленс',
                         'tournament_ban' => 'Турнірний бан',
                         'note' => 'Замітка',
                     ],
@@ -460,7 +471,7 @@ return [
     ],
 
     'silenced_banner' => [
-        'title' => 'Наразі вас заглушено.',
+        'title' => 'Ви тимчасово позбавлені можливості спілкуватися.',
         'message' => 'Деякі дії можуть бути недоступними.',
     ],
 

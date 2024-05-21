@@ -6,7 +6,7 @@ export default class ReferenceLinkTooltip {
     $(document).on('mouseover', '.js-reference-link', this.showTooltip);
   }
 
-  private createTooltip = (element: HTMLElement, content: HTMLElement) => {
+  private readonly createTooltip = (element: HTMLElement, content: HTMLElement) => {
     $(element).qtip({
       content: {
         text: content,
@@ -36,7 +36,7 @@ export default class ReferenceLinkTooltip {
     });
   };
 
-  private showTooltip = (e: JQuery.MouseOverEvent) => {
+  private readonly showTooltip = (e: JQuery.MouseOverEvent) => {
     if (!(e.currentTarget instanceof HTMLAnchorElement)) return;
 
     const el = e.currentTarget;
@@ -44,12 +44,9 @@ export default class ReferenceLinkTooltip {
 
     if (targetId == null) return;
 
-    const footnoteContent = document.querySelector(targetId)?.firstElementChild;
+    const tooltipContent = document.querySelector(targetId)?.firstElementChild?.cloneNode(true);
 
-    if (!(footnoteContent instanceof HTMLParagraphElement)) return;
-
-    const tooltipContent = document.createElement('div');
-    tooltipContent.insertAdjacentHTML('afterbegin', footnoteContent.innerHTML);
+    if (!(tooltipContent instanceof HTMLParagraphElement)) return;
 
     tooltipContent.querySelectorAll('*').forEach((node) => {
       if (node.getAttribute('role') === 'doc-backlink') {
@@ -58,6 +55,15 @@ export default class ReferenceLinkTooltip {
         node.removeAttribute('class');
       }
     });
+    // Remove extra non-breaking spaces between backlink elements
+    for (let i = tooltipContent.childNodes.length - 1; i >= 0; i--) {
+      const node = tooltipContent.childNodes[i];
+      if (node.textContent === ' ') {
+        node.remove();
+      } else {
+        break;
+      }
+    }
 
     this.createTooltip(el, tooltipContent);
   };

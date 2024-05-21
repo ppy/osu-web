@@ -6,7 +6,7 @@
 return [
     'beatmapset' => [
         'button' => 'Ilmianna',
-        'title' => 'Ilmiannetaanko käyttäjän :username beatmappi?',
+        'title' => 'Ilmiannetaanko käyttäjän :username rytmikartta?',
     ],
 
     'beatmapset_discussion_post' => [

@@ -9,7 +9,7 @@ namespace Tests\Models\Chat;
 
 use App\Events\ChatChannelEvent;
 use App\Jobs\Notifications\ChannelAnnouncement;
-use App\Libraries\BroadcastsPendingForTests;
+use App\Libraries\User\AvatarHelper;
 use App\Models\Chat\Channel;
 use App\Models\User;
 use App\Models\UserRelation;
@@ -207,9 +207,8 @@ class ChannelTest extends TestCase
         $this->assertEmpty($channel->users()->diff($users), 'created channel is missing users.');
         $this->assertSame(Channel::TYPES['announce'], $channel->type);
 
-        $broadcastsPending = app(BroadcastsPendingForTests::class)->dispatched(ChatChannelEvent::class, fn (ChatChannelEvent $event) => $event->action === 'join');
-        $this->assertSame(2, count($broadcastsPending));
-        Event::assertNotDispatched(ChatChannelEvent::class);
+        Event::assertDispatched(fn (ChatChannelEvent $event) => $event->action === 'join', 2);
+        Event::assertNotDispatched(fn (ChatChannelEvent $event) => $event->action !== 'join');
     }
 
     public function testGetPMChannelName()
@@ -256,8 +255,8 @@ class ChannelTest extends TestCase
         $otherUser = User::factory()->create();
 
         $testFile = new SplFileInfo(public_path('images/layout/avatar-guest.png'));
-        $user->setAvatar($testFile);
-        $otherUser->setAvatar($testFile);
+        AvatarHelper::set($user, $testFile);
+        AvatarHelper::set($otherUser, $testFile);
 
         $channel = Channel::factory()->type('pm', [$user, $otherUser])->create();
         $this->assertSame($otherUser->user_avatar, $channel->displayIconFor($user));
@@ -302,7 +301,7 @@ class ChannelTest extends TestCase
         $this->assertEmpty($memoized);
     }
 
-    public function channelCanMessageModeratedChannelDataProvider()
+    public static function channelCanMessageModeratedChannelDataProvider()
     {
         return [
             [null, false],
@@ -314,7 +313,7 @@ class ChannelTest extends TestCase
         ];
     }
 
-    public function channelCanMessageWhenBlockedDataProvider()
+    public static function channelCanMessageWhenBlockedDataProvider()
     {
         return [
             [null, false],
@@ -326,7 +325,7 @@ class ChannelTest extends TestCase
         ];
     }
 
-    public function channelWithBlockedUserVisibilityDataProvider()
+    public static function channelWithBlockedUserVisibilityDataProvider()
     {
         return [
             [null, false],
@@ -338,7 +337,7 @@ class ChannelTest extends TestCase
         ];
     }
 
-    public function leaveChannelDataProvider()
+    public static function leaveChannelDataProvider()
     {
         return [
             ['announce', true],

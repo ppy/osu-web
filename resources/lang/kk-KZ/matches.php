@@ -11,7 +11,7 @@ return [
         'in-progress' => '',
         'in_progress_spinner_label' => '',
         'loading-events' => '',
-        'winner' => '',
+        'winner' => ':team жеңді',
         'winner_by' => '',
 
         'events' => [
@@ -33,7 +33,7 @@ return [
         'score' => [
             'stats' => [
                 'accuracy' => '',
-                'combo' => '',
+                'combo' => 'Комбо',
                 'score' => '',
             ],
         ],
@@ -55,7 +55,7 @@ return [
             'score' => '',
             'accuracy' => '',
             'combo' => '',
-            'scorev2' => '',
+            'scorev2' => 'Score V2',
         ],
     ],
 ];

@@ -44,7 +44,7 @@ export default class Main extends React.PureComponent<Props> {
     );
   }
 
-  private renderItem = (follow: FollowMappingJson) => {
+  private readonly renderItem = (follow: FollowMappingJson) => {
     const beatmapset = follow.latest_beatmapset;
 
     return (

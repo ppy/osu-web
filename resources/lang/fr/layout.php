@@ -59,7 +59,7 @@ return [
 
     'gallery' => [
         'close' => 'Fermer (Échap)',
-        'fullscreen' => 'Basculer en plein écran',
+        'fullscreen' => 'Plein écran',
         'zoom' => 'Zoom avant/arrière',
         'previous' => 'Précédent (flèche gauche)',
         'next' => 'Suivant (flèche droite)',
@@ -86,7 +86,6 @@ return [
         ],
         'rankings' => [
             '_' => 'classements',
-            'kudosu' => 'kudosu',
         ],
         'store' => [
             '_' => 'magasin',
@@ -103,8 +102,8 @@ return [
         ],
         'help' => [
             '_' => 'Aide & Communauté',
-            'faq' => 'Questions fréquemment posées',
-            'forum' => 'Forums communautaire',
+            'faq' => 'Foire aux Questions',
+            'forum' => 'Forums',
             'livestreams' => 'Streams en direct',
             'report' => 'Signaler un problème',
             'wiki' => 'Wiki',
@@ -112,6 +111,7 @@ return [
         'legal' => [
             '_' => 'Statut & Légal',
             'copyright' => 'Copyright (DMCA)',
+            'jp_sctl' => '',
             'privacy' => 'Confidentialité',
             'server_status' => 'État du serveur',
             'source_code' => 'Code source',
@@ -150,22 +150,22 @@ return [
         ],
         '500' => [
             'error' => 'Oh non ! Quelque chose s\'est cassé ! ;_;',
-            'description' => "Nous avons automatiquement été notifié de cette erreur.",
+            'description' => "Nous avons automatiquement été notifiés de cette erreur.",
         ],
         'fatal' => [
             'error' => 'Oh non ! Quelque chose s\'est cassé ! (gravement) ;_;',
-            'description' => "Nous avons été automatiquement notifié de cette erreur.",
+            'description' => "Nous avons automatiquement été notifiés de cette erreur.",
         ],
         '503' => [
             'error' => 'Maintenance en cours !',
-            'description' => "Les maintenances prennent en général 5 à 10 minutes. Si c'est plus long, regardez :link pour plus d'informations.",
+            'description' => "Les maintenances prennent en général 5 à 10 minutes. Si elle dure plus longtemps, consultez :link pour plus d'informations.",
             'link' => [
                 'text' => '',
                 'href' => '',
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => "Juste au cas où, voici un code que vous pourrez retourner au support !",
+        'reference' => "Juste au cas où, voici un code que vous pourrez renvoyer au support !",
     ],
 
     'popup_login' => [
@@ -178,7 +178,7 @@ return [
             'username' => 'nom d\'utilisateur',
 
             'error' => [
-                'email' => "Le nom d'utilisateur ou l'e-mail ne correspond pas",
+                'email' => "Le nom d'utilisateur ou l'adresse e-mail n'existe pas",
                 'password' => 'Mot de passe incorrect',
             ],
         ],
@@ -195,6 +195,8 @@ return [
             'account-edit' => 'Paramètres',
             'follows' => 'Listes de suivi',
             'friends' => 'Amis',
+            'legacy_score_only_toggle' => 'Mode lazer',
+            'legacy_score_only_toggle_tooltip' => 'Le mode lazer permet d\'afficher les scores réalisés sur lazer. Ces scores utilisent un nouvel algorithme de calcul du score.',
             'logout' => 'Se déconnecter',
             'profile' => 'Mon profil',
         ],
@@ -202,6 +204,6 @@ return [
 
     'popup_search' => [
         'initial' => 'Écrivez pour rechercher !',
-        'retry' => 'La recherche a échouée. Cliquez pour réessayer.',
+        'retry' => 'La recherche a échoué. Cliquez pour réessayer.',
     ],
 ];

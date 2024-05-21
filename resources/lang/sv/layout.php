@@ -86,7 +86,6 @@ return [
         ],
         'rankings' => [
             '_' => 'rankning',
-            'kudosu' => 'kudosu',
         ],
         'store' => [
             '_' => 'butik',
@@ -112,6 +111,7 @@ return [
         'legal' => [
             '_' => 'Juridik & status',
             'copyright' => 'Copyright (DMCA)',
+            'jp_sctl' => '',
             'privacy' => 'Sekretess',
             'server_status' => 'Serverstatus',
             'source_code' => 'Källkod',
@@ -195,6 +195,8 @@ return [
             'account-edit' => 'Inställningar',
             'follows' => 'Bevakningslistor',
             'friends' => 'Vänner',
+            'legacy_score_only_toggle' => '',
+            'legacy_score_only_toggle_tooltip' => '',
             'logout' => 'Logga ut',
             'profile' => 'Min profil',
         ],

@@ -86,7 +86,6 @@ return [
         ],
         'rankings' => [
             '_' => 'الترتيب',
-            'kudosu' => 'كودوسو',
         ],
         'store' => [
             '_' => 'المتجر',
@@ -112,6 +111,7 @@ return [
         'legal' => [
             '_' => 'القوانين والحالات',
             'copyright' => 'حقوق الطبع والنشر (DMCA)',
+            'jp_sctl' => '',
             'privacy' => 'الخصوصية',
             'server_status' => 'حالة الخادم',
             'source_code' => 'الشفرة المصدرية',
@@ -195,6 +195,8 @@ return [
             'account-edit' => 'الاعدادات',
             'follows' => 'قوائم المشاهدة',
             'friends' => 'الأصدقاء',
+            'legacy_score_only_toggle' => '',
+            'legacy_score_only_toggle_tooltip' => '',
             'logout' => 'تسجيل الخروج',
             'profile' => 'الصفحة الشخصية',
         ],

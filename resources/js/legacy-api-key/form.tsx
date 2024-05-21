@@ -19,7 +19,7 @@ interface Props {
 export default class Form extends React.Component<Props> {
   @observable private appName = '';
   @observable private appUrl = '';
-  private errors = new FormErrors();
+  private readonly errors = new FormErrors();
 
   constructor(props: Props) {
     super(props);

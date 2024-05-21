@@ -19,8 +19,8 @@ return [
             'new_confirmation' => 'e-mail cím megerősítése',
             'title' => 'E-Mail',
             'locked' => [
-                '_' => '',
-                'accounts' => '',
+                '_' => 'Kérlek lépj kapcsolatba velük, ha az emailedet akarod frissíteni: :accounts .',
+                'accounts' => 'fiók ügyfélszolgáltatás',
             ],
         ],
 
@@ -62,6 +62,19 @@ return [
         ],
     ],
 
+    'github_user' => [
+        'info' => "Ha közreműködsz osu! nyílt forráskódjához, itt összekapcsolhatod a GitHub fiókodat. Ez a változtatási naplóban az osu! profilodhoz linkeli a közreműködéseidet. Olyan fiókok amiknek még nincs közreműködési történelmük osu!-val nem csatlakoztathatók.",
+        'link' => 'GitHub fiók csatlakoztatása',
+        'title' => 'GitHub',
+        'unlink' => 'GitHub fiók csatlakoztatásának megszüntetése',
+
+        'error' => [
+            'already_linked' => 'Ez a Gitahub fiók már csatlakozatva van egy másik felhasználóhoz.',
+            'no_contribution' => 'Nem lehet GitHub fiókot csatlakoztatni, ami még nem tett közreműködést osu! kódtárban.',
+            'unverified_email' => 'Kérlek igazold elsődleges GitHub email címedet és próbáld újra.',
+        ],
+    ],
+
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'értesítések kérése kvalifikált beatmapok problémáival kapcsolatban a következő módokból',
         'beatmapset_disqualify' => 'értesíts, ha a következő játékmódok egy beatmapje diszkvalifikálva lett',
@@ -79,7 +92,6 @@ return [
             'mail' => 'e-mail',
             'mapping' => 'beatmap készítő',
             'push' => 'Elöjövő',
-            'user_achievement_unlock' => 'felhasználói medál feloldva',
         ],
     ],
 

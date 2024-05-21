@@ -26,6 +26,7 @@ return [
             'deleted' => 'Silinmiş tartışmaları dahil et',
             'mode' => 'Beatmap modu',
             'only_unresolved' => 'Sadece çözülmemiş tartışmaları göster',
+            'show_review_embeds' => 'İnceleme gönderilerini göster',
             'types' => 'Mesaj türü',
             'username' => 'Kullanıcı adı',
 

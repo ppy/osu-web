@@ -18,7 +18,7 @@ import { PopupMenuPersistent } from './popup-menu-persistent';
 import { ReportReportable } from './report-reportable';
 import { Spinner } from './spinner';
 import StringWithComponent from './string-with-component';
-import { SupporterIcon } from './supporter-icon';
+import SupporterIcon from './supporter-icon';
 import TimeWithTooltip from './time-with-tooltip';
 import UserCardBrick from './user-card-brick';
 import UserGroupBadges from './user-group-badges';
@@ -178,7 +178,7 @@ export class UserCard extends React.PureComponent<Props, State> {
       this.isOnline ? ['online'] : [],
     );
 
-    if (this.user.cover && this.user.cover.url) {
+    if (this.user.cover?.url != null) {
       let backgroundCssClass = 'user-card__background';
       if (!this.state.backgroundLoaded) {
         backgroundCssClass += ' user-card__background--loading';
@@ -228,7 +228,7 @@ export class UserCard extends React.PureComponent<Props, State> {
           <>
             {this.user.is_supporter && (
               <a className='user-card__icon' href={route('support-the-game')}>
-                <SupporterIcon modifiers={['user-card']} />
+                <SupporterIcon modifiers='user-card' />
               </a>
             )}
             <div className='user-card__icon'>
@@ -254,7 +254,7 @@ export class UserCard extends React.PureComponent<Props, State> {
       <div className='user-card__icons'>
         {this.user.is_supporter && (
           <a className='user-card__icon' href={route('support-the-game')}>
-            <SupporterIcon level={this.user.support_level} modifiers={['user-list']} />
+            <SupporterIcon level={this.user.support_level} modifiers='user-list' />
           </a>
         )}
 

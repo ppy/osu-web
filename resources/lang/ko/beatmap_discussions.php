@@ -26,20 +26,21 @@ return [
             'deleted' => '삭제된 토론 포함',
             'mode' => '비트맵 모드',
             'only_unresolved' => '미해결 토론만 보기',
+            'show_review_embeds' => '리뷰 글 표시',
             'types' => '메시지 종류',
             'username' => '아이디',
 
             'beatmapset_status' => [
                 '_' => '비트맵 상태',
                 'all' => '전체',
-                'disqualified' => '디스퀄리파이 됨',
-                'never_qualified' => '퀄리파이 된 적 없음',
-                'qualified' => '퀄리파이',
-                'ranked' => '랭크됨',
+                'disqualified' => 'Disqualified',
+                'never_qualified' => 'Qualified 된 적 없음',
+                'qualified' => 'Qualified',
+                'ranked' => 'Ranked',
             ],
 
             'user' => [
-                'label' => '유저',
+                'label' => '사용자',
                 'overview' => '활동 개요',
             ],
         ],
@@ -102,6 +103,6 @@ return [
 
     'user_filter' => [
         'everyone' => '모두',
-        'label' => '유저순 필터링',
+        'label' => '사용자순 필터링',
     ],
 ];

@@ -57,6 +57,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => ':username 发表了新审阅，问题：:problems，建议：:suggestions，赞：:praises',
                 'beatmapset_discussion_unlock' => '谱面 ":title" 的讨论已解锁。',
                 'beatmapset_discussion_unlock_compact' => '讨论已解锁',
+
+                'review_count' => [
+                    'praises' => ':count_delimited 个赞',
+                    'problems' => ':count_delimited 个问题',
+                    'suggestions' => ':count_delimited 个建议',
+                ],
             ],
 
             'beatmapset_problem' => [
@@ -241,11 +247,6 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':username 解锁了 “:title”！',
-                'user_achievement_unlock_self' => '您已解锁 “:title”！',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username 创建了一张新谱面',
                 'user_beatmapset_revive' => ':username 恢复了一张谱面',

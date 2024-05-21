@@ -13,7 +13,28 @@ return [
         'nav_title' => '一覧',
     ],
 
+    'judge' => [
+        'hide_judged' => '',
+        'nav_title' => '',
+        'no_current_vote' => '',
+        'update' => '',
+        'validation' => [
+            'missing_score' => '',
+            'contest_vote_judged' => '',
+        ],
+        'voted' => '',
+    ],
+
+    'judge_results' => [
+        '_' => '',
+        'creator' => '作成者',
+        'score' => 'スコア',
+        'total_score' => '合計スコア',
+    ],
+
     'voting' => [
+        'judge_link' => '',
+        'judged_notice' => '',
         'login_required' => '投票するにはログインが必要です。',
         'over' => 'このコンテストの投票期間は終了しました。',
         'show_voted_only' => '投票済みを表示',
@@ -38,6 +59,7 @@ return [
             ],
         ],
     ],
+
     'entry' => [
         '_' => 'エントリー',
         'login_required' => 'このコンテストにエントリーするにはログインが必要です。',
@@ -45,22 +67,27 @@ return [
         'preparation' => 'このコンテストは準備中です。しばらくお待ちください！',
         'drop_here' => 'エントリーをここにドロップ！',
         'download' => '.oszをダウンロード',
+
         'wrong_type' => [
             'art' => 'このコンテストは.jpgか.png拡張子のファイルしか受け付けていません。',
             'beatmap' => 'このコンテストは.osu拡張子のファイルしか受け付けていません。',
             'music' => 'このコンテストは.mp3拡張子のファイルしか受け付けていません。',
         ],
+
         'wrong_dimensions' => 'このコンテストのエントリーは:widthx:heightでなければいけません',
         'too_big' => 'このコンテストのエントリーの上限は:limitです。',
     ],
+
     'beatmaps' => [
         'download' => 'エントリーをダウンロード',
     ],
+
     'vote' => [
         'list' => '投票',
         'count' => ':count_delimited 票',
         'points' => ':count_delimited ポイント',
     ],
+
     'dates' => [
         'ended' => '終了日 :date',
         'ended_no_date' => '終了',
@@ -70,6 +97,7 @@ return [
             'soon' => '間もなく™',
         ],
     ],
+
     'states' => [
         'entry' => 'エントリー受付中',
         'voting' => '投票期間中',

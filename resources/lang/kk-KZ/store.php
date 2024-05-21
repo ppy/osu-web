@@ -6,6 +6,7 @@
 return [
     'cart' => [
         'checkout' => 'Төлеу',
+        'empty_cart' => '',
         'info' => 'себеттегі :count_delimited тауар ($:subtotal)',
         'more_goodies' => 'Тапсырысты аяқтамастан бұрын басқа да тауарларды көргім келеді',
         'shipping_fees' => 'жеткізу құны',
@@ -48,19 +49,52 @@ return [
     ],
 
     'discount' => ':percent% үнемдеу',
+    'free' => 'тегін!',
 
     'invoice' => [
+        'contact' => 'Байланыс желілері:',
+        'date' => '',
         'echeck_delay' => 'Төлеміңіз eCheck арқылы жүргізілгендіктен төлемнің Paypal арқылы расталуы 10 күнге дейін созылуы мүмкін!',
         'hide_from_activity' => 'Осы тапсырыстағы osu!supporter тегтері сіздің соңғы әрекеттеріңізде көрсетілмеген.',
+        'sent_via' => '',
+        'shipping_to' => '',
+        'title' => 'Чек',
         'title_compact' => 'чек',
 
         'status' => [
+            'cancelled' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => "",
+                    'link_text' => '',
+                ],
+            ],
+            'delivered' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => '',
+                    'link_text' => '',
+                ],
+            ],
+            'prepared' => [
+                'title' => '',
+                'line_1' => '',
+                'line_2' => '',
+            ],
             'processing' => [
                 'title' => 'Сіздің төлеміңіз әлі расталмады!',
                 'line_1' => 'Сіз төлеп қойсаңыз да біз әлі де төлеміңіздің расталуын күтуіміз мүмкін. Өтініш, осы бетті бір-екі минутта жаңартыңыз!',
                 'line_2' => [
                     '_' => 'Егер төлеу барысында мәселеге ұшырасаңыз :link',
                     'link_text' => 'төлеміңізді жалғастыру үшін мында басыңыз',
+                ],
+            ],
+            'shipped' => [
+                'title' => '',
+                'tracking_details' => '',
+                'no_tracking_details' => [
+                    '_' => "",
+                    'link_text' => 'бізге электронды хатты жіберіңіз ',
                 ],
             ],
         ],
@@ -70,21 +104,33 @@ return [
         'cancel' => 'Тапсырысты жою',
         'cancel_confirm' => '',
         'cancel_not_allowed' => '',
-        'invoice' => '',
+        'invoice' => 'Чекті қарау',
         'no_orders' => '',
         'paid_on' => '',
         'resume' => '',
+        'shipping_and_handling' => '',
         'shopify_expired' => '',
+        'subtotal' => '',
+        'total' => 'Барлығы',
+
+        'details' => [
+            'order_number' => '',
+            'payment_terms' => '',
+            'salesperson' => '',
+            'shipping_method' => '',
+            'shipping_terms' => '',
+            'title' => '',
+        ],
 
         'item' => [
-            'quantity' => '',
+            'quantity' => 'Саны',
 
             'display_name' => [
-                'supporter_tag' => '',
+                'supporter_tag' => ':username-ге :name (:duration)',
             ],
 
             'subtext' => [
-                'supporter_tag' => '',
+                'supporter_tag' => 'Хабар: :message',
             ],
         ],
 
@@ -102,14 +148,23 @@ return [
             'cancelled' => '',
             'checkout' => '',
             'delivered' => '',
-            'paid' => '',
+            'paid' => 'Төленген',
             'processing' => '',
             'shipped' => '',
+            'title' => '',
+        ],
+
+        'thanks' => [
+            'title' => '',
+            'line_1' => [
+                '_' => '',
+                'link_text' => '',
+            ],
         ],
     ],
 
     'product' => [
-        'name' => '',
+        'name' => 'Аты',
 
         'stock' => [
             'out' => '',
@@ -131,16 +186,20 @@ return [
 
         'require_login' => [
             '_' => '',
-            'link_text' => '',
+            'link_text' => 'аккаунтқа кірілген',
         ],
     ],
 
     'username_change' => [
         'check' => '',
         'checking' => '',
+        'placeholder' => '',
+        'label' => '',
+        'current' => '',
+
         'require_login' => [
             '_' => '',
-            'link_text' => '',
+            'link_text' => 'аккаунтқа кірілген',
         ],
     ],
 

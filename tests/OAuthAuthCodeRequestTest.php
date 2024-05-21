@@ -49,7 +49,7 @@ class OAuthAuthCodeRequestTest extends TestCase
             ->assertStatus(400);
     }
 
-    public function botClientDataProvider()
+    public static function botClientDataProvider()
     {
         return [
             'cannot request delegation with auth_code' => ['delegate', false],
@@ -62,7 +62,7 @@ class OAuthAuthCodeRequestTest extends TestCase
         parent::setUp();
 
         // otherwise exceptions won't render the actual view.
-        config()->set('app.debug', false);
+        config_set('app.debug', false);
 
         $this->client = Client::factory()->create([
             'user_id' => User::factory()->withGroup('bot'),

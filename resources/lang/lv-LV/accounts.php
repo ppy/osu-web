@@ -9,7 +9,7 @@ return [
         'username' => 'lietotājvārds',
 
         'avatar' => [
-            'title' => 'Profila attēls',
+            'title' => 'Avatārs',
             'rules' => 'Lūdzu, pārliecinieties, ka jūsu profila attēls atbilst :link.<br/>Tas nozīmē, ka attēlam jābūt <strong>piemērotam visiem vecumiem</strong>, t.i., bez kailuma, rupjībām vai ierosinoša satura.',
             'rules_link' => 'kopienas noteikumi',
         ],
@@ -19,8 +19,8 @@ return [
             'new_confirmation' => 'e-pasta apstiprinājums',
             'title' => 'E-pasts',
             'locked' => [
-                '_' => '',
-                'accounts' => '',
+                '_' => 'Lūdzu, sazinieties ar :accounts ja nepieciešams atjaunināt jūsu e-pasta adresi.',
+                'accounts' => 'kontu atbalsta komanda',
             ],
         ],
 
@@ -42,8 +42,8 @@ return [
             'title' => 'Profils',
 
             'country_change' => [
-                '_' => "",
-                'update_link' => '',
+                '_' => "Izskatās, ka konta valsts nesakrīt ar jūsu dzīvesvietas valsti. :update_link.",
+                'update_link' => 'Atjaunināt uz :country',
             ],
 
             'user' => [
@@ -59,6 +59,19 @@ return [
         'signature' => [
             'title' => 'Paraksts',
             'update' => 'atjaunināt',
+        ],
+    ],
+
+    'github_user' => [
+        'info' => "Ja esat ieguldītājs osu! atvērtā koda repozitorijos, sasaistot savu GitHub kontu šeit un jūsu izmaiņu žurnāla ieraksti tiks saistīti ar jūsu osu! profilu. GitHub kontus, kuriem nav ieguldījumu vēstures osu!, nevar sasaistīt.",
+        'link' => 'Pievienot GitHub kontu',
+        'title' => 'GitHub',
+        'unlink' => 'Atvienot GitHub kontu',
+
+        'error' => [
+            'already_linked' => 'Šis GitHub konts jau ir pievienots citam lietotājam.',
+            'no_contribution' => 'Nevar sasaistīt GitHub kontu bez jebkādas ieguldījumu vēstures osu! repozitorijos.',
+            'unverified_email' => 'Lūdzu, apstriprinā savu primāro e-pasta adresi GitHub un pēc tam mēģiniet vēlreiz sasaistīt kontu.',
         ],
     ],
 
@@ -79,7 +92,6 @@ return [
             'mail' => 'pasts',
             'mapping' => 'bītmapes kartētājs',
             'push' => 'push',
-            'user_achievement_unlock' => 'lietotāja medaļa atklāta',
         ],
     ],
 

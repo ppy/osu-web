@@ -10,27 +10,27 @@ return [
     'mark_read' => '',
     'none' => '',
     'see_all' => '',
-    'see_channel' => '',
+    'see_channel' => 'чатқа өту',
     'verifying' => '',
 
     'action_type' => [
-        '_' => '',
-        'beatmapset' => '',
+        '_' => 'бәрі',
+        'beatmapset' => 'карталар',
         'build' => '',
-        'channel' => '',
-        'forum_topic' => '',
-        'news_post' => '',
+        'channel' => 'чат',
+        'forum_topic' => 'форум',
+        'news_post' => 'жаңалықтар',
         'user' => '',
     ],
 
     'filters' => [
-        '_' => '',
+        '_' => 'бәрі',
         'user' => '',
-        'beatmapset' => '',
+        'beatmapset' => 'карталар',
         'forum_topic' => '',
-        'news_post' => '',
+        'news_post' => 'жаңалықтар',
         'build' => '',
-        'channel' => '',
+        'channel' => 'чат',
     ],
 
     'item' => [
@@ -38,15 +38,15 @@ return [
             '_' => '',
 
             'beatmap_owner_change' => [
-                '_' => '',
+                '_' => 'Қонақтың қиындығы',
                 'beatmap_owner_change' => '',
                 'beatmap_owner_change_compact' => '',
             ],
 
             'beatmapset_discussion' => [
-                '_' => '',
-                'beatmapset_discussion_lock' => '',
-                'beatmapset_discussion_lock_compact' => '',
+                '_' => 'Картаның пікірталасы',
+                'beatmapset_discussion_lock' => '":title"-дің пікірталасы жабылды',
+                'beatmapset_discussion_lock_compact' => 'Пікірталас жабылды',
                 'beatmapset_discussion_post_new' => '',
                 'beatmapset_discussion_post_new_empty' => '',
                 'beatmapset_discussion_post_new_compact' => '',
@@ -54,7 +54,13 @@ return [
                 'beatmapset_discussion_review_new' => '',
                 'beatmapset_discussion_review_new_compact' => '',
                 'beatmapset_discussion_unlock' => '',
-                'beatmapset_discussion_unlock_compact' => '',
+                'beatmapset_discussion_unlock_compact' => 'Пікірталас ашылды',
+
+                'review_count' => [
+                    'praises' => '',
+                    'problems' => '',
+                    'suggestions' => '',
+                ],
             ],
 
             'beatmapset_problem' => [
@@ -94,14 +100,14 @@ return [
         ],
 
         'channel' => [
-            '_' => '',
+            '_' => 'Чат',
 
             'announcement' => [
                 '_' => '',
 
                 'announce' => [
                     'channel_announcement' => '',
-                    'channel_announcement_compact' => '',
+                    'channel_announcement_compact' => ':title',
                     'channel_announcement_group' => '',
                 ],
             ],
@@ -111,7 +117,7 @@ return [
 
                 'pm' => [
                     'channel_message' => '',
-                    'channel_message_compact' => '',
+                    'channel_message_compact' => ':title',
                     'channel_message_group' => '',
                 ],
             ],
@@ -131,7 +137,7 @@ return [
         ],
 
         'news_post' => [
-            '_' => '',
+            '_' => 'Жаңалықтар',
 
             'comment' => [
                 '_' => '',
@@ -170,9 +176,9 @@ return [
             '_' => '',
 
             'user_achievement_unlock' => [
-                '_' => '',
-                'user_achievement_unlock' => '',
-                'user_achievement_unlock_compact' => '',
+                '_' => 'Жаңа медаль ',
+                'user_achievement_unlock' => '":title" ашылды!',
+                'user_achievement_unlock_compact' => '":title" ашылды!',
                 'user_achievement_unlock_group' => '',
             ],
         ],
@@ -238,11 +244,6 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => '',
-                'user_achievement_unlock_self' => '',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => '',
                 'user_beatmapset_revive' => '',

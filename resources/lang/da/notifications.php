@@ -55,6 +55,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => 'Ny anmeldelse af :username indeholder problemer: :problems, forslag: :suggestions, rose: :praises',
                 'beatmapset_discussion_unlock' => 'Diskussion på ":title" er blevet åbnet',
                 'beatmapset_discussion_unlock_compact' => 'Diskussion er blevet åbnet',
+
+                'review_count' => [
+                    'praises' => '',
+                    'problems' => '',
+                    'suggestions' => '',
+                ],
             ],
 
             'beatmapset_problem' => [
@@ -238,11 +244,6 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':username har oplåst en ny medalje, ":title"!',
-                'user_achievement_unlock_self' => 'Du har oplåst en ny medalje, ":title"!',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username har oprettet nye beatmaps',
                 'user_beatmapset_revive' => '',

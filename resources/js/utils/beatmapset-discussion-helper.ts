@@ -2,11 +2,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { Filter, filters } from 'beatmap-discussions/current-discussions';
-import DiscussionMode, { DiscussionPage, discussionPages } from 'beatmap-discussions/discussion-mode';
+import DiscussionMode from 'beatmap-discussions/discussion-mode';
+import DiscussionPage, { isDiscussionPage } from 'beatmap-discussions/discussion-page';
 import guestGroup from 'beatmap-discussions/guest-group';
 import mapperGroup from 'beatmap-discussions/mapper-group';
 import BeatmapJson from 'interfaces/beatmap-json';
-import BeatmapsetDiscussionJson, { BeatmapsetDiscussionJsonForBundle, BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
+import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import BeatmapsetDiscussionPostJson from 'interfaces/beatmapset-discussion-post-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import GameMode, { gameModes } from 'interfaces/game-mode';
@@ -20,8 +21,8 @@ import { linkHtml, openBeatmapEditor } from 'utils/url';
 import { getInt } from './math';
 
 interface BadgeGroupParams {
-  beatmapset: BeatmapsetJson;
-  currentBeatmap: BeatmapJson | null;
+  beatmapset?: BeatmapsetJson;
+  currentBeatmap?: BeatmapJson | null;
   discussion: BeatmapsetDiscussionJson;
   user?: UserJson;
 }
@@ -70,7 +71,6 @@ export const defaultFilter = 'total';
 // parseUrl and makeUrl lookups
 const filterLookup = new Set<unknown>(filters);
 const generalPages = new Set<unknown>(['events', 'generalAll', 'reviews']);
-const pageLookup = new Set<unknown>(discussionPages);
 
 const defaultBeatmapId = '-';
 
@@ -89,7 +89,7 @@ export function badgeGroup({ beatmapset, currentBeatmap, discussion, user }: Bad
     return null;
   }
 
-  if (user.id === beatmapset.user_id) {
+  if (user.id === beatmapset?.user_id) {
     return mapperGroup;
   }
 
@@ -97,7 +97,11 @@ export function badgeGroup({ beatmapset, currentBeatmap, discussion, user }: Bad
     return guestGroup;
   }
 
-  return user.groups?.[0];
+  if (user.groups == null || user.groups.length === 0) {
+    return null;
+  }
+
+  return user.groups[0];
 }
 
 export function canModeratePosts() {
@@ -128,11 +132,6 @@ export function formatTimestamp(value: number) {
   const m = Math.floor(value / 1000 / 60);
 
   return `${padStart(m.toString(), 2, '0')}:${padStart(s.toString(), 2, '0')}:${padStart(ms.toString(), 3, '0')}`;
-}
-
-
-function isDiscussionPage(value: string): value is DiscussionPage {
-  return pageLookup.has(value);
 }
 
 function isFilter(value: string): value is Filter {
@@ -375,12 +374,12 @@ export function propsFromHref(href = '') {
 }
 
 // Workaround for the discussion starting_post typing mess until the response gets refactored and normalized.
-export function startingPost(discussion: BeatmapsetDiscussionJsonForBundle | BeatmapsetDiscussionJsonForShow): BeatmapsetDiscussionPostJson {
-  if (!('posts' in discussion)) {
-    return discussion.starting_post;
+export function startingPost(discussion: BeatmapsetDiscussionJson) {
+  if ('posts' in discussion && discussion.posts != null) {
+    return discussion.posts[0];
   }
 
-  return discussion.posts[0];
+  return discussion.starting_post;
 }
 
 export function stateFromDiscussion(discussion: BeatmapsetDiscussionJson) {
@@ -393,7 +392,7 @@ export function stateFromDiscussion(discussion: BeatmapsetDiscussionJson) {
 }
 
 export function validMessageLength(message?: string | null, isTimeline = false) {
-  if (!message?.length) return false;
+  if (message == null || message.length === 0 ) return false;
 
   return !isTimeline || message.length <= maxLengthTimeline;
 }

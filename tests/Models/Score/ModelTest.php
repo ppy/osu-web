@@ -29,7 +29,7 @@ class ModelTest extends TestCase
         Model::getClass($ruleset);
     }
 
-    public function dataProviderForTestGetClassInvalidRuleset(): array
+    public static function dataProviderForTestGetClassInvalidRuleset(): array
     {
         return [
             ['does'],

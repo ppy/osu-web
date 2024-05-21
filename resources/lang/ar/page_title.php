@@ -63,8 +63,12 @@ return [
         'comments_controller' => [
             '_' => 'التعليقات',
         ],
+        'contest_entries_controller' => [
+            'judge_results' => '',
+        ],
         'contests_controller' => [
             '_' => 'المسابقات',
+            'judge' => '',
         ],
         'groups_controller' => [
             'show' => 'المجموعات',
@@ -105,6 +109,9 @@ return [
         ],
         'tournaments_controller' => [
             '_' => 'البطولات',
+        ],
+        'user_cover_presets_controller' => [
+            '_' => '',
         ],
         'users_controller' => [
             '_' => 'معلومات اللاعب',

@@ -10,7 +10,7 @@ return [
         'missing' => 'Požadovaná stránka ":keyword" nebyla nalezena.',
         'missing_title' => 'Nenalezeno',
         'missing_translation' => 'Požadovaná stránka nebyla nalezena pro zvolený jazyk.',
-        'needs_cleanup_or_rewrite' => 'Tato stránka nesplňuje standardy osu! wiki a potřebuje být vylepšena nebo přepsáno. Pokud chcete, můžete pomoci s aktualizací článku!',
+        'needs_cleanup_or_rewrite' => 'Tato stránka nesplňuje standardy osu! wiki a potřebuje být vylepšena nebo přepsána. Pokud chcete, můžete pomoci s aktualizací článku!',
         'search' => 'Prohledat existující stránky pro :link.',
         'stub' => 'Tento článek je neúplný a čeká na někoho, kdo ho rozšíří.',
         'toc' => 'Obsah',

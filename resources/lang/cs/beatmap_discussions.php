@@ -26,6 +26,7 @@ return [
             'deleted' => 'Zahrnout smazané diskuze',
             'mode' => 'Režim beatmapy',
             'only_unresolved' => 'Ukaž pouze nerozluštěné diskuze',
+            'show_review_embeds' => 'Zobrazit rencenze',
             'types' => 'Typy zpráv',
             'username' => 'Uživatelské jméno',
 

@@ -77,8 +77,10 @@ core.reactTurbolinks.register('chat', action(() => {
     core.dataStore.channelStore.lastReceivedMessageId = initial.last_message_id ?? 0;
   }
 
-  if (currentUrl().hash === '#create') {
-    core.dataStore.chatState.selectChannel('create', 'replaceHistory');
+  const channelId = currentUrl().hash.slice(1);
+
+  if (channelId === 'create' || channelId === 'join') {
+    core.dataStore.chatState.selectChannel(channelId, 'replaceHistory');
   } else {
     const channel = getInitialChannel(initial?.send_to);
 

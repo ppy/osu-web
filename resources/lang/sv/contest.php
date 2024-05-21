@@ -13,7 +13,28 @@ return [
         'nav_title' => 'listning',
     ],
 
+    'judge' => [
+        'hide_judged' => 'dölj bedömda bidrag',
+        'nav_title' => 'bedöm',
+        'no_current_vote' => 'du har inte röstat ännu.',
+        'update' => 'uppdatera',
+        'validation' => [
+            'missing_score' => '',
+            'contest_vote_judged' => 'kan inte rösta i bedömda tävlingar',
+        ],
+        'voted' => 'Du har redan röstat på detta bidrag.',
+    ],
+
+    'judge_results' => [
+        '_' => 'Bedömningsresultat',
+        'creator' => 'skapare',
+        'score' => 'Poäng',
+        'total_score' => 'total poäng',
+    ],
+
     'voting' => [
+        'judge_link' => 'Du är domare i denna tävling. Bedöm bidragen här!',
+        'judged_notice' => 'Denna tävling använder bedömningssystemet, bedömarna bearbetar för närvarande bidragen.',
         'login_required' => 'Var vänlig logga in för att rösta.',
         'over' => 'Möjligheten att rösta i denna tävling har avslutats',
         'show_voted_only' => 'Visa röstade',
@@ -38,6 +59,7 @@ return [
             ],
         ],
     ],
+
     'entry' => [
         '_' => 'bidrag',
         'login_required' => 'Var vänlig logga in för att gå med i tävlingen.',
@@ -45,22 +67,27 @@ return [
         'preparation' => 'Vi håller på att förbereda denna tävling. Ha tålamod!',
         'drop_here' => 'Släpp ditt bidrag här',
         'download' => 'Ladda ner .osz',
+
         'wrong_type' => [
             'art' => 'Endast .jpg- och .png-filer är tillåtna i denna tävling.',
             'beatmap' => 'Endast .osu-filer är tillåtna i denna tävling.',
             'music' => 'Endast .mp3-filer är tillåtna i denna tävling.',
         ],
+
         'wrong_dimensions' => 'Bidrag för denna tävling måste vara :widthx:height',
         'too_big' => 'Bidrag till denna tävling får vara högst :limit.',
     ],
+
     'beatmaps' => [
         'download' => 'Ladda ner bidrag',
     ],
+
     'vote' => [
         'list' => 'röster',
         'count' => ':count_delimited rösta|:count_delimited röster ',
         'points' => ':count_delimited poäng|:count_delimited poäng',
     ],
+
     'dates' => [
         'ended' => 'Avslutad :date',
         'ended_no_date' => 'Avslutad',
@@ -70,6 +97,7 @@ return [
             'soon' => 'snart™',
         ],
     ],
+
     'states' => [
         'entry' => 'Öppen för bidrag',
         'voting' => 'Röstning startad',

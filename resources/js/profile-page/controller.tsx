@@ -79,7 +79,7 @@ interface LazyPages {
 
 export type Page = ProfileExtraPage | 'main';
 
-type ScorePinReorderParamsBase = Pick<ScoreCurrentUserPinJson, 'score_id' | 'score_type'>;
+type ScorePinReorderParamsBase = Pick<ScoreCurrentUserPinJson, 'score_id'>;
 
 interface ScorePinReorderParams extends ScorePinReorderParamsBase {
   order1?: ScorePinReorderParamsBase;
@@ -113,7 +113,7 @@ export default class Controller {
     return core.currentUser?.id === this.state.user.id;
   }
 
-  constructor(private container: HTMLElement) {
+  constructor(private readonly container: HTMLElement) {
     const initialData = JSON.parse(this.container.dataset.initialData ?? 'null') as InitialData;
 
     const savedStateJson = container.dataset.savedState;

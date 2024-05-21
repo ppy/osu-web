@@ -2,7 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { currentUrl } from 'utils/turbolinks'
-import { isHTML, isInternal } from 'utils/url'
+import { isHTML } from 'utils/url'
 
 # Anchor navigation with turbolinks. Works around [1].
 # [1] https://github.com/turbolinks/turbolinks/issues/75
@@ -52,8 +52,14 @@ Turbolinks.Controller::advanceHistory = (url) ->
 Turbolinks.Controller::replaceHistory = (url) ->
   return if url == currentUrl().href
 
-  history.replaceState history.state, '', url
   @lastRenderedLocation = Turbolinks.Location.wrap(url)
+
+  if window.newUrl?
+    # replaceState needs to run after turbolinks:load to override the correct url
+    Timeout.set 0, ->
+      history.replaceState history.state, '', url
+  else
+    history.replaceState history.state, '', url
 
 
 # Ignore anchor check on loading snapshot to prevent repeating requesting page
@@ -61,4 +67,7 @@ Turbolinks.Controller::replaceHistory = (url) ->
 Turbolinks.Snapshot::hasAnchor = -> true
 
 Turbolinks.Controller::locationIsVisitable = (location) ->
-  location.isPrefixedBy(@view.getRootLocation()) && isInternal(location) && isHTML(location)
+  location.isPrefixedBy(@view.getRootLocation()) &&
+    # old website pages
+    location.getPath().match(/^\/(api|osu|p|ss|web)\//) == null &&
+    isHTML(location)

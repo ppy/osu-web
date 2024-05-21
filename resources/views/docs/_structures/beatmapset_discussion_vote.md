@@ -4,9 +4,9 @@ Represents a vote on a [BeatmapsetDiscussion](#beatmapsetdiscussion).
 
 Field                    | Type                         | Description
 ------------------------ | ---------------------------- | -----------
-beatmapset_discussion_id | number                       | |
+beatmapset_discussion_id | integer                      | |
 created_at               | [Timestamp](#timestamp)      | |
-id                       | number                       | |
-score                    | number                       | |
+id                       | integer                      | |
+score                    | integer                      | |
 updated_at               | [Timestamp](#timestamp)      | |
-user_id                  | number                       | |
+user_id                  | integer                      | |

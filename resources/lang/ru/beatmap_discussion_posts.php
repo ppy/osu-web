@@ -10,6 +10,6 @@ return [
 
     'item' => [
         'content' => 'Содержимое',
-        'modding_history_link' => 'Просмотреть историю моддинга',
+        'modding_history_link' => 'Открыть историю моддинга',
     ],
 ];

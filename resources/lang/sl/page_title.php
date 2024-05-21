@@ -63,8 +63,12 @@ return [
         'comments_controller' => [
             '_' => 'komentarji',
         ],
+        'contest_entries_controller' => [
+            'judge_results' => '',
+        ],
         'contests_controller' => [
             '_' => 'tekmovanja',
+            'judge' => '',
         ],
         'groups_controller' => [
             'show' => 'skupine',
@@ -105,6 +109,9 @@ return [
         ],
         'tournaments_controller' => [
             '_' => 'turnirji',
+        ],
+        'user_cover_presets_controller' => [
+            '_' => '',
         ],
         'users_controller' => [
             '_' => 'informacije o igralcu',

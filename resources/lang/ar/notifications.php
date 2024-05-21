@@ -15,8 +15,8 @@ return [
 
     'action_type' => [
         '_' => 'الكل',
-        'beatmapset' => 'خرائط الموسيقى',
-        'build' => '',
+        'beatmapset' => 'الخرائط',
+        'build' => 'النُسَخ',
         'channel' => 'المحادثة',
         'forum_topic' => 'منتدى',
         'news_post' => 'الأخبار',
@@ -55,6 +55,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => 'مراجعة جديدة من قبل :username تحتوي على مشاكل: :problems, اقتراحات: :suggestions, تشجيع: :praises',
                 'beatmapset_discussion_unlock' => 'تم فتح قفل المناقشة على ":title"',
                 'beatmapset_discussion_unlock_compact' => 'تم الغاء قفل المناقشة',
+
+                'review_count' => [
+                    'praises' => ':count_delimited إشادة|:count_delimited إشادات',
+                    'problems' => ':count_delimited مشكلة|:count_delimited مشاكل',
+                    'suggestions' => ':count_delimited إقتراح|:count_delimited مقترحات',
+                ],
             ],
 
             'beatmapset_problem' => [
@@ -238,11 +244,6 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':username فتح ميدالية جديدة، ":title"!',
-                'user_achievement_unlock_self' => 'لقد فتحت ميدالية جديدة، ":title"!',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => 'قام :username بإنشاء خرائط جديدة',
                 'user_beatmapset_revive' => ':username قام بإحياء الخرائط',

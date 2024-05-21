@@ -5,7 +5,6 @@
 
 return [
     'button' => [
-        'cancel' => '取消',
         'resend' => '重新发送确认邮件',
         'set' => '设置密码',
         'start' => '开始',
@@ -37,6 +36,9 @@ return [
     'starting' => [
         'username' => '输入邮箱或用户名',
 
+        'reason' => [
+            'inactive_different_country' => "您的帐户已经很长时间没有被使用。为了确保您的帐户安全，请重置您的密码。",
+        ],
         'support' => [
             '_' => '需要进一步的帮助？通过我们的 :button 联系我们。',
             'button' => '支持系统',

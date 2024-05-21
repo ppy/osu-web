@@ -55,6 +55,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => 'Nieuwe beoordeling door :username die problemen bevat: :problems, suggesties: :suggestions, prijzen: :praises',
                 'beatmapset_discussion_unlock' => 'Beatmap ":title" is ontgrendeld voor discussie.',
                 'beatmapset_discussion_unlock_compact' => 'Discussie is ontgrendeld',
+
+                'review_count' => [
+                    'praises' => ':count_delimited lof|:count_delimited lof',
+                    'problems' => ':count_delimited probleem|:count_delimited problemen',
+                    'suggestions' => ':count_delimited suggestie|:count_delimited suggesties',
+                ],
             ],
 
             'beatmapset_problem' => [
@@ -161,10 +167,8 @@ return [
                 'user_beatmapset_new_compact' => 'Nieuwe beatmap ":title"',
                 'user_beatmapset_new_group' => 'Nieuwe beatmaps door :username',
 
-                'user_beatmapset_revive' => '
-Beatmap ":title" vernieuwd door :username',
-                'user_beatmapset_revive_compact' => '
-Beatmap ":title" vernieuwd',
+                'user_beatmapset_revive' => 'Beatmap ":title" vernieuwd door :username',
+                'user_beatmapset_revive_compact' => 'Beatmap ":title" vernieuwd',
             ],
         ],
 
@@ -240,11 +244,6 @@ Beatmap ":title" vernieuwd',
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':username heeft een nieuwe medaille ontgrendeld, ":title"!',
-                'user_achievement_unlock_self' => 'Je hebt een nieuwe medaille, ":title"!',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username heeft nieuwe beatmaps aangemaakt',
                 'user_beatmapset_revive' => ':username heeft beatmaps vernieuwd',

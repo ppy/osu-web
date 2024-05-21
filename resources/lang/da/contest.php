@@ -13,7 +13,28 @@ return [
         'nav_title' => 'katalog',
     ],
 
+    'judge' => [
+        'hide_judged' => '',
+        'nav_title' => '',
+        'no_current_vote' => '',
+        'update' => '',
+        'validation' => [
+            'missing_score' => '',
+            'contest_vote_judged' => '',
+        ],
+        'voted' => '',
+    ],
+
+    'judge_results' => [
+        '_' => '',
+        'creator' => '',
+        'score' => '',
+        'total_score' => '',
+    ],
+
     'voting' => [
+        'judge_link' => '',
+        'judged_notice' => '',
         'login_required' => 'Log venligst ind for at stemme.',
         'over' => 'Afstemning for denne konkurrence er slut',
         'show_voted_only' => 'Vis stemmer',
@@ -38,6 +59,7 @@ return [
             ],
         ],
     ],
+
     'entry' => [
         '_' => 'entry',
         'login_required' => 'Log venligst ind for at deltage i denne konkurrence.',
@@ -45,22 +67,27 @@ return [
         'preparation' => 'Vi er i gang med at forberede den næste konkurrence. Vær tålmodig!',
         'drop_here' => 'Aflever dit bidrag her',
         'download' => 'Download .osz',
+
         'wrong_type' => [
             'art' => 'Kun .jpg og .png filer er accepteret i denne konkurrence.',
             'beatmap' => 'Kun .osu filer er accepteret i denne konkurrence.',
             'music' => 'Kun .mp3 filer er accepteret i denne konkurrence.',
         ],
+
         'wrong_dimensions' => '',
         'too_big' => 'Bidrag til denne konkurrence kan maks være op til :limit.',
     ],
+
     'beatmaps' => [
         'download' => 'Download Bidrag',
     ],
+
     'vote' => [
         'list' => 'stemmer',
         'count' => ':count stemme|:count stemmer',
         'points' => ':count point|:count point',
     ],
+
     'dates' => [
         'ended' => 'Sluttede den :date',
         'ended_no_date' => 'Afsluttet',
@@ -70,6 +97,7 @@ return [
             'soon' => 'snart™',
         ],
     ],
+
     'states' => [
         'entry' => 'Åbent For Bidrag',
         'voting' => 'Afstemning Begyndt',

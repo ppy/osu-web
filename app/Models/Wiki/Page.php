@@ -87,7 +87,7 @@ class Page implements WikiObject
         $page = static::lookup($path, $locale)->sync();
 
         if (!$page->isVisible() && $page->isTranslation()) {
-            $page = static::lookup($path, config('app.fallback_locale'), $locale)->sync();
+            $page = static::lookup($path, $GLOBALS['cfg']['app']['fallback_locale'], $locale)->sync();
         }
 
         return $page;
@@ -122,7 +122,7 @@ class Page implements WikiObject
             ['constant_score' => [
                 'filter' => [
                     'match' => [
-                        'locale' => config('app.fallback_locale'),
+                        'locale' => $GLOBALS['cfg']['app']['fallback_locale'],
                     ],
                 ],
             ]];
@@ -228,7 +228,7 @@ class Page implements WikiObject
     public function esFetch()
     {
         $response = (new BasicSearch(static::esIndexName(), 'wiki_page_lookup'))
-            ->source(['markdown', 'page', 'indexed_at', 'version'])
+            ->source(['markdown', 'page', 'page_text', 'indexed_at', 'version'])
             ->query([
                 'term' => [
                     '_id' => $this->pagePath(),
@@ -249,6 +249,11 @@ class Page implements WikiObject
     public function getMarkdown()
     {
         return $this->source['markdown'] ?? null;
+    }
+
+    public function getTextPreview()
+    {
+        return html_excerpt($this->source['page_text']);
     }
 
     public function hasParent()
@@ -306,7 +311,7 @@ class Page implements WikiObject
 
     public function isTranslation(): bool
     {
-        return $this->locale !== config('app.fallback_locale');
+        return $this->locale !== $GLOBALS['cfg']['app']['fallback_locale'];
     }
 
     public function isVisible()

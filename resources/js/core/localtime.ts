@@ -4,14 +4,14 @@
 import * as moment from 'moment';
 
 export default class Localtime {
-  private observer: MutationObserver;
+  private readonly observer: MutationObserver;
 
   constructor() {
     this.observer = new MutationObserver(this.mutationHandler);
     this.observer.observe(document, { childList: true, subtree: true });
   }
 
-  private formatElem = (elem: HTMLTimeElement) => {
+  private readonly formatElem = (elem: HTMLTimeElement) => {
     if (elem.dataset.localtime === '1') {
       return;
     }
@@ -22,7 +22,7 @@ export default class Localtime {
     elem.innerText = moment(elem.dateTime).format('LLL');
   };
 
-  private formatElems = (elems?: HTMLTimeElement[]) => {
+  private readonly formatElems = (elems?: HTMLTimeElement[]) => {
     if (elems == null) {
       elems = this.getElems(document.body);
     }
@@ -30,7 +30,7 @@ export default class Localtime {
     return elems.map(this.formatElem);
   };
 
-  private getElems = (parent: Node): HTMLTimeElement[] => {
+  private readonly getElems = (parent: Node): HTMLTimeElement[] => {
     if (!(parent instanceof HTMLElement)) {
       return [];
     }
@@ -44,7 +44,7 @@ export default class Localtime {
     }
   };
 
-  private mutationHandler = (mutations: MutationRecord[]) => {
+  private readonly mutationHandler = (mutations: MutationRecord[]) => {
     const timeElems: HTMLTimeElement[] = [];
 
     mutations.forEach((mutation) => {

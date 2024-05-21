@@ -10,13 +10,11 @@ use App\Transformers\TransformerAbstract;
 
 class ForumCoverTransformer extends TransformerAbstract
 {
-    public function transform(ForumCover $cover = null)
+    public function transform(?ForumCover $cover = null)
     {
-        if ($cover === null) {
-            $cover = new ForumCover();
-        }
+        $fileUrl = $cover === null ? null : $cover->file()->url();
 
-        if ($cover->getFileProperties() === null) {
+        if ($fileUrl === null) {
             $data = [
                 'method' => 'post',
                 'url' => route('forum.forum-covers.store', ['forum_id' => $cover->forum_id]),
@@ -27,11 +25,11 @@ class ForumCoverTransformer extends TransformerAbstract
                 'url' => route('forum.forum-covers.update', [$cover, 'forum_id' => $cover->forum_id]),
 
                 'id' => $cover->id,
-                'fileUrl' => $cover->fileUrl(),
+                'fileUrl' => $fileUrl,
             ];
         }
 
-        $data['dimensions'] = $cover->getMaxDimensions();
+        $data['dimensions'] = $cover::MAX_DIMENSIONS;
 
         return $data;
     }

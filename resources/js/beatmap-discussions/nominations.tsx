@@ -11,28 +11,28 @@ import Modal from 'components/modal';
 import StringWithComponent from 'components/string-with-component';
 import TimeWithTooltip from 'components/time-with-tooltip';
 import UserLink from 'components/user-link';
-import { BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
+import BeatmapsetDiscussionsStore from 'interfaces/beatmapset-discussions-store';
 import BeatmapsetEventJson from 'interfaces/beatmapset-event-json';
 import { BeatmapsetNominationsInterface } from 'interfaces/beatmapset-json';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import GameMode from 'interfaces/game-mode';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
-import { action, makeObservable, observable } from 'mobx';
+import { action, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
-import { deletedUser } from 'models/user';
+import { deletedUser, deletedUserJson } from 'models/user';
 import moment from 'moment';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { onError } from 'utils/ajax';
-import { canModeratePosts, makeUrl } from 'utils/beatmapset-discussion-helper';
+import { canModeratePosts, makeUrl, startingPost } from 'utils/beatmapset-discussion-helper';
 import { nominationsCount } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { joinComponents, trans, transExists } from 'utils/lang';
 import { presence } from 'utils/string';
 import { wikiUrl } from 'utils/url';
-import CurrentDiscussions from './current-discussions';
+import DiscussionsState from './discussions-state';
 
 const bn = 'beatmap-discussion-nomination';
 const flashClass = 'js-flash-border--on';
@@ -40,11 +40,8 @@ export const hypeExplanationClass = 'js-hype--explanation';
 const nominatorsVisibleBeatmapStatuses = Object.freeze(new Set(['wip', 'pending', 'ranked', 'qualified']));
 
 interface Props {
-  beatmapset: BeatmapsetWithDiscussionsJson;
-  currentDiscussions: CurrentDiscussions;
-  discussions: Partial<Record<number, BeatmapsetDiscussionJsonForShow>>;
-  events: BeatmapsetEventJson[];
-  users: Partial<Record<number, UserJson>>;
+  discussionsState: DiscussionsState;
+  store: BeatmapsetDiscussionsStore;
 }
 
 type XhrType = 'delete' | 'discussionLock' | 'removeFromLoved';
@@ -62,14 +59,26 @@ function formatDate(date: string | null) {
 }
 
 @observer
-export class Nominations extends React.PureComponent<Props> {
+export class Nominations extends React.Component<Props> {
   private hypeFocusTimeout: number | undefined;
   @observable private showBeatmapsOwnerEditor = false;
   @observable private showLoveBeatmapDialog = false;
   @observable private readonly xhr: Partial<Record<XhrType, JQuery.jqXHR<BeatmapsetWithDiscussionsJson>>> = {};
 
+  private get beatmapset() {
+    return this.props.discussionsState.beatmapset;
+  }
+
+  private get discussions() {
+    return this.props.store.discussions;
+  }
+
+  private get events() {
+    return this.beatmapset.events;
+  }
+
   private get isQualified() {
-    return this.props.beatmapset.status === 'qualified';
+    return this.beatmapset.status === 'qualified';
   }
 
   private get userCanDisqualify() {
@@ -77,7 +86,11 @@ export class Nominations extends React.PureComponent<Props> {
   }
 
   private get userIsOwner() {
-    return core.currentUser != null && (core.currentUser.id === this.props.beatmapset.user_id);
+    return core.currentUser != null && (core.currentUser.id === this.beatmapset.user_id);
+  }
+
+  private get users() {
+    return this.props.store.users;
   }
 
   constructor(props: Props) {
@@ -112,10 +125,8 @@ export class Nominations extends React.PureComponent<Props> {
             <div className={`${bn}__item`}>{this.renderDisqualifyButton()}</div>
             <div className={`${bn}__item`}>
               <Nominator
-                beatmapset={this.props.beatmapset}
-                currentHype={this.props.currentDiscussions.totalHype}
-                unresolvedIssues={this.props.currentDiscussions.unresolvedIssues}
-                users={this.props.users}
+                discussionsState={this.props.discussionsState}
+                store={this.props.store}
               />
             </div>
           </div>
@@ -142,10 +153,10 @@ export class Nominations extends React.PureComponent<Props> {
     if (!confirm(message)) return;
 
     this.xhr.delete = $.ajax(
-      route('beatmapsets.destroy', { beatmapset: this.props.beatmapset.id }),
+      route('beatmapsets.destroy', { beatmapset: this.beatmapset.id }),
       { method: 'DELETE' },
     )
-      .done(() => Turbolinks.visit(route('users.show', { user: this.props.beatmapset.user_id })))
+      .done(() => Turbolinks.visit(route('users.show', { user: this.beatmapset.user_id })))
       .fail(onError)
       .always(action(() => {
         this.xhr.delete = undefined;
@@ -161,14 +172,14 @@ export class Nominations extends React.PureComponent<Props> {
     if (reason == null) return;
 
     this.xhr.discussionLock = $.ajax(
-      route('beatmapsets.discussion-lock', { beatmapset: this.props.beatmapset.id }),
+      route('beatmapsets.discussion-lock', { beatmapset: this.beatmapset.id }),
       { data: { reason }, method: 'POST' },
     );
 
     this.xhr.discussionLock
-      .done((beatmapset) => {
-        $.publish('beatmapsetDiscussions:update', { beatmapset });
-      })
+      .done((beatmapset) => runInAction(() => {
+        this.props.discussionsState.update({ beatmapset });
+      }))
       .fail(onError)
       .always(action(() => {
         this.xhr.discussionLock = undefined;
@@ -182,26 +193,25 @@ export class Nominations extends React.PureComponent<Props> {
     if (!confirm(trans('beatmaps.discussions.lock.prompt.unlock'))) return;
 
     this.xhr.discussionLock = $.ajax(
-      route('beatmapsets.discussion-unlock', { beatmapset: this.props.beatmapset.id }),
+      route('beatmapsets.discussion-unlock', { beatmapset: this.beatmapset.id }),
       { method: 'POST' },
     );
 
     this.xhr.discussionLock
-      .done((beatmapset) => {
-        $.publish('beatmapsetDiscussions:update', { beatmapset });
-      })
+      .done((beatmapset) => runInAction(() => {
+        this.props.discussionsState.update({ beatmapset });
+      }))
       .fail(onError)
       .always(action(() => {
         this.xhr.discussionLock = undefined;
       }));
   };
 
+  @action
   private readonly focusHypeInput = () => {
     // switch to generalAll tab, set current filter to praises
-    $.publish('beatmapsetDiscussions:update', {
-      filter: 'praises',
-      mode: 'generalAll',
-    });
+    this.props.discussionsState.changeFilter('praises');
+    this.props.discussionsState.changeDiscussionPage('generalAll');
 
     this.hypeFocusTimeout = window.setTimeout(() => {
       this.focusNewDiscussion(() => {
@@ -215,7 +225,7 @@ export class Nominations extends React.PureComponent<Props> {
     }, 0);
   };
 
-  private focusNewDiscussion(this: void, callback: () => void) {
+  private focusNewDiscussion(this: void, callback?: () => void) {
     const inputBox = $('.js-hype--input');
     inputBox.trigger('focus');
 
@@ -227,14 +237,22 @@ export class Nominations extends React.PureComponent<Props> {
     });
   }
 
-  private focusNewDiscussionWithModeSwitch = () => {
+  @action
+  private readonly focusNewDiscussionWithModeSwitch = () => {
     // Switch to generalAll tab just in case currently in event tab
     // and thus new discussion box isn't visible.
-    $.publish('beatmapsetDiscussions:update', {
-      callback: this.focusNewDiscussion,
-      mode: 'generalAll',
-      modeIf: 'events',
-    });
+    if (this.props.discussionsState.currentPage === 'events' || this.props.discussionsState.currentPage === 'reviews') {
+      this.props.discussionsState.changeDiscussionPage('generalAll');
+    }
+
+    window.setTimeout(() => {
+      this.focusNewDiscussion();
+    }, 0);
+  };
+
+  private readonly handlePendingProblemsClick = (event: React.SyntheticEvent<HTMLElement>) => {
+    event.preventDefault();
+    this.props.discussionsState.changeFilter('pending');
   };
 
   @action
@@ -248,10 +266,10 @@ export class Nominations extends React.PureComponent<Props> {
   };
 
   private parseEventData(event: BeatmapsetEventJson) {
-    const user = event.user_id != null ? this.props.users[event.user_id] : null;
+    const user = this.users.get(event.user_id) ?? deletedUserJson;
     const discussionId = discussionIdFromEvent(event);
-    const discussion = discussionId != null ? this.props.discussions[discussionId] : null;
-    const post = discussion?.posts[0];
+    const discussion = this.discussions.get(discussionId);
+    const post = discussion != null ? startingPost(discussion) : null;
 
     let link: React.ReactNode;
     let message: React.ReactNode;
@@ -277,14 +295,14 @@ export class Nominations extends React.PureComponent<Props> {
     if (reason == null) return;
 
     this.xhr.removeFromLoved = $.ajax(
-      route('beatmapsets.remove-from-loved', { beatmapset: this.props.beatmapset.id }),
+      route('beatmapsets.remove-from-loved', { beatmapset: this.beatmapset.id }),
       { data: { reason }, method: 'DELETE' },
     );
 
     this.xhr.removeFromLoved
-      .done((beatmapset) =>
-        $.publish('beatmapsetDiscussions:update', { beatmapset }),
-      )
+      .done((beatmapset) => runInAction(() => {
+        this.props.discussionsState.update({ beatmapset });
+      }))
       .fail(onError)
       .always(action(() => {
         this.xhr.removeFromLoved = undefined;
@@ -297,16 +315,17 @@ export class Nominations extends React.PureComponent<Props> {
     return (
       <Modal>
         <BeatmapsOwnerEditor
-          beatmapset={this.props.beatmapset}
+          beatmapset={this.beatmapset}
+          discussionsState={this.props.discussionsState}
           onClose={this.handleToggleBeatmapsOwnerEditor}
-          users={this.props.users}
+          users={this.props.store.users}
         />
       </Modal>
     );
   }
 
   private renderBeatmapsOwnerEditorButton() {
-    if (!this.props.beatmapset.current_user_attributes.can_beatmap_update_owner) return;
+    if (!this.beatmapset.current_user_attributes.can_beatmap_update_owner) return;
 
     return (
       <BigButton
@@ -320,7 +339,7 @@ export class Nominations extends React.PureComponent<Props> {
   }
 
   private renderDeleteButton() {
-    if (!this.props.beatmapset.current_user_attributes.can_delete) return;
+    if (!this.beatmapset.current_user_attributes.can_delete) return;
 
     return (
       <BigButton
@@ -338,7 +357,7 @@ export class Nominations extends React.PureComponent<Props> {
   private renderDiscussionLockButton() {
     if (!canModeratePosts()) return;
 
-    const { buttonProps, lockAction } = this.props.beatmapset.discussion_locked
+    const { buttonProps, lockAction } = this.beatmapset.discussion_locked
       ? {
         buttonProps: {
           icon: 'fas fa-unlock',
@@ -368,10 +387,10 @@ export class Nominations extends React.PureComponent<Props> {
   }
 
   private renderDiscussionLockMessage() {
-    if (!this.props.beatmapset.discussion_locked) return;
+    if (!this.beatmapset.discussion_locked) return;
 
-    for (let i = this.props.events.length - 1; i >= 0; i--) {
-      const event = this.props.events[i];
+    for (let i = this.events.length - 1; i >= 0; i--) {
+      const event = this.events[i];
       if (event.type === 'discussion_lock') {
         return trans('beatmapset_events.event.discussion_lock', { text: event.comment.reason });
       }
@@ -379,8 +398,8 @@ export class Nominations extends React.PureComponent<Props> {
   }
 
   private renderDisqualificationMessage() {
-    const showHype = this.props.beatmapset.can_be_hyped;
-    const disqualification = this.props.beatmapset.nominations.disqualification;
+    const showHype = this.beatmapset.can_be_hyped;
+    const disqualification = this.beatmapset.nominations.disqualification;
 
     if (!showHype || this.isQualified || disqualification == null) return;
 
@@ -403,7 +422,7 @@ export class Nominations extends React.PureComponent<Props> {
   }
 
   private renderFeedbackButton() {
-    if (core.currentUser == null || this.userIsOwner || this.props.beatmapset.can_be_hyped || this.props.beatmapset.discussion_locked) {
+    if (core.currentUser == null || this.userIsOwner || this.beatmapset.can_be_hyped || this.beatmapset.discussion_locked) {
       return null;
     }
 
@@ -419,10 +438,10 @@ export class Nominations extends React.PureComponent<Props> {
   }
 
   private renderHypeBar() {
-    if (!this.props.beatmapset.can_be_hyped || this.props.beatmapset.hype == null) return;
+    if (!this.beatmapset.can_be_hyped || this.beatmapset.hype == null) return;
 
-    const requiredHype = this.props.beatmapset.hype.required;
-    const hype = this.props.currentDiscussions.totalHype;
+    const requiredHype = this.beatmapset.hype.required;
+    const hype = this.props.discussionsState.totalHypeCount;
 
     return (
       <div>
@@ -438,21 +457,17 @@ export class Nominations extends React.PureComponent<Props> {
   }
 
   private renderHypeButton() {
-    if (!this.props.beatmapset.can_be_hyped || core.currentUser == null || this.userIsOwner) return;
-
-    const currentUser = core.currentUser; // core.currentUser check below doesn't make the inferrence that it's not nullable after the check.
-    const discussions = Object.values(this.props.currentDiscussions.byFilter.hype.generalAll);
-    const userAlreadyHyped = currentUser != null && discussions.some((discussion) => discussion?.user_id === currentUser.id);
+    if (!this.beatmapset.can_be_hyped || core.currentUser == null || this.userIsOwner) return;
 
     return (
       <BigButton
-        disabled={!this.props.beatmapset.current_user_attributes.can_hype}
+        disabled={!this.beatmapset.current_user_attributes.can_hype}
         icon='fas fa-bullhorn'
         props={{
           onClick: this.focusHypeInput,
-          title: this.props.beatmapset.current_user_attributes.can_hype_reason,
+          title: this.beatmapset.current_user_attributes.can_hype_reason,
         }}
-        text={userAlreadyHyped ? trans('beatmaps.hype.button_done') : trans('beatmaps.hype.button')}
+        text={this.props.discussionsState.hasCurrentUserHyped ? trans('beatmaps.hype.button_done') : trans('beatmaps.hype.button')}
       />
     );
   }
@@ -460,7 +475,7 @@ export class Nominations extends React.PureComponent<Props> {
   private renderLightsForNominations(nominations?: BeatmapsetNominationsInterface) {
     if (nominations == null) return;
 
-    const hybrid = Object.keys(this.props.beatmapset.nominations.required).length > 1;
+    const hybrid = Object.keys(this.beatmapset.nominations.required).length > 1;
 
     return (
       <div className={classWithModifiers(`${bn}__discrete-bar-group`, { hybrid })}>
@@ -485,7 +500,8 @@ export class Nominations extends React.PureComponent<Props> {
     return (
       <Modal>
         <LoveBeatmapDialog
-          beatmapset={this.props.beatmapset}
+          beatmapset={this.beatmapset}
+          discussionsState={this.props.discussionsState}
           onClose={this.handleToggleLoveBeatmapDialog}
         />
       </Modal>
@@ -493,7 +509,7 @@ export class Nominations extends React.PureComponent<Props> {
   }
 
   private renderLoveButton() {
-    if (!this.props.beatmapset.current_user_attributes.can_love) return;
+    if (!this.beatmapset.current_user_attributes.can_love) return;
 
     return (
       <BigButton
@@ -508,13 +524,13 @@ export class Nominations extends React.PureComponent<Props> {
   }
 
   private renderNominationBar() {
-    const requiredHype = this.props.beatmapset.hype?.required ?? 0; // TODO: skip if null?
-    const hypeRaw = this.props.currentDiscussions.totalHype;
-    const mapCanBeNominated = this.props.beatmapset.status === 'pending' && hypeRaw >= requiredHype;
+    const requiredHype = this.beatmapset.hype?.required ?? 0; // TODO: skip if null?
+    const hypeRaw = this.props.discussionsState.totalHypeCount;
+    const mapCanBeNominated = this.beatmapset.status === 'pending' && hypeRaw >= requiredHype;
 
     if (!(mapCanBeNominated || this.isQualified)) return;
 
-    const nominations = this.props.beatmapset.nominations;
+    const nominations = this.beatmapset.nominations;
 
     return (
       <div>
@@ -528,25 +544,25 @@ export class Nominations extends React.PureComponent<Props> {
   }
 
   private renderNominationResetMessage() {
-    const nominationReset = this.props.beatmapset.nominations.nomination_reset;
+    const nominationReset = this.beatmapset.nominations.nomination_reset;
 
-    if (!this.props.beatmapset.can_be_hyped || this.isQualified || nominationReset == null) return;
+    if (!this.beatmapset.can_be_hyped || this.isQualified || nominationReset == null) return;
 
     return <div>{this.renderResetReason(nominationReset)}</div>;
   }
 
   private renderNominatorsList() {
-    if (!nominatorsVisibleBeatmapStatuses.has(this.props.beatmapset.status)) return;
+    if (!nominatorsVisibleBeatmapStatuses.has(this.beatmapset.status)) return;
 
     const nominators: UserJson[] = [];
-    for (let i = this.props.events.length - 1; i >= 0; i--) {
-      const event = this.props.events[i];
+    for (let i = this.events.length - 1; i >= 0; i--) {
+      const event = this.events[i];
       if (event.type === 'disqualify' || event.type === 'nomination_reset') {
         break;
       }
 
       if (event.type === 'nominate' && event.user_id != null) {
-        const user = this.props.users[event.user_id]; // for typing
+        const user = this.users.get(event.user_id);
         if (user != null) {
           nominators.unshift(user);
         }
@@ -568,7 +584,7 @@ export class Nominations extends React.PureComponent<Props> {
   }
 
   private renderRemoveFromLovedButton() {
-    if (!this.props.beatmapset.current_user_attributes.can_remove_from_loved) return;
+    if (!this.beatmapset.current_user_attributes.can_remove_from_loved) return;
 
     return (
       <BigButton
@@ -616,17 +632,17 @@ export class Nominations extends React.PureComponent<Props> {
   }
 
   private renderStatusMessage() {
-    switch (this.props.beatmapset.status) {
+    switch (this.beatmapset.status) {
       case 'approved':
       case 'loved':
       case 'ranked':
-        return trans(`beatmaps.discussions.status-messages.${this.props.beatmapset.status}`, { date: formatDate(this.props.beatmapset.ranked_date) });
+        return trans(`beatmaps.discussions.status-messages.${this.beatmapset.status}`, { date: formatDate(this.beatmapset.ranked_date) });
       case 'graveyard':
-        return trans('beatmaps.discussions.status-messages.graveyard', { date: formatDate(this.props.beatmapset.last_updated) });
+        return trans('beatmaps.discussions.status-messages.graveyard', { date: formatDate(this.beatmapset.last_updated) });
       case 'wip':
         return trans('beatmaps.discussions.status-messages.wip');
       case 'qualified': {
-        const rankingEta = this.props.beatmapset.nominations.ranking_eta;
+        const rankingEta = this.beatmapset.nominations.ranking_eta;
         const date = rankingEta != null
           // TODO: remove after translations are updated
           ? transExists('beatmaps.nominations.rank_estimate.on')
@@ -635,23 +651,46 @@ export class Nominations extends React.PureComponent<Props> {
           : trans('beatmaps.nominations.rank_estimate.soon');
 
         return (
-          <StringWithComponent
-            mappings={{
-              date,
-              // TODO: ranking_queue_position should not be nullable when status is qualified.
-              position: formatNumber(this.props.beatmapset.nominations.ranking_queue_position ?? 0),
-              queue: (
-                <a
-                  href={wikiUrl('Beatmap_ranking_procedure/Ranking_queue')}
-                  rel='noreferrer'
-                  target='_blank'
-                >
-                  {trans('beatmaps.nominations.rank_estimate.queue')}
-                </a>
-              ),
-            }}
-            pattern={trans('beatmaps.nominations.rank_estimate._')}
-          />
+          <>
+            <StringWithComponent
+              mappings={{
+                date,
+                // TODO: ranking_queue_position should not be nullable when status is qualified.
+                position: formatNumber(this.beatmapset.nominations.ranking_queue_position ?? 0),
+                queue: (
+                  <a
+                    href={wikiUrl('Beatmap_ranking_procedure/Ranking_queue')}
+                    rel='noreferrer'
+                    target='_blank'
+                  >
+                    {trans('beatmaps.nominations.rank_estimate.queue')}
+                  </a>
+                ),
+              }}
+              pattern={trans('beatmaps.nominations.rank_estimate._')}
+            />
+            {this.props.discussionsState.discussionsByFilter.pending.length > 0 ?
+              <div className={`${bn}__problems`}>
+                <StringWithComponent
+                  mappings={{
+                    problems: <a
+                      className='js-beatmap-discussion--jump'
+                      href={makeUrl({
+                        discussion: this.props.discussionsState.discussionsByFilter.pending[0],
+                        filter: 'pending',
+                        mode: this.props.discussionsState.currentPage,
+                      })}
+                      onClick={this.handlePendingProblemsClick}
+                    >
+                      {trans('beatmaps.nominations.rank_estimate.problems')}
+                    </a>,
+                  }}
+                  pattern={trans('beatmaps.nominations.rank_estimate.unresolved_problems')}
+                />
+              </div>
+              : <></>
+            }
+          </>
         );
       }
     }

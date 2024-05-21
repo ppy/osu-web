@@ -3,10 +3,15 @@
 
 import { BeatmapsetSearchController } from 'beatmaps/beatmapset-search-controller';
 import ChatWorker from 'chat/chat-worker';
+import AccountEdit from 'core/account-edit';
+import AccountEditAvatar from 'core/account-edit-avatar';
+import AccountEditBlocklist from 'core/account-edit-blocklist';
 import BrowserTitleWithNotificationCount from 'core/browser-title-with-notification-count';
 import Captcha from 'core/captcha';
 import ClickMenu from 'core/click-menu';
+import CurrentUserObserver from 'core/current-user-observer';
 import Enchant from 'core/enchant';
+import FixRelativeLink from 'core/fix-relative-link';
 import ForumPoll from 'core/forum/forum-poll';
 import ForumPostEdit from 'core/forum/forum-post-edit';
 import ForumPostInput from 'core/forum/forum-post-input';
@@ -15,9 +20,12 @@ import Localtime from 'core/localtime';
 import MobileToggle from 'core/mobile-toggle';
 import OsuAudio from 'core/osu-audio/main';
 import ReactTurbolinks from 'core/react-turbolinks';
+import StickyFooter from 'core/sticky-footer';
 import StickyHeader from 'core/sticky-header';
+import SyncHeight from 'core/sync-height';
 import Timeago from 'core/timeago';
 import TurbolinksReload from 'core/turbolinks-reload';
+import TwitchPlayer from 'core/twitch-player';
 import ScorePins from 'core/user/score-pins';
 import UserLogin from 'core/user/user-login';
 import UserLoginObserver from 'core/user/user-login-observer';
@@ -36,6 +44,9 @@ import { parseJsonNullable } from 'utils/json';
 
 // will this replace main.coffee eventually?
 export default class OsuCore {
+  readonly accountEdit;
+  readonly accountEditAvatar;
+  readonly accountEditBlocklist;
   readonly beatmapsetSearchController;
   readonly browserTitleWithNotificationCount;
   readonly captcha;
@@ -43,8 +54,10 @@ export default class OsuCore {
   readonly clickMenu;
   @observable currentUser?: CurrentUserJson;
   readonly currentUserModel;
+  readonly currentUserObserver;
   readonly dataStore;
   readonly enchant;
+  readonly fixRelativeLink;
   readonly forumPoll;
   readonly forumPostEdit;
   readonly forumPostInput;
@@ -57,9 +70,12 @@ export default class OsuCore {
   readonly referenceLinkTooltip;
   readonly scorePins;
   readonly socketWorker;
+  readonly stickyFooter;
   readonly stickyHeader;
+  readonly syncHeight;
   readonly timeago;
   readonly turbolinksReload;
+  readonly twitchPlayer;
   readonly userLogin;
   readonly userLoginObserver;
   readonly userPreferences;
@@ -89,7 +105,9 @@ export default class OsuCore {
     this.captcha = new Captcha();
     this.chatWorker = new ChatWorker();
     this.clickMenu = new ClickMenu();
+    this.currentUserObserver = new CurrentUserObserver(this);
     this.currentUserModel = new UserModel(this);
+    this.fixRelativeLink = new FixRelativeLink();
     this.forumPoll = new ForumPoll();
     this.forumPostEdit = new ForumPostEdit();
     this.forumPostInput = new ForumPostInput();
@@ -99,7 +117,9 @@ export default class OsuCore {
     this.browserTitleWithNotificationCount = new BrowserTitleWithNotificationCount(this);
     this.referenceLinkTooltip = new ReferenceLinkTooltip();
     this.scorePins = new ScorePins();
+    this.stickyFooter = new StickyFooter();
     this.stickyHeader = new StickyHeader();
+    this.syncHeight = new SyncHeight();
     this.timeago = new Timeago();
     this.turbolinksReload = new TurbolinksReload();
     this.userPreferences = new UserPreferences();
@@ -109,10 +129,15 @@ export default class OsuCore {
     this.enchant = new Enchant(this.turbolinksReload);
     this.osuAudio = new OsuAudio(this.userPreferences);
     this.reactTurbolinks = new ReactTurbolinks(this, this.turbolinksReload);
+    this.twitchPlayer = new TwitchPlayer(this.turbolinksReload);
+
     this.userLogin = new UserLogin(this.captcha);
     // should probably figure how to conditionally or lazy initialize these so they don't all init when not needed.
     // TODO: requires dynamic imports to lazy load modules.
     this.dataStore = new RootDataStore();
+    this.accountEditBlocklist = new AccountEditBlocklist(this);
+    this.accountEdit = new AccountEdit(this);
+    this.accountEditAvatar = new AccountEditAvatar(this);
     this.userLoginObserver = new UserLoginObserver();
     this.windowFocusObserver = new WindowFocusObserver();
 
@@ -128,22 +153,8 @@ export default class OsuCore {
     }
   }
 
-  readonly updateCurrentUser = () => {
-    // Remove from DOM so only new data is parsed on navigation.
-    const currentUser = parseJsonNullable<typeof window.currentUser>('json-current-user', true);
-
-    if (currentUser != null) {
-      window.currentUser = currentUser;
-      this.setCurrentUser(window.currentUser);
-    }
-  };
-
-  private readonly onCurrentUserUpdate = (event: unknown, user: CurrentUserJson) => {
-    this.setCurrentUser(user);
-  };
-
   @action
-  private readonly setCurrentUser = (userOrEmpty: typeof window.currentUser) => {
+  readonly setCurrentUser = (userOrEmpty: typeof window.currentUser) => {
     const user = userOrEmpty.id == null ? undefined : userOrEmpty;
 
     if (user != null) {
@@ -151,6 +162,20 @@ export default class OsuCore {
     }
     this.socketWorker.setUserId(user?.id ?? null);
     this.currentUser = user;
+    window.currentUser = userOrEmpty;
     this.userPreferences.setUser(this.currentUser);
+  };
+
+  readonly updateCurrentUser = () => {
+    // Remove from DOM so only new data is parsed on navigation.
+    const currentUser = parseJsonNullable<typeof window.currentUser>('json-current-user', true);
+
+    if (currentUser != null) {
+      this.setCurrentUser(currentUser);
+    }
+  };
+
+  private readonly onCurrentUserUpdate = (event: unknown, user: CurrentUserJson) => {
+    this.setCurrentUser(user);
   };
 }

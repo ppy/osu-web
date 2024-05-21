@@ -9,9 +9,11 @@ use App\Exceptions\ModelNotSavedException;
 use App\Exceptions\UserProfilePageLookupException;
 use App\Exceptions\ValidationException;
 use App\Http\Middleware\RequestCost;
+use App\Libraries\ClientCheck;
 use App\Libraries\RateLimiter;
 use App\Libraries\Search\ForumSearch;
 use App\Libraries\Search\ForumSearchRequestParams;
+use App\Libraries\Search\ScoreSearchParams;
 use App\Libraries\User\FindForProfilePage;
 use App\Libraries\UserRegistration;
 use App\Models\Beatmap;
@@ -19,6 +21,7 @@ use App\Models\BeatmapDiscussion;
 use App\Models\Country;
 use App\Models\IpBan;
 use App\Models\Log;
+use App\Models\Solo\Score as SoloScore;
 use App\Models\User;
 use App\Models\UserAccountHistory;
 use App\Models\UserNotFound;
@@ -30,9 +33,10 @@ use App\Transformers\UserReplaysWatchedCountTransformer;
 use App\Transformers\UserTransformer;
 use Auth;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
-use NoCaptcha;
 use Request;
+use romanzipp\Turnstile\Validator as TurnstileValidator;
 use Sentry\State\Scope;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**
  * @group Users
@@ -103,6 +107,14 @@ class UsersController extends Controller
         parent::__construct();
     }
 
+    private static function storeClientDisabledError()
+    {
+        return response([
+            'error' => osu_trans('users.store.from_web'),
+            'url' => route('users.create'),
+        ], 403);
+    }
+
     public function card($id)
     {
         try {
@@ -116,7 +128,7 @@ class UsersController extends Controller
 
     public function create()
     {
-        if (config('osu.user.registration_mode') !== 'web') {
+        if (!$GLOBALS['cfg']['osu']['user']['registration_mode']['web']) {
             return abort(403, osu_trans('users.store.from_client'));
         }
 
@@ -176,7 +188,7 @@ class UsersController extends Controller
                     'monthly_playcounts' => json_collection($this->user->monthlyPlaycounts, new UserMonthlyPlaycountTransformer()),
                     'recent' => $this->getExtraSection(
                         'scoresRecent',
-                        $this->user->scores($this->mode, true)->includeFails(false)->count()
+                        $this->user->soloScores()->recent($this->mode, false)->count(),
                     ),
                     'replays_watched_counts' => json_collection($this->user->replaysWatchedCounts, new UserReplaysWatchedCountTransformer()),
                 ];
@@ -191,7 +203,7 @@ class UsersController extends Controller
                 return [
                     'best' => $this->getExtraSection(
                         'scoresBest',
-                        count($this->user->beatmapBestScoreIds($this->mode))
+                        count($this->user->beatmapBestScoreIds($this->mode, ScoreSearchParams::showLegacyForUser(\Auth::user())))
                     ),
                     'firsts' => $this->getExtraSection(
                         'scoresFirsts',
@@ -210,33 +222,37 @@ class UsersController extends Controller
 
     public function store()
     {
-        if (config('osu.user.registration_mode') !== 'client') {
-            return response([
-                'error' => osu_trans('users.store.from_web'),
-                'url' => route('users.create'),
-            ], 403);
+        if (!$GLOBALS['cfg']['osu']['user']['registration_mode']['client']) {
+            return static::storeClientDisabledError();
         }
 
-        if (!starts_with(Request::header('User-Agent'), config('osu.client.user_agent'))) {
+        $request = \Request::instance();
+
+        if (!starts_with($request->header('User-Agent'), $GLOBALS['cfg']['osu']['client']['user_agent'])) {
             return error_popup(osu_trans('users.store.from_client'), 403);
         }
 
-        return $this->storeUser(request()->all());
+        try {
+            ClientCheck::parseToken($request);
+        } catch (HttpException $e) {
+            return static::storeClientDisabledError();
+        }
+
+        return $this->storeUser($request->all());
     }
 
     public function storeWeb()
     {
-        if (config('osu.user.registration_mode') !== 'web') {
+        if (!$GLOBALS['cfg']['osu']['user']['registration_mode']['web']) {
             return error_popup(osu_trans('users.store.from_client'), 403);
         }
 
         $rawParams = request()->all();
 
         if (captcha_enabled()) {
-            static $captchaField = 'g-recaptcha-response';
-            $token = $rawParams[$captchaField] ?? null;
+            $token = get_string($rawParams['cf-turnstile-response'] ?? null) ?? '';
 
-            $validCaptcha = NoCaptcha::verifyResponse($token);
+            $validCaptcha = (new TurnstileValidator())->validate($token)->isValid();
 
             if (!$validCaptcha) {
                 return abort(422, 'invalid captcha');
@@ -486,8 +502,9 @@ class UsersController extends Controller
      * @urlParam user integer required Id of the user. Example: 1
      * @urlParam type string required Score type. Must be one of these: `best`, `firsts`, `recent`. Example: best
      *
+     * @queryParam legacy_only integer Whether or not to exclude lazer scores. Defaults to 0. Example: 0
      * @queryParam include_fails Only for recent scores, include scores of failed plays. Set to 1 to include them. Defaults to 0. Example: 0
-     * @queryParam mode [GameMode](#gamemode) of the scores to be returned. Defaults to the specified `user`'s mode. Example: osu
+     * @queryParam mode [Ruleset](#ruleset) of the scores to be returned. Defaults to the specified `user`'s mode. Example: osu
      * @queryParam limit Maximum number of results.
      * @queryParam offset Result offset for pagination. Example: 1
      *
@@ -540,15 +557,16 @@ class UsersController extends Controller
      *
      * See [Get User](#get-user).
      *
+     * `session_verified` attribute is included.
      * Additionally, `statistics_rulesets` is included, containing statistics for all rulesets.
      *
-     * @urlParam mode string [GameMode](#gamemode). User default mode will be used if not specified. Example: osu
+     * @urlParam mode string [Ruleset](#ruleset). User default mode will be used if not specified. Example: osu
      *
      * @response "See User object section"
      */
     public function me($mode = null)
     {
-        $user = auth()->user();
+        $user = \Auth::user();
         $currentMode = $mode ?? $user->playmode;
 
         if (!Beatmap::isModeValid($currentMode)) {
@@ -561,6 +579,7 @@ class UsersController extends Controller
             $user,
             (new UserTransformer())->setMode($currentMode),
             [
+                'session_verified',
                 ...$this->showUserIncludes(),
                 ...array_map(
                     fn (string $ruleset) => "statistics_rulesets.{$ruleset}",
@@ -615,7 +634,7 @@ class UsersController extends Controller
      * - user_achievements
      *
      * @urlParam user integer required Id or username of the user. Id lookup is prioritised unless `key` parameter is specified. Previous usernames are also checked in some cases. Example: 1
-     * @urlParam mode string [GameMode](#gamemode). User default mode will be used if not specified. Example: osu
+     * @urlParam mode string [Ruleset](#ruleset). User default mode will be used if not specified. Example: osu
      *
      * @queryParam key Type of `user` passed in url parameter. Can be either `id` or `username` to limit lookup by their respective type. Passing empty or invalid value will result in id lookup followed by username lookup if not found.
      *
@@ -631,7 +650,7 @@ class UsersController extends Controller
             abort(404);
         }
 
-        // preload and set relation for toMetaDescription and transformer sharing data
+        // preload and set relation for opengraph header and transformer sharing data
         $user->statistics($currentMode)?->setRelation('user', $user);
 
         $userArray = $this->fillDeprecatedDuplicateFields(json_item(
@@ -645,18 +664,16 @@ class UsersController extends Controller
         } else {
             $achievements = json_collection(app('medals')->all(), 'Achievement');
 
-            $extras = [];
-
             $initialData = [
                 'achievements' => $achievements,
                 'current_mode' => $currentMode,
-                'scores_notice' => config('osu.user.profile_scores_notice'),
+                'scores_notice' => $GLOBALS['cfg']['osu']['user']['profile_scores_notice'],
                 'user' => $userArray,
             ];
 
-            $pageDescription = blade_safe($user->toMetaDescription(['ruleset' => $currentMode]));
+            set_opengraph($user, 'show', $currentMode);
 
-            return ext_view('users.show', compact('initialData', 'pageDescription', 'mode', 'user'));
+            return ext_view('users.show', compact('initialData', 'mode', 'user'));
         }
     }
 
@@ -787,15 +804,25 @@ class UsersController extends Controller
             case 'scoresBest':
                 $transformer = new ScoreTransformer();
                 $includes = [...ScoreTransformer::USER_PROFILE_INCLUDES, 'weight'];
-                $collection = $this->user->beatmapBestScores($this->mode, $perPage, $offset, ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD);
+                $collection = $this->user->beatmapBestScores(
+                    $this->mode,
+                    $perPage,
+                    $offset,
+                    ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD,
+                    ScoreSearchParams::showLegacyForUser(\Auth::user()),
+                );
                 $userRelationColumn = 'user';
                 break;
             case 'scoresFirsts':
                 $transformer = new ScoreTransformer();
                 $includes = ScoreTransformer::USER_PROFILE_INCLUDES;
-                $query = $this->user->scoresFirst($this->mode, true)
-                    ->visibleUsers()
-                    ->reorderBy('score_id', 'desc')
+                $scoreQuery = $this->user->scoresFirst($this->mode, true)->unorder();
+                $userFirstsQuery = $scoreQuery->select($scoreQuery->qualifyColumn('score_id'));
+                $query = SoloScore
+                    ::whereIn('legacy_score_id', $userFirstsQuery)
+                    ->where('ruleset_id', Beatmap::MODES[$this->mode])
+                    ->default()
+                    ->reorderBy('id', 'desc')
                     ->with(ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD);
                 $userRelationColumn = 'user';
                 break;
@@ -814,9 +841,10 @@ class UsersController extends Controller
             case 'scoresRecent':
                 $transformer = new ScoreTransformer();
                 $includes = ScoreTransformer::USER_PROFILE_INCLUDES;
-                $query = $this->user->scores($this->mode, true)
-                    ->includeFails($options['includeFails'] ?? false)
-                    ->with([...ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD, 'best']);
+                $query = $this->user->soloScores()
+                    ->recent($this->mode, $options['includeFails'] ?? false)
+                    ->reorderBy('ended_at', 'desc')
+                    ->with(ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD);
                 $userRelationColumn = 'user';
                 break;
         }
@@ -931,7 +959,7 @@ class UsersController extends Controller
 
     private function storeUser(array $rawParams)
     {
-        if (!config('osu.user.allow_registration')) {
+        if (!$GLOBALS['cfg']['osu']['user']['allow_registration']) {
             return abort(403, 'User registration is currently disabled');
         }
 
@@ -950,6 +978,7 @@ class UsersController extends Controller
         $country = Country::find($countryCode);
         $params['user_ip'] = $ip;
         $params['country_acronym'] = $country === null ? '' : $country->getKey();
+        $params['user_lang'] = \App::getLocale();
 
         $registration = new UserRegistration($params);
 
@@ -971,24 +1000,25 @@ class UsersController extends Controller
 
             $user = $registration->user();
 
-            if ($country === null) {
+            // report unknown country code but ignore non-country from cloudflare
+            if ($countryCode !== null && $country === null && $countryCode !== 'T1') {
                 app('sentry')->getClient()->captureMessage(
-                    'User registered from unknown country: '.$countryCode,
+                    'User registered from unknown country',
                     null,
                     (new Scope())
-                        ->setExtra('country', $countryCode)
+                        ->setTag('country', $countryCode)
                         ->setExtra('ip', $ip)
                         ->setExtra('user_id', $user->getKey())
                 );
             }
 
-            if (config('osu.user.registration_mode') === 'web') {
+            if (is_json_request()) {
+                return json_item($user->fresh(), new CurrentUserTransformer());
+            } else {
                 $this->login($user);
                 session()->flash('popup', osu_trans('users.store.saved'));
 
                 return ujs_redirect(route('home'));
-            } else {
-                return json_item($user->fresh(), new CurrentUserTransformer());
             }
         } catch (ValidationException $e) {
             return ModelNotSavedException::makeResponse($e, [

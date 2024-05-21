@@ -39,6 +39,7 @@ return [
         'pin' => 'kitűzés',
         'post' => 'Küldés',
         'read_more' => 'több megjelenítése',
+        'refresh' => 'Frissítés',
         'reply' => 'Válasz',
         'reply_reopen' => 'Válaszolás és újranyitás',
         'reply_resolve' => 'Válaszolás és megoldás',
@@ -157,7 +158,7 @@ return [
     ],
 
     'wrong_user' => [
-        '_' => 'Bejelntkezve: :user. :logout_link.',
+        '_' => 'Bejelentkezve: :user. :logout_link.',
         'logout_link' => 'Kattints ide, hogy bejelentkezz más felhasználóként',
     ],
 ];

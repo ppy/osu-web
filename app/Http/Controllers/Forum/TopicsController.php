@@ -16,6 +16,7 @@ use App\Models\Forum\Topic;
 use App\Models\Forum\TopicCover;
 use App\Models\Forum\TopicPoll;
 use App\Models\Forum\TopicWatch;
+use App\Models\UserProfileCustomization;
 use App\Transformers\Forum\TopicCoverTransformer;
 use Auth;
 use DB;
@@ -285,7 +286,7 @@ class TopicsController extends Controller
      *
      * @urlParam topic integer required Id of the topic. Example: 1
      *
-     * @queryParam cursor_string Parameter for pagination. No-example
+     * @usesCursor
      * @queryParam sort Post sorting option. Valid values are `id_asc` (default) and `id_desc`. No-example
      * @queryParam limit Maximum number of posts to be returned (20 default, 50 at most). No-example
      * @queryParam start First post id to be returned with `sort` set to `id_asc`. This parameter is ignored if `cursor_string` is specified. No-example
@@ -427,9 +428,10 @@ class TopicsController extends Controller
 
         $pollSummary = PollOption::summary($topic, $currentUser);
 
+        $topic->incrementViewCount($currentUser, \Request::ip());
         $posts->last()->markRead($currentUser);
 
-        $coverModel = $topic->cover()->firstOrNew([]);
+        $coverModel = $topic->cover ?? new TopicCover();
         $coverModel->setRelation('topic', $topic);
         $cover = json_item($coverModel, new TopicCoverTransformer());
 
@@ -437,6 +439,8 @@ class TopicsController extends Controller
 
         $featureVotes = $this->groupFeatureVotes($topic);
         $noindex = !$topic->forum->enable_indexing;
+
+        set_opengraph($topic);
 
         return ext_view('forum.topics.show', compact(
             'canEditPoll',
@@ -471,12 +475,12 @@ class TopicsController extends Controller
      * post   | [ForumPost](#forum-post)   | body
      *
      * @bodyParam body string required Content of the topic. Example: hello
-     * @bodyParam forum_id number required Forum to create the topic in. Example: 1
+     * @bodyParam forum_id integer required Forum to create the topic in. Example: 1
      * @bodyParam title string required Title of the topic. Example: untitled
      * @bodyParam with_poll boolean Enable this to also create poll in the topic (default: false). Example: 1
      * @bodyParam forum_topic_poll[hide_results] boolean Enable this to hide result until voting period ends (default: false). No-example
-     * @bodyParam forum_topic_poll[length_days] number Number of days for voting period. 0 means the voting will never ends (default: 0). This parameter is required if `hide_results` option is enabled. No-example
-     * @bodyParam forum_topic_poll[max_options] number Maximum number of votes each user can cast (default: 1). No-example
+     * @bodyParam forum_topic_poll[length_days] integer Number of days for voting period. 0 means the voting will never ends (default: 0). This parameter is required if `hide_results` option is enabled. No-example
+     * @bodyParam forum_topic_poll[max_options] integer Maximum number of votes each user can cast (default: 1). No-example
      * @bodyParam forum_topic_poll[options] string required Newline-separated list of voting options. BBCode is supported. Example: item A...
      * @bodyParam forum_topic_poll[title] string required Title of the poll. Example: my poll
      * @bodyParam forum_topic_poll[vote_change] boolean Enable this to allow user to change their votes (default: false). No-example
@@ -623,7 +627,7 @@ class TopicsController extends Controller
         $params['limit'] = clamp($params['limit'] ?? 20, 1, 50);
 
         if ($userCanModerate) {
-            $params['with_deleted'] = $params['with_deleted'] ?? $currentUser->profileCustomization()->forum_posts_show_deleted;
+            $params['with_deleted'] ??= ($currentUser->userProfileCustomization ?? UserProfileCustomization::DEFAULTS)['forum_posts_show_deleted'];
         } else {
             $params['with_deleted'] = false;
         }

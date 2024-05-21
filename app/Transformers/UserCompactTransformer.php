@@ -6,9 +6,11 @@
 namespace App\Transformers;
 
 use App\Libraries\MorphMap;
+use App\Libraries\Search\ScoreSearchParams;
 use App\Models\Beatmap;
 use App\Models\User;
 use App\Models\UserProfileCustomization;
+use Illuminate\Support\Arr;
 use League\Fractal\Resource\ResourceInterface;
 
 class UserCompactTransformer extends TransformerAbstract
@@ -22,7 +24,6 @@ class UserCompactTransformer extends TransformerAbstract
     const CARD_INCLUDES_PRELOAD = [
         'country',
         'userGroups',
-        'userProfileCustomization',
     ];
 
     const LIST_INCLUDES = [
@@ -33,6 +34,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     const PROFILE_HEADER_INCLUDES = [
         'active_tournament_banner',
+        'active_tournament_banners',
         'badges',
         'comments_count',
         'follower_count',
@@ -46,7 +48,8 @@ class UserCompactTransformer extends TransformerAbstract
 
     protected array $availableIncludes = [
         'account_history',
-        'active_tournament_banner',
+        'active_tournament_banner', // deprecated
+        'active_tournament_banners',
         'badges',
         'beatmap_playcounts_count',
         'blocks',
@@ -84,6 +87,7 @@ class UserCompactTransformer extends TransformerAbstract
         'scores_first_count',
         'scores_pinned_count',
         'scores_recent_count',
+        'session_verified',
         'statistics',
         'statistics_rulesets',
         'support_level',
@@ -107,8 +111,6 @@ class UserCompactTransformer extends TransformerAbstract
         'is_restricted' => 'UserShowRestrictedStatus',
         'is_silenced' => 'IsNotOAuth',
     ];
-
-    protected $userProfileCustomization = [];
 
     public function transform(User $user)
     {
@@ -154,6 +156,14 @@ class UserCompactTransformer extends TransformerAbstract
             : $this->item($banner, new ProfileBannerTransformer());
     }
 
+    public function includeActiveTournamentBanners(User $user)
+    {
+        return $this->collection(
+            $user->profileBanners()->activeOnly()->orderBy('banner_id')->get(),
+            new ProfileBannerTransformer(),
+        );
+    }
+
     public function includeBadges(User $user)
     {
         return $this->collection(
@@ -189,12 +199,12 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeCover(User $user)
     {
-        $profileCustomization = $this->userProfileCustomization($user);
+        $cover = $user->cover();
 
         return $this->primitive([
-            'custom_url' => $profileCustomization->cover()->fileUrl(),
-            'url' => $profileCustomization->cover()->url(),
-            'id' => $profileCustomization->cover()->id(),
+            'custom_url' => $cover->customUrl(),
+            'url' => $cover->url(),
+            'id' => $cover->presetId(),
         ]);
     }
 
@@ -377,7 +387,10 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeScoresBestCount(User $user)
     {
-        return $this->primitive(count($user->beatmapBestScoreIds($this->mode)));
+        return $this->primitive(count($user->beatmapBestScoreIds(
+            $this->mode,
+            ScoreSearchParams::showLegacyForUser(\Auth::user()),
+        )));
     }
 
     public function includeScoresFirstCount(User $user)
@@ -392,7 +405,12 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeScoresRecentCount(User $user)
     {
-        return $this->primitive($user->scores($this->mode, true)->includeFails(false)->count());
+        return $this->primitive($user->soloScores()->recent($this->mode, false)->count());
+    }
+
+    public function includeSessionVerified(User $user)
+    {
+        return $this->primitive($user->token()?->isVerified() ?? false);
     }
 
     public function includeStatistics(User $user)
@@ -428,9 +446,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeUserPreferences(User $user)
     {
-        $customization = $this->userProfileCustomization($user);
-
-        return $this->primitive($customization->only([
+        static $fields = [
             'audio_autoplay',
             'audio_muted',
             'audio_volume',
@@ -440,11 +456,18 @@ class UserCompactTransformer extends TransformerAbstract
             'beatmapset_title_show_original',
             'comments_show_deleted',
             'forum_posts_show_deleted',
+            'legacy_score_only',
             'profile_cover_expanded',
             'user_list_filter',
             'user_list_sort',
             'user_list_view',
-        ]));
+        ];
+
+        $customization = $user->userProfileCustomization;
+
+        return $this->primitive($customization === null
+            ? Arr::only(UserProfileCustomization::DEFAULTS, $fields)
+            : $customization->only($fields));
     }
 
     public function setMode(string $mode)
@@ -452,14 +475,5 @@ class UserCompactTransformer extends TransformerAbstract
         $this->mode = $mode;
 
         return $this;
-    }
-
-    protected function userProfileCustomization(User $user): UserProfileCustomization
-    {
-        if (!isset($this->userProfileCustomization[$user->getKey()])) {
-            $this->userProfileCustomization[$user->getKey()] = $user->userProfileCustomization ?? $user->userProfileCustomization()->make();
-        }
-
-        return $this->userProfileCustomization[$user->getKey()];
     }
 }

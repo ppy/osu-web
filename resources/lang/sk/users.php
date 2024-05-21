@@ -97,6 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
+            'inactive' => "",
             'inactive_different_country' => "",
         ],
     ],
@@ -120,6 +121,17 @@ return [
         'beta' => [
             'main' => 'Beta prístup je momentálne obmedzený pre oprávnených užívateľov.',
             'small' => '(osu!supporters sa dostanú dnu skorej)',
+        ],
+    ],
+
+    'ogp' => [
+        'modding_description' => '',
+        'modding_description_empty' => '',
+
+        'description' => [
+            '_' => '',
+            'country' => '',
+            'global' => '',
         ],
     ],
 
@@ -175,7 +187,6 @@ return [
         'origin_country' => 'Štát :country',
         'previous_usernames' => 'v minulosti známy ako',
         'plays_with' => 'Hrá s :devices',
-        'title' => "profil používateľa :username",
 
         'comments_count' => [
             '_' => '',

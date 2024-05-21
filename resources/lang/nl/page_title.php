@@ -63,8 +63,12 @@ return [
         'comments_controller' => [
             '_' => 'opmerkingen',
         ],
+        'contest_entries_controller' => [
+            'judge_results' => 'wedstrijd beoordelingsresultaten',
+        ],
         'contests_controller' => [
             '_' => 'wedstrijden',
+            'judge' => 'wedstrijd beoordeling',
         ],
         'groups_controller' => [
             'show' => 'groepen',
@@ -105,6 +109,9 @@ return [
         ],
         'tournaments_controller' => [
             '_' => 'toernooien',
+        ],
+        'user_cover_presets_controller' => [
+            '_' => '',
         ],
         'users_controller' => [
             '_' => 'speler info',

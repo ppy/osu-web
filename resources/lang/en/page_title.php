@@ -63,8 +63,12 @@ return [
         'comments_controller' => [
             '_' => 'comments',
         ],
+        'contest_entries_controller' => [
+            'judge_results' => 'contest judging results',
+        ],
         'contests_controller' => [
             '_' => 'contests',
+            'judge' => 'contest judging',
         ],
         'group_history_controller' => [
             '_' => 'group history',
@@ -108,6 +112,9 @@ return [
         ],
         'tournaments_controller' => [
             '_' => 'tournaments',
+        ],
+        'user_cover_presets_controller' => [
+            '_' => 'user cover presets',
         ],
         'users_controller' => [
             '_' => 'player info',

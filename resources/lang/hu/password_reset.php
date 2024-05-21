@@ -5,7 +5,6 @@
 
 return [
     'button' => [
-        'cancel' => 'Mégse',
         'resend' => 'Megerősítő email újraküldése',
         'set' => 'Jelszó beállítása',
         'start' => 'Start',
@@ -37,6 +36,9 @@ return [
     'starting' => [
         'username' => 'Add meg az e-mail címed vagy felhasználóneved',
 
+        'reason' => [
+            'inactive_different_country' => "A fiókod nem volt használva egy jó ideje. A fiókod biztonsága érdekében kérlek állítsd vissza a jelszavad.",
+        ],
         'support' => [
             '_' => 'Segítség kéne? Lépj kapcsolatba velünk itt :botton.',
             'button' => 'támogatói rendszer',

@@ -6,6 +6,7 @@
 return [
     'cart' => [
         'checkout' => '支払いをする',
+        'empty_cart' => '',
         'info' => ':count_delimited 個がカート内にあります($:subtotal)',
         'more_goodies' => '精算の前に他のグッズをチェックする。',
         'shipping_fees' => '配送料',
@@ -48,19 +49,52 @@ return [
     ],
 
     'discount' => ':percent%の割引',
+    'free' => '',
 
     'invoice' => [
+        'contact' => '',
+        'date' => '日付:',
         'echeck_delay' => '決済方法がeCheckのため、PayPalを介した支払いが完了するまで、さらに最大10日を要します。予めご了承ください。',
         'hide_from_activity' => 'osu!サポータータグは最近のアクティビティには表示されません。',
+        'sent_via' => '',
+        'shipping_to' => '',
+        'title' => '',
         'title_compact' => '請求書',
 
         'status' => [
+            'cancelled' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => "",
+                    'link_text' => '',
+                ],
+            ],
+            'delivered' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => '',
+                    'link_text' => '',
+                ],
+            ],
+            'prepared' => [
+                'title' => '',
+                'line_1' => '',
+                'line_2' => '',
+            ],
             'processing' => [
                 'title' => 'お支払いはまだ確認されていません。',
                 'line_1' => '既にお支払いを済ませている場合、私達は支払いを確認している最中の可能性があります。１～２分後にページの再読込をして下さい。',
                 'line_2' => [
                     '_' => 'お支払いに関して問題がある場合: :link',
                     'link_text' => 'ここをクリックして支払いを続ける',
+                ],
+            ],
+            'shipped' => [
+                'title' => '',
+                'tracking_details' => '',
+                'no_tracking_details' => [
+                    '_' => "",
+                    'link_text' => '',
                 ],
             ],
         ],
@@ -74,7 +108,19 @@ return [
         'no_orders' => '表示できる注文がありません。',
         'paid_on' => '注文済み :date',
         'resume' => '支払いを再開',
+        'shipping_and_handling' => '',
         'shopify_expired' => 'この注文の決済リンクは期限切れとなりました。',
+        'subtotal' => '',
+        'total' => '',
+
+        'details' => [
+            'order_number' => '注文 #',
+            'payment_terms' => '',
+            'salesperson' => '',
+            'shipping_method' => '',
+            'shipping_terms' => '',
+            'title' => '',
+        ],
 
         'item' => [
             'quantity' => '個数',
@@ -105,6 +151,15 @@ return [
             'paid' => '支払い済み',
             'processing' => '承認待ち',
             'shipped' => '発送済み',
+            'title' => '',
+        ],
+
+        'thanks' => [
+            'title' => '',
+            'line_1' => [
+                '_' => '',
+                'link_text' => '',
+            ],
         ],
     ],
 
@@ -138,6 +193,10 @@ return [
     'username_change' => [
         'check' => '名前を入力して使用可能か確認しましょう！',
         'checking' => ':usernameが使用可能か確認中・・・',
+        'placeholder' => '',
+        'label' => '',
+        'current' => '',
+
         'require_login' => [
             '_' => '名前を変えるには:linkが必要です！',
             'link_text' => 'ログイン',

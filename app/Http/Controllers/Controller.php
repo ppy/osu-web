@@ -8,11 +8,9 @@ namespace App\Http\Controllers;
 use App;
 use App\Http\Middleware\VerifyUserAlways;
 use App\Libraries\LocaleMeta;
-use App\Libraries\UserVerificationState;
 use App\Models\Log;
 use Auth;
 use Carbon\Carbon;
-use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
@@ -24,11 +22,6 @@ abstract class Controller extends BaseController
 
     public function __construct()
     {
-    }
-
-    protected function formatValidationErrors(Validator $validator)
-    {
-        return ['validation_error' => $validator->errors()->getMessages()];
     }
 
     protected function log($params)
@@ -44,15 +37,15 @@ abstract class Controller extends BaseController
     {
         cleanup_cookies();
 
-        $session = session();
+        $session = \Session::instance();
         $session->flush();
         $session->regenerateToken();
         $session->put('requires_verification', VerifyUserAlways::isRequired($user));
         Auth::login($user, $remember);
-        if (config('osu.user.bypass_verification')) {
-            UserVerificationState::fromCurrentRequest()->markVerified();
+        if ($GLOBALS['cfg']['osu']['user']['bypass_verification']) {
+            $session->markVerified();
         }
-        $session->migrate(true, $user->getKey());
+        $session->migrate(true);
     }
 
     protected function logout()

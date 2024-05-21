@@ -63,8 +63,12 @@ return [
         'comments_controller' => [
             '_' => 'comentarii',
         ],
+        'contest_entries_controller' => [
+            'judge_results' => 'rezultate evaluare concurs',
+        ],
         'contests_controller' => [
             '_' => 'concursuri',
+            'judge' => 'evaluare concurs',
         ],
         'groups_controller' => [
             'show' => 'grupuri',
@@ -105,6 +109,9 @@ return [
         ],
         'tournaments_controller' => [
             '_' => 'turnee',
+        ],
+        'user_cover_presets_controller' => [
+            '_' => 'preset-uri coperți utilizator',
         ],
         'users_controller' => [
             '_' => 'info jucător',

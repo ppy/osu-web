@@ -39,6 +39,7 @@ return [
         'pin' => 'pripnúť',
         'post' => 'Príspevok',
         'read_more' => 'čítať viac',
+        'refresh' => '',
         'reply' => 'Odpovedať',
         'reply_reopen' => 'Odpovedať a znova otvoriť',
         'reply_resolve' => 'Odpovedať a archivovať',

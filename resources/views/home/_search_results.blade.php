@@ -41,7 +41,7 @@
         @else
             @if ($allSearch->getMode() === 'user' && $search->overLimit())
                 <div class="search-result__row search-result__row--notice">
-                    {{ osu_trans("home.search.user.more_hidden", ['max' => config("osu.search.max.user")]) }}
+                    {{ osu_trans("home.search.user.more_hidden", ['max' => $GLOBALS['cfg']['osu']['search']['max']['user']]) }}
                 </div>
             @endif
             <div class="search-result__row search-result__row--paginator">

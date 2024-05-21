@@ -24,7 +24,7 @@ return [
     ],
 
     'type' => [
-        'charts' => 'focus',
+        'charts' => 'spotlights',
         'country' => 'país',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multijugador',
@@ -42,7 +42,7 @@ return [
 
     'spotlight' => [
         'end_date' => 'Data de finalització',
-        'map_count' => 'Recompte de mapes',
+        'map_count' => 'Nombre de mapes',
         'participants' => 'Participants',
         'start_date' => 'Data d\'inici',
     ],

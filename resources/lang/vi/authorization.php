@@ -23,7 +23,7 @@ return [
             'set_metadata' => 'Bạn phải chọn thể loại nhạc và ngôn ngữ trước khi nominating.',
         ],
         'resolve' => [
-            'not_owner' => 'Chỉ có chủ thớt và chủ beatmap mới có thể đánh dấu cuộc thảo luận là đã được giải quyết.',
+            'not_owner' => 'Chỉ có người mở thread và chủ beatmap mới có thể đánh dấu cuộc thảo luận là đã được giải quyết.',
         ],
 
         'store' => [
@@ -31,7 +31,7 @@ return [
         ],
 
         'vote' => [
-            'bot' => "Không thể bầu trên thảo luận tạo bởi bot",
+            'bot' => "Không thể bình chọn trên thảo luận tạo bởi bot",
             'limit_exceeded' => 'Vui lòng đợi một lúc trước khi bình chọn thêm',
             'owner' => "Không thể bình chọn cuộc thảo luận của bạn.",
             'wrong_beatmapset_state' => 'Chỉ có thể bình chọn cuộc thảo luận của beatmap ở trạng thái pending.',
@@ -46,7 +46,7 @@ return [
         ],
 
         'edit' => [
-            'not_owner' => 'Bài đăng chỉ có thể được chỉnh sửa bởi người đăng.',
+            'not_owner' => 'Chỉ người đăng mới có thể chỉnh sửa bài đăng.',
             'resolved' => 'Bạn không thể sửa một bài đăng về một thảo luận đã được giải quyết.',
             'system_generated' => 'Không thể chỉnh sửa bài đăng được tạo tự động.',
         ],
@@ -68,7 +68,7 @@ return [
         'no_access' => 'Bạn không có quyền truy cập vào kênh này.',
         'receive_friends_only' => 'Người này có thể không trả lời được vì bạn đang chỉ chấp nhận tin nhắn từ người trong danh sách bạn bè.',
         'restricted' => 'Bạn không thể gửi tin nhắn trong khi bị silenced, bị hạn chế hoặc bị cấm (ban).',
-        'silenced' => 'Bạn không thể gửi tin nhắn khi bị tắt tiếng, bị hạn chế hoặc bị cấm.',
+        'silenced' => 'Bạn không thể gửi tin nhắn trong khi bị silenced, bị hạn chế hoặc bị cấm (ban).',
     ],
 
     'comment' => [
@@ -81,6 +81,7 @@ return [
     ],
 
     'contest' => [
+        'judging_not_active' => 'Phần đánh giá cho cuộc thi này không hoạt động.',
         'voting_over' => 'Bạn không thể đổi phiếu bầu sau khi giai đoạn bầu chọn của cuộc thi này kết thúc.',
 
         'entry' => [
@@ -172,6 +173,7 @@ return [
     'score' => [
         'pin' => [
             'disabled_type' => "Không thể ghim điểm này",
+            'failed' => "Không thể ghim điểm cá nhân chưa hoàn thành.",
             'not_owner' => 'Chỉ có người sở hữu có thể ghim điểm.',
             'too_many' => 'Ghim quá nhiều điểm.',
         ],
@@ -186,7 +188,7 @@ return [
             ],
         ],
         'update_email' => [
-            'locked' => '',
+            'locked' => 'địa chỉ email bị khóa',
         ],
     ],
 ];

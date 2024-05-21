@@ -5,6 +5,7 @@
 
 return [
     'show' => [
+        'non_preserved' => '',
         'title' => ':username op :title [:version]',
 
         'beatmap' => [
@@ -24,7 +25,8 @@ return [
 
     'status' => [
         'non_best' => 'Enkel je beste score op een beatmap levert pp op',
-        'non_passing' => 'Alleen geslaagde scores leveren pp op',
+        'no_pp' => 'pp word niet opgeleverd voor deze score',
         'processing' => 'Deze score wordt nog berekend en zal zo dadelijk getoond worden',
+        'no_rank' => 'Deze score heeft geen rang omdat deze ongerangschikt is of gemarkeerd is voor verwijdering',
     ],
 ];

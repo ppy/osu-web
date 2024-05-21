@@ -5,7 +5,6 @@
 
 return [
     'button' => [
-        'cancel' => 'Avbryt',
         'resend' => 'Skicka bekräftelsemail igen',
         'set' => 'Ange lösenord',
         'start' => 'Starta',
@@ -37,6 +36,9 @@ return [
     'starting' => [
         'username' => 'Fyll i din e-postadress eller ditt användarnamn',
 
+        'reason' => [
+            'inactive_different_country' => "Ditt konto har inte använts på länge. För att säkerställa ditt kontos säkerhet vänligen återställ ditt lösenord.",
+        ],
         'support' => [
             '_' => 'Behöver du mer hjälp? Kontakta oss via vår :button.',
             'button' => 'supportsystem',

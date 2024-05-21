@@ -28,7 +28,7 @@ export class BeatmapsetSearch implements DispatchListener {
 
   private xhr?: JQueryXHR;
 
-  constructor(private beatmapsetStore: BeatmapsetStore) {
+  constructor(private readonly beatmapsetStore: BeatmapsetStore) {
     makeObservable(this);
   }
 

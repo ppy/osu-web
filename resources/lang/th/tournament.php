@@ -9,7 +9,7 @@ return [
         'registration_period' => 'ระยะเวลาการลงทะเบียน: :start ถึง :end',
 
         'header' => [
-            'title' => 'การแข่งขันของชุมชน',
+            'title' => 'ทัวร์นาเมนต์ชุมชน',
         ],
 
         'item' => [

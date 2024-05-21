@@ -6,6 +6,7 @@
 return [
     'cart' => [
         'checkout' => 'Til kassen',
+        'empty_cart' => '',
         'info' => ':count_delimited vare i kurven ($:subtotal)|:count_delimited varer i kurven ($:subtotal)',
         'more_goodies' => 'Jeg ønsker at tjekke flere goodies ud før jeg færdiggører ordren',
         'shipping_fees' => 'fragt gebyrer',
@@ -48,19 +49,52 @@ return [
     ],
 
     'discount' => 'spar :percent%',
+    'free' => '',
 
     'invoice' => [
+        'contact' => '',
+        'date' => '',
         'echeck_delay' => 'Siden du betalte med en eCheck, vent venligst op til 10 ekstra dage for at betalingen kommer igennem med PayPal!',
         'hide_from_activity' => '',
+        'sent_via' => '',
+        'shipping_to' => '',
+        'title' => '',
         'title_compact' => 'faktura',
 
         'status' => [
+            'cancelled' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => "",
+                    'link_text' => '',
+                ],
+            ],
+            'delivered' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => '',
+                    'link_text' => '',
+                ],
+            ],
+            'prepared' => [
+                'title' => '',
+                'line_1' => '',
+                'line_2' => '',
+            ],
             'processing' => [
                 'title' => 'Din betaling er endnu ikke blevet bekræftet!',
                 'line_1' => 'Hvis du allerede har betalt, kan det være vi stadig venter på at modtage en bekræftelse af din betaling. Opdater venligst siden om et minut eller to!',
                 'line_2' => [
                     '_' => 'Hvis der opstod et problem under betaling, :link',
                     'link_text' => 'klik her for at fortsætte din betaling',
+                ],
+            ],
+            'shipped' => [
+                'title' => '',
+                'tracking_details' => '',
+                'no_tracking_details' => [
+                    '_' => "",
+                    'link_text' => '',
                 ],
             ],
         ],
@@ -74,7 +108,19 @@ return [
         'no_orders' => 'Ingen ordrer til at se.',
         'paid_on' => 'Ordre placeret :date',
         'resume' => 'Fortsæt Til Kassen',
+        'shipping_and_handling' => '',
         'shopify_expired' => 'Checkout linket for denne ordre er udløbet.',
+        'subtotal' => '',
+        'total' => '',
+
+        'details' => [
+            'order_number' => '',
+            'payment_terms' => '',
+            'salesperson' => '',
+            'shipping_method' => '',
+            'shipping_terms' => '',
+            'title' => '',
+        ],
 
         'item' => [
             'quantity' => 'Kvantitet',
@@ -105,6 +151,15 @@ return [
             'paid' => 'Betalt',
             'processing' => 'Afventer bekræftelse',
             'shipped' => 'På vej',
+            'title' => '',
+        ],
+
+        'thanks' => [
+            'title' => '',
+            'line_1' => [
+                '_' => '',
+                'link_text' => '',
+            ],
         ],
     ],
 
@@ -138,6 +193,10 @@ return [
     'username_change' => [
         'check' => 'Skriv et brugernavn for at tjekke om det er tilgængelig!',
         'checking' => 'Tjekker om navnet :username er tilgængelig...',
+        'placeholder' => '',
+        'label' => '',
+        'current' => '',
+
         'require_login' => [
             '_' => 'Du skal være :link for at ændre dit brugernavn!',
             'link_text' => 'logget ind',

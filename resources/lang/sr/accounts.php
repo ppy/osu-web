@@ -19,8 +19,8 @@ return [
             'new_confirmation' => 'потврда имејл адресе',
             'title' => 'Имејл',
             'locked' => [
-                '_' => '',
-                'accounts' => '',
+                '_' => 'Molimo kontaktirajte :accounts ukoliko treba da ažurirate Vašu imejl adresu.',
+                'accounts' => 'тим за подршку налога',
             ],
         ],
 
@@ -62,6 +62,19 @@ return [
         ],
     ],
 
+    'github_user' => [
+        'info' => "",
+        'link' => '',
+        'title' => '',
+        'unlink' => '',
+
+        'error' => [
+            'already_linked' => '',
+            'no_contribution' => '',
+            'unverified_email' => '',
+        ],
+    ],
+
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'примајте обавештења за нове проблеме на квалификованим мапама следећих модова',
         'beatmapset_disqualify' => 'примајте обавештења када мапе од следећих модова су дисквалификоване',
@@ -79,7 +92,6 @@ return [
             'mail' => 'пошта',
             'mapping' => 'креатор мапе',
             'push' => 'push',
-            'user_achievement_unlock' => 'корисничка медаља откључана',
         ],
     ],
 

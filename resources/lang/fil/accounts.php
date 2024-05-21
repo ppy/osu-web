@@ -21,15 +21,15 @@ return [
             'new_confirmation' => 'ikumpirma ang email',
             'title' => 'Email',
             'locked' => [
-                '_' => '',
-                'accounts' => '',
+                '_' => 'Pakipag-ugnay sa :accounts kung kailangan mong ma-update ang iyong email.',
+                'accounts' => 'pangkat ng suporta sa account',
             ],
         ],
 
         'legacy_api' => [
-            'api' => '',
-            'irc' => '',
-            'title' => '',
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'Legacy na API',
         ],
 
         'password' => [
@@ -40,12 +40,12 @@ return [
         ],
 
         'profile' => [
-            'country' => '',
+            'country' => 'bansa',
             'title' => 'Profile',
 
             'country_change' => [
-                '_' => "",
-                'update_link' => '',
+                '_' => "Mukhang hindi tumutugma ang bansa ng iyong account sa iyong bansang tinitirhan. :update_link.",
+                'update_link' => 'I-update sa :country',
             ],
 
             'user' => [
@@ -61,6 +61,19 @@ return [
         'signature' => [
             'title' => 'Signatura',
             'update' => 'i-update',
+        ],
+    ],
+
+    'github_user' => [
+        'info' => "Kung isa kang kontribyutor sa mga open-source na repository ng osu!, ang pag-link ng iyong GitHub account dito ay iuugnay ang iyong mga changelog entries sa iyong osu! profile. Mga GitHub account na walang history ng kontribusyon sa osu! ay hindi ma-link.",
+        'link' => 'I-link ang GitHub Account',
+        'title' => 'GitHub',
+        'unlink' => 'I-unlink ang GitHub Account',
+
+        'error' => [
+            'already_linked' => 'Ang GitHub account na ito ay naka-link na sa ibang user.',
+            'no_contribution' => 'Hindi ma-link ang GitHub account nang walang anumang kasaysayan ng kontribusyon sa mga repositoryo ng osu. ',
+            'unverified_email' => 'Paki-verify ng iyong pangunahing email sa GitHub, pagkatapos ay subukang i-link muli ang iyong account.',
         ],
     ],
 
@@ -81,7 +94,6 @@ return [
             'mail' => 'koreo',
             'mapping' => 'mapper ng beatmap',
             'push' => 'push',
-            'user_achievement_unlock' => 'na-unlock na medalya ng user',
         ],
     ],
 

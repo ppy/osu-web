@@ -11,7 +11,7 @@ return [
         'avatar' => [
             'title' => 'Avatar',
             'rules' => 'Veuillez vous assurer que votre avatar correspond aux :link.<br/>Cela signifie qu\'il doit être <strong>adapté à tous les âges</strong>. C\'est-à-dire pas de nudité, de profanation ou de contenu suggestif.',
-            'rules_link' => 'règles de la communauté',
+            'rules_link' => 'Considérations relatives au contenu visuel',
         ],
 
         'email' => [
@@ -19,8 +19,8 @@ return [
             'new_confirmation' => 'confirmation de l\'e-mail',
             'title' => 'E-mail',
             'locked' => [
-                '_' => '',
-                'accounts' => '',
+                '_' => 'Veuillez contacter l\':accounts: si vous avez besoin de mettre à jour votre adresse e-mail.',
+                'accounts' => 'équipe d\'assistance aux comptes',
             ],
         ],
 
@@ -62,6 +62,19 @@ return [
         ],
     ],
 
+    'github_user' => [
+        'info' => "Si vous êtes un contributeur des dépôts open-source d'osu!, associer votre compte GitHub permettra à vos contributions affichées sur les changelogs de mener directement vers votre profil osu!. Les comptes GitHub sans historique de contribution à osu! ne peuvent pas être associés.",
+        'link' => 'Associer un compte GitHub',
+        'title' => 'GitHub',
+        'unlink' => 'Dissocier le compte GitHub',
+
+        'error' => [
+            'already_linked' => 'Ce compte GitHub est déjà associé à un autre utilisateur.',
+            'no_contribution' => 'Impossible d\'associer un compte GitHub sans historique de contribution dans les dépôts d\'osu!.',
+            'unverified_email' => 'Veuillez vérifier votre adresse e-mail principale sur GitHub, puis essayez d\'associer votre compte à nouveau.',
+        ],
+    ],
+
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'recevoir des notifications lorsqu\'un nouveau problème est posté sur les beatmaps qualifiées dans les modes suivants',
         'beatmapset_disqualify' => 'recevoir des notifications lorsque des beatmaps sont disqualifiées dans les modes suivants',
@@ -79,7 +92,6 @@ return [
             'mail' => 'mail',
             'mapping' => 'créateur de beatmap',
             'push' => 'push',
-            'user_achievement_unlock' => 'médaille utilisateur déverrouillée',
         ],
     ],
 
