@@ -4,8 +4,11 @@
 import UserGroupEventJson from 'interfaces/user-group-event-json';
 import { observer } from 'mobx-react';
 import * as React from 'react';
+import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 import Event from './event';
+
+const bn = 'group-history';
 
 interface Props {
   events: UserGroupEventJson[];
@@ -15,13 +18,13 @@ interface Props {
 export default class Events extends React.Component<Props> {
   render() {
     return this.props.events.length > 0 ? (
-      <div className='group-history__events'>
+      <div className={classWithModifiers(bn, 'events')}>
         {this.props.events.map((event) => (
           <Event key={event.id} event={event} />
         ))}
       </div>
     ) : (
-      <p className='group-history__none'>
+      <p className={classWithModifiers(bn, 'none')}>
         {trans('group_history.none')}
       </p>
     );
