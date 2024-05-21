@@ -21,10 +21,10 @@ import SearchForm from './search-form';
 export default class Main extends React.Component<GroupHistoryJson> {
   @observable private currentParams: GroupHistoryJson['params'];
   @observable private cursorString: string | null;
-  private disposeQueryStringUpdater: IReactionDisposer;
+  private readonly disposeQueryStringUpdater: IReactionDisposer;
   @observable private events: UserGroupEventJson[];
   @observable private loading?: 'more' | 'new';
-  @observable private newParams: GroupHistoryJson['params'];
+  @observable private readonly newParams: GroupHistoryJson['params'];
   private xhr?: JQuery.jqXHR<GroupHistoryJson>;
 
   constructor(props: GroupHistoryJson) {
