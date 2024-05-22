@@ -382,9 +382,10 @@ class UsersController extends Controller
         $includes = UserCompactTransformer::CARD_INCLUDES;
 
         if (isset($params['ids'])) {
-            RequestCost::setCost(count($params['ids']));
             $includeVariantStatistics = $params['include_variant_statistics'] ?? false;
             $preload = UserCompactTransformer::CARD_INCLUDES_PRELOAD;
+
+            RequestCost::setCost(count($params['ids']) * ($includeVariantStatistics ? 3 : 1));
 
             foreach (Beatmap::MODES as $ruleset => $_rulesetId) {
                 $includes[] = "statistics_rulesets.{$ruleset}";
