@@ -25,7 +25,7 @@ class UpdateUserInfoTest extends TestCase
         $this->assertTrue($user->fresh()->user_lastvisit->addSeconds(5)->isFuture());
     }
 
-    public function testClientCountryHistoryTwiceNoDuplicateError(): void
+    public function testClientCountryHistoryTwiceIncrementCountAndNoDuplicateError(): void
     {
         $user = User::factory()->create(['user_lastvisit' => Carbon::now()->subDays(1)]);
 
@@ -36,6 +36,7 @@ class UpdateUserInfoTest extends TestCase
         ]);
 
         $this->expectCountChange(fn () => $user->userCountryHistory()->count(), 0);
+        $this->expectCountChange(fn () => $user->userCountryHistory()->first()->count, 1);
 
         $this->actAsClientUser($user);
         $this
