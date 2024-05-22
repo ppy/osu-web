@@ -66,7 +66,7 @@ use Illuminate\Database\QueryException;
  * @property string $displaytitle
  * @property bool $download_disabled
  * @property string|null $download_disabled_url
- * @property int[]|null $eligible_main_ruleset_ids
+ * @property string[]|null $eligible_main_rulesets
  * @property bool $epilepsy
  * @property \Illuminate\Database\Eloquent\Collection $events BeatmapsetEvent
  * @property int $favourite_count
@@ -120,7 +120,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         'deleted_at' => 'datetime',
         'discussion_locked' => 'boolean',
         'download_disabled' => 'boolean',
-        'eligible_main_ruleset_ids' => 'array',
+        'eligible_main_rulesets' => 'array',
         'epilepsy' => 'boolean',
         'last_update' => 'datetime',
         'nsfw' => 'boolean',
@@ -941,7 +941,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             'user_id',
             'versions_available' => $this->getRawAttribute($key),
 
-            'eligible_main_ruleset_ids' => $this->getArray($key),
+            'eligible_main_rulesets' => $this->getArray($key),
 
             'approved_date',
             'cover_updated_at',
@@ -1064,11 +1064,11 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             return $playmodeCount * $baseRequirement;
         }
 
-        $mainRulesetLegacyName = Beatmap::modeStr($this->mainRulesetId());
+        $mainRuleset = $this->mainRuleset();
         $requiredNominations = [];
         // TODO: switch to ruleset ids
-        foreach ($this->playmodesStr() as $playmode) {
-            $requiredNominations[$playmode] = $mainRulesetLegacyName === null || $playmode === $mainRulesetLegacyName
+        foreach ($this->playmodesStr() as $ruleset) {
+            $requiredNominations[$ruleset] = $mainRuleset === null || $ruleset === $mainRuleset
                 ? $baseRequirement
                 : 1;
         }
@@ -1142,32 +1142,32 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     /**
      * Returns all the Rulesets that are eligible to be the main ruleset.
-     * This will _not_ query the current beatmapset nominations if there is an existing value in `eligible_main_ruleset_ids`
+     * This will _not_ query the current beatmapset nominations if there is an existing value in `eligible_main_rulesets`
      *
-     * @return int[]
+     * @return string[]
      */
-    public function eligibleMainRulesetIds(): array
+    public function eligibleMainRulesets(): array
     {
-        $rulesetIds = $this->eligible_main_ruleset_ids;
+        $rulesets = $this->eligible_main_rulesets;
 
-        if ($rulesetIds === null) {
-            $rulesetIds = (new BeatmapsetMainRuleset($this))->currentEligible()->toArray();
-            sort($rulesetIds);
-            $this->update(['eligible_main_ruleset_ids' => $rulesetIds]);
+        if ($rulesets === null) {
+            $rulesets = (new BeatmapsetMainRuleset($this))->currentEligible()->toArray();
+            sort($rulesets);
+            $this->update(['eligible_main_rulesets' => $rulesets]);
         }
 
-        return $rulesetIds;
+        return $rulesets;
     }
 
     /**
      * Returns the main Ruleset.
-     * This calls `eligibleMainRulesetIds()` and has the same nomination querying behaviour.
+     * This calls `eligibleMainRulesets()` and has the same nomination querying behaviour.
      *
-     * @return int|null returns the main Ruleset if there is one eligible Rulset; `null`, otherwise.
+     * @return string|null returns the main Ruleset if there is one eligible Rulset; `null`, otherwise.
      */
-    public function mainRulesetId(): ?int
+    public function mainRuleset(): ?string
     {
-        $eligible = $this->eligibleMainRulesetIds();
+        $eligible = $this->eligibleMainRulesets();
 
         return count($eligible) === 1 ? $eligible[0] : null;
     }
@@ -1471,11 +1471,11 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     public function refreshCache()
     {
-        $rulesetIds = (new BeatmapsetMainRuleset($this))->currentEligible()->toArray();
-        sort($rulesetIds);
+        $rulesets = (new BeatmapsetMainRuleset($this))->currentEligible()->toArray();
+        sort($rulesets);
 
         return $this->update([
-            'eligible_main_ruleset_ids' => $rulesetIds,
+            'eligible_main_rulesets' => $rulesets,
             'hype' => $this->freshHype(),
             'nominations' => $this->isLegacyNominationMode() ? $this->currentNominationCount() : array_sum(array_values($this->currentNominationCount())),
         ]);

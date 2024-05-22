@@ -133,12 +133,12 @@ class BeatmapsetFactory extends Factory
                 ]));
     }
 
-    public function withBeatmaps(?int $rulesetId = null, int $count = 1, ?User $guestMapper = null)
+    public function withBeatmaps(?string $ruleset = null, int $count = 1, ?User $guestMapper = null)
     {
         return $this
             ->has(Beatmap::factory()
             ->count($count)
-            ->ruleset($rulesetId ?? array_rand_val(array_values(Beatmap::MODES)))
+            ->ruleset($ruleset ?? array_rand(Beatmap::MODES))
             ->state(fn (array $attr, Beatmapset $set) => [
                 'approved' => $set->approved,
                 'user_id' => $guestMapper?->getKey() ?? $set->user_id,

@@ -7,17 +7,18 @@ declare(strict_types=1);
 
 namespace App\Libraries\Beatmapset;
 
+use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use Ds\Set;
 
 class BeatmapsetMainRuleset
 {
-    /** @var ?Set<int> $eligibleRulesets */
+    /** @var ?Set<string> $eligibleRulesets */
     private ?Set $eligibleRulesets = null;
 
     public function __construct(private Beatmapset $beatmapset)
     {
-        $values = $beatmapset->eligible_main_ruleset_ids;
+        $values = $beatmapset->eligible_main_rulesets;
 
         if ($values !== null) {
             $this->eligibleRulesets = new Set($values);
@@ -30,11 +31,11 @@ class BeatmapsetMainRuleset
      * Gets all the Rulesets that are eligible to be the main ruleset.
      * This will additionally query the current beatmapset nominations if necessary.
      *
-     * @return Set<int>
+     * @return Set<string>
      */
     public function currentEligible(): Set
     {
-        $mainRuleset = $this->mainRulesetId();
+        $mainRuleset = $this->mainRuleset();
 
         return $mainRuleset === null ? $this->eligibleRulesets : new Set([$mainRuleset]);
     }
@@ -48,7 +49,7 @@ class BeatmapsetMainRuleset
             ->orderBy('playmode', 'asc');
     }
 
-    private function mainRulesetId(): ?int
+    private function mainRuleset(): ?string
     {
         if ($this->eligibleRulesets->count() === 1) {
             return $this->eligibleRulesets->first();
@@ -60,11 +61,11 @@ class BeatmapsetMainRuleset
         $nominationsByRuleset = [];
 
         foreach ($nominations as $nomination) {
-            $rulesetIds = $nomination->rulesetIds();
-            foreach ($rulesetIds as $rulesetId) {
-                if ($this->eligibleRulesets->contains($rulesetId)) {
-                    $nominationsByRuleset[$rulesetId] ??= 0;
-                    $nominationsByRuleset[$rulesetId]++;
+            $rulesets = $nomination->modes;
+            foreach ($rulesets as $ruleset) {
+                if ($this->eligibleRulesets->contains($ruleset)) {
+                    $nominationsByRuleset[$ruleset] ??= 0;
+                    $nominationsByRuleset[$ruleset]++;
                 }
             }
 
@@ -97,7 +98,7 @@ class BeatmapsetMainRuleset
 
         // clear winner in playmode counts exists.
         if ($groups->count() === 1 || $groups[0]['total'] > $groups[1]['total']) {
-            $this->eligibleRulesets->add($groups[0]['playmode']);
+            $this->eligibleRulesets->add(Beatmap::modeStr($groups[0]['playmode']));
 
             return;
         }
@@ -111,7 +112,7 @@ class BeatmapsetMainRuleset
                 || $groupedHostOnly->count() > 1
                     && $groupedHostOnly[0]['total'] > $groupedHostOnly[1]['total']
         ) {
-            $this->eligibleRulesets->add($groupedHostOnly[0]['playmode']);
+            $this->eligibleRulesets->add(Beatmap::modeStr($groupedHostOnly[0]['playmode']));
 
             return;
         }
@@ -120,7 +121,7 @@ class BeatmapsetMainRuleset
         $this->eligibleRulesets->add(
             ...$groupedHostOnly
                 ->filter(fn ($group) => $group['total'] === $groupedHostOnly[0]['total'])
-                ->map(fn ($group) => $group['playmode'])
+                ->map(fn ($group) => Beatmap::modeStr($group['playmode']))
                 ->toArray()
         );
     }

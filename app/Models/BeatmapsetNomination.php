@@ -41,11 +41,6 @@ class BeatmapsetNomination extends Model
         return $this->belongsTo(User::class, 'reset_user_id');
     }
 
-    public function rulesetIds()
-    {
-        return array_map(fn ($name) => Beatmap::MODES[$name], $this->modes);
-    }
-
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');

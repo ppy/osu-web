@@ -66,9 +66,9 @@ class NominateBeatmapset
                     $beatmapset = $this->beatmapset->lockForUpdate()->find($this->beatmapset->getKey());
                     // Sanity check: something changed main ruleset after the qualify check.
                     if (
-                        $beatmapset->eligible_main_ruleset_ids === null
-                            || count($beatmapset->eligible_main_ruleset_ids) !== 1
-                            || $beatmapset->eligible_main_ruleset_ids[0] !== $this->beatmapset->mainRulesetId()
+                        $beatmapset->eligible_main_rulesets === null
+                            || count($beatmapset->eligible_main_rulesets) !== 1
+                            || $beatmapset->eligible_main_rulesets[0] !== $this->beatmapset->mainRuleset()
                     ) {
                         throw new InvariantException('main ruleset has changed.');
                     }
@@ -114,7 +114,7 @@ class NominateBeatmapset
         }
 
         // Only one ruleset is allowed to have more than one nomination.
-        // This needs to be enforced for Beatmapset::mainRulesetId()
+        // This needs to be enforced for Beatmapset::mainRuleset()
         $nominationCount = $this->beatmapset->currentNominationCount();
 
         // add potential counts
@@ -122,13 +122,13 @@ class NominateBeatmapset
             $nominationCount[$ruleset]++;
         }
 
-        $eligibleRulesetIds = (new BeatmapsetMainRuleset($this->beatmapset))->currentEligible();
+        $eligibleRulesets = (new BeatmapsetMainRuleset($this->beatmapset))->currentEligible();
 
         // assert counts
         $mainRulesetFound = false;
         foreach ($nominationCount as $ruleset => $count) {
             if ($count > 1) {
-                if ($mainRulesetFound || !$eligibleRulesetIds->contains(Beatmap::modeInt($ruleset))) {
+                if ($mainRulesetFound || !$eligibleRulesets->contains($ruleset)) {
                     throw new InvariantException(osu_trans('beatmapsets.nominate.too_many_non_main_ruleset'));
                 }
 
@@ -158,8 +158,8 @@ class NominateBeatmapset
 
     private function shouldQualify(): bool
     {
-        $mainRulesetId = $this->beatmapset->mainRulesetId();
-        if ($mainRulesetId === null) {
+        $mainRuleset = $this->beatmapset->mainRuleset();
+        if ($mainRuleset === null) {
             return false;
         }
 
@@ -173,7 +173,7 @@ class NominateBeatmapset
             $totalNominations = $fullNominations + $limitedNominations;
 
             // Prevent maps with invalid nomination state from going into qualified.
-            if (Beatmap::modeInt($ruleset) !== $mainRulesetId && $limitedNominations > 0) {
+            if ($ruleset !== $mainRuleset && $limitedNominations > 0) {
                 throw new InvariantException(osu_trans('beatmapsets.nominate.invalid_limited_nomination'));
             }
 

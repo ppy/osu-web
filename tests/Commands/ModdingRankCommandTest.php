@@ -151,7 +151,7 @@ class ModdingRankCommandTest extends TestCase
             ->qualified(now()->subDays($qualifiedDaysAgo));
 
         foreach ($rulesets as $ruleset) {
-            $factory = $factory->has(Beatmap::factory()->ruleset($ruleset->value));
+            $factory = $factory->has(Beatmap::factory()->ruleset($ruleset->legacyName()));
         }
 
         return $factory;

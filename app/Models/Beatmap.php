@@ -315,7 +315,7 @@ class Beatmap extends Model implements AfterCommit
         }
 
         $this->fill(['user_id' => $newUserId])->saveOrExplode();
-        $this->beatmapset->update(['eligible_main_ruleset_ids' => null]);
+        $this->beatmapset->update(['eligible_main_rulesets' => null]);
     }
 
     public function status()

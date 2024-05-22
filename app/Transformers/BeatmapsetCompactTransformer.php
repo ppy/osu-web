@@ -187,7 +187,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
 
     public function includeEligibleMainRulesets(Beatmapset $beatmapset)
     {
-        return $this->primitive(array_map(fn (int $rulesetId) => Beatmap::modeStr($rulesetId), $beatmapset->eligibleMainRulesetIds()));
+        return $this->primitive($beatmapset->eligibleMainRulesets());
     }
 
     public function includeNominations(Beatmapset $beatmapset)
