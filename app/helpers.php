@@ -851,12 +851,9 @@ function is_valid_email_format(?string $email): bool
     return $validator->isValid($email, $lexer);
 }
 
-function is_sql_unique_exception($ex)
+function is_sql_unique_exception(\Throwable $ex): bool
 {
-    return starts_with(
-        $ex->getMessage(),
-        'SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry'
-    );
+    return $ex instanceof Illuminate\Database\UniqueConstraintViolationException;
 }
 
 function js_localtime($date)
