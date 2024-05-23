@@ -699,9 +699,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     {
         $styles = 0;
 
-        foreach (self::PLAYSTYLES as $type => $bit) {
-            if (in_array($type, $value, true)) {
-                $styles += $bit;
+        if ($value !== null) {
+            foreach (self::PLAYSTYLES as $type => $bit) {
+                if (in_array($type, $value, true)) {
+                    $styles += $bit;
+                }
             }
         }
 
