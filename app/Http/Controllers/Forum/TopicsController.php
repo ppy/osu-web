@@ -431,7 +431,7 @@ class TopicsController extends Controller
         $topic->incrementViewCount($currentUser, \Request::ip());
         $posts->last()->markRead($currentUser);
 
-        // initiate new cover model separately to prevent it from getting used by opengraph
+        // Instantiate new cover model separately to prevent it from getting used by opengraph
         $coverModel = $topic->cover ?? new TopicCover(['topic_id' => $topic->getKey()]);
         $coverModel->setRelation('topic', $topic);
         $cover = json_item($coverModel, new TopicCoverTransformer());
