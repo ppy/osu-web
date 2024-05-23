@@ -281,6 +281,17 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     private $isSessionVerified;
 
+    public static function statisticsRelationName(string $ruleset, ?string $variant = null): ?string
+    {
+        if (!Beatmap::isModeValid($ruleset) || !Beatmap::isVariantValid($ruleset, $variant)) {
+            return null;
+        }
+
+        $variantSuffix = $variant === null ? '' : "_{$variant}";
+
+        return 'statistics'.studly_case("{$ruleset}{$variantSuffix}");
+    }
+
     public function userCountryHistory(): HasMany
     {
         return $this->hasMany(UserCountryHistory::class);
@@ -1337,17 +1348,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function statisticsTaiko()
     {
         return $this->hasOne(UserStatistics\Taiko::class);
-    }
-
-    public static function statisticsRelationName(string $ruleset, ?string $variant = null): ?string
-    {
-        if (!Beatmap::isModeValid($ruleset) || !Beatmap::isVariantValid($ruleset, $variant)) {
-            return null;
-        }
-
-        $variantSuffix = $variant === null ? '' : "_{$variant}";
-
-        return 'statistics'.studly_case("{$ruleset}{$variantSuffix}");
     }
 
     public function statistics(string $ruleset, bool $returnQuery = false, ?string $variant = null)
