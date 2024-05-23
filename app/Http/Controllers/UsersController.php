@@ -354,9 +354,10 @@ class UsersController extends Controller
      *
      * Field | Type            | Description
      * ----- | --------------- | -----------
-     * users | [User](#user)[] | Includes: country, cover, groups, statistics_rulesets.
+     * users | [User](#user)[] | Includes `country`, `cover`, `groups`, and `statistics_rulesets`.
      *
      * @queryParam ids[] User id to be returned. Specify once for each user id requested. Up to 50 users can be requested at once. Example: 1
+     * @queryParam include_variant_statistics boolean Whether to additionally include `statistics_rulesets.variants` (default: `false`). No-example
      *
      * @response {
      *   "users": [
@@ -373,17 +374,30 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $params = get_params(request()->all(), null, ['ids:int[]']);
+        $params = get_params(request()->all(), null, [
+            'ids:int[]',
+            'include_variant_statistics:bool',
+        ]);
 
         $includes = UserCompactTransformer::CARD_INCLUDES;
 
         if (isset($params['ids'])) {
-            RequestCost::setCost(count($params['ids']));
+            $includeVariantStatistics = $params['include_variant_statistics'] ?? false;
             $preload = UserCompactTransformer::CARD_INCLUDES_PRELOAD;
 
-            foreach (Beatmap::MODES as $modeStr => $modeInt) {
-                $includes[] = "statistics_rulesets.{$modeStr}";
-                $preload[] = camel_case("statistics_{$modeStr}");
+            RequestCost::setCost(count($params['ids']) * ($includeVariantStatistics ? 3 : 1));
+
+            foreach (Beatmap::MODES as $ruleset => $_rulesetId) {
+                $includes[] = "statistics_rulesets.{$ruleset}";
+                $preload[] = User::statisticsRelationName($ruleset);
+
+                if ($includeVariantStatistics) {
+                    $includes[] = "statistics_rulesets.{$ruleset}.variants";
+
+                    foreach (Beatmap::VARIANTS[$ruleset] ?? [] as $variant) {
+                        $preload[] = User::statisticsRelationName($ruleset, $variant);
+                    }
+                }
             }
 
             $users = User
@@ -391,6 +405,16 @@ class UsersController extends Controller
                 ->default()
                 ->with($preload)
                 ->get();
+
+            if ($includeVariantStatistics) {
+                // Preload user on statistics relations that have variants.
+                // See `UserStatisticsTransformer::includeVariants()`
+                foreach ($users as $user) {
+                    foreach (Beatmap::VARIANTS as $ruleset => $_variants) {
+                        $user->statistics($ruleset)?->setRelation('user', $user);
+                    }
+                }
+            }
         }
 
         return [
