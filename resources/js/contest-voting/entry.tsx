@@ -119,26 +119,18 @@ export const Entry = (props: Props) => {
           )}
         </div>
       )}
-      {props.options.showPreview && (
-        <div className="contest-voting-list__preview">
-          {props.entry.preview !== undefined && (
-            <TrackPreview track={{ preview: props.entry.preview }} />
-          )}
-        </div>
-      )}
-      {props.options.showLink && props.entry.preview !== undefined ? (
+      {props.entry.preview !== undefined ? (
         props.contest.submitted_beatmaps ? (
-          <a
-            className="contest-voting-list__icon contest-voting-list__icon--submitted-beatmaps"
-            href={route('beatmapsets.show', props.entry.preview)}
-            style={{
-              background: `url(https://b.ppy.sh/thumb/${props.entry.preview}.jpg)`,
-            }}
-          >
-            <span className="contest-voting-list__link contest-voting-list__link--shadowed">
-              <i className={`fas fa-fw fa-lg fa-${props.contest.link_icon}`} />
-            </span>
-          </a>
+          <div className="contest-voting-list__preview">
+            {props.entry.preview !== undefined && (
+              <TrackPreview
+                track={{
+                  cover_url: `https://b.ppy.sh/thumb/${props.entry.preview}.jpg`,
+                  preview: props.entry.preview,
+                }}
+              />
+            )}
+          </div>
         ) : (
           <div className="contest-voting-list__icon contest-voting-list__icon--bg">
             <a

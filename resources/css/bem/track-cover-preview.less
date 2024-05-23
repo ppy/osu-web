@@ -3,22 +3,21 @@
 
 .track-cover-preview {
   .reset-input();
-  width: 32px;
-  height: $width;
+  width: 50px;
+  height: 100%;
   .link-plain();
   .center-content();
   position: relative;
   background-size: cover;
   background-position: center;
-  color: hsl(var(--hsl-b1));
+  color: hsl(var(--hsl-c1));
 
   .link-hover({
-    color: hsl(var(--hsl-c1));
+    color: hsl(var(--hsl-b1));
   });
 
   &::before {
     .full-size();
     content: '';
-    background-color: fade(#000, 75%);
   }
 }
