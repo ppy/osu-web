@@ -78,6 +78,8 @@ class Kernel extends ConsoleKernel
         Commands\ChatChannelSetLastMessageId::class,
 
         Commands\BeatmapLeadersRefresh::class,
+
+        Commands\DailyChallengeCreateNext::class,
     ];
 
     /**
