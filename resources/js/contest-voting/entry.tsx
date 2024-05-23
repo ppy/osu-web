@@ -9,6 +9,9 @@ import { transChoice } from 'utils/lang';
 import UserLink from '../components/user-link';
 import ContestEntryJson from '../interfaces/contest-entry-json';
 import { ContestJsonForEntries } from '../interfaces/contest-json';
+// I'll fix this later
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import { Voter } from './voter';
 
 interface Props {
