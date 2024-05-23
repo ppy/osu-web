@@ -6,7 +6,7 @@ import { urlPresence } from 'utils/css';
 
 interface Props {
   track: {
-    cover_url?: string | null;
+    coverUrl?: string | null;
     preview: string;
   };
 }
@@ -17,7 +17,7 @@ export default function TrackPreview({ track }: Props) {
       className='track-cover-preview js-audio--play js-audio--player'
       data-audio-url={track.preview}
       style={{
-        backgroundImage: urlPresence(track.cover_url),
+        backgroundImage: urlPresence(track.coverUrl),
       }}
       type='button'
     >

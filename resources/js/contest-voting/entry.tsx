@@ -45,7 +45,7 @@ export const Entry = (props: Props) => {
 
   const renderUserLink = () => {
     if (!props.entry.user) {
-      return;
+      return <></>;
     }
 
     return (
@@ -125,7 +125,7 @@ export const Entry = (props: Props) => {
             {props.entry.preview !== undefined && (
               <TrackPreview
                 track={{
-                  cover_url: `https://b.ppy.sh/thumb/${props.entry.preview}.jpg`,
+                  coverUrl: `https://b.ppy.sh/thumb/${props.entry.preview}.jpg`,
                   preview: props.entry.preview,
                 }}
               />
