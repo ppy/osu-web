@@ -81,7 +81,7 @@ class UserStatisticsTransformer extends TransformerAbstract
 
     public function includeRankChangeSince30Days(UserStatistics\Model $stats): ResourceInterface
     {
-        return $this->primitive($stats->user->rankChangeSince30Days($stats->getMode()));
+        return $this->primitive($stats->rankHistory?->rankChangeSince30Days());
     }
 
     public function includeUser(UserStatistics\Model $stats = null)

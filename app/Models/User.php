@@ -1916,31 +1916,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     }
 
     /**
-     * Get the difference between the user's current performance rank and their
-     * performance rank as of 30 days ago, in the specified ruleset.
-     *
-     * @return int|null `null` if rank history is not available at 30 days ago.
-     */
-    public function rankChangeSince30Days(string $ruleset): ?int
-    {
-        $data = $this
-            ->rankHistories
-            ->firstWhere('ruleset', $ruleset)
-            ?->data;
-
-        if ($data === null) {
-            return null;
-        }
-
-        $currentRank = $data[89];
-        $previousRank = $data[59];
-
-        return $currentRank > 0 && $previousRank > 0
-            ? $currentRank - $previousRank
-            : null;
-    }
-
-    /**
      * Recommended star difficulty.
      *
      * @param string $mode one of Beatmap::MODES

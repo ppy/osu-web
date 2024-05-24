@@ -86,7 +86,7 @@
                     </td>
                     @if ($showRankChange)
                         @php
-                            $rankChange = $score->user->rankChangeSince30Days($mode);
+                            $rankChange = $score->rankHistory?->rankChangeSince30Days();
                             $modifier = 'rank-change-'.match (true) {
                                 $rankChange === null => 'pending',
                                 $rankChange > 0 => 'down',

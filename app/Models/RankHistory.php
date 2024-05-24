@@ -161,4 +161,21 @@ class RankHistory extends Model
     {
         return Beatmap::modeStr($this->getRawAttribute('mode'));
     }
+
+    /**
+     * Get the difference between the user's current performance rank and their
+     * performance rank as of 30 days ago.
+     *
+     * @return int|null `null` if rank history is not available at 30 days ago.
+     */
+    public function rankChangeSince30Days(): ?int
+    {
+        $data = $this->data;
+        $currentRank = $data[89];
+        $previousRank = $data[59];
+
+        return $currentRank > 0 && $previousRank > 0
+            ? $currentRank - $previousRank
+            : null;
+    }
 }
