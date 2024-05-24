@@ -14,7 +14,6 @@ use App\Models\UserStatistics;
 use App\Transformers\SelectOptionTransformer;
 use App\Transformers\UserCompactTransformer;
 use DB;
-use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 /**
