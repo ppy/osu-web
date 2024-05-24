@@ -8,8 +8,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * @property mixed $data
- * @property string $mode
+ * @property-read string $current_start_name
+ * @property-read \App\Models\Count $currentStart
+ * @property-read int[] $data
+ * @property int $mode
  * @property int $r0
  * @property int $r1
  * @property int $r10
@@ -100,7 +102,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $r88
  * @property int $r89
  * @property int $r9
- * @property User $user
+ * @property-read string $ruleset
+ * @property-read \App\Models\User $user
  * @property int $user_id
  */
 class RankHistory extends Model

@@ -16,7 +16,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property mixed $country_acronym
- * @property User $user
+ * @property-read \App\Models\RankHistory|null $rankHistory
+ * @property-read \App\Models\User $user
  */
 abstract class Model extends BaseModel
 {
