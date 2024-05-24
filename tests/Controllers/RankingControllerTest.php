@@ -47,7 +47,7 @@ class RankingControllerTest extends TestCase
         $user = User::factory()
             ->has(
                 UserStatisticsModel::getClass($ruleset)::factory()->state(['rank_score_index' => 1]),
-                'statistics'.studly_case($ruleset),
+                User::statisticsRelationName($ruleset),
             )
             ->create();
         $user->rankHistories()->create([
