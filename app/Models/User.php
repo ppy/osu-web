@@ -281,6 +281,17 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     private $isSessionVerified;
 
+    public static function statisticsRelationName(string $ruleset, ?string $variant = null): ?string
+    {
+        if (!Beatmap::isModeValid($ruleset) || !Beatmap::isVariantValid($ruleset, $variant)) {
+            return null;
+        }
+
+        $variantSuffix = $variant === null ? '' : "_{$variant}";
+
+        return 'statistics'.studly_case("{$ruleset}{$variantSuffix}");
+    }
+
     public function userCountryHistory(): HasMany
     {
         return $this->hasMany(UserCountryHistory::class);
@@ -699,9 +710,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     {
         $styles = 0;
 
-        foreach (self::PLAYSTYLES as $type => $bit) {
-            if (in_array($type, $value, true)) {
-                $styles += $bit;
+        if ($value !== null) {
+            foreach (self::PLAYSTYLES as $type => $bit) {
+                if (in_array($type, $value, true)) {
+                    $styles += $bit;
+                }
             }
         }
 
@@ -1341,19 +1354,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function statistics(string $ruleset, bool $returnQuery = false, ?string $variant = null)
     {
-        if (!Beatmap::isModeValid($ruleset)) {
-            return;
+        $relationName = static::statisticsRelationName($ruleset, $variant);
+
+        if ($relationName !== null) {
+            return $returnQuery ? $this->$relationName() : $this->$relationName;
         }
-
-        if (!Beatmap::isVariantValid($ruleset, $variant)) {
-            return;
-        }
-
-        $variantSuffix = $variant === null ? '' : "_{$variant}";
-
-        $relation = 'statistics'.studly_case("{$ruleset}{$variantSuffix}");
-
-        return $returnQuery ? $this->$relation() : $this->$relation;
     }
 
     public function scoresOsu()

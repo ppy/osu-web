@@ -41,15 +41,13 @@ class HelpersTest extends TestCase
             'name' => '1',
         ]))->saveOrExplode();
 
-        $exception = null;
-
         try {
             (new Country([
                 ...$baseParams,
                 'acronym' => 'AA',
                 'name' => '2',
             ]))->saveOrExplode();
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             $exception = $e;
         }
 
