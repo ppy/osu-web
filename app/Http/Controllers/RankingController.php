@@ -216,15 +216,12 @@ class RankingController extends Controller
             $this->params['variant'] === null;
 
         if ($showRankChange) {
-            $stats->loadMissing([
-                'user.rankHistories' => fn (Relation $query) => $query->where('mode', $modeInt),
-                'user.rankHistories.currentStart',
-            ]);
+            $stats->loadMissing('rankHistory.currentStart');
 
             foreach ($stats as $stat) {
-                // Set user.rankHistories.user.statistics{ruleset} relation
-                $stat->user->setRelation('statistics'.studly_case($mode), $stat);
-                $stat->user->rankHistories->each->setRelation('user', $stat->user);
+                // Set rankHistory.user.statistics{ruleset} relation
+                $stat->rankHistory?->setRelation('user', $stat->user);
+                $stat->user->setRelation(User::statisticsRelationName($mode), $stat);
             }
         }
 

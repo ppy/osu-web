@@ -8,9 +8,11 @@ namespace App\Models\UserStatistics;
 use App\Exceptions\ClassNotFoundException;
 use App\Models\Beatmap;
 use App\Models\Model as BaseModel;
+use App\Models\RankHistory;
 use App\Models\Score\Best;
 use App\Models\User;
 use App\Traits\Memoizes;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property mixed $country_acronym
@@ -40,6 +42,13 @@ abstract class Model extends BaseModel
     public int $countryRank;
 
     const UPDATED_AT = 'last_update';
+
+    public function rankHistory(): BelongsTo
+    {
+        return $this
+            ->belongsTo(RankHistory::class, 'user_id', 'user_id')
+            ->where('mode', Beatmap::modeInt(static::getMode()));
+    }
 
     public function user()
     {
