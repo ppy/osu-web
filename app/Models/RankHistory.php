@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property-read string $current_start_name
- * @property-read \App\Models\Count $currentStart
+ * @property-read \App\Models\Count|null $currentStart
  * @property-read int[] $data
  * @property int $mode
  * @property int $r0
