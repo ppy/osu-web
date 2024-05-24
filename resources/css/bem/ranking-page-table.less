@@ -53,8 +53,8 @@
 
     each({
       down: @fa-var-arrow-down, hsl(var(--hsl-red-1));
-      none: @fa-var-equals, hsl(0, 0%, var(--c-lightness-1));
-      pending: @fa-var-ellipsis-h, hsl(0, 0%, var(--c-lightness-1));
+      none: @fa-var-equals, hsl(var(--hsl-f1));
+      pending: @fa-var-ellipsis-h, hsl(var(--hsl-f1));
       up: @fa-var-arrow-up, hsl(var(--hsl-lime-1));
     }, {
       &--rank-change-@{key} {
