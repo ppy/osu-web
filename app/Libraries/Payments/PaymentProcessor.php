@@ -169,7 +169,7 @@ abstract class PaymentProcessor implements \ArrayAccess
         optional($order)->update(['transaction_id' => $this->getTransactionId()]);
 
         if (!$this->validateTransaction()) {
-            $this->throwValidationFailed(new PaymentProcessorException($order, $this->validationErrors()));
+            throw new PaymentProcessorException($order, $this->validationErrors());
         }
 
         DB::connection('mysql-store')->transaction(function () use ($order) {
@@ -213,7 +213,7 @@ abstract class PaymentProcessor implements \ArrayAccess
         $this->sandboxAssertion();
 
         if (!$this->validateTransaction()) {
-            $this->throwValidationFailed(new PaymentProcessorException($this->getOrder(), $this->validationErrors()));
+            throw new PaymentProcessorException($this->getOrder(), $this->validationErrors());
         }
 
         DB::connection('mysql-store')->transaction(function () {
@@ -260,7 +260,7 @@ abstract class PaymentProcessor implements \ArrayAccess
         $this->sandboxAssertion();
 
         if (!$this->validateTransaction()) {
-            $this->throwValidationFailed(new PaymentProcessorException($this->getOrder(), $this->validationErrors()));
+            throw new PaymentProcessorException($this->getOrder(), $this->validationErrors());
         }
 
         DB::connection('mysql-store')->transaction(function () {
@@ -300,19 +300,6 @@ abstract class PaymentProcessor implements \ArrayAccess
     }
 
     /**
-     * Sends a ValidationFailedEvent with the validation errors.
-     *
-     * @return void
-     */
-    protected function dispatchValidationFailed()
-    {
-        event(
-            "store.payments.validation.failed.{$this->getPaymentProvider()}",
-            new ProcessorValidationFailed($this, $this->validationErrors())
-        );
-    }
-
-    /**
      * Fetches the Order corresponding to this payment and memoizes it.
      * Overridden in PaypalPaymentProcessor.
      *
@@ -325,15 +312,6 @@ abstract class PaymentProcessor implements \ArrayAccess
                 ->whereOrderNumber($this->getOrderNumber())
                 ->first();
         });
-    }
-
-    /**
-     * Convenience method that calls dispatchValidationFailed() and then throws the supplied exception.
-     */
-    protected function throwValidationFailed(Exception $exception): void
-    {
-        $this->dispatchValidationFailed();
-        throw $exception;
     }
 
     /**
@@ -389,4 +367,5 @@ abstract class PaymentProcessor implements \ArrayAccess
             throw new SandboxException('Trying to run a test transaction in a non-sanboxed environment.');
         }
     }
+
 }

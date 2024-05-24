@@ -46,26 +46,9 @@ abstract class OrderFulfiller implements Fulfillable
     protected function throwOnFail(bool $valid = false)
     {
         if (!$valid) {
-            $this->throwValidationFailed(new FulfillmentException($this->order, $this->validationErrors()));
+            throw new FulfillmentException($this->order, $this->validationErrors());
         }
     }
 
     abstract public function validationErrorsTranslationPrefix(): string;
-
-    protected function dispatchValidationFailed()
-    {
-        event(
-            "store.fulfillments.validation.failed.{$this->taggedName()}",
-            new FulfillmentValidationFailed($this, $this->validationErrors())
-        );
-    }
-
-    /**
-     * Convenience method that calls dispatchValidationFailed() and then throws the supplied exception.
-     */
-    protected function throwValidationFailed(\Exception $exception): void
-    {
-        $this->dispatchValidationFailed();
-        throw $exception;
-    }
 }
