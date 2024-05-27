@@ -152,8 +152,8 @@ abstract class PaymentProcessor implements \ArrayAccess
                 throw new UnsupportedNotificationTypeException($type);
         }
 
-        Datadog::increment(
-            $GLOBALS['cfg']['datadog-helper']['prefix_web'].'.payment_processor.run',
+        datadog_increment(
+            'payment_processor.run',
             1,
             ['provider' => $this->getPaymentProvider(), 'type' => $type]
         );

@@ -286,8 +286,8 @@ abstract class Search extends HasSearch implements Queryable
             app('sentry')->captureException($e);
         }
 
-        Datadog::increment(
-            $GLOBALS['cfg']['datadog-helper']['prefix_web'].'.search.errors',
+        datadog_increment(
+            'search.errors',
             1,
             $tags
         );

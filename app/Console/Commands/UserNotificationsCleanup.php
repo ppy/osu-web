@@ -59,7 +59,7 @@ class UserNotificationsCleanup extends Command
                 );
                 $deleted = count($notificationIds);
                 $deletedTotal += $deleted;
-                Datadog::increment($GLOBALS['cfg']['datadog-helper']['prefix_web'].'.notifications_cleanup.user_notifications', 1, null, $deleted);
+                datadog_increment('notifications_cleanup.user_notifications', 1, null, $deleted);
                 $progress->advance($deleted);
             }
 

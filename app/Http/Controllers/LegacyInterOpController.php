@@ -288,7 +288,7 @@ class LegacyInterOpController extends Controller
                 ];
             }
 
-            Datadog::increment($GLOBALS['cfg']['datadog-helper']['prefix_web'].'.chat.batch', 1, [
+            datadog_increment('chat.batch', 1, [
                 'status' => $result['status'],
             ]);
 

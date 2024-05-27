@@ -60,8 +60,8 @@ class AppServiceProvider extends ServiceProvider
             app('OsuAuthorize')->resetCache();
             app('local-cache-manager')->incrementResetTicker();
 
-            Datadog::increment(
-                $GLOBALS['cfg']['datadog-helper']['prefix_web'].'.queue.run',
+            datadog_increment(
+                'queue.run',
                 1,
                 [
                     'job' => $event->job->payload()['data']['commandName'],

@@ -79,7 +79,7 @@ class EsDocument implements ShouldQueue
     private function incrementStat(string $action): void
     {
         Datadog::increment(
-            $GLOBALS['cfg']['datadog-helper']['prefix_web'].'.es_document',
+            'es_document',
             1,
             [
                 'action' => $action,

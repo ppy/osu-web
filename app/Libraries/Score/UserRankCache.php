@@ -16,12 +16,10 @@ class UserRankCache
 {
     public static function fetch(array $options, int $beatmapId, int $rulesetId, int $score): ?int
     {
-        $ddPrefix = $GLOBALS['cfg']['datadog-helper']['prefix_web'].'.user_rank_cached_lookup';
-
         $server = $GLOBALS['cfg']['osu']['scores']['rank_cache']['server_url'];
 
         if ($server === null || !empty($options['mods']) || ($options['type'] ?? 'global') !== 'global') {
-            Datadog::increment("{$ddPrefix}.miss", 1, ['reason' => 'unsupported_mode']);
+            datadog_increment('user_rank_cached_lookup.miss', 1, ['reason' => 'unsupported_mode']);
 
             return null;
         }
@@ -32,13 +30,13 @@ class UserRankCache
         ])->first();
 
         if ($stats === null) {
-            Datadog::increment("{$ddPrefix}.miss", 1, ['reason' => 'missing_stats']);
+            datadog_increment('user_rank_cached_lookup.miss', 1, ['reason' => 'missing_stats']);
 
             return null;
         }
 
         if ($stats->unique_users < $GLOBALS['cfg']['osu']['scores']['rank_cache']['min_users']) {
-            Datadog::increment("{$ddPrefix}.miss", 1, ['reason' => 'not_enough_unique_users']);
+            datadog_increment('user_rank_cached_lookup.miss', 1, ['reason' => 'not_enough_unique_users']);
 
             return null;
         }
@@ -54,12 +52,12 @@ class UserRankCache
                 ->getContents();
         } catch (Exception $e) {
             log_error($e);
-            Datadog::increment("{$ddPrefix}.miss", 1, ['reason' => 'fetch_failure']);
+            datadog_increment('user_rank_cached_lookup.miss', 1, ['reason' => 'fetch_failure']);
 
             return null;
         }
 
-        Datadog::increment("{$ddPrefix}.hit", 1);
+        datadog_increment('user_rank_cached_lookup.hit', 1);
 
         return 1 + $response;
     }
