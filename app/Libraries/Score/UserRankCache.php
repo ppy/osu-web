@@ -8,7 +8,6 @@ declare(strict_types=1);
 namespace App\Libraries\Score;
 
 use App\Models\BeatmapModeStats;
-use Datadog;
 use Exception;
 use GuzzleHttp\Client;
 

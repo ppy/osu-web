@@ -5,8 +5,6 @@
 
 namespace App\Libraries\User;
 
-use Datadog;
-
 class DatadogLoginAttempt
 {
     public static function log($failReasonOrNull)

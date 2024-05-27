@@ -13,7 +13,6 @@ use App\Models\Store\Order;
 use App\Models\Store\Payment;
 use App\Traits\Memoizes;
 use App\Traits\Validatable;
-use Datadog;
 use DB;
 use Exception;
 

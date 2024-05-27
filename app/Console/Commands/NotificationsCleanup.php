@@ -7,7 +7,6 @@ namespace App\Console\Commands;
 
 use App\Models\Notification;
 use App\Models\UserNotification;
-use Datadog;
 use Illuminate\Console\Command;
 
 class NotificationsCleanup extends Command

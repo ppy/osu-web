@@ -11,7 +11,6 @@ use App\Mail\UserNotificationDigest as UserNotificationDigestMail;
 use App\Models\Notification;
 use App\Models\User;
 use App\Models\UserNotification;
-use Datadog;
 use DB;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;

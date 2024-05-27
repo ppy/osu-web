@@ -7,7 +7,6 @@ namespace App\Console\Commands;
 
 use App\Libraries\Notification\BatchIdentities;
 use App\Models\UserNotification;
-use Datadog;
 use Illuminate\Console\Command;
 
 class UserNotificationsCleanup extends Command
