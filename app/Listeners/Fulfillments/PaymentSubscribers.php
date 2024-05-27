@@ -24,29 +24,6 @@ class PaymentSubscribers
 {
     use StoreNotifiable;
 
-    public function onPaymentCompleted($eventName, $data)
-    {
-        /** @var \App\Events\Fulfillments\PaymentEvent $event */
-        $event = $data[0] ?? null;
-        $fulfillers = FulfillmentFactory::createFulfillersFor($event->order);
-        $count = count($fulfillers);
-        $this->notifyOrder($event->order, "dispatching `{$count}` fulfillers", $eventName);
-
-        DB::transaction(function () use ($fulfillers, $event, $eventName) {
-            try {
-                // This should probably be shoved off into a queue processor somewhere...
-                foreach ($fulfillers as $fulfiller) {
-                    $fulfiller->run();
-                }
-
-                static::sendPaymentCompletedMail($event->order);
-            } catch (Exception $exception) {
-                $this->notifyError($exception, $event->order, $eventName);
-                throw $exception;
-            }
-        });
-    }
-
     public function onPaymentCancelled($eventName, $data)
     {
         $event = $data[0] ?? null;
@@ -98,11 +75,6 @@ class PaymentSubscribers
         );
 
         $events->listen(
-            'store.payments.completed.*',
-            static::class.'@onPaymentCompleted'
-        );
-
-        $events->listen(
             'store.payments.error.*',
             static::class.'@onPaymentError'
         );
@@ -116,19 +88,5 @@ class PaymentSubscribers
             'store.payments.rejected.*',
             static::class.'@onPaymentRejected'
         );
-    }
-
-    private static function sendPaymentCompletedMail(Order $order)
-    {
-        if (!$order->isPaidOrDelivered()) {
-            Log::warning("Trying to send mail for unpaid order ({$order->order_id}), aborted.");
-
-            return;
-        }
-
-        $user = $order->user;
-        if (is_valid_email_format($user->user_email)) {
-            Mail::to($user)->queue(new StorePaymentCompleted($order));
-        }
     }
 }

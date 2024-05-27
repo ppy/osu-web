@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Store;
 
 use App\Events\Fulfillments\PaymentEvent;
 use App\Libraries\OrderCheckout;
+use App\Libraries\Payments\PaymentCompleted;
 use App\Models\Store\Order;
 use App\Traits\CheckoutErrorSettable;
 use App\Traits\StoreNotifiable;
@@ -101,7 +102,7 @@ class CheckoutController extends Controller
                 throw $exception;
             }
 
-            event('store.payments.completed.free', new PaymentEvent($order));
+            (new PaymentCompleted($order, null))->handle();
 
             return $order;
         });

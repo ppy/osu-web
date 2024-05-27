@@ -194,14 +194,7 @@ abstract class PaymentProcessor implements \ArrayAccess
 
                 $order->paid($payment);
 
-                $connection->afterCommit(
-                    fn () => \Datadog::increment(
-                        "{$GLOBALS['cfg']['datadog-helper']['prefix_web']}.store.payments.completed",
-                        1,
-                        ['provider' => $payment->provider],
-                    ),
-                );
-
+                (new PaymentCompleted($order, $payment))->handle();
             } catch (Exception $exception) {
                 $this->dispatchErrorEvent($exception, $order);
                 throw $exception;
