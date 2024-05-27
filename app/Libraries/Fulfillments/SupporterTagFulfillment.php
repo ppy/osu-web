@@ -37,9 +37,10 @@ class SupporterTagFulfillment extends OrderFulfiller
             $fulfiller->run();
         }
 
-        event(
-            "store.fulfillments.run.{$this->taggedName()}",
-            new SupporterTagEvent($this->order, $this->getOrderItems())
+        \Datadog::increment(
+            "{$GLOBALS['cfg']['datadog-helper']['prefix_web']}.store.fulfillments.run",
+            1,
+            ['type' => static::TAGGED_NAME]
         );
 
         $this->afterRun();
@@ -53,9 +54,10 @@ class SupporterTagFulfillment extends OrderFulfiller
             $fulfiller->revoke();
         }
 
-        event(
-            "store.fulfillments.revoke.{$this->taggedName()}",
-            new SupporterTagEvent($this->order, $this->getOrderItems())
+        \Datadog::increment(
+            "{$GLOBALS['cfg']['datadog-helper']['prefix_web']}.store.fulfillments.revoke",
+            1,
+            ['type' => static::TAGGED_NAME]
         );
     }
 

@@ -30,7 +30,11 @@ abstract class BannerFulfillment extends OrderFulfiller
             $this->applyBanner($orderItem);
         }
 
-        event("store.fulfillments.run.{$this->taggedName()}", new OrderFulfillerEvent($this->order));
+        \Datadog::increment(
+            "{$GLOBALS['cfg']['datadog-helper']['prefix_web']}.store.fulfillments.run",
+            1,
+            ['type' => static::TAGGED_NAME]
+        );
     }
 
     public function revoke()
@@ -40,7 +44,11 @@ abstract class BannerFulfillment extends OrderFulfiller
             $this->revokeBanner($orderItem);
         }
 
-        event("store.fulfillments.revoke.{$this->taggedName()}", new OrderFulfillerEvent($this->order));
+        \Datadog::increment(
+            "{$GLOBALS['cfg']['datadog-helper']['prefix_web']}.store.fulfillments.revoke",
+            1,
+            ['type' => static::TAGGED_NAME]
+        );
     }
 
     protected function getOrderItems()

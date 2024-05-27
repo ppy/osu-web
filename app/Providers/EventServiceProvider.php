@@ -19,7 +19,6 @@ class EventServiceProvider extends ServiceProvider
     ];
 
     protected $subscribe = [
-        Listeners\Fulfillments\GenericSubscribers::class,
         Listeners\Fulfillments\PaymentSubscribers::class,
     ];
 }

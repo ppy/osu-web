@@ -33,7 +33,11 @@ class UsernameChangeFulfillment extends OrderFulfiller
             'history' => $history,
         ]);
 
-        event("store.fulfillments.run.{$this->taggedName()}", new UsernameChanged($user, $this->order));
+        \Datadog::increment(
+            "{$GLOBALS['cfg']['datadog-helper']['prefix_web']}.store.fulfillments.run",
+            1,
+            ['type' => static::TAGGED_NAME]
+        );
     }
 
     public function revoke()
@@ -42,7 +46,12 @@ class UsernameChangeFulfillment extends OrderFulfiller
 
         $user = $this->order->user;
         $user->revertUsername();
-        event("store.fulfillments.revert.{$this->taggedName()}", new UsernameReverted($user, $this->order));
+
+        \Datadog::increment(
+            "{$GLOBALS['cfg']['datadog-helper']['prefix_web']}.store.fulfillments.revoke",
+            1,
+            ['type' => static::TAGGED_NAME]
+        );
     }
 
     private function validateRun()

@@ -172,7 +172,8 @@ abstract class PaymentProcessor implements \ArrayAccess
             throw new PaymentProcessorException($order, $this->validationErrors());
         }
 
-        DB::connection('mysql-store')->transaction(function () use ($order) {
+        $connection = $order->getConnection();
+        $connection->transaction(function () use ($connection, $order) {
             try {
                 // FIXME: less hacky
                 if ($order->tracking_code === Order::PENDING_ECHECK) {
@@ -193,13 +194,18 @@ abstract class PaymentProcessor implements \ArrayAccess
 
                 $order->paid($payment);
 
-                $eventName = "store.payments.completed.{$payment->provider}";
+                $connection->afterCommit(
+                    fn () => \Datadog::increment(
+                        "{$GLOBALS['cfg']['datadog-helper']['prefix_web']}.store.payments.completed",
+                        1,
+                        ['provider' => $payment->provider],
+                    ),
+                );
+
             } catch (Exception $exception) {
                 $this->dispatchErrorEvent($exception, $order);
                 throw $exception;
             }
-
-            event($eventName, new PaymentEvent($order));
         });
     }
 
