@@ -294,8 +294,12 @@ abstract class PaymentProcessor implements \ArrayAccess
         $this->signature->assertValid();
 
         $order = $this->getOrder();
-        $eventName = "store.payments.rejected.{$this->getPaymentProvider()}";
-        event($eventName, new PaymentEvent($order));
+
+        \Datadog::increment(
+            "{$GLOBALS['cfg']['datadog-helper']['prefix_web']}.store.payments.rejected",
+            1,
+            ['provider' => $this->getPaymentProvider()],
+        );
     }
 
     /**

@@ -61,12 +61,6 @@ class PaymentSubscribers
         $this->notifyOrder($event->order, 'eCheck used; waiting to clear.', $eventName);
     }
 
-    public function onPaymentRejected($eventName, $data)
-    {
-        $event = $data[0] ?? null;
-        $this->notifyOrder($event->order, 'Payment was rejected or aborted before completion.', $eventName);
-    }
-
     public function subscribe($events)
     {
         $events->listen(
@@ -82,11 +76,6 @@ class PaymentSubscribers
         $events->listen(
             'store.payments.pending.*',
             static::class.'@onPaymentPending'
-        );
-
-        $events->listen(
-            'store.payments.rejected.*',
-            static::class.'@onPaymentRejected'
         );
     }
 }
