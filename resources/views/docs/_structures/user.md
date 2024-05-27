@@ -71,7 +71,7 @@ scores_best_count          | integer | |
 scores_first_count         | integer | |
 scores_recent_count        | integer | |
 session_verified           | boolean | |
-statistics                 | | |
+statistics                 | [UserStatistics](#userstatistics) | |
 statistics_rulesets        | UserStatisticsRulesets | |
 support_level              | | |
 unread_pm_count            | | |
