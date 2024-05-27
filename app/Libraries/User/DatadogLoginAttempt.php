@@ -13,7 +13,7 @@ class DatadogLoginAttempt
     {
         $success = $failReasonOrNull === null;
 
-        datadog_increment('login_attempts', 1, [
+        datadog_increment('login_attempts', [
             'success' => (int) $success,
             'reason' => $failReasonOrNull,
         ]);

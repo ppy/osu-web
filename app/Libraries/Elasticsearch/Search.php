@@ -286,11 +286,7 @@ abstract class Search extends HasSearch implements Queryable
             app('sentry')->captureException($e);
         }
 
-        datadog_increment(
-            'search.errors',
-            1,
-            $tags
-        );
+        datadog_increment'search.errors', $tags);
 
         return $e;
     }

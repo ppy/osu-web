@@ -62,7 +62,6 @@ class AppServiceProvider extends ServiceProvider
 
             datadog_increment(
                 'queue.run',
-                1,
                 [
                     'job' => $event->job->payload()['data']['commandName'],
                     'queue' => $event->job->getQueue(),

@@ -288,7 +288,7 @@ class LegacyInterOpController extends Controller
                 ];
             }
 
-            datadog_increment('chat.batch', 1, [
+            datadog_increment('chat.batch', [
                 'status' => $result['status'],
             ]);
 

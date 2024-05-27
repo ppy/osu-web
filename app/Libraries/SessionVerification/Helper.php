@@ -63,7 +63,6 @@ class Helper
     {
         datadog_increment(
             'verification.attempts',
-            1,
             compact('reason', 'source', 'type')
         );
     }
