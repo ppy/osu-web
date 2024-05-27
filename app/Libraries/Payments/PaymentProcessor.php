@@ -174,31 +174,26 @@ abstract class PaymentProcessor implements \ArrayAccess
 
         $connection = $order->getConnection();
         $connection->transaction(function () use ($connection, $order) {
-            try {
-                // FIXME: less hacky
-                if ($order->tracking_code === Order::PENDING_ECHECK) {
-                    $order->tracking_code = Order::ECHECK_CLEARED;
-                }
-
-                // Using a unique constraint, so we don't need to lock any rows.
-                $payment = new Payment([
-                    'provider' => $this->getPaymentProvider(),
-                    'transaction_id' => $this->getPaymentTransactionId(),
-                    'country_code' => $this->getCountryCode(),
-                    'paid_at' => $this->getPaymentDate(),
-                ]);
-
-                if (!$order->payments()->save($payment)) {
-                    throw new ModelNotSavedException('failed saving model');
-                }
-
-                $order->paid($payment);
-
-                (new PaymentCompleted($order, $payment))->handle();
-            } catch (Exception $exception) {
-                $this->dispatchErrorEvent($exception, $order);
-                throw $exception;
+            // FIXME: less hacky
+            if ($order->tracking_code === Order::PENDING_ECHECK) {
+                $order->tracking_code = Order::ECHECK_CLEARED;
             }
+
+            // Using a unique constraint, so we don't need to lock any rows.
+            $payment = new Payment([
+                'provider' => $this->getPaymentProvider(),
+                'transaction_id' => $this->getPaymentTransactionId(),
+                'country_code' => $this->getCountryCode(),
+                'paid_at' => $this->getPaymentDate(),
+            ]);
+
+            if (!$order->payments()->save($payment)) {
+                throw new ModelNotSavedException('failed saving model');
+            }
+
+            $order->paid($payment);
+
+            (new PaymentCompleted($order, $payment))->handle();
         });
     }
 
@@ -216,37 +211,26 @@ abstract class PaymentProcessor implements \ArrayAccess
         }
 
         DB::connection('mysql-store')->transaction(function () {
-            try {
-                $order = $this->getOrder()->lockSelf();
-                $payment = $order->payments->where('cancelled', false)->first();
+            $order = $this->getOrder()->lockSelf();
+            $payment = $order->payments->where('cancelled', false)->first();
 
-                if ($payment === null) {
-                    // payment not processed, manually cancelled.
-                    $this->dispatchErrorEvent(
-                        new Exception('Cancelling order with no existing payment found.'),
-                        $order
-                    );
-                }
-
-                // check for pre-existing cancelled payment.
-                // Paypal sends multiple notifications that we treat as a cancellation.
-                if ($order->payments->where('cancelled', true)->first() !== null) {
-                    $this->dispatchErrorEvent(
-                        new Exception('Payment already cancelled.'),
-                        $order
-                    );
-                }
-
-                if ($payment !== null) {
-                    $payment->cancel();
-                    $eventName = "store.payments.cancelled.{$payment->provider}";
-                }
-
-                $order->cancel();
-            } catch (Exception $exception) {
-                $this->dispatchErrorEvent($exception, $order);
-                throw $exception;
+            if ($payment === null) {
+                // payment not processed, manually cancelled.
+                throw new Exception('Cancelling order with no existing payment found.');
             }
+
+            // check for pre-existing cancelled payment.
+            // Paypal sends multiple notifications that we treat as a cancellation.
+            if ($order->payments->where('cancelled', true)->first() !== null) {
+                throw new Exception('Payment already cancelled.');
+            }
+
+            if ($payment !== null) {
+                $payment->cancel();
+                $eventName = "store.payments.cancelled.{$payment->provider}";
+            }
+
+            $order->cancel();
 
             if (isset($eventName)) {
                 event($eventName, new PaymentEvent($order));
@@ -263,19 +247,14 @@ abstract class PaymentProcessor implements \ArrayAccess
         }
 
         DB::connection('mysql-store')->transaction(function () {
-            try {
-                $order = $this->getOrder()->lockSelf();
-                // Only supported by Paypal processor atm, so assume eCheck.
-                // Change if the situation changes.
-                $order->tracking_code = Order::PENDING_ECHECK;
-                $order->transaction_id = $this->getTransactionId();
-                $order->saveOrExplode();
+            $order = $this->getOrder()->lockSelf();
+            // Only supported by Paypal processor atm, so assume eCheck.
+            // Change if the situation changes.
+            $order->tracking_code = Order::PENDING_ECHECK;
+            $order->transaction_id = $this->getTransactionId();
+            $order->saveOrExplode();
 
-                $eventName = "store.payments.pending.{$this->getPaymentProvider()}";
-            } catch (Exception $exception) {
-                $this->dispatchErrorEvent($exception, $order);
-                throw $exception;
-            }
+            $eventName = "store.payments.pending.{$this->getPaymentProvider()}";
 
             event($eventName, new PaymentEvent($order));
         });
@@ -351,17 +330,6 @@ abstract class PaymentProcessor implements \ArrayAccess
     public function validationErrorsKeyBase(): string
     {
         return 'model_validation/';
-    }
-
-    private function dispatchErrorEvent($exception, $order)
-    {
-        event("store.payments.error.{$this->getPaymentProvider()}", [
-            'error' => $exception,
-            'order' => $order,
-            'order_number' => $this->getOrderNumber(),
-            'notification_type' => "{$this->getNotificationType()} ({$this->getNotificationTypeRaw()})",
-            'transaction_id' => $this->getTransactionId(),
-        ]);
     }
 
     private function sandboxAssertion()

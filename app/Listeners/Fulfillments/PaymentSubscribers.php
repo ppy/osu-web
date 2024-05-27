@@ -69,11 +69,6 @@ class PaymentSubscribers
         );
 
         $events->listen(
-            'store.payments.error.*',
-            static::class.'@onPaymentError'
-        );
-
-        $events->listen(
             'store.payments.pending.*',
             static::class.'@onPaymentPending'
         );

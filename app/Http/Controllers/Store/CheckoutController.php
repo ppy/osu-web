@@ -93,14 +93,9 @@ class CheckoutController extends Controller
     private function freeCheckout($checkout)
     {
         $order = DB::connection('mysql-store')->transaction(function () use ($checkout) {
-            try {
-                $order = $checkout->getOrder();
-                $checkout->completeCheckout();
-                $order->paid(null);
-            } catch (Exception $exception) {
-                $this->notifyError($exception, $order, 'store.payments.error.free');
-                throw $exception;
-            }
+            $order = $checkout->getOrder();
+            $checkout->completeCheckout();
+            $order->paid(null);
 
             (new PaymentCompleted($order, null))->handle();
 
