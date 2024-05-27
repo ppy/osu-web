@@ -25,7 +25,8 @@ class ChatFilters
     private static function combinedFilterRegex($filters): string
     {
         $regex = $filters->map(fn ($filter) => self::singleFilterRegex($filter, '/'))->join('|');
-        return '/'.$regex.'/i';
+
+        return "/{$regex}/iu";
     }
 
     /**
@@ -53,7 +54,7 @@ class ChatFilters
 
             $ret['whitespace_delimited_replaces'] = $replaceFilters
                 ->where('whitespace_delimited', true)
-                ->mapWithKeys(fn ($filter) => ['/'.self::singleFilterRegex($filter, '/').'/i' => $filter->replacement])
+                ->mapWithKeys(fn ($filter) => ['/'.self::singleFilterRegex($filter, '/').'/iu' => $filter->replacement])
                 ->all();
             $ret['non_whitespace_delimited_replaces'] = $replaceFilters
                 ->where('whitespace_delimited', false)
