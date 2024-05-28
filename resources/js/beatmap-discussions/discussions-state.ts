@@ -206,7 +206,7 @@ export default class DiscussionsState {
 
   @computed
   get groupedBeatmaps() {
-    return group([...this.store.beatmaps.values()]);
+    return group([...this.store.beatmaps.values()], false);
   }
 
   @computed
@@ -420,7 +420,7 @@ export default class DiscussionsState {
     }
 
     return nominations.required_meta.main_ruleset
-      + nominations.required_meta.non_main_ruleset * (Object.keys(nominations[type]).length - 1);
+      + nominations.required_meta.non_main_ruleset * (this.groupedBeatmaps.size - 1);
   }
 
   saveState() {

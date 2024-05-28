@@ -73,7 +73,7 @@ export class Nominator extends React.Component<Props> {
   private get playmodes() {
     return this.beatmapset.nominations.legacy_mode
       ? null
-      : Object.keys(this.beatmapset.nominations.required) as GameMode[];
+      : [...this.props.discussionsState.groupedBeatmaps.keys()];
   }
 
   private get selectedModes() {
@@ -174,16 +174,15 @@ export class Nominator extends React.Component<Props> {
   };
 
   private nominationCountMet(mode: GameMode) {
-    if (this.beatmapset.nominations.legacy_mode || this.beatmapset.nominations.required[mode] === 0) {
+    if (this.beatmapset.nominations.legacy_mode) {
       return false;
     }
 
-    const req = this.beatmapset.nominations.required[mode];
+    const requiredMeta = this.beatmapset.nominations.required_meta;
+    const req = mode === this.props.discussionsState.calculatedMainRuleset
+      ? requiredMeta.main_ruleset
+      : requiredMeta.non_main_ruleset;
     const curr = this.beatmapset.nominations.current[mode] ?? 0;
-
-    if (req == null) {
-      return false;
-    }
 
     return curr >= req
       || this.calculatedMainRuleset != null && this.calculatedMainRuleset !== mode && this.nominationCountWithSelections(mode) > 0;
@@ -311,7 +310,9 @@ export class Nominator extends React.Component<Props> {
       req = this.beatmapset.nominations.required;
       curr = this.beatmapset.nominations.current;
     } else {
-      req = this.beatmapset.nominations.required[mode] ?? 0;
+      req = mode === this.props.discussionsState.calculatedMainRuleset
+        ? this.beatmapset.nominations.required_meta.main_ruleset
+        : this.beatmapset.nominations.required_meta.non_main_ruleset;
       curr = this.beatmapset.nominations.current[mode] ?? 0;
     }
 
