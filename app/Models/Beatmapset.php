@@ -1066,7 +1066,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
         $mainRuleset = $this->mainRuleset();
         $requiredNominations = [];
-        // TODO: switch to ruleset ids
+
         foreach ($this->playmodesStr() as $ruleset) {
             $requiredNominations[$ruleset] = $mainRuleset === null || $ruleset === $mainRuleset
                 ? $baseRequirement
@@ -1469,7 +1469,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
     }
 
     /**
-     * @param boolean $resetEligibleMainRulesets Resetting eligible main rulesets should only be tiggered if existing nominations are invalidated.
+     * @param bool $resetEligibleMainRulesets Resetting eligible main rulesets should only be tiggered if existing nominations are invalidated.
      */
     public function refreshCache(bool $resetEligibleMainRulesets = false)
     {
