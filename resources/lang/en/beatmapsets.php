@@ -45,6 +45,7 @@ return [
         'hybrid_requires_modes' => 'A hybrid beatmap requires you to select at least one playmode to nominate for.',
         'incorrect_mode' => 'You do not have permission to nominate for mode: :mode',
         'invalid_limited_nomination' => 'This beatmap has invalid nominations and cannot be qualified in this state.',
+        'invalid_ruleset' => 'This nomination has invalid rulesets.',
         'too_many' => 'Nomination requirement already fulfilled.',
         'too_many_non_main_ruleset' => 'Nomination requirement for non-main ruleset already fulfilled.',
 

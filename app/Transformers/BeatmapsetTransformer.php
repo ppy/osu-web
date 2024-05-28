@@ -6,7 +6,6 @@
 namespace App\Transformers;
 
 use App\Libraries\Beatmapset\NominateBeatmapset;
-use App\Models\Beatmap;
 use App\Models\Beatmapset;
 
 class BeatmapsetTransformer extends BeatmapsetCompactTransformer

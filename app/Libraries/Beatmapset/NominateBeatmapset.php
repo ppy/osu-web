@@ -10,7 +10,6 @@ namespace App\Libraries\Beatmapset;
 use App\Exceptions\InvariantException;
 use App\Exceptions\UnsupportedNominationException;
 use App\Jobs\Notifications\BeatmapsetNominate;
-use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
 use App\Models\User;
@@ -25,8 +24,20 @@ class NominateBeatmapset
 
     public function __construct(private Beatmapset $beatmapset, private User $user, array $rulesets)
     {
+        if ($this->beatmapset->isLegacyNominationMode()) {
+            throw new UnsupportedNominationException();
+        }
+
         $this->beatmapRulesets = new Set($beatmapset->playmodesStr());
         $this->nominatedRulesets = new Set($rulesets);
+
+        if ($this->beatmapRulesets->intersect($this->nominatedRulesets)->count() === 0) {
+            throw new InvariantException(osu_trans('beatmapsets.nominate.hybrid_requires_modes'));
+        }
+
+        if ($this->nominatedRulesets->diff($this->beatmapRulesets)->count() > 0) {
+            throw new InvariantException(osu_trans('beatmapsets.nominate.invalid_ruleset'));
+        }
     }
 
     public static function requiredNominationsConfig()
@@ -45,10 +56,6 @@ class NominateBeatmapset
     public function handle()
     {
         $this->assertValidState();
-
-        if ($this->beatmapset->isLegacyNominationMode()) {
-            throw new UnsupportedNominationException();
-        }
 
         $eventParams = $this->nominateRulesets();
 
@@ -102,12 +109,7 @@ class NominateBeatmapset
 
     private function nominateRulesets(): array
     {
-        $rulesets = $this->beatmapRulesets->intersect($this->nominatedRulesets);
-        if ($rulesets->count() === 0) {
-            throw new InvariantException(osu_trans('beatmapsets.nominate.hybrid_requires_modes'));
-        }
-
-        // LimitedBNs cannot be the only nominator for a non-ruleset and since they only require 1 nomination,
+        // LimitedBNs cannot be the only nominator for a non-main ruleset and since they only require 1 nomination,
         // it implies LimitedBNs can only nominate one ruleset (effectively the main).
         if ($this->user->isLimitedBN() && $this->nominatedRulesets->count() > 1) {
             throw new InvariantException(osu_trans('beatmapsets.nominate.bng_limited_too_many_rulesets'));
@@ -118,7 +120,7 @@ class NominateBeatmapset
         $nominationCount = $this->beatmapset->currentNominationCount();
 
         // add potential counts
-        foreach ($rulesets as $ruleset) {
+        foreach ($this->nominatedRulesets as $ruleset) {
             $nominationCount[$ruleset]++;
         }
 
@@ -137,7 +139,7 @@ class NominateBeatmapset
         }
 
         // assert rulesets have correct nominators
-        foreach ($rulesets as $ruleset) {
+        foreach ($this->nominatedRulesets as $ruleset) {
             if (!$this->user->isFullBN($ruleset) && !$this->user->isNAT($ruleset)) {
                 if (!$this->user->isLimitedBN($ruleset)) {
                     throw new InvariantException(osu_trans('beatmapsets.nominate.incorrect_mode', ['mode' => $ruleset]));
@@ -150,7 +152,7 @@ class NominateBeatmapset
         }
 
         return [
-            'comment' => ['modes' => $rulesets->toArray()],
+            'comment' => ['modes' => $this->nominatedRulesets->toArray()],
             'type' => BeatmapsetEvent::NOMINATE,
             'user_id' => $this->user->getKey(),
         ];
