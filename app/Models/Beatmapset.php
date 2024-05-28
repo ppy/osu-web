@@ -1238,16 +1238,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         return $result;
     }
 
-    public function requiresFullBNNomination(string $ruleset)
-    {
-        $mainRuleset = $this->mainRuleset();
-        $config = NominateBeatmapset::requiredNominationsConfig();
-        $requiredCount = $ruleset === $mainRuleset ? $config['main_ruleset'] : $config['non_main_ruleset'];
-
-        return $this->currentNominationCount()[$ruleset] === $requiredCount - 1
-            && !$this->hasFullBNNomination($ruleset);
-    }
-
     public function status()
     {
         return array_search_null($this->approved, static::STATES);
