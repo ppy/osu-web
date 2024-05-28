@@ -39,9 +39,9 @@ export default class SearchForm extends React.Component<Props> {
       <form className={bn} data-loading-overlay='0' onSubmit={this.onSubmit}>
         <div className={`${bn}__content ${bn}__content--inputs`}>
           <InputContainer for={`${bn}-group`} labelKey='group_history.form.group'>
-            <div className={`${bn}__select-container`}>
+            <div className='form-select form-select--group-history'>
               <select
-                className={`${bn}__input`}
+                className='form-select__input'
                 id={`${bn}-group`}
                 name='group'
                 onChange={this.onChange}
