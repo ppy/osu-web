@@ -5,7 +5,6 @@
 
 namespace App\Http\Controllers\Store;
 
-use App\Events\Fulfillments\PaymentEvent;
 use App\Libraries\OrderCheckout;
 use App\Libraries\Payments\PaymentCompleted;
 use App\Models\Store\Order;
@@ -13,7 +12,6 @@ use App\Traits\CheckoutErrorSettable;
 use App\Traits\StoreNotifiable;
 use Auth;
 use DB;
-use Exception;
 
 class CheckoutController extends Controller
 {

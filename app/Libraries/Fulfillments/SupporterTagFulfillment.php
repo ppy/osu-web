@@ -5,7 +5,6 @@
 
 namespace App\Libraries\Fulfillments;
 
-use App\Events\Fulfillments\SupporterTagEvent;
 use App\Mail\DonationThanks;
 use App\Mail\SupporterGift;
 use App\Models\Event;

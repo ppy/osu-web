@@ -16,7 +16,7 @@ class PaypalPaymentProcessor extends PaymentProcessor
         return $this['residence_country'];
     }
 
-    public function getOrderNumber()
+    public function getOrderNumber(): ?string
     {
         // If refund, there might not be an invoice id in production.
         if ($this->getNotificationType() === NotificationType::REFUND) {
@@ -159,10 +159,8 @@ class PaypalPaymentProcessor extends PaymentProcessor
 
     /**
      * Fetches the Order corresponding to this payment and memoizes it.
-     *
-     * @return Order
      */
-    protected function getOrder()
+    protected function getOrder(): ?Order
     {
         return $this->memoize(__FUNCTION__, function () {
             // Order number can come from anywhere when paypal is involved /tableflip.

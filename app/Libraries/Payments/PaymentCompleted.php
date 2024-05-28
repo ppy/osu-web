@@ -53,6 +53,9 @@ class PaymentCompleted
         );
 
         $connection->transaction(function () {
+            // Using a unique constraint, so we don't need to lockSelf() first.
+            $this->order->paid($this->payment);
+
             foreach ($this->fulfillers as $fulfiller) {
                 $fulfiller->run();
             }

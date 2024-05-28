@@ -6,6 +6,7 @@
 namespace App\Models\Store;
 
 use App\Exceptions\InvariantException;
+use App\Exceptions\ModelNotSavedException;
 use App\Exceptions\OrderNotModifiableException;
 use App\Models\Country;
 use App\Models\User;
@@ -531,10 +532,18 @@ class Order extends Model
 
     public function paid(Payment $payment = null)
     {
+        if ($this->tracking_code === Order::PENDING_ECHECK) {
+            $this->tracking_code = Order::ECHECK_CLEARED;
+        }
+
         // TODO: use a no payment object instead?
-        if ($payment) {
+        if ($payment !== null) {
+            if (!$this->payments()->save($payment)) {
+                throw new ModelNotSavedException('failed saving model');
+            }
+
             // Duplicate to existing fields.
-            // TODO: remove/migrate duplicated fields.
+            // Useful for checking store-related issues with a single table.
             $this->transaction_id = $payment->getOrderTransactionId();
             $this->paid_at = $payment->paid_at;
         } else {

@@ -5,10 +5,7 @@
 
 namespace App\Libraries\Payments;
 
-use App\Events\Fulfillments\PaymentEvent;
-use App\Events\Fulfillments\ProcessorValidationFailed;
 use App\Exceptions\InvalidSignatureException;
-use App\Exceptions\ModelNotSavedException;
 use App\Exceptions\Store\PaymentProcessorException;
 use App\Models\Store\Order;
 use App\Models\Store\Payment;
@@ -166,35 +163,20 @@ abstract class PaymentProcessor implements \ArrayAccess
         $this->sandboxAssertion();
 
         $order = $this->getOrder();
-        optional($order)->update(['transaction_id' => $this->getTransactionId()]);
+        $order?->update(['transaction_id' => $this->getTransactionId()]);
 
         if (!$this->validateTransaction()) {
             throw new PaymentProcessorException($order, $this->validationErrors());
         }
 
-        $connection = $order->getConnection();
-        $connection->transaction(function () use ($connection, $order) {
-            // FIXME: less hacky
-            if ($order->tracking_code === Order::PENDING_ECHECK) {
-                $order->tracking_code = Order::ECHECK_CLEARED;
-            }
+        $payment = new Payment([
+            'provider' => $this->getPaymentProvider(),
+            'transaction_id' => $this->getPaymentTransactionId(),
+            'country_code' => $this->getCountryCode(),
+            'paid_at' => $this->getPaymentDate(),
+        ]);
 
-            // Using a unique constraint, so we don't need to lock any rows.
-            $payment = new Payment([
-                'provider' => $this->getPaymentProvider(),
-                'transaction_id' => $this->getPaymentTransactionId(),
-                'country_code' => $this->getCountryCode(),
-                'paid_at' => $this->getPaymentDate(),
-            ]);
-
-            if (!$order->payments()->save($payment)) {
-                throw new ModelNotSavedException('failed saving model');
-            }
-
-            $order->paid($payment);
-
-            (new PaymentCompleted($order, $payment))->handle();
-        });
+        (new PaymentCompleted($order, $payment))->handle();
     }
 
     /**
@@ -332,5 +314,4 @@ abstract class PaymentProcessor implements \ArrayAccess
             throw new SandboxException('Trying to run a test transaction in a non-sanboxed environment.');
         }
     }
-
 }

@@ -5,8 +5,6 @@
 
 namespace App\Libraries\Fulfillments;
 
-use App\Events\Fulfillments\OrderFulfillerEvent;
-
 /**
  * Placeholder class for handling non-custom class order item fulfillment.
  */

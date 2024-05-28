@@ -14,9 +14,9 @@ namespace App\Models\Store;
  * @property int $id
  * @property Order $order
  * @property int $order_id
- * @property \Carbon\Carbon $paid_at
- * @property string $provider
- * @property string $transaction_id
+ * @property ?\Carbon\Carbon $paid_at
+ * @property ?string $provider
+ * @property ?string $transaction_id
  * @property \Carbon\Carbon|null $updated_at
  */
 class Payment extends Model

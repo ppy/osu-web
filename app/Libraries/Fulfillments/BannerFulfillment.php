@@ -5,7 +5,6 @@
 
 namespace App\Libraries\Fulfillments;
 
-use App\Events\Fulfillments\OrderFulfillerEvent;
 use App\Models\Store\OrderItem;
 
 /**
