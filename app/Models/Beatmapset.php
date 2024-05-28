@@ -708,7 +708,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
                 $this->setApproved('pending', $user);
             }
 
-            $this->refreshCache();
+            $this->refreshCache(true);
 
             (new $notificationClass($this, $user))->dispatch();
         });
@@ -1151,8 +1151,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         $rulesets = $this->eligible_main_rulesets;
 
         if ($rulesets === null) {
-            $rulesets = (new BeatmapsetMainRuleset($this))->currentEligible()->toArray();
-            sort($rulesets);
+            $rulesets = (new BeatmapsetMainRuleset($this))->currentEligibleSorted();
             $this->update(['eligible_main_rulesets' => $rulesets]);
         }
 
@@ -1163,7 +1162,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
      * Returns the main Ruleset.
      * This calls `eligibleMainRulesets()` and has the same nomination querying behaviour.
      *
-     * @return string|null returns the main Ruleset if there is one eligible Rulset; `null`, otherwise.
+     * @return string|null returns the main Ruleset if there is one eligible Ruleset; `null`, otherwise.
      */
     public function mainRuleset(): ?string
     {
@@ -1469,22 +1468,15 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             ->count();
     }
 
-    public function refreshCache()
+    /**
+     * @param boolean $resetEligibleMainRulesets Resetting eligible main rulesets should only be tiggered if existing nominations are invalidated.
+     */
+    public function refreshCache(bool $resetEligibleMainRulesets = false)
     {
-        $rulesets = (new BeatmapsetMainRuleset($this))->currentEligible()->toArray();
-        sort($rulesets);
-
         return $this->update([
-            'eligible_main_rulesets' => $rulesets,
+            'eligible_main_rulesets' => $resetEligibleMainRulesets ? null : (new BeatmapsetMainRuleset($this))->currentEligibleSorted(),
             'hype' => $this->freshHype(),
             'nominations' => $this->isLegacyNominationMode() ? $this->currentNominationCount() : array_sum(array_values($this->currentNominationCount())),
-        ]);
-    }
-
-    public function refreshHype()
-    {
-        return $this->update([
-            'hype' => $this->freshHype(),
         ]);
     }
 

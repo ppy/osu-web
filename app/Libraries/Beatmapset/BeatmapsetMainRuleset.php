@@ -40,6 +40,14 @@ class BeatmapsetMainRuleset
         return $mainRuleset === null ? $this->eligibleRulesets : new Set([$mainRuleset]);
     }
 
+    public function currentEligibleSorted(): array
+    {
+        $array = $this->currentEligible()->toArray();
+        sort($array);
+
+        return $array;
+    }
+
     private function baseQuery()
     {
         return $this->beatmapset->beatmaps()
