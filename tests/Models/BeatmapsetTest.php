@@ -13,6 +13,7 @@ use App\Exceptions\UnsupportedNominationException;
 use App\Jobs\CheckBeatmapsetCovers;
 use App\Jobs\Notifications\BeatmapsetDisqualify;
 use App\Jobs\Notifications\BeatmapsetResetNominations;
+use App\Libraries\Beatmapset\NominateBeatmapset;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\Beatmapset;
@@ -416,7 +417,6 @@ class BeatmapsetTest extends TestCase
 
     public function testHybridLegacyQualify(): void
     {
-        $user = User::factory()->withGroup('bng', ['osu'])->create();
         $beatmapset = $this->createHybridBeatmapsetTaiko();
 
         // create legacy nomination event to enable legacy nomination mode
@@ -429,7 +429,7 @@ class BeatmapsetTest extends TestCase
 
         $this->expectException(UnsupportedNominationException::class);
         // fill with legacy nominations
-        $count = $beatmapset->requiredNominationCount() - $beatmapset->currentNominationCount() - 1;
+        $count = $GLOBALS['cfg']['osu']['beatmapset']['required_nominations'] * $beatmapset->playmodeCount() - $beatmapset->currentNominationCount() - 1;
         for ($i = 0; $i < $count; $i++) {
             $beatmapset->nominate(User::factory()->withGroup('bng', ['osu'])->create());
         }
@@ -781,7 +781,7 @@ class BeatmapsetTest extends TestCase
             throw new \Exception('Cannot fill nominations without main ruleset.');
         }
 
-        $count = $beatmapset->requiredNominationCount()[$ruleset] - 1;
+        $count = NominateBeatmapset::requiredNominationsConfig()['main_ruleset'] - 1;
         for ($i = 0; $i < $count; $i++) {
             $beatmapset->nominate(User::factory()->withGroup($group, [$ruleset])->create(), [$ruleset]);
         }

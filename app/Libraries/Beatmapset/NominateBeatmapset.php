@@ -165,11 +165,15 @@ class NominateBeatmapset
             return false;
         }
 
+        $requiredNominationsConfig = static::requiredNominationsConfig();
         $nominationsByType = $this->beatmapset->nominationsByType();
-        $requiredNominations = $this->beatmapset->requiredNominationCount();
 
         $rulesetsSatisfied = 0;
-        foreach ($requiredNominations as $ruleset => $count) {
+        foreach ($this->beatmapset->playmodesStr() as $ruleset) {
+            $requiredCount = $ruleset === $mainRuleset
+                ? $requiredNominationsConfig['main_ruleset']
+                : $requiredNominationsConfig['non_main_ruleset'];
+
             $fullNominations = static::nominationCount($nominationsByType, 'full', $ruleset);
             $limitedNominations = static::nominationCount($nominationsByType, 'limited', $ruleset);
             $totalNominations = $fullNominations + $limitedNominations;
@@ -179,7 +183,7 @@ class NominateBeatmapset
                 throw new InvariantException(osu_trans('beatmapsets.nominate.invalid_limited_nomination'));
             }
 
-            if ($totalNominations > $count) {
+            if ($totalNominations > $requiredCount) {
                 throw new InvariantException(osu_trans('beatmapsets.nominate.too_many'));
             }
 
@@ -187,7 +191,7 @@ class NominateBeatmapset
                 return false;
             }
 
-            if ($totalNominations === $count) {
+            if ($totalNominations === $requiredCount) {
                 $rulesetsSatisfied++;
             }
         }

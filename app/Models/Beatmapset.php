@@ -1055,27 +1055,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         }
     }
 
-    public function requiredNominationCount(): int | array
-    {
-        $playmodeCount = $this->playmodeCount();
-        $baseRequirement = $GLOBALS['cfg']['osu']['beatmapset']['required_nominations'];
-
-        if ($this->isLegacyNominationMode()) {
-            return $playmodeCount * $baseRequirement;
-        }
-
-        $mainRuleset = $this->mainRuleset();
-        $requiredNominations = [];
-
-        foreach ($this->playmodesStr() as $ruleset) {
-            $requiredNominations[$ruleset] = $mainRuleset === null || $ruleset === $mainRuleset
-                ? $baseRequirement
-                : 1;
-        }
-
-        return $requiredNominations;
-    }
-
     public function currentNominationCount()
     {
         if ($this->isLegacyNominationMode()) {
@@ -1259,15 +1238,14 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         return $result;
     }
 
-    public function requiresFullBNNomination($mode = null)
+    public function requiresFullBNNomination(string $ruleset)
     {
-        if ($this->isLegacyNominationMode()) {
-            return $this->currentNominationCount() === $this->requiredNominationCount() - 1
-                && !$this->hasFullBNNomination();
-        }
+        $mainRuleset = $this->mainRuleset();
+        $config = NominateBeatmapset::requiredNominationsConfig();
+        $requiredCount = $ruleset === $mainRuleset ? $config['main_ruleset'] : $config['non_main_ruleset'];
 
-        return $this->currentNominationCount()[$mode] === $this->requiredNominationCount()[$mode] - 1
-            && !$this->hasFullBNNomination($mode);
+        return $this->currentNominationCount()[$ruleset] === $requiredCount - 1
+            && !$this->hasFullBNNomination($ruleset);
     }
 
     public function status()

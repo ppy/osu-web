@@ -195,7 +195,6 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
         $result = [
             'legacy_mode' => $beatmapset->isLegacyNominationMode(),
             'current' => $beatmapset->currentNominationCount(),
-            'required' => $beatmapset->requiredNominationCount(),
             'required_meta' => NominateBeatmapset::requiredNominationsConfig(),
         ];
 
