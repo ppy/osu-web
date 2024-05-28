@@ -148,6 +148,7 @@ export class Nominator extends React.Component<Props> {
   @action
   private readonly hideNominationModal = () => {
     this.visible = false;
+    this.unselectCheckboxes();
   };
 
   @action
@@ -321,6 +322,14 @@ export class Nominator extends React.Component<Props> {
 
   @action
   private readonly showNominationModal = () => this.visible = true;
+
+  private unselectCheckboxes() {
+    this.checkboxContainerRef.current?.querySelectorAll<HTMLInputElement>('input[type=checkbox]').forEach((checkbox) => {
+      checkbox.checked = false;
+    });
+
+    this.updateCheckboxes();
+  }
 
   @action
   private readonly updateCheckboxes = () => {
