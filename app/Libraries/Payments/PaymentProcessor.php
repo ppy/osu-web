@@ -225,16 +225,8 @@ abstract class PaymentProcessor implements \ArrayAccess
                 throw new Exception('Payment already cancelled.');
             }
 
-            if ($payment !== null) {
-                $payment->cancel();
-                $eventName = "store.payments.cancelled.{$payment->provider}";
-            }
-
+            $payment?->cancel();
             $order->cancel();
-
-            if (isset($eventName)) {
-                event($eventName, new PaymentEvent($order));
-            }
         });
     }
 

@@ -41,5 +41,11 @@ class Payment extends Model
         $payment = $this->replicate();
         $payment->cancelled = true;
         $payment->saveOrExplode();
+
+        \Datadog::increment(
+            "{$GLOBALS['cfg']['datadog-helper']['prefix_web']}.store.payments.cancel",
+            1,
+            ['provider' => $this->provider],
+        );
     }
 }
