@@ -7,11 +7,12 @@ namespace App\Http\Middleware;
 
 use App\Libraries\SessionVerification;
 use App\Models\Country;
+use App\Models\UserCountryHistory;
 use Carbon\Carbon;
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 
-class UpdateUserLastvisit
+class UpdateUserInfo
 {
     protected $auth;
 
@@ -42,6 +43,20 @@ class UpdateUserLastvisit
                         $user->update([
                             'user_lastvisit' => $currentLastVisit,
                         ], ['skipValidations' => true]);
+
+                        if ($token !== null) {
+                            UserCountryHistory::upsert([
+                                'country_acronym' => request_country($request) ?? Country::UNKNOWN,
+                                'user_id' => $user->getKey(),
+                                'year_month' => format_month_column(new \DateTime()),
+                            ], [
+                                'country_acronym',
+                                'user_id',
+                                'year_month',
+                            ], [
+                                'count' => db_unsigned_increment('count', 1),
+                            ]);
+                        }
                     }
                 }
 
