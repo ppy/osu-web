@@ -116,6 +116,7 @@ class NominateBeatmapset
 
     private function assertRulesetNomination()
     {
+        // NOTE: This assumption is only valid for the current nomination rules.
         // LimitedBNs cannot be the only nominator for a non-main ruleset and since they only require 1 nomination,
         // it implies LimitedBNs can only nominate one ruleset (effectively the main).
         if ($this->user->isLimitedBN() && $this->nominatedRulesets->count() > 1) {
