@@ -58,16 +58,21 @@ class NominateBeatmapset
     public function handle()
     {
         $this->assertValidState();
-
-        $eventParams = $this->nominateRulesets();
+        $this->assertRulesetNomination();
 
         $nomination = $this->beatmapset->beatmapsetNominations()->current()->where('user_id', $this->user->getKey());
         if (!$nomination->exists()) {
-            $this->beatmapset->getConnection()->transaction(function () use ($eventParams) {
+            $this->beatmapset->getConnection()->transaction(function () {
+                $eventParams = [
+                    'comment' => ['modes' => $this->nominatedRulesets->toArray()],
+                    'type' => BeatmapsetEvent::NOMINATE,
+                    'user_id' => $this->user->getKey(),
+                ];
+
                 $event = $this->beatmapset->events()->create($eventParams);
                 $this->beatmapset->beatmapsetNominations()->create([
                     'event_id' => $event->getKey(),
-                    'modes' => $eventParams['comment']['modes'] ?? null,
+                    'modes' => $eventParams['comment']['modes'],
                     'user_id' => $this->user->getKey(),
                 ]);
 
@@ -109,7 +114,7 @@ class NominateBeatmapset
         }
     }
 
-    private function nominateRulesets(): array
+    private function assertRulesetNomination()
     {
         // LimitedBNs cannot be the only nominator for a non-main ruleset and since they only require 1 nomination,
         // it implies LimitedBNs can only nominate one ruleset (effectively the main).
@@ -152,12 +157,6 @@ class NominateBeatmapset
                 }
             }
         }
-
-        return [
-            'comment' => ['modes' => $this->nominatedRulesets->toArray()],
-            'type' => BeatmapsetEvent::NOMINATE,
-            'user_id' => $this->user->getKey(),
-        ];
     }
 
     private function requiresFullBNNomination(string $ruleset)
