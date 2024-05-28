@@ -67,10 +67,5 @@ class PaymentSubscribers
             'store.payments.cancelled.*',
             static::class.'@onPaymentCancelled'
         );
-
-        $events->listen(
-            'store.payments.pending.*',
-            static::class.'@onPaymentPending'
-        );
     }
 }

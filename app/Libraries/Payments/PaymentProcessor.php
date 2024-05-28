@@ -253,11 +253,13 @@ abstract class PaymentProcessor implements \ArrayAccess
             $order->tracking_code = Order::PENDING_ECHECK;
             $order->transaction_id = $this->getTransactionId();
             $order->saveOrExplode();
-
-            $eventName = "store.payments.pending.{$this->getPaymentProvider()}";
-
-            event($eventName, new PaymentEvent($order));
         });
+
+        \Datadog::increment(
+            "{$GLOBALS['cfg']['datadog-helper']['prefix_web']}.store.payments.pending",
+            1,
+            ['provider' => $this->getPaymentProvider()],
+        );
     }
 
     /**
