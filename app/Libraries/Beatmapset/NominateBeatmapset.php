@@ -19,6 +19,9 @@ class NominateBeatmapset
 {
     /** @var Set<string> */
     private Set $beatmapRulesets;
+
+    private array $nominationsByType;
+
     /** @var Set<string> */
     private Set $nominatedRulesets;
 
@@ -57,6 +60,8 @@ class NominateBeatmapset
 
     public function handle()
     {
+        $this->nominationsByType = $this->beatmapset->nominationsByType();
+
         $this->assertValidState();
         $this->assertRulesetNomination();
 
@@ -128,14 +133,20 @@ class NominateBeatmapset
         $eligibleRulesets = (new BeatmapsetMainRuleset($this->beatmapset))->currentEligible();
 
         // assert counts
-        $mainRulesetFound = false;
+        $mainRuleset = $eligibleRulesets->count() === 1 ? $eligibleRulesets->first() : null;
+        $config = static::requiredNominationsConfig();
+
         foreach ($nominationCount as $ruleset => $count) {
-            if ($count > 1) {
-                if ($mainRulesetFound || !$eligibleRulesets->contains($ruleset)) {
+            if ($mainRuleset === $ruleset) {
+                continue;
+            }
+
+            if ($count > $config['non_main_ruleset']) {
+                if ($mainRuleset !== null || !$eligibleRulesets->contains($ruleset)) {
                     throw new InvariantException(osu_trans('beatmapsets.nominate.too_many_non_main_ruleset'));
                 }
 
-                $mainRulesetFound = true;
+                $mainRuleset = $ruleset;
             }
         }
 
@@ -146,21 +157,15 @@ class NominateBeatmapset
                     throw new InvariantException(osu_trans('beatmapsets.nominate.incorrect_mode', ['mode' => $ruleset]));
                 }
 
-                if ($this->requiresFullBNNomination($ruleset)) {
+                $requiredCount = $mainRuleset === $ruleset ? $config['main_ruleset'] : $config['non_main_ruleset'];
+                if (
+                    $nominationCount[$ruleset] >= $requiredCount
+                    && (static::nominationCount($this->nominationsByType, 'full', $ruleset) === 0)
+                ) {
                     throw new InvariantException(osu_trans('beatmapsets.nominate.full_nomination_required'));
                 }
             }
         }
-    }
-
-    private function requiresFullBNNomination(string $ruleset)
-    {
-        $mainRuleset = $this->beatmapset->mainRuleset();
-        $config = NominateBeatmapset::requiredNominationsConfig();
-        $requiredCount = $ruleset === $mainRuleset ? $config['main_ruleset'] : $config['non_main_ruleset'];
-
-        return $this->beatmapset->currentNominationCount()[$ruleset] === $requiredCount - 1
-            && !$this->beatmapset->hasFullBNNomination($ruleset);
     }
 
     private function shouldQualify(): bool
@@ -171,7 +176,7 @@ class NominateBeatmapset
         }
 
         $requiredNominationsConfig = static::requiredNominationsConfig();
-        $nominationsByType = $this->beatmapset->nominationsByType();
+        $this->nominationsByType = $this->beatmapset->nominationsByType();
 
         $rulesetsSatisfied = 0;
         foreach ($this->beatmapset->playmodesStr() as $ruleset) {
@@ -179,8 +184,8 @@ class NominateBeatmapset
                 ? $requiredNominationsConfig['main_ruleset']
                 : $requiredNominationsConfig['non_main_ruleset'];
 
-            $fullNominations = static::nominationCount($nominationsByType, 'full', $ruleset);
-            $limitedNominations = static::nominationCount($nominationsByType, 'limited', $ruleset);
+            $fullNominations = static::nominationCount($this->nominationsByType, 'full', $ruleset);
+            $limitedNominations = static::nominationCount($this->nominationsByType, 'limited', $ruleset);
             $totalNominations = $fullNominations + $limitedNominations;
 
             // Prevent maps with invalid nomination state from going into qualified.
