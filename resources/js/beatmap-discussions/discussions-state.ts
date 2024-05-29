@@ -238,6 +238,8 @@ export default class DiscussionsState {
     }
 
     // If there's more than one eligible main ruleset, the next selection of an eligible ruleset should make it the main ruleset.
+    // This is based on the assumption that the non-main ruleset only needs 1 nomination.
+    // See NominateBeatmapset::requiredNominationsConfig
     // TODO: swith to Set.intersection in the future; it is currently too new.
     const intersection = intersectionWith(this.selectedNominatedRulesets, this.beatmapset.eligible_main_rulesets);
 

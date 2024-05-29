@@ -438,7 +438,10 @@ class BeatmapsetTest extends TestCase
     public function testHybridNominateWithBngLimitedMultipleRulesets(): void
     {
         $user = User::factory()->withGroup('bng_limited', ['osu', 'taiko'])->create();
-        $beatmapset = $this->createHybridBeatmapsetTaiko();
+        $beatmapset = $this->beatmapsetFactory()
+            ->withBeatmaps('osu', 2)
+            ->withBeatmaps('taiko', 2)
+            ->create();
         $otherUser = User::factory()->create();
         $beatmapset->watches()->create(['user_id' => $otherUser->getKey()]);
 
@@ -448,7 +451,7 @@ class BeatmapsetTest extends TestCase
         $this->expectExceptionCallable(
             fn () => $beatmapset->nominate($user, ['osu', 'taiko']),
             InvariantException::class,
-            osu_trans('beatmapsets.nominate.full_nomination_required')
+            osu_trans('beatmapsets.nominate.bng_limited_too_many_rulesets')
         );
 
         $this->assertTrue($beatmapset->isPending());
