@@ -157,12 +157,14 @@ class NominateBeatmapset
                     throw new InvariantException(osu_trans('beatmapsets.nominate.incorrect_mode', ['mode' => $ruleset]));
                 }
 
-                $requiredCount = $mainRuleset === $ruleset ? $config['main_ruleset'] : $config['non_main_ruleset'];
-                if (
-                    $nominationCount[$ruleset] >= $requiredCount
-                    && (static::nominationCount($this->nominationsByType, 'full', $ruleset) === 0)
-                ) {
-                    throw new InvariantException(osu_trans('beatmapsets.nominate.full_nomination_required'));
+                if ($mainRuleset !== null) {
+                    $requiredCount = $mainRuleset === $ruleset ? $config['main_ruleset'] : $config['non_main_ruleset'];
+                    if (
+                        $nominationCount[$ruleset] >= $requiredCount
+                        && (static::nominationCount($this->nominationsByType, 'full', $ruleset) === 0)
+                    ) {
+                        throw new InvariantException(osu_trans('beatmapsets.nominate.full_nomination_required'));
+                    }
                 }
             }
         }
