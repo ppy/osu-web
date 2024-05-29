@@ -267,7 +267,7 @@ class TestCase extends BaseTestCase
         try {
             $callable();
         } catch (\Throwable $e) {
-            $this->assertSame($exceptionClass, $e::class);
+            $this->assertSame($exceptionClass, $e::class, "{$e->getFile()}:{$e->getLine()}");
 
             if ($exceptionMessage !== null) {
                 $this->assertSame($exceptionMessage, $e->getMessage());
