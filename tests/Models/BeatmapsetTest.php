@@ -448,7 +448,7 @@ class BeatmapsetTest extends TestCase
         $this->expectExceptionCallable(
             fn () => $beatmapset->nominate($user, ['osu', 'taiko']),
             InvariantException::class,
-            osu_trans('beatmapsets.nominate.bng_limited_too_many_rulesets')
+            osu_trans('beatmapsets.nominate.full_nomination_required')
         );
 
         $this->assertTrue($beatmapset->isPending());

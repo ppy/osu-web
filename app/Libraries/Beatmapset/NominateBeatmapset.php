@@ -116,13 +116,6 @@ class NominateBeatmapset
 
     private function assertRulesetNomination()
     {
-        // NOTE: This assumption is only valid for the current nomination rules.
-        // LimitedBNs cannot be the only nominator for a non-main ruleset and since they only require 1 nomination,
-        // it implies LimitedBNs can only nominate one ruleset (effectively the main).
-        if ($this->user->isLimitedBN() && $this->nominatedRulesets->count() > 1) {
-            throw new InvariantException(osu_trans('beatmapsets.nominate.bng_limited_too_many_rulesets'));
-        }
-
         // Only one ruleset is allowed to have more than one nomination.
         // This needs to be enforced for Beatmapset::mainRuleset()
         $nominationCount = $this->beatmapset->currentNominationCount();
@@ -154,7 +147,7 @@ class NominateBeatmapset
                 }
 
                 if ($this->requiresFullBNNomination($ruleset)) {
-                    throw new InvariantException(osu_trans('beatmapsets.nominate.full_bn_required'));
+                    throw new InvariantException(osu_trans('beatmapsets.nominate.full_nomination_required'));
                 }
             }
         }

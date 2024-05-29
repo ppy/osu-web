@@ -41,7 +41,7 @@ return [
 
     'nominate' => [
         'bng_limited_too_many_rulesets' => 'Probationary nominators cannot nominate multiple rulesets.',
-        'full_bn_required' => 'You must be a full nominator to perform this qualifying nomination.',
+        'full_nomination_required' => 'You must be a full nominator to perform the final nomination of a ruleset.',
         'hybrid_requires_modes' => 'A hybrid beatmap requires you to select at least one playmode to nominate for.',
         'incorrect_mode' => 'You do not have permission to nominate for mode: :mode',
         'invalid_limited_nomination' => 'This beatmap has invalid nominations and cannot be qualified in this state.',
