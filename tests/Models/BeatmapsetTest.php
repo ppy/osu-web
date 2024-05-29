@@ -554,6 +554,25 @@ class BeatmapsetTest extends TestCase
         Bus::assertNotDispatched(CheckBeatmapsetCovers::class);
     }
 
+    public function testQualifyingNominationBngLimited()
+    {
+        $beatmapset = $this->beatmapsetFactory()
+            ->withBeatmaps('osu', 2)
+            ->withBeatmaps('taiko', 2)
+            ->create();
+        $beatmapset->nominate(User::factory()->withGroup('bng', ['osu', 'taiko'])->create(), ['osu', 'taiko']);
+        $nominator = User::factory()->withGroup('bng_limited', ['osu', 'taiko'])->create();
+
+        $beatmapset->refresh();
+
+        $this->expectCountChange(fn () => $beatmapset->bssProcessQueues()->count(), 1);
+
+        $beatmapset->nominate($nominator, ['taiko']);
+
+        $this->assertTrue($beatmapset->isQualified());
+        Bus::assertDispatched(CheckBeatmapsetCovers::class);
+    }
+
     /**
      * @dataProvider qualifyingNominationsHybridDataProvider
      */

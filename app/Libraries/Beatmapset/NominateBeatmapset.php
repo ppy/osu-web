@@ -20,8 +20,6 @@ class NominateBeatmapset
     /** @var Set<string> */
     private Set $beatmapRulesets;
 
-    private array $nominationsByType;
-
     /** @var Set<string> */
     private Set $nominatedRulesets;
 
@@ -60,8 +58,6 @@ class NominateBeatmapset
 
     public function handle()
     {
-        $this->nominationsByType = $this->beatmapset->nominationsByType();
-
         $this->assertValidState();
         $this->assertRulesetNomination();
 
@@ -80,6 +76,8 @@ class NominateBeatmapset
                     'modes' => $eventParams['comment']['modes'],
                     'user_id' => $this->user->getKey(),
                 ]);
+
+                $this->beatmapset->refreshCache(true);
 
                 if ($this->shouldQualify()) {
                     $beatmapset = $this->beatmapset->lockForUpdate()->find($this->beatmapset->getKey());
@@ -100,7 +98,6 @@ class NominateBeatmapset
         }
 
         $this->beatmapset->refresh();
-        $this->beatmapset->refreshCache();
     }
 
     private function assertValidState(): void
@@ -150,6 +147,8 @@ class NominateBeatmapset
             }
         }
 
+        $nominationsByType = $this->beatmapset->nominationsByType();
+
         // assert rulesets have correct nominators
         foreach ($this->nominatedRulesets as $ruleset) {
             if (!$this->user->isFullBN($ruleset) && !$this->user->isNAT($ruleset)) {
@@ -161,7 +160,7 @@ class NominateBeatmapset
                     $requiredCount = $mainRuleset === $ruleset ? $config['main_ruleset'] : $config['non_main_ruleset'];
                     if (
                         $nominationCount[$ruleset] >= $requiredCount
-                        && (static::nominationCount($this->nominationsByType, 'full', $ruleset) === 0)
+                        && (static::nominationCount($nominationsByType, 'full', $ruleset) === 0)
                     ) {
                         throw new InvariantException(osu_trans('beatmapsets.nominate.full_nomination_required'));
                     }
@@ -173,12 +172,13 @@ class NominateBeatmapset
     private function shouldQualify(): bool
     {
         $mainRuleset = $this->beatmapset->mainRuleset();
+
         if ($mainRuleset === null) {
             return false;
         }
 
         $requiredNominationsConfig = static::requiredNominationsConfig();
-        $this->nominationsByType = $this->beatmapset->nominationsByType();
+        $nominationsByType = $this->beatmapset->nominationsByType();
 
         $rulesetsSatisfied = 0;
         foreach ($this->beatmapset->playmodesStr() as $ruleset) {
@@ -186,8 +186,8 @@ class NominateBeatmapset
                 ? $requiredNominationsConfig['main_ruleset']
                 : $requiredNominationsConfig['non_main_ruleset'];
 
-            $fullNominations = static::nominationCount($this->nominationsByType, 'full', $ruleset);
-            $limitedNominations = static::nominationCount($this->nominationsByType, 'limited', $ruleset);
+            $fullNominations = static::nominationCount($nominationsByType, 'full', $ruleset);
+            $limitedNominations = static::nominationCount($nominationsByType, 'limited', $ruleset);
             $totalNominations = $fullNominations + $limitedNominations;
 
             // Prevent maps with invalid nomination state from going into qualified.
