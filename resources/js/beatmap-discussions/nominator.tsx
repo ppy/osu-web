@@ -341,9 +341,7 @@ export class Nominator extends React.Component<Props> {
     // Always enable the selected one so it can be unselected.
     if (this.selectedModes.includes(mode)) return true;
 
-    if (!this.userHasNominatePermission
-      || this.nominationCountMet(mode)
-      || (core.currentUserOrFail.is_limited_bn && this.selectedModes.length > 0)) {
+    if (!this.userHasNominatePermission || this.nominationCountMet(mode)) {
       return false;
     }
 
