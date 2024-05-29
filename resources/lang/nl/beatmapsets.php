@@ -42,7 +42,6 @@ return [
     'nominate' => [
         'hybrid_requires_modes' => 'Een hybride beatmapset vereist dat je minimaal één speelmodus selecteert om voor te nomineren.',
         'incorrect_mode' => 'Je hebt geen toestemming om te nomineren voor modus: :mode',
-        'full_bn_required' => 'Je moet een volledige nominator zijn om deze kwalificerende nominatie uit te voeren.',
         'too_many' => 'Nominatievereising is al vervuld.',
 
         'dialog' => [

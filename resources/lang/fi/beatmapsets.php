@@ -42,7 +42,6 @@ return [
     'nominate' => [
         'hybrid_requires_modes' => 'Usean pelimuodon rytmikartta edellyttää, että valitset ainakin yhden pelimuodon, jonka panet ehdolle.',
         'incorrect_mode' => 'Sinulla ei ole lupaa panna ehdolle pelimuotoa: :mode',
-        'full_bn_required' => 'Sinun on oltava täysivaltainen ehdollepanija, jotta voit tehdä tämän kelpuuttavan ehdollepanon.',
         'too_many' => 'Ehdollepanovaatimus on jo täyttynyt.',
 
         'dialog' => [

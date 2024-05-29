@@ -42,7 +42,6 @@ return [
     'nominate' => [
         'hybrid_requires_modes' => 'Egy hibrid beatmap szettet legalább egy játékmódra nominálni kell.',
         'incorrect_mode' => 'Nincs jogosultságod :mode módban nominálni',
-        'full_bn_required' => 'Teljes jogú nominátornak kell lenned a kvalifikáló nomináláshoz.',
         'too_many' => 'A nominálási követelmények már teljesültek.',
 
         'dialog' => [

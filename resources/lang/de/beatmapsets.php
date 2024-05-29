@@ -42,7 +42,6 @@ return [
     'nominate' => [
         'hybrid_requires_modes' => 'Für ein Hybrid-Beatmapset musst du mindestens einen Spielmodus auswählen, den du nominieren möchtest.',
         'incorrect_mode' => 'Du hast keine Berechtigung diesen Modus zu nominieren: :mode',
-        'full_bn_required' => 'Du musst ein vollständiger Nominator sein, um diese qualifizierende Nominierung durchzuführen.',
         'too_many' => 'Nominierungsvoraussetzung bereits erfüllt.',
 
         'dialog' => [

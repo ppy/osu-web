@@ -42,7 +42,6 @@ return [
     'nominate' => [
         'hybrid_requires_modes' => 'Et hybrid beatmap kræver at du vælger mindst en spilletilstand at nominere til.',
         'incorrect_mode' => 'Du har ikke tilladelse til at nominere for tilstand: :mode',
-        'full_bn_required' => 'Du skal være en fuld nominator for at kunne udføre denne kvalificerende nominering.',
         'too_many' => 'Nomineringskravet er allerede opfyldt.',
 
         'dialog' => [

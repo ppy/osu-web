@@ -42,7 +42,6 @@ return [
     'nominate' => [
         'hybrid_requires_modes' => 'Um beatmap híbrido requer que você selecione pelo menos um modo de jogo para nomear.',
         'incorrect_mode' => 'Você não tem permissão para nomear para o modo: :mode',
-        'full_bn_required' => 'Você precisa ser um nominator completo para realizar essa nomeação de qualificação.',
         'too_many' => 'Exigência de nomeação já cumprida.',
 
         'dialog' => [

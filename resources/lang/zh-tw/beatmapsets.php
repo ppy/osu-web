@@ -42,7 +42,6 @@ return [
     'nominate' => [
         'hybrid_requires_modes' => '包含多個遊戲模式的圖譜至少需要選擇一種遊戲模式進行提名。',
         'incorrect_mode' => '您沒有權限為 :mode 模式提名',
-        'full_bn_required' => '您必須是正式的提名者才能執行此合格提名。',
         'too_many' => '提名需求已達成。',
 
         'dialog' => [

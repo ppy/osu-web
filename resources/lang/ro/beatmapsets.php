@@ -42,7 +42,6 @@ return [
     'nominate' => [
         'hybrid_requires_modes' => 'Un beatmap hibrid îți cere să selectezi cel puțin un mod de joc pentru care să nominalizezi.',
         'incorrect_mode' => 'Nu ai permisiunea de a nominaliza pentru modul :mode',
-        'full_bn_required' => 'Trebuie să fii un nominalizator complet pentru a nominaliza spre calificare.',
         'too_many' => 'Cerința de nominalizare este deja îndeplinită.',
 
         'dialog' => [

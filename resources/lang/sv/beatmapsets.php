@@ -42,7 +42,6 @@ return [
     'nominate' => [
         'hybrid_requires_modes' => 'En hybrid beatmap kräver att du väljer minst ett spelläge att nominera för.',
         'incorrect_mode' => 'Du har inte behörighet att nominera för läge: :mode',
-        'full_bn_required' => 'Du måste vara en fullständig nominerare för att utföra denna kvalificerande nominering.',
         'too_many' => 'Nomineringskravet är redan uppfyllt.',
 
         'dialog' => [

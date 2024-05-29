@@ -42,7 +42,6 @@ return [
     'nominate' => [
         'hybrid_requires_modes' => 'Ang isang hybrid na beatmap ay kinailangan na ikaw ay pumili ng kahit isang playmode upang makanominate.',
         'incorrect_mode' => 'Wala kang pahintulot na mag-nominate para sa mode :mode',
-        'full_bn_required' => 'Kailangan mong maging full nominator para maisagawa ang qualifying nomination na ito.',
         'too_many' => 'Nabuo na ang pangangailangan sa nominasyon.',
 
         'dialog' => [
