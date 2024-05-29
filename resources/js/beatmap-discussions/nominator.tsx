@@ -311,7 +311,8 @@ export class Nominator extends React.Component<Props> {
       req = this.beatmapset.nominations.required;
       curr = this.beatmapset.nominations.current;
     } else {
-      req = mode === this.props.discussionsState.calculatedMainRuleset
+      const mainRuleset = this.props.discussionsState.calculatedMainRuleset;
+      req = mainRuleset == null || mode === this.props.discussionsState.calculatedMainRuleset
         ? this.beatmapset.nominations.required_meta.main_ruleset
         : this.beatmapset.nominations.required_meta.non_main_ruleset;
       curr = this.beatmapset.nominations.current[mode] ?? 0;
