@@ -134,6 +134,7 @@ Version 0 is assumed when the header is omitted.
 Version  | Change
 -------- | ------
 20220705 | [Score](#score) object with different set of fields.
+20240529 | [`GET /rooms`](#get-multiplayer-rooms) will not return rooms with category `daily_challenge` prior to this version.
 
 ## Language
 
