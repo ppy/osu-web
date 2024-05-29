@@ -243,7 +243,7 @@ class BeatmapsetTest extends TestCase
         Bus::assertNotDispatched(CheckBeatmapsetCovers::class);
     }
 
-    public function testNominateMainRulsetInvariant()
+    public function testNominateMainRulesetInvariant()
     {
         $beatmapset = $this->beatmapsetFactory()
             ->withBeatmaps('osu')
@@ -435,7 +435,7 @@ class BeatmapsetTest extends TestCase
         }
     }
 
-    public function testHybridNominateWithBngLimitedMultipleRulsets(): void
+    public function testHybridNominateWithBngLimitedMultipleRulesets(): void
     {
         $user = User::factory()->withGroup('bng_limited', ['osu', 'taiko'])->create();
         $beatmapset = $this->createHybridBeatmapsetTaiko();
