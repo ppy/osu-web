@@ -696,6 +696,7 @@ class BeatmapsetTest extends TestCase
 
         // main ruleset should now be osu
         $beatmapset->beatmaps()->where('playmode', 1)->first()->setOwner($guest->getKey());
+        $beatmapset->beatmaps()->where('playmode', 0)->last()->setOwner($beatmapset->user_id);
         $beatmapset->refresh();
 
         $this->assertSame('osu', $beatmapset->mainRuleset());

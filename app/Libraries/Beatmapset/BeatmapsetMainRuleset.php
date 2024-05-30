@@ -65,7 +65,7 @@ class BeatmapsetMainRuleset
 
         // First mode with more nominations that others becomes main mode.
         // Implicity implies that limited BN nominations becomes main mode.
-        $nominations = $this->beatmapset->beatmapsetNominations()->current()->get();
+        $nominations = $this->beatmapset->beatmapsetNominations()->current()->orderBy('id', 'asc')->get();
         $nominationsByRuleset = [];
 
         foreach ($nominations as $nomination) {
