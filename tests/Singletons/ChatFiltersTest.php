@@ -32,6 +32,7 @@ class ChatFiltersTest extends TestCase
             ['fullword fullword2', 'okay great'],
             ['fullwordfullword2', 'fullwordfullword2'],
             ['i do a delimiter/inside', 'i do a nice try'],
+            ['español', 'español'],
         ];
     }
 
@@ -70,6 +71,7 @@ class ChatFiltersTest extends TestCase
             ['match' => 'fullword2', 'replacement' => 'great', 'whitespace_delimited' => true],
             ['match' => 'delimiter/inside', 'replacement' => 'nice try', 'whitespace_delimited' => true],
             ['match' => 'absolutely forbidden', 'replacement' => '', 'block' => true],
+            ['match' => 'ñ', 'replacement' => 'nnnn', 'whitespace_delimited' => true],
         ]);
 
         $result = app('chat-filters')->filter($input);

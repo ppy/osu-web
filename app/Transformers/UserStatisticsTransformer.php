@@ -7,12 +7,14 @@ namespace App\Transformers;
 
 use App\Models\Beatmap;
 use App\Models\UserStatistics;
+use League\Fractal\Resource\ResourceInterface;
 
 class UserStatisticsTransformer extends TransformerAbstract
 {
     protected array $availableIncludes = [
         'country_rank',
         'rank',
+        'rank_change_since_30_days',
         'user',
         'variants',
     ];
@@ -75,6 +77,11 @@ class UserStatisticsTransformer extends TransformerAbstract
         }
 
         return $this->primitive(['country' => $stats->countryRank()]);
+    }
+
+    public function includeRankChangeSince30Days(UserStatistics\Model $stats): ResourceInterface
+    {
+        return $this->primitive($stats->rankHistory?->rankChangeSince30Days());
     }
 
     public function includeUser(UserStatistics\Model $stats = null)
