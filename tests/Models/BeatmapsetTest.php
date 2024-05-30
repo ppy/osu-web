@@ -60,7 +60,7 @@ class BeatmapsetTest extends TestCase
 
         $beatmapset = $this->beatmapsetFactory()
             ->withBeatmaps()
-            ->has(BeatmapDiscussion::factory()->problem())
+            ->has(BeatmapDiscussion::factory()->general()->problem())
             ->create();
 
         $this->expectException(InvariantException::class);
