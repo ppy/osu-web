@@ -78,13 +78,9 @@ class EsDocument implements ShouldQueue
 
     private function incrementStat(string $action): void
     {
-        Datadog::increment(
-            'es_document',
-            1,
-            [
-                'action' => $action,
-                'class' => $this->modelMeta['class'],
-            ],
-        );
+        datadog_increment('es_document', [
+            'action' => $action,
+            'class' => $this->modelMeta['class'],
+        ]);
     }
 }
