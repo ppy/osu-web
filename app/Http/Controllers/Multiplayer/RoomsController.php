@@ -46,7 +46,15 @@ class RoomsController extends BaseController
         }
 
         $search = Room::search($params);
-        $rooms = $search['query']
+        $query = $search['query'];
+
+        // temporary workaround for lazer client failing to deserialise `daily_challenge` room category
+        // can be removed 20241129
+        if ($apiVersion < 20240529) {
+            $query->whereNot('category', 'daily_challenge');
+        }
+
+        $rooms = $query
             ->with($includes)
             ->withRecentParticipantIds()
             ->get();
