@@ -30,6 +30,45 @@ use Tests\TestCase;
 
 class BeatmapsetTest extends TestCase
 {
+    public function testInvalidStatePending()
+    {
+        $user = User::factory()->withGroup('nat')->create();
+        $beatmapset = $this->beatmapsetFactory()->qualified()->withBeatmaps()->create();
+
+        $this->expectException(InvariantException::class);
+        $this->expectExceptionMessage(osu_trans('beatmaps.nominations.incorrect_state'));
+
+        $beatmapset->nominate($user, $beatmapset->playmodesStr());
+    }
+
+    public function testInvalidStateRequiredHype()
+    {
+        config_set('osu.beatmapset.required_hype', 2);
+
+        $user = User::factory()->withGroup('nat')->create();
+        $beatmapset = $this->beatmapsetFactory()->withBeatmaps()->withHypes(1)->create();
+
+        $this->expectException(InvariantException::class);
+        $this->expectExceptionMessage(osu_trans('beatmaps.nominations.not_enough_hype'));
+
+        $beatmapset->nominate($user, $beatmapset->playmodesStr());
+    }
+
+    public function testInvalidStateUnresolvedIssues()
+    {
+        $user = User::factory()->withGroup('nat')->create();
+
+        $beatmapset = $this->beatmapsetFactory()
+            ->withBeatmaps()
+            ->has(BeatmapDiscussion::factory()->problem())
+            ->create();
+
+        $this->expectException(InvariantException::class);
+        $this->expectExceptionMessage(osu_trans('beatmaps.nominations.unresolved_issues'));
+
+        $beatmapset->nominate($user, $beatmapset->playmodesStr());
+    }
+
     public function testLove()
     {
         $user = User::factory()->create();
