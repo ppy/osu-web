@@ -651,6 +651,22 @@ class BeatmapsetTest extends TestCase
         }
     }
 
+    public function testQualifyingNominationSteps()
+    {
+        $bngFactory = User::factory()->withGroup('bng', ['taiko', 'fruits']);
+        $bngLimitedFactory = User::factory()->withGroup('bng_limited', ['taiko', 'fruits']);
+        $beatmapset = $this->createHybridBeatmapset(null, ['taiko', 'fruits']);
+
+        $beatmapset->nominate($bngFactory->create(), ['fruits']);
+        $beatmapset->nominate($bngLimitedFactory->create(), ['fruits']);
+
+        $this->assertTrue($beatmapset->isPending());
+
+        $beatmapset->nominate($bngFactory->create(), ['taiko']);
+
+        $this->assertTrue($beatmapset->isQualified());
+    }
+
     //endregion
 
     //region disqualification
