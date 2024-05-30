@@ -1187,18 +1187,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         });
     }
 
-    public function hasFullBNNomination($mode = null)
-    {
-        return $this->beatmapsetNominations()
-            ->current()
-            ->with('user')
-            ->get()
-            ->pluck('user')
-            ->contains(function ($user) use ($mode) {
-                return $user->isNAT($mode) || $user->isFullBN($mode);
-            });
-    }
-
     public function nominationsByType()
     {
         $nominations = $this->beatmapsetNominations()
