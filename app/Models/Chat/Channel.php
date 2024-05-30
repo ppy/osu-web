@@ -126,7 +126,7 @@ class Channel extends Model
                 (new ChatChannelEvent($channel, $user, 'join'))->broadcast(true);
             }
 
-            $connection->afterCommit(fn () => Datadog::increment('chat.channel.create', 1, ['type' => $channel->type]));
+            $connection->afterCommit(fn () => datadog_increment('chat.channel.create', ['type' => $channel->type]));
         });
 
         return $channel;
@@ -160,7 +160,7 @@ class Channel extends Model
             $channel->addUser($user2);
             $channel->setPmUsers([$user1, $user2]);
 
-            $connection->afterCommit(fn () => Datadog::increment('chat.channel.create', 1, ['type' => $channel->type]));
+            $connection->afterCommit(fn () => datadog_increment('chat.channel.create', ['type' => $channel->type]));
         });
 
         return $channel;
@@ -487,7 +487,7 @@ class Channel extends Model
             MessageTask::dispatch($message);
         });
 
-        Datadog::increment('chat.channel.send', 1, ['target' => $this->type]);
+        datadog_increment('chat.channel.send', ['target' => $this->type]);
 
         return $message;
     }
@@ -517,7 +517,7 @@ class Channel extends Model
 
         (new ChatChannelEvent($this, $user, 'join'))->broadcast(true);
 
-        Datadog::increment('chat.channel.join', 1, ['type' => $this->type]);
+        datadog_increment('chat.channel.join', ['type' => $this->type]);
     }
 
     public function removeUser(User $user)
@@ -542,7 +542,7 @@ class Channel extends Model
 
         (new ChatChannelEvent($this, $user, 'part'))->broadcast(true);
 
-        Datadog::increment('chat.channel.part', 1, ['type' => $this->type]);
+        datadog_increment('chat.channel.part', ['type' => $this->type]);
     }
 
     public function hasUser(User $user)
@@ -594,7 +594,7 @@ class Channel extends Model
         ]);
 
         if ($count > 0) {
-            Datadog::increment('chat.channel.join', 1, ['type' => $this->type], $count);
+            datadog_increment('chat.channel.join', ['type' => $this->type], $count);
         }
     }
 
