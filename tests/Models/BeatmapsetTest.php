@@ -395,7 +395,7 @@ class BeatmapsetTest extends TestCase
     public function testHybridLegacyNominate(): void
     {
         $user = User::factory()->withGroup('bng', ['osu'])->create();
-        $beatmapset = $this->createHybridBeatmapsetTaiko();
+        $beatmapset = $this->createHybridBeatmapset('taiko');
 
         // create legacy nomination event to enable legacy nomination mode
         BeatmapsetNomination::factory()->create([
@@ -417,7 +417,7 @@ class BeatmapsetTest extends TestCase
 
     public function testHybridLegacyQualify(): void
     {
-        $beatmapset = $this->createHybridBeatmapsetTaiko();
+        $beatmapset = $this->createHybridBeatmapset('taiko');
 
         // create legacy nomination event to enable legacy nomination mode
         BeatmapsetNomination::factory()->create([
@@ -438,10 +438,7 @@ class BeatmapsetTest extends TestCase
     public function testHybridNominateWithBngLimitedMultipleRulesets(): void
     {
         $user = User::factory()->withGroup('bng_limited', ['osu', 'taiko'])->create();
-        $beatmapset = $this->beatmapsetFactory()
-            ->withBeatmaps('osu', 2)
-            ->withBeatmaps('taiko', 2)
-            ->create();
+        $beatmapset = $this->createHybridBeatmapset();
         $otherUser = User::factory()->create();
         $beatmapset->watches()->create(['user_id' => $otherUser->getKey()]);
 
@@ -461,7 +458,7 @@ class BeatmapsetTest extends TestCase
     public function testHybridNominateWithNullPlaymode(): void
     {
         $user = User::factory()->withGroup('bng', ['osu'])->create();
-        $beatmapset = $this->createHybridBeatmapsetTaiko();
+        $beatmapset = $this->createHybridBeatmapset('taiko');
         $otherUser = User::factory()->create();
         $beatmapset->watches()->create(['user_id' => $otherUser->getKey()]);
 
@@ -481,7 +478,7 @@ class BeatmapsetTest extends TestCase
     public function testHybridNominateWithNoPlaymodePermission(): void
     {
         $user = User::factory()->withGroup('bng', ['osu'])->create();
-        $beatmapset = $this->createHybridBeatmapsetTaiko();
+        $beatmapset = $this->createHybridBeatmapset('taiko');
         $otherUser = User::factory()->create();
         $beatmapset->watches()->create(['user_id' => $otherUser->getKey()]);
 
@@ -501,7 +498,7 @@ class BeatmapsetTest extends TestCase
     public function testHybridNominateWithPlaymodePermissionSingleMode(): void
     {
         $user = User::factory()->withGroup('bng', ['osu'])->create();
-        $beatmapset = $this->createHybridBeatmapsetTaiko();
+        $beatmapset = $this->createHybridBeatmapset('taiko');
         $otherUser = User::factory()->create();
         $beatmapset->watches()->create(['user_id' => $otherUser->getKey()]);
 
@@ -517,7 +514,7 @@ class BeatmapsetTest extends TestCase
     public function testHybridNominateWithPlaymodePermissionTooMany(): void
     {
         $user = User::factory()->withGroup('bng', ['osu'])->create();
-        $beatmapset = $this->createHybridBeatmapsetTaiko();
+        $beatmapset = $this->createHybridBeatmapset('taiko');
 
         $this->fillNominationsExceptLastForMainRuleset($beatmapset, 'bng');
 
@@ -544,7 +541,7 @@ class BeatmapsetTest extends TestCase
     public function testHybridNominateWithPlaymodePermissionMultipleModes(): void
     {
         $user = User::factory()->withGroup('bng', ['osu', 'taiko'])->create();
-        $beatmapset = $this->createHybridBeatmapsetTaiko();
+        $beatmapset = $this->createHybridBeatmapset('taiko');
         $otherUser = User::factory()->create();
         $beatmapset->watches()->create(['user_id' => $otherUser->getKey()]);
 
@@ -559,10 +556,7 @@ class BeatmapsetTest extends TestCase
 
     public function testQualifyingNominationBngLimited()
     {
-        $beatmapset = $this->beatmapsetFactory()
-            ->withBeatmaps('osu', 2)
-            ->withBeatmaps('taiko', 2)
-            ->create();
+        $beatmapset = $this->createHybridBeatmapset();
         $beatmapset->nominate(User::factory()->withGroup('bng', ['osu', 'taiko'])->create(), ['osu', 'taiko']);
         $nominator = User::factory()->withGroup('bng_limited', ['osu', 'taiko'])->create();
 
@@ -582,7 +576,7 @@ class BeatmapsetTest extends TestCase
     public function testQualifyingNominationsHybrid(string $initialGroup, string $qualifyingGroup, bool $success)
     {
         $nominator = User::factory()->withGroup($qualifyingGroup, ['osu', 'taiko'])->create();
-        $beatmapset = $this->createHybridBeatmapsetTaiko();
+        $beatmapset = $this->createHybridBeatmapset('taiko');
 
         $this->fillNominationsExceptLastForMainRuleset($beatmapset, $initialGroup);
 
@@ -788,12 +782,15 @@ class BeatmapsetTest extends TestCase
         return Beatmapset::factory()->owner()->pending()->state(['nominations' => 0]);
     }
 
-    private function createHybridBeatmapsetTaiko(): Beatmapset
+    private function createHybridBeatmapset(string $mainRuleset = null, array $rulesets = ['osu', 'taiko']): Beatmapset
     {
-        return $this->beatmapsetFactory()
-            ->withBeatmaps('osu')
-            ->withBeatmaps('taiko', 2)
-            ->create();
+        $factory = $this->beatmapsetFactory();
+
+        foreach ($rulesets as $ruleset) {
+            $factory = $factory->withBeatmaps($ruleset, $mainRuleset === $ruleset ? 2 : 1);
+        }
+
+        return $factory->create();
     }
 
     private function fillNominationsExceptLastForMainRuleset(Beatmapset $beatmapset, string $group): void
