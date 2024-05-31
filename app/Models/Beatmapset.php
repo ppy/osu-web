@@ -1096,7 +1096,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
     {
         $rawPlaymodes = present($this->difficulty_names)
             ? collect(explode(',', $this->difficulty_names))
-                ->map(fn (string $name) => substr($name, strrpos($name, '@') + 1))
+                ->map(fn (string $name) => (int) substr($name, strrpos($name, '@') + 1))
             : $this->beatmaps->pluck('playmode');
 
         return $rawPlaymodes->unique()->values();
