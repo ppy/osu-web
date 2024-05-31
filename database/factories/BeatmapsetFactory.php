@@ -7,6 +7,7 @@ namespace Database\Factories;
 
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
+use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetNomination;
 use App\Models\Forum\Topic;
@@ -103,13 +104,44 @@ class BeatmapsetFactory extends Factory
             ]));
     }
 
-    public function withNominations()
+    public function withHypes(?int $count = null)
     {
-        $count = $GLOBALS['cfg']['osu']['beatmapset']['required_nominations'];
+        $count ??= $GLOBALS['cfg']['osu']['beatmapset']['required_hype'];
+
+        return $this->has(
+            BeatmapDiscussion::factory()
+                ->state(fn () => [
+                    'user_id' => User::factory(),
+                ])
+                ->general()
+                ->messageType('hype')
+                ->has(BeatmapDiscussionPost::factory())
+                ->count($count)
+        );
+    }
+
+    public function withNominations(?array $modes = null, ?int $count = null)
+    {
+        $count ??= $GLOBALS['cfg']['osu']['beatmapset']['required_nominations'];
 
         return $this
             ->has(BeatmapsetNomination::factory()
                 ->count($count)
-                ->state(['user_id' => User::factory()->withGroup('bng', array_keys(Beatmap::MODES))]));
+                ->state([
+                    'modes' => $modes,
+                    'user_id' => User::factory()->withGroup('bng', array_keys(Beatmap::MODES)),
+                ]));
+    }
+
+    public function withBeatmaps(?string $ruleset = null, int $count = 1, ?User $guestMapper = null)
+    {
+        return $this
+            ->has(Beatmap::factory()
+            ->count($count)
+            ->ruleset($ruleset ?? array_rand(Beatmap::MODES))
+            ->state(fn (array $attr, Beatmapset $set) => [
+                'approved' => $set->approved,
+                'user_id' => $guestMapper?->getKey() ?? $set->user_id,
+            ]));
     }
 }

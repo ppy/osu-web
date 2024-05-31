@@ -42,7 +42,6 @@ return [
     'nominate' => [
         'hybrid_requires_modes' => 'Hibrīda bītmapei ir jāizvēlas vismaz viens spēles režīms, kuram veikt nomināciju.',
         'incorrect_mode' => 'Jums nav atļaujas nominēt modam: :mode',
-        'full_bn_required' => 'Jums ir jābūt pilntiesīgam nominētājam, lai veiktu šo kvalifikācijas nomināciju.',
         'too_many' => 'Nominācijas prasība jau ir izpildīta.',
 
         'dialog' => [

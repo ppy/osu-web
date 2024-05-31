@@ -42,7 +42,6 @@ return [
     'nominate' => [
         'hybrid_requires_modes' => 'Un mapa híbrido requiere que selecciones al menos un modo de juego para nominar.',
         'incorrect_mode' => 'No tienes permiso para nominar el modo: :mode',
-        'full_bn_required' => 'Debes ser un nominador completo para realizar esta nominación cualificada.',
         'too_many' => 'Requisito de nominación ya cumplido.',
 
         'dialog' => [

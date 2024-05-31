@@ -30,12 +30,15 @@ const bn = 'nomination-dialog';
 export class Nominator extends React.Component<Props> {
   private readonly checkboxContainerRef = React.createRef<HTMLDivElement>();
   @observable private loading = false;
-  @observable private selectedModes: GameMode[] = [];
   @observable private visible = false;
   private xhr?: JQuery.jqXHR<BeatmapsetWithDiscussionsJson>;
 
   private get beatmapset() {
     return this.props.discussionsState.beatmapset;
+  }
+
+  private get calculatedMainRuleset() {
+    return this.props.discussionsState.calculatedMainRuleset;
   }
 
   private get currentHype() {
@@ -70,7 +73,11 @@ export class Nominator extends React.Component<Props> {
   private get playmodes() {
     return this.beatmapset.nominations.legacy_mode
       ? null
-      : Object.keys(this.beatmapset.nominations.required) as GameMode[];
+      : [...this.props.discussionsState.groupedBeatmaps.keys()];
+  }
+
+  private get selectedModes() {
+    return this.props.discussionsState.selectedNominatedRulesets;
   }
 
   private get users() {
@@ -141,6 +148,7 @@ export class Nominator extends React.Component<Props> {
   @action
   private readonly hideNominationModal = () => {
     this.visible = false;
+    this.unselectCheckboxes();
   };
 
   @action
@@ -167,18 +175,25 @@ export class Nominator extends React.Component<Props> {
   };
 
   private nominationCountMet(mode: GameMode) {
-    if (this.beatmapset.nominations.legacy_mode || this.beatmapset.nominations.required[mode] === 0) {
+    if (this.beatmapset.nominations.legacy_mode) {
       return false;
     }
 
-    const req = this.beatmapset.nominations.required[mode];
-    const curr = this.beatmapset.nominations.current[mode] ?? 0;
+    const requiredMeta = this.beatmapset.nominations.required_meta;
+    const req = mode === this.calculatedMainRuleset
+      ? requiredMeta.main_ruleset
+      : requiredMeta.non_main_ruleset;
 
-    if (req == null) {
-      return false;
+    return this.nominationCountWithSelections(mode) >= req && this.calculatedMainRuleset != null;
+  }
+
+  private nominationCountWithSelections(mode: GameMode) {
+    if (this.beatmapset.nominations.legacy_mode) {
+      throw new Error();
     }
 
-    return curr >= req;
+    return (this.beatmapset.nominations.current[mode] ?? 0)
+      + (this.selectedModes.includes(mode) ? 1 : 0);
   }
 
   private renderButton() {
@@ -242,9 +257,12 @@ export class Nominator extends React.Component<Props> {
   }
 
   private renderModalContentHybrid() {
+    const currentMode = this.calculatedMainRuleset ?? 'undefined';
+
     return (
       <>
         {trans('beatmapsets.nominate.dialog.which_modes')}
+        <span>{trans('beatmapsets.nominate.dialog.current_main_ruleset', { ruleset: trans(`beatmaps.mode.${currentMode}`) })}</span>
         <div ref={this.checkboxContainerRef} className={`${bn}__checkboxes`}>
           {this.playmodes?.map((mode: GameMode) => {
             const disabled = !this.userCanNominateMode(mode);
@@ -291,7 +309,10 @@ export class Nominator extends React.Component<Props> {
       req = this.beatmapset.nominations.required;
       curr = this.beatmapset.nominations.current;
     } else {
-      req = this.beatmapset.nominations.required[mode] ?? 0;
+      const mainRuleset = this.calculatedMainRuleset;
+      req = mainRuleset == null || mode === this.calculatedMainRuleset
+        ? this.beatmapset.nominations.required_meta.main_ruleset
+        : this.beatmapset.nominations.required_meta.non_main_ruleset;
       curr = this.beatmapset.nominations.current[mode] ?? 0;
     }
 
@@ -301,13 +322,24 @@ export class Nominator extends React.Component<Props> {
   @action
   private readonly showNominationModal = () => this.visible = true;
 
+  private unselectCheckboxes() {
+    this.checkboxContainerRef.current?.querySelectorAll<HTMLInputElement>('input[type=checkbox]').forEach((checkbox) => {
+      checkbox.checked = false;
+    });
+
+    this.updateCheckboxes();
+  }
+
   @action
   private readonly updateCheckboxes = () => {
     const checkedBoxes = map(this.checkboxContainerRef.current?.querySelectorAll<HTMLInputElement>('input[type=checkbox]:checked'), (node) => node.value);
-    this.selectedModes = checkedBoxes as GameMode[];
+    this.props.discussionsState.selectedNominatedRulesets = checkedBoxes as GameMode[];
   };
 
   private userCanNominateMode(mode: GameMode) {
+    // Always enable the selected one so it can be unselected.
+    if (this.selectedModes.includes(mode)) return true;
+
     if (!this.userHasNominatePermission || this.nominationCountMet(mode)) {
       return false;
     }

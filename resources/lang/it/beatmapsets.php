@@ -42,7 +42,6 @@ return [
     'nominate' => [
         'hybrid_requires_modes' => 'Un beatmapset ibrido richiede che venga selezionata almeno una modalità di gioco per poterla nominare.',
         'incorrect_mode' => 'Non hai il permesso di nominare per la modalità: :mode',
-        'full_bn_required' => 'Devi essere un nominatore completo per eseguire questa nomina qualificante.',
         'too_many' => 'Requisito di nomina già soddisfatto.',
 
         'dialog' => [

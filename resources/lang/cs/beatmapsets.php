@@ -42,7 +42,6 @@ return [
     'nominate' => [
         'hybrid_requires_modes' => 'Hybridní beatmapa vyžaduje, abyste vybrali alespoň jeden herní režim, za který ji chcete nominovat.',
         'incorrect_mode' => 'Nemáte oprávnění k nominaci za mód: :mode',
-        'full_bn_required' => 'Musíte být plný nominátor, abyste mohli provést kvalifikační nominaci.',
         'too_many' => 'Požadavek na nominaci je již splněn.',
 
         'dialog' => [

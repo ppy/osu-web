@@ -42,7 +42,6 @@ return [
     'nominate' => [
         'hybrid_requires_modes' => 'Pada beatmap hybrid, kamu harus memilih setidaknya satu mode permainan untuk dinominasikan.',
         'incorrect_mode' => 'Kamu tidak memiliki hak untuk memberikan nominasi pada mode permainan: :mode',
-        'full_bn_required' => 'Kamu harus berstatus sebagai nominator penuh (full nominator) untuk menominasikan beatmap ini.',
         'too_many' => 'Persyaratan nominasi telah terpenuhi.',
 
         'dialog' => [

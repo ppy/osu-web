@@ -42,7 +42,6 @@ return [
     'nominate' => [
         'hybrid_requires_modes' => 'Mišriame beatmap\'e reikia pasirinkti bent vieną rėžimą nominavimui.',
         'incorrect_mode' => 'Jūs neturite leidimo nominuoti šiam rėžimui: :mode',
-        'full_bn_required' => 'Turi būti pilnai įgaliotas nominatorius, kad galėtum atlikti kvalifikavimo nominacija.',
         'too_many' => 'Nominavimo reikalavimai jau patenkinti.',
 
         'dialog' => [

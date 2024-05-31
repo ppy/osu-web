@@ -42,7 +42,6 @@ return [
     'nominate' => [
         'hybrid_requires_modes' => 'Bạn cần chọn ít nhất một chế độ chơi trong beatmap có nhiều chế độ để đề cử.',
         'incorrect_mode' => 'Bạn không có sự cho phép để đề cử cho chế độ: :mode',
-        'full_bn_required' => 'Bạn phải là người được đề cử đầy đủ để thực hiện đề cử đủ điều kiện này.',
         'too_many' => 'Yêu cầu đề cử đã được đáp ứng.',
 
         'dialog' => [

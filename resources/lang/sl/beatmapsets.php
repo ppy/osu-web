@@ -42,7 +42,6 @@ return [
     'nominate' => [
         'hybrid_requires_modes' => 'Hibridna beatmapa zahteva izbiro vsaj enega igralnega načina za nominacijo.',
         'incorrect_mode' => 'Nimaš dovoljenja za nominacijo igralnega načina: :mode',
-        'full_bn_required' => 'Za kvalificirano nominacijo moraš biti polni nominator.',
         'too_many' => 'Pogoj za nominacijo je že izpolnjen.',
 
         'dialog' => [

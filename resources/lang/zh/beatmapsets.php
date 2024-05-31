@@ -42,7 +42,6 @@ return [
     'nominate' => [
         'hybrid_requires_modes' => '您需要在多模式谱面中选择至少一个游戏模式并提名。',
         'incorrect_mode' => '您没有提名 :mode 模式的权限。',
-        'full_bn_required' => '您必须成为正式谱面审核成员 (Full BN) 才有资格提名这张谱面。',
         'too_many' => '提名需求已达标。',
 
         'dialog' => [

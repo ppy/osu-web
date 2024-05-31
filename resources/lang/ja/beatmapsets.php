@@ -42,7 +42,6 @@ return [
     'nominate' => [
         'hybrid_requires_modes' => 'ハイブリッドビートマップセットでは、少なくとも1つのモードを選択してノミネートする必要があります。',
         'incorrect_mode' => 'モード:modeでノミネートする権限がありません。',
-        'full_bn_required' => 'Qualifyノミネーションを行うにはフルノミネーターでなければなりません。',
         'too_many' => 'ノミネーションの要件を満たしています',
 
         'dialog' => [
