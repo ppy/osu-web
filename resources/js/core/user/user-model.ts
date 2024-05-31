@@ -16,7 +16,7 @@ export default class UserModel {
   }
 
   @computed
-  get following() {
+  get followUserMapping() {
     if (this.core.currentUser == null) {
       return new Set();
     }
@@ -51,7 +51,5 @@ export default class UserModel {
     } else {
       pull(currentUser.follow_user_mapping, userId);
     }
-
-    $.publish('user:followUserMapping:refresh');
   }
 }

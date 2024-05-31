@@ -89,6 +89,11 @@ body {
   &.js-nav2--active {
     --z-index--nav-bar-mobile: @z-index--nav-bar-mobile-active;
   }
+
+  --header-pinned-animation-duration: 0ms;
+  &.js-animate-nav {
+    --header-pinned-animation-duration: 300ms;
+  }
 }
 
 #popup-container {

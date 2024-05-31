@@ -8,8 +8,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * @property mixed $data
- * @property string $mode
+ * @property-read string $current_start_name
+ * @property-read \App\Models\Count|null $currentStart
+ * @property-read int[] $data
+ * @property int $mode
  * @property int $r0
  * @property int $r1
  * @property int $r10
@@ -100,7 +102,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $r88
  * @property int $r89
  * @property int $r9
- * @property User $user
+ * @property-read string $ruleset
+ * @property-read \App\Models\User $user
  * @property int $user_id
  */
 class RankHistory extends Model
@@ -157,5 +160,22 @@ class RankHistory extends Model
     public function getRulesetAttribute()
     {
         return Beatmap::modeStr($this->getRawAttribute('mode'));
+    }
+
+    /**
+     * Get the difference between the user's current performance rank and their
+     * performance rank as of 30 days ago.
+     *
+     * @return int|null `null` if rank history is not available at 30 days ago.
+     */
+    public function rankChangeSince30Days(): ?int
+    {
+        $data = $this->data;
+        $currentRank = $data[89];
+        $previousRank = $data[59];
+
+        return $currentRank > 0 && $previousRank > 0
+            ? $currentRank - $previousRank
+            : null;
     }
 }
