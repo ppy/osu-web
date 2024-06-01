@@ -111,7 +111,7 @@ return [
             '_' => 'turnaje',
         ],
         'user_cover_presets_controller' => [
-            '_' => '',
+            '_' => 'přednastavení uživatelského záhlaví',
         ],
         'users_controller' => [
             '_' => 'informace o hráči',

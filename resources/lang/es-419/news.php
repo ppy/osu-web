@@ -5,44 +5,44 @@
 
 return [
     'index' => [
-        'title_page' => '',
+        'title_page' => 'osu!news',
 
         'nav' => [
-            'newer' => '',
-            'older' => '',
+            'newer' => 'Publicaciones más recientes',
+            'older' => 'Publicaciones anteriores',
         ],
 
         'title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'novedades',
+            'info' => 'portada',
         ],
     ],
 
     'show' => [
-        'by' => '',
+        'by' => 'por :user',
 
         'nav' => [
-            'newer' => '',
-            'older' => '',
+            'newer' => 'Publicación siguiente',
+            'older' => 'Publicación anterior',
         ],
 
         'title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'novedades',
+            'info' => 'publicación',
         ],
     ],
 
     'sidebar' => [
-        'archive' => '',
+        'archive' => 'Archivo de novedades',
     ],
 
     'store' => [
-        'button' => '',
-        'ok' => '',
+        'button' => 'Actualizar',
+        'ok' => 'Listado actualizado.',
     ],
 
     'update' => [
-        'button' => '',
-        'ok' => '',
+        'button' => 'Actualizar',
+        'ok' => 'Publicación actualizada.',
     ],
 ];

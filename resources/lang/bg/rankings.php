@@ -23,6 +23,10 @@ return [
         'used' => 'Похарчени',
     ],
 
+    'performance' => [
+        'insufficient_history' => '',
+    ],
+
     'type' => [
         'charts' => 'под прожекторите',
         'country' => 'държава',

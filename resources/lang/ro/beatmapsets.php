@@ -40,14 +40,20 @@ return [
     ],
 
     'nominate' => [
+        'bng_limited_too_many_rulesets' => '',
+        'full_nomination_required' => '',
         'hybrid_requires_modes' => 'Un beatmap hibrid îți cere să selectezi cel puțin un mod de joc pentru care să nominalizezi.',
         'incorrect_mode' => 'Nu ai permisiunea de a nominaliza pentru modul :mode',
+        'invalid_limited_nomination' => '',
+        'invalid_ruleset' => '',
         'too_many' => 'Cerința de nominalizare este deja îndeplinită.',
+        'too_many_non_main_ruleset' => '',
 
         'dialog' => [
             'confirmation' => 'Ești sigur că vrei să nominalizezi acest Beatmap?',
             'header' => 'Nominalizează acest Beatmap',
             'hybrid_warning' => 'observație: poți nominaliza o singură dată, așa că te rugăm să te asiguri că nominalizezi pentru toate modurile de joc pentru care intenționezi să nominalizezi',
+            'current_main_ruleset' => '',
             'which_modes' => 'Nominalizare pentru care moduri?',
         ],
     ],

@@ -23,7 +23,7 @@ return [
         'length' => 'Duración',
         'relevance' => 'Relevancia',
         'title' => 'Título',
-        'update' => 'Actualizar',
+        'update' => 'Fecha de actualización',
     ],
 
     'forum_posts' => [

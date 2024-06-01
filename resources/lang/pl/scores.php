@@ -25,8 +25,8 @@ return [
 
     'status' => [
         'non_best' => 'Tylko twoje najlepsze wyniki przyznają pp',
-        'no_pp' => '',
+        'no_pp' => 'pp nie jest nagradzane za ten wynik',
         'processing' => 'Ten wynik jest nadal obliczany i zostanie wyświetlony wkrótce.',
-        'no_rank' => '',
+        'no_rank' => 'Ten wynik nie posiada rangi, ponieważ jest nierankingowy albo przeznaczony do usunięcia',
     ],
 ];

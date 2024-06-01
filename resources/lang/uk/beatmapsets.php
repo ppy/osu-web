@@ -40,14 +40,20 @@ return [
     ],
 
     'nominate' => [
+        'bng_limited_too_many_rulesets' => '',
+        'full_nomination_required' => '',
         'hybrid_requires_modes' => 'Гібридна бітмапа вимагає обрати щонайменше один режим гри, котрий ви номінуватимете.',
         'incorrect_mode' => 'У вас недостатньо прав для номінування в режимі: :mode',
+        'invalid_limited_nomination' => '',
+        'invalid_ruleset' => '',
         'too_many' => 'Вимоги щодо номінації вже виконані.',
+        'too_many_non_main_ruleset' => '',
 
         'dialog' => [
             'confirmation' => 'Ви впевнені що хочете номінувати цю мапу?',
             'header' => 'Номінувати мапу',
             'hybrid_warning' => 'примітка: ви можете номінувати лише один раз, так що, переконайтеся в тому, що ви номінуєте всі режими, які  збиралися',
+            'current_main_ruleset' => '',
             'which_modes' => 'Номінувати для яких режимів?',
         ],
     ],

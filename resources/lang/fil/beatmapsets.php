@@ -40,14 +40,20 @@ return [
     ],
 
     'nominate' => [
+        'bng_limited_too_many_rulesets' => '',
+        'full_nomination_required' => '',
         'hybrid_requires_modes' => 'Ang isang hybrid na beatmap ay kinailangan na ikaw ay pumili ng kahit isang playmode upang makanominate.',
         'incorrect_mode' => 'Wala kang pahintulot na mag-nominate para sa mode :mode',
+        'invalid_limited_nomination' => '',
+        'invalid_ruleset' => '',
         'too_many' => 'Nabuo na ang pangangailangan sa nominasyon.',
+        'too_many_non_main_ruleset' => '',
 
         'dialog' => [
             'confirmation' => 'Sigurado ka bang gusto mong i-nomina ito?',
             'header' => 'Inomina ang Beatmap',
             'hybrid_warning' => 'tandaan: ikaw ay maaaring mag-nominate nang isang beses lamang, kaya siguraduhin na ikaw ay nagno-nominate para sa lahat ng game mode na iyong binabalak',
+            'current_main_ruleset' => '',
             'which_modes' => 'Inomina para sa aling mga mode?',
         ],
     ],

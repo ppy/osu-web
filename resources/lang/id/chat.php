@@ -18,7 +18,7 @@ return [
     'channels' => [
         'confirm_part' => 'Apakah kamu ingin menyembunyikan kanal percakapan ini? Kamu akan tetap menerima pesan dari kanal percakapan ini.',
         'create' => 'buat pengumuman',
-        'join' => 'gabung ke kanal percakapan',
+        'join' => 'gabung kanal baru',
         'none' => 'tidak ada kanal percakapan',
 
         'list' => [

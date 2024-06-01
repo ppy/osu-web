@@ -14,27 +14,27 @@ return [
     ],
 
     'judge' => [
-        'hide_judged' => '',
-        'nav_title' => '',
-        'no_current_vote' => '',
-        'update' => '',
+        'hide_judged' => 'schowaj ocenione wpisy',
+        'nav_title' => 'oceniać',
+        'no_current_vote' => 'jeszcze nie zagłosowałeś.',
+        'update' => 'aktualizacja',
         'validation' => [
-            'missing_score' => '',
-            'contest_vote_judged' => '',
+            'missing_score' => 'brakujący wynik',
+            'contest_vote_judged' => 'nie można głosować w ocenianych konkursach',
         ],
-        'voted' => '',
+        'voted' => 'Już zagłosowałeś w tym wpisie.',
     ],
 
     'judge_results' => [
-        '_' => '',
-        'creator' => '',
-        'score' => '',
-        'total_score' => '',
+        '_' => 'Wyniki oceniania',
+        'creator' => 'twórca',
+        'score' => 'Wynik',
+        'total_score' => 'wynik całkowity',
     ],
 
     'voting' => [
-        'judge_link' => '',
-        'judged_notice' => '',
+        'judge_link' => 'Jesteś sędzią tego konkursu. Oceń wpisy tutaj!',
+        'judged_notice' => 'Ten konkurs używa systemu oceniania, sędziowie obecnie sprawdzają wpisy.',
         'login_required' => 'Zaloguj się, aby zagłosować!',
         'over' => 'Głosowanie dla tego konkursu zostało zakończone',
         'show_voted_only' => 'Pokaż prace z moimi głosami',

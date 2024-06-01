@@ -23,6 +23,10 @@ return [
         'used' => 'Folosit',
     ],
 
+    'performance' => [
+        'insufficient_history' => '',
+    ],
+
     'type' => [
         'charts' => 'promovări',
         'country' => 'național',

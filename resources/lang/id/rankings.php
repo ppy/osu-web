@@ -23,6 +23,10 @@ return [
         'used' => 'Digunakan',
     ],
 
+    'performance' => [
+        'insufficient_history' => '',
+    ],
+
     'type' => [
         'charts' => 'spotlights',
         'country' => 'negara',

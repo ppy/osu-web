@@ -91,7 +91,7 @@ return [
 
         'topic_poll' => [
             'duplicate_options' => 'Duplikované možnosti nejsou povoleny.',
-            'grace_period_expired' => 'Nemůžete upravovat hlasování po více jak :limit hodinách',
+            'grace_period_expired' => 'Nemůžete upravovat hlasování po více jak :limit hodinách.',
             'hiding_results_forever' => 'Nelze skrýt výsledky ankety, která nikdy neskončí.',
             'invalid_max_options' => 'Možnost jednoho uživatele by neměla přesáhnout hodnotu povolených možností.',
             'minimum_one_selection' => 'Minimálně jedna možnost na uživatele je vyžadována.',

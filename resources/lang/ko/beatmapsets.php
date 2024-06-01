@@ -40,14 +40,20 @@ return [
     ],
 
     'nominate' => [
+        'bng_limited_too_many_rulesets' => '',
+        'full_nomination_required' => '',
         'hybrid_requires_modes' => '하이브리드 비트맵 셋은 노미네이트 할 플레이 모드를 하나 이상 선택해야 합니다.',
         'incorrect_mode' => ':mode 모드를 노미네이트 할 권한을 가지고 있지 않습니다.',
+        'invalid_limited_nomination' => '',
+        'invalid_ruleset' => '',
         'too_many' => '노미네이션 요구 사항을 이미 만족했습니다.',
+        'too_many_non_main_ruleset' => '',
 
         'dialog' => [
             'confirmation' => '정말로 이 비트맵을 노미네이트 하시겠어요?',
             'header' => '비트맵 노미네이트',
             'hybrid_warning' => '주의: 딱 한 번만 노미네이트 할 수 있으므로 자신이 노미네이트 하려는 모든 게임 모드를 선택했는지 확인해주세요.',
+            'current_main_ruleset' => '',
             'which_modes' => '어떤 모드를 노미네이트 하겠습니까?',
         ],
     ],

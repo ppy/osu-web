@@ -40,14 +40,20 @@ return [
     ],
 
     'nominate' => [
+        'bng_limited_too_many_rulesets' => '',
+        'full_nomination_required' => '',
         'hybrid_requires_modes' => 'Hibrīda bītmapei ir jāizvēlas vismaz viens spēles režīms, kuram veikt nomināciju.',
         'incorrect_mode' => 'Jums nav atļaujas nominēt modam: :mode',
+        'invalid_limited_nomination' => '',
+        'invalid_ruleset' => '',
         'too_many' => 'Nominācijas prasība jau ir izpildīta.',
+        'too_many_non_main_ruleset' => '',
 
         'dialog' => [
             'confirmation' => 'Vai esat pārliecināts, ka vēlaties nominēt šo bītmapi?',
             'header' => 'Nominēt Bītmapi',
             'hybrid_warning' => 'piezīme: jūs varat nominēt tikai vienu reizi, tāpēc, lūdzu, pārliecinieties, ka nominējat visus plānotos spēles režīmus (modus)',
+            'current_main_ruleset' => '',
             'which_modes' => 'Kādiem modiem nominēt?',
         ],
     ],

@@ -40,14 +40,20 @@ return [
     ],
 
     'nominate' => [
+        'bng_limited_too_many_rulesets' => '',
+        'full_nomination_required' => '',
         'hybrid_requires_modes' => 'Гибрид картасы номинация алу үшін кемінде бір ойын режимін таңдауды талап етеді.',
         'incorrect_mode' => 'Сізде режимге номинация беру рұқсатыңыз жоқ: :mode',
+        'invalid_limited_nomination' => '',
+        'invalid_ruleset' => '',
         'too_many' => 'Номинация талабы орындалды.',
+        'too_many_non_main_ruleset' => '',
 
         'dialog' => [
             'confirmation' => 'Осы картаны номинация беретініне сенімдісіз бе?',
             'header' => 'Картаға номинацияны беру',
             'hybrid_warning' => 'ескерту: сіз тек бір рет номинация бере аласыз, сондықтан сіз барлық қажетті ойын режимдеріне номинация беретін екеніңізге көз жеткізіңіз',
+            'current_main_ruleset' => '',
             'which_modes' => 'Қай режимдерге номинация беру?',
         ],
     ],

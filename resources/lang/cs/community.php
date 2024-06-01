@@ -43,10 +43,10 @@ return [
             ],
         ],
         'perks' => [
-            'title' => 'Oh? Co dostanu?!',
+            'title' => 'Skvělé! Jaké výhody dostanu?',
             'osu_direct' => [
                 'title' => 'osu!direct',
-                'description' => 'rychlý a snadný přístup k vyhledávání beatmap bez opuštění hry.',
+                'description' => 'Získej rychlý a snadný přístup k vyhledávání a stahování beatmap bez opuštění hry.',
             ],
 
             'friend_ranking' => [
@@ -76,7 +76,7 @@ return [
 
             'early_access' => [
                 'title' => 'Předběžný přístup',
-                'description' => 'Přístup do předběžných vydání, kde si můžeš vyzkoušet novinky ještě než výjdou!',
+                'description' => 'Získej přístup k novým verzím s novými funkcemi před tím, než vyjdou!<br/><br/>To zahrnuje i předběžný přístup k novým funkcím na webu!',
             ],
 
             'customisation' => [
@@ -86,7 +86,7 @@ return [
 
             'beatmap_filters' => [
                 'title' => 'Beatmapové filtry',
-                'description' => 'Filtrujte beatmapové vyhledávání podle zahraných a ještě nehraných a podle umístění (jestli jsou nějaké).',
+                'description' => 'Filtrujte vyhledávání beatmap podle hraných a nehraných map, nebo podle obdržené známky.',
             ],
 
             'yellow_fellow' => [

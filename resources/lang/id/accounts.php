@@ -19,7 +19,7 @@ return [
             'new_confirmation' => 'konfirmasi email',
             'title' => 'Email',
             'locked' => [
-                '_' => 'Silakan hubungi :accounts apabila kamu ingin memperbarui alamat emailmu.',
+                '_' => 'Silakan hubungi :accounts apabila kamu perlu untuk memperbarui alamat emailmu.',
                 'accounts' => 'tim bantuan akun',
             ],
         ],
@@ -42,7 +42,7 @@ return [
             'title' => 'Profil',
 
             'country_change' => [
-                '_' => "Sepertinya negara yang tertera pada akunmu tidak sesuai dengan negara tempat tinggalmu saat ini. :update_link.",
+                '_' => "Sepertinya negara yang tertera pada akunmu tidak sesuai dengan negara tempat kamu tinggal. :update_link.",
                 'update_link' => 'Perbarui ke :country',
             ],
 
@@ -70,7 +70,7 @@ return [
 
         'error' => [
             'already_linked' => 'Akun GitHub ini telah terhubung ke pengguna lain.',
-            'no_contribution' => 'Akun GitHub yang tidak memiliki riwayat kontribusi terhadap repositori osu! tidak dapat dihubungkan.',
+            'no_contribution' => 'Akun GitHub yang tidak memiliki riwayat kontribusi terhadap repositori osu! tidak dapat ditautkan.',
             'unverified_email' => 'Silakan verifikasi email utama kamu pada GitHub, lalu cobalah untuk menghubungkan akunmu kembali.',
         ],
     ],
@@ -123,7 +123,7 @@ return [
     ],
 
     'privacy' => [
-        'friends_only' => 'blokir pesan pribadi dari pengguna yang tidak termasuk dalam daftar teman',
+        'friends_only' => 'blokir pesan pribadi dari pengguna yang tidak berada dalam daftar temanmu',
         'hide_online' => 'sembunyikan status onlinemu',
         'title' => 'Kebijakan Privasi',
     ],

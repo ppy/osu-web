@@ -5,137 +5,137 @@
 
 return [
     'admin' => [
-        '_' => '',
+        '_' => 'administración',
     ],
     'error' => [
         'error' => [
-            '400' => '',
-            '404' => '',
-            '403' => '',
-            '401' => '',
-            '401-verification' => '',
-            '405' => '',
-            '422' => '',
-            '429' => '',
-            '500' => '',
-            '503' => '',
+            '400' => 'solicitud no válida',
+            '404' => 'no encontrado',
+            '403' => 'prohibido',
+            '401' => 'no autorizado',
+            '401-verification' => 'verificación de la cuenta',
+            '405' => 'no encontrado',
+            '422' => 'solicitud no válida',
+            '429' => 'demasiadas solicitudes',
+            '500' => 'algo se rompió',
+            '503' => 'mantenimiento',
         ],
     ],
     'forum' => [
-        '_' => '',
+        '_' => 'foro',
         'topic_logs_controller' => [
-            'index' => '',
+            'index' => 'registros de temas',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'verify_link' => '',
+            'verify_link' => 'verificación de la cuenta',
         ],
         'artists_controller' => [
-            '_' => '',
+            '_' => 'artistas destacados',
         ],
         'beatmap_discussion_posts_controller' => [
-            '_' => '',
+            '_' => 'publicaciones de discusión del mapa',
         ],
         'beatmap_discussions_controller' => [
-            '_' => '',
+            '_' => 'discusiones del mapa',
         ],
         'beatmap_packs_controller' => [
-            '_' => '',
+            '_' => 'paquetes de mapas',
         ],
         'beatmapset_discussion_votes_controller' => [
-            '_' => '',
+            '_' => 'votos de la discusión del mapa',
         ],
         'beatmapset_events_controller' => [
-            '_' => '',
+            '_' => 'historial del mapa',
         ],
         'beatmapsets_controller' => [
-            'discussion' => '',
-            'index' => '',
-            'show' => '',
+            'discussion' => 'discusión del mapa',
+            'index' => 'lista de mapas',
+            'show' => 'información del mapa',
         ],
         'changelog_controller' => [
-            '_' => '',
+            '_' => 'registro de cambios',
         ],
         'chat_controller' => [
-            '_' => '',
+            '_' => 'chat',
         ],
         'comments_controller' => [
-            '_' => '',
+            '_' => 'comentarios',
         ],
         'contest_entries_controller' => [
-            'judge_results' => '',
+            'judge_results' => 'resultados de la evaluación del concurso',
         ],
         'contests_controller' => [
-            '_' => '',
-            'judge' => '',
+            '_' => 'concursos',
+            'judge' => 'evaluación del concurso',
         ],
         'groups_controller' => [
-            'show' => '',
+            'show' => 'grupos',
         ],
         'home_controller' => [
-            'get_download' => '',
-            'index' => '',
-            'search' => '',
-            'support_the_game' => '',
-            'testflight' => '',
+            'get_download' => 'descarga',
+            'index' => 'panel',
+            'search' => 'búsqueda',
+            'support_the_game' => 'apoya el juego',
+            'testflight' => 'testflight',
         ],
         'legal_controller' => [
-            '_' => '',
+            '_' => 'información',
         ],
         'livestreams_controller' => [
-            '_' => '',
+            '_' => 'transmisiones en vivo',
         ],
         'matches_controller' => [
-            '_' => '',
+            '_' => 'partidas',
         ],
         'news_controller' => [
-            '_' => '',
+            '_' => 'novedades',
         ],
         'notifications_controller' => [
-            '_' => '',
+            '_' => 'historial de notificaciones',
         ],
         'password_reset_controller' => [
-            '_' => '',
+            '_' => 'restablecimiento de contraseña',
         ],
         'ranking_controller' => [
-            '_' => '',
+            '_' => 'clasificaciones',
         ],
         'scores_controller' => [
-            '_' => '',
+            '_' => 'rendimiento',
         ],
         'seasons_controller' => [
-            '_' => '',
+            '_' => 'clasificaciones',
         ],
         'tournaments_controller' => [
-            '_' => '',
+            '_' => 'torneos',
         ],
         'user_cover_presets_controller' => [
-            '_' => '',
+            '_' => 'preselecciones de las portadas de usuario',
         ],
         'users_controller' => [
-            '_' => '',
-            'create' => '',
-            'disabled' => '',
+            '_' => 'información del jugador',
+            'create' => 'crear una cuenta',
+            'disabled' => 'aviso',
         ],
         'wiki_controller' => [
-            '_' => '',
+            '_' => 'wiki',
         ],
     ],
     'passport' => [
         'authorization_controller' => [
-            '_' => '',
+            '_' => 'autorizar aplicación',
         ],
     ],
     'store' => [
-        '_' => '',
+        '_' => 'tienda',
     ],
     'users' => [
         'modding_history_controller' => [
-            '_' => '',
+            '_' => 'información del modder',
         ],
         'multiplayer_controller' => [
-            '_' => '',
+            '_' => 'historial de multijugador',
         ],
     ],
 ];

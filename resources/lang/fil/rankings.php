@@ -23,6 +23,10 @@ return [
         'used' => 'Nagastos',
     ],
 
+    'performance' => [
+        'insufficient_history' => '',
+    ],
+
     'type' => [
         'charts' => 'Mga Spotlight',
         'country' => 'Bansa',

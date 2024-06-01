@@ -6,6 +6,6 @@
 return [
     'create' => [
         'beatmap_hash_invalid' => 'złe lub brakujące beatmap_hash',
-        'submission_disabled' => '',
+        'submission_disabled' => 'zgłaszanie wyników jest wyłączone',
     ],
 ];

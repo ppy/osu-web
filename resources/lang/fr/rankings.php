@@ -23,6 +23,10 @@ return [
         'used' => 'Utilisés',
     ],
 
+    'performance' => [
+        'insufficient_history' => '',
+    ],
+
     'type' => [
         'charts' => 'spotlights (ancien)',
         'country' => 'pays',
