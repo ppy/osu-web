@@ -23,6 +23,10 @@ return [
         'used' => 'Spenderat',
     ],
 
+    'performance' => [
+        'insufficient_history' => '',
+    ],
+
     'type' => [
         'charts' => 'i rampljuset',
         'country' => 'land',

@@ -111,7 +111,7 @@ return [
         'forgot' => 'Zapoměl jsi heslo?',
         'info' => 'Prosím přihlaste se pro pokračování',
         'invalid_captcha' => 'Příliš mnoho neúspěšných pokusů o přihlášení, vyplňte prosím captcha a zkuste to znovu. (Obnovte stránku pokud captcha není vidět)',
-        'locked_ip' => 'vaše IP adresa je uzamčena. Počkejte, prosím, několik minut.',
+        'locked_ip' => 'Vaše IP adresa je uzamčena. Počkejte prosím několik minut.',
         'password' => 'Heslo',
         'register' => "Nemáš osu! účet? Vytvoř si ho",
         'remember' => 'Pamatovat si tento počítač',
@@ -390,8 +390,8 @@ return [
             ],
             'account_standing' => [
                 'title' => 'Stav účtu',
-                'bad_standing' => "účet uživatele <strong>:username</strong> není v dobré reputaci :(",
-                'remaining_silence' => '<strong>:username</strong> bude znovu moci mluvit za :duration.',
+                'bad_standing' => "účet uživatele :username nemá dobrou reputaci :(",
+                'remaining_silence' => ':username bude moci znovu mluvit za :duration.',
 
                 'recent_infringements' => [
                     'title' => 'Nedávné incidenty',

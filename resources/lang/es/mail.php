@@ -82,7 +82,7 @@ return [
         'main' => 'Se sospecha que tu cuenta ha sido comprometida, tiene actividad sospechosa reciente o una contraseña MUY débil. Como resultado, necesitamos que establezcas una nueva contraseña. Asegúrate de elegir una contraseña SEGURA.',
         'perform_reset' => 'Puede realizar el restablecimiento desde :url',
         'reason' => 'Motivo:',
-        'subject' => 'Reactivación de cuenta osu! requerida',
+        'subject' => 'Reactivación de tu cuenta de osu! requerida',
     ],
 
     'user_notification_digest' => [
@@ -104,8 +104,8 @@ return [
         'subject' => 'Verificación de la cuenta de osu!',
 
         'action_from' => [
-            '_' => 'Una acción realizada en su cuenta desde :country requiere verificación.',
-            'unknown_country' => 'país desconocido',
+            '_' => 'Una acción realizada en tu cuenta desde :country requiere verificación.',
+            'unknown_country' => 'un país desconocido',
         ],
     ],
 ];

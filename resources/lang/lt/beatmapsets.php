@@ -40,14 +40,20 @@ return [
     ],
 
     'nominate' => [
+        'bng_limited_too_many_rulesets' => '',
+        'full_nomination_required' => '',
         'hybrid_requires_modes' => 'Mišriame beatmap\'e reikia pasirinkti bent vieną rėžimą nominavimui.',
         'incorrect_mode' => 'Jūs neturite leidimo nominuoti šiam rėžimui: :mode',
+        'invalid_limited_nomination' => '',
+        'invalid_ruleset' => '',
         'too_many' => 'Nominavimo reikalavimai jau patenkinti.',
+        'too_many_non_main_ruleset' => '',
 
         'dialog' => [
             'confirmation' => 'Ar tikrai norite nominuoti šį beatmap\'ą?',
             'header' => 'Nominuoti Beatmap\'ą',
             'hybrid_warning' => 'pastaba: jūs galite nominuoti tik kartą, tai prašom užtikrinti, kad nominuojate visus rėžimus, kuriuos ketinote',
+            'current_main_ruleset' => '',
             'which_modes' => 'Kokiems rėžimams nominuoti?',
         ],
     ],

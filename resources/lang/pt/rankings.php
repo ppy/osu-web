@@ -24,6 +24,10 @@ return [
         'used' => 'Gasto',
     ],
 
+    'performance' => [
+        'insufficient_history' => '',
+    ],
+
     'type' => [
         'charts' => 'Em destaque',
         'country' => 'País',

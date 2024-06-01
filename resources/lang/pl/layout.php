@@ -196,7 +196,7 @@ return [
             'follows' => 'Listy obserwowanych',
             'friends' => 'Znajomi',
             'legacy_score_only_toggle' => 'Tryb lazer',
-            'legacy_score_only_toggle_tooltip' => '',
+            'legacy_score_only_toggle_tooltip' => 'Tryb Lazer pokazuje wyniki ustalone z lazera z nowym algorytmem punktacji',
             'logout' => 'Wyloguj się',
             'profile' => 'Mój profil',
         ],

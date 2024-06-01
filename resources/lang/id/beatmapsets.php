@@ -8,7 +8,7 @@ return [
         'disabled' => 'Beatmap saat ini tidak tersedia untuk diunduh.',
         'parts-removed' => 'Beberapa bagian dari beatmap ini telah dihapus atas permintaan pembuat lagu atau pihak ketiga pemegang hak cipta.',
         'more-info' => 'Lihat di sini untuk informasi lebih lanjut.',
-        'rule_violation' => 'Sebagian aset yang terkandung dalam berkas beatmap ini telah dihapus karena dinilai tidak sesuai dengan kaidah penggunaan konten yang berlaku di osu!.',
+        'rule_violation' => 'Sebagian aset yang terkandung dalam beatmap ini telah dihapus setelah dinilai tidak layak untuk digunakan di osu!.',
     ],
 
     'cover' => [
@@ -35,19 +35,25 @@ return [
             'all' => 'unduh',
             'video' => 'unduh dengan video',
             'no_video' => 'unduh tanpa video',
-            'direct' => 'buka melalui osu!direct',
+            'direct' => 'buka di osu!direct',
         ],
     ],
 
     'nominate' => [
+        'bng_limited_too_many_rulesets' => '',
+        'full_nomination_required' => '',
         'hybrid_requires_modes' => 'Pada beatmap hybrid, kamu harus memilih setidaknya satu mode permainan untuk dinominasikan.',
-        'incorrect_mode' => 'Kamu tidak memiliki hak untuk memberikan nominasi pada mode permainan: :mode',
+        'incorrect_mode' => 'Kamu tidak memiliki izin untuk memberikan nominasi pada mode permainan: :mode',
+        'invalid_limited_nomination' => '',
+        'invalid_ruleset' => '',
         'too_many' => 'Persyaratan nominasi telah terpenuhi.',
+        'too_many_non_main_ruleset' => '',
 
         'dialog' => [
             'confirmation' => 'Apakah kamu yakin untuk menominasikan beatmap ini?',
             'header' => 'Nominasikan Beatmap',
             'hybrid_warning' => 'catatan: kamu hanya dapat memberikan satu nominasi, sehingga pastikan kamu memberikan nominasi pada mode permainan yang memang kamu kehendaki',
+            'current_main_ruleset' => '',
             'which_modes' => 'Mode permainan mana yang ingin dinominasikan?',
         ],
     ],
@@ -158,7 +164,7 @@ return [
         'scoreboard' => [
             'achieved' => 'diraih pada :when',
             'country' => 'Peringkat Negara',
-            'error' => 'Gagal memuat peringkat',
+            'error' => 'Peringkat gagal dimuat',
             'friend' => 'Peringkat Teman',
             'global' => 'Peringkat Global',
             'supporter-link' => 'Klik <a href=":link">di sini</a> untuk melihat seluruh fitur menarik yang akan kamu peroleh!',
@@ -181,7 +187,7 @@ return [
 
             'no_scores' => [
                 'country' => 'Tidak seorang pun dari negara Anda yang memiliki skor di map ini!',
-                'friend' => 'Kamu tidak memiliki teman yang telah menorehkan skor pada map ini!',
+                'friend' => 'Belum ada seorang pun dari daftar temanmu yang telah mencetak skor pada map ini!',
                 'global' => 'Belum ada skor yang tercatat. Mungkin kamu tertarik untuk mencetak skormu sendiri?',
                 'loading' => 'Memuat skor...',
                 'unranked' => 'Beatmap ini tidak berstatus Ranked.',

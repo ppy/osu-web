@@ -45,7 +45,7 @@ return [
 
             'beatmapset_discussion' => [
                 '_' => 'Diskusi beatmap',
-                'beatmapset_discussion_lock' => 'Diskusi pada beatmap ":title" telah dikunci',
+                'beatmapset_discussion_lock' => 'Diskusi pada ":title" telah dikunci',
                 'beatmapset_discussion_lock_compact' => 'Diskusi beatmap telah dikunci',
                 'beatmapset_discussion_post_new' => 'Postingan baru pada ":title" oleh :username: ":content"',
                 'beatmapset_discussion_post_new_empty' => 'Postingan baru pada ":title" oleh :username',
@@ -73,10 +73,10 @@ return [
 
             'beatmapset_state' => [
                 '_' => 'Perubahan status beatmap',
-                'beatmapset_disqualify' => 'Beatmap ":title" telah didiskualifikasi',
+                'beatmapset_disqualify' => '":title" telah didiskualifikasi',
                 'beatmapset_disqualify_compact' => 'Beatmap telah didiskualifikasi',
-                'beatmapset_love' => 'Beatmap ":title" telah diberikan status loved',
-                'beatmapset_love_compact' => 'Status beatmap dipromosikan menjadi loved',
+                'beatmapset_love' => '":title" telah dipromosikan ke kategori Loved',
+                'beatmapset_love_compact' => 'Beatmap telah dipromosikan ke kategori Loved',
                 'beatmapset_nominate' => '":title" telah dinominasikan',
                 'beatmapset_nominate_compact' => 'Beatmap telah dinominasikan',
                 'beatmapset_qualify' => '":title" telah memperoleh jumlah nominasi yang dibutuhkan untuk dapat memasuki antrian ranking',
@@ -85,7 +85,7 @@ return [
                 'beatmapset_rank_compact' => 'Beatmap telah berstatus Ranked',
                 'beatmapset_remove_from_loved' => '":title" telah dilepas dari Loved',
                 'beatmapset_remove_from_loved_compact' => 'Beatmap telah dilepas dari Loved',
-                'beatmapset_reset_nominations' => 'Nominasi pada beatmap ":title" telah dianulir',
+                'beatmapset_reset_nominations' => 'Nominasi pada ":title" telah dianulir',
                 'beatmapset_reset_nominations_compact' => 'Nominasi beatmap dianulir',
             ],
 
@@ -153,7 +153,7 @@ return [
             '_' => 'Topik forum',
 
             'forum_topic_reply' => [
-                '_' => 'Balasan baru pada topik forum',
+                '_' => 'Balasan forum baru',
                 'forum_topic_reply' => ':username membalas postinganmu pada utas forum ":title"',
                 'forum_topic_reply_compact' => ':username membalas postinganmu',
             ],
@@ -202,7 +202,7 @@ return [
 
             'beatmapset_state' => [
                 'beatmapset_disqualify' => '":title" telah didiskualifikasi',
-                'beatmapset_love' => '":title" telah dipromosikan ke dalam kategori Loved',
+                'beatmapset_love' => '":title" telah dipromosikan ke kategori Loved',
                 'beatmapset_nominate' => '":title" telah dinominasikan',
                 'beatmapset_qualify' => '":title" telah memperoleh jumlah nominasi yang dibutuhkan untuk dapat memasuki antrian ranking',
                 'beatmapset_rank' => '":title" telah berstatus Ranked',

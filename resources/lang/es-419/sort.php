@@ -4,41 +4,41 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    '_' => '',
+    '_' => 'Ordenar por',
 
-    'all' => '',
-    'friends' => '',
-    'last_visit' => '',
-    'new' => '',
-    'old' => '',
-    'rank' => '',
-    'top' => '',
-    'username' => '',
+    'all' => 'Todos',
+    'friends' => 'Amigos',
+    'last_visit' => 'Activo recientemente',
+    'new' => 'Reciente',
+    'old' => 'Antiguo',
+    'rank' => 'Rango',
+    'top' => 'Mejor',
+    'username' => 'Nombre de usuario',
 
     'artist_tracks' => [
-        'album' => '',
-        'artist' => '',
-        'bpm' => '',
-        'genre' => '',
-        'length' => '',
-        'relevance' => '',
-        'title' => '',
-        'update' => '',
+        'album' => 'Álbum',
+        'artist' => 'Artista',
+        'bpm' => 'BPM',
+        'genre' => 'Género',
+        'length' => 'Duración',
+        'relevance' => 'Relevancia',
+        'title' => 'Título',
+        'update' => 'Fecha de actualización',
     ],
 
     'forum_posts' => [
-        'created' => '',
-        'relevance' => '',
+        'created' => 'Tiempo de publicación',
+        'relevance' => 'Relevancia',
     ],
 
     'forum_topics' => [
-        'created' => '',
-        'feature_votes' => '',
-        'new' => '',
+        'created' => 'Creado',
+        'feature_votes' => 'Prioridad de estrella',
+        'new' => 'Última respuesta',
     ],
 
     'users' => [
-        'relevance' => '',
-        'username' => '',
+        'relevance' => 'Relevancia',
+        'username' => 'Nombre',
     ],
 ];

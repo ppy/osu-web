@@ -23,6 +23,10 @@ return [
         'used' => 'Elköltve',
     ],
 
+    'performance' => [
+        'insufficient_history' => '',
+    ],
+
     'type' => [
         'charts' => 'Reflektorfény',
         'country' => 'Ország',

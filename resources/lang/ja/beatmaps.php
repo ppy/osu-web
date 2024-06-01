@@ -187,7 +187,7 @@ return [
     ],
 
     'nominations' => [
-        'already_nominated' => '',
+        'already_nominated' => '既にこのビートマップをHypeしています。',
         'cannot_nominate' => '',
         'delete' => '削除',
         'delete_own_confirm' => '本当によろしいですか？ビートマップは削除され、プロフィール画面にリダイレクトされます。',
@@ -283,6 +283,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
+        'undefined' => '',
     ],
     'status' => [
         'any' => '全て',

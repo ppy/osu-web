@@ -23,6 +23,10 @@ return [
         'used' => 'Käytetty',
     ],
 
+    'performance' => [
+        'insufficient_history' => '',
+    ],
+
     'type' => [
         'charts' => 'kohdevalot (vanha)',
         'country' => 'maat',

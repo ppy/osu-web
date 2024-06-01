@@ -23,8 +23,12 @@ return [
         'used' => 'Použito',
     ],
 
+    'performance' => [
+        'insufficient_history' => '',
+    ],
+
     'type' => [
-        'charts' => 'výběry',
+        'charts' => 'výběry (staré)',
         'country' => 'stát',
         'kudosu' => 'kudosu',
         'multiplayer' => 'hra pro více hráčů',

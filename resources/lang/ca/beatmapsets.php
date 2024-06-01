@@ -40,14 +40,20 @@ return [
     ],
 
     'nominate' => [
+        'bng_limited_too_many_rulesets' => '',
+        'full_nomination_required' => '',
         'hybrid_requires_modes' => 'Un beatmap híbrid requereix que seleccioneu almenys un mode de joc per nominar.',
         'incorrect_mode' => 'No tens permís per nominar per al mode: :mode',
+        'invalid_limited_nomination' => '',
+        'invalid_ruleset' => '',
         'too_many' => 'Requisit de nominació ja complert.',
+        'too_many_non_main_ruleset' => '',
 
         'dialog' => [
             'confirmation' => 'Esteu segur que voleu nominar aquest beatmap?',
             'header' => 'Nominar beatmap',
             'hybrid_warning' => 'nota: només pot nominar una vegada, així que assegureu-vos que està nominant per a totes els modes de joc que desitgi',
+            'current_main_ruleset' => '',
             'which_modes' => 'Nominar per a quins modes?',
         ],
     ],

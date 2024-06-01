@@ -348,7 +348,7 @@ return [
 
             'poll' => [
                 'edit' => 'Sunting Jajak Pendapat',
-                'edit_warning' => 'Menyunting jajak pendapat akan menganulir seluruh suara yang telah masuk!',
+                'edit_warning' => 'Menyunting jajak pendapat akan menganulir hasil saat ini!',
                 'vote' => 'Pilih',
 
                 'button' => [

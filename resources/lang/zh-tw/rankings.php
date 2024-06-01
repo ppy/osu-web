@@ -23,6 +23,10 @@ return [
         'used' => '已使用',
     ],
 
+    'performance' => [
+        'insufficient_history' => '',
+    ],
+
     'type' => [
         'charts' => '月賽',
         'country' => '國家',
