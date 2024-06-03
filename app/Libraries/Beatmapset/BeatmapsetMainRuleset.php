@@ -69,7 +69,7 @@ class BeatmapsetMainRuleset
         $nominationsByRuleset = [];
 
         foreach ($nominations as $nomination) {
-            $rulesets = $nomination->modes;
+            $rulesets = $nomination->modes ?? $this->beatmapset->playmodesStr();
             foreach ($rulesets as $ruleset) {
                 if ($this->eligibleRulesets->contains($ruleset)) {
                     $nominationsByRuleset[$ruleset] ??= 0;
