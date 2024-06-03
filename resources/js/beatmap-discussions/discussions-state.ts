@@ -210,6 +210,19 @@ export default class DiscussionsState {
   }
 
   @computed
+  get rulesetsWithoutDeletedBeatmaps() {
+    const rulesets: GameMode[] = [];
+
+    for (const [key, values] of this.groupedBeatmaps) {
+      if (values.some((beatmap) => beatmap.deleted_at == null)) {
+        rulesets.push(key);
+      }
+    }
+
+    return rulesets;
+  }
+
+  @computed
   get hasCurrentUserHyped() {
     const currentUser = core.currentUser;
     return currentUser != null

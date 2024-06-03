@@ -89,7 +89,7 @@ class LegacyInterOpController extends Controller
 
     public function refreshBeatmapsetCache($id)
     {
-        Beatmapset::findOrFail($id)->refreshCache();
+        Beatmapset::findOrFail($id)->refreshCache(true);
 
         return ['success' => true];
     }
