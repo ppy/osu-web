@@ -476,7 +476,7 @@ export class Nominations extends React.Component<Props> {
 
     return (
       <>
-        {gameModes.map((ruleset: GameMode) => (this.props.discussionsState.groupedBeatmaps.get(ruleset)?.length ?? 0) > 0 && (
+        {gameModes.map((ruleset: GameMode) => (this.props.discussionsState.groupedBeatmapsWithoutDeleted.get(ruleset)?.length ?? 0) > 0 && (
           <DiscreteBar
             key={ruleset}
             current={nominations.current[ruleset] ?? 0}
