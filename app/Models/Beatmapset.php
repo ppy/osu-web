@@ -1425,7 +1425,9 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
     }
 
     /**
-     * @param bool $resetEligibleMainRulesets Resetting eligible main rulesets should only be tiggered if existing nominations are invalidated.
+     * Refreshes the cached values of the beatmapset.
+     * Resetting eligible main rulesets should only be tiggered if a change to the beatmapset can cause the main ruleset to change,
+     * or existing nominations are invalidated.
      */
     public function refreshCache(bool $resetEligibleMainRulesets = false)
     {
