@@ -210,17 +210,17 @@ export default class DiscussionsState {
   }
 
   @computed
-  get groupedBeatmapsWithoutDeleted() {
-    const map: typeof this.groupedBeatmaps = new Map();
+  get rulesetsWithoutDeletedBeatmaps() {
+    const rulesets: GameMode[] = [];
 
     for (const [key, values] of this.groupedBeatmaps) {
       const visibleBeatmaps = values.filter((beatmap) => beatmap.deleted_at == null);
       if (visibleBeatmaps.length > 0) {
-        map.set(key, values);
+        rulesets.push(key);
       }
     }
 
-    return map;
+    return rulesets;
   }
 
   @computed

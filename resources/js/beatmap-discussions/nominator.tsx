@@ -73,7 +73,7 @@ export class Nominator extends React.Component<Props> {
   private get playmodes() {
     return this.beatmapset.nominations.legacy_mode
       ? null
-      : [...this.props.discussionsState.groupedBeatmapsWithoutDeleted.keys()];
+      : this.props.discussionsState.rulesetsWithoutDeletedBeatmaps;
   }
 
   private get selectedModes() {
