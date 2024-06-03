@@ -214,8 +214,7 @@ export default class DiscussionsState {
     const rulesets: GameMode[] = [];
 
     for (const [key, values] of this.groupedBeatmaps) {
-      const visibleBeatmaps = values.filter((beatmap) => beatmap.deleted_at == null);
-      if (visibleBeatmaps.length > 0) {
+      if (values.some((beatmap) => beatmap.deleted_at == null)) {
         rulesets.push(key);
       }
     }
