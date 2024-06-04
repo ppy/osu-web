@@ -48,6 +48,7 @@ type SoloScoreJsonDefaultAttributes = {
   started_at: string | null;
   statistics: Partial<Record<SoloScoreStatisticsAttribute, number>>;
   total_score: number;
+  total_score_without_mods: number | null;
   type: 'solo_score' | `score_best_${GameMode}` | `score_${GameMode}`;
   user_id: number;
 } & (

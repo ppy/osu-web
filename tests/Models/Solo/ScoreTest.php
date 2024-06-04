@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace Tests\Models\Solo;
 
+use App\Exceptions\InvariantException;
 use App\Models\Solo\Score;
 use stdClass;
 use Tests\TestCase;
@@ -164,5 +165,86 @@ class ScoreTest extends TestCase
         $score = Score::factory()->create(['pp' => 10]);
 
         $this->assertNull($score->weightedPp());
+    }
+
+    public function testNegativeTotalScoreIsNotAccepted()
+    {
+        $this->expectException(InvariantException::class);
+        $this->expectExceptionMessage('Invalid total_score.');
+
+        Score::createFromJsonOrExplode([
+            'accuracy' => 1,
+            'beatmap_id' => 1,
+            'ended_at' => json_time(now()),
+            'max_combo' => 100,
+            'mods' => [],
+            'passed' => true,
+            'rank' => 'S',
+            'ruleset_id' => 1,
+            'statistics' => ['Great' => 10, 'SmallTickHit' => 1],
+            'total_score' => -1000,
+            'user_id' => 1,
+        ]);
+    }
+
+    public function testNegativeAccuracyIsNotAccepted()
+    {
+        $this->expectException(InvariantException::class);
+        $this->expectExceptionMessage('Invalid accuracy.');
+
+        Score::createFromJsonOrExplode([
+            'accuracy' => -1,
+            'beatmap_id' => 1,
+            'ended_at' => json_time(now()),
+            'max_combo' => 100,
+            'mods' => [],
+            'passed' => true,
+            'rank' => 'S',
+            'ruleset_id' => 1,
+            'statistics' => ['Great' => 10, 'SmallTickHit' => 1],
+            'total_score' => 1000,
+            'user_id' => 1,
+        ]);
+    }
+
+    public function testAccuracyAboveOneIsNotAccepted()
+    {
+        $this->expectException(InvariantException::class);
+        $this->expectExceptionMessage('Invalid accuracy.');
+
+        Score::createFromJsonOrExplode([
+            'accuracy' => 2,
+            'beatmap_id' => 1,
+            'ended_at' => json_time(now()),
+            'max_combo' => 100,
+            'mods' => [],
+            'passed' => true,
+            'rank' => 'S',
+            'ruleset_id' => 1,
+            'statistics' => ['Great' => 10, 'SmallTickHit' => 1],
+            'total_score' => 1000,
+            'user_id' => 1,
+        ]);
+    }
+
+    public function testNegativeTotalScoreWithoutModsIsNotAccepted()
+    {
+        $this->expectException(InvariantException::class);
+        $this->expectExceptionMessage('Invalid total_score_without_mods.');
+
+        Score::createFromJsonOrExplode([
+            'accuracy' => 1,
+            'beatmap_id' => 1,
+            'ended_at' => json_time(now()),
+            'max_combo' => 100,
+            'mods' => [],
+            'passed' => true,
+            'rank' => 'S',
+            'ruleset_id' => 1,
+            'statistics' => ['Great' => 10, 'SmallTickHit' => 1],
+            'total_score' => 1000,
+            'total_score_without_mods' => -1000,
+            'user_id' => 1,
+        ]);
     }
 }
