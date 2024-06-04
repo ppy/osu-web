@@ -93,7 +93,7 @@ return [
                 'title' => 'Vaše objednávka byla odeslána!',
                 'tracking_details' => 'Detaily o sledování:',
                 'no_tracking_details' => [
-                    '_' => "Vzhledem k tomu, že jsme vaší zásilku poslali přes Air Mail nemáme detaily o sledování, ale můžete zásilku očekávat během 1-3 týdnů. Pro Evropu někdy může celní správa zpozdit dopravu zásilky o něco déle. Pokud máte obavy, prosím odpovězte na email o potvrzení objednávky, který jste obdrželi :link.",
+                    '_' => "Vzhledem k tomu, že jsme vaši zásilku poslali přes Air Mail, nemáme detaily pro její sledování, ale můžete ji očekávat během 1-3 týdnů. Pro Evropu někdy může celní správa zpozdit dopravu zásilky o něco déle. Pokud máte jakékoli obavy, prosím odpovězte na email o potvrzení objednávky, který jste obdrželi (nebo :link).",
                     'link_text' => 'napište nám email',
                 ],
             ],

@@ -5,7 +5,7 @@
 
 return [
     'audio' => [
-        'autoplay' => '自动播放下一曲目',
+        'autoplay' => '自动播放下一首',
     ],
 
     'defaults' => [
@@ -106,7 +106,7 @@ return [
             'forum' => '论坛',
             'livestreams' => '直播',
             'report' => '报告问题',
-            'wiki' => '维基',
+            'wiki' => '百科',
         ],
         'legal' => [
             '_' => '法律 & 状态',

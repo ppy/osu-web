@@ -208,6 +208,22 @@ class RankingController extends Controller
             ->offset(static::PAGE_SIZE * ($page - 1))
             ->get();
 
+        $showRankChange =
+            $type === 'performance' &&
+            $this->country === null &&
+            !$this->friendsOnly &&
+            $this->params['variant'] === null;
+
+        if ($showRankChange) {
+            $stats->loadMissing('rankHistory.currentStart');
+
+            foreach ($stats as $stat) {
+                // Set rankHistory.user.statistics{ruleset} relation
+                $stat->rankHistory?->setRelation('user', $stat->user);
+                $stat->user->setRelation(User::statisticsRelationName($mode), $stat);
+            }
+        }
+
         if (is_api_request()) {
             switch ($type) {
                 case 'country':
@@ -215,7 +231,21 @@ class RankingController extends Controller
                     break;
 
                 default:
-                    $ranking = json_collection($stats, 'UserStatistics', ['user', 'user.cover', 'user.country']);
+                    $includes = ['user', 'user.cover', 'user.country'];
+
+                    if ($this->country !== null) {
+                        $includes[] = 'country_rank';
+                        $startRank = (max($page, 1) - 1) * static::PAGE_SIZE + 1;
+                        foreach ($stats as $index => $entry) {
+                            $entry->countryRank = $startRank + $index;
+                        }
+                    }
+
+                    if ($showRankChange) {
+                        $includes[] = 'rank_change_since_30_days';
+                    }
+
+                    $ranking = json_collection($stats, 'UserStatistics', $includes);
                     break;
             }
 
@@ -240,7 +270,7 @@ class RankingController extends Controller
             ])]
         );
 
-        return ext_view("rankings.{$type}", array_merge($this->defaultViewVars, compact('scores')));
+        return ext_view("rankings.{$type}", array_merge($this->defaultViewVars, compact('scores', 'showRankChange')));
     }
 
     /**

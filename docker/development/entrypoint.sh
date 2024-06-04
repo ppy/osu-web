@@ -48,10 +48,7 @@ _octane() {
 }
 
 _schedule() {
-    while sleep 300; do
-        _run php /app/artisan schedule:run &
-        echo 'Sleeping for 5 minutes'
-    done
+    _rexec php /app/artisan schedule:work
 }
 
 _test() {

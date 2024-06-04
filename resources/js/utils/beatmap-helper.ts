@@ -84,13 +84,16 @@ export function getDiffColour(rating: number) {
   return difficultyColourSpectrum(rating);
 }
 
-export function group<T extends BeatmapJson>(beatmaps?: T[] | null): Map<GameMode, T[]> {
+export function group<T extends BeatmapJson>(beatmaps?: T[] | null, includeEmpty = true): Map<GameMode, T[]> {
   // TODO: replace with mapBy
   const grouped: Partial<Record<GameMode, T[]>> = _.groupBy(beatmaps ?? [], 'mode');
   const ret = new Map<GameMode, T[]>();
 
   gameModes.forEach((mode) => {
-    ret.set(mode, sort(grouped[mode] ?? []));
+    const value = grouped[mode];
+    if (value != null || includeEmpty) {
+      ret.set(mode, sort(value ?? []));
+    }
   });
 
   return ret;

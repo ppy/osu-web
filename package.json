@@ -14,8 +14,8 @@
     "@fortawesome/fontawesome-free": "^5.6.3",
     "@types/autosize": "^4.0.1",
     "@types/bootstrap": "^3.3.0",
+    "@types/cloudflare-turnstile": "^0.1.5",
     "@types/d3": "^7.1.0",
-    "@types/grecaptcha": "^3.0.1",
     "@types/is-hotkey": "^0.1.1",
     "@types/jasmine": "^3.3.13",
     "@types/jquery": "^3.3.0",
@@ -97,7 +97,6 @@
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4",
     "webpack-manifest-plugin": "^5.0.0",
-    "webpack-sentry-plugin": "^2.0.2",
     "yargs": "^12.0.5",
     "ziggy-js": "^1.8.1"
   },

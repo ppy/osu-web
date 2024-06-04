@@ -97,6 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
+            'inactive' => "你的帳號有一段時間沒有登入了",
             'inactive_different_country' => "你的帳號已經一段時間沒有登入了",
         ],
     ],

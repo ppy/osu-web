@@ -23,6 +23,10 @@ return [
         'used' => 'Зрасходавана',
     ],
 
+    'performance' => [
+        'insufficient_history' => '',
+    ],
+
     'type' => [
         'charts' => 'па чартам',
         'country' => 'па краінам',

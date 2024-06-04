@@ -64,11 +64,11 @@ return [
             '_' => 'comentaris',
         ],
         'contest_entries_controller' => [
-            'judge_results' => '',
+            'judge_results' => 'resultats de l\'avaluació del concurs',
         ],
         'contests_controller' => [
             '_' => 'concursos',
-            'judge' => '',
+            'judge' => 'avaluació del concurs',
         ],
         'groups_controller' => [
             'show' => 'grups',
@@ -109,6 +109,9 @@ return [
         ],
         'tournaments_controller' => [
             '_' => 'tornejos',
+        ],
+        'user_cover_presets_controller' => [
+            '_' => 'preseleccions de la portada d\'usuari',
         ],
         'users_controller' => [
             '_' => 'informació del jugador',

@@ -81,7 +81,7 @@ return [
     ],
 
     'contest' => [
-        'judging_not_active' => '',
+        'judging_not_active' => 'Bedömning för denna tävling är ej aktiv.',
         'voting_over' => 'Du kan inte ändra din röst efter att röstperioden för den här tävlingen har avslutas.',
 
         'entry' => [
@@ -188,7 +188,7 @@ return [
             ],
         ],
         'update_email' => [
-            'locked' => '',
+            'locked' => 'e-postaddress är låst',
         ],
     ],
 ];

@@ -75,7 +75,7 @@ class BeatmapsController extends Controller
             'type' => $type,
             'user' => $currentUser,
         ]);
-        $scores = $esFetch->all()->loadMissing(['beatmap', 'user.country']);
+        $scores = $esFetch->all()->loadMissing(['beatmap', 'user.country', 'processHistory']);
         $userScore = $esFetch->userBest();
         $scoreTransformer = new ScoreTransformer($scoreTransformerType);
 
@@ -481,20 +481,24 @@ class BeatmapsController extends Controller
      * @urlParam user integer required Id of the [User](#user).
      *
      * @queryParam legacy_only integer Whether or not to exclude lazer scores. Defaults to 0. Example: 0
-     * @queryParam mode The [Ruleset](#ruleset) to get scores for. Defaults to beatmap mode
+     * @queryParam mode (deprecated) The [Ruleset](#ruleset) to get scores for. Defaults to beatmap ruleset. No-example
+     * @queryParam ruleset The [Ruleset](#ruleset) to get scores for. Defaults to beatmap ruleset. Example: osu
      */
     public function userScoreAll($beatmapId, $userId)
     {
         $beatmap = Beatmap::scoreable()->findOrFail($beatmapId);
-        $mode = presence(get_string(request('mode'))) ?? $beatmap->mode;
+        $ruleset = presence(get_string(request('ruleset'))) ?? presence(get_string(request('mode')));
+        if ($ruleset !== null) {
+            $rulesetId = Beatmap::modeInt($ruleset) ?? abort(404, 'unknown ruleset name');
+        }
         $params = ScoreSearchParams::fromArray([
             'beatmap_ids' => [$beatmap->getKey()],
             'is_legacy' => ScoreSearchParams::showLegacyForUser(\Auth::user()),
-            'ruleset_id' => Beatmap::MODES[$mode],
+            'ruleset_id' => $rulesetId ?? $beatmap->playmode,
             'sort' => 'score_desc',
             'user_id' => (int) $userId,
         ]);
-        $scores = (new ScoreSearch($params))->records();
+        $scores = (new ScoreSearch($params))->records()->loadMissing('processHistory');
 
         return [
             'scores' => json_collection($scores, new ScoreTransformer()),

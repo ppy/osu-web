@@ -20,7 +20,7 @@ return [
             'title' => 'Имејл',
             'locked' => [
                 '_' => 'Molimo kontaktirajte :accounts ukoliko treba da ažurirate Vašu imejl adresu.',
-                'accounts' => 'tim za podršku naloga',
+                'accounts' => 'тим за подршку налога',
             ],
         ],
 

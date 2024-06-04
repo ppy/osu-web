@@ -45,6 +45,11 @@ return [
         'index' => [
             '_' => 'vyhľadávanie skladieb',
 
+            'exclusive_only' => [
+                'all' => '',
+                'exclusive_only' => '',
+            ],
+
             'form' => [
                 'advanced' => 'Rozšírené Vyhľadávanie',
                 'album' => 'Album',
@@ -52,6 +57,7 @@ return [
                 'bpm_gte' => 'Minimálne BPM',
                 'bpm_lte' => 'MaximálneBPM',
                 'empty' => 'Nenašli sa žiadne skladby zodpovedajúce kritériám vyhľadávania.',
+                'exclusive_only' => '',
                 'genre' => 'Žáner',
                 'genre_all' => 'Všetko',
                 'length_gte' => 'Minimálna dĺžka',

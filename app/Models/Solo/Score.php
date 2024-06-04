@@ -19,6 +19,7 @@ use App\Models\Score as LegacyScore;
 use App\Models\ScoreToken;
 use App\Models\Traits;
 use App\Models\User;
+use Carbon\CarbonImmutable;
 use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Database\Eloquent\Builder;
 use LaravelRedis;
@@ -148,6 +149,11 @@ class Score extends Model implements Traits\ReportableInterface
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function processHistory()
+    {
+        return $this->hasOne(ScoreProcessHistory::class, 'score_id');
+    }
+
     public function scopeDefault(Builder $query): Builder
     {
         return $query->whereHas('beatmap.beatmapset');
@@ -181,14 +187,21 @@ class Score extends Model implements Traits\ReportableInterface
      */
     public function scopeRecent(Builder $query, string $ruleset, bool $includeFails): Builder
     {
+        $minTime = CarbonImmutable::now()->subDays(1);
+
         return $query
             // ensure correct index is used
             ->from(\DB::raw("{$this->getTable()} FORCE INDEX (user_ruleset_index)"))
             ->default()
             ->forRuleset($ruleset)
             ->includeFails($includeFails)
-            // 1 day (24 * 3600)
-            ->where('unix_updated_at', '>', time() - 86_400);
+            // unix_updated_at may be updated arbitrarily, so also filter by `ended_at` to ensure
+            // only recent scores are returned.
+            ->where('ended_at', '>', $minTime)
+            // we still want to filter by `unix_updated_at` to make the query efficient (is in the PK).
+            ->where('unix_updated_at', '>', $minTime->getTimestamp())
+            // ensure correct partition in production
+            ->where('preserve', '>=', 0);
     }
 
     public function scopeVisibleUsers(Builder $query): Builder
@@ -235,6 +248,7 @@ class Score extends Model implements Traits\ReportableInterface
 
             'beatmap',
             'performance',
+            'processHistory',
             'reportedIn',
             'user' => $this->getRelationValue($key),
         };
@@ -246,7 +260,16 @@ class Score extends Model implements Traits\ReportableInterface
             throw new InvariantException("'{$this->rank}' is not a valid rank.");
         }
 
-        foreach (['total_score', 'accuracy', 'max_combo', 'passed'] as $field) {
+        if ($this->accuracy === null || $this->accuracy < 0 || $this->accuracy > 1) {
+            throw new InvariantException('Invalid accuracy.');
+        }
+
+        // unsigned int (as per the column)
+        if ($this->total_score === null || $this->total_score < 0 || $this->total_score > 4294967295) {
+            throw new InvariantException('Invalid total_score.');
+        }
+
+        foreach (['max_combo', 'passed'] as $field) {
             if (!present($this->$field)) {
                 throw new InvariantException("field missing: '{$field}'");
             }
@@ -338,9 +361,9 @@ class Score extends Model implements Traits\ReportableInterface
             ? LegacyScore\Best\Model::getClass($this->getMode())
             : LegacyScore\Model::getClass($this->getMode());
 
+        // Only attributes available to best model (and `pass`).
         $score = new $scoreClass([
             'beatmap_id' => $this->beatmap_id,
-            'beatmapset_id' => $this->beatmap?->beatmapset_id ?? 0,
             'countmiss' => $statistics->miss,
             'date' => $this->ended_at_json,
             'enabled_mods' => app('mods')->idsToBitset(array_column($data->mods, 'acronym')),
@@ -350,7 +373,6 @@ class Score extends Model implements Traits\ReportableInterface
             'pp' => $this->pp,
             'replay' => $this->has_replay,
             'score' => $this->legacy_total_score,
-            'scorechecksum' => "\0",
             'user_id' => $this->user_id,
         ]);
 

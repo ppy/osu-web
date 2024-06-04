@@ -3,7 +3,7 @@
 
 .wiki-search {
   @_gutter: 20px;
-  @_border-size: 2px;
+  @_border-size: 1px;
 
   padding-top: 10px;
   // so the suggestions draw over the wiki panels.
@@ -12,15 +12,18 @@
   position: relative;
 
   &__bar {
-    .default-border-radius();
     display: flex;
     flex-direction: row;
 
     padding: 13px @_gutter;
     font-size: @font-size--wiki-search;
-    background-color: @osu-colour-b6;
+    background-color: hsl(var(--hsl-b6));
+    border: @_border-size solid hsl(var(--hsl-b6));
 
-    border: @_border-size solid @osu-colour-orange-1;
+    &:focus-within {
+      box-shadow: 0 0 10px  hsl(var(--hsl-h2));
+      border: @_border-size solid hsl(var(--hsl-h2));
+    }
   }
 
   &__input {

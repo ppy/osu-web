@@ -7,7 +7,7 @@ return [
     'deleted' => '[törölt felhasználó]',
 
     'beatmapset_activities' => [
-        'title' => ":user modolási történelme",
+        'title' => ":user Modolási Előzményei",
         'title_compact' => 'Modolás',
 
         'discussions' => [
@@ -97,6 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
+            'inactive' => "A fiókod hosszú ideje nem volt használva.",
             'inactive_different_country' => "A fiókod hosszú ideje nem volt használva.",
         ],
     ],

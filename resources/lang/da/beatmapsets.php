@@ -40,15 +40,20 @@ return [
     ],
 
     'nominate' => [
+        'bng_limited_too_many_rulesets' => '',
+        'full_nomination_required' => '',
         'hybrid_requires_modes' => 'Et hybrid beatmap kræver at du vælger mindst en spilletilstand at nominere til.',
         'incorrect_mode' => 'Du har ikke tilladelse til at nominere for tilstand: :mode',
-        'full_bn_required' => 'Du skal være en fuld nominator for at kunne udføre denne kvalificerende nominering.',
+        'invalid_limited_nomination' => '',
+        'invalid_ruleset' => '',
         'too_many' => 'Nomineringskravet er allerede opfyldt.',
+        'too_many_non_main_ruleset' => '',
 
         'dialog' => [
             'confirmation' => 'Er du sikker på du vil nominere dette Beatmap?',
             'header' => 'Nominér Beatmap',
             'hybrid_warning' => 'bemærk: du kan kun nominere én gang, så sørg for at du nominerer til alle spiltilstande, du har til hensigt til',
+            'current_main_ruleset' => '',
             'which_modes' => 'Nominér for hvilke tilstande?',
         ],
     ],

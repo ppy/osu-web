@@ -91,7 +91,7 @@ return [
             ],
             'shipped' => [
                 'title' => 'Twoje zamówienie zostało wysłane!',
-                'tracking_details' => '',
+                'tracking_details' => 'Szczegóły śledzenia:',
                 'no_tracking_details' => [
                     '_' => "Nie posiadamy szczegółów śledzenia, ponieważ wysłaliśmy Twoją paczkę przez Air Mail, ale możesz się jej spodziewać w ciągu 1-3 tygodni. Czasami europejskie służby celne mogą opóźnić paczkę, na co nie mamy wpływu. Jeśli masz jakieś wątpliwości, odpowiedz na e-mail z potwierdzeniem zamówienia, który otrzymałeś (lub :link).",
                     'link_text' => 'wyślij nam maila',
@@ -108,7 +108,7 @@ return [
         'no_orders' => 'Brak zamówień do wyświetlenia.',
         'paid_on' => 'Zamówienie złożone :date',
         'resume' => 'Wznów zamówienie',
-        'shipping_and_handling' => '',
+        'shipping_and_handling' => 'Dostawa i obsługa',
         'shopify_expired' => 'Łącze do płatności za to zamówienie wygasło.',
         'subtotal' => 'Suma częściowa',
         'total' => 'Suma',

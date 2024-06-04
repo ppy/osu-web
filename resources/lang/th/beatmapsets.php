@@ -40,15 +40,20 @@ return [
     ],
 
     'nominate' => [
+        'bng_limited_too_many_rulesets' => '',
+        'full_nomination_required' => '',
         'hybrid_requires_modes' => 'บีตแมปแบบไฮบริดจำเป็นให้คุณต้องเลือกโหมดการเล่นอย่างน้อยหนึ่งโหมดเพื่อเสนอชื่อเข้าชิง',
         'incorrect_mode' => 'คุณไม่มีสิทธิในการเสนอชื่อในโหมด :mode',
-        'full_bn_required' => 'คุณต้องเป็นผู้เสนอชื่อก่อนที่จะดำเนินการคุณสมบัตินี้ได้',
+        'invalid_limited_nomination' => '',
+        'invalid_ruleset' => '',
         'too_many' => 'ความต้องการเสนอชื่อได้สำเร็จแล้ว',
+        'too_many_non_main_ruleset' => '',
 
         'dialog' => [
             'confirmation' => 'คุณแน่ใจที่จะเสนอชื่อแมพนี้ใช่ไหม',
             'header' => 'เสนอชื่อบีทแมพ',
             'hybrid_warning' => 'โน้ต: คุณสามารถเสนอชื่อได้เพียงแค่ครั้งเดียว ดังนั้นโปรดตรวจสอบให้แน่ใจว่าคุณเสนอชื่อในเกมโหมดทั้งหมดที่คุณต้องการจะเสนอชื่อ',
+            'current_main_ruleset' => '',
             'which_modes' => 'เสนอชื่อให้โหมดไหน',
         ],
     ],

@@ -157,8 +157,8 @@ return [
 
         'topic_cover' => [
             'edit' => [
-                'uneditable' => 'Fundalul specificat este invalidă.',
-                'not_owner' => 'Numai creatorul poate edita fundalul.',
+                'uneditable' => 'Coperta specificată este invalidă.',
+                'not_owner' => 'Doar proprietarul poate edita coperta.',
             ],
             'store' => [
                 'forum_not_allowed' => 'Acest forum nu acceptă fundale pentru subiecte.',

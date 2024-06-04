@@ -2,17 +2,17 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .score-player {
-  &__mod {
-    margin: 3px;
-    font-size: 22px; // icon size
-    flex: none;
+  width: 250px;
+  max-width: 100%;
+  @media @desktop {
+    width: auto;
   }
 
   &__mods {
-    margin: -3px;
+    font-size: 22px; // icon size
     display: flex;
-    position: absolute;
-    top: -5px;
+    flex-wrap: wrap;
+    gap: 2px;
   }
 
   &__row {
@@ -28,6 +28,10 @@
       display: grid;
       grid-template-columns: max-content;
       grid-gap: 0 10px;
+    }
+
+    &--score {
+      display: grid;
     }
   }
 
@@ -50,7 +54,7 @@
   &__score {
     font-size: @font-size--large-4;
     font-weight: 300;
-    margin-bottom: -10px;
+    line-height: 1;
     @media @desktop {
       font-size: @font-size--extra-large;
     }

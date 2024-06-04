@@ -55,16 +55,16 @@ return [
 
         'requirement' => [
             'playlist_beatmapsets' => [
-                'incomplete_play' => 'Debe jugar todos los mapas en las listas de juego especificadas antes de votar',
+                'incomplete_play' => 'Debes jugar todos los mapas en las listas de juego especificadas antes de votar',
             ],
         ],
     ],
 
     'entry' => [
         '_' => 'entrada',
-        'login_required' => 'Inicie sesión para participar en el concurso.',
-        'silenced_or_restricted' => 'No puede participar en los concursos mientras esté restringido o silenciado.',
-        'preparation' => 'Estamos preparando este concurso actualmente. Por favor, ¡Espera pacientemente!',
+        'login_required' => 'Inicia sesión para participar en el concurso.',
+        'silenced_or_restricted' => 'No puedes participar en los concursos mientras estés restringido o silenciado.',
+        'preparation' => 'Estamos preparando este concurso actualmente. ¡Espera pacientemente!',
         'drop_here' => 'Suelta tu entrada aquí',
         'download' => 'Descargar archivo .osz',
 
@@ -100,7 +100,7 @@ return [
 
     'states' => [
         'entry' => 'Entrada abierta',
-        'voting' => 'Votación Iniciada',
+        'voting' => 'Votación iniciada',
         'results' => 'Resultados',
     ],
 ];

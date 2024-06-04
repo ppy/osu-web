@@ -10,7 +10,7 @@ return [
     'title' => 'Forum-uri osu!',
 
     'covers' => [
-        'edit' => 'Editează fundalul',
+        'edit' => 'Editează coperta',
 
         'create' => [
             '_' => 'Setează imaginea de fundal',

@@ -213,8 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'S\'estima que aquest mapa es classificarà :date si no es troben problemes. És el número :position a la :queue.',
-            'unresolved_problems' => '',
-            'problems' => '',
+            'unresolved_problems' => 'Aquest mapa no pot sortir de la secció qualificats fins que es resolvin :problems.',
+            'problems' => 'aquests problemes',
             'on' => 'a :date',
             'queue' => 'cua de classificació',
             'soon' => 'aviat',
@@ -283,6 +283,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
+        'undefined' => '',
     ],
     'status' => [
         'any' => 'Qualsevol',

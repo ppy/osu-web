@@ -33,8 +33,16 @@ class ArtistTrackSearch extends RecordSearch
         $this->addQueryStringFilter($query);
         $this->addSimpleFilters($query);
         $this->addTextFilters($query);
+        $this->addExclusiveOnlyFilter($query);
 
         return $query;
+    }
+
+    private function addExclusiveOnlyFilter(BoolQuery $query): void
+    {
+        if ($this->params->exclusiveOnly) {
+            $query->filter(['term' => ['exclusive' => true]]);
+        }
     }
 
     private function addQueryStringFilter($query): void

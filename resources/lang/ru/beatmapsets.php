@@ -40,15 +40,20 @@ return [
     ],
 
     'nominate' => [
+        'bng_limited_too_many_rulesets' => '',
+        'full_nomination_required' => '',
         'hybrid_requires_modes' => 'Для гибридных карт требуется, чтобы Вы выбрали по крайней мере один режим игры для номинации.',
         'incorrect_mode' => 'У вас недостаточно прав для номинации по режиму :mode',
-        'full_bn_required' => 'Вы должны быть полноправным номинатором, чтобы квалифицировать эту карту.',
+        'invalid_limited_nomination' => '',
+        'invalid_ruleset' => '',
         'too_many' => 'Требования к номинации уже выполнены.',
+        'too_many_non_main_ruleset' => '',
 
         'dialog' => [
             'confirmation' => 'Вы уверены, что хотите номинировать эту карту?',
             'header' => 'Номинировать карту',
             'hybrid_warning' => 'примечание: Вы можете номинировать лишь один раз, так что убедитесь, что Вы номинируете все необходимые режимы игры',
+            'current_main_ruleset' => '',
             'which_modes' => 'Номинировать для каких режимов?',
         ],
     ],

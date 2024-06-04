@@ -25,7 +25,6 @@ return [
 
     'status' => [
         'non_best' => 'Solo i punteggi migliori conferiscono pp',
-        'non_passing' => 'Solo i punteggi passati conferiscono pp',
         'no_pp' => 'non viene assegnato pp per questo punteggio',
         'processing' => 'Questo punteggio dev\'essere ancora calcolato e verrà mostrato presto',
         'no_rank' => 'Questo punteggio non ha classifica in quanto non è classificato oppure è contrassegnato per la cancellazione',

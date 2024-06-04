@@ -213,8 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'Ta beatmapa uzyska status rankingowy :date, jeżeli nie zostaną zgłoszone żadne problemy. Obecnie jest ona na :position. miejscu w :queue.',
-            'unresolved_problems' => '',
-            'problems' => '',
+            'unresolved_problems' => 'Ta mapa jest obecnie zablokowana przed opuszczeniem sekcji Zakwalifikowanej dopóki :problems nie zostaną rozwiązane.',
+            'problems' => 'te problemy',
             'on' => ':date',
             'queue' => 'kolejce rankingowej',
             'soon' => 'wkrótce',
@@ -283,6 +283,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
+        'undefined' => '',
     ],
     'status' => [
         'any' => 'Jakikolwiek',

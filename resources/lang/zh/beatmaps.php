@@ -213,7 +213,7 @@ return [
 
         'rank_estimate' => [
             '_' => '谱面正位于 :queue 中第 :position 位。如果没有问题，谱面将 :date 上架 (Ranked)。',
-            'unresolved_problems' => '直到解决 :problems 之前，这张谱面会一直被冻结在过审 (Qualified) 区。',
+            'unresolved_problems' => '这张谱面会一直被冻结在过审 (Qualified) 区，直到 :problems 解决。',
             'problems' => '这些问题',
             'on' => '在 :date',
             'queue' => '谱面上架队列',
@@ -283,6 +283,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
+        'undefined' => '',
     ],
     'status' => [
         'any' => '全部',
@@ -299,7 +300,7 @@ return [
     ],
     'genre' => [
         'any' => '全部',
-        'unspecified' => '尚未指定',
+        'unspecified' => '不限',
         'video-game' => '电子游戏',
         'anime' => '动漫',
         'rock' => '摇滚',
@@ -328,7 +329,7 @@ return [
         'polish' => '波兰语',
         'instrumental' => '器乐',
         'other' => '其他',
-        'unspecified' => '尚未指定',
+        'unspecified' => '不限',
     ],
 
     'nsfw' => [

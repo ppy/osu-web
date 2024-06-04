@@ -5,7 +5,7 @@
 
 return [
     'confirmation' => '¿Estás seguro?',
-    'confirmation_unsaved' => 'Se perderán todos los cambios sin guardar. ¿Está seguro?',
+    'confirmation_unsaved' => 'Se perderán todos los cambios sin guardar. ¿Estás seguro?',
     'saved' => 'Guardado',
 
     'array_and' => [
@@ -39,6 +39,7 @@ return [
         'pin' => 'anclar',
         'post' => 'Publicar',
         'read_more' => 'leer más',
+        'refresh' => 'Actualizar',
         'reply' => 'Responder',
         'reply_reopen' => 'Responder y reabrir',
         'reply_resolve' => 'Responder y resolver',
@@ -157,7 +158,7 @@ return [
     ],
 
     'wrong_user' => [
-        '_' => 'Ha iniciado sesión como :user. :logout_link.',
+        '_' => 'Has iniciado sesión como :user. :logout_link.',
         'logout_link' => 'Haz clic aquí para iniciar sesión como otro usuario',
     ],
 ];

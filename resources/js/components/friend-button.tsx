@@ -188,7 +188,6 @@ export default class FriendButton extends React.Component<Props> {
 
     // TODO: move logic to a user object?
     core.currentUser.friends = data;
-    $.publish('user:update', core.currentUser);
     dispatch(new FriendUpdated(this.props.userId));
   };
 }

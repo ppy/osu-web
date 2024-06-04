@@ -17,7 +17,6 @@
   "require": {
     "ext-ds": "*",
     "ext-redis": "*",
-    "anhskohbo/no-captcha": "^3.2",
     "chaseconey/laravel-datadog-helper": ">=1.2.0",
     "egulias/email-validator": "*",
     "elasticsearch/elasticsearch": "^7.12.0",
@@ -42,6 +41,7 @@
     "maennchen/zipstream-php": "^2.1",
     "mariuzzo/laravel-js-localization": "*",
     "paypal/paypal-checkout-sdk": "*",
+    "romanzipp/laravel-turnstile": "^1.3",
     "sentry/sentry-laravel": "*",
     "symfony/yaml": "*",
     "tightenco/ziggy": "^1.8",

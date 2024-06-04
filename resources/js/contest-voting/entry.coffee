@@ -18,17 +18,7 @@ export class Entry extends React.Component
 
     return null if @props.hideIfNotVoted && !selected
 
-    if @props.contest.type == 'external'
-      link_icon = 'fa-external-link-alt'
-      entry_title =
-        a
-          rel: 'nofollow noreferrer'
-          target: '_blank'
-          href: @props.entry.preview,
-          @props.entry.title
-    else
-      link_icon = 'fa-download'
-      entry_title = @props.entry.title
+    link_icon = if @props.contest.type == 'external' then 'fa-external-link-alt' else 'fa-download'
 
     if @props.contest.show_votes
       relativeVotePercentage = _.round((@props.entry.results.votes / @props.winnerVotes)*100, 2)
@@ -49,7 +39,7 @@ export class Entry extends React.Component
         if @props.contest.submitted_beatmaps
           a href: route('beatmapsets.show', beatmapset: @props.entry.preview), className: 'contest-voting-list__icon contest-voting-list__icon--submitted-beatmaps', style: { background: "url(https://b.ppy.sh/thumb/#{@props.entry.preview}.jpg)" },
             span className: 'contest-voting-list__link contest-voting-list__link--shadowed',
-              i className: "fal fa-fw fa-lg fa-#{@props.contest.link_icon}"
+              i className: "fas fa-fw fa-lg fa-#{@props.contest.link_icon}"
         else
           div className: 'contest-voting-list__icon contest-voting-list__icon--bg',
             a
@@ -61,12 +51,9 @@ export class Entry extends React.Component
       if @props.contest.show_votes
         div className: 'contest-voting-list__title contest-voting-list__title--show-votes',
           div className: 'contest-voting-list__votes-bar', style: { width: "#{relativeVotePercentage}%" }
-          div className: 'u-relative u-ellipsis-overflow', entry_title
-          @renderUserLink()
+          @renderTitle()
       else
-        div className: 'contest-voting-list__title',
-          div className: 'u-ellipsis-overflow', entry_title
-          @renderUserLink()
+        div className: 'contest-voting-list__title', @renderTitle()
 
       if !@props.contest.judged
         div className: "contest__voting-star#{if @props.contest.show_votes then ' contest__voting-star--dark-bg' else ''}",
@@ -90,6 +77,23 @@ export class Entry extends React.Component
             target: '_blank'
             i className: 'fas fa-fw fa-lg fa-external-link-alt'
 
+  renderTitle: ->
+    el React.Fragment, null,
+      if @props.contest.type == 'external'
+        a
+          className: 'contest-voting-list__title-link u-ellipsis-overflow u-relative'
+          rel: 'nofollow noreferrer'
+          target: '_blank'
+          href: @props.entry.preview,
+          @props.entry.title
+      else if @props.options.showLink && @props.entry.preview && @props.contest.submitted_beatmaps
+        a
+          className: 'contest-voting-list__title-link u-ellipsis-overflow u-relative',
+          href: route('beatmapsets.show', beatmapset: @props.entry.preview)
+          @props.entry.title
+      else
+        div className: 'u-relative u-ellipsis-overflow', @props.entry.title
+      @renderUserLink()
 
   renderUserLink: ->
     return null unless @props.entry.user?.id?

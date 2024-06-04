@@ -23,6 +23,10 @@ return [
         'used' => 'Gasto',
     ],
 
+    'performance' => [
+        'insufficient_history' => '',
+    ],
+
     'type' => [
         'charts' => 'Destaques',
         'country' => 'país',

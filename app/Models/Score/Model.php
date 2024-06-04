@@ -28,7 +28,7 @@ abstract class Model extends BaseModel
         'date' => 'datetime',
         'pass' => 'bool',
         'perfect' => 'bool',
-        'replay' => 'bool',
+        'replay' => 'bool', // for best model
     ];
     protected $primaryKey = 'score_id';
 

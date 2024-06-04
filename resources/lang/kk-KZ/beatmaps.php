@@ -26,7 +26,7 @@ return [
         'message_type_select' => 'Пікір Типін таңдаңыз',
         'reply_notice' => 'Жауап беру үшін enter пернесін басыңыз.',
         'reply_placeholder' => 'Жауабыңызды осы жерге теріңіз',
-        'require-login' => 'Жазба қалдыру немесе жауап беру үшін жүйеге кіріңіз',
+        'require-login' => 'Жазба қалдыру немесе жауап беру үшін аккаунтыңызға кіріңіз',
         'resolved' => 'Шешілді',
         'restore' => 'қалпына келтіру',
         'show_deleted' => 'Жойылғандарды көрсету',
@@ -50,7 +50,7 @@ return [
 
             'prompt' => [
                 'lock' => 'Жабу себебі',
-                'unlock' => 'Пікірталасты ашуға сенімдіміз бе?',
+                'unlock' => 'Пікірталасты ашуға сенімдісіз бе?',
             ],
         ],
 
@@ -80,14 +80,14 @@ return [
 
         'message_type_title' => [
             'disqualify' => '',
-            'hype' => '',
+            'hype' => 'Хайп жіберу!',
             'mapper_note' => '',
             'nomination_reset' => '',
-            'praise' => '',
-            'problem' => '',
-            'problem_warning' => '',
-            'review' => '',
-            'suggestion' => '',
+            'praise' => 'Мақтау жіберу',
+            'problem' => 'Мәселе жіберу',
+            'problem_warning' => 'Мәселе жіберу',
+            'review' => 'Қарау жіберу',
+            'suggestion' => 'Ұсыныс жіберу',
         ],
 
         'mode' => [
@@ -106,7 +106,7 @@ return [
             'timestamp' => 'Уақыт белгісі',
             'timestamp_missing' => 'уақыт белгісін қосу үшін өзгерту режимінде Ctrl-C және осында Ctrl-V басыңыз!',
             'title' => 'Жаңа Пікірталас',
-            'unpin' => 'Алып тастау',
+            'unpin' => 'Шешу',
         ],
 
         'review' => [
@@ -214,7 +214,7 @@ return [
         'rank_estimate' => [
             '_' => 'Мәселе табылмаса, бұл картаның рейтингі :date күні беріледі. Бұл :queue ішінде #:position тұр.',
             'unresolved_problems' => '',
-            'problems' => '',
+            'problems' => 'осы мәселелер',
             'on' => ':date күні',
             'queue' => 'рейтинг беру кезегі',
             'soon' => 'жуырда',
@@ -283,6 +283,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
+        'undefined' => '',
     ],
     'status' => [
         'any' => 'Кез келген',

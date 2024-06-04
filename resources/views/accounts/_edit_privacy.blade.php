@@ -12,8 +12,7 @@
     <div class="account-edit__input-groups">
         <div class="account-edit__input-group">
             <div
-                class="account-edit-entry account-edit-entry--no-label js-account-edit"
-                data-account-edit-auto-submit="1"
+                class="account-edit-entry account-edit-entry--no-label js-account-edit js-account-edit-auto-submit"
                 data-url="{{ route('account.options') }}"
             >
                 <label class="account-edit-entry__checkbox">
@@ -34,8 +33,7 @@
             </div>
 
             <div
-                class="account-edit-entry account-edit-entry--no-label js-account-edit"
-                data-account-edit-auto-submit="1"
+                class="account-edit-entry account-edit-entry--no-label js-account-edit js-account-edit-auto-submit"
                 data-url="{{ route('account.options') }}"
             >
                 <label class="account-edit-entry__checkbox">
@@ -63,7 +61,7 @@
                     </div>
                     <div class="block-list">
                         <a class='block-list__toggle js-account-edit-blocklist' href='#'>{{osu_trans('common.buttons.show')}}</a>
-                        <div class="block-list__content hidden">
+                        <div class="block-list__content hidden js-account-edit-blocklist-content">
                             @foreach ($blocks as $block)
                                 <div class="block-list-item">
                                     <a class="block-list-item__link" href='{{route('users.show', $block->user_id)}}'>{{ $block->username }}</a>

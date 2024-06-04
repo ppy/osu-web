@@ -38,7 +38,7 @@ return [
         ],
 
         'empty' => [
-            'empty' => 'Keskustelut puuttuu!',
+            'empty' => 'Ei vielä keskusteluja!',
             'hidden' => 'Yksikään keskusteluista ei täsmää hakuehtoihisi.',
         ],
 
@@ -55,7 +55,7 @@ return [
         ],
 
         'message_hint' => [
-            'in_general' => 'Tämä viesti menee beatmapin yleiseen keskusteluun. Modataksesi tätä beatmappia, aloita viestisi aikaleimalla (esim. 00:12:345).',
+            'in_general' => 'Tämä viesti menee rytmikarttasetin yleiseen keskusteluun. Modataksesi tätä rytmikarttaa, aloita viestisi aikaleimalla (esim. 00:12:345).',
             'in_timeline' => 'Modataksesi useampia aikaleimoja, lähetä useampi viesti (yksi viesti per aikaleima).',
         ],
 
@@ -118,7 +118,7 @@ return [
                 'unsaved' => 'Tallentamaton',
                 'timestamp' => [
                     'all-diff' => 'Viestit "Kaikki vaikeustasot" -osiossa eivät voi olla aikaleimattuja.',
-                    'diff' => 'Jos tämä :type alkaa aikaleimalla, se näytetään aikajanalla.',
+                    'diff' => 'Jos tämä viesti alkaa aikaleimalla, se näytetään aikajanalla.',
                 ],
             ],
             'insert-block' => [
@@ -130,7 +130,7 @@ return [
         ],
 
         'show' => [
-            'title' => ':title, kartoittanut :mapper',
+            'title' => ':title, kartoittanut: :mapper',
         ],
 
         'sort' => [
@@ -170,8 +170,8 @@ return [
     ],
 
     'hype' => [
-        'button' => 'Hurraa Beatmappia!',
-        'button_done' => 'Hurrasit Jo!',
+        'button' => 'Hurraa rytmikarttaa!',
+        'button_done' => 'Olet jo hurrannut!',
         'confirm' => "Oletko varma? Tämä toiminto käyttää yhden jäljelläolevista hurrauspisteistä eikä se ole peruutettavissa. Hurrauksia jäljellä :n.",
         'explanation' => 'Hurraa tätä rytmikarttaa tuodaksesi sille näkyvyyttä ehdollepanoa ja rankkausta varten!',
         'explanation_guest' => 'Kirjaudu sisään ja hurraa tätä rytmikarttaa tuodaksesi sille näkyvyyttä ehdollepanoa ja rankkausta varten!',
@@ -183,51 +183,51 @@ return [
     ],
 
     'feedback' => [
-        'button' => 'Jätä Palautetta',
+        'button' => 'Jätä palautetta',
     ],
 
     'nominations' => [
         'already_nominated' => 'Olet jo pannut ehdolle tämän rytmikartan.',
         'cannot_nominate' => 'Et voi panna ehdolle tähän pelimuotoon kuuluvia rytmikarttoja.',
         'delete' => 'Poista',
-        'delete_own_confirm' => 'Oletko varma? Tämä beatmap poistetaan ja sinut uudelleenohjataan takaisin profiiliisi.',
-        'delete_other_confirm' => 'Oletko varma? Tämä beatmap poistetaan ja sinut uudelleenohjataan käyttäjän profiiliin.',
+        'delete_own_confirm' => 'Oletko varma? Rytmikartta poistetaan ja sinut uudelleenohjataan takaisin profiiliisi.',
+        'delete_other_confirm' => 'Oletko varma? Rytmikartta poistetaan ja sinut uudelleenohjataan takaisin käyttäjän profiiliin.',
         'disqualification_prompt' => 'Hylkäyksen syy?',
-        'disqualified_at' => 'Epäkelpuutettu :time_ago (:reason).',
+        'disqualified_at' => 'Hylätty :time_ago (:reason).',
         'disqualified_no_reason' => 'ei määriteltyä syytä',
         'disqualify' => 'Hylkää',
         'incorrect_state' => 'Virhe toiminnon suorittamisessa, kokeile päivittää sivu.',
         'love' => 'Rakasta',
         'love_choose' => 'Valitse rakastetun vaikeustaso',
         'love_confirm' => 'Rakasta tätä rytmikarttaa?',
-        'nominate' => 'Suosittele',
-        'nominate_confirm' => 'Ehdollepane tämä rytmikartta?',
-        'nominated_by' => 'suositellut :users',
-        'not_enough_hype' => "Ei ole riittävästi hurrauksia.",
+        'nominate' => 'Aseta ehdolle',
+        'nominate_confirm' => 'Aseta tämä rytmikartta ehdolle?',
+        'nominated_by' => 'ehdollepannut: :users',
+        'not_enough_hype' => "Hurrausta ei ole riittävästi.",
         'remove_from_loved' => 'Poista rakastetuista rytmikartoista',
         'remove_from_loved_prompt' => 'Rakastetuista rytmikartoista poistamisen syy:',
-        'required_text' => 'Suositukset: :current/:required',
+        'required_text' => 'Ehdollepanot: :current/:required',
         'reset_message_deleted' => 'poistettu',
-        'title' => 'Suositusten Tila',
-        'unresolved_issues' => 'Vanhat ongelmat on ratkaistava ensin.',
+        'title' => 'Ehdollepanojen tilanne',
+        'unresolved_issues' => 'On edelleen ratkaisemattomia ongelmia, jotka pitää käsitellä ensin.',
 
         'rank_estimate' => [
-            '_' => 'Tämä kartta tulee arvion perusteella rankatuksi :date, jos ongelmia ei löydy. Se on :position. :queue.',
-            'unresolved_problems' => 'Tätä karttaa estetään tällä hetkellä poistumasta kelpuutettu-osiosta, kunnes :problems on ratkaistu.',
+            '_' => 'Tämä kartta tulee arviolta rankatuksi :date, jos ongelmia ei löydy. Se on :position. :queue.',
+            'unresolved_problems' => 'Tämä kartta on tällä hetkellä estetty poistumasta kelpuutettujen osiosta, kunnes :problems on ratkaistu.',
             'problems' => 'nämä ongelmat',
             'on' => ':date',
-            'queue' => 'hyväksytysjonossa',
+            'queue' => 'rankkausjonossa',
             'soon' => 'pian',
         ],
 
         'reset_at' => [
-            'nomination_reset' => 'Suositteluprosessi nollaantui :time_ago sitten käyttäjän :user uuden ongelman vuoksi :discussion (:message).',
-            'disqualify' => 'Hyväksyminen peruuntui :time_ago sitten käyttäjän :user uuden ongelman vuoksi :discussion (:message).',
+            'nomination_reset' => 'Ehdollepanoprosessi nollattu :time_ago käyttäjän :user uuden ongelman :discussion vuoksi (:message).',
+            'disqualify' => 'Hylätty :time_ago käyttäjän :user uuden ongelman :discussion vuoksi (:message).',
         ],
 
         'reset_confirm' => [
-            'disqualify' => 'Oletko varma? Tämä poistaa rytmikartan kelpuutetuista ja kumoaa ehdollepanoprosessin.',
-            'nomination_reset' => 'Oletko varma? Uuden ongelman lähettäminen kumoaa suositusprosessin.',
+            'disqualify' => 'Oletko varma? Tämä poistaa rytmikartan kelpuutetuista ja nollaa ehdollepanoprosessin.',
+            'nomination_reset' => 'Oletko varma? Uuden ongelman lähettäminen nollaa ehdollepanoprosessin.',
             'problem_warning' => 'Oletko varma, että haluat ilmoittaa ongelmasta tässä rytmikartassa? Tämä aiheuttaa hälytyksen rytmikarttojen ehdollepanijoille.',
         ],
     ],
@@ -253,7 +253,7 @@ return [
             ],
             'sorting' => [
                 'title' => 'Nimi',
-                'artist' => 'Esittäjä',
+                'artist' => 'Artisti',
                 'difficulty' => 'Vaikeustaso',
                 'favourites' => 'Suosikit',
                 'updated' => 'Päivitetty',
@@ -261,11 +261,11 @@ return [
                 'rating' => 'Luokitus',
                 'plays' => 'Pelikerrat',
                 'relevance' => 'Osuvuus',
-                'nominations' => 'Äänestykset',
+                'nominations' => 'Ehdollepanot',
             ],
             'supporter_filter_quote' => [
                 '_' => 'Rajataksesi tunnisteella :filters sinulla on oltava aktiivinen :link',
-                'link_text' => 'osu!n tukijan merkki',
+                'link_text' => 'osu!tukijamerkki',
             ],
         ],
     ],
@@ -274,7 +274,7 @@ return [
         'featured_artists' => 'Esitellyt artistit',
         'follows' => 'Tilatut kartoittajat',
         'recommended' => 'Suositeltu vaikeustaso',
-        'spotlights' => 'Kohdevaloissa olevat rytmikartat',
+        'spotlights' => 'Rytmikartat kohdevaloissa',
     ],
     'mode' => [
         'all' => 'Kaikki',
@@ -283,6 +283,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
+        'undefined' => '',
     ],
     'status' => [
         'any' => 'Kaikki',
@@ -357,8 +358,8 @@ return [
         'D' => '',
     ],
     'panel' => [
-        'playcount' => 'Pelikerrat :count',
-        'favourites' => 'Suosikit :count',
+        'playcount' => 'Pelikertoja: :count',
+        'favourites' => 'Suosikkeja: :count',
     ],
     'variant' => [
         'mania' => [

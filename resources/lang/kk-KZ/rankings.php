@@ -5,8 +5,8 @@
 
 return [
     'countries' => [
-        'all' => '',
-        'title' => '',
+        'all' => 'Бәрі',
+        'title' => 'Ел',
     ],
 
     'filter' => [
@@ -23,12 +23,16 @@ return [
         'used' => '',
     ],
 
+    'performance' => [
+        'insufficient_history' => '',
+    ],
+
     'type' => [
         'charts' => '',
-        'country' => '',
-        'kudosu' => '',
+        'country' => 'ел',
+        'kudosu' => 'kudosu',
         'multiplayer' => '',
-        'performance' => '',
+        'performance' => 'өнімділік',
         'score' => '',
         'seasons' => '',
     ],
@@ -50,13 +54,13 @@ return [
     'stat' => [
         'accuracy' => '',
         'active_users' => '',
-        'country' => '',
-        'play_count' => '',
-        'performance' => '',
+        'country' => 'Ел',
+        'play_count' => 'Ойын саны',
+        'performance' => 'Өнімділік',
         'total_score' => '',
         'ranked_score' => '',
         'average_score' => '',
-        'average_performance' => '',
+        'average_performance' => 'Орт. Өнім.',
         'ss' => '',
         's' => '',
         'a' => '',

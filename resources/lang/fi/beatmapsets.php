@@ -25,7 +25,7 @@ return [
 
     'index' => [
         'title' => 'Rytmikarttojen listaus',
-        'guest_title' => 'Beatmapit',
+        'guest_title' => 'Rytmikartat',
     ],
 
     'panel' => [
@@ -40,16 +40,21 @@ return [
     ],
 
     'nominate' => [
+        'bng_limited_too_many_rulesets' => '',
+        'full_nomination_required' => '',
         'hybrid_requires_modes' => 'Usean pelimuodon rytmikartta edellyttää, että valitset ainakin yhden pelimuodon, jonka panet ehdolle.',
-        'incorrect_mode' => 'Sinulla ei ole käyttöoikeutta panna ehdolle pelimuotoa: :mode',
-        'full_bn_required' => 'Sinun on oltava täysivaltainen ehdollepanija, jotta voit tehdä tämän kelpuuttavan ehdollepanon.',
+        'incorrect_mode' => 'Sinulla ei ole lupaa panna ehdolle pelimuotoa: :mode',
+        'invalid_limited_nomination' => '',
+        'invalid_ruleset' => '',
         'too_many' => 'Ehdollepanovaatimus on jo täyttynyt.',
+        'too_many_non_main_ruleset' => '',
 
         'dialog' => [
             'confirmation' => 'Oletko varma, että haluat ehdollepanna tämän rytmikartan?',
             'header' => 'Ehdollepane rytmikartta',
-            'hybrid_warning' => 'huomaa: voit tehdä ehdollepanon vain kerran, joten varmista, että olet valinnut kaikki pelimuodot, jotka aiot panna ehdolle',
-            'which_modes' => 'Mitkä pelimuodot ehdollepannaan?',
+            'hybrid_warning' => 'huomaa: voit tehdä ehdollepanon vain kerran, joten varmista, että panet ehdolle kaikki tarkoittamasi pelimuodot',
+            'current_main_ruleset' => '',
+            'which_modes' => 'Mitkä pelimuodot asetetaan ehdolle?',
         ],
     ],
 
@@ -70,12 +75,12 @@ return [
         ],
 
         'details' => [
-            'by_artist' => 'esittäjältä :artist',
+            'by_artist' => ':artist',
             'favourite' => 'lisää tämä rytmikartta suosikkeihin',
             'favourite_login' => 'kirjaudu sisään, niin voit lisätä tämän beatmapin suosikkeihin',
-            'logged-out' => 'Sinun täytyy kirjautua sisään ladataksesi beatmappeja!',
-            'mapped_by' => 'kartoittanut :mapper',
-            'mapped_by_guest' => 'vieraileva vaikeustaso, kartoittanut :mapper',
+            'logged-out' => 'sinun täytyy kirjautua sisään ennen rytmikarttojen lataamista!',
+            'mapped_by' => 'kartoittanut: :mapper',
+            'mapped_by_guest' => 'vieraileva vaikeustaso, kartoittanut: :mapper',
             'unfavourite' => 'poista tämä rytmikartta suosikeista',
             'updated_timeago' => 'päivitetty viimeksi :timeago',
 
@@ -119,7 +124,7 @@ return [
             ],
 
             'disqualify' => [
-                '_' => 'Jos löydät ongelman, joka liittyy tähän rytmikarttaan, ole hyvä ja epäkelpuuta se :link.',
+                '_' => 'Jos löydät ongelman tässä rytmikartassa, ole hyvä ja hylkää se :link.',
             ],
 
             'report' => [
@@ -169,7 +174,7 @@ return [
             'headers' => [
                 'accuracy' => 'Tarkkuus',
                 'combo' => 'Suurin iskuputki',
-                'miss' => 'Ohi',
+                'miss' => 'Huti',
                 'mods' => 'Muunnelmat',
                 'pin' => 'Kiinnitä',
                 'player' => 'Pelaaja',
@@ -200,7 +205,7 @@ return [
         'stats' => [
             'cs' => 'Ympyräkoko',
             'cs-mania' => 'Näppäinten määrä',
-            'drain' => 'Terveyden valutus',
+            'drain' => 'Terveyden pieneneminen',
             'accuracy' => 'Tarkkuus',
             'ar' => 'Lähestymisnopeus',
             'stars' => 'Tähtiluokitus',
@@ -211,7 +216,7 @@ return [
             'offset' => 'Vastapaino verkossa: :offset',
             'user-rating' => 'Käyttäjien arvio',
             'rating-spread' => 'Arvioiden jakauma',
-            'nominations' => 'Suositukset',
+            'nominations' => 'Ehdollepanot',
             'playcount' => 'Pelikertojen määrä',
         ],
 

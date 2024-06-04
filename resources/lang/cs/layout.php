@@ -149,7 +149,7 @@ return [
             'description' => '',
         ],
         '500' => [
-            'error' => 'Ale ne, něco je rozbité!',
+            'error' => 'Ale ne! Něco se pokazilo! ;_;',
             'description' => "Jsme automaticky oznámeni o každé chybě.",
         ],
         'fatal' => [

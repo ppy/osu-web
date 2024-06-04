@@ -24,6 +24,7 @@ Below is a list of some language-specific wrappers maintained by the community. 
 
 - [ossapi](https://github.com/tybug/ossapi) (python)
 - [aiosu](https://github.com/NiceAesth/aiosu) (python)
+- [osu.py](https://github.com/sheppsu/osu.py) (python)
 - [rosu-v2](https://github.com/MaxOhn/rosu-v2) (rust)
 - [osu.js](https://github.com/L-Mario564/osu.js) (javascript/typescript)
 
@@ -133,6 +134,7 @@ Version 0 is assumed when the header is omitted.
 Version  | Change
 -------- | ------
 20220705 | [Score](#score) object with different set of fields.
+20240529 | [`GET /rooms`](#get-multiplayer-rooms) will not return rooms with category `daily_challenge` prior to this version. Temporary, will not be supported after 2024-11-29.
 
 ## Language
 

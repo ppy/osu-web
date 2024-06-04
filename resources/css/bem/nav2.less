@@ -15,7 +15,7 @@
   display: flex;
   font-size: @font-size--title-small;
   font-weight: 500;
-  transition: height @header-pinned-animation-duration;
+  transition: height var(--header-pinned-animation-duration);
 
   .@{header-pinned} & {
     height: @nav2-height--pinned;
@@ -58,7 +58,6 @@
     background-size: contain;
     background-repeat: no-repeat;
     transition: all 100ms ease-in-out;
-    will-change: opacity, transform;
 
     background-image: var(--nav-logo);
 
@@ -83,7 +82,7 @@
     width: @_logo-size;
     height: @_logo-size;
     margin: -@__logo-whitespace;
-    transition: width @header-pinned-animation-duration, height @header-pinned-animation-duration;
+    transition: width var(--header-pinned-animation-duration), height var(--header-pinned-animation-duration);
     position: relative;
 
     .@{header-pinned} & {
@@ -168,7 +167,7 @@
     white-space: nowrap;
     display: flex;
     flex-direction: column;
-    transition: margin-top @header-pinned-animation-duration;
+    transition: margin-top var(--header-pinned-animation-duration);
 
     .@{header-pinned} & {
       margin-top: @_menu-offset--pinned;

@@ -20,8 +20,7 @@
                         {{ osu_trans('accounts.options.beatmapset_download._') }}
                     </div>
                     <form
-                        class="account-edit-entry__checkboxes account-edit-entry__checkboxes--vertical js-account-edit"
-                        data-account-edit-auto-submit="1"
+                        class="account-edit-entry__checkboxes account-edit-entry__checkboxes--vertical js-account-edit js-account-edit-auto-submit"
                         data-account-edit-type="radio"
                         data-url="{{ route('account.options') }}"
                         data-field="user_profile_customization[beatmapset_download]"
@@ -64,9 +63,9 @@
 
         <div class="account-edit__input-group">
             <div
-                class="account-edit-entry account-edit-entry--no-label js-account-edit js-user-preferences-update"
-                data-account-edit-auto-submit="1"
+                class="account-edit-entry account-edit-entry--no-label js-account-edit js-account-edit-auto-submit"
                 data-url="{{ route('account.options') }}"
+                data-user-preferences-update="1"
             >
                 <label class="account-edit-entry__checkbox">
                     @include('objects._switch', ['locals' => [
@@ -87,7 +86,12 @@
         </div>
 
         <div class="account-edit__input-group">
-            <div class="account-edit-entry account-edit-entry--no-label js-account-edit js-user-preferences-update" data-url="{{ route('account.options') }}" data-account-edit-auto-submit="1" data-skip-ajax-error-popup="1">
+            <div
+                class="account-edit-entry account-edit-entry--no-label js-account-edit js-account-edit-auto-submit"
+                data-url="{{ route('account.options') }}"
+                data-skip-ajax-error-popup="1"
+                data-user-preferences-update="1"
+            >
                 <label class="account-edit-entry__checkbox">
                     @include('objects._switch', ['locals' => [
                         'additionalClass'=> 'js-account-edit__input',

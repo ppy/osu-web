@@ -5,7 +5,7 @@
 
 return [
     'title_compact' => 'přátelé',
-    'too_many' => 'Dosažen limit počtu přátel.',
+    'too_many' => 'Dosažen limit počtu přátel',
 
     'buttons' => [
         'add' => 'přidat přítele',

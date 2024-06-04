@@ -102,7 +102,7 @@ return [
         ],
         'help' => [
             '_' => 'Bantuan & Komunitas',
-            'faq' => 'Pertanyaan yang Umum Diajukan (FAQ)',
+            'faq' => 'Pertanyaan Umum (FAQ)',
             'forum' => 'Forum Komunitas',
             'livestreams' => 'Siaran Langsung',
             'report' => 'Laporkan Masalah',
@@ -121,7 +121,7 @@ return [
 
     'errors' => [
         '400' => [
-            'error' => 'Parameter yang diminta tidak valid',
+            'error' => 'Parameter permintaan tidak valid',
             'description' => '',
         ],
         '404' => [
@@ -141,7 +141,7 @@ return [
             'description' => "Maaf, namun halaman yang kamu minta tidak ada di sini!",
         ],
         '422' => [
-            'error' => 'Parameter yang diminta tidak valid',
+            'error' => 'Parameter permintaan tidak valid',
             'description' => '',
         ],
         '429' => [
@@ -150,15 +150,15 @@ return [
         ],
         '500' => [
             'error' => 'Oh, tidak! Sepertinya ada sesuatu yang bermasalah! ;_;',
-            'description' => "Sistem osu! akan secara otomatis memberitahukan kami setiap kali terdapat suatu masalah.",
+            'description' => "Kami menerima notifikasi secara otomatis setiap kali terdapat suatu masalah.",
         ],
         'fatal' => [
             'error' => 'Oh, tidak! Sepertinya ada sesuatu yang (sangat) bermasalah! ;_;',
-            'description' => "Sistem osu! akan secara otomatis memberitahukan kami setiap kali terdapat suatu masalah.",
+            'description' => "Kami menerima notifikasi secara otomatis setiap kali terdapat suatu masalah.",
         ],
         '503' => [
             'error' => 'Sedang dalam pemeliharaan!',
-            'description' => "Proses pemeliharaan pada umumnya dapat memakan waktu yang cukup beragam, mulai dari 5 detik hingga lebih dari 10 menit. Jika proses pemeliharaan berlangsung lebih lama dari yang sewajarnya, harap kunjungi :link untuk informasi lebih lanjut.",
+            'description' => "Proses pemeliharaan pada umumnya dapat memakan waktu yang cukup beragam, mulai dari 5 detik hingga 10 menit. Apabila proses ini berlangsung lebih lama dari yang sewajarnya, kunjungi :link untuk informasi lebih lanjut.",
             'link' => [
                 'text' => '',
                 'href' => '',
@@ -178,7 +178,7 @@ return [
             'username' => 'nama pengguna',
 
             'error' => [
-                'email' => "Nama pengguna atau alamat email tidak ditemukan",
+                'email' => "Nama pengguna atau alamat email tidak ada",
                 'password' => 'Kata sandi salah',
             ],
         ],

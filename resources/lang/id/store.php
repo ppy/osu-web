@@ -14,26 +14,26 @@ return [
         'total' => 'total',
 
         'errors_no_checkout' => [
-            'line_1' => 'Uh-oh, terdapat masalah dengan keranjangmu yang menghalangi proses checkout!',
+            'line_1' => 'Uh-oh, terdapat masalah dengan keranjang belanjamu yang menghalangi proses checkout!',
             'line_2' => 'Hapus atau perbarui rangkaian item di atas untuk melanjutkan.',
         ],
 
         'empty' => [
-            'text' => 'Keranjangmu masih kosong.',
+            'text' => 'Keranjang belanjamu masih kosong.',
             'return_link' => [
-                '_' => 'Kembali ke tautan :link untuk mencari merchandise!',
+                '_' => 'Kembalilah ke halaman :link untuk menelusuri berbagai cendera mata yang tersedia!',
                 'link_text' => 'etalase toko',
             ],
         ],
     ],
 
     'checkout' => [
-        'cart_problems' => 'Uh oh, terdapat masalah dengan keranjangmu!',
-        'cart_problems_edit' => 'Klik di sini untuk menyunting isi keranjangmu.',
+        'cart_problems' => 'Uh oh, terdapat masalah dengan keranjang belanjamu!',
+        'cart_problems_edit' => 'Klik di sini untuk menyuntingnya.',
         'declined' => 'Pembayaran dibatalkan.',
         'delayed_shipping' => 'Kami sedang kebanjiran pesanan! Apabila kamu memesan sekarang, mohon beri kami waktu tambahan **selama 1-2 minggu** untuk memproses pesananmu karena kami saat ini masih harus mengurus pesanan yang ada.',
         'hide_from_activity' => 'Sembunyikan seluruh tag osu!supporter pada pesanan ini dari aktivitas saya',
-        'old_cart' => 'Keranjangmu sepertinya telah kedaluwarsa dan telah dimuat ulang. Silakan coba lagi.',
+        'old_cart' => 'Keranjang belanjamu sepertinya telah kedaluwarsa dan telah dimuat ulang. Silakan coba lagi.',
         'pay' => 'Checkout melalui Paypal',
         'title_compact' => 'checkout',
 

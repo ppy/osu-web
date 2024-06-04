@@ -69,7 +69,6 @@ return [
         'rank_per_run' => get_int(env('BEATMAPSET_RANK_PER_RUN')) ?? 2,
         'required_hype' => get_int(env('BEATMAPSET_REQUIRED_HYPE')) ?? 5,
         'required_nominations' => get_int(env('BEATMAPSET_REQUIRED_NOMINATIONS')) ?? 2,
-        'required_nominations_hybrid' => get_int(env('BEATMAPSET_REQUIRED_NOMINATIONS_HYBRID')) ?? 2,
         'upload_allowed' => get_int(env('BEATMAPSET_UPLOAD_ALLOWED')) ?? 4,
         'upload_allowed_supporter' => get_int(env('BEATMAPSET_UPLOAD_ALLOWED_SUPPORTER')) ?? 8,
         'upload_bonus_per_ranked' => get_int(env('BEATMAPSET_UPLOAD_BONUS_PER_RANKED')) ?? 1,
@@ -82,6 +81,9 @@ return [
     'camo' => [
         'key' => presence(env('CAMO_KEY')),
         'prefix' => env('CAMO_PREFIX', 'https://i.ppy.sh/'),
+    ],
+    'captcha' => [
+        'threshold' => get_int(env('CAPTCHA_THRESHOLD')) ?? 2,
     ],
     'chat' => [
         'channel_limit' => get_int(env('CHAT_CHANNEL_LIMIT')) ?? 10000,
@@ -164,6 +166,7 @@ return [
         'max_user_clients' => get_int(env('OAUTH_MAX_USER_CLIENTS')) ?? 1,
     ],
     'octane' => [
+        'local_cache_expire_second' => get_int(env('OCTANE_LOCAL_CACHE_EXPIRE_SECOND')) ?? 60,
         'local_cache_reset_requests' => get_int(env('OCTANE_LOCAL_CACHE_RESET_REQUESTS')) ?? 100,
     ],
     'pagination' => [

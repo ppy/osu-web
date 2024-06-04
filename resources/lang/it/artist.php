@@ -45,6 +45,11 @@ return [
         'index' => [
             '_' => 'ricerca tracce',
 
+            'exclusive_only' => [
+                'all' => '',
+                'exclusive_only' => 'osu! original',
+            ],
+
             'form' => [
                 'advanced' => 'Ricerca Avanzata',
                 'album' => 'Album',
@@ -52,6 +57,7 @@ return [
                 'bpm_gte' => 'BPM Minimo',
                 'bpm_lte' => 'BPM Massimo',
                 'empty' => 'Non ci sono tracce corrispondenti ai criteri di ricerca.',
+                'exclusive_only' => 'Tipo',
                 'genre' => 'Genere',
                 'genre_all' => 'Qualsiasi',
                 'length_gte' => 'Durata Minima',

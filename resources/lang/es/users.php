@@ -97,6 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
+            'inactive' => "Tu cuenta no ha sido usada en mucho tiempo.",
             'inactive_different_country' => "Tu cuenta no ha sido usada en mucho tiempo.",
         ],
     ],
@@ -109,12 +110,12 @@ return [
         'failed' => 'Inicio de sesión incorrecto',
         'forgot' => '¿Olvidaste tu contraseña?',
         'info' => 'Por favor, inicie sesión para continuar',
-        'invalid_captcha' => 'Demasiados intentos fallidos de inicio de sesión, complete el captcha e inténtelo de nuevo. (Actualice la página si el captcha no está visible)',
+        'invalid_captcha' => 'Demasiados intentos fallidos de inicio de sesión, completa el captcha e inténtalo de nuevo. (Actualiza la página si el captcha no está visible)',
         'locked_ip' => 'Tu dirección IP está bloqueada. Espera unos minutos.',
         'password' => 'Contraseña',
         'register' => "¿No tienes una cuenta de osu!? Crea una nueva",
         'remember' => 'Recordar este computador',
-        'title' => 'Inicie sesión para continuar',
+        'title' => 'Inicia sesión para continuar',
         'username' => 'Nombre de usuario',
 
         'beta' => [
@@ -144,7 +145,7 @@ return [
         'username' => 'Invitado',
         'error' => 'Necesitas haber iniciado sesión para hacer esto.',
     ],
-    'logout_confirm' => '¿Seguro que desea cerrar la sesión? :(',
+    'logout_confirm' => '¿Seguro que deseas cerrar la sesión? :(',
     'report' => [
         'button_text' => 'Reportar',
         'comments' => 'Comentarios',
@@ -209,7 +210,7 @@ return [
                     'unsupported_format' => 'Formato no soportado.',
 
                     'restriction_info' => [
-                        '_' => 'Carga disponible sólo para :link',
+                        '_' => 'Carga disponible solo para :link',
                         'link' => 'osu!supporters',
                     ],
                 ],
@@ -226,8 +227,8 @@ return [
             'unranked' => 'No hay partidas recientes',
 
             'achievements' => [
-                'achieved-on' => 'Obtenido el :date',
-                'locked' => 'Bloqueado',
+                'achieved-on' => 'Obtenida el :date',
+                'locked' => 'Bloqueada',
                 'title' => 'Logros',
             ],
             'beatmaps' => [
@@ -263,7 +264,7 @@ return [
             ],
             'events' => [
                 'title' => 'Eventos',
-                'title_longer' => 'Eventos Recientes',
+                'title_longer' => 'Eventos recientes',
                 'show_more' => 'ver más eventos',
             ],
             'historical' => [
@@ -444,7 +445,7 @@ return [
         'rank' => [
             'country' => 'Clasificación nacional para :mode',
             'country_simple' => 'Clasificación nacional',
-            'global' => 'Rank global para :mode',
+            'global' => 'Clasificación global para :mode',
             'global_simple' => 'Clasificación global',
             'highest' => 'Clasificación más alta: :rank el :date',
         ],
@@ -480,7 +481,7 @@ return [
         'offline' => 'Sin conexión',
     ],
     'store' => [
-        'from_client' => '¡por favor regístrese a través del cliente del juego en su lugar!',
+        'from_client' => '¡regístrate a través del cliente del juego en su lugar!',
         'from_web' => 'por favor, completa el registro usando el sitio web de osu!',
         'saved' => 'Usuario creado',
     ],

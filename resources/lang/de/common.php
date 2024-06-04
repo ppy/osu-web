@@ -39,6 +39,7 @@ return [
         'pin' => 'anheften',
         'post' => 'Senden',
         'read_more' => 'mehr anzeigen',
+        'refresh' => 'Aktualisieren',
         'reply' => 'Antworten',
         'reply_reopen' => 'Antworten und wiedereröffnen',
         'reply_resolve' => 'Antworten und lösen',

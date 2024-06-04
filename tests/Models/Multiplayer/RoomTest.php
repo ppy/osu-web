@@ -7,6 +7,7 @@ namespace Tests\Models\Multiplayer;
 
 use App\Exceptions\InvariantException;
 use App\Models\Beatmap;
+use App\Models\ChatFilter;
 use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\Room;
 use App\Models\User;
@@ -184,6 +185,32 @@ class RoomTest extends TestCase
 
         $this->expectException(InvariantException::class);
         (new Room())->startGame($user, $params);
+    }
+
+    public function testNameFiltering()
+    {
+        ChatFilter::factory()->create([
+            'match' => 'bad',
+            'replacement' => 'good',
+        ]);
+        $beatmap = Beatmap::factory()->create();
+        $user = User::factory()->create();
+
+        $params = [
+            'name' => 'bad word',
+            'playlist' => [
+                [
+                    'beatmap_id' => $beatmap->getKey(),
+                    'ruleset_id' => $beatmap->playmode,
+                    'played_at' => time(),
+                ],
+            ],
+            'type' => 'head_to_head',
+        ];
+
+        $room = new Room();
+        $room->startGame($user, $params);
+        $this->assertSame('good word', $room->name);
     }
 
     public static function startGameDurationDataProvider()

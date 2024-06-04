@@ -48,7 +48,7 @@ return [
                 'beatmapset_discussion_lock' => 'A discussão do beatmap ":title" foi trancada.',
                 'beatmapset_discussion_lock_compact' => 'A discussão foi trancada',
                 'beatmapset_discussion_post_new' => ':username publicou uma nova mensagem na discussão do beatmap ":title".',
-                'beatmapset_discussion_post_new_empty' => 'Nova publicação em ":title" de :username',
+                'beatmapset_discussion_post_new_empty' => 'Nova publicação em ":title" por :username',
                 'beatmapset_discussion_post_new_compact' => 'Nova publicação de :username',
                 'beatmapset_discussion_post_new_compact_empty' => 'Nova publicação de :username',
                 'beatmapset_discussion_review_new' => 'Nova revisão em ":title" por :username contendo problemas: :problems, sugestões: :suggestions, elogios: :praises',

@@ -45,6 +45,11 @@ return [
         'index' => [
             '_' => 'cerca de pistes',
 
+            'exclusive_only' => [
+                'all' => 'Totes',
+                'exclusive_only' => 'osu! original',
+            ],
+
             'form' => [
                 'advanced' => 'Cerca avançada',
                 'album' => 'Àlbum',
@@ -52,6 +57,7 @@ return [
                 'bpm_gte' => 'PPM mínim',
                 'bpm_lte' => 'PPM màxim',
                 'empty' => 'No s\'ha trobat cap pista que coincideixi amb els criteris de cerca.',
+                'exclusive_only' => 'Tipus',
                 'genre' => 'Gènere',
                 'genre_all' => 'Tots',
                 'length_gte' => 'Durada mínima',
