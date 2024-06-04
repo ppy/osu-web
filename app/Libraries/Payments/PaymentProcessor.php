@@ -14,6 +14,7 @@ use App\Traits\Validatable;
 use Datadog;
 use DB;
 use Exception;
+use Sentry\State\Scope;
 
 abstract class PaymentProcessor implements \ArrayAccess
 {
@@ -198,13 +199,21 @@ abstract class PaymentProcessor implements \ArrayAccess
 
             if ($payment === null) {
                 // payment not processed, manually cancelled.
-                throw new Exception('Cancelling order with no existing payment found.');
+                app('sentry')->getClient()->captureMessage(
+                    'Cancelling order with no existing payment found.',
+                    null,
+                    (new Scope())->setExtra('order_id', $order->getKey())
+                );
             }
 
             // check for pre-existing cancelled payment.
             // Paypal sends multiple notifications that we treat as a cancellation.
             if ($order->payments->where('cancelled', true)->first() !== null) {
-                throw new Exception('Payment already cancelled.');
+                app('sentry')->getClient()->captureMessage(
+                    'Payment already cancelled.',
+                    null,
+                    (new Scope())->setExtra('order_id', $order->getKey())
+                );
             }
 
             $payment?->cancel();
