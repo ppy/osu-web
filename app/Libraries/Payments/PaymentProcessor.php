@@ -13,12 +13,14 @@ use App\Traits\Memoizes;
 use App\Traits\Validatable;
 use Datadog;
 use DB;
-use Exception;
 use Sentry\State\Scope;
 
 abstract class PaymentProcessor implements \ArrayAccess
 {
     use Memoizes, Validatable;
+
+    const WARN_CANCEL_MISSING_PAYMENT = 'Cancelling order with no existing payment found.';
+    const WARN_PAYMENT_ALREADY_CANCELLED = 'Payment already cancelled.';
 
     public function __construct(protected array $params, protected PaymentSignature $signature)
     {
@@ -214,9 +216,10 @@ abstract class PaymentProcessor implements \ArrayAccess
                     null,
                     (new Scope())->setExtra('order_id', $order->getKey())
                 );
+            } else {
+                $payment?->cancel();
             }
 
-            $payment?->cancel();
             $order->cancel();
         });
     }
