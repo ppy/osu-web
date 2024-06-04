@@ -435,7 +435,7 @@ export default class DiscussionsState {
     }
 
     return nominations.required_meta.main_ruleset
-      + nominations.required_meta.non_main_ruleset * (this.groupedBeatmaps.size - 1);
+      + nominations.required_meta.non_main_ruleset * (this.rulesetsWithoutDeletedBeatmaps.length - 1);
   }
 
   saveState() {
