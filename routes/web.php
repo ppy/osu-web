@@ -371,12 +371,6 @@ Route::group(['middleware' => ['web']], function () {
             Route::post('callback', 'XsollaController@callback')->name('callback');
         });
 
-        Route::group(['as' => 'centili.', 'prefix' => 'centili'], function () {
-            Route::match(['post', 'get'], 'callback', 'CentiliController@callback')->name('callback');
-            Route::get('completed', 'CentiliController@completed')->name('completed');
-            Route::get('failed', 'CentiliController@failed')->name('failed');
-        });
-
         Route::group(['as' => 'shopify.', 'prefix' => 'shopify'], function () {
             Route::post('callback', 'ShopifyController@callback')->name('callback');
         });
