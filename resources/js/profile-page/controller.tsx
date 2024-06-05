@@ -11,16 +11,18 @@ import KudosuHistoryJson from 'interfaces/kudosu-history-json';
 import { ScoreCurrentUserPinJson } from 'interfaces/score-json';
 import SoloScoreJson, { isSoloScoreJsonForUser, SoloScoreJsonForUser } from 'interfaces/solo-score-json';
 import UserCoverJson from 'interfaces/user-cover-json';
+import UserCoverPresetJson from 'interfaces/user-cover-preset-json';
 import { ProfileExtraPage, profileExtraPages } from 'interfaces/user-extended-json';
 import UserMonthlyPlaycountJson from 'interfaces/user-monthly-playcount-json';
 import UserReplaysWatchedCountJson from 'interfaces/user-replays-watched-count-json';
 import { route } from 'laroute';
 import { debounce, pullAt } from 'lodash';
-import { action, makeObservable, observable, runInAction } from 'mobx';
+import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 import core from 'osu-core-singleton';
 import { error, onErrorWithCallback } from 'utils/ajax';
 import { jsonClone } from 'utils/json';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
+import { getInt } from 'utils/math';
 import { apiShowMore } from 'utils/offset-paginator';
 import { switchNever } from 'utils/switch-never';
 import getPage, { PageSectionJson, PageSectionWithoutCountJson } from './extra-page';
@@ -67,6 +69,7 @@ interface InitialData {
   current_mode: GameMode;
   scores_notice: string | null;
   user: ProfilePageUserJson;
+  user_cover_presets: UserCoverPresetJson[];
 }
 
 interface LazyPages {
@@ -103,10 +106,32 @@ export default class Controller {
   @observable isUpdatingCover = false;
   readonly scoresNotice: string | null;
   @observable readonly state: State;
+  readonly userCoverPresets;
   private xhr: Partial<Record<string, JQuery.jqXHR<unknown>>> = {};
+
+  get currentCoverPresetId() {
+    return getInt(this.state.user.cover.id);
+  }
 
   get canUploadCover() {
     return this.state.user.is_supporter;
+  }
+
+  @computed
+  get holdoverCoverPreset(): UserCoverPresetJson | null {
+    const id = getInt(this.state.user.cover.id);
+
+    if (id == null) return null;
+
+    const isActive = this.userCoverPresets.some((preset) => preset.id === id);
+
+    return isActive
+      ? null
+      : {
+        active: false,
+        id,
+        url: this.state.user.cover.url,
+      };
   }
 
   get withEdit() {
@@ -137,6 +162,7 @@ export default class Controller {
     this.currentMode = initialData.current_mode;
     this.scoresNotice = initialData.scores_notice;
     this.displayCoverUrl = this.state.user.cover.url;
+    this.userCoverPresets = initialData.user_cover_presets;
 
     makeObservable(this);
 
@@ -191,7 +217,7 @@ export default class Controller {
   }
 
   @action
-  apiSetCover(id: string) {
+  apiSetCover(id: number) {
     this.isUpdatingCover = true;
 
     this.xhr.setCover?.abort();

@@ -1,7 +1,6 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { times } from 'lodash';
 import { action, observable, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
@@ -14,8 +13,6 @@ import CoverUploader from './cover-uploader';
 
 type DropOverlayState = 'hover' | undefined;
 type DropOverlayVisibility = 'hidden' | undefined;
-
-const coverIndexes = times(8, (i) => (i + 1).toString());
 
 interface Props {
   controller: Controller;
@@ -47,20 +44,27 @@ export default class CoverSelector extends React.Component<Props> {
   }
 
   render() {
+    const holdoverCoverPreset = this.props.controller.holdoverCoverPreset;
+
     return (
       <div ref={this.dropzoneRef} className='profile-cover-change-popup'>
         <div className='profile-cover-change-popup__defaults'>
-          {coverIndexes.map((i) =>
-            (<div key={i} className='profile-cover-change-popup__selection'>
+          {this.props.controller.userCoverPresets.map((preset) =>
+            (<div key={preset.id} className='profile-cover-change-popup__selection'>
               <CoverSelection
                 controller={this.props.controller}
-                isSelected={this.props.controller.state.user.cover.id === i}
-                name={i}
-                thumbUrl={`/images/headers/profile-covers/c${i}t.jpg`}
-                url={`/images/headers/profile-covers/c${i}.jpg`}
+                preset={preset}
               />
             </div>),
           )}
+          {holdoverCoverPreset != null &&
+            <div className='profile-cover-change-popup__selection'>
+              <CoverSelection
+                controller={this.props.controller}
+                preset={holdoverCoverPreset}
+              />
+            </div>
+          }
           <p className='profile-cover-change-popup__selections-info'>
             {trans('users.show.edit.cover.defaults_info')}
           </p>

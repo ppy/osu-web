@@ -2403,10 +2403,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function save(array $options = [])
     {
-        if (!$this->exists) {
-            $this->cover_preset_id ??= $this->cover()->defaultPresetId();
-        }
-
         if ($options['skipValidations'] ?? false) {
             return parent::save($options);
         }
