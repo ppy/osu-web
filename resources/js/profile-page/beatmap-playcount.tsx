@@ -5,7 +5,7 @@ import BeatmapsetCover from 'components/beatmapset-cover';
 import StringWithComponent from 'components/string-with-component';
 import UserLink from 'components/user-link';
 import BeatmapPlaycountJson from 'interfaces/beatmap-playcount-json';
-import GameMode from 'interfaces/game-mode';
+import Ruleset from 'interfaces/ruleset';
 import * as React from 'react';
 import { getArtist, getTitle } from 'utils/beatmapset-helper';
 import { formatNumber } from 'utils/html';
@@ -15,7 +15,7 @@ import { beatmapUrl } from 'utils/url';
 const bn = 'beatmap-playcount';
 
 interface Props {
-  currentMode: GameMode;
+  currentMode: Ruleset;
   playcount: BeatmapPlaycountJson;
 }
 

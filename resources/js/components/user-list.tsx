@@ -1,8 +1,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import GameMode from 'interfaces/game-mode';
 import GroupJson from 'interfaces/group-json';
+import Ruleset from 'interfaces/ruleset';
 import UserJson from 'interfaces/user-json';
 import { usernameSortAscending } from 'models/user';
 import * as moment from 'moment';
@@ -17,7 +17,7 @@ import { ViewMode, viewModes } from './user-card';
 import { UserCards } from './user-cards';
 
 export type Filter = 'all' | 'online' | 'offline';
-type PlayModeFilter = 'all' | GameMode;
+type PlayModeFilter = 'all' | Ruleset;
 export type SortMode = 'last_visit' | 'rank' | 'username';
 
 const filters: Filter[] = ['all', 'online', 'offline'];

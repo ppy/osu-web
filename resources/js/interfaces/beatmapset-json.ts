@@ -6,9 +6,9 @@ import BeatmapJson from './beatmap-json';
 import BeatmapsetDiscussionJson from './beatmapset-discussion-json';
 import BeatmapsetEventJson from './beatmapset-event-json';
 import BeatmapsetNominationJson from './beatmapset-nomination-json';
-import GameMode from './game-mode';
 import GenreJson from './genre-json';
 import LanguageJson from './language-json';
+import Ruleset from './ruleset';
 import UserJson, { UserJsonDeleted } from './user-json';
 
 export interface Availability {
@@ -43,7 +43,7 @@ interface BaseNominationsInterface {
 }
 
 export interface NominationsInterface extends BaseNominationsInterface {
-  current: Partial<Record<GameMode, number>>;
+  current: Partial<Record<Ruleset, number>>;
   legacy_mode: false;
 }
 
@@ -72,7 +72,7 @@ export interface CurrentUserAttributes {
   can_remove_from_loved: boolean;
   is_watching: boolean;
   new_hype_time: string | null;
-  nomination_modes: Partial<Record<GameMode, 'full' | 'limited'>> | null;
+  nomination_modes: Partial<Record<Ruleset, 'full' | 'limited'>> | null;
   remaining_hype: number;
 }
 
@@ -84,7 +84,7 @@ interface BeatmapsetJsonAvailableIncludes {
   current_user_attributes: CurrentUserAttributes;
   description: BeatmapsetDescription;
   discussions: BeatmapsetDiscussionJson[];
-  eligible_main_rulesets: GameMode[];
+  eligible_main_rulesets: Ruleset[];
   events: BeatmapsetEventJson[];
   genre: GenreJson;
   has_favourited: boolean;

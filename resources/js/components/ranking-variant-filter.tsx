@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import GameMode from 'interfaces/game-mode';
+import Ruleset from 'interfaces/ruleset';
 import * as React from 'react';
 import { trans } from 'utils/lang';
 import { navigate } from 'utils/turbolinks';
@@ -10,7 +10,7 @@ import { Sort } from './sort';
 
 interface Props {
   current: string | null;
-  current_ruleset: GameMode;
+  current_ruleset: Ruleset;
   items: string[];
 }
 

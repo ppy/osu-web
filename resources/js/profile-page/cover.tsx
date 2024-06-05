@@ -5,7 +5,7 @@ import FlagCountry from 'components/flag-country';
 import { Spinner } from 'components/spinner';
 import UserAvatar from 'components/user-avatar';
 import UserGroupBadges from 'components/user-group-badges';
-import GameMode from 'interfaces/game-mode';
+import Ruleset from 'interfaces/ruleset';
 import UserExtendedJson from 'interfaces/user-extended-json';
 import { route } from 'laroute';
 import { times } from 'lodash';
@@ -18,7 +18,7 @@ import { trans } from 'utils/lang';
 
 interface Props {
   coverUrl: string | null;
-  currentMode: GameMode;
+  currentMode: Ruleset;
   editor?: JSX.Element;
   isUpdatingCover?: boolean;
   modifiers?: Modifiers;

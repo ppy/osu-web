@@ -3,11 +3,11 @@
 
 import BeatmapExtendedJson from './beatmap-extended-json';
 import BeatmapsetJson, { Availability } from './beatmapset-json';
-import GameMode from './game-mode';
+import Ruleset from './ruleset';
 
 interface NominationsSummary {
   current: number;
-  eligible_main_rulesets: GameMode[] | null;
+  eligible_main_rulesets: Ruleset[] | null;
   required_meta: {
     main_ruleset: number;
     non_main_ruleset: number;

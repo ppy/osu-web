@@ -3,7 +3,7 @@
 
 import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
-import GameMode from 'interfaces/game-mode';
+import Ruleset from 'interfaces/ruleset';
 import { intersectionWith, maxBy, sum } from 'lodash';
 import { action, computed, makeObservable, observable, reaction } from 'mobx';
 import moment from 'moment';
@@ -53,7 +53,7 @@ export default class DiscussionsState {
   @observable pinnedNewDiscussion = false;
 
   @observable readPostIds = new Set<number>();
-  @observable selectedNominatedRulesets: GameMode[] = [];
+  @observable selectedNominatedRulesets: Ruleset[] = [];
   @observable selectedUserId: number | null = null;
   @observable showDeleted = true; // this toggle only affects All and deleted discussion filters, other filters don't show deleted
 
@@ -211,7 +211,7 @@ export default class DiscussionsState {
 
   @computed
   get rulesetsWithoutDeletedBeatmaps() {
-    const rulesets: GameMode[] = [];
+    const rulesets: Ruleset[] = [];
 
     for (const [key, values] of this.groupedBeatmaps) {
       if (values.some((beatmap) => beatmap.deleted_at == null)) {
@@ -303,7 +303,7 @@ export default class DiscussionsState {
   @computed
   get unresolvedDiscussionCounts() {
     const byBeatmap: Partial<Record<number, number>> = {};
-    const byMode: Partial<Record<GameMode, number>> = {};
+    const byMode: Partial<Record<Ruleset, number>> = {};
     // show at least 0 for available rulesets
     this.store.beatmaps.forEach((beatmap) => {
       byMode[beatmap.mode] ??= 0;
@@ -404,7 +404,7 @@ export default class DiscussionsState {
   }
 
   @action
-  changeGameMode(mode: GameMode) {
+  changeGameMode(mode: Ruleset) {
     const beatmap = findDefault({ items: this.groupedBeatmaps.get(mode) });
     if (beatmap != null) {
       this.currentBeatmapId = beatmap.id;

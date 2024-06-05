@@ -6,7 +6,7 @@ import Modal from 'components/modal';
 import BeatmapsetDiscussionsStore from 'interfaces/beatmapset-discussions-store';
 import BeatmapsetEventJson from 'interfaces/beatmapset-event-json';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
-import GameMode from 'interfaces/game-mode';
+import Ruleset from 'interfaces/ruleset';
 import { route } from 'laroute';
 import { forEachRight, map, uniq } from 'lodash';
 import { action, computed, makeObservable, observable, runInAction } from 'mobx';
@@ -135,7 +135,7 @@ export class Nominator extends React.Component<Props> {
     );
   }
 
-  private hasFullNomination(mode: GameMode) {
+  private hasFullNomination(mode: Ruleset) {
     return this.nominationEvents.some((event) => {
       const user = this.users.get(event.user_id);
 
@@ -174,7 +174,7 @@ export class Nominator extends React.Component<Props> {
       .always(action(() => this.loading = false));
   };
 
-  private nominationCountMet(mode: GameMode) {
+  private nominationCountMet(mode: Ruleset) {
     if (this.beatmapset.nominations.legacy_mode) {
       return false;
     }
@@ -187,7 +187,7 @@ export class Nominator extends React.Component<Props> {
     return this.nominationCountWithSelections(mode) >= req && this.calculatedMainRuleset != null;
   }
 
-  private nominationCountWithSelections(mode: GameMode) {
+  private nominationCountWithSelections(mode: Ruleset) {
     if (this.beatmapset.nominations.legacy_mode) {
       throw new Error();
     }
@@ -264,7 +264,7 @@ export class Nominator extends React.Component<Props> {
         {trans('beatmapsets.nominate.dialog.which_modes')}
         <span>{trans('beatmapsets.nominate.dialog.current_main_ruleset', { ruleset: trans(`beatmaps.mode.${currentMode}`) })}</span>
         <div ref={this.checkboxContainerRef} className={`${bn}__checkboxes`}>
-          {this.playmodes?.map((mode: GameMode) => {
+          {this.playmodes?.map((mode: Ruleset) => {
             const disabled = !this.userCanNominateMode(mode);
             return (
               <label
@@ -301,7 +301,7 @@ export class Nominator extends React.Component<Props> {
     return trans('beatmapsets.nominate.dialog.confirmation');
   }
 
-  private requiresFullNomination(mode: GameMode) {
+  private requiresFullNomination(mode: Ruleset) {
     let req: number;
     let curr: number;
 
@@ -333,10 +333,10 @@ export class Nominator extends React.Component<Props> {
   @action
   private readonly updateCheckboxes = () => {
     const checkedBoxes = map(this.checkboxContainerRef.current?.querySelectorAll<HTMLInputElement>('input[type=checkbox]:checked'), (node) => node.value);
-    this.props.discussionsState.selectedNominatedRulesets = checkedBoxes as GameMode[];
+    this.props.discussionsState.selectedNominatedRulesets = checkedBoxes as Ruleset[];
   };
 
-  private userCanNominateMode(mode: GameMode) {
+  private userCanNominateMode(mode: Ruleset) {
     // Always enable the selected one so it can be unselected.
     if (this.selectedModes.includes(mode)) return true;
 

@@ -15,7 +15,7 @@ import BeatmapsetDiscussionsStore from 'interfaces/beatmapset-discussions-store'
 import BeatmapsetEventJson from 'interfaces/beatmapset-event-json';
 import { BeatmapsetNominationsInterface, NominationsInterface } from 'interfaces/beatmapset-json';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
-import GameMode from 'interfaces/game-mode';
+import Ruleset from 'interfaces/ruleset';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { action, makeObservable, observable, runInAction } from 'mobx';
@@ -476,7 +476,7 @@ export class Nominations extends React.Component<Props> {
 
     return (
       <>
-        {this.props.discussionsState.rulesetsWithoutDeletedBeatmaps.map((ruleset: GameMode) => (
+        {this.props.discussionsState.rulesetsWithoutDeletedBeatmaps.map((ruleset: Ruleset) => (
           <DiscreteBar
             key={ruleset}
             current={nominations.current[ruleset] ?? 0}
