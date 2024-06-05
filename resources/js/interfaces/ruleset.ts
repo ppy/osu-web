@@ -3,9 +3,9 @@
 
 export const rulesets = ['osu', 'taiko', 'fruits', 'mania'] as const;
 
-export function ensureGameMode(maybeMode: string): Ruleset | undefined {
-  if ((rulesets as Readonly<string[]>).includes(maybeMode)) {
-    return maybeMode as Ruleset;
+export function ensureRuleset(maybeRuleset: string): Ruleset | undefined {
+  if ((rulesets as Readonly<string[]>).includes(maybeRuleset)) {
+    return maybeRuleset as Ruleset;
   }
 }
 
