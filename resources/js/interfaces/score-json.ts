@@ -3,8 +3,8 @@
 
 import BeatmapExtendedJson from './beatmap-extended-json';
 import BeatmapsetJson from './beatmapset-json';
-import GameMode from './game-mode';
 import Rank from './rank';
+import Ruleset from './ruleset';
 import UserJson from './user-json';
 
 export interface ScoreCurrentUserPinJson {
@@ -49,7 +49,7 @@ interface ScoreJsonDefaultAttributes {
   created_at: string;
   id: number;
   max_combo: number;
-  mode: GameMode;
+  mode: Ruleset;
   mode_int: number;
   mods: string[];
   passed: boolean;
@@ -59,7 +59,7 @@ interface ScoreJsonDefaultAttributes {
   replay: boolean;
   score: number;
   statistics: Record<ScoreStatisticsAttribute, number>;
-  type: 'solo_score' | `score_best_${GameMode}` | `score_${GameMode}`;
+  type: 'solo_score' | `score_best_${Ruleset}` | `score_${Ruleset}`;
   user_id: number;
 }
 

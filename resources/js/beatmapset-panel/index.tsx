@@ -10,7 +10,7 @@ import UserLink from 'components/user-link';
 import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import BeatmapsetJson, { BeatmapsetStatus } from 'interfaces/beatmapset-json';
-import GameMode from 'interfaces/game-mode';
+import Ruleset from 'interfaces/ruleset';
 import { route } from 'laroute';
 import { sum, values } from 'lodash';
 import { action, computed, makeObservable, observable } from 'mobx';
@@ -54,7 +54,7 @@ const BeatmapDot = observer(({ beatmap }: { beatmap: BeatmapJson }) => (
   />
 ));
 
-const BeatmapDots = observer(({ compact, beatmaps, mode }: { beatmaps: BeatmapJson[]; compact: boolean; mode: GameMode }) => (
+const BeatmapDots = observer(({ compact, beatmaps, mode }: { beatmaps: BeatmapJson[]; compact: boolean; mode: Ruleset }) => (
   <div className='beatmapset-panel__extra-item beatmapset-panel__extra-item--dots'>
     <div className='beatmapset-panel__beatmap-icon'>
       <i className={`fal fa-extra-mode-${mode}`} />
@@ -219,7 +219,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
     }
 
     const groupedBeatmaps = this.groupedBeatmaps;
-    const rulesets: GameMode[] = [];
+    const rulesets: Ruleset[] = [];
     [...this.groupedBeatmaps.keys()].forEach((ruleset) => {
       if ((groupedBeatmaps.get(ruleset)?.length ?? 0) > 0) {
         rulesets.push(ruleset);

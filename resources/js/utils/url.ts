@@ -3,7 +3,7 @@
 
 import BeatmapJson from 'interfaces/beatmap-json';
 import ChangelogBuild from 'interfaces/changelog-build';
-import GameMode from 'interfaces/game-mode';
+import Ruleset from 'interfaces/ruleset';
 import { route } from 'laroute';
 import { startsWith, unescape } from 'lodash';
 import { TurbolinksLocation } from 'turbolinks';
@@ -25,7 +25,7 @@ export function beatmapsetDownloadDirect(id: string | number): string {
   return `osu://s/${id}`;
 }
 
-export function beatmapUrl(beatmap: BeatmapJson, ruleset?: GameMode) {
+export function beatmapUrl(beatmap: BeatmapJson, ruleset?: Ruleset) {
   return route('beatmapsets.show', { beatmapset: beatmap.beatmapset_id })
     + generate({ beatmap, ruleset });
 }

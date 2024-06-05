@@ -6,8 +6,8 @@ import BeatmapPlaycountJson from 'interfaces/beatmap-playcount-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import CurrentUserJson from 'interfaces/current-user-json';
 import EventJson from 'interfaces/event-json';
-import GameMode from 'interfaces/game-mode';
 import KudosuHistoryJson from 'interfaces/kudosu-history-json';
+import Ruleset from 'interfaces/ruleset';
 import { ScoreCurrentUserPinJson } from 'interfaces/score-json';
 import SoloScoreJson, { isSoloScoreJsonForUser, SoloScoreJsonForUser } from 'interfaces/solo-score-json';
 import UserCoverJson from 'interfaces/user-cover-json';
@@ -66,7 +66,7 @@ export function validPage(page: unknown) {
 
 interface InitialData {
   achievements: AchievementJson[];
-  current_mode: GameMode;
+  current_mode: Ruleset;
   scores_notice: string | null;
   user: ProfilePageUserJson;
   user_cover_presets: UserCoverPresetJson[];
@@ -98,7 +98,7 @@ interface State {
 
 export default class Controller {
   readonly achievements: Map<number, AchievementJson>;
-  readonly currentMode: GameMode;
+  readonly currentMode: Ruleset;
   @observable currentPage: Page = 'main';
   readonly debouncedSetDisplayCoverUrl = debounce((url: string | null) => this.setDisplayCoverUrl(url), 300);
   @observable displayCoverUrl: string | null;

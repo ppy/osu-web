@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
-import GameMode from 'interfaces/game-mode';
+import Ruleset from 'interfaces/ruleset';
 import DiscussionMode from './discussion-mode';
 
 export const filters = ['deleted', 'hype', 'mapperNotes', 'mine', 'pending', 'praises', 'resolved', 'total'] as const;
@@ -12,7 +12,7 @@ export type Filter = (typeof filters)[number];
 export default interface CurrentDiscussions {
   byFilter: Record<Filter, Record<DiscussionMode, Partial<Record<number, BeatmapsetDiscussionJson>>>>;
   countsByBeatmap: Partial<Record<number, number>>;
-  countsByPlaymode: Partial<Record<GameMode, number>>;
+  countsByPlaymode: Partial<Record<Ruleset, number>>;
   general: BeatmapsetDiscussionJson[];
   generalAll: BeatmapsetDiscussionJson[];
   reviews: BeatmapsetDiscussionJson[];
