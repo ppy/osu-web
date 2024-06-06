@@ -782,11 +782,11 @@ function currency($price, $precision = 2, $zeroShowFree = true)
  * Compares 2 money values from payment processor in a sane manner.
  * i.e. not a float.
  *
- * @param $a money value A
- * @param $b money value B
- * @return 0 if equal, 1 if $a > $b, -1 if $a < $b
+ * @param float $a money value A
+ * @param float $b money value B
+ * @return int 0 if equal, 1 if $a > $b, -1 if $a < $b
  */
-function compare_currency($a, $b)
+function compare_currency(float $a, float $b): int
 {
     return (int) ($a * 100) <=> (int) ($b * 100);
 }

@@ -11,7 +11,7 @@ use Sentry\State\Scope;
 
 class PaypalPaymentProcessor extends PaymentProcessor
 {
-    public function getCountryCode()
+    public function getCountryCode(): ?string
     {
         return $this['residence_country'];
     }
@@ -26,22 +26,22 @@ class PaypalPaymentProcessor extends PaymentProcessor
         }
     }
 
-    public function getParentTransactionId()
+    public function getParentTransactionId(): ?string
     {
         return $this['parent_txn_id'];
     }
 
-    public function getPaymentProvider()
+    public function getPaymentProvider(): string
     {
         return Order::PROVIDER_PAYPAL;
     }
 
-    public function getPaymentTransactionId()
+    public function getPaymentTransactionId(): string
     {
         return $this['txn_id'];
     }
 
-    public function getPaymentAmount()
+    public function getPaymentAmount(): float
     {
         // TODO: less floaty
 
@@ -52,17 +52,17 @@ class PaypalPaymentProcessor extends PaymentProcessor
         }
     }
 
-    public function getPaymentDate()
+    public function getPaymentDate(): \DateTimeInterface
     {
         return Carbon::parse($this['payment_date'])->setTimezone('UTC');
     }
 
-    public function isTest()
+    public function isTest(): bool
     {
         return presence($this['test_ipn']);
     }
 
-    public function getNotificationType()
+    public function getNotificationType(): string
     {
         static $paymentStatuses = ['Completed'];
         static $refundStatuses = ['Refunded', 'Reversed', 'Canceled_Reversal'];
@@ -85,12 +85,12 @@ class PaypalPaymentProcessor extends PaymentProcessor
         }
     }
 
-    public function getNotificationTypeRaw()
+    public function getNotificationTypeRaw(): string
     {
         return $this['payment_status'] ?? $this['txn_type'];
     }
 
-    public function validateTransaction()
+    public function validateTransaction(): bool
     {
         $this->signature->assertValid();
 

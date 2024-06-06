@@ -29,87 +29,67 @@ abstract class PaymentProcessor implements \ArrayAccess
 
     /**
      * Gets the country code of the payment as returned by the provider.
-     *
-     * @return string
      */
-    abstract public function getCountryCode();
+    abstract public function getCountryCode(): ?string;
 
     /**
      * Gets a more friendly identifying order number string that represents an Order.
-     *
-     * @return string
      */
-    abstract public function getOrderNumber();
+    abstract public function getOrderNumber(): ?string;
 
     /**
      * string representing the payment provider.
      *
      * @return string
      */
-    abstract public function getPaymentProvider();
+    abstract public function getPaymentProvider(): string;
 
     /**
      * Transaction ID returned by the payment provider.
-     *
-     * @return string
      */
-    abstract public function getPaymentTransactionId();
+    abstract public function getPaymentTransactionId(): string;
 
     /**
      * Gets the transaction ID for the payment tagged with the payment processor used..
      * Transaction IDs should be unique scoped to the payment processor.
-     *
-     * @return string
      */
-    public function getTransactionId()
+    public function getTransactionId(): string
     {
         return "{$this->getPaymentProvider()}-{$this->getPaymentTransactionId()}";
     }
 
     /**
      * Gets the payment amount given by the payment provider.
-     *
-     * @return float
      */
-    abstract public function getPaymentAmount();
+    abstract public function getPaymentAmount(): float;
 
     /**
      * Gets the payment date given by the payment provider.
-     *
-     * @return Carbon\Carbon
      */
-    abstract public function getPaymentDate();
+    abstract public function getPaymentDate(): \DateTimeInterface;
 
     /**
      * Gets the type of payment notification.
-     *
-     * @return string
      */
-    abstract public function getNotificationType();
+    abstract public function getNotificationType(): string;
 
     /**
      * Gets the raw value of the notification type from the payment provider.
-     *
-     * @return string
      */
-    abstract public function getNotificationTypeRaw();
+    abstract public function getNotificationTypeRaw(): string;
 
     /**
      * Gets if the payment notification is a test transaction.
      * This should only be used for the final payment notification;
      * it is not set by providers in the intermediate notifications.
-     *
-     * @return bool
      */
     abstract public function isTest();
 
     /**
      * Validates the transaction.
      * Returns true if the transaction is valid; false, otherwise.
-     *
-     * @return bool
      */
-    abstract public function validateTransaction();
+    abstract public function validateTransaction(): bool;
 
     public function isSkipped()
     {
@@ -272,10 +252,8 @@ abstract class PaymentProcessor implements \ArrayAccess
     /**
      * Fetches the Order corresponding to this payment and memoizes it.
      * Overridden in PaypalPaymentProcessor.
-     *
-     * @return Order
      */
-    protected function getOrder()
+    protected function getOrder(): ?Order
     {
         return $this->memoize(__FUNCTION__, function () {
             return Order::withPayments()

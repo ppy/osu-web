@@ -15,38 +15,38 @@ class XsollaPaymentProcessor extends PaymentProcessor
     const PAYMENT_NOTIFICATION_TYPES = ['payment', 'refund'];
     const USER_NOTIFICATION_TYPES = ['user_search', 'user_validation'];
 
-    public function getCountryCode()
+    public function getCountryCode(): ?string
     {
         return $this['user.country'];
     }
 
-    public function getOrderNumber()
+    public function getOrderNumber(): string
     {
         return $this['transaction.external_id'];
     }
 
-    public function getPaymentProvider()
+    public function getPaymentProvider(): string
     {
         return Order::PROVIDER_XSOLLA;
     }
 
-    public function getPaymentTransactionId()
+    public function getPaymentTransactionId(): string
     {
         return $this['transaction.id'];
     }
 
-    public function getPaymentAmount()
+    public function getPaymentAmount(): float
     {
         // TODO: less floaty
         return (float) $this['purchase.checkout.amount'];
     }
 
-    public function getPaymentDate()
+    public function getPaymentDate(): \DateTimeInterface
     {
         return Carbon::parse($this['transaction.payment_date'])->setTimezone('UTC');
     }
 
-    public function getNotificationType()
+    public function getNotificationType(): string
     {
         static $mapping = [
             'payment' => NotificationType::PAYMENT,
@@ -59,12 +59,12 @@ class XsollaPaymentProcessor extends PaymentProcessor
             ?? "unknown__{$this->getNotificationTypeRaw()}";
     }
 
-    public function getNotificationTypeRaw()
+    public function getNotificationTypeRaw(): string
     {
         return $this['notification_type'];
     }
 
-    public function isTest()
+    public function isTest(): bool
     {
         // temporarily disable.
         return false; //presence($this['transaction.dry_run']);
@@ -85,7 +85,7 @@ class XsollaPaymentProcessor extends PaymentProcessor
             && $order->isPaidOrDelivered();
     }
 
-    public function validateTransaction()
+    public function validateTransaction(): bool
     {
         $this->signature->assertValid();
 
