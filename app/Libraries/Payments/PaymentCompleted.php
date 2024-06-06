@@ -12,6 +12,8 @@ use App\Mail\StorePaymentCompleted;
 use App\Models\Store\Order;
 use App\Models\Store\Payment;
 use Mail;
+use Sentry\Severity;
+use Sentry\State\Scope;
 
 class PaymentCompleted
 {
@@ -25,7 +27,11 @@ class PaymentCompleted
     private function sendPaymentCompletedMail()
     {
         if (!$this->order->isPaidOrDelivered()) {
-            \Log::warning("Trying to send mail for unpaid order ({$this->order->order_id}), aborted.");
+            app('sentry')->getClient()->captureMessage(
+                'Trying to send mail for unpaid order',
+                Severity::warning(),
+                (new Scope())->setExtra('order_id', $this->order->getKey())
+            );
 
             return;
         }
