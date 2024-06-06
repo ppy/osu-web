@@ -9,13 +9,12 @@ use App\Libraries\OrderCheckout;
 use App\Libraries\Payments\PaymentCompleted;
 use App\Models\Store\Order;
 use App\Traits\CheckoutErrorSettable;
-use App\Traits\StoreNotifiable;
 use Auth;
 use DB;
 
 class CheckoutController extends Controller
 {
-    use CheckoutErrorSettable, StoreNotifiable;
+    use CheckoutErrorSettable;
 
     protected $layout = 'master';
 
