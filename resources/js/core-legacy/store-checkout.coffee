@@ -20,7 +20,6 @@ export class StoreCheckout
       provider = element.dataset.provider
       orderNumber = element.dataset.orderNumber
       switch provider
-        when 'centili' then init['centili'] = Promise.resolve()
         when 'free' then init['free'] = Promise.resolve()
         when 'paypal' then init['paypal'] = Promise.resolve()
         when 'xsolla' then init['xsolla'] = StoreXsolla.promiseInit(orderNumber)
@@ -43,10 +42,6 @@ export class StoreCheckout
   @startPayment: (params) ->
     { orderId, provider, url } = params
     switch provider
-      when 'centili'
-        new Promise (resolve) ->
-          window.location.href = url
-
       when 'paypal'
         StorePaypal.fetchApprovalLink(orderId).then (link) ->
           window.location.href = link
