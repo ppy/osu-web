@@ -14,19 +14,19 @@ return [
     ],
 
     'judge' => [
-        'hide_judged' => '',
-        'nav_title' => '',
+        'hide_judged' => 'esconder entradas julgadas',
+        'nav_title' => 'juiz',
         'no_current_vote' => 'você ainda não votou.',
         'update' => 'atualizar',
         'validation' => [
             'missing_score' => 'pontuação faltando',
-            'contest_vote_judged' => '',
+            'contest_vote_judged' => 'não é possível votar em concursos já julgados',
         ],
         'voted' => 'Você já enviou um voto nesta entrada.',
     ],
 
     'judge_results' => [
-        '_' => '',
+        '_' => 'Resultado do julgamento',
         'creator' => 'criador',
         'score' => 'Pontuação',
         'total_score' => 'pontuação total',

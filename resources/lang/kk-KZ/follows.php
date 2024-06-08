@@ -16,7 +16,7 @@ return [
     ],
 
     'forum_topic' => [
-        'title' => '',
+        'title' => 'форум тақырыбы',
     ],
 
     'index' => [
@@ -27,7 +27,7 @@ return [
         'empty' => '',
         'followers' => '',
         'page_title' => '',
-        'title' => '',
+        'title' => 'маппер',
         'to_0' => '',
         'to_1' => '',
     ],

@@ -12,7 +12,7 @@ return [
             '_' => ':action :items?',
             'disable' => 'Zakázat',
             'enable' => 'Povolit',
-            'items' => '',
+            'items' => ':count_delimited záhlaví|:count_delimited záhlaví',
         ],
 
         'create_form' => [
@@ -31,7 +31,7 @@ return [
         ],
     ],
     'store' => [
-        'failed' => '',
-        'ok' => '',
+        'failed' => 'Nastala chyba při vytváření záhlaví: :error',
+        'ok' => 'Záhlaví vytvořena',
     ],
 ];

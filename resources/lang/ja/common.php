@@ -39,7 +39,7 @@ return [
         'pin' => 'ピン',
         'post' => '投稿',
         'read_more' => '続きを読む',
-        'refresh' => '',
+        'refresh' => '更新',
         'reply' => '返信',
         'reply_reopen' => '返信して再開',
         'reply_resolve' => '返信して解決',

@@ -8,7 +8,7 @@ return [
     'heading' => 'ヘッダー',
     'help' => 'ヘルプ',
     'image' => '画像',
-    'imagemap' => '',
+    'imagemap' => 'イメージマップ',
     'italic' => '斜体',
     'link' => 'リンク',
     'list' => 'リスト',

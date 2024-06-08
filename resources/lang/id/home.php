@@ -61,7 +61,7 @@ return [
             'login_required' => 'Masuk untuk mencari pengguna',
             'more' => ':count hasil pencarian pengguna lainnya',
             'more_simple' => 'Lihat hasil pencarian pengguna lainnya',
-            'more_hidden' => 'Pencarian pengguna terbatas hanya untuk :max pengguna. Cobalah untuk mempersempit kriteria pencarian.',
+            'more_hidden' => 'Pencarian pengguna terbatas hanya pada :max pengguna. Cobalah untuk mempersempit kriteria pencarian.',
             'title' => 'Pengguna',
         ],
 

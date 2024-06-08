@@ -40,15 +40,20 @@ return [
     ],
 
     'nominate' => [
+        'bng_limited_too_many_rulesets' => '',
+        'full_nomination_required' => '',
         'hybrid_requires_modes' => 'Un beatmapset ibrido richiede che venga selezionata almeno una modalità di gioco per poterla nominare.',
         'incorrect_mode' => 'Non hai il permesso di nominare per la modalità: :mode',
-        'full_bn_required' => 'Devi essere un nominatore completo per eseguire questa nomina qualificante.',
+        'invalid_limited_nomination' => '',
+        'invalid_ruleset' => '',
         'too_many' => 'Requisito di nomina già soddisfatto.',
+        'too_many_non_main_ruleset' => '',
 
         'dialog' => [
             'confirmation' => 'Sei sicuro di voler nominare questa beatmap?',
             'header' => 'Nomina Beatmap',
             'hybrid_warning' => 'nota: puoi nominare una sola volta, quindi assicurati di nominare per tutte le modalità di gioco che vuoi',
+            'current_main_ruleset' => '',
             'which_modes' => 'Nominare per quali modalità?',
         ],
     ],

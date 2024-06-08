@@ -23,6 +23,10 @@ return [
         'used' => 'المُنفق',
     ],
 
+    'performance' => [
+        'insufficient_history' => '',
+    ],
+
     'type' => [
         'charts' => 'منطقة ألأضواء',
         'country' => 'الدولة',

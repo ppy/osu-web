@@ -3,4 +3,10 @@
 
 import UserCoverPresetBatchActivate from 'user-cover-preset-batch-activate';
 
-new UserCoverPresetBatchActivate();
+declare global {
+  interface Window {
+    userCoverPresetBatchActivate?: UserCoverPresetBatchActivate;
+  }
+}
+
+window.userCoverPresetBatchActivate ??= new UserCoverPresetBatchActivate();

@@ -71,7 +71,7 @@ return [
             'judge' => '',
         ],
         'groups_controller' => [
-            'show' => '',
+            'show' => 'группалар',
         ],
         'home_controller' => [
             'get_download' => 'жүктеу',
@@ -87,10 +87,10 @@ return [
             '_' => '',
         ],
         'matches_controller' => [
-            '_' => '',
+            '_' => 'матчтар',
         ],
         'news_controller' => [
-            '_' => '',
+            '_' => 'жаңалықтар',
         ],
         'notifications_controller' => [
             '_' => '',

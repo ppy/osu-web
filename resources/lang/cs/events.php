@@ -17,7 +17,7 @@ return [
     'user_support_again' => '<strong>:user</strong> se opět rozhodl podpořit osu! - díky za tvou štědrost!',
     'user_support_first' => '<strong>:user</strong> podpořil osu! - díky za tvou štědrost!',
     'user_support_gift' => '<strong>:user</strong> obdržel dar osu! supporteru!',
-    'username_change' => '<strong>:previousUsername</strong> se přejmenoval na <strong><em>:user</strong></em>!',
+    'username_change' => '<strong>:previousUsername</strong> se přejmenoval na <strong><em>:user</em></strong>!',
 
     'beatmapset_status' => [
         'approved' => 'schváleno',

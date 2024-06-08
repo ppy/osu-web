@@ -2,8 +2,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import AchievementJson from './achievement-json';
-import GameMode from './game-mode';
 import Rank from './rank';
+import Ruleset from './ruleset';
 
 const eventTypes = [
   'achievement',
@@ -89,7 +89,7 @@ interface BeatmapsetUploadEvent extends EventBase {
 
 interface RankEvent extends EventBase {
   beatmap: EventBeatmap;
-  mode: GameMode;
+  mode: Ruleset;
   rank: number;
   scoreRank: Rank;
   type: 'rank';
@@ -98,7 +98,7 @@ interface RankEvent extends EventBase {
 
 interface RankLostEvent extends EventBase {
   beatmap: EventBeatmap;
-  mode: GameMode;
+  mode: Ruleset;
   type: 'rankLost';
   user: EventUser;
 }

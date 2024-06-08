@@ -18,8 +18,8 @@ return [
     'channels' => [
         'confirm_part' => 'Czy na pewno chcesz ukryć ten kanał? Wciąż będziesz otrzymywać z niego wiadomości.',
         'create' => 'utwórz ogłoszenie',
-        'join' => '',
-        'none' => '',
+        'join' => 'dołącz do kanału ',
+        'none' => 'brak kanału',
 
         'list' => [
             'title' => [
@@ -64,6 +64,6 @@ return [
     ],
 
     'join_channels' => [
-        'loading' => '',
+        'loading' => 'Ładowanie listy kanałów...',
     ],
 ];

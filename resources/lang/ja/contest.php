@@ -16,8 +16,8 @@ return [
     'judge' => [
         'hide_judged' => '',
         'nav_title' => '',
-        'no_current_vote' => '',
-        'update' => '',
+        'no_current_vote' => 'あなたはまだ投票していません。',
+        'update' => '更新',
         'validation' => [
             'missing_score' => '',
             'contest_vote_judged' => '',

@@ -40,15 +40,20 @@ return [
     ],
 
     'nominate' => [
+        'bng_limited_too_many_rulesets' => '',
+        'full_nomination_required' => '',
         'hybrid_requires_modes' => 'Un mapa híbrido requiere que selecciones al menos un modo de juego para nominar.',
         'incorrect_mode' => 'No tienes permiso para nominar el modo: :mode',
-        'full_bn_required' => 'Debes ser un nominador completo para realizar la nominación de calificación del mapa.',
+        'invalid_limited_nomination' => '',
+        'invalid_ruleset' => '',
         'too_many' => 'Requisito de nominación ya cumplido.',
+        'too_many_non_main_ruleset' => '',
 
         'dialog' => [
             'confirmation' => '¿Estás seguro de que quieres nominar este mapa?',
             'header' => 'Nominar mapa',
             'hybrid_warning' => 'nota: solo puedes nominar una vez, así que asegúrate de que estás nominando todos los modos de juego que quieres nominar',
+            'current_main_ruleset' => '',
             'which_modes' => '¿Nominar para qué modos?',
         ],
     ],

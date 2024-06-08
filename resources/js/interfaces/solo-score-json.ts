@@ -3,8 +3,8 @@
 
 import BeatmapExtendedJson from './beatmap-extended-json';
 import BeatmapJson from './beatmap-json';
-import GameMode from './game-mode';
 import Rank from './rank';
+import Ruleset from './ruleset';
 import { ScoreJsonAvailableIncludes, ScoreJsonDefaultIncludes } from './score-json';
 import ScoreModJson from './score-mod-json';
 
@@ -48,7 +48,7 @@ type SoloScoreJsonDefaultAttributes = {
   started_at: string | null;
   statistics: Partial<Record<SoloScoreStatisticsAttribute, number>>;
   total_score: number;
-  type: 'solo_score' | `score_best_${GameMode}` | `score_${GameMode}`;
+  type: 'solo_score' | `score_best_${Ruleset}` | `score_${Ruleset}`;
   user_id: number;
 } & (
   { legacy_perfect: boolean } |

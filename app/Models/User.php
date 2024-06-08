@@ -977,7 +977,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return in_array($playmode, $groupModes ?? [], true);
     }
 
-    public function isNAT($mode = null)
+    public function isNAT(?string $mode = null)
     {
         return $this->inGroupWithPlaymode('nat', $mode);
     }
@@ -997,17 +997,17 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->isGroup(app('groups')->byIdentifier('gmt'));
     }
 
-    public function isBNG($mode = null)
+    public function isBNG(?string $mode = null)
     {
         return $this->isFullBN($mode) || $this->isLimitedBN($mode);
     }
 
-    public function isFullBN($mode = null)
+    public function isFullBN(?string $mode = null)
     {
         return $this->inGroupWithPlaymode('bng', $mode);
     }
 
-    public function isLimitedBN($mode = null)
+    public function isLimitedBN(?string $mode = null)
     {
         return $this->inGroupWithPlaymode('bng_limited', $mode);
     }
@@ -2403,10 +2403,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function save(array $options = [])
     {
-        if (!$this->exists) {
-            $this->cover_preset_id ??= $this->cover()->defaultPresetId();
-        }
-
         if ($options['skipValidations'] ?? false) {
             return parent::save($options);
         }

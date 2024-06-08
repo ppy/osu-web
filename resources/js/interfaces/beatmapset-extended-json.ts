@@ -3,10 +3,15 @@
 
 import BeatmapExtendedJson from './beatmap-extended-json';
 import BeatmapsetJson, { Availability } from './beatmapset-json';
+import Ruleset from './ruleset';
 
 interface NominationsSummary {
   current: number;
-  required: number;
+  eligible_main_rulesets: Ruleset[] | null;
+  required_meta: {
+    main_ruleset: number;
+    non_main_ruleset: number;
+  };
 }
 
 interface BeatmapsetExtendedJsonAdditionalAttributes {
