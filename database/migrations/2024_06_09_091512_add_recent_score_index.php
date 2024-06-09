@@ -26,7 +26,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('daily_challenge_queue', function (Blueprint $table) {
+        Schema::table('scores', function (Blueprint $table) {
             $table->dropIndex('user_recent');
         });
     }
