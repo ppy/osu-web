@@ -55,7 +55,7 @@ class Room extends Model
         'ended' => [
             ['column' => 'ends_at', 'order' => 'DESC', 'type' => 'time'],
             ['column' => 'room_id', 'order' => 'DESC', 'type' => 'int'],
-        ]
+        ],
     ];
 
     const SORTS = [
