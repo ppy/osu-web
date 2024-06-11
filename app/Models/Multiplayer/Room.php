@@ -60,7 +60,7 @@ class Room extends Model
         ],
         'participated' => [
             ['column' => 'multiplayer_rooms_high.ends_at', 'order' => 'DESC', 'type' => 'time'],
-            ['column' => 'multiplayer_rooms_high.room_id', 'order' => 'DESC', 'type' => 'int']
+            ['column' => 'multiplayer_rooms_high.room_id', 'order' => 'DESC', 'type' => 'int'],
         ],
     ];
 
@@ -513,6 +513,15 @@ class Room extends Model
             ->get()
             ->pluck('user')
             ->all();
+    }
+
+    public function save(array $options = [])
+    {
+        if ($this->exists && $this->isDirty('ends_at')) {
+            $this->userHighScores()->update(['ends_at' => $this->ends_at]);
+        }
+
+        return parent::save($options);
     }
 
     public function startGame(User $host, array $rawParams)
