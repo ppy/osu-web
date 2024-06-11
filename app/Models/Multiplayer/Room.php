@@ -7,6 +7,7 @@ namespace App\Models\Multiplayer;
 
 use App\Casts\PresentString;
 use App\Exceptions\InvariantException;
+use App\Libraries\DbCursorHelper;
 use App\Models\Beatmap;
 use App\Models\Chat\Channel;
 use App\Models\Model;
@@ -50,6 +51,13 @@ class Room extends Model
 {
     use Memoizes, SoftDeletes, WithDbCursorHelper;
 
+    const PARTICIPATED_SORT = [
+        'ended' => [
+            ['column' => 'ends_at', 'order' => 'DESC', 'type' => 'time'],
+            ['column' => 'room_id', 'order' => 'DESC', 'type' => 'int'],
+        ]
+    ];
+
     const SORTS = [
         'ended' => [
             ['column' => 'ends_at', 'order' => 'DESC', 'type' => 'time'],
@@ -57,10 +65,6 @@ class Room extends Model
         ],
         'created' => [
             ['column' => 'id', 'order' => 'DESC', 'type' => 'int'],
-        ],
-        'participated' => [
-            ['column' => 'multiplayer_rooms_high.ends_at', 'order' => 'DESC', 'type' => 'time'],
-            ['column' => 'multiplayer_rooms_high.room_id', 'order' => 'DESC', 'type' => 'int'],
         ],
     ];
 
@@ -160,11 +164,6 @@ class Room extends Model
         $category = $params['category'];
         $typeGroup = $params['type_group'];
 
-        // invalid combinations
-        if ($sort === 'participated' && $mode !== 'participated') {
-            $sort = null;
-        }
-
         // support old query string param
         // TODO: redirect instead?
         if ($category === 'realtime') {
@@ -195,7 +194,6 @@ class Room extends Model
                 break;
             case 'participated':
                 $query->hasParticipatedForListing($user);
-                $sort = 'participated';
                 break;
             case 'owned':
                 $query->startedBy($user);
@@ -204,7 +202,9 @@ class Room extends Model
                 $query->active();
         }
 
-        $cursorHelper = static::makeDbCursorHelper($sort);
+        $cursorHelper = $mode === 'participated'
+            ? new DbCursorHelper(static::PARTICIPATED_SORT, 'ended', 'ended', 'multiplayer_rooms_high.')
+            : static::makeDbCursorHelper($sort);
         $query->cursorSort($cursorHelper, cursor_from_params($rawParams));
 
         $limit = clamp($params['limit'] ?? $maxLimit, 1, $maxLimit);
@@ -286,12 +286,14 @@ class Room extends Model
     {
         $tempModel = new UserScoreAggregate();
 
-        return $query->join(
-            $tempModel->getTable(),
-            $tempModel->qualifyColumn('room_id'),
-            '=',
-            $this->qualifyColumn('id'),
-        )->where($tempModel->qualifyColumn('user_id'), $user->getKey());
+        return $query
+            ->selectRaw("{$this->getTable()}.*, {$tempModel->qualifyColumn('room_id')}")
+            ->join(
+                $tempModel->getTable(),
+                $tempModel->qualifyColumn('room_id'),
+                '=',
+                $this->qualifyColumn('id'),
+            )->where($tempModel->qualifyColumn('user_id'), $user->getKey());
     }
 
     public function scopeStartedBy($query, User $user)
