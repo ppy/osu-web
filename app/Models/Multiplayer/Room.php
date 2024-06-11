@@ -58,6 +58,10 @@ class Room extends Model
         'created' => [
             ['column' => 'id', 'order' => 'DESC', 'type' => 'int'],
         ],
+        'participated' => [
+            ['column' => 'multiplayer_rooms_high.ends_at', 'order' => 'DESC', 'type' => 'time'],
+            ['column' => 'multiplayer_rooms_high.room_id', 'order' => 'DESC', 'type' => 'int']
+        ],
     ];
 
     const DEFAULT_SORT = 'created';
@@ -149,11 +153,17 @@ class Room extends Model
         ], ['null_missing' => true]);
 
         $maxLimit ??= 250;
+        $mode = $params['mode'];
         $user = $params['user'];
         $seasonId = $params['season_id'];
         $sort = $params['sort'];
         $category = $params['category'];
         $typeGroup = $params['type_group'];
+
+        // invalid combinations
+        if ($sort === 'participated' && $mode !== 'participated') {
+            $sort = null;
+        }
 
         // support old query string param
         // TODO: redirect instead?
@@ -176,7 +186,7 @@ class Room extends Model
             $query->where('category', $category);
         }
 
-        switch ($params['mode']) {
+        switch ($mode) {
             case 'all':
                 break;
             case 'ended':
@@ -185,6 +195,7 @@ class Room extends Model
                 break;
             case 'participated':
                 $query->hasParticipated($user);
+                $sort = 'participated';
                 break;
             case 'owned':
                 $query->startedBy($user);
@@ -263,12 +274,16 @@ class Room extends Model
         return $query->whereIn('category', ['featured_artist', 'spotlight']);
     }
 
-    public function scopeHasParticipated($query, User $user)
+    public function scopeHasParticipated(Builder $query, User $user)
     {
-        return $query->whereHas(
-            'userHighScores',
-            fn ($q) => $q->where('user_id', $user->getKey()),
-        );
+        $tempModel = new UserScoreAggregate();
+
+        return $query->join(
+            $tempModel->getTable(),
+            $tempModel->qualifyColumn('room_id'),
+            '=',
+            $this->qualifyColumn('id'),
+        )->where($tempModel->qualifyColumn('user_id'), $user->getKey());
     }
 
     public function scopeStartedBy($query, User $user)

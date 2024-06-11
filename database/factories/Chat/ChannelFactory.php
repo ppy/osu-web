@@ -10,6 +10,7 @@ namespace Database\Factories\Chat;
 use App\Exceptions\InvariantException;
 use App\Models\Chat\Channel;
 use App\Models\LegacyMatch\LegacyMatch;
+use App\Models\Multiplayer\Room;
 use App\Models\User;
 use Database\Factories\Factory;
 
@@ -28,6 +29,16 @@ class ChannelFactory extends Factory
     public function moderated(): static
     {
         return $this->state(['moderated' => true]);
+    }
+
+    public function multiplayer(): static
+    {
+        $room = Room::factory()->create();
+
+        return $this->state([
+            'name' => "#lazermp_{$room->getKey()}",
+            'type' => Channel::TYPES['multiplayer'],
+        ]);
     }
 
     public function pm(User ...$users): static
