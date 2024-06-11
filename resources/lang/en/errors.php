@@ -33,4 +33,7 @@ return [
         'invalid_cursor_exception' => 'Invalid cursor parameter specified.',
         'operation_timeout_exception' => 'Search is currently busier than usual, try again later.',
     ],
+    'user_report' => [
+        'recently_reported' => 'Already reported recently.',
+    ],
 ];
