@@ -194,7 +194,7 @@ class Room extends Model
                 $sort ??= 'ended';
                 break;
             case 'participated':
-                $query->hasParticipated($user);
+                $query->hasParticipatedForListing($user);
                 $sort = 'participated';
                 break;
             case 'owned':
@@ -275,6 +275,14 @@ class Room extends Model
     }
 
     public function scopeHasParticipated(Builder $query, User $user)
+    {
+        return $query->whereHas(
+            'userHighScores',
+            fn ($q) => $q->where('user_id', $user->getKey()),
+        );
+    }
+
+    public function scopeHasParticipatedForListing(Builder $query, User $user)
     {
         $tempModel = new UserScoreAggregate();
 
