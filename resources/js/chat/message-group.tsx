@@ -3,6 +3,8 @@
 
 import UserAvatar from 'components/user-avatar';
 import UserLink from 'components/user-link';
+import Reportable from 'interfaces/reportable';
+import { last } from 'lodash';
 import { observer } from 'mobx-react';
 import Message from 'models/chat/message';
 import * as moment from 'moment';
@@ -17,6 +19,23 @@ interface Props {
 
 @observer
 export default class MessageGroup extends React.Component<Props> {
+  private get reportable() {
+    const lastMessage = last(this.props.messages);
+
+    if (lastMessage == null) {
+      throw new Error('invalid reportable access on empty message group');
+    }
+
+    if (typeof lastMessage.messageId !== 'number') {
+      return undefined;
+    }
+
+    return {
+      id: lastMessage.messageId.toString(),
+      type: 'message',
+    } satisfies Reportable;
+  }
+
   render(): React.ReactNode {
     const messages = this.props.messages;
 
@@ -29,7 +48,11 @@ export default class MessageGroup extends React.Component<Props> {
     return (
       <div className={classWithModifiers('chat-message-group', { own: sender.id === core.currentUser?.id })}>
         <div className='chat-message-group__sender'>
-          <UserLink tooltipPosition='top center' user={sender}>
+          <UserLink
+            reportable={this.reportable}
+            tooltipPosition='top center'
+            user={sender}
+          >
             <div className='chat-message-group__avatar'>
               <UserAvatar modifiers='full-circle' user={{ avatar_url: sender.avatarUrl }} />
             </div>
