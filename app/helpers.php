@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 use App\Exceptions\FastImagesizeFetchException;
+use App\Exceptions\HasExtraExceptionData;
 use App\Http\Controllers\RankingController;
 use App\Libraries\Base64Url;
 use App\Libraries\LocaleMeta;
@@ -13,6 +14,7 @@ use Egulias\EmailValidator\Validation\NoRFCWarningsValidation;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Arr;
 use Illuminate\Support\HtmlString;
+use Sentry\State\Scope;
 
 function api_version(): int
 {
@@ -488,7 +490,7 @@ function log_error_sentry(Throwable $exception, ?array $tags = null): ?string
         return null;
     }
 
-    return Sentry\withScope(function ($scope) use ($exception, $tags) {
+    return Sentry\withScope(function (Scope $scope) use ($exception, $tags) {
         $currentUser = Auth::user();
         $userContext = $currentUser === null
             ? ['id' => null]
@@ -500,6 +502,15 @@ function log_error_sentry(Throwable $exception, ?array $tags = null): ?string
         $scope->setUser($userContext);
         foreach ($tags ?? [] as $key => $value) {
             $scope->setTag($key, $value);
+        }
+
+        if ($exception instanceof HasExtraExceptionData) {
+            $scope->setExtras($exception->getExtras());
+            $contexts = $exception->getContexts();
+
+            foreach ($contexts as $name => $value) {
+                $scope->setContext($name, $value);
+            }
         }
 
         return Sentry\captureException($exception);

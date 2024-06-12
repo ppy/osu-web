@@ -172,7 +172,7 @@ abstract class PaymentProcessor implements \ArrayAccess
         optional($order)->update(['transaction_id' => $this->getTransactionId()]);
 
         if (!$this->validateTransaction()) {
-            $this->throwValidationFailed(new PaymentProcessorException($this->validationErrors()));
+            $this->throwValidationFailed(new PaymentProcessorException($order, $this->validationErrors()));
         }
 
         DB::connection('mysql-store')->transaction(function () use ($order) {
@@ -216,7 +216,7 @@ abstract class PaymentProcessor implements \ArrayAccess
         $this->sandboxAssertion();
 
         if (!$this->validateTransaction()) {
-            $this->throwValidationFailed(new PaymentProcessorException($this->validationErrors()));
+            $this->throwValidationFailed(new PaymentProcessorException($this->getOrder(), $this->validationErrors()));
         }
 
         DB::connection('mysql-store')->transaction(function () {
@@ -263,7 +263,7 @@ abstract class PaymentProcessor implements \ArrayAccess
         $this->sandboxAssertion();
 
         if (!$this->validateTransaction()) {
-            $this->throwValidationFailed(new PaymentProcessorException($this->validationErrors()));
+            $this->throwValidationFailed(new PaymentProcessorException($this->getOrder(), $this->validationErrors()));
         }
 
         DB::connection('mysql-store')->transaction(function () {
@@ -341,11 +341,8 @@ abstract class PaymentProcessor implements \ArrayAccess
 
     /**
      * Convenience method that calls dispatchValidationFailed() and then throws the supplied exception.
-     *
-     * @param Exception $exception
-     * @return void
      */
-    protected function throwValidationFailed(Exception $exception)
+    protected function throwValidationFailed(Exception $exception): void
     {
         $this->dispatchValidationFailed();
         throw $exception;
