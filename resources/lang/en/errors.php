@@ -34,6 +34,6 @@ return [
         'operation_timeout_exception' => 'Search is currently busier than usual, try again later.',
     ],
     'user_report' => [
-        'recently_reported' => 'Already reported recently.',
+        'recently_reported' => "You've already reported this recently.",
     ],
 ];
