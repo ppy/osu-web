@@ -1440,9 +1440,9 @@ function get_length_seconds($string): ?array
     ];
 
     static $patterns = [
-        '/^((?P<hours>\d+):)?(?P<minutes>\d+):(?P<seconds>\d+)$/',
-        '/^((?P<hours>\d+(\.\d+)?)h)?((?P<minutes>\d+(\.\d+)?)m)?((?P<seconds>\d+(\.\d+)?)s)?((?P<milliseconds>\d+(\.\d+)?)ms)?$/',
-        '/^(?P<seconds>\d+(\.\d+)?)$/',
+        '/^((?<hours>\d+):)?(?<minutes>\d+):(?<seconds>\d+)$/',
+        '/^((?<hours>\d+(\.\d+)?)h)?((?<minutes>\d+(\.\d+)?)m)?((?<seconds>\d+(\.\d+)?)s)?((?<milliseconds>\d+(\.\d+)?)ms)?$/',
+        '/^(?<seconds>\d+(\.\d+)?)$/',
     ];
 
     $string = get_string($string);
