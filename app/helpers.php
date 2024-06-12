@@ -1560,7 +1560,7 @@ function get_param_value($input, $type)
         case 'float':
             return get_float($input);
         case 'length':
-            return get_length($input);
+            return get_length_seconds($input);
         case 'string':
             return get_string($input);
         case 'string_split':
