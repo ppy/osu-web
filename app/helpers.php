@@ -1456,7 +1456,7 @@ function get_length_seconds($string): ?array
 
     foreach ($patterns as $pattern) {
         $match = preg_match($pattern, $string, $matches);
-        if ($match === 0 || $match === false) {
+        if ($match !== 1) {
             continue;
         }
 
