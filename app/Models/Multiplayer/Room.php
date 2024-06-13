@@ -62,7 +62,7 @@ class Room extends Model
 
     const DEFAULT_SORT = 'created';
 
-    const CATEGORIES = ['normal', 'spotlight', 'featured_artist'];
+    const CATEGORIES = ['normal', 'spotlight', 'featured_artist', 'daily_challenge'];
     const TYPE_GROUPS = [
         'playlists' => [self::PLAYLIST_TYPE],
         'realtime' => self::REALTIME_TYPES,
@@ -247,7 +247,7 @@ class Room extends Model
     public function scopeActive($query)
     {
         return $query
-            ->where('starts_at', '<', Carbon::now())
+            ->where('starts_at', '<=', Carbon::now())
             ->where(function ($q) {
                 $q->where('ends_at', '>', Carbon::now())->orWhereNull('ends_at');
             });

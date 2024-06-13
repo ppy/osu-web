@@ -23,6 +23,10 @@ return [
         'used' => 'Витрачено',
     ],
 
+    'performance' => [
+        'insufficient_history' => '',
+    ],
+
     'type' => [
         'charts' => 'чарти',
         'country' => 'країни',

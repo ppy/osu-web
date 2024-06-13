@@ -14,27 +14,27 @@ return [
     ],
 
     'judge' => [
-        'hide_judged' => '',
-        'nav_title' => '',
+        'hide_judged' => 'skrýt posuzované položky',
+        'nav_title' => 'soudce',
         'no_current_vote' => 'ještě jsi nehlasoval.',
         'update' => 'aktualizovat',
         'validation' => [
-            'missing_score' => '',
-            'contest_vote_judged' => '',
+            'missing_score' => 'chybějící skóre',
+            'contest_vote_judged' => 'nelze volit v souzených soutěžích',
         ],
         'voted' => 'Již jsi pro tuto položku hlasoval.',
     ],
 
     'judge_results' => [
-        '_' => '',
+        '_' => 'Výsledky souzení',
         'creator' => 'autor',
         'score' => 'Skóre',
         'total_score' => 'celkové skóre',
     ],
 
     'voting' => [
-        'judge_link' => '',
-        'judged_notice' => '',
+        'judge_link' => 'Jsi soudcem této soutěže. Podívej se zde na příspěvky!',
+        'judged_notice' => 'Tato soutěž využívá systém souzení, soudci v současné době zpracovávají příspěvky.',
         'login_required' => 'Pro hlasování se prosím přihlas.',
         'over' => 'Hlasování pro tuto soutěž bylo ukončeno',
         'show_voted_only' => 'Zobrazit odhlasované',

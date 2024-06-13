@@ -2,13 +2,13 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .profile-info {
+  --avatar-radius-extended-desktop: 40px;
+  --avatar-radius-extended: 20px;
+  --avatar-radius: 20px;
+  --avatar-size-extended-desktop: @profile-avatar-size;
+  --avatar-size-extended: var(--content-height);
+  --avatar-size: var(--content-height);
   --content-height: 65px;
-  --cover-radius-extended-desktop: 40px;
-  --cover-radius-extended: 20px;
-  --cover-radius: 20px;
-  --cover-size-extended-desktop: @profile-avatar-size;
-  --cover-size-extended: var(--content-height);
-  --cover-size: var(--content-height);
   --info-margin-extended-desktop: 20px;
   --info-margin-extended: 10px;
   --info-margin: 10px;
@@ -20,8 +20,8 @@
   background-color: hsl(var(--hsl-b3));
 
   &--cover {
-    --cover-radius: var(--cover-radius-extended);
-    --cover-size: var(--cover-size-extended);
+    --avatar-radius: var(--avatar-radius-extended);
+    --avatar-size: var(--avatar-size-extended);
     --info-margin: var(--info-margin-extended);
   }
 
@@ -30,17 +30,17 @@
   }
 
   @media @desktop {
-    --cover-radius-extended: var(--cover-radius-extended-desktop);
-    --cover-size-extended: var(--cover-size-extended-desktop);
+    --avatar-radius-extended: var(--avatar-radius-extended-desktop);
+    --avatar-size-extended: var(--avatar-size-extended-desktop);
     --info-margin-extended: var(--info-margin-extended-desktop);
   }
 
   &__avatar {
     .own-layer(); // required by safari for border-radius to be applied correctly
     flex: none;
-    width: var(--cover-size);
-    height: var(--cover-size);
-    border-radius: var(--cover-radius);
+    width: var(--avatar-size);
+    height: var(--avatar-size);
+    border-radius: var(--avatar-radius);
     overflow: hidden;
     align-self: flex-end;
     margin-bottom: var(--vertical-padding);
@@ -133,7 +133,7 @@
       .link-plain();
       .link-white();
       border-radius: 10000px;
-      background-color: @osu-colour-h1;
+      background-color: hsl(var(--hsl-pink-1));
       padding: 0 10px;
     }
   }

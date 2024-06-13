@@ -121,7 +121,7 @@ return [
 
     'errors' => [
         '400' => [
-            'error' => 'Parameter yang diminta tidak valid',
+            'error' => 'Parameter permintaan tidak valid',
             'description' => '',
         ],
         '404' => [
@@ -141,7 +141,7 @@ return [
             'description' => "Maaf, namun halaman yang kamu minta tidak ada di sini!",
         ],
         '422' => [
-            'error' => 'Parameter yang diminta tidak valid',
+            'error' => 'Parameter permintaan tidak valid',
             'description' => '',
         ],
         '429' => [
@@ -178,7 +178,7 @@ return [
             'username' => 'nama pengguna',
 
             'error' => [
-                'email' => "Nama pengguna atau alamat email tidak ditemukan",
+                'email' => "Nama pengguna atau alamat email tidak ada",
                 'password' => 'Kata sandi salah',
             ],
         ],

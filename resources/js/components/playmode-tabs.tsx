@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import GameMode from 'interfaces/game-mode';
+import Ruleset from 'interfaces/ruleset';
 import * as React from 'react';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { trans } from 'utils/lang';
@@ -10,15 +10,15 @@ interface Entry {
   count?: number;
   disabled: boolean;
   href?: string;
-  mode: GameMode;
+  mode: Ruleset;
 }
 
 interface Props {
-  currentMode: GameMode;
-  defaultMode?: GameMode;
+  currentMode: Ruleset;
+  defaultMode?: Ruleset;
   entries: Entry[];
   modifiers?: Modifiers;
-  onClick?: (event: React.MouseEvent<HTMLAnchorElement>, mode: GameMode) => void;
+  onClick?: (event: React.MouseEvent<HTMLAnchorElement>, mode: Ruleset) => void;
 }
 
 export default class PlaymodeTabs extends React.Component<Props> {
@@ -32,7 +32,7 @@ export default class PlaymodeTabs extends React.Component<Props> {
 
   private readonly onClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     const target = e.currentTarget;
-    const mode = target.dataset.mode as GameMode;
+    const mode = target.dataset.mode as Ruleset;
 
     if (this.props.currentMode !== mode) {
       this.props.onClick?.(e, mode);

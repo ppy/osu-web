@@ -23,6 +23,10 @@ return [
         'used' => 'Đã dùng',
     ],
 
+    'performance' => [
+        'insufficient_history' => '',
+    ],
+
     'type' => [
         'charts' => 'tiêu điểm',
         'country' => 'quốc gia',

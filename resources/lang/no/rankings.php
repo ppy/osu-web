@@ -23,6 +23,10 @@ return [
         'used' => 'Brukt',
     ],
 
+    'performance' => [
+        'insufficient_history' => '',
+    ],
+
     'type' => [
         'charts' => 'Rampelyset',
         'country' => 'Land',

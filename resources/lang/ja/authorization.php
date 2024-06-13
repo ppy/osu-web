@@ -53,7 +53,7 @@ return [
     ],
 
     'beatmapset' => [
-        'discussion_locked' => '',
+        'discussion_locked' => 'このビートマップはディスカッションのためにロックされています。',
 
         'metadata' => [
             'nominated' => 'ノミネートされたビートマップのメタデータを変更することはできません。正しく設定されていないと思われる場合は、BNまたはNATのメンバーに問い合わせてください。',
@@ -81,7 +81,7 @@ return [
     ],
 
     'contest' => [
-        'judging_not_active' => '',
+        'judging_not_active' => 'このコンテストの判断はアクティブではありません。',
         'voting_over' => 'コンテストの投票期間終了後に投票先を変更することはできません。',
 
         'entry' => [
@@ -173,7 +173,7 @@ return [
     'score' => [
         'pin' => [
             'disabled_type' => "この種類のスコアはピン留めできません",
-            'failed' => "",
+            'failed' => "パスしていないスコアはピン留めできません。",
             'not_owner' => 'スコアの所有者のみがピン留めできます。',
             'too_many' => 'ピン留めの数が多すぎます。',
         ],

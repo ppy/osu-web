@@ -10,7 +10,7 @@ import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import BeatmapsetDiscussionPostJson from 'interfaces/beatmapset-discussion-post-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
-import GameMode, { gameModes } from 'interfaces/game-mode';
+import Ruleset, { rulesets } from 'interfaces/ruleset';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { assign, padStart, sortBy } from 'lodash';
@@ -146,12 +146,12 @@ function isNearbyDiscussion<T extends BeatmapsetDiscussionJson>(discussion: T): 
 }
 
 // sync with $defaultRulesets in app/Models/UserGroup.php
-const defaultGroupRulesets: Partial<Record<string, Readonly<GameMode[]>>> = { nat: gameModes };
+const defaultGroupRulesets: Partial<Record<string, Readonly<Ruleset[]>>> = { nat: rulesets };
 
-export function isUserFullNominator(user?: UserJson | null, gameMode?: GameMode) {
+export function isUserFullNominator(user?: UserJson | null, gameMode?: Ruleset) {
   return user != null && user.groups != null && user.groups.some((group) => {
     if (gameMode != null) {
-      let groupRulesets: Readonly<GameMode[]> = group.playmodes ?? [];
+      let groupRulesets: Readonly<Ruleset[]> = group.playmodes ?? [];
       if (groupRulesets.length === 0) {
         groupRulesets = defaultGroupRulesets[group.identifier] ?? [];
       }

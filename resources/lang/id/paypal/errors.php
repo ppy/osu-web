@@ -8,6 +8,6 @@ return [
     'invalid_resource_id' => 'Informasi pembayaran tidak ditemukan.',
     'invalid_token' => 'Terdapat kesalahan dalam menyelesaikan pembayaranmu.',
     'old_format' => 'Tautan pembayaran telah kedaluwarsa. Silakan coba lagi.',
-    'resource_not_found' => 'Tidak ada rekam jejak pembayaran yang tercatat.',
+    'resource_not_found' => 'Tidak ada informasi pembayaran yang ditemukan.',
     'unknown' => "Pembayaran ditolak, tetapi kami tidak yakin mengapa.",
 ];

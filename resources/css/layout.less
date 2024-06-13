@@ -65,6 +65,9 @@
     --navbar-height: @nav2-height--pinned;
     --page-gutter: @gutter-v2-desktop;
   }
+
+  // the base-hue is defined in blade layout
+  --base-hue-deg: calc(var(--base-hue) * 1deg);
 }
 
 html, body {
@@ -88,6 +91,11 @@ body {
   --z-index--nav-bar-mobile: @z-index--nav-bar;
   &.js-nav2--active {
     --z-index--nav-bar-mobile: @z-index--nav-bar-mobile-active;
+  }
+
+  --header-pinned-animation-duration: 0ms;
+  &.js-animate-nav {
+    --header-pinned-animation-duration: 300ms;
   }
 }
 

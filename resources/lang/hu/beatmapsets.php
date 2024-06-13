@@ -40,15 +40,20 @@ return [
     ],
 
     'nominate' => [
+        'bng_limited_too_many_rulesets' => '',
+        'full_nomination_required' => '',
         'hybrid_requires_modes' => 'Egy hibrid beatmap szettet legalább egy játékmódra nominálni kell.',
         'incorrect_mode' => 'Nincs jogosultságod :mode módban nominálni',
-        'full_bn_required' => 'Teljes jogú nominátornak kell lenned a kvalifikáló nomináláshoz.',
+        'invalid_limited_nomination' => '',
+        'invalid_ruleset' => '',
         'too_many' => 'A nominálási követelmények már teljesültek.',
+        'too_many_non_main_ruleset' => '',
 
         'dialog' => [
             'confirmation' => 'Biztosan nominálni szeretnéd ezt a Beatmap-et?',
             'header' => 'Beatmap Nominálása',
             'hybrid_warning' => 'megjegyzés: csak egyszer nominálhatsz, ezért kérlek győződj meg róla, hogy minden játékmódra nominálsz, amire szeretnél',
+            'current_main_ruleset' => '',
             'which_modes' => 'Mely módokra nominálsz?',
         ],
     ],

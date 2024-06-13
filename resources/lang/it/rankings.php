@@ -23,6 +23,10 @@ return [
         'used' => 'Spesi',
     ],
 
+    'performance' => [
+        'insufficient_history' => '',
+    ],
+
     'type' => [
         'charts' => 'spotlight (archivio)',
         'country' => 'paese',

@@ -23,6 +23,10 @@ return [
         'used' => '已用的',
     ],
 
+    'performance' => [
+        'insufficient_history' => '',
+    ],
+
     'type' => [
         'charts' => '高光',
         'country' => '国家/地区',

@@ -40,15 +40,20 @@ return [
     ],
 
     'nominate' => [
+        'bng_limited_too_many_rulesets' => '',
+        'full_nomination_required' => '',
         'hybrid_requires_modes' => '',
         'incorrect_mode' => '',
-        'full_bn_required' => '',
+        'invalid_limited_nomination' => '',
+        'invalid_ruleset' => '',
         'too_many' => '',
+        'too_many_non_main_ruleset' => '',
 
         'dialog' => [
             'confirmation' => '',
             'header' => '',
             'hybrid_warning' => '',
+            'current_main_ruleset' => '',
             'which_modes' => '',
         ],
     ],

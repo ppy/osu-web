@@ -7,7 +7,7 @@ return [
     'match' => [
         'beatmap-deleted' => 'mapa eliminado',
         'failed' => 'FALLIDO',
-        'header' => 'Partidas Multijugador',
+        'header' => 'Partidas multijugador',
         'in-progress' => '(partida en progreso)',
         'in_progress_spinner_label' => 'partida en progreso',
         'loading-events' => 'Cargando eventos...',
@@ -47,7 +47,7 @@ return [
 
         'teams' => [
             'blue' => 'Equipo Azul',
-            'red' => 'Equipo Rojo',
+            'red' => 'Equipo rojo',
         ],
     ],
     'game' => [

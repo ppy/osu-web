@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'generic' => '',
+    'generic' => 'Қателер түзетілді және аздаған жақсартулар енгізілді',
 
     'build' => [
         'title' => ':version-де өзгерістер',
@@ -33,8 +33,8 @@ return [
 
     'support' => [
         'heading' => 'Жаңарту ұнады ма?',
-        'text_1' => '',
-        'text_1_link' => '',
-        'text_2' => '',
+        'text_1' => 'osu!-дың алдағы дамуын қолдаңыз және бүгін :link!',
+        'text_1_link' => 'osu!supporter атаныңыз',
+        'text_2' => 'Сіз ойынның жылдам дамуына көмектесіп қана қоймайсыз, сонымен қатар қосымша мүмкіндіктерге ие боласыз!',
     ],
 ];

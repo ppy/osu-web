@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import SelectOptions from 'components/select-options';
+import { ReportableType } from 'interfaces/reportable';
 import { route } from 'laroute';
 import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
@@ -26,11 +27,21 @@ export function showReportForm(params: { reportableId: string; reportableType: R
   />, root);
 }
 
-export const reportableTypeToGroupKey = {
+
+type GroupKey =
+  | 'beatmapset'
+  | 'beatmapset_discussion_post'
+  | 'comment'
+  | 'forum_post'
+  | 'message'
+  | 'scores'
+  | 'user';
+export const reportableTypeToGroupKey: Record<ReportableType, GroupKey> = {
   beatmapset: 'beatmapset',
   beatmapset_discussion_post: 'beatmapset_discussion_post',
   comment: 'comment',
   forum_post: 'forum_post',
+  message: 'message',
   score_best_fruits: 'scores',
   score_best_mania: 'scores',
   score_best_osu: 'scores',
@@ -38,8 +49,6 @@ export const reportableTypeToGroupKey = {
   solo_score: 'scores',
   user: 'user',
 } as const;
-export type ReportableType = keyof typeof reportableTypeToGroupKey;
-type GroupKey = typeof reportableTypeToGroupKey[ReportableType];
 
 // intended to be in display order, not alphabetical order.
 /* eslint-disable sort-keys */
@@ -54,12 +63,19 @@ const availableOptions = {
 } as const;
 /* eslint-enable sort-keys */
 
-const availableOptionsByGroupKey: Partial<Record<GroupKey, (keyof typeof availableOptions)[]>> = {
+const reasons = {
   beatmapset: ['UnwantedContent', 'Other'],
-  beatmapset_discussion_post: ['Insults', 'Spam', 'UnwantedContent', 'Nonsense', 'Other'],
-  comment: ['Insults', 'Spam', 'UnwantedContent', 'Nonsense', 'Other'],
-  forum_post: ['Insults', 'Spam', 'UnwantedContent', 'Nonsense', 'Other'],
-  scores: ['Cheating', 'MultipleAccounts', 'Other'],
+  post: ['Insults', 'Spam', 'UnwantedContent', 'Nonsense', 'Other'],
+  score: ['Cheating', 'MultipleAccounts', 'Other'],
+} as const;
+
+const availableOptionsByGroupKey: Partial<Record<GroupKey, readonly (keyof typeof availableOptions)[]>> = {
+  beatmapset: reasons.beatmapset,
+  beatmapset_discussion_post: reasons.post,
+  comment: reasons.post,
+  forum_post: reasons.post,
+  message: reasons.post,
+  scores: reasons.score,
 };
 
 interface Props {
@@ -83,7 +99,7 @@ export default class ReportForm extends React.Component<Props> {
   private timeout: number | undefined;
 
   private get canSubmit() {
-    return !this.disabled && this.comments.length > 0;
+    return !this.disabled && (this.comments.length > 0 || this.props.reportableType === 'message');
   }
 
   private get groupKey() {

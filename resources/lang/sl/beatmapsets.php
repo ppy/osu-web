@@ -40,15 +40,20 @@ return [
     ],
 
     'nominate' => [
+        'bng_limited_too_many_rulesets' => '',
+        'full_nomination_required' => '',
         'hybrid_requires_modes' => 'Hibridna beatmapa zahteva izbiro vsaj enega igralnega načina za nominacijo.',
         'incorrect_mode' => 'Nimaš dovoljenja za nominacijo igralnega načina: :mode',
-        'full_bn_required' => 'Za kvalificirano nominacijo moraš biti polni nominator.',
+        'invalid_limited_nomination' => '',
+        'invalid_ruleset' => '',
         'too_many' => 'Pogoj za nominacijo je že izpolnjen.',
+        'too_many_non_main_ruleset' => '',
 
         'dialog' => [
             'confirmation' => 'Ali si prepričan za nominacijo te beatmape?',
             'header' => 'Nominiraj beatmapo',
             'hybrid_warning' => 'opomba: nominiraš lahko le enkrat, zato poskrbi, da nominiraš za vse nameravane igralne načine',
+            'current_main_ruleset' => '',
             'which_modes' => 'Nominacija katerih igralnih načinov?',
         ],
     ],

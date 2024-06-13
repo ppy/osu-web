@@ -3,7 +3,7 @@
 
 import BeatmapsetDiscussionJson from './beatmapset-discussion-json';
 import BeatmapsetJson from './beatmapset-json';
-import GameMode from './game-mode';
+import Ruleset from './ruleset';
 
 interface VoteEventJson {
   score: number;
@@ -20,7 +20,7 @@ interface BaseBeatmapsetEvent {
 
 interface NominateEvent extends BaseBeatmapsetEvent {
   comment: {
-    modes: GameMode[];
+    modes: Ruleset[];
   } | null;
   type: 'nominate';
 }

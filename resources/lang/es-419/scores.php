@@ -5,28 +5,28 @@
 
 return [
     'show' => [
-        'non_preserved' => '',
-        'title' => '',
+        'non_preserved' => 'Esta puntuación está marcada para ser eliminada y desaparecerá pronto.',
+        'title' => ':username en :title [:version]',
 
         'beatmap' => [
-            'by' => '',
+            'by' => 'por :artist',
         ],
 
         'player' => [
-            'by' => '',
-            'submitted_on' => '',
+            'by' => 'Jugado por',
+            'submitted_on' => 'Enviado el',
 
             'rank' => [
-                'country' => '',
-                'global' => '',
+                'country' => 'Clasificación nacional',
+                'global' => 'Clasificación global',
             ],
         ],
     ],
 
     'status' => [
-        'non_best' => '',
-        'no_pp' => '',
-        'processing' => '',
-        'no_rank' => '',
+        'non_best' => 'Solo las mejores puntuaciones personales otorgan pp',
+        'no_pp' => 'no se otorga pp para esta puntuación',
+        'processing' => 'Esta puntuación aún está siendo calculada y se mostrará pronto',
+        'no_rank' => 'Esta puntuación no tiene una clasificación, ya que no está clasificada o está marcada para ser eliminada',
     ],
 ];

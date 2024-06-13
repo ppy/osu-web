@@ -16,6 +16,7 @@ class Count extends Model
     public $incrementing = false;
     public $timestamps = false;
 
+    protected $keyType = 'string';
     protected $primaryKey = 'name';
     protected $table = 'osu_counts';
 

@@ -23,6 +23,10 @@ return [
         'used' => 'Wykorzystane',
     ],
 
+    'performance' => [
+        'insufficient_history' => '',
+    ],
+
     'type' => [
         'charts' => 'Wyróżnionych',
         'country' => 'krajowy',

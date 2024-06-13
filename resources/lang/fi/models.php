@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'not_found' => "",
+    'not_found' => "Määritelty :model ei löydettävissä.",
 
     'name' => [
         'App\Models\Beatmap' => 'rytmikartan vaikeustaso',

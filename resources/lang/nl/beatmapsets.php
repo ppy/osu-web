@@ -40,15 +40,20 @@ return [
     ],
 
     'nominate' => [
+        'bng_limited_too_many_rulesets' => '',
+        'full_nomination_required' => '',
         'hybrid_requires_modes' => 'Een hybride beatmapset vereist dat je minimaal één speelmodus selecteert om voor te nomineren.',
         'incorrect_mode' => 'Je hebt geen toestemming om te nomineren voor modus: :mode',
-        'full_bn_required' => 'Je moet een volledige nominator zijn om deze kwalificerende nominatie uit te voeren.',
+        'invalid_limited_nomination' => '',
+        'invalid_ruleset' => '',
         'too_many' => 'Nominatievereising is al vervuld.',
+        'too_many_non_main_ruleset' => '',
 
         'dialog' => [
             'confirmation' => 'Weet je zeker dat je deze Beatmap wilt nomineren?',
             'header' => 'Nomineer Beatmap',
             'hybrid_warning' => 'opmerking: je mag maar één keer nomineren, dus zorg er alsjeblieft voor dat je nomineert voor alle spelmodi die je van plan bent te nomineren',
+            'current_main_ruleset' => '',
             'which_modes' => 'Welke modi nomineren?',
         ],
     ],

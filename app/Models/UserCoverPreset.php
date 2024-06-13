@@ -7,6 +7,7 @@ namespace App\Models;
 
 use App\Libraries\Uploader;
 use App\Libraries\User\Cover;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * @property bool $active
@@ -18,6 +19,11 @@ use App\Libraries\User\Cover;
 class UserCoverPreset extends Model
 {
     private Uploader $file;
+
+    public function scopeActive(Builder $query): Builder
+    {
+        return $query->where('active', true)->whereNotNull('filename');
+    }
 
     public function file(): Uploader
     {

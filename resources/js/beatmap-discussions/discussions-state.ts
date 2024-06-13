@@ -3,8 +3,8 @@
 
 import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
-import GameMode from 'interfaces/game-mode';
-import { maxBy } from 'lodash';
+import Ruleset from 'interfaces/ruleset';
+import { intersectionWith, maxBy, sum } from 'lodash';
 import { action, computed, makeObservable, observable, reaction } from 'mobx';
 import moment from 'moment';
 import core from 'osu-core-singleton';
@@ -53,6 +53,7 @@ export default class DiscussionsState {
   @observable pinnedNewDiscussion = false;
 
   @observable readPostIds = new Set<number>();
+  @observable selectedNominatedRulesets: Ruleset[] = [];
   @observable selectedUserId: number | null = null;
   @observable showDeleted = true; // this toggle only affects All and deleted discussion filters, other filters don't show deleted
 
@@ -205,7 +206,20 @@ export default class DiscussionsState {
 
   @computed
   get groupedBeatmaps() {
-    return group([...this.store.beatmaps.values()]);
+    return group([...this.store.beatmaps.values()], false);
+  }
+
+  @computed
+  get rulesetsWithoutDeletedBeatmaps() {
+    const rulesets: Ruleset[] = [];
+
+    for (const [key, values] of this.groupedBeatmaps) {
+      if (values.some((beatmap) => beatmap.deleted_at == null)) {
+        rulesets.push(key);
+      }
+    }
+
+    return rulesets;
   }
 
   @computed
@@ -231,6 +245,25 @@ export default class DiscussionsState {
     return moment(maxLastUpdate).unix();
   }
 
+  get calculatedMainRuleset() {
+    if (this.beatmapset.eligible_main_rulesets.length === 1) {
+      return this.beatmapset.eligible_main_rulesets[0];
+    }
+
+    // If there's more than one eligible main ruleset, the next selection of an eligible ruleset should make it the main ruleset.
+    // This is based on the assumption that the non-main ruleset only needs 1 nomination.
+    // See NominateBeatmapset::requiredNominationsConfig
+    // TODO: swith to Set.intersection in the future; it is currently too new.
+    const intersection = intersectionWith(this.selectedNominatedRulesets, this.beatmapset.eligible_main_rulesets);
+
+    return intersection.length === 1 ? intersection[0] : null;
+  }
+
+  @computed
+  get eligibleMainRulesets() {
+    return new Set(this.beatmapset.eligible_main_rulesets);
+  }
+
   @computed
   get nonDeletedDiscussions() {
     return this.discussionsArray.filter((discussion) => discussion.deleted_at == null);
@@ -249,28 +282,28 @@ export default class DiscussionsState {
   @computed
   get totalHypeCount() {
     return this.nonDeletedDiscussions
-      .reduce((sum, discussion) => +(discussion.message_type === 'hype') + sum, 0);
+      .reduce((total, discussion) => +(discussion.message_type === 'hype') + total, 0);
   }
 
   @computed
   get unresolvedDiscussionTotalCount() {
     return this.nonDeletedDiscussions
-      .reduce((sum, discussion) => {
+      .reduce((total, discussion) => {
         if (discussion.can_be_resolved && !discussion.resolved) {
-          if (discussion.beatmap_id == null) return sum + 1;
+          if (discussion.beatmap_id == null) return total + 1;
 
           const beatmap = this.store.beatmaps.get(discussion.beatmap_id);
-          if (beatmap != null && beatmap.deleted_at == null) return sum + 1;
+          if (beatmap != null && beatmap.deleted_at == null) return total + 1;
         }
 
-        return sum;
+        return total;
       }, 0);
   }
 
   @computed
   get unresolvedDiscussionCounts() {
     const byBeatmap: Partial<Record<number, number>> = {};
-    const byMode: Partial<Record<GameMode, number>> = {};
+    const byMode: Partial<Record<Ruleset, number>> = {};
     // show at least 0 for available rulesets
     this.store.beatmaps.forEach((beatmap) => {
       byMode[beatmap.mode] ??= 0;
@@ -371,7 +404,7 @@ export default class DiscussionsState {
   }
 
   @action
-  changeGameMode(mode: GameMode) {
+  changeGameMode(mode: Ruleset) {
     const beatmap = findDefault({ items: this.groupedBeatmaps.get(mode) });
     if (beatmap != null) {
       this.currentBeatmapId = beatmap.id;
@@ -389,6 +422,20 @@ export default class DiscussionsState {
     } else {
       this.readPostIds.add(ids);
     }
+  }
+
+  nominationsCount(type: 'current' | 'required') {
+    const nominations = this.beatmapset.nominations;
+    if (nominations.legacy_mode) {
+      return nominations[type];
+    }
+
+    if (type === 'current') {
+      return sum(Object.values(nominations[type]));
+    }
+
+    return nominations.required_meta.main_ruleset
+      + nominations.required_meta.non_main_ruleset * (this.rulesetsWithoutDeletedBeatmaps.length - 1);
   }
 
   saveState() {

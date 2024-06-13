@@ -1,9 +1,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import BeatmapsetJson, { BeatmapsetNominationsInterface } from 'interfaces/beatmapset-json';
+import BeatmapsetJson from 'interfaces/beatmapset-json';
 import { route } from 'laroute';
-import { sum } from 'lodash';
 import { action, runInAction } from 'mobx';
 import core from 'osu-core-singleton';
 import { error } from 'utils/ajax';
@@ -33,14 +32,6 @@ export function getTitle(beatmapset: BeatmapsetJson) {
   }
 
   return beatmapset.title;
-}
-
-export function nominationsCount(nominations: BeatmapsetNominationsInterface, type: 'current' | 'required'): number {
-  if (nominations.legacy_mode) {
-    return nominations[type];
-  }
-
-  return sum(Object.values(nominations[type]));
 }
 
 export function showVisual(beatmapset: BeatmapsetJson) {

@@ -39,6 +39,6 @@ return [
 
     'users' => [
         'relevance' => '',
-        'username' => '',
+        'username' => 'Аты',
     ],
 ];

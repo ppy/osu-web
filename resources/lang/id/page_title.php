@@ -135,7 +135,7 @@ return [
             '_' => 'info modder',
         ],
         'multiplayer_controller' => [
-            '_' => 'riwayat pertandingan multiplayer',
+            '_' => 'riwayat multiplayer',
         ],
     ],
 ];

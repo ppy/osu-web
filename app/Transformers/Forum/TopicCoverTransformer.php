@@ -12,7 +12,7 @@ class TopicCoverTransformer extends TransformerAbstract
 {
     public function transform(TopicCover $cover)
     {
-        if ($cover->file_json === null) {
+        if ($cover->filename === null) {
             $data = [
                 'method' => 'post',
                 'url' => route('forum.topic-covers.store', [

@@ -15,13 +15,13 @@ return [
     'rank' => ':user alcançou o :rank em :beatmap (:mode)',
     'rank_lost' => '<strong><em>:user</em></strong> perdeu o primeiro lugar em <em>:beatmap</em> (:mode)',
     'user_support_again' => '<strong>:user</strong> escolheu mais uma vez ajudar o osu! — obrigado por sua generosidade!',
-    'user_support_first' => '<strong>:user</strong> apoiou o osu! — obrigado por sua generosidade!',
+    'user_support_first' => '<strong>:user</strong> se tornou osu!supporter — obrigado por sua generosidade!',
     'user_support_gift' => '<strong>:user</strong> recebeu osu!supporter de presente!',
     'username_change' => '<strong>:previousUsername</strong> alterou seu username para <strong><em>:user</strong></em>!',
 
     'beatmapset_status' => [
         'approved' => 'aprovado',
-        'loved' => 'amado',
+        'loved' => 'loved',
         'qualified' => 'qualificado',
         'ranked' => 'ranqueado',
     ],

@@ -372,10 +372,10 @@ function datadog_timing(callable $callable, $stat, array $tag = null)
 function db_unsigned_increment($column, $count)
 {
     if ($count >= 0) {
-        $value = "{$column} + {$count}";
+        $value = "`{$column}` + {$count}";
     } else {
         $change = -$count;
-        $value = "IF({$column} < {$change}, 0, {$column} - {$change})";
+        $value = "IF(`{$column}` < {$change}, 0, `{$column}` - {$change})";
     }
 
     return DB::raw($value);
@@ -851,12 +851,9 @@ function is_valid_email_format(?string $email): bool
     return $validator->isValid($email, $lexer);
 }
 
-function is_sql_unique_exception($ex)
+function is_sql_unique_exception(\Throwable $ex): bool
 {
-    return starts_with(
-        $ex->getMessage(),
-        'SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry'
-    );
+    return $ex instanceof Illuminate\Database\UniqueConstraintViolationException;
 }
 
 function js_localtime($date)
@@ -1607,6 +1604,11 @@ function get_params($input, $namespace, $keys, $options = [])
     return $params;
 }
 
+/**
+ * @template T
+ * @param T[]|Illuminate\Support\Collection<T> $array
+ * @return T|null
+ */
 function array_rand_val($array)
 {
     if ($array instanceof Illuminate\Support\Collection) {
@@ -1614,7 +1616,7 @@ function array_rand_val($array)
     }
 
     if (count($array) === 0) {
-        return;
+        return null;
     }
 
     return $array[array_rand($array)];

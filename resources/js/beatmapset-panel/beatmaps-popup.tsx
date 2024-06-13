@@ -4,7 +4,7 @@
 import BeatmapListItem from 'components/beatmap-list-item';
 import Portal from 'components/portal';
 import BeatmapJson from 'interfaces/beatmap-json';
-import GameMode from 'interfaces/game-mode';
+import Ruleset from 'interfaces/ruleset';
 import { route } from 'laroute';
 import { action, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
@@ -14,7 +14,7 @@ import { TransitionStatus } from 'react-transition-group';
 import { classWithModifiers } from 'utils/css';
 
 interface Props {
-  groupedBeatmaps: Map<GameMode, BeatmapJson[]>;
+  groupedBeatmaps: Map<Ruleset, BeatmapJson[]>;
   onMouseEnter: () => void;
   onMouseLeave: () => void;
   parent: HTMLElement | null;

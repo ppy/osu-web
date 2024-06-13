@@ -60,7 +60,6 @@
         <style>
             :root {
                 --base-hue: {{ $currentHue }};
-                --base-hue-deg: {{ $currentHue }}deg;
             }
         </style>
         <div id="overlay" class="blackout blackout--overlay" style="display: none;"></div>
