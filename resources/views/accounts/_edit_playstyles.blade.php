@@ -22,7 +22,7 @@
                         $userPlaystyles = new Ds\Set(auth()->user()->osu_playstyle ?? []);
                     @endphp
                     @foreach (App\Models\User::PLAYSTYLES as $key => $_value)
-                        <label class="account-edit-entry__checkbox account-edit-entry__checkbox--inline">
+                        <label class="account-edit-entry__checkbox">
                             @include('objects._switch', ['locals' => [
                                 'checked' => $userPlaystyles->contains($key),
                                 'value' => $key,

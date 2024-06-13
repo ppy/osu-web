@@ -32,9 +32,7 @@
                             @if ($name === 'direct' && !auth()->user()->isSupporter())
                                 @continue
                             @endif
-                            <label
-                                class="account-edit-entry__checkbox account-edit-entry__checkbox--inline"
-                            >
+                            <label class="account-edit-entry__checkbox">
                                 @include('objects._switch', ['locals' => [
                                     'checked' => $customization->beatmapset_download === $name,
                                     'name' => 'user_profile_customization[beatmapset_download]',

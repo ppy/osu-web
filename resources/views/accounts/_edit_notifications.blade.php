@@ -79,7 +79,7 @@
                                 $modes = $notificationOptions[$notificationType]->details['modes'] ?? [];
                             @endphp
                             @foreach (App\Models\Beatmap::MODES as $key => $_value)
-                                <label class="account-edit-entry__checkbox account-edit-entry__checkbox--inline">
+                                <label class="account-edit-entry__checkbox">
                                     @include('objects._switch', ['locals' => [
                                         'checked' => in_array($key, $modes, true),
                                         'value' => $key,
