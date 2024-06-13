@@ -34,7 +34,7 @@
                         </label>
                     @endforeach
 
-                    <div class="account-edit-entry__checkboxes-status">
+                    <div class="account-edit-entry__checkbox-status account-edit-entry__checkbox-status--left">
                         @include('accounts._edit_entry_status')
                     </div>
                 </form>
