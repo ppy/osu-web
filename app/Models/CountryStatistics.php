@@ -34,7 +34,7 @@ class CountryStatistics extends Model
             ->where('rank_score', '>', 0)
             ->whereHas('user', function ($userQuery) {
                 return $userQuery->default();
-            })->select(DB::raw('sum(ranked_score) AS ranked_score, sum(playcount) AS playcount, count(*) AS usercount, sum(rank_score) AS rank_score'))
+            })->select(DB::raw('sum(ranked_score) AS ranked_score, sum(playcount) AS playcount, count(*) AS usercount'))
             ->first();
 
         $conds = [
@@ -43,11 +43,27 @@ class CountryStatistics extends Model
         ];
 
         if ($stats->ranked_score > 0) {
+            $userPerformances = UserStatistics\Model::getClass(Beatmap::modeStr($modeInt))
+                ::select('rank_score')
+                ->where('country_acronym', $countryAcronym)
+                ->where('rank_score', '>', 0)
+                ->orderBy('rank_score', 'desc')
+                ->limit($GLOBALS['cfg']['osu']['rankings']['country_performance_user_count'])
+                ->get();
+
+            $totalPerformance = 0;
+            $factor = 1.0;
+
+            foreach ($userPerformances as $userPerformance) {
+                $totalPerformance += $userPerformance->rank_score * $factor;
+                $factor *= 0.95;
+            }
+
             self::updateOrCreate($conds, [
                 'ranked_score' => $stats->ranked_score,
                 'play_count' => $stats->playcount,
                 'user_count' => $stats->usercount,
-                'performance' => $stats->rank_score,
+                'performance' => $totalPerformance,
             ]);
         } else {
             self::where($conds)->delete();
