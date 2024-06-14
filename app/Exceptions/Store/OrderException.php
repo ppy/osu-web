@@ -15,7 +15,7 @@ class OrderException extends \Exception implements HasExtraExceptionData
 {
     public function __construct(private ?Order $order, private ?ValidationErrors $errors = null, ?\Throwable $previous = null)
     {
-        parent::__construct('', 0, $previous);
+        parent::__construct(previous: $previous);
     }
 
     public function getContexts(): array
