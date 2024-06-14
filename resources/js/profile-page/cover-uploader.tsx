@@ -40,7 +40,6 @@ export default class CoverUploader extends React.Component<Props> {
       <div className='profile-cover-uploader'>
         <CoverSelection
           controller={this.props.controller}
-          modifiers='custom'
           preset={this.preset}
         />
 
