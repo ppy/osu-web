@@ -5,7 +5,6 @@
 
 namespace App\Libraries\Payments;
 
-use App\Exceptions\HasExtraExceptionData;
 use App\Exceptions\InvalidSignatureException;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
