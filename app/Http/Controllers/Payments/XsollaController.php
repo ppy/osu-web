@@ -6,8 +6,8 @@
 namespace App\Http\Controllers\Payments;
 
 use App\Exceptions\InvalidSignatureException;
+use App\Exceptions\Store\PaymentProcessorException;
 use App\Libraries\OrderCheckout;
-use App\Libraries\Payments\PaymentProcessorException;
 use App\Libraries\Payments\XsollaPaymentProcessor;
 use App\Libraries\Payments\XsollaSignature;
 use App\Libraries\Payments\XsollaUserNotFoundException;

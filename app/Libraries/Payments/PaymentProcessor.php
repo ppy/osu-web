@@ -9,6 +9,7 @@ use App\Events\Fulfillments\PaymentEvent;
 use App\Events\Fulfillments\ProcessorValidationFailed;
 use App\Exceptions\InvalidSignatureException;
 use App\Exceptions\ModelNotSavedException;
+use App\Exceptions\Store\PaymentProcessorException;
 use App\Models\Store\Order;
 use App\Models\Store\Payment;
 use App\Traits\Memoizes;

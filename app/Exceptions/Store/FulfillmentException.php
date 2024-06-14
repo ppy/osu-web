@@ -5,10 +5,8 @@
 
 declare(strict_types=1);
 
-namespace App\Libraries\Payments;
+namespace App\Exceptions\Store;
 
-use App\Exceptions\Store\OrderException;
-
-class PaymentProcessorException extends OrderException
+class FulfillmentException extends OrderException
 {
 }

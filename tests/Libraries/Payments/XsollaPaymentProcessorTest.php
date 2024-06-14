@@ -6,7 +6,7 @@
 namespace Tests\Libraries\Payments;
 
 use App\Exceptions\InvalidSignatureException;
-use App\Libraries\Payments\PaymentProcessorException;
+use App\Exceptions\Store\PaymentProcessorException;
 use App\Libraries\Payments\PaymentSignature;
 use App\Libraries\Payments\XsollaPaymentProcessor;
 use App\Models\Store\Order;

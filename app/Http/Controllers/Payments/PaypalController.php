@@ -6,9 +6,9 @@
 namespace App\Http\Controllers\Payments;
 
 use App\Exceptions\InvalidSignatureException;
+use App\Exceptions\Store\PaymentProcessorException;
 use App\Libraries\OrderCheckout;
 use App\Libraries\Payments\NotificationType;
-use App\Libraries\Payments\PaymentProcessorException;
 use App\Libraries\Payments\PaypalCreatePayment;
 use App\Libraries\Payments\PaypalExecutePayment;
 use App\Libraries\Payments\PaypalPaymentProcessor;
