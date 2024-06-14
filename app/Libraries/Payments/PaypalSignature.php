@@ -10,37 +10,18 @@ use App\Exceptions\InvalidSignatureException;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 
-class PaypalSignature implements HasExtraExceptionData, PaymentSignature
+class PaypalSignature implements PaymentSignature
 {
     const VERIFIED_RESPONSE = 'VERIFIED';
-
-    private array $extras = [];
 
     public function __construct(private Request $request)
     {
     }
 
-    public function assertValid()
-    {
-        if (!$this->isValid()) {
-            throw new InvalidSignatureException($this->extras);
-        }
-    }
-
-    public function getContexts(): array
-    {
-        return [];
-    }
-
-    public function getExtras(): array
-    {
-        return $this->extras;
-    }
-
-    public function isValid()
+    public function assertValid(): void
     {
         if (empty($this->receivedSignature())) {
-            return false;
+            throw new InvalidSignatureException('missing signature');
         }
 
         $client = new Client();
@@ -50,16 +31,13 @@ class PaypalSignature implements HasExtraExceptionData, PaymentSignature
         ]);
 
         if ($response->getStatusCode() === 200 && trim($response->getBody()) === static::VERIFIED_RESPONSE) {
-            return true;
+            return;
         }
 
-        $this->extras = [
+        throw new InvalidSignatureException(extras: [
             'ipn_message' => substr($response->getBody(), 0, 20),
             'ipn_status_code' => $response->getStatusCode(),
-        ];
-
-        // NB: leave the default as false.
-        return false;
+        ]);
     }
 
     private function receivedSignature()

@@ -9,9 +9,9 @@ use Exception;
 
 class InvalidSignatureException extends Exception implements HasExtraExceptionData
 {
-    public function __construct(private array $extras = [])
+    public function __construct(string $message = '', private array $extras = [])
     {
-        parent::__construct();
+        parent::__construct($message);
     }
 
     // doesn't really contain anything

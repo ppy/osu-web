@@ -20,19 +20,17 @@ class ShopifySignature implements PaymentSignature
 
     public function assertValid(): void
     {
-        if (!$this->isValid()) {
-            throw new InvalidSignatureException();
-        }
-    }
-
-    public function isValid()
-    {
         $received = $this->receivedSignature();
-        \Log::debug("ShopifySignature::isValidSignature calc: {$this->calculatedSignature()}, signed: {$received}");
 
-        return $received === null
-            ? false
-            : hash_equals($this->calculatedSignature(), $received);
+        if ($received === null) {
+            throw new InvalidSignatureException('missing signature');
+        }
+
+        $calculated = $this->calculatedSignature();
+
+        if (!hash_equals($calculated, $received)) {
+            throw new InvalidSignatureException('hash mismatch', compact('calculated', 'received'));
+        }
     }
 
     public static function calculateSignature(string $content)
