@@ -19,7 +19,7 @@ class ScorePin extends Model
 {
     public $incrementing = false;
 
-    protected $primaryKey = 'new_score_id';
+    protected $primaryKey = 'score_id';
 
     public function scopeForRuleset($query, string $ruleset): Builder
     {
@@ -33,7 +33,7 @@ class ScorePin extends Model
 
     public function score(): BelongsTo
     {
-        return $this->belongsTo(Solo\Score::class, 'new_score_id');
+        return $this->belongsTo(Solo\Score::class, 'score_id');
     }
 
     public function user(): BelongsTo
