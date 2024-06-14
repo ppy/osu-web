@@ -125,6 +125,8 @@ abstract class PaymentProcessor implements \ArrayAccess
      * Auto run apply() or cancel() depending on the notification type.
      *
      * @return void
+     * @throws InvalidSignatureException thrown if the request signature is invalid.
+     * @throws PaymentProcessorException thrown if the validating the order fails.
      * @throws UnsupportedNotificationTypeException thrown if the notification type is unsupported.
      */
     public function run()

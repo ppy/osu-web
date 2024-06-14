@@ -5,15 +5,28 @@
 
 namespace App\Libraries\Payments;
 
+use App\Exceptions\HasExtraExceptionData;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 
-class PaypalSignature implements PaymentSignature
+class PaypalSignature implements HasExtraExceptionData, PaymentSignature
 {
     const VERIFIED_RESPONSE = 'VERIFIED';
 
+    private array $extras = [];
+
     public function __construct(private Request $request)
     {
+    }
+
+    public function getContexts(): array
+    {
+        return [];
+    }
+
+    public function getExtras(): array
+    {
+        return $this->extras;
     }
 
     public function isValid()
@@ -32,8 +45,10 @@ class PaypalSignature implements PaymentSignature
             return true;
         }
 
-        $string = substr($response->getBody(), 0, 20);
-        \Log::error("IPN verification returned: status `{$response->getStatusCode()}`: `{$string}`");
+        $this->extras = [
+            'ipn_message' => substr($response->getBody(), 0, 20),
+            'ipn_status_code' => $response->getStatusCode(),
+        ];
 
         // NB: leave the default as false.
         return false;
