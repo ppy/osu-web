@@ -148,9 +148,7 @@ abstract class PaymentProcessor implements \ArrayAccess
         $order = $this->getOrder();
         $order?->update(['transaction_id' => $this->getTransactionId()]);
 
-        if (!$this->validateTransaction()) {
-            throw new PaymentProcessorException($order, $this->validationErrors());
-        }
+        $this->assertValidTransaction();
 
         $payment = new Payment([
             'provider' => $this->getPaymentProvider(),
@@ -170,10 +168,7 @@ abstract class PaymentProcessor implements \ArrayAccess
     public function cancel()
     {
         $this->sandboxAssertion();
-
-        if (!$this->validateTransaction()) {
-            throw new PaymentProcessorException($this->getOrder(), $this->validationErrors());
-        }
+        $this->assertValidTransaction();
 
         DB::connection('mysql-store')->transaction(function () {
             $order = $this->getOrder()->lockSelf();
@@ -207,10 +202,7 @@ abstract class PaymentProcessor implements \ArrayAccess
     public function pending()
     {
         $this->sandboxAssertion();
-
-        if (!$this->validateTransaction()) {
-            throw new PaymentProcessorException($this->getOrder(), $this->validationErrors());
-        }
+        $this->assertValidTransaction();
 
         DB::connection('mysql-store')->transaction(function () {
             $order = $this->getOrder()->lockSelf();
@@ -296,6 +288,13 @@ abstract class PaymentProcessor implements \ArrayAccess
     public function validationErrorsKeyBase(): string
     {
         return 'model_validation/';
+    }
+
+    private function assertValidTransaction()
+    {
+        if (!$this->validateTransaction()) {
+            throw new PaymentProcessorException($this->getOrder(), $this->validationErrors());
+        }
     }
 
     private function sandboxAssertion()
