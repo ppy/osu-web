@@ -164,9 +164,8 @@ class XsollaPaymentProcessorTest extends TestCase
     private function validSignature()
     {
         return new class implements PaymentSignature {
-            public function isValid()
+            public function assertValid(): void
             {
-                return true;
             }
         };
     }
@@ -174,9 +173,9 @@ class XsollaPaymentProcessorTest extends TestCase
     private function invalidSignature()
     {
         return new class implements PaymentSignature {
-            public function isValid()
+            public function assertValid(): void
             {
-                return false;
+                throw new InvalidSignatureException();
             }
         };
     }
