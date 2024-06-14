@@ -22,15 +22,9 @@ abstract class PaymentProcessor implements \ArrayAccess
 {
     use Memoizes, Validatable;
 
-    protected $params;
-    protected $signature;
-
-    public function __construct(array $params, PaymentSignature $signature)
+    public function __construct(protected array $params, protected PaymentSignature $signature)
     {
         \Log::debug($params);
-
-        $this->params = $params;
-        $this->signature = $signature;
     }
 
     /**
@@ -298,16 +292,11 @@ abstract class PaymentProcessor implements \ArrayAccess
     {
         // just validate the signature until we make sure validating
         //  the whole transaction doesn't make it explode.
-        $this->ensureValidSignature();
+        $this->signature->assertValid();
 
         $order = $this->getOrder();
         $eventName = "store.payments.rejected.{$this->getPaymentProvider()}";
         event($eventName, new PaymentEvent($order));
-    }
-
-    public function ensureValidSignature()
-    {
-        $this->signature->assertValid();
     }
 
     /**
