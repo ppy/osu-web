@@ -20,7 +20,7 @@ class OrderException extends \Exception implements HasExtraExceptionData
 
     public function getContexts(): array
     {
-        return ['order' => $this->order->only('id', 'provider', 'reference', 'status', 'transaction_id', 'user_id')];
+        return ['order' => $this->order?->only('id', 'provider', 'reference', 'status', 'transaction_id', 'user_id')];
     }
 
     public function getExtras(): array
