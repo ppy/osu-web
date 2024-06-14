@@ -329,7 +329,7 @@ class Score extends Model implements Traits\ReportableInterface
 
             $hits = $statistics->good + $statistics->great + $statistics->perfect;
             $maxHits = $this->data->maximumStatistics->perfect;
-            if ($hits !== $maxHits) {
+            if ($hits !== $maxHits || $maxHits === 0) {
                 return false;
             }
 
