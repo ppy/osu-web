@@ -22,9 +22,7 @@ class ShopifyController extends Controller
     public function callback()
     {
         $signature = new ShopifySignature(request());
-        if (!$signature->isValid()) {
-            throw new InvalidSignatureException();
-        }
+        $signature->assertValid();
 
         // X-Shopify-Hmac-Sha256
         // X-Shopify-Order-Id

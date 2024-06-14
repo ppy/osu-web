@@ -6,6 +6,7 @@
 namespace App\Libraries\Payments;
 
 use App\Exceptions\HasExtraExceptionData;
+use App\Exceptions\InvalidSignatureException;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 
@@ -17,6 +18,13 @@ class PaypalSignature implements HasExtraExceptionData, PaymentSignature
 
     public function __construct(private Request $request)
     {
+    }
+
+    public function assertValid()
+    {
+        if (!$this->isValid()) {
+            throw new InvalidSignatureException($this->extras);
+        }
     }
 
     public function getContexts(): array

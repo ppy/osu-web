@@ -5,12 +5,20 @@
 
 namespace App\Libraries\Payments;
 
+use App\Exceptions\InvalidSignatureException;
 use Illuminate\Http\Request;
 
 class XsollaSignature implements PaymentSignature
 {
     public function __construct(private Request $request)
     {
+    }
+
+    public function assertValid()
+    {
+        if (!$this->isValid()) {
+            throw new InvalidSignatureException();
+        }
     }
 
     public function isValid()

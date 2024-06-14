@@ -307,11 +307,7 @@ abstract class PaymentProcessor implements \ArrayAccess
 
     public function ensureValidSignature()
     {
-        // TODO: post many warnings
-        if (!$this->signature->isValid()) {
-            $this->validationErrors()->add('header.signature', '.signature.not_match');
-            $this->throwValidationFailed(new InvalidSignatureException());
-        }
+        $this->signature->assertValid();
     }
 
     /**

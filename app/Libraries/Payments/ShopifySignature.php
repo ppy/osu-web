@@ -5,6 +5,7 @@
 
 namespace App\Libraries\Payments;
 
+use App\Exceptions\InvalidSignatureException;
 use Illuminate\Http\Request;
 
 class ShopifySignature implements PaymentSignature
@@ -15,6 +16,13 @@ class ShopifySignature implements PaymentSignature
     public function __construct(Request $request)
     {
         $this->request = $request;
+    }
+
+    public function assertValid(): void
+    {
+        if (!$this->isValid()) {
+            throw new InvalidSignatureException();
+        }
     }
 
     public function isValid()
