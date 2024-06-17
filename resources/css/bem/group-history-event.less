@@ -8,7 +8,7 @@
   font-size: @font-size--title-small;
   gap: 15px;
 
-  @bold-events: group-add, group-remove, group-rename;
+  @bold-events: group_add, group_remove, group_rename;
   each(@bold-events, {
     &--@{value} {
       --message-weight: bold;
@@ -16,14 +16,14 @@
   });
 
   @icons: {
-    group-add: @fa-var-users;
-    group-remove: @fa-var-users-slash;
-    group-rename: @fa-var-users-cog;
-    user-add: @fa-var-user-plus;
-    user-add-playmodes: @fa-var-user-tag;
-    user-remove: @fa-var-user-minus;
-    user-remove-playmodes: @fa-var-user-tag;
-    user-set-default: @fa-var-user-cog;
+    group_add: @fa-var-users;
+    group_remove: @fa-var-users-slash;
+    group_rename: @fa-var-users-cog;
+    user_add: @fa-var-user-plus;
+    user_add_playmodes: @fa-var-user-tag;
+    user_remove: @fa-var-user-minus;
+    user_remove_playmodes: @fa-var-user-tag;
+    user_set_default: @fa-var-user-cog;
   };
   each(@icons, {
     &--@{key} {

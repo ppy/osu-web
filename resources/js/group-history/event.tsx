@@ -6,7 +6,6 @@ import TimeWithTooltip from 'components/time-with-tooltip';
 import UserLink from 'components/user-link';
 import UserGroupEventJson from 'interfaces/user-group-event-json';
 import { route } from 'laroute';
-import { kebabCase } from 'lodash';
 import * as React from 'react';
 import { classWithModifiers, groupColour } from 'utils/css';
 import { trans, transArray } from 'utils/lang';
@@ -60,7 +59,7 @@ export default class Event extends React.PureComponent<Props> {
   render() {
     return (
       <div
-        className={classWithModifiers('group-history-event', kebabCase(this.props.event.type))}
+        className={classWithModifiers('group-history-event', this.props.event.type)}
         style={groupColour(groupStore.byId.get(this.props.event.group_id))}
       >
         <i className='group-history-event__icon' />
