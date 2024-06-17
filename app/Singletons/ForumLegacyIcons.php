@@ -16,30 +16,18 @@ class ForumLegacyIcons
     use Memoizes;
 
     /**
-     * Get all legacy forum icons.
-     *
-     * @return Collection<int, LegacyIcon>
-     */
-    public function all(): Collection
-    {
-        return $this->memoize(__FUNCTION__, fn () => LegacyIcon::all());
-    }
-
-    /**
-     * Get all legacy forum icons keyed by ID.
-     *
-     * @return Collection<int, LegacyIcon>
-     */
-    public function allById(): Collection
-    {
-        return $this->memoize(__FUNCTION__, fn () => $this->all()->keyBy('icons_id'));
-    }
-
-    /**
      * Get a legacy forum icon by its ID.
      */
     public function byId(int $id): ?LegacyIcon
     {
         return $this->allById()->get($id);
+    }
+
+    /**
+     * @return Collection<int, LegacyIcon>
+     */
+    private function allById(): Collection
+    {
+        return $this->memoize(__FUNCTION__, fn () => LegacyIcon::all()->keyBy('icons_id'));
     }
 }
