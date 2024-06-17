@@ -3,9 +3,10 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-namespace App\Libraries\Payments;
+namespace App\Exceptions;
 
-interface PaymentSignature
+interface HasExtraExceptionData
 {
-    public function assertValid(): void;
+    public function getContexts(): array;
+    public function getExtras(): array;
 }

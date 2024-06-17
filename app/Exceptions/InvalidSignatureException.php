@@ -7,7 +7,20 @@ namespace App\Exceptions;
 
 use Exception;
 
-class InvalidSignatureException extends Exception
+class InvalidSignatureException extends Exception implements HasExtraExceptionData
 {
-    // doesn't really contain anything
+    public function __construct(string $message = '', private array $extras = [])
+    {
+        parent::__construct($message);
+    }
+
+    public function getContexts(): array
+    {
+        return [];
+    }
+
+    public function getExtras(): array
+    {
+        return $this->extras;
+    }
 }

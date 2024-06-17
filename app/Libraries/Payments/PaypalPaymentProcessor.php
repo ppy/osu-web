@@ -92,7 +92,7 @@ class PaypalPaymentProcessor extends PaymentProcessor
 
     public function validateTransaction()
     {
-        $this->ensureValidSignature();
+        $this->signature->assertValid();
 
         $order = $this->getOrder();
         // order should exist
