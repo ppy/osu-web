@@ -7,6 +7,7 @@ import { action, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
+import MenuImage from './menu-image';
 
 function modulo(dividend: number, divisor: number): number {
   return ((dividend % divisor) + divisor) % divisor;
@@ -14,7 +15,6 @@ function modulo(dividend: number, divisor: number): number {
 
 const autoRotateIntervalMs = 6000;
 const bn = 'menu-images';
-const itemBn = 'menu-image';
 
 interface Props {
   images: MenuImageJson[];
@@ -55,7 +55,7 @@ export default class MenuImages extends React.Component<Props> {
       return (
         <div className={bn}>
           <div className={`${bn}__container`}>
-            {this.renderImage(this.props.images[0])}
+            <MenuImage image={this.props.images[0]} />
           </div>
         </div>
       );
@@ -76,12 +76,13 @@ export default class MenuImages extends React.Component<Props> {
             Render the images, including clones before and after to help create
             the illusion of an infinitely scrolling container
           */}
-          {range(this.minIndex, this.maxIndex + 1).map(
-            (index) => this.renderImage(
-              this.props.images[modulo(index, this.length)],
-              index,
-            ),
-          )}
+          {range(this.minIndex, this.maxIndex + 1).map((index) => (
+            <MenuImage
+              key={index}
+              image={this.props.images[modulo(index, this.length)]}
+              index={index}
+            />
+          ))}
         </div>
         {this.renderArrows()}
         {this.renderIndicators()}
@@ -138,18 +139,6 @@ export default class MenuImages extends React.Component<Props> {
       </>
     );
   }
-
-  private readonly renderImage = (image: MenuImageJson, index = 0) => (
-    <div
-      key={index}
-      className={itemBn}
-      style={{ '--index': index } as React.CSSProperties}
-    >
-      <a className={`${itemBn}__link`} href={image.url}>
-        <img className={`${itemBn}__image`} src={image.image_url} />
-      </a>
-    </div>
-  );
 
   private renderIndicators() {
     return (
