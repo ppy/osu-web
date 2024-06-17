@@ -32,13 +32,15 @@
   });
 
   &__icon {
-    .fas();
     background-color: var(--group-colour, hsl(var(--hsl-b1)));
     border-radius: 10000px;
     color: hsl(var(--hsl-b6));
+    line-height: 1;
     padding: 3px 6px;
 
     &::before {
+      .fas();
+      .fa-fw();
       content: var(--icon);
     }
   }
