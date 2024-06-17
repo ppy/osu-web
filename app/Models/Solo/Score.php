@@ -286,7 +286,7 @@ class Score extends Model implements Traits\ReportableInterface
         return ScoringMode::convertToClassic(
             Ruleset::from($this->ruleset_id),
             $this->total_score,
-            $this->data->maximumStatistics->great + $this->data->maximumStatistics->perfect,
+            $this->maxBasicJudgements(),
         );
     }
 
@@ -491,5 +491,33 @@ class Score extends Model implements Traits\ReportableInterface
             'reason' => 'Cheating',
             'user_id' => $this->user_id,
         ];
+    }
+
+    /**
+     * Shortcut for calculating the beatmap's object count using only the score.
+     *
+     * @see https://github.com/ppy/osu/blob/b535f7c51916ed09231b78aa422e6488cf9a2a12/osu.Game/Scoring/Legacy/ScoreInfoExtensions.cs#L28-L32 Client reference
+     * @see https://github.com/ppy/osu/blob/b535f7c51916ed09231b78aa422e6488cf9a2a12/osu.Game/Rulesets/Scoring/HitResult.cs#L228-L243 Client reference (IsBasic)
+     */
+    private function maxBasicJudgements(): int
+    {
+        static $basicHitResults = [
+            'none',
+            'miss',
+            'meh',
+            'ok',
+            'good',
+            'great',
+            'perfect',
+        ];
+
+        $count = 0;
+        $maximumStatistics = $this->data->maximumStatistics;
+
+        foreach ($basicHitResults as $field) {
+            $count += $maximumStatistics->$field;
+        }
+
+        return $count;
     }
 }
