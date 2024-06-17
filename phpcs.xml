@@ -44,16 +44,15 @@
     <rule ref="SlevomatCodingStandard.Classes.ModernClassNameReference"/>
     <rule ref="SlevomatCodingStandard.Commenting.DisallowOneLinePropertyDocComment"/>
     <rule ref="SlevomatCodingStandard.Commenting.EmptyComment"/>
-    <rule ref="SlevomatCodingStandard.Commenting.InlineDocCommentDeclaration">
-        <exclude-pattern>database/migrations/*</exclude-pattern>
-    </rule>
+    <rule ref="SlevomatCodingStandard.Commenting.InlineDocCommentDeclaration"/>
+    <rule ref="SlevomatCodingStandard.Commenting.UselessFunctionDocComment"/>
     <rule ref="SlevomatCodingStandard.ControlStructures.DisallowContinueWithoutIntegerOperandInSwitch"/>
     <rule ref="SlevomatCodingStandard.ControlStructures.DisallowYodaComparison"/>
     <rule ref="SlevomatCodingStandard.ControlStructures.LanguageConstructWithParentheses"/>
     <rule ref="SlevomatCodingStandard.ControlStructures.RequireNullCoalesceOperator"/>
     <rule ref="SlevomatCodingStandard.Exceptions.DeadCatch"/>
     <rule ref="SlevomatCodingStandard.Files.TypeNameMatchesFileName">
-      <exclude-pattern>database/migrations/</exclude-pattern>
+      <exclude-pattern>database/migrations/*</exclude-pattern>
       <properties>
         <property name="rootNamespaces" type="array">
           <element key="app" value="App"/>
@@ -63,11 +62,10 @@
         </property>
       </properties>
     </rule>
+    <rule ref="SlevomatCodingStandard.Functions.NamedArgumentSpacing"/>
     <rule ref="SlevomatCodingStandard.Functions.StrictCall"/>
     <rule ref="SlevomatCodingStandard.Namespaces.AlphabeticallySortedUses"/>
-    <rule ref="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameInAnnotation">
-        <exclude-pattern>tests/*</exclude-pattern>
-    </rule>
+    <rule ref="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameInAnnotation"/>
     <rule ref="SlevomatCodingStandard.Namespaces.NamespaceDeclaration"/>
     <rule ref="SlevomatCodingStandard.Namespaces.UnusedUses">
         <properties>
@@ -87,7 +85,6 @@
     <rule ref="SlevomatCodingStandard.Variables.DuplicateAssignmentToVariable"/>
     <rule ref="Squiz.Arrays.ArrayBracketSpacing"/>
     <rule ref="Squiz.Classes.ClassFileName">
-        <exclude-pattern>database/factories/*</exclude-pattern>
         <exclude-pattern>database/migrations/*</exclude-pattern>
     </rule>
     <rule ref="Squiz.Classes.LowercaseClassKeywords"/>
@@ -127,7 +124,6 @@
 
     <!-- Contradictions with Laravel and/or PSR-12 -->
     <rule ref="PSR1.Classes.ClassDeclaration.MissingNamespace">
-        <exclude-pattern>database/factories/*</exclude-pattern>
         <exclude-pattern>database/migrations/*</exclude-pattern>
     </rule>
     <rule ref="PSR1.Files.SideEffects">
@@ -161,10 +157,6 @@
 
     <!-- Almost none of our constants have visibility defined yet and explicitly defining them as public to fix this (which they implicitly are) would be misleading -->
     <rule ref="SlevomatCodingStandard.Classes.ClassConstantVisibility.MissingConstantVisibility">
-        <type>warning</type>
-    </rule>
-    <!-- To silence complaints about @urlParam/@bodyParam variable names/references within API documentation -->
-    <rule ref="SlevomatCodingStandard.Namespaces.UnusedUses.MismatchingCaseSensitivity">
         <type>warning</type>
     </rule>
 </ruleset>
