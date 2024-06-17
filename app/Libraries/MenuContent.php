@@ -34,7 +34,7 @@ class MenuContent
     private static function fetch(): array
     {
         $response = (new Client())
-            ->get(osu_url('menu-content'))
+            ->get(osu_url('menu_content'))
             ->getBody()
             ->getContents();
 

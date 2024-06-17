@@ -121,6 +121,4 @@
     <script id="json-menu-images" type="application/json">
         {!! json_encode($menuImages) !!}
     </script>
-
-    @include('layout._react_js', ['src' => 'js/menu-images.js'])
 @endsection
