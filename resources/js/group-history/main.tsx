@@ -7,10 +7,11 @@ import StringWithComponent from 'components/string-with-component';
 import UserGroupEventJson from 'interfaces/user-group-event-json';
 import { route } from 'laroute';
 import { omit } from 'lodash';
-import { action, computed, makeObservable, observable } from 'mobx';
-import { observer } from 'mobx-react';
+import { action, autorun, computed, makeObservable, observable } from 'mobx';
+import { disposeOnUnmount, observer } from 'mobx-react';
 import * as React from 'react';
 import { onErrorWithCallback } from 'utils/ajax';
+import { parseJson, storeJson } from 'utils/json';
 import { trans } from 'utils/lang';
 import { updateQueryString, wikiUrl } from 'utils/url';
 import Events from './events';
@@ -21,9 +22,10 @@ import SearchForm from './search-form';
 type MoreParams = GroupHistoryJson['params'] & { cursor_string: string };
 
 export const formParamKeys = ['group', 'max_date', 'min_date', 'user'] as const;
+const jsonId = 'json-group-history';
 
 @observer
-export default class Main extends React.Component<GroupHistoryJson> {
+export default class Main extends React.Component {
   @observable private currentParams: GroupHistoryJson['params'];
   @observable private events: UserGroupEventJson[];
   @observable private loading: 'more' | 'new' | false = false;
@@ -36,23 +38,31 @@ export default class Main extends React.Component<GroupHistoryJson> {
     return formParamKeys.every((key) => this.newParams[key] === this.currentParams[key]);
   }
 
-  constructor(props: GroupHistoryJson) {
+  constructor(props: Record<string, never>) {
     super(props);
+    makeObservable(this);
 
-    groupStore.update(props.groups);
-    this.currentParams = props.params;
-    this.events = props.events;
+    const json = parseJson<GroupHistoryJson>(jsonId);
+
+    groupStore.update(json.groups);
+    this.currentParams = json.params;
+    this.events = json.events;
     this.newParams = { ...this.currentParams };
-    this.setMoreParamsFromJson(props);
+    this.setMoreParamsFromJson(json);
 
     // If the "group" param doesn't match any group we can show as a select
     // option, set it to null in the new params. This prevents the new params
     // from initially being out of sync with the displayed form controls
-    if (props.params.group != null && !groupStore.byIdentifier.has(props.params.group)) {
+    if (json.params.group != null && !groupStore.byIdentifier.has(json.params.group)) {
       this.newParams.group = null;
     }
 
-    makeObservable(this);
+    disposeOnUnmount(this, autorun(() => storeJson<GroupHistoryJson>(jsonId, {
+      cursor_string: this.moreParams?.cursor_string ?? null,
+      events: this.events,
+      groups: groupStore.all,
+      params: this.currentParams,
+    })));
   }
 
   componentWillUnmount() {
@@ -137,7 +147,7 @@ export default class Main extends React.Component<GroupHistoryJson> {
 
     // Update the query string of the URL when starting a new search. Remove
     // "sort" from the query if it's set to the default
-    history.replaceState(history.state, '', updateQueryString(null, {
+    Turbolinks.controller.replaceHistory(updateQueryString(null, {
       ...this.newParams,
       sort: this.newParams.sort === 'id_desc' ? null : this.newParams.sort,
     }));

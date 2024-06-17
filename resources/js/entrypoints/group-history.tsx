@@ -4,8 +4,5 @@
 import Main from 'group-history/main';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import { parseJson } from 'utils/json';
 
-core.reactTurbolinks.register('group-history', () => (
-  <Main {...parseJson('json-group-history')} />
-));
+core.reactTurbolinks.register('group-history', () => <Main />);
