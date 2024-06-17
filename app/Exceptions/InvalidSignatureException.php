@@ -14,7 +14,6 @@ class InvalidSignatureException extends Exception implements HasExtraExceptionDa
         parent::__construct($message);
     }
 
-    // doesn't really contain anything
     public function getContexts(): array
     {
         return [];
