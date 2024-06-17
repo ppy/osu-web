@@ -15,12 +15,12 @@
     <div class="osu-page">
         <div class="user-home">
             <div class="user-home__news">
-                <div class="js-react--news-announcements">
-                    @if (count($newsAnnouncements) > 0)
+                <div class="js-react--menu-images">
+                    @if (count($menuImages) > 0)
                         <div
                             class="{{ class_with_modifiers(
-                                'user-home__news-announcements-placeholder',
-                                ['with-indicators' => count($newsAnnouncements) > 1],
+                                'user-home__menu-images-placeholder',
+                                ['with-indicators' => count($menuImages) > 1],
                             ) }}"
                         >
                             {!! spinner() !!}
@@ -118,9 +118,9 @@
 @section("script")
     @parent
 
-    <script id="json-news-announcements" type="application/json">
-        {!! json_encode($newsAnnouncements) !!}
+    <script id="json-menu-images" type="application/json">
+        {!! json_encode($menuImages) !!}
     </script>
 
-    @include('layout._react_js', ['src' => 'js/news-announcements.js'])
+    @include('layout._react_js', ['src' => 'js/menu-images.js'])
 @endsection

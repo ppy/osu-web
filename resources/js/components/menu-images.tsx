@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import Img2x from 'components/img2x';
-import NewsAnnouncementJson from 'interfaces/news-announcement-json';
+import MenuImageJson from 'interfaces/menu-image-json';
 import { range } from 'lodash';
 import { action, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
@@ -14,15 +14,15 @@ function modulo(dividend: number, divisor: number): number {
 }
 
 const autoRotateIntervalMs = 6000;
-const bn = 'news-announcements';
-const itemBn = 'news-announcement';
+const bn = 'menu-images';
+const itemBn = 'menu-image';
 
 interface Props {
-  announcements: NewsAnnouncementJson[];
+  images: MenuImageJson[];
 }
 
 @observer
-export default class NewsAnnouncements extends React.Component<Props> {
+export default class MenuImages extends React.Component<Props> {
   private autoRotateTimerId?: number;
   @observable private index = 0;
   @observable private maxIndex = this.length - 1;
@@ -30,7 +30,7 @@ export default class NewsAnnouncements extends React.Component<Props> {
   @observable private transition = true;
 
   private get length() {
-    return this.props.announcements.length;
+    return this.props.images.length;
   }
 
   constructor(props: Props) {
@@ -56,7 +56,7 @@ export default class NewsAnnouncements extends React.Component<Props> {
       return (
         <div className={bn}>
           <div className={`${bn}__container`}>
-            {this.renderAnnouncement(this.props.announcements[0])}
+            {this.renderImage(this.props.images[0])}
           </div>
         </div>
       );
@@ -74,12 +74,12 @@ export default class NewsAnnouncements extends React.Component<Props> {
           style={{ '--index': this.index } as React.CSSProperties}
         >
           {/*
-            Render the announcements, including clones before and after to help
-            create the illusion of an infinitely scrolling container
+            Render the images, including clones before and after to help create
+            the illusion of an infinitely scrolling container
           */}
           {range(this.minIndex, this.maxIndex + 1).map(
-            (index) => this.renderAnnouncement(
-              this.props.announcements[modulo(index, this.length)],
+            (index) => this.renderImage(
+              this.props.images[modulo(index, this.length)],
               index,
             ),
           )}
@@ -118,28 +118,10 @@ export default class NewsAnnouncements extends React.Component<Props> {
     // show the transition so that nothing changes visually
     this.setIndex(modulo(this.index, this.length), false);
 
-    // Reset the max and min indices to delete all of the cloned announcements
+    // Reset the max and min indices to delete all of the cloned images
     this.maxIndex = this.length - 1;
     this.minIndex = 0;
   };
-
-  private readonly renderAnnouncement = (announcement: NewsAnnouncementJson, index = 0) => (
-    <div
-      key={`${announcement.id}:${index}`}
-      className={itemBn}
-      style={{ '--index': index } as React.CSSProperties}
-    >
-      <a className={`${itemBn}__link`} href={announcement.url}>
-        <Img2x className={`${itemBn}__image`} src={announcement.image_url} />
-      </a>
-      {announcement.content != null && (
-        <div
-          className={`${itemBn}__content`}
-          dangerouslySetInnerHTML={{ __html: announcement.content.html }}
-        />
-      )}
-    </div>
-  );
 
   private renderArrows() {
     return (
@@ -158,10 +140,28 @@ export default class NewsAnnouncements extends React.Component<Props> {
     );
   }
 
+  private readonly renderImage = (image: MenuImageJson, index = 0) => (
+    <div
+      key={`${image.id}:${index}`}
+      className={itemBn}
+      style={{ '--index': index } as React.CSSProperties}
+    >
+      <a className={`${itemBn}__link`} href={image.url}>
+        <Img2x className={`${itemBn}__image`} src={image.image_url} />
+      </a>
+      {image.content != null && (
+        <div
+          className={`${itemBn}__content`}
+          dangerouslySetInnerHTML={{ __html: image.content.html }}
+        />
+      )}
+    </div>
+  );
+
   private renderIndicators() {
     return (
       <div className={`${bn}__indicators`}>
-        {this.props.announcements.map((_, index) => (
+        {this.props.images.map((_, index) => (
           <button
             key={index}
             className={classWithModifiers(
