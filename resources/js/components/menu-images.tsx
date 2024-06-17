@@ -73,7 +73,8 @@ export default class MenuImages extends React.Component<Props> {
           style={{ '--index': this.index } as React.CSSProperties}
         >
           {/*
-            Render the images, including clones before and after to help create
+            Render the images. If minIndex or maxIndex have been adjusted, this
+            will render duplicate images in a cycling pattern to help create
             the illusion of an infinitely scrolling container
           */}
           {range(this.minIndex, this.maxIndex + 1).map((index) => (
