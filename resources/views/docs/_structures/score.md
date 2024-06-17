@@ -17,7 +17,7 @@ legacy_perfect      | boolean                  | |
 legacy_score_id     | integer?                 | |
 legacy_total_score  | integer                  | |
 max_combo           | integer                  | |
-maximum_statistics  | ScoreStatistics?         | |
+maximum_statistics  | ScoreStatistics          | |
 mods                | Mod[]                    | |
 passed              | boolean                  | |
 playlist_item_id    | integer                  | Only for multiplayer score

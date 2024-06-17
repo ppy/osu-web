@@ -25,7 +25,7 @@ export type SoloScoreStatisticsAttribute =
   | 'small_tick_hit'
   | 'small_tick_miss';
 
-type SoloScoreJsonDefaultAttributes = {
+interface SoloScoreJsonAttributesBase {
   accuracy: number;
   beatmap_id: number;
   best_id: number | null;
@@ -34,31 +34,43 @@ type SoloScoreJsonDefaultAttributes = {
   has_replay: boolean;
   id: number;
   is_perfect_combo: boolean;
+  legacy_perfect: boolean;
   legacy_score_id: number | null;
   legacy_total_score: number;
   max_combo: number;
+  maximum_statistics: Partial<Record<SoloScoreStatisticsAttribute, number>>;
   mods: ScoreModJson[];
   passed: boolean;
   pp: number | null;
-  preserve?: boolean;
-  processed?: boolean;
   rank: Rank;
-  ranked?: boolean;
   ruleset_id: number;
   started_at: string | null;
   statistics: Partial<Record<SoloScoreStatisticsAttribute, number>>;
   total_score: number;
-  type: 'solo_score' | `score_best_${Ruleset}` | `score_${Ruleset}`;
   user_id: number;
-} & (
-  { legacy_perfect: boolean } |
-  {
-    legacy_perfect: null;
-    maximum_statistics: Partial<Record<SoloScoreStatisticsAttribute, number>>;
-  }
-);
+}
 
-type SoloScoreJson = SoloScoreJsonDefaultAttributes & ScoreJsonDefaultIncludes & Partial<ScoreJsonAvailableIncludes>;
+interface SoloScoreJsonAttributesLegacy extends SoloScoreJsonAttributesBase {
+  type: `score_best_${Ruleset}` | `score_${Ruleset}`;
+}
+
+interface SoloScoreJsonAttributesSoloScore extends SoloScoreJsonAttributesBase {
+  classic_total_score: number;
+  preserve: boolean;
+  processed: boolean;
+  ranked: boolean;
+  type: 'solo_score';
+}
+
+interface SoloScoreJsonAttributesMultiplayer extends SoloScoreJsonAttributesSoloScore {
+  playlist_item_id: number;
+  room_id: number;
+  solo_score_id: number;
+}
+
+type SoloScoreJsonAttributes = SoloScoreJsonAttributesLegacy | SoloScoreJsonAttributesMultiplayer | SoloScoreJsonAttributesSoloScore;
+
+type SoloScoreJson = SoloScoreJsonAttributes & ScoreJsonDefaultIncludes & Partial<ScoreJsonAvailableIncludes>;
 
 export default SoloScoreJson;
 
