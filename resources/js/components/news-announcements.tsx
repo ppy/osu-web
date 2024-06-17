@@ -90,15 +90,15 @@ export default class NewsAnnouncements extends React.Component<Props> {
     );
   }
 
-  private clearAutoRotateTimer = () => {
+  private readonly clearAutoRotateTimer = () => {
     window.clearInterval(this.autoRotateTimerId);
   };
 
-  private handleArrowClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  private readonly handleArrowClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     this.setIndex(this.index + parseInt(event.currentTarget.dataset.increment ?? '', 10));
   };
 
-  private handleIndicatorClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  private readonly handleIndicatorClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     // Increment the index by the visible difference between the selected and
     // active indicator
     this.setIndex(
@@ -109,7 +109,7 @@ export default class NewsAnnouncements extends React.Component<Props> {
   };
 
   @action
-  private handleTransitionEnd = (event: React.TransitionEvent<HTMLDivElement>) => {
+  private readonly handleTransitionEnd = (event: React.TransitionEvent<HTMLDivElement>) => {
     if (event.propertyName !== 'transform' || event.currentTarget !== event.target) {
       return;
     }
@@ -123,7 +123,7 @@ export default class NewsAnnouncements extends React.Component<Props> {
     this.minIndex = 0;
   };
 
-  private renderAnnouncement = (announcement: NewsAnnouncementJson, index = 0) => (
+  private readonly renderAnnouncement = (announcement: NewsAnnouncementJson, index = 0) => (
     <div
       key={`${announcement.id}:${index}`}
       className={itemBn}
@@ -176,7 +176,7 @@ export default class NewsAnnouncements extends React.Component<Props> {
     );
   }
 
-  private setAutoRotateTimer = () => {
+  private readonly setAutoRotateTimer = () => {
     this.clearAutoRotateTimer();
 
     this.autoRotateTimerId = window.setInterval(
