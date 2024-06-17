@@ -7,13 +7,13 @@ namespace App\Libraries\User;
 
 use App\Libraries\Session\Store as SessionStore;
 use App\Mail\UserForceReactivation;
-use App\Models\LegacySession;
 use App\Models\UserAccountHistory;
 use App\Models\UserClient;
 use Mail;
 
 class ForceReactivation
 {
+    const INACTIVE = 'inactive';
     const INACTIVE_DIFFERENT_COUNTRY = 'inactive_different_country';
 
     private $country;
@@ -28,9 +28,18 @@ class ForceReactivation
 
         $this->country = request_country($this->request);
 
-        if ($this->user->isInactive() && $this->user->country_acronym !== $this->country) {
-            $this->reason = static::INACTIVE_DIFFERENT_COUNTRY;
+        if ($this->user->isInactive()) {
+            if ($this->user->country_acronym !== $this->country) {
+                $this->reason = static::INACTIVE_DIFFERENT_COUNTRY;
+            } elseif ($GLOBALS['cfg']['osu']['user']['inactive_force_password_reset']) {
+                $this->reason = static::INACTIVE;
+            }
         }
+    }
+
+    public function getReason(): ?string
+    {
+        return $this->reason;
     }
 
     public function isRequired()
@@ -45,8 +54,7 @@ class ForceReactivation
 
         $this->addHistoryNote();
         $this->user->update(['user_password' => '']);
-        SessionStore::destroy($userId);
-        LegacySession::where('session_user_id', $userId)->delete();
+        SessionStore::batchDelete($userId);
         UserClient::where('user_id', $userId)->update(['verified' => false]);
 
         if (!$waitingActivation && is_valid_email_format($this->user->user_email)) {
@@ -59,9 +67,11 @@ class ForceReactivation
 
     private function addHistoryNote()
     {
-        if ($this->reason === static::INACTIVE_DIFFERENT_COUNTRY) {
-            $message = "First login after {$this->user->user_lastvisit->diffInDays()} days from {$this->country}. Forcing password reset.";
-        }
+        $message = match ($this->reason) {
+            static::INACTIVE => "First login after {$this->user->user_lastvisit->diffInDays()} days. Forcing password reset.",
+            static::INACTIVE_DIFFERENT_COUNTRY => "First login after {$this->user->user_lastvisit->diffInDays()} days from {$this->country}. Forcing password reset.",
+            default => null,
+        };
 
         if ($message !== null) {
             UserAccountHistory::addNote($this->user, $message);

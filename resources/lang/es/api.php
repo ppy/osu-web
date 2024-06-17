@@ -17,17 +17,19 @@ return [
         'identify' => 'Identificarte y leer tu perfil público.',
 
         'chat' => [
+            'read' => 'Leer mensajes en tu nombre.',
             'write' => 'Enviar mensajes en tu nombre.',
+            'write_manage' => 'Unirse y abandonar canales en tu nombre.',
         ],
 
         'forum' => [
-            'write' => 'Crear y editar temas y publicaciones del foro en su nombre.',
+            'write' => 'Crear y editar temas y publicaciones del foro en tu nombre.',
         ],
 
         'friends' => [
             'read' => 'Ver a quién sigues.',
         ],
 
-        'public' => 'Leer datos públicos en su nombre.',
+        'public' => 'Leer datos públicos en tu nombre.',
     ],
 ];

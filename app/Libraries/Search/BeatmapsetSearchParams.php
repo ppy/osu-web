@@ -21,6 +21,7 @@ class BeatmapsetSearchParams extends SearchParams
     public ?array $created = null;
     public ?string $creator = null;
     public ?array $cs = null;
+    public ?string $difficulty = null;
     public ?array $difficultyRating = null;
     public ?array $drain = null;
     public array $extra = [];
@@ -38,9 +39,12 @@ class BeatmapsetSearchParams extends SearchParams
     public bool $showFollows = false;
     public bool $showRecommended = false;
     public bool $showSpotlights = false;
+    public ?string $source = null;
     public ?string $status = null;
+    public ?string $title = null;
     public ?array $statusRange = null;
-    public ?array $hitLength = null;
+    public ?array $totalLength = null;
+    public ?array $updated = null;
     public ?User $user = null;
 
     private ?float $recommendedDifficulty = null;
@@ -49,7 +53,7 @@ class BeatmapsetSearchParams extends SearchParams
     {
         parent::__construct();
 
-        $this->size = config('osu.beatmaps.max');
+        $this->size = $GLOBALS['cfg']['osu']['beatmaps']['max'];
     }
 
     /**

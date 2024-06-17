@@ -78,6 +78,8 @@ class Kernel extends ConsoleKernel
         Commands\ChatChannelSetLastMessageId::class,
 
         Commands\BeatmapLeadersRefresh::class,
+
+        Commands\DailyChallengeCreateNext::class,
     ];
 
     /**
@@ -101,7 +103,7 @@ class Kernel extends ConsoleKernel
             ->everyThirtyMinutes()
             ->onOneServer();
 
-        $schedule->command('forum:topic-cover-cleanup --yes')
+        $schedule->command('forum:topic-cover-cleanup --no-interaction')
             ->daily()
             ->withoutOverlapping()
             ->onOneServer();
@@ -136,6 +138,11 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('chat:expire-ack')
             ->everyFiveMinutes()
+            ->withoutOverlapping()
+            ->onOneServer();
+
+        $schedule->command('daily-challenge:create-next')
+            ->cron('5 0 * * *')
             ->withoutOverlapping()
             ->onOneServer();
     }

@@ -22,10 +22,8 @@ abstract class Search extends HasSearch implements Queryable
     /**
      * A tag to use when logging timing of fetches.
      * FIXME: context-based tagging would be nicer.
-     *
-     * @var string|null
      */
-    public $loggingTag;
+    public ?string $loggingTag;
 
     protected $aggregations;
     protected $index;
@@ -128,7 +126,6 @@ abstract class Search extends HasSearch implements Queryable
 
     public function getSortCursor(): ?array
     {
-        // FIXME: should cast cursor values to match sort.
         $requested = $this->params->size;
         $received = $this->response()->count();
         $total = $this->response()->total();
@@ -136,17 +133,10 @@ abstract class Search extends HasSearch implements Queryable
         if ($received === $requested && $received < $total) {
             $last = array_last($this->response()->hits());
             if (array_key_exists('sort', $last)) {
-                $fields = array_map(function ($sort) {
-                    return $sort->field;
-                }, $this->params->sorts);
-
-                $casted = array_map(function ($value) {
-                    // stringify all ints since javascript doesn't like big ints.
-                    // fortunately the minimum value is PHP_INT_MIN instead of the equivalent double.
-                    return is_int($value) ? (string) $value : $value;
-                }, $last['sort']);
-
-                return array_combine($fields, $casted);
+                return array_combine(
+                    array_map(fn ($sort) => $sort->field, $this->params->sorts),
+                    $last['sort'],
+                );
             }
         }
 
@@ -193,6 +183,7 @@ abstract class Search extends HasSearch implements Queryable
      */
     public function searchAfter(?array $searchAfter)
     {
+        // FIXME: The values should be sanitised. The count and type must match sort options.
         $this->params->searchAfter = $searchAfter;
         $this->response = null;
 
@@ -214,7 +205,7 @@ abstract class Search extends HasSearch implements Queryable
             'sort' => array_map(function ($sort) {
                 return $sort->toArray();
             }, $this->params->sorts),
-            'timeout' => config('osu.elasticsearch.search_timeout'),
+            'timeout' => $GLOBALS['cfg']['osu']['elasticsearch']['search_timeout'],
         ];
 
         if (isset($this->params->searchAfter)) {
@@ -296,7 +287,7 @@ abstract class Search extends HasSearch implements Queryable
         }
 
         Datadog::increment(
-            config('datadog-helper.prefix_web').'.search.errors',
+            $GLOBALS['cfg']['datadog-helper']['prefix_web'].'.search.errors',
             1,
             $tags
         );
@@ -335,7 +326,7 @@ abstract class Search extends HasSearch implements Queryable
         try {
             return datadog_timing(
                 $callable,
-                config('datadog-helper.prefix_web').'.search.'.$operation,
+                $GLOBALS['cfg']['datadog-helper']['prefix_web'].'.search.'.$operation,
                 $this->getDatadogTags()
             );
         } catch (ElasticsearchException $e) {

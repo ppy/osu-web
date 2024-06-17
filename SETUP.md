@@ -138,6 +138,8 @@ There are multiple services involved:
 - redis: cache and session server. Can be skipped just like db service
 - elasticsearch: search database. Can be skipped just like db service
 - nginx: proxies php and notification-server(-dusk) so they can be accessed under same host
+- score-indexer: `Solo\Score` indexer.
+- score-indexer-test: `Solo\Score` indexer used by tests.
 
 #### Modifying environment (`.env`, `.env.dusk.local`) files
 
@@ -155,8 +157,6 @@ Start docker in background:
 
 ```
 bin/docker_dev.sh -d
-# alternatively
-# docker compose up -d
 ```
 
 Start single docker service:
@@ -186,12 +186,8 @@ docker compose run --rm php mysql
 Docker images need to be occasionally updated to make sure they're running latest version of the packages.
 
 ```
-docker compose down --rmi all
-docker compose pull
-docker compose build --pull
+docker compose build --no-cache
 ```
-
-(don't use `build --no-cache` as it'll end up rebuilding `php` image multiple times)
 
 #### Faster php commands
 
@@ -222,8 +218,6 @@ php artisan tinker
 ```
 
 ## Generating assets
-
-Using Laravel's [Mix](https://laravel.com/docs/6.x/mix).
 
 ```bash
 # build assets (should be done automatically if using docker)
@@ -272,13 +266,13 @@ Once the env files are set, database for testing will need to be setup:
 Tests should be run against an empty database, to initialize an empty database:
 
 ```
-APP_ENV=testing php artisan migrate:fresh --yes
+APP_ENV=testing php artisan migrate:fresh --no-interaction
 ```
 
 or if using docker:
 
 ```
-docker compose run --rm -e APP_ENV=testing php artisan migrate:fresh --yes
+docker compose run --rm -e APP_ENV=testing php artisan migrate:fresh --no-interaction
 ```
 
 ---
@@ -307,6 +301,22 @@ Regular PHPUnit arguments are accepted, e.g.:
 ```
 bin/phpunit.sh --filter=Route --stop-on-failure
 ```
+
+## Test groups
+
+Some tests are marked with a `@group` they require a specific service to be available.
+These groups can be used to exclude tests:
+
+    bin/phpunit.sh --exclude=RequiresScoreIndexer,RequiresBeatmapDifficultyLookupCache
+
+or run only those tests:
+
+    bin/phpunit.sh --group=RequiresScoreIndexer
+
+- `RequiresBeatmapDifficultyLookupCache`: Requires `beatmap-difficulty-lookup-cache` to be running
+- `RequiresScoreIndexer`: Requires a score indexing schema to be set and `score-indexer-test` service to be running
+
+Most tests require `elasticsearch` and `redis` to be available, so these are not optional.
 
 ## Browser tests
 

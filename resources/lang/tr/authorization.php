@@ -81,6 +81,7 @@ return [
     ],
 
     'contest' => [
+        'judging_not_active' => 'Bu yarışma için değerlendirme aktif değil.',
         'voting_over' => 'Yarışma için oylama süresi bittikten sonra oyunuzu değiştiremezsiniz.',
 
         'entry' => [
@@ -171,7 +172,8 @@ return [
 
     'score' => [
         'pin' => [
-            'disabled_type' => "",
+            'disabled_type' => "Bu tür skorlar sabitlenemez",
+            'failed' => "Geçmeyen skor sabitlenemiyor.",
             'not_owner' => 'Sadece skor sahibi skoru sabitleyebilir.',
             'too_many' => 'Çok fazla skor sabitlendi.',
         ],
@@ -184,6 +186,9 @@ return [
                 'not_owner' => 'Yalnızca kendi kullanıcı sayfanızı düzenleyebilirsiniz.',
                 'require_supporter_tag' => 'osu!supporter etiketi gereklidir.',
             ],
+        ],
+        'update_email' => [
+            'locked' => 'e-posta adresi kilitlenmiş durumda',
         ],
     ],
 ];

@@ -12,6 +12,7 @@ use Auth;
 use Carbon\Carbon;
 use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Laravel\Passport\Http\Controllers\AccessTokenController;
 use Laravel\Passport\Http\Controllers\ApproveAuthorizationController;
 use Laravel\Passport\Http\Controllers\DenyAuthorizationController;
 use Laravel\Passport\Passport;
@@ -33,7 +34,7 @@ class AuthServiceProvider extends ServiceProvider
         // AuthorizationController class.
         $this->app->when(AuthorizationController::class)
             ->needs(StatefulGuard::class)
-            ->give(fn () => Auth::guard(config('passport.guard', null)));
+            ->give(fn () => Auth::guard($GLOBALS['cfg']['passport']['guard']));
     }
 
     public function boot()
@@ -44,7 +45,7 @@ class AuthServiceProvider extends ServiceProvider
         Passport::useTokenModel(Token::class);
         Passport::useClientModel(Client::class);
 
-        if ($path = config('services.passport.path')) {
+        if ($path = $GLOBALS['cfg']['services']['passport']['path']) {
             Passport::keyPath($path);
         }
 
@@ -52,7 +53,7 @@ class AuthServiceProvider extends ServiceProvider
         // RouteServiceProvider current runs before our provider, so Passport's default routes will override
         // those set in routes/web.php.
         Route::group(['prefix' => 'oauth', 'as' => 'oauth.'], function () {
-            Route::post('token', '\Laravel\Passport\Http\Controllers\AccessTokenController@issueToken')->middleware('throttle')->name('passport.token');
+            Route::post('token', AccessTokenController::class.'@issueToken')->middleware('throttle')->name('passport.token');
             Route::get('authorize', AuthorizationController::class.'@authorize')
                 ->middleware(['web', 'verify-user'])
                 ->name('authorizations.authorize');
@@ -67,7 +68,9 @@ class AuthServiceProvider extends ServiceProvider
         Passport::tokensCan([
             'delegate' => '',
             'forum.write' => osu_trans('api.scopes.forum.write'),
+            'chat.read' => osu_trans('api.scopes.chat.read'),
             'chat.write' => osu_trans('api.scopes.chat.write'),
+            'chat.write_manage' => osu_trans('api.scopes.chat.write_manage'),
             'friends.read' => osu_trans('api.scopes.friends.read'),
             'identify' => osu_trans('api.scopes.identify'),
             'public' => osu_trans('api.scopes.public'),

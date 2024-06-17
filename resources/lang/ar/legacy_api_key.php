@@ -4,27 +4,27 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'new' => '',
-    'none' => '',
+    'new' => 'مفتاح API كلاسيكي جديد',
+    'none' => 'لا يوجد مفتاح.',
 
     'docs' => [
-        '_' => '',
-        'github' => '',
+        '_' => 'الوثائق متاحة على :github.',
+        'github' => 'GitHub',
     ],
 
     'form' => [
-        'create' => '',
+        'create' => 'أنشئ مفتاحًا',
     ],
 
     'view' => [
-        'hide' => '',
-        'show' => '',
-        'delete' => '',
+        'hide' => 'إخفاء المفتاح',
+        'show' => 'إظهار المفتاح',
+        'delete' => 'حذف',
     ],
 
     'warning' => [
-        'line1' => '',
-        'line2' => "",
-        'line3' => '',
+        'line1' => 'لا تشاركه مع الآخرين.',
+        'line2' => "إنه أشبه بكلمة مرورك.",
+        'line3' => 'قد يتعرض حسابك للخطر.',
     ],
 ];

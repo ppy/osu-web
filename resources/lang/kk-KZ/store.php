@@ -5,86 +5,132 @@
 
 return [
     'cart' => [
-        'checkout' => '',
-        'info' => '',
-        'more_goodies' => '',
-        'shipping_fees' => '',
-        'title' => '',
-        'total' => '',
+        'checkout' => 'Төлеу',
+        'empty_cart' => '',
+        'info' => 'себеттегі :count_delimited тауар ($:subtotal)',
+        'more_goodies' => 'Тапсырысты аяқтамастан бұрын басқа да тауарларды көргім келеді',
+        'shipping_fees' => 'жеткізу құны',
+        'title' => 'Себет',
+        'total' => 'барлығы',
 
         'errors_no_checkout' => [
-            'line_1' => '',
-            'line_2' => '',
+            'line_1' => 'Қап, себет мәселелері тапсырысты аяқтауға кедергі келтіруде!',
+            'line_2' => 'Жалғастыру үшін жоғарыдағы тауарларды алып тастаңыз немесе жаңартыңыз.',
         ],
 
         'empty' => [
-            'text' => '',
+            'text' => 'Сіздің себетіңіз бос.',
             'return_link' => [
-                '_' => '',
-                'link_text' => '',
+                '_' => 'Басқа да тауарларды табу үшін :linkге оралыңыз!',
+                'link_text' => 'дүкен',
             ],
         ],
     ],
 
     'checkout' => [
-        'cart_problems' => '',
-        'cart_problems_edit' => '',
-        'declined' => '',
-        'delayed_shipping' => '',
-        'hide_from_activity' => '',
-        'old_cart' => '',
-        'pay' => '',
-        'title_compact' => '',
+        'cart_problems' => 'О жоқ, сіздің себетіңізбен мәселелер бар!',
+        'cart_problems_edit' => 'Оны түзеу үшін мында басыңыз.',
+        'declined' => 'Төлеміңіз іске аспады.',
+        'delayed_shipping' => 'Дәл қазір біздегі тапсырыстар тым көп! Сіз тапсырыс бере аласыз, әрине, алайда біз жиналған тапсырыстармен әуре болып жүргенде жеткізу **1-2 аптаға кешігіп** келе алатындығын ескеріңіз.',
+        'hide_from_activity' => 'Осы тапсырыстағы барлық osu!supporter тегтерін менің әрекеттерімнен жасыру ',
+        'old_cart' => 'Сіздің себетіңіз ескірген немесе қайта жүктелген көрінеді. Өтініш, қайта қайталап көріңіз.',
+        'pay' => 'Paypal-мен төлеу',
+        'title_compact' => 'төлеу',
 
         'has_pending' => [
-            '_' => '',
-            'link_text' => '',
+            '_' => 'Сізде бітпеген төлемдер бар, оларды көру үшін :link басыңыз.',
+            'link_text' => 'мында',
         ],
 
         'pending_checkout' => [
-            'line_1' => '',
-            'line_2' => '',
+            'line_1' => 'Алдыңғы төлеміңіз басталған бірақ әлі аяқталмады.',
+            'line_2' => 'Төлем тәсілін таңдау арқылы төлеуді жалғастырыңыз.',
         ],
     ],
 
-    'discount' => '',
+    'discount' => ':percent% үнемдеу',
+    'free' => 'тегін!',
 
     'invoice' => [
-        'echeck_delay' => '',
-        'hide_from_activity' => '',
-        'title_compact' => '',
+        'contact' => 'Байланыс желілері:',
+        'date' => '',
+        'echeck_delay' => 'Төлеміңіз eCheck арқылы жүргізілгендіктен төлемнің Paypal арқылы расталуы 10 күнге дейін созылуы мүмкін!',
+        'hide_from_activity' => 'Осы тапсырыстағы osu!supporter тегтері сіздің соңғы әрекеттеріңізде көрсетілмеген.',
+        'sent_via' => '',
+        'shipping_to' => '',
+        'title' => 'Чек',
+        'title_compact' => 'чек',
 
         'status' => [
-            'processing' => [
+            'cancelled' => [
                 'title' => '',
-                'line_1' => '',
-                'line_2' => [
+                'line_1' => [
+                    '_' => "",
+                    'link_text' => '',
+                ],
+            ],
+            'delivered' => [
+                'title' => '',
+                'line_1' => [
                     '_' => '',
                     'link_text' => '',
+                ],
+            ],
+            'prepared' => [
+                'title' => '',
+                'line_1' => '',
+                'line_2' => '',
+            ],
+            'processing' => [
+                'title' => 'Сіздің төлеміңіз әлі расталмады!',
+                'line_1' => 'Сіз төлеп қойсаңыз да біз әлі де төлеміңіздің расталуын күтуіміз мүмкін. Өтініш, осы бетті бір-екі минутта жаңартыңыз!',
+                'line_2' => [
+                    '_' => 'Егер төлеу барысында мәселеге ұшырасаңыз :link',
+                    'link_text' => 'төлеміңізді жалғастыру үшін мында басыңыз',
+                ],
+            ],
+            'shipped' => [
+                'title' => '',
+                'tracking_details' => '',
+                'no_tracking_details' => [
+                    '_' => "",
+                    'link_text' => 'бізге электронды хатты жіберіңіз ',
                 ],
             ],
         ],
     ],
 
     'order' => [
-        'cancel' => '',
+        'cancel' => 'Тапсырысты жою',
         'cancel_confirm' => '',
         'cancel_not_allowed' => '',
-        'invoice' => '',
+        'invoice' => 'Чекті қарау',
         'no_orders' => '',
         'paid_on' => '',
         'resume' => '',
+        'shipping_and_handling' => '',
         'shopify_expired' => '',
+        'subtotal' => '',
+        'total' => 'Барлығы',
+
+        'details' => [
+            'order_number' => '',
+            'payment_terms' => '',
+            'salesperson' => '',
+            'shipping_method' => '',
+            'shipping_terms' => '',
+            'title' => '',
+        ],
 
         'item' => [
-            'quantity' => '',
+            'quantity' => 'Саны',
 
             'display_name' => [
-                'supporter_tag' => '',
+                'supporter_tag' => ':username-ге :name (:duration)',
             ],
 
             'subtext' => [
-                'supporter_tag' => '',
+                'supporter_tag' => 'Хабар: :message',
             ],
         ],
 
@@ -102,14 +148,23 @@ return [
             'cancelled' => '',
             'checkout' => '',
             'delivered' => '',
-            'paid' => '',
+            'paid' => 'Төленген',
             'processing' => '',
             'shipped' => '',
+            'title' => '',
+        ],
+
+        'thanks' => [
+            'title' => '',
+            'line_1' => [
+                '_' => '',
+                'link_text' => '',
+            ],
         ],
     ],
 
     'product' => [
-        'name' => '',
+        'name' => 'Аты',
 
         'stock' => [
             'out' => '',
@@ -131,16 +186,20 @@ return [
 
         'require_login' => [
             '_' => '',
-            'link_text' => '',
+            'link_text' => 'аккаунтқа кірілген',
         ],
     ],
 
     'username_change' => [
         'check' => '',
         'checking' => '',
+        'placeholder' => '',
+        'label' => '',
+        'current' => '',
+
         'require_login' => [
             '_' => '',
-            'link_text' => '',
+            'link_text' => 'аккаунтқа кірілген',
         ],
     ],
 

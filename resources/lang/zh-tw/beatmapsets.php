@@ -35,20 +35,25 @@ return [
             'all' => '下載',
             'video' => '下載並包含影片',
             'no_video' => '下載並不包含影片',
-            'direct' => '在osu!direct中查看',
+            'direct' => '在 osu!direct 中查看',
         ],
     ],
 
     'nominate' => [
+        'bng_limited_too_many_rulesets' => '',
+        'full_nomination_required' => '',
         'hybrid_requires_modes' => '包含多個遊戲模式的圖譜至少需要選擇一種遊戲模式進行提名。',
         'incorrect_mode' => '您沒有權限為 :mode 模式提名',
-        'full_bn_required' => '您必須是正式的提名者才能執行此合格提名。',
+        'invalid_limited_nomination' => '',
+        'invalid_ruleset' => '',
         'too_many' => '提名需求已達成。',
+        'too_many_non_main_ruleset' => '',
 
         'dialog' => [
             'confirmation' => '您確定要提名這張圖譜嗎？',
             'header' => '提名圖譜',
             'hybrid_warning' => '注意: 您只能提名一次，所以請確保您的提名包含所有您想提名的模式。',
+            'current_main_ruleset' => '',
             'which_modes' => '您想為哪個模式提名？',
         ],
     ],
@@ -59,6 +64,10 @@ return [
 
     'show' => [
         'discussion' => '討論',
+
+        'admin' => [
+            'full_size_cover' => '檢視完整封面圖片',
+        ],
 
         'deleted_banner' => [
             'title' => '此圖譜已被刪除。',
@@ -71,7 +80,7 @@ return [
             'favourite_login' => '登入後才能把這張圖譜加到最愛',
             'logged-out' => '下載圖譜前請先登入！',
             'mapped_by' => '由 :mapper 製作',
-            'mapped_by_guest' => '',
+            'mapped_by_guest' => '由 :mapper 製作的客串難度',
             'unfavourite' => '取消收藏',
             'updated_timeago' => '最後更新時間 :timeago',
 

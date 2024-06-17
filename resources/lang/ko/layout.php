@@ -86,7 +86,6 @@ return [
         ],
         'rankings' => [
             '_' => '순위',
-            'kudosu' => 'kudosu',
         ],
         'store' => [
             '_' => '상점',
@@ -112,6 +111,7 @@ return [
         'legal' => [
             '_' => '법률 & 상태',
             'copyright' => '저작권 (DMCA)',
+            'jp_sctl' => '특정상거래법',
             'privacy' => '개인 정보 보호 정책',
             'server_status' => '서버 상태 확인',
             'source_code' => '소스 코드',
@@ -175,10 +175,10 @@ return [
             'forgot' => "계정 정보를 잊어버렸어요.",
             'password' => '비밀번호',
             'title' => '로그인하여 계속하기',
-            'username' => '사용자 이름',
+            'username' => '아이디',
 
             'error' => [
-                'email' => "존재하지 않는 유저이름 또는 이메일입니다.",
+                'email' => "존재하지 않는 아이디 또는 이메일입니다.",
                 'password' => '잘못된 비밀번호입니다.',
             ],
         ],
@@ -195,6 +195,8 @@ return [
             'account-edit' => '설정',
             'follows' => '관심 목록',
             'friends' => '친구',
+            'legacy_score_only_toggle' => 'Lazer 모드',
+            'legacy_score_only_toggle_tooltip' => 'Lazer 모드는 osu!lazer에서 새로운 점수 알고리즘으로 등록한 점수를 표시합니다',
             'logout' => '로그아웃',
             'profile' => '내 프로필',
         ],

@@ -115,7 +115,6 @@
 
   &__bg-container {
     .full-size();
-    .default-box-shadow();
     background-color: @osu-colour-d5;
   }
 
@@ -135,7 +134,7 @@
 
       @media @desktop {
         padding-top: @nav2-height + 15px;
-        min-height: (@nav2-height + 70px);
+        min-height: @header-container-min-height;
       }
 
       .@{_top}--supporter & {

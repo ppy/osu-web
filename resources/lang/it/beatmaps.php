@@ -26,7 +26,7 @@ return [
         'message_type_select' => 'Seleziona il tipo di commento',
         'reply_notice' => 'Premi invio per rispondere.',
         'reply_placeholder' => 'Scrivi la tua risposta qui',
-        'require-login' => 'Per favore effettua il login per postare o rispondere',
+        'require-login' => 'Effettua il login per poter postare o rispondere',
         'resolved' => 'Risolto',
         'restore' => 'ripristina',
         'show_deleted' => 'Mostra eliminati',
@@ -76,6 +76,18 @@ return [
             'problem_warning' => 'Segnala un Problema',
             'review' => 'Revisione',
             'suggestion' => 'Suggerimento',
+        ],
+
+        'message_type_title' => [
+            'disqualify' => 'Posta Squalifica',
+            'hype' => 'Posta Hype!',
+            'mapper_note' => 'Posta Nota',
+            'nomination_reset' => 'Rimuovi tutte le Nomine',
+            'praise' => 'Posta Elogio',
+            'problem' => 'Posta Problema',
+            'problem_warning' => 'Posta Problema',
+            'review' => 'Posta Revisione',
+            'suggestion' => 'Posta Suggerimento',
         ],
 
         'mode' => [
@@ -201,6 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'È stimato che questa mappa verrà classificata in data :date se non vengono trovati problemi. È in posizione #:position nella :queue.',
+            'unresolved_problems' => 'Questa mappa è attualmente bloccata dal lasciare la sezione Qualificata fino alla risoluzione di :problems.',
+            'problems' => 'questi problemi',
             'on' => 'il giorno :date',
             'queue' => 'coda per la classifica',
             'soon' => 'molto vicina',
@@ -269,6 +283,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
+        'undefined' => '',
     ],
     'status' => [
         'any' => 'Qualsiasi',

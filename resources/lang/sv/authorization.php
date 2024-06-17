@@ -81,6 +81,7 @@ return [
     ],
 
     'contest' => [
+        'judging_not_active' => 'Bedömning för denna tävling är ej aktiv.',
         'voting_over' => 'Du kan inte ändra din röst efter att röstperioden för den här tävlingen har avslutas.',
 
         'entry' => [
@@ -172,6 +173,7 @@ return [
     'score' => [
         'pin' => [
             'disabled_type' => "Kan inte fästa den här typen av poäng",
+            'failed' => "",
             'not_owner' => 'Endast resultatägaren kan fästa resultat.',
             'too_many' => 'Fäst för många resultat.',
         ],
@@ -184,6 +186,9 @@ return [
                 'not_owner' => 'Kan endast redigera sin egna användar-sida.',
                 'require_supporter_tag' => 'osu!supporter tagg krävs.',
             ],
+        ],
+        'update_email' => [
+            'locked' => 'e-postaddress är låst',
         ],
     ],
 ];

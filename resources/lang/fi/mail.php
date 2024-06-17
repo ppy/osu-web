@@ -6,8 +6,8 @@
 return [
     'beatmapset_update_notice' => [
         'new' => 'Tiedoksesi vain, että ":title" on saanut uuden päivityksen poissaolosi aikana.',
-        'subject' => 'Uusi päivitys beatmappiin ":title"',
-        'unwatch' => 'Jos et enää halua seurata tätä beatmappia, voit joko klikata "Lopeta seuraaminen" -linkkiä edellä mainitussa sivussa tai modiseurantalistassa:',
+        'subject' => 'Uusi päivitys rytmikarttaan ":title"',
+        'unwatch' => 'Jos et enää halua seurata tätä rytmikarttaa, voit joko klikata "Lopeta seuraaminen" -linkkiä edellä mainitussa sivussa tai modausseurantalistassa:',
         'visit' => 'Voit katsoa keskustelua täällä:',
     ],
 
@@ -15,7 +15,7 @@ return [
         'closing' => 'Terveisin',
         'hello' => 'Hei :user,',
         'report' => 'Vastaa tähän sähköpostiin VÄLITTÖMÄSTI, jos et ole pyytänyt tätä muutosta.',
-        'ignore' => '',
+        'ignore' => 'Jos et pyytänyt tätä, voit turvallisesti jättää tämän sähköpostin huomiotta.',
     ],
 
     'donation_thanks' => [
@@ -27,8 +27,8 @@ return [
         'translation' => 'Seuraava on yhteisön tuottama käännös tiedostusta varten:',
 
         'benefit' => [
-            'gift' => '',
-            'self' => '',
+            'gift' => 'Lahjasi saaneilla on nyt pääsy osu!direct:iin ja moniin muihin tukija-etuihin.',
+            'self' => 'Saat nyt pääsyn osu!direct:iin ja moniin muihin tukija-etuihin :duration ajalle. ',
         ],
 
         'support' => [
@@ -41,7 +41,7 @@ return [
     'forum_new_reply' => [
         'new' => 'Tiedoksesi vain, että ":title" on saanut uuden vastauksen poissaolosi aikana.',
         'subject' => '[osu!] Uusi vastaus aiheessa ":title"',
-        'unwatch' => '',
+        'unwatch' => 'Jos et enää halua seurata tätä aihetta, voit napsauttaa "Lopeta aiheen seuraaminen" -linkkiä, joka löytyy yllämainitun aiheen alareunasta tai aihekohtaisten tilausten hallintasivulta:',
         'visit' => 'Siirry viimeiseen vastaukseen käyttämällä seuraavaa linkkiä:',
     ],
 
@@ -62,13 +62,13 @@ return [
     ],
 
     'supporter_gift' => [
-        'anonymous_gift' => '',
+        'anonymous_gift' => 'Henkilö, joka lahjoitti sinulle tämän tägin, voi halutessaan pysyä anonyyminä, joten heitä ei ole maininttu tässä ilmoituksessa.',
         'anonymous_gift_maybe_not' => 'Mutta taidat jo tietää kuka se mahtaa olla ;).',
-        'duration' => '',
-        'features' => '',
-        'gifted' => 'Joku on juuri antanut sinulle osu! -tukijan!',
-        'gift_message' => '',
-        'subject' => 'Sinulle on lahjoitettu osu!tukijatagi!',
+        'duration' => 'Kiitos hänen, sinulla on pääsy osu!directiin ja muihin osu!tukijaetuihin seuraavan :duration ajan.',
+        'features' => 'Voit saada lisätietoja näistä ominaisuuksista täältä:',
+        'gifted' => 'Joku on juuri antanut sinulle osu!tukijamerkin!',
+        'gift_message' => 'Henkilö, joka lahjoitti sinulle tämän merkin, jätti sinulle viestin:',
+        'subject' => 'Sinulle on lahjoitettu osu!tukijamerkki!',
     ],
 
     'user_email_updated' => [
@@ -82,11 +82,11 @@ return [
         'main' => 'Tilisi epäillään olevan kompromisoitu, sillä on ollut epäilyttävää toimintaa tai ERITTÄIN heikko salasana. Tämän seurauksena vaadimme, että asetat uuden salasanan. Varmista, että valitset TURVALLISEN salasanan.',
         'perform_reset' => 'Voit suorittaa nollauksen kohteesta :url',
         'reason' => 'Syy:',
-        'subject' => 'osu! Tilin Uudelleenaktivointi Vaaditaan',
+        'subject' => 'osu!-tilin uudelleenaktivointi vaaditaan',
     ],
 
     'user_notification_digest' => [
-        'new' => '',
+        'new' => 'Tiedoksesi vain, että on tullut uusia päivityksiä kohteisiin, joita seuraat.',
         'settings' => 'Muuta sähköposti-ilmoitusten asetuksia:',
         'subject' => 'Uusia osu!-ilmoituksia',
     ],
@@ -99,12 +99,12 @@ return [
     'user_verification' => [
         'code' => 'Vahvistuskoodisi on:',
         'code_hint' => 'Voit syöttää koodin välilyönneillä tai ilman niitä.',
-        'link' => '',
+        'link' => 'Vaihtoehtoisesti, voit myös suorittaa vahvistuksen loppuun alla olevasta linkistä:',
         'report' => 'Jos et ole pyytänyt tätä, ole hyvä ja VASTAA HETI, koska tilisi voi olla vaarassa.',
         'subject' => 'osu! tilin vahvistaminen',
 
         'action_from' => [
-            '_' => '',
+            '_' => 'Tililläsi suoritettu toiminto maasta :country vaatii vahvistuksen.',
             'unknown_country' => 'tuntemattomasta maasta',
         ],
     ],

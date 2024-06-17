@@ -8,13 +8,16 @@ namespace App\Models\UserStatistics;
 use App\Exceptions\ClassNotFoundException;
 use App\Models\Beatmap;
 use App\Models\Model as BaseModel;
+use App\Models\RankHistory;
 use App\Models\Score\Best;
 use App\Models\User;
 use App\Traits\Memoizes;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property mixed $country_acronym
- * @property User $user
+ * @property-read \App\Models\RankHistory|null $rankHistory
+ * @property-read \App\Models\User $user
  */
 abstract class Model extends BaseModel
 {
@@ -24,7 +27,7 @@ abstract class Model extends BaseModel
     {
         static $ret;
 
-        return $ret ??= config('osu.scores.experimental_rank_as_default')
+        return $ret ??= $GLOBALS['cfg']['osu']['scores']['experimental_rank_as_default']
             ? 'rank_score_exp'
             : 'rank_score';
     }
@@ -33,8 +36,20 @@ abstract class Model extends BaseModel
 
     public $timestamps = false;
     public $incrementing = false;
+    /**
+     * allows preloading the value if it's known through other means
+     * (for use in RankingController)
+     */
+    public int $countryRank;
 
     const UPDATED_AT = 'last_update';
+
+    public function rankHistory(): BelongsTo
+    {
+        return $this
+            ->belongsTo(RankHistory::class, 'user_id', 'user_id')
+            ->where('mode', Beatmap::modeInt(static::getMode()));
+    }
 
     public function user()
     {
@@ -160,7 +175,7 @@ abstract class Model extends BaseModel
 
     public function countryRank()
     {
-        return $this->memoize(__FUNCTION__, function () {
+        return $this->countryRank ?? $this->memoize(__FUNCTION__, function () {
             if (!$this->isRanked()) {
                 return;
             }
@@ -185,7 +200,7 @@ abstract class Model extends BaseModel
 
     public function globalRank(): ?int
     {
-        $column = config('osu.scores.experimental_rank_as_default')
+        $column = $GLOBALS['cfg']['osu']['scores']['experimental_rank_as_default']
             ? 'rank_score_index_exp'
             : 'rank_score_index';
 

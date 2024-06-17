@@ -1,10 +1,9 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { CommentableMetaJson } from 'interfaces/comment-json';
-import { computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
-import { Comment as CommentModel } from 'models/comment';
+import CommentModel from 'models/comment';
+import { canModerateComments } from 'models/comment';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers, mergeModifiers, Modifiers } from 'utils/css';
@@ -13,62 +12,35 @@ import { trans } from 'utils/lang';
 import Comment from './comment';
 import CommentEditor from './comment-editor';
 import CommentShowMore from './comment-show-more';
+import CommentsController, { BaseCommentableMeta } from './comments-controller';
 import CommentsSort from './comments-sort';
 import DeletedCommentsCount from './deleted-comments-count';
 import { Spinner } from './spinner';
 
-const store = core.dataStore.commentStore;
-const uiState = core.dataStore.uiState;
-
 interface Props {
-  commentableMeta: CommentableMetaJson;
+  baseCommentableMeta: BaseCommentableMeta;
+  controllerStateSelector: string;
   modifiers?: Modifiers;
 }
 
 @observer
 export default class Comments extends React.Component<Props> {
-  @computed
-  private get topLevelComments() {
-    const ret = [];
-    for (const id of uiState.comments.topLevelCommentIds) {
-      const comment = store.comments.get(id);
-
-      if (comment != null) {
-        ret.push(comment);
-      }
-    }
-
-    return ret;
-  }
-
-  @computed
-  private get comments() {
-    return this.topLevelComments.filter((comment) => !comment.pinned);
-  }
-
-  @computed
-  private get pinnedComments() {
-    const ret = [];
-    for (const id of uiState.comments.pinnedCommentIds) {
-      const comment = store.comments.get(id);
-
-      if (comment != null) {
-        ret.push(comment);
-      }
-    }
-
-    return ret;
-  }
+  private readonly controller: CommentsController;
 
   constructor(props: Props) {
     super(props);
 
-    makeObservable(this);
+    this.controller = new CommentsController(this.props.controllerStateSelector, this.props.baseCommentableMeta);
+  }
+
+  componentWillUnmount() {
+    this.controller.destroy();
   }
 
   render() {
-    const comments = this.comments;
-    const pinnedComments = this.pinnedComments;
+    const topLevelComments = this.controller.topLevelComments;
+    const comments = topLevelComments.filter((comment) => !comment.pinned);
+    const pinnedComments = this.controller.pinnedComments;
 
     return (
       <div
@@ -77,7 +49,7 @@ export default class Comments extends React.Component<Props> {
       >
         <h2 className='comments__title'>
           {trans('comments.title')}
-          <span className='comments__count'>{formatNumber(uiState.comments.total)}</span>
+          <span className='comments__count'>{formatNumber(this.controller.state.total)}</span>
         </h2>
 
         {pinnedComments.length > 0 &&
@@ -88,14 +60,15 @@ export default class Comments extends React.Component<Props> {
 
         <div className='comments__new'>
           <CommentEditor
-            commentableMeta={this.props.commentableMeta}
+            commentableMeta={this.controller.commentableMeta}
+            controller={this.controller}
             focus={false}
             modifiers={this.props.modifiers}
           />
         </div>
 
         <div className='comments__items comments__items--toolbar'>
-          <CommentsSort modifiers={this.props.modifiers} />
+          <CommentsSort controller={this.controller} modifiers={this.props.modifiers} />
           <div className={classWithModifiers('sort', this.props.modifiers)}>
             <div className='sort__items'>
               {this.renderFollowToggle()}
@@ -110,17 +83,17 @@ export default class Comments extends React.Component<Props> {
               {pinnedComments.length === 0 ? trans('comments.empty') : trans('comments.empty_other')}
             </div>
           ) : (
-            <div className={classWithModifiers('comments__items', { loading: uiState.comments.loadingSort != null })}>
+            <div className={classWithModifiers('comments__items', { loading: this.controller.nextState.sort != null })}>
               {this.renderComments(comments, false)}
 
-              <DeletedCommentsCount comments={this.topLevelComments} modifiers='top' />
+              <DeletedCommentsCount comments={topLevelComments} modifiers='top' />
 
               <CommentShowMore
-                commentableMeta={this.props.commentableMeta}
-                comments={this.topLevelComments}
+                comments={topLevelComments}
+                controller={this.controller}
                 modifiers={mergeModifiers('top', this.props.modifiers)}
                 top
-                total={uiState.comments.topLevelCount}
+                total={this.controller.state.topLevelCount}
               />
             </div>
           )}
@@ -128,23 +101,20 @@ export default class Comments extends React.Component<Props> {
     );
   }
 
-  private onToggleFollow(this: void) {
-    $.publish('comments:toggle-follow');
-  }
+  private readonly onToggleFollow = () => {
+    this.controller.apiToggleFollow();
+  };
 
   private onToggleShowDeleted(this: void) {
     core.userPreferences.set('comments_show_deleted', !core.userPreferences.get('comments_show_deleted'));
   }
 
   private renderComment(comment: CommentModel, expandReplies?: boolean) {
-    if (comment.isDeleted && !core.userPreferences.get('comments_show_deleted')) {
-      return;
-    }
-
     return (
       <Comment
         key={comment.id}
         comment={comment}
+        controller={this.controller}
         depth={0}
         expandReplies={expandReplies}
         modifiers={this.props.modifiers}
@@ -162,11 +132,11 @@ export default class Comments extends React.Component<Props> {
     let icon: React.ReactNode;
     let label: string;
 
-    if (uiState.comments.loadingFollow != null) {
+    if (this.controller.nextState.isFollowing != null) {
       icon = <Spinner modifiers='center-inline' />;
     }
 
-    if (uiState.comments.userFollow) {
+    if (this.controller.state.isFollowing) {
       icon ??= <span className='fas fa-eye-slash' />;
       label = trans('common.buttons.watch.to_0');
     } else {
@@ -177,7 +147,7 @@ export default class Comments extends React.Component<Props> {
     return (
       <button
         className='sort__item sort__item--button'
-        disabled={uiState.comments.loadingFollow != null}
+        disabled={this.controller.nextState.isFollowing != null}
         onClick={this.onToggleFollow}
         type='button'
       >
@@ -188,6 +158,10 @@ export default class Comments extends React.Component<Props> {
   }
 
   private renderShowDeletedToggle() {
+    if (!canModerateComments()) {
+      return null;
+    }
+
     const iconClass = core.userPreferences.get('comments_show_deleted')
       ? 'fas fa-check-square'
       : 'far fa-square';

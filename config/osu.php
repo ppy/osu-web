@@ -5,6 +5,14 @@ if ($profileScoresNotice !== null) {
     $profileScoresNotice = markdown_plain($profileScoresNotice);
 }
 
+$clientTokenKeys = [];
+foreach (explode(',', env('CLIENT_TOKEN_KEYS') ?? '') as $entry) {
+    if ($entry !== '') {
+        [$platform, $encodedKey] = explode('=', $entry, 2);
+        $clientTokenKeys[$platform] = hex2bin($encodedKey);
+    }
+}
+
 // osu config~
 return [
     'achievement' => [
@@ -24,7 +32,7 @@ return [
         'cache_purge_prefix' => env('AVATAR_CACHE_PURGE_PREFIX'),
         'cache_purge_method' => env('AVATAR_CACHE_PURGE_METHOD'),
         'cache_purge_authorization_key' => env('AVATAR_CACHE_PURGE_AUTHORIZATION_KEY'),
-        'default' => env('DEFAULT_AVATAR', env('APP_URL', 'http://localhost').'/images/layout/avatar-guest.png'),
+        'default' => env('DEFAULT_AVATAR', env('APP_URL', 'http://localhost').'/images/layout/avatar-guest@2x.png'),
         'storage' => env('AVATAR_STORAGE', 'local-avatar'),
     ],
 
@@ -61,7 +69,6 @@ return [
         'rank_per_run' => get_int(env('BEATMAPSET_RANK_PER_RUN')) ?? 2,
         'required_hype' => get_int(env('BEATMAPSET_REQUIRED_HYPE')) ?? 5,
         'required_nominations' => get_int(env('BEATMAPSET_REQUIRED_NOMINATIONS')) ?? 2,
-        'required_nominations_hybrid' => get_int(env('BEATMAPSET_REQUIRED_NOMINATIONS_HYBRID')) ?? 2,
         'upload_allowed' => get_int(env('BEATMAPSET_UPLOAD_ALLOWED')) ?? 4,
         'upload_allowed_supporter' => get_int(env('BEATMAPSET_UPLOAD_ALLOWED_SUPPORTER')) ?? 8,
         'upload_bonus_per_ranked' => get_int(env('BEATMAPSET_UPLOAD_BONUS_PER_RANKED')) ?? 1,
@@ -74,6 +81,9 @@ return [
     'camo' => [
         'key' => presence(env('CAMO_KEY')),
         'prefix' => env('CAMO_PREFIX', 'https://i.ppy.sh/'),
+    ],
+    'captcha' => [
+        'threshold' => get_int(env('CAPTCHA_THRESHOLD')) ?? 2,
     ],
     'chat' => [
         'channel_limit' => get_int(env('CHAT_CHANNEL_LIMIT')) ?? 10000,
@@ -93,6 +103,9 @@ return [
     'client' => [
         'check_version' => get_bool(env('CLIENT_CHECK_VERSION')) ?? true,
         'default_build_id' => get_int(env('DEFAULT_BUILD_ID')) ?? 0,
+        'token_keys' => $clientTokenKeys,
+        'token_lifetime' => (get_float(env('CLIENT_TOKEN_LIFETIME_HOUR')) ?? 0.25) * 3600,
+        'token_queue' => env('CLIENT_TOKEN_QUEUE') ?? 'token-queue',
         'user_agent' => env('CLIENT_USER_AGENT', 'osu!'),
     ],
     'elasticsearch' => [
@@ -113,6 +126,7 @@ return [
         'max_post_length' => get_int(env('FORUM_POST_MAX_LENGTH')) ?? 60000,
         'minimum_plays' => get_int(env('FORUM_POST_MINIMUM_PLAYS')) ?? 200,
         'necropost_months' => 6,
+        'old_months' => 1,
         'poll_edit_hours' => get_int(env('FORUM_POLL_EDIT_HOURS')) ?? 1,
 
         'double_post_time' => [
@@ -123,6 +137,10 @@ return [
     'git-sha' => presence(env('GIT_SHA'))
         ?? (file_exists(__DIR__.'/../version') ? trim(file_get_contents(__DIR__.'/../version')) : null)
         ?? 'unknown-version',
+    'github' => [
+        'client_id' => presence(env('GITHUB_CLIENT_ID')),
+        'client_secret' => presence(env('GITHUB_CLIENT_SECRET')),
+    ],
     'is_development_deploy' => get_bool(env('IS_DEVELOPMENT_DEPLOY')) ?? true,
     'landing' => [
         'video_url' => env('LANDING_VIDEO_URL', 'https://assets.ppy.sh/media/landing.mp4'),
@@ -148,6 +166,7 @@ return [
         'max_user_clients' => get_int(env('OAUTH_MAX_USER_CLIENTS')) ?? 1,
     ],
     'octane' => [
+        'local_cache_expire_second' => get_int(env('OCTANE_LOCAL_CACHE_EXPIRE_SECOND')) ?? 60,
         'local_cache_reset_requests' => get_int(env('OCTANE_LOCAL_CACHE_RESET_REQUESTS')) ?? 100,
     ],
     'pagination' => [
@@ -167,6 +186,9 @@ return [
         'es_cache_duration' => 60 * (get_float(env('SCORES_ES_CACHE_DURATION')) ?? 0.5), // in minutes, converted to seconds
         'experimental_rank_as_default' => get_bool(env('SCORES_EXPERIMENTAL_RANK_AS_DEFAULT')) ?? false,
         'experimental_rank_as_extra' => get_bool(env('SCORES_EXPERIMENTAL_RANK_AS_EXTRA')) ?? false,
+        'processing_queue' => presence(env('SCORES_PROCESSING_QUEUE')) ?? 'osu-queue:score-statistics',
+        'submission_enabled' => get_bool(env('SCORES_SUBMISSION_ENABLED')) ?? true,
+
         'rank_cache' => [
             'local_server' => get_bool(env('SCORES_RANK_CACHE_LOCAL_SERVER')) ?? false,
             'min_users' => get_int(env('SCORES_RANK_CACHE_MIN_USERS')) ?? 35000,
@@ -203,41 +225,32 @@ return [
         'experimental_host' => presence(env('OSU_EXPERIMENTAL_HOST')),
         'installer' => 'https://m1.ppy.sh/r/osu!install.exe',
         'installer-mirror' => 'https://m2.ppy.sh/r/osu!install.exe',
+        'lazer_dl.android' => presence(env('OSU_URL_LAZER_ANDROID')) ?? 'https://github.com/ppy/osu/releases/latest/download/sh.ppy.osulazer.apk',
+        'lazer_dl.ios' => presence(env('OSU_URL_LAZER_IOS')) ?? '/home/testflight',
+        'lazer_dl.linux_x64' => presence(env('OSU_URL_LAZER_LINUX_X64')) ?? 'https://github.com/ppy/osu/releases/latest/download/osu.AppImage',
+        'lazer_dl.macos_as' => presence(env('OSU_URL_LAZER_MACOS_AS')) ?? 'https://github.com/ppy/osu/releases/latest/download/osu.app.Apple.Silicon.zip',
+        'lazer_dl.windows_x64' => presence(env('OSU_URL_LAZER_WINDOWS_X64')) ?? 'https://github.com/ppy/osu/releases/latest/download/install.exe',
         'lazer_dl_other' => presence(env('OSU_URL_LAZER_OTHER')) ?? 'https://github.com/ppy/osu/#running-osu',
         'lazer_info' => presence(env('OSU_URL_LAZER_INFO')),
         'osx' => 'https://osx.ppy.sh',
         'server_status' => 'https://status.ppy.sh',
         'smilies' => '/forum/images/smilies',
+        'social.twitter' => '/wiki/Twitter',
         'source_code' => 'https://github.com/ppy',
+        'testflight.public' => env('TESTFLIGHT_LINK'),
+        'testflight.supporter' => env('TESTFLIGHT_LINK_SUPPORTER'),
+        'user.recover' => '/wiki/Help_centre/Account#sign-in',
+        'user.restriction' => presence(env('OSU_URL_USER_RESTRICTION')) ?? '/wiki/Help_centre/Account_restrictions',
+        'user.rules' => '/wiki/Osu!:Rules',
         'youtube-tutorial-playlist' => 'PLmWVQsxi34bMYwAawZtzuptfMmszUa_tl',
-
-        'lazer_dl' => [
-            'android' => presence(env('OSU_URL_LAZER_ANDROID')) ?? 'https://github.com/ppy/osu/releases/latest/download/sh.ppy.osulazer.apk',
-            'ios' => presence(env('OSU_URL_LAZER_IOS')) ?? '/home/testflight',
-            'linux_x64' => presence(env('OSU_URL_LAZER_LINUX_X64')) ?? 'https://github.com/ppy/osu/releases/latest/download/osu.AppImage',
-            'macos_as' => presence(env('OSU_URL_LAZER_MACOS_AS')) ?? 'https://github.com/ppy/osu/releases/latest/download/osu.app.Apple.Silicon.zip',
-            'windows_x64' => presence(env('OSU_URL_LAZER_WINDOWS_X64')) ?? 'https://github.com/ppy/osu/releases/latest/download/install.exe',
-        ],
-        'social' => [
-            'twitter' => '/wiki/Twitter',
-        ],
-        'user' => [
-            'recover' => '/wiki/Help_centre/Account#sign-in',
-            'restriction' => presence(env('OSU_URL_USER_RESTRICTION')) ?? '/wiki/Help_centre/Account_restrictions',
-            'rules' => '/wiki/Osu!:Rules',
-        ],
-        'testflight' => [
-            'public' => env('TESTFLIGHT_LINK'),
-            'supporter' => env('TESTFLIGHT_LINK_SUPPORTER'),
-        ],
     ],
     'user' => [
         'allow_email_login' => get_bool(env('USER_ALLOW_EMAIL_LOGIN')) ?? true,
         'allow_registration' => get_bool(env('ALLOW_REGISTRATION')) ?? true,
         'allowed_rename_groups' => explode(' ', env('USER_ALLOWED_RENAME_GROUPS', 'default')),
         'bypass_verification' => get_bool(env('USER_BYPASS_VERIFICATION')) ?? false,
-        'hide_pinned_solo_scores' => get_bool(env('USER_HIDE_PINNED_SOLO_SCORES')) ?? true,
-        'inactive_days_verification' => get_int(env('USER_INACTIVE_DAYS_VERIFICATION')) ?? 180,
+        'inactive_force_password_reset' => get_bool(env('USER_INACTIVE_FORCE_PASSWORD_RESET') ?? false),
+        'inactive_seconds_verification' => (get_int(env('USER_INACTIVE_DAYS_VERIFICATION')) ?? 180) * 86400,
         'min_plays_for_posting' => get_int(env('USER_MIN_PLAYS_FOR_POSTING')) ?? 10,
         'min_plays_allow_verified_bypass' => get_bool(env('USER_MIN_PLAYS_ALLOW_VERIFIED_BYPASS')) ?? true,
         'post_action_verification' => get_bool(env('USER_POST_ACTION_VERIFICATION')) ?? true,
@@ -255,19 +268,23 @@ return [
         'max_multiplayer_rooms_supporter' => get_int(env('USER_MAX_MULTIPLAYER_ROOMS_SUPPORTER')) ?? 5,
         'max_score_pins' => get_int(env('USER_MAX_SCORE_PINS')) ?? 10,
         'max_score_pins_supporter' => get_int(env('USER_MAX_SCORE_PINS_SUPPORTER')) ?? 50,
-        'online_window' => intval(env('USER_ONLINE_WINDOW', 10)),
+        'online_window' => intval(env('USER_ONLINE_WINDOW', 10)) * 60,
         'password_reset' => [
             'expires_hour' => 2,
             'key_length' => 8,
             'tries' => 8,
         ],
-        'registration_mode' => presence(env('REGISTRATION_MODE')) ?? 'client',
         'super_friendly' => array_map('intval', explode(' ', env('SUPER_FRIENDLY', '3'))),
         'ban_persist_days' => get_int(env('BAN_PERSIST_DAYS')) ?? 28,
 
         'country_change' => [
             'max_mixed_months' => get_int(env('USER_COUNTRY_CHANGE_MAX_MIXED_MONTHS')) ?? 2,
             'min_months' => get_int(env('USER_COUNTRY_CHANGE_MIN_MONTHS')) ?? 6,
+        ],
+
+        'registration_mode' => [
+            'client' => get_bool(env('REGISTRATION_MODE_CLIENT')) ?? true,
+            'web' => get_bool(env('REGISTRATION_MODE_WEB')) ?? false,
         ],
     ],
     'user_report_notification' => [

@@ -72,6 +72,11 @@ class BeatmapFactory extends Factory
         return $this->state(['approved' => Beatmapset::STATES['ranked']]);
     }
 
+    public function ruleset(string $ruleset): static
+    {
+        return $this->state(['playmode' => Beatmap::modeInt($ruleset)]);
+    }
+
     public function wip(): static
     {
         return $this->state(['approved' => Beatmapset::STATES['wip']]);

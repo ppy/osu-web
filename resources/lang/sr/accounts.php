@@ -18,6 +18,10 @@ return [
             'new' => 'нови имејл',
             'new_confirmation' => 'потврда имејл адресе',
             'title' => 'Имејл',
+            'locked' => [
+                '_' => 'Molimo kontaktirajte :accounts ukoliko treba da ažurirate Vašu imejl adresu.',
+                'accounts' => 'тим за подршку налога',
+            ],
         ],
 
         'legacy_api' => [
@@ -34,12 +38,12 @@ return [
         ],
 
         'profile' => [
-            'country' => '',
+            'country' => 'држава',
             'title' => 'Профил',
 
             'country_change' => [
-                '_' => "",
-                'update_link' => '',
+                '_' => "Изгледа да земља вашег налога не одговара вашој земљи пребивалишта. :update_link.",
+                'update_link' => 'Промените у :country',
             ],
 
             'user' => [
@@ -55,6 +59,19 @@ return [
         'signature' => [
             'title' => 'Потпис',
             'update' => 'ажурирај',
+        ],
+    ],
+
+    'github_user' => [
+        'info' => "",
+        'link' => '',
+        'title' => '',
+        'unlink' => '',
+
+        'error' => [
+            'already_linked' => '',
+            'no_contribution' => '',
+            'unverified_email' => '',
         ],
     ],
 
@@ -75,7 +92,6 @@ return [
             'mail' => 'пошта',
             'mapping' => 'креатор мапе',
             'push' => 'push',
-            'user_achievement_unlock' => 'корисничка медаља откључана',
         ],
     ],
 

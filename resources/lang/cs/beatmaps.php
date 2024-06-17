@@ -60,10 +60,10 @@ return [
         ],
 
         'message_placeholder' => [
-            'general' => 'Piště zde pro odeslání příspěvku do Obecné (:version)',
-            'generalAll' => 'Piště zde pro odeslání příspěvku do Obecné (Všechny obtížnosti)',
-            'review' => 'Piště sem k přidání recenze',
-            'timeline' => 'Piště zde pro zařazení příspěvku do Časové osy (:version)',
+            'general' => 'Pište zde pro odeslání příspěvku do Obecné (:version)',
+            'generalAll' => 'Pište zde pro odeslání příspěvku do Obecné (Všechny obtížnosti)',
+            'review' => 'Pište sem pro přidání recenze',
+            'timeline' => 'Pište zde pro zařazení příspěvku do Časové osy (:version)',
         ],
 
         'message_type' => [
@@ -76,6 +76,18 @@ return [
             'problem_warning' => 'Nahlásit problém',
             'review' => 'Recenze',
             'suggestion' => 'Návrh',
+        ],
+
+        'message_type_title' => [
+            'disqualify' => 'Diskvalifikace Přízpěvku',
+            'hype' => 'Poslat Hype!',
+            'mapper_note' => 'Poslat Poznámku',
+            'nomination_reset' => 'Odstranit veškeré Nominace',
+            'praise' => 'Poslat Pochvalu',
+            'problem' => 'Poslat Problém',
+            'problem_warning' => 'Poslat Problém',
+            'review' => 'Poslat Hodnocení',
+            'suggestion' => 'Poslat Návrh',
         ],
 
         'mode' => [
@@ -201,6 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'Odhaduje se, že tato mapa bude schválena :date, pokud nejsou nalezeny žádné problémy. Aktuálně je #:position ve :queue.',
+            'unresolved_problems' => 'Této mapě je nyní bráněno v opuštění Kvalifikované sekce, dokud nebudou :problems vyřešeny.',
+            'problems' => 'tyto problémy',
             'on' => 'dne :date',
             'queue' => 'frontě schválení',
             'soon' => 'brzy',
@@ -232,9 +246,9 @@ return [
                 'genre' => 'Žánr',
                 'language' => 'Jazyk',
                 'mode' => 'Mód',
-                'nsfw' => 'Explicitní mapy',
+                'nsfw' => 'Explicitní obsah',
                 'played' => 'Již hrané',
-                'rank' => 'Dle získaného hodnocení',
+                'rank' => 'Získané hodnocení',
                 'status' => 'Kategorie',
             ],
             'sorting' => [
@@ -256,7 +270,7 @@ return [
         ],
     ],
     'general' => [
-        'converts' => 'Zahrň překonvertované beatmapy',
+        'converts' => 'Zahrnout překonvertované beatmapy',
         'featured_artists' => 'Featured Artists',
         'follows' => 'Odebíraní autoři map',
         'recommended' => 'Doporučená obtížnost',
@@ -269,6 +283,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
+        'undefined' => '',
     ],
     'status' => [
         'any' => 'Jakákoliv',
@@ -301,15 +316,15 @@ return [
     ],
     'language' => [
         'any' => 'Jakýkoliv',
-        'english' => 'Anglické',
-        'chinese' => 'Čínské',
-        'french' => 'Francouzské',
-        'german' => 'Německé',
-        'italian' => 'Italské',
-        'japanese' => 'Japonské',
+        'english' => 'Angličtina',
+        'chinese' => 'Čínština',
+        'french' => 'Francouzština',
+        'german' => 'Němčina',
+        'italian' => 'Italština',
+        'japanese' => 'Japonština',
         'korean' => 'Korejština',
-        'spanish' => 'Španělské',
-        'swedish' => 'Švédské',
+        'spanish' => 'Španělština ',
+        'swedish' => 'Švédština',
         'russian' => 'Ruština',
         'polish' => 'Polština',
         'instrumental' => 'Instrumentální',

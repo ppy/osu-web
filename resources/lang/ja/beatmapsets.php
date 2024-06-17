@@ -40,15 +40,20 @@ return [
     ],
 
     'nominate' => [
+        'bng_limited_too_many_rulesets' => '',
+        'full_nomination_required' => '',
         'hybrid_requires_modes' => 'ハイブリッドビートマップセットでは、少なくとも1つのモードを選択してノミネートする必要があります。',
         'incorrect_mode' => 'モード:modeでノミネートする権限がありません。',
-        'full_bn_required' => 'Qualifyノミネーションを行うにはフルノミネーターでなければなりません。',
+        'invalid_limited_nomination' => '',
+        'invalid_ruleset' => '',
         'too_many' => 'ノミネーションの要件を満たしています',
+        'too_many_non_main_ruleset' => '',
 
         'dialog' => [
             'confirmation' => 'このビートマップを本当にノミネートしますか？',
             'header' => 'ビートマップをノミネート',
             'hybrid_warning' => '注意: 一度しかノミネートできないので、ノミネートするゲームモードの全てにノミネートするようにしてください。',
+            'current_main_ruleset' => '',
             'which_modes' => 'どのモードをノミネートしますか？',
         ],
     ],
@@ -60,9 +65,13 @@ return [
     'show' => [
         'discussion' => 'ディスカッション',
 
+        'admin' => [
+            'full_size_cover' => '',
+        ],
+
         'deleted_banner' => [
             'title' => 'このビートマップは削除されました。',
-            'message' => '',
+            'message' => '(モデレータのみがこれを見ることができます)',
         ],
 
         'details' => [

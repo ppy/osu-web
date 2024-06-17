@@ -78,6 +78,18 @@ return [
             'suggestion' => 'הצעה',
         ],
 
+        'message_type_title' => [
+            'disqualify' => '',
+            'hype' => '',
+            'mapper_note' => '',
+            'nomination_reset' => '',
+            'praise' => '',
+            'problem' => '',
+            'problem_warning' => '',
+            'review' => '',
+            'suggestion' => '',
+        ],
+
         'mode' => [
             'events' => 'היסטוריה',
             'general' => 'כללי :scope',
@@ -201,6 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'מפה זאת תקבל סטטוס Ranked ב:date במידה ולא ימצאו שגיעות. המפה נמצא ב#:position ב:queue.',
+            'unresolved_problems' => '',
+            'problems' => '',
             'on' => '',
             'queue' => 'נבדקת לקבלת Ranking',
             'soon' => 'בקרוב',
@@ -269,6 +283,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
+        'undefined' => '',
     ],
     'status' => [
         'any' => 'הכל',

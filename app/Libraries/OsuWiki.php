@@ -5,6 +5,7 @@
 
 namespace App\Libraries;
 
+use App\Exceptions\GitHubInvalidDataException;
 use App\Exceptions\GitHubNotFoundException;
 use App\Exceptions\GitHubTooLargeException;
 use App\Jobs\UpdateWiki;
@@ -16,8 +17,12 @@ class OsuWiki
 {
     const CACHE_DURATION = 60;
 
-    public $path;
-    public $data;
+    public array $data;
+
+    public function __construct(public string $path)
+    {
+        $this->data = $this->fetch();
+    }
 
     public static function cleanPath($path)
     {
@@ -38,25 +43,6 @@ class OsuWiki
     public static function getTree(?string $sha = null, bool $recursive = true): array
     {
         return GitHub::gitData()->trees()->show(static::user(), static::repository(), $sha ?? static::branch(), $recursive);
-    }
-
-    public static function fetch($path)
-    {
-        try {
-            return GitHub::repo()
-                ->contents()
-                ->show(static::user(), static::repository(), $path, static::branch());
-        } catch (GithubException $e) {
-            $message = $e->getMessage();
-
-            if ($message === 'Not Found') {
-                throw new GitHubNotFoundException($message);
-            } elseif (starts_with($message, 'This API returns blobs up to 1 MB in size.')) {
-                throw new GitHubTooLargeException($message);
-            }
-
-            throw $e;
-        }
     }
 
     public static function fetchContent($path)
@@ -128,27 +114,47 @@ class OsuWiki
 
     public static function branch()
     {
-        return config('osu.wiki.branch');
+        return $GLOBALS['cfg']['osu']['wiki']['branch'];
     }
 
     public static function repository()
     {
-        return config('osu.wiki.repository');
+        return $GLOBALS['cfg']['osu']['wiki']['repository'];
     }
 
     public static function user()
     {
-        return config('osu.wiki.user');
-    }
-
-    public function __construct($path)
-    {
-        $this->path = $path;
-        $this->data = static::fetch($this->path);
+        return $GLOBALS['cfg']['osu']['wiki']['user'];
     }
 
     public function content()
     {
         return base64_decode($this->data['content'], true);
+    }
+
+    private function fetch(): array
+    {
+        try {
+            $ret = GitHub::repo()
+                ->contents()
+                ->show(static::user(), static::repository(), $this->path, static::branch());
+
+            if (!is_array($ret) || !isset($ret['content'])) {
+                $json = json_encode($ret);
+                throw new GitHubInvalidDataException("Received object for '{$this->path}' is missing content field: {$json}");
+            }
+
+            return $ret;
+        } catch (GithubException $e) {
+            $message = $e->getMessage();
+
+            if ($message === 'Not Found') {
+                throw new GitHubNotFoundException($message);
+            } elseif (starts_with($message, 'This API returns blobs up to 1 MB in size.')) {
+                throw new GitHubTooLargeException($message);
+            }
+
+            throw $e;
+        }
     }
 }

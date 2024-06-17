@@ -23,8 +23,12 @@ return [
         'used' => 'Потрачено',
     ],
 
+    'performance' => [
+        'insufficient_history' => '',
+    ],
+
     'type' => [
-        'charts' => 'по чартам',
+        'charts' => 'по чартам (устар.)',
         'country' => 'по странам',
         'kudosu' => 'по кудосу',
         'multiplayer' => 'в мультиплеере',

@@ -23,7 +23,7 @@ return [
     ],
 
     'show' => [
-        'banner' => '',
+        'banner' => 'Командаңызды қолдаңыз',
         'entered' => '',
         'info_page' => '',
         'login_to_register' => '',
@@ -37,8 +37,8 @@ return [
         ],
 
         'period' => [
-            'end' => '',
-            'start' => '',
+            'end' => 'Аяқтау',
+            'start' => 'Бастау',
         ],
 
         'state' => [

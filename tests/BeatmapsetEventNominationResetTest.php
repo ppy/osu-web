@@ -64,7 +64,7 @@ class BeatmapsetEventNominationResetTest extends TestCase
     {
         $this->createBeatmapsetWithNominators('qualified');
         $banchoBotUser = User::factory()->create([
-            'user_id' => config('osu.legacy.bancho_bot_user_id'),
+            'user_id' => $GLOBALS['cfg']['osu']['legacy']['bancho_bot_user_id'],
         ]);
 
         $disqualifyCount = BeatmapsetEvent::disqualifications()->count();
@@ -103,7 +103,7 @@ class BeatmapsetEventNominationResetTest extends TestCase
     {
         parent::setUp();
 
-        config()->set('osu.beatmapset.required_nominations', 2);
+        config_set('osu.beatmapset.required_nominations', 2);
 
         Queue::fake();
 
@@ -115,7 +115,7 @@ class BeatmapsetEventNominationResetTest extends TestCase
         $this->beatmapset = Beatmapset::factory()->owner()->$state()->withDiscussion()->create();
 
         $modes = $this->beatmapset->beatmaps->map->mode->all();
-        $nominatorCount = config('osu.beatmapset.required_nominations');
+        $nominatorCount = $GLOBALS['cfg']['osu']['beatmapset']['required_nominations'];
 
         $this->nominators = [];
 

@@ -49,7 +49,7 @@ return [
     ],
 
     'card' => [
-        'gift_supporter' => '',
+        'gift_supporter' => 'Gi osu!supporter i gave',
         'loading' => 'Laster...',
         'send_message' => 'send melding',
     ],
@@ -97,6 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
+            'inactive' => "",
             'inactive_different_country' => "Kontoen din har ikke blitt brukt på lang tid.",
         ],
     ],
@@ -120,6 +121,17 @@ return [
         'beta' => [
             'main' => 'Tilgang til beta er for øyeblikket begrenset til privilegerte brukere.',
             'small' => '(osu!supportere vil komme inn snart)',
+        ],
+    ],
+
+    'ogp' => [
+        'modding_description' => 'Beatmaps: :counts',
+        'modding_description_empty' => 'Brukeren har ikke noen beatmaps...',
+
+        'description' => [
+            '_' => 'Rang (:ruleset): :global | :country',
+            'country' => 'Landsrangering :rank',
+            'global' => 'Global :rank',
         ],
     ],
 
@@ -175,7 +187,6 @@ return [
         'origin_country' => 'Fra :country',
         'previous_usernames' => 'tidligere kjent som',
         'plays_with' => 'Spiller med :devices',
-        'title' => "Profilen til :username",
 
         'comments_count' => [
             '_' => 'La ut :link',
@@ -387,7 +398,7 @@ return [
                     'date' => 'dato',
                     'action' => 'handling',
                     'length' => 'lengde',
-                    'length_permanent' => 'Permanent',
+                    'length_indefinite' => 'Ubestemt',
                     'description' => 'beskrivelse',
                     'actor' => 'av :username',
 

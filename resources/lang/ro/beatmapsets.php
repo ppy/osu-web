@@ -40,15 +40,20 @@ return [
     ],
 
     'nominate' => [
+        'bng_limited_too_many_rulesets' => '',
+        'full_nomination_required' => '',
         'hybrid_requires_modes' => 'Un beatmap hibrid îți cere să selectezi cel puțin un mod de joc pentru care să nominalizezi.',
         'incorrect_mode' => 'Nu ai permisiunea de a nominaliza pentru modul :mode',
-        'full_bn_required' => 'Trebuie să fii un nominalizator complet pentru a nominaliza spre calificare.',
+        'invalid_limited_nomination' => '',
+        'invalid_ruleset' => '',
         'too_many' => 'Cerința de nominalizare este deja îndeplinită.',
+        'too_many_non_main_ruleset' => '',
 
         'dialog' => [
             'confirmation' => 'Ești sigur că vrei să nominalizezi acest Beatmap?',
             'header' => 'Nominalizează acest Beatmap',
             'hybrid_warning' => 'observație: poți nominaliza o singură dată, așa că te rugăm să te asiguri că nominalizezi pentru toate modurile de joc pentru care intenționezi să nominalizezi',
+            'current_main_ruleset' => '',
             'which_modes' => 'Nominalizare pentru care moduri?',
         ],
     ],
@@ -59,6 +64,10 @@ return [
 
     'show' => [
         'discussion' => 'Discuție',
+
+        'admin' => [
+            'full_size_cover' => 'Vezi imaginea de copertă întreagă',
+        ],
 
         'deleted_banner' => [
             'title' => 'Acest beatmap a fost șters.',
@@ -132,7 +141,7 @@ return [
             'no_scores' => 'Încă se calculează datele...',
             'nominators' => 'Nominalizatori',
             'nsfw' => 'Conținut obscen',
-            'offset' => 'Offset online',
+            'offset' => 'Decalaj online',
             'points-of-failure' => 'Puncte de eșec',
             'source' => 'Sursă',
             'storyboard' => 'Acest beatmap conține un storyboard',
@@ -148,29 +157,29 @@ return [
             'buttons' => [
                 'disable' => 'Dezactivează avertisment',
                 'listing' => 'Lista beatmap-uri',
-                'show' => 'Arată',
+                'show' => 'Afișează',
             ],
         ],
 
         'scoreboard' => [
             'achieved' => 'realizat :when',
-            'country' => 'Clasament Țară',
+            'country' => 'Clasament Național',
             'error' => 'Încărcarea clasamentului a eșuat',
             'friend' => 'Clasament Prieteni',
             'global' => 'Clasament Global',
             'supporter-link' => 'Faceți clic <a href=":link">aici</a> pentru a vedea toate avantajele pe care le poți obține!',
-            'supporter-only' => 'Trebuie să fii un suporter pentru a accesa clasamentul prietenilor și pe țară!',
+            'supporter-only' => 'Trebuie să fii un suporter pentru a accesa clasamentele pentru prieteni, pe mod-uri sau național!',
             'title' => 'Tabela de scor',
 
             'headers' => [
                 'accuracy' => 'Precizie',
                 'combo' => 'Combo Maxim',
                 'miss' => 'Ratări',
-                'mods' => 'Moduri',
+                'mods' => 'Mod-uri',
                 'pin' => 'Fixează',
                 'player' => 'Jucător',
                 'pp' => '',
-                'rank' => 'Clasament',
+                'rank' => 'Rang',
                 'score' => 'Scor',
                 'score_total' => 'Scor Total',
                 'time' => 'Timp',
@@ -205,7 +214,7 @@ Viață',
             'bpm' => 'BPM',
             'count_circles' => 'Număr Cercuri',
             'count_sliders' => 'Număr Slidere',
-            'offset' => 'Offset online: :offset',
+            'offset' => 'Decalaj online: :offset',
             'user-rating' => 'Rating Utilizatori',
             'rating-spread' => 'Grafic Rating-uri',
             'nominations' => 'Nominalizări',

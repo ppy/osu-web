@@ -6,7 +6,9 @@
 namespace App\Models;
 
 use App\Libraries\MorphMap;
+use App\Traits\Memoizes;
 use App\Traits\Validatable;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
@@ -38,7 +40,7 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class Comment extends Model implements Traits\ReportableInterface
 {
-    use Traits\Reportable, Traits\WithDbCursorHelper, Validatable;
+    use Memoizes, Traits\Reportable, Traits\WithDbCursorHelper, Validatable;
 
     const COMMENTABLES = [
         MorphMap::MAP[Beatmapset::class],
@@ -121,6 +123,8 @@ class Comment extends Model implements Traits\ReportableInterface
 
     public function setMessageAttribute($value)
     {
+        $this->resetMemoized();
+
         return $this->attributes['message'] = trim(unzalgo($value));
     }
 
@@ -167,7 +171,8 @@ class Comment extends Model implements Traits\ReportableInterface
 
             'pinned' => (bool) $this->getRawAttribute($key),
 
-            'disqus_user_data' => $this->getDisqusUserData(),
+            'disqus_user_data' => $this->getArray($key),
+            'message_html' => $this->getMessageHtml(),
 
             'commentable',
             'editor',
@@ -254,7 +259,7 @@ class Comment extends Model implements Traits\ReportableInterface
         return $this->getConnection()->transaction(function () use ($options) {
             if (!$this->exists && $this->parent_id !== null && $this->parent !== null) {
                 // skips validation and everything
-                $this->parent->incrementInstance('replies_count_cache');
+                $this->parent->incrementInstance('replies_count_cache', 1, ['updated_at' => Carbon::now()]);
             }
 
             if ($this->isDirty('deleted_at')) {
@@ -297,14 +302,12 @@ class Comment extends Model implements Traits\ReportableInterface
     {
         return [
             'reason' => 'Spam',
-            'user_id' => $this->user_id,
+            'user_id' => $this->user_id ?? 0,
         ];
     }
 
-    private function getDisqusUserData(): ?array
+    private function getMessageHtml(): ?string
     {
-        $value = $this->getRawAttribute('disqus_user_data');
-
-        return $value === null ? null : json_decode($value, true);
+        return $this->memoize(__FUNCTION__, fn () => markdown($this->message, 'comment'));
     }
 }

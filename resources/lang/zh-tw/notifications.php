@@ -55,6 +55,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => ':username 发表了新的审阅，问题：:problems，建议：:suggestions，赞：:praises',
                 'beatmapset_discussion_unlock' => '討論於 ":title" 已解鎖',
                 'beatmapset_discussion_unlock_compact' => '討論已被解鎖',
+
+                'review_count' => [
+                    'praises' => ':count_delimited 個讚',
+                    'problems' => ':count_delimited 個問題',
+                    'suggestions' => ':count_delimited 個建議',
+                ],
             ],
 
             'beatmapset_problem' => [
@@ -238,11 +244,6 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':username 解鎖了新成就，":title"！',
-                'user_achievement_unlock_self' => '您已解鎖了新成就 ":title"！',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username 建立了新圖譜',
                 'user_beatmapset_revive' => ':username 復原了圖譜',

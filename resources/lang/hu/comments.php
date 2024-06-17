@@ -25,7 +25,7 @@ return [
 
     'editor' => [
         'textarea_hint' => [
-            '_' => 'Az :action végrehajtásához nyomj entert. Új sorhoz használj shift+entert.',
+            '_' => 'A(z) :action végrehajtásához nyomj entert. Új sorhoz használj shift+entert.',
             'edit' => 'mentés',
             'new' => 'posztolás',
             'reply' => 'válasz',
@@ -41,6 +41,10 @@ return [
         'nav_comments' => 'hozzászolások',
         'nav_title' => 'lista',
         'no_comments' => 'nem találtunk hozzászólást...',
+    ],
+
+    'ogp' => [
+        'title' => ':user hozzászólása',
     ],
 
     'placeholder' => [

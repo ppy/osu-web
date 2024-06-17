@@ -81,6 +81,7 @@ return [
     ],
 
     'contest' => [
+        'judging_not_active' => 'Beoordeling is niet actief voor deze wedstrijd.',
         'voting_over' => 'Je kan je stem niet meer veranderen nadat de stemperiode van deze wedstrijd is afgelopen.',
 
         'entry' => [
@@ -171,7 +172,8 @@ return [
 
     'score' => [
         'pin' => [
-            'disabled_type' => "",
+            'disabled_type' => "Kan dit type score niet vastzetten",
+            'failed' => "",
             'not_owner' => 'Enkel de eigenaar van de score kan deze vastzetten.',
             'too_many' => 'Te veel scores vastgezet.',
         ],
@@ -184,6 +186,9 @@ return [
                 'not_owner' => 'Je kan alleen je eigen gebruikerspagina bewerken.',
                 'require_supporter_tag' => 'osu!supporter tag is vereist.',
             ],
+        ],
+        'update_email' => [
+            'locked' => 'e-mailadres is vergrendeld',
         ],
     ],
 ];

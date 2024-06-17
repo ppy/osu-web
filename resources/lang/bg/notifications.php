@@ -55,6 +55,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => 'Ново ревю от :username, съдържащи проблеми: :problems, предложения: :suggestions, похвали: :praises',
                 'beatmapset_discussion_unlock' => 'Дискусията е отключена за ":title"',
                 'beatmapset_discussion_unlock_compact' => 'Дискусията е отключена',
+
+                'review_count' => [
+                    'praises' => ':count_delimited похвала|:count_delimited похвали',
+                    'problems' => ':count_delimited проблем|:count_delimited проблема',
+                    'suggestions' => ':count_delimited предложение|:count_delimited предложения',
+                ],
             ],
 
             'beatmapset_problem' => [
@@ -238,11 +244,6 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':username отключи нов медал, ":title"!',
-                'user_achievement_unlock_self' => 'Отключихте нов медал, ":title"!',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username създаде нов бийтмап',
                 'user_beatmapset_revive' => ':username съживи бийтмап',

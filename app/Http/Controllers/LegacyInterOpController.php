@@ -89,7 +89,7 @@ class LegacyInterOpController extends Controller
 
     public function refreshBeatmapsetCache($id)
     {
-        Beatmapset::findOrFail($id)->refreshCache();
+        Beatmapset::findOrFail($id)->refreshCache(true);
 
         return ['success' => true];
     }
@@ -288,7 +288,7 @@ class LegacyInterOpController extends Controller
                 ];
             }
 
-            Datadog::increment(config('datadog-helper.prefix_web').'.chat.batch', 1, [
+            Datadog::increment($GLOBALS['cfg']['datadog-helper']['prefix_web'].'.chat.batch', 1, [
                 'status' => $result['status'],
             ]);
 

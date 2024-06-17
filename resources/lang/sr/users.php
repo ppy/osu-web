@@ -97,6 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
+            'inactive' => "",
             'inactive_different_country' => "Ваш налог није коришћен дужи период времена.",
         ],
     ],
@@ -121,6 +122,17 @@ return [
             'main' => 'Приступ beta верзији је тренутно дозвољено само привилегованим корисницима.',
             'small' => '(osu!supporters ће ускоро добити приступ)
 ',
+        ],
+    ],
+
+    'ogp' => [
+        'modding_description' => '',
+        'modding_description_empty' => '',
+
+        'description' => [
+            '_' => 'Ранг (:ruleset): :global | :country',
+            'country' => 'Државни :rank',
+            'global' => 'Глобални :rank',
         ],
     ],
 
@@ -176,7 +188,6 @@ return [
         'origin_country' => 'Из :country',
         'previous_usernames' => 'претходно познати као',
         'plays_with' => 'Игра са :devices',
-        'title' => "Профил :username",
 
         'comments_count' => [
             '_' => 'Постовао :link',
@@ -388,7 +399,7 @@ return [
                     'date' => 'датум',
                     'action' => 'радња',
                     'length' => 'дужина',
-                    'length_permanent' => 'Трајно',
+                    'length_indefinite' => 'Неодређен',
                     'description' => 'опис',
                     'actor' => 'од корисника :username
 ',

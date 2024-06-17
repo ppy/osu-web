@@ -12,7 +12,7 @@ return [
     'beatmapset_update' => '<strong><em>:user</em></strong> 更新了谱面 "<em>:beatmapset</em>"',
     'beatmapset_upload' => '<strong><em>:user</em></strong> 提交了一个新谱面 ":beatmapset"',
     'empty' => "该用户最近没有活动！",
-    'rank' => '<strong><em>:user</em></strong> 在 <em>:beatmap</em> （:mode）中取得第 :rank 名',
+    'rank' => ':user 在 :beatmap (:mode) 中取得了:rank',
     'rank_lost' => '<strong><em>:user</em></strong> 失去了 <em>:beatmap</em> （:mode）的第一名',
     'user_support_again' => '<strong>:user</strong> 又一次支持了 osu! - 感谢您的慷慨捐赠！',
     'user_support_first' => '<strong>:user</strong> 支持了 osu! - 感谢您的慷慨捐赠！',
@@ -24,5 +24,9 @@ return [
         'loved' => '社区喜爱 (Loved)',
         'qualified' => '过审 (Qualified)',
         'ranked' => '上架 (Ranked)',
+    ],
+
+    'value' => [
+        'rank' => '排名 #:rank',
     ],
 ];

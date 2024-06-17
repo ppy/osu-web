@@ -29,7 +29,7 @@ interface BeatmapScoresJson {
 }
 
 interface StoredState {
-  allData: Record<string, BeatmapScoresJson>;
+  allData: Partial<Record<string, BeatmapScoresJson>>;
   currentType: ScoreboardType;
   enabledMods: string[];
 }
@@ -38,8 +38,8 @@ export default class Controller {
   @observable currentType: ScoreboardType = 'global';
   @observable enabledMods = new Set<string>();
 
-  @observable private allData: Record<string, BeatmapScoresJson> = {};
-  private disposers = new Set<(() => void) | undefined>();
+  @observable private allData: Partial<Record<string, BeatmapScoresJson>> = {};
+  private readonly disposers = new Set<(() => void) | undefined>();
   private xhr: JQuery.jqXHR<BeatmapScoresJson> | null = null;
   @observable private xhrState: 'error' | 'loading' | null = null;
 
@@ -72,7 +72,7 @@ export default class Controller {
     return this.xhrState;
   }
 
-  constructor(private container: HTMLElement, private getBeatmap: () => BeatmapExtendedJson) {
+  constructor(private readonly container: HTMLElement, private readonly getBeatmap: () => BeatmapExtendedJson) {
     let storedState: StoredState | null = null;
     try {
       storedState = JSON.parse(this.container.dataset.scoreboardState ?? 'null') as (StoredState | null);

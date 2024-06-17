@@ -12,7 +12,7 @@ return [
         'in_progress_spinner_label' => '房間正在進行中',
         'loading-events' => '正在載入事件...',
         'winner' => ':team 勝利',
-        'winner_by' => '',
+        'winner_by' => ':winner，勝分差: :difference',
 
         'events' => [
             'player-left' => ':user 離開了房間',

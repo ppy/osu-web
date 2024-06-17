@@ -45,6 +45,11 @@ return [
         'index' => [
             '_' => 'جستجوی قطعه ها',
 
+            'exclusive_only' => [
+                'all' => '',
+                'exclusive_only' => '',
+            ],
+
             'form' => [
                 'advanced' => 'جستجوی پیشرفته',
                 'album' => 'آلبوم',
@@ -52,6 +57,7 @@ return [
                 'bpm_gte' => 'کمترین ضرب در دقیقه',
                 'bpm_lte' => 'بیشترین ضرب در دقیقه',
                 'empty' => 'هیچ قطعه ای مطابق جستجوی شما پیدا نشد.',
+                'exclusive_only' => '',
                 'genre' => 'ژانر',
                 'genre_all' => 'همه',
                 'length_gte' => 'کمترین طول',

@@ -140,7 +140,7 @@ export default class Header extends React.Component<Props> {
           <span className='beatmapset-header__details-text beatmapset-header__details-text--title'>
             <a
               className='beatmapset-header__details-text-link'
-              href={route('beatmapsets.index', { q: getTitle(this.controller.beatmapset) })}
+              href={route('beatmapsets.index', { q: `title=""${getTitle(this.controller.beatmapset)}""` })}
             >
               {getTitle(this.controller.beatmapset)}
             </a>
@@ -157,7 +157,7 @@ export default class Header extends React.Component<Props> {
           <span className='beatmapset-header__details-text beatmapset-header__details-text--artist'>
             <a
               className='beatmapset-header__details-text-link'
-              href={route('beatmapsets.index', { q: getArtist(this.controller.beatmapset) })}
+              href={route('beatmapsets.index', { q: `artist=""${getArtist(this.controller.beatmapset)}""` })}
             >
               {getArtist(this.controller.beatmapset)}
             </a>
@@ -295,7 +295,7 @@ export default class Header extends React.Component<Props> {
   }
 
   private renderDownloadButtons() {
-    if (core.currentUser == null || (this.controller.beatmapset.availability?.download_disabled ?? false)) return;
+    if (core.currentUser == null || this.controller.beatmapset.availability.download_disabled) return;
 
     return (
       <>
@@ -352,11 +352,21 @@ export default class Header extends React.Component<Props> {
             <span className='fas fa-image' />
           </div>
         }
-        <div className='beatmapset-status beatmapset-status--show'>
+        <a className='beatmapset-status beatmapset-status--show' href={this.statusToWikiLink(this.controller.currentBeatmap.status)}>
           {trans(`beatmapsets.show.status.${this.controller.currentBeatmap.status}`)}
-        </div>
+        </a>
       </div>
     );
+  }
+
+  private statusToWikiLink(status: string): string {
+    let fragment: string;
+    if (status === 'wip' || status === 'pending') {
+      fragment = 'wip-and-pending';
+    } else {
+      fragment = status;
+    }
+    return wikiUrl(`Beatmap/Category#${fragment}`);
   }
 
   private readonly updateFavouritePopup = () => {

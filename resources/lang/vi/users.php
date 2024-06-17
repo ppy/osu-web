@@ -97,6 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
+            'inactive' => "Tài khoản của bạn đã không sử dụng trong một thời gian dài.",
             'inactive_different_country' => "Tài khoản của bạn đã không sử dụng trong một thời gian dài.",
         ],
     ],
@@ -120,6 +121,17 @@ return [
         'beta' => [
             'main' => 'Quyền truy cập bản thử nghiệm hiện bị hạn chế cho người dùng đặc quyền.',
             'small' => '(người ủng hộ sẽ sớm được tham gia)',
+        ],
+    ],
+
+    'ogp' => [
+        'modding_description' => 'Beatmap: :counts',
+        'modding_description_empty' => 'Người dùng không có bất kỳ beatmap nào...',
+
+        'description' => [
+            '_' => 'Hạng (:ruleset): :global | :country',
+            'country' => 'Quốc gia :rank',
+            'global' => 'Toàn cầu :rank',
         ],
     ],
 
@@ -175,7 +187,6 @@ return [
         'origin_country' => 'Từ :country',
         'previous_usernames' => 'được biết đến trước đây với',
         'plays_with' => 'Chơi bằng :devices',
-        'title' => "Trang cá nhân của :username",
 
         'comments_count' => [
             '_' => 'Đã đăng :link',
@@ -387,7 +398,7 @@ return [
                     'date' => 'ngày',
                     'action' => 'hành động',
                     'length' => 'thời lượng',
-                    'length_permanent' => 'vĩnh viễn',
+                    'length_indefinite' => 'Vô thời hạn',
                     'description' => 'mô tả',
                     'actor' => 'bởi :username',
 

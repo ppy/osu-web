@@ -1,21 +1,23 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import CommentsController, { CommentEditMode } from 'components/comments-controller';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { truncate } from 'lodash';
 import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
-import { Comment as CommentModel } from 'models/comment';
+import CommentModel from 'models/comment';
+import { canModerateComments } from 'models/comment';
+import { deletedUserJson } from 'models/user';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import { onError } from 'utils/ajax';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { estimateMinLines } from 'utils/estimate-min-lines';
-import { createClickCallback, formatNumberSuffixed, stripTags } from 'utils/html';
+import { formatNumberSuffixed, stripTags } from 'utils/html';
 import { trans, transChoice } from 'utils/lang';
 import ClickToCopy from './click-to-copy';
-import CommentEditor, { CommentEditMode } from './comment-editor';
+import CommentEditor from './comment-editor';
 import CommentShowMore from './comment-show-more';
 import DeletedCommentsCount from './deleted-comments-count';
 import { ReportReportable } from './report-reportable';
@@ -26,31 +28,18 @@ import TimeWithTooltip from './time-with-tooltip';
 import UserAvatar from './user-avatar';
 import UserLink from './user-link';
 
-const deletedUser = { username: trans('users.deleted') };
-const commentableMetaStore = core.dataStore.commentableMetaStore;
-const store = core.dataStore.commentStore;
-const userStore = core.dataStore.userStore;
-
-const uiState = core.dataStore.uiState;
-
 const clipLines = 7;
 const maxDepth = 6;
 
 interface Props {
   comment: CommentModel;
+  controller: CommentsController;
   depth: number;
   expandReplies?: boolean;
   linkParent: boolean;
   modifiers: Modifiers;
   showCommentableMeta: boolean;
   showToolbar: boolean;
-}
-
-interface XhrCollection {
-  delete: JQuery.jqXHR<unknown>;
-  pin: JQuery.jqXHR<unknown>;
-  restore: JQuery.jqXHR<unknown>;
-  vote: JQuery.jqXHR<unknown>;
 }
 
 @observer
@@ -67,10 +56,9 @@ export default class Comment extends React.Component<Props> {
   @observable private forceShow = false;
   private readonly showMoreRef = React.createRef<CommentShowMore>();
   @observable private showNewReply = false;
-  @observable private xhr: Partial<XhrCollection> = {};
 
   private get hasVoted() {
-    return store.userVotes.has(this.props.comment.id);
+    return this.props.controller.state.votedCommentIds.has(this.props.comment.id);
   }
 
   @computed
@@ -91,14 +79,14 @@ export default class Comment extends React.Component<Props> {
 
   @computed
   private get meta() {
-    return commentableMetaStore.get(this.props.comment.commentableType, this.props.comment.commentableId);
+    return this.props.controller.getCommentableMeta(this.props.comment);
   }
 
   @computed
   private get parentComment() {
     return this.props.comment.parentId == null
       ? undefined
-      : store.comments.get(this.props.comment.parentId);
+      : this.props.controller.state.comments[this.props.comment.parentId];
   }
 
   @computed
@@ -117,12 +105,45 @@ export default class Comment extends React.Component<Props> {
   }
 
   private get postingVote() {
-    return this.xhr.vote != null;
+    return this.props.controller.isVoting(this.props.comment);
   }
 
   @computed
   private get replies() {
-    return uiState.getOrderedCommentsByParentId(this.props.comment.id) ?? [];
+    return this.props.controller.getReplies(this.props.comment);
+  }
+
+  @computed
+  private get shouldRender() {
+    if (!this.props.comment.isDeleted) {
+      return true;
+    }
+
+    // always render in single comment page
+    if (this.props.showToolbar) {
+      return true;
+    }
+
+    if (canModerateComments() && core.userPreferences.get('comments_show_deleted')) {
+      return true;
+    }
+
+    const replies = this.replies;
+
+    return replies.length > 0 && replies.some((reply) => reply.isVisible);
+  }
+
+  @computed
+  private get shouldRenderContent() {
+    if (this.props.comment.messageHtml == null) {
+      return false;
+    }
+
+    if (canModerateComments() && core.userPreferences.get('comments_show_deleted')) {
+      return true;
+    }
+
+    return !this.props.comment.isDeleted;
   }
 
   @computed
@@ -132,8 +153,6 @@ export default class Comment extends React.Component<Props> {
 
   constructor(props: Props) {
     super(props);
-
-    makeObservable(this);
 
     if (core.windowSize.isMobile) {
       // There's no indentation on mobile so don't expand by default otherwise it will be confusing.
@@ -145,15 +164,17 @@ export default class Comment extends React.Component<Props> {
     } else {
       const children = this.replies;
       // Collapse if either no children is loaded, current level doesn't add indentation, or this comment is blocked.
-      this.expandReplies = children?.length > 0 && this.props.depth < maxDepth && !this.isBlocked;
+      this.expandReplies = !this.isBlocked && children?.length > 0 && this.props.depth < maxDepth;
     }
-  }
 
-  componentWillUnmount() {
-    Object.values(this.xhr).forEach((xhr) => xhr?.abort());
+    makeObservable(this);
   }
 
   render() {
+    if (!this.shouldRender) {
+      return null;
+    }
+
     return (
       <div className={classWithModifiers(
         'comment',
@@ -171,13 +192,13 @@ export default class Comment extends React.Component<Props> {
   private getCommentUser(comment: CommentModel): UserJson | { username: string } {
     return this.getUser(comment.userId) ?? (
       comment.legacyName == null
-        ? deletedUser
+        ? deletedUserJson
         : { username: comment.legacyName }
     );
   }
 
   private getUser(id: number | null | undefined) {
-    return id == null ? undefined : userStore.get(id)?.toJson();
+    return this.props.controller.getUser(id);
   }
 
   @action
@@ -190,24 +211,12 @@ export default class Comment extends React.Component<Props> {
     this.showNewReply = false;
   };
 
-  @action
   private readonly onDelete = () => {
-    if (this.xhr.delete != null || !confirm(trans('common.confirmation'))) {
-      return;
-    }
-
-    this.xhr.delete = $.ajax(route('comments.destroy', { comment: this.props.comment.id }), { method: 'DELETE' });
-    this.xhr.delete.done((data) => {
-      $.publish('comment:updated', data);
-    })
-      .fail(onError)
-      .always(action(() => {
-        this.xhr.delete = undefined;
-      }));
+    this.props.controller.apiDelete(this.props.comment);
   };
 
   private readonly onLoadReplies = () => {
-    this.showMoreRef.current?.load();
+    this.props.controller.apiLoadMore(this.props.comment);
     this.onToggleReplies();
   };
 
@@ -217,18 +226,7 @@ export default class Comment extends React.Component<Props> {
   };
 
   private readonly onRestore = () => {
-    if (this.xhr.restore != null) return;
-
-    this.xhr.restore = $.ajax(route('comments.restore', { comment: this.props.comment.id }), {
-      method: 'POST',
-    });
-    this.xhr.restore.done((data) => {
-      $.publish('comment:updated', data);
-    })
-      .fail(onError)
-      .always(action(() => {
-        this.xhr.restore = undefined;
-      }));
+    this.props.controller.apiRestore(this.props.comment);
   };
 
   private readonly onShowDeletedToggleClick = () => {
@@ -255,22 +253,8 @@ export default class Comment extends React.Component<Props> {
     this.showNewReply = !this.showNewReply;
   };
 
-  @action
   private readonly onTogglePinned = () => {
-    if (this.xhr.pin != null || !this.props.comment.canPin) {
-      return;
-    }
-
-    this.xhr.pin = $.ajax(route('comments.pin', { comment: this.props.comment.id }), {
-      method: this.props.comment.pinned ? 'DELETE' : 'POST',
-    });
-    this.xhr.pin.done((data) => {
-      $.publish('comment:updated', data);
-    })
-      .fail(onError)
-      .always(action(() => {
-        this.xhr.pin = undefined;
-      }));
+    this.props.controller.apiTogglePin(this.props.comment);
   };
 
   @action
@@ -278,35 +262,8 @@ export default class Comment extends React.Component<Props> {
     this.expandReplies = !this.expandReplies;
   };
 
-  @action
-  private readonly onToggleVote = (e: React.MouseEvent<HTMLElement>) => {
-    const target = e.currentTarget;
-
-    if (this.postingVote || core.userLogin.showIfGuest(createClickCallback(target))) {
-      return;
-    }
-
-    let method: string;
-    let storeMethod: 'addUserVote' | 'removeUserVote';
-
-    if (this.hasVoted) {
-      method = 'DELETE';
-      storeMethod = 'removeUserVote';
-    } else {
-      method = 'POST';
-      storeMethod = 'addUserVote';
-    }
-
-    this.xhr.vote = $.ajax(route('comments.vote', { comment: this.props.comment.id }), { method });
-    this.xhr.vote
-      .done((data) => {
-        $.publish('comment:updated', data);
-        store[storeMethod](this.props.comment);
-      })
-      .fail(onError)
-      .always(action(() => {
-        this.xhr.vote = undefined;
-      }));
+  private readonly onToggleVote = () => {
+    this.props.controller.apiToggleVote(this.props.comment);
   };
 
   private renderBlocked() {
@@ -330,23 +287,16 @@ export default class Comment extends React.Component<Props> {
     );
   }
 
-  private readonly renderComment = (sourceComment: CommentModel) => {
-    const comment = store.comments.get(sourceComment.id);
-
-    if (comment == null || (comment.isDeleted && !core.userPreferences.get('comments_show_deleted'))) {
-      return;
-    }
-
-    return (
-      <Comment
-        key={comment.id}
-        comment={comment}
-        depth={this.props.depth + 1}
-        expandReplies={this.props.expandReplies}
-        modifiers={this.props.modifiers}
-      />
-    );
-  };
+  private readonly renderComment = (comment: CommentModel) => (
+    <Comment
+      key={comment.id}
+      comment={comment}
+      controller={this.props.controller}
+      depth={this.props.depth + 1}
+      expandReplies={this.props.expandReplies}
+      modifiers={this.props.modifiers}
+    />
+  );
 
   private renderCommentableMeta() {
     if (!this.props.showCommentableMeta) return;
@@ -404,7 +354,7 @@ export default class Comment extends React.Component<Props> {
             user: (
               this.props.comment.deletedById == null
                 ? trans('comments.deleted_by_system')
-                : <UserLink user={userStore.get(this.props.comment.deletedById) ?? deletedUser} />
+                : <UserLink user={this.getUser(this.props.comment.deletedById) ?? deletedUserJson} />
             ),
           }}
           pattern={trans('comments.deleted_by')}
@@ -439,7 +389,7 @@ export default class Comment extends React.Component<Props> {
         <StringWithComponent
           mappings={{
             timeago: <TimeWithTooltip dateTime={this.props.comment.editedAt} relative />,
-            user: <UserLink user={this.getUser(this.props.comment.editedById) ?? deletedUser} />,
+            user: <UserLink user={this.getUser(this.props.comment.editedById) ?? deletedUserJson} />,
           }}
           pattern={trans('comments.edited')}
         />
@@ -551,17 +501,18 @@ export default class Comment extends React.Component<Props> {
               ? <div className='comment__editor'>
                 <CommentEditor
                   close={this.onCloseEdit}
+                  controller={this.props.controller}
                   id={this.props.comment.id}
                   message={this.props.comment.message}
                   modifiers={this.props.modifiers}
                 />
               </div>
-              : this.props.comment.messageHtml != null &&
+              : this.shouldRenderContent &&
               <>
                 <div
                   className='comment__message'
                   dangerouslySetInnerHTML={{
-                    __html: this.props.comment.messageHtml,
+                    __html: this.props.comment.messageHtml ?? '',
                   }}
                 />
                 {this.isLongContent && this.renderToggleClipButton()}
@@ -574,7 +525,7 @@ export default class Comment extends React.Component<Props> {
           </div>
         </div>
 
-        {this.props.comment.repliesCount > 0 &&
+        {this.props.comment.visibleReplyCount > 0 &&
           <div className={classWithModifiers('comment__replies', {
             hidden: !this.expandReplies,
             indented: this.props.depth < maxDepth,
@@ -586,10 +537,11 @@ export default class Comment extends React.Component<Props> {
             <CommentShowMore
               ref={this.showMoreRef}
               comments={this.replies}
+              controller={this.props.controller}
               label={this.replies.length === 0 ? trans('comments.load_replies') : undefined}
               modifiers={this.props.modifiers}
               parent={this.props.comment}
-              total={this.props.comment.repliesCount}
+              total={this.props.comment.visibleReplyCount}
             />
           </div>
         }
@@ -674,7 +626,7 @@ export default class Comment extends React.Component<Props> {
   }
 
   private renderRepliesText() {
-    if (this.props.comment.repliesCount === 0) return;
+    if (this.props.comment.visibleReplyCount === 0) return;
 
     let label: string;
     let callback: () => void;
@@ -724,6 +676,7 @@ export default class Comment extends React.Component<Props> {
         <CommentEditor
           close={this.onCloseReplyBox}
           commentableMeta={this.meta}
+          controller={this.props.controller}
           modifiers={this.props.modifiers}
           onPosted={this.onReplyPosted}
           parent={this.props.comment}
@@ -793,6 +746,7 @@ export default class Comment extends React.Component<Props> {
 
   private renderToolbar() {
     if (!this.props.showToolbar) return;
+    if (!canModerateComments()) return;
 
     return (
       <div className='comment__toolbar'>

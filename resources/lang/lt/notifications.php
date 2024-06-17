@@ -15,7 +15,7 @@ return [
 
     'action_type' => [
         '_' => 'visi',
-        'beatmapset' => 'taktalapiai',
+        'beatmapset' => 'beatmap\'ai',
         'build' => 'versijos',
         'channel' => 'pokalbiai',
         'forum_topic' => 'forumas',
@@ -26,7 +26,7 @@ return [
     'filters' => [
         '_' => 'visi',
         'user' => 'profilis',
-        'beatmapset' => 'bitmapai',
+        'beatmapset' => 'beatmap\'ai',
         'forum_topic' => 'forumas',
         'news_post' => 'naujienos',
         'build' => 'versijos',
@@ -35,16 +35,16 @@ return [
 
     'item' => [
         'beatmapset' => [
-            '_' => 'Bitmapas',
+            '_' => 'Beatmap\'as',
 
             'beatmap_owner_change' => [
                 '_' => 'Svečio sunkumas',
-                'beatmap_owner_change' => 'Jūs dabar esate savininkas šio sunkumo ":beatmap" šitam bitmapui ":title"',
+                'beatmap_owner_change' => 'Jūs dabar esate savininkas šio sunkumo ":beatmap" šitam beatmap\'ui ":title"',
                 'beatmap_owner_change_compact' => 'Jūs dabar esate savininkas šio sunkumo ":beatmap"',
             ],
 
             'beatmapset_discussion' => [
-                '_' => 'Bitmapo diskusija',
+                '_' => 'Beatmap\'o diskusija',
                 'beatmapset_discussion_lock' => 'Diskusija tarp ":title" buvo užrakinta',
                 'beatmapset_discussion_lock_compact' => 'Diskusija buvo užrakinta',
                 'beatmapset_discussion_post_new' => 'Naujas įrašas tarp :title" iš :username: ":content"',
@@ -55,10 +55,16 @@ return [
                 'beatmapset_discussion_review_new_compact' => 'Nauja apžvalga iš :username, kurioje yra problemos: :problems, pasiūlymai: :suggestions, pagyrimai: :praises',
                 'beatmapset_discussion_unlock' => 'Diskusija apie ":title" buvo atrakinta',
                 'beatmapset_discussion_unlock_compact' => 'Diskusija buvo atrakinta',
+
+                'review_count' => [
+                    'praises' => ':count_delimited pagyrimas|:count_delimited pagyrimai',
+                    'problems' => ':count_delimited problema|:count_delimited problemos',
+                    'suggestions' => '',
+                ],
             ],
 
             'beatmapset_problem' => [
-                '_' => 'Kvalifikuoto Bitmapo problema',
+                '_' => 'Kvalifikuoto Beatmap\'o problema',
                 'beatmapset_discussion_qualified_problem' => 'Pranešė :username apie ":title": ":content"',
                 'beatmapset_discussion_qualified_problem_empty' => 'Pranešė :username apie ":title"',
                 'beatmapset_discussion_qualified_problem_compact' => 'Pranešė :username: ":content"',
@@ -66,19 +72,19 @@ return [
             ],
 
             'beatmapset_state' => [
-                '_' => 'Bitmapo būsena pasikeitė',
+                '_' => 'Beatmap\'o būsena pasikeitė',
                 'beatmapset_disqualify' => '":title" buvo diskvalifikuotas',
-                'beatmapset_disqualify_compact' => 'Bitmapas buvo diskvalifikuotas',
+                'beatmapset_disqualify_compact' => 'Beatmap\'as buvo diskvalifikuotas',
                 'beatmapset_love' => '":title" buvo paaukštintas į mylimą',
-                'beatmapset_love_compact' => 'Bitmapas buvo paaukštintas į mylimą',
+                'beatmapset_love_compact' => 'Beatmap\'as buvo paaukštintas į mylimą',
                 'beatmapset_nominate' => '":title" buvo nominuotas',
-                'beatmapset_nominate_compact' => 'Bitmapas buvo nominuotas',
+                'beatmapset_nominate_compact' => 'Beatmap\'as buvo nominuotas',
                 'beatmapset_qualify' => '":title" gavo pakankamai nominacijų ir pateko į reitingavimo eilę',
-                'beatmapset_qualify_compact' => 'Bitmapas pateko į reitingavimo eilę',
+                'beatmapset_qualify_compact' => 'Beatmap\'as pateko į reitingavimo eilę',
                 'beatmapset_rank' => '":title" buvo reitinguotas',
-                'beatmapset_rank_compact' => 'Bitmapas buvo reitinguotas',
+                'beatmapset_rank_compact' => 'Beatmap\'as buvo reitinguotas',
                 'beatmapset_remove_from_loved' => '":title" buvo pašalintas iš Mylimų',
-                'beatmapset_remove_from_loved_compact' => 'Bitmapas buvo pašalintas iš Mylimų',
+                'beatmapset_remove_from_loved_compact' => 'Beatmap\'as buvo pašalintas iš Mylimų',
                 'beatmapset_reset_nominations' => '":title" nominacija buvo atstatyta',
                 'beatmapset_reset_nominations_compact' => 'Nominacija buvo atstatyta',
             ],
@@ -155,14 +161,14 @@ return [
 
         'user' => [
             'user_beatmapset_new' => [
-                '_' => 'Naujas bitmapas',
+                '_' => 'Naujas beatmap\'as',
 
-                'user_beatmapset_new' => 'Naujas bitmapas ":title" iš :username',
-                'user_beatmapset_new_compact' => 'Naujas bitmapas ":title"',
-                'user_beatmapset_new_group' => 'Nauji bitmapai iš :username',
+                'user_beatmapset_new' => 'Naujas beatmap\'as ":title" iš :username',
+                'user_beatmapset_new_compact' => 'Naujas beatmap\'as ":title"',
+                'user_beatmapset_new_group' => 'Nauji beatmap\'ai iš :username',
 
-                'user_beatmapset_revive' => 'Bitmapą ":title" atgaivino :username',
-                'user_beatmapset_revive_compact' => 'Bitmapas ":title" atgaivintas',
+                'user_beatmapset_revive' => 'Beatmap\'ą ":title" atgaivino :username',
+                'user_beatmapset_revive_compact' => 'Beatmap\'as ":title" atgaivintas',
             ],
         ],
 
@@ -181,7 +187,7 @@ return [
     'mail' => [
         'beatmapset' => [
             'beatmap_owner_change' => [
-                'beatmap_owner_change' => 'Dabar esi svečias bitmapo ":title"',
+                'beatmap_owner_change' => 'Dabar esi svečias beatmap\'o ":title"',
             ],
 
             'beatmapset_discussion' => [
@@ -205,13 +211,13 @@ return [
             ],
 
             'comment' => [
-                'comment_new' => 'Bitmapas ":title" turi naujų komentarų',
+                'comment_new' => 'Beatmap\'as ":title" turi naujų komentarų',
             ],
         ],
 
         'channel' => [
             'announcement' => [
-                'announce' => '',
+                'announce' => 'Naujas skelbimas tarp ":name"',
             ],
 
             'channel' => [
@@ -238,14 +244,9 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':username atrakino naują medalį ":title"!',
-                'user_achievement_unlock_self' => 'Tu atrakinai naują medalį ":title"!',
-            ],
-
             'user_beatmapset_new' => [
-                'user_beatmapset_new' => ':username sukūrė naujų bitmapų',
-                'user_beatmapset_revive' => ':username atgaivino bitmapus',
+                'user_beatmapset_new' => ':username sukūrė naujų beatmap\'ų',
+                'user_beatmapset_revive' => ':username atgaivino beatmap\'us',
             ],
         ],
     ],

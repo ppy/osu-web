@@ -5,12 +5,12 @@
 
 return [
     'countries' => [
-        'all' => 'Tot',
+        'all' => 'Toate',
         'title' => 'Țară',
     ],
 
     'filter' => [
-        'title' => 'Arată',
+        'title' => 'Afișează',
 
         'variant' => [
             'title' => 'Variantă',
@@ -23,9 +23,13 @@ return [
         'used' => 'Folosit',
     ],
 
+    'performance' => [
+        'insufficient_history' => '',
+    ],
+
     'type' => [
         'charts' => 'promovări',
-        'country' => 'pe țară',
+        'country' => 'național',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multiplayer',
         'performance' => 'performanță',

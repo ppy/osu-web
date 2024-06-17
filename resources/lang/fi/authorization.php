@@ -17,9 +17,9 @@ return [
             'has_reply' => 'Keskustelua, jossa on vastauksia, ei voi poistaa',
         ],
         'nominate' => [
-            'exhausted' => 'Olet saavuttanut suosittelurajan tälle päivälle, yritä huomenna uudelleen.',
+            'exhausted' => 'Olet saavuttanut päivän ehdollepanorajan, yritä uudelleen huomenna.',
             'incorrect_state' => 'Virhe toiminnon suorittamisessa, kokeile päivittää sivu.',
-            'owner' => "Omaa beatmappia ei voi suositella.",
+            'owner' => "Omaa rytmikarttaa ei voi ehdollepanna.",
             'set_metadata' => 'Sinun täytyy määrittää tyylilaji ja kieli ennen ehdolle asettamista.',
         ],
         'resolve' => [
@@ -34,7 +34,7 @@ return [
             'bot' => "Et voi äänestää botin tekemässä keskustelussa",
             'limit_exceeded' => 'Odota hetki ennen uusien äänien antamista',
             'owner' => "Omia keskusteluja ei voi äänestää.",
-            'wrong_beatmapset_state' => 'Voit äänestää vain vireillä olevien beatmappien keskusteluissa.',
+            'wrong_beatmapset_state' => 'Vain vireillä olevien rytmikarttojen keskusteluja voi äänestää.',
         ],
     ],
 
@@ -56,17 +56,17 @@ return [
         'discussion_locked' => 'Tämän rytmikartan keskustelu on lukittu.',
 
         'metadata' => [
-            'nominated' => 'Et voi muuttaa ehdolle asetetun kartan metatietoja. Ota yhteyttä BN- tai NAT-jäseneen, jos luulet sen olevan virheellinen.',
+            'nominated' => 'Et voi muuttaa ehdolle asetetun kartan kuvailutietoja. Ota yhteyttä BN- tai NAT-jäseneen, jos luulet sen olevan virheellinen.',
         ],
     ],
 
     'chat' => [
-        'annnonce_only' => 'Tämä kanava on tarkoitettu vain tiedotuksiin.',
+        'annnonce_only' => 'Tämä kanava on vain tiedotteita varten.',
         'blocked' => 'Et voi lähettää viestejä käyttäjälle, joka on estänyt sinut tai jonka olet estänyt.',
         'friends_only' => 'Käyttäjä on estänyt viestit henkilöiltä, jotka eivät ole hänen kaverilistassaan.',
         'moderated' => 'Tätä kanavaa moderoidaan.',
         'no_access' => 'Sinulla ei ole oikeuksia tälle kanavalle.',
-        'receive_friends_only' => 'Käyttäjä ei välttämättä pysty vastaamaan, koska hyväksyt viestejä vain ystävälistallasi olevilta henkilöiltä.',
+        'receive_friends_only' => 'Käyttäjä ei välttämättä pysty vastaamaan, koska hyväksyt viestejä vain kaverilistallasi olevilta henkilöiltä.',
         'restricted' => 'Et voi lähettää viestejä mykistettynä, rajoitettuna tai bännättynä.',
         'silenced' => 'Et voi lähettää viestejä mykistettynä, rajoitettuna tai bännättynä.',
     ],
@@ -81,6 +81,7 @@ return [
     ],
 
     'contest' => [
+        'judging_not_active' => 'Tuomarointi tälle kilpailulle ei ole avoinna.',
         'voting_over' => 'Et voi muuttaa ääntäsi tälle kilpailulle äänestysajan loppumisen jälkeen.',
 
         'entry' => [
@@ -172,6 +173,7 @@ return [
     'score' => [
         'pin' => [
             'disabled_type' => "Ei voida kiinnittää tämäntyyppistä pisteytystä",
+            'failed' => "Ei läpäistyä suoritusta ei voida kiinnittää.",
             'not_owner' => 'Vain tuloksen omistaja voi kiinnittää tuloksen.',
             'too_many' => 'Kiinnitit liian monta tulosta.',
         ],
@@ -182,8 +184,11 @@ return [
             'edit' => [
                 'locked' => 'Käyttäjäsivu on lukittu.',
                 'not_owner' => 'Voit muokata vain omaa käyttäjäsivuasi.',
-                'require_supporter_tag' => 'Sinun on oltava Tukija.',
+                'require_supporter_tag' => 'osu!tukijamerkki vaaditaan.',
             ],
+        ],
+        'update_email' => [
+            'locked' => 'sähköpostiosoite on lukittu',
         ],
     ],
 ];

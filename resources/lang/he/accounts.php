@@ -18,6 +18,10 @@ return [
             'new' => 'דואר אלקטרוני חדש',
             'new_confirmation' => 'אישור דואר אלקטרוני חדש',
             'title' => 'דואר אלקטרוני',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
         ],
 
         'legacy_api' => [
@@ -34,7 +38,7 @@ return [
         ],
 
         'profile' => [
-            'country' => '',
+            'country' => 'מדינה',
             'title' => 'פרופיל',
 
             'country_change' => [
@@ -58,6 +62,19 @@ return [
         ],
     ],
 
+    'github_user' => [
+        'info' => "",
+        'link' => '',
+        'title' => 'גיטהאב',
+        'unlink' => '',
+
+        'error' => [
+            'already_linked' => '',
+            'no_contribution' => '',
+            'unverified_email' => '',
+        ],
+    ],
+
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'לקבל הודעת בעת תקלה במפה מאומתת במודים הנלווים',
         'beatmapset_disqualify' => 'קבלת התראות למפות עם המודים הנלווים נדחו',
@@ -75,7 +92,6 @@ return [
             'mail' => 'דואר אלקטרוני',
             'mapping' => '',
             'push' => 'דחיפה',
-            'user_achievement_unlock' => 'המדליות הפתוחות שלך',
         ],
     ],
 

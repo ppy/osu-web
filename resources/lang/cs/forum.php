@@ -7,7 +7,7 @@ return [
     'pinned_topics' => 'Připnutá témata',
     'slogan' => "je nebezpečné hrát sám.",
     'subforums' => 'Subfóra',
-    'title' => 'osu! fóra',
+    'title' => 'Fóra',
 
     'covers' => [
         'edit' => 'Upravit záhlaví',
@@ -25,7 +25,7 @@ return [
     ],
 
     'forums' => [
-        'forums' => 'Fórum',
+        'forums' => 'Fóra',
         'latest_post' => 'Poslední příspěvek',
 
         'index' => [
@@ -72,7 +72,7 @@ return [
     'search' => [
         'go_to_post' => 'Přejít na příspěvek',
         'post_number_input' => 'zadejte číslo příspěvku',
-        'total_posts' => ':post_count počet příspěvků',
+        'total_posts' => ':posts_count příspěvků celkem',
     ],
 
     'topic' => [
@@ -340,7 +340,7 @@ return [
                 ],
 
                 'user' => [
-                    'count' => '{0} žádné hlasy | {1} :count hlas | [2,*] :count hlasů',
+                    'count' => '{0} nula hlasů|{1} :count_delimited hlas|[2,4] :count_delimited hlasy|[5,*] :count_delimited hlasů',
                     'current' => 'Zbývá vám :votes.',
                     'not_enough' => "Nemáte žádné další hlasy",
                 ],

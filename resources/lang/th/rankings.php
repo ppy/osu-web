@@ -18,15 +18,19 @@ return [
     ],
 
     'kudosu' => [
-        'total' => '',
-        'available' => '',
-        'used' => '',
+        'total' => 'ได้รับ',
+        'available' => 'พร้อมใช้งาน',
+        'used' => 'ใช้',
+    ],
+
+    'performance' => [
+        'insufficient_history' => '',
     ],
 
     'type' => [
         'charts' => 'โดดเด่น',
         'country' => 'ประเทศ',
-        'kudosu' => '',
+        'kudosu' => 'kudosu',
         'multiplayer' => 'โหมดผู้เล่นหลายคน',
         'performance' => 'ประสิทธิภาพ',
         'score' => 'คะแนน',

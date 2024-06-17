@@ -78,6 +78,18 @@ return [
             'suggestion' => '',
         ],
 
+        'message_type_title' => [
+            'disqualify' => '',
+            'hype' => '',
+            'mapper_note' => '',
+            'nomination_reset' => '',
+            'praise' => '',
+            'problem' => '',
+            'problem_warning' => '',
+            'review' => '',
+            'suggestion' => '',
+        ],
+
         'mode' => [
             'events' => '',
             'general' => '',
@@ -201,6 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => '',
+            'unresolved_problems' => '',
+            'problems' => '',
             'on' => '',
             'queue' => '',
             'soon' => '',
@@ -269,6 +283,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
+        'undefined' => '',
     ],
     'status' => [
         'any' => '',

@@ -63,8 +63,12 @@ return [
         'comments_controller' => [
             '_' => 'תגובות',
         ],
+        'contest_entries_controller' => [
+            'judge_results' => '',
+        ],
         'contests_controller' => [
             '_' => 'תחרויות',
+            'judge' => '',
         ],
         'groups_controller' => [
             'show' => 'קבוצות',
@@ -105,6 +109,9 @@ return [
         ],
         'tournaments_controller' => [
             '_' => 'טורנירים',
+        ],
+        'user_cover_presets_controller' => [
+            '_' => '',
         ],
         'users_controller' => [
             '_' => 'מידע שחקן',

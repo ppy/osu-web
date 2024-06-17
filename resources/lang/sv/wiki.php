@@ -7,17 +7,17 @@ return [
     'show' => [
         'fallback_translation' => 'Den begärda sidan är inte översatt till det valda språket (:language). Visar den engelska versionen.',
         'incomplete_or_outdated' => 'Innehållet på denna sidan är ofullständigt eller föråldrat. Om du har möjligheten att hjälpa till, vänligen överväg att uppdatera artikeln!',
-        'missing' => 'Begärd sida kunde ej hittas.',
+        'missing' => 'Den begärda sidan ":keyword" kunde inte hittas.',
         'missing_title' => 'Hittades inte',
         'missing_translation' => 'Den begärda sidan kunde inte hittas för nuvarande valt språk.',
         'needs_cleanup_or_rewrite' => 'Denna sidan lever inte upp till standarden för osu!-wikin och behöver städas upp eller skrivas om. Om du har möjlighet att hjälpa till, vänligen överväg att uppdatera artikeln!',
-        'search' => 'Sök befintliga sidor för: länk.',
+        'search' => 'Sök befintliga sidor för :link.',
         'stub' => 'Den här artikeln är ofullständig och väntar på att någon ska utöka den.',
         'toc' => 'Innehåll',
 
         'edit' => [
             'link' => 'Visa på GitHub',
-            'refresh' => 'Ladda om',
+            'refresh' => 'Uppdatera',
         ],
 
         'translation' => [

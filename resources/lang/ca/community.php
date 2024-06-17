@@ -6,7 +6,7 @@
 return [
     'support' => [
         'convinced' => [
-            'title' => 'Estic convençut! :D',
+            'title' => 'm\'has convençut! :D',
             'support' => 'donar suport a osu!',
             'gift' => 'o regalar supporter a altres jugadors',
             'instructions' => 'clica el botó amb el cor per accedir a la osu!store',
@@ -50,12 +50,12 @@ return [
             ],
 
             'friend_ranking' => [
-                'title' => 'Classificació entre Amics',
-                'description' => "Veure com et compares amb els teus amics a la classificació d'un beatmap, tant en el joc com a la web.",
+                'title' => 'Classificació entre amics',
+                'description' => "Mira com et compares amb els teus amics a la taula de classificació d'un beatmap, tant al joc com al lloc web.",
             ],
 
             'country_ranking' => [
-                'title' => 'Classificació per Països',
+                'title' => 'Classificació nacional',
                 'description' => 'Conquereix el teu país abans de conquerir el món.',
             ],
 
@@ -71,7 +71,7 @@ return [
 
             'upload_more' => [
                 'title' => 'Més espai per pujades',
-                'description' => 'Tindràs espais pendents per a beatmaps (per mapa classificat) fins a un màxim de 10.',
+                'description' => 'Tindràs espais pendents per a beatmaps (per beatmap classificat) fins a un màxim de 10.',
             ],
 
             'early_access' => [
@@ -90,7 +90,7 @@ return [
             ],
 
             'yellow_fellow' => [
-                'title' => 'Camarada Groc',
+                'title' => 'Camarada groc',
                 'description' => 'Sigues reconegut dins del joc pel teu nou nom d\'usuari groc brillant. ',
             ],
 
@@ -105,7 +105,7 @@ return [
             ],
 
             'skinnables' => [
-                'title' => 'Personalitzacions',
+                'title' => 'Skinnables',
                 'description' => 'Personalitzacions addicionals com canviar el fons del menú principal.',
             ],
 
@@ -121,7 +121,7 @@ return [
 
             'more_favourites' => [
                 'title' => 'Més favorits',
-                'description' => 'El nombre màxim de mapes que podeu marcar com a favorit augmenta de :normally &rarr; :supporter',
+                'description' => 'El nombre màxim de beatmaps que pods marcar com a favorit augmenta de :normally &rarr; :supporter',
             ],
             'more_friends' => [
                 'title' => 'Més amics',

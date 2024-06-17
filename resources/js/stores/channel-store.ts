@@ -55,7 +55,7 @@ export default class ChannelStore implements DispatchListener {
   lastReceivedMessageId = 0;
 
   // list of channels to temporarily ignore incoming messages from because we just left them.
-  private ignoredChannels = new Set<number>();
+  private readonly ignoredChannels = new Set<number>();
 
   @computed
   get groupedChannels() {
@@ -123,12 +123,6 @@ export default class ChannelStore implements DispatchListener {
     } else if (event instanceof ChatUpdateSilences) {
       this.handleChatUpdateSilences(event);
     }
-  }
-
-  // TODO: load is async, needs to be reflected somewhere.
-  @action
-  loadChannel(channelId: number) {
-    this.channels.get(channelId)?.load();
   }
 
   @action

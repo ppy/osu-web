@@ -13,8 +13,8 @@ return [
 
     'beatmaps' => [
         '_' => 'Beatmap-uri',
-        'download' => 'Descarcă Șablonul pentru Beatmap',
-        'download-na' => 'Șablonul pentru Beatmap nu este încă disponibil',
+        'download' => 'descarcă șablonul pentru beatmap',
+        'download-na' => 'șablonul pentru beatmap nu este încă disponibil',
     ],
 
     'index' => [
@@ -45,6 +45,11 @@ return [
         'index' => [
             '_' => 'căutare melodii',
 
+            'exclusive_only' => [
+                'all' => 'Toate',
+                'exclusive_only' => 'creat pentru osu!',
+            ],
+
             'form' => [
                 'advanced' => 'Căutare Avansată',
                 'album' => 'Album',
@@ -52,6 +57,7 @@ return [
                 'bpm_gte' => 'BPM Minim',
                 'bpm_lte' => 'BPM Maxim',
                 'empty' => 'Nu au fost găsite melodii potrivite pentru criteriile de căutare.',
+                'exclusive_only' => 'Tip',
                 'genre' => 'Gen',
                 'genre_all' => 'Toate',
                 'length_gte' => 'Lungime Minimă',

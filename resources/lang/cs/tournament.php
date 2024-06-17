@@ -24,7 +24,7 @@ return [
 
     'show' => [
         'banner' => 'Podpoř svůj tým',
-        'entered' => 'Na tento turnaj jsi zaregistrovaný.<br><br>To ovšem neznamená, že jsi byl přiřazen k týmu.<br><br>Další instrukce ti budou zaslány na email blíže k datu turnaje, proto prosím ověř, že emailová adresa přiřazena k tvému osu! účtu je platná!',
+        'entered' => 'Jsi zaregistrovaný na tento turnaj.<br><br>To ovšem <b>neznamená</b>, že jsi byl přiřazen do týmu.<br><br>Další instrukce ti budou zaslány na email blíže k datu turnaje, proto prosím ověř, že emailová adresa přiřazena k tvému osu! účtu je platná!',
         'info_page' => 'Informační stránka',
         'login_to_register' => 'Prosím :login pro zobrazení údajů k registraci!',
         'not_yet_entered' => 'Do tohoto turnaje nejsi zaregistrován.',
@@ -38,7 +38,7 @@ return [
 
         'period' => [
             'end' => 'Konec',
-            'start' => 'Začít',
+            'start' => 'Začátek',
         ],
 
         'state' => [
@@ -48,5 +48,5 @@ return [
             'running' => 'Tento turnaj zrovna probíhá. Navštiv informační stránku pro více informací.',
         ],
     ],
-    'tournament_period' => ':stars do :end',
+    'tournament_period' => ':start do :end',
 ];

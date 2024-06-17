@@ -4,20 +4,20 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'confirm_new' => '',
-    'new' => '',
-    'none' => '',
+    'confirm_new' => 'Luo uusi IRC-salasana?',
+    'new' => 'Uusi IRC:n perinnesalasana',
+    'none' => 'IRC-salasanaa ei asetettu.',
 
     'form' => [
-        'server_host' => '',
-        'server_port' => '',
-        'token' => '',
-        'username' => '',
+        'server_host' => 'palvelin',
+        'server_port' => 'portti',
+        'token' => 'palvelimen salasana',
+        'username' => 'käyttäjänimi',
     ],
 
     'view' => [
-        'hide' => '',
-        'show' => '',
-        'delete' => '',
+        'hide' => 'Piilota Salasana',
+        'show' => 'Näytä Salasana',
+        'delete' => 'Poista',
     ],
 ];

@@ -18,15 +18,19 @@ return [
     ],
 
     'kudosu' => [
-        'total' => '',
-        'available' => '',
-        'used' => '',
+        'total' => 'Opptjent',
+        'available' => 'Tilgjengelig',
+        'used' => 'Brukt',
+    ],
+
+    'performance' => [
+        'insufficient_history' => '',
     ],
 
     'type' => [
         'charts' => 'Rampelyset',
         'country' => 'Land',
-        'kudosu' => '',
+        'kudosu' => 'kudosu',
         'multiplayer' => 'flerspiller',
         'performance' => 'Prestasjon',
         'score' => 'Poengsum',

@@ -81,6 +81,7 @@ return [
     ],
 
     'contest' => [
+        'judging_not_active' => 'Votos para este concurso não estão ativo.',
         'voting_over' => 'Não é possível alterar o voto após o fim do período de votação.',
 
         'entry' => [
@@ -111,7 +112,7 @@ return [
             ],
 
             'store' => [
-                'play_more' => 'Por favor tente jogar antes de postar nos fóruns! Se você tiver algum problema com o jogo, por favor poste no fórum de Suporte e Ajuda.',
+                'play_more' => 'Por favor tente jogar o jogo antes de postar nos fóruns! Se você tiver algum problema com o jogo, por favor poste no fórum de Suporte e Ajuda.',
                 'too_many_help_posts' => "Você precisa jogar mais antes que você possa criar postagens adicionais. Se você ainda estiver tendo problemas com o jogo, envie um email para support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
@@ -172,6 +173,7 @@ return [
     'score' => [
         'pin' => [
             'disabled_type' => "Não é possível fixar este tipo de pontuação",
+            'failed' => "Não é possível fixar uma pontuação que falhou.",
             'not_owner' => 'Somente o proprietário da pontuação pode fixar sua pontuação.',
             'too_many' => 'Muitas pontuações fixadas.',
         ],
@@ -184,6 +186,9 @@ return [
                 'not_owner' => 'Só é possível editar sua própria página de usuário.',
                 'require_supporter_tag' => 'É necessário possuir uma osu!supporter tag.',
             ],
+        ],
+        'update_email' => [
+            'locked' => 'o endereço de email está bloqueado',
         ],
     ],
 ];

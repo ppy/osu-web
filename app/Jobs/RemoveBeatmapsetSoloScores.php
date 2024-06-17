@@ -11,17 +11,17 @@ use App\Libraries\Search\ScoreSearch;
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\Solo\Score;
-use App\Models\Solo\ScorePerformance;
-use DB;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\Middleware\WithoutOverlapping;
 
 class RemoveBeatmapsetSoloScores implements ShouldQueue
 {
-    use Queueable;
+    use InteractsWithQueue, Queueable;
 
-    public $timeout = 3600;
+    public $timeout = 36000;
 
     private int $beatmapsetId;
     private int $maxScoreId;
@@ -37,6 +37,11 @@ class RemoveBeatmapsetSoloScores implements ShouldQueue
     {
         $this->beatmapsetId = $beatmapset->getKey();
         $this->maxScoreId = Score::max('id') ?? 0;
+    }
+
+    public function displayName()
+    {
+        return static::class." (Beatmapset {$this->beatmapsetId})";
     }
 
     /**
@@ -56,20 +61,16 @@ class RemoveBeatmapsetSoloScores implements ShouldQueue
             ->chunkById(1000, fn ($scores) => $this->deleteScores($scores));
     }
 
+    public function middleware(): array
+    {
+        return [new WithoutOverlapping((string) $this->beatmapsetId, $this->timeout, $this->timeout)];
+    }
+
     private function deleteScores(Collection $scores): void
     {
         $ids = $scores->pluck('id')->all();
 
-        $scoresQuery = Score::whereKey($ids);
-        // Queue delete ahead of time in case process is stopped right after
-        // db delete is committed. It's fine queuing deleted score ahead of
-        // time as best score check doesn't use index.
-        // Set the flag first so indexer will correctly delete it.
-        $scoresQuery->update(['preserve' => false]);
+        Score::whereKey($ids)->update(['ranked' => false]);
         $this->scoreSearch->queueForIndex($this->schemas, $ids);
-        DB::transaction(function () use ($ids, $scoresQuery): void {
-            ScorePerformance::whereKey($ids)->delete();
-            $scoresQuery->delete();
-        });
     }
 }

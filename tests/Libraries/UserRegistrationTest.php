@@ -9,6 +9,7 @@ use App\Exceptions\ValidationException;
 use App\Libraries\UserRegistration;
 use App\Models\Count;
 use App\Models\User;
+use App\Models\UserCoverPreset;
 use Tests\TestCase;
 
 class UserRegistrationTest extends TestCase
@@ -16,18 +17,20 @@ class UserRegistrationTest extends TestCase
     public function testBasicFunctionality()
     {
         $attrs = $this->basicAttributes();
+        UserCoverPreset::create(['active' => true, 'filename' => 'test']);
+        app('user-cover-presets')->resetMemoized();
 
-        $origCount = User::count();
-        $origCountCache = Count::totalUsers()->count;
+        $this->expectCountChange(fn () => User::count(), 1);
+        $this->expectCountChange(fn () => Count::totalUsers()->count, 1);
         $reg = new UserRegistration($attrs);
         $thrown = $this->runSubject($reg);
 
         $this->assertFalse($thrown);
-        $this->assertSame($origCount + 1, User::count());
-        $this->assertTrue($reg->user()->userGroups->every(function ($userGroup) {
-            return $userGroup->user_pending === false;
-        }));
-        $this->assertSame($origCountCache + 1, Count::totalUsers()->count);
+
+        $user = $reg->user()->fresh();
+        $this->assertNotNull($user->cover()->presetId());
+        $this->assertTrue($user->userGroups->every(fn ($userGroup) =>
+            $userGroup->user_pending === false));
     }
 
     public function testRequiresUsername()

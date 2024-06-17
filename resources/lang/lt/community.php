@@ -46,12 +46,12 @@ return [
             'title' => 'Šaunu! Kokis privalumus gaunu?',
             'osu_direct' => [
                 'title' => 'osu!direct',
-                'description' => 'Gauk greitą ir lengvą prieigą į bitmapų paiešką ir atsiuntimus nepaliekant žaidimo.',
+                'description' => 'Gauk greitą ir lengvą prieigą į beatmap\'ų paiešką ir atsiuntimus nepaliekant žaidimo.',
             ],
 
             'friend_ranking' => [
                 'title' => 'Draugų Rezultatai',
-                'description' => "Pamatyk, tinklalapio ar žaidimo, bitmapo rezultatų lentoje koks geras esi palyginus su draugais.",
+                'description' => "Pamatyk, tinklalapio ar žaidimo, beatmap'o rezultatų lentoje koks geras esi palyginus su draugais.",
             ],
 
             'country_ranking' => [
@@ -66,12 +66,12 @@ return [
 
             'auto_downloads' => [
                 'title' => 'Automatiniai atsiuntimai',
-                'description' => 'Bitmapai automatiškai atsisiųs žaidžiant tinkle, stebint žaidėjus ar spaudžiant aktualias nuorodas nuorodas pokalbyje!',
+                'description' => 'Beatmap\'ai automatiškai atsisiųs žaidžiant tinkle, stebint žaidėjus ar spaudžiant aktualias nuorodas nuorodas pokalbyje!',
             ],
 
             'upload_more' => [
                 'title' => 'Įkelk daugiau',
-                'description' => 'Papildomos vietos laukiantiems bitmapams (kas reitinguotą bitmapą) iki daugiausiai 10.',
+                'description' => 'Papildomos vietos laukiantiems beatmap\'ams (kas reitinguotą beatmap\'ą) iki daugiausiai 10.',
             ],
 
             'early_access' => [
@@ -85,8 +85,8 @@ return [
             ],
 
             'beatmap_filters' => [
-                'title' => 'Bitmapų Filtrai',
-                'description' => 'Bitmapų paieškų filtravimas pagal žaistus ir nežaistus, arba pagal pasiektą rezultatą.',
+                'title' => 'Beatmap\'ų Filtrai',
+                'description' => 'Beatmap\'ų paieškų filtravimas pagal žaistus ir nežaistus, arba pagal pasiektą rezultatą.',
             ],
 
             'yellow_fellow' => [
@@ -116,20 +116,20 @@ return [
 
             'sort_options' => [
                 'title' => 'Rūšiavimo parinktys',
-                'description' => 'Galimybė matyti bitmapų šalies / draugų / konkrečių modų rezultatų lentas.',
+                'description' => 'Galimybė matyti beatmap\'ų šalies / draugų / konkrečių modų rezultatų lentas.',
             ],
 
             'more_favourites' => [
                 'title' => 'Daugiau Mėgstamų',
-                'description' => 'Maksimalus galimas mėgstamų bitmapų kiekis padidinamas iš :normally &rarr; :supporter',
+                'description' => 'Maksimalus galimas mėgstamų beatmap\'ų kiekis padidinamas iš :normally &rarr; :supporter',
             ],
             'more_friends' => [
                 'title' => 'Daugiau draugų',
                 'description' => 'Maksimalus galimas draugų kiekis padidinamas iš :normally &rarr; :supporter',
             ],
             'more_beatmaps' => [
-                'title' => 'Įkelk Daugiau Bitmapų',
-                'description' => 'Kiek laukiančių bitmapų vienu metu gali gali turėti apskaičiuojama prie nustatyto kiek pridedant po papildomą už kiekvieną reitinguotą bitmapą (iki limito).<br/><br/>Įprastai tai yra :base plius :bonus kas reitinguota bitmapą (iki :bonus_max). Su rėmėjo žyma, tai pakyla iki :supporter_base plius :supporter_bonus kas reitinguota bitmapą (iki :supporter_bonus_max).',
+                'title' => 'Įkelk Daugiau Beatmap\'ų',
+                'description' => 'Kiek laukiančių beatmap\'ų vienu metu gali gali turėti apskaičiuojama prie nustatyto kiek pridedant po papildomą už kiekvieną reitinguotą beatmap\'ą (iki limito).<br/><br/>Įprastai tai yra :base plius :bonus kas reitinguota beatmap\'ą (iki :bonus_max). Su rėmėjo žyma, tai pakyla iki :supporter_base plius :supporter_bonus kas reitinguota beatmap\'ą (iki :supporter_bonus_max).',
             ],
             'friend_filtering' => [
                 'title' => 'Draugų Rezultatų Lentos',

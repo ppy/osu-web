@@ -78,6 +78,18 @@ return [
             'suggestion' => '提案',
         ],
 
+        'message_type_title' => [
+            'disqualify' => '',
+            'hype' => '',
+            'mapper_note' => '',
+            'nomination_reset' => '',
+            'praise' => '',
+            'problem' => '',
+            'problem_warning' => '',
+            'review' => '',
+            'suggestion' => '',
+        ],
+
         'mode' => [
             'events' => '履歴',
             'general' => '一般:scope',
@@ -175,7 +187,7 @@ return [
     ],
 
     'nominations' => [
-        'already_nominated' => '',
+        'already_nominated' => '既にこのビートマップをHypeしています。',
         'cannot_nominate' => '',
         'delete' => '削除',
         'delete_own_confirm' => '本当によろしいですか？ビートマップは削除され、プロフィール画面にリダイレクトされます。',
@@ -201,6 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'このマップは、問題が見つからなければ :date にrankedされると推定されます。:queue 内の #:position ',
+            'unresolved_problems' => '',
+            'problems' => '',
             'on' => '',
             'queue' => 'ランキングキュー',
             'soon' => '間もなく',
@@ -269,6 +283,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
+        'undefined' => '',
     ],
     'status' => [
         'any' => '全て',

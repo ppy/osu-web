@@ -5,24 +5,80 @@
 
 namespace Tests\Controllers;
 
-use App\Models\Beatmap;
+use App\Models\OAuth\Client;
 use App\Models\Score\Best\Osu;
 use App\Models\Solo\Score as SoloScore;
 use App\Models\User;
+use App\Models\UserStatistics;
 use Illuminate\Filesystem\Filesystem;
 use Storage;
 use Tests\TestCase;
 
 class ScoresControllerTest extends TestCase
 {
-    private $score;
-    private $user;
+    private Osu $score;
+    private User $user;
+    private User $otherUser;
+
+    private static function getLegacyScoreReplayViewCount(Osu $score): int
+    {
+        return $score->replayViewCount()->first()?->play_count ?? 0;
+    }
+
+    private static function getUserReplaysWatchedCount(Osu|SoloScore $score): int
+    {
+        $month = format_month_column(new \DateTime());
+
+        return $score->user->replaysWatchedCounts()->firstWhere('year_month', $month)?->count ?? 0;
+    }
+
+    private static function getUserReplayPopularity(Osu|SoloScore $score): int
+    {
+        return $score->user->statistics($score->getMode(), true)->first()?->replay_popularity ?? 0;
+    }
+
+    public function testDownloadApiSameUser()
+    {
+        $this->expectCountChange(fn () => static::getLegacyScoreReplayViewCount($this->score), 0);
+        $this->expectCountChange(fn () => static::getUserReplayPopularity($this->score), 0);
+        $this->expectCountChange(fn () => static::getUserReplaysWatchedCount($this->score), 0);
+
+        $this
+            ->actAsPasswordClientUser($this->user)
+            ->json(
+                'GET',
+                route('api.scores.download-legacy', $this->params())
+            )
+            ->assertSuccessful();
+    }
+
+    public function testDownloadApiSoloScoreSameUser()
+    {
+        $soloScore = SoloScore::factory()
+            ->withReplay()
+            ->create(['user_id' => $this->user->getKey()]);
+
+        $this->expectCountChange(fn () => static::getUserReplayPopularity($soloScore), 0);
+        $this->expectCountChange(fn () => static::getUserReplaysWatchedCount($soloScore), 0);
+
+        $this
+            ->actAsPasswordClientUser($this->user)
+            ->json(
+                'GET',
+                route('api.scores.download', $soloScore)
+            )
+            ->assertSuccessful();
+    }
 
     public function testDownload()
     {
+        $this->expectCountChange(fn () => static::getLegacyScoreReplayViewCount($this->score), 0);
+        $this->expectCountChange(fn () => static::getUserReplayPopularity($this->score), 0);
+        $this->expectCountChange(fn () => static::getUserReplaysWatchedCount($this->score), 0);
+
         $this
-            ->actingAs($this->user)
-            ->withHeaders(['HTTP_REFERER' => config('app.url').'/'])
+            ->actingAs($this->otherUser)
+            ->withHeaders(['HTTP_REFERER' => $GLOBALS['cfg']['app']['url'].'/'])
             ->json(
                 'GET',
                 route('scores.download-legacy', $this->params())
@@ -30,18 +86,56 @@ class ScoresControllerTest extends TestCase
             ->assertSuccessful();
     }
 
+    public function testDownloadApi(): void
+    {
+        $this->expectCountChange(fn () => static::getLegacyScoreReplayViewCount($this->score), 1);
+        $this->expectCountChange(fn () => static::getUserReplayPopularity($this->score), 1);
+        $this->expectCountChange(fn () => static::getUserReplaysWatchedCount($this->score), 1);
+
+        $this
+            ->actAsPasswordClientUser($this->otherUser)
+            ->json(
+                'GET',
+                route('api.scores.download-legacy', $this->params())
+            )
+            ->assertSuccessful();
+    }
+
+    public function testDownloadApiTwiceNoCountChange(): void
+    {
+        $this
+            ->actAsPasswordClientUser($this->otherUser)
+            ->json(
+                'GET',
+                route('api.scores.download-legacy', $this->params())
+            )
+            ->assertSuccessful();
+
+        $this->expectCountChange(fn () => static::getLegacyScoreReplayViewCount($this->score), 0);
+        $this->expectCountChange(fn () => static::getUserReplayPopularity($this->score), 0);
+        $this->expectCountChange(fn () => static::getUserReplaysWatchedCount($this->score), 0);
+
+        $this
+            ->actAsPasswordClientUser($this->otherUser)
+            ->json(
+                'GET',
+                route('api.scores.download-legacy', $this->params())
+            )
+            ->assertSuccessful();
+    }
+
     public function testDownloadSoloScore()
     {
         $soloScore = SoloScore::factory()
-            ->withData(['legacy_score_id' => $this->score->getKey()])
-            ->create([
-                'ruleset_id' => Beatmap::MODES[$this->score->getMode()],
-                'has_replay' => true,
-            ]);
+            ->withReplay()
+            ->create(['user_id' => $this->user->getKey()]);
+
+        $this->expectCountChange(fn () => static::getUserReplayPopularity($soloScore), 0);
+        $this->expectCountChange(fn () => static::getUserReplaysWatchedCount($soloScore), 0);
 
         $this
-            ->actingAs($this->user)
-            ->withHeaders(['HTTP_REFERER' => config('app.url').'/'])
+            ->actingAs($this->otherUser)
+            ->withHeaders(['HTTP_REFERER' => $GLOBALS['cfg']['app']['url'].'/'])
             ->json(
                 'GET',
                 route('scores.download', $soloScore)
@@ -55,7 +149,7 @@ class ScoresControllerTest extends TestCase
 
         $this
             ->actingAs($this->user)
-            ->withHeaders(['HTTP_REFERER' => config('app.url').'/'])
+            ->withHeaders(['HTTP_REFERER' => $GLOBALS['cfg']['app']['url'].'/'])
             ->get(route('scores.download-legacy', $this->params()))
             ->assertSuccessful();
     }
@@ -66,7 +160,7 @@ class ScoresControllerTest extends TestCase
 
         $this
             ->actingAs($this->user)
-            ->withHeaders(['HTTP_REFERER' => config('app.url').'/'])
+            ->withHeaders(['HTTP_REFERER' => $GLOBALS['cfg']['app']['url'].'/'])
             ->get(route('scores.download-legacy', $this->params()))
             ->assertStatus(422);
     }
@@ -76,8 +170,8 @@ class ScoresControllerTest extends TestCase
         $this->score->user->delete();
 
         $this
-            ->actingAs($this->user)
-            ->withHeaders(['HTTP_REFERER' => config('app.url').'/'])
+            ->actingAs($this->otherUser)
+            ->withHeaders(['HTTP_REFERER' => $GLOBALS['cfg']['app']['url'].'/'])
             ->get(route('scores.download-legacy', $this->params()))
             ->assertStatus(422);
     }
@@ -86,29 +180,32 @@ class ScoresControllerTest extends TestCase
     {
         $this
             ->actingAs($this->user)
+            ->withHeaders(['HTTP_REFERER' => rtrim($GLOBALS['cfg']['app']['url'], '/').'.example.com'])
             ->json(
                 'GET',
                 route('scores.download-legacy', $this->params())
             )
-            ->assertRedirect(route('scores.show-legacy', $this->params()));
-
-        $this
-            ->actingAs($this->user)
-            ->withHeaders(['HTTP_REFERER' => rtrim(config('app.url'), '/').'.example.com'])
-            ->json(
-                'GET',
-                route('scores.download-legacy', $this->params())
-            )
-            ->assertRedirect(route('scores.show-legacy', $this->params()));
+            ->assertRedirect(route('scores.show', $this->params()));
     }
 
-    public function testDownloadInvalidMode()
+    public function testDownloadNoReferer()
     {
         $this
             ->actingAs($this->user)
             ->json(
                 'GET',
-                route('scores.download-legacy', ['mode' => 'nope', 'score' => $this->score->getKey()])
+                route('scores.download-legacy', $this->params())
+            )
+            ->assertRedirect(route('scores.show', $this->params()));
+    }
+
+    public function testDownloadInvalidRuleset()
+    {
+        $this
+            ->actingAs($this->user)
+            ->json(
+                'GET',
+                route('scores.download-legacy', ['rulesetOrScore' => 'nope', 'score' => $this->score->getKey()])
             )
             ->assertStatus(302);
     }
@@ -118,13 +215,14 @@ class ScoresControllerTest extends TestCase
         parent::setUp();
 
         // fake all the replay disks
-        $disks = [];
-        foreach (array_keys(config('filesystems.disks.replays')) as $key) {
-            foreach (array_keys(config("filesystems.disks.replays.{$key}")) as $type) {
-                $disk = "replays.{$key}.{$type}";
-                $disks[] = $disk;
-                Storage::fake($disk);
+        $disks = [SoloScore::replayFileDiskName()];
+        foreach ($GLOBALS['cfg']['filesystems']['disks']['replays'] as $ruleset => $types) {
+            foreach ($types as $type => $_config) {
+                $disks[] = "replays.{$ruleset}.{$type}";
             }
+        }
+        foreach ($disks as $disk) {
+            Storage::fake($disk);
         }
 
         // Laravel doesn't remove the directory created for fakes and
@@ -137,13 +235,23 @@ class ScoresControllerTest extends TestCase
         });
 
         $this->user = User::factory()->create();
-        $this->score = Osu::factory()->withReplay()->create();
+        $this->otherUser = User::factory()->create();
+
+        UserStatistics\Osu::factory()->create(['user_id' => $this->user->user_id]);
+        $this->score = Osu::factory()->withReplay()->create(['user_id' => $this->user->user_id]);
+    }
+
+    private function actAsPasswordClientUser(User $user): static
+    {
+        $this->actAsScopedUser($user, ['*'], Client::factory()->create(['password_client' => true]));
+
+        return $this;
     }
 
     private function params()
     {
         return [
-            'mode' => $this->score->getMode(),
+            'rulesetOrScore' => $this->score->getMode(),
             'score' => $this->score->getKey(),
         ];
     }

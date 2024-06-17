@@ -97,6 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
+            'inactive' => "",
             'inactive_different_country' => "Tvoj račun nije korišten dugo vremena.",
         ],
     ],
@@ -120,6 +121,17 @@ return [
         'beta' => [
             'main' => 'Pristup beta verziji trenutno je ograničen na privilegirane korisnike.',
             'small' => '(osu!supporteri će ući uskoro)',
+        ],
+    ],
+
+    'ogp' => [
+        'modding_description' => '',
+        'modding_description_empty' => '',
+
+        'description' => [
+            '_' => '',
+            'country' => '',
+            'global' => '',
         ],
     ],
 
@@ -175,7 +187,6 @@ return [
         'origin_country' => 'Iz :country',
         'previous_usernames' => 'prethodno znan kao',
         'plays_with' => 'Igra sa :devices',
-        'title' => ":username-ov profil",
 
         'comments_count' => [
             '_' => 'Postavio :link',
@@ -387,7 +398,7 @@ return [
                     'date' => 'datum',
                     'action' => 'akcija',
                     'length' => 'dužina',
-                    'length_permanent' => 'Trajno',
+                    'length_indefinite' => '',
                     'description' => 'opis',
                     'actor' => 'od :username',
 

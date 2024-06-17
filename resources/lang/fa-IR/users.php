@@ -97,6 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
+            'inactive' => "",
             'inactive_different_country' => "حساب کاربری شما مدت هاست استفاده نشده است.",
         ],
     ],
@@ -120,6 +121,17 @@ return [
         'beta' => [
             'main' => 'دسترسی بتا در حال حاضر به کاربران خاص محدود شده است.',
             'small' => '(حمایت کننده های osu! به زودی وارد خواهند شد)',
+        ],
+    ],
+
+    'ogp' => [
+        'modding_description' => '',
+        'modding_description_empty' => '',
+
+        'description' => [
+            '_' => '',
+            'country' => '',
+            'global' => '',
         ],
     ],
 
@@ -175,7 +187,6 @@ return [
         'origin_country' => 'از :country',
         'previous_usernames' => 'شناخته شده به',
         'plays_with' => 'با :devices بازی می کند',
-        'title' => "نمایه ی :username",
 
         'comments_count' => [
             '_' => 'پست کرده :link',
@@ -387,7 +398,7 @@ return [
                     'date' => 'تاریخ',
                     'action' => 'اقدام انجام شده',
                     'length' => 'مدت',
-                    'length_permanent' => 'دائمی',
+                    'length_indefinite' => '',
                     'description' => 'توضیحات',
                     'actor' => 'توسط :username',
 

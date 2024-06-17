@@ -80,7 +80,6 @@ return [
         'action_lazer_title' => 'prova osu!(lazer)',
         'action_title' => 'descarrega osu!',
         'for_os' => 'per :os',
-        'lazer_note' => 'nota: s\'apliquen restabliments de les taules de classificació',
         'macos-fallback' => 'usuaris de macOS',
         'mirror' => 'enllaç alternatiu',
         'or' => 'o',
@@ -111,7 +110,7 @@ return [
                 'description' => 'fes clic al botó de dalt per descarregar l\'instal·lador, després executa-ho!',
             ],
             'beatmaps' => [
-                'title' => 'obtenir mapes',
+                'title' => 'obtenir beatmaps',
                 'description' => [
                     '_' => ':browse la enorme biblioteca de beatmaps creats pels usuaris i comença a jugar!',
                     'browse' => 'fes una ullada',

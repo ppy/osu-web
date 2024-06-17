@@ -83,6 +83,9 @@
     &--bg {
       background: rgba(0, 0, 0, 0.75);
     }
+    &--judge-results {
+      background-color: @osu-colour-b6;
+    }
     &--submitted-beatmaps {
       background-size: cover;
       flex: 0 0 50px;
@@ -120,6 +123,11 @@
       width: 100%;
       padding: 2px 10px;
     }
+  }
+
+  &__title-link {
+    .link-white();
+    display: block;
   }
 
   &__votes-bar {

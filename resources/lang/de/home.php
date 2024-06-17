@@ -13,7 +13,7 @@ return [
         'see_more_news' => 'mehr Neuigkeiten anzeigen',
 
         'slogan' => [
-            'main' => 'das beste free-to-play Rhythmusspiel',
+            'main' => 'das besteste free-to-play rhythmusspiel',
             'sub' => 'Rhythmus ist nur ein Klick entfernt',
         ],
     ],
@@ -80,7 +80,6 @@ return [
         'action_lazer_title' => 'osu!(lazer) ausprobieren',
         'action_title' => 'osu! herunterladen',
         'for_os' => 'für :os',
-        'lazer_note' => 'Anmerkung: Rücksetzungen der Rangliste möglich',
         'macos-fallback' => 'macOS-Benutzer',
         'mirror' => 'mirror',
         'or' => 'oder',
@@ -113,7 +112,7 @@ return [
             'beatmaps' => [
                 'title' => 'Beatmaps runterladen',
                 'description' => [
-                    '_' => ':browse durch die riesige Bibliothek von an Nutzern erstellten Beatmaps und fang an zu spielen!',
+                    '_' => ':browse durch die riesige Bibliothek an von Nutzern erstellten Beatmaps und fang an zu spielen!',
                     'browse' => 'Stöbere',
                 ],
             ],

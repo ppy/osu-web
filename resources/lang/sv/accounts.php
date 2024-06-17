@@ -18,6 +18,10 @@ return [
             'new' => 'ny e-postadress',
             'new_confirmation' => 'e-postbekräftelse',
             'title' => 'E-postadress',
+            'locked' => [
+                '_' => 'Kontakta :accounts: om du behöver uppdatera din email-address.',
+                'accounts' => 'kontosupportteam',
+            ],
         ],
 
         'legacy_api' => [
@@ -34,12 +38,12 @@ return [
         ],
 
         'profile' => [
-            'country' => '',
+            'country' => 'land',
             'title' => 'Profil',
 
             'country_change' => [
-                '_' => "",
-                'update_link' => '',
+                '_' => "Det verkar som om att ditt kontos land inte matchar landet du befinner dig i. :update_link.",
+                'update_link' => 'Uppdatera till :country',
             ],
 
             'user' => [
@@ -55,6 +59,19 @@ return [
         'signature' => [
             'title' => 'Signatur',
             'update' => 'uppdatera',
+        ],
+    ],
+
+    'github_user' => [
+        'info' => "Om du är medverkande till osu!'s öppen källkodsarkiv, kommer länkning av ditt GitHub-konto här att associera dina changelog-poster med din osu! profil. GitHub-konton utan medverkningshistorik till osu! kan inte länkas.",
+        'link' => 'Länka GitHub-konto',
+        'title' => 'GitHub',
+        'unlink' => 'Unlink GitHub Account',
+
+        'error' => [
+            'already_linked' => 'Detta GitHub-konto är redan kopplat till en annan användare.',
+            'no_contribution' => 'Kan inte länka GitHub-konto utan någon medverkningshistorik i osu! utvecklingskataloger.',
+            'unverified_email' => 'Vänligen verifiera din primära e-postadress på GitHub, försök sedan att länka ditt konto igen.',
         ],
     ],
 
@@ -75,7 +92,6 @@ return [
             'mail' => 'e-post',
             'mapping' => 'beatmap-ägare',
             'push' => 'push',
-            'user_achievement_unlock' => 'användarmedalj upplåst',
         ],
     ],
 

@@ -39,6 +39,7 @@ return [
         'pin' => 'piespraust',
         'post' => 'Publicēt',
         'read_more' => 'lasīt vairāk',
+        'refresh' => '',
         'reply' => 'Atbildēt',
         'reply_reopen' => 'Atbildēt un Atvērt atkārtoti',
         'reply_resolve' => 'Atbildēt un atrisināt',

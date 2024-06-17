@@ -49,7 +49,7 @@ return [
     ],
 
     'card' => [
-        'gift_supporter' => '',
+        'gift_supporter' => 'Dovanoti rėmėjo žymą',
         'loading' => 'Įkeliama...',
         'send_message' => 'Siųsti žinutę',
     ],
@@ -97,6 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
+            'inactive' => "",
             'inactive_different_country' => "Jūsų paskyra buvo nenaudojama ilga laiką.",
         ],
     ],
@@ -120,6 +121,17 @@ return [
         'beta' => [
             'main' => 'Šiuo metu beta prieiga galima tik išskirtiniams vartotojams.',
             'small' => '(osu! rėmėjai bus įleisti greitu metu)',
+        ],
+    ],
+
+    'ogp' => [
+        'modding_description' => 'Beatmap\'ai: :counts',
+        'modding_description_empty' => 'Vartotojas nėra sukūręs beatmap\'ų...',
+
+        'description' => [
+            '_' => 'Reitingas (:ruleset): :global | :country',
+            'country' => 'Šalyje :rank',
+            'global' => 'Pasaulyje :rank',
         ],
     ],
 
@@ -169,17 +181,16 @@ return [
         'is_developer' => 'osu!programuotojas',
         'is_supporter' => 'osu!rėmėjas',
         'joined_at' => 'Prisijungė :date',
-        'lastvisit' => 'Paskutinį kart matytas :date',
+        'lastvisit' => 'Atsijunges jau :date',
         'lastvisit_online' => 'Prisijunges',
         'missingtext' => 'Turbūt padarei klaidą! (arba vartotojas buvo užblokuotas)',
         'origin_country' => 'Iš :country',
         'previous_usernames' => 'buvo žinomas kaip',
         'plays_with' => 'Žaidžia su :devices',
-        'title' => ":username profilis",
 
         'comments_count' => [
             '_' => 'Publikuota :link',
-            'count' => '::count_delimited komentaras|:count_delimited komentarų',
+            'count' => ':count_delimited komentaras|:count_delimited komentarų',
         ],
         'cover' => [
             'to_0' => 'Slėpti viršelį',
@@ -222,28 +233,28 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => ':artist',
-                'title' => 'Bitmapai',
+                'title' => 'Beatmap\'ai',
 
                 'favourite' => [
-                    'title' => 'Mėgstami Bitmapai',
+                    'title' => 'Mėgstami Beatmap\'ai',
                 ],
                 'graveyard' => [
-                    'title' => 'Apleisti Bitmapai',
+                    'title' => 'Apleisti Beatmap\'ai',
                 ],
                 'guest' => [
-                    'title' => 'Bitmapai sukurti kaip svečio',
+                    'title' => 'Beatmap\'ai sukurti kaip svečio',
                 ],
                 'loved' => [
-                    'title' => 'Mylimi Bitmapai',
+                    'title' => 'Mylimi Beatmap\'ai',
                 ],
                 'nominated' => [
-                    'title' => 'Nominuoti Reitinguoti Bitmapai',
+                    'title' => 'Nominuoti Reitinguoti Beatmap\'ai',
                 ],
                 'pending' => [
-                    'title' => 'Laukiantis Bitmapai',
+                    'title' => 'Laukiantis Beatmap\'ai',
                 ],
                 'ranked' => [
-                    'title' => 'Reitinguoti Bitmapai',
+                    'title' => 'Reitinguoti Beatmap\'ai',
                 ],
             ],
             'discussions' => [
@@ -265,15 +276,15 @@ return [
                 ],
                 'most_played' => [
                     'count' => 'žaista kartų',
-                    'title' => 'Daugiausiai žaisti Bitmapai',
+                    'title' => 'Daugiausiai žaisti Beatmap\'ai',
                 ],
                 'recent_plays' => [
                     'accuracy' => 'tikslumas: :percentage',
                     'title' => 'Nesenai žaisti (24h)',
                 ],
                 'replays_watched_counts' => [
-                    'title' => 'Atkūrimų Peržiūrų Istorija',
-                    'count_label' => 'Atkūrimai Žiūrėti',
+                    'title' => 'Sužaidimų Peržiūrų Istorija',
+                    'count_label' => 'Sužaidimai Žiūrėti',
                 ],
             ],
             'kudosu' => [
@@ -321,7 +332,7 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => 'Priklauso nuo to kiek naudotojas prisidėjo prie bitmapų moderavimo. Žiūrėk :link dėl tolimesnės informacijos.',
+                    '_' => 'Priklauso nuo to kiek naudotojas prisidėjo prie beatmap\'ų moderavimo. Žiūrėk :link dėl tolimesnės informacijos.',
                     'link' => 'šį puslapį',
                 ],
             ],
@@ -348,8 +359,8 @@ return [
                 'title' => 'Tinklo Žaidimai',
             ],
             'top_ranks' => [
-                'download_replay' => 'Atsiusti atkūrimą',
-                'not_ranked' => 'Tik reitinguoti bitmapai duoda pp',
+                'download_replay' => 'Atsiųsti Sužaidimą',
+                'not_ranked' => 'Tik reitinguoti beatmap\'ai duoda pp',
                 'pp_weight' => 'prilygintas :percentage',
                 'view_details' => 'Išsamiau',
                 'title' => 'Reitingai',
@@ -387,7 +398,7 @@ return [
                     'date' => 'data',
                     'action' => 'veiksmai',
                     'length' => 'trukmė',
-                    'length_permanent' => 'Visam laikui',
+                    'length_indefinite' => 'Neribota',
                     'description' => 'aprašymas',
                     'actor' => 'nuo :username',
 
@@ -448,15 +459,15 @@ return [
             'play_time' => 'Bendras žaidimo laikas
 ',
             'ranked_score' => 'Reitinguoti taškai',
-            'replays_watched_by_others' => 'Atkūrimų peržiūros iš kitų',
+            'replays_watched_by_others' => 'Sužaidimų peržiūros iš kitų',
             'score_ranks' => 'Taškų Įvertinimai',
             'total_hits' => 'Visi Pataikymai',
             'total_score' => 'Visi taškai',
             // modding stats
-            'graveyard_beatmapset_count' => 'Apleisti Bitmapai',
-            'loved_beatmapset_count' => 'Mylimi Bitmapai',
-            'pending_beatmapset_count' => 'Laukiantis Bitmapai',
-            'ranked_beatmapset_count' => 'Reitinguoti Bitmapai',
+            'graveyard_beatmapset_count' => 'Apleisti Beatmap\'ai',
+            'loved_beatmapset_count' => 'Mylimi Beatmap\'ai',
+            'pending_beatmapset_count' => 'Laukiantis Beatmap\'ai',
+            'ranked_beatmapset_count' => 'Reitinguoti Beatmap\'ai',
         ],
     ],
 

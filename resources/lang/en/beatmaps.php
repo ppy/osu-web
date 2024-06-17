@@ -78,6 +78,18 @@ return [
             'suggestion' => 'Suggestion',
         ],
 
+        'message_type_title' => [
+            'disqualify' => 'Post Disqualification',
+            'hype' => 'Post Hype!',
+            'mapper_note' => 'Post Note',
+            'nomination_reset' => 'Remove all Nominations',
+            'praise' => 'Post Praise',
+            'problem' => 'Post Problem',
+            'problem_warning' => 'Post Problem',
+            'review' => 'Post Review',
+            'suggestion' => 'Post Suggestion',
+        ],
+
         'mode' => [
             'events' => 'History',
             'general' => 'General :scope',
@@ -201,6 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'This map is estimated to be ranked :date if no issues are found. It is #:position in the :queue.',
+            'unresolved_problems' => 'This map is currently blocked from leaving the Qualified section until :problems are resolved.',
+            'problems' => 'these problems',
             'on' => 'on :date',
             'queue' => 'ranking queue',
             'soon' => 'soon',
@@ -269,6 +283,7 @@ return [
         'taiko' => 'osu!taiko',
         'fruits' => 'osu!catch',
         'mania' => 'osu!mania',
+        'undefined' => 'not set',
     ],
     'status' => [
         'any' => 'Any',

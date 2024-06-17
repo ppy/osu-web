@@ -18,15 +18,19 @@ return [
     ],
 
     'kudosu' => [
-        'total' => '',
-        'available' => '',
-        'used' => '',
+        'total' => 'Obtingut',
+        'available' => 'Disponible',
+        'used' => 'Gastat',
+    ],
+
+    'performance' => [
+        'insufficient_history' => '',
     ],
 
     'type' => [
-        'charts' => 'focus',
+        'charts' => 'spotlights',
         'country' => 'país',
-        'kudosu' => '',
+        'kudosu' => 'kudosu',
         'multiplayer' => 'multijugador',
         'performance' => 'rendiment',
         'score' => 'puntuació',
@@ -42,7 +46,7 @@ return [
 
     'spotlight' => [
         'end_date' => 'Data de finalització',
-        'map_count' => 'Recompte de mapes',
+        'map_count' => 'Nombre de mapes',
         'participants' => 'Participants',
         'start_date' => 'Data d\'inici',
     ],

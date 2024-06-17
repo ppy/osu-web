@@ -5,7 +5,6 @@
 
 return [
     'button' => [
-        'cancel' => 'අවලංගු කරන්න',
         'resend' => '',
         'set' => '',
         'start' => '',
@@ -37,6 +36,9 @@ return [
     'starting' => [
         'username' => '',
 
+        'reason' => [
+            'inactive_different_country' => "",
+        ],
         'support' => [
             '_' => '',
             'button' => '',

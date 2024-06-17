@@ -20,7 +20,7 @@
 
     @include('home._user_header_default', ['themeOverride' => 'settings'])
 
-    <div class="osu-page">
+    <div class="osu-page osu-page--account-edit">
         <div class="account-edit account-edit--first">
             <div class="account-edit__section">
                 <h2 class="account-edit__section-title">
@@ -66,10 +66,8 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="osu-page" id="avatar">
-        <div class="account-edit">
+        <div class="account-edit" id="avatar">
             <div class="account-edit__section">
                 <h2 class="account-edit__section-title">
                     {{ osu_trans('accounts.edit.avatar.title') }}
@@ -78,7 +76,7 @@
 
             <div class="account-edit__input-groups">
                 <div class="account-edit__input-group">
-                    <div class="account-edit-entry account-edit-entry--avatar js-account-edit-avatar">
+                    <div class="account-edit-entry account-edit-entry--block js-account-edit-avatar">
                         <div class="account-edit-entry__avatar">
                             <div class="avatar avatar--full-rounded js-current-user-avatar"></div>
 
@@ -89,7 +87,7 @@
                             </div>
 
                             <div class="account-edit-entry__overlay-spinner">
-                                @include('objects._spinner')
+                                {!! spinner() !!}
                             </div>
                         </div>
 
@@ -123,7 +121,7 @@
                         <div class="account-edit-entry__rules">
                             {!! osu_trans('accounts.edit.avatar.rules', [
                                 'link' => link_to(
-                                    wiki_url('Rules'),
+                                    wiki_url('Rules/Visual_content_considerations'),
                                     osu_trans('accounts.edit.avatar.rules_link')
                                 )
                             ]) !!}
@@ -132,45 +130,29 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="osu-page">
         @include('accounts._edit_signature')
-    </div>
 
-    <div class="osu-page">
         @include('accounts._edit_playstyles')
-    </div>
 
-    <div class="osu-page">
         @include('accounts._edit_privacy')
-    </div>
 
-    <div class="osu-page" id="notifications">
         @include('accounts._edit_notifications')
-    </div>
 
-    <div class="osu-page">
         @include('accounts._edit_options')
-    </div>
 
-    <div class="osu-page">
         @include('accounts._edit_password')
-    </div>
 
-    <div class="osu-page">
         @include('accounts._edit_email')
-    </div>
 
-    <div class="osu-page">
         @include('accounts._edit_sessions')
-    </div>
 
-    <div class="osu-page" id="oauth">
         @include('accounts._edit_oauth')
-    </div>
 
-    <div class="osu-page" id="legacy-api">
+        @if (\App\Models\GithubUser::canAuthenticate())
+            @include('accounts._edit_github_user')
+        @endif
+
         @include('accounts._edit_legacy_api')
     </div>
 @endsection

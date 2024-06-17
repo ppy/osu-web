@@ -33,8 +33,8 @@ return [
     ],
 
     'guest_button' => [
-        'new' => 'Inicie sesión para comentar',
-        'reply' => 'Inicie sesión para responder',
+        'new' => 'Inicia sesión para comentar',
+        'reply' => 'Inicia sesión para responder',
     ],
 
     'index' => [
@@ -43,10 +43,14 @@ return [
         'no_comments' => 'no se encontraron comentarios...',
     ],
 
+    'ogp' => [
+        'title' => 'comentario por :user',
+    ],
+
     'placeholder' => [
         'edit' => 'Editar el comentario aquí',
-        'new' => 'Escriba un nuevo comentario aquí',
-        'reply' => 'Escriba su respuesta aquí',
+        'new' => 'Escribe un nuevo comentario aquí',
+        'reply' => 'Escribe tu respuesta aquí',
     ],
 
     'show' => [

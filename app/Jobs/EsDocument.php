@@ -33,6 +33,11 @@ class EsDocument implements ShouldQueue
         ];
     }
 
+    public function displayName()
+    {
+        return static::class." ({$this->modelMeta['class']} {$this->modelMeta['id']})";
+    }
+
     /**
      * Execute the job.
      *
@@ -74,7 +79,7 @@ class EsDocument implements ShouldQueue
     private function incrementStat(string $action): void
     {
         Datadog::increment(
-            config('datadog-helper.prefix_web').'.es_document',
+            $GLOBALS['cfg']['datadog-helper']['prefix_web'].'.es_document',
             1,
             [
                 'action' => $action,

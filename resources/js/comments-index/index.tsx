@@ -2,40 +2,30 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import Comment from 'components/comment';
-import { computed, makeObservable } from 'mobx';
+import CommentsController from 'components/comments-controller';
 import { observer } from 'mobx-react';
-import core from 'osu-core-singleton';
 import * as React from 'react';
 import { trans } from 'utils/lang';
 
-const store = core.dataStore.commentStore;
-const uiState = core.dataStore.uiState;
+interface Props {
+  controllerStateSelector: string;
+}
 
 @observer
-export default class CommentsIndex extends React.Component {
-  @computed
-  private get comments() {
-    const ret = [];
+export default class CommentsIndex extends React.Component<Props> {
+  private readonly controller;
 
-    for (const id of uiState.comments.topLevelCommentIds) {
-      const comment = store.comments.get(id);
-
-      if (comment != null) {
-        ret.push(comment);
-      }
-    }
-
-    return ret;
+  constructor(props: Props) {
+    super(props);
+    this.controller = new CommentsController(this.props.controllerStateSelector);
   }
 
-  constructor(props: Record<string, never>) {
-    super(props);
-
-    makeObservable(this);
+  componentWillUnmount() {
+    this.controller.destroy();
   }
 
   render() {
-    const comments = this.comments;
+    const comments = this.controller.getComments(this.controller.state.commentIdsByParentId[-1] ?? []);
 
     return comments.length === 0
       ? (
@@ -48,6 +38,7 @@ export default class CommentsIndex extends React.Component {
         <Comment
           key={comment.id}
           comment={comment}
+          controller={this.controller}
           depth={0}
           expandReplies={false}
           linkParent

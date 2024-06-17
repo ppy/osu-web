@@ -40,15 +40,20 @@ return [
     ],
 
     'nominate' => [
-        'hybrid_requires_modes' => '',
+        'bng_limited_too_many_rulesets' => '',
+        'full_nomination_required' => '',
+        'hybrid_requires_modes' => 'Et hybrid beatmap krever at du velger minst en spillmodus å nominere for.',
         'incorrect_mode' => 'Du har ikke tillatelse til å nominere for modus: :mode',
-        'full_bn_required' => '',
+        'invalid_limited_nomination' => '',
+        'invalid_ruleset' => '',
         'too_many' => 'Nominasjonskravet er allerede oppfylt.',
+        'too_many_non_main_ruleset' => '',
 
         'dialog' => [
             'confirmation' => 'Er du sikker på at du vil nominere dette beatmappet?',
             'header' => 'Nominer Beatmap',
             'hybrid_warning' => 'merk: du kan kun nominere èn gang. Vær så snill å forsikre deg om at du nominerer for alle spill-modusene du har tenkt å nominere på',
+            'current_main_ruleset' => '',
             'which_modes' => 'Nominer for hvilke moduser?',
         ],
     ],
@@ -59,6 +64,10 @@ return [
 
     'show' => [
         'discussion' => 'Diskusjon',
+
+        'admin' => [
+            'full_size_cover' => 'Vis omslagsbilde i full størrelse',
+        ],
 
         'deleted_banner' => [
             'title' => 'Dette beatmappet har blitt slettet.',

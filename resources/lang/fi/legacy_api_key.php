@@ -4,27 +4,27 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'new' => '',
-    'none' => '',
+    'new' => 'Uusi perinnerajapinnan avain',
+    'none' => 'Ei avainta.',
 
     'docs' => [
-        '_' => '',
-        'github' => '',
+        '_' => 'Dokumentaatio on saatavilla :github.',
+        'github' => 'GitHubissa',
     ],
 
     'form' => [
-        'create' => '',
+        'create' => 'Luo Avain',
     ],
 
     'view' => [
-        'hide' => '',
-        'show' => '',
-        'delete' => '',
+        'hide' => 'Piilota Avain',
+        'show' => 'Näytä Avain',
+        'delete' => 'Poista',
     ],
 
     'warning' => [
-        'line1' => '',
-        'line2' => "",
-        'line3' => '',
+        'line1' => 'Älä näytä tätä muille.',
+        'line2' => "Se vastaa salasanasi antamista muille.",
+        'line3' => 'Saatat vaarantaa tilisi.',
     ],
 ];

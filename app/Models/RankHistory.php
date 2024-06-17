@@ -5,9 +5,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 /**
- * @property mixed $data
- * @property string $mode
+ * @property-read string $current_start_name
+ * @property-read \App\Models\Count|null $currentStart
+ * @property-read int[] $data
+ * @property int $mode
  * @property int $r0
  * @property int $r1
  * @property int $r10
@@ -98,7 +102,8 @@ namespace App\Models;
  * @property int $r88
  * @property int $r89
  * @property int $r9
- * @property User $user
+ * @property-read string $ruleset
+ * @property-read \App\Models\User $user
  * @property int $user_id
  */
 class RankHistory extends Model
@@ -109,55 +114,68 @@ class RankHistory extends Model
 
     public function __construct(array $attributes = [])
     {
-        if (config('osu.scores.experimental_rank_as_default')) {
+        if ($GLOBALS['cfg']['osu']['scores']['experimental_rank_as_default']) {
             $this->table = 'osu_user_performance_rank_exp';
         }
 
         parent::__construct($attributes);
     }
 
-    public function getDataAttribute()
+    public function currentStart(): BelongsTo
     {
-        $data = [];
-
-        $startOffset = Count::currentRankStart($this->mode)->count;
-        $end = $startOffset + 90;
-
-        $attributes = $this->attributes;
-        for ($i = $startOffset; $i < $end; $i++) {
-            $data[] = $attributes['r'.strval($i % 90)] ?? 0;
-        }
-
-        $diffHead = $data[0] - $data[1];
-        $diffTail = $data[0] - array_last($data);
-
-        $shiftData = abs($diffTail) < abs($diffHead);
-        $userStatistics = $this->user->statistics($this->mode);
-
-        if ($userStatistics !== null) {
-            $currentRank = $userStatistics->globalRank();
-            $shiftData = $shiftData || $currentRank === $data[0];
-        }
-
-        if ($shiftData) {
-            $lastRank = array_shift($data);
-            $data[] = $lastRank;
-        }
-
-        if (isset($currentRank)) {
-            $data[count($data) - 1] = $currentRank;
-        }
-
-        return $data;
-    }
-
-    public function getModeAttribute($value)
-    {
-        return Beatmap::modeStr($value);
+        return $this->belongsTo(Count::class, 'current_start_name', 'name');
     }
 
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function getCurrentStartNameAttribute(): string
+    {
+        return Count::currentRankStartName($this->ruleset);
+    }
+
+    public function getDataAttribute()
+    {
+        $data = [];
+
+        // The r$(count) may actually contain today's rank when the update
+        // process is running so it should just be ignored and use the rank
+        // from user statistics for the current rank value.
+        $startOffset = ($this->currentStart?->count ?? 0) + 1;
+        $endOffset = $startOffset + 88;
+
+        $attributes = $this->attributes;
+        for ($i = $startOffset; $i <= $endOffset; $i++) {
+            $data[] = $attributes['r'.($i % 90)] ?? 0;
+        }
+
+        $userStatistics = $this->user->statistics($this->ruleset);
+        $data[] = $userStatistics?->globalRank() ?? 0;
+
+        return $data;
+    }
+
+    public function getRulesetAttribute()
+    {
+        return Beatmap::modeStr($this->getRawAttribute('mode'));
+    }
+
+    /**
+     * Get the difference between the user's current performance rank and their
+     * performance rank as of 30 days ago.
+     *
+     * @return int|null `null` if rank history is not available at 30 days ago.
+     */
+    public function rankChangeSince30Days(): ?int
+    {
+        $data = $this->data;
+        $currentRank = $data[89];
+        $previousRank = $data[59];
+
+        return $currentRank > 0 && $previousRank > 0
+            ? $currentRank - $previousRank
+            : null;
     }
 }

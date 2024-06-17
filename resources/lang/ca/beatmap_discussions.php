@@ -6,7 +6,7 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Heu d\'iniciar sessió per editar.',
+            'null_user' => 'Has d\'iniciar sessió per editar.',
             'system_generated' => 'No es pot editar una publicació generada pel sistema.',
             'wrong_user' => 'Has de ser el propietari de la publicació per editar-la.',
         ],
@@ -26,6 +26,7 @@ return [
             'deleted' => 'Incloure discussions eliminades',
             'mode' => 'Mode del beatmap',
             'only_unresolved' => 'Mostra només discussions no resoltes',
+            'show_review_embeds' => 'Mostra publicacions de revisió',
             'types' => 'Tipus de missatges',
             'username' => 'Nom d\'usuari',
 
@@ -54,7 +55,7 @@ return [
 
     'nearby_posts' => [
         'confirm' => 'Cap de les publicacions aborda el meu assumpte',
-        'notice' => 'Ja hi ha publicacions a prop de :timestamp (:existing_timestamps). Si us plau reviseu-les abans de publicar.',
+        'notice' => 'Ja hi ha publicacions a prop de :timestamp (:existing_timestamps). Si us plau, revisa-les abans de publicar.',
         'unsaved' => ':count en aquesta revisió',
     ],
 

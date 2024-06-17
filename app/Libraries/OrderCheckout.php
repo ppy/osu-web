@@ -9,7 +9,6 @@ use App\Exceptions\InvariantException;
 use App\Libraries\Payments\InvalidOrderStateException;
 use App\Models\Store\Order;
 use DB;
-use Request;
 
 class OrderCheckout
 {
@@ -64,9 +63,6 @@ class OrderCheckout
 
         if ($this->order->getTotal() > 0) {
             $allowed = [Order::PROVIDER_PAYPAL];
-            if ($this->allowCentiliPayment()) {
-                $allowed[] = Order::PROVIDER_CENTILLI;
-            }
 
             if ($this->allowXsollaPayment()) {
                 $allowed[] = Order::PROVIDER_XSOLLA;
@@ -76,22 +72,6 @@ class OrderCheckout
         }
 
         return [Order::PROVIDER_FREE];
-    }
-
-    /**
-     * @return string
-     */
-    public function getCentiliPaymentLink()
-    {
-        $params = [
-            'apikey' => config('payments.centili.api_key'),
-            'country' => 'jp',
-            'countrylock' => 'true',
-            'reference' => $this->order->getOrderNumber(),
-            'price' => $this->order->getTotal() * config('payments.centili.conversion_rate'),
-        ];
-
-        return config('payments.centili.widget_url').'?'.http_build_query($params);
     }
 
     public function beginCheckout()
@@ -217,17 +197,6 @@ class OrderCheckout
     public static function for(?string $orderNumber): self
     {
         return new static(Order::whereOrderNumber($orderNumber)->firstOrFail());
-    }
-
-    /**
-     * @return bool
-     */
-    private function allowCentiliPayment()
-    {
-        return config('payments.centili.enabled')
-            && strcasecmp(request_country(), 'JP') === 0
-            && !$this->order->requiresShipping()
-            && Request::input('intl') !== '1';
     }
 
     /**

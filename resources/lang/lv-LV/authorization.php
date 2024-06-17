@@ -81,6 +81,7 @@ return [
     ],
 
     'contest' => [
+        'judging_not_active' => '',
         'voting_over' => 'Jūs nevarat mainīt savu balsojumu pēc šī konkursa balsošanas perioda beigām.',
 
         'entry' => [
@@ -171,7 +172,8 @@ return [
 
     'score' => [
         'pin' => [
-            'disabled_type' => "",
+            'disabled_type' => "Nevar piespraust šāda veida rezultātu",
+            'failed' => "",
             'not_owner' => 'Rezultātu var piespraust tikai rezultāta īpašnieks.',
             'too_many' => 'Piesprausti pārāk daudz rezultāti.',
         ],
@@ -184,6 +186,9 @@ return [
                 'not_owner' => 'Rediģēt var tikai savu lietotāja lapu.',
                 'require_supporter_tag' => 'Ir nepieciešams osu!supporter.',
             ],
+        ],
+        'update_email' => [
+            'locked' => 'e-pasta adrese ir slēgta',
         ],
     ],
 ];

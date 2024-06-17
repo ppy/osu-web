@@ -40,15 +40,20 @@ return [
     ],
 
     'nominate' => [
+        'bng_limited_too_many_rulesets' => '',
+        'full_nomination_required' => '',
         'hybrid_requires_modes' => 'Хибридният бийтмап изисква да бъде избран поне едни режим на игра за номинирането му.',
         'incorrect_mode' => 'Нямате право да номинирате за следните видове: :mode',
-        'full_bn_required' => 'Трябва да сте с пълни номинаторски права, за да изпълните тази квалификационна номинация.',
+        'invalid_limited_nomination' => '',
+        'invalid_ruleset' => '',
         'too_many' => 'Условията за номинация вече са изпълнени.',
+        'too_many_non_main_ruleset' => '',
 
         'dialog' => [
             'confirmation' => 'Сигурни ли сте, че искате да номинирате този бийтмап?',
             'header' => 'Номиниране на бийтмап',
             'hybrid_warning' => 'бележка: може да се номинира само веднъж, затова се уверете че сте избрали всеки желан вид',
+            'current_main_ruleset' => '',
             'which_modes' => 'Номиниране за кои видове?',
         ],
     ],
@@ -59,6 +64,10 @@ return [
 
     'show' => [
         'discussion' => 'Дискусия',
+
+        'admin' => [
+            'full_size_cover' => 'Преглед на пълноразмерната корица',
+        ],
 
         'deleted_banner' => [
             'title' => 'Този бийтмап беше изтрит.',

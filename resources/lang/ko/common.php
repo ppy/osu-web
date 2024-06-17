@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'confirmation' => '확실합니까?',
+    'confirmation' => '확실한가요?',
     'confirmation_unsaved' => '저장되지 않은 정보는 사라집니다. 계속하시겠어요?',
     'saved' => '저장됨',
 
@@ -39,6 +39,7 @@ return [
         'pin' => '고정',
         'post' => '게시하기',
         'read_more' => '자세히 보기',
+        'refresh' => '새로고침',
         'reply' => '답변하기',
         'reply_reopen' => '답변하고 토론 재개하기',
         'reply_resolve' => '답변하고 토론 마무리하기',
@@ -104,7 +105,7 @@ return [
     'device' => [
         'keyboard' => '키보드',
         'mouse' => '마우스',
-        'tablet' => '태블릿',
+        'tablet' => '타블렛',
         'touch' => '터치스크린',
     ],
 
@@ -158,6 +159,6 @@ return [
 
     'wrong_user' => [
         '_' => ':user로 로그인되어있습니다. :logout_link.',
-        'logout_link' => '다른 사용자로 로그인하려면 이곳을 클릭하세요',
+        'logout_link' => '다른 유저로 로그인하려면 이곳을 클릭하세요',
     ],
 ];

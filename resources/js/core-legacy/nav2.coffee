@@ -1,11 +1,11 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { blackoutHide, blackoutShow } from 'utils/blackout'
+import { blackoutToggle } from 'utils/blackout'
 import { fadeToggle } from 'utils/fade'
 
 export default class Nav2
-  constructor: (@clickMenu) ->
+  constructor: (@clickMenu, @captcha) ->
     @menuBg = document.getElementsByClassName('js-nav2--menu-bg')
 
     $.subscribe 'click-menu:current', @autoCenterPopup
@@ -30,6 +30,7 @@ export default class Nav2
       popup.classList.remove 'hidden'
       currentPopup = popup
       link = document.querySelector(".js-click-menu[data-click-menu-target='#{@currentMenu}']")
+      @captcha.renderAll()
 
     return if !currentPopup?
 
@@ -46,13 +47,18 @@ export default class Nav2
       @clickMenu.show('mobile-nav')
       Timeout.set 0, => $(@clickMenu.menu('mobile-menu')).finish().slideDown(150)
 
-    if tree.indexOf('mobile-menu') == -1
-      if previousTree.indexOf('mobile-menu') != -1
-        blackoutHide()
-        Timeout.set 0, => $(@clickMenu.menu('mobile-menu')).finish().slideUp(150, => document.body.classList.remove('js-nav2--active'))
-    else
+    @showingMobileNav = tree.indexOf('mobile-menu') != -1
+
+    if @showingMobileNav
       document.body.classList.add('js-nav2--active')
-      blackoutShow()
+      blackoutToggle(this, true)
+    else if previousTree.indexOf('mobile-menu') != -1
+      blackoutToggle(this, false)
+      Timeout.set 0, =>
+        $(@clickMenu.menu('mobile-menu')).finish().slideUp 150, =>
+          # use actual state instead of always removing the class in case
+          # the menu is shown again right after it's closed
+          document.body.classList.toggle('js-nav2--active', @showingMobileNav)
 
 
   centerPopup: (popup, reference) ->

@@ -5,7 +5,7 @@
 
 return [
     'index' => [
-        'description' => 'Berikut merupakan laman diskusi beatmap yang tengah diikuti. Kamu akan menerima notifikasi setiap kali terdapat perkembangan baru pada laman diskusi yang tertera di bawah ini.',
+        'description' => 'Berikut merupakan daftar diskusi beatmap yang sedang kamu ikuti. Kamu akan menerima notifikasi setiap kali terdapat postingan atau perkembangan baru.',
         'title_compact' => 'daftar pengamatan beatmap',
 
         'counts' => [
@@ -14,9 +14,9 @@ return [
         ],
 
         'table' => [
-            'empty' => 'Kamu tidak sedang mengikuti laman diskusi beatmap manapun.',
+            'empty' => 'Kamu tidak sedang mengikuti diskusi beatmap mana pun.',
             'last_update' => 'Pembaruan terakhir',
-            'open_issues' => 'Isu yang belum terjawab',
+            'open_issues' => 'Masalah yang terbuka',
             'state' => 'Status',
             'title' => 'Judul',
         ],

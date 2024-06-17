@@ -7,7 +7,7 @@ return [
     'landing' => [
         'download' => 'Unduh sekarang',
         'online' => 'dengan <strong>:players</strong> pemain yang saat ini terhubung dalam <strong>:games</strong> ruang permainan',
-        'peak' => 'Jumlah pengguna online terbanyak: :count',
+        'peak' => 'Puncak aktivitas: :count pengguna online',
         'players' => '<strong>:count</strong> pengguna terdaftar',
         'title' => 'selamat datang',
         'see_more_news' => 'lihat lebih banyak berita',
@@ -61,7 +61,7 @@ return [
             'login_required' => 'Masuk untuk mencari pengguna',
             'more' => ':count hasil pencarian pengguna lainnya',
             'more_simple' => 'Lihat hasil pencarian pengguna lainnya',
-            'more_hidden' => 'Pencarian pengguna terbatas hanya untuk :max pengguna. Cobalah untuk mempersempit kriteria pencarian.',
+            'more_hidden' => 'Pencarian pengguna terbatas hanya pada :max pengguna. Cobalah untuk mempersempit kriteria pencarian.',
             'title' => 'Pengguna',
         ],
 
@@ -76,11 +76,10 @@ return [
         'action' => 'Unduh osu!',
         'action_lazer' => 'Unduh osu!(lazer)',
         'action_lazer_description' => 'versi utama osu! yang akan datang',
-        'action_lazer_info' => 'kunjungi laman ini untuk informasi lebih lanjut',
+        'action_lazer_info' => 'kunjungi halaman ini untuk informasi lebih lanjut',
         'action_lazer_title' => 'coba osu!(lazer)',
         'action_title' => 'unduh osu!',
         'for_os' => 'untuk :os',
-        'lazer_note' => 'catatan: papan peringkat dapat diatur ulang sewaktu-waktu',
         'macos-fallback' => 'osu! versi macOS',
         'mirror' => 'tautan alternatif',
         'or' => 'atau',
@@ -91,7 +90,7 @@ return [
         'video-guide' => 'panduan video',
 
         'help' => [
-            '_' => 'apabila kamu menemui masalah pada saat kamu ingin memulai permainan atau mendaftarkan akun, harap :help_forum_link atau :support_button.',
+            '_' => 'apabila kamu menemui masalah pada saat kamu ingin memulai permainan atau mendaftarkan akun, silakan :help_forum_link atau :support_button.',
             'help_forum_link' => 'kunjungi sub-forum Help',
             'support_button' => 'hubungi layanan dukungan kami',
         ],
@@ -103,17 +102,17 @@ return [
         ],
         'steps' => [
             'register' => [
-                'title' => 'buat akun',
+                'title' => 'buat akunnya',
                 'description' => 'ikuti petunjuk yang muncul pada awal permainan untuk masuk atau membuat akun baru',
             ],
             'download' => [
                 'title' => 'unduh permainannya',
-                'description' => 'klik tombol di atas untuk mengunduh file instalasi, lalu jalankan!',
+                'description' => 'klik tombol di atas untuk mengunduh berkas instalasi, lalu jalankan!',
             ],
             'beatmaps' => [
-                'title' => 'dapatkan beatmap',
+                'title' => 'dapatkan beatmapnya',
                 'description' => [
-                    '_' => ':browse berbagai beatmap buatan pengguna yang tersedia pada katalog beatmap kami yang senantiasa berkembang dan mulailah bermain!',
+                    '_' => ':browse berbagai beatmap buatan pengguna yang tersedia pada pustaka beatmap kami dan mulailah bermain!',
                     'browse' => 'telusuri',
                 ],
             ],
@@ -124,7 +123,7 @@ return [
         'title' => 'dasbor',
         'news' => [
             'title' => 'Berita',
-            'error' => 'Terdapat kesalahan dalam memuat berita. Coba untuk memuat ulang laman?...',
+            'error' => 'Terdapat kesalahan dalam memuat berita. Cobalah untuk memuat ulang halaman?...',
         ],
         'header' => [
             'stats' => [

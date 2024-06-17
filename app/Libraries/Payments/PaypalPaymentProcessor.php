@@ -102,7 +102,7 @@ class PaypalPaymentProcessor extends PaymentProcessor
             return false;
         }
 
-        if ($this['receiver_id'] !== config('payments.paypal.merchant_id')) {
+        if ($this['receiver_id'] !== $GLOBALS['cfg']['payments']['paypal']['merchant_id']) {
             $this->validationErrors()->add('receiver_id', '.param.invalid', ['param' => 'receiver_id']);
         }
 

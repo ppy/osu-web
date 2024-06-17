@@ -9,6 +9,8 @@ namespace App\Libraries;
 
 class LocaleMeta
 {
+    // Keys must be a superset of app.available_locales. Additional locales are
+    // available for use only in wiki articles
     const MAPPINGS = [
         'ar' => [
             'flag' => 'SA',
@@ -16,11 +18,11 @@ class LocaleMeta
         ],
         'be' => [
             'flag' => 'BY',
-            'name' => 'Беларуская мова',
+            'name' => 'беларуская мова',
         ],
         'bg' => [
             'flag' => 'BG',
-            'name' => 'Български',
+            'name' => 'български',
         ],
         'ca' => [
             'flag' => 'AD', // ES-CA in crowdin
@@ -28,11 +30,11 @@ class LocaleMeta
         ],
         'cs' => [
             'flag' => 'CZ',
-            'name' => 'Česky',
+            'name' => 'česky',
         ],
         'da' => [
             'flag' => 'DK',
-            'name' => 'Dansk',
+            'name' => 'dansk',
         ],
         'de' => [
             'flag' => 'DE',
@@ -40,7 +42,7 @@ class LocaleMeta
         ],
         'el' => [
             'flag' => 'GR',
-            'name' => 'Ελληνικά',
+            'name' => 'ελληνικά',
         ],
         'en' => [
             'flag' => 'GB',
@@ -53,11 +55,11 @@ class LocaleMeta
         ],
         'fi' => [
             'flag' => 'FI',
-            'name' => 'Suomi',
+            'name' => 'suomi',
         ],
         'fil' => [
             'flag' => 'PH',
-            'name' => 'Wikang Filipino',
+            'name' => 'wikang Filipino',
         ],
         'fr' => [
             'flag' => 'FR',
@@ -69,15 +71,15 @@ class LocaleMeta
         ],
         'hu' => [
             'flag' => 'HU',
-            'name' => 'Magyar',
+            'name' => 'magyar',
         ],
         'id' => [
             'flag' => 'ID',
-            'name' => 'Bahasa Indonesia',
+            'name' => 'bahasa Indonesia',
         ],
         'it' => [
             'flag' => 'IT',
-            'name' => 'Italiano',
+            'name' => 'italiano',
         ],
         'ja' => [
             'flag' => 'JP',
@@ -98,7 +100,7 @@ class LocaleMeta
         'no' => [
             'flag' => 'NO',
             'moment' => 'nb',
-            'name' => 'Norsk',
+            'name' => 'norsk',
         ],
         'pl' => [
             'flag' => 'PL',
@@ -106,25 +108,25 @@ class LocaleMeta
         ],
         'pt' => [
             'flag' => 'PT',
-            'name' => 'Português',
+            'name' => 'português',
         ],
         'pt-br' => [
             'flag' => 'BR',
             'html' => 'pt-BR',
             'laravelPlural' => 'pt_BR',
-            'name' => 'Português (Brasil)',
+            'name' => 'português brasileiro',
         ],
         'ro' => [
             'flag' => 'RO',
-            'name' => 'Română',
+            'name' => 'română',
         ],
         'ru' => [
             'flag' => 'RU',
-            'name' => 'Русский',
+            'name' => 'русский',
         ],
         'sk' => [
             'flag' => 'SK',
-            'name' => 'Slovenčina',
+            'name' => 'slovenčina',
         ],
         'sl' => [
             'flag' => 'SI',
@@ -137,15 +139,11 @@ class LocaleMeta
         ],
         'sv' => [
             'flag' => 'SE',
-            'name' => 'Svenska',
+            'name' => 'svenska',
         ],
         'th' => [
             'flag' => 'TH',
             'name' => 'ไทย',
-        ],
-        'tl' => [
-            'flag' => 'PH',
-            'name' => 'Tagalog',
         ],
         'tr' => [
             'flag' => 'TR',
@@ -153,22 +151,16 @@ class LocaleMeta
         ],
         'uk' => [
             'flag' => 'UA',
-            'name' => 'Українська мова',
+            'name' => 'українська мова',
         ],
         'vi' => [
             'flag' => 'VN',
-            'name' => 'Tiếng Việt',
+            'name' => 'tiếng Việt',
         ],
         'zh' => [
             'flag' => 'CN',
             'moment' => 'zh-cn',
             'name' => '简体中文',
-        ],
-        'zh-hk' => [
-            'flag' => 'HK',
-            'html' => 'zh-HK',
-            'laravelPlural' => 'zh_HK',
-            'name' => '繁體中文（香港）',
         ],
         'zh-tw' => [
             'flag' => 'TW',

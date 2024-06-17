@@ -25,4 +25,8 @@ return [
         'qualified' => 'kvalificēta',
         'ranked' => 'ierindota',
     ],
+
+    'value' => [
+        'rank' => 'rangs #:rank',
+    ],
 ];

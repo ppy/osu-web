@@ -6,6 +6,7 @@
 namespace App\Transformers;
 
 use App\Models\User;
+use App\Models\UserProfileCustomization;
 
 class UserTransformer extends UserCompactTransformer
 {
@@ -21,24 +22,22 @@ class UserTransformer extends UserCompactTransformer
         'is_nat',
         'is_restricted',
         'is_silenced',
+        'kudosu',
     ];
 
     public function transform(User $user)
     {
         $result = parent::transform($user);
 
-        $profileCustomization = $this->userProfileCustomization($user);
+        $profileOrder = ($user->userProfileCustomization ?? UserProfileCustomization::DEFAULTS)['extras_order'];
 
-        return array_merge($result, [
-            'cover_url' => $profileCustomization->cover()->url(), // TODO: deprecated.
+        return [
+            ...$result,
+            'cover_url' => $user->cover()->url(), // TODO: deprecated.
             'discord' => $user->user_discord,
             'has_supported' => $user->hasSupported(),
             'interests' => $user->user_interests,
             'join_date' => json_time($user->user_regdate),
-            'kudosu' => [
-                'total' => $user->osu_kudostotal,
-                'available' => $user->osu_kudosavailable,
-            ],
             'location' => $user->user_from,
             'max_blocks' => $user->maxBlocks(),
             'max_friends' => $user->maxFriends(),
@@ -46,11 +45,11 @@ class UserTransformer extends UserCompactTransformer
             'playmode' => $user->playmode,
             'playstyle' => $user->osu_playstyle,
             'post_count' => $user->user_posts,
-            'profile_order' => $profileCustomization->extras_order,
+            'profile_order' => $profileOrder,
             'title' => $user->title(),
             'title_url' => $user->titleUrl(),
             'twitter' => $user->user_twitter,
             'website' => $user->user_website,
-        ]);
+        ];
     }
 }

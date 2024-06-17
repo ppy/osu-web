@@ -2,17 +2,15 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BigButton from 'components/big-button';
+import TextareaAutosize from 'components/textarea-autosize';
 import UserAvatar from 'components/user-avatar';
-import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import { BeatmapsetDiscussionPostStoreResponseJson } from 'interfaces/beatmapset-discussion-post-responses';
-import BeatmapsetJson from 'interfaces/beatmapset-json';
 import { route } from 'laroute';
 import { action, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import TextareaAutosize from 'react-autosize-textarea';
 import { onError } from 'utils/ajax';
 import { validMessageLength } from 'utils/beatmapset-discussion-helper';
 import { InputEventType, makeTextAreaHandler, TextAreaCallback } from 'utils/input-handler';
@@ -20,13 +18,13 @@ import { trans } from 'utils/lang';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
 import { present } from 'utils/string';
 import DiscussionMessageLengthCounter from './discussion-message-length-counter';
+import DiscussionsState from './discussions-state';
 
 const bn = 'beatmap-discussion-post';
 
 interface Props {
-  beatmapset: BeatmapsetJson;
-  currentBeatmap: BeatmapJson | null;
   discussion: BeatmapsetDiscussionJson;
+  discussionsState: DiscussionsState;
 }
 
 const actionIcons = {
@@ -161,8 +159,7 @@ export class NewReply extends React.Component<Props> {
       .done((json) => runInAction(() => {
         this.editing = false;
         this.setMessage('');
-        $.publish('beatmapDiscussionPost:markRead', { id: json.beatmap_discussion_post_ids });
-        $.publish('beatmapsetDiscussions:update', { beatmapset: json.beatmapset });
+        this.props.discussionsState.update(json);
       }))
       .fail(onError)
       .always(action(() => {
@@ -182,9 +179,9 @@ export class NewReply extends React.Component<Props> {
           </div>
           <div className={`${bn}__message-container`}>
             <TextareaAutosize
-              ref={this.box}
               className={`${bn}__message ${bn}__message--editor`}
               disabled={this.posting != null}
+              innerRef={this.box}
               onChange={this.handleChange}
               onKeyDown={this.handleKeyDown}
               placeholder={trans('beatmaps.discussions.reply_placeholder')}

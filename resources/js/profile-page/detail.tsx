@@ -40,7 +40,11 @@ export default class Detail extends React.Component<Props> {
           user={this.user}
         />
 
-        <ProfileTournamentBanner banner={this.user.active_tournament_banner} />
+        {this.user.active_tournament_banners.map((banner) => (
+          <ProfileTournamentBanner key={banner.id} banner={banner} />
+        ))}
+
+        <Badges badges={this.user.badges} />
 
         {this.renderNumbers()}
 
@@ -56,8 +60,6 @@ export default class Detail extends React.Component<Props> {
 
     return (
       <div className='profile-detail'>
-        <Badges badges={this.user.badges} />
-
         <div className='profile-detail__stats'>
           <div>
             <div className='profile-detail__chart-numbers'>

@@ -6,6 +6,7 @@
 return [
     'cart' => [
         'checkout' => 'Plati',
+        'empty_cart' => '',
         'info' => ':count_delimited artikl u košarici
 ($:subtotal)|:count_delimited artikala u košarici
 ($:subtotal)',
@@ -50,19 +51,52 @@ return [
     ],
 
     'discount' => 'uštedi :percent%',
+    'free' => '',
 
     'invoice' => [
+        'contact' => '',
+        'date' => '',
         'echeck_delay' => 'Budući da je tvoje plaćanje bilo eCheck, pricekaj do 10 dodatnih dana da se uplata izvrši putem PayPala!',
         'hide_from_activity' => '',
+        'sent_via' => '',
+        'shipping_to' => '',
+        'title' => '',
         'title_compact' => 'račun',
 
         'status' => [
+            'cancelled' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => "",
+                    'link_text' => '',
+                ],
+            ],
+            'delivered' => [
+                'title' => '',
+                'line_1' => [
+                    '_' => '',
+                    'link_text' => '',
+                ],
+            ],
+            'prepared' => [
+                'title' => '',
+                'line_1' => '',
+                'line_2' => '',
+            ],
             'processing' => [
                 'title' => 'Tvoja uplata još nije potvrđena!',
                 'line_1' => 'Ako si već platio/la, možda još čekamo da primimo potvrdu o tvome plaćanju. Molimo osvježi ovu stranicu za minutu ili dvije!',
                 'line_2' => [
                     '_' => 'Ako si naišao/la na problem tijekom naplate, :link',
                     'link_text' => 'klikni ovdje za nastavak uplate',
+                ],
+            ],
+            'shipped' => [
+                'title' => '',
+                'tracking_details' => '',
+                'no_tracking_details' => [
+                    '_' => "",
+                    'link_text' => '',
                 ],
             ],
         ],
@@ -76,7 +110,19 @@ return [
         'no_orders' => 'Nema narudžbi za pregled.',
         'paid_on' => 'Narudžba postavljena :date',
         'resume' => 'Nastavi uplatu',
+        'shipping_and_handling' => '',
         'shopify_expired' => 'Poveznica za naplatu za ovu narudžbu je istekla.',
+        'subtotal' => '',
+        'total' => '',
+
+        'details' => [
+            'order_number' => '',
+            'payment_terms' => '',
+            'salesperson' => '',
+            'shipping_method' => '',
+            'shipping_terms' => '',
+            'title' => '',
+        ],
 
         'item' => [
             'quantity' => 'Količina',
@@ -107,6 +153,15 @@ return [
             'paid' => 'Plaćeno',
             'processing' => 'Čeka potvrdu',
             'shipped' => 'Poslano',
+            'title' => '',
+        ],
+
+        'thanks' => [
+            'title' => '',
+            'line_1' => [
+                '_' => '',
+                'link_text' => '',
+            ],
         ],
     ],
 
@@ -140,6 +195,10 @@ return [
     'username_change' => [
         'check' => 'Unesi korisničko ime za provjeru dostupnosti!',
         'checking' => 'Provjeravanje dostupnosti od :username...',
+        'placeholder' => '',
+        'label' => '',
+        'current' => '',
+
         'require_login' => [
             '_' => 'Moraš biti :link kako bi promijenio svoje ime!',
             'link_text' => 'prijavljen',

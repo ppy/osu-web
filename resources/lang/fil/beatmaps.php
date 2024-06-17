@@ -78,6 +78,18 @@ return [
             'suggestion' => 'Suhestyon',
         ],
 
+        'message_type_title' => [
+            'disqualify' => 'Mag-post ng Diskwalipikasyon',
+            'hype' => 'Mag-post ng Hype!',
+            'mapper_note' => 'Mag-post ng Tandaan',
+            'nomination_reset' => 'Tanggalin ang lahat ng Mga nominasyon',
+            'praise' => 'Mag-post ng Papuri',
+            'problem' => 'Mag-post ng Problema',
+            'problem_warning' => 'Mag-post ng Problema',
+            'review' => 'Mag-post ng Pagsusuri',
+            'suggestion' => 'Mag-post ng Mungkahi',
+        ],
+
         'mode' => [
             'events' => 'Kasaysayan',
             'general' => 'Kabuuan :scope',
@@ -175,8 +187,8 @@ return [
     ],
 
     'nominations' => [
-        'already_nominated' => '',
-        'cannot_nominate' => '',
+        'already_nominated' => 'Nominado mo na ang beatmap na ito.',
+        'cannot_nominate' => 'Hindi mo maaaring inomina ang beatmap game mode na ito.',
         'delete' => 'Tanggalin',
         'delete_own_confirm' => 'Sigurado ka ba? Ang beatmap ay matatanggal at ikaw ay muling babalik sa iyong profile.',
         'delete_other_confirm' => 'Sigurado ka ba? Ang beatmap ay matatanggal at ikaw ay muling babalik sa profile ng user.',
@@ -201,7 +213,9 @@ return [
 
         'rank_estimate' => [
             '_' => 'Ang mapa na ito ay tatantiyahin na maging ranked sa :date kapag walang isyu ang nahanap. Nasa ika-#:position  ng :queue.',
-            'on' => '',
+            'unresolved_problems' => '',
+            'problems' => '',
+            'on' => 'sa :date',
             'queue' => 'pila ng ranking',
             'soon' => 'malapit na',
         ],
@@ -269,6 +283,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
+        'undefined' => '',
     ],
     'status' => [
         'any' => 'Kahit Ano',

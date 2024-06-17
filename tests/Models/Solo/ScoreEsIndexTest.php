@@ -22,7 +22,7 @@ use App\Models\UserRelation;
 use Tests\TestCase;
 
 /**
- * @group EsSoloScores
+ * @group RequiresScoreIndexer
  */
 class ScoreEsIndexTest extends TestCase
 {
@@ -40,7 +40,6 @@ class ScoreEsIndexTest extends TestCase
             static::$beatmap = Beatmap::factory()->qualified()->create();
 
             $scoreFactory = Score::factory()->state(['preserve' => true]);
-            $defaultData = ['build_id' => 1];
 
             $mods = [
                 ['acronym' => 'DT', 'settings' => []],
@@ -51,43 +50,44 @@ class ScoreEsIndexTest extends TestCase
             ];
 
             static::$scores = [
-                'otherUser' => $scoreFactory->withData($defaultData, [
-                    'total_score' => 1150,
+                'otherUser' => $scoreFactory->withData([
                     'mods' => $unrelatedMods,
                 ])->create([
                     'beatmap_id' => static::$beatmap,
-                    'user_id' => $otherUser,
-                ]),
-                'otherUserMods' => $scoreFactory->withData($defaultData, [
-                    'total_score' => 1140,
-                    'mods' => $mods,
-                ])->create([
-                    'beatmap_id' => static::$beatmap,
-                    'user_id' => $otherUser,
-                ]),
-                'otherUser2' => $scoreFactory->withData($defaultData, [
                     'total_score' => 1150,
+                    'user_id' => $otherUser,
+                ]),
+                'otherUserMods' => $scoreFactory->withData([
                     'mods' => $mods,
                 ])->create([
                     'beatmap_id' => static::$beatmap,
+                    'total_score' => 1140,
+                    'user_id' => $otherUser,
+                ]),
+                'otherUser2' => $scoreFactory->withData([
+                    'mods' => $mods,
+                ])->create([
+                    'beatmap_id' => static::$beatmap,
+                    'total_score' => 1150,
                     'user_id' => User::factory()->state(['country_acronym' => Country::factory()]),
                 ]),
-                'otherUser3SameCountry' => $scoreFactory->withData($defaultData, [
-                    'total_score' => 1130,
+                'otherUser3SameCountry' => $scoreFactory->withData([
                     'mods' => $unrelatedMods,
                 ])->create([
                     'beatmap_id' => static::$beatmap,
+                    'total_score' => 1130,
                     'user_id' => User::factory()->state(['country_acronym' => static::$user->country_acronym]),
                 ]),
-                'user' => $scoreFactory->withData($defaultData, ['total_score' => 1100])->create([
+                'user' => $scoreFactory->create([
                     'beatmap_id' => static::$beatmap,
+                    'total_score' => 1100,
                     'user_id' => static::$user,
                 ]),
-                'userMods' => $scoreFactory->withData($defaultData, [
-                    'total_score' => 1050,
+                'userMods' => $scoreFactory->withData([
                     'mods' => $mods,
                 ])->create([
                     'beatmap_id' => static::$beatmap,
+                    'total_score' => 1050,
                     'user_id' => static::$user,
                 ]),
             ];
@@ -105,9 +105,8 @@ class ScoreEsIndexTest extends TestCase
             Beatmapset::truncate();
             Country::truncate();
             Genre::truncate();
-            Group::truncate();
             Language::truncate();
-            Score::truncate();
+            Score::select()->delete(); // TODO: revert to truncate after the table is actually renamed
             User::truncate();
             UserGroup::truncate();
             UserGroupEvent::truncate();
@@ -126,7 +125,7 @@ class ScoreEsIndexTest extends TestCase
         $this->assertSame($rank, $score->userRank($params));
     }
 
-    public function dataProviderForTestUserRank(): array
+    public static function dataProviderForTestUserRank(): array
     {
         return [
             ['user', null, 4],

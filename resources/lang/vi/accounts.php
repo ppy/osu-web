@@ -18,6 +18,10 @@ return [
             'new' => 'email mới',
             'new_confirmation' => 'xác nhận email',
             'title' => 'Email',
+            'locked' => [
+                '_' => 'Vui lòng liên hệ :accounts nếu bạn cần cập nhật địa chỉ email.',
+                'accounts' => 'đội ngũ hỗ trợ tài khoản',
+            ],
         ],
 
         'legacy_api' => [
@@ -34,12 +38,12 @@ return [
         ],
 
         'profile' => [
-            'country' => '',
+            'country' => 'quốc gia',
             'title' => 'Trang cá nhân',
 
             'country_change' => [
-                '_' => "",
-                'update_link' => '',
+                '_' => "Có vẻ như quốc gia cho tài khoản của bạn chưa khớp với quốc gia bạn đang ở. :update_link.",
+                'update_link' => 'Cập nhật quốc gia thành :country',
             ],
 
             'user' => [
@@ -58,6 +62,19 @@ return [
         ],
     ],
 
+    'github_user' => [
+        'info' => "Nếu bạn là người đóng góp cho kho lưu trữ nguồn mở của osu!, việc liên kết tài khoản GitHub của bạn tại đây sẽ liên kết các mục nhật ký thay đổi với trang cá nhân osu! của bạn. Tài khoản GitHub không có lịch sử đóng góp cho osu! không thể liên kết được.",
+        'link' => 'Liên kết tài khoản GitHub',
+        'title' => 'GitHub',
+        'unlink' => 'Hủy liên kết tài khoản GitHub',
+
+        'error' => [
+            'already_linked' => 'Tài khoản GitHub này đã được liên kết với một người dùng khác.',
+            'no_contribution' => 'Không thể liên kết tài khoản GitHub mà không có bất kỳ lịch sử đóng góp nào trong kho lưu trữ của osu!.',
+            'unverified_email' => 'Vui lòng xác minh email chính của bạn trên GitHub, sau đó thử liên kết lại tài khoản của bạn.',
+        ],
+    ],
+
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'nhận thông báo về vấn đề mới ở các beatmap đủ tiêu chuẩn của chế độ này',
         'beatmapset_disqualify' => 'nhận thông báo khi beatmap ở các chế độ sau bị từ chối',
@@ -67,7 +84,7 @@ return [
 
         'options' => [
             '_' => 'phương thức giao hàng',
-            'beatmap_owner_change' => 'guest difficulty',
+            'beatmap_owner_change' => 'độ khó khách mời',
             'beatmapset:modding' => 'sửa đổi beatmap',
             'channel_message' => 'tin nhắn riêng tư',
             'comment_new' => 'bình luận mới',
@@ -75,7 +92,6 @@ return [
             'mail' => 'thư',
             'mapping' => 'người tạo beatmap',
             'push' => 'đẩy',
-            'user_achievement_unlock' => 'đã mở khoá huy chương',
         ],
     ],
 
@@ -87,7 +103,7 @@ return [
 
     'options' => [
         'beatmapset_show_nsfw' => 'ẩn cảnh báo nội dung không lành mạnh trong beatmap',
-        'beatmapset_title_show_original' => 'hiển thị metadata của beatmap ở ngôn ngữ gốc',
+        'beatmapset_title_show_original' => 'hiển thị metadata của beatmap bằng ngôn ngữ gốc',
         'title' => 'Tuỳ chọn',
 
         'beatmapset_download' => [
@@ -115,7 +131,7 @@ return [
     'security' => [
         'current_session' => 'hiện tại',
         'end_session' => 'Kết thúc Phiên',
-        'end_session_confirmation' => 'Việc này sẽ ngay lập tức kết thúc phiên của bạn trên thiết bị đó. Bạn có chắc không?',
+        'end_session_confirmation' => 'Việc này sẽ ngay lập tức kết thúc phiên của bạn trên thiết bị đó. Bạn chắc chứ?',
         'last_active' => 'Hoạt động lần cuối:',
         'title' => 'Bảo mật',
         'web_sessions' => 'phiên trên web',

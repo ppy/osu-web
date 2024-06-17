@@ -14,8 +14,8 @@ return [
 
     'header' => [
         'admin' => [
-            'beatmapset' => 'bitmapų setas',
-            'beatmapset_covers' => 'bitmapo seto viršeliai',
+            'beatmapset' => 'beatmap\'ų setas',
+            'beatmapset_covers' => 'beatmap\'o seto viršeliai',
             'contest' => 'konkursas',
             'contests' => 'konkursai',
             'root' => 'konsolė',
@@ -67,7 +67,7 @@ return [
 
     'menu' => [
         'beatmaps' => [
-            '_' => 'bitmapai',
+            '_' => 'beatmap\'ai',
         ],
         'community' => [
             '_' => 'bendruomenė',
@@ -86,7 +86,6 @@ return [
         ],
         'rankings' => [
             '_' => 'reitingai',
-            'kudosu' => 'kudosu',
         ],
         'store' => [
             '_' => 'parduotuvė',
@@ -98,7 +97,7 @@ return [
             '_' => 'Bendrieji',
             'home' => 'Pradžia',
             'changelog-index' => 'Pakeitimų sąrašas',
-            'beatmaps' => 'Bitmapų sąrašas',
+            'beatmaps' => 'Beatmap\'ų sąrašas',
             'download' => 'Atsisiūsti osu!',
         ],
         'help' => [
@@ -112,6 +111,7 @@ return [
         'legal' => [
             '_' => 'Teisė ir Būsena',
             'copyright' => 'Autorinės teisės (DMCA)',
+            'jp_sctl' => '',
             'privacy' => 'Privatumas',
             'server_status' => 'Serverio būsena',
             'source_code' => 'Pirminis Kodas',
@@ -195,6 +195,8 @@ return [
             'account-edit' => 'Nustatymai',
             'follows' => 'Stebėjimo sąrašai',
             'friends' => 'Draugai',
+            'legacy_score_only_toggle' => '',
+            'legacy_score_only_toggle_tooltip' => '',
             'logout' => 'Atsijungti',
             'profile' => 'Mano Profilis',
         ],

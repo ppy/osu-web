@@ -13,7 +13,7 @@ return [
             '404' => 'страчана',
             '403' => 'забаронена',
             '401' => 'вы не аўтарізованы',
-            '401-verification' => 'пацверджанне ўліковага запісу',
+            '401-verification' => 'верыфікацыя акаўнту',
             '405' => 'не знойдзена',
             '422' => 'недапушчальны запыт',
             '429' => 'занадта шмат запытаў',
@@ -29,7 +29,7 @@ return [
     ],
     'main' => [
         'account_controller' => [
-            'verify_link' => 'пацверджанне ўліковага запісу',
+            'verify_link' => 'верыфікацыя акаўнту',
         ],
         'artists_controller' => [
             '_' => 'ліцэнзаваныя мастакі',
@@ -63,8 +63,12 @@ return [
         'comments_controller' => [
             '_' => 'каментарыі',
         ],
+        'contest_entries_controller' => [
+            'judge_results' => '',
+        ],
         'contests_controller' => [
             '_' => 'конкурсы',
+            'judge' => '',
         ],
         'groups_controller' => [
             'show' => 'групы',
@@ -106,9 +110,12 @@ return [
         'tournaments_controller' => [
             '_' => 'турніры',
         ],
+        'user_cover_presets_controller' => [
+            '_' => '',
+        ],
         'users_controller' => [
             '_' => 'інфармацыя пра гульца',
-            'create' => 'стварыць рахунак',
+            'create' => 'стварыць акаўнт',
             'disabled' => 'звярніце ўвагу',
         ],
         'wiki_controller' => [

@@ -78,6 +78,18 @@ return [
             'suggestion' => 'Forslag',
         ],
 
+        'message_type_title' => [
+            'disqualify' => '',
+            'hype' => '',
+            'mapper_note' => '',
+            'nomination_reset' => '',
+            'praise' => '',
+            'problem' => '',
+            'problem_warning' => '',
+            'review' => '',
+            'suggestion' => '',
+        ],
+
         'mode' => [
             'events' => 'Historie',
             'general' => 'Generalt :scope',
@@ -201,6 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'Dette kort anslås at være rangeret :date , hvis ingen problemer findes. Det er #:position i :queue.',
+            'unresolved_problems' => '',
+            'problems' => '',
             'on' => '',
             'queue' => 'rangering kø',
             'soon' => 'snart',
@@ -270,6 +284,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
+        'undefined' => '',
     ],
     'status' => [
         'any' => 'Vilkårlig',

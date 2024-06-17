@@ -13,45 +13,45 @@ return [
     ],
 
     'authorized_clients' => [
-        'confirm_revoke' => '',
+        'confirm_revoke' => 'Oletko varma, että haluat peruuttaa tämän käyttäjän valtuudet?',
         'scopes_title' => 'Tämä sovellus voi:',
         'owned_by' => 'Omistaa :user',
-        'none' => '',
+        'none' => 'Ei clienttejä',
 
         'revoked' => [
             'false' => 'Kumoa käyttöoikeudet',
-            'true' => '',
+            'true' => 'Pääsy Peruutettu',
         ],
     ],
 
     'client' => [
-        'id' => '',
-        'name' => '',
-        'redirect' => '',
-        'reset' => '',
-        'reset_failed' => '',
-        'secret' => '',
+        'id' => 'Clientin ID',
+        'name' => 'Sovelluksen Nimi',
+        'redirect' => 'Sovelluksen Takaisinsoitto URL:t',
+        'reset' => 'Nollaa clientin salaisuus',
+        'reset_failed' => 'Clientin salaisuuden nollaaminen epäonnistui',
+        'secret' => 'Clientin salaisuus',
 
         'secret_visible' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Näytä clientin salaisuus',
+            'true' => 'Piilota clientin salaisuus',
         ],
     ],
 
     'new_client' => [
         'header' => 'Rekisteröi uusi OAuth-sovellus',
-        'register' => '',
+        'register' => 'Rekisteröi uusi sovellus',
         'terms_of_use' => [
-            '_' => '',
+            '_' => 'Käyttämällä rajapintaa hyväksyt :link.',
             'link' => 'Käyttöehdot',
         ],
     ],
 
     'own_clients' => [
-        'confirm_delete' => '',
-        'confirm_reset' => '',
-        'new' => '',
-        'none' => '',
+        'confirm_delete' => 'Haluatko varmasti poistaa tämän clientin?',
+        'confirm_reset' => 'Haluatko varmasti nollata clientin salaisuuden? Tämä kumoaa kaikki olemassa olevat tokenit.',
+        'new' => 'Uusi OAuth-sovellus',
+        'none' => 'Ei asiakasohjelmia',
 
         'revoked' => [
             'false' => 'Poista',

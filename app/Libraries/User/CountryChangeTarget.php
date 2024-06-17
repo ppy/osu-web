@@ -10,7 +10,6 @@ namespace App\Libraries\User;
 use App\Models\Tournament;
 use App\Models\TournamentRegistration;
 use App\Models\User;
-use App\Models\UserCountryHistory;
 use Carbon\CarbonImmutable;
 
 class CountryChangeTarget
@@ -27,21 +26,28 @@ class CountryChangeTarget
 
     public static function get(User $user): ?string
     {
-        $minMonths = static::minMonths();
-        $now = CarbonImmutable::now();
-        $until = static::currentMonth();
-        $since = $until->subMonths($minMonths - 1);
-
         if (static::isUserInTournament($user)) {
             return null;
         }
 
-        $history = $user
+        $until = static::currentMonth();
+        $minMonths = static::minMonths();
+
+        $yearMonths = $user
             ->userCountryHistory()
             ->whereBetween('year_month', [
-                UserCountryHistory::formatDate($since),
-                UserCountryHistory::formatDate($until),
-            ])->whereHas('country')
+                // one year maximum range. Offset by 1 because the range is inclusive
+                format_month_column($until->subMonths(11)),
+                format_month_column($until),
+            ])->distinct()
+            ->orderBy('year_month', 'DESC')
+            ->limit($minMonths)
+            ->pluck('year_month');
+
+        $history = $user
+            ->userCountryHistory()
+            ->whereIn('year_month', $yearMonths)
+            ->whereHas('country')
             ->get();
 
         // First group countries by year_month
@@ -83,12 +89,12 @@ class CountryChangeTarget
 
     public static function maxMixedMonths(): int
     {
-        return config('osu.user.country_change.max_mixed_months');
+        return $GLOBALS['cfg']['osu']['user']['country_change']['max_mixed_months'];
     }
 
     public static function minMonths(): int
     {
-        return config('osu.user.country_change.min_months');
+        return $GLOBALS['cfg']['osu']['user']['country_change']['min_months'];
     }
 
     private static function isUserInTournament(User $user): bool

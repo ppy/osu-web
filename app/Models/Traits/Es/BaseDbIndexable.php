@@ -31,7 +31,7 @@ trait BaseDbIndexable
 
     public static function esIndexName()
     {
-        return config('osu.elasticsearch.prefix').(new static())->getTable();
+        return $GLOBALS['cfg']['osu']['elasticsearch']['prefix'].(new static())->getTable();
     }
 
     public static function esSchemaFile()

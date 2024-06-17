@@ -110,7 +110,7 @@ return [
     ],
 
     'legacy_api_key' => [
-        'exists' => 'Posiadanie kilku kluczy API przez jednego użytkownika jest obecnie niedozwolone.',
+        'exists' => 'Nie możesz aktualnie posiadać więcej niż jeden klucz API.',
 
         'attributes' => [
             'api_key' => 'klucz api',
@@ -175,7 +175,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => 'Nie można zgłosić rankingowych beatmap.',
-        'not_in_channel' => '',
+        'not_in_channel' => 'Nie jesteś na tym kanale.',
         'reason_not_valid' => 'Powód „:reason” nie jest właściwy dla tego typu zgłoszenia.',
         'self' => "Nie możesz zgłosić swojego konta!",
     ],

@@ -1,0 +1,61 @@
+<?php
+
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+return [
+    'cancel' => 'Cancelar',
+
+    'authorise' => [
+        'request' => 'está solicitando permiso para acceder a tu cuenta.',
+        'scopes_title' => 'Esta aplicación podrá:',
+        'title' => 'Solicitud de autorización',
+    ],
+
+    'authorized_clients' => [
+        'confirm_revoke' => '¿Estás seguro de que quieres revocar los permisos de este cliente?',
+        'scopes_title' => 'Esta aplicación puede:',
+        'owned_by' => 'Propiedad de :user',
+        'none' => 'No hay clientes',
+
+        'revoked' => [
+            'false' => 'Revocar acceso',
+            'true' => 'Acceso revocado',
+        ],
+    ],
+
+    'client' => [
+        'id' => 'ID del cliente',
+        'name' => 'Nombre de la aplicación',
+        'redirect' => 'URL de la llamada de retorno de la aplicación',
+        'reset' => 'Restablecer cliente secreto',
+        'reset_failed' => 'No se pudo restablecer el cliente secreto',
+        'secret' => 'Cliente secreto',
+
+        'secret_visible' => [
+            'false' => 'Mostrar cliente secreto',
+            'true' => 'Ocultar cliente secreto',
+        ],
+    ],
+
+    'new_client' => [
+        'header' => 'Registra una nueva aplicación OAuth',
+        'register' => 'Registrar la aplicación',
+        'terms_of_use' => [
+            '_' => 'Al usar la API, aceptas los :link.',
+            'link' => 'términos de uso',
+        ],
+    ],
+
+    'own_clients' => [
+        'confirm_delete' => '¿Estás seguro de que quieres borrar este cliente?',
+        'confirm_reset' => '¿Estás seguro de que quieres restablecer el cliente secreto? Esto revocará todos los tokens existentes.',
+        'new' => 'Nueva aplicación OAuth',
+        'none' => 'No hay clientes',
+
+        'revoked' => [
+            'false' => 'Eliminar',
+            'true' => 'Eliminado',
+        ],
+    ],
+];

@@ -21,7 +21,7 @@ class ScoreSearch extends RecordSearch
     public function __construct(?ScoreSearchParams $params = null)
     {
         parent::__construct(
-            config('osu.elasticsearch.prefix').'solo_scores',
+            $GLOBALS['cfg']['osu']['elasticsearch']['prefix'].'scores',
             $params ?? new ScoreSearchParams(),
             Score::class
         );
@@ -29,7 +29,7 @@ class ScoreSearch extends RecordSearch
 
     public function getActiveSchemas(): array
     {
-        return LaravelRedis::smembers('osu-queue:score-index:'.config('osu.elasticsearch.prefix').'active-schemas');
+        return LaravelRedis::smembers('osu-queue:score-index:'.$GLOBALS['cfg']['osu']['elasticsearch']['prefix'].'active-schemas');
     }
 
     public function getQuery(): BoolQuery
@@ -48,10 +48,16 @@ class ScoreSearch extends RecordSearch
         if ($this->params->userId !== null) {
             $query->filter(['term' => ['user_id' => $this->params->userId]]);
         }
+        if ($this->params->excludeConverts) {
+            $query->filter(['term' => ['convert' => false]]);
+        }
         if ($this->params->excludeMods !== null && count($this->params->excludeMods) > 0) {
             foreach ($this->params->excludeMods as $excludedMod) {
                 $query->mustNot(['term' => ['mods' => $excludedMod]]);
             }
+        }
+        if ($this->params->excludeWithoutPp === true) {
+            $query->filter(['exists' => ['field' => 'pp']]);
         }
 
         $this->addModsFilter($query);
@@ -67,19 +73,20 @@ class ScoreSearch extends RecordSearch
 
         $beforeTotalScore = $this->params->beforeTotalScore;
         if ($beforeTotalScore === null && $this->params->beforeScore !== null) {
-            $beforeTotalScore = $this->params->beforeScore->isLegacy()
-                ? $this->params->beforeScore->data->legacyTotalScore
-                : $this->params->beforeScore->data->totalScore;
+            $beforeTotalScore = $this->params->isLegacy
+                ? $this->params->beforeScore->legacy_total_score
+                : $this->params->beforeScore->total_score;
         }
         if ($beforeTotalScore !== null) {
             $scoreQuery = (new BoolQuery())->shouldMatch(1);
+            $scoreField = $this->params->isLegacy ? 'legacy_total_score' : 'total_score';
             $scoreQuery->should((new BoolQuery())->filter(['range' => [
-                'total_score' => ['gt' => $beforeTotalScore],
+                $scoreField => ['gt' => $beforeTotalScore],
             ]]));
             if ($this->params->beforeScore !== null) {
                 $scoreQuery->should((new BoolQuery())
                     ->filter(['range' => ['id' => ['lt' => $this->params->beforeScore->getKey()]]])
-                    ->filter(['term' => ['total_score' => $beforeTotalScore]]));
+                    ->filter(['term' => [$scoreField => $beforeTotalScore]]));
             }
 
             $query->must($scoreQuery);
@@ -116,17 +123,19 @@ class ScoreSearch extends RecordSearch
 
         $schemas ??= $this->getActiveSchemas();
 
+        $values = array_map(
+            static fn (int $id): string => json_encode(['ScoreId' => $id]),
+            $ids,
+        );
+
         foreach ($schemas as $schema) {
-            LaravelRedis::lpush("osu-queue:score-index-{$schema}", ...array_map(
-                fn (int $id): string => json_encode(['ScoreId' => $id]),
-                $ids,
-            ));
+            LaravelRedis::lpush("osu-queue:{$schema}", ...$values);
         }
     }
 
     public function setSchema(string $schema): void
     {
-        LaravelRedis::set('osu-queue:score-index:'.config('osu.elasticsearch.prefix').'schema', $schema);
+        LaravelRedis::set('osu-queue:score-index:'.$GLOBALS['cfg']['osu']['elasticsearch']['prefix'].'schema', $schema);
     }
 
     private function addModsFilter(BoolQuery $query): void
@@ -140,7 +149,8 @@ class ScoreSearch extends RecordSearch
         $allMods = $this->params->rulesetId === null
             ? $modsHelper->allIds
             : new Set(array_keys($modsHelper->mods[$this->params->rulesetId]));
-        $allMods->remove('PF', 'SD', 'MR');
+        // CL is currently considered a "preference" mod
+        $allMods->remove('CL', 'PF', 'SD', 'MR');
 
         $allSearchMods = [];
         foreach ($mods as $mod) {

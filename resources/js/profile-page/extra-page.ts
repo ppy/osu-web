@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import GameMode from 'interfaces/game-mode';
+import Ruleset from 'interfaces/ruleset';
 import { ProfileExtraPage } from 'interfaces/user-extended-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
@@ -20,6 +20,6 @@ export interface PageSectionWithoutCountJson<T> {
 }
 
 // TODO: how to require mode conditionally based on page?
-export default function getPage<T>(user: Pick<UserJson, 'id'>, page: ProfileExtraPage, mode?: GameMode) {
+export default function getPage<T>(user: Pick<UserJson, 'id'>, page: ProfileExtraPage, mode?: Ruleset) {
   return $.ajax(route('users.extra-page', { mode, page, user: user.id })) as JQuery.jqXHR<T>;
 }

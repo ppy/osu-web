@@ -56,6 +56,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => 'Đánh giá mới bởi :username có vấn đề: :problems, gợi ý: :suggestions, ca ngợi: :praises',
                 'beatmapset_discussion_unlock' => 'Cuộc thảo luận trên ":title" đã được mở khóa',
                 'beatmapset_discussion_unlock_compact' => 'Cuộc thảo luận đã được mở khóa',
+
+                'review_count' => [
+                    'praises' => ':count_delimited lời khen|:count_delimited lời khen',
+                    'problems' => ':count_delimited vấn đề|:count_delimited vấn đề',
+                    'suggestions' => ':count_delimited gợi ý|:count_delimited gợi ý',
+                ],
             ],
 
             'beatmapset_problem' => [
@@ -240,11 +246,6 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':username đã mở khóa một huy chương mới, ":title"!',
-                'user_achievement_unlock_self' => 'Bạn đã mở khóa một huân chương mới, ":title"!',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username đã tạo beatmap mới',
                 'user_beatmapset_revive' => ':username đã hồi sinh một số beatmap',

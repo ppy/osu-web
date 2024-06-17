@@ -26,6 +26,7 @@ return [
             'deleted' => 'Uwzględnij usunięte dyskusje',
             'mode' => 'Tryb beatmapy',
             'only_unresolved' => 'Pokaż tylko nierozwiązane dyskusje',
+            'show_review_embeds' => 'Pokaż posty z opinią',
             'types' => 'Rodzaj wiadomości',
             'username' => 'Nazwa użytkownika',
 

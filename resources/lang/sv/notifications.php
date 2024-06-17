@@ -55,6 +55,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => 'Ny recension av :username som innehåller problem: :problems, förslag: :suggestions, beröm: :praises',
                 'beatmapset_discussion_unlock' => 'Diskussion om ":title" har låsts upp',
                 'beatmapset_discussion_unlock_compact' => 'Diskussionen låstes upp',
+
+                'review_count' => [
+                    'praises' => '',
+                    'problems' => '',
+                    'suggestions' => '',
+                ],
             ],
 
             'beatmapset_problem' => [
@@ -238,11 +244,6 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':username har låst upp en ny medalj, ":title"!',
-                'user_achievement_unlock_self' => 'Du har låst upp en ny medalj, ":title"!',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username har skapat nya beatmaps',
                 'user_beatmapset_revive' => ':username har återupplivat beatmaps',

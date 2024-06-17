@@ -2,13 +2,14 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { route } from 'laroute';
+import { action, computed, makeObservable, observable } from 'mobx';
+import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { onErrorWithClick } from 'utils/ajax';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
-import { nextVal } from 'utils/seq';
 import { Spinner } from './spinner';
 
 interface Props {
@@ -19,40 +20,38 @@ interface Props {
   userId: number;
 }
 
-interface State {
-  followersWithoutSelf: number;
-  following: boolean;
-  loading: boolean;
-}
-
 const bn = 'user-action-button';
 
-export default class FollowUserMappingButton extends React.Component<Props, State> {
-  private buttonRef = React.createRef<HTMLButtonElement>();
-  private eventId = `follow-user-mapping-button-${nextVal()}`;
-  private xhr?: JQueryXHR;
+@observer
+export default class FollowUserMappingButton extends React.Component<Props> {
+  private readonly buttonRef = React.createRef<HTMLButtonElement>();
+  private readonly followerCountWithoutSelf: number = 0;
+  @observable private xhr?: JQuery.jqXHR;
+
+  private get following() {
+    return core.currentUserModel.followUserMapping.has(this.props.userId);
+  }
+
+  @computed
+  private get followerCount() {
+    return this.followerCountWithoutSelf + (this.following ? 1 : 0);
+  }
+
+  private get loading() {
+    return this.xhr != null;
+  }
 
   constructor(props: Props) {
     super(props);
+    makeObservable(this);
 
-    const following = core.currentUser?.follow_user_mapping.includes(this.props.userId) ?? false;
-    let followersWithoutSelf = this.props.followers ?? 0;
-
-    if (following !== false) followersWithoutSelf -= 1;
-
-    this.state = {
-      followersWithoutSelf,
-      following,
-      loading: false,
-    };
-  }
-
-  componentDidMount() {
-    $.subscribe(`user:followUserMapping:refresh.${this.eventId}`, this.refresh);
+    if (this.props.showFollowerCounter) {
+      this.followerCountWithoutSelf = this.props.followers ?? 0;
+      if (this.following) this.followerCountWithoutSelf -= 1;
+    }
   }
 
   componentWillUnmount() {
-    $.unsubscribe(`.${this.eventId}`);
     this.xhr?.abort();
   }
 
@@ -64,16 +63,16 @@ export default class FollowUserMappingButton extends React.Component<Props, Stat
     }
 
     const title = canToggle
-      ? trans(`follows.mapping.${this.state.following ? 'to_0' : 'to_1'}`)
+      ? trans(`follows.mapping.${this.following ? 'to_0' : 'to_1'}`)
       : trans('follows.mapping.followers');
 
     const blockClass = classWithModifiers(
       bn,
       this.props.modifiers,
-      { friend: this.state.following },
+      { friend: this.following },
     );
 
-    const disabled = this.state.loading || !canToggle;
+    const disabled = this.loading || !canToggle;
 
     return (
       <div title={title}>
@@ -90,41 +89,30 @@ export default class FollowUserMappingButton extends React.Component<Props, Stat
     );
   }
 
-  private followers() {
-    return this.state.followersWithoutSelf + (this.state.following ? 1 : 0);
-  }
-
-  private onClick = () => {
-    this.setState({ loading: true }, () => {
-      const params: JQuery.AjaxSettings = {
-        data: {
-          follow: {
-            notifiable_id: this.props.userId,
-            notifiable_type: 'user',
-            subtype: 'mapping',
-          },
+  @action
+  private readonly onClick = () => {
+    const params: JQuery.AjaxSettings = {
+      data: {
+        follow: {
+          notifiable_id: this.props.userId,
+          notifiable_type: 'user',
+          subtype: 'mapping',
         },
-      };
+      },
+    };
 
-      if (this.state.following) {
-        params.type = 'DELETE';
-        params.url = route('follows.destroy');
-      } else {
-        params.type = 'POST';
-        params.url = route('follows.store');
-      }
+    if (this.following) {
+      params.type = 'DELETE';
+      params.url = route('follows.destroy');
+    } else {
+      params.type = 'POST';
+      params.url = route('follows.store');
+    }
 
-      this.xhr = $.ajax(params)
-        .done(this.updateData)
-        .fail(onErrorWithClick(this.buttonRef.current))
-        .always(() => this.setState({ loading: false }));
-    });
-  };
-
-  private refresh = () => {
-    this.setState({
-      following: core.currentUser?.follow_user_mapping.includes(this.props.userId) ?? false,
-    });
+    this.xhr = $.ajax(params)
+      .done(this.updateData)
+      .fail(onErrorWithClick(this.buttonRef.current))
+      .always(action(() => this.xhr = undefined));
   };
 
   private renderCounter() {
@@ -134,13 +122,13 @@ export default class FollowUserMappingButton extends React.Component<Props, Stat
 
     return(
       <span className={`${bn}__counter`}>
-        {formatNumber(this.followers())}
+        {formatNumber(this.followerCount)}
       </span>
     );
   }
 
   private renderIcon() {
-    const icon = this.state.loading
+    const icon = this.loading
       ? <Spinner />
       : <i className='fas fa-bell' />;
 
@@ -151,7 +139,8 @@ export default class FollowUserMappingButton extends React.Component<Props, Stat
     );
   }
 
-  private updateData = () => {
-    $.publish('user:followUserMapping:update', { following: !this.state.following, userId: this.props.userId });
+  @action
+  private readonly updateData = () => {
+    core.currentUserModel.updateFollowUserMapping(!this.following, this.props.userId);
   };
 }

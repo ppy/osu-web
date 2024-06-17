@@ -40,15 +40,20 @@ return [
     ],
 
     'nominate' => [
+        'bng_limited_too_many_rulesets' => '',
+        'full_nomination_required' => '',
         'hybrid_requires_modes' => 'Hibridne beatmape zahtijevaju da odabereš barem jedan način igranja za nominaciju.',
         'incorrect_mode' => 'Nemaš dopuštenje da nominiraš za mod: :mode',
-        'full_bn_required' => 'Moraš biti puni nominator da izvršiš ovu kvalifikacijsku nominaciju.',
+        'invalid_limited_nomination' => '',
+        'invalid_ruleset' => '',
         'too_many' => 'Uvjet za nominaciju je već ispunjen.',
+        'too_many_non_main_ruleset' => '',
 
         'dialog' => [
             'confirmation' => 'Jesi li siguran/na da želiš nominirati ovu beatmapu?',
             'header' => 'Nominiraj beatmapu',
             'hybrid_warning' => 'napomena: možetš nominirati samo jednom, stoga te molimo da budeš siguran/na da nominiraš za sve načine igre koje namjeravaš',
+            'current_main_ruleset' => '',
             'which_modes' => 'Nominiraj za koje modove?',
         ],
     ],
@@ -60,9 +65,13 @@ return [
     'show' => [
         'discussion' => 'Rasprava',
 
+        'admin' => [
+            'full_size_cover' => '',
+        ],
+
         'deleted_banner' => [
-            'title' => '',
-            'message' => '',
+            'title' => 'Ovaj beatmap je obrisan.',
+            'message' => '(samo moderatori mogu ovo da vide)',
         ],
 
         'details' => [
@@ -130,7 +139,7 @@ return [
             'genre' => 'Žanr',
             'language' => 'Jezik',
             'no_scores' => 'Podaci se još kalkuliraju...',
-            'nominators' => '',
+            'nominators' => 'Nominatori',
             'nsfw' => 'Eksplicitni sadržaj',
             'offset' => 'Online razmak',
             'points-of-failure' => 'Točke neuspjeha',

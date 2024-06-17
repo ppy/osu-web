@@ -40,15 +40,20 @@ return [
     ],
 
     'nominate' => [
+        'bng_limited_too_many_rulesets' => '',
+        'full_nomination_required' => '',
         'hybrid_requires_modes' => 'הכלאת קבוצה של מפות מתבקש ממך לבחור לפחות מצב אחד בשביל לדרג את המפה.',
         'incorrect_mode' => 'אין לך הרשאה לדרג למצב: :mode',
-        'full_bn_required' => 'עליך להיות מועמד כדי לקבל מועמדות מאושרת.',
+        'invalid_limited_nomination' => '',
+        'invalid_ruleset' => '',
         'too_many' => 'דרישות המעומדות כבר בוצעו.',
+        'too_many_non_main_ruleset' => '',
 
         'dialog' => [
             'confirmation' => 'האם אתה בטוח שאתה רוצה לדרג מפה זאת?',
             'header' => 'דירוג מפה',
             'hybrid_warning' => 'הערה: אתה רשאי לדרג רק פעם אחת, אנא דרג כל אחד ממצבי המשחק שאתה מתכוון אליהם',
+            'current_main_ruleset' => '',
             'which_modes' => 'דרג לאיזה מודים?',
         ],
     ],
@@ -59,6 +64,10 @@ return [
 
     'show' => [
         'discussion' => 'דיון',
+
+        'admin' => [
+            'full_size_cover' => '',
+        ],
 
         'deleted_banner' => [
             'title' => '',

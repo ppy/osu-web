@@ -8,7 +8,7 @@ return [
     'deleted_by' => 'supprimé :timeago par :user',
     'deleted_by_system' => 'système',
     'deleted_count' => ':count_delimited commentaire supprimé|:count_delimited commentaires supprimés',
-    'edited' => 'édité par :user il y a :timeago',
+    'edited' => 'édité par :user :timeago',
     'pinned' => 'épinglé',
     'empty' => 'Il n’y a pas encore de commentaires.',
     'empty_other' => 'Aucun autre commentaire pour le moment.',
@@ -43,9 +43,13 @@ return [
         'no_comments' => 'aucun commentaire trouvé...',
     ],
 
+    'ogp' => [
+        'title' => 'commentaire de :user',
+    ],
+
     'placeholder' => [
         'edit' => 'Éditer le commentaire ici',
-        'new' => 'Tapez le nouveau commentaire ici',
+        'new' => 'Tapez un nouveau commentaire ici',
         'reply' => 'Tapez votre réponse ici',
     ],
 

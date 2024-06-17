@@ -40,15 +40,20 @@ return [
     ],
 
     'nominate' => [
+        'bng_limited_too_many_rulesets' => '',
+        'full_nomination_required' => '',
         'hybrid_requires_modes' => 'تحتاج الخرائط الهجينة إلى تحديد وضع تشغيل واحد على الأقل لِتَرشيحِها.',
         'incorrect_mode' => 'ليس لديك الصلاحيّات الكافية للترشيح للوضوع: :mode',
-        'full_bn_required' => 'يجب أن تكون مرشحا كاملا لأداء هذا الترشيح المؤهل.',
+        'invalid_limited_nomination' => '',
+        'invalid_ruleset' => '',
         'too_many' => 'تم بالفعل استيفاء شرط الترشيح.',
+        'too_many_non_main_ruleset' => '',
 
         'dialog' => [
             'confirmation' => 'هل أنت متأكد من أنك تريد ترشيح هذه الخريطة؟',
             'header' => 'ترشيح خريطة',
             'hybrid_warning' => 'ملاحظة: يمكنك أن ترشح مرة واحدة فقط، لذا يرجى التأكد من أنك ترشح لجميع أنماط اللعبة التي تنويها',
+            'current_main_ruleset' => '',
             'which_modes' => 'ترشيح لأي وضع؟',
         ],
     ],
@@ -59,6 +64,10 @@ return [
 
     'show' => [
         'discussion' => 'مناقشة',
+
+        'admin' => [
+            'full_size_cover' => 'عرض صورة الغلاف بحجمها الكامل',
+        ],
 
         'deleted_banner' => [
             'title' => 'تم حذف هذه الخريطة.',

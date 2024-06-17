@@ -40,15 +40,20 @@ return [
     ],
 
     'nominate' => [
+        'bng_limited_too_many_rulesets' => '',
+        'full_nomination_required' => '',
         'hybrid_requires_modes' => 'Um beatmap híbrido requer que você selecione pelo menos um modo de jogo para nomear.',
         'incorrect_mode' => 'Você não tem permissão para nomear para o modo: :mode',
-        'full_bn_required' => 'Você precisa ser um nominator completo para realizar essa nomeação de qualificação.',
+        'invalid_limited_nomination' => '',
+        'invalid_ruleset' => '',
         'too_many' => 'Exigência de nomeação já cumprida.',
+        'too_many_non_main_ruleset' => '',
 
         'dialog' => [
             'confirmation' => 'Tem certeza que deseja nomear este Beatmap?',
             'header' => 'Nomear Beatmap',
             'hybrid_warning' => 'nota: você pode apenas nomear uma vez, então por favor, certifique-se de que você está nomeando para todos os modos de jogo que você pretende',
+            'current_main_ruleset' => '',
             'which_modes' => 'Nomear para quais modos?',
         ],
     ],
@@ -59,6 +64,10 @@ return [
 
     'show' => [
         'discussion' => 'Discussão',
+
+        'admin' => [
+            'full_size_cover' => 'Ver a imagem da capa em tamanho real',
+        ],
 
         'deleted_banner' => [
             'title' => 'Este beatmap foi deletado.',

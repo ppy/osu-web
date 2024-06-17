@@ -10,7 +10,7 @@ return [
         'peak' => '최다 동시 접속자 수: :count명',
         'players' => '<strong>:count</strong>명이 가입되어 있고',
         'title' => '환영합니다',
-        'see_more_news' => '소식 더 보기',
+        'see_more_news' => '뉴스 더 보기',
 
         'slogan' => [
             'main' => '최고의 무료 리듬 게임',
@@ -58,7 +58,7 @@ return [
         ],
 
         'user' => [
-            'login_required' => '사용자를 검색하기 위해서 로그인',
+            'login_required' => '유저를 검색하기 위해서 로그인',
             'more' => ':count명의 플레이어 검색 결과 더 보기',
             'more_simple' => '플레이어 검색 결과 더 보기',
             'more_hidden' => '플레이어 검색은 최대 :max명 까지 가능합니다. 다른 검색어로 시도해보세요.',
@@ -80,8 +80,7 @@ return [
         'action_lazer_title' => 'osu!(lazer) 체험하기',
         'action_title' => 'osu! 다운로드',
         'for_os' => ':os 전용',
-        'lazer_note' => '참고: 점수가 초기화될 수 있습니다',
-        'macos-fallback' => 'macOS 사용자',
+        'macos-fallback' => 'macOS 유저',
         'mirror' => '미러',
         'or' => '혹은',
         'os_version_or_later' => ':os_version 이상',
@@ -123,8 +122,8 @@ return [
     'user' => [
         'title' => '대시보드',
         'news' => [
-            'title' => '소식',
-            'error' => '소식을 불러오는 도중 문제가 발생했습니다, 페이지를 한 번 새로고침 해보시겠어요?...',
+            'title' => '뉴스',
+            'error' => '뉴스를 불러오는 도중 문제가 발생했습니다, 페이지를 한 번 새로고침 해보시겠어요?...',
         ],
         'header' => [
             'stats' => [

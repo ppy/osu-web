@@ -13,6 +13,9 @@
   transition: filter 200ms ease-in-out, opacity 200ms ease-in-out; // for fading in after &--masked is removed
 
   &--body {
+    --nav-logo: url('~@images/layout/osu-logo-white.svg');
+    --nav-logo-bg: url('~@images/layout/osu-logo-triangles.svg');
+
     background-color: @osu-colour-b6;
   }
 
@@ -33,6 +36,11 @@
       content: " ";
       z-index: @z-index--body-background;
     }
+  }
+
+  &--body-lazer {
+    --nav-logo: url('~@images/layout/osu-lazer-logo-white.svg');
+    --nav-logo-bg: url('~@images/layout/osu-lazer-logo-triangles.svg');
   }
 
   &--full {
@@ -77,10 +85,6 @@
     &--with-gutter {
       margin: -5px;
     }
-
-    &--landing-sitemap {
-      width: 100%;
-    }
   }
 
   &__no-scroll {
@@ -116,14 +120,12 @@
     }
 
     &--page {
-      ._page;
+      ._page();
       padding: 20px;
-      margin-bottom: 10px;
     }
 
     &--page-compact {
-      ._page;
-      margin-bottom: 10px;
+      ._page();
     }
 
     &--landing-sitemap {
@@ -136,6 +138,7 @@
   &__section {
     display: flex;
     flex-direction: column;
+    margin-bottom: 10px;
 
     &--full {
       flex: 1 0 auto;
@@ -143,6 +146,7 @@
 
     &--landing-footer {
       margin-top: auto;
+      margin-bottom: 0;
       flex: none;
       .at2x("~@images/backgrounds/page-000.png", 500px, 500px);
     }

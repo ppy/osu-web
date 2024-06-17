@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace Tests\Models;
 
+use App\Exceptions\InvariantException;
 use App\Exceptions\ValidationException;
 use App\Libraries\MorphMap;
 use App\Models\BeatmapDiscussion;
@@ -18,11 +19,30 @@ use App\Models\Forum;
 use App\Models\Traits\ReportableInterface;
 use App\Models\User;
 use App\Models\UserReport;
+use Carbon\Carbon;
 use Exception;
 use Tests\TestCase;
 
 class UserReportTest extends TestCase
 {
+    public static function reportableClasses(): array
+    {
+        $reportables = [];
+
+        foreach (MorphMap::MAP as $class => $_name) {
+            if (isset(class_implements($class)[ReportableInterface::class])) {
+                $reportables[] = [$class];
+            }
+        }
+
+        // Sanity check to make sure there are models to test.
+        if (count($reportables) === 0) {
+            throw new Exception('No reportables found');
+        }
+
+        return $reportables;
+    }
+
     private static function getReportableUser(ReportableInterface $reportable)
     {
         return match ($reportable::class) {
@@ -192,21 +212,39 @@ class UserReportTest extends TestCase
         $this->assertTrue(true, 'should not fail getting notification routing url');
     }
 
-    public function reportableClasses(): array
+    public function testReportingAgainAfterAWhile(): void
     {
-        $reportables = [];
+        $reportable = static::makeReportable(User::class);
+        $reporter = User::factory()->create();
 
-        foreach (MorphMap::MAP as $class => $_name) {
-            if (isset(class_implements($class)[ReportableInterface::class])) {
-                $reportables[] = [$class];
-            }
-        }
+        $oldReport = $reportable->reportBy($reporter, static::reportParams([
+            'comments' => 'test',
+        ]));
+        $oldReport->update(['timestamp' => Carbon::now()->subYears(1)]);
 
-        // Sanity check to make sure there are models to test.
-        if (count($reportables) === 0) {
-            throw new Exception('No reportables found');
-        }
+        $this->expectCountChange(fn () => $reportable->fresh()->reportedIn()->count(), 1);
 
-        return $reportables;
+        $reportable->reportBy($reporter, static::reportParams([
+            'comments' => 'test',
+        ]));
+    }
+
+    public function testReportingAgainImmediate(): void
+    {
+        $reportable = static::makeReportable(User::class);
+        $reporter = User::factory()->create();
+
+        $oldReport = $reportable->reportBy($reporter, static::reportParams([
+            'comments' => 'test',
+        ]));
+        $oldReport->update(['timestamp' => Carbon::now()->subMinute(1)]);
+
+        $this->expectCountChange(fn () => $reportable->fresh()->reportedIn()->count(), 0);
+
+        $this->expectExceptionCallable(function () use ($reportable, $reporter) {
+            $reportable->reportBy($reporter, static::reportParams([
+                'comments' => 'test',
+            ]));
+        }, InvariantException::class, osu_trans('errors.user_report.recently_reported'));
     }
 }

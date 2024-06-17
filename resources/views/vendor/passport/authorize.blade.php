@@ -16,7 +16,7 @@
         <div class="dialog-form__dialog">
             <div
                 class="dialog-form__row dialog-form__row--header"
-                style="background-image: url('{{ $user->profileCustomization()->cover()->url() }}')"
+                style="background-image: url('{{ $user->cover()->url() }}')"
             >
                 <div class="dialog-form__header-overlay"></div>
                 <a
@@ -69,40 +69,42 @@
             <div class="dialog-form__row dialog-form__row--wrong-user">
                 {!! osu_trans('common.wrong_user._', [
                     'user' => e($user->username),
-                    'logout_link' => link_to_route(
-                        'logout',
+                    'logout_link' => link_to(
+                        route('logout'),
                         osu_trans('common.wrong_user.logout_link'),
-                        [],
                         [
                             'class' => 'dialog-form__extra-link',
                             'data-confirm' => osu_trans('users.logout_confirm'),
                             'data-method' => 'DELETE',
                             'data-reload-on-success' => '1',
                             'data-remote' => '1',
-                        ]
+                        ],
                     ),
                 ]) !!}
             </div>
             <div class="dialog-form__row dialog-form__row--buttons">
-                {!! Form::open([
-                    'url' => '/oauth/authorize',
-                    'method' => 'POST',
-                ]) !!}
+                <form
+                    action="{{ route('oauth.authorizations.authorize') }}"
+                    method="POST"
+                >
+                    @csrf
                     <button class="dialog-form__button">
                         {{ osu_trans('common.buttons.authorise') }}
                     </button>
-                {!! Form::close() !!}
+                </form>
 
-                {!! Form::open([
-                    'url' => '/oauth/authorize',
-                    'method' => 'DELETE',
-                ]) !!}
+                <form
+                    action="{{ route('oauth.authorizations.authorize') }}"
+                    method="POST"
+                >
+                    @csrf
+                    <input name="_method" value="DELETE" type="hidden" />
                     <button
                         class="dialog-form__button dialog-form__button--cancel"
                     >
                         {{ osu_trans('common.buttons.cancel') }}
                     </button>
-                {!! Form::close() !!}
+                </form>
             </div>
         </div>
     </div>

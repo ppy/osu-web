@@ -78,6 +78,18 @@ return [
             'suggestion' => 'Öneri',
         ],
 
+        'message_type_title' => [
+            'disqualify' => 'Diskalifiye Gönder',
+            'hype' => 'Hype Gönder!',
+            'mapper_note' => 'Not Paylaş',
+            'nomination_reset' => 'Tüm Adaylıkları Kaldır',
+            'praise' => 'Övgü Gönder',
+            'problem' => 'Sorun Bildir',
+            'problem_warning' => 'Sorun Bildir',
+            'review' => 'Değerlendirme Gönder',
+            'suggestion' => 'Öneri Gönder',
+        ],
+
         'mode' => [
             'events' => 'Geçmiş',
             'general' => 'Genel :scope',
@@ -162,7 +174,7 @@ return [
         'button_done' => 'Çoktan Gazlandı!',
         'confirm' => "Emin misiniz? Bu işlem kalan :n adet gaz hakkından birini kullanacak ve geriye alınamayacak.",
         'explanation' => 'Bu beatmapi aday gösterilmesi ve dereceli olması için daha görünür yapmak için gazla!',
-        'explanation_guest' => 'Giriş yap ve bu beatmapi gazlayarak, aday gösterilmesi ve dereceli olması için daha görünür yap!',
+        'explanation_guest' => 'Bu beatmapi aday gösterilmesi ve dereceli olması için daha görünür yapmak için gazlamak için giriş yap!',
         'new_time' => "Bir sonraki gaz :new_time tarihinde gelecek.",
         'remaining' => ':remaining gazınız kaldı.',
         'required_text' => 'Gaz: :current/:required',
@@ -201,6 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'Herhangi bir sorun bulunmazsa mapin tahminen dereceli olacağı vakit :date. :queue :position. sırada bulunuyor.',
+            'unresolved_problems' => 'Bu map şuanda :problems çözülene kadar nitelikli bölümünden çıkması engellenmiştir.',
+            'problems' => 'bu problemler',
             'on' => ':date tarihinde',
             'queue' => 'Derecelendirme sırasında',
             'soon' => 'çok yakın',
@@ -269,6 +283,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
+        'undefined' => '',
     ],
     'status' => [
         'any' => 'Hepsi',

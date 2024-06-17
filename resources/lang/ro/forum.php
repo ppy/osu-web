@@ -10,7 +10,7 @@ return [
     'title' => 'Forum-uri osu!',
 
     'covers' => [
-        'edit' => 'Editează fundalul',
+        'edit' => 'Editează coperta',
 
         'create' => [
             '_' => 'Setează imaginea de fundal',
@@ -321,7 +321,7 @@ return [
         ],
 
         'moderate_toggle_deleted' => [
-            'show' => 'Arată postări șterse',
+            'show' => 'Afișează postări șterse',
             'hide' => 'Ascunde postări șterse',
         ],
 

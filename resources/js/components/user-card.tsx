@@ -3,6 +3,7 @@
 
 import BlockButton from 'components/block-button';
 import FriendButton from 'components/friend-button';
+import Reportable from 'interfaces/reportable';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import * as _ from 'lodash';
@@ -18,7 +19,7 @@ import { PopupMenuPersistent } from './popup-menu-persistent';
 import { ReportReportable } from './report-reportable';
 import { Spinner } from './spinner';
 import StringWithComponent from './string-with-component';
-import { SupporterIcon } from './supporter-icon';
+import SupporterIcon from './supporter-icon';
 import TimeWithTooltip from './time-with-tooltip';
 import UserCardBrick from './user-card-brick';
 import UserGroupBadges from './user-group-badges';
@@ -30,6 +31,7 @@ interface Props {
   activated: boolean;
   mode: ViewMode;
   modifiers?: Modifiers;
+  reportable?: Reportable;
   user?: UserJson | null;
 }
 
@@ -178,7 +180,7 @@ export class UserCard extends React.PureComponent<Props, State> {
       this.isOnline ? ['online'] : [],
     );
 
-    if (this.user.cover && this.user.cover.url) {
+    if (this.user.cover?.url != null) {
       let backgroundCssClass = 'user-card__background';
       if (!this.state.backgroundLoaded) {
         backgroundCssClass += ' user-card__background--loading';
@@ -228,7 +230,7 @@ export class UserCard extends React.PureComponent<Props, State> {
           <>
             {this.user.is_supporter && (
               <a className='user-card__icon' href={route('support-the-game')}>
-                <SupporterIcon modifiers={['user-card']} />
+                <SupporterIcon modifiers='user-card' />
               </a>
             )}
             <div className='user-card__icon'>
@@ -254,7 +256,7 @@ export class UserCard extends React.PureComponent<Props, State> {
       <div className='user-card__icons'>
         {this.user.is_supporter && (
           <a className='user-card__icon' href={route('support-the-game')}>
-            <SupporterIcon level={this.user.support_level} modifiers={['user-list']} />
+            <SupporterIcon level={this.user.support_level} modifiers='user-list' />
           </a>
         )}
 
@@ -304,8 +306,8 @@ export class UserCard extends React.PureComponent<Props, State> {
           className='simple-menu__item'
           icon
           onFormOpen={dismiss}
-          reportableId={this.user.id.toString()}
-          reportableType='user'
+          reportableId={this.props.reportable?.id ?? this.user.id.toString()}
+          reportableType={this.props.reportable?.type ?? 'user'}
           user={this.user}
         />
       </div>

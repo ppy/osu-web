@@ -40,15 +40,20 @@ return [
     ],
 
     'nominate' => [
+        'bng_limited_too_many_rulesets' => '',
+        'full_nomination_required' => '',
         'hybrid_requires_modes' => 'Hybridná beatmapa vyžaduje, aby ste vybrali aspoň jeden herný režim k nominovaní.',
         'incorrect_mode' => 'Nemáte oprávnenie nominovať za mód: :mode',
-        'full_bn_required' => 'Musíte byť úplný nominátor, aby ste mohli kvalifikovať túto nomináciu.',
+        'invalid_limited_nomination' => '',
+        'invalid_ruleset' => '',
         'too_many' => 'Požiadavka na nomináciu je už splnená.',
+        'too_many_non_main_ruleset' => '',
 
         'dialog' => [
             'confirmation' => 'Ste si istí, že chcete nominovať tuto beatmapu?',
             'header' => 'Nominovať beatmapu',
             'hybrid_warning' => 'poznámka: môžete nominovať len raz, takže sa uistite, že nominujete za všetky herné režimy, ktoré chcete',
+            'current_main_ruleset' => '',
             'which_modes' => 'Nominovať pre aké módy?',
         ],
     ],
@@ -59,6 +64,10 @@ return [
 
     'show' => [
         'discussion' => 'Diskusia',
+
+        'admin' => [
+            'full_size_cover' => '',
+        ],
 
         'deleted_banner' => [
             'title' => 'Táto beatmapa bola odstránená. ',

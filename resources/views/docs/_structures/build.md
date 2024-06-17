@@ -20,9 +20,9 @@ Field           | Type
 ----------------|-----
 created_at      | [Timestamp](#timestamp)
 display_version | string
-id              | number
+id              | integer
 update_stream   | [UpdateStream](#updatestream)?
-users           | number
+users           | integer
 version         | string?
 youtube_id      | string?
 

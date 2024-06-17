@@ -97,6 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
+            'inactive' => "",
             'inactive_different_country' => "",
         ],
     ],
@@ -120,6 +121,17 @@ return [
         'beta' => [
             'main' => 'Beta piekļuve šobrīd ir pieejama tikai privileģētiem profiliem.',
             'small' => '(osu!atbalstītāji drīz pienāks klāt)',
+        ],
+    ],
+
+    'ogp' => [
+        'modding_description' => '',
+        'modding_description_empty' => '',
+
+        'description' => [
+            '_' => '',
+            'country' => '',
+            'global' => '',
         ],
     ],
 
@@ -175,7 +187,6 @@ return [
         'origin_country' => 'No :country',
         'previous_usernames' => 'agrāk pazīstams kā',
         'plays_with' => 'Spēlē ar :devices',
-        'title' => ":username profils",
 
         'comments_count' => [
             '_' => '',
@@ -387,7 +398,7 @@ return [
                     'date' => 'datums',
                     'action' => 'darbība',
                     'length' => 'ilgums',
-                    'length_permanent' => 'Neatgriezenisks',
+                    'length_indefinite' => '',
                     'description' => 'apraksts',
                     'actor' => 'no :username',
 

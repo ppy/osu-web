@@ -23,6 +23,10 @@ return [
         'used' => 'Потрошен',
     ],
 
+    'performance' => [
+        'insufficient_history' => '',
+    ],
+
     'type' => [
         'charts' => 'колекције',
         'country' => 'држава',

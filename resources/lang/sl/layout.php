@@ -86,7 +86,6 @@ return [
         ],
         'rankings' => [
             '_' => 'uvrstitve',
-            'kudosu' => 'kudosu',
         ],
         'store' => [
             '_' => 'trgovina',
@@ -112,6 +111,7 @@ return [
         'legal' => [
             '_' => 'Pravno & Stanje',
             'copyright' => 'Avtorske pravice (DMCA)',
+            'jp_sctl' => '',
             'privacy' => 'Zasebnost',
             'server_status' => 'Stanje Strežnika',
             'source_code' => 'Izvorna Koda',
@@ -195,6 +195,8 @@ return [
             'account-edit' => 'Nastavitve',
             'follows' => 'Opazovani seznami',
             'friends' => 'Prijatelji',
+            'legacy_score_only_toggle' => '',
+            'legacy_score_only_toggle_tooltip' => '',
             'logout' => 'Odjavi se',
             'profile' => 'Moj profil',
         ],

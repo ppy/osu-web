@@ -86,7 +86,6 @@ return [
         ],
         'rankings' => [
             '_' => 'kataasan',
-            'kudosu' => 'kudosu',
         ],
         'store' => [
             '_' => 'tindahan',
@@ -112,6 +111,7 @@ return [
         'legal' => [
             '_' => 'Legal & Status',
             'copyright' => 'Copyright (DMCA)',
+            'jp_sctl' => '',
             'privacy' => 'Palihim',
             'server_status' => 'Katayuan ng server',
             'source_code' => 'Source Code',
@@ -195,6 +195,8 @@ return [
             'account-edit' => 'Mga Setting',
             'follows' => 'Tala ng mga binabantayan',
             'friends' => 'Mga Kaibigan',
+            'legacy_score_only_toggle' => 'Lazer mode',
+            'legacy_score_only_toggle_tooltip' => 'Ang Lazer mode ay nagpapakita ng mga iskor na itinakda mula sa lazer na may bagong algorithm sa pag-iskor',
             'logout' => 'Mag-sign Out',
             'profile' => 'Aking Profile',
         ],

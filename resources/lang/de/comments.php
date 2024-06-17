@@ -26,9 +26,9 @@ return [
     'editor' => [
         'textarea_hint' => [
             '_' => 'Drücke Enter, um zu :action. Benutze Shift+Enter für eine neue Zeile.',
-            'edit' => 'speichern',
+            'edit' => 'Speichern',
             'new' => 'posten',
-            'reply' => 'antworten',
+            'reply' => 'Antworten',
         ],
     ],
 
@@ -41,6 +41,10 @@ return [
         'nav_comments' => 'Kommentare',
         'nav_title' => 'Auflistung',
         'no_comments' => 'keine Kommentare gefunden...',
+    ],
+
+    'ogp' => [
+        'title' => 'Kommentar von :user',
     ],
 
     'placeholder' => [

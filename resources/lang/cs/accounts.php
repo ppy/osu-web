@@ -10,14 +10,18 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
-            'rules' => 'Prosím ujistěte se, že Váš avatar dodržuje :link.<br/>To znamená, že musí být <strong>vhodný pro všechny věkové kategorie</strong>. Tj. žádný nahota či nenávistný obsah.',
-            'rules_link' => 'pravidla komunity',
+            'rules' => 'Ujisti se prosím, že tvůj avatar dodržuje :link.<br/>To znamená, že musí být <strong>vhodný pro všechny věkové kategorie</strong>. Tj. žádná nahota, žádný urážlivý či sugestivní obsah.',
+            'rules_link' => 'kritéria vizuálního obsahu',
         ],
 
         'email' => [
             'new' => 'nový e-mail',
             'new_confirmation' => 'ověření e-mailu',
             'title' => 'E-mail',
+            'locked' => [
+                '_' => 'Kontaktujte prosím :accounts, pokud potřebujete aktualizovat svoji emailovou adresu.',
+                'accounts' => 'tým podpory pro účty',
+            ],
         ],
 
         'legacy_api' => [
@@ -34,12 +38,12 @@ return [
         ],
 
         'profile' => [
-            'country' => '',
+            'country' => 'země',
             'title' => 'Profil',
 
             'country_change' => [
-                '_' => "",
-                'update_link' => '',
+                '_' => "Vypadá to, že země zvolená na Vašem účtu neodpovídá zemi Vašeho bydliště. :update_link.",
+                'update_link' => 'Změnit na :country',
             ],
 
             'user' => [
@@ -55,6 +59,19 @@ return [
         'signature' => [
             'title' => 'Podpis',
             'update' => 'aktualizovat',
+        ],
+    ],
+
+    'github_user' => [
+        'info' => "Pokud jste přispěvatelem do repozitářů s otevřeným zdrojovým kódem osu!, propojením vašeho účtu GitHub zde budou vaše záznamy změn spojeny s vaším osu! profilem. Účty GitHub bez historie příspěvků s osu! nelze propojit.",
+        'link' => 'Připojit GitHub účet',
+        'title' => 'GitHub',
+        'unlink' => 'Odpojit GitHub účet',
+
+        'error' => [
+            'already_linked' => 'Tento GitHub účet je již propojen s jiným uživatelem.',
+            'no_contribution' => 'Nelze propojit GitHub účet bez historie příspěvků v osu! repozitářích.',
+            'unverified_email' => 'Ověřte prosím svůj primární e-mail na GitHubu a pak zkuste znovu propojit svůj účet.',
         ],
     ],
 
@@ -75,7 +92,6 @@ return [
             'mail' => 'e-mail',
             'mapping' => 'tvůrce beatmapy',
             'push' => 'push',
-            'user_achievement_unlock' => 'odemčení nové medaile',
         ],
     ],
 

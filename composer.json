@@ -15,9 +15,9 @@
     }
   ],
   "require": {
-    "anhskohbo/no-captcha": "^3.2",
+    "ext-ds": "*",
+    "ext-redis": "*",
     "chaseconey/laravel-datadog-helper": ">=1.2.0",
-    "doctrine/dbal": "^3.1",
     "egulias/email-validator": "*",
     "elasticsearch/elasticsearch": "^7.12.0",
     "ezyang/htmlpurifier": "*",
@@ -27,24 +27,24 @@
     "itsgoingd/clockwork": "^5.1",
     "jenssegers/agent": "*",
     "knuckleswtf/scribe": "^4.0",
-    "laravel/framework": "^10.0",
+    "laravel/framework": "^10.15.0",
     "laravel/helpers": "*",
     "laravel/octane": "*",
     "laravel/passport": "*",
     "laravel/slack-notification-channel": "*",
     "laravel/tinker": "*",
-    "laravelcollective/html": "*",
     "league/commonmark": "^2.0",
     "league/flysystem-aws-s3-v3": "*",
     "league/fractal": "*",
+    "league/oauth2-github": "^3.1",
     "league/oauth2-server": "^8.3",
     "maennchen/zipstream-php": "^2.1",
     "mariuzzo/laravel-js-localization": "*",
     "paypal/paypal-checkout-sdk": "*",
-    "php-ds/php-ds": "^1.3",
+    "romanzipp/laravel-turnstile": "^1.3",
     "sentry/sentry-laravel": "*",
     "symfony/yaml": "*",
-    "tightenco/ziggy": ">=0.8.1",
+    "tightenco/ziggy": "^1.8",
     "xsolla/xsolla-sdk-php": "dev-php81"
   },
   "require-dev": {
@@ -90,7 +90,7 @@
     "sort-packages": true,
     "optimize-autoloader": true,
     "platform": {
-      "php": "8.1.0"
+      "php": "8.3.0"
     },
     "allow-plugins": {
       "composer/package-versions-deprecated": true,

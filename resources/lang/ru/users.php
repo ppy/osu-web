@@ -97,6 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
+            'inactive' => "Вы не пользовались аккаунтом в течение долгого времени.",
             'inactive_different_country' => "Вы не пользовались аккаунтом в течение долгого времени.",
         ],
     ],
@@ -120,6 +121,17 @@ return [
         'beta' => [
             'main' => 'Доступ к бета-версии ограничен.',
             'small' => '(владельцы osu!supporter получат доступ позже)',
+        ],
+    ],
+
+    'ogp' => [
+        'modding_description' => 'Карты пользователя: :counts',
+        'modding_description_empty' => 'У пользователя нет своих карт...',
+
+        'description' => [
+            '_' => 'Рейтинг (:ruleset): :global | :country',
+            'country' => 'В стране :rank',
+            'global' => 'В мире :rank',
         ],
     ],
 
@@ -175,7 +187,6 @@ return [
         'origin_country' => 'Проживает в :country',
         'previous_usernames' => 'ранее известный как',
         'plays_with' => 'Играет с :devices',
-        'title' => "Профиль :username",
 
         'comments_count' => [
             '_' => ':link',
@@ -188,7 +199,7 @@ return [
         'edit' => [
             'cover' => [
                 'button' => 'Сменить обложку профиля',
-                'defaults_info' => 'Больше вариантов в недалёком будущем',
+                'defaults_info' => 'Скоро будет доступно ещё больше обложек на выбор!',
                 'upload' => [
                     'broken_file' => 'Не удалось обработать изображение. Проверьте загруженное изображение и попробуйте снова.',
                     'button' => 'Загрузить изображение',
@@ -261,7 +272,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'График игр по месяцам',
-                    'count_label' => 'Игр',
+                    'count_label' => 'Игры:',
                 ],
                 'most_played' => [
                     'count' => 'количество раз сыграно',
@@ -273,7 +284,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'История просмотров записей игр',
-                    'count_label' => 'Просмотрено записей',
+                    'count_label' => 'Просмотры:',
                 ],
             ],
             'kudosu' => [
@@ -287,34 +298,34 @@ return [
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
-                            'give' => 'Получено :amount за ответ в :post',
+                            'give' => 'Начислено :amount за снятие вето на получение кудосу за отзыв о карте :post',
                         ],
 
                         'deny_kudosu' => [
-                            'reset' => 'Отнято :amount за ответ в :post',
+                            'reset' => 'Снято :amount за отзыв о карте :post',
                         ],
 
                         'delete' => [
-                            'reset' => 'Потеряно :amount за удаление ответа в посте :post',
+                            'reset' => 'Списано :amount за удаление отзыва о карте :post',
                         ],
 
                         'restore' => [
-                            'give' => 'Получено :amount за восстановление ответа в посте :post',
+                            'give' => 'Начислено :amount за восстановление отзыва в :post',
                         ],
 
                         'vote' => [
-                            'give' => 'Получено :amount за получение голосов в посте :post',
-                            'reset' => 'Потеряно :amount за потерю голосов в посте :post',
+                            'give' => 'Начислено :amount за получение голосов за отзыв о карте :post',
+                            'reset' => 'Списано :amount за потерю голосов за отзыв о карте :post',
                         ],
 
                         'recalculate' => [
-                            'give' => 'Получено :amount за перерасчёт голосов в посте :post',
-                            'reset' => 'Потеряно :amount за перерасчёт голосов в посте :post',
+                            'give' => 'Начислено :amount за перерасчёт голосов у отзыва о карте :post',
+                            'reset' => 'Списано :amount за перерасчёт голосов за отзыв о карте :post',
                         ],
                     ],
 
                     'forum_post' => [
-                        'give' => 'Получено :amount от :giver за сообщение в посте :post',
+                        'give' => 'Начислено :amount от :giver за пост в отзыве :post',
                         'reset' => ':giver сбросил кудосу за ответ в посте :post',
                         'revoke' => ':giver отнял кудосу за ответ в посте :post',
                     ],
@@ -329,7 +340,7 @@ return [
                 'title' => 'обо мне!',
             ],
             'medals' => [
-                'empty' => "Этот пользователь ещё ничего не получил. ;_;",
+                'empty' => "Этот пользователь пока не получил ни одной медали. ;_;",
                 'recent' => 'Последние полученные медали',
                 'title' => 'Медали',
             ],
@@ -380,21 +391,21 @@ return [
             'account_standing' => [
                 'title' => 'Нарушения',
                 'bad_standing' => "С аккаунтом :username не всё хорошо :(",
-                'remaining_silence' => ':username сможет общаться снова через :duration.',
+                'remaining_silence' => ':username снова сможет общаться :duration.',
 
                 'recent_infringements' => [
                     'title' => 'Недавние',
                     'date' => 'Дата',
                     'action' => 'действие',
                     'length' => 'продолжительность',
-                    'length_permanent' => 'Навсегда',
+                    'length_indefinite' => 'Бессрочно',
                     'description' => 'описание',
                     'actor' => ':username',
 
                     'actions' => [
                         'restriction' => 'Бан',
                         'silence' => 'Заглушение',
-                        'tournament_ban' => 'Запрет на участие в турнирах',
+                        'tournament_ban' => 'Турнирный бан',
                         'note' => 'Заметка',
                     ],
                 ],
@@ -434,9 +445,9 @@ return [
         'rank' => [
             'country' => 'Рейтинг стран для :mode',
             'country_simple' => 'Рейтинг в стране',
-            'global' => 'Глобальный рейтинг для :mode',
+            'global' => 'Мировой рейтинг для :mode',
             'global_simple' => 'Рейтинг в мире',
-            'highest' => 'Наивысший: :rank, :date',
+            'highest' => 'Наивысший: :rank от :date',
         ],
         'stats' => [
             'hit_accuracy' => 'Точность попаданий',
@@ -460,7 +471,7 @@ return [
     ],
 
     'silenced_banner' => [
-        'title' => 'Вы сейчас заглушены.',
+        'title' => 'Вы временно лишены возможности общаться.',
         'message' => 'Некоторые действия могут быть недоступны.',
     ],
 

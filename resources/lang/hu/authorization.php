@@ -81,6 +81,7 @@ return [
     ],
 
     'contest' => [
+        'judging_not_active' => 'A verseny zsűrizése nem aktív.',
         'voting_over' => 'Nem változtathatod meg a szavazatod, mert ennek a versenynek a szavazási ideje lejárt.',
 
         'entry' => [
@@ -172,6 +173,7 @@ return [
     'score' => [
         'pin' => [
             'disabled_type' => "Nem lehet ilyen típusú pontszámot kitűzni",
+            'failed' => "Nem passzolt pontszám nem rögzíthető.",
             'not_owner' => 'Csak eredménnyel rendelkezők tűzhetnek ki eredményeket.',
             'too_many' => 'Túl sok kitűzött eredmény.',
         ],
@@ -184,6 +186,9 @@ return [
                 'not_owner' => 'Csak a saját felhasználói oldaladat szerkesztheted.',
                 'require_supporter_tag' => 'osu!támogatói cím szükséges.',
             ],
+        ],
+        'update_email' => [
+            'locked' => 'email cím zárva',
         ],
     ],
 ];

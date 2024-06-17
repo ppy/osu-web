@@ -6,7 +6,7 @@
 return [
     'index' => [
         'description' => '共通のテーマを有するビートマップを集めたパックです。',
-        'empty' => '',
+        'empty' => '近日公開！',
         'nav_title' => '一覧',
         'title' => 'ビートマップパック',
 
@@ -39,7 +39,7 @@ return [
         'loved' => '',
         'standard' => 'スタンダードパック',
         'theme' => 'テーマ',
-        'tournament' => '',
+        'tournament' => 'トーナメント',
     ],
 
     'require_login' => [

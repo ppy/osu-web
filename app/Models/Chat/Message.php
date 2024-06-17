@@ -8,6 +8,8 @@ namespace App\Models\Chat;
 use App\Models\Traits\Reportable;
 use App\Models\Traits\ReportableInterface;
 use App\Models\User;
+use Carbon\Carbon;
+use Illuminate\Support\Collection;
 
 /**
  * @property Channel $channel
@@ -22,6 +24,24 @@ use App\Models\User;
 class Message extends Model implements ReportableInterface
 {
     use Reportable;
+
+    public static function filterBacklogs(Channel $channel, Collection $messages): Collection
+    {
+        if (!$channel->isPublic()) {
+            return $messages;
+        }
+
+        $minTimestamp = json_time(Carbon::now()->subHours($GLOBALS['cfg']['osu']['chat']['public_backlog_limit']));
+        $ret = [];
+
+        foreach ($messages as $message) {
+            if ($message->timestamp_json > $minTimestamp) {
+                $ret[] = $message;
+            }
+        }
+
+        return collect($ret);
+    }
 
     public ?string $uuid = null;
 
@@ -76,7 +96,7 @@ class Message extends Model implements ReportableInterface
             ->with('channel')
             ->limit(5)
             ->get()
-            ->map(fn ($m) => "**{$m->timestamp_json} {$m->channel->name}:**\n{$m->content}\n")
+            ->map(fn ($m) => "**<t:{$m->timestamp->timestamp}:R> {$m->channel->name}:**\n{$m->content}\n")
             ->reverse()
             ->join("\n");
 

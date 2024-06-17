@@ -78,6 +78,18 @@ return [
             'suggestion' => '建議',
         ],
 
+        'message_type_title' => [
+            'disqualify' => '取消提名',
+            'hype' => '推薦！',
+            'mapper_note' => '備注',
+            'nomination_reset' => '刪除所有提名',
+            'praise' => '表揚',
+            'problem' => '問題',
+            'problem_warning' => '問題警告',
+            'review' => '評論',
+            'suggestion' => '建議',
+        ],
+
         'mode' => [
             'events' => '歷史',
             'general' => '整體:scope',
@@ -201,6 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => '若沒找到問題，該圖譜將於 :date 進榜。位於 :queue 中的 #:position。',
+            'unresolved_problems' => '除非已解決 :problems，否則這張圖譜會一直處於已提名狀態。',
+            'problems' => '這些問題',
             'on' => '在:date',
             'queue' => 'ranking 列隊',
             'soon' => '不久後',
@@ -269,6 +283,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
+        'undefined' => '',
     ],
     'status' => [
         'any' => '所有',

@@ -13,7 +13,7 @@ return [
 
     'common' => [
         'closing' => '',
-        'hello' => '',
+        'hello' => 'Сәлем :user,',
         'report' => '',
         'ignore' => '',
     ],
@@ -23,7 +23,7 @@ return [
         'feedback' => "",
         'keep_free' => '',
         'keep_running' => '',
-        'subject' => '',
+        'subject' => 'Рахмет, osu! сізді <3',
         'translation' => '',
 
         'benefit' => [
@@ -58,7 +58,7 @@ return [
         'shipping' => '',
         'subject' => '',
         'thank_you' => '',
-        'total' => '',
+        'total' => 'Барлығы',
     ],
 
     'supporter_gift' => [
@@ -81,7 +81,7 @@ return [
     'user_force_reactivation' => [
         'main' => '',
         'perform_reset' => '',
-        'reason' => '',
+        'reason' => 'Себеп:',
         'subject' => '',
     ],
 

@@ -9,7 +9,7 @@ return [
         'online' => '',
         'peak' => '',
         'players' => '',
-        'title' => '',
+        'title' => 'қош келдіңіз',
         'see_more_news' => '',
 
         'slogan' => [
@@ -20,72 +20,71 @@ return [
 
     'search' => [
         'advanced_link' => '',
-        'button' => '',
-        'empty_result' => '',
-        'keyword_required' => '',
-        'placeholder' => '',
-        'title' => '',
+        'button' => 'Іздеу',
+        'empty_result' => 'Ештеңе табылмады!',
+        'keyword_required' => 'Іздеу үшін кілт сөз керек',
+        'placeholder' => 'іздеу үшін жазыңыз',
+        'title' => 'іздеу',
 
         'beatmapset' => [
-            'login_required' => '',
-            'more' => '',
+            'login_required' => 'Карталарды іздеу үшін аккаунтыңызға кіріңіз',
+            'more' => 'басқа :count карта табылды',
             'more_simple' => '',
-            'title' => '',
+            'title' => 'Карталар',
         ],
 
         'forum_post' => [
-            'all' => '',
-            'link' => '',
-            'login_required' => '',
+            'all' => 'Барлық форумдар',
+            'link' => 'Форумда іздеу',
+            'login_required' => 'Форумда іздеу үшін аккаунтыңызға кіріңіз',
             'more_simple' => '',
-            'title' => '',
+            'title' => 'Форум',
 
             'label' => [
                 'forum' => '',
                 'forum_children' => '',
                 'include_deleted' => '',
                 'topic_id' => '',
-                'username' => '',
+                'username' => 'автор',
             ],
         ],
 
         'mode' => [
-            'all' => '',
-            'beatmapset' => '',
-            'forum_post' => '',
-            'user' => '',
-            'wiki_page' => '',
+            'all' => 'бәрі',
+            'beatmapset' => 'карта',
+            'forum_post' => 'форум',
+            'user' => 'ойыншы',
+            'wiki_page' => 'wiki',
         ],
 
         'user' => [
-            'login_required' => '',
+            'login_required' => 'Ойыншыларды іздеу үшін аккаунтыңызға кіріңіз',
             'more' => '',
             'more_simple' => '',
             'more_hidden' => '',
-            'title' => '',
+            'title' => 'Ойыншылар',
         ],
 
         'wiki_page' => [
-            'link' => '',
-            'more_simple' => '',
-            'title' => '',
+            'link' => 'Wiki-да іздеу',
+            'more_simple' => 'Wiki-ның өзге нәтижерелін қарау',
+            'title' => 'Wiki',
         ],
     ],
 
     'download' => [
-        'action' => '',
-        'action_lazer' => '',
+        'action' => 'osu! жүктеу',
+        'action_lazer' => 'osu!(lazer) жүктеу',
         'action_lazer_description' => '',
         'action_lazer_info' => '',
         'action_lazer_title' => '',
         'action_title' => '',
-        'for_os' => '',
-        'lazer_note' => '',
-        'macos-fallback' => '',
-        'mirror' => '',
-        'or' => '',
-        'os_version_or_later' => '',
-        'other_os' => '',
+        'for_os' => ':os-қа',
+        'macos-fallback' => 'macOS қолданушылар',
+        'mirror' => 'айна',
+        'or' => 'немесе',
+        'os_version_or_later' => ':os_version немесе жаңарақ',
+        'other_os' => 'басқа платформалар',
         'quick_start_guide' => '',
         'tagline' => "",
         'video-guide' => '',
@@ -97,21 +96,21 @@ return [
         ],
 
         'os' => [
-            'windows' => '',
-            'macos' => '',
-            'linux' => '',
+            'windows' => 'Windows үшін',
+            'macos' => 'macOS үшін ',
+            'linux' => 'Linux үшін',
         ],
         'steps' => [
             'register' => [
-                'title' => '',
+                'title' => 'аккаунты тіркеу',
                 'description' => '',
             ],
             'download' => [
-                'title' => '',
+                'title' => 'ойынды жүктеу',
                 'description' => '',
             ],
             'beatmaps' => [
-                'title' => '',
+                'title' => 'карталарды жүктеу',
                 'description' => [
                     '_' => '',
                     'browse' => '',
@@ -123,13 +122,13 @@ return [
     'user' => [
         'title' => '',
         'news' => [
-            'title' => '',
+            'title' => 'Жаңалықтар',
             'error' => '',
         ],
         'header' => [
             'stats' => [
                 'friends' => '',
-                'games' => '',
+                'games' => 'Ойын',
                 'online' => '',
             ],
         ],

@@ -20,7 +20,7 @@ return [
 
         'destroy' => [
             '_' => 'Eliminar portada',
-            'confirm' => '¿Seguro que desea eliminar la imagen de portada?',
+            'confirm' => '¿Seguro que quieres eliminar la imagen de portada?',
         ],
     ],
 
@@ -44,7 +44,7 @@ return [
     ],
 
     'post' => [
-        'confirm_destroy' => '¿Realmente desea eliminar la publicación?',
+        'confirm_destroy' => '¿Realmente deseas eliminar la publicación?',
         'confirm_restore' => '¿Realmente desea restaurar la publicación?',
         'edited' => 'Última edición por :user :when, editado :count_delimited vez en total.|Última edición por :user :when, editado :count_delimited veces en total.',
         'posted_at' => 'publicado :when',
@@ -80,14 +80,14 @@ return [
         'confirm_restore' => '¿Realmente desea restaurar el tema?',
         'deleted' => 'tema eliminado',
         'go_to_latest' => 'ver la última publicación',
-        'has_replied' => 'Ha respondido a este tema',
+        'has_replied' => 'Has respondido a este tema',
         'in_forum' => 'en :forum',
         'latest_post' => ':when por :user',
         'latest_reply_by' => 'última respuesta por :user',
         'new_topic' => 'Nuevo tema',
-        'new_topic_login' => 'Inicie sesión para publicar un nuevo tema',
+        'new_topic_login' => 'Inicia sesión para publicar un nuevo tema',
         'post_reply' => 'Publicar',
-        'reply_box_placeholder' => 'Escriba aquí para responder',
+        'reply_box_placeholder' => 'Escribe aquí para responder',
         'reply_title_prefix' => 'Re',
         'started_by' => 'por :user',
         'started_by_verbose' => 'iniciado por :user',
@@ -109,13 +109,13 @@ return [
                 'default' => 'Este tema ha estado inactivo durante mucho tiempo. Solo publique aquí si tiene una razón específica para hacerlo.',
 
                 'new_topic' => [
-                    '_' => "Este tema ha estado inactivo durante mucho tiempo. Si no tiene una razón específica para publicar aquí, por favor :create en su lugar.",
-                    'create' => 'cree un nuevo tema',
+                    '_' => "Este tema ha estado inactivo durante mucho tiempo. Si no tienes una razón específica para publicar aquí, por favor :create en su lugar.",
+                    'create' => 'crea un nuevo tema',
                 ],
             ],
 
             'placeholder' => [
-                'body' => 'Escriba el contenido de la publicación aquí',
+                'body' => 'Escribe el contenido de la publicación aquí',
                 'title' => 'Clic aquí para definir un título',
             ],
         ],
@@ -139,13 +139,13 @@ return [
             ],
 
             'data' => [
-                'add_tag' => 'etiqueta ":tag" agregada',
+                'add_tag' => 'etiqueta «:tag» añadida',
                 'announcement' => 'tema anclado y marcado como anuncio',
                 'edit_topic' => 'a :title',
                 'fork' => 'de :topic',
                 'pin' => 'tema anclado',
                 'post_operation' => 'publicado por :username',
-                'remove_tag' => 'etiqueta removida ":tag"',
+                'remove_tag' => 'etiqueta «:tag» eliminada',
                 'source_forum_operation' => 'de :forum',
                 'unpin' => 'tema sin fijar',
             ],
@@ -210,7 +210,7 @@ return [
         '_' => 'Temas',
 
         'actions' => [
-            'login_reply' => 'Inicie sesión para responder',
+            'login_reply' => 'Inicia sesión para responder',
             'reply' => 'Responder',
             'reply_with_quote' => 'Citar publicación y responder',
             'search' => 'Buscar',
@@ -231,11 +231,11 @@ return [
                 'hide_results_info' => 'Solo se mostrarán después de que finalice la encuesta.',
                 'length' => 'Duración de la encuesta',
                 'length_days_suffix' => 'días',
-                'length_info' => 'Dejar en blanco para una encuesta sin fecha límite.',
+                'length_info' => 'Dejar en blanco para una encuesta sin fecha límite',
                 'max_options' => 'Opciones por usuario',
                 'max_options_info' => 'Este es el número de opciones que un usuario puede seleccionar al votar.',
                 'options' => 'Opciones',
-                'options_info' => 'Escriba cada opción en una nueva línea. Puede introducir hasta 10 opciones.',
+                'options_info' => 'Escribe cada opción en una nueva línea. Puedes introducir hasta 10 opciones.',
                 'title' => 'Pregunta',
                 'vote_change' => 'Permitir volver a votar.',
                 'vote_change_info' => 'Si está activado, los usuarios podrán cambiar su voto.',
@@ -253,45 +253,45 @@ return [
         ],
 
         'issue_tag_added' => [
-            'to_0' => 'Eliminar etiqueta "agregado"',
-            'to_0_done' => 'Etiqueta "agregado" eliminada',
-            'to_1' => 'Agregar etiqueta "agregado"',
-            'to_1_done' => 'Etiqueta "agregado" agregada',
+            'to_0' => 'Eliminar etiqueta «added»',
+            'to_0_done' => 'Etiqueta «added» eliminada',
+            'to_1' => 'Añadir etiqueta «added»',
+            'to_1_done' => 'Etiqueta «added» añadida',
         ],
 
         'issue_tag_assigned' => [
-            'to_0' => 'Eliminar etiqueta "asignado"',
-            'to_0_done' => 'Etiqueta "asignado" eliminada',
-            'to_1' => 'Agregar etiqueta "asignado"',
-            'to_1_done' => 'Etiqueta "asignado" agregada',
+            'to_0' => 'Eliminar etiqueta «assigned»',
+            'to_0_done' => 'Etiqueta «assigned» eliminada',
+            'to_1' => 'Añadir etiqueta «assigned»',
+            'to_1_done' => 'Etiqueta «assigned» añadida',
         ],
 
         'issue_tag_confirmed' => [
-            'to_0' => 'Eliminar etiqueta "confirmado"',
-            'to_0_done' => 'Etiqueta "confirmado" eliminada',
-            'to_1' => 'Agregar etiqueta "confirmado"',
-            'to_1_done' => 'Etiqueta "confirmado" agregada',
+            'to_0' => 'Eliminar etiqueta «confirmed»',
+            'to_0_done' => 'Etiqueta «confirmed» eliminada',
+            'to_1' => 'Añadir etiqueta «confirmed»',
+            'to_1_done' => 'Etiqueta «confirmed» añadida',
         ],
 
         'issue_tag_duplicate' => [
-            'to_0' => 'Eliminar etiqueta "duplicado"',
-            'to_0_done' => 'Etiqueta "duplicado" eliminada',
-            'to_1' => 'Agregar etiqueta "duplicado"',
-            'to_1_done' => 'Etiqueta "duplicado" agregada',
+            'to_0' => 'Eliminar etiqueta «duplicate»',
+            'to_0_done' => 'Etiqueta «duplicate» eliminada',
+            'to_1' => 'Añadir etiqueta «duplicate»',
+            'to_1_done' => 'Etiqueta «duplicate» añadida',
         ],
 
         'issue_tag_invalid' => [
-            'to_0' => 'Eliminar etiqueta "inválido"',
-            'to_0_done' => 'Etiqueta "inválido" eliminada',
-            'to_1' => 'Agregar etiqueta "inválido"',
-            'to_1_done' => 'Etiqueta "inválido" agregada',
+            'to_0' => 'Eliminar etiqueta «invalid»',
+            'to_0_done' => 'Etiqueta «invalid» eliminada',
+            'to_1' => 'Añadir etiqueta «invalid»',
+            'to_1_done' => 'Etiqueta «invalid» añadida',
         ],
 
         'issue_tag_resolved' => [
-            'to_0' => 'Eliminar etiqueta "resuelto"',
-            'to_0_done' => 'Etiqueta "resuelto" eliminada',
-            'to_1' => 'Agregar etiqueta "resuelto"',
-            'to_1_done' => 'Etiqueta "resuelto" agregada',
+            'to_0' => 'Eliminar etiqueta «resolved»',
+            'to_0_done' => 'Etiqueta «resolved» eliminada',
+            'to_1' => 'Añadir etiqueta «resolved»',
+            'to_1_done' => 'Etiqueta «resolved» añadida',
         ],
 
         'lock' => [
@@ -371,8 +371,8 @@ return [
             'to_not_watching' => 'No marcado',
             'to_watching' => 'Marcado',
             'to_watching_mail' => 'Marcado con aviso de notificaciones',
-            'tooltip_mail_disable' => 'Notificación activada. Haga clic para desactivar',
-            'tooltip_mail_enable' => 'Notificación desactivada. Haga clic para activar',
+            'tooltip_mail_disable' => 'Las notificaciones están activadas. Haz clic para desactivarlas',
+            'tooltip_mail_enable' => 'Las notificaciones están desactivadas. Haz clic para activarlas',
         ],
     ],
 ];

@@ -97,6 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
+            'inactive' => "",
             'inactive_different_country' => "Din account har ikke været i brug i lang tid.",
         ],
     ],
@@ -120,6 +121,17 @@ return [
         'beta' => [
             'main' => 'Adgang til betaversionen er i øjeblikket begrænset til priveligerede brugere.',
             'small' => '(osu!supportere ville kunne komme ind snart)',
+        ],
+    ],
+
+    'ogp' => [
+        'modding_description' => '',
+        'modding_description_empty' => '',
+
+        'description' => [
+            '_' => '',
+            'country' => '',
+            'global' => '',
         ],
     ],
 
@@ -175,7 +187,6 @@ return [
         'origin_country' => 'Fra :country',
         'previous_usernames' => 'tidligere kendt som',
         'plays_with' => 'Spiller med :devices',
-        'title' => ":username´s profil",
 
         'comments_count' => [
             '_' => 'Slået op :link',
@@ -387,7 +398,7 @@ return [
                     'date' => 'dato',
                     'action' => 'handling',
                     'length' => 'længde',
-                    'length_permanent' => 'Permanent',
+                    'length_indefinite' => '',
                     'description' => 'beskrivelse',
                     'actor' => 'af :username',
 

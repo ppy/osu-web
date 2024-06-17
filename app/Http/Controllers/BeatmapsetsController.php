@@ -25,6 +25,9 @@ use Carbon\Carbon;
 use DB;
 use Request;
 
+/**
+ * @group Beatmapsets
+ */
 class BeatmapsetsController extends Controller
 {
     public function __construct()
@@ -47,12 +50,16 @@ class BeatmapsetsController extends Controller
     {
         $canAdvancedSearch = priv_check('BeatmapsetAdvancedSearch')->can();
         // only cache if guest user and guest advanced search is disabled
-        $beatmapsets = !auth()->check() && !$canAdvancedSearch
-            ? cache_remember_mutexed('beatmapsets_guest', 600, [], fn () => $this->getSearchResponse([])['content'])
-            : $this->getSearchResponse()['content'];
+        $beatmapsetsJsonString = !Auth::check() && !$canAdvancedSearch
+            ? cache_remember_mutexed(
+                'beatmapsets_guest_str',
+                600,
+                '{}',
+                fn () => json_encode($this->getSearchResponse([])['content'])
+            ) : json_encode($this->getSearchResponse()['content']);
 
         return ext_view('beatmapsets.index', [
-            'beatmapsets' => $beatmapsets,
+            'beatmapsetsJsonString' => $beatmapsetsJsonString,
             'canAdvancedSearch' => $canAdvancedSearch,
         ]);
     }
@@ -95,6 +102,8 @@ class BeatmapsetsController extends Controller
 
             $noindex = !$beatmapset->esShouldIndex();
 
+            set_opengraph($beatmapset);
+
             return ext_view('beatmapsets.show', compact(
                 'beatmapset',
                 'commentBundle',
@@ -106,6 +115,11 @@ class BeatmapsetsController extends Controller
         }
     }
 
+    /**
+     * TODO: documentation
+     *
+     * @usesCursor
+     */
     public function search()
     {
         $response = $this->getSearchResponse();
@@ -212,10 +226,7 @@ class BeatmapsetsController extends Controller
 
         priv_check('BeatmapsetNominate', $beatmapset)->ensureCan();
 
-        $nomination = $beatmapset->nominate(Auth::user(), $params['playmodes'] ?? []);
-        if (!$nomination['result']) {
-            return error_popup($nomination['message']);
-        }
+        $beatmapset->nominate(Auth::user(), $params['playmodes'] ?? []);
 
         BeatmapsetWatch::markRead($beatmapset, Auth::user());
 
@@ -357,7 +368,7 @@ class BeatmapsetsController extends Controller
 
         $records = datadog_timing(function () use ($search) {
             return $search->records();
-        }, config('datadog-helper.prefix_web').'.search', ['type' => 'beatmapset']);
+        }, $GLOBALS['cfg']['datadog-helper']['prefix_web'].'.search', ['type' => 'beatmapset']);
 
         $error = $search->getError();
 

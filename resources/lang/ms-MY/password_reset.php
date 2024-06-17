@@ -5,7 +5,6 @@
 
 return [
     'button' => [
-        'cancel' => 'Batal',
         'resend' => 'Hantar semula e-mel pengesahan',
         'set' => 'Tetap kata laluan',
         'start' => 'Mula',
@@ -37,6 +36,9 @@ return [
     'starting' => [
         'username' => 'Masukkan alamat e-mel atau nama pengguna',
 
+        'reason' => [
+            'inactive_different_country' => "",
+        ],
         'support' => [
             '_' => 'Perlukan bantuan lebih lanjut? Hubungi :button kami.',
             'button' => 'layanan dukungan',

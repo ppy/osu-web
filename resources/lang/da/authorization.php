@@ -81,6 +81,7 @@ return [
     ],
 
     'contest' => [
+        'judging_not_active' => '',
         'voting_over' => 'Du kan ikke ændre din stemme efter stemmeperioden for denne konkurrence er slut.',
 
         'entry' => [
@@ -172,6 +173,7 @@ return [
     'score' => [
         'pin' => [
             'disabled_type' => "",
+            'failed' => "",
             'not_owner' => 'Kun score ejer kan pin score.',
             'too_many' => 'Fastgjort for mange score.',
         ],
@@ -184,6 +186,9 @@ return [
                 'not_owner' => 'Du kan kun redigere din egen brugerside.',
                 'require_supporter_tag' => 'osu!supporter tag er nødvendigt.',
             ],
+        ],
+        'update_email' => [
+            'locked' => '',
         ],
     ],
 ];

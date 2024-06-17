@@ -13,9 +13,9 @@ return [
     'room' => [
         'hosted_by' => '',
         'invalid_password' => '',
-        'map_count' => '',
-        'player_count' => '',
-        'time_left' => '',
+        'map_count' => ':count_delimited карта',
+        'player_count' => ':count_delimited ойыншы',
+        'time_left' => ':time қалды',
 
         'errors' => [
             'duration_too_long' => '',
@@ -23,8 +23,8 @@ return [
 
         'status' => [
             'active' => '',
-            'ended' => '',
-            'soon' => '',
+            'ended' => 'аяқталды',
+            'soon' => 'жақын арада аяқталады',
         ],
     ],
 ];

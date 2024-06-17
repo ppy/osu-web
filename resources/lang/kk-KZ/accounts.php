@@ -18,6 +18,10 @@ return [
             'new' => 'жаңа пошта',
             'new_confirmation' => 'email-ды растаңыз',
             'title' => 'Email',
+            'locked' => [
+                '_' => 'Поштаны өзгерту үшін :accounts-қа жазыңыз.',
+                'accounts' => 'аккаунтты қолдау тобы',
+            ],
         ],
 
         'legacy_api' => [
@@ -34,12 +38,12 @@ return [
         ],
 
         'profile' => [
-            'country' => '',
+            'country' => 'ел',
             'title' => 'Профиль',
 
             'country_change' => [
-                '_' => "",
-                'update_link' => '',
+                '_' => "Сіздің аккаунтыңыздың елі мен сіздің тұрғылықты еліңіз сәйкес келмейтін сияқты. :update_link.",
+                'update_link' => ':country еліне жаңарту',
             ],
 
             'user' => [
@@ -55,6 +59,19 @@ return [
         'signature' => [
             'title' => 'Қолы',
             'update' => 'жаңарту',
+        ],
+    ],
+
+    'github_user' => [
+        'info' => "",
+        'link' => '',
+        'title' => 'GitHub',
+        'unlink' => '',
+
+        'error' => [
+            'already_linked' => '',
+            'no_contribution' => '',
+            'unverified_email' => '',
         ],
     ],
 
@@ -75,7 +92,6 @@ return [
             'mail' => 'email',
             'mapping' => 'карта маппері',
             'push' => 'push',
-            'user_achievement_unlock' => 'жаңа медальдар',
         ],
     ],
 

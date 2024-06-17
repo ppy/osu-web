@@ -81,6 +81,7 @@ return [
     ],
 
     'contest' => [
+        'judging_not_active' => '',
         'voting_over' => 'אינך יכול לשנות את הקול לאחר תקופת ההצבעה לתחרות זו.',
 
         'entry' => [
@@ -172,6 +173,7 @@ return [
     'score' => [
         'pin' => [
             'disabled_type' => "",
+            'failed' => "",
             'not_owner' => '',
             'too_many' => '',
         ],
@@ -184,6 +186,9 @@ return [
                 'not_owner' => 'ניתן לערוך את דף המשתמש שלכם בלבד.',
                 'require_supporter_tag' => 'התג osu!supporter נדרש.',
             ],
+        ],
+        'update_email' => [
+            'locked' => '',
         ],
     ],
 ];

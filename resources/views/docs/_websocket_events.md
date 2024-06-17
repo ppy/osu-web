@@ -37,10 +37,10 @@ Sent when a notification has been read.
 
 TODO: `ids` should be moved to `data` to match other events.
 
-Field | Type     | Description
------ | -------- | ----------------------------------
-event | string   | `read`
-ids   | number[] | id of Notifications which are read
+Field | Type      | Description
+----- | --------- | ----------------------------------
+event | string    | `read`
+ids   | integer[] | id of Notifications which are read
 
 ## chat.channel.join
 
@@ -67,7 +67,7 @@ Sent to the user when the user receives a chat message.
 Field    | Type                          | Description
 -------- |------------------------------ |-------------
 messages | [ChatMessage](#chatmessage)[] | The messages received.
-users    | [UserCompact](#usercompact)[] | The related users who sent the messages.
+users    | [User](#user)[]               | The related users who sent the messages.
 
 Messages intented for a user are always sent even if the user does not currently have the channel open.
 Such messages include PM and Announcement messages.

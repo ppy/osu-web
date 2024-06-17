@@ -26,16 +26,17 @@ return [
             'deleted' => 'Sisällytä poistetut keskustelut',
             'mode' => 'Beatmap-tila',
             'only_unresolved' => 'Näytä vain ratkaisemattomat keskustelut',
+            'show_review_embeds' => 'Näytä arvosteluviestit',
             'types' => 'Viestityypit',
             'username' => 'Käyttäjänimi',
 
             'beatmapset_status' => [
-                '_' => 'Beatmapin tila',
+                '_' => 'Rytmikartan tila',
                 'all' => 'Kaikki',
                 'disqualified' => 'Hylätty',
                 'never_qualified' => 'Ei koskaan kelpuutettu',
-                'qualified' => 'Hyväksytty',
-                'ranked' => 'Hyväksytty',
+                'qualified' => 'Kelpuutettu',
+                'ranked' => 'Rankattu',
             ],
 
             'user' => [

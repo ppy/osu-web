@@ -8,14 +8,17 @@ declare(strict_types=1);
 namespace Tests\Controllers;
 
 use App\Http\Middleware\ThrottleRequests;
+use App\Libraries\User\PasswordResetData;
 use App\Mail\PasswordReset;
 use App\Models\User;
+use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
 
 class PasswordResetControllerTest extends TestCase
 {
+    private string $origCacheDefault;
+
     private static function randomPassword(): string
     {
         return str_random(10);
@@ -26,7 +29,9 @@ class PasswordResetControllerTest extends TestCase
         $user = User::factory()->create();
 
         Mail::fake();
-        $this->post($this->path(), ['username' => $user->username])->assertSuccessful();
+        $this
+            ->post($this->path(), ['username' => $user->username])
+            ->assertRedirect(route('password-reset.reset', ['username' => $user->username]));
         Mail::assertQueued(PasswordReset::class);
     }
 
@@ -35,7 +40,9 @@ class PasswordResetControllerTest extends TestCase
         $user = User::factory()->create();
 
         Mail::fake();
-        $this->post($this->path(), ['username' => $user->user_email])->assertSuccessful();
+        $this
+            ->post($this->path(), ['username' => $user->user_email])
+            ->assertRedirect(route('password-reset.reset', ['username' => $user->user_email]));
         Mail::assertQueued(PasswordReset::class);
     }
 
@@ -46,24 +53,24 @@ class PasswordResetControllerTest extends TestCase
         Mail::assertNothingOutgoing();
     }
 
-    public function testDestroy()
+    public function testCreateSendMailOnce()
     {
         $user = User::factory()->create();
 
-        $this->post($this->path(), ['username' => $user->user_email]);
-
-        // assert reset password initiated
-        $this->get($this->path())->assertSuccessful()->assertViewHas('isStarted', true);
-
-        $this->delete($this->path())->assertRedirect($this->path());
-
-        // assert reset password not initiated
-        $this->get($this->path())->assertSuccessful()->assertViewHas('isStarted', false);
+        Mail::fake();
+        $this->post($this->path(), ['username' => $user->username])->assertRedirect();
+        $this->post($this->path(), ['username' => $user->username])->assertRedirect();
+        Mail::assertQueuedCount(1);
     }
 
-    public function testDestroyEmpty()
+    public function testCreateSendMailByUsernameParameter()
     {
-        $this->delete($this->path())->assertRedirect($this->path());
+        $user = User::factory()->create();
+
+        Mail::fake();
+        $this->post($this->path(), ['username' => $user->username])->assertRedirect();
+        $this->post($this->path(), ['username' => $user->user_email])->assertRedirect();
+        Mail::assertQueuedCount(2);
     }
 
     public function testIndex()
@@ -71,13 +78,52 @@ class PasswordResetControllerTest extends TestCase
         $this->get($this->path())->assertSuccessful();
     }
 
-    public function testIndexAfterCreate()
+    public function testResendMail()
     {
         $user = User::factory()->create();
 
-        $this->get($this->path())->assertSuccessful()->assertViewHas('isStarted', false);
-        $this->post($this->path(), ['username' => $user->username])->assertSuccessful();
-        $this->get($this->path())->assertSuccessful()->assertViewHas('isStarted', true);
+        Mail::fake();
+        $this->generateKey($user);
+        $data = PasswordResetData::find($user, $user->username);
+        $data->attrs['canResendMailAfter'] = 0;
+        $data->save();
+
+        $this->post(route('password-reset.resend-mail', ['username' => $user->username]))->assertSuccessful();
+        Mail::assertQueuedCount(2);
+    }
+
+    public function testResendMailDuplicate()
+    {
+        $user = User::factory()->create();
+
+        Mail::fake();
+        $this->generateKey($user);
+
+        $this->post(route('password-reset.resend-mail', ['username' => $user->username]))->assertSuccessful();
+        Mail::assertQueuedCount(1);
+    }
+
+    public function testResendMailNonexistent()
+    {
+        $user = User::factory()->create();
+
+        Mail::fake();
+        $this->post(route('password-reset.resend-mail', ['username' => $user->username]))->assertRedirect($this->path());
+        Mail::assertQueuedCount(0);
+    }
+
+    public function testReset()
+    {
+        $this
+            ->get(route('password-reset.reset', ['username' => 'test']))
+            ->assertSuccessful();
+    }
+
+    public function testResetMissingUsername()
+    {
+        $this
+            ->get(route('password-reset.reset'))
+            ->assertStatus(422);
     }
 
     public function testUpdate()
@@ -94,7 +140,8 @@ class PasswordResetControllerTest extends TestCase
                 'password' => $newPassword,
                 'password_confirmation' => $newPassword,
             ],
-        ])->assertSuccessful();
+            'username' => $user->username,
+        ])->assertRedirect(route('home'));
 
         $this->assertTrue($user->fresh()->checkPassword($newPassword));
     }
@@ -116,7 +163,9 @@ class PasswordResetControllerTest extends TestCase
                 'password' => $tryNewPassword,
                 'password_confirmation' => $tryNewPassword,
             ],
-        ])->assertJson(fn (AssertableJson $json) => $json->where('message', osu_trans('password_reset.error.expired')));
+            'username' => $user->username,
+        ])->assertRedirect($this->path())
+        ->assertSessionHas('popup', osu_trans('password_reset.error.expired'));
 
         $this->assertTrue($user->fresh()->checkPassword($password));
     }
@@ -142,9 +191,54 @@ class PasswordResetControllerTest extends TestCase
                 'password' => $tryNewPassword,
                 'password_confirmation' => $tryNewPassword,
             ],
-        ])->assertJson(fn (AssertableJson $json) => $json->where('message', osu_trans('password_reset.error.expired')));
+        ])->assertRedirect()
+        ->assertSessionHas('popup', osu_trans('password_reset.error.invalid'));
 
         $this->assertTrue($user->fresh()->checkPassword($newPassword));
+    }
+
+    public function testUpdateFromInactive(): void
+    {
+        $changeTime = CarbonImmutable::now()->subMinutes(1);
+        $user = User::factory()->create(['user_lastvisit' => $changeTime->subYears(10)]);
+
+        $key = $this->generateKey($user);
+
+        $newPassword = static::randomPassword();
+
+        $this->put($this->path(), [
+            'key' => $key,
+            'user' => [
+                'password' => $newPassword,
+                'password_confirmation' => $newPassword,
+            ],
+            'username' => $user->username,
+        ])->assertRedirect(route('home'));
+
+        $user = $user->fresh();
+        $this->assertTrue($user->checkPassword($newPassword));
+        $this->assertTrue($user->user_lastvisit->greaterThan($changeTime));
+    }
+
+    public function testUpdateInvalidUsername()
+    {
+        $user = User::factory()->create();
+
+        $key = $this->generateKey($user);
+
+        $newPassword = static::randomPassword();
+
+        $this->put($this->path(), [
+            'key' => $key,
+            'user' => [
+                'password' => $newPassword,
+                'password_confirmation' => $newPassword,
+            ],
+            'username' => "x{$user->username}",
+        ])->assertRedirect($this->path())
+        ->assertSessionHas('popup', osu_trans('password_reset.error.invalid'));
+
+        $this->assertFalse($user->fresh()->checkPassword($newPassword));
     }
 
     public function testUpdateInvalidConfirmation()
@@ -161,6 +255,7 @@ class PasswordResetControllerTest extends TestCase
                 'password' => $newPassword,
                 'password_confirmation' => "{$newPassword}!",
             ],
+            'username' => $user->username,
         ])->assertStatus(422);
 
         $this->assertFalse($user->fresh()->checkPassword($newPassword));
@@ -180,6 +275,7 @@ class PasswordResetControllerTest extends TestCase
                 'password' => $newPassword,
                 'password_confirmation' => $newPassword,
             ],
+            'username' => $user->username,
         ])->assertStatus(422);
 
         $this->assertFalse($user->fresh()->checkPassword($newPassword));
@@ -189,21 +285,24 @@ class PasswordResetControllerTest extends TestCase
     {
         parent::setUp();
         $this->withoutMiddleware(ThrottleRequests::class);
+        // There's no easy way to clear data cache in redis otherwise
+        $this->origCacheDefault = $GLOBALS['cfg']['cache']['default'];
+        config_set('cache.default', 'array');
+    }
+
+    protected function tearDown(): void
+    {
+        parent::tearDown();
+        config_set('cache.default', $this->origCacheDefault);
     }
 
     private function generateKey(User $user): string
     {
-        Mail::fake();
-        $this->post($this->path(), ['username' => $user->username]);
+        $username = $user->username;
+        PasswordResetData::find($user, $username)?->delete();
+        PasswordResetData::create($user, $username);
 
-        $key = null;
-        Mail::assertQueued(function (PasswordReset $mail) use (&$key) {
-            $key = $mail->key;
-
-            return true;
-        });
-
-        return $key;
+        return PasswordResetData::find($user, $username)->attrs['key'];
     }
 
     private function path(): string

@@ -81,6 +81,7 @@ return [
     ],
 
     'contest' => [
+        'judging_not_active' => 'Ocenianie dla tego konkursu nie jest aktywne.',
         'voting_over' => 'Nie możesz zmieniać swojego głosu po zakończeniu głosowania.',
 
         'entry' => [
@@ -172,6 +173,7 @@ return [
     'score' => [
         'pin' => [
             'disabled_type' => "Nie możesz przypiąć tego typu wyników",
+            'failed' => "Nie można przypiąć nieprzekazanego wyniku.",
             'not_owner' => 'Nie możesz przypiąć czyjegoś wyniku.',
             'too_many' => 'Przypięto zbyt wiele wyników.',
         ],
@@ -184,6 +186,9 @@ return [
                 'not_owner' => 'Możesz edytować tylko własną stronę użytkownika.',
                 'require_supporter_tag' => 'Aby to zrobić, wymagany jest status donatora osu!.',
             ],
+        ],
+        'update_email' => [
+            'locked' => 'zmiana adresu e-mail jest zablokowana',
         ],
     ],
 ];

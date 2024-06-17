@@ -63,8 +63,12 @@ return [
         'comments_controller' => [
             '_' => 'bình luận',
         ],
+        'contest_entries_controller' => [
+            'judge_results' => 'kết quả đánh giá bài thi',
+        ],
         'contests_controller' => [
             '_' => 'cuộc thi',
+            'judge' => 'đánh giá bài thi',
         ],
         'groups_controller' => [
             'show' => 'nhóm',
@@ -106,6 +110,9 @@ return [
         ],
         'tournaments_controller' => [
             '_' => 'giải đấu',
+        ],
+        'user_cover_presets_controller' => [
+            '_' => 'ảnh bìa người dùng mặc định',
         ],
         'users_controller' => [
             '_' => 'thông tin người chơi',

@@ -18,6 +18,10 @@ return [
             'new' => 'novo email',
             'new_confirmation' => 'confirmação do email',
             'title' => 'Email',
+            'locked' => [
+                '_' => 'Entra em contacto com :accounts se precisares de atualizar o teu email.',
+                'accounts' => 'equipa de apoio à conta',
+            ],
         ],
 
         'legacy_api' => [
@@ -34,12 +38,12 @@ return [
         ],
 
         'profile' => [
-            'country' => '',
+            'country' => 'país',
             'title' => 'Perfil',
 
             'country_change' => [
-                '_' => "",
-                'update_link' => '',
+                '_' => "Parece que o país da tua conta não corresponde ao teu país de residência. :update_link",
+                'update_link' => 'Atualizar para :country',
             ],
 
             'user' => [
@@ -55,6 +59,19 @@ return [
         'signature' => [
             'title' => 'Assinatura',
             'update' => 'atualizar',
+        ],
+    ],
+
+    'github_user' => [
+        'info' => "Se fores um contribuidor dos repositórios de fonte aberta do osu!, ao associar a tua conta do GitHub, irá associar os teus acessos ao registo de alterações com o teu perfil no osu! As contas do GitHub sem histórico de contribuições ao osu!, não podem ser vinculadas.",
+        'link' => 'Associar conta do GitHub',
+        'title' => 'GitHub',
+        'unlink' => 'Desassociar conta do GitHub',
+
+        'error' => [
+            'already_linked' => 'Esta conta do GitHub já está associada a um utilizador diferente.',
+            'no_contribution' => 'Não é possível associar uma conta GitHub sem qualquer histórico de contribuições nos repositórios osu!',
+            'unverified_email' => 'Verifica o teu email principal no GitHub e, em seguida, tenta associar a tua conta novamente.',
         ],
     ],
 
@@ -75,7 +92,6 @@ return [
             'mail' => 'correio',
             'mapping' => 'mapeador de beatmaps',
             'push' => 'push',
-            'user_achievement_unlock' => 'medalha de usuário foi desbloqueada',
         ],
     ],
 

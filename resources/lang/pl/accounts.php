@@ -18,6 +18,10 @@ return [
             'new' => 'nowy e-mail',
             'new_confirmation' => 'potwierdź e-mail',
             'title' => 'E-mail',
+            'locked' => [
+                '_' => 'Skontaktuj się z :accounts, jeżeli chcesz zaktualizować swój adres e-mail.',
+                'accounts' => 'zespołem obsługi kont',
+            ],
         ],
 
         'legacy_api' => [
@@ -34,12 +38,12 @@ return [
         ],
 
         'profile' => [
-            'country' => '',
+            'country' => 'kraj',
             'title' => 'Profil',
 
             'country_change' => [
-                '_' => "",
-                'update_link' => '',
+                '_' => "Wygląda na to, że kraj przypisany do konta nie zgadza się z twoim krajem zamieszkania. :update_link.",
+                'update_link' => 'Zaktualizuj na „:country”',
             ],
 
             'user' => [
@@ -55,6 +59,19 @@ return [
         'signature' => [
             'title' => 'Sygnatura',
             'update' => 'zaktualizuj',
+        ],
+    ],
+
+    'github_user' => [
+        'info' => "Jeśli jesteś współtwórcą repozytoriów osu!, połączenie Twojego konta GitHub powiąże Twoje działania z twoim profilem osu!. Konta GitHub bez wpisów do repozytoriów osu! nie mogą zostać połączone.",
+        'link' => 'Połącz konto GitHub',
+        'title' => 'GitHub',
+        'unlink' => 'Rozłącz konto GitHub',
+
+        'error' => [
+            'already_linked' => 'To konto GitHub jest już połączone z innym użytkownikiem.',
+            'no_contribution' => 'Nie możesz połączyć konta GitHub bez historii wkładu w repozytoria osu!.',
+            'unverified_email' => 'Zweryfikuj swój główny adres e-mail na GitHub, a następnie spróbuj połączyć konto ponownie.',
         ],
     ],
 
@@ -75,7 +92,6 @@ return [
             'mail' => 'e-mail',
             'mapping' => 'twórca',
             'push' => 'push',
-            'user_achievement_unlock' => 'odblokowanie medalu',
         ],
     ],
 

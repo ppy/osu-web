@@ -33,6 +33,10 @@
   cursor: pointer;
   text-transform: none;
   white-space: nowrap;
+  // Uniform behaviour between a/button/span.
+  // The default is baseline but button's baseline is quite a bit
+  // different compared to other elements.
+  vertical-align: middle;
 
   &:focus {
     color: var(--focus-colour);
@@ -67,6 +71,10 @@
     text-align: left;
     overflow: hidden;
     position: relative;
+  }
+
+  &--account-edit-small {
+    min-width: 70px;
   }
 
   &--artist-track-search {
@@ -283,6 +291,11 @@
     border-radius: 100000px;
   }
 
+  &--rounded-small {
+    border-radius: 100000px;
+    padding: 4px 10px;
+  }
+
   &--rounded-thin {
     padding: 8px 15px;
     border-radius: 100000px;
@@ -297,10 +310,6 @@
     flex: 1 0 auto;
     text-transform: lowercase;
     margin: 0 5px;
-  }
-
-  &--settings-oauth {
-    min-width: 70px;
   }
 
   &--store-action {

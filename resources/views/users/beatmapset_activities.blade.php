@@ -3,8 +3,8 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @extends('master', [
-    'titlePrepend' => blade_safe(str_replace(' ', '&nbsp;', e($user->username))),
     'pageDescription' => page_description($user->username),
+    'titlePrepend' => App\Libraries\Opengraph\UserOpengraph::escapeForTitle($user->username),
 ])
 
 @section('content')
@@ -16,11 +16,9 @@
 @section ("script")
     @parent
 
-    @foreach ($jsonChunks as $name => $data)
-        <script id="json-{{$name}}" type="application/json">
-            {!! json_encode($data) !!}
-        </script>
-    @endforeach
+    <script id="json-bundle" type="application/json">
+        {!! json_encode($jsonChunks) !!}
+    </script>
 
     @include('layout._react_js', ['src' => 'js/modding-profile.js'])
 @endsection

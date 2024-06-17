@@ -49,7 +49,7 @@ return [
     ],
 
     'card' => [
-        'gift_supporter' => '',
+        'gift_supporter' => 'Ge supporter-tag',
         'loading' => 'Laddar...',
         'send_message' => 'skicka meddelande',
     ],
@@ -97,6 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
+            'inactive' => "",
             'inactive_different_country' => "Ditt konto har inte använts på länge.",
         ],
     ],
@@ -120,6 +121,17 @@ return [
         'beta' => [
             'main' => 'Beta-åtkomst är för nuvarande begränsad till privilegierade användare.',
             'small' => '(osu!supportrar kommer att komma in snart)',
+        ],
+    ],
+
+    'ogp' => [
+        'modding_description' => 'Beatmaps: :counts',
+        'modding_description_empty' => 'Användare har inga beatmaps...',
+
+        'description' => [
+            '_' => 'Rank (:regelset): :global | :land',
+            'country' => 'Land :rank',
+            'global' => 'Global :rank',
         ],
     ],
 
@@ -169,13 +181,12 @@ return [
         'is_developer' => 'osu!developer',
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Gick med :date',
-        'lastvisit' => 'Senast sedd :date',
+        'lastvisit' => 'Senast sett :date',
         'lastvisit_online' => 'Online just nu',
         'missingtext' => 'Du kanske har stavat fel! (eller så är användaren bannlyst)',
         'origin_country' => 'Från :country',
         'previous_usernames' => 'tidigare känd som',
         'plays_with' => 'Spelar med :devices',
-        'title' => ":usernames profil",
 
         'comments_count' => [
             '_' => 'Upplagd :link',
@@ -387,7 +398,7 @@ return [
                     'date' => 'datum',
                     'action' => 'åtgärd',
                     'length' => 'längd',
-                    'length_permanent' => 'Permanent',
+                    'length_indefinite' => 'Obestämd',
                     'description' => 'beskrivning',
                     'actor' => 'efter :användarnamn',
 

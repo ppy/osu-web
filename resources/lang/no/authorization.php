@@ -81,6 +81,7 @@ return [
     ],
 
     'contest' => [
+        'judging_not_active' => 'Dømming for denne konkurransen er ikke aktiv.',
         'voting_over' => 'Du kan ikke endre stemmen din etter den stemmeberettigede perioden for denne konkurransen har avsluttet.',
 
         'entry' => [
@@ -172,6 +173,7 @@ return [
     'score' => [
         'pin' => [
             'disabled_type' => "Kan ikke feste denne typen score",
+            'failed' => "Kan ikke feste ikke-bestått score.",
             'not_owner' => 'Kun resultateieren kan festeresultat.',
             'too_many' => 'Festet for mange resultater.',
         ],
@@ -184,6 +186,9 @@ return [
                 'not_owner' => 'Kan kun redigere egen brukerside.',
                 'require_supporter_tag' => 'osu!supporter tag kreves.',
             ],
+        ],
+        'update_email' => [
+            'locked' => 'e-postadressen er låst',
         ],
     ],
 ];

@@ -78,6 +78,18 @@ return [
             'suggestion' => 'Forslag',
         ],
 
+        'message_type_title' => [
+            'disqualify' => 'Legg ut Diskvalifikasjon',
+            'hype' => 'Legg ut Hype!',
+            'mapper_note' => 'Legg ut Notat',
+            'nomination_reset' => 'Fjern alle Nominasjoner',
+            'praise' => 'Legg ut Ros',
+            'problem' => 'Legg ut Problem',
+            'problem_warning' => 'Legg ut Problem',
+            'review' => 'Legg ut Anmeldelse',
+            'suggestion' => 'Legg ut Forslag',
+        ],
+
         'mode' => [
             'events' => 'Historie',
             'general' => 'Generell :scope',
@@ -176,7 +188,7 @@ return [
 
     'nominations' => [
         'already_nominated' => 'Du har allerede nominert dette beatmappet.',
-        'cannot_nominate' => '',
+        'cannot_nominate' => 'Du kan ikke nominere beatmaps i denne spillmodusen.',
         'delete' => 'Slett',
         'delete_own_confirm' => 'Er du sikker? Beatmappet vil bli slettet og du vil bli omdirigert tilbake til profilen din.',
         'delete_other_confirm' => 'Er du sikker? Beatmappet vil bli slettet og du vil bli omdirigert tilbake til brukeren sin profil.',
@@ -201,6 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'Dette kartet er estimert til å bli rangert som :date hvis ingen problemer er funnet. Det er #:position i :queue.',
+            'unresolved_problems' => '',
+            'problems' => '',
             'on' => 'den :date',
             'queue' => 'rangerings kø ',
             'soon' => 'snart',
@@ -269,6 +283,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
+        'undefined' => '',
     ],
     'status' => [
         'any' => 'Alle',

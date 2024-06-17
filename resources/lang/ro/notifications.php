@@ -55,6 +55,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => 'Noua recenzie de :username care conține probleme: :problems, sugestii: :suggestions, laude: :praises',
                 'beatmapset_discussion_unlock' => 'Discuția pe ":title" a fost redeschisă',
                 'beatmapset_discussion_unlock_compact' => 'Discuția a fost redeschisă',
+
+                'review_count' => [
+                    'praises' => 'o laudă|:count_delimited laude|:count_delimited de laude',
+                    'problems' => 'o problemă|:count_delimited probleme|:count_delimited de probleme',
+                    'suggestions' => 'o sugestie|:count_delimited sugestii|:count_delimited de sugestii',
+                ],
             ],
 
             'beatmapset_problem' => [
@@ -73,10 +79,10 @@ return [
                 'beatmapset_love_compact' => 'Beatmap-ul a fost promovat la Iubit',
                 'beatmapset_nominate' => ':title a fost nominat',
                 'beatmapset_nominate_compact' => 'Beatmap-ul a fost nominat',
-                'beatmapset_qualify' => ':title a starns destule nominații si a intrat în ranking queue',
-                'beatmapset_qualify_compact' => 'Beatmap-ul a intrat în ranking queue',
-                'beatmapset_rank' => ':title a fost premiat',
-                'beatmapset_rank_compact' => 'Beatmap-ul a fost premiat',
+                'beatmapset_qualify' => '„:title" a stârns destule nominalizări și a intrat în lista de așteptare pentru clasament',
+                'beatmapset_qualify_compact' => 'Beatmap-ul a intrat în lista de așteptare pentru clasament',
+                'beatmapset_rank' => '„:title" a fost clasat',
+                'beatmapset_rank_compact' => 'Beatmap-ul a fost clasat',
                 'beatmapset_remove_from_loved' => '":title" a fost eliminat din Iubit',
                 'beatmapset_remove_from_loved_compact' => 'Beatmap-ul a fost eliminat din Iubit',
                 'beatmapset_reset_nominations' => 'Nominația ":title" a fost resetată',
@@ -198,8 +204,8 @@ return [
                 'beatmapset_disqualify' => '”:title” a fost descalificat',
                 'beatmapset_love' => '”:title” a fost promovată la Iubit',
                 'beatmapset_nominate' => '”:title” a fost nominat',
-                'beatmapset_qualify' => '”:title” a primit suficiente nominații și a intrat în lista de așteptare pentru clasament',
-                'beatmapset_rank' => '”:title” a fost clasat',
+                'beatmapset_qualify' => '„:title" a primit suficiente nominalizări și a intrat în lista de așteptare pentru clasament',
+                'beatmapset_rank' => '„:title" a fost clasat',
                 'beatmapset_remove_from_loved' => '":title" a fost eliminat din Iubit',
                 'beatmapset_reset_nominations' => 'Nominația ”:title” a fost resetată',
             ],
@@ -238,11 +244,6 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':username a deblocat o nouă medalie, ":title"!',
-                'user_achievement_unlock_self' => 'Ați deblocat o nouă medalie, ":title"!',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username a creat beatmap-uri noi',
                 'user_beatmapset_revive' => ':username a reînviat beatmap-uri',

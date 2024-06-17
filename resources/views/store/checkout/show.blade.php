@@ -48,7 +48,7 @@
             <div class="store-cart-footer">
                 <div class="store-cart-footer__total-box store-cart-footer__total-box--full">
                     <p class="store-cart-footer__text">total</p>
-                    <p class="store-cart-footer__text store-cart-footer__text--amount">{{{ currency($order->getTotal()) }}}</p>
+                    <p class="store-cart-footer__text store-cart-footer__text--amount">{{ currency($order->getTotal()) }}</p>
                 </div>
             </div>
         </div>

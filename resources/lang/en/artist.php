@@ -45,6 +45,11 @@ return [
         'index' => [
             '_' => 'track search',
 
+            'exclusive_only' => [
+                'all' => 'All',
+                'exclusive_only' => 'osu! original',
+            ],
+
             'form' => [
                 'advanced' => 'Advanced Search',
                 'album' => 'Album',
@@ -52,6 +57,7 @@ return [
                 'bpm_gte' => 'BPM Minimum',
                 'bpm_lte' => 'BPM Maximum',
                 'empty' => 'No tracks matching search criteria were found.',
+                'exclusive_only' => 'Type',
                 'genre' => 'Genre',
                 'genre_all' => 'All',
                 'length_gte' => 'Length Minimum',

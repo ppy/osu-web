@@ -23,6 +23,10 @@ return [
         'used' => 'Digunakan',
     ],
 
+    'performance' => [
+        'insufficient_history' => '',
+    ],
+
     'type' => [
         'charts' => 'spotlights',
         'country' => 'negara',
@@ -51,7 +55,7 @@ return [
         'accuracy' => 'Akurasi',
         'active_users' => 'Pengguna Aktif',
         'country' => 'Negara',
-        'play_count' => 'Jumlah Main',
+        'play_count' => 'Jml. Permainan',
         'performance' => 'Total pp',
         'total_score' => 'Total Skor',
         'ranked_score' => 'Skor Ranked',

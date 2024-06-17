@@ -82,7 +82,7 @@ class UserReport extends Model
             || $reportableModel instanceof BestModel
             || $reportableModel instanceof Solo\Score
         ) {
-            return config('osu.user_report_notification.endpoint_cheating');
+            return $GLOBALS['cfg']['osu']['user_report_notification']['endpoint_cheating'];
         } else {
             $type = match ($reportableModel::class) {
                 BeatmapDiscussionPost::class => 'beatmapset_discussion',
@@ -93,14 +93,19 @@ class UserReport extends Model
                 User::class => 'user',
             };
 
-            return config("osu.user_report_notification.endpoint.{$type}")
-                ?? config('osu.user_report_notification.endpoint_moderation');
+            return $GLOBALS['cfg']['osu']['user_report_notification']['endpoint'][$type]
+                ?? $GLOBALS['cfg']['osu']['user_report_notification']['endpoint_moderation'];
         }
     }
 
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function isRecent(): bool
+    {
+        return $this->timestamp->addDays(1)->isFuture();
     }
 
     public function isValid()

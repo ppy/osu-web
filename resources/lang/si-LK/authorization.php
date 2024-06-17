@@ -81,6 +81,7 @@ return [
     ],
 
     'contest' => [
+        'judging_not_active' => '',
         'voting_over' => '',
 
         'entry' => [
@@ -172,6 +173,7 @@ return [
     'score' => [
         'pin' => [
             'disabled_type' => "",
+            'failed' => "",
             'not_owner' => '',
             'too_many' => '',
         ],
@@ -184,6 +186,9 @@ return [
                 'not_owner' => '',
                 'require_supporter_tag' => '',
             ],
+        ],
+        'update_email' => [
+            'locked' => '',
         ],
     ],
 ];

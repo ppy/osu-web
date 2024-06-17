@@ -33,22 +33,27 @@ return [
 
         'download' => [
             'all' => '下载',
-            'video' => '下载并包含视频',
-            'no_video' => '下载并不包含视频',
+            'video' => '包含视频下载',
+            'no_video' => '不含视频下载',
             'direct' => '在 osu!direct 中查看',
         ],
     ],
 
     'nominate' => [
+        'bng_limited_too_many_rulesets' => '',
+        'full_nomination_required' => '',
         'hybrid_requires_modes' => '您需要在多模式谱面中选择至少一个游戏模式并提名。',
         'incorrect_mode' => '您没有提名 :mode 模式的权限。',
-        'full_bn_required' => '您必须成为正式谱面审核成员 (Full BN) 才有资格提名这张谱面。',
+        'invalid_limited_nomination' => '',
+        'invalid_ruleset' => '',
         'too_many' => '提名需求已达标。',
+        'too_many_non_main_ruleset' => '',
 
         'dialog' => [
             'confirmation' => '您确定要提名这张谱面吗？',
             'header' => '提名谱面',
             'hybrid_warning' => '注意：您只能提名一次，所以请确保提名包含所有您想要提名的游戏模式。',
+            'current_main_ruleset' => '',
             'which_modes' => '您要提名哪种模式？',
         ],
     ],
@@ -59,6 +64,10 @@ return [
 
     'show' => [
         'discussion' => '讨论',
+
+        'admin' => [
+            'full_size_cover' => '查看完整封面图',
+        ],
 
         'deleted_banner' => [
             'title' => '此谱面已删除。',
@@ -129,7 +138,7 @@ return [
             'description' => '谱面介绍',
             'genre' => '流派',
             'language' => '语言',
-            'no_scores' => '数据还在计算中。。。',
+            'no_scores' => '数据还在计算中……',
             'nominators' => '提名者',
             'nsfw' => '不良内容',
             'offset' => '在线偏移值',
@@ -185,7 +194,7 @@ return [
             ],
             'score' => [
                 'first' => '领衔者',
-                'own' => '你的最佳成绩',
+                'own' => '个人最佳成绩',
             ],
             'supporter_link' => [
                 '_' => '点击 :here 查看您获得的所有精彩功能！',
@@ -195,7 +204,7 @@ return [
 
         'stats' => [
             'cs' => '圆圈大小',
-            'cs-mania' => '键位数量',
+            'cs-mania' => '按键数量',
             'drain' => '掉血速度',
             'accuracy' => '准度要求',
             'ar' => '缩圈速度',

@@ -4,7 +4,7 @@
 import StringWithComponent from 'components/string-with-component';
 import UserExtendedJson from 'interfaces/user-extended-json';
 import { route } from 'laroute';
-import { action } from 'mobx';
+import { action, computed } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { fileuploadFailCallback } from 'utils/ajax';
@@ -22,6 +22,11 @@ interface Props {
 export default class CoverUploader extends React.Component<Props> {
   private readonly uploadButtonContainer = React.createRef<HTMLLabelElement>();
 
+  @computed
+  private get preset() {
+    return { url: this.props.controller.state.user.cover.custom_url };
+  }
+
   private get $uploadButton() {
     return $(this.uploadButtonContainer.current ?? {}).find('.js-profile-cover-upload');
   }
@@ -35,11 +40,7 @@ export default class CoverUploader extends React.Component<Props> {
       <div className='profile-cover-uploader'>
         <CoverSelection
           controller={this.props.controller}
-          isSelected={this.props.controller.state.user.cover.id == null}
-          modifiers='custom'
-          name='-1'
-          thumbUrl={this.props.controller.state.user.cover.custom_url}
-          url={this.props.controller.state.user.cover.custom_url}
+          preset={this.preset}
         />
 
         <div className='profile-cover-uploader__button'>
@@ -114,8 +115,11 @@ export default class CoverUploader extends React.Component<Props> {
       dropZone: this.props.dropzoneRef.current ?? undefined,
       fail: fileuploadFailCallback,
       submit: action(() => {
-        this.props.controller.isUpdatingCover = true;
         $.publish('dragendGlobal');
+        if (this.props.controller.holdoverCoverPreset != null && !confirm(trans('users.show.edit.cover.holdover_remove_confirm'))) {
+          return false;
+        }
+        this.props.controller.isUpdatingCover = true;
       }),
       url: route('account.cover'),
     });

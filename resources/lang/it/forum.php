@@ -109,8 +109,8 @@ return [
                 'default' => 'Questa discussione è inattiva da un bel po\' di tempo. Posta solo se hai una motivazione in particolare.',
 
                 'new_topic' => [
-                    '_' => "Questa discussione è inattiva da un bel po' di tempo. Se non hai un motivo in particolare per postare qui, per favore :create.",
-                    'create' => 'crea una nuova discussione',
+                    '_' => "Questa discussione è inattiva da un bel po' di tempo. Se non hai un motivo particolare per postare qui, puoi :create.",
+                    'create' => 'creare un nuovo topic',
                 ],
             ],
 
@@ -360,7 +360,7 @@ return [
 
                 'detail' => [
                     'end_time' => 'Il sondaggio scade tra :time',
-                    'ended' => 'Il sondaggio è finito :time',
+                    'ended' => 'Il sondaggio è finito il giorno :time',
                     'results_hidden' => 'I risultati saranno mostrati dopo il termine della votazione.',
                     'total' => 'Voti totali: :count',
                 ],

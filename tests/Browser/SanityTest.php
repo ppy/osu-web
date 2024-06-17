@@ -5,6 +5,8 @@
 
 namespace Tests\Browser;
 
+use App\Libraries\Session;
+use App\Libraries\SessionVerification;
 use App\Models\Artist;
 use App\Models\ArtistTrack;
 use App\Models\Beatmap;
@@ -19,6 +21,8 @@ use App\Models\Chat\Channel;
 use App\Models\Chat\UserChannel;
 use App\Models\Comment;
 use App\Models\Contest;
+use App\Models\ContestEntry;
+use App\Models\ContestJudge;
 use App\Models\Count;
 use App\Models\Country;
 use App\Models\Forum\AuthOption;
@@ -75,7 +79,7 @@ class SanityTest extends DuskTestCase
             return;
         }
 
-        (new static())->createApplication();
+        static::createApp();
 
         // Tear down in reverse-order so that dependants get destroyed before their dependencies.
         $nukingOrder = array_reverse(self::$scaffolding);
@@ -100,7 +104,6 @@ class SanityTest extends DuskTestCase
         Authorize::truncate();
         TopicTrack::truncate();
         Genre::truncate();
-        Group::truncate();
         Language::truncate();
         LoginAttempt::truncate();
         NewsPost::truncate();
@@ -111,8 +114,6 @@ class SanityTest extends DuskTestCase
         UserNotification::truncate();
         UserProfileCustomization::truncate();
         UserStatistics\Osu::truncate();
-
-        app('groups')->resetMemoized();
     }
 
     private static function createScaffolding()
@@ -121,7 +122,7 @@ class SanityTest extends DuskTestCase
             return;
         }
 
-        (new static())->createApplication();
+        static::createApp();
         self::$scaffolding['country'] = Country::first() ?? Country::factory()->create();
         // user to login as and to use for requests
         self::$scaffolding['user'] = User::factory()->create([
@@ -156,7 +157,18 @@ class SanityTest extends DuskTestCase
         self::$scaffolding['pack'] = BeatmapPack::factory()->create();
 
         // factories for /community/contests/*
-        self::$scaffolding['contest'] = Contest::factory()->entry()->create();
+        self::$scaffolding['contest'] = Contest::factory()->voting()->judged()->create();
+
+        // user needs to be a judge in order to access contest judge panel
+        ContestJudge::factory()->create([
+            'contest_id' => self::$scaffolding['contest']->getKey(),
+            'user_id' => self::$scaffolding['user']->getKey(),
+        ]);
+
+        self::$scaffolding['contest_entry'] = ContestEntry::factory()->create([
+            // need to use separate contest for judge results route since it has to be completed
+            'contest_id' => Contest::factory()->completed()->judged()->create()->getKey(),
+        ]);
 
         // factories for /community/tournaments/*
         self::$scaffolding['tournament'] = Tournament::factory()->create();
@@ -196,7 +208,7 @@ class SanityTest extends DuskTestCase
 
         // satisfy minimum playcount for forum posting
         UserStatistics\Osu::factory()->create([
-            'playcount' => config('osu.forum.minimum_plays'),
+            'playcount' => $GLOBALS['cfg']['osu']['forum']['minimum_plays'],
             'user_id' => self::$scaffolding['user'],
         ]);
 
@@ -232,7 +244,7 @@ class SanityTest extends DuskTestCase
         ]);
 
         // factory for /g/*
-        self::$scaffolding['group'] = Group::factory()->create();
+        self::$scaffolding['group'] = Group::first();
 
         // factory for comments
         self::$scaffolding['comment'] = Comment::factory()->create([
@@ -257,13 +269,11 @@ class SanityTest extends DuskTestCase
         self::$scaffolding['score'] = Score\Best\Osu::factory()->withReplay()->create();
 
         self::$scaffolding['room'] = Room::factory()->create(['category' => 'spotlight']);
-
-        app('groups')->resetMemoized();
     }
 
     private static function filterLog(array $log)
     {
-        $appUrl = config('app.url');
+        $appUrl = $GLOBALS['cfg']['app']['url'];
         $return = [];
 
         foreach ($log as $line) {
@@ -286,6 +296,9 @@ class SanityTest extends DuskTestCase
             } elseif ($line['message'] === "security - Error with Permissions-Policy header: Unrecognized feature: 'ch-ua-form-factor'.") {
                 // we don't use ch-ua-* crap and this error is thrown by youtube.com as of 2023-05-16
                 continue;
+            } elseif (str_ends_with($line['message'], ' Third-party cookie will be blocked. Learn more in the Issues tab.')) {
+                // thanks, youtube
+                continue;
             }
 
             $return[] = $line;
@@ -294,15 +307,14 @@ class SanityTest extends DuskTestCase
         return $return;
     }
 
-    private static function getVerificationCode()
+    private static function getVerificationCode(Browser $browser): string
     {
-        $log = file_get_contents('storage/logs/laravel.log');
-        $matches = [];
-        $count = preg_match_all('/Your verification code is: ([0-9a-f]{8})/im', $log, $matches);
+        $sessionId = $browser->cookie($GLOBALS['cfg']['session']['cookie'])
+            ?? throw new \Exception('failed locating session cookie');
 
-        if ($count > 0) {
-            return $matches[1][count($matches[1]) - 1];
-        }
+        $session = Session\Store::findOrNew($sessionId);
+
+        return SessionVerification\State::fromSession($session)->key;
     }
 
     private static function output($text)
@@ -313,7 +325,7 @@ class SanityTest extends DuskTestCase
         }
     }
 
-    public function routesDataProvider()
+    public static function routesDataProvider()
     {
         static $bypass = [
             '__clockwork',
@@ -326,7 +338,7 @@ class SanityTest extends DuskTestCase
         ];
         static $types = ['user', 'guest'];
 
-        $this->refreshApplication();
+        static::createApp();
         $data = [];
 
         foreach (app()->routes->get('GET') as $uri => $route) {
@@ -430,6 +442,14 @@ class SanityTest extends DuskTestCase
             'changelog.show' => [
                 'changelog' => self::$scaffolding['build']->version,
             ],
+            'scores.download-legacy' => [
+                'rulesetOrScore' => static::$scaffolding['score']->getMode(),
+                'score' => static::$scaffolding['score']->getKey(),
+            ],
+            'scores.show' => [
+                'rulesetOrScore' => static::$scaffolding['score']->getMode(),
+                'score' => static::$scaffolding['score']->getKey(),
+            ],
             'legal' => [
                 'locale' => 'en',
                 'path' => 'Terms',
@@ -471,7 +491,7 @@ class SanityTest extends DuskTestCase
             }
         }
 
-        $url = str_replace(config('app.url'), '', route($route->getName(), $params));
+        $url = str_replace($GLOBALS['cfg']['app']['url'], '', route($route->getName(), $params));
 
         return $url;
     }
@@ -488,7 +508,7 @@ class SanityTest extends DuskTestCase
 
     private function checkAdminPermission(Browser $browser, LaravelRoute $route)
     {
-        $adminRestricted = ['chat.users.index', 'forum.topics.logs.index'];
+        $adminRestricted = ['chat.users.index', 'forum.topics.logs.index', 'user-cover-presets.index'];
 
         if (starts_with($route->uri, 'admin') || in_array($route->getName(), $adminRestricted, true)) {
             // TODO: retry and check page as admin? (will affect subsequent tests though, so figure out how to deal with that..)
@@ -515,6 +535,8 @@ class SanityTest extends DuskTestCase
     {
         $verificationExpected = [
             'account.edit',
+            'account.github-users.callback',
+            'account.github-users.create',
             'chat.index',
             'client-verifications.create',
             'messages.users.show',
@@ -526,7 +548,7 @@ class SanityTest extends DuskTestCase
         if (in_array($route->getName(), $verificationExpected, true)) {
             $browser->assertSee('Account Verification');
 
-            $verificationCode = self::getVerificationCode();
+            $verificationCode = static::getVerificationCode($browser);
 
             $browser
                 ->type('.user-verification__key', $verificationCode)

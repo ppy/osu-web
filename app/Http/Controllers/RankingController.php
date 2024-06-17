@@ -12,6 +12,7 @@ use App\Models\Spotlight;
 use App\Models\User;
 use App\Models\UserStatistics;
 use App\Transformers\SelectOptionTransformer;
+use App\Transformers\UserCompactTransformer;
 use DB;
 use Illuminate\Pagination\LengthAwarePaginator;
 
@@ -26,10 +27,12 @@ class RankingController extends Controller
     private $params;
     private $friendsOnly;
 
-    const PAGE_SIZE = 50;
     const MAX_RESULTS = 10000;
+    const PAGE_SIZE = 50;
     const RANKING_TYPES = ['performance', 'charts', 'score', 'country'];
     const SPOTLIGHT_TYPES = ['charts'];
+    // in display order
+    const TYPES = ['performance', 'score', 'country', 'multiplayer', 'seasons', 'charts', 'kudosu'];
 
     public function __construct()
     {
@@ -92,11 +95,34 @@ class RankingController extends Controller
 
             $this->defaultViewVars['country'] = $this->country;
             if ($type === 'performance') {
-                $this->defaultViewVars['countries'] = json_collection($this->getCountries($mode), new SelectOptionTransformer());
+                $this->defaultViewVars['countries'] = json_collection(
+                    Country::whereHasRuleset($mode)->get(),
+                    new SelectOptionTransformer(),
+                );
             }
 
             return $next($request);
         }, ['except' => ['kudosu']]);
+    }
+
+    public static function url(
+        string $type,
+        string $rulesetName,
+        ?Country $country = null,
+        ?Spotlight $spotlight = null,
+    ): string {
+        return match ($type) {
+            'country' => route('rankings', ['mode' => $rulesetName, 'type' => $type]),
+            'kudosu' => route('rankings.kudosu'),
+            'multiplayer' => route('multiplayer.rooms.show', ['room' => 'latest']),
+            'seasons' => route('seasons.show', ['season' => 'latest']),
+            default => route('rankings', [
+                'country' => $country !== null && $type === 'performance' ? $country->getKey() : null,
+                'mode' => $rulesetName,
+                'spotlight' => $spotlight !== null && $type === 'charts' ? $spotlight->getKey() : null,
+                'type' => $type,
+            ]),
+        };
     }
 
     /**
@@ -110,10 +136,10 @@ class RankingController extends Controller
      *
      * Returns [Rankings](#rankings)
      *
-     * @urlParam mode string required [GameMode](#gamemode). Example: mania
+     * @urlParam mode string required [Ruleset](#ruleset). Example: mania
      * @urlParam type string required [RankingType](#rankingtype). Example: performance
      *
-     * @queryParam country Filter ranking by country code. Only available for `type` of `performance`. Example: JP
+     * @queryParam country string Filter ranking by country code. Only available for `type` of `performance`. Example: JP
      * @queryParam cursor [Cursor](#cursor). No-example
      * @queryParam filter Either `all` (default) or `friends`. Example: all
      * @queryParam spotlight The id of the spotlight if `type` is `charts`. Ranking for latest spotlight will be returned if not specified. No-example
@@ -144,7 +170,7 @@ class RankingController extends Controller
                 });
 
             if ($type === 'performance') {
-                $isExperimentalRank = config('osu.scores.experimental_rank_as_default');
+                $isExperimentalRank = $GLOBALS['cfg']['osu']['scores']['experimental_rank_as_default'];
                 if ($this->country !== null) {
                     $stats->where('country_acronym', $this->country['acronym']);
                     // preferrable to rank_score when filtering by country.
@@ -171,10 +197,6 @@ class RankingController extends Controller
             if (isset($forceIndex)) {
                 $stats->from(DB::raw("{$table} FORCE INDEX ($forceIndex)"));
             }
-
-            if (is_api_request()) {
-                $stats->with(['user.userProfileCustomization']);
-            }
         }
 
         $maxResults = $this->maxResults($modeInt, $stats);
@@ -186,6 +208,22 @@ class RankingController extends Controller
             ->offset(static::PAGE_SIZE * ($page - 1))
             ->get();
 
+        $showRankChange =
+            $type === 'performance' &&
+            $this->country === null &&
+            !$this->friendsOnly &&
+            $this->params['variant'] === null;
+
+        if ($showRankChange) {
+            $stats->loadMissing('rankHistory.currentStart');
+
+            foreach ($stats as $stat) {
+                // Set rankHistory.user.statistics{ruleset} relation
+                $stat->rankHistory?->setRelation('user', $stat->user);
+                $stat->user->setRelation(User::statisticsRelationName($mode), $stat);
+            }
+        }
+
         if (is_api_request()) {
             switch ($type) {
                 case 'country':
@@ -193,7 +231,21 @@ class RankingController extends Controller
                     break;
 
                 default:
-                    $ranking = json_collection($stats, 'UserStatistics', ['user', 'user.cover', 'user.country']);
+                    $includes = ['user', 'user.cover', 'user.country'];
+
+                    if ($this->country !== null) {
+                        $includes[] = 'country_rank';
+                        $startRank = (max($page, 1) - 1) * static::PAGE_SIZE + 1;
+                        foreach ($stats as $index => $entry) {
+                            $entry->countryRank = $startRank + $index;
+                        }
+                    }
+
+                    if ($showRankChange) {
+                        $includes[] = 'rank_change_since_30_days';
+                    }
+
+                    $ranking = json_collection($stats, 'UserStatistics', $includes);
                     break;
             }
 
@@ -218,9 +270,24 @@ class RankingController extends Controller
             ])]
         );
 
-        return ext_view("rankings.{$type}", array_merge($this->defaultViewVars, compact('scores')));
+        return ext_view("rankings.{$type}", array_merge($this->defaultViewVars, compact('scores', 'showRankChange')));
     }
 
+    /**
+     * Get Kudosu Ranking
+     *
+     * Gets the kudosu ranking.
+     *
+     * ---
+     *
+     * ### Response format
+     *
+     * Field   | Type            | Description
+     * ------- | --------------- | -----------
+     * ranking | [User](#user)[] | Includes `kudosu`.
+     *
+     * @queryParam page Ranking page. Example: 1
+     */
     public function kudosu()
     {
         static $maxResults = 1000;
@@ -229,20 +296,27 @@ class RankingController extends Controller
         $page = min(get_int(request('page')) ?? 1, $maxPage);
 
         $scores = User::default()
-            ->with('country')
             ->orderBy('osu_kudostotal', 'desc')
             ->paginate(static::PAGE_SIZE, ['*'], 'page', $page, $maxResults);
+
+        if (is_json_request()) {
+            return ['ranking' => json_collection(
+                $scores,
+                new UserCompactTransformer(),
+                'kudosu',
+            )];
+        }
 
         return ext_view('rankings.kudosu', compact('scores'));
     }
 
     public function spotlight($mode)
     {
-        $chartId = $this->params['spotlight'] ?? null;
+        $chartId = get_int($this->params['spotlight'] ?? null);
 
         $spotlights = Spotlight::orderBy('chart_id', 'desc')->get();
         if ($chartId === null) {
-            $spotlight = $spotlights->first();
+            $spotlight = $spotlights->first() ?? abort(404);
         } else {
             $spotlight = Spotlight::findOrFail($chartId);
         }
@@ -256,13 +330,11 @@ class RankingController extends Controller
             }
 
             if (is_api_request()) {
-                $scores = $scores->with(['user.userProfileCustomization'])->get();
-
                 return [
                     // transformer can't do nested includes with params properly.
                     // https://github.com/thephpleague/fractal/issues/239
                     'beatmapsets' => json_collection($beatmapsets, 'Beatmapset', ['beatmaps']),
-                    'ranking' => json_collection($scores, 'UserStatistics', ['user', 'user.cover', 'user.country']),
+                    'ranking' => json_collection($scores->get(), 'UserStatistics', ['user', 'user.cover', 'user.country']),
                     'spotlight' => json_item($spotlight, 'Spotlight', ["participant_count:mode({$mode})"]),
                 ];
             } else {
@@ -295,15 +367,6 @@ class RankingController extends Controller
                 'spotlight',
             ))
         );
-    }
-
-    private function getCountries(string $mode)
-    {
-        $relation = 'statistics'.title_case($mode);
-
-        return Country::whereHas($relation, function ($query) {
-            $query->where('display', true);
-        })->get();
     }
 
     private function maxResults($modeInt, $stats)

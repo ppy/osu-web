@@ -5,7 +5,6 @@
 
 return [
     'button' => [
-        'cancel' => '취소',
         'resend' => '인증 메일 다시 받기',
         'set' => '비밀번호 설정',
         'start' => '시작',
@@ -18,7 +17,7 @@ return [
         'is_privileged' => '계정을 복구하려면 상위 관리자에게 문의해주세요.',
         'missing_key' => '요구됨.',
         'too_many_tries' => '실패한 횟수가 너무 많습니다.',
-        'user_not_found' => '요청하신 사용자가 존재하지 않습니다.',
+        'user_not_found' => '요청하신 유저가 존재하지 않습니다.',
         'wrong_key' => '잘못된 코드입니다.',
     ],
 
@@ -35,8 +34,11 @@ return [
     ],
 
     'starting' => [
-        'username' => '유저 이름이나 이메일 주소를 입력하세요.',
+        'username' => '아이디나 이메일 주소를 입력하세요.',
 
+        'reason' => [
+            'inactive_different_country' => "계정이 오랫동안 사용되지 않았습니다. 계정 보안을 위해 비밀번호를 재설정하세요.",
+        ],
         'support' => [
             '_' => '도움이 필요하신가요? :button을 통해 문의해보세요.',
             'button' => '지원 시스템',

@@ -23,8 +23,12 @@ return [
         'used' => 'Spent',
     ],
 
+    'performance' => [
+        'insufficient_history' => 'This user has less than 30 days of recent ranking history.',
+    ],
+
     'type' => [
-        'charts' => 'spotlights',
+        'charts' => 'spotlights (old)',
         'country' => 'country',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multiplayer',

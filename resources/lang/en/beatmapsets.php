@@ -40,15 +40,20 @@ return [
     ],
 
     'nominate' => [
+        'bng_limited_too_many_rulesets' => 'Probationary nominators cannot nominate multiple rulesets.',
+        'full_nomination_required' => 'You must be a full nominator to perform the final nomination of a ruleset.',
         'hybrid_requires_modes' => 'A hybrid beatmap requires you to select at least one playmode to nominate for.',
         'incorrect_mode' => 'You do not have permission to nominate for mode: :mode',
-        'full_bn_required' => 'You must be a full nominator to perform this qualifying nomination.',
+        'invalid_limited_nomination' => 'This beatmap has invalid nominations and cannot be qualified in this state.',
+        'invalid_ruleset' => 'This nomination has invalid rulesets.',
         'too_many' => 'Nomination requirement already fulfilled.',
+        'too_many_non_main_ruleset' => 'Nomination requirement for non-main ruleset already fulfilled.',
 
         'dialog' => [
             'confirmation' => 'Are you sure you want to nominate this beatmap?',
             'header' => 'Nominate Beatmap',
             'hybrid_warning' => 'note: you may only nominate once, so please ensure that you are nominating for all game modes you intend to',
+            'current_main_ruleset' => 'The main ruleset is currently: :ruleset',
             'which_modes' => 'Nominate for which modes?',
         ],
     ],
@@ -59,6 +64,10 @@ return [
 
     'show' => [
         'discussion' => 'Discussion',
+
+        'admin' => [
+            'full_size_cover' => 'View full size cover image',
+        ],
 
         'deleted_banner' => [
             'title' => 'This beatmap has been deleted.',

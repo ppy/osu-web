@@ -56,6 +56,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => 'Ny anmeldelse av :username som inneholder problemer: :problems, forslag: :suggestions, ros: :praises',
                 'beatmapset_discussion_unlock' => 'Beatmappen ":title" har blitt låst opp for diskusjon.',
                 'beatmapset_discussion_unlock_compact' => 'Diskusjon var ulåst',
+
+                'review_count' => [
+                    'praises' => ':count_delimited ros|:count_delimited roser',
+                    'problems' => ':count_delimited problem|:count_delimited problemer',
+                    'suggestions' => ':count_delimited forslag|:count_delimited forslag',
+                ],
             ],
 
             'beatmapset_problem' => [
@@ -239,11 +245,6 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':username har låst opp en ny medalje, ":title"!',
-                'user_achievement_unlock_self' => 'Du har låst opp en ny medalje, ":title"!',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username har opprettet nye beatmaps',
                 'user_beatmapset_revive' => ':username har gjenopplivet beatmaps',

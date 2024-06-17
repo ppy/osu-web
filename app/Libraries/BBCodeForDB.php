@@ -5,7 +5,6 @@
 
 namespace App\Libraries;
 
-use App\Models\Smiley;
 use App\Models\User;
 
 class BBCodeForDB
@@ -43,7 +42,7 @@ class BBCodeForDB
     public function __construct($text = '')
     {
         $this->text = $text;
-        $this->uid = config('osu.bbcode.uid');
+        $this->uid = $GLOBALS['cfg']['osu']['bbcode']['uid'];
     }
 
     public function parseAudio($text)
@@ -176,7 +175,7 @@ class BBCodeForDB
     public function parseLinks($text)
     {
         $spaces = ['(^|\[.+?\]|\s(?:&lt;|[.:([])*)', "((?:\[.+?\]|&gt;|[.:)\]])*(?:$|\s|\n|\r))"];
-        $internalUrl = rtrim(preg_quote(config('app.url'), '#'), '/');
+        $internalUrl = rtrim(preg_quote($GLOBALS['cfg']['app']['url'], '#'), '/');
 
         // internal url
         $text = preg_replace(
@@ -325,22 +324,13 @@ class BBCodeForDB
         );
     }
 
-    // copied from www/forum/includes/message_parser.php#L1196
-
     public function parseSmiley($text)
     {
-        $smilies = Smiley::getAll();
+        $replacer = app('smilies')->replacer();
 
-        $match = [];
-        $replace = [];
-
-        foreach ($smilies as $smiley) {
-            $match[] = '(?<=^|[\n .])'.preg_quote($smiley['code'], '#').'(?![^<>]*>)';
-            $replace[] = '<!-- s'.$smiley['code'].' --><img src="{SMILIES_PATH}/'.$smiley['smiley_url'].'" alt="'.$smiley['code'].'" title="'.$smiley['emotion'].'" /><!-- s'.$smiley['code'].' -->';
-        }
-        if (count($match)) {
+        if (count($replacer['patterns']) > 0) {
             // Make sure the delimiter # is added in front and at the end of every element within $match
-            $text = trim(preg_replace(explode(chr(0), '#'.implode('#'.chr(0).'#', $match).'#'), $replace, $text));
+            $text = trim(preg_replace($replacer['patterns'], $replacer['replacements'], $text));
         }
 
         return $text;
@@ -375,7 +365,7 @@ class BBCodeForDB
     public function parseYoutube($text)
     {
         return preg_replace_callback(
-            '#\[youtube\](.+?)\[/youtube\]#',
+            '#\[youtube\](?:https?://(?:youtu\.be/|(?:m\.|www\.|)youtube\.com/(?:embed/|shorts/|watch\?v=))|)(.+?)\[/youtube\]#',
             function ($m) {
                 $videoId = preg_replace('/\?.*/', '', $this->extraEscapes($m[1]));
 

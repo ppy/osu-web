@@ -17,7 +17,9 @@ return [
         'identify' => 'Tukuyin ka at basahin ang iyong pampublikong profile.',
 
         'chat' => [
+            'read' => 'Basahin ang mga mensahe sa iyong ngalan.',
             'write' => 'Magpadala ng mga mensahe sa iyong ngalan.',
+            'write_manage' => 'Sumali at umalis sa mga channel sa ngalan mo.',
         ],
 
         'forum' => [

@@ -5,7 +5,7 @@
 
 return [
     'audio' => [
-        'autoplay' => '自动播放下一曲目',
+        'autoplay' => '自动播放下一首',
     ],
 
     'defaults' => [
@@ -86,7 +86,6 @@ return [
         ],
         'rankings' => [
             '_' => '排名',
-            'kudosu' => 'kudosu',
         ],
         'store' => [
             '_' => '商店',
@@ -107,11 +106,12 @@ return [
             'forum' => '论坛',
             'livestreams' => '直播',
             'report' => '报告问题',
-            'wiki' => '维基',
+            'wiki' => '百科',
         ],
         'legal' => [
             '_' => '法律 & 状态',
             'copyright' => '版权（DMCA）',
+            'jp_sctl' => '',
             'privacy' => '隐私政策',
             'server_status' => '服务器状态',
             'source_code' => '源代码',
@@ -195,6 +195,8 @@ return [
             'account-edit' => '设置',
             'follows' => '订阅',
             'friends' => '好友',
+            'legacy_score_only_toggle' => 'Lazer 模式',
+            'legacy_score_only_toggle_tooltip' => 'Lazer 模式使用来自 Lazer 客户端的新记分算法显示您的分数',
             'logout' => '登出',
             'profile' => '资料',
         ],

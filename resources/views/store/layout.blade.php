@@ -7,8 +7,8 @@
 @section('script')
     <script id="json-shopify-options" type="application/json">
         {!! json_encode([
-            'domain' => config('store.shopify.domain'),
-            'storefrontAccessToken' => config('store.shopify.storefront_token'),
+            'domain' => $GLOBALS['cfg']['store']['shopify']['domain'],
+            'storefrontAccessToken' => $GLOBALS['cfg']['store']['shopify']['storefront_token'],
         ]) !!}
     </script>
 

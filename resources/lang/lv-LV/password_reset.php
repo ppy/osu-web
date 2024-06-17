@@ -5,7 +5,6 @@
 
 return [
     'button' => [
-        'cancel' => 'Atcelt',
         'resend' => 'Atkārtoti nosūtīt apstiprināšanas e-pastu',
         'set' => 'Ievadīt paroli',
         'start' => 'Sākt',
@@ -13,8 +12,8 @@ return [
 
     'error' => [
         'contact_support' => 'Sazinieties ar atbalsta centru, lai atgūtu kontu.',
-        'expired' => '',
-        'invalid' => '',
+        'expired' => 'Apstiprinājuma koda termiņš ir beidzies.',
+        'invalid' => 'Negaidīta kļūme apstiprināšanas kodā.',
         'is_privileged' => 'Sazinieties ar peppy lulz.',
         'missing_key' => 'Nepieciešams.',
         'too_many_tries' => 'Pārāk daudz neizdevušos mēģinājumu.',
@@ -37,6 +36,9 @@ return [
     'starting' => [
         'username' => 'Ievadiet e-pasta adresi vai lietotājvārdu',
 
+        'reason' => [
+            'inactive_different_country' => "",
+        ],
         'support' => [
             '_' => 'Nepieciešams tālāks atbalsts? Sazinieties ar mums caur :button.',
             'button' => 'atbalsta sistēma',

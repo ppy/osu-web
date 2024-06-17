@@ -51,7 +51,7 @@ return [
 
         'mode' => [
             'all' => 'vše',
-            'beatmapset' => 'beatmap',
+            'beatmapset' => 'beatmapa',
             'forum_post' => 'fórum',
             'user' => 'hráč',
             'wiki_page' => 'wiki',
@@ -80,7 +80,6 @@ return [
         'action_lazer_title' => 'zkusit osu!(lazer)',
         'action_title' => 'stáhnout osu!',
         'for_os' => 'pro :os',
-        'lazer_note' => 'poznámka: resetuje žebříčky',
         'macos-fallback' => 'macOS uživatelé',
         'mirror' => 'mirror',
         'or' => 'nebo',
@@ -103,7 +102,7 @@ return [
         ],
         'steps' => [
             'register' => [
-                'title' => 'založte si účet',
+                'title' => 'založ si účet',
                 'description' => 'při spuštění hry postupuj podle pokynů pro přihlášení nebo vytvoření nového účtu',
             ],
             'download' => [

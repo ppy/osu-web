@@ -80,7 +80,6 @@ return [
         'action_lazer_title' => 'thử osu!(lazer)',
         'action_title' => 'tải xuống osu!',
         'for_os' => 'dành cho :os',
-        'lazer_note' => 'ghi chú: bảng xêp hạng có thể được đặt lại',
         'macos-fallback' => 'người dùng macOS',
         'mirror' => 'liên kết phụ',
         'or' => 'hoặc',

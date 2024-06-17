@@ -1,0 +1,30 @@
+<?php
+
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+return [
+    'show' => [
+        'fallback_translation' => 'La página solicitada aún no se ha traducido al idioma seleccionado (:language). Mostrando la versión en inglés.',
+        'incomplete_or_outdated' => 'El contenido de esta página está incompleto u obsoleto. Si puedes ayudar, ¡considera actualizar el artículo!',
+        'missing' => 'La página solicitada «:keyword» no se pudo encontrar.',
+        'missing_title' => 'No se pudo encontrar',
+        'missing_translation' => 'La página solicitada no se pudo encontrar para el idioma seleccionado.',
+        'needs_cleanup_or_rewrite' => 'Esta página no cumple con los estándares de la osu! wiki y necesita ser limpiada o reescrita. Si puedes ayudar, ¡considera actualizar el artículo!',
+        'search' => 'Buscar páginas existentes para :link.',
+        'stub' => 'Este artículo está incompleto y esperando que alguien lo amplíe.',
+        'toc' => 'Contenidos',
+
+        'edit' => [
+            'link' => 'Mostrar en GitHub',
+            'refresh' => 'Actualizar',
+        ],
+
+        'translation' => [
+            'legal' => 'Esta traducción solo se proporciona para conveniencia. La :default original será la única versión legalmente vinculante de este texto.',
+            'outdated' => 'Esta página contiene una traducción obsoleta del contenido original. ¡Revisa la :default para obtener información más precisa (y considera la posibilidad de actualizar la traducción si puedes ayudar)!',
+
+            'default' => 'versión en inglés',
+        ],
+    ],
+];

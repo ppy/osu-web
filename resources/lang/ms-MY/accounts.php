@@ -9,7 +9,7 @@ return [
         'username' => 'nama pengguna',
 
         'avatar' => [
-            'title' => '',
+            'title' => 'Avatar',
             'rules' => 'Pastikan avatarmu akur pada :link yang berlaku.<br/>Dengan kata lain, avatarmu mestilah <strong>sesuai untuk segala usia</strong> tanpa mengandung unsur apa pun yang tidak dibenarkan seperti cacian, hinaan, atau hal yang tidak senonoh.',
             'rules_link' => 'peraturan komuniti',
         ],
@@ -18,12 +18,16 @@ return [
             'new' => 'e-mel baharu',
             'new_confirmation' => 'pengesahan e-mel',
             'title' => 'E-mel',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
         ],
 
         'legacy_api' => [
-            'api' => '',
-            'irc' => '',
-            'title' => '',
+            'api' => 'api',
+            'irc' => '\'irc\' ',
+            'title' => 'API Legasi',
         ],
 
         'password' => [
@@ -34,12 +38,12 @@ return [
         ],
 
         'profile' => [
-            'country' => '',
+            'country' => 'negara',
             'title' => 'Profil',
 
             'country_change' => [
-                '_' => "",
-                'update_link' => '',
+                '_' => "Kelihatannya negara akaun anda tidak sempadan dengan negara petempatan anda. :update_link.",
+                'update_link' => 'Kemaskini ke :country',
             ],
 
             'user' => [
@@ -58,12 +62,25 @@ return [
         ],
     ],
 
-    'notifications' => [
-        'beatmapset_discussion_qualified_problem' => '',
-        'beatmapset_disqualify' => '',
-        'comment_reply' => '',
+    'github_user' => [
+        'info' => "",
+        'link' => '',
         'title' => '',
-        'topic_auto_subscribe' => '',
+        'unlink' => '',
+
+        'error' => [
+            'already_linked' => '',
+            'no_contribution' => '',
+            'unverified_email' => '',
+        ],
+    ],
+
+    'notifications' => [
+        'beatmapset_discussion_qualified_problem' => 'terima notifikasi untuk masalah baru pada beatmap berkelayakan pada mod tersebut ',
+        'beatmapset_disqualify' => 'terima notifikasi apabila beatmap bagi mod tersebut telah didisqualifikasi ',
+        'comment_reply' => 'terima notifikasi untuk balasan pada komen anda',
+        'title' => 'Notifikasi',
+        'topic_auto_subscribe' => 'hidupkan notifikasi secara automatik pada topik forum baru yang anda cipta',
 
         'options' => [
             '_' => 'hantarkan pemberitahuan melalui',
@@ -75,7 +92,6 @@ return [
             'mail' => 'e-mel',
             'mapping' => 'pembuat beatmap',
             'push' => 'web',
-            'user_achievement_unlock' => 'pingat baharu terbuka',
         ],
     ],
 

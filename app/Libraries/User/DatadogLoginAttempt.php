@@ -13,7 +13,7 @@ class DatadogLoginAttempt
     {
         $success = $failReasonOrNull === null;
 
-        Datadog::increment(config('datadog-helper.prefix_web').'.login_attempts', 1, [
+        Datadog::increment($GLOBALS['cfg']['datadog-helper']['prefix_web'].'.login_attempts', 1, [
             'success' => (int) $success,
             'reason' => $failReasonOrNull,
         ]);

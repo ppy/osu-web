@@ -55,7 +55,6 @@ class Order extends Model
     const ORDER_NUMBER_REGEX = '/^(?<prefix>[A-Za-z]+)-(?<userId>\d+)-(?<orderId>\d+)$/';
     const PENDING_ECHECK = 'PENDING ECHECK';
 
-    const PROVIDER_CENTILLI = 'centili';
     const PROVIDER_FREE = 'free';
     const PROVIDER_PAYPAL = 'paypal';
     const PROVIDER_SHOPIFY = 'shopify';
@@ -142,7 +141,7 @@ class Order extends Model
 
     public function scopeStale($query)
     {
-        return $query->where('updated_at', '<', Carbon::now()->subDays(config('store.order.stale_days')));
+        return $query->where('updated_at', '<', Carbon::now()->subDays($GLOBALS['cfg']['store']['order']['stale_days']));
     }
 
     public function scopeWhereHasInvoice($query)
@@ -154,7 +153,7 @@ class Order extends Model
     {
         if (
             !preg_match(static::ORDER_NUMBER_REGEX, $orderNumber, $matches)
-            || config('store.order.prefix') !== $matches['prefix']
+            || $GLOBALS['cfg']['store']['order']['prefix'] !== $matches['prefix']
         ) {
             // hope there's no order_id 0 :D
             return $query->where('order_id', '=', 0);
@@ -208,7 +207,7 @@ class Order extends Model
 
     public function getOrderNumber()
     {
-        return config('store.order.prefix')."-{$this->user_id}-{$this->order_id}";
+        return $GLOBALS['cfg']['store']['order']['prefix']."-{$this->user_id}-{$this->order_id}";
     }
 
     public function getPaymentProvider()
@@ -694,7 +693,7 @@ class Order extends Model
                 $params['extra_data'] = ExtraDataSupporterTag::fromOrderItemParams($params, $this->user);
                 break;
             // TODO: look at migrating to extra_data
-            case 'username-change':
+            case Product::USERNAME_CHANGE:
                 // ignore received cost
                 $params['cost'] = $this->user->usernameChangeCost();
                 break;

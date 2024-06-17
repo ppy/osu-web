@@ -18,6 +18,10 @@ return [
             'new' => 'ny email',
             'new_confirmation' => 'email bekræftelse',
             'title' => 'Email',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
         ],
 
         'legacy_api' => [
@@ -58,6 +62,19 @@ return [
         ],
     ],
 
+    'github_user' => [
+        'info' => "",
+        'link' => '',
+        'title' => '',
+        'unlink' => '',
+
+        'error' => [
+            'already_linked' => '',
+            'no_contribution' => '',
+            'unverified_email' => '',
+        ],
+    ],
+
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'modtag notifikationer for nye problemer på kvalificerede beatmaps for de følgende spileltilstande',
         'beatmapset_disqualify' => 'modtag notifikationer når beatmaps af følgende modes bliver diskvalificeret',
@@ -75,7 +92,6 @@ return [
             'mail' => 'post',
             'mapping' => 'beatmap mapper',
             'push' => 'push',
-            'user_achievement_unlock' => 'bruger medalje låst op',
         ],
     ],
 

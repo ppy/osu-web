@@ -13,7 +13,28 @@ return [
         'nav_title' => 'katalog',
     ],
 
+    'judge' => [
+        'hide_judged' => 'değerlendirilen girişleri gizle',
+        'nav_title' => 'yargıç',
+        'no_current_vote' => 'henüz oy vermedin.',
+        'update' => 'güncelle',
+        'validation' => [
+            'missing_score' => 'eksik skor',
+            'contest_vote_judged' => 'değerlendirilen girişlere oy veremezsiniz',
+        ],
+        'voted' => 'Bu girişe zaten oy verdiniz.',
+    ],
+
+    'judge_results' => [
+        '_' => '',
+        'creator' => '',
+        'score' => '',
+        'total_score' => '',
+    ],
+
     'voting' => [
+        'judge_link' => '',
+        'judged_notice' => '',
         'login_required' => 'Oylamak için lütfen giriş yapınız.',
         'over' => 'Bu yarışma için oylama sona erdi',
         'show_voted_only' => 'Oy verilenleri göster',
@@ -38,6 +59,7 @@ return [
             ],
         ],
     ],
+
     'entry' => [
         '_' => 'girdi',
         'login_required' => 'Yarışmaya katılmak için giriş yapınız.',
@@ -45,22 +67,27 @@ return [
         'preparation' => 'Şu an bu yarışmayı hazırlıyoruz. Lütfen sabırla bekleyiniz!',
         'drop_here' => 'Girdinizi buraya bırakın',
         'download' => '.osz indir',
+
         'wrong_type' => [
             'art' => 'Bu yarışma için sadece .jpg ve .png dosyaları kabul edilir.',
             'beatmap' => 'Bu yarışma için sadece .osu dosyaları kabul edilir.',
             'music' => 'Bu yarışma için sadece .mp3 dosyaları kabul edilir.',
         ],
+
         'wrong_dimensions' => 'Bu yarışma için başvurular şu şekilde olmalıdır: :widthx:height',
         'too_big' => 'Bu yarışma için :limit girdi gönderilebilir.',
     ],
+
     'beatmaps' => [
         'download' => 'Girdiyi İndir',
     ],
+
     'vote' => [
         'list' => 'oylar',
         'count' => ':count_delimited oy|:count_delimited oy',
         'points' => ':count_delimited puan|:count_delimited puan',
     ],
+
     'dates' => [
         'ended' => ':date tarihinde sona erdi',
         'ended_no_date' => 'Sona erdi',
@@ -70,6 +97,7 @@ return [
             'soon' => 'yakında™',
         ],
     ],
+
     'states' => [
         'entry' => 'Girişler Açık',
         'voting' => 'Oylama Başladı',

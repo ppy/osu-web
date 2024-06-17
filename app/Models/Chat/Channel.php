@@ -263,19 +263,6 @@ class Channel extends Model
         return $this->hasMany(Message::class);
     }
 
-    public function filteredMessages()
-    {
-        $messages = $this->messages();
-
-        if ($this->isPublic()) {
-            $messages = $messages->where('timestamp', '>', Carbon::now()->subHours(config('osu.chat.public_backlog_limit')));
-        }
-
-        // TODO: additional message filtering
-
-        return $messages;
-    }
-
     public function userChannels()
     {
         return $this->hasMany(UserChannel::class);
@@ -406,7 +393,7 @@ class Channel extends Model
     {
         return $this->isAnnouncement()
             ? static::ANNOUNCE_MESSAGE_LENGTH_LIMIT
-            : config('osu.chat.message_length_limit');
+            : $GLOBALS['cfg']['osu']['chat']['message_length_limit'];
     }
 
     public function multiplayerMatch()
@@ -443,12 +430,12 @@ class Channel extends Model
         }
 
         if ($this->isPM()) {
-            $limit = config('osu.chat.rate_limits.private.limit');
-            $window = config('osu.chat.rate_limits.private.window');
+            $limit = $GLOBALS['cfg']['osu']['chat']['rate_limits']['private']['limit'];
+            $window = $GLOBALS['cfg']['osu']['chat']['rate_limits']['private']['window'];
             $keySuffix = 'PM';
         } else {
-            $limit = config('osu.chat.rate_limits.public.limit');
-            $window = config('osu.chat.rate_limits.public.window');
+            $limit = $GLOBALS['cfg']['osu']['chat']['rate_limits']['public']['limit'];
+            $window = $GLOBALS['cfg']['osu']['chat']['rate_limits']['public']['window'];
             $keySuffix = 'PUBLIC';
         }
 
@@ -469,14 +456,8 @@ class Channel extends Model
             throw new API\ExcessiveChatMessagesException(osu_trans('api.error.chat.limit_exceeded'));
         }
 
-        $chatFilters = app('chat-filters')->all();
-
-        foreach ($chatFilters as $filter) {
-            $content = str_replace($filter->match, $filter->replacement, $content);
-        }
-
         $message = new Message([
-            'content' => $content,
+            'content' => $this->isAnnouncement() ? $content : app('chat-filters')->filter($content),
             'is_action' => $isAction,
             'timestamp' => $now,
         ]);

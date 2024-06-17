@@ -49,7 +49,7 @@ return [
     ],
 
     'card' => [
-        'gift_supporter' => '',
+        'gift_supporter' => 'Подари osu!supporter',
         'loading' => 'Зареждане...',
         'send_message' => 'изпрати съобщение',
     ],
@@ -97,6 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
+            'inactive' => "В профилът ви не е влизано от доста време.",
             'inactive_different_country' => "Вашият акаунт не е ползван от дълго време.",
         ],
     ],
@@ -120,6 +121,17 @@ return [
         'beta' => [
             'main' => 'Ранният достъп е ограничен само за привилегировани потребители.',
             'small' => '(osu!supporter ще има достъп скоро)',
+        ],
+    ],
+
+    'ogp' => [
+        'modding_description' => 'Бийтмапове: :counts',
+        'modding_description_empty' => 'Потребителят няма бийтмапове...',
+
+        'description' => [
+            '_' => 'Ранг (:ruleset): :global | :country',
+            'country' => 'Държава :rank',
+            'global' => 'Световен :rank',
         ],
     ],
 
@@ -175,7 +187,6 @@ return [
         'origin_country' => 'От :country',
         'previous_usernames' => 'някога известен като',
         'plays_with' => 'Играе с :devices',
-        'title' => "профила на :username",
 
         'comments_count' => [
             '_' => 'Публикувани :link',
@@ -387,7 +398,7 @@ return [
                     'date' => 'дата',
                     'action' => 'действие',
                     'length' => 'продължителност',
-                    'length_permanent' => 'Завинаги',
+                    'length_indefinite' => 'Неопределен',
                     'description' => 'описание',
                     'actor' => 'от :username',
 

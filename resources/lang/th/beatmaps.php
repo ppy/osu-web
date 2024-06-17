@@ -78,6 +78,18 @@ return [
             'suggestion' => 'ข้อเสนอแนะ',
         ],
 
+        'message_type_title' => [
+            'disqualify' => 'โพสต์การตัดสิทธิ์',
+            'hype' => 'โพสต์ Hype!',
+            'mapper_note' => 'โพสต์หมายเหตุ',
+            'nomination_reset' => 'ลบการเสนอชื่อทั้งหมด',
+            'praise' => 'โพสต์การชื่นชม',
+            'problem' => 'โพสต์ปัญหา',
+            'problem_warning' => 'โพสต์ปัญหา',
+            'review' => 'โพสต์รีวิว',
+            'suggestion' => 'โพสต์คำแนะนำ',
+        ],
+
         'mode' => [
             'events' => 'ประวัติ',
             'general' => 'ทั่วไป :scope',
@@ -201,6 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'แมพนี้จะถูก ranked  ใน :date ถ้าไม่พบเจอปัญหาเพิ่มเติม แมพนี้อยู่ที่ #:position ใน :queue',
+            'unresolved_problems' => '',
+            'problems' => '',
             'on' => 'เมื่อ :date',
             'queue' => 'คิวการจัดอันดับ',
             'soon' => 'เร็วๆ นี้',
@@ -223,7 +237,7 @@ return [
             'prompt' => 'พิมพ์คำสำคัญ...',
             'login_required' => 'ลงชื่อเข้าใช้เพื่อค้นหา',
             'options' => 'ตัวเลือกการค้นหาเพิ่มเติม',
-            'supporter_filter' => 'กรองโดย :filters ต้องมี osu!supporter tag ทำงานอยู่',
+            'supporter_filter' => 'การกรองด้วย :filters จำเป็นต้องมีแท็กผู้สนับสนุนที่ทำงานอยู่',
             'not-found' => 'ไม่มีผลการค้นหา',
             'not-found-quote' => '... ไม่อ่ะ ไม่เจออะไรเลย',
             'filters' => [
@@ -251,7 +265,7 @@ return [
             ],
             'supporter_filter_quote' => [
                 '_' => 'กรองโดย :filters ต้องมี :link ทำงานอยู่',
-                'link_text' => 'แท็ก osu!supporter',
+                'link_text' => 'แท็กผู้สนับสนุน osu!',
             ],
         ],
     ],
@@ -269,6 +283,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
+        'undefined' => '',
     ],
     'status' => [
         'any' => 'ไม่เจาะจง',

@@ -3,7 +3,7 @@
 
 import PlaymodeTabs from 'components/playmode-tabs';
 import StringWithComponent from 'components/string-with-component';
-import { gameModes } from 'interfaces/game-mode';
+import { rulesets } from 'interfaces/ruleset';
 import { route } from 'laroute';
 import { action, observable, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
@@ -37,7 +37,7 @@ export default class GameModeSwitcher extends React.Component<Props> {
         <PlaymodeTabs
           currentMode={this.props.controller.currentMode}
           defaultMode={this.props.controller.state.user.playmode}
-          entries={gameModes.map((mode) => ({
+          entries={rulesets.map((mode) => ({
             disabled: false,
             href: route('users.show', { mode, user: this.props.controller.state.user.id }),
             mode,

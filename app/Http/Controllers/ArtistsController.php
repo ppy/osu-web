@@ -39,18 +39,30 @@ class ArtistsController extends Controller
         $albums = $artist->albums()
             ->where('visible', true)
             ->orderBy('id', 'desc')
-            ->with(['tracks' => function ($query) {
-                $query->orderBy('display_order', 'ASC');
-            }])
-            ->with('tracks.artist')
+            ->with(['tracks' => fn ($q) => $q
+                    ->orderBy('display_order', 'asc')
+                    ->orderBy('exclusive', 'desc')
+                    ->orderBy('id', 'asc'),
+            ])
             ->get();
 
         $tracks = $artist
             ->tracks()
             ->whereNull('album_id')
-            ->with('artist')
+            ->orderBy('display_order', 'asc')
+            ->orderBy('exclusive', 'desc')
             ->orderBy('id', 'desc')
             ->get();
+
+        foreach ($albums as $album) {
+            foreach ($album->tracks as $track) {
+                $track->setRelation('album', $album);
+                $track->setRelation('artist', $artist);
+            }
+        }
+        foreach ($tracks as $track) {
+            $track->setRelation('artist', $artist);
+        }
 
         $images = [
             'header_url' => $artist->header_url,
@@ -98,6 +110,8 @@ class ArtistsController extends Controller
                 ];
             }
         }
+
+        set_opengraph($artist);
 
         return ext_view('artists.show', [
             'artist' => $artist,

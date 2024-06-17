@@ -78,6 +78,18 @@ return [
             'suggestion' => 'Predlog',
         ],
 
+        'message_type_title' => [
+            'disqualify' => '',
+            'hype' => '',
+            'mapper_note' => '',
+            'nomination_reset' => '',
+            'praise' => '',
+            'problem' => '',
+            'problem_warning' => '',
+            'review' => '',
+            'suggestion' => '',
+        ],
+
         'mode' => [
             'events' => 'Zgodovina',
             'general' => 'Splošno :scope',
@@ -201,6 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'Ta beatmapa bo približno rankirana :date če ne bo najdenih težav. Trenutno je #:position v :queue.',
+            'unresolved_problems' => '',
+            'problems' => '',
             'on' => 'na :date',
             'queue' => 'čakalna vrsta rankiranja',
             'soon' => 'kmalu',
@@ -269,6 +283,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
+        'undefined' => '',
     ],
     'status' => [
         'any' => 'Vse',

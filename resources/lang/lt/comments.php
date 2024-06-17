@@ -17,7 +17,7 @@ return [
     'title' => 'Komentarai',
 
     'commentable_name' => [
-        'beatmapset' => 'Bitmapas',
+        'beatmapset' => 'Beatmap\'as',
         'build' => 'Pakeitimų sąrašas',
         'news_post' => 'Naujienos',
         '_deleted' => 'Ištrintas elementas',
@@ -41,6 +41,10 @@ return [
         'nav_comments' => 'komentarai',
         'nav_title' => 'sąrašas',
         'no_comments' => 'komentarų nerasta...',
+    ],
+
+    'ogp' => [
+        'title' => 'komentaras iš :user',
     ],
 
     'placeholder' => [

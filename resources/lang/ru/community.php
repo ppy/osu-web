@@ -100,7 +100,7 @@ return [
             ],
 
             'change_username' => [
-                'title' => 'Смена никнейма',
+                'title' => 'Смена ника',
                 'description' => 'Одно бесплатное изменение ника с первым приобретением osu!supporter.',
             ],
 
@@ -138,10 +138,10 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution' => 'Большое спасибо за Вашу поддержку! Всего Вы пожертвовали :dollars за :tags покупок!',
-            'gifted' => "Из них Вы подарили :giftedTags тегов (на сумму :giftedDollars) – как щедро!",
-            'not_yet' => "У вас нет и ещё не было osu!supporter :(",
-            'valid_until' => 'Ваш osu!supporter активен до :date!',
+            'contribution' => 'Большое спасибо за вашу поддержку! Всего вы пожертвовали :dollars за :tags покупок тега!',
+            'gifted' => "Из них вы подарили :giftedTags тегов на сумму в :giftedDollars – как щедро с вашей стороны!",
+            'not_yet' => "У вас нет и ещё не было тега osu!supporter :(",
+            'valid_until' => 'Ваш тег osu!supporter активен до :date!',
             'was_valid_until' => 'Ваш тег osu!supporter истёк :date.',
         ],
     ],

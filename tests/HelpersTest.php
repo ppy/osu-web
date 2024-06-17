@@ -7,6 +7,8 @@ declare(strict_types=1);
 
 namespace Tests;
 
+use App\Models\Country;
+
 class HelpersTest extends TestCase
 {
     /**
@@ -25,7 +27,57 @@ class HelpersTest extends TestCase
         $this->assertSame($expected, class_with_modifiers($class, ...$modifiers));
     }
 
-    public function dataForClassWithModifiers(): array
+    public function testIsSqlUniqueException(): void
+    {
+        $baseParams = [
+            'rankedscore' => 0,
+            'playcount' => 0,
+            'usercount' => 0,
+        ];
+
+        (new Country([
+            ...$baseParams,
+            'acronym' => 'AA',
+            'name' => '1',
+        ]))->saveOrExplode();
+
+        try {
+            (new Country([
+                ...$baseParams,
+                'acronym' => 'AA',
+                'name' => '2',
+            ]))->saveOrExplode();
+        } catch (\Throwable $e) {
+            $exception = $e;
+        }
+
+        $this->assertTrue(is_sql_unique_exception($exception));
+    }
+
+    /**
+     * @dataProvider dataForGetLengthSeconds
+     */
+    public function testGetLengthSeconds(string $input, array $expected): void
+    {
+        $this->assertSame($expected, get_length_seconds($input));
+    }
+
+    public static function dataForGetLengthSeconds(): array
+    {
+        return [
+            ['23s', ['value' => 23.0, 'min_scale' => 1]],
+            ['9m', ['value' => 9.0 * 60, 'min_scale' => 60]],
+            ['0.25h', ['value' => 15.0 * 60, 'min_scale' => 3600]],
+            ['1h20s', ['value' => (60 * 60) + 20.0, 'min_scale' => 1]],
+            ['6h5m', ['value' => (60 * 60 * 6) + (5.0 * 60), 'min_scale' => 60]],
+            ['6', ['value' => 6.0, 'min_scale' => 1]],
+            ['1:2:3', ['value' => (60 * 60) + (2 * 60) + 3.0, 'min_scale' => 1]],
+            ['1h2m3.5s', ['value' => (60 * 60) + (2 * 60) + 3.5, 'min_scale' => 1]],
+            ['600ms', ['value' => 600 * 0.001, 'min_scale' => 0.001]],
+        ];
+    }
+
+    public static function dataForClassWithModifiers(): array
     {
         return [
             'no modifiers' =>
@@ -53,7 +105,7 @@ class HelpersTest extends TestCase
         ];
     }
 
-    public function dataForGetStringSplit(): array
+    public static function dataForGetStringSplit(): array
     {
         return [
             ["hello\nworld\n!", ['hello', 'world', '!']],

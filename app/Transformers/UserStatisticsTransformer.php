@@ -7,12 +7,14 @@ namespace App\Transformers;
 
 use App\Models\Beatmap;
 use App\Models\UserStatistics;
+use League\Fractal\Resource\ResourceInterface;
 
 class UserStatisticsTransformer extends TransformerAbstract
 {
     protected array $availableIncludes = [
         'country_rank',
         'rank',
+        'rank_change_since_30_days',
         'user',
         'variants',
     ];
@@ -23,7 +25,7 @@ class UserStatisticsTransformer extends TransformerAbstract
             $stats = new UserStatistics\Osu();
         }
 
-        if (!config('osu.scores.experimental_rank_as_default') && config('osu.scores.experimental_rank_as_extra')) {
+        if (!$GLOBALS['cfg']['osu']['scores']['experimental_rank_as_default'] && $GLOBALS['cfg']['osu']['scores']['experimental_rank_as_extra']) {
             $globalRankExp = $stats->globalRankExp();
             $ppExp = $stats->rank_score_exp;
         }
@@ -52,9 +54,9 @@ class UserStatisticsTransformer extends TransformerAbstract
             'is_ranked' => $stats->isRanked(),
             'grade_counts' => [
                 'ss' => $stats->x_rank_count,
-                'ssh' => $stats->xh_rank_count,
+                'ssh' => $stats->xh_rank_count ?? 0, // osu_charts tables don't have the `h` columns
                 's' => $stats->s_rank_count,
-                'sh' => $stats->sh_rank_count,
+                'sh' => $stats->sh_rank_count ?? 0,
                 'a' => $stats->a_rank_count,
             ],
         ];
@@ -75,6 +77,11 @@ class UserStatisticsTransformer extends TransformerAbstract
         }
 
         return $this->primitive(['country' => $stats->countryRank()]);
+    }
+
+    public function includeRankChangeSince30Days(UserStatistics\Model $stats): ResourceInterface
+    {
+        return $this->primitive($stats->rankHistory?->rankChangeSince30Days());
     }
 
     public function includeUser(UserStatistics\Model $stats = null)
@@ -102,7 +109,8 @@ class UserStatisticsTransformer extends TransformerAbstract
         $data = [];
 
         foreach ($variants as $variant) {
-            $entry = UserStatistics\Model::getClass($mode, $variant)::where('user_id', $stats->user_id)->firstOrNew([]);
+            // User should be preloaded in cases where this is used.
+            $entry = $stats->user->statistics($mode, false, $variant) ?? new (UserStatistics\Model::getClass($mode, $variant));
 
             $data[] = [
                 'mode' => $mode,

@@ -2,13 +2,13 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { Spinner } from 'components/spinner';
+import TextareaAutosize from 'components/textarea-autosize';
 import { FormErrors } from 'form-errors';
 import { action, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import { OwnClient as Client } from 'models/oauth/own-client';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import TextareaAutosize from 'react-autosize-textarea';
 import { onError } from 'utils/ajax';
 import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
@@ -82,7 +82,6 @@ export class ClientDetails extends React.Component<Props, State> {
             {trans('oauth.client.redirect')}
           </div>
           <TextareaAutosize
-            async
             className={classWithModifiers(
               'oauth-client-details__input',
               'textarea',

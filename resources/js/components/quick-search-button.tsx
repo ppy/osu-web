@@ -20,7 +20,7 @@ interface State {
 
 @observer export default class QuickSearchButton extends React.Component<Props, State> {
   formRef = React.createRef<QuickSearch>();
-  searchPath = route('search', null, false);
+  searchPath = route('search', undefined, false);
   state: State = { open: false };
 
   private get isSearchPage() {
@@ -36,7 +36,7 @@ interface State {
   render() {
     let className = 'nav2__menu-link-main nav2__menu-link-main--search';
 
-    if (this.state.open || currentUrl().pathname === route('search', null, false)) {
+    if (this.state.open || currentUrl().pathname === route('search', undefined, false)) {
       className += ' u-section--bg-normal';
     }
 
@@ -66,7 +66,7 @@ interface State {
     );
   }
 
-  private toggle = (event?: React.SyntheticEvent<HTMLElement>) => {
+  private readonly toggle = (event?: React.SyntheticEvent<HTMLElement>) => {
     if (core.currentUser == null) {
       return;
     }

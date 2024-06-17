@@ -45,6 +45,11 @@ return [
         'index' => [
             '_' => 'ค้นหาแทร็ก',
 
+            'exclusive_only' => [
+                'all' => 'ทั้งหมด',
+                'exclusive_only' => '',
+            ],
+
             'form' => [
                 'advanced' => 'การค้นหาขั้นสูง',
                 'album' => 'อัลบั้ม',
@@ -52,6 +57,7 @@ return [
                 'bpm_gte' => 'BPM ต่ำสุด',
                 'bpm_lte' => 'BPM สูงสุด',
                 'empty' => 'ไม่พบแทร็กที่ตรงกับเกณฑ์การค้นหา',
+                'exclusive_only' => 'ประเภท',
                 'genre' => 'ประเภท',
                 'genre_all' => 'ทั้งหมด',
                 'length_gte' => 'ความยาวต่ำสุด',

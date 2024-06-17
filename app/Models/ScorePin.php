@@ -7,36 +7,19 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use App\Libraries\MorphMap;
-use App\Models\Score\Best as ScoreBest;
-use Ds\Set;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 /**
  * @property \Carbon\Carbon|null $created_at
- * @property \App\Models\Score\Best\Model $score
+ * @property \App\Models\Solo\Score $score
  * @property \Carbon\Carbon|null $updated_at
  */
 class ScorePin extends Model
 {
-    const SCORES = [
-        MorphMap::MAP[ScoreBest\Fruits::class],
-        MorphMap::MAP[ScoreBest\Mania::class],
-        MorphMap::MAP[ScoreBest\Osu::class],
-        MorphMap::MAP[ScoreBest\Taiko::class],
-        MorphMap::MAP[Solo\Score::class],
-    ];
+    public $incrementing = false;
 
-    public static function isValidType(string|null $type): bool
-    {
-        static $lookup;
-
-        $lookup ??= new Set(static::SCORES);
-
-        return $lookup->contains($type);
-    }
+    protected $primaryKey = 'score_id';
 
     public function scopeForRuleset($query, string $ruleset): Builder
     {
@@ -45,19 +28,12 @@ class ScorePin extends Model
 
     public function scopeWithVisibleScore($query): Builder
     {
-        $scoreModels = static::SCORES;
-
-        if (config('osu.user.hide_pinned_solo_scores')) {
-            $soloScoreIndex = array_search_null(MorphMap::MAP[Solo\Score::class], $scoreModels);
-            array_splice($scoreModels, $soloScoreIndex, 1);
-        }
-
-        return $query->whereHasMorph('score', $scoreModels, fn ($q) => $q->whereHas('beatmap.beatmapset'));
+        return $query->whereHas('score', fn ($q) => $q->whereHas('beatmap.beatmapset'));
     }
 
-    public function score(): MorphTo
+    public function score(): BelongsTo
     {
-        return $this->morphTo();
+        return $this->belongsTo(Solo\Score::class, 'score_id');
     }
 
     public function user(): BelongsTo

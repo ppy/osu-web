@@ -10,7 +10,7 @@ import UserLink from 'components/user-link';
 import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import BeatmapsetJson, { BeatmapsetStatus } from 'interfaces/beatmapset-json';
-import GameMode from 'interfaces/game-mode';
+import Ruleset from 'interfaces/ruleset';
 import { route } from 'laroute';
 import { sum, values } from 'lodash';
 import { action, computed, makeObservable, observable } from 'mobx';
@@ -54,7 +54,7 @@ const BeatmapDot = observer(({ beatmap }: { beatmap: BeatmapJson }) => (
   />
 ));
 
-const BeatmapDots = observer(({ compact, beatmaps, mode }: { beatmaps: BeatmapJson[]; compact: boolean; mode: GameMode }) => (
+const BeatmapDots = observer(({ compact, beatmaps, mode }: { beatmaps: BeatmapJson[]; compact: boolean; mode: Ruleset }) => (
   <div className='beatmapset-panel__extra-item beatmapset-panel__extra-item--dots'>
     <div className='beatmapset-panel__beatmap-icon'>
       <i className={`fal fa-extra-mode-${mode}`} />
@@ -107,10 +107,10 @@ const StatsItem = ({ icon, title, type, value }: StatsItemProps) => (
 @observer
 export default class BeatmapsetPanel extends React.Component<Props> {
   @observable private beatmapsPopupHover = false;
-  private beatmapsPopupRef = React.createRef<BeatmapsPopup>();
-  private blockRef = React.createRef<HTMLDivElement>();
+  private readonly beatmapsPopupRef = React.createRef<BeatmapsPopup>();
+  private readonly blockRef = React.createRef<HTMLDivElement>();
   @observable private mobileExpanded = false;
-  private timeouts: Partial<Record<string, number>> = {};
+  private readonly timeouts: Partial<Record<string, number>> = {};
 
   @computed
   private get beatmapDotsCompact() {
@@ -199,22 +199,39 @@ export default class BeatmapsetPanel extends React.Component<Props> {
     return this.beatmapsPopupHover || this.mobileExpanded;
   }
 
-  @computed
   private get nominations() {
+    let current = 0;
+    let countMainRuleset = 0;
+    let countNonMainRuleset = 0;
+
     if (this.props.beatmapset.nominations_summary != null) {
-      return this.props.beatmapset.nominations_summary;
+      const summary = this.props.beatmapset.nominations_summary;
+
+      current = summary.current;
+      countMainRuleset = summary.required_meta.main_ruleset;
+      countNonMainRuleset = summary.required_meta.non_main_ruleset;
+    } else if (this.props.beatmapset.nominations != null) {
+      current = sum(values(this.props.beatmapset.nominations.current));
+      countMainRuleset = this.props.beatmapset.nominations.required_meta.main_ruleset;
+      countNonMainRuleset = this.props.beatmapset.nominations.required_meta.non_main_ruleset;
+    } else {
+      return null;
     }
 
-    if (this.props.beatmapset.nominations != null) {
-      if (this.props.beatmapset.nominations.legacy_mode) {
-        return this.props.beatmapset.nominations;
+    const groupedBeatmaps = this.groupedBeatmaps;
+    const rulesets: Ruleset[] = [];
+    [...this.groupedBeatmaps.keys()].forEach((ruleset) => {
+      if ((groupedBeatmaps.get(ruleset)?.length ?? 0) > 0) {
+        rulesets.push(ruleset);
       }
+    });
 
-      return {
-        current: sum(values(this.props.beatmapset.nominations.current)),
-        required: sum(values(this.props.beatmapset.nominations.required)),
-      };
-    }
+    const required = countMainRuleset + countNonMainRuleset * (rulesets.length - 1);
+
+    return {
+      current,
+      required,
+    };
   }
 
   @computed
@@ -280,7 +297,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
     );
   }
 
-  private beatmapsPopupDelayedHide = () => {
+  private readonly beatmapsPopupDelayedHide = () => {
     window.clearTimeout(this.timeouts.beatmapsPopup);
 
     if (!this.beatmapsPopupHover) return;
@@ -290,7 +307,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
     }), 500);
   };
 
-  private beatmapsPopupDelayedShow = () => {
+  private readonly beatmapsPopupDelayedShow = () => {
     window.clearTimeout(this.timeouts.beatmapsPopup);
 
     if (this.beatmapsPopupHover) return;
@@ -301,29 +318,29 @@ export default class BeatmapsetPanel extends React.Component<Props> {
   };
 
   @action
-  private beatmapsPopupHide = () => {
+  private readonly beatmapsPopupHide = () => {
     window.clearTimeout(this.timeouts.beatmapsPopup);
 
     this.beatmapsPopupHover = false;
   };
 
   @action
-  private beatmapsPopupKeep = () => {
+  private readonly beatmapsPopupKeep = () => {
     window.clearTimeout(this.timeouts.beatmapsPopup);
 
     this.beatmapsPopupHover = true;
   };
 
-  private onBeatmapsPopupEnter = () => {
+  private readonly onBeatmapsPopupEnter = () => {
     this.beatmapsPopupKeep();
   };
 
-  private onBeatmapsPopupLeave = () => {
+  private readonly onBeatmapsPopupLeave = () => {
     this.beatmapsPopupDelayedHide();
   };
 
   @action
-  private onDocumentClick = (e: JQuery.ClickEvent<Document, unknown, Document, Document | HTMLElement>) => {
+  private readonly onDocumentClick = (e: JQuery.ClickEvent<Document, unknown, Document, Document | HTMLElement>) => {
     // only for shrinking
     if (!this.mobileExpanded) return;
     // clicking on anything on the panel itself is handled by the relevant element
@@ -335,16 +352,16 @@ export default class BeatmapsetPanel extends React.Component<Props> {
     this.mobileExpanded = false;
   };
 
-  private onExtraRowEnter = () => {
+  private readonly onExtraRowEnter = () => {
     this.beatmapsPopupDelayedShow();
   };
 
-  private onExtraRowLeave = () => {
+  private readonly onExtraRowLeave = () => {
     this.beatmapsPopupDelayedHide();
   };
 
   @action
-  private onMobileExpandToggleClick = () => {
+  private readonly onMobileExpandToggleClick = () => {
     this.mobileExpanded = !this.mobileExpanded;
     if (this.mobileExpanded) {
       $(document).on('click', this.onDocumentClick);
@@ -584,7 +601,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
     );
   }
 
-  private toggleFavourite = () => {
+  private readonly toggleFavourite = () => {
     toggleFavourite(this.props.beatmapset);
   };
 }

@@ -97,6 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
+            'inactive' => "",
             'inactive_different_country' => "",
         ],
     ],
@@ -120,6 +121,17 @@ return [
         'beta' => [
             'main' => '',
             'small' => '',
+        ],
+    ],
+
+    'ogp' => [
+        'modding_description' => '',
+        'modding_description_empty' => '',
+
+        'description' => [
+            '_' => '',
+            'country' => '',
+            'global' => '',
         ],
     ],
 
@@ -175,7 +187,6 @@ return [
         'origin_country' => '',
         'previous_usernames' => '',
         'plays_with' => '',
-        'title' => "",
 
         'comments_count' => [
             '_' => '',
@@ -387,7 +398,7 @@ return [
                     'date' => '',
                     'action' => '',
                     'length' => '',
-                    'length_permanent' => '',
+                    'length_indefinite' => '',
                     'description' => '',
                     'actor' => '',
 

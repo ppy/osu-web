@@ -18,31 +18,35 @@ return [
     ],
 
     'kudosu' => [
-        'total' => '',
-        'available' => '',
-        'used' => '',
+        'total' => 'Ansaittu',
+        'available' => 'Saatavilla',
+        'used' => 'Käytetty',
+    ],
+
+    'performance' => [
+        'insufficient_history' => '',
     ],
 
     'type' => [
-        'charts' => 'Valokeilassa',
-        'country' => 'Maa',
-        'kudosu' => '',
-        'multiplayer' => 'moninpeli',
-        'performance' => 'Suorituskyky',
-        'score' => 'Piste',
-        'seasons' => '',
+        'charts' => 'kohdevalot (vanha)',
+        'country' => 'maat',
+        'kudosu' => 'kudosu',
+        'multiplayer' => 'moninpelit',
+        'performance' => 'suorituskyky',
+        'score' => 'pisteet',
+        'seasons' => 'kaudet',
     ],
 
     'seasons' => [
-        'empty' => '',
-        'ongoing' => '',
-        'room_count' => '',
-        'url' => '',
+        'empty' => 'Tällä kaudella ei ole vielä huoneita.',
+        'ongoing' => 'Tämä kausi on edelleen käynnissä (lisää soittolistoja tullaan lisäämään).',
+        'room_count' => 'Soittolistojen määrä',
+        'url' => 'Lisätietoja tästä kaudesta.',
     ],
 
     'spotlight' => [
         'end_date' => 'Päättymispäivä',
-        'map_count' => 'Kappalekerrat',
+        'map_count' => 'Karttojen määrä',
         'participants' => 'Osallistujat',
         'start_date' => 'Aloituspäivä',
     ],
@@ -54,9 +58,9 @@ return [
         'play_count' => 'Pelikerrat',
         'performance' => 'Suorituskyky',
         'total_score' => 'Kokonaispisteet',
-        'ranked_score' => 'Tilastoidut pisteet',
+        'ranked_score' => 'Rankatut pisteet',
         'average_score' => 'Keskim. pisteet',
-        'average_performance' => 'Keskim. PP',
+        'average_performance' => 'Keskim. suorituskyky',
         'ss' => '',
         's' => '',
         'a' => '',

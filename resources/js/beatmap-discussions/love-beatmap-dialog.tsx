@@ -4,7 +4,7 @@
 import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
-import GameMode from 'interfaces/game-mode';
+import Ruleset from 'interfaces/ruleset';
 import { route } from 'laroute';
 import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
@@ -13,15 +13,17 @@ import { onError } from 'utils/ajax';
 import { group as groupBeatmaps } from 'utils/beatmap-helper';
 import { trans } from 'utils/lang';
 import { hideLoadingOverlay, showImmediateLoadingOverlay } from 'utils/loading-overlay';
+import DiscussionsState from './discussions-state';
 
 interface Props {
   beatmapset: BeatmapsetExtendedJson & Required<Pick<BeatmapsetExtendedJson, 'beatmaps'>>;
+  discussionsState: DiscussionsState;
   onClose: () => void;
 }
 
 @observer
 export default class LoveBeatmapDialog extends React.Component<Props> {
-  @observable private selectedBeatmapIds: Set<number>;
+  @observable private readonly selectedBeatmapIds: Set<number>;
   @observable private xhr: JQuery.jqXHR<BeatmapsetWithDiscussionsJson> | null = null;
 
   @computed
@@ -79,7 +81,7 @@ export default class LoveBeatmapDialog extends React.Component<Props> {
     );
   }
 
-  private checkIsModeSelected = (mode: GameMode) => {
+  private readonly checkIsModeSelected = (mode: Ruleset) => {
     const modeBeatmaps = this.groupedBeatmaps.get(mode) ?? [];
     const isAllSelected = modeBeatmaps.every((beatmap) => this.selectedBeatmapIds.has(beatmap.id));
     const isAllUnselected = modeBeatmaps.every((beatmap) => !this.selectedBeatmapIds.has(beatmap.id));
@@ -92,7 +94,7 @@ export default class LoveBeatmapDialog extends React.Component<Props> {
   };
 
   @action
-  private handleCheckboxDifficulty = (e: React.ChangeEvent<HTMLInputElement>) => {
+  private readonly handleCheckboxDifficulty = (e: React.ChangeEvent<HTMLInputElement>) => {
     const beatmapId = parseInt(e.target.value, 10);
 
     if (this.selectedBeatmapIds.has(beatmapId)) {
@@ -102,8 +104,8 @@ export default class LoveBeatmapDialog extends React.Component<Props> {
     }
   };
 
-  private handleCheckboxMode = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const mode = e.target.value as GameMode;
+  private readonly handleCheckboxMode = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const mode = e.target.value as Ruleset;
     const modeBeatmaps = this.groupedBeatmaps.get(mode) ?? [];
 
     const op = this.checkIsModeSelected(mode) ? 'delete' : 'add';
@@ -111,7 +113,7 @@ export default class LoveBeatmapDialog extends React.Component<Props> {
   };
 
   @action
-  private handleSubmit = () => {
+  private readonly handleSubmit = () => {
     if (this.xhr != null
       || this.selectedBeatmapIds.size === 0
       || !confirm(trans('beatmaps.nominations.love_confirm'))) {
@@ -128,7 +130,7 @@ export default class LoveBeatmapDialog extends React.Component<Props> {
 
     this.xhr = $.ajax(url, params);
     this.xhr.done((beatmapset) => {
-      $.publish('beatmapsetDiscussions:update', { beatmapset });
+      this.props.discussionsState.update({ beatmapset });
       this.props.onClose();
     }).fail(onError)
       .always(action(() => {
@@ -137,7 +139,7 @@ export default class LoveBeatmapDialog extends React.Component<Props> {
       }));
   };
 
-  private renderDiffMode(mode: GameMode, beatmaps: BeatmapJson[]) {
+  private renderDiffMode(mode: Ruleset, beatmaps: BeatmapJson[]) {
     if (beatmaps.length === 0) {
       return null;
     }

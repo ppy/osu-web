@@ -23,8 +23,12 @@ return [
         'used' => 'Ausgegeben',
     ],
 
+    'performance' => [
+        'insufficient_history' => '',
+    ],
+
     'type' => [
-        'charts' => 'Spotlights',
+        'charts' => 'Spotlights (alt)',
         'country' => 'Länder',
         'kudosu' => 'Kudosu',
         'multiplayer' => 'Mehrspieler',

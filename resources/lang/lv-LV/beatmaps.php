@@ -78,6 +78,18 @@ return [
             'suggestion' => 'Ieteikums',
         ],
 
+        'message_type_title' => [
+            'disqualify' => 'Publicēt diskvalifikāciju',
+            'hype' => '',
+            'mapper_note' => 'Publicēt piezīmi',
+            'nomination_reset' => '',
+            'praise' => 'Publicēt slavējumu',
+            'problem' => 'Publicēt problēmu',
+            'problem_warning' => 'Publicēt problēmu',
+            'review' => 'Publicēt atsauksmi',
+            'suggestion' => 'Publicēt ieteikumu',
+        ],
+
         'mode' => [
             'events' => 'Vēsture',
             'general' => 'Vispārējā :scope',
@@ -201,6 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'Tiek paredzēts, ka šī mape tiks ierindota :date, ja netiks konstatētas problēmas. Tā ir #:position :queue.',
+            'unresolved_problems' => '',
+            'problems' => '',
             'on' => ':date',
             'queue' => 'ierindošanas rinda',
             'soon' => 'drīz',
@@ -269,6 +283,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
+        'undefined' => '',
     ],
     'status' => [
         'any' => 'Viss',

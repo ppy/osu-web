@@ -19,7 +19,7 @@ import { rulesetName, shouldShowPp } from 'utils/beatmap-helper';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
-import { isPerfectCombo, modeAttributesMap, scoreUrl, totalScore } from 'utils/score-helper';
+import { accuracy, filterMods, isPerfectCombo, attributeDisplayTotals, rank, scoreUrl, totalScore } from 'utils/score-helper';
 
 interface Props {
   beatmap: BeatmapJson;
@@ -31,6 +31,7 @@ interface Props {
 export default class TopCard extends React.PureComponent<Props> {
   render() {
     const ruleset = rulesetName(this.props.score.ruleset_id);
+    const scoreAccuracy = accuracy(this.props.score);
     const avatar = <UserAvatar user={this.props.score.user} />;
 
     return (
@@ -46,7 +47,7 @@ export default class TopCard extends React.PureComponent<Props> {
               <div className='beatmap-score-top__position-number'>
                 {this.props.position != null ? `#${this.props.position}` : '-'}
               </div>
-              <div className={classWithModifiers('score-rank', 'tiny', this.props.score.rank)} />
+              <div className={classWithModifiers('score-rank', 'tiny', rank(this.props.score))} />
             </div>
 
             <div className='beatmap-score-top__avatar'>
@@ -124,10 +125,10 @@ export default class TopCard extends React.PureComponent<Props> {
                 </div>
                 <div
                   className={classWithModifiers('beatmap-score-top__stat-value', {
-                    perfect: this.props.score.accuracy === 1,
+                    perfect: scoreAccuracy === 1,
                   })}
                 >
-                  {formatNumber(this.props.score.accuracy * 100, 2)}%
+                  {formatNumber(scoreAccuracy * 100, 2)}%
                 </div>
               </div>
 
@@ -146,13 +147,13 @@ export default class TopCard extends React.PureComponent<Props> {
             </div>
 
             <div className='beatmap-score-top__stats beatmap-score-top__stats--wrappable'>
-              {modeAttributesMap[ruleset].map((attr) => (
-                <div key={attr.attribute} className='beatmap-score-top__stat'>
+              {attributeDisplayTotals(ruleset, this.props.score).map((attr) => (
+                <div key={attr.key} className='beatmap-score-top__stat'>
                   <div className='beatmap-score-top__stat-header'>
                     {attr.label}
                   </div>
                   <div className='beatmap-score-top__stat-value beatmap-score-top__stat-value--smaller'>
-                    {formatNumber(this.props.score.statistics[attr.attribute] ?? 0)}
+                    {formatNumber(attr.total)}
                   </div>
                 </div>
               ))}
@@ -182,7 +183,7 @@ export default class TopCard extends React.PureComponent<Props> {
                   {trans('beatmapsets.show.scoreboard.headers.mods')}
                 </div>
                 <div className='beatmap-score-top__stat-value beatmap-score-top__stat-value--mods u-hover'>
-                  {this.props.score.mods.map((mod) => <Mod key={mod.acronym} mod={mod.acronym} />)}
+                  {filterMods(this.props.score).map((mod) => <Mod key={mod.acronym} mod={mod} />)}
                 </div>
               </div>
             </div>

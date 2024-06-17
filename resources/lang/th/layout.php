@@ -59,7 +59,7 @@ return [
 
     'gallery' => [
         'close' => 'ปิด (กด Esc)',
-        'fullscreen' => 'ปรับเป็นเต็มหน้าจอ',
+        'fullscreen' => 'สลับโหมดเต็มหน้าจอ',
         'zoom' => 'ซูมเข้า/ออก',
         'previous' => 'รูปที่แล้ว (กดลูกศรซ้าย)',
         'next' => 'รูปต่อไป (กดลูกศรขวา)',
@@ -86,7 +86,6 @@ return [
         ],
         'rankings' => [
             '_' => 'การจัดอันดับ',
-            'kudosu' => 'kudosu',
         ],
         'store' => [
             '_' => 'ร้านค้า',
@@ -112,6 +111,7 @@ return [
         'legal' => [
             '_' => 'กฎหมายและสถานะ',
             'copyright' => 'ลิขสิทธิ์ (DMCA)',
+            'jp_sctl' => '',
             'privacy' => 'ความเป็นส่วนตัว',
             'server_status' => 'สถานะของเซิร์ฟเวอร์',
             'source_code' => 'ซอร์สโค้ด',
@@ -195,6 +195,8 @@ return [
             'account-edit' => 'การตั้งค่า',
             'follows' => 'รายการการเฝ้าดู',
             'friends' => 'เพื่อน',
+            'legacy_score_only_toggle' => '',
+            'legacy_score_only_toggle_tooltip' => '',
             'logout' => 'ออกจากระบบ',
             'profile' => 'โปรไฟล์ของฉัน',
         ],

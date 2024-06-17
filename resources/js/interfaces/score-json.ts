@@ -3,14 +3,13 @@
 
 import BeatmapExtendedJson from './beatmap-extended-json';
 import BeatmapsetJson from './beatmapset-json';
-import GameMode from './game-mode';
 import Rank from './rank';
+import Ruleset from './ruleset';
 import UserJson from './user-json';
 
 export interface ScoreCurrentUserPinJson {
   is_pinned: boolean;
   score_id: number;
-  score_type: `score_best_${GameMode}` | 'solo_score';
 }
 
 export type ScoreStatisticsAttribute = 'count_50' | 'count_100' | 'count_300' | 'count_geki' | 'count_katu' | 'count_miss';
@@ -50,7 +49,7 @@ interface ScoreJsonDefaultAttributes {
   created_at: string;
   id: number;
   max_combo: number;
-  mode: GameMode;
+  mode: Ruleset;
   mode_int: number;
   mods: string[];
   passed: boolean;
@@ -60,7 +59,7 @@ interface ScoreJsonDefaultAttributes {
   replay: boolean;
   score: number;
   statistics: Record<ScoreStatisticsAttribute, number>;
-  type: 'solo_score' | `score_best_${GameMode}` | `score_${GameMode}`;
+  type: 'solo_score' | `score_best_${Ruleset}` | `score_${Ruleset}`;
   user_id: number;
 }
 

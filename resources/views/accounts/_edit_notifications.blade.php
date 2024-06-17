@@ -6,7 +6,7 @@
     use App\Jobs\Notifications\BroadcastNotificationBase;
     use App\Models\UserNotificationOption;
 @endphp
-<div class="account-edit">
+<div class="account-edit" id="notifications">
     <div class="account-edit__section">
         <h2 class="account-edit__section-title">
             {{ osu_trans('accounts.notifications.title') }}
@@ -16,8 +16,7 @@
     <div class="account-edit__input-groups">
         <div class="account-edit__input-group">
             <div
-                class="account-edit-entry account-edit-entry--no-label js-account-edit"
-                data-account-edit-auto-submit="1"
+                class="account-edit-entry account-edit-entry--no-label js-account-edit js-account-edit-auto-submit"
                 data-url="{{ route('account.options') }}"
             >
                 <label class="account-edit-entry__checkbox">
@@ -38,8 +37,7 @@
             </div>
 
             <div
-                class="account-edit-entry account-edit-entry--no-label js-account-edit"
-                data-account-edit-auto-submit="1"
+                class="account-edit-entry account-edit-entry--no-label js-account-edit js-account-edit-auto-submit"
                 data-url="{{ route('account.notification-options') }}"
             >
                 <label class="account-edit-entry__checkbox">
@@ -72,8 +70,7 @@
                             {{ osu_trans("accounts.notifications.$notificationType") }}
                         </div>
                         <form
-                            class="account-edit-entry__checkboxes js-account-edit"
-                            data-account-edit-auto-submit="1"
+                            class="account-edit-entry__checkboxes js-account-edit js-account-edit-auto-submit"
                             data-account-edit-type="array"
                             data-url="{{ route('account.notification-options') }}"
                             data-field="{{ "user_notification_option[{$notificationType}][details][modes]" }}"
@@ -110,8 +107,7 @@
                 </div>
 
                 <form
-                    class="account-edit-entry__delivery-options js-account-edit"
-                    data-account-edit-auto-submit="1"
+                    class="account-edit-entry__delivery-options js-account-edit js-account-edit-auto-submit"
                     data-account-edit-type="multi"
                     data-url="{{ route('account.notification-options') }}"
                 >

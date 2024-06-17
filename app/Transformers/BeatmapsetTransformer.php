@@ -5,6 +5,7 @@
 
 namespace App\Transformers;
 
+use App\Libraries\Beatmapset\NominateBeatmapset;
 use App\Models\Beatmapset;
 
 class BeatmapsetTransformer extends BeatmapsetCompactTransformer
@@ -20,6 +21,13 @@ class BeatmapsetTransformer extends BeatmapsetCompactTransformer
 
     public function transform(Beatmapset $beatmapset)
     {
+        // only for showing in BeatmapPanel.
+        $nominationsSummary = [
+            'current' => $beatmapset->nominations,
+            'eligible_main_rulesets' => $beatmapset->eligible_main_rulesets,
+            'required_meta' => NominateBeatmapset::requiredNominationsConfig(),
+        ];
+
         return array_merge(parent::transform($beatmapset), [
             'bpm' => $beatmapset->bpm,
             'can_be_hyped' => $beatmapset->canBeHyped(),
@@ -29,7 +37,7 @@ class BeatmapsetTransformer extends BeatmapsetCompactTransformer
             'is_scoreable' => $beatmapset->isScoreable(),
             'last_updated' => $beatmapset->last_update_json,
             'legacy_thread_url' => ($beatmapset->thread_id ?? 0) !== 0 ? route('forum.topics.show', ['topic' => $beatmapset->thread_id]) : null,
-            'nominations_summary' => $beatmapset->nominationsSummaryMeta(),
+            'nominations_summary' => $nominationsSummary,
             'ranked' => $beatmapset->approved,
             'ranked_date' => $beatmapset->approved_date_json,
             'storyboard' => $beatmapset->storyboard,

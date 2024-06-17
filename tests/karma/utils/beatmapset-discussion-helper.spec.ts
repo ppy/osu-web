@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
-import GameMode from 'interfaces/game-mode';
+import GameMode from 'interfaces/ruleset';
 import UserGroupJson from 'interfaces/user-group-json';
 import UserJson from 'interfaces/user-json';
 import User from 'models/user';
@@ -152,9 +152,10 @@ describe('utils/beatmapset-discussion-helper', () => {
           user: { ...userTemplate, groups: [{ ...groupsTemplate, identifier, playmodes: ['taiko'] }] },
         });
 
+        const isFullNominatorWhenNoRulesets = identifier === 'nat';
         cases.push({
-          description: `${identifier} without playmodes is not full nominator`,
-          expected: false,
+          description: `${identifier} without playmodes is${isFullNominatorWhenNoRulesets ? '' : ' not'} full nominator`,
+          expected: isFullNominatorWhenNoRulesets,
           gameMode: 'osu',
           user: { ...userTemplate, groups: [{ ...groupsTemplate, identifier }] },
         });

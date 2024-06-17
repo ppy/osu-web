@@ -11,13 +11,17 @@ return [
         'avatar' => [
             'title' => 'Avatar',
             'rules' => 'Veuillez vous assurer que votre avatar correspond aux :link.<br/>Cela signifie qu\'il doit être <strong>adapté à tous les âges</strong>. C\'est-à-dire pas de nudité, de profanation ou de contenu suggestif.',
-            'rules_link' => 'règles de la communauté',
+            'rules_link' => 'Considérations relatives au contenu visuel',
         ],
 
         'email' => [
             'new' => 'nouvel e-mail',
             'new_confirmation' => 'confirmation de l\'e-mail',
             'title' => 'E-mail',
+            'locked' => [
+                '_' => 'Veuillez contacter l\':accounts: si vous avez besoin de mettre à jour votre adresse e-mail.',
+                'accounts' => 'équipe d\'assistance aux comptes',
+            ],
         ],
 
         'legacy_api' => [
@@ -34,12 +38,12 @@ return [
         ],
 
         'profile' => [
-            'country' => '',
+            'country' => 'pays',
             'title' => 'Profil',
 
             'country_change' => [
-                '_' => "",
-                'update_link' => '',
+                '_' => "Il semble que le pays de votre compte ne correspond pas à votre pays de résidence. :update_link.",
+                'update_link' => 'Obtenir le drapeau du pays suivant : :country',
             ],
 
             'user' => [
@@ -55,6 +59,19 @@ return [
         'signature' => [
             'title' => 'Signature',
             'update' => 'mettre à jour',
+        ],
+    ],
+
+    'github_user' => [
+        'info' => "Si vous êtes un contributeur des dépôts open-source d'osu!, associer votre compte GitHub permettra à vos contributions affichées sur les changelogs de mener directement vers votre profil osu!. Les comptes GitHub sans historique de contribution à osu! ne peuvent pas être associés.",
+        'link' => 'Associer un compte GitHub',
+        'title' => 'GitHub',
+        'unlink' => 'Dissocier le compte GitHub',
+
+        'error' => [
+            'already_linked' => 'Ce compte GitHub est déjà associé à un autre utilisateur.',
+            'no_contribution' => 'Impossible d\'associer un compte GitHub sans historique de contribution dans les dépôts d\'osu!.',
+            'unverified_email' => 'Veuillez vérifier votre adresse e-mail principale sur GitHub, puis essayez d\'associer votre compte à nouveau.',
         ],
     ],
 
@@ -75,7 +92,6 @@ return [
             'mail' => 'mail',
             'mapping' => 'créateur de beatmap',
             'push' => 'push',
-            'user_achievement_unlock' => 'médaille utilisateur déverrouillée',
         ],
     ],
 

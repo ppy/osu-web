@@ -18,6 +18,10 @@ return [
             'new' => 'email baru',
             'new_confirmation' => 'konfirmasi email',
             'title' => 'Email',
+            'locked' => [
+                '_' => 'Silakan hubungi :accounts apabila kamu perlu untuk memperbarui alamat emailmu.',
+                'accounts' => 'tim bantuan akun',
+            ],
         ],
 
         'legacy_api' => [
@@ -34,12 +38,12 @@ return [
         ],
 
         'profile' => [
-            'country' => '',
+            'country' => 'negara',
             'title' => 'Profil',
 
             'country_change' => [
-                '_' => "",
-                'update_link' => '',
+                '_' => "Sepertinya negara yang tertera pada akunmu tidak sesuai dengan negara tempat kamu tinggal. :update_link.",
+                'update_link' => 'Perbarui ke :country',
             ],
 
             'user' => [
@@ -55,6 +59,19 @@ return [
         'signature' => [
             'title' => 'Tanda Tangan',
             'update' => 'perbarui',
+        ],
+    ],
+
+    'github_user' => [
+        'info' => "Apabila kamu merupakan kontributor repositori open-source osu!, kamu dapat menautkan akun GitHub kamu di sini untuk menghubungkan entrimu pada riwayat perubahan dengan profil osu! milikmu. Akun GitHub yang tidak memiliki riwayat kontribusi terhadap osu! tidak dapat ditautkan.",
+        'link' => 'Tautkan Akun GitHub',
+        'title' => 'GitHub',
+        'unlink' => 'Lepas Tautan Akun GitHub',
+
+        'error' => [
+            'already_linked' => 'Akun GitHub ini telah terhubung ke pengguna lain.',
+            'no_contribution' => 'Akun GitHub yang tidak memiliki riwayat kontribusi terhadap repositori osu! tidak dapat ditautkan.',
+            'unverified_email' => 'Silakan verifikasi email utama kamu pada GitHub, lalu cobalah untuk menghubungkan akunmu kembali.',
         ],
     ],
 
@@ -75,7 +92,6 @@ return [
             'mail' => 'email',
             'mapping' => 'pembuat beatmap',
             'push' => 'web',
-            'user_achievement_unlock' => 'terbukanya medali baru',
         ],
     ],
 
@@ -86,7 +102,7 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => 'nonaktifkan peringatan untuk beatmap yang mengandung konten eksplisit',
+        'beatmapset_show_nsfw' => 'nonaktifkan peringatan untuk beatmap berkonten eksplisit',
         'beatmapset_title_show_original' => 'tampilkan metadata beatmap dalam bahasa aslinya',
         'title' => 'Pengaturan',
 
@@ -107,8 +123,8 @@ return [
     ],
 
     'privacy' => [
-        'friends_only' => 'blokir pesan pribadi dari pengguna yang tidak termasuk dalam daftar teman',
-        'hide_online' => 'sembunyikan keberadaan online Anda',
+        'friends_only' => 'blokir pesan pribadi dari pengguna yang tidak berada dalam daftar temanmu',
+        'hide_online' => 'sembunyikan status onlinemu',
         'title' => 'Kebijakan Privasi',
     ],
 
@@ -135,6 +151,6 @@ return [
     ],
 
     'verification_invalid' => [
-        'title' => 'Tautan verifikasi tidak valid atau sudah tidak berlaku',
+        'title' => 'Tautan verifikasi tidak valid atau telah kedaluwarsa',
     ],
 ];

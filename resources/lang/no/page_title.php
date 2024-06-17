@@ -63,8 +63,12 @@ return [
         'comments_controller' => [
             '_' => 'kommentarer',
         ],
+        'contest_entries_controller' => [
+            'judge_results' => 'konkurransedømmingsresultater',
+        ],
         'contests_controller' => [
             '_' => 'konkurranser',
+            'judge' => 'konkurransedømming',
         ],
         'groups_controller' => [
             'show' => 'grupper',
@@ -105,6 +109,9 @@ return [
         ],
         'tournaments_controller' => [
             '_' => 'turneringer',
+        ],
+        'user_cover_presets_controller' => [
+            '_' => '',
         ],
         'users_controller' => [
             '_' => 'spillerinfo',

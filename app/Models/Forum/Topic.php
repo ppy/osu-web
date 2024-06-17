@@ -103,6 +103,8 @@ class Topic extends Model implements AfterCommit
         'topic_title' => 100,
     ];
 
+    const VIEW_COUNT_INTERVAL = 86400; // 1 day
+
     protected $table = 'phpbb_topics';
     protected $primaryKey = 'topic_id';
 
@@ -482,6 +484,16 @@ class Topic extends Model implements AfterCommit
         });
     }
 
+    public function isOld()
+    {
+        // pinned and announce posts should never be considered old
+        if ($this->topic_type !== static::TYPES['normal']) {
+            return false;
+        }
+
+        return $this->topic_last_post_time < Carbon::now()->subMonths($GLOBALS['cfg']['osu']['forum']['old_months']);
+    }
+
     public function isLocked()
     {
         // not checking STATUS_LOCK because there's another
@@ -491,7 +503,7 @@ class Topic extends Model implements AfterCommit
 
     public function isActive()
     {
-        return $this->topic_last_post_time > Carbon::now()->subMonths(config('osu.forum.necropost_months'));
+        return $this->topic_last_post_time > Carbon::now()->subMonths($GLOBALS['cfg']['osu']['forum']['necropost_months']);
     }
 
     public function markRead($user, $markTime)
@@ -531,8 +543,6 @@ class Topic extends Model implements AfterCommit
 
                 throw $ex;
             }
-
-            $this->incrementInstance('topic_views');
         } elseif ($status->mark_time < $markTime) {
             $status->update(['mark_time' => $markTime]);
         }
@@ -545,9 +555,21 @@ class Topic extends Model implements AfterCommit
         DB::commit();
     }
 
+    public function incrementViewCount(?User $user, string $ipAddr): void
+    {
+        $lockKey = "view:forum_topic:{$this->getKey()}:";
+        $lockKey .= $user === null
+            ? "guest:{$ipAddr}"
+            : "user:{$user->getKey()}";
+
+        if (\Cache::lock($lockKey, static::VIEW_COUNT_INTERVAL)->get()) {
+            $this->incrementInstance('topic_views');
+        }
+    }
+
     public function isIssue()
     {
-        return in_array($this->forum_id, config('osu.forum.issue_forum_ids'), true);
+        return in_array($this->forum_id, $GLOBALS['cfg']['osu']['forum']['issue_forum_ids'], true);
     }
 
     public function delete()
@@ -746,7 +768,7 @@ class Topic extends Model implements AfterCommit
 
     public function allowsDoublePosting(): bool
     {
-        return in_array($this->forum_id, config('osu.forum.double_post_allowed_forum_ids'), true);
+        return in_array($this->forum_id, $GLOBALS['cfg']['osu']['forum']['double_post_allowed_forum_ids'], true);
     }
 
     public function isDoublePostBy(User $user)
@@ -758,9 +780,9 @@ class Topic extends Model implements AfterCommit
             return false;
         }
         if ($user->user_id === $this->topic_poster) {
-            $minHours = config('osu.forum.double_post_time.author');
+            $minHours = $GLOBALS['cfg']['osu']['forum']['double_post_time']['author'];
         } else {
-            $minHours = config('osu.forum.double_post_time.normal');
+            $minHours = $GLOBALS['cfg']['osu']['forum']['double_post_time']['normal'];
         }
 
         return $this->topic_last_post_time > Carbon::now()->subHours($minHours);
@@ -812,11 +834,6 @@ class Topic extends Model implements AfterCommit
     public function hasIssueTag($tag)
     {
         return strpos($this->topic_title, "[{$tag}]") !== false;
-    }
-
-    public function toMetaDescription()
-    {
-        return "{$this->forum->toMetaDescription()} » {$this->topic_title}";
     }
 
     public function afterCommit()

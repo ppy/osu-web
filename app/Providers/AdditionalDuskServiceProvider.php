@@ -5,7 +5,6 @@
 
 namespace App\Providers;
 
-use App\Libraries\UserVerification;
 use Illuminate\Support\ServiceProvider;
 use Route;
 
@@ -19,7 +18,9 @@ class AdditionalDuskServiceProvider extends ServiceProvider
     public function boot()
     {
         Route::get('/_dusk/verify', function () {
-            return UserVerification::fromCurrentRequest()->markVerifiedAndRespond();
+            \Session::instance()->markVerified();
+
+            return response(null, 204);
         })->middleware('web');
     }
 }

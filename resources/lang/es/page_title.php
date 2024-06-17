@@ -47,7 +47,7 @@ return [
             '_' => 'votos de discusión del mapa',
         ],
         'beatmapset_events_controller' => [
-            '_' => 'historial del mapa',
+            '_' => 'historial de mapas',
         ],
         'beatmapsets_controller' => [
             'discussion' => 'discusión del mapa',
@@ -63,8 +63,12 @@ return [
         'comments_controller' => [
             '_' => 'comentarios',
         ],
+        'contest_entries_controller' => [
+            'judge_results' => 'resultados de la evaluación del concurso',
+        ],
         'contests_controller' => [
             '_' => 'concursos',
+            'judge' => 'evaluación del concurso',
         ],
         'groups_controller' => [
             'show' => 'grupos',
@@ -105,6 +109,9 @@ return [
         ],
         'tournaments_controller' => [
             '_' => 'torneos',
+        ],
+        'user_cover_presets_controller' => [
+            '_' => 'preselecciones de portadas de usuario',
         ],
         'users_controller' => [
             '_' => 'información del jugador',

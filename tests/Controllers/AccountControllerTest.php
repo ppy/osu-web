@@ -68,6 +68,7 @@ class AccountControllerTest extends TestCase
 
     /**
      * @dataProvider dataProviderForUpdateCountry
+     * @group RequiresScoreIndexer
      *
      * More complete tests are done through CountryChange and CountryChangeTarget.
      */
@@ -107,6 +108,22 @@ class AccountControllerTest extends TestCase
         $this->assertSame($newEmail, $this->user->fresh()->user_email);
 
         Mail::assertQueued(UserEmailUpdated::class, 2);
+    }
+
+    public function testUpdateEmailLocked()
+    {
+        $newEmail = 'new-'.$this->user->user_email;
+        $this->user->update(['lock_email_changes' => true]);
+
+        $this->actingAsVerified($this->user())
+            ->json('PUT', route('account.email'), [
+                'user' => [
+                    'current_password' => 'password',
+                    'user_email' => $newEmail,
+                    'user_email_confirmation' => $newEmail,
+                ],
+            ])
+            ->assertStatus(403);
     }
 
     public function testUpdateEmailInvalidPassword()
@@ -214,7 +231,7 @@ class AccountControllerTest extends TestCase
             ->assertStatus(422);
     }
 
-    public function dataProviderForUpdateCountry(): array
+    public static function dataProviderForUpdateCountry(): array
     {
         return [
             ['_A', '_A', true],

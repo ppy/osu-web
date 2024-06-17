@@ -9,23 +9,22 @@ namespace App\Models;
 
 /**
  * @property int $count
- * @property int $name
+ * @property string $name
  */
 class Count extends Model
 {
     public $incrementing = false;
     public $timestamps = false;
 
+    protected $keyType = 'string';
     protected $primaryKey = 'name';
     protected $table = 'osu_counts';
 
-    public static function currentRankStart(string $ruleset): static
+    public static function currentRankStartName(string $ruleset): string
     {
-        $column = config('osu.scores.experimental_rank_as_default')
+        return $GLOBALS['cfg']['osu']['scores']['experimental_rank_as_default']
             ? "pp_rank_column_exp_{$ruleset}"
             : "pp_rank_column_{$ruleset}";
-
-        return static::firstOrCreate(['name' => $column], ['count' => 0]);
     }
 
     public static function totalUsers(): static

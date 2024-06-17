@@ -5,10 +5,10 @@
 
 return [
     'availability' => [
-        'disabled' => 'Beatmap ei ole tällä hetkellä saatavilla.',
+        'disabled' => 'Tätä rytmikarttaa ei voi juuri nyt ladata.',
         'parts-removed' => 'Joitain osia tästä beatmapista on poistettu joko sen tekijän tai kolmannen osapuolen oikeuksien omaavan pyynnöstä.',
         'more-info' => 'Klikkaa nähdäksesi lisätietoja.',
-        'rule_violation' => 'Osa tämän rytmikartan resursseista on poistettu, koska on katsottu, että niiden käyttö ei sovi osu!un.',
+        'rule_violation' => 'Osa tämän beatmapin resursseista on poistettu, koska on katsottu, että niiden käyttö ei sovi osu!un.',
     ],
 
     'cover' => [
@@ -20,12 +20,12 @@ return [
     ],
 
     'featured_artist_badge' => [
-        'label' => 'Suositeltu esittäjä',
+        'label' => 'Esitelty artisti',
     ],
 
     'index' => [
-        'title' => 'Beatmapit',
-        'guest_title' => 'Beatmapit',
+        'title' => 'Rytmikarttojen listaus',
+        'guest_title' => 'Rytmikartat',
     ],
 
     'panel' => [
@@ -40,16 +40,21 @@ return [
     ],
 
     'nominate' => [
-        'hybrid_requires_modes' => 'Usean pelimuodon rytmikartta edellyttää, että valitset vähintään yhden pelimuodon, jota panet ehdolle.',
-        'incorrect_mode' => 'Sinulla ei ole käyttöoikeutta panna ehdolle pelimuotoa: :mode',
-        'full_bn_required' => 'Sinun on oltava täysivaltainen ehdollepanija, jotta voit tehdä tämän kelpuuttavan ehdollepanon.',
+        'bng_limited_too_many_rulesets' => '',
+        'full_nomination_required' => '',
+        'hybrid_requires_modes' => 'Usean pelimuodon rytmikartta edellyttää, että valitset ainakin yhden pelimuodon, jonka panet ehdolle.',
+        'incorrect_mode' => 'Sinulla ei ole lupaa panna ehdolle pelimuotoa: :mode',
+        'invalid_limited_nomination' => '',
+        'invalid_ruleset' => '',
         'too_many' => 'Ehdollepanovaatimus on jo täyttynyt.',
+        'too_many_non_main_ruleset' => '',
 
         'dialog' => [
             'confirmation' => 'Oletko varma, että haluat ehdollepanna tämän rytmikartan?',
             'header' => 'Ehdollepane rytmikartta',
-            'hybrid_warning' => 'huomaa: voit tehdä ehdollepanon vain kerran, joten varmista, että olet valinnut kaikki pelimuodot, jotka aiot panna ehdolle',
-            'which_modes' => 'Mitkä pelimuodot ehdollepannaan?',
+            'hybrid_warning' => 'huomaa: voit tehdä ehdollepanon vain kerran, joten varmista, että panet ehdolle kaikki tarkoittamasi pelimuodot',
+            'current_main_ruleset' => '',
+            'which_modes' => 'Mitkä pelimuodot asetetaan ehdolle?',
         ],
     ],
 
@@ -60,19 +65,23 @@ return [
     'show' => [
         'discussion' => 'Keskustelu',
 
+        'admin' => [
+            'full_size_cover' => 'Näytä täysikokoinen kansikuva',
+        ],
+
         'deleted_banner' => [
             'title' => 'Tämä rytmikartta on poistettu.',
             'message' => '(tämä näkyy vain moderaattoreille)',
         ],
 
         'details' => [
-            'by_artist' => '',
-            'favourite' => 'Lisää tämä beatmap-setti suosikkeihin',
-            'favourite_login' => '',
-            'logged-out' => 'Sinun täytyy kirjautua sisään ladataksesi beatmappeja!',
-            'mapped_by' => 'kartoittanut :mapper',
-            'mapped_by_guest' => 'vieraileva vaikeustaso, kartoittanut :mapper',
-            'unfavourite' => 'Poista tämä beatmapkokoelma suosikeista',
+            'by_artist' => ':artist',
+            'favourite' => 'lisää tämä rytmikartta suosikkeihin',
+            'favourite_login' => 'kirjaudu sisään, niin voit lisätä tämän beatmapin suosikkeihin',
+            'logged-out' => 'sinun täytyy kirjautua sisään ennen rytmikarttojen lataamista!',
+            'mapped_by' => 'kartoittanut: :mapper',
+            'mapped_by_guest' => 'vieraileva vaikeustaso, kartoittanut: :mapper',
+            'unfavourite' => 'poista tämä rytmikartta suosikeista',
             'updated_timeago' => 'päivitetty viimeksi :timeago',
 
             'download' => [
@@ -89,37 +98,37 @@ return [
         ],
 
         'details_date' => [
-            'approved' => '',
-            'loved' => '',
-            'qualified' => '',
-            'ranked' => '',
-            'submitted' => '',
-            'updated' => '',
+            'approved' => 'hyväksytty :timeago',
+            'loved' => 'rakastettu :timeago',
+            'qualified' => 'kelpuutettu :timeago',
+            'ranked' => 'rankattu :timeago',
+            'submitted' => 'lähetetty :timeago',
+            'updated' => 'päivitetty viimeksi :timeago',
         ],
 
         'favourites' => [
-            'limit_reached' => 'Sinulla on liian monta lempikappaletta! Poista joitain suosikeistasi ennen uudelleenyrittämistä.',
+            'limit_reached' => 'Sinulla on liian monta lempikappaletta! Poista joitain suosikeistasi ja yritä sitten uudelleen.',
         ],
 
         'hype' => [
-            'action' => 'Jos nautit tästä kartasta, hurraa sitä edistääksesi sen siirtymistä <strong>Hyväksyttyyn</strong> tilaan.',
+            'action' => 'Jos nautit tästä kartasta, hurraa sitä edistääksesi sen siirtymistä <strong>rankatuksi</strong>.',
 
             'current' => [
                 '_' => 'Tämä kartta on :status.',
 
                 'status' => [
                     'pending' => 'vireillä',
-                    'qualified' => 'hyväksytty',
-                    'wip' => 'keskeneräinen',
+                    'qualified' => 'kelpuutettu',
+                    'wip' => 'työn alla',
                 ],
             ],
 
             'disqualify' => [
-                '_' => '',
+                '_' => 'Jos löydät ongelman tässä rytmikartassa, ole hyvä ja hylkää se :link.',
             ],
 
             'report' => [
-                '_' => 'Jos löydät jonkun ongelman tämän beatmapin kanssa, olmoita siitä :link hälyttääksesi tiimiä.',
+                '_' => 'Jos löydät jonkun ongelman tässä rytmikartassa, ilmoita siitä :link hälyttääksesi tiimin paikalle.',
                 'button' => 'Ilmoita Ongelma',
                 'link' => 'täällä',
             ],
@@ -130,24 +139,24 @@ return [
             'genre' => 'Tyylilaji',
             'language' => 'Kieli',
             'no_scores' => 'Dataa lasketaan...',
-            'nominators' => '',
-            'nsfw' => '',
-            'offset' => '',
+            'nominators' => 'Ehdollepanijat',
+            'nsfw' => 'Sopimaton sisältö',
+            'offset' => 'Vastapaino verkossa',
             'points-of-failure' => 'Epäonnistumiskohdat',
             'source' => 'Lähde',
-            'storyboard' => '',
+            'storyboard' => 'Tämä rytmikartta sisältää taustaesityksen',
             'success-rate' => 'Läpäisyprosentti',
             'tags' => 'Tunnisteet',
-            'video' => '',
+            'video' => 'Tämä rytmikartta sisältää videon',
         ],
 
         'nsfw_warning' => [
-            'details' => '',
-            'title' => '',
+            'details' => 'Tämä rytmikartta sisältää sopimatonta, loukkaavaa tai järkyttävää sisältöä. Haluatko kuitenkin tarkastella sitä?',
+            'title' => 'Sopimatonta sisältöä',
 
             'buttons' => [
-                'disable' => '',
-                'listing' => '',
+                'disable' => 'Poista varoitus käytöstä',
+                'listing' => 'Rytmikarttojen listaukseen',
                 'show' => 'Näytä',
             ],
         ],
@@ -155,19 +164,19 @@ return [
         'scoreboard' => [
             'achieved' => 'saavutettu :when',
             'country' => 'Maakohtaiset sijoitukset',
-            'error' => '',
+            'error' => 'Sijoituksen lataaminen epäonnistui',
             'friend' => 'Kavereiden sijoitukset',
             'global' => 'Maailmanlaajuiset sijoitukset',
             'supporter-link' => 'Klikkaa <a href=":link">tästä</a> nähdäksesi kaikki hienot ominaisuudet mitä saat!',
-            'supporter-only' => 'Sinun täytyy olla Tukija nähdäksesi maa- ja ystäväkohtaiset sijoitukset!',
+            'supporter-only' => 'Sinun täytyy olla osu!n tukija nähdäksesi kaveri-, maa- ja muunnelmakohtaiset sijoitukset!',
             'title' => 'Tulokset',
 
             'headers' => [
                 'accuracy' => 'Tarkkuus',
-                'combo' => 'Maksimikombo',
-                'miss' => 'Ohi',
-                'mods' => 'Modit',
-                'pin' => '',
+                'combo' => 'Suurin iskuputki',
+                'miss' => 'Huti',
+                'mods' => 'Muunnelmat',
+                'pin' => 'Kiinnitä',
                 'player' => 'Pelaaja',
                 'pp' => '',
                 'rank' => 'Sijoitus',
@@ -178,51 +187,51 @@ return [
 
             'no_scores' => [
                 'country' => 'Kartasta ei vielä löydy maansisäisiä tuloksia!',
-                'friend' => 'Kukaan kavereistasi ei vielä ole saanut tulosta tässä mapissa!',
+                'friend' => 'Kukaan kavereistasi ei vielä ole saanut tulosta tässä kartassa!',
                 'global' => 'Tuloksia ei ole. Voisit hankkia niitä.',
                 'loading' => 'Ladataan tuloksia...',
-                'unranked' => 'Beatmap ei ole hyväksytyssä tilassa.',
+                'unranked' => 'Rankkaamaton rytmikartta.',
             ],
             'score' => [
                 'first' => 'Johdossa',
                 'own' => 'Sinun parhaasi',
             ],
             'supporter_link' => [
-                '_' => '',
-                'here' => '',
+                '_' => 'Napsauta :here, niin näet kaikki hienot ominaisuudet, jotka saat!',
+                'here' => 'täällä',
             ],
         ],
 
         'stats' => [
             'cs' => 'Ympyräkoko',
             'cs-mania' => 'Näppäinten määrä',
-            'drain' => 'HP Drain',
+            'drain' => 'Terveyden pieneneminen',
             'accuracy' => 'Tarkkuus',
             'ar' => 'Lähestymisnopeus',
-            'stars' => 'Vaikeustaso',
+            'stars' => 'Tähtiluokitus',
             'total_length' => 'Pituus',
             'bpm' => 'BPM',
             'count_circles' => 'Ympyröiden määrä',
             'count_sliders' => 'Slidereiden määrä',
-            'offset' => '',
+            'offset' => 'Vastapaino verkossa: :offset',
             'user-rating' => 'Käyttäjien arvio',
             'rating-spread' => 'Arvioiden jakauma',
-            'nominations' => 'Suositukset',
+            'nominations' => 'Ehdollepanot',
             'playcount' => 'Pelikertojen määrä',
         ],
 
         'status' => [
-            'ranked' => '',
-            'approved' => '',
-            'loved' => '',
-            'qualified' => 'Esihyväksytty',
+            'ranked' => 'Rankattu',
+            'approved' => 'Hyväksytty',
+            'loved' => 'Rakastettu',
+            'qualified' => 'Kelpuutettu',
             'wip' => 'Työn alla',
-            'pending' => '',
+            'pending' => 'Vireillä',
             'graveyard' => 'Hautausmaa',
         ],
     ],
 
     'spotlight_badge' => [
-        'label' => '',
+        'label' => 'Kohdevalo',
     ],
 ];

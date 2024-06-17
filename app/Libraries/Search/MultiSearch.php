@@ -5,8 +5,6 @@
 
 namespace App\Libraries\Search;
 
-use Illuminate\Http\Request;
-
 class MultiSearch
 {
     const MODES = [
@@ -36,24 +34,36 @@ class MultiSearch
     private $options;
     private $query;
     private $searches;
-    private array $request;
 
-    public function __construct(Request $request, array $options = [])
+    public function __construct(private array $request, array $options = [])
     {
-        $this->request = $request->all();
-        $this->query = trim(get_string($this->request['query'] ?? null) ?? '');
+        if (isset($this->request['mode'])) {
+            $this->request['mode'] = presence(get_string($this->request['mode']));
+        }
+        if (isset($this->request['query'])) {
+            $this->request['query'] = get_string($this->request['query']);
+        }
+        if (isset($this->request['username'])) {
+            $this->request['username'] = presence(get_string($this->request['username']));
+        }
+        $this->query = trim($this->request['query'] ?? '');
         $this->options = $options;
     }
 
     public function getMode()
     {
-        return presence($this->request['mode'] ?? null) ?? 'all';
+        return $this->request['mode'] ?? 'all';
+    }
+
+    public function getRawQuery(): ?string
+    {
+        return $this->request['query'] ?? null;
     }
 
     public function hasQuery()
     {
         return present($this->query)
-            || ($this->getMode() === 'forum_post' && present(get_string($this->request['username'] ?? null)));
+            || ($this->getMode() === 'forum_post' && isset($this->request['username']));
     }
 
     public function searches()

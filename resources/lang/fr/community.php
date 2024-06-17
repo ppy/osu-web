@@ -8,7 +8,7 @@ return [
         'convinced' => [
             'title' => 'Je suis convaincu ! :D',
             'support' => 'soutenez osu!',
-            'gift' => 'ou offrez osu!supporter à un autre joueur',
+            'gift' => 'ou offrez un osu!supporter à un autre joueur',
             'instructions' => 'cliquez sur le cœur pour vous rendre dans l\'osu!store',
         ],
         'why-support' => [
@@ -23,12 +23,12 @@ return [
                 'description' => 'Les contributions vont vers les serveurs pour faire fonctionner le site, les services multijoueurs, les classements en ligne, etc.',
             ],
             'featured-artists' => [
-                'title' => 'Featured artists',
+                'title' => 'Featured Artists',
                 'description' => 'Avec votre soutien, nous pouvons réunir encore plus d\'artistes géniaux et obtenir les droits de plus de musiques afin de les utiliser sur osu!',
                 'link_text' => 'Voir la liste actuelle &raquo;',
             ],
             'ads' => [
-                'title' => 'Garder osu! auto-suffisant',
+                'title' => 'Permettre à osu! de rester auto-suffisant',
                 'description' => 'Vos contributions aident à garder le jeu indépendant et totalement exempt d\'annonces et de sponsors extérieurs.',
             ],
             'tournaments' => [
@@ -116,11 +116,11 @@ return [
 
             'sort_options' => [
                 'title' => 'Options de filtrage',
-                'description' => 'La possibilité d\'afficher en jeu les classements par pays, par ami ou par mods sur les beatmaps.',
+                'description' => 'La possibilité d\'afficher en jeu les classements par pays, par amis ou par mods sur les beatmaps.',
             ],
 
             'more_favourites' => [
-                'title' => 'Plus de favoris',
+                'title' => 'Plus de beatmaps favorites',
                 'description' => 'Le nombre maximum de beatmaps que vous pouvez ajouter aux favoris est augmenté de :normally &rarr; :supporter',
             ],
             'more_friends' => [
@@ -140,9 +140,9 @@ return [
         'supporter_status' => [
             'contribution' => 'Merci beaucoup pour votre soutien ! Vous avez contribué avec un total de :dollars avec :tags achats de tags !',
             'gifted' => "Vous avez offert :giftedTags tags (pour un total de :giftedDollars offerts), quelle générosité !",
-            'not_yet' => "Vous n'avez pas de tag supporter :(",
-            'valid_until' => 'Votre badge osu!supporter actuel est valable jusqu\'au :date !',
-            'was_valid_until' => 'Votre badge osu!supporter était valable jusqu\'au :date.',
+            'not_yet' => "Vous n'avez pas de tag osu!supporter :(",
+            'valid_until' => 'Votre tag osu!supporter actuel est valable jusqu\'au :date !',
+            'was_valid_until' => 'Votre tag osu!supporter était valable jusqu\'au :date.',
         ],
     ],
 ];

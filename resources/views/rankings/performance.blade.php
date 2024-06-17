@@ -54,6 +54,9 @@
         <thead>
             <tr>
                 <th class="ranking-page-table__heading"></th>
+                @if ($showRankChange)
+                    <th colspan="2"></th>
+                @endif
                 <th class="ranking-page-table__heading ranking-page-table__heading--main"></th>
                 <th class="ranking-page-table__heading">
                     {{ osu_trans('rankings.stat.accuracy') }}
@@ -81,6 +84,28 @@
                     <td class="ranking-page-table__column ranking-page-table__column--rank">
                         #{{ $scores->firstItem() + $index }}
                     </td>
+                    @if ($showRankChange)
+                        @php
+                            $rankChange = $score->rankHistory?->rankChangeSince30Days();
+                            $modifier = 'rank-change-'.match (true) {
+                                $rankChange === null => 'pending',
+                                $rankChange > 0 => 'down',
+                                $rankChange < 0 => 'up',
+                                default => 'none',
+                            };
+                        @endphp
+                        <td
+                            class="{{ class_with_modifiers('ranking-page-table__column', 'rank-change-icon', $modifier) }}"
+                            @if ($rankChange === null)
+                                title="{{ osu_trans('rankings.performance.insufficient_history') }}"
+                            @endif
+                        ></td>
+                        <td class="{{ class_with_modifiers('ranking-page-table__column', 'rank-change-value', $modifier) }}">
+                            @if ($rankChange)
+                                {{ i18n_number_format(abs($rankChange)) }}
+                            @endif
+                        </td>
+                    @endif
                     <td class="ranking-page-table__column">
                         <div class="ranking-page-table__user-link">
                             <a

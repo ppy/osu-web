@@ -5,6 +5,7 @@
 
 return [
     'show' => [
+        'non_preserved' => '',
         'title' => ':username ב:title [:version]',
 
         'beatmap' => [
@@ -24,7 +25,8 @@ return [
 
     'status' => [
         'non_best' => '',
-        'non_passing' => '',
+        'no_pp' => '',
         'processing' => '',
+        'no_rank' => '',
     ],
 ];

@@ -97,6 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
+            'inactive' => "Your account hasn't been used in a long time.",
             'inactive_different_country' => "Your account hasn't been used in a long time.",
         ],
     ],
@@ -120,6 +121,17 @@ return [
         'beta' => [
             'main' => 'Beta access is currently restricted to privileged users.',
             'small' => '(osu!supporters will get in soon)',
+        ],
+    ],
+
+    'ogp' => [
+        'modding_description' => 'Beatmaps: :counts',
+        'modding_description_empty' => 'User doesn\'t have any beatmaps...',
+
+        'description' => [
+            '_' => 'Rank (:ruleset): :global | :country',
+            'country' => 'Country :rank',
+            'global' => 'Global :rank',
         ],
     ],
 
@@ -175,7 +187,6 @@ return [
         'origin_country' => 'From :country',
         'previous_usernames' => 'formerly known as',
         'plays_with' => 'Plays with :devices',
-        'title' => ":username's profile",
 
         'comments_count' => [
             '_' => 'Posted :link',
@@ -189,6 +200,8 @@ return [
             'cover' => [
                 'button' => 'Change Profile Cover',
                 'defaults_info' => 'More cover options will be available in the future',
+                'holdover_remove_confirm' => "The previously selected cover is not available for selection anymore. You can't select it back after switching to a different cover. Proceed?",
+
                 'upload' => [
                     'broken_file' => 'Failed processing image. Verify uploaded image and try again.',
                     'button' => 'Upload image',
@@ -387,7 +400,7 @@ return [
                     'date' => 'date',
                     'action' => 'action',
                     'length' => 'length',
-                    'length_permanent' => 'Permanent',
+                    'length_indefinite' => 'Indefinite',
                     'description' => 'description',
                     'actor' => 'by :username',
 

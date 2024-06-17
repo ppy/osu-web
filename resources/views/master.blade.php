@@ -10,6 +10,8 @@
 
     $currentUser = Auth::user();
 
+    $legacyScoreMode = App\Libraries\Search\ScoreSearchParams::showLegacyForUser($currentUser) === true;
+
     $titleTree = [];
 
     if (isset($titleOverride)) {
@@ -50,17 +52,14 @@
 
     <body
         class="
-            osu-layout
-            osu-layout--body
             t-section
-            action-{{ $currentAction }}
+            {{ class_with_modifiers('osu-layout', 'body', ['body-lazer' => !$legacyScoreMode]) }}
             {{ $bodyAdditionalClasses ?? '' }}
         "
     >
         <style>
             :root {
                 --base-hue: {{ $currentHue }};
-                --base-hue-deg: {{ $currentHue }}deg;
             }
         </style>
         <div id="overlay" class="blackout blackout--overlay" style="display: none;"></div>
@@ -71,10 +70,9 @@
                 'type' => 'alert',
                 'title' => osu_trans('users.restricted_banner.title'),
                 'message' => osu_trans('users.restricted_banner.message', [
-                    'link' => tag(
-                        'a',
-                        ['href' => config('osu.urls.user.restriction')],
-                        osu_trans('users.restricted_banner.message_link'),
+                    'link' => link_to(
+                        osu_url('user.restriction'),
+                        osu_trans('users.restricted_banner.message_link')
                     ),
                 ]),
             ])
@@ -90,7 +88,7 @@
                 @stack('notification_banners')
             </div>
         @endif
-        <div class="osu-layout__section osu-layout__section--full js-content {{ $currentSection }}_{{ $currentAction }}">
+        <div class="osu-layout__section osu-layout__section--full">
             @yield('content')
         </div>
         @if (!isset($blank))
@@ -111,7 +109,7 @@
             >
                 @yield('permanent-fixed-footer')
 
-                @if (config('osu.is_development_deploy'))
+                @if ($GLOBALS['cfg']['osu']['is_development_deploy'])
                     <div class="development-deploy-footer">
                         This is a development instance of the <a href="https://osu.ppy.sh" class="development-deploy-footer__link">osu! website</a>. Please do not login with your osu! credentials.
                     </div>

@@ -7,12 +7,14 @@
 @section('content')
     @include('store.header')
 
-    {!! Form::open([
-        'url' => route('store.cart.store', ['add' => true]),
-        'data-remote' => true,
-        'id' => 'product-form',
-        'class' => 'osu-page osu-page--store',
-    ]) !!}
+    <form
+        action="{{ route('store.cart.store', ['add' => true]) }}"
+        class="osu-page osu-page--store"
+        data-remote
+        id="product-form"
+        method="POST"
+    >
+        @csrf
         <div class="product-box product-box--header" {!! background_image($product->header_image) !!}></div>
 
         <div class="store-page">
@@ -27,7 +29,7 @@
                         <div class="gallery-previews">
                             @foreach($product->images() as $i => $image)
                                 @php
-                                    $imageSize = fast_imagesize($image[1]);
+                                    $imageSize = fast_imagesize($image[1], "store_product:{$product->getKey()}");
                                 @endphp
                                 <a
                                     class="gallery-previews__item js-gallery"
@@ -94,25 +96,27 @@
                         @if($product->inStock())
                             <div class='form-group'>
                                 <input type="hidden" name="item[product_id]" value="{{ $product->product_id }}" />
-                                {!! Form::label(
-                                    'item[quantity]',
-                                    osu_trans('store.order.item.quantity'),
-                                    ['class' => 'u-uppercase']
-                                ) !!}
+                                <label for="item[quantity]" class="u-uppercase">
+                                    {{ osu_trans('store.order.item.quantity') }}
+                                </label>
 
                                 <div class="form-select">
-                                    {!! Form::select(
-                                        "item[quantity]",
-                                        product_quantity_options($product), 1,
-                                        ['class' => 'js-store-item-quantity form-select__input']
-                                    ) !!}
+                                    <select
+                                        class="js-store-item-quantity form-select__input"
+                                        name="item[quantity]"
+                                    >
+                                        @foreach (product_quantity_options($product) as $option)
+                                            <option value="{{ $option['value'] }}">
+                                                {{ $option['label'] }}
+                                            </option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                         @elseif ($product->inStock(1, true))
                             {{ osu_trans('store.product.stock.out_with_alternative') }}
                         @else
                             {{ osu_trans('store.product.stock.out') }}
-                        </div>
                         @endif
                     </div>
                 </div>
@@ -120,12 +124,15 @@
         </div>
 
         <div class="store-page store-page--footer" id="add-to-cart">
-            @if($product->inStock())
-                <button type="submit" class="btn-osu-big btn-osu-big--store-action js-store-add-to-cart js-login-required--click">
+            @if ($product->inStock())
+                <button
+                    class="btn-osu-big btn-osu-big--store-action js-login-required--click js-store-add-to-cart"
+                    type="submit"
+                    {{ in_array($product->custom_class, App\Models\Store\Product::BUTTON_DISABLED, true) ? 'disabled' : '' }}
+                >
                     {{ osu_trans('store.product.add_to_cart') }}
                 </button>
-
-            @elseif(!$requestedNotification)
+            @elseif (!$requestedNotification)
                 <a
                     class="btn-osu-big btn-osu-big--store-action js-login-required--click"
                     href="{{ route('store.notification-request', ['product' => $product->product_id]) }}"
@@ -141,17 +148,16 @@
                     <span class="far fa-check-circle store-notification-requested-alert__icon"></span>
                     <p class="store-notification-requested-alert__text">
                         {!! osu_trans('store.product.notification_success', [
-                            'link' => link_to_route(
-                                'store.notification-request',
+                            'link' => link_to(
+                                route('store.notification-request', ['product' => $product->product_id]),
                                 osu_trans('store.product.notification_remove_text'),
-                                ['product' => $product->product_id],
-                                ['data-remote' => 'true', 'data-method' => 'DELETE']
-                            )
+                                ['data-remote' => 'true', 'data-method' => 'DELETE'],
+                            ),
                         ]) !!}
                     </p>
                 </div>
             @endif
         </div>
 
-    {!! Form::close() !!}
+    </form>
 @endsection

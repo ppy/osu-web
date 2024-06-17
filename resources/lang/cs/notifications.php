@@ -51,10 +51,16 @@ return [
                 'beatmapset_discussion_post_new_empty' => 'Nový příspěvek v ":title" od :username',
                 'beatmapset_discussion_post_new_compact' => 'Nový příspěvek od :username ":content"',
                 'beatmapset_discussion_post_new_compact_empty' => 'Nový příspěvek od :username',
-                'beatmapset_discussion_review_new' => 'Nová recenze na ":title" od :username obsahující problémy: :problems, návrhy: :suggestions, ocenění: :praises',
-                'beatmapset_discussion_review_new_compact' => 'Nová recenze od :username obsahující problémy: :problems, návrhy: :suggestions, ocenění: :praises',
+                'beatmapset_discussion_review_new' => 'Nová recenze na ":title" od :username obsahující :review_counts',
+                'beatmapset_discussion_review_new_compact' => 'Nová recenze od :username obsahující :review_counts',
                 'beatmapset_discussion_unlock' => 'Diskuze ":title" byla odemčena',
                 'beatmapset_discussion_unlock_compact' => 'Diskuze byla odemčena',
+
+                'review_count' => [
+                    'praises' => ':count_delimited ocenění|:count_delimited ocenění',
+                    'problems' => ':count_delimited problém|:count_delimited problémy|:count_delimited problémů',
+                    'suggestions' => ':count_delimited návrh|:count_delimited návrhy|:count_delimited návrhů',
+                ],
             ],
 
             'beatmapset_problem' => [
@@ -238,11 +244,6 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':username odemkl novou medaili, ":title"!',
-                'user_achievement_unlock_self' => 'Odemkli jste novou medaili, ":title"!',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username vytvořil nové beatmapy',
                 'user_beatmapset_revive' => ':username obnovil beatmapy',

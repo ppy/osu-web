@@ -18,6 +18,10 @@ return [
             'new' => 'nova e-pošta',
             'new_confirmation' => 'potrditev e-pošte',
             'title' => 'E-pošta',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
         ],
 
         'legacy_api' => [
@@ -58,6 +62,19 @@ return [
         ],
     ],
 
+    'github_user' => [
+        'info' => "",
+        'link' => '',
+        'title' => '',
+        'unlink' => '',
+
+        'error' => [
+            'already_linked' => '',
+            'no_contribution' => '',
+            'unverified_email' => '',
+        ],
+    ],
+
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'prejmi obvestila o novih težavah na kvalificiranih beatmapah pri naslednjih modifikatorjih',
         'beatmapset_disqualify' => 'prejmi obvestila ko so beatmape pri naslednjih modifikatorjih diskvalificirane',
@@ -75,7 +92,6 @@ return [
             'mail' => 'e-pošta',
             'mapping' => 'ustvarjalec beatmap',
             'push' => 'potisno',
-            'user_achievement_unlock' => 'uporabniška medalja odklenjena',
         ],
     ],
 

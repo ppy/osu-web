@@ -18,6 +18,8 @@ return [
     'channels' => [
         'confirm_part' => 'Möchtest du diesen Channel ausblenden? Du erhältst weiterhin Nachrichten aus diesem Channel.',
         'create' => 'Ankündigung erstellen',
+        'join' => 'Kanal beitreten',
+        'none' => 'Kein Kanal',
 
         'list' => [
             'title' => [
@@ -59,5 +61,9 @@ return [
         'howto' => "Starte eine Unterhaltung von einem User-Profil oder einem Usercard-Pop-up.",
         'lazer' => 'Öffentliche Channel, welche du mit <a href=":link">osu!lazer</a> betrittst, werden hier auch sichtbar sein.',
         'title' => 'noch keine Unterhaltungen',
+    ],
+
+    'join_channels' => [
+        'loading' => 'Kanäle werden geladen...',
     ],
 ];

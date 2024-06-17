@@ -84,7 +84,7 @@ class ForumTopicsControllerTest extends TestCase
     public function testReply(): void
     {
         $topic = Topic::factory()->create();
-        $user = User::factory()->withPlays(config('osu.forum.minimum_plays'))->create();
+        $user = User::factory()->withPlays($GLOBALS['cfg']['osu']['forum']['minimum_plays'])->create();
         Authorize::factory()->reply()->create([
             'forum_id' => $topic->forum_id,
             'group_id' => app('groups')->byIdentifier('default'),
@@ -204,7 +204,7 @@ class ForumTopicsControllerTest extends TestCase
     public function testStore(): void
     {
         $forum = Forum::factory()->create();
-        $user = User::factory()->withPlays(config('osu.forum.minimum_plays'))->create();
+        $user = User::factory()->withPlays($GLOBALS['cfg']['osu']['forum']['minimum_plays'])->create();
         Authorize::factory()->post()->create([
             'forum_id' => $forum,
             'group_id' => app('groups')->byIdentifier('default'),

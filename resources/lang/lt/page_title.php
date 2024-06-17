@@ -35,24 +35,24 @@ return [
             '_' => 'rekomenduojami atlikėjai',
         ],
         'beatmap_discussion_posts_controller' => [
-            '_' => 'bitmapo diskusijos Įrašai',
+            '_' => 'beatmap\'o diskusijos Įrašai',
         ],
         'beatmap_discussions_controller' => [
-            '_' => 'bitmapo diskusijos',
+            '_' => 'beatmap\'o diskusijos',
         ],
         'beatmap_packs_controller' => [
-            '_' => 'bitmapų rinkiniai',
+            '_' => 'beatmap\'ų rinkiniai',
         ],
         'beatmapset_discussion_votes_controller' => [
-            '_' => 'bitmapo diskusijos balsai',
+            '_' => 'beatmap\'o diskusijos balsai',
         ],
         'beatmapset_events_controller' => [
-            '_' => 'bitmapo istorija',
+            '_' => 'beatmap\'o istorija',
         ],
         'beatmapsets_controller' => [
-            'discussion' => 'bitmapo diskusija',
-            'index' => 'bitmapų sąrašas',
-            'show' => 'bitmapo info',
+            'discussion' => 'beatmap\'o diskusija',
+            'index' => 'beatmap\'ų sąrašas',
+            'show' => 'beatmap\'o info',
         ],
         'changelog_controller' => [
             '_' => 'pakeitimų sąrašas',
@@ -63,8 +63,12 @@ return [
         'comments_controller' => [
             '_' => 'komentarai',
         ],
+        'contest_entries_controller' => [
+            'judge_results' => '',
+        ],
         'contests_controller' => [
             '_' => 'konkursai',
+            'judge' => '',
         ],
         'groups_controller' => [
             'show' => 'grupės',
@@ -105,6 +109,9 @@ return [
         ],
         'tournaments_controller' => [
             '_' => 'turnyrai',
+        ],
+        'user_cover_presets_controller' => [
+            '_' => '',
         ],
         'users_controller' => [
             '_' => 'žaidėjo informacija',

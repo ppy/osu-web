@@ -86,7 +86,6 @@ return [
         ],
         'rankings' => [
             '_' => 'žebříček',
-            'kudosu' => 'kudosu',
         ],
         'store' => [
             '_' => 'obchod',
@@ -112,6 +111,7 @@ return [
         'legal' => [
             '_' => 'Právní záležitosti & Stav serveru',
             'copyright' => 'Autorské právo (DMCA)',
+            'jp_sctl' => '',
             'privacy' => 'Soukromí',
             'server_status' => 'Stav serveru',
             'source_code' => 'Zdrojový kód',
@@ -126,7 +126,7 @@ return [
         ],
         '404' => [
             'error' => 'Stránka chybí',
-            'description' => "Omlouvám se, ale požadovaná stránka není nalezena!",
+            'description' => "Omlouváme se, ale požadovaná stránka nebyla nalezena!",
         ],
         '403' => [
             'error' => "Tady nesmíš být.",
@@ -138,7 +138,7 @@ return [
         ],
         '405' => [
             'error' => 'Stránka chybí',
-            'description' => "Omlouvám se, ale požadovaná stránka není nalezena!",
+            'description' => "Omlouváme se, ale požadovaná stránka nebyla nalezena!",
         ],
         '422' => [
             'error' => 'Neplatný parametr požadavku',
@@ -149,7 +149,7 @@ return [
             'description' => '',
         ],
         '500' => [
-            'error' => 'Ale ne, něco je rozbité!',
+            'error' => 'Ale ne! Něco se pokazilo! ;_;',
             'description' => "Jsme automaticky oznámeni o každé chybě.",
         ],
         'fatal' => [
@@ -195,6 +195,8 @@ return [
             'account-edit' => 'Nastavení',
             'follows' => 'Sledované položky',
             'friends' => 'Přátelé',
+            'legacy_score_only_toggle' => 'Lazer režim',
+            'legacy_score_only_toggle_tooltip' => 'Lazer režim zobrazuje skóre zahraná na lazeru s novým skórovacím algoritmem',
             'logout' => 'Odhlásit se',
             'profile' => 'Můj profil',
         ],

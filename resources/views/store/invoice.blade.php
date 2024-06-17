@@ -10,9 +10,11 @@
     <div class="osu-page osu-page--store">
         @if (Request::has('thanks'))
             <div class="no-print store-page">
-                <h1 class="store-text store-text--title">Thanks for your order!</h1>
+                <h1 class="store-text store-text--title">{{ osu_trans('store.order.thanks.title') }}</h1>
                 <p>
-                    You will receive a confirmation email soon. If you have any enquiries, please <a href='mailto:osustore@ppy.sh'>contact us</a>!
+                    {!! osu_trans('store.order.thanks.line_1._', [
+                        'link' => link_to('mailto:osustore@ppy.sh', osu_trans('store.order.thanks.line_1.link_text')),
+                    ]) !!}
                 </p>
             </div>
         @endif
@@ -20,11 +22,5 @@
         @include('store.orders._details')
 
         @include('store.orders._status')
-
-        @if ($order->isShipped())
-            @foreach($order->trackingCodes() as $code)
-                @include('store.orders._tracking', compact('code'))
-            @endforeach
-        @endif
     </div>
 @endsection

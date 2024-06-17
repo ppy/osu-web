@@ -53,7 +53,7 @@ return [
     ],
 
     'beatmapset' => [
-        'discussion_locked' => '',
+        'discussion_locked' => 'Ovaj beatmap je zakljucan za diskusiju.',
 
         'metadata' => [
             'nominated' => 'Ne možeš promijeniti metapodatke nominirane mape. Obratite se BN ili NAT članu ako mislite da su pogrešno postavljeni.',
@@ -81,6 +81,7 @@ return [
     ],
 
     'contest' => [
+        'judging_not_active' => '',
         'voting_over' => 'Ne možeš promijeniti svoj glas nakon završetka razdoblja glasanja za ovo natjecanje.',
 
         'entry' => [
@@ -172,6 +173,7 @@ return [
     'score' => [
         'pin' => [
             'disabled_type' => "",
+            'failed' => "",
             'not_owner' => 'Samo vlasnik rezultata može prikvačiti rezultat.',
             'too_many' => 'Prikvačeno previše rezultata.',
         ],
@@ -184,6 +186,9 @@ return [
                 'not_owner' => 'Možeš urediti samo svoju korisničku stranicu.',
                 'require_supporter_tag' => 'Potrebna je osu!supporter oznaka.',
             ],
+        ],
+        'update_email' => [
+            'locked' => '',
         ],
     ],
 ];

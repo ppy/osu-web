@@ -2,17 +2,29 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import Comment from 'components/comment';
+import CommentsController from 'components/comments-controller';
 import { observer } from 'mobx-react';
-import core from 'osu-core-singleton';
 import * as React from 'react';
 
-const store = core.dataStore.commentStore;
-const uiState = core.dataStore.uiState;
+interface Props {
+  controllerStateSelector: string;
+}
 
 @observer
-export default class CommentsShow extends React.Component {
+export default class CommentsShow extends React.Component<Props> {
+  private readonly controller;
+
+  constructor(props: Props) {
+    super(props);
+    this.controller = new CommentsController(this.props.controllerStateSelector);
+  }
+
+  componentWillUnmount() {
+    this.controller.destroy();
+  }
+
   render() {
-    const comment = store.comments.get(uiState.comments.topLevelCommentIds[0]);
+    const comment = this.controller.getComments(this.controller.state.commentIdsByParentId[-1])[0];
 
     if (comment == null) {
       throw new Error('missing comment');
@@ -21,6 +33,7 @@ export default class CommentsShow extends React.Component {
     return (
       <Comment
         comment={comment}
+        controller={this.controller}
         depth={0}
         linkParent
         modifiers={['dark', 'single']}

@@ -40,15 +40,20 @@ return [
     ],
 
     'nominate' => [
+        'bng_limited_too_many_rulesets' => '',
+        'full_nomination_required' => '',
         'hybrid_requires_modes' => 'Hybridní beatmapa vyžaduje, abyste vybrali alespoň jeden herní režim, za který ji chcete nominovat.',
         'incorrect_mode' => 'Nemáte oprávnění k nominaci za mód: :mode',
-        'full_bn_required' => 'Musíte být plný nominátor, abyste mohli provést kvalifikační nominaci.',
+        'invalid_limited_nomination' => '',
+        'invalid_ruleset' => '',
         'too_many' => 'Požadavek na nominaci je již splněn.',
+        'too_many_non_main_ruleset' => '',
 
         'dialog' => [
             'confirmation' => 'Jste si jisti, že chcete nominovat tuto beatmapu?',
             'header' => 'Nominovat beatmapu',
             'hybrid_warning' => 'poznámka: můžete nominovat pouze jednou, takže se ujistěte, že nominujete za všechny herní režimy, které chcete',
+            'current_main_ruleset' => '',
             'which_modes' => 'Nominovat pro jaké módy?',
         ],
     ],
@@ -59,6 +64,10 @@ return [
 
     'show' => [
         'discussion' => 'Diskuze',
+
+        'admin' => [
+            'full_size_cover' => 'Zobrazit plnou velikost úvodního obrázku',
+        ],
 
         'deleted_banner' => [
             'title' => 'Tato beatmapa byla odstraněna.',
@@ -200,7 +209,7 @@ return [
             'accuracy' => 'Přesnost',
             'ar' => 'Rychlost zjevování koleček',
             'stars' => 'Počet hvězd',
-            'total_length' => 'Délka',
+            'total_length' => 'Délka (Délka vysávání životů: :hit_length)',
             'bpm' => 'BPM',
             'count_circles' => 'Počet koleček',
             'count_sliders' => 'Počet sliderů',

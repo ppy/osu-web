@@ -18,6 +18,10 @@ return [
             'new' => 'ny e-post',
             'new_confirmation' => 'bekreft e-post',
             'title' => 'E-post',
+            'locked' => [
+                '_' => 'Vennligst kontakt :accounts dersom du trenger e-posten din oppdatert.',
+                'accounts' => 'brukerstøtteteam',
+            ],
         ],
 
         'legacy_api' => [
@@ -34,12 +38,12 @@ return [
         ],
 
         'profile' => [
-            'country' => '',
+            'country' => 'land',
             'title' => 'Profil',
 
             'country_change' => [
-                '_' => "",
-                'update_link' => '',
+                '_' => "Det ser ut til at landet på kontoen din ikke samsvarer med landet du bor i. :update_link.",
+                'update_link' => 'Oppdater til :country',
             ],
 
             'user' => [
@@ -55,6 +59,19 @@ return [
         'signature' => [
             'title' => 'Signatur',
             'update' => 'oppdater',
+        ],
+    ],
+
+    'github_user' => [
+        'info' => "Hvis du er en bidragsyter til osu!s åpne kildekode, kan du knytte endringene dine med osu! profilen ved å koble til GitHub-kontoen din her. GitHub-kontoer uten bidragshistorikk til osu! kan ikke bli koblet til.",
+        'link' => 'Koble til GitHub-konto',
+        'title' => 'GitHub',
+        'unlink' => 'Koble fra GitHub-konto',
+
+        'error' => [
+            'already_linked' => 'Denne GitHub-kontoen er allerede koblet til en annen bruker.',
+            'no_contribution' => 'Kan ikke koble GitHub-konto uten bidragshistorikk i osu! kildekode.',
+            'unverified_email' => 'Vennligst bekreft din primære e-postadresse på GitHub, og så prøv å koble til kontoen på nytt.',
         ],
     ],
 
@@ -75,7 +92,6 @@ return [
             'mail' => 'e-post',
             'mapping' => 'beatmap mapper',
             'push' => 'trykk',
-            'user_achievement_unlock' => 'brukerens medalje ulåst',
         ],
     ],
 

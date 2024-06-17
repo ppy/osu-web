@@ -5,6 +5,8 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
+
 /**
  * @property int $banner_id
  * @property Country $country
@@ -47,12 +49,33 @@ class ProfileBanner extends Model
         };
     }
 
+    public function scopeActiveOnly(Builder $query): Builder
+    {
+        $currentTournamentId = $GLOBALS['cfg']['osu']['tournament_banner']['current']['id'];
+        if ($currentTournamentId !== null) {
+            $mayHaveTournamentBanner = true;
+            $query->where('tournament_id', $currentTournamentId);
+        }
+        $previousTournamentId = $GLOBALS['cfg']['osu']['tournament_banner']['previous']['id'];
+        if ($previousTournamentId !== null) {
+            $mayHaveTournamentBanner = true;
+            $query->orWhere(fn ($q) => $q->where([
+                'tournament_id' => $previousTournamentId,
+                'country_acronym' => $GLOBALS['cfg']['osu']['tournament_banner']['previous']['winner_id'],
+            ]));
+        }
+
+        return $mayHaveTournamentBanner ?? false
+            ? $query
+            : $query->none();
+    }
+
     public function image()
     {
         $period = $this->period();
 
         if ($period !== null) {
-            $prefix = config("osu.tournament_banner.{$period}.prefix");
+            $prefix = $GLOBALS['cfg']['osu']['tournament_banner'][$period]['prefix'];
 
             return "{$prefix}{$this->country_acronym}.jpg";
         }
@@ -63,15 +86,15 @@ class ProfileBanner extends Model
         $period = $this->period();
 
         return $period === 'current' ||
-            ($period === 'previous' && $this->country_acronym === config('osu.tournament_banner.previous.winner_id'));
+            ($period === 'previous' && $this->country_acronym === $GLOBALS['cfg']['osu']['tournament_banner']['previous']['winner_id']);
     }
 
     public function period()
     {
         switch ($this->tournament_id) {
-            case config('osu.tournament_banner.current.id'):
+            case $GLOBALS['cfg']['osu']['tournament_banner']['current']['id']:
                 return 'current';
-            case config('osu.tournament_banner.previous.id'):
+            case $GLOBALS['cfg']['osu']['tournament_banner']['previous']['id']:
                 return 'previous';
         }
     }

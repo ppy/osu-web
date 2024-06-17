@@ -78,6 +78,18 @@ return [
             'suggestion' => 'Suggestie',
         ],
 
+        'message_type_title' => [
+            'disqualify' => 'Post Diskwalificeren',
+            'hype' => 'Post Hype!',
+            'mapper_note' => 'Plaats notitie',
+            'nomination_reset' => 'Verwijder alle Nominaties',
+            'praise' => 'Plaats lof',
+            'problem' => 'Rapporteer Probleem',
+            'problem_warning' => 'Rapporteer Probleem',
+            'review' => 'Beoordeling plaatsen',
+            'suggestion' => 'Plaats suggestie',
+        ],
+
         'mode' => [
             'events' => 'Geschiedenis',
             'general' => 'Algemeen :scope',
@@ -201,6 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'Deze map staat gepland om ranked te worden op :date als er geen problemen worden gevonden. Het is #:position in de :queue.',
+            'unresolved_problems' => 'Deze map is momenteel geblokkeerd om de Gekwalificeerde sectie te verlaten totdat :problems zijn opgelost.',
+            'problems' => 'deze problemen',
             'on' => 'op :date',
             'queue' => 'ranking wachtlijst',
             'soon' => 'binnenkort',
@@ -269,6 +283,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
+        'undefined' => '',
     ],
     'status' => [
         'any' => 'Alles',

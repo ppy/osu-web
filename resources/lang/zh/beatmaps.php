@@ -78,6 +78,18 @@ return [
             'suggestion' => '建议',
         ],
 
+        'message_type_title' => [
+            'disqualify' => '发布下架 (DQ) 帖',
+            'hype' => '发布推荐帖！',
+            'mapper_note' => '发布备注帖',
+            'nomination_reset' => '删除所有提名',
+            'praise' => '发布赞',
+            'problem' => '发布问题帖',
+            'problem_warning' => '发布问题帖',
+            'review' => '发布审阅帖',
+            'suggestion' => '发布建议帖',
+        ],
+
         'mode' => [
             'events' => '历史',
             'general' => '常规 :scope',
@@ -201,6 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => '谱面正位于 :queue 中第 :position 位。如果没有问题，谱面将 :date 上架 (Ranked)。',
+            'unresolved_problems' => '这张谱面会一直被冻结在过审 (Qualified) 区，直到 :problems 解决。',
+            'problems' => '这些问题',
             'on' => '在 :date',
             'queue' => '谱面上架队列',
             'soon' => '不久后',
@@ -269,6 +283,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
+        'undefined' => '',
     ],
     'status' => [
         'any' => '全部',
@@ -285,7 +300,7 @@ return [
     ],
     'genre' => [
         'any' => '全部',
-        'unspecified' => '尚未指定',
+        'unspecified' => '不限',
         'video-game' => '电子游戏',
         'anime' => '动漫',
         'rock' => '摇滚',
@@ -314,7 +329,7 @@ return [
         'polish' => '波兰语',
         'instrumental' => '器乐',
         'other' => '其他',
-        'unspecified' => '尚未指定',
+        'unspecified' => '不限',
     ],
 
     'nsfw' => [

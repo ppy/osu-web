@@ -13,7 +13,28 @@ return [
         'nav_title' => 'lista',
     ],
 
+    'judge' => [
+        'hide_judged' => 'schowaj ocenione wpisy',
+        'nav_title' => 'oceniać',
+        'no_current_vote' => 'jeszcze nie zagłosowałeś.',
+        'update' => 'aktualizacja',
+        'validation' => [
+            'missing_score' => 'brakujący wynik',
+            'contest_vote_judged' => 'nie można głosować w ocenianych konkursach',
+        ],
+        'voted' => 'Już zagłosowałeś w tym wpisie.',
+    ],
+
+    'judge_results' => [
+        '_' => 'Wyniki oceniania',
+        'creator' => 'twórca',
+        'score' => 'Wynik',
+        'total_score' => 'wynik całkowity',
+    ],
+
     'voting' => [
+        'judge_link' => 'Jesteś sędzią tego konkursu. Oceń wpisy tutaj!',
+        'judged_notice' => 'Ten konkurs używa systemu oceniania, sędziowie obecnie sprawdzają wpisy.',
         'login_required' => 'Zaloguj się, aby zagłosować!',
         'over' => 'Głosowanie dla tego konkursu zostało zakończone',
         'show_voted_only' => 'Pokaż prace z moimi głosami',
@@ -34,10 +55,11 @@ return [
 
         'requirement' => [
             'playlist_beatmapsets' => [
-                'incomplete_play' => 'Musisz zagrać wszystkie beatmapy w określonych listach, by zagłosować',
+                'incomplete_play' => 'Musisz zagrać wszystkie beatmapy w określonych grach, by zagłosować',
             ],
         ],
     ],
+
     'entry' => [
         '_' => 'zgłoszenie',
         'login_required' => 'Zaloguj się, aby uczestniczyć w tym konkursie.',
@@ -45,22 +67,27 @@ return [
         'preparation' => 'Ten konkurs jest obecnie przygotowywany. Czekaj cierpliwie!',
         'drop_here' => 'Tutaj umieść swoje zgłoszenie',
         'download' => 'Pobierz plik .osz',
+
         'wrong_type' => [
             'art' => 'Jedynie pliki o rozszerzeniach .jpg czy .png są dozwolone w tym konkursie.',
             'beatmap' => 'Jedynie pliki o rozszerzeniu .osu są dozwolone w tym konkursie.',
             'music' => 'Jedynie pliki o rozszerzeniu .mp3 są dozwolone w tym konkursie.',
         ],
+
         'wrong_dimensions' => 'Zgłoszenia do tego konkursu muszą mieć rozdzielczość :widthx:height',
         'too_big' => 'Maksymalna wielkość zgłoszeń dla tego konkursu to :limit.',
     ],
+
     'beatmaps' => [
         'download' => 'Pobierz zgłoszenie',
     ],
+
     'vote' => [
         'list' => 'głosy',
         'count' => ':count_delimited głos|:count_delimited głosy|:count_delimited głosów',
         'points' => ':count_delimited punkt|:count_delimited punkty|:count_delimited punktów',
     ],
+
     'dates' => [
         'ended' => 'Zakończony :date',
         'ended_no_date' => 'Zakończony',
@@ -70,6 +97,7 @@ return [
             'soon' => 'wkrótce™',
         ],
     ],
+
     'states' => [
         'entry' => 'Otwarty na zgłoszenia',
         'voting' => 'Głosowanie',

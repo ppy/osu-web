@@ -13,7 +13,28 @@ return [
         'nav_title' => '清單',
     ],
 
+    'judge' => [
+        'hide_judged' => '隱藏已評分的項目',
+        'nav_title' => '評分',
+        'no_current_vote' => '您尚未投票',
+        'update' => '更新',
+        'validation' => [
+            'missing_score' => '缺失成績',
+            'contest_vote_judged' => '無法在已評分的競賽中投票',
+        ],
+        'voted' => '您已經提交過此項目的投票',
+    ],
+
+    'judge_results' => [
+        '_' => '評分結果',
+        'creator' => '作者',
+        'score' => '分數',
+        'total_score' => '總分',
+    ],
+
     'voting' => [
+        'judge_link' => '您是此競賽的評委。請在此處評分。',
+        'judged_notice' => '本競賽使用評分系統，評委正在進行評分。',
         'login_required' => '請登入後再投票。',
         'over' => '這場評選的投票已經結束',
         'show_voted_only' => '顯示投票',
@@ -34,10 +55,11 @@ return [
 
         'requirement' => [
             'playlist_beatmapsets' => [
-                'incomplete_play' => '',
+                'incomplete_play' => '在玩過指定音樂清單中的所有圖譜後您才能進行投票',
             ],
         ],
     ],
+
     'entry' => [
         '_' => '參加',
         'login_required' => '請登入後再參加評選。',
@@ -45,22 +67,27 @@ return [
         'preparation' => '我們正在準備這場評選，請耐心等待！',
         'drop_here' => '將您的參賽文件拖到此處',
         'download' => '下載 .osz 檔案',
+
         'wrong_type' => [
             'art' => '只接受 .jpg 和 .png 格式的文件.',
             'beatmap' => '只接受 .osu 格式的文件.',
             'music' => '只接受 .mp3 格式的文件.',
         ],
-        'wrong_dimensions' => '',
+
+        'wrong_dimensions' => '參加競賽的數量必須達到 :widthx:height',
         'too_big' => '參賽文件的大小不能超過 :limit.',
     ],
+
     'beatmaps' => [
         'download' => '下載模板',
     ],
+
     'vote' => [
         'list' => '投票',
         'count' => ':count_delimited 票|:count_delimited 票',
         'points' => ':count_delimited 分|:count_delimited 分',
     ],
+
     'dates' => [
         'ended' => '結束於 :date',
         'ended_no_date' => '已結束',
@@ -70,6 +97,7 @@ return [
             'soon' => 'soon™',
         ],
     ],
+
     'states' => [
         'entry' => '可參加',
         'voting' => '投票中',

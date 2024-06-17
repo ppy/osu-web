@@ -37,7 +37,7 @@ return [
         'blocked_count' => 'ブロックしたユーザー(:count)',
         'hide_profile' => 'プロフィールを隠す',
         'hide_comment' => '隠す',
-        'forum_post_text' => '',
+        'forum_post_text' => 'この投稿を隠す。',
         'not_blocked' => 'このユーザーはブロックされていません。',
         'show_profile' => 'プロフィールを表示',
         'show_comment' => '表示',
@@ -97,6 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
+            'inactive' => "",
             'inactive_different_country' => "あなたのアカウントは長期間使用されていません。",
         ],
     ],
@@ -120,6 +121,17 @@ return [
         'beta' => [
             'main' => 'ベータアクセスは権限があるユーザーのみに付与されます。',
             'small' => '(osu!サポーターはすぐ手に入ります)',
+        ],
+    ],
+
+    'ogp' => [
+        'modding_description' => 'ビートマップ: :counts',
+        'modding_description_empty' => 'このユーザーにはビートマップがありません...',
+
+        'description' => [
+            '_' => 'ランク (:ruleset): :global | :country',
+            'country' => '国 :rank',
+            'global' => '世界 :rank',
         ],
     ],
 
@@ -160,7 +172,7 @@ return [
     'restricted_banner' => [
         'title' => 'アカウントが制限されました！',
         'message' => '制限中は他のプレイヤーと交流ができなくなり、スコアが他人には表示されなくなります。ほとんどの場合、自動的に行われた処理で通常２４時間以内に解除されます。この制限に異議を申し立てたい場合は<a href="mailto:accounts@ppy.sh">サポート</a>に問い合わせて下さい。',
-        'message_link' => '',
+        'message_link' => '詳細については、こちらのページをご覧ください。',
     ],
     'show' => [
         'age' => ':age歳',
@@ -175,7 +187,6 @@ return [
         'origin_country' => '所在国 :country',
         'previous_usernames' => '以前の名前',
         'plays_with' => '使用デバイス :devices',
-        'title' => ":usernameのプロフィール",
 
         'comments_count' => [
             '_' => '投稿 :link',
@@ -387,7 +398,7 @@ return [
                     'date' => '発生日',
                     'action' => 'アクション',
                     'length' => '期間',
-                    'length_permanent' => '永久',
+                    'length_indefinite' => '無期限',
                     'description' => '詳細',
                     'actor' => 'by :username',
 

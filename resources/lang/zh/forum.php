@@ -14,13 +14,13 @@ return [
 
         'create' => [
             '_' => '设置封面',
-            'button' => '上传图片',
+            'button' => '上传封面',
             'info' => '图片尺寸应为 :dimensions 。 也可以将图片拖动到这里上传。',
         ],
 
         'destroy' => [
             '_' => '移除封面',
-            'confirm' => '要移除这个封面吗？',
+            'confirm' => '确定要移除封面吗？',
         ],
     ],
 
@@ -70,7 +70,7 @@ return [
     ],
 
     'search' => [
-        'go_to_post' => '前往该楼层',
+        'go_to_post' => '前往该帖子',
         'post_number_input' => '输入楼层号',
         'total_posts' => '一共有 :posts_count 楼',
     ],

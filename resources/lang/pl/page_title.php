@@ -63,8 +63,12 @@ return [
         'comments_controller' => [
             '_' => 'komentarze',
         ],
+        'contest_entries_controller' => [
+            'judge_results' => 'wyniki oceniania konkursu',
+        ],
         'contests_controller' => [
             '_' => 'konkursy',
+            'judge' => 'ocenianie konkursu',
         ],
         'groups_controller' => [
             'show' => 'grupy',
@@ -105,6 +109,9 @@ return [
         ],
         'tournaments_controller' => [
             '_' => 'turnieje',
+        ],
+        'user_cover_presets_controller' => [
+            '_' => 'profil okładki użytkownika',
         ],
         'users_controller' => [
             '_' => 'informacje o użytkowniku',

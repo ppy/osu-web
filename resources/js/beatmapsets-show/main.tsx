@@ -2,11 +2,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import Comments from 'components/comments';
-import { CommentsManager } from 'components/comments-manager';
 import HeaderV4 from 'components/header-v4';
 import NotificationBanner from 'components/notification-banner';
 import PlaymodeTabs from 'components/playmode-tabs';
-import GameMode, { gameModes } from 'interfaces/game-mode';
+import Ruleset, { rulesets } from 'interfaces/ruleset';
 import { action, autorun, computed, IReactionDisposer, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
@@ -26,14 +25,14 @@ interface Props {
 
 @observer
 export default class Main extends React.Component<Props> {
-  @observable private controller: Controller;
+  @observable private readonly controller: Controller;
   private setHashDisposer?: IReactionDisposer;
 
   @computed
   private get headerLinksAppend() {
     if (this.controller.state.showingNsfwWarning) return null;
 
-    const entries = gameModes.map((ruleset) => {
+    const entries = rulesets.map((ruleset) => {
       const beatmaps = this.controller.beatmaps.get(ruleset) ?? [];
       const mainCount = beatmaps.filter((b) => !b.convert).length;
 
@@ -87,7 +86,7 @@ export default class Main extends React.Component<Props> {
   }
 
   @action
-  private readonly onClickPlaymode = (e: React.MouseEvent, mode: GameMode) => {
+  private readonly onClickPlaymode = (e: React.MouseEvent, mode: Ruleset) => {
     e.preventDefault();
 
     this.controller.state.playmode = mode;
@@ -136,13 +135,13 @@ export default class Main extends React.Component<Props> {
             }
 
             <div className='page-extra page-extra--compact'>
-              <CommentsManager
-                commentableId={this.controller.beatmapset.id}
-                commentableType='beatmapset'
-                component={Comments}
-                componentProps={{
-                  modifiers: 'page-extra',
+              <Comments
+                baseCommentableMeta={{
+                  id: this.controller.beatmapset.id,
+                  type: 'beatmapset',
                 }}
+                controllerStateSelector='#json-comments'
+                modifiers='page-extra'
               />
             </div>
           </div>

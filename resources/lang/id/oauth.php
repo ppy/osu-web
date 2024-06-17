@@ -7,7 +7,7 @@ return [
     'cancel' => 'Batal',
 
     'authorise' => [
-        'request' => 'meminta izin untuk dapat mengakses akunmu.',
+        'request' => 'meminta izin untuk mengakses akunmu.',
         'scopes_title' => 'Ke depannya, aplikasi ini akan mampu untuk:',
         'title' => 'Permohonan Otorisasi',
     ],
@@ -20,7 +20,7 @@ return [
 
         'revoked' => [
             'false' => 'Cabut Akses',
-            'true' => 'Akses Telah Dicabut',
+            'true' => 'Akses Dicabut',
         ],
     ],
 
@@ -42,20 +42,20 @@ return [
         'header' => 'Daftarkan aplikasi OAuth baru',
         'register' => 'Daftarkan aplikasi',
         'terms_of_use' => [
-            '_' => 'Dengan menggunakan API kami, Anda menyetujui :link berikut.',
+            '_' => 'Dengan menggunakan API ini, Anda menyatakan diri setuju terhadap :link yang berlaku.',
             'link' => 'Ketentuan Penggunaan',
         ],
     ],
 
     'own_clients' => [
         'confirm_delete' => 'Apakah kamu yakin untuk menghapus klien ini?',
-        'confirm_reset' => 'Apakah kamu yakin untuk mengatur ulang client secret? Tindakan ini akan menganulir izin akses seluruh token yang telah diotorisir sebelumnya.',
+        'confirm_reset' => 'Apakah kamu yakin untuk mengatur ulang client secret? Tindakan ini akan menganulir izin akses seluruh token yang ada.',
         'new' => 'Buat Izin Aplikasi Baru',
         'none' => 'Tidak Ada Klien',
 
         'revoked' => [
             'false' => 'Hapus',
-            'true' => 'Telah dihapus',
+            'true' => 'Dihapus',
         ],
     ],
 ];

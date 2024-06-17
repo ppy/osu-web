@@ -78,6 +78,18 @@ return [
             'suggestion' => 'اقتراح',
         ],
 
+        'message_type_title' => [
+            'disqualify' => 'نشر إلغاء اهلية',
+            'hype' => 'نشر تشجيع!',
+            'mapper_note' => 'نشر ملاحظة',
+            'nomination_reset' => 'إزالة جميع الترشيحات',
+            'praise' => 'نشر ثناء',
+            'problem' => 'نشر مشكلة',
+            'problem_warning' => 'نشر مشكلة',
+            'review' => 'نشر مراجعة',
+            'suggestion' => 'نشر إقتراح',
+        ],
+
         'mode' => [
             'events' => 'السجل',
             'general' => 'عام :scope',
@@ -175,8 +187,8 @@ return [
     ],
 
     'nominations' => [
-        'already_nominated' => '',
-        'cannot_nominate' => '',
+        'already_nominated' => 'لقد قمت بالفعل بترشيح هذه الخريطة.',
+        'cannot_nominate' => 'لا يمكنك ترشيح هذا المود من هذه الخريطة.',
         'delete' => 'حذف',
         'delete_own_confirm' => 'هل انت متأكد؟ سوف تمسح الخريطة وسيتم ارجاعك الى ملفك الشخصي.',
         'delete_other_confirm' => 'هل انت متأكد؟ سوف تمسح الخريطة وسيتم ارجاعك الى ملف المستخدم الشخصي.',
@@ -201,6 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'هذه الخريطة مقدرة بأن تصبح Ranked في :date إذا لم يتم العثور على أي مشاكل. انها#:position في :queue.',
+            'unresolved_problems' => '',
+            'problems' => '',
             'on' => 'في :date',
             'queue' => 'قائمة انتظار الترتيب',
             'soon' => 'قريبًا',
@@ -269,6 +283,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
+        'undefined' => '',
     ],
     'status' => [
         'any' => 'الكل',

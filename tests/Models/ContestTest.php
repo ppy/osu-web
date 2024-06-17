@@ -14,8 +14,10 @@ use App\Models\Contest;
 use App\Models\ContestEntry;
 use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\Room;
-use App\Models\Multiplayer\Score as MultiplayerScore;
+use App\Models\Multiplayer\ScoreLink as MultiplayerScoreLink;
+use App\Models\Multiplayer\UserScoreAggregate;
 use App\Models\User;
+use Carbon\Carbon;
 use Tests\TestCase;
 
 class ContestTest extends TestCase
@@ -23,8 +25,13 @@ class ContestTest extends TestCase
     /**
      * @dataProvider dataProviderForTestAssertVoteRequirementPlaylistBeatmapsets
      */
-    public function testAssertVoteRequirementPlaylistBeatmapsets(bool $loggedIn, bool $played, bool $completed, bool $passed, ?bool $mustPass, bool $canVote): void
-    {
+    public function testAssertVoteRequirementPlaylistBeatmapsets(
+        bool $loggedIn,
+        bool $played,
+        bool $passed,
+        ?bool $mustPass,
+        bool $canVote
+    ): void {
         $beatmapsets = Beatmapset::factory()->count(5)->create();
         $beatmaps = [];
         foreach ($beatmapsets as $beatmapset) {
@@ -56,28 +63,33 @@ class ContestTest extends TestCase
         ]);
         $entries = ContestEntry::factory()->count(2)->create(['contest_id' => $contest->getKey()]);
 
-        if (!$canVote) {
-            $this->expectException(InvariantException::class);
-        }
-
         $user = $loggedIn ? User::factory()->create() : null;
 
         if ($loggedIn && $played) {
             $userId = $user->getKey();
-            $endedAt = now();
+            $endedAt = json_time(Carbon::now());
             foreach ($beatmapsets as $beatmapset) {
                 $room = array_rand_val($rooms);
                 $playlistItem = $room
                     ->playlist()
                     ->whereIn('beatmap_id', array_column($beatmapset->beatmaps->all(), 'beatmap_id'))
                     ->first();
-                MultiplayerScore::factory()->create([
-                    'ended_at' => $completed ? $endedAt : null,
-                    'passed' => $passed,
+
+                MultiplayerScoreLink::factory()->state([
                     'playlist_item_id' => $playlistItem,
                     'user_id' => $userId,
-                ]);
+                ])->completed([
+                    'ended_at' => $endedAt,
+                    'passed' => $passed,
+                ])->create();
             }
+            foreach ($rooms as $room) {
+                UserScoreAggregate::lookupOrDefault($user, $room)->recalculate();
+            }
+        }
+
+        if (!$canVote) {
+            $this->expectException(InvariantException::class);
         }
 
         $contest->assertVoteRequirement($user);
@@ -112,30 +124,28 @@ class ContestTest extends TestCase
         $this->assertSame($result, $contest->showEntryUser());
     }
 
-    public function dataProviderForTestAssertVoteRequirementPlaylistBeatmapsets(): array
+    public static function dataProviderForTestAssertVoteRequirementPlaylistBeatmapsets(): array
     {
         return [
             // when passing is required
-            [true, true, true, true, true, true],
-            [true, true, true, false, true, false],
-            [true, false, true, false, true, false],
-            [false, false, true, false, true, false],
+            [true, true, true, true, true],
+            [true, true, false, true, false],
+            [true, false, false, true, false],
+            [false, false, false, true, false],
             // when passing is not specified (default required)
-            [true, true, true, true, null, true],
-            [true, true, true, false, null, false],
-            [true, false, true, false, null, false],
-            [false, false, true, false, null, false],
+            [true, true, true, null, true],
+            [true, true, false, null, false],
+            [true, false, false, null, false],
+            [false, false, false, null, false],
             // when passing is not required
-            [true, true, true, true, false, true],
-            [true, true, true, false, false, true],
-            [true, false, true, false, false, false],
-            [false, false, true, false, false, false],
-            // ensure completion is actually checked
-            [true, true, false, false, false, false],
+            [true, true, true, false, true],
+            [true, true, false, false, true],
+            [true, false, false, false, false],
+            [false, false, false, false, false],
         ];
     }
 
-    public function dataProviderForTestShowEntryUser(): array
+    public static function dataProviderForTestShowEntryUser(): array
     {
         return [
             [false, null, false],

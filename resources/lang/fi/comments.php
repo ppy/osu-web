@@ -5,19 +5,19 @@
 
 return [
     'deleted' => 'poistettu',
-    'deleted_by' => ':user poisti tämän viestin :timeago sitten',
+    'deleted_by' => ':user poisti :timeago',
     'deleted_by_system' => 'järjestelmä',
     'deleted_count' => ':count_delimited poistettu kommentti|:count_delimited poistettua kommenttia',
-    'edited' => ':user muokkasi tämän viestin :timeago sitten',
+    'edited' => ':user muokkasi tätä viestiä :timeago',
     'pinned' => 'kiinnitetty',
     'empty' => 'Ei vielä kommentteja.',
-    'empty_other' => '',
+    'empty_other' => 'Ei vielä muita kommentteja.',
     'load_replies' => 'lataa vastauksia',
-    'replies_count' => ':count_delimited vastaus|:count_delimited vastauksia',
+    'replies_count' => ':count_delimited vastaus|:count_delimited vastausta',
     'title' => 'Kommentit',
 
     'commentable_name' => [
-        'beatmapset' => 'Beatmap',
+        'beatmapset' => 'Rytmikartta',
         'build' => 'Muutosloki',
         'news_post' => 'Uutiset',
         '_deleted' => 'Poistettu',
@@ -43,10 +43,14 @@ return [
         'no_comments' => 'mitään kommentteja ei löytynyt...',
     ],
 
+    'ogp' => [
+        'title' => 'käyttäjän :user kommentti',
+    ],
+
     'placeholder' => [
         'edit' => 'Muokkaa kommenttia tässä',
         'new' => 'Kirjoita kommenttisi tähän',
-        'reply' => 'Kirjoita vastauksesi tänne',
+        'reply' => 'Kirjoita vastauksesi tähän',
     ],
 
     'show' => [

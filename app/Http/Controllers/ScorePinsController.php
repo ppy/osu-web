@@ -6,9 +6,8 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\RenumberUserScorePins;
-use App\Libraries\MorphMap;
-use App\Models\Beatmap;
 use App\Models\ScorePin;
+use App\Models\Solo;
 use Exception;
 
 class ScorePinsController extends Controller
@@ -22,29 +21,31 @@ class ScorePinsController extends Controller
 
     public function destroy()
     {
-        auth()->user()->scorePins()->where($this->getScoreParams(request()->all()))->delete();
+        \Auth::user()->scorePins()->whereKey(get_int(request('score_id')))->delete();
 
         return response()->noContent();
     }
 
     public function reorder()
     {
-        $rawParams = request()->all();
-        $targetParams = $this->getScoreParams($rawParams);
+        $rawParams = \Request::all();
+        $targetId = get_int($rawParams['score_id'] ?? null);
 
-        $pinsQuery = auth()->user()->scorePins();
-        $target = $pinsQuery->clone()->where($targetParams)->firstOrFail();
+        $pinsQuery = \Auth::user()->scorePins();
+        $target = $pinsQuery->clone()->findOrFail($targetId);
+        $rulesetId = $target->ruleset_id;
+        $pinsQuery->where('ruleset_id', $rulesetId);
 
         $adjacentScores = [];
         foreach (['order1', 'order3'] as $position) {
-            $adjacentScores[$position] = $this->getScoreParams(get_arr($rawParams[$position] ?? null) ?? []);
+            $adjacentScoreIds[$position] = get_int($rawParams[$position]['score_id'] ?? null);
         }
 
-        $order1Item = isset($adjacentScores['order1']['score_id'])
-            ? $pinsQuery->clone()->where($adjacentScores['order1'])->first()
+        $order1Item = isset($adjacentScoreIds['order1'])
+            ? $pinsQuery->clone()->find($adjacentScoreIds['order1'])
             : null;
-        $order3Item = $order1Item === null && isset($adjacentScores['order3']['score_id'])
-            ? $pinsQuery->clone()->where($adjacentScores['order3'])->first()
+        $order3Item = $order1Item === null && isset($adjacentScoreIds['order3'])
+            ? $pinsQuery->clone()->find($adjacentScoreIds['order3'])
             : null;
 
         abort_if($order1Item === null && $order3Item === null, 422, 'no valid pinned score reference is specified');
@@ -62,7 +63,7 @@ class ScorePinsController extends Controller
         $order2 = ($order1 + $order3) / 2;
 
         if ($order3 - $order1 < 0.1) {
-            dispatch(new RenumberUserScorePins($target->user_id, $target->score_type));
+            dispatch(new RenumberUserScorePins($target->user_id, $target->ruleset_id));
         }
 
         $target->update(['display_order' => $order2]);
@@ -72,27 +73,35 @@ class ScorePinsController extends Controller
 
     public function store()
     {
-        $params = $this->getScoreParams(request()->all());
-
-        abort_if(!ScorePin::isValidType($params['score_type']), 422, 'invalid score_type');
-
-        $score = MorphMap::getClass($params['score_type'])::find($params['score_id']);
+        $id = get_int(request('score_id'));
+        $score = Solo\Score::find($id);
 
         abort_if($score === null, 422, "specified score couldn't be found");
 
-        $user = auth()->user();
+        $user = \Auth::user();
 
-        $pin = ScorePin::where(['user_id' => $user->getKey()])->whereMorphedTo('score', $score)->first();
+        $pin = $user->scorePins()->find($id);
 
         if ($pin === null) {
             priv_check('ScorePin', $score)->ensureCan();
 
-            $rulesetId = Beatmap::MODES[$score->getMode()];
+            $rulesetId = $score->ruleset_id;
             $currentMinDisplayOrder = $user->scorePins()->where('ruleset_id', $rulesetId)->min('display_order') ?? 2500;
 
             try {
-                (new ScorePin(['display_order' => $currentMinDisplayOrder - 100, 'ruleset_id' => $rulesetId]))
-                    ->user()->associate($user)
+                (new ScorePin([
+                    'display_order' => $currentMinDisplayOrder - 100,
+                    'ruleset_id' => $rulesetId,
+                    /**
+                     * TODO:
+                     * 1. update score_id = new_score_id -- done
+                     * 2. remove duplicated score_id -- done
+                     * 3. use score_id as primary key (both model and database) -- done*
+                     * 4. remove setting score_type below -- done
+                     * 5. remove id, new_score_id, and score_type columns
+                     * 6. replace score_id unique index with primary key
+                     */
+                ]))->user()->associate($user)
                     ->score()->associate($score)
                     ->saveOrExplode();
             } catch (Exception $ex) {
@@ -100,16 +109,10 @@ class ScorePinsController extends Controller
                     throw $ex;
                 }
             }
+
+            $score->update(['preserve' => true]);
         }
 
         return response()->noContent();
-    }
-
-    private function getScoreParams(array $form)
-    {
-        return get_params($form, null, [
-            'score_type:string',
-            'score_id:int',
-        ], ['null_missing' => true]);
     }
 }

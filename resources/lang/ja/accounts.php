@@ -18,6 +18,10 @@ return [
             'new' => '新しいメールアドレス',
             'new_confirmation' => '新しいメールアドレス（再入力）',
             'title' => 'メールアドレス',
+            'locked' => [
+                '_' => 'メールアドレスの更新が必要な場合は、 :accounts までご連絡ください。',
+                'accounts' => 'アカウントサポートチーム',
+            ],
         ],
 
         'legacy_api' => [
@@ -34,12 +38,12 @@ return [
         ],
 
         'profile' => [
-            'country' => '',
+            'country' => '国',
             'title' => 'プロフィール',
 
             'country_change' => [
-                '_' => "",
-                'update_link' => '',
+                '_' => "アカウントの国が居住国と一致しません。 :update_link.",
+                'update_link' => ':country に更新',
             ],
 
             'user' => [
@@ -55,6 +59,19 @@ return [
         'signature' => [
             'title' => '署名',
             'update' => '更新',
+        ],
+    ],
+
+    'github_user' => [
+        'info' => "osu! のオープンソースリポジトリへのコントリビューターであれば、ここでGitHubアカウントをリンクすると、更新ログエントリがosu! プロフィールに関連付けられます。 osu! への貢献履歴がないGitHubアカウントはリンクできません。",
+        'link' => 'GitHubアカウントをリンク',
+        'title' => '',
+        'unlink' => 'GitHubアカウントのリンクを解除',
+
+        'error' => [
+            'already_linked' => 'この GitHub アカウントはすでに別のユーザにリンクされています。',
+            'no_contribution' => 'osu!リポジトリにコントリビューション履歴がなければGitHubアカウントをリンクできません。',
+            'unverified_email' => 'GitHubでEメールを確認してから、もう一度アカウントをリンクしてみてください。',
         ],
     ],
 
@@ -75,7 +92,6 @@ return [
             'mail' => 'メール',
             'mapping' => 'ビートマップマッパー',
             'push' => 'プッシュ通知',
-            'user_achievement_unlock' => 'ユーザーメダルのアンロック',
         ],
     ],
 

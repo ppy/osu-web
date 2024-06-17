@@ -13,7 +13,7 @@ return [
     ],
 
     'authorized_clients' => [
-        'confirm_revoke' => 'Ești sigur(ă) că vrei să revocați permisiunile clientului?',
+        'confirm_revoke' => 'Ești sigur că dorești revocarea permisiunilor clientului?',
         'scopes_title' => 'Această aplicație poate:',
         'owned_by' => 'Deținut de :user',
         'none' => 'Niciun Client',
@@ -25,16 +25,16 @@ return [
     ],
 
     'client' => [
-        'id' => 'ID-ul clientului',
+        'id' => 'ID-ul client-ului',
         'name' => 'Numele Aplicației',
         'redirect' => 'URL-ul Callback al Aplicației',
-        'reset' => 'Resetează client secret',
-        'reset_failed' => 'Nu s-a putut reseta client secret',
-        'secret' => 'Client Secret',
+        'reset' => 'Resetează secretul clientului',
+        'reset_failed' => 'Resetarea secretului clientului a eșuat',
+        'secret' => 'Secret Client',
 
         'secret_visible' => [
-            'false' => 'Arată clientul secret',
-            'true' => 'Ascunde clientul secret',
+            'false' => 'Afișează secretul clientului',
+            'true' => 'Ascunde secretul clientului',
         ],
     ],
 
@@ -48,9 +48,10 @@ return [
     ],
 
     'own_clients' => [
-        'confirm_delete' => 'Ești sigur(Ă) că vrei să ștergi acest client?',
-        'confirm_reset' => 'Ești sigur(Ă) că vrei să resetezi clientul secret? Acesta va revoca toate token-urile existente.',
-        'new' => 'Noi aplicații OAuth',
+        'confirm_delete' => '
+Ești sigur că dorești să ștergi acest client?',
+        'confirm_reset' => 'Ești sigur că dorești să resetezi secretul clientului? Se vor revoca toate token-urile existente.',
+        'new' => 'Aplicație OAuth nouă',
         'none' => 'Niciun Client',
 
         'revoked' => [

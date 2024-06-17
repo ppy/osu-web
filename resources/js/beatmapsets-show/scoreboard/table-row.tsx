@@ -16,7 +16,7 @@ import PpValue from 'scores/pp-value';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
-import { hasMenu, isPerfectCombo, modeAttributesMap, scoreUrl, totalScore } from 'utils/score-helper';
+import { accuracy, filterMods, hasMenu, isPerfectCombo, attributeDisplayTotals, rank, scoreUrl, totalScore } from 'utils/score-helper';
 
 const bn = 'beatmap-scoreboard-table';
 
@@ -63,6 +63,7 @@ export default class ScoreboardTableRow extends React.Component<Props> {
 
   render() {
     const score = this.props.score;
+    const scoreAccuracy = accuracy(score);
     const blockClass = classWithModifiers(`${bn}__body-row`,
       this.props.activated ? 'menu-active' : 'highlightable',
       {
@@ -79,15 +80,15 @@ export default class ScoreboardTableRow extends React.Component<Props> {
         </TdLink>
 
         <TdLink href={this.scoreUrl} modifiers='grade'>
-          <div className={classWithModifiers('score-rank', ['tiny', score.rank])} />
+          <div className={classWithModifiers('score-rank', ['tiny', rank(score)])} />
         </TdLink>
 
         <TdLink href={this.scoreUrl} modifiers='score'>
           {formatNumber(totalScore(score))}
         </TdLink>
 
-        <TdLink href={this.scoreUrl} modifiers={{ perfect: score.accuracy === 1 }}>
-          {`${formatNumber(score.accuracy * 100, 2)}%`}
+        <TdLink href={this.scoreUrl} modifiers={{ perfect: scoreAccuracy === 1 }}>
+          {`${formatNumber(scoreAccuracy * 100, 2)}%`}
         </TdLink>
 
         <td className={`${bn}__cell`}>
@@ -127,13 +128,13 @@ export default class ScoreboardTableRow extends React.Component<Props> {
           {`${formatNumber(score.max_combo)}x`}
         </TdLink>
 
-        {modeAttributesMap[this.props.beatmap.mode].map((stat) => (
+        {attributeDisplayTotals(this.props.beatmap.mode, score).map((stat) => (
           <TdLink
-            key={stat.attribute}
+            key={stat.key}
             href={this.scoreUrl}
-            modifiers={{ zero: (score.statistics[stat.attribute] ?? 0) === 0 }}
+            modifiers={{ zero: stat.total === 0 }}
           >
-            {formatNumber(score.statistics[stat.attribute] ?? 0)}
+            {formatNumber(stat.total)}
           </TdLink>
         ))}
 
@@ -149,7 +150,7 @@ export default class ScoreboardTableRow extends React.Component<Props> {
 
         <TdLink href={this.scoreUrl} modifiers='mods'>
           <div className={`${bn}__mods`}>
-            {score.mods.map((mod) => <Mod key={mod.acronym} mod={mod.acronym} />)}
+            {filterMods(score).map((mod) => <Mod key={mod.acronym} mod={mod} />)}
           </div>
         </TdLink>
 

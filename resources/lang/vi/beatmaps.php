@@ -78,6 +78,18 @@ return [
             'suggestion' => 'Gợi ý',
         ],
 
+        'message_type_title' => [
+            'disqualify' => 'Đăng Disqualification',
+            'hype' => 'Đăng Hype!',
+            'mapper_note' => 'Đăng Ghi Chú',
+            'nomination_reset' => 'Loại bỏ tất cả đề cử',
+            'praise' => ' Đăng Khen ngợi',
+            'problem' => 'Đăng Vấn đề',
+            'problem_warning' => 'Đăng Vấn đề',
+            'review' => 'Đăng nhận xét',
+            'suggestion' => 'Đăng Đề xuất',
+        ],
+
         'mode' => [
             'events' => 'Lịch sử',
             'general' => 'Chung :scope',
@@ -180,7 +192,7 @@ return [
         'delete' => 'Xóa',
         'delete_own_confirm' => 'Bạn có chắc không? Beatmap sẽ bị xóa và bạn sẽ được chuyển hướng quay lại trang cá nhân của bạn.',
         'delete_other_confirm' => 'Bạn có chắc không? Beatmap sẽ bị xóa và bạn sẽ được chuyển hướng quay trở lại trang cá nhân của người dùng.',
-        'disqualification_prompt' => 'Lí do để qualify?',
+        'disqualification_prompt' => 'Lý do để disqualify?',
         'disqualified_at' => 'Disqualified :time_ago (:reason).',
         'disqualified_no_reason' => 'không đưa ra lí do',
         'disqualify' => 'Disqualify',
@@ -201,6 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'Map này ước tính sẽ được Xếp Hạng :date nếu không tìm ra lỗi nào. Nó đang ở #:position trong :queue.',
+            'unresolved_problems' => 'Map này bị chặn không cho phép ra khỏi phần Đủ tư cách cho đến khi :problems được giải quyết.',
+            'problems' => 'những vấn đề này',
             'on' => 'vào ngày :date',
             'queue' => 'hàng chờ xếp hạng',
             'soon' => 'sớm',
@@ -269,6 +283,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
+        'undefined' => '',
     ],
     'status' => [
         'any' => 'Bất Kì',

@@ -164,7 +164,7 @@ class CommentBundle
         if (!$this->includeDeleted) {
             $query->withoutTrashed();
         }
-        $query->select('id')->limit(config('osu.pagination.max_count'))->unorder();
+        $query->select('id')->limit($GLOBALS['cfg']['osu']['pagination']['max_count'])->unorder();
 
         return Comment::from($query)->count();
     }

@@ -49,7 +49,7 @@ return [
     ],
 
     'card' => [
-        'gift_supporter' => '',
+        'gift_supporter' => 'Supporter etiketi hediye et',
         'loading' => 'Yükleniyor...',
         'send_message' => 'mesaj gönder',
     ],
@@ -97,6 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
+            'inactive' => "",
             'inactive_different_country' => "Hesabın uzun bir zamandır kullanılmamıştır.",
         ],
     ],
@@ -120,6 +121,17 @@ return [
         'beta' => [
             'main' => 'Beta erişimi ayrıcalıklı üyelere kısıtlandırılmıştır.',
             'small' => '(osu!supporterlar yakında erişebilecekler)',
+        ],
+    ],
+
+    'ogp' => [
+        'modding_description' => 'Beatmapler: :counts',
+        'modding_description_empty' => 'Kullanıcının hiç beatmapi yok...',
+
+        'description' => [
+            '_' => 'Sıralama (:ruleset): :global | :country',
+            'country' => 'Ülke :rank',
+            'global' => 'Küresel :rank',
         ],
     ],
 
@@ -175,7 +187,6 @@ return [
         'origin_country' => 'Ülke: :country',
         'previous_usernames' => 'nâm-ı diğer',
         'plays_with' => ':devices ile oynuyor',
-        'title' => ":username kullanıcısının profili",
 
         'comments_count' => [
             '_' => ':link gönderdi',
@@ -387,7 +398,7 @@ return [
                     'date' => 'tarih',
                     'action' => 'eylem',
                     'length' => 'uzunluk',
-                    'length_permanent' => 'Kalıcı',
+                    'length_indefinite' => 'Belirsiz',
                     'description' => 'açıklama',
                     'actor' => ':username tarafından',
 

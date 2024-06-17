@@ -6,16 +6,17 @@ import OsuCore from 'osu-core';
 import { formatNumber } from 'utils/html';
 
 export default class BrowserTitleWithNotificationCount {
+  @observable private customTitle: string | null = null;
   private disposer?: () => void;
   @observable private origTitle = '';
 
-  set title(newTitle: string) {
+  set title(newTitle: string | null) {
     runInAction(() => {
-      this.origTitle = `${newTitle} | osu!`;
+      this.customTitle = newTitle != null ? `${newTitle} | osu!` : newTitle;
     });
   }
 
-  constructor(private core: OsuCore) {
+  constructor(private readonly core: OsuCore) {
     makeObservable(this);
     document.addEventListener('turbolinks:load', this.setTitle);
     document.addEventListener('turbolinks:before-cache', this.resetTitle);
@@ -37,7 +38,7 @@ export default class BrowserTitleWithNotificationCount {
         ? ''
         : `(${formatNumber(count)}) `;
 
-      document.title = `${titlePrefix}${this.origTitle}`;
+      document.title = `${titlePrefix}${this.customTitle ?? this.origTitle}`;
     });
   };
 }

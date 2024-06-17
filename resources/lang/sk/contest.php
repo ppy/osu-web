@@ -13,7 +13,28 @@ return [
         'nav_title' => '',
     ],
 
+    'judge' => [
+        'hide_judged' => '',
+        'nav_title' => '',
+        'no_current_vote' => '',
+        'update' => '',
+        'validation' => [
+            'missing_score' => '',
+            'contest_vote_judged' => '',
+        ],
+        'voted' => '',
+    ],
+
+    'judge_results' => [
+        '_' => '',
+        'creator' => '',
+        'score' => '',
+        'total_score' => '',
+    ],
+
     'voting' => [
+        'judge_link' => '',
+        'judged_notice' => '',
         'login_required' => 'Pre hlasovanie sa prosím prihlás.',
         'over' => 'Hlasovanie pre túto súťaź bolo ukončené',
         'show_voted_only' => '',
@@ -38,6 +59,7 @@ return [
             ],
         ],
     ],
+
     'entry' => [
         '_' => 'vstup',
         'login_required' => 'Prosím, prihlás sa pre vstup do súťaźe.',
@@ -45,22 +67,27 @@ return [
         'preparation' => 'Momentálne pripravujeme túto súťaž. Prosím čakaj trpezlivo!',
         'drop_here' => 'Tvoj vstup pretiahni sem',
         'download' => 'Stiahnuť .osz',
+
         'wrong_type' => [
             'art' => 'Iba .jpg a .png súbory sú akceptované pre túto súťaž.',
             'beatmap' => 'Iba .osu súbory su akceptované pre túto súťaž.',
             'music' => 'Iba .mp3 súbory sú akceptované pre túto súťaž.',
         ],
+
         'wrong_dimensions' => '',
         'too_big' => 'Možné vstupy pre túto súťaž sú :limit-krát.',
     ],
+
     'beatmaps' => [
         'download' => 'Stiahnuť vstup',
     ],
+
     'vote' => [
         'list' => 'hlasy',
         'count' => ':count hlas|:count hlasov',
         'points' => ':count bod|:count body',
     ],
+
     'dates' => [
         'ended' => 'Ukončené :date',
         'ended_no_date' => '',
@@ -70,6 +97,7 @@ return [
             'soon' => 'čoskoro™',
         ],
     ],
+
     'states' => [
         'entry' => 'Vstup Otvorený',
         'voting' => 'Hlasovanie Začalo',

@@ -14,82 +14,88 @@ return [
     'verifying' => 'Vahvista istuntosi nähdäksesi ilmoitukset',
 
     'action_type' => [
-        '_' => '',
-        'beatmapset' => '',
-        'build' => '',
-        'channel' => '',
-        'forum_topic' => '',
-        'news_post' => '',
-        'user' => '',
+        '_' => 'kaikki',
+        'beatmapset' => 'rytmikartat',
+        'build' => 'rakennuskerrat',
+        'channel' => 'chat',
+        'forum_topic' => 'foorumit',
+        'news_post' => 'uutiset',
+        'user' => 'profiili',
     ],
 
     'filters' => [
         '_' => 'kaikki',
         'user' => 'profiili',
-        'beatmapset' => 'beatmapit',
+        'beatmapset' => 'rytmikartat',
         'forum_topic' => 'foorumi',
         'news_post' => 'uutiset',
-        'build' => '',
+        'build' => 'rakennukset',
         'channel' => 'chatti',
     ],
 
     'item' => [
         'beatmapset' => [
-            '_' => 'Beatmappi',
+            '_' => 'Rytmikartta',
 
             'beatmap_owner_change' => [
-                '_' => '',
-                'beatmap_owner_change' => '',
-                'beatmap_owner_change_compact' => '',
+                '_' => 'Vieraan vaikeustaso',
+                'beatmap_owner_change' => 'Omistat nyt vaikeustason ":beatmap" rytmikartassa ":title"',
+                'beatmap_owner_change_compact' => 'Omistat nyt vaikeustason ":beatmap"',
             ],
 
             'beatmapset_discussion' => [
-                '_' => 'Beatmap-keskustelut',
-                'beatmapset_discussion_lock' => 'Keskustelu beatmapissa ":title" on lukittu',
+                '_' => 'Rytmikartan keskustelu',
+                'beatmapset_discussion_lock' => 'Keskustelu kohteessa ":title" on lukittu',
                 'beatmapset_discussion_lock_compact' => 'Keskustelu on lukittu',
-                'beatmapset_discussion_post_new' => 'Uusi viesti beatmapissa ":title" käyttäjältä :username: ":content"',
-                'beatmapset_discussion_post_new_empty' => 'Uusi viesti beatmapissa ":title" käyttäjältä :username',
+                'beatmapset_discussion_post_new' => 'Uusi viesti kohteessa ":title" käyttäjältä :username: ":content"',
+                'beatmapset_discussion_post_new_empty' => 'Uusi viesti kohteessa ":title" käyttäjältä :username',
                 'beatmapset_discussion_post_new_compact' => 'Uusi viesti käyttäjältä :username: ":content"',
                 'beatmapset_discussion_post_new_compact_empty' => 'Uusi viesti käyttäjältä :username',
-                'beatmapset_discussion_review_new' => 'Uusi arvostelu beatmapissa ":title" käyttäjältä :username sisältäen ongelmia: :problems, ehdotuksia: :suggestions, kehuja: :praises',
+                'beatmapset_discussion_review_new' => 'Uusi arvostelu rytmikartassa ":title" käyttäjältä :username sisältäen ongelmia: :problems, ehdotuksia: :suggestions, kehuja: :praises',
                 'beatmapset_discussion_review_new_compact' => 'Uusi arvostelu käyttäjältä :username sisältäen ongelmia: :problems, ehdotuksia: :suggestions, kehuja: :praises',
-                'beatmapset_discussion_unlock' => '',
+                'beatmapset_discussion_unlock' => 'Keskustelun ":title" lukitus on avattu',
                 'beatmapset_discussion_unlock_compact' => 'Keskustelu on avattu',
+
+                'review_count' => [
+                    'praises' => ':count_delimited kehu|:count_delimited kehua',
+                    'problems' => ':count_delimited ongelma|:count_delimited ongelmaa',
+                    'suggestions' => ':count_delimited ehdotus|:count_delimited ehdotusta',
+                ],
             ],
 
             'beatmapset_problem' => [
-                '_' => '',
-                'beatmapset_discussion_qualified_problem' => '',
-                'beatmapset_discussion_qualified_problem_empty' => '',
-                'beatmapset_discussion_qualified_problem_compact' => '',
-                'beatmapset_discussion_qualified_problem_compact_empty' => '',
+                '_' => 'Kelpuutetun rytmikartan ongelma',
+                'beatmapset_discussion_qualified_problem' => ':username ilmiantoi kohteen ":title": ":content"',
+                'beatmapset_discussion_qualified_problem_empty' => ':username ilmiantoi kohteen ":title"',
+                'beatmapset_discussion_qualified_problem_compact' => ':username ilmiantoi kohteen: ":content"',
+                'beatmapset_discussion_qualified_problem_compact_empty' => 'Ilmiantanut: :username',
             ],
 
             'beatmapset_state' => [
-                '_' => '',
-                'beatmapset_disqualify' => '',
-                'beatmapset_disqualify_compact' => '',
-                'beatmapset_love' => '',
-                'beatmapset_love_compact' => '',
-                'beatmapset_nominate' => '',
-                'beatmapset_nominate_compact' => '',
-                'beatmapset_qualify' => '',
-                'beatmapset_qualify_compact' => '',
-                'beatmapset_rank' => '',
-                'beatmapset_rank_compact' => '',
-                'beatmapset_remove_from_loved' => '',
-                'beatmapset_remove_from_loved_compact' => '',
-                'beatmapset_reset_nominations' => '',
-                'beatmapset_reset_nominations_compact' => '',
+                '_' => 'Rytmikartan tilanne muuttui',
+                'beatmapset_disqualify' => '":title" on hylätty',
+                'beatmapset_disqualify_compact' => 'Rytmikartta hylättiin',
+                'beatmapset_love' => '":title" ylennettiin rakastetuksi',
+                'beatmapset_love_compact' => 'Rytmikartta ylennettiin rakastetuksi',
+                'beatmapset_nominate' => '":title" on asetettu ehdolle',
+                'beatmapset_nominate_compact' => 'Rytmikartta asetettiin ehdolle',
+                'beatmapset_qualify' => '":title" sai riittävästi ehdollepanoja ja on siirtynyt rankkausjonoon',
+                'beatmapset_qualify_compact' => 'Rytmikartta on siirtynyt rankkausjonoon',
+                'beatmapset_rank' => '":title" on hyväksytty',
+                'beatmapset_rank_compact' => 'Rytmikartta rankattiin',
+                'beatmapset_remove_from_loved' => '":title" poistettiin rakastetuista',
+                'beatmapset_remove_from_loved_compact' => 'Rytmikartta poistettiin rakastetuista',
+                'beatmapset_reset_nominations' => '":title": ehdollepano on nollattu',
+                'beatmapset_reset_nominations_compact' => 'Ehdollepano nollattiin',
             ],
 
             'comment' => [
                 '_' => 'Uusi kommentti',
 
-                'comment_new' => '',
-                'comment_new_compact' => '',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_new' => ':username kommentoi ":content" ":title"ssa',
+                'comment_new_compact' => ':username kommentoi ":content"',
+                'comment_reply' => ':username vastasi ":content" ":title"ssa',
+                'comment_reply_compact' => ':username vastasi ":content"',
             ],
         ],
 
@@ -97,12 +103,12 @@ return [
             '_' => 'Chatti',
 
             'announcement' => [
-                '_' => '',
+                '_' => 'Uusi ilmoitus',
 
                 'announce' => [
-                    'channel_announcement' => '',
+                    'channel_announcement' => ':username sanoo ":title"',
                     'channel_announcement_compact' => ':title',
-                    'channel_announcement_group' => '',
+                    'channel_announcement_group' => 'Tiedote käyttäjältä :username',
                 ],
             ],
 
@@ -110,9 +116,9 @@ return [
                 '_' => 'Uusi viesti',
 
                 'pm' => [
-                    'channel_message' => '',
+                    'channel_message' => ':username sanoo ":title"',
                     'channel_message_compact' => ':title',
-                    'channel_message_group' => '',
+                    'channel_message_group' => 'käyttäjältä :username',
                 ],
             ],
         ],
@@ -123,10 +129,10 @@ return [
             'comment' => [
                 '_' => 'Uusi kommentti',
 
-                'comment_new' => '',
+                'comment_new' => ':username kommentoi ":content" ":title"ssa',
                 'comment_new_compact' => ':username kommentoi ":content"',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply' => ':username vastasi ":content" ":title"ssa',
+                'comment_reply_compact' => ':username vastasi ":content"',
             ],
         ],
 
@@ -136,9 +142,9 @@ return [
             'comment' => [
                 '_' => 'Uusi kommentti',
 
-                'comment_new' => '',
+                'comment_new' => ':username kommentoi ":content" ":title"ssa',
                 'comment_new_compact' => ':username kommentoi":content"',
-                'comment_reply' => '',
+                'comment_reply' => ':username vastasi ":content" ":title"ssa',
                 'comment_reply_compact' => ':username vastasi ":content"',
             ],
         ],
@@ -147,7 +153,7 @@ return [
             '_' => 'Foorumin aihe',
 
             'forum_topic_reply' => [
-                '_' => 'Uusi foorumi vastaus',
+                '_' => 'Uusi foorumivastaus',
                 'forum_topic_reply' => ':username vastasi foorumi aiheeseen ":title".',
                 'forum_topic_reply_compact' => ':username vastasi',
             ],
@@ -155,14 +161,14 @@ return [
 
         'user' => [
             'user_beatmapset_new' => [
-                '_' => 'Uusi beatmappi',
+                '_' => 'Uusi rytmikartta',
 
-                'user_beatmapset_new' => '',
-                'user_beatmapset_new_compact' => 'Uusi beatmap ":title"',
-                'user_beatmapset_new_group' => '',
+                'user_beatmapset_new' => 'Uusi rytmikartta ":title" kartoittajalta :username',
+                'user_beatmapset_new_compact' => 'Uusi rytmikartta ":title"',
+                'user_beatmapset_new_group' => 'Uusia rytmikarttoja kartoittajalta :username',
 
-                'user_beatmapset_revive' => '',
-                'user_beatmapset_revive_compact' => '',
+                'user_beatmapset_revive' => ':username elvytti rytmikartan ":title"',
+                'user_beatmapset_revive_compact' => 'Rytmikartta ":title" elvytetty',
             ],
         ],
 
@@ -171,9 +177,9 @@ return [
 
             'user_achievement_unlock' => [
                 '_' => 'Uusi mitali',
-                'user_achievement_unlock' => '',
-                'user_achievement_unlock_compact' => '',
-                'user_achievement_unlock_group' => 'Mitaleja saavutettu!',
+                'user_achievement_unlock' => 'Ansaittu ":title"!',
+                'user_achievement_unlock_compact' => 'Ansaittu ":title"!',
+                'user_achievement_unlock_group' => 'Mitaleja ansaittu!',
             ],
         ],
     ],
@@ -181,37 +187,37 @@ return [
     'mail' => [
         'beatmapset' => [
             'beatmap_owner_change' => [
-                'beatmap_owner_change' => '',
+                'beatmap_owner_change' => 'Olet nyt vieraana rytmikartassa ":title"',
             ],
 
             'beatmapset_discussion' => [
-                'beatmapset_discussion_lock' => '',
-                'beatmapset_discussion_post_new' => '',
-                'beatmapset_discussion_unlock' => '',
+                'beatmapset_discussion_lock' => 'Keskustelu aiheesta ":title" on lukittu',
+                'beatmapset_discussion_post_new' => 'Keskustelu aiheesta ":title" on saanut uusia päivityksiä',
+                'beatmapset_discussion_unlock' => 'Aiheen ":title" lukitus on avattu',
             ],
 
             'beatmapset_problem' => [
-                'beatmapset_discussion_qualified_problem' => '',
+                'beatmapset_discussion_qualified_problem' => 'Uusi ongelma ilmoitettiin aiheessa ":title"',
             ],
 
             'beatmapset_state' => [
-                'beatmapset_disqualify' => '',
-                'beatmapset_love' => '',
-                'beatmapset_nominate' => '',
-                'beatmapset_qualify' => '',
-                'beatmapset_rank' => '',
-                'beatmapset_remove_from_loved' => '',
-                'beatmapset_reset_nominations' => '',
+                'beatmapset_disqualify' => '":title" on hylätty',
+                'beatmapset_love' => '":title" ylennettiin rakastetuksi',
+                'beatmapset_nominate' => '":title" on asetettu ehdolle',
+                'beatmapset_qualify' => '":title" sai riittävästi ehdollepanoja ja on siirtynyt rankkausjonoon',
+                'beatmapset_rank' => '":title" on hyväksytty',
+                'beatmapset_remove_from_loved' => '":title" poistettiin rakastetuista',
+                'beatmapset_reset_nominations' => '":title": ehdollepano on nollattu',
             ],
 
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => 'Rytmikartassa ":title" on uusia kommentteja',
             ],
         ],
 
         'channel' => [
             'announcement' => [
-                'announce' => '',
+                'announce' => '":name" on saanut uuden tiedotteen',
             ],
 
             'channel' => [
@@ -233,19 +239,14 @@ return [
 
         'forum_topic' => [
             'forum_topic_reply' => [
-                'forum_topic_reply' => '',
+                'forum_topic_reply' => 'Aihe ":title" on saanut uusia vastauksia',
             ],
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => '',
-                'user_achievement_unlock_self' => '',
-            ],
-
             'user_beatmapset_new' => [
-                'user_beatmapset_new' => '',
-                'user_beatmapset_revive' => '',
+                'user_beatmapset_new' => ':username on luonut uusia rytmikarttoja',
+                'user_beatmapset_revive' => ':username on elvyttänyt rytmikarttoja',
             ],
         ],
     ],

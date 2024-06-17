@@ -25,4 +25,8 @@ return [
         'qualified' => 'квалифициран',
         'ranked' => 'класиран',
     ],
+
+    'value' => [
+        'rank' => 'ранг #:rank',
+    ],
 ];

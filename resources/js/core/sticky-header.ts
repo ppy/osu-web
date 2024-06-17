@@ -1,7 +1,6 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { debounce } from 'lodash';
 import core from 'osu-core-singleton';
 import { fadeToggle } from 'utils/fade';
 import { htmlElementOrNull } from 'utils/html';
@@ -13,8 +12,6 @@ import { htmlElementOrNull } from 'utils/html';
  * 2. Add 'js-sticky-header' class to a marker element that should cause the sticky to show.
  */
 export default class StickyHeader {
-  private readonly debouncedOnScroll = debounce(() => this.onScroll(), 20);
-
   get breadcrumbsElement() {
     return window.newBody?.querySelector('.js-sticky-header-breadcrumbs');
   }
@@ -66,7 +63,7 @@ export default class StickyHeader {
 
   constructor() {
     $(window).on('scroll', this.onScroll);
-    $(document).on('turbolinks:load', this.debouncedOnScroll);
+    $(document).on('turbolinks:load', this.onScroll);
     $(window).on('resize', this.stickOrUnstick);
   }
 

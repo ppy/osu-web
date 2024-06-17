@@ -18,8 +18,8 @@ use App\Models\User;
  * @property int $completed
  * @property \Carbon\Carbon $created_at
  * @property int $id
+ * @property int|null $last_score_id
  * @property bool $in_room
- * @property float|null $pp
  * @property int $room_id
  * @property int $total_score
  * @property \Carbon\Carbon $updated_at
@@ -52,7 +52,6 @@ class UserScoreAggregate extends Model
             'accuracy' => 0,
             'attempts' => 0,
             'completed' => 0,
-            'pp' => 0,
             'total_score' => 0,
         ]);
     }
@@ -69,18 +68,16 @@ class UserScoreAggregate extends Model
         return $obj;
     }
 
-    public function addScore(Score $score)
+    public function addScoreLink(ScoreLink $scoreLink, ?PlaylistItemUserHighScore $highestScore = null)
     {
-        return $this->getConnection()->transaction(function () use ($score) {
-            if (!$score->isCompleted()) {
-                return false;
-            }
+        return $this->getConnection()->transaction(function () use ($scoreLink) {
+            $isNewHighScore = PlaylistItemUserHighScore::lookupOrDefault(
+                $scoreLink->user_id,
+                $scoreLink->playlist_item_id,
+            )->updateWithScoreLink($scoreLink);
 
-            $highestScore = PlaylistItemUserHighScore::lookupOrDefault($score);
-
-            if ($score->passed && $score->total_score > $highestScore->total_score) {
-                $this->updateUserTotal($score, $highestScore);
-                $highestScore->updateWithScore($score);
+            if ($isNewHighScore) {
+                $this->refreshStatistics();
             }
 
             return true;
@@ -92,40 +89,73 @@ class UserScoreAggregate extends Model
         return $this->completed > 0 ? $this->accuracy / $this->completed : 0;
     }
 
-    public function averagePp()
+    public function playlistItemAttempts(): array
     {
-        return $this->completed > 0 ? $this->pp / $this->completed : 0;
-    }
-
-    public function getScores()
-    {
-        return Score
-            ::where('room_id', $this->room_id)
+        $playlistItemAggs = PlaylistItemUserHighScore
+            ::whereHas('playlistItem', fn ($q) => $q->where('room_id', $this->room_id))
             ->where('user_id', $this->user_id)
             ->get();
+
+        $ret = [];
+        foreach ($playlistItemAggs as $agg) {
+            $ret[] = [
+                'attempts' => $agg->attempts,
+                'id' => $agg->playlist_item_id,
+            ];
+        }
+
+        return $ret;
     }
 
     public function recalculate()
     {
         $this->getConnection()->transaction(function () {
             $this->removeRunningTotals();
-            $this->getScores()->each(function ($score) {
-                $this->attempts++;
-                $this->addScore($score);
-            });
+            $playlistItemAggs = PlaylistItemUserHighScore
+                ::whereHas('playlistItem', fn ($q) => $q->where('room_id', $this->room_id))
+                ->where('user_id', $this->user_id)
+                ->get()
+                ->keyBy('playlist_item_id');
+            $this->attempts = $playlistItemAggs->reduce(fn ($acc, $agg) => $acc + $agg->attempts, 0);
 
+            $scoreLinks = ScoreLink
+                ::whereHas('playlistItem', fn ($q) => $q->where('room_id', $this->room_id))
+                ->where('user_id', $this->user_id)
+                ->with('score')
+                ->get();
+            foreach ($scoreLinks as $scoreLink) {
+                ($playlistItemAggs[$scoreLink->playlist_item_id]
+                    ?? PlaylistItemUserHighScore::lookupOrDefault(
+                        $scoreLink->user_id,
+                        $scoreLink->playlist_item_id,
+                    )
+                )->updateWithScoreLink($scoreLink);
+            }
+            $this->refreshStatistics();
             $this->save();
         });
     }
 
     public function removeRunningTotals()
     {
-        PlaylistItemUserHighScore::whereIn(
-            'playlist_item_id',
-            PlaylistItem::where('room_id', $this->room_id)->select('id')
-        )->where('user_id', $this->user_id)->delete();
+        PlaylistItemUserHighScore
+            ::whereHas('playlistItem', fn ($q) => $q->where('room_id', $this->room_id))
+            ->where('user_id', $this->user_id)
+            ->update([
+                'accuracy' => 0,
+                'score_id' => null,
+                'total_score' => 0,
+            ]);
 
-        foreach (['total_score', 'accuracy', 'pp', 'attempts', 'completed'] as $key) {
+        static $resetAttributes = [
+            'accuracy',
+            'attempts',
+            'completed',
+            'last_score_id',
+            'total_score',
+        ];
+
+        foreach ($resetAttributes as $key) {
             // init if required
             $this->$key = 0;
         }
@@ -169,21 +199,23 @@ class UserScoreAggregate extends Model
         return 1 + $query->count();
     }
 
-    private function updateUserTotal(Score $current, PlaylistItemUserHighScore $prev)
+    private function refreshStatistics(): void
     {
-        if ($prev->exists) {
-            $this->total_score -= $prev->total_score;
-            $this->accuracy -= $prev->accuracy;
-            $this->pp -= $prev->pp;
-            $this->completed--;
-        }
+        $agg = PlaylistItemUserHighScore
+            ::whereHas('playlistItem', fn ($q) => $q->where('room_id', $this->room_id))
+            ->whereNotNull('score_id')
+            ->selectRaw('
+                SUM(accuracy) AS accuracy_sum,
+                SUM(total_score) AS total_score_sum,
+                COUNT(*) AS completed,
+                MAX(score_id) AS last_score_id
+            ')->firstWhere('user_id', $this->user_id);
 
-        $this->total_score += $current->total_score;
-        $this->accuracy += $current->accuracy;
-        $this->pp += $current->pp;
-        $this->completed++;
-        $this->last_score_id = $current->getKey();
-
-        $this->save();
+        $this->fill([
+            'accuracy' => $agg->getRawAttribute('accuracy_sum') ?? 0,
+            'completed' => $agg->getRawAttribute('completed') ?? 0,
+            'last_score_id' => $agg->getRawAttribute('last_score_id'),
+            'total_score' => $agg->getRawAttribute('total_score_sum') ?? 0,
+        ])->save();
     }
 }

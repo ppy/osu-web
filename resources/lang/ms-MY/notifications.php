@@ -55,6 +55,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => 'Terdapat ulasan baharu oleh :username yang menyinggung seputar masalah: :problems, saran: :suggestions, dan pujian berupa: :praises',
                 'beatmapset_discussion_unlock' => 'Perbincangan untuk beatmap ":title" telah dibuka kembali.',
                 'beatmapset_discussion_unlock_compact' => 'Perbincangan beatmap telah dibuka',
+
+                'review_count' => [
+                    'praises' => '',
+                    'problems' => '',
+                    'suggestions' => '',
+                ],
             ],
 
             'beatmapset_problem' => [
@@ -238,11 +244,6 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':username telah memperolehi pingat baharu, ":title"!',
-                'user_achievement_unlock_self' => 'Kamu telah memperolehi pingat baharu, ":title"!',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username telah mencipta beatmap baru',
                 'user_beatmapset_revive' => ':username memiliki beatmap yang dipulihkan dari Perkuburan',

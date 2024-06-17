@@ -20,7 +20,7 @@ return [
     ],
 
     'featured_artist_badge' => [
-        'label' => 'Featured artist',
+        'label' => 'Featured Artist',
     ],
 
     'index' => [
@@ -35,20 +35,25 @@ return [
             'all' => 'télécharger',
             'video' => 'télécharger avec la vidéo',
             'no_video' => 'télécharger sans la vidéo',
-            'direct' => 'ouvrir dans osu!direct',
+            'direct' => 'ouvrir avec osu!direct',
         ],
     ],
 
     'nominate' => [
+        'bng_limited_too_many_rulesets' => '',
+        'full_nomination_required' => '',
         'hybrid_requires_modes' => 'Un beatmapset hybride nécessite de sélectionner au moins un mode de jeu à nominer.',
         'incorrect_mode' => 'Vous n\'avez pas la permission de nominer pour le mode :mode',
-        'full_bn_required' => 'Vous devez être un Beatmap Nominator confirmé pour effectuer cette qualification.',
+        'invalid_limited_nomination' => '',
+        'invalid_ruleset' => '',
         'too_many' => 'L\'exigence de nomination est déjà remplie.',
+        'too_many_non_main_ruleset' => '',
 
         'dialog' => [
             'confirmation' => 'Êtes-vous sûr de vouloir nominer cette beatmap ?',
             'header' => 'Nominer la beatmap',
-            'hybrid_warning' => 'remarque : vous ne pouvez nominer qu\'une seule fois, assurez-vous que vous nominez pour tous les modes de jeu que vous souhaitez',
+            'hybrid_warning' => 'remarque : vous ne pouvez nominer qu\'une seule fois, assurez-vous alors que vous nominez la beatmap pour tous les modes de jeu que vous souhaitez',
+            'current_main_ruleset' => '',
             'which_modes' => 'Nominer pour quels modes ?',
         ],
     ],
@@ -60,6 +65,10 @@ return [
     'show' => [
         'discussion' => 'Discussion',
 
+        'admin' => [
+            'full_size_cover' => 'Afficher la taille réelle de l\'image de couverture',
+        ],
+
         'deleted_banner' => [
             'title' => 'Cette beatmap a été supprimée.',
             'message' => '(seuls les modérateurs peuvent voir ceci)',
@@ -67,19 +76,19 @@ return [
 
         'details' => [
             'by_artist' => 'par :artist',
-            'favourite' => 'Ajouter ce beatmapset aux favoris',
+            'favourite' => 'Ajouter cette beatmap aux favoris',
             'favourite_login' => 'Connectez-vous pour ajouter cette beatmap aux favoris',
             'logged-out' => 'Vous devez vous connecter pour pouvoir télécharger des beatmaps !',
             'mapped_by' => 'mappée par :mapper',
             'mapped_by_guest' => 'guest difficulty par :mapper',
-            'unfavourite' => 'Retirer cette beatmapset des favoris',
+            'unfavourite' => 'Retirer ce beatmapset des favoris',
             'updated_timeago' => 'dernière mise à jour le :timeago',
 
             'download' => [
                 '_' => 'Télécharger',
                 'direct' => '',
-                'no-video' => 'sans Vidéo',
-                'video' => 'avec Vidéo',
+                'no-video' => 'sans vidéo',
+                'video' => 'avec vidéo',
             ],
 
             'login_required' => [
@@ -89,16 +98,16 @@ return [
         ],
 
         'details_date' => [
-            'approved' => 'approuvé le :timeago',
+            'approved' => 'approuvée le :timeago',
             'loved' => 'a été loved le :timeago',
-            'qualified' => 'qualifiée le :timeago',
+            'qualified' => 'qualifiée :timeago',
             'ranked' => 'classée le :timeago',
             'submitted' => 'publiée le :timeago',
             'updated' => 'dernière mise à jour le :timeago',
         ],
 
         'favourites' => [
-            'limit_reached' => 'Vous avez trop de beatmaps favorites ! Veuillez en supprimer quelques-unes avant d\'essayer à nouveau.',
+            'limit_reached' => 'Vous avez trop de beatmaps favorites ! Veuillez en retirer quelques-unes avant d\'essayer à nouveau.',
         ],
 
         'hype' => [
@@ -142,7 +151,7 @@ return [
         ],
 
         'nsfw_warning' => [
-            'details' => 'Cette beatmap contient du contenu explicite, offensant ou perturbant. Voulez-vous la voir quand même ?',
+            'details' => 'Cette beatmap contient du contenu explicite, offensant ou perturbant. Souhaitez-vous l\'afficher malgré tout ?',
             'title' => 'Contenu explicite',
 
             'buttons' => [
@@ -158,9 +167,9 @@ return [
             'error' => 'Échec du chargement du classement',
             'friend' => 'Classement des amis',
             'global' => 'Classement global',
-            'supporter-link' => 'Cliquez <a href=":link">ici</a> pour connaître toutes les supers fonctions obtenues avec !',
-            'supporter-only' => 'Vous devez être un osu!supporter pour accéder à cette fonctionnalité !',
-            'title' => 'Tableaux des scores',
+            'supporter-link' => 'Cliquez <a href=":link">ici</a> pour connaître toutes les supers fonctions que vous obtiendrez !',
+            'supporter-only' => 'Vous devez être un osu!supporter pour accéder aux classements par pays, amis et mods spécifiques !',
+            'title' => 'Classement',
 
             'headers' => [
                 'accuracy' => 'Précision',
@@ -177,9 +186,9 @@ return [
             ],
 
             'no_scores' => [
-                'country' => 'Personne de votre pays n\'a encore fait un score !',
-                'friend' => 'Aucun de vos amis n\'a encore établi de score sur cette map !',
-                'global' => 'Pas de scores. Peut-être devriez vous en faire un ?',
+                'country' => 'Personne n\'a encore réalisé de score dans votre pays !',
+                'friend' => 'Aucun de vos amis n\'a encore établi de score sur cette beatmap !',
+                'global' => 'Pas de scores. Peut-être devriez-vous en faire un ?',
                 'loading' => 'Chargement des scores...',
                 'unranked' => 'Beatmap non classée.',
             ],

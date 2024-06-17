@@ -7,7 +7,7 @@ return [
     'months' => 'kuukautta',
 
     'user_search' => [
-        'searching' => 'etsitään...',
+        'searching' => 'hakee...',
         'not_found' => "Tätä käyttäjää ei ole olemassa",
     ],
 ];

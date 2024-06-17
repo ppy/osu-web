@@ -8,7 +8,7 @@ export DUSK_WEBDRIVER_BIN=/usr/bin/chromedriver
 export YARN_CACHE_FOLDER=/app/.docker/.yarn
 export COMPOSER_HOME=/app/.docker/.composer
 
-command=serve
+command=octane
 if [ "$#" -gt 0 ]; then
     command="$1"
     shift
@@ -48,10 +48,7 @@ _octane() {
 }
 
 _schedule() {
-    while sleep 300; do
-        _run php /app/artisan schedule:run &
-        echo 'Sleeping for 5 minutes'
-    done
+    _rexec php /app/artisan schedule:work
 }
 
 _test() {
@@ -69,9 +66,7 @@ _test() {
 }
 
 _test_browser() {
-    export APP_ENV=dusk.local
-    export OCTANE_STATE_FILE=/app/storage/logs/octane-server-state-dusk.json
-    _rexec ./bin/run_dusk.sh "$@"
+    _rexec php /app/artisan dusk "$@"
 }
 
 

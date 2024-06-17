@@ -28,7 +28,7 @@ return [
             'discussion_locked' => "Este mapa está actualmente bloqueado para discusión y no puede ser hypeado",
             'guest' => 'Debes iniciar sesión para hypear.',
             'hyped' => 'Ya hypeaste este mapa.',
-            'limit_exceeded' => 'Ya has utilizado todos tus hype.',
+            'limit_exceeded' => 'Ya has usado todos tus hypes.',
             'not_hypeable' => 'Este mapa no puede ser hypeado',
             'owner' => 'No puedes hypear tu propio mapa.',
         ],
@@ -91,7 +91,7 @@ return [
 
         'topic_poll' => [
             'duplicate_options' => 'Opciones duplicadas no permitidas.',
-            'grace_period_expired' => 'No se puede editar una encuesta después de :limit horas',
+            'grace_period_expired' => 'No se puede editar una encuesta después de :limit horas.',
             'hiding_results_forever' => 'No se pueden ocultar los resultados de una encuesta que nunca finaliza.',
             'invalid_max_options' => 'Las opciones por usuario no pueden exceder el número de opciones disponibles.',
             'minimum_one_selection' => 'Se requiere un mínimo de una opción por usuario.',
@@ -146,7 +146,7 @@ return [
         'username_invalid_characters' => 'El nombre de usuario solicitado contiene caracteres no válidos.',
         'username_in_use' => '¡El nombre de usuario ya está en uso!',
         'username_locked' => '¡El nombre de usuario ya está en uso!', // TODO: language for this should be slightly different.
-        'username_no_space_userscore_mix' => 'Por favor utiliza guiones bajos o espacios, ¡no ambas!',
+        'username_no_space_userscore_mix' => 'Usa guiones bajos o espacios, ¡no ambos!',
         'username_no_spaces' => "¡El nombre no puede iniciar o finalizar con espacios!",
         'username_not_allowed' => 'Esta elección de nombre de usuario no está permitida.',
         'username_too_short' => 'El nombre de usuario solicitado es muy corto.',
@@ -164,7 +164,7 @@ return [
         ],
 
         'change_username' => [
-            'restricted' => 'No puede cambiar su nombre de usuario mientras esté restringido.',
+            'restricted' => 'No puedes cambiar tu nombre de usuario mientras estás restringido.',
             'supporter_required' => [
                 '_' => '¡Debes tener :link para cambiar tu nombre!',
                 'link_text' => 'apoyar a osu!',

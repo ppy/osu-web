@@ -6,9 +6,9 @@
 return [
     'bold' => 'Bold',
     'heading' => 'Header',
-    'help' => '',
+    'help' => 'Tulong',
     'image' => 'Larawan',
-    'imagemap' => '',
+    'imagemap' => 'Mapa ng Larawan',
     'italic' => 'Italiko',
     'link' => 'Link',
     'list' => 'Listahan',

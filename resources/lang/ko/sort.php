@@ -13,7 +13,7 @@ return [
     'old' => '과거',
     'rank' => '순위',
     'top' => '상위',
-    'username' => '사용자 이름',
+    'username' => '유저 이름',
 
     'artist_tracks' => [
         'album' => '앨범',

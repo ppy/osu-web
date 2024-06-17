@@ -14,7 +14,7 @@ return [
     'verifying' => '通知を表示するには、セッションを確認してください。',
 
     'action_type' => [
-        '_' => '',
+        '_' => '全て',
         'beatmapset' => '',
         'build' => '',
         'channel' => '',
@@ -55,6 +55,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => ':usernameが問題：:problems、提案：:suggestions、称賛：:praisesを含む、新しいレビューを投稿しました。',
                 'beatmapset_discussion_unlock' => 'ビートマップ「:title」ディスカッションのためにロック解除されました。',
                 'beatmapset_discussion_unlock_compact' => 'ディスカッションはアンロックされました。',
+
+                'review_count' => [
+                    'praises' => '',
+                    'problems' => '',
+                    'suggestions' => '',
+                ],
             ],
 
             'beatmapset_problem' => [
@@ -238,11 +244,6 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':usernameが新しいメダル「:title」をアンロックしました！',
-                'user_achievement_unlock_self' => '新しいメダル「:title」をアンロックしました！',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':usernameがビートマップを作成しました',
                 'user_beatmapset_revive' => ':username がビートマップを復活させました',

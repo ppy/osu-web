@@ -5,7 +5,7 @@ import FlagCountry from 'components/flag-country';
 import { Spinner } from 'components/spinner';
 import UserAvatar from 'components/user-avatar';
 import UserGroupBadges from 'components/user-group-badges';
-import GameMode from 'interfaces/game-mode';
+import Ruleset from 'interfaces/ruleset';
 import UserExtendedJson from 'interfaces/user-extended-json';
 import { route } from 'laroute';
 import { times } from 'lodash';
@@ -13,14 +13,15 @@ import { computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import { classWithModifiers, urlPresence } from 'utils/css';
+import { classWithModifiers, Modifiers, urlPresence } from 'utils/css';
 import { trans } from 'utils/lang';
 
 interface Props {
   coverUrl: string | null;
-  currentMode: GameMode | null;
+  currentMode: Ruleset;
   editor?: JSX.Element;
   isUpdatingCover?: boolean;
+  modifiers?: Modifiers;
   user: UserExtendedJson;
 }
 
@@ -43,7 +44,7 @@ export default class Cover extends React.Component<Props> {
 
   render() {
     return (
-      <div className={classWithModifiers('profile-info', { cover: this.showCover })}>
+      <div className={classWithModifiers('profile-info', this.props.modifiers, { cover: this.showCover })}>
         {this.showCover &&
           <div className='profile-info__bg' style={{ backgroundImage: urlPresence(this.props.coverUrl) }}>
             {this.props.isUpdatingCover &&
@@ -125,9 +126,9 @@ export default class Cover extends React.Component<Props> {
     return (
       <>
         {this.props.user.is_supporter &&
-          <span className='profile-info__icon profile-info__icon--supporter' title={trans('users.show.is_supporter')}>
+          <a className='profile-info__icon profile-info__icon--supporter' href={route('support-the-game')} title={trans('users.show.is_supporter')}>
             {times(this.props.user.support_level ?? 0, (i) => <span key={i} className='fas fa-heart' />)}
-          </span>
+          </a>
         }
         <UserGroupBadges groups={this.props.user.groups} modifiers='profile-page' wrapper='profile-info__icon' />
       </>

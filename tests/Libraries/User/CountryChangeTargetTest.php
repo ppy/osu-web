@@ -87,4 +87,54 @@ class CountryChangeTargetTest extends TestCase
 
         $this->assertSame($targetCountry, CountryChangeTarget::get($user));
     }
+
+    public function testGetLastMonthDifferentCountry(): void
+    {
+        $user = User::factory()->create();
+        $targetCountry = Country::factory()->create()->getKey();
+        UserFactory::createRecentCountryHistory($user, $targetCountry, CountryChangeTarget::minMonths() + 1);
+
+        $user
+            ->userCountryHistory()
+            ->orderBy('year_month', 'DESC')
+            ->first()
+            ->fill(['country_acronym' => Country::factory()->create()->getKey()])
+            ->saveOrExplode();
+
+        $this->assertNull(CountryChangeTarget::get($user));
+    }
+
+    public function testGetWithBlankMonth(): void
+    {
+        $user = User::factory()->create();
+        $targetCountry = Country::factory()->create()->getKey();
+        $minMonths = CountryChangeTarget::minMonths();
+        UserFactory::createRecentCountryHistory($user, $targetCountry, $minMonths + 1);
+
+        $user
+            ->userCountryHistory()
+            ->where('year_month', '>', format_month_column(CountryChangeTarget::currentMonth()->subMonths($minMonths)))
+            ->inRandomOrder()
+            ->limit(1)
+            ->delete();
+
+        $this->assertSame($targetCountry, CountryChangeTarget::get($user));
+    }
+
+    public function testGetWithBlankMonths(): void
+    {
+        $user = User::factory()->create();
+        $targetCountry = Country::factory()->create()->getKey();
+        $minMonths = CountryChangeTarget::minMonths();
+        UserFactory::createRecentCountryHistory($user, $targetCountry, $minMonths + 3);
+
+        $user
+            ->userCountryHistory()
+            ->where('year_month', '>', format_month_column(CountryChangeTarget::currentMonth()->subMonths($minMonths)))
+            ->inRandomOrder()
+            ->limit(2)
+            ->delete();
+
+        $this->assertSame($targetCountry, CountryChangeTarget::get($user));
+    }
 }

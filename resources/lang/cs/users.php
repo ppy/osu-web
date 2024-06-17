@@ -97,6 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
+            'inactive' => "Váš účet nebyl využíván dlouhou dobu.",
             'inactive_different_country' => "Váš účet nebyl využíván dlouhou dobu.",
         ],
     ],
@@ -110,7 +111,7 @@ return [
         'forgot' => 'Zapoměl jsi heslo?',
         'info' => 'Prosím přihlaste se pro pokračování',
         'invalid_captcha' => 'Příliš mnoho neúspěšných pokusů o přihlášení, vyplňte prosím captcha a zkuste to znovu. (Obnovte stránku pokud captcha není vidět)',
-        'locked_ip' => 'vaše IP adresa je uzamčena. Počkejte, prosím, několik minut.',
+        'locked_ip' => 'Vaše IP adresa je uzamčena. Počkejte prosím několik minut.',
         'password' => 'Heslo',
         'register' => "Nemáš osu! účet? Vytvoř si ho",
         'remember' => 'Pamatovat si tento počítač',
@@ -120,6 +121,17 @@ return [
         'beta' => [
             'main' => 'Beta přístup je momentálně omezen na oprávněné uživatele.',
             'small' => '(brzy pro podporovatele)',
+        ],
+    ],
+
+    'ogp' => [
+        'modding_description' => 'Beatmap: :counts',
+        'modding_description_empty' => 'Uživatel nemá žádné beatmapy...',
+
+        'description' => [
+            '_' => 'Umístění (:ruleset): :global | :country',
+            'country' => 'Stát :rank',
+            'global' => 'Svět :rank',
         ],
     ],
 
@@ -175,7 +187,6 @@ return [
         'origin_country' => 'Z :country',
         'previous_usernames' => 'dříve znám jako',
         'plays_with' => 'Hraje s :devices',
-        'title' => "profil uživatele :username",
 
         'comments_count' => [
             '_' => 'Postnul :link',
@@ -221,7 +232,7 @@ return [
                 'title' => 'Úspěchy',
             ],
             'beatmaps' => [
-                'by_artist' => 'autora :artist',
+                'by_artist' => 'od autora :artist',
                 'title' => 'Beatmapy',
 
                 'favourite' => [
@@ -264,7 +275,7 @@ return [
                     'count_label' => 'Her',
                 ],
                 'most_played' => [
-                    'count' => 'odehraný čas',
+                    'count' => 'počet zahrání',
                     'title' => 'Nejhranější mapy',
                 ],
                 'recent_plays' => [
@@ -379,15 +390,15 @@ return [
             ],
             'account_standing' => [
                 'title' => 'Stav účtu',
-                'bad_standing' => "účet uživatele <strong>:username</strong> není v dobré reputaci :(",
-                'remaining_silence' => '<strong>:username</strong> bude znovu moci mluvit za :duration.',
+                'bad_standing' => "účet uživatele :username nemá dobrou reputaci :(",
+                'remaining_silence' => ':username bude moci znovu mluvit za :duration.',
 
                 'recent_infringements' => [
                     'title' => 'Nedávné incidenty',
                     'date' => 'datum',
                     'action' => 'trest',
                     'length' => 'délka',
-                    'length_permanent' => 'Permanentní',
+                    'length_indefinite' => 'Neurčitý',
                     'description' => 'popis',
                     'actor' => 'od :username',
 
@@ -412,7 +423,7 @@ return [
         'not_found' => [
             'reason_1' => 'Možná si změnil uživatelské jméno.',
             'reason_2' => 'Účet může být dočasně nedostupný z důvodu problémů s bezpečností, nebo zneužitím.',
-            'reason_3' => 'Možná jste se přepsal!',
+            'reason_3' => 'Možná jsi se přepsal!',
             'reason_header' => 'Existuje několik možných důvodů:',
             'title' => 'Uživatel nebyl nalezen! ;_;',
         ],

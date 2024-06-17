@@ -18,6 +18,8 @@ return [
     'channels' => [
         'confirm_part' => 'Ali želiš skriti ta kanal? Kljub temu boš še vedno dobil sporočila iz tega kanala.',
         'create' => 'ustvari obvestilo',
+        'join' => '',
+        'none' => '',
 
         'list' => [
             'title' => [
@@ -59,5 +61,9 @@ return [
         'howto' => "Začni pogovor iz igralčevega profila ali pojavnega okna igralčeve kartice.",
         'lazer' => 'Javni kanali, ki se jim pridružiš preko <a href=":link">osu!lazer</a> bodo tudi prikazani tukaj.',
         'title' => 'še ni pogovorov',
+    ],
+
+    'join_channels' => [
+        'loading' => '',
     ],
 ];

@@ -27,7 +27,7 @@ return [
         'reply_notice' => 'Zum Antworten Enter drücken.',
         'reply_placeholder' => 'Antwort hier eingeben',
         'require-login' => 'Zum Posten oder Antworten bitte einloggen',
-        'resolved' => 'Gelöst',
+        'resolved' => 'Erledigt',
         'restore' => 'wiederherstellen',
         'show_deleted' => 'Gelöschte anzeigen',
         'title' => 'Diskussionen',
@@ -78,6 +78,18 @@ return [
             'suggestion' => 'Vorschlag',
         ],
 
+        'message_type_title' => [
+            'disqualify' => 'Disqualifizierung posten',
+            'hype' => 'Hype posten!',
+            'mapper_note' => 'Notiz posten',
+            'nomination_reset' => 'Entferne alle Nominierungen',
+            'praise' => 'Lob posten',
+            'problem' => 'Problem posten',
+            'problem_warning' => 'Problem posten',
+            'review' => 'Bewertung posten',
+            'suggestion' => 'Vorschlag posten',
+        ],
+
         'mode' => [
             'events' => 'Verlauf',
             'general' => 'Allgemein :scope',
@@ -110,8 +122,8 @@ return [
                 ],
             ],
             'insert-block' => [
-                'paragraph' => 'absatz einfügen',
-                'praise' => 'lob einfügen',
+                'paragraph' => 'Absatz einfügen',
+                'praise' => 'Lob einfügen',
                 'problem' => 'Problem einfügen',
                 'suggestion' => 'Vorschlag einfügen',
             ],
@@ -133,7 +145,7 @@ return [
             'mine' => 'Meine',
             'pending' => 'Ausstehend',
             'praises' => 'Lob',
-            'resolved' => 'Gelöst',
+            'resolved' => 'Erledigt',
             'total' => 'Alle',
         ],
 
@@ -201,6 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'Diese Map wird voraussichtlich am :date ranked. Sie befindet sich aktuell an Position :position der :queue.',
+            'unresolved_problems' => 'Diese Beatmap verbleibt im Qualified-Abschnitt, bis :problems behoben wurden.',
+            'problems' => 'diese Probleme',
             'on' => 'am :date',
             'queue' => 'Warteschlange',
             'soon' => 'bald',
@@ -269,6 +283,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
+        'undefined' => '',
     ],
     'status' => [
         'any' => 'Alle',

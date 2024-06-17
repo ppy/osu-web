@@ -107,14 +107,9 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
             $this->showRecommended = in_array('recommended', $generals, true);
             $this->showSpotlights = in_array('spotlights', $generals, true);
 
-            $includeNsfw = $params['nsfw'];
-            if (!isset($includeNsfw) && $user !== null && $user->userProfileCustomization !== null) {
-                $includeNsfw = $user->userProfileCustomization->beatmapset_show_nsfw;
-            }
-
-            if (isset($includeNsfw)) {
-                $this->includeNsfw = $includeNsfw;
-            }
+            $this->includeNsfw = $params['nsfw']
+                ?? $user->userProfileCustomization->beatmapset_show_nsfw
+                ?? $this->includeNsfw;
         } else {
             $sort = null;
         }
@@ -218,14 +213,18 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
             'created' => 'created',
             'creator' => 'creator',
             'cs' => 'cs',
+            'difficulty' => 'difficulty',
             'dr' => 'drain',
             'featured_artist' => 'featuredArtist',
             'keys' => 'keys',
-            'length' => 'hitLength',
+            'length' => 'totalLength',
             'od' => 'accuracy',
             'ranked' => 'ranked',
+            'source' => 'source',
             'stars' => 'difficultyRating',
             'status' => 'statusRange',
+            'title' => 'title',
+            'updated' => 'updated',
         ];
 
         $parsed = BeatmapsetQueryParser::parse($this->requestQuery);

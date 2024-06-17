@@ -2,14 +2,15 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { Filter, filters } from 'beatmap-discussions/current-discussions';
-import DiscussionMode, { DiscussionPage, discussionPages } from 'beatmap-discussions/discussion-mode';
+import DiscussionMode from 'beatmap-discussions/discussion-mode';
+import DiscussionPage, { isDiscussionPage } from 'beatmap-discussions/discussion-page';
 import guestGroup from 'beatmap-discussions/guest-group';
 import mapperGroup from 'beatmap-discussions/mapper-group';
 import BeatmapJson from 'interfaces/beatmap-json';
-import BeatmapsetDiscussionJson, { BeatmapsetDiscussionJsonForBundle, BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
+import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import BeatmapsetDiscussionPostJson from 'interfaces/beatmapset-discussion-post-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
-import GameMode from 'interfaces/game-mode';
+import Ruleset, { rulesets } from 'interfaces/ruleset';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { assign, padStart, sortBy } from 'lodash';
@@ -20,8 +21,8 @@ import { linkHtml, openBeatmapEditor } from 'utils/url';
 import { getInt } from './math';
 
 interface BadgeGroupParams {
-  beatmapset: BeatmapsetJson;
-  currentBeatmap: BeatmapJson | null;
+  beatmapset?: BeatmapsetJson;
+  currentBeatmap?: BeatmapJson | null;
   discussion: BeatmapsetDiscussionJson;
   user?: UserJson;
 }
@@ -70,7 +71,6 @@ export const defaultFilter = 'total';
 // parseUrl and makeUrl lookups
 const filterLookup = new Set<unknown>(filters);
 const generalPages = new Set<unknown>(['events', 'generalAll', 'reviews']);
-const pageLookup = new Set<unknown>(discussionPages);
 
 const defaultBeatmapId = '-';
 
@@ -89,7 +89,7 @@ export function badgeGroup({ beatmapset, currentBeatmap, discussion, user }: Bad
     return null;
   }
 
-  if (user.id === beatmapset.user_id) {
+  if (user.id === beatmapset?.user_id) {
     return mapperGroup;
   }
 
@@ -97,14 +97,18 @@ export function badgeGroup({ beatmapset, currentBeatmap, discussion, user }: Bad
     return guestGroup;
   }
 
-  return user.groups?.[0];
+  if (user.groups == null || user.groups.length === 0) {
+    return null;
+  }
+
+  return user.groups[0];
 }
 
 export function canModeratePosts() {
   const user = core.currentUser;
   if (user == null) return false;
 
-  return (user.is_admin || user.is_moderator) ?? false;
+  return user.is_admin || user.is_moderator;
 }
 
 export function defaultMode(beatmapId?: number | string | null) {
@@ -130,11 +134,6 @@ export function formatTimestamp(value: number) {
   return `${padStart(m.toString(), 2, '0')}:${padStart(s.toString(), 2, '0')}:${padStart(ms.toString(), 3, '0')}`;
 }
 
-
-function isDiscussionPage(value: string): value is DiscussionPage {
-  return pageLookup.has(value);
-}
-
 function isFilter(value: string): value is Filter {
   return filterLookup.has(value);
 }
@@ -146,10 +145,18 @@ function isNearbyDiscussion<T extends BeatmapsetDiscussionJson>(discussion: T): 
     && (discussion.user_id !== core.currentUserOrFail.id || moment(discussion.updated_at).diff(moment(), 'hour') <= -24);
 }
 
-export function isUserFullNominator(user?: UserJson | null, gameMode?: GameMode) {
+// sync with $defaultRulesets in app/Models/UserGroup.php
+const defaultGroupRulesets: Partial<Record<string, Readonly<Ruleset[]>>> = { nat: rulesets };
+
+export function isUserFullNominator(user?: UserJson | null, gameMode?: Ruleset) {
   return user != null && user.groups != null && user.groups.some((group) => {
     if (gameMode != null) {
-      return (group.identifier === 'bng' || group.identifier === 'nat') && group.playmodes?.includes(gameMode);
+      let groupRulesets: Readonly<Ruleset[]> = group.playmodes ?? [];
+      if (groupRulesets.length === 0) {
+        groupRulesets = defaultGroupRulesets[group.identifier] ?? [];
+      }
+
+      return (group.identifier === 'bng' || group.identifier === 'nat') && groupRulesets.includes(gameMode);
     } else {
       return (group.identifier === 'bng' || group.identifier === 'nat');
     }
@@ -367,12 +374,12 @@ export function propsFromHref(href = '') {
 }
 
 // Workaround for the discussion starting_post typing mess until the response gets refactored and normalized.
-export function startingPost(discussion: BeatmapsetDiscussionJsonForBundle | BeatmapsetDiscussionJsonForShow): BeatmapsetDiscussionPostJson {
-  if (!('posts' in discussion)) {
-    return discussion.starting_post;
+export function startingPost(discussion: BeatmapsetDiscussionJson) {
+  if ('posts' in discussion && discussion.posts != null) {
+    return discussion.posts[0];
   }
 
-  return discussion.posts[0];
+  return discussion.starting_post;
 }
 
 export function stateFromDiscussion(discussion: BeatmapsetDiscussionJson) {
@@ -385,7 +392,7 @@ export function stateFromDiscussion(discussion: BeatmapsetDiscussionJson) {
 }
 
 export function validMessageLength(message?: string | null, isTimeline = false) {
-  if (!message?.length) return false;
+  if (message == null || message.length === 0 ) return false;
 
   return !isTimeline || message.length <= maxLengthTimeline;
 }

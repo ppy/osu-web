@@ -63,8 +63,12 @@ return [
         'comments_controller' => [
             '_' => '評論',
         ],
+        'contest_entries_controller' => [
+            'judge_results' => '競賽評分結果',
+        ],
         'contests_controller' => [
             '_' => '評選',
+            'judge' => '競賽評分',
         ],
         'groups_controller' => [
             'show' => '群組',
@@ -105,6 +109,9 @@ return [
         ],
         'tournaments_controller' => [
             '_' => '官方比賽',
+        ],
+        'user_cover_presets_controller' => [
+            '_' => '使用者封面預設',
         ],
         'users_controller' => [
             '_' => '玩家資訊',

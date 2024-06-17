@@ -36,8 +36,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string|null $filename
  * @property int $hit_length
  * @property \Carbon\Carbon $last_update
+ * @property int $max_combo
  * @property mixed $mode
- * @property bool $orphaned
  * @property int $passcount
  * @property int $playcount
  * @property int $playmode
@@ -58,7 +58,6 @@ class Beatmap extends Model implements AfterCommit
 
     protected $casts = [
         'last_update' => 'datetime',
-        'orphaned' => 'boolean',
     ];
 
     public $timestamps = false;
@@ -166,7 +165,7 @@ class Beatmap extends Model implements AfterCommit
                     AND mode = {$mode}
                     AND mods = {$mods}
                     AND attrib_id = {$attrib}
-            ) AS max_combo"));
+            ) AS attrib_max_combo"));
     }
 
     public function failtimes()
@@ -240,6 +239,7 @@ class Beatmap extends Model implements AfterCommit
             'diff_overall',
             'filename',
             'hit_length',
+            'max_combo',
             'passcount',
             'playcount',
             'playmode',
@@ -247,8 +247,6 @@ class Beatmap extends Model implements AfterCommit
             'total_length',
             'user_id',
             'youtube_preview' => $this->getRawAttribute($key),
-
-            'orphaned' => (bool) $this->getRawAttribute($key),
 
             'deleted_at',
             'last_update' => $this->getTimeFast($key),
@@ -278,8 +276,15 @@ class Beatmap extends Model implements AfterCommit
 
     public function maxCombo()
     {
-        if (!$this->convert && array_key_exists('max_combo', $this->attributes)) {
-            return $this->attributes['max_combo'];
+        if (!$this->convert) {
+            $rowMaxCombo = $this->max_combo;
+
+            if ($rowMaxCombo > 0) {
+                return $rowMaxCombo;
+            }
+            if (array_key_exists('attrib_max_combo', $this->attributes)) {
+                return $this->attributes['attrib_max_combo'];
+            }
         }
 
         if ($this->relationLoaded('baseMaxCombo')) {
@@ -310,6 +315,7 @@ class Beatmap extends Model implements AfterCommit
         }
 
         $this->fill(['user_id' => $newUserId])->saveOrExplode();
+        $this->beatmapset->update(['eligible_main_rulesets' => null]);
     }
 
     public function status()

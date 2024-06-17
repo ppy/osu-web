@@ -1,9 +1,10 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { ReportableType } from 'interfaces/reportable';
 import * as React from 'react';
 import { trans } from 'utils/lang';
-import { ReportableType, reportableTypeToGroupKey, showReportForm } from './report-form';
+import { reportableTypeToGroupKey, showReportForm } from './report-form';
 
 type ReactButton = React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>;
 type ReactButtonWithoutRef = Pick<ReactButton, Exclude<keyof ReactButton, 'ref'>>;
@@ -42,7 +43,7 @@ export class ReportReportable extends React.PureComponent<Props> {
     );
   }
 
-  private onShowFormButtonClick = (e: React.MouseEvent<HTMLElement>) => {
+  private readonly onShowFormButtonClick = (e: React.MouseEvent<HTMLElement>) => {
     if (e.button !== 0) return;
 
     this.props.onFormOpen();

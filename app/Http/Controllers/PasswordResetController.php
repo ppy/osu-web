@@ -3,18 +3,23 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
-use App\Mail\PasswordReset;
+use App\Exceptions\User\PasswordResetFailException;
+use App\Libraries\User\PasswordResetData;
 use App\Models\User;
 use App\Models\UserAccountHistory;
-use Carbon\Carbon;
-use Mail;
-use Request;
-use Session;
+use Carbon\CarbonImmutable;
 
 class PasswordResetController extends Controller
 {
+    private static function getUser(?string $username): ?User
+    {
+        return present($username) ? User::findForLogin($username, true) : null;
+    }
+
     public function __construct()
     {
         parent::__construct();
@@ -24,26 +29,18 @@ class PasswordResetController extends Controller
         $this->middleware('throttle:20,1440,password-reset:');
     }
 
-    public function destroy()
-    {
-        $this->clear();
-
-        return ujs_redirect(route('password-reset'));
-    }
-
-    public function index()
-    {
-        $isStarted = Session::exists('password_reset');
-
-        return ext_view('password_reset.index', compact('isStarted'));
-    }
-
     public function create()
     {
-        $error = $this->issue(Request::input('username'));
+        $username = get_string(\Request::input('username'));
+        $user = static::getUser($username);
+        $error = PasswordResetData::create($user, $username);
 
         if ($error === null) {
-            return ['message' => osu_trans('password_reset.notice.sent')];
+            \Session::flash('popup', osu_trans('password_reset.notice.sent'));
+
+            return ujs_redirect(route('password-reset.reset', [
+                'username' => $username,
+            ]));
         } else {
             return response(['form_error' => [
                 'username' => [$error],
@@ -51,111 +48,98 @@ class PasswordResetController extends Controller
         }
     }
 
+    public function index()
+    {
+        return ext_view('password_reset.index');
+    }
+
+    public function resendMail()
+    {
+        $username = get_string(\Request::input('username'));
+        $user = static::getUser($username) ?? abort(422);
+        $data = PasswordResetData::find($user, $username);
+
+        if ($data === null) {
+            \Session::flash('popup', osu_trans('password_reset.error.expired'));
+
+            return ujs_redirect(route('password-reset'));
+        } elseif ($data->sendMail()) {
+            $data->save();
+        }
+
+        return ['message' => osu_trans('password_reset.notice.sent')];
+    }
+
+    public function reset()
+    {
+        $username = presence(get_string(\Request::input('username'))) ?? abort(422);
+
+        return ext_view('password_reset.reset', compact('username'));
+    }
+
     public function update()
     {
-        $session = Session::get('password_reset');
+        $params = get_params(\Request::all(), null, [
+            'key',
+            'user.password',
+            'user.password_confirmation',
+            'username',
+        ], ['null_missing' => true]);
 
-        if ($session === null) {
-            return $this->restart('invalid');
-        }
+        try {
+            $user = static::getUser($params['username'])
+                ?? throw new PasswordResetFailException('invalid');
+            $data = PasswordResetData::find($user, $params['username'])
+                ?? throw new PasswordResetFailException('invalid');
 
-        if ($session['expire']->isPast()) {
-            return $this->restart('expired');
-        }
-
-        $user = User::find($session['user_id']);
-
-        if ($user === null) {
-            return $this->restart('invalid');
-        }
-
-        if (!hash_equals($session['auth_hash'], $user->authHash())) {
-            return $this->restart('expired');
-        }
-
-        $inputKey = str_replace(' ', '', Request::input('key'));
-
-        if (!present($inputKey)) {
-            return response(['form_error' => [
-                'key' => [osu_trans('password_reset.error.missing_key')],
-            ]], 422);
-        }
-
-        if (!hash_equals($session['key'], $inputKey)) {
-            // wrong key
-            $tries = $session['tries'] + 1;
-
-            if ($tries >= config('osu.user.password_reset.tries')) {
-                return $this->restart('too_many_tries');
+            if (!$data->isActive()) {
+                throw new PasswordResetFailException('expired');
             }
 
-            Session::put('password_reset.tries', $tries);
+            $params['key'] = strtr($params['key'] ?? '', [' ' => '']);
+            if (!present($params['key'])) {
+                return response(['form_error' => [
+                    'key' => [osu_trans('password_reset.error.missing_key')],
+                ]], 422);
+            }
 
-            return response(['form_error' => [
-                'key' => [osu_trans('password_reset.error.wrong_key')],
-            ]], 422);
+            if (!$data->isValidKey($params['key'])) {
+                if (!$data->hasMoreTries()) {
+                    throw new PasswordResetFailException('too_many_tries');
+                }
+
+                $data->save();
+
+                return response(['form_error' => [
+                    'key' => [osu_trans('password_reset.error.wrong_key')],
+                ]], 422);
+            }
+        } catch (PasswordResetFailException $e) {
+            if (isset($data)) {
+                $data->delete();
+            }
+
+            \Session::flash('popup', osu_trans("password_reset.error.{$e->getMessage()}"));
+
+            return ujs_redirect(route('password-reset'));
         }
 
-        $params = get_params(request()->all(), 'user', ['password', 'password_confirmation']);
         $user->validatePasswordConfirmation();
-
-        if ($user->update($params)) {
-            $this->clear();
+        $params['user']['user_lastvisit'] = CarbonImmutable::now();
+        if ($user->update($params['user'])) {
             $user->resetSessions();
             $this->login($user);
 
             UserAccountHistory::logUserResetPassword($user);
+            $data->delete();
 
-            return ['message' => osu_trans('password_reset.notice.saved')];
+            \Session::flash('popup', osu_trans('password_reset.notice.saved'));
+
+            return ujs_redirect(route('home'));
         } else {
             return response(['form_error' => [
                 'user' => $user->validationErrors()->all(),
             ]], 422);
         }
-    }
-
-    private function clear()
-    {
-        Session::forget('password_reset');
-    }
-
-    private function issue($username)
-    {
-        $user = User::findForLogin($username, true);
-
-        if ($user === null) {
-            return osu_trans('password_reset.error.user_not_found');
-        }
-
-        if (!is_valid_email_format($user->user_email)) {
-            return osu_trans('password_reset.error.contact_support');
-        }
-
-        if ($user->isPrivileged() && $user->user_password !== '') {
-            return osu_trans('password_reset.error.is_privileged');
-        }
-
-        $session = [
-            'auth_hash' => $user->authHash(),
-            'username' => $username,
-            'user_id' => $user->user_id,
-            'key' => bin2hex(random_bytes(config('osu.user.password_reset.key_length') / 2)),
-            'expire' => Carbon::now()->addHours(config('osu.user.password_reset.expires_hour')),
-            'tries' => 0,
-        ];
-
-        Session::put('password_reset', $session);
-
-        Mail::to($user)->send(new PasswordReset([
-            'user' => $user,
-            'key' => $session['key'],
-        ]));
-    }
-
-    private function restart($reasonKey)
-    {
-        $this->clear();
-
-        return ['message' => osu_trans("password_reset.error.{$reasonKey}")];
     }
 }

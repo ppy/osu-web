@@ -55,6 +55,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => 'ביקורת חדשה מאת :username כוללת את הבעיות: :problems, המלצות: :suggestions, שבחים: :praises',
                 'beatmapset_discussion_unlock' => 'מפה ":title" נפתחה לדיון.',
                 'beatmapset_discussion_unlock_compact' => 'הדיון נפתח',
+
+                'review_count' => [
+                    'praises' => '',
+                    'problems' => '',
+                    'suggestions' => '',
+                ],
             ],
 
             'beatmapset_problem' => [
@@ -238,11 +244,6 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':username פתח מדליה חדשה, ":title"!',
-                'user_achievement_unlock_self' => 'פתחת מדליה חדשה, ":title"!',
-            ],
-
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username יצר מפות חדשות',
                 'user_beatmapset_revive' => '',
