@@ -10,6 +10,7 @@ namespace App\Models\Solo;
 use App\Enums\Ruleset;
 use App\Enums\ScoreRank;
 use App\Exceptions\InvariantException;
+use App\Libraries\Score\ScoringMode;
 use App\Libraries\Score\UserRank;
 use App\Libraries\Search\ScoreSearchParams;
 use App\Models\Beatmap;
@@ -278,6 +279,15 @@ class Score extends Model implements Traits\ReportableInterface
         if ($this->data->statistics->isEmpty()) {
             throw new InvariantException("field cannot be empty: 'statistics'");
         }
+    }
+
+    public function getClassicTotalScore(): int
+    {
+        return ScoringMode::convertToClassic(
+            Ruleset::from($this->ruleset_id),
+            $this->total_score,
+            $this->data->maximumStatistics->great + $this->data->maximumStatistics->perfect,
+        );
     }
 
     public function getMode(): string
