@@ -38,7 +38,7 @@ export default class SearchForm extends React.Component<Props> {
     return (
       <form className={bn} data-loading-overlay='0' onSubmit={this.onSubmit}>
         <div className={`${bn}__content ${bn}__content--inputs`}>
-          <InputContainer for={`${bn}-group`} labelKey='group_history.form.group'>
+          <InputContainer for={`${bn}-group`} labelKey='group_history.form.group' modifiers='group-history-wide'>
             <div className='form-select form-select--group-history'>
               <select
                 className='form-select__input'
@@ -58,7 +58,7 @@ export default class SearchForm extends React.Component<Props> {
               </select>
             </div>
           </InputContainer>
-          <InputContainer for={`${bn}-user`} labelKey='group_history.form.user'>
+          <InputContainer for={`${bn}-user`} labelKey='group_history.form.user' modifiers='group-history-wide'>
             <input
               className={`${bn}__input`}
               id={`${bn}-user`}
