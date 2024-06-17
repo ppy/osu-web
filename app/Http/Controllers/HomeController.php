@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 
 use App;
 use App\Libraries\CurrentStats;
+use App\Libraries\MenuContent;
 use App\Libraries\Search\AllSearch;
 use App\Libraries\Search\QuickSearch;
 use App\Models\BeatmapDownload;
@@ -99,6 +100,7 @@ class HomeController extends Controller
         $news = NewsPost::default()->limit($newsLimit)->get();
 
         if (Auth::check()) {
+            $menuImages = json_collection(MenuContent::activeImages(), 'MenuImage');
             $newBeatmapsets = Beatmapset::latestRanked();
             $newsAnnouncements = json_collection(
                 NewsAnnouncement::default()->get(),
@@ -107,6 +109,7 @@ class HomeController extends Controller
             $popularBeatmapsets = Beatmapset::popular()->get();
 
             return ext_view('home.user', compact(
+                'menuImages',
                 'newBeatmapsets',
                 'news',
                 'newsAnnouncements',
