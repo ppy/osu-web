@@ -199,6 +199,8 @@ return [
             'legacy_score_only_toggle_tooltip' => 'Lazer mode shows scores set from lazer with a new scoring algorithm',
             'logout' => 'Sign Out',
             'profile' => 'My Profile',
+            'scoring_mode_toggle' => 'Classic scoring',
+            'scoring_mode_toggle_tooltip' => 'Adjust score values to feel more like classic uncapped scoring',
         ],
     ],
 
