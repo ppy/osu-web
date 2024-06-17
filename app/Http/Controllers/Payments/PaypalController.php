@@ -6,7 +6,7 @@
 namespace App\Http\Controllers\Payments;
 
 use App\Exceptions\InvalidSignatureException;
-use App\Exceptions\Store\PaymentProcessorException;
+use App\Exceptions\Store\OrderException;
 use App\Libraries\OrderCheckout;
 use App\Libraries\Payments\NotificationType;
 use App\Libraries\Payments\PaypalCreatePayment;
@@ -101,7 +101,7 @@ class PaypalController extends Controller
 
         try {
             $processor->run();
-        } catch (PaymentProcessorException $exception) {
+        } catch (OrderException $exception) {
             log_error($exception);
 
             return response(['message' => 'A validation error occured while running the transaction'], 406);

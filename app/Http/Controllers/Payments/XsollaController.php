@@ -6,7 +6,7 @@
 namespace App\Http\Controllers\Payments;
 
 use App\Exceptions\InvalidSignatureException;
-use App\Exceptions\Store\PaymentProcessorException;
+use App\Exceptions\Store\OrderException;
 use App\Libraries\OrderCheckout;
 use App\Libraries\Payments\XsollaPaymentProcessor;
 use App\Libraries\Payments\XsollaSignature;
@@ -80,7 +80,7 @@ class XsollaController extends Controller
             }
 
             $processor->run();
-        } catch (PaymentProcessorException $exception) {
+        } catch (OrderException $exception) {
             log_error($exception);
 
             return $this->errorResponse(
