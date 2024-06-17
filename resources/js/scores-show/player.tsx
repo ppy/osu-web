@@ -2,12 +2,13 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import Mod from 'components/mod';
+import ScoreValue from 'components/score-value';
 import { SoloScoreJsonForShow } from 'interfaces/solo-score-json';
 import * as moment from 'moment';
 import * as React from 'react';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
-import { filterMods, totalScore } from 'utils/score-helper';
+import { filterMods } from 'utils/score-helper';
 
 interface Props {
   score: SoloScoreJsonForShow;
@@ -39,7 +40,7 @@ export default function Player(props: Props) {
         </div>
 
         <div className='score-player__score'>
-          {formatNumber(totalScore(props.score))}
+          <ScoreValue score={props.score} />
         </div>
       </div>
 
