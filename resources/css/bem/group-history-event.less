@@ -16,19 +16,18 @@
   });
 
   @icons: {
-    group-add: users;
-    group-remove: users-slash;
-    group-rename: users-cog;
-    user-add: user-plus;
-    user-add-playmodes: user-tag;
-    user-remove: user-minus;
-    user-remove-playmodes: user-tag;
-    user-set-default: user-cog;
+    group-add: @fa-var-users;
+    group-remove: @fa-var-users-slash;
+    group-rename: @fa-var-users-cog;
+    user-add: @fa-var-user-plus;
+    user-add-playmodes: @fa-var-user-tag;
+    user-remove: @fa-var-user-minus;
+    user-remove-playmodes: @fa-var-user-tag;
+    user-set-default: @fa-var-user-cog;
   };
   each(@icons, {
     &--@{key} {
-      @icon-var: 'fa-var-@{value}';
-      --icon: @@icon-var;
+      --icon: @value;
     }
   });
 
