@@ -13,7 +13,6 @@ use App\Libraries\Search\QuickSearch;
 use App\Models\BeatmapDownload;
 use App\Models\Beatmapset;
 use App\Models\Forum\Post;
-use App\Models\NewsAnnouncement;
 use App\Models\NewsPost;
 use App\Models\UserDonation;
 use Auth;
@@ -102,17 +101,12 @@ class HomeController extends Controller
         if (Auth::check()) {
             $menuImages = json_collection(MenuContent::activeImages(), 'MenuImage');
             $newBeatmapsets = Beatmapset::latestRanked();
-            $newsAnnouncements = json_collection(
-                NewsAnnouncement::default()->get(),
-                'NewsAnnouncement',
-            );
             $popularBeatmapsets = Beatmapset::popular()->get();
 
             return ext_view('home.user', compact(
                 'menuImages',
                 'newBeatmapsets',
                 'news',
-                'newsAnnouncements',
                 'popularBeatmapsets'
             ));
         } else {
