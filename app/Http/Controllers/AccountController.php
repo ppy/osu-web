@@ -262,6 +262,7 @@ class AccountController extends Controller
             'forum_posts_show_deleted:bool',
             'legacy_score_only:bool',
             'profile_cover_expanded:bool',
+            'scoring_mode:string',
             'user_list_filter:string',
             'user_list_sort:string',
             'user_list_view:string',

@@ -459,6 +459,7 @@ class UserCompactTransformer extends TransformerAbstract
             'forum_posts_show_deleted',
             'legacy_score_only',
             'profile_cover_expanded',
+            'scoring_mode',
             'user_list_filter',
             'user_list_sort',
             'user_list_view',
