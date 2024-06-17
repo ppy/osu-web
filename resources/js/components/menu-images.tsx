@@ -1,7 +1,6 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import Img2x from 'components/img2x';
 import MenuImageJson from 'interfaces/menu-image-json';
 import { range } from 'lodash';
 import { action, makeObservable, observable } from 'mobx';
@@ -142,19 +141,13 @@ export default class MenuImages extends React.Component<Props> {
 
   private readonly renderImage = (image: MenuImageJson, index = 0) => (
     <div
-      key={`${image.id}:${index}`}
+      key={index}
       className={itemBn}
       style={{ '--index': index } as React.CSSProperties}
     >
       <a className={`${itemBn}__link`} href={image.url}>
-        <Img2x className={`${itemBn}__image`} src={image.image_url} />
+        <img className={`${itemBn}__image`} src={image.image_url} />
       </a>
-      {image.content != null && (
-        <div
-          className={`${itemBn}__content`}
-          dangerouslySetInnerHTML={{ __html: image.content.html }}
-        />
-      )}
     </div>
   );
 
