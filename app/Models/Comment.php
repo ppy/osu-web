@@ -171,7 +171,7 @@ class Comment extends Model implements Traits\ReportableInterface
 
             'pinned' => (bool) $this->getRawAttribute($key),
 
-            'disqus_user_data' => $this->getDisqusUserData(),
+            'disqus_user_data' => $this->getArray($key),
             'message_html' => $this->getMessageHtml(),
 
             'commentable',
@@ -304,13 +304,6 @@ class Comment extends Model implements Traits\ReportableInterface
             'reason' => 'Spam',
             'user_id' => $this->user_id ?? 0,
         ];
-    }
-
-    private function getDisqusUserData(): ?array
-    {
-        $value = $this->getRawAttribute('disqus_user_data');
-
-        return $value === null ? null : json_decode($value, true);
     }
 
     private function getMessageHtml(): ?string

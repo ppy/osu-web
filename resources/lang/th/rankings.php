@@ -23,6 +23,10 @@ return [
         'used' => 'ใช้',
     ],
 
+    'performance' => [
+        'insufficient_history' => '',
+    ],
+
     'type' => [
         'charts' => 'โดดเด่น',
         'country' => 'ประเทศ',

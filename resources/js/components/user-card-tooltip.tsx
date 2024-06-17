@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import Reportable from 'interfaces/reportable';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import * as _ from 'lodash';
@@ -86,8 +87,8 @@ function createTooltip(element: HTMLElement) {
   card.classList.remove('js-react--user-card');
   card.classList.add('js-react--user-card-tooltip');
   card.dataset.lookup = userId;
-  if (element.dataset.tooltipPosition != null) {
-    card.dataset.tooltipPosition = element.dataset.tooltipPosition;
+  for (const [key, value] of Object.entries(element.dataset)) {
+    card.dataset[key] = value;
   }
 
   $(element).qtip(createTooltipOptions(card));
@@ -214,6 +215,14 @@ export class UserCardTooltip extends React.PureComponent<Props, State> {
   state: Readonly<State> = {};
   private readonly contextActiveKeyDidChange = contextActiveKeyDidChange.bind(this);
 
+  private get reportable() {
+    const dataString = this.props.container.dataset.reportable;
+
+    return dataString == null
+      ? undefined
+      : JSON.parse(dataString) as Reportable;
+  }
+
   componentDidMount() {
     this.getUser().then((user) => {
       this.setState({ user });
@@ -237,7 +246,11 @@ export class UserCardTooltip extends React.PureComponent<Props, State> {
       <TooltipContext.Provider value={this.props.container}>
         <ContainerContext.Provider value={{ activeKeyDidChange: this.activeKeyDidChange }}>
           <KeyContext.Provider value={this.props.lookup}>
-            <UserCard activated={activated} user={this.state.user} />
+            <UserCard
+              activated={activated}
+              reportable={this.reportable}
+              user={this.state.user}
+            />
           </KeyContext.Provider>
         </ContainerContext.Provider>
       </TooltipContext.Provider>

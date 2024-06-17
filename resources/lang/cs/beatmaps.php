@@ -60,10 +60,10 @@ return [
         ],
 
         'message_placeholder' => [
-            'general' => 'Piště zde pro odeslání příspěvku do Obecné (:version)',
-            'generalAll' => 'Piště zde pro odeslání příspěvku do Obecné (Všechny obtížnosti)',
-            'review' => 'Piště sem k přidání recenze',
-            'timeline' => 'Piště zde pro zařazení příspěvku do Časové osy (:version)',
+            'general' => 'Pište zde pro odeslání příspěvku do Obecné (:version)',
+            'generalAll' => 'Pište zde pro odeslání příspěvku do Obecné (Všechny obtížnosti)',
+            'review' => 'Pište sem pro přidání recenze',
+            'timeline' => 'Pište zde pro zařazení příspěvku do Časové osy (:version)',
         ],
 
         'message_type' => [
@@ -283,6 +283,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
+        'undefined' => '',
     ],
     'status' => [
         'any' => 'Jakákoliv',

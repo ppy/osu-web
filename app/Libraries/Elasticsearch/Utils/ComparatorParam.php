@@ -34,7 +34,7 @@ class ComparatorParam
 
                 if ($value !== null) {
                     if (is_array($value)) {
-                        $scale = $value['scale'];
+                        $scale = $value['min_scale'];
                         $value = $value['value'];
                     } else {
                         $scale = 1;

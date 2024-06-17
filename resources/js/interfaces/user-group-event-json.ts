@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import GameMode from './game-mode';
+import Ruleset from './ruleset';
 
 interface UserGroupEventBase {
   actor?: {
@@ -29,14 +29,14 @@ interface GroupRenameEvent extends UserGroupEventBase {
 }
 
 interface UserAddEvent extends UserGroupEventBase {
-  playmodes: GameMode[] | null;
+  playmodes: Ruleset[] | null;
   type: 'user_add';
   user_id: number;
   user_name: string;
 }
 
 interface UserAddOrRemovePlaymodesEvent extends UserGroupEventBase {
-  playmodes: GameMode[];
+  playmodes: Ruleset[];
   type: 'user_add_playmodes' | 'user_remove_playmodes';
   user_id: number;
   user_name: string;

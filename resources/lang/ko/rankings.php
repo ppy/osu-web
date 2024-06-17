@@ -23,6 +23,10 @@ return [
         'used' => '사용',
     ],
 
+    'performance' => [
+        'insufficient_history' => '',
+    ],
+
     'type' => [
         'charts' => '스포트라이트',
         'country' => '국가별',

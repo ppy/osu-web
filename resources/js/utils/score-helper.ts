@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import GameMode from 'interfaces/game-mode';
+import Ruleset from 'interfaces/ruleset';
 import SoloScoreJson, { SoloScoreStatisticsAttribute } from 'interfaces/solo-score-json';
 import { route } from 'laroute';
 import core from 'osu-core-singleton';
@@ -62,7 +62,7 @@ interface AttributeDisplayTotal {
 
 const labelMiss = trans('beatmapsets.show.scoreboard.headers.miss');
 
-export const modeAttributesMap: Record<GameMode, AttributeDisplayMapping[]> = {
+export const modeAttributesMap: Record<Ruleset, AttributeDisplayMapping[]> = {
   fruits: [
     { attributes: ['great'], key: 'great', label: 'fruits' },
     { attributes: ['large_tick_hit'], key: 'ticks', label: 'ticks' },
@@ -91,7 +91,7 @@ export const modeAttributesMap: Record<GameMode, AttributeDisplayMapping[]> = {
   ],
 };
 
-export function attributeDisplayTotals(ruleset: GameMode, score: SoloScoreJson): AttributeDisplayTotal[] {
+export function attributeDisplayTotals(ruleset: Ruleset, score: SoloScoreJson): AttributeDisplayTotal[] {
   return modeAttributesMap[ruleset].map((mapping) => ({
     key: mapping.key,
     label: mapping.label,

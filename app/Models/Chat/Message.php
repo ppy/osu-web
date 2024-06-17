@@ -96,7 +96,7 @@ class Message extends Model implements ReportableInterface
             ->with('channel')
             ->limit(5)
             ->get()
-            ->map(fn ($m) => "**{$m->timestamp_json} {$m->channel->name}:**\n{$m->content}\n")
+            ->map(fn ($m) => "**<t:{$m->timestamp->timestamp}:R> {$m->channel->name}:**\n{$m->content}\n")
             ->reverse()
             ->join("\n");
 

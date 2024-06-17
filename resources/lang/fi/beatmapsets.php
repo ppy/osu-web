@@ -40,15 +40,20 @@ return [
     ],
 
     'nominate' => [
+        'bng_limited_too_many_rulesets' => '',
+        'full_nomination_required' => '',
         'hybrid_requires_modes' => 'Usean pelimuodon rytmikartta edellyttää, että valitset ainakin yhden pelimuodon, jonka panet ehdolle.',
         'incorrect_mode' => 'Sinulla ei ole lupaa panna ehdolle pelimuotoa: :mode',
-        'full_bn_required' => 'Sinun on oltava täysivaltainen ehdollepanija, jotta voit tehdä tämän kelpuuttavan ehdollepanon.',
+        'invalid_limited_nomination' => '',
+        'invalid_ruleset' => '',
         'too_many' => 'Ehdollepanovaatimus on jo täyttynyt.',
+        'too_many_non_main_ruleset' => '',
 
         'dialog' => [
             'confirmation' => 'Oletko varma, että haluat ehdollepanna tämän rytmikartan?',
             'header' => 'Ehdollepane rytmikartta',
             'hybrid_warning' => 'huomaa: voit tehdä ehdollepanon vain kerran, joten varmista, että panet ehdolle kaikki tarkoittamasi pelimuodot',
+            'current_main_ruleset' => '',
             'which_modes' => 'Mitkä pelimuodot asetetaan ehdolle?',
         ],
     ],

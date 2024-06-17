@@ -25,6 +25,10 @@ return [
         'used' => '',
     ],
 
+    'performance' => [
+        'insufficient_history' => '',
+    ],
+
     'type' => [
         'charts' => 'istaknuto',
         'country' => 'države',

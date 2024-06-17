@@ -12,7 +12,7 @@ import PlaymodeTabs from 'components/playmode-tabs';
 import StringWithComponent from 'components/string-with-component';
 import UserLink from 'components/user-link';
 import BeatmapsetDiscussionsStore from 'interfaces/beatmapset-discussions-store';
-import GameMode, { gameModes } from 'interfaces/game-mode';
+import Ruleset, { rulesets } from 'interfaces/ruleset';
 import { route } from 'laroute';
 import { action, computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
@@ -69,7 +69,7 @@ export class Header extends React.Component<Props> {
           linksAppend={(
             <PlaymodeTabs
               currentMode={this.currentBeatmap.mode}
-              entries={gameModes.map((mode) => ({
+              entries={rulesets.map((mode) => ({
                 count: this.discussionsState.unresolvedDiscussionCounts.byMode[mode],
                 disabled: (this.discussionsState.groupedBeatmaps.get(mode)?.length ?? 0) === 0,
                 mode,
@@ -87,7 +87,7 @@ export class Header extends React.Component<Props> {
   }
 
   @action
-  private readonly onClickMode = (event: React.MouseEvent<HTMLAnchorElement>, mode: GameMode) => {
+  private readonly onClickMode = (event: React.MouseEvent<HTMLAnchorElement>, mode: Ruleset) => {
     event.preventDefault();
     this.discussionsState.changeGameMode(mode);
   };

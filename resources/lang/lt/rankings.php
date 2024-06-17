@@ -23,6 +23,10 @@ return [
         'used' => 'Panaudota',
     ],
 
+    'performance' => [
+        'insufficient_history' => '',
+    ],
+
     'type' => [
         'charts' => 'pasižymėje',
         'country' => 'Šalimis',

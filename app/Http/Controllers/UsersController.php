@@ -687,12 +687,17 @@ class UsersController extends Controller
             return $userArray;
         } else {
             $achievements = json_collection(app('medals')->all(), 'Achievement');
+            $currentUser = \Auth::user();
+            if ($currentUser !== null && $currentUser->getKey() === $user->getKey()) {
+                $userCoverPresets = app('user-cover-presets')->json();
+            }
 
             $initialData = [
                 'achievements' => $achievements,
                 'current_mode' => $currentMode,
                 'scores_notice' => $GLOBALS['cfg']['osu']['user']['profile_scores_notice'],
                 'user' => $userArray,
+                'user_cover_presets' => $userCoverPresets ?? [],
             ];
 
             set_opengraph($user, 'show', $currentMode);

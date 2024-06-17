@@ -34,7 +34,7 @@ return [
         'qualify' => 'このビートマップは既に必要なノミネーション数に達しており、Qualifiedされています。',
         'rank' => 'Rankedされました。',
         'remove_from_loved' => ':userによってLovedから削除されました。(:text)',
-        'tags_edit' => '',
+        'tags_edit' => 'タグが ":old" から ":new" に変更されました。',
 
         'nsfw_toggle' => [
             'to_0' => '露骨マークを削除しました',

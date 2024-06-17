@@ -23,6 +23,10 @@ return [
         'used' => 'Iztērēts',
     ],
 
+    'performance' => [
+        'insufficient_history' => '',
+    ],
+
     'type' => [
         'charts' => 'Uzmanības centrā',
         'country' => 'Valsts',
