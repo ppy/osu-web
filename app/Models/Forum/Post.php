@@ -395,6 +395,11 @@ class Post extends Model implements AfterCommit, Indexable, Traits\ReportableInt
         }
     }
 
+    public function legacyIcon(): ?LegacyIcon
+    {
+        return app('forum-legacy-icons')->byId($this->icon_id);
+    }
+
     public function validationErrorsTranslationPrefix(): string
     {
         return 'forum.post';
