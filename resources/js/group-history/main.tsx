@@ -6,7 +6,8 @@ import ShowMoreLink from 'components/show-more-link';
 import StringWithComponent from 'components/string-with-component';
 import UserGroupEventJson from 'interfaces/user-group-event-json';
 import { route } from 'laroute';
-import { IReactionDisposer, action, autorun, makeObservable, observable } from 'mobx';
+import { omit } from 'lodash';
+import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { onErrorWithCallback } from 'utils/ajax';
@@ -17,35 +18,32 @@ import groupStore from './group-store';
 import GroupHistoryJson from './json';
 import SearchForm from './search-form';
 
+type MoreParams = GroupHistoryJson['params'] & { cursor_string: string };
+
+export const formParamKeys = ['group', 'max_date', 'min_date', 'user'] as const;
+
 @observer
 export default class Main extends React.Component<GroupHistoryJson> {
   @observable private currentParams: GroupHistoryJson['params'];
-  @observable private cursorString: string | null;
-  private readonly disposeQueryStringUpdater: IReactionDisposer;
   @observable private events: UserGroupEventJson[];
-  @observable private loading?: 'more' | 'new';
+  @observable private loading: 'more' | 'new' | false = false;
+  @observable private moreParams!: MoreParams | null;
   @observable private readonly newParams: GroupHistoryJson['params'];
   private xhr?: JQuery.jqXHR<GroupHistoryJson>;
+
+  @computed
+  private get newParamsSameAsCurrent() {
+    return formParamKeys.every((key) => this.newParams[key] === this.currentParams[key]);
+  }
 
   constructor(props: GroupHistoryJson) {
     super(props);
 
     groupStore.update(props.groups);
     this.currentParams = props.params;
-    this.cursorString = props.cursor_string;
     this.events = props.events;
     this.newParams = { ...this.currentParams };
-
-    // Update the query string of the URL whenever the current params are
-    // modified. Remove "sort" from the query if it's set to the default
-    this.disposeQueryStringUpdater = autorun(() => {
-      const params = {
-        ...this.currentParams,
-        sort: this.currentParams.sort === 'id_desc' ? null : this.currentParams.sort,
-      };
-
-      history.replaceState(history.state, '', updateQueryString(null, params));
-    });
+    this.setMoreParamsFromJson(props);
 
     // If the "group" param doesn't match any group we can show as a select
     // option, set it to null in the new params. This prevents the new params
@@ -58,7 +56,6 @@ export default class Main extends React.Component<GroupHistoryJson> {
   }
 
   componentWillUnmount() {
-    this.disposeQueryStringUpdater();
     this.xhr?.abort();
   }
 
@@ -68,17 +65,17 @@ export default class Main extends React.Component<GroupHistoryJson> {
         <HeaderV4 theme='friends' />
         <div className='osu-page osu-page--generic-compact'>
           <SearchForm
-            currentParams={this.currentParams}
+            disabled={this.newParamsSameAsCurrent}
             loading={this.loading === 'new'}
             newParams={this.newParams}
-            onSearch={this.onSearch}
+            onSearch={this.onNewSearch}
           />
         </div>
         <div className='osu-page osu-page--generic'>
           <Events events={this.events} />
           <ShowMoreLink
-            callback={this.onShowMore}
-            hasMore={this.cursorString != null}
+            callback={this.onMore}
+            hasMore={this.moreParams != null}
             loading={this.loading === 'more'}
             modifiers='group-history'
           />
@@ -100,38 +97,57 @@ export default class Main extends React.Component<GroupHistoryJson> {
   }
 
   @action
-  private loadEvents(params: GroupHistoryJson['params'], cursorString?: string) {
+  private loadEvents(params: GroupHistoryJson['params'] | MoreParams) {
     this.xhr?.abort();
-    this.loading = cursorString == null ? 'new' : 'more';
+    this.currentParams = omit(params, 'cursor_string');
+    this.loading = 'cursor_string' in params ? 'more' : 'new';
 
     this.xhr = $.ajax(
       route('group-history.index'),
       {
-        data: { ...params, cursor_string: cursorString },
+        data: params,
         dataType: 'json',
         method: 'GET',
       },
     )
       .done(action((response: GroupHistoryJson) => {
         groupStore.update(response.groups);
-        this.currentParams = response.params;
-        this.cursorString = response.cursor_string;
+        this.setMoreParamsFromJson(response);
 
-        if (cursorString == null) {
+        if (this.loading === 'new') {
           this.events = response.events;
         } else {
           this.events.push(...response.events);
         }
       }))
-      .fail(onErrorWithCallback(() => this.loadEvents(params, cursorString)))
-      .always(action(() => this.loading = undefined));
+      .fail(onErrorWithCallback(() => this.loadEvents(params)))
+      .always(action(() => this.loading = false));
   }
 
-  private readonly onSearch = () => this.loadEvents(this.newParams);
-
-  private readonly onShowMore = () => {
-    if (this.cursorString != null) {
-      this.loadEvents(this.currentParams, this.cursorString);
+  private readonly onMore = () => {
+    if (this.moreParams != null) {
+      this.loadEvents(this.moreParams);
     }
   };
+
+  private readonly onNewSearch = () => {
+    if (this.newParamsSameAsCurrent) {
+      return;
+    }
+
+    // Update the query string of the URL when starting a new search. Remove
+    // "sort" from the query if it's set to the default
+    history.replaceState(history.state, '', updateQueryString(null, {
+      ...this.newParams,
+      sort: this.newParams.sort === 'id_desc' ? null : this.newParams.sort,
+    }));
+
+    this.loadEvents(this.newParams);
+  };
+
+  private setMoreParamsFromJson(json: GroupHistoryJson) {
+    this.moreParams = json.cursor_string == null
+      ? null
+      : { ...json.params, cursor_string: json.cursor_string };
+  }
 }

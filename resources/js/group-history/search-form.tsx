@@ -9,12 +9,12 @@ import * as React from 'react';
 import { trans } from 'utils/lang';
 import groupStore from './group-store';
 import GroupHistoryJson from './json';
+import { formParamKeys } from './main';
 
 const bn = 'group-history-search-form';
-const formParamKeys = ['group', 'max_date', 'min_date', 'user'] as const;
 
 interface Props {
-  currentParams: GroupHistoryJson['params'];
+  disabled: boolean;
   loading: boolean;
   newParams: GroupHistoryJson['params'];
   onSearch: () => void;
@@ -28,12 +28,7 @@ export default class SearchForm extends React.Component<Props> {
   }
 
   render() {
-    const newParamsEmpty = formParamKeys.every(
-      (key) => this.props.newParams[key] == null,
-    );
-    const newParamsSame = formParamKeys.every(
-      (key) => this.props.newParams[key] === this.props.currentParams[key],
-    );
+    const newParamsEmpty = formParamKeys.every((key) => this.props.newParams[key] == null);
 
     return (
       <form className={bn} data-loading-overlay='0' onSubmit={this.onSubmit}>
@@ -98,9 +93,9 @@ export default class SearchForm extends React.Component<Props> {
             text={trans('common.buttons.reset')}
           />
           <BigButton
-            disabled={newParamsSame || this.props.loading}
+            disabled={this.props.disabled}
             icon='fas fa-search'
-            isBusy={this.props.loading}
+            isBusy={this.props.disabled && this.props.loading}
             isSubmit
             modifiers={['artist-track-search', 'rounded-thin-wide']}
             text={trans('common.buttons.search')}
