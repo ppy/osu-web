@@ -3,19 +3,15 @@
 
 .profile-cover-selection {
   .reset-input();
-  flex: none;
   width: 100%;
-  padding-bottom: 100%;
+  padding-bottom: (640 / 2400 * 100%); // matches cover size
+  min-height: 45px; // ensure the selection checkbox fits
 
   cursor: pointer;
   background-color: fade(#000, 25%);
   background-size: cover;
   background-position: center;
   position: relative;
-
-  &--custom {
-    padding-bottom: (640 / 2400 * 100%); // matches cover size
-  }
 
   &__selected {
     .default-text-shadow();

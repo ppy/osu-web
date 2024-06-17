@@ -50,20 +50,17 @@ export default class CoverSelector extends React.Component<Props> {
       <div ref={this.dropzoneRef} className='profile-cover-change-popup'>
         <div className='profile-cover-change-popup__defaults'>
           {this.props.controller.userCoverPresets.map((preset) =>
-            (<div key={preset.id} className='profile-cover-change-popup__selection'>
-              <CoverSelection
-                controller={this.props.controller}
-                preset={preset}
-              />
-            </div>),
+            (<CoverSelection
+              key={preset.id}
+              controller={this.props.controller}
+              preset={preset}
+            />),
           )}
           {holdoverCoverPreset != null &&
-            <div className='profile-cover-change-popup__selection'>
-              <CoverSelection
-                controller={this.props.controller}
-                preset={holdoverCoverPreset}
-              />
-            </div>
+            <CoverSelection
+              controller={this.props.controller}
+              preset={holdoverCoverPreset}
+            />
           }
           <p className='profile-cover-change-popup__selections-info'>
             {trans('users.show.edit.cover.defaults_info')}
