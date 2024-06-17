@@ -47,16 +47,14 @@
   &__menu-images-placeholder {
     align-items: center;
     display: flex;
-    height: 250px; // menu-images__container height
+    height: .menu-images[@container-height];
     justify-content: center;
-    margin-top: 20px; // menu-images margin
+    margin-top: .menu-images[@margin];
 
     &--with-indicators {
       // This part won't be identical to the real component if the indicators
       // wrap onto more than one line, but it's good enough for a placeholder
-      margin-bottom:
-        10px /* menu-images__indicators margin */ +
-        6px /* menu-images__indicator height */;
+      margin-bottom: .menu-images[@indicator-height] + .menu-images[@indicators-margin];
     }
   }
 

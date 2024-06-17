@@ -2,13 +2,18 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .menu-images {
-  margin-top: 20px;
+  @container-height: 250px;
+  @indicator-height: 6px;
+  @indicators-margin: 10px;
+  @margin: 20px;
+
+  margin-top: @margin;
   overflow-x: hidden;
   position: relative;
 
   &__arrow {
     .reset-input();
-    height: 250px;
+    height: @container-height;
     padding: 10px;
     position: absolute;
     top: 0;
@@ -35,7 +40,7 @@
   }
 
   &__container {
-    height: 250px;
+    height: @container-height;
     transform: translateX(calc(-100% * var(--index, 0)));
 
     &--transition {
@@ -47,7 +52,7 @@
     .reset-input();
     align-items: center;
     display: flex;
-    height: 6px;
+    height: @indicator-height;
 
     &::before {
       background: @osu-colour-h1;
@@ -61,11 +66,11 @@
     }
 
     &:hover::before {
-      height: 6px;
+      height: @indicator-height;
     }
 
     &--active::before {
-      height: 6px;
+      height: @indicator-height;
       opacity: 1;
     }
   }
@@ -76,6 +81,6 @@
     flex-wrap: wrap;
     gap: 10px;
     justify-content: center;
-    margin-top: 10px;
+    margin-top: @indicators-margin;
   }
 }
