@@ -42,12 +42,5 @@ abstract class OrderFulfiller implements Fulfillable
         return $this->order;
     }
 
-    protected function throwOnFail(bool $valid = false)
-    {
-        if (!$valid) {
-            throw new FulfillmentException($this->order, $this->validationErrors());
-        }
-    }
-
     abstract public function validationErrorsTranslationPrefix(): string;
 }

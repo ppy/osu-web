@@ -5,6 +5,7 @@
 
 namespace App\Libraries\Fulfillments;
 
+use App\Exceptions\Store\FulfillmentException;
 use App\Mail\DonationThanks;
 use App\Mail\SupporterGift;
 use App\Models\Event;
@@ -27,7 +28,7 @@ class SupporterTagFulfillment extends OrderFulfiller
 
     public function run()
     {
-        $this->throwOnFail($this->validateRun());
+        $this->assertValid();
 
         $this->continued = $this->order->user->supporterTagPurchases()->exists();
         $fulfillers = $this->getOrderItemFulfillers();
@@ -112,12 +113,12 @@ class SupporterTagFulfillment extends OrderFulfiller
         }
     }
 
-    private function validateRun()
+    private function assertValid(): void
     {
         $this->validationErrors()->reset();
 
         $donationTotal = $this->getOrderItems()->sum('cost');
-        Log::debug("total: {$donationTotal}, required: {$this->minimumRequired()}");
+
         if ($donationTotal < $this->minimumRequired()) {
             $this->validationErrors()->add(
                 'order_total',
@@ -126,7 +127,9 @@ class SupporterTagFulfillment extends OrderFulfiller
             );
         }
 
-        return $this->validationErrors()->isEmpty();
+        if ($this->validationErrors()->isAny()) {
+            throw new FulfillmentException($this->order, $this->validationErrors());
+        }
     }
 
     /**
