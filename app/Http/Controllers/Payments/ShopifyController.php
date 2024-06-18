@@ -149,10 +149,6 @@ class ShopifyController extends Controller
             'paid_at' => Carbon::parse(array_get($params, 'processed_at')),
         ]);
 
-        if (!$order->payments()->save($payment)) {
-            throw new ModelNotSavedException();
-        }
-
         $order->paid($payment);
     }
 }
