@@ -5,7 +5,6 @@
 
 namespace App\Libraries\Fulfillments;
 
-use App\Exceptions\Store\FulfillmentException;
 use App\Models\Store\Order;
 use App\Traits\Validatable;
 

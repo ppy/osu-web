@@ -5,7 +5,6 @@
 
 namespace App\Http\Controllers\Payments;
 
-use App\Exceptions\ModelNotSavedException;
 use App\Libraries\OrderCheckout;
 use App\Libraries\Payments\ShopifySignature;
 use App\Models\Store\Order;
