@@ -91,7 +91,6 @@ class CheckoutController extends Controller
         $order = DB::connection('mysql-store')->transaction(function () use ($checkout) {
             $order = $checkout->getOrder();
             $checkout->completeCheckout();
-            $order->paid(null);
 
             (new PaymentCompleted($order, null))->handle();
 
