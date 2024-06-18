@@ -16,8 +16,6 @@
     <exclude-pattern>resources/docs/source/_tmp/*</exclude-pattern>
     <exclude-pattern>resources/lang/(?!en)[^/]*/.*</exclude-pattern>
 
-    <config name="installed_paths" value="vendor/slevomat/coding-standard"/>
-
     <arg name="extensions" value="php"/>
     <arg name="report" value="code"/>
     <arg value="npsv"/>
