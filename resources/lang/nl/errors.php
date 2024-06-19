@@ -33,4 +33,7 @@ return [
         'invalid_cursor_exception' => 'Ongeldige cursorwaarde opgegeven.',
         'operation_timeout_exception' => 'Zoeken is momenteel drukker dan gebruikelijk, probeer het later opnieuw.',
     ],
+    'user_report' => [
+        'recently_reported' => "",
+    ],
 ];

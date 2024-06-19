@@ -33,4 +33,7 @@ return [
         'invalid_cursor_exception' => 'Érvénytelen kurzorparaméter van megadva.',
         'operation_timeout_exception' => 'A keresés a szokásosnál jobban leterhelt, kérlek próbáld meg később.',
     ],
+    'user_report' => [
+        'recently_reported' => "",
+    ],
 ];

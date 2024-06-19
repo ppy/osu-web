@@ -33,4 +33,7 @@ return [
         'invalid_cursor_exception' => 'Ogiltig markörparameter angiven.',
         'operation_timeout_exception' => 'Sökfunktionen är för närvarande mer upptagen än vanligt, försök igen senare.',
     ],
+    'user_report' => [
+        'recently_reported' => "",
+    ],
 ];

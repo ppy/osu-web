@@ -24,6 +24,11 @@ return [
         'title' => '檢舉 :username 的貼文？',
     ],
 
+    'message' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'scores' => [
         'button' => '檢舉成績',
         'title' => '檢舉 :username 的成績？',

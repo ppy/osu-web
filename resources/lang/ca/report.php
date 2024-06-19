@@ -24,6 +24,11 @@ return [
         'title' => 'Voleu informar de la publicació de :username?',
     ],
 
+    'message' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'scores' => [
         'button' => 'Puntuació de l\'informe',
         'title' => 'Voleu informar de la puntuació de :username?',

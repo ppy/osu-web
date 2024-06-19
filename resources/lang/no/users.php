@@ -200,6 +200,8 @@ return [
             'cover' => [
                 'button' => 'Endre profilbanner',
                 'defaults_info' => 'Flere banneralternativer vil være tilgjengelige i framtiden',
+                'holdover_remove_confirm' => "",
+
                 'upload' => [
                     'broken_file' => 'Kunne ikke prosessere bildet. Verifiser opplastet bilde og prøv igjen.',
                     'button' => 'Last opp bilde',

@@ -200,6 +200,8 @@ return [
             'cover' => [
                 'button' => 'Změnit záhlaví profilu',
                 'defaults_info' => 'Více možností záhlaví bude k dispozici v budoucnu',
+                'holdover_remove_confirm' => "",
+
                 'upload' => [
                     'broken_file' => 'Zpracování obrázku selhalo. Ověř si obrázek a zkus to znovu.',
                     'button' => 'Nahrát obrázek',

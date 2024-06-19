@@ -24,6 +24,11 @@ return [
         'title' => ':username님의 글을 신고하겠습니까?',
     ],
 
+    'message' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'scores' => [
         'button' => '기록 신고',
         'title' => ':username님의 기록을 신고하겠습니까?',

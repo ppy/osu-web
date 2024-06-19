@@ -200,6 +200,8 @@ return [
             'cover' => [
                 'button' => 'Promjeni naslovnicu profila',
                 'defaults_info' => 'Više opcija naslovnice bit će dostupno u budućnosti',
+                'holdover_remove_confirm' => "",
+
                 'upload' => [
                     'broken_file' => 'Obrada slike nije uspjela. Provjeri učitanu sliku i pokušaj ponovno.',
                     'button' => 'Postavi sliku',
