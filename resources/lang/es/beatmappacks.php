@@ -43,7 +43,7 @@ return [
     ],
 
     'require_login' => [
-        '_' => 'Necesitas tener la :link para descargar',
+        '_' => 'Necesitas tener el :link para descargar',
         'link_text' => 'sesión iniciada',
     ],
 ];

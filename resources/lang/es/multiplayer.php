@@ -6,7 +6,7 @@
 return [
     'empty' => [
         '_' => '¡Aún no se ha jugado ninguna partida de :type_group en osu!(lazer)!',
-        'playlists' => 'lista de juego',
+        'playlists' => 'listas de reproducción',
         'realtime' => 'multijugador',
     ],
 

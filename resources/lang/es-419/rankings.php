@@ -39,8 +39,8 @@ return [
 
     'seasons' => [
         'empty' => 'Todavía no hay salas en esta temporada.',
-        'ongoing' => 'Esta temporada aún está en curso (se añadirán más listas de juego).',
-        'room_count' => 'Número de listas de juego',
+        'ongoing' => 'Esta temporada aún está en curso (se añadirán más listas de reproducción).',
+        'room_count' => 'Número de listas de reproducción',
         'url' => 'Mostrar más información sobre esa temporada.',
     ],
 
