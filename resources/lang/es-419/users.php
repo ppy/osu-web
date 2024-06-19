@@ -347,7 +347,7 @@ return [
                 'title' => 'Medallas',
             ],
             'playlists' => [
-                'title' => 'Partidas de listas de juego',
+                'title' => 'Partidas de listas de reproducción',
             ],
             'posts' => [
                 'title' => 'Publicaciones',

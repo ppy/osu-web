@@ -51,7 +51,7 @@ return [
 
         'users' => [
             'modding' => 'modding',
-            'playlists' => 'listas de juego',
+            'playlists' => 'listas de reproducción',
             'realtime' => 'multijugador',
             'show' => 'información',
         ],

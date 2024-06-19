@@ -55,7 +55,7 @@ return [
 
         'requirement' => [
             'playlist_beatmapsets' => [
-                'incomplete_play' => 'Debes jugar todos los mapas en las listas de juego especificadas antes de votar',
+                'incomplete_play' => 'Debes jugar todos los mapas en las listas de reproducción especificadas antes de votar',
             ],
         ],
     ],

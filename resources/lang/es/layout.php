@@ -35,7 +35,7 @@ return [
         ],
 
         'help' => [
-            'index' => 'índice',
+            'index' => 'listado',
             'sitemap' => 'Mapa del sitio',
         ],
 
@@ -51,7 +51,7 @@ return [
 
         'users' => [
             'modding' => 'modding',
-            'playlists' => 'listas de juego',
+            'playlists' => 'listas de reproducción',
             'realtime' => 'multijugador',
             'show' => 'información',
         ],
