@@ -30,7 +30,10 @@ class PaymentCompleted
             app('sentry')->getClient()->captureMessage(
                 'Trying to send mail for unpaid order',
                 Severity::warning(),
-                (new Scope())->setExtra('order_id', $this->order->getKey())
+                (new Scope())->setContext(
+                    'order',
+                    $this->order->only('id', 'provider', 'reference', 'status', 'transaction_id', 'user_id'),
+                )
             );
 
             return;

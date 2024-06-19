@@ -40,7 +40,10 @@ class SupporterTagEvent implements HasOrder, MessageableEvent
                 app('sentry')->getClient()->captureMessage(
                     'SupporterTagEvent order contains non supporter-tag items.',
                     null,
-                    (new Scope())->setExtra('order_id', $this->order->order_id)
+                    (new Scope())->setContext(
+                        'order',
+                        $this->order->only('id', 'provider', 'reference', 'status', 'transaction_id', 'user_id'),
+                    )
                 );
 
                 continue;
