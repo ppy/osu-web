@@ -59,7 +59,7 @@ class CountryStatistics extends Model
 
             foreach ($userPerformances as $userPerformance) {
                 $totalPerformance += $userPerformance->rank_score * $factor;
-                $factor *= 0.95;
+                $factor *= $GLOBALS['cfg']['osu']['rankings']['country_performance_weighting_factor'];
             }
 
             self::updateOrCreate($conds, [
