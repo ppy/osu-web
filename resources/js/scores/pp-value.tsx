@@ -11,28 +11,30 @@ interface Props {
   suffix?: React.ReactNode;
 }
 
-export default function PpValue(props: Props) {
-  const [title, content] = getTitleAndContent(props);
-
-  return <span title={title}>{content}</span>;
-}
-
-function getTitleAndContent({ score, suffix }: Props): [string, React.ReactNode] {
+export default function PpValue({ score, suffix }: Props) {
   if (score.type !== 'solo_score' && score.best_id == null) {
-    return [trans('scores.status.non_best'), '-'];
+    return <span title={trans('scores.status.non_best')}>-</span>;
   }
 
   if (
     score.type === 'solo_score' &&
     (!score.preserve || !score.ranked || (score.pp == null && score.processed))
   ) {
-    return [trans('scores.status.no_pp'), '-'];
+    return <span title={trans('scores.status.no_pp')}>-</span>;
   }
 
   if (score.pp == null) {
-    // eslint-disable-next-line react/jsx-key
-    return [trans('scores.status.processing'), <span className='fas fa-sync' />];
+    return (
+      <span title={trans('scores.status.processing')}>
+        <span className='fas fa-sync' />
+      </span>
+    );
   }
 
-  return [formatNumber(score.pp), <>{formatNumber(Math.round(score.pp))}{suffix}</>];
+  return (
+    <span title={formatNumber(score.pp)}>
+      {formatNumber(Math.round(score.pp))}
+      {suffix}
+    </span>
+  );
 }
