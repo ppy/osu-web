@@ -12,22 +12,6 @@ use Tests\TestCase;
 class ScoringModeTest extends TestCase
 {
     /**
-     * @dataProvider classicScoreConversionDataProvider
-     */
-    public function testConvertToClassic(int $standardisedScore, int $classicScore, string $maxHitResult): void
-    {
-        // Hardcoded by the referenced test
-        static $maxHitResultCount = 4;
-        static $ruleset = Ruleset::osu;
-
-        $score = Score::factory()
-            ->withData(['maximum_statistics' => [$maxHitResult => $maxHitResultCount]])
-            ->make(['ruleset_id' => $ruleset->value, 'total_score' => $standardisedScore]);
-
-        $this->assertSame($classicScore, $score->getClassicTotalScore());
-    }
-
-    /**
      * @see https://github.com/ppy/osu/blob/b535f7c51916ed09231b78aa422e6488cf9a2a12/osu.Game.Tests/Rulesets/Scoring/ScoreProcessorTest.cs#L77-L102 Client reference
      */
     public static function classicScoreConversionDataProvider(): array
@@ -47,5 +31,21 @@ class ScoringModeTest extends TestCase
             [1_000_030, 100_003, 'small_bonus'],
             [1_000_150, 100_015, 'large_bonus'],
         ];
+    }
+
+    /**
+     * @dataProvider classicScoreConversionDataProvider
+     */
+    public function testConvertToClassic(int $standardisedScore, int $classicScore, string $maxHitResult): void
+    {
+        // Hardcoded by the referenced test
+        static $maxHitResultCount = 4;
+        static $ruleset = Ruleset::osu;
+
+        $score = Score::factory()
+            ->withData(['maximum_statistics' => [$maxHitResult => $maxHitResultCount]])
+            ->make(['ruleset_id' => $ruleset->value, 'total_score' => $standardisedScore]);
+
+        $this->assertSame($classicScore, $score->getClassicTotalScore());
     }
 }
