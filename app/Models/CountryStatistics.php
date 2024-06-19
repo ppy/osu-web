@@ -47,6 +47,9 @@ class CountryStatistics extends Model
                 ::select('rank_score')
                 ->where('country_acronym', $countryAcronym)
                 ->where('rank_score', '>', 0)
+                ->whereHas('user', function ($userQuery) {
+                    return $userQuery->default();
+                })
                 ->orderBy('rank_score', 'desc')
                 ->limit($GLOBALS['cfg']['osu']['rankings']['country_performance_user_count'])
                 ->get();
