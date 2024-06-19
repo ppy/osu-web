@@ -23,29 +23,20 @@ class ScoringMode
     {
         // Keep in mind when translating this code from client that PHP and C#
         // have different behaviour for numeric type conversion and rounding
-
-        switch ($ruleset) {
-            case Ruleset::osu:
-                return round(
-                    ($objectCount ** 2 * 32.57 + 100000) * $standardisedScore / self::MAX_SCORE,
-                    mode: PHP_ROUND_HALF_EVEN,
-                );
-
-            case Ruleset::taiko:
-                return round(
-                    ($objectCount * 1109 + 100000) * $standardisedScore / self::MAX_SCORE,
-                    mode: PHP_ROUND_HALF_EVEN,
-                );
-
-            case Ruleset::catch:
-                return round(
-                    ($standardisedScore / self::MAX_SCORE * $objectCount) ** 2 * 21.62 + $standardisedScore / 10,
-                    mode: PHP_ROUND_HALF_EVEN,
-                );
-
-            case Ruleset::mania:
-            default:
-                return $standardisedScore;
-        }
+        return match ($ruleset) {
+            Ruleset::osu => (int)round(
+                ($objectCount ** 2 * 32.57 + 100000) * $standardisedScore / self::MAX_SCORE,
+                mode: PHP_ROUND_HALF_EVEN,
+            ),
+            Ruleset::taiko => (int)round(
+                ($objectCount * 1109 + 100000) * $standardisedScore / self::MAX_SCORE,
+                mode: PHP_ROUND_HALF_EVEN,
+            ),
+            Ruleset::catch => (int)round(
+                ($standardisedScore / self::MAX_SCORE * $objectCount) ** 2 * 21.62 + $standardisedScore / 10,
+                mode: PHP_ROUND_HALF_EVEN,
+            ),
+            default => $standardisedScore,
+        };
     }
 }
