@@ -37,16 +37,20 @@ class CountryStatistics extends Model
             })->select(DB::raw('sum(ranked_score) AS ranked_score, sum(playcount) AS playcount, count(*) AS usercount, sum(rank_score) AS rank_score'))
             ->first();
 
+        $conds = [
+            'country_code' => $countryAcronym,
+            'mode' => $modeInt,
+        ];
+
         if ($stats->ranked_score > 0) {
-            self::updateOrCreate([
-                'country_code' => $countryAcronym,
-                'mode' => $modeInt,
-            ], [
+            self::updateOrCreate($conds, [
                 'ranked_score' => $stats->ranked_score,
                 'play_count' => $stats->playcount,
                 'user_count' => $stats->usercount,
                 'performance' => $stats->rank_score,
             ]);
+        } else {
+            self::where($conds)->delete();
         }
     }
 }
