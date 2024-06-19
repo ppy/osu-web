@@ -3,26 +3,14 @@
 
 import SoloScoreJson from 'interfaces/solo-score-json';
 import { observer } from 'mobx-react';
-import core from 'osu-core-singleton';
 import * as React from 'react';
 import { formatNumber } from 'utils/html';
+import { totalScore } from 'utils/score-helper';
 
 interface Props {
   score: SoloScoreJson;
 }
 
-const ScoreValue = observer(({ score }: Props) => {
-  let value: number;
-
-  if (score.legacy_score_id !== null && core.userPreferences.get('legacy_score_only')) {
-    value = score.legacy_total_score;
-  } else if (score.type === 'solo_score' && core.userPreferences.get('scoring_mode') === 'classic') {
-    value = score.classic_total_score;
-  } else {
-    value = score.total_score;
-  }
-
-  return <>{formatNumber(value)}</>;
-});
+const ScoreValue = observer(({ score }: Props) => <>{formatNumber(totalScore(score))}</>);
 
 export default ScoreValue;

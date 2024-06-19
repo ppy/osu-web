@@ -138,3 +138,15 @@ export function scoreUrl(score: SoloScoreJson) {
 function shouldReturnLegacyValue(score: SoloScoreJson) {
   return score.legacy_score_id !== null && core.userPreferences.get('legacy_score_only');
 }
+
+export function totalScore(score: SoloScoreJson) {
+  if (shouldReturnLegacyValue(score)) {
+    return score.legacy_total_score;
+  }
+
+  if (score.type === 'solo_score' && core.userPreferences.get('scoring_mode') === 'classic') {
+    return score.classic_total_score;
+  }
+
+  return score.total_score;
+}
