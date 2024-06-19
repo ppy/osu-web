@@ -200,6 +200,8 @@ return [
             'cover' => [
                 'button' => 'Muuta profiilin kansikuvaa',
                 'defaults_info' => 'Lisää kansikuvavaihtoehtoja tulee olemaan saatavilla tulevaisuudessa',
+                'holdover_remove_confirm' => "",
+
                 'upload' => [
                     'broken_file' => 'Kuvan käsittely epäonnistui. Varmista lähetetty kuva ja kokeile uudestaan.',
                     'button' => 'Lataa kuva',

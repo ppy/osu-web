@@ -24,6 +24,11 @@ return [
         'title' => ':username の投稿を報告しますか？',
     ],
 
+    'message' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'scores' => [
         'button' => 'スコアを報告',
         'title' => ':username のスコアを報告しますか？',

@@ -200,6 +200,8 @@ return [
             'cover' => [
                 'button' => 'Skift Coverbillede',
                 'defaults_info' => 'Flere muligheder for coverbillede kommer snart',
+                'holdover_remove_confirm' => "",
+
                 'upload' => [
                     'broken_file' => 'Kunne ikke uploade billedet. Prøv igen.',
                     'button' => 'Upload billede',

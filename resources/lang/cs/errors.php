@@ -33,4 +33,7 @@ return [
         'invalid_cursor_exception' => 'Zadán neplatný parametr kurzoru.',
         'operation_timeout_exception' => 'Hledání je v současné době zaneprázdněnější, než obvykle, opakujte akci později.',
     ],
+    'user_report' => [
+        'recently_reported' => "",
+    ],
 ];

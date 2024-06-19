@@ -33,4 +33,7 @@ return [
         'invalid_cursor_exception' => 'Virheellinen kohdistimen parametri määritetty.',
         'operation_timeout_exception' => 'Haku on tavallista ruuhkaisempi, yritä myöhemmin uudelleen.',
     ],
+    'user_report' => [
+        'recently_reported' => "",
+    ],
 ];

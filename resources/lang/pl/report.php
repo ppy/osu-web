@@ -24,6 +24,11 @@ return [
         'title' => 'Zgłosić post użytkownika :username?',
     ],
 
+    'message' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'scores' => [
         'button' => 'Zgłoś wynik',
         'title' => 'Zgłosić wynik gracza :username?',

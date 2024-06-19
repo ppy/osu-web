@@ -33,4 +33,7 @@ return [
         'invalid_cursor_exception' => 'Parâmetro do cursor inválido.',
         'operation_timeout_exception' => 'De momento, a pesquisa está mais ocupada que o habitual, tenta outra vez mais tarde.',
     ],
+    'user_report' => [
+        'recently_reported' => "",
+    ],
 ];

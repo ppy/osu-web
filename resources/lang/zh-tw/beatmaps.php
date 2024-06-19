@@ -283,7 +283,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
-        'undefined' => '',
+        'undefined' => '未設定',
     ],
     'status' => [
         'any' => '所有',

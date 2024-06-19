@@ -33,4 +33,7 @@ return [
         'invalid_cursor_exception' => 'Norādīts nepareizs kursora parametrs.',
         'operation_timeout_exception' => 'Meklēšana pašlaik ir aizņemtāka nekā parasti, mēģiniet vēlreiz vēlāk.',
     ],
+    'user_report' => [
+        'recently_reported' => "",
+    ],
 ];

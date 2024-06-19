@@ -33,4 +33,7 @@ return [
         'invalid_cursor_exception' => 'Καθορίστηκε μη έγκυρη παράμετρος δρομέα.',
         'operation_timeout_exception' => 'Η αναζήτηση αυτή τη στιγμή είναι πιο έντονη από το συνηθισμένο, δοκιμάστε ξανά αργότερα.',
     ],
+    'user_report' => [
+        'recently_reported' => "",
+    ],
 ];

@@ -200,6 +200,8 @@ return [
             'cover' => [
                 'button' => '',
                 'defaults_info' => '',
+                'holdover_remove_confirm' => "",
+
                 'upload' => [
                     'broken_file' => '',
                     'button' => '',

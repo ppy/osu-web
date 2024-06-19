@@ -33,4 +33,7 @@ return [
         'invalid_cursor_exception' => 'Hindi wasto ang tinukoy na parameter ng cursor.',
         'operation_timeout_exception' => 'Ang paghahanap ay kasalukuyang mas abala kaysa karaniwan, subukan muli sa ibang pagkakataon.',
     ],
+    'user_report' => [
+        'recently_reported' => "",
+    ],
 ];

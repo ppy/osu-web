@@ -24,6 +24,11 @@ return [
         'title' => 'Nahlásit příspěvek uživatele :username?',
     ],
 
+    'message' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'scores' => [
         'button' => 'Nahlásit skóre',
         'title' => 'Nahlásit skóre uživatele :username?',

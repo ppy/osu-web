@@ -200,6 +200,8 @@ return [
             'cover' => [
                 'button' => 'Mudar a capa do perfil',
                 'defaults_info' => 'Mais opções de capa estarão disponíveis no futuro',
+                'holdover_remove_confirm' => "",
+
                 'upload' => [
                     'broken_file' => 'Falha ao processar a imagem. Verifica a imagem carregada e tenta outra vez.',
                     'button' => 'Carregar imagem',
