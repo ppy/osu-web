@@ -8,10 +8,10 @@ import { trans } from 'utils/lang';
 
 interface Entry {
   count?: number;
+  countTooltip?: string;
   disabled: boolean;
   href?: string;
   mode: Ruleset;
-  tooltip?: string;
 }
 
 interface Props {
@@ -59,7 +59,7 @@ export default class PlaymodeTabs extends React.Component<Props> {
             <span className='fas fa-star' />
           </span>
         }
-        {entry.count != null && <span className='game-mode-link__badge' title={entry.tooltip}>{entry.count}</span>}
+        {entry.count != null && <span className='game-mode-link__badge' title={entry.countTooltip}>{entry.count}</span>}
       </>
     );
 

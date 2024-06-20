@@ -71,9 +71,9 @@ export class Header extends React.Component<Props> {
               currentMode={this.currentBeatmap.mode}
               entries={rulesets.map((mode) => ({
                 count: this.discussionsState.unresolvedDiscussionCounts.byMode[mode],
+                countTooltip: transChoice('beatmaps.discussions.unresolved_count', this.discussionsState.unresolvedDiscussionCounts.byMode[mode] ?? 0),
                 disabled: (this.discussionsState.groupedBeatmaps.get(mode)?.length ?? 0) === 0,
                 mode,
-                tooltip: transChoice('beatmaps.discussions.unresolved_count', this.discussionsState.unresolvedDiscussionCounts.byMode[mode] ?? 0),
               }))}
               modifiers='beatmapset'
               onClick={this.onClickMode}
