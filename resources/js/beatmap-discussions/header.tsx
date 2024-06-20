@@ -19,7 +19,7 @@ import { observer } from 'mobx-react';
 import { deletedUserJson } from 'models/user';
 import * as React from 'react';
 import { getArtist, getTitle } from 'utils/beatmapset-helper';
-import { trans } from 'utils/lang';
+import { trans, transChoice } from 'utils/lang';
 import BeatmapList from './beatmap-list';
 import Chart from './chart';
 import DiscussionsState from './discussions-state';
@@ -73,6 +73,7 @@ export class Header extends React.Component<Props> {
                 count: this.discussionsState.unresolvedDiscussionCounts.byMode[mode],
                 disabled: (this.discussionsState.groupedBeatmaps.get(mode)?.length ?? 0) === 0,
                 mode,
+                tooltip: transChoice('beatmaps.discussions.unresolved_count', this.discussionsState.unresolvedDiscussionCounts.byMode[mode] ?? 0),
               }))}
               modifiers='beatmapset'
               onClick={this.onClickMode}
