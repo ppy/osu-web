@@ -33,11 +33,10 @@ export default class SearchForm extends React.Component<Props> {
     return (
       <form className={bn} data-loading-overlay='0' onSubmit={this.onSubmit}>
         <div className={`${bn}__content ${bn}__content--inputs`}>
-          <InputContainer for={`${bn}-group`} labelKey='group_history.form.group' modifiers='group-history-wide'>
+          <InputContainer labelKey='group_history.form.group' modifiers='group-history-wide'>
             <div className='form-select form-select--group-history'>
               <select
                 className='form-select__input'
-                id={`${bn}-group`}
                 name='group'
                 onChange={this.onChange}
                 value={this.props.newParams.group ?? ''}
@@ -53,30 +52,27 @@ export default class SearchForm extends React.Component<Props> {
               </select>
             </div>
           </InputContainer>
-          <InputContainer for={`${bn}-user`} labelKey='group_history.form.user' modifiers='group-history-wide'>
+          <InputContainer labelKey='group_history.form.user' modifiers='group-history-wide'>
             <input
               className={`${bn}__input`}
-              id={`${bn}-user`}
               name='user'
               onChange={this.onChange}
               placeholder={trans('group_history.form.user_prompt')}
               value={this.props.newParams.user ?? ''}
             />
           </InputContainer>
-          <InputContainer for={`${bn}-min_date`} labelKey='group_history.form.min_date'>
+          <InputContainer labelKey='group_history.form.min_date'>
             <input
               className={`${bn}__input`}
-              id={`${bn}-min_date`}
               name='min_date'
               onChange={this.onChange}
               type='date'
               value={this.props.newParams.min_date ?? ''}
             />
           </InputContainer>
-          <InputContainer for={`${bn}-max_date`} labelKey='group_history.form.max_date'>
+          <InputContainer labelKey='group_history.form.max_date'>
             <input
               className={`${bn}__input`}
-              id={`${bn}-max_date`}
               name='max_date'
               onChange={this.onChange}
               type='date'
