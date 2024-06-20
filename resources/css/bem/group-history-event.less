@@ -2,32 +2,25 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .group-history-event {
-  --message-weight: normal;
   align-items: center;
   display: flex;
   font-size: @font-size--title-small;
   gap: 15px;
 
-  @bold-events: group_add, group_remove, group_rename;
-  each(@bold-events, {
-    &--@{value} {
-      --message-weight: bold;
-    }
-  });
-
   @icons: {
-    group_add: @fa-var-users;
-    group_remove: @fa-var-users-slash;
-    group_rename: @fa-var-users-cog;
-    user_add: @fa-var-user-plus;
-    user_add_playmodes: @fa-var-user-tag;
-    user_remove: @fa-var-user-minus;
-    user_remove_playmodes: @fa-var-user-tag;
-    user_set_default: @fa-var-user-cog;
+    group_add: @fa-var-users, bold;
+    group_remove: @fa-var-users-slash, bold;
+    group_rename: @fa-var-users-cog, bold;
+    user_add: @fa-var-user-plus, normal;
+    user_add_playmodes: @fa-var-user-tag, normal;
+    user_remove: @fa-var-user-minus, normal;
+    user_remove_playmodes: @fa-var-user-tag, normal;
+    user_set_default: @fa-var-user-cog, normal;
   };
   each(@icons, {
     &--@{key} {
-      --icon: @value;
+      --icon: extract(@value, 1);
+      --message-weight: extract(@value, 2);
     }
   });
 
