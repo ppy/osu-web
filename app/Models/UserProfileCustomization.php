@@ -31,6 +31,7 @@ class UserProfileCustomization extends Model
         'forum_posts_show_deleted' => true,
         'legacy_score_only' => false,
         'profile_cover_expanded' => true,
+        'scoring_mode' => self::SCORING_MODES[0],
         'user_list_filter' => self::USER_LIST['filters']['default'],
         'user_list_sort' => self::USER_LIST['sorts']['default'],
         'user_list_view' => self::USER_LIST['views']['default'],
@@ -52,6 +53,8 @@ class UserProfileCustomization extends Model
     const BEATMAPSET_CARD_SIZES = ['normal', 'extra'];
 
     const BEATMAPSET_DOWNLOAD = ['all', 'no_video', 'direct'];
+
+    public const array SCORING_MODES = ['standardised', 'classic'];
 
     const USER_LIST = [
         'filters' => ['all' => ['all', 'online', 'offline'], 'default' => 'all'],
@@ -214,6 +217,20 @@ class UserProfileCustomization extends Model
     public function setLegacyScoreOnlyAttribute($value): void
     {
         $this->setOption('legacy_score_only', get_bool($value));
+    }
+
+    public function getScoringModeAttribute(): string
+    {
+        return $this->options['scoring_mode'] ?? static::DEFAULTS['scoring_mode'];
+    }
+
+    public function setScoringModeAttribute($value): void
+    {
+        if ($value !== null && !in_array($value, static::SCORING_MODES, true)) {
+            $value = null;
+        }
+
+        $this->setOption('scoring_mode', $value);
     }
 
     public function getUserListFilterAttribute()

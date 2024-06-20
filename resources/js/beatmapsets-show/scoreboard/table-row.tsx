@@ -4,6 +4,7 @@
 import FlagCountry from 'components/flag-country';
 import Mod from 'components/mod';
 import { PlayDetailMenu } from 'components/play-detail-menu';
+import ScoreValue from 'components/score-value';
 import ScoreboardTime from 'components/scoreboard-time';
 import BeatmapJson from 'interfaces/beatmap-json';
 import { SoloScoreJsonForBeatmap } from 'interfaces/solo-score-json';
@@ -16,7 +17,7 @@ import PpValue from 'scores/pp-value';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
-import { accuracy, filterMods, hasMenu, isPerfectCombo, attributeDisplayTotals, rank, scoreUrl, totalScore } from 'utils/score-helper';
+import { accuracy, filterMods, hasMenu, isPerfectCombo, attributeDisplayTotals, rank, scoreUrl } from 'utils/score-helper';
 
 const bn = 'beatmap-scoreboard-table';
 
@@ -84,7 +85,7 @@ export default class ScoreboardTableRow extends React.Component<Props> {
         </TdLink>
 
         <TdLink href={this.scoreUrl} modifiers='score'>
-          {formatNumber(totalScore(score))}
+          <ScoreValue score={score} />
         </TdLink>
 
         <TdLink href={this.scoreUrl} modifiers={{ perfect: scoreAccuracy === 1 }}>
