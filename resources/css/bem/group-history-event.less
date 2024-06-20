@@ -7,7 +7,7 @@
   font-size: @font-size--title-small;
   gap: 15px;
 
-  @icons: {
+  @types: {
     group_add: @fa-var-users, bold;
     group_remove: @fa-var-users-slash, bold;
     group_rename: @fa-var-users-cog, bold;
@@ -17,7 +17,7 @@
     user_remove_playmodes: @fa-var-user-tag, normal;
     user_set_default: @fa-var-user-cog, normal;
   };
-  each(@icons, {
+  each(@types, {
     &--@{key} {
       --icon: extract(@value, 1);
       --message-weight: extract(@value, 2);
