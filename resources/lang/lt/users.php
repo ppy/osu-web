@@ -200,6 +200,8 @@ return [
             'cover' => [
                 'button' => 'Keisti profilio viršelį',
                 'defaults_info' => 'Daugiau viršelio pasirinkimų pridėsime ateityje',
+                'holdover_remove_confirm' => "",
+
                 'upload' => [
                     'broken_file' => 'Nepavyko apdoroti paveiksliuko. Patikrink įkeltą paveiksliuką ir mėgink dar kart.',
                     'button' => 'Įkelti paveiksliuką',

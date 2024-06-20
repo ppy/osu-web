@@ -200,6 +200,8 @@ return [
             'cover' => [
                 'button' => '變更個人簡介封面',
                 'defaults_info' => '未來將提供更多的封面選項',
+                'holdover_remove_confirm' => "",
+
                 'upload' => [
                     'broken_file' => '上傳失敗。請檢查上傳的圖片並重試.',
                     'button' => '上傳圖片',

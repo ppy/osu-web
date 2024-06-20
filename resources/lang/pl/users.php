@@ -201,6 +201,8 @@ return [
             'cover' => [
                 'button' => 'Zmień tło profilu',
                 'defaults_info' => 'Więcej teł pojawi się w przyszłości',
+                'holdover_remove_confirm' => "",
+
                 'upload' => [
                     'broken_file' => 'Nie udało się przetworzyć pliku. Zweryfikuj plik i spróbuj ponownie.',
                     'button' => 'Dodaj tło',

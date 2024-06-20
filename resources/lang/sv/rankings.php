@@ -24,7 +24,7 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => '',
+        'insufficient_history' => 'Denna spelare har mindre än 30 dagar av nylig rankinghistorik.',
     ],
 
     'type' => [

@@ -33,4 +33,7 @@ return [
         'invalid_cursor_exception' => 'Określono nieprawidłowy parametr kursora. ',
         'operation_timeout_exception' => 'Wyszukiwanie jest obecnie bardziej obciążone niż zwykle, spróbuj ponownie później.',
     ],
+    'user_report' => [
+        'recently_reported' => "",
+    ],
 ];

@@ -200,6 +200,8 @@ return [
             'cover' => [
                 'button' => 'Spremeni naslovno sliko profila',
                 'defaults_info' => 'Več možnosti za naslovne slike bo na voljo v prihodnosti',
+                'holdover_remove_confirm' => "",
+
                 'upload' => [
                     'broken_file' => 'Neuspešna obdelava slike. Preveri naloženo sliko in poskusi znova.',
                     'button' => 'Naloži sliko',

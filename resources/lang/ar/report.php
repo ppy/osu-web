@@ -24,6 +24,11 @@ return [
         'title' => 'الاِبلاغ عن منشور :username؟',
     ],
 
+    'message' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'scores' => [
         'button' => 'الاِبلاغ عن النتيجة',
         'title' => 'الاِبلاغ عن نتيجة :username ؟',

@@ -24,7 +24,7 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => '',
+        'insufficient_history' => 'Pengguna ini memiliki riwayat peringkat terkini yang kurang dari 30 hari.',
     ],
 
     'type' => [

@@ -283,7 +283,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
-        'undefined' => '',
+        'undefined' => '未设置',
     ],
     'status' => [
         'any' => '全部',
@@ -300,7 +300,7 @@ return [
     ],
     'genre' => [
         'any' => '全部',
-        'unspecified' => '不限',
+        'unspecified' => '未指定',
         'video-game' => '电子游戏',
         'anime' => '动漫',
         'rock' => '摇滚',
@@ -329,7 +329,7 @@ return [
         'polish' => '波兰语',
         'instrumental' => '器乐',
         'other' => '其他',
-        'unspecified' => '不限',
+        'unspecified' => '未指定',
     ],
 
     'nsfw' => [

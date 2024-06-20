@@ -33,4 +33,7 @@ return [
         'invalid_cursor_exception' => 'Geçersiz imleç parametresi belirtildi.',
         'operation_timeout_exception' => 'Arama, şu an her zamankinden daha yoğun, lütfen sonra tekrar deneyiniz.',
     ],
+    'user_report' => [
+        'recently_reported' => "",
+    ],
 ];

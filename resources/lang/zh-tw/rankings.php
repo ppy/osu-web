@@ -24,7 +24,7 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => '',
+        'insufficient_history' => '這個使用者擁有少於30天的排行紀錄。',
     ],
 
     'type' => [

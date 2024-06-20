@@ -33,4 +33,7 @@ return [
         'invalid_cursor_exception' => 'Избрана е невалидна стойност за курсор.',
         'operation_timeout_exception' => 'Търсенето в момента е по-натоварено от обикновено, опитайте отново по-късно.',
     ],
+    'user_report' => [
+        'recently_reported' => "",
+    ],
 ];

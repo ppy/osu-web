@@ -283,7 +283,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
-        'undefined' => '',
+        'undefined' => 'nincs beállítva',
     ],
     'status' => [
         'any' => 'Bármelyik',

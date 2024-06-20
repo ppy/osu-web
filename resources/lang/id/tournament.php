@@ -27,7 +27,7 @@ return [
         'entered' => 'Kamu telah terdaftar pada turnamen ini.<br><br>Mohon diperhatikan bahwa hal ini <b>tidak</b> berarti bahwa kamu telah ditempatkan ke dalam tim tertentu. <br><br>Kami akan mengirimkanmu instruksi lebih lanjut melalui email sebelum turnamen dimulai, jadi pastikan alamat email yang terhubung dengan akun osu! milikmu dapat dihubungi!',
         'info_page' => 'Laman Informasi',
         'login_to_register' => 'Harap :login untuk melihat rincian pendaftaran!',
-        'not_yet_entered' => 'Kamu tidak terdaftar pada turnamen ini.',
+        'not_yet_entered' => 'Anda tidak terdaftar pada turnamen ini.',
         'rank_too_low' => 'Maaf, kamu tidak berada dalam rentang peringkat yang dipersyaratkan oleh turnamen ini!',
         'registration_ends' => 'Pendaftaran akan ditutup pada tanggal :date',
 
