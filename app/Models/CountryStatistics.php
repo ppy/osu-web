@@ -29,12 +29,13 @@ class CountryStatistics extends Model
 
     public static function recalculate($countryAcronym, $modeInt)
     {
-        $stats = UserStatistics\Model::getClass(Beatmap::modeStr($modeInt))
+        $statisticsQuery = UserStatistics\Model::getClass(Beatmap::modeStr($modeInt))
             ::where('country_acronym', $countryAcronym)
             ->where('rank_score', '>', 0)
-            ->whereHas('user', function ($userQuery) {
-                return $userQuery->default();
-            })->select(DB::raw('sum(ranked_score) AS ranked_score, sum(playcount) AS playcount, count(*) AS usercount'))
+            ->whereHas('user', fn ($userQuery) => $userQuery->default());
+
+        $stats = $statisticsQuery
+            ->select(DB::raw('sum(ranked_score) AS ranked_score, sum(playcount) AS playcount, count(*) AS usercount'))
             ->first();
 
         $conds = [
@@ -43,13 +44,8 @@ class CountryStatistics extends Model
         ];
 
         if ($stats->ranked_score > 0) {
-            $userPerformances = UserStatistics\Model::getClass(Beatmap::modeStr($modeInt))
-                ::select('rank_score')
-                ->where('country_acronym', $countryAcronym)
-                ->where('rank_score', '>', 0)
-                ->whereHas('user', function ($userQuery) {
-                    return $userQuery->default();
-                })
+            $userPerformances = $statisticsQuery->clone()
+                ->select('rank_score')
                 ->orderBy('rank_score', 'desc')
                 ->limit($GLOBALS['cfg']['osu']['rankings']['country_performance_user_count'])
                 ->get();
