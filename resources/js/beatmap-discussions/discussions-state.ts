@@ -355,7 +355,12 @@ export default class DiscussionsState {
     this.currentBeatmapId = (findDefault({ group: this.groupedBeatmaps }) ?? this.firstBeatmap).id;
 
     // Current url takes priority over saved state.
-    const query = parseUrl(null, store.beatmapset.discussions);
+    const query = parseUrl(
+      null,
+      store.beatmapset.discussions,
+      store.beatmapset.ranked > 0 ? 'praises' : 'pending',
+    );
+
     if (query != null) {
       // TODO: maybe die instead?
       this.currentPage = query.mode;

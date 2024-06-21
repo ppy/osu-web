@@ -66,8 +66,6 @@ interface PropsFromHrefValue {
   target?: '_blank';
 }
 
-export const defaultFilter = 'total';
-
 // parseUrl and makeUrl lookups
 const filterLookup = new Set<unknown>(filters);
 const generalPages = new Set<unknown>(['events', 'generalAll', 'reviews']);
@@ -283,7 +281,7 @@ export function parseTimestamp(message?: string | null) {
   return (timestamp[2] * 60 + timestamp[3]) * 1000 + timestamp[4];
 }
 
-export function parseUrl(urlString?: string | null, discussions?: BeatmapsetDiscussionJson[] | null) {
+export function parseUrl(urlString?: string | null, discussions?: BeatmapsetDiscussionJson[] | null, defaultFilter: Filter = 'total') {
   const url = new URL(urlString ?? currentUrl().href);
 
   const [, pathBeatmapsets, beatmapsetIdString, pathDiscussions, beatmapIdString, mode, filter] = url.pathname.split(/\/+/);
@@ -298,7 +296,7 @@ export function parseUrl(urlString?: string | null, discussions?: BeatmapsetDisc
   const ret: ParsedUrlParams = {
     beatmapId,
     beatmapsetId,
-    filter: isFilter(filter) ? filter : 'total',
+    filter: isFilter(filter) ? filter : defaultFilter,
     // empty path segments are ''
     mode: isDiscussionPage(mode) ? mode : defaultMode(beatmapId),
     user: getInt(url.searchParams.get('user')),
