@@ -214,7 +214,7 @@ export function makeUrl(options: MakeUrlOptions) {
     mode: mode ?? defaultMode(beatmapId),
   };
 
-  if (filter != null && filter !== 'total' && params.mode !== 'events') {
+  if (filter != null && params.mode !== 'events') {
     params.filter = filter;
   }
 
