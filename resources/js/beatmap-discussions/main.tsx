@@ -187,7 +187,7 @@ export default class Main extends React.Component<Props> {
     // unset filter
     const currentDiscussionsByMode = this.discussionsState.discussionsByMode[mode];
     if (currentDiscussionsByMode.find((d) => d.id === discussion.id) == null) {
-      this.discussionsState.currentFilter = 'total'; // TODO
+      this.discussionsState.currentFilter = 'total';
     }
 
     // unset user filter if new discussion would have been filtered out.
@@ -201,6 +201,9 @@ export default class Main extends React.Component<Props> {
 
     this.discussionsState.currentPage = mode;
     this.discussionsState.highlightedDiscussionId = discussion.id;
+
+    this.discussionsState.currentDiscussionId = discussion.id;
+    this.discussionsState.currentPostId = postId;
 
     window.setTimeout(() => this.jumpToAfterRender(id, postId), 0);
   }

@@ -44,8 +44,10 @@ function isFilter(value: unknown): value is Filter {
 
 export default class DiscussionsState {
   @observable currentBeatmapId: number;
-  @observable currentFilter: Filter = 'total'; // TODO: filter should always be total when page is events (also no highlight)
+  @observable currentDiscussionId?: number;
+  @observable currentFilter: Filter = 'total';
   @observable currentPage: DiscussionPage = 'general';
+  @observable currentPostId?: number;
   @observable discussionCollapsed = new Map<number, boolean>();
   @observable discussionDefaultCollapsed = false;
   @observable highlightedDiscussionId: number | null = null;
@@ -329,9 +331,12 @@ export default class DiscussionsState {
   @computed
   get url() {
     return makeUrl({
-      beatmap: this.currentBeatmap,
+      beatmapId: this.currentBeatmap.id,
+      beatmapsetId: this.currentBeatmap.beatmapset_id,
+      discussionId: this.currentDiscussionId, // TODO: use discussion
       filter: this.currentFilter,
       mode: this.currentPage,
+      postId: this.currentPostId,
       user: this.selectedUserId ?? undefined,
     });
   }
