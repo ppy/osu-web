@@ -178,7 +178,7 @@ export default class Main extends React.Component<Props> {
 
   @action
   private jumpTo(id: number, postId?: number) {
-    this.discussionsState.jumpTo(id, postId);
+    this.discussionsState.changeToDiscussion(id, postId);
 
     window.setTimeout(() => this.jumpToAfterRender(id, postId), 0);
   }

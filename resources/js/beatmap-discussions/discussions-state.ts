@@ -436,12 +436,8 @@ export default class DiscussionsState {
     this.currentPostId = undefined;
   }
 
-  destroy() {
-    this.urlStateDisposer();
-  }
-
   @action
-  jumpTo(discussionId: number, postId?: number) {
+  changeToDiscussion(discussionId: number, postId?: number) {
     const discussion = this.store.discussions.get(discussionId);
 
     if (discussion == null) return;
@@ -451,7 +447,7 @@ export default class DiscussionsState {
       mode,
     } = stateFromDiscussion(discussion);
 
-    // unset filter
+    // unset type filter if discussion would have been filtered out.
     if (!this.discussionsByMode[mode].some((d) => d.id === discussion.id)) {
       this.currentFilter = 'total';
     }
@@ -470,6 +466,10 @@ export default class DiscussionsState {
 
     this.currentDiscussionId = discussion.id;
     this.currentPostId = postId;
+  }
+
+  destroy() {
+    this.urlStateDisposer();
   }
 
   @action
