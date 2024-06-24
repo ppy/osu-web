@@ -10,7 +10,7 @@ import moment from 'moment';
 import core from 'osu-core-singleton';
 import BeatmapsetDiscussionsShowStore from 'stores/beatmapset-discussions-show-store';
 import { findDefault, group, sortWithMode } from 'utils/beatmap-helper';
-import { canModeratePosts, makeUrl, parseUrl } from 'utils/beatmapset-discussion-helper';
+import { canModeratePosts, makeUrl, parseUrl, stateFromDiscussion } from 'utils/beatmapset-discussion-helper';
 import { parseJsonNullable, storeJson } from 'utils/json';
 import { Filter, filters } from './current-discussions';
 import DiscussionMode, { discussionModes } from './discussion-mode';
@@ -426,6 +426,39 @@ export default class DiscussionsState {
   }
 
   @action
+  jumpTo(discussionId: number, postId?: number) {
+    const discussion = this.store.discussions.get(discussionId);
+
+    if (discussion == null) return;
+
+    const {
+      beatmapId,
+      mode,
+    } = stateFromDiscussion(discussion);
+
+    // unset filter
+    const currentDiscussionsByMode = this.discussionsByMode[mode];
+    if (currentDiscussionsByMode.find((d) => d.id === discussion.id) == null) {
+      this.currentFilter = 'total';
+    }
+
+    // unset user filter if new discussion would have been filtered out.
+    if (this.selectedUserId != null && this.selectedUserId !== discussion.user_id) {
+      this.selectedUserId = null;
+    }
+
+    if (beatmapId != null) {
+      this.currentBeatmapId = beatmapId;
+    }
+
+    this.currentPage = mode;
+    this.highlightedDiscussionId = discussion.id;
+
+    this.currentDiscussionId = discussion.id;
+    this.currentPostId = postId;
+  }
+
+  @action
   markAsRead(ids: number | number[]) {
     if (Array.isArray(ids)) {
       ids.forEach((id) => this.readPostIds.add(id));
@@ -458,8 +491,10 @@ export default class DiscussionsState {
     // the original type when deserializing.
     return {
       currentBeatmapId: this.currentBeatmapId,
+      currentDiscussionId: this.currentDiscussionId,
       currentFilter: this.currentFilter,
       currentPage: this.currentPage,
+      currentPostId: this.currentPostId,
       discussionCollapsed: [...this.discussionCollapsed],
       discussionDefaultCollapsed: this.discussionDefaultCollapsed,
       highlightedDiscussionId: this.highlightedDiscussionId,

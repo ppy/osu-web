@@ -11,7 +11,7 @@ import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import BeatmapsetDiscussionsShowStore from 'stores/beatmapset-discussions-show-store';
-import { parseUrl, stateFromDiscussion } from 'utils/beatmapset-discussion-helper';
+import { parseUrl } from 'utils/beatmapset-discussion-helper';
 import { parseJson, storeJson } from 'utils/json';
 import { nextVal } from 'utils/seq';
 import { currentUrl } from 'utils/turbolinks';
@@ -175,35 +175,7 @@ export default class Main extends React.Component<Props> {
 
   @action
   private jumpTo(id: number, postId?: number) {
-    const discussion = this.store.discussions.get(id);
-
-    if (discussion == null) return;
-
-    const {
-      beatmapId,
-      mode,
-    } = stateFromDiscussion(discussion);
-
-    // unset filter
-    const currentDiscussionsByMode = this.discussionsState.discussionsByMode[mode];
-    if (currentDiscussionsByMode.find((d) => d.id === discussion.id) == null) {
-      this.discussionsState.currentFilter = 'total';
-    }
-
-    // unset user filter if new discussion would have been filtered out.
-    if (this.discussionsState.selectedUserId != null && this.discussionsState.selectedUserId !== discussion.user_id) {
-      this.discussionsState.selectedUserId = null;
-    }
-
-    if (beatmapId != null) {
-      this.discussionsState.currentBeatmapId = beatmapId;
-    }
-
-    this.discussionsState.currentPage = mode;
-    this.discussionsState.highlightedDiscussionId = discussion.id;
-
-    this.discussionsState.currentDiscussionId = discussion.id;
-    this.discussionsState.currentPostId = postId;
+    this.discussionsState.jumpTo(id, postId);
 
     window.setTimeout(() => this.jumpToAfterRender(id, postId), 0);
   }
