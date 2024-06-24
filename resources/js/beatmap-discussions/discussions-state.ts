@@ -331,9 +331,9 @@ export default class DiscussionsState {
   @computed
   get url() {
     return makeUrl({
-      beatmapId: this.currentBeatmap.id,
+      beatmapId: this.currentBeatmapId,
       beatmapsetId: this.currentBeatmap.beatmapset_id,
-      discussionId: this.currentDiscussionId, // TODO: use discussion
+      discussionId: this.currentDiscussionId,
       filter: this.currentFilter,
       mode: this.currentPage,
       postId: this.currentPostId,
