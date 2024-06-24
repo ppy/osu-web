@@ -71,6 +71,9 @@ export default class Main extends React.Component<Props> {
       this.disposers.add(core.reactTurbolinks.runAfterPageLoad(this.jumpToDiscussionByHash));
     }
 
+    // normalize url after first render because the default discussion filter depends on ranked state.
+    Turbolinks.controller.replaceHistory(this.discussionsState.url);
+
     this.timeoutCheckNew = window.setTimeout(this.checkNew, checkNewTimeoutDefault);
   }
 

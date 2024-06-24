@@ -373,6 +373,12 @@ export default class DiscussionsState {
       if (query.beatmapId != null) {
         this.currentBeatmapId = query.beatmapId;
       }
+
+      this.currentDiscussionId = query.discussionId;
+      if (this.currentDiscussionId != null) {
+        this.currentPostId = query.postId;
+      }
+
       this.selectedUserId = query.user ?? null;
     }
 
