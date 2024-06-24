@@ -399,6 +399,9 @@ export default class DiscussionsState {
     }
 
     this.currentPage = page;
+
+    this.currentDiscussionId = undefined;
+    this.currentPostId = undefined;
   }
 
   @action
@@ -411,6 +414,9 @@ export default class DiscussionsState {
     }
 
     this.currentFilter = filter;
+
+    this.currentDiscussionId = undefined;
+    this.currentPostId = undefined;
   }
 
   @action
@@ -419,6 +425,9 @@ export default class DiscussionsState {
     if (beatmap != null) {
       this.currentBeatmapId = beatmap.id;
     }
+
+    this.currentDiscussionId = undefined;
+    this.currentPostId = undefined;
   }
 
   destroy() {
@@ -437,8 +446,7 @@ export default class DiscussionsState {
     } = stateFromDiscussion(discussion);
 
     // unset filter
-    const currentDiscussionsByMode = this.discussionsByMode[mode];
-    if (currentDiscussionsByMode.find((d) => d.id === discussion.id) == null) {
+    if (!this.discussionsByMode[mode].some((d) => d.id === discussion.id)) {
       this.currentFilter = 'total';
     }
 
