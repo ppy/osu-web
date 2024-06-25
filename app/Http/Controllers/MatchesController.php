@@ -115,7 +115,8 @@ class MatchesController extends Controller
      *             },
      *             "timestamp": "2015-05-16T09:44:51+00:00",
      *             "user_id": null
-     *         }
+     *         },
+     *         // ...
      *     ],
      *     "users": [],
      *     "first_event_id": 484385927,
