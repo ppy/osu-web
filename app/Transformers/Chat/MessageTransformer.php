@@ -36,11 +36,6 @@ class MessageTransformer extends TransformerAbstract
             $response['uuid'] = $message->uuid;
         }
 
-        // TODO: deprecated; preserve while websocket clients reload.
-        if ($type === 'markdown') {
-            $response['content_html'] = markdown_chat($message->content);
-        }
-
         return $response;
     }
 
