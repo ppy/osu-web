@@ -97,8 +97,8 @@ class MatchesController extends Controller
      * latest_event_id | integer                     | ID of the lastest [MatchEvent](#matchevent) in the match.
      *
      * @urlParam match integer required Match ID. No-example
-     * @queryParam before integer Match events before the specified [MatchEvent.id](#matchevent). No-example
-     * @queryParam after integer Match events after the specified [MatchEvent.id](#matchevent). No-example
+     * @queryParam before integer Filter for match events before the specified [MatchEvent.id](#matchevent). No-example
+     * @queryParam after integer Filter for match events after the specified [MatchEvent.id](#matchevent). No-example
      * @queryParam limit integer Maximum number of match events (100 default, 1 minimum, 101 maximum). No-example
      * @response {
      *     "match": {
