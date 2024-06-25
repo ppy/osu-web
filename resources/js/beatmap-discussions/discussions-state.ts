@@ -10,7 +10,7 @@ import moment from 'moment';
 import core from 'osu-core-singleton';
 import BeatmapsetDiscussionsShowStore from 'stores/beatmapset-discussions-show-store';
 import { findDefault, group, sortWithMode } from 'utils/beatmap-helper';
-import { canModeratePosts, makeUrl, parseUrl } from 'utils/beatmapset-discussion-helper';
+import { canModeratePosts, makeUrl, parseUrl, stateFromDiscussion } from 'utils/beatmapset-discussion-helper';
 import { parseJsonNullable, storeJson } from 'utils/json';
 import { Filter, filters } from './current-discussions';
 import DiscussionMode, { discussionModes } from './discussion-mode';
@@ -44,8 +44,10 @@ function isFilter(value: unknown): value is Filter {
 
 export default class DiscussionsState {
   @observable currentBeatmapId: number;
-  @observable currentFilter: Filter = 'total'; // TODO: filter should always be total when page is events (also no highlight)
+  @observable currentDiscussionId?: number;
+  @observable currentFilter: Filter = 'total';
   @observable currentPage: DiscussionPage = 'general';
+  @observable currentPostId?: number;
   @observable discussionCollapsed = new Map<number, boolean>();
   @observable discussionDefaultCollapsed = false;
   @observable highlightedDiscussionId: number | null = null;
@@ -329,9 +331,12 @@ export default class DiscussionsState {
   @computed
   get url() {
     return makeUrl({
-      beatmap: this.currentBeatmap,
+      beatmapId: this.currentBeatmapId,
+      beatmapsetId: this.currentBeatmap.beatmapset_id,
+      discussionId: this.currentDiscussionId,
       filter: this.currentFilter,
       mode: this.currentPage,
+      postId: this.currentPostId,
       user: this.selectedUserId ?? undefined,
     });
   }
@@ -355,7 +360,12 @@ export default class DiscussionsState {
     this.currentBeatmapId = (findDefault({ group: this.groupedBeatmaps }) ?? this.firstBeatmap).id;
 
     // Current url takes priority over saved state.
-    const query = parseUrl(null, store.beatmapset.discussions);
+    const query = parseUrl(
+      null,
+      store.beatmapset.discussions,
+      store.beatmapset.ranked > 0 ? 'praises' : 'pending',
+    );
+
     if (query != null) {
       // TODO: maybe die instead?
       this.currentPage = query.mode;
@@ -363,6 +373,12 @@ export default class DiscussionsState {
       if (query.beatmapId != null) {
         this.currentBeatmapId = query.beatmapId;
       }
+
+      this.currentDiscussionId = query.discussionId;
+      if (this.currentDiscussionId != null) {
+        this.currentPostId = query.postId;
+      }
+
       this.selectedUserId = query.user ?? null;
     }
 
@@ -389,6 +405,9 @@ export default class DiscussionsState {
     }
 
     this.currentPage = page;
+
+    this.currentDiscussionId = undefined;
+    this.currentPostId = undefined;
   }
 
   @action
@@ -401,6 +420,9 @@ export default class DiscussionsState {
     }
 
     this.currentFilter = filter;
+
+    this.currentDiscussionId = undefined;
+    this.currentPostId = undefined;
   }
 
   @action
@@ -409,6 +431,41 @@ export default class DiscussionsState {
     if (beatmap != null) {
       this.currentBeatmapId = beatmap.id;
     }
+
+    this.currentDiscussionId = undefined;
+    this.currentPostId = undefined;
+  }
+
+  @action
+  changeToDiscussion(discussionId: number, postId?: number) {
+    const discussion = this.store.discussions.get(discussionId);
+
+    if (discussion == null) return;
+
+    const {
+      beatmapId,
+      mode,
+    } = stateFromDiscussion(discussion);
+
+    // unset type filter if discussion would have been filtered out.
+    if (!this.discussionsByMode[mode].some((d) => d.id === discussion.id)) {
+      this.currentFilter = 'total';
+    }
+
+    // unset user filter if new discussion would have been filtered out.
+    if (this.selectedUserId != null && this.selectedUserId !== discussion.user_id) {
+      this.selectedUserId = null;
+    }
+
+    if (beatmapId != null) {
+      this.currentBeatmapId = beatmapId;
+    }
+
+    this.currentPage = mode;
+    this.highlightedDiscussionId = discussion.id;
+
+    this.currentDiscussionId = discussion.id;
+    this.currentPostId = postId;
   }
 
   destroy() {
@@ -448,8 +505,10 @@ export default class DiscussionsState {
     // the original type when deserializing.
     return {
       currentBeatmapId: this.currentBeatmapId,
+      currentDiscussionId: this.currentDiscussionId,
       currentFilter: this.currentFilter,
       currentPage: this.currentPage,
+      currentPostId: this.currentPostId,
       discussionCollapsed: [...this.discussionCollapsed],
       discussionDefaultCollapsed: this.discussionDefaultCollapsed,
       highlightedDiscussionId: this.highlightedDiscussionId,
