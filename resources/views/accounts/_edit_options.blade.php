@@ -45,8 +45,8 @@
                                 </span>
 
                                 @if (!$statusIsRendered)
-                                    <div class="account-edit-entry__checkbox-status account-edit-entry__checkbox-status--left">
-                                        @include('accounts._edit_entry_status')
+                                    <div class="account-edit-entry__checkbox-status">
+                                        @include('accounts._edit_entry_status', ['modifiers' => ['left']])
                                     </div>
                                     @php
                                         $statusIsRendered = true;
@@ -76,8 +76,8 @@
                         {{ osu_trans('accounts.options.beatmapset_title_show_original') }}
                     </span>
 
-                    <div class="account-edit-entry__checkbox-status account-edit-entry__checkbox-status--left">
-                        @include('accounts._edit_entry_status')
+                    <div class="account-edit-entry__checkbox-status">
+                        @include('accounts._edit_entry_status', ['modifiers' => ['left']])
                     </div>
                 </label>
             </div>
@@ -101,8 +101,8 @@
                         {{ osu_trans('accounts.options.beatmapset_show_nsfw') }}
                     </span>
 
-                    <div class="account-edit-entry__checkbox-status account-edit-entry__checkbox-status--left">
-                        @include('accounts._edit_entry_status')
+                    <div class="account-edit-entry__checkbox-status">
+                        @include('accounts._edit_entry_status', ['modifiers' => ['left']])
                     </div>
                 </label>
             </div>

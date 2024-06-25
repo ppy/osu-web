@@ -34,8 +34,8 @@
                         </label>
                     @endforeach
 
-                    <div class="account-edit-entry__checkbox-status account-edit-entry__checkbox-status--left">
-                        @include('accounts._edit_entry_status')
+                    <div class="account-edit-entry__checkbox-status">
+                        @include('accounts._edit_entry_status', ['modifiers' => ['left']])
                     </div>
                 </form>
             </div>

@@ -26,8 +26,8 @@
                         {{ osu_trans('accounts.privacy.friends_only') }}
                     </span>
 
-                    <div class="account-edit-entry__checkbox-status account-edit-entry__checkbox-status--left">
-                        @include('accounts._edit_entry_status')
+                    <div class="account-edit-entry__checkbox-status">
+                        @include('accounts._edit_entry_status', ['modifiers' => ['left']])
                     </div>
                 </label>
             </div>
@@ -47,8 +47,8 @@
                         {{ osu_trans('accounts.privacy.hide_online') }}
                     </span>
 
-                    <div class="account-edit-entry__checkbox-status account-edit-entry__checkbox-status--left">
-                        @include('accounts._edit_entry_status')
+                    <div class="account-edit-entry__checkbox-status">
+                        @include('accounts._edit_entry_status', ['modifiers' => ['left']])
                     </div>
                 </label>
             </div>

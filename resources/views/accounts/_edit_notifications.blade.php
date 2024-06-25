@@ -30,8 +30,8 @@
                         {{ osu_trans('accounts.notifications.topic_auto_subscribe') }}
                     </span>
 
-                    <div class="account-edit-entry__checkbox-status account-edit-entry__checkbox-status--left">
-                        @include('accounts._edit_entry_status')
+                    <div class="account-edit-entry__checkbox-status">
+                        @include('accounts._edit_entry_status', ['modifiers' => ['left']])
                     </div>
                 </label>
             </div>
@@ -55,8 +55,8 @@
                         {{ osu_trans('accounts.notifications.comment_reply') }}
                     </span>
 
-                    <div class="account-edit-entry__checkbox-status account-edit-entry__checkbox-status--left">
-                        @include('accounts._edit_entry_status')
+                    <div class="account-edit-entry__checkbox-status">
+                        @include('accounts._edit_entry_status', ['modifiers' => ['left']])
                     </div>
                 </label>
             </div>
@@ -91,8 +91,8 @@
                                 </label>
                             @endforeach
 
-                            <div class="account-edit-entry__checkbox-status account-edit-entry__checkbox-status--left">
-                                @include('accounts._edit_entry_status')
+                            <div class="account-edit-entry__checkbox-status">
+                                @include('accounts._edit_entry_status', ['modifiers' => ['left']])
                             </div>
                         </form>
                     </div>
