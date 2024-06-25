@@ -10,6 +10,9 @@ use App\Models\User;
 use App\Transformers\LegacyMatch\EventTransformer;
 use App\Transformers\UserCompactTransformer;
 
+/**
+ * @group Matches
+ */
 class MatchesController extends Controller
 {
     public function __construct()
