@@ -73,7 +73,7 @@ class XsollaPaymentProcessor extends PaymentProcessor
     public function isSkipped()
     {
         // just double validate for now
-        $this->ensureValidSignature();
+        $this->signature->assertValid();
 
         $order = $this->getOrder();
         if ($order === null) {
@@ -87,7 +87,7 @@ class XsollaPaymentProcessor extends PaymentProcessor
 
     public function validateTransaction()
     {
-        $this->ensureValidSignature();
+        $this->signature->assertValid();
 
         // received notification_type should be in allowed ranges
         if (!in_array($this['notification_type'], static::PAYMENT_NOTIFICATION_TYPES, true)) {

@@ -33,4 +33,7 @@ return [
         'invalid_cursor_exception' => 'Parametru cursor specificat nevalid.',
         'operation_timeout_exception' => 'Căutarea este mai ocupată decât de obicei, încearcă mai târziu.',
     ],
+    'user_report' => [
+        'recently_reported' => "",
+    ],
 ];

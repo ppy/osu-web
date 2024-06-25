@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 use App\Exceptions\FastImagesizeFetchException;
+use App\Exceptions\HasExtraExceptionData;
 use App\Http\Controllers\RankingController;
 use App\Libraries\Base64Url;
 use App\Libraries\LocaleMeta;
@@ -13,6 +14,7 @@ use Egulias\EmailValidator\Validation\NoRFCWarningsValidation;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Arr;
 use Illuminate\Support\HtmlString;
+use Sentry\State\Scope;
 
 function api_version(): int
 {
@@ -488,7 +490,7 @@ function log_error_sentry(Throwable $exception, ?array $tags = null): ?string
         return null;
     }
 
-    return Sentry\withScope(function ($scope) use ($exception, $tags) {
+    return Sentry\withScope(function (Scope $scope) use ($exception, $tags) {
         $currentUser = Auth::user();
         $userContext = $currentUser === null
             ? ['id' => null]
@@ -500,6 +502,15 @@ function log_error_sentry(Throwable $exception, ?array $tags = null): ?string
         $scope->setUser($userContext);
         foreach ($tags ?? [] as $key => $value) {
             $scope->setTag($key, $value);
+        }
+
+        if ($exception instanceof HasExtraExceptionData) {
+            $scope->setExtras($exception->getExtras());
+            $contexts = $exception->getContexts();
+
+            foreach ($contexts as $name => $value) {
+                $scope->setContext($name, $value);
+            }
         }
 
         return Sentry\captureException($exception);
@@ -524,25 +535,6 @@ function markdown($input, $preset = 'default')
     }
 
     return $converter[$preset]->load($input)->html();
-}
-
-function markdown_chat($input)
-{
-    static $converter;
-
-    if (!isset($converter)) {
-        $environment = new League\CommonMark\Environment\Environment([
-            'allow_unsafe_links' => false,
-            'max_nesting_level' => 20,
-            'renderer' => ['soft_break' => '<br />'],
-        ]);
-
-        $environment->addExtension(new App\Libraries\Markdown\Chat\Extension());
-
-        $converter = new League\CommonMark\MarkdownConverter($environment);
-    }
-
-    return $converter->convert($input)->getContent();
 }
 
 function markdown_plain(?string $input): string
@@ -1427,7 +1419,7 @@ function get_int($string)
     }
 }
 
-function get_length($string): ?array
+function get_length_seconds($string): ?array
 {
     static $scales = [
         'ms' => 0.001,
@@ -1436,36 +1428,57 @@ function get_length($string): ?array
         'h' => 3600,
     ];
 
+    static $patterns = [
+        '/^((?<hours>\d+):)?(?<minutes>\d+):(?<seconds>\d+)$/',
+        '/^((?<hours>\d+(\.\d+)?)h)?((?<minutes>\d+(\.\d+)?)m)?((?<seconds>\d+(\.\d+)?)s)?((?<milliseconds>\d+(\.\d+)?)ms)?$/',
+        '/^(?<seconds>\d+(\.\d+)?)$/',
+    ];
+
     $string = get_string($string);
 
     if ($string === null) {
         return null;
     }
 
-    $scaleKey = substr($string, -2);
+    $time = null;
+    $minScale = 3600000;
 
-    if (!isset($scales[$scaleKey])) {
-        $scaleKey = substr($scaleKey, -1);
+    foreach ($patterns as $pattern) {
+        $match = preg_match($pattern, $string, $matches);
+        if ($match !== 1) {
+            continue;
+        }
+
+        $time ??= 0;
+
+        if (isset($matches['milliseconds'])) {
+            $scale = $scales['ms'];
+            $minScale = min($minScale, $scale);
+            $time += get_float($matches['milliseconds']) * $scale;
+        }
+
+        if (isset($matches['seconds'])) {
+            $scale = $scales['s'];
+            $minScale = min($minScale, $scale);
+            $time += get_float($matches['seconds']) * $scale;
+        }
+
+        if (isset($matches['minutes'])) {
+            $scale = $scales['m'];
+            $minScale = min($minScale, $scale);
+            $time += get_float($matches['minutes']) * $scale;
+        }
+
+        if (isset($matches['hours'])) {
+            $scale = $scales['h'];
+            $minScale = min($minScale, $scale);
+            $time += get_float($matches['hours']) * $scale;
+        }
+
+        break;
     }
 
-    if (!isset($scales[$scaleKey])) {
-        $scaleKey = 's';
-        $string .= $scaleKey;
-    }
-
-    $value = get_float(substr($string, 0, -strlen($scaleKey)));
-
-    if ($value === null) {
-        return null;
-    }
-
-    $scale = $scales[$scaleKey] ?? 1;
-    $value *= $scale;
-
-    return [
-        'scale' => $scale,
-        'value' => $value,
-    ];
+    return ['value' => $time, 'min_scale' => $minScale];
 }
 
 function get_file($input)
@@ -1536,7 +1549,7 @@ function get_param_value($input, $type)
         case 'float':
             return get_float($input);
         case 'length':
-            return get_length($input);
+            return get_length_seconds($input);
         case 'string':
             return get_string($input);
         case 'string_split':

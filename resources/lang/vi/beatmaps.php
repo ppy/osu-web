@@ -283,7 +283,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
-        'undefined' => '',
+        'undefined' => 'chưa đặt',
     ],
     'status' => [
         'any' => 'Bất Kì',

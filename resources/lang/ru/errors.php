@@ -33,4 +33,7 @@ return [
         'invalid_cursor_exception' => 'Задан неверный параметр курсора.',
         'operation_timeout_exception' => 'Поиск сейчас перегружен, попробуйте позже.',
     ],
+    'user_report' => [
+        'recently_reported' => "",
+    ],
 ];

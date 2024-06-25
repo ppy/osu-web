@@ -40,20 +40,20 @@ return [
     ],
 
     'nominate' => [
-        'bng_limited_too_many_rulesets' => '',
-        'full_nomination_required' => '',
+        'bng_limited_too_many_rulesets' => 'Nominator masa percobaan tidak dapat menominasikan lebih dari satu ruleset.',
+        'full_nomination_required' => 'Kamu harus menjadi nominator penuh untuk memberikan nominasi terakhir pada suatu ruleset.',
         'hybrid_requires_modes' => 'Pada beatmap hybrid, kamu harus memilih setidaknya satu mode permainan untuk dinominasikan.',
         'incorrect_mode' => 'Kamu tidak memiliki izin untuk memberikan nominasi pada mode permainan: :mode',
-        'invalid_limited_nomination' => '',
-        'invalid_ruleset' => '',
+        'invalid_limited_nomination' => 'Beatmap ini memiliki nominasi yang tidak valid dan tidak dapat dikualifikasikan dalam kondisi saat ini.',
+        'invalid_ruleset' => 'Nominasi ini memiliki ruleset yang tidak valid.',
         'too_many' => 'Persyaratan nominasi telah terpenuhi.',
-        'too_many_non_main_ruleset' => '',
+        'too_many_non_main_ruleset' => 'Persyaratan nominasi untuk ruleset yang bukan merupakan ruleset utama telah terpenuhi.',
 
         'dialog' => [
             'confirmation' => 'Apakah kamu yakin untuk menominasikan beatmap ini?',
             'header' => 'Nominasikan Beatmap',
             'hybrid_warning' => 'catatan: kamu hanya dapat memberikan satu nominasi, sehingga pastikan kamu memberikan nominasi pada mode permainan yang memang kamu kehendaki',
-            'current_main_ruleset' => '',
+            'current_main_ruleset' => 'Ruleset utama saat ini: :ruleset',
             'which_modes' => 'Mode permainan mana yang ingin dinominasikan?',
         ],
     ],

@@ -24,7 +24,7 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => '',
+        'insufficient_history' => 'Потребителят има по-малко от 30 дни скорошна история в класирането.',
     ],
 
     'type' => [

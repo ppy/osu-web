@@ -6,7 +6,7 @@
 namespace Tests\Libraries\Payments;
 
 use App\Exceptions\InvalidSignatureException;
-use App\Libraries\Payments\PaymentProcessorException;
+use App\Exceptions\Store\PaymentProcessorException;
 use App\Libraries\Payments\PaymentSignature;
 use App\Libraries\Payments\XsollaPaymentProcessor;
 use App\Models\Store\Order;
@@ -164,9 +164,8 @@ class XsollaPaymentProcessorTest extends TestCase
     private function validSignature()
     {
         return new class implements PaymentSignature {
-            public function isValid()
+            public function assertValid(): void
             {
-                return true;
             }
         };
     }
@@ -174,9 +173,9 @@ class XsollaPaymentProcessorTest extends TestCase
     private function invalidSignature()
     {
         return new class implements PaymentSignature {
-            public function isValid()
+            public function assertValid(): void
             {
-                return false;
+                throw new InvalidSignatureException();
             }
         };
     }

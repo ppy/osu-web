@@ -200,6 +200,8 @@ return [
             'cover' => [
                 'button' => 'Cambiar portada de perfil',
                 'defaults_info' => 'Más opciones de portadas estarán disponibles en el futuro',
+                'holdover_remove_confirm' => "",
+
                 'upload' => [
                     'broken_file' => 'Error al procesar la imagen. Verifica la imagen subida e intenta de nuevo.',
                     'button' => 'Subir imagen',

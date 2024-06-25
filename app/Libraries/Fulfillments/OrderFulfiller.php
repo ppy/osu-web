@@ -6,6 +6,7 @@
 namespace App\Libraries\Fulfillments;
 
 use App\Events\Fulfillments\FulfillmentValidationFailed;
+use App\Exceptions\Store\FulfillmentException;
 use App\Models\Store\Order;
 use App\Traits\Validatable;
 
@@ -45,7 +46,7 @@ abstract class OrderFulfiller implements Fulfillable
     protected function throwOnFail(bool $valid = false)
     {
         if (!$valid) {
-            $this->throwValidationFailed(new FulfillmentException($this->validationErrors()));
+            $this->throwValidationFailed(new FulfillmentException($this->order, $this->validationErrors()));
         }
     }
 
@@ -61,11 +62,8 @@ abstract class OrderFulfiller implements Fulfillable
 
     /**
      * Convenience method that calls dispatchValidationFailed() and then throws the supplied exception.
-     *
-     * @param Exception $exception
-     * @return void
      */
-    protected function throwValidationFailed(\Exception $exception)
+    protected function throwValidationFailed(\Exception $exception): void
     {
         $this->dispatchValidationFailed();
         throw $exception;

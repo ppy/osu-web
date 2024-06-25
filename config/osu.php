@@ -312,4 +312,8 @@ return [
         'github_token' => env('CHANGELOG_GITHUB_TOKEN'),
         'update_streams' => array_map('intval', explode(' ', env('UPDATE_STREAMS', '5 1'))),
     ],
+    'rankings' => [
+        'country_performance_user_count' => intval(env('COUNTRY_PERFORMANCE_USER_COUNT', 1000)),
+        'country_performance_weighting_factor' => floatval(env('COUNTRY_PERFORMANCE_WEIGHTING_FACTOR', 0.99)),
+    ],
 ];

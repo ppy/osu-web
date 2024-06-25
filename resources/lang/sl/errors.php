@@ -33,4 +33,7 @@ return [
         'invalid_cursor_exception' => 'Neveljavni določeni parametri kazalnika.',
         'operation_timeout_exception' => 'Iskalnik je trenutno bolj zaseden kot ponavadi, poskusi znova pozneje.',
     ],
+    'user_report' => [
+        'recently_reported' => "",
+    ],
 ];

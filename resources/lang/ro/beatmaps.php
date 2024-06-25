@@ -283,7 +283,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
-        'undefined' => '',
+        'undefined' => 'nesetat',
     ],
     'status' => [
         'any' => 'Oricare',

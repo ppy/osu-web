@@ -200,6 +200,8 @@ return [
             'cover' => [
                 'button' => 'Changer la bannière du profil',
                 'defaults_info' => 'D\'autres options de bannières seront disponibles à l\'avenir',
+                'holdover_remove_confirm' => "",
+
                 'upload' => [
                     'broken_file' => 'Impossible de traiter l\'image. Vérifiez l\'image mise en ligne et réessayez.',
                     'button' => 'Mettre en ligne une image',

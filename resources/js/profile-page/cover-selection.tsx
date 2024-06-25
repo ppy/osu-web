@@ -5,7 +5,7 @@ import UserCoverPresetJson from 'interfaces/user-cover-preset-json';
 import { action, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
-import { classWithModifiers, Modifiers, urlPresence } from 'utils/css';
+import { urlPresence } from 'utils/css';
 import { trans } from 'utils/lang';
 import Controller from './controller';
 
@@ -13,7 +13,6 @@ const bn = 'profile-cover-selection';
 
 interface Props {
   controller: Controller;
-  modifiers?: Modifiers;
   preset: Partial<UserCoverPresetJson>;
 }
 
@@ -31,7 +30,7 @@ export default class CoverSelection extends React.PureComponent<Props> {
   render() {
     return (
       <button
-        className={classWithModifiers(bn, this.props.modifiers)}
+        className={bn}
         onClick={this.onClick}
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}

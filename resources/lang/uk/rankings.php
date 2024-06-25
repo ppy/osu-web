@@ -24,7 +24,7 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => '',
+        'insufficient_history' => 'Цей користувач має менше 30 днів недавньої історії рейтингу.',
     ],
 
     'type' => [

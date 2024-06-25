@@ -200,6 +200,8 @@ return [
             'cover' => [
                 'button' => '프로필 표지 변경',
                 'defaults_info' => '이후에 더 많은 표지 설정이 추가됩니다',
+                'holdover_remove_confirm' => "",
+
                 'upload' => [
                     'broken_file' => '이미지 처리 실패. 업로드하려는 이미지를 확인하시고 다시 시도해주세요.',
                     'button' => '이미지 업로드',

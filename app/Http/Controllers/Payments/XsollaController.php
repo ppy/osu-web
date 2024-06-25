@@ -6,7 +6,7 @@
 namespace App\Http\Controllers\Payments;
 
 use App\Exceptions\InvalidSignatureException;
-use App\Exceptions\ValidationException;
+use App\Exceptions\Store\OrderException;
 use App\Libraries\OrderCheckout;
 use App\Libraries\Payments\XsollaPaymentProcessor;
 use App\Libraries\Payments\XsollaSignature;
@@ -15,7 +15,6 @@ use App\Models\Store\Order;
 use Auth;
 use Exception;
 use Illuminate\Http\Request as HttpRequest;
-use Log;
 use Request;
 use Xsolla\SDK\API\PaymentUI\TokenRequest;
 use Xsolla\SDK\API\XsollaClient;
@@ -81,8 +80,8 @@ class XsollaController extends Controller
             }
 
             $processor->run();
-        } catch (ValidationException $exception) {
-            Log::error($exception->getMessage());
+        } catch (OrderException $exception) {
+            log_error($exception);
 
             return $this->errorResponse(
                 'A validation error occured while running the transaction',
@@ -90,6 +89,7 @@ class XsollaController extends Controller
                 422
             );
         } catch (InvalidSignatureException $exception) {
+            log_error($exception);
             // xsolla expects INVALID_SIGNATURE
             return $this->errorResponse('The signature is invalid.', 'INVALID_SIGNATURE', 422);
         } catch (XsollaUserNotFoundException $exception) {

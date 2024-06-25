@@ -33,4 +33,7 @@ return [
         'invalid_cursor_exception' => 'Tham số con trỏ được chỉ định là không hợp lệ.',
         'operation_timeout_exception' => 'Hệ thống tìm kiếm đang quá tải, vui lòng thử lại sau.',
     ],
+    'user_report' => [
+        'recently_reported' => "",
+    ],
 ];

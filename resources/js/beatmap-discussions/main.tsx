@@ -11,7 +11,7 @@ import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import BeatmapsetDiscussionsShowStore from 'stores/beatmapset-discussions-show-store';
-import { defaultFilter, parseUrl, stateFromDiscussion } from 'utils/beatmapset-discussion-helper';
+import { parseUrl } from 'utils/beatmapset-discussion-helper';
 import { parseJson, storeJson } from 'utils/json';
 import { nextVal } from 'utils/seq';
 import { currentUrl } from 'utils/turbolinks';
@@ -70,6 +70,9 @@ export default class Main extends React.Component<Props> {
     if (this.discussionsState.jumpToDiscussion) {
       this.disposers.add(core.reactTurbolinks.runAfterPageLoad(this.jumpToDiscussionByHash));
     }
+
+    // normalize url after first render because the default discussion filter depends on ranked state.
+    Turbolinks.controller.replaceHistory(this.discussionsState.url);
 
     this.timeoutCheckNew = window.setTimeout(this.checkNew, checkNewTimeoutDefault);
   }
@@ -175,32 +178,7 @@ export default class Main extends React.Component<Props> {
 
   @action
   private jumpTo(id: number, postId?: number) {
-    const discussion = this.store.discussions.get(id);
-
-    if (discussion == null) return;
-
-    const {
-      beatmapId,
-      mode,
-    } = stateFromDiscussion(discussion);
-
-    // unset filter
-    const currentDiscussionsByMode = this.discussionsState.discussionsByMode[mode];
-    if (currentDiscussionsByMode.find((d) => d.id === discussion.id) == null) {
-      this.discussionsState.currentFilter = defaultFilter;
-    }
-
-    // unset user filter if new discussion would have been filtered out.
-    if (this.discussionsState.selectedUserId != null && this.discussionsState.selectedUserId !== discussion.user_id) {
-      this.discussionsState.selectedUserId = null;
-    }
-
-    if (beatmapId != null) {
-      this.discussionsState.currentBeatmapId = beatmapId;
-    }
-
-    this.discussionsState.currentPage = mode;
-    this.discussionsState.highlightedDiscussionId = discussion.id;
+    this.discussionsState.changeToDiscussion(id, postId);
 
     window.setTimeout(() => this.jumpToAfterRender(id, postId), 0);
   }

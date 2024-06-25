@@ -200,6 +200,8 @@ return [
             'cover' => [
                 'button' => 'Palitan ang cover',
                 'defaults_info' => 'Higit pang mga larawang cover ang ilalabas sa hinaharap',
+                'holdover_remove_confirm' => "",
+
                 'upload' => [
                     'broken_file' => 'Hindi matagumpay ang pagproseso ng imahe. Suriin ang inilalathalang imahe at subukang muli.',
                     'button' => 'Mag-upload ng imahe',

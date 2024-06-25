@@ -24,7 +24,7 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => '',
+        'insufficient_history' => 'Этот пользователь начал играть рейтинговые карты менее 30 дней назад.',
     ],
 
     'type' => [

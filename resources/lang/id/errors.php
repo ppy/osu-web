@@ -33,4 +33,7 @@ return [
         'invalid_cursor_exception' => 'Parameter kursor yang ditentukan tidak valid.',
         'operation_timeout_exception' => 'Aktivitas pencarian saat ini sedang lebih sibuk dari biasanya. Mohon coba lagi nanti.',
     ],
+    'user_report' => [
+        'recently_reported' => "",
+    ],
 ];

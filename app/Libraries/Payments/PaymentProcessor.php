@@ -9,6 +9,7 @@ use App\Events\Fulfillments\PaymentEvent;
 use App\Events\Fulfillments\ProcessorValidationFailed;
 use App\Exceptions\InvalidSignatureException;
 use App\Exceptions\ModelNotSavedException;
+use App\Exceptions\Store\PaymentProcessorException;
 use App\Models\Store\Order;
 use App\Models\Store\Payment;
 use App\Traits\Memoizes;
@@ -21,15 +22,9 @@ abstract class PaymentProcessor implements \ArrayAccess
 {
     use Memoizes, Validatable;
 
-    protected $params;
-    protected $signature;
-
-    public function __construct(array $params, PaymentSignature $signature)
+    public function __construct(protected array $params, protected PaymentSignature $signature)
     {
         \Log::debug($params);
-
-        $this->params = $params;
-        $this->signature = $signature;
     }
 
     /**
@@ -125,6 +120,8 @@ abstract class PaymentProcessor implements \ArrayAccess
      * Auto run apply() or cancel() depending on the notification type.
      *
      * @return void
+     * @throws InvalidSignatureException thrown if the request signature is invalid.
+     * @throws PaymentProcessorException thrown if the validating the order fails.
      * @throws UnsupportedNotificationTypeException thrown if the notification type is unsupported.
      */
     public function run()
@@ -172,7 +169,7 @@ abstract class PaymentProcessor implements \ArrayAccess
         optional($order)->update(['transaction_id' => $this->getTransactionId()]);
 
         if (!$this->validateTransaction()) {
-            $this->throwValidationFailed(new PaymentProcessorException($this->validationErrors()));
+            $this->throwValidationFailed(new PaymentProcessorException($order, $this->validationErrors()));
         }
 
         DB::connection('mysql-store')->transaction(function () use ($order) {
@@ -216,7 +213,7 @@ abstract class PaymentProcessor implements \ArrayAccess
         $this->sandboxAssertion();
 
         if (!$this->validateTransaction()) {
-            $this->throwValidationFailed(new PaymentProcessorException($this->validationErrors()));
+            $this->throwValidationFailed(new PaymentProcessorException($this->getOrder(), $this->validationErrors()));
         }
 
         DB::connection('mysql-store')->transaction(function () {
@@ -263,7 +260,7 @@ abstract class PaymentProcessor implements \ArrayAccess
         $this->sandboxAssertion();
 
         if (!$this->validateTransaction()) {
-            $this->throwValidationFailed(new PaymentProcessorException($this->validationErrors()));
+            $this->throwValidationFailed(new PaymentProcessorException($this->getOrder(), $this->validationErrors()));
         }
 
         DB::connection('mysql-store')->transaction(function () {
@@ -295,20 +292,11 @@ abstract class PaymentProcessor implements \ArrayAccess
     {
         // just validate the signature until we make sure validating
         //  the whole transaction doesn't make it explode.
-        $this->ensureValidSignature();
+        $this->signature->assertValid();
 
         $order = $this->getOrder();
         $eventName = "store.payments.rejected.{$this->getPaymentProvider()}";
         event($eventName, new PaymentEvent($order));
-    }
-
-    public function ensureValidSignature()
-    {
-        // TODO: post many warnings
-        if (!$this->signature->isValid()) {
-            $this->validationErrors()->add('header.signature', '.signature.not_match');
-            $this->throwValidationFailed(new InvalidSignatureException());
-        }
     }
 
     /**
@@ -341,11 +329,8 @@ abstract class PaymentProcessor implements \ArrayAccess
 
     /**
      * Convenience method that calls dispatchValidationFailed() and then throws the supplied exception.
-     *
-     * @param Exception $exception
-     * @return void
      */
-    protected function throwValidationFailed(Exception $exception)
+    protected function throwValidationFailed(Exception $exception): void
     {
         $this->dispatchValidationFailed();
         throw $exception;

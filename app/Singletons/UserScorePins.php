@@ -20,7 +20,7 @@ class UserScorePins
         $pins = $attributes->get(static::REQUEST_ATTRIBUTE_KEY);
 
         if ($pins === null) {
-            $pins = new Set(\Auth::user()?->scorePins()->pluck('new_score_id') ?? []);
+            $pins = new Set(\Auth::user()?->scorePins()->pluck('score_id') ?? []);
 
             $attributes->set(static::REQUEST_ATTRIBUTE_KEY, $pins);
         }

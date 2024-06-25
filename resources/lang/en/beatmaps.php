@@ -31,6 +31,7 @@ return [
         'restore' => 'restore',
         'show_deleted' => 'Show deleted',
         'title' => 'Discussions',
+        'unresolved_count' => ':count_delimited unresolved issues',
 
         'collapse' => [
             'all-collapse' => 'Collapse all',

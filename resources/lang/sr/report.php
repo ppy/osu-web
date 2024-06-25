@@ -24,6 +24,11 @@ return [
         'title' => 'Пријавите објаву корисника :username?',
     ],
 
+    'message' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'scores' => [
         'button' => 'Пријавите Резултат',
         'title' => 'Пријавите резултат корисника :username?',

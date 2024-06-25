@@ -200,6 +200,8 @@ return [
             'cover' => [
                 'button' => 'Kapak Fotoğrafını Değiştir',
                 'defaults_info' => 'Diğer kapak seçenekleri gelecekte mevcut olacak',
+                'holdover_remove_confirm' => "",
+
                 'upload' => [
                     'broken_file' => 'Resmin işlenmesi başarısız oldu. Yüklediğiniz resmi doğrulayıp tekrar deneyin.',
                     'button' => 'Resim yükle',
