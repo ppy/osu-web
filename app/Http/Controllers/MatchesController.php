@@ -17,6 +17,46 @@ class MatchesController extends Controller
         $this->middleware('require-scopes:public', ['only' => ['index', 'show']]);
     }
 
+    /**
+     * Get Matches Listing
+     *
+     * Returns a list of matches.
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * Field         | Type                          | Notes
+     * ------------- | ----------------------------- | -----
+     * cursor        | [Cursor](#cursor)             | |
+     * cursor_string | [CursorString](#cursorstring) | |
+     * matches       | [Match](#match)[]             | |
+     * params.limit  | integer                       | |
+     * params.sort   | string                        | |
+     *
+     * @queryParam cursor [Cursor](#cursor). No-example
+     * @queryParam limit integer Maximum number of matches (50 default, 1 minimum, 50 maximum). No-example
+     * @queryParam sort string `id_desc` for newest first; `id_asc` for oldest first. Defaults to `id_desc`. No-example
+     * @response {
+     *     "matches": [
+     *         {
+     *             "id": 114428685,
+     *             "start_time": "2024-06-25T00:55:30+00:00",
+     *             "end_time": null,
+     *             "name": "peppy's game"
+     *         },
+     *         // ...
+     *     ],
+     *     "params": {
+     *         "limit": 50,
+     *         "sort": "id_desc"
+     *     },
+     *     "cursor": {
+     *         "match_id": 114428685
+     *     },
+     *     "cursor_string": "eyJtYXRjaF9pZCI6MTE0NDI4Njg1fQ"
+     * }
+     */
     public function index()
     {
         $params = request()->all();
@@ -36,6 +76,50 @@ class MatchesController extends Controller
         ];
     }
 
+    /**
+     * Get Match
+     *
+     * Returns details of the specified match.
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * Field           | Type                        | Notes
+     * --------------- | --------------------------- | -----
+     * match           | [Match](#match)             | |
+     * events          | [MatchEvent](#matchevent)[] | |
+     * users           | [User](#user)[]             | Includes `country`.
+     * first_event_id  | integer                     | ID of the first [MatchEvent](#matchevent) in the match.
+     * latest_event_id | integer                     | ID of the lastest [MatchEvent](#matchevent) in the match.
+     *
+     * @urlParam match integer required Match ID. No-example
+     * @queryParam before integer Match events before the specified [MatchEvent.id](#matchevent). No-example
+     * @queryParam after integer Match events after the specified [MatchEvent.id](#matchevent). No-example
+     * @queryParam limit integer Maximum number of match events (100 default, 1 minimum, 101 maximum). No-example
+     * @response {
+     *     "match": {
+     *         "id": 16155689,
+     *         "start_time": "2015-05-16T09:44:51+00:00",
+     *         "end_time": "2015-05-16T10:55:08+00:00",
+     *         "name": "CWC 2015: (Australia) vs (Poland)"
+     *     },
+     *     "events": [
+     *         {
+     *             "id": 484385927,
+     *             "detail": {
+     *                 "type": "match-created"
+     *             },
+     *             "timestamp": "2015-05-16T09:44:51+00:00",
+     *             "user_id": null
+     *         }
+     *     ],
+     *     "users": [],
+     *     "first_event_id": 484385927,
+     *     "latest_event_id": 484410607,
+     *     "current_game_id": null
+     * }
+     */
     public function show($id)
     {
         $match = LegacyMatch::findOrFail($id);
