@@ -363,7 +363,7 @@ export default class DiscussionsState {
     const query = parseUrl(
       null,
       store.beatmapset.discussions,
-      store.beatmapset.ranked > 0 ? 'praises' : 'pending',
+      store.beatmapset.ranked > 0 ? 'praises' : 'total',
     );
 
     if (query != null) {
