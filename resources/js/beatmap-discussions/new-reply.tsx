@@ -117,9 +117,12 @@ export class NewReply extends React.Component<Props> {
       case InputEventType.Cancel:
         this.editing = false;
         break;
-      case InputEventType.Submit:
-        this.post(event);
+      case InputEventType.Submit: {
+        const resolve = this.canResolve && this.props.discussion.can_be_resolved && event.ctrlKey;
+
+        this.post(event, resolve ? resolve : undefined);
         break;
+      }
     }
   };
 
@@ -132,20 +135,12 @@ export class NewReply extends React.Component<Props> {
   };
 
   @action
-  private readonly post = (event: React.KeyboardEvent<HTMLElement> | React.SyntheticEvent<HTMLElement>) => {
+  private readonly post = (event: React.SyntheticEvent<HTMLElement>, resolve?: boolean) => {
     if (!this.validPost || this.postXhr != null) return;
     showLoadingOverlay();
 
-    const ctrlResolve = event.currentTarget.dataset.action == null
-      && 'ctrlKey' in event
-      && event.ctrlKey
-      && this.canResolve
-      && this.props.discussion.can_be_resolved;
-
     // in case the event came from input box, do 'reply'.
-    const postAction = ctrlResolve
-      ? 'reply_resolve'
-      : event.currentTarget.dataset.action ?? 'reply';
+    const postAction = resolve ? 'reply_resolve' : event.currentTarget.dataset.action ?? 'reply';
 
     this.posting = postAction;
 
