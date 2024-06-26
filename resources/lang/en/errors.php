@@ -28,6 +28,9 @@ return [
     'checkout' => [
         'generic' => 'An error occurred while preparing your checkout.',
     ],
+    'scores' => [
+        'invalid_id' => 'Invalid score id.',
+    ],
     'search' => [
         'default' => 'Could not get any results, try again later.',
         'invalid_cursor_exception' => 'Invalid cursor parameter specified.',
