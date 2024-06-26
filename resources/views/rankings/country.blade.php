@@ -25,9 +25,6 @@
                 <th class="ranking-page-table__heading ranking-page-table__heading--focused">
                     {{ osu_trans('rankings.stat.performance') }}
                 </th>
-                <th class="ranking-page-table__heading">
-                    {{ osu_trans('rankings.stat.average_performance') }}
-                </th>
             </tr>
         </thead>
         <tbody>
@@ -68,9 +65,6 @@
                     </td>
                     <td class="ranking-page-table__column ranking-page-table__column--focused">
                         {!! suffixed_number_format_tag(round($score->performance)) !!}
-                    </td>
-                    <td class="ranking-page-table__column ranking-page-table__column--dimmed">
-                        {{ i18n_number_format(round($score->performance / max($score->user_count, 1))) }}
                     </td>
                 </tr>
             @endforeach
