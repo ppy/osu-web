@@ -65,9 +65,6 @@
     --navbar-height: @nav2-height--pinned;
     --page-gutter: @gutter-v2-desktop;
   }
-
-  // the base-hue is defined in blade layout
-  --base-hue-deg: calc(var(--base-hue) * 1deg);
 }
 
 html, body {
@@ -97,6 +94,9 @@ body {
   &.js-animate-nav {
     --header-pinned-animation-duration: 300ms;
   }
+
+  // the base-hue is defined in blade layout
+  --base-hue-deg: calc(var(--base-hue) * 1deg);
 }
 
 #popup-container {
