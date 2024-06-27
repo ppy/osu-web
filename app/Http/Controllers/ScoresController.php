@@ -21,7 +21,6 @@ class ScoresController extends Controller
 
         $this->middleware('auth', ['except' => [
             'show',
-            'userRankLookup',
         ]]);
 
         $this->middleware('require-scopes:public');
@@ -130,31 +129,6 @@ class ScoresController extends Controller
         }
 
         return ext_view('scores.show', compact('score', 'scoreJson'));
-    }
-
-    public function userRankLookup()
-    {
-        $params = get_params(request()->all(), null, [
-            'beatmapId:int',
-            'score:int',
-            'rulesetId:int',
-        ]);
-
-        foreach (['beatmapId', 'score', 'rulesetId'] as $key) {
-            if (!isset($params[$key])) {
-                abort(422, "required parameter '{$key}' is missing");
-            }
-        }
-
-        $score = ScoreBest
-            ::getClassByRulesetId($params['rulesetId'])
-            ::where([
-                'beatmap_id' => $params['beatmapId'],
-                'hidden' => false,
-                'score' => $params['score'],
-            ])->firstOrFail();
-
-        return response()->json($score->userRank(['cached' => false]) - 1);
     }
 
     private function makeReplayFilename(ScoreBest|SoloScore $score): string
