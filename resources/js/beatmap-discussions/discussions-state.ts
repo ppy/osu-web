@@ -6,7 +6,7 @@ import { BeatmapsetStatus } from 'interfaces/beatmapset-json';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import Ruleset from 'interfaces/ruleset';
 import { intersectionWith, maxBy, sum } from 'lodash';
-import { action, computed, makeObservable, observable, reaction } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 import moment from 'moment';
 import core from 'osu-core-singleton';
 import BeatmapsetDiscussionsShowStore from 'stores/beatmapset-discussions-show-store';

@@ -68,19 +68,23 @@ export default class Main extends React.Component<Props> {
     document.addEventListener('turbolinks:before-cache', this.destroy);
 
     if (this.discussionsState.jumpToDiscussion) {
-      this.disposers.add(core.reactTurbolinks.runAfterPageLoad(this.jumpToDiscussionByHash));
+      this.disposers.add(core.reactTurbolinks.runAfterPageLoad(action(() => {
+        this.jumpToDiscussionByHash();
+
+        // normalize url after first render because the default discussion filter depends on ranked state.
+        Turbolinks.controller.replaceHistory(this.discussionsState.url);
+
+        // Watch for reactions after the initial render and url normalization;
+        // we don't want state changes to trigger advanceHistory on first render.
+        this.disposers.add(
+          reaction(() => this.discussionsState.url, (current, prev) => {
+            if (current !== prev) {
+              Turbolinks.controller.advanceHistory(current);
+            }
+          }),
+        );
+      })));
     }
-
-    // normalize url after first render because the default discussion filter depends on ranked state.
-    Turbolinks.controller.replaceHistory(this.discussionsState.url);
-
-    this.disposers.add(
-      reaction(() => this.discussionsState.url, (current, prev) => {
-        if (current !== prev) {
-          Turbolinks.controller.advanceHistory(current);
-        }
-      }),
-    );
 
     this.timeoutCheckNew = window.setTimeout(this.checkNew, checkNewTimeoutDefault);
   }
