@@ -463,9 +463,6 @@ export default class DiscussionsState {
     this.currentPostId = postId;
   }
 
-  destroy() {
-  }
-
   @action
   markAsRead(ids: number | number[]) {
     if (Array.isArray(ids)) {

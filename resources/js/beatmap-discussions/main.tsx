@@ -180,7 +180,6 @@ export default class Main extends React.Component<Props> {
     this.discussionsState.saveState();
 
     this.disposers.forEach((disposer) => disposer?.());
-    this.discussionsState.destroy();
   };
 
   private readonly handleNewDiscussionFocus = () => {
