@@ -53,7 +53,6 @@ export default class DiscussionsState {
   @observable discussionCollapsed = new Map<number, boolean>();
   @observable discussionDefaultCollapsed = false;
   @observable highlightedDiscussionId: number | null = null;
-  @observable jumpToDiscussion = false;
   @observable pinnedNewDiscussion = false;
 
   @observable readPostIds = new Set<number>();
@@ -348,7 +347,6 @@ export default class DiscussionsState {
     if (existingState != null) {
       Object.assign(this, existingState);
     } else {
-      this.jumpToDiscussion = true;
       for (const discussion of store.beatmapset.discussions) {
         if (discussion.posts != null) {
           for (const post of discussion.posts) {
@@ -503,7 +501,6 @@ export default class DiscussionsState {
       discussionCollapsed: [...this.discussionCollapsed],
       discussionDefaultCollapsed: this.discussionDefaultCollapsed,
       highlightedDiscussionId: this.highlightedDiscussionId,
-      jumpToDiscussion: this.jumpToDiscussion,
       pinnedNewDiscussion: this.pinnedNewDiscussion,
       readPostIds: [...this.readPostIds],
       selectedUserId: this.selectedUserId,
