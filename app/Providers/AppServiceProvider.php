@@ -11,7 +11,6 @@ use App\Libraries\OsuCookieJar;
 use App\Libraries\OsuMessageSelector;
 use App\Libraries\RateLimiter;
 use App\Singletons;
-use Datadog;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Http\Request;
 use Illuminate\Queue\Events\JobProcessed;
@@ -61,9 +60,8 @@ class AppServiceProvider extends ServiceProvider
             app('OsuAuthorize')->resetCache();
             app('local-cache-manager')->incrementResetTicker();
 
-            Datadog::increment(
-                $GLOBALS['cfg']['datadog-helper']['prefix_web'].'.queue.run',
-                1,
+            datadog_increment(
+                'queue.run',
                 [
                     'job' => $event->job->payload()['data']['commandName'],
                     'queue' => $event->job->getQueue(),

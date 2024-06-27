@@ -24,7 +24,6 @@ use App\Models\User;
 use App\Models\UserStatistics;
 use App\Transformers\Chat\MessageTransformer;
 use Artisan;
-use Datadog;
 use Ds\Set;
 use Exception;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -288,7 +287,7 @@ class LegacyInterOpController extends Controller
                 ];
             }
 
-            Datadog::increment($GLOBALS['cfg']['datadog-helper']['prefix_web'].'.chat.batch', 1, [
+            datadog_increment('chat.batch', [
                 'status' => $result['status'],
             ]);
 

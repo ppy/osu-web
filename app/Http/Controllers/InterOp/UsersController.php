@@ -27,11 +27,7 @@ class UsersController extends Controller
 
         abort_unless($unlocked, 422, 'user already unlocked the specified achievement');
 
-        \Datadog::increment(
-            $GLOBALS['cfg']['datadog-helper']['prefix_web'].'.user_achievement_unlock',
-            1,
-            ['id' => $achievementId],
-        );
+        datadog_increment('user_achievement_unlock', ['id' => $achievementId]);
 
         return $achievement->getKey();
     }
