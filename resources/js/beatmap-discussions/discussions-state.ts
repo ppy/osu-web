@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
+import { BeatmapsetStatus } from 'interfaces/beatmapset-json';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import Ruleset from 'interfaces/ruleset';
 import { intersectionWith, maxBy, sum } from 'lodash';
@@ -16,6 +17,7 @@ import { Filter, filters } from './current-discussions';
 import DiscussionMode, { discussionModes } from './discussion-mode';
 import DiscussionPage, { isDiscussionPage } from './discussion-page';
 
+const defaultFilterPraise = new Set<BeatmapsetStatus>(['approved', 'ranked']);
 const jsonId = 'json-discussions-state';
 
 export interface UpdateOptions {
@@ -363,7 +365,7 @@ export default class DiscussionsState {
     const query = parseUrl(
       null,
       store.beatmapset.discussions,
-      store.beatmapset.ranked > 0 ? 'praises' : 'total',
+      defaultFilterPraise.has(store.beatmapset.status) ? 'praises' : 'total',
     );
 
     if (query != null) {
