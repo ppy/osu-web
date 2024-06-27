@@ -188,13 +188,6 @@ return [
         'experimental_rank_as_extra' => get_bool(env('SCORES_EXPERIMENTAL_RANK_AS_EXTRA')) ?? false,
         'processing_queue' => presence(env('SCORES_PROCESSING_QUEUE')) ?? 'osu-queue:score-statistics',
         'submission_enabled' => get_bool(env('SCORES_SUBMISSION_ENABLED')) ?? true,
-
-        'rank_cache' => [
-            'local_server' => get_bool(env('SCORES_RANK_CACHE_LOCAL_SERVER')) ?? false,
-            'min_users' => get_int(env('SCORES_RANK_CACHE_MIN_USERS')) ?? 35000,
-            'server_url' => presence(env('SCORES_RANK_CACHE_SERVER_URL')),
-            'timeout' => get_int(env('SCORES_RANK_CACHE_TIMEOUT')) ?? 10,
-        ],
     ],
 
     'seasonal' => [

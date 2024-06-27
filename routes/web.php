@@ -381,10 +381,6 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('/', 'HomeController@index')->name('home');
 
-    if ($GLOBALS['cfg']['osu']['scores']['rank_cache']['local_server']) {
-        Route::get('rankLookup', 'ScoresController@userRankLookup');
-    }
-
     // redirects go here
     route_redirect('forum/p/{post}', 'forum.posts.show');
     route_redirect('po/{post}', 'forum.posts.show:');

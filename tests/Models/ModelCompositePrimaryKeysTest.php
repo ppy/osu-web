@@ -10,7 +10,6 @@ namespace Tests\Models;
 use App\Models\BeatmapDifficulty;
 use App\Models\BeatmapDifficultyAttrib;
 use App\Models\BeatmapFailtimes;
-use App\Models\BeatmapModeStats;
 use App\Models\Chat;
 use App\Models\FavouriteBeatmapset;
 use App\Models\Forum;
@@ -112,15 +111,6 @@ class ModelCompositePrimaryKeysTest extends TestCase
                 ],
                 ['type' => 'exit'],
                 ['p1', [0, 10], 11],
-            ],
-            [
-                BeatmapModeStats::class,
-                [
-                    'beatmap_id' => 0,
-                    'mode' => 0,
-                ],
-                ['mode' => 1],
-                ['ss_ratio', [0.0, 0.5], 1.0],
             ],
             [
                 Chat\UserChannel::class,
