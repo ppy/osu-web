@@ -118,9 +118,11 @@ export class NewReply extends React.Component<Props> {
         this.editing = false;
         break;
       case InputEventType.Submit: {
-        const resolve = this.canResolve && this.props.discussion.can_be_resolved && event.ctrlKey;
+        const postAction = this.canResolve && this.props.discussion.can_be_resolved && event.ctrlKey
+          ? 'reply_resolve'
+          : 'reply';
 
-        this.post(event, resolve ? resolve : undefined);
+        this.post(event, postAction);
         break;
       }
     }
@@ -135,12 +137,10 @@ export class NewReply extends React.Component<Props> {
   };
 
   @action
-  private readonly post = (event: React.SyntheticEvent<HTMLElement>, resolve?: boolean) => {
-    if (!this.validPost || this.postXhr != null) return;
+  private readonly post = (event: React.SyntheticEvent<HTMLElement>, postAction?: string) => {
+    postAction ??= event.currentTarget.dataset.action;
+    if (!this.validPost || this.postXhr != null || postAction == null) return;
     showLoadingOverlay();
-
-    // in case the event came from input box, do 'reply'.
-    const postAction = resolve ? 'reply_resolve' : event.currentTarget.dataset.action ?? 'reply';
 
     this.posting = postAction;
 
