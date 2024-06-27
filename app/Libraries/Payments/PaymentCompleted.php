@@ -24,27 +24,6 @@ class PaymentCompleted
         $this->fulfillers = FulfillmentFactory::createFulfillersFor($order);
     }
 
-    private function sendPaymentCompletedMail()
-    {
-        if (!$this->order->isPaidOrDelivered()) {
-            app('sentry')->getClient()->captureMessage(
-                'Trying to send mail for unpaid order',
-                Severity::warning(),
-                (new Scope())->setContext(
-                    'order',
-                    $this->order->only('id', 'provider', 'reference', 'status', 'transaction_id', 'user_id'),
-                )
-            );
-
-            return;
-        }
-
-        $user = $this->order->user;
-        if (is_valid_email_format($user->user_email)) {
-            Mail::to($user)->queue(new StorePaymentCompleted($this->order));
-        }
-    }
-
     public function handle()
     {
         $connection = $this->order->getConnection();
@@ -69,5 +48,26 @@ class PaymentCompleted
                 $fulfiller->run();
             }
         });
+    }
+
+    private function sendPaymentCompletedMail()
+    {
+        if (!$this->order->isPaidOrDelivered()) {
+            app('sentry')->getClient()->captureMessage(
+                'Trying to send mail for unpaid order',
+                Severity::warning(),
+                (new Scope())->setContext(
+                    'order',
+                    $this->order->only('id', 'provider', 'reference', 'status', 'transaction_id', 'user_id'),
+                )
+            );
+
+            return;
+        }
+
+        $user = $this->order->user;
+        if (is_valid_email_format($user->user_email)) {
+            Mail::to($user)->queue(new StorePaymentCompleted($this->order));
+        }
     }
 }
