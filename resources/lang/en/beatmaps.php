@@ -25,7 +25,7 @@ return [
         'message_placeholder_silenced' => "Can't post discussion while silenced.",
         'message_type_select' => 'Select Comment Type',
         'reply_notice' => 'Press enter to reply.',
-        'reply_resolve_notice' => 'Press enter to reply. Press crtl + enter to reply and resolve.',
+        'reply_resolve_notice' => 'Press enter to reply. Press ctrl+enter to reply and resolve.',
         'reply_placeholder' => 'Type your response here',
         'require-login' => 'Please sign in to post or reply',
         'resolved' => 'Resolved',
