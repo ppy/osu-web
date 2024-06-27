@@ -5,8 +5,8 @@ Field        | Type                     | Description
 id           | integer                  | |
 beatmap      | [Beatmap](#beatmap)      | Includes `beatmapset`.
 beatmap_id   | integer                  | |
-start_time   | [Timestamp](#timestamp)  | Uses `Z` instead of `+00:00` for timezone.
-end_time     | [Timestamp](#timestamp)? | Uses `Z` instead of `+00:00` for timezone.
+start_time   | [Timestamp](#timestamp)  | |
+end_time     | [Timestamp](#timestamp)? | |
 mode         | [Ruleset](#ruleset)      | |
 mode_int     | integer                  | |
 mods         | string[]                 | Mod combination used for this match game as an array of mod acronyms.
