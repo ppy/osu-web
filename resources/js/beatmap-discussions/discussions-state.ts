@@ -63,7 +63,6 @@ export default class DiscussionsState {
 
   private previousFilter: Filter = 'total';
   private previousPage: DiscussionPage = 'general';
-  private readonly urlStateDisposer;
 
   get beatmapset() {
     return this.store.beatmapset;
@@ -385,12 +384,6 @@ export default class DiscussionsState {
     }
 
     makeObservable(this);
-
-    this.urlStateDisposer = reaction(() => this.url, (current, prev) => {
-      if (current !== prev) {
-        Turbolinks.controller.advanceHistory(this.url);
-      }
-    });
   }
 
   @action
@@ -471,7 +464,6 @@ export default class DiscussionsState {
   }
 
   destroy() {
-    this.urlStateDisposer();
   }
 
   @action

@@ -6,7 +6,7 @@ import { ReviewEditorConfigContext } from 'beatmap-discussions/review-editor-con
 import BackToTop from 'components/back-to-top';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import { route } from 'laroute';
-import { action, makeObservable, observable, toJS } from 'mobx';
+import { action, makeObservable, observable, reaction, toJS } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -73,6 +73,14 @@ export default class Main extends React.Component<Props> {
 
     // normalize url after first render because the default discussion filter depends on ranked state.
     Turbolinks.controller.replaceHistory(this.discussionsState.url);
+
+    this.disposers.add(
+      reaction(() => this.discussionsState.url, (current, prev) => {
+        if (current !== prev) {
+          Turbolinks.controller.advanceHistory(current);
+        }
+      }),
+    );
 
     this.timeoutCheckNew = window.setTimeout(this.checkNew, checkNewTimeoutDefault);
   }
