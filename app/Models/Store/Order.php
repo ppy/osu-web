@@ -530,7 +530,7 @@ class Order extends Model
         });
     }
 
-    public function paid(Payment $payment = null)
+    public function paid(?Payment $payment)
     {
         if ($this->tracking_code === Order::PENDING_ECHECK) {
             $this->tracking_code = Order::ECHECK_CLEARED;
