@@ -177,7 +177,7 @@ abstract class PaymentProcessor implements \ArrayAccess
             if ($payment === null) {
                 // payment not processed, manually cancelled.
                 app('sentry')->getClient()->captureMessage(
-                    'Cancelling order with no existing payment found.',
+                    static::WARN_CANCEL_MISSING_PAYMENT,
                     null,
                     (new Scope())->setExtra('order_id', $order->getKey())
                 );
@@ -187,7 +187,7 @@ abstract class PaymentProcessor implements \ArrayAccess
             // Paypal sends multiple notifications that we treat as a cancellation.
             if ($order->payments->where('cancelled', true)->first() !== null) {
                 app('sentry')->getClient()->captureMessage(
-                    'Payment already cancelled.',
+                    static::WARN_PAYMENT_ALREADY_CANCELLED,
                     null,
                     (new Scope())->setExtra('order_id', $order->getKey())
                 );
