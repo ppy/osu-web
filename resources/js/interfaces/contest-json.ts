@@ -11,6 +11,16 @@ interface ContestJsonAvailableIncludes {
   scoring_categories: ContestScoringCategoryJson[];
 }
 
+interface ContestJsonEntry {
+  best_of: boolean;
+  judged: boolean;
+  link_icon: string;
+  show_votes: boolean;
+  submitted_beatmaps: boolean;
+  type: string;
+  users_voted_count: number;
+}
+
 interface ContestJsonDefaultAttributes {
   id: number;
   name: string;
@@ -24,6 +34,10 @@ export type ContestJsonForResults = ContestJsonDefaultAttributes
 & {
   entires: ContestEntryJsonForResults;
 };
+
+export type ContestJsonForEntries = ContestJsonDefaultAttributes
+& Required<Pick<ContestJsonAvailableIncludes, 'entries'>>
+& Required<ContestJsonEntry>;
 
 export type ContestJsonForStore = ContestJsonDefaultAttributes
 & Required<Pick<ContestJsonAvailableIncludes, 'entries' | 'scoring_categories'>>;
