@@ -3,6 +3,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
 namespace App\Libraries\Payments;
 
 use App\Models\Store\Order;
@@ -22,7 +24,7 @@ class XsollaPaymentProcessor extends PaymentProcessor
 
     public function getOrderNumber(): string
     {
-        return $this['transaction.external_id'];
+        return (string) $this['transaction.external_id'];
     }
 
     public function getPaymentProvider(): string
@@ -32,12 +34,11 @@ class XsollaPaymentProcessor extends PaymentProcessor
 
     public function getPaymentTransactionId(): string
     {
-        return $this['transaction.id'];
+        return (string) $this['transaction.id'];
     }
 
     public function getPaymentAmount(): float
     {
-        // TODO: less floaty
         return (float) $this['purchase.checkout.amount'];
     }
 

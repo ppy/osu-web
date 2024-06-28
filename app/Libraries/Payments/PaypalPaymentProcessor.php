@@ -3,6 +3,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
 namespace App\Libraries\Payments;
 
 use App\Models\Store\Order;
@@ -43,8 +45,6 @@ class PaypalPaymentProcessor extends PaymentProcessor
 
     public function getPaymentAmount(): float
     {
-        // TODO: less floaty
-
         if ($this->getNotificationType() === NotificationType::REFUND) {
             return (float) $this['mc_gross'] + $this['mc_fee'];
         } else {
@@ -59,7 +59,7 @@ class PaypalPaymentProcessor extends PaymentProcessor
 
     public function isTest(): bool
     {
-        return presence($this['test_ipn']);
+        return get_bool(presence($this['test_ipn']));
     }
 
     public function getNotificationType(): string
