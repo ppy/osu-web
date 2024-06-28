@@ -5,6 +5,7 @@
 
 namespace App\Libraries\Fulfillments;
 
+use App\Exceptions\Store\FulfillmentException;
 use App\Models\Store\Order;
 use App\Traits\Validatable;
 
@@ -42,4 +43,29 @@ abstract class OrderFulfiller implements Fulfillable
     }
 
     abstract public function validationErrorsTranslationPrefix(): string;
+
+    protected function assertNoValidationErrors(): void
+    {
+        if ($this->validationErrors()->isAny()) {
+            throw new FulfillmentException($this->order, $this->validationErrors());
+        }
+    }
+
+    protected function incrementRun(): void
+    {
+        \Datadog::increment(
+            "{$GLOBALS['cfg']['datadog-helper']['prefix_web']}.store.fulfillments.run",
+            1,
+            ['type' => static::TAGGED_NAME]
+        );
+    }
+
+    protected function incrementRevoke(): void
+    {
+        \Datadog::increment(
+            "{$GLOBALS['cfg']['datadog-helper']['prefix_web']}.store.fulfillments.revoke",
+            1,
+            ['type' => static::TAGGED_NAME]
+        );
+    }
 }

@@ -5,7 +5,6 @@
 
 namespace App\Libraries\Fulfillments;
 
-use App\Exceptions\Store\FulfillmentException;
 use App\Mail\DonationThanks;
 use App\Mail\SupporterGift;
 use App\Models\Event;
@@ -37,11 +36,7 @@ class SupporterTagFulfillment extends OrderFulfiller
             $fulfiller->run();
         }
 
-        \Datadog::increment(
-            "{$GLOBALS['cfg']['datadog-helper']['prefix_web']}.store.fulfillments.run",
-            1,
-            ['type' => static::TAGGED_NAME]
-        );
+        $this->incrementRun();
 
         $this->afterRun();
     }
@@ -54,11 +49,7 @@ class SupporterTagFulfillment extends OrderFulfiller
             $fulfiller->revoke();
         }
 
-        \Datadog::increment(
-            "{$GLOBALS['cfg']['datadog-helper']['prefix_web']}.store.fulfillments.revoke",
-            1,
-            ['type' => static::TAGGED_NAME]
-        );
+        $this->incrementRevoke();
     }
 
     private function afterRun()
@@ -127,9 +118,7 @@ class SupporterTagFulfillment extends OrderFulfiller
             );
         }
 
-        if ($this->validationErrors()->isAny()) {
-            throw new FulfillmentException($this->order, $this->validationErrors());
-        }
+        $this->assertNoValidationErrors();
     }
 
     /**

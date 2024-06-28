@@ -20,21 +20,13 @@ class GenericFulfillment extends OrderFulfiller
     public function run()
     {
         // almost noop
-        \Datadog::increment(
-            "{$GLOBALS['cfg']['datadog-helper']['prefix_web']}.store.fulfillments.run",
-            1,
-            ['type' => static::TAGGED_NAME]
-        );
+        $this->incrementRun();
     }
 
     public function revoke()
     {
         // almost noop
-        \Datadog::increment(
-            "{$GLOBALS['cfg']['datadog-helper']['prefix_web']}.store.fulfillments.revoke",
-            1,
-            ['type' => static::TAGGED_NAME]
-        );
+        $this->incrementRevoke();
     }
 
     public function validationErrorsTranslationPrefix(): string

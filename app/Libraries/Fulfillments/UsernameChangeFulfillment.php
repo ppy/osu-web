@@ -33,11 +33,7 @@ class UsernameChangeFulfillment extends OrderFulfiller
             'history' => $history,
         ]);
 
-        \Datadog::increment(
-            "{$GLOBALS['cfg']['datadog-helper']['prefix_web']}.store.fulfillments.run",
-            1,
-            ['type' => static::TAGGED_NAME]
-        );
+        $this->incrementRun();
     }
 
     public function revoke()
@@ -47,11 +43,7 @@ class UsernameChangeFulfillment extends OrderFulfiller
         $user = $this->order->user;
         $user->revertUsername();
 
-        \Datadog::increment(
-            "{$GLOBALS['cfg']['datadog-helper']['prefix_web']}.store.fulfillments.revoke",
-            1,
-            ['type' => static::TAGGED_NAME]
-        );
+        $this->incrementRevoke();
     }
 
     private function assertValidRun(): void
@@ -75,9 +67,7 @@ class UsernameChangeFulfillment extends OrderFulfiller
             );
         }
 
-        if ($this->validationErrors()->isAny()) {
-            throw new FulfillmentException($this->order, $this->validationErrors());
-        }
+        $this->assertNoValidationErrors();
     }
 
     private function assertValidRevoke(): void
@@ -97,9 +87,7 @@ class UsernameChangeFulfillment extends OrderFulfiller
             );
         }
 
-        if ($this->validationErrors()->isAny()) {
-            throw new FulfillmentException($this->order, $this->validationErrors());
-        }
+        $this->assertNoValidationErrors();
     }
 
     private function getChangeType()
