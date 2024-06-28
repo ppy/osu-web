@@ -43,7 +43,7 @@ class Payment extends Model
         $payment->saveOrExplode();
 
         \Datadog::increment(
-            "{$GLOBALS['cfg']['datadog-helper']['prefix_web']}.store.payments.cancel",
+            "{$GLOBALS['cfg']['datadog-helper']['prefix_web']}.store.payments.cancelled",
             1,
             ['provider' => $this->provider],
         );
