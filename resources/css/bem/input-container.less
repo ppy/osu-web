@@ -49,6 +49,12 @@
     background: none;
   }
 
+  &--group-history-wide {
+    @media @mobile {
+      grid-column-end: span 2;
+    }
+  }
+
   &__label {
     display: flex;
     justify-content: space-between;
@@ -57,4 +63,3 @@
     font-size: @font-size--normal;
   }
 }
-
