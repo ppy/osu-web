@@ -22,7 +22,7 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
 {
     use Traits\Reportable, Traits\WithDbCursorHelper, Traits\WithWeightedPp;
 
-    protected $macros = [
+    protected array $macros = [
         'accurateRankCounts',
         'forListing',
         'userBest',

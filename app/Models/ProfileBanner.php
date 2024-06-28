@@ -20,7 +20,7 @@ class ProfileBanner extends Model
 {
     protected $table = 'osu_profile_banners';
     protected $primaryKey = 'banner_id';
-    protected $macros = ['active'];
+    protected array $macros = ['active'];
     public $timestamps = false;
 
     public function user()

@@ -25,7 +25,7 @@ abstract class Model extends BaseModel
 
     protected $connection = 'mysql';
     protected $guarded = [];
-    protected $macros;
+    protected array $macros = [];
     protected $primaryKeys;
 
     public static function booted()
@@ -47,15 +47,14 @@ abstract class Model extends BaseModel
         return $this->getRawAttribute($this->primaryKey);
     }
 
-    public function getMacros()
+    public function getMacros(): array
     {
-        static $baseMacros = [
+        return [
+            ...$this->macros,
             'getWithHasMore',
             'last',
             'realCount',
         ];
-
-        return array_merge($this->macros ?? [], $baseMacros);
     }
 
     public function getMorphClass()

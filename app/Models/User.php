@@ -899,6 +899,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'clients',
             'comments',
             'country',
+            'dailyChallengeUserStats',
             'events',
             'favourites',
             'follows',
@@ -1260,6 +1261,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function clients()
     {
         return $this->hasMany(UserClient::class);
+    }
+
+    public function dailyChallengeUserStats(): HasOne
+    {
+        return $this->hasOne(DailyChallengeUserStats::class);
     }
 
     public function favourites()

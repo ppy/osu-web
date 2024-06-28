@@ -89,7 +89,7 @@ class Order extends Model
         'shipping' => 'float',
     ];
 
-    protected $macros = ['itemsQuantities'];
+    protected array $macros = ['itemsQuantities'];
 
     protected static function splitTransactionId($value)
     {
