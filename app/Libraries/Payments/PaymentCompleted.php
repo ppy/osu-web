@@ -11,9 +11,6 @@ use App\Libraries\Fulfillments\FulfillmentFactory;
 use App\Mail\StorePaymentCompleted;
 use App\Models\Store\Order;
 use App\Models\Store\Payment;
-use Mail;
-use Sentry\Severity;
-use Sentry\State\Scope;
 
 class PaymentCompleted
 {
@@ -54,7 +51,7 @@ class PaymentCompleted
     {
         $user = $this->order->user;
         if (is_valid_email_format($user->user_email)) {
-            Mail::to($user)->queue(new StorePaymentCompleted($this->order));
+            \Mail::to($user)->queue(new StorePaymentCompleted($this->order));
         }
     }
 }
