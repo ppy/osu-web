@@ -92,15 +92,6 @@ class ScorePinsController extends Controller
                 (new ScorePin([
                     'display_order' => $currentMinDisplayOrder - 100,
                     'ruleset_id' => $rulesetId,
-                    /**
-                     * TODO:
-                     * 1. update score_id = new_score_id -- done
-                     * 2. remove duplicated score_id -- done
-                     * 3. use score_id as primary key (both model and database) -- done*
-                     * 4. remove setting score_type below -- done
-                     * 5. remove id, new_score_id, and score_type columns
-                     * 6. replace score_id unique index with primary key
-                     */
                 ]))->user()->associate($user)
                     ->score()->associate($score)
                     ->saveOrExplode();
